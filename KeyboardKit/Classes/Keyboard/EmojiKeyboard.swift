@@ -40,7 +40,8 @@ public class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
     public weak var delegate: KeyboardDelegate?
     
     public var emojis: [String] {
-        return [String]()           // Implement in sub class *******
+        alertMissingImplementation("emojis")
+        return [String]()
     }
     
     public var pageNumber: Int {
@@ -49,7 +50,8 @@ public class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
     }
     
     public var systemButtons: [KeyboardButton] {
-        return [KeyboardButton]()   // Implement in sub class *******
+        alertMissingImplementation("systemButtons")
+        return [KeyboardButton]()
     }
     
     private var rowsPerPage = 3
@@ -80,9 +82,17 @@ public class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
     
     // MARK: Public functions
     
+    public func copyImageToPasteboard(image: UIImage) {
+        alertMissingImplementation("copyImageToPasteboard(:)")
+    }
+    
     public func keyboardImageNameForEmoji(emoji: String) -> String {
-        // Implement in sub class *******
+        alertMissingImplementation("keyboardImageNameForEmoji(:)")
         return emoji
+    }
+    
+    public func saveImageToPhotos(image: UIImage, completionTarget: AnyObject?, completionSelector: Selector) {
+        alertMissingImplementation("saveEmojiToPhotos(:::)")
     }
     
     public func setupKeyboardInViewController(vc: UIInputViewController) {
@@ -121,23 +131,23 @@ public class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
     }
     
     public func styleInputViewController(vc: UIInputViewController) {
-        // Implement in sub class *******
+        alertMissingImplementation("styleInputViewController(:)")
     }
     
     public func styleKeyboardButton(button: KeyboardButton) {
-        // Implement in sub class *******
+        alertMissingImplementation("styleKeyboardButton(:)")
     }
     
     public func stylePageControl(pageControl: UIPageControl) {
-        // Implement in sub class *******
+        alertMissingImplementation("stylePageControl(:)")
     }
     
     public func styleSystemButton(button: KeyboardButton) {
-        // Implement in sub class *******
+        alertMissingImplementation("styleSystemButton(:)")
     }
     
     public func styleSystemRow(row: UIView) {
-        // Implement in sub class *******
+        alertMissingImplementation("styleSystemRow(:)")
     }
     
     
@@ -152,6 +162,10 @@ public class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
     private func addTapGestureToButton(button: KeyboardButton) {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(buttonTapped(_:)))
         button.addGestureRecognizer(gesture)
+    }
+    
+    private func alertMissingImplementation(functionName: String) {
+        print("***** Implement '\(functionName)\' in keyboard class *****")
     }
     
     private func createEmojiButton(emoji: String) -> KeyboardButton {

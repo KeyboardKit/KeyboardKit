@@ -28,9 +28,9 @@ public extension UIImage {
         
         drawInRect(rect)
         
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return newImage
+        return image
     }
 }
