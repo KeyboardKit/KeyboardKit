@@ -1,0 +1,6 @@
+framework module KeyboardKit {
+  umbrella header "KeyboardKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
