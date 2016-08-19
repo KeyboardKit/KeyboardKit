@@ -11,17 +11,21 @@ import UIKit
 public extension UIImage {
     
     public func imageWithBackgroundColor(color: UIColor) -> UIImage {
+        return imageWithBackgroundColor(color, cornerRadius: 0)
+    }
+    
+    public func imageWithBackgroundColor(color: UIColor, cornerRadius: CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
         
         let context = UIGraphicsGetCurrentContext()
         let rect = CGRectMake(0, 0, size.width, size.height)
         
-        let path = UIBezierPath(roundedRect: rect, cornerRadius: 20).CGPath
+        let path = UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius).CGPath
         CGContextAddPath(context, path)
         CGContextSetFillColorWithColor(context, color.CGColor)
         CGContextClosePath(context)
         CGContextFillPath(context)
-
+        
         drawInRect(rect)
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()

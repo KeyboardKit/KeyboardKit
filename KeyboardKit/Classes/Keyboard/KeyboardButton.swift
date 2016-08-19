@@ -18,11 +18,11 @@ public class KeyboardButton: UIButton {
         return button
     }
     
-    public class func newWithEmoji(emojiName: String, keyboardImageName: String) -> KeyboardButton {
+    public class func newWithEmoji(emojiName: String, imageName: String) -> KeyboardButton {
         let button = KeyboardButton(type: .Custom)
         button.operation = .Emoji
         button.emojiName = emojiName
-        UIImage.imageNamedAsync(keyboardImageName) { image in
+        UIImage.asyncImageNamed(imageName) { image in
             button.keyboardImage = image
         }
         return button
@@ -35,10 +35,10 @@ public class KeyboardButton: UIButton {
         return button
     }
     
-    public class func newWithOperation(operation: KeyboardOperation, keyboardImage: UIImage) -> KeyboardButton {
+    public class func newWithOperation(operation: KeyboardOperation, image: UIImage) -> KeyboardButton {
         let button = KeyboardButton(type: .Custom)
         button.operation = operation
-        button.keyboardImage = keyboardImage
+        button.keyboardImage = image
         return button
     }
 

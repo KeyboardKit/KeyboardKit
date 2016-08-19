@@ -18,7 +18,6 @@
 		3B0C44281D66968400B3378F /* UIImage_Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C44171D66968400B3378F /* UIImage_Resize.swift */; };
 		3B0C44291D66968400B3378F /* UIScrollView_PageNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C44181D66968400B3378F /* UIScrollView_PageNumber.swift */; };
 		3B0C442A1D66968400B3378F /* UITableViewController_HeaderSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C44191D66968400B3378F /* UITableViewController_HeaderSize.swift */; };
-		3B0C442B1D66968400B3378F /* UIView_Fade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C441A1D66968400B3378F /* UIView_Fade.swift */; };
 		3B0C442C1D66968400B3378F /* EmojiKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C441C1D66968400B3378F /* EmojiKeyboard.swift */; };
 		3B0C442D1D66968400B3378F /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C441D1D66968400B3378F /* Keyboard.swift */; };
 		3B0C442E1D66968400B3378F /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C441E1D66968400B3378F /* KeyboardButton.swift */; };
@@ -58,7 +57,6 @@
 		3B0C44171D66968400B3378F /* UIImage_Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage_Resize.swift; sourceTree = "<group>"; };
 		3B0C44181D66968400B3378F /* UIScrollView_PageNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollView_PageNumber.swift; sourceTree = "<group>"; };
 		3B0C44191D66968400B3378F /* UITableViewController_HeaderSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewController_HeaderSize.swift; sourceTree = "<group>"; };
-		3B0C441A1D66968400B3378F /* UIView_Fade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView_Fade.swift; sourceTree = "<group>"; };
 		3B0C441C1D66968400B3378F /* EmojiKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiKeyboard.swift; sourceTree = "<group>"; };
 		3B0C441D1D66968400B3378F /* Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		3B0C441E1D66968400B3378F /* KeyboardButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
@@ -162,7 +160,6 @@
 				3B0C44171D66968400B3378F /* UIImage_Resize.swift */,
 				3B0C44181D66968400B3378F /* UIScrollView_PageNumber.swift */,
 				3B0C44191D66968400B3378F /* UITableViewController_HeaderSize.swift */,
-				3B0C441A1D66968400B3378F /* UIView_Fade.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -430,7 +427,6 @@
 				3B0C44301D66968400B3378F /* SystemUrl.swift in Sources */,
 				3B0C44311D66968400B3378F /* ThreadingOperator.swift in Sources */,
 				3B0C442E1D66968400B3378F /* KeyboardButton.swift in Sources */,
-				3B0C442B1D66968400B3378F /* UIView_Fade.swift in Sources */,
 				3B0C44251D66968400B3378F /* UIImage_Async.swift in Sources */,
 				3B0C442A1D66968400B3378F /* UITableViewController_HeaderSize.swift in Sources */,
 				3B0C442C1D66968400B3378F /* EmojiKeyboard.swift in Sources */,

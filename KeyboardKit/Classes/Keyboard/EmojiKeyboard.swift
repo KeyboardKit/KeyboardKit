@@ -6,6 +6,15 @@
 //  Copyright © 2015 Daniel Saidi. All rights reserved.
 //
 
+/*
+ 
+ When you create your own emoji keyboard, you must make
+ sure to override the properties and functions that are
+ commented with "Implement in sub class"
+ 
+ */
+
+
 import UIKit
 
 
@@ -30,13 +39,22 @@ public class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
     
     public weak var delegate: KeyboardDelegate?
     
+    public var emojis: [String] {
+        return [String]()           // Implement in sub class *******
+    }
+    
     public var pageNumber: Int {
         get { return scrollView.pageNumber }
         set { scrollView.pageNumber = newValue }
     }
     
+    public var systemButtons: [KeyboardButton] {
+        return [KeyboardButton]()   // Implement in sub class *******
+    }
+    
     private var rowsPerPage = 3
     private var emojisPerRow = 6
+    
     private var pageControl: UIPageControl!
     private var scrollView: UIScrollView!
     
@@ -62,16 +80,9 @@ public class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
     
     // MARK: Public functions
     
-    public func getEmojis() -> [String] {
-        return [String]()
-    }
-    
-    public func getKeyboardImageNameForEmoji(emoji: String) -> String {
-        return emoji    // Implement in sub class
-    }
-    
-    public func getSystemButtons() -> [KeyboardButton] {
-        return [KeyboardButton]()
+    public func keyboardImageNameForEmoji(emoji: String) -> String {
+        // Implement in sub class *******
+        return emoji
     }
     
     public func setupKeyboardInViewController(vc: UIInputViewController) {
@@ -81,13 +92,13 @@ public class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
         let width = vc.view.bounds.width
         let height = vc.view.bounds.height
         let rowHeight = height / CGFloat(rowsPerPage + 1)
-        let emojiBatches = batchArray(getEmojis(), withBatchSize: 6)
+        let rows = batchArray(emojis, withBatchSize: emojisPerRow)
         
         scrollView = createScrollViewInView(vc.view)
         
         var lastIndexPath: NSIndexPath?
         
-        for (index, emojis) in emojiBatches.enumerate() {
+        for (index, emojis) in rows.enumerate() {
             let buttons = emojis.map { createEmojiButton($0) }
             let indexPath = getIndexPathForRowNumber(index)
             lastIndexPath = indexPath
@@ -110,23 +121,23 @@ public class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
     }
     
     public func styleInputViewController(vc: UIInputViewController) {
-        // Implement in sub class
+        // Implement in sub class *******
     }
     
     public func styleKeyboardButton(button: KeyboardButton) {
-        // Implement in sub class
+        // Implement in sub class *******
     }
     
     public func stylePageControl(pageControl: UIPageControl) {
-        // Implement in sub class
+        // Implement in sub class *******
     }
     
     public func styleSystemButton(button: KeyboardButton) {
-        // Implement in sub class
+        // Implement in sub class *******
     }
     
     public func styleSystemRow(row: UIView) {
-        // Implement in sub class
+        // Implement in sub class *******
     }
     
     
@@ -144,8 +155,8 @@ public class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
     }
     
     private func createEmojiButton(emoji: String) -> KeyboardButton {
-        let keyboardImageName = getKeyboardImageNameForEmoji(emoji)
-        let button = KeyboardButton.newWithEmoji(emoji, keyboardImageName: keyboardImageName)
+        let imageName = keyboardImageNameForEmoji(emoji)
+        let button = KeyboardButton.newWithEmoji(emoji, imageName: imageName)
         button.contentMode = .ScaleAspectFit
         button.imageView?.contentMode = .ScaleAspectFit
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -181,13 +192,14 @@ public class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
         let row = UIView(frame: frame)
         styleSystemRow(row)
 
-        let buttons = getSystemButtons()
+        let buttons = systemButtons
         for button in buttons {
             row.addSubview(button)
             styleSystemButton(button)
             button.translatesAutoresizingMaskIntoConstraints = false
             addTapGestureToButton(button)
         }
+        
         setupConstraintsForButtons(buttons, inRowView: row)
         
         return row
@@ -206,7 +218,6 @@ public class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
     }
     
     private func setupConstraintsForButtons(buttons: [UIButton], inRowView view: UIView) {
-
         for (index, button) in buttons.enumerate() {
             
             let top = NSLayoutConstraint(item: button, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 1)

@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIImage {
     
-    public class func imageNamedAsync(name: String, callback: ((image: UIImage)->())) {
+    public class func asyncImageNamed(name: String, callback: ((image: UIImage)->())) {
         {   
             let image = UIImage(named: name)
             UIGraphicsBeginImageContext(CGSizeMake(1,1));
