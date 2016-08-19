@@ -62,14 +62,6 @@ public class KeyboardInputViewController: UIInputViewController, KeyboardDelegat
         return nil
     }
     
-    public func copyEmojiWithName(name: String) {
-        alertMissingImplementation("copyEmojiWithName(...)")
-    }
-    
-    public func saveEmojiWithName(name: String) {
-        alertMissingImplementation("saveEmojiWithName(...)")
-    }
-    
     public func setupKeyboard() {
         keyboard = createKeyboard()
         keyboard.setupKeyboardInViewController(self)
@@ -81,7 +73,7 @@ public class KeyboardInputViewController: UIInputViewController, KeyboardDelegat
     // MARK: Private functions
     
     private func alertMissingImplementation(functionName: String) {
-        print("** WARNING! '\(functionName)\' is not implemented in your keyboard input view controller **")
+        print("** WARNING! '\(functionName)\' not implemented in KeyboardInputViewController subclass **")
     }
     
     
@@ -89,36 +81,22 @@ public class KeyboardInputViewController: UIInputViewController, KeyboardDelegat
     // MARK: KeyboardDelegate
     
     public func keyboard(keyboard: Keyboard, buttonLongPressed button: KeyboardButton) {
-        if (button.operation == nil) {
-            return
-        }
-        
-        switch (button.operation!) {
-        case .Emoji:
-            saveEmojiWithName(button.emojiName!)
-        default:
-            break
-        }
     }
     
     public func keyboard(keyboard: Keyboard, buttonTapped button: KeyboardButton) {
-        if (button.operation == nil) {
-            return
-        }
-        
-        switch (button.operation!) {
-        case .Backspace:
-            textDocumentProxy.deleteBackward()
-        case .Emoji:
-            copyEmojiWithName(button.emojiName!)
-        case .NextKeyboard:
-            advanceToNextInputMode()
-        case .NewLine:
-            textDocumentProxy.insertText("\n")
-        case .Space:
-            textDocumentProxy.insertText(" ")
-        default:
-            break
+        if let operation = button.operation {
+            switch (button.operation!) {
+            case .Backspace:
+                textDocumentProxy.deleteBackward()
+            case .NextKeyboard:
+                advanceToNextInputMode()
+            case .NewLine:
+                textDocumentProxy.insertText("\n")
+            case .Space:
+                textDocumentProxy.insertText(" ")
+            default:
+                break
+            }
         }
     }
     

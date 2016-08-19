@@ -31,6 +31,18 @@ public class EmojiCollectionViewController: UITableViewController, UICollectionV
     
     @IBOutlet public weak var collectionView: UICollectionView!
     
+    
+    
+    // MARK: Actions
+    
+    public func collectionViewCellLongPressed(gesture: UILongPressGestureRecognizer) {
+        alertMissingImplementation("collectionViewCellLongPressed(...)")
+    }
+    
+    public func collectionViewCellTapped(gesture: UITapGestureRecognizer) {
+        alertMissingImplementation("collectionViewCellTapped(...)")
+    }
+    
  
     
     // MARK: Public functions
@@ -59,7 +71,19 @@ public class EmojiCollectionViewController: UITableViewController, UICollectionV
     // MARK: Private functions
     
     private func alertMissingImplementation(functionName: String) {
-        print("** WARNING! '\(functionName)\' is not implemented in your emoji collection view controller **")
+        print("** WARNING! '\(functionName)\' not implemented in EmojiCollectionViewController subclass **")
+    }
+    
+    private func setupLongPressGestureForCollectionViewCell(cell: UICollectionViewCell) {
+        let longPressSelector = #selector(collectionViewCellLongPressed(_:))
+        let longPress = UILongPressGestureRecognizer(target: self, action: longPressSelector)
+        cell.addGestureRecognizer(longPress)
+    }
+    
+    private func setupTapGestureForCollectionViewCell(cell: UICollectionViewCell) {
+        let tapSelector = #selector(collectionViewCellTapped(_:))
+        let tap = UITapGestureRecognizer(target: self, action: tapSelector)
+        cell.addGestureRecognizer(tap)
     }
     
     
@@ -71,6 +95,12 @@ public class EmojiCollectionViewController: UITableViewController, UICollectionV
         cell.backgroundView = UIImageView(image: keyboardImages[indexPath.row])
         cell.layer.shouldRasterize = true
         cell.layer.rasterizationScale = UIScreen.mainScreen().scale
+        
+        if (cell.gestureRecognizers == nil) {
+            setupTapGestureForCollectionViewCell(cell)
+            setupLongPressGestureForCollectionViewCell(cell)
+        }
+        
         return cell
     }
     
