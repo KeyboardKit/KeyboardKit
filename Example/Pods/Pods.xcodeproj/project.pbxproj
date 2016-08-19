@@ -171,12 +171,12 @@
 		3B0C441B1D66968400B3378F /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
+				3B0C45511D66B7D100B3378F /* EmojiCollectionViewCell.swift */,
 				3B0C454F1D66B78D00B3378F /* EmojiCollectionViewController.swift */,
 				3B0C441C1D66968400B3378F /* EmojiKeyboard.swift */,
 				3B0C441D1D66968400B3378F /* Keyboard.swift */,
 				3B0C441E1D66968400B3378F /* KeyboardButton.swift */,
 				3B0C441F1D66968400B3378F /* KeyboardInputViewController.swift */,
-				3B0C45511D66B7D100B3378F /* EmojiCollectionViewCell.swift */,
 			);
 			path = Keyboard;
 			sourceTree = "<group>";
