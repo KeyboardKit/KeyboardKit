@@ -83,16 +83,16 @@ public class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
     // MARK: Public functions
     
     public func copyImageToPasteboard(image: UIImage) {
-        alertMissingImplementation("copyImageToPasteboard(:)")
+        alertMissingImplementation("copyImageToPasteboard(...)")
     }
     
     public func keyboardImageNameForEmoji(emoji: String) -> String {
-        alertMissingImplementation("keyboardImageNameForEmoji(:)")
+        alertMissingImplementation("keyboardImageNameForEmoji(...)")
         return emoji
     }
     
     public func saveImageToPhotos(image: UIImage, completionTarget: AnyObject?, completionSelector: Selector) {
-        alertMissingImplementation("saveEmojiToPhotos(:::)")
+        alertMissingImplementation("saveEmojiToPhotos(...)")
     }
     
     public func setupKeyboardInViewController(vc: UIInputViewController) {
@@ -131,23 +131,23 @@ public class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
     }
     
     public func styleInputViewController(vc: UIInputViewController) {
-        alertMissingImplementation("styleInputViewController(:)")
+        alertMissingImplementation("styleInputViewController(...)")
     }
     
     public func styleKeyboardButton(button: KeyboardButton) {
-        alertMissingImplementation("styleKeyboardButton(:)")
+        alertMissingImplementation("styleKeyboardButton(...)")
     }
     
     public func stylePageControl(pageControl: UIPageControl) {
-        alertMissingImplementation("stylePageControl(:)")
+        alertMissingImplementation("stylePageControl(...)")
     }
     
     public func styleSystemButton(button: KeyboardButton) {
-        alertMissingImplementation("styleSystemButton(:)")
+        alertMissingImplementation("styleSystemButton(...)")
     }
     
     public func styleSystemRow(row: UIView) {
-        alertMissingImplementation("styleSystemRow(:)")
+        alertMissingImplementation("styleSystemRow(...)")
     }
     
     
@@ -165,7 +165,7 @@ public class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
     }
     
     private func alertMissingImplementation(functionName: String) {
-        print("***** Implement '\(functionName)\' in keyboard class *****")
+        print("** WARNING! '\(functionName)\' is not implemented in your emoji keyboard **")
     }
     
     private func createEmojiButton(emoji: String) -> KeyboardButton {

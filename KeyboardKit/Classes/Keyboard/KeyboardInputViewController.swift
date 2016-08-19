@@ -58,21 +58,30 @@ public class KeyboardInputViewController: UIInputViewController, KeyboardDelegat
     // MARK: Public functions
     
     public func createKeyboard() -> Keyboard! {
-        return nil  // Implement in sub class
+        alertMissingImplementation("createKeyboard()")
+        return nil
     }
     
     public func copyEmojiWithName(name: String) {
-        // Implement in sub class
+        alertMissingImplementation("copyEmojiWithName(...)")
     }
     
     public func saveEmojiWithName(name: String) {
-        // Implement in sub class
+        alertMissingImplementation("saveEmojiWithName(...)")
     }
     
     public func setupKeyboard() {
         keyboard = createKeyboard()
         keyboard.setupKeyboardInViewController(self)
         keyboard.pageNumber = lastPageNumber
+    }
+    
+    
+    
+    // MARK: Private functions
+    
+    private func alertMissingImplementation(functionName: String) {
+        print("** WARNING! '\(functionName)\' is not implemented in your keyboard input view controller **")
     }
     
     

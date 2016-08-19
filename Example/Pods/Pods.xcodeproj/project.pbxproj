@@ -24,6 +24,8 @@
 		3B0C442F1D66968400B3378F /* KeyboardInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C441F1D66968400B3378F /* KeyboardInputViewController.swift */; };
 		3B0C44301D66968400B3378F /* SystemUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C44211D66968400B3378F /* SystemUrl.swift */; };
 		3B0C44311D66968400B3378F /* ThreadingOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C44231D66968400B3378F /* ThreadingOperator.swift */; };
+		3B0C45501D66B78D00B3378F /* EmojiCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C454F1D66B78D00B3378F /* EmojiCollectionViewController.swift */; };
+		3B0C45521D66B7D100B3378F /* EmojiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C45511D66B7D100B3378F /* EmojiCollectionViewCell.swift */; };
 		69CAF2F0DF0DC1A5F96B8B0A9EAC233B /* KeyboardKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF7EF9A0F43E2AEF5417D90DF1DCEF3 /* KeyboardKit-dummy.m */; };
 		7B92A045B10E30BCEE27ED699A9D9761 /* Pods-KeyboardKit_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1018E4E336DCF0DA9A3AF37A4269D8 /* Pods-KeyboardKit_Example-dummy.m */; };
 		A43D89311230C0F654F39266B463A2D3 /* Pods-KeyboardKit_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D48E07D9F6C9D35866E0B6BC3374ABF7 /* Pods-KeyboardKit_Tests-dummy.m */; };
@@ -63,6 +65,8 @@
 		3B0C441F1D66968400B3378F /* KeyboardInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardInputViewController.swift; sourceTree = "<group>"; };
 		3B0C44211D66968400B3378F /* SystemUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemUrl.swift; sourceTree = "<group>"; };
 		3B0C44231D66968400B3378F /* ThreadingOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadingOperator.swift; sourceTree = "<group>"; };
+		3B0C454F1D66B78D00B3378F /* EmojiCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiCollectionViewController.swift; sourceTree = "<group>"; };
+		3B0C45511D66B7D100B3378F /* EmojiCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B395498F8388DDC00427440D950E519 /* Pods_KeyboardKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KeyboardKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E1018E4E336DCF0DA9A3AF37A4269D8 /* Pods-KeyboardKit_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-KeyboardKit_Example-dummy.m"; sourceTree = "<group>"; };
 		52C1A87971EEF0B57A02955C889CACF5 /* Pods-KeyboardKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-KeyboardKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -167,10 +171,12 @@
 		3B0C441B1D66968400B3378F /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
+				3B0C454F1D66B78D00B3378F /* EmojiCollectionViewController.swift */,
 				3B0C441C1D66968400B3378F /* EmojiKeyboard.swift */,
 				3B0C441D1D66968400B3378F /* Keyboard.swift */,
 				3B0C441E1D66968400B3378F /* KeyboardButton.swift */,
 				3B0C441F1D66968400B3378F /* KeyboardInputViewController.swift */,
+				3B0C45511D66B7D100B3378F /* EmojiCollectionViewCell.swift */,
 			);
 			path = Keyboard;
 			sourceTree = "<group>";
@@ -423,6 +429,8 @@
 			files = (
 				3B0C44271D66968400B3378F /* UIImage_Copy.swift in Sources */,
 				3B0C44281D66968400B3378F /* UIImage_Resize.swift in Sources */,
+				3B0C45501D66B78D00B3378F /* EmojiCollectionViewController.swift in Sources */,
+				3B0C45521D66B7D100B3378F /* EmojiCollectionViewCell.swift in Sources */,
 				3B0C442F1D66968400B3378F /* KeyboardInputViewController.swift in Sources */,
 				3B0C44301D66968400B3378F /* SystemUrl.swift in Sources */,
 				3B0C44311D66968400B3378F /* ThreadingOperator.swift in Sources */,
