@@ -30,6 +30,14 @@ KeyboardKit requires iOS 8 or later.
 
 
 
+## CocoaPods
+
+KeyboardKit will be added to CocoaPods as soon as it is used by emoji apps that
+are live on the app store. My two emojo apps currently use the same source code,
+but embedded in each app.
+
+
+
 ## Author
 
 Daniel Saidi, daniel.saidi@gmail.com
