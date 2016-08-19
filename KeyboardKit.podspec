@@ -1,16 +1,11 @@
 Pod::Spec.new do |s|
   s.name             = 'KeyboardKit'
   s.version          = '0.1.0'
-  s.summary          = 'KeyboardKit simplifies creating keyboard extension apps.'
+  s.summary          = 'KeyboardKit simplifies creating keyboard extension apps for iOS.'
 
   s.description      = <<-DESC
-KeyboardKit is a Swift library for iOS keyboard extension apps. It is currently
-limited to the functionality I need in my own keyboard extension apps, but feel
-free to extend it with more features.
-
-KeyboardKit also contains functionality for creating a wrapper app, that can be
-used to select emojis from a collection view. This is nice to have, if the user
-doesn't want to give the keyboard extension full access.
+KeyboardKit is a Swift library that simplifies creating keyboard extension apps for iOS.
+It is currently limited to the functionality I need in my own keyboard apps.
 
                        DESC
 
