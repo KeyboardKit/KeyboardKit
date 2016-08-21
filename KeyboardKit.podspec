@@ -1,11 +1,10 @@
 Pod::Spec.new do |s|
   s.name             = 'KeyboardKit'
   s.version          = '0.1.0'
-  s.summary          = 'KeyboardKit simplifies creating keyboard extension apps for iOS.'
+  s.summary          = 'KeyboardKit can be used to create keyboard extensions for iOS.'
 
   s.description      = <<-DESC
-KeyboardKit is a Swift library that simplifies creating keyboard extension apps for iOS.
-It is currently limited to the functionality I need in my own keyboard apps.
+KeyboardKit is a Swift library that can be used to create keyboard extensions for iOS.
 
                        DESC
 
