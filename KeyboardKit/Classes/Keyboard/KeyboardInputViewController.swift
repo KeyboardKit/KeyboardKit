@@ -84,7 +84,7 @@ public class KeyboardInputViewController: UIInputViewController, KeyboardDelegat
     }
     
     public func keyboard(keyboard: Keyboard, buttonTapped button: KeyboardButton) {
-        if let operation = button.operation {
+        if let _ = button.operation {
             switch (button.operation!) {
             case .Backspace:
                 textDocumentProxy.deleteBackward()
