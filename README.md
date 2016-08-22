@@ -46,6 +46,13 @@ to handle taps and long presses.
 
 
 
+## Alert messages
+
+To show message to the user, e.g. when an emoji has been saved, you can use the
+`Toast` class or implement your own message alert by implementing `MessageAlert`. 
+
+
+
 ## Additional functionality
 
 If you have a look at the source code you'll find additional functionality that
