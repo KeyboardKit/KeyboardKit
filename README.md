@@ -21,9 +21,8 @@ and try to make sense of these instructions.
 To create a custom keyboard, either inherit the `EmojiKeyboard` class (the only
 one that I currently use) or create a custom one that implements the `Keyboard`
 protocol, then implement all keyboard functionality you need. A keyboard should
-be able to setup itself in a view. For now (will change pretty soon) a keyboard
-must also implement functionality for saving and copying images, but these will
-be removed in future versions, and replaced with general helper methods.
+be able to setup itself in a view and (if you have multiple pages) handle pages.
+Set its `delegate` property to handle any keyboard actions. 
 
 To present your keyboard in an iOS keyboard extension, add a keyboard extension
 project to your app. Let the input view controller of the extension inherit the 
