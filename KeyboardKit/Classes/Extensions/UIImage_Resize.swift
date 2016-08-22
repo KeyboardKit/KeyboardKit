@@ -34,5 +34,4 @@ public extension UIImage {
         UIGraphicsEndImageContext()
         return result
     }
-
 }
