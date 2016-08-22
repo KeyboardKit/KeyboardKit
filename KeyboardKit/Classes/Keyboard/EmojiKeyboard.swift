@@ -89,14 +89,18 @@ public class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
     
     public func setupKeyboardInViewController(vc: UIInputViewController) {
         resetKeyboardInViewController(vc)
-        styleInputViewController(vc)
         
-        let width = vc.view.bounds.width
-        let height = vc.view.bounds.height
+        vc.view.subviews.forEach { view in view.removeFromSuperview() }
+        
+        let view = UIView(frame: vc.view.frame)
+        vc.view.addSubview(view)
+        
+        let width = view.bounds.width
+        let height = view.bounds.height
         let rowHeight = height / CGFloat(rowsPerPage + 1)
         let rows = batchArray(emojis, withBatchSize: emojisPerRow)
         
-        scrollView = createScrollViewInView(vc.view)
+        scrollView = createScrollViewInView(view)
         
         var lastIndexPath: NSIndexPath?
         
@@ -115,11 +119,18 @@ public class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
         }
         
         let systemRow = createSystemRowWithFrame(CGRectMake(0, 3*rowHeight, width, rowHeight))
-        vc.view.addSubview(systemRow)
+        view.addSubview(systemRow)
         
         let numberOfPages = (lastIndexPath?.section ?? 0) + 1
         scrollView.contentSize = CGSizeMake(CGFloat(numberOfPages) * width, height)
         pageControl = createPageControlInView(systemRow, numberOfPages: numberOfPages)
+        
+        styleContainerView(view)
+        styleInputViewController(vc)
+    }
+    
+    public func styleContainerView(view: UIView) {
+        alertMissingImplementation("styleContainerView(...)")
     }
     
     public func styleInputViewController(vc: UIInputViewController) {
