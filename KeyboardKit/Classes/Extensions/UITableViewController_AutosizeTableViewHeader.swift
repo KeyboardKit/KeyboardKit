@@ -1,5 +1,5 @@
 //
-//  UITableViewControllerHeaderSize.swift
+//  UITableViewController_AutosizeTableViewHeader.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2016-02-02.

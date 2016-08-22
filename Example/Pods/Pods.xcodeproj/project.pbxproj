@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		04B4834124D4F89AB7A30FB53BAC21F0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		1C4ABFC5B44D88A2EA5DCE14CE414DA0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		22A01385F744468FD7592B287F4F3C5B /* UITableViewController_HeaderSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0FA53420602361EF8A647919604568 /* UITableViewController_HeaderSize.swift */; };
+		22A01385F744468FD7592B287F4F3C5B /* UITableViewController_AutosizeTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0FA53420602361EF8A647919604568 /* UITableViewController_AutosizeTableViewHeader.swift */; };
 		237E98D5BBDFE9F0372AAAFBC596D585 /* UIImage_Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF73C49E085C68A6029F0149A93C475 /* UIImage_Async.swift */; };
 		3799BF4CC0183A6235A863D8FA648586 /* UIImage_BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C953949C6C523C5932A0F63FE686A539 /* UIImage_BackgroundColor.swift */; };
 		394EC8DFB4F7EB27994B48229121C24F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		3BBB36411D6B382900CA3372 /* UIImage_Save.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBB36401D6B382900CA3372 /* UIImage_Save.swift */; };
 		475603A4DCCA0022C4AC5573F63672C8 /* ThreadingOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6322C89F066334F16C64A6DFDE00DE27 /* ThreadingOperator.swift */; };
 		5A685FEA023062AF042FAAB159266281 /* UIImage_Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AEF6A82269FF1FB9DA5FA10361FF44 /* UIImage_Resize.swift */; };
 		70FA1FC8C6D99CBB947C9657774D5D01 /* UIScrollView_PageNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598DF1753F705F46E3FAA1FB79E44621 /* UIScrollView_PageNumber.swift */; };
@@ -56,6 +57,7 @@
 		2FA697C33CE745CF15C96F49981082FA /* SystemUrl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SystemUrl.swift; sourceTree = "<group>"; };
 		327428A25AB80F4B13C311E2FEC95719 /* Pods_KeyboardKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KeyboardKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B395498F8388DDC00427440D950E519 /* Pods_KeyboardKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KeyboardKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BBB36401D6B382900CA3372 /* UIImage_Save.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage_Save.swift; sourceTree = "<group>"; };
 		3E1018E4E336DCF0DA9A3AF37A4269D8 /* Pods-KeyboardKit_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-KeyboardKit_Example-dummy.m"; sourceTree = "<group>"; };
 		43777EEB7D3BB8386D04BFC4DDAF295D /* EmojiCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmojiCollectionViewCell.swift; sourceTree = "<group>"; };
 		52C1A87971EEF0B57A02955C889CACF5 /* Pods-KeyboardKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-KeyboardKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -66,7 +68,7 @@
 		6B9BDD7B911B8F324219F4563CAF092A /* Pods-KeyboardKit_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-KeyboardKit_Tests-umbrella.h"; sourceTree = "<group>"; };
 		709CCC1763B247A905B565F1DCAC4C5D /* KeyboardInputViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeyboardInputViewController.swift; sourceTree = "<group>"; };
 		7B6807DE7C4A0024A7AF35A06BA5722C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7C0FA53420602361EF8A647919604568 /* UITableViewController_HeaderSize.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UITableViewController_HeaderSize.swift; sourceTree = "<group>"; };
+		7C0FA53420602361EF8A647919604568 /* UITableViewController_AutosizeTableViewHeader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UITableViewController_AutosizeTableViewHeader.swift; sourceTree = "<group>"; };
 		932BE0FFEE8C091B7CAB7EBE04FDEBD0 /* Pods-KeyboardKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-KeyboardKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9B347398F0429D7D989EA58AB535C656 /* Pods-KeyboardKit_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-KeyboardKit_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -170,8 +172,9 @@
 				C953949C6C523C5932A0F63FE686A539 /* UIImage_BackgroundColor.swift */,
 				9C0B84E7CE592AA108D6B77D353BE2C6 /* UIImage_Copy.swift */,
 				F7AEF6A82269FF1FB9DA5FA10361FF44 /* UIImage_Resize.swift */,
+				3BBB36401D6B382900CA3372 /* UIImage_Save.swift */,
 				598DF1753F705F46E3FAA1FB79E44621 /* UIScrollView_PageNumber.swift */,
-				7C0FA53420602361EF8A647919604568 /* UITableViewController_HeaderSize.swift */,
+				7C0FA53420602361EF8A647919604568 /* UITableViewController_AutosizeTableViewHeader.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 			files = (
 				C4E6014B76A755D15FA0DDF6C7DE2AEA /* Array_Batch.swift in Sources */,
 				D8DE077D12D52617013F29BE19CE4381 /* EmojiCollectionViewCell.swift in Sources */,
+				3BBB36411D6B382900CA3372 /* UIImage_Save.swift in Sources */,
 				ABDF97B535E04944773F0FEDC8DF3C2C /* EmojiCollectionViewController.swift in Sources */,
 				D2264C4704EF20EBEE56B11362A509F9 /* EmojiKeyboard.swift in Sources */,
 				DA21126A3DF966C730BE3FFF5D798F88 /* Keyboard.swift in Sources */,
@@ -434,7 +438,7 @@
 				97D179A94DBB5158B4F8878EC84D0881 /* UIImage_Copy.swift in Sources */,
 				5A685FEA023062AF042FAAB159266281 /* UIImage_Resize.swift in Sources */,
 				70FA1FC8C6D99CBB947C9657774D5D01 /* UIScrollView_PageNumber.swift in Sources */,
-				22A01385F744468FD7592B287F4F3C5B /* UITableViewController_HeaderSize.swift in Sources */,
+				22A01385F744468FD7592B287F4F3C5B /* UITableViewController_AutosizeTableViewHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 //
-//  UIScrollView_PageNumberExtension.swift
+//  UIScrollView_PageNumber.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2016-01-04.
