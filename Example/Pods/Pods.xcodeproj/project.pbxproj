@@ -13,6 +13,8 @@
 		3472327DE894A9C005D05E505983EF2A /* UIImage_Copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE46C654851D914670072DE6E99FD96 /* UIImage_Copy.swift */; };
 		394EC8DFB4F7EB27994B48229121C24F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		3B99FB213AA08AEE9F020B8D1234759C /* UIScrollView_PageNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D77AC90F54B2C4B3E1E1286BB23131F /* UIScrollView_PageNumber.swift */; };
+		3BBB36451D6B8FC200CA3372 /* MessageAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBB36441D6B8FC200CA3372 /* MessageAlert.swift */; };
+		3BBB36471D6B901600CA3372 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBB36461D6B901600CA3372 /* Toast.swift */; };
 		3D0BB5AFB74D1876A87002B16EE5AE98 /* EmojiCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AB4549917AC4CF94B831A89822D812 /* EmojiCollectionView.swift */; };
 		540C0CE1AFBBD27A745456E03D658C22 /* KeyboardKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF7EF9A0F43E2AEF5417D90DF1DCEF3 /* KeyboardKit-dummy.m */; };
 		591961084D6A1D5B564DCDBB2941B018 /* UIImage_BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E742555F157B5CC34CF79E87F3AAEEC /* UIImage_BackgroundColor.swift */; };
@@ -58,6 +60,8 @@
 		2FA697C33CE745CF15C96F49981082FA /* SystemUrl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SystemUrl.swift; sourceTree = "<group>"; };
 		327428A25AB80F4B13C311E2FEC95719 /* Pods_KeyboardKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KeyboardKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B395498F8388DDC00427440D950E519 /* Pods_KeyboardKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KeyboardKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BBB36441D6B8FC200CA3372 /* MessageAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageAlert.swift; sourceTree = "<group>"; };
+		3BBB36461D6B901600CA3372 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		3C63151F62754787561692EBAE535064 /* UIImage_Resize.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIImage_Resize.swift; sourceTree = "<group>"; };
 		3E1018E4E336DCF0DA9A3AF37A4269D8 /* Pods-KeyboardKit_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-KeyboardKit_Example-dummy.m"; sourceTree = "<group>"; };
 		52C1A87971EEF0B57A02955C889CACF5 /* Pods-KeyboardKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-KeyboardKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -167,6 +171,15 @@
 			path = Keyboard;
 			sourceTree = "<group>";
 		};
+		3BBB36431D6B8FB600CA3372 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				3BBB36441D6B8FC200CA3372 /* MessageAlert.swift */,
+				3BBB36461D6B901600CA3372 /* Toast.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
 		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,6 +260,7 @@
 		CEC900EA7F7205BBAAF5ED3371A33E78 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3BBB36431D6B8FB600CA3372 /* Alert */,
 				E1A78C707C3A57BAC15DCBD32EB02620 /* Extensions */,
 				25B5484FA4C721D7AC3E788BDD637C06 /* Keyboard */,
 				E7577DF5E99302F01CC33E3C77DDC026 /* System */,
@@ -419,6 +433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BBB36471D6B901600CA3372 /* Toast.swift in Sources */,
 				11A884E932D0CED32D4750210DE17572 /* Array_Batch.swift in Sources */,
 				3D0BB5AFB74D1876A87002B16EE5AE98 /* EmojiCollectionView.swift in Sources */,
 				A811D72D00029F451DFBDED49FBB44E1 /* EmojiCollectionViewCell.swift in Sources */,
@@ -427,6 +442,7 @@
 				656A9CAB13F000A53EE8E9F614833C28 /* KeyboardButton.swift in Sources */,
 				D8299FB5923D05754CB26076D050B35A /* KeyboardInputViewController.swift in Sources */,
 				540C0CE1AFBBD27A745456E03D658C22 /* KeyboardKit-dummy.m in Sources */,
+				3BBB36451D6B8FC200CA3372 /* MessageAlert.swift in Sources */,
 				6B231AB3F578F2C842146256E914BFAB /* SystemUrl.swift in Sources */,
 				D2FD0D6C0B390C4A96D604C01C0E3177 /* ThreadingOperator.swift in Sources */,
 				F6ABC8FE3CDAAA376AABF0110AF4856B /* UIImage_Async.swift in Sources */,
