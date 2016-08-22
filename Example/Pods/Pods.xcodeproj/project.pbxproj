@@ -21,7 +21,7 @@
 		97D179A94DBB5158B4F8878EC84D0881 /* UIImage_Copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B84E7CE592AA108D6B77D353BE2C6 /* UIImage_Copy.swift */; };
 		A43D89311230C0F654F39266B463A2D3 /* Pods-KeyboardKit_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D48E07D9F6C9D35866E0B6BC3374ABF7 /* Pods-KeyboardKit_Tests-dummy.m */; };
 		A9A7BA6829A73F112BBFB103A0914E1F /* KeyboardKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF7EF9A0F43E2AEF5417D90DF1DCEF3 /* KeyboardKit-dummy.m */; };
-		ABDF97B535E04944773F0FEDC8DF3C2C /* EmojiCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D3A420DD1AB79B06673C51C7D74234 /* EmojiCollectionViewController.swift */; };
+		ABDF97B535E04944773F0FEDC8DF3C2C /* EmojiCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D3A420DD1AB79B06673C51C7D74234 /* EmojiCollectionView.swift */; };
 		AC65F6822DD0A14E965C26DCA2872288 /* Pods-KeyboardKit_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B900A9FFDD5A9B5EAF35062EB4FEAF8 /* Pods-KeyboardKit_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BCBCE794352AFD3D866CB3542587352E /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A26C587D9F754B33721C1E6E0F6FC8 /* KeyboardButton.swift */; };
 		C4E6014B76A755D15FA0DDF6C7DE2AEA /* Array_Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A7B12A90FEECDD0659C77FA262732 /* Array_Batch.swift */; };
@@ -45,7 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		01D3A420DD1AB79B06673C51C7D74234 /* EmojiCollectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmojiCollectionViewController.swift; sourceTree = "<group>"; };
+		01D3A420DD1AB79B06673C51C7D74234 /* EmojiCollectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmojiCollectionView.swift; sourceTree = "<group>"; };
 		02C977763FF8426712408E04E1613646 /* Pods-KeyboardKit_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-KeyboardKit_Tests-resources.sh"; sourceTree = "<group>"; };
 		047F4C007F03863DDBEB6F54F7798E7C /* KeyboardKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeyboardKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BE51A869CE3BD1C93059F14FDCF8C47 /* KeyboardKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KeyboardKit-umbrella.h"; sourceTree = "<group>"; };
@@ -280,8 +280,8 @@
 		EE107E04CD2EB2003EE075CD579B3A0F /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
+				01D3A420DD1AB79B06673C51C7D74234 /* EmojiCollectionView.swift */,
 				43777EEB7D3BB8386D04BFC4DDAF295D /* EmojiCollectionViewCell.swift */,
-				01D3A420DD1AB79B06673C51C7D74234 /* EmojiCollectionViewController.swift */,
 				B4C50F4C61D4099D2FF0E918359F2047 /* EmojiKeyboard.swift */,
 				262E59B49EC2C846625AD2D641A3927D /* Keyboard.swift */,
 				54A26C587D9F754B33721C1E6E0F6FC8 /* KeyboardButton.swift */,
@@ -425,7 +425,7 @@
 				C4E6014B76A755D15FA0DDF6C7DE2AEA /* Array_Batch.swift in Sources */,
 				D8DE077D12D52617013F29BE19CE4381 /* EmojiCollectionViewCell.swift in Sources */,
 				3BBB36411D6B382900CA3372 /* UIImage_Save.swift in Sources */,
-				ABDF97B535E04944773F0FEDC8DF3C2C /* EmojiCollectionViewController.swift in Sources */,
+				ABDF97B535E04944773F0FEDC8DF3C2C /* EmojiCollectionView.swift in Sources */,
 				D2264C4704EF20EBEE56B11362A509F9 /* EmojiKeyboard.swift in Sources */,
 				DA21126A3DF966C730BE3FFF5D798F88 /* Keyboard.swift in Sources */,
 				BCBCE794352AFD3D866CB3542587352E /* KeyboardButton.swift in Sources */,
