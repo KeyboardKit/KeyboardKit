@@ -82,17 +82,9 @@ public class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
     
     // MARK: Public functions
     
-    public func copyImageToPasteboard(image: UIImage) {
-        alertMissingImplementation("copyImageToPasteboard(...)")
-    }
-    
     public func keyboardImageNameForEmoji(emoji: String) -> String {
         alertMissingImplementation("keyboardImageNameForEmoji(...)")
         return emoji
-    }
-    
-    public func saveImageToPhotos(image: UIImage, completionTarget: AnyObject?, completionSelector: Selector) {
-        alertMissingImplementation("saveEmojiToPhotos(...)")
     }
     
     public func setupKeyboardInViewController(vc: UIInputViewController) {

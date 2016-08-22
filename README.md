@@ -19,12 +19,11 @@ keyboard extension app on top of this library. For now, have a look at the code
 and try to make sense of these instructions.
 
 To create a custom keyboard, either inherit the `EmojiKeyboard` class (the only
-one that I currently use) or create one that implements the `Keyboard` protocol,
-then implement all keyboard functionality you need. Keyboards should be able to
-setup themselves in a view, and for now (since I don't have the design all done
-yet) a keyboard must also implement functionality for saving and copying images,
-but these functions should really just be needed for emoji keyboards. This will
-no doubt change in future versions of KeyboardKit.
+one that I currently use) or create a custom one that implements the `Keyboard`
+protocol, then implement all keyboard functionality you need. A keyboard should
+be able to setup itself in a view. For now (will change pretty soon) a keyboard
+must also implement functionality for saving and copying images, but these will
+be removed in future versions, and replaced with general helper methods.
 
 To present your keyboard in an iOS keyboard extension, add a keyboard extension
 project to your app. Let the input view controller of the extension inherit the 
@@ -32,13 +31,32 @@ project to your app. Let the input view controller of the extension inherit the
 `createKeyboard()`, so that the base class knows which keyboard to use, and use
 the keyboard delegate functions to detect user action on the keyboard.
 
-KeyboardKit also contains functionality for creating a wrapper app, that can be
-used to select emojis from a collection view. This is nice to have, if the user
-doesn't want to give the keyboard extension full access.
 
-To add such a collection view to your keyboard extension's wrapper app, inherit
-the `EmojiCollectionViewController` class, override `createKeyboard()` and bind
-the collection view outlet.
+
+## Emoji collection view
+
+KeyboardKit also provides an emoji collection view, that can be used to display
+your keyboard emojis in the main app as well. This is a nice feature to provide
+as a compliment to the keyboard extension, since users may not want to give the
+keyboard extension full access (which is required to copy and save emojis).
+
+To use the collection view in your app, just add a collection view to your view
+and let it inherit the `EmojiCollectionView` class. Then, all you have to do is
+to set the `keyboard` property to your custom keyboard, then set `emojiDelegate`
+to handle taps and long presses.
+
+
+
+## Additional functionality
+
+If you have a look at the source code you'll find additional functionality that
+you can use in your app. The `Extensions` folder contains image extensions that
+helps you copying, saving, resizing and styling images. The `System` folder has
+some system urls that you can use, e.g. to take a user to keyboard settings. In
+the `Threading` folder, you have an amazing threading operator, that simplifies
+pushing operations to a background thread, then popping back to the main thread.
+
+Enjoy!
 
 
 

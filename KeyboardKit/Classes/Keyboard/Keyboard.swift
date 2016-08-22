@@ -27,7 +27,5 @@ public protocol Keyboard: class {
     
     var pageNumber: Int { get set }
     
-    func copyImageToPasteboard(image: UIImage)
-    func saveImageToPhotos(image: UIImage, completionTarget: AnyObject?, completionSelector: Selector)
     func setupKeyboardInViewController(vc: UIInputViewController)
 }
