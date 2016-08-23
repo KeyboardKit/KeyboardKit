@@ -89,6 +89,29 @@ project by adding the following line to the Podfile:
 pod "KeyboardKit"
 ```
 
+### IMPORTANT
+
+Using CocoaPods in an keyboard extensions may currently cause problems when the
+app is submitted to iTunes Connect.
+
+If you get an error that your extension contains unallowed frameworks, open the
+build settings for the extension. `Embedded Content Contains Swift Code` should
+be `false` for the extension and `true` (default) for the app. 
+
+After this, you must add a new run script build phase to the keyboard extension.
+Place it at the very end and paste this script into it:
+
+```
+cd "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/"
+if [[ -d "Frameworks" ]]; then
+rm -fr Frameworks
+fi
+```
+
+This will remove any frameworks from the keyboard extension and should make the
+app submit correctly to iTunes Connect.
+
+
 
 
 ## Author
