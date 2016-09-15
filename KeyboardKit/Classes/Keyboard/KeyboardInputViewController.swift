@@ -8,26 +8,26 @@
 
 import UIKit
 
-public class KeyboardInputViewController: UIInputViewController, KeyboardDelegate {
+open class KeyboardInputViewController: UIInputViewController, KeyboardDelegate {
 
     
     // MARK: View lifecycle
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    public override func viewWillAppear(animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupKeyboard()
     }
     
-    public override func didReceiveMemoryWarning() {
+    open override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         setupKeyboard()
     }
     
-    public override func updateViewConstraints() {
+    open override func updateViewConstraints() {
         super.updateViewConstraints()
         setupKeyboard()
     }
@@ -36,33 +36,33 @@ public class KeyboardInputViewController: UIInputViewController, KeyboardDelegat
     
     // MARK: Properties
     
-    public var keyboard: Keyboard! {
+    open var keyboard: Keyboard! {
         didSet { keyboard.delegate = self }
     }
     
-    public var lastPageNumber: Int {
-        get { return settings.integerForKey("lastPageNumber") }
-        set { settings.setInteger(keyboard.pageNumber, forKey: "lastPageNumber") }
+    open var lastPageNumber: Int {
+        get { return settings.integer(forKey: "lastPageNumber") }
+        set { settings.set(keyboard.pageNumber, forKey: "lastPageNumber") }
     }
     
-    public var openAccessEnabled: Bool {
-        get { return UIPasteboard.generalPasteboard().isKindOfClass(UIPasteboard) }
+    open var openAccessEnabled: Bool {
+        get { return UIPasteboard.general.isKind(of: UIPasteboard.self) }
     }
     
-    public var settings: NSUserDefaults {
-        get { return NSUserDefaults.standardUserDefaults() }
+    open var settings: UserDefaults {
+        get { return UserDefaults.standard }
     }
     
     
     
     // MARK: Public functions
     
-    public func createKeyboard() -> Keyboard! {
+    open func createKeyboard() -> Keyboard! {
         alertMissingImplementation("createKeyboard()")
         return nil
     }
     
-    public func setupKeyboard() {
+    open func setupKeyboard() {
         keyboard = createKeyboard()
         keyboard.setupKeyboardInViewController(self)
         keyboard.pageNumber = lastPageNumber
@@ -72,7 +72,7 @@ public class KeyboardInputViewController: UIInputViewController, KeyboardDelegat
     
     // MARK: Private functions
     
-    private func alertMissingImplementation(functionName: String) {
+    fileprivate func alertMissingImplementation(_ functionName: String) {
         print("** WARNING! '\(functionName)\' not implemented in KeyboardInputViewController subclass **")
     }
     
@@ -80,19 +80,19 @@ public class KeyboardInputViewController: UIInputViewController, KeyboardDelegat
     
     // MARK: KeyboardDelegate
     
-    public func keyboard(keyboard: Keyboard, buttonLongPressed button: KeyboardButton) {
+    open func keyboard(_ keyboard: Keyboard, buttonLongPressed button: KeyboardButton) {
     }
     
-    public func keyboard(keyboard: Keyboard, buttonTapped button: KeyboardButton) {
+    open func keyboard(_ keyboard: Keyboard, buttonTapped button: KeyboardButton) {
         if let _ = button.operation {
             switch (button.operation!) {
-            case .Backspace:
+            case .backspace:
                 textDocumentProxy.deleteBackward()
-            case .NextKeyboard:
+            case .nextKeyboard:
                 advanceToNextInputMode()
-            case .NewLine:
+            case .newLine:
                 textDocumentProxy.insertText("\n")
-            case .Space:
+            case .space:
                 textDocumentProxy.insertText(" ")
             default:
                 break
@@ -100,7 +100,7 @@ public class KeyboardInputViewController: UIInputViewController, KeyboardDelegat
         }
     }
     
-    public func keyboardPageNumberDidChange(keyboard: Keyboard) {
+    open func keyboardPageNumberDidChange(_ keyboard: Keyboard) {
         lastPageNumber = keyboard.pageNumber
         settings.synchronize()
     }

@@ -11,35 +11,34 @@ import UIKit
 
 public protocol EmojiCollectionViewDelegate: class {
     
-    func collectionView(collectionView: UICollectionView, didTapEmoji emoji: String)
-    func collectionView(collectionView: UICollectionView, didLongPressEmoji emoji: String)
+    func collectionView(_ view: UICollectionView, didTapEmoji emoji: String)
+    func collectionView(_ view: UICollectionView, didLongPressEmoji emoji: String)
 }
 
 
 
-
-public class EmojiCollectionView: UICollectionView, UICollectionViewDataSource {
+open class EmojiCollectionView: UICollectionView, UICollectionViewDataSource {
     
     
-    // MARK: Properties
+    // MARK: - Properties
     
-    weak public var emojiDelegate: EmojiCollectionViewDelegate?
+    weak open var emojiDelegate: EmojiCollectionViewDelegate?
     
-    public var emojiCellIdentifier = "Cell"
-    public var keyboard: EmojiKeyboard?
+    open var emojiCellIdentifier = "Cell"
+    open var keyboard: EmojiKeyboard?
     
-    private var keyboardImages: [UIImage]?
+    fileprivate var keyboardImages: [UIImage]?
     
     
     
-    // MARK: Public functions
+    // MARK: - Public functions
     
-    public func emojiForCell(cell: UICollectionViewCell) -> String? {
-        let row = indexPathForCell(cell)?.row ?? 0
+    open func emojiForCell(_ cell: UICollectionViewCell) -> String? {
+        let row = (indexPath(for: cell) as NSIndexPath?)?.row ?? 0
         return keyboard?.emojis[row]
     }
     
-    public override func reloadData() {
+    open override func reloadData() {
         dataSource = self
         let imageNames = keyboard?.emojis.map { keyboard!.keyboardImageNameForEmoji($0) }
         keyboardImages = imageNames?.map { UIImage(named: $0)! }
@@ -48,41 +47,35 @@ public class EmojiCollectionView: UICollectionView, UICollectionViewDataSource {
     
     
     
-    // MARK: Private functions
+    // MARK: - Private functions
     
-    func handleCellLongPressed(gesture: UILongPressGestureRecognizer) {
-        if (gesture.state == .Began) {
-            if let cell = gesture.view as? UICollectionViewCell {
-                if let emoji = emojiForCell(cell) {
-                    emojiDelegate?.collectionView(self, didLongPressEmoji: emoji)
-                }
-            }
-        }
+    func cellLongPressed(_ gesture: UILongPressGestureRecognizer) {
+        guard gesture.state == .began else { return }
+        guard let cell = gesture.view as? UICollectionViewCell else { return }
+        guard let emoji = emojiForCell(cell) else { return }
+        emojiDelegate?.collectionView(self, didLongPressEmoji: emoji)
     }
     
-    func handleCellTapped(gesture: UITapGestureRecognizer) {
-        if let cell = gesture.view as? UICollectionViewCell {
-            if let emoji = emojiForCell(cell) {
-                emojiDelegate?.collectionView(self, didTapEmoji: emoji)
-            }
-        }
+    func cellTapped(_ gesture: UITapGestureRecognizer) {
+        guard let cell = gesture.view as? UICollectionViewCell else { return }
+        guard let emoji = emojiForCell(cell) else { return }
+        emojiDelegate?.collectionView(self, didTapEmoji: emoji)
     }
     
-    private func setupGesturesForCell(cell: UICollectionViewCell) {
-        if (cell.gestureRecognizers == nil) {
-            setupTapGestureForCell(cell)
-            setupLongPressGestureForCell(cell)
-        }
+    fileprivate func setupGestures(for cell: UICollectionViewCell) {
+        guard cell.gestureRecognizers == nil else { return }
+        setupTapGesture(for: cell)
+        setupLongPressGesture(for: cell)
     }
     
-    private func setupLongPressGestureForCell(cell: UICollectionViewCell) {
-        let selector = #selector(handleCellLongPressed(_:))
+    fileprivate func setupLongPressGesture(for cell: UICollectionViewCell) {
+        let selector = #selector(cellLongPressed(_:))
         let longPress = UILongPressGestureRecognizer(target: self, action: selector)
         cell.addGestureRecognizer(longPress)
     }
     
-    private func setupTapGestureForCell(cell: UICollectionViewCell) {
-        let selector = #selector(handleCellTapped(_:))
+    fileprivate func setupTapGesture(for cell: UICollectionViewCell) {
+        let selector = #selector(cellTapped(_:))
         let tap = UITapGestureRecognizer(target: self, action: selector)
         cell.addGestureRecognizer(tap)
     }
@@ -91,16 +84,16 @@ public class EmojiCollectionView: UICollectionView, UICollectionViewDataSource {
     
     // MARK: UICollectionViewDataSource
     
-    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(emojiCellIdentifier, forIndexPath: indexPath)
-        cell.backgroundView = UIImageView(image: keyboardImages?[indexPath.row])
+    open func collectionView(_ view: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = view.dequeueReusableCell(withReuseIdentifier: emojiCellIdentifier, for: indexPath)
+        cell.backgroundView = UIImageView(image: keyboardImages?[(indexPath as NSIndexPath).row])
         cell.layer.shouldRasterize = true
-        cell.layer.rasterizationScale = UIScreen.mainScreen().scale
-        setupGesturesForCell(cell)
+        cell.layer.rasterizationScale = UIScreen.main.scale
+        setupGestures(for: cell)
         return cell
     }
     
-    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    open func collectionView(_ view: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return keyboard?.emojis.count ?? 0
     }
 }

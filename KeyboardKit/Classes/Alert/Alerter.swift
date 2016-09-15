@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol MessageAlert {
+public protocol Alerter {
     
-    func alertMessage(message: String, inView: UIView, duration: Double)
+    func alert(message: String, inView: UIView, withDuration: Double)
 }

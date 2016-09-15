@@ -8,19 +8,19 @@
 
 import UIKit
 
-public class KeyboardButton: UIButton {
+open class KeyboardButton: UIButton {
     
-    public class func newWithCharacter(character: String) -> KeyboardButton {
-        let button = KeyboardButton(type: .Custom)
-        button.operation = .Character
+    open class func newWithCharacter(_ character: String) -> KeyboardButton {
+        let button = KeyboardButton(type: .custom)
+        button.operation = .character
         button.character = character
-        button.setTitle(character, forState: .Normal)
+        button.setTitle(character, for: UIControlState())
         return button
     }
     
-    public class func newWithEmoji(emojiName: String, imageName: String) -> KeyboardButton {
-        let button = KeyboardButton(type: .Custom)
-        button.operation = .Emoji
+    open class func newWithEmoji(_ emojiName: String, imageName: String) -> KeyboardButton {
+        let button = KeyboardButton(type: .custom)
+        button.operation = .emoji
         button.emojiName = emojiName
         UIImage.asyncImageNamed(imageName) { image in
             button.keyboardImage = image
@@ -28,15 +28,15 @@ public class KeyboardButton: UIButton {
         return button
     }
     
-    public class func newWithOperation(operation: KeyboardOperation, title: String) -> KeyboardButton {
-        let button = KeyboardButton(type: .Custom)
+    open class func newWithOperation(_ operation: KeyboardOperation, title: String) -> KeyboardButton {
+        let button = KeyboardButton(type: .custom)
         button.operation = operation
-        button.setTitle(title, forState: .Normal)
+        button.setTitle(title, for: UIControlState())
         return button
     }
     
-    public class func newWithOperation(operation: KeyboardOperation, image: UIImage) -> KeyboardButton {
-        let button = KeyboardButton(type: .Custom)
+    open class func newWithOperation(_ operation: KeyboardOperation, image: UIImage) -> KeyboardButton {
+        let button = KeyboardButton(type: .custom)
         button.operation = operation
         button.keyboardImage = image
         return button
@@ -44,14 +44,14 @@ public class KeyboardButton: UIButton {
 
     
     
-    public var character: String?
+    open var character: String?
     
-    public var emojiName: String?
+    open var emojiName: String?
     
-    public var keyboardImage: UIImage? {
-        get { return imageForState(.Normal) }
-        set { setImage(newValue, forState: .Normal) }
+    open var keyboardImage: UIImage? {
+        get { return image(for: UIControlState()) }
+        set { setImage(newValue, for: UIControlState()) }
     }
     
-    public var operation: KeyboardOperation?
+    open var operation: KeyboardOperation?
 }

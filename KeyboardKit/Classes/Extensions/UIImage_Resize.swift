@@ -10,28 +10,27 @@ import UIKit
 
 public extension UIImage {
     
-    public func imageByResizingToWidth(points: CGFloat) -> UIImage {
+    public func image(resizedToWidth points: CGFloat) -> UIImage {
         let width = points * scale
         let ratio = width / size.width
         let height = size.height * ratio
         let newSize = CGSize(width: width, height: height)
-        return resizedImage(newSize, quality: .High)
+        return image(resizedToSize: newSize, quality: .high)
     }
     
-    public func imageByResizingToHeight(points: CGFloat) -> UIImage {
+    public func image(resizedToHeight points: CGFloat) -> UIImage {
         let height = points * scale
         let ratio = height / size.height
         let width = size.width * ratio
         let newSize = CGSize(width: width, height: height)
-        return resizedImage(newSize, quality: .High)
+        return image(resizedToSize: newSize, quality: .high)
     }
     
-    
-    private func resizedImage(newSize:CGSize, quality:CGInterpolationQuality) -> UIImage {
+    public func image(resizedToSize newSize: CGSize, quality: CGInterpolationQuality) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(newSize, false, scale)
-        drawInRect(CGRect(origin: CGPointZero, size: newSize))
+        draw(in: CGRect(origin: CGPoint.zero, size: newSize))
         let result = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return result
+        return result ?? UIImage()
     }
 }

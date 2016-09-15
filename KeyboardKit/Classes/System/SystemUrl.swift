@@ -8,10 +8,10 @@
 
 import UIKit
 
-public class SystemUrl: NSObject {
+open class SystemUrl: NSObject {
     
-    public class var keyboardSettings: NSURL? {
-        get { return NSURL(string: "prefs:root=General&path=Keyboard") }
+    open class var keyboardSettings: URL? {
+        get { return URL(string: "prefs:root=General&path=Keyboard") }
     }
     
     /*

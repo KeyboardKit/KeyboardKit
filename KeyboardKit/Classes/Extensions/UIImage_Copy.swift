@@ -11,9 +11,10 @@ import UIKit
 public extension UIImage {
     
     public func copyToPasteboard() {
-        let pasteBoard = UIPasteboard.generalPasteboard()
-        let image = imageWithBackgroundColor(UIColor.whiteColor())
-        let data = UIImagePNGRepresentation(image)!
-        pasteBoard.setData(data, forPasteboardType:"public.png");
+        let pasteBoard = UIPasteboard.general
+        let bgImage = image(withBackgroundColor: UIColor.white)
+        if let data = UIImagePNGRepresentation(bgImage) {
+            pasteBoard.setData(data, forPasteboardType:"public.png");
+        }
     }
 }

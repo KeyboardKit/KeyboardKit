@@ -10,16 +10,16 @@ import UIKit
 
 public extension UIImage {
     
-    public class func asyncImageNamed(name: String, callback: ((image: UIImage)->())) {
+    public class func asyncImage(named name: String, callback: @escaping ((_ image: UIImage)->())) {
         {   
             let image = UIImage(named: name)
-            UIGraphicsBeginImageContext(CGSizeMake(1,1));
+            UIGraphicsBeginImageContext(CGSize(width: 1,height: 1));
             let context = UIGraphicsGetCurrentContext();
-            CGContextDrawImage(context, CGRectMake(0, 0, 1, 1), image?.CGImage);
+            context?.draw((image?.cgImage)!, in: CGRect(x: 0, y: 0, width: 1, height: 1));
             UIGraphicsEndImageContext();
             return image!
         } ~> {
-            callback(image: $0)
+            callback($0)
         }
     }
 }

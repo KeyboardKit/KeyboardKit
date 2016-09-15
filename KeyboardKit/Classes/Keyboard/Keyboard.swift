@@ -10,14 +10,14 @@ import UIKit
 
 
 public enum KeyboardOperation {
-    case None, Backspace, Character, Emoji, NewLine, NextKeyboard, Space
+    case none, backspace, character, emoji, newLine, nextKeyboard, space
 }
 
 
 public protocol KeyboardDelegate: class {
-    func keyboard(keyboard: Keyboard, buttonLongPressed button: KeyboardButton)
-    func keyboard(keyboard: Keyboard, buttonTapped button: KeyboardButton)
-    func keyboardPageNumberDidChange(keyboard: Keyboard)
+    func keyboard(_ keyboard: Keyboard, buttonLongPressed button: KeyboardButton)
+    func keyboard(_ keyboard: Keyboard, buttonTapped button: KeyboardButton)
+    func keyboardPageNumberDidChange(_ keyboard: Keyboard)
 }
 
 
@@ -27,5 +27,5 @@ public protocol Keyboard: class {
     
     var pageNumber: Int { get set }
     
-    func setupKeyboardInViewController(vc: UIInputViewController)
+    func setupKeyboardInViewController(_ vc: UIInputViewController)
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public func batchArray<T>(array: Array<T>, withBatchSize size: Int) -> [Array<T>] {
+public func batch<T>(array: Array<T>, inGroupsWithSize size: Int) -> [Array<T>] {
     var result = [Array<T>]()
     
     var count = 0
