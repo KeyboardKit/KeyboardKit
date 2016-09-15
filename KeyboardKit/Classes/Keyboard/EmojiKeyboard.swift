@@ -135,7 +135,7 @@ open class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
         alertMissingImplementation("styleKeyboardButton(...)")
     }
     
-    open func style(pageControl pageControl: UIPageControl) {
+    open func style(pageControl: UIPageControl) {
         alertMissingImplementation("stylePageControl(...)")
     }
     
