@@ -40,7 +40,7 @@ open class EmojiCollectionView: UICollectionView, UICollectionViewDataSource {
     
     open override func reloadData() {
         dataSource = self
-        let imageNames = keyboard?.emojis.map { keyboard!.keyboardImageNameForEmoji($0) }
+        let imageNames = keyboard?.emojis.map { keyboard!.keyboardImageName(forEmoji: $0) }
         keyboardImages = imageNames?.map { UIImage(named: $0)! }
         super.reloadData()
     }
@@ -82,7 +82,7 @@ open class EmojiCollectionView: UICollectionView, UICollectionViewDataSource {
     
     
     
-    // MARK: UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
     
     open func collectionView(_ view: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = view.dequeueReusableCell(withReuseIdentifier: emojiCellIdentifier, for: indexPath)

@@ -12,6 +12,11 @@
  sure to override the properties and functions that are
  commented with "Implement in sub class"
  
+ TODO: Remove this need of overriding. Instead, extract
+ these parts to a new EmojiKeyboard protocol and rename
+ this class to EmojiKeyboardBase. Then, make any custom
+ emoji keyboards implement EmojiKeyboard.
+ 
  */
 
 
@@ -21,28 +26,22 @@ import UIKit
 open class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
     
     
-    // MARK: Init
+    // MARK: - Init
     
-    override public init() {
+    public init(emojis: [String], rowsPerPage: Int, emojisPerRow: Int) {
+        self.emojis = emojis
+        self.rowsPerPage = rowsPerPage
+        self.emojisPerRow = emojisPerRow
         super.init()
     }
     
-    convenience public init(rowsPerPage: Int, emojisPerRow: Int) {
-        self.init()
-        self.rowsPerPage = rowsPerPage
-        self.emojisPerRow = emojisPerRow
-    }
     
     
-    
-    // MARK: Properties
+    // MARK: - Properties
     
     open weak var delegate: KeyboardDelegate?
     
-    open var emojis: [String] {
-        alertMissingImplementation("emojis")
-        return [String]()
-    }
+    open var emojis: [String]
     
     open var pageNumber: Int {
         get { return scrollView.pageNumber }
@@ -54,115 +53,110 @@ open class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
         return [KeyboardButton]()
     }
     
-    fileprivate var rowsPerPage = 3
-    fileprivate var emojisPerRow = 6
+    fileprivate var rowsPerPage: Int
+    fileprivate var emojisPerRow: Int
     
     fileprivate var pageControl: UIPageControl!
     fileprivate var scrollView: UIScrollView!
     
     
     
-    // MARK: Actions
+    // MARK: - Actions
     
-    open func buttonLongPressed(_ gesture: UILongPressGestureRecognizer) {
-        if (gesture.state == .began) {
-            if let button = gesture.view as? KeyboardButton {
-                delegate?.keyboard(self, buttonLongPressed: button)
-            }
-        }
+    func buttonLongPressed(_ gesture: UILongPressGestureRecognizer) {
+        guard gesture.state == .began else { return }
+        guard let button = gesture.view as? KeyboardButton else { return }
+        delegate?.keyboard(self, buttonLongPressed: button)
     }
     
-    open func buttonTapped(_ gesture: UITapGestureRecognizer) {
-        if let button = gesture.view as? KeyboardButton {
-            delegate?.keyboard(self, buttonTapped: button)
-        }
+    func buttonTapped(_ gesture: UITapGestureRecognizer) {
+        guard let button = gesture.view as? KeyboardButton else { return }
+        delegate?.keyboard(self, buttonTapped: button)
     }
     
     
     
-    // MARK: Public functions
+    // MARK: - Public functions
     
-    open func keyboardImageNameForEmoji(_ emoji: String) -> String {
+    open func keyboardImageName(forEmoji emoji: String) -> String {
         alertMissingImplementation("keyboardImageNameForEmoji(...)")
         return emoji
     }
     
-    open func setupKeyboardInViewController(_ vc: UIInputViewController) {
-        resetKeyboardInViewController(vc)
-        
-        vc.view.subviews.forEach { view in view.removeFromSuperview() }
+    open func setupKeyboard(in vc: UIInputViewController) {
+        resetKeyboard(in: vc)
         
         let view = UIView(frame: vc.view.frame)
-        vc.view.addSubview(view)
-        
         let width = view.bounds.width
         let height = view.bounds.height
         let rowHeight = height / CGFloat(rowsPerPage + 1)
         let rows = batch(array: emojis, inGroupsWithSize: emojisPerRow)
         
-        scrollView = createScrollViewInView(view)
+        vc.view.subviews.forEach { view in view.removeFromSuperview() }
+        vc.view.addSubview(view)
+        
+        scrollView = createScrollView(in: view)
         
         var lastIndexPath: IndexPath?
         
         for (index, emojis) in rows.enumerated() {
-            let buttons = emojis.map { createEmojiButton($0) }
-            let indexPath = getIndexPathForRowNumber(index)
+            let buttons = emojis.map { createButton(forEmoji: $0) }
+            let indexPath = getIndexPath(for: index)
             lastIndexPath = indexPath
-            let x = CGFloat((indexPath as NSIndexPath).section) * width
-            let y = CGFloat((indexPath as NSIndexPath).row) * rowHeight
+            let x = CGFloat(indexPath.section) * width
+            let y = CGFloat(indexPath.row) * rowHeight
             let row = UIView(frame: CGRect(x: x, y: y, width: width, height: rowHeight))
-            for button in buttons {
-                row.addSubview(button)
-            }
-            setupConstraintsForButtons(buttons, inRowView: row)
+            buttons.forEach { row.addSubview($0) }
+            setupConstraints(forButtons: buttons, inRowView: row)
             scrollView.addSubview(row)
         }
         
-        let systemRow = createSystemRowWithFrame(CGRect(x: 0, y: 3*rowHeight, width: width, height: rowHeight))
+        let systemFrame = CGRect(x: 0, y: 3*rowHeight, width: width, height: rowHeight)
+        let systemRow = createSystemRow(with: systemFrame)
         view.addSubview(systemRow)
         
-        let numberOfPages = ((lastIndexPath as NSIndexPath?)?.section ?? 0) + 1
+        let numberOfPages = (lastIndexPath?.section ?? 0) + 1
         scrollView.contentSize = CGSize(width: CGFloat(numberOfPages) * width, height: height)
-        pageControl = createPageControlInView(systemRow, numberOfPages: numberOfPages)
+        pageControl = createPageControl(in: systemRow, numberOfPages: numberOfPages)
         
-        styleContainerView(view)
-        styleInputViewController(vc)
+        style(containerView: view)
+        style(inputViewController: vc)
     }
     
-    open func styleContainerView(_ view: UIView) {
+    open func style(containerView view: UIView) {
         alertMissingImplementation("styleContainerView(...)")
     }
     
-    open func styleInputViewController(_ vc: UIInputViewController) {
+    open func style(inputViewController vc: UIInputViewController) {
         alertMissingImplementation("styleInputViewController(...)")
     }
     
-    open func styleKeyboardButton(_ button: KeyboardButton) {
+    open func style(keyboardButton button: KeyboardButton) {
         alertMissingImplementation("styleKeyboardButton(...)")
     }
     
-    open func stylePageControl(_ pageControl: UIPageControl) {
+    open func style(pageControl pageControl: UIPageControl) {
         alertMissingImplementation("stylePageControl(...)")
     }
     
-    open func styleSystemButton(_ button: KeyboardButton) {
+    open func style(systemButton button: KeyboardButton) {
         alertMissingImplementation("styleSystemButton(...)")
     }
     
-    open func styleSystemRow(_ row: UIView) {
+    open func style(systemRow row: UIView) {
         alertMissingImplementation("styleSystemRow(...)")
     }
     
     
 
-    // MARK: Private functions
+    // MARK: - Private functions
     
-    fileprivate func addLongPressGestureToEmojiButton(_ button: KeyboardButton) {
+    fileprivate func addLongPressGesture(to button: KeyboardButton) {
         let gesture = UILongPressGestureRecognizer(target: self, action: #selector(buttonLongPressed(_:)))
         button.addGestureRecognizer(gesture)
     }
     
-    fileprivate func addTapGestureToButton(_ button: KeyboardButton) {
+    fileprivate func addTapGesture(to button: KeyboardButton) {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(buttonTapped(_:)))
         button.addGestureRecognizer(gesture)
     }
@@ -171,30 +165,30 @@ open class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
         print("** WARNING! '\(functionName)\' is not implemented in your emoji keyboard **")
     }
     
-    fileprivate func createEmojiButton(_ emoji: String) -> KeyboardButton {
-        let imageName = keyboardImageNameForEmoji(emoji)
-        let button = KeyboardButton.newWithEmoji(emoji, imageName: imageName)
+    fileprivate func createButton(forEmoji emoji: String) -> KeyboardButton {
+        let imageName = keyboardImageName(forEmoji: emoji)
+        let button = KeyboardButton.new(withEmoji: emoji, imageName: imageName)
         button.contentMode = .scaleAspectFit
         button.imageView?.contentMode = .scaleAspectFit
         button.translatesAutoresizingMaskIntoConstraints = false
-        addTapGestureToButton(button)
-        addLongPressGestureToEmojiButton(button)
-        styleKeyboardButton(button)
+        addTapGesture(to: button)
+        addLongPressGesture(to: button)
+        style(keyboardButton: button)
         return button
     }
     
-    fileprivate func createPageControlInView(_ view: UIView, numberOfPages: Int) -> UIPageControl {
+    fileprivate func createPageControl(in view: UIView, numberOfPages: Int) -> UIPageControl {
         let width = view.frame.width
         let height = view.frame.height
         let pageControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: width, height: height))
         pageControl.numberOfPages = numberOfPages
         pageControl.isUserInteractionEnabled = false
         view.addSubview(pageControl)
-        stylePageControl(pageControl)
+        style(pageControl: pageControl)
         return pageControl
     }
     
-    fileprivate func createScrollViewInView(_ view: UIView) -> UIScrollView {
+    fileprivate func createScrollView(in view: UIView) -> UIScrollView {
         let width = view.bounds.width
         let height = view.bounds.height
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: width, height: height))
@@ -205,36 +199,36 @@ open class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
         return scrollView
     }
     
-    fileprivate func createSystemRowWithFrame(_ frame: CGRect) -> UIView {
+    fileprivate func createSystemRow(with frame: CGRect) -> UIView {
         let row = UIView(frame: frame)
-        styleSystemRow(row)
+        style(systemRow: row)
 
         let buttons = systemButtons
         for button in buttons {
             row.addSubview(button)
-            styleSystemButton(button)
+            style(systemButton: button)
             button.translatesAutoresizingMaskIntoConstraints = false
-            addTapGestureToButton(button)
+            addTapGesture(to: button)
         }
         
-        setupConstraintsForButtons(buttons, inRowView: row)
+        setupConstraints(forButtons: buttons, inRowView: row)
         
         return row
     }
     
-    fileprivate func getIndexPathForRowNumber(_ rowNumber: Int) -> IndexPath {
+    fileprivate func getIndexPath(for rowNumber: Int) -> IndexPath {
         let row = rowNumber % rowsPerPage
         let section = rowNumber / rowsPerPage
         return IndexPath(row: row, section: section)
     }
     
-    fileprivate func resetKeyboardInViewController(_ vc: UIInputViewController) {
+    fileprivate func resetKeyboard(in vc: UIInputViewController) {
         for subview in vc.view.subviews {
             subview.removeFromSuperview()
         }
     }
     
-    fileprivate func setupConstraintsForButtons(_ buttons: [UIButton], inRowView view: UIView) {
+    fileprivate func setupConstraints(forButtons buttons: [UIButton], inRowView view: UIView) {
         for (index, button) in buttons.enumerated() {
             
             let top = NSLayoutConstraint(item: button, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 1)
@@ -264,13 +258,13 @@ open class EmojiKeyboard: NSObject, Keyboard, UIScrollViewDelegate {
     
     
     
-    // MARK: UIScrollViewDelegate
+    // MARK: - UIScrollViewDelegate
     
     open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let alert = pageControl.currentPage != scrollView.pageNumber
         pageControl.currentPage = scrollView.pageNumber
         if (alert) {
-            delegate?.keyboardPageNumberDidChange(self)
+            delegate?.keyboardDidChangePageNumber(self)
         }
     }
 }

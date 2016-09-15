@@ -17,7 +17,7 @@ public enum KeyboardOperation {
 public protocol KeyboardDelegate: class {
     func keyboard(_ keyboard: Keyboard, buttonLongPressed button: KeyboardButton)
     func keyboard(_ keyboard: Keyboard, buttonTapped button: KeyboardButton)
-    func keyboardPageNumberDidChange(_ keyboard: Keyboard)
+    func keyboardDidChangePageNumber(_ keyboard: Keyboard)
 }
 
 
@@ -27,5 +27,5 @@ public protocol Keyboard: class {
     
     var pageNumber: Int { get set }
     
-    func setupKeyboardInViewController(_ vc: UIInputViewController)
+    func setupKeyboard(in: UIInputViewController)
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class EmojiCollectionViewCell: UICollectionViewCell {
     
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        return layoutAttributes
+    override func preferredLayoutAttributesFitting(_ attributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        return attributes
     }
 }

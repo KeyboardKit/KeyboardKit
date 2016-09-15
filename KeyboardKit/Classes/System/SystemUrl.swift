@@ -11,7 +11,7 @@ import UIKit
 open class SystemUrl: NSObject {
     
     open class var keyboardSettings: URL? {
-        get { return URL(string: "prefs:root=General&path=Keyboard") }
+        return URL(string: "prefs:root=General&path=Keyboard")
     }
     
     /*

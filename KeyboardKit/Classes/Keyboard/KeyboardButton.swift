@@ -10,7 +10,7 @@ import UIKit
 
 open class KeyboardButton: UIButton {
     
-    open class func newWithCharacter(_ character: String) -> KeyboardButton {
+    open class func new(withCharacter character: String) -> KeyboardButton {
         let button = KeyboardButton(type: .custom)
         button.operation = .character
         button.character = character
@@ -18,24 +18,24 @@ open class KeyboardButton: UIButton {
         return button
     }
     
-    open class func newWithEmoji(_ emojiName: String, imageName: String) -> KeyboardButton {
+    open class func new(withEmoji emojiName: String, imageName: String) -> KeyboardButton {
         let button = KeyboardButton(type: .custom)
         button.operation = .emoji
         button.emojiName = emojiName
-        UIImage.asyncImageNamed(imageName) { image in
+        UIImage.asyncImage(named: imageName) { image in
             button.keyboardImage = image
         }
         return button
     }
     
-    open class func newWithOperation(_ operation: KeyboardOperation, title: String) -> KeyboardButton {
+    open class func new(withOperation operation: KeyboardOperation, title: String) -> KeyboardButton {
         let button = KeyboardButton(type: .custom)
         button.operation = operation
         button.setTitle(title, for: UIControlState())
         return button
     }
     
-    open class func newWithOperation(_ operation: KeyboardOperation, image: UIImage) -> KeyboardButton {
+    open class func new(withOperation operation: KeyboardOperation, image: UIImage) -> KeyboardButton {
         let button = KeyboardButton(type: .custom)
         button.operation = operation
         button.keyboardImage = image
@@ -49,8 +49,8 @@ open class KeyboardButton: UIButton {
     open var emojiName: String?
     
     open var keyboardImage: UIImage? {
-        get { return image(for: UIControlState()) }
-        set { setImage(newValue, for: UIControlState()) }
+        get { return image(for: UIControlState.normal) }
+        set { setImage(newValue, for: UIControlState.normal) }
     }
     
     open var operation: KeyboardOperation?

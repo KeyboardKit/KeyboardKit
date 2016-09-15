@@ -6,6 +6,13 @@
 //  Copyright © 2016 Daniel Saidi. All rights reserved.
 //
 
+/*
+ 
+ TODO: Remove all unimplemented but required stuff and
+ design it clearer.
+ 
+ */
+
 import UIKit
 
 open class KeyboardInputViewController: UIInputViewController, KeyboardDelegate {
@@ -58,22 +65,14 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardDelegate 
     // MARK: Public functions
     
     open func createKeyboard() -> Keyboard! {
-        alertMissingImplementation("createKeyboard()")
+        print("** WARNING! createKeyboard() not implemented in KeyboardInputViewController subclass **")
         return nil
     }
     
     open func setupKeyboard() {
         keyboard = createKeyboard()
-        keyboard.setupKeyboardInViewController(self)
+        keyboard.setupKeyboard(in: self)
         keyboard.pageNumber = lastPageNumber
-    }
-    
-    
-    
-    // MARK: Private functions
-    
-    fileprivate func alertMissingImplementation(_ functionName: String) {
-        print("** WARNING! '\(functionName)\' not implemented in KeyboardInputViewController subclass **")
     }
     
     
@@ -100,7 +99,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardDelegate 
         }
     }
     
-    open func keyboardPageNumberDidChange(_ keyboard: Keyboard) {
+    public func keyboardDidChangePageNumber(_ keyboard: Keyboard) {
         lastPageNumber = keyboard.pageNumber
         settings.synchronize()
     }
