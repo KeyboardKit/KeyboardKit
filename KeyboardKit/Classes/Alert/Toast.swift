@@ -29,7 +29,6 @@ open class Toast: NSObject, Alerter {
     }
     
     open func style(containerView view: UIView) {
-        CGRect.zero
     }
     
     open func style(label: UILabel) {
