@@ -10,5 +10,5 @@ import Foundation
 
 public protocol Alerter {
     
-    func alert(message: String, inView: UIView, withDuration: Double)
+    func alert(message: String, in: UIView, withDuration: Double)
 }

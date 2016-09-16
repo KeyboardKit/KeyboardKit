@@ -10,11 +10,11 @@ import UIKit
 
 public extension UIImage {
     
-    public func image(withBackgroundColor color: UIColor) -> UIImage {
-        return image(withBackgroundColor: color, cornerRadius: 0)
+    public func badged(withBackgroundColor color: UIColor) -> UIImage {
+        return badged(withBackgroundColor: color, cornerRadius: 0)
     }
     
-    public func image(withBackgroundColor color: UIColor, cornerRadius: CGFloat) -> UIImage {
+    public func badged(withBackgroundColor color: UIColor, cornerRadius: CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
         
         let context = UIGraphicsGetCurrentContext()

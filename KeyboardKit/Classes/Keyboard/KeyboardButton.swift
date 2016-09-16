@@ -22,7 +22,10 @@ open class KeyboardButton: UIButton {
         let button = KeyboardButton(type: .custom)
         button.operation = .emoji
         button.emojiName = emojiName
-        UIImage.asyncImage(named: imageName) { image in
+        
+        
+        
+        UIImage.async(named: imageName) { image in
             button.keyboardImage = image
         }
         return button

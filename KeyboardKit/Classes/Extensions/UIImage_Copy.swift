@@ -12,7 +12,7 @@ public extension UIImage {
     
     public func copyToPasteboard() {
         let pasteBoard = UIPasteboard.general
-        let bgImage = image(withBackgroundColor: UIColor.white)
+        let bgImage = badged(withBackgroundColor: UIColor.white)
         if let data = UIImagePNGRepresentation(bgImage) {
             pasteBoard.setData(data, forPasteboardType:"public.png");
         }

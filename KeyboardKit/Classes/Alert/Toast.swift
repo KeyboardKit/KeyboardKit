@@ -13,7 +13,7 @@ open class Toast: NSObject, Alerter {
     
     // MARK: - Public functions
     
-    public func alert(message: String, inView view: UIView, withDuration duration: Double) {
+    public func alert(message: String, in view: UIView, withDuration duration: Double) {
         let label = createLabel(withMessage: message)
         let container = createContainer(forLabel: label, inView: view)
 
@@ -29,6 +29,7 @@ open class Toast: NSObject, Alerter {
     }
     
     open func style(containerView view: UIView) {
+        CGRect.zero
     }
     
     open func style(label: UILabel) {
