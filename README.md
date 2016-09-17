@@ -89,11 +89,6 @@ project by adding the following line to the Podfile:
 pod "KeyboardKit"
 ```
 
-### IMPORTANT
-
-Using CocoaPods in an keyboard extensions may currently cause problems when the
-app is submitted to iTunes Connect.
-
 If you get an error that your extension contains unallowed frameworks, open the
 build settings for the extension. `Embedded Content Contains Swift Code` should
 be `false` for the extension and `true` (default) for the app. 
