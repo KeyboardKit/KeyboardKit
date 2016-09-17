@@ -8,6 +8,7 @@ language: objective-c
 before_install:
   - brew update
   - gem install cocoapods --pre
+  - brew outdated xctool || brew upgrade xctool
 
 script:
   - set -o pipefail && xcodebuild test -workspace Example/KeyboardKit.xcworkspace -scheme KeyboardKit-Example -sdk iphonesimulator9.3 ONLY_ACTIVE_ARCH=NO | xcpretty
