@@ -11,10 +11,5 @@ before_install:
   - brew outdated xctool || brew upgrade xctool
 
 script:
-  - xcodebuild
-    -workspace "${TEST_SUITE}/${TEST_SUITE}.xcworkspace"
-    -scheme "${SCHEME}"
-    -sdk "${IOS_SDK}"
-    -destination "${DESTINATION}"
-    clean build test | xcpretty -c
-  #- pod lib lint
+  - xcodebuild -workspace "Example/KeyboardKit.xcworkspace" -scheme "KeyboardKit-Example" -sdk "iphonesimulator" | xcpretty -c
+  - pod lib lint
