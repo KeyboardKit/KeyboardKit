@@ -20,9 +20,9 @@ open class Toast: NSObject, Alerter {
         style(label: label)
         style(containerView: container)
         
-        UIView.animate(withDuration: duration, animations: { () -> Void in
+        UIView.animate(withDuration: duration, animations: {
             container.alpha = 0
-        }, completion: { (Bool) -> Void in
+        }, completion: { completed in
             container.removeFromSuperview()
         }) 
     }
