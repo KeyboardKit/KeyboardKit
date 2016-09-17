@@ -14,7 +14,7 @@ open class KeyboardButton: UIButton {
         let button = KeyboardButton(type: .custom)
         button.operation = .character
         button.character = character
-        button.setTitle(character, for: UIControlState())
+        button.setTitle(character, for: .normal)
         return button
     }
     
@@ -22,19 +22,14 @@ open class KeyboardButton: UIButton {
         let button = KeyboardButton(type: .custom)
         button.operation = .emoji
         button.emojiName = emojiName
-        
-        
-        
-        UIImage.async(named: imageName) { image in
-            button.keyboardImage = image
-        }
+        button.keyboardImage = UIImage(named: imageName)
         return button
     }
     
     open class func new(withOperation operation: KeyboardOperation, title: String) -> KeyboardButton {
         let button = KeyboardButton(type: .custom)
         button.operation = operation
-        button.setTitle(title, for: UIControlState())
+        button.setTitle(title, for: .normal)
         return button
     }
     
@@ -52,8 +47,8 @@ open class KeyboardButton: UIButton {
     open var emojiName: String?
     
     open var keyboardImage: UIImage? {
-        get { return image(for: UIControlState.normal) }
-        set { setImage(newValue, for: UIControlState.normal) }
+        get { return image(for: .normal) }
+        set { setImage(newValue, for: .normal) }
     }
     
     open var operation: KeyboardOperation?
