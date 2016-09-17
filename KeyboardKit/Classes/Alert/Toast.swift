@@ -20,7 +20,6 @@ open class Toast: NSObject, Alerter {
         style(label: label)
         style(containerView: container)
         
-        let interval = TimeInterval(duration)
         UIView.animate(withDuration: duration, animations: { () -> Void in
             container.alpha = 0
         }, completion: { (Bool) -> Void in
@@ -39,8 +38,7 @@ open class Toast: NSObject, Alerter {
     // MARK: - Private functions
     
     private func createContainer(forLabel label: UILabel, inView view: UIView) -> UIView {
-        let container = UIView()
-        container.frame = label.frame.insetBy(dx: -20, dy: -10)
+        let container = UIView(frame: label.frame.insetBy(dx: -20, dy: -10))
         view.addSubview(container)
         container.layer.cornerRadius = 10
         container.center = view.center

@@ -9,7 +9,7 @@ It has built-in support for creating an emoji keyboard and for displaying emojis
 collection view in the main app.
 
                        DESC
-
+                       
   s.homepage         = 'https://github.com/danielsaidi/KeyboardKit'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Daniel Saidi' => 'daniel.saidi@gmail.com' }
