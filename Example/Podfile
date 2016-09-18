@@ -5,7 +5,6 @@ target 'KeyboardKit_Example' do
 
   target 'KeyboardKit_Tests' do
     inherit! :search_paths
-
     
   end
 end
