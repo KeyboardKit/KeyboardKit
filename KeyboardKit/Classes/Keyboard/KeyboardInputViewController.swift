@@ -20,10 +20,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardDelegate 
     
     // MARK: View lifecycle
     
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupKeyboard()
@@ -43,17 +39,16 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardDelegate 
     
     // MARK: Properties
     
+    public var hasFullAccess: Bool {
+        return UIPasteboard.general.hasFullAccess
+    }
+    
     open var keyboard: Keyboard! {
         didSet { keyboard.delegate = self }
     }
     
     open var lastPageNumber: Int {
-        get { return settings.integer(forKey: "lastPageNumber") }
-        set { settings.set(keyboard.pageNumber, forKey: "lastPageNumber") }
-    }
-    
-    open var openAccessEnabled: Bool {
-        get { return UIPasteboard.general.isKind(of: UIPasteboard.self) }
+        return settings.integer(forKey: "lastPageNumber")
     }
     
     open var settings: UserDefaults {
@@ -65,8 +60,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardDelegate 
     // MARK: Public functions
     
     open func createKeyboard() -> Keyboard! {
-        print("** WARNING! createKeyboard() not implemented in KeyboardInputViewController subclass **")
-        return nil
+        fatalError("** WARNING! createKeyboard() not implemented in KeyboardInputViewController subclass **")
     }
     
     open func setupKeyboard() {
@@ -100,7 +94,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardDelegate 
     }
     
     public func keyboardDidChangePageNumber(_ keyboard: Keyboard) {
-        lastPageNumber = keyboard.pageNumber
+        settings.set(keyboard.pageNumber, forKey: "lastPageNumber")
         settings.synchronize()
     }
 }

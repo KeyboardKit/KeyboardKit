@@ -14,7 +14,7 @@ public extension UIImage {
         let pasteBoard = UIPasteboard.general
         let bgImage = badged(withBackgroundColor: UIColor.white)
         if let data = UIImagePNGRepresentation(bgImage) {
-            pasteBoard.setData(data, forPasteboardType:"public.png");
+            pasteBoard.setData(data, forPasteboardType:"public.png")
         }
     }
 }
