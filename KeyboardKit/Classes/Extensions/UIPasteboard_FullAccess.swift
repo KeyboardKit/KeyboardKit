@@ -12,7 +12,7 @@ public extension UIPasteboard {
     
     public var hasFullAccess: Bool
     {
-        if #available(iOSApplicationExtension 10.0, *) {
+        if #available(iOS 10.0, *) {
             let pasteboard = UIPasteboard.general
             if pasteboard.hasURLs || pasteboard.hasColors || pasteboard.hasStrings || pasteboard.hasImages {
                 return true
@@ -22,9 +22,9 @@ public extension UIPasteboard {
             let fullAccess = pasteboard.hasStrings
             pasteboard.string = ""
             return fullAccess
-        } else {
-            return hasFullAccess_legacy
         }
+        
+        return hasFullAccess_legacy
     }
     
     
