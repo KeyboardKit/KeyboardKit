@@ -10,27 +10,20 @@ import UIKit
 
 public extension UIPasteboard {
     
-    public var hasFullAccess: Bool
-    {
+    public var hasFullAccess: Bool {
         if #available(iOS 10.0, *) {
-            let pasteboard = UIPasteboard.general
-            if pasteboard.hasURLs || pasteboard.hasColors || pasteboard.hasStrings || pasteboard.hasImages {
-                return true
-            }
-            
-            pasteboard.string = "Goth Emoji Test"
-            let fullAccess = pasteboard.hasStrings
-            pasteboard.string = ""
-            return fullAccess
+            let string = UIPasteboard.general.string
+            UIPasteboard.general.string = "TEST"
+            defer { UIPasteboard.general.string = string ?? "" }
+            return UIPasteboard.general.hasStrings
         }
-        
         return hasFullAccess_legacy
     }
-    
     
     fileprivate var hasFullAccess_legacy: Bool {
         var pasteboard: UIPasteboard?
         pasteboard = UIPasteboard.general
         return pasteboard != nil
     }
+    
 }
