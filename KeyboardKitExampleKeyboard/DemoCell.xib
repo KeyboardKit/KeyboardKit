@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="DemoCell" customModule="KeyboardKitExampleKeyboard" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VGr-59-Vpv">
+                        <rect key="frame" x="5" y="5" width="90" height="90"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AFB-9O-r9z">
+                                <rect key="frame" x="10" y="10" width="70" height="70"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSw-EC-6KH">
+                                <rect key="frame" x="36.5" y="29.5" width="17" height="31.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gSw-EC-6KH" firstAttribute="centerX" secondItem="VGr-59-Vpv" secondAttribute="centerX" id="8cV-of-I5z"/>
+                            <constraint firstItem="AFB-9O-r9z" firstAttribute="leading" secondItem="VGr-59-Vpv" secondAttribute="leading" constant="10" id="Cuh-nY-2wF"/>
+                            <constraint firstItem="AFB-9O-r9z" firstAttribute="top" secondItem="VGr-59-Vpv" secondAttribute="top" constant="10" id="b8J-mb-pXL"/>
+                            <constraint firstAttribute="trailing" secondItem="AFB-9O-r9z" secondAttribute="trailing" constant="10" id="bgn-Pa-H4O"/>
+                            <constraint firstItem="gSw-EC-6KH" firstAttribute="centerY" secondItem="VGr-59-Vpv" secondAttribute="centerY" id="vRi-JD-uye"/>
+                            <constraint firstAttribute="bottom" secondItem="AFB-9O-r9z" secondAttribute="bottom" constant="10" id="vTg-gj-XVZ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="VGr-59-Vpv" secondAttribute="bottom" constant="5" id="8M6-5k-k4d"/>
+                <constraint firstItem="VGr-59-Vpv" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" constant="5" id="Ai8-zJ-obL"/>
+                <constraint firstItem="VGr-59-Vpv" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" constant="5" id="S9h-Vf-d16"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="VGr-59-Vpv" secondAttribute="trailing" constant="5" id="rpE-UB-Gry"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="296" height="223"/>
+            <connections>
+                <outlet property="buttonView" destination="VGr-59-Vpv" id="mXj-dT-hp6"/>
+                <outlet property="imageView" destination="AFB-9O-r9z" id="n9h-Hq-zCU"/>
+                <outlet property="textLabel" destination="gSw-EC-6KH" id="PsG-tI-MbH"/>
+            </connections>
+            <point key="canvasLocation" x="148" y="138"/>
+        </collectionViewCell>
+    </objects>
+</document>

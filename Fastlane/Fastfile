@@ -1,0 +1,40 @@
+fastlane_version "2.30.2"
+
+default_platform :ios
+
+platform :ios do
+
+
+  # Version ================
+
+  desc "Create a new version"
+  lane :version do |options|
+    ensure_git_status_clean
+    ensure_git_branch(branch: 'master')
+    test
+    version = version_bump_podspec(path: "KeyboardKit.podspec", version_number: options[:name])
+
+    git_commit(
+      path: ["KeyboardKit.podspec"],
+      message: "Bump to #{version}"
+    )
+
+    add_git_tag(tag: version)
+    push_git_tags()
+    push_to_git_remote()
+  end
+
+  
+  # Test =======================
+
+  desc "Run unit tests"
+  lane :test do
+    scan(
+      project: "KeyboardKit.xcodeproj",
+      scheme: "KeyboardKit",
+      devices: ["iPhone 6s"]
+    )    
+  end
+  
+end
+

@@ -1,0 +1,19 @@
+disabled_rules:
+- function_body_length
+- statement_position
+- trailing_whitespace
+- line_length
+- type_name
+- vertical_whitespace
+- void_return
+
+excluded:
+  - Pods
+  - Carthage
+
+variable_name:
+  excluded:
+    - id
+    - in
+    - x
+    - y
