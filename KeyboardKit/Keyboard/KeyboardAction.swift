@@ -21,7 +21,7 @@ public enum KeyboardAction {
     none,
     backspace,
     character(String),
-    emoji(emojiName: String, keyboardImageName: String, imageName: String),
+    image(description: String, keyboardImageName: String, imageName: String),
     newLine,
     nextKeyboard,
     shift,
@@ -40,7 +40,7 @@ public extension KeyboardAction {
     
     public var imageName: String? {
         switch self {
-        case .emoji(_, _, let imageName): return imageName
+        case .image(_, _, let imageName): return imageName
         default: return nil
         }
     }
@@ -66,7 +66,7 @@ public extension KeyboardAction {
     
     public var keyboardImageName: String? {
         switch self {
-        case .emoji(_, let keyboardImageName, _): return keyboardImageName
+        case .image(_, let keyboardImageName, _): return keyboardImageName
         default: return nil
         }
     }

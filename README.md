@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/ellerbrock/open-source-badge/">
-        <img src="https://badges.frapsoft.com/os/mit/mit.svg?v=102" alt="MIT License" />
-    </a>
     <a href="http://badge.fury.io/gh/danielsaidi%2FSheeeeeeeeet">
         <img src="https://badge.fury.io/gh/danielsaidi%2FSheeeeeeeeet.svg" alt="Current Version" />
     </a>
     <a href="https://travis-ci.org/danielsaidi/Sheeeeeeeeet">
         <img src="https://api.travis-ci.org/danielsaidi/Sheeeeeeeeet.svg" alt="Build Status" />
+    </a>
+    <a href="https://github.com/ellerbrock/open-source-badge/">
+        <img src="https://badges.frapsoft.com/os/mit/mit.svg?v=102" alt="MIT License" />
     </a>
     <a href="https://twitter.com/danielsaidi">
         <img src="https://img.shields.io/badge/contact-@danielsaidi-blue.svg?style=flat" alt="Twitter: @danielsaidi" />
@@ -19,7 +19,7 @@
 
 Welcome to `KeyboardKit` - a Swift library that helps you create custom keyboard
 extensions for iOS. It supports a wide range of keyboard actions, which lets you
-create rich keyboards with text inputs, emojis, system actions...and even images.
+create keyboards with text inputs, emojis, system actions and custom images.
 
 <p align="center">
     <img src ="Resources/Demo.gif" />
@@ -30,7 +30,7 @@ create rich keyboards with text inputs, emojis, system actions...and even images
 
 ### Keyboard actions
 
-`KeyboardKit` comes with support for the following keyboard actions:
+`KeyboardKit` comes with the following keyboard actions:
 
 * `none`- used as empty placeholders
 * `backspace` - sends a backspace to the text proxy
@@ -41,18 +41,18 @@ create rich keyboards with text inputs, emojis, system actions...and even images
 * `shift` - can be used to change the char casing of a keyboard
 * `space` - inserts an empty space into the text proxy
 
-The `emoji` action should probably be called something else, since it isn't real
-emojis, but rather custom image-based ones.
+The `emoji` action should probably be renamed, since it does not use emojis, but
+rather custom images. This can be pretty confusing.
 
-### Improved `UIInputViewController`s
+### Powerful `UIInputViewController` subclasses
 
 `KeyboardKit` lets you create custom keyboard extensions in seveal ways, instead
 of inheriting `UIInputViewController`:
 
-* Use a xib to layout your keyboard, then bind the buttons to the desired actions.
-* Inherit `GridKeyboardInputViewController` to create a grid-based keyboard.
-* Inherit `CollectionKeyboardInputViewController` to create a collection-based keyboard.
-* Inherit `KeyboardInputViewController` to get a basic set of keyboard logic and features.
+* Create your keyboard with a xib, then bind the buttons to the desired actions
+* Inherit `GridKeyboardInputViewController` to create a grid-based keyboard
+* Inherit `CollectionKeyboardInputViewController` to create a collection-based keyboard
+* Inherit `KeyboardInputViewController` to get a basic set of keyboard logic and features
 
 After you setup an input view controller as it requires, you just have to handle
 taps and long presses by overriding `handleTap(on:)` and `handleLongPress(on:)`.

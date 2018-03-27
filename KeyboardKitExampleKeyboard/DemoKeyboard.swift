@@ -43,33 +43,33 @@ class DemoKeyboard: Keyboard {
             
             
             // Emojis (custom emoji images)
-            .emoji(emojiName: "color", keyboardImageName: "color", imageName: "color"),
-            .emoji(emojiName: "download", keyboardImageName: "download", imageName: "download"),
-            .emoji(emojiName: "edit", keyboardImageName: "edit", imageName: "edit"),
-            .emoji(emojiName: "cancel", keyboardImageName: "cancel", imageName: "cancel"),
-            .emoji(emojiName: "bubble", keyboardImageName: "bubble", imageName: "bubble"),
-            .emoji(emojiName: "box", keyboardImageName: "box", imageName: "box"),
+            .image(description: "color", keyboardImageName: "color", imageName: "color"),
+            .image(description: "download", keyboardImageName: "download", imageName: "download"),
+            .image(description: "edit", keyboardImageName: "edit", imageName: "edit"),
+            .image(description: "cancel", keyboardImageName: "cancel", imageName: "cancel"),
+            .image(description: "bubble", keyboardImageName: "bubble", imageName: "bubble"),
+            .image(description: "box", keyboardImageName: "box", imageName: "box"),
             
-            .emoji(emojiName: "favorite", keyboardImageName: "favorite", imageName: "favorite"),
-            .emoji(emojiName: "globe", keyboardImageName: "globe", imageName: "globe"),
-            .emoji(emojiName: "help", keyboardImageName: "help", imageName: "help"),
-            .emoji(emojiName: "idea", keyboardImageName: "idea", imageName: "idea"),
-            .emoji(emojiName: "image", keyboardImageName: "image", imageName: "image"),
-            .emoji(emojiName: "info", keyboardImageName: "info", imageName: "info"),
+            .image(description: "favorite", keyboardImageName: "favorite", imageName: "favorite"),
+            .image(description: "globe", keyboardImageName: "globe", imageName: "globe"),
+            .image(description: "help", keyboardImageName: "help", imageName: "help"),
+            .image(description: "idea", keyboardImageName: "idea", imageName: "idea"),
+            .image(description: "image", keyboardImageName: "image", imageName: "image"),
+            .image(description: "info", keyboardImageName: "info", imageName: "info"),
             
-            .emoji(emojiName: "label", keyboardImageName: "label", imageName: "label"),
-            .emoji(emojiName: "mac", keyboardImageName: "mac", imageName: "mac"),
-            .emoji(emojiName: "mail", keyboardImageName: "mail", imageName: "mail"),
-            .emoji(emojiName: "monitor", keyboardImageName: "monitor", imageName: "monitor"),
-            .emoji(emojiName: "note", keyboardImageName: "note", imageName: "note"),
-            .emoji(emojiName: "refresh", keyboardImageName: "refresh", imageName: "refresh"),
+            .image(description: "label", keyboardImageName: "label", imageName: "label"),
+            .image(description: "mac", keyboardImageName: "mac", imageName: "mac"),
+            .image(description: "mail", keyboardImageName: "mail", imageName: "mail"),
+            .image(description: "monitor", keyboardImageName: "monitor", imageName: "monitor"),
+            .image(description: "note", keyboardImageName: "note", imageName: "note"),
+            .image(description: "refresh", keyboardImageName: "refresh", imageName: "refresh"),
             
-            .emoji(emojiName: "rss", keyboardImageName: "rss", imageName: "rss"),
-            .emoji(emojiName: "search", keyboardImageName: "search", imageName: "search"),
-            .emoji(emojiName: "trash", keyboardImageName: "trash", imageName: "trash"),
-            .emoji(emojiName: "video", keyboardImageName: "video", imageName: "video"),
-            .emoji(emojiName: "warning", keyboardImageName: "warning", imageName: "warning"),
-            .emoji(emojiName: "zoom", keyboardImageName: "zoom", imageName: "zoom")]
+            .image(description: "rss", keyboardImageName: "rss", imageName: "rss"),
+            .image(description: "search", keyboardImageName: "search", imageName: "search"),
+            .image(description: "trash", keyboardImageName: "trash", imageName: "trash"),
+            .image(description: "video", keyboardImageName: "video", imageName: "video"),
+            .image(description: "warning", keyboardImageName: "warning", imageName: "warning"),
+            .image(description: "zoom", keyboardImageName: "zoom", imageName: "zoom")]
         )
     }
 }
