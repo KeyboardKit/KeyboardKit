@@ -3,11 +3,11 @@
 </p>
 
 <p align="center">
-    <a href="http://badge.fury.io/gh/danielsaidi%2FSheeeeeeeeet">
-        <img src="https://badge.fury.io/gh/danielsaidi%2FSheeeeeeeeet.svg" alt="Current Version" />
+    <a href="http://badge.fury.io/gh/danielsaidi%2FKeyboardKit">
+        <img src="https://badge.fury.io/gh/danielsaidi%2FKeyboardKit.svg" alt="Current Version" />
     </a>
-    <a href="https://travis-ci.org/danielsaidi/Sheeeeeeeeet">
-        <img src="https://api.travis-ci.org/danielsaidi/Sheeeeeeeeet.svg" alt="Build Status" />
+    <a href="https://travis-ci.org/danielsaidi/KeyboardKit">
+        <img src="https://api.travis-ci.org/danielsaidi/KeyboardKit.svg" alt="Build Status" />
     </a>
     <a href="https://github.com/ellerbrock/open-source-badge/">
         <img src="https://badges.frapsoft.com/os/mit/mit.svg?v=102" alt="MIT License" />
