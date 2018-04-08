@@ -63,11 +63,15 @@
 		450B1CBC206A298A006A2F18 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 450B1C6C206A2980006A2F18 /* refresh.png */; };
 		450B1CBD206A298A006A2F18 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 450B1C6D206A2980006A2F18 /* image.png */; };
 		4542496C2059BA9C00CD0E87 /* KeyboardSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4542496B2059BA9C00CD0E87 /* KeyboardSetting.swift */; };
+		45782CEE207A18C900B071A9 /* UICollectionView+ItemSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45782CED207A18C900B071A9 /* UICollectionView+ItemSpace.swift */; };
+		45782CF0207A1A0700B071A9 /* UICollectionView+ItemSpaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45782CEF207A1A0700B071A9 /* UICollectionView+ItemSpaceTests.swift */; };
+		45782CF2207A1BE200B071A9 /* UICollectionView+ItemSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45782CF1207A1BE200B071A9 /* UICollectionView+ItemSize.swift */; };
+		45782CF4207A1CEE00B071A9 /* UICollectionView+ItemSizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45782CF3207A1CEE00B071A9 /* UICollectionView+ItemSizeTests.swift */; };
 		4578CEC92067E6660055440A /* UIView+ActionLongPressGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578CEC82067E6660055440A /* UIView+ActionLongPressGesture.swift */; };
 		459DA1B12056783800644490 /* NSLayoutConstraint+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459DA1B02056783800644490 /* NSLayoutConstraint+Attributes.swift */; };
 		45A0D81E205892B900557A93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45FB519C20495C8A009D5806 /* Assets.xcassets */; };
 		45CE0710204C016500A93175 /* Sequence+Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CE070F204C016500A93175 /* Sequence+Batch.swift */; };
-		45CE0713204C01DB00A93175 /* Sequence_BatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CE0712204C01DB00A93175 /* Sequence_BatchTests.swift */; };
+		45CE0713204C01DB00A93175 /* Sequence+BatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CE0712204C01DB00A93175 /* Sequence+BatchTests.swift */; };
 		45D1495220585DD5009EF441 /* KeyboardInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D1495120585DD5009EF441 /* KeyboardInputViewController.swift */; };
 		45D1495420586280009EF441 /* DemoKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D1495320586280009EF441 /* DemoKeyboard.swift */; };
 		45D149562058699A009EF441 /* CollectionKeyboardInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D149552058699A009EF441 /* CollectionKeyboardInputViewController.swift */; };
@@ -217,10 +221,14 @@
 		450B1C6D206A2980006A2F18 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		4530CC0C2079EBF400481162 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		4542496B2059BA9C00CD0E87 /* KeyboardSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSetting.swift; sourceTree = "<group>"; };
+		45782CED207A18C900B071A9 /* UICollectionView+ItemSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+ItemSpace.swift"; sourceTree = "<group>"; };
+		45782CEF207A1A0700B071A9 /* UICollectionView+ItemSpaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+ItemSpaceTests.swift"; sourceTree = "<group>"; };
+		45782CF1207A1BE200B071A9 /* UICollectionView+ItemSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+ItemSize.swift"; sourceTree = "<group>"; };
+		45782CF3207A1CEE00B071A9 /* UICollectionView+ItemSizeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+ItemSizeTests.swift"; sourceTree = "<group>"; };
 		4578CEC82067E6660055440A /* UIView+ActionLongPressGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ActionLongPressGesture.swift"; sourceTree = "<group>"; };
 		459DA1B02056783800644490 /* NSLayoutConstraint+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Attributes.swift"; sourceTree = "<group>"; };
 		45CE070F204C016500A93175 /* Sequence+Batch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Batch.swift"; sourceTree = "<group>"; };
-		45CE0712204C01DB00A93175 /* Sequence_BatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence_BatchTests.swift; sourceTree = "<group>"; };
+		45CE0712204C01DB00A93175 /* Sequence+BatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+BatchTests.swift"; sourceTree = "<group>"; };
 		45D1495120585DD5009EF441 /* KeyboardInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputViewController.swift; sourceTree = "<group>"; };
 		45D1495320586280009EF441 /* DemoKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboard.swift; sourceTree = "<group>"; };
 		45D149552058699A009EF441 /* CollectionKeyboardInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionKeyboardInputViewController.swift; sourceTree = "<group>"; };
@@ -367,7 +375,9 @@
 		45CE0711204C01CE00A93175 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				45CE0712204C01DB00A93175 /* Sequence_BatchTests.swift */,
+				45CE0712204C01DB00A93175 /* Sequence+BatchTests.swift */,
+				45782CF3207A1CEE00B071A9 /* UICollectionView+ItemSizeTests.swift */,
+				45782CEF207A1A0700B071A9 /* UICollectionView+ItemSpaceTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -470,6 +480,8 @@
 			children = (
 				459DA1B02056783800644490 /* NSLayoutConstraint+Attributes.swift */,
 				45CE070F204C016500A93175 /* Sequence+Batch.swift */,
+				45782CF1207A1BE200B071A9 /* UICollectionView+ItemSize.swift */,
+				45782CED207A18C900B071A9 /* UICollectionView+ItemSpace.swift */,
 				45FB51CD20495F42009D5806 /* UIImage+Badged.swift */,
 				45FB51D120495F42009D5806 /* UIImage+Pasteboard.swift */,
 				45FB51CF20495F42009D5806 /* UIImage+Photos.swift */,
@@ -790,6 +802,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45FB51E120495F42009D5806 /* UIImage+Badged.swift in Sources */,
+				45782CF2207A1BE200B071A9 /* UICollectionView+ItemSize.swift in Sources */,
 				45FB51E520495F42009D5806 /* UIImage+Pasteboard.swift in Sources */,
 				45FB51E220495F42009D5806 /* UIImage+Resized.swift in Sources */,
 				45E467EE2051F8E3006B2683 /* GridKeyboardLayout.swift in Sources */,
@@ -806,6 +819,7 @@
 				45FB51E620495F42009D5806 /* KeyboardAction.swift in Sources */,
 				459DA1B12056783800644490 /* NSLayoutConstraint+Attributes.swift in Sources */,
 				45FB51E820495F42009D5806 /* GridKeyboardInputViewController.swift in Sources */,
+				45782CEE207A18C900B071A9 /* UICollectionView+ItemSpace.swift in Sources */,
 				45FB51E320495F42009D5806 /* UIImage+Photos.swift in Sources */,
 				45FB51DD20495F42009D5806 /* KeyboardAlerter.swift in Sources */,
 				45D149562058699A009EF441 /* CollectionKeyboardInputViewController.swift in Sources */,
@@ -818,7 +832,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				45FB518420495C73009D5806 /* KeyboardKitTests.swift in Sources */,
-				45CE0713204C01DB00A93175 /* Sequence_BatchTests.swift in Sources */,
+				45782CF0207A1A0700B071A9 /* UICollectionView+ItemSpaceTests.swift in Sources */,
+				45CE0713204C01DB00A93175 /* Sequence+BatchTests.swift in Sources */,
+				45782CF4207A1CEE00B071A9 /* UICollectionView+ItemSizeTests.swift in Sources */,
 				45FB51F020495FB4009D5806 /* ToastAlerterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
