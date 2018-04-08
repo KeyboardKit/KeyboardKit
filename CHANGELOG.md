@@ -3,6 +3,13 @@
 This log only contains changes from version `0.6.0` and forward.
 
 
+## 0.7.0
+
+The grid keyboard view controller uses a new way to calculate the available item
+space and item size for a certain number of rows and buttons per row. This means
+that we can now use top and bottom content insets to create vertical margins for
+grid-based keyboards.
+
 
 ## 0.6.2
 

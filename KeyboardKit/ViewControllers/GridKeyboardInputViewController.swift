@@ -28,7 +28,7 @@
  until we implement a correctly behaving horizontal layout.
  
  The `reloadData` in `viewWillAppear` is temp needed for now.
- It fixes a rendering bug in the collection view. Wihtout it,
+ It fixes a rendering bug in the collection view. Without it,
  the last four bottom-right buttons shows in incorrect order,
  but a log shows that everything is correctly setup. I guess
  it has to be caused by something in the collection view.
@@ -37,6 +37,11 @@
  keyboard switcher button, just set `keyboardSwitcherButton`
  to any custom button. It will be given the same size as the
  rest of the buttons, and will be placed bottom-left.
+ 
+ This view controller supports top and bottom insets for the
+ collection view, which means that you can support the space
+ to the top and bottom edge. Left and right insets currently
+ don't currently work.
  
  NOTE: For now, this class contains a bunch of logic that is
  probably to be shared among all keyboards. Whenever we find
