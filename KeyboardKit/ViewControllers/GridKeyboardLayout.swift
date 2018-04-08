@@ -26,6 +26,8 @@ open class GridKeyboardLayout: UICollectionViewFlowLayout {
         self.rowsPerPage = rowsPerPage
         self.buttonsPerRow = buttonsPerRow
         super.init()
+        minimumLineSpacing = 0
+        minimumInteritemSpacing = 0
         scrollDirection = .horizontal
     }
     
@@ -33,6 +35,8 @@ open class GridKeyboardLayout: UICollectionViewFlowLayout {
         rowsPerPage = 0
         buttonsPerRow = 0
         super.init(coder: aDecoder)
+        minimumLineSpacing = 0
+        minimumInteritemSpacing = 0
         scrollDirection = .horizontal
     }
     

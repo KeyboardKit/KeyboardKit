@@ -68,36 +68,9 @@ class KeyboardViewController: GridKeyboardInputViewController {
     
     open override func setupCollectionView() {
         super.setupCollectionView()
-        collectionView .register(DemoCell.defaultNib, forCellWithReuseIdentifier: "Cell")
-    }
-    
-    func setupKeyboard(for size: CGSize) {
-        let isLandscape = size.width > 400
-        let height: CGFloat = isLandscape ? 150 : 200
-        let rowsPerPage = isLandscape ? 3 : 4
-        let buttonsPerRow = isLandscape ? 8 : 6
-        setup(withKeyboard: DemoKeyboard(), height: height, rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)
-        gridLayout.minimumInteritemSpacing = 0
-        gridLayout.minimumLineSpacing = 0
-    }
-    
-    func setupSystemButtons() {
-        setupLeftSystemButtons()
-        setupRightSystemButtons()
-    }
-    
-    func setupLeftSystemButtons() {
-        leftSystemButtons = [
-            createSystemButton(image: Asset.globe.image, action: .nextKeyboard),
-            createSystemButton(image: Asset.space.image, action: .space)
-        ].flatMap { $0 }
-    }
-    
-    func setupRightSystemButtons() {
-        rightSystemButtons = [
-            createSystemButton(image: Asset.backspace.image, action: .backspace),
-            createSystemButton(image: Asset.newline.image, action: .newLine)
-        ].flatMap { $0 }
+        collectionView.contentInset.top = 5
+        collectionView.contentInset.bottom = 10
+        collectionView.register(DemoCell.defaultNib, forCellWithReuseIdentifier: "Cell")
     }
     
     
@@ -156,6 +129,39 @@ class KeyboardViewController: GridKeyboardInputViewController {
         buttonCell.setup(with: button, appearance: keyboardAppearance, tintColor: collectionView.tintColor)
         addLongPressGesture(to: buttonCell, with: button)
         return cell
+    }
+}
+
+
+// MARK: - Setup
+
+fileprivate extension KeyboardViewController {
+    
+    func setupKeyboard(for size: CGSize) {
+        let isLandscape = size.width > 400
+        let height: CGFloat = isLandscape ? 150 : 200
+        let rowsPerPage = isLandscape ? 3 : 4
+        let buttonsPerRow = isLandscape ? 8 : 6
+        setup(withKeyboard: DemoKeyboard(), height: height, rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)
+    }
+    
+    func setupSystemButtons() {
+        setupLeftSystemButtons()
+        setupRightSystemButtons()
+    }
+    
+    func setupLeftSystemButtons() {
+        leftSystemButtons = [
+            createSystemButton(image: Asset.globe.image, action: .nextKeyboard),
+            createSystemButton(image: Asset.space.image, action: .space)
+            ].flatMap { $0 }
+    }
+    
+    func setupRightSystemButtons() {
+        rightSystemButtons = [
+            createSystemButton(image: Asset.backspace.image, action: .backspace),
+            createSystemButton(image: Asset.newline.image, action: .newLine)
+            ].flatMap { $0 }
     }
 }
 
