@@ -4,7 +4,7 @@ This log only contains changes from version `0.6.0` and forward.
 
 
 
-## 0.6.1
+## 0.6.2
 
 I previously used the async image functions to quickly setup a lot of images for
 "emoji" keyboards. Since I didn't use a collection view for emoji keyboards then,
@@ -18,6 +18,12 @@ suited for the task above, since they only render the cells they need. This will
 solve the image loading issues, which means that the async image extensions will
 no longer be needed. I have therefore removed `UIImage+Async` and the `Threading`
 folder from the library, to keep it as small as possible.
+
+
+## 0.6.1
+
+No functional changes, just README updates and improvements. The version bump is
+required to give CocoaPod users the latest docs.
 
 
 ## 0.6.0
