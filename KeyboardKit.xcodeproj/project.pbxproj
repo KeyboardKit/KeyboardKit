@@ -91,12 +91,10 @@
 		45FB51E120495F42009D5806 /* UIImage+Badged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FB51CD20495F42009D5806 /* UIImage+Badged.swift */; };
 		45FB51E220495F42009D5806 /* UIImage+Resized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FB51CE20495F42009D5806 /* UIImage+Resized.swift */; };
 		45FB51E320495F42009D5806 /* UIImage+Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FB51CF20495F42009D5806 /* UIImage+Photos.swift */; };
-		45FB51E420495F42009D5806 /* UIImage+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FB51D020495F42009D5806 /* UIImage+Async.swift */; };
 		45FB51E520495F42009D5806 /* UIImage+Pasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FB51D120495F42009D5806 /* UIImage+Pasteboard.swift */; };
 		45FB51E620495F42009D5806 /* KeyboardAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FB51D320495F42009D5806 /* KeyboardAction.swift */; };
 		45FB51E820495F42009D5806 /* GridKeyboardInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FB51D520495F42009D5806 /* GridKeyboardInputViewController.swift */; };
 		45FB51EB20495F42009D5806 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FB51D820495F42009D5806 /* Keyboard.swift */; };
-		45FB51ED20495F42009D5806 /* ThreadingOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FB51DB20495F42009D5806 /* ThreadingOperator.swift */; };
 		45FB51F020495FB4009D5806 /* ToastAlerterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FB51EF20495FB4009D5806 /* ToastAlerterTests.swift */; };
 		45FB51F320495FEF009D5806 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FB51F120495FEF009D5806 /* Nimble.framework */; };
 		45FB51F420495FEF009D5806 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FB51F220495FEF009D5806 /* Quick.framework */; };
@@ -217,6 +215,7 @@
 		450B1C6B206A2980006A2F18 /* favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorite.png; sourceTree = "<group>"; };
 		450B1C6C206A2980006A2F18 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
 		450B1C6D206A2980006A2F18 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
+		4530CC0C2079EBF400481162 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		4542496B2059BA9C00CD0E87 /* KeyboardSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSetting.swift; sourceTree = "<group>"; };
 		4578CEC82067E6660055440A /* UIView+ActionLongPressGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ActionLongPressGesture.swift"; sourceTree = "<group>"; };
 		459DA1B02056783800644490 /* NSLayoutConstraint+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Attributes.swift"; sourceTree = "<group>"; };
@@ -249,12 +248,10 @@
 		45FB51CD20495F42009D5806 /* UIImage+Badged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Badged.swift"; sourceTree = "<group>"; };
 		45FB51CE20495F42009D5806 /* UIImage+Resized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resized.swift"; sourceTree = "<group>"; };
 		45FB51CF20495F42009D5806 /* UIImage+Photos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Photos.swift"; sourceTree = "<group>"; };
-		45FB51D020495F42009D5806 /* UIImage+Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Async.swift"; sourceTree = "<group>"; };
 		45FB51D120495F42009D5806 /* UIImage+Pasteboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Pasteboard.swift"; sourceTree = "<group>"; };
 		45FB51D320495F42009D5806 /* KeyboardAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardAction.swift; sourceTree = "<group>"; };
 		45FB51D520495F42009D5806 /* GridKeyboardInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridKeyboardInputViewController.swift; sourceTree = "<group>"; };
 		45FB51D820495F42009D5806 /* Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
-		45FB51DB20495F42009D5806 /* ThreadingOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadingOperator.swift; sourceTree = "<group>"; };
 		45FB51EF20495FB4009D5806 /* ToastAlerterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastAlerterTests.swift; sourceTree = "<group>"; };
 		45FB51F120495FEF009D5806 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		45FB51F220495FEF009D5806 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
@@ -407,7 +404,6 @@
 				45FB517920495C73009D5806 /* Info.plist */,
 				45FB51D220495F42009D5806 /* Keyboard */,
 				45FB517820495C73009D5806 /* KeyboardKit.h */,
-				45FB51DA20495F42009D5806 /* Threading */,
 				452DDE71204F47AF00CD28C5 /* ViewControllers */,
 			);
 			path = KeyboardKit;
@@ -474,7 +470,6 @@
 			children = (
 				459DA1B02056783800644490 /* NSLayoutConstraint+Attributes.swift */,
 				45CE070F204C016500A93175 /* Sequence+Batch.swift */,
-				45FB51D020495F42009D5806 /* UIImage+Async.swift */,
 				45FB51CD20495F42009D5806 /* UIImage+Badged.swift */,
 				45FB51D120495F42009D5806 /* UIImage+Pasteboard.swift */,
 				45FB51CF20495F42009D5806 /* UIImage+Photos.swift */,
@@ -498,14 +493,6 @@
 			path = Keyboard;
 			sourceTree = "<group>";
 		};
-		45FB51DA20495F42009D5806 /* Threading */ = {
-			isa = PBXGroup;
-			children = (
-				45FB51DB20495F42009D5806 /* ThreadingOperator.swift */,
-			);
-			path = Threading;
-			sourceTree = "<group>";
-		};
 		45FB51EE20495FB4009D5806 /* Alerts */ = {
 			isa = PBXGroup;
 			children = (
@@ -523,6 +510,7 @@
 				45FB5203204B3F75009D5806 /* .travis.yml */,
 				45FB5201204B3F75009D5806 /* Cartfile */,
 				45FB5208204B3F75009D5806 /* Cartfile.private */,
+				4530CC0C2079EBF400481162 /* CHANGELOG.md */,
 				45FB5211204B3FB5009D5806 /* Fastfile */,
 				45FB5204204B3F75009D5806 /* LICENSE */,
 				45FB5205204B3F75009D5806 /* README.md */,
@@ -814,10 +802,8 @@
 				45FB51DC20495F42009D5806 /* ToastAlerter.swift in Sources */,
 				45FB51EB20495F42009D5806 /* Keyboard.swift in Sources */,
 				450B1C3F206991DD006A2F18 /* UIView+ActionTapGesture.swift in Sources */,
-				45FB51E420495F42009D5806 /* UIImage+Async.swift in Sources */,
 				45FB5214204B42DD009D5806 /* ToastAppearance.swift in Sources */,
 				45FB51E620495F42009D5806 /* KeyboardAction.swift in Sources */,
-				45FB51ED20495F42009D5806 /* ThreadingOperator.swift in Sources */,
 				459DA1B12056783800644490 /* NSLayoutConstraint+Attributes.swift in Sources */,
 				45FB51E820495F42009D5806 /* GridKeyboardInputViewController.swift in Sources */,
 				45FB51E320495F42009D5806 /* UIImage+Photos.swift in Sources */,
