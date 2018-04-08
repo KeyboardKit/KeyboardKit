@@ -45,32 +45,15 @@ open class GridKeyboardLayout: UICollectionViewFlowLayout {
     
     // MARK: - Public Functions
     
-    open func adjustButtonSize(to keyboardSize: CGSize) {
-        let size = buttonSize(for: keyboardSize)
-        guard size != itemSize else { return }
-        itemSize = buttonSize(for: keyboardSize)
+    open func adjustButtonSize(for view: UICollectionView) {
+        guard let view = collectionView else { return }
+        let size = view.bounds.size
+        let rows = rowsPerPage
+        let cols = buttonsPerRow
+        let itemSize = view.itemSizeForGrid(withSize: size, rows: rows, columns: cols)
+        guard self.itemSize != itemSize else { return }
+        self.itemSize = itemSize
         invalidateLayout()
-    }
-    
-    open func buttonHeight(for keyboardSize: CGSize) -> CGFloat {
-        let margin = minimumInteritemSpacing
-        let totalHeightMargin = margin * CGFloat(rowsPerPage - 1)
-        let availableHeight = keyboardSize.height - totalHeightMargin
-        return availableHeight / CGFloat(rowsPerPage) - 1
-    }
-    
-    open func buttonSize(for keyboardSize: CGSize) -> CGSize {
-        let width = buttonWidth(for: keyboardSize)
-        let height = buttonHeight(for: keyboardSize)
-        return CGSize(width: width, height: height)
-    }
-    
-    open func buttonWidth(for keyboardSize: CGSize) -> CGFloat {
-        let margin = minimumInteritemSpacing
-        let totalWidthMargin = margin * CGFloat(buttonsPerRow - 1)
-        let availableWidth = keyboardSize.width - totalWidthMargin
-        let width = availableWidth / CGFloat(buttonsPerRow)
-        return width
     }
     
     public func sourceIndexPathForItem(at indexPath: IndexPath) -> IndexPath {

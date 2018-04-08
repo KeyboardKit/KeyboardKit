@@ -105,7 +105,11 @@ class KeyboardViewController: GridKeyboardInputViewController {
     
     override func layoutSystemButtons(_ buttons: [UIView], buttonSize: CGSize, startX: CGFloat, y: CGFloat) {
         super.layoutSystemButtons(buttons, buttonSize: buttonSize, startX: startX, y: y)
-        buttons.forEach { $0.frame = $0.frame.insetBy(dx: 5, dy: 5) }
+        buttons.forEach {
+            let center = $0.center
+            $0.frame.size = CGSize(width: 25, height: 25)
+            $0.center = center
+        }
     }
     
     

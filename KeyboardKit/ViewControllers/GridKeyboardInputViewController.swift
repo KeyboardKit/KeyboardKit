@@ -148,8 +148,7 @@ open class GridKeyboardInputViewController: CollectionKeyboardInputViewControlle
     // MARK: - Layout
     
     open func layoutKeyboardButtons() {
-        let size = collectionView.bounds.size
-        gridLayout.adjustButtonSize(to: size)
+        gridLayout.adjustButtonSize(for: collectionView)
         collectionView.layoutIfNeeded()
     }
     
