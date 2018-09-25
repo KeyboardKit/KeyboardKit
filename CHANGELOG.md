@@ -3,6 +3,11 @@
 This log only contains changes from version `0.6.0` and forward.
 
 
+## 0.7.1
+
+This version updates KeyboardKit to `Swift 4.2` and makes it ready for Xcode 10.
+
+
 ## 0.7.0
 
 The grid keyboard view controller uses a new way to calculate the available item

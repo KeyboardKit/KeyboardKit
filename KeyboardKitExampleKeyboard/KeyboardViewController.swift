@@ -154,14 +154,14 @@ fileprivate extension KeyboardViewController {
         leftSystemButtons = [
             createSystemButton(image: Asset.globe.image, action: .nextKeyboard),
             createSystemButton(image: Asset.space.image, action: .space)
-            ].flatMap { $0 }
+            ].compactMap { $0 }
     }
     
     func setupRightSystemButtons() {
         rightSystemButtons = [
             createSystemButton(image: Asset.backspace.image, action: .backspace),
             createSystemButton(image: Asset.newline.image, action: .newLine)
-            ].flatMap { $0 }
+            ].compactMap { $0 }
     }
 }
 

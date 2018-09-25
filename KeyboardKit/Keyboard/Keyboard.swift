@@ -29,7 +29,7 @@ open class Keyboard {
     
     // MARK: - Properties
     
-    open let actions: [KeyboardAction]
+    public let actions: [KeyboardAction]
 }
 
 

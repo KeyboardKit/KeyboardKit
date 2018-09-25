@@ -1,5 +1,5 @@
 //
-//  UIViewAutoresizing_Extras.swift
+//  UIView.AutoresizingMask_Extras.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2018-02-01.
@@ -13,16 +13,16 @@
  
  */
 
-extension UIViewAutoresizing {
+extension UIView.AutoresizingMask {
     
-    static var centerInParent: UIViewAutoresizing {
+    static var centerInParent: UIView.AutoresizingMask {
         return [
             .flexibleTopMargin, .flexibleBottomMargin,
             .flexibleLeftMargin, .flexibleRightMargin
         ]
     }
     
-    static var fillInParent: UIViewAutoresizing {
+    static var fillInParent: UIView.AutoresizingMask {
         return [.flexibleWidth, .flexibleHeight]
     }
 }

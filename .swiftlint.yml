@@ -17,3 +17,5 @@ variable_name:
     - in
     - x
     - y
+    - dx
+    - dy

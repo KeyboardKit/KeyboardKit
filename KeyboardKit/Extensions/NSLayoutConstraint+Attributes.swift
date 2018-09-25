@@ -17,7 +17,7 @@ import Foundation
 
 extension NSLayoutConstraint {
     
-    static func attribute(_ attribute: NSLayoutAttribute, in view: UIView, constant: CGFloat) -> NSLayoutConstraint {
+    static func attribute(_ attribute: NSLayoutConstraint.Attribute, in view: UIView, constant: CGFloat) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(item: view, attribute: attribute, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: constant)
         constraint.priority = .required
         return constraint
