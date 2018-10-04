@@ -20,7 +20,6 @@
  `addLongPressGesture(to:with:)`. It makes the cell call the
  `handleLongPress(on:)` function when it is long pressed.
  
- 
  */
 
 import UIKit

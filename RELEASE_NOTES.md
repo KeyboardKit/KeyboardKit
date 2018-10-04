@@ -8,6 +8,11 @@ This log only contains changes from version `0.6.0` and forward.
 `Keyboard` has been given an optional ID, which can be used to uniquely identify
 a keyboard. This makes it easier to manage multiple keyboards in an app.
 
+`KeyboardInputViewController` implements the `KeyboardPresenter` protocol, which
+means that you can set the new optional `id` property to make a `KeyboardSetting`
+exclusive to that presenter. This is nice if your app has multiple keyboards. If
+you do not specify an id, the settings behave just like before.
+
 A PR by [micazeve](https://github.com/micazeve) is merged. It limits the current
 page index that is persisted for a keyboard, to avoid bugs if the page count has
 changed since persisting the value.

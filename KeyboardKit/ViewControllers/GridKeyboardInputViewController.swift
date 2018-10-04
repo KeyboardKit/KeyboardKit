@@ -246,14 +246,6 @@ open class GridKeyboardInputViewController: CollectionKeyboardInputViewControlle
 }
 
 
-// MARK: - Internal Functions
-
-extension GridKeyboardInputViewController {
-    
-    
-}
-
-
 // MARK: - Private Functions
 
 private extension GridKeyboardInputViewController {
@@ -272,13 +264,8 @@ private extension GridKeyboardInputViewController {
         if collectionView.isDragging { return }
         let defaults = UserDefaults.standard
         let key = KeyboardSetting.currentPageIndex.key(for: self)
-        var index = defaults.integer(forKey: key)
-        if index >= pageControl.numberOfPages {
-            index = pageControl.numberOfPages - 1
-            if index < 0 {
-                index = 0
-            }
-        }
+        let maxPageIndex = pageControl.numberOfPages - 1
+        let index = defaults.integer(forKey: key).limit(min: 0, max: maxPageIndex)
         collectionView.currentPageIndex = index
         pageControl.currentPage = index
     }
