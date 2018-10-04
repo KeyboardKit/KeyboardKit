@@ -22,21 +22,29 @@ class KeyboardTests: QuickSpec {
                 actions = [.backspace]
             }
             
-            context("without id") {
+            context("with actions") {
                 
-                it("gets correct property values") {
+                it("is correctly setup") {
                     let keyboard = Keyboard(actions: actions)
-                    expect(keyboard.id).to(equal("keyboard"))
+                    expect(keyboard.id).to(beNil())
                     expect(keyboard.actions).to(equal(actions))
                 }
             }
             
-            context("with id") {
+            context("with id and actions") {
                 
-                it("gets correct property values") {
+                it("is correctly setup") {
                     let keyboard = Keyboard(id: "foo", actions: actions)
                     expect(keyboard.id).to(equal("foo"))
                     expect(keyboard.actions).to(equal(actions))
+                }
+            }
+            
+            context("with empty initializer") {
+                
+                it("is correctly setup") {
+                    let keyboard = Keyboard.empty
+                    expect(keyboard.actions).to(equal([]))
                 }
             }
         }

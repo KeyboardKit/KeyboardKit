@@ -28,14 +28,14 @@ open class Keyboard {
     }
     
     public init(actions: [KeyboardAction]) {
-        self.id = "keyboard"
+        self.id = nil
         self.actions = actions
     }
     
     
     // MARK: - Properties
     
-    public let id: String
+    public let id: String?
     public let actions: [KeyboardAction]
 }
 

@@ -1,6 +1,17 @@
-# Change log
+# Release Notes
 
 This log only contains changes from version `0.6.0` and forward.
+
+
+## 0.8.0
+
+`Keyboard` has been given an optional ID, which is used by `KeyboardSetting`, to
+give each keyboard a unique set of settings. In previous versions, all keyboards
+shared the same setting keys.
+
+A PR by [micazeve](https://github.com/micazeve) is merged. It limits the current
+page index that is persisted for a keyboard to avoid bugs if the number of pages
+change.
 
 
 ## 0.7.1

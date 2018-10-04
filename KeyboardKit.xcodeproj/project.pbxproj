@@ -220,7 +220,7 @@
 		450B1C6B206A2980006A2F18 /* favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorite.png; sourceTree = "<group>"; };
 		450B1C6C206A2980006A2F18 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
 		450B1C6D206A2980006A2F18 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
-		4530CC0C2079EBF400481162 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		4530CC0C2079EBF400481162 /* RELEASE_NOTES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = RELEASE_NOTES.md; sourceTree = "<group>"; };
 		4542496B2059BA9C00CD0E87 /* KeyboardSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSetting.swift; sourceTree = "<group>"; };
 		45782CED207A18C900B071A9 /* UICollectionView+ItemSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+ItemSpace.swift"; sourceTree = "<group>"; };
 		45782CEF207A1A0700B071A9 /* UICollectionView+ItemSpaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+ItemSpaceTests.swift"; sourceTree = "<group>"; };
@@ -525,7 +525,7 @@
 				45FB5203204B3F75009D5806 /* .travis.yml */,
 				45FB5201204B3F75009D5806 /* Cartfile */,
 				45FB5208204B3F75009D5806 /* Cartfile.private */,
-				4530CC0C2079EBF400481162 /* CHANGELOG.md */,
+				4530CC0C2079EBF400481162 /* RELEASE_NOTES.md */,
 				45FB5211204B3FB5009D5806 /* Fastfile */,
 				45FB5204204B3F75009D5806 /* LICENSE */,
 				45FB5205204B3F75009D5806 /* README.md */,
