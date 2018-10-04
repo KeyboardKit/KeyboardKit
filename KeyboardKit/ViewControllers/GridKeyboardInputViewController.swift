@@ -239,7 +239,7 @@ open class GridKeyboardInputViewController: CollectionKeyboardInputViewControlle
         let index = Int(scrollView.currentPageIndex)
         let key = KeyboardSetting.currentPageIndex
         let defaults = UserDefaults.standard
-        defaults.set(index, forKey: key.name)
+        defaults.set(index, forKey: key.key)
         defaults.synchronize()
         pageControl.currentPage = index
     }
@@ -272,13 +272,13 @@ private extension GridKeyboardInputViewController {
         if collectionView.isDragging { return }
         let defaults = UserDefaults.standard
         let key = KeyboardSetting.currentPageIndex
-        var index = defaults.integer(forKey: key.name)
+        var index = defaults.integer(forKey: key.key)
         if index >= pageControl.numberOfPages {
             index = pageControl.numberOfPages - 1
             if index < 0 {
                 index = 0
             }
-            defaults.set(index, forKey: key.name)
+            defaults.set(index, forKey: key.key)
             defaults.synchronize()
         }
         collectionView.currentPageIndex = index

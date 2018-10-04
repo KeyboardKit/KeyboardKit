@@ -21,10 +21,8 @@ class KeyboardSettingTests: QuickSpec {
                 let setting = KeyboardSetting.currentPageIndex
                 
                 it("has correct key") {
-                    expect(setting.name).to(equal("com.danielsaidi.keyboardKit.settings.currentPageIndex"))
+                    expect(setting.key).to(equal("com.danielsaidi.keyboardKit.settings.currentPageIndex"))
                 }
-                
-                
             }
         }
     }
