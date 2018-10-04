@@ -15,7 +15,7 @@
 
 import UIKit
 
-public enum KeyboardAction {
+public enum KeyboardAction: Equatable {
     
     case
     none,

@@ -19,7 +19,7 @@ public enum KeyboardSetting: String {
 
 public extension KeyboardSetting {
     
-    public var name: String {
+    var name: String {
         return "com.danielsaidi.keyboardKit.settings.\(rawValue)"
     }
 }

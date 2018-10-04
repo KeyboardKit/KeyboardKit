@@ -246,9 +246,17 @@ open class GridKeyboardInputViewController: CollectionKeyboardInputViewControlle
 }
 
 
+// MARK: - Internal Functions
+
+extension GridKeyboardInputViewController {
+    
+    
+}
+
+
 // MARK: - Private Functions
 
-fileprivate extension GridKeyboardInputViewController {
+private extension GridKeyboardInputViewController {
     
     func setupKeyboardButtons(from keyboard: Keyboard) {
         let pageSize = keyboardButtonsPerPage

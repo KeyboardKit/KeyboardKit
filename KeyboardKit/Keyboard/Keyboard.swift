@@ -22,13 +22,20 @@ open class Keyboard {
     
     // MARK: - Initialization
     
+    public init(id: String, actions: [KeyboardAction]) {
+        self.id = id
+        self.actions = actions
+    }
+    
     public init(actions: [KeyboardAction]) {
+        self.id = "keyboard"
         self.actions = actions
     }
     
     
     // MARK: - Properties
     
+    public let id: String
     public let actions: [KeyboardAction]
 }
 
