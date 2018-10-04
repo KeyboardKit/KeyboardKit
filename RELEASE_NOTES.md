@@ -5,13 +5,12 @@ This log only contains changes from version `0.6.0` and forward.
 
 ## 0.8.0
 
-`Keyboard` has been given an optional ID, which is used by `KeyboardSetting`, to
-give each keyboard a unique set of settings. In previous versions, all keyboards
-shared the same setting keys.
+`Keyboard` has been given an optional ID, which can be used to uniquely identify
+a keyboard. This makes it easier to manage multiple keyboards in an app.
 
 A PR by [micazeve](https://github.com/micazeve) is merged. It limits the current
-page index that is persisted for a keyboard to avoid bugs if the number of pages
-change.
+page index that is persisted for a keyboard, to avoid bugs if the page count has
+changed since persisting the value.
 
 
 ## 0.7.1

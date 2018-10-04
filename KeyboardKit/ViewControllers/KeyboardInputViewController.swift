@@ -25,10 +25,12 @@
 
 import UIKit
 
-open class KeyboardInputViewController: UIInputViewController {
-
+open class KeyboardInputViewController: UIInputViewController, KeyboardPresenter {
+    
     
     // MARK: - Properties
+    
+    open var id: String?
     
     open var keyboard = Keyboard.empty
     

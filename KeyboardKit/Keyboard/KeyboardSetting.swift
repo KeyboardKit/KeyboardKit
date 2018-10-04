@@ -23,5 +23,8 @@ public extension KeyboardSetting {
         return "com.danielsaidi.keyboardKit.settings.\(rawValue)"
     }
     
-    
+    func key(for presenter: KeyboardPresenter) -> String {
+        guard let id = presenter.id else { return key }
+        return "\(key).\(id)"
+    }
 }
