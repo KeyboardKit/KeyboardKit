@@ -3,23 +3,30 @@
 </p>
 
 <p align="center">
-    <a href="http://badge.fury.io/gh/danielsaidi%2FKeyboardKit">
-        <img src="https://badge.fury.io/gh/danielsaidi%2FKeyboardKit.svg" alt="Current Version" />
+    <a href="https://github.com/danielsaidi/KeyboardKit">
+        <img src="https://badge.fury.io/gh/danielsaidi%2FKeyboardKit.svg?style=flat" alt="Version" />
     </a>
-    <a href="https://travis-ci.org/danielsaidi/KeyboardKit">
-        <img src="https://api.travis-ci.org/danielsaidi/KeyboardKit.svg" alt="Build Status" />
+    <img src="https://api.travis-ci.org/danielsaidi/KeyboardKit.svg" alt="Build Status" />
+    <a href="https://cocoapods.org/pods/KeyboardKit">
+        <img src="https://img.shields.io/cocoapods/v/KeyboardKit.svg?style=flat" alt="CocoaPods" />
     </a>
-    <a href="https://github.com/ellerbrock/open-source-badge/">
-        <img src="https://badges.frapsoft.com/os/mit/mit.svg?v=102" alt="MIT License" />
+    <a href="https://github.com/Carthage/Carthage">
+        <img src="https://img.shields.io/badge/carthage-supported-green.svg?style=flat" alt="Carthage" />
     </a>
+    <img src="https://img.shields.io/cocoapods/p/KeyboardKit.svg?style=flat" alt="Platform" />
+    <img src="https://img.shields.io/badge/Swift-4.2-orange.svg" alt="Swift 4.2" />
+    <img src="https://badges.frapsoft.com/os/mit/mit.svg?style=flat&v=102" alt="License" />
     <a href="https://twitter.com/danielsaidi">
         <img src="https://img.shields.io/badge/contact-@danielsaidi-blue.svg?style=flat" alt="Twitter: @danielsaidi" />
     </a>
+</p>
 
 
-Welcome to `KeyboardKit` - a Swift library that helps you create custom keyboard
-extensions for iOS. It supports a wide range of keyboard actions, which lets you
-create keyboards with text inputs, emojis, system actions and custom images.
+## About KeyboardKit
+
+`KeyboardKit` is a Swift library that lets you create custom keyboard extensions
+for iOS. It supports several keyboard actions and lets you create keyboards with
+text inputs, emojis, system actions and custom images.
 
 <p align="center">
     <img src ="Resources/Demo.gif" />
