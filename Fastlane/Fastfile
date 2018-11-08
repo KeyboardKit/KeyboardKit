@@ -13,6 +13,8 @@ platform :ios do
     ensure_git_branch(branch: 'master')
     test
     version = version_bump_podspec(path: "KeyboardKit.podspec", version_number: options[:name])
+    increment_version_number(version_number: version)
+    increment_build_number(build_number: `date "+%y%m%d%H%M"`)
 
     git_commit(
       path: ["KeyboardKit.podspec"],
