@@ -22,19 +22,19 @@ class KeyboardSettingTests: QuickSpec {
                 
                 it("has correct key") {
                     let key = setting.key
-                    expect(key).to(equal("com.danielsaidi.keyboardKit.settings.currentPageIndex"))
+                    expect(key).to(equal("com.keyboardKit.settings.currentPageIndex"))
                 }
                 
                 it("has correct key for presenter without id") {
                     let presenter = MockKeyboardPresenter()
                     let key = setting.key(for: presenter)
-                    expect(key).to(equal("com.danielsaidi.keyboardKit.settings.currentPageIndex"))
+                    expect(key).to(equal("com.keyboardKit.settings.currentPageIndex"))
                 }
                 
                 it("has correct key for presenter with id") {
                     let presenter = MockKeyboardPresenter(id: "foo")
                     let key = setting.key(for: presenter)
-                    expect(key).to(equal("com.danielsaidi.keyboardKit.settings.currentPageIndex.foo"))
+                    expect(key).to(equal("com.keyboardKit.settings.currentPageIndex.foo"))
                 }
             }
         }

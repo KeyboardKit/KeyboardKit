@@ -5,7 +5,6 @@
 
 This version upgrades `KeyboardKit` to Swift 5 and has many breaking changes:
 
-`Alerts`:
  * `KeyboardInputViewController` has been renamed to `KeyboardViewController`
  * `CollectionKeyboardInputViewController` has been renamed to `CollectionKeyboardViewController`
  * `GridKeyboardInputViewController` has been renamed to `GridKeyboardViewController`
@@ -14,8 +13,6 @@ This version upgrades `KeyboardKit` to Swift 5 and has many breaking changes:
  * `ToastAlert` now has two nested view classes `View` and `Label`
  * `ToastAlert`'s two style function has changed signature
  * `ToastAlerterAppearance` is now an internal `ToastAlert.Appearance` struct
-
-`Extensions`:
  * Most extensions have been made internal, to avoid exposing them externally
 
 

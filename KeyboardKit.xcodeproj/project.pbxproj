@@ -574,19 +574,11 @@
 		84851DE12166A3CD00DE8886 /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
-				84851DEF2166B52300DE8886 /* Mocks */,
 				84851DE22166A3EF00DE8886 /* KeyboardSettingTests.swift */,
 				84851DE72166A56D00DE8886 /* KeyboardTests.swift */,
-			);
-			path = Keyboard;
-			sourceTree = "<group>";
-		};
-		84851DEF2166B52300DE8886 /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
 				84851DF02166B53100DE8886 /* MockKeyboardPresenter.swift */,
 			);
-			path = Mocks;
+			path = Keyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -20,7 +20,7 @@ public enum KeyboardSetting: String {
 public extension KeyboardSetting {
     
     var key: String {
-        return "com.danielsaidi.keyboardKit.settings.\(rawValue)"
+        return "com.keyboardKit.settings.\(rawValue)"
     }
     
     func key(for presenter: KeyboardPresenter) -> String {
