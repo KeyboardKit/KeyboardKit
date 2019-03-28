@@ -1,0 +1,112 @@
+//
+//  ToastAlert.swift
+//  KeyboardKit
+//
+//  Created by Daniel Saidi on 2018-02-01.
+//  Copyright © 2018 Daniel Saidi. All rights reserved.
+//
+
+/*
+ 
+ This class presents keyboard alerts like Android toasts, at
+ the center of the keyboard.
+ 
+ To customize a toast alert's appearance, you can modify its
+ `appearance` property. You can also override the two `style`
+ functions as well.
+ 
+*/
+
+import UIKit
+
+open class ToastAlert: KeyboardAlert {
+    
+    
+    // MARK: - Initialization
+    
+    public init() {}
+    
+    
+    // MARK: - Public Properties
+    
+    public var appearance = Appearance()
+    
+    
+    // MARK: - Types
+    
+    public class Label: UILabel {}
+    
+    public class View: UIView {}
+    
+    public struct Appearance {
+        init() {}
+        public var backgroundColor: UIColor = .white
+        public var cornerRadius: CGFloat = 10
+        public var font: UIFont = .systemFont(ofSize: 10)
+        public var horizontalPadding: CGFloat = 20
+        public var textColor: UIColor = .black
+        public var verticalOffset: CGFloat = 0
+        public var verticalPadding: CGFloat = 10
+    }
+    
+    
+    // MARK: - Public functions
+    
+    open func alert(message: String, in view: UIView, withDuration duration: Double) {
+        let label = createLabel(withText: message)
+        let container = createContainerView(for: label, in: view)
+        unpresent(container, withDuration: duration)
+    }
+    
+    open func style(_ view: View) {}
+    
+    open func style(_ label: Label) {}
+    
+    open func unpresent(_ view: View, withDuration duration: Double) {
+        UIView.animate(withDuration: duration, animations: {
+            view.alpha = 0
+        }, completion: { _ in
+            view.removeFromSuperview()
+        })
+    }
+}
+
+
+// MARK: - Private Functions
+
+private extension ToastAlert {
+
+    func createContainerView(for label: Label, in view: UIView) -> View {
+        let container = View(frame: label.frame)
+        view.addSubview(container)
+        container.backgroundColor = appearance.backgroundColor
+        container.layer.cornerRadius = appearance.cornerRadius
+        container.center = view.center
+        container.frame.origin.y += appearance.verticalOffset
+        container.addSubview(label)
+        placeContainerView(container, in: view)
+        style(container)
+        return container
+    }
+    
+    func createLabel(withText text: String) -> Label {
+        let label = Label()
+        label.text = text
+        label.numberOfLines = 0
+        label.font = appearance.font
+        label.textColor = appearance.textColor
+        label.lineBreakMode = .byWordWrapping
+        label.textAlignment = .center
+        label.sizeToFit()
+        style(label)
+        label.autoresizingMask = .centerInParent
+        return label
+    }
+    
+    func placeContainerView(_ container: UIView, in view: UIView) {
+        container.autoresizingMask = .centerInParent
+        let dx = -appearance.horizontalPadding
+        let dy = -appearance.verticalPadding
+        container.frame = container.frame.insetBy(dx: dx, dy: dy)
+    }
+}

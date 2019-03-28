@@ -55,7 +55,7 @@ class KeyboardViewController: GridKeyboardViewController {
     
     // MARK: - Properties
     
-    var alerter = ToastAlerter()
+    var alerter = ToastAlert()
     
     var keyboardAppearance: UIKeyboardAppearance = .default {
         didSet {

@@ -1,5 +1,5 @@
 //
-//  KeyboardAlerter.swift
+//  KeyboardAlert.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2018-02-01.
@@ -8,14 +8,14 @@
 
 /*
  
- This protocol is implemented by classes that can be used to
- display alerts in keyboard extensions.
+ This protocol should be implemented by any classes that can
+ display alerts in a keyboard extension.
  
  */
 
 import Foundation
 
-public protocol KeyboardAlerter {
+public protocol KeyboardAlert {
     
     func alert(message: String, in: UIView, withDuration: Double)
 }

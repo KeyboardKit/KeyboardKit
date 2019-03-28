@@ -1,5 +1,5 @@
 //
-//  ToastAlerterTests.swift
+//  ToastAlertTests.swift
 //  KeyboardKitTests
 //
 //  Created by Daniel Saidi on 2018-02-25.
@@ -8,9 +8,9 @@
 
 import Quick
 import Nimble
-import KeyboardKit
+@testable import KeyboardKit
 
-class ToastAlerterTests: QuickSpec {
+class ToastAlertTests: QuickSpec {
     
     override func spec() {
         
@@ -23,17 +23,17 @@ class ToastAlerterTests: QuickSpec {
             let verticalOffset: CGFloat = 34.5
             let verticalPadding: CGFloat = 45.6
             
-            var alerter: ToastAlerter!
+            var alerter: ToastAlert!
             
             beforeEach {
-                let appearance = ToastAppearance()
+                var appearance = ToastAlert.Appearance()
                 appearance.cornerRadius = cornerRadius
                 appearance.font = font
                 appearance.horizontalPadding = horizontalPadding
                 appearance.textColor = textColor
                 appearance.verticalOffset = verticalOffset
                 appearance.verticalPadding = verticalPadding
-                alerter = ToastAlerter()
+                alerter = ToastAlert()
                 alerter.appearance = appearance
             }
             
