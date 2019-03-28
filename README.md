@@ -26,7 +26,7 @@
 
 `KeyboardKit` is a Swift library that lets you create custom keyboard extensions
 for iOS. It supports several keyboard actions and lets you create keyboards with
-text inputs, emojis, system actions and custom images.
+text inputs, emojis, system actions and images.
 
 <p align="center">
     <img src ="Resources/Demo.gif" />
@@ -37,8 +37,7 @@ text inputs, emojis, system actions and custom images.
 
 ### CocoaPods
 
-Add this to your `Podfile`, run `pod install` then remember to use the generated
-workspace afterwards:
+Add this to your `Podfile`, run `pod install` then use the generated workspace:
 
 ```
 pod 'KeyboardKit'
@@ -55,40 +54,40 @@ github "danielsaidi/KeyboardKit"
 
 ### Manual installation
 
-To add `KeyboardKit` to your app without using Carthage or CocoaPods, clone this
-repository and place it anywhere within your project folder. After that, add the
-`KeyboardKit.xcodeproj` project to your project, select your app target then add
-the `KeyboardKit` framework as an embedded binary (under `General`) and a target
-dependency (under `Build Phases`).
+To manually add `KeyboardKit` to your app, clone this repository and place it in
+your project folder, then add `KeyboardKit.xcodeproj` to the project, select the
+app target, add the `KeyboardKit` framework as an embedded binary (in `General`)
+and as a target dependency (in `Build Phases`).
 
 
 ## Features
 
 ### Keyboard actions
 
-`KeyboardKit` comes with the following keyboard actions:
+When you build custom keyboards with `KeyboardKit`, your keys can have different
+actions. `KeyboardKit` comes with the following actions:
 
-* `none`- used as empty placeholders
+* `character` - sends a character, system emoji or symbol to the text proxy
 * `backspace` - sends a backspace to the text proxy
-* `character` - a plain text character, system emoji or symbol
-* `image` - custom images with a description, keyboard image and original image
-* `newLine` - inserts a new line into the text proxy
-* `nextKeyboard` - changes keyboard on tap and show the picker on long press
+* `newLine` - sends a new line to the text proxy
+* `space` - sends an empty space to the text proxy
+* `nextKeyboard` - changes keyboard on tap and show the keyboard picker on long press
 * `shift` - can be used to change the char casing of a keyboard
-* `space` - inserts an empty space into the text proxy
+* `image` - custom images with a description, keyboard image and original image
+* `none`- use this for empty "placeholder" keys that do nothing
 
-`KeyboardKit` will handle all actions except `image` automatically with optional
-overrides, if you want to customize the handling of one or several actions.
+`KeyboardKit` handles all actions except `image`, which you must handle manually.
+You can also override the default handling of one or all of the other actions.
 
 ### `UIInputViewController` subclasses
 
-`KeyboardKit` lets you create custom keyboard extensions in seveal ways, instead
-of inheriting `UIInputViewController`:
+`KeyboardKit` lets you create custom keyboard extensions in seveal ways. Instead
+of inheriting the standard `UIInputViewController`, you can:
 
 * Inherit `KeyboardInputViewController` and use `xibs`
 * Inherit `KeyboardInputViewController` and use the `Keyboard` class
-* Inherit `GridKeyboardInputViewController` to create a grid-based keyboard
 * Inherit `CollectionKeyboardInputViewController` to create a collection-based keyboard
+* Inherit `GridKeyboardInputViewController` to create a grid-based keyboard
 
 The `GridKeyboardInputViewController` option is currently most powerful, but the
 other options will give you basic functionality as well.

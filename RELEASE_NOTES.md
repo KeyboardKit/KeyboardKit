@@ -1,6 +1,13 @@
 # Release Notes
 
-This log only contains changes from version `0.6.0` and forward.
+
+## 1.0.0
+
+This version upgrades `KeyboardKit` to Swift 5 and has some breaking changes:
+
+* `KeyboardInputViewController` has been renamed to `KeyboardViewController`
+* `CollectionKeyboardInputViewController` has been renamed to `CollectionKeyboardViewController`
+* `GridKeyboardInputViewController` has been renamed to `GridKeyboardViewController`
 
 
 ## 0.8.0
