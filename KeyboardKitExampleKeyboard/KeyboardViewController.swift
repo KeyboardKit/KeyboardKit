@@ -36,7 +36,7 @@
 import UIKit
 import KeyboardKit
 
-class KeyboardViewController: GridKeyboardInputViewController {
+class KeyboardViewController: GridKeyboardViewController {
     
     
     // MARK: - View Controller Lifecycle

@@ -1,5 +1,5 @@
 //
-//  CollectionKeyboardInputViewController.swift
+//  CollectionKeyboardViewController.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2018-03-13.
@@ -16,7 +16,7 @@
 
 import UIKit
 
-open class CollectionKeyboardInputViewController: KeyboardInputViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+open class CollectionKeyboardViewController: KeyboardViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     
     // MARK: - View Controller Lifecycle

@@ -1,5 +1,5 @@
 //
-//  KeyboardInputViewController.swift
+//  KeyboardViewController.swift
 //  KeyboardKit
 //
 //  Created by Dainel Saidi on 2018-03-13.
@@ -24,7 +24,7 @@
 
 import UIKit
 
-open class KeyboardInputViewController: UIInputViewController, KeyboardPresenter {
+open class KeyboardViewController: UIInputViewController, KeyboardPresenter {
     
     
     // MARK: - Properties

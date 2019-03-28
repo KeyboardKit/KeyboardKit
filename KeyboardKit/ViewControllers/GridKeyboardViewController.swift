@@ -1,5 +1,5 @@
 //
-//  GridKeyboardInputViewController.swift
+//  GridKeyboardViewController.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2018-02-02.
@@ -51,7 +51,7 @@
 
 import UIKit
 
-open class GridKeyboardInputViewController: CollectionKeyboardInputViewController {
+open class GridKeyboardViewController: CollectionKeyboardViewController {
     
     
     // MARK: - View Controller Lifecycle
@@ -248,7 +248,7 @@ open class GridKeyboardInputViewController: CollectionKeyboardInputViewControlle
 
 // MARK: - Private Functions
 
-private extension GridKeyboardInputViewController {
+private extension GridKeyboardViewController {
     
     func setupKeyboardButtons(from keyboard: Keyboard) {
         let pageSize = keyboardButtonsPerPage
