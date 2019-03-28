@@ -16,7 +16,7 @@
 
 import UIKit
 
-public extension UICollectionView {
+extension UICollectionView {
     
     var availableItemSpace: CGSize {
         return availableItemSpace(for: bounds.size)

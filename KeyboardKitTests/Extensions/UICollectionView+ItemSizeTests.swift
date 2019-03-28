@@ -8,7 +8,7 @@
 
 import Quick
 import Nimble
-import KeyboardKit
+@testable import KeyboardKit
 
 class UICollectionView_ItemSizeTests: QuickSpec {
     

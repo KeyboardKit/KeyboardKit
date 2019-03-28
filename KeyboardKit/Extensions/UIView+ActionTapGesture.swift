@@ -12,7 +12,9 @@ import UIKit
 
 extension UIView {
     
-    public func addTapGestureRecognizer(action: (() -> Void)?) {
+    typealias TapAction = (() -> Void)
+    
+    func addTapGestureRecognizer(action: TapAction?) {
         tapAction = action
         isUserInteractionEnabled = true
         let selector = #selector(handleTap)
@@ -23,13 +25,11 @@ extension UIView {
 
 private extension UIView {
     
-    typealias Action = (() -> Void)
-    
     struct Key { static var id = "tapAction" }
     
-    var tapAction: Action? {
+    var tapAction: TapAction? {
         get {
-            return objc_getAssociatedObject(self, &Key.id) as? Action
+            return objc_getAssociatedObject(self, &Key.id) as? TapAction
         }
         set {
             guard let value = newValue else { return }

@@ -11,7 +11,7 @@ import CoreGraphics
 
 public extension UIImage {
     
-    func tinted(withColor color: UIColor, blendMode: CGBlendMode) -> UIImage? {
+    func tinted(with color: UIColor, blendMode: CGBlendMode) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
         let context = UIGraphicsGetCurrentContext()
         let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)

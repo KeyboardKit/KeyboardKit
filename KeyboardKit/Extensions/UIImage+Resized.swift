@@ -17,15 +17,7 @@ import UIKit
 
 public extension UIImage {
     
-    func resized(toHeight points: CGFloat) -> UIImage? {
-        let height = points * scale
-        let ratio = height / size.height
-        let width = size.width * ratio
-        let newSize = CGSize(width: width, height: height)
-        return resized(toSize: newSize)
-    }
-    
-    func resized(toSize newSize: CGSize) -> UIImage? {
+    func resized(to newSize: CGSize) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(newSize, false, scale)
         draw(in: CGRect(origin: CGPoint.zero, size: newSize))
         let result = UIGraphicsGetImageFromCurrentImageContext()
@@ -33,11 +25,19 @@ public extension UIImage {
         return result
     }
     
+    func resized(toHeight points: CGFloat) -> UIImage? {
+        let height = points * scale
+        let ratio = height / size.height
+        let width = size.width * ratio
+        let newSize = CGSize(width: width, height: height)
+        return resized(to: newSize)
+    }
+    
     func resized(toWidth points: CGFloat) -> UIImage? {
         let width = points * scale
         let ratio = width / size.width
         let height = size.height * ratio
         let newSize = CGSize(width: width, height: height)
-        return resized(toSize: newSize)
+        return resized(to: newSize)
     }
 }

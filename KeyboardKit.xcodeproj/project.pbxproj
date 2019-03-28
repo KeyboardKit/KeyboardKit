@@ -90,7 +90,6 @@
 		45FB51DD20495F42009D5806 /* KeyboardAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FB51C820495F41009D5806 /* KeyboardAlert.swift */; };
 		45FB51DE20495F42009D5806 /* UIViewAutoresizing+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FB51CA20495F42009D5806 /* UIViewAutoresizing+Extras.swift */; };
 		45FB51DF20495F42009D5806 /* UIScrollView+PageNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FB51CB20495F42009D5806 /* UIScrollView+PageNumber.swift */; };
-		45FB51E120495F42009D5806 /* UIImage+Badged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FB51CD20495F42009D5806 /* UIImage+Badged.swift */; };
 		45FB51E220495F42009D5806 /* UIImage+Resized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FB51CE20495F42009D5806 /* UIImage+Resized.swift */; };
 		45FB51E320495F42009D5806 /* UIImage+Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FB51CF20495F42009D5806 /* UIImage+Photos.swift */; };
 		45FB51E520495F42009D5806 /* UIImage+Pasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FB51D120495F42009D5806 /* UIImage+Pasteboard.swift */; };
@@ -122,8 +121,8 @@
 		84851DE32166A3EF00DE8886 /* KeyboardSettingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851DE22166A3EF00DE8886 /* KeyboardSettingTests.swift */; };
 		84851DE82166A56D00DE8886 /* KeyboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851DE72166A56D00DE8886 /* KeyboardTests.swift */; };
 		84851DEA2166B19600DE8886 /* KeyboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851DE92166B19600DE8886 /* KeyboardPresenter.swift */; };
-		84851DEC2166B33C00DE8886 /* Int+Limit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851DEB2166B33C00DE8886 /* Int+Limit.swift */; };
-		84851DEE2166B3D500DE8886 /* Int+LimitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851DED2166B3D500DE8886 /* Int+LimitTests.swift */; };
+		84851DEC2166B33C00DE8886 /* Comparable+Limit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851DEB2166B33C00DE8886 /* Comparable+Limit.swift */; };
+		84851DEE2166B3D500DE8886 /* Comparable+LimitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851DED2166B3D500DE8886 /* Comparable+LimitTests.swift */; };
 		84851DF12166B53100DE8886 /* MockKeyboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851DF02166B53100DE8886 /* MockKeyboardPresenter.swift */; };
 /* End PBXBuildFile section */
 
@@ -255,7 +254,6 @@
 		45FB51C820495F41009D5806 /* KeyboardAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardAlert.swift; sourceTree = "<group>"; };
 		45FB51CA20495F42009D5806 /* UIViewAutoresizing+Extras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewAutoresizing+Extras.swift"; sourceTree = "<group>"; };
 		45FB51CB20495F42009D5806 /* UIScrollView+PageNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+PageNumber.swift"; sourceTree = "<group>"; };
-		45FB51CD20495F42009D5806 /* UIImage+Badged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Badged.swift"; sourceTree = "<group>"; };
 		45FB51CE20495F42009D5806 /* UIImage+Resized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resized.swift"; sourceTree = "<group>"; };
 		45FB51CF20495F42009D5806 /* UIImage+Photos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Photos.swift"; sourceTree = "<group>"; };
 		45FB51D120495F42009D5806 /* UIImage+Pasteboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Pasteboard.swift"; sourceTree = "<group>"; };
@@ -284,8 +282,8 @@
 		84851DE22166A3EF00DE8886 /* KeyboardSettingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSettingTests.swift; sourceTree = "<group>"; };
 		84851DE72166A56D00DE8886 /* KeyboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardTests.swift; sourceTree = "<group>"; };
 		84851DE92166B19600DE8886 /* KeyboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardPresenter.swift; sourceTree = "<group>"; };
-		84851DEB2166B33C00DE8886 /* Int+Limit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Limit.swift"; sourceTree = "<group>"; };
-		84851DED2166B3D500DE8886 /* Int+LimitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+LimitTests.swift"; sourceTree = "<group>"; };
+		84851DEB2166B33C00DE8886 /* Comparable+Limit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comparable+Limit.swift"; sourceTree = "<group>"; };
+		84851DED2166B3D500DE8886 /* Comparable+LimitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comparable+LimitTests.swift"; sourceTree = "<group>"; };
 		84851DF02166B53100DE8886 /* MockKeyboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockKeyboardPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -383,7 +381,7 @@
 		45CE0711204C01CE00A93175 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				84851DED2166B3D500DE8886 /* Int+LimitTests.swift */,
+				84851DED2166B3D500DE8886 /* Comparable+LimitTests.swift */,
 				45CE0712204C01DB00A93175 /* Sequence+BatchTests.swift */,
 				45782CF3207A1CEE00B071A9 /* UICollectionView+ItemSizeTests.swift */,
 				45782CEF207A1A0700B071A9 /* UICollectionView+ItemSpaceTests.swift */,
@@ -486,12 +484,11 @@
 		45FB51C920495F42009D5806 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				84851DEB2166B33C00DE8886 /* Int+Limit.swift */,
+				84851DEB2166B33C00DE8886 /* Comparable+Limit.swift */,
 				459DA1B02056783800644490 /* NSLayoutConstraint+Attributes.swift */,
 				45CE070F204C016500A93175 /* Sequence+Batch.swift */,
 				45782CF1207A1BE200B071A9 /* UICollectionView+ItemSize.swift */,
 				45782CED207A18C900B071A9 /* UICollectionView+ItemSpace.swift */,
-				45FB51CD20495F42009D5806 /* UIImage+Badged.swift */,
 				45FB51D120495F42009D5806 /* UIImage+Pasteboard.swift */,
 				45FB51CF20495F42009D5806 /* UIImage+Photos.swift */,
 				45FB51CE20495F42009D5806 /* UIImage+Resized.swift */,
@@ -856,7 +853,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45FB51E120495F42009D5806 /* UIImage+Badged.swift in Sources */,
 				45782CF2207A1BE200B071A9 /* UICollectionView+ItemSize.swift in Sources */,
 				45FB51E520495F42009D5806 /* UIImage+Pasteboard.swift in Sources */,
 				45FB51E220495F42009D5806 /* UIImage+Resized.swift in Sources */,
@@ -874,7 +870,7 @@
 				459DA1B12056783800644490 /* NSLayoutConstraint+Attributes.swift in Sources */,
 				45FB51E820495F42009D5806 /* GridKeyboardViewController.swift in Sources */,
 				45782CEE207A18C900B071A9 /* UICollectionView+ItemSpace.swift in Sources */,
-				84851DEC2166B33C00DE8886 /* Int+Limit.swift in Sources */,
+				84851DEC2166B33C00DE8886 /* Comparable+Limit.swift in Sources */,
 				45FB51E320495F42009D5806 /* UIImage+Photos.swift in Sources */,
 				45FB51DD20495F42009D5806 /* KeyboardAlert.swift in Sources */,
 				45D149562058699A009EF441 /* CollectionKeyboardViewController.swift in Sources */,
@@ -887,7 +883,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84851DEE2166B3D500DE8886 /* Int+LimitTests.swift in Sources */,
+				84851DEE2166B3D500DE8886 /* Comparable+LimitTests.swift in Sources */,
 				84851DF12166B53100DE8886 /* MockKeyboardPresenter.swift in Sources */,
 				45782CF0207A1A0700B071A9 /* UICollectionView+ItemSpaceTests.swift in Sources */,
 				84851DE32166A3EF00DE8886 /* KeyboardSettingTests.swift in Sources */,

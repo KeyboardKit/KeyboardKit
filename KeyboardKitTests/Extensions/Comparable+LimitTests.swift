@@ -1,5 +1,5 @@
 //
-//  Int+LimitTests.swift
+//  Comparable+LimitTests.swift
 //  KeyboardKitTests
 //
 //  Created by Daniel Saidi on 2018-10-04.
@@ -8,9 +8,9 @@
 
 import Quick
 import Nimble
-import KeyboardKit
+@testable import KeyboardKit
 
-class Int_LimitTests: QuickSpec {
+class Comparable_LimitTests: QuickSpec {
     
     override func spec() {
         

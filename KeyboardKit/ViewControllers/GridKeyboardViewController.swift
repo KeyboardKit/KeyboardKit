@@ -256,7 +256,7 @@ private extension GridKeyboardViewController {
         while buttons.count % pageSize > 0 {
             buttons.append( .none)
         }
-        keyboardPages = buttons.batch(size: pageSize)
+        keyboardPages = buttons.batched(withBatchSize: pageSize)
         collectionView.reloadData()
     }
     

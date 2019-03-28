@@ -8,7 +8,7 @@
 
 import UIKit
 
-public extension UICollectionView {
+extension UICollectionView {
     
     func itemSizeForGrid(withRows rows: Int, columns: Int) -> CGSize {
         let size = bounds.size

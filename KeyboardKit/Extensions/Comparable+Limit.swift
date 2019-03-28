@@ -1,5 +1,5 @@
 //
-//  Int+Limit.swift
+//  Comparable+Limit.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2018-10-04.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-public extension Int {
+extension Comparable {
     
-    func limit(min: Int, max: Int) -> Int {
+    func limit(min: Self, max: Self) -> Self {
         if self < min { return min }
         if self > max { return max }
         return self
