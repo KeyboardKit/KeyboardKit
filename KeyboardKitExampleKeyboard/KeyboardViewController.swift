@@ -135,7 +135,7 @@ class KeyboardViewController: GridKeyboardInputViewController {
 
 // MARK: - Setup
 
-fileprivate extension KeyboardViewController {
+private extension KeyboardViewController {
     
     func setupKeyboard(for size: CGSize) {
         let isLandscape = size.width > 400
@@ -168,7 +168,7 @@ fileprivate extension KeyboardViewController {
 
 // MARK: - Private Functions
 
-fileprivate extension KeyboardViewController {
+private extension KeyboardViewController {
     
     func alert(_ message: String) {
         alerter.alert(message: message, in: view, withDuration: 4)

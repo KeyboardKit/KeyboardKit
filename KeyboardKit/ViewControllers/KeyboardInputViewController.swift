@@ -33,7 +33,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardPresenter
     
     open var keyboard = Keyboard.empty
     
-    fileprivate var heightConstraint: NSLayoutConstraint?
+    private var heightConstraint: NSLayoutConstraint?
     
     
     // MARK: - Public Functions

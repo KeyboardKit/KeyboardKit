@@ -10,12 +10,12 @@ import UIKit
 
 public extension UIView {
 
-    public func addBadgeShadow() {
+    func addBadgeShadow() {
         let offset = CGSize(width: 1, height: 1)
         addDropShadow(withOffset: offset, radius: 1, opacity: 0.5)
     }
     
-    public func addDropShadow(withOffset offset: CGSize, radius: Double, opacity: Double, color: UIColor = .black) {
+    func addDropShadow(withOffset offset: CGSize, radius: Double, opacity: Double, color: UIColor = .black) {
         layer.shadowOffset = offset
         layer.shadowRadius = CGFloat(radius)
         layer.shadowOpacity = Float(opacity)
@@ -24,7 +24,7 @@ public extension UIView {
         layer.rasterizationScale = UIScreen.main.scale
     }
     
-    public func removeDropShadow() {
+    func removeDropShadow() {
         layer.shadowOpacity = 0
     }
 }

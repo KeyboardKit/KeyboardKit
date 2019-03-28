@@ -44,7 +44,7 @@ open class Keyboard {
 
 public extension Keyboard {
     
-    public static var empty: Keyboard {
+    static var empty: Keyboard {
         return Keyboard(actions: [])
     }
 }

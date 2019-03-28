@@ -21,22 +21,22 @@ public extension UIView {
     
     // MARK: - Static Properties
     
-    public static var defaultNib: UINib {
+    static var defaultNib: UINib {
         return UINib(nibName: defaultNibName, bundle: nil)
     }
     
-    public static var defaultNibName: String {
+    static var defaultNibName: String {
         return className
     }
     
     
     // MARK: - Static Functions
     
-    public static func initWithDefaultNib(owner: Any) -> Self {
+    static func initWithDefaultNib(owner: Any) -> Self {
         return initWithDefaultNibTyped(owner: owner)
     }
     
-    public static func initWithDefaultNibTyped<T>(owner: Any) -> T {
+    static func initWithDefaultNibTyped<T>(owner: Any) -> T {
         let bundle = Bundle.main
         let nibName = defaultNibName
         let nibs = bundle.loadNibNamed(nibName, owner: owner, options: nil)

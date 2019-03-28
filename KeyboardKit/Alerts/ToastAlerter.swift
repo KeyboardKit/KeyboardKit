@@ -47,7 +47,7 @@ open class ToastAlerter: NSObject, KeyboardAlerter {
 
 // MARK: - Private Functions
 
-fileprivate extension ToastAlerter {
+private extension ToastAlerter {
 
     func createContainerView(forLabel label: UILabel, in view: UIView) -> UIView {
         let container = UIView(frame: label.frame)

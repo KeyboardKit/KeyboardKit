@@ -19,7 +19,7 @@ public enum Asset: String {
 
 public extension Asset {
     
-    public var image: UIImage? {
+    var image: UIImage? {
         return UIImage(named: "\(rawValue)")
     }
 }

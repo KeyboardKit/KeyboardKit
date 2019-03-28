@@ -21,7 +21,7 @@ extension UIView {
     }
 }
 
-fileprivate extension UIView {
+private extension UIView {
     
     typealias Action = (() -> Void)
     

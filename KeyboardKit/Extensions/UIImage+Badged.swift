@@ -18,7 +18,7 @@ import UIKit
 
 public extension UIImage {
     
-    public func badged(withBackgroundColor color: UIColor, cornerRadius: CGFloat = 0) -> UIImage? {
+    func badged(withBackgroundColor color: UIColor, cornerRadius: CGFloat = 0) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
         
         let context = UIGraphicsGetCurrentContext()

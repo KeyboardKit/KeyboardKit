@@ -23,7 +23,7 @@ class DemoCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    public fileprivate(set) var action: KeyboardAction?
+    public private(set) var action: KeyboardAction?
     
     
     // MARK: - Outlets

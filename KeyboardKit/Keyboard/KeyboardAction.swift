@@ -33,45 +33,45 @@ public enum KeyboardAction: Equatable {
 
 public extension KeyboardAction {
     
-    public var image: UIImage? {
+    var image: UIImage? {
         guard let name = imageName else { return nil }
         return UIImage(named: name)
     }
     
-    public var imageName: String? {
+    var imageName: String? {
         switch self {
         case .image(_, _, let imageName): return imageName
         default: return nil
         }
     }
     
-    public var isNextKeyboard: Bool {
+    var isNextKeyboard: Bool {
         switch self {
         case .nextKeyboard: return true
         default: return false
         }
     }
     
-    public var isNone: Bool {
+    var isNone: Bool {
         switch self {
         case .none: return true
         default: return false
         }
     }
     
-    public var keyboardImage: UIImage? {
+    var keyboardImage: UIImage? {
         guard let name = keyboardImageName else { return nil }
         return UIImage(named: name)
     }
     
-    public var keyboardImageName: String? {
+    var keyboardImageName: String? {
         switch self {
         case .image(_, let keyboardImageName, _): return keyboardImageName
         default: return nil
         }
     }
     
-    public var title: String? {
+    var title: String? {
         switch self {
         case .character(let character): return character
         default: return nil

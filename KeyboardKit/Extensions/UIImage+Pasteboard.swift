@@ -18,7 +18,7 @@ import UIKit
 
 public extension UIImage {
     
-    public func copyToPasteboard() -> Bool {
+    func copyToPasteboard() -> Bool {
         guard let data = pngData() else { return false }
         let pasteBoard = UIPasteboard.general
         pasteBoard.setData(data, forPasteboardType: "public.png")

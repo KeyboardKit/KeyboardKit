@@ -111,7 +111,7 @@ open class GridKeyboardInputViewController: CollectionKeyboardInputViewControlle
         return gridLayout.rowsPerPage * gridLayout.buttonsPerRow
     }
     
-    public fileprivate(set) var keyboardPages: [[KeyboardAction]] = [[]] {
+    public private(set) var keyboardPages: [[KeyboardAction]] = [[]] {
         didSet { pageControl.numberOfPages = keyboardPages.count }
     }
     

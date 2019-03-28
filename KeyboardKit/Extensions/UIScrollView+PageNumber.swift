@@ -17,7 +17,7 @@ import UIKit
 
 public extension UIScrollView {
 
-    public var currentPageIndex: Int {
+    var currentPageIndex: Int {
         get { return Int((contentOffset.x + 10) / frame.size.width) }
         set { contentOffset.x = frame.size.width * CGFloat(newValue) }
     }
