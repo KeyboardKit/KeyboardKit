@@ -62,6 +62,7 @@ and as a target dependency (in `Build Phases`).
 
 ## Features
 
+
 ### Keyboard actions
 
 When you build custom keyboards with `KeyboardKit`, your keys can have different
@@ -71,7 +72,7 @@ actions. `KeyboardKit` comes with the following actions:
 * `backspace` - sends a backspace to the text proxy
 * `newLine` - sends a new line to the text proxy
 * `space` - sends an empty space to the text proxy
-* `nextKeyboard` - changes keyboard on tap and show the keyboard picker on long press
+* `nextKeyboard` - changes keyboard on tap and shows keyboard picker on long press
 * `shift` - can be used to change the char casing of a keyboard
 * `image` - custom images with a description, keyboard image and original image
 * `none`- use this for empty "placeholder" keys that do nothing
@@ -79,83 +80,83 @@ actions. `KeyboardKit` comes with the following actions:
 `KeyboardKit` handles all actions except `image`, which you must handle manually.
 You can also override the default handling of one or all of the other actions.
 
+
 ### `UIInputViewController` subclasses
 
 `KeyboardKit` lets you create custom keyboard extensions in seveal ways. Instead
 of inheriting the standard `UIInputViewController`, you can:
 
-* Inherit `KeyboardInputViewController` and use `xibs`
-* Inherit `KeyboardInputViewController` and use the `Keyboard` class
-* Inherit `CollectionKeyboardInputViewController` to create a collection-based keyboard
-* Inherit `GridKeyboardInputViewController` to create a grid-based keyboard
+* Inherit `KeyboardViewController` and use `xibs`
+* Inherit `KeyboardViewController` and use the `Keyboard` class
+* Inherit `CollectionKeyboardViewController` to create collection view-based keyboards
+* Inherit `GridKeyboardViewController` to create grid-based keyboards
 
-The `GridKeyboardInputViewController` option is currently most powerful, but the
-other options will give you basic functionality as well.
+`GridKeyboardViewController` is most powerful, but the other view controllers do
+give you more flexibility.
 
-When you have your input view controller all setup, you just have to handle taps
-and long presses by overriding `handleTap(on:)` and `handleLongPress(on:)`. Most
+When you have a keyboard view controller all setup, you can handle taps and long
+presses by overriding `handleTap(on:)` and `handleLongPress(on:)`. Most keyboard
 options will be automatically handled (with optional overrides), but images must
-be manually handled, since there's no way to handle images natively in input vcs.
+be manually handled, since there's no way to send images to the text proxy.
 
 `KeyboardKit` also provides you with a `setHeight` function, that lets you set a
-custom height to your keyboard extension.
+custom height for the keyboard extension.
 
 #### `xib`-based keyboards
 
-When you use `xib`s, inherit `KeyboardInputViewController` instead of the system `UIInputViewController` class. Then, you can just bind the buttons in your `xib`
-to the desired keyboard actions.
+To use a xib file to create keyboards, inherit `KeyboardsViewController` instead
+of `UIInputViewController`, then bind the xib buttons to any desired actions.
 
 #### `Keyboard`-based keyboards
 
-When you use the `Keyboard` class, inherit `KeyboardInputViewController` instead
-of the system `UIInputViewController` class. Then, you must layout your keyboard
-manually with code. This is the least powerful option, but I will not judge.
+To use the `Keyboard` class to create keyboards, inherit `KeyboardViewController`
+instead of `UIInputViewController`, then layout your keyboard manually with code.
 
-#### `GridKeyboardInputViewController`-based keyboards
+#### `GridKeyboardViewController`-based keyboards
 
-If you inherit `GridKeyboardInputViewController`, you will get a collection view
-that distributes the actions in an even-sized grid. It will automatically enable
-`horizontal scrolling` and display a page control if there are more buttons than
-fits the screen. It also lets you setup `left` and `right` system buttons, which
-are displayed below the collection view. 
+If you inherit `GridKeyboardViewController`, you will get a collection view that
+distributes the keyboard buttons in an even-sized grid. It automatically enables
+horizontal scrolling and displays a page control if needed. It also lets you add
+`left` and `right` system buttons below the collection view. 
 
-You setup a `GridKeyboardInputViewController` by providing it with a keyboard, a
-height (excluding a possible system row), how may button rows to display on each
-page, and how many buttons to have on each row. This setup can be changed at any
-time, e.g. when the device is rotated.
+You create a `GridKeyboardViewController` by providing a keyboard, a height (not
+counting the optional system row), how many rows to display on each page and how
+many buttons to have on each row. This can be changed at any time, e.g. when the
+device is rotated.
 
-`GridKeyboardInputViewController` will automatically display a system button row
-below the keyboard, if any of these criterias are met:
+`GridKeyboardViewController` will automatically display system buttons below the
+keyboard, if any of these criterias are met:
 
-* `leftSystemButtons` contains at least one button
-* `rightSystemButtons` contains at least one button
-* there are more keyboard actions than fits one screen (displays a page control)
-* the device does not display a system keyboard switcher (which iPhone X does)
+ * `leftSystemButtons` contains at least one button
+ * `rightSystemButtons` contains at least one button
+ * there are more keyboard actions than fits one screen (displays a page control)
+ * the device does not display a system keyboard switcher (which iPhone X does)
 
 The system button area height is added to the total height. By default, it is as
 tall as the keyboard item size.
 
 #### Need more features?
 
-So far, `GridKeyboardInputViewController` is the only class I use in my own apps,
-which means that it has much functionality that the others lack. This means that
-you get much for free when you inherit it, but it also forces you to go with the
-grid layout, which may not be for everyone.
+So far, I only use `GridKeyboardViewController` in my own apps, which means that
+it has much functionality that the others lack. This means that you get much for
+free when you inherit it, but it also forces you to go with the grid layout.
 
 If you use `KeyboardKit` and need these features elsewhere, we must extract them
-out of `GridKeyboardInputViewController`.
+out of `GridKeyboardViewController`.
+
 
 ### Keyboards
 
-In `KeyboardKit`, a `Keyboard` is basically just a list of `KeyboardAction`s. It
-is presented as is specified by the selected input view controller base class. A
-xib-based approach is fully customizable, while the grid-based approach will use
-a collection view with even-sized cells.
+In `KeyboardKit`, a `Keyboard` is just a list of `KeyboardAction`s. The way it's
+presented depends on the keyboard view controller. A xib-based approach is fully
+customizable, while the grid-based uses a collection view with even-sized cells.
+
 
 ### Keyboard alerts
 
-Since keyboard extensions cannot display `UIAlertController` alerts, KeyboardKit
-comes with custom alerters that can display alerts ontop of the keyboard.
+Since keyboard extensions can't display `UIAlertController` alerts, `KeyboardKit`
+comes with custom alerts that can display alerts on top of the keyboard.
+
 
 ### Extensions
 
@@ -171,10 +172,9 @@ The easiest way to learn how to use `KeyboardKit` is to open the example app and
 have a look at how it is implemented. It uses a couple of regular strings, a few
 emojis, some images and a couple of system buttons.
 
-The app uses a built-in `GridKeyboardInputViewController` base class, which uses
-a collection view to distribute the keyboard buttons evenly in a grid. It can be
-used in any keyboard extension. It uses custom cells, which means that it can be
-entirely tailored to your needs.
+This app uses the built-in `GridKeyboardViewController`, which uses a collection
+view to distribute the keyboard buttons evenly in a grid. It can be used in your
+keyboard extensions as well, since it is fully customizable.
 
 
 ## `IMPORTANT` - How to adding `KeyboardKit` to your extension
