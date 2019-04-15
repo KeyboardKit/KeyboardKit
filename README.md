@@ -6,7 +6,6 @@
     <a href="https://github.com/danielsaidi/KeyboardKit">
         <img src="https://badge.fury.io/gh/danielsaidi%2FKeyboardKit.svg?style=flat" alt="Version" />
     </a>
-    <img src="https://api.travis-ci.org/danielsaidi/KeyboardKit.svg" alt="Build Status" />
     <a href="https://cocoapods.org/pods/KeyboardKit">
         <img src="https://img.shields.io/cocoapods/v/KeyboardKit.svg?style=flat" alt="CocoaPods" />
     </a>
@@ -14,7 +13,7 @@
         <img src="https://img.shields.io/badge/carthage-supported-green.svg?style=flat" alt="Carthage" />
     </a>
     <img src="https://img.shields.io/cocoapods/p/KeyboardKit.svg?style=flat" alt="Platform" />
-    <img src="https://img.shields.io/badge/Swift-4.2-orange.svg" alt="Swift 4.2" />
+    <img src="https://img.shields.io/badge/Swift-5.0-orange.svg" alt="Swift 5.0" />
     <img src="https://badges.frapsoft.com/os/mit/mit.svg?style=flat&v=102" alt="License" />
     <a href="https://twitter.com/danielsaidi">
         <img src="https://img.shields.io/badge/contact-@danielsaidi-blue.svg?style=flat" alt="Twitter: @danielsaidi" />
@@ -31,33 +30,6 @@ text inputs, emojis, system actions and images.
 <p align="center">
     <img src ="Resources/Demo.gif" />
 </p>
-
-
-## Installation
-
-### CocoaPods
-
-Add this to your `Podfile`, run `pod install` then use the generated workspace:
-
-```
-pod 'KeyboardKit'
-```
-
-### Carthage
-
-Add this to your `Cartfile`, run `carthage update` then add the framework to the
-app from `Carthage/Build`:
-
-```
-github "danielsaidi/KeyboardKit"
-```
-
-### Manual installation
-
-To manually add `KeyboardKit` to your app, clone this repository and place it in
-your project folder, then add `KeyboardKit.xcodeproj` to the project, select the
-app target, add the `KeyboardKit` framework as an embedded binary (in `General`)
-and as a target dependency (in `Build Phases`).
 
 
 ## Features
@@ -166,6 +138,46 @@ but some are public and can e.g. be used to handle, save and export images. Have
 a look at the example app for more information.
 
 
+## Installation
+
+### CocoaPods
+
+Add this to your `Podfile`, run `pod install` then use the generated workspace:
+```
+pod 'KeyboardKit'
+```
+Then follow [these instructions](#add) on how to add it to your project.
+
+### Carthage
+
+Add this to your `Cartfile`, run `carthage update` then add the framework to the
+app from `Carthage/Build`:
+```
+github "danielsaidi/KeyboardKit"
+```
+Then follow [these instructions](#add) on how to add it to your project.
+
+### Manual installation
+
+To manually add `KeyboardKit` to your app, clone this repository and place it in
+your project folder, then add `KeyboardKit.xcodeproj` to the project, select the
+app target, add the `KeyboardKit` framework as an embedded binary (in `General`)
+and as a target dependency (in `Build Phases`).
+
+Then follow [these instructions](#add) on how to add it to your project.
+
+<a name="add"></a>
+### Important - How to add KeyboardKit to your extension
+
+When you create your own keyboard extension and want to use `KeyboardKit` to get
+up and running, you **have to** do the following:
+
+* Create a new `Custom Keyboard Extension` target
+* In the hosting app: Add `KeyboardKit.framework` to `Embedded Binaries`
+* In the extension: Add `KeyboardKit.framework` to `Linked Frameworks And Binaries`
+* You must also enable full access in your `Info.plist`, if your keyboard needs it
+
+
 ## Example Application
 
 The easiest way to learn how to use `KeyboardKit` is to open the example app and
@@ -175,17 +187,6 @@ emojis, some images and a couple of system buttons.
 This app uses the built-in `GridKeyboardViewController`, which uses a collection
 view to distribute the keyboard buttons evenly in a grid. It can be used in your
 keyboard extensions as well, since it is fully customizable.
-
-
-## `IMPORTANT` - How to adding `KeyboardKit` to your extension
-
-When you create your own keyboard extension and want to use `KeyboardKit` to get
-up and running, you **have to** do the following:
-
-* Create a new `Custom Keyboard Extension` target
-* In the hosting app: Add KeyboardKit to Embedded Binaries
-* In the extension: Add KeyboardKit to Linked Frameworks And Binaries
-* Enable full access in the `Info.plist`, if your keyboard needs it
 
 
 ## Contact me
