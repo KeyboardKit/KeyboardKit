@@ -42,7 +42,8 @@ class DemoCell: UICollectionViewCell {
     // MARK: - Public Functions
     
     open func setup(with action: KeyboardAction, appearance: UIKeyboardAppearance, tintColor: UIColor) {
-        buttonView?.alpha = action.isNone ? 0.01 : 1
+        let noneAction = action == .none
+        buttonView?.alpha = noneAction ? 0.01 : 1
         self.action = action
         setupBackground()
         setupButton(with: appearance)

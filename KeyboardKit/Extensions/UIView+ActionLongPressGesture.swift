@@ -10,8 +10,8 @@
 
 /*
  
- This extension applies a long press gesture recognizer to a
- view and uses an action block instead of a target/selector.
+ This extension applies long press gesture recognizers using
+ an action blocks instead of the target/selector pattern.
  
  */
 

@@ -1,6 +1,13 @@
 # Release Notes
 
 
+## 1.0.1
+
+This version deprecates some `KeyboardAction` equality properties that should be
+resolved using standard equality instead. For instance, instead of `isNone`, you
+should just use `== .none`.
+
+
 ## 1.0.0
 
 This version upgrades `KeyboardKit` to Swift 5 and has many breaking changes:

@@ -124,6 +124,7 @@
 		84851DEC2166B33C00DE8886 /* Comparable+Limit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851DEB2166B33C00DE8886 /* Comparable+Limit.swift */; };
 		84851DEE2166B3D500DE8886 /* Comparable+LimitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851DED2166B3D500DE8886 /* Comparable+LimitTests.swift */; };
 		84851DF12166B53100DE8886 /* MockKeyboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851DF02166B53100DE8886 /* MockKeyboardPresenter.swift */; };
+		84F77073226DB29D00D5A4EF /* KeyboardActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F77072226DB29D00D5A4EF /* KeyboardActionTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -285,6 +286,7 @@
 		84851DEB2166B33C00DE8886 /* Comparable+Limit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comparable+Limit.swift"; sourceTree = "<group>"; };
 		84851DED2166B3D500DE8886 /* Comparable+LimitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comparable+LimitTests.swift"; sourceTree = "<group>"; };
 		84851DF02166B53100DE8886 /* MockKeyboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockKeyboardPresenter.swift; sourceTree = "<group>"; };
+		84F77072226DB29D00D5A4EF /* KeyboardActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardActionTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -577,6 +579,7 @@
 				84851DE22166A3EF00DE8886 /* KeyboardSettingTests.swift */,
 				84851DE72166A56D00DE8886 /* KeyboardTests.swift */,
 				84851DF02166B53100DE8886 /* MockKeyboardPresenter.swift */,
+				84F77072226DB29D00D5A4EF /* KeyboardActionTests.swift */,
 			);
 			path = Keyboard;
 			sourceTree = "<group>";
@@ -883,6 +886,7 @@
 				45CE0713204C01DB00A93175 /* Sequence+BatchTests.swift in Sources */,
 				45782CF4207A1CEE00B071A9 /* UICollectionView+ItemSizeTests.swift in Sources */,
 				45FB51F020495FB4009D5806 /* ToastAlertTests.swift in Sources */,
+				84F77073226DB29D00D5A4EF /* KeyboardActionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -988,7 +992,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1903282313;
+				CURRENT_PROJECT_VERSION = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1050,7 +1054,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1903282313;
+				CURRENT_PROJECT_VERSION = "";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1082,7 +1086,7 @@
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = PMEDFW438U;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1903282313;
+				DYLIB_CURRENT_VERSION = "";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = KeyboardKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1106,7 +1110,7 @@
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = PMEDFW438U;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1903282313;
+				DYLIB_CURRENT_VERSION = "";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = KeyboardKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

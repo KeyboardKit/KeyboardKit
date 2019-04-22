@@ -8,8 +8,7 @@
 
 /*
  
- This enum represents all keyboard actions, that KeyboardKit
- currently supports.
+ This enum contains all currently supported keyboard actions.
  
  */
 
@@ -42,20 +41,6 @@ public extension KeyboardAction {
         switch self {
         case .image(_, _, let imageName): return imageName
         default: return nil
-        }
-    }
-    
-    var isNextKeyboard: Bool {
-        switch self {
-        case .nextKeyboard: return true
-        default: return false
-        }
-    }
-    
-    var isNone: Bool {
-        switch self {
-        case .none: return true
-        default: return false
         }
     }
     

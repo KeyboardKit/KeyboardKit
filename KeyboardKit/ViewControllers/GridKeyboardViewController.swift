@@ -207,7 +207,7 @@ open class GridKeyboardViewController: CollectionKeyboardViewController {
     }
     
     open func createSystemButton(image: UIImage?, action: KeyboardAction) -> UIButton? {
-        if action.isNextKeyboard && !needsInputModeSwitchKey { return nil }
+        if action == .nextKeyboard && !needsInputModeSwitchKey { return nil }
         let button = UIButton(type: .custom)
         button.setImage(image, for: .normal)
         button.setImage(image, for: .highlighted)

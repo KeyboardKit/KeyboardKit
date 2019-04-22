@@ -8,6 +8,13 @@
 //  Reference: https://medium.com/@sdrzn/adding-gesture-recognizers-with-closures-instead-of-selectors-9fb3e09a8f0b
 //
 
+/*
+ 
+ This extension applies tap gesture recognizers using action
+ blocks instead of the target/selector pattern.
+ 
+ */
+
 import UIKit
 
 extension UIView {
