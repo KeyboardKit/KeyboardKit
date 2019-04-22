@@ -8,24 +8,23 @@
 
 /*
  
- This input view controller will layout the keyboard buttons
- in a horizontally scrolling grid. If there are more buttons
- than fit the screen, it will display a page indicator.
+ This class inherits the collection view-based keyboard view
+ controller and extends it with a grid layout that makes the
+ collection view present the keyboard buttons with even size
+ in a horizontally scrolling grid. If there are more actions
+ than can be presented on a single screen, it will display a
+ page indicator as well.
  
- This class is a good fit with emoji keyboards, since emojis
+ This class is well suited for emoji keyboards, since emojis
  are often evenly distributed with the same button size. You
- can modify the default grid presentation by subclassing the
- class and add your own behavior to the collection view.
+ can modify the grid by either setting a new `gridLayout` or
+ adjust the current one.
  
- Note that you must register and dequeue your own collection
- view cells. This class has no built-in logic for doing this,
- to give you the full freedom to use whatever cells you want.
- 
- To get the keyboard action at a certain index path, use the
- `action(at:)` function. It handles for the way a collection
- view distributes horizontally flowing cells, and calculates
- a correct source index. This is, however, just a workaround
- until we implement a correctly behaving horizontal layout.
+ The class overrides `action(at:)` to account for the way it
+ splits up the keyboard actions into chunks and presents one
+ section per page. This is needed, since the collection view
+ distributes horizontally flowing cells in a different order
+ than the original array.
  
  The `reloadData` in `viewWillAppear` is temp needed for now.
  It fixes a rendering bug in the collection view. Without it,
@@ -39,9 +38,8 @@
  rest of the buttons, and will be placed bottom-left.
  
  This view controller supports top and bottom insets for the
- collection view, which means that you can support the space
- to the top and bottom edge. Left and right insets currently
- don't currently work.
+ collection view, which means that you can set the insets as
+ you see fit. Left and right insets currently don't work.
  
  NOTE: For now, this class contains a bunch of logic that is
  probably to be shared among all keyboards. Whenever we find

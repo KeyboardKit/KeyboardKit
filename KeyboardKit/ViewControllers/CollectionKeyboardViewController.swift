@@ -8,9 +8,17 @@
 
 /*
  
- This input view controller provides a collection view-based
- setup with no built-in functionality or configuration. It's
- meant to be used as a base class for other view controllers.
+ This keyboard view controller uses a collection view, which
+ by default will have a single section with as many items as
+ the keyboard has actions.
+ 
+ Whenever you inherit this class, you must at the very least
+ override `collectionView(cellForItemAt:)`, to specify which
+ cell to use for each action. Otherwise, you this class will
+ use a standard, empty `UICollectionViewCell`.
+ 
+ To get the keyboard action at a certain index path, use the
+ `action(at:)` function. 
  
  */
 

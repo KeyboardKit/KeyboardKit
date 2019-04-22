@@ -62,7 +62,7 @@ open class KeyboardViewController: UIInputViewController, KeyboardPresenter {
     
     open func setHeight(to height: CGFloat) {
         heightConstraint?.constant = height
-        guard heightConstraint == nil else { return }
+        if heightConstraint != nil { return }
         let constraint = NSLayoutConstraint.attribute(.height, in: view, constant: height)
         constraint.priority = .required
         constraint.isActive = true
