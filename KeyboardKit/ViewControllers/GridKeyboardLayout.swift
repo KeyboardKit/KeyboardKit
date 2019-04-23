@@ -26,15 +26,17 @@ open class GridKeyboardLayout: UICollectionViewFlowLayout {
         self.rowsPerPage = rowsPerPage
         self.buttonsPerRow = buttonsPerRow
         super.init()
-        minimumLineSpacing = 0
-        minimumInteritemSpacing = 0
-        scrollDirection = .horizontal
+        setup()
     }
     
     public required init?(coder aDecoder: NSCoder) {
         rowsPerPage = 0
         buttonsPerRow = 0
         super.init(coder: aDecoder)
+        setup()
+    }
+    
+    open func setup() {
         minimumLineSpacing = 0
         minimumInteritemSpacing = 0
         scrollDirection = .horizontal
