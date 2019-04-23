@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,8 +26,8 @@
                                 <rect key="frame" x="10" y="10" width="70" height="70"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSw-EC-6KH">
-                                <rect key="frame" x="36.5" y="29.5" width="17" height="31.5"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <rect key="frame" x="38.5" y="32" width="13" height="24"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -37,7 +38,7 @@
                             <constraint firstItem="AFB-9O-r9z" firstAttribute="leading" secondItem="VGr-59-Vpv" secondAttribute="leading" constant="10" id="Cuh-nY-2wF"/>
                             <constraint firstItem="AFB-9O-r9z" firstAttribute="top" secondItem="VGr-59-Vpv" secondAttribute="top" constant="10" id="b8J-mb-pXL"/>
                             <constraint firstAttribute="trailing" secondItem="AFB-9O-r9z" secondAttribute="trailing" constant="10" id="bgn-Pa-H4O"/>
-                            <constraint firstItem="gSw-EC-6KH" firstAttribute="centerY" secondItem="VGr-59-Vpv" secondAttribute="centerY" id="vRi-JD-uye"/>
+                            <constraint firstItem="gSw-EC-6KH" firstAttribute="centerY" secondItem="VGr-59-Vpv" secondAttribute="centerY" constant="-1" id="vRi-JD-uye"/>
                             <constraint firstAttribute="bottom" secondItem="AFB-9O-r9z" secondAttribute="bottom" constant="10" id="vTg-gj-XVZ"/>
                         </constraints>
                     </view>
