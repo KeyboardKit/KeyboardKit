@@ -15,21 +15,12 @@
  
  IMPORTANT: To use this demo keyboard, you have to enable it
  in system settings ("Settings/General/Keyboards") then give
- it full access. 
- 
- IMPORTANT: When you're creating your own keyboard extension,
- you must enable `RequestsOpenAccess` in `Info.plist` to get
- the `Full Access` option to show up in system settings. You
- must also add a `NSPhotoLibraryAddUsageDescription` setting
- to the hosting app's `Info.plist` if you want to be able to
- save images to the photo album. This is already done in the
- demo app, so you can just copy the setup.
- 
- IMPORTANT: This demo app creates a custom keyboard switcher,
- which will only be displayed if the system does not already
- create one for you (e.g. on iPhone X). If you want to add a
- bunch of system keys, like backspace, shift, space etc. you
- can either use the
+ it full access (this requires enabling `RequestsOpenAccess`
+ in `Info.plist`) if you want to use image buttons. You must
+ also add a `NSPhotoLibraryAddUsageDescription`  to the host
+ app's `Info.plist` if you want to be able to save images to
+ the photo album. This is already taken care of in this demo
+ app, so you can just copy the setup.
  
  */
 

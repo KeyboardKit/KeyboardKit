@@ -1,11 +1,16 @@
 # Release Notes
 
 
-## 1.0.1
+## 1.1.0
 
 This version deprecates some `KeyboardAction` equality properties that should be
 resolved using standard equality instead. For instance, instead of `isNone`, you
 should just use `== .none`.
+
+`CollectionKeyboardViewController` now has a `KeyboardCollectionView` instead of
+a standard `UICollectionView`. The collection view property setup has been moved
+into this class.
+
 
 
 ## 1.0.0

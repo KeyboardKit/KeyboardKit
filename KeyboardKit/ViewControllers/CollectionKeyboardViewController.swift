@@ -37,7 +37,7 @@ open class CollectionKeyboardViewController: KeyboardViewController, UICollectio
     
     // MARK: - View Properties
     
-    open lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+    open var collectionView: KeyboardCollectionView!
     
     
     // MARK: - Properties
@@ -52,12 +52,9 @@ open class CollectionKeyboardViewController: KeyboardViewController, UICollectio
     // MARK: - Setup
     
     open func setupCollectionView() {
-        collectionView.bounces = false
+        collectionView = KeyboardCollectionView(frame: view.frame, collectionViewLayout: collectionViewLayout)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.frame = view.frame
-        collectionView.isPagingEnabled = true
-        collectionView.backgroundColor = .clear
         view.addSubview(collectionView)
         setupCollectionViewConstraints()
     }
