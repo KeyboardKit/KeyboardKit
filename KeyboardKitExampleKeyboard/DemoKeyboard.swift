@@ -69,7 +69,7 @@ class DemoKeyboard: Keyboard {
             .image(description: "trash", keyboardImageName: "trash", imageName: "trash"),
             .image(description: "video", keyboardImageName: "video", imageName: "video"),
             .image(description: "warning", keyboardImageName: "warning", imageName: "warning"),
-            .image(description: "zoom", keyboardImageName: "zoom", imageName: "zoom")]
-        )
+            .image(description: "zoom", keyboardImageName: "zoom", imageName: "zoom")
+        ])
     }
 }

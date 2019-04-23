@@ -3,6 +3,7 @@ disabled_rules:
 - statement_position
 - trailing_whitespace
 - line_length
+- todo
 - type_name
 - vertical_whitespace
 - void_return

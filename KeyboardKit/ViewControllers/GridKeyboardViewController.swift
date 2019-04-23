@@ -26,12 +26,6 @@
  distributes horizontally flowing cells in a different order
  than the original array.
  
- The `reloadData` in `viewWillAppear` is temp needed for now.
- It fixes a rendering bug in the collection view. Without it,
- the last four bottom-right buttons shows in incorrect order,
- but a log shows that everything is correctly setup. I guess
- it has to be caused by something in the collection view.
- 
  If you want this view controller to automatically setup the
  keyboard switcher button, just set `keyboardSwitcherButton`
  to any custom button. It will be given the same size as the
@@ -45,11 +39,17 @@
  probably to be shared among all keyboards. Whenever we find
  a good way to do this, let's create magic.
  
+ TODO: The `reloadData` in `viewWillAppear` is needed, since
+ it fixes a rendering bug in the collection view. Without it,
+ the last four bottom-right buttons shows in incorrect order,
+ but a log shows that everything is correctly setup. I guess
+ it has to be caused by something in the collection view.
+ 
  */
 
 import UIKit
 
-open class GridKeyboardViewController: CollectionKeyboardViewController {
+open class GridKeyboardViewController: CollectionKeyboardViewController, PagedKeyboardViewController {
     
     
     // MARK: - View Controller Lifecycle
@@ -64,7 +64,7 @@ open class GridKeyboardViewController: CollectionKeyboardViewController {
         layoutPageControl()
         layoutKeyboardButtons()
         layoutSystemButtons()
-        restoreCurrentPageIndex()
+        restoreLastPageIndex()
     }
     
     open override func viewWillAppear(_ animated: Bool) {
@@ -74,7 +74,7 @@ open class GridKeyboardViewController: CollectionKeyboardViewController {
     
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        restoreCurrentPageIndex()
+        restoreLastPageIndex()
     }
     
     
@@ -93,6 +93,20 @@ open class GridKeyboardViewController: CollectionKeyboardViewController {
     
     // MARK: - Properties
     
+    public var canRestoreLastPageIndex: Bool {
+        return !collectionView.isDragging
+    }
+    
+    public var currentPageIndex: Int {
+        get {
+            return pageControl.currentPage
+        } set {
+            let index = newValue
+            collectionView.currentPageIndex = index
+            pageControl.currentPage = index
+        }
+    }
+    
     public var gridLayout = GridKeyboardLayout(rowsPerPage: 3, buttonsPerRow: 6) {
         didSet { collectionViewLayout = gridLayout }
     }
@@ -110,11 +124,18 @@ open class GridKeyboardViewController: CollectionKeyboardViewController {
     }
     
     public private(set) var keyboardPages: [[KeyboardAction]] = [[]] {
-        didSet { pageControl.numberOfPages = keyboardPages.count }
+        didSet {
+            pageControl.numberOfPages = keyboardPages.count
+            collectionView.reloadData()
+        }
     }
     
     open var needsSystemButtons: Bool {
         return needsInputModeSwitchKey || hasSystemButtons || hasMultiplePages
+    }
+    
+    public var numberOfPages: Int {
+        return pageControl.numberOfPages
     }
     
     open var systemAreaHeight: CGFloat {
@@ -235,11 +256,8 @@ open class GridKeyboardViewController: CollectionKeyboardViewController {
     
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let index = Int(scrollView.currentPageIndex)
-        let key = KeyboardSetting.currentPageIndex
-        let defaults = UserDefaults.standard
-        defaults.set(index, forKey: key.key)
-        defaults.synchronize()
         pageControl.currentPage = index
+        persistCurrentPageIndex()
     }
 }
 
@@ -250,21 +268,7 @@ private extension GridKeyboardViewController {
     
     func setupKeyboardButtons(from keyboard: Keyboard) {
         let pageSize = keyboardButtonsPerPage
-        var buttons = keyboard.actions
-        while buttons.count % pageSize > 0 {
-            buttons.append( .none)
-        }
-        keyboardPages = buttons.batched(withBatchSize: pageSize)
-        collectionView.reloadData()
-    }
-    
-    func restoreCurrentPageIndex() {
-        if collectionView.isDragging { return }
-        let defaults = UserDefaults.standard
-        let key = KeyboardSetting.currentPageIndex.key(for: self)
-        let maxPageIndex = pageControl.numberOfPages - 1
-        let index = defaults.integer(forKey: key).limit(min: 0, max: maxPageIndex)
-        collectionView.currentPageIndex = index
-        pageControl.currentPage = index
+        let actions = getActions(from: keyboard.actions, evenlyFitting: pageSize)
+        keyboardPages = actions.batched(withBatchSize: pageSize)
     }
 }
