@@ -81,7 +81,7 @@ class KeyboardViewController: GridKeyboardViewController {
     
     override func handleLongPress(on action: KeyboardAction) {
         super.handleLongPress(on: action)
-        guard let image = action.image else { return }
+        guard let image = image(for: action) else { return }
         guard hasFullAccess else { return alert("You must enable full access to save images to photos.") }
         image.saveToPhotos(completionTarget: self, completionSelector: #selector(handleImage(_:didFinishSavingWithError:contextInfo:)))
     }
@@ -93,7 +93,7 @@ class KeyboardViewController: GridKeyboardViewController {
     
     override func handleTap(on action: KeyboardAction) {
         super.handleTap(on: action)
-        guard let image = action.image else { return }
+        guard let image = image(for: action) else { return }
         guard hasFullAccess else { return alert("You must enable full access to copy images.") }
         guard image.copyToPasteboard() else { return alert("The image could not be copied.") }
         alert("Copied to pasteboard!")
@@ -163,5 +163,12 @@ private extension KeyboardViewController {
     
     func alert(_ message: String) {
         alerter.alert(message: message, in: view, withDuration: 4)
+    }
+    
+    func image(for action: KeyboardAction) -> UIImage? {
+        switch action {
+        case .image(_, _, let imageName): return UIImage(named: imageName)
+        default: return nil
+        }
     }
 }

@@ -14,53 +14,6 @@ class KeyboardActionTests: QuickSpec {
     
     override func spec() {
         
-        describe("image") {
-            
-            func image(for action: KeyboardAction) -> UIImage? {
-                return action.image
-            }
-            
-            it("is specified for image action with existing image") {
-                let imageInExampleApp = "base"
-                expect(image(for: .image(description: "image", keyboardImageName: "keyboard image", imageName: "image name"))).to(beNil())
-                expect(image(for: .image(description: "image", keyboardImageName: "keyboard image", imageName: imageInExampleApp))).toNot(beNil())
-            }
-        }
-        
-        describe("image name") {
-            
-            func imageName(for action: KeyboardAction) -> String? {
-                return action.imageName
-            }
-            
-            it("is specified for image action") {
-                expect(imageName(for: .image(description: "image", keyboardImageName: "keyboard image", imageName: "image name"))).to(equal("image name"))
-            }
-        }
-        
-        describe("keyboard image") {
-            
-            func image(for action: KeyboardAction) -> UIImage? {
-                return action.keyboardImage
-            }
-            
-            it("is specified for image action with existing image") {
-                let imageInExampleApp = "base"
-                expect(image(for: .image(description: "image", keyboardImageName: imageInExampleApp, imageName: "image name"))).toNot(beNil())
-            }
-        }
-        
-        describe("keyboard image name") {
-            
-            func imageName(for action: KeyboardAction) -> String? {
-                return action.keyboardImageName
-            }
-            
-            it("is specified for image action") {
-                expect(imageName(for: .image(description: "image", keyboardImageName: "keyboard image", imageName: "image name"))).to(equal("keyboard image"))
-            }
-        }
-        
         describe("should repeat on long press") {
             
             func result(for action: KeyboardAction) -> Bool {

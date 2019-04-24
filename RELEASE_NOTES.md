@@ -3,10 +3,21 @@
 
 ## 1.1.0
 
-This version deprecates some `KeyboardAction` equality properties that should be
-resolved using standard equality instead. For instance, instead of `isNone`, you
-should just use `== .none`. It also adds new props like `shouldRepeatOnLongPress`
-to the action enum and new actions, like `moveCursorBack` and `moveCursorForward`.
+This version contains several breaking changes, that are easily fixed. Basically,
+these changes aim at streamlining the library and remove some strange parts that
+only make it hard to maintain.
+
+This version removes `KeyboardAction` equality properties, since equality should
+be resolved by checing the types instead. For instance, instead of `isNone`, you
+should just use `== .none`.  Also, all help properties are removed, like `image`
+and `imageName`, since they can be accessed by switching over the action. Having
+them as properties is a broken window that just adds complexity.
+
+This new version also adds a new action property called `shouldRepeatOnLongPress`,
+which lets us add the possibility to long-press an action and have it repeat the
+action until the key is released. This will make typing a lot easier.
+
+This version also adds new actions like `moveCursorBack` and `moveCursorForward`.
 
 `CollectionKeyboardViewController` now has a `KeyboardCollectionView` instead of
 a standard `UICollectionView`. The collection view property setup has been moved

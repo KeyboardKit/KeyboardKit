@@ -34,30 +34,6 @@ public enum KeyboardAction: Equatable {
 
 public extension KeyboardAction {
     
-    var image: UIImage? {
-        guard let name = imageName else { return nil }
-        return UIImage(named: name)
-    }
-    
-    var imageName: String? {
-        switch self {
-        case .image(_, _, let imageName): return imageName
-        default: return nil
-        }
-    }
-    
-    var keyboardImage: UIImage? {
-        guard let name = keyboardImageName else { return nil }
-        return UIImage(named: name)
-    }
-    
-    var keyboardImageName: String? {
-        switch self {
-        case .image(_, let keyboardImageName, _): return keyboardImageName
-        default: return nil
-        }
-    }
-    
     var shouldRepeatOnLongPress: Bool {
         switch self {
         case .backspace,

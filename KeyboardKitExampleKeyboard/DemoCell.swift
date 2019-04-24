@@ -63,12 +63,22 @@ class DemoCell: UICollectionViewCell {
     }
     
     open func setupImage(with action: KeyboardAction) {
-        imageView?.image = action.keyboardImage
+        imageView?.image = keyboardImage(for: action)
         imageView?.isHidden = imageView?.image == nil
     }
     
     open func setupTextLabel(with action: KeyboardAction, tintColor: UIColor) {
         textLabel?.textColor = tintColor
         textLabel?.text = action.title
+    }
+}
+
+private extension DemoCell {
+    
+    func keyboardImage(for action: KeyboardAction) -> UIImage? {
+        switch action {
+        case .image(_, let keyboardImageName, _): return UIImage(named: keyboardImageName)
+        default: return nil
+        }
     }
 }
