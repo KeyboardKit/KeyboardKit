@@ -5,19 +5,24 @@
 
 This version contains several breaking changes, that are easily fixed. Basically,
 these changes aim at streamlining the library and remove some strange parts that
-only make it hard to maintain.
+only make it hard to maintain. I hope (and believe) that these changes will make
+it easier for you as well.
 
-This version removes `KeyboardAction` equality properties, since equality should
-be resolved by checing the types instead. For instance, instead of `isNone`, you
-should just use `== .none`.  Also, all help properties are removed, like `image`
-and `imageName`, since they can be accessed by switching over the action. Having
-them as properties is a broken window that just adds complexity.
+In this version, all keyboard action handling is moved from the view controllers
+into a new `KeyboardActionHandler`. All keyboard view controllers use a standard
+action handler by default, but you can replace these with anything you want. You
+can either subclass `StandardKeyboardActionHandler` or create one from scratch.
+
+This version also removes some `KeyboardAction` equality properties, since these
+should be resolved by checking the types instead. For instance, instead of using
+`isNone`, you should use `== .none`.  Also, all help properties like `image` and
+`imageName` are removed as well, since they can be resolved by switching over an
+action. Having them as properties is a broken window that just adds complexity.
 
 This new version also adds a new action property called `shouldRepeatOnLongPress`,
 which lets us add the possibility to long-press an action and have it repeat the
-action until the key is released. This will make typing a lot easier.
-
-This version also adds new actions like `moveCursorBack` and `moveCursorForward`.
+action until the key is released. This will make typing a lot easier. New action
+cases have also been added - `moveCursorBack` and `moveCursorForward`.
 
 `CollectionKeyboardViewController` now has a `KeyboardCollectionView` instead of
 a standard `UICollectionView`. The collection view property setup has been moved

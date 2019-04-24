@@ -163,8 +163,8 @@ open class GridKeyboardViewController: CollectionKeyboardViewController, PagedKe
         case .nextKeyboard:
             button.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
         default:
-            button.addTapGestureRecognizer { [weak self] in self?.handleTap(on: action) }
-            button.addLongPressGestureRecognizer { [weak self] in self?.handleLongPress(on: action) }
+            button.addTapGestureRecognizer { [weak self] in self?.keyboardActionHandler.handleTap(on: action) }
+            button.addLongPressGestureRecognizer { [weak self] in self?.keyboardActionHandler.handleLongPress(on: action) }
         }
     }
     

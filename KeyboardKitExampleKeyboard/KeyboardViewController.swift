@@ -36,6 +36,7 @@ class KeyboardViewController: GridKeyboardViewController {
         super.viewDidLoad()
         setupKeyboard(for: UIScreen.main.bounds.size)
         setupSystemButtons()
+        keyboardActionHandler = DemoKeyboardActionHandler(inputViewController: self, textDocumentProxy: textDocumentProxy)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -78,26 +79,6 @@ class KeyboardViewController: GridKeyboardViewController {
     
     
     // MARK: - Public Functions
-    
-    override func handleLongPress(on action: KeyboardAction) {
-        super.handleLongPress(on: action)
-        guard let image = image(for: action) else { return }
-        guard hasFullAccess else { return alert("You must enable full access to save images to photos.") }
-        image.saveToPhotos(completionTarget: self, completionSelector: #selector(handleImage(_:didFinishSavingWithError:contextInfo:)))
-    }
-    
-    @objc func handleImage(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        if error == nil { alert("Saved!") }
-        else { alert("Failed!") }
-    }
-    
-    override func handleTap(on action: KeyboardAction) {
-        super.handleTap(on: action)
-        guard let image = image(for: action) else { return }
-        guard hasFullAccess else { return alert("You must enable full access to copy images.") }
-        guard image.copyToPasteboard() else { return alert("The image could not be copied.") }
-        alert("Copied to pasteboard!")
-    }
 
     override func textDidChange(_ textInput: UITextInput?) {
         guard
@@ -159,7 +140,7 @@ private extension KeyboardViewController {
 
 // MARK: - Private Functions
 
-private extension KeyboardViewController {
+extension KeyboardViewController {
     
     func alert(_ message: String) {
         alerter.alert(message: message, in: view, withDuration: 4)

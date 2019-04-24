@@ -8,17 +8,21 @@
 
 /*
  
- This base class provides KeyboardKit keyboards with a basic
- set of functionality. You can override anything you want in
- a custom subclass.
+ This base class provides keyboards with basic functionality.
+ You can subclass this class then override anything you want
+ to modify the standard behavior.
  
- To set a custom height for the keyboard extension, call the
- `setHeight(to:)` function. It can be used when creating the
- keyboard, as well as when e.g. the orientation changes.
+ This class will use an empty keyboard and a standard action
+ handler by default. You can replace these properties at any
+ time, to customize the keyboard behavior.
  
- To add a default longpress gesture to a cell, just call the
- `addLongPressGesture(to:with:)`. It makes the cell call the
- `handleLongPress(on:)` function when it is long pressed.
+ Call `setHeight(to:)` to change the height of the keyboard,
+ e.g. when the number of buttons or the orientation changes.
+ 
+ Use `addTapGesture(to:)` and `addLongPressGesture(to:)`, to
+ add keyboard gestures to any buttons you may create in your
+ keyboard extensions. By default, this class does not create
+ any buttons; it just holds the state of the keyboard.
  
  */
 
@@ -33,34 +37,21 @@ open class KeyboardViewController: UIInputViewController, KeyboardPresenter {
     
     open var keyboard = Keyboard.empty
     
+    open lazy var keyboardActionHandler: KeyboardActionHandler = {
+        StandardKeyboardActionHandler(inputViewController: self, textDocumentProxy: textDocumentProxy)
+    }()
+    
     private var heightConstraint: NSLayoutConstraint?
     
     
     // MARK: - Public Functions
     
-    open func addLongPressGesture(to cell: UIView, with operation: KeyboardAction) {
+    open func addLongPressGesture(to cell: UIView, with action: KeyboardAction) {
         let gestures = cell.gestureRecognizers ?? []
         let longPresses = gestures.filter { $0 is UILongPressGestureRecognizer }
         longPresses.forEach { cell.removeGestureRecognizer($0) }
         cell.addLongPressGestureRecognizer { [weak self] in
-            self?.handleLongPress(on: operation)
-        }
-    }
-    
-    open func handleLongPress(on action: KeyboardAction) {}
-    
-    open func handleTap(on action: KeyboardAction) {
-        switch action {
-        case .none: break
-        case .backspace: textDocumentProxy.deleteBackward()
-        case .character(let char): textDocumentProxy.insertText(char)
-        case .image: break
-        case .moveCursorBack: textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)
-        case .moveCursorForward: textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)
-        case .nextKeyboard: advanceToNextInputMode()
-        case .newLine: textDocumentProxy.insertText("\n")
-        case .shift: break
-        case .space: textDocumentProxy.insertText(" ")
+            self?.keyboardActionHandler.handleLongPress(on: action)
         }
     }
     

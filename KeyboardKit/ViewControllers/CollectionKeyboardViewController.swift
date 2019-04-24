@@ -95,6 +95,6 @@ open class CollectionKeyboardViewController: KeyboardViewController, UICollectio
     
     open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let action = action(at: indexPath) else { return }
-        handleTap(on: action)
+        keyboardActionHandler.handleTap(on: action)
     }
 }
