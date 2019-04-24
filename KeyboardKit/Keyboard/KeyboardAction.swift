@@ -45,11 +45,4 @@ public extension KeyboardAction {
         default: return false
         }
     }
-    
-    var title: String? {
-        switch self {
-        case .character(let character): return character
-        default: return nil
-        }
-    }
 }

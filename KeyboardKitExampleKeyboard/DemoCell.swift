@@ -69,7 +69,7 @@ class DemoCell: UICollectionViewCell {
     
     open func setupTextLabel(with action: KeyboardAction, tintColor: UIColor) {
         textLabel?.textColor = tintColor
-        textLabel?.text = action.title
+        textLabel?.text = keyboardText(for: action)
     }
 }
 
@@ -78,6 +78,13 @@ private extension DemoCell {
     func keyboardImage(for action: KeyboardAction) -> UIImage? {
         switch action {
         case .image(_, let keyboardImageName, _): return UIImage(named: keyboardImageName)
+        default: return nil
+        }
+    }
+    
+    func keyboardText(for action: KeyboardAction) -> String? {
+        switch action {
+        case .character(let text): return text
         default: return nil
         }
     }

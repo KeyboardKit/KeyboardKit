@@ -33,16 +33,5 @@ class KeyboardActionTests: QuickSpec {
                 expect(result(for: .space)).to(beTrue())
             }
         }
-        
-        describe("title") {
-            
-            func title(for action: KeyboardAction) -> String? {
-                return action.title
-            }
-            
-            it("is specified for character action") {
-                expect(title(for: .character("a"))).to(equal("a"))
-            }
-        }
     }
 }
