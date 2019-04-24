@@ -5,7 +5,8 @@
 
 This version deprecates some `KeyboardAction` equality properties that should be
 resolved using standard equality instead. For instance, instead of `isNone`, you
-should just use `== .none`.
+should just use `== .none`. It also adds new props like `shouldRepeatOnLongPress`
+to the action enum and new actions, like `moveCursorBack` and `moveCursorForward`.
 
 `CollectionKeyboardViewController` now has a `KeyboardCollectionView` instead of
 a standard `UICollectionView`. The collection view property setup has been moved

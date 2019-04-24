@@ -51,12 +51,16 @@ open class KeyboardViewController: UIInputViewController, KeyboardPresenter {
     
     open func handleTap(on action: KeyboardAction) {
         switch action {
+        case .none: break
         case .backspace: textDocumentProxy.deleteBackward()
         case .character(let char): textDocumentProxy.insertText(char)
+        case .image: break
+        case .moveCursorBack: textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)
+        case .moveCursorForward: textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)
         case .nextKeyboard: advanceToNextInputMode()
         case .newLine: textDocumentProxy.insertText("\n")
+        case .shift: break
         case .space: textDocumentProxy.insertText(" ")
-        default: break
         }
     }
     

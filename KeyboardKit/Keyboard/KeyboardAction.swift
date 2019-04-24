@@ -21,6 +21,8 @@ public enum KeyboardAction: Equatable {
     backspace,
     character(String),
     image(description: String, keyboardImageName: String, imageName: String),
+    moveCursorBack,
+    moveCursorForward,
     newLine,
     nextKeyboard,
     shift,
@@ -53,6 +55,18 @@ public extension KeyboardAction {
         switch self {
         case .image(_, let keyboardImageName, _): return keyboardImageName
         default: return nil
+        }
+    }
+    
+    var shouldRepeatOnLongPress: Bool {
+        switch self {
+        case .backspace,
+             .character,
+             .moveCursorBack,
+             .moveCursorForward,
+             .newLine,
+             .space: return true
+        default: return false
         }
     }
     

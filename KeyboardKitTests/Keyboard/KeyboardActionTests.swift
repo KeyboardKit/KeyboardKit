@@ -20,17 +20,10 @@ class KeyboardActionTests: QuickSpec {
                 return action.image
             }
             
-            it("is only specified for image action with existing image") {
+            it("is specified for image action with existing image") {
                 let imageInExampleApp = "base"
-                expect(image(for: .none)).to(beNil())
-                expect(image(for: .backspace)).to(beNil())
-                expect(image(for: .character("a"))).to(beNil())
                 expect(image(for: .image(description: "image", keyboardImageName: "keyboard image", imageName: "image name"))).to(beNil())
                 expect(image(for: .image(description: "image", keyboardImageName: "keyboard image", imageName: imageInExampleApp))).toNot(beNil())
-                expect(image(for: .newLine)).to(beNil())
-                expect(image(for: .nextKeyboard)).to(beNil())
-                expect(image(for: .shift)).to(beNil())
-                expect(image(for: .space)).to(beNil())
             }
         }
         
@@ -40,15 +33,8 @@ class KeyboardActionTests: QuickSpec {
                 return action.imageName
             }
             
-            it("is only specified for image action") {
-                expect(imageName(for: .none)).to(beNil())
-                expect(imageName(for: .backspace)).to(beNil())
-                expect(imageName(for: .character("a"))).to(beNil())
+            it("is specified for image action") {
                 expect(imageName(for: .image(description: "image", keyboardImageName: "keyboard image", imageName: "image name"))).to(equal("image name"))
-                expect(imageName(for: .newLine)).to(beNil())
-                expect(imageName(for: .nextKeyboard)).to(beNil())
-                expect(imageName(for: .shift)).to(beNil())
-                expect(imageName(for: .space)).to(beNil())
             }
         }
         
@@ -58,17 +44,9 @@ class KeyboardActionTests: QuickSpec {
                 return action.keyboardImage
             }
             
-            it("is only specified for image action with existing image") {
+            it("is specified for image action with existing image") {
                 let imageInExampleApp = "base"
-                expect(image(for: .none)).to(beNil())
-                expect(image(for: .backspace)).to(beNil())
-                expect(image(for: .character("a"))).to(beNil())
-                expect(image(for: .image(description: "image", keyboardImageName: "keyboard image", imageName: "image name"))).to(beNil())
                 expect(image(for: .image(description: "image", keyboardImageName: imageInExampleApp, imageName: "image name"))).toNot(beNil())
-                expect(image(for: .newLine)).to(beNil())
-                expect(image(for: .nextKeyboard)).to(beNil())
-                expect(image(for: .shift)).to(beNil())
-                expect(image(for: .space)).to(beNil())
             }
         }
         
@@ -78,15 +56,28 @@ class KeyboardActionTests: QuickSpec {
                 return action.keyboardImageName
             }
             
-            it("is only specified for image action") {
-                expect(imageName(for: .none)).to(beNil())
-                expect(imageName(for: .backspace)).to(beNil())
-                expect(imageName(for: .character("a"))).to(beNil())
+            it("is specified for image action") {
                 expect(imageName(for: .image(description: "image", keyboardImageName: "keyboard image", imageName: "image name"))).to(equal("keyboard image"))
-                expect(imageName(for: .newLine)).to(beNil())
-                expect(imageName(for: .nextKeyboard)).to(beNil())
-                expect(imageName(for: .shift)).to(beNil())
-                expect(imageName(for: .space)).to(beNil())
+            }
+        }
+        
+        describe("should repeat on long press") {
+            
+            func result(for action: KeyboardAction) -> Bool {
+                return action.shouldRepeatOnLongPress
+            }
+            
+            it("is only specified for certain actions") {
+                expect(result(for: .none)).to(beFalse())
+                expect(result(for: .backspace)).to(beTrue())
+                expect(result(for: .character("a"))).to(beTrue())
+                expect(result(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beFalse())
+                expect(result(for: .moveCursorBack)).to(beTrue())
+                expect(result(for: .moveCursorForward)).to(beTrue())
+                expect(result(for: .newLine)).to(beTrue())
+                expect(result(for: .nextKeyboard)).to(beFalse())
+                expect(result(for: .shift)).to(beFalse())
+                expect(result(for: .space)).to(beTrue())
             }
         }
         
@@ -96,15 +87,8 @@ class KeyboardActionTests: QuickSpec {
                 return action.title
             }
             
-            it("is only specified for character action") {
-                expect(title(for: .none)).to(beNil())
-                expect(title(for: .backspace)).to(beNil())
+            it("is specified for character action") {
                 expect(title(for: .character("a"))).to(equal("a"))
-                expect(title(for: .image(description: "image", keyboardImageName: "keyboard image", imageName: "image name"))).to(beNil())
-                expect(title(for: .newLine)).to(beNil())
-                expect(title(for: .nextKeyboard)).to(beNil())
-                expect(title(for: .shift)).to(beNil())
-                expect(title(for: .space)).to(beNil())
             }
         }
     }

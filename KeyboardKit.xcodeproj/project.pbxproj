@@ -452,10 +452,10 @@
 			children = (
 				450B1C4020699EC3006A2F18 /* Assets */,
 				45FB519520495C8A009D5806 /* AppDelegate.swift */,
-				45FB519720495C8A009D5806 /* ViewController.swift */,
-				45FB519920495C8A009D5806 /* Main.storyboard */,
-				45FB519E20495C8A009D5806 /* LaunchScreen.storyboard */,
 				45FB51A120495C8A009D5806 /* Info.plist */,
+				45FB519E20495C8A009D5806 /* LaunchScreen.storyboard */,
+				45FB519920495C8A009D5806 /* Main.storyboard */,
+				45FB519720495C8A009D5806 /* ViewController.swift */,
 			);
 			path = KeyboardKitExample;
 			sourceTree = "<group>";
@@ -463,10 +463,10 @@
 		45FB51AA20495CB1009D5806 /* KeyboardKitExampleKeyboard */ = {
 			isa = PBXGroup;
 			children = (
+				45FCD01A2059E05B0072157A /* Extensions */,
 				45FCD0162059DE330072157A /* DemoCell.swift */,
 				45FCD0172059DE330072157A /* DemoCell.xib */,
 				45D1495320586280009EF441 /* DemoKeyboard.swift */,
-				45FCD01A2059E05B0072157A /* Extensions */,
 				45FB51AD20495CB1009D5806 /* Info.plist */,
 				45FB51AB20495CB1009D5806 /* KeyboardViewController.swift */,
 			);
