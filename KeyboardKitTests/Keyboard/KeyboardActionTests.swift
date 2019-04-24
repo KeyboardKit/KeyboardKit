@@ -20,7 +20,7 @@ class KeyboardActionTests: QuickSpec {
                 return action.shouldRepeatOnLongPress
             }
             
-            it("is only specified for certain actions") {
+            it("is only true for input actions") {
                 expect(result(for: .none)).to(beFalse())
                 expect(result(for: .backspace)).to(beTrue())
                 expect(result(for: .character("a"))).to(beTrue())

@@ -29,20 +29,20 @@ public enum KeyboardAction: Equatable {
     space
 }
 
-
-// MARK: - Public Functions
-
 public extension KeyboardAction {
     
     var shouldRepeatOnLongPress: Bool {
         switch self {
-        case .backspace,
-             .character,
-             .moveCursorBack,
-             .moveCursorForward,
-             .newLine,
-             .space: return true
-        default: return false
+        case .none: return false
+        case .backspace: return true
+        case .character: return true
+        case .image: return false
+        case .moveCursorBack: return true
+        case .moveCursorForward: return true
+        case .newLine: return true
+        case .nextKeyboard: return false
+        case .shift: return false
+        case .space: return true
         }
     }
 }

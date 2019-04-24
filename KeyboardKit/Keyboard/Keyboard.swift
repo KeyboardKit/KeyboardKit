@@ -8,19 +8,14 @@
 
 /*
  
- In this version of KeyboardKit, `Keyboard` is just a simple
- action carrier, while all logic is handled by the extension.
- It would however probably be better to build in some of the
- logic into the keyboard, like how some actions are handled.
+ In KeyboardKit, a `Keyboard` is just an action carrier. The
+ actions are then presented by the keyboard view controller.
  
  */
 
 import Foundation
 
 open class Keyboard {
-    
-    
-    // MARK: - Initialization
     
     public init(id: String, actions: [KeyboardAction]) {
         self.id = id
@@ -33,14 +28,9 @@ open class Keyboard {
     }
     
     
-    // MARK: - Properties
-    
     public let id: String?
     public let actions: [KeyboardAction]
 }
-
-
-// MARK: - Public Extensions
 
 public extension Keyboard {
     

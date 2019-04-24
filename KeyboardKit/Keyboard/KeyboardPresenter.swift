@@ -6,6 +6,13 @@
 //  Copyright © 2018 Daniel Saidi. All rights reserved.
 //
 
+/*
+ 
+ A keyboard presenter is anything that can present keyboards.
+ The keyboard view controllers in the library are presenters.
+ 
+ */
+
 import Foundation
 
 public protocol KeyboardPresenter {

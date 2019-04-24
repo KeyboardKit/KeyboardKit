@@ -6,6 +6,14 @@
 //  Copyright © 2018 Daniel Saidi. All rights reserved.
 //
 
+/*
+ 
+ The keyboard settings enum is just a representation of some
+ general keyboard properties that may be a good idea to save
+ in persistent memory.
+ 
+ */
+
 import Foundation
 
 public enum KeyboardSetting: String {
@@ -13,9 +21,6 @@ public enum KeyboardSetting: String {
     case
     currentPageIndex
 }
-
-
-// MARK: - Properties
 
 public extension KeyboardSetting {
     

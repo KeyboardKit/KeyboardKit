@@ -425,6 +425,7 @@
 		45FB517720495C73009D5806 /* KeyboardKit */ = {
 			isa = PBXGroup;
 			children = (
+				84511D34227109CD00904FE0 /* Actions */,
 				45FB51C620495F41009D5806 /* Alerts */,
 				45FB51C920495F42009D5806 /* Extensions */,
 				45FB51D220495F42009D5806 /* Keyboard */,
@@ -516,7 +517,6 @@
 			isa = PBXGroup;
 			children = (
 				45FB51D820495F42009D5806 /* Keyboard.swift */,
-				45FB51D320495F42009D5806 /* KeyboardAction.swift */,
 				4542496B2059BA9C00CD0E87 /* KeyboardSetting.swift */,
 				84851DE92166B19600DE8886 /* KeyboardPresenter.swift */,
 			);
@@ -564,6 +564,14 @@
 				84511D24226FA84800904FE0 /* KeyboardCollectionView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		84511D34227109CD00904FE0 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				45FB51D320495F42009D5806 /* KeyboardAction.swift */,
+			);
+			path = Actions;
 			sourceTree = "<group>";
 		};
 		845D6BB6224D651D0025B6C4 /* Supporting Files */ = {
