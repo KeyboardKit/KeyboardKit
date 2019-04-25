@@ -38,7 +38,7 @@ open class KeyboardViewController: UIInputViewController, KeyboardPresenter {
     open var keyboard = Keyboard.empty
     
     open lazy var keyboardActionHandler: KeyboardActionHandler = {
-        StandardKeyboardActionHandler(inputViewController: self, textDocumentProxy: textDocumentProxy)
+        StandardKeyboardActionHandler(inputViewController: self)
     }()
     
     private var heightConstraint: NSLayoutConstraint?

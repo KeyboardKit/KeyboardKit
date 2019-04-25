@@ -26,30 +26,30 @@ import UIKit
 
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
-    public init(
-        inputViewController: UIInputViewController,
-        textDocumentProxy: UITextDocumentProxy) {
+    public init(inputViewController: UIInputViewController) {
         self.inputViewController = inputViewController
-        self.textDocumentProxy = textDocumentProxy
     }
     
     public weak var inputViewController: UIInputViewController?
-    public let textDocumentProxy: UITextDocumentProxy
+    
+    public var textDocumentProxy: UITextDocumentProxy? {
+        return inputViewController?.textDocumentProxy
+    }
     
     open func handleLongPress(on action: KeyboardAction) {}
     
     open func handleTap(on action: KeyboardAction) {
         switch action {
         case .none: break
-        case .backspace: textDocumentProxy.deleteBackward()
-        case .character(let char): textDocumentProxy.insertText(char)
+        case .backspace: textDocumentProxy?.deleteBackward()
+        case .character(let char): textDocumentProxy?.insertText(char)
         case .image: break
-        case .moveCursorBack: textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)
-        case .moveCursorForward: textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)
+        case .moveCursorBack: textDocumentProxy?.adjustTextPosition(byCharacterOffset: -1)
+        case .moveCursorForward: textDocumentProxy?.adjustTextPosition(byCharacterOffset: -1)
         case .nextKeyboard: inputViewController?.advanceToNextInputMode()
-        case .newLine: textDocumentProxy.insertText("\n")
+        case .newLine: textDocumentProxy?.insertText("\n")
         case .shift: break
-        case .space: textDocumentProxy.insertText(" ")
+        case .space: textDocumentProxy?.insertText(" ")
         }
     }
 }

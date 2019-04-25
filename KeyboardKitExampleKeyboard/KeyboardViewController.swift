@@ -36,7 +36,7 @@ class KeyboardViewController: GridKeyboardViewController {
         super.viewDidLoad()
         setupKeyboard(for: UIScreen.main.bounds.size)
         setupSystemButtons()
-        keyboardActionHandler = DemoKeyboardActionHandler(inputViewController: self, textDocumentProxy: textDocumentProxy)
+        keyboardActionHandler = DemoKeyboardActionHandler(inputViewController: self)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
