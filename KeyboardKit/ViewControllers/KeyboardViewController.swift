@@ -8,21 +8,23 @@
 
 /*
  
- This base class provides keyboards with basic functionality.
- You can subclass this class then override anything you want
- to modify the standard behavior.
+ This class provides keyboards input view controllers with a
+ basic set of functionality. You can subclass this class and
+ override anything to modify the standard behavior.
  
- This class will use an empty keyboard and a standard action
+ This class uses an action-less keyboard and standard action
  handler by default. You can replace these properties at any
  time, to customize the keyboard behavior.
  
- Call `setHeight(to:)` to change the height of the keyboard,
- e.g. when the number of buttons or the orientation changes.
+ `addTapGesture(for:to:)` and `addLongPressGesture(for:to:)`
+ can be used to add action gestures to button views that you
+ add to your keyboard extensions. They will send any actions
+ that the user triggers to the action handler.
  
- Use `addTapGesture(to:)` and `addLongPressGesture(to:)`, to
- add keyboard gestures to any buttons you may create in your
- keyboard extensions. By default, this class does not create
- any buttons; it just holds the state of the keyboard.
+ `setHeight(to:)` can be used to to change the height of the
+ keyboard extension. Do not use this whenever you use a grid
+ based keyboard, since this class will automatically set the
+ extension height based on the grid.
  
  */
 
@@ -48,12 +50,17 @@ open class KeyboardViewController: UIInputViewController, KeyboardPresenter {
     
     // MARK: - Public Functions
     
-    open func addLongPressGesture(to cell: UIView, with action: KeyboardAction) {
-        let gestures = cell.gestureRecognizers ?? []
-        let longPresses = gestures.filter { $0 is UILongPressGestureRecognizer }
-        longPresses.forEach { cell.removeGestureRecognizer($0) }
-        cell.addLongPressGestureRecognizer { [weak self] in
+    open func addLongPressGesture(for action: KeyboardAction, to view: UIView) {
+        view.removeLongPressGestureRecognizers()
+        view.addLongPressGestureRecognizer { [weak self] in
             self?.keyboardActionHandler.handleLongPress(on: action)
+        }
+    }
+    
+    open func addTapGesture(for action: KeyboardAction, to view: UIView) {
+        view.removeTapGestureRecognizers()
+        view.addTapGestureRecognizer { [weak self] in
+            self?.keyboardActionHandler.handleTap(on: action)
         }
     }
     

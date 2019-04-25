@@ -56,10 +56,6 @@ open class CollectionKeyboardViewController: KeyboardViewController, UICollectio
         collectionView.delegate = self
         collectionView.dataSource = self
         view.addSubview(collectionView)
-        setupCollectionViewConstraints()
-    }
-    
-    open func setupCollectionViewConstraints() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         collectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true

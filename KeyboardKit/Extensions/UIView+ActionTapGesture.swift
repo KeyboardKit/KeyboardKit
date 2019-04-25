@@ -28,6 +28,12 @@ extension UIView {
         let recognizer = UITapGestureRecognizer(target: self, action: selector)
         addGestureRecognizer(recognizer)
     }
+    
+    func removeTapGestureRecognizers() {
+        guard let gestures = gestureRecognizers else { return }
+        let taps = gestures.filter { $0 is UITapGestureRecognizer }
+        taps.forEach { removeGestureRecognizer($0) }
+    }
 }
 
 private extension UIView {

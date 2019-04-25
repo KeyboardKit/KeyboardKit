@@ -28,6 +28,12 @@ extension UIView {
         let recognizer = UILongPressGestureRecognizer(target: self, action: selector)
         addGestureRecognizer(recognizer)
     }
+    
+    func removeLongPressGestureRecognizers() {
+        guard let gestures = gestureRecognizers else { return }
+        let longPresses = gestures.filter { $0 is UILongPressGestureRecognizer }
+        longPresses.forEach { removeGestureRecognizer($0) }
+    }
 }
 
 private extension UIView {

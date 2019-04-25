@@ -95,11 +95,11 @@ class KeyboardViewController: GridKeyboardViewController {
     open override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         guard
-            let button = action(at: indexPath),
+            let action = action(at: indexPath),
             let buttonCell = cell as? DemoCell
             else { return cell }
-        buttonCell.setup(with: button, appearance: keyboardAppearance, tintColor: collectionView.tintColor)
-        addLongPressGesture(to: buttonCell, with: button)
+        buttonCell.setup(with: action, appearance: keyboardAppearance, tintColor: collectionView.tintColor)
+        addLongPressGesture(for: action, to: buttonCell)
         return cell
     }
 }
