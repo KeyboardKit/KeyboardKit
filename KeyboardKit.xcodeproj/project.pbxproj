@@ -411,9 +411,9 @@
 				45FB518220495C73009D5806 /* KeyboardKitTests */,
 				45FB519420495C8A009D5806 /* KeyboardKitExample */,
 				45FB51AA20495CB1009D5806 /* KeyboardKitExampleKeyboard */,
-				45FB5200204B3F5B009D5806 /* Library Files */,
 				45FB51B920495DCB009D5806 /* Frameworks */,
 				45FB517620495C73009D5806 /* Products */,
+				45FB5200204B3F5B009D5806 /* Project Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -538,7 +538,7 @@
 			path = Alerts;
 			sourceTree = "<group>";
 		};
-		45FB5200204B3F5B009D5806 /* Library Files */ = {
+		45FB5200204B3F5B009D5806 /* Project Files */ = {
 			isa = PBXGroup;
 			children = (
 				45FB5207204B3F75009D5806 /* .gitignore */,
@@ -552,7 +552,7 @@
 				45FB5204204B3F75009D5806 /* LICENSE */,
 				45FB5205204B3F75009D5806 /* README.md */,
 			);
-			name = "Library Files";
+			name = "Project Files";
 			sourceTree = "<group>";
 		};
 		45FCD01A2059E05B0072157A /* Extensions */ = {
