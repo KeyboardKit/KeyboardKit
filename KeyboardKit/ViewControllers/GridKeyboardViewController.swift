@@ -257,7 +257,7 @@ open class GridKeyboardViewController: CollectionKeyboardViewController, PagedKe
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let index = Int(scrollView.currentPageIndex)
         pageControl.currentPage = index
-        persistCurrentPageIndex()
+        settings.setCurrentPageIndex(index, for: self)
     }
 }
 

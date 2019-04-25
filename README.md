@@ -35,11 +35,11 @@
 
 ### Keyboards
 
-In `KeyboardKit`, a `Keyboard` is basically just a list of keyboard actions with an optional id. The presentation depends entirely on the keyboard view controller and the way actions are handled depends entirely on the `keyboardActionHandler` the view controller uses. This means that you can present the same keyboard in very different ways.
+In `KeyboardKit`, a `Keyboard` is basically just a list of `KeyboardAction`s with an optional id. The presentation depends entirely on the keyboard view controller and the way actions are handled depends entirely on the `keyboardActionHandler` the view controller uses. This means that you can present the same keyboard in very different ways.
 
-### Actions
+### Keyboard Actions
 
-`KeyboardKit` currently supports the following keyboard actions:
+`KeyboardKit` currently has the following keyboard actions:
 
 * `backspace` - sends a backspace to the text proxy
 * `character` - sends a text character to the text proxy
@@ -99,14 +99,24 @@ The system button area height is then added to the total height. By default, it'
 So far, I only use `GridKeyboardViewController` in my own apps, which means that it has a lot of functionality that the others lack. If you use `KeyboardKit` and need other features or types of keyboards, please let me know.
 
 
-### Keyboard extension size
+### Action Handling
 
-You can change the keyboard extension size with `setHeight(to:)`. Don't use it when you inherit `GridKeyboardViewController`, since this class will adjust the size depending on the grid.
+Each keyboard view controller has a `keyboardActionHandler`, that can handle actions that are triggered by the user. By default, `StandardKeyboardActionHandler` is used, but you can replace it with any `KeyboardActionHandler` implementation.
 
 
-### Keyboard alerts
+### Settings
+
+Each keyboard view controller has a `settings` property that can be persist settings between app sessions. By default, `StandardKeyboardSettings` is used, but you can replace it with any `KeyboardSettings` implementation.
+
+
+### Alerts
 
 Since keyboard extensions can't display `UIAlertController`s, `KeyboardKit` has custom alerts that can be displayed on top of the keyboard. You can either use `ToastAlert` or build a custom alert that implements `KeyboardAlert`.
+
+
+### Keyboard extension height
+
+You can change the height of your keyboard extension by using the `setHeight(to:)` function. Don't use it when you inherit `GridKeyboardViewController`, since this class will adjust the size depending on the grid.
 
 
 ### Extensions

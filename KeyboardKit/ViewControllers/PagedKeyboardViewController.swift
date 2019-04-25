@@ -40,18 +40,9 @@ public extension PagedKeyboardViewController {
         return buttons
     }
     
-    func persistCurrentPageIndex() {
-        let key = KeyboardSetting.currentPageIndex
-        let defaults = UserDefaults.standard
-        defaults.set(currentPageIndex, forKey: key.key)
-        defaults.synchronize()
-    }
-    
     func restoreLastPageIndex() {
         guard canRestoreLastPageIndex else { return }
-        let defaults = UserDefaults.standard
-        let key = KeyboardSetting.currentPageIndex.key(for: self)
-        let index = defaults.integer(forKey: key)
+        let index = settings.getCurrentPageIndex(for: self)
         let maxIndex = numberOfPages - 1
         currentPageIndex = index.limit(min: 0, max: maxIndex)
     }

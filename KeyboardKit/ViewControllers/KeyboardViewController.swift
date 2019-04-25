@@ -41,6 +41,8 @@ open class KeyboardViewController: UIInputViewController, KeyboardPresenter {
         StandardKeyboardActionHandler(inputViewController: self)
     }()
     
+    open var settings = StandardKeyboardSettings()
+    
     private var heightConstraint: NSLayoutConstraint?
     
     
