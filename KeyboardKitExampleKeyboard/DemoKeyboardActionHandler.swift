@@ -12,20 +12,14 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     override func handleLongPress(on action: KeyboardAction) {
         super.handleLongPress(on: action)
-        guard let image = image(for: action) else { return }
-        guard let input = inputViewController as? KeyboardViewController else { return }
-        guard input.hasFullAccess else { return alert("You must enable full access to save images to photos.") }
-        let saveCompletion = #selector(handleImage(_:didFinishSavingWithError:contextInfo:))
-        image.saveToPhotos(completionTarget: self, completionSelector: saveCompletion)
+        saveImage(for: action)
+        HapticFeedback.trigger(.selectionChanged)
     }
     
     override func handleTap(on action: KeyboardAction) {
         super.handleTap(on: action)
-        guard let image = image(for: action) else { return }
-        guard let input = inputViewController as? KeyboardViewController else { return }
-        guard input.hasFullAccess else { return alert("You must enable full access to copy images.") }
-        guard image.copyToPasteboard() else { return alert("The image could not be copied.") }
-        alert("Copied to pasteboard!")
+        copyImage(for: action)
+        HapticFeedback.trigger(.lightImpact)
     }
 }
 
@@ -44,10 +38,26 @@ private extension DemoKeyboardActionHandler {
         input.alerter.alert(message: message, in: input.view, withDuration: 4)
     }
     
+    func copyImage(for action: KeyboardAction) {
+        guard let image = image(for: action) else { return }
+        guard let input = inputViewController as? KeyboardViewController else { return }
+        guard input.hasFullAccess else { return alert("You must enable full access to copy images.") }
+        guard image.copyToPasteboard() else { return alert("The image could not be copied.") }
+        alert("Copied to pasteboard!")
+    }
+    
     func image(for action: KeyboardAction) -> UIImage? {
         switch action {
         case .image(_, _, let imageName): return UIImage(named: imageName)
         default: return nil
         }
+    }
+    
+    func saveImage(for action: KeyboardAction) {
+        guard let image = image(for: action) else { return }
+        guard let input = inputViewController as? KeyboardViewController else { return }
+        guard input.hasFullAccess else { return alert("You must enable full access to save images to photos.") }
+        let saveCompletion = #selector(handleImage(_:didFinishSavingWithError:contextInfo:))
+        image.saveToPhotos(completionTarget: self, completionSelector: saveCompletion)
     }
 }

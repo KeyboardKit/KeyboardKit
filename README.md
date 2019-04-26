@@ -37,7 +37,8 @@
 
 In `KeyboardKit`, a `Keyboard` is basically just a list of `KeyboardAction`s with an optional id. The presentation depends entirely on the keyboard view controller and the way actions are handled depends entirely on the `keyboardActionHandler` the view controller uses. This means that you can present the same keyboard in very different ways.
 
-### Keyboard Actions
+
+### Actions
 
 `KeyboardKit` currently has the following keyboard actions:
 
@@ -52,10 +53,12 @@ In `KeyboardKit`, a `Keyboard` is basically just a list of `KeyboardAction`s wit
 * `space` - sends an empty space to the text proxy
 * `none`- use this for empty "placeholder" keys that do nothing
 
-`KeyboardKit` handles all actions except `image`, which you must handle manually, since there's no way to send images to the text proxy. You can override the default action handling by replacing the `keyboardActionHandler` with a new action handler that suits your needs.
+Each keyboard view controller has a `keyboardActionHandler`, that can handle actions that are triggered by the user. By default, `StandardKeyboardActionHandler` is used, but you can replace it with any `KeyboardActionHandler` implementation.
+
+`StandardKeyboardActionHandler` handles all actions except `image`, which you must handle manually, since there's no way to send images to the text proxy. You can override the default action handling by replacing the `keyboardActionHandler` with a new action handler that suits your needs.
 
 
-### Keyboard View Controllers
+### View Controllers
 
 `KeyboardKit` lets you create keyboard extensions by inheriting any of these classes instead of `UIInputViewController`:
 
@@ -94,15 +97,6 @@ You create a `GridKeyboardViewController` instance by providing a keyboard, a he
 
 The system button area height is then added to the total height. By default, it's as tall as the keyboard item size.
 
-#### Need more features?
-
-So far, I only use `GridKeyboardViewController` in my own apps, which means that it has a lot of functionality that the others lack. If you use `KeyboardKit` and need other features or types of keyboards, please let me know.
-
-
-### Action Handling
-
-Each keyboard view controller has a `keyboardActionHandler`, that can handle actions that are triggered by the user. By default, `StandardKeyboardActionHandler` is used, but you can replace it with any `KeyboardActionHandler` implementation.
-
 
 ### Settings
 
@@ -112,6 +106,16 @@ Each keyboard view controller has a `settings` property that can be persist sett
 ### Alerts
 
 Since keyboard extensions can't display `UIAlertController`s, `KeyboardKit` has custom alerts that can be displayed on top of the keyboard. You can either use `ToastAlert` or build a custom alert that implements `KeyboardAlert`.
+
+
+### Haptic Feedback
+
+If you want the user's device to give haptic feedback as you type, you can use `HapticFeedback`, which wraps the various native iOS feedback types.
+
+
+### Buttons
+
+If you want to animate the keyboard buttons as the user types, you can let your views implement `KeyboardButton`, which has extensions for animating default presses, releases and taps.
 
 
 ### Keyboard extension height

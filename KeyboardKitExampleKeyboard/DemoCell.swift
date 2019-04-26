@@ -9,7 +9,7 @@
 import UIKit
 import KeyboardKit
 
-class DemoCell: UICollectionViewCell {
+class DemoCell: UICollectionViewCell, KeyboardButton {
     
     
     // MARK: - Overrides

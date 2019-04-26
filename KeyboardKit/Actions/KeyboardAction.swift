@@ -9,6 +9,8 @@
 /*
  
  This enum contains all currently supported keyboard actions.
+ All cases except .image have a standard handling defined in
+ the `StandardKeyboardActionHandler`.
  
  */
 
@@ -27,22 +29,4 @@ public enum KeyboardAction: Equatable {
     nextKeyboard,
     shift,
     space
-}
-
-public extension KeyboardAction {
-    
-    var shouldRepeatOnLongPress: Bool {
-        switch self {
-        case .none: return false
-        case .backspace: return true
-        case .character: return true
-        case .image: return false
-        case .moveCursorBack: return true
-        case .moveCursorForward: return true
-        case .newLine: return true
-        case .nextKeyboard: return false
-        case .shift: return false
-        case .space: return true
-        }
-    }
 }

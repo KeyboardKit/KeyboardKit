@@ -7,9 +7,9 @@ This version contains several breaking changes, but they are easily fixed. Basic
 
 In this version, all keyboard action handling is moved from the view controllers into a new `KeyboardActionHandler`, using the new `keyboardActionHandler` property. All view controllers use a `StandardActionHandler` by default, but you can replace it with any handler.
 
-This version also removes some `KeyboardAction` equality properties, since these should be resolved by checking the types instead. For instance, instead of using `isNone`, you should use `== .none`.  Also, all help properties like `image` and `imageName` are removed as well, since they can be resolved by switching over an action. Having them as properties is a broken window that just adds complexity.
+This version also removes some `KeyboardAction` equality logic, since these should be resolved by type checks. For instance, instead of using `isNone`, you should use `== .none`.  All help properties like `image` and `imageName` are removed as well, since they can be resolved by switching over the action. The old property setup is a broken window that just adds complexity.
 
-This new version also adds a new action property called `shouldRepeatOnLongPress`, which lets us add the possibility to long-press an action and have it repeat the action until the key is released. This will make typing a lot easier. New action cases have also been added - `moveCursorBack` and `moveCursorForward`.
+New `KeyboardAction` cases have also been added - `moveCursorBack` and `moveCursorForward`.
 
 `CollectionKeyboardViewController` now has a `KeyboardCollectionView` instead of a standard `UICollectionView`. The collection view property setup has been moved into this class.
 
