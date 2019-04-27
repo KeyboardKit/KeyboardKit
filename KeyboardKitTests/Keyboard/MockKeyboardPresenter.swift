@@ -15,4 +15,6 @@ class MockKeyboardPresenter: KeyboardPresenter {
     }
     
     var id: String?
+    
+    func refresh() {}
 }

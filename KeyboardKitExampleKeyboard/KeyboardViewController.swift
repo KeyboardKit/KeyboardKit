@@ -27,23 +27,66 @@
 import UIKit
 import KeyboardKit
 
-class KeyboardViewController: GridKeyboardViewController {
+class KeyboardViewController: KeyboardKit.KeyboardViewController {
     
     
     // MARK: - View Controller Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        gridPresenter = GridKeyboardPresenter(id: "foo", viewController: self)
-        setupKeyboard(for: UIScreen.main.bounds.size)
-        setupSystemButtons()
-        keyboardActionHandler = DemoKeyboardActionHandler(inputViewController: self)
+        gridPresenter = DemoPresenter(id: "foo", viewController: self)
+//        setupKeyboard(for: UIScreen.main.bounds.size)
+//        setupSystemButtons()
+//        keyboardActionHandler = DemoKeyboardActionHandler(inputViewController: self)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        setupKeyboard(for: size)
+//        setupKeyboard(for: size)
     }
+    
+    override func viewWillSyncWithTextDocumentProxy() {
+        super.viewWillSyncWithTextDocumentProxy()
+//        let isDark = textDocumentProxy.keyboardAppearance == .dark
+//        view.tintColor = isDark ? .white : .black
+    }
+    
+    
+    // MARK: - Setup
+    
+//    func setupGridPresenter() {
+//        let view = gridPresenter.collectionView
+//        view.contentInset.top = 5
+//        view.contentInset.bottom = 10
+//        view.register(DemoCell.defaultNib, forCellWithReuseIdentifier: "Cell")
+//    }
+//    
+//    func setupKeyboard(for size: CGSize) {
+//        let isLandscape = size.width > 400
+//        let height: CGFloat = isLandscape ? 150 : 200
+//        let rowsPerPage = isLandscape ? 3 : 4
+//        let buttonsPerRow = isLandscape ? 8 : 6
+//        gridPresenter.setup(withHeight: height, rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)
+//    }
+//    
+//    func setupSystemButtons() {
+//        setupLeftSystemButtons()
+//        setupRightSystemButtons()
+//    }
+//    
+//    func setupLeftSystemButtons() {
+//        gridPresenter.leftSystemButtons = [
+//            gridPresenter.createSystemButton(image: Asset.globe.image, action: .nextKeyboard),
+//            gridPresenter.createSystemButton(image: Asset.space.image, action: .space)
+//            ].compactMap { $0 }
+//    }
+//    
+//    func setupRightSystemButtons() {
+//        gridPresenter.rightSystemButtons = [
+//            gridPresenter.createSystemButton(image: Asset.backspace.image, action: .backspace),
+//            gridPresenter.createSystemButton(image: Asset.newline.image, action: .newLine)
+//            ].compactMap { $0 }
+//    }
     
     
     // MARK: - Properties
@@ -52,80 +95,31 @@ class KeyboardViewController: GridKeyboardViewController {
     
     var gridPresenter: GridKeyboardPresenter!
     
-    var keyboardAppearance: UIKeyboardAppearance = .default {
-        didSet {
-            view.tintColor = keyboardAppearance == .dark ? .white : .black
-        }
-    }
-    
-    
-    // MARK: - Setup
-    
-    open override func setupCollectionView() {
-        super.setupCollectionView()
-        collectionView.contentInset.top = 5
-        collectionView.contentInset.bottom = 10
-        collectionView.register(DemoCell.defaultNib, forCellWithReuseIdentifier: "Cell")
-    }
-    
     
     // MARK: - Layout
     
-    override func layoutSystemButtons(_ buttons: [UIView], buttonSize: CGSize, startX: CGFloat, y: CGFloat) {
+    /*override func layoutSystemButtons(_ buttons: [UIView], buttonSize: CGSize, startX: CGFloat, y: CGFloat) {
         super.layoutSystemButtons(buttons, buttonSize: buttonSize, startX: startX, y: y)
         buttons.forEach {
             let center = $0.center
             $0.frame.size = CGSize(width: 25, height: 25)
             $0.center = center
         }
-    }
+    }*/
     
     
     // MARK: - UICollectionViewDataSource
     
-    open override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        guard
-            let action = keyboardAction(at: indexPath),
-            let buttonCell = cell as? DemoCell
-            else { return cell }
-        buttonCell.setup(with: action, appearance: keyboardAppearance, tintColor: collectionView.tintColor)
-        addLongPressGesture(for: action, to: buttonCell)
-        return cell
-    }
-}
-
-
-// MARK: - Setup
-
-private extension KeyboardViewController {
-    
-    func setupKeyboard(for size: CGSize) {
-        let isLandscape = size.width > 400
-        let height: CGFloat = isLandscape ? 150 : 200
-        let rowsPerPage = isLandscape ? 3 : 4
-        let buttonsPerRow = isLandscape ? 8 : 6
-        setup(withKeyboard: DemoKeyboard(), height: height, rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)
-    }
-    
-    func setupSystemButtons() {
-        setupLeftSystemButtons()
-        setupRightSystemButtons()
-    }
-    
-    func setupLeftSystemButtons() {
-        leftSystemButtons = [
-            createSystemButton(image: Asset.globe.image, action: .nextKeyboard),
-            createSystemButton(image: Asset.space.image, action: .space)
-            ].compactMap { $0 }
-    }
-    
-    func setupRightSystemButtons() {
-        rightSystemButtons = [
-            createSystemButton(image: Asset.backspace.image, action: .backspace),
-            createSystemButton(image: Asset.newline.image, action: .newLine)
-            ].compactMap { $0 }
-    }
+//    open override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+//        guard
+//            let action = keyboardAction(at: indexPath),
+//            let buttonCell = cell as? DemoCell
+//            else { return cell }
+//        buttonCell.setup(with: action, appearance: keyboardAppearance, tintColor: collectionView.tintColor)
+//        addLongPressGesture(for: action, to: buttonCell)
+//        return cell
+//    }
 }
 
 
@@ -133,14 +127,31 @@ private extension KeyboardViewController {
 
 extension KeyboardViewController {
     
-    func alert(_ message: String) {
-        alerter.alert(message: message, in: view, withDuration: 4)
-    }
-    
     func image(for action: KeyboardAction) -> UIImage? {
         switch action {
         case .image(_, _, let imageName): return UIImage(named: imageName)
         default: return nil
         }
     }
+}
+
+
+class DemoPresenter: GridKeyboardPresenter {
+    
+//    public override init(id: String? = nil, viewController: KeyboardKit.KeyboardViewController) {
+//        super.init(id: id, viewController: viewController)
+//        setupPageControl()
+//    }
+//
+//    open override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+//        guard
+//            let action = keyboardAction(at: indexPath),
+//            let buttonCell = cell as? DemoCell
+//            else { return cell }
+//        let appearance = viewController.textDocumentProxy.keyboardAppearance ?? .light
+//        buttonCell.setup(with: action, appearance: appearance, tintColor: viewController.view.tintColor)
+//        viewController.addLongPressGesture(for: action, to: buttonCell)
+//        return cell
+//    }
 }
