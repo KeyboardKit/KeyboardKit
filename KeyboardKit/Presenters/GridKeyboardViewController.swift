@@ -49,13 +49,14 @@
 
 import UIKit
 
-open class GridKeyboardViewController: CollectionKeyboardViewController, PagedKeyboardViewController {
+open class GridKeyboardViewController: CollectionKeyboardViewController, PagedKeyboardViewController, KeyboardPresenter {
     
     
     // MARK: - View Controller Lifecycle
     
     open override func viewDidLoad() {
         super.viewDidLoad()
+        self.keyboardPresenter = self
         setupPageControl()
     }
     
@@ -171,6 +172,8 @@ open class GridKeyboardViewController: CollectionKeyboardViewController, PagedKe
     
     // MARK: - Layout
     
+    public func refresh() {}
+    
     open func layoutKeyboardButtons() {
         gridLayout.adjustButtonSize(for: collectionView)
         collectionView.layoutIfNeeded()
@@ -215,7 +218,7 @@ open class GridKeyboardViewController: CollectionKeyboardViewController, PagedKe
     
     // MARK: - Public Functions
     
-    open override func action(at indexPath: IndexPath) -> KeyboardAction? {
+    open override func keyboardAction(at indexPath: IndexPath) -> KeyboardAction? {
         let indexPath = gridLayout.sourceIndexPathForItem(at: indexPath)
         let section = indexPath.section
         let row = indexPath.row
@@ -257,7 +260,7 @@ open class GridKeyboardViewController: CollectionKeyboardViewController, PagedKe
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let index = Int(scrollView.currentPageIndex)
         pageControl.currentPage = index
-        settings.setCurrentPageIndex(index, for: self)
+        settings.setCurrentPageIndex(index, for: keyboardPresenter)
     }
 }
 
@@ -267,8 +270,8 @@ open class GridKeyboardViewController: CollectionKeyboardViewController, PagedKe
 private extension GridKeyboardViewController {
     
     func setupKeyboardButtons(from keyboard: Keyboard) {
-        let pageSize = keyboardButtonsPerPage
-        let actions = getActions(from: keyboard.actions, evenlyFitting: pageSize)
-        keyboardPages = actions.batched(withBatchSize: pageSize)
+//        let pageSize = keyboardButtonsPerPage
+//        let actions = getActions(from: keyboard.actions, evenlyFitting: pageSize)
+//        keyboardPages = actions.batched(withBatchSize: pageSize)
     }
 }

@@ -32,17 +32,9 @@ public protocol PagedKeyboardViewController: KeyboardViewController {
 
 public extension PagedKeyboardViewController {
     
-    func getActions(from actions: [KeyboardAction], evenlyFitting pageSize: Int) -> [KeyboardAction] {
-        var buttons = keyboard.actions
-        while buttons.count % pageSize > 0 {
-            buttons.append( .none)
-        }
-        return buttons
-    }
-    
     func restoreLastPageIndex() {
         guard canRestoreLastPageIndex else { return }
-        let index = settings.getCurrentPageIndex(for: self)
+        let index = settings.getCurrentPageIndex(for: keyboardPresenter)
         let maxIndex = numberOfPages - 1
         currentPageIndex = index.limit(min: 0, max: maxIndex)
     }

@@ -8,8 +8,11 @@
 
 /*
  
- A keyboard presenter is anything that can present keyboards.
- The keyboard view controllers in the library are presenters.
+ Keyboard presenters can be used to present keyboards in any
+ kind of way, depending on which presenter you use.
+ 
+ Make sure to call `refresh()` when the size of the keyboard
+ extension change or whenever a layout change occurs.
  
  */
 
@@ -18,4 +21,13 @@ import Foundation
 public protocol KeyboardPresenter {
     
     var id: String? { get }
+    
+    func refresh()
+}
+
+public class NoneKeyboardPresenter: KeyboardPresenter {
+    
+    public var id: String? { return "" }
+    
+    public func refresh() {}
 }

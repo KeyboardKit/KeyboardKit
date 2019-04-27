@@ -95,7 +95,7 @@ class KeyboardViewController: GridKeyboardViewController {
     open override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         guard
-            let action = action(at: indexPath),
+            let action = keyboardAction(at: indexPath),
             let buttonCell = cell as? DemoCell
             else { return cell }
         buttonCell.setup(with: action, appearance: keyboardAppearance, tintColor: collectionView.tintColor)

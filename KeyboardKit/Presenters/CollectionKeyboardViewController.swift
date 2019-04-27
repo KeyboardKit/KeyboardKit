@@ -67,7 +67,7 @@ open class CollectionKeyboardViewController: KeyboardViewController, UICollectio
     
     // MARK: - Public Functions
     
-    open func action(at indexPath: IndexPath) -> KeyboardAction? {
+    open func keyboardAction(at indexPath: IndexPath) -> KeyboardAction? {
         return keyboard.actions[indexPath.row]
     }
     
@@ -90,7 +90,7 @@ open class CollectionKeyboardViewController: KeyboardViewController, UICollectio
     // MARK: - UICollectionViewDelegate
     
     open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let action = action(at: indexPath) else { return }
+        guard let action = keyboardAction(at: indexPath) else { return }
         keyboardActionHandler.handleTap(on: action)
     }
 }

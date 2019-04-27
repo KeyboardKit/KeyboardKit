@@ -1,11 +1,13 @@
 # Release Notes
 
 
-## 1.1.0
+## 2.0.0
 
-This version contains several breaking changes, but they are easily fixed. Basically, the changes aim at streamlining the library and remove or refactor parts that make the library hard to maintain. I hope (and believe) that these changes will make it easier for you as well.
+This version contains several breaking changes, that aim at streamlining the library and remove or refactor parts that make it hard to maintain. I hope (and believe) that these changes will make it easier for you as well.
 
-In this version, all keyboard action handling is moved from the view controllers into a new `KeyboardActionHandler`, using the new `keyboardActionHandler` property. All view controllers use a `StandardActionHandler` by default, but you can replace it with any handler.
+Most notably, the view controller inheritance model has been replaced by moving the rendering responsibilities from the view controller to a new `KeyboardPresenter`, using the new `keyboardPresenter` property. This means that instead of inheriting a certain view controller, like before, you now instead pick a presenter that you want to use within your keyboard extension. This means that you can now have different kind of keyboard layouts and rendering styles in the same extension. All view controllers use a `NoneKeyboardPresenter` by default, but you can replace this at any time by setting the `keyboardPresenter` property to a new presenter.
+
+All keyboard action handling has also been moved from the view controllers into a new `KeyboardActionHandler`, using the new `keyboardActionHandler` property. All view controllers use a `StandardActionHandler` by default, but you can replace this at any time by setting the `keyboardActionHandler` property to a new handler.
 
 This version also removes some `KeyboardAction` equality logic, since these should be resolved by type checks. For instance, instead of using `isNone`, you should use `== .none`.  All help properties like `image` and `imageName` are removed as well, since they can be resolved by switching over the action. The old property setup is a broken window that just adds complexity.
 

@@ -30,7 +30,7 @@
 
 import UIKit
 
-open class KeyboardViewController: UIInputViewController, KeyboardPresenter {
+open class KeyboardViewController: UIInputViewController {
     
     
     // MARK: - Properties
@@ -41,6 +41,10 @@ open class KeyboardViewController: UIInputViewController, KeyboardPresenter {
     
     open lazy var keyboardActionHandler: KeyboardActionHandler = {
         StandardKeyboardActionHandler(inputViewController: self)
+    }()
+    
+    open lazy var keyboardPresenter: KeyboardPresenter = {
+        NoneKeyboardPresenter()
     }()
     
     open var settings = StandardKeyboardSettings()
