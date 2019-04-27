@@ -41,7 +41,7 @@ can be displayed on one screen.
 
 import UIKit
 
-class GridKeyboardPresenter: CollectionKeyboardPresenter {
+open class GridKeyboardPresenter: CollectionKeyboardPresenter {
 
     
     // MARK: - Initialization

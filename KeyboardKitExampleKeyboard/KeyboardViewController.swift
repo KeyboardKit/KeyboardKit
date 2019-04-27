@@ -34,6 +34,7 @@ class KeyboardViewController: GridKeyboardViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        gridPresenter = GridKeyboardPresenter(id: "foo", viewController: self)
         setupKeyboard(for: UIScreen.main.bounds.size)
         setupSystemButtons()
         keyboardActionHandler = DemoKeyboardActionHandler(inputViewController: self)
@@ -48,6 +49,8 @@ class KeyboardViewController: GridKeyboardViewController {
     // MARK: - Properties
     
     var alerter = ToastAlert()
+    
+    var gridPresenter: GridKeyboardPresenter!
     
     var keyboardAppearance: UIKeyboardAppearance = .default {
         didSet {
@@ -75,18 +78,6 @@ class KeyboardViewController: GridKeyboardViewController {
             $0.frame.size = CGSize(width: 25, height: 25)
             $0.center = center
         }
-    }
-    
-    
-    // MARK: - Public Functions
-
-    override func textDidChange(_ textInput: UITextInput?) {
-        guard
-            let appearance = textDocumentProxy.keyboardAppearance,
-            appearance != keyboardAppearance
-            else { return }
-        keyboardAppearance = appearance
-        collectionView.reloadData()
     }
     
     

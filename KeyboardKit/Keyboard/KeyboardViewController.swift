@@ -26,11 +26,26 @@
  based keyboard, since this class will automatically set the
  extension height based on the grid.
  
+ `viewWillSyncWithTextDocumentProxy()` is triggered when the
+ view controller will appear or when the text document proxy
+ text changes. Use this to apply any style you think matches
+ the text document proxy configuration.
+ 
  */
 
 import UIKit
 
 open class KeyboardViewController: UIInputViewController {
+    
+    
+    // MARK: - View Controller Lifecycle
+    
+    open override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewWillSyncWithTextDocumentProxy()
+    }
+    
+    open func viewWillSyncWithTextDocumentProxy() {}
     
     
     // MARK: - Properties
@@ -50,6 +65,14 @@ open class KeyboardViewController: UIInputViewController {
     open var settings = StandardKeyboardSettings()
     
     private var heightConstraint: NSLayoutConstraint?
+    
+    
+    // MARK: - UITextInputDelegate
+    
+    open override func textWillChange(_ textInput: UITextInput?) {
+        super.textWillChange(textInput)
+        viewWillSyncWithTextDocumentProxy()
+    }
     
     
     // MARK: - Public Functions
