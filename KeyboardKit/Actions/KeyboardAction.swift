@@ -9,8 +9,6 @@
 /*
  
  This enum contains all currently supported keyboard actions.
- All cases except .image have a standard handling defined in
- the `StandardKeyboardActionHandler`.
  
  */
 

@@ -9,13 +9,11 @@
 /*
  
  This action handler is used by default by all keyboard view
- controllers if you don't explicitly provide another one. It
- sends some actions directly to the text proxy and ignores a
- few that it can't handle.
+ controllers if you don't explicitly provide another one.
  
- You can subclass this class, to modify or extend the way it
- handles the various keyboard actions, or create an entirely
- new one that is completely custom.
+ `StandardKeyboardActionHandler` handles all actions, except
+ `.image`, which you must handle manually, since there is no
+ way to send images to the text proxy.
  
  This class only inherits `NSObject` to make it possible for
  subclasses to act as selector targets.
