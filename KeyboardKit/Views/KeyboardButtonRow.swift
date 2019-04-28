@@ -1,5 +1,5 @@
 //
-//  KeyboardButtonRowView.swift
+//  KeyboardButtonRow.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-04-28.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class KeyboardButtonRowView: UIView, KeyboardComponent {
+open class KeyboardButtonRow: UIView, KeyboardStackViewComponent {
     
     
     // MARK: - Initialization

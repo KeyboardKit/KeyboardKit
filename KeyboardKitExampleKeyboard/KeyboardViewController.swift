@@ -34,14 +34,14 @@ class KeyboardViewController: KeyboardInputViewController {
     
     
     var keyboardView: KeyboardCollectionView!
-    var view1: KeyboardButtonRowView!
+    var view1: KeyboardButtonRow!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         gridPresenter = DemoPresenter(id: "foo", viewController: self)
 
         
-        view1 = KeyboardButtonRowView(rowHeight: 70)
+        view1 = KeyboardButtonRow(rowHeight: 70)
         view1.backgroundColor = .green
         keyboardStackView.addArrangedSubview(view1)
         

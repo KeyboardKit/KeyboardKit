@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class KeyboardCollectionView: UICollectionView, KeyboardComponent {
+open class KeyboardCollectionView: UICollectionView, KeyboardStackViewComponent {
 
     
     // MARK: - Initialization
