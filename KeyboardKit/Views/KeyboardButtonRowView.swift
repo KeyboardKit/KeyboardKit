@@ -11,25 +11,23 @@ import UIKit
 open class KeyboardButtonRowView: UIView {
     
     public init(rowHeight: CGFloat) {
-        self.rowHeight = rowHeight
         super.init(frame: .zero)
+        heightConstraint.constant = rowHeight
     }
     
     public override init(frame: CGRect) {
-        rowHeight = frame.height
         super.init(frame: frame)
+        heightConstraint.constant = frame.height
     }
     
     public required init?(coder aDecoder: NSCoder) {
-        rowHeight = 50
         super.init(coder: aDecoder)
+        heightConstraint.constant = 50
     }
     
-    open override var intrinsicContentSize: CGSize {
-        return CGSize(width: 100, height: rowHeight)
-    }
-    
-    var rowHeight: CGFloat {
-        didSet { invalidateIntrinsicContentSize() }
-    }
+    public lazy var heightConstraint: NSLayoutConstraint = {
+        let constraint = heightAnchor.constraint(equalToConstant: 100)
+        constraint.isActive = true
+        return constraint
+    }()
 }

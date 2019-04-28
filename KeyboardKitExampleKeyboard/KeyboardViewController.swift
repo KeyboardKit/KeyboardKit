@@ -42,13 +42,14 @@ class KeyboardViewController: KeyboardInputViewController {
     
     
     var keyboardView: KeyboardView!
+    var view1: KeyboardButtonRowView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         gridPresenter = DemoPresenter(id: "foo", viewController: self)
 
         
-        let view1 = KeyboardButtonRowView(rowHeight: 50)
+        view1 = KeyboardButtonRowView(rowHeight: 70)
         view1.backgroundColor = .green
         view1.setContentHuggingPriority(.defaultHigh, for: .vertical)
         view1.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
@@ -85,6 +86,7 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 //        setupKeyboard(for: size)
+        view1.heightConstraint.constant = 20
     }
     
     override func viewWillSyncWithTextDocumentProxy() {
