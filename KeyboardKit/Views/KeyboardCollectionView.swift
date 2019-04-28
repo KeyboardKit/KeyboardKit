@@ -8,8 +8,11 @@
 
 import UIKit
 
-open class KeyboardCollectionView: UICollectionView {
+open class KeyboardCollectionView: UICollectionView, KeyboardComponent {
 
+    
+    // MARK: - Initialization
+    
     public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         setup()
@@ -25,6 +28,9 @@ open class KeyboardCollectionView: UICollectionView {
         isPagingEnabled = true
         backgroundColor = .clear
     }
+    
+    
+    // MARK: - KeyboardComponent
     
     public lazy var heightConstraint: NSLayoutConstraint = {
         let constraint = heightAnchor.constraint(equalToConstant: 100)

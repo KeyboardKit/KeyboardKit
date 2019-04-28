@@ -8,7 +8,10 @@
 
 import UIKit
 
-open class KeyboardButtonRowView: UIView {
+open class KeyboardButtonRowView: UIView, KeyboardComponent {
+    
+    
+    // MARK: - Initialization
     
     public init(rowHeight: CGFloat) {
         super.init(frame: .zero)
@@ -24,6 +27,9 @@ open class KeyboardButtonRowView: UIView {
         super.init(coder: aDecoder)
         heightConstraint.constant = 50
     }
+    
+    
+    // MARK: - KeyboardComponent
     
     public lazy var heightConstraint: NSLayoutConstraint = {
         let constraint = heightAnchor.constraint(equalToConstant: 100)
