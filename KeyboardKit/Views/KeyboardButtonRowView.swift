@@ -31,6 +31,15 @@ open class KeyboardButtonRowView: UIView, KeyboardComponent {
     
     // MARK: - KeyboardComponent
     
+    public lazy var buttonStackView: UIStackView = {
+        let stackView = UIStackView(frame: .zero)
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        addSubview(stackView, fill: true)
+        return stackView
+    }()
+    
     public lazy var heightConstraint: NSLayoutConstraint = {
         let constraint = heightAnchor.constraint(equalToConstant: 100)
         constraint.isActive = true

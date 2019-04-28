@@ -43,16 +43,21 @@ class KeyboardViewController: KeyboardInputViewController {
         
         view1 = KeyboardButtonRowView(rowHeight: 70)
         view1.backgroundColor = .green
-        view1.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        view1.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         keyboardStackView.addArrangedSubview(view1)
+        
+        let view11 = UIView(frame: .zero)
+        view11.backgroundColor = .green
+        let view12 = UIView(frame: .zero)
+        view12.backgroundColor = .red
+        view1.buttonStackView.addArrangedSubview(view11)
+        view1.buttonStackView.addArrangedSubview(view12)
 
         keyboardView = KeyboardCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         keyboardView.backgroundColor = .yellow
-        keyboardView.heightConstraint.constant = 200
-        keyboardView.setContentHuggingPriority(.defaultLow, for: .vertical)
-        keyboardView.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        keyboardView.heightConstraint.constant = 100
         keyboardStackView.addArrangedSubview(keyboardView)
+        
+        //keyboardStackView.spacing = 10
 ////
 //        let view3 = KeyboardButtonRowView(rowHeight: 60)
 //        view3.backgroundColor = .green
