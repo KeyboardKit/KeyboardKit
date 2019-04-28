@@ -88,6 +88,7 @@ open class GridKeyboardPresenter: CollectionKeyboardPresenter {
     
     // MARK: - View Properties
     
+    
 //    open lazy var pageControl = UIPageControl(frame: .zero)
 //
 //    open var leftSystemButtons: [UIButton] = [] {

@@ -5,11 +5,13 @@
 
 This version contains several breaking changes, that aim at streamlining the library and remove or refactor parts that make it hard to maintain. I hope (and believe) that these changes will make it easier for you as well.
 
-Most notably, the view controller inheritance model has been replaced by moving the rendering responsibilities from the view controller to a new `KeyboardPresenter`, using the new `keyboardPresenter` property. This means that instead of inheriting a certain view controller, like before, you now instead pick a presenter that you want to use within your keyboard extension. This means that you can now have different kind of keyboard layouts and rendering styles in the same extension. All view controllers use a `NoneKeyboardPresenter` by default, but you can replace this at any time by setting the `keyboardPresenter` property to a new presenter.
+Most notably, the view controller inheritance model is replaced by moving presentation responsibilities from the view controllers to a new `KeyboardPresenter`, using the new `keyboardPresenter` property. This means that instead of inheriting a certain view controller, you now set a presenter that you want to use instead. This means that you can use different presentations in the same extension. All view controllers use a `NoneKeyboardPresenter` by default, but you can replace this at any time by setting `keyboardPresenter` to a new presenter.
 
-All keyboard action handling has also been moved from the view controllers into a new `KeyboardActionHandler`, using the new `keyboardActionHandler` property. All view controllers use a `StandardActionHandler` by default, but you can replace this at any time by setting the `keyboardActionHandler` property to a new handler.
+All keyboard action handling has also been moved from the view controllers to a new `KeyboardActionHandler`, using the new `keyboardActionHandler` property. All view controllers use a `StandardActionHandler` by default, but you can replace this at any time by setting the `keyboardActionHandler` property to a new handler.
 
-This version also removes some `KeyboardAction` equality logic, since these should be resolved by type checks. For instance, instead of using `isNone`, you should use `== .none`.  All help properties like `image` and `imageName` are removed as well, since they can be resolved by switching over the action. The old property setup is a broken window that just adds complexity.
+This version also removes some `KeyboardAction` equality logic, since these should be resolved by type checks. For instance, instead of using `isNone`, you should use `== .none`.  All help properties like `image` and `imageName` are removed as well, since they can be resolved by switching over the action.
+
+Since the height of the extension automatically changes depending on the constraints of its views, the old `setHeight(to:)` function has been removed. Instead, `KeyboardInputViewController` now adds a stack view to your extension, that will resize the extension depending on the views you add to it. Use this if you want. To help you out, there are some new views that simplify adding collection views and system rows to your extension.
 
 New `KeyboardAction` cases have also been added - `moveCursorBack` and `moveCursorForward`.
 

@@ -29,54 +29,44 @@ open class CollectionKeyboardPresenter: NSObject, KeyboardPresenter/*, UICollect
     
     // MARK: - Initialization
     
-    public init(id: String? = nil, viewController: KeyboardViewController) {
+    public init(id: String? = nil, viewController: KeyboardInputViewController) {
         self.id = id
-//        self.viewController = viewController
-//        let layout = UICollectionViewFlowLayout()
-//        self.collectionView = UICollectionView.init(frame: .zero, collectionViewLayout: layout)
-//        super.init()
-//        setupCollectionView()
+        self.viewController = viewController
+        super.init()
     }
     
     
     // MARK: - Dependencies
     
-//    public unowned let viewController: KeyboardViewController
+    private unowned let viewController: KeyboardInputViewController
     
     
     // MARK: - Properties
     
     public let id: String?
 //
-//    public let collectionView: UICollectionView
-//
-//    public private(set) var collectionViewHeight: NSLayoutConstraint!
-//
-//    public var keyboard: Keyboard {
-//        return viewController.keyboard
-//    }
-    
-    
-    // MARK: - Setup
-    
-//    open func setupCollectionView() {
-//        guard let view = viewController.view else { return }
+    public lazy var collectionView: KeyboardCollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        return KeyboardCollectionView(frame: .zero, collectionViewLayout: layout)
 //        collectionView.delegate = self
 //        collectionView.dataSource = self
-//        view.addSubview(collectionView)
 //        collectionView.translatesAutoresizingMaskIntoConstraints = false
 //        collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
 //        collectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
 //        collectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
 //        collectionViewHeight = collectionView.heightAnchor.constraint(equalToConstant: 100)
 //        collectionViewHeight?.isActive = true
-//    }
+    }()
     
     
-    // MARK: - Refresh
+    // MARK: - KeyboardPresenter
     
     open func refresh() {
 //        collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    public func setup(with keyboard: Keyboard, in viewController: KeyboardInputViewController) {
+        
     }
     
     

@@ -21,11 +21,6 @@
  add to your keyboard extensions. They will send any actions
  that the user triggers to the action handler.
  
- `setHeight(to:)` can be used to to change the height of the
- keyboard extension. Do not use this whenever you use a grid
- based keyboard, since this class will automatically set the
- extension height based on the grid.
- 
  `viewWillSyncWithTextDocumentProxy()` is triggered when the
  view controller will appear or when the text document proxy
  text changes. Use this to apply any style you think matches
@@ -35,10 +30,15 @@
 
 import UIKit
 
-open class KeyboardViewController: UIInputViewController {
+open class KeyboardInputViewController: UIInputViewController {
     
     
     // MARK: - View Controller Lifecycle
+    
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        view.addSubview(keyboardStackView, fill: true)
+    }
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -64,7 +64,16 @@ open class KeyboardViewController: UIInputViewController {
     
     open var settings = StandardKeyboardSettings()
     
-    private var heightConstraint: NSLayoutConstraint?
+    
+    // MARK: - View Properties
+    
+    public lazy var keyboardStackView: UIStackView = {
+        let stackView = UIStackView(frame: .zero)
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        return stackView
+    }()
     
     
     // MARK: - UITextInputDelegate
@@ -89,15 +98,5 @@ open class KeyboardViewController: UIInputViewController {
         view.addTapGestureRecognizer { [weak self] in
             self?.keyboardActionHandler.handleTap(on: action)
         }
-    }
-    
-    open func setHeight(to height: CGFloat) {
-        heightConstraint?.constant = height
-        if heightConstraint != nil { return }
-        let constraint = NSLayoutConstraint.attribute(.height, in: view, constant: height)
-        constraint.priority = .required
-        constraint.isActive = true
-        view.addConstraint(constraint)
-        heightConstraint = constraint
     }
 }

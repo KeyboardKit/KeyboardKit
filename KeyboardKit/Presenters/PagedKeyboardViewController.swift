@@ -22,7 +22,7 @@
 
 import UIKit
 
-public protocol PagedKeyboardViewController: KeyboardViewController {
+public protocol PagedKeyboardViewController: KeyboardInputViewController {
 
     var canRestoreLastPageIndex: Bool { get }
     var currentPageIndex: Int { get set }

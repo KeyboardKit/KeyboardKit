@@ -27,17 +27,59 @@
 import UIKit
 import KeyboardKit
 
-class KeyboardViewController: KeyboardKit.KeyboardViewController {
+
+class KeyboardView: KeyboardCollectionView {
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 100, height: 500)
+    }
+}
+
+class KeyboardViewController: KeyboardInputViewController {
     
     
     // MARK: - View Controller Lifecycle
     
+    
+    var keyboardView: KeyboardView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         gridPresenter = DemoPresenter(id: "foo", viewController: self)
+
+        
+        let view1 = KeyboardButtonRowView(rowHeight: 50)
+        view1.backgroundColor = .green
+        view1.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        view1.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        keyboardStackView.addArrangedSubview(view1)
+
+        keyboardView = KeyboardView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        keyboardView.backgroundColor = .yellow
+        keyboardView.setContentHuggingPriority(.defaultLow, for: .vertical)
+        keyboardView.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        keyboardStackView.addArrangedSubview(keyboardView)
+////
+//        let view3 = KeyboardButtonRowView(rowHeight: 60)
+//        view3.backgroundColor = .green
+//        view3.setContentHuggingPriority(.defaultHigh, for: .vertical)
+//        view3.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+//        stackView.addArrangedSubview(view3)
+//
+//        view.addSubview(gridPresenter.collectionView)
+//        gridPresenter.collectionView.backgroundColor = .yellow
+//        gridPresenter.collectionView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        
 //        setupKeyboard(for: UIScreen.main.bounds.size)
 //        setupSystemButtons()
 //        keyboardActionHandler = DemoKeyboardActionHandler(inputViewController: self)
+        
+        
+        
+//        let expandedHeight = CGFloat(500)
+//        let heightConstraint =
+//            NSLayoutConstraint(item: stackView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: expandedHeight)
+//        stackView.addConstraint(heightConstraint)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

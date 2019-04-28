@@ -118,7 +118,7 @@ If you want to animate the keyboard buttons as the user types, you can let your 
 
 ### Extension height
 
-You can change the height of your keyboard extension by using the `setHeight(to:)` function.
+The height of the extension will automatically change to the constraints of the views you add to it.
 
 
 ### Extensions
