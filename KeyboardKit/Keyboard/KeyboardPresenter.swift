@@ -23,7 +23,6 @@ public protocol KeyboardPresenter {
     var id: String? { get }
     
     func refresh()
-    func setup(with keyboard: Keyboard, in viewController: KeyboardInputViewController)
 }
 
 public class NoneKeyboardPresenter: KeyboardPresenter {
@@ -31,5 +30,4 @@ public class NoneKeyboardPresenter: KeyboardPresenter {
     public var id: String? { return "" }
     
     public func refresh() {}
-    public func setup(with keyboard: Keyboard, in viewController: KeyboardInputViewController) {}
 }
