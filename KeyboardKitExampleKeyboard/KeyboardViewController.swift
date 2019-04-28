@@ -27,21 +27,13 @@
 import UIKit
 import KeyboardKit
 
-
-class KeyboardView: KeyboardCollectionView {
-    
-    override var intrinsicContentSize: CGSize {
-        return CGSize(width: 100, height: 500)
-    }
-}
-
 class KeyboardViewController: KeyboardInputViewController {
     
     
     // MARK: - View Controller Lifecycle
     
     
-    var keyboardView: KeyboardView!
+    var keyboardView: KeyboardCollectionView!
     var view1: KeyboardButtonRowView!
     
     override func viewDidLoad() {
@@ -55,8 +47,9 @@ class KeyboardViewController: KeyboardInputViewController {
         view1.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         keyboardStackView.addArrangedSubview(view1)
 
-        keyboardView = KeyboardView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        keyboardView = KeyboardCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         keyboardView.backgroundColor = .yellow
+        keyboardView.heightConstraint.constant = 200
         keyboardView.setContentHuggingPriority(.defaultLow, for: .vertical)
         keyboardView.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         keyboardStackView.addArrangedSubview(keyboardView)
@@ -87,6 +80,7 @@ class KeyboardViewController: KeyboardInputViewController {
         super.viewWillTransition(to: size, with: coordinator)
 //        setupKeyboard(for: size)
         view1.heightConstraint.constant = 20
+        keyboardView.heightConstraint.constant = 20
     }
     
     override func viewWillSyncWithTextDocumentProxy() {

@@ -25,4 +25,10 @@ open class KeyboardCollectionView: UICollectionView {
         isPagingEnabled = true
         backgroundColor = .clear
     }
+    
+    public lazy var heightConstraint: NSLayoutConstraint = {
+        let constraint = heightAnchor.constraint(equalToConstant: 100)
+        constraint.isActive = true
+        return constraint
+    }()
 }
