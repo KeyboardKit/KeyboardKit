@@ -45,12 +45,15 @@ class KeyboardViewController: KeyboardInputViewController {
         view1.backgroundColor = .green
         keyboardStackView.addArrangedSubview(view1)
         
-        let view11 = UIView(frame: .zero)
+        let view11 = KeyboardButtonView(frame: .zero)
         view11.backgroundColor = .green
-        let view12 = UIView(frame: .zero)
+        let view12 = KeyboardButtonView(frame: .zero)
         view12.backgroundColor = .red
+        let view13 = KeyboardButtonView(frame: .zero)
+        view13.backgroundColor = .green
         view1.buttonStackView.addArrangedSubview(view11)
         view1.buttonStackView.addArrangedSubview(view12)
+        view1.buttonStackView.addArrangedSubview(view13)
 
         keyboardView = KeyboardCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         keyboardView.backgroundColor = .yellow

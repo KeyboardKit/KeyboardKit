@@ -41,7 +41,7 @@ open class KeyboardButtonRow: UIView, KeyboardStackViewComponent {
     }()
     
     public lazy var heightConstraint: NSLayoutConstraint = {
-        let constraint = heightAnchor.constraint(equalToConstant: 100)
+        let constraint = heightAnchor.constraint(equalToConstant: 50)
         constraint.isActive = true
         return constraint
     }()
