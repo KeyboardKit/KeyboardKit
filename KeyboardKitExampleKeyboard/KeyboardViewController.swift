@@ -35,16 +35,16 @@ class KeyboardViewController: KeyboardInputViewController {
     
     var keyboardView: KeyboardCollectionView!
     var view1: KeyboardButtonRow!
+    var view2: KeyboardButtonRow!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         gridPresenter = DemoPresenter(id: "foo", viewController: self)
 
         
-        view1 = KeyboardButtonRow(rowHeight: 70)
+        view1 = KeyboardButtonRow(rowHeight: 44)
         view1.backgroundColor = .green
         keyboardStackView.addArrangedSubview(view1)
-        
         let view11 = KeyboardButtonView(frame: .zero)
         view11.backgroundColor = .green
         let view12 = KeyboardButtonView(frame: .zero)
@@ -60,17 +60,18 @@ class KeyboardViewController: KeyboardInputViewController {
         keyboardView.heightConstraint.constant = 100
         keyboardStackView.addArrangedSubview(keyboardView)
         
-        //keyboardStackView.spacing = 10
-////
-//        let view3 = KeyboardButtonRowView(rowHeight: 60)
-//        view3.backgroundColor = .green
-//        view3.setContentHuggingPriority(.defaultHigh, for: .vertical)
-//        view3.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-//        stackView.addArrangedSubview(view3)
-//
-//        view.addSubview(gridPresenter.collectionView)
-//        gridPresenter.collectionView.backgroundColor = .yellow
-//        gridPresenter.collectionView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        view2 = KeyboardButtonRow(rowHeight: 44)
+        view2.backgroundColor = .green
+        keyboardStackView.addArrangedSubview(view2)
+        let view21 = KeyboardButtonView(frame: .zero)
+        view21.backgroundColor = .green
+        let view22 = KeyboardButtonView(frame: .zero)
+        view22.backgroundColor = .red
+        let view23 = KeyboardButtonView(frame: .zero)
+        view23.backgroundColor = .green
+        view2.buttonStackView.addArrangedSubview(view21)
+        view2.buttonStackView.addArrangedSubview(view22)
+        view2.buttonStackView.addArrangedSubview(view23)
         
 //        setupKeyboard(for: UIScreen.main.bounds.size)
 //        setupSystemButtons()
