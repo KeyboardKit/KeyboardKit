@@ -45,12 +45,18 @@ class KeyboardViewController: KeyboardInputViewController {
         view1 = KeyboardButtonRow(rowHeight: 44)
         view1.backgroundColor = .green
         keyboardStackView.addArrangedSubview(view1)
+        
+        view1.buttonStackView.distribution = .equalSpacing
+        
         let view11 = KeyboardButtonView(frame: .zero)
-        view11.backgroundColor = .green
+        view11.width = 50
+        view11.backgroundColor = .blue
         let view12 = KeyboardButtonView(frame: .zero)
+        view12.width = 50
         view12.backgroundColor = .red
         let view13 = KeyboardButtonView(frame: .zero)
-        view13.backgroundColor = .green
+        view13.width = 50
+        view13.backgroundColor = .blue
         view1.buttonStackView.addArrangedSubview(view11)
         view1.buttonStackView.addArrangedSubview(view12)
         view1.buttonStackView.addArrangedSubview(view13)
