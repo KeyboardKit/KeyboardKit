@@ -49,12 +49,6 @@ open class CollectionKeyboardPresenter: NSObject, KeyboardPresenter, UICollectio
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        guard let view = viewController.view else { return collectionView }
-        collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-//        collectionViewHeight = collectionView.heightAnchor.constraint(equalToConstant: 100)
-//        collectionViewHeight?.isActive = true
         return collectionView
     }()
     

@@ -32,50 +32,16 @@ class KeyboardViewController: KeyboardInputViewController {
     
     // MARK: - View Controller Lifecycle
     
-    
-    var keyboardView: KeyboardCollectionView!
-    var view1: KeyboardButtonRow!
-    var view2: KeyboardButtonRow!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        gridPresenter = DemoPresenter(id: "foo", viewController: self)
-
-        
-        view1 = KeyboardButtonRow(rowHeight: 44)
-        view1.backgroundColor = .green
-        view1.buttonStackView.distribution = .equalSpacing
-        keyboardStackView.addArrangedSubview(view1)
         setupTopSystemButtons()
-
-        keyboardView = KeyboardCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        keyboardView.backgroundColor = .yellow
-        keyboardView.heightConstraint.constant = 100
-        keyboardStackView.addArrangedSubview(keyboardView)
-        
-        view2 = KeyboardButtonRow(rowHeight: 44)
-        view2.backgroundColor = .green
-        view2.buttonStackView.distribution = .equalSpacing
-        keyboardStackView.addArrangedSubview(view2)
+        setupKeyboard()
         setupBottomSystemButtons()
-        
-//        setupKeyboard(for: UIScreen.main.bounds.size)
-//        setupSystemButtons()
-//        keyboardActionHandler = DemoKeyboardActionHandler(inputViewController: self)
-        
-        
-        
-//        let expandedHeight = CGFloat(500)
-//        let heightConstraint =
-//            NSLayoutConstraint(item: stackView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: expandedHeight)
-//        stackView.addConstraint(heightConstraint)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 //        setupKeyboard(for: size)
-        view1.heightConstraint.constant = 20
-        keyboardView.heightConstraint.constant = 20
     }
     
     override func viewWillSyncWithTextDocumentProxy() {
@@ -86,6 +52,31 @@ class KeyboardViewController: KeyboardInputViewController {
     
     
     // MARK: - Setup
+    
+    func setupTopSystemButtons() {
+        let row = KeyboardButtonRow(rowHeight: 44)
+        row.backgroundColor = .green
+        row.buttonStackView.distribution = .equalSpacing
+        keyboardStackView.addArrangedSubview(row)
+        let actions: [KeyboardAction] = [.character("1"), .character("2"), .character("3"), .character("4"), .character("5")]
+        row.addButtons(with: actions, actionHandler: keyboardActionHandler, buttonCreator: { return systemButton(for: $0) })
+    }
+    
+    func setupKeyboard() {
+        gridPresenter = DemoPresenter(id: "presenter", viewController: self)
+        keyboardStackView.addArrangedSubview(gridPresenter.collectionView)
+        gridPresenter.collectionView.backgroundColor = .yellow
+        gridPresenter.collectionView.heightConstraint.constant = 100
+    }
+    
+    func setupBottomSystemButtons() {
+        let row = KeyboardButtonRow(rowHeight: 44)
+        row.backgroundColor = .green
+        row.buttonStackView.distribution = .equalSpacing
+        keyboardStackView.addArrangedSubview(row)
+        let actions: [KeyboardAction] = [.character("6"), .character("7"), .character("8"), .character("9"), .character("10")]
+        row.addButtons(with: actions, actionHandler: keyboardActionHandler, buttonCreator: { return systemButton(for: $0) })
+    }
     
 //    func setupGridPresenter() {
 //        let view = gridPresenter.collectionView
@@ -165,16 +156,6 @@ extension KeyboardViewController {
         case .image(_, _, let imageName): return UIImage(named: imageName)
         default: return nil
         }
-    }
-    
-    func setupTopSystemButtons() {
-        let actions: [KeyboardAction] = [.character("1"), .character("2"), .character("3"), .character("4"), .character("5")]
-        view1.addButtons(with: actions, actionHandler: keyboardActionHandler, buttonCreator: { return systemButton(for: $0) })
-    }
-    
-    func setupBottomSystemButtons() {
-        let actions: [KeyboardAction] = [.character("6"), .character("7"), .character("8"), .character("9"), .character("10")]
-        view2.addButtons(with: actions, actionHandler: keyboardActionHandler, buttonCreator: { return systemButton(for: $0) })
     }
     
     func systemButton(for action: KeyboardAction) -> UIView {
