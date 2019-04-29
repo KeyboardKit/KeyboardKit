@@ -16,11 +16,6 @@
  handler by default. You can replace these properties at any
  time, to customize the keyboard behavior.
  
- `addTapGesture(for:to:)` and `addLongPressGesture(for:to:)`
- can be used to add action gestures to button views that you
- add to your keyboard extensions. They will send any actions
- that the user triggers to the action handler.
- 
  `viewWillSyncWithTextDocumentProxy()` is triggered when the
  view controller will appear or when the text document proxy
  text changes. Use this to apply any style you think matches
@@ -81,22 +76,5 @@ open class KeyboardInputViewController: UIInputViewController {
     open override func textWillChange(_ textInput: UITextInput?) {
         super.textWillChange(textInput)
         viewWillSyncWithTextDocumentProxy()
-    }
-    
-    
-    // MARK: - Public Functions
-    
-    open func addLongPressGesture(for action: KeyboardAction, to view: UIView) {
-        view.removeLongPressGestureRecognizers()
-        view.addLongPressGestureRecognizer { [weak self] in
-            self?.keyboardActionHandler.handleLongPress(on: action)
-        }
-    }
-    
-    open func addTapGesture(for action: KeyboardAction, to view: UIView) {
-        view.removeTapGestureRecognizers()
-        view.addTapGestureRecognizer { [weak self] in
-            self?.keyboardActionHandler.handleTap(on: action)
-        }
     }
 }

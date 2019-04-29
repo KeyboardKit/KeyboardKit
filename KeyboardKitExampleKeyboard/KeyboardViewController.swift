@@ -44,22 +44,9 @@ class KeyboardViewController: KeyboardInputViewController {
         
         view1 = KeyboardButtonRow(rowHeight: 44)
         view1.backgroundColor = .green
-        keyboardStackView.addArrangedSubview(view1)
-        
         view1.buttonStackView.distribution = .equalSpacing
-        
-        let view11 = KeyboardButtonView(frame: .zero)
-        view11.width = 50
-        view11.backgroundColor = .blue
-        let view12 = KeyboardButtonView(frame: .zero)
-        view12.width = 50
-        view12.backgroundColor = .red
-        let view13 = KeyboardButtonView(frame: .zero)
-        view13.width = 50
-        view13.backgroundColor = .blue
-        view1.buttonStackView.addArrangedSubview(view11)
-        view1.buttonStackView.addArrangedSubview(view12)
-        view1.buttonStackView.addArrangedSubview(view13)
+        keyboardStackView.addArrangedSubview(view1)
+        setupTopSystemButtons()
 
         keyboardView = KeyboardCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         keyboardView.backgroundColor = .yellow
@@ -68,16 +55,9 @@ class KeyboardViewController: KeyboardInputViewController {
         
         view2 = KeyboardButtonRow(rowHeight: 44)
         view2.backgroundColor = .green
+        view2.buttonStackView.distribution = .equalSpacing
         keyboardStackView.addArrangedSubview(view2)
-        let view21 = KeyboardButtonView(frame: .zero)
-        view21.backgroundColor = .green
-        let view22 = KeyboardButtonView(frame: .zero)
-        view22.backgroundColor = .red
-        let view23 = KeyboardButtonView(frame: .zero)
-        view23.backgroundColor = .green
-        view2.buttonStackView.addArrangedSubview(view21)
-        view2.buttonStackView.addArrangedSubview(view22)
-        view2.buttonStackView.addArrangedSubview(view23)
+        setupBottomSystemButtons()
         
 //        setupKeyboard(for: UIScreen.main.bounds.size)
 //        setupSystemButtons()
@@ -185,6 +165,23 @@ extension KeyboardViewController {
         case .image(_, _, let imageName): return UIImage(named: imageName)
         default: return nil
         }
+    }
+    
+    func setupTopSystemButtons() {
+        let actions: [KeyboardAction] = [.character("1"), .character("2"), .character("3"), .character("4"), .character("5")]
+        view1.addButtons(with: actions, actionHandler: keyboardActionHandler, buttonCreator: { return systemButton(for: $0) })
+    }
+    
+    func setupBottomSystemButtons() {
+        let actions: [KeyboardAction] = [.character("6"), .character("7"), .character("8"), .character("9"), .character("10")]
+        view2.addButtons(with: actions, actionHandler: keyboardActionHandler, buttonCreator: { return systemButton(for: $0) })
+    }
+    
+    func systemButton(for action: KeyboardAction) -> UIView {
+        let view = KeyboardButtonView(frame: .zero)
+        view.width = 50
+        view.backgroundColor = .red
+        return view
     }
 }
 

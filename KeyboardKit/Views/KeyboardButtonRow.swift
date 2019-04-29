@@ -29,6 +29,19 @@ open class KeyboardButtonRow: UIView, KeyboardStackViewComponent {
     }
     
     
+    // MARK: - Setup
+    
+    open func setup(with actions: [KeyboardAction], actionHandler: KeyboardActionHandler, buttonCreator: KeyboardButtonCreator) {
+        removeAllButtons()
+        addButtons(with: actions, actionHandler: actionHandler, buttonCreator: buttonCreator)
+    }
+    
+    
+    // MARK: - Types
+    
+    public typealias KeyboardButtonCreator = (KeyboardAction) -> (UIView)
+    
+    
     // MARK: - KeyboardComponent
     
     public lazy var buttonStackView: UIStackView = {
@@ -45,4 +58,23 @@ open class KeyboardButtonRow: UIView, KeyboardStackViewComponent {
         constraint.isActive = true
         return constraint
     }()
+    
+    
+    // MARK: - Open Functions
+    
+    open func addButtons(with actions: [KeyboardAction], actionHandler: KeyboardActionHandler, buttonCreator: KeyboardButtonCreator) {
+        actions.forEach {
+            let button = buttonCreator($0)
+            actionHandler.addTapGesture(for: $0, to: button)
+            actionHandler.addLongPressGesture(for: $0, to: button)
+            buttonStackView.addArrangedSubview(button)
+        }
+    }
+    
+    open func removeAllButtons() {
+        buttonStackView.arrangedSubviews.forEach {
+            buttonStackView.removeArrangedSubview($0)
+            $0.removeFromSuperview()
+        }
+    }
 }
