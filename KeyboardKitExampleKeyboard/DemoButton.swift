@@ -36,7 +36,7 @@ class DemoButton: KeyboardButtonView {
     // MARK: - Outlets
     
     @IBOutlet weak var buttonView: UIView? {
-        didSet { buttonView?.layer.cornerRadius = 10 }
+        didSet { buttonView?.layer.cornerRadius = 7 }
     }
     
     @IBOutlet weak var imageView: UIImageView?

@@ -8,15 +8,15 @@
 
 /*
  
- This presenter will create a collection view, which you can
- add to your keyboard view controller. By default, it gets a
- single section that has as many items as there are keyboard
- actions.
+ This presenter requires a view controller plus a collection
+ view and will setup the collection view with itself as data
+ source and delegate. By default, it provides the collection
+ view with a single section, with as many items as there are
+ keyboard actions.
  
- The presenter will set itself as the collection view's data
- source and delegate. When using it, you must inherit it and
- override `collectionView(cellForItemAt:)`, to specify which
- cell to use for each action.
+ When using this presenter, you must inherit it and override
+ `collectionView(cellForItemAt:)` to specify the cell to use
+ for each index path.
  
  */
 
@@ -27,30 +27,37 @@ open class CollectionKeyboardPresenter: NSObject, KeyboardPresenter, UICollectio
     
     // MARK: - Initialization
     
-    public init(id: String? = nil, viewController: KeyboardInputViewController) {
+    public init(
+        id: String? = nil,
+        viewController: KeyboardInputViewController,
+        collectionView: KeyboardCollectionView) {
         self.id = id
         self.viewController = viewController
+        self.collectionView = collectionView
         super.init()
+        setupCollectionView(collectionView)
+        refresh()
+    }
+    
+    
+    // MARK: - Setup
+    
+    open func setupCollectionView(_ view: KeyboardCollectionView) {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     
     // MARK: - Dependencies
     
-    private unowned let viewController: KeyboardInputViewController
+    public unowned let collectionView: KeyboardCollectionView
+    public unowned let viewController: KeyboardInputViewController
     
     
     // MARK: - Properties
     
     public let id: String?
-
-    public lazy var collectionView: KeyboardCollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let collectionView = KeyboardCollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        return collectionView
-    }()
     
     var keyboard: Keyboard {
         return viewController.keyboard

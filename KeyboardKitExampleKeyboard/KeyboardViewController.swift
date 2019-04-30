@@ -59,14 +59,16 @@ class KeyboardViewController: KeyboardInputViewController {
         row.buttonStackView.distribution = .equalSpacing
         keyboardStackView.addArrangedSubview(row)
         let actions: [KeyboardAction] = [.character("1"), .character("2"), .character("3"), .character("4"), .character("5")]
-        row.addButtons(with: actions, actionHandler: keyboardActionHandler, buttonCreator: { return systemButton(for: $0) })
+        row.addButtons(with: actions, actionHandler: keyboardActionHandler, buttonCreator: { return button(for: $0) })
     }
     
     func setupKeyboard() {
-        gridPresenter = DemoPresenter(id: "presenter", viewController: self)
-        keyboardStackView.addArrangedSubview(gridPresenter.collectionView)
-        gridPresenter.collectionView.backgroundColor = .yellow
-        gridPresenter.collectionView.heightConstraint.constant = 100
+        let collectionView = KeyboardCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        keyboardStackView.addArrangedSubview(collectionView)
+        collectionView.backgroundColor = .yellow
+        collectionView.heightConstraint.constant = 100
+        let config = GridKeyboardPresenter.GridConfiguration(rowsPerPage: 3, buttonsPerRow: 5, rowHeight: 50)
+        gridPresenter = DemoPresenter(id: "presenter", viewController: self, collectionView: collectionView, configuration: config)
     }
     
     func setupBottomSystemButtons() {
@@ -75,7 +77,7 @@ class KeyboardViewController: KeyboardInputViewController {
         row.buttonStackView.distribution = .equalSpacing
         keyboardStackView.addArrangedSubview(row)
         let actions: [KeyboardAction] = [.character("6"), .character("7"), .character("8"), .character("9"), .character("10")]
-        row.addButtons(with: actions, actionHandler: keyboardActionHandler, buttonCreator: { return systemButton(for: $0) })
+        row.addButtons(with: actions, actionHandler: keyboardActionHandler, buttonCreator: { return button(for: $0) })
     }
 //    
 //    func setupKeyboard(for size: CGSize) {
@@ -90,8 +92,10 @@ class KeyboardViewController: KeyboardInputViewController {
     // MARK: - Properties
     
     var alerter = ToastAlert()
-    
+    var collectionView: UICollectionView!
     var gridPresenter: GridKeyboardPresenter!
+    
+    
     
     
     // MARK: - Layout
@@ -125,7 +129,14 @@ class KeyboardViewController: KeyboardInputViewController {
 
 extension KeyboardViewController {
     
-    func systemButton(for action: KeyboardAction) -> UIView {
+    func button(for action: KeyboardAction) -> UIView {
+        let view = DemoButton.initWithDefaultNib(owner: self)
+        view.setup(with: action, appearance: textDocumentProxy.keyboardAppearance ?? .dark, tintColor: .black)
+        view.width = 50
+        return view
+    }
+    
+    func cell(for action: KeyboardAction) -> UIView {
         let view = DemoButton.initWithDefaultNib(owner: self)
         view.setup(with: action, appearance: textDocumentProxy.keyboardAppearance ?? .dark, tintColor: .black)
         view.width = 50
@@ -136,11 +147,6 @@ extension KeyboardViewController {
 
 class DemoPresenter: GridKeyboardPresenter {
     
-//    public override init(id: String? = nil, viewController: KeyboardKit.KeyboardViewController) {
-//        super.init(id: id, viewController: viewController)
-//        setupPageControl()
-//    }
-//
 //    open override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 //        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
 //        guard

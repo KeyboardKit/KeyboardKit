@@ -42,23 +42,55 @@ can be displayed on one screen.
 import UIKit
 
 open class GridKeyboardPresenter: CollectionKeyboardPresenter {
-
+    
     
     // MARK: - Initialization
     
-//    public override init(id: String? = nil, viewController: KeyboardViewController) {
-//        super.init(id: id, viewController: viewController)
-//        setupPageControl()
-//    }
+    public init(
+        id: String? = nil,
+        viewController: KeyboardInputViewController,
+        collectionView: KeyboardCollectionView,
+        configuration: GridConfiguration) {
+        self.configuration = configuration
+        super.init(id: id, viewController: viewController, collectionView: collectionView)
+    }
     
+//    public init(id: String? = nil, rowsPerPage: Int = 3, buttonsPerRow: Int = 6, rowHeight: Int = 50, viewController: KeyboardInputViewController) {
+//        gridLayout = GridKeyboardLayout(rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)
+    
+//        self.id = id
+//        self.viewController = viewController
+//        super.init()
+//    }
+
     
     // MARK: - Setup
+
+    open override func setupCollectionView(_ view: KeyboardCollectionView) {
+        super.setupCollectionView(view)
+        view.height = CGFloat(configuration.rowHeight * configuration.rowsPerPage)
+    }
+
     
-//    open func setup(withHeight height: CGFloat, rowsPerPage: Int, buttonsPerRow: Int) {
-//        gridLayout = GridKeyboardLayout(rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)
-//        setupKeyboardButtons(from: keyboard)
-//        setExtensionHeight(to: height)
-//    }
+    // MARK: - Properties
+    
+    private let configuration: GridConfiguration
+    
+    
+    // MARK: - Types
+    
+    public struct GridConfiguration {
+        
+        public init(rowsPerPage: Int, buttonsPerRow: Int, rowHeight: Int) {
+            self.rowsPerPage = rowsPerPage
+            self.buttonsPerRow = buttonsPerRow
+            self.rowHeight = rowHeight
+        }
+        
+        public let rowsPerPage: Int
+        public let buttonsPerRow: Int
+        public let rowHeight: Int
+    }
     
 //    open func setupKeyboardButtons(from keyboard: Keyboard) {
 //        let pageSize = keyboardButtonsPerPage
@@ -116,10 +148,10 @@ open class GridKeyboardPresenter: CollectionKeyboardPresenter {
 //        }
 //    }
     
-//    public var gridLayout = GridKeyboardLayout(rowsPerPage: 3, buttonsPerRow: 6) {
+//    public var gridLayout: GridKeyboardLayout {
 //        didSet { collectionView.collectionViewLayout = gridLayout }
 //    }
-//
+
 //    public var hasMultiplePages: Bool {
 //        return keyboardPages.count > 1
 //    }
