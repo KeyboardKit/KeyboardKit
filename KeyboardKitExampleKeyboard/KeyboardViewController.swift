@@ -151,17 +151,10 @@ class KeyboardViewController: KeyboardInputViewController {
 
 extension KeyboardViewController {
     
-    func image(for action: KeyboardAction) -> UIImage? {
-        switch action {
-        case .image(_, _, let imageName): return UIImage(named: imageName)
-        default: return nil
-        }
-    }
-    
     func systemButton(for action: KeyboardAction) -> UIView {
-        let view = KeyboardButtonView(frame: .zero)
+        let view = DemoButton.initWithDefaultNib(owner: self)
+        view.setup(with: action, appearance: textDocumentProxy.keyboardAppearance ?? .dark, tintColor: .black)
         view.width = 50
-        view.backgroundColor = .red
         return view
     }
 }

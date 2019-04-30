@@ -132,6 +132,9 @@
 		846F1C632276474800314DC8 /* KeyboardButtonRowComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F1C622276474800314DC8 /* KeyboardButtonRowComponent.swift */; };
 		846F1C6522764A8500314DC8 /* KeyboardButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F1C6422764A8500314DC8 /* KeyboardButtonCell.swift */; };
 		846F1C6722764AA000314DC8 /* KeyboardButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F1C6622764AA000314DC8 /* KeyboardButtonView.swift */; };
+		84851A682277AE9300477705 /* DemoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851A672277AE9300477705 /* DemoButton.swift */; };
+		84851A6C2277AFE000477705 /* KeyboardAction+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851A6B2277AFE000477705 /* KeyboardAction+Display.swift */; };
+		84851A6E2277B11100477705 /* DemoButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84851A6D2277B11100477705 /* DemoButton.xib */; };
 		84851DE32166A3EF00DE8886 /* KeyboardSettingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851DE22166A3EF00DE8886 /* KeyboardSettingTests.swift */; };
 		84851DE82166A56D00DE8886 /* KeyboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851DE72166A56D00DE8886 /* KeyboardTests.swift */; };
 		84851DEA2166B19600DE8886 /* KeyboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851DE92166B19600DE8886 /* KeyboardPresenter.swift */; };
@@ -307,6 +310,9 @@
 		846F1C622276474800314DC8 /* KeyboardButtonRowComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButtonRowComponent.swift; sourceTree = "<group>"; };
 		846F1C6422764A8500314DC8 /* KeyboardButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButtonCell.swift; sourceTree = "<group>"; };
 		846F1C6622764AA000314DC8 /* KeyboardButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButtonView.swift; sourceTree = "<group>"; };
+		84851A672277AE9300477705 /* DemoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoButton.swift; sourceTree = "<group>"; };
+		84851A6B2277AFE000477705 /* KeyboardAction+Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardAction+Display.swift"; sourceTree = "<group>"; };
+		84851A6D2277B11100477705 /* DemoButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DemoButton.xib; sourceTree = "<group>"; };
 		84851DE22166A3EF00DE8886 /* KeyboardSettingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSettingTests.swift; sourceTree = "<group>"; };
 		84851DE72166A56D00DE8886 /* KeyboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardTests.swift; sourceTree = "<group>"; };
 		84851DE92166B19600DE8886 /* KeyboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardPresenter.swift; sourceTree = "<group>"; };
@@ -491,6 +497,8 @@
 				84511D39227110BC00904FE0 /* DemoKeyboardActionHandler.swift */,
 				45FB51AD20495CB1009D5806 /* Info.plist */,
 				45FB51AB20495CB1009D5806 /* KeyboardViewController.swift */,
+				84851A672277AE9300477705 /* DemoButton.swift */,
+				84851A6D2277B11100477705 /* DemoButton.xib */,
 			);
 			path = KeyboardKitExampleKeyboard;
 			sourceTree = "<group>";
@@ -566,6 +574,7 @@
 			children = (
 				45FCD01D2059E0CD0072157A /* UIView+Nib.swift */,
 				45FCD0212059E2220072157A /* UIView+Shadow.swift */,
+				84851A6B2277AFE000477705 /* KeyboardAction+Display.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -875,6 +884,7 @@
 				45A0D81E205892B900557A93 /* Assets.xcassets in Resources */,
 				450B1CAE206A298A006A2F18 /* globe.png in Resources */,
 				450B1C97206A298A006A2F18 /* rss.png in Resources */,
+				84851A6E2277B11100477705 /* DemoButton.xib in Resources */,
 				450B1CB8206A298A006A2F18 /* edit.png in Resources */,
 				450B1C9D206A298A006A2F18 /* zoom.png in Resources */,
 				450B1CB3206A298A006A2F18 /* video.png in Resources */,
@@ -988,10 +998,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84851A6C2277AFE000477705 /* KeyboardAction+Display.swift in Sources */,
 				45FCD01E2059E0CD0072157A /* UIView+Nib.swift in Sources */,
 				450B1C4320699F6C006A2F18 /* Asset.swift in Sources */,
 				45FB51AC20495CB1009D5806 /* KeyboardViewController.swift in Sources */,
 				84511D3A227110BC00904FE0 /* DemoKeyboardActionHandler.swift in Sources */,
+				84851A682277AE9300477705 /* DemoButton.swift in Sources */,
 				45FCD0182059DE330072157A /* DemoCell.swift in Sources */,
 				45FCD0222059E2220072157A /* UIView+Shadow.swift in Sources */,
 				45D1495420586280009EF441 /* DemoKeyboard.swift in Sources */,

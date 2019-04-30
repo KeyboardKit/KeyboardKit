@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class KeyboardButtonView: UIView, KeyboardButton, KeyboardButtonRowComponent {
+open class KeyboardButtonView: UIView, KeyboardButton, KeyboardButtonRowComponent {
     
     public lazy var widthConstraint: NSLayoutConstraint = {
         let constraint = widthAnchor.constraint(equalToConstant: 50)
