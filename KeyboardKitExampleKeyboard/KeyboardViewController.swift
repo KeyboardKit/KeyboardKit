@@ -77,13 +77,6 @@ class KeyboardViewController: KeyboardInputViewController {
         let actions: [KeyboardAction] = [.character("6"), .character("7"), .character("8"), .character("9"), .character("10")]
         row.addButtons(with: actions, actionHandler: keyboardActionHandler, buttonCreator: { return systemButton(for: $0) })
     }
-    
-//    func setupGridPresenter() {
-//        let view = gridPresenter.collectionView
-//        view.contentInset.top = 5
-//        view.contentInset.bottom = 10
-//        view.register(DemoCell.defaultNib, forCellWithReuseIdentifier: "Cell")
-//    }
 //    
 //    func setupKeyboard(for size: CGSize) {
 //        let isLandscape = size.width > 400
@@ -91,25 +84,6 @@ class KeyboardViewController: KeyboardInputViewController {
 //        let rowsPerPage = isLandscape ? 3 : 4
 //        let buttonsPerRow = isLandscape ? 8 : 6
 //        gridPresenter.setup(withHeight: height, rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)
-//    }
-//    
-//    func setupSystemButtons() {
-//        setupLeftSystemButtons()
-//        setupRightSystemButtons()
-//    }
-//    
-//    func setupLeftSystemButtons() {
-//        gridPresenter.leftSystemButtons = [
-//            gridPresenter.createSystemButton(image: Asset.globe.image, action: .nextKeyboard),
-//            gridPresenter.createSystemButton(image: Asset.space.image, action: .space)
-//            ].compactMap { $0 }
-//    }
-//    
-//    func setupRightSystemButtons() {
-//        gridPresenter.rightSystemButtons = [
-//            gridPresenter.createSystemButton(image: Asset.backspace.image, action: .backspace),
-//            gridPresenter.createSystemButton(image: Asset.newline.image, action: .newLine)
-//            ].compactMap { $0 }
 //    }
     
     
