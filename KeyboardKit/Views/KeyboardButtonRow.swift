@@ -65,8 +65,7 @@ open class KeyboardButtonRow: UIView, KeyboardStackViewComponent {
     open func addButtons(with actions: [KeyboardAction], actionHandler: KeyboardActionHandler, buttonCreator: KeyboardButtonCreator) {
         actions.forEach {
             let button = buttonCreator($0)
-            actionHandler.addTapGesture(for: $0, to: button)
-            actionHandler.addLongPressGesture(for: $0, to: button)
+            actionHandler.addKeyboardGestures(for: $0, to: button)
             buttonStackView.addArrangedSubview(button)
         }
     }

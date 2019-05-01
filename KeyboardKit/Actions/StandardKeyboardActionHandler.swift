@@ -74,7 +74,10 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     open func longPressAction(for action: KeyboardAction) -> (() -> ())? {
-        return tapAction(for: action)
+        switch action {
+        case .nextKeyboard: return { [weak self] in self?.inputViewController?.handleInputModeList(from: UIView(), with: UIEvent()) }
+        default: return nil
+        }
     }
     
     open func tapAction(for action: KeyboardAction) -> (() -> ())? {

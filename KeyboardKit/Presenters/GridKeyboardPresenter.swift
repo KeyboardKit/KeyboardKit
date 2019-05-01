@@ -10,13 +10,14 @@
  
  This class inherits CollectionKeyboardPresenter and extends
  it with a grid layout that presents the keyboard buttons in
- an even-sized, horizontally scrolling grid. It will present
- a page indicator if the keyboard has more actions than what
-can be displayed on one screen.
+ an even-sized, horizontally scrolling grid.
  
  This class is well suited for emoji keyboards, since emojis
  are often evenly distributed with the same button size. You
  can modify the grid layout at any time.
+ 
+ 
+ TODO:
  
  The class overrides `action(at:)` to account for the way it
  splits up the keyboard actions into chunks and presents one
@@ -52,29 +53,25 @@ open class GridKeyboardPresenter: CollectionKeyboardPresenter {
         collectionView: KeyboardCollectionView,
         configuration: GridConfiguration) {
         self.configuration = configuration
+        self.keyboardRows = viewController.keyboard.actions.batched(withBatchSize: configuration.buttonsPerRow)
         super.init(id: id, viewController: viewController, collectionView: collectionView)
     }
-    
-//    public init(id: String? = nil, rowsPerPage: Int = 3, buttonsPerRow: Int = 6, rowHeight: Int = 50, viewController: KeyboardInputViewController) {
-//        gridLayout = GridKeyboardLayout(rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)
-    
-//        self.id = id
-//        self.viewController = viewController
-//        super.init()
-//    }
 
     
     // MARK: - Setup
 
     open override func setupCollectionView(_ view: KeyboardCollectionView) {
         super.setupCollectionView(view)
-        view.height = CGFloat(configuration.rowHeight * configuration.rowsPerPage)
+        let height = configuration.rowHeight * configuration.rowsPerPage
+        view.height = CGFloat(height)
     }
 
     
     // MARK: - Properties
     
     private let configuration: GridConfiguration
+    
+    public let keyboardRows: [[KeyboardAction]]
     
     
     // MARK: - Types
@@ -92,17 +89,6 @@ open class GridKeyboardPresenter: CollectionKeyboardPresenter {
         public let rowHeight: Int
     }
     
-//    open func setupKeyboardButtons(from keyboard: Keyboard) {
-//        let pageSize = keyboardButtonsPerPage
-//        let actions = getActions(from: keyboard.actions, evenlyFitting: pageSize)
-//        keyboardPages = actions.batched(withBatchSize: pageSize)
-//    }
-    
-//    open func setupPageControl() {
-//        viewController.view?.insertSubview(pageControl, belowSubview: collectionView)
-//        pageControl.isUserInteractionEnabled = false
-//    }
-//
 //    open func setupSystemButtonGesture(for button: UIButton, action: KeyboardAction) {
 //        switch action {
 //        case .nextKeyboard:

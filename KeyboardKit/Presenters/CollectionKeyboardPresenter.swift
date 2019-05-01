@@ -16,7 +16,9 @@
  
  When using this presenter, you must inherit it and override
  `collectionView(cellForItemAt:)` to specify the cell to use
- for each index path.
+ at each index path. You may also have to adjust it in other
+ ways, override and implement other functions etc., since it
+ doesn't do anything else and doesn't handle any taps.
  
  */
 
@@ -72,13 +74,6 @@ open class CollectionKeyboardPresenter: NSObject, KeyboardPresenter, UICollectio
     }
     
     
-    // MARK: - Public Functions
-    
-    open func keyboardAction(at indexPath: IndexPath) -> KeyboardAction? {
-        return keyboard.actions[indexPath.row]
-    }
-    
-    
     // MARK: - UICollectionViewDataSource
     
     open func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -91,13 +86,5 @@ open class CollectionKeyboardPresenter: NSObject, KeyboardPresenter, UICollectio
 
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return UICollectionViewCell()
-    }
-    
-    
-    // MARK: - UICollectionViewDelegate
-    
-    open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let action = keyboardAction(at: indexPath) else { return }
-        viewController.keyboardActionHandler.handleTap(on: action)
     }
 }

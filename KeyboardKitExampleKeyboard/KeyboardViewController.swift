@@ -58,7 +58,7 @@ class KeyboardViewController: KeyboardInputViewController {
         row.backgroundColor = .green
         row.buttonStackView.distribution = .equalSpacing
         keyboardStackView.addArrangedSubview(row)
-        let actions: [KeyboardAction] = [.character("1"), .character("2"), .character("3"), .character("4"), .character("5")]
+        let actions: [KeyboardAction] = [.nextKeyboard, .character("2"), .character("3"), .character("4"), .character("5")]
         row.addButtons(with: actions, actionHandler: keyboardActionHandler, buttonCreator: { return button(for: $0) })
     }
     
