@@ -23,8 +23,7 @@ open class KeyboardButtonRow: UIView, KeyboardStackViewComponent {
     
     open func setup(with actions: [KeyboardAction], buttonCreator: KeyboardButtonCreator) {
         removeAllButtons()
-        let buttons = actions.map {buttonCreator($0) }
-        buttons.forEach { buttonStackView.addArrangedSubview($0) }
+        addButtons(with: actions, buttonCreator: buttonCreator)
     }
     
     
@@ -55,6 +54,11 @@ open class KeyboardButtonRow: UIView, KeyboardStackViewComponent {
     
     
     // MARK: - Functions
+    
+    open func addButtons(with actions: [KeyboardAction], buttonCreator: KeyboardButtonCreator) {
+        let buttons = actions.map {buttonCreator($0) }
+        buttons.forEach { buttonStackView.addArrangedSubview($0) }
+    }
     
     open func removeAllButtons() {
         buttonStackView.arrangedSubviews.forEach {
