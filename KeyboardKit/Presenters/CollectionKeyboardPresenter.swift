@@ -22,69 +22,69 @@
  
  */
 
-import UIKit
-
-open class CollectionKeyboardPresenter: NSObject, KeyboardPresenter, UICollectionViewDataSource, UICollectionViewDelegate {
-    
-    
-    // MARK: - Initialization
-    
-    public init(
-        id: String? = nil,
-        viewController: KeyboardInputViewController,
-        collectionView: KeyboardCollectionView) {
-        self.id = id
-        self.viewController = viewController
-        self.collectionView = collectionView
-        super.init()
-        setupCollectionView(collectionView)
-        refresh()
-    }
-    
-    
-    // MARK: - Setup
-    
-    open func setupCollectionView(_ view: KeyboardCollectionView) {
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    
-    // MARK: - Dependencies
-    
-    public unowned let collectionView: KeyboardCollectionView
-    public unowned let viewController: KeyboardInputViewController
-    
-    
-    // MARK: - Properties
-    
-    public let id: String?
-    
-    var keyboard: Keyboard {
-        return viewController.keyboard
-    }
-    
-    
-    // MARK: - KeyboardPresenter
-    
-    open func refresh() {
-        collectionView.collectionViewLayout.invalidateLayout()
-        collectionView.reloadData()
-    }
-    
-    
-    // MARK: - UICollectionViewDataSource
-    
-    open func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-
-    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return keyboard.actions.count
-    }
-
-    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
-    }
-}
+//import UIKit
+//
+//open class CollectionKeyboardPresenter: NSObject, KeyboardPresenter, UICollectionViewDataSource, UICollectionViewDelegate {
+//    
+//    
+//    // MARK: - Initialization
+//    
+//    public init(
+//        id: String? = nil,
+//        viewController: KeyboardInputViewController,
+//        collectionView: KeyboardCollectionView) {
+//        self.id = id
+//        self.viewController = viewController
+//        self.collectionView = collectionView
+//        super.init()
+//        setupCollectionView(collectionView)
+//        refresh()
+//    }
+//    
+//    
+//    // MARK: - Setup
+//    
+//    open func setupCollectionView(_ view: KeyboardCollectionView) {
+//        collectionView.delegate = self
+//        collectionView.dataSource = self
+//        collectionView.translatesAutoresizingMaskIntoConstraints = false
+//    }
+//    
+//    
+//    // MARK: - Dependencies
+//    
+//    public unowned let collectionView: KeyboardCollectionView
+//    public unowned let viewController: KeyboardInputViewController
+//    
+//    
+//    // MARK: - Properties
+//    
+//    public let id: String?
+//    
+//    var keyboard: Keyboard {
+//        return viewController.keyboard
+//    }
+//    
+//    
+//    // MARK: - KeyboardPresenter
+//    
+//    open func refresh() {
+//        collectionView.collectionViewLayout.invalidateLayout()
+//        collectionView.reloadData()
+//    }
+//    
+//    
+//    // MARK: - UICollectionViewDataSource
+//    
+//    open func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        return 1
+//    }
+//
+//    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return keyboard.actions.count
+//    }
+//
+//    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        return UICollectionViewCell()
+//    }
+//}

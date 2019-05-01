@@ -5,18 +5,13 @@
 
 This version aim at streamlining the library and remove or refactor parts that make it hard to maintain. It contains several breaking changes, but I hope that the changes will make it easier for you as well, as the library moves forward.
 
-Most notably, the view controller inheritance model is adjusted to move presentation responsibily to a new `KeyboardPresenter`. This means that instead of inheriting a certain view controller, the view controller has a `keyboardPresenter`. This means that you can use different presentations in the same keyboard extension, by changing the presenter. All view controllers use a `NoneKeyboardPresenter` by default, but you can replace this at any time by setting `keyboardPresenter` to a new presenter.
+Most notably, the view controller inheritance model has been completely removed. Instead, there is only one `KeyboardInputViewController`, which you should use instead of `UIInputViewController`. It has a stack view, to which you can add any views you like, like the built-in `KeyboardButtonRow` and `KeyboardCollectionView`.
 
 All keyboard action handling has also been moved from the view controllers to a new `KeyboardActionHandler`, using the new `keyboardActionHandler` property. All view controllers use a `StandardActionHandler` by default, but you can replace this at any time by setting the `keyboardActionHandler` property to a new handler.
 
-This version also removes some `KeyboardAction` equality logic, since these should be resolved by type checks. For instance, instead of using `isNone`, you should use `== .none`.  All help properties like `image` and `imageName` are removed as well, since they can be resolved by switching over the action.
+New `KeyboardAction` types have been added - `moveCursorBack`, `moveCursorForward` and `dismissKeyboard`. `nextKeyboard` has been renamed to `switchKeyboard`. Action equality logic has also been removed, so instead of `isNone`, you should use `== .none` from now on.  All help properties like `image` and `imageName` are removed as well, since they belong in the app.
 
-Since the height of the extension automatically changes depending on the constraints of its views, the old `setHeight(to:)` function has been removed. Instead, `KeyboardInputViewController` now adds a stack view to your extension, that will resize the extension depending on the views you add to it. Use this if you want. To help you out, there are some new views that simplify adding collection views and system rows to your extension.
-
-New `KeyboardAction` cases have also been added - `moveCursorBack` and `moveCursorForward`.
-
-`CollectionKeyboardViewController` now has a `KeyboardCollectionView` instead of a standard `UICollectionView`. The collection view property setup has been moved into this class.
-
+Since the height of the extension automatically changes depending on the constraints of its views, the old `setHeight(to:)` function has been removed. Instead, `KeyboardInputViewController` will resize the extension to the size of the stack view.
 
 
 ## 1.0.0

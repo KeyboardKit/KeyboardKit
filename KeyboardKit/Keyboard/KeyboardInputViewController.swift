@@ -12,9 +12,8 @@
  basic set of functionality. You can subclass this class and
  override anything to modify the standard behavior.
  
- This class uses an action-less keyboard and standard action
- handler by default. You can replace these properties at any
- time, to customize the keyboard behavior.
+ The class uses an actionless keyboard and a standard action
+ handler by default. You can replace them at any time.
  
  `viewWillSyncWithTextDocumentProxy()` is triggered when the
  view controller will appear or when the text document proxy
@@ -51,10 +50,6 @@ open class KeyboardInputViewController: UIInputViewController {
     
     open lazy var keyboardActionHandler: KeyboardActionHandler = {
         StandardKeyboardActionHandler(inputViewController: self)
-    }()
-    
-    open lazy var keyboardPresenter: KeyboardPresenter = {
-        NoneKeyboardPresenter()
     }()
     
     open var settings = StandardKeyboardSettings()

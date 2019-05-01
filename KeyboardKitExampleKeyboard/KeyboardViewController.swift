@@ -98,35 +98,7 @@ class KeyboardViewController: KeyboardInputViewController {
     
     var alerter = ToastAlert()
     var collectionView: UICollectionView!
-    var gridPresenter: GridKeyboardPresenter!
-    
-    
-    
-    
-    // MARK: - Layout
-    
-    /*override func layoutSystemButtons(_ buttons: [UIView], buttonSize: CGSize, startX: CGFloat, y: CGFloat) {
-        super.layoutSystemButtons(buttons, buttonSize: buttonSize, startX: startX, y: y)
-        buttons.forEach {
-            let center = $0.center
-            $0.frame.size = CGSize(width: 25, height: 25)
-            $0.center = center
-        }
-    }*/
-    
-    
-    // MARK: - UICollectionViewDataSource
-    
-//    open override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-//        guard
-//            let action = keyboardAction(at: indexPath),
-//            let buttonCell = cell as? DemoCell
-//            else { return cell }
-//        buttonCell.setup(with: action, appearance: keyboardAppearance, tintColor: collectionView.tintColor)
-//        addLongPressGesture(for: action, to: buttonCell)
-//        return cell
-//    }
+    //var gridPresenter: GridKeyboardPresenter!
 }
 
 
@@ -140,20 +112,4 @@ extension KeyboardViewController {
         view.width = 50
         return view
     }
-}
-
-
-class DemoPresenter: GridKeyboardPresenter {
-    
-//    open override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-//        guard
-//            let action = keyboardAction(at: indexPath),
-//            let buttonCell = cell as? DemoCell
-//            else { return cell }
-//        let appearance = viewController.textDocumentProxy.keyboardAppearance ?? .light
-//        buttonCell.setup(with: action, appearance: appearance, tintColor: viewController.view.tintColor)
-//        viewController.addLongPressGesture(for: action, to: buttonCell)
-//        return cell
-//    }
 }

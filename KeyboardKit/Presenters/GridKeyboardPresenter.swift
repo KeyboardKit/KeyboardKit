@@ -40,55 +40,55 @@
  
  */
 
-import UIKit
+//import UIKit
+//
+//open class GridKeyboardPresenter: CollectionKeyboardPresenter {
+//
+//
+//    // MARK: - Initialization
+//
+//    public init(
+//        id: String? = nil,
+//        viewController: KeyboardInputViewController,
+//        collectionView: KeyboardCollectionView,
+//        configuration: GridConfiguration) {
+//        self.configuration = configuration
+//        self.keyboardRows = viewController.keyboard.actions.batched(withBatchSize: configuration.buttonsPerRow)
+//        super.init(id: id, viewController: viewController, collectionView: collectionView)
+//    }
+//
+//
+//    // MARK: - Setup
+//
+//    open override func setupCollectionView(_ view: KeyboardCollectionView) {
+//        super.setupCollectionView(view)
+//        let height = configuration.rowHeight * configuration.rowsPerPage
+//        view.height = CGFloat(height)
+//    }
+//
+//
+//    // MARK: - Properties
+//
+//    private let configuration: GridConfiguration
+//
+//    public let keyboardRows: [[KeyboardAction]]
+//
+//
+//    // MARK: - Types
+//
+//    public struct GridConfiguration {
+//
+//        public init(rowsPerPage: Int, buttonsPerRow: Int, rowHeight: Int) {
+//            self.rowsPerPage = rowsPerPage
+//            self.buttonsPerRow = buttonsPerRow
+//            self.rowHeight = rowHeight
+//        }
+//
+//        public let rowsPerPage: Int
+//        public let buttonsPerRow: Int
+//        public let rowHeight: Int
+//    }
 
-open class GridKeyboardPresenter: CollectionKeyboardPresenter {
-    
-    
-    // MARK: - Initialization
-    
-    public init(
-        id: String? = nil,
-        viewController: KeyboardInputViewController,
-        collectionView: KeyboardCollectionView,
-        configuration: GridConfiguration) {
-        self.configuration = configuration
-        self.keyboardRows = viewController.keyboard.actions.batched(withBatchSize: configuration.buttonsPerRow)
-        super.init(id: id, viewController: viewController, collectionView: collectionView)
-    }
-
-    
-    // MARK: - Setup
-
-    open override func setupCollectionView(_ view: KeyboardCollectionView) {
-        super.setupCollectionView(view)
-        let height = configuration.rowHeight * configuration.rowsPerPage
-        view.height = CGFloat(height)
-    }
-
-    
-    // MARK: - Properties
-    
-    private let configuration: GridConfiguration
-    
-    public let keyboardRows: [[KeyboardAction]]
-    
-    
-    // MARK: - Types
-    
-    public struct GridConfiguration {
-        
-        public init(rowsPerPage: Int, buttonsPerRow: Int, rowHeight: Int) {
-            self.rowsPerPage = rowsPerPage
-            self.buttonsPerRow = buttonsPerRow
-            self.rowHeight = rowHeight
-        }
-        
-        public let rowsPerPage: Int
-        public let buttonsPerRow: Int
-        public let rowHeight: Int
-    }
-    
     
     // MARK: - Public Properties
     
@@ -246,4 +246,4 @@ open class GridKeyboardPresenter: CollectionKeyboardPresenter {
 //        pageControl.currentPage = index
 //        viewController.settings.setCurrentPageIndex(index, for: self)
 //    }
-}
+//}

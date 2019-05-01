@@ -34,7 +34,7 @@ public extension PagedKeyboardViewController {
     
     func restoreLastPageIndex() {
         guard canRestoreLastPageIndex else { return }
-        let index = settings.getCurrentPageIndex(for: keyboardPresenter)
+        let index = 0 // TODO: settings.getCurrentPageIndex(for: keyboardPresenter)
         let maxIndex = numberOfPages - 1
         currentPageIndex = index.limit(min: 0, max: maxIndex)
     }
