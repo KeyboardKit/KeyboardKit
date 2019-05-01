@@ -59,7 +59,7 @@ class KeyboardViewController: KeyboardInputViewController {
     // MARK: - Setup
     
     func setupTopSystemButtons() {
-        let row = KeyboardButtonRow(rowHeight: 44)
+        let row = KeyboardButtonRow(height: 44)
         row.backgroundColor = .green
         row.buttonStackView.distribution = .equalSpacing
         keyboardStackView.addArrangedSubview(row)
@@ -68,16 +68,15 @@ class KeyboardViewController: KeyboardInputViewController {
     }
     
     func setupKeyboard() {
-        let collectionView = KeyboardCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        keyboardStackView.addArrangedSubview(collectionView)
+        let collectionView = KeyboardCollectionView()
         collectionView.backgroundColor = .yellow
-        collectionView.heightConstraint.constant = 100
-        let config = GridKeyboardPresenter.GridConfiguration(rowsPerPage: 3, buttonsPerRow: 5, rowHeight: 50)
+        keyboardStackView.addArrangedSubview(collectionView)
+        let config = GridKeyboardPresenter.GridConfiguration(rowsPerPage: 2, buttonsPerRow: 5, rowHeight: 50)
         gridPresenter = DemoPresenter(id: "presenter", viewController: self, collectionView: collectionView, configuration: config)
     }
     
     func setupBottomSystemButtons() {
-        let row = KeyboardButtonRow(rowHeight: 44)
+        let row = KeyboardButtonRow(height: 44)
         row.backgroundColor = .green
         row.buttonStackView.distribution = .equalSpacing
         keyboardStackView.addArrangedSubview(row)

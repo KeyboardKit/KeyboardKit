@@ -13,21 +13,23 @@ open class KeyboardCollectionView: UICollectionView, KeyboardStackViewComponent 
     
     // MARK: - Initialization
     
-    public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
-        super.init(frame: frame, collectionViewLayout: layout)
-        setup()
+    public convenience init() {
+        self.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     }
     
-    public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
     
-    open func setup() {
+    // MARK: - Setup
+    
+    open func setup(with actions: [KeyboardAction], buttonCreator: KeyboardCellCreator) {
         bounces = false
         isPagingEnabled = true
         backgroundColor = .clear
     }
+    
+    
+    // MARK: - Types
+    
+    public typealias KeyboardCellCreator = (KeyboardAction) -> (UICollectionViewCell)
     
     
     // MARK: - KeyboardComponent

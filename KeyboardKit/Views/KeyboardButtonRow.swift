@@ -13,19 +13,9 @@ open class KeyboardButtonRow: UIView, KeyboardStackViewComponent {
     
     // MARK: - Initialization
     
-    public init(rowHeight: CGFloat) {
-        super.init(frame: .zero)
-        heightConstraint.constant = rowHeight
-    }
-    
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        heightConstraint.constant = frame.height
-    }
-    
-    public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        heightConstraint.constant = 50
+    public convenience init(height: CGFloat) {
+        self.init(frame: .zero)
+        self.height = height
     }
     
     
@@ -43,7 +33,7 @@ open class KeyboardButtonRow: UIView, KeyboardStackViewComponent {
     public typealias KeyboardButtonCreator = (KeyboardAction) -> (UIView)
     
     
-    // MARK: - KeyboardComponent
+    // MARK: - View Properties
     
     public lazy var buttonStackView: UIStackView = {
         let stackView = UIStackView(frame: .zero)
@@ -54,6 +44,9 @@ open class KeyboardButtonRow: UIView, KeyboardStackViewComponent {
         return stackView
     }()
     
+    
+    // MARK: - KeyboardStackViewComponent
+    
     public lazy var heightConstraint: NSLayoutConstraint = {
         let constraint = heightAnchor.constraint(equalToConstant: 50)
         constraint.isActive = true
@@ -61,7 +54,7 @@ open class KeyboardButtonRow: UIView, KeyboardStackViewComponent {
     }()
     
     
-    // MARK: - Open Functions
+    // MARK: - Functions
     
     open func removeAllButtons() {
         buttonStackView.arrangedSubviews.forEach {
