@@ -89,34 +89,6 @@ open class GridKeyboardPresenter: CollectionKeyboardPresenter {
         public let rowHeight: Int
     }
     
-//    open func setupSystemButtonGesture(for button: UIButton, action: KeyboardAction) {
-//        switch action {
-//        case .nextKeyboard:
-//            button.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
-//        default:
-//            viewController.addTapGesture(for: action, to: button)
-//            viewController.addLongPressGesture(for: action, to: button)
-//        }
-//    }
-//
-//    @objc func handleInputModeList(from view: UIView, with event: UIEvent) {
-//        viewController.handleInputModeList(from: view, with: event)
-//    }
-    
-    
-    // MARK: - View Properties
-    
-    
-//    open lazy var pageControl = UIPageControl(frame: .zero)
-//
-//    open var leftSystemButtons: [UIButton] = [] {
-//        didSet { oldValue.forEach { $0.removeFromSuperview() } }
-//    }
-//
-//    open var rightSystemButtons: [UIButton] = [] {
-//        didSet { oldValue.forEach { $0.removeFromSuperview() } }
-//    }
-    
     
     // MARK: - Public Properties
     

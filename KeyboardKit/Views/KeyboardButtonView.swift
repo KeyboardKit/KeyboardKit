@@ -10,6 +10,9 @@ import UIKit
 
 open class KeyboardButtonView: UIButton, KeyboardButton, KeyboardButtonRowComponent {
     
+    deinit {
+        print("giuheaihgeu")
+    }
     public private(set) var action: KeyboardAction = .none
     
     public lazy var widthConstraint: NSLayoutConstraint = {
@@ -20,8 +23,6 @@ open class KeyboardButtonView: UIButton, KeyboardButton, KeyboardButtonRowCompon
     
     public func setup(with action: KeyboardAction, in viewController: KeyboardInputViewController) {
         self.action = action
-        let actionHandler = viewController.keyboardActionHandler
-        actionHandler.addKeyboardGestures(for: action, to: self)
-        viewController.setupNextKeyboardAction(for: self)
+        viewController.addKeyboardGestures(to: self)
     }
 }

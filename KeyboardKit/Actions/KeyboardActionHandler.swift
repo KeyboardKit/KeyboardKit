@@ -25,28 +25,3 @@ public protocol KeyboardActionHandler: AnyObject {
     func handleLongPress(on view: UIView, action: KeyboardAction)
     func handleTap(on view: UIView, action: KeyboardAction)
 }
-
-public extension KeyboardActionHandler {
-    
-    func addKeyboardGestures(for action: KeyboardAction, to view: UIView) {
-        addTapGesture(for: action, to: view)
-     //   addLongPressGesture(for: action, to: view)
-    }
-}
-
-private extension KeyboardActionHandler {
-    
-    func addLongPressGesture(for action: KeyboardAction, to view: UIView) {
-        view.removeLongPressGestureRecognizers()
-        view.addLongPressGestureRecognizer { [weak self] in
-            self?.handleLongPress(on: view, action: action)
-        }
-    }
-    
-    func addTapGesture(for action: KeyboardAction, to view: UIView) {
-        view.removeTapGestureRecognizers()
-        view.addTapGestureRecognizer { [weak self] in
-            self?.handleTap(on: view, action: action)
-        }
-    }
-}

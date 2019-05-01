@@ -73,9 +73,10 @@ open class KeyboardInputViewController: UIInputViewController {
     
     // MARK: - Public Functions
     
-    func setupNextKeyboardAction(for button: KeyboardButton & UIButton) {
-        guard button.action == .nextKeyboard else { return }
-        button.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
+    func addKeyboardGestures(to button: KeyboardButton) {
+        if button.action == .switchKeyboard { return addSwitchKeyboardGesture(to: button) }
+        addTapGesture(to: button)
+        addLongPressGesture(to: button)
     }
     
     
@@ -84,5 +85,30 @@ open class KeyboardInputViewController: UIInputViewController {
     open override func textWillChange(_ textInput: UITextInput?) {
         super.textWillChange(textInput)
         viewWillSyncWithTextDocumentProxy()
+    }
+}
+
+
+// MARK: - Private Functions
+
+private extension KeyboardInputViewController {
+    
+    func addSwitchKeyboardGesture(to button: KeyboardButton) {
+        guard let button = button as? UIButton else { return }
+        button.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
+    }
+    
+    func addLongPressGesture(to button: KeyboardButton) {
+        button.removeLongPressGestureRecognizers()
+        button.addLongPressGestureRecognizer { [weak self] in
+            self?.keyboardActionHandler.handleLongPress(on: button, action: button.action)
+        }
+    }
+    
+    func addTapGesture(to button: KeyboardButton) {
+        button.removeTapGestureRecognizers()
+        button.addTapGestureRecognizer { [weak self] in
+            self?.keyboardActionHandler.handleTap(on: button, action: button.action)
+        }
     }
 }

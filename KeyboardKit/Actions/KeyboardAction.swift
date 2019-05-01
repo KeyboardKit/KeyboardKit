@@ -24,7 +24,7 @@ public enum KeyboardAction: Equatable {
     moveCursorBack,
     moveCursorForward,
     newLine,
-    nextKeyboard,
     shift,
-    space
+    space,
+    switchKeyboard
 }

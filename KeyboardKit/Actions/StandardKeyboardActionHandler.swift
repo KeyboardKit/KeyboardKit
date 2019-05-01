@@ -73,10 +73,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     open func longPressAction(for view: UIView, action: KeyboardAction) -> (() -> ())? {
-        switch action {
-        case .nextKeyboard: return { [weak self] in self?.inputViewController?.handleInputModeList(from: view, with: UIEvent()) }
-        default: return nil
-        }
+        return nil
     }
     
     open func tapAction(for view: UIView, action: KeyboardAction) -> (() -> ())? {
@@ -87,7 +84,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         case .image: return nil
         case .moveCursorBack: return { [weak self] in self?.textDocumentProxy?.adjustTextPosition(byCharacterOffset: -1) }
         case .moveCursorForward: return { [weak self] in self?.textDocumentProxy?.adjustTextPosition(byCharacterOffset: -1) }
-        case .nextKeyboard: return { [weak self] in self?.inputViewController?.advanceToNextInputMode() }
+        case .switchKeyboard: return nil// { [weak self] in self?.inputViewController?.advanceToNextInputMode() }
         case .newLine: return { [weak self] in self?.textDocumentProxy?.insertText("\n") }
         case .shift: return nil
         case .space: return { [weak self] in self?.textDocumentProxy?.insertText(" ") }

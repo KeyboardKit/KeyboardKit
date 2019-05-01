@@ -51,6 +51,10 @@ class KeyboardViewController: KeyboardInputViewController {
 //        view.tintColor = isDark ? .white : .black
     }
     
+    override func handleInputModeList(from view: UIView, with event: UIEvent) {
+        super.handleInputModeList(from: view, with: event)
+    }
+    
     
     // MARK: - Setup
     
@@ -59,7 +63,7 @@ class KeyboardViewController: KeyboardInputViewController {
         row.backgroundColor = .green
         row.buttonStackView.distribution = .equalSpacing
         keyboardStackView.addArrangedSubview(row)
-        let actions: [KeyboardAction] = [.nextKeyboard, .character("2"), .character("3"), .character("4"), .character("5")]
+        let actions: [KeyboardAction] = [.switchKeyboard, .character("2"), .character("3"), .character("4"), .character("5")]
         row.addButtons(with: actions, actionHandler: keyboardActionHandler, buttonCreator: { return button(for: $0) })
     }
     
@@ -77,7 +81,7 @@ class KeyboardViewController: KeyboardInputViewController {
         row.backgroundColor = .green
         row.buttonStackView.distribution = .equalSpacing
         keyboardStackView.addArrangedSubview(row)
-        let actions: [KeyboardAction] = [.character("6"), .character("7"), .character("8"), .character("9"), .character("10")]
+        let actions: [KeyboardAction] = [.switchKeyboard, .character("7"), .character("8"), .character("9"), .character("10")]
         row.addButtons(with: actions, actionHandler: keyboardActionHandler, buttonCreator: { return button(for: $0) })
     }
 //    
