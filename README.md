@@ -44,13 +44,14 @@ In `KeyboardKit`, a `Keyboard` is basically just a list of `KeyboardAction`s wit
 
 * `backspace` - sends a backspace to the text proxy
 * `character` - sends a text character to the text proxy
+* `dismissKeyboard` - dismisses the keyboard
 * `image` - custom images with a description, keyboard image
 * `moveCursorBack` - moves the cursor back one position
 * `moveCursorForward` - moves the cursor forward one position
 * `newLine` - sends a new line to the text proxy
-* `nextKeyboard` - changes keyboard on tap and shows keyboard picker on long press
 * `shift` - can be used to change the char casing of a keyboard
 * `space` - sends an empty space to the text proxy
+* `switchKeyboard` - changes keyboard on tap and shows keyboard picker on long press
 * `none`- use this for empty "placeholder" keys that do nothing
 
 Each keyboard view controller has a `keyboardActionHandler` that can handle any actions that are triggered by the user. By default, `StandardKeyboardActionHandler` is used, but you can replace it with any `KeyboardActionHandler` you like.

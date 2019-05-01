@@ -80,11 +80,12 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         switch action {
         case .none: return nil
         case .backspace: return { [weak self] in self?.textDocumentProxy?.deleteBackward() }
+        case .dismissKeyboard: return { [weak self] in self?.inputViewController?.dismissKeyboard() }
         case .character(let char): return { [weak self] in self?.textDocumentProxy?.insertText(char) }
         case .image: return nil
         case .moveCursorBack: return { [weak self] in self?.textDocumentProxy?.adjustTextPosition(byCharacterOffset: -1) }
         case .moveCursorForward: return { [weak self] in self?.textDocumentProxy?.adjustTextPosition(byCharacterOffset: -1) }
-        case .switchKeyboard: return nil// { [weak self] in self?.inputViewController?.advanceToNextInputMode() }
+        case .switchKeyboard: return nil
         case .newLine: return { [weak self] in self?.textDocumentProxy?.insertText("\n") }
         case .shift: return nil
         case .space: return { [weak self] in self?.textDocumentProxy?.insertText(" ") }

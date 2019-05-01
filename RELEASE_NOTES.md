@@ -3,9 +3,9 @@
 
 ## 2.0.0
 
-This version contains several breaking changes, that aim at streamlining the library and remove or refactor parts that make it hard to maintain. I hope (and believe) that these changes will make it easier for you as well.
+This version aim at streamlining the library and remove or refactor parts that make it hard to maintain. It contains several breaking changes, but I hope that the changes will make it easier for you as well, as the library moves forward.
 
-Most notably, the view controller inheritance model is replaced by moving presentation responsibilities from the view controllers to a new `KeyboardPresenter`, using the new `keyboardPresenter` property. This means that instead of inheriting a certain view controller, you now set a presenter that you want to use instead. This means that you can use different presentations in the same extension. All view controllers use a `NoneKeyboardPresenter` by default, but you can replace this at any time by setting `keyboardPresenter` to a new presenter.
+Most notably, the view controller inheritance model is adjusted to move presentation responsibily to a new `KeyboardPresenter`. This means that instead of inheriting a certain view controller, the view controller has a `keyboardPresenter`. This means that you can use different presentations in the same keyboard extension, by changing the presenter. All view controllers use a `NoneKeyboardPresenter` by default, but you can replace this at any time by setting `keyboardPresenter` to a new presenter.
 
 All keyboard action handling has also been moved from the view controllers to a new `KeyboardActionHandler`, using the new `keyboardActionHandler` property. All view controllers use a `StandardActionHandler` by default, but you can replace this at any time by setting the `keyboardActionHandler` property to a new handler.
 

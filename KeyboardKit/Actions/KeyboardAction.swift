@@ -20,6 +20,7 @@ public enum KeyboardAction: Equatable {
     none,
     backspace,
     character(String),
+    dismissKeyboard,
     image(description: String, keyboardImageName: String, imageName: String),
     moveCursorBack,
     moveCursorForward,
