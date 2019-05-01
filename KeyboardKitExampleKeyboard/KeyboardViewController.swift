@@ -132,14 +132,7 @@ extension KeyboardViewController {
     
     func button(for action: KeyboardAction) -> UIView {
         let view = DemoButton.initWithDefaultNib(owner: self)
-        view.setup(with: action, appearance: textDocumentProxy.keyboardAppearance ?? .dark, tintColor: .black)
-        view.width = 50
-        return view
-    }
-    
-    func cell(for action: KeyboardAction) -> UIView {
-        let view = DemoButton.initWithDefaultNib(owner: self)
-        view.setup(with: action, appearance: textDocumentProxy.keyboardAppearance ?? .dark, tintColor: .black)
+        view.setup(with: action, in: self, appearance: textDocumentProxy.keyboardAppearance ?? .dark, tintColor: .black)
         view.width = 50
         return view
     }

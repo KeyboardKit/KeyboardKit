@@ -8,7 +8,10 @@
 
 import UIKit
 
-public protocol KeyboardButton: UIView {}
+public protocol KeyboardButton: KeyboardButtonRowComponent {
+    
+    var action: KeyboardAction { get }
+}
 
 public extension KeyboardButton {
     

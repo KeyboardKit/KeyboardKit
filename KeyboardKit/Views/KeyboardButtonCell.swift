@@ -8,4 +8,6 @@
 
 import UIKit
 
-public class KeyboardButtonCell: UICollectionViewCell, KeyboardButton {}
+//public class KeyboardButtonCell: UICollectionViewCell, KeyboardButton {
+//    public var widthConstraint: NSLayoutConstraint
+//}

@@ -12,17 +12,10 @@ import KeyboardKit
 class DemoButton: KeyboardButtonView {
     
     
-    // MARK: - Initialization
-    
-    convenience init(action: KeyboardAction, appearance: UIKeyboardAppearance, tintColor: UIColor) {
-        self.init(frame: .zero)
-        setup(with: action, appearance: appearance, tintColor: tintColor)
-    }
-    
-    
     // MARK: - Setup
     
-    public func setup(with action: KeyboardAction, appearance: UIKeyboardAppearance, tintColor: UIColor) {
+    public func setup(with action: KeyboardAction, in viewController: KeyboardInputViewController, appearance: UIKeyboardAppearance, tintColor: UIColor) {
+        super.setup(with: action, in: viewController)
         let noneAction = action == .none
         buttonView?.alpha = noneAction ? 0.01 : 1
         setupBackground()
@@ -39,7 +32,7 @@ class DemoButton: KeyboardButtonView {
         didSet { buttonView?.layer.cornerRadius = 7 }
     }
     
-    @IBOutlet weak var imageView: UIImageView?
+    @IBOutlet weak var image: UIImageView?
     
     @IBOutlet weak var textLabel: UILabel? {
         didSet { textLabel?.text = "" }
@@ -59,8 +52,8 @@ class DemoButton: KeyboardButtonView {
     }
     
     func setupImage(with action: KeyboardAction) {
-        imageView?.image = action.keyboardImage
-        imageView?.isHidden = imageView?.image == nil
+        image?.image = action.keyboardImage
+        image?.isHidden = imageView?.image == nil
     }
     
     func setupTextLabel(with action: KeyboardAction, tintColor: UIColor) {

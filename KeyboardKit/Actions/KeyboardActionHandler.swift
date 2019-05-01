@@ -30,7 +30,7 @@ public extension KeyboardActionHandler {
     
     func addKeyboardGestures(for action: KeyboardAction, to view: UIView) {
         addTapGesture(for: action, to: view)
-        addLongPressGesture(for: action, to: view)
+     //   addLongPressGesture(for: action, to: view)
     }
 }
 

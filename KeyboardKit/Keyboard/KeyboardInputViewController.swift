@@ -71,6 +71,14 @@ open class KeyboardInputViewController: UIInputViewController {
     }()
     
     
+    // MARK: - Public Functions
+    
+    func setupNextKeyboardAction(for button: KeyboardButton & UIButton) {
+        guard button.action == .nextKeyboard else { return }
+        button.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
+    }
+    
+    
     // MARK: - UITextInputDelegate
     
     open override func textWillChange(_ textInput: UITextInput?) {
