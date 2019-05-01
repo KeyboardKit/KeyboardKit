@@ -52,15 +52,14 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         return inputViewController?.textDocumentProxy
     }
     
-    
-    open func handleLongPress(on action: KeyboardAction) {
-        guard let longPressAction = longPressAction(for: action) else { return }
+    open func handleLongPress(on view: UIView, action: KeyboardAction) {
+        guard let longPressAction = longPressAction(for: view, action: action) else { return }
         giveHapticFeedbackForLongPress(on: action)
         longPressAction()
     }
     
-    open func handleTap(on action: KeyboardAction) {
-        guard let tapAction = tapAction(for: action) else { return }
+    open func handleTap(on view: UIView, action: KeyboardAction) {
+        guard let tapAction = tapAction(for: view, action: action) else { return }
         giveHapticFeedbackForTap(on: action)
         tapAction()
     }
@@ -73,14 +72,14 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         tapHapticFeedback.trigger()
     }
     
-    open func longPressAction(for action: KeyboardAction) -> (() -> ())? {
+    open func longPressAction(for view: UIView, action: KeyboardAction) -> (() -> ())? {
         switch action {
-        case .nextKeyboard: return { [weak self] in self?.inputViewController?.handleInputModeList(from: UIView(), with: UIEvent()) }
+        case .nextKeyboard: return { [weak self] in self?.inputViewController?.handleInputModeList(from: view, with: UIEvent()) }
         default: return nil
         }
     }
     
-    open func tapAction(for action: KeyboardAction) -> (() -> ())? {
+    open func tapAction(for view: UIView, action: KeyboardAction) -> (() -> ())? {
         switch action {
         case .none: return nil
         case .backspace: return { [weak self] in self?.textDocumentProxy?.deleteBackward() }

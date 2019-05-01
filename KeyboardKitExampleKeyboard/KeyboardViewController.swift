@@ -34,6 +34,7 @@ class KeyboardViewController: KeyboardInputViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        keyboardActionHandler = DemoKeyboardActionHandler(inputViewController: self)
         setupTopSystemButtons()
         setupKeyboard()
         setupBottomSystemButtons()

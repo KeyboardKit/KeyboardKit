@@ -10,16 +10,14 @@ import KeyboardKit
 
 class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
-    override func handleLongPress(on action: KeyboardAction) {
-        super.handleLongPress(on: action)
+    override func handleLongPress(on view: UIView, action: KeyboardAction) {
+        super.handleLongPress(on: view, action: action)
         saveImage(for: action)
-        HapticFeedback.trigger(.selectionChanged)
     }
     
-    override func handleTap(on action: KeyboardAction) {
-        super.handleTap(on: action)
+    override func handleTap(on view: UIView, action: KeyboardAction) {
+        super.handleTap(on: view, action: action)
         copyImage(for: action)
-        HapticFeedback.trigger(.lightImpact)
     }
 }
 
