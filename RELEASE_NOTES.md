@@ -7,6 +7,8 @@ This version aim at streamlining the library and remove or refactor parts that m
 
 Most notably, the view controller inheritance model has been completely removed. Instead, there is only one `KeyboardInputViewController`, which you should use instead of `UIInputViewController`. It has a stack view, to which you can add any views you like, like the built-in `KeyboardButtonRow` and `KeyboardCollectionView`.
 
+Since `KeyboardInputViewController` can display multiple keyboards at once, it doesn't make any sense that it has a single `keyboard` property. You can still use the `Keyboard` struct to organize your actions, but you don't have to use it anymore.
+
 All keyboard action handling has also been moved from the view controllers to a new `KeyboardActionHandler`, using the new `keyboardActionHandler` property. All view controllers use a `StandardActionHandler` by default, but you can replace this at any time by setting the `keyboardActionHandler` property to a new handler.
 
 New `KeyboardAction` types have been added - `moveCursorBack`, `moveCursorForward` and `dismissKeyboard`. `nextKeyboard` has been renamed to `switchKeyboard`. Action equality logic has also been removed, so instead of `isNone`, you should use `== .none` from now on.  All help properties like `image` and `imageName` are removed as well, since they belong in the app.

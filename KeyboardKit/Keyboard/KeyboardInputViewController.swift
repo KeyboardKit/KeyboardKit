@@ -46,8 +46,6 @@ open class KeyboardInputViewController: UIInputViewController {
     
     open var id: String?
     
-    open var keyboard = Keyboard.empty
-    
     open lazy var keyboardActionHandler: KeyboardActionHandler = {
         StandardKeyboardActionHandler(inputViewController: self)
     }()

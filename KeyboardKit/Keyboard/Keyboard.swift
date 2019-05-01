@@ -8,33 +8,20 @@
 
 /*
  
- In KeyboardKit, a `Keyboard` is just an action carrier. The
- actions are then presented by the keyboard view controller.
+ In KeyboardKit, a `Keyboard` is just an action carrier with
+ an optional id. The actions can be displayed in any way.
  
  */
 
 import Foundation
 
-open class Keyboard {
+public struct Keyboard {
     
-    public init(id: String, actions: [KeyboardAction]) {
+    public init(id: String? = nil, actions: [KeyboardAction]) {
         self.id = id
         self.actions = actions
     }
     
-    public init(actions: [KeyboardAction]) {
-        self.id = nil
-        self.actions = actions
-    }
-    
-    
     public let id: String?
     public let actions: [KeyboardAction]
-}
-
-public extension Keyboard {
-    
-    static var empty: Keyboard {
-        return Keyboard(actions: [])
-    }
 }
