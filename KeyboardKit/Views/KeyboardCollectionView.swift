@@ -6,6 +6,20 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
+/*
+ 
+ This view can be used as a base class for a collection view
+ that should present keyboard actions in different ways. You
+ must subclass it if you want to use it, since it by default
+ returns an empty cell for each action.
+ 
+ For convenience, you can use `KeyboardButtonCollectionView`
+ and `KeyboardButtonRowCollectionView` instead. They provide
+ a lot of functionality for either displaying single buttons
+ or button rows.
+ 
+ */
+
 import UIKit
 
 open class KeyboardCollectionView: UICollectionView, KeyboardStackViewComponent, UICollectionViewDataSource {
@@ -13,33 +27,27 @@ open class KeyboardCollectionView: UICollectionView, KeyboardStackViewComponent,
     
     // MARK: - Initialization
     
-    public init(actions: [KeyboardAction], buttonCreator: @escaping KeyboardButtonCreator) {
+    public init(actions: [KeyboardAction]) {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         self.actions = actions
-        self.buttonCreator = buttonCreator
-        backgroundColor = .clear
         dataSource = self
-        isPagingEnabled = true
-        register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        backgroundColor = .clear
+        register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
     }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.actions = []
-        self.buttonCreator = { _ in fatalError() }
     }
-    
-    
-    // MARK: - Types
-    
-    public typealias KeyboardButtonCreator = (KeyboardAction) -> (UIView?)
-    public typealias KeyboardButtonRowCreator = ([KeyboardAction]) -> (UIView?)
     
     
     // MARK: - Properties
     
-    public var actions = [KeyboardAction]()
-    public var buttonCreator: KeyboardButtonCreator?
+    public var actions = [KeyboardAction]() {
+        didSet { refresh() }
+    }
+    
+    public let cellIdentifier = "Cell"
     
     
     // MARK: - Public Functions
@@ -52,7 +60,7 @@ open class KeyboardCollectionView: UICollectionView, KeyboardStackViewComponent,
     
     // MARK: - KeyboardComponent
     
-    public lazy var heightConstraint: NSLayoutConstraint = {
+    public private(set) lazy var heightConstraint: NSLayoutConstraint = {
         let constraint = heightAnchor.constraint(equalToConstant: 100)
         constraint.isActive = true
         return constraint
@@ -60,10 +68,6 @@ open class KeyboardCollectionView: UICollectionView, KeyboardStackViewComponent,
     
     
     // MARK: - UICollectionViewDataSource
-    
-    open func action(at indexPath: IndexPath) -> KeyboardAction {
-        return actions[indexPath.item]
-    }
     
     open func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -74,11 +78,8 @@ open class KeyboardCollectionView: UICollectionView, KeyboardStackViewComponent,
     }
     
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let action = self.action(at: indexPath)
-        let cell = dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        let cell = dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
         cell.subviews.forEach { $0.removeFromSuperview() }
-        guard let button = buttonCreator?(action) else { return cell }
-        cell.addSubview(button, fill: true)
         return cell
     }
 }

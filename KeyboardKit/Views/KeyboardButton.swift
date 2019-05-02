@@ -6,6 +6,17 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
+/*
+ 
+ This protocol should be implemented by any view that can be
+ used as keyboard buttons, since it makes it possible to add
+ it to keyboard button rows and keyboard collection views.
+ 
+ For convenience, you can use the `KeyboardButtonView` class
+ instead of implementing this protocol from scratch.
+ 
+ */
+
 import UIKit
 
 public protocol KeyboardButton: KeyboardButtonRowComponent {

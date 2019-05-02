@@ -35,14 +35,12 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         keyboardActionHandler = DemoKeyboardActionHandler(inputViewController: self)
-        setupTopSystemButtons()
-        setupKeyboard()
-        setupBottomSystemButtons()
+        setupKeyboard(with: view.frame.size)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-//        setupKeyboard(for: size)
+        setupKeyboard(with: size)
     }
     
     override func viewWillSyncWithTextDocumentProxy() {
@@ -58,6 +56,12 @@ class KeyboardViewController: KeyboardInputViewController {
     
     // MARK: - Setup
     
+    func setupKeyboard(with size: CGSize) {
+        setupTopSystemButtons()
+        setupCollectionView()
+        setupBottomSystemButtons()
+    }
+    
     func setupTopSystemButtons() {
         let actions: [KeyboardAction] = [.switchKeyboard, .character("2"), .character("3"), .character("4"), .character("5")]
         let row = KeyboardButtonRow(height: 44, actions: actions) { return button(for: $0) }
@@ -65,9 +69,9 @@ class KeyboardViewController: KeyboardInputViewController {
         keyboardStackView.addArrangedSubview(row)
     }
     
-    func setupKeyboard() {
+    func setupCollectionView() {
         let actions: [KeyboardAction] = [.switchKeyboard, .character("2"), .character("3"), .character("4"), .character("5")]
-        let collectionView = KeyboardCollectionView(actions: actions + actions) { [weak self] in return self?.button(for: $0) }
+        let collectionView = KeyboardButtonCollectionView(actions: actions + actions) { [weak self] in return self?.button(for: $0) }
         collectionView.height = 120
         keyboardStackView.addArrangedSubview(collectionView)
     }
