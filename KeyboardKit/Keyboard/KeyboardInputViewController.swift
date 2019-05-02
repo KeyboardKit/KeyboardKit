@@ -50,8 +50,6 @@ open class KeyboardInputViewController: UIInputViewController {
         StandardKeyboardActionHandler(inputViewController: self)
     }()
     
-    open var settings = StandardKeyboardSettings()
-    
     
     // MARK: - View Properties
     
