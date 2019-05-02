@@ -16,7 +16,7 @@
  For convenience, you can use `KeyboardButtonCollectionView`
  and `KeyboardButtonRowCollectionView` instead. They provide
  a lot of functionality for either displaying single buttons
- or button rows.
+ or rows of buttons.
  
  */
 
@@ -28,24 +28,22 @@ open class KeyboardCollectionView: UICollectionView, KeyboardStackViewComponent,
     // MARK: - Initialization
     
     public init(actions: [KeyboardAction]) {
-        super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         self.actions = actions
+        super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         dataSource = self
         backgroundColor = .clear
         register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
     }
     
     public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
         self.actions = []
+        super.init(coder: aDecoder)
     }
     
     
     // MARK: - Properties
     
-    public var actions = [KeyboardAction]() {
-        didSet { refresh() }
-    }
+    public let actions: [KeyboardAction]
     
     public let cellIdentifier = "Cell"
     

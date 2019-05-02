@@ -56,7 +56,8 @@ class KeyboardViewController: KeyboardInputViewController {
     
     // MARK: - Setup
     
-    func setupKeyboard(with size: CGSize) {
+    func setupKeyboard(with controllerSize: CGSize) {
+        keyboardStackView.removeAllArrangedSubviews()
         setupTopSystemButtons()
         setupCollectionView()
         setupBottomSystemButtons()
@@ -71,9 +72,12 @@ class KeyboardViewController: KeyboardInputViewController {
     
     func setupCollectionView() {
         let actions: [KeyboardAction] = [.switchKeyboard, .character("2"), .character("3"), .character("4"), .character("5")]
-        let collectionView = KeyboardButtonCollectionView(actions: actions + actions) { [weak self] in return self?.button(for: $0) }
-        collectionView.height = 120
-        keyboardStackView.addArrangedSubview(collectionView)
+        let config = KeyboardButtonRowCollectionView.Configuration(rowHeight: 50, rowsPerPage: 3, buttonsPerRow: 6)
+//        let view = KeyboardButtonCollectionView(actions: actions + actions) { [unowned self] in return self.button(for: $0) }
+//        view.height = 120
+        let view = KeyboardButtonRowCollectionView(actions: actions + actions + actions + actions, configuration: config) { [unowned self] in return self.button(for: $0) }
+        view.collectionViewLayout = Lay()
+        keyboardStackView.addArrangedSubview(view)
     }
     
     func setupBottomSystemButtons() {
@@ -95,10 +99,26 @@ class KeyboardViewController: KeyboardInputViewController {
     // MARK: - Properties
     
     var alerter = ToastAlert()
-    var collectionView: UICollectionView!
-    //var gridPresenter: GridKeyboardPresenter!
 }
 
+
+class Lay: UICollectionViewFlowLayout {
+    
+    override var minimumInteritemSpacing: CGFloat {
+        get { return 0}
+        set {}
+    }
+    
+    override var minimumLineSpacing: CGFloat {
+        get { return 0}
+        set {}
+    }
+    
+    override var itemSize: CGSize {
+        get { return CGSize(width: UIScreen.main.bounds.size.width, height: 50) }
+        set {}
+    }
+}
 
 // MARK: - Private Functions
 

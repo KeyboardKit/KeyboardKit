@@ -22,27 +22,24 @@ open class KeyboardButtonCollectionView: KeyboardCollectionView {
     // MARK: - Initialization
     
     public init(actions: [KeyboardAction], buttonCreator: @escaping KeyboardButtonCreator) {
-        super.init(actions: actions)
         self.buttonCreator = buttonCreator
+        super.init(actions: actions)
     }
     
     public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.actions = []
         self.buttonCreator = { _ in fatalError() }
+        super.init(coder: aDecoder)
     }
     
     
     // MARK: - Types
     
-    public typealias KeyboardButtonCreator = (KeyboardAction) -> (UIView?)
+    public typealias KeyboardButtonCreator = (KeyboardAction) -> (UIView)
     
     
     // MARK: - Properties
     
-    public var buttonCreator: KeyboardButtonCreator? {
-        didSet { refresh() }
-    }
+    private let buttonCreator: KeyboardButtonCreator
     
     
     // MARK: - UICollectionViewDataSource
@@ -54,7 +51,7 @@ open class KeyboardButtonCollectionView: KeyboardCollectionView {
     open override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath)
         let action = self.action(at: indexPath)
-        guard let button = buttonCreator?(action) else { return cell }
+        let button = buttonCreator(action)
         cell.addSubview(button, fill: true)
         return cell
     }

@@ -24,7 +24,8 @@ open class KeyboardButtonRow: UIView, KeyboardStackViewComponent {
     public convenience init(height: CGFloat, actions: [KeyboardAction], buttonCreator: KeyboardButtonCreator) {
         self.init(frame: .zero)
         self.height = height
-        addButtons(with: actions, buttonCreator: buttonCreator)
+        let buttons = actions.map { buttonCreator($0) }
+        buttonStackView.addArrangedSubviews(buttons)
     }
     
     
@@ -52,19 +53,4 @@ open class KeyboardButtonRow: UIView, KeyboardStackViewComponent {
         constraint.isActive = true
         return constraint
     }()
-    
-    
-    // MARK: - Functions
-    
-    open func addButtons(with actions: [KeyboardAction], buttonCreator: KeyboardButtonCreator) {
-        let buttons = actions.map {buttonCreator($0) }
-        buttons.forEach { buttonStackView.addArrangedSubview($0) }
-    }
-    
-    open func removeAllButtons() {
-        buttonStackView.arrangedSubviews.forEach {
-            buttonStackView.removeArrangedSubview($0)
-            $0.removeFromSuperview()
-        }
-    }
 }
