@@ -14,7 +14,7 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView {
     // MARK: - Initialization
     
     public init(actions: [KeyboardAction], configuration: Configuration, buttonCreator: @escaping KeyboardButtonCreator) {
-        self.rows = actions.batched(withBatchSize: configuration.buttonsPerRow)
+        self.rows = actions.rows(for: configuration)
         self.configuration = configuration
         self.buttonCreator = buttonCreator
         super.init(actions: actions)
@@ -41,11 +41,13 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView {
             self.rowsPerPage = rowsPerPage
             self.buttonsPerRow = buttonsPerRow
             self.rowHeight = rowHeight
+            self.pageSize = rowsPerPage * buttonsPerRow
         }
 
         public let rowHeight: CGFloat
         public let rowsPerPage: Int
         public let buttonsPerRow: Int
+        public let pageSize: Int
         
         public var totalHeight: CGFloat {
             return rowHeight * CGFloat(rowsPerPage)
@@ -110,5 +112,19 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView {
         let row = self.row(at: indexPath)
         let rowHeight = configuration.rowHeight
         return KeyboardButtonRow(height: rowHeight, actions: row, buttonCreator: buttonCreator)
+    }
+}
+
+
+// MARK: - Private [KeyboardAction] Extensions
+
+private extension Array where Element == KeyboardAction {
+    
+    func rows(for configuration: KeyboardButtonRowCollectionView.Configuration) -> [[KeyboardAction]] {
+        var actions = self
+        while actions.count % configuration.pageSize > 0 {
+            actions.append(.none)
+        }
+        return actions.batched(withBatchSize: configuration.buttonsPerRow)
     }
 }
