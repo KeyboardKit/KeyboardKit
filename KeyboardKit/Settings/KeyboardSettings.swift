@@ -18,6 +18,6 @@ import Foundation
 
 public protocol KeyboardSettings {
 
-    func getCurrentPageIndex(for presenter: KeyboardPresenter) -> Int
-    func setCurrentPageIndex(_ index: Int, for presenter: KeyboardPresenter)
+//    func getCurrentPageIndex(for presenter: KeyboardPresenter) -> Int
+//    func setCurrentPageIndex(_ index: Int, for presenter: KeyboardPresenter)
 }

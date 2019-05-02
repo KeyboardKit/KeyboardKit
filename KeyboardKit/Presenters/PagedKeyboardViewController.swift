@@ -20,6 +20,18 @@
  
  */
 
+
+
+// MARK: - UICollectionViewDelegate
+
+//    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//        let index = Int(scrollView.currentPageIndex)
+//        pageControl.currentPage = index
+//        viewController.settings.setCurrentPageIndex(index, for: self)
+//    }
+//}
+
+
 import UIKit
 
 public protocol PagedKeyboardViewController: KeyboardInputViewController {

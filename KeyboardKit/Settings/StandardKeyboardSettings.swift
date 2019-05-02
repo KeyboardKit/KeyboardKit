@@ -18,25 +18,25 @@ import Foundation
 
 open class StandardKeyboardSettings: KeyboardSettings {
     
-    public func getCurrentPageIndex(for presenter: KeyboardPresenter) -> Int {
-        let key = self.key(for: .currentPageIndex, in: presenter)
-        return defaults.integer(forKey: key)
-    }
-    
-    public func setCurrentPageIndex(_ index: Int, for presenter: KeyboardPresenter) {
-        let key = self.key(for: .currentPageIndex, in: presenter)
-        defaults.set(index, forKey: key)
-        defaults.synchronize()
-    }
-}
-
-private extension StandardKeyboardSettings {
-    
-    var defaults: UserDefaults {
-        return .standard
-    }
-    
-    func key(for setting: KeyboardSetting, in presenter: KeyboardPresenter) -> String {
-        return setting.key(for: presenter)
-    }
+//    public func getCurrentPageIndex(for presenter: KeyboardPresenter) -> Int {
+//        let key = self.key(for: .currentPageIndex, in: presenter)
+//        return defaults.integer(forKey: key)
+//    }
+//    
+//    public func setCurrentPageIndex(_ index: Int, for presenter: KeyboardPresenter) {
+//        let key = self.key(for: .currentPageIndex, in: presenter)
+//        defaults.set(index, forKey: key)
+//        defaults.synchronize()
+//    }
+//}
+//
+//private extension StandardKeyboardSettings {
+//    
+//    var defaults: UserDefaults {
+//        return .standard
+//    }
+//    
+//    func key(for setting: KeyboardSetting, in presenter: KeyboardPresenter) -> String {
+//        return setting.key(for: presenter)
+//    }
 }
