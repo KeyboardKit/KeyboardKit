@@ -8,26 +8,52 @@
 
 import UIKit
 
-open class KeyboardButtonRowCollectionView: KeyboardCollectionView {
+open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboardPresenter, UICollectionViewDelegate {
     
     
     // MARK: - Initialization
     
-    public init(actions: [KeyboardAction], configuration: Configuration, buttonCreator: @escaping KeyboardButtonCreator) {
+    public init(
+        id: String = "KeyboardButtonRowCollectionView",
+        actions: [KeyboardAction],
+        configuration: Configuration,
+        userDefaults: UserDefaults = .standard,
+        buttonCreator: @escaping KeyboardButtonCreator) {
+        self.id = id
         self.rows = actions.rows(for: configuration)
         self.configuration = configuration
+        self.userDefaults = userDefaults
         self.buttonCreator = buttonCreator
         super.init(actions: actions)
+        setup()
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        self.id = ""
+        self.rows = []
+        self.configuration = .empty
+        self.userDefaults = .standard
+        self.buttonCreator = { _ in fatalError() }
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    
+    // MARK: - Setup
+    
+    func setup() {
+        delegate = self
         isPagingEnabled = true
         height = configuration.totalHeight
         collectionViewLayout = Layout(rowHeight: configuration.rowHeight)
     }
     
-    public required init?(coder aDecoder: NSCoder) {
-        self.rows = []
-        self.configuration = .empty
-        self.buttonCreator = { _ in fatalError() }
-        super.init(coder: aDecoder)
+    
+    // MARK: - View Lifecycle
+    
+    open override func layoutSubviews() {
+        restoreCurrentPageIndex()
+        super.layoutSubviews()
     }
     
     
@@ -86,9 +112,30 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView {
     
     // MARK: - Properties
     
+    public let id: String
+    
     private let buttonCreator: KeyboardButtonCreator
     private let configuration: Configuration
     private let rows: [[KeyboardAction]]
+    private let userDefaults: UserDefaults
+    
+    
+    // MARK: - PagedKeyboardViewController
+    
+    open var canPersistPageIndex: Bool {
+        return !isDragging
+    }
+    
+    open var canRestorePageIndex: Bool {
+        return !isDragging
+    }
+    
+    public var numberOfPages: Int {
+        let numberOfRows = Double(rows.count)
+        let rowsPerPage = Double(configuration.rowsPerPage)
+        let pages = ceil(numberOfRows / rowsPerPage)
+        return Int(pages)
+    }
     
     
     // MARK: - UICollectionViewDataSource
@@ -112,6 +159,13 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView {
         let row = self.row(at: indexPath)
         let rowHeight = configuration.rowHeight
         return KeyboardButtonRow(height: rowHeight, actions: row, buttonCreator: buttonCreator)
+    }
+    
+    
+    // MARK: - UICollectionViewDelegate
+    
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        persistCurrentPageIndex()
     }
 }
 

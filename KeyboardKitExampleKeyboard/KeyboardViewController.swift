@@ -73,7 +73,7 @@ class KeyboardViewController: KeyboardInputViewController {
     func setupCollectionView(with width: CGFloat? = nil) {
         let actions: [KeyboardAction] = [.switchKeyboard, .character("2"), .character("3"), .character("4"), .character("5")]
         let config = KeyboardButtonRowCollectionView.Configuration(rowHeight: 50, rowsPerPage: 3, buttonsPerRow: 6)
-        let view = KeyboardButtonRowCollectionView(actions: actions + actions + actions + actions, configuration: config) { [unowned self] in return self.button(for: $0) }
+        let view = KeyboardButtonRowCollectionView(actions: actions + actions + actions, configuration: config) { [unowned self] in return self.button(for: $0) }
         keyboardStackView.addArrangedSubview(view)
     }
     

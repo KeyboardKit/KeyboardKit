@@ -109,7 +109,7 @@
 		45FCD01E2059E0CD0072157A /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FCD01D2059E0CD0072157A /* UIView+Nib.swift */; };
 		45FCD0222059E2220072157A /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FCD0212059E2220072157A /* UIView+Shadow.swift */; };
 		84511D25226FA84800904FE0 /* KeyboardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D24226FA84800904FE0 /* KeyboardCollectionView.swift */; };
-		84511D29226FACFE00904FE0 /* PagedKeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D28226FACFE00904FE0 /* PagedKeyboardViewController.swift */; };
+		84511D29226FACFE00904FE0 /* PagedKeyboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D28226FACFE00904FE0 /* PagedKeyboardPresenter.swift */; };
 		84511D3622710C5D00904FE0 /* KeyboardActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D3522710C5D00904FE0 /* KeyboardActionHandler.swift */; };
 		84511D3822710D7100904FE0 /* StandardKeyboardActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D3722710D7100904FE0 /* StandardKeyboardActionHandler.swift */; };
 		84511D3A227110BC00904FE0 /* DemoKeyboardActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D39227110BC00904FE0 /* DemoKeyboardActionHandler.swift */; };
@@ -278,7 +278,7 @@
 		45FCD01D2059E0CD0072157A /* UIView+Nib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
 		45FCD0212059E2220072157A /* UIView+Shadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		84511D24226FA84800904FE0 /* KeyboardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardCollectionView.swift; sourceTree = "<group>"; };
-		84511D28226FACFE00904FE0 /* PagedKeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedKeyboardViewController.swift; sourceTree = "<group>"; };
+		84511D28226FACFE00904FE0 /* PagedKeyboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedKeyboardPresenter.swift; sourceTree = "<group>"; };
 		84511D3522710C5D00904FE0 /* KeyboardActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardActionHandler.swift; sourceTree = "<group>"; };
 		84511D3722710D7100904FE0 /* StandardKeyboardActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardKeyboardActionHandler.swift; sourceTree = "<group>"; };
 		84511D39227110BC00904FE0 /* DemoKeyboardActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboardActionHandler.swift; sourceTree = "<group>"; };
@@ -386,7 +386,7 @@
 		452DDE71204F47AF00CD28C5 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
-				84511D28226FACFE00904FE0 /* PagedKeyboardViewController.swift */,
+				84511D28226FACFE00904FE0 /* PagedKeyboardPresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -916,7 +916,7 @@
 				84851A73227888BC00477705 /* HapticFeedback+Keyboard.swift in Sources */,
 				846F1C5D22758B8C00314DC8 /* UIView+Subviews.swift in Sources */,
 				84511D3622710C5D00904FE0 /* KeyboardActionHandler.swift in Sources */,
-				84511D29226FACFE00904FE0 /* PagedKeyboardViewController.swift in Sources */,
+				84511D29226FACFE00904FE0 /* PagedKeyboardPresenter.swift in Sources */,
 				45FB51E320495F42009D5806 /* UIImage+Photos.swift in Sources */,
 				45FB51DD20495F42009D5806 /* KeyboardAlert.swift in Sources */,
 				84511D5A22731F2900904FE0 /* KeyboardButton.swift in Sources */,
