@@ -18,7 +18,9 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView {
         self.configuration = configuration
         self.buttonCreator = buttonCreator
         super.init(actions: actions)
-        height = configuration.collectionViewHeight
+        isPagingEnabled = true
+        height = configuration.totalHeight
+        collectionViewLayout = Layout(rowHeight: configuration.rowHeight)
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -45,13 +47,38 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView {
         public let rowsPerPage: Int
         public let buttonsPerRow: Int
         
-        public var collectionViewHeight: CGFloat {
+        public var totalHeight: CGFloat {
             return rowHeight * CGFloat(rowsPerPage)
         }
         
         public static var empty: Configuration {
             return Configuration(rowHeight: 0, rowsPerPage: 0, buttonsPerRow: 0)
         }
+    }
+    
+    class Layout: UICollectionViewFlowLayout {
+        
+        init(rowHeight: CGFloat) {
+            self.rowHeight = rowHeight
+            super.init()
+            minimumInteritemSpacing = 0
+            minimumLineSpacing = 0
+            scrollDirection = .horizontal
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            rowHeight = 0
+            super.init(coder: aDecoder)
+        }
+        
+        override func invalidateLayout() {
+            super.invalidateLayout()
+            let width = collectionView?.bounds.width ?? 0
+            guard width > 0 else { return }
+            itemSize = CGSize(width: width, height: rowHeight)
+        }
+        
+        private var rowHeight: CGFloat
     }
     
     
@@ -74,10 +101,14 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView {
     
     open override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath)
-        let row = self.row(at: indexPath)
-        let rowHeight = configuration.rowHeight
-        let rowView = KeyboardButtonRow(height: rowHeight, actions: row, buttonCreator: buttonCreator)
+        let rowView = self.collectionView(collectionView, rowViewForItemAt: indexPath)
         cell.addSubview(rowView, fill: true)
         return cell
+    }
+    
+    open func collectionView(_ collectionView: UICollectionView, rowViewForItemAt indexPath: IndexPath) -> KeyboardButtonRow {
+        let row = self.row(at: indexPath)
+        let rowHeight = configuration.rowHeight
+        return KeyboardButtonRow(height: rowHeight, actions: row, buttonCreator: buttonCreator)
     }
 }
