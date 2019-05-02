@@ -13,33 +13,33 @@ open class KeyboardCollectionView: UICollectionView, KeyboardStackViewComponent,
     
     // MARK: - Initialization
     
-    public convenience init() {
-        self.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        backgroundColor = .clear
-    }
-    
-    
-    // MARK: - Setup
-    
-    open func setup(with actions: [KeyboardAction], buttonCreator: @escaping KeyboardButtonCreator) {
+    public init(actions: [KeyboardAction], buttonCreator: @escaping KeyboardButtonCreator) {
+        super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         self.actions = actions
         self.buttonCreator = buttonCreator
-        (collectionViewLayout as? UICollectionViewFlowLayout)?.scrollDirection = .horizontal
+        backgroundColor = .clear
         dataSource = self
         isPagingEnabled = true
         register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.actions = []
+        self.buttonCreator = { _ in fatalError() }
     }
     
     
     // MARK: - Types
     
     public typealias KeyboardButtonCreator = (KeyboardAction) -> (UIView?)
+    public typealias KeyboardButtonRowCreator = ([KeyboardAction]) -> (UIView?)
     
     
     // MARK: - Properties
     
-    public private(set) var actions = [KeyboardAction]()
-    public private(set) var buttonCreator: KeyboardButtonCreator?
+    public var actions = [KeyboardAction]()
+    public var buttonCreator: KeyboardButtonCreator?
     
     
     // MARK: - Public Functions

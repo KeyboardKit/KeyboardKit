@@ -59,30 +59,24 @@ class KeyboardViewController: KeyboardInputViewController {
     // MARK: - Setup
     
     func setupTopSystemButtons() {
-        let row = KeyboardButtonRow(height: 44)
+        let actions: [KeyboardAction] = [.switchKeyboard, .character("2"), .character("3"), .character("4"), .character("5")]
+        let row = KeyboardButtonRow(height: 44, actions: actions) { return button(for: $0) }
         row.buttonStackView.distribution = .equalSpacing
         keyboardStackView.addArrangedSubview(row)
-        let actions: [KeyboardAction] = [.switchKeyboard, .character("2"), .character("3"), .character("4"), .character("5")]
-        row.setup(with: actions, buttonCreator: { return button(for: $0) })
     }
     
     func setupKeyboard() {
-        let collectionView = KeyboardCollectionView()
+        let actions: [KeyboardAction] = [.switchKeyboard, .character("2"), .character("3"), .character("4"), .character("5")]
+        let collectionView = KeyboardCollectionView(actions: actions + actions) { [weak self] in return self?.button(for: $0) }
         collectionView.height = 120
         keyboardStackView.addArrangedSubview(collectionView)
-        let actions: [KeyboardAction] = [.switchKeyboard, .character("2"), .character("3"), .character("4"), .character("5")]
-        collectionView.setup(with: actions + actions + actions, buttonCreator: { [weak self] in return self?.button(for: $0) })
-//        let config = GridKeyboardPresenter.GridConfiguration(rowsPerPage: 2, buttonsPerRow: 5, rowHeight: 50)
-//        gridPresenter = DemoPresenter(id: "presenter", viewController: self, collectionView: collectionView, configuration: config)
     }
     
     func setupBottomSystemButtons() {
-        let row = KeyboardButtonRow(height: 44)
-        row.backgroundColor = .green
+        let actions: [KeyboardAction] = [.switchKeyboard, .character("2"), .character("3"), .character("4"), .character("5")]
+        let row = KeyboardButtonRow(height: 44, actions: actions) { return button(for: $0) }
         row.buttonStackView.distribution = .equalSpacing
         keyboardStackView.addArrangedSubview(row)
-        let actions: [KeyboardAction] = [.switchKeyboard, .character("7"), .character("8"), .character("9"), .character("10")]
-        row.setup(with: actions, buttonCreator: { return button(for: $0) })
     }
 //    
 //    func setupKeyboard(for size: CGSize) {

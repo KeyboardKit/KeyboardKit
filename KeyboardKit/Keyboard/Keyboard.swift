@@ -15,7 +15,7 @@
 
 import Foundation
 
-public struct Keyboard {
+open class Keyboard {
     
     public init(id: String? = nil, actions: [KeyboardAction]) {
         self.id = id
@@ -24,4 +24,11 @@ public struct Keyboard {
     
     public let id: String?
     public let actions: [KeyboardAction]
+}
+
+public extension Keyboard {
+    
+    static var empty: Keyboard {
+        return Keyboard(actions: [])
+    }
 }

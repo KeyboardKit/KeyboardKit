@@ -6,6 +6,14 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
+/*
+ 
+ This row can be setup with actions and a button creator. It
+ will populate a horizontal stack view and can be added to a
+ keyboard input view controller's main stack view.
+ 
+ */
+
 import UIKit
 
 open class KeyboardButtonRow: UIView, KeyboardStackViewComponent {
@@ -13,16 +21,9 @@ open class KeyboardButtonRow: UIView, KeyboardStackViewComponent {
     
     // MARK: - Initialization
     
-    public convenience init(height: CGFloat) {
+    public convenience init(height: CGFloat, actions: [KeyboardAction], buttonCreator: KeyboardButtonCreator) {
         self.init(frame: .zero)
         self.height = height
-    }
-    
-    
-    // MARK: - Setup
-    
-    open func setup(with actions: [KeyboardAction], buttonCreator: KeyboardButtonCreator) {
-        removeAllButtons()
         addButtons(with: actions, buttonCreator: buttonCreator)
     }
     
