@@ -8,13 +8,8 @@
 
 /*
  
- Keyboard action handlers are used to handle keyboard action
- events that are triggered by the user.
- 
- `addTapGesture(for:to:)` and `addLongPressGesture(for:to:)`
- can be used to add action gestures to button views that you
- add to your keyboard extensions. They will send any actions
- that the user triggers to the action handler.
+ This protocol is used to handle keyboard action events that
+ are triggered by the user.
  
  */
 

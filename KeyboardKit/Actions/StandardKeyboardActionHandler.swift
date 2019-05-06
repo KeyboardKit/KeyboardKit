@@ -8,30 +8,30 @@
 
 /*
  
- This action handler is used by default by all keyboard view
- controllers if you don't explicitly provide another one. It
- only inherits `NSObject` to make it possible for subclasses
- to act as selector targets.
+ This action handler is used by all `KeyboardViewController`
+ instances by default, if you don't explicitly decide to use
+ another one.
  
- `StandardKeyboardActionHandler` handles all actions, except
- `.image`, which you must handle manually, since there is no
- way to send images to the text proxy.
+ This action handler handles all keyboard actions except the
+ `.image` action, which you must handle manually since there
+ is no way to send images to the text proxy.
  
- You can adjust tap and long press action handling by either
- overriding `tapAction(for:)` and `longPressAction(for:)` to
- return other action blocks or by overriding `handleTap(on:)`
- and `handleLongPress(on:)`.
+ You can adjust how this class handles taps and long presses
+ on keyboard actions, by overriding the `handleTap(on:)` and
+ `handleLongPress(on:)` functions. You can also override the
+ `tapAction(for:)` and `longPressAction(for:)` to completely
+ change which action blocks to return for a keyboard action.
  
- You can adjust the haptic feedback given by this handler by
- either providing different tap and longpress feedback types
- in `init`, or by overriding `giveHapticFeedbackForTap(on:)`
- and `giveHapticFeedbackForLongPress(on:)`.
+ You can enable haptic feedback by providing different types
+ of haptic feedback for taps and long presses. To change the
+ haptic feedback for a specific action, you can override the
+ `giveHapticFeedbackForTap/LongPress(on:)` functions as well.
  
  */
 
 import UIKit
 
-open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
+open class StandardKeyboardActionHandler: KeyboardActionHandler {
     
     public init(
         inputViewController: UIInputViewController,
