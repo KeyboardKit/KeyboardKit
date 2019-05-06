@@ -103,8 +103,6 @@
 		45FB520F204B3F75009D5806 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 45FB5207204B3F75009D5806 /* .gitignore */; };
 		45FB5210204B3F75009D5806 /* Cartfile.private in Resources */ = {isa = PBXBuildFile; fileRef = 45FB5208204B3F75009D5806 /* Cartfile.private */; };
 		45FB5212204B3FB5009D5806 /* Fastfile in Resources */ = {isa = PBXBuildFile; fileRef = 45FB5211204B3FB5009D5806 /* Fastfile */; };
-		45FCD0182059DE330072157A /* DemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FCD0162059DE330072157A /* DemoCell.swift */; };
-		45FCD0192059DE330072157A /* DemoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45FCD0172059DE330072157A /* DemoCell.xib */; };
 		45FCD01C2059E09E0072157A /* UIImage+Tinted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FCD01B2059E09E0072157A /* UIImage+Tinted.swift */; };
 		45FCD01E2059E0CD0072157A /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FCD01D2059E0CD0072157A /* UIView+Nib.swift */; };
 		45FCD0222059E2220072157A /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FCD0212059E2220072157A /* UIView+Shadow.swift */; };
@@ -138,6 +136,9 @@
 		84FFAC9E22800AB700FB4998 /* MockNRoll.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 84FFAC9C22800AA500FB4998 /* MockNRoll.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84FFACA122800D7600FB4998 /* MockInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFACA022800D7600FB4998 /* MockInputViewController.swift */; };
 		84FFACA322800D8C00FB4998 /* MockKeyboardActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFACA222800D8C00FB4998 /* MockKeyboardActionHandler.swift */; };
+		84FFACA522801A2000FB4998 /* UIImage+ResizedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFACA422801A2000FB4998 /* UIImage+ResizedTests.swift */; };
+		84FFACA722801AF200FB4998 /* UIImage+TintedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFACA622801AF200FB4998 /* UIImage+TintedTests.swift */; };
+		84FFACAA22801E3B00FB4998 /* HapticFeedback+KeyboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFACA922801E3B00FB4998 /* HapticFeedback+KeyboardTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -279,8 +280,6 @@
 		45FB5207204B3F75009D5806 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		45FB5208204B3F75009D5806 /* Cartfile.private */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.private; sourceTree = "<group>"; };
 		45FB5211204B3FB5009D5806 /* Fastfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Fastfile; path = Fastlane/Fastfile; sourceTree = "<group>"; };
-		45FCD0162059DE330072157A /* DemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoCell.swift; sourceTree = "<group>"; };
-		45FCD0172059DE330072157A /* DemoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DemoCell.xib; sourceTree = "<group>"; };
 		45FCD01B2059E09E0072157A /* UIImage+Tinted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Tinted.swift"; sourceTree = "<group>"; };
 		45FCD01D2059E0CD0072157A /* UIView+Nib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
 		45FCD0212059E2220072157A /* UIView+Shadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
@@ -313,6 +312,9 @@
 		84FFAC9C22800AA500FB4998 /* MockNRoll.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MockNRoll.framework; path = Carthage/Build/iOS/MockNRoll.framework; sourceTree = "<group>"; };
 		84FFACA022800D7600FB4998 /* MockInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockInputViewController.swift; sourceTree = "<group>"; };
 		84FFACA222800D8C00FB4998 /* MockKeyboardActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockKeyboardActionHandler.swift; sourceTree = "<group>"; };
+		84FFACA422801A2000FB4998 /* UIImage+ResizedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+ResizedTests.swift"; sourceTree = "<group>"; };
+		84FFACA622801AF200FB4998 /* UIImage+TintedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TintedTests.swift"; sourceTree = "<group>"; };
+		84FFACA922801E3B00FB4998 /* HapticFeedback+KeyboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HapticFeedback+KeyboardTests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -409,6 +411,8 @@
 			children = (
 				84851DED2166B3D500DE8886 /* Comparable+LimitTests.swift */,
 				45CE0712204C01DB00A93175 /* Sequence+BatchTests.swift */,
+				84FFACA422801A2000FB4998 /* UIImage+ResizedTests.swift */,
+				84FFACA622801AF200FB4998 /* UIImage+TintedTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -445,8 +449,8 @@
 				45FB51C920495F42009D5806 /* Extensions */,
 				84511D582273143500904FE0 /* Feedback */,
 				45FB51D220495F42009D5806 /* Keyboard */,
-				845D6BB6224D651D0025B6C4 /* Supporting Files */,
 				452DDE71204F47AF00CD28C5 /* Presenters */,
+				845D6BB6224D651D0025B6C4 /* Supporting Files */,
 				84511D23226FA83600904FE0 /* Views */,
 			);
 			path = KeyboardKit;
@@ -455,11 +459,12 @@
 		45FB518220495C73009D5806 /* KeyboardKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				84FFAC9F22800D6900FB4998 /* Mocks */,
 				84FFAC97227FFB2600FB4998 /* Actions */,
 				45FB51EE20495FB4009D5806 /* Alerts */,
 				45CE0711204C01CE00A93175 /* Extensions */,
+				84FFACA822801E2D00FB4998 /* Feedback */,
 				84851DE12166A3CD00DE8886 /* Keyboard */,
+				84FFAC9F22800D6900FB4998 /* Mocks */,
 				845D6BB7224D653D0025B6C4 /* Supporting Files */,
 			);
 			path = KeyboardKitTests;
@@ -484,8 +489,6 @@
 				45FCD01A2059E05B0072157A /* Extensions */,
 				84851A672277AE9300477705 /* DemoButton.swift */,
 				84851A6D2277B11100477705 /* DemoButton.xib */,
-				45FCD0162059DE330072157A /* DemoCell.swift */,
-				45FCD0172059DE330072157A /* DemoCell.xib */,
 				45D1495320586280009EF441 /* DemoKeyboard.swift */,
 				84511D39227110BC00904FE0 /* DemoKeyboardActionHandler.swift */,
 				45FB51AD20495CB1009D5806 /* Info.plist */,
@@ -661,6 +664,14 @@
 				84FFACA222800D8C00FB4998 /* MockKeyboardActionHandler.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		84FFACA822801E2D00FB4998 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				84FFACA922801E3B00FB4998 /* HapticFeedback+KeyboardTests.swift */,
+			);
+			path = Feedback;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -879,7 +890,6 @@
 				450B1CAF206A298A006A2F18 /* color.png in Resources */,
 				450B1CBD206A298A006A2F18 /* image.png in Resources */,
 				450B1CAC206A298A006A2F18 /* help.png in Resources */,
-				45FCD0192059DE330072157A /* DemoCell.xib in Resources */,
 				45A0D81E205892B900557A93 /* Assets.xcassets in Resources */,
 				450B1CAE206A298A006A2F18 /* globe.png in Resources */,
 				450B1C97206A298A006A2F18 /* rss.png in Resources */,
@@ -970,9 +980,12 @@
 				84FFACA322800D8C00FB4998 /* MockKeyboardActionHandler.swift in Sources */,
 				84FFACA122800D7600FB4998 /* MockInputViewController.swift in Sources */,
 				84851DE32166A3EF00DE8886 /* KeyboardSettingTests.swift in Sources */,
+				84FFACA522801A2000FB4998 /* UIImage+ResizedTests.swift in Sources */,
 				84FFAC99227FFB3800FB4998 /* KeyboardActionTests.swift in Sources */,
+				84FFACAA22801E3B00FB4998 /* HapticFeedback+KeyboardTests.swift in Sources */,
 				84851DE82166A56D00DE8886 /* KeyboardTests.swift in Sources */,
 				45CE0713204C01DB00A93175 /* Sequence+BatchTests.swift in Sources */,
+				84FFACA722801AF200FB4998 /* UIImage+TintedTests.swift in Sources */,
 				84FFAC9B2280097B00FB4998 /* StandardKeyboardActionHandlerTests.swift in Sources */,
 				45FB51F020495FB4009D5806 /* ToastAlertTests.swift in Sources */,
 			);
@@ -998,7 +1011,6 @@
 				45FB51AC20495CB1009D5806 /* KeyboardViewController.swift in Sources */,
 				84511D3A227110BC00904FE0 /* DemoKeyboardActionHandler.swift in Sources */,
 				84851A682277AE9300477705 /* DemoButton.swift in Sources */,
-				45FCD0182059DE330072157A /* DemoCell.swift in Sources */,
 				45FCD0222059E2220072157A /* UIView+Shadow.swift in Sources */,
 				45D1495420586280009EF441 /* DemoKeyboard.swift in Sources */,
 			);

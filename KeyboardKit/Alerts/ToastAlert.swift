@@ -24,12 +24,14 @@ open class ToastAlert: KeyboardAlert {
     
     // MARK: - Initialization
     
-    public init() {}
+    public init(appearance: Appearance = Appearance()) {
+        self.appearance = appearance
+    }
     
     
     // MARK: - Public Properties
     
-    public var appearance = Appearance()
+    public let appearance: Appearance
     
     
     // MARK: - Types
@@ -39,7 +41,7 @@ open class ToastAlert: KeyboardAlert {
     public class View: UIView {}
     
     public struct Appearance {
-        init() {}
+        public init() {}
         public var backgroundColor: UIColor = .white
         public var cornerRadius: CGFloat = 10
         public var font: UIFont = .systemFont(ofSize: 10)

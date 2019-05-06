@@ -8,12 +8,7 @@
 
 import MockNRoll
 
-class MockInputViewController: Mock {
-
-    func dismissKeyboard() {
-        invoke(dismissKeyboard, args: ())
-    }
-}
+class MockInputViewController: Mock {}
 
 class MockInputViewControllerWrapper: UIInputViewController {
     
@@ -29,6 +24,6 @@ class MockInputViewControllerWrapper: UIInputViewController {
     private let mock: MockInputViewController
     
     override func dismissKeyboard() {
-        mock.dismissKeyboard()
+        mock.invoke(dismissKeyboard, args: ())
     }
 }
