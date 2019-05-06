@@ -5,6 +5,20 @@ default_platform :ios
 platform :ios do
 
 
+  # Carthage ===================
+
+  desc "Bootstrap Carthage"
+  lane :carthage_bootstrap do
+    carthage(platform: "iOS", cache_builds: true)
+  end
+
+  desc "Update Carthage"
+  lane :cu do carthage_update end
+  lane :carthage_update do
+    carthage(command: "update", platform: "iOS", cache_builds: true)
+  end
+
+
   # Version ================
 
   desc "Create a new version"

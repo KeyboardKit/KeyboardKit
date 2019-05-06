@@ -33,6 +33,9 @@ import UIKit
 
 open class StandardKeyboardActionHandler: KeyboardActionHandler {
     
+    
+    // MARK: - Initialization
+    
     public init(
         inputViewController: UIInputViewController,
         tapHapticFeedback: HapticFeedback = .none,
@@ -43,7 +46,12 @@ open class StandardKeyboardActionHandler: KeyboardActionHandler {
     }
     
     
+    // MARK: - Dependencies
+    
     public weak var inputViewController: UIInputViewController?
+    
+    
+    // MARK: - Properties
     
     private let tapHapticFeedback: HapticFeedback
     private let longPressHapticFeedback: HapticFeedback
@@ -51,6 +59,9 @@ open class StandardKeyboardActionHandler: KeyboardActionHandler {
     public var textDocumentProxy: UITextDocumentProxy? {
         return inputViewController?.textDocumentProxy
     }
+    
+    
+    // MARK: - Functions
     
     open func handleLongPress(on view: UIView, action: KeyboardAction) {
         guard let longPressAction = longPressAction(for: view, action: action) else { return }

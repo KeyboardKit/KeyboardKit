@@ -133,6 +133,11 @@
 		84FFA6AB227AC0E800FB4998 /* KeyboardButtonRowCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFA6AA227AC0E800FB4998 /* KeyboardButtonRowCollectionView.swift */; };
 		84FFAC87227AD9EF00FB4998 /* UIStackView+Subviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFAC86227AD9EF00FB4998 /* UIStackView+Subviews.swift */; };
 		84FFAC99227FFB3800FB4998 /* KeyboardActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFAC98227FFB3800FB4998 /* KeyboardActionTests.swift */; };
+		84FFAC9B2280097B00FB4998 /* StandardKeyboardActionHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFAC9A2280097B00FB4998 /* StandardKeyboardActionHandlerTests.swift */; };
+		84FFAC9D22800AA500FB4998 /* MockNRoll.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84FFAC9C22800AA500FB4998 /* MockNRoll.framework */; };
+		84FFAC9E22800AB700FB4998 /* MockNRoll.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 84FFAC9C22800AA500FB4998 /* MockNRoll.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		84FFACA122800D7600FB4998 /* MockInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFACA022800D7600FB4998 /* MockInputViewController.swift */; };
+		84FFACA322800D8C00FB4998 /* MockKeyboardActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFACA222800D8C00FB4998 /* MockKeyboardActionHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -195,6 +200,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				84FFAC9E22800AB700FB4998 /* MockNRoll.framework in CopyFiles */,
 				45FB51F620495FFE009D5806 /* Nimble.framework in CopyFiles */,
 				45FB51F720495FFE009D5806 /* Quick.framework in CopyFiles */,
 			);
@@ -303,6 +309,10 @@
 		84FFA6AA227AC0E800FB4998 /* KeyboardButtonRowCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButtonRowCollectionView.swift; sourceTree = "<group>"; };
 		84FFAC86227AD9EF00FB4998 /* UIStackView+Subviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Subviews.swift"; sourceTree = "<group>"; };
 		84FFAC98227FFB3800FB4998 /* KeyboardActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardActionTests.swift; sourceTree = "<group>"; };
+		84FFAC9A2280097B00FB4998 /* StandardKeyboardActionHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardKeyboardActionHandlerTests.swift; sourceTree = "<group>"; };
+		84FFAC9C22800AA500FB4998 /* MockNRoll.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MockNRoll.framework; path = Carthage/Build/iOS/MockNRoll.framework; sourceTree = "<group>"; };
+		84FFACA022800D7600FB4998 /* MockInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockInputViewController.swift; sourceTree = "<group>"; };
+		84FFACA222800D8C00FB4998 /* MockKeyboardActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockKeyboardActionHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,9 +327,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45FB517F20495C73009D5806 /* KeyboardKit.framework in Frameworks */,
+				84FFAC9D22800AA500FB4998 /* MockNRoll.framework in Frameworks */,
 				45FB51F320495FEF009D5806 /* Nimble.framework in Frameworks */,
 				45FB51F420495FEF009D5806 /* Quick.framework in Frameworks */,
-				45FB517F20495C73009D5806 /* KeyboardKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +455,7 @@
 		45FB518220495C73009D5806 /* KeyboardKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				84FFAC9F22800D6900FB4998 /* Mocks */,
 				84FFAC97227FFB2600FB4998 /* Actions */,
 				45FB51EE20495FB4009D5806 /* Alerts */,
 				45CE0711204C01CE00A93175 /* Extensions */,
@@ -485,6 +497,7 @@
 		45FB51B920495DCB009D5806 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84FFAC9C22800AA500FB4998 /* MockNRoll.framework */,
 				45FB51F120495FEF009D5806 /* Nimble.framework */,
 				45FB51F220495FEF009D5806 /* Quick.framework */,
 			);
@@ -636,8 +649,18 @@
 			isa = PBXGroup;
 			children = (
 				84FFAC98227FFB3800FB4998 /* KeyboardActionTests.swift */,
+				84FFAC9A2280097B00FB4998 /* StandardKeyboardActionHandlerTests.swift */,
 			);
 			path = Actions;
+			sourceTree = "<group>";
+		};
+		84FFAC9F22800D6900FB4998 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				84FFACA022800D7600FB4998 /* MockInputViewController.swift */,
+				84FFACA222800D8C00FB4998 /* MockKeyboardActionHandler.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -944,10 +967,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				84851DEE2166B3D500DE8886 /* Comparable+LimitTests.swift in Sources */,
+				84FFACA322800D8C00FB4998 /* MockKeyboardActionHandler.swift in Sources */,
+				84FFACA122800D7600FB4998 /* MockInputViewController.swift in Sources */,
 				84851DE32166A3EF00DE8886 /* KeyboardSettingTests.swift in Sources */,
 				84FFAC99227FFB3800FB4998 /* KeyboardActionTests.swift in Sources */,
 				84851DE82166A56D00DE8886 /* KeyboardTests.swift in Sources */,
 				45CE0713204C01DB00A93175 /* Sequence+BatchTests.swift in Sources */,
+				84FFAC9B2280097B00FB4998 /* StandardKeyboardActionHandlerTests.swift in Sources */,
 				45FB51F020495FB4009D5806 /* ToastAlertTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
