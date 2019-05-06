@@ -20,6 +20,7 @@
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Szk-Wp-Rcv">
                             <rect key="frame" x="10" y="10" width="384" height="417"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rmz-HZ-CvF">
                             <rect key="frame" x="195.5" y="205.5" width="13" height="24"/>
@@ -51,7 +52,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="buttonView" destination="IbC-mC-CMt" id="YsQ-vv-szg"/>
-                <outlet property="imageView" destination="Szk-Wp-Rcv" id="uAA-39-Uf4"/>
+                <outlet property="image" destination="Szk-Wp-Rcv" id="Zmr-3n-lCw"/>
                 <outlet property="textLabel" destination="rmz-HZ-CvF" id="ccB-9b-jza"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="-59.263392857142854"/>

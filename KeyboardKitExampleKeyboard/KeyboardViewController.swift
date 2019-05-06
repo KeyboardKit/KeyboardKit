@@ -20,7 +20,7 @@
  also add a `NSPhotoLibraryAddUsageDescription`  to the host
  app's `Info.plist` if you want to be able to save images to
  the photo album. This is already taken care of in this demo
- app, so you can just copy the setup.
+ app, so you can just copy the setup into your own app.
  
  */
 
@@ -35,12 +35,16 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         keyboardActionHandler = DemoKeyboardActionHandler(inputViewController: self)
-        setupKeyboard()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupKeyboard(for: view.bounds.size)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        setupKeyboard(with: size.width)
+        setupKeyboard(for: size)
     }
     
     override func viewWillSyncWithTextDocumentProxy() {
@@ -56,10 +60,10 @@ class KeyboardViewController: KeyboardInputViewController {
     
     // MARK: - Setup
     
-    func setupKeyboard(with width: CGFloat? = nil) {
+    func setupKeyboard(for size: CGSize) {
         keyboardStackView.removeAllArrangedSubviews()
         setupTopSystemButtons()
-        setupCollectionView(with: width)
+        setupCollectionView(for: size)
         setupBottomSystemButtons()
     }
     
@@ -70,10 +74,12 @@ class KeyboardViewController: KeyboardInputViewController {
         keyboardStackView.addArrangedSubview(row)
     }
     
-    func setupCollectionView(with width: CGFloat? = nil) {
-        let actions: [KeyboardAction] = [.switchKeyboard, .dismissKeyboard, .character("3"), .character("4"), .character("5")]
-        let config = KeyboardButtonRowCollectionView.Configuration(rowHeight: 50, rowsPerPage: 3, buttonsPerRow: 6)
-        let view = KeyboardButtonRowCollectionView(actions: actions + actions + actions, configuration: config) { [unowned self] in return self.button(for: $0) }
+    func setupCollectionView(for size: CGSize) {
+        let isLandscape = size.width > 400
+        let rowsPerPage = isLandscape ? 3 : 4
+        let buttonsPerRow = isLandscape ? 8 : 6
+        let config = KeyboardButtonRowCollectionView.Configuration(rowHeight: 50, rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)
+        let view = KeyboardButtonRowCollectionView(actions: keyboard.actions, configuration: config) { [unowned self] in return self.button(for: $0) }
         keyboardStackView.addArrangedSubview(view)
     }
     
@@ -83,19 +89,13 @@ class KeyboardViewController: KeyboardInputViewController {
         row.buttonStackView.distribution = .equalSpacing
         keyboardStackView.addArrangedSubview(row)
     }
-//    
-//    func setupKeyboard(for size: CGSize) {
-//        let isLandscape = size.width > 400
-//        let height: CGFloat = isLandscape ? 150 : 200
-//        let rowsPerPage = isLandscape ? 3 : 4
-//        let buttonsPerRow = isLandscape ? 8 : 6
-//        gridPresenter.setup(withHeight: height, rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)
-//    }
     
     
     // MARK: - Properties
     
-    var alerter = ToastAlert()
+    let alerter = ToastAlert()
+    let keyboard = DemoKeyboard()
+    
 }
 
 
