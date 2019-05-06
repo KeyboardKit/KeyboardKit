@@ -132,6 +132,7 @@
 		84FFA6A9227ABC8C00FB4998 /* KeyboardButtonCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFA6A8227ABC8C00FB4998 /* KeyboardButtonCollectionView.swift */; };
 		84FFA6AB227AC0E800FB4998 /* KeyboardButtonRowCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFA6AA227AC0E800FB4998 /* KeyboardButtonRowCollectionView.swift */; };
 		84FFAC87227AD9EF00FB4998 /* UIStackView+Subviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFAC86227AD9EF00FB4998 /* UIStackView+Subviews.swift */; };
+		84FFAC99227FFB3800FB4998 /* KeyboardActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFAC98227FFB3800FB4998 /* KeyboardActionTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -301,6 +302,7 @@
 		84FFA6A8227ABC8C00FB4998 /* KeyboardButtonCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButtonCollectionView.swift; sourceTree = "<group>"; };
 		84FFA6AA227AC0E800FB4998 /* KeyboardButtonRowCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButtonRowCollectionView.swift; sourceTree = "<group>"; };
 		84FFAC86227AD9EF00FB4998 /* UIStackView+Subviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Subviews.swift"; sourceTree = "<group>"; };
+		84FFAC98227FFB3800FB4998 /* KeyboardActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardActionTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -442,6 +444,7 @@
 		45FB518220495C73009D5806 /* KeyboardKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				84FFAC97227FFB2600FB4998 /* Actions */,
 				45FB51EE20495FB4009D5806 /* Alerts */,
 				45CE0711204C01CE00A93175 /* Extensions */,
 				84851DE12166A3CD00DE8886 /* Keyboard */,
@@ -627,6 +630,14 @@
 				84851DE72166A56D00DE8886 /* KeyboardTests.swift */,
 			);
 			path = Keyboard;
+			sourceTree = "<group>";
+		};
+		84FFAC97227FFB2600FB4998 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				84FFAC98227FFB3800FB4998 /* KeyboardActionTests.swift */,
+			);
+			path = Actions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -934,6 +945,7 @@
 			files = (
 				84851DEE2166B3D500DE8886 /* Comparable+LimitTests.swift in Sources */,
 				84851DE32166A3EF00DE8886 /* KeyboardSettingTests.swift in Sources */,
+				84FFAC99227FFB3800FB4998 /* KeyboardActionTests.swift in Sources */,
 				84851DE82166A56D00DE8886 /* KeyboardTests.swift in Sources */,
 				45CE0713204C01DB00A93175 /* Sequence+BatchTests.swift in Sources */,
 				45FB51F020495FB4009D5806 /* ToastAlertTests.swift in Sources */,
