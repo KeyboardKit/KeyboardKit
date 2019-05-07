@@ -8,8 +8,8 @@
 
 /*
  
- This button implements `KeyboardButton` and also provides a
- setup function that sets the button up properly.
+ This button view implements `KeyboardButton` and provides a
+ setup function that helps you set it up properly.
  
  */
 
