@@ -28,18 +28,15 @@ public extension KeyboardButtonRowComponent {
     
     var width: CGFloat {
         get { return widthConstraint?.constant ?? intrinsicContentSize.width }
-        set { setWidthConstraint(to: newValue) }
+        set { setWidth(to: newValue) }
     }
 }
 
 private extension KeyboardButtonRowComponent {
     
-    func setWidthConstraint(to width: CGFloat) {
-        if let widthConstraint = widthConstraint {
-            widthConstraint.constant = width
-        } else {
-            widthConstraint = widthAnchor.constraint(equalToConstant: width)
-        }
+    func setWidth(to width: CGFloat) {
+        widthConstraint = widthConstraint ?? widthAnchor.constraint(equalToConstant: width)
+        widthConstraint?.constant = width
         widthConstraint?.isActive = true
     }
 }
