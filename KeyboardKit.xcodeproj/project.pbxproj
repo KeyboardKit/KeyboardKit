@@ -120,7 +120,7 @@
 		846F1C632276474800314DC8 /* KeyboardButtonRowComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F1C622276474800314DC8 /* KeyboardButtonRowComponent.swift */; };
 		846F1C6722764AA000314DC8 /* KeyboardButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F1C6622764AA000314DC8 /* KeyboardButtonView.swift */; };
 		84851A682277AE9300477705 /* DemoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851A672277AE9300477705 /* DemoButton.swift */; };
-		84851A6C2277AFE000477705 /* KeyboardAction+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851A6B2277AFE000477705 /* KeyboardAction+Display.swift */; };
+		84851A6C2277AFE000477705 /* KeyboardAction+Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851A6B2277AFE000477705 /* KeyboardAction+Demo.swift */; };
 		84851A6E2277B11100477705 /* DemoButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84851A6D2277B11100477705 /* DemoButton.xib */; };
 		84851A73227888BC00477705 /* HapticFeedback+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851A72227888BC00477705 /* HapticFeedback+Keyboard.swift */; };
 		84851DE32166A3EF00DE8886 /* KeyboardSettingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851DE22166A3EF00DE8886 /* KeyboardSettingTests.swift */; };
@@ -297,7 +297,7 @@
 		846F1C622276474800314DC8 /* KeyboardButtonRowComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButtonRowComponent.swift; sourceTree = "<group>"; };
 		846F1C6622764AA000314DC8 /* KeyboardButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButtonView.swift; sourceTree = "<group>"; };
 		84851A672277AE9300477705 /* DemoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoButton.swift; sourceTree = "<group>"; };
-		84851A6B2277AFE000477705 /* KeyboardAction+Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardAction+Display.swift"; sourceTree = "<group>"; };
+		84851A6B2277AFE000477705 /* KeyboardAction+Demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardAction+Demo.swift"; sourceTree = "<group>"; };
 		84851A6D2277B11100477705 /* DemoButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DemoButton.xib; sourceTree = "<group>"; };
 		84851A72227888BC00477705 /* HapticFeedback+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HapticFeedback+Keyboard.swift"; sourceTree = "<group>"; };
 		84851DE22166A3EF00DE8886 /* KeyboardSettingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSettingTests.swift; sourceTree = "<group>"; };
@@ -570,7 +570,7 @@
 			children = (
 				45FCD01D2059E0CD0072157A /* UIView+Nib.swift */,
 				45FCD0212059E2220072157A /* UIView+Shadow.swift */,
-				84851A6B2277AFE000477705 /* KeyboardAction+Display.swift */,
+				84851A6B2277AFE000477705 /* KeyboardAction+Demo.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1005,7 +1005,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84851A6C2277AFE000477705 /* KeyboardAction+Display.swift in Sources */,
+				84851A6C2277AFE000477705 /* KeyboardAction+Demo.swift in Sources */,
 				45FCD01E2059E0CD0072157A /* UIView+Nib.swift in Sources */,
 				450B1C4320699F6C006A2F18 /* Asset.swift in Sources */,
 				45FB51AC20495CB1009D5806 /* KeyboardViewController.swift in Sources */,

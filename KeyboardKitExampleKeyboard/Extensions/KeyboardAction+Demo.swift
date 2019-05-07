@@ -1,5 +1,5 @@
 //
-//  KeyboardAction+Display.swift
+//  KeyboardAction+Demo.swift
 //  KeyboardKitExampleKeyboard
 //
 //  Created by Daniel Saidi on 2019-04-30.
