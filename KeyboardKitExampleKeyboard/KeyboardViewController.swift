@@ -58,7 +58,7 @@ class KeyboardViewController: KeyboardInputViewController {
     }
     
     func setupTopSystemButtons() {
-        let actions: [KeyboardAction] = [.switchKeyboard, .character("2"), .character("3"), .character("4"), .character("5"), .switchKeyboard]
+        let actions: [KeyboardAction] = [.none, .switchKeyboard, .character("2"), .character("3"), .character("4"), .character("5"), .switchKeyboard, .none]
         let row = KeyboardButtonRow(height: 50, actions: actions) { return button(for: $0, distribution: .fillProportionally) }
         row.buttonStackView.distribution = .fillProportionally
         keyboardStackView.addArrangedSubview(row)
@@ -94,8 +94,15 @@ class KeyboardViewController: KeyboardInputViewController {
 extension KeyboardViewController {
     
     func button(for action: KeyboardAction, distribution: UIStackView.Distribution = .equalSpacing) -> UIView {
+        if action == .none { return noneActionbutton(distribution: distribution) }
         let view = DemoButton.initWithDefaultNib(owner: self)
         view.setup(with: action, in: self, distribution: distribution)
+        return view
+    }
+    
+    func noneActionbutton(distribution: UIStackView.Distribution) -> UIView {
+        let view = KeyboardSpacerView(frame: .zero)
+        view.width = KeyboardAction.none.keyboardWidth(for: distribution)
         return view
     }
 }
