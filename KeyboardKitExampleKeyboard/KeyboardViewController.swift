@@ -95,11 +95,7 @@ extension KeyboardViewController {
     
     func button(for action: KeyboardAction, distribution: UIStackView.Distribution = .equalSpacing) -> UIView {
         let view = DemoButton.initWithDefaultNib(owner: self)
-        view.setup(with: action, in: self)
-        view.width = (action == .switchKeyboard) ? 60 : 50
-        if distribution == .fillProportionally {
-            view.width *= 100
-        }
+        view.setup(with: action, in: self, distribution: distribution)
         return view
     }
 }

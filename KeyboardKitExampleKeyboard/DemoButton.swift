@@ -11,7 +11,7 @@ import KeyboardKit
 
 class DemoButton: KeyboardButtonView {
     
-    public override func setup(with action: KeyboardAction, in viewController: KeyboardInputViewController) {
+    public func setup(with action: KeyboardAction, in viewController: KeyboardInputViewController, distribution: UIStackView.Distribution = .fillEqually) {
         super.setup(with: action, in: viewController)
         let noneAction = action == .none
         buttonView?.alpha = noneAction ? 0.01 : 1
@@ -20,6 +20,7 @@ class DemoButton: KeyboardButtonView {
         setupImage(with: action)
         setupTextLabel(with: action)
         addBadgeShadow()
+        width = action.keyboardWidth(for: distribution)
     }
     
     

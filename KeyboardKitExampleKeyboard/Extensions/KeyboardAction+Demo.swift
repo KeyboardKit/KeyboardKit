@@ -24,4 +24,18 @@ extension KeyboardAction {
         default: return nil
         }
     }
+    
+    var keyboardWidth: CGFloat {
+        switch self {
+        case .none: return 20
+        case .space: return 100
+        case .switchKeyboard: return 60
+        default: return 50
+        }
+    }
+    
+    func keyboardWidth(for distribution: UIStackView.Distribution) -> CGFloat {
+        let adjust = distribution == .fillProportionally
+        return adjust ? keyboardWidth * 100 : keyboardWidth
+    }
 }
