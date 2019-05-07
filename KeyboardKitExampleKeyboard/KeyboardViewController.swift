@@ -47,10 +47,6 @@ class KeyboardViewController: KeyboardInputViewController {
         setupKeyboard(for: size)
     }
     
-    override func handleInputModeList(from view: UIView, with event: UIEvent) {
-        super.handleInputModeList(from: view, with: event)
-    }
-    
     
     // MARK: - Setup
     
@@ -62,9 +58,9 @@ class KeyboardViewController: KeyboardInputViewController {
     }
     
     func setupTopSystemButtons() {
-        let actions: [KeyboardAction] = [.switchKeyboard, .character("2"), .character("3"), .character("4"), .character("5")]
-        let row = KeyboardButtonRow(height: 50, actions: actions) { return button(for: $0) }
-        row.buttonStackView.distribution = .equalSpacing
+        let actions: [KeyboardAction] = [.switchKeyboard, .character("2"), .character("3"), .character("4"), .character("5"), .switchKeyboard]
+        let row = KeyboardButtonRow(height: 50, actions: actions) { return button(for: $0, distribution: .fillProportionally) }
+        row.buttonStackView.distribution = .fillProportionally
         keyboardStackView.addArrangedSubview(row)
     }
     
@@ -78,7 +74,7 @@ class KeyboardViewController: KeyboardInputViewController {
     }
     
     func setupBottomSystemButtons() {
-        let actions: [KeyboardAction] = [.switchKeyboard, .character("2"), .character("3"), .character("4"), .character("5")]
+        let actions: [KeyboardAction] = [.switchKeyboard, .character("2"), .character("3"), .character("4"), .character("5"), .switchKeyboard]
         let row = KeyboardButtonRow(height: 50, actions: actions) { return button(for: $0) }
         row.buttonStackView.distribution = .equalSpacing
         keyboardStackView.addArrangedSubview(row)
@@ -97,10 +93,13 @@ class KeyboardViewController: KeyboardInputViewController {
 
 extension KeyboardViewController {
     
-    func button(for action: KeyboardAction) -> UIView {
+    func button(for action: KeyboardAction, distribution: UIStackView.Distribution = .equalSpacing) -> UIView {
         let view = DemoButton.initWithDefaultNib(owner: self)
         view.setup(with: action, in: self)
-        view.width = 50
+        view.width = (action == .switchKeyboard) ? 60 : 50
+        if distribution == .fillProportionally {
+            view.width *= 100
+        }
         return view
     }
 }

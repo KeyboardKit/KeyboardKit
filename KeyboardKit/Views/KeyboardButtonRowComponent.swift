@@ -21,13 +21,25 @@ import UIKit
 
 public protocol KeyboardButtonRowComponent: UIView {
     
-    var widthConstraint: NSLayoutConstraint { get }
+    var widthConstraint: NSLayoutConstraint? { get set }
 }
 
 public extension KeyboardButtonRowComponent {
     
     var width: CGFloat {
-        get { return widthConstraint.constant }
-        set { widthConstraint.constant = newValue }
+        get { return widthConstraint?.constant ?? intrinsicContentSize.width }
+        set { setWidthConstraint(to: newValue) }
+    }
+}
+
+private extension KeyboardButtonRowComponent {
+    
+    func setWidthConstraint(to width: CGFloat) {
+        if let widthConstraint = widthConstraint {
+            widthConstraint.constant = width
+        } else {
+            widthConstraint = widthAnchor.constraint(equalToConstant: width)
+        }
+        widthConstraint?.isActive = true
     }
 }

@@ -19,12 +19,12 @@ open class KeyboardButtonView: UIButton, KeyboardButton {
     
     public private(set) var action: KeyboardAction = .none
     public private(set) var keyboardAppearance: UIKeyboardAppearance = .default
+    public var widthConstraint: NSLayoutConstraint?
     
-    public private(set) lazy var widthConstraint: NSLayoutConstraint = {
-        let constraint = widthAnchor.constraint(equalToConstant: 50)
-        constraint.isActive = true
-        return constraint
-    }()
+    open override var intrinsicContentSize: CGSize {
+        let size = super.intrinsicContentSize
+        return CGSize(width: width, height: size.height)
+    }
     
     open func setup(with action: KeyboardAction, in viewController: KeyboardInputViewController) {
         self.action = action
