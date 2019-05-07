@@ -13,14 +13,14 @@ class DemoButton: KeyboardButtonView {
     
     public func setup(with action: KeyboardAction, in viewController: KeyboardInputViewController, distribution: UIStackView.Distribution = .fillEqually) {
         super.setup(with: action, in: viewController)
-        let noneAction = action == .none
-        buttonView?.alpha = noneAction ? 0.01 : 1
-        setupBackground()
-        setupButton()
-        setupImage(with: action)
-        setupTextLabel(with: action)
-        addBadgeShadow()
+        let isDark = keyboardAppearance == .dark
+        backgroundColor = UIColor.black.withAlphaComponent(0.0001)
+        buttonView?.backgroundColor = isDark ? .darkGray : .white
+        image?.image = action.keyboardImage
+        textLabel?.textColor = isDark ? .white : .black
+        textLabel?.text = action.keyboardText
         width = action.keyboardWidth(for: distribution)
+        addBadgeShadow()
     }
     
     
@@ -32,30 +32,5 @@ class DemoButton: KeyboardButtonView {
     
     @IBOutlet weak var textLabel: UILabel? {
         didSet { textLabel?.text = "" }
-    }
-}
-
-
-private extension DemoButton {
-    
-    func setupBackground() {
-        backgroundColor = UIColor.black.withAlphaComponent(0.0001)
-    }
-    
-    func setupButton() {
-        let isDark = keyboardAppearance == .dark
-        let color: UIColor = isDark ? .darkGray : .white
-        buttonView?.backgroundColor = color
-    }
-    
-    func setupImage(with action: KeyboardAction) {
-        image?.image = action.keyboardImage
-        image?.isHidden = image?.image == nil
-    }
-    
-    func setupTextLabel(with action: KeyboardAction) {
-        let isDark = keyboardAppearance == .dark
-        textLabel?.textColor = isDark ? .white : .black
-        textLabel?.text = action.keyboardText
     }
 }
