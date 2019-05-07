@@ -47,12 +47,6 @@ class KeyboardViewController: KeyboardInputViewController {
         setupKeyboard(for: size)
     }
     
-    override func viewWillSyncWithTextDocumentProxy() {
-        super.viewWillSyncWithTextDocumentProxy()
-//        let isDark = textDocumentProxy.keyboardAppearance == .dark
-//        view.tintColor = isDark ? .white : .black
-    }
-    
     override func handleInputModeList(from view: UIView, with event: UIEvent) {
         super.handleInputModeList(from: view, with: event)
     }
@@ -105,7 +99,7 @@ extension KeyboardViewController {
     
     func button(for action: KeyboardAction) -> UIView {
         let view = DemoButton.initWithDefaultNib(owner: self)
-        view.setup(with: action, in: self, appearance: textDocumentProxy.keyboardAppearance ?? .dark, tintColor: .black)
+        view.setup(with: action, in: self)
         view.width = 50
         return view
     }

@@ -18,6 +18,7 @@ import UIKit
 open class KeyboardButtonView: UIButton, KeyboardButton {
     
     public private(set) var action: KeyboardAction = .none
+    public private(set) var keyboardAppearance: UIKeyboardAppearance = .default
     
     public private(set) lazy var widthConstraint: NSLayoutConstraint = {
         let constraint = widthAnchor.constraint(equalToConstant: 50)
@@ -25,8 +26,9 @@ open class KeyboardButtonView: UIButton, KeyboardButton {
         return constraint
     }()
     
-    public func setup(with action: KeyboardAction, in viewController: KeyboardInputViewController) {
+    open func setup(with action: KeyboardAction, in viewController: KeyboardInputViewController) {
         self.action = action
+        self.keyboardAppearance = viewController.textDocumentProxy.keyboardAppearance ?? .default
         viewController.addKeyboardGestures(to: self)
     }
 }

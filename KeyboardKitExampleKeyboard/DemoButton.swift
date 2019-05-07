@@ -11,14 +11,14 @@ import KeyboardKit
 
 class DemoButton: KeyboardButtonView {
     
-    public func setup(with action: KeyboardAction, in viewController: KeyboardInputViewController, appearance: UIKeyboardAppearance, tintColor: UIColor) {
+    public override func setup(with action: KeyboardAction, in viewController: KeyboardInputViewController) {
         super.setup(with: action, in: viewController)
         let noneAction = action == .none
         buttonView?.alpha = noneAction ? 0.01 : 1
         setupBackground()
-        setupButton(with: appearance)
+        setupButton()
         setupImage(with: action)
-        setupTextLabel(with: action, tintColor: tintColor)
+        setupTextLabel(with: action)
         addBadgeShadow()
     }
     
@@ -41,9 +41,9 @@ private extension DemoButton {
         backgroundColor = UIColor.black.withAlphaComponent(0.0001)
     }
     
-    func setupButton(with appearance: UIKeyboardAppearance) {
-        let isDark = appearance == .dark
-        let color: UIColor = isDark ? UIColor(red: 138/255, green: 138/255, blue: 138/255, alpha: 1) : .white
+    func setupButton() {
+        let isDark = keyboardAppearance == .dark
+        let color: UIColor = isDark ? .darkGray : .white
         buttonView?.backgroundColor = color
     }
     
@@ -52,8 +52,9 @@ private extension DemoButton {
         image?.isHidden = image?.image == nil
     }
     
-    func setupTextLabel(with action: KeyboardAction, tintColor: UIColor) {
-        textLabel?.textColor = tintColor
+    func setupTextLabel(with action: KeyboardAction) {
+        let isDark = keyboardAppearance == .dark
+        textLabel?.textColor = isDark ? .white : .black
         textLabel?.text = action.keyboardText
     }
 }
