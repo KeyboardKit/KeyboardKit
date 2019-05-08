@@ -20,44 +20,31 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         var actionHandlerRecorder: MockKeyboardActionHandler!
         var inputViewController: MockInputViewController!
         
+        var actionsWithTap: [KeyboardAction] {
+            return [
+                .backspace, .dismissKeyboard, .character(""),
+                .moveCursorBack, .moveCursorForward,
+                .newLine, .space
+            ]
+        }
+        
+        var actionsWithoutTap: [KeyboardAction] {
+            return [
+                .none, .image(description: "", keyboardImageName: "", imageName: ""),
+                .switchKeyboard, .shift
+            ]
+        }
+        
         var actionsWithLongPress: [KeyboardAction] {
             return []
         }
         
         var actionsWithoutLongPress: [KeyboardAction] {
             return [
-                .none,
-                .backspace,
-                .dismissKeyboard,
-                .character(""),
+                .none, .backspace, .dismissKeyboard, .character(""),
                 .image(description: "", keyboardImageName: "", imageName: ""),
-                .moveCursorBack,
-                .moveCursorForward,
-                .switchKeyboard,
-                .newLine,
-                .shift,
-                .space
-            ]
-        }
-        
-        var actionsWithTap: [KeyboardAction] {
-            return [
-                .backspace,
-                .dismissKeyboard,
-                .character(""),
-                .moveCursorBack,
-                .moveCursorForward,
-                .newLine,
-                .space
-            ]
-        }
-        
-        var actionsWithoutTap: [KeyboardAction] {
-            return [
-                .none,
-                .image(description: "", keyboardImageName: "", imageName: ""),
-                .switchKeyboard,
-                .shift
+                .moveCursorBack, .moveCursorForward,
+                .switchKeyboard, .newLine, .shift, .space
             ]
         }
         
@@ -72,6 +59,27 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
                 longPressHapticFeedback: .warning)
         }
         
+        describe("handling tap") {
+            
+            it("aborts if no action block is provided") {
+                actionsWithoutTap.forEach {
+                    handler.handleTap(on: UIView(), action: $0)
+                }
+                let invokes = handler.recorder.executions(of: handler.recorder.giveHapticFeedbackForTap)
+                expect(invokes.count).to(equal(0))
+            }
+            
+            it("proceeds if an action block is provided") {
+                actionsWithTap.forEach {
+                    handler.handleTap(on: UIView(), action: $0)
+                }
+                let invokes = handler.recorder.executions(of: handler.recorder.giveHapticFeedbackForTap)
+                let args = invokes.map { $0.arguments }
+                expect(invokes.count).to(beGreaterThan(0))
+                expect(invokes.count).to(equal(actionsWithTap.count))
+                expect(args).to(equal(actionsWithTap))
+            }
+        }
         
         describe("handling long press") {
             
@@ -94,27 +102,6 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             }
         }
         
-        describe("handling tap") {
-            
-            it("aborts if no action block is provided") {
-                actionsWithoutLongPress.forEach {
-                    handler.handleLongPress(on: UIView(), action: $0)
-                }
-                let invokes = handler.recorder.executions(of: handler.recorder.giveHapticFeedbackForLongPress)
-                expect(invokes.count).to(equal(0))
-            }
-            
-            it("proceeds if an action block is provided") {
-                actionsWithTap.forEach {
-                    handler.handleTap(on: UIView(), action: $0)
-                }
-                let invokes = handler.recorder.executions(of: handler.recorder.giveHapticFeedbackForTap)
-                let args = invokes.map { $0.arguments }
-                expect(invokes.count).to(beGreaterThan(0))
-                expect(invokes.count).to(equal(actionsWithTap.count))
-                expect(args).to(equal(actionsWithTap))
-            }
-        }
         
         describe("giving haptic feedback for tap") {
             
@@ -129,10 +116,30 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         describe("giving haptic feedback for long press") {
             
             it("can't be properyly tested") {
-                handler.giveHapticFeedbackForTap(on: .dismissKeyboard)
-                let invokes = handler.recorder.executions(of: handler.recorder.giveHapticFeedbackForTap)
+                handler.giveHapticFeedbackForLongPress(on: .dismissKeyboard)
+                let invokes = handler.recorder.executions(of: handler.recorder.giveHapticFeedbackForLongPress)
                 expect(invokes.count).to(equal(1))
                 expect(invokes[0].arguments).to(equal(.dismissKeyboard))
+            }
+        }
+        
+        
+        describe("tap action") {
+            
+            it("is not nil for all action types with tap") {
+                let keyboardActions = actionsWithTap
+                let result = keyboardActions.map { handler.tapAction(for: UIView(frame: .zero), action: $0) }
+                result.forEach {
+                    expect($0).toNot(beNil())
+                }
+            }
+            
+            it("is nil for all action types without tap") {
+                let keyboardActions = actionsWithoutTap
+                let result = keyboardActions.map { handler.tapAction(for: UIView(frame: .zero), action: $0) }
+                result.forEach {
+                    expect($0).to(beNil())
+                }
             }
         }
         
@@ -149,25 +156,6 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             it("is nil for all action types without long press") {
                 let keyboardActions = actionsWithoutLongPress
                 let result = keyboardActions.map { handler.longPressAction(for: UIView(frame: .zero), action: $0) }
-                result.forEach {
-                    expect($0).to(beNil())
-                }
-            }
-        }
-        
-        describe("tap action") {
-            
-            it("is not nil for all action types with long press") {
-                let keyboardActions = actionsWithTap
-                let result = keyboardActions.map { handler.tapAction(for: UIView(frame: .zero), action: $0) }
-                result.forEach {
-                    expect($0).toNot(beNil())
-                }
-            }
-            
-            it("is nil for all action types without long press") {
-                let keyboardActions = actionsWithoutTap
-                let result = keyboardActions.map { handler.tapAction(for: UIView(frame: .zero), action: $0) }
                 result.forEach {
                     expect($0).to(beNil())
                 }
@@ -193,11 +181,11 @@ private class StandardKeyboardActionHandlerTestClass: StandardKeyboardActionHand
     
     let recorder: MockKeyboardActionHandler
     
-    override func giveHapticFeedbackForLongPress(on action: KeyboardAction) {
-        recorder.giveHapticFeedbackForLongPress(on: action)
-    }
-    
     override func giveHapticFeedbackForTap(on action: KeyboardAction) {
         recorder.giveHapticFeedbackForTap(on: action)
+    }
+    
+    override func giveHapticFeedbackForLongPress(on action: KeyboardAction) {
+        recorder.giveHapticFeedbackForLongPress(on: action)
     }
 }

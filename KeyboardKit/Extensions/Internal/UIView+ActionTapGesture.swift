@@ -21,11 +21,12 @@ extension UIView {
     
     typealias TapAction = (() -> Void)
     
-    func addTapGestureRecognizer(action: TapAction?) {
+    func addTapGestureRecognizer(numberOfTapsRequired: Int = 1, action: TapAction?) {
         tapAction = action
         isUserInteractionEnabled = true
         let selector = #selector(handleTap)
         let recognizer = UITapGestureRecognizer(target: self, action: selector)
+        recognizer.numberOfTapsRequired = numberOfTapsRequired
         addGestureRecognizer(recognizer)
     }
     

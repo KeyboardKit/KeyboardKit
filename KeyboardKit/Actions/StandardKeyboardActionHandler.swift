@@ -61,13 +61,7 @@ open class StandardKeyboardActionHandler: KeyboardActionHandler {
     }
     
     
-    // MARK: - Functions
-    
-    open func handleLongPress(on view: UIView, action: KeyboardAction) {
-        guard let longPressAction = longPressAction(for: view, action: action) else { return }
-        giveHapticFeedbackForLongPress(on: action)
-        longPressAction()
-    }
+    // MARK: - Handling Functions
     
     open func handleTap(on view: UIView, action: KeyboardAction) {
         guard let tapAction = tapAction(for: view, action: action) else { return }
@@ -75,17 +69,25 @@ open class StandardKeyboardActionHandler: KeyboardActionHandler {
         tapAction()
     }
     
-    open func giveHapticFeedbackForLongPress(on action: KeyboardAction) {
-        longPressHapticFeedback.trigger()
+    open func handleLongPress(on view: UIView, action: KeyboardAction) {
+        guard let longPressAction = longPressAction(for: view, action: action) else { return }
+        giveHapticFeedbackForLongPress(on: action)
+        longPressAction()
     }
+    
+    
+    // MARK: - Haptic Functions
     
     open func giveHapticFeedbackForTap(on action: KeyboardAction) {
         tapHapticFeedback.trigger()
     }
     
-    open func longPressAction(for view: UIView, action: KeyboardAction) -> (() -> ())? {
-        return nil
+    open func giveHapticFeedbackForLongPress(on action: KeyboardAction) {
+        longPressHapticFeedback.trigger()
     }
+    
+    
+    // MARK: - Action Functions
     
     open func tapAction(for view: UIView, action: KeyboardAction) -> (() -> ())? {
         switch action {
@@ -101,5 +103,9 @@ open class StandardKeyboardActionHandler: KeyboardActionHandler {
         case .shift: return nil
         case .space: return { [weak self] in self?.textDocumentProxy?.insertText(" ") }
         }
+    }
+    
+    open func longPressAction(for view: UIView, action: KeyboardAction) -> (() -> ())? {
+        return nil
     }
 }
