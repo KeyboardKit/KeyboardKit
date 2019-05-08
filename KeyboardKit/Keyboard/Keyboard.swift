@@ -11,6 +11,11 @@
  In KeyboardKit, a `Keyboard` is just an action carrier with
  an optional id. The actions can be displayed in any way.
  
+ In the demo application, you can see how you can extend the
+ keyboard class with more functionality, e.g. so that it can
+ suggest a preferred stack view distribution mode, provide a
+ set of real buttons given its actions etc.
+ 
  */
 
 import Foundation

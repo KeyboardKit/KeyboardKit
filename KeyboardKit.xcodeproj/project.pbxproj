@@ -68,7 +68,7 @@
 		45CE0710204C016500A93175 /* Sequence+Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CE070F204C016500A93175 /* Sequence+Batch.swift */; };
 		45CE0713204C01DB00A93175 /* Sequence+BatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CE0712204C01DB00A93175 /* Sequence+BatchTests.swift */; };
 		45D1495220585DD5009EF441 /* KeyboardInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D1495120585DD5009EF441 /* KeyboardInputViewController.swift */; };
-		45D1495420586280009EF441 /* DemoKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D1495320586280009EF441 /* DemoKeyboard.swift */; };
+		45D1495420586280009EF441 /* DemoGridKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D1495320586280009EF441 /* DemoGridKeyboard.swift */; };
 		45FB517F20495C73009D5806 /* KeyboardKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FB517520495C73009D5806 /* KeyboardKit.framework */; };
 		45FB518620495C73009D5806 /* KeyboardKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 45FB517820495C73009D5806 /* KeyboardKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45FB519620495C8A009D5806 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FB519520495C8A009D5806 /* AppDelegate.swift */; };
@@ -140,6 +140,8 @@
 		84FFACA722801AF200FB4998 /* UIImage+TintedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFACA622801AF200FB4998 /* UIImage+TintedTests.swift */; };
 		84FFACAA22801E3B00FB4998 /* HapticFeedback+KeyboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFACA922801E3B00FB4998 /* HapticFeedback+KeyboardTests.swift */; };
 		84FFACD822821BB900FB4998 /* KeyboardSpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFACD722821BB900FB4998 /* KeyboardSpacerView.swift */; };
+		84FFACDB2282352400FB4998 /* DemoNumericKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFACDA2282352400FB4998 /* DemoNumericKeyboard.swift */; };
+		84FFACDD2282353800FB4998 /* DemoSystemKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFACDC2282353800FB4998 /* DemoSystemKeyboard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -245,7 +247,7 @@
 		45CE070F204C016500A93175 /* Sequence+Batch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Batch.swift"; sourceTree = "<group>"; };
 		45CE0712204C01DB00A93175 /* Sequence+BatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+BatchTests.swift"; sourceTree = "<group>"; };
 		45D1495120585DD5009EF441 /* KeyboardInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputViewController.swift; sourceTree = "<group>"; };
-		45D1495320586280009EF441 /* DemoKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboard.swift; sourceTree = "<group>"; };
+		45D1495320586280009EF441 /* DemoGridKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoGridKeyboard.swift; sourceTree = "<group>"; };
 		45FB517520495C73009D5806 /* KeyboardKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeyboardKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45FB517820495C73009D5806 /* KeyboardKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyboardKit.h; sourceTree = "<group>"; };
 		45FB517920495C73009D5806 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -317,6 +319,8 @@
 		84FFACA622801AF200FB4998 /* UIImage+TintedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TintedTests.swift"; sourceTree = "<group>"; };
 		84FFACA922801E3B00FB4998 /* HapticFeedback+KeyboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HapticFeedback+KeyboardTests.swift"; sourceTree = "<group>"; };
 		84FFACD722821BB900FB4998 /* KeyboardSpacerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSpacerView.swift; sourceTree = "<group>"; };
+		84FFACDA2282352400FB4998 /* DemoNumericKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoNumericKeyboard.swift; sourceTree = "<group>"; };
+		84FFACDC2282353800FB4998 /* DemoSystemKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoSystemKeyboard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -488,10 +492,10 @@
 		45FB51AA20495CB1009D5806 /* KeyboardKitExampleKeyboard */ = {
 			isa = PBXGroup;
 			children = (
+				84FFACD92282350200FB4998 /* Keyboards */,
 				45FCD01A2059E05B0072157A /* Extensions */,
 				84851A672277AE9300477705 /* DemoButton.swift */,
 				84851A6D2277B11100477705 /* DemoButton.xib */,
-				45D1495320586280009EF441 /* DemoKeyboard.swift */,
 				84511D39227110BC00904FE0 /* DemoKeyboardActionHandler.swift */,
 				45FB51AD20495CB1009D5806 /* Info.plist */,
 				45FB51AB20495CB1009D5806 /* KeyboardViewController.swift */,
@@ -675,6 +679,16 @@
 				84FFACA922801E3B00FB4998 /* HapticFeedback+KeyboardTests.swift */,
 			);
 			path = Feedback;
+			sourceTree = "<group>";
+		};
+		84FFACD92282350200FB4998 /* Keyboards */ = {
+			isa = PBXGroup;
+			children = (
+				45D1495320586280009EF441 /* DemoGridKeyboard.swift */,
+				84FFACDA2282352400FB4998 /* DemoNumericKeyboard.swift */,
+				84FFACDC2282353800FB4998 /* DemoSystemKeyboard.swift */,
+			);
+			path = Keyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1009,14 +1023,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84FFACDD2282353800FB4998 /* DemoSystemKeyboard.swift in Sources */,
 				84851A6C2277AFE000477705 /* KeyboardAction+Demo.swift in Sources */,
 				45FCD01E2059E0CD0072157A /* UIView+Nib.swift in Sources */,
 				450B1C4320699F6C006A2F18 /* Asset.swift in Sources */,
 				45FB51AC20495CB1009D5806 /* KeyboardViewController.swift in Sources */,
 				84511D3A227110BC00904FE0 /* DemoKeyboardActionHandler.swift in Sources */,
 				84851A682277AE9300477705 /* DemoButton.swift in Sources */,
+				84FFACDB2282352400FB4998 /* DemoNumericKeyboard.swift in Sources */,
 				45FCD0222059E2220072157A /* UIView+Shadow.swift in Sources */,
-				45D1495420586280009EF441 /* DemoKeyboard.swift in Sources */,
+				45D1495420586280009EF441 /* DemoGridKeyboard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

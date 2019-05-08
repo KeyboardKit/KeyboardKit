@@ -58,13 +58,14 @@ class KeyboardViewController: KeyboardInputViewController {
     }
     
     func setupTopSystemButtons() {
-        let actions: [KeyboardAction] = [.none, .switchKeyboard, .character("2"), .character("3"), .character("4"), .character("5"), .switchKeyboard, .none]
-        let row = KeyboardButtonRow(height: 50, actions: actions) { return button(for: $0, distribution: .fillProportionally) }
-        row.buttonStackView.distribution = .fillProportionally
+        let keyboard = DemoNumericKeyboard(in: self)
+        let distribution = keyboard.preferredDistribution
+        let row = KeyboardButtonRow(height: 50, actions: keyboard.actions, distribution: distribution) { return button(for: $0, distribution: distribution) }
         keyboardStackView.addArrangedSubview(row)
     }
     
     func setupCollectionView(for size: CGSize) {
+        let keyboard = DemoGridKeyboard()
         let isLandscape = size.width > 400
         let rowsPerPage = isLandscape ? 3 : 4
         let buttonsPerRow = isLandscape ? 8 : 6
@@ -74,9 +75,9 @@ class KeyboardViewController: KeyboardInputViewController {
     }
     
     func setupBottomSystemButtons() {
-        let actions: [KeyboardAction] = [.switchKeyboard, .character("2"), .character("3"), .character("4"), .character("5"), .switchKeyboard]
-        let row = KeyboardButtonRow(height: 50, actions: actions) { return button(for: $0) }
-        row.buttonStackView.distribution = .equalSpacing
+        let keyboard = DemoSystemKeyboard(in: self)
+        let distribution = keyboard.preferredDistribution
+        let row = KeyboardButtonRow(height: 50, actions: keyboard.actions, distribution: distribution) { return button(for: $0, distribution: distribution) }
         keyboardStackView.addArrangedSubview(row)
     }
     
@@ -84,8 +85,6 @@ class KeyboardViewController: KeyboardInputViewController {
     // MARK: - Properties
     
     let alerter = ToastAlert()
-    let keyboard = DemoKeyboard()
-    
 }
 
 

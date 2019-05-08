@@ -21,9 +21,14 @@ open class KeyboardButtonRow: UIView, KeyboardStackViewComponent {
     
     // MARK: - Initialization
     
-    public convenience init(height: CGFloat, actions: [KeyboardAction], buttonCreator: KeyboardButtonCreator) {
+    public convenience init(
+        height: CGFloat,
+        actions: [KeyboardAction],
+        distribution: UIStackView.Distribution = .fillEqually,
+        buttonCreator: KeyboardButtonCreator) {
         self.init(frame: .zero)
         self.height = height
+        self.distribution = distribution
         let buttons = actions.map { buttonCreator($0) }
         buttonStackView.addArrangedSubviews(buttons)
     }
@@ -32,6 +37,11 @@ open class KeyboardButtonRow: UIView, KeyboardStackViewComponent {
     // MARK: - Types
     
     public typealias KeyboardButtonCreator = (KeyboardAction) -> (UIView)
+    
+    
+    // MARK: - Properties
+    
+    public private(set) var distribution: UIStackView.Distribution = .fillEqually
     
     
     // MARK: - View Properties

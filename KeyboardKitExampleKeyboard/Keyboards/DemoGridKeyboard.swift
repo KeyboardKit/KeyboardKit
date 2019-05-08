@@ -9,16 +9,16 @@
 /*
  
  This demo keyboard has 24 buttons per page, which fits this
- example application's two different grid sizes. If you make
- any changes to this keyboard (which you should - play!) the
- keyboard extension will an uneven distribution of character,
- emoji and image buttons.
+ example application's two different grid sizes for portrait
+ and landscape mode. If you make any changes to the keyboard
+ (which you should - play!) the extension will get an uneven
+ distribution of character, emoji and image buttons.
  
  */
 
 import KeyboardKit
 
-class DemoKeyboard: Keyboard {
+class DemoGridKeyboard: Keyboard {
 
     init() {
         super.init(actions: [
