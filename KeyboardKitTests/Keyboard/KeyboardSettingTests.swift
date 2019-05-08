@@ -25,15 +25,8 @@ class KeyboardSettingTests: QuickSpec {
                     expect(key).to(equal("com.keyboardKit.settings.currentPageIndex"))
                 }
                 
-                it("has correct key for presenter without id") {
-                    let presenter = MockKeyboardPresenter()
-                    let key = setting.key(for: presenter)
-                    expect(key).to(equal("com.keyboardKit.settings.currentPageIndex"))
-                }
-                
-                it("has correct key for presenter with id") {
-                    let presenter = MockKeyboardPresenter(id: "foo")
-                    let key = setting.key(for: presenter)
+                it("has correct key for additional id") {
+                    let key = setting.key(for: "foo")
                     expect(key).to(equal("com.keyboardKit.settings.currentPageIndex.foo"))
                 }
             }

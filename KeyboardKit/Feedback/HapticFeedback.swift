@@ -8,7 +8,7 @@
 
 import UIKit
 
-public enum HapticFeedback: String {
+public enum HapticFeedback: CaseIterable {
     
     case
     error,
@@ -19,14 +19,9 @@ public enum HapticFeedback: String {
     mediumImpact,
     heavyImpact,
     
-    selectionChanged
+    selectionChanged,
     
-    
-    // MARK: - Properties
-    
-    public var identifier: String {
-        return rawValue
-    }
+    none
 }
 
 
@@ -41,6 +36,7 @@ public extension HapticFeedback {
         case .mediumImpact: mediumImpactGenerator.prepare()
         case .heavyImpact: heavyImpactGenerator.prepare()
         case .selectionChanged: selectionGenerator.prepare()
+        case .none: return
         }
     }
     
@@ -57,6 +53,7 @@ public extension HapticFeedback {
         case .mediumImpact: mediumImpactGenerator.impactOccurred()
         case .heavyImpact: heavyImpactGenerator.impactOccurred()
         case .selectionChanged: selectionGenerator.selectionChanged()
+        case .none: return
         }
     }
     

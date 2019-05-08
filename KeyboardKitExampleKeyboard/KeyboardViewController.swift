@@ -20,23 +20,26 @@
  also add a `NSPhotoLibraryAddUsageDescription`  to the host
  app's `Info.plist` if you want to be able to save images to
  the photo album. This is already taken care of in this demo
- app, so you can just copy the setup.
+ app, so you can just copy the setup into your own app.
  
  */
 
 import UIKit
 import KeyboardKit
 
-class KeyboardViewController: GridKeyboardViewController {
+class KeyboardViewController: KeyboardInputViewController {
     
     
     // MARK: - View Controller Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupKeyboard(for: UIScreen.main.bounds.size)
-        setupSystemButtons()
         keyboardActionHandler = DemoKeyboardActionHandler(inputViewController: self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupKeyboard(for: view.bounds.size)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -45,96 +48,43 @@ class KeyboardViewController: GridKeyboardViewController {
     }
     
     
-    // MARK: - Properties
-    
-    var alerter = ToastAlert()
-    
-    var keyboardAppearance: UIKeyboardAppearance = .default {
-        didSet {
-            view.tintColor = keyboardAppearance == .dark ? .white : .black
-        }
-    }
-    
-    
     // MARK: - Setup
     
-    open override func setupCollectionView() {
-        super.setupCollectionView()
-        collectionView.contentInset.top = 5
-        collectionView.contentInset.bottom = 10
-        collectionView.register(DemoCell.defaultNib, forCellWithReuseIdentifier: "Cell")
-    }
-    
-    
-    // MARK: - Layout
-    
-    override func layoutSystemButtons(_ buttons: [UIView], buttonSize: CGSize, startX: CGFloat, y: CGFloat) {
-        super.layoutSystemButtons(buttons, buttonSize: buttonSize, startX: startX, y: y)
-        buttons.forEach {
-            let center = $0.center
-            $0.frame.size = CGSize(width: 25, height: 25)
-            $0.center = center
-        }
-    }
-    
-    
-    // MARK: - Public Functions
-
-    override func textDidChange(_ textInput: UITextInput?) {
-        guard
-            let appearance = textDocumentProxy.keyboardAppearance,
-            appearance != keyboardAppearance
-            else { return }
-        keyboardAppearance = appearance
-        collectionView.reloadData()
-    }
-    
-    
-    // MARK: - UICollectionViewDataSource
-    
-    open override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        guard
-            let action = action(at: indexPath),
-            let buttonCell = cell as? DemoCell
-            else { return cell }
-        buttonCell.setup(with: action, appearance: keyboardAppearance, tintColor: collectionView.tintColor)
-        addLongPressGesture(for: action, to: buttonCell)
-        return cell
-    }
-}
-
-
-// MARK: - Setup
-
-private extension KeyboardViewController {
-    
     func setupKeyboard(for size: CGSize) {
+        keyboardStackView.removeAllArrangedSubviews()
+        setupTopSystemButtons()
+        setupCollectionView(for: size)
+        setupBottomSystemButtons()
+    }
+    
+    func setupTopSystemButtons() {
+        let keyboard = DemoNumericKeyboard(in: self)
+        let distribution = keyboard.preferredDistribution
+        let row = KeyboardButtonRow(height: 50, actions: keyboard.actions, distribution: distribution) { return button(for: $0, distribution: distribution) }
+        keyboardStackView.addArrangedSubview(row)
+    }
+    
+    func setupCollectionView(for size: CGSize) {
+        let keyboard = DemoGridKeyboard()
         let isLandscape = size.width > 400
-        let height: CGFloat = isLandscape ? 150 : 200
         let rowsPerPage = isLandscape ? 3 : 4
         let buttonsPerRow = isLandscape ? 8 : 6
-        setup(withKeyboard: DemoKeyboard(), height: height, rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)
+        let config = KeyboardButtonRowCollectionView.Configuration(rowHeight: 50, rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)
+        let view = KeyboardButtonRowCollectionView(actions: keyboard.actions, configuration: config) { [unowned self] in return self.button(for: $0) }
+        keyboardStackView.addArrangedSubview(view)
     }
     
-    func setupSystemButtons() {
-        setupLeftSystemButtons()
-        setupRightSystemButtons()
+    func setupBottomSystemButtons() {
+        let keyboard = DemoSystemKeyboard(in: self)
+        let distribution = keyboard.preferredDistribution
+        let row = KeyboardButtonRow(height: 50, actions: keyboard.actions, distribution: distribution) { return button(for: $0, distribution: distribution) }
+        keyboardStackView.addArrangedSubview(row)
     }
     
-    func setupLeftSystemButtons() {
-        leftSystemButtons = [
-            createSystemButton(image: Asset.globe.image, action: .nextKeyboard),
-            createSystemButton(image: Asset.space.image, action: .space)
-            ].compactMap { $0 }
-    }
     
-    func setupRightSystemButtons() {
-        rightSystemButtons = [
-            createSystemButton(image: Asset.backspace.image, action: .backspace),
-            createSystemButton(image: Asset.newline.image, action: .newLine)
-            ].compactMap { $0 }
-    }
+    // MARK: - Properties
+    
+    let alerter = ToastAlert()
 }
 
 
@@ -142,14 +92,16 @@ private extension KeyboardViewController {
 
 extension KeyboardViewController {
     
-    func alert(_ message: String) {
-        alerter.alert(message: message, in: view, withDuration: 4)
+    func button(for action: KeyboardAction, distribution: UIStackView.Distribution = .equalSpacing) -> UIView {
+        if action == .none { return noneActionbutton(distribution: distribution) }
+        let view = DemoButton.initWithDefaultNib(owner: self)
+        view.setup(with: action, in: self, distribution: distribution)
+        return view
     }
     
-    func image(for action: KeyboardAction) -> UIImage? {
-        switch action {
-        case .image(_, _, let imageName): return UIImage(named: imageName)
-        default: return nil
-        }
+    func noneActionbutton(distribution: UIStackView.Distribution) -> UIView {
+        let view = KeyboardSpacerView(frame: .zero)
+        view.width = KeyboardAction.none.keyboardWidth(for: distribution)
+        return view
     }
 }

@@ -1,18 +1,19 @@
 # Release Notes
 
 
-## 1.1.0
+## 2.0.0
 
-This version contains several breaking changes, but they are easily fixed. Basically, the changes aim at streamlining the library and remove or refactor parts that make the library hard to maintain. I hope (and believe) that these changes will make it easier for you as well.
+This version aim at streamlining the library and remove or refactor parts that make it hard to maintain. It contains several breaking changes, but I hope that the changes will make it easier for you as well, as the library moves forward.
 
-In this version, all keyboard action handling is moved from the view controllers into a new `KeyboardActionHandler`, using the new `keyboardActionHandler` property. All view controllers use a `StandardActionHandler` by default, but you can replace it with any handler.
+Most notably, the view controller inheritance model has been completely removed. Instead, there is only one `KeyboardInputViewController`, which you should use instead of `UIInputViewController`. It has a stack view, to which you can add any views you like, like the built-in `KeyboardButtonRow` and `KeyboardCollectionView`.
 
-This version also removes some `KeyboardAction` equality logic, since these should be resolved by type checks. For instance, instead of using `isNone`, you should use `== .none`.  All help properties like `image` and `imageName` are removed as well, since they can be resolved by switching over the action. The old property setup is a broken window that just adds complexity.
+Since `KeyboardInputViewController` can display multiple keyboards at once, it doesn't make any sense that it has a single `keyboard` property. You can still use the `Keyboard` struct to organize your actions, but you don't have to use it anymore.
 
-New `KeyboardAction` cases have also been added - `moveCursorBack` and `moveCursorForward`.
+All keyboard action handling has also been moved from the view controllers to a new `KeyboardActionHandler`, using the new `keyboardActionHandler` property. All view controllers use a `StandardActionHandler` by default, but you can replace this at any time by setting the `keyboardActionHandler` property to a new handler.
 
-`CollectionKeyboardViewController` now has a `KeyboardCollectionView` instead of a standard `UICollectionView`. The collection view property setup has been moved into this class.
+New `KeyboardAction` types have been added - `moveCursorBack`, `moveCursorForward` and `dismissKeyboard`. `nextKeyboard` has been renamed to `switchKeyboard`. Action equality logic has also been removed, so instead of `isNone`, you should use `== .none` from now on.  All help properties like `image` and `imageName` are removed as well, since they belong in the app.
 
+Since the height of the extension automatically changes depending on the constraints of its views, the old `setHeight(to:)` function has been removed. Instead, `KeyboardInputViewController` will resize the extension to the size of the stack view.
 
 
 ## 1.0.0

@@ -8,15 +8,15 @@
 
 /*
  
- Keyboard action handlers are used to handle keyboard action
- events that are triggered by the user.
+ This protocol is used to handle keyboard action events that
+ are triggered by the user.
  
  */
 
 import Foundation
 
-public protocol KeyboardActionHandler {
+public protocol KeyboardActionHandler: AnyObject {
 
-    func handleLongPress(on action: KeyboardAction)
-    func handleTap(on action: KeyboardAction)
+    func handleLongPress(on view: UIView, action: KeyboardAction)
+    func handleTap(on view: UIView, action: KeyboardAction)
 }

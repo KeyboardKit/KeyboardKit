@@ -35,7 +35,7 @@
 
 ### Keyboards
 
-In `KeyboardKit`, a `Keyboard` is basically just a list of `KeyboardAction`s with an optional id. The presentation depends entirely on the keyboard view controller and the way actions are handled depends entirely on the `keyboardActionHandler` the view controller uses. This means that you can present the same keyboard in very different ways.
+In `KeyboardKit`, a `Keyboard` is basically just a list of `KeyboardAction`s with an optional id. The presentation depends entirely on which `keyboardActionHandler` the keyboard view controller uses and the action handling depends entirely on which `keyboardActionHandler` the view controller uses.
 
 
 ### Actions
@@ -44,18 +44,17 @@ In `KeyboardKit`, a `Keyboard` is basically just a list of `KeyboardAction`s wit
 
 * `backspace` - sends a backspace to the text proxy
 * `character` - sends a text character to the text proxy
+* `dismissKeyboard` - dismisses the keyboard
 * `image` - custom images with a description, keyboard image
 * `moveCursorBack` - moves the cursor back one position
 * `moveCursorForward` - moves the cursor forward one position
 * `newLine` - sends a new line to the text proxy
-* `nextKeyboard` - changes keyboard on tap and shows keyboard picker on long press
 * `shift` - can be used to change the char casing of a keyboard
 * `space` - sends an empty space to the text proxy
+* `switchKeyboard` - changes keyboard on tap and shows keyboard picker on long press
 * `none`- use this for empty "placeholder" keys that do nothing
 
-Each keyboard view controller has a `keyboardActionHandler`, that can handle actions that are triggered by the user. By default, `StandardKeyboardActionHandler` is used, but you can replace it with any `KeyboardActionHandler` implementation.
-
-`StandardKeyboardActionHandler` handles all actions except `image`, which you must handle manually, since there's no way to send images to the text proxy. You can override the default action handling by replacing the `keyboardActionHandler` with a new action handler that suits your needs.
+Each keyboard view controller has a `keyboardActionHandler` that can handle any actions that are triggered by the user. By default, `StandardKeyboardActionHandler` is used, but you can replace it with any `KeyboardActionHandler` you like.
 
 
 ### View Controllers
@@ -118,9 +117,9 @@ If you want the user's device to give haptic feedback as you type, you can use `
 If you want to animate the keyboard buttons as the user types, you can let your views implement `KeyboardButton`, which has extensions for animating default presses, releases and taps.
 
 
-### Keyboard extension height
+### Extension height
 
-You can change the height of your keyboard extension by using the `setHeight(to:)` function. Don't use it when you inherit `GridKeyboardViewController`, since this class will adjust the size depending on the grid.
+The height of the extension will automatically change to the constraints of the views you add to it.
 
 
 ### Extensions

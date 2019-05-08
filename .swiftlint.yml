@@ -1,4 +1,5 @@
 disabled_rules:
+- cyclomatic_complexity
 - function_body_length
 - statement_position
 - trailing_whitespace

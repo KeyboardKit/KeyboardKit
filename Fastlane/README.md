@@ -16,6 +16,21 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## iOS
+### ios carthage_bootstrap
+```
+fastlane ios carthage_bootstrap
+```
+Bootstrap Carthage
+### ios cu
+```
+fastlane ios cu
+```
+Update Carthage
+### ios carthage_update
+```
+fastlane ios carthage_update
+```
+
 ### ios version
 ```
 fastlane ios version

@@ -12,9 +12,9 @@ public enum Asset: String {
     
     case
     backspace,
-    globe,
-    newline,
-    space
+    newLine,
+    space,
+    switchKeyboard
 }
 
 public extension Asset {

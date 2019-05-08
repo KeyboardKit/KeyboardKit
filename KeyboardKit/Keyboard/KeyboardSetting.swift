@@ -28,8 +28,7 @@ public extension KeyboardSetting {
         return "com.keyboardKit.settings.\(rawValue)"
     }
     
-    func key(for presenter: KeyboardPresenter) -> String {
-        guard let id = presenter.id else { return key }
+    func key(for id: String) -> String {
         return "\(key).\(id)"
     }
 }

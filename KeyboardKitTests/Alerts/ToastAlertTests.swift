@@ -16,34 +16,15 @@ class ToastAlertTests: QuickSpec {
         
         describe("appearance") {
             
-            let cornerRadius: CGFloat = 12.3
-            let font: UIFont = UIFont.systemFont(ofSize: 300)
-            let horizontalPadding: CGFloat = 23.4
-            let textColor: UIColor = .purple
-            let verticalOffset: CGFloat = 34.5
-            let verticalPadding: CGFloat = 45.6
-            
-            var alerter: ToastAlert!
-            
-            beforeEach {
-                var appearance = ToastAlert.Appearance()
-                appearance.cornerRadius = cornerRadius
-                appearance.font = font
-                appearance.horizontalPadding = horizontalPadding
-                appearance.textColor = textColor
-                appearance.verticalOffset = verticalOffset
-                appearance.verticalPadding = verticalPadding
-                alerter = ToastAlert()
-                alerter.appearance = appearance
-            }
-            
-            it("applies global style") {
-                expect(alerter.appearance.cornerRadius).to(equal(cornerRadius))
-                expect(alerter.appearance.font).to(equal(font))
-                expect(alerter.appearance.horizontalPadding).to(equal(horizontalPadding))
-                expect(alerter.appearance.textColor).to(equal(textColor))
-                expect(alerter.appearance.verticalOffset).to(equal(verticalOffset))
-                expect(alerter.appearance.verticalPadding).to(equal(verticalPadding))
+            it("uses standard appearance by default") {
+                let alerter = ToastAlert()
+                expect(alerter.appearance.backgroundColor).to(equal(.white))
+                expect(alerter.appearance.cornerRadius).to(equal(10))
+                expect(alerter.appearance.font).to(equal(.systemFont(ofSize: 10)))
+                expect(alerter.appearance.horizontalPadding).to(equal(20))
+                expect(alerter.appearance.textColor).to(equal(.black))
+                expect(alerter.appearance.verticalOffset).to(equal(0))
+                expect(alerter.appearance.verticalPadding).to(equal(10))
             }
         }
     }

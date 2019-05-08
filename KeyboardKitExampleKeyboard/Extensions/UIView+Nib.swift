@@ -26,7 +26,7 @@ public extension UIView {
     }
     
     static var defaultNibName: String {
-        return className
+        return String(describing: self)
     }
     
     

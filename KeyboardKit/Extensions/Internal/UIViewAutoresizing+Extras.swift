@@ -21,8 +21,4 @@ extension UIView.AutoresizingMask {
             .flexibleLeftMargin, .flexibleRightMargin
         ]
     }
-    
-    static var fillInParent: UIView.AutoresizingMask {
-        return [.flexibleWidth, .flexibleHeight]
-    }
 }
