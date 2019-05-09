@@ -144,6 +144,7 @@
 		84FFACE22283ECCD00FB4998 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84FFACE12283ECCD00FB4998 /* Colors.xcassets */; };
 		84FFAD1C2283EDD600FB4998 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFAD1B2283EDD600FB4998 /* Assets.swift */; };
 		84FFAD1D2283EE3700FB4998 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFAD1B2283EDD600FB4998 /* Assets.swift */; };
+		84FFAD1E2283F74500FB4998 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84FFACE12283ECCD00FB4998 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -912,6 +913,7 @@
 				450B1C98206A298A006A2F18 /* warning.png in Resources */,
 				450B1C99206A298A006A2F18 /* delicious.png in Resources */,
 				450B1C9C206A298A006A2F18 /* mail.png in Resources */,
+				84FFAD1E2283F74500FB4998 /* Colors.xcassets in Resources */,
 				450B1CA3206A298A006A2F18 /* search.png in Resources */,
 				450B1CAF206A298A006A2F18 /* color.png in Resources */,
 				450B1CBD206A298A006A2F18 /* image.png in Resources */,

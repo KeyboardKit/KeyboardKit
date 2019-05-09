@@ -13,11 +13,10 @@ class DemoButton: KeyboardButtonView {
     
     public func setup(with action: KeyboardAction, in viewController: KeyboardInputViewController, distribution: UIStackView.Distribution = .fillEqually) {
         super.setup(with: action, in: viewController)
-        let isDark = keyboardAppearance == .dark
         backgroundColor = UIColor.black.withAlphaComponent(0.0001)
-        buttonView?.backgroundColor = isDark ? .darkGray : .white
+        buttonView?.backgroundColor = action.keyboardColor(in: viewController)
         image?.image = action.keyboardImage
-        textLabel?.textColor = isDark ? .white : .black
+        textLabel?.textColor = action.keyboardTextColor(in: viewController)
         textLabel?.text = action.keyboardText
         width = action.keyboardWidth(for: distribution)
         addBadgeShadow()

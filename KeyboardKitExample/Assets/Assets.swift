@@ -21,8 +21,12 @@ internal enum Asset {
   internal enum Colors {
     internal static let darkButton = ColorAsset(name: "darkButton")
     internal static let darkButtonText = ColorAsset(name: "darkButtonText")
+    internal static let darkSystemButton = ColorAsset(name: "darkSystemButton")
+    internal static let darkSystemButtonText = ColorAsset(name: "darkSystemButtonText")
     internal static let lightButton = ColorAsset(name: "lightButton")
     internal static let lightButtonText = ColorAsset(name: "lightButtonText")
+    internal static let lightSystemButton = ColorAsset(name: "lightSystemButton")
+    internal static let lightSystemButtonText = ColorAsset(name: "lightSystemButtonText")
   }
   internal enum Images {
     internal enum Buttons {
