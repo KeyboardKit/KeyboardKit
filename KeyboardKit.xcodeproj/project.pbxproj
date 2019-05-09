@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		450B1C3F206991DD006A2F18 /* UIView+ActionTapGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450B1C3E206991DD006A2F18 /* UIView+ActionTapGesture.swift */; };
-		450B1C4220699ED3006A2F18 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450B1C4120699ED3006A2F18 /* Asset.swift */; };
-		450B1C4320699F6C006A2F18 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450B1C4120699ED3006A2F18 /* Asset.swift */; };
 		450B1C6E206A2981006A2F18 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 450B1C46206A2980006A2F18 /* info.png */; };
 		450B1C6F206A2981006A2F18 /* rss.png in Resources */ = {isa = PBXBuildFile; fileRef = 450B1C47206A2980006A2F18 /* rss.png */; };
 		450B1C70206A2981006A2F18 /* warning.png in Resources */ = {isa = PBXBuildFile; fileRef = 450B1C48206A2980006A2F18 /* warning.png */; };
@@ -64,7 +62,7 @@
 		450B1CBD206A298A006A2F18 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 450B1C6D206A2980006A2F18 /* image.png */; };
 		4542496C2059BA9C00CD0E87 /* KeyboardSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4542496B2059BA9C00CD0E87 /* KeyboardSetting.swift */; };
 		4578CEC92067E6660055440A /* UIView+ActionLongPressGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578CEC82067E6660055440A /* UIView+ActionLongPressGesture.swift */; };
-		45A0D81E205892B900557A93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45FB519C20495C8A009D5806 /* Assets.xcassets */; };
+		45A0D81E205892B900557A93 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45FB519C20495C8A009D5806 /* Images.xcassets */; };
 		45CE0710204C016500A93175 /* Sequence+Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CE070F204C016500A93175 /* Sequence+Batch.swift */; };
 		45CE0713204C01DB00A93175 /* Sequence+BatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CE0712204C01DB00A93175 /* Sequence+BatchTests.swift */; };
 		45D1495220585DD5009EF441 /* KeyboardInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D1495120585DD5009EF441 /* KeyboardInputViewController.swift */; };
@@ -74,7 +72,7 @@
 		45FB519620495C8A009D5806 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FB519520495C8A009D5806 /* AppDelegate.swift */; };
 		45FB519820495C8A009D5806 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FB519720495C8A009D5806 /* ViewController.swift */; };
 		45FB519B20495C8A009D5806 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45FB519920495C8A009D5806 /* Main.storyboard */; };
-		45FB519D20495C8A009D5806 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45FB519C20495C8A009D5806 /* Assets.xcassets */; };
+		45FB519D20495C8A009D5806 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45FB519C20495C8A009D5806 /* Images.xcassets */; };
 		45FB51A020495C8A009D5806 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45FB519E20495C8A009D5806 /* LaunchScreen.storyboard */; };
 		45FB51AC20495CB1009D5806 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FB51AB20495CB1009D5806 /* KeyboardViewController.swift */; };
 		45FB51B020495CB1009D5806 /* KeyboardKitExampleKeyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 45FB51A920495CB1009D5806 /* KeyboardKitExampleKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -142,6 +140,10 @@
 		84FFACD822821BB900FB4998 /* KeyboardSpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFACD722821BB900FB4998 /* KeyboardSpacerView.swift */; };
 		84FFACDB2282352400FB4998 /* DemoNumericKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFACDA2282352400FB4998 /* DemoNumericKeyboard.swift */; };
 		84FFACDD2282353800FB4998 /* DemoSystemKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFACDC2282353800FB4998 /* DemoSystemKeyboard.swift */; };
+		84FFACE02283ECA300FB4998 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 84FFACDF2283ECA300FB4998 /* swiftgen.yml */; };
+		84FFACE22283ECCD00FB4998 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84FFACE12283ECCD00FB4998 /* Colors.xcassets */; };
+		84FFAD1C2283EDD600FB4998 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFAD1B2283EDD600FB4998 /* Assets.swift */; };
+		84FFAD1D2283EE3700FB4998 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFAD1B2283EDD600FB4998 /* Assets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -214,7 +216,6 @@
 
 /* Begin PBXFileReference section */
 		450B1C3E206991DD006A2F18 /* UIView+ActionTapGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ActionTapGesture.swift"; sourceTree = "<group>"; };
-		450B1C4120699ED3006A2F18 /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
 		450B1C46206A2980006A2F18 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		450B1C47206A2980006A2F18 /* rss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rss.png; sourceTree = "<group>"; };
 		450B1C48206A2980006A2F18 /* warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning.png; sourceTree = "<group>"; };
@@ -257,7 +258,7 @@
 		45FB519520495C8A009D5806 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45FB519720495C8A009D5806 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		45FB519A20495C8A009D5806 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		45FB519C20495C8A009D5806 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		45FB519C20495C8A009D5806 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		45FB519F20495C8A009D5806 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45FB51A120495C8A009D5806 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45FB51A920495CB1009D5806 /* KeyboardKitExampleKeyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KeyboardKitExampleKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -321,6 +322,9 @@
 		84FFACD722821BB900FB4998 /* KeyboardSpacerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSpacerView.swift; sourceTree = "<group>"; };
 		84FFACDA2282352400FB4998 /* DemoNumericKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoNumericKeyboard.swift; sourceTree = "<group>"; };
 		84FFACDC2282353800FB4998 /* DemoSystemKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoSystemKeyboard.swift; sourceTree = "<group>"; };
+		84FFACDF2283ECA300FB4998 /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swiftgen.yml; sourceTree = "<group>"; };
+		84FFACE12283ECCD00FB4998 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		84FFAD1B2283EDD600FB4998 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -365,8 +369,9 @@
 			isa = PBXGroup;
 			children = (
 				450B1C45206A2980006A2F18 /* Cartoon Icons */,
-				450B1C4120699ED3006A2F18 /* Asset.swift */,
-				45FB519C20495C8A009D5806 /* Assets.xcassets */,
+				84FFAD1B2283EDD600FB4998 /* Assets.swift */,
+				45FB519C20495C8A009D5806 /* Images.xcassets */,
+				84FFACE12283ECCD00FB4998 /* Colors.xcassets */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -567,6 +572,7 @@
 				45FB5204204B3F75009D5806 /* LICENSE */,
 				45FB5205204B3F75009D5806 /* README.md */,
 				4530CC0C2079EBF400481162 /* RELEASE_NOTES.md */,
+				84FFACDF2283ECA300FB4998 /* swiftgen.yml */,
 			);
 			name = "Project Files";
 			sourceTree = "<group>";
@@ -709,7 +715,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 45FB518920495C73009D5806 /* Build configuration list for PBXNativeTarget "KeyboardKit" */;
 			buildPhases = (
-				450B1C4420699FFB006A2F18 /* SwiftLint */,
+				450B1C4420699FFB006A2F18 /* [SwiftLint] */,
 				45FB517020495C73009D5806 /* Sources */,
 				45FB517120495C73009D5806 /* Frameworks */,
 				45FB517220495C73009D5806 /* Headers */,
@@ -753,6 +759,7 @@
 				45FB519120495C8A009D5806 /* Resources */,
 				45FB51B420495CB1009D5806 /* Embed App Extensions */,
 				45FB51BF20495E1C009D5806 /* Embed Frameworks */,
+				84FFACE32283ED4A00FB4998 /* [SwiftGen] */,
 			);
 			buildRules = (
 			);
@@ -841,6 +848,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84FFACE02283ECA300FB4998 /* swiftgen.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -869,7 +877,8 @@
 				450B1C73206A2981006A2F18 /* download.png in Resources */,
 				45FB51A020495C8A009D5806 /* LaunchScreen.storyboard in Resources */,
 				45FB5210204B3F75009D5806 /* Cartfile.private in Resources */,
-				45FB519D20495C8A009D5806 /* Assets.xcassets in Resources */,
+				45FB519D20495C8A009D5806 /* Images.xcassets in Resources */,
+				84FFACE22283ECCD00FB4998 /* Colors.xcassets in Resources */,
 				45FB5212204B3FB5009D5806 /* Fastfile in Resources */,
 				45FB520C204B3F75009D5806 /* LICENSE in Resources */,
 				450B1C92206A2981006A2F18 /* box.png in Resources */,
@@ -907,7 +916,7 @@
 				450B1CAF206A298A006A2F18 /* color.png in Resources */,
 				450B1CBD206A298A006A2F18 /* image.png in Resources */,
 				450B1CAC206A298A006A2F18 /* help.png in Resources */,
-				45A0D81E205892B900557A93 /* Assets.xcassets in Resources */,
+				45A0D81E205892B900557A93 /* Images.xcassets in Resources */,
 				450B1CAE206A298A006A2F18 /* globe.png in Resources */,
 				450B1C97206A298A006A2F18 /* rss.png in Resources */,
 				84851A6E2277B11100477705 /* DemoButton.xib in Resources */,
@@ -934,19 +943,37 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		450B1C4420699FFB006A2F18 /* SwiftLint */ = {
+		450B1C4420699FFB006A2F18 /* [SwiftLint] */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = SwiftLint;
+			name = "[SwiftLint]";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"SwiftLint is not installed.\"\nfi\n";
+		};
+		84FFACE32283ED4A00FB4998 /* [SwiftGen] */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[SwiftGen]";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftgen >/dev/null; then\nswiftgen\nelse\necho \"SwiftGen is not installed\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1013,8 +1040,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				450B1C4220699ED3006A2F18 /* Asset.swift in Sources */,
 				45FB519820495C8A009D5806 /* ViewController.swift in Sources */,
+				84FFAD1C2283EDD600FB4998 /* Assets.swift in Sources */,
 				45FB519620495C8A009D5806 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1026,12 +1053,12 @@
 				84FFACDD2282353800FB4998 /* DemoSystemKeyboard.swift in Sources */,
 				84851A6C2277AFE000477705 /* KeyboardAction+Demo.swift in Sources */,
 				45FCD01E2059E0CD0072157A /* UIView+Nib.swift in Sources */,
-				450B1C4320699F6C006A2F18 /* Asset.swift in Sources */,
 				45FB51AC20495CB1009D5806 /* KeyboardViewController.swift in Sources */,
 				84511D3A227110BC00904FE0 /* DemoKeyboardActionHandler.swift in Sources */,
 				84851A682277AE9300477705 /* DemoButton.swift in Sources */,
 				84FFACDB2282352400FB4998 /* DemoNumericKeyboard.swift in Sources */,
 				45FCD0222059E2220072157A /* UIView+Shadow.swift in Sources */,
+				84FFAD1D2283EE3700FB4998 /* Assets.swift in Sources */,
 				45D1495420586280009EF441 /* DemoGridKeyboard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
