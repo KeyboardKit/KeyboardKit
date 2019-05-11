@@ -16,18 +16,18 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IbC-mC-CMt">
-                    <rect key="frame" x="5" y="5" width="404" height="437"/>
+                    <rect key="frame" x="3" y="3" width="408" height="441"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Szk-Wp-Rcv">
-                            <rect key="frame" x="10" y="10" width="384" height="417"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rmz-HZ-CvF">
-                            <rect key="frame" x="195.5" y="205.5" width="13" height="24"/>
+                            <rect key="frame" x="197.5" y="207.5" width="13" height="24"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Szk-Wp-Rcv">
+                            <rect key="frame" x="10" y="10" width="388" height="421"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -42,10 +42,18 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="IbC-mC-CMt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="Sgy-Tt-ege"/>
-                <constraint firstItem="IbC-mC-CMt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="aBE-hx-GMs"/>
-                <constraint firstAttribute="trailing" secondItem="IbC-mC-CMt" secondAttribute="trailing" constant="5" id="o16-rQ-r8K"/>
-                <constraint firstAttribute="bottom" secondItem="IbC-mC-CMt" secondAttribute="bottom" constant="5" id="rCJ-bJ-FO2"/>
+                <constraint firstItem="IbC-mC-CMt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="Sgy-Tt-ege">
+                    <variation key="heightClass=regular-widthClass=compact" constant="3"/>
+                </constraint>
+                <constraint firstItem="IbC-mC-CMt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="aBE-hx-GMs">
+                    <variation key="heightClass=regular-widthClass=compact" constant="3"/>
+                </constraint>
+                <constraint firstAttribute="trailing" secondItem="IbC-mC-CMt" secondAttribute="trailing" constant="5" id="o16-rQ-r8K">
+                    <variation key="heightClass=regular-widthClass=compact" constant="3"/>
+                </constraint>
+                <constraint firstAttribute="bottom" secondItem="IbC-mC-CMt" secondAttribute="bottom" constant="5" id="rCJ-bJ-FO2">
+                    <variation key="heightClass=regular-widthClass=compact" constant="3"/>
+                </constraint>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
