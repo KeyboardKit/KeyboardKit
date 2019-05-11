@@ -24,6 +24,7 @@ class KeyboardActionTests: QuickSpec {
                 expect(action(for: .none)).to(beNil())
                 expect(action(for: .backspace)).to(beNil())
                 expect(action(for: .dismissKeyboard)).toNot(beNil())
+                expect(action(for: .capsLock)).to(beNil())
                 expect(action(for: .character(""))).to(beNil())
                 expect(action(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beNil())
                 expect(action(for: .moveCursorBack)).to(beNil())
@@ -33,6 +34,7 @@ class KeyboardActionTests: QuickSpec {
                 expect(action(for: .space)).to(beNil())
                 expect(action(for: .switchKeyboard)).to(beNil())
                 expect(action(for: .switchToNumericKeyboard)).to(beNil())
+                expect(action(for: .switchToSymbolKeyboard)).to(beNil())
             }
         }
         
@@ -46,6 +48,7 @@ class KeyboardActionTests: QuickSpec {
                 expect(action(for: .none)).to(beNil())
                 expect(action(for: .backspace)).toNot(beNil())
                 expect(action(for: .dismissKeyboard)).to(beNil())
+                expect(action(for: .capsLock)).to(beNil())
                 expect(action(for: .character("a"))).toNot(beNil())
                 expect(action(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beNil())
                 expect(action(for: .moveCursorBack)).toNot(beNil())
@@ -55,6 +58,7 @@ class KeyboardActionTests: QuickSpec {
                 expect(action(for: .space)).toNot(beNil())
                 expect(action(for: .switchKeyboard)).to(beNil())
                 expect(action(for: .switchToNumericKeyboard)).to(beNil())
+                expect(action(for: .switchToSymbolKeyboard)).to(beNil())
             }
         }
     }

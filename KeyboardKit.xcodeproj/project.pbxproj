@@ -665,8 +665,8 @@
 		84FFAC97227FFB2600FB4998 /* Actions */ = {
 			isa = PBXGroup;
 			children = (
-				84FFAC9A2280097B00FB4998 /* StandardKeyboardActionHandlerTests.swift */,
 				84FFAD252287752300FB4998 /* KeyboardActionTests.swift */,
+				84FFAC9A2280097B00FB4998 /* StandardKeyboardActionHandlerTests.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";

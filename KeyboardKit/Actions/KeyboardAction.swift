@@ -19,6 +19,7 @@ public enum KeyboardAction: Equatable {
     case
     none,
     backspace,
+    capsLock,
     character(String),
     dismissKeyboard,
     image(description: String, keyboardImageName: String, imageName: String),
@@ -28,7 +29,8 @@ public enum KeyboardAction: Equatable {
     shift,
     space,
     switchKeyboard,
-    switchToNumericKeyboard
+    switchToNumericKeyboard,
+    switchToSymbolKeyboard
 }
 
 public extension KeyboardAction {
@@ -37,8 +39,9 @@ public extension KeyboardAction {
         switch self {
         case .none: return nil
         case .backspace: return nil
-        case .dismissKeyboard: return { controller in controller?.dismissKeyboard() }
+        case .capsLock: return nil
         case .character: return nil
+        case .dismissKeyboard: return { controller in controller?.dismissKeyboard() }
         case .image: return nil
         case .moveCursorBack: return nil
         case .moveCursorForward: return nil
@@ -47,6 +50,7 @@ public extension KeyboardAction {
         case .space: return nil
         case .switchKeyboard: return nil
         case .switchToNumericKeyboard: return nil
+        case .switchToSymbolKeyboard: return nil
         }
     }
     
@@ -54,8 +58,9 @@ public extension KeyboardAction {
         switch self {
         case .none: return nil
         case .backspace: return { proxy in proxy?.deleteBackward() }
-        case .dismissKeyboard: return nil
+        case .capsLock: return nil
         case .character(let char): return { proxy in proxy?.insertText(char) }
+        case .dismissKeyboard: return nil
         case .image: return nil
         case .moveCursorBack: return { proxy in proxy?.adjustTextPosition(byCharacterOffset: -1) }
         case .moveCursorForward: return { proxy in proxy?.adjustTextPosition(byCharacterOffset: -1) }
@@ -64,6 +69,7 @@ public extension KeyboardAction {
         case .space: return { proxy in proxy?.insertText(" ") }
         case .switchKeyboard: return nil
         case .switchToNumericKeyboard: return nil
+        case .switchToSymbolKeyboard: return nil
         }
     }
 }
