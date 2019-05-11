@@ -10,22 +10,21 @@
  
  This action handler is used by all `KeyboardViewController`
  instances by default, if you don't explicitly decide to use
- another one.
+ another one. You do this by setting `keyboardActionHandler`
+ to a custom action handler.
  
- This action handler handles all keyboard actions except the
- `.image` action, which you must handle manually since there
- is no way to send images to the text proxy.
+ This action handler uses the default action blocks for each
+ keyboard action, if any, as the default tap action. You can
+ adjust this behavior by subclassing this class and override
+ `tapAction(for:)` and `longPressAction(for:)` to change the
+ action blocks to use for each keyboard action. You can also
+ override `handleTap(on:)` and `handleLongPress(on:)` if you
+ only want to adjust the handling of the various actions.
  
- You can adjust how this class handles taps and long presses
- on keyboard actions, by overriding the `handleTap(on:)` and
- `handleLongPress(on:)` functions. You can also override the
- `tapAction(for:)` and `longPressAction(for:)` to completely
- change which action blocks to return for a keyboard action.
- 
- You can enable haptic feedback by providing different types
- of haptic feedback for taps and long presses. To change the
- haptic feedback for a specific action, you can override the
- `giveHapticFeedbackForTap/LongPress(on:)` functions as well.
+ You can enable haptic feedback by providing haptic feedback
+ types for taps and long presses when you create an instance
+ of this class. You can also adjust the standard behavior by
+ overriding the two `giveHapticFeedback` functions.
  
  */
 
@@ -61,6 +60,23 @@ open class StandardKeyboardActionHandler: KeyboardActionHandler {
     }
     
     
+    // MARK: - Action Functions
+    
+    open func tapAction(for view: UIView, action: KeyboardAction) -> (() -> ())? {
+        if let inputAction = action.standardInputViewControllerAction {
+            return { inputAction(self.inputViewController) }
+        }
+        if let proxyAction = action.standardTextDocumentProxyAction {
+            return { proxyAction(self.textDocumentProxy) }
+        }
+        return nil
+    }
+    
+    open func longPressAction(for view: UIView, action: KeyboardAction) -> (() -> ())? {
+        return nil
+    }
+    
+    
     // MARK: - Handling Functions
     
     open func handleTap(on view: UIView, action: KeyboardAction) {
@@ -84,29 +100,5 @@ open class StandardKeyboardActionHandler: KeyboardActionHandler {
     
     open func giveHapticFeedbackForLongPress(on action: KeyboardAction) {
         longPressHapticFeedback.trigger()
-    }
-    
-    
-    // MARK: - Action Functions
-    
-    open func tapAction(for view: UIView, action: KeyboardAction) -> (() -> ())? {
-        switch action {
-        case .none: return nil
-        case .backspace: return { [weak self] in self?.textDocumentProxy?.deleteBackward() }
-        case .dismissKeyboard: return { [weak self] in self?.inputViewController?.dismissKeyboard() }
-        case .character(let char): return { [weak self] in self?.textDocumentProxy?.insertText(char) }
-        case .image: return nil
-        case .moveCursorBack: return { [weak self] in self?.textDocumentProxy?.adjustTextPosition(byCharacterOffset: -1) }
-        case .moveCursorForward: return { [weak self] in self?.textDocumentProxy?.adjustTextPosition(byCharacterOffset: -1) }
-        case .newLine: return { [weak self] in self?.textDocumentProxy?.insertText("\n") }
-        case .shift: return nil
-        case .space: return { [weak self] in self?.textDocumentProxy?.insertText(" ") }
-        case .switchKeyboard: return nil
-        case .switchToNumericKeyboard: return nil
-        }
-    }
-    
-    open func longPressAction(for view: UIView, action: KeyboardAction) -> (() -> ())? {
-        return nil
     }
 }
