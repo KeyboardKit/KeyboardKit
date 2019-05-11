@@ -94,7 +94,7 @@ extension KeyboardViewController {
     
     func button(for action: KeyboardAction, distribution: UIStackView.Distribution = .equalSpacing) -> UIView {
         if action == .none { return noneActionbutton(distribution: distribution) }
-        let view = DemoButton.initWithDefaultNib(owner: self)
+        let view = DemoButton.fromNib(owner: self)
         view.setup(with: action, in: self, distribution: distribution)
         return view
     }
