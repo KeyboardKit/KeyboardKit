@@ -98,10 +98,11 @@ open class StandardKeyboardActionHandler: KeyboardActionHandler {
         case .image: return nil
         case .moveCursorBack: return { [weak self] in self?.textDocumentProxy?.adjustTextPosition(byCharacterOffset: -1) }
         case .moveCursorForward: return { [weak self] in self?.textDocumentProxy?.adjustTextPosition(byCharacterOffset: -1) }
-        case .switchKeyboard: return nil
         case .newLine: return { [weak self] in self?.textDocumentProxy?.insertText("\n") }
         case .shift: return nil
         case .space: return { [weak self] in self?.textDocumentProxy?.insertText(" ") }
+        case .switchKeyboard: return nil
+        case .switchToNumericKeyboard: return nil
         }
     }
     
