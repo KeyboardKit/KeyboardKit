@@ -128,9 +128,11 @@ Since keyboard extensions can't display `UIAlertController`s, you can use `Keybo
 `KeyboardKit` comes with a bunch of extensions that simplifies working with keyboard extensions. Many are internal and only used within the library, but some are public and can be used to handle common logic, like saving and exporting images. Check out the example app for more information.
 
 
-## Example Application
+## Demo Application
 
-`KeyboardKit` contains an example app that contains different kind of keyboards, like numeric keyboards, system keyboards, row-based keyboard and grid-based one.
+`KeyboardKit` contains a demo app that contains different kind of keyboards, like numeric keyboards, system keyboards, row-based keyboards and a grid-based emoji keyboard.
+
+In your own apps, you can use `App Groups` to share settings between the hosting application and the keyboard extension, e.g. to let the user configure the keyboard in the hosting application. However, since the demo app can't use App Groups, it has two keyboard extensions instead.
 
 
 ## Contact me
