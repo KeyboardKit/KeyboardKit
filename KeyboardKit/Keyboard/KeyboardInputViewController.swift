@@ -25,6 +25,12 @@
  text changes. Use this to apply any style you think matches
  the text document proxy configuration.
  
+ `keyboardStackView` is a regular `UIStackView` to which you
+ can add any views and configure in any way you like. If you
+ add `KeyboardStackViewComponent`s to it, however, they will
+ make sure the stack view is properly resized, in a way that
+ also resizes the keyboard extension.
+ 
  */
 
 import UIKit
