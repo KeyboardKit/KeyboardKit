@@ -36,6 +36,7 @@ private extension KeyboardButtonRowComponent {
     
     func setWidth(to width: CGFloat) {
         widthConstraint = widthConstraint ?? widthAnchor.constraint(equalToConstant: width)
+        widthConstraint?.priority = .defaultLow
         widthConstraint?.constant = width
         widthConstraint?.isActive = true
     }

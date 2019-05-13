@@ -13,7 +13,7 @@ extension KeyboardAction {
     
     var isInputAction: Bool {
         switch self {
-        case .character, .image: return true
+        case .character, .space, .image: return true
         default: return false
         }
     }
@@ -43,8 +43,7 @@ extension KeyboardAction {
         switch self {
         case .none: return 10
         case .shift, .backspace: return 60
-        case .switchKeyboard, .switchToNumericKeyboard, .switchToSymbolKeyboard: return 100
-        case .space: return 200
+        case .space: return 100
         default: return 50
         }
     }
@@ -54,7 +53,7 @@ extension KeyboardAction {
         return appearance == .dark
     }
     
-    func keyboardColor(in viewController: KeyboardInputViewController) -> UIColor {
+    func keyboardButtonColor(in viewController: KeyboardInputViewController) -> UIColor {
         let isDark = self.isDark(in: viewController)
         let asset = isSystemAction
             ? (isDark ? Asset.Colors.darkSystemButton : Asset.Colors.lightSystemButton)
