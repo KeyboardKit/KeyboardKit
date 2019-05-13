@@ -32,16 +32,19 @@ extension KeyboardAction {
     
     var keyboardText: String? {
         switch self {
+        case .backspace: return "⇦"
         case .character(let text): return text
+        case .shift: return "⇧"
         default: return nil
         }
     }
     
     var keyboardWidth: CGFloat {
         switch self {
-        case .none: return 20
-        case .space: return 100
-        case .switchKeyboard: return 60
+        case .none: return 10
+        case .shift, .backspace: return 60
+        case .switchKeyboard, .switchToNumericKeyboard, .switchToSymbolKeyboard: return 100
+        case .space: return 200
         default: return 50
         }
     }
