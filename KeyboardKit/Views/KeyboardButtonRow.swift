@@ -50,7 +50,7 @@ open class KeyboardButtonRow: UIView, KeyboardStackViewComponent {
         let stackView = UIStackView(frame: .zero)
         stackView.axis = .horizontal
         stackView.alignment = .fill
-        stackView.distribution = .fillEqually
+        stackView.distribution = distribution
         addSubview(stackView, fill: true)
         return stackView
     }()
