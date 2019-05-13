@@ -25,20 +25,24 @@ public protocol KeyboardButton: KeyboardButtonRowComponent {
     var secondaryAction: KeyboardAction? { get }
 }
 
+
+
+// MARK: - Animations
+
 public extension KeyboardButton {
     
-    func animateDefaultPress(factor: CGFloat = 0.8, completion: (() -> ())? = nil) {
+    func animateStandardPress(factor: CGFloat = 0.8, completion: (() -> ())? = nil) {
         let transform = CGAffineTransform(scaleX: factor, y: factor)
         animateTransform(transform, completion: completion)
     }
     
-    func animateDefaultRelease(completion: (() -> ())? = nil) {
+    func animateStandardRelease(completion: (() -> ())? = nil) {
         animateTransform(.identity, completion: completion)
     }
     
-    func animateDefaultTap(completion: (() -> ())? = nil) {
-        animateDefaultPress { [weak self] in
-            self?.animateDefaultRelease(completion: completion)
+    func animateStandardTap(completion: (() -> ())? = nil) {
+        animateStandardPress { [weak self] in
+            self?.animateStandardRelease(completion: completion)
         }
     }
 }

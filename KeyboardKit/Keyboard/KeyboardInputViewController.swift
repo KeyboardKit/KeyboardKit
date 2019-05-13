@@ -12,8 +12,13 @@
  basic set of functionality. You can subclass this class and
  override anything to modify the standard behavior.
  
- The class uses an actionless keyboard and a standard action
- handler by default. You can replace them at any time.
+ The class has a `keyboardActionHandler` to which you should
+ delegate all triggered keyboard actions. It uses a standard
+ `StandardKeyboardActionHandler` by default, but you can set
+ `keyboardActionHandler` to any `KeyboardActionHandler`.
+ 
+ To apply standard gestures to a keyboard button, simply use
+ `addKeyboardGestures(to:)`.
  
  `viewWillSyncWithTextDocumentProxy()` is triggered when the
  view controller will appear or when the text document proxy
