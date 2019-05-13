@@ -29,9 +29,9 @@ public enum KeyboardAction: Equatable {
     shift,
     space,
     switchKeyboard,
-    switchToAlphabeticalKeyboard,
+    switchToAlphabeticKeyboard,
     switchToNumericKeyboard,
-    switchToSymbolKeyboard
+    switchToSymbolicKeyboard
 }
 
 
@@ -53,9 +53,9 @@ public extension KeyboardAction {
         case .shift: return nil
         case .space: return nil
         case .switchKeyboard: return nil
-        case .switchToAlphabeticalKeyboard: return nil
+        case .switchToAlphabeticKeyboard: return nil
         case .switchToNumericKeyboard: return nil
-        case .switchToSymbolKeyboard: return nil
+        case .switchToSymbolicKeyboard: return nil
         }
     }
     
@@ -73,9 +73,9 @@ public extension KeyboardAction {
         case .shift: return nil
         case .space: return { proxy in proxy?.insertText(" ") }
         case .switchKeyboard: return nil
-        case .switchToAlphabeticalKeyboard: return nil
+        case .switchToAlphabeticKeyboard: return nil
         case .switchToNumericKeyboard: return nil
-        case .switchToSymbolKeyboard: return nil
+        case .switchToSymbolicKeyboard: return nil
         }
     }
 }

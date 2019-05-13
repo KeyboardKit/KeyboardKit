@@ -10,6 +10,10 @@ import KeyboardKit
 
 class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
+    var demoViewController: KeyboardViewController? {
+        return inputViewController as? KeyboardViewController
+    }
+    
     override func handleLongPress(on view: UIView, action: KeyboardAction) {
         super.handleLongPress(on: view, action: action)
         saveImage(for: action)
@@ -17,9 +21,18 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     override func handleTap(on view: UIView, action: KeyboardAction) {
         super.handleTap(on: view, action: action)
-        copyImage(for: action)
+        switch action {
+        case .shift: demoViewController?.keyboardMode = .uppercased
+        case .switchToAlphabeticKeyboard: demoViewController?.keyboardMode = .alphabetic
+        case .switchToNumericKeyboard: demoViewController?.keyboardMode = .numeric
+        case .switchToSymbolicKeyboard: demoViewController?.keyboardMode = .symbolic
+        default: copyImage(for: action)
+        }
     }
 }
+
+
+// MARK: - Image Functions
 
 @objc extension DemoKeyboardActionHandler {
     

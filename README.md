@@ -86,8 +86,9 @@ When you create your own keyboard extension and want to use `KeyboardKit` in it,
 * `shift` - can be used to toggle between upper and lower case
 * `space` - sends an empty space to the text proxy
 * `switchKeyboard` - triggers the default keyboard switcher
-* `switchToNumericKeyboard(*)` - can be used to switch to numbers
-* `switchToSymbolKeyboard(*)` - can be used to switch to symbols
+* `switchToAlphabeticKeyboard(*)` - can be used to switch to alphabetic input
+* `switchToNumericKeyboard(*)` - can be used to switch to numeric input
+* `switchToSymbolicKeyboard(*)` - can be used to switch to symbolic input
 * `none`- use this for empty "placeholder" keys that do nothing
 
 Many actions have standard behavior that apply to the input view controller or its text proxy, but the ones that are marked with `(*)` require custom handling, since their behavior depend on your application.

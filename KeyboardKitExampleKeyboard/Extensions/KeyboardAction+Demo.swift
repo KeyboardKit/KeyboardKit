@@ -49,9 +49,9 @@ extension KeyboardAction {
         case .newLine: return "return"
         case .shift: return "⇧"
         case .space: return "space"
-        case .switchToAlphabeticalKeyboard: return "ABC"
+        case .switchToAlphabeticKeyboard: return "ABC"
         case .switchToNumericKeyboard: return "123"
-        case .switchToSymbolKeyboard: return "#+="
+        case .switchToSymbolicKeyboard: return "#+="
         default: return nil
         }
     }

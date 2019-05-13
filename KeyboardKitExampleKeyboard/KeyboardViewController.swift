@@ -50,11 +50,11 @@ class KeyboardViewController: KeyboardInputViewController {
     
     // MARK: - Mode
     
-    enum Mode {
-        case alphabetic, numeric, symbolic, grid
+    enum KeyboardMode {
+        case alphabetic, numeric, symbolic, uppercased, grid
     }
     
-    var currentMode = Mode.alphabetic {
+    var keyboardMode = KeyboardMode.alphabetic {
         didSet { setupKeyboard() }
     }
     
@@ -67,35 +67,13 @@ class KeyboardViewController: KeyboardInputViewController {
     
     func setupKeyboard(for size: CGSize) {
         keyboardStackView.removeAllArrangedSubviews()
-        switch currentMode {
+        switch keyboardMode {
         case .alphabetic: setupAlphabeticKeyboard()
         case .numeric: setupNumericKeyboard()
         case .symbolic: setupSymbolicKeyboard()
+        case .uppercased: setupAlphabeticKeyboard(uppercased: true)
         case .grid: fatalError("Not yet")
         }
-//        setupTopSystemButtons()
-//        setupCollectionView(for: size)
-//        setupBottomSystemButtons()
-    }
-    
-    func setupAlphabeticKeyboard() {
-        let keyboard = AlphabeticKeyboard(uppercased: false)
-        setupKeyboardRows(with: keyboard.actions)
-    }
-    
-    func setupNumericKeyboard() {
-        let keyboard = NumericKeyboard(uppercased: false)
-        setupKeyboardRows(with: keyboard.actions)
-    }
-    
-    func setupSymbolicKeyboard() {
-        let keyboard = SymbolicKeyboard(uppercased: false)
-        setupKeyboardRows(with: keyboard.actions)
-    }
-    
-    func setupKeyboardRows(with actions: [[KeyboardAction]]) {
-        let rows = buttonRows(for: actions, distribution: .fillProportionally)
-        keyboardStackView.addArrangedSubviews(rows)
     }
     
     func setupTopSystemButtons() {
@@ -154,5 +132,25 @@ extension KeyboardViewController {
         let view = KeyboardSpacerView(frame: .zero)
         view.width = KeyboardAction.none.keyboardWidth(for: distribution)
         return view
+    }
+    
+    func setupAlphabeticKeyboard(uppercased: Bool = false) {
+        let keyboard = AlphabeticKeyboard(uppercased: uppercased)
+        setupKeyboardRows(with: keyboard.actions)
+    }
+    
+    func setupNumericKeyboard() {
+        let keyboard = NumericKeyboard()
+        setupKeyboardRows(with: keyboard.actions)
+    }
+    
+    func setupSymbolicKeyboard() {
+        let keyboard = SymbolicKeyboard()
+        setupKeyboardRows(with: keyboard.actions)
+    }
+    
+    func setupKeyboardRows(with actions: [[KeyboardAction]]) {
+        let rows = buttonRows(for: actions, distribution: .fillProportionally)
+        keyboardStackView.addArrangedSubviews(rows)
     }
 }

@@ -17,10 +17,8 @@ import KeyboardKit
 
 struct SymbolicKeyboard {
     
-    init(
-        for idiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom,
-        uppercased: Bool) {
-        actions = type(of: self).actions(for: idiom, uppercased: uppercased)
+    init(for idiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom) {
+        actions = type(of: self).actions(for: idiom)
     }
     
     let actions: [[KeyboardAction]]
@@ -31,8 +29,8 @@ struct SymbolicKeyboard {
 
 private extension SymbolicKeyboard {
     
-    static func actions(for idiom: UIUserInterfaceIdiom, uppercased: Bool) -> [[KeyboardAction]] {
-        return characters(uppercased: uppercased)
+    static func actions(for idiom: UIUserInterfaceIdiom) -> [[KeyboardAction]] {
+        return characters
             .mappedToActions()
             .adjusted(for: idiom)
     }
@@ -43,16 +41,12 @@ private extension SymbolicKeyboard {
 
 private extension SymbolicKeyboard {
     
-    static var characterRows: [[String]] {
+    static var characters: [[String]] {
         return [
             ["[", "]", "{", "}", "#", "%", "^", "*", "+", "="],
             ["_", "\\", "|", "~", "<", ">", "€", "£", "¥", "•"],
             [".", ",", "?", "!", "´"]
         ]
-    }
-    
-    static func characters(uppercased: Bool) -> [[String]] {
-        return uppercased ? characterRows.uppercased() : characterRows
     }
 }
 
@@ -60,10 +54,6 @@ private extension SymbolicKeyboard {
 // MARK: - Character Extensions
 
 private extension Sequence where Iterator.Element == [String] {
-    
-    func uppercased() -> [Iterator.Element] {
-        return map { $0.map { $0.uppercased() } }
-    }
     
     func mappedToActions() -> [[KeyboardAction]] {
         return map { $0.map { .character($0) } }
@@ -101,12 +91,12 @@ private extension Sequence where Iterator.Element == [KeyboardAction] {
     }
     
     func withSystemButtonsForIphone() -> [Iterator.Element] {
-        let systemActions: [KeyboardAction] = [.switchToAlphabeticalKeyboard, .space, .newLine]
+        let systemActions: [KeyboardAction] = [.switchToAlphabeticKeyboard, .space, .newLine]
         return map { $0 } + [systemActions]
     }
     
     func withSystemButtonsForIpad() -> [Iterator.Element] {
-        let systemActions: [KeyboardAction] = [.switchToAlphabeticalKeyboard, .switchKeyboard, .space, .switchToAlphabeticalKeyboard, .dismissKeyboard]
+        let systemActions: [KeyboardAction] = [.switchToAlphabeticKeyboard, .switchKeyboard, .space, .switchToAlphabeticKeyboard, .dismissKeyboard]
         return map { $0 } + [systemActions]
     }
 }

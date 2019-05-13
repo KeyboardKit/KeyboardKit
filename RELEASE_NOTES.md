@@ -17,8 +17,9 @@ New `KeyboardAction`s are added and `nextKeyboard` has been renamed to `switchKe
 * moveCursorBackward
 * moveCursorForward
 * shift
+* switchToAlphabeticKeyboard
 * switchToNumericKeyboard
-* switchToSymbolKeyboard
+* switchToSymbolicKeyboard
 
 `KeyboardInputViewController` will now resize the extension to the size of the stack view, or any other size constraints you may set. The old `setHeight(to:)` function has therefore been removed.
 
