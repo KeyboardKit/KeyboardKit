@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboardPresenter, UICollectionViewDelegate {
+open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboardComponent, UICollectionViewDelegate {
     
     
     // MARK: - Initialization

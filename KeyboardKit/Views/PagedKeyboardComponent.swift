@@ -21,7 +21,7 @@
 
 import UIKit
 
-public protocol PagedKeyboardPresenter: AnyObject {
+public protocol PagedKeyboardComponent: AnyObject {
 
     var id: String { get }
     
@@ -31,7 +31,7 @@ public protocol PagedKeyboardPresenter: AnyObject {
     var numberOfPages: Int { get }
 }
 
-public extension PagedKeyboardPresenter {
+public extension PagedKeyboardComponent {
     
     private var settingsKey: String {
         return KeyboardSetting.currentPageIndex.key(for: id)
