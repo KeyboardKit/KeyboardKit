@@ -8,13 +8,15 @@
 
 import KeyboardKit
 
-class DemoSystemKeyboard: Keyboard {
+struct DemoSystemKeyboard {
     
     init(in viewController: KeyboardInputViewController) {
         let actions = type(of: self).systemActions
         let filtered = viewController.needsInputModeSwitchKey ? actions.filter { $0 != .switchKeyboard } : actions
-        super.init(actions: filtered)
+        self.actions = filtered
     }
+    
+    let actions: [KeyboardAction]
     
     let preferredDistribution = UIStackView.Distribution.fillProportionally
     

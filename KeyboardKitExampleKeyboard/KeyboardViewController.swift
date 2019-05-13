@@ -58,7 +58,7 @@ class KeyboardViewController: KeyboardInputViewController {
     }
     
     func setupTopSystemButtons() {
-        let keyboard = DemoNumericKeyboard(in: self)
+        let keyboard = DemoNumericKeyboard()
         let distribution = keyboard.preferredDistribution
         let row = KeyboardButtonRow(height: 50, actions: keyboard.actions, distribution: distribution) { return button(for: $0, distribution: distribution) }
         keyboardStackView.addArrangedSubview(row)

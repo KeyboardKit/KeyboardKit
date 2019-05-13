@@ -8,17 +8,14 @@
 
 import KeyboardKit
 
-class DemoNumericKeyboard: Keyboard {
+struct DemoNumericKeyboard {
     
-    init(in viewController: KeyboardInputViewController) {
-        let actions = type(of: self).numericActions
-        super.init(actions: actions)
+    init() {
+        let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+        actions = numbers.map { KeyboardAction.character("\($0)")}
     }
+    
+    let actions: [KeyboardAction]
     
     let preferredDistribution = UIStackView.Distribution.fillProportionally
-    
-    private static var numericActions: [KeyboardAction] {
-        let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
-        return numbers.map { KeyboardAction.character("\($0)")}
-    }
 }

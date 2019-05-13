@@ -32,7 +32,7 @@
 
 ## Basic use case
 
-When using `KeyboardKit`, you typically inherit from `KeyboardInputViewController` instead of `UIInputViewController`. This provides you with a `keyboardActionHandler` to which you can delegate keyboard actions like taps and long presses. You also get a `keyboardStackView` to which you can add various components like toolbars, button rows and entire collection views.
+When using `KeyboardKit`, you typically inherit from `KeyboardInputViewController` instead of `UIInputViewController`. It provides you with a `keyboardActionHandler` that can handle taps, long presses etc. and a `keyboardStackView` to which you can add components like toolbars, button rows and entire collection views.
 
 
 ## Installation
@@ -71,14 +71,9 @@ When you create your own keyboard extension and want to use `KeyboardKit` in it,
 ## Features
 
 
-### Keyboards
+### Keyboard Actions
 
-In `KeyboardKit`, a `Keyboard` is basically a collection of `KeyboardAction`s, which you can use to model your custom keyboards. It has no action or rendering logic. You define this later, in your input view controller. This means that you can render and handle the same keyboard in many different ways.
-
-
-### Keyboard actions
-
-`KeyboardKit` comes with the following built-in keyboard actions, that can be applied to your keyboard buttons:
+`KeyboardKit` comes with the following built-in actions, that can be applied to your keyboard buttons:
 
 * `backspace` - sends a backspace to the text proxy
 * `capsLock(*)` - can be used to lock the keyboard in upper case
@@ -95,18 +90,18 @@ In `KeyboardKit`, a `Keyboard` is basically a collection of `KeyboardAction`s, w
 * `switchToSymbolKeyboard(*)` - can be used to switch to symbols
 * `none`- use this for empty "placeholder" keys that do nothing
 
-Most actions have standard behavior that apply to the input view controller or its text proxy. The ones that are marked with `(*)` require custom handling, though, since their behavior depend on the keyboard application.
+Many actions have standard behavior that apply to the input view controller or its text proxy, but the ones that are marked with `(*)` require custom handling, since their behavior depend on your application.
 
-`KeyboardInputViewController` has a `keyboardActionHandler` to which you should delegate all actions. `StandardKeyboardActionHandler` is used by default, but you can replace with any `KeyboardActionHandler`, preferrably by subclassing `StandardKeyboardActionHandler` and filling out the missing parts.
+`KeyboardInputViewController` has a `keyboardActionHandler` to which you should delegate all user-triggered actions. It uses a `StandardKeyboardActionHandler` by default, but you can replace with any `KeyboardActionHandler` you like, preferrably by subclassing the standard one and filling out the missing parts.
 
 
 ### Presentation
 
 `KeyboardInputViewController` has a `keyboardStackView`, to which you can add components like toolbars and button rows. Since it's a regular `UIStackView`, you can configure it in any way you like. By default, the extension will be resized to fit this stack view.
 
-The `KeyboardStackViewComponent` protocol is used by the built-in keyboard components and simplifies setting their height in a way that propertly resizes the keyboard extension. If you create custom components that can be added to the main stack view, you should let them implement this protocol as well.
+The `KeyboardStackViewComponent` protocol is used by the built-in keyboard components and simplifies setting their height in a way that propertly resizes the extension. If you create custom components that can be added to the main stack view, you should implement this protocol.
 
-`KeyboardButtonRow` has a `buttonStackView`. It's a regular `UIStackView`, to which you can add `KeyboardButtonRowComponent`s like the built in `KeyboardButton` and `KeyboardSpacerView`.
+`KeyboardButtonRow` has a `buttonStackView`. It is a regular `UIStackView`, to which you can add `KeyboardButtonRowComponent`s like the built in `KeyboardButton` and `KeyboardSpacerView`.
 
 `KeyboardCollectionView` is regular `UICollectionView` that you can configure in any way you like. You can use the `KeyboardButtonRowCollectionView` subclass to easily distribute a set of actions in even rows that span over multiple pages.
 
