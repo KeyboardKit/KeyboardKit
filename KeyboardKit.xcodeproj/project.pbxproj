@@ -143,6 +143,7 @@
 		84FFAD1D2283EE3700FB4998 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFAD1B2283EDD600FB4998 /* Assets.swift */; };
 		84FFAD1E2283F74500FB4998 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84FFACE12283ECCD00FB4998 /* Colors.xcassets */; };
 		84FFAD262287752300FB4998 /* KeyboardActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFAD252287752300FB4998 /* KeyboardActionTests.swift */; };
+		84FFAD2E228994AE00FB4998 /* AlphabeticalKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFAD2D228994AE00FB4998 /* AlphabeticalKeyboard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -322,6 +323,7 @@
 		84FFACE12283ECCD00FB4998 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		84FFAD1B2283EDD600FB4998 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		84FFAD252287752300FB4998 /* KeyboardActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardActionTests.swift; sourceTree = "<group>"; };
+		84FFAD2D228994AE00FB4998 /* AlphabeticalKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphabeticalKeyboard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -567,9 +569,9 @@
 		45FCD01A2059E05B0072157A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				84851A6B2277AFE000477705 /* KeyboardAction+Demo.swift */,
 				45FCD01D2059E0CD0072157A /* UIView+Nib.swift */,
 				45FCD0212059E2220072157A /* UIView+Shadow.swift */,
-				84851A6B2277AFE000477705 /* KeyboardAction+Demo.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -677,6 +679,7 @@
 		84FFACD92282350200FB4998 /* Keyboards */ = {
 			isa = PBXGroup;
 			children = (
+				84FFAD2D228994AE00FB4998 /* AlphabeticalKeyboard.swift */,
 				45D1495320586280009EF441 /* DemoGridKeyboard.swift */,
 				84FFACDA2282352400FB4998 /* DemoNumericKeyboard.swift */,
 				84FFACDC2282353800FB4998 /* DemoSystemKeyboard.swift */,
@@ -1043,6 +1046,7 @@
 				84511D3A227110BC00904FE0 /* DemoKeyboardActionHandler.swift in Sources */,
 				84851A682277AE9300477705 /* DemoButton.swift in Sources */,
 				84FFACDB2282352400FB4998 /* DemoNumericKeyboard.swift in Sources */,
+				84FFAD2E228994AE00FB4998 /* AlphabeticalKeyboard.swift in Sources */,
 				45FCD0222059E2220072157A /* UIView+Shadow.swift in Sources */,
 				84FFAD1D2283EE3700FB4998 /* Assets.swift in Sources */,
 				45D1495420586280009EF441 /* DemoGridKeyboard.swift in Sources */,

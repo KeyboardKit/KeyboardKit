@@ -52,9 +52,18 @@ class KeyboardViewController: KeyboardInputViewController {
     
     func setupKeyboard(for size: CGSize) {
         keyboardStackView.removeAllArrangedSubviews()
-        setupTopSystemButtons()
-        setupCollectionView(for: size)
-        setupBottomSystemButtons()
+        let keyboard = AlphabeticalKeyboard(uppercased: false)
+        let distribution = keyboard.distribution
+        let rows = keyboard.actions.map {
+            KeyboardButtonRow(height: 50, actions: $0, distribution: distribution) {
+                return button(for: $0, distribution: distribution)
+            }
+        }
+        keyboardStackView.addArrangedSubviews(rows)
+
+//        setupTopSystemButtons()
+//        setupCollectionView(for: size)
+//        setupBottomSystemButtons()
     }
     
     func setupTopSystemButtons() {
@@ -63,7 +72,7 @@ class KeyboardViewController: KeyboardInputViewController {
         let row = KeyboardButtonRow(height: 50, actions: keyboard.actions, distribution: distribution) { return button(for: $0, distribution: distribution) }
         keyboardStackView.addArrangedSubview(row)
     }
-    
+
     func setupCollectionView(for size: CGSize) {
         let keyboard = DemoGridKeyboard()
         let isLandscape = size.width > 400
@@ -73,7 +82,7 @@ class KeyboardViewController: KeyboardInputViewController {
         let view = KeyboardButtonRowCollectionView(actions: keyboard.actions, configuration: config) { [unowned self] in return self.button(for: $0) }
         keyboardStackView.addArrangedSubview(view)
     }
-    
+
     func setupBottomSystemButtons() {
         let keyboard = DemoSystemKeyboard(in: self)
         let distribution = keyboard.preferredDistribution
