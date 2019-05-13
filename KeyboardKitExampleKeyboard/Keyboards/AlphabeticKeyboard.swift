@@ -1,5 +1,5 @@
 //
-//  AlphabeticalKeyboard.swift
+//  AlphabeticKeyboard.swift
 //  KeyboardKitExampleKeyboard
 //
 //  Created by Daniel Saidi on 2019-05-13.
@@ -19,7 +19,7 @@
 
 import KeyboardKit
 
-struct AlphabeticalKeyboard {
+struct AlphabeticKeyboard {
     
     init(
         for idiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom,
@@ -28,13 +28,12 @@ struct AlphabeticalKeyboard {
     }
 
     let actions: [[KeyboardAction]]
-    let distribution = UIStackView.Distribution.fillProportionally
 }
 
 
 // MARK: - Actions
 
-private extension AlphabeticalKeyboard {
+private extension AlphabeticKeyboard {
     
     static func actions(for idiom: UIUserInterfaceIdiom, uppercased: Bool) -> [[KeyboardAction]] {
         return characters(uppercased: uppercased)
@@ -46,7 +45,7 @@ private extension AlphabeticalKeyboard {
 
 // MARK: - Characters
 
-private extension AlphabeticalKeyboard {
+private extension AlphabeticKeyboard {
     
     static var characterRows: [[String]] {
         return [

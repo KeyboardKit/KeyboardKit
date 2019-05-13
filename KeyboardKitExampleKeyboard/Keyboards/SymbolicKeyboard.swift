@@ -24,7 +24,6 @@ struct SymbolicKeyboard {
     }
     
     let actions: [[KeyboardAction]]
-    let distribution = UIStackView.Distribution.fillProportionally
 }
 
 
