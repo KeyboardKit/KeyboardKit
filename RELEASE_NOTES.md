@@ -5,15 +5,22 @@
 
 This version aim at streamlining the library and remove or refactor parts that make it hard to maintain. It contains several breaking changes, but I hope that the changes will make it easier for you as well, as the library moves forward.
 
-Most notably, the view controller inheritance model has been completely removed. Instead, there is only one `KeyboardInputViewController`, which you should use instead of `UIInputViewController`. It has a stack view, to which you can add any views you like, like the built-in `KeyboardButtonRow` and `KeyboardCollectionView`.
+Most notably, the view controller inheritance model has been completely removed. Instead, there is only one `KeyboardInputViewController`. It has a stack view to which you can add any views you like, like the built-in `KeyboardButtonRow` and `KeyboardCollectionView`, which means that your custom keyboards is now based on components that you can combine.
 
-Since `KeyboardInputViewController` can display multiple keyboards at once, it doesn't make any sense that it has a single `keyboard` property. You can still use the `Keyboard` struct to organize your actions, but you don't have to use it anymore.
+Since `KeyboardInputViewController` therefore can display multiple keyboards at once, it doesn't make any sense to have a single `keyboard` property. You can still use `Keyboard` to organize your actions (in fact, I recommend it), but you don't have to.
 
-All keyboard action handling has also been moved from the view controllers to a new `KeyboardActionHandler`, using the new `keyboardActionHandler` property. All view controllers use a `StandardActionHandler` by default, but you can replace this at any time by setting the `keyboardActionHandler` property to a new handler.
+All action handling has been moved from the view controller to `KeyboardActionHandler` as well. `KeyboardInputViewController` use a `StandardActionHandler` by default, but you can replace this by setting `keyboardActionHandler` to any `KeyboardActionHandler`. This is required if you want to use certain actions types, like `.image`.
 
-New `KeyboardAction` types have been added - `moveCursorBack`, `moveCursorForward` and `dismissKeyboard`. `nextKeyboard` has been renamed to `switchKeyboard`. Action equality logic has also been removed, so instead of `isNone`, you should use `== .none` from now on.  All help properties like `image` and `imageName` are removed as well, since they belong in the app.
+New `KeyboardAction`s are added and `nextKeyboard` has been renamed to `switchKeyboard`. Action equality logic has also been removed, so instead of `isNone`, you should use `== .none` from now on. All help properties like `image` and `imageName` are removed as well, since they belong in the app. These are the new action types
 
-Since the height of the extension automatically changes depending on the constraints of its views, the old `setHeight(to:)` function has been removed. Instead, `KeyboardInputViewController` will resize the extension to the size of the stack view.
+* capsLock
+* moveCursorBackward
+* moveCursorForward
+* shift
+* switchToNumericKeyboard
+* switchToSymbolKeyboard
+
+`KeyboardInputViewController` will now resize the extension to the size of the stack view, or any other size constraints you may set. The old `setHeight(to:)` function has therefore been removed.
 
 
 ## 1.0.0

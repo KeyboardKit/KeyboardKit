@@ -78,59 +78,49 @@ In `KeyboardKit`, a `Keyboard` is basically a collection of `KeyboardAction`s, w
 
 ### Keyboard actions
 
-`KeyboardKit` comes with the following built-in keyboard actions:
+`KeyboardKit` comes with the following built-in keyboard actions, that can be applied to your keyboard buttons:
 
 * `backspace` - sends a backspace to the text proxy
-* `capsLock` - can be used to lock the keyboard in upper case
+* `capsLock(*)` - can be used to lock the keyboard in upper case
 * `character` - sends a text character to the text proxy
 * `dismissKeyboard` - dismisses the keyboard
 * `image` - has a description, keyboard image name and image name
-* `moveCursorBack` - moves the cursor back one position
-* `moveCursorForward` - moves the cursor forward one position
+* `moveCursorBack(*)` - moves the cursor back one position
+* `moveCursorForward(*)` - moves the cursor forward one position
 * `newLine` - sends a new line to the text proxy
 * `shift` - can be used to toggle between upper and lower case
 * `space` - sends an empty space to the text proxy
 * `switchKeyboard` - triggers the default keyboard switcher
-* `switchToNumericKeyboard` - can be used to switch to numbers
-* `switchToSymbolKeyboard` - can be used to switch to symbols
+* `switchToNumericKeyboard(*)` - can be used to switch to numbers
+* `switchToSymbolKeyboard(*)` - can be used to switch to symbols
 * `none`- use this for empty "placeholder" keys that do nothing
 
-These actions can be applied to the keyboard buttons. Some have standard behavior that apply to the input view controller or its text proxy, while others have no standard behavior.
+Most actions have standard behavior that apply to the input view controller or its text proxy. The ones that are marked with `(*)` require custom handling, though, since their behavior depend on the keyboard application.
 
-`KeyboardInputViewController` has a `keyboardActionHandler` that should handle all actions that are triggered by the user. The `StandardKeyboardActionHandler` class is used by default, but you can replace it with any `KeyboardActionHandler` you like.
+`KeyboardInputViewController` has a `keyboardActionHandler` to which you should delegate all actions. `StandardKeyboardActionHandler` is used by default, but you can replace with any `KeyboardActionHandler`, preferrably by subclassing `StandardKeyboardActionHandler` and filling out the missing parts.
 
 
 ### Presentation
 
-`KeyboardInputViewController` has a `keyboardStackView` that you can use to build create your keyboard. 
+`KeyboardInputViewController` has a `keyboardStackView`, to which you can add components like toolbars and button rows. Since it's a regular `UIStackView`, you can configure it in any way you like. By default, the extension will be resized to fit this stack view.
 
-Since it's a regular `UIStackView`, you can populate it with any views, but the `KeyboardStackViewComponent` protocol can help you work with this stack view in a more well-defined way, since it simplifies setting a specific height for each component.
+The `KeyboardStackViewComponent` protocol is used by the built-in keyboard components and simplifies setting their height in a way that propertly resizes the keyboard extension. If you create custom components that can be added to the main stack view, you should let them implement this protocol as well.
 
-There are a bunch of built-in `KeyboardStackViewComponent`s, like the `KeyboardButtonRow` and `KeyboardCollectionView` views.
+`KeyboardButtonRow` has a `buttonStackView`. It's a regular `UIStackView`, to which you can add `KeyboardButtonRowComponent`s like the built in `KeyboardButton` and `KeyboardSpacerView`.
 
-`KeyboardButtonRow` has a `buttonStackView` that you can setup in any way you like and populate with `KeyboardButtonRowComponent`s. It's a regular `UIStackView`, which means that you can distribute its content in any way you like.
+`KeyboardCollectionView` is regular `UICollectionView` that you can configure in any way you like. You can use the `KeyboardButtonRowCollectionView` subclass to easily distribute a set of actions in even rows that span over multiple pages.
 
-`KeyboardCollectionView` is regular `UICollectionView`s that you can setup in any way you like and populate with any views you like. Since it's a regular `UICollectionView`, you can distribute its content in any way you like. You can use the `KeyboardButtonRowCollectionView` subclass to easily distribute a large numbers of actions in even rows that span over multiple pages if needed.
+Since all these components are regular views, you can use them in your hosting application as well.
 
 
 ### Alerts
 
-Since keyboard extensions can't display `UIAlertController`s, `KeyboardKit` has a `KeyboardAlert` protocol that can be used to alert messages on top of the keyboard. You can use the built-in `ToastAlert` or create a custom `KeyboardAlert` implementation.
+Since keyboard extensions can't display `UIAlertController`s, you can use `KeyboardAlert` to alert messages on top of the keyboard. You can use the built-in `ToastAlert` or create a custom one.
 
 
 ### Haptic Feedback
 
-`KeyboardKit` has support for haptic feedback, which means that you can use vibrations when the user types. The `HapticFeedback` enum defines a set of built-in feedback types that wraps the native iOS feedback types.
-
-
-### Animations
-
-If you want to animate the buttons as a user types, you can let your buttons implement the `KeyboardButton` protocol, which provides default press, release and tap animations.
-
-
-### Extension height
-
-The keyboard extension's height will automatically change to fit the `keyboardStackView`'s required height.
+`KeyboardKit` has a set of `HapticFeedback` variants, that can be used to give the user haptic feedback as she/he uses the keyboard. The `HapticFeedback` enum defines a set of haptic feedback types that wraps native iOS feedback types like `selection changed`, `error`, `success` etc.
 
 
 ### Extensions
@@ -140,9 +130,7 @@ The keyboard extension's height will automatically change to fit the `keyboardSt
 
 ## Example Application
 
-The easiest way to learn how to use `KeyboardKit` is to open the example app and have a look at how it is implemented. It uses a couple of regular strings, emojis, symbols, images and system buttons.
-
-This app uses the built-in `GridKeyboardViewController`, but I will try to add more examples to the example app.
+`KeyboardKit` contains an example app that contains different kind of keyboards, like numeric keyboards, system keyboards, row-based keyboard and grid-based one.
 
 
 ## Contact me

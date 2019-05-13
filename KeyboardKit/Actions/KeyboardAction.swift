@@ -23,7 +23,7 @@ public enum KeyboardAction: Equatable {
     character(String),
     dismissKeyboard,
     image(description: String, keyboardImageName: String, imageName: String),
-    moveCursorBack,
+    moveCursorBackward,
     moveCursorForward,
     newLine,
     shift,
@@ -43,7 +43,7 @@ public extension KeyboardAction {
         case .character: return nil
         case .dismissKeyboard: return { controller in controller?.dismissKeyboard() }
         case .image: return nil
-        case .moveCursorBack: return nil
+        case .moveCursorBackward: return nil
         case .moveCursorForward: return nil
         case .newLine: return nil
         case .shift: return nil
@@ -62,7 +62,7 @@ public extension KeyboardAction {
         case .character(let char): return { proxy in proxy?.insertText(char) }
         case .dismissKeyboard: return nil
         case .image: return nil
-        case .moveCursorBack: return { proxy in proxy?.adjustTextPosition(byCharacterOffset: -1) }
+        case .moveCursorBackward: return { proxy in proxy?.adjustTextPosition(byCharacterOffset: -1) }
         case .moveCursorForward: return { proxy in proxy?.adjustTextPosition(byCharacterOffset: -1) }
         case .newLine: return { proxy in proxy?.insertText("\n") }
         case .shift: return nil

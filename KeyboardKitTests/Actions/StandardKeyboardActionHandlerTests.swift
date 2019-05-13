@@ -23,7 +23,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         var actionsWithTap: [KeyboardAction] {
             return [
                 .backspace, .dismissKeyboard, .character(""),
-                .moveCursorBack, .moveCursorForward,
+                .moveCursorBackward, .moveCursorForward,
                 .newLine, .space
             ]
         }
@@ -43,7 +43,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             return [
                 .none, .backspace, .dismissKeyboard, .character(""),
                 .image(description: "", keyboardImageName: "", imageName: ""),
-                .moveCursorBack, .moveCursorForward,
+                .moveCursorBackward, .moveCursorForward,
                 .switchKeyboard, .newLine, .shift, .space
             ]
         }
