@@ -16,6 +16,7 @@ class DemoButton: KeyboardButtonView {
         backgroundColor = .clear
         buttonView?.backgroundColor = action.keyboardButtonColor(in: viewController)
         image?.image = action.keyboardImage
+        textLabel?.font = action.keyboardFont
         textLabel?.textColor = action.keyboardTextColor(in: viewController)
         textLabel?.text = action.keyboardText
         width = action.keyboardWidth(for: distribution)

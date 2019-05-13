@@ -9,8 +9,7 @@
 /*
  
  This extension returns the standard nib or nib name for any
- view, e.g. a collection view cell. I use it to register and
- dequeue collection view cells in the demo application.
+ view, e.g. a collection view cell.
  
  */
 

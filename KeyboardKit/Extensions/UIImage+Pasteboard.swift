@@ -10,7 +10,8 @@
  
  This extension copies images to the pasteboard. If you have
  transparent images, consider applying background colors and
- (maybe) a corner radius to them before you copy them.
+ (maybe) a corner radius to them before you copy them, using
+ the `UIImage+Tinted` extension.
  
  */
 

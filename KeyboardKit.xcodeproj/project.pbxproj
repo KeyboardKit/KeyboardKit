@@ -101,7 +101,6 @@
 		45FB5210204B3F75009D5806 /* Cartfile.private in Resources */ = {isa = PBXBuildFile; fileRef = 45FB5208204B3F75009D5806 /* Cartfile.private */; };
 		45FB5212204B3FB5009D5806 /* Fastfile in Resources */ = {isa = PBXBuildFile; fileRef = 45FB5211204B3FB5009D5806 /* Fastfile */; };
 		45FCD01C2059E09E0072157A /* UIImage+Tinted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FCD01B2059E09E0072157A /* UIImage+Tinted.swift */; };
-		45FCD01E2059E0CD0072157A /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FCD01D2059E0CD0072157A /* UIView+Nib.swift */; };
 		45FCD0222059E2220072157A /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FCD0212059E2220072157A /* UIView+Shadow.swift */; };
 		84511D25226FA84800904FE0 /* KeyboardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D24226FA84800904FE0 /* KeyboardCollectionView.swift */; };
 		84511D29226FACFE00904FE0 /* PagedKeyboardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D28226FACFE00904FE0 /* PagedKeyboardComponent.swift */; };
@@ -144,6 +143,7 @@
 		84FFAD1E2283F74500FB4998 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84FFACE12283ECCD00FB4998 /* Colors.xcassets */; };
 		84FFAD262287752300FB4998 /* KeyboardActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFAD252287752300FB4998 /* KeyboardActionTests.swift */; };
 		84FFAD2E228994AE00FB4998 /* AlphabeticalKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFAD2D228994AE00FB4998 /* AlphabeticalKeyboard.swift */; };
+		84FFAD2F228A189000FB4998 /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FCD01D2059E0CD0072157A /* UIView+Nib.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -521,6 +521,7 @@
 			isa = PBXGroup;
 			children = (
 				84511D6122743AA200904FE0 /* Internal */,
+				45FCD01D2059E0CD0072157A /* UIView+Nib.swift */,
 				45FB51D120495F42009D5806 /* UIImage+Pasteboard.swift */,
 				45FB51CF20495F42009D5806 /* UIImage+Photos.swift */,
 				45FB51CE20495F42009D5806 /* UIImage+Resized.swift */,
@@ -570,7 +571,6 @@
 			isa = PBXGroup;
 			children = (
 				84851A6B2277AFE000477705 /* KeyboardAction+Demo.swift */,
-				45FCD01D2059E0CD0072157A /* UIView+Nib.swift */,
 				45FCD0212059E2220072157A /* UIView+Shadow.swift */,
 			);
 			path = Extensions;
@@ -981,6 +981,7 @@
 				84511D3822710D7100904FE0 /* StandardKeyboardActionHandler.swift in Sources */,
 				45D1495220585DD5009EF441 /* KeyboardInputViewController.swift in Sources */,
 				84511D572272E5ED00904FE0 /* HapticFeedback.swift in Sources */,
+				84FFAD2F228A189000FB4998 /* UIView+Nib.swift in Sources */,
 				846F1C6722764AA000314DC8 /* KeyboardButtonView.swift in Sources */,
 				45FB51DE20495F42009D5806 /* UIViewAutoresizing+Extras.swift in Sources */,
 				4578CEC92067E6660055440A /* UIView+ActionLongPressGesture.swift in Sources */,
@@ -1041,7 +1042,6 @@
 			files = (
 				84FFACDD2282353800FB4998 /* DemoSystemKeyboard.swift in Sources */,
 				84851A6C2277AFE000477705 /* KeyboardAction+Demo.swift in Sources */,
-				45FCD01E2059E0CD0072157A /* UIView+Nib.swift in Sources */,
 				45FB51AC20495CB1009D5806 /* KeyboardViewController.swift in Sources */,
 				84511D3A227110BC00904FE0 /* DemoKeyboardActionHandler.swift in Sources */,
 				84851A682277AE9300477705 /* DemoButton.swift in Sources */,

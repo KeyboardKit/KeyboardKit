@@ -6,20 +6,32 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
+/*
+ 
+ This file contains KeyboardAction extensions properties and
+ functions that apply to this demo app. When you create your
+ own keyboard, you should probably replace some button texts
+ with images.
+ 
+ */
+
 import UIKit
 import KeyboardKit
 
 extension KeyboardAction {
     
-    var isInputAction: Bool {
+    var hasDarkButton: Bool {
         switch self {
-        case .character, .space, .image: return true
-        default: return false
+        case .character, .space, .image: return false
+        default: return true
         }
     }
     
-    var isSystemAction: Bool {
-        return !isInputAction
+    var keyboardFont: UIFont {
+        switch self {
+        case .character: return UIFont.preferredFont(forTextStyle: .title2)
+        default: return UIFont.preferredFont(forTextStyle: .body)
+        }
     }
 
     var keyboardImage: UIImage? {
@@ -34,7 +46,12 @@ extension KeyboardAction {
         switch self {
         case .backspace: return "⇦"
         case .character(let text): return text
+        case .newLine: return "return"
         case .shift: return "⇧"
+        case .space: return "space"
+        case .switchToAlphabeticalKeyboard: return "ABC"
+        case .switchToNumericKeyboard: return "123"
+        case .switchToSymbolKeyboard: return "#+="
         default: return nil
         }
     }
@@ -55,7 +72,7 @@ extension KeyboardAction {
     
     func keyboardButtonColor(in viewController: KeyboardInputViewController) -> UIColor {
         let isDark = self.isDark(in: viewController)
-        let asset = isSystemAction
+        let asset = hasDarkButton
             ? (isDark ? Asset.Colors.darkSystemButton : Asset.Colors.lightSystemButton)
             : (isDark ? Asset.Colors.darkButton : Asset.Colors.lightButton)
         return asset.color
@@ -63,7 +80,7 @@ extension KeyboardAction {
     
     func keyboardTextColor(in viewController: KeyboardInputViewController) -> UIColor {
         let isDark = self.isDark(in: viewController)
-        let asset = isSystemAction
+        let asset = hasDarkButton
             ? (isDark ? Asset.Colors.darkSystemButtonText : Asset.Colors.lightSystemButtonText)
             : (isDark ? Asset.Colors.darkButtonText : Asset.Colors.lightButtonText)
         return asset.color
