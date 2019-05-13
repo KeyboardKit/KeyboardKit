@@ -8,8 +8,8 @@
 
 /*
  
- This button view implements `KeyboardButton` and provides a
- setup function that helps you set it up properly.
+ This class implements `KeyboardButton` and can be used as a
+ base class for your app's buttons.
  
  */
 
@@ -18,7 +18,9 @@ import UIKit
 open class KeyboardButtonView: UIButton, KeyboardButton {
     
     public private(set) var action: KeyboardAction = .none
+    public private(set) var secondaryAction: KeyboardAction?
     public private(set) var keyboardAppearance: UIKeyboardAppearance = .default
+    
     public var widthConstraint: NSLayoutConstraint?
     
     open override var intrinsicContentSize: CGSize {
@@ -26,8 +28,12 @@ open class KeyboardButtonView: UIButton, KeyboardButton {
         return CGSize(width: width, height: size.height)
     }
     
-    open func setup(with action: KeyboardAction, in viewController: KeyboardInputViewController) {
+    open func setup(
+        with action: KeyboardAction,
+        secondaryAction: KeyboardAction? = nil,
+        in viewController: KeyboardInputViewController) {
         self.action = action
+        self.secondaryAction = secondaryAction
         self.keyboardAppearance = viewController.textDocumentProxy.keyboardAppearance ?? .default
         viewController.addKeyboardGestures(to: self)
     }

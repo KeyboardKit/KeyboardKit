@@ -22,6 +22,7 @@ import UIKit
 public protocol KeyboardButton: KeyboardButtonRowComponent {
     
     var action: KeyboardAction { get }
+    var secondaryAction: KeyboardAction? { get }
 }
 
 public extension KeyboardButton {
