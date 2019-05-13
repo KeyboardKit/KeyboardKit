@@ -13,7 +13,7 @@ class DemoButton: KeyboardButtonView {
     
     public func setup(with action: KeyboardAction, in viewController: KeyboardInputViewController, distribution: UIStackView.Distribution = .fillEqually) {
         super.setup(with: action, in: viewController)
-        backgroundColor = UIColor.black.withAlphaComponent(0.0001)
+        backgroundColor = .clear
         buttonView?.backgroundColor = action.keyboardColor(in: viewController)
         image?.image = action.keyboardImage
         textLabel?.textColor = action.keyboardTextColor(in: viewController)
