@@ -13,6 +13,11 @@
  plain string characters into the proxy and handle emojis by
  copying them on tap and saving them to photos on long press.
  
+ The keyboard is setup in `viewDidAppear(...)` since this is
+ when `needsInputModeSwitchKey` gets a correct value. Before
+ this, the value is `true`, even if it should be `false`. If
+ you can solve this, you can setup the keyboard earlier.
+ 
  IMPORTANT: To use this demo keyboard, you have to enable it
  in system settings ("Settings/General/Keyboards") then give
  it full access (this requires enabling `RequestsOpenAccess`
@@ -35,6 +40,10 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         keyboardActionHandler = DemoKeyboardActionHandler(inputViewController: self)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         setupKeyboard()
     }
     

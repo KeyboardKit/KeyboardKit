@@ -16,8 +16,8 @@ extension DemoKeyboard {
         leftmost: KeyboardAction,
         for idiom: UIUserInterfaceIdiom,
         in inputViewController: UIInputViewController) -> KeyboardActionRow {
-        let actions = [leftmost, .switchKeyboard, .space, .switchToEmojiKeyboard, .newLine]
-        let needs = inputViewController.needsInputModeSwitchKey
-        return needs ? actions : actions.filter { $0 != .switchToEmojiKeyboard }
+        let needsSwitchKeyboard = inputViewController.needsInputModeSwitchKey
+        let switcher: KeyboardAction = needsSwitchKeyboard ? .switchKeyboard : .switchToEmojiKeyboard
+        return [leftmost, switcher, .space, .switchToEmojiKeyboard, .newLine]
     }
 }
