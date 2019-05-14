@@ -148,12 +148,12 @@ extension KeyboardViewController {
     }
     
     func setupNumericKeyboard() {
-        let keyboard = NumericKeyboard()
+        let keyboard = NumericKeyboard(in: self)
         setupKeyboardRows(with: keyboard.actions)
     }
     
     func setupSymbolicKeyboard() {
-        let keyboard = SymbolicKeyboard()
+        let keyboard = SymbolicKeyboard(in: self)
         setupKeyboardRows(with: keyboard.actions)
     }
     

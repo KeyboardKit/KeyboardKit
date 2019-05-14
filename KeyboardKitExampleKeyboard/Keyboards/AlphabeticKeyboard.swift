@@ -18,16 +18,21 @@
 
 import KeyboardKit
 
-struct AlphabeticKeyboard {
+struct AlphabeticKeyboard: DemoKeyboard {
     
     init(
         uppercased: Bool,
-        for idiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom,
         in viewController: KeyboardViewController) {
-        actions = type(of: self).actions(uppercased: uppercased, for: idiom, in: viewController)
+        actions = type(of: self).actions(in: viewController, uppercased: uppercased)
     }
 
     let actions: KeyboardActionRows
+    
+    static private(set) var characters: [[String]] = [
+        ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+        ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
+        ["z", "x", "c", "v", "b", "n", "m"]
+    ]
 }
 
 
@@ -36,24 +41,12 @@ struct AlphabeticKeyboard {
 private extension AlphabeticKeyboard {
     
     static func actions(
-        uppercased: Bool,
-        for idiom: UIUserInterfaceIdiom,
-        in viewController: KeyboardViewController) -> KeyboardActionRows {
-        let bottom = bottomActions(leftmost: .switchToNumericKeyboard, for: idiom, in: viewController)
+        in viewController: KeyboardViewController,
+        uppercased: Bool) -> KeyboardActionRows {
         return characters(uppercased: uppercased)
             .mappedToActions()
-            .adjusted(for: idiom, in: viewController, uppercased: uppercased)
-            .appending(bottom)
-    }
-    
-    static func bottomActions(
-        leftmost: KeyboardAction,
-        for idiom: UIUserInterfaceIdiom,
-        in viewController: KeyboardViewController) -> KeyboardActionRow {
-        let includeEmojiAction = viewController.keyboardMode != .emojis
-        let switcher = viewController.keyboardSwitcherAction
-        let actions = [.switchToNumericKeyboard, switcher, .space, .switchToEmojiKeyboard, .newLine]
-        return includeEmojiAction ? actions : actions.filter { $0 != .switchToEmojiKeyboard }
+            .addingSideActions(uppercased: uppercased)
+            .appending(bottomActions(leftmost: .switchToNumericKeyboard, for: viewController))
     }
 }
 
@@ -62,30 +55,8 @@ private extension AlphabeticKeyboard {
 
 private extension AlphabeticKeyboard {
     
-    static var characters: [[String]] {
-        return [
-            ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
-            ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
-            ["z", "x", "c", "v", "b", "n", "m"]
-        ]
-    }
-    
     static func characters(uppercased: Bool) -> [[String]] {
         return uppercased ? characters.uppercased() : characters
-    }
-}
-
-
-// MARK: - Character Extensions
-
-private extension Sequence where Iterator.Element == [String] {
-    
-    func uppercased() -> [Iterator.Element] {
-        return map { $0.map { $0.uppercased() } }
-    }
-    
-    func mappedToActions() -> [[KeyboardAction]] {
-        return map { $0.map { .character($0) } }
     }
 }
 
@@ -94,37 +65,12 @@ private extension Sequence where Iterator.Element == [String] {
 
 private extension Sequence where Iterator.Element == KeyboardActionRow {
     
-    func adjusted(
-        for idiom: UIUserInterfaceIdiom,
-        in viewController: UIInputViewController,
-        uppercased: Bool) -> [Iterator.Element] {
-        switch idiom {
-        case .pad: return adjustedForIpad(uppercased: uppercased)
-        default: return adjustedForIphone(uppercased: uppercased)
-        }
-    }
-    
-    func adjustedForIphone(uppercased: Bool) -> [Iterator.Element] {
+    func addingSideActions(uppercased: Bool) -> [Iterator.Element] {
         var result = map { $0 }
         result[2].insert(uppercased ? .shiftDown : .shift, at: 0)
         result[2].insert(.none, at: 1)
         result[2].append(.none)
         result[2].append(.backspace)
-        return result
-    }
-    
-    func adjustedForIpad(uppercased: Bool) -> [Iterator.Element] {
-        var result = map { $0 }
-        result[2].insert(uppercased ? .shiftDown : .shift, at: 0)
-        result[2].insert(.none, at: 1)
-        result[2].append(.none)
-        result[2].append(.backspace)
-        return result
-    }
-    
-    func appending(_ actions: KeyboardActionRow) -> KeyboardActionRows {
-        var result = map { $0 }
-        result.append(actions)
         return result
     }
 }
