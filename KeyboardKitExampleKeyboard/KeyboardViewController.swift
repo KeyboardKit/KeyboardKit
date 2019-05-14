@@ -55,8 +55,8 @@ class KeyboardViewController: KeyboardInputViewController {
     
     // MARK: - Mode
     
-    enum KeyboardMode {
-        case alphabetic(uppercased: Bool), numeric, symbolic, grid
+    enum KeyboardMode: Equatable {
+        case alphabetic(uppercased: Bool), numeric, symbolic, emojis
     }
     
     var keyboardMode = KeyboardMode.alphabetic(uppercased: false) {
@@ -76,7 +76,7 @@ class KeyboardViewController: KeyboardInputViewController {
         case .alphabetic(let uppercased): setupAlphabeticKeyboard(uppercased: uppercased)
         case .numeric: setupNumericKeyboard()
         case .symbolic: setupSymbolicKeyboard()
-        case .grid: fatalError("Not yet")
+        case .emojis: fatalError("Not yet")
         }
     }
     

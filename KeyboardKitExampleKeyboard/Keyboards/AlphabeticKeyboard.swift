@@ -23,7 +23,7 @@ struct AlphabeticKeyboard: DemoKeyboard {
     init(
         uppercased: Bool,
         for idiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom,
-        in viewController: UIInputViewController) {
+        in viewController: KeyboardViewController) {
         actions = type(of: self).actions(uppercased: uppercased, for: idiom, in: viewController)
     }
 
@@ -37,8 +37,8 @@ private extension AlphabeticKeyboard {
     
     static func actions(
         uppercased: Bool,
-        for idiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom,
-        in viewController: UIInputViewController) -> KeyboardActionRows {
+        for idiom: UIUserInterfaceIdiom,
+        in viewController: KeyboardViewController) -> KeyboardActionRows {
         let bottom = bottomActions(leftmost: .switchToNumericKeyboard, for: idiom, in: viewController)
         return characters(uppercased: uppercased)
             .mappedToActions()
