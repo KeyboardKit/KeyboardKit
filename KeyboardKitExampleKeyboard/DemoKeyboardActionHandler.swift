@@ -22,8 +22,9 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     override func handleTap(on view: UIView, action: KeyboardAction) {
         super.handleTap(on: view, action: action)
         switch action {
-        case .shift: demoViewController?.keyboardMode = .uppercased
-        case .switchToAlphabeticKeyboard: demoViewController?.keyboardMode = .alphabetic
+        case .shift: demoViewController?.keyboardMode = .alphabetic(uppercased: true)
+        case .shiftDown: demoViewController?.keyboardMode = .alphabetic(uppercased: false)
+        case .switchToAlphabeticKeyboard: demoViewController?.keyboardMode = .alphabetic(uppercased: false)
         case .switchToNumericKeyboard: demoViewController?.keyboardMode = .numeric
         case .switchToSymbolicKeyboard: demoViewController?.keyboardMode = .symbolic
         default: copyImage(for: action)

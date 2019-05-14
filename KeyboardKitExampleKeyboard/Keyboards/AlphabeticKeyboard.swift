@@ -8,26 +8,26 @@
 
 /*
  
- This keyboard mimicks the default alphabetical iOS keyboard.
- 
- It adjusts itself to the user interface idiom, but only has
- support for English. Its intention is not to provide a full
- replacement of the system keyboard, just to show you how to
- build a keyboard that can be mapped to keyboard button rows.
+ This keyboard mimicks the English alphabetic phone keyboard.
+ It does not adjust itself to other device types or language
+ layouts, since its intention isn't to be a fully functional
+ keyboard, but rather to show you how to make keyboards that
+ behaves like the system keyboards.
  
  */
 
 import KeyboardKit
 
-struct AlphabeticKeyboard {
+struct AlphabeticKeyboard: DemoKeyboard {
     
     init(
+        uppercased: Bool,
         for idiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom,
-        uppercased: Bool) {
-        actions = type(of: self).actions(for: idiom, uppercased: uppercased)
+        in viewController: UIInputViewController) {
+        actions = type(of: self).actions(uppercased: uppercased, for: idiom, in: viewController)
     }
 
-    let actions: [[KeyboardAction]]
+    let actions: KeyboardActionRows
 }
 
 
@@ -35,10 +35,15 @@ struct AlphabeticKeyboard {
 
 private extension AlphabeticKeyboard {
     
-    static func actions(for idiom: UIUserInterfaceIdiom, uppercased: Bool) -> [[KeyboardAction]] {
+    static func actions(
+        uppercased: Bool,
+        for idiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom,
+        in viewController: UIInputViewController) -> KeyboardActionRows {
+        let bottom = bottomActions(leftmost: .switchToNumericKeyboard, for: idiom, in: viewController)
         return characters(uppercased: uppercased)
             .mappedToActions()
-            .adjusted(for: idiom)
+            .adjusted(for: idiom, in: viewController, uppercased: uppercased)
+            .appending(bottom)
     }
 }
 
@@ -47,7 +52,7 @@ private extension AlphabeticKeyboard {
 
 private extension AlphabeticKeyboard {
     
-    static var characterRows: [[String]] {
+    static var characters: [[String]] {
         return [
             ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
             ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
@@ -56,7 +61,7 @@ private extension AlphabeticKeyboard {
     }
     
     static func characters(uppercased: Bool) -> [[String]] {
-        return uppercased ? characterRows.uppercased() : characterRows
+        return uppercased ? characters.uppercased() : characters
     }
 }
 
@@ -77,40 +82,39 @@ private extension Sequence where Iterator.Element == [String] {
 
 // MARK: - Action Extensions
 
-private extension Sequence where Iterator.Element == [KeyboardAction] {
+private extension Sequence where Iterator.Element == KeyboardActionRow {
     
-    func adjusted(for idiom: UIUserInterfaceIdiom) -> [Iterator.Element] {
+    func adjusted(
+        for idiom: UIUserInterfaceIdiom,
+        in viewController: UIInputViewController,
+        uppercased: Bool) -> [Iterator.Element] {
         switch idiom {
-        case .pad: return widthSideButtonsForIpad().withSystemButtonsForIpad()
-        default: return widthSideButtonsForIphone().withSystemButtonsForIphone()
+        case .pad: return adjustedForIpad(uppercased: uppercased)
+        default: return adjustedForIphone(uppercased: uppercased)
         }
     }
     
-    func widthSideButtonsForIphone() -> [Iterator.Element] {
-        var actions = map { $0 }
-        actions[2].insert(.shift, at: 0)
-        actions[2].insert(.none, at: 1)
-        actions[2].append(.none)
-        actions[2].append(.backspace)
-        return actions
+    func adjustedForIphone(uppercased: Bool) -> [Iterator.Element] {
+        var result = map { $0 }
+        result[2].insert(uppercased ? .shiftDown : .shift, at: 0)
+        result[2].insert(.none, at: 1)
+        result[2].append(.none)
+        result[2].append(.backspace)
+        return result
     }
     
-    func widthSideButtonsForIpad() -> [Iterator.Element] {
-        var actions = map { $0 }
-        actions[0].append(.backspace)
-        actions[1].append(.newLine)
-        actions[2].insert(.shift, at: 0)
-        actions[2].append(.shift)
-        return actions
+    func adjustedForIpad(uppercased: Bool) -> [Iterator.Element] {
+        var result = map { $0 }
+        result[2].insert(uppercased ? .shiftDown : .shift, at: 0)
+        result[2].insert(.none, at: 1)
+        result[2].append(.none)
+        result[2].append(.backspace)
+        return result
     }
     
-    func withSystemButtonsForIphone() -> [Iterator.Element] {
-        let systemActions: [KeyboardAction] = [.switchToNumericKeyboard, .space, .newLine]
-        return map { $0 } + [systemActions]
-    }
-    
-    func withSystemButtonsForIpad() -> [Iterator.Element] {
-        let systemActions: [KeyboardAction] = [.switchToNumericKeyboard, .switchKeyboard, .space, .switchToNumericKeyboard, .dismissKeyboard]
-        return map { $0 } + [systemActions]
+    func appending(_ actions: KeyboardActionRow) -> KeyboardActionRows {
+        var result = map { $0 }
+        result.append(actions)
+        return result
     }
 }

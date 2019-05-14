@@ -146,6 +146,7 @@
 		84FFAD2F228A189000FB4998 /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FCD01D2059E0CD0072157A /* UIView+Nib.swift */; };
 		84FFAD31228A1A6500FB4998 /* NumericKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFAD30228A1A6500FB4998 /* NumericKeyboard.swift */; };
 		84FFAD33228A1BA600FB4998 /* SymbolicKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFAD32228A1BA600FB4998 /* SymbolicKeyboard.swift */; };
+		84FFAD35228A88D400FB4998 /* DemoKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFAD34228A88D400FB4998 /* DemoKeyboard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -328,6 +329,7 @@
 		84FFAD2D228994AE00FB4998 /* AlphabeticKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphabeticKeyboard.swift; sourceTree = "<group>"; };
 		84FFAD30228A1A6500FB4998 /* NumericKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericKeyboard.swift; sourceTree = "<group>"; };
 		84FFAD32228A1BA600FB4998 /* SymbolicKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicKeyboard.swift; sourceTree = "<group>"; };
+		84FFAD34228A88D400FB4998 /* DemoKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -689,6 +691,7 @@
 				45D1495320586280009EF441 /* DemoGridKeyboard.swift */,
 				84FFACDA2282352400FB4998 /* DemoNumericKeyboard.swift */,
 				84FFACDC2282353800FB4998 /* DemoSystemKeyboard.swift */,
+				84FFAD34228A88D400FB4998 /* DemoKeyboard.swift */,
 			);
 			path = Keyboards;
 			sourceTree = "<group>";
@@ -1049,6 +1052,7 @@
 				84FFAD31228A1A6500FB4998 /* NumericKeyboard.swift in Sources */,
 				84FFACDD2282353800FB4998 /* DemoSystemKeyboard.swift in Sources */,
 				84851A6C2277AFE000477705 /* KeyboardAction+Demo.swift in Sources */,
+				84FFAD35228A88D400FB4998 /* DemoKeyboard.swift in Sources */,
 				45FB51AC20495CB1009D5806 /* KeyboardViewController.swift in Sources */,
 				84FFAD33228A1BA600FB4998 /* SymbolicKeyboard.swift in Sources */,
 				84511D3A227110BC00904FE0 /* DemoKeyboardActionHandler.swift in Sources */,

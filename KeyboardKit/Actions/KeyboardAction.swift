@@ -14,6 +14,10 @@
 
 import UIKit
 
+public typealias KeyboardActionRow = [KeyboardAction]
+
+public typealias KeyboardActionRows = [KeyboardActionRow]
+
 public enum KeyboardAction: Equatable {
     
     case
@@ -27,9 +31,11 @@ public enum KeyboardAction: Equatable {
     moveCursorForward,
     newLine,
     shift,
+    shiftDown,
     space,
     switchKeyboard,
     switchToAlphabeticKeyboard,
+    switchToEmojiKeyboard,
     switchToNumericKeyboard,
     switchToSymbolicKeyboard
 }
@@ -51,9 +57,11 @@ public extension KeyboardAction {
         case .moveCursorForward: return nil
         case .newLine: return nil
         case .shift: return nil
+        case .shiftDown: return nil
         case .space: return nil
         case .switchKeyboard: return nil
         case .switchToAlphabeticKeyboard: return nil
+        case .switchToEmojiKeyboard: return nil
         case .switchToNumericKeyboard: return nil
         case .switchToSymbolicKeyboard: return nil
         }
@@ -71,9 +79,11 @@ public extension KeyboardAction {
         case .moveCursorForward: return { proxy in proxy?.adjustTextPosition(byCharacterOffset: -1) }
         case .newLine: return { proxy in proxy?.insertText("\n") }
         case .shift: return nil
+        case .shiftDown: return nil
         case .space: return { proxy in proxy?.insertText(" ") }
         case .switchKeyboard: return nil
         case .switchToAlphabeticKeyboard: return nil
+        case .switchToEmojiKeyboard: return nil
         case .switchToNumericKeyboard: return nil
         case .switchToSymbolicKeyboard: return nil
         }

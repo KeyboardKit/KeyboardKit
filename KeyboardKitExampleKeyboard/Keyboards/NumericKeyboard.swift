@@ -9,7 +9,7 @@
 /*
  
  This keyboard mimicks the default numeric keyboard for iOS,
- just like `AlphabeticalKeyboard` mimics the alphabetical.
+ just like `AlphabeticKeyboard` mimics the alphabetic one.
  
  */
 
@@ -83,10 +83,6 @@ private extension Sequence where Iterator.Element == [KeyboardAction] {
     
     func widthSideButtonsForIpad() -> [Iterator.Element] {
         var actions = map { $0 }
-        actions[0].append(.backspace)
-        actions[1].append(.newLine)
-        actions[2].insert(.shift, at: 0)
-        actions[2].append(.shift)
         return actions
     }
     
@@ -96,7 +92,6 @@ private extension Sequence where Iterator.Element == [KeyboardAction] {
     }
     
     func withSystemButtonsForIpad() -> [Iterator.Element] {
-        let systemActions: [KeyboardAction] = [.switchToAlphabeticKeyboard, .switchKeyboard, .space, .switchToAlphabeticKeyboard, .dismissKeyboard]
-        return map { $0 } + [systemActions]
+        return map { $0 }
     }
 }

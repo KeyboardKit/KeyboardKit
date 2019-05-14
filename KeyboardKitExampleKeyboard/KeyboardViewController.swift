@@ -35,10 +35,6 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         keyboardActionHandler = DemoKeyboardActionHandler(inputViewController: self)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         setupKeyboard()
     }
     
@@ -51,10 +47,10 @@ class KeyboardViewController: KeyboardInputViewController {
     // MARK: - Mode
     
     enum KeyboardMode {
-        case alphabetic, numeric, symbolic, uppercased, grid
+        case alphabetic(uppercased: Bool), numeric, symbolic, grid
     }
     
-    var keyboardMode = KeyboardMode.alphabetic {
+    var keyboardMode = KeyboardMode.alphabetic(uppercased: false) {
         didSet { setupKeyboard() }
     }
     
@@ -68,10 +64,9 @@ class KeyboardViewController: KeyboardInputViewController {
     func setupKeyboard(for size: CGSize) {
         keyboardStackView.removeAllArrangedSubviews()
         switch keyboardMode {
-        case .alphabetic: setupAlphabeticKeyboard()
+        case .alphabetic(let uppercased): setupAlphabeticKeyboard(uppercased: uppercased)
         case .numeric: setupNumericKeyboard()
         case .symbolic: setupSymbolicKeyboard()
-        case .uppercased: setupAlphabeticKeyboard(uppercased: true)
         case .grid: fatalError("Not yet")
         }
     }
@@ -135,7 +130,7 @@ extension KeyboardViewController {
     }
     
     func setupAlphabeticKeyboard(uppercased: Bool = false) {
-        let keyboard = AlphabeticKeyboard(uppercased: uppercased)
+        let keyboard = AlphabeticKeyboard(uppercased: uppercased, in: self)
         setupKeyboardRows(with: keyboard.actions)
     }
     

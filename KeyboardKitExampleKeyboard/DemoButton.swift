@@ -17,8 +17,9 @@ class DemoButton: KeyboardButtonView {
         buttonView?.backgroundColor = action.keyboardButtonColor(in: viewController)
         image?.image = action.keyboardImage
         textLabel?.font = action.keyboardFont
-        textLabel?.textColor = action.keyboardTextColor(in: viewController)
         textLabel?.text = action.keyboardText
+        textLabel?.textColor = action.keyboardTextColor(in: viewController)
+        buttonView?.tintColor = action.keyboardTextColor(in: viewController)
         width = action.keyboardWidth(for: distribution)
         addBadgeShadow()
     }

@@ -20,17 +20,15 @@ import KeyboardKit
 
 extension KeyboardAction {
     
-    var hasDarkButton: Bool {
-        switch self {
-        case .character, .space, .image: return false
-        default: return true
-        }
+    var keyboardFont: UIFont {
+        return UIFont.preferredFont(forTextStyle: keyboardFontStyle)
     }
     
-    var keyboardFont: UIFont {
+    var keyboardFontStyle: UIFont.TextStyle {
         switch self {
-        case .character: return UIFont.preferredFont(forTextStyle: .title2)
-        default: return UIFont.preferredFont(forTextStyle: .body)
+        case .character: return .title2
+        case .switchToEmojiKeyboard: return .title1
+        default: return .body
         }
     }
 
@@ -44,12 +42,13 @@ extension KeyboardAction {
     
     var keyboardText: String? {
         switch self {
-        case .backspace: return "⇦"
+        case .backspace: return "⌫"
         case .character(let text): return text
         case .newLine: return "return"
-        case .shift: return "⇧"
+        case .shift, .shiftDown: return "⇧"
         case .space: return "space"
         case .switchToAlphabeticKeyboard: return "ABC"
+        case .switchToEmojiKeyboard: return "🙂"
         case .switchToNumericKeyboard: return "123"
         case .switchToSymbolicKeyboard: return "#+="
         default: return nil
@@ -59,7 +58,7 @@ extension KeyboardAction {
     var keyboardWidth: CGFloat {
         switch self {
         case .none: return 10
-        case .shift, .backspace: return 60
+        case .shift, .shiftDown, .backspace: return 60
         case .space: return 100
         default: return 50
         }
@@ -72,7 +71,7 @@ extension KeyboardAction {
     
     func keyboardButtonColor(in viewController: KeyboardInputViewController) -> UIColor {
         let isDark = self.isDark(in: viewController)
-        let asset = hasDarkButton
+        let asset = useDarkButton
             ? (isDark ? Asset.Colors.darkSystemButton : Asset.Colors.lightSystemButton)
             : (isDark ? Asset.Colors.darkButton : Asset.Colors.lightButton)
         return asset.color
@@ -80,7 +79,7 @@ extension KeyboardAction {
     
     func keyboardTextColor(in viewController: KeyboardInputViewController) -> UIColor {
         let isDark = self.isDark(in: viewController)
-        let asset = hasDarkButton
+        let asset = useDarkButton
             ? (isDark ? Asset.Colors.darkSystemButtonText : Asset.Colors.lightSystemButtonText)
             : (isDark ? Asset.Colors.darkButtonText : Asset.Colors.lightButtonText)
         return asset.color
@@ -89,5 +88,12 @@ extension KeyboardAction {
     func keyboardWidth(for distribution: UIStackView.Distribution) -> CGFloat {
         let adjust = distribution == .fillProportionally
         return adjust ? keyboardWidth * 100 : keyboardWidth
+    }
+    
+    var useDarkButton: Bool {
+        switch self {
+        case .character, .image, .shiftDown, .space: return false
+        default: return true
+        }
     }
 }
