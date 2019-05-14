@@ -18,7 +18,7 @@
 
 import KeyboardKit
 
-struct AlphabeticKeyboard: DemoKeyboard {
+struct AlphabeticKeyboard {
     
     init(
         uppercased: Bool,
@@ -44,6 +44,16 @@ private extension AlphabeticKeyboard {
             .mappedToActions()
             .adjusted(for: idiom, in: viewController, uppercased: uppercased)
             .appending(bottom)
+    }
+    
+    static func bottomActions(
+        leftmost: KeyboardAction,
+        for idiom: UIUserInterfaceIdiom,
+        in viewController: KeyboardViewController) -> KeyboardActionRow {
+        let includeEmojiAction = viewController.keyboardMode != .emojis
+        let switcher = viewController.keyboardSwitcherAction
+        let actions = [.switchToNumericKeyboard, switcher, .space, .switchToEmojiKeyboard, .newLine]
+        return includeEmojiAction ? actions : actions.filter { $0 != .switchToEmojiKeyboard }
     }
 }
 

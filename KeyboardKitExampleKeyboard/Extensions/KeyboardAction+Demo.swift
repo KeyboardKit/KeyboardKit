@@ -48,7 +48,7 @@ extension KeyboardAction {
         case .shift, .shiftDown: return "⇧"
         case .space: return "space"
         case .switchToAlphabeticKeyboard: return "ABC"
-        case .switchToEmojiKeyboard: return "🙂"
+        case .switchToEmojiKeyboard: return "🤩"
         case .switchToNumericKeyboard: return "123"
         case .switchToSymbolicKeyboard: return "#+="
         default: return nil

@@ -108,6 +108,10 @@ class KeyboardViewController: KeyboardInputViewController {
     // MARK: - Properties
     
     let alerter = ToastAlert()
+    
+    var keyboardSwitcherAction: KeyboardAction {
+        return needsInputModeSwitchKey ? .switchKeyboard : .switchToEmojiKeyboard
+    }
 }
 
 
