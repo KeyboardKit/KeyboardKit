@@ -25,6 +25,7 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
         case .shift: demoViewController?.keyboardMode = .alphabetic(uppercased: true)
         case .shiftDown: demoViewController?.keyboardMode = .alphabetic(uppercased: false)
         case .switchToAlphabeticKeyboard: demoViewController?.keyboardMode = .alphabetic(uppercased: false)
+        case .switchToEmojiKeyboard: demoViewController?.keyboardMode = .emojis
         case .switchToNumericKeyboard: demoViewController?.keyboardMode = .numeric
         case .switchToSymbolicKeyboard: demoViewController?.keyboardMode = .symbolic
         default: copyImage(for: action)

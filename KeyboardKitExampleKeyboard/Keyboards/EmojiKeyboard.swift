@@ -18,21 +18,13 @@
 
 import KeyboardKit
 
-struct DemoGridKeyboard {
-
+struct EmojiKeyboard: DemoKeyboard {
+    
+    init(in viewController: KeyboardViewController) {
+        self.bottomActions = type(of: self).bottomActions(leftmost: .switchToAlphabeticKeyboard, for: viewController)
+    }
+    
     let actions: [KeyboardAction] = [
-        
-        // Characters
-        .character("a"), .character("b"), .character("c"), .character("d"), .character("e"), .character("f"),
-        .character("g"), .character("h"), .character("i"), .character("j"), .character("k"), .character("l"),
-        .character("m"), .character("n"), .character("o"), .character("p"), .character("q"), .character("r"),
-        .character("t"), .character("u"), .character("v"), .character("w"), .character("x"), .character("y"),
-        
-        // Symbol Characters
-        .character("∙"), .character("•"), .character("・"), .character("◦"), .character("●"), .character("○"),
-        .character("▶︎"), .character("◀︎"), .character("▲"), .character("❄︎"), .character("⚙︎"), .character("✿"),
-        .character("→"), .character("➔"), .character("➙"), .character("➝"), .character("➞"), .character("➨"),
-        .character("♚"), .character("♛"), .character("♜"), .character("♝"), .character("♞"), .character("♟"),
         
         // Emoji Characters (real emojis)
         .character("😀"), .character("😃"), .character("😄"), .character("😁"), .character("😆"), .character("😅"),
@@ -70,4 +62,6 @@ struct DemoGridKeyboard {
         .image(description: "warning", keyboardImageName: "warning", imageName: "warning"),
         .image(description: "zoom", keyboardImageName: "zoom", imageName: "zoom")
     ]
+    
+    let bottomActions: KeyboardActionRow
 }

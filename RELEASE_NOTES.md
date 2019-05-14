@@ -14,10 +14,13 @@ All action handling has been moved from the view controller to `KeyboardActionHa
 New `KeyboardAction`s are added and `nextKeyboard` has been renamed to `switchKeyboard`. Action equality logic has also been removed, so instead of `isNone`, you should use `== .none` from now on. All help properties like `image` and `imageName` are removed as well, since they belong in the app. These are the new action types
 
 * capsLock
+* dismissKeyboard
 * moveCursorBackward
 * moveCursorForward
 * shift
+* shiftDown
 * switchToAlphabeticKeyboard
+* switchToEmojiKeyboard
 * switchToNumericKeyboard
 * switchToSymbolicKeyboard
 

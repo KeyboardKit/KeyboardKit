@@ -80,13 +80,15 @@ When you create your own keyboard extension and want to use `KeyboardKit` in it,
 * `character` - sends a text character to the text proxy
 * `dismissKeyboard` - dismisses the keyboard
 * `image` - has a description, keyboard image name and image name
-* `moveCursorBack(*)` - moves the cursor back one position
+* `moveCursorBackward(*)` - moves the cursor back one position
 * `moveCursorForward(*)` - moves the cursor forward one position
 * `newLine` - sends a new line to the text proxy
 * `shift` - can be used to toggle between upper and lower case
+* `shiftDown` - can be used to toggle between upper and lower case
 * `space` - sends an empty space to the text proxy
 * `switchKeyboard` - triggers the default keyboard switcher
 * `switchToAlphabeticKeyboard(*)` - can be used to switch to alphabetic input
+* `switchToEmojiKeyboard(*)` - can be used to switch to emoji/image input
 * `switchToNumericKeyboard(*)` - can be used to switch to numeric input
 * `switchToSymbolicKeyboard(*)` - can be used to switch to symbolic input
 * `none`- use this for empty "placeholder" keys that do nothing
@@ -127,8 +129,6 @@ Since keyboard extensions can't display `UIAlertController`s, you can use `Keybo
 ## Demo Application
 
 `KeyboardKit` contains a demo app that contains different kind of keyboards, like numeric keyboards, system keyboards, row-based keyboards and a grid-based emoji keyboard.
-
-In your own apps, you can use `App Groups` to share settings between the hosting application and the keyboard extension, e.g. to let the user configure the keyboard in the hosting application. However, since the demo app can't use App Groups, it has two keyboard extensions instead.
 
 
 ## Contact me

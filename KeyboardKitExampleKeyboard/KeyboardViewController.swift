@@ -76,32 +76,8 @@ class KeyboardViewController: KeyboardInputViewController {
         case .alphabetic(let uppercased): setupAlphabeticKeyboard(uppercased: uppercased)
         case .numeric: setupNumericKeyboard()
         case .symbolic: setupSymbolicKeyboard()
-        case .emojis: fatalError("Not yet")
+        case .emojis: setupEmojiKeyboard(for: size)
         }
-    }
-    
-    func setupTopSystemButtons() {
-        let keyboard = DemoNumericKeyboard()
-        let distribution = keyboard.preferredDistribution
-        let row = KeyboardButtonRow(height: 50, actions: keyboard.actions, distribution: distribution) { return button(for: $0, distribution: distribution) }
-        keyboardStackView.addArrangedSubview(row)
-    }
-
-    func setupCollectionView(for size: CGSize) {
-        let keyboard = DemoGridKeyboard()
-        let isLandscape = size.width > 400
-        let rowsPerPage = isLandscape ? 3 : 4
-        let buttonsPerRow = isLandscape ? 8 : 6
-        let config = KeyboardButtonRowCollectionView.Configuration(rowHeight: 50, rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)
-        let view = KeyboardButtonRowCollectionView(actions: keyboard.actions, configuration: config) { [unowned self] in return self.button(for: $0) }
-        keyboardStackView.addArrangedSubview(view)
-    }
-
-    func setupBottomSystemButtons() {
-        let keyboard = DemoSystemKeyboard(in: self)
-        let distribution = keyboard.preferredDistribution
-        let row = KeyboardButtonRow(height: 50, actions: keyboard.actions, distribution: distribution) { return button(for: $0, distribution: distribution) }
-        keyboardStackView.addArrangedSubview(row)
     }
     
     
@@ -144,21 +120,31 @@ extension KeyboardViewController {
     
     func setupAlphabeticKeyboard(uppercased: Bool = false) {
         let keyboard = AlphabeticKeyboard(uppercased: uppercased, in: self)
-        setupKeyboardRows(with: keyboard.actions)
+        let rows = buttonRows(for: keyboard.actions, distribution: .fillProportionally)
+        keyboardStackView.addArrangedSubviews(rows)
+    }
+    
+    func setupEmojiKeyboard(for size: CGSize) {
+        let keyboard = EmojiKeyboard(in: self)
+        let isLandscape = size.width > 400
+        let rowsPerPage = isLandscape ? 3 : 4
+        let buttonsPerRow = isLandscape ? 8 : 6
+        let config = KeyboardButtonRowCollectionView.Configuration(rowHeight: 50, rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)
+        let view = KeyboardButtonRowCollectionView(actions: keyboard.actions, configuration: config) { [unowned self] in return self.button(for: $0) }
+        let bottom = buttonRows(for: [keyboard.bottomActions], distribution: .fillProportionally)
+        keyboardStackView.addArrangedSubview(view)
+        keyboardStackView.addArrangedSubviews(bottom)
     }
     
     func setupNumericKeyboard() {
         let keyboard = NumericKeyboard(in: self)
-        setupKeyboardRows(with: keyboard.actions)
+        let rows = buttonRows(for: keyboard.actions, distribution: .fillProportionally)
+        keyboardStackView.addArrangedSubviews(rows)
     }
     
     func setupSymbolicKeyboard() {
         let keyboard = SymbolicKeyboard(in: self)
-        setupKeyboardRows(with: keyboard.actions)
-    }
-    
-    func setupKeyboardRows(with actions: [[KeyboardAction]]) {
-        let rows = buttonRows(for: actions, distribution: .fillProportionally)
+        let rows = buttonRows(for: keyboard.actions, distribution: .fillProportionally)
         keyboardStackView.addArrangedSubviews(rows)
     }
 }
