@@ -133,8 +133,6 @@
 		84FFACA722801AF200FB4998 /* UIImage+TintedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFACA622801AF200FB4998 /* UIImage+TintedTests.swift */; };
 		84FFACAA22801E3B00FB4998 /* HapticFeedback+KeyboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFACA922801E3B00FB4998 /* HapticFeedback+KeyboardTests.swift */; };
 		84FFACD822821BB900FB4998 /* KeyboardSpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFACD722821BB900FB4998 /* KeyboardSpacerView.swift */; };
-		84FFACDB2282352400FB4998 /* DemoNumericKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFACDA2282352400FB4998 /* DemoNumericKeyboard.swift */; };
-		84FFACDD2282353800FB4998 /* DemoSystemKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFACDC2282353800FB4998 /* DemoSystemKeyboard.swift */; };
 		84FFACE02283ECA300FB4998 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 84FFACDF2283ECA300FB4998 /* swiftgen.yml */; };
 		84FFACE22283ECCD00FB4998 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84FFACE12283ECCD00FB4998 /* Colors.xcassets */; };
 		84FFAD1C2283EDD600FB4998 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFAD1B2283EDD600FB4998 /* Assets.swift */; };
@@ -317,8 +315,6 @@
 		84FFACA622801AF200FB4998 /* UIImage+TintedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TintedTests.swift"; sourceTree = "<group>"; };
 		84FFACA922801E3B00FB4998 /* HapticFeedback+KeyboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HapticFeedback+KeyboardTests.swift"; sourceTree = "<group>"; };
 		84FFACD722821BB900FB4998 /* KeyboardSpacerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSpacerView.swift; sourceTree = "<group>"; };
-		84FFACDA2282352400FB4998 /* DemoNumericKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoNumericKeyboard.swift; sourceTree = "<group>"; };
-		84FFACDC2282353800FB4998 /* DemoSystemKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoSystemKeyboard.swift; sourceTree = "<group>"; };
 		84FFACDF2283ECA300FB4998 /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swiftgen.yml; sourceTree = "<group>"; };
 		84FFACE12283ECCD00FB4998 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		84FFAD1B2283EDD600FB4998 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
@@ -681,11 +677,9 @@
 			children = (
 				84FA44A4228B5321003C2054 /* DemoKeyboard.swift */,
 				84FFAD2D228994AE00FB4998 /* AlphabeticKeyboard.swift */,
+				45D1495320586280009EF441 /* EmojiKeyboard.swift */,
 				84FFAD30228A1A6500FB4998 /* NumericKeyboard.swift */,
 				84FFAD32228A1BA600FB4998 /* SymbolicKeyboard.swift */,
-				45D1495320586280009EF441 /* EmojiKeyboard.swift */,
-				84FFACDA2282352400FB4998 /* DemoNumericKeyboard.swift */,
-				84FFACDC2282353800FB4998 /* DemoSystemKeyboard.swift */,
 			);
 			path = Keyboards;
 			sourceTree = "<group>";
@@ -1042,14 +1036,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				84FFAD31228A1A6500FB4998 /* NumericKeyboard.swift in Sources */,
-				84FFACDD2282353800FB4998 /* DemoSystemKeyboard.swift in Sources */,
 				84851A6C2277AFE000477705 /* KeyboardAction+Demo.swift in Sources */,
 				84FA44A5228B5321003C2054 /* DemoKeyboard.swift in Sources */,
 				45FB51AC20495CB1009D5806 /* KeyboardViewController.swift in Sources */,
 				84FFAD33228A1BA600FB4998 /* SymbolicKeyboard.swift in Sources */,
 				84511D3A227110BC00904FE0 /* DemoKeyboardActionHandler.swift in Sources */,
 				84851A682277AE9300477705 /* DemoButton.swift in Sources */,
-				84FFACDB2282352400FB4998 /* DemoNumericKeyboard.swift in Sources */,
 				84FFAD2E228994AE00FB4998 /* AlphabeticKeyboard.swift in Sources */,
 				45FCD0222059E2220072157A /* UIView+Shadow.swift in Sources */,
 				84FFAD1D2283EE3700FB4998 /* Assets.swift in Sources */,

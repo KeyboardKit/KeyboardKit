@@ -30,9 +30,6 @@ struct SymbolicKeyboard: DemoKeyboard {
     ]
 }
 
-
-// MARK: - Actions
-
 private extension SymbolicKeyboard {
     
     static func actions(in viewController: KeyboardViewController) -> KeyboardActionRows {
@@ -42,9 +39,6 @@ private extension SymbolicKeyboard {
             .appending(bottomActions(leftmost: .switchToAlphabeticKeyboard, for: viewController))
     }
 }
-
-
-// MARK: - Action Extensions
 
 private extension Sequence where Iterator.Element == [KeyboardAction] {
     

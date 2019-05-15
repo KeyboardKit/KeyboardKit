@@ -29,14 +29,11 @@ struct AlphabeticKeyboard: DemoKeyboard {
     let actions: KeyboardActionRows
     
     static private(set) var characters: [[String]] = [
-        ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+        ["q", "w", "e", "r", "t", "y", "u", "i", "p"],
         ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
         ["z", "x", "c", "v", "b", "n", "m"]
     ]
 }
-
-
-// MARK: - Actions
 
 private extension AlphabeticKeyboard {
     
@@ -50,18 +47,12 @@ private extension AlphabeticKeyboard {
     }
 }
 
-
-// MARK: - Characters
-
 private extension AlphabeticKeyboard {
     
     static func characters(uppercased: Bool) -> [[String]] {
         return uppercased ? characters.uppercased() : characters
     }
 }
-
-
-// MARK: - Action Extensions
 
 private extension Sequence where Iterator.Element == KeyboardActionRow {
     
