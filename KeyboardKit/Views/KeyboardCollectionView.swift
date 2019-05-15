@@ -9,14 +9,11 @@
 /*
  
  This view can be used as a base class for a collection view
- that should present keyboard actions in different ways. You
- must subclass it if you want to use it, since it by default
- returns an empty cell for each action.
- 
- For convenience, you can use `KeyboardButtonCollectionView`
- and `KeyboardButtonRowCollectionView` instead. They provide
- a lot of functionality for either displaying single buttons
- or rows of buttons.
+ that presents keyboard action buttons. You must subclass it,
+ since it returns empty cells for each action. `KeyboardKit`
+ has two built-in subclasses - `KeyboardButtonCollectionView`
+ and `KeyboardButtonRowCollectionView`. They help you layout
+ keyboard buttons in single cells or button rows.
  
  */
 
@@ -47,6 +44,8 @@ open class KeyboardCollectionView: UICollectionView, KeyboardStackViewComponent,
     
     public let cellIdentifier = "Cell"
     
+    public var heightConstraint: NSLayoutConstraint?
+    
     
     // MARK: - Public Functions
     
@@ -54,15 +53,6 @@ open class KeyboardCollectionView: UICollectionView, KeyboardStackViewComponent,
         collectionViewLayout.invalidateLayout()
         reloadData()
     }
-    
-    
-    // MARK: - KeyboardComponent
-    
-    public private(set) lazy var heightConstraint: NSLayoutConstraint = {
-        let constraint = heightAnchor.constraint(equalToConstant: 100)
-        constraint.isActive = true
-        return constraint
-    }()
     
     
     // MARK: - UICollectionViewDataSource

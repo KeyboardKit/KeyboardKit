@@ -6,6 +6,12 @@
 //  Copyright © 2015 Daniel Saidi. All rights reserved.
 //
 
+/*
+ 
+ This extension tints an image with any color and blend mode.
+ 
+ */
+
 import UIKit
 import CoreGraphics
 

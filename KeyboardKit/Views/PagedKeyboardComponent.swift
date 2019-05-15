@@ -12,11 +12,6 @@
  a keyboard over multiple pages. It provides default ways to
  persist and restore page index, using user defaults.
  
- When inheriting this protocol, you should make sure to call
- `persistCurrentPageIndex` when the page index changes, then
- call `restoreLastPageIndex()` when the keyboard size and/or
- setup changes.
- 
  */
 
 import UIKit

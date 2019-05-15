@@ -11,9 +11,8 @@
  This class presents keyboard alerts like Android toasts, at
  the center of the keyboard.
  
- To customize a toast alert's appearance, you can modify its
- `appearance` property. You can also override the two `style`
- functions as well.
+ To customize the appearance, you can modify the `appearance`
+ property. You can also override the `style` functions.
  
 */
 

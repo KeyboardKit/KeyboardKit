@@ -11,7 +11,7 @@
 /*
  
  This extension applies long press gesture recognizers using
- an action blocks instead of the target/selector pattern.
+ action blocks instead of the target/selector pattern.
  
  */
 

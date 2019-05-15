@@ -8,8 +8,8 @@
 
 /*
  
- This extension returns the standard nib or nib name for any
- view, e.g. a collection view cell.
+ This extension can create view instances from nibs. It uses
+ the view's class name and bundle by default.
  
  */
 

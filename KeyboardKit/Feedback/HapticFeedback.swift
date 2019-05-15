@@ -6,6 +6,14 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
+/*
+ 
+ This enum provides a streamlined way of working with haptic
+ feedback. You can simply call `HapticFeedback.XXX.trigger()`
+ to prepare and trigger the desired haptic feedback.
+ 
+ */
+
 import UIKit
 
 public enum HapticFeedback: CaseIterable {

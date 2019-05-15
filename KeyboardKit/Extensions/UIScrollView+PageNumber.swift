@@ -8,8 +8,9 @@
 
 /*
  
- This extension gets and sets the current page index of paged
- `UIScrollView` instances.
+ This `UIScrollView` extension can get/set the "current page
+ index" of horizontally paged scroll views, by modifying the
+ content offset.
  
  */
 

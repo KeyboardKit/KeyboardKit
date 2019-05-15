@@ -8,8 +8,10 @@
 
 /*
  
- This protocol should be implemented by any classes that can
- display alerts in a keyboard extension.
+ This protocol can be used to display alerts within keyboard
+ extensions, since they don't support `UIAlertController`. A
+ keyboard alert must be displayed within the extension, e.g.
+ ontop of the keyboard.
  
  */
 

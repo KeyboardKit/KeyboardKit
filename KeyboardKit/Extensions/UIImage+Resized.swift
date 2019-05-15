@@ -8,8 +8,8 @@
 
 /*
  
- This extension resizes images, either to a new height/width
- while preserving the aspect ratio or to a custom size.
+ This extension can resize images while preserving the image
+ aspect ratio. It can also resize images to any custom size.
  
  */
 

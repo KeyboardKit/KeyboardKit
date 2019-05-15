@@ -8,8 +8,11 @@
 
 /*
  
- This protocol is used to handle keyboard action events that
- are triggered by the user.
+ This protocol can be used to handle user triggered keyboard
+ actions. The `StandardKeyboardActionHandler` action handler
+ is used by default by `KeyboardInputViewController`, but it
+ can be replaced by a subclass that fills out the gaps or by
+ a completely different action handler.
  
  */
 

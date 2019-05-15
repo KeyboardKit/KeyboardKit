@@ -8,9 +8,9 @@
 
 /*
  
- A keyboard stack view component is a row in a main keyboard
- stack view. It can be system button rows, the keyboard view
- itself, auto-complete components etc.
+ Keyboard stack view components are "rows" in the main input
+ view controller keyboard stack view, e.g. a toolbar, button
+ row, collection view, auto-complete component etc.
  
  */
 
@@ -18,13 +18,23 @@ import UIKit
 
 public protocol KeyboardStackViewComponent: UIView {
 
-    var heightConstraint: NSLayoutConstraint { get }
+    var heightConstraint: NSLayoutConstraint? { get set }
 }
 
 public extension KeyboardStackViewComponent {
     
     var height: CGFloat {
-        get { return heightConstraint.constant }
-        set { heightConstraint.constant = newValue }
+        get { return heightConstraint?.constant ?? intrinsicContentSize.height }
+        set { setHeight(to: newValue) }
+    }
+}
+
+private extension KeyboardStackViewComponent {
+    
+    func setHeight(to height: CGFloat) {
+        heightConstraint = heightConstraint ?? heightAnchor.constraint(equalToConstant: height)
+        heightConstraint?.priority = .defaultHigh
+        heightConstraint?.constant = height
+        heightConstraint?.isActive = true
     }
 }

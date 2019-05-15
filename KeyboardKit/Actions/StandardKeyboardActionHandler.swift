@@ -8,18 +8,14 @@
 
 /*
  
- This action handler is used by all `KeyboardViewController`
- instances by default, if you don't explicitly decide to use
- another one. You do this by setting `keyboardActionHandler`
- to a custom action handler.
+ This action handler is used by the `KeyboardViewController`
+ class by default, but can be replaced with any handler that
+ implements `KeyboardActionHandler`.
  
  This action handler uses the default action blocks for each
- keyboard action, if any, as the default tap action. You can
- adjust this behavior by subclassing this class and override
- `tapAction(for:)` and `longPressAction(for:)` to change the
- action blocks to use for each keyboard action. You can also
- override `handleTap(on:)` and `handleLongPress(on:)` if you
- only want to adjust the handling of the various actions.
+ keyboard action, if any. You can adjust this by subclassing
+ and overriding `tapAction(for:)` and `longPressAction(for:)`
+ as well as `handleTap(on:)` and `handleLongPress(on:)`.
  
  You can enable haptic feedback by providing haptic feedback
  types for taps and long presses when you create an instance

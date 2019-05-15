@@ -8,10 +8,9 @@
 
 /*
  
- This view can be used to add horizontal spacing in a button
- row. For instance, you can map `.none` keyboard action to a
- spacer view, so that you can declare spacing in your action
- collection as well.
+ This view can be used as a horizontal space in a button row.
+ For instance, you can map the `.none` keyboard action to it,
+ so that you can declare "spaces" in your action collections.
  
  */
 

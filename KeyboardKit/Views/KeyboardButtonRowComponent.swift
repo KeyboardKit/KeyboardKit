@@ -9,11 +9,9 @@
 /*
  
  A keyboard button row component is a view that can be added
- to a keyboard button row's horizontal stack view.
- 
- The `KeyboardButtonRow`'s stack view uses `.fillEqually` by
- default, but you can change it's behavior at any time. When
- you do, you may have to set a hard width for each component.
+ to a keyboard button row's horizontal stack view. For stack
+ a different distribution than `.fillEqually`, you must give
+ each row component a specific width.
  
  */
 

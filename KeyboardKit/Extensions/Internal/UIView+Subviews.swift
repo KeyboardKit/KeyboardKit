@@ -6,6 +6,13 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
+/*
+ 
+ This extension can be used to add subviews that completely
+ fill their superview.
+ 
+ */
+
 import UIKit
 
 extension UIView {

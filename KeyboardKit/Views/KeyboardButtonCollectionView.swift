@@ -8,9 +8,9 @@
 
 /*
  
- This collection view displays a single button cell for each
- keyboard action. You can customize it and its appearance in
- any way you want, e.g. by setting a custom flow layout.
+ This collection view displays a single cell for each action.
+ You can customize it and its appearance in any way you want,
+ e.g. by setting a custom flow layout.
  
  */
 

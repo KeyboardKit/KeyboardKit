@@ -8,9 +8,10 @@
 
 /*
  
- This row can be setup with actions and a button creator. It
- will populate a horizontal stack view and can be added to a
- keyboard input view controller's main stack view.
+ This view can be created with a set of actions and a button
+ creator block. It creates and adds a button for each action
+ to a horizontal `buttonStackView`. This stack view can then
+ be added to the `KeyboardInputViewController`'s stack view.
  
  */
 
@@ -18,49 +19,28 @@ import UIKit
 
 open class KeyboardButtonRow: UIView, KeyboardStackViewComponent {
     
-    
-    // MARK: - Initialization
-    
     public convenience init(
         height: CGFloat,
         actions: [KeyboardAction],
+        alignment: UIStackView.Alignment = .fill,
         distribution: UIStackView.Distribution = .fillEqually,
         buttonCreator: KeyboardButtonCreator) {
         self.init(frame: .zero)
         self.height = height
-        self.distribution = distribution
+        buttonStackView.alignment = alignment
+        buttonStackView.distribution = distribution
         let buttons = actions.map { buttonCreator($0) }
         buttonStackView.addArrangedSubviews(buttons)
     }
     
-    
-    // MARK: - Types
-    
     public typealias KeyboardButtonCreator = (KeyboardAction) -> (UIView)
     
-    
-    // MARK: - Properties
-    
-    public private(set) var distribution: UIStackView.Distribution = .fillEqually
-    
-    
-    // MARK: - View Properties
+    public var heightConstraint: NSLayoutConstraint?
     
     public lazy var buttonStackView: UIStackView = {
         let stackView = UIStackView(frame: .zero)
         stackView.axis = .horizontal
-        stackView.alignment = .fill
-        stackView.distribution = distribution
         addSubview(stackView, fill: true)
         return stackView
-    }()
-    
-    
-    // MARK: - KeyboardStackViewComponent
-    
-    public private(set) lazy var heightConstraint: NSLayoutConstraint = {
-        let constraint = heightAnchor.constraint(equalToConstant: 50)
-        constraint.isActive = true
-        return constraint
     }()
 }

@@ -8,8 +8,8 @@
 
 /*
  
- This extension is used by KeyboardKit to split up arrays in
- batches of a certain max size.
+ This extension splits up arrays in batches of a certain max
+ batch size.
  
  */
 

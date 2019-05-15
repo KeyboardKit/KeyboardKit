@@ -75,7 +75,7 @@ open class KeyboardInputViewController: UIInputViewController {
     
     // MARK: - Public Functions
     
-    func addKeyboardGestures(to button: KeyboardButton) {
+    open func addKeyboardGestures(to button: KeyboardButton) {
         button.removeTapGestureRecognizers()
         button.removeLongPressGestureRecognizers()
         if button.action == .switchKeyboard { return addSwitchKeyboardGesture(to: button) }
