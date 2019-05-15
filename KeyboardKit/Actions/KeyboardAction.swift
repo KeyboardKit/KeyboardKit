@@ -9,6 +9,15 @@
 /*
  
  This enum contains all currently supported keyboard actions.
+ Most actions have standard tap actions that either apply to
+ the input view controller or its document text proxy, while
+ many still require manual handling.
+ 
+ For instance, `image` can't be handled by KeyboardKit since
+ it requires app-specific assets, and the keyboard switchers
+ can't be handled either, since there's no universal concept
+ of an "alphabetic" keyboard. These king of actions are just
+ ways for you to express your intent.
  
  */
 
