@@ -22,11 +22,15 @@
  of this class. You can also adjust the standard behavior by
  overriding the two `giveHapticFeedback` functions.
  
+ IMPORTANT: This class must inherit from `NSObject` in order
+ to be able to set itself as the selection target, e.g. when
+ saving images to the photo album.
+ 
  */
 
 import UIKit
 
-open class StandardKeyboardActionHandler: KeyboardActionHandler {
+open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     
     // MARK: - Initialization

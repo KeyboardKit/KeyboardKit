@@ -11,9 +11,6 @@ import KeyboardKit
 
 class ViewController: UIViewController {
 
-    
-    // MARK: - Outlets
-    
     @IBOutlet weak var textView: UITextView? {
         didSet { textView?.contentInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0) }
     }
