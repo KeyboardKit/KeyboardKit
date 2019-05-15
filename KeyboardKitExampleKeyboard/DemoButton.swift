@@ -15,7 +15,7 @@ class DemoButton: KeyboardButtonView {
         super.setup(with: action, in: viewController)
         backgroundColor = .clear
         buttonView?.backgroundColor = action.keyboardButtonColor(in: viewController)
-        image?.image = action.keyboardImage
+        DispatchQueue.main.async { self.image?.image = action.keyboardImage }
         textLabel?.font = action.keyboardFont
         textLabel?.text = action.keyboardText
         textLabel?.textColor = action.keyboardTextColor(in: viewController)
