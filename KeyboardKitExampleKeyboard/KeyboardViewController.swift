@@ -109,7 +109,10 @@ extension KeyboardViewController {
     }
     
     func buttonRows(for actions: [[KeyboardAction]], distribution: UIStackView.Distribution) -> [KeyboardButtonRow] {
-        return actions.map { buttonRow(for: $0, distribution: distribution) }
+        var rows = actions.map { buttonRow(for: $0, distribution: distribution) }
+        rows[0].buttonStackView.distribution = .fillEqually
+        rows[1].buttonStackView.distribution = .fillEqually
+        return rows
     }
     
     func noneActionbutton(distribution: UIStackView.Distribution) -> UIView {
