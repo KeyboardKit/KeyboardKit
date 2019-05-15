@@ -14,13 +14,13 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
         return inputViewController as? KeyboardViewController
     }
     
-    override func handleLongPress(on view: UIView, action: KeyboardAction) {
-        super.handleLongPress(on: view, action: action)
+    override func handleLongPress(on action: KeyboardAction, view: UIView) {
+        super.handleLongPress(on: action, view: view)
         saveImage(for: action)
     }
     
-    override func handleTap(on view: UIView, action: KeyboardAction) {
-        super.handleTap(on: view, action: action)
+    override func handleTap(on action: KeyboardAction, view: UIView) {
+        super.handleTap(on: action, view: view)
         switch action {
         case .shift: demoViewController?.keyboardMode = .alphabetic(uppercased: true)
         case .shiftDown: demoViewController?.keyboardMode = .alphabetic(uppercased: false)

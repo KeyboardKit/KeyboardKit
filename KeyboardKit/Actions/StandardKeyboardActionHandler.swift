@@ -79,13 +79,13 @@ open class StandardKeyboardActionHandler: KeyboardActionHandler {
     
     // MARK: - Handling Functions
     
-    open func handleTap(on view: UIView, action: KeyboardAction) {
+    open func handleTap(on action: KeyboardAction, view: UIView) {
         guard let tapAction = tapAction(for: view, action: action) else { return }
         giveHapticFeedbackForTap(on: action)
         tapAction()
     }
     
-    open func handleLongPress(on view: UIView, action: KeyboardAction) {
+    open func handleLongPress(on action: KeyboardAction, view: UIView) {
         guard let longPressAction = longPressAction(for: view, action: action) else { return }
         giveHapticFeedbackForLongPress(on: action)
         longPressAction()

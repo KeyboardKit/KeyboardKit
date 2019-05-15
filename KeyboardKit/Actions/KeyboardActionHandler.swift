@@ -17,6 +17,6 @@ import Foundation
 
 public protocol KeyboardActionHandler: AnyObject {
 
-    func handleTap(on view: UIView, action: KeyboardAction)
-    func handleLongPress(on view: UIView, action: KeyboardAction)
+    func handleTap(on action: KeyboardAction, view: UIView)
+    func handleLongPress(on action: KeyboardAction, view: UIView)
 }

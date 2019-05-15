@@ -11,16 +11,16 @@ import MockNRoll
 
 class MockKeyboardActionHandler: Mock, KeyboardActionHandler {
     
-    func handleTap(on view: UIView, action: KeyboardAction) {
-        invoke(handleTap, args: (view, action))
+    func handleTap(on action: KeyboardAction, view: UIView) {
+        invoke(handleTap, args: (action, view))
     }
     
-    func handleDoubleTap(on view: UIView, action: KeyboardAction) {
-        invoke(handleDoubleTap, args: (view, action))
+    func handleDoubleTap(on action: KeyboardAction, view: UIView) {
+        invoke(handleDoubleTap, args: (action, view))
     }
     
-    func handleLongPress(on view: UIView, action: KeyboardAction) {
-        invoke(handleLongPress, args: (view, action))
+    func handleLongPress(on action: KeyboardAction, view: UIView) {
+        invoke(handleLongPress, args: (action, view))
     }
     
     func giveHapticFeedbackForTap(on action: KeyboardAction) {

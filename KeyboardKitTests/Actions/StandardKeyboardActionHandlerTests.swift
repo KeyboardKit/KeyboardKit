@@ -63,7 +63,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             
             it("aborts if no action block is provided") {
                 actionsWithoutTap.forEach {
-                    handler.handleTap(on: UIView(), action: $0)
+                    handler.handleTap(on: $0, view: UIView())
                 }
                 let invokes = handler.recorder.executions(of: handler.recorder.giveHapticFeedbackForTap)
                 expect(invokes.count).to(equal(0))
@@ -71,7 +71,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             
             it("proceeds if an action block is provided") {
                 actionsWithTap.forEach {
-                    handler.handleTap(on: UIView(), action: $0)
+                    handler.handleTap(on: $0, view: UIView())
                 }
                 let invokes = handler.recorder.executions(of: handler.recorder.giveHapticFeedbackForTap)
                 let args = invokes.map { $0.arguments }
@@ -85,7 +85,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             
             it("aborts if no action block is provided") {
                 actionsWithoutLongPress.forEach {
-                    handler.handleLongPress(on: UIView(), action: $0)
+                    handler.handleLongPress(on: $0, view: UIView())
                 }
                 let invokes = handler.recorder.executions(of: handler.recorder.giveHapticFeedbackForLongPress)
                 expect(invokes.count).to(equal(0))
@@ -93,7 +93,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             
             it("proceeds if an action block is provided") {
                 actionsWithLongPress.forEach {
-                    handler.handleLongPress(on: UIView(), action: $0)
+                    handler.handleLongPress(on: $0, view: UIView())
                 }
                 let invokes = handler.recorder.executions(of: handler.recorder.giveHapticFeedbackForLongPress)
                 let args = invokes.map { $0.arguments }
