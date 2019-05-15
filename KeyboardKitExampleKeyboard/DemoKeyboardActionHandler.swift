@@ -20,6 +20,7 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     }
     
     override func handleTap(on action: KeyboardAction, view: UIView) {
+        (view as? KeyboardButton)?.animateStandardTap()
         super.handleTap(on: action, view: view)
         switch action {
         case .shift: demoViewController?.keyboardMode = .alphabetic(uppercased: true)
