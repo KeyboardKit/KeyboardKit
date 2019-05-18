@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'KeyboardKit'
-  s.version          = '1.0.0'
+  s.version          = '2.0.0'
   s.summary          = 'KeyboardKit is a Swift library for creating custom keyboard extensions.'
 
   s.description      = <<-DESC
