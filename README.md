@@ -1,5 +1,5 @@
 <p align="center">
-    <img src ="Resources/Logo.png" width=400 />
+    <img src ="Resources/Logo.png" width=600 />
 </p>
 
 <p align="center">
@@ -23,13 +23,13 @@
 
 ## About KeyboardKit
 
-`KeyboardKit` is a Swift library that simplifies creating keyboard extensions for iOS. It supports various keyboard actions and types and lets you create dynamic keyboards with text inputs, emojis, system actions, images etc.
+`KeyboardKit` is a Swift library that simplifies creating keyboard extensions for iOS. It supports many keyboard actions and keyboard types and lets you create keyboards with text inputs, emojis, actions, images etc.
 
 <p align="center">
     <img src ="Resources/Demo.gif" />
 </p>
 
-When you use `KeyboardKit`, you can inherit from `KeyboardInputViewController` instead of `UIInputViewController`. This provides you with a `keyboardActionHandler` that can handle taps, long presses etc. and a `keyboardStackView` to which you can add components like toolbars, button rows and action collection views. `KeyboardKit` also provides you with tools for generatic haptic feedback, displaying alerts on top of the keyboard etc.
+With `KeyboardKit`, you inherit `KeyboardInputViewController` instead of `UIInputViewController`. This provides you with a `keyboardActionHandler` that can handle taps, long presses etc. and a `keyboardStackView` to which you can add components like toolbars, button rows and collection views. `KeyboardKit` also provides you with tools for haptic feedback, displaying alerts on top of the keyboard etc.
 
 
 ## Installation
@@ -84,39 +84,39 @@ When you create your own keyboard extension and want to use `KeyboardKit` in it,
 * `shiftDown°` - can be used to toggle between upper and lower case
 * `space` - sends an empty space to the text proxy
 * `switchKeyboard` - triggers the default keyboard switcher
-* `switchToKeyboard°` - can be used to switch to a specific keypoard type
+* `switchToKeyboard(type)°` - can be used to switch to a specific keyboard type
 * `none`- use this for empty "placeholder" keys that do nothing
 
 Many actions have standard behavior that apply to the input view controller or its text proxy, but the ones that are marked with a ° require custom handling, since their behavior depend on your application.
 
-`KeyboardInputViewController` has a `keyboardActionHandler` to which you should delegate all actions. It uses a `StandardKeyboardActionHandler` by default, but you can replace with any `KeyboardActionHandler`, preferrably by subclassing the standard and filling out the missing parts.
+`KeyboardInputViewController` has a `keyboardActionHandler` to which you should delegate all actions. It uses a `StandardKeyboardActionHandler` by default, but you can replace with any `KeyboardActionHandler` you like.
 
 
 ### Keyboard Types
 
 `KeyboardKit` comes with the following built-in keyboard types:
 
-* `alphabetic`
+* `alphabetic(uppercase/lowercase)`
 * `numeric`
 * `symbolic`
 * `email`
 * `emojis`
-* `custom`
+* `custom(name)`
 
-These types are just representations, without any built-in logic. You can bind them to keyboard actions to switch between various keyboard types, but you have to implement the keyboards yourself.
+These types are just representations, without any built-in logic. You can bind them to keyboard actions to let you add buttons that switches between various keyboard types, but you have to implement the keyboards yourself.
 
-If your app uses a keyboard type that isn't represented in the list above, you can always use `.custom` with a custom name.
+If your app uses a keyboard type that isn't represented in the list above, you can use `.custom` with a custom name.
 
 
 ### Presentation
 
-`KeyboardInputViewController` has a `keyboardStackView`, to which you can add components like toolbars, button rows and button collection views. It's a regular `UIStackView`, so you can configure it in any way you like. The keyboard extension will be resized to fit the content of this stack view.
+`KeyboardInputViewController` has a `keyboardStackView`, to which you can add components like toolbars, button rows and collection views. It's a regular `UIStackView`, so you can configure it however you like. The extension will be resized to fit the content of this stack view.
 
-The `KeyboardStackViewComponent` protocol should be implemented by any view that can be added to the main `keyboardStackView`. It simplifies setting the height in a way that resizes the extension properly.
+The `KeyboardStackViewComponent` protocol can be implemented by any view that can be added to the main `keyboardStackView`. It simplifies setting the height in a way that resizes the extension properly.
 
-`KeyboardButtonRow` is a `KeyboardStackViewComponent` that will display a set of actions in a horizontal `buttonStackView`. Just like the main stack view, this is a regular `UIStackView` as well, so you can configure it in any way you like. 
+`KeyboardButtonRow` is a `KeyboardStackViewComponent` that displays buttons in a horizontal `buttonStackView`. Just like the main stack view, it's a regular `UIStackView`, so you can configure it in any way you like. 
 
-The `KeyboardButtonRowComponent` protocol should be implemented by any view that can be added to a `KeyboardButtonRow`. It simplifies setting the width in a way that makes it honor the distribution of the stack view. `KeyboardButton`, `KeyboardButtonView` and `KeyboardSpacerView` are built-in row components, that you can use right away.
+The `KeyboardButtonRowComponent` protocol can be implemented by any view that can be added to a `KeyboardButtonRow`. It simplifies setting the width in a way that makes it honor the distribution of the stack view. `KeyboardButton`, `KeyboardButtonView` and `KeyboardSpacerView` are built-in row components, that you can use right away.
 
 `KeyboardCollectionView` is a regular `UICollectionView` that you can configure in any way you like. You can use the built-in `KeyboardButtonCollectionView` and `KeyboardButtonRowCollectionView` subclasses to easily distribute a set of actions within the collection view.
 
