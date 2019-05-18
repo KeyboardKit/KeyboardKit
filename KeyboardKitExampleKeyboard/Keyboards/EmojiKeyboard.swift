@@ -21,7 +21,8 @@ import KeyboardKit
 struct EmojiKeyboard: DemoKeyboard {
     
     init(in viewController: KeyboardViewController) {
-        self.bottomActions = type(of: self).bottomActions(leftmost: .switchToAlphabeticKeyboard, for: viewController)
+        let leftmost = KeyboardAction.switchToKeyboard(.alphabetic(uppercased: false))
+        self.bottomActions = type(of: self).bottomActions(leftmost: leftmost, for: viewController)
     }
     
     let actions: [KeyboardAction] = [

@@ -22,10 +22,10 @@ extension DemoKeyboard {
     static func bottomActions(
         leftmost: KeyboardAction,
         for viewController: KeyboardViewController) -> KeyboardActionRow {
-        let includeEmojiAction = viewController.keyboardMode != .emojis
+        let includeEmojiAction = viewController.keyboardType != .emojis
         let switcher = viewController.keyboardSwitcherAction
-        let actions = [leftmost, switcher, .space, .switchToEmojiKeyboard, .newLine]
-        return includeEmojiAction ? actions : actions.filter { $0 != .switchToEmojiKeyboard }
+        let actions = [leftmost, switcher, .space, .switchToKeyboard(.emojis), .newLine]
+        return includeEmojiAction ? actions : actions.filter { $0 != .switchToKeyboard(.emojis) }
     }
 }
 

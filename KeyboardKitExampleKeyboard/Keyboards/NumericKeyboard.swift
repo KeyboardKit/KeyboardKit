@@ -36,7 +36,7 @@ private extension NumericKeyboard {
         return characters
             .mappedToActions()
             .addingSideActions()
-            .appending(bottomActions(leftmost: .switchToAlphabeticKeyboard, for: viewController))
+            .appending(bottomActions(leftmost: .switchToKeyboard(.alphabetic(uppercased: false)), for: viewController))
     }
 }
 
@@ -44,7 +44,7 @@ private extension Sequence where Iterator.Element == [KeyboardAction] {
     
     func addingSideActions() -> [Iterator.Element] {
         var actions = map { $0 }
-        actions[2].insert(.switchToSymbolicKeyboard, at: 0)
+        actions[2].insert(.switchToKeyboard(.symbolic), at: 0)
         actions[2].insert(.none, at: 1)
         actions[2].append(.none)
         actions[2].append(.backspace)

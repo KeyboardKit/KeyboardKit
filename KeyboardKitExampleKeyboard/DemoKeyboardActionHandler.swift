@@ -23,12 +23,9 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
         (view as? KeyboardButton)?.animateStandardTap()
         super.handleTap(on: action, view: view)
         switch action {
-        case .shift: demoViewController?.keyboardMode = .alphabetic(uppercased: true)
-        case .shiftDown: demoViewController?.keyboardMode = .alphabetic(uppercased: false)
-        case .switchToAlphabeticKeyboard: demoViewController?.keyboardMode = .alphabetic(uppercased: false)
-        case .switchToEmojiKeyboard: demoViewController?.keyboardMode = .emojis
-        case .switchToNumericKeyboard: demoViewController?.keyboardMode = .numeric
-        case .switchToSymbolicKeyboard: demoViewController?.keyboardMode = .symbolic
+        case .shift: demoViewController?.keyboardType = .alphabetic(uppercased: true)
+        case .shiftDown: demoViewController?.keyboardType = .alphabetic(uppercased: false)
+        case .switchToKeyboard(let type): demoViewController?.keyboardType = type
         default: copyImage(for: action)
         }
     }

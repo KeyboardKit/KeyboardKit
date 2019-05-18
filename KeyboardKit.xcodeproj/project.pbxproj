@@ -120,6 +120,7 @@
 		84851A6E2277B11100477705 /* DemoButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84851A6D2277B11100477705 /* DemoButton.xib */; };
 		84851A73227888BC00477705 /* HapticFeedback+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851A72227888BC00477705 /* HapticFeedback+Keyboard.swift */; };
 		84851DE32166A3EF00DE8886 /* KeyboardSettingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851DE22166A3EF00DE8886 /* KeyboardSettingTests.swift */; };
+		84C259462290088D00CEE594 /* KeyboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C259452290088D00CEE594 /* KeyboardType.swift */; };
 		84FA44A5228B5321003C2054 /* DemoKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA44A4228B5321003C2054 /* DemoKeyboard.swift */; };
 		84FFA6A9227ABC8C00FB4998 /* KeyboardButtonCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFA6A8227ABC8C00FB4998 /* KeyboardButtonCollectionView.swift */; };
 		84FFA6AB227AC0E800FB4998 /* KeyboardButtonRowCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFA6AA227AC0E800FB4998 /* KeyboardButtonRowCollectionView.swift */; };
@@ -303,6 +304,7 @@
 		84851A6D2277B11100477705 /* DemoButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DemoButton.xib; sourceTree = "<group>"; };
 		84851A72227888BC00477705 /* HapticFeedback+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HapticFeedback+Keyboard.swift"; sourceTree = "<group>"; };
 		84851DE22166A3EF00DE8886 /* KeyboardSettingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSettingTests.swift; sourceTree = "<group>"; };
+		84C259452290088D00CEE594 /* KeyboardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardType.swift; sourceTree = "<group>"; };
 		84FA44A4228B5321003C2054 /* DemoKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboard.swift; sourceTree = "<group>"; };
 		84FFA6A8227ABC8C00FB4998 /* KeyboardButtonCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButtonCollectionView.swift; sourceTree = "<group>"; };
 		84FFA6AA227AC0E800FB4998 /* KeyboardButtonRowCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButtonRowCollectionView.swift; sourceTree = "<group>"; };
@@ -534,6 +536,7 @@
 			children = (
 				45D1495120585DD5009EF441 /* KeyboardInputViewController.swift */,
 				4542496B2059BA9C00CD0E87 /* KeyboardSetting.swift */,
+				84C259452290088D00CEE594 /* KeyboardType.swift */,
 			);
 			path = Keyboard;
 			sourceTree = "<group>";
@@ -970,6 +973,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84C259462290088D00CEE594 /* KeyboardType.swift in Sources */,
 				84FFA6A9227ABC8C00FB4998 /* KeyboardButtonCollectionView.swift in Sources */,
 				45FB51E520495F42009D5806 /* UIImage+Pasteboard.swift in Sources */,
 				45FB51E220495F42009D5806 /* UIImage+Resized.swift in Sources */,

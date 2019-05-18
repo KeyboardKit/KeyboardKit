@@ -33,10 +33,11 @@ struct SymbolicKeyboard: DemoKeyboard {
 private extension SymbolicKeyboard {
     
     static func actions(in viewController: KeyboardViewController) -> KeyboardActionRows {
+        let leftmost = KeyboardAction.switchToKeyboard(.alphabetic(uppercased: false))
         return characters
             .mappedToActions()
             .addingSideActions()
-            .appending(bottomActions(leftmost: .switchToAlphabeticKeyboard, for: viewController))
+            .appending(bottomActions(leftmost: leftmost, for: viewController))
     }
 }
 
@@ -44,7 +45,7 @@ private extension Sequence where Iterator.Element == [KeyboardAction] {
     
     func addingSideActions() -> [Iterator.Element] {
         var actions = map { $0 }
-        actions[2].insert(.switchToNumericKeyboard, at: 0)
+        actions[2].insert(.switchToKeyboard(.numeric), at: 0)
         actions[2].insert(.none, at: 1)
         actions[2].append(.none)
         actions[2].append(.backspace)

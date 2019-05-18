@@ -43,7 +43,7 @@ private extension AlphabeticKeyboard {
         return characters(uppercased: uppercased)
             .mappedToActions()
             .addingSideActions(uppercased: uppercased)
-            .appending(bottomActions(leftmost: .switchToNumericKeyboard, for: viewController))
+            .appending(bottomActions(leftmost: .switchToKeyboard(.numeric), for: viewController))
     }
 }
 

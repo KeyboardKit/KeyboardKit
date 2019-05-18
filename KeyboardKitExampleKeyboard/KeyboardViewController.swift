@@ -55,11 +55,7 @@ class KeyboardViewController: KeyboardInputViewController {
     
     // MARK: - Mode
     
-    enum KeyboardMode: Equatable {
-        case alphabetic(uppercased: Bool), numeric, symbolic, emojis
-    }
-    
-    var keyboardMode = KeyboardMode.alphabetic(uppercased: false) {
+    var keyboardType = KeyboardType.alphabetic(uppercased: false) {
         didSet { setupKeyboard() }
     }
     
@@ -72,11 +68,12 @@ class KeyboardViewController: KeyboardInputViewController {
     
     func setupKeyboard(for size: CGSize) {
         keyboardStackView.removeAllArrangedSubviews()
-        switch keyboardMode {
+        switch keyboardType {
         case .alphabetic(let uppercased): setupAlphabeticKeyboard(uppercased: uppercased)
         case .numeric: setupNumericKeyboard()
         case .symbolic: setupSymbolicKeyboard()
         case .emojis: setupEmojiKeyboard(for: size)
+        default: return
         }
     }
     
@@ -86,7 +83,7 @@ class KeyboardViewController: KeyboardInputViewController {
     let alerter = ToastAlert()
     
     var keyboardSwitcherAction: KeyboardAction {
-        return needsInputModeSwitchKey ? .switchKeyboard : .switchToEmojiKeyboard
+        return needsInputModeSwitchKey ? .switchKeyboard : .switchToKeyboard(.emojis)
     }
 }
 
@@ -110,6 +107,7 @@ extension KeyboardViewController {
     
     func buttonRows(for actions: [[KeyboardAction]], distribution: UIStackView.Distribution) -> [KeyboardButtonRow] {
         var rows = actions.map { buttonRow(for: $0, distribution: distribution) }
+        guard rows.count > 2 else { return rows }
         rows[0].buttonStackView.distribution = .fillEqually
         rows[1].buttonStackView.distribution = .fillEqually
         return rows

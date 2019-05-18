@@ -23,16 +23,13 @@
 
 ## About KeyboardKit
 
-`KeyboardKit` is a Swift library that lets you create custom keyboard extensions for iOS. It supports various keyboard actions and lets you create dynamic keyboards with text inputs, emojis, system actions, images etc.
+`KeyboardKit` is a Swift library that simplifies creating keyboard extensions for iOS. It supports various keyboard actions and types and lets you create dynamic keyboards with text inputs, emojis, system actions, images etc.
 
 <p align="center">
     <img src ="Resources/Demo.gif" />
 </p>
 
-
-## Basic use case
-
-When using `KeyboardKit`, you should inherit from `KeyboardInputViewController` instead of `UIInputViewController`. This provides you with a `keyboardActionHandler` that can handle taps, long presses etc. and a `keyboardStackView` to which you can add components like toolbars, button rows and action collection views.
+When you use `KeyboardKit`, you can inherit from `KeyboardInputViewController` instead of `UIInputViewController`. This provides you with a `keyboardActionHandler` that can handle taps, long presses etc. and a `keyboardStackView` to which you can add components like toolbars, button rows and action collection views. `KeyboardKit` also provides you with tools for generatic haptic feedback, displaying alerts on top of the keyboard etc.
 
 
 ## Installation
@@ -87,15 +84,28 @@ When you create your own keyboard extension and want to use `KeyboardKit` in it,
 * `shiftDown°` - can be used to toggle between upper and lower case
 * `space` - sends an empty space to the text proxy
 * `switchKeyboard` - triggers the default keyboard switcher
-* `switchToAlphabeticKeyboard°` - can be used to switch to alphabetic input
-* `switchToEmojiKeyboard°` - can be used to switch to emoji/image input
-* `switchToNumericKeyboard°` - can be used to switch to numeric input
-* `switchToSymbolicKeyboard°` - can be used to switch to symbolic input
+* `switchToKeyboard°` - can be used to switch to a specific keypoard type
 * `none`- use this for empty "placeholder" keys that do nothing
 
 Many actions have standard behavior that apply to the input view controller or its text proxy, but the ones that are marked with a ° require custom handling, since their behavior depend on your application.
 
 `KeyboardInputViewController` has a `keyboardActionHandler` to which you should delegate all actions. It uses a `StandardKeyboardActionHandler` by default, but you can replace with any `KeyboardActionHandler`, preferrably by subclassing the standard and filling out the missing parts.
+
+
+### Keyboard Types
+
+`KeyboardKit` comes with the following built-in keyboard types:
+
+* `alphabetic`
+* `numeric`
+* `symbolic`
+* `email`
+* `emojis`
+* `custom`
+
+These types are just representations, without any built-in logic. You can bind them to keyboard actions to switch between various keyboard types, but you have to implement the keyboards yourself.
+
+If your app uses a keyboard type that isn't represented in the list above, you can always use `.custom` with a custom name.
 
 
 ### Presentation

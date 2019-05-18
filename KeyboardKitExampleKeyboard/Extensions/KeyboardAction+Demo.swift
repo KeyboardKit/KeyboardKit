@@ -27,7 +27,7 @@ extension KeyboardAction {
     var keyboardFontStyle: UIFont.TextStyle {
         switch self {
         case .character: return .title2
-        case .switchToEmojiKeyboard: return .title1
+        case .switchToKeyboard(.emojis): return .title1
         default: return .body
         }
     }
@@ -47,11 +47,18 @@ extension KeyboardAction {
         case .newLine: return "return"
         case .shift, .shiftDown: return "⇧"
         case .space: return "space"
-        case .switchToAlphabeticKeyboard: return "ABC"
-        case .switchToEmojiKeyboard: return "🤩"
-        case .switchToNumericKeyboard: return "123"
-        case .switchToSymbolicKeyboard: return "#+="
+        case .switchToKeyboard(let type): return keyboardText(for: type)
         default: return nil
+        }
+    }
+    
+    func keyboardText(for type: KeyboardType) -> String {
+        switch type {
+        case .alphabetic: return "ABC"
+        case .emojis: return "🤩"
+        case .numeric: return "123"
+        case .symbolic: return "#+="
+        default: return "???"
         }
     }
     
