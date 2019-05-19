@@ -91,7 +91,6 @@
 		45FB51F620495FFE009D5806 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45FB51F120495FEF009D5806 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45FB51F720495FFE009D5806 /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45FB51F220495FEF009D5806 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45FB51FF204B3CCD009D5806 /* KeyboardKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FB517520495C73009D5806 /* KeyboardKit.framework */; };
-		45FB5209204B3F75009D5806 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 45FB5201204B3F75009D5806 /* Cartfile */; };
 		45FB520A204B3F75009D5806 /* .swift-version in Resources */ = {isa = PBXBuildFile; fileRef = 45FB5202204B3F75009D5806 /* .swift-version */; };
 		45FB520C204B3F75009D5806 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 45FB5204204B3F75009D5806 /* LICENSE */; };
 		45FB520D204B3F75009D5806 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 45FB5205204B3F75009D5806 /* README.md */; };
@@ -273,7 +272,6 @@
 		45FB51EF20495FB4009D5806 /* ToastAlertTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastAlertTests.swift; sourceTree = "<group>"; };
 		45FB51F120495FEF009D5806 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		45FB51F220495FEF009D5806 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
-		45FB5201204B3F75009D5806 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		45FB5202204B3F75009D5806 /* .swift-version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ".swift-version"; sourceTree = "<group>"; };
 		45FB5204204B3F75009D5806 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		45FB5205204B3F75009D5806 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -549,7 +547,6 @@
 				45FB5207204B3F75009D5806 /* .gitignore */,
 				45FB5202204B3F75009D5806 /* .swift-version */,
 				45FB5206204B3F75009D5806 /* .swiftlint.yml */,
-				45FB5201204B3F75009D5806 /* Cartfile */,
 				45FB5208204B3F75009D5806 /* Cartfile.private */,
 				45FB5211204B3FB5009D5806 /* Fastfile */,
 				45FB5204204B3F75009D5806 /* LICENSE */,
@@ -868,7 +865,6 @@
 				45FB5212204B3FB5009D5806 /* Fastfile in Resources */,
 				45FB520C204B3F75009D5806 /* LICENSE in Resources */,
 				450B1C92206A2981006A2F18 /* box.png in Resources */,
-				45FB5209204B3F75009D5806 /* Cartfile in Resources */,
 				450B1C8B206A2981006A2F18 /* video.png in Resources */,
 				450B1C74206A2981006A2F18 /* mail.png in Resources */,
 				45FB519B20495C8A009D5806 /* Main.storyboard in Resources */,
