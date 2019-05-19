@@ -8,15 +8,17 @@
 
 /*
  
- In the demo app, the keyboard will handle system actions as
- normal (e.g. change keyboard, space, new line etc.), inject
- plain string characters into the proxy and handle emojis by
- copying them on tap and saving them to photos on long press.
+ This demo app handles system actions as normal (e.g. change
+ keyboard, space, new line etc.), injects strings and emojis
+ into the text proxy and handles the rightmost images in the
+ emoji keyboarx by copying them to the pasteboard on tap and
+ saving them to the user's photo album on long press.
  
  The keyboard is setup in `viewDidAppear(...)` since this is
- when `needsInputModeSwitchKey` gets a correct value. Before
- this, the value is `true`, even if it should be `false`. If
- you can solve this, you can setup the keyboard earlier.
+ when `needsInputModeSwitchKey` first gets the correct value.
+ Before this point, the value is `true` even if it should be
+ `false`. If you find a way to solve this, you can setup the
+ keyboard earlier.
  
  IMPORTANT: To use this demo keyboard, you have to enable it
  in system settings ("Settings/General/Keyboards") then give
@@ -108,13 +110,13 @@ private extension KeyboardViewController {
         return view
     }
     
-    func buttonRow(for actions: [KeyboardAction], distribution: UIStackView.Distribution) -> KeyboardButtonRow {
+    func buttonRow(for actions: KeyboardActionRow, distribution: UIStackView.Distribution) -> KeyboardButtonRow {
         return KeyboardButtonRow(height: 50, actions: actions, distribution: distribution) {
             return button(for: $0, distribution: distribution)
         }
     }
     
-    func buttonRows(for actions: [[KeyboardAction]], distribution: UIStackView.Distribution) -> [KeyboardButtonRow] {
+    func buttonRows(for actions: KeyboardActionRows, distribution: UIStackView.Distribution) -> [KeyboardButtonRow] {
         var rows = actions.map { buttonRow(for: $0, distribution: distribution) }
         guard rows.count > 2 else { return rows }
         rows[0].buttonStackView.distribution = .fillEqually

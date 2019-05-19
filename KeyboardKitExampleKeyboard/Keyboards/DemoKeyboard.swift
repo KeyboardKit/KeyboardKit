@@ -38,7 +38,7 @@ extension Sequence where Iterator.Element == [String] {
         return map { $0.map { $0.uppercased() } }
     }
     
-    func mappedToActions() -> [[KeyboardAction]] {
+    func mappedToActions() -> KeyboardActionRows {
         return map { $0.map { .character($0) } }
     }
 }

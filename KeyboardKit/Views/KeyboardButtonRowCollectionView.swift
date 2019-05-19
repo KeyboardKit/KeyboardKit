@@ -125,7 +125,7 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboar
     
     private let buttonCreator: KeyboardButtonCreator
     private let configuration: Configuration
-    private let rows: [[KeyboardAction]]
+    private let rows: KeyboardActionRows
     private let userDefaults: UserDefaults
     
     
@@ -149,7 +149,7 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboar
     
     // MARK: - UICollectionViewDataSource
     
-    open func row(at indexPath: IndexPath) -> [KeyboardAction] {
+    open func row(at indexPath: IndexPath) -> KeyboardActionRow {
         return rows[indexPath.item]
     }
     
@@ -179,11 +179,11 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboar
 }
 
 
-// MARK: - Private [KeyboardAction] Extensions
+// MARK: - Private KeyboardAction Array Extensions
 
 private extension Array where Element == KeyboardAction {
     
-    func rows(for configuration: KeyboardButtonRowCollectionView.Configuration) -> [[KeyboardAction]] {
+    func rows(for configuration: KeyboardButtonRowCollectionView.Configuration) -> KeyboardActionRows {
         var actions = self
         while actions.count % configuration.pageSize > 0 {
             actions.append(.none)

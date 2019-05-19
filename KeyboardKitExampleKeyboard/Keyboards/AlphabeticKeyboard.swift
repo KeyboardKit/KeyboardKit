@@ -27,15 +27,15 @@ struct AlphabeticKeyboard: DemoKeyboard {
     }
 
     let actions: KeyboardActionRows
+}
+
+private extension AlphabeticKeyboard {
     
-    static private(set) var characters: [[String]] = [
+    static var characters: [[String]] = [
         ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
         ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
         ["z", "x", "c", "v", "b", "n", "m"]
     ]
-}
-
-private extension AlphabeticKeyboard {
     
     static func actions(
         in viewController: KeyboardViewController,

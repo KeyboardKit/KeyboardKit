@@ -1,6 +1,11 @@
 # Release Notes
 
 
+## 2.0.1
+
+This version adds a public shadow extension to the main library and shuffles classes and extensions around. It also restructures the example project to make it less cluttered.
+
+
 ## 2.0.0
 
 This version aim at streamlining the library and remove or refactor parts that make it hard to maintain. It contains several breaking changes, but I hope that the changes will make it easier for you as well, as the library moves forward.

@@ -21,16 +21,16 @@ struct SymbolicKeyboard: DemoKeyboard {
         actions = type(of: self).actions(in: viewController)
     }
     
-    let actions: [[KeyboardAction]]
+    let actions: KeyboardActionRows
+}
+
+private extension SymbolicKeyboard {
     
-    static private(set) var characters: [[String]] = [
+    static var characters: [[String]] = [
         ["[", "]", "{", "}", "#", "%", "^", "*", "+", "="],
         ["_", "\\", "|", "~", "<", ">", "€", "£", "¥", "•"],
         [".", ",", "?", "!", "´"]
     ]
-}
-
-private extension SymbolicKeyboard {
     
     static func actions(in viewController: KeyboardViewController) -> KeyboardActionRows {
         let leftmost = KeyboardAction.switchToKeyboard(.alphabetic(uppercased: false))
@@ -41,7 +41,7 @@ private extension SymbolicKeyboard {
     }
 }
 
-private extension Sequence where Iterator.Element == [KeyboardAction] {
+private extension Sequence where Iterator.Element == KeyboardActionRow {
     
     func addingSideActions() -> [Iterator.Element] {
         var actions = map { $0 }

@@ -21,16 +21,16 @@ struct NumericKeyboard: DemoKeyboard {
         actions = type(of: self).actions(in: viewController)
     }
     
-    let actions: [[KeyboardAction]]
+    let actions: KeyboardActionRows
+}
+
+private extension NumericKeyboard {
     
-    static private(set) var characters: [[String]] = [
+    static var characters: [[String]] = [
         ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
         ["-", "/", ":", ";", "(", ")", "$", "&", "@", "\""],
         [".", ",", "?", "!", "´"]
     ]
-}
-
-private extension NumericKeyboard {
     
     static func actions(in viewController: KeyboardViewController) -> KeyboardActionRows {
         return characters
@@ -40,7 +40,7 @@ private extension NumericKeyboard {
     }
 }
 
-private extension Sequence where Iterator.Element == [KeyboardAction] {
+private extension Sequence where Iterator.Element == KeyboardActionRow {
     
     func addingSideActions() -> [Iterator.Element] {
         var actions = map { $0 }
