@@ -21,9 +21,8 @@ class DemoButton: KeyboardButtonView {
         textLabel?.textColor = action.keyboardTextColor(in: viewController)
         buttonView?.tintColor = action.keyboardTextColor(in: viewController)
         width = action.keyboardWidth(for: distribution)
-        addBadgeShadow()
+        applyShadow(Shadow(alpha: 0.5, blur: 1, spread: 0, x: 1, y: 1))
     }
-    
     
     @IBOutlet weak var buttonView: UIView? {
         didSet { buttonView?.layer.cornerRadius = 7 }

@@ -60,24 +60,6 @@ class KeyboardViewController: KeyboardInputViewController {
     }
     
     
-    // MARK: - Setup
-    
-    func setupKeyboard() {
-        setupKeyboard(for: view.bounds.size)
-    }
-    
-    func setupKeyboard(for size: CGSize) {
-        keyboardStackView.removeAllArrangedSubviews()
-        switch keyboardType {
-        case .alphabetic(let uppercased): setupAlphabeticKeyboard(uppercased: uppercased)
-        case .numeric: setupNumericKeyboard()
-        case .symbolic: setupSymbolicKeyboard()
-        case .emojis: setupEmojiKeyboard(for: size)
-        default: return
-        }
-    }
-    
-    
     // MARK: - Properties
     
     let alerter = ToastAlert()
@@ -88,9 +70,36 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 
 
+// MARK: - Setup
+
+private extension KeyboardViewController {
+    
+    func setupKeyboard() {
+        setupKeyboard(for: view.bounds.size)
+    }
+    
+    func setupKeyboard(for size: CGSize) {
+        DispatchQueue.main.async {
+            self.setupKeyboardAsync(for: size)
+        }
+    }
+    
+    func setupKeyboardAsync(for size: CGSize) {
+        keyboardStackView.removeAllArrangedSubviews()
+        switch keyboardType {
+        case .alphabetic(let uppercased): setupAlphabeticKeyboard(uppercased: uppercased)
+        case .numeric: setupNumericKeyboard()
+        case .symbolic: setupSymbolicKeyboard()
+        case .emojis: setupEmojiKeyboard(for: size)
+        default: return
+        }
+    }
+}
+
+
 // MARK: - Private Functions
 
-extension KeyboardViewController {
+private extension KeyboardViewController {
     
     func button(for action: KeyboardAction, distribution: UIStackView.Distribution = .equalSpacing) -> UIView {
         if action == .none { return noneActionbutton(distribution: distribution) }
