@@ -93,7 +93,6 @@
 		45FB51FF204B3CCD009D5806 /* KeyboardKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FB517520495C73009D5806 /* KeyboardKit.framework */; };
 		45FB5209204B3F75009D5806 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 45FB5201204B3F75009D5806 /* Cartfile */; };
 		45FB520A204B3F75009D5806 /* .swift-version in Resources */ = {isa = PBXBuildFile; fileRef = 45FB5202204B3F75009D5806 /* .swift-version */; };
-		45FB520B204B3F75009D5806 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 45FB5203204B3F75009D5806 /* .travis.yml */; };
 		45FB520C204B3F75009D5806 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 45FB5204204B3F75009D5806 /* LICENSE */; };
 		45FB520D204B3F75009D5806 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 45FB5205204B3F75009D5806 /* README.md */; };
 		45FB520E204B3F75009D5806 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 45FB5206204B3F75009D5806 /* .swiftlint.yml */; };
@@ -276,7 +275,6 @@
 		45FB51F220495FEF009D5806 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		45FB5201204B3F75009D5806 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		45FB5202204B3F75009D5806 /* .swift-version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ".swift-version"; sourceTree = "<group>"; };
-		45FB5203204B3F75009D5806 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		45FB5204204B3F75009D5806 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		45FB5205204B3F75009D5806 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		45FB5206204B3F75009D5806 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -551,7 +549,6 @@
 				45FB5207204B3F75009D5806 /* .gitignore */,
 				45FB5202204B3F75009D5806 /* .swift-version */,
 				45FB5206204B3F75009D5806 /* .swiftlint.yml */,
-				45FB5203204B3F75009D5806 /* .travis.yml */,
 				45FB5201204B3F75009D5806 /* Cartfile */,
 				45FB5208204B3F75009D5806 /* Cartfile.private */,
 				45FB5211204B3FB5009D5806 /* Fastfile */,
@@ -861,7 +858,6 @@
 				450B1C84206A2981006A2F18 /* help.png in Resources */,
 				450B1C80206A2981006A2F18 /* monitor.png in Resources */,
 				45FB520E204B3F75009D5806 /* .swiftlint.yml in Resources */,
-				45FB520B204B3F75009D5806 /* .travis.yml in Resources */,
 				450B1C8A206A2981006A2F18 /* base.png in Resources */,
 				450B1C8E206A2981006A2F18 /* idea.png in Resources */,
 				450B1C73206A2981006A2F18 /* download.png in Resources */,
