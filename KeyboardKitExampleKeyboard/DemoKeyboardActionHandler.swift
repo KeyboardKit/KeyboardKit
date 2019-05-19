@@ -6,6 +6,13 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
+/*
+ 
+ This action handler inherits `StandardKeyboardActionHandler`
+ and adds demo-specific functionality to it.
+ 
+ */
+
 import KeyboardKit
 
 class DemoKeyboardActionHandler: StandardKeyboardActionHandler {

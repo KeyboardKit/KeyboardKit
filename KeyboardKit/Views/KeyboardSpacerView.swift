@@ -18,6 +18,11 @@ import UIKit
 
 open class KeyboardSpacerView: UIView, KeyboardButtonRowComponent {
     
+    public convenience init(width: CGFloat) {
+        self.init(frame: .zero)
+        self.width = width
+    }
+    
     public var widthConstraint: NSLayoutConstraint?
     
     open override var intrinsicContentSize: CGSize {

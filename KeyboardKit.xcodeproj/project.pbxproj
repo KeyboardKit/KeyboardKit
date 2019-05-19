@@ -482,9 +482,8 @@
 		45FB51AA20495CB1009D5806 /* KeyboardKitExampleKeyboard */ = {
 			isa = PBXGroup;
 			children = (
+				84F8DF3E2291AAF10079BD3D /* Buttons */,
 				84FFACD92282350200FB4998 /* Keyboards */,
-				84851A672277AE9300477705 /* DemoButton.swift */,
-				84851A6D2277B11100477705 /* DemoButton.xib */,
 				84511D39227110BC00904FE0 /* DemoKeyboardActionHandler.swift */,
 				45FB51AD20495CB1009D5806 /* Info.plist */,
 				45FB51AB20495CB1009D5806 /* KeyboardViewController.swift */,
@@ -641,6 +640,15 @@
 				84FFACA622801AF200FB4998 /* UIImage+TintedTests.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		84F8DF3E2291AAF10079BD3D /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				84851A672277AE9300477705 /* DemoButton.swift */,
+				84851A6D2277B11100477705 /* DemoButton.xib */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		84FFAC97227FFB2600FB4998 /* Actions */ = {

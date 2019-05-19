@@ -102,7 +102,7 @@ private extension KeyboardViewController {
 private extension KeyboardViewController {
     
     func button(for action: KeyboardAction, distribution: UIStackView.Distribution = .equalSpacing) -> UIView {
-        if action == .none { return noneActionbutton(distribution: distribution) }
+        if action == .none { return KeyboardSpacerView(width: 10) }
         let view = DemoButton.fromNib(owner: self)
         view.setup(with: action, in: self, distribution: distribution)
         return view
@@ -120,12 +120,6 @@ private extension KeyboardViewController {
         rows[0].buttonStackView.distribution = .fillEqually
         rows[1].buttonStackView.distribution = .fillEqually
         return rows
-    }
-    
-    func noneActionbutton(distribution: UIStackView.Distribution) -> UIView {
-        let view = KeyboardSpacerView(frame: .zero)
-        view.width = KeyboardAction.none.keyboardWidth(for: distribution)
-        return view
     }
     
     func setupAlphabeticKeyboard(uppercased: Bool = false) {
