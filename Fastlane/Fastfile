@@ -30,7 +30,12 @@ platform :ios do
     increment_version_number(version_number: version)
 
     git_commit(
-      path: ["KeyboardKit.podspec"],
+      path: [
+        "KeyboardKit.podspec",
+        "KeyboardKit/Info.plist",
+        "KeyboardKitExampleKeyboard/Info.plist",
+        "KeyboardKitTests/Info.plist"
+      ],
       message: "Bump to #{version}"
     )
 
