@@ -1,7 +1,3 @@
-# Xcode
-#
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
-
 # OS X
 .DS_Store
 
@@ -39,7 +35,6 @@ timeline.xctimeline
 playground.xcworkspace
 
 # Swift Package Manager
-#
 # Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
 # Packages/
 # Package.pins
@@ -56,7 +51,6 @@ Carthage
 # screenshots whenever they are needed.
 # For more information about the recommended setup visit:
 # https://docs.fastlane.tools/best-practices/source-control/#source-control
-
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
