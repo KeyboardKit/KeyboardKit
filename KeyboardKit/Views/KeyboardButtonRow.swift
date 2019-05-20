@@ -9,9 +9,10 @@
 /*
  
  This view can be created with a set of actions and a button
- creator block. It creates and adds a button for each action
- to a horizontal `buttonStackView`. This stack view can then
- be added to the `KeyboardInputViewController`'s stack view.
+ creation block, which it uses to create and add buttons for
+ each provided action to a horizontal `buttonStackView`. The
+ button row can be added to the `KeyboardInputViewController`
+ `keyboardStackView`.
  
  */
 

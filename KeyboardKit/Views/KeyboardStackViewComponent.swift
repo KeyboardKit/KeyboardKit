@@ -16,25 +16,4 @@
 
 import UIKit
 
-public protocol KeyboardStackViewComponent: UIView {
-
-    var heightConstraint: NSLayoutConstraint? { get set }
-}
-
-public extension KeyboardStackViewComponent {
-    
-    var height: CGFloat {
-        get { return heightConstraint?.constant ?? intrinsicContentSize.height }
-        set { setHeight(to: newValue) }
-    }
-}
-
-private extension KeyboardStackViewComponent {
-    
-    func setHeight(to height: CGFloat) {
-        heightConstraint = heightConstraint ?? heightAnchor.constraint(equalToConstant: height)
-        heightConstraint?.priority = .defaultHigh
-        heightConstraint?.constant = height
-        heightConstraint?.isActive = true
-    }
-}
+public protocol KeyboardStackViewComponent: VerticalKeyboardComponent {}

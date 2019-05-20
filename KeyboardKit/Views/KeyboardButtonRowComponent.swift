@@ -17,25 +17,4 @@
 
 import UIKit
 
-public protocol KeyboardButtonRowComponent: UIView {
-    
-    var widthConstraint: NSLayoutConstraint? { get set }
-}
-
-public extension KeyboardButtonRowComponent {
-    
-    var width: CGFloat {
-        get { return widthConstraint?.constant ?? intrinsicContentSize.width }
-        set { setWidth(to: newValue) }
-    }
-}
-
-private extension KeyboardButtonRowComponent {
-    
-    func setWidth(to width: CGFloat) {
-        widthConstraint = widthConstraint ?? widthAnchor.constraint(equalToConstant: width)
-        widthConstraint?.priority = .defaultLow
-        widthConstraint?.constant = width
-        widthConstraint?.isActive = true
-    }
-}
+public protocol KeyboardButtonRowComponent: HorizontalKeyboardComponent {}
