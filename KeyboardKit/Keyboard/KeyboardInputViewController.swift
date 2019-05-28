@@ -55,8 +55,6 @@ open class KeyboardInputViewController: UIInputViewController {
     
     // MARK: - Properties
     
-    open var id: String?
-    
     open lazy var keyboardActionHandler: KeyboardActionHandler = {
         StandardKeyboardActionHandler(inputViewController: self)
     }()
