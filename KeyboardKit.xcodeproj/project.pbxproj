@@ -126,6 +126,8 @@
 		84BBD05B229DAC24009ED851 /* MockCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD05A229DAC23009ED851 /* MockCollectionViewLayout.swift */; };
 		84BBD05D229DB03A009ED851 /* KeyboardSpacerViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD05C229DB03A009ED851 /* KeyboardSpacerViewTests.swift */; };
 		84BBD05F229DB0C5009ED851 /* KeyboardToolbarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD05E229DB0C5009ED851 /* KeyboardToolbarTests.swift */; };
+		84BBD061229DB1BE009ED851 /* KeyboardButtonViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD060229DB1BE009ED851 /* KeyboardButtonViewTests.swift */; };
+		84BBD063229DB32A009ED851 /* MockKeyboardInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD062229DB32A009ED851 /* MockKeyboardInputViewController.swift */; };
 		84C259462290088D00CEE594 /* KeyboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C259452290088D00CEE594 /* KeyboardType.swift */; };
 		84F8DF3B2291950F0079BD3D /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8DF3A229193780079BD3D /* UIView+Shadow.swift */; };
 		84F8DF3C229195130079BD3D /* Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8DF39229193780079BD3D /* Shadow.swift */; };
@@ -328,6 +330,8 @@
 		84BBD05A229DAC23009ED851 /* MockCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCollectionViewLayout.swift; sourceTree = "<group>"; };
 		84BBD05C229DB03A009ED851 /* KeyboardSpacerViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSpacerViewTests.swift; sourceTree = "<group>"; };
 		84BBD05E229DB0C5009ED851 /* KeyboardToolbarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardToolbarTests.swift; sourceTree = "<group>"; };
+		84BBD060229DB1BE009ED851 /* KeyboardButtonViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButtonViewTests.swift; sourceTree = "<group>"; };
+		84BBD062229DB32A009ED851 /* MockKeyboardInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockKeyboardInputViewController.swift; sourceTree = "<group>"; };
 		84C259452290088D00CEE594 /* KeyboardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardType.swift; sourceTree = "<group>"; };
 		84F8DF39229193780079BD3D /* Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadow.swift; sourceTree = "<group>"; };
 		84F8DF3A229193780079BD3D /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
@@ -683,6 +687,7 @@
 		84BBD04F229DA5C9009ED851 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				84BBD060229DB1BE009ED851 /* KeyboardButtonViewTests.swift */,
 				84BBD058229DAAFF009ED851 /* KeyboardCollectionViewTests.swift */,
 				84BBD05C229DB03A009ED851 /* KeyboardSpacerViewTests.swift */,
 				84BBD05E229DB0C5009ED851 /* KeyboardToolbarTests.swift */,
@@ -750,10 +755,11 @@
 		84FFAC9F22800D6900FB4998 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				84BBD05A229DAC23009ED851 /* MockCollectionViewLayout.swift */,
 				84FFACA022800D7600FB4998 /* MockInputViewController.swift */,
 				84FFACA222800D8C00FB4998 /* MockKeyboardActionHandler.swift */,
+				84BBD062229DB32A009ED851 /* MockKeyboardInputViewController.swift */,
 				84BBD01E229D4513009ED851 /* MockPasteboard.swift */,
-				84BBD05A229DAC23009ED851 /* MockCollectionViewLayout.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -1102,6 +1108,7 @@
 				84BBD057229DA83A009ED851 /* PagedKeyboardComponentTests.swift in Sources */,
 				84BBD048229DA2A8009ED851 /* UIView+NibTests.swift in Sources */,
 				84BBD04A229DA387009ED851 /* UIView+ShadowTests.swift in Sources */,
+				84BBD061229DB1BE009ED851 /* KeyboardButtonViewTests.swift in Sources */,
 				84BBD03E229D986A009ED851 /* UIViewAutoresizing+ExtrasTests.swift in Sources */,
 				84BBD05F229DB0C5009ED851 /* KeyboardToolbarTests.swift in Sources */,
 				84FFACA322800D8C00FB4998 /* MockKeyboardActionHandler.swift in Sources */,
@@ -1120,6 +1127,7 @@
 				45CE0713204C01DB00A93175 /* Sequence+BatchTests.swift in Sources */,
 				84FFACA722801AF200FB4998 /* UIImage+TintedTests.swift in Sources */,
 				84BBD051229DA5D9009ED851 /* HorizontalKeyboardComponentTests.swift in Sources */,
+				84BBD063229DB32A009ED851 /* MockKeyboardInputViewController.swift in Sources */,
 				84BBD046229D99C3009ED851 /* KeyboardInputViewControllerTests.swift in Sources */,
 				84BBD00F229D28FD009ED851 /* UIView+LongPressActionTests.swift in Sources */,
 				84BBD059229DAAFF009ED851 /* KeyboardCollectionViewTests.swift in Sources */,

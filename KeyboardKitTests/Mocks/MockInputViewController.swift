@@ -10,7 +10,7 @@ import MockNRoll
 
 class MockInputViewController: UIInputViewController {
     
-    private let recorder = Mock()
+    var recorder = Mock()
     
     override func dismissKeyboard() {
         recorder.invoke(dismissKeyboard, args: ())
