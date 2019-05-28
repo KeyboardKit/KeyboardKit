@@ -19,6 +19,9 @@
  of an "alphabetic" keyboard. These king of actions are just
  ways for you to express your intent.
  
+ OBS: `switchKeyboard` has no standard input view controller
+ action, since it must be handled in another way.
+ 
  */
 
 import UIKit

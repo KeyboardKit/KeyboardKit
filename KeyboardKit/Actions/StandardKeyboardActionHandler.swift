@@ -47,7 +47,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Dependencies
     
-    public weak var inputViewController: UIInputViewController?
+    public private(set) weak var inputViewController: UIInputViewController?
     
     
     // MARK: - Properties

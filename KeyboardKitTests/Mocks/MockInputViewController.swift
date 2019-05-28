@@ -8,22 +8,11 @@
 
 import MockNRoll
 
-class MockInputViewController: Mock {}
-
-class MockInputViewControllerWrapper: UIInputViewController {
+class MockInputViewController: UIInputViewController {
     
-    init(mock: MockInputViewController) {
-        self.mock = mock
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError()
-    }
-    
-    private let mock: MockInputViewController
+    private let recorder = Mock()
     
     override func dismissKeyboard() {
-        mock.invoke(dismissKeyboard, args: ())
+        recorder.invoke(dismissKeyboard, args: ())
     }
 }

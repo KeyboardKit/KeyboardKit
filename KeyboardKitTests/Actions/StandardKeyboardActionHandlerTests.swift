@@ -16,8 +16,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
     override func spec() {
         
         var handler: StandardKeyboardActionHandlerTestClass!
-        
-        var actionHandlerRecorder: MockKeyboardActionHandler!
+        var recorder: MockKeyboardActionHandler!
         var inputViewController: MockInputViewController!
         
         var actionsWithTap: [KeyboardAction] {
@@ -49,15 +48,17 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         }
         
         beforeEach {
-            actionHandlerRecorder = MockKeyboardActionHandler()
+            recorder = MockKeyboardActionHandler()
             inputViewController = MockInputViewController()
-            
             handler = StandardKeyboardActionHandlerTestClass(
-                recorder: actionHandlerRecorder,
-                inputViewController: MockInputViewControllerWrapper(mock: inputViewController),
+                recorder: recorder,
+                inputViewController: inputViewController,
                 tapHapticFeedback: .error,
                 longPressHapticFeedback: .warning)
         }
+        
+        
+        
         
         describe("handling tap") {
             
