@@ -122,6 +122,8 @@
 		84BBD051229DA5D9009ED851 /* HorizontalKeyboardComponentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD050229DA5D9009ED851 /* HorizontalKeyboardComponentTests.swift */; };
 		84BBD055229DA6D6009ED851 /* VerticalKeyboardComponentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD054229DA6D6009ED851 /* VerticalKeyboardComponentTests.swift */; };
 		84BBD057229DA83A009ED851 /* PagedKeyboardComponentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD056229DA83A009ED851 /* PagedKeyboardComponentTests.swift */; };
+		84BBD059229DAAFF009ED851 /* KeyboardCollectionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD058229DAAFF009ED851 /* KeyboardCollectionViewTests.swift */; };
+		84BBD05B229DAC24009ED851 /* MockCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD05A229DAC23009ED851 /* MockCollectionViewLayout.swift */; };
 		84C259462290088D00CEE594 /* KeyboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C259452290088D00CEE594 /* KeyboardType.swift */; };
 		84F8DF3B2291950F0079BD3D /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8DF3A229193780079BD3D /* UIView+Shadow.swift */; };
 		84F8DF3C229195130079BD3D /* Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8DF39229193780079BD3D /* Shadow.swift */; };
@@ -320,6 +322,8 @@
 		84BBD050229DA5D9009ED851 /* HorizontalKeyboardComponentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalKeyboardComponentTests.swift; sourceTree = "<group>"; };
 		84BBD054229DA6D6009ED851 /* VerticalKeyboardComponentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalKeyboardComponentTests.swift; sourceTree = "<group>"; };
 		84BBD056229DA83A009ED851 /* PagedKeyboardComponentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedKeyboardComponentTests.swift; sourceTree = "<group>"; };
+		84BBD058229DAAFF009ED851 /* KeyboardCollectionViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardCollectionViewTests.swift; sourceTree = "<group>"; };
+		84BBD05A229DAC23009ED851 /* MockCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCollectionViewLayout.swift; sourceTree = "<group>"; };
 		84C259452290088D00CEE594 /* KeyboardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardType.swift; sourceTree = "<group>"; };
 		84F8DF39229193780079BD3D /* Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadow.swift; sourceTree = "<group>"; };
 		84F8DF3A229193780079BD3D /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
@@ -474,10 +478,9 @@
 		45FB518220495C73009D5806 /* KeyboardKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				84BBD053229DA6AA009ED851 /* Components */,
-				84BBD04F229DA5C9009ED851 /* Views */,
 				84FFAC97227FFB2600FB4998 /* Actions */,
 				45FB51EE20495FB4009D5806 /* Alerts */,
+				84BBD053229DA6AA009ED851 /* Components */,
 				84BBD01D229D44A0009ED851 /* Extensions */,
 				84FFACA822801E2D00FB4998 /* Feedback */,
 				84851DE12166A3CD00DE8886 /* Keyboard */,
@@ -485,6 +488,7 @@
 				84BBD04B229DA38C009ED851 /* Shadow */,
 				845D6BB7224D653D0025B6C4 /* Supporting Files */,
 				84F8DF3D2291959C0079BD3D /* UI */,
+				84BBD04F229DA5C9009ED851 /* Views */,
 			);
 			path = KeyboardKitTests;
 			sourceTree = "<group>";
@@ -675,6 +679,7 @@
 		84BBD04F229DA5C9009ED851 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				84BBD058229DAAFF009ED851 /* KeyboardCollectionViewTests.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -742,6 +747,7 @@
 				84FFACA022800D7600FB4998 /* MockInputViewController.swift */,
 				84FFACA222800D8C00FB4998 /* MockKeyboardActionHandler.swift */,
 				84BBD01E229D4513009ED851 /* MockPasteboard.swift */,
+				84BBD05A229DAC23009ED851 /* MockCollectionViewLayout.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -1108,6 +1114,8 @@
 				84BBD051229DA5D9009ED851 /* HorizontalKeyboardComponentTests.swift in Sources */,
 				84BBD046229D99C3009ED851 /* KeyboardInputViewControllerTests.swift in Sources */,
 				84BBD00F229D28FD009ED851 /* UIView+LongPressActionTests.swift in Sources */,
+				84BBD059229DAAFF009ED851 /* KeyboardCollectionViewTests.swift in Sources */,
+				84BBD05B229DAC24009ED851 /* MockCollectionViewLayout.swift in Sources */,
 				84FFAC9B2280097B00FB4998 /* StandardKeyboardActionHandlerTests.swift in Sources */,
 				45FB51F020495FB4009D5806 /* ToastAlertTests.swift in Sources */,
 			);
