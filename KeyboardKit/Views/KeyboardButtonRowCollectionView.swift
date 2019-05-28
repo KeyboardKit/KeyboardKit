@@ -28,12 +28,10 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboar
         id: String = "KeyboardButtonRowCollectionView",
         actions: [KeyboardAction],
         configuration: Configuration,
-        userDefaults: UserDefaults = .standard,
         buttonCreator: @escaping KeyboardButtonCreator) {
         self.id = id
         self.rows = actions.rows(for: configuration)
         self.configuration = configuration
-        self.userDefaults = userDefaults
         self.buttonCreator = buttonCreator
         super.init(actions: actions)
         setup()
@@ -43,7 +41,6 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboar
         self.id = ""
         self.rows = []
         self.configuration = .empty
-        self.userDefaults = .standard
         self.buttonCreator = { _ in fatalError() }
         super.init(coder: aDecoder)
         setup()
@@ -63,8 +60,12 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboar
     // MARK: - View Lifecycle
     
     open override func layoutSubviews() {
-        restoreCurrentPageIndex()
+        restoreCurrentPage()
         super.layoutSubviews()
+    }
+    
+    open func restoreCurrentPage() {
+        restoreCurrentPageIndex()
     }
     
     
@@ -95,7 +96,7 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboar
         }
     }
     
-    class Layout: UICollectionViewFlowLayout {
+    public class Layout: UICollectionViewFlowLayout {
         
         init(rowHeight: CGFloat) {
             self.rowHeight = rowHeight
@@ -110,25 +111,24 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboar
             super.init(coder: aDecoder)
         }
         
-        override func invalidateLayout() {
+        public override func invalidateLayout() {
             super.invalidateLayout()
             let width = collectionView?.bounds.width ?? 0
             guard width > 0 else { return }
             itemSize = CGSize(width: width, height: rowHeight)
         }
         
-        private var rowHeight: CGFloat
+        public let rowHeight: CGFloat
     }
     
     
     // MARK: - Properties
     
     public let id: String
+    public let configuration: Configuration
+    public let rows: KeyboardActionRows
     
     private let buttonCreator: KeyboardButtonCreator
-    private let configuration: Configuration
-    private let rows: KeyboardActionRows
-    private let userDefaults: UserDefaults
     
     
     // MARK: - PagedKeyboardViewController

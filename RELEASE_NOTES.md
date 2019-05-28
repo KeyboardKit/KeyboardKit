@@ -3,7 +3,7 @@
 
 ## 2.1.0
 
-This version adds more unit tests and converts some extensions from being internal to public. 
+This version makes a bunch of previously internal extensions public. It also adds a lot more unit tests so that almost all parts of the library are tested.
 
 
 ## 2.0.1

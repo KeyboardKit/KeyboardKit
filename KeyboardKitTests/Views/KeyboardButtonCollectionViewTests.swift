@@ -29,7 +29,7 @@ class KeyboardButtonCollectionViewTests: QuickSpec {
         
         describe("action at indexpath") {
             
-            it("is correctl") {
+            it("is correct") {
                 let action1 = view.action(at: IndexPath(row: 0, section: 0))
                 let action2 = view.action(at: IndexPath(row: 1, section: 0))
                 expect(action1).to(equal(.backspace))
