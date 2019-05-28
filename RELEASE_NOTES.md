@@ -5,6 +5,10 @@
 
 This version makes a bunch of previously internal extensions public. It also adds a lot more unit tests so that almost all parts of the library are tested.
 
+The default tap animation has been configured to allow user interaction, which reduces the frustrating tap lag that was present in 2.0.0.
+
+I have added a `KeyboardToolbar` class, which you can use to create toolbars. It's super simple so far, and only creates a stack view to which you can any views you like.
+
 
 ## 2.0.1
 

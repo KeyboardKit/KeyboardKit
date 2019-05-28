@@ -15,14 +15,9 @@ class KeyboardToolbarTests: QuickSpec {
     override func spec() {
         
         var view: KeyboardToolbar!
-        var actions: KeyboardActionRow!
         
         beforeEach {
-            actions = [.backspace, .capsLock]
-            view = KeyboardToolbar(
-                height: 123,
-                actions: actions
-            )
+            view = KeyboardToolbar(height: 123)
         }
         
         describe("created instance") {
@@ -39,7 +34,7 @@ class KeyboardToolbarTests: QuickSpec {
             }
             
             it("can use custom stackview config") {
-                view = KeyboardToolbar(height: 123, actions: actions, alignment: .center, distribution: .equalCentering)
+                view = KeyboardToolbar(height: 123, alignment: .center, distribution: .equalCentering)
                 expect(view.stackView.alignment).to(equal(.center))
                 expect(view.stackView.distribution).to(equal(.equalCentering))
             }

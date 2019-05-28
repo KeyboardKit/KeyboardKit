@@ -108,19 +108,45 @@ These types are just representations, without any built-in logic. You can bind t
 If your app uses a keyboard type that isn't represented in the list above, you can use `.custom` with a custom name.
 
 
-### Presentation
+### Input View Controller
 
-`KeyboardInputViewController` has a `keyboardStackView`, to which you can add components like toolbars, button rows and collection views. It's a regular `UIStackView`, so you can configure it however you like. The extension will be resized to fit the content of this stack view.
+With KeyboardKit, your input view controller should inherit from `KeyboardInputViewController` instead of from `UIInputViewController`. This class has a `keyboardStackView`, to which you can add components like toolbars, button rows and even collection views. It's a regular `UIStackView` that can be customized in any way you like. The extension will be resized to fit the content of this stack view.
 
-The `KeyboardStackViewComponent` protocol can be implemented by any view that can be added to the main `keyboardStackView`. It simplifies setting the height in a way that resizes the extension properly.
 
-`KeyboardButtonRow` is a `KeyboardStackViewComponent` that displays buttons in a horizontal `buttonStackView`. Just like the main stack view, it's a regular `UIStackView`, so you can configure it in any way you like. 
+## Components
 
-The `KeyboardButtonRowComponent` protocol can be implemented by any view that can be added to a `KeyboardButtonRow`. It simplifies setting the width in a way that makes it honor the distribution of the stack view. `KeyboardButton`, `KeyboardButtonView` and `KeyboardSpacerView` are built-in row components, that you can use right away.
+In KeyboardKit, components are protocols that describe various types of components that can be composed into a complete keyboard.
 
-`KeyboardCollectionView` is a regular `UICollectionView` that you can configure in any way you like. You can use the built-in `KeyboardButtonCollectionView` and `KeyboardButtonRowCollectionView` subclasses to easily distribute a set of actions within the collection view.
+`VerticalKeyboardComponent` describe components that can be added to a vertical flow, e.g. a vertical stack view. It has a height constraint that resizes the component correctly within the flow.
 
-Since all these components are regular views, you can use them in your hosting application as well.
+`HorizontalKeyboardComponent` describe components that can be added to a horizontal flow, e.g. a horizontal stack view. It has a width constraint that resizes the component correctly within the flow.
+
+`KeyboardStackViewComponent` specializes `VerticalKeyboardComponent` and describe components that can be added to the main `keyboardStackView`.
+
+`KeyboardButtonRowComponent` specializes `HorizontalKeyboardComponent` and describe components that can be added to button rows.
+
+`KeyboardButton` specializes `KeyboardButtonRowComponent` and describe a keyboard button that has a primary and secondary action. It also provides standard tap, press and release animations.
+
+`KeyboardToolbarComponent` specializes `HorizontalKeyboardComponent` and describe components that can be added to toolbars.
+
+`PagedKeyboardComponent` can be implemented by any view that display pages of keyboard buttons, e.g. collection views. It has functionality for persisting and restoring the current page index.
+
+
+## Views
+
+In KeyboardKit, most views implement one of the component protocols above.
+
+`KeyboardButtonView` implements `KeyboardButton`. It's a regular `UIButton` that can be setup with a primary and secondary action. 
+
+`KeyboardSpacerView` implements `KeyboardButtonRowComponent`. It's a regular `UIView` that can be used to add additional spaces between components in a button row.
+
+`KeyboardButtonRow` implements `KeyboardStackViewComponent` and displays buttons horizontally within its `buttonStackView`. The stack view is a regular `UIStackView` that can be customized in any way you like. 
+
+`KeyboardToolbar` implements `KeyboardStackViewComponent` and displays views horizontally within its `stackView`. The stack view is a regular `UIStackView` that can be customized in any way you like. 
+
+`KeyboardCollectionView` implements `KeyboardStackViewComponent`. It's a regular `UICollectionView` that can be customized in any way you like. However, since it contains very little logic, you can use the `KeyboardButtonCollectionView` and `KeyboardButtonRowCollectionView` subclasses to get more features out of the box.
+
+Since these views are regular views, you can use them in your hosting application as well.
 
 
 ### Alerts

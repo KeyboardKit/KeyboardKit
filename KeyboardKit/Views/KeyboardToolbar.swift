@@ -8,11 +8,9 @@
 
 /*
  
- This view resembles the `KeyboardButtonRow` view class, but
- is just created with a certain height. You can then use the
- `stackView` to populate the toolbar with any views you like
- to use. Unlike the `KeyboardButtonRow`, this class does not
- focus on keyboard actions, so you can add anything to it.
+ This class behaves like `KeyboardButtonRow`, but instead of
+ providing it with actions and a button creation block, this
+ class lets you add any views you like to its `stackView`.
  
  */
 
@@ -22,7 +20,6 @@ open class KeyboardToolbar: UIView, KeyboardStackViewComponent {
     
     public convenience init(
         height: CGFloat,
-        actions: KeyboardActionRow,
         alignment: UIStackView.Alignment = .fill,
         distribution: UIStackView.Distribution = .fillEqually) {
         self.init(frame: .zero)
