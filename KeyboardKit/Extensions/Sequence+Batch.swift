@@ -15,7 +15,7 @@
 
 import Foundation
 
-extension Sequence {
+public extension Sequence {
     
     func batched(withBatchSize size: Int) -> [[Iterator.Element]] {
         var result: [[Iterator.Element]] = []

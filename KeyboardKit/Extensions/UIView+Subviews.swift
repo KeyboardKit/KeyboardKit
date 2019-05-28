@@ -15,7 +15,7 @@
 
 import UIKit
 
-extension UIView {
+public extension UIView {
     
     func addSubview(_ subview: UIView, fill: Bool) {
         addSubview(subview)

@@ -13,7 +13,7 @@
  
  */
 
-extension UIView.AutoresizingMask {
+public extension UIView.AutoresizingMask {
     
     static var centerInParent: UIView.AutoresizingMask {
         return [

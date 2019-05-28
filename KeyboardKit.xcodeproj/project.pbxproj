@@ -113,6 +113,9 @@
 		84BBD011229D29BA009ED851 /* UIView+TapActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD010229D29BA009ED851 /* UIView+TapActionTests.swift */; };
 		84BBD01F229D4513009ED851 /* MockPasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD01E229D4513009ED851 /* MockPasteboard.swift */; };
 		84BBD021229D458B009ED851 /* UIImage+PasteboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD020229D458B009ED851 /* UIImage+PasteboardTests.swift */; };
+		84BBD036229D9531009ED851 /* UIStackView+SubviewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD035229D9531009ED851 /* UIStackView+SubviewsTests.swift */; };
+		84BBD03A229D96C9009ED851 /* UIView+SubviewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD039229D96C9009ED851 /* UIView+SubviewsTests.swift */; };
+		84BBD03E229D986A009ED851 /* UIViewAutoresizing+ExtrasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD03D229D986A009ED851 /* UIViewAutoresizing+ExtrasTests.swift */; };
 		84C259462290088D00CEE594 /* KeyboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C259452290088D00CEE594 /* KeyboardType.swift */; };
 		84F8DF3B2291950F0079BD3D /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8DF3A229193780079BD3D /* UIView+Shadow.swift */; };
 		84F8DF3C229195130079BD3D /* Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8DF39229193780079BD3D /* Shadow.swift */; };
@@ -302,6 +305,9 @@
 		84BBD010229D29BA009ED851 /* UIView+TapActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+TapActionTests.swift"; sourceTree = "<group>"; };
 		84BBD01E229D4513009ED851 /* MockPasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPasteboard.swift; sourceTree = "<group>"; };
 		84BBD020229D458B009ED851 /* UIImage+PasteboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+PasteboardTests.swift"; sourceTree = "<group>"; };
+		84BBD035229D9531009ED851 /* UIStackView+SubviewsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+SubviewsTests.swift"; sourceTree = "<group>"; };
+		84BBD039229D96C9009ED851 /* UIView+SubviewsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+SubviewsTests.swift"; sourceTree = "<group>"; };
+		84BBD03D229D986A009ED851 /* UIViewAutoresizing+ExtrasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewAutoresizing+ExtrasTests.swift"; sourceTree = "<group>"; };
 		84C259452290088D00CEE594 /* KeyboardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardType.swift; sourceTree = "<group>"; };
 		84F8DF39229193780079BD3D /* Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadow.swift; sourceTree = "<group>"; };
 		84F8DF3A229193780079BD3D /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
@@ -413,14 +419,6 @@
 			path = "Cartoon Icons";
 			sourceTree = "<group>";
 		};
-		45CE0711204C01CE00A93175 /* Internal Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				45CE0712204C01DB00A93175 /* Sequence+BatchTests.swift */,
-			);
-			path = "Internal Extensions";
-			sourceTree = "<group>";
-		};
 		45FB516B20495C73009D5806 = {
 			isa = PBXGroup;
 			children = (
@@ -452,7 +450,6 @@
 				45FB51C620495F41009D5806 /* Alerts */,
 				84BBD01C229D447F009ED851 /* Extensions */,
 				84511D582273143500904FE0 /* Feedback */,
-				45FB51C920495F42009D5806 /* Internal Extension */,
 				45FB51D220495F42009D5806 /* Keyboard */,
 				845D6BB6224D651D0025B6C4 /* Supporting Files */,
 				84F8DF38229193680079BD3D /* UI */,
@@ -468,7 +465,6 @@
 				45FB51EE20495FB4009D5806 /* Alerts */,
 				84BBD01D229D44A0009ED851 /* Extensions */,
 				84FFACA822801E2D00FB4998 /* Feedback */,
-				45CE0711204C01CE00A93175 /* Internal Extensions */,
 				84851DE12166A3CD00DE8886 /* Keyboard */,
 				84FFAC9F22800D6900FB4998 /* Mocks */,
 				845D6BB7224D653D0025B6C4 /* Supporting Files */,
@@ -519,16 +515,6 @@
 				845D6BD6224D769E0025B6C4 /* ToastAlert.swift */,
 			);
 			path = Alerts;
-			sourceTree = "<group>";
-		};
-		45FB51C920495F42009D5806 /* Internal Extension */ = {
-			isa = PBXGroup;
-			children = (
-				45CE070F204C016500A93175 /* Sequence+Batch.swift */,
-				846F1C5C22758B8C00314DC8 /* UIView+Subviews.swift */,
-				45FB51CA20495F42009D5806 /* UIViewAutoresizing+Extras.swift */,
-			);
-			path = "Internal Extension";
 			sourceTree = "<group>";
 		};
 		45FB51D220495F42009D5806 /* Keyboard */ = {
@@ -634,6 +620,7 @@
 		84BBD01C229D447F009ED851 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				45CE070F204C016500A93175 /* Sequence+Batch.swift */,
 				45FB51D120495F42009D5806 /* UIImage+Pasteboard.swift */,
 				45FB51CF20495F42009D5806 /* UIImage+Photos.swift */,
 				45FB51CE20495F42009D5806 /* UIImage+Resized.swift */,
@@ -641,7 +628,9 @@
 				45FB51CB20495F42009D5806 /* UIScrollView+PageNumber.swift */,
 				84FFAC86227AD9EF00FB4998 /* UIStackView+Subviews.swift */,
 				4578CEC82067E6660055440A /* UIView+LongPressAction.swift */,
+				846F1C5C22758B8C00314DC8 /* UIView+Subviews.swift */,
 				450B1C3E206991DD006A2F18 /* UIView+TapAction.swift */,
+				45FB51CA20495F42009D5806 /* UIViewAutoresizing+Extras.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -649,11 +638,15 @@
 		84BBD01D229D44A0009ED851 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				45CE0712204C01DB00A93175 /* Sequence+BatchTests.swift */,
 				84BBD020229D458B009ED851 /* UIImage+PasteboardTests.swift */,
 				84FFACA422801A2000FB4998 /* UIImage+ResizedTests.swift */,
 				84FFACA622801AF200FB4998 /* UIImage+TintedTests.swift */,
+				84BBD035229D9531009ED851 /* UIStackView+SubviewsTests.swift */,
 				84BBD00E229D28FD009ED851 /* UIView+LongPressActionTests.swift */,
+				84BBD039229D96C9009ED851 /* UIView+SubviewsTests.swift */,
 				84BBD010229D29BA009ED851 /* UIView+TapActionTests.swift */,
+				84BBD03D229D986A009ED851 /* UIViewAutoresizing+ExtrasTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1044,9 +1037,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84BBD03E229D986A009ED851 /* UIViewAutoresizing+ExtrasTests.swift in Sources */,
 				84FFACA322800D8C00FB4998 /* MockKeyboardActionHandler.swift in Sources */,
 				84FFAD262287752300FB4998 /* KeyboardActionTests.swift in Sources */,
 				84BBD01F229D4513009ED851 /* MockPasteboard.swift in Sources */,
+				84BBD036229D9531009ED851 /* UIStackView+SubviewsTests.swift in Sources */,
+				84BBD03A229D96C9009ED851 /* UIView+SubviewsTests.swift in Sources */,
 				84FFACA122800D7600FB4998 /* MockInputViewController.swift in Sources */,
 				84851DE32166A3EF00DE8886 /* KeyboardSettingTests.swift in Sources */,
 				84BBD011229D29BA009ED851 /* UIView+TapActionTests.swift in Sources */,
