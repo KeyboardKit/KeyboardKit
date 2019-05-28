@@ -31,7 +31,7 @@ public protocol KeyboardButton: KeyboardButtonRowComponent {
 
 public extension KeyboardButton {
     
-    func animateStandardPress(factor: CGFloat = 1.1, completion: (() -> ())? = nil) {
+    func animateStandardPress(factor: CGFloat = 1.18, completion: (() -> ())? = nil) {
         let transform = CGAffineTransform(scaleX: factor, y: factor)
         animateTransform(transform, completion: completion)
     }
@@ -53,7 +53,7 @@ private extension KeyboardButton {
         UIView.animate(
             withDuration: 0.123,
             delay: 0,
-            options: [.curveEaseOut],
+            options: [.curveEaseOut, .allowUserInteraction],
             animations: { [weak self] in self?.transform = transform },
             completion: { _ in completion?() }
         )
