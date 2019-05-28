@@ -60,16 +60,16 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     
-    // MARK: - Action Functions
+    // MARK: - Types
     
-    open func tapAction(for view: UIView, action: KeyboardAction) -> (() -> ())? {
-        if let inputAction = action.standardInputViewControllerAction {
-            return { inputAction(self.inputViewController) }
-        }
-        if let proxyAction = action.standardTextDocumentProxyAction {
-            return { proxyAction(self.textDocumentProxy) }
-        }
-        return nil
+    public typealias GestureAction = (() -> ())
+    
+    
+    // MARK: - Actions
+    
+    open func tapAction(for view: UIView, action: KeyboardAction) -> GestureAction? {
+        return inputViewControllerAction(for: action)
+            ?? textDocumentProxyAction(for: action)
     }
     
     open func longPressAction(for view: UIView, action: KeyboardAction) -> (() -> ())? {
@@ -77,7 +77,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     
-    // MARK: - Handling Functions
+    // MARK: - Action Handling
     
     open func handleTap(on action: KeyboardAction, view: UIView) {
         guard let tapAction = tapAction(for: view, action: action) else { return }
@@ -100,5 +100,21 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     open func giveHapticFeedbackForLongPress(on action: KeyboardAction) {
         longPressHapticFeedback.trigger()
+    }
+}
+
+
+// MARK: - Private Functions
+
+private extension StandardKeyboardActionHandler {
+    
+    func inputViewControllerAction(for action: KeyboardAction) -> GestureAction? {
+        guard let inputAction = action.standardInputViewControllerAction else { return nil }
+        return { inputAction(self.inputViewController) }
+    }
+    
+    func textDocumentProxyAction(for action: KeyboardAction) -> GestureAction? {
+        guard let proxyAction = action.standardTextDocumentProxyAction else { return nil }
+        return { proxyAction(self.textDocumentProxy) }
     }
 }
