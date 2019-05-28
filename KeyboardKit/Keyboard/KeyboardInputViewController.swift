@@ -76,8 +76,8 @@ open class KeyboardInputViewController: UIInputViewController {
     // MARK: - Public Functions
     
     open func addKeyboardGestures(to button: KeyboardButton) {
-        button.removeTapGestureRecognizers()
-        button.removeLongPressGestureRecognizers()
+        button.removeTapAction()
+        button.removeLongPressAction()
         if button.action == .switchKeyboard { return addSwitchKeyboardGesture(to: button) }
         addTapGesture(to: button)
         addLongPressGesture(to: button)
@@ -103,13 +103,13 @@ private extension KeyboardInputViewController {
     }
     
     func addTapGesture(to button: KeyboardButton) {
-        button.addTapGestureRecognizer { [weak self] in
+        button.addTapAction { [weak self] in
             self?.keyboardActionHandler.handleTap(on: button.action, view: button)
         }
     }
     
     func addLongPressGesture(to button: KeyboardButton) {
-        button.addLongPressGestureRecognizer { [weak self] in
+        button.addLongPressAction { [weak self] in
             self?.keyboardActionHandler.handleLongPress(on: button.action, view: button)
         }
     }

@@ -14,6 +14,9 @@
  To customize the appearance, you can modify the `appearance`
  property. You can also override the `style` functions.
  
+ TODO: This should be refactored to use the appearance proxy
+ styling approach, e.g. combined with theme classes.
+ 
 */
 
 import UIKit

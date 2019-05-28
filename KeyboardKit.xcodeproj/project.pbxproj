@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		450B1C3F206991DD006A2F18 /* UIView+ActionTapGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450B1C3E206991DD006A2F18 /* UIView+ActionTapGesture.swift */; };
+		450B1C3F206991DD006A2F18 /* UIView+TapAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450B1C3E206991DD006A2F18 /* UIView+TapAction.swift */; };
 		450B1C6E206A2981006A2F18 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 450B1C46206A2980006A2F18 /* info.png */; };
 		450B1C6F206A2981006A2F18 /* rss.png in Resources */ = {isa = PBXBuildFile; fileRef = 450B1C47206A2980006A2F18 /* rss.png */; };
 		450B1C70206A2981006A2F18 /* warning.png in Resources */ = {isa = PBXBuildFile; fileRef = 450B1C48206A2980006A2F18 /* warning.png */; };
@@ -61,7 +61,7 @@
 		450B1CBC206A298A006A2F18 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 450B1C6C206A2980006A2F18 /* refresh.png */; };
 		450B1CBD206A298A006A2F18 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 450B1C6D206A2980006A2F18 /* image.png */; };
 		4542496C2059BA9C00CD0E87 /* KeyboardSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4542496B2059BA9C00CD0E87 /* KeyboardSetting.swift */; };
-		4578CEC92067E6660055440A /* UIView+ActionLongPressGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578CEC82067E6660055440A /* UIView+ActionLongPressGesture.swift */; };
+		4578CEC92067E6660055440A /* UIView+LongPressAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578CEC82067E6660055440A /* UIView+LongPressAction.swift */; };
 		45A0D81E205892B900557A93 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45FB519C20495C8A009D5806 /* Images.xcassets */; };
 		45CE0710204C016500A93175 /* Sequence+Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CE070F204C016500A93175 /* Sequence+Batch.swift */; };
 		45CE0713204C01DB00A93175 /* Sequence+BatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CE0712204C01DB00A93175 /* Sequence+BatchTests.swift */; };
@@ -209,7 +209,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		450B1C3E206991DD006A2F18 /* UIView+ActionTapGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ActionTapGesture.swift"; sourceTree = "<group>"; };
+		450B1C3E206991DD006A2F18 /* UIView+TapAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+TapAction.swift"; sourceTree = "<group>"; };
 		450B1C46206A2980006A2F18 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		450B1C47206A2980006A2F18 /* rss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rss.png; sourceTree = "<group>"; };
 		450B1C48206A2980006A2F18 /* warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning.png; sourceTree = "<group>"; };
@@ -238,7 +238,7 @@
 		450B1C6D206A2980006A2F18 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		4530CC0C2079EBF400481162 /* RELEASE_NOTES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = RELEASE_NOTES.md; sourceTree = "<group>"; };
 		4542496B2059BA9C00CD0E87 /* KeyboardSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSetting.swift; sourceTree = "<group>"; };
-		4578CEC82067E6660055440A /* UIView+ActionLongPressGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ActionLongPressGesture.swift"; sourceTree = "<group>"; };
+		4578CEC82067E6660055440A /* UIView+LongPressAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+LongPressAction.swift"; sourceTree = "<group>"; };
 		45CE070F204C016500A93175 /* Sequence+Batch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Batch.swift"; sourceTree = "<group>"; };
 		45CE0712204C01DB00A93175 /* Sequence+BatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+BatchTests.swift"; sourceTree = "<group>"; };
 		45D1495120585DD5009EF441 /* KeyboardInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputViewController.swift; sourceTree = "<group>"; };
@@ -442,8 +442,8 @@
 			children = (
 				84511D34227109CD00904FE0 /* Actions */,
 				45FB51C620495F41009D5806 /* Alerts */,
-				45FB51C920495F42009D5806 /* Internal Extension */,
 				84511D582273143500904FE0 /* Feedback */,
+				45FB51C920495F42009D5806 /* Internal Extension */,
 				45FB51D220495F42009D5806 /* Keyboard */,
 				845D6BB6224D651D0025B6C4 /* Supporting Files */,
 				84F8DF38229193680079BD3D /* UI */,
@@ -515,9 +515,9 @@
 			isa = PBXGroup;
 			children = (
 				45CE070F204C016500A93175 /* Sequence+Batch.swift */,
-				4578CEC82067E6660055440A /* UIView+ActionLongPressGesture.swift */,
-				450B1C3E206991DD006A2F18 /* UIView+ActionTapGesture.swift */,
+				4578CEC82067E6660055440A /* UIView+LongPressAction.swift */,
 				846F1C5C22758B8C00314DC8 /* UIView+Subviews.swift */,
+				450B1C3E206991DD006A2F18 /* UIView+TapAction.swift */,
 				45FB51CA20495F42009D5806 /* UIViewAutoresizing+Extras.swift */,
 			);
 			path = "Internal Extension";
@@ -986,11 +986,11 @@
 				84FFAD2F228A189000FB4998 /* UIView+Nib.swift in Sources */,
 				846F1C6722764AA000314DC8 /* KeyboardButtonView.swift in Sources */,
 				45FB51DE20495F42009D5806 /* UIViewAutoresizing+Extras.swift in Sources */,
-				4578CEC92067E6660055440A /* UIView+ActionLongPressGesture.swift in Sources */,
+				4578CEC92067E6660055440A /* UIView+LongPressAction.swift in Sources */,
 				45CE0710204C016500A93175 /* Sequence+Batch.swift in Sources */,
 				45FB51DF20495F42009D5806 /* UIScrollView+PageNumber.swift in Sources */,
 				45FCD01C2059E09E0072157A /* UIImage+Tinted.swift in Sources */,
-				450B1C3F206991DD006A2F18 /* UIView+ActionTapGesture.swift in Sources */,
+				450B1C3F206991DD006A2F18 /* UIView+TapAction.swift in Sources */,
 				45FB51E620495F42009D5806 /* KeyboardAction.swift in Sources */,
 				84511D25226FA84800904FE0 /* KeyboardCollectionView.swift in Sources */,
 				84F8DFBC229356A30079BD3D /* VerticalKeyboardComponent.swift in Sources */,

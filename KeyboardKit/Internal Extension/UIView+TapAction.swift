@@ -21,7 +21,7 @@ extension UIView {
     
     typealias TapAction = (() -> Void)
     
-    func addTapGestureRecognizer(numberOfTapsRequired: Int = 1, action: TapAction?) {
+    func addTapAction(numberOfTapsRequired: Int = 1, action: TapAction?) {
         tapAction = action
         isUserInteractionEnabled = true
         let selector = #selector(handleTap)
@@ -30,7 +30,7 @@ extension UIView {
         addGestureRecognizer(recognizer)
     }
     
-    func removeTapGestureRecognizers() {
+    func removeTapAction() {
         guard let gestures = gestureRecognizers else { return }
         let taps = gestures.filter { $0 is UITapGestureRecognizer }
         taps.forEach { removeGestureRecognizer($0) }

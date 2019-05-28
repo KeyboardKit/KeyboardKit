@@ -21,7 +21,7 @@ extension UIView {
     
     typealias LongPressAction = (() -> Void)
     
-    func addLongPressGestureRecognizer(action: LongPressAction?) {
+    func addLongPressAction(action: LongPressAction?) {
         longPressAction = action
         isUserInteractionEnabled = true
         let selector = #selector(handleLongPress)
@@ -29,7 +29,7 @@ extension UIView {
         addGestureRecognizer(recognizer)
     }
     
-    func removeLongPressGestureRecognizers() {
+    func removeLongPressAction() {
         guard let gestures = gestureRecognizers else { return }
         let longPresses = gestures.filter { $0 is UILongPressGestureRecognizer }
         longPresses.forEach { removeGestureRecognizer($0) }

@@ -37,6 +37,10 @@ public enum HapticFeedback: CaseIterable {
 
 public extension HapticFeedback {
     
+    func prepare() {
+        HapticFeedback.prepare(self)
+    }
+    
     static func prepare(_ feedback: HapticFeedback) {
         switch feedback {
         case .error, .success, .warning: notificationGenerator.prepare()
@@ -48,8 +52,8 @@ public extension HapticFeedback {
         }
     }
     
-    func prepare() {
-        HapticFeedback.prepare(self)
+    func trigger() {
+        HapticFeedback.trigger(self)
     }
     
     static func trigger(_ feedback: HapticFeedback) {
@@ -64,14 +68,10 @@ public extension HapticFeedback {
         case .none: return
         }
     }
-    
-    func trigger() {
-        HapticFeedback.trigger(self)
-    }
 }
 
 
-// MARK: - Private Functions
+// MARK: - Private Trigger Functions
 
 private extension HapticFeedback {
     
