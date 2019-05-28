@@ -413,8 +413,6 @@
 			isa = PBXGroup;
 			children = (
 				45CE0712204C01DB00A93175 /* Sequence+BatchTests.swift */,
-				84BBD00E229D28FD009ED851 /* UIView+LongPressActionTests.swift */,
-				84BBD010229D29BA009ED851 /* UIView+TapActionTests.swift */,
 			);
 			path = "Internal Extensions";
 			sourceTree = "<group>";
@@ -448,6 +446,7 @@
 			children = (
 				84511D34227109CD00904FE0 /* Actions */,
 				45FB51C620495F41009D5806 /* Alerts */,
+				84BBD01C229D447F009ED851 /* Extensions */,
 				84511D582273143500904FE0 /* Feedback */,
 				45FB51C920495F42009D5806 /* Internal Extension */,
 				45FB51D220495F42009D5806 /* Keyboard */,
@@ -463,6 +462,7 @@
 			children = (
 				84FFAC97227FFB2600FB4998 /* Actions */,
 				45FB51EE20495FB4009D5806 /* Alerts */,
+				84BBD01D229D44A0009ED851 /* Extensions */,
 				84FFACA822801E2D00FB4998 /* Feedback */,
 				45CE0711204C01CE00A93175 /* Internal Extensions */,
 				84851DE12166A3CD00DE8886 /* Keyboard */,
@@ -521,9 +521,7 @@
 			isa = PBXGroup;
 			children = (
 				45CE070F204C016500A93175 /* Sequence+Batch.swift */,
-				4578CEC82067E6660055440A /* UIView+LongPressAction.swift */,
 				846F1C5C22758B8C00314DC8 /* UIView+Subviews.swift */,
-				450B1C3E206991DD006A2F18 /* UIView+TapAction.swift */,
 				45FB51CA20495F42009D5806 /* UIViewAutoresizing+Extras.swift */,
 			);
 			path = "Internal Extension";
@@ -629,16 +627,36 @@
 			path = Keyboard;
 			sourceTree = "<group>";
 		};
-		84F8DF38229193680079BD3D /* UI */ = {
+		84BBD01C229D447F009ED851 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				84F8DF39229193780079BD3D /* Shadow.swift */,
 				45FB51D120495F42009D5806 /* UIImage+Pasteboard.swift */,
 				45FB51CF20495F42009D5806 /* UIImage+Photos.swift */,
 				45FB51CE20495F42009D5806 /* UIImage+Resized.swift */,
 				45FCD01B2059E09E0072157A /* UIImage+Tinted.swift */,
 				45FB51CB20495F42009D5806 /* UIScrollView+PageNumber.swift */,
 				84FFAC86227AD9EF00FB4998 /* UIStackView+Subviews.swift */,
+				4578CEC82067E6660055440A /* UIView+LongPressAction.swift */,
+				450B1C3E206991DD006A2F18 /* UIView+TapAction.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		84BBD01D229D44A0009ED851 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				84FFACA422801A2000FB4998 /* UIImage+ResizedTests.swift */,
+				84FFACA622801AF200FB4998 /* UIImage+TintedTests.swift */,
+				84BBD00E229D28FD009ED851 /* UIView+LongPressActionTests.swift */,
+				84BBD010229D29BA009ED851 /* UIView+TapActionTests.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		84F8DF38229193680079BD3D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				84F8DF39229193780079BD3D /* Shadow.swift */,
 				45FCD01D2059E0CD0072157A /* UIView+Nib.swift */,
 				84F8DF3A229193780079BD3D /* UIView+Shadow.swift */,
 			);
@@ -648,8 +666,6 @@
 		84F8DF3D2291959C0079BD3D /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				84FFACA422801A2000FB4998 /* UIImage+ResizedTests.swift */,
-				84FFACA622801AF200FB4998 /* UIImage+TintedTests.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";

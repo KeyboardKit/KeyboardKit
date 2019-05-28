@@ -17,7 +17,7 @@
 
 import UIKit
 
-extension UIView {
+public extension UIView {
     
     typealias LongPressAction = (() -> Void)
     

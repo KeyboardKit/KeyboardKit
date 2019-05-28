@@ -1,6 +1,11 @@
 # Release Notes
 
 
+## 2.1.0
+
+This version adds more unit tests and converts some extensions from being internal to public. 
+
+
 ## 2.0.1
 
 This version adds a public shadow extension to the main library and shuffles classes and extensions around. It also restructures the example project to make it less cluttered.
