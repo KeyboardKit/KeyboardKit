@@ -117,6 +117,8 @@
 		84BBD03A229D96C9009ED851 /* UIView+SubviewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD039229D96C9009ED851 /* UIView+SubviewsTests.swift */; };
 		84BBD03E229D986A009ED851 /* UIViewAutoresizing+ExtrasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD03D229D986A009ED851 /* UIViewAutoresizing+ExtrasTests.swift */; };
 		84BBD046229D99C3009ED851 /* KeyboardInputViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD045229D99C3009ED851 /* KeyboardInputViewControllerTests.swift */; };
+		84BBD048229DA2A8009ED851 /* UIView+NibTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD047229DA2A8009ED851 /* UIView+NibTests.swift */; };
+		84BBD04A229DA387009ED851 /* UIView+ShadowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD049229DA387009ED851 /* UIView+ShadowTests.swift */; };
 		84C259462290088D00CEE594 /* KeyboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C259452290088D00CEE594 /* KeyboardType.swift */; };
 		84F8DF3B2291950F0079BD3D /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8DF3A229193780079BD3D /* UIView+Shadow.swift */; };
 		84F8DF3C229195130079BD3D /* Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8DF39229193780079BD3D /* Shadow.swift */; };
@@ -310,6 +312,8 @@
 		84BBD039229D96C9009ED851 /* UIView+SubviewsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+SubviewsTests.swift"; sourceTree = "<group>"; };
 		84BBD03D229D986A009ED851 /* UIViewAutoresizing+ExtrasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewAutoresizing+ExtrasTests.swift"; sourceTree = "<group>"; };
 		84BBD045229D99C3009ED851 /* KeyboardInputViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputViewControllerTests.swift; sourceTree = "<group>"; };
+		84BBD047229DA2A8009ED851 /* UIView+NibTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NibTests.swift"; sourceTree = "<group>"; };
+		84BBD049229DA387009ED851 /* UIView+ShadowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ShadowTests.swift"; sourceTree = "<group>"; };
 		84C259452290088D00CEE594 /* KeyboardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardType.swift; sourceTree = "<group>"; };
 		84F8DF39229193780079BD3D /* Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadow.swift; sourceTree = "<group>"; };
 		84F8DF3A229193780079BD3D /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
@@ -454,7 +458,7 @@
 				84511D582273143500904FE0 /* Feedback */,
 				45FB51D220495F42009D5806 /* Keyboard */,
 				845D6BB6224D651D0025B6C4 /* Supporting Files */,
-				84F8DF38229193680079BD3D /* UI */,
+				84F8DF38229193680079BD3D /* Shadow */,
 				84511D23226FA83600904FE0 /* Views */,
 			);
 			path = KeyboardKit;
@@ -463,6 +467,7 @@
 		45FB518220495C73009D5806 /* KeyboardKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				84BBD04B229DA38C009ED851 /* Shadow */,
 				84FFAC97227FFB2600FB4998 /* Actions */,
 				45FB51EE20495FB4009D5806 /* Alerts */,
 				84BBD01D229D44A0009ED851 /* Extensions */,
@@ -631,6 +636,7 @@
 				45FB51CB20495F42009D5806 /* UIScrollView+PageNumber.swift */,
 				84FFAC86227AD9EF00FB4998 /* UIStackView+Subviews.swift */,
 				4578CEC82067E6660055440A /* UIView+LongPressAction.swift */,
+				45FCD01D2059E0CD0072157A /* UIView+Nib.swift */,
 				846F1C5C22758B8C00314DC8 /* UIView+Subviews.swift */,
 				450B1C3E206991DD006A2F18 /* UIView+TapAction.swift */,
 				45FB51CA20495F42009D5806 /* UIViewAutoresizing+Extras.swift */,
@@ -647,6 +653,7 @@
 				84FFACA622801AF200FB4998 /* UIImage+TintedTests.swift */,
 				84BBD035229D9531009ED851 /* UIStackView+SubviewsTests.swift */,
 				84BBD00E229D28FD009ED851 /* UIView+LongPressActionTests.swift */,
+				84BBD047229DA2A8009ED851 /* UIView+NibTests.swift */,
 				84BBD039229D96C9009ED851 /* UIView+SubviewsTests.swift */,
 				84BBD010229D29BA009ED851 /* UIView+TapActionTests.swift */,
 				84BBD03D229D986A009ED851 /* UIViewAutoresizing+ExtrasTests.swift */,
@@ -654,14 +661,21 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		84F8DF38229193680079BD3D /* UI */ = {
+		84BBD04B229DA38C009ED851 /* Shadow */ = {
+			isa = PBXGroup;
+			children = (
+				84BBD049229DA387009ED851 /* UIView+ShadowTests.swift */,
+			);
+			path = Shadow;
+			sourceTree = "<group>";
+		};
+		84F8DF38229193680079BD3D /* Shadow */ = {
 			isa = PBXGroup;
 			children = (
 				84F8DF39229193780079BD3D /* Shadow.swift */,
-				45FCD01D2059E0CD0072157A /* UIView+Nib.swift */,
 				84F8DF3A229193780079BD3D /* UIView+Shadow.swift */,
 			);
-			path = UI;
+			path = Shadow;
 			sourceTree = "<group>";
 		};
 		84F8DF3D2291959C0079BD3D /* UI */ = {
@@ -1040,6 +1054,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84BBD048229DA2A8009ED851 /* UIView+NibTests.swift in Sources */,
+				84BBD04A229DA387009ED851 /* UIView+ShadowTests.swift in Sources */,
 				84BBD03E229D986A009ED851 /* UIViewAutoresizing+ExtrasTests.swift in Sources */,
 				84FFACA322800D8C00FB4998 /* MockKeyboardActionHandler.swift in Sources */,
 				84FFAD262287752300FB4998 /* KeyboardActionTests.swift in Sources */,
