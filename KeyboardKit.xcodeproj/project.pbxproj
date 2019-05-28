@@ -109,6 +109,8 @@
 		84851A6E2277B11100477705 /* DemoButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84851A6D2277B11100477705 /* DemoButton.xib */; };
 		84851A73227888BC00477705 /* HapticFeedback+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851A72227888BC00477705 /* HapticFeedback+Keyboard.swift */; };
 		84851DE32166A3EF00DE8886 /* KeyboardSettingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84851DE22166A3EF00DE8886 /* KeyboardSettingTests.swift */; };
+		84BBD00F229D28FD009ED851 /* UIView+LongPressActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD00E229D28FD009ED851 /* UIView+LongPressActionTests.swift */; };
+		84BBD011229D29BA009ED851 /* UIView+TapActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBD010229D29BA009ED851 /* UIView+TapActionTests.swift */; };
 		84C259462290088D00CEE594 /* KeyboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C259452290088D00CEE594 /* KeyboardType.swift */; };
 		84F8DF3B2291950F0079BD3D /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8DF3A229193780079BD3D /* UIView+Shadow.swift */; };
 		84F8DF3C229195130079BD3D /* Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8DF39229193780079BD3D /* Shadow.swift */; };
@@ -294,6 +296,8 @@
 		84851A6D2277B11100477705 /* DemoButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DemoButton.xib; sourceTree = "<group>"; };
 		84851A72227888BC00477705 /* HapticFeedback+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HapticFeedback+Keyboard.swift"; sourceTree = "<group>"; };
 		84851DE22166A3EF00DE8886 /* KeyboardSettingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSettingTests.swift; sourceTree = "<group>"; };
+		84BBD00E229D28FD009ED851 /* UIView+LongPressActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+LongPressActionTests.swift"; sourceTree = "<group>"; };
+		84BBD010229D29BA009ED851 /* UIView+TapActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+TapActionTests.swift"; sourceTree = "<group>"; };
 		84C259452290088D00CEE594 /* KeyboardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardType.swift; sourceTree = "<group>"; };
 		84F8DF39229193780079BD3D /* Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadow.swift; sourceTree = "<group>"; };
 		84F8DF3A229193780079BD3D /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
@@ -409,6 +413,8 @@
 			isa = PBXGroup;
 			children = (
 				45CE0712204C01DB00A93175 /* Sequence+BatchTests.swift */,
+				84BBD00E229D28FD009ED851 /* UIView+LongPressActionTests.swift */,
+				84BBD010229D29BA009ED851 /* UIView+TapActionTests.swift */,
 			);
 			path = "Internal Extensions";
 			sourceTree = "<group>";
@@ -1020,10 +1026,12 @@
 				84FFAD262287752300FB4998 /* KeyboardActionTests.swift in Sources */,
 				84FFACA122800D7600FB4998 /* MockInputViewController.swift in Sources */,
 				84851DE32166A3EF00DE8886 /* KeyboardSettingTests.swift in Sources */,
+				84BBD011229D29BA009ED851 /* UIView+TapActionTests.swift in Sources */,
 				84FFACA522801A2000FB4998 /* UIImage+ResizedTests.swift in Sources */,
 				84FFACAA22801E3B00FB4998 /* HapticFeedback+KeyboardTests.swift in Sources */,
 				45CE0713204C01DB00A93175 /* Sequence+BatchTests.swift in Sources */,
 				84FFACA722801AF200FB4998 /* UIImage+TintedTests.swift in Sources */,
+				84BBD00F229D28FD009ED851 /* UIView+LongPressActionTests.swift in Sources */,
 				84FFAC9B2280097B00FB4998 /* StandardKeyboardActionHandlerTests.swift in Sources */,
 				45FB51F020495FB4009D5806 /* ToastAlertTests.swift in Sources */,
 			);
