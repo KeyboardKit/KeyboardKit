@@ -16,7 +16,7 @@
 
 import UIKit
 
-public protocol PagedKeyboardComponent: AnyObject {
+public protocol PagedKeyboardComponent: UIView {
 
     var id: String { get }
     
@@ -26,11 +26,14 @@ public protocol PagedKeyboardComponent: AnyObject {
     var numberOfPages: Int { get }
 }
 
-public extension PagedKeyboardComponent {
+extension PagedKeyboardComponent {
     
-    private var settingsKey: String {
+    var settingsKey: String {
         return KeyboardSetting.currentPageIndex.key(for: id)
     }
+}
+
+public extension PagedKeyboardComponent {
     
     func persistCurrentPageIndex() {
         guard canPersistPageIndex else { return }
