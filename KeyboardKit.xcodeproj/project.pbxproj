@@ -1397,7 +1397,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PMEDFW438U;
+				DEVELOPMENT_TEAM = HKTZUQH8S6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1417,7 +1417,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PMEDFW438U;
+				DEVELOPMENT_TEAM = HKTZUQH8S6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1438,10 +1438,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PMEDFW438U;
+				DEVELOPMENT_TEAM = HKTZUQH8S6;
 				INFOPLIST_FILE = KeyboardKitExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.danielsaidi.KeyboardKitExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aram.KeyboardKitExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1454,10 +1454,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PMEDFW438U;
+				DEVELOPMENT_TEAM = HKTZUQH8S6;
 				INFOPLIST_FILE = KeyboardKitExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.danielsaidi.KeyboardKitExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aram.KeyboardKitExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1468,10 +1468,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PMEDFW438U;
+				DEVELOPMENT_TEAM = HKTZUQH8S6;
 				INFOPLIST_FILE = KeyboardKitExampleKeyboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.danielsaidi.KeyboardKitExample.KeyboardKitExampleKeyboard;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aram.KeyboardKitExample.KeyboardKitExampleKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1483,10 +1483,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PMEDFW438U;
+				DEVELOPMENT_TEAM = HKTZUQH8S6;
 				INFOPLIST_FILE = KeyboardKitExampleKeyboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.danielsaidi.KeyboardKitExample.KeyboardKitExampleKeyboard;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aram.KeyboardKitExample.KeyboardKitExampleKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
