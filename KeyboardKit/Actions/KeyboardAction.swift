@@ -37,16 +37,22 @@ public enum KeyboardAction: Equatable {
     backspace,
     capsLock,
     character(String),
+    command,
+    custom(name: String),
     dismissKeyboard,
+    escape,
+    function,
     image(description: String, keyboardImageName: String, imageName: String),
     moveCursorBackward,
     moveCursorForward,
     newLine,
+    option,
     shift,
     shiftDown,
     space,
     switchKeyboard,
-    switchToKeyboard(KeyboardType)
+    switchToKeyboard(KeyboardType),
+    tab
 }
 
 
@@ -60,16 +66,22 @@ public extension KeyboardAction {
         case .backspace: return nil
         case .capsLock: return nil
         case .character: return nil
+        case .command: return nil
+        case .custom: return nil
         case .dismissKeyboard: return { controller in controller?.dismissKeyboard() }
+        case .escape: return nil
+        case .function: return nil
         case .image: return nil
         case .moveCursorBackward: return nil
         case .moveCursorForward: return nil
         case .newLine: return nil
+        case .option: return nil
         case .shift: return nil
         case .shiftDown: return nil
         case .space: return nil
         case .switchKeyboard: return nil
         case .switchToKeyboard: return nil
+        case .tab: return nil
         }
     }
     
@@ -79,16 +91,22 @@ public extension KeyboardAction {
         case .backspace: return { proxy in proxy?.deleteBackward() }
         case .capsLock: return nil
         case .character(let char): return { proxy in proxy?.insertText(char) }
+        case .command: return nil
+        case .custom: return nil
         case .dismissKeyboard: return nil
+        case .escape: return nil
+        case .function: return nil
         case .image: return nil
         case .moveCursorBackward: return { proxy in proxy?.adjustTextPosition(byCharacterOffset: -1) }
         case .moveCursorForward: return { proxy in proxy?.adjustTextPosition(byCharacterOffset: -1) }
         case .newLine: return { proxy in proxy?.insertText("\n") }
+        case .option: return nil
         case .shift: return nil
         case .shiftDown: return nil
         case .space: return { proxy in proxy?.insertText(" ") }
         case .switchKeyboard: return nil
         case .switchToKeyboard: return nil
+        case .tab: return { proxy in proxy?.insertText("\t") }
         }
     }
 }

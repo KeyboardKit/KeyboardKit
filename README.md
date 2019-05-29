@@ -70,26 +70,36 @@ When you create your own keyboard extension and want to use `KeyboardKit` in it,
 
 ### Keyboard Actions
 
-`KeyboardKit` comes with the following built-in actions, that can be applied to your keyboard buttons:
+`KeyboardKit` comes with a set of actions that can be applied to your keyboard buttons:
 
-* `backspace` - sends a backspace to the text proxy
-* `capsLock°` - can be used to lock the keyboard in upper case
-* `character` - sends a text character to the text proxy
-* `dismissKeyboard` - dismisses the keyboard
+* `backspace` - sends a backspace to the text proxy when `tapped`
+* `capsLock` - can be used to lock the keyboard in upper case
+* `character` - sends a text character to the text proxy when `tapped`
+* `command` - represents the macOS command key
+* `custom(name:)` - a custom fallback if no other actions fits your needs
+* `dismissKeyboard` - dismisses the keyboard when `tapped`
+* `escape` - represents the macOS esc key
+* `function` - represents the macOS fn key
 * `image` - has a description, keyboard image name and image name
-* `moveCursorBackward°` - moves the cursor back one position
-* `moveCursorForward°` - moves the cursor forward one position
-* `newLine` - sends a new line to the text proxy
-* `shift°` - can be used to toggle between upper and lower case
-* `shiftDown°` - can be used to toggle between upper and lower case
-* `space` - sends an empty space to the text proxy
-* `switchKeyboard` - triggers the default keyboard switcher
-* `switchToKeyboard(type)°` - can be used to switch to a specific keyboard type
+* `moveCursorBackward` - moves the cursor back one position when `tapped`
+* `moveCursorForward` - moves the cursor forward one position when `tapped`
+* `newLine` - sends a new line character to the text proxy when `tapped`
+* `option` - represents the macOS option key
+* `shift` - can be used to toggle between upper and lower case
+* `shiftDown` - can be used to toggle between upper and lower case
+* `space` - sends an empty space to the text proxy when `tapped`
+* `switchKeyboard` - triggers the system switcher when `tapped` and `long pressed`
+* `switchToKeyboard(type)` - can be used to switch to a specific keyboard type
+* `tab` - sends a tab character to the text proxy when `tapped`
 * `none`- use this for empty "placeholder" keys that do nothing
 
-Many actions have standard behavior that apply to the input view controller or its text proxy, but the ones that are marked with a ° require custom handling, since their behavior depend on your application.
+`KeyboardInputViewController` has a `keyboardActionHandler` to which you should delegate all actions. It uses a `StandardKeyboardActionHandler` by default, but you can replace with any implementation.
 
-`KeyboardInputViewController` has a `keyboardActionHandler` to which you should delegate all actions. It uses a `StandardKeyboardActionHandler` by default, but you can replace with any `KeyboardActionHandler` you like.
+The `tap` and `long press` behavior described for some actions above is the default behavior that will be automatically applied to a keyboard's buttons if you use the default handler. If you do not, actions only define the standard effect (if any) they should have on input view controllers and text proxies, but you'll have to handle these behaviors in some way.
+
+Most action types have no standard behavior at all, since their behavior depend on your application. For instance, `image` only represents an image button, but there is no universal truth when it comes to how a tapped or long pressed image should be handled.
+
+Some actions in the list represents actions from other platforms. For instance `command`, `function` and `option` doesn't exist in iOS, but may still serve a functional or semantical purpose in your keyboard.
 
 
 ### Keyboard Types

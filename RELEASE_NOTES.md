@@ -1,6 +1,20 @@
 # Release Notes
 
 
+## 2.2.0
+
+This version adds more keyboard actions. Some of these doesn't exist in iOS, like `command` and `option`, but that may serve a functional or semantical purpose:
+
+* `command`
+* `custom(name:)`
+* `escape`
+* `function`
+* `option`
+* `tab`
+
+The new `custom` action is a fallback that you can always use the existing action set is insufficient for your specific app.
+
+
 ## 2.1.0
 
 This version makes a bunch of previously internal extensions public. It also adds a lot more unit tests so that almost all parts of the library are tested.
