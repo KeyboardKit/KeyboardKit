@@ -92,6 +92,9 @@
 		45FB51F720495FFE009D5806 /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45FB51F220495FEF009D5806 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45FB51FF204B3CCD009D5806 /* KeyboardKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FB517520495C73009D5806 /* KeyboardKit.framework */; };
 		45FCD01C2059E09E0072157A /* UIImage+Tinted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FCD01B2059E09E0072157A /* UIImage+Tinted.swift */; };
+		8425F2DA22A086FF0095C598 /* RepeatingGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425F2D922A086FF0095C598 /* RepeatingGestureRecognizer.swift */; };
+		8425F2DC22A088940095C598 /* UIView+RepeatingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425F2DB22A088940095C598 /* UIView+RepeatingAction.swift */; };
+		8425F2DE22A08A270095C598 /* UIView+RepeatingActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425F2DD22A08A270095C598 /* UIView+RepeatingActionTests.swift */; };
 		84511D25226FA84800904FE0 /* KeyboardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D24226FA84800904FE0 /* KeyboardCollectionView.swift */; };
 		84511D29226FACFE00904FE0 /* PagedKeyboardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D28226FACFE00904FE0 /* PagedKeyboardComponent.swift */; };
 		84511D3622710C5D00904FE0 /* KeyboardActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D3522710C5D00904FE0 /* KeyboardActionHandler.swift */; };
@@ -299,6 +302,9 @@
 		45FB5211204B3FB5009D5806 /* Fastfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Fastfile; path = Fastlane/Fastfile; sourceTree = "<group>"; };
 		45FCD01B2059E09E0072157A /* UIImage+Tinted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Tinted.swift"; sourceTree = "<group>"; };
 		45FCD01D2059E0CD0072157A /* UIView+Nib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
+		8425F2D922A086FF0095C598 /* RepeatingGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatingGestureRecognizer.swift; sourceTree = "<group>"; };
+		8425F2DB22A088940095C598 /* UIView+RepeatingAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+RepeatingAction.swift"; sourceTree = "<group>"; };
+		8425F2DD22A08A270095C598 /* UIView+RepeatingActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+RepeatingActionTests.swift"; sourceTree = "<group>"; };
 		84511D24226FA84800904FE0 /* KeyboardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardCollectionView.swift; sourceTree = "<group>"; };
 		84511D28226FACFE00904FE0 /* PagedKeyboardComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedKeyboardComponent.swift; sourceTree = "<group>"; };
 		84511D3522710C5D00904FE0 /* KeyboardActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardActionHandler.swift; sourceTree = "<group>"; };
@@ -591,7 +597,9 @@
 		8425F2D722A082AD0095C598 /* Gestures */ = {
 			isa = PBXGroup;
 			children = (
+				8425F2D922A086FF0095C598 /* RepeatingGestureRecognizer.swift */,
 				4578CEC82067E6660055440A /* UIView+LongPressAction.swift */,
+				8425F2DB22A088940095C598 /* UIView+RepeatingAction.swift */,
 				450B1C3E206991DD006A2F18 /* UIView+TapAction.swift */,
 			);
 			path = Gestures;
@@ -601,6 +609,7 @@
 			isa = PBXGroup;
 			children = (
 				84BBD00E229D28FD009ED851 /* UIView+LongPressActionTests.swift */,
+				8425F2DD22A08A270095C598 /* UIView+RepeatingActionTests.swift */,
 				84BBD010229D29BA009ED851 /* UIView+TapActionTests.swift */,
 			);
 			path = Gestures;
@@ -1109,6 +1118,7 @@
 				84511D25226FA84800904FE0 /* KeyboardCollectionView.swift in Sources */,
 				84F8DFBC229356A30079BD3D /* VerticalKeyboardComponent.swift in Sources */,
 				84851A73227888BC00477705 /* HapticFeedback+Keyboard.swift in Sources */,
+				8425F2DC22A088940095C598 /* UIView+RepeatingAction.swift in Sources */,
 				846F1C5D22758B8C00314DC8 /* UIView+Subviews.swift in Sources */,
 				84511D3622710C5D00904FE0 /* KeyboardActionHandler.swift in Sources */,
 				84F8DFB8229355420079BD3D /* KeyboardToolbarComponent.swift in Sources */,
@@ -1121,6 +1131,7 @@
 				4542496C2059BA9C00CD0E87 /* KeyboardSetting.swift in Sources */,
 				84FFACD822821BB900FB4998 /* KeyboardSpacerView.swift in Sources */,
 				84FFA6AB227AC0E800FB4998 /* KeyboardButtonRowCollectionView.swift in Sources */,
+				8425F2DA22A086FF0095C598 /* RepeatingGestureRecognizer.swift in Sources */,
 				845D6BD7224D769E0025B6C4 /* ToastAlert.swift in Sources */,
 				84F8DF3C229195130079BD3D /* Shadow.swift in Sources */,
 			);
@@ -1133,6 +1144,7 @@
 				84BBD057229DA83A009ED851 /* PagedKeyboardComponentTests.swift in Sources */,
 				84BBD048229DA2A8009ED851 /* UIView+NibTests.swift in Sources */,
 				84BBD04A229DA387009ED851 /* UIView+ShadowTests.swift in Sources */,
+				8425F2DE22A08A270095C598 /* UIView+RepeatingActionTests.swift in Sources */,
 				84BBD061229DB1BE009ED851 /* KeyboardButtonViewTests.swift in Sources */,
 				84BBD069229DBD48009ED851 /* KeyboardButtonRowCollectionViewTests.swift in Sources */,
 				84BBD03E229D986A009ED851 /* UIViewAutoresizing+ExtrasTests.swift in Sources */,

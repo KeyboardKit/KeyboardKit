@@ -11,7 +11,7 @@
 /*
  
  This extension applies tap gesture recognizers using action
- blocks instead of the target/selector pattern.
+ blocks instead of a target and a selector.
  
  */
 
@@ -19,12 +19,12 @@ import UIKit
 
 public extension UIView {
     
-    typealias TapAction = (() -> Void)
+    typealias TapAction = () -> Void
     
-    func addTapAction(numberOfTapsRequired: Int = 1, action: TapAction?) {
+    func addTapAction(numberOfTapsRequired: Int = 1, action: @escaping TapAction) {
         tapAction = action
         isUserInteractionEnabled = true
-        let recognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapAction))
         recognizer.numberOfTapsRequired = numberOfTapsRequired
         addGestureRecognizer(recognizer)
     }
@@ -51,7 +51,7 @@ private extension UIView {
         }
     }
 
-    @objc func handleTap(sender: UITapGestureRecognizer) {
+    @objc func handleTapAction(sender: UITapGestureRecognizer) {
         tapAction?()
     }
 }

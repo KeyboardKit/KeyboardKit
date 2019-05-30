@@ -11,7 +11,7 @@
 /*
  
  This extension applies long press gesture recognizers using
- action blocks instead of the target/selector pattern.
+ action blocks instead of a target and a selector.
  
  */
 
@@ -21,10 +21,10 @@ public extension UIView {
     
     typealias LongPressAction = (() -> Void)
     
-    func addLongPressAction(action: LongPressAction?) {
+    func addLongPressAction(action: @escaping LongPressAction) {
         longPressAction = action
         isUserInteractionEnabled = true
-        let recognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+        let recognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressAction))
         addGestureRecognizer(recognizer)
     }
     
@@ -50,7 +50,7 @@ private extension UIView {
         }
     }
     
-    @objc func handleLongPress(sender: UILongPressGestureRecognizer) {
+    @objc func handleLongPressAction(sender: UILongPressGestureRecognizer) {
         guard sender.state == .began else { return }
         longPressAction?()
     }
