@@ -3,7 +3,7 @@
 
 ## 2.2.0
 
-This version adds more keyboard actions. Some of these doesn't exist in iOS, like `command` and `option`, but that may serve a functional or semantical purpose:
+This version adds more keyboard actions that don't exist in iOS, but that may serve a functional or semantical purpose in your apps:
 
 * `command`
 * `custom(name:)`
@@ -12,7 +12,9 @@ This version adds more keyboard actions. Some of these doesn't exist in iOS, lik
 * `option`
 * `tab`
 
-The new `custom` action is a fallback that you can always use the existing action set is insufficient for your specific app.
+The new `custom` action is a fallback that you can use if the existing action set is insufficient for your specific app.
+
+Thanks to [@arampak](https://github.com/arampak), the demo app now handles shift state and long press better, to make the overall experience much nicer and close to the native keyboard. 
 
 
 ## 2.1.0

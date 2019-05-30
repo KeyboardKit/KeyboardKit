@@ -29,9 +29,9 @@ public extension UIView {
     }
     
     func removeLongPressAction() {
-        guard let gestures = gestureRecognizers else { return }
-        let longPresses = gestures.filter { $0 is UILongPressGestureRecognizer }
-        longPresses.forEach { removeGestureRecognizer($0) }
+        gestureRecognizers?
+            .filter { $0 is UILongPressGestureRecognizer }
+            .forEach { removeGestureRecognizer($0) }
     }
 }
 

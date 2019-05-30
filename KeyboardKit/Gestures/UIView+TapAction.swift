@@ -30,9 +30,9 @@ public extension UIView {
     }
     
     func removeTapAction() {
-        guard let gestures = gestureRecognizers else { return }
-        let taps = gestures.filter { $0 is UITapGestureRecognizer }
-        taps.forEach { removeGestureRecognizer($0) }
+        gestureRecognizers?
+            .filter { $0 is UITapGestureRecognizer }
+            .forEach { removeGestureRecognizer($0) }
     }
 }
 

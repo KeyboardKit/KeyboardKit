@@ -481,6 +481,7 @@
 				84BBD052229DA6A0009ED851 /* Components */,
 				84BBD01C229D447F009ED851 /* Extensions */,
 				84511D582273143500904FE0 /* Feedback */,
+				8425F2D722A082AD0095C598 /* Gestures */,
 				45FB51D220495F42009D5806 /* Keyboard */,
 				84F8DF38229193680079BD3D /* Shadow */,
 				845D6BB6224D651D0025B6C4 /* Supporting Files */,
@@ -497,6 +498,7 @@
 				84BBD053229DA6AA009ED851 /* Components */,
 				84BBD01D229D44A0009ED851 /* Extensions */,
 				84FFACA822801E2D00FB4998 /* Feedback */,
+				8425F2D822A082C50095C598 /* Gestures */,
 				84851DE12166A3CD00DE8886 /* Keyboard */,
 				84FFAC9F22800D6900FB4998 /* Mocks */,
 				84BBD04B229DA38C009ED851 /* Shadow */,
@@ -586,6 +588,24 @@
 			name = "Project Files";
 			sourceTree = "<group>";
 		};
+		8425F2D722A082AD0095C598 /* Gestures */ = {
+			isa = PBXGroup;
+			children = (
+				4578CEC82067E6660055440A /* UIView+LongPressAction.swift */,
+				450B1C3E206991DD006A2F18 /* UIView+TapAction.swift */,
+			);
+			path = Gestures;
+			sourceTree = "<group>";
+		};
+		8425F2D822A082C50095C598 /* Gestures */ = {
+			isa = PBXGroup;
+			children = (
+				84BBD00E229D28FD009ED851 /* UIView+LongPressActionTests.swift */,
+				84BBD010229D29BA009ED851 /* UIView+TapActionTests.swift */,
+			);
+			path = Gestures;
+			sourceTree = "<group>";
+		};
 		84511D23226FA83600904FE0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -655,10 +675,8 @@
 				45FCD01B2059E09E0072157A /* UIImage+Tinted.swift */,
 				45FB51CB20495F42009D5806 /* UIScrollView+PageNumber.swift */,
 				84FFAC86227AD9EF00FB4998 /* UIStackView+Subviews.swift */,
-				4578CEC82067E6660055440A /* UIView+LongPressAction.swift */,
 				45FCD01D2059E0CD0072157A /* UIView+Nib.swift */,
 				846F1C5C22758B8C00314DC8 /* UIView+Subviews.swift */,
-				450B1C3E206991DD006A2F18 /* UIView+TapAction.swift */,
 				45FB51CA20495F42009D5806 /* UIViewAutoresizing+Extras.swift */,
 			);
 			path = Extensions;
@@ -672,10 +690,8 @@
 				84FFACA422801A2000FB4998 /* UIImage+ResizedTests.swift */,
 				84FFACA622801AF200FB4998 /* UIImage+TintedTests.swift */,
 				84BBD035229D9531009ED851 /* UIStackView+SubviewsTests.swift */,
-				84BBD00E229D28FD009ED851 /* UIView+LongPressActionTests.swift */,
 				84BBD047229DA2A8009ED851 /* UIView+NibTests.swift */,
 				84BBD039229D96C9009ED851 /* UIView+SubviewsTests.swift */,
-				84BBD010229D29BA009ED851 /* UIView+TapActionTests.swift */,
 				84BBD03D229D986A009ED851 /* UIViewAutoresizing+ExtrasTests.swift */,
 			);
 			path = Extensions;
