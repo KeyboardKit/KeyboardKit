@@ -17,21 +17,57 @@ import KeyboardKit
 
 class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
+    enum ShiftState {
+        case
+        normal,
+        uppercased,
+        capsLock
+    }
+    
+    var keyboardShiftState = ShiftState.normal
+    
+    var isUppercased: Bool {
+        switch keyboardShiftState {
+        case .normal:
+            return false
+        case .uppercased, .capsLock:
+            return true
+        }
+    }
+    
     var demoViewController: KeyboardViewController? {
         return inputViewController as? KeyboardViewController
     }
     
     override func handleLongPress(on action: KeyboardAction, view: UIView) {
         super.handleLongPress(on: action, view: view)
-        saveImage(for: action)
+        switch action {
+        case .shift:
+            keyboardShiftState = .capsLock
+            demoViewController?.keyboardType = .alphabetic(uppercased: isUppercased)
+            
+        case .image: saveImage(for: action)
+        default:
+            handleTap(on: action, view: view)
+        }
     }
     
     override func handleTap(on action: KeyboardAction, view: UIView) {
         (view as? KeyboardButton)?.animateStandardTap()
         super.handleTap(on: action, view: view)
         switch action {
-        case .shift: demoViewController?.keyboardType = .alphabetic(uppercased: true)
-        case .shiftDown: demoViewController?.keyboardType = .alphabetic(uppercased: false)
+        case .shift:
+            keyboardShiftState = .uppercased
+            demoViewController?.keyboardType = .alphabetic(uppercased: isUppercased)
+        case .shiftDown:
+            keyboardShiftState = .normal
+            demoViewController?.keyboardType = .alphabetic(uppercased: isUppercased)
+        case .character:
+            // shift key only works for next character, then back to regular
+            if keyboardShiftState == .uppercased {
+                keyboardShiftState = .normal
+                demoViewController?.keyboardType = .alphabetic(uppercased: isUppercased)
+            }
         case .switchToKeyboard(let type): demoViewController?.keyboardType = type
         default: copyImage(for: action)
         }
