@@ -1,6 +1,6 @@
 //
 //  UIView+RepeatingAction.swift
-//  KeyboardKit
+//  iExtra
 //
 //  Created by Daniel Saidi on 2019-05-30.
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
