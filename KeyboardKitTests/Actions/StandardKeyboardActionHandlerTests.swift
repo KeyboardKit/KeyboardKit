@@ -19,34 +19,6 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         var recorder: MockKeyboardActionHandler!
         var inputViewController: MockInputViewController!
         
-        var actionsWithTap: [KeyboardAction] {
-            return [
-                .backspace, .dismissKeyboard, .character(""),
-                .moveCursorBackward, .moveCursorForward,
-                .newLine, .space
-            ]
-        }
-        
-        var actionsWithoutTap: [KeyboardAction] {
-            return [
-                .none, .image(description: "", keyboardImageName: "", imageName: ""),
-                .switchKeyboard, .shift
-            ]
-        }
-        
-        var actionsWithLongPress: [KeyboardAction] {
-            return []
-        }
-        
-        var actionsWithoutLongPress: [KeyboardAction] {
-            return [
-                .none, .backspace, .dismissKeyboard, .character(""),
-                .image(description: "", keyboardImageName: "", imageName: ""),
-                .moveCursorBackward, .moveCursorForward,
-                .switchKeyboard, .newLine, .shift, .space
-            ]
-        }
-        
         beforeEach {
             recorder = MockKeyboardActionHandler()
             inputViewController = MockInputViewController()
