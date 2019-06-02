@@ -40,7 +40,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="IbC-mC-CMt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="Sgy-Tt-ege">
                     <variation key="heightClass=regular-widthClass=compact" constant="3"/>

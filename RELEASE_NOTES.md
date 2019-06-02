@@ -14,7 +14,9 @@ This version adds more keyboard actions that don't exist in iOS, but that may se
 
 The new `custom` action is a fallback that you can use if the existing action set is insufficient for your specific app.
 
-Thanks to [@arampak](https://github.com/arampak), the demo app now handles shift state and long press better, to make the overall experience much nicer and close to the native keyboard. 
+I have added a `RepeatingGestureRecognizer` and an extension that you can use to apply it as well. It has a custom initial delay as well as a custom repeat interval, that will let you tap and hold a button to repeat its action. You can try this out by using the backspace button, which will keep on deleting characters as long as you press it, as well as the arrow buttons.
+
+Thanks to [@arampak](https://github.com/arampak), the demo app now handles shift state and long press better, to make the overall experience much nicer and close to the native keyboard. The keyboard buttons also registers tap events over the entire button area, not just the button view.
 
 
 ## 2.1.0
