@@ -73,7 +73,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     open func longPressAction(for view: UIView, action: KeyboardAction) -> (() -> ())? {
-        return nil
+        return tapAction(for: view, action: action)
     }
     
     

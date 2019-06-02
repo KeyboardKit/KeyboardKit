@@ -39,21 +39,23 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
         return inputViewController as? KeyboardViewController
     }
     
+    func animateButtonTap(for view: UIView) {
+        (view as? KeyboardButton)?.animateStandardTap()
+    }
+    
     override func handleLongPress(on action: KeyboardAction, view: UIView) {
-        super.handleLongPress(on: action, view: view)
+        animateButtonTap(for: view)
         switch action {
         case .shift:
             keyboardShiftState = .capsLock
             demoViewController?.keyboardType = .alphabetic(uppercased: isUppercased)
-            
         case .image: saveImage(for: action)
-        default:
-            handleTap(on: action, view: view)
+        default: super.handleLongPress(on: action, view: view)
         }
     }
     
     override func handleTap(on action: KeyboardAction, view: UIView) {
-        (view as? KeyboardButton)?.animateStandardTap()
+        animateButtonTap(for: view)
         super.handleTap(on: action, view: view)
         switch action {
         case .shift:

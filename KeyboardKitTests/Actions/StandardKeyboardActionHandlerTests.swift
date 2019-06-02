@@ -53,9 +53,9 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
                 return handler.longPressAction(for: frame, action: keyboardAction)
             }
             
-            it("is nil for all action types") {
-                expect(action(for: .dismissKeyboard)).to(beNil())
-                expect(action(for: .backspace)).to(beNil())
+            it("is by default the tap action") {
+                expect(action(for: .dismissKeyboard)).toNot(beNil())
+                expect(action(for: .backspace)).toNot(beNil())
                 expect(action(for: .switchKeyboard)).to(beNil())
             }
         }
