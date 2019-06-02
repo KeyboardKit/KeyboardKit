@@ -33,6 +33,7 @@ platform :ios do
       path: [
         "KeyboardKit.podspec",
         "KeyboardKit/Info.plist",
+        "KeyboardKitExample/Info.plist",
         "KeyboardKitExampleKeyboard/Info.plist",
         "KeyboardKitTests/Info.plist"
       ],
