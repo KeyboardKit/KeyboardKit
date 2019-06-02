@@ -17,6 +17,17 @@ import KeyboardKit
 
 class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
+    
+    // MARK: - Initialization
+    
+    public init(inputViewController: UIInputViewController) {
+        super.init(
+            inputViewController: inputViewController,
+            tapHapticFeedback: .standardTapFeedback,
+            longPressHapticFeedback: .standardLongPressFeedback
+        )
+    }
+    
     enum ShiftState {
         case
         normal,
