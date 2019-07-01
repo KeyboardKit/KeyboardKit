@@ -23,7 +23,9 @@ struct AlphabeticKeyboard: DemoKeyboard {
     init(
         uppercased: Bool,
         in viewController: KeyboardViewController) {
-        actions = type(of: self).actions(in: viewController, uppercased: uppercased)
+        actions = type(of: self).actions(
+            uppercased: uppercased,
+            in: viewController)
     }
 
     let actions: KeyboardActionRows
@@ -31,23 +33,21 @@ struct AlphabeticKeyboard: DemoKeyboard {
 
 private extension AlphabeticKeyboard {
     
+    static func actions(
+        uppercased: Bool,
+        in viewController: KeyboardViewController) -> KeyboardActionRows {
+        let leftmost = KeyboardAction.switchToKeyboard(.numeric)
+        return characters(uppercased: uppercased)
+            .mappedToActions()
+            .addingSideActions(uppercased: uppercased)
+            .appending(bottomActions(leftmost: leftmost, for: viewController))
+    }
+    
     static var characters: [[String]] = [
         ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
         ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
         ["z", "x", "c", "v", "b", "n", "m"]
     ]
-    
-    static func actions(
-        in viewController: KeyboardViewController,
-        uppercased: Bool) -> KeyboardActionRows {
-        return characters(uppercased: uppercased)
-            .mappedToActions()
-            .addingSideActions(uppercased: uppercased)
-            .appending(bottomActions(leftmost: .switchToKeyboard(.numeric), for: viewController))
-    }
-}
-
-private extension AlphabeticKeyboard {
     
     static func characters(uppercased: Bool) -> [[String]] {
         return uppercased ? characters.uppercased() : characters

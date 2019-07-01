@@ -26,18 +26,19 @@ struct NumericKeyboard: DemoKeyboard {
 
 private extension NumericKeyboard {
     
+    static func actions(in viewController: KeyboardViewController) -> KeyboardActionRows {
+        let leftmost = KeyboardAction.switchToKeyboard(.alphabetic(uppercased: false))
+        return characters
+            .mappedToActions()
+            .addingSideActions()
+            .appending(bottomActions(leftmost: leftmost, for: viewController))
+    }
+    
     static var characters: [[String]] = [
         ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
         ["-", "/", ":", ";", "(", ")", "$", "&", "@", "\""],
         [".", ",", "?", "!", "´"]
     ]
-    
-    static func actions(in viewController: KeyboardViewController) -> KeyboardActionRows {
-        return characters
-            .mappedToActions()
-            .addingSideActions()
-            .appending(bottomActions(leftmost: .switchToKeyboard(.alphabetic(uppercased: false)), for: viewController))
-    }
 }
 
 private extension Sequence where Iterator.Element == KeyboardActionRow {
