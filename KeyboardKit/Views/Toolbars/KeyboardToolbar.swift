@@ -8,9 +8,12 @@
 
 /*
  
- This class behaves like `KeyboardButtonRow`, but instead of
- providing it with actions and a button creation block, this
- class lets you add any views you like to its `stackView`.
+ Keyboard toolbars are "toolbar rows" that can be added to a
+ `KeyboardInputViewController`s `keyboardStackView`.
+ 
+ This is a base class, that you can inherit to create custom
+ toolbars. It has a horizontal `stackView`, to which you can
+ add any views you like.
  
  */
 

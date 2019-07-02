@@ -9,7 +9,7 @@
 /*
  
  This protocol describes any kind of views that can be added
- to a vertically flowing part of the keyboard.
+ to any vertically flowing part of the keyboard.
  
  */
 

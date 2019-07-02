@@ -8,9 +8,9 @@
 
 /*
  
- Keyboard stack view components are "rows" in the main input
- view controller keyboard stack view, e.g. a toolbar, button
- row, collection view, auto-complete component etc.
+ Keyboard stack view components are "rows" that can be added
+ to your `KeyboardInputViewController`'s `keyboardStackView`,
+ e.g. toolbars, button rows, auto-complete components etc.
  
  */
 
