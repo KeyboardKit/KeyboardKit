@@ -96,33 +96,6 @@ private extension KeyboardViewController {
         default: return
         }
     }
-}
-
-
-// MARK: - Private Functions
-
-private extension KeyboardViewController {
-    
-    func button(for action: KeyboardAction, distribution: UIStackView.Distribution = .equalSpacing) -> UIView {
-        if action == .none { return KeyboardSpacerView(width: 10) }
-        let view = DemoButton.fromNib(owner: self)
-        view.setup(with: action, in: self, distribution: distribution)
-        return view
-    }
-    
-    func buttonRow(for actions: KeyboardActionRow, distribution: UIStackView.Distribution) -> KeyboardButtonRow {
-        return KeyboardButtonRow(height: 50, actions: actions, distribution: distribution) {
-            return button(for: $0, distribution: distribution)
-        }
-    }
-    
-    func buttonRows(for actions: KeyboardActionRows, distribution: UIStackView.Distribution) -> [KeyboardButtonRow] {
-        var rows = actions.map { buttonRow(for: $0, distribution: distribution) }
-        guard rows.count > 2 else { return rows }
-        rows[0].buttonStackView.distribution = .fillEqually
-        rows[1].buttonStackView.distribution = .fillEqually
-        return rows
-    }
     
     func setupAlphabeticKeyboard(uppercased: Bool = false) {
         let keyboard = AlphabeticKeyboard(uppercased: uppercased, in: self)
@@ -137,9 +110,9 @@ private extension KeyboardViewController {
         let buttonsPerRow = isLandscape ? 8 : 6
         let config = KeyboardButtonRowCollectionView.Configuration(rowHeight: 50, rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)
         let view = KeyboardButtonRowCollectionView(actions: keyboard.actions, configuration: config) { [unowned self] in return self.button(for: $0) }
-        let bottom = buttonRows(for: [keyboard.bottomActions], distribution: .fillProportionally)
+        let bottom = buttonRow(for: keyboard.bottomActions, distribution: .fillProportionally)
         keyboardStackView.addArrangedSubview(view)
-        keyboardStackView.addArrangedSubviews(bottom)
+        keyboardStackView.addArrangedSubview(bottom)
     }
     
     func setupNumericKeyboard() {
@@ -152,5 +125,30 @@ private extension KeyboardViewController {
         let keyboard = SymbolicKeyboard(in: self)
         let rows = buttonRows(for: keyboard.actions, distribution: .fillProportionally)
         keyboardStackView.addArrangedSubviews(rows)
+    }
+}
+
+
+// MARK: - Private Button Functions
+
+private extension KeyboardViewController {
+    
+    func button(for action: KeyboardAction, distribution: UIStackView.Distribution = .equalSpacing) -> UIView {
+        if action == .none { return KeyboardSpacerView(width: 10) }
+        let view = DemoButton.fromNib(owner: self)
+        view.setup(with: action, in: self, distribution: distribution)
+        return view
+    }
+    
+    func buttonRow(for actions: KeyboardActionRow, distribution: UIStackView.Distribution) -> KeyboardButtonRow {
+        return KeyboardButtonRow(height: 50, actions: actions, distribution: distribution) {
+            button(for: $0, distribution: distribution)
+        }
+    }
+    
+    func buttonRows(for actionRows: KeyboardActionRows, distribution: UIStackView.Distribution) -> [KeyboardButtonRow] {
+        return actionRows.map {
+            buttonRow(for: $0, distribution: distribution)
+        }
     }
 }
