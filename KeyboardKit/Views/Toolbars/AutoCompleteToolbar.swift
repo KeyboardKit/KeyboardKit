@@ -1,5 +1,5 @@
 //
-//  KeyboardAutocompleteToolbar.swift
+//  AutoCompleteToolbar.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-07-02.
@@ -15,19 +15,25 @@
 
 import UIKit
 
-public class KeyboardAutocompleteToolbar: KeyboardToolbar {
+public class AutoCompleteToolbar: KeyboardToolbar {
 
     public convenience init(
         height: CGFloat,
-        words: [String],
-        buttonCreator: ButtonCreator,
+        buttonCreator: @escaping ButtonCreator,
         alignment: UIStackView.Alignment = .fill,
         distribution: UIStackView.Distribution = .fillEqually) {
         self.init(height: height, alignment: alignment, distribution: distribution)
-        let buttons = words.map { buttonCreator($0) }
-        stackView.addArrangedSubviews(buttons)
+        self.buttonCreator = buttonCreator
+        
     }
     
     public typealias ButtonCreator = (String) -> (UIView)
 
+    public var buttonCreator: ButtonCreator!
+    
+    public func update(with words: [String]) {
+        let buttons = words.map { buttonCreator($0) }
+        stackView.removeAllArrangedSubviews()
+        stackView.addArrangedSubviews(buttons)
+    }
 }

@@ -66,6 +66,22 @@ class KeyboardViewController: KeyboardInputViewController {
     
     let alerter = ToastAlert()
     
+    private lazy var autoCompleteToolbar: AutoCompleteToolbar = {
+        let toolbar = AutoCompleteToolbar(
+            height: 50,
+            buttonCreator: { word in
+                let button = UIButton(type: .system)
+                button.setTitle(word, for: .normal)
+                button.addTapAction { [weak self] in
+                    self?.textDocumentProxy.replaceCurrentWord(with: word)
+                }
+                return button
+            }
+        )
+        toolbar.update(with: ["foo", "bar", "baz"])
+        return toolbar
+    }()
+    
     var keyboardSwitcherAction: KeyboardAction {
         return needsInputModeSwitchKey ? .switchKeyboard : .switchToKeyboard(.emojis)
     }
@@ -140,15 +156,17 @@ private extension KeyboardViewController {
         return view
     }
     
-    func buttonRow(for actions: KeyboardActionRow, distribution: UIStackView.Distribution) -> KeyboardButtonRow {
+    func buttonRow(for actions: KeyboardActionRow, distribution: UIStackView.Distribution) -> KeyboardStackViewComponent {
         return KeyboardButtonRow(height: 50, actions: actions, distribution: distribution) {
             button(for: $0, distribution: distribution)
         }
     }
     
-    func buttonRows(for actionRows: KeyboardActionRows, distribution: UIStackView.Distribution) -> [KeyboardButtonRow] {
-        return actionRows.map {
+    func buttonRows(for actionRows: KeyboardActionRows, distribution: UIStackView.Distribution) -> [KeyboardStackViewComponent] {
+        var rows = actionRows.map {
             buttonRow(for: $0, distribution: distribution)
         }
+        rows.insert(autoCompleteToolbar, at: 0)
+        return rows
     }
 }

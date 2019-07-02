@@ -99,7 +99,7 @@
 		8425F2EE22A426D80095C598 /* UIColor+TappableClear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425F2ED22A426D80095C598 /* UIColor+TappableClear.swift */; };
 		84289E3B22CB20EF00D9B2AC /* UITextDocumentProxy+CurrentWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84289E3A22CB20EF00D9B2AC /* UITextDocumentProxy+CurrentWord.swift */; };
 		84289E3D22CB275700D9B2AC /* UITextDocumentProxy+Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84289E3C22CB275700D9B2AC /* UITextDocumentProxy+Delete.swift */; };
-		84289E3F22CB2DDD00D9B2AC /* KeyboardAutocompleteToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84289E3E22CB2DDD00D9B2AC /* KeyboardAutocompleteToolbar.swift */; };
+		84289E3F22CB2DDD00D9B2AC /* AutoCompleteToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84289E3E22CB2DDD00D9B2AC /* AutoCompleteToolbar.swift */; };
 		84511D25226FA84800904FE0 /* KeyboardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D24226FA84800904FE0 /* KeyboardCollectionView.swift */; };
 		84511D29226FACFE00904FE0 /* PagedKeyboardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D28226FACFE00904FE0 /* PagedKeyboardComponent.swift */; };
 		84511D3622710C5D00904FE0 /* KeyboardActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D3522710C5D00904FE0 /* KeyboardActionHandler.swift */; };
@@ -314,7 +314,7 @@
 		8425F2ED22A426D80095C598 /* UIColor+TappableClear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+TappableClear.swift"; sourceTree = "<group>"; };
 		84289E3A22CB20EF00D9B2AC /* UITextDocumentProxy+CurrentWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextDocumentProxy+CurrentWord.swift"; sourceTree = "<group>"; };
 		84289E3C22CB275700D9B2AC /* UITextDocumentProxy+Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextDocumentProxy+Delete.swift"; sourceTree = "<group>"; };
-		84289E3E22CB2DDD00D9B2AC /* KeyboardAutocompleteToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAutocompleteToolbar.swift; sourceTree = "<group>"; };
+		84289E3E22CB2DDD00D9B2AC /* AutoCompleteToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompleteToolbar.swift; sourceTree = "<group>"; };
 		84511D24226FA84800904FE0 /* KeyboardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardCollectionView.swift; sourceTree = "<group>"; };
 		84511D28226FACFE00904FE0 /* PagedKeyboardComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedKeyboardComponent.swift; sourceTree = "<group>"; };
 		84511D3522710C5D00904FE0 /* KeyboardActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardActionHandler.swift; sourceTree = "<group>"; };
@@ -639,8 +639,8 @@
 		84289E4122CB2F4500D9B2AC /* Toolbars */ = {
 			isa = PBXGroup;
 			children = (
+				84289E3E22CB2DDD00D9B2AC /* AutoCompleteToolbar.swift */,
 				84F8DFB5229351D50079BD3D /* KeyboardToolbar.swift */,
-				84289E3E22CB2DDD00D9B2AC /* KeyboardAutocompleteToolbar.swift */,
 			);
 			path = Toolbars;
 			sourceTree = "<group>";
@@ -1135,7 +1135,7 @@
 				84F8DFB6229351D50079BD3D /* KeyboardToolbar.swift in Sources */,
 				84FFAC87227AD9EF00FB4998 /* UIStackView+Subviews.swift in Sources */,
 				84511D3822710D7100904FE0 /* StandardKeyboardActionHandler.swift in Sources */,
-				84289E3F22CB2DDD00D9B2AC /* KeyboardAutocompleteToolbar.swift in Sources */,
+				84289E3F22CB2DDD00D9B2AC /* AutoCompleteToolbar.swift in Sources */,
 				45D1495220585DD5009EF441 /* KeyboardInputViewController.swift in Sources */,
 				84511D572272E5ED00904FE0 /* HapticFeedback.swift in Sources */,
 				84F8DFBA229355B60079BD3D /* HorizontalKeyboardComponent.swift in Sources */,

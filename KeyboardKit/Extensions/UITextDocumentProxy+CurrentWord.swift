@@ -53,7 +53,8 @@ public extension UITextDocumentProxy {
     
     func replaceCurrentWord(with replacement: String) {
         guard let word = currentWord else { return }
-        adjustTextPosition(byCharacterOffset: currentWordPostCursorComponent?.count ?? 0)
+        let offset = currentWordPostCursorComponent?.count ?? 0
+        adjustTextPosition(byCharacterOffset: offset)
         deleteBackward(times: word.count)
         insertText(replacement)
     }
