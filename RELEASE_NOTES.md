@@ -1,6 +1,15 @@
 # Release Notes
 
 
+## 2.3.0
+
+## 2.3.0
+
+This version adds functionality for working with autocorrect.
+
+There is a new `UITextDocumentProxy+CurrentWord` extension, that helps you get the word that is currently being typed or where the cursor is currently placed.
+
+
 ## 2.2.1
 
 This version solves some major bugs in the repeating gesture recognizer and makes some `public` parts of the library `open`.

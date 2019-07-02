@@ -97,6 +97,7 @@
 		8425F2DE22A08A270095C598 /* UIView+RepeatingActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425F2DD22A08A270095C598 /* UIView+RepeatingActionTests.swift */; };
 		8425F2EC22A1D7220095C598 /* RepeatingGestureRecognizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425F2EB22A1D7210095C598 /* RepeatingGestureRecognizerTests.swift */; };
 		8425F2EE22A426D80095C598 /* UIColor+TappableClear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425F2ED22A426D80095C598 /* UIColor+TappableClear.swift */; };
+		84289E3B22CB20EF00D9B2AC /* UITextDocumentProxy+CurrentWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84289E3A22CB20EF00D9B2AC /* UITextDocumentProxy+CurrentWord.swift */; };
 		84511D25226FA84800904FE0 /* KeyboardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D24226FA84800904FE0 /* KeyboardCollectionView.swift */; };
 		84511D29226FACFE00904FE0 /* PagedKeyboardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D28226FACFE00904FE0 /* PagedKeyboardComponent.swift */; };
 		84511D3622710C5D00904FE0 /* KeyboardActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D3522710C5D00904FE0 /* KeyboardActionHandler.swift */; };
@@ -309,6 +310,7 @@
 		8425F2DD22A08A270095C598 /* UIView+RepeatingActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+RepeatingActionTests.swift"; sourceTree = "<group>"; };
 		8425F2EB22A1D7210095C598 /* RepeatingGestureRecognizerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatingGestureRecognizerTests.swift; sourceTree = "<group>"; };
 		8425F2ED22A426D80095C598 /* UIColor+TappableClear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+TappableClear.swift"; sourceTree = "<group>"; };
+		84289E3A22CB20EF00D9B2AC /* UITextDocumentProxy+CurrentWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextDocumentProxy+CurrentWord.swift"; sourceTree = "<group>"; };
 		84511D24226FA84800904FE0 /* KeyboardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardCollectionView.swift; sourceTree = "<group>"; };
 		84511D28226FACFE00904FE0 /* PagedKeyboardComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedKeyboardComponent.swift; sourceTree = "<group>"; };
 		84511D3522710C5D00904FE0 /* KeyboardActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardActionHandler.swift; sourceTree = "<group>"; };
@@ -683,16 +685,17 @@
 			isa = PBXGroup;
 			children = (
 				45CE070F204C016500A93175 /* Sequence+Batch.swift */,
+				8425F2ED22A426D80095C598 /* UIColor+TappableClear.swift */,
 				45FB51D120495F42009D5806 /* UIImage+Pasteboard.swift */,
 				45FB51CF20495F42009D5806 /* UIImage+Photos.swift */,
 				45FB51CE20495F42009D5806 /* UIImage+Resized.swift */,
 				45FCD01B2059E09E0072157A /* UIImage+Tinted.swift */,
 				45FB51CB20495F42009D5806 /* UIScrollView+PageNumber.swift */,
 				84FFAC86227AD9EF00FB4998 /* UIStackView+Subviews.swift */,
+				84289E3A22CB20EF00D9B2AC /* UITextDocumentProxy+CurrentWord.swift */,
 				45FCD01D2059E0CD0072157A /* UIView+Nib.swift */,
 				846F1C5C22758B8C00314DC8 /* UIView+Subviews.swift */,
 				45FB51CA20495F42009D5806 /* UIViewAutoresizing+Extras.swift */,
-				8425F2ED22A426D80095C598 /* UIColor+TappableClear.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1126,6 +1129,7 @@
 				84F8DFBC229356A30079BD3D /* VerticalKeyboardComponent.swift in Sources */,
 				84851A73227888BC00477705 /* HapticFeedback+Keyboard.swift in Sources */,
 				8425F2DC22A088940095C598 /* UIView+RepeatingAction.swift in Sources */,
+				84289E3B22CB20EF00D9B2AC /* UITextDocumentProxy+CurrentWord.swift in Sources */,
 				846F1C5D22758B8C00314DC8 /* UIView+Subviews.swift in Sources */,
 				84511D3622710C5D00904FE0 /* KeyboardActionHandler.swift in Sources */,
 				84F8DFB8229355420079BD3D /* KeyboardToolbarComponent.swift in Sources */,
