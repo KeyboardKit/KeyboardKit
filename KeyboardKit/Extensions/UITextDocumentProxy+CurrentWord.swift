@@ -14,7 +14,7 @@
  The two component properties represent the part of the word
  that is before and after the cursor.
  
- TODO: Unit test
+ TODO: Unit test these extensions
  
  */
 
@@ -49,6 +49,13 @@ public extension UITextDocumentProxy {
             result = result ?? word ?? ""
         }
         return result
+    }
+    
+    func replaceCurrentWord(with replacement: String) {
+        guard let word = currentWord else { return }
+        adjustTextPosition(byCharacterOffset: currentWordPostCursorComponent?.count ?? 0)
+        deleteBackward(times: word.count)
+        insertText(replacement)
     }
 }
 
