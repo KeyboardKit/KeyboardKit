@@ -28,29 +28,3 @@ extension DemoKeyboard {
         return includeEmojiAction ? actions : actions.filter { $0 != .switchToKeyboard(.emojis) }
     }
 }
-
-
-// MARK: - Character Extensions
-
-extension Sequence where Iterator.Element == [String] {
-    
-    func uppercased() -> [Iterator.Element] {
-        return map { $0.map { $0.uppercased() } }
-    }
-    
-    func mappedToActions() -> KeyboardActionRows {
-        return map { $0.map { .character($0) } }
-    }
-}
-
-
-// MARK: - Action Extensions
-
-extension Sequence where Iterator.Element == KeyboardActionRow {
-    
-    func appending(_ actions: KeyboardActionRow) -> KeyboardActionRows {
-        var result = map { $0 }
-        result.append(actions)
-        return result
-    }
-}

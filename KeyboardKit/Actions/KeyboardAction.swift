@@ -26,10 +26,6 @@
 
 import UIKit
 
-public typealias KeyboardActionRow = [KeyboardAction]
-
-public typealias KeyboardActionRows = [KeyboardActionRow]
-
 public enum KeyboardAction: Equatable {
     
     case

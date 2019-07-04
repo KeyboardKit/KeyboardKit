@@ -28,8 +28,8 @@ private extension NumericKeyboard {
     
     static func actions(in viewController: KeyboardViewController) -> KeyboardActionRows {
         let leftmost = KeyboardAction.switchToKeyboard(.alphabetic(uppercased: false))
-        return characters
-            .mappedToActions()
+        return KeyboardActionRows
+            .from(characters)
             .addingSideActions()
             .appending(bottomActions(leftmost: leftmost, for: viewController))
     }

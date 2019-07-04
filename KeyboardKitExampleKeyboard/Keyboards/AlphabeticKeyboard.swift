@@ -37,8 +37,9 @@ private extension AlphabeticKeyboard {
         uppercased: Bool,
         in viewController: KeyboardViewController) -> KeyboardActionRows {
         let leftmost = KeyboardAction.switchToKeyboard(.numeric)
-        return characters(uppercased: uppercased)
-            .mappedToActions()
+        let chars = self.characters(uppercased: uppercased)
+        return KeyboardActionRows
+            .from(chars)
             .addingSideActions(uppercased: uppercased)
             .appending(bottomActions(leftmost: leftmost, for: viewController))
     }
@@ -54,6 +55,9 @@ private extension AlphabeticKeyboard {
     }
 }
 
+
+// MARK: - KeyboardActionRows Extensions
+
 private extension Sequence where Iterator.Element == KeyboardActionRow {
     
     func addingSideActions(uppercased: Bool) -> [Iterator.Element] {
@@ -63,5 +67,15 @@ private extension Sequence where Iterator.Element == KeyboardActionRow {
         result[2].append(.none)
         result[2].append(.backspace)
         return result
+    }
+}
+
+
+// MARK: - String Array Extensions
+
+private extension Sequence where Iterator.Element == [String] {
+    
+    func uppercased() -> [Iterator.Element] {
+        return map { $0.map { $0.uppercased() } }
     }
 }
