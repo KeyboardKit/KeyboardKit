@@ -15,5 +15,6 @@ class MockKeyboardInputViewController: KeyboardInputViewController {
     
     override func addKeyboardGestures(to button: KeyboardButton) {
         recorder.invoke(addKeyboardGestures, args: (button))
+        textDocumentProxy
     }
 }
