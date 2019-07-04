@@ -6,14 +6,14 @@
 //  Copyright © 2018 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
- This extension provides handy autoresizing options for when
- you are to position a subview in a superview.
- 
- */
-
 public extension UIView.AutoresizingMask {
+    
+    /**
+     
+     This mask can be used to adjust a view's autoresizing
+     behavior to center it within its parent.
+     
+     */
     
     static var centerInParent: UIView.AutoresizingMask {
         return [

@@ -104,6 +104,8 @@
 		84289E4B22CDDA8300D9B2AC /* KeyboardShiftState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84289E4A22CDDA8300D9B2AC /* KeyboardShiftState.swift */; };
 		84289E4D22CDDBA000D9B2AC /* KeyboardShiftStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84289E4C22CDDBA000D9B2AC /* KeyboardShiftStateTests.swift */; };
 		84289E5122CDE10000D9B2AC /* MockTextDocumentProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84289E5022CDE10000D9B2AC /* MockTextDocumentProxy.swift */; };
+		84289E5322CDE93000D9B2AC /* UITextDocumentProxy+CurrentWordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84289E5222CDE93000D9B2AC /* UITextDocumentProxy+CurrentWordTests.swift */; };
+		84289E5522CDFA4B00D9B2AC /* UITextDocumentProxy+DeleteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84289E5422CDFA4B00D9B2AC /* UITextDocumentProxy+DeleteTests.swift */; };
 		84511D25226FA84800904FE0 /* KeyboardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D24226FA84800904FE0 /* KeyboardCollectionView.swift */; };
 		84511D29226FACFE00904FE0 /* PagedKeyboardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D28226FACFE00904FE0 /* PagedKeyboardComponent.swift */; };
 		84511D3622710C5D00904FE0 /* KeyboardActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D3522710C5D00904FE0 /* KeyboardActionHandler.swift */; };
@@ -323,6 +325,8 @@
 		84289E4A22CDDA8300D9B2AC /* KeyboardShiftState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShiftState.swift; sourceTree = "<group>"; };
 		84289E4C22CDDBA000D9B2AC /* KeyboardShiftStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShiftStateTests.swift; sourceTree = "<group>"; };
 		84289E5022CDE10000D9B2AC /* MockTextDocumentProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTextDocumentProxy.swift; sourceTree = "<group>"; };
+		84289E5222CDE93000D9B2AC /* UITextDocumentProxy+CurrentWordTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextDocumentProxy+CurrentWordTests.swift"; sourceTree = "<group>"; };
+		84289E5422CDFA4B00D9B2AC /* UITextDocumentProxy+DeleteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextDocumentProxy+DeleteTests.swift"; sourceTree = "<group>"; };
 		84511D24226FA84800904FE0 /* KeyboardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardCollectionView.swift; sourceTree = "<group>"; };
 		84511D28226FACFE00904FE0 /* PagedKeyboardComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedKeyboardComponent.swift; sourceTree = "<group>"; };
 		84511D3522710C5D00904FE0 /* KeyboardActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardActionHandler.swift; sourceTree = "<group>"; };
@@ -767,6 +771,8 @@
 				84FFACA422801A2000FB4998 /* UIImage+ResizedTests.swift */,
 				84FFACA622801AF200FB4998 /* UIImage+TintedTests.swift */,
 				84BBD035229D9531009ED851 /* UIStackView+SubviewsTests.swift */,
+				84289E5222CDE93000D9B2AC /* UITextDocumentProxy+CurrentWordTests.swift */,
+				84289E5422CDFA4B00D9B2AC /* UITextDocumentProxy+DeleteTests.swift */,
 				84BBD047229DA2A8009ED851 /* UIView+NibTests.swift */,
 				84BBD039229D96C9009ED851 /* UIView+SubviewsTests.swift */,
 				84BBD03D229D986A009ED851 /* UIViewAutoresizing+ExtrasTests.swift */,
@@ -1216,6 +1222,7 @@
 			files = (
 				84BBD057229DA83A009ED851 /* PagedKeyboardComponentTests.swift in Sources */,
 				84BBD048229DA2A8009ED851 /* UIView+NibTests.swift in Sources */,
+				84289E5322CDE93000D9B2AC /* UITextDocumentProxy+CurrentWordTests.swift in Sources */,
 				84289E5122CDE10000D9B2AC /* MockTextDocumentProxy.swift in Sources */,
 				84BBD04A229DA387009ED851 /* UIView+ShadowTests.swift in Sources */,
 				8425F2DE22A08A270095C598 /* UIView+RepeatingActionTests.swift in Sources */,
@@ -1238,6 +1245,7 @@
 				84851DE32166A3EF00DE8886 /* KeyboardSettingTests.swift in Sources */,
 				84BBD011229D29BA009ED851 /* UIView+TapActionTests.swift in Sources */,
 				84BBD021229D458B009ED851 /* UIImage+PasteboardTests.swift in Sources */,
+				84289E5522CDFA4B00D9B2AC /* UITextDocumentProxy+DeleteTests.swift in Sources */,
 				84FFACA522801A2000FB4998 /* UIImage+ResizedTests.swift in Sources */,
 				84FFACAA22801E3B00FB4998 /* HapticFeedback+KeyboardTests.swift in Sources */,
 				45CE0713204C01DB00A93175 /* Sequence+BatchTests.swift in Sources */,

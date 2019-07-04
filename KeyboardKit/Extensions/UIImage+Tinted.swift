@@ -6,17 +6,16 @@
 //  Copyright © 2015 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
- This extension tints an image with any color and blend mode.
- 
- */
-
 import UIKit
 import CoreGraphics
 
 public extension UIImage {
     
+    /**
+     
+     Returns a tinted copy of the image, using any blend mode.
+     
+     */
     func tinted(with color: UIColor, blendMode: CGBlendMode) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
         let context = UIGraphicsGetCurrentContext()

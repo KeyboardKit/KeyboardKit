@@ -6,17 +6,16 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
- This extension can be used to add subviews that completely
- fill their superview.
- 
- */
-
 import UIKit
 
 public extension UIView {
     
+    /**
+     
+     Add a subview with an option to adjust its anchords to
+     make it fill its superview.
+ 
+     */
     func addSubview(_ subview: UIView, fill: Bool) {
         addSubview(subview)
         guard fill else { return }

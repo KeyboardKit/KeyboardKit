@@ -6,18 +6,16 @@
 //  Copyright © 2018 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
- This `UIScrollView` extension can get/set the "current page
- index" of horizontally paged scroll views, by modifying the
- content offset.
- 
- */
-
 import UIKit
 
 public extension UIScrollView {
 
+    /*
+     
+     Gets and sets the current page index of a scroll view
+     by using the content offset.
+     
+     */
     var currentPageIndex: Int {
         get { return Int((contentOffset.x + 10) / frame.size.width) }
         set { contentOffset.x = frame.size.width * CGFloat(newValue) }

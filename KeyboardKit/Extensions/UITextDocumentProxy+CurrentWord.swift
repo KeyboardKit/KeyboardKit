@@ -6,63 +6,95 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
- This extension helps you resolve the word that is currently
- being typed or where the cursor is currently placed.
- 
- The two component properties represent the part of the word
- that is before and after the cursor.
- 
- TODO: Unit test these extensions
- 
- */
-
 import UIKit
 
 public extension UITextDocumentProxy {
     
+    /**
+     
+     The word that is currently being touched by the cursor.
+     
+     TODO: This property suffers from an iOS bug, where the
+     pre and post context will not contain the current word
+     after the user has accepted or rejected an autocorrect
+     suggestion from the system.
+     
+     */
     var currentWord: String? {
-        let pre = currentWordPreCursorComponent
-        let post = currentWordPostCursorComponent
+        let pre = currentWordPreCursorPart
+        let post = currentWordPostCursorPart
         if pre == nil && post == nil { return nil }
         return (pre ?? "") + (post ?? "")
     }
     
-    var currentWordPreCursorComponent: String? {
-        guard let string = documentContextBeforeInput else { return nil }
-        guard let last = string.last else { return nil }
-        if wordSeparators.contains("\(last)") { return nil }
+    /**
+     
+     The part of the current word that is before the cursor.
+     
+     */
+    var currentWordPreCursorPart: String? {
+        guard var string = documentContextBeforeInput else { return nil }
         var result = ""
-        string.enumerateSubstrings(in: string.startIndex..., options: .byWords) { word, _, _, _ in
-            result = word ?? result
+        while let char = string.popLast() {
+            guard shouldIncludeInCurrentWord(char) else { return result }
+            result.insert(char, at: result.startIndex)
         }
         return result
     }
     
-    var currentWordPostCursorComponent: String? {
+    /**
+     
+     The part of the current word that is after the cursor.
+     
+     */
+    var currentWordPostCursorPart: String? {
         guard let string = documentContextAfterInput else { return nil }
-        guard let first = string.first else { return nil }
-        if wordSeparators.contains("\(first)") { return nil }
-        var result: String?
-        string.enumerateSubstrings(in: string.startIndex..., options: .byWords) { word, _, _, _ in
-            result = result ?? word ?? ""
+        var reversed = String(string.reversed())
+        var result = ""
+        while let char = reversed.popLast() {
+            guard shouldIncludeInCurrentWord(char) else { return result }
+            result.append(char)
         }
         return result
     }
     
+    /**
+     
+     Replace the current word with a replacement text.
+     
+     */
     func replaceCurrentWord(with replacement: String) {
         guard let word = currentWord else { return }
-        let offset = currentWordPostCursorComponent?.count ?? 0
+        let offset = currentWordPostCursorPart?.count ?? 0
         adjustTextPosition(byCharacterOffset: offset)
         deleteBackward(times: word.count)
         insertText(replacement)
     }
 }
 
-private extension UITextDocumentProxy {
+
+// MARK: - Private Properties
+
+extension UITextDocumentProxy {
     
-    var wordSeparators: [String] {
+    /**
+     
+     This is a list of text characters that can be seen as a
+     way to end a sentence. It can most probably be improved.
+     
+     */
+    var wordDelimiters: [String] {
         return ["!", ".", ",", " "]
+    }
+    
+    /**
+     
+     Whether or not a character should be included in the
+     current word, given the word delimiter list.
+ 
+     */
+    func shouldIncludeInCurrentWord(_ character: Character?) -> Bool {
+        guard let character = character else { return false }
+        return !wordDelimiters.contains("\(character)")
     }
 }

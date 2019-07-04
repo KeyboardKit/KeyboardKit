@@ -6,17 +6,16 @@
 //  Copyright © 2018 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
- This extension can resize images while preserving the image
- aspect ratio. It can also resize images to any custom size.
- 
- */
-
 import UIKit
 
 public extension UIImage {
     
+    /**
+     
+     Returns a resized copy of the image, using a new size
+     that can affect the original aspect ratio.
+     
+     */
     func resized(to newSize: CGSize) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(newSize, false, scale)
         draw(in: CGRect(origin: CGPoint.zero, size: newSize))
@@ -25,6 +24,12 @@ public extension UIImage {
         return result
     }
     
+    /**
+     
+     Returns a resized copy of the image, using a new height
+     while preserving the original aspect ratio.
+     
+     */
     func resized(toHeight points: CGFloat) -> UIImage? {
         let height = points * scale
         let ratio = height / size.height
@@ -33,6 +38,12 @@ public extension UIImage {
         return resized(to: newSize)
     }
     
+    /**
+     
+     Returns a resized copy of the image, using a new width
+     while preserving the original aspect ratio.
+     
+     */
     func resized(toWidth points: CGFloat) -> UIImage? {
         let width = points * scale
         let ratio = width / size.width

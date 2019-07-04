@@ -17,18 +17,40 @@ import UIKit
 
 public extension UIView {
     
+    /**
+     
+     The view's default nib in the main bundle.
+ 
+     */
     static var defaultNib: UINib {
         return defaultNib()
     }
     
+    /**
+     
+     The view's default nib name.
+     
+     */
     static var defaultNibName: String {
         return String(describing: self)
     }
     
+    /**
+     
+     Get the view's default nib in a certain bundle.
+     
+     */
     static func defaultNib(in bundle: Bundle = .main) -> UINib {
         return UINib(nibName: defaultNibName, bundle: bundle)
     }
     
+    /**
+     
+     Create an instance of the view by resolving a nib from
+     any bundle. By default, it uses the default nib name in
+     the main bundle.
+     
+     */
     static func fromNib(
         owner: Any,
         named nibName: String = defaultNibName,
@@ -36,6 +58,16 @@ public extension UIView {
         return fromNibTyped(owner: owner)
     }
     
+    
+    /**
+     
+     Create a typed instance of the view by resolving a nib
+     from any bundle.
+     
+     This is mostly meant to be used by the untyped `fromNib`
+     function.
+     
+     */
     static func fromNibTyped<T: UIView>(
         owner: Any,
         named nibName: String = T.defaultNibName,
