@@ -30,15 +30,4 @@ public extension KeyboardActionRows {
     static func from(_ characters: [[String]]) -> KeyboardActionRows {
         return characters.map { KeyboardActionRow.from($0) }
     }
-
-    /**
-     
-     Create a copy that appends an action row to the end.
-     
-     */
-    func appending(_ actions: KeyboardActionRow) -> KeyboardActionRows {
-        var result = map { $0 }
-        result.append(actions)
-        return result
-    }
 }

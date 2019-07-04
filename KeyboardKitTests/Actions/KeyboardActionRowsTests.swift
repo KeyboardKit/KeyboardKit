@@ -27,19 +27,5 @@ class KeyboardActionRowsTest: QuickSpec {
                 expect(rows[1][0]).to(equal(.character("c")))
             }
         }
-        
-        describe("appending row") {
-            
-            let row1: KeyboardActionRow = [.backspace, .capsLock]
-            let row2: KeyboardActionRow = [.escape, .command]
-            let row3: KeyboardActionRow = [.function, .character("a")]
-            let rows: KeyboardActionRows = [row1, row2]
-            
-            it("returns new collection and leaves original unaffected") {
-                let result = rows.appending(row3)
-                expect(rows.count).to(equal(2))
-                expect(result.count).to(equal(3))
-            }
-        }
     }
 }
