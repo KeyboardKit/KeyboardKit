@@ -66,8 +66,8 @@ class KeyboardViewController: KeyboardInputViewController {
     
     let alerter = ToastAlert()
     
-    private lazy var autoCompleteToolbar: AutoCompleteToolbar = {
-        let toolbar = AutoCompleteToolbar(
+    private lazy var autocompleteToolbar: AutocompleteToolbar = {
+        let toolbar = AutocompleteToolbar(
             height: 50,
             buttonCreator: { word in
                 let button = UIButton(type: .system)
@@ -166,7 +166,7 @@ private extension KeyboardViewController {
         var rows = actionRows.map {
             buttonRow(for: $0, distribution: distribution)
         }
-        rows.insert(autoCompleteToolbar, at: 0)
+        rows.insert(autocompleteToolbar, at: 0)
         return rows
     }
 }

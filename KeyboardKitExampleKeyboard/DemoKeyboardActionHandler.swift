@@ -6,7 +6,7 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
-/*
+/**
  
  This action handler inherits `StandardKeyboardActionHandler`
  and adds demo-specific functionality to it.
@@ -28,27 +28,17 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
         )
     }
     
-    enum ShiftState {
-        case
-        normal,
-        uppercased,
-        capsLock
-    }
     
-    var keyboardShiftState = ShiftState.normal
+    // MARK: - Properties
     
-    var isUppercased: Bool {
-        switch keyboardShiftState {
-        case .normal:
-            return false
-        case .uppercased, .capsLock:
-            return true
-        }
-    }
+    var keyboardShiftState = KeyboardShiftState.lowercased
     
     var demoViewController: KeyboardViewController? {
         return inputViewController as? KeyboardViewController
     }
+    
+    
+    // MARK: - Functions
     
     func animateButtonTap(for view: UIView) {
         (view as? KeyboardButton)?.animateStandardTap()
@@ -57,9 +47,7 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     override func handleLongPress(on action: KeyboardAction, view: UIView) {
         animateButtonTap(for: view)
         switch action {
-        case .shift:
-            keyboardShiftState = .capsLock
-            demoViewController?.keyboardType = .alphabetic(uppercased: isUppercased)
+        case .shift: switchToAlphabeticKeyboard(.capsLocked)
         case .image: saveImage(for: action)
         default: super.handleLongPress(on: action, view: view)
         }
@@ -69,17 +57,11 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
         animateButtonTap(for: view)
         super.handleTap(on: action, view: view)
         switch action {
-        case .shift:
-            keyboardShiftState = .uppercased
-            demoViewController?.keyboardType = .alphabetic(uppercased: isUppercased)
-        case .shiftDown:
-            keyboardShiftState = .normal
-            demoViewController?.keyboardType = .alphabetic(uppercased: isUppercased)
+        case .shift: switchToAlphabeticKeyboard(.uppercased)
+        case .shiftDown: switchToAlphabeticKeyboard(.lowercased)
         case .character:
-            // shift key only works for next character, then back to regular
             if keyboardShiftState == .uppercased {
-                keyboardShiftState = .normal
-                demoViewController?.keyboardType = .alphabetic(uppercased: isUppercased)
+                switchToAlphabeticKeyboard(.lowercased)
             }
         case .switchToKeyboard(let type): demoViewController?.keyboardType = type
         default: copyImage(for: action)
@@ -97,6 +79,9 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
         else { alert("Failed!") }
     }
 }
+
+
+// MARK: - Private Extensions
 
 private extension DemoKeyboardActionHandler {
     
@@ -126,5 +111,10 @@ private extension DemoKeyboardActionHandler {
         guard input.hasFullAccess else { return alert("You must enable full access to save images to photos.") }
         let saveCompletion = #selector(handleImage(_:didFinishSavingWithError:contextInfo:))
         image.saveToPhotos(completionTarget: self, completionSelector: saveCompletion)
+    }
+    
+    func switchToAlphabeticKeyboard(_ state: KeyboardShiftState) {
+        keyboardShiftState = state
+        demoViewController?.keyboardType = .alphabetic(uppercased: state.isUppercased)
     }
 }
