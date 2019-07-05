@@ -37,6 +37,12 @@ import KeyboardKit
  move these parts to `KeyboardInputViewController` and a new
  api for working with autocomplete.
  
+ TODO: `textDidChange` does not trigger when the user types.
+ Until I have found a way to detect text input, I have added
+ a temporary timer that triggers each second and requests an
+ autocomplete operation for the current word. I have created
+ an issue to solve this in another way.
+ 
  */
 class KeyboardViewController: KeyboardInputViewController {
     
@@ -59,16 +65,31 @@ class KeyboardViewController: KeyboardInputViewController {
     }
     
     
-    // MARK: - Mode
+    // MARK: - Keyboard Functionality
     
-    var keyboardType = KeyboardType.alphabetic(uppercased: false) {
-        didSet { setupKeyboard() }
+    override func textDidChange(_ textInput: UITextInput?) {
+        super.textDidChange(textInput)
+        requestAutocompleteSuggestions()
+    }
+    
+    override func selectionWillChange(_ textInput: UITextInput?) {
+        super.selectionWillChange(textInput)
+        resetAutocompleteSuggestions()
+    }
+    
+    override func selectionDidChange(_ textInput: UITextInput?) {
+        super.selectionDidChange(textInput)
+        requestAutocompleteSuggestions()
     }
     
     
     // MARK: - Properties
     
     let alerter = ToastAlert()
+    
+    var keyboardType = KeyboardType.alphabetic(uppercased: false) {
+        didSet { setupKeyboard() }
+    }
     
     var keyboardSwitcherAction: KeyboardAction {
         return needsInputModeSwitchKey ? .switchKeyboard : .switchToKeyboard(.emojis)
@@ -82,11 +103,25 @@ class KeyboardViewController: KeyboardInputViewController {
     private lazy var autocompleteToolbar: AutocompleteToolbar = {
         let proxy = textDocumentProxy
         let toolbar = AutocompleteToolbar(
-            buttonCreator: { DemoAutocompleteLabel(word: $0, textDocumentProxy: proxy) }
+            buttonCreator: { DemoAutocompleteLabel(word: $0, proxy: proxy) }
         )
         toolbar.update(with: ["foo", "bar", "baz"])
         return toolbar
     }()
+    
+    private func requestAutocompleteSuggestions() {
+        let word = textDocumentProxy.currentWord ?? ""
+        autocompleteProvider.provideAutocompleteSuggestions(for: word) { [weak self] in
+            switch $0 {
+            case .failure(let error): print(error.localizedDescription)
+            case .success(let result): self?.autocompleteToolbar.update(with: result)
+            }
+        }
+    }
+    
+    private func resetAutocompleteSuggestions() {
+        autocompleteToolbar.update(with: [])
+    }
 }
 
 
