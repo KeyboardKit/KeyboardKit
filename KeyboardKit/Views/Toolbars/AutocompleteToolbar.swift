@@ -18,7 +18,7 @@ import UIKit
 public class AutocompleteToolbar: KeyboardToolbar {
 
     public convenience init(
-        height: CGFloat,
+        height: CGFloat = .standardKeyboardRowHeight,
         buttonCreator: @escaping ButtonCreator,
         alignment: UIStackView.Alignment = .fill,
         distribution: UIStackView.Distribution = .fillEqually) {

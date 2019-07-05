@@ -22,7 +22,7 @@ import UIKit
 open class KeyboardToolbar: UIView, KeyboardStackViewComponent {
     
     public convenience init(
-        height: CGFloat,
+        height: CGFloat = .standardKeyboardRowHeight,
         alignment: UIStackView.Alignment = .fill,
         distribution: UIStackView.Distribution = .fillEqually) {
         self.init(frame: .zero)

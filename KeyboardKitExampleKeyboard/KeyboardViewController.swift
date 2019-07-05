@@ -17,12 +17,6 @@ import KeyboardKit
  emoji keyboard by copying them to the pasteboard on tap and
  saving them to the user's photo album on long press.
  
- The keyboard is setup in `viewDidAppear(...)` since this is
- when `needsInputModeSwitchKey` first gets the correct value.
- Before this point, the value is `true` even if it should be
- `false`. If you find a way to solve this bug, you can setup
- the keyboard earlier.
- 
  IMPORTANT: To use this demo keyboard, you have to enable it
  in system settings ("Settings/General/Keyboards") then give
  it full access (this requires enabling `RequestsOpenAccess`
@@ -31,6 +25,17 @@ import KeyboardKit
  app's `Info.plist` if you want to be able to save images to
  the photo album. This is already taken care of in this demo
  app, so you can just copy the setup into your own app.
+ 
+ The keyboard is setup in `viewDidAppear(...)` since this is
+ when `needsInputModeSwitchKey` first gets the correct value.
+ Before this point, the value is `true` even if it should be
+ `false`. If you find a way to solve this bug, you can setup
+ the keyboard earlier.
+ 
+ The autocomplete parts of this class is the first iteration
+ of autocomplete support in KeyboardKit. The intention is to
+ move these parts to `KeyboardInputViewController` and a new
+ api for working with autocomplete.
  
  */
 class KeyboardViewController: KeyboardInputViewController {
@@ -65,19 +70,23 @@ class KeyboardViewController: KeyboardInputViewController {
     
     let alerter = ToastAlert()
     
+    var keyboardSwitcherAction: KeyboardAction {
+        return needsInputModeSwitchKey ? .switchKeyboard : .switchToKeyboard(.emojis)
+    }
+    
+    
+    // MARK: - Autocomplete
+    
+    private lazy var autocompleteProvider = DemoAutocompleteSuggestionProvider()
+    
     private lazy var autocompleteToolbar: AutocompleteToolbar = {
         let proxy = textDocumentProxy
         let toolbar = AutocompleteToolbar(
-            height: 50,
             buttonCreator: { DemoAutocompleteLabel(word: $0, textDocumentProxy: proxy) }
         )
         toolbar.update(with: ["foo", "bar", "baz"])
         return toolbar
     }()
-    
-    var keyboardSwitcherAction: KeyboardAction {
-        return needsInputModeSwitchKey ? .switchKeyboard : .switchToKeyboard(.emojis)
-    }
 }
 
 
@@ -150,7 +159,7 @@ private extension KeyboardViewController {
     }
     
     func buttonRow(for actions: KeyboardActionRow, distribution: UIStackView.Distribution) -> KeyboardStackViewComponent {
-        return KeyboardButtonRow(height: 50, actions: actions, distribution: distribution) {
+        return KeyboardButtonRow(actions: actions, distribution: distribution) {
             button(for: $0, distribution: distribution)
         }
     }

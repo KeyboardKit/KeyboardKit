@@ -22,7 +22,9 @@
 
 import Foundation
 
+public typealias AutocompleteResponse = (Result<[String], Error>) -> ()
+
 public protocol AutocompleteSuggestionProvider {
 
-    func provideAutocompleteSuggestions(for text: String, result: Result<[String], Error>)
+    func provideAutocompleteSuggestions(for text: String, completion: AutocompleteResponse)
 }
