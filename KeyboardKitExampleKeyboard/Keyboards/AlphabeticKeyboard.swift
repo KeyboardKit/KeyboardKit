@@ -6,24 +6,17 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
- This keyboard mimicks the English alphabetic phone keyboard.
- It does not adjust itself to other device types or language
- layouts, since its intention isn't to be a fully functional
- keyboard, but rather to show you how to make keyboards that
- behaves like the system keyboards.
- 
- */
-
 import KeyboardKit
 
+/**
+ 
+ This demo keyboard mimicks the English, alphabetic keyboard.
+ 
+ */
 struct AlphabeticKeyboard: DemoKeyboard {
     
-    init(
-        uppercased: Bool,
-        in viewController: KeyboardViewController) {
-        actions = type(of: self).actions(
+    init(uppercased: Bool, in viewController: KeyboardViewController) {
+        actions = AlphabeticKeyboard.actions(
             uppercased: uppercased,
             in: viewController)
     }
@@ -36,15 +29,13 @@ private extension AlphabeticKeyboard {
     static func actions(
         uppercased: Bool,
         in viewController: KeyboardViewController) -> KeyboardActionRows {
-        let leftmost = KeyboardAction.switchToKeyboard(.numeric)
-        let chars = self.characters(uppercased: uppercased)
         return KeyboardActionRows
-            .from(chars)
+            .from(characters(uppercased: uppercased))
             .addingSideActions(uppercased: uppercased)
-            .appending(bottomActions(leftmost: leftmost, for: viewController))
+            .appending(bottomActions(leftmost: switchAction, for: viewController))
     }
     
-    static var characters: [[String]] = [
+    static let characters: [[String]] = [
         ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
         ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
         ["z", "x", "c", "v", "b", "n", "m"]
@@ -53,10 +44,11 @@ private extension AlphabeticKeyboard {
     static func characters(uppercased: Bool) -> [[String]] {
         return uppercased ? characters.uppercased() : characters
     }
+    
+    static var switchAction: KeyboardAction {
+        return .switchToKeyboard(.numeric)
+    }
 }
-
-
-// MARK: - KeyboardActionRows Extensions
 
 private extension Sequence where Iterator.Element == KeyboardActionRow {
     
@@ -67,15 +59,5 @@ private extension Sequence where Iterator.Element == KeyboardActionRow {
         result[2].append(.none)
         result[2].append(.backspace)
         return result
-    }
-}
-
-
-// MARK: - String Array Extensions
-
-private extension Sequence where Iterator.Element == [String] {
-    
-    func uppercased() -> [Iterator.Element] {
-        return map { $0.map { $0.uppercased() } }
     }
 }

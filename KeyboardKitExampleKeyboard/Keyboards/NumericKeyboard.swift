@@ -6,15 +6,13 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
- This keyboard mimicks the default numeric keyboard for iOS,
- just like `AlphabeticKeyboard` mimics the alphabetic one.
- 
- */
-
 import KeyboardKit
 
+/**
+ 
+ This demo keyboard mimicks the English, numeric keyboard.
+ 
+ */
 struct NumericKeyboard: DemoKeyboard {
     
     init(in viewController: KeyboardViewController) {
@@ -27,18 +25,21 @@ struct NumericKeyboard: DemoKeyboard {
 private extension NumericKeyboard {
     
     static func actions(in viewController: KeyboardViewController) -> KeyboardActionRows {
-        let leftmost = KeyboardAction.switchToKeyboard(.alphabetic(uppercased: false))
         return KeyboardActionRows
             .from(characters)
             .addingSideActions()
-            .appending(bottomActions(leftmost: leftmost, for: viewController))
+            .appending(bottomActions(leftmost: switchAction, for: viewController))
     }
     
-    static var characters: [[String]] = [
+    static let characters: [[String]] = [
         ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
         ["-", "/", ":", ";", "(", ")", "$", "&", "@", "\""],
         [".", ",", "?", "!", "´"]
     ]
+    
+    static var switchAction: KeyboardAction {
+        return .switchToKeyboard(.alphabetic(uppercased: false))
+    }
 }
 
 private extension Sequence where Iterator.Element == KeyboardActionRow {

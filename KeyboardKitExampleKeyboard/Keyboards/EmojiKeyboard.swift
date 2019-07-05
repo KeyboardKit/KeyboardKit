@@ -6,35 +6,35 @@
 //  Copyright © 2018 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
- This demo keyboard has 24 buttons per page, which fits this
- example application's two different grid sizes for portrait
- and landscape mode. If you make any changes to the keyboard
- (which you should - play!) the extension will get an uneven
- distribution of character, emoji and image buttons.
- 
- */
-
 import KeyboardKit
 
+/**
+ 
+ This demo keyboard has 24 buttons per page, which fits this
+ demo app's two different grid sizes for portrait/landscape.
+ It features one page of real emoji characters and four with
+ image buttons, which are handled by the demo action handler.
+ 
+ If you make any changes to this keyboard (which you should,
+ play with it) the keyboard may get an uneven set of buttons,
+ which the grid engine handles by adding empty dummy buttons
+ at the very end.
+ 
+ */
 struct EmojiKeyboard: DemoKeyboard {
     
     init(in viewController: KeyboardViewController) {
-        let leftmost = KeyboardAction.switchToKeyboard(.alphabetic(uppercased: false))
-        self.bottomActions = type(of: self).bottomActions(leftmost: leftmost, for: viewController)
+        self.bottomActions = EmojiKeyboard.bottomActions(
+            leftmost: EmojiKeyboard.switchAction,
+            for: viewController)
     }
     
     let actions: [KeyboardAction] = [
-        
-        // Emoji Characters (real emojis)
         .character("😀"), .character("😃"), .character("😄"), .character("😁"), .character("😆"), .character("😅"),
         .character("🐶"), .character("🐱"), .character("🐭"), .character("🐹"), .character("🐰"), .character("🦊"),
         .character("🍏"), .character("🍎"), .character("🍐"), .character("🍊"), .character("🍋"), .character("🍌"),
         .character("⚽️"), .character("🏀"), .character("🏈"), .character("⚾️"), .character("🎾"), .character("🏐"),
         
-        
-        // Emojis (custom emoji images)
         .image(description: "color", keyboardImageName: "color", imageName: "color"),
         .image(description: "download", keyboardImageName: "download", imageName: "download"),
         .image(description: "edit", keyboardImageName: "edit", imageName: "edit"),
@@ -65,4 +65,11 @@ struct EmojiKeyboard: DemoKeyboard {
     ]
     
     let bottomActions: KeyboardActionRow
+}
+
+private extension EmojiKeyboard {
+    
+    static var switchAction: KeyboardAction {
+        return .switchToKeyboard(.alphabetic(uppercased: false))
+    }
 }

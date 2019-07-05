@@ -6,15 +6,17 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
- This protocol is used by the demo application keyboards and
- provides functionality that is shared between the keyboards.
- 
- */
-
 import KeyboardKit
 
+
+/**
+ 
+ This protocol is used by the demo application keyboards and
+ provides shared functionality. These keyboards are for demo
+ purposes, so they lack some functionality, like adapting to
+ other languages, device types etc.
+ 
+ */
 protocol DemoKeyboard {}
 
 extension DemoKeyboard {
