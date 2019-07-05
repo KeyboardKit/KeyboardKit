@@ -6,34 +6,33 @@
 //  Copyright © 2018 Daniel Saidi. All rights reserved.
 //
 
-/*
+import UIKit
+import KeyboardKit
+
+/**
  
  This demo app handles system actions as normal (e.g. change
  keyboard, space, new line etc.), injects strings and emojis
  into the text proxy and handles the rightmost images in the
- emoji keyboarx by copying them to the pasteboard on tap and
+ emoji keyboard by copying them to the pasteboard on tap and
  saving them to the user's photo album on long press.
  
  The keyboard is setup in `viewDidAppear(...)` since this is
  when `needsInputModeSwitchKey` first gets the correct value.
  Before this point, the value is `true` even if it should be
- `false`. If you find a way to solve this, you can setup the
- keyboard earlier.
+ `false`. If you find a way to solve this bug, you can setup
+ the keyboard earlier.
  
  IMPORTANT: To use this demo keyboard, you have to enable it
  in system settings ("Settings/General/Keyboards") then give
  it full access (this requires enabling `RequestsOpenAccess`
  in `Info.plist`) if you want to use image buttons. You must
- also add a `NSPhotoLibraryAddUsageDescription`  to the host
+ also add a `NSPhotoLibraryAddUsageDescription` to your host
  app's `Info.plist` if you want to be able to save images to
  the photo album. This is already taken care of in this demo
  app, so you can just copy the setup into your own app.
  
  */
-
-import UIKit
-import KeyboardKit
-
 class KeyboardViewController: KeyboardInputViewController {
     
     
@@ -67,16 +66,10 @@ class KeyboardViewController: KeyboardInputViewController {
     let alerter = ToastAlert()
     
     private lazy var autocompleteToolbar: AutocompleteToolbar = {
+        let proxy = textDocumentProxy
         let toolbar = AutocompleteToolbar(
             height: 50,
-            buttonCreator: { word in
-                let button = UIButton(type: .system)
-                button.setTitle(word, for: .normal)
-                button.addTapAction { [weak self] in
-                    self?.textDocumentProxy.replaceCurrentWord(with: word)
-                }
-                return button
-            }
+            buttonCreator: { DemoAutocompleteLabel(word: $0, textDocumentProxy: proxy) }
         )
         toolbar.update(with: ["foo", "bar", "baz"])
         return toolbar
