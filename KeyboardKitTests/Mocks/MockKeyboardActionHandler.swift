@@ -15,23 +15,23 @@ class MockKeyboardActionHandler: Mock, KeyboardActionHandler {
         invoke(handleTap, args: (action, view))
     }
     
-    func handleDoubleTap(on action: KeyboardAction, view: UIView) {
-        invoke(handleDoubleTap, args: (action, view))
-    }
-    
     func handleLongPress(on action: KeyboardAction, view: UIView) {
         invoke(handleLongPress, args: (action, view))
+    }
+    
+    func handleRepeat(on action: KeyboardAction, view: UIView) {
+        invoke(handleRepeat, args: (action, view))
     }
     
     func giveHapticFeedbackForTap(on action: KeyboardAction) {
         invoke(giveHapticFeedbackForTap, args: action)
     }
     
-    func giveHapticFeedbackForDoubleTap(on action: KeyboardAction) {
-        invoke(giveHapticFeedbackForDoubleTap, args: action)
-    }
-    
     func giveHapticFeedbackForLongPress(on action: KeyboardAction) {
         invoke(giveHapticFeedbackForLongPress, args: action)
+    }
+    
+    func giveHapticFeedbackForRepeat(on action: KeyboardAction) {
+        invoke(giveHapticFeedbackForRepeat, args: action)
     }
 }

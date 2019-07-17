@@ -71,13 +71,17 @@ class KeyboardInputViewControllerTests: QuickSpec {
             it("removes already added gestures") {
                 button.addTapAction {}
                 button.addLongPressAction {}
+                button.addRepeatingAction {}
                 let oldTap = button.gestureRecognizers!.first { $0 is UITapGestureRecognizer }
                 let oldPress = button.gestureRecognizers!.first { $0 is UILongPressGestureRecognizer }
+                let oldRepeat = button.gestureRecognizers!.first { $0 is RepeatingGestureRecognizer }
                 viewController.addKeyboardGestures(to: button)
                 let newTap = button.gestureRecognizers!.first { $0 is UITapGestureRecognizer }
                 let newPress = button.gestureRecognizers!.first { $0 is UILongPressGestureRecognizer }
+                let newRepeat = button.gestureRecognizers!.first { $0 is RepeatingGestureRecognizer }
                 expect(newTap).toNot(be(oldTap))
                 expect(newPress).toNot(be(oldPress))
+                expect(newRepeat).toNot(be(oldRepeat))
             }
             
             it("handles switch keyboard separately") {
@@ -85,16 +89,20 @@ class KeyboardInputViewControllerTests: QuickSpec {
                 viewController.addKeyboardGestures(to: button)
                 let tap = button.gestureRecognizers?.first { $0 is UITapGestureRecognizer }
                 let press = button.gestureRecognizers?.first { $0 is UILongPressGestureRecognizer }
+                let repeating = button.gestureRecognizers?.first { $0 is RepeatingGestureRecognizer }
                 expect(tap).to(beNil())
                 expect(press).to(beNil())
+                expect(repeating).to(beNil())
             }
             
-            it("adds tap and long press gesture to button") {
+            it("adds gestures to button") {
                 viewController.addKeyboardGestures(to: button)
                 let tap = button.gestureRecognizers!.first { $0 is UITapGestureRecognizer }
                 let press = button.gestureRecognizers!.first { $0 is UILongPressGestureRecognizer }
+                let repeating = button.gestureRecognizers!.first { $0 is RepeatingGestureRecognizer }
                 expect(tap).toNot(beNil())
                 expect(press).toNot(beNil())
+                expect(repeating).toNot(beNil())
             }
         }
     }

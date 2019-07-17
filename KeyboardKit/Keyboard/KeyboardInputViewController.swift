@@ -76,9 +76,11 @@ open class KeyboardInputViewController: UIInputViewController {
     open func addKeyboardGestures(to button: KeyboardButton) {
         button.removeTapAction()
         button.removeLongPressAction()
+        button.removeRepeatingAction()
         if button.action == .switchKeyboard { return addSwitchKeyboardGesture(to: button) }
         addTapGesture(to: button)
         addLongPressGesture(to: button)
+        addRepeatingGesture(to: button)
     }
     
     
@@ -100,17 +102,24 @@ private extension KeyboardInputViewController {
         button.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
     }
     
-    func addTapGesture(to button: KeyboardButton) {
-        button.addTapAction { [weak self] in
-            let handler = self?.keyboardActionHandler
-            handler?.handleTap(on: button.action, view: button)
-        }
-    }
-    
     func addLongPressGesture(to button: KeyboardButton) {
         button.addLongPressAction { [weak self] in
             let handler = self?.keyboardActionHandler
             handler?.handleLongPress(on: button.action, view: button)
+        }
+    }
+    
+    func addRepeatingGesture(to button: KeyboardButton) {
+        button.addRepeatingAction { [weak self] in
+            let handler = self?.keyboardActionHandler
+            handler?.handleRepeat(on: button.action, view: button)
+        }
+    }
+    
+    func addTapGesture(to button: KeyboardButton) {
+        button.addTapAction { [weak self] in
+            let handler = self?.keyboardActionHandler
+            handler?.handleTap(on: button.action, view: button)
         }
     }
 }

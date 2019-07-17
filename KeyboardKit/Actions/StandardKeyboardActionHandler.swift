@@ -15,7 +15,10 @@
  This action handler uses the default action blocks for each
  keyboard action, if any. You can adjust this by subclassing
  and overriding `tapAction(for:)` and `longPressAction(for:)`
- as well as `handleTap(on:)` and `handleLongPress(on:)`.
+ as well as `handleTap(on:)` and `handleLongPress(on:)`. You
+ also have the same options for repeat gestures, when a user
+ taps and holds on a button. This class only uses the repeat
+ action when the user taps `backspace`.
  
  You can enable haptic feedback by providing haptic feedback
  types for taps and long presses when you create an instance
@@ -38,10 +41,12 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     public init(
         inputViewController: UIInputViewController,
         tapHapticFeedback: HapticFeedback = .none,
-        longPressHapticFeedback: HapticFeedback = .none) {
+        longPressHapticFeedback: HapticFeedback = .none,
+        repeatHapticFeedback: HapticFeedback = .none) {
         self.inputViewController = inputViewController
         self.tapHapticFeedback = tapHapticFeedback
         self.longPressHapticFeedback = longPressHapticFeedback
+        self.repeatHapticFeedback = repeatHapticFeedback
     }
     
     
@@ -52,8 +57,9 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Properties
     
-    private let tapHapticFeedback: HapticFeedback
     private let longPressHapticFeedback: HapticFeedback
+    private let tapHapticFeedback: HapticFeedback
+    private let repeatHapticFeedback: HapticFeedback
     
     public var textDocumentProxy: UITextDocumentProxy? {
         return inputViewController?.textDocumentProxy
@@ -67,7 +73,12 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Actions
     
-    open func longPressAction(for action: KeyboardAction, view: UIView) -> (() -> ())? {
+    open func longPressAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
+        return tapAction(for: action, view: view)
+    }
+    
+    open func repeatAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
+        guard action == .backspace else { return nil }
         return tapAction(for: action, view: view)
     }
     
@@ -85,6 +96,12 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         longPressAction()
     }
     
+    open func handleRepeat(on action: KeyboardAction, view: UIView) {
+        guard let repeatAction = repeatAction(for: action, view: view) else { return }
+        giveHapticFeedbackForRepeat(on: action)
+        repeatAction()
+    }
+    
     open func handleTap(on action: KeyboardAction, view: UIView) {
         guard let tapAction = tapAction(for: action, view: view) else { return }
         giveHapticFeedbackForTap(on: action)
@@ -96,6 +113,10 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     open func giveHapticFeedbackForLongPress(on action: KeyboardAction) {
         longPressHapticFeedback.trigger()
+    }
+    
+    open func giveHapticFeedbackForRepeat(on action: KeyboardAction) {
+        repeatHapticFeedback.trigger()
     }
     
     open func giveHapticFeedbackForTap(on action: KeyboardAction) {

@@ -3,7 +3,11 @@
 
 ## 2.2.1
 
-This version is a hotfix that solves some bugs in the repeating gesture recognizer and makes some `public` parts of the library `open`, so that they can be accessed by custom subclasses:
+This version solves some major bugs in the repeating gesture recognizer and makes some `public` parts of the library `open`.
+
+The standard action handler now handles repeating actions for backspace. You can customize this in the same way as you customize tap and long press handling.
+
+You can test the new repeating logic in the demo app.
 
 
 ## 2.2.0
