@@ -1,6 +1,6 @@
 //
 //  RepeatingGestureRecognizer.swift
-//  iExtra
+//  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-30.
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
@@ -41,8 +41,9 @@ open class RepeatingGestureRecognizer: UIGestureRecognizer {
     
     private let action: () -> Void
     private let initialDelay: TimeInterval
+    private var isActive = false
     private let repeatInterval: TimeInterval
-    private(set) var timer: Timer?
+    internal var timer: Timer?
     
     
     // MARK: - State
@@ -50,8 +51,8 @@ open class RepeatingGestureRecognizer: UIGestureRecognizer {
     open override var state: UIGestureRecognizer.State {
         didSet {
             switch state {
-            case .began: startTimer()
-            case .cancelled, .ended, .failed: stopTimer()
+            case .began: startGesture()
+            case .cancelled, .ended, .failed: stopGesture()
             case .changed, .possible: break
             @unknown default: break
             }
@@ -85,33 +86,40 @@ open class RepeatingGestureRecognizer: UIGestureRecognizer {
     }
     
     
-    // MARK: - Timer Functions
-    
-    func startTimer() {
-        action()
-        let repeatInterval = self.repeatInterval
-        delay(seconds: initialDelay) { [weak self] in
-            self?.timer = Timer.scheduledTimer(withTimeInterval: repeatInterval, repeats: true) { [weak self] _ in
-                self?.action()
-            }
-        }
-    }
-    
-    func stopTimer() {
-        timer?.invalidate()
-        timer = nil
-    }
-    
-    
-    // MARK: - Delay Functions
+    // MARK: - Internal Functions
     
     func delay(seconds: TimeInterval, function: @escaping ()->()) {
         let milliseconds = Int(seconds * 1000)
-        delay(interval: .milliseconds(milliseconds), function: function)
+        let interval: DispatchTimeInterval = .milliseconds(milliseconds)
+        DispatchQueue.main.asyncAfter(deadline: .now() + interval, execute: function)
     }
     
-    func delay(interval: DispatchTimeInterval, function: @escaping ()->()) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + interval, execute: function)
+    func startGesture() {
+        isActive = true
+        delay(seconds: initialDelay) { [weak self] in
+            guard self?.isActive == true else { return }
+            self?.action()
+            self?.startTimer()
+        }
+    }
+    
+    func stopGesture() {
+        isActive = false
+        timer?.invalidate()
+        timer = nil
+    }
+}
+
+
+// MARK: - Private Functions
+
+private extension RepeatingGestureRecognizer {
+    
+    func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: repeatInterval, repeats: true) { [weak self] timer in
+            guard self?.isActive == true else { return timer.invalidate() }
+            self?.action()
+        }
     }
 }
 

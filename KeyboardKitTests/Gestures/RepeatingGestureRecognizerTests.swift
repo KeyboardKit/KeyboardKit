@@ -1,6 +1,6 @@
 //
 //  RepeatingGestureRecognizerTests.swift
-//  iExtraTests
+//  KeyboardKitTests
 //
 //  Created by Daniel Saidi on 2019-05-31.
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
@@ -28,8 +28,8 @@ class RepeatingGestureRecognizerTests: QuickSpec {
         describe("setting state") {
             
             func validateStartStopCount(_ startCount: Int, _ stopCount: Int) {
-                let start = recognizer.recorder.executions(of: recognizer.startTimer)
-                let stop = recognizer.recorder.executions(of: recognizer.stopTimer)
+                let start = recognizer.recorder.executions(of: recognizer.startGesture)
+                let stop = recognizer.recorder.executions(of: recognizer.stopGesture)
                 expect(start.count).to(equal(startCount))
                 expect(stop.count).to(equal(stopCount))
             }
@@ -109,12 +109,12 @@ class RepeatingGestureRecognizerTests: QuickSpec {
         describe("starting timer") {
             
             it("performs action") {
-                recognizer.startTimer()
+                recognizer.startGesture()
                 expect(triggerCount).to(equal(1))
             }
             
             it("creates timer") {
-                recognizer.startTimer()
+                recognizer.startGesture()
                 expect(recognizer.timer).toNot(beNil())
             }
         }
@@ -123,7 +123,7 @@ class RepeatingGestureRecognizerTests: QuickSpec {
         describe("stopping timer") {
             
             it("invalidates and deallocates timer") {
-                recognizer.stopTimer()
+                recognizer.stopGesture()
                 expect(recognizer.timer).to(beNil())
             }
         }
@@ -140,14 +140,14 @@ private class TestClass: RepeatingGestureRecognizer {
         didSet { setStates.append(state) }
     }
     
-    override func startTimer() {
-        recorder.invoke(startTimer, args: ())
-        super.startTimer()
+    override func startGesture() {
+        recorder.invoke(startGesture, args: ())
+        super.startGesture()
     }
     
-    override func stopTimer() {
-        recorder.invoke(stopTimer, args: ())
-        super.stopTimer()
+    override func stopGesture() {
+        recorder.invoke(stopGesture, args: ())
+        super.stopGesture()
     }
     
     override func delay(seconds: TimeInterval, function: @escaping () -> ()) {

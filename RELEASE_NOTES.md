@@ -1,6 +1,11 @@
 # Release Notes
 
 
+## 2.2.1
+
+This version is a hotfix that solves some bugs in the repeating gesture recognizer and makes some `public` parts of the library `open`, so that they can be accessed by custom subclasses:
+
+
 ## 2.2.0
 
 This version adds more keyboard actions that don't exist in iOS, but that may serve a functional or semantical purpose in your apps:
