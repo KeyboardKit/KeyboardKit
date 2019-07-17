@@ -173,7 +173,7 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboar
     
     // MARK: - UICollectionViewDelegate
     
-    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    open func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         persistCurrentPageIndex()
     }
 }
