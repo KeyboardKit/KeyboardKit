@@ -34,9 +34,8 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         
         describe("tap action") {
             
-            func action(for keyboardAction: KeyboardAction) -> Any? {
-                let frame = UIView(frame: .zero)
-                return handler.tapAction(for: frame, action: keyboardAction)
+            func action(for action: KeyboardAction) -> Any? {
+                return handler.tapAction(for: action, view: UIView())
             }
             
             it("is not nil for action types with standard action") {
@@ -48,9 +47,8 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         
         describe("long press action") {
             
-            func action(for keyboardAction: KeyboardAction) -> Any? {
-                let frame = UIView(frame: .zero)
-                return handler.longPressAction(for: frame, action: keyboardAction)
+            func action(for action: KeyboardAction) -> Any? {
+                return handler.longPressAction(for: action, view: UIView())
             }
             
             it("is by default the tap action") {

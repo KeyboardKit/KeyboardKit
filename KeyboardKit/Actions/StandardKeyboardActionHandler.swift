@@ -67,39 +67,39 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Actions
     
-    open func tapAction(for view: UIView, action: KeyboardAction) -> GestureAction? {
-        return inputViewControllerAction(for: action)
-            ?? textDocumentProxyAction(for: action)
+    open func longPressAction(for action: KeyboardAction, view: UIView) -> (() -> ())? {
+        return tapAction(for: action, view: view)
     }
     
-    open func longPressAction(for view: UIView, action: KeyboardAction) -> (() -> ())? {
-        return tapAction(for: view, action: action)
+    open func tapAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
+        return inputViewControllerAction(for: action)
+            ?? textDocumentProxyAction(for: action)
     }
     
     
     // MARK: - Action Handling
     
-    open func handleTap(on action: KeyboardAction, view: UIView) {
-        guard let tapAction = tapAction(for: view, action: action) else { return }
-        giveHapticFeedbackForTap(on: action)
-        tapAction()
-    }
-    
     open func handleLongPress(on action: KeyboardAction, view: UIView) {
-        guard let longPressAction = longPressAction(for: view, action: action) else { return }
+        guard let longPressAction = longPressAction(for: action, view: view) else { return }
         giveHapticFeedbackForLongPress(on: action)
         longPressAction()
+    }
+    
+    open func handleTap(on action: KeyboardAction, view: UIView) {
+        guard let tapAction = tapAction(for: action, view: view) else { return }
+        giveHapticFeedbackForTap(on: action)
+        tapAction()
     }
     
     
     // MARK: - Haptic Functions
     
-    open func giveHapticFeedbackForTap(on action: KeyboardAction) {
-        tapHapticFeedback.trigger()
-    }
-    
     open func giveHapticFeedbackForLongPress(on action: KeyboardAction) {
         longPressHapticFeedback.trigger()
+    }
+    
+    open func giveHapticFeedbackForTap(on action: KeyboardAction) {
+        tapHapticFeedback.trigger()
     }
 }
 
