@@ -3,13 +3,19 @@
 
 ## 2.3.0
 
-This version adds functionality for providing your keyboard with autocomplete suggestions. You can implement the new `AutocompleteSuggestionProvider` protocol to either provide a built-in suggestion database, or create one that connects to an external data source, using network requests. Note that the network option will be a lot slower and also require you to request full access from your users.
+This version adds autocomplete support, which includes a suggestion provider protocol, a new toolbar and new extensions.
 
-There is a new `AutocompleteToolbar` that you can use to display any suggestions that you receive from your custom `AutocompleteSuggestionProvider` implementation. Just trigger the provider anytíme the text changes (preferrably using the new `currentWord` property of the text document proxy) and route the result to the toolbar. The toolbar can be given any button creator function, which means that you can populate it with any kind of views.
+The new `AutocompleteSuggestionProvider` protocol describes how to provide your keyboard with autocomplete suggestions. You can implement it in any way you like, e.g. to use a built-in suggestion database or by connecting to an external data source, using network requests. Note that the network option will be a lot slower and also require you to request full access from your users.
 
-The new `UITextDocumentProxy+CurrentWord` extension helps you get the word that is (most probably) being typed. It currently suffers from an iOS bug, where the text document proxy will remove the current word (or parts of it) whenever a user accepts or dismisses a system autocorrect suggestion. However, as long as the user doesn't use this feature, or moves the cursor after using it, everything should work just fine.
+The new `AutocompleteToolbar` is a toolbar that you can use to display any results you receive from your suggestion provider. Just trigger the provider anytíme the text changes and route the result to the toolbar. The toolbar can be populated with any kind of views. Have a look at the demo app for an example.
 
-Besides this, there are some new extensions that you can use, like the `UITextDocumentProxy` `deleteBackwards(times:)` function, which lets you delete a certain number of characters. There is also a new `KeyboardShiftState` enum that you can use to keep track of which state your keyboard has, if any.
+The new `UITextDocumentProxy+CurrentWord` extension helps you get the word that is (most probably) being typed. You could use this when requesting autocomplete suggestions, if you only want to autocomplete the current word.
+
+Besides these additions, there are a bunch of new extensions, like `UITextDocumentProxy` `deleteBackwards(times:)`, which lets you delete a certain number of characters. Have a look at the `Extensions` namespace for a complete list.
+
+There is also a new `KeyboardShiftState` enum that you can use to keep track of which state your keyboard has, if any. This enum is extracted from demo app code that was provided by @arampak earlier this year. 
+
+ **IMPORTANT** iOS has a bug that causes `textWillChange` and `textDidChange` to not be called when the user types, only when the cursor moves. This causes autocomplete problems, since the current word is not changing as the user types. Due to this, the input view controller must use an ugly hack to force the text document proxy to update. Have a look at the demo app to see how this is done.
 
 
 ## 2.2.1
