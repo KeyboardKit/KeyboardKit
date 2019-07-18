@@ -3,11 +3,11 @@
 
 ## 2.3.0
 
-This version adds autocomplete support, which includes a suggestion provider protocol, a new toolbar and new extensions.
+This version adds autocomplete support, which includes an autocomplete suggestion provider protocol, a new toolbar and new extensions.
 
 The new `AutocompleteSuggestionProvider` protocol describes how to provide your keyboard with autocomplete suggestions. You can implement it in any way you like, e.g. to use a built-in suggestion database or by connecting to an external data source, using network requests. Note that the network option will be a lot slower and also require you to request full access from your users.
 
-The new `AutocompleteToolbar` is a toolbar that you can use to display any results you receive from your suggestion provider. Just trigger the provider anytíme the text changes and route the result to the toolbar. The toolbar can be populated with any kind of views. Have a look at the demo app for an example.
+The new `AutocompleteToolbar` is a toolbar that can display any results you receive from your suggestion provider (or any list of strings for that matter). Just trigger the provider anytíme the text changes and route the result to the toolbar. The toolbar can be populated with any kind of views. Have a look at the demo app for an example.
 
 The new `UITextDocumentProxy+CurrentWord` extension helps you get the word that is (most probably) being typed. You could use this when requesting autocomplete suggestions, if you only want to autocomplete the current word.
 

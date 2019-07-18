@@ -36,7 +36,7 @@ public extension UITextDocumentProxy {
         guard var string = documentContextBeforeInput else { return nil }
         var result = ""
         while let char = string.popLast() {
-            guard shouldIncludeInCurrentWord(char) else { return result }
+            guard shouldIncludeCharacterInCurrentWord(char) else { return result }
             result.insert(char, at: result.startIndex)
         }
         return result
@@ -52,7 +52,7 @@ public extension UITextDocumentProxy {
         var reversed = String(string.reversed())
         var result = ""
         while let char = reversed.popLast() {
-            guard shouldIncludeInCurrentWord(char) else { return result }
+            guard shouldIncludeCharacterInCurrentWord(char) else { return result }
             result.append(char)
         }
         return result
@@ -73,7 +73,7 @@ public extension UITextDocumentProxy {
 }
 
 
-// MARK: - Private Properties
+// MARK: - Internal Properties
 
 extension UITextDocumentProxy {
     
@@ -93,7 +93,7 @@ extension UITextDocumentProxy {
      current word, given the word delimiter list.
  
      */
-    func shouldIncludeInCurrentWord(_ character: Character?) -> Bool {
+    func shouldIncludeCharacterInCurrentWord(_ character: Character?) -> Bool {
         guard let character = character else { return false }
         return !wordDelimiters.contains("\(character)")
     }

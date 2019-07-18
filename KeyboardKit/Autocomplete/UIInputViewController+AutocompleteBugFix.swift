@@ -8,6 +8,11 @@
 
 /**
  
+ This extension provides a (hopefully temporary) timer-based
+ way to solve an iOS bug, that causes text changes to not be
+ triggered when text is sent to the text document proxy.
+ 
+ TODO: Unit test this extension.
  
  */
 
@@ -57,11 +62,21 @@ public extension UIInputViewController {
 
 private extension UIInputViewController {
     
+    var hasSelectedText: Bool {
+        return textDocumentProxy.selectedText != nil
+    }
+    
     var hasTextAfterTextInputCursorPosition: Bool {
         return textDocumentProxy.documentContextAfterInput != nil
     }
     
+    var shouldHandleTimerTick: Bool {
+        if hasSelectedText { return false }
+        return true
+    }
+    
     func handleTimerTick(withReversalInterval interval: TimeInterval) {
+        guard shouldHandleTimerTick else { return }
         let proxy = textDocumentProxy
         let offset = hasTextAfterTextInputCursorPosition ? 1 : -1
         proxy.adjustTextPosition(byCharacterOffset: offset)
