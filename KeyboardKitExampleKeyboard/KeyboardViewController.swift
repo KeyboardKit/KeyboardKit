@@ -90,7 +90,7 @@ class KeyboardViewController: KeyboardInputViewController {
     
     let alerter = ToastAlert()
     
-    var autocompleteBugFixTimer: Timer?
+    var autocompleteBugFixTimer: AutocompleteBugFixTimer?
     
     var keyboardType = KeyboardType.alphabetic(uppercased: false) {
         didSet { setupKeyboard() }
