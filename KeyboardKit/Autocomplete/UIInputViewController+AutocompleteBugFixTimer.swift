@@ -1,5 +1,5 @@
 //
-//  UIInputViewController+AutocompleteBugFix.swift
+//  UIInputViewController+AutocompleteBugFixTimer.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-07-18.

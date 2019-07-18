@@ -159,6 +159,13 @@ In KeyboardKit, most views implement one of the component protocols above.
 Since these views are regular views, you can use them in your hosting application as well.
 
 
+## Autocomplete
+
+KeyboardKit supports autocomplete, which means that you can display a toolbar that displays autocomplete suggestions for the currently typed text (e.g. the current word) and replace text in your text document proxy whenever a suggestion is tapped. Have a look at the source code and demo app for examples on how to implement this.
+
+**IMPORTANT** iOS has a bug that causes `textWillChange` and `textDidChange` to not be called when a user types and/or text is sent to the text document proxy. This makes autocomplete impossible to implement, since the text document proxy information is not correctly updated when the user types. To solve this, you can create an `AutocompleteBugFixTimer`, which solves the problem by moving the text cursor, thus forcing these functions to be called. However, this is a nasty hack with side-effects, so use it with caution. Check out the source code for more information.
+
+
 ### Alerts
 
 Since keyboard extensions can't display `UIAlertController`s, you can use `KeyboardAlert` to alert messages on top of the keyboard. You can use the built-in `ToastAlert` or create a custom one.
