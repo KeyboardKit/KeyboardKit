@@ -64,6 +64,10 @@ public class AutocompleteBugFixTimer {
         }
     }
     
+    deinit {
+        timer.invalidate()
+    }
+    
     private unowned var viewController: UIInputViewController
     private var timer: Timer!
 }
