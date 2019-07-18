@@ -51,6 +51,7 @@ class KeyboardViewController: KeyboardInputViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        autocompleteBugFixTimer = createAutocompleteBugFixTimer()
         keyboardActionHandler = DemoKeyboardActionHandler(inputViewController: self)
     }
     
@@ -86,6 +87,8 @@ class KeyboardViewController: KeyboardInputViewController {
     // MARK: - Properties
     
     let alerter = ToastAlert()
+    
+    var autocompleteBugFixTimer: Timer?
     
     var keyboardType = KeyboardType.alphabetic(uppercased: false) {
         didSet { setupKeyboard() }

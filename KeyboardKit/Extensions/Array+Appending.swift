@@ -12,7 +12,8 @@ public extension Array {
     
     /**
      
-     Create a copy that appends an element to the end.
+     Creates a copy of the array and appends an element to
+     the end of the created copy.
      
      */
     func appending(_ newElement: Element) -> Array {

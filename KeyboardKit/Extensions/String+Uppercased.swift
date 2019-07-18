@@ -12,7 +12,8 @@ public extension Sequence where Iterator.Element == String {
     
     /**
      
-     Returns a copy where all nested strings are uppercased.
+     Returns a copy of the sequence, where all nested strings
+     have been uppercased.
      
      */
     func uppercased() -> [Iterator.Element] {

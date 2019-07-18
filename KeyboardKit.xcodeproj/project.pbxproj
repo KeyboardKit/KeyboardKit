@@ -118,6 +118,7 @@
 		84289E7022CF310D00D9B2AC /* DemoAutocompleteSuggestionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84289E6F22CF310D00D9B2AC /* DemoAutocompleteSuggestionProvider.swift */; };
 		84289E7222CF354F00D9B2AC /* CGFloat+KeyboardDimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84289E7122CF354F00D9B2AC /* CGFloat+KeyboardDimensions.swift */; };
 		84289E7422CF357F00D9B2AC /* CGFloat+KeyboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84289E7322CF357F00D9B2AC /* CGFloat+KeyboardTests.swift */; };
+		84289ECE22E067F000D9B2AC /* UIInputViewController+AutocompleteBugFix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84289ECD22E067F000D9B2AC /* UIInputViewController+AutocompleteBugFix.swift */; };
 		84511D25226FA84800904FE0 /* KeyboardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D24226FA84800904FE0 /* KeyboardCollectionView.swift */; };
 		84511D29226FACFE00904FE0 /* PagedKeyboardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D28226FACFE00904FE0 /* PagedKeyboardComponent.swift */; };
 		84511D3622710C5D00904FE0 /* KeyboardActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511D3522710C5D00904FE0 /* KeyboardActionHandler.swift */; };
@@ -351,6 +352,7 @@
 		84289E6F22CF310D00D9B2AC /* DemoAutocompleteSuggestionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoAutocompleteSuggestionProvider.swift; sourceTree = "<group>"; };
 		84289E7122CF354F00D9B2AC /* CGFloat+KeyboardDimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+KeyboardDimensions.swift"; sourceTree = "<group>"; };
 		84289E7322CF357F00D9B2AC /* CGFloat+KeyboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+KeyboardTests.swift"; sourceTree = "<group>"; };
+		84289ECD22E067F000D9B2AC /* UIInputViewController+AutocompleteBugFix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIInputViewController+AutocompleteBugFix.swift"; sourceTree = "<group>"; };
 		84511D24226FA84800904FE0 /* KeyboardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardCollectionView.swift; sourceTree = "<group>"; };
 		84511D28226FACFE00904FE0 /* PagedKeyboardComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedKeyboardComponent.swift; sourceTree = "<group>"; };
 		84511D3522710C5D00904FE0 /* KeyboardActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardActionHandler.swift; sourceTree = "<group>"; };
@@ -688,6 +690,7 @@
 			isa = PBXGroup;
 			children = (
 				84289E4822CDD5B300D9B2AC /* AutocompleteSuggestionProvider.swift */,
+				84289ECD22E067F000D9B2AC /* UIInputViewController+AutocompleteBugFix.swift */,
 			);
 			path = Autocomplete;
 			sourceTree = "<group>";
@@ -1242,6 +1245,7 @@
 				84F8DFBC229356A30079BD3D /* VerticalKeyboardComponent.swift in Sources */,
 				84851A73227888BC00477705 /* HapticFeedback+Keyboard.swift in Sources */,
 				8425F2DC22A088940095C598 /* UIView+RepeatingAction.swift in Sources */,
+				84289ECE22E067F000D9B2AC /* UIInputViewController+AutocompleteBugFix.swift in Sources */,
 				84289E3B22CB20EF00D9B2AC /* UITextDocumentProxy+CurrentWord.swift in Sources */,
 				846F1C5D22758B8C00314DC8 /* UIView+Subviews.swift in Sources */,
 				84289E6222CEB55600D9B2AC /* Array+Appending.swift in Sources */,
