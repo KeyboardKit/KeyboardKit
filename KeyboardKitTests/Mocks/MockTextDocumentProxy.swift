@@ -32,4 +32,8 @@ class MockTextDocumentProxy: NSObject, UITextDocumentProxy {
     func insertText(_ text: String) {
         recorder.invoke(insertText, args: (text))
     }
+    
+    func setMarkedText(_ markedText: String, selectedRange: NSRange) {}
+    
+    func unmarkText() {}
 }

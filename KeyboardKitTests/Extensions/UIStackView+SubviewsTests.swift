@@ -15,7 +15,7 @@ class UIStackView_SubviewsTests: QuickSpec {
     override func spec() {
         
         var stackView: UIStackView!
-        var views = [UIView(), UIView(), UIView()]
+        let views = [UIView(), UIView(), UIView()]
         
         beforeEach {
             stackView = UIStackView(frame: .zero)

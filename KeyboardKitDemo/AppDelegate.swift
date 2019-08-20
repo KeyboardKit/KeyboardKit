@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  KeyboardKitExample
+//  KeyboardKitDemo
 //
-//  Created by Daniel Saidi on 2018-03-02.
-//  Copyright © 2018 Daniel Saidi. All rights reserved.
+//  Created by Daniel Saidi on 2019-08-20.
+//  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
 import UIKit
