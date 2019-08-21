@@ -11,10 +11,7 @@ import UIKit
 public extension UIImage {
     
     /**
-     
-     Returns a resized copy of the image, using a new size
-     that can affect the original aspect ratio.
-     
+     Create a resized copy of the image, using a custom size.
      */
     func resized(to newSize: CGSize) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(newSize, false, scale)
@@ -25,10 +22,9 @@ public extension UIImage {
     }
     
     /**
+     Create a resized copy of the image, using a new height.
      
-     Returns a resized copy of the image, using a new height
-     while preserving the original aspect ratio.
-     
+     This operation will preserve the original aspect ratio.
      */
     func resized(toHeight points: CGFloat) -> UIImage? {
         let height = points * scale
@@ -39,10 +35,9 @@ public extension UIImage {
     }
     
     /**
+     Create a resized copy of the image, using a new width.
      
-     Returns a resized copy of the image, using a new width
-     while preserving the original aspect ratio.
-     
+     This operation will preserve the original aspect ratio.
      */
     func resized(toWidth points: CGFloat) -> UIImage? {
         let width = points * scale

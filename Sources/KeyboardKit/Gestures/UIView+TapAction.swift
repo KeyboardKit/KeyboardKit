@@ -9,10 +9,8 @@
 //
 
 /*
- 
  This extension applies tap gesture recognizers using action
  blocks instead of a target and a selector.
- 
  */
 
 import UIKit
@@ -21,6 +19,9 @@ public extension UIView {
     
     typealias TapAction = () -> Void
     
+    /*
+     Add a tap gesture recognizer to the view.
+    */
     func addTapAction(numberOfTapsRequired: Int = 1, action: @escaping TapAction) {
         tapAction = action
         isUserInteractionEnabled = true
@@ -28,7 +29,10 @@ public extension UIView {
         recognizer.numberOfTapsRequired = numberOfTapsRequired
         addGestureRecognizer(recognizer)
     }
-    
+
+    /*
+     Remove all repeating gesture recognizers from the view.
+    */
     func removeTapAction() {
         gestureRecognizers?
             .filter { $0 is UITapGestureRecognizer }

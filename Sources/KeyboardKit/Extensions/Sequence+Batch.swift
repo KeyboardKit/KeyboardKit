@@ -11,11 +11,10 @@ import Foundation
 public extension Sequence {
     
     /**
-     
      Splits up the sequence in batches of a certain max size.
+     
      For instance, batching up ["a", "b", "c"] in batches of
      max size 2 will return [["a", "b"], ["c"]].
-     
      */
     func batched(withBatchSize size: Int) -> [[Iterator.Element]] {
         var result: [[Iterator.Element]] = []

@@ -6,15 +6,12 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
- This protocol describes any kind of views that can be added
- to any vertically flowing part of the keyboard.
- 
- */
-
 import UIKit
 
+/**
+ This protocol represents a view component that can be added
+ to a vertically flowing part of the keyboard.
+ */
 public protocol VerticalKeyboardComponent: UIView {
     
     var heightConstraint: NSLayoutConstraint? { get set }

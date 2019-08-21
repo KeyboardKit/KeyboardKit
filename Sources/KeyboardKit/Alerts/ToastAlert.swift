@@ -6,21 +6,18 @@
 //  Copyright © 2018 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
- This class presents keyboard alerts like Android toasts, at
- the center of the keyboard.
+import UIKit
+
+/**
+ This alerter presents keyboard alert messages at the center
+ of the keyboard.
  
  To customize the appearance, you can modify the `appearance`
  property. You can also override the `style` functions.
  
  TODO: This should be refactored to use the appearance proxy
  styling approach, e.g. combined with theme classes.
- 
 */
-
-import UIKit
-
 open class ToastAlert: KeyboardAlert {
     
     

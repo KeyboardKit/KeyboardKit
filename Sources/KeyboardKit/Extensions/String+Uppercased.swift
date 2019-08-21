@@ -11,10 +11,8 @@ import Foundation
 public extension Sequence where Iterator.Element == String {
     
     /**
-     
      Returns a copy of the sequence, where all nested strings
      have been uppercased.
-     
      */
     func uppercased() -> [Iterator.Element] {
         return map { $0.uppercased() }

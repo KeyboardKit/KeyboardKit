@@ -9,10 +9,7 @@
 import Foundation
 
 /**
- 
- This typealias represents a row of keyboard actions. It's a
- convenience abstraction.
-
+ This typealias represents a row of keyboard actions.
  */
 public typealias KeyboardActionRow = [KeyboardAction]
 
@@ -22,10 +19,8 @@ public typealias KeyboardActionRow = [KeyboardAction]
 public extension KeyboardActionRow {
     
     /**
-     
      Create a keyboard action row by mapping string array to
      a row of character actions.
-     
      */
     static func from(_ characters: [String]) -> KeyboardActionRow {
         return characters.map { .character($0) }

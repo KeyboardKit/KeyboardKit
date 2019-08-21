@@ -11,7 +11,6 @@ import Foundation
 public typealias AutocompleteResponse = (Result<[String], Error>) -> ()
 
 /**
- 
  This protocol can be implemented by anyone that can provide
  autocomplete suggestions based on a certain text.
  
@@ -24,7 +23,6 @@ public typealias AutocompleteResponse = (Result<[String], Error>) -> ()
  use a built-in database or by connecting to an external api.
  Note that network operations are very slow and also require
  you to request full access from your users.
- 
  */
 public protocol AutocompleteSuggestionProvider {
 

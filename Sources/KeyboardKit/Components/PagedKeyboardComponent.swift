@@ -6,16 +6,13 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
- This protocol can be implemented by any class that presents
- a keyboard over multiple pages. It provides default ways to
- persist and restore page index, using user defaults.
- 
- */
-
 import UIKit
 
+/**
+ This protocol can be implemented by any class that presents
+ a keyboard over multiple pages. It provides ways to persist
+ and restore page index, using user defaults.
+ */
 public protocol PagedKeyboardComponent: UIView {
 
     var id: String { get }

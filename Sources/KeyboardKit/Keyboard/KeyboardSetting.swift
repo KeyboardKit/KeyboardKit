@@ -6,16 +6,12 @@
 //  Copyright © 2018 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
- The keyboard settings enum is just a representation of some
- general keyboard properties that may be a good idea to save
- in persistent memory.
- 
- */
-
 import Foundation
 
+/**
+ This enum represents some keyboard properties that may be a
+ good idea to be able to save in persistent memory.
+*/
 public enum KeyboardSetting: String {
     
     case

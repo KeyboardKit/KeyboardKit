@@ -6,11 +6,12 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
+import UIKit
+
+/**
  This action handler is used by the `KeyboardViewController`
  class by default, but can be replaced with any handler that
- implements `KeyboardActionHandler`.
+ implements the `KeyboardActionHandler` protocol.
  
  This action handler uses the default action blocks for each
  keyboard action, if any. You can adjust this by subclassing
@@ -25,14 +26,10 @@
  of this class. You can also adjust the standard behavior by
  overriding the two `giveHapticFeedback` functions.
  
- IMPORTANT: This class must inherit from `NSObject` in order
- to be able to set itself as the selection target, e.g. when
- saving images to the photo album.
- 
+ **IMPORTANT** This class must inherit `NSObject` to be able
+ to set itself as a selection target, e.g. when saving image
+ assets to the photo album.
  */
-
-import UIKit
-
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     

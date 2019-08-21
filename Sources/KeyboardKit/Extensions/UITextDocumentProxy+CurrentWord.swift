@@ -11,14 +11,11 @@ import UIKit
 public extension UITextDocumentProxy {
     
     /**
-     
      The word that is currently being touched by the cursor.
      
-     TODO: This property suffers from an iOS bug, where the
-     pre and post context will not contain the current word
-     after the user has accepted or rejected an autocorrect
-     suggestion from the system.
-     
+     IMPORTANT: This property suffers from an iOS bug, where
+     the pre and post context don't contain the current word
+     in its correct form until the cursor's position changes.
      */
     var currentWord: String? {
         let pre = currentWordPreCursorPart
@@ -28,9 +25,7 @@ public extension UITextDocumentProxy {
     }
     
     /**
-     
      The part of the current word that is before the cursor.
-     
      */
     var currentWordPreCursorPart: String? {
         guard var string = documentContextBeforeInput else { return nil }
@@ -43,9 +38,7 @@ public extension UITextDocumentProxy {
     }
     
     /**
-     
      The part of the current word that is after the cursor.
-     
      */
     var currentWordPostCursorPart: String? {
         guard let string = documentContextAfterInput else { return nil }
@@ -59,9 +52,7 @@ public extension UITextDocumentProxy {
     }
     
     /**
-     
      Replace the current word with a replacement text.
-     
      */
     func replaceCurrentWord(with replacement: String) {
         guard let word = currentWord else { return }
@@ -78,20 +69,15 @@ public extension UITextDocumentProxy {
 extension UITextDocumentProxy {
     
     /**
-     
-     This is a list of text characters that can be seen as a
-     way to end a sentence. It can most probably be improved.
-     
+     A list of characters that represent the end of a word.
      */
     var wordDelimiters: [String] {
         return ["!", ".", ",", " "]
     }
     
     /**
-     
-     Whether or not a character should be included in the
-     current word, given the word delimiter list.
- 
+     Check if a certain character should be included in the
+     current word.
      */
     func shouldIncludeCharacterInCurrentWord(_ character: Character?) -> Bool {
         guard let character = character else { return false }

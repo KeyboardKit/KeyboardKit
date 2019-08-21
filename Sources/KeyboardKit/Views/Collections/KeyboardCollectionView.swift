@@ -6,21 +6,19 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
- This view can be used as a base class for a collection view
- that presents keyboard action buttons. You must subclass it,
- since it returns empty cells for each action. `KeyboardKit`
- has two built-in subclasses - `KeyboardButtonCollectionView`
- and `KeyboardButtonRowCollectionView`. They help you layout
- keyboard buttons in single cells or button rows.
- 
- */
-
 import UIKit
 
+/**
+ This view can be used as a base class for a collection view
+ that presents keyboard action buttons. You must subclass it,
+ since it returns empty cells for each action.
+ 
+ `KeyboardKit` has two built-in subclasses that you can use:
+ `KeyboardButtonCollectionView` displays buttons in a single
+ cell and `KeyboardButtonRowCollectionView` displays in rows.
+ */
 open class KeyboardCollectionView: UICollectionView, KeyboardStackViewComponent, UICollectionViewDataSource {
-
+    
     
     // MARK: - Initialization
     

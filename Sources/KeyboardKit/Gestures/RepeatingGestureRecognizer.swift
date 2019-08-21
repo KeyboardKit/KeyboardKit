@@ -6,8 +6,9 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
+import UIKit.UIGestureRecognizerSubclass
+
+/**
  This gesture recognizer will trigger a certain action, once
  after an `initialDelay` and repeating every `repeatInterval`
  until the user releases her/his finger. It's a good gesture
@@ -15,11 +16,7 @@
  
  This gesture does not cancel any other gestures, so you can
  use it together with taps and long presses.
- 
  */
-
-import UIKit.UIGestureRecognizerSubclass
-
 open class RepeatingGestureRecognizer: UIGestureRecognizer {
     
     

@@ -11,10 +11,8 @@ import UIKit
 public extension UIView {
     
     /**
-     
      Add a subview with an option to adjust its anchords to
      make it fill its superview.
- 
      */
     func addSubview(_ subview: UIView, fill: Bool) {
         addSubview(subview)

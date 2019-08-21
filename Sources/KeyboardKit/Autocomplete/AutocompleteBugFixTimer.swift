@@ -9,7 +9,6 @@
 import UIKit
 
 /**
- 
  This timer class is a hack that helps fixing an assumed iOS
  bug that causes `textWillChange` and `textDidChange` to not
  be called when a user types and/or text is sent to the text
@@ -50,7 +49,6 @@ import UIKit
  Further reading:
  https://feedbackassistant.apple.com/feedback/6710453
  https://stackoverflow.com/questions/57079057/uiinputviewcontroller-textwillchange-and-textdidchange-are-not-called-when-typin
- 
  */
 public class AutocompleteBugFixTimer {
 

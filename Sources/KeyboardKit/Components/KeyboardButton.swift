@@ -6,25 +6,21 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
+import UIKit
+
+/**
  This protocol should be implemented by any view that can be
  used as a keyboard button. Implementing this protocol makes
  it possible to add it to button rows and collection views.
  
  For convenience, you can use the `KeyboardButtonView` class
  instead of implementing this protocol from scratch.
- 
  */
-
-import UIKit
-
 public protocol KeyboardButton: KeyboardButtonRowComponent {
     
     var action: KeyboardAction { get }
     var secondaryAction: KeyboardAction? { get }
 }
-
 
 
 // MARK: - Animations

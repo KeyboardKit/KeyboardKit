@@ -6,8 +6,9 @@
 //  Copyright © 2018 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
+import UIKit
+
+/**
  This class provides keyboards input view controllers with a
  basic set of functionality. You can subclass this class and
  override anything to modify the standard behavior.
@@ -30,11 +31,7 @@
  add `KeyboardStackViewComponent`s to it, however, they will
  make sure the stack view is properly resized, in a way that
  also resizes the keyboard extension.
- 
  */
-
-import UIKit
-
 open class KeyboardInputViewController: UIInputViewController {
     
     

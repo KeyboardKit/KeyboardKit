@@ -10,11 +10,9 @@ import UIKit
 
 public extension UIScrollView {
 
-    /*
-     
-     Gets and sets the current page index of a scroll view
-     by using the content offset.
-     
+    /**
+     Get and set the current page index by using the content
+     offset as source of truth.
      */
     var currentPageIndex: Int {
         get { return Int((contentOffset.x + 10) / frame.size.width) }

@@ -7,10 +7,8 @@
 //
 
 /*
- 
  This extension simplifies working with arranged subviews in
  stack view.
- 
  */
 
 import UIKit
@@ -18,9 +16,7 @@ import UIKit
 public extension UIStackView {
     
     /**
-     
-     Adds a set of views to the end of the stack view.
- 
+     Add a set of views to the end of the stack view.
      */
     func addArrangedSubviews(_ subviews: [UIView]) {
         subviews.forEach {
@@ -29,9 +25,7 @@ public extension UIStackView {
     }
     
     /**
-     
-     Removes a set of views from the stack view.
-     
+     Remove a set of views from the stack view.
      */
     func removeArrangedSubviews(_ subviews: [UIView]) {
         subviews.forEach {
@@ -41,9 +35,7 @@ public extension UIStackView {
     }
     
     /**
-     
-     Removes all arranged subviews from the stack view.
-     
+     Remove all arranged subviews from the stack view.
      */
     func removeAllArrangedSubviews() {
         removeArrangedSubviews(arrangedSubviews)

@@ -6,7 +6,10 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
-/*
+import UIKit
+
+/**
+ This collection view displays keyboard buttons in a row.
  
  This view can be created with a set of actions and a button
  creator block. It creates and adds a button for each action
@@ -14,9 +17,6 @@
  be added to the keyboard view controller's main stack view.
  
  */
-
-import UIKit
-
 open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboardComponent, UICollectionViewDelegate {
     
     

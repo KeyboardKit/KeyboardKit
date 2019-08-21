@@ -7,10 +7,8 @@
 //
 
 /*
- 
  This extension applies repeating gesture recognizers, using
  action blocks instead of a target and a selector.
- 
  */
 
 import UIKit
@@ -19,6 +17,9 @@ public extension UIView {
     
     typealias RepeatingAction = (() -> Void)
     
+    /*
+     Add a repeating gesture recognizer to the view.
+    */
     func addRepeatingAction(
         initialDelay: TimeInterval = 0.8,
         repeatInterval: TimeInterval = 0.1,
@@ -31,6 +32,9 @@ public extension UIView {
         addGestureRecognizer(recognizer)
     }
     
+    /*
+     Remove all repeating gestures recognizer from the view.
+    */
     func removeRepeatingAction() {
         gestureRecognizers?
             .filter { $0 is RepeatingGestureRecognizer }

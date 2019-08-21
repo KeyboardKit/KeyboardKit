@@ -6,26 +6,22 @@
 //  Copyright © 2018 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
- This enum contains all currently supported keyboard actions.
- Most actions have standard tap actions that either apply to
- the input view controller or its document text proxy, while
- many still require manual handling.
- 
- For instance, `image` can't be handled by KeyboardKit since
- it requires app-specific assets, and the keyboard switchers
- can't be handled either, since there's no universal concept
- of an "alphabetic" keyboard. These king of actions are just
- ways for you to express your intent.
- 
- OBS: `switchKeyboard` has no standard input view controller
- action, since it must be handled in another way.
- 
- */
-
 import UIKit
 
+/**
+ This action enum specifies all currently supported keyboard
+ actions and their standard behavior.
+ 
+ Most keyboard actions have a standard tap action that apply
+ to the input view controller or its text document proxy.
+ 
+ Many actions require manual handling, however. For instance,
+ `image` can't be handled here since it requires assets. The
+ keyboard switchers can't be handled here either since there
+ is no universally applicable "alphabetic keyboard". Actions
+ like these are ways for you to express your intent, but you
+ must handle them yourself.
+*/
 public enum KeyboardAction: Equatable {
     
     case
@@ -56,6 +52,10 @@ public enum KeyboardAction: Equatable {
 
 public extension KeyboardAction {
     
+    /**
+     The standard action, if any, that should be applied to
+     the input view controller when the action is triggered.
+     */
     var standardInputViewControllerAction: ((UIInputViewController?) -> ())? {
         switch self {
         case .none: return nil
@@ -81,6 +81,10 @@ public extension KeyboardAction {
         }
     }
     
+    /**
+     The standard action, if any, that should be applied to
+     the texst document proxy when the action is triggered.
+     */
     var standardTextDocumentProxyAction: ((UITextDocumentProxy?) -> ())? {
         switch self {
         case .none: return nil

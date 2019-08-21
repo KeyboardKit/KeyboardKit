@@ -6,16 +6,13 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
- This toolbar can be used to present autocomplete suggestion
- words while the user types.
- 
- */
-
 import CoreGraphics
 import UIKit
 
+/**
+ This toolbar can be used to present autocomplete suggestion
+ words while the user types.
+ */
 public class AutocompleteToolbar: KeyboardToolbar {
 
     public convenience init(

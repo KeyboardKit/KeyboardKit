@@ -6,18 +6,17 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
- This protocol can be used to handle user triggered keyboard
- actions. The `StandardKeyboardActionHandler` action handler
- is used by default by `KeyboardInputViewController`, but it
- can be replaced by a subclass that fills out the gaps or by
- a completely different action handler.
- 
- */
-
 import UIKit
 
+/**
+ This protocol can be implemented by classes that can handle
+ keyboard actions that are triggered in a keyboard extension.
+ 
+ The standard `StandardKeyboardActionHandler` action handler
+ is used by default by `KeyboardInputViewController`. It can
+ be subclassed and extended with app-specific logic (see the
+ demo) or replaced by a completely different implementation.
+ */
 public protocol KeyboardActionHandler: AnyObject {
 
     func handleTap(on action: KeyboardAction, view: UIView)

@@ -11,8 +11,8 @@ import UIKit
 public extension UIView.AutoresizingMask {
     
     /**
-     This mask can be used to adjust a view's autoresizing
-     behavior to center it within its parent.
+     This autoresizing mask can be used to center any view
+     within its parent.
      */
     static var centerInParent: UIView.AutoresizingMask {
         return [
