@@ -35,20 +35,6 @@
                ReferencedContainer = "container:KeyboardKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "45FB517D20495C73009D5806"
-               BuildableName = "KeyboardKitTests.xctest"
-               BlueprintName = "KeyboardKitTests"
-               ReferencedContainer = "container:KeyboardKit.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -66,16 +52,6 @@
          </BuildableReference>
       </MacroExpansion>
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "45FB517D20495C73009D5806"
-               BuildableName = "KeyboardKitTests.xctest"
-               BlueprintName = "KeyboardKitTests"
-               ReferencedContainer = "container:KeyboardKit.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

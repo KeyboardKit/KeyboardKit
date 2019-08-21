@@ -1,5 +1,9 @@
-# OS X
+# SPM defaults
 .DS_Store
+/.build
+/Packages
+/*.xcodeproj
+xcuserdata/
 
 ## Build generated
 build/

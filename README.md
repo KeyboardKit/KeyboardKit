@@ -34,6 +34,14 @@ With `KeyboardKit`, you inherit `KeyboardInputViewController` instead of `UIInpu
 
 ## Installation
 
+### <a name="spm"></a>Swift Package Manager
+
+In Xcode 11 and later, the easiest way to add KeyboardKit to your project is to
+use Swift Package Manager:
+```
+.package(url: "git@github.com:danielsaidi/KeyboardKit.git" ...)
+```
+
 ### CocoaPods
 
 Add this to your `Podfile` and run `pod install`:
@@ -52,7 +60,7 @@ Then follow [these instructions](#add) on how to add it to your project.
 
 ### Manual installation
 
-To manually add `KeyboardKit` to your app, clone this repository and add `KeyboardKit.xcodeproj` to your project. Then, select the app target, add the `KeyboardKit` framework as an embedded binary (in `General`) and as a target dependency (in `Build Phases`) then follow [these instructions](#add) on how to add it to your project.
+To add `KeyboardKit` to your app without a dependency manager, clone this repository and place it somewhere on disk, then add `KeyboardKit.xcodeproj` to the project and `KeyboardKit.framework` as an embedded app binary and target dependency. After that, follow [these instructions](#add) on how to add it to your project.
 
 <a name="add"></a>
 ### Important - How to add KeyboardKit to your extension

@@ -1,0 +1,34 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "MockNRoll",
+        "repositoryURL": "git@github.com:danielsaidi/MockNRoll.git",
+        "state": {
+          "branch": "0.1.0-beta",
+          "revision": "91a2e59ba1116262e078bf9f83edf6cb578eae96",
+          "version": null
+        }
+      },
+      {
+        "package": "Nimble",
+        "repositoryURL": "git@github.com:Quick/Nimble.git",
+        "state": {
+          "branch": null,
+          "revision": "f8657642dfdec9973efc79cc68bcef43a653a2bc",
+          "version": "8.0.2"
+        }
+      },
+      {
+        "package": "Quick",
+        "repositoryURL": "git@github.com:Quick/Quick.git",
+        "state": {
+          "branch": null,
+          "revision": "94df9b449508344667e5afc7e80f8bcbff1e4c37",
+          "version": "2.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

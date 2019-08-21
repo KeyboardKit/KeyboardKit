@@ -1,21 +1,15 @@
-fastlane_version "2.30.2"
+fastlane_version "2.129.0"
 
 default_platform :ios
 
 platform :ios do
 
 
-  # Carthage ===================
-
-  desc "Bootstrap Carthage"
-  lane :carthage_bootstrap do
-    carthage(platform: "iOS", cache_builds: true)
-  end
-
-  desc "Update Carthage"
-  lane :cu do carthage_update end
-  lane :carthage_update do
-    carthage(command: "update", platform: "iOS", cache_builds: true)
+  # Test =======================
+  
+  desc "Run unit tests"
+  lane :test do
+    spm(command: "test")
   end
 
 
@@ -32,10 +26,7 @@ platform :ios do
     git_commit(
       path: [
         "KeyboardKit.podspec",
-        "KeyboardKit/Info.plist",
-        "KeyboardKitExample/Info.plist",
-        "KeyboardKitExampleKeyboard/Info.plist",
-        "KeyboardKitTests/Info.plist"
+        "Fastlane/"
       ],
       message: "Bump to #{version}"
     )
@@ -45,18 +36,5 @@ platform :ios do
     push_to_git_remote()
     pod_push()
   end
-
-  
-  # Test =======================
-
-  desc "Run unit tests"
-  lane :test do
-    scan(
-      project: "KeyboardKit.xcodeproj",
-      scheme: "KeyboardKit",
-      devices: ["iPhone 6s"]
-    )    
-  end
   
 end
-

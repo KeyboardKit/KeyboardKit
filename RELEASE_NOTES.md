@@ -1,6 +1,11 @@
 # Release Notes
 
 
+## 2.4.0
+
+This version adds Xcode 11 and iOS 13 support, including support for dark mode and high contrast color variants.
+
+
 ## 2.3.0
 
 This version adds autocomplete support, which includes an autocomplete suggestion provider protocol, a new toolbar and new extensions.
