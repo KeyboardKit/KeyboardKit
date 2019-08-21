@@ -94,7 +94,6 @@
 		84DFEED8230D0BDF00059131 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEE97230D0BDF00059131 /* UIView+Shadow.swift */; };
 		84DFEED9230D0BDF00059131 /* HapticFeedback+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEE99230D0BDF00059131 /* HapticFeedback+Keyboard.swift */; };
 		84DFEEDA230D0BDF00059131 /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEE9A230D0BDF00059131 /* HapticFeedback.swift */; };
-		84DFEEDB230D0BDF00059131 /* GridKeyboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEE9C230D0BDF00059131 /* GridKeyboardPresenter.swift */; };
 		84DFEEDC230D0BDF00059131 /* UIColor+TappableClear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEE9E230D0BDF00059131 /* UIColor+TappableClear.swift */; };
 		84DFEEDD230D0BDF00059131 /* UIStackView+Subviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEE9F230D0BDF00059131 /* UIStackView+Subviews.swift */; };
 		84DFEEDE230D0BDF00059131 /* UIViewAutoresizing+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEEA0230D0BDF00059131 /* UIViewAutoresizing+Extras.swift */; };
@@ -271,7 +270,6 @@
 		84DFEE97230D0BDF00059131 /* UIView+Shadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		84DFEE99230D0BDF00059131 /* HapticFeedback+Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HapticFeedback+Keyboard.swift"; sourceTree = "<group>"; };
 		84DFEE9A230D0BDF00059131 /* HapticFeedback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HapticFeedback.swift; sourceTree = "<group>"; };
-		84DFEE9C230D0BDF00059131 /* GridKeyboardPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridKeyboardPresenter.swift; sourceTree = "<group>"; };
 		84DFEE9E230D0BDF00059131 /* UIColor+TappableClear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+TappableClear.swift"; sourceTree = "<group>"; };
 		84DFEE9F230D0BDF00059131 /* UIStackView+Subviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Subviews.swift"; sourceTree = "<group>"; };
 		84DFEEA0230D0BDF00059131 /* UIViewAutoresizing+Extras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewAutoresizing+Extras.swift"; sourceTree = "<group>"; };
@@ -516,7 +514,6 @@
 				84DFEE91230D0BDF00059131 /* Autocomplete */,
 				84DFEE95230D0BDF00059131 /* Shadow */,
 				84DFEE98230D0BDF00059131 /* Feedback */,
-				84DFEE9B230D0BDF00059131 /* Presenters */,
 				84DFEE9D230D0BDF00059131 /* Extensions */,
 				84DFEEAE230D0BDF00059131 /* Alerts */,
 				84DFEEB1230D0BDF00059131 /* Components */,
@@ -554,14 +551,6 @@
 				84DFEE9A230D0BDF00059131 /* HapticFeedback.swift */,
 			);
 			path = Feedback;
-			sourceTree = "<group>";
-		};
-		84DFEE9B230D0BDF00059131 /* Presenters */ = {
-			isa = PBXGroup;
-			children = (
-				84DFEE9C230D0BDF00059131 /* GridKeyboardPresenter.swift */,
-			);
-			path = Presenters;
 			sourceTree = "<group>";
 		};
 		84DFEE9D230D0BDF00059131 /* Extensions */ = {
@@ -929,7 +918,6 @@
 				84DFEEE7230D0BDF00059131 /* UIView+Nib.swift in Sources */,
 				84DFEED9230D0BDF00059131 /* HapticFeedback+Keyboard.swift in Sources */,
 				84DFEED7230D0BDF00059131 /* Shadow.swift in Sources */,
-				84DFEEDB230D0BDF00059131 /* GridKeyboardPresenter.swift in Sources */,
 				84DFEEE6230D0BDF00059131 /* UIImage+Pasteboard.swift in Sources */,
 				84DFEEFD230D0BDF00059131 /* KeyboardAction.swift in Sources */,
 				84DFEEDD230D0BDF00059131 /* UIStackView+Subviews.swift in Sources */,
