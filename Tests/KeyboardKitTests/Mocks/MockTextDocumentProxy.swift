@@ -6,7 +6,7 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
-import MockNRoll
+import Mockery
 import UIKit
 
 class MockTextDocumentProxy: NSObject, UITextDocumentProxy {

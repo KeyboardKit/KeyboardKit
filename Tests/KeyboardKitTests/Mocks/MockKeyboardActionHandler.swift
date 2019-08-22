@@ -7,7 +7,7 @@
 //
 
 import KeyboardKit
-import MockNRoll
+import Mockery
 import UIKit
 
 class MockKeyboardActionHandler: Mock, KeyboardActionHandler {

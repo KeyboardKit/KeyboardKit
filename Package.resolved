@@ -2,11 +2,11 @@
   "object": {
     "pins": [
       {
-        "package": "MockNRoll",
-        "repositoryURL": "git@github.com:danielsaidi/MockNRoll.git",
+        "package": "Mockery",
+        "repositoryURL": "git@github.com:danielsaidi/Mockery.git",
         "state": {
           "branch": "0.1.0-beta",
-          "revision": "91a2e59ba1116262e078bf9f83edf6cb578eae96",
+          "revision": "619c734b831779cefb1dc19e8dbe8336a4a7f3f0",
           "version": null
         }
       },

@@ -7,7 +7,7 @@
 //
 
 import KeyboardKit
-import MockNRoll
+import Mockery
 
 class MockKeyboardInputViewController: KeyboardInputViewController {
     

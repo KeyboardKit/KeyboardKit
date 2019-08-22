@@ -8,7 +8,7 @@
 
 import Quick
 import Nimble
-import MockNRoll
+import Mockery
 import KeyboardKit
 import Foundation
 

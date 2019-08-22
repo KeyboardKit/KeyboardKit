@@ -9,7 +9,7 @@
 import Quick
 import Nimble
 import KeyboardKit
-import MockNRoll
+import Mockery
 import UIKit
 
 class KeyboardInputViewControllerTests: QuickSpec {
