@@ -6,14 +6,8 @@
     <a href="https://github.com/danielsaidi/KeyboardKit">
         <img src="https://badge.fury.io/gh/danielsaidi%2FKeyboardKit.svg?style=flat" alt="Version" />
     </a>
-    <a href="https://cocoapods.org/pods/KeyboardKit">
-        <img src="https://img.shields.io/cocoapods/v/KeyboardKit.svg?style=flat" alt="CocoaPods" />
-    </a>
-    <a href="https://github.com/Carthage/Carthage">
-        <img src="https://img.shields.io/badge/carthage-supported-green.svg?style=flat" alt="Carthage" />
-    </a>
     <img src="https://img.shields.io/cocoapods/p/KeyboardKit.svg?style=flat" alt="Platform" />
-    <img src="https://img.shields.io/badge/Swift-5.0-orange.svg" alt="Swift 5.0" />
+    <img src="https://img.shields.io/badge/Swift-5.1-orange.svg" alt="Swift 5.0" />
     <img src="https://badges.frapsoft.com/os/mit/mit.svg?style=flat&v=102" alt="License" />
     <a href="https://twitter.com/danielsaidi">
         <img src="https://img.shields.io/badge/contact-@danielsaidi-blue.svg?style=flat" alt="Twitter: @danielsaidi" />
@@ -23,7 +17,7 @@
 
 ## About KeyboardKit
 
-`KeyboardKit` is a Swift library that simplifies creating keyboard extensions for iOS. It supports many keyboard actions and keyboard types and lets you create keyboards with text inputs, emojis, actions, images etc.
+`KeyboardKit` is a Swift library that helps you create keyboard extensions for iOS. It supports many keyboard actions and keyboard types and lets you create keyboards with text inputs, emojis, actions, images etc.
 
 <p align="center">
     <img src ="Resources/Demo.gif" />
@@ -36,8 +30,7 @@ With `KeyboardKit`, you inherit `KeyboardInputViewController` instead of `UIInpu
 
 ### <a name="spm"></a>Swift Package Manager
 
-In Xcode 11 and later, the easiest way to add KeyboardKit to your project is to
-use Swift Package Manager:
+In Xcode 11 and later, the easiest way to add KeyboardKit to your project is to use Swift Package Manager:
 ```
 .package(url: "git@github.com:danielsaidi/KeyboardKit.git" ...)
 ```
@@ -45,7 +38,7 @@ use Swift Package Manager:
 ### CocoaPods
 
 Add this to your `Podfile` and run `pod install`:
-```
+```ruby
 pod 'KeyboardKit'
 ```
 Then follow [these instructions](#add) on how to add it to your project.
