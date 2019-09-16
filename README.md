@@ -28,7 +28,7 @@ With `KeyboardKit`, you inherit `KeyboardInputViewController` instead of `UIInpu
 
 ## Installation
 
-### <a name="spm"></a>Swift Package Manager
+### Swift Package Manager
 
 In Xcode 11 and later, the easiest way to add KeyboardKit to your project is to use Swift Package Manager:
 ```
