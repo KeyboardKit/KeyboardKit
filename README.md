@@ -39,9 +39,14 @@ In Xcode 11 and later, the easiest way to add KeyboardKit to your project is to 
 
 Add this to your `Podfile` and run `pod install`:
 ```ruby
-pod 'KeyboardKit'
+target 'HostApp' do
+  pod 'KeyboardKit'
+end
+
+target 'KeyboardExt' do
+  pod 'KeyboardKit'
+end
 ```
-Then follow [these instructions](#add) on how to add it to your project.
 
 ### Carthage
 
