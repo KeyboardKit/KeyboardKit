@@ -744,7 +744,7 @@
 /* Begin XCRemoteSwiftPackageReference section */
 		84F42F692343E81B00F09426 /* XCRemoteSwiftPackageReference "KeyboardKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/danielsaidi/KeyboardKit.git";
+			repositoryURL = "../";
 			requirement = {
 				branch = "spm-project-structure";
 				kind = branch;

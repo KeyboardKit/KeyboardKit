@@ -3,10 +3,10 @@
     "pins": [
       {
         "package": "KeyboardKit",
-        "repositoryURL": "https://github.com/danielsaidi/KeyboardKit.git",
+        "repositoryURL": "/Users/admin/Projects/KeyboardKit",
         "state": {
           "branch": "spm-project-structure",
-          "revision": "d4850d2c6120a0303174a35521ea2f9958cf32e2",
+          "revision": "f28d9561bec0d59244e953933f6061fb4c9a2cd5",
           "version": null
         }
       },
