@@ -20,6 +20,20 @@
                ReferencedContainer = "container:KeyboardKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8441DB612343B35400338DAD"
+               BuildableName = "KeyboardKitDemo.app"
+               BlueprintName = "KeyboardKitDemo"
+               ReferencedContainer = "container:KeyboardKit.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -50,6 +64,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8441DB612343B35400338DAD"
+            BuildableName = "KeyboardKitDemo.app"
+            BlueprintName = "KeyboardKitDemo"
+            ReferencedContainer = "container:KeyboardKit.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -57,6 +81,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "KeyboardKit::KeyboardKit"
+            BuildableName = "KeyboardKit.framework"
+            BlueprintName = "KeyboardKit"
+            ReferencedContainer = "container:KeyboardKit.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

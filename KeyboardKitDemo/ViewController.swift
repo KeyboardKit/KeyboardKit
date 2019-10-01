@@ -2,8 +2,7 @@
 //  ViewController.swift
 //  KeyboardKitDemo
 //
-//  Created by Daniel Saidi on 2019-08-20.
-//  Copyright © 2019 Daniel Saidi. All rights reserved.
+//  Created by Daniel Saidi on 2019-10-01.
 //
 
 import UIKit
