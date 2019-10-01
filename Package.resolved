@@ -5,9 +5,9 @@
         "package": "Mockery",
         "repositoryURL": "git@github.com:danielsaidi/Mockery.git",
         "state": {
-          "branch": "0.1.0-beta",
-          "revision": "619c734b831779cefb1dc19e8dbe8336a4a7f3f0",
-          "version": null
+          "branch": null,
+          "revision": "d517599e6e61f96d7643fb6c39aacef3400ab3e7",
+          "version": "0.1.1"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "git@github.com:Quick/Quick.git",
         "state": {
           "branch": null,
-          "revision": "94df9b449508344667e5afc7e80f8bcbff1e4c37",
-          "version": "2.1.0"
+          "revision": "33682c2f6230c60614861dfc61df267e11a1602f",
+          "version": "2.2.0"
         }
       }
     ]

@@ -26,7 +26,10 @@ platform :ios do
     git_commit(
       path: [
         "KeyboardKit.podspec",
-        "Fastlane/"
+        "Fastlane/",
+        "KeyboardKit/Info.plist",
+        "KeyboardKitDemo/Info.plist",
+        "KeyboardKitDemoKeyboard/Info.plist"
       ],
       message: "Bump to #{version}"
     )
