@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1000"
-   wasCreatedForAppExtension = "YES"
+   LastUpgradeVersion = "9999"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "45FB517420495C73009D5806"
+               BlueprintIdentifier = "KeyboardKit::KeyboardKit"
                BuildableName = "KeyboardKit.framework"
                BlueprintName = "KeyboardKit"
-               ReferencedContainer = "container:KeyboardKit.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "NO"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "84C19A2D230C1609000FFB05"
-               BuildableName = "KeyboardKitDemo.app"
-               BlueprintName = "KeyboardKitDemo"
                ReferencedContainer = "container:KeyboardKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -42,16 +27,17 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "45FB517420495C73009D5806"
-            BuildableName = "KeyboardKit.framework"
-            BlueprintName = "KeyboardKit"
-            ReferencedContainer = "container:KeyboardKit.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "KeyboardKit::KeyboardKitTests"
+               BuildableName = "KeyboardKitTests.xctest"
+               BlueprintName = "KeyboardKitTests"
+               ReferencedContainer = "container:KeyboardKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -64,16 +50,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "84C19A2D230C1609000FFB05"
-            BuildableName = "KeyboardKitDemo.app"
-            BlueprintName = "KeyboardKitDemo"
-            ReferencedContainer = "container:KeyboardKit.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -81,15 +57,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "45FB517420495C73009D5806"
-            BuildableName = "KeyboardKit.framework"
-            BlueprintName = "KeyboardKit"
-            ReferencedContainer = "container:KeyboardKit.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

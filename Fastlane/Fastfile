@@ -9,7 +9,7 @@ platform :ios do
   
   desc "Run unit tests"
   lane :test do
-    spm(command: "test")
+    run_tests(scheme: "KeyboardKit")
   end
 
 
@@ -19,7 +19,7 @@ platform :ios do
   lane :version do |options|
     ensure_git_status_clean
     ensure_git_branch(branch: 'master')
-    # test        TODO: This doesn't work since SPM can't find UIKit in terminal
+    test
     version = version_bump_podspec(path: "KeyboardKit.podspec", version_number: options[:name])
     increment_version_number(version_number: version)
 
