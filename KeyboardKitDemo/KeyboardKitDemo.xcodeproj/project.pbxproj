@@ -369,7 +369,7 @@
 			);
 			mainGroup = 84F42EE02343E52F00F09426;
 			packageReferences = (
-				84F42F692343E81B00F09426 /* XCRemoteSwiftPackageReference "KeyboardKit" */,
+				84F42F692343E81B00F09426 /* XCRemoteSwiftPackageReference "." */,
 			);
 			productRefGroup = 84F42EEA2343E52F00F09426 /* Products */;
 			projectDirPath = "";
@@ -742,11 +742,11 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		84F42F692343E81B00F09426 /* XCRemoteSwiftPackageReference "KeyboardKit" */ = {
+		84F42F692343E81B00F09426 /* XCRemoteSwiftPackageReference "." */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "../";
+			repositoryURL = ../;
 			requirement = {
-				branch = "spm-project-structure";
+				branch = master;
 				kind = branch;
 			};
 		};
@@ -755,7 +755,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		84F42F6A2343E81B00F09426 /* KeyboardKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 84F42F692343E81B00F09426 /* XCRemoteSwiftPackageReference "KeyboardKit" */;
+			package = 84F42F692343E81B00F09426 /* XCRemoteSwiftPackageReference "." */;
 			productName = KeyboardKit;
 		};
 /* End XCSwiftPackageProductDependency section */
