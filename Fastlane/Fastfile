@@ -9,6 +9,7 @@ platform :ios do
   
   desc "Run unit tests"
   lane :test do
+    swiftlint
     run_tests(scheme: "KeyboardKit")
   end
 

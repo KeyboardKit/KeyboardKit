@@ -1,0 +1,43 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "KeyboardKit",
+        "repositoryURL": "https://github.com/danielsaidi/KeyboardKit.git",
+        "state": {
+          "branch": "spm-project-structure",
+          "revision": "d4850d2c6120a0303174a35521ea2f9958cf32e2",
+          "version": null
+        }
+      },
+      {
+        "package": "Mockery",
+        "repositoryURL": "https://github.com/danielsaidi/Mockery.git",
+        "state": {
+          "branch": null,
+          "revision": "d517599e6e61f96d7643fb6c39aacef3400ab3e7",
+          "version": "0.1.1"
+        }
+      },
+      {
+        "package": "Nimble",
+        "repositoryURL": "https://github.com/Quick/Nimble.git",
+        "state": {
+          "branch": null,
+          "revision": "f8657642dfdec9973efc79cc68bcef43a653a2bc",
+          "version": "8.0.2"
+        }
+      },
+      {
+        "package": "Quick",
+        "repositoryURL": "https://github.com/Quick/Quick.git",
+        "state": {
+          "branch": null,
+          "revision": "33682c2f6230c60614861dfc61df267e11a1602f",
+          "version": "2.2.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

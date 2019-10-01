@@ -3,7 +3,7 @@
    LastUpgradeVersion = "9999"
    version = "1.3">
    <BuildAction
-      parallelizeBuildables = "YES"
+      parallelizeBuildables = "NO"
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
@@ -17,20 +17,6 @@
                BlueprintIdentifier = "KeyboardKit::KeyboardKit"
                BuildableName = "KeyboardKit.framework"
                BlueprintName = "KeyboardKit"
-               ReferencedContainer = "container:KeyboardKit.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "NO"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8441DB612343B35400338DAD"
-               BuildableName = "KeyboardKit.app"
-               BlueprintName = "KeyboardKitDemo"
                ReferencedContainer = "container:KeyboardKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -64,16 +50,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8441DB612343B35400338DAD"
-            BuildableName = "KeyboardKit.app"
-            BlueprintName = "KeyboardKitDemo"
-            ReferencedContainer = "container:KeyboardKit.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

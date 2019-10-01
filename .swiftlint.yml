@@ -9,9 +9,9 @@ disabled_rules:
 - vertical_whitespace
 - void_return
 
-excluded:
-  - Pods
-  - Carthage
+included:
+  - Sources
+  - Tests
 
 variable_name:
   excluded:
