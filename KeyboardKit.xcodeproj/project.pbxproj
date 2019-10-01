@@ -366,8 +366,8 @@
 				8441DB5B2343B28E00338DAD /* .swift-version */,
 				8441DB5C2343B28E00338DAD /* .swiftlint.yml */,
 				8441DB5D2343B2A800338DAD /* Fastfile */,
-				OBJ_243 /* LICENSE */,
 				OBJ_244 /* KeyboardKit.podspec */,
+				OBJ_243 /* LICENSE */,
 				OBJ_245 /* README.md */,
 				OBJ_246 /* RELEASE_NOTES.md */,
 				OBJ_247 /* swiftgen.yml */,
@@ -946,7 +946,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = OBJ_249 /* Build configuration list for PBXNativeTarget "KeyboardKit" */;
 			buildPhases = (
-				84F42F832343E8DF00F09426 /* ShellScript */,
+				84F42F832343E8DF00F09426 /* SwiftLint */,
 				OBJ_252 /* Sources */,
 				OBJ_306 /* Frameworks */,
 			);
@@ -1032,7 +1032,7 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		84F42F832343E8DF00F09426 /* ShellScript */ = {
+		84F42F832343E8DF00F09426 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1041,6 +1041,7 @@
 			);
 			inputPaths = (
 			);
+			name = SwiftLint;
 			outputFileListPaths = (
 			);
 			outputPaths = (

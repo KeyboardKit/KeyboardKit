@@ -9,7 +9,6 @@ platform :ios do
   
   desc "Run unit tests"
   lane :test do
-    swiftlint
     run_tests(scheme: "KeyboardKit")
   end
 
@@ -20,6 +19,7 @@ platform :ios do
   lane :version do |options|
     ensure_git_status_clean
     ensure_git_branch(branch: 'master')
+    swiftlint
     test
     version = version_bump_podspec(path: "KeyboardKit.podspec", version_number: options[:name])
     increment_version_number(version_number: version)
@@ -27,8 +27,7 @@ platform :ios do
     git_commit(
       path: [
         "KeyboardKit.podspec",
-        "Fastlane/",
-        "KeyboardKit/Info.plist",
+        "fastlane/",
         "KeyboardKitDemo/Info.plist",
         "KeyboardKitDemoKeyboard/Info.plist"
       ],
