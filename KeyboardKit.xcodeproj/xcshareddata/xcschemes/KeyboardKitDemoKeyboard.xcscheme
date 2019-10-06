@@ -15,7 +15,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8441DBF22343BB5F00338DAD"
+               BlueprintIdentifier = "8467045C234A711100355331"
                BuildableName = "KeyboardKitDemoKeyboard.appex"
                BlueprintName = "KeyboardKitDemoKeyboard"
                ReferencedContainer = "container:KeyboardKit.xcodeproj">
@@ -29,8 +29,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8441DB612343B35400338DAD"
-               BuildableName = "KeyboardKit.app"
+               BlueprintIdentifier = "84670444234A709400355331"
+               BuildableName = "KeyboardKitDemo.app"
                BlueprintName = "KeyboardKitDemo"
                ReferencedContainer = "container:KeyboardKit.xcodeproj">
             </BuildableReference>
@@ -61,8 +61,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8441DB612343B35400338DAD"
-            BuildableName = "KeyboardKit.app"
+            BlueprintIdentifier = "84670444234A709400355331"
+            BuildableName = "KeyboardKitDemo.app"
             BlueprintName = "KeyboardKitDemo"
             ReferencedContainer = "container:KeyboardKit.xcodeproj">
          </BuildableReference>
@@ -79,8 +79,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8441DB612343B35400338DAD"
-            BuildableName = "KeyboardKit.app"
+            BlueprintIdentifier = "84670444234A709400355331"
+            BuildableName = "KeyboardKitDemo.app"
             BlueprintName = "KeyboardKitDemo"
             ReferencedContainer = "container:KeyboardKit.xcodeproj">
          </BuildableReference>

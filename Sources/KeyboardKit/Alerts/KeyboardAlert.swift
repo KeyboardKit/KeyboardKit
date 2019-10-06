@@ -14,5 +14,5 @@ import UIKit
  */
 public protocol KeyboardAlert {
     
-    func alert(message: String, in: UIView, withDuration: Double)
+    func alert(message: String, in view: UIView, withDuration: Double)
 }

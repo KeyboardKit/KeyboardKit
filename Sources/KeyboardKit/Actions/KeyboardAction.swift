@@ -56,7 +56,7 @@ public extension KeyboardAction {
      The standard action, if any, that should be applied to
      the input view controller when the action is triggered.
      */
-    var standardInputViewControllerAction: ((UIInputViewController?) -> ())? {
+    var standardInputViewControllerAction: ((UIInputViewController?) -> Void)? {
         switch self {
         case .none: return nil
         case .backspace: return nil
@@ -85,7 +85,7 @@ public extension KeyboardAction {
      The standard action, if any, that should be applied to
      the texst document proxy when the action is triggered.
      */
-    var standardTextDocumentProxyAction: ((UITextDocumentProxy?) -> ())? {
+    var standardTextDocumentProxyAction: ((UITextDocumentProxy?) -> Void)? {
         switch self {
         case .none: return nil
         case .backspace: return { proxy in proxy?.deleteBackward() }

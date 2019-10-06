@@ -1,22 +1,19 @@
 disabled_rules:
-- cyclomatic_complexity
-- function_body_length
-- identifier_name
-- statement_position
-- trailing_whitespace
-- line_length
-- todo
-- vertical_whitespace
-- void_return
+  - function_body_length
+  - statement_position
+  - trailing_whitespace
+  - line_length
+  - todo
+  - type_name
+  - vertical_whitespace
 
 included:
   - Sources
   - Tests
 
-variable_name:
+identifier_name:
   excluded:
     - id
-    - in
     - x
     - y
     - dx

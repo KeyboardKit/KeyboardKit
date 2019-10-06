@@ -16,6 +16,11 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## iOS
+### ios resolve_dependencies
+```
+fastlane ios resolve_dependencies
+```
+Resolve External Dependencies (the shell script makes Bitrise work)
 ### ios test
 ```
 fastlane ios test

@@ -151,7 +151,7 @@ private class TestClass: RepeatingGestureRecognizer {
         super.stopGesture()
     }
     
-    override func delay(seconds: TimeInterval, function: @escaping () -> ()) {
+    override func delay(seconds: TimeInterval, function: @escaping () -> Void) {
         function()
     }
 }

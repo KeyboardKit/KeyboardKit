@@ -85,7 +85,7 @@ open class RepeatingGestureRecognizer: UIGestureRecognizer {
     
     // MARK: - Internal Functions
     
-    func delay(seconds: TimeInterval, function: @escaping ()->()) {
+    func delay(seconds: TimeInterval, function: @escaping () -> Void) {
         let milliseconds = Int(seconds * 1000)
         let interval: DispatchTimeInterval = .milliseconds(milliseconds)
         DispatchQueue.main.asyncAfter(deadline: .now() + interval, execute: function)

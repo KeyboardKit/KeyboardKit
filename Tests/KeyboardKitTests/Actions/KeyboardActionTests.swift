@@ -17,7 +17,7 @@ class KeyboardActionTests: QuickSpec {
         
         describe("standard input view controller action") {
             
-            func action(for action: KeyboardAction) -> ((UIInputViewController?) -> ())? {
+            func action(for action: KeyboardAction) -> ((UIInputViewController?) -> Void)? {
                 return action.standardInputViewControllerAction
             }
             
@@ -47,7 +47,7 @@ class KeyboardActionTests: QuickSpec {
         
         describe("standard text document proxy action") {
             
-            func action(for action: KeyboardAction) -> ((UITextDocumentProxy?) -> ())? {
+            func action(for action: KeyboardAction) -> ((UITextDocumentProxy?) -> Void)? {
                 return action.standardTextDocumentProxyAction
             }
             

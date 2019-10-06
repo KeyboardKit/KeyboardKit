@@ -27,16 +27,16 @@ public protocol KeyboardButton: KeyboardButtonRowComponent {
 
 public extension KeyboardButton {
     
-    func animateStandardPress(factor: CGFloat = 1.18, completion: (() -> ())? = nil) {
+    func animateStandardPress(factor: CGFloat = 1.18, completion: (() -> Void)? = nil) {
         let transform = CGAffineTransform(scaleX: factor, y: factor)
         animateTransform(transform, completion: completion)
     }
     
-    func animateStandardRelease(completion: (() -> ())? = nil) {
+    func animateStandardRelease(completion: (() -> Void)? = nil) {
         animateTransform(.identity, completion: completion)
     }
     
-    func animateStandardTap(completion: (() -> ())? = nil) {
+    func animateStandardTap(completion: (() -> Void)? = nil) {
         animateStandardPress { [weak self] in
             self?.animateStandardRelease(completion: completion)
         }
@@ -45,7 +45,7 @@ public extension KeyboardButton {
 
 private extension KeyboardButton {
     
-    func animateTransform(_ transform: CGAffineTransform, completion: (() -> ())? = nil) {
+    func animateTransform(_ transform: CGAffineTransform, completion: (() -> Void)? = nil) {
         UIView.animate(
             withDuration: 0.123,
             delay: 0,

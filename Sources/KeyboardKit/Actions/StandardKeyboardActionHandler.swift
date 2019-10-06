@@ -65,7 +65,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Types
     
-    public typealias GestureAction = (() -> ())
+    public typealias GestureAction = (() -> Void)
     
     
     // MARK: - Actions
