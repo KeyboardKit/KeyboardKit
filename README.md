@@ -122,7 +122,7 @@ Since keyboard extensions can't display `UIAlertController`s, you can use `Keybo
 
 ## Demo Application
 
-`KeyboardKit` contains a demo app that contains different kind of keyboards, like numeric keyboards, system keyboards, row-based keyboards and a grid-based emoji keyboard.
+This repository contains a demo app that demonstrates different kinds of keyboards, including a grid-based emoji keyboard. To try it out, open and run the `KeyboardKit.xcodeproj` project.
 
 
 ## Contact me
