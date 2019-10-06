@@ -30,21 +30,15 @@ platform :ios do
   lane :version do |options|
     ensure_git_status_clean
     ensure_git_branch(branch: 'master')
-    swiftlint
     test
-    version = version_bump_podspec(path: "KeyboardKit.podspec", version_number: options[:name])
+    version = version_bump_podspec(path: "KeyboardKit.podspec", bump_type: bump_type)
     increment_version_number(version_number: version)
-
+  
     git_commit(
-      path: [
-        "KeyboardKit.podspec",
-        "fastlane/",
-        "KeyboardKitDemo/Info.plist",
-        "KeyboardKitDemoKeyboard/Info.plist"
-      ],
+      path: "*",
       message: "Bump to #{version}"
     )
-
+  
     add_git_tag(tag: version)
     push_git_tags()
     push_to_git_remote()
