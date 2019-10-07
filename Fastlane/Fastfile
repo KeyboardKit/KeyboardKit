@@ -31,6 +31,12 @@ platform :ios do
     ensure_git_status_clean
     ensure_git_branch(branch: 'master')
     test
+
+    bump_type = options[:type]
+    if bump_type == nil or bump_type.empty?
+      bump_type = "patch"
+    end
+    
     version = version_bump_podspec(path: "KeyboardKit.podspec", bump_type: bump_type)
     increment_version_number(version_number: version)
   
