@@ -19,7 +19,7 @@ public extension UIView {
     
     typealias LongPressAction = (() -> Void)
     
-    /*
+    /**
      Add a long press gesture recognizer to the view.
      */
     func addLongPressAction(action: @escaping LongPressAction) {
@@ -29,7 +29,7 @@ public extension UIView {
         addGestureRecognizer(recognizer)
     }
     
-    /*
+    /**
      Remove all long press gesture recognizers from the view.
     */
     func removeLongPressAction() {

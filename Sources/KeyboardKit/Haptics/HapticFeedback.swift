@@ -10,8 +10,8 @@ import UIKit
 
 /**
  This enum provides a streamlined way of working with haptic
- feedback. You can simply call `HapticFeedback.XXX.trigger()`
- to prepare and trigger the desired haptic feedback.
+ feedback. You can call `prepare()` and `trigger()` on these
+ hapic feedbacks to prepare and trigger the desired feedback.
 */
 public enum HapticFeedback: CaseIterable {
     

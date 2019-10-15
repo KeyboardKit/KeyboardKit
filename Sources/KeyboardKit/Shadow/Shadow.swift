@@ -8,6 +8,10 @@
 
 import UIKit
 
+/**
+ This struct can be used together with the shadow extensions,
+ to apply a shadow effect to a view.
+ */
 public struct Shadow {
     
     public init(

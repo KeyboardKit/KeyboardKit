@@ -17,7 +17,7 @@ public extension UIView {
     
     typealias RepeatingAction = (() -> Void)
     
-    /*
+    /**
      Add a repeating gesture recognizer to the view.
     */
     func addRepeatingAction(
@@ -32,7 +32,7 @@ public extension UIView {
         addGestureRecognizer(recognizer)
     }
     
-    /*
+    /**
      Remove all repeating gestures recognizer from the view.
     */
     func removeRepeatingAction() {

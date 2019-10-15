@@ -8,7 +8,7 @@
 
 import UIKit
 
-/*
+/**
  Keyboard toolbars are keyboard rows, that can be added to a
  `KeyboardInputViewController`'s `keyboardStackView`.
  

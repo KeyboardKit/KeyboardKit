@@ -10,6 +10,9 @@ import UIKit
 
 public extension UIView {
     
+    /**
+     Apply a certain drop shadow effect.
+     */
     func applyShadow(_ shadow: Shadow) {
         layer.applyShadow(
             color: shadow.color,

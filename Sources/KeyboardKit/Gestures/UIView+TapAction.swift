@@ -19,7 +19,7 @@ public extension UIView {
     
     typealias TapAction = () -> Void
     
-    /*
+    /**
      Add a tap gesture recognizer to the view.
     */
     func addTapAction(numberOfTapsRequired: Int = 1, action: @escaping TapAction) {
@@ -30,7 +30,7 @@ public extension UIView {
         addGestureRecognizer(recognizer)
     }
 
-    /*
+    /**
      Remove all repeating gesture recognizers from the view.
     */
     func removeTapAction() {
