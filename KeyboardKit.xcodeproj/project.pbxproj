@@ -21,6 +21,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		84086E30235587DC0030D95A /* KeyboardViewController+Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84086E2F235587DC0030D95A /* KeyboardViewController+Buttons.swift */; };
+		84086E32235588200030D95A /* KeyboardViewController+Autocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84086E31235588200030D95A /* KeyboardViewController+Autocomplete.swift */; };
+		84086E3423558C0F0030D95A /* KeyboardViewController+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84086E3323558C0F0030D95A /* KeyboardViewController+Setup.swift */; };
 		84670448234A709400355331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84670447234A709400355331 /* AppDelegate.swift */; };
 		8467044A234A709400355331 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84670449234A709400355331 /* SceneDelegate.swift */; };
 		8467044C234A709400355331 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467044B234A709400355331 /* ViewController.swift */; };
@@ -399,6 +402,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		84086E2F235587DC0030D95A /* KeyboardViewController+Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardViewController+Buttons.swift"; sourceTree = "<group>"; };
+		84086E31235588200030D95A /* KeyboardViewController+Autocomplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardViewController+Autocomplete.swift"; sourceTree = "<group>"; };
+		84086E3323558C0F0030D95A /* KeyboardViewController+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardViewController+Setup.swift"; sourceTree = "<group>"; };
 		84670426234A6A9E00355331 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		84670427234A6A9E00355331 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		84670445234A709400355331 /* KeyboardKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeyboardKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -750,6 +756,9 @@
 				846704BD234A725900355331 /* Supporting Files */,
 				846704A6234A725300355331 /* DemoKeyboardActionHandler.swift */,
 				8467045F234A711100355331 /* KeyboardViewController.swift */,
+				84086E31235588200030D95A /* KeyboardViewController+Autocomplete.swift */,
+				84086E2F235587DC0030D95A /* KeyboardViewController+Buttons.swift */,
+				84086E3323558C0F0030D95A /* KeyboardViewController+Setup.swift */,
 			);
 			path = KeyboardKitDemoKeyboard;
 			sourceTree = "<group>";
@@ -1799,6 +1808,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				846704B7234A725300355331 /* NumericKeyboard.swift in Sources */,
+				84086E3423558C0F0030D95A /* KeyboardViewController+Setup.swift in Sources */,
 				846704BE234A727F00355331 /* Assets.swift in Sources */,
 				846704B3234A725300355331 /* DemoKeyboardActionHandler.swift in Sources */,
 				846704B6234A725300355331 /* DemoAutocompleteLabel.swift in Sources */,
@@ -1806,7 +1816,9 @@
 				846704BA234A725300355331 /* DemoKeyboard.swift in Sources */,
 				846704B4234A725300355331 /* DemoButton.swift in Sources */,
 				846704B9234A725300355331 /* SymbolicKeyboard.swift in Sources */,
+				84086E32235588200030D95A /* KeyboardViewController+Autocomplete.swift in Sources */,
 				84670460234A711100355331 /* KeyboardViewController.swift in Sources */,
+				84086E30235587DC0030D95A /* KeyboardViewController+Buttons.swift in Sources */,
 				846704B8234A725300355331 /* AlphabeticKeyboard.swift in Sources */,
 				846704BB234A725300355331 /* EmojiKeyboard.swift in Sources */,
 			);

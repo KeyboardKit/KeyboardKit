@@ -14,13 +14,13 @@ public extension HapticFeedback {
      The standard haptic feedback for a button tap.
      */
     static var standardTapFeedback: HapticFeedback {
-        return .mediumImpact
+        .mediumImpact
     }
     
     /**
      The standard haptic feedback for a button long press.
     */
     static var standardLongPressFeedback: HapticFeedback {
-        return .heavyImpact
+        .heavyImpact
     }
 }

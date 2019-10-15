@@ -97,15 +97,15 @@ class KeyboardViewController: KeyboardInputViewController {
     }
     
     var keyboardSwitcherAction: KeyboardAction {
-        return needsInputModeSwitchKey ? .switchKeyboard : .switchToKeyboard(.emojis)
+        needsInputModeSwitchKey ? .switchKeyboard : .switchToKeyboard(.emojis)
     }
     
     
     // MARK: - Autocomplete
     
-    private lazy var autocompleteProvider = DemoAutocompleteSuggestionProvider()
+    lazy var autocompleteProvider = DemoAutocompleteSuggestionProvider()
     
-    private lazy var autocompleteToolbar: AutocompleteToolbar = {
+    lazy var autocompleteToolbar: AutocompleteToolbar = {
         let proxy = textDocumentProxy
         let toolbar = AutocompleteToolbar(
             buttonCreator: { DemoAutocompleteLabel(word: $0, proxy: proxy) }
@@ -113,102 +113,4 @@ class KeyboardViewController: KeyboardInputViewController {
         toolbar.update(with: ["foo", "bar", "baz"])
         return toolbar
     }()
-    
-    private func requestAutocompleteSuggestions() {
-        let word = textDocumentProxy.currentWord ?? ""
-        autocompleteProvider.provideAutocompleteSuggestions(for: word) { [weak self] in
-            switch $0 {
-            case .failure(let error): print(error.localizedDescription)
-            case .success(let result): self?.autocompleteToolbar.update(with: result)
-            }
-        }
-    }
-    
-    private func resetAutocompleteSuggestions() {
-        autocompleteToolbar.reset()
-    }
-}
-
-
-// MARK: - Setup
-
-private extension KeyboardViewController {
-    
-    func setupKeyboard() {
-        setupKeyboard(for: view.bounds.size)
-    }
-    
-    func setupKeyboard(for size: CGSize) {
-        DispatchQueue.main.async {
-            self.setupKeyboardAsync(for: size)
-        }
-    }
-    
-    func setupKeyboardAsync(for size: CGSize) {
-        keyboardStackView.removeAllArrangedSubviews()
-        switch keyboardType {
-        case .alphabetic(let uppercased): setupAlphabeticKeyboard(uppercased: uppercased)
-        case .numeric: setupNumericKeyboard()
-        case .symbolic: setupSymbolicKeyboard()
-        case .emojis: setupEmojiKeyboard(for: size)
-        default: return
-        }
-    }
-    
-    func setupAlphabeticKeyboard(uppercased: Bool = false) {
-        let keyboard = AlphabeticKeyboard(uppercased: uppercased, in: self)
-        let rows = buttonRows(for: keyboard.actions, distribution: .fillProportionally)
-        keyboardStackView.addArrangedSubviews(rows)
-    }
-    
-    func setupEmojiKeyboard(for size: CGSize) {
-        let keyboard = EmojiKeyboard(in: self)
-        let isLandscape = size.width > 400
-        let rowsPerPage = isLandscape ? 3 : 4
-        let buttonsPerRow = isLandscape ? 8 : 6
-        let config = KeyboardButtonRowCollectionView.Configuration(rowHeight: 50, rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)
-        let view = KeyboardButtonRowCollectionView(actions: keyboard.actions, configuration: config) { [unowned self] in return self.button(for: $0) }
-        let bottom = buttonRow(for: keyboard.bottomActions, distribution: .fillProportionally)
-        keyboardStackView.addArrangedSubview(view)
-        keyboardStackView.addArrangedSubview(bottom)
-    }
-    
-    func setupNumericKeyboard() {
-        let keyboard = NumericKeyboard(in: self)
-        let rows = buttonRows(for: keyboard.actions, distribution: .fillProportionally)
-        keyboardStackView.addArrangedSubviews(rows)
-    }
-    
-    func setupSymbolicKeyboard() {
-        let keyboard = SymbolicKeyboard(in: self)
-        let rows = buttonRows(for: keyboard.actions, distribution: .fillProportionally)
-        keyboardStackView.addArrangedSubviews(rows)
-    }
-}
-
-
-// MARK: - Private Button Functions
-
-private extension KeyboardViewController {
-    
-    func button(for action: KeyboardAction, distribution: UIStackView.Distribution = .equalSpacing) -> UIView {
-        if action == .none { return KeyboardSpacerView(width: 10) }
-        let view = DemoButton.fromNib(owner: self)
-        view.setup(with: action, in: self, distribution: distribution)
-        return view
-    }
-    
-    func buttonRow(for actions: KeyboardActionRow, distribution: UIStackView.Distribution) -> KeyboardStackViewComponent {
-        return KeyboardButtonRow(actions: actions, distribution: distribution) {
-            button(for: $0, distribution: distribution)
-        }
-    }
-    
-    func buttonRows(for actionRows: KeyboardActionRows, distribution: UIStackView.Distribution) -> [KeyboardStackViewComponent] {
-        var rows = actionRows.map {
-            buttonRow(for: $0, distribution: distribution)
-        }
-        rows.insert(autocompleteToolbar, at: 0)
-        return rows
-    }
 }
