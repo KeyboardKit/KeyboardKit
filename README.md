@@ -112,9 +112,18 @@ Since keyboard extensions can't display `UIAlertController`s, you can use `Keybo
 
 ## Haptic Feedback
 
-`KeyboardKit` has a collection of `HapticFeedback` variants, that can be used to give the user haptic feedback as she/he uses the keyboard. 
+`KeyboardKit` has a `HapticFeedback` type, that can be used to give the user haptic feedback as she/he uses the keyboard.  `HapticFeedback` defines a set of feedback types that wraps native feedback types like `selection changed`, `error`, `success` etc.
 
-The `HapticFeedback` enum defines a set of haptic feedback types that wraps native iOS feedback types like `selection changed`, `error`, `success` etc.
+You can enable or disable haptic feedback by providing the `keyboardActionHandler` with a haptic feedback configuration. The default configuration is to disable haptic feedback.
+
+`NOTE` that you have to enable open access for the keyboard for haptic feedback to work.
+
+
+## Audio Feedback
+
+`KeyboardKit` has an `AudioFeedback` type, that can be used to give the user audio feedback as she/he uses the keyboard.  `AudioFeedback` defines a set of feedback types that wraps native system sounds.
+
+You can enable or disable audio feedback by providing the `keyboardActionHandler` with a audio feedback configuration. The default configuration is to play standard audio feedback.
 
 `NOTE` that you have to enable open access for the keyboard for haptic feedback to work.
 

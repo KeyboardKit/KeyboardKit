@@ -15,6 +15,96 @@ class KeyboardActionTests: QuickSpec {
     
     override func spec() {
         
+        describe("is delete action") {
+            
+            func result(for action: KeyboardAction) -> Bool {
+                action.isDeleteAction
+            }
+            
+            it("is true for content actions") {
+                expect(result(for: .none)).to(beFalse())
+                expect(result(for: .backspace)).to(beTrue())
+                expect(result(for: .dismissKeyboard)).to(beFalse())
+                expect(result(for: .capsLock)).to(beFalse())
+                expect(result(for: .character(""))).to(beFalse())
+                expect(result(for: .command)).to(beFalse())
+                expect(result(for: .custom(name: ""))).to(beFalse())
+                expect(result(for: .escape)).to(beFalse())
+                expect(result(for: .function)).to(beFalse())
+                expect(result(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beFalse())
+                expect(result(for: .moveCursorBackward)).to(beFalse())
+                expect(result(for: .moveCursorForward)).to(beFalse())
+                expect(result(for: .newLine)).to(beFalse())
+                expect(result(for: .option)).to(beFalse())
+                expect(result(for: .shift)).to(beFalse())
+                expect(result(for: .shiftDown)).to(beFalse())
+                expect(result(for: .space)).to(beFalse())
+                expect(result(for: .switchKeyboard)).to(beFalse())
+                expect(result(for: .switchToKeyboard(.email))).to(beFalse())
+                expect(result(for: .tab)).to(beFalse())
+            }
+        }
+        
+        describe("is input action") {
+            
+            func result(for action: KeyboardAction) -> Bool {
+                action.isInputAction
+            }
+            
+            it("is true for content actions") {
+                expect(result(for: .none)).to(beFalse())
+                expect(result(for: .backspace)).to(beFalse())
+                expect(result(for: .dismissKeyboard)).to(beFalse())
+                expect(result(for: .capsLock)).to(beFalse())
+                expect(result(for: .character(""))).to(beTrue())
+                expect(result(for: .command)).to(beFalse())
+                expect(result(for: .custom(name: ""))).to(beFalse())
+                expect(result(for: .escape)).to(beFalse())
+                expect(result(for: .function)).to(beFalse())
+                expect(result(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beTrue())
+                expect(result(for: .moveCursorBackward)).to(beFalse())
+                expect(result(for: .moveCursorForward)).to(beFalse())
+                expect(result(for: .newLine)).to(beFalse())
+                expect(result(for: .option)).to(beFalse())
+                expect(result(for: .shift)).to(beFalse())
+                expect(result(for: .shiftDown)).to(beFalse())
+                expect(result(for: .space)).to(beFalse())
+                expect(result(for: .switchKeyboard)).to(beFalse())
+                expect(result(for: .switchToKeyboard(.email))).to(beFalse())
+                expect(result(for: .tab)).to(beFalse())
+            }
+        }
+        
+        describe("is system action") {
+            
+            func result(for action: KeyboardAction) -> Bool {
+                action.isSystemAction
+            }
+            
+            it("is true for content actions") {
+                expect(result(for: .none)).to(beFalse())
+                expect(result(for: .backspace)).to(beTrue())
+                expect(result(for: .dismissKeyboard)).to(beTrue())
+                expect(result(for: .capsLock)).to(beTrue())
+                expect(result(for: .character(""))).to(beFalse())
+                expect(result(for: .command)).to(beTrue())
+                expect(result(for: .custom(name: ""))).to(beFalse())
+                expect(result(for: .escape)).to(beTrue())
+                expect(result(for: .function)).to(beTrue())
+                expect(result(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beFalse())
+                expect(result(for: .moveCursorBackward)).to(beTrue())
+                expect(result(for: .moveCursorForward)).to(beTrue())
+                expect(result(for: .newLine)).to(beTrue())
+                expect(result(for: .option)).to(beTrue())
+                expect(result(for: .shift)).to(beTrue())
+                expect(result(for: .shiftDown)).to(beTrue())
+                expect(result(for: .space)).to(beTrue())
+                expect(result(for: .switchKeyboard)).to(beTrue())
+                expect(result(for: .switchToKeyboard(.email))).to(beTrue())
+                expect(result(for: .tab)).to(beTrue())
+            }
+        }
+        
         describe("standard input view controller action") {
             
             func action(for action: KeyboardAction) -> ((UIInputViewController?) -> Void)? {

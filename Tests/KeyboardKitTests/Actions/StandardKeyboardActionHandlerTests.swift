@@ -73,75 +73,34 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         
         // MARK: - Action Handling
         
-        describe("handling long press") {
+        describe("handling gesture on action") {
             
-            it("is performed for any action type with tap action") {
-                handler.handleLongPress(on: .dismissKeyboard, view: UIView())
-                handler.handleLongPress(on: .backspace, view: UIView())
-                handler.handleLongPress(on: .switchKeyboard, view: UIView())
-                let invokes = handler.recorder.executions(of: handler.recorder.giveHapticFeedbackForLongPress)
-                expect(invokes.count).to(equal(2))
-            }
+            it("TODO") {}
         }
         
-        describe("handling repeat") {
-            
-            it("is performed for any action type with repeat action") {
-                handler.handleRepeat(on: .dismissKeyboard, view: UIView())
-                handler.handleRepeat(on: .backspace, view: UIView())
-                handler.handleRepeat(on: .switchKeyboard, view: UIView())
-                let invokes = handler.recorder.executions(of: handler.recorder.giveHapticFeedbackForRepeat)
-                expect(invokes.count).to(equal(1))
-            }
-        }
         
-        describe("tap handling") {
+        // MARK: - Haptic Feedback
+        
+        describe("giving haptic feedback") {
             
-            it("is performed for action type with standard input view controller action") {
-                handler.handleTap(on: .dismissKeyboard, view: UIView())
-                let invokes = handler.recorder.executions(of: handler.recorder.giveHapticFeedbackForTap)
-                expect(invokes.count).to(equal(1))
-                expect(invokes[0].arguments).to(equal(.dismissKeyboard))
-            }
-            
-            it("is performed for action type with standard text document proxy action") {
-                handler.handleTap(on: .backspace, view: UIView())
-                let invokes = handler.recorder.executions(of: handler.recorder.giveHapticFeedbackForTap)
-                expect(invokes.count).to(equal(1))
-                expect(invokes[0].arguments).to(equal(.backspace))
-            }
-            
-            it("is not performed for action type without standard action") {
-                handler.handleTap(on: .switchKeyboard, view: UIView())
-                let invokes = handler.recorder.executions(of: handler.recorder.giveHapticFeedbackForTap)
-                expect(invokes.count).to(equal(0))
+            it("can't be properyly tested") {
+                handler.triggerHapticFeedback(for: .longPress, on: .dismissKeyboard)
+                handler.triggerHapticFeedback(for: .repeatPress, on: .backspace)
+                handler.triggerHapticFeedback(for: .tap, on: .dismissKeyboard)
+                // TODO Test this
             }
         }
         
         
-        // MARK: - Haptic Functions
+        // MARK: - Audio Feedback
         
         describe("giving haptic feedback for long press") {
             
             it("can't be properyly tested") {
-                handler.giveHapticFeedback(for: .longPress, on: .dismissKeyboard)
-                // Test this
-            }
-        }
-        
-        describe("giving haptic feedback for repeat") {
-            
-            it("can't be properyly tested") {
-                handler.giveHapticFeedback(for: .repeatPress, on: .backspace)
-                // Test this
-            }
-        }
-        
-        describe("giving haptic feedback for tap") {
-            
-            it("can't be properyly tested") {
-                handler.giveHapticFeedback(for: .tap, on: .dismissKeyboard)
-                // Test this
+                handler.triggerAudioFeedback(for: .dismissKeyboard)
+                handler.triggerAudioFeedback(for: .backspace)
+                handler.triggerAudioFeedback(for: .dismissKeyboard)
+                // TODO Test this
             }
         }
     }
@@ -159,7 +118,7 @@ private class StandardKeyboardActionHandlerTestClass: StandardKeyboardActionHand
     
     let recorder: MockKeyboardActionHandler
     
-    override func giveHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
+    override func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
         switch gesture {
         case .tap: recorder.giveHapticFeedbackForTap(on: action)
         case .longPress: recorder.giveHapticFeedbackForLongPress(on: action)

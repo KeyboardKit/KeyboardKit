@@ -23,9 +23,10 @@ import UIKit
  of this class. You can also adjust the standard behavior by
  overriding the two `giveHapticFeedbackForX()` functions.
  
- **IMPORTANT** This class must inherit `NSObject` to be able
- to set itself as a selection target, e.g. when saving image
- assets to the photo album.
+ IMPORTANT: This class must inherit `NSObject` to be able to
+ set itself as a target, e.g. when saving images to photos.
+ 
+ `TODO`: Test the haptic and audio configuration.
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
@@ -34,9 +35,11 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     public init(
         inputViewController: UIInputViewController,
-        hapticConfiguration: HapticFeedbackConfiguration = .noFeedback) {
+        hapticConfiguration: HapticFeedbackConfiguration = .noFeedback,
+        audioConfiguration: AudioFeedbackConfiguration = .standard) {
         self.inputViewController = inputViewController
         self.hapticConfiguration = hapticConfiguration
+        self.audioConfiguration = audioConfiguration
     }
     
     
@@ -46,6 +49,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     
     // MARK: - Properties
+    
+    private let audioConfiguration: AudioFeedbackConfiguration
     
     private let hapticConfiguration: HapticFeedbackConfiguration
     
@@ -86,27 +91,37 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     // MARK: - Action Handling
     
     open func handleLongPress(on action: KeyboardAction, view: UIView) {
-        guard let longPressAction = longPressAction(for: action, view: view) else { return }
-        giveHapticFeedback(for: .longPress, on: action)
-        longPressAction()
+        handle(.longPress, on: action, view: view)
     }
     
     open func handleRepeat(on action: KeyboardAction, view: UIView) {
-        guard let repeatAction = repeatAction(for: action, view: view) else { return }
-        giveHapticFeedback(for: .repeatPress, on: action)
-        repeatAction()
+        handle(.repeatPress, on: action, view: view)
     }
     
     open func handleTap(on action: KeyboardAction, view: UIView) {
-        guard let tapAction = tapAction(for: action, view: view) else { return }
-        giveHapticFeedback(for: .tap, on: action)
-        tapAction()
+        handle(.tap, on: action, view: view)
+    }
+    
+    /**
+     TODO: This function should replace the above in a future major bump.
+     */
+    func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, view: UIView) {
+        triggerAudioFeedback(for: action)
+        triggerHapticFeedback(for: gesture, on: action)
+        guard let triggerAction = gestureAction(for: gesture, action: action, view: view) else { return }
+        triggerAction()
     }
     
     
     // MARK: - Haptic Functions
     
-    open func giveHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
+    open func triggerAudioFeedback(for action: KeyboardAction) {
+        if action.isDeleteAction { return audioConfiguration.deleteFeedback.trigger() }
+        if action.isInputAction { return audioConfiguration.inputFeedback.trigger() }
+        if action.isSystemAction { return audioConfiguration.systemFeedback.trigger() }
+    }
+    
+    open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
         switch gesture {
         case .tap: hapticConfiguration.tapFeedback.trigger()
         case .longPress: hapticConfiguration.longPressFeedback.trigger()
@@ -124,6 +139,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         longPressHapticFeedback: HapticFeedback = .none,
         repeatHapticFeedback: HapticFeedback = .none) {
         self.inputViewController = inputViewController
+        self.audioConfiguration = .noFeedback
         self.hapticConfiguration = HapticFeedbackConfiguration(
             tapFeedback: tapHapticFeedback,
             longPressFeedback: longPressHapticFeedback,
@@ -131,19 +147,19 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         )
     }
     
-    @available(*, deprecated, message: "Use giveHapticFeedback(for:on:) instead")
+    @available(*, deprecated, message: "Use triggerHapticFeedback(for:on:) instead")
     open func giveHapticFeedbackForLongPress(on action: KeyboardAction) {
-        giveHapticFeedback(for: .longPress, on: action)
+        triggerHapticFeedback(for: .longPress, on: action)
     }
     
-    @available(*, deprecated, message: "Use giveHapticFeedback(for:on:) instead")
+    @available(*, deprecated, message: "Use triggerHapticFeedback(for:on:) instead")
     open func giveHapticFeedbackForRepeat(on action: KeyboardAction) {
-        giveHapticFeedback(for: .repeatPress, on: action)
+        triggerHapticFeedback(for: .repeatPress, on: action)
     }
     
-    @available(*, deprecated, message: "Use giveHapticFeedback(for:on:) instead")
+    @available(*, deprecated, message: "Use triggerHapticFeedback(for:on:) instead")
     open func giveHapticFeedbackForTap(on action: KeyboardAction) {
-        giveHapticFeedback(for: .tap, on: action)
+        triggerHapticFeedback(for: .tap, on: action)
     }
 }
 

@@ -53,31 +53,60 @@ public enum KeyboardAction: Equatable {
 public extension KeyboardAction {
     
     /**
+     Whether or not the action is a content input action.
+     */
+    var isInputAction: Bool {
+        switch self {
+        case .character: return true
+        case .image: return true
+        default: return false
+        }
+    }
+    
+    /**
+     Whether or not the action is a delete action.
+     */
+    var isDeleteAction: Bool {
+        switch self {
+        case .backspace: return true
+        default: return false
+        }
+    }
+    
+    /**
+     Whether or not the action is something that handles the
+     system instead of content.
+     */
+    var isSystemAction: Bool {
+        switch self {
+        case .backspace: return true
+        case .capsLock: return true
+        case .command: return true
+        case .dismissKeyboard: return true
+        case .escape: return true
+        case .function: return true
+        case .moveCursorBackward: return true
+        case .moveCursorForward: return true
+        case .newLine: return true
+        case .option: return true
+        case .shift: return true
+        case .shiftDown: return true
+        case .space: return true
+        case .switchKeyboard: return true
+        case .switchToKeyboard: return true
+        case .tab: return true
+        default: return false
+        }
+    }
+    
+    /**
      The standard action, if any, that should be applied to
      the input view controller when the action is triggered.
      */
     var standardInputViewControllerAction: ((UIInputViewController?) -> Void)? {
         switch self {
-        case .none: return nil
-        case .backspace: return nil
-        case .capsLock: return nil
-        case .character: return nil
-        case .command: return nil
-        case .custom: return nil
         case .dismissKeyboard: return { controller in controller?.dismissKeyboard() }
-        case .escape: return nil
-        case .function: return nil
-        case .image: return nil
-        case .moveCursorBackward: return nil
-        case .moveCursorForward: return nil
-        case .newLine: return nil
-        case .option: return nil
-        case .shift: return nil
-        case .shiftDown: return nil
-        case .space: return nil
-        case .switchKeyboard: return nil
-        case .switchToKeyboard: return nil
-        case .tab: return nil
+        default: return nil
         }
     }
     
@@ -87,26 +116,14 @@ public extension KeyboardAction {
      */
     var standardTextDocumentProxyAction: ((UITextDocumentProxy?) -> Void)? {
         switch self {
-        case .none: return nil
         case .backspace: return { proxy in proxy?.deleteBackward() }
-        case .capsLock: return nil
         case .character(let char): return { proxy in proxy?.insertText(char) }
-        case .command: return nil
-        case .custom: return nil
-        case .dismissKeyboard: return nil
-        case .escape: return nil
-        case .function: return nil
-        case .image: return nil
         case .moveCursorBackward: return { proxy in proxy?.adjustTextPosition(byCharacterOffset: -1) }
         case .moveCursorForward: return { proxy in proxy?.adjustTextPosition(byCharacterOffset: -1) }
         case .newLine: return { proxy in proxy?.insertText("\n") }
-        case .option: return nil
-        case .shift: return nil
-        case .shiftDown: return nil
         case .space: return { proxy in proxy?.insertText(" ") }
-        case .switchKeyboard: return nil
-        case .switchToKeyboard: return nil
         case .tab: return { proxy in proxy?.insertText("\t") }
+        default: return nil
         }
     }
 }
