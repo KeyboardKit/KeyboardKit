@@ -47,7 +47,7 @@ private extension KeyboardButton {
     
     func animateTransform(_ transform: CGAffineTransform, completion: (() -> Void)? = nil) {
         UIView.animate(
-            withDuration: 0.123,
+            withDuration: 0.1,
             delay: 0,
             options: [.curveEaseOut, .allowUserInteraction],
             animations: { [weak self] in self?.transform = transform },
