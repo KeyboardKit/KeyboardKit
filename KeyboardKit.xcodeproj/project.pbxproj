@@ -103,6 +103,8 @@
 		8467050D234A745A00355331 /* KeyboardKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "KeyboardKit::KeyboardKit::Product" /* KeyboardKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84670511234A745E00355331 /* KeyboardKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "KeyboardKit::KeyboardKit::Product" /* KeyboardKit.framework */; };
 		84670512234A745E00355331 /* KeyboardKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "KeyboardKit::KeyboardKit::Product" /* KeyboardKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		847060002355A18700B2B2A8 /* HapticFeedbackConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84705FFF2355A18700B2B2A8 /* HapticFeedbackConfiguration.swift */; };
+		847060032355A2A900B2B2A8 /* HapticFeedbackConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847060012355A26A00B2B2A8 /* HapticFeedbackConfigurationTests.swift */; };
 		OBJ_252 /* KeyboardAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* KeyboardAction.swift */; };
 		OBJ_253 /* KeyboardActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* KeyboardActionHandler.swift */; };
 		OBJ_254 /* KeyboardActionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* KeyboardActionRow.swift */; };
@@ -456,6 +458,8 @@
 		846704AF234A725300355331 /* DemoKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoKeyboard.swift; sourceTree = "<group>"; };
 		846704B0234A725300355331 /* EmojiKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiKeyboard.swift; sourceTree = "<group>"; };
 		846704B2234A725300355331 /* DemoAutocompleteSuggestionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoAutocompleteSuggestionProvider.swift; sourceTree = "<group>"; };
+		84705FFF2355A18700B2B2A8 /* HapticFeedbackConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackConfiguration.swift; sourceTree = "<group>"; };
+		847060012355A26A00B2B2A8 /* HapticFeedbackConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackConfigurationTests.swift; sourceTree = "<group>"; };
 		"KeyboardKit::KeyboardKit::Product" /* KeyboardKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KeyboardKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"KeyboardKit::KeyboardKitTests::Product" /* KeyboardKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = KeyboardKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Mockery::Mockery::Product" /* Mockery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mockery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -877,6 +881,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_107 /* HapticFeedback+KeyboardTests.swift */,
+				847060012355A26A00B2B2A8 /* HapticFeedbackConfigurationTests.swift */,
 			);
 			path = Haptics;
 			sourceTree = "<group>";
@@ -1261,6 +1266,7 @@
 			children = (
 				OBJ_53 /* HapticFeedback+Keyboard.swift */,
 				OBJ_54 /* HapticFeedback.swift */,
+				84705FFF2355A18700B2B2A8 /* HapticFeedbackConfiguration.swift */,
 			);
 			path = Haptics;
 			sourceTree = "<group>";
@@ -1848,6 +1854,7 @@
 				OBJ_269 /* Array+Appending.swift in Sources */,
 				OBJ_270 /* CGFloat+KeyboardDimensions.swift in Sources */,
 				OBJ_271 /* Sequence+Batch.swift in Sources */,
+				847060002355A18700B2B2A8 /* HapticFeedbackConfiguration.swift in Sources */,
 				OBJ_272 /* String+Uppercased.swift in Sources */,
 				OBJ_273 /* UIColor+TappableClear.swift in Sources */,
 				OBJ_274 /* UIImage+Pasteboard.swift in Sources */,
@@ -1908,6 +1915,7 @@
 				OBJ_331 /* CGFloat+KeyboardTests.swift in Sources */,
 				OBJ_332 /* Sequence+BatchTests.swift in Sources */,
 				OBJ_333 /* String+UppercasedTests.swift in Sources */,
+				847060032355A2A900B2B2A8 /* HapticFeedbackConfigurationTests.swift in Sources */,
 				OBJ_334 /* UIImage+PasteboardTests.swift in Sources */,
 				OBJ_335 /* UIImage+ResizedTests.swift in Sources */,
 				OBJ_336 /* UIImage+TintedTests.swift in Sources */,

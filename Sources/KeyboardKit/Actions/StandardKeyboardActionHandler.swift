@@ -9,22 +9,19 @@
 import UIKit
 
 /**
- This action handler is used by the `KeyboardViewController`
- class by default, but can be replaced with any handler that
- implements the `KeyboardActionHandler` protocol.
+ This action handler is used by default, if you do not apply
+ a custom handler by setting the `actionHandler` property on
+ your `KeyboardInputViewController` instance.
  
- This action handler uses the default action blocks for each
- keyboard action, if any. You can adjust this by subclassing
- and overriding `tapAction(for:)` and `longPressAction(for:)`
- as well as `handleTap(on:)` and `handleLongPress(on:)`. You
- also have the same options for repeat gestures, when a user
- taps and holds on a button. This class only uses the repeat
- action when the user taps `backspace`.
+ This handler uses the default actions when keyboard actions
+ are tapped, long pressed or repeated. It can be adjusted by
+ creating a subclass of this action handler and override the
+ `xAction(for:)` and `handleX(on:)` functions.
  
  You can enable haptic feedback by providing haptic feedback
  types for taps and long presses when you create an instance
  of this class. You can also adjust the standard behavior by
- overriding the two `giveHapticFeedback` functions.
+ overriding the two `giveHapticFeedbackForX()` functions.
  
  **IMPORTANT** This class must inherit `NSObject` to be able
  to set itself as a selection target, e.g. when saving image
@@ -37,13 +34,23 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     public init(
         inputViewController: UIInputViewController,
+        hapticConfiguration: HapticFeedbackConfiguration = .noFeedback) {
+        self.inputViewController = inputViewController
+        self.hapticConfiguration = hapticConfiguration
+    }
+    
+    @available(*, deprecated, message: "Use configuration-based init instead")
+    public init(
+        inputViewController: UIInputViewController,
         tapHapticFeedback: HapticFeedback = .none,
         longPressHapticFeedback: HapticFeedback = .none,
         repeatHapticFeedback: HapticFeedback = .none) {
         self.inputViewController = inputViewController
-        self.tapHapticFeedback = tapHapticFeedback
-        self.longPressHapticFeedback = longPressHapticFeedback
-        self.repeatHapticFeedback = repeatHapticFeedback
+        self.hapticConfiguration = HapticFeedbackConfiguration(
+            tapFeedback: tapHapticFeedback,
+            longPressFeedback: longPressHapticFeedback,
+            repeatFeedback: repeatHapticFeedback
+        )
     }
     
     
@@ -54,9 +61,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Properties
     
-    private let longPressHapticFeedback: HapticFeedback
-    private let tapHapticFeedback: HapticFeedback
-    private let repeatHapticFeedback: HapticFeedback
+    private let hapticConfiguration: HapticFeedbackConfiguration
     
     public var textDocumentProxy: UITextDocumentProxy? {
         return inputViewController?.textDocumentProxy
@@ -109,15 +114,15 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     // MARK: - Haptic Functions
     
     open func giveHapticFeedbackForLongPress(on action: KeyboardAction) {
-        longPressHapticFeedback.trigger()
+        hapticConfiguration.longPressFeedback.trigger()
     }
     
     open func giveHapticFeedbackForRepeat(on action: KeyboardAction) {
-        repeatHapticFeedback.trigger()
+        hapticConfiguration.repeatFeedback.trigger()
     }
     
     open func giveHapticFeedbackForTap(on action: KeyboardAction) {
-        tapHapticFeedback.trigger()
+        hapticConfiguration.tapFeedback.trigger()
     }
 }
 
