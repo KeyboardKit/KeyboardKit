@@ -112,10 +112,14 @@ Since keyboard extensions can't display `UIAlertController`s, you can use `Keybo
 
 ## Haptic Feedback
 
-`KeyboardKit` has a set of `HapticFeedback` variants, that can be used to give the user haptic feedback as she/he uses the keyboard. The `HapticFeedback` enum defines a set of haptic feedback types that wraps native iOS feedback types like `selection changed`, `error`, `success` etc.
+`KeyboardKit` has a collection of `HapticFeedback` variants, that can be used to give the user haptic feedback as she/he uses the keyboard. 
+
+The `HapticFeedback` enum defines a set of haptic feedback types that wraps native iOS feedback types like `selection changed`, `error`, `success` etc.
+
+`NOTE` that you have to enable open access for the keyboard for haptic feedback to work.
 
 
-### Extensions
+## Extensions
 
 `KeyboardKit` comes with a bunch of extensions that simplifies working with keyboard extensions. Many are internal and only used within the library, but some are public and can be used to handle common logic, like saving and exporting images. Check out the example app for more information.
 
