@@ -24,6 +24,12 @@
 		84086E30235587DC0030D95A /* KeyboardViewController+Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84086E2F235587DC0030D95A /* KeyboardViewController+Buttons.swift */; };
 		84086E32235588200030D95A /* KeyboardViewController+Autocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84086E31235588200030D95A /* KeyboardViewController+Autocomplete.swift */; };
 		84086E3423558C0F0030D95A /* KeyboardViewController+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84086E3323558C0F0030D95A /* KeyboardViewController+Setup.swift */; };
+		84623A8B2355DE340024987B /* AudioFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84623A8A2355DE340024987B /* AudioFeedback.swift */; };
+		84623A8D2355E0670024987B /* SystemAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84623A8C2355E0670024987B /* SystemAudioPlayer.swift */; };
+		84623A8F2355E1730024987B /* StandardSystemAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84623A8E2355E1730024987B /* StandardSystemAudioPlayer.swift */; };
+		84623A952355E5C10024987B /* AudioFeedbackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84623A932355E5BA0024987B /* AudioFeedbackTests.swift */; };
+		84623A972355F77A0024987B /* AudioFeedbackConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84623A962355F77A0024987B /* AudioFeedbackConfiguration.swift */; };
+		84623A9A2355F9D60024987B /* AudioFeedbackConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84623A982355F9400024987B /* AudioFeedbackConfigurationTests.swift */; };
 		84670448234A709400355331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84670447234A709400355331 /* AppDelegate.swift */; };
 		8467044A234A709400355331 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84670449234A709400355331 /* SceneDelegate.swift */; };
 		8467044C234A709400355331 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467044B234A709400355331 /* ViewController.swift */; };
@@ -408,6 +414,12 @@
 		84086E2F235587DC0030D95A /* KeyboardViewController+Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardViewController+Buttons.swift"; sourceTree = "<group>"; };
 		84086E31235588200030D95A /* KeyboardViewController+Autocomplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardViewController+Autocomplete.swift"; sourceTree = "<group>"; };
 		84086E3323558C0F0030D95A /* KeyboardViewController+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardViewController+Setup.swift"; sourceTree = "<group>"; };
+		84623A8A2355DE340024987B /* AudioFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFeedback.swift; sourceTree = "<group>"; };
+		84623A8C2355E0670024987B /* SystemAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemAudioPlayer.swift; sourceTree = "<group>"; };
+		84623A8E2355E1730024987B /* StandardSystemAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardSystemAudioPlayer.swift; sourceTree = "<group>"; };
+		84623A932355E5BA0024987B /* AudioFeedbackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFeedbackTests.swift; sourceTree = "<group>"; };
+		84623A962355F77A0024987B /* AudioFeedbackConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFeedbackConfiguration.swift; sourceTree = "<group>"; };
+		84623A982355F9400024987B /* AudioFeedbackConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFeedbackConfigurationTests.swift; sourceTree = "<group>"; };
 		84670426234A6A9E00355331 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		84670427234A6A9E00355331 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		84670445234A709400355331 /* KeyboardKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeyboardKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -727,6 +739,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84623A892355DE240024987B /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				84623A8A2355DE340024987B /* AudioFeedback.swift */,
+				84623A962355F77A0024987B /* AudioFeedbackConfiguration.swift */,
+				84623A8E2355E1730024987B /* StandardSystemAudioPlayer.swift */,
+				84623A8C2355E0670024987B /* SystemAudioPlayer.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		84623A922355E5AD0024987B /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				84623A932355E5BA0024987B /* AudioFeedbackTests.swift */,
+				84623A982355F9400024987B /* AudioFeedbackConfigurationTests.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
 		84670425234A6A8400355331 /* Project Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -1267,8 +1299,8 @@
 		OBJ_52 /* Haptics */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_53 /* HapticFeedback+Keyboard.swift */,
 				OBJ_54 /* HapticFeedback.swift */,
+				OBJ_53 /* HapticFeedback+Keyboard.swift */,
 				84705FFF2355A18700B2B2A8 /* HapticFeedbackConfiguration.swift */,
 			);
 			path = Haptics;
@@ -1344,6 +1376,7 @@
 		OBJ_75 /* KeyboardKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				84623A922355E5AD0024987B /* Audio */,
 				OBJ_76 /* Actions */,
 				OBJ_81 /* Alerts */,
 				OBJ_83 /* Components */,
@@ -1376,6 +1409,7 @@
 			children = (
 				OBJ_9 /* Actions */,
 				OBJ_15 /* Alerts */,
+				84623A892355DE240024987B /* Audio */,
 				OBJ_18 /* Autocomplete */,
 				OBJ_22 /* Components */,
 				OBJ_30 /* Extensions */,
@@ -1855,8 +1889,10 @@
 				OBJ_265 /* KeyboardStackViewComponent.swift in Sources */,
 				OBJ_266 /* KeyboardToolbarComponent.swift in Sources */,
 				OBJ_267 /* PagedKeyboardComponent.swift in Sources */,
+				84623A8D2355E0670024987B /* SystemAudioPlayer.swift in Sources */,
 				OBJ_268 /* VerticalKeyboardComponent.swift in Sources */,
 				OBJ_269 /* Array+Appending.swift in Sources */,
+				84623A8F2355E1730024987B /* StandardSystemAudioPlayer.swift in Sources */,
 				OBJ_270 /* CGFloat+KeyboardDimensions.swift in Sources */,
 				OBJ_271 /* Sequence+Batch.swift in Sources */,
 				847060002355A18700B2B2A8 /* HapticFeedbackConfiguration.swift in Sources */,
@@ -1866,8 +1902,10 @@
 				OBJ_274 /* UIImage+Pasteboard.swift in Sources */,
 				OBJ_275 /* UIImage+Photos.swift in Sources */,
 				OBJ_276 /* UIImage+Resized.swift in Sources */,
+				84623A972355F77A0024987B /* AudioFeedbackConfiguration.swift in Sources */,
 				OBJ_277 /* UIImage+Tinted.swift in Sources */,
 				OBJ_278 /* UIScrollView+PageNumber.swift in Sources */,
+				84623A8B2355DE340024987B /* AudioFeedback.swift in Sources */,
 				OBJ_279 /* UIStackView+Subviews.swift in Sources */,
 				OBJ_280 /* UITextDocumentProxy+CurrentWord.swift in Sources */,
 				OBJ_281 /* UITextDocumentProxy+Delete.swift in Sources */,
@@ -1924,6 +1962,7 @@
 				847060032355A2A900B2B2A8 /* HapticFeedbackConfigurationTests.swift in Sources */,
 				OBJ_334 /* UIImage+PasteboardTests.swift in Sources */,
 				OBJ_335 /* UIImage+ResizedTests.swift in Sources */,
+				84623A952355E5C10024987B /* AudioFeedbackTests.swift in Sources */,
 				OBJ_336 /* UIImage+TintedTests.swift in Sources */,
 				OBJ_337 /* UIStackView+SubviewsTests.swift in Sources */,
 				OBJ_338 /* UITextDocumentProxy+CurrentWordTests.swift in Sources */,
@@ -1941,6 +1980,7 @@
 				OBJ_350 /* KeyboardShiftStateTests.swift in Sources */,
 				OBJ_351 /* MockCollectionViewLayout.swift in Sources */,
 				OBJ_352 /* MockInputViewController.swift in Sources */,
+				84623A9A2355F9D60024987B /* AudioFeedbackConfigurationTests.swift in Sources */,
 				OBJ_353 /* MockKeyboardActionHandler.swift in Sources */,
 				OBJ_354 /* MockKeyboardInputViewController.swift in Sources */,
 				OBJ_355 /* MockPasteboard.swift in Sources */,

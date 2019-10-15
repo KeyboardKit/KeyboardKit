@@ -6,10 +6,14 @@
 This version adds a bunch of features, tweaks some behaviors and deprecates some logic:
 
 New stuff:
+* There is a new `KeyboardActionGesture` that will be used to streamline the action handling api:s.
+* There is a new `AudioFeedback` enum that describes various types of audio feedback.
+* There is a new `AudioFeedbackConfiguration` that lets you gather all configurations in one place.
+* There is a new `HapticFeedback.standardFeedback(for:)` function that replaces the old specific properties.
 * There is a new `HapticFeedbackConfiguration`  that lets you gather all configurations in one place.
 * There is a new `StandardKeyboardActionHandler` init that uses this new configuration.
-* There is a new `KeyboardActionGesture` that will be used to streamline the action handling api:s.
-* There is a new `StandardKeyboardActionHandler.giveHapticFeedback(for:on:)` that replaces the old gesture-specific ones.
+* There is a new `StandardKeyboardActionHandler.triggerAudioFeedback(for:)` that can be used to trigger audio feedback.
+* There is a new `StandardKeyboardActionHandler.triggerHapticFeedback(for:on:)` that replaces the old gesture-specific ones.
 * There is a new `StandardKeyboardActionHandler.gestureAction(for:)` function that is used by the implementation. The old ones are still around.
 
 Changed behavior:
@@ -20,6 +24,7 @@ Deprecated stuff:
 * The old  `StandardKeyboardActionHandler.giveHapticFeedbackForLongPress(...)` is deprecated, use the new one.
 * The old  `StandardKeyboardActionHandler.giveHapticFeedbackForRepeat(...)` is deprecated, use the new one.
 * The old  `StandardKeyboardActionHandler.giveHapticFeedbackForTap(...)` is deprecated, use the new one.
+* The old `HapticFeedback.standardTapFeedback` and `standardLongPressFeedback` have been replaced by the new function.
 
 The old `handle` functions are still declared in the `KeyboardActionHandler` protocol, but will be removed in the next major version. 
 
