@@ -1,6 +1,26 @@
 # Release Notes
 
 
+## 2.5.0
+
+This version adds a bunch of features, tweaks some behaviors and deprecates some logic:
+
+New stuff:
+* There is a new `HapticFeedbackConfiguration`  that lets you gather all configurations in one place.
+* There is a new `StandardKeyboardActionHandler` init that uses this new configuration.
+* There is a new `KeyboardActionGesture` that will be used to streamline the action handling api:s.
+* There is a new `StandardKeyboardActionHandler.giveHapticFeedback(for:on:)` that replaces the old gesture-specific ones.
+* There is a new `StandardKeyboardActionHandler.gestureAction(for:)` function that is used by the implementation. The old ones are still around.
+
+Deprecated stuff:
+* The old `StandardKeyboardActionHandler.init(...)` is deprecated, use the new one.
+* The old  `StandardKeyboardActionHandler.giveHapticFeedbackForLongPress(...)` is deprecated, use the new one.
+* The old  `StandardKeyboardActionHandler.giveHapticFeedbackForRepeat(...)` is deprecated, use the new one.
+* The old  `StandardKeyboardActionHandler.giveHapticFeedbackForTap(...)` is deprecated, use the new one.
+
+The old `handle` functions are still declared in the `KeyboardActionHandler` protocol, but will be removed in the next major version. 
+
+
 ## 2.4.0
 
 This version adds Xcode 11 and iOS 13 support, including support for dark mode and high contrast color variants.

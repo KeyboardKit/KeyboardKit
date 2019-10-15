@@ -124,7 +124,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         describe("giving haptic feedback for long press") {
             
             it("can't be properyly tested") {
-                handler.giveHapticFeedbackForLongPress(on: .dismissKeyboard)
+                handler.giveHapticFeedback(for: .longPress, on: .dismissKeyboard)
                 // Test this
             }
         }
@@ -132,7 +132,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         describe("giving haptic feedback for repeat") {
             
             it("can't be properyly tested") {
-                handler.giveHapticFeedbackForRepeat(on: .backspace)
+                handler.giveHapticFeedback(for: .repeatPress, on: .backspace)
                 // Test this
             }
         }
@@ -140,7 +140,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         describe("giving haptic feedback for tap") {
             
             it("can't be properyly tested") {
-                handler.giveHapticFeedbackForTap(on: .dismissKeyboard)
+                handler.giveHapticFeedback(for: .tap, on: .dismissKeyboard)
                 // Test this
             }
         }
@@ -159,16 +159,11 @@ private class StandardKeyboardActionHandlerTestClass: StandardKeyboardActionHand
     
     let recorder: MockKeyboardActionHandler
     
-    
-    override func giveHapticFeedbackForLongPress(on action: KeyboardAction) {
-        recorder.giveHapticFeedbackForLongPress(on: action)
-    }
-
-    override func giveHapticFeedbackForRepeat(on action: KeyboardAction) {
-        recorder.giveHapticFeedbackForRepeat(on: action)
-    }
-    
-    override func giveHapticFeedbackForTap(on action: KeyboardAction) {
-        recorder.giveHapticFeedbackForTap(on: action)
+    override func giveHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
+        switch gesture {
+        case .tap: recorder.giveHapticFeedbackForTap(on: action)
+        case .longPress: recorder.giveHapticFeedbackForLongPress(on: action)
+        case .repeatPress: recorder.giveHapticFeedbackForRepeat(on: action)
+        }
     }
 }

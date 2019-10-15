@@ -23,8 +23,7 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     public init(inputViewController: UIInputViewController) {
         super.init(
             inputViewController: inputViewController,
-            tapHapticFeedback: .standardTapFeedback,
-            longPressHapticFeedback: .standardLongPressFeedback
+            hapticConfiguration: .standard
         )
     }
     

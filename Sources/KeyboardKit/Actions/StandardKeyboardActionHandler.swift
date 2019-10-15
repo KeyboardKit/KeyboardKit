@@ -39,6 +39,84 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.hapticConfiguration = hapticConfiguration
     }
     
+    
+    // MARK: - Dependencies
+    
+    public private(set) weak var inputViewController: UIInputViewController?
+    
+    
+    // MARK: - Properties
+    
+    private let hapticConfiguration: HapticFeedbackConfiguration
+    
+    public var textDocumentProxy: UITextDocumentProxy? {
+        inputViewController?.textDocumentProxy
+    }
+    
+    
+    // MARK: - Types
+    
+    public typealias GestureAction = (() -> Void)
+    
+    
+    // MARK: - Actions
+    
+    open func gestureAction(for gesture: KeyboardGesture, action: KeyboardAction, view: UIView) -> GestureAction? {
+        switch gesture {
+        case .longPress: return longPressAction(for: action, view: view)
+        case .repeatPress: return repeatAction(for: action, view: view)
+        case .tap: return tapAction(for: action, view: view)
+        }
+    }
+    
+    open func longPressAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
+        tapAction(for: action, view: view)
+    }
+    
+    open func repeatAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
+        guard action == .backspace else { return nil }
+        return tapAction(for: action, view: view)
+    }
+    
+    open func tapAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
+        inputViewControllerAction(for: action) ?? textDocumentProxyAction(for: action)
+    }
+    
+    
+    // MARK: - Action Handling
+    
+    open func handleLongPress(on action: KeyboardAction, view: UIView) {
+        guard let longPressAction = longPressAction(for: action, view: view) else { return }
+        giveHapticFeedback(for: .longPress, on: action)
+        longPressAction()
+    }
+    
+    open func handleRepeat(on action: KeyboardAction, view: UIView) {
+        guard let repeatAction = repeatAction(for: action, view: view) else { return }
+        giveHapticFeedback(for: .repeatPress, on: action)
+        repeatAction()
+    }
+    
+    open func handleTap(on action: KeyboardAction, view: UIView) {
+        guard let tapAction = tapAction(for: action, view: view) else { return }
+        giveHapticFeedback(for: .tap, on: action)
+        tapAction()
+    }
+    
+    
+    // MARK: - Haptic Functions
+    
+    open func giveHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
+        switch gesture {
+        case .tap: hapticConfiguration.tapFeedback.trigger()
+        case .longPress: hapticConfiguration.longPressFeedback.trigger()
+        case .repeatPress: hapticConfiguration.repeatFeedback.trigger()
+        }
+    }
+    
+    
+    // MARK: - Deprecated
+    
     @available(*, deprecated, message: "Use configuration-based init instead")
     public init(
         inputViewController: UIInputViewController,
@@ -53,76 +131,19 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         )
     }
     
-    
-    // MARK: - Dependencies
-    
-    public private(set) weak var inputViewController: UIInputViewController?
-    
-    
-    // MARK: - Properties
-    
-    private let hapticConfiguration: HapticFeedbackConfiguration
-    
-    public var textDocumentProxy: UITextDocumentProxy? {
-        return inputViewController?.textDocumentProxy
-    }
-    
-    
-    // MARK: - Types
-    
-    public typealias GestureAction = (() -> Void)
-    
-    
-    // MARK: - Actions
-    
-    open func longPressAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
-        return tapAction(for: action, view: view)
-    }
-    
-    open func repeatAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
-        guard action == .backspace else { return nil }
-        return tapAction(for: action, view: view)
-    }
-    
-    open func tapAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
-        return inputViewControllerAction(for: action)
-            ?? textDocumentProxyAction(for: action)
-    }
-    
-    
-    // MARK: - Action Handling
-    
-    open func handleLongPress(on action: KeyboardAction, view: UIView) {
-        guard let longPressAction = longPressAction(for: action, view: view) else { return }
-        giveHapticFeedbackForLongPress(on: action)
-        longPressAction()
-    }
-    
-    open func handleRepeat(on action: KeyboardAction, view: UIView) {
-        guard let repeatAction = repeatAction(for: action, view: view) else { return }
-        giveHapticFeedbackForRepeat(on: action)
-        repeatAction()
-    }
-    
-    open func handleTap(on action: KeyboardAction, view: UIView) {
-        guard let tapAction = tapAction(for: action, view: view) else { return }
-        giveHapticFeedbackForTap(on: action)
-        tapAction()
-    }
-    
-    
-    // MARK: - Haptic Functions
-    
+    @available(*, deprecated, message: "Use giveHapticFeedback(for:on:) instead")
     open func giveHapticFeedbackForLongPress(on action: KeyboardAction) {
-        hapticConfiguration.longPressFeedback.trigger()
+        giveHapticFeedback(for: .longPress, on: action)
     }
     
+    @available(*, deprecated, message: "Use giveHapticFeedback(for:on:) instead")
     open func giveHapticFeedbackForRepeat(on action: KeyboardAction) {
-        hapticConfiguration.repeatFeedback.trigger()
+        giveHapticFeedback(for: .repeatPress, on: action)
     }
     
+    @available(*, deprecated, message: "Use giveHapticFeedback(for:on:) instead")
     open func giveHapticFeedbackForTap(on action: KeyboardAction) {
-        hapticConfiguration.tapFeedback.trigger()
+        giveHapticFeedback(for: .tap, on: action)
     }
 }
 
