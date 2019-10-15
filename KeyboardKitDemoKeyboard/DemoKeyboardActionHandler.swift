@@ -54,14 +54,14 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     override func handleTap(on action: KeyboardAction, view: UIView) {
         animateButtonTap(for: view)
+        let isUppercased = keyboardShiftState == .uppercased
+        let isNonAlpha = demoViewController?.keyboardType != .alphabetic(uppercased: false)
         super.handleTap(on: action, view: view)
         switch action {
         case .shift: switchToAlphabeticKeyboard(.uppercased)
         case .shiftDown: switchToAlphabeticKeyboard(.lowercased)
-        case .character:
-            if keyboardShiftState == .uppercased {
-                switchToAlphabeticKeyboard(.lowercased)
-            }
+        case .space: if isNonAlpha { switchToAlphabeticKeyboard(.lowercased) }
+        case .character: if isUppercased { switchToAlphabeticKeyboard(.lowercased) }
         case .switchToKeyboard(let type): demoViewController?.keyboardType = type
         default: copyImage(for: action)
         }
