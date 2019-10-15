@@ -30,7 +30,7 @@ class DemoButton: KeyboardButtonView {
         textLabel?.textColor = action.tintColor(in: viewController)
         buttonView?.tintColor = action.tintColor(in: viewController)
         width = action.buttonWidth(for: distribution)
-        applyShadow(Shadow(alpha: 0.5, blur: 1, spread: 0, x: 1, y: 1))
+        applyShadow(.standardButtonShadow)
     }
     
     @IBOutlet weak var buttonView: UIView? {
