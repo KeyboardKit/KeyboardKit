@@ -12,6 +12,9 @@ New stuff:
 * There is a new `StandardKeyboardActionHandler.giveHapticFeedback(for:on:)` that replaces the old gesture-specific ones.
 * There is a new `StandardKeyboardActionHandler.gestureAction(for:)` function that is used by the implementation. The old ones are still around.
 
+Changed behavior:
+* There is a new `standardButtonShadow` `Shadow` property that can be used to mimic the native button shadow.
+
 Deprecated stuff:
 * The old `StandardKeyboardActionHandler.init(...)` is deprecated, use the new one.
 * The old  `StandardKeyboardActionHandler.giveHapticFeedbackForLongPress(...)` is deprecated, use the new one.

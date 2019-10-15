@@ -35,4 +35,11 @@ public struct Shadow {
     public let spread: CGFloat
     public let x: CGFloat
     public let y: CGFloat
+    
+    /**
+     The standard button shadow that replicates the iOS one.
+     */
+    public static var standardButtonShadow: Shadow {
+        Shadow(alpha: 0.5, blur: 0.5, spread: 0, x: 0, y: 1)
+    }
 }
