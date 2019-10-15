@@ -113,7 +113,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     
-    // MARK: - Haptic Functions
+    // MARK: - Feedback
     
     open func triggerAudioFeedback(for action: KeyboardAction) {
         if action.isDeleteAction { return audioConfiguration.deleteFeedback.trigger() }
