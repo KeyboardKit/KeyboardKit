@@ -135,7 +135,19 @@ You can enable or disable audio feedback by providing the `keyboardActionHandler
 
 ## Demo Application
 
-This repository contains a demo app that demonstrates different kinds of keyboards, including a grid-based emoji keyboard. To try it out, open and run the `KeyboardKit.xcodeproj` project.
+This repository contains a demo app that demonstrates different kinds of keyboards, including:
+
+ * Alphabetical (lower + upper-case)
+ * Numerical
+ * Symbols
+ * Emojis
+ * Images
+ 
+ To keep the keyboard layout nice, the image switcher key is only displayed on notch devices, since they don't have to display a next keyboard button.
+ 
+ You have to enable "full access" in keyboard settings for haptic feedback and the image keyboard to work.
+
+To run the demo app, open and run the `KeyboardKit.xcodeproj` project.
 
 
 ## Contact me
