@@ -85,6 +85,7 @@ private extension ToastAlert {
         container.center = view.center
         container.frame.origin.y += appearance.verticalOffset
         container.addSubview(label)
+        container.applyShadow(.standardButtonShadow)
         placeContainerView(container, in: view)
         style(container)
         return container

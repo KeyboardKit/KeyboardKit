@@ -92,7 +92,8 @@ private extension KeyboardAction {
     func buttonText(for keyboardType: KeyboardType) -> String {
         switch keyboardType {
         case .alphabetic: return "ABC"
-        case .emojis: return "🤩"
+        case .emojis: return "🙂"
+        case .images: return "🖼️"
         case .numeric: return "123"
         case .symbolic: return "#+="
         default: return "???"

@@ -8,25 +8,43 @@
 
 import KeyboardKit
 
-
 /**
- 
  This protocol is used by the demo application keyboards and
- provides shared functionality. These keyboards are for demo
- purposes, so they lack some functionality, like adapting to
- other languages, device types etc.
+ provides shared functionality.
  
+ The demo keyboards are for demo purposes, so they lack some
+ functionality, like adapting to other languages, device types etc.
  */
 protocol DemoKeyboard {}
 
 extension DemoKeyboard {
     
-    static func bottomActions(
-        leftmost: KeyboardAction,
-        for viewController: KeyboardViewController) -> KeyboardActionRow {
-        let includeEmojiAction = viewController.keyboardType != .emojis
-        let switcher = viewController.keyboardSwitcherAction
-        let actions = [leftmost, switcher, .space, .switchToKeyboard(.emojis), .newLine]
-        return includeEmojiAction ? actions : actions.filter { $0 != .switchToKeyboard(.emojis) }
+    static func bottomActions(leftmost: KeyboardAction, for vc: KeyboardViewController) -> KeyboardActionRow {
+        let actions = [leftmost, switchAction(for: vc), .space, imageAction(for: vc), .newLine]
+        let isEmoji = vc.keyboardType == .emojis
+        let isImage = vc.keyboardType == .images
+        let includeImageActions = !isEmoji && !isImage
+        return includeImageActions ? actions : actions.withoutImageActions
+    }
+}
+
+private extension DemoKeyboard {
+    
+    static func switchAction(for vc: KeyboardViewController) -> KeyboardAction {
+        let needsSwitch = vc.needsInputModeSwitchKey
+        return needsSwitch ? .switchKeyboard : .switchToKeyboard(.emojis)
+    }
+    
+    static func imageAction(for vc: KeyboardViewController) -> KeyboardAction {
+        let needsSwitch = vc.needsInputModeSwitchKey
+        return needsSwitch ? .switchToKeyboard(.emojis) : .switchToKeyboard(.images)
+    }
+}
+
+private extension Collection where Element == KeyboardAction {
+    
+    var withoutImageActions: [KeyboardAction] {
+        self.filter { $0 != .switchToKeyboard(.emojis) }
+            .filter { $0 != .switchToKeyboard(.images) }
     }
 }

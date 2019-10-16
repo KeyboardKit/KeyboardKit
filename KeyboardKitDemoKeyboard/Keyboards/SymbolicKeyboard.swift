@@ -9,9 +9,7 @@
 import KeyboardKit
 
 /**
- 
- This demo keyboard mimicks the English, symbolic keyboard.
- 
+ This demo keyboard mimicks an English symbolic keyboard.
  */
 struct SymbolicKeyboard: DemoKeyboard {
     

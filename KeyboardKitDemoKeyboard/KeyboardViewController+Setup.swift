@@ -25,9 +25,10 @@ extension KeyboardViewController {
         keyboardStackView.removeAllArrangedSubviews()
         switch keyboardType {
         case .alphabetic(let uppercased): setupAlphabeticKeyboard(uppercased: uppercased)
+        case .emojis: setupEmojiKeyboard(for: size)
+        case .images: setupImageKeyboard(for: size)
         case .numeric: setupNumericKeyboard()
         case .symbolic: setupSymbolicKeyboard()
-        case .emojis: setupEmojiKeyboard(for: size)
         default: return
         }
     }
@@ -40,6 +41,18 @@ extension KeyboardViewController {
     
     func setupEmojiKeyboard(for size: CGSize) {
         let keyboard = EmojiKeyboard(in: self)
+        let isLandscape = size.width > 400
+        let rowsPerPage = isLandscape ? 4 : 5
+        let buttonsPerRow = isLandscape ? 10 : 8
+        let config = KeyboardButtonRowCollectionView.Configuration(rowHeight: 40, rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)
+        let view = KeyboardButtonRowCollectionView(actions: keyboard.actions, configuration: config) { [unowned self] in return self.button(for: $0) }
+        let bottom = buttonRow(for: keyboard.bottomActions, distribution: .fillProportionally)
+        keyboardStackView.addArrangedSubview(view)
+        keyboardStackView.addArrangedSubview(bottom)
+    }
+    
+    func setupImageKeyboard(for size: CGSize) {
+        let keyboard = ImageKeyboard(in: self)
         let isLandscape = size.width > 400
         let rowsPerPage = isLandscape ? 3 : 4
         let buttonsPerRow = isLandscape ? 8 : 6

@@ -96,10 +96,6 @@ class KeyboardViewController: KeyboardInputViewController {
         didSet { setupKeyboard() }
     }
     
-    var keyboardSwitcherAction: KeyboardAction {
-        needsInputModeSwitchKey ? .switchKeyboard : .switchToKeyboard(.emojis)
-    }
-    
     
     // MARK: - Autocomplete
     

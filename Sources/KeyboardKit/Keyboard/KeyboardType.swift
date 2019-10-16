@@ -23,5 +23,6 @@ public enum KeyboardType: Equatable {
     symbolic,
     email,
     emojis,
+    images,
     custom(_ name: String)
 }

@@ -9,9 +9,7 @@
 import KeyboardKit
 
 /**
- 
- This demo keyboard mimicks the English, alphabetic keyboard.
- 
+ This demo keyboard mimicks an English alphabetic keyboard.
  */
 struct AlphabeticKeyboard: DemoKeyboard {
     

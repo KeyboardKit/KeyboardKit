@@ -15,6 +15,7 @@ New stuff:
 * There is a new `StandardKeyboardActionHandler.triggerAudioFeedback(for:)` that can be used to trigger audio feedback.
 * There is a new `StandardKeyboardActionHandler.triggerHapticFeedback(for:on:)` that replaces the old gesture-specific ones.
 * There is a new `StandardKeyboardActionHandler.gestureAction(for:)` function that is used by the implementation. The old ones are still around.
+* There is a new `KeyboardType.images` case that is used by the demo.
 
 Changed behavior:
 * There is a new `standardButtonShadow` `Shadow` property that can be used to mimic the native button shadow.

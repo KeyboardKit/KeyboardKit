@@ -30,6 +30,7 @@
 		84623A952355E5C10024987B /* AudioFeedbackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84623A932355E5BA0024987B /* AudioFeedbackTests.swift */; };
 		84623A972355F77A0024987B /* AudioFeedbackConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84623A962355F77A0024987B /* AudioFeedbackConfiguration.swift */; };
 		84623A9A2355F9D60024987B /* AudioFeedbackConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84623A982355F9400024987B /* AudioFeedbackConfigurationTests.swift */; };
+		84623A9C235615600024987B /* ImageKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84623A9B235615600024987B /* ImageKeyboard.swift */; };
 		84670448234A709400355331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84670447234A709400355331 /* AppDelegate.swift */; };
 		8467044A234A709400355331 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84670449234A709400355331 /* SceneDelegate.swift */; };
 		8467044C234A709400355331 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467044B234A709400355331 /* ViewController.swift */; };
@@ -420,6 +421,7 @@
 		84623A932355E5BA0024987B /* AudioFeedbackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFeedbackTests.swift; sourceTree = "<group>"; };
 		84623A962355F77A0024987B /* AudioFeedbackConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFeedbackConfiguration.swift; sourceTree = "<group>"; };
 		84623A982355F9400024987B /* AudioFeedbackConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFeedbackConfigurationTests.swift; sourceTree = "<group>"; };
+		84623A9B235615600024987B /* ImageKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageKeyboard.swift; sourceTree = "<group>"; };
 		84670426234A6A9E00355331 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		84670427234A6A9E00355331 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		84670445234A709400355331 /* KeyboardKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeyboardKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -868,11 +870,12 @@
 		846704AB234A725300355331 /* Keyboards */ = {
 			isa = PBXGroup;
 			children = (
-				846704AC234A725300355331 /* NumericKeyboard.swift */,
-				846704AD234A725300355331 /* AlphabeticKeyboard.swift */,
-				846704AE234A725300355331 /* SymbolicKeyboard.swift */,
 				846704AF234A725300355331 /* DemoKeyboard.swift */,
+				846704AD234A725300355331 /* AlphabeticKeyboard.swift */,
 				846704B0234A725300355331 /* EmojiKeyboard.swift */,
+				84623A9B235615600024987B /* ImageKeyboard.swift */,
+				846704AC234A725300355331 /* NumericKeyboard.swift */,
+				846704AE234A725300355331 /* SymbolicKeyboard.swift */,
 			);
 			path = Keyboards;
 			sourceTree = "<group>";
@@ -1860,6 +1863,7 @@
 				846704BC234A725300355331 /* DemoAutocompleteSuggestionProvider.swift in Sources */,
 				846704BA234A725300355331 /* DemoKeyboard.swift in Sources */,
 				846704B4234A725300355331 /* DemoButton.swift in Sources */,
+				84623A9C235615600024987B /* ImageKeyboard.swift in Sources */,
 				846704B9234A725300355331 /* SymbolicKeyboard.swift in Sources */,
 				84086E32235588200030D95A /* KeyboardViewController+Autocomplete.swift in Sources */,
 				84670460234A711100355331 /* KeyboardViewController.swift in Sources */,
