@@ -34,7 +34,9 @@
 			<false/>
 		</dict>
 		<key>NSPhotoLibraryAddUsageDescription</key>
-		<string>$(PRODUCT_NAME) needs permission to write photos...</string>
+		<string>$(PRODUCT_NAME) needs permission to write photos</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>$(PRODUCT_NAME) needs permission to access photos on your device</string>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.keyboard-service</string>
 		<key>NSExtensionPrincipalClass</key>
