@@ -1,6 +1,13 @@
 # Release Notes
 
 
+## 2.6.0
+
+Deprecations:
+
+* The `AutoCompleteSuggestionProvider` `provideAutocompleteSuggestions(for:completion:)` function is deprecated and replaced by `autocompleteSuggestions(for:completion:)`.  
+
+
 ## 2.5.0
 
 This version adds a bunch of features, tweaks some behaviors and deprecates some logic:

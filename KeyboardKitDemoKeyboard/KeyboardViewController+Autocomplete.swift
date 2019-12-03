@@ -13,7 +13,7 @@ extension KeyboardViewController {
     
     func requestAutocompleteSuggestions() {
         let word = textDocumentProxy.currentWord ?? ""
-        autocompleteProvider.provideAutocompleteSuggestions(for: word) { [weak self] in
+        autocompleteProvider.autocompleteSuggestions(for: word) { [weak self] in
             switch $0 {
             case .failure(let error): print(error.localizedDescription)
             case .success(let result): self?.autocompleteToolbar.update(with: result)
