@@ -27,7 +27,7 @@ private extension AlphabeticKeyboard {
     static func actions(
         uppercased: Bool,
         in viewController: KeyboardViewController) -> KeyboardActionRows {
-        return KeyboardActionRows
+        KeyboardActionRows
             .from(characters(uppercased: uppercased))
             .addingSideActions(uppercased: uppercased)
             .appending(bottomActions(leftmost: switchAction, for: viewController))
@@ -40,11 +40,11 @@ private extension AlphabeticKeyboard {
     ]
     
     static func characters(uppercased: Bool) -> [[String]] {
-        return uppercased ? characters.uppercased() : characters
+        uppercased ? characters.uppercased() : characters
     }
     
     static var switchAction: KeyboardAction {
-        return .switchToKeyboard(.numeric)
+        .switchToKeyboard(.numeric)
     }
 }
 

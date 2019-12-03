@@ -33,7 +33,7 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     var keyboardShiftState = KeyboardShiftState.lowercased
     
     var demoViewController: KeyboardViewController? {
-        return inputViewController as? KeyboardViewController
+        inputViewController as? KeyboardViewController
     }
     
     

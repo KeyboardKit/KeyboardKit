@@ -19,7 +19,7 @@ extension KeyboardViewController {
     }
     
     func buttonRow(for actions: KeyboardActionRow, distribution: UIStackView.Distribution) -> KeyboardStackViewComponent {
-        return KeyboardButtonRow(actions: actions, distribution: distribution) {
+        KeyboardButtonRow(actions: actions, distribution: distribution) {
             button(for: $0, distribution: distribution)
         }
     }

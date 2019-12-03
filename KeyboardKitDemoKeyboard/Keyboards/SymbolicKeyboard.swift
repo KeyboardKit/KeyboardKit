@@ -23,7 +23,7 @@ struct SymbolicKeyboard: DemoKeyboard {
 private extension SymbolicKeyboard {
     
     static func actions(in viewController: KeyboardViewController) -> KeyboardActionRows {
-        return KeyboardActionRows
+        KeyboardActionRows
             .from(characters)
             .addingSideActions()
             .appending(bottomActions(leftmost: switchAction, for: viewController))
@@ -36,7 +36,7 @@ private extension SymbolicKeyboard {
     ]
     
     static var switchAction: KeyboardAction {
-        return .switchToKeyboard(.alphabetic(uppercased: false))
+        .switchToKeyboard(.alphabetic(uppercased: false))
     }
 }
 

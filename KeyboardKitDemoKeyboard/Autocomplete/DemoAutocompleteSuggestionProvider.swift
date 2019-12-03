@@ -9,10 +9,8 @@
 import KeyboardKit
 
 /**
- 
  This demo autocomplete suggestion provider just returns the
- current word suffixed with three, static two-char strings.
- 
+ current word suffixed with "ly", "er" and "ter".
  */
 class DemoAutocompleteSuggestionProvider: AutocompleteSuggestionProvider {
 
