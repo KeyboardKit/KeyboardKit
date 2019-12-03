@@ -8,7 +8,8 @@
 
 import Foundation
 
-public typealias AutocompleteResponse = (Result<[String], Error>) -> Void
+public typealias AutocompleteResponse = (AutocompleteResult) -> Void
+public typealias AutocompleteResult = Result<[String], Error>
 
 /**
  This protocol can be implemented by classes that do provide

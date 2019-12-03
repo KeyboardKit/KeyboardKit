@@ -14,14 +14,21 @@ extension KeyboardViewController {
     func requestAutocompleteSuggestions() {
         let word = textDocumentProxy.currentWord ?? ""
         autocompleteProvider.autocompleteSuggestions(for: word) { [weak self] in
-            switch $0 {
-            case .failure(let error): print(error.localizedDescription)
-            case .success(let result): self?.autocompleteToolbar.update(with: result)
-            }
+            self?.handleAutocompleteSuggestionsResult($0)
         }
     }
     
     func resetAutocompleteSuggestions() {
         autocompleteToolbar.reset()
+    }
+}
+
+private extension KeyboardViewController {
+    
+    func handleAutocompleteSuggestionsResult(_ result: AutocompleteResult) {
+        switch result {
+        case .failure(let error): print(error.localizedDescription)
+        case .success(let result): autocompleteToolbar.update(with: result)
+        }
     }
 }
