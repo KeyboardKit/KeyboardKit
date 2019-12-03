@@ -27,23 +27,15 @@ import UIKit
  the text document proxy to be correctly updated. However, I
  hope that I find a way to make this hack obsolete.
  
- **IMPORTANT**  Using this ugly hack to solve these problems
- is *not* preferable, but it's the only solution that I have
- found so far. Since this hack will cause the text cursor to
- move back and forth, albeit with a minimal delay, there's a
- tiny risk that a user types in the middle of the adjustment,
- which would cause the text to be incorrectly inserted.
+ `IMPORTANT` Using an ugly hack to solve this problem is not
+ preferable, but it's the only one I've found to work. Since
+ this hack will cause the text cursor to move back and forth,
+ albeit with a minimal delay, there's a tiny risk that users
+ type during an adjustment, which would cause the text to be
+ incorrectly inserted. This fix will also cause text callout
+ bubbles to dismiss.
  
- TODO: Unit test this class
- 
- TODO: The cursor must be moved in order to update the proxy,
- but moving it will make the selection callout disappear, if
- it is displayed. I wanted to solve this by adding knowledge
- of the last detected current word into this class, but this
- did not work, since the cursor must be moved to update this
- information. I have created this issue for this bug:
- 
- Issue:
+ Related issues:
  https://github.com/danielsaidi/KeyboardKit/issues/26
  
  Further reading:

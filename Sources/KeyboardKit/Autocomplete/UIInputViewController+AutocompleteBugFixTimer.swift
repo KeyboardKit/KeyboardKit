@@ -11,17 +11,15 @@ import UIKit
 public extension UIInputViewController {
     
     /**
-     Create an autocomplete bug fix timer.
-     
-     This convenience function makes the timer creation more
-     streamlined in view controllers that use this bug fix.
+     Create an auto complete bugfix timer.
     */
     func createAutocompleteBugFixTimer(
         withTickInterval tickInterval: TimeInterval = 1,
         reversalInterval: TimeInterval = 0.0001) -> AutocompleteBugFixTimer {
-        return AutocompleteBugFixTimer(
+        AutocompleteBugFixTimer(
             viewController: self,
             tickInterval: tickInterval,
-            reversalInterval: reversalInterval)
+            reversalInterval: reversalInterval
+        )
     }
 }
