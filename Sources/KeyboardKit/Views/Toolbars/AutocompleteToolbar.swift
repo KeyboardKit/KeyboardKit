@@ -12,9 +12,18 @@ import UIKit
 /**
  This toolbar can be used to present autocomplete suggestion
  words while the user types.
+ 
+ Since the `buttonCreator` parameter can return any view for
+ any string, you can use this class to present any views you
+ want, given any custom list of words.
  */
 public class AutocompleteToolbar: KeyboardToolbar {
 
+    /**
+     Create an autocomplete toolbar.
+     
+     - Parameter buttonCreator: A function that generates a custom view for a word.
+     */
     public convenience init(
         height: CGFloat = .standardKeyboardRowHeight,
         buttonCreator: @escaping ButtonCreator,
@@ -33,6 +42,11 @@ public class AutocompleteToolbar: KeyboardToolbar {
         update(with: [])
     }
     
+    /**
+     Update the toolbar with new words. This will remove all
+     previously added views from the stack view and create a
+     new set of views for the new word collection.
+     */
     public func update(with words: [String]) {
         let buttons = words.map { buttonCreator($0) }
         stackView.removeAllArrangedSubviews()

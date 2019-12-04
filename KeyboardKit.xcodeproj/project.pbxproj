@@ -1333,10 +1333,10 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_64 /* Collections */,
+				OBJ_71 /* Toolbars */,
 				OBJ_68 /* KeyboardButtonRow.swift */,
 				OBJ_69 /* KeyboardButtonView.swift */,
 				OBJ_70 /* KeyboardSpacerView.swift */,
-				OBJ_71 /* Toolbars */,
 			);
 			path = Views;
 			sourceTree = "<group>";
