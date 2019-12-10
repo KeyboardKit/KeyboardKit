@@ -126,6 +126,7 @@ private extension AutocompleteToolbarLabel {
     func setup() {
         setupAccessibility()
         setupSubviews()
+        setupTapAction()
     }
     
     func setupSubviews() {
@@ -137,6 +138,14 @@ private extension AutocompleteToolbarLabel {
     func setupSubview(_ view: UIView) {
         view.isHidden = true
         addSubview(view, fill: true)
+    }
+    
+    func setupTapAction() {
+        addTapAction { [weak self] in
+            guard let self = self else { return }
+            let text = self.text + " "
+            self.textDocumentProxy?.replaceCurrentWord(with: text)
+        }
     }
 }
 
