@@ -115,6 +115,7 @@
 		847060002355A18700B2B2A8 /* HapticFeedbackConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84705FFF2355A18700B2B2A8 /* HapticFeedbackConfiguration.swift */; };
 		847060032355A2A900B2B2A8 /* HapticFeedbackConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847060012355A26A00B2B2A8 /* HapticFeedbackConfigurationTests.swift */; };
 		847060052355A5D900B2B2A8 /* KeyboardGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847060042355A5D900B2B2A8 /* KeyboardGesture.swift */; };
+		848DFC5E23A03CB400197B91 /* UIView+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848DFC5D23A03CB400197B91 /* UIView+Visibility.swift */; };
 		OBJ_252 /* KeyboardAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* KeyboardAction.swift */; };
 		OBJ_253 /* KeyboardActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* KeyboardActionHandler.swift */; };
 		OBJ_254 /* KeyboardActionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* KeyboardActionRow.swift */; };
@@ -480,6 +481,7 @@
 		84705FFF2355A18700B2B2A8 /* HapticFeedbackConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackConfiguration.swift; sourceTree = "<group>"; };
 		847060012355A26A00B2B2A8 /* HapticFeedbackConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackConfigurationTests.swift; sourceTree = "<group>"; };
 		847060042355A5D900B2B2A8 /* KeyboardGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardGesture.swift; sourceTree = "<group>"; };
+		848DFC5D23A03CB400197B91 /* UIView+Visibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Visibility.swift"; sourceTree = "<group>"; };
 		"KeyboardKit::KeyboardKit::Product" /* KeyboardKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KeyboardKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"KeyboardKit::KeyboardKitTests::Product" /* KeyboardKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = KeyboardKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Mockery::Mockery::Product" /* Mockery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mockery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1269,6 +1271,7 @@
 				OBJ_44 /* UIView+Nib.swift */,
 				OBJ_45 /* UIView+Subviews.swift */,
 				OBJ_46 /* UIViewAutoresizing+Extras.swift */,
+				848DFC5D23A03CB400197B91 /* UIView+Visibility.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1921,6 +1924,7 @@
 				OBJ_280 /* UITextDocumentProxy+CurrentWord.swift in Sources */,
 				OBJ_281 /* UITextDocumentProxy+Delete.swift in Sources */,
 				OBJ_282 /* UIView+Nib.swift in Sources */,
+				848DFC5E23A03CB400197B91 /* UIView+Visibility.swift in Sources */,
 				OBJ_283 /* UIView+Subviews.swift in Sources */,
 				OBJ_284 /* UIViewAutoresizing+Extras.swift in Sources */,
 				OBJ_285 /* RepeatingGestureRecognizer.swift in Sources */,

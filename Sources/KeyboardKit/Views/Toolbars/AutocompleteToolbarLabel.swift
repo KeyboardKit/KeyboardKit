@@ -30,27 +30,24 @@ open class AutocompleteToolbarLabel: UIView {
         self.init()
         self.text = text
         self.textDocumentProxy = textDocumentProxy
-        accessibilityTraits = .button
-        addSubview(scrollView, fill: true)
-        addTapAction { [weak self] in
-            guard let self = self else { return }
-            self.textDocumentProxy?.replaceCurrentWord(with: text)
-        }
+        setup()
     }
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        DispatchQueue.main.async {
-            self.scrollToEndIfNeeded()
-        }
+        handleLayoutChange()
     }
     
     
     // MARK: - Properties
     
-    public var text: String? {
-        get { scrollViewLabel.text }
-        set { scrollViewLabel.text = newValue }
+    public var text: String {
+        get { centeredLabel.text ?? "" }
+        set {
+            accessibilityLabel = newValue
+            centeredLabel.text = newValue
+            scrollViewLabel.text = newValue
+        }
     }
     
     public var textMargins: CGFloat = 8 {
@@ -80,6 +77,13 @@ open class AutocompleteToolbarLabel: UIView {
     
     // MARK: - Views
     
+    public lazy var centeredLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.textAlignment = .center
+        return view
+    }()
+    
     public lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.addSubview(scrollViewLabel, fill: true)
@@ -94,7 +98,6 @@ open class AutocompleteToolbarLabel: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
     
     
     // MARK: - Functions
@@ -113,5 +116,56 @@ open class AutocompleteToolbarLabel: UIView {
         gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor, UIColor.black.cgColor, UIColor.black.cgColor, UIColor.clear.cgColor]
         gradient.locations = [0.0, 0.1, 0.5, 0.9, 1.0]
         scrollView.layer.mask = gradient
+    }
+}
+
+
+// MARK: - Setup
+
+private extension AutocompleteToolbarLabel {
+    
+    func setup() {
+        setupAccessibility()
+        setupSubviews()
+        setupTapAction()
+    }
+    
+    func setupSubviews() {
+        setupSubview(centeredLabel)
+        setupSubview(scrollView)
+    }
+    
+    func setupSubview(_ view: UIView) {
+        view.isHidden = true
+        addSubview(view, fill: true)
+    }
+    
+    func setupTapAction() {
+        addTapAction { [weak self] in
+            guard let self = self else { return }
+            self.textDocumentProxy?.replaceCurrentWord(with: self.text)
+        }
+    }
+}
+
+
+// MARK: - Private Functions
+
+private extension AutocompleteToolbarLabel {
+    
+    func handleLayoutChange() {
+        DispatchQueue.main.async {
+            self.refreshViewVisibility()
+            self.scrollToEndIfNeeded()
+        }
+    }
+    
+    func refreshViewVisibility() {
+        centeredLabel.isHidden = isScrollingEnabled
+        scrollView.isVisible = isScrollingEnabled
+    }
+    
+    func setupAccessibility() {
+        accessibilityTraits = .button
     }
 }
