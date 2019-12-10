@@ -31,6 +31,7 @@ public class AutocompleteToolbar: KeyboardToolbar {
         alignment: UIStackView.Alignment = .fill,
         distribution: UIStackView.Distribution = .fillEqually) {
         self.init(height: height, alignment: alignment, distribution: distribution)
+        stackView.spacing = 0
         self.buttonCreator = buttonCreator
     }
     

@@ -10,15 +10,13 @@ import UIKit
 
 /**
  This is the default label that will be used by autocomplete
- toolbars if no other view builder function is provided.
+ toolbars if no custom view builder is provided.
  
- This is not a label, but rather a composite view that has a
- scroll view with an embedded label.
- 
- This view mimics the native iOS autocomplete label and will
- enable scrolling if the textual content is too large to fit
- the label.
- 
+ This is not a label, but a view that contains a scroll view
+ with an embedded, scrollable label, as well as a plan label
+ with centered content. The visibility of these views depend
+ on the amount of text and if the label needs scrolling.
+
  `TODO` - Center text until scrolling.
  `TODO` - Implement separator lines.
  `TODO` - Implement horizontal blur.
@@ -55,14 +53,27 @@ open class AutocompleteToolbarLabel: UIView {
         set { label.text = newValue }
     }
     
-    private weak var textDocumentProxy: UITextDocumentProxy?
-    
     public var textMargins: CGFloat = 8 {
         didSet {
             scrollView.contentInset.left = textMargins
             scrollView.contentInset.right = textMargins
         }
     }
+    
+    private var isScrollingEnabled: Bool {
+        scrollContentWidth > (scrollFrameWidth - textMargins)
+    }
+    
+    private var scrollContentWidth: CGFloat {
+        scrollView.contentSize.width
+    }
+    
+    private var scrollFrameWidth: CGFloat {
+        scrollView.frame.size.width
+    }
+    
+    private weak var textDocumentProxy: UITextDocumentProxy?
+    
     
     private var hasPerformedScrollToEnd = false
     
@@ -91,10 +102,8 @@ open class AutocompleteToolbarLabel: UIView {
     public func scrollToEndIfNeeded() {
         if hasPerformedScrollToEnd { return }
         hasPerformedScrollToEnd = true
-        guard scrollView.contentSize.width > scrollView.frame.size.width else { return }
-        let contentWidth = scrollView.contentSize.width
-        let frameWidth = scrollView.frame.size.width
-        let offset = contentWidth - frameWidth + textMargins
+        guard isScrollingEnabled else { return }
+        let offset = scrollContentWidth - scrollFrameWidth + textMargins
         scrollView.contentOffset.x = offset
     }
     
