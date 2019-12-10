@@ -104,7 +104,8 @@ class KeyboardViewController: KeyboardInputViewController {
     lazy var autocompleteToolbar: AutocompleteToolbar = {
         let proxy = textDocumentProxy
         let toolbar = AutocompleteToolbar(
-            buttonCreator: { DemoAutocompleteLabel(word: $0, proxy: proxy) }
+            //buttonCreator: { DemoAutocompleteLabel(word: $0, proxy: proxy) }
+            buttonCreator: { AutocompleteToolbarLabel(text: $0, textDocumentProxy: proxy) }
         )
         toolbar.update(with: ["foo", "bar", "baz"])
         return toolbar

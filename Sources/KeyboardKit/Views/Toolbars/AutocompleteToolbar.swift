@@ -20,7 +20,8 @@ import UIKit
 public class AutocompleteToolbar: KeyboardToolbar {
 
     /**
-     Create an autocomplete toolbar.
+     Create an autocomplete toolbar that has a custom button
+     creation function.
      
      - Parameter buttonCreator: A function that generates a custom view for a word.
      */
@@ -31,12 +32,13 @@ public class AutocompleteToolbar: KeyboardToolbar {
         distribution: UIStackView.Distribution = .fillEqually) {
         self.init(height: height, alignment: alignment, distribution: distribution)
         self.buttonCreator = buttonCreator
-        
     }
     
     public typealias ButtonCreator = (String) -> (UIView)
 
     public var buttonCreator: ButtonCreator!
+    
+    private var lastWords: [String] = []
     
     public func reset() {
         update(with: [])
@@ -48,6 +50,8 @@ public class AutocompleteToolbar: KeyboardToolbar {
      new set of views for the new word collection.
      */
     public func update(with words: [String]) {
+        if words == lastWords { return }
+        lastWords = words
         let buttons = words.map { buttonCreator($0) }
         stackView.removeAllArrangedSubviews()
         stackView.addArrangedSubviews(buttons)

@@ -24,6 +24,8 @@
 		84086E30235587DC0030D95A /* KeyboardViewController+Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84086E2F235587DC0030D95A /* KeyboardViewController+Buttons.swift */; };
 		84086E32235588200030D95A /* KeyboardViewController+Autocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84086E31235588200030D95A /* KeyboardViewController+Autocomplete.swift */; };
 		84086E3423558C0F0030D95A /* KeyboardViewController+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84086E3323558C0F0030D95A /* KeyboardViewController+Setup.swift */; };
+		8422CB8A239F021B00251D31 /* AutocompleteToolbarLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8422CB89239F021B00251D31 /* AutocompleteToolbarLabel.swift */; };
+		8422CB8C239F07C700251D31 /* AutocompleteToolbarSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8422CB8B239F07C700251D31 /* AutocompleteToolbarSeparator.swift */; };
 		84623A8B2355DE340024987B /* AudioFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84623A8A2355DE340024987B /* AudioFeedback.swift */; };
 		84623A8D2355E0670024987B /* SystemAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84623A8C2355E0670024987B /* SystemAudioPlayer.swift */; };
 		84623A8F2355E1730024987B /* StandardSystemAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84623A8E2355E1730024987B /* StandardSystemAudioPlayer.swift */; };
@@ -415,6 +417,8 @@
 		84086E2F235587DC0030D95A /* KeyboardViewController+Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardViewController+Buttons.swift"; sourceTree = "<group>"; };
 		84086E31235588200030D95A /* KeyboardViewController+Autocomplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardViewController+Autocomplete.swift"; sourceTree = "<group>"; };
 		84086E3323558C0F0030D95A /* KeyboardViewController+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardViewController+Setup.swift"; sourceTree = "<group>"; };
+		8422CB89239F021B00251D31 /* AutocompleteToolbarLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteToolbarLabel.swift; sourceTree = "<group>"; };
+		8422CB8B239F07C700251D31 /* AutocompleteToolbarSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteToolbarSeparator.swift; sourceTree = "<group>"; };
 		84623A8A2355DE340024987B /* AudioFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFeedback.swift; sourceTree = "<group>"; };
 		84623A8C2355E0670024987B /* SystemAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemAudioPlayer.swift; sourceTree = "<group>"; };
 		84623A8E2355E1730024987B /* StandardSystemAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardSystemAudioPlayer.swift; sourceTree = "<group>"; };
@@ -1363,6 +1367,8 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_72 /* AutocompleteToolbar.swift */,
+				8422CB89239F021B00251D31 /* AutocompleteToolbarLabel.swift */,
+				8422CB8B239F07C700251D31 /* AutocompleteToolbarSeparator.swift */,
 				OBJ_73 /* KeyboardToolbar.swift */,
 			);
 			path = Toolbars;
@@ -1908,6 +1914,7 @@
 				OBJ_276 /* UIImage+Resized.swift in Sources */,
 				84623A972355F77A0024987B /* AudioFeedbackConfiguration.swift in Sources */,
 				OBJ_277 /* UIImage+Tinted.swift in Sources */,
+				8422CB8A239F021B00251D31 /* AutocompleteToolbarLabel.swift in Sources */,
 				OBJ_278 /* UIScrollView+PageNumber.swift in Sources */,
 				84623A8B2355DE340024987B /* AudioFeedback.swift in Sources */,
 				OBJ_279 /* UIStackView+Subviews.swift in Sources */,
@@ -1917,6 +1924,7 @@
 				OBJ_283 /* UIView+Subviews.swift in Sources */,
 				OBJ_284 /* UIViewAutoresizing+Extras.swift in Sources */,
 				OBJ_285 /* RepeatingGestureRecognizer.swift in Sources */,
+				8422CB8C239F07C700251D31 /* AutocompleteToolbarSeparator.swift in Sources */,
 				OBJ_286 /* UIView+LongPressAction.swift in Sources */,
 				OBJ_287 /* UIView+RepeatingAction.swift in Sources */,
 				OBJ_288 /* UIView+TapAction.swift in Sources */,
