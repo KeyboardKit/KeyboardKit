@@ -15,4 +15,10 @@ import UIKit
  The class has no logic of its own, but can be used to style
  these view, using `AutocompleteToolbarSeparator.appearance`.
  */
-public class AutocompleteToolbarSeparator: UIView {}
+public class AutocompleteToolbarSeparator: UIView {
+    
+    public override func willMove(toWindow window: UIWindow?) {
+        backgroundColor = .lightGray
+        super.willMove(toWindow: window)
+    }
+}

@@ -47,8 +47,8 @@ public class AutocompleteToolbar: KeyboardToolbar {
         alignment: UIStackView.Alignment = .fill,
         distribution: UIStackView.Distribution = .fillEqually) {
         self.init(height: height, alignment: alignment, distribution: distribution)
-        stackView.spacing = 0
         self.buttonCreator = buttonCreator
+        stackView.spacing = 0
     }
     
     public typealias ButtonCreator = (String) -> (UIView)
@@ -61,6 +61,7 @@ public class AutocompleteToolbar: KeyboardToolbar {
             let buttons = suggestions.map { buttonCreator($0) }
             stackView.removeAllArrangedSubviews()
             stackView.addArrangedSubviews(buttons)
+            tempAdjustLastSeparator(in: buttons)
         }
     }
     
@@ -75,5 +76,13 @@ public class AutocompleteToolbar: KeyboardToolbar {
      */
     public func update(with suggestions: [String]) {
         self.suggestions = suggestions
+    }
+}
+
+private extension AutocompleteToolbar {
+    
+    func tempAdjustLastSeparator(in views: [UIView]) {
+        guard let view = views.last as? AutocompleteToolbarLabel else { return }
+        view.separator.hide()
     }
 }

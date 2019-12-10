@@ -78,7 +78,6 @@ open class AutocompleteToolbarLabel: UIView {
     
     public lazy var centeredLabel: UILabel = {
         let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.textAlignment = .center
         return view
     }()
@@ -86,16 +85,17 @@ open class AutocompleteToolbarLabel: UIView {
     public lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.addSubview(scrollViewLabel, fill: true)
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.contentInset = .init(top: 0, left: textMargins, bottom: 0, right: textMargins)
         view.heightAnchor.constraint(equalTo: scrollViewLabel.heightAnchor, multiplier: 1).isActive = true
         return view
     }()
     
     public lazy var scrollViewLabel: UILabel = {
-        let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+        UILabel()
+    }()
+    
+    public lazy var separator: AutocompleteToolbarSeparator = {
+        AutocompleteToolbarSeparator()
     }()
     
     
@@ -131,6 +131,7 @@ private extension AutocompleteToolbarLabel {
     func setupSubviews() {
         setupSubview(centeredLabel)
         setupSubview(scrollView)
+        addTrailingSubview(separator, width: 0.5, height: 20.0)
     }
     
     func setupSubview(_ view: UIView) {
