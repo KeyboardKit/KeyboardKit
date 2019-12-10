@@ -3,9 +3,15 @@
 
 ## 2.6.0
 
+This version adds more autocomplete functionality:
+
+* `AutocompleteToolbar` has a new convenience initializer that makes it even easier to setup autocomplete.
+* `AutocompleteToolbarLabel` is the default autocomplete item view and can be tapped to send text to the text document proxy.
+* `AutocompleteToolbarLabel` behaves like the native iOS autocomplete view and displays centered text until the text must scroll. 
+
 Deprecations:
 
-* The `AutoCompleteSuggestionProvider` `provideAutocompleteSuggestions(for:completion:)` function is deprecated and replaced by `autocompleteSuggestions(for:completion:)`.  
+* The `AutoCompleteSuggestionProvider`'s `provideAutocompleteSuggestions(for:completion:)` is deprecated and replaced with `autocompleteSuggestions(for:completion:)`.
 
 
 ## 2.5.0

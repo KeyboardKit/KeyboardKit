@@ -909,6 +909,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		848DFC6123A04A0D00197B91 /* AutoComplete */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_72 /* AutocompleteToolbar.swift */,
+				8422CB89239F021B00251D31 /* AutocompleteToolbarLabel.swift */,
+				8422CB8B239F07C700251D31 /* AutocompleteToolbarSeparator.swift */,
+			);
+			path = AutoComplete;
+			sourceTree = "<group>";
+		};
 		OBJ_101 /* Gestures */ = {
 			isa = PBXGroup;
 			children = (
@@ -1339,11 +1349,12 @@
 		OBJ_63 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				848DFC6123A04A0D00197B91 /* AutoComplete */,
 				OBJ_64 /* Collections */,
-				OBJ_71 /* Toolbars */,
 				OBJ_68 /* KeyboardButtonRow.swift */,
 				OBJ_69 /* KeyboardButtonView.swift */,
 				OBJ_70 /* KeyboardSpacerView.swift */,
+				OBJ_73 /* KeyboardToolbar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1365,17 +1376,6 @@
 			);
 			name = Sources;
 			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_71 /* Toolbars */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_72 /* AutocompleteToolbar.swift */,
-				8422CB89239F021B00251D31 /* AutocompleteToolbarLabel.swift */,
-				8422CB8B239F07C700251D31 /* AutocompleteToolbarSeparator.swift */,
-				OBJ_73 /* KeyboardToolbar.swift */,
-			);
-			path = Toolbars;
-			sourceTree = "<group>";
 		};
 		OBJ_74 /* Tests */ = {
 			isa = PBXGroup;

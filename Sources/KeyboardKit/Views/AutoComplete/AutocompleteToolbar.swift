@@ -20,10 +20,26 @@ import UIKit
 public class AutocompleteToolbar: KeyboardToolbar {
 
     /**
+     Create an autocomplete toolbar that uses standard label
+     classes of type `AutocompleteToolbarLabel` to provide a
+     way to send suggestions to a `UITextDocumentProxy`.
+     */
+    public convenience init(
+        height: CGFloat = .standardKeyboardRowHeight,
+        textDocumentProxy: UITextDocumentProxy,
+        alignment: UIStackView.Alignment = .fill,
+        distribution: UIStackView.Distribution = .fillEqually) {
+        self.init(
+            height: height,
+            buttonCreator: { AutocompleteToolbarLabel(text: $0, textDocumentProxy: textDocumentProxy) },
+            alignment: alignment,
+            distribution: distribution
+        )
+    }
+
+    /**
      Create an autocomplete toolbar that has a custom button
      creation function.
-     
-     - Parameter buttonCreator: A function that generates a custom view for a word.
      */
     public convenience init(
         height: CGFloat = .standardKeyboardRowHeight,
@@ -39,7 +55,14 @@ public class AutocompleteToolbar: KeyboardToolbar {
 
     public var buttonCreator: ButtonCreator!
     
-    private var lastWords: [String] = []
+    private var suggestions: [String] = [] {
+        didSet {
+            if oldValue == suggestions { return }
+            let buttons = suggestions.map { buttonCreator($0) }
+            stackView.removeAllArrangedSubviews()
+            stackView.addArrangedSubviews(buttons)
+        }
+    }
     
     public func reset() {
         update(with: [])
@@ -50,11 +73,7 @@ public class AutocompleteToolbar: KeyboardToolbar {
      previously added views from the stack view and create a
      new set of views for the new word collection.
      */
-    public func update(with words: [String]) {
-        if words == lastWords { return }
-        lastWords = words
-        let buttons = words.map { buttonCreator($0) }
-        stackView.removeAllArrangedSubviews()
-        stackView.addArrangedSubviews(buttons)
+    public func update(with suggestions: [String]) {
+        self.suggestions = suggestions
     }
 }

@@ -17,7 +17,6 @@ import UIKit
  with centered content. The visibility of these views depend
  on the amount of text and if the label needs scrolling.
 
- `TODO` - Center text until scrolling.
  `TODO` - Implement separator lines.
  `TODO` - Implement horizontal blur.
  */
@@ -127,7 +126,6 @@ private extension AutocompleteToolbarLabel {
     func setup() {
         setupAccessibility()
         setupSubviews()
-        setupTapAction()
     }
     
     func setupSubviews() {
@@ -138,13 +136,6 @@ private extension AutocompleteToolbarLabel {
     func setupSubview(_ view: UIView) {
         view.isHidden = true
         addSubview(view, fill: true)
-    }
-    
-    func setupTapAction() {
-        addTapAction { [weak self] in
-            guard let self = self else { return }
-            self.textDocumentProxy?.replaceCurrentWord(with: self.text)
-        }
     }
 }
 

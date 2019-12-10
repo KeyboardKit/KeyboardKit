@@ -13,6 +13,6 @@ import UIKit
  to separate autocomplete labels.
  
  The class has no logic of its own, but can be used to style
- the separators, using appearance proxies.
+ these view, using `AutocompleteToolbarSeparator.appearance`.
  */
 public class AutocompleteToolbarSeparator: UIView {}
