@@ -49,8 +49,8 @@ open class AutocompleteToolbarLabel: UIView {
     // MARK: - Properties
     
     public var text: String? {
-        get { label.text }
-        set { label.text = newValue }
+        get { scrollViewLabel.text }
+        set { scrollViewLabel.text = newValue }
     }
     
     public var textMargins: CGFloat = 8 {
@@ -80,18 +80,18 @@ open class AutocompleteToolbarLabel: UIView {
     
     // MARK: - Views
     
-    public lazy var label: UILabel = {
-        let view = UILabel()
+    public lazy var scrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.addSubview(scrollViewLabel, fill: true)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentInset = .init(top: 0, left: textMargins, bottom: 0, right: textMargins)
+        view.heightAnchor.constraint(equalTo: scrollViewLabel.heightAnchor, multiplier: 1).isActive = true
         return view
     }()
     
-    public lazy var scrollView: UIScrollView = {
-        let view = UIScrollView()
-        view.addSubview(label, fill: true)
+    public lazy var scrollViewLabel: UILabel = {
+        let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentInset = .init(top: 0, left: textMargins, bottom: 0, right: textMargins)
-        view.heightAnchor.constraint(equalTo: label.heightAnchor, multiplier: 1).isActive = true
         return view
     }()
     
