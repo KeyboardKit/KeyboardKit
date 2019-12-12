@@ -13,27 +13,14 @@ import UIKit
  basic set of functionality. You can subclass this class and
  override anything to modify the standard behavior.
  
- The class has a `keyboardActionHandler` to which you should
- delegate all triggered keyboard actions. It uses a standard
- `StandardKeyboardActionHandler` by default, but you can set
- `keyboardActionHandler` to any `KeyboardActionHandler`.
+ Use `keyboardActionHandler` to handle all keyboard actions.
  
- To apply standard gestures to a keyboard button, simply use
- `addKeyboardGestures(to:)`.
+ Use `keyboardStackView` to setup and populate your keyboard.
  
- `viewWillSyncWithTextDocumentProxy()` is triggered when the
- view controller will appear or when the text document proxy
- text changes. Use this to apply any style you think matches
- the text document proxy configuration.
- 
- `keyboardStackView` is a regular `UIStackView` to which you
- can add any views and configure in any way you like. If you
- add `KeyboardStackViewComponent`s to it, however, they will
- make sure the stack view is properly resized, in a way that
- also resizes the keyboard extension.
+ Use `addKeyboardGestures(to:)` add gestures to the keyboard.
  */
 open class KeyboardInputViewController: UIInputViewController {
-    
+
     
     // MARK: - View Controller Lifecycle
     
@@ -47,11 +34,22 @@ open class KeyboardInputViewController: UIInputViewController {
         viewWillSyncWithTextDocumentProxy()
     }
     
+    /**
+     This function is called when this controller appears or
+     the text document proxy text changes. You can use it to
+     apply a style that matches the proxy configuration.
+     */
     open func viewWillSyncWithTextDocumentProxy() {}
     
     
     // MARK: - Properties
     
+    /**
+     The `keyboardActionHandler` can handle keyboard actions
+     that are triggered by the user. If you do not specify a
+     custom action handler, a `StandardKeyboardActionHandler`
+     instance will be used by default.
+     */
     open lazy var keyboardActionHandler: KeyboardActionHandler = {
         StandardKeyboardActionHandler(inputViewController: self)
     }()
@@ -59,6 +57,14 @@ open class KeyboardInputViewController: UIInputViewController {
     
     // MARK: - View Properties
     
+    /**
+     `keyboardStackView` is a regular `UIStackView` to which
+     you can add any views and configure in any way you like.
+     
+     If you use `KeyboardStackViewComponent` when populating
+     this view, the stack view will be resized in a way that
+     also resizes the keyboard extension.
+     */
     public lazy var keyboardStackView: UIStackView = {
         let stackView = UIStackView(frame: .zero)
         stackView.axis = .vertical

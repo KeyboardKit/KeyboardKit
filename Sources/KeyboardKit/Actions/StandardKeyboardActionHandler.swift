@@ -10,8 +10,8 @@ import UIKit
 
 /**
  This action handler is used by default, if you do not apply
- a custom handler by setting the `actionHandler` property on
- your `KeyboardInputViewController` instance.
+ a custom handler by setting `keyboardActionHandler` on your
+ `KeyboardInputViewController` instance to a custom handler.
  
  This handler uses the default actions when keyboard actions
  are tapped, long pressed or repeated. It can be adjusted by

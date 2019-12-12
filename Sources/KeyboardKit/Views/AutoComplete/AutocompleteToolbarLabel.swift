@@ -84,6 +84,8 @@ open class AutocompleteToolbarLabel: UIView {
     
     public lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
+        view.showsVerticalScrollIndicator = false
+        view.showsHorizontalScrollIndicator = false
         view.addSubview(scrollViewLabel, fill: true)
         view.contentInset = .init(top: 0, left: textMargins, bottom: 0, right: textMargins)
         view.heightAnchor.constraint(equalTo: scrollViewLabel.heightAnchor, multiplier: 1).isActive = true

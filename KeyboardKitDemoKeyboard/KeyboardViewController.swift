@@ -10,7 +10,6 @@ import UIKit
 import KeyboardKit
 
 /**
- 
  This demo app handles system actions as normal (e.g. change
  keyboard, space, new line etc.), injects strings and emojis
  into the text proxy and handles the rightmost images in the
@@ -44,7 +43,6 @@ import KeyboardKit
  timer that triggers each second and moves the cursor. Since
  this is a nasty hack, it may have yet to be discovered side
  effects. If so, please let me know.
- 
  */
 class KeyboardViewController: KeyboardInputViewController {
     
