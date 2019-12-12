@@ -909,16 +909,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		848DFC6123A04A0D00197B91 /* AutoComplete */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_72 /* AutocompleteToolbar.swift */,
-				8422CB89239F021B00251D31 /* AutocompleteToolbarLabel.swift */,
-				8422CB8B239F07C700251D31 /* AutocompleteToolbarSeparator.swift */,
-			);
-			path = AutoComplete;
-			sourceTree = "<group>";
-		};
 		84EC871223A2FC6C00DA8140 /* Deprecated */ = {
 			isa = PBXGroup;
 			children = (
@@ -982,31 +972,15 @@
 		OBJ_121 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_122 /* Collections */,
-				OBJ_126 /* KeyboardButtonRowTests.swift */,
-				OBJ_127 /* KeyboardButtonViewTests.swift */,
-				OBJ_128 /* KeyboardSpacerViewTests.swift */,
-				OBJ_129 /* Toolbars */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		OBJ_122 /* Collections */ = {
-			isa = PBXGroup;
-			children = (
 				OBJ_123 /* KeyboardButtonCollectionViewTests.swift */,
 				OBJ_124 /* KeyboardButtonRowCollectionViewTests.swift */,
+				OBJ_126 /* KeyboardButtonRowTests.swift */,
+				OBJ_127 /* KeyboardButtonViewTests.swift */,
 				OBJ_125 /* KeyboardCollectionViewTests.swift */,
-			);
-			path = Collections;
-			sourceTree = "<group>";
-		};
-		OBJ_129 /* Toolbars */ = {
-			isa = PBXGroup;
-			children = (
+				OBJ_128 /* KeyboardSpacerViewTests.swift */,
 				OBJ_130 /* KeyboardToolbarTests.swift */,
 			);
-			path = Toolbars;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		OBJ_132 /* Dependencies */ = {
@@ -1176,6 +1150,9 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_20 /* AutocompleteSuggestionProvider.swift */,
+				OBJ_72 /* AutocompleteToolbar.swift */,
+				8422CB89239F021B00251D31 /* AutocompleteToolbarLabel.swift */,
+				8422CB8B239F07C700251D31 /* AutocompleteToolbarSeparator.swift */,
 			);
 			path = Autocomplete;
 			sourceTree = "<group>";
@@ -1356,24 +1333,15 @@
 		OBJ_63 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				848DFC6123A04A0D00197B91 /* AutoComplete */,
-				OBJ_64 /* Collections */,
 				OBJ_68 /* KeyboardButtonRow.swift */,
 				OBJ_69 /* KeyboardButtonView.swift */,
+				OBJ_65 /* KeyboardButtonCollectionView.swift */,
+				OBJ_66 /* KeyboardButtonRowCollectionView.swift */,
+				OBJ_67 /* KeyboardCollectionView.swift */,
 				OBJ_70 /* KeyboardSpacerView.swift */,
 				OBJ_73 /* KeyboardToolbar.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		OBJ_64 /* Collections */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_65 /* KeyboardButtonCollectionView.swift */,
-				OBJ_66 /* KeyboardButtonRowCollectionView.swift */,
-				OBJ_67 /* KeyboardCollectionView.swift */,
-			);
-			path = Collections;
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
