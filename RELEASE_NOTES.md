@@ -8,15 +8,15 @@ This version adds more autocomplete functionality:
 * `AutocompleteToolbar` has a new convenience initializer that makes it even easier to setup autocomplete.
 * `AutocompleteToolbarLabel` is the default autocomplete item view and can be tapped to send text to the text document proxy.
 * `AutocompleteToolbarLabel` behaves like the native iOS autocomplete view and displays centered text until the text must scroll.
+* Autocomplete no longer requires the bugfix timer to work. Instead, just let the action handler request autocomplete suggestions.
 
 The `StandardKeyboardActionHandler` has new functionality:
 * `animationButtonTap()` - can be overridden to change the default animation of tapped buttons.
 
 Deprecations:
-
+* The `AutocompleteBugFixTimer` and all timer-related logic has been deprecated.
 * The `AutoCompleteSuggestionProvider`'s `provideAutocompleteSuggestions(for:completion:)` is deprecated and replaced with `autocompleteSuggestions(for:completion:)`.
-* The `StandardKeyboardActionHandler`'s `handleXXX(on:)` are now deprecated and replaced with `handle(:on:view:)`.
-* The `AutocompleteBugFixTimer` and all timer-related logic has been deprecated. Instead, just let the action handler request autocomplete suggestions.
+* The `StandardKeyboardActionHandler`'s `handleXXX(on:)` are now deprecated and replaced with `handle(:on:view:)`. 
 
 
 ## 2.5.0
