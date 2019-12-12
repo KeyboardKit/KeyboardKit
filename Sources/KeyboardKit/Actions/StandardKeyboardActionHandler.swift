@@ -9,12 +9,13 @@
 import UIKit
 
 /**
- This action handler is used by default, if you do not apply
- a custom handler by setting `keyboardActionHandler` on your
- `KeyboardInputViewController` instance to a custom handler.
+ This class is used by default, if you do not apply a custom
+ action handler to your `KeyboardViewController`, by setting
+ `keyboardActionHandler` to a custom handler.
  
  This handler uses the default actions when keyboard actions
- are tapped, long pressed or repeated. It can be adjusted by
+ are tapped, long pressed or repeated. You can adjust action
+ handling by It can be adjusted by
  creating a subclass of this action handler and override the
  `xAction(for:)` and `handleX(on:)` functions.
  
@@ -66,7 +67,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Actions
     
-    open func gestureAction(for gesture: KeyboardGesture, action: KeyboardAction, view: UIView) -> GestureAction? {
+    open func action(for gesture: KeyboardGesture, action: KeyboardAction, view: UIView) -> GestureAction? {
         switch gesture {
         case .longPress: return longPressAction(for: action, view: view)
         case .repeatPress: return repeatAction(for: action, view: view)
@@ -91,11 +92,23 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     // MARK: - Action Handling
     
     open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, view: UIView) {
-        guard let gestureAction = gestureAction(for: gesture, action: action, view: view) else { return }
+        guard let gestureAction = self.action(for: gesture, action: action, view: view) else { return }
         gestureAction()
         animationButtonTap(for: view)
         triggerAudioFeedback(for: action)
         triggerHapticFeedback(for: gesture, on: action)
+    }
+    
+    open func handleLongPress(on action: KeyboardAction, view: UIView) {
+        handle(.longPress, on: action, view: view)
+    }
+    
+    open func handleRepeat(on action: KeyboardAction, view: UIView) {
+        handle(.repeatPress, on: action, view: view)
+    }
+    
+    open func handleTap(on action: KeyboardAction, view: UIView) {
+        handle(.tap, on: action, view: view)
     }
     
     
@@ -150,21 +163,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     @available(*, deprecated, message: "Use triggerHapticFeedback(for:on:) instead")
     open func giveHapticFeedbackForTap(on action: KeyboardAction) {
         triggerHapticFeedback(for: .tap, on: action)
-    }
-    
-    @available(*, deprecated, message: "Use handle(.longPress, on:) instead")
-    open func handleLongPress(on action: KeyboardAction, view: UIView) {
-        handle(.longPress, on: action, view: view)
-    }
-    
-    @available(*, deprecated, message: "Use handle(.repeatPress, on:) instead")
-    open func handleRepeat(on action: KeyboardAction, view: UIView) {
-        handle(.repeatPress, on: action, view: view)
-    }
-    
-    @available(*, deprecated, message: "Use handle(.tap, on:) instead")
-    open func handleTap(on action: KeyboardAction, view: UIView) {
-        handle(.tap, on: action, view: view)
     }
 }
 

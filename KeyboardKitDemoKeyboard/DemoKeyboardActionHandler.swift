@@ -21,6 +21,7 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     // MARK: - Initialization
     
     public init(inputViewController: UIInputViewController) {
+        keyboardShiftState = .lowercased
         super.init(
             inputViewController: inputViewController,
             hapticConfiguration: .standard
@@ -30,7 +31,7 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     // MARK: - Properties
     
-    var keyboardShiftState = KeyboardShiftState.lowercased
+    var keyboardShiftState: KeyboardShiftState
     
     var demoViewController: KeyboardViewController? {
         inputViewController as? KeyboardViewController
