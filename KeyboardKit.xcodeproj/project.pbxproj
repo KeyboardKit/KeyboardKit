@@ -919,6 +919,15 @@
 			path = AutoComplete;
 			sourceTree = "<group>";
 		};
+		84EC871223A2FC6C00DA8140 /* Deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_19 /* AutocompleteBugFixTimer.swift */,
+				OBJ_21 /* UIInputViewController+AutocompleteBugFixTimer.swift */,
+			);
+			path = Deprecated;
+			sourceTree = "<group>";
+		};
 		OBJ_101 /* Gestures */ = {
 			isa = PBXGroup;
 			children = (
@@ -1166,9 +1175,7 @@
 		OBJ_18 /* Autocomplete */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_19 /* AutocompleteBugFixTimer.swift */,
 				OBJ_20 /* AutocompleteSuggestionProvider.swift */,
-				OBJ_21 /* UIInputViewController+AutocompleteBugFixTimer.swift */,
 			);
 			path = Autocomplete;
 			sourceTree = "<group>";
@@ -1419,6 +1426,7 @@
 		OBJ_8 /* KeyboardKit */ = {
 			isa = PBXGroup;
 			children = (
+				84EC871223A2FC6C00DA8140 /* Deprecated */,
 				OBJ_9 /* Actions */,
 				OBJ_15 /* Alerts */,
 				84623A892355DE240024987B /* Audio */,

@@ -16,6 +16,7 @@ Deprecations:
 
 * The `AutoCompleteSuggestionProvider`'s `provideAutocompleteSuggestions(for:completion:)` is deprecated and replaced with `autocompleteSuggestions(for:completion:)`.
 * The `StandardKeyboardActionHandler`'s `handleXXX(on:)` are now deprecated and replaced with `handle(:on:view:)`.
+* The `AutocompleteBugFixTimer` and all timer-related logic has been deprecated. Instead, just let the action handler request autocomplete suggestions.
 
 
 ## 2.5.0

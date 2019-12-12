@@ -10,9 +10,7 @@ import UIKit
 
 public extension UIInputViewController {
     
-    /**
-     Create an auto complete bugfix timer.
-    */
+    @available(*, deprecated, message: "Do not use this. Instead, make the action handler refresh autocomplete as the user types.")
     func createAutocompleteBugFixTimer(
         withTickInterval tickInterval: TimeInterval = 1,
         reversalInterval: TimeInterval = 0.0001) -> AutocompleteBugFixTimer {
