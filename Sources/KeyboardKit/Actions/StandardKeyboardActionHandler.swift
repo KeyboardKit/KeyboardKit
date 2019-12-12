@@ -90,30 +90,20 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Action Handling
     
-    open func handleLongPress(on action: KeyboardAction, view: UIView) {
-        handle(.longPress, on: action, view: view)
-    }
-    
-    open func handleRepeat(on action: KeyboardAction, view: UIView) {
-        handle(.repeatPress, on: action, view: view)
-    }
-    
-    open func handleTap(on action: KeyboardAction, view: UIView) {
-        handle(.tap, on: action, view: view)
-    }
-    
-    /**
-     TODO: This function should replace the above in a future major bump.
-     */
-    func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, view: UIView) {
+    open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, view: UIView) {
+        guard let gestureAction = gestureAction(for: gesture, action: action, view: view) else { return }
+        gestureAction()
+        animationButtonTap(for: view)
         triggerAudioFeedback(for: action)
         triggerHapticFeedback(for: gesture, on: action)
-        guard let triggerAction = gestureAction(for: gesture, action: action, view: view) else { return }
-        triggerAction()
     }
     
     
     // MARK: - Feedback
+    
+    open func animationButtonTap(for view: UIView) {
+        (view as? KeyboardButton)?.animateStandardTap()
+    }
     
     open func triggerAudioFeedback(for action: KeyboardAction) {
         if action.isDeleteAction { return audioConfiguration.deleteFeedback.trigger() }
@@ -160,6 +150,21 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     @available(*, deprecated, message: "Use triggerHapticFeedback(for:on:) instead")
     open func giveHapticFeedbackForTap(on action: KeyboardAction) {
         triggerHapticFeedback(for: .tap, on: action)
+    }
+    
+    @available(*, deprecated, message: "Use handle(.longPress, on:) instead")
+    open func handleLongPress(on action: KeyboardAction, view: UIView) {
+        handle(.longPress, on: action, view: view)
+    }
+    
+    @available(*, deprecated, message: "Use handle(.repeatPress, on:) instead")
+    open func handleRepeat(on action: KeyboardAction, view: UIView) {
+        handle(.repeatPress, on: action, view: view)
+    }
+    
+    @available(*, deprecated, message: "Use handle(.tap, on:) instead")
+    open func handleTap(on action: KeyboardAction, view: UIView) {
+        handle(.tap, on: action, view: view)
     }
 }
 

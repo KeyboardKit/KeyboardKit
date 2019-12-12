@@ -37,33 +37,25 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     }
     
     
-    // MARK: - Functions
+    // MARK: - Actions
     
-    func animateButtonTap(for view: UIView) {
-        (view as? KeyboardButton)?.animateStandardTap()
-    }
-    
-    override func handleLongPress(on action: KeyboardAction, view: UIView) {
-        animateButtonTap(for: view)
+    override func longPressAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
         switch action {
-        case .shift: switchToAlphabeticKeyboard(.capsLocked)
-        case .image: saveImage(for: action)
-        default: super.handleLongPress(on: action, view: view)
+        case .image(_, _, let imageName): return { [weak self] in self?.saveImage(UIImage(named: imageName)!) }
+        case .shift: return switchToCapsLockedKeyboard
+        default: return super.longPressAction(for: action, view: view)
         }
     }
     
-    override func handleTap(on action: KeyboardAction, view: UIView) {
-        animateButtonTap(for: view)
-        let isUppercased = keyboardShiftState == .uppercased
-        let isNonAlpha = demoViewController?.keyboardType != .alphabetic(uppercased: false)
-        super.handleTap(on: action, view: view)
+    override func tapAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
         switch action {
-        case .shift: switchToAlphabeticKeyboard(.uppercased)
-        case .shiftDown: switchToAlphabeticKeyboard(.lowercased)
-        case .space: if isNonAlpha { switchToAlphabeticKeyboard(.lowercased) }
-        case .character: if isUppercased { switchToAlphabeticKeyboard(.lowercased) }
-        case .switchToKeyboard(let type): demoViewController?.keyboardType = type
-        default: copyImage(for: action)
+        case .character: return handleCharacter(action, for: view)
+        case .image(_, _, let imageName): return { [weak self] in self?.copyImage(UIImage(named: imageName)!) }
+        case .shift: return switchToUppercaseKeyboard
+        case .shiftDown: return switchToLowercaseKeyboard
+        case .space: return handleSpace(for: view)
+        case .switchToKeyboard(let type): return { [weak self] in self?.demoViewController?.keyboardType = type }
+        default: return super.tapAction(for: action, view: view)
         }
     }
 }
@@ -80,7 +72,7 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
 }
 
 
-// MARK: - Private Extensions
+// MARK: - Actions
 
 private extension DemoKeyboardActionHandler {
     
@@ -89,23 +81,34 @@ private extension DemoKeyboardActionHandler {
         input.alerter.alert(message: message, in: input.view, withDuration: 4)
     }
     
-    func copyImage(for action: KeyboardAction) {
-        guard let image = image(for: action) else { return }
+    func copyImage(_ image: UIImage) {
         guard let input = inputViewController as? KeyboardViewController else { return }
         guard input.hasFullAccess else { return alert("You must enable full access to copy images.") }
         guard image.copyToPasteboard() else { return alert("The image could not be copied.") }
         alert("Copied to pasteboard!")
     }
     
-    func image(for action: KeyboardAction) -> UIImage? {
-        switch action {
-        case .image(_, _, let imageName): return UIImage(named: imageName)
-        default: return nil
+    func handleCharacter(_ action: KeyboardAction, for view: UIView) -> GestureAction {
+        let baseAction = super.tapAction(for: action, view: view)
+        return { [weak self] in
+            baseAction?()
+            let isUppercased = self?.keyboardShiftState == .uppercased
+            guard isUppercased else { return }
+            self?.switchToAlphabeticKeyboard(.lowercased)
         }
     }
     
-    func saveImage(for action: KeyboardAction) {
-        guard let image = image(for: action) else { return }
+    func handleSpace(for view: UIView) -> GestureAction {
+        let baseAction = super.tapAction(for: .space, view: view)
+        return { [weak self] in
+            baseAction?()
+            let isNonAlpha = self?.demoViewController?.keyboardType != .alphabetic(uppercased: false)
+            guard isNonAlpha else { return }
+            self?.switchToAlphabeticKeyboard(.lowercased)
+        }
+    }
+    
+    func saveImage(_ image: UIImage) {
         guard let input = inputViewController as? KeyboardViewController else { return }
         guard input.hasFullAccess else { return alert("You must enable full access to save images to photos.") }
         let saveCompletion = #selector(handleImage(_:didFinishSavingWithError:contextInfo:))
@@ -115,5 +118,17 @@ private extension DemoKeyboardActionHandler {
     func switchToAlphabeticKeyboard(_ state: KeyboardShiftState) {
         keyboardShiftState = state
         demoViewController?.keyboardType = .alphabetic(uppercased: state.isUppercased)
+    }
+    
+    func switchToCapsLockedKeyboard() {
+        switchToAlphabeticKeyboard(.capsLocked)
+    }
+    
+    func switchToLowercaseKeyboard() {
+        switchToAlphabeticKeyboard(.lowercased)
+    }
+    
+    func switchToUppercaseKeyboard() {
+        switchToAlphabeticKeyboard( .uppercased)
     }
 }
