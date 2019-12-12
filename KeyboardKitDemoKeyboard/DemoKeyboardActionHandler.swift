@@ -31,9 +31,9 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     // MARK: - Properties
     
-    var keyboardShiftState: KeyboardShiftState
+    private var keyboardShiftState: KeyboardShiftState
     
-    var demoViewController: KeyboardViewController? {
+    private var demoViewController: KeyboardViewController? {
         inputViewController as? KeyboardViewController
     }
     
@@ -58,6 +58,14 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
         case .switchToKeyboard(let type): return { [weak self] in self?.demoViewController?.keyboardType = type }
         default: return super.tapAction(for: action, view: view)
         }
+    }
+    
+    
+    // MARK: - Action Handling
+    
+    override func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, view: UIView) {
+        super.handle(gesture, on: action, view: view)
+        demoViewController?.requestAutocompleteSuggestions()
     }
 }
 
