@@ -13,11 +13,9 @@ import UIKit
  basic set of functionality. You can subclass this class and
  override anything to modify the standard behavior.
  
- Use `keyboardActionHandler` to handle all keyboard actions.
- 
- Use `keyboardStackView` to setup and populate your keyboard.
- 
- Use `addKeyboardGestures(to:)` add gestures to the keyboard.
+ * Use `keyboardActionHandler` to handle keyboard actions.
+ * Use `keyboardStackView` to setup and populate a keyboard.
+ * Use `addKeyboardGestures(to:)` to add keyboard gestures.
  */
 open class KeyboardInputViewController: UIInputViewController {
 
