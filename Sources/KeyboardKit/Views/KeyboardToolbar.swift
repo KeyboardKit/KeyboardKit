@@ -18,14 +18,18 @@ import UIKit
  */
 open class KeyboardToolbar: UIView, KeyboardStackViewComponent {
     
-    public convenience init(
+    public init(
         height: CGFloat = .standardKeyboardRowHeight,
         alignment: UIStackView.Alignment = .fill,
         distribution: UIStackView.Distribution = .fillEqually) {
-        self.init(frame: .zero)
+        super.init(frame: .zero)
         self.height = height
         stackView.alignment = alignment
         stackView.distribution = distribution
+    }
+    
+    public required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     public var heightConstraint: NSLayoutConstraint?
