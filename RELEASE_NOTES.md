@@ -1,6 +1,11 @@
 # Release Notes
 
 
+## 2.6.1
+
+This version adds `enableScrolling()` and `disableScrolling()` to `AutocompleteToolbar`. This makes it possible to make the entire toolbar scroll if its content doesn't fit the screen.
+
+
 ## 2.6.0
 
 This version adds more autocomplete functionality:
