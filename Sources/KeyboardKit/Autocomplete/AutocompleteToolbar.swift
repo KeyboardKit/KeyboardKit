@@ -17,6 +17,14 @@ import UIKit
  makes the toolbar reset itself then populate its stack view
  with new buttons, which are provided by the `buttonCreator`.
  
+ The toolbar will by default distribute all suggestion views
+ evenly within its available space. However, you can make it
+ scrollable by calling `enableScrolling()`. This will enable
+ scrolling and give any added suggestion views as much space
+ as they need. Make sure that you setup your suggestion view
+ constraints properly before using this behavior. To disable
+ scrolling, jus call `disableScrolling()`.
+ 
  Since the `buttonCreator` can provide any kind of views for
  any strings, you are not limited to using buttons. Toolbars
  can use any views, separators buttons etc.
@@ -41,7 +49,7 @@ public class AutocompleteToolbar: KeyboardToolbar {
     
     /**
      Create a toolbar that uses an `AutocompleteToolbarLabel`
-     button creator that sends text to a `UITextDocumentProxy`.
+     that sends text to a `UITextDocumentProxy`.
      */
     public convenience init(
         height: CGFloat = .standardKeyboardRowHeight,
@@ -72,6 +80,8 @@ public class AutocompleteToolbar: KeyboardToolbar {
     
     private let buttonCreator: ButtonCreator
     
+    private var scrollView: UIScrollView?
+    
     private var suggestions: [String] = [] {
         didSet {
             if oldValue == suggestions { return }
@@ -84,6 +94,33 @@ public class AutocompleteToolbar: KeyboardToolbar {
     
     
     // MARK: - Functions
+    
+    /**
+     Disable scrolling and make the stackview distribute its
+     content evenly instead.
+     */
+    public func disableScrolling() {
+        guard let scrollView = self.scrollView else { return }
+        stackView.removeFromSuperview()
+        scrollView.removeFromSuperview()
+        stackView.removeAllConstraints()
+        addSubview(stackView, fill: true)
+    }
+    
+    /**
+     Make the entire toolbar scroll, if its suggestions take
+     up too much space.
+     */
+    public func enableScrolling() {
+        guard self.scrollView == nil else { return }
+        let scrollView = UIScrollView(frame: .zero)
+        addSubview(scrollView, fill: true)
+        stackView.removeAllConstraints()
+        scrollView.addSubview(stackView, fill: true)
+        stackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor).isActive = true
+        self.scrollView = scrollView
+    }
+    
     
     /**
      Reset the toolbar by removing all suggestions.

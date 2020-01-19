@@ -34,11 +34,6 @@ open class KeyboardToolbar: UIView, KeyboardStackViewComponent {
     
     public var heightConstraint: NSLayoutConstraint?
     
-    public lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView(frame: .zero)
-        return scrollView
-    }()
-    
     public lazy var stackView: UIStackView = {
         let stackView = UIStackView(frame: .zero)
         stackView.axis = .horizontal
