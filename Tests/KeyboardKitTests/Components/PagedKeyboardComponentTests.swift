@@ -23,7 +23,10 @@ class PagedKeyboardComponentTests: QuickSpec {
             view = TestClass()
             settingsKey = view.settingsKey
             defaults = UserDefaults.standard
-            defaults.removeObject(forKey: settingsKey)
+        }
+        
+        afterEach {
+            defaults.set(0, forKey: settingsKey)
         }
         
         describe("persisting current page index") {
