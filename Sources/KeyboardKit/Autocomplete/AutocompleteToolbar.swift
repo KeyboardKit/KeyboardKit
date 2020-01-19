@@ -11,11 +11,15 @@ import UIKit
 
 /**
  This toolbar can be used to present autocomplete suggestion
- words while the user types.
+ to the user while she/he types into a text field.
  
- Since the `buttonCreator` parameter can return any view for
- any string, you can use this class to present any views you
- want, given any custom list of words.
+ The toolbar is updated by calling `update(with: words)`. It
+ makes the toolbar reset itself then populate its stack view
+ with new buttons, which are provided by the `buttonCreator`.
+ 
+ Since the `buttonCreator` can provide any kind of views for
+ any strings, you are not limited to using buttons. Toolbars
+ can use any views, separators buttons etc.
  */
 public class AutocompleteToolbar: KeyboardToolbar {
 
@@ -23,8 +27,7 @@ public class AutocompleteToolbar: KeyboardToolbar {
     // MARK: - Initialization
 
     /**
-     Create an autocomplete toolbar that has a custom button
-     creation function.
+     Create a toolbar that uses a custom button creator.
      */
     public init(
         height: CGFloat = .standardKeyboardRowHeight,
@@ -37,9 +40,8 @@ public class AutocompleteToolbar: KeyboardToolbar {
     }
     
     /**
-     Create an autocomplete toolbar that uses standard label
-     classes of type `AutocompleteToolbarLabel` to provide a
-     way to send suggestions to a `UITextDocumentProxy`.
+     Create a toolbar that uses an `AutocompleteToolbarLabel`
+     button creator that sends text to a `UITextDocumentProxy`.
      */
     public convenience init(
         height: CGFloat = .standardKeyboardRowHeight,
@@ -48,7 +50,9 @@ public class AutocompleteToolbar: KeyboardToolbar {
         distribution: UIStackView.Distribution = .fillEqually) {
         self.init(
             height: height,
-            buttonCreator: { AutocompleteToolbarLabel(text: $0, textDocumentProxy: textDocumentProxy) },
+            buttonCreator: { AutocompleteToolbarLabel(
+                text: $0,
+                textDocumentProxy: textDocumentProxy) },
             alignment: alignment,
             distribution: distribution
         )

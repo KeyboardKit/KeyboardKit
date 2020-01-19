@@ -10,10 +10,10 @@ import UIKit
 
 /**
  This class is added as`AutocompleteToolbarLabel` separators
- to separate autocomplete labels.
+ to separate autocomplete labels in an `AutocompleteToolbar`.
  
- The class has no logic of its own, but can be used to style
- these view, using `AutocompleteToolbarSeparator.appearance`.
+ You can style the appearance of these separators, using the
+ `AutocompleteToolbarSeparator.appearance` appearance proxy.
  */
 public class AutocompleteToolbarSeparator: UIView {
     

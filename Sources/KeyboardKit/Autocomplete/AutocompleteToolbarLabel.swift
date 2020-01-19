@@ -9,15 +9,18 @@
 import UIKit
 
 /**
- This is the default label that will be used by autocomplete
- toolbars if no custom view builder is provided.
+ This label is used by `AutocompleteToolbar`, when no custom
+ `buttonCreator` is provided.
  
- This is not a label, but a view that contains a scroll view
- with an embedded, scrollable label, as well as a plan label
- with centered content. The visibility of these views depend
- on the amount of text and if the label needs scrolling.
+ The label tried to emulate the autocomplete labels that are
+ used by native iOS keyboards and will enable scrolling when
+ its content doesn't fit the screen.
+ 
+ This view is not a label, but rather a label that is nested
+ within a scrollview, as well as a plain label with centered
+ content. If the text is too long, the scrollable label will
+ be displayed. Otherwise, the plain label will be.
 
- `TODO` - Implement separator lines.
  `TODO` - Implement horizontal blur.
  */
 open class AutocompleteToolbarLabel: UIView {

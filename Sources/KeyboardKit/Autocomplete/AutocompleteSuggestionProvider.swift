@@ -17,15 +17,13 @@ public typealias AutocompleteResult = Result<[String], Error>
  
  You can implement the protocol in any way you like, e.g. to
  use a built-in database or by connecting to an external api.
- Note that network operations are very slow and also require
- you to request full access from your users.
+ Note that network operations can be slow and require you to
+ request full access from your users.
  
  When using an autocomplete suggestion provider, you can ask
  it for suggestions at any time. However, a good practice is
- to only ask when the text in a document proxy changes, e.g.
- when the user types. Make sure to ignore duplicate requests
- for the same text, since suggestions may be fetched from an
- external api, using web requests.
+ to only ask when a document proxy's text changes, e.g. when
+ the user types.
  */
 public protocol AutocompleteSuggestionProvider {
     
