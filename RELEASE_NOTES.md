@@ -1,6 +1,11 @@
 # Release Notes
 
 
+## 2.6.2
+
+This version fixes a [bug](https://github.com/danielsaidi/KeyboardKit/issues/60), where `moveCursorForward` moved the cursor incorrectly.
+
+
 ## 2.6.1
 
 This version adds `enableScrolling()` and `disableScrolling()` to `AutocompleteToolbar`. This makes it possible to make the entire toolbar scroll if its content doesn't fit the screen.
