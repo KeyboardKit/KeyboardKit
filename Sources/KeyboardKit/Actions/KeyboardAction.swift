@@ -119,7 +119,7 @@ public extension KeyboardAction {
         case .backspace: return { proxy in proxy?.deleteBackward() }
         case .character(let char): return { proxy in proxy?.insertText(char) }
         case .moveCursorBackward: return { proxy in proxy?.adjustTextPosition(byCharacterOffset: -1) }
-        case .moveCursorForward: return { proxy in proxy?.adjustTextPosition(byCharacterOffset: -1) }
+        case .moveCursorForward: return { proxy in proxy?.adjustTextPosition(byCharacterOffset: 1) }
         case .newLine: return { proxy in proxy?.insertText("\n") }
         case .space: return { proxy in proxy?.insertText(" ") }
         case .tab: return { proxy in proxy?.insertText("\t") }
