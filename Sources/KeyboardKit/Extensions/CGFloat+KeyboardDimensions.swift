@@ -14,7 +14,5 @@ public extension CGFloat {
      The standard height of keyboard row components, as used
      by `KeyboardKit`.
      */
-    static var standardKeyboardRowHeight: CGFloat {
-        return 50
-    }
+    static var standardKeyboardRowHeight: CGFloat { 50 }
 }

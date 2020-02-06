@@ -11,8 +11,8 @@ import Foundation
 public extension Array {
     
     /**
-     Creates a copy of the array and then appends an element
-     to the end of the created copy.
+     Creates a copy of the array and appends the new element
+     to the end of the copy.
      */
     func appending(_ newElement: Element) -> Array {
         var result = Array(self)

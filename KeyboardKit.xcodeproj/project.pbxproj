@@ -696,6 +696,43 @@
 			path = Autocomplete;
 			sourceTree = "<group>";
 		};
+		A903FB7323ECB74000575482 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_35 /* UIColor+TappableClear.swift */,
+				OBJ_36 /* UIImage+Pasteboard.swift */,
+				OBJ_37 /* UIImage+Photos.swift */,
+				OBJ_38 /* UIImage+Resized.swift */,
+				OBJ_39 /* UIImage+Tinted.swift */,
+				OBJ_40 /* UIScrollView+PageNumber.swift */,
+				OBJ_41 /* UIStackView+Subviews.swift */,
+				OBJ_42 /* UITextDocumentProxy+CurrentWord.swift */,
+				OBJ_43 /* UITextDocumentProxy+Delete.swift */,
+				A97047D123D4FFD7001AB983 /* UIView+Constraints.swift */,
+				OBJ_44 /* UIView+Nib.swift */,
+				OBJ_45 /* UIView+Subviews.swift */,
+				OBJ_46 /* UIViewAutoresizing+Extras.swift */,
+				848DFC5D23A03CB400197B91 /* UIView+Visibility.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A903FB7423ECCBC400575482 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_92 /* UIImage+PasteboardTests.swift */,
+				OBJ_93 /* UIImage+ResizedTests.swift */,
+				OBJ_94 /* UIImage+TintedTests.swift */,
+				OBJ_95 /* UIStackView+SubviewsTests.swift */,
+				OBJ_96 /* UITextDocumentProxy+CurrentWordTests.swift */,
+				OBJ_97 /* UITextDocumentProxy+DeleteTests.swift */,
+				OBJ_98 /* UIView+NibTests.swift */,
+				OBJ_99 /* UIView+SubviewsTests.swift */,
+				OBJ_100 /* UIViewAutoresizing+ExtrasTests.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		OBJ_101 /* Gestures */ = {
 			isa = PBXGroup;
 			children = (
@@ -747,9 +784,10 @@
 			path = Shadow;
 			sourceTree = "<group>";
 		};
-		OBJ_121 /* Views */ = {
+		OBJ_121 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				A903FB7423ECCBC400575482 /* Extensions */,
 				OBJ_83 /* Components */,
 				OBJ_123 /* KeyboardButtonCollectionViewTests.swift */,
 				OBJ_124 /* KeyboardButtonRowCollectionViewTests.swift */,
@@ -759,7 +797,7 @@
 				OBJ_128 /* KeyboardSpacerViewTests.swift */,
 				OBJ_130 /* KeyboardToolbarTests.swift */,
 			);
-			path = Views;
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 		OBJ_15 /* Alerts */ = {
@@ -811,20 +849,6 @@
 				OBJ_32 /* CGFloat+KeyboardDimensions.swift */,
 				OBJ_33 /* Sequence+Batch.swift */,
 				OBJ_34 /* String+Uppercased.swift */,
-				OBJ_35 /* UIColor+TappableClear.swift */,
-				OBJ_36 /* UIImage+Pasteboard.swift */,
-				OBJ_37 /* UIImage+Photos.swift */,
-				OBJ_38 /* UIImage+Resized.swift */,
-				OBJ_39 /* UIImage+Tinted.swift */,
-				OBJ_40 /* UIScrollView+PageNumber.swift */,
-				OBJ_41 /* UIStackView+Subviews.swift */,
-				OBJ_42 /* UITextDocumentProxy+CurrentWord.swift */,
-				OBJ_43 /* UITextDocumentProxy+Delete.swift */,
-				A97047D123D4FFD7001AB983 /* UIView+Constraints.swift */,
-				OBJ_44 /* UIView+Nib.swift */,
-				OBJ_45 /* UIView+Subviews.swift */,
-				OBJ_46 /* UIViewAutoresizing+Extras.swift */,
-				848DFC5D23A03CB400197B91 /* UIView+Visibility.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -888,9 +912,10 @@
 			path = Shadow;
 			sourceTree = "<group>";
 		};
-		OBJ_63 /* Views */ = {
+		OBJ_63 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				A903FB7323ECB74000575482 /* Extensions */,
 				A903FB7223ECB47200575482 /* Autocomplete */,
 				OBJ_22 /* Components */,
 				OBJ_68 /* KeyboardButtonRow.swift */,
@@ -901,7 +926,7 @@
 				OBJ_70 /* KeyboardSpacerView.swift */,
 				OBJ_73 /* KeyboardToolbar.swift */,
 			);
-			path = Views;
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -932,7 +957,7 @@
 				OBJ_108 /* Keyboard */,
 				OBJ_112 /* Mocks */,
 				OBJ_119 /* Shadow */,
-				OBJ_121 /* Views */,
+				OBJ_121 /* UIKit */,
 				OBJ_131 /* XCTestManifests.swift */,
 			);
 			name = KeyboardKitTests;
@@ -963,7 +988,7 @@
 				OBJ_52 /* Haptics */,
 				OBJ_55 /* Keyboard */,
 				OBJ_60 /* Shadow */,
-				OBJ_63 /* Views */,
+				OBJ_63 /* UIKit */,
 			);
 			name = KeyboardKit;
 			path = Sources/KeyboardKit;
@@ -994,15 +1019,6 @@
 				OBJ_89 /* CGFloat+KeyboardTests.swift */,
 				OBJ_90 /* Sequence+BatchTests.swift */,
 				OBJ_91 /* String+UppercasedTests.swift */,
-				OBJ_92 /* UIImage+PasteboardTests.swift */,
-				OBJ_93 /* UIImage+ResizedTests.swift */,
-				OBJ_94 /* UIImage+TintedTests.swift */,
-				OBJ_95 /* UIStackView+SubviewsTests.swift */,
-				OBJ_96 /* UITextDocumentProxy+CurrentWordTests.swift */,
-				OBJ_97 /* UITextDocumentProxy+DeleteTests.swift */,
-				OBJ_98 /* UIView+NibTests.swift */,
-				OBJ_99 /* UIView+SubviewsTests.swift */,
-				OBJ_100 /* UIViewAutoresizing+ExtrasTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";

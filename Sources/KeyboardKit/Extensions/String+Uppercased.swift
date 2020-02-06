@@ -15,18 +15,16 @@ public extension Sequence where Iterator.Element == String {
      have been uppercased.
      */
     func uppercased() -> [Iterator.Element] {
-        return map { $0.uppercased() }
+        map { $0.uppercased() }
     }
 }
 
 public extension Sequence where Iterator.Element == [String] {
     
     /**
-     
      Returns a copy where all nested arrays are uppercased.
-     
      */
     func uppercased() -> [Iterator.Element] {
-        return map { $0.map { $0.uppercased() } }
+        map { $0.map { $0.uppercased() } }
     }
 }
