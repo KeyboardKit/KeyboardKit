@@ -9,25 +9,27 @@
 import UIKit
 
 /**
- This class is used by default, if you do not apply a custom
- action handler to your `KeyboardViewController`, by setting
- `keyboardActionHandler` to a custom handler.
+ This is the standard keyboard action handler, which is used
+ by your `KeyboardInputViewController` instance if you don't
+ replace its `keyboardActionHandler` with another instance.
  
- This handler uses the default actions when keyboard actions
- are tapped, long pressed or repeated. You can adjust action
- handling by It can be adjusted by
- creating a subclass of this action handler and override the
- `xAction(for:)` and `handleX(on:)` functions.
+ The handler uses the standard keyboard actions when actions
+ are tapped, long pressed or repeated on your keyboard. This
+ behavior can be tweaked by creating a subclass and override
+ `xAction(for:)` and `handleX(on:)`.
  
  You can enable haptic feedback by providing haptic feedback
- types for taps and long presses when you create an instance
- of this class. You can also adjust the standard behavior by
- overriding the two `giveHapticFeedbackForX()` functions.
+ configuration when you create an instance of the class. You
+ can adjust the standard feedback behavior by overriding the
+ `triggerHapticFeedback(for:on:)` trigger function.
+ 
+ You can setup audio feedback by providing an audio feedback
+ configuration when you create an instance of the class. You
+ can adjust the standard feedback behavior by overriding the
+ `triggerAudioFeedback(for action: KeyboardAction)` function.
  
  IMPORTANT: This class must inherit `NSObject` to be able to
  set itself as a target, e.g. when saving images to photos.
- 
- `TODO`: Test the haptic and audio configuration.
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
@@ -130,39 +132,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         case .longPress: hapticConfiguration.longPressFeedback.trigger()
         case .repeatPress: hapticConfiguration.repeatFeedback.trigger()
         }
-    }
-    
-    
-    // MARK: - Deprecated
-    
-    @available(*, deprecated, message: "Use configuration-based init instead")
-    public init(
-        inputViewController: UIInputViewController,
-        tapHapticFeedback: HapticFeedback = .none,
-        longPressHapticFeedback: HapticFeedback = .none,
-        repeatHapticFeedback: HapticFeedback = .none) {
-        self.inputViewController = inputViewController
-        self.audioConfiguration = .noFeedback
-        self.hapticConfiguration = HapticFeedbackConfiguration(
-            tapFeedback: tapHapticFeedback,
-            longPressFeedback: longPressHapticFeedback,
-            repeatFeedback: repeatHapticFeedback
-        )
-    }
-    
-    @available(*, deprecated, message: "Use triggerHapticFeedback(for:on:) instead")
-    open func giveHapticFeedbackForLongPress(on action: KeyboardAction) {
-        triggerHapticFeedback(for: .longPress, on: action)
-    }
-    
-    @available(*, deprecated, message: "Use triggerHapticFeedback(for:on:) instead")
-    open func giveHapticFeedbackForRepeat(on action: KeyboardAction) {
-        triggerHapticFeedback(for: .repeatPress, on: action)
-    }
-    
-    @available(*, deprecated, message: "Use triggerHapticFeedback(for:on:) instead")
-    open func giveHapticFeedbackForTap(on action: KeyboardAction) {
-        triggerHapticFeedback(for: .tap, on: action)
     }
 }
 

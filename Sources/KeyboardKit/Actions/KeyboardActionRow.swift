@@ -23,6 +23,6 @@ public extension KeyboardActionRow {
      a row of character actions.
      */
     static func from(_ characters: [String]) -> KeyboardActionRow {
-        return characters.map { .character($0) }
+        characters.map { .character($0) }
     }
 }

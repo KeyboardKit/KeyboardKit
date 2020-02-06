@@ -12,15 +12,17 @@ import UIKit
  This action enum specifies all currently supported keyboard
  actions and their standard behavior.
  
- Most keyboard actions have a standard tap action that apply
- to the input view controller or its text document proxy.
+ Most keyboard actions have standard actions that has effect
+ on either the input view controller or text document proxy.
+ `KeyboardActionHandler`s can choose to use these actions or
+ ignore them. These properties just specify standard actions
+ that are commonly used with each respective keyboard action.
  
- Many actions require manual handling, however. For instance,
- `image` can't be handled here since it requires assets. The
- keyboard switchers can't be handled here either since there
- is no universally applicable "alphabetic keyboard". Actions
- like these are ways for you to express your intent, but you
- must handle them yourself.
+ Many actions require manual handling. For instance, `image`
+ has no standard action, since it depends on what a keyboard
+ does with an image. Actions like these are a way for you to
+ express your intent, but you must handle them yourself in a
+ custom keyboard action handler.
 */
 public enum KeyboardAction: Equatable {
     
@@ -53,22 +55,23 @@ public enum KeyboardAction: Equatable {
 public extension KeyboardAction {
     
     /**
+     Whether or not the action is a delete action.
+     */
+    var isDeleteAction: Bool {
+        switch self {
+        case .backspace: return true
+        default: return false
+        }
+    }
+    
+    /**
      Whether or not the action is a content input action.
      */
     var isInputAction: Bool {
         switch self {
         case .character: return true
         case .image: return true
-        default: return false
-        }
-    }
-    
-    /**
-     Whether or not the action is a delete action.
-     */
-    var isDeleteAction: Bool {
-        switch self {
-        case .backspace: return true
+        case .space: return true
         default: return false
         }
     }
@@ -91,7 +94,6 @@ public extension KeyboardAction {
         case .option: return true
         case .shift: return true
         case .shiftDown: return true
-        case .space: return true
         case .switchKeyboard: return true
         case .switchToKeyboard: return true
         case .tab: return true
@@ -100,7 +102,7 @@ public extension KeyboardAction {
     }
     
     /**
-     The standard action, if any, that should be applied to
+     The standard action, if any, that should be executed on
      the input view controller when the action is triggered.
      */
     var standardInputViewControllerAction: ((UIInputViewController?) -> Void)? {
@@ -111,8 +113,8 @@ public extension KeyboardAction {
     }
     
     /**
-     The standard action, if any, that should be applied to
-     the texst document proxy when the action is triggered.
+     The standard action, if any, that should be executed on
+     the text document proxy when the action is triggered.
      */
     var standardTextDocumentProxyAction: ((UITextDocumentProxy?) -> Void)? {
         switch self {

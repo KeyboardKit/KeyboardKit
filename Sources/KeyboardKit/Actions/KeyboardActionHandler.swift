@@ -10,12 +10,12 @@ import UIKit
 
 /**
  This protocol can be implemented by classes that can handle
- keyboard actions that are triggered in a keyboard extension.
+ triggered keyboard actions.
  
- The standard `StandardKeyboardActionHandler` action handler
- is used by default by `KeyboardInputViewController`. It can
- be subclassed and extended with app-specific logic (see the
- demo) or replaced by a completely different implementation.
+ A `StandardKeyboardActionHandler` is used by default by the
+ `KeyboardInputViewController` class, but you can replace it
+ with you own subclass (see demo), or a completely different
+ implementation.
  */
 public protocol KeyboardActionHandler: AnyObject {
 

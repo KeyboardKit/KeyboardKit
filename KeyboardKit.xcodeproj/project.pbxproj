@@ -116,6 +116,7 @@
 		847060032355A2A900B2B2A8 /* HapticFeedbackConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847060012355A26A00B2B2A8 /* HapticFeedbackConfigurationTests.swift */; };
 		847060052355A5D900B2B2A8 /* KeyboardGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847060042355A5D900B2B2A8 /* KeyboardGesture.swift */; };
 		848DFC5E23A03CB400197B91 /* UIView+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848DFC5D23A03CB400197B91 /* UIView+Visibility.swift */; };
+		A903FB7123EBFD7800575482 /* StandardKeyboardActionHandler+Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = A903FB7023EBFD7800575482 /* StandardKeyboardActionHandler+Feedback.swift */; };
 		A97047D223D4FFD7001AB983 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97047D123D4FFD7001AB983 /* UIView+Constraints.swift */; };
 		A97047D523D507AC001AB983 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = A97047D423D507AC001AB983 /* Quick */; };
 		A97047D823D507D4001AB983 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = A97047D723D507D4001AB983 /* Nimble */; };
@@ -363,6 +364,7 @@
 		847060012355A26A00B2B2A8 /* HapticFeedbackConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackConfigurationTests.swift; sourceTree = "<group>"; };
 		847060042355A5D900B2B2A8 /* KeyboardGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardGesture.swift; sourceTree = "<group>"; };
 		848DFC5D23A03CB400197B91 /* UIView+Visibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Visibility.swift"; sourceTree = "<group>"; };
+		A903FB7023EBFD7800575482 /* StandardKeyboardActionHandler+Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StandardKeyboardActionHandler+Feedback.swift"; sourceTree = "<group>"; };
 		A97047D123D4FFD7001AB983 /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		"KeyboardKit::KeyboardKit::Product" /* KeyboardKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KeyboardKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"KeyboardKit::KeyboardKitTests::Product" /* KeyboardKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = KeyboardKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -678,6 +680,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_19 /* AutocompleteBugFixTimer.swift */,
+				A903FB7023EBFD7800575482 /* StandardKeyboardActionHandler+Feedback.swift */,
 				OBJ_21 /* UIInputViewController+AutocompleteBugFixTimer.swift */,
 			);
 			path = Deprecated;
@@ -1342,6 +1345,7 @@
 				OBJ_292 /* KeyboardSetting.swift in Sources */,
 				OBJ_293 /* KeyboardShiftState.swift in Sources */,
 				OBJ_294 /* KeyboardType.swift in Sources */,
+				A903FB7123EBFD7800575482 /* StandardKeyboardActionHandler+Feedback.swift in Sources */,
 				OBJ_295 /* Shadow.swift in Sources */,
 				OBJ_296 /* UIView+Shadow.swift in Sources */,
 				OBJ_297 /* KeyboardButtonCollectionView.swift in Sources */,

@@ -1,6 +1,13 @@
 # Release Notes
 
 
+## 2.7.0
+
+Changes:
+* `isInputAction` now includes `.space` as well.
+* `isSystemAction` no longer includes `.space`.
+
+
 ## 2.6.2
 
 This version fixes a [bug](https://github.com/danielsaidi/KeyboardKit/issues/60), where `moveCursorForward` moved the cursor incorrectly.
