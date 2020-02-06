@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- THis enum defines the various ways a user can interact with
+ This enum defines the various ways a user can interact with
  keyboard actions, using KeyboardKit's built-in interactions.
  */
 public enum KeyboardGesture {

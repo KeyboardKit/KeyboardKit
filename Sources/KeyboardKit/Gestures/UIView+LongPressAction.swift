@@ -8,11 +8,6 @@
 //  Reference: https://medium.com/@sdrzn/adding-gesture-recognizers-with-closures-instead-of-selectors-9fb3e09a8f0b
 //
 
-/*
- This extension applies long press gesture recognizers using
- action blocks instead of a target and a selector.
- */
-
 import UIKit
 
 public extension UIView {
@@ -45,7 +40,7 @@ private extension UIView {
     
     var longPressAction: LongPressAction? {
         get {
-            return objc_getAssociatedObject(self, &Key.id) as? LongPressAction
+            objc_getAssociatedObject(self, &Key.id) as? LongPressAction
         }
         set {
             guard let value = newValue else { return }

@@ -12,7 +12,7 @@ import UIKit.UIGestureRecognizerSubclass
  This gesture recognizer will trigger a certain action, once
  after an `initialDelay` and repeating every `repeatInterval`
  until the user releases her/his finger. It's a good gesture
- to use for some keyboard actions, like `backspace`.
+ for some actions, like `backspace`.
  
  This gesture does not cancel any other gestures, so you can
  use it together with taps and long presses.
@@ -125,7 +125,5 @@ private extension RepeatingGestureRecognizer {
 
 extension RepeatingGestureRecognizer: UIGestureRecognizerDelegate {
     
-    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool { true }
 }

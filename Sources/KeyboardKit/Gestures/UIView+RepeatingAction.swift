@@ -6,11 +6,6 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
-/*
- This extension applies repeating gesture recognizers, using
- action blocks instead of a target and a selector.
- */
-
 import UIKit
 
 public extension UIView {
