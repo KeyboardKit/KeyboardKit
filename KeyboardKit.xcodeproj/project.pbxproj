@@ -787,8 +787,9 @@
 		OBJ_121 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				A903FB7423ECCBC400575482 /* Extensions */,
 				OBJ_83 /* Components */,
+				A903FB7423ECCBC400575482 /* Extensions */,
+				OBJ_101 /* Gestures */,
 				OBJ_123 /* KeyboardButtonCollectionViewTests.swift */,
 				OBJ_124 /* KeyboardButtonRowCollectionViewTests.swift */,
 				OBJ_126 /* KeyboardButtonRowTests.swift */,
@@ -915,9 +916,10 @@
 		OBJ_63 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				A903FB7323ECB74000575482 /* Extensions */,
 				A903FB7223ECB47200575482 /* Autocomplete */,
 				OBJ_22 /* Components */,
+				A903FB7323ECB74000575482 /* Extensions */,
+				OBJ_47 /* Gestures */,
 				OBJ_68 /* KeyboardButtonRow.swift */,
 				OBJ_69 /* KeyboardButtonView.swift */,
 				OBJ_65 /* KeyboardButtonCollectionView.swift */,
@@ -952,7 +954,6 @@
 				OBJ_76 /* Actions */,
 				OBJ_81 /* Alerts */,
 				OBJ_87 /* Extensions */,
-				OBJ_101 /* Gestures */,
 				OBJ_106 /* Haptics */,
 				OBJ_108 /* Keyboard */,
 				OBJ_112 /* Mocks */,
@@ -984,7 +985,6 @@
 				84623A892355DE240024987B /* Audio */,
 				OBJ_18 /* Autocomplete */,
 				OBJ_30 /* Extensions */,
-				OBJ_47 /* Gestures */,
 				OBJ_52 /* Haptics */,
 				OBJ_55 /* Keyboard */,
 				OBJ_60 /* Shadow */,
