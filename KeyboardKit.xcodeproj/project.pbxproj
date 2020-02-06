@@ -686,6 +686,16 @@
 			path = Deprecated;
 			sourceTree = "<group>";
 		};
+		A903FB7223ECB47200575482 /* Autocomplete */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_72 /* AutocompleteToolbar.swift */,
+				8422CB89239F021B00251D31 /* AutocompleteToolbarLabel.swift */,
+				8422CB8B239F07C700251D31 /* AutocompleteToolbarSeparator.swift */,
+			);
+			path = Autocomplete;
+			sourceTree = "<group>";
+		};
 		OBJ_101 /* Gestures */ = {
 			isa = PBXGroup;
 			children = (
@@ -740,6 +750,7 @@
 		OBJ_121 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				OBJ_83 /* Components */,
 				OBJ_123 /* KeyboardButtonCollectionViewTests.swift */,
 				OBJ_124 /* KeyboardButtonRowCollectionViewTests.swift */,
 				OBJ_126 /* KeyboardButtonRowTests.swift */,
@@ -764,9 +775,6 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_20 /* AutocompleteSuggestionProvider.swift */,
-				OBJ_72 /* AutocompleteToolbar.swift */,
-				8422CB89239F021B00251D31 /* AutocompleteToolbarLabel.swift */,
-				8422CB8B239F07C700251D31 /* AutocompleteToolbarSeparator.swift */,
 			);
 			path = Autocomplete;
 			sourceTree = "<group>";
@@ -883,6 +891,8 @@
 		OBJ_63 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A903FB7223ECB47200575482 /* Autocomplete */,
+				OBJ_22 /* Components */,
 				OBJ_68 /* KeyboardButtonRow.swift */,
 				OBJ_69 /* KeyboardButtonView.swift */,
 				OBJ_65 /* KeyboardButtonCollectionView.swift */,
@@ -916,7 +926,6 @@
 				84623A922355E5AD0024987B /* Audio */,
 				OBJ_76 /* Actions */,
 				OBJ_81 /* Alerts */,
-				OBJ_83 /* Components */,
 				OBJ_87 /* Extensions */,
 				OBJ_101 /* Gestures */,
 				OBJ_106 /* Haptics */,
@@ -949,7 +958,6 @@
 				OBJ_15 /* Alerts */,
 				84623A892355DE240024987B /* Audio */,
 				OBJ_18 /* Autocomplete */,
-				OBJ_22 /* Components */,
 				OBJ_30 /* Extensions */,
 				OBJ_47 /* Gestures */,
 				OBJ_52 /* Haptics */,

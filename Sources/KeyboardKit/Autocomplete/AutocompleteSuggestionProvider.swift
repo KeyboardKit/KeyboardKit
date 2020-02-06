@@ -12,18 +12,13 @@ public typealias AutocompleteResponse = (AutocompleteResult) -> Void
 public typealias AutocompleteResult = Result<[String], Error>
 
 /**
- This protocol can be implemented by classes that do provide
- autocomplete suggestions based on a certain text.
+ This protocol can be implemented by classes that can return
+ autocomplete suggestions based on a certain input text.
  
  You can implement the protocol in any way you like, e.g. to
  use a built-in database or by connecting to an external api.
- Note that network operations can be slow and require you to
- request full access from your users.
- 
- When using an autocomplete suggestion provider, you can ask
- it for suggestions at any time. However, a good practice is
- to only ask when a document proxy's text changes, e.g. when
- the user types.
+ Note that network operations request full access and can be
+ slow for users.
  */
 public protocol AutocompleteSuggestionProvider {
     
