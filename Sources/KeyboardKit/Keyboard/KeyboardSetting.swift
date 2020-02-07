@@ -9,8 +9,8 @@
 import Foundation
 
 /**
- This enum represents some keyboard properties that may be a
- good idea to be able to save in persistent memory.
+ This enum represents some sttings that can be stored in the
+ user device's persistent memory.
 */
 public enum KeyboardSetting: String {
     

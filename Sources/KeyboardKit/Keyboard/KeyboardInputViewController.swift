@@ -9,23 +9,26 @@
 import UIKit
 
 /**
- This class provides keyboards input view controllers with a
- basic set of functionality. You can subclass this class and
- override anything to modify the standard behavior.
+ This class extends `UIInputViewController` with KeyboardKit
+ specific properties and functionality. You can subclass the
+ class to modify any standard behavior.
  
- * Use `keyboardActionHandler` to handle keyboard actions.
- * Use `keyboardStackView` to setup and populate a keyboard.
- * Use `addKeyboardGestures(to:)` to add keyboard gestures.
+ `keyboardActionHandler` can be used to handle any triggered
+ keyboard actions. If you don't replace it with a custom one,
+ a `StandardKeyboardActionHandler` one is used by default.
+ 
+ `keyboardStackView` view is a lazy view that's added to the
+ keyboard extension view only when it's first called. Use it
+ if you prefer to use `UIKit` to build your extension.
+ 
+ `addKeyboardGestures(to:)` it used to add keyboard gestures
+ to keyboard buttons, e.g. `tap`, `long press` and `repeat`.
+ These gestures are then forwarded to the action handler.
  */
 open class KeyboardInputViewController: UIInputViewController {
 
     
     // MARK: - View Controller Lifecycle
-    
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-        view.addSubview(keyboardStackView, fill: true)
-    }
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -34,7 +37,7 @@ open class KeyboardInputViewController: UIInputViewController {
     
     /**
      This function is called when this controller appears or
-     the text document proxy text changes. You can use it to
+     when the text document proxy changes. You can use it to
      apply a style that matches the proxy configuration.
      */
     open func viewWillSyncWithTextDocumentProxy() {}
@@ -43,37 +46,46 @@ open class KeyboardInputViewController: UIInputViewController {
     // MARK: - Properties
     
     /**
-     The `keyboardActionHandler` can handle keyboard actions
-     that are triggered by the user. If you do not specify a
-     custom action handler, a `StandardKeyboardActionHandler`
-     instance will be used by default.
+     This handler can be used to handle any keyboard actions
+     that are triggered by the user or the system.
+     
+     A `StandardKeyboardActionHandler` instance will be used
+     by default, if you don't apply a custom one.
      */
-    open lazy var keyboardActionHandler: KeyboardActionHandler = {
-        StandardKeyboardActionHandler(inputViewController: self)
-    }()
+    open lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(inputViewController: self)
     
     
     // MARK: - View Properties
     
     /**
-     `keyboardStackView` is a regular `UIStackView` to which
-     you can add any views and configure in any way you like.
+     `keyboardStackView` is a regular `UIStackView` that you
+     can configure freely and add any views you like. Use it
+     if you prefer to use `UIKit` to create your keyboard.
      
-     If you use `KeyboardStackViewComponent` when populating
-     this view, the stack view will be resized in a way that
-     also resizes the keyboard extension.
+     The view will be added to the extension view as soon as
+     you use. It will setup its constraints so that its size
+     resizes the extension.
+     
+     The standard axis is `vertical`, since the idea is that
+     this view should be populated with `rows`, to which you
+     can add toolbars, buttons etc.
      */
     public lazy var keyboardStackView: UIStackView = {
         let stackView = UIStackView(frame: .zero)
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .equalSpacing
+        view.addSubview(stackView, fill: true)
         return stackView
     }()
     
     
     // MARK: - Public Functions
     
+    /**
+     Add `tap`, `long press` and `repeat` gestures to a view
+     that should serve as a keyboard button.
+     */
     open func addKeyboardGestures(to button: KeyboardButton) {
         button.removeTapAction()
         button.removeLongPressAction()

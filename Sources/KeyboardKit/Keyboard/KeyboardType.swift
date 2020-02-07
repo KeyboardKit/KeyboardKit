@@ -13,7 +13,7 @@ import UIKit
  bound to the `KeyboardAction` switch keyboard action.
  
  If you need a keyboard type that is not represented here or
- app-specific, you can use `.custom` with any name.
+ that is app-specific, you can use `.custom`.
  */
 public enum KeyboardType: Equatable {
 
