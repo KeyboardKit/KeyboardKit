@@ -14,20 +14,22 @@ import UIKit
  to the user while she/he types into a text field.
  
  The toolbar is updated by calling `update(with: words)`. It
- makes the toolbar reset itself then populate its stack view
- with new buttons, which are provided by the `buttonCreator`.
+ resets the toolbar and populates it with new buttons, which
+ are provided by the provided `buttonCreator`.
  
  The toolbar will by default distribute all suggestion views
  evenly within its available space. However, you can make it
- scrollable by calling `enableScrolling()`. This will enable
- scrolling and give any added suggestion views as much space
- as they need. Make sure that you setup your suggestion view
- constraints properly before using this behavior. To disable
- scrolling, jus call `disableScrolling()`.
+ scrollable by calling `enableScrolling()`. This gives every
+ suggestion view as much space as it needs and makes the bar
+ scroll if needed. Call `disableScrolling()` to disable this
+ behavior once again.
+ 
+ Since this is a `KeyboardToolbar`, it has a stack view that
+ you can configure in any way you like.
  
  Since the `buttonCreator` can provide any kind of views for
- any strings, you are not limited to using buttons. Toolbars
- can use any views, separators buttons etc.
+ any strings, you are not limited buttons. A toolbar can use
+ views, buttons, separators etc.
  */
 public class AutocompleteToolbar: KeyboardToolbar {
 
@@ -35,7 +37,8 @@ public class AutocompleteToolbar: KeyboardToolbar {
     // MARK: - Initialization
 
     /**
-     Create a toolbar that uses a custom button creator.
+     Create a toolbar that uses a custom button creator. You
+     must setup the buttons yourself if you use this option.
      */
     public init(
         height: CGFloat = .standardKeyboardRowHeight,
@@ -49,7 +52,7 @@ public class AutocompleteToolbar: KeyboardToolbar {
     
     /**
      Create a toolbar that uses an `AutocompleteToolbarLabel`
-     that sends text to a `UITextDocumentProxy`.
+     that when tapped sends text to a `UITextDocumentProxy`.
      */
     public convenience init(
         height: CGFloat = .standardKeyboardRowHeight,
@@ -97,7 +100,7 @@ public class AutocompleteToolbar: KeyboardToolbar {
     
     /**
      Disable scrolling and make the stackview distribute its
-     content evenly instead.
+     content evenly.
      */
     public func disableScrolling() {
         guard let scrollView = self.scrollView else { return }
@@ -108,8 +111,8 @@ public class AutocompleteToolbar: KeyboardToolbar {
     }
     
     /**
-     Make the entire toolbar scroll, if its suggestions take
-     up too much space.
+     Enable scrolling and make the entire toolbar scroll, if
+     its content takes up too much space.
      */
     public func enableScrolling() {
         guard self.scrollView == nil else { return }
@@ -130,9 +133,10 @@ public class AutocompleteToolbar: KeyboardToolbar {
     }
     
     /**
-     Update the toolbar with new words. This will remove all
-     previously added views from the stack view and create a
-     new set of views for the new word collection.
+     Update the toolbar with new suggestions.
+     
+     This will remove all views from the stack view and then
+     create new views for the new suggestions.
      */
     public func update(with suggestions: [String]) {
         self.suggestions = suggestions

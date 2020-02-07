@@ -790,6 +790,7 @@
 				OBJ_83 /* Components */,
 				A903FB7423ECCBC400575482 /* Extensions */,
 				OBJ_101 /* Gestures */,
+				OBJ_119 /* Shadow */,
 				OBJ_123 /* KeyboardButtonCollectionViewTests.swift */,
 				OBJ_124 /* KeyboardButtonRowCollectionViewTests.swift */,
 				OBJ_126 /* KeyboardButtonRowTests.swift */,
@@ -920,6 +921,7 @@
 				OBJ_22 /* Components */,
 				A903FB7323ECB74000575482 /* Extensions */,
 				OBJ_47 /* Gestures */,
+				OBJ_60 /* Shadow */,
 				OBJ_68 /* KeyboardButtonRow.swift */,
 				OBJ_69 /* KeyboardButtonView.swift */,
 				OBJ_65 /* KeyboardButtonCollectionView.swift */,
@@ -957,7 +959,6 @@
 				OBJ_106 /* Haptics */,
 				OBJ_108 /* Keyboard */,
 				OBJ_112 /* Mocks */,
-				OBJ_119 /* Shadow */,
 				OBJ_121 /* UIKit */,
 				OBJ_131 /* XCTestManifests.swift */,
 			);
@@ -987,7 +988,6 @@
 				OBJ_30 /* Extensions */,
 				OBJ_52 /* Haptics */,
 				OBJ_55 /* Keyboard */,
-				OBJ_60 /* Shadow */,
 				OBJ_63 /* UIKit */,
 			);
 			name = KeyboardKit;
