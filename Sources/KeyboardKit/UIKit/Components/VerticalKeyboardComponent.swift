@@ -20,7 +20,7 @@ public protocol VerticalKeyboardComponent: UIView {
 public extension VerticalKeyboardComponent {
     
     var height: CGFloat {
-        get { return heightConstraint?.constant ?? intrinsicContentSize.height }
+        get { heightConstraint?.constant ?? intrinsicContentSize.height }
         set { setHeight(to: newValue) }
     }
 }

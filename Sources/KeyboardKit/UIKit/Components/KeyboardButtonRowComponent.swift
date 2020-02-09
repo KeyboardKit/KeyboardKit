@@ -11,9 +11,9 @@ import UIKit
 
 /**
  This protocol represents a view component that can be added
- to a keyboard button row's horizontal stack view.
+ to the horizontal stack view of a keyboard button row.
  
- If the stack views use a different distribution method than
- `.fillEqually`, you must specify a width for each component.
+ If a stack view uses another distribution than `fillEqually`,
+ you must specify a width for each row component.
  */
 public protocol KeyboardButtonRowComponent: HorizontalKeyboardComponent {}

@@ -20,7 +20,7 @@ public protocol HorizontalKeyboardComponent: UIView {
 public extension HorizontalKeyboardComponent {
     
     var width: CGFloat {
-        get { return widthConstraint?.constant ?? intrinsicContentSize.width }
+        get { widthConstraint?.constant ?? intrinsicContentSize.width }
         set { setWidth(to: newValue) }
     }
 }
