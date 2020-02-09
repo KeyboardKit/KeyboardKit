@@ -41,7 +41,7 @@ private extension UIView {
     
     var tapAction: TapAction? {
         get {
-            return objc_getAssociatedObject(self, &Key.id) as? TapAction
+            objc_getAssociatedObject(self, &Key.id) as? TapAction
         }
         set {
             guard let value = newValue else { return }
