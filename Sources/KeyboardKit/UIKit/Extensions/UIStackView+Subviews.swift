@@ -6,13 +6,12 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
-/*
- This extension simplifies working with arranged subviews in
- stack view.
- */
-
 import UIKit
 
+/**
+ This extension simplifies working with arranged subviews in
+ stack view.
+*/
 public extension UIStackView {
     
     /**

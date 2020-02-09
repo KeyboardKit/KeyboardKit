@@ -11,7 +11,8 @@ import UIKit
 public extension UIImage {
     
     /*
-     Saves the image to the user's photo album.
+     Saves an image to the user's photo album. This requires
+     the correct permission to be added to the `Info.plist`.
      */
     func saveToPhotos(completionTarget: AnyObject?, completionSelector: Selector?) {
         UIImageWriteToSavedPhotosAlbum(self, completionTarget, completionSelector, nil)

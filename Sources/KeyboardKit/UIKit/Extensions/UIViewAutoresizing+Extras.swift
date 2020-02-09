@@ -15,7 +15,7 @@ public extension UIView.AutoresizingMask {
      within its parent.
      */
     static var centerInParent: UIView.AutoresizingMask {
-        return [
+        [
             .flexibleTopMargin, .flexibleBottomMargin,
             .flexibleLeftMargin, .flexibleRightMargin
         ]

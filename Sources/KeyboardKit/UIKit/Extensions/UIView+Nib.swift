@@ -19,21 +19,21 @@ public extension UIView {
      The view's default nib in the main bundle.
      */
     static var defaultNib: UINib {
-        return defaultNib()
+        defaultNib()
     }
     
     /**
      The view's default nib name.
      */
     static var defaultNibName: String {
-        return String(describing: self)
+        String(describing: self)
     }
     
     /**
      Get the view's default nib in a certain bundle.
      */
     static func defaultNib(in bundle: Bundle = .main) -> UINib {
-        return UINib(nibName: defaultNibName, bundle: bundle)
+        UINib(nibName: defaultNibName, bundle: bundle)
     }
     
     /**

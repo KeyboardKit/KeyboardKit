@@ -12,7 +12,8 @@ import CoreGraphics
 public extension UIImage {
     
     /**
-     Create a tinted copy of the image, using any blend mode.
+     Create a tinted copy of the image, using a custom blend
+     mode.
      */
     func tinted(with color: UIColor, blendMode: CGBlendMode) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(size, false, scale)

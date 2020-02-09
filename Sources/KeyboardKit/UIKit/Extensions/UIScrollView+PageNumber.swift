@@ -11,8 +11,7 @@ import UIKit
 public extension UIScrollView {
 
     /**
-     Get and set the current page index by using the content
-     offset as source of truth.
+     Get/set the current page index using the content offset.
      */
     var currentPageIndex: Int {
         get { return Int((contentOffset.x + 10) / frame.size.width) }

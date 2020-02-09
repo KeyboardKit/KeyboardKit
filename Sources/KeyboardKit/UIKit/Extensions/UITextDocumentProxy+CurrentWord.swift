@@ -13,9 +13,9 @@ public extension UITextDocumentProxy {
     /**
      The word that is currently being touched by the cursor.
      
-     IMPORTANT: This property suffers from an iOS bug, where
+     `IMPORTANT` This property suffers from an iOS bug where
      the pre and post context don't contain the current word
-     in its correct form until the cursor's position changes.
+     until the cursor position changes.
      */
     var currentWord: String? {
         let pre = currentWordPreCursorPart
@@ -72,7 +72,7 @@ extension UITextDocumentProxy {
      A list of characters that represent the end of a word.
      */
     var wordDelimiters: [String] {
-        return ["!", ".", ",", " "]
+        ["!", ".", ",", " "]
     }
     
     /**

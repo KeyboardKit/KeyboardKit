@@ -28,7 +28,7 @@ extension UIView {
             parent = superview.superview
         }
 
-        self.removeConstraints(self.constraints)
-        self.translatesAutoresizingMaskIntoConstraints = true
+        removeConstraints(constraints)
+        translatesAutoresizingMaskIntoConstraints = true
     }
 }

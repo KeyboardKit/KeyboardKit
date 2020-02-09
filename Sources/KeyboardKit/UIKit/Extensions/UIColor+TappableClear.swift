@@ -12,10 +12,9 @@ public extension UIColor {
 
     /**
      This color can be used by views and buttons that should
-     have a clear background color and still be tappable.
-     
-     If you use `.clear` as background color for a view, the
-     view gesture recognizers will stop registering touches.
+     have a clear background color and still be tappable. It
+     is an alternative to using `.clear`, which makes a view
+     stop registering touches.
      */
     static var clearTappable: UIColor {
         return UIColor(white: 1, alpha: 0.01)
