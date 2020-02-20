@@ -3,6 +3,11 @@
 
 ## 2.7.0
 
+This version adds first, limited support for `SwiftUI`, as well as new features.
+
+New features:
+* The new `evened(for gridSize: Int)` `[KeyboardAction]` extension makes it easy to add empty actions to the end of an action array, to make the array even for a certain grid size (columns).
+
 Changes:
 * `isInputAction` now includes `.space` as well.
 * `isSystemAction` no longer includes `.space`.
