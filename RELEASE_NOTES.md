@@ -5,8 +5,12 @@
 
 This version adds first, limited support for `SwiftUI`, as well as new features.
 
+SwiftUI:
+* There is a new `KeyboardActionGrid` view for `SwiftUI`.
+* There is a new `KeyboardActionGridRow` view for `SwiftUI`. 
+
 New features:
-* The new `evened(for gridSize: Int)` `[KeyboardAction]` extension makes it easy to add empty actions to the end of an action array, to make the array even for a certain grid size (columns).
+* The new `evened(for gridSize: Int)` `[KeyboardAction]` extension.
 
 Changes:
 * `isInputAction` now includes `.space` as well.

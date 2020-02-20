@@ -123,6 +123,8 @@
 		A97047DB23D507F2001AB983 /* Mockery in Frameworks */ = {isa = PBXBuildFile; productRef = A97047DA23D507F2001AB983 /* Mockery */; };
 		A9E9A21F23FE5AA400844844 /* KeyboardAction+Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9A21E23FE5AA400844844 /* KeyboardAction+Grid.swift */; };
 		A9E9A22323FE5BD000844844 /* KeyboardAction+GridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9A22123FE5BC100844844 /* KeyboardAction+GridTests.swift */; };
+		A9E9A22723FE5CDC00844844 /* KeyboardActionGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9A22523FE5CDC00844844 /* KeyboardActionGrid.swift */; };
+		A9E9A22823FE5CDC00844844 /* KeyboardActionGridRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9A22623FE5CDC00844844 /* KeyboardActionGridRow.swift */; };
 		OBJ_252 /* KeyboardAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* KeyboardAction.swift */; };
 		OBJ_253 /* KeyboardActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* KeyboardActionHandler.swift */; };
 		OBJ_254 /* KeyboardActionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* KeyboardActionRow.swift */; };
@@ -370,6 +372,8 @@
 		A97047D123D4FFD7001AB983 /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		A9E9A21E23FE5AA400844844 /* KeyboardAction+Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardAction+Grid.swift"; sourceTree = "<group>"; };
 		A9E9A22123FE5BC100844844 /* KeyboardAction+GridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardAction+GridTests.swift"; sourceTree = "<group>"; };
+		A9E9A22523FE5CDC00844844 /* KeyboardActionGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardActionGrid.swift; sourceTree = "<group>"; };
+		A9E9A22623FE5CDC00844844 /* KeyboardActionGridRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardActionGridRow.swift; sourceTree = "<group>"; };
 		"KeyboardKit::KeyboardKit::Product" /* KeyboardKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KeyboardKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"KeyboardKit::KeyboardKitTests::Product" /* KeyboardKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = KeyboardKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* KeyboardAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAction.swift; sourceTree = "<group>"; };
@@ -740,8 +744,18 @@
 		A9E9A21C23FE5A4B00844844 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				A9E9A22423FE5CD200844844 /* Grid */,
 			);
 			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		A9E9A22423FE5CD200844844 /* Grid */ = {
+			isa = PBXGroup;
+			children = (
+				A9E9A22523FE5CDC00844844 /* KeyboardActionGrid.swift */,
+				A9E9A22623FE5CDC00844844 /* KeyboardActionGridRow.swift */,
+			);
+			path = Grid;
 			sourceTree = "<group>";
 		};
 		OBJ_101 /* Gestures */ = {
@@ -1370,6 +1384,7 @@
 				OBJ_281 /* UITextDocumentProxy+Delete.swift in Sources */,
 				OBJ_282 /* UIView+Nib.swift in Sources */,
 				848DFC5E23A03CB400197B91 /* UIView+Visibility.swift in Sources */,
+				A9E9A22823FE5CDC00844844 /* KeyboardActionGridRow.swift in Sources */,
 				OBJ_283 /* UIView+Subviews.swift in Sources */,
 				OBJ_284 /* UIViewAutoresizing+Extras.swift in Sources */,
 				OBJ_285 /* RepeatingGestureRecognizer.swift in Sources */,
@@ -1380,6 +1395,7 @@
 				OBJ_289 /* HapticFeedback+Keyboard.swift in Sources */,
 				OBJ_290 /* HapticFeedback.swift in Sources */,
 				OBJ_291 /* KeyboardInputViewController.swift in Sources */,
+				A9E9A22723FE5CDC00844844 /* KeyboardActionGrid.swift in Sources */,
 				OBJ_292 /* KeyboardSetting.swift in Sources */,
 				OBJ_293 /* KeyboardShiftState.swift in Sources */,
 				A9E9A21F23FE5AA400844844 /* KeyboardAction+Grid.swift in Sources */,
