@@ -29,8 +29,8 @@ class RepeatingGestureRecognizerTests: QuickSpec {
         describe("setting state") {
             
             func validateStartStopCount(_ startCount: Int, _ stopCount: Int) {
-                let start = recognizer.recorder.executions(of: recognizer.startGesture)
-                let stop = recognizer.recorder.executions(of: recognizer.stopGesture)
+                let start = recognizer.recorder.invokations(of: recognizer.startGesture)
+                let stop = recognizer.recorder.invokations(of: recognizer.stopGesture)
                 expect(start.count).to(equal(startCount))
                 expect(stop.count).to(equal(stopCount))
             }

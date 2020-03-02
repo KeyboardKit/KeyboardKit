@@ -37,7 +37,7 @@ class AudioFeedbackTest: QuickSpec {
                 AudioFeedback.systemPlayer = player
                 AudioFeedback.trigger(.custom(id: 123))
                 AudioFeedback.custom(id: 124).trigger()
-                let exec = player.executions(of: player.playSystemAudio)
+                let exec = player.invokations(of: player.playSystemAudio)
                 expect(exec.count).to(equal(2))
                 expect(exec[0].arguments).to(equal(123))
                 expect(exec[1].arguments).to(equal(124))

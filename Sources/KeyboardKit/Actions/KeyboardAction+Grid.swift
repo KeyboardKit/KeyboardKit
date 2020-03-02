@@ -21,4 +21,3 @@ public extension Array where Element == KeyboardAction {
         return actions
     }
 }
-

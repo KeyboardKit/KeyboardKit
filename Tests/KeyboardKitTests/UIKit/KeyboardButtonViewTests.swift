@@ -50,7 +50,7 @@ class KeyboardButtonViewTests: QuickSpec {
             it("adds keyboard gestures to view") {
                 let viewController = MockKeyboardInputViewController()
                 view.setup(with: .backspace, secondaryAction: .dismissKeyboard, in: viewController)
-                let exec = viewController.recorder.executions(of: viewController.addKeyboardGestures)
+                let exec = viewController.recorder.invokations(of: viewController.addKeyboardGestures)
                 expect(exec.count).to(equal(1))
                 expect(exec[0].arguments).to(be(view))
             }

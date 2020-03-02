@@ -123,9 +123,9 @@ class UITextDocumentProxy_CurrentWordTests: QuickSpec {
                 }
                 
                 it("aborts if current word is missing") {
-                    let adjust = proxy.recorder.executions(of: proxy.adjustTextPosition)
-                    let delete = proxy.recorder.executions(of: proxy.deleteBackward)
-                    let insert = proxy.recorder.executions(of: proxy.insertText)
+                    let adjust = proxy.recorder.invokations(of: proxy.adjustTextPosition)
+                    let delete = proxy.recorder.invokations(of: proxy.deleteBackward)
+                    let insert = proxy.recorder.invokations(of: proxy.insertText)
                     expect(adjust.count).to(equal(0))
                     expect(delete.count).to(equal(0))
                     expect(insert.count).to(equal(0))
@@ -140,18 +140,18 @@ class UITextDocumentProxy_CurrentWordTests: QuickSpec {
                 }
                 
                 it("does not adjust text position") {
-                    let adjust = proxy.recorder.executions(of: proxy.adjustTextPosition)
+                    let adjust = proxy.recorder.invokations(of: proxy.adjustTextPosition)
                     expect(adjust.count).to(equal(1))
                     expect(adjust[0].arguments).to(equal(0))
                 }
                 
                 it("deletes backwards current word count times") {
-                    let delete = proxy.recorder.executions(of: proxy.deleteBackward)
+                    let delete = proxy.recorder.invokations(of: proxy.deleteBackward)
                     expect(delete.count).to(equal(4))
                 }
                 
                 it("inserts replacement text") {
-                    let insert = proxy.recorder.executions(of: proxy.insertText)
+                    let insert = proxy.recorder.invokations(of: proxy.insertText)
                     expect(insert.count).to(equal(1))
                     expect(insert[0].arguments).to(equal("replacement"))
                 }
@@ -165,18 +165,18 @@ class UITextDocumentProxy_CurrentWordTests: QuickSpec {
                 }
                 
                 it("adjusts text position post cursor count times") {
-                    let adjust = proxy.recorder.executions(of: proxy.adjustTextPosition)
+                    let adjust = proxy.recorder.invokations(of: proxy.adjustTextPosition)
                     expect(adjust.count).to(equal(1))
                     expect(adjust[0].arguments).to(equal(11))
                 }
                 
                 it("deletes backwards current word count times") {
-                    let delete = proxy.recorder.executions(of: proxy.deleteBackward)
+                    let delete = proxy.recorder.invokations(of: proxy.deleteBackward)
                     expect(delete.count).to(equal(11))
                 }
                 
                 it("inserts replacement text") {
-                    let insert = proxy.recorder.executions(of: proxy.insertText)
+                    let insert = proxy.recorder.invokations(of: proxy.insertText)
                     expect(insert.count).to(equal(1))
                     expect(insert[0].arguments).to(equal("Swift"))
                 }
@@ -191,18 +191,18 @@ class UITextDocumentProxy_CurrentWordTests: QuickSpec {
                 }
                 
                 it("adjusts text position post cursor count times") {
-                    let adjust = proxy.recorder.executions(of: proxy.adjustTextPosition)
+                    let adjust = proxy.recorder.invokations(of: proxy.adjustTextPosition)
                     expect(adjust.count).to(equal(1))
                     expect(adjust[0].arguments).to(equal(8))
                 }
                 
                 it("deletes backwards current word count times") {
-                    let delete = proxy.recorder.executions(of: proxy.deleteBackward)
+                    let delete = proxy.recorder.invokations(of: proxy.deleteBackward)
                     expect(delete.count).to(equal(11))
                 }
                 
                 it("inserts replacement text") {
-                    let insert = proxy.recorder.executions(of: proxy.insertText)
+                    let insert = proxy.recorder.invokations(of: proxy.insertText)
                     expect(insert.count).to(equal(1))
                     expect(insert[0].arguments).to(equal("Swift"))
                 }

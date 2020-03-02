@@ -53,12 +53,12 @@ class KeyboardCollectionViewTests: QuickSpec {
             
             it("invalidates layout") {
                 let action: () -> Void = layout.invalidateLayout
-                let exec = layout.recorder.executions(of: action)
+                let exec = layout.recorder.invokations(of: action)
                 expect(exec.count).to(equal(1))
             }
             
             it("reloads data") {
-                let exec = view.recorder.executions(of: view.reloadData)
+                let exec = view.recorder.invokations(of: view.reloadData)
                 expect(exec.count).to(equal(1))
             }
         }

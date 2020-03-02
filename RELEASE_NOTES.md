@@ -3,7 +3,7 @@
 
 ## 2.7.0
 
-This version adds first, limited support for `SwiftUI`, as well as new features.
+This version adds the very first (and so far very limited) support for `SwiftUI`, as well as new features.
 
 SwiftUI:
 * There is a new `KeyboardActionGrid` view for `SwiftUI`.

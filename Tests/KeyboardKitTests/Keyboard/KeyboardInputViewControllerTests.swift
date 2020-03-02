@@ -22,21 +22,11 @@ class KeyboardInputViewControllerTests: QuickSpec {
             viewController = TestClass(nibName: nil, bundle: nil)
         }
         
-        describe("view did load") {
-            
-            it("adds keyboard stack view to vc view") {
-                let view = viewController.view
-                viewController.viewDidLoad()
-                expect(view?.subviews.count).to(equal(3))
-                expect(view?.subviews[2]).to(be(viewController.keyboardStackView))
-            }
-        }
-        
         describe("view will appear") {
             
             it("syncs with text document proxy") {
                 viewController.viewWillAppear(false)
-                let exec = viewController.recorder.executions(of: viewController.viewWillSyncWithTextDocumentProxy)
+                let exec = viewController.recorder.invokations(of: viewController.viewWillSyncWithTextDocumentProxy)
                 expect(exec.count).to(equal(1))
             }
         }
@@ -52,6 +42,19 @@ class KeyboardInputViewControllerTests: QuickSpec {
         }
         
         describe("keyboard stack view") {
+            
+            it("is not added to vc view if not referred") {
+                let view = viewController.view
+                viewController.viewDidLoad()
+                expect(view?.subviews.count).to(equal(2))
+            }
+            
+            it("is added to vc view when it's first referred") {
+                let view = viewController.view
+                _ = viewController.keyboardStackView
+                expect(view?.subviews.count).to(equal(3))
+                expect(view?.subviews[2]).to(be(viewController.keyboardStackView))
+            }
             
             it("is correctly configured") {
                 let view = viewController.keyboardStackView
