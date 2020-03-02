@@ -17,13 +17,11 @@
 
 ## About KeyboardKit
 
-`KeyboardKit` is a Swift library that helps you create keyboard extensions for iOS. It supports many keyboard actions and keyboard types and lets you create keyboards with text inputs, emojis, actions, images etc.
+`KeyboardKit` is a Swift library that helps you create keyboard extensions for iOS. It supports a bunch of keyboard actions and keyboard types and lets you create keyboards with text inputs, emojis, actions, images etc.
 
 <p align="center">
     <img src ="Resources/Demo.gif" />
 </p>
-
-With `KeyboardKit`, you inherit `KeyboardInputViewController` instead of `UIInputViewController`. This provides you with a `keyboardActionHandler` that can handle taps, long presses etc. and a `keyboardStackView` to which you can add components like toolbars, button rows and collection views. `KeyboardKit` also provides you with tools for haptic feedback, displaying alerts on top of the keyboard etc.
 
 
 ## Installation
@@ -60,11 +58,11 @@ To manually add `KeyboardKit` to your app, clone this repository, add `KeyboardK
 
 ## Get Started
 
-With `KeyboardKit`, your input view controller should inherit from `KeyboardInputViewController` instead of `UIInputViewController`.
+With `KeyboardKit`, you should inherit `KeyboardInputViewController` instead of `UIInputViewController`. This provides you with a bunch of stuff, e.g. a  `keyboardActionHandler` that can handle taps, long presses etc. and a `keyboardStackView` to which you can add components like toolbars, button rows and collection views. 
 
-`KeyboardInputViewController` has a `keyboardStackView`, to which you can add components like toolbars, button rows and even collection views. Your custom keyboard extension will automatically be resized to fit the content of this stack view.
+Your custom keyboard extension will automatically be resized to fit the content of this `keyboardStackView`. However, using this stack view is optional. You can setup your custom keyboard extension in any way you like.
 
-Using the `keyboardStackView` is optional. You can setup your custom keyboard extension in any way you like.
+`KeyboardKit` also provides you with tools for haptic and audio feedback, displaying alerts on top of the keyboard, views components etc. Have a look at the demo app for more information and examples.
 
 
 ## Keyboard Actions
@@ -85,14 +83,14 @@ Check out [this action guide][Keyboard-Actions] for more information about avail
 * `emojis`
 * `custom(name)`
 
-These types are just representations without any logic. You can bind them to keyboard buttons to let the user switch between various keyboard types. Sicne these are only representations, you have to implement the corresponding keyboards yourself.
+These types comes without any logic. You can bind them to keyboard buttons to let the user switch between keyboard types, but since these types have no universal meaning, you have to implement the corresponding keyboards yourself.
 
 
 ## Components and views
 
-`KeyboardKit` comes with a bunch of component and views that can be combined into complete keyboard, e.g. `vertical and horizontal keyboard components`, `buttons`, `button rows`, `toolbars` etc.
+`KeyboardKit` comes with a bunch of component and views that can be composed into keyboard, e.g. `vertical and horizontal keyboard components`, `buttons`, `button rows`, `toolbars` etc.
 
-Check out [this component guide][Components] and [this view guide][Views] for more information about available components and views and how to use them.
+Check out [this component guide][Components] and [this view guide][Views] for more information about available components and views and how to use them in your custom keyboard extensions.
 
 
 ## Autocomplete
@@ -109,20 +107,20 @@ Since keyboard extensions can't display `UIAlertController`s, you can use `Keybo
 
 ## Haptic Feedback
 
-`KeyboardKit` has a `HapticFeedback` type, that can be used to give the user haptic feedback as she/he uses the keyboard.  `HapticFeedback` defines a set of feedback types that wraps native feedback types like `selection changed`, `error`, `success` etc.
+`KeyboardKit` has a `HapticFeedback` enum that can be used to give users haptic feedback as they type. It defines native feedback types like `selection changed`, `error`, `success` and makes them easily triggered.
 
-You can enable or disable haptic feedback by providing the `keyboardActionHandler` with a haptic feedback configuration. The default configuration is to disable haptic feedback.
+You can enable or disable haptic feedback by providing the `keyboardActionHandler` with a haptic feedback configuration. The default configuration is `none`, which disables haptic feedback.
 
-`NOTE` that you have to enable open access for the keyboard for haptic feedback to work.
+Note that you have to enable open access for the keyboard for haptic feedback to work.
 
 
 ## Audio Feedback
 
-`KeyboardKit` has an `AudioFeedback` type, that can be used to give the user audio feedback as she/he uses the keyboard.  `AudioFeedback` defines a set of feedback types that wraps native system sounds.
+`KeyboardKit` has an `AudioFeedback` enun can be used to give users audio feedback as they type. It defines native system sounds and makes them easily triggered.
 
-You can enable or disable audio feedback by providing the `keyboardActionHandler` with a audio feedback configuration. The default configuration is to play standard audio feedback.
+You can enable or disable audio feedback by providing the `keyboardActionHandler` with a audio feedback configuration. The default configuration is `standard`, which means that standard audio feedback will be triggered as users type.
 
-`NOTE` that you have to enable open access for the keyboard for haptic feedback to work.
+Note that you have to enable open access for the keyboard for audio feedback to work.
 
 
 ## Extensions
@@ -140,9 +138,9 @@ This repository contains a demo app that demonstrates different kinds of keyboar
  * Emojis
  * Images
  
- To keep the keyboard layout nice, the image switcher key is only displayed on notch devices, since they don't have to display a next keyboard button.
+To keep the keyboard layout nice, the image switcher key is only displayed on notch devices, since they don't have to display a next keyboard button.
  
- You have to enable "full access" in keyboard settings for haptic feedback and the image keyboard to work.
+Note that you have to enable open access in keyboard settings for haptic feedback and image actions to work.
 
 To run the demo app, open and run the `KeyboardKit.xcodeproj` project.
 
@@ -156,11 +154,11 @@ Feel free to reach out if you have questions or if you want to contribute in any
 * Web site: [danielsaidi.com][Website]
 
 
-## Sponsors
+## Clients
 
-KeyboardKit is supported by the following clients:
+KeyboardKit is proudly supported by the following clients:
 
-[![Anomaly Software](Resources/logos/anomaly.png "Anomaly Software")]()
+[![Anomaly Software](Resources/logos/anomaly.png "Anomaly Software")](http://anomaly.net.au/)
 
 
 
