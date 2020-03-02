@@ -60,14 +60,18 @@ To manually add `KeyboardKit` to your app, clone this repository, add `KeyboardK
 
 ## Get Started
 
-With `KeyboardKit`, your input view controllers should inherit from `KeyboardInputViewController` instead of `UIInputViewController`. It has a `keyboardStackView` to which you can add components like toolbars, button rows and even collection views The keuyboard extension will automatically be resized to fit the content of this stack view.
+With `KeyboardKit`, your input view controller should inherit from `KeyboardInputViewController` instead of `UIInputViewController`.
+
+`KeyboardInputViewController` has a `keyboardStackView`, to which you can add components like toolbars, button rows and even collection views. Your custom keyboard extension will automatically be resized to fit the content of this stack view.
+
+Using the `keyboardStackView` is optional. You can setup your custom keyboard extension in any way you like.
 
 
 ## Keyboard Actions
 
-`KeyboardKit` comes with a set of actions that can be applied to your keyboard buttons, like `character`s, `backspace`, `newline`, `space`, `keyboard switcher`s etc.
+`KeyboardKit` comes with a set of actions that can be applied to your keyboard buttons, like `character` input, `backspace`, `newline`, `space`, `keyboard switcher`s etc.
 
-Checkout [this guide][Keyboard-Actions] for more information about the available actions and how to use them.
+Check out [this action guide][Keyboard-Actions] for more information about available actions and how to use them.
 
 
 ## Keyboard Types
@@ -81,28 +85,21 @@ Checkout [this guide][Keyboard-Actions] for more information about the available
 * `emojis`
 * `custom(name)`
 
-These types are just keyboard representations, without any logic. You can bind them to a keyboard action to add buttons that switches between various keyboard types, but you have to implement the keyboards types yourself.
+These types are just representations without any logic. You can bind them to keyboard buttons to let the user switch between various keyboard types. Sicne these are only representations, you have to implement the corresponding keyboards yourself.
 
 
-## Components
+## Components and views
 
-`KeyboardKit` comes with a set of component protocols that can be combined into complete keyboard, e.g. `vertical and horizontal components`, `buttons`, `button rows` etc.
+`KeyboardKit` comes with a bunch of component and views that can be combined into complete keyboard, e.g. `vertical and horizontal keyboard components`, `buttons`, `button rows`, `toolbars` etc.
 
-Checkout [this guide][Components] for more information about the available components and how to use them.
-
-
-## Views
-
-`KeyboardKit` comes with a set of views that implement one or several of the component protocols above, e.g. `vertical and horizontal components`, `buttons`, `button rows` etc.
-
-Checkout [this guide][Views] for more information about the available views and how to use them.
+Check out [this component guide][Components] and [this view guide][Views] for more information about available components and views and how to use them.
 
 
 ## Autocomplete
 
-KeyboardKit supports autocomplete, which means that you can add a toolbar that displays autocomplete suggestions for the currently typed text and replaces text in your text document proxy when you tap a  suggestion. 
+KeyboardKit supports autocomplete, which means that you can add a toolbar that displays autocomplete suggestions for the currently typed text and replaces the current text in the text document proxy when a user taps a suggestion. 
 
-Checkout [this guide][Autocomplete] for more information about how to implement autocomplete in your keyboard.
+Check out [this guide][Autocomplete] for more information about how to implement autocomplete.
 
 
 ## Alerts
@@ -157,6 +154,14 @@ Feel free to reach out if you have questions or if you want to contribute in any
 * E-mail: [daniel.saidi@gmail.com][Email]
 * Twitter: [@danielsaidi][Twitter]
 * Web site: [danielsaidi.com][Website]
+
+
+## Sponsors
+
+KeyboardKit is supported by the following clients:
+
+[![Anomaly Software](Resources/logos/anomaly.png "Anomaly Software")]()
+
 
 
 ## License
