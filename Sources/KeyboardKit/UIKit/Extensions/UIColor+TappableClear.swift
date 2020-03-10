@@ -17,6 +17,6 @@ public extension UIColor {
      stop registering touches.
      */
     static var clearTappable: UIColor {
-        return UIColor(white: 1, alpha: 0.01)
+        UIColor(white: 1, alpha: 0.01)
     }
 }

@@ -121,6 +121,8 @@
 		A97047D523D507AC001AB983 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = A97047D423D507AC001AB983 /* Quick */; };
 		A97047D823D507D4001AB983 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = A97047D723D507D4001AB983 /* Nimble */; };
 		A97047DB23D507F2001AB983 /* Mockery in Frameworks */ = {isa = PBXBuildFile; productRef = A97047DA23D507F2001AB983 /* Mockery */; };
+		A9BC824B2418062300A28B87 /* PhotosImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC824A2418062300A28B87 /* PhotosImageService.swift */; };
+		A9BC824D2418068B00A28B87 /* StandardPhotosImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC824C2418068B00A28B87 /* StandardPhotosImageService.swift */; };
 		A9E9A21F23FE5AA400844844 /* KeyboardAction+Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9A21E23FE5AA400844844 /* KeyboardAction+Grid.swift */; };
 		A9E9A22323FE5BD000844844 /* KeyboardAction+GridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9A22123FE5BC100844844 /* KeyboardAction+GridTests.swift */; };
 		A9E9A22723FE5CDC00844844 /* KeyboardActionGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9A22523FE5CDC00844844 /* KeyboardActionGrid.swift */; };
@@ -370,6 +372,8 @@
 		848DFC5D23A03CB400197B91 /* UIView+Visibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Visibility.swift"; sourceTree = "<group>"; };
 		A903FB7023EBFD7800575482 /* StandardKeyboardActionHandler+Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StandardKeyboardActionHandler+Feedback.swift"; sourceTree = "<group>"; };
 		A97047D123D4FFD7001AB983 /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
+		A9BC824A2418062300A28B87 /* PhotosImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosImageService.swift; sourceTree = "<group>"; };
+		A9BC824C2418068B00A28B87 /* StandardPhotosImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardPhotosImageService.swift; sourceTree = "<group>"; };
 		A9E9A21E23FE5AA400844844 /* KeyboardAction+Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardAction+Grid.swift"; sourceTree = "<group>"; };
 		A9E9A22123FE5BC100844844 /* KeyboardAction+GridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardAction+GridTests.swift"; sourceTree = "<group>"; };
 		A9E9A22523FE5CDC00844844 /* KeyboardActionGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardActionGrid.swift; sourceTree = "<group>"; };
@@ -708,14 +712,8 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_35 /* UIColor+TappableClear.swift */,
-				OBJ_36 /* UIImage+Pasteboard.swift */,
-				OBJ_37 /* UIImage+Photos.swift */,
-				OBJ_38 /* UIImage+Resized.swift */,
-				OBJ_39 /* UIImage+Tinted.swift */,
 				OBJ_40 /* UIScrollView+PageNumber.swift */,
 				OBJ_41 /* UIStackView+Subviews.swift */,
-				OBJ_42 /* UITextDocumentProxy+CurrentWord.swift */,
-				OBJ_43 /* UITextDocumentProxy+Delete.swift */,
 				A97047D123D4FFD7001AB983 /* UIView+Constraints.swift */,
 				OBJ_44 /* UIView+Nib.swift */,
 				OBJ_45 /* UIView+Subviews.swift */,
@@ -728,17 +726,35 @@
 		A903FB7423ECCBC400575482 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_92 /* UIImage+PasteboardTests.swift */,
-				OBJ_93 /* UIImage+ResizedTests.swift */,
-				OBJ_94 /* UIImage+TintedTests.swift */,
 				OBJ_95 /* UIStackView+SubviewsTests.swift */,
-				OBJ_96 /* UITextDocumentProxy+CurrentWordTests.swift */,
-				OBJ_97 /* UITextDocumentProxy+DeleteTests.swift */,
 				OBJ_98 /* UIView+NibTests.swift */,
 				OBJ_99 /* UIView+SubviewsTests.swift */,
 				OBJ_100 /* UIViewAutoresizing+ExtrasTests.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A9BC82492418061100A28B87 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				A9BC824A2418062300A28B87 /* PhotosImageService.swift */,
+				A9BC824C2418068B00A28B87 /* StandardPhotosImageService.swift */,
+				OBJ_36 /* UIImage+Pasteboard.swift */,
+				OBJ_37 /* UIImage+Photos.swift */,
+				OBJ_38 /* UIImage+Resized.swift */,
+				OBJ_39 /* UIImage+Tinted.swift */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		A9BC824E241806E300A28B87 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_92 /* UIImage+PasteboardTests.swift */,
+				OBJ_93 /* UIImage+ResizedTests.swift */,
+				OBJ_94 /* UIImage+TintedTests.swift */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		A9E9A21C23FE5A4B00844844 /* SwiftUI */ = {
@@ -876,6 +892,8 @@
 				OBJ_32 /* CGFloat+KeyboardDimensions.swift */,
 				OBJ_33 /* Sequence+Batch.swift */,
 				OBJ_34 /* String+Uppercased.swift */,
+				OBJ_42 /* UITextDocumentProxy+CurrentWord.swift */,
+				OBJ_43 /* UITextDocumentProxy+Delete.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -982,6 +1000,7 @@
 				OBJ_81 /* Alerts */,
 				OBJ_87 /* Extensions */,
 				OBJ_106 /* Haptics */,
+				A9BC824E241806E300A28B87 /* Images */,
 				OBJ_108 /* Keyboard */,
 				OBJ_112 /* Mocks */,
 				OBJ_121 /* UIKit */,
@@ -1013,6 +1032,7 @@
 				84EC871223A2FC6C00DA8140 /* Deprecated */,
 				OBJ_30 /* Extensions */,
 				OBJ_52 /* Haptics */,
+				A9BC82492418061100A28B87 /* Images */,
 				OBJ_55 /* Keyboard */,
 				A9E9A21C23FE5A4B00844844 /* SwiftUI */,
 				OBJ_63 /* UIKit */,
@@ -1046,6 +1066,8 @@
 				OBJ_89 /* CGFloat+KeyboardTests.swift */,
 				OBJ_90 /* Sequence+BatchTests.swift */,
 				OBJ_91 /* String+UppercasedTests.swift */,
+				OBJ_96 /* UITextDocumentProxy+CurrentWordTests.swift */,
+				OBJ_97 /* UITextDocumentProxy+DeleteTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1383,6 +1405,7 @@
 				OBJ_280 /* UITextDocumentProxy+CurrentWord.swift in Sources */,
 				OBJ_281 /* UITextDocumentProxy+Delete.swift in Sources */,
 				OBJ_282 /* UIView+Nib.swift in Sources */,
+				A9BC824D2418068B00A28B87 /* StandardPhotosImageService.swift in Sources */,
 				848DFC5E23A03CB400197B91 /* UIView+Visibility.swift in Sources */,
 				A9E9A22823FE5CDC00844844 /* KeyboardActionGridRow.swift in Sources */,
 				OBJ_283 /* UIView+Subviews.swift in Sources */,
@@ -1408,6 +1431,7 @@
 				OBJ_299 /* KeyboardCollectionView.swift in Sources */,
 				OBJ_300 /* KeyboardButtonRow.swift in Sources */,
 				OBJ_301 /* KeyboardButtonView.swift in Sources */,
+				A9BC824B2418062300A28B87 /* PhotosImageService.swift in Sources */,
 				OBJ_302 /* KeyboardSpacerView.swift in Sources */,
 				OBJ_303 /* AutocompleteToolbar.swift in Sources */,
 				OBJ_304 /* KeyboardToolbar.swift in Sources */,
