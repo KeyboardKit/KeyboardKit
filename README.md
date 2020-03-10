@@ -161,7 +161,6 @@ KeyboardKit is proudly supported by the following clients:
 [![Anomaly Software](Resources/logos/anomaly.png "Anomaly Software")](http://anomaly.net.au/)
 
 
-
 ## License
 
 KeyboardKit is available under the MIT license. See LICENSE file for more info.

@@ -12,11 +12,15 @@ import SwiftUI
  A `KeyboardActionGrid` can be used to list keyboard actions
  in a grid with a certain number of `columns`.
  
- The grid supports custom `padding` and `spacing` and can be
- configured to even out the actions to fit the column count.
+ This grid supports custom grid `padding` and item `spacing`
+ and can be configured to even the actions to fit the column
+ count. If you set `evenColumns` to `true` the grid will add
+ empty actions to the end of the actions array, so there are
+ even number of actions to evenly fit the grid.
  
  The provided `buttonBuilder` will be called for each action
- and can provide the grid with any view for each action.
+ and will be used to provide the grid with any view for each
+ action. This makes the grid very customizable.
  */
 @available(iOS 13.0, *)
 public struct KeyboardActionGrid<Button: View>: View {

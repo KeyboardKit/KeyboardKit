@@ -1006,16 +1006,16 @@
 		OBJ_8 /* KeyboardKit */ = {
 			isa = PBXGroup;
 			children = (
-				84EC871223A2FC6C00DA8140 /* Deprecated */,
 				OBJ_9 /* Actions */,
 				OBJ_15 /* Alerts */,
 				84623A892355DE240024987B /* Audio */,
 				OBJ_18 /* Autocomplete */,
+				84EC871223A2FC6C00DA8140 /* Deprecated */,
 				OBJ_30 /* Extensions */,
 				OBJ_52 /* Haptics */,
 				OBJ_55 /* Keyboard */,
-				OBJ_63 /* UIKit */,
 				A9E9A21C23FE5A4B00844844 /* SwiftUI */,
+				OBJ_63 /* UIKit */,
 			);
 			name = KeyboardKit;
 			path = Sources/KeyboardKit;
