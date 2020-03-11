@@ -722,14 +722,14 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_35 /* UIColor+TappableClear.swift */,
+				A9BC825D2419960600A28B87 /* UIImage+Globe.swift */,
 				OBJ_40 /* UIScrollView+PageNumber.swift */,
 				OBJ_41 /* UIStackView+Subviews.swift */,
 				A97047D123D4FFD7001AB983 /* UIView+Constraints.swift */,
 				OBJ_44 /* UIView+Nib.swift */,
 				OBJ_45 /* UIView+Subviews.swift */,
-				OBJ_46 /* UIViewAutoresizing+Extras.swift */,
 				848DFC5D23A03CB400197B91 /* UIView+Visibility.swift */,
-				A9BC825D2419960600A28B87 /* UIImage+Globe.swift */,
+				OBJ_46 /* UIViewAutoresizing+Extras.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
