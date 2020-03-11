@@ -3,25 +3,32 @@
 
 ## 2.7.0
 
-This version adds the very first (and so far very limited) support for `SwiftUI`, as well as some new features.
+This version adds the very first (and so far limited) support for `SwiftUI`, as well as some new features.
 
-`SwiftUI`:
-* There is a new `KeyboardActionGrid` view for `SwiftUI`.
-* There is a new `KeyboardActionGridRow` view for `SwiftUI`.
+### SwiftUI
 
-The action grid will distribute keyboard actions evenly within a grid. It can be used in regular apps as well as in keyboard extensions.
+There are some new views that can be used in SwiftUI-based apps and keyboard extensions:
 
-New features:
+* The new `ImageButton` view lets you bind an `.image` action to a SwiftUI button.
+* The new `KeyboardActionGrid` distributes keyboard actions evenly within a grid.
+* The new `KeyboardActionGridRow` is used by this grid, for each row in the grid.
 
-* The new `PhotoImageService` and its standard implementation can be used to save images to photos without a target and a selector.
-* There's a new `saveToPhotos(completion:)` `UIImage` extension that makes use of this service to provide a completion-based way of saving images to photos.
+There are also some new tools that make it easier to work with some keyboard logic in SwiftUI, but that can also be used in UIKit-based apps and extensions as well.   
+
+All SwiftUI-related functionality is placed within the `SwiftUI` folder. The `UIKit` folder contains UIKit-exclusive functionality for building UIKit-based keyboards. UIKit logic that can be used in SwiftUI is not kept in the UIKit folder.  
+
+### New features
+
+* The new `PhotoImageService` and its standard implementation can be used to save images to photos without a target and a selector. It's a convenience tool that makes it easier to integrate this functionality with SwiftUI.  
+* The new `KeyboardImageActions` struct makes it easy to create a bunch of `.image` actions from a set of image names. It can e.g. be used if you want to create an emoji keyboard that only contains images.
+
+### New extensions
+
 * The new `evened(for gridSize: Int)` `[KeyboardAction]` extension can be used to add `.none` actions to the end of a `KeyboardAction` array, so that the list contains an even number of items to fit the grid.
+* The new `saveToPhotos(completion:)` `UIImage` extension provides a completion-based way of saving images to photos.
 
-New extensions:
+### Changes:
 
-* `KeyboardAction.createImageActions(...)` lets you create a list of image actions.
-
-`Changes`:
 * `isInputAction` now includes `.space`.
 * `isSystemAction` no longer includes `.space`.
 
