@@ -8,11 +8,16 @@
 
 import UIKit
 
+/**
+ This button switches to the next system keyboard when it is
+ tapped, and opens a list of system keyboards when pressed.
+ */
 @available(iOS 13.0, *)
 public class NextKeyboardUIButton: UIButton {
     
     public convenience init(
         controller: KeyboardInputViewController,
+        tintColor: UIColor = .label,
         pointSize: CGFloat = 25,
         weight: UIImage.SymbolWeight = .light,
         scale: UIImage.SymbolScale = .medium) {
@@ -22,6 +27,7 @@ public class NextKeyboardUIButton: UIButton {
             weight: weight,
             scale: scale)
         setImage(image, for: [])
+        self.tintColor = tintColor
         controller.setupNextKeyboardButton(self)
     }
 }

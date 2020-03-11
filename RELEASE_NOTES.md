@@ -30,7 +30,9 @@ All SwiftUI-related functionality is placed in the `SwiftUI` folder.
 
 ### UIKit
 
-There are not much new in this version for UIKit, but a few new extensions:
+There are a few new UIKit features and extensions:
+
+* The new `NextKeyboardUIButton` sets itself up with a `globe` icon and works as a standard "next keyboard" button.
 
 * The new `.globe` `UIImage` extension returns the icon that is used for "next keyboard".
 

@@ -8,16 +8,22 @@
 
 import SwiftUI
 
+/**
+ This button switches to the next system keyboard when it is
+ tapped, and opens a list of system keyboards when pressed.
+ */
 @available(iOS 13.0, *)
 public struct NextKeyboardButton: UIViewRepresentable {
     
     public init(
         controller: KeyboardInputViewController,
+        tintColor: UIColor = .label,
         pointSize: CGFloat = 25,
         weight: UIImage.SymbolWeight = .light,
         scale: UIImage.SymbolScale = .medium) {
         self.button = NextKeyboardUIButton(
             controller: controller,
+            tintColor: tintColor,
             pointSize: pointSize,
             weight: weight,
             scale: scale)
