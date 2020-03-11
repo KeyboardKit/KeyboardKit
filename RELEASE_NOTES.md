@@ -3,7 +3,17 @@
 
 ## 2.7.0
 
-This version adds the very first (and so far limited) support for `SwiftUI`, as well as some new features.
+This version adds the very first (and so far limited) support for `SwiftUI`, as well as a bunch of new features.
+
+### New features
+
+* `KeyboardInputViewController` has a new `setupNextKeyboardButton` which can be used to setup any `UIButton` as a standard "next keyboard" button. The button action will be entirely handled by the system.
+* The new `NextKeyboardUIButton` makes use of this new functionality, and sets itself up with a `globe` icon as well.
+* The new `PhotoImageService` and its standard implementation can be used to save images to photos without a target and a selector. It's a convenience tool that makes it easier to integrate this functionality with SwiftUI.  
+* The new `KeyboardImageActions` struct makes it easy to create a bunch of `.image` actions from a set of image names. It can e.g. be used if you want to create an emoji keyboard that only contains images.
+
+* The new `evened(for gridSize: Int)` `[KeyboardAction]` extension appends `.none` actions, so that the result evenly fit the grid.
+* The new `saveToPhotos(completion:)` `UIImage` extension is a completion-based way of saving images to photos.
 
 ### SwiftUI
 
@@ -12,6 +22,7 @@ There are some new views that can be used in SwiftUI-based apps and keyboard ext
 * The new `ImageButton` view lets you bind an `.image` action to a SwiftUI button.
 * The new `KeyboardActionGrid` distributes keyboard actions evenly within a grid.
 * The new `KeyboardActionGridRow` is used by this grid, for each row in the grid.
+* The new `NextKeyboardButton` sets itself up with a `globe` icon and works as a standard "next keyboard" button.
 
 * The new `.globe` `Image` extension returns the icon that is used for "next keyboard".
 
@@ -24,16 +35,6 @@ There are not much new in this version for UIKit, but a few new extensions:
 * The new `.globe` `UIImage` extension returns the icon that is used for "next keyboard".
 
 All UIKit-specific functionality is placed in the `UIKit` folder. UIKit logic that can be used in SwiftUI is outside it.
-
-### New features
-
-* The new `PhotoImageService` and its standard implementation can be used to save images to photos without a target and a selector. It's a convenience tool that makes it easier to integrate this functionality with SwiftUI.  
-* The new `KeyboardImageActions` struct makes it easy to create a bunch of `.image` actions from a set of image names. It can e.g. be used if you want to create an emoji keyboard that only contains images.
-
-### New extensions
-
-* The new `evened(for gridSize: Int)` `[KeyboardAction]` extension appends `.none` actions, so that the result evenly fit the grid.
-* The new `saveToPhotos(completion:)` `UIImage` extension is a completion-based way of saving images to photos.
 
 ### Changes:
 

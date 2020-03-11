@@ -24,6 +24,6 @@ public extension UIImage {
         UIImage(systemName: "globe", withConfiguration: SymbolConfiguration(
             pointSize: pointSize,
             weight: weight,
-            scale: scale))
+            scale: scale))?.withRenderingMode(.alwaysTemplate)
     }
 }

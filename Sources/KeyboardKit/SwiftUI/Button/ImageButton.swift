@@ -59,10 +59,3 @@ private extension KeyboardAction {
         }
     }
 }
-
-@available(iOS 13.0, *)
-struct GothEmojiButton_Previews: PreviewProvider {
-    static var previews: some View {
-        EmptyView()
-    }
-}

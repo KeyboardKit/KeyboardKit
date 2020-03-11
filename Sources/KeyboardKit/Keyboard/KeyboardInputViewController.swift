@@ -96,6 +96,15 @@ open class KeyboardInputViewController: UIInputViewController {
         addRepeatingGesture(to: button)
     }
     
+    /**
+     Setup any `UIButton` as a "next keyboard" button, which
+     means that it will switch to the "next" system keyboard
+     when tapped and display a keyboard list when pressed.
+     */
+    public func setupNextKeyboardButton(_ button: UIButton) {
+        button.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
+    }
+    
     
     // MARK: - UITextInputDelegate
     
