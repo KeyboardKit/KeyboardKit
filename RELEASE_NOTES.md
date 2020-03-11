@@ -11,10 +11,15 @@ This version adds the very first (and so far very limited) support for `SwiftUI`
 
 The action grid will distribute keyboard actions evenly within a grid. It can be used in regular apps as well as in keyboard extensions.
 
-`New features`:
+New features:
+
 * The new `PhotoImageService` and its standard implementation can be used to save images to photos without a target and a selector.
 * There's a new `saveToPhotos(completion:)` `UIImage` extension that makes use of this service to provide a completion-based way of saving images to photos.
 * The new `evened(for gridSize: Int)` `[KeyboardAction]` extension can be used to add `.none` actions to the end of a `KeyboardAction` array, so that the list contains an even number of items to fit the grid.
+
+New extensions:
+
+* `KeyboardAction.createImageActions(...)` lets you create a list of image actions.
 
 `Changes`:
 * `isInputAction` now includes `.space`.
