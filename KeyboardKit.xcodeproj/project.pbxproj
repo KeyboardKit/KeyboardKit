@@ -126,6 +126,8 @@
 		A9BC8251241810E800A28B87 /* KeyboardImageActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC8250241810E800A28B87 /* KeyboardImageActions.swift */; };
 		A9BC82562418349200A28B87 /* KeyboardImageActionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC82542418347000A28B87 /* KeyboardImageActionsTests.swift */; };
 		A9BC825924197CDC00A28B87 /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC825824197CDC00A28B87 /* ImageButton.swift */; };
+		A9BC825C2419932C00A28B87 /* Image+Globe.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC825B2419932C00A28B87 /* Image+Globe.swift */; };
+		A9BC825E2419960600A28B87 /* UIImage+Globe.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC825D2419960600A28B87 /* UIImage+Globe.swift */; };
 		A9E9A21F23FE5AA400844844 /* KeyboardAction+Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9A21E23FE5AA400844844 /* KeyboardAction+Grid.swift */; };
 		A9E9A22323FE5BD000844844 /* KeyboardAction+GridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9A22123FE5BC100844844 /* KeyboardAction+GridTests.swift */; };
 		A9E9A22723FE5CDC00844844 /* KeyboardActionGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9A22523FE5CDC00844844 /* KeyboardActionGrid.swift */; };
@@ -380,6 +382,8 @@
 		A9BC8250241810E800A28B87 /* KeyboardImageActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardImageActions.swift; sourceTree = "<group>"; };
 		A9BC82542418347000A28B87 /* KeyboardImageActionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardImageActionsTests.swift; sourceTree = "<group>"; };
 		A9BC825824197CDC00A28B87 /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
+		A9BC825B2419932C00A28B87 /* Image+Globe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Globe.swift"; sourceTree = "<group>"; };
+		A9BC825D2419960600A28B87 /* UIImage+Globe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Globe.swift"; sourceTree = "<group>"; };
 		A9E9A21E23FE5AA400844844 /* KeyboardAction+Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardAction+Grid.swift"; sourceTree = "<group>"; };
 		A9E9A22123FE5BC100844844 /* KeyboardAction+GridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardAction+GridTests.swift"; sourceTree = "<group>"; };
 		A9E9A22523FE5CDC00844844 /* KeyboardActionGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardActionGrid.swift; sourceTree = "<group>"; };
@@ -725,6 +729,7 @@
 				OBJ_45 /* UIView+Subviews.swift */,
 				OBJ_46 /* UIViewAutoresizing+Extras.swift */,
 				848DFC5D23A03CB400197B91 /* UIView+Visibility.swift */,
+				A9BC825D2419960600A28B87 /* UIImage+Globe.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -771,9 +776,18 @@
 			path = Button;
 			sourceTree = "<group>";
 		};
+		A9BC825A2419932100A28B87 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A9BC825B2419932C00A28B87 /* Image+Globe.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A9E9A21C23FE5A4B00844844 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				A9BC825A2419932100A28B87 /* Extensions */,
 				A9BC825724197CC800A28B87 /* Button */,
 				A9E9A22423FE5CD200844844 /* Grid */,
 			);
@@ -1417,7 +1431,9 @@
 				84623A972355F77A0024987B /* AudioFeedbackConfiguration.swift in Sources */,
 				OBJ_277 /* UIImage+Tinted.swift in Sources */,
 				8422CB8A239F021B00251D31 /* AutocompleteToolbarLabel.swift in Sources */,
+				A9BC825E2419960600A28B87 /* UIImage+Globe.swift in Sources */,
 				OBJ_278 /* UIScrollView+PageNumber.swift in Sources */,
+				A9BC825C2419932C00A28B87 /* Image+Globe.swift in Sources */,
 				84623A8B2355DE340024987B /* AudioFeedback.swift in Sources */,
 				OBJ_279 /* UIStackView+Subviews.swift in Sources */,
 				OBJ_280 /* UITextDocumentProxy+CurrentWord.swift in Sources */,

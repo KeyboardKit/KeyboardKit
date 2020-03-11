@@ -13,9 +13,17 @@ There are some new views that can be used in SwiftUI-based apps and keyboard ext
 * The new `KeyboardActionGrid` distributes keyboard actions evenly within a grid.
 * The new `KeyboardActionGridRow` is used by this grid, for each row in the grid.
 
-There are also some new tools that make it easier to work with some keyboard logic in SwiftUI, but that can also be used in UIKit-based apps and extensions as well.   
+* The new `.globe` `Image` extension returns the icon that is used for "next keyboard".
 
-All SwiftUI-related functionality is placed within the `SwiftUI` folder. The `UIKit` folder contains UIKit-exclusive functionality for building UIKit-based keyboards. UIKit logic that can be used in SwiftUI is not kept in the UIKit folder.  
+All SwiftUI-related functionality is placed in the `SwiftUI` folder.
+
+### UIKit
+
+There are not much new in this version for UIKit, but a few new extensions:
+
+* The new `.globe` `UIImage` extension returns the icon that is used for "next keyboard".
+
+All UIKit-specific functionality is placed in the `UIKit` folder. UIKit logic that can be used in SwiftUI is outside it.
 
 ### New features
 
@@ -24,8 +32,8 @@ All SwiftUI-related functionality is placed within the `SwiftUI` folder. The `UI
 
 ### New extensions
 
-* The new `evened(for gridSize: Int)` `[KeyboardAction]` extension can be used to add `.none` actions to the end of a `KeyboardAction` array, so that the list contains an even number of items to fit the grid.
-* The new `saveToPhotos(completion:)` `UIImage` extension provides a completion-based way of saving images to photos.
+* The new `evened(for gridSize: Int)` `[KeyboardAction]` extension appends `.none` actions, so that the result evenly fit the grid.
+* The new `saveToPhotos(completion:)` `UIImage` extension is a completion-based way of saving images to photos.
 
 ### Changes:
 

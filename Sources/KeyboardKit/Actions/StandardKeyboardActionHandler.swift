@@ -9,9 +9,9 @@
 import UIKit
 
 /**
- This is the standard keyboard action handler, which is used
- by your `KeyboardInputViewController` instance if you don't
- replace its `keyboardActionHandler` with another instance.
+ This is the standard keyboard action handler. It is used by
+ `KeyboardInputViewController`s by default, if you don't set
+ `keyboardActionHandler` to a custom handler.
  
  The handler uses the standard keyboard actions when actions
  are tapped, long pressed or repeated on your keyboard. This
@@ -28,8 +28,8 @@ import UIKit
  can adjust the standard feedback behavior by overriding the
  `triggerAudioFeedback(for action: KeyboardAction)` function.
  
- IMPORTANT: This class must inherit `NSObject` to be able to
- set itself as a target, e.g. when saving images to photos.
+ `IMPORTANT`: This class must inherit `NSObject`, to be able
+ to set itself as target, e.g. when saving images.
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
