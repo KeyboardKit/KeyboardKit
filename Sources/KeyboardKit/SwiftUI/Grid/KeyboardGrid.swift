@@ -42,13 +42,11 @@ public struct KeyboardGrid<Button: View>: View {
     private let buttonBuilder: (KeyboardAction) -> Button
     
     public var body: some View {
-        ScrollView {
-            VStack(spacing: spacing) {
-                ForEach(Array(rows.enumerated()), id: \.offset) {
-                    self.gridRow(for: $0.element)
-                }
-            }.padding(padding)
-        }
+        VStack(spacing: spacing) {
+            ForEach(Array(rows.enumerated()), id: \.offset) {
+                self.gridRow(for: $0.element)
+            }
+        }.padding(padding)
     }
 }
 
