@@ -16,7 +16,7 @@ import SwiftUI
  actions etc. you can add it to the button instance.
  */
 @available(iOS 13.0, *)
-public struct ImageKeyboardButton: View {
+public struct KeyboardImageButton: View {
     
     public init(
         action: KeyboardAction,
