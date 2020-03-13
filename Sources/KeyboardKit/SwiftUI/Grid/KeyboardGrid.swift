@@ -1,5 +1,5 @@
 //
-//  KeyboardActionGrid.swift
+//  KeyboardGrid.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-02-20.
@@ -9,8 +9,8 @@
 import SwiftUI
 
 /**
- A `KeyboardActionGrid` can be used to list keyboard actions
- in a grid with a certain number of `columns`.
+ A `KeyboardGrid` can be used to list actions in a grid with
+ a certain number of `columns`.
  
  The grid supports a custom grid `padding` and item `spacing`
  and will even out the provided `actions` array with actions
@@ -21,7 +21,7 @@ import SwiftUI
  action. This makes the grid very customizable.
  */
 @available(iOS 13.0, *)
-public struct KeyboardActionGrid<Button: View>: View {
+public struct KeyboardGrid<Button: View>: View {
     
     public init(
         actions: [KeyboardAction],
@@ -53,10 +53,10 @@ public struct KeyboardActionGrid<Button: View>: View {
 }
 
 @available(iOS 13.0, *)
-private extension KeyboardActionGrid {
+private extension KeyboardGrid {
 
     func gridRow(for row: KeyboardActionRow) -> some View {
-        KeyboardActionGridRow(spacing: self.spacing) {
+        KeyboardGridRow(spacing: self.spacing) {
             ForEach(Array(row.enumerated()), id: \.offset) { item in
                 self.buttonBuilder(item.element)
             }
@@ -65,7 +65,7 @@ private extension KeyboardActionGrid {
 }
 
 @available(iOS 13.0, *)
-struct KeyboardActionGrid_Previews: PreviewProvider {
+struct KeyboardGrid_Previews: PreviewProvider {
     
     static let image = KeyboardAction.image(description: "", keyboardImageName: "david", imageName: "david")
     
@@ -79,7 +79,7 @@ struct KeyboardActionGrid_Previews: PreviewProvider {
     ]
 
     static var previews: some View {
-        KeyboardActionGrid(actions: actions, columns: 6) { _ in
+        KeyboardGrid(actions: actions, columns: 6) { _ in
             Image(systemName: "sun.max.fill")
                 .resizable()
                 .scaledToFit()

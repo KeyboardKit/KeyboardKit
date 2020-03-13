@@ -9,17 +9,15 @@
 import SwiftUI
 
 /**
- A `KeyboardActionGridRow` can be used to list an action row
- inside a `KeyboardActionGrid`.
+ A `KeyboardGridRow` can be used to list a grid row inside a
+ `KeyboardGrid`.
 
- The grid row supports a custom `spacing` which will be used
- to space out itms in the row.
- 
- The provided `content` view builder will be used to provide
+ This row supports a custom item `spacing`, which is used as
+ spacing between row items. The `content` is used to provide
  the row with views to display within its `HStack`.
 */
 @available(iOS 13.0, *)
-public struct KeyboardActionGridRow<Content: View>: View {
+public struct KeyboardGridRow<Content: View>: View {
     
     public init(spacing: CGFloat = 5, @ViewBuilder content: @escaping () -> Content) {
         self.spacing = spacing
@@ -35,7 +33,7 @@ public struct KeyboardActionGridRow<Content: View>: View {
 }
 
 @available(iOS 13.0, *)
-struct KeyboardActionGridRow_Previews: PreviewProvider {
+struct KeyboardGridRow_Previews: PreviewProvider {
     
     static var image: some View {
         Image(systemName: "sun.max.fill")
@@ -44,7 +42,7 @@ struct KeyboardActionGridRow_Previews: PreviewProvider {
     }
     
     static var previews: some View {
-        KeyboardActionGridRow(spacing: 5) {
+        KeyboardGridRow(spacing: 5) {
             image
             image
             image
