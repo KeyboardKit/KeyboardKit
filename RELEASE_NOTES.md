@@ -19,7 +19,7 @@ This version adds the very first (and so far limited) support for `SwiftUI`, as 
 
 There are some new views that can be used in SwiftUI-based apps and keyboard extensions:
 
-* The new `ImageButton` view lets you bind an `.image` action to a SwiftUI button.
+* The new `ImageKeyboardButton` view lets you bind an `.image` action to a SwiftUI button.
 * The new `KeyboardActionGrid` distributes keyboard actions evenly within a grid.
 * The new `KeyboardActionGridRow` is used by this grid, for each row in the grid.
 * The new `NextKeyboardButton` sets itself up with a `globe` icon and works as a standard "next keyboard" button.

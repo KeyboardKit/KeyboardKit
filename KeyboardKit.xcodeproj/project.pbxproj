@@ -125,11 +125,11 @@
 		A9BC824D2418068B00A28B87 /* StandardPhotosImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC824C2418068B00A28B87 /* StandardPhotosImageService.swift */; };
 		A9BC8251241810E800A28B87 /* KeyboardImageActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC8250241810E800A28B87 /* KeyboardImageActions.swift */; };
 		A9BC82562418349200A28B87 /* KeyboardImageActionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC82542418347000A28B87 /* KeyboardImageActionsTests.swift */; };
-		A9BC825924197CDC00A28B87 /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC825824197CDC00A28B87 /* ImageButton.swift */; };
 		A9BC825C2419932C00A28B87 /* Image+Globe.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC825B2419932C00A28B87 /* Image+Globe.swift */; };
 		A9BC825E2419960600A28B87 /* UIImage+Globe.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC825D2419960600A28B87 /* UIImage+Globe.swift */; };
 		A9BC826124199D6100A28B87 /* NextKeyboardUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC826024199D6100A28B87 /* NextKeyboardUIButton.swift */; };
 		A9BC826324199F3600A28B87 /* NextKeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC826224199F3600A28B87 /* NextKeyboardButton.swift */; };
+		A9BC8273241BE7DE00A28B87 /* ImageKeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC8272241BE7DE00A28B87 /* ImageKeyboardButton.swift */; };
 		A9E9A21F23FE5AA400844844 /* KeyboardAction+Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9A21E23FE5AA400844844 /* KeyboardAction+Grid.swift */; };
 		A9E9A22323FE5BD000844844 /* KeyboardAction+GridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9A22123FE5BC100844844 /* KeyboardAction+GridTests.swift */; };
 		A9E9A22723FE5CDC00844844 /* KeyboardActionGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9A22523FE5CDC00844844 /* KeyboardActionGrid.swift */; };
@@ -383,11 +383,11 @@
 		A9BC824C2418068B00A28B87 /* StandardPhotosImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardPhotosImageService.swift; sourceTree = "<group>"; };
 		A9BC8250241810E800A28B87 /* KeyboardImageActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardImageActions.swift; sourceTree = "<group>"; };
 		A9BC82542418347000A28B87 /* KeyboardImageActionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardImageActionsTests.swift; sourceTree = "<group>"; };
-		A9BC825824197CDC00A28B87 /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
 		A9BC825B2419932C00A28B87 /* Image+Globe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Globe.swift"; sourceTree = "<group>"; };
 		A9BC825D2419960600A28B87 /* UIImage+Globe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Globe.swift"; sourceTree = "<group>"; };
 		A9BC826024199D6100A28B87 /* NextKeyboardUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextKeyboardUIButton.swift; sourceTree = "<group>"; };
 		A9BC826224199F3600A28B87 /* NextKeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextKeyboardButton.swift; sourceTree = "<group>"; };
+		A9BC8272241BE7DE00A28B87 /* ImageKeyboardButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageKeyboardButton.swift; sourceTree = "<group>"; };
 		A9E9A21E23FE5AA400844844 /* KeyboardAction+Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardAction+Grid.swift"; sourceTree = "<group>"; };
 		A9E9A22123FE5BC100844844 /* KeyboardAction+GridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardAction+GridTests.swift"; sourceTree = "<group>"; };
 		A9E9A22523FE5CDC00844844 /* KeyboardActionGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardActionGrid.swift; sourceTree = "<group>"; };
@@ -775,7 +775,7 @@
 		A9BC825724197CC800A28B87 /* Button */ = {
 			isa = PBXGroup;
 			children = (
-				A9BC825824197CDC00A28B87 /* ImageButton.swift */,
+				A9BC8272241BE7DE00A28B87 /* ImageKeyboardButton.swift */,
 				A9BC826224199F3600A28B87 /* NextKeyboardButton.swift */,
 			);
 			path = Button;
@@ -1439,6 +1439,7 @@
 				OBJ_272 /* String+Uppercased.swift in Sources */,
 				A9BC8251241810E800A28B87 /* KeyboardImageActions.swift in Sources */,
 				847060052355A5D900B2B2A8 /* KeyboardGesture.swift in Sources */,
+				A9BC8273241BE7DE00A28B87 /* ImageKeyboardButton.swift in Sources */,
 				OBJ_273 /* UIColor+TappableClear.swift in Sources */,
 				OBJ_274 /* UIImage+Pasteboard.swift in Sources */,
 				OBJ_275 /* UIImage+Photos.swift in Sources */,
@@ -1479,7 +1480,6 @@
 				OBJ_297 /* KeyboardButtonCollectionView.swift in Sources */,
 				OBJ_298 /* KeyboardButtonRowCollectionView.swift in Sources */,
 				OBJ_299 /* KeyboardCollectionView.swift in Sources */,
-				A9BC825924197CDC00A28B87 /* ImageButton.swift in Sources */,
 				OBJ_300 /* KeyboardButtonRow.swift in Sources */,
 				OBJ_301 /* KeyboardButtonView.swift in Sources */,
 				A9BC824B2418062300A28B87 /* PhotosImageService.swift in Sources */,
