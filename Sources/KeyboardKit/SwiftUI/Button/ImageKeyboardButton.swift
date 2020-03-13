@@ -36,21 +36,14 @@ public struct ImageKeyboardButton: View {
             Image(uiImage: action.image)
                 .resizable()
                 .scaledToFit()
+                .onLongPressGesture(perform: longPressAction)
         }
         .buttonStyle(PlainButtonStyle())
-        .onLongPressGesture(perform: longPressAction)
     }
 }
 
 @available(iOS 13.0, *)
 private extension KeyboardAction {
-    
-    var description: Text {
-        switch self {
-        case .image(let desc, _, _): return Text(desc)
-        default: return Text("")
-        }
-    }
     
     var image: UIImage {
         switch self {
