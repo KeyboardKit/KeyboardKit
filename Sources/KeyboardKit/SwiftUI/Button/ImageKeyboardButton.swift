@@ -36,6 +36,7 @@ public struct ImageKeyboardButton: View {
             Image(uiImage: action.image)
                 .resizable()
                 .scaledToFit()
+                .onTapGesture(perform: tapAction)
                 .onLongPressGesture(perform: longPressAction)
         }
         .buttonStyle(PlainButtonStyle())
