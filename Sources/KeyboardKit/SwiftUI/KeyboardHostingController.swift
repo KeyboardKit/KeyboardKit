@@ -12,11 +12,10 @@ import SwiftUI
  This controller can be used to add any `SwiftUI`-based view
  to a `KeyboardInputViewController`.
  
- You can either manually create an instance with a `SwiftUI`
- view as init parameter, then add the controller instance to
- your `KeyboardInputViewController` by calling `add(to:)` or
- call the `KeyboardInputViewController` `setup(with:)` which
- does all this for you.
+ You can either manually create a controller instance with a
+ `rootView` then add it to your `KeyboardInputViewController`
+ with `add(to:)` or use the input controller's `setup(with:)`
+ with a `SwiftUI` `View`, which does of all this for you.
  */
 @available(iOS 13.0, *)
 public class KeyboardHostingController<Content: View>: UIHostingController<Content> {

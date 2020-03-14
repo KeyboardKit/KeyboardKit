@@ -805,8 +805,8 @@
 		A9E9A21C23FE5A4B00844844 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				A9BC825A2419932100A28B87 /* Extensions */,
 				A9BC825724197CC800A28B87 /* Button */,
+				A9BC825A2419932100A28B87 /* Extensions */,
 				A9E9A22423FE5CD200844844 /* Grid */,
 				A9BC827C241C047600A28B87 /* KeyboardHostingController.swift */,
 				A9BC82E2241C5ED400A28B87 /* KeyboardInputViewController+View.swift */,
