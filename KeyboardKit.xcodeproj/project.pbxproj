@@ -130,6 +130,8 @@
 		A9BC826124199D6100A28B87 /* NextKeyboardUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC826024199D6100A28B87 /* NextKeyboardUIButton.swift */; };
 		A9BC826324199F3600A28B87 /* NextKeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC826224199F3600A28B87 /* NextKeyboardButton.swift */; };
 		A9BC8279241BFC5400A28B87 /* KeyboardImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC8278241BFC5400A28B87 /* KeyboardImageButton.swift */; };
+		A9BC827D241C047600A28B87 /* KeyboardHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC827C241C047600A28B87 /* KeyboardHostingController.swift */; };
+		A9BC82E3241C5ED400A28B87 /* KeyboardInputViewController+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC82E2241C5ED400A28B87 /* KeyboardInputViewController+View.swift */; };
 		A9E9A21F23FE5AA400844844 /* KeyboardAction+Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9A21E23FE5AA400844844 /* KeyboardAction+Grid.swift */; };
 		A9E9A22323FE5BD000844844 /* KeyboardAction+GridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9A22123FE5BC100844844 /* KeyboardAction+GridTests.swift */; };
 		A9E9A22723FE5CDC00844844 /* KeyboardGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9A22523FE5CDC00844844 /* KeyboardGrid.swift */; };
@@ -388,6 +390,8 @@
 		A9BC826024199D6100A28B87 /* NextKeyboardUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextKeyboardUIButton.swift; sourceTree = "<group>"; };
 		A9BC826224199F3600A28B87 /* NextKeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextKeyboardButton.swift; sourceTree = "<group>"; };
 		A9BC8278241BFC5400A28B87 /* KeyboardImageButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardImageButton.swift; sourceTree = "<group>"; };
+		A9BC827C241C047600A28B87 /* KeyboardHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHostingController.swift; sourceTree = "<group>"; };
+		A9BC82E2241C5ED400A28B87 /* KeyboardInputViewController+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardInputViewController+View.swift"; sourceTree = "<group>"; };
 		A9E9A21E23FE5AA400844844 /* KeyboardAction+Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardAction+Grid.swift"; sourceTree = "<group>"; };
 		A9E9A22123FE5BC100844844 /* KeyboardAction+GridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardAction+GridTests.swift"; sourceTree = "<group>"; };
 		A9E9A22523FE5CDC00844844 /* KeyboardGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardGrid.swift; sourceTree = "<group>"; };
@@ -804,6 +808,8 @@
 				A9BC825A2419932100A28B87 /* Extensions */,
 				A9BC825724197CC800A28B87 /* Button */,
 				A9E9A22423FE5CD200844844 /* Grid */,
+				A9BC827C241C047600A28B87 /* KeyboardHostingController.swift */,
+				A9BC82E2241C5ED400A28B87 /* KeyboardInputViewController+View.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -1007,6 +1013,7 @@
 				OBJ_22 /* Components */,
 				A903FB7323ECB74000575482 /* Extensions */,
 				OBJ_47 /* Gestures */,
+				OBJ_60 /* Shadow */,
 				OBJ_65 /* KeyboardButtonCollectionView.swift */,
 				OBJ_68 /* KeyboardButtonRow.swift */,
 				OBJ_66 /* KeyboardButtonRowCollectionView.swift */,
@@ -1014,7 +1021,6 @@
 				OBJ_67 /* KeyboardCollectionView.swift */,
 				OBJ_70 /* KeyboardSpacerView.swift */,
 				OBJ_73 /* KeyboardToolbar.swift */,
-				OBJ_60 /* Shadow */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1427,6 +1433,7 @@
 				OBJ_264 /* KeyboardButtonRowComponent.swift in Sources */,
 				OBJ_265 /* KeyboardStackViewComponent.swift in Sources */,
 				OBJ_266 /* KeyboardToolbarComponent.swift in Sources */,
+				A9BC827D241C047600A28B87 /* KeyboardHostingController.swift in Sources */,
 				OBJ_267 /* PagedKeyboardComponent.swift in Sources */,
 				84623A8D2355E0670024987B /* SystemAudioPlayer.swift in Sources */,
 				OBJ_268 /* VerticalKeyboardComponent.swift in Sources */,
@@ -1440,6 +1447,7 @@
 				OBJ_272 /* String+Uppercased.swift in Sources */,
 				A9BC8251241810E800A28B87 /* KeyboardImageActions.swift in Sources */,
 				847060052355A5D900B2B2A8 /* KeyboardGesture.swift in Sources */,
+				A9BC82E3241C5ED400A28B87 /* KeyboardInputViewController+View.swift in Sources */,
 				OBJ_273 /* UIColor+TappableClear.swift in Sources */,
 				OBJ_274 /* UIImage+Pasteboard.swift in Sources */,
 				OBJ_275 /* UIImage+Photos.swift in Sources */,

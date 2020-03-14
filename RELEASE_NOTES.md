@@ -7,24 +7,26 @@ This version adds the very first (and so far limited) support for `SwiftUI`, as 
 
 ### New features
 
-* `KeyboardInputViewController` has a new `setupNextKeyboardButton` which can be used to setup any `UIButton` as a standard "next keyboard" button. The button action will be entirely handled by the system.
-* The new `NextKeyboardUIButton` makes use of this new functionality, and sets itself up with a `globe` icon as well.
-* The new `PhotoImageService` and its standard implementation can be used to save images to photos without a target and a selector. It's a convenience tool that makes it easier to integrate this functionality with SwiftUI.  
-* The new `KeyboardImageActions` struct makes it easy to create a bunch of `.image` actions from a set of image names. It can e.g. be used if you want to create an emoji keyboard that only contains images.
+* `KeyboardInputViewController` has a new `setupNextKeyboardButton(...)` which turns any `UIButton` into a system-handled "next keyboard" button.
+* `NextKeyboardUIButton` makes use of this new functionality, and sets itself up with a `globe` icon as well.
+* `PhotoImageService` and `StandardPhotoImageService` can be used to save images to photos with a completion instead of a target and a selector.
+* `KeyboardImageActions` makes it easy to create a bunch of `.image` actions from a set of image names.
 
-* The new `evened(for gridSize: Int)` `[KeyboardAction]` extension appends `.none` actions, so that the result evenly fit the grid.
-* The new `saveToPhotos(completion:)` `UIImage` extension is a completion-based way of saving images to photos.
+* The `evened(for gridSize: Int)` `[KeyboardAction]` extension appends enough `.none` actions to evenly fit the grid size.
+* The `saveToPhotos(completion:)` `UIImage` extension is a completion-based way of saving images to photos.
 
 ### SwiftUI
 
 There are some new views that can be used in SwiftUI-based apps and keyboard extensions:
 
-* The new `KeyboardGrid` distributes actions evenly within a grid.
-* The new `KeyboardGridRow` is used for each row in the grid.
-* The new `KeyboardImageButton` view lets you bind an `.image` action to a SwiftUI button.
-* The new `NextKeyboardButton` sets itself up with a `globe` icon and works as a standard "next keyboard" button.
+* `KeyboardGrid` distributes actions evenly within a grid.
+* `KeyboardGridRow` is used for each row in the grid.
+* `KeyboardHostingController` can be used to wrap any `View` in a keyboard extension.
+* `KeyboardImageButton` view lets you bind an `.image` action to a SwiftUI button.
+* `NextKeyboardButton` sets itself up with a `globe` icon and works as a standard "next keyboard" button.
 
-* The new `.globe` `Image` extension returns the icon that is used for "next keyboard".
+* The `.globe` `Image` extension returns the icon that is used for "next keyboard".
+* The `setup(with:View)` `KeyboardInputViewController` extension sets up a `KeyboardHostingController`.
 
 All SwiftUI-related functionality is placed in the `SwiftUI` folder.
 
