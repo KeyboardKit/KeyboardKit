@@ -29,17 +29,18 @@ public struct KeyboardGrid<Button: View>: View {
         padding: CGFloat = 10,
         spacing: CGFloat = 10,
         @ViewBuilder buttonBuilder: @escaping (KeyboardAction) -> Button) {
-        let actions = actions.evened(for: columns)
+        self.actions = actions.evened(for: columns)
         self.rows = actions.batched(withBatchSize: columns)
         self.padding = padding
         self.spacing = spacing
         self.buttonBuilder = buttonBuilder
     }
     
-    private let rows: KeyboardActionRows
-    private let padding: CGFloat
-    private let spacing: CGFloat
-    private let buttonBuilder: (KeyboardAction) -> Button
+    public let actions: [KeyboardAction]
+    public let rows: KeyboardActionRows
+    public let padding: CGFloat
+    public let spacing: CGFloat
+    public let buttonBuilder: (KeyboardAction) -> Button
     
     public var body: some View {
         VStack(spacing: spacing) {
