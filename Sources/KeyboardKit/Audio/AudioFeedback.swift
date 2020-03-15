@@ -15,9 +15,6 @@ import Foundation
  The system audioplayer can be replaced by switching out the
  `systemPlayer` with another player. This is useful when you
  want to unit test the class or change its behavior.
- 
- `TODO:` The system sound shouldn't use the same ID as input,
- but I could not find the correct audio.
 */
 public enum AudioFeedback: Equatable {
     
@@ -34,7 +31,7 @@ public enum AudioFeedback: Equatable {
     public var systemId: UInt32? {
         switch self {
         case .input: return 1104
-        case .system: return 1104
+        case .system: return 1156
         case .delete: return 1155
         case .custom(let value): return value
         case .none: return nil
