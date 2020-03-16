@@ -27,7 +27,7 @@ public struct AudioFeedbackConfiguration {
     public let systemFeedback: AudioFeedback
     
     /**
-     This configuration disables all haptic feedback.
+     This configuration disables all audio feedback.
      */
     public static var noFeedback: AudioFeedbackConfiguration {
         AudioFeedbackConfiguration(
@@ -38,7 +38,7 @@ public struct AudioFeedbackConfiguration {
     }
     
     /**
-     This configuration uses standard haptic feedbacks, that
+     This configuration uses standard audio feedbacks, that
      are defined in the library.
     */
     public static var standard: AudioFeedbackConfiguration {
