@@ -29,6 +29,7 @@ There are some new views that can be used in SwiftUI-based apps and keyboard ext
 * `Color.clearInteractable` can be used instead of `.clear` to allow gestures to be detected.
 * `Image.globe` returns the icon that is used for "next keyboard".
 * `KeyboardInputViewController` `setup(with:View)`  sets up a `KeyboardHostingController`.
+* `View` `withClearInteractableBackground()` can be used to make an entire view interactable.
 
 All SwiftUI-related functionality is placed in the `SwiftUI` folder.
 
