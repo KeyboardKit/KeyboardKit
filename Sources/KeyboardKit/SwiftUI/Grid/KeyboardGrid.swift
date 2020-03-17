@@ -16,6 +16,10 @@ import SwiftUI
  provided `actions` array with enough `.none` actions, so it
  has enough items to evenly fit the grid. The `buttonBuilder`
  will be used to create a button for each action.
+ 
+ The grid doesn't modify the buttons you provide it with. If
+ you want your buttons to share the available width, you can
+ apply `.frame(maxWidth: .infinity)` to each button.
  */
 @available(iOS 13.0, *)
 public struct KeyboardGrid<Button: View>: View {
