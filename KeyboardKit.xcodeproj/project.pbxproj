@@ -132,6 +132,7 @@
 		A9BC8279241BFC5400A28B87 /* KeyboardImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC8278241BFC5400A28B87 /* KeyboardImageButton.swift */; };
 		A9BC827D241C047600A28B87 /* KeyboardHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC827C241C047600A28B87 /* KeyboardHostingController.swift */; };
 		A9BC82E3241C5ED400A28B87 /* KeyboardInputViewController+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC82E2241C5ED400A28B87 /* KeyboardInputViewController+View.swift */; };
+		A9BC830D24213B9200A28B87 /* PersistedKeyboardSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC830C24213B9200A28B87 /* PersistedKeyboardSetting.swift */; };
 		A9E9A21F23FE5AA400844844 /* KeyboardAction+Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9A21E23FE5AA400844844 /* KeyboardAction+Grid.swift */; };
 		A9E9A22323FE5BD000844844 /* KeyboardAction+GridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9A22123FE5BC100844844 /* KeyboardAction+GridTests.swift */; };
 		A9E9A22723FE5CDC00844844 /* KeyboardGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9A22523FE5CDC00844844 /* KeyboardGrid.swift */; };
@@ -392,6 +393,7 @@
 		A9BC8278241BFC5400A28B87 /* KeyboardImageButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardImageButton.swift; sourceTree = "<group>"; };
 		A9BC827C241C047600A28B87 /* KeyboardHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHostingController.swift; sourceTree = "<group>"; };
 		A9BC82E2241C5ED400A28B87 /* KeyboardInputViewController+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardInputViewController+View.swift"; sourceTree = "<group>"; };
+		A9BC830C24213B9200A28B87 /* PersistedKeyboardSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistedKeyboardSetting.swift; sourceTree = "<group>"; };
 		A9E9A21E23FE5AA400844844 /* KeyboardAction+Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardAction+Grid.swift"; sourceTree = "<group>"; };
 		A9E9A22123FE5BC100844844 /* KeyboardAction+GridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardAction+GridTests.swift"; sourceTree = "<group>"; };
 		A9E9A22523FE5CDC00844844 /* KeyboardGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardGrid.swift; sourceTree = "<group>"; };
@@ -802,6 +804,23 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
+		A9BC830E2421433200A28B87 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_57 /* KeyboardSetting.swift */,
+				A9BC830C24213B9200A28B87 /* PersistedKeyboardSetting.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		A9BC830F2421434900A28B87 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_110 /* KeyboardSettingTests.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		A9E9A21C23FE5A4B00844844 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -847,7 +866,6 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_109 /* KeyboardInputViewControllerTests.swift */,
-				OBJ_110 /* KeyboardSettingTests.swift */,
 				OBJ_111 /* KeyboardShiftStateTests.swift */,
 			);
 			path = Keyboard;
@@ -989,7 +1007,6 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_56 /* KeyboardInputViewController.swift */,
-				OBJ_57 /* KeyboardSetting.swift */,
 				OBJ_58 /* KeyboardShiftState.swift */,
 				OBJ_59 /* KeyboardType.swift */,
 			);
@@ -1052,6 +1069,7 @@
 				A9BC824E241806E300A28B87 /* Images */,
 				OBJ_108 /* Keyboard */,
 				OBJ_112 /* Mocks */,
+				A9BC830F2421434900A28B87 /* Settings */,
 				OBJ_121 /* UIKit */,
 				OBJ_131 /* XCTestManifests.swift */,
 			);
@@ -1084,6 +1102,7 @@
 				OBJ_52 /* Haptics */,
 				A9BC82492418061100A28B87 /* Images */,
 				OBJ_55 /* Keyboard */,
+				A9BC830E2421433200A28B87 /* Settings */,
 				A9E9A21C23FE5A4B00844844 /* SwiftUI */,
 				OBJ_63 /* UIKit */,
 			);
@@ -1424,6 +1443,7 @@
 				OBJ_255 /* KeyboardActionRows.swift in Sources */,
 				OBJ_256 /* StandardKeyboardActionHandler.swift in Sources */,
 				OBJ_257 /* KeyboardAlert.swift in Sources */,
+				A9BC830D24213B9200A28B87 /* PersistedKeyboardSetting.swift in Sources */,
 				OBJ_258 /* ToastAlert.swift in Sources */,
 				OBJ_259 /* AutocompleteBugFixTimer.swift in Sources */,
 				OBJ_260 /* AutocompleteSuggestionProvider.swift in Sources */,

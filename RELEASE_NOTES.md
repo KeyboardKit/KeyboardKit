@@ -24,6 +24,7 @@ There are some new views that can be used in SwiftUI-based apps and keyboard ext
 * `KeyboardHostingController` can be used to wrap any `View` in a keyboard extension.
 * `KeyboardImageButton` view lets you bind an `.image` action to a SwiftUI button.
 * `NextKeyboardButton` sets itself up with a `globe` icon and works as a standard "next keyboard" button.
+* `PersistedKeyboardSetting` is a new property wrapper for persisting settings in `UserDefaults`. 
 
 * The `.globe` `Image` extension returns the icon that is used for "next keyboard".
 * The `setup(with:View)` `KeyboardInputViewController` extension sets up a `KeyboardHostingController`.
