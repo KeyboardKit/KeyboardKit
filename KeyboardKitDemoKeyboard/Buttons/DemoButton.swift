@@ -22,7 +22,7 @@ class DemoButton: KeyboardButtonView {
     
     public func setup(with action: KeyboardAction, in viewController: KeyboardInputViewController, distribution: UIStackView.Distribution = .fillEqually) {
         super.setup(with: action, in: viewController)
-        backgroundColor = .clearTappable
+        backgroundColor = .clearInteractable
         buttonView?.backgroundColor = action.buttonColor(for: viewController)
         DispatchQueue.main.async { self.image?.image = action.buttonImage }
         textLabel?.font = action.buttonFont

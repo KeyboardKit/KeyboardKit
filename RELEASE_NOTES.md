@@ -26,8 +26,9 @@ There are some new views that can be used in SwiftUI-based apps and keyboard ext
 * `NextKeyboardButton` sets itself up with a `globe` icon and works as a standard "next keyboard" button.
 * `PersistedKeyboardSetting` is a new property wrapper for persisting settings in `UserDefaults`. 
 
-* The `.globe` `Image` extension returns the icon that is used for "next keyboard".
-* The `setup(with:View)` `KeyboardInputViewController` extension sets up a `KeyboardHostingController`.
+* `Color.clearInteractable` can be used instead of `.clear` to allow gestures to be detected.
+* `Image.globe` returns the icon that is used for "next keyboard".
+* `KeyboardInputViewController` `setup(with:View)`  sets up a `KeyboardHostingController`.
 
 All SwiftUI-related functionality is placed in the `SwiftUI` folder.
 
@@ -45,6 +46,7 @@ All UIKit-specific functionality is placed in the `UIKit` folder. UIKit logic th
 
 * `isInputAction` now includes `.space`.
 * `isSystemAction` no longer includes `.space`.
+* `UIColor.clearTappable` has been renamed to `UIColor.clearInteractable`
 
 
 ## 2.6.2
