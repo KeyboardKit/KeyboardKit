@@ -24,6 +24,7 @@ public class KeyboardHostingController<Content: View>: UIHostingController<Conte
         controller.addChild(self)
         controller.view.addSubview(view)
         didMove(toParent: controller)
+        view.backgroundColor = .clear
         view.translatesAutoresizingMaskIntoConstraints = false
         view.leadingAnchor.constraint(equalTo: controller.view.leadingAnchor).isActive = true
         view.trailingAnchor.constraint(equalTo: controller.view.trailingAnchor).isActive = true

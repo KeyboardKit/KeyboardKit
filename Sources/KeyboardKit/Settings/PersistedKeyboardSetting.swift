@@ -11,25 +11,29 @@ import Foundation
  This property wrapper can be used to store keyboard setting
  values to `UserDefaults`. You can use `KeyboardSetting`s or
  custom keys.
+ 
+ Note that this wrapper persists *objects*, not *values*. It
+ can't be used for
+ requires the setting to be codable.
  */
 @propertyWrapper
 public struct PersistedKeyboardSetting<Value: Codable> {
     
     public init(
         _ setting: KeyboardSetting,
-        default: Value,
+        default defaultValue: Value,
         userDefaults: UserDefaults = .standard) {
         self.key = setting.key
-        self.defaultValue = `default`
+        self.defaultValue = defaultValue
         self.userDefaults = userDefaults
     }
     
     public init(
         _ key: String,
-        default: Value,
+        default defaultValue: Value,
         userDefaults: UserDefaults = .standard) {
         self.key = key
-        self.defaultValue = `default`
+        self.defaultValue = defaultValue
         self.userDefaults = userDefaults
     }
     
@@ -38,12 +42,15 @@ public struct PersistedKeyboardSetting<Value: Codable> {
     private let userDefaults: UserDefaults
     
     public var wrappedValue: Value {
-        get {
-            let persisted = userDefaults.object(forKey: key)
-            return persisted as? Value ?? defaultValue
+         get {
+            let object = userDefaults.object(forKey: key)
+            guard let data = object as? Data else { return defaultValue }
+            let value = try? JSONDecoder().decode(Value.self, from: data)
+            return value ?? defaultValue
         }
         set {
-            userDefaults.set(newValue, forKey: key)
+            let data = try? JSONEncoder().encode(newValue)
+            userDefaults.set(data, forKey: key)
         }
     }
 }
