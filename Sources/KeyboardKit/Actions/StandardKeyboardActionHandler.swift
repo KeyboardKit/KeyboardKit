@@ -69,69 +69,108 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Actions
     
-    open func action(for gesture: KeyboardGesture, action: KeyboardAction, view: UIView) -> GestureAction? {
+    open func action(for gesture: KeyboardGesture, action: KeyboardAction, sender: Any?) -> GestureAction? {
         switch gesture {
-        case .longPress: return longPressAction(for: action, view: view)
-        case .repeatPress: return repeatAction(for: action, view: view)
-        case .tap: return tapAction(for: action, view: view)
+        case .longPress: return longPressAction(for: action, sender: sender)
+        case .repeatPress: return repeatAction(for: action, sender: sender)
+        case .tap: return tapAction(for: action, sender: sender)
         }
     }
     
-    open func longPressAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
-        tapAction(for: action, view: view)
+    open func longPressAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
+        tapAction(for: action, sender: sender)
     }
     
-    open func repeatAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
-        guard action == .backspace else { return nil }
-        return tapAction(for: action, view: view)
+    open func repeatAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
+        if action != .backspace { return nil }
+        return tapAction(for: action, sender: sender)
     }
     
-    open func tapAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
+    open func tapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
         inputViewControllerAction(for: action) ?? textDocumentProxyAction(for: action)
     }
     
     
     // MARK: - Action Handling
     
-    open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, view: UIView) {
-        guard let gestureAction = self.action(for: gesture, action: action, view: view) else { return }
+    open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
+        guard let gestureAction = self.action(for: gesture, action: action, sender: sender) else { return }
         gestureAction()
-        animationButtonTap(for: view)
-        triggerAudioFeedback(for: action)
-        triggerHapticFeedback(for: gesture, on: action)
+        triggerAnimation(for: gesture, on: action, sender: sender)
+        triggerAudioFeedback(for: gesture, on: action, sender: sender)
+        triggerHapticFeedback(for: gesture, on: action, sender: sender)
     }
     
     open func handleLongPress(on action: KeyboardAction, view: UIView) {
-        handle(.longPress, on: action, view: view)
+        handle(.longPress, on: action, sender: view)
     }
     
     open func handleRepeat(on action: KeyboardAction, view: UIView) {
-        handle(.repeatPress, on: action, view: view)
+        handle(.repeatPress, on: action, sender: view)
     }
     
     open func handleTap(on action: KeyboardAction, view: UIView) {
-        handle(.tap, on: action, view: view)
+        handle(.tap, on: action, sender: view)
     }
     
     
     // MARK: - Feedback
     
-    open func animationButtonTap(for view: UIView) {
-        (view as? KeyboardButton)?.animateStandardTap()
+    open func triggerAnimation(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
+        (sender as? KeyboardButton)?.animateStandardTap()
     }
     
-    open func triggerAudioFeedback(for action: KeyboardAction) {
+    open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         if action.isDeleteAction { return audioConfiguration.deleteFeedback.trigger() }
         if action.isInputAction { return audioConfiguration.inputFeedback.trigger() }
         if action.isSystemAction { return audioConfiguration.systemFeedback.trigger() }
     }
     
-    open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
+    open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         switch gesture {
         case .tap: hapticConfiguration.tapFeedback.trigger()
         case .longPress: hapticConfiguration.longPressFeedback.trigger()
         case .repeatPress: hapticConfiguration.repeatFeedback.trigger()
         }
+    }
+    
+    
+    // MARK: - DEPRECATED
+    
+    @available(*, deprecated, message: "Use action(for sender:) instead")
+    open func action(for gesture: KeyboardGesture, action: KeyboardAction, view: UIView) -> GestureAction? {
+        self.action(for: gesture, action: action, sender: view)
+    }
+    
+    @available(*, deprecated, message: "Use triggerAnimation(for:on:sender:) instead")
+    open func animationButtonTap(for view: UIView) {
+        triggerAnimation(for: .tap, on: .none, sender: view)
+    }
+    
+    @available(*, deprecated, message: "Use longPressAction(for sender:) instead")
+    open func longPressAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
+        tapAction(for: action, view: view)
+    }
+    
+    @available(*, deprecated, message: "Use repeatAction(for sender:) instead")
+    open func repeatAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
+        guard action == .backspace else { return nil }
+        return tapAction(for: action, view: view)
+    }
+    
+    @available(*, deprecated, message: "Use tapAction(for sender:) instead")
+    open func tapAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
+        inputViewControllerAction(for: action) ?? textDocumentProxyAction(for: action)
+    }
+    
+    @available(*, deprecated, message: "Use triggerAudioFeedback(for:on:sender:) instead")
+    open func triggerAudioFeedback(for action: KeyboardAction) {
+        triggerAudioFeedback(for: .tap, on: action, sender: nil)
+    }
+    
+    @available(*, deprecated, message: "Use triggerHapticFeedback(for:on:sender:) instead")
+    open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
+        triggerHapticFeedback(for: gesture, on: action, sender: nil)
     }
 }
 

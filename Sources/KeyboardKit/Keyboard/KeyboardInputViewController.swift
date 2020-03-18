@@ -127,21 +127,21 @@ private extension KeyboardInputViewController {
     func addLongPressGesture(to button: KeyboardButton) {
         button.addLongPressAction { [weak self] in
             let handler = self?.keyboardActionHandler
-            handler?.handleLongPress(on: button.action, view: button)
+            handler?.handle(.longPress, on: button.action, sender: button)
         }
     }
     
     func addRepeatingGesture(to button: KeyboardButton) {
         button.addRepeatingAction { [weak self] in
             let handler = self?.keyboardActionHandler
-            handler?.handleRepeat(on: button.action, view: button)
+            handler?.handle(.repeatPress, on: button.action, sender: button)
         }
     }
     
     func addTapGesture(to button: KeyboardButton) {
         button.addTapAction { [weak self] in
             let handler = self?.keyboardActionHandler
-            handler?.handleTap(on: button.action, view: button)
+            handler?.handle(.tap, on: button.action, sender: button)
         }
     }
 }

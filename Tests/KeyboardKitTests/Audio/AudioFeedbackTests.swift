@@ -23,7 +23,7 @@ class AudioFeedbackTest: QuickSpec {
             
             it("if has valid system id") {
                 expect(value(for: .input)).to(equal(1104))
-                expect(value(for: .system)).to(equal(1104))
+                expect(value(for: .system)).to(equal(1156))
                 expect(value(for: .delete)).to(equal(1155))
                 expect(value(for: .custom(id: 123))).to(equal(123))
                 expect(value(for: .none)).to(beNil())

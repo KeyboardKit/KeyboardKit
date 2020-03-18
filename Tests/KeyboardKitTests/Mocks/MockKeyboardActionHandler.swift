@@ -12,6 +12,10 @@ import UIKit
 
 class MockKeyboardActionHandler: Mock, KeyboardActionHandler {
     
+    func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
+        invoke(handle, args: (gesture, action, sender))
+    }
+    
     func handleTap(on action: KeyboardAction, view: UIView) {
         invoke(handleTap, args: (action, view))
     }

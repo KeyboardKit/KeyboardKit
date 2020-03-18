@@ -40,31 +40,31 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     // MARK: - Actions
     
-    override func longPressAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
+    override func longPressAction(for action: KeyboardAction, sender: Any?) -> StandardKeyboardActionHandler.GestureAction? {
         switch action {
         case .image(_, _, let imageName): return { [weak self] in self?.saveImage(UIImage(named: imageName)!) }
         case .shift: return switchToCapsLockedKeyboard
-        default: return super.longPressAction(for: action, view: view)
+        default: return super.longPressAction(for: action, sender: sender)
         }
     }
     
-    override func tapAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
+    override func tapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
         switch action {
-        case .character: return handleCharacter(action, for: view)
+        case .character: return handleCharacter(action, for: sender)
         case .image(_, _, let imageName): return { [weak self] in self?.copyImage(UIImage(named: imageName)!) }
         case .shift: return switchToUppercaseKeyboard
         case .shiftDown: return switchToLowercaseKeyboard
-        case .space: return handleSpace(for: view)
+        case .space: return handleSpace(for: sender)
         case .switchToKeyboard(let type): return { [weak self] in self?.demoViewController?.keyboardType = type }
-        default: return super.tapAction(for: action, view: view)
+        default: return super.tapAction(for: action, sender: sender)
         }
     }
     
     
     // MARK: - Action Handling
     
-    override func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, view: UIView) {
-        super.handle(gesture, on: action, view: view)
+    override func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
+        super.handle(gesture, on: action, sender: sender)
         demoViewController?.requestAutocompleteSuggestions()
     }
 }
@@ -97,8 +97,8 @@ private extension DemoKeyboardActionHandler {
         alert("Copied to pasteboard!")
     }
     
-    func handleCharacter(_ action: KeyboardAction, for view: UIView) -> GestureAction {
-        let baseAction = super.tapAction(for: action, view: view)
+    func handleCharacter(_ action: KeyboardAction, for sender: Any?) -> GestureAction {
+        let baseAction = super.tapAction(for: action, sender: sender)
         return { [weak self] in
             baseAction?()
             let isUppercased = self?.keyboardShiftState == .uppercased
@@ -107,8 +107,8 @@ private extension DemoKeyboardActionHandler {
         }
     }
     
-    func handleSpace(for view: UIView) -> GestureAction {
-        let baseAction = super.tapAction(for: .space, view: view)
+    func handleSpace(for sender: Any?) -> GestureAction {
+        let baseAction = super.tapAction(for: .space, sender: sender)
         return { [weak self] in
             baseAction?()
             let isNonAlpha = self?.demoViewController?.keyboardType != .alphabetic(uppercased: false)

@@ -3,7 +3,10 @@
 
 ## 2.7.0
 
-This version adds the very first (and so far limited) support for `SwiftUI`, as well as a bunch of new features.
+This version adds the very first (and so far limited) support for `SwiftUI`. Many new features are iOS 13-specific.
+
+This version also deprecates a bunch of action handling logic and adds new functions that doesn't rely on `UIView`.
+
 
 ### New features
 
@@ -11,6 +14,7 @@ This version adds the very first (and so far limited) support for `SwiftUI`, as 
 * `NextKeyboardUIButton` makes use of this new functionality, and sets itself up with a `globe` icon as well.
 * `PhotoImageService` and `StandardPhotoImageService` can be used to save images to photos with a completion instead of a target and a selector.
 * `KeyboardImageActions` makes it easy to create a bunch of `.image` actions from a set of image names.
+* `KeyboardActionHandler` has a new `open handle(_ gesture:on:view:)`  which is already implemented in `StandardKeyboardActionHandler`.
 
 * The `evened(for gridSize: Int)` `[KeyboardAction]` extension appends enough `.none` actions to evenly fit the grid size.
 * The `saveToPhotos(completion:)` `UIImage` extension is a completion-based way of saving images to photos.
@@ -35,11 +39,10 @@ All SwiftUI-related functionality is placed in the `SwiftUI` folder.
 
 ### UIKit
 
-There are a few new UIKit features and extensions:
+There are some new UIKit features and extensions:
 
-* The new `NextKeyboardUIButton` sets itself up with a `globe` icon and works as a standard "next keyboard" button.
-
-* The new `.globe` `UIImage` extension returns the icon that is used for "next keyboard".
+* `NextKeyboardUIButton` sets itself up with a `globe` icon and works as a standard "next keyboard" button.
+* `UIImage.globe` returns the icon that is used for "next keyboard".
 
 All UIKit-specific functionality is placed in the `UIKit` folder. UIKit logic that can be used in SwiftUI is outside it.
 
@@ -47,7 +50,13 @@ All UIKit-specific functionality is placed in the `UIKit` folder. UIKit logic th
 
 * `isInputAction` now includes `.space`.
 * `isSystemAction` no longer includes `.space`.
-* `UIColor.clearTappable` has been renamed to `UIColor.clearInteractable`
+
+### Deprecations
+
+* `UIColor.clearTappable` has been renamed to `UIColor.clearInteractable`.
+* `KeyboardActionHandler` has deprecated the gesture-explicit handle functions.
+* `KeyboardActionHandler` has deprecated the view-explicit handle function in favor of an optional `Any` sender variant.
+* `StandardKeyboardActionHandler` has deprecated a bunch of `UIView`-explicit functions in favor of an optional `Any` sender variant.
 
 
 ## 2.6.2

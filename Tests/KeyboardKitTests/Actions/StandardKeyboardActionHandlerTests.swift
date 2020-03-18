@@ -34,7 +34,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         describe("long press action") {
             
             func action(for action: KeyboardAction) -> Any? {
-                return handler.longPressAction(for: action, view: UIView())
+                return handler.longPressAction(for: action, sender: UIView())
             }
             
             it("is by default the tap action") {
@@ -47,7 +47,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         describe("repeat action") {
             
             func action(for action: KeyboardAction) -> Any? {
-                return handler.repeatAction(for: action, view: UIView())
+                return handler.repeatAction(for: action, sender: UIView())
             }
             
             it("is only applied to backspace") {
@@ -60,7 +60,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         describe("tap action") {
             
             func action(for action: KeyboardAction) -> Any? {
-                return handler.tapAction(for: action, view: UIView())
+                return handler.tapAction(for: action, sender: UIView())
             }
             
             it("is not nil for action types with standard action") {
@@ -97,9 +97,9 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         describe("giving haptic feedback for long press") {
             
             it("can't be properyly tested") {
-                handler.triggerAudioFeedback(for: .dismissKeyboard)
-                handler.triggerAudioFeedback(for: .backspace)
-                handler.triggerAudioFeedback(for: .dismissKeyboard)
+                handler.triggerAudioFeedback(for: .tap, on: .dismissKeyboard, sender: nil)
+                handler.triggerAudioFeedback(for: .tap, on: .backspace, sender: nil)
+                handler.triggerAudioFeedback(for: .tap, on: .dismissKeyboard, sender: nil)
                 // TODO Test this
             }
         }
