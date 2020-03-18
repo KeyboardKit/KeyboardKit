@@ -9,31 +9,43 @@
 import SwiftUI
 
 /**
- This button can be used for `.image` actions. It's a button
- that contains an image, and has a tap and long press action.
- 
- If you need any other modifiers, like `accessibility`, more
- actions etc. you can add it to the button instance.
+ This button shows an image with a tap and long press action.
  */
 @available(iOS 13.0, *)
 public struct KeyboardImageButton: View {
     
+    /**
+     Create a keyboard image button that uses the `image` of
+     the provided `KeyboardAction`, if it has one.
+     */
     public init(
         action: KeyboardAction,
         tapAction: @escaping () -> Void = {},
         longPressAction: @escaping () -> Void = {}) {
-        self.action = action
+        self.image = Image(uiImage: action.image)
         self.tapAction = tapAction
         self.longPressAction = longPressAction
     }
     
-    private let action: KeyboardAction
+    /**
+     Create a keyboard image button with a custom `Image`.
+     */
+    public init(
+        image: Image,
+        tapAction: @escaping () -> Void = {},
+        longPressAction: @escaping () -> Void = {}) {
+        self.image = image
+        self.tapAction = tapAction
+        self.longPressAction = longPressAction
+    }
+    
+    private let image: Image
     private let tapAction: () -> Void
     private let longPressAction: () -> Void
     
     public var body: some View {
         Button(action: tapAction) {
-            Image(uiImage: action.image)
+            image
                 .resizable()
                 .scaledToFit()
                 .onTapGesture(perform: tapAction)

@@ -22,7 +22,7 @@ There are some new views that can be used in SwiftUI-based apps and keyboard ext
 * `KeyboardGrid` distributes actions evenly within a grid.
 * `KeyboardGridRow` is used for each row in the grid.
 * `KeyboardHostingController` can be used to wrap any `View` in a keyboard extension.
-* `KeyboardImageButton` view lets you bind an `.image` action to a SwiftUI button.
+* `KeyboardImageButton` view lets you show an `.image` action or `Image` in a `Button`.
 * `NextKeyboardButton` sets itself up with a `globe` icon and works as a standard "next keyboard" button.
 * `PersistedKeyboardSetting` is a new property wrapper for persisting settings in `UserDefaults`. 
 
