@@ -17,15 +17,13 @@
 
 ## About KeyboardKit
 
-`KeyboardKit` is a Swift library that helps you create keyboard experiences for iOS, e.g. in custom keyboard extensions.
-
-`KeyboardKit` supports a bunch of keyboard actions and keyboard types and lets you create keyboards with text inputs, emojis, actions, images etc.
+`KeyboardKit` is a Swift library that helps you create custom keyboard extensions for iOS. It supports a bunch of different actions and keyboard types and lets you create keyboards with text inputs, emojis, actions, images etc.
 
 <p align="center">
     <img src ="Resources/Demo.gif" />
 </p>
 
-If you're new to iOS keyboard extensions, I can recommend reading [this great guide][Guide], which goes through almost everything you need to know about iOS keyboard extensions. 
+If you're new to iOS keyboard extensions, I can recommend [this great guide][Guide]. 
 
 
 ## Installation
