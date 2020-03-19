@@ -17,11 +17,15 @@
 
 ## About KeyboardKit
 
-`KeyboardKit` is a Swift library that helps you create keyboard extensions for iOS. It supports a bunch of keyboard actions and keyboard types and lets you create keyboards with text inputs, emojis, actions, images etc.
+`KeyboardKit` is a Swift library that helps you create keyboard experiences for iOS, e.g. in custom keyboard extensions.
+
+`KeyboardKit` supports a bunch of keyboard actions and keyboard types and lets you create keyboards with text inputs, emojis, actions, images etc.
 
 <p align="center">
     <img src ="Resources/Demo.gif" />
 </p>
+
+If you're new to iOS keyboard extensions, I can recommend reading [this great guide][Guide], which goes through almost everything you need to know about iOS keyboard extensions. 
 
 
 ## Installation
@@ -83,14 +87,22 @@ Check out [this action guide][Keyboard-Actions] for more information about avail
 * `emojis`
 * `custom(name)`
 
-These types comes without any logic. You can bind them to keyboard buttons to let the user switch between keyboard types, but since these types have no universal meaning, you have to implement the corresponding keyboards yourself.
+You can bind these types to keyboard buttons to let the user switch between keyboard types, but since these types have no universal meaning, you have to implement the corresponding keyboards yourself.
 
 
 ## Components and views
 
 `KeyboardKit` comes with a bunch of component and views that can be composed into keyboard, e.g. `vertical and horizontal keyboard components`, `buttons`, `button rows`, `toolbars` etc.
 
-Check out [this component guide][Components] and [this view guide][Views] for more information about available components and views and how to use them in your custom keyboard extensions.
+### UIKit
+
+Check out [this component guide][Components] and [this view guide][Views] for more information about available `UIKit` components and how to use them in `UIKit`-based keyboard extensions.
+
+### SwiftUI
+
+Since version `2.7.0`, KeyboardKit has limited support for `SwiftUI`, including new views and tools that helps you build keyboards in SwiftUI. 
+
+I will add readmes and of these later, but until then you can find all about them in the `SwiftUI` folder. The release notes also thoroughly describe the new features.  
 
 
 ## Autocomplete
@@ -177,3 +189,5 @@ KeyboardKit is available under the MIT license. See LICENSE file for more info.
 [Components]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Components.md
 [Keyboard-Actions]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Keyboard-Actions.md
 [Views]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Views.md
+
+[Guide]: https://shyngys.com/ios-custom-keyboard-guide

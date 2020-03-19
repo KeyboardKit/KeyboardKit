@@ -16,6 +16,7 @@ This version also deprecates a bunch of action handling logic and adds new funct
 * `KeyboardImageActions` makes it easy to create a bunch of `.image` actions from a set of image names.
 * `KeyboardActionHandler` has a new `open handle(_ gesture:on:view:)`  which is already implemented in `StandardKeyboardActionHandler`.
 
+* The new, global `isKeyboardEnabled` function can be used to check if a certain keyboard extension is enabled or not.
 * The `evened(for gridSize: Int)` `[KeyboardAction]` extension appends enough `.none` actions to evenly fit the grid size.
 * The `saveToPhotos(completion:)` `UIImage` extension is a completion-based way of saving images to photos.
 
