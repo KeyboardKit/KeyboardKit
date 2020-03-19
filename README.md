@@ -99,9 +99,7 @@ Since version `2.7.0`, KeyboardKit has support for `SwiftUI`, with new tools and
 
 SwiftUI will be a major boost for KeyboardKit, but currently contains a tiny set of views and components, like `buttons`, a `grid`, extensions etc.
 
-Due to a [Swift toolchain bug][Bug], SwiftUI support sadly have had to be moved to a separate library: [KeyboardKitSwiftUI][KeyboardKitSwiftUI]. This is hopefully temporary, but until the bug is fixed, you have to add both `KeyboardKit` and `KeyboardKitSwiftUI` yo your SwiftUI-based keyboard.
-
-Please have a look at the [KeyboardKitSwiftUI][KeyboardKitSwiftUI] repo for more information about the SwiftUI-based parts of the library.
+Due to a [Swift toolchain bug][Bug], SwiftUI support sadly have had to be moved to a separate library: [KeyboardKitSwiftUI][KeyboardKitSwiftUI]. This is hopefully temporary, but until the bug is fixed, you have to add both `KeyboardKit` and `KeyboardKitSwiftUI` yo your SwiftUI-based keyboard. Please have a look at KeyboardKitSwiftUI for more information about the SwiftUI-based parts of the library.
 
 
 ## Autocomplete

@@ -37,7 +37,7 @@ There are some new views that can be used in SwiftUI-based apps and keyboard ext
 * `KeyboardInputViewController` `setup(with:View)`  sets up a `KeyboardHostingController`.
 * `View` `withClearInteractableBackground()` can be used to make an entire view interactable.
 
-All SwiftUI-related functionality is placed in the `SwiftUI` folder.
+Note that `KeyboardKitSwiftUI` is a separate framework, which you have to import to get access to these features.
 
 ### UIKit
 
