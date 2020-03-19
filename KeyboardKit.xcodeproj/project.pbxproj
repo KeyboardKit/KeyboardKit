@@ -118,6 +118,7 @@
 		848DFC5E23A03CB400197B91 /* UIView+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848DFC5D23A03CB400197B91 /* UIView+Visibility.swift */; };
 		A903FB7123EBFD7800575482 /* StandardKeyboardActionHandler+Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = A903FB7023EBFD7800575482 /* StandardKeyboardActionHandler+Feedback.swift */; };
 		A95922292423C27000CDE5B9 /* Global+IsKeyboardEnabled.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95922282423C27000CDE5B9 /* Global+IsKeyboardEnabled.swift */; };
+		A959222B2423C89500CDE5B9 /* URL+ApplicationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A959222A2423C89500CDE5B9 /* URL+ApplicationSettings.swift */; };
 		A97047D223D4FFD7001AB983 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97047D123D4FFD7001AB983 /* UIView+Constraints.swift */; };
 		A97047D523D507AC001AB983 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = A97047D423D507AC001AB983 /* Quick */; };
 		A97047D823D507D4001AB983 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = A97047D723D507D4001AB983 /* Nimble */; };
@@ -385,6 +386,7 @@
 		848DFC5D23A03CB400197B91 /* UIView+Visibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Visibility.swift"; sourceTree = "<group>"; };
 		A903FB7023EBFD7800575482 /* StandardKeyboardActionHandler+Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StandardKeyboardActionHandler+Feedback.swift"; sourceTree = "<group>"; };
 		A95922282423C27000CDE5B9 /* Global+IsKeyboardEnabled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Global+IsKeyboardEnabled.swift"; sourceTree = "<group>"; };
+		A959222A2423C89500CDE5B9 /* URL+ApplicationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+ApplicationSettings.swift"; sourceTree = "<group>"; };
 		A97047D123D4FFD7001AB983 /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		A9BC824A2418062300A28B87 /* PhotosImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosImageService.swift; sourceTree = "<group>"; };
 		A9BC824C2418068B00A28B87 /* StandardPhotosImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardPhotosImageService.swift; sourceTree = "<group>"; };
@@ -969,6 +971,7 @@
 				OBJ_34 /* String+Uppercased.swift */,
 				OBJ_42 /* UITextDocumentProxy+CurrentWord.swift */,
 				OBJ_43 /* UITextDocumentProxy+Delete.swift */,
+				A959222A2423C89500CDE5B9 /* URL+ApplicationSettings.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1518,6 +1521,7 @@
 				OBJ_295 /* Shadow.swift in Sources */,
 				OBJ_296 /* UIView+Shadow.swift in Sources */,
 				OBJ_297 /* KeyboardButtonCollectionView.swift in Sources */,
+				A959222B2423C89500CDE5B9 /* URL+ApplicationSettings.swift in Sources */,
 				OBJ_298 /* KeyboardButtonRowCollectionView.swift in Sources */,
 				OBJ_299 /* KeyboardCollectionView.swift in Sources */,
 				OBJ_300 /* KeyboardButtonRow.swift in Sources */,
