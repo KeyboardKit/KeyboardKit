@@ -12,11 +12,12 @@ import UIKit
 public extension URL {
     
     /**
-     The `URL` to the system keyboard settings. You can open
-     it from the hosting app with `UIApplication`s `openUrl`
-     functionality.
+     The `URL` to the app's settings screen, if any.
+     
+     If the app has no custom settings screen, this url will
+     open the main system settings screen.
      */
     static var keyboardSettings: URL? {
-        URL(string: "App-Prefs:root=General&path=Keyboard")
+        URL(string: UIApplication.openSettingsURLString)
     }
 }
