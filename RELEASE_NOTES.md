@@ -1,6 +1,11 @@
 # Release Notes
 
 
+## 2.7.1
+
+This version adjusts the keyboard settings url.
+
+
 ## 2.7.0
 
 This version adds the very first (and so far limited) support for `SwiftUI`. Many new features are iOS 13-specific.
