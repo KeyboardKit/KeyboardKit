@@ -1,6 +1,11 @@
 # Release Notes
 
 
+## 2.7.4
+
+This version upgrades the podspec's Swift version.
+
+
 ## 2.7.3
 
 This version upgrades its Nimble and Mockery dependencies.
