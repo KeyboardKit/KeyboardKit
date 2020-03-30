@@ -1,9 +1,14 @@
 # Release Notes
 
 
-## 2.7.1
+## 2.7.3
 
-This version adjusts the keyboard settings url.
+This version upgrades its Nimble and Mockery dependencies.
+
+
+## 2.7.1, 2.7.2
+
+These versions adjust the keyboard settings url.
 
 
 ## 2.7.0
