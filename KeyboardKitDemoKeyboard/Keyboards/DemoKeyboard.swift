@@ -21,9 +21,7 @@ extension DemoKeyboard {
     
     static func bottomActions(leftmost: KeyboardAction, for vc: KeyboardViewController) -> KeyboardActionRow {
         let actions = [leftmost, switchAction(for: vc), .space, imageAction(for: vc), .newLine]
-        let isEmoji = vc.keyboardType == .emojis
-        let isImage = vc.keyboardType == .images
-        let includeImageActions = !isEmoji && !isImage
+        let includeImageActions = vc.keyboardType.isEmojiOrImage
         return includeImageActions ? actions : actions.withoutImageActions
     }
 }
@@ -46,5 +44,12 @@ private extension Collection where Element == KeyboardAction {
     var withoutImageActions: [KeyboardAction] {
         self.filter { $0 != .switchToKeyboard(.emojis) }
             .filter { $0 != .switchToKeyboard(.images) }
+    }
+}
+
+private extension KeyboardType {
+
+    var isEmojiOrImage: Bool {
+        return self == .emojis || self == .images
     }
 }
