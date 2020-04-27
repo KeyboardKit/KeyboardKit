@@ -16,7 +16,7 @@ import UIKit
  The handler uses the standard keyboard actions when actions
  are tapped, long pressed or repeated on your keyboard. This
  behavior can be tweaked by creating a subclass and override
- `xAction(for:)` and `handleX(on:)`.
+ `xAction(for:sender:)` and `handleX(on:sender:)`.
  
  You can enable haptic feedback by providing haptic feedback
  configuration when you create an instance of the class. You
@@ -64,7 +64,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Types
     
-    public typealias GestureAction = (() -> Void)
+    public typealias GestureAction = () -> Void
     
     
     // MARK: - Actions
@@ -79,7 +79,9 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     open func doubleTapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
-        nil
+        if action != .space { return nil }
+        textDocumentProxy?.deleteBackward(times: 1)
+        return textDocumentProxyAction(for: .character(". "))
     }
     
     open func longPressAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {

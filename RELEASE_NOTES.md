@@ -1,11 +1,18 @@
 # Release Notes
 
 
-## 2.7.5
+## 2.8.0
 
-This version fixes a gesture-related memory leak by no longer using the gesture extensions that caused the problem.
+This version fixes a gesture-related memory leak by no longer using the gesture extensions that caused the problem. Instead, `KeyboardInputViewController` has a new set of internal gesture extensions that helps with adding gestures to a button.
 
-Instead, `KeyboardInputViewController` has a new set of internal gesture extensions that helps with adding gestures to a button. 
+This version also adds double-tap action handling to KeyboardKit. It's handled like taps, long presses and repeating actions, but it has no default logic. To handle it, create a custom action handler and override `handle(_ gesture:,on action:, sender:)`.
+
+KeyboardKit does not put any rules on the gesture handling. If you return an action for both a single tap and a double tap, both will be triggered.
+
+
+### New features
+
+* A new `.doubleTap` keyboard gesture.
 
 ### Deprecations
 

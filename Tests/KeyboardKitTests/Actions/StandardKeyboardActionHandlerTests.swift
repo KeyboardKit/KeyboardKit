@@ -120,9 +120,10 @@ private class StandardKeyboardActionHandlerTestClass: StandardKeyboardActionHand
     
     override func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
         switch gesture {
-        case .tap: recorder.giveHapticFeedbackForTap(on: action)
+        case .doubleTap: recorder.giveHapticFeedbackForDoubleTap(on: action)
         case .longPress: recorder.giveHapticFeedbackForLongPress(on: action)
         case .repeatPress: recorder.giveHapticFeedbackForRepeat(on: action)
+        case .tap: recorder.giveHapticFeedbackForTap(on: action)
         }
     }
 }

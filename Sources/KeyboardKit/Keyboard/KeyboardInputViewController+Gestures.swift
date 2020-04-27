@@ -13,6 +13,10 @@ import UIKit
 
 extension KeyboardInputViewController {
     
+    /**
+     Add the standard keybard gestures for taps, double taps, long press
+     and repeat press. This is internal and is used by
+     */
     func addStandardKeyboardGestures(to button: KeyboardButton) {
         addDoubleTapGesture(to: button)
         addTapGesture(to: button)
@@ -34,6 +38,7 @@ private extension KeyboardInputViewController {
     func addDoubleTapGesture(to button: KeyboardButton) {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
         gesture.numberOfTapsRequired = 2
+        gesture.delegate = self
         button.addGestureRecognizer(gesture)
     }
     
@@ -56,7 +61,7 @@ private extension KeyboardInputViewController {
     
     func handle(_ gesture: KeyboardGesture, on button: UIView?) {
         guard let button = button as? KeyboardButton else { return }
-        keyboardActionHandler.handle(gesture, on: button.action, sender: self)
+        keyboardActionHandler.handle(gesture, on: button.action, sender: button)
     }
 }
 
@@ -80,5 +85,19 @@ private extension KeyboardInputViewController {
     
     func handleRepeat(_ gesture: UIGestureRecognizer) {
         handle(.repeatPress, on: gesture.view)
+    }
+}
+
+
+// MARK: - UIGestureRecognizerDelegate
+
+/**
+ This delegate is required, to be able to use the double-tap
+ gesture without cancelling out single taps.
+ */
+extension KeyboardInputViewController: UIGestureRecognizerDelegate {
+    
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        true
     }
 }
