@@ -14,9 +14,7 @@ public extension UIView {
     
     typealias TapAction = () -> Void
     
-    /**
-     Add a tap gesture recognizer to the view.
-    */
+    @available(*, deprecated, message: "This function will be removed in a future version of KeyboardKit.")
     func addTapAction(numberOfTapsRequired: Int = 1, action: @escaping TapAction) {
         tapAction = action
         isUserInteractionEnabled = true
@@ -25,9 +23,7 @@ public extension UIView {
         addGestureRecognizer(recognizer)
     }
 
-    /**
-     Remove all repeating gesture recognizers from the view.
-    */
+    @available(*, deprecated, message: "This function will be removed in a future version of KeyboardKit.")
     func removeTapAction() {
         gestureRecognizers?
             .filter { $0 is UITapGestureRecognizer }

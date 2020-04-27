@@ -49,8 +49,8 @@ open class KeyboardInputViewController: UIInputViewController {
      This handler can be used to handle any keyboard actions
      that are triggered by the user or the system.
      
-     A `StandardKeyboardActionHandler` instance will be used
-     by default, if you don't apply a custom one.
+     If no custom action handler is set, the controller will
+     use a `StandardKeyboardActionHandler` by default.
      */
     open lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(inputViewController: self)
     
@@ -87,9 +87,7 @@ open class KeyboardInputViewController: UIInputViewController {
      that should serve as a keyboard button.
      */
     open func addKeyboardGestures(to button: KeyboardButton) {
-        button.removeTapAction()
-        button.removeLongPressAction()
-        button.removeRepeatingAction()
+        button.gestureRecognizers?.forEach { button.removeGestureRecognizer($0) }
         if button.action == .switchKeyboard { return addSwitchKeyboardGesture(to: button) }
         addTapGesture(to: button)
         addLongPressGesture(to: button)
@@ -111,37 +109,5 @@ open class KeyboardInputViewController: UIInputViewController {
     open override func textWillChange(_ textInput: UITextInput?) {
         super.textWillChange(textInput)
         viewWillSyncWithTextDocumentProxy()
-    }
-}
-
-
-// MARK: - Private Functions
-
-private extension KeyboardInputViewController {
-    
-    func addSwitchKeyboardGesture(to button: KeyboardButton) {
-        guard let button = button as? UIButton else { return }
-        button.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
-    }
-    
-    func addLongPressGesture(to button: KeyboardButton) {
-        button.addLongPressAction { [weak self] in
-            let handler = self?.keyboardActionHandler
-            handler?.handle(.longPress, on: button.action, sender: button)
-        }
-    }
-    
-    func addRepeatingGesture(to button: KeyboardButton) {
-        button.addRepeatingAction { [weak self] in
-            let handler = self?.keyboardActionHandler
-            handler?.handle(.repeatPress, on: button.action, sender: button)
-        }
-    }
-    
-    func addTapGesture(to button: KeyboardButton) {
-        button.addTapAction { [weak self] in
-            let handler = self?.keyboardActionHandler
-            handler?.handle(.tap, on: button.action, sender: button)
-        }
     }
 }

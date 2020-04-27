@@ -1,9 +1,27 @@
 # Release Notes
 
 
+## 2.7.5
+
+This version fixes a memory leak in the gesture handling, by deprecating and no longer using the previous gesture extensions.
+
+Instead, `KeyboardInputViewController` has a new set of internal gesture extensions that helps with adding gestures to a button.
+
+### Deprecations
+
+* The `UIView` `addLongPressAction` extension is deprecated.
+* The `UIView` `removeLongPressAction` extension is deprecated.
+* The `UIView` `addRepeatingAction` extension is deprecated.
+* The `UIView` `removeRepeatingAction` extension is deprecated.
+* The `UIView` `addTapAction` extension is deprecated.
+* The `UIView` `removeTapAction` extension is deprecated.
+
+
+
 ## 2.7.4
 
 This version upgrades the podspec's Swift version.
+
 
 
 ## 2.7.3
@@ -11,9 +29,11 @@ This version upgrades the podspec's Swift version.
 This version upgrades its Nimble and Mockery dependencies.
 
 
+
 ## 2.7.1, 2.7.2
 
 These versions adjust the keyboard settings url.
+
 
 
 ## 2.7.0
@@ -76,14 +96,17 @@ All UIKit-specific functionality is placed in the `UIKit` folder. UIKit logic th
 * `StandardKeyboardActionHandler` has deprecated a bunch of `UIView`-explicit functions in favor of an optional `Any` sender variant.
 
 
+
 ## 2.6.2
 
 This version fixes a [bug](https://github.com/danielsaidi/KeyboardKit/issues/60), where `moveCursorForward` moved the cursor incorrectly.
 
 
+
 ## 2.6.1
 
 This version adds `enableScrolling()` and `disableScrolling()` to `AutocompleteToolbar`. This makes it possible to make the entire toolbar scroll if its content doesn't fit the screen.
+
 
 
 ## 2.6.0
@@ -102,6 +125,7 @@ Deprecations:
 * The `AutocompleteBugFixTimer` and all timer-related logic has been deprecated.
 * The `AutoCompleteSuggestionProvider`'s `provideAutocompleteSuggestions(for:completion:)` is deprecated and replaced with `autocompleteSuggestions(for:completion:)`.
 * The `StandardKeyboardActionHandler`'s `handleXXX(on:)` are now deprecated and replaced with `handle(:on:view:)`. 
+
 
 
 ## 2.5.0
@@ -133,9 +157,11 @@ Deprecated stuff:
 The old `handle` functions are still declared in the `KeyboardActionHandler` protocol, but will be removed in the next major version. 
 
 
+
 ## 2.4.0
 
 This version adds Xcode 11 and iOS 13 support, including support for dark mode and high contrast color variants.
+
 
 
 ## 2.3.0
@@ -155,6 +181,7 @@ There is also a new `KeyboardShiftState` enum that you can use to keep track of 
  **IMPORTANT** iOS has a bug that causes `textWillChange` and `textDidChange` to not be called when the user types, only when the cursor moves. This causes autocomplete problems, since the current word is not changing as the user types. Due to this, the input view controller must use an ugly hack to force the text document proxy to update. Have a look at the demo app to see how this is done.
 
 
+
 ## 2.2.1
 
 This version solves some major bugs in the repeating gesture recognizer and makes some `public` parts of the library `open`.
@@ -162,6 +189,7 @@ This version solves some major bugs in the repeating gesture recognizer and make
 The standard action handler now handles repeating actions for backspace. You can customize this in the same way as you customize tap and long press handling.
 
 You can test the new repeating logic in the demo app.
+
 
 
 ## 2.2.0
@@ -182,6 +210,7 @@ I have added a `RepeatingGestureRecognizer` and an extension that you can use to
 Thanks to [@arampak](https://github.com/arampak), the demo app now handles shift state and long press better, to make the overall experience much nicer and close to the native keyboard. The keyboard buttons also registers tap events over the entire button area, not just the button view.
 
 
+
 ## 2.1.0
 
 This version makes a bunch of previously internal extensions public. It also adds a lot more unit tests so that almost all parts of the library are tested.
@@ -191,11 +220,13 @@ The default tap animation has been configured to allow user interaction, which r
 I have added a `KeyboardToolbar` class, which you can use to create toolbars. It's super simple so far, and only creates a stack view to which you can any views you like.
 
 
+
 ## 2.0.1
 
 This version adds a public shadow extension to the main library and shuffles classes and extensions around. It also restructures the example project to make it less cluttered.
 
 I noticed that the build number bump still (and randomly) bumps the build number incorrectly, which causes build errors. I have therefore abandoned this approach, and instead fixes the build number to 1 in all targets.
+
 
 
 ## 2.0.0
@@ -221,6 +252,7 @@ New `KeyboardAction`s are added and `nextKeyboard` has been renamed to `switchKe
 `KeyboardInputViewController` will now resize the extension to the size of the stack view, or any other size constraints you may set. The old `setHeight(to:)` function has therefore been removed.
 
 
+
 ## 1.0.0
 
 This version upgrades `KeyboardKit` to Swift 5 and has many breaking changes:
@@ -236,6 +268,7 @@ This version upgrades `KeyboardKit` to Swift 5 and has many breaking changes:
  * Most extensions have been made internal, to avoid exposing them externally
 
 
+
 ## 0.8.0
 
 `Keyboard` has been given an optional ID, which can be used to uniquely identify a keyboard. This makes it easier to manage multiple keyboards in an app.
@@ -245,14 +278,17 @@ This version upgrades `KeyboardKit` to Swift 5 and has many breaking changes:
 A PR by [micazeve](https://github.com/micazeve) is merged. It limits the current page index that is persisted for a keyboard, to avoid bugs if the page count has changed since persisting the value.
 
 
+
 ## 0.7.1
 
 This version updates KeyboardKit to `Swift 4.2` and makes it ready for Xcode 10.
 
 
+
 ## 0.7.0
 
 The grid keyboard view controller uses a new way to calculate the available item space and item size for a certain number of rows and buttons per row. This means that we can now use top and bottom content insets to create vertical margins for grid-based keyboards.
+
 
 
 ## 0.6.2
@@ -262,9 +298,11 @@ I previously used the async image functions to quickly setup a lot of images for
 However, `KeyboardKit` now has collection view-based keyboards, which are better suited for the task above, since they only render the cells they need. This will solve the image loading issues, which means that the async image extensions will no longer be needed. I have therefore removed `UIImage+Async` and the `Threading` folder from the library, to keep it as small as possible.
 
 
+
 ## 0.6.1
 
 No functional changes, just README updates and improvements. The version bump is required to give CocoaPod users the latest docs.
+
 
 
 ## 0.6.0

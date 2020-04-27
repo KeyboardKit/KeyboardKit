@@ -14,9 +14,7 @@ public extension UIView {
     
     typealias LongPressAction = (() -> Void)
     
-    /**
-     Add a long press gesture recognizer to the view.
-     */
+    @available(*, deprecated, message: "This function will be removed in a future version of KeyboardKit.")
     func addLongPressAction(action: @escaping LongPressAction) {
         longPressAction = action
         isUserInteractionEnabled = true
@@ -24,9 +22,7 @@ public extension UIView {
         addGestureRecognizer(recognizer)
     }
     
-    /**
-     Remove all long press gesture recognizers from the view.
-    */
+    @available(*, deprecated, message: "This function will be removed in a future version of KeyboardKit.")
     func removeLongPressAction() {
         gestureRecognizers?
             .filter { $0 is UILongPressGestureRecognizer }

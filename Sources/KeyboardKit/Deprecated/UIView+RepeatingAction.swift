@@ -12,9 +12,7 @@ public extension UIView {
     
     typealias RepeatingAction = (() -> Void)
     
-    /**
-     Add a repeating gesture recognizer to the view.
-    */
+    @available(*, deprecated, message: "This function will be removed in a future version of KeyboardKit.")
     func addRepeatingAction(
         initialDelay: TimeInterval = 0.8,
         repeatInterval: TimeInterval = 0.1,
@@ -27,9 +25,7 @@ public extension UIView {
         addGestureRecognizer(recognizer)
     }
     
-    /**
-     Remove all repeating gestures recognizer from the view.
-    */
+    @available(*, deprecated, message: "This function will be removed in a future version of KeyboardKit.")
     func removeRepeatingAction() {
         gestureRecognizers?
             .filter { $0 is RepeatingGestureRecognizer }
