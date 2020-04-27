@@ -73,9 +73,7 @@ class KeyboardInputViewControllerTests: QuickSpec {
             }
             
             it("removes already added gestures") {
-                button.addTapAction {}
-                button.addLongPressAction {}
-                button.addRepeatingAction {}
+                viewController.addKeyboardGestures(to: button)
                 let oldTap = button.gestureRecognizers!.first { $0 is UITapGestureRecognizer }
                 let oldPress = button.gestureRecognizers!.first { $0 is UILongPressGestureRecognizer }
                 let oldRepeat = button.gestureRecognizers!.first { $0 is RepeatingGestureRecognizer }

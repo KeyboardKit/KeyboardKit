@@ -19,6 +19,7 @@ class HapticFeedbackConfigurationTests: QuickSpec {
             it("uses none for all") {
                 let config = HapticFeedbackConfiguration.noFeedback
                 expect(config.tapFeedback).to(equal(HapticFeedback.none))
+                expect(config.doubleTapFeedback).to(equal(HapticFeedback.none))
                 expect(config.longPressFeedback).to(equal(HapticFeedback.none))
                 expect(config.repeatFeedback).to(equal(HapticFeedback.none))
             }
@@ -29,6 +30,7 @@ class HapticFeedbackConfigurationTests: QuickSpec {
             it("uses standard haptic feedbacks") {
                 let config = HapticFeedbackConfiguration.standard
                 expect(config.tapFeedback).to(equal(HapticFeedback.standardTapFeedback))
+                expect(config.doubleTapFeedback).to(equal(HapticFeedback.standardDoubleTapFeedback))
                 expect(config.longPressFeedback).to(equal(HapticFeedback.standardLongPressFeedback))
                 expect(config.repeatFeedback).to(equal(HapticFeedback.none))
             }

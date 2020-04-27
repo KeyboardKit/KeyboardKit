@@ -15,6 +15,7 @@ import Foundation
 public enum KeyboardGesture {
 
     case tap
+    case doubleTap
     case longPress
     case repeatPress
 }

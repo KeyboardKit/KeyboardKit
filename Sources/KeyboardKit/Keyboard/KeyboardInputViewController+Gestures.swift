@@ -9,9 +9,33 @@
 import UIKit
 
 
-// MARK: - Internal Functions
+// MARK: - Intenral Functions
 
 extension KeyboardInputViewController {
+    
+    func addStandardKeyboardGestures(to button: KeyboardButton) {
+        addDoubleTapGesture(to: button)
+        addTapGesture(to: button)
+        addLongPressGesture(to: button)
+        addRepeatingGesture(to: button)
+    }
+    
+    func addSwitchKeyboardGesture(to button: KeyboardButton) {
+        guard let button = button as? UIButton else { return }
+        button.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
+    }
+}
+
+
+// MARK: - Private Functions
+
+private extension KeyboardInputViewController {
+    
+    func addDoubleTapGesture(to button: KeyboardButton) {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
+        gesture.numberOfTapsRequired = 2
+        button.addGestureRecognizer(gesture)
+    }
     
     func addLongPressGesture(to button: KeyboardButton) {
         let gesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
@@ -23,11 +47,6 @@ extension KeyboardInputViewController {
             self?.handle(.repeatPress, on: button)
         }
         button.addGestureRecognizer(gesture)
-    }
-    
-    func addSwitchKeyboardGesture(to button: KeyboardButton) {
-        guard let button = button as? UIButton else { return }
-        button.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
     }
     
     func addTapGesture(to button: KeyboardButton) {
@@ -45,6 +64,10 @@ extension KeyboardInputViewController {
 // MARK: - Private Actions
 
 @objc private extension KeyboardInputViewController {
+    
+    func handleDoubleTap(_ gesture: UIGestureRecognizer) {
+        handle(.doubleTap, on: gesture.view)
+    }
     
     func handleLongPress(_ gesture: UIGestureRecognizer) {
         guard gesture.state == .began else { return }

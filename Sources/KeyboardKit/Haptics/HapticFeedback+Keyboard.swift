@@ -16,6 +16,13 @@ public extension HapticFeedback {
     static var standardTapFeedback: HapticFeedback {
         .mediumImpact
     }
+
+    /**
+     The standard haptic feedback for a button double tap.
+     */
+    static var standardDoubleTapFeedback: HapticFeedback {
+        .mediumImpact
+    }
     
     /**
      The standard haptic feedback for a button long press.

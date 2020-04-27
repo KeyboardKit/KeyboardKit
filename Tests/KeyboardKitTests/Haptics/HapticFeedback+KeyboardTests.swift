@@ -22,6 +22,14 @@ class HapticFeedback_KeyboardTests: QuickSpec {
             }
         }
         
+        describe("standard double tap feedback") {
+            
+            it("is medium impact") {
+                let feedback = HapticFeedback.standardDoubleTapFeedback
+                expect(feedback).to(equal(.mediumImpact))
+            }
+        }
+        
         describe("standard long press feedback") {
             
             it("is heavy impact") {

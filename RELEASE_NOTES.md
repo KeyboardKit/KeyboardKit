@@ -3,9 +3,9 @@
 
 ## 2.7.5
 
-This version fixes a memory leak in the gesture handling, by deprecating and no longer using the previous gesture extensions.
+This version fixes a gesture-related memory leak by no longer using the gesture extensions that caused the problem.
 
-Instead, `KeyboardInputViewController` has a new set of internal gesture extensions that helps with adding gestures to a button.
+Instead, `KeyboardInputViewController` has a new set of internal gesture extensions that helps with adding gestures to a button. 
 
 ### Deprecations
 

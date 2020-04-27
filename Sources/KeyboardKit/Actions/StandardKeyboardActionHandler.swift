@@ -71,10 +71,15 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     open func action(for gesture: KeyboardGesture, action: KeyboardAction, sender: Any?) -> GestureAction? {
         switch gesture {
+        case .doubleTap: return doubleTapAction(for: action, sender: sender)
         case .longPress: return longPressAction(for: action, sender: sender)
         case .repeatPress: return repeatAction(for: action, sender: sender)
         case .tap: return tapAction(for: action, sender: sender)
         }
+    }
+    
+    open func doubleTapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
+        nil
     }
     
     open func longPressAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
@@ -128,9 +133,10 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         switch gesture {
-        case .tap: hapticConfiguration.tapFeedback.trigger()
+        case .doubleTap: hapticConfiguration.doubleTapFeedback.trigger()
         case .longPress: hapticConfiguration.longPressFeedback.trigger()
         case .repeatPress: hapticConfiguration.repeatFeedback.trigger()
+        case .tap: hapticConfiguration.tapFeedback.trigger()
         }
     }
     

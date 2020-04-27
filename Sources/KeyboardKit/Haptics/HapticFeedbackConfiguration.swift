@@ -15,14 +15,17 @@ public struct HapticFeedbackConfiguration {
     
     public init(
         tapFeedback: HapticFeedback,
+        doubleTapFeedback: HapticFeedback = .standardDoubleTapFeedback,
         longPressFeedback: HapticFeedback,
         repeatFeedback: HapticFeedback) {
         self.tapFeedback = tapFeedback
+        self.doubleTapFeedback = doubleTapFeedback
         self.longPressFeedback = longPressFeedback
         self.repeatFeedback = repeatFeedback
     }
  
     public let tapFeedback: HapticFeedback
+    public let doubleTapFeedback: HapticFeedback
     public let longPressFeedback: HapticFeedback
     public let repeatFeedback: HapticFeedback
     
@@ -32,6 +35,7 @@ public struct HapticFeedbackConfiguration {
     public static var noFeedback: HapticFeedbackConfiguration {
         HapticFeedbackConfiguration(
             tapFeedback: .none,
+            doubleTapFeedback: .none,
             longPressFeedback: .none,
             repeatFeedback: .none
         )
@@ -44,6 +48,7 @@ public struct HapticFeedbackConfiguration {
     public static var standard: HapticFeedbackConfiguration {
         HapticFeedbackConfiguration(
             tapFeedback: .standardTapFeedback,
+            doubleTapFeedback: .standardDoubleTapFeedback,
             longPressFeedback: .standardLongPressFeedback,
             repeatFeedback: .none
         )
