@@ -143,11 +143,8 @@ private extension AutocompleteToolbarLabel {
     }
     
     func setupTapAction() {
-        addTapAction { [weak self] in
-            guard let self = self else { return }
-            let text = self.text + " "
-            self.textDocumentProxy?.replaceCurrentWord(with: text)
-        }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        addGestureRecognizer(tap)
     }
 }
 
@@ -170,5 +167,15 @@ private extension AutocompleteToolbarLabel {
     
     func setupAccessibility() {
         accessibilityTraits = .button
+    }
+}
+
+
+// MARK: - Private Actions
+
+@objc private extension AutocompleteToolbarLabel {
+    
+    func handleTap() {
+        textDocumentProxy?.replaceCurrentWord(with: text + " ")
     }
 }

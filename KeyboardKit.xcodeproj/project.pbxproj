@@ -72,7 +72,6 @@
 		846704B3234A725300355331 /* DemoKeyboardActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846704A6234A725300355331 /* DemoKeyboardActionHandler.swift */; };
 		846704B4234A725300355331 /* DemoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846704A8234A725300355331 /* DemoButton.swift */; };
 		846704B5234A725300355331 /* DemoButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846704A9234A725300355331 /* DemoButton.xib */; };
-		846704B6234A725300355331 /* DemoAutocompleteLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846704AA234A725300355331 /* DemoAutocompleteLabel.swift */; };
 		846704B7234A725300355331 /* NumericKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846704AC234A725300355331 /* NumericKeyboard.swift */; };
 		846704B8234A725300355331 /* AlphabeticKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846704AD234A725300355331 /* AlphabeticKeyboard.swift */; };
 		846704B9234A725300355331 /* SymbolicKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846704AE234A725300355331 /* SymbolicKeyboard.swift */; };
@@ -362,7 +361,6 @@
 		846704A6234A725300355331 /* DemoKeyboardActionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoKeyboardActionHandler.swift; sourceTree = "<group>"; };
 		846704A8234A725300355331 /* DemoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoButton.swift; sourceTree = "<group>"; };
 		846704A9234A725300355331 /* DemoButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DemoButton.xib; sourceTree = "<group>"; };
-		846704AA234A725300355331 /* DemoAutocompleteLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoAutocompleteLabel.swift; sourceTree = "<group>"; };
 		846704AC234A725300355331 /* NumericKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericKeyboard.swift; sourceTree = "<group>"; };
 		846704AD234A725300355331 /* AlphabeticKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlphabeticKeyboard.swift; sourceTree = "<group>"; };
 		846704AE234A725300355331 /* SymbolicKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymbolicKeyboard.swift; sourceTree = "<group>"; };
@@ -653,7 +651,6 @@
 			children = (
 				846704A8234A725300355331 /* DemoButton.swift */,
 				846704A9234A725300355331 /* DemoButton.xib */,
-				846704AA234A725300355331 /* DemoAutocompleteLabel.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -1365,7 +1362,6 @@
 				84086E3423558C0F0030D95A /* KeyboardViewController+Setup.swift in Sources */,
 				846704BE234A727F00355331 /* Assets.swift in Sources */,
 				846704B3234A725300355331 /* DemoKeyboardActionHandler.swift in Sources */,
-				846704B6234A725300355331 /* DemoAutocompleteLabel.swift in Sources */,
 				846704BC234A725300355331 /* DemoAutocompleteSuggestionProvider.swift in Sources */,
 				846704BA234A725300355331 /* DemoKeyboard.swift in Sources */,
 				846704B4234A725300355331 /* DemoButton.swift in Sources */,
