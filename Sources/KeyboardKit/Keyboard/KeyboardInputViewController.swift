@@ -87,7 +87,7 @@ open class KeyboardInputViewController: UIInputViewController {
      that should serve as a keyboard button.
      */
     open func addKeyboardGestures(to button: KeyboardButton) {
-        button.gestureRecognizers?.forEach { button.removeGestureRecognizer($0) }
+        button.removeAllGestureRecognizers()
         if button.action == .switchKeyboard { return addSwitchKeyboardGesture(to: button) }
         addStandardKeyboardGestures(to: button)
     }
