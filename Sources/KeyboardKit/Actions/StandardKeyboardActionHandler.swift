@@ -189,11 +189,11 @@ private extension StandardKeyboardActionHandler {
     
     func inputViewControllerAction(for action: KeyboardAction) -> GestureAction? {
         guard let inputAction = action.standardInputViewControllerAction else { return nil }
-        return { inputAction(self.inputViewController) }
+        return { [weak self] in inputAction(self?.inputViewController) }
     }
     
     func textDocumentProxyAction(for action: KeyboardAction) -> GestureAction? {
         guard let proxyAction = action.standardTextDocumentProxyAction else { return nil }
-        return { proxyAction(self.textDocumentProxy) }
+        return { [weak self] in proxyAction(self?.textDocumentProxy) }
     }
 }
