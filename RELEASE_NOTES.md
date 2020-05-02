@@ -1,6 +1,11 @@
 # Release Notes
 
 
+## 2.8.1
+
+This version fixes some division by zero bugs.
+
+
 ## 2.8.0
 
 This version fixes a gesture-related memory leak by no longer using the gesture extensions that caused the problem. Instead, `KeyboardInputViewController` has a new set of internal gesture extensions that helps with adding gestures to a button.
