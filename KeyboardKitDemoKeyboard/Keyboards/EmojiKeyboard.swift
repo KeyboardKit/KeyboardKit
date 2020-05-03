@@ -24,7 +24,7 @@ import KeyboardKit
 struct EmojiKeyboard: DemoKeyboard {
     
     init(in viewController: KeyboardViewController) {
-        self.bottomActions = EmojiKeyboard.bottomActions(
+        self.bottomActions = EmojiKeyboard.bottomActionsEmoji(
             leftmost: EmojiKeyboard.switchAction,
             for: viewController)
     }
