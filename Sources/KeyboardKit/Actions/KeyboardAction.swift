@@ -44,6 +44,7 @@ public enum KeyboardAction: Equatable {
     shift,
     shiftDown,
     space,
+    switchEmoji(category: String, startPage: Int, endPage: Int, type: KeyboardEmojisType),
     switchKeyboard,
     switchToKeyboard(KeyboardType),
     tab

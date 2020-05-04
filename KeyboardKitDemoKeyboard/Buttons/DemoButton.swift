@@ -84,6 +84,7 @@ private extension KeyboardAction {
         case .newLine: return "return"
         case .shift, .shiftDown: return "⇧"
         case .space: return "space"
+        case .switchEmoji(_, _, _,let type): return buttonEmoji(for: type)
         case .switchToKeyboard(let type): return buttonText(for: type)
         default: return nil
         }
@@ -97,6 +98,19 @@ private extension KeyboardAction {
         case .numeric: return "123"
         case .symbolic: return "#+="
         default: return "???"
+        }
+    }
+    
+    func buttonEmoji(for KeyboardEmojisType: KeyboardEmojisType) -> String {
+        switch KeyboardEmojisType {
+        case .smileys: return "😀"
+        case .animals: return "🐻"
+        case .foods: return "🍔"
+        case .activities: return "⚽️"
+        case .travels: return "🚗"
+        case .objects: return "⏰"
+        case .symbols: return "💱"
+        case .flags: return "🏳️"
         }
     }
     

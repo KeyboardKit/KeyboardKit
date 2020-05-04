@@ -54,6 +54,7 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
         case .image(_, _, let imageName): return { [weak self] in self?.copyImage(UIImage(named: imageName)!) }
         case .shift: return switchToUppercaseKeyboard
         case .shiftDown: return switchToLowercaseKeyboard
+        case .switchEmoji(_, let startPage, _, _): return { [weak self] in self?.switchEmoji(page: startPage) }
         case .space: return handleSpace(for: sender)
         case .switchToKeyboard(let type): return { [weak self] in self?.demoViewController?.keyboardType = type }
         default: return super.tapAction(for: action, sender: sender)
@@ -139,5 +140,9 @@ private extension DemoKeyboardActionHandler {
     
     func switchToUppercaseKeyboard() {
         switchToAlphabeticKeyboard( .uppercased)
+    }
+    func switchEmoji(page: Int){
+        UserDefaults.standard.set(page , forKey: KeyboardSetting.currentPageIndex.key(for: "KeyboardButtonRowCollectionView"))
+        demoViewController?.keyboardType = .emojis
     }
 }
