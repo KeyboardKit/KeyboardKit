@@ -55,7 +55,7 @@ class KeyboardViewController: KeyboardInputViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        super.viewDidAppear(animated)
         setupKeyboard()
     }
     
