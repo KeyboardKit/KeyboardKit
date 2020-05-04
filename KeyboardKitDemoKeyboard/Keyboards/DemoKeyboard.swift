@@ -24,6 +24,11 @@ extension DemoKeyboard {
         let includeImageAction = vc.keyboardType.shouldIncludeImageAction
         return includeImageAction ? actions : actions.withoutImageActions
     }
+    static func bottomActionsEmoji(leftmost: KeyboardAction, for vc: KeyboardViewController) -> KeyboardActionRow {
+        let actions = [leftmost, switchAction(for: vc), .space, imageAction(for: vc), .backspace]
+        let includeImageAction = vc.keyboardType.shouldIncludeImageAction
+        return includeImageAction ? actions : actions.withoutImageActions
+    }
 }
 
 private extension DemoKeyboard {
