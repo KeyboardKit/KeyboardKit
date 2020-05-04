@@ -21,6 +21,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		15133C75245862B300748945 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15133C74245862B300748945 /* Emoji.swift */; };
+		1522F22C2458A2F6000C2ADD /* KeyboardEmojisType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1522F22B2458A2F6000C2ADD /* KeyboardEmojisType.swift */; };
+		15D5728424604C490062BD01 /* EmojiCategoriesKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D5728324604C490062BD01 /* EmojiCategoriesKeyboard.swift */; };
 		84086E30235587DC0030D95A /* KeyboardViewController+Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84086E2F235587DC0030D95A /* KeyboardViewController+Buttons.swift */; };
 		84086E32235588200030D95A /* KeyboardViewController+Autocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84086E31235588200030D95A /* KeyboardViewController+Autocomplete.swift */; };
 		84086E3423558C0F0030D95A /* KeyboardViewController+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84086E3323558C0F0030D95A /* KeyboardViewController+Setup.swift */; };
@@ -306,6 +309,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		15133C74245862B300748945 /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
+		1522F22B2458A2F6000C2ADD /* KeyboardEmojisType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEmojisType.swift; sourceTree = "<group>"; };
+		15D5728324604C490062BD01 /* EmojiCategoriesKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCategoriesKeyboard.swift; sourceTree = "<group>"; };
 		84086E2F235587DC0030D95A /* KeyboardViewController+Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardViewController+Buttons.swift"; sourceTree = "<group>"; };
 		84086E31235588200030D95A /* KeyboardViewController+Autocomplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardViewController+Autocomplete.swift"; sourceTree = "<group>"; };
 		84086E3323558C0F0030D95A /* KeyboardViewController+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardViewController+Setup.swift"; sourceTree = "<group>"; };
@@ -660,9 +666,11 @@
 		846704AB234A725300355331 /* Keyboards */ = {
 			isa = PBXGroup;
 			children = (
+				15133C74245862B300748945 /* Emoji.swift */,
 				846704AF234A725300355331 /* DemoKeyboard.swift */,
 				846704AD234A725300355331 /* AlphabeticKeyboard.swift */,
 				846704B0234A725300355331 /* EmojiKeyboard.swift */,
+				15D5728324604C490062BD01 /* EmojiCategoriesKeyboard.swift */,
 				84623A9B235615600024987B /* ImageKeyboard.swift */,
 				846704AC234A725300355331 /* NumericKeyboard.swift */,
 				846704AE234A725300355331 /* SymbolicKeyboard.swift */,
@@ -956,6 +964,7 @@
 				A953CA5B2457376600013375 /* KeyboardInputViewController+Gestures.swift */,
 				OBJ_58 /* KeyboardShiftState.swift */,
 				OBJ_59 /* KeyboardType.swift */,
+				1522F22B2458A2F6000C2ADD /* KeyboardEmojisType.swift */,
 			);
 			path = Keyboard;
 			sourceTree = "<group>";
@@ -1364,6 +1373,7 @@
 				846704B7234A725300355331 /* NumericKeyboard.swift in Sources */,
 				84086E3423558C0F0030D95A /* KeyboardViewController+Setup.swift in Sources */,
 				846704BE234A727F00355331 /* Assets.swift in Sources */,
+				15D5728424604C490062BD01 /* EmojiCategoriesKeyboard.swift in Sources */,
 				846704B3234A725300355331 /* DemoKeyboardActionHandler.swift in Sources */,
 				846704BC234A725300355331 /* DemoAutocompleteSuggestionProvider.swift in Sources */,
 				846704BA234A725300355331 /* DemoKeyboard.swift in Sources */,
@@ -1374,6 +1384,7 @@
 				84670460234A711100355331 /* KeyboardViewController.swift in Sources */,
 				84086E30235587DC0030D95A /* KeyboardViewController+Buttons.swift in Sources */,
 				846704B8234A725300355331 /* AlphabeticKeyboard.swift in Sources */,
+				15133C75245862B300748945 /* Emoji.swift in Sources */,
 				846704BB234A725300355331 /* EmojiKeyboard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1409,6 +1420,7 @@
 				OBJ_270 /* CGFloat+KeyboardDimensions.swift in Sources */,
 				OBJ_271 /* Sequence+Batch.swift in Sources */,
 				847060002355A18700B2B2A8 /* HapticFeedbackConfiguration.swift in Sources */,
+				1522F22C2458A2F6000C2ADD /* KeyboardEmojisType.swift in Sources */,
 				OBJ_272 /* String+Uppercased.swift in Sources */,
 				A9BC8251241810E800A28B87 /* KeyboardImageActions.swift in Sources */,
 				847060052355A5D900B2B2A8 /* KeyboardGesture.swift in Sources */,
