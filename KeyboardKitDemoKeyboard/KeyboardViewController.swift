@@ -88,7 +88,6 @@ class KeyboardViewController: KeyboardInputViewController {
     
     var emojiCategoryTitleLabel = UILabel()
     var emojiCollectionView: KeyboardButtonRowCollectionView!
-    var emojiBottomActions: KeyboardActionRow = []
     
     private(set) var keyboardType = KeyboardType.alphabetic(uppercased: false) {
         didSet { setupKeyboard() }

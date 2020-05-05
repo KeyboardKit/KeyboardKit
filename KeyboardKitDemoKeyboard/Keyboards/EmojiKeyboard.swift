@@ -76,17 +76,13 @@ struct EmojiKeyboard: DemoKeyboard {
         return ""
     }
     
-    public mutating func bottomActionsEmojiCategories(pageSize: Int) -> KeyboardActionRow {
-        var bottomActions: KeyboardActionRow = []
-        bottomActions.append(.keyboardType(.alphabetic(uppercased: false)))
-        for (index, category) in categories.enumerated() {
-            let startPage = emoji.count / pageSize
-            emoji += category.emojiActions
-            var endPage = (emoji.count / pageSize)
-            endPage += index == (categories.count - 1) ? 1: 0
-            bottomActions.append(.emojiCategory(category, startPage: startPage, endPage: endPage))
-        }
-        bottomActions.append(.backspace)
-        return bottomActions
-    }
+    private(set) lazy var bottomActions: KeyboardActionRow = {
+        var actions: KeyboardActionRow = []
+        actions.append(.keyboardType(.alphabetic(uppercased: false)))
+        actions.append(contentsOf: categories.map {
+            .emojiCategory($0, startPage: 0, endPage: 0)
+        })
+        actions.append(.backspace)
+        return actions
+    }()
 }
