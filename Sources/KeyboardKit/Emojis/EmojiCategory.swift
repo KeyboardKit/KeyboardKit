@@ -20,6 +20,11 @@ public enum EmojiCategory: Equatable, CaseIterable {
 public extension EmojiCategory {
     
     /**
+     An ordered list of all available categories.
+     */
+    static var all: [EmojiCategory] { allCases }
+    
+    /**
      An ordered list with all emojis in the category.
      */
     var emojis: [String] {
