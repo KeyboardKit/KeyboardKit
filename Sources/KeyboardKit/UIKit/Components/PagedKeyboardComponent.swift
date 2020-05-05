@@ -32,16 +32,25 @@ extension PagedKeyboardComponent {
 
 public extension PagedKeyboardComponent {
     
+    var persistedCurrentPageIndex: Int {
+        defaults.integer(forKey: settingsKey)
+    }
+    
     func persistCurrentPageIndex() {
         guard canPersistPageIndex else { return }
-        UserDefaults.standard.set(currentPageIndex, forKey: settingsKey)
+        defaults.set(currentPageIndex, forKey: settingsKey)
     }
     
     func restoreCurrentPageIndex() {
         guard canRestorePageIndex else { return }
-        let index = UserDefaults.standard.integer(forKey: settingsKey)
+        let index = defaults.integer(forKey: settingsKey)
         guard index != currentPageIndex else { return }
         guard index < numberOfPages else { return }
         currentPageIndex = index
     }
+}
+
+private extension PagedKeyboardComponent {
+    
+    var defaults: UserDefaults { .standard }
 }

@@ -49,7 +49,5 @@ private extension Collection where Element == KeyboardAction {
 
 private extension KeyboardType {
 
-    var shouldIncludeImageAction: Bool {
-        self != .emojis && self != .images
-    }
+    var shouldIncludeImageAction: Bool { self != .images }
 }

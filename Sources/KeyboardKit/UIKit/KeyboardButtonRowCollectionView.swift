@@ -85,11 +85,11 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboar
         public let pageSize: Int
         
         public var totalHeight: CGFloat {
-            return rowHeight * CGFloat(rowsPerPage)
+            rowHeight * CGFloat(rowsPerPage)
         }
         
         public static var empty: Configuration {
-            return Configuration(rowHeight: 0, rowsPerPage: 0, buttonsPerRow: 0)
+            Configuration(rowHeight: 0, rowsPerPage: 0, buttonsPerRow: 0)
         }
     }
     
@@ -130,13 +130,9 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboar
     
     // MARK: - PagedKeyboardViewController
     
-    open var canPersistPageIndex: Bool {
-        return !isDragging
-    }
+    open var canPersistPageIndex: Bool { !isDragging }
     
-    open var canRestorePageIndex: Bool {
-        return !isDragging
-    }
+    open var canRestorePageIndex: Bool { !isDragging }
     
     public var numberOfPages: Int {
         let numberOfRows = Double(rows.count)
@@ -149,11 +145,11 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboar
     // MARK: - UICollectionViewDataSource
     
     open func row(at indexPath: IndexPath) -> KeyboardActionRow {
-        return rows[indexPath.item]
+        rows[indexPath.item]
     }
     
     open override func numberOfItems(inSection section: Int) -> Int {
-        return rows.count
+        rows.count
     }
     
     open override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

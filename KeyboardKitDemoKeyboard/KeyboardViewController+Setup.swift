@@ -40,21 +40,18 @@ extension KeyboardViewController {
     }
     
     func setupEmojiKeyboard(for size: CGSize) {
-        var keyboard = EmojiKeyboard(in: self)
+        let keyboard = EmojiKeyboard(in: self)
         let config = keyboard.gridConfig
-        //let emojis = keyboard.orderEmojis(rowsPerPage: config.rowsPerPage, pageSize: config.pageSize) /** this function changes the order as the emojis are shown from top to bottom */
-        let view = KeyboardButtonRowCollectionView(id: "EmojiKeyboard", actions: [], configuration: config) { [unowned self] in return self.button(for: $0) }
+        let view = KeyboardButtonRowCollectionView(id: "EmojiKeyboard", actions: keyboard.actions, configuration: config) { [unowned self] in return self.button(for: $0) }
         let bottom = buttonRow(for: keyboard.bottomActions, distribution: .fillProportionally)
-        
-        // let pageIndex = EmojiKeyboard.currentPageIndex
-        emojiCategoryTitleLabel.text = "HEJ" /// keyboard.getNameCategoryEmoji(currentPage: 0, bottomActions: bottomActions)
-        
-        view.panGestureRecognizer.addTarget(self, action: #selector(checkCategoryEmoji(_:)))/** a gesture is added to detect each time the category is changed*/
-        
+        let label = emojiCategoryTitleLabel
+        emojiLabelUpdateAction = { label.text = keyboard.getCategory(at: view.persistedCurrentPageIndex)?.title ?? "" }
+        view.panGestureRecognizer.addTarget(self, action: #selector(refreshEmojiCategoryLabel(_:)))
         keyboardStackView.addArrangedSubview(emojiCategoryTitleLabel)
         keyboardStackView.addArrangedSubview(view)
         keyboardStackView.addArrangedSubview(bottom)
         emojiCollectionView = view
+        emojiLabelUpdateAction()
     }
     
     func setupImageKeyboard(for size: CGSize) {
@@ -76,11 +73,19 @@ extension KeyboardViewController {
         let rows = buttonRows(for: keyboard.actions, distribution: .fillProportionally)
         keyboardStackView.addArrangedSubviews(rows)
     }
+}
+
+
+// MARK: - Private actions
+
+@objc extension KeyboardViewController {
     
-    @objc func checkCategoryEmoji(_ recognizer: UIPanGestureRecognizer){
+    /**
+     For now, this pan action handler delays updating, since
+     the gesture ends before the scroll view stops scrolling.
+     */
+    func refreshEmojiCategoryLabel(_ recognizer: UIPanGestureRecognizer) {
         guard recognizer.state == .ended else { return }
-        guard let view = emojiCollectionView else { return }
-        ///let pageIndex = view.currentPageIndex
-        ///emojiCategoryTitleLabel.text = EmojiKeyboard(in: self).getNameCategoryEmoji(currentPage: pageIndex, bottomActions: emojiBottomActions)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: emojiLabelUpdateAction)
     }
 }
