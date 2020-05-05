@@ -77,16 +77,16 @@ private extension KeyboardAction {
         switch self {
         case .backspace: return "⌫"
         case .character(let text): return text
+        case .emojiCategory(let category, _, _): return buttonText(for: category)
         case .newLine: return "return"
         case .shift, .shiftDown: return "⇧"
         case .space: return "space"
-        case .switchEmoji(_, _, _,let type): return buttonEmoji(for: type)
         case .switchToKeyboard(let type): return buttonText(for: type)
         default: return nil
         }
     }
     
-    func buttonEmoji(for category: EmojiCategory) -> String {
+    func buttonText(for category: EmojiCategory) -> String {
         switch category {
         case .smileys: return "😀"
         case .animals: return "🐻"

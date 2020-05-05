@@ -34,6 +34,7 @@ public enum KeyboardAction: Equatable {
     command,
     custom(name: String),
     dismissKeyboard,
+    emojiCategory(_ category: EmojiCategory, startPage: Int, endPage: Int),
     escape,
     function,
     image(description: String, keyboardImageName: String, imageName: String),
@@ -44,7 +45,6 @@ public enum KeyboardAction: Equatable {
     shift,
     shiftDown,
     space,
-    switchEmoji(category: String, startPage: Int, endPage: Int, type: EmojiCategory),
     switchKeyboard,
     switchToKeyboard(KeyboardType),
     tab
@@ -79,26 +79,31 @@ public extension KeyboardAction {
     
     /**
      Whether or not the action is something that handles the
-     system instead of content.
+     system instead of any kind of content.
      */
     var isSystemAction: Bool {
         switch self {
         case .backspace: return true
         case .capsLock: return true
+        case .character: return false
         case .command: return true
+        case .custom: return false
         case .dismissKeyboard: return true
         case .escape: return true
         case .function: return true
+        case .image: return false
         case .moveCursorBackward: return true
         case .moveCursorForward: return true
         case .newLine: return true
         case .option: return true
         case .shift: return true
         case .shiftDown: return true
+        case .space: return false
+        case .emojiCategory: return false
         case .switchKeyboard: return true
         case .switchToKeyboard: return true
         case .tab: return true
-        default: return false
+        case .none: return false
         }
     }
     

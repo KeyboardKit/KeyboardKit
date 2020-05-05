@@ -51,10 +51,10 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     override func tapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
         switch action {
         case .character: return handleCharacter(action, for: sender)
+        case .emojiCategory(_, let startPage, _): return { [weak self] in self?.switchEmoji(page: startPage) }
         case .image(_, _, let imageName): return { [weak self] in self?.copyImage(UIImage(named: imageName)!) }
         case .shift: return switchToUppercaseKeyboard
         case .shiftDown: return switchToLowercaseKeyboard
-        case .switchEmoji(_, let startPage, _, _): return { [weak self] in self?.switchEmoji(page: startPage) }
         case .space: return handleSpace(for: sender)
         case .switchToKeyboard(let type): return { [weak self] in self?.demoViewController?.keyboardType = type }
         default: return super.tapAction(for: action, sender: sender)
@@ -125,6 +125,11 @@ private extension DemoKeyboardActionHandler {
         image.saveToPhotos(completionTarget: self, completionSelector: saveCompletion)
     }
     
+    func switchEmoji(page: Int) {
+        UserDefaults.standard.set(page , forKey: KeyboardSetting.currentPageIndex.key(for: "KeyboardButtonRowCollectionView"))
+        demoViewController?.keyboardType = .emojis
+    }
+    
     func switchToAlphabeticKeyboard(_ state: KeyboardShiftState) {
         keyboardShiftState = state
         demoViewController?.keyboardType = .alphabetic(uppercased: state.isUppercased)
@@ -140,9 +145,5 @@ private extension DemoKeyboardActionHandler {
     
     func switchToUppercaseKeyboard() {
         switchToAlphabeticKeyboard( .uppercased)
-    }
-    func switchEmoji(page: Int){
-        UserDefaults.standard.set(page , forKey: KeyboardSetting.currentPageIndex.key(for: "KeyboardButtonRowCollectionView"))
-        demoViewController?.keyboardType = .emojis
     }
 }

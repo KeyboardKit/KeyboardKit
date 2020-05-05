@@ -49,28 +49,26 @@ struct EmojiKeyboard: DemoKeyboard {
         return orderEmoji
     }
     
-    func getNameCategoryEmoji(currentPage: Int,bottomActions:KeyboardActionRow) -> String{
-        var label = ""
-        for  pagination in bottomActions {
-            if case let KeyboardAction.switchEmoji(category, startPage, endPage, _) = pagination {
-                if currentPage >= startPage && currentPage < endPage{
-                    label = category
-                    break
+    func getNameCategoryEmoji(currentPage: Int, bottomActions: KeyboardActionRow) -> String {
+        for bottomAction in bottomActions {
+            if case let KeyboardAction.emojiCategory(category, startPage, endPage) = bottomAction {
+                if currentPage >= startPage && currentPage < endPage {
+                    return category.title
                 }
             }
         }
-        return label
+        return ""
     }
     
-    public mutating func bottomActionsEmojiCategories(pageSize: Int) -> KeyboardActionRow  {
+    public mutating func bottomActionsEmojiCategories(pageSize: Int) -> KeyboardActionRow {
         var bottomActions: KeyboardActionRow = []
         bottomActions.append(.switchToKeyboard(.alphabetic(uppercased: false)))
-        for (index,typeCategory) in categories.enumerated() {
+        for (index,category) in categories.enumerated() {
             let startPage = emoji.count / pageSize
-            emoji += typeCategory.emojiActions
+            emoji += category.emojiActions
             var endPage = (emoji.count / pageSize)
             endPage += index == (categories.count - 1) ? 1: 0
-            bottomActions.append(.switchEmoji(category: typeCategory.title, startPage: startPage, endPage: endPage, type: typeCategory))
+            bottomActions.append(.emojiCategory(category, startPage: startPage, endPage: endPage))
         }
         bottomActions.append(.backspace)
         return bottomActions
