@@ -6,7 +6,7 @@ struct EmojiCategoriesKeyboard: DemoKeyboard {
     init(in viewController: KeyboardViewController) {
     }
     
-    var actions: [EmojiTypes] = Emojis().getEmoji()
+    var actions: [Emojis.EmojiTypes] = Emojis().getEmoji()
     private var emoji:[KeyboardAction] = []
     
     public func orderEmojis(rowsPerPage: Int, pageSize: Int) -> [KeyboardAction] {

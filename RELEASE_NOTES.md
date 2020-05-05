@@ -1,6 +1,15 @@
 # Release Notes
 
 
+## 2.9.0
+
+This version adds more emoji tools and an improved emoji keyboard in the demo app.
+
+### New features
+
+* The `EmojiCategory` represents the native iOS emoji keyboard categories.
+
+
 ## 2.8.1
 
 This version fixes some division by zero bugs.

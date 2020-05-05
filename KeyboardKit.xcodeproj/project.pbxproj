@@ -22,7 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		15133C75245862B300748945 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15133C74245862B300748945 /* Emoji.swift */; };
-		1522F22C2458A2F6000C2ADD /* KeyboardEmojisType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1522F22B2458A2F6000C2ADD /* KeyboardEmojisType.swift */; };
+		1522F22C2458A2F6000C2ADD /* EmojiCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1522F22B2458A2F6000C2ADD /* EmojiCategory.swift */; };
 		15D5728424604C490062BD01 /* EmojiCategoriesKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D5728324604C490062BD01 /* EmojiCategoriesKeyboard.swift */; };
 		84086E30235587DC0030D95A /* KeyboardViewController+Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84086E2F235587DC0030D95A /* KeyboardViewController+Buttons.swift */; };
 		84086E32235588200030D95A /* KeyboardViewController+Autocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84086E31235588200030D95A /* KeyboardViewController+Autocomplete.swift */; };
@@ -121,6 +121,7 @@
 		A903FB7123EBFD7800575482 /* StandardKeyboardActionHandler+Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = A903FB7023EBFD7800575482 /* StandardKeyboardActionHandler+Feedback.swift */; };
 		A95306A7245D36AF00CB37C3 /* UIScrollView+PageIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* UIScrollView+PageIndex.swift */; };
 		A95306A8245D36B100CB37C3 /* UIScrollView+PageIndexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95306A4245D35F100CB37C3 /* UIScrollView+PageIndexTests.swift */; };
+		A95307532461260900CB37C3 /* EmojiCategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95307522461260900CB37C3 /* EmojiCategoryTests.swift */; };
 		A953CA5C2457376600013375 /* KeyboardInputViewController+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = A953CA5B2457376600013375 /* KeyboardInputViewController+Gestures.swift */; };
 		A95922292423C27000CDE5B9 /* Global+IsKeyboardEnabled.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95922282423C27000CDE5B9 /* Global+IsKeyboardEnabled.swift */; };
 		A97047D223D4FFD7001AB983 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97047D123D4FFD7001AB983 /* UIView+Constraints.swift */; };
@@ -310,7 +311,7 @@
 
 /* Begin PBXFileReference section */
 		15133C74245862B300748945 /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
-		1522F22B2458A2F6000C2ADD /* KeyboardEmojisType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEmojisType.swift; sourceTree = "<group>"; };
+		1522F22B2458A2F6000C2ADD /* EmojiCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCategory.swift; sourceTree = "<group>"; };
 		15D5728324604C490062BD01 /* EmojiCategoriesKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCategoriesKeyboard.swift; sourceTree = "<group>"; };
 		84086E2F235587DC0030D95A /* KeyboardViewController+Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardViewController+Buttons.swift"; sourceTree = "<group>"; };
 		84086E31235588200030D95A /* KeyboardViewController+Autocomplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardViewController+Autocomplete.swift"; sourceTree = "<group>"; };
@@ -380,6 +381,7 @@
 		848DFC5D23A03CB400197B91 /* UIView+Visibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Visibility.swift"; sourceTree = "<group>"; };
 		A903FB7023EBFD7800575482 /* StandardKeyboardActionHandler+Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StandardKeyboardActionHandler+Feedback.swift"; sourceTree = "<group>"; };
 		A95306A4245D35F100CB37C3 /* UIScrollView+PageIndexTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+PageIndexTests.swift"; sourceTree = "<group>"; };
+		A95307522461260900CB37C3 /* EmojiCategoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCategoryTests.swift; sourceTree = "<group>"; };
 		A953CA5B2457376600013375 /* KeyboardInputViewController+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardInputViewController+Gestures.swift"; sourceTree = "<group>"; };
 		A95922282423C27000CDE5B9 /* Global+IsKeyboardEnabled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Global+IsKeyboardEnabled.swift"; sourceTree = "<group>"; };
 		A97047D123D4FFD7001AB983 /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
@@ -701,7 +703,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		84EC871223A2FC6C00DA8140 /* Deprecated */ = {
+		84EC871223A2FC6C00DA8140 /* _Deprecated */ = {
 			isa = PBXGroup;
 			children = (
 				OBJ_19 /* AutocompleteBugFixTimer.swift */,
@@ -711,7 +713,7 @@
 				OBJ_51 /* UIView+TapAction.swift */,
 				OBJ_21 /* UIInputViewController+AutocompleteBugFixTimer.swift */,
 			);
-			path = Deprecated;
+			path = _Deprecated;
 			sourceTree = "<group>";
 		};
 		A903FB7223ECB47200575482 /* Autocomplete */ = {
@@ -749,6 +751,22 @@
 				OBJ_100 /* UIViewAutoresizing+ExtrasTests.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A953074E24611E9A00CB37C3 /* Emojis */ = {
+			isa = PBXGroup;
+			children = (
+				1522F22B2458A2F6000C2ADD /* EmojiCategory.swift */,
+			);
+			path = Emojis;
+			sourceTree = "<group>";
+		};
+		A9530751246125F300CB37C3 /* Emojis */ = {
+			isa = PBXGroup;
+			children = (
+				A95307522461260900CB37C3 /* EmojiCategoryTests.swift */,
+			);
+			path = Emojis;
 			sourceTree = "<group>";
 		};
 		A9BC82492418061100A28B87 /* Images */ = {
@@ -964,7 +982,6 @@
 				A953CA5B2457376600013375 /* KeyboardInputViewController+Gestures.swift */,
 				OBJ_58 /* KeyboardShiftState.swift */,
 				OBJ_59 /* KeyboardType.swift */,
-				1522F22B2458A2F6000C2ADD /* KeyboardEmojisType.swift */,
 			);
 			path = Keyboard;
 			sourceTree = "<group>";
@@ -1020,6 +1037,7 @@
 				OBJ_76 /* Actions */,
 				OBJ_81 /* Alerts */,
 				84623A922355E5AD0024987B /* Audio */,
+				A9530751246125F300CB37C3 /* Emojis */,
 				OBJ_87 /* Extensions */,
 				OBJ_106 /* Haptics */,
 				A9BC824E241806E300A28B87 /* Images */,
@@ -1049,11 +1067,12 @@
 		OBJ_8 /* KeyboardKit */ = {
 			isa = PBXGroup;
 			children = (
+				84EC871223A2FC6C00DA8140 /* _Deprecated */,
 				OBJ_9 /* Actions */,
 				OBJ_15 /* Alerts */,
 				84623A892355DE240024987B /* Audio */,
 				OBJ_18 /* Autocomplete */,
-				84EC871223A2FC6C00DA8140 /* Deprecated */,
+				A953074E24611E9A00CB37C3 /* Emojis */,
 				OBJ_30 /* Extensions */,
 				OBJ_52 /* Haptics */,
 				A9BC82492418061100A28B87 /* Images */,
@@ -1420,7 +1439,7 @@
 				OBJ_270 /* CGFloat+KeyboardDimensions.swift in Sources */,
 				OBJ_271 /* Sequence+Batch.swift in Sources */,
 				847060002355A18700B2B2A8 /* HapticFeedbackConfiguration.swift in Sources */,
-				1522F22C2458A2F6000C2ADD /* KeyboardEmojisType.swift in Sources */,
+				1522F22C2458A2F6000C2ADD /* EmojiCategory.swift in Sources */,
 				OBJ_272 /* String+Uppercased.swift in Sources */,
 				A9BC8251241810E800A28B87 /* KeyboardImageActions.swift in Sources */,
 				847060052355A5D900B2B2A8 /* KeyboardGesture.swift in Sources */,
@@ -1523,6 +1542,7 @@
 				OBJ_356 /* MockTextDocumentProxy.swift in Sources */,
 				OBJ_357 /* UIView+ShadowTests.swift in Sources */,
 				OBJ_358 /* KeyboardButtonCollectionViewTests.swift in Sources */,
+				A95307532461260900CB37C3 /* EmojiCategoryTests.swift in Sources */,
 				OBJ_359 /* KeyboardButtonRowCollectionViewTests.swift in Sources */,
 				OBJ_360 /* KeyboardCollectionViewTests.swift in Sources */,
 				OBJ_361 /* KeyboardButtonRowTests.swift in Sources */,

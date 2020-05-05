@@ -6,18 +6,14 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
-/*
- 
- This demo-specific button view represents a keyboard button
- like the one used in the iOS system keyboard. The file also
- contains a set of extensions for `KeyboardAction` that only
- applies to this button type.
- 
- */
-
 import UIKit
 import KeyboardKit
 
+/**
+ This demo-specific button view represents a keyboard button
+ like the one used in the iOS system keyboard. The file also
+ contains `KeyboardAction` extensions used by this class.
+ */
 class DemoButton: KeyboardButtonView {
     
     public func setup(with action: KeyboardAction, in viewController: KeyboardInputViewController, distribution: UIStackView.Distribution = .fillEqually) {
@@ -90,19 +86,8 @@ private extension KeyboardAction {
         }
     }
     
-    func buttonText(for keyboardType: KeyboardType) -> String {
-        switch keyboardType {
-        case .alphabetic: return "ABC"
-        case .emojis: return "🙂"
-        case .images: return "🖼️"
-        case .numeric: return "123"
-        case .symbolic: return "#+="
-        default: return "???"
-        }
-    }
-    
-    func buttonEmoji(for KeyboardEmojisType: KeyboardEmojisType) -> String {
-        switch KeyboardEmojisType {
+    func buttonEmoji(for category: EmojiCategory) -> String {
+        switch category {
         case .smileys: return "😀"
         case .animals: return "🐻"
         case .foods: return "🍔"
@@ -111,6 +96,17 @@ private extension KeyboardAction {
         case .objects: return "⏰"
         case .symbols: return "💱"
         case .flags: return "🏳️"
+        }
+    }
+    
+    func buttonText(for keyboardType: KeyboardType) -> String {
+        switch keyboardType {
+        case .alphabetic: return "ABC"
+        case .emojis: return "🙂"
+        case .images: return "🖼️"
+        case .numeric: return "123"
+        case .symbolic: return "#+="
+        default: return "???"
         }
     }
     

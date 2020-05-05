@@ -12,17 +12,17 @@ import UIKit
  This action enum specifies all currently supported keyboard
  actions and their standard behavior.
  
- Most keyboard actions have standard actions that has effect
- on either the input view controller or text document proxy.
- `KeyboardActionHandler`s can choose to use these actions or
- ignore them. These properties just specify standard actions
- that are commonly used with each respective keyboard action.
+ Most actions have a standard behavior for a certain gesture
+ when their used in system keyboards. This standard behavior
+ is provided through `standardInputViewControllerAction` and
+ `standardTextDocumentProxyAction`. Keyboard action handlers
+ can choose to use these standard actions or ignore them.
  
- Many actions require manual handling. For instance, `image`
- has no standard action, since it depends on what a keyboard
- does with an image. Actions like these are a way for you to
- express your intent, but you must handle them yourself in a
- custom keyboard action handler.
+ Many actions require manual handling since they do not have
+ universal, app-agnostic behaviors. For instance, the `image`
+ action depends on what you want to do with the tapped image.
+ Actions like these are a way for you to express your intent,
+ but require manual handling in a custom action handler.
 */
 public enum KeyboardAction: Equatable {
     
@@ -44,7 +44,7 @@ public enum KeyboardAction: Equatable {
     shift,
     shiftDown,
     space,
-    switchEmoji(category: String, startPage: Int, endPage: Int, type: KeyboardEmojisType),
+    switchEmoji(category: String, startPage: Int, endPage: Int, type: EmojiCategory),
     switchKeyboard,
     switchToKeyboard(KeyboardType),
     tab
