@@ -119,8 +119,8 @@ private extension DemoKeyboardActionHandler {
         let baseAction = super.tapAction(for: .space, sender: sender)
         return { [weak self] in
             baseAction?()
-            let isNonAlpha = self?.demoViewController?.keyboardType != .alphabetic(uppercased: false)
-            guard isNonAlpha else { return }
+            let type = self?.demoViewController?.keyboardType
+            if type?.isAlphabetic == true { return }
             self?.switchToAlphabeticKeyboard(.lowercased)
         }
     }
@@ -134,7 +134,7 @@ private extension DemoKeyboardActionHandler {
     
     func switchToAlphabeticKeyboard(_ state: KeyboardShiftState) {
         keyboardShiftState = state
-        demoViewController?.switchKeyboardType(to: .alphabetic(uppercased: state.isUppercased))
+        demoViewController?.switchKeyboardType(to: .alphabetic(state))
     }
     
     func switchToCapsLockedKeyboard() {

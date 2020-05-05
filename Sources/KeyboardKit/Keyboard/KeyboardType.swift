@@ -18,11 +18,24 @@ import UIKit
 public enum KeyboardType: Equatable {
 
     case
-    alphabetic(uppercased: Bool),
+    alphabetic(_ state: KeyboardShiftState),
     numeric,
     symbolic,
     email,
     emojis,
     images,
     custom(_ name: String)
+}
+
+public extension KeyboardType {
+    
+    /**
+     Whether or not the keyboard type is alphabetic.
+     */
+    var isAlphabetic: Bool {
+        switch self {
+        case .alphabetic: return true
+        default: return false
+        }
+    }
 }

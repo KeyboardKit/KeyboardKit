@@ -16,9 +16,9 @@ class HapticFeedback_KeyboardTests: QuickSpec {
         
         describe("standard tap feedback") {
             
-            it("is medium impact") {
+            it("is light impact") {
                 let feedback = HapticFeedback.standardTapFeedback
-                expect(feedback).to(equal(.mediumImpact))
+                expect(feedback).to(equal(.lightImpact))
             }
         }
         

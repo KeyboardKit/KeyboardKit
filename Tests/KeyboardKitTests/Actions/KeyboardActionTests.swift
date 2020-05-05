@@ -89,7 +89,7 @@ class KeyboardActionTests: QuickSpec {
                 expect(result(for: .character(""))).to(beFalse())
                 expect(result(for: .command)).to(beTrue())
                 expect(result(for: .custom(name: ""))).to(beFalse())
-                expect(result(for: .emojiCategory(.foods, startPage: 0, endPage: 0))).to(beFalse())
+                expect(result(for: .emojiCategory(.foods))).to(beFalse())
                 expect(result(for: .escape)).to(beTrue())
                 expect(result(for: .function)).to(beTrue())
                 expect(result(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beFalse())

@@ -35,14 +35,6 @@ import KeyboardKit
  of autocomplete support in KeyboardKit. The intention is to
  move these parts to `KeyboardInputViewController` and a new
  api for working with autocomplete.
- 
- **IMPORTANT** `textWillChange` and `textDidChange` does not
- trigger when a user types and text is sent to the proxy. It
- however works when the text cursor changes its position, so
- I therefore use a (hopefully temporary) hack, by starting a
- timer that triggers each second and moves the cursor. Since
- this is a nasty hack, it may have yet to be discovered side
- effects. If so, please let me know.
  */
 class KeyboardViewController: KeyboardInputViewController {
     
@@ -90,7 +82,7 @@ class KeyboardViewController: KeyboardInputViewController {
     var emojiCollectionView: KeyboardButtonRowCollectionView!
     var emojiLabelUpdateAction = {}
     
-    private(set) var keyboardType = KeyboardType.alphabetic(uppercased: false) {
+    private(set) var keyboardType = KeyboardType.alphabetic(.lowercased) {
         didSet { setupKeyboard() }
     }
     

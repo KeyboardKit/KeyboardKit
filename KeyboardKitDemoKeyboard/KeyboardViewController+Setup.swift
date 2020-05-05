@@ -24,7 +24,7 @@ extension KeyboardViewController {
     func setupKeyboardAsync(for size: CGSize) {
         keyboardStackView.removeAllArrangedSubviews()
         switch keyboardType {
-        case .alphabetic(let uppercased): setupAlphabeticKeyboard(uppercased: uppercased)
+        case .alphabetic(let state): setupAlphabeticKeyboard(for: state)
         case .emojis: setupEmojiKeyboard(for: size)
         case .images: setupImageKeyboard(for: size)
         case .numeric: setupNumericKeyboard()
@@ -33,8 +33,8 @@ extension KeyboardViewController {
         }
     }
     
-    func setupAlphabeticKeyboard(uppercased: Bool = false) {
-        let keyboard = AlphabeticKeyboard(uppercased: uppercased, in: self)
+    func setupAlphabeticKeyboard(for state: KeyboardShiftState) {
+        let keyboard = AlphabeticKeyboard(uppercased: state.isUppercased, in: self)
         let rows = buttonRows(for: keyboard.actions, distribution: .fillProportionally)
         keyboardStackView.addArrangedSubviews(rows)
     }

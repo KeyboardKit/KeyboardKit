@@ -60,7 +60,7 @@ private extension EmojiKeyboard {
     
     static func createBottomActions(for categories: [EmojiCategory]) -> KeyboardActionRow {
         var actions = categories.map { KeyboardAction.emojiCategory($0) }
-        actions.insert(.keyboardType(.alphabetic(uppercased: false)), at: 0)
+        actions.insert(.keyboardType(.alphabetic(.lowercased)), at: 0)
         actions.append(.backspace)
         return actions
     }

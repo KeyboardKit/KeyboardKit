@@ -23,7 +23,7 @@ struct ImageKeyboard: DemoKeyboard {
     
     init(in viewController: KeyboardViewController) {
         self.bottomActions = Self.bottomActions(
-            leftmost: EmojiKeyboard.switchAction,
+            leftmost: .keyboardType(.alphabetic(.lowercased)),
             for: viewController)
         let isLandscape = viewController.deviceOrientation.isLandscape
         let rowsPerPage = isLandscape ? 3 : 4
@@ -64,11 +64,4 @@ struct ImageKeyboard: DemoKeyboard {
     let bottomActions: KeyboardActionRow
     
     let gridConfig: KeyboardButtonRowCollectionView.Configuration
-}
-
-private extension EmojiKeyboard {
-    
-    static var switchAction: KeyboardAction {
-        .keyboardType(.alphabetic(uppercased: false))
-    }
 }

@@ -5,9 +5,7 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 ## 2.9.0
 
-This version adds more emoji tools and an improved emoji keyboard in the demo app.
-
-Some keyboard actions have been renamed as well.
+This version adds more tools and thanks to @eduardoxlau, the demo has  an improved emoji keyboard.
 
 ### New features
 
@@ -15,8 +13,11 @@ Some keyboard actions have been renamed as well.
 * `StandardKeyboardActionHandler` has a new, open `endSentenceAction`.
 * `KeyboardInputViewController` has a new `deviceOrientation` extension.
 * The demo now handles switching to caps lock when shift is double-tapped.
-* The demo now handles switching to caps lock when shift is double-tapped.
 
+### Changes
+
+* The standard tap animation does not scale up the button as much as before.
+* The standard haptic feedback for tap is light impact instead of medium.
 
 ### Deprecations
 
@@ -31,6 +32,7 @@ Some keyboard actions have been renamed as well.
 
 ### Breaking change
 
+* `KeyboardType.alphabetic` now uses a `KeyboardShiftState` property instead of a bool for if it's upper-cased or not.
 * `KeyboardAction.switchToKeyboard` is now an alias for `keyboardType`. You can still use it when defining actions, but if you switch over `KeyboardAction`, you have to use `keyboardType` instead of `switchToKeyboard`. 
 
 

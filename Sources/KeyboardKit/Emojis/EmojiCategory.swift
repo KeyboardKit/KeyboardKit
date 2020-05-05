@@ -7,6 +7,10 @@ import UIKit
  Note that in a native iOS keyboard, emojis flow from top to
  bottom, leading to trailing. If you present the emojis in a
  horizontal collection view, the order in this enum works.
+ 
+ Also note that since native emojis change all the time, the
+ enum will be outdated every now and then. When that happens,
+ just adjust the strings in this file.
 */
 public enum EmojiCategory: Equatable, CaseIterable {
 

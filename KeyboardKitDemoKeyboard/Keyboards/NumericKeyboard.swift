@@ -36,7 +36,7 @@ private extension NumericKeyboard {
     ]
     
     static var switchAction: KeyboardAction {
-        .keyboardType(.alphabetic(uppercased: false))
+        .keyboardType(.alphabetic(.lowercased))
     }
 }
 
