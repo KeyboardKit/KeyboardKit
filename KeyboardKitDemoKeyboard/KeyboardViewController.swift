@@ -90,7 +90,9 @@ class KeyboardViewController: KeyboardInputViewController {
     
     var emojiBottomActions: KeyboardActionRow = []
     
-    private(set) var keyboardType = KeyboardType.alphabetic(uppercased: false)
+    private(set) var keyboardType = KeyboardType.alphabetic(uppercased: false) {
+        didSet { setupKeyboard() }
+    }
     
     
     // MARK: - Autocomplete
@@ -105,7 +107,8 @@ class KeyboardViewController: KeyboardInputViewController {
     // MARK: - Functions
     
     func switchKeyboardType(to type: KeyboardType){
-        keyboardType = type
-        setupKeyboard()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.keyboardType = type
+        }
     }
 }

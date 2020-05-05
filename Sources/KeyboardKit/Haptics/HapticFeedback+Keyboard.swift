@@ -14,7 +14,7 @@ public extension HapticFeedback {
      The standard haptic feedback for a button tap.
      */
     static var standardTapFeedback: HapticFeedback {
-        .mediumImpact
+        .lightImpact
     }
 
     /**

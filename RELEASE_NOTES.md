@@ -13,6 +13,7 @@ Some keyboard actions have been renamed as well.
 
 * The new `EmojiCategory` enum represents the native iOS emoji keyboard categories.
 * `StandardKeyboardActionHandler` has a new, open `endSentenceAction`.
+* The demo now handles switching to caps lock when shift is double-tapped.
 
 
 ### Deprecations
