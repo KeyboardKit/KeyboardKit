@@ -22,9 +22,13 @@ import KeyboardKit
 struct ImageKeyboard: DemoKeyboard {
     
     init(in viewController: KeyboardViewController) {
-        self.bottomActions = EmojiKeyboard.bottomActions(
+        self.bottomActions = Self.bottomActions(
             leftmost: EmojiKeyboard.switchAction,
             for: viewController)
+        let isLandscape = viewController.deviceOrientation.isLandscape
+        let rowsPerPage = isLandscape ? 3 : 4
+        let buttonsPerRow = isLandscape ? 8 : 6
+        config = KeyboardButtonRowCollectionView.Configuration(rowHeight: 50, rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)
     }
     
     let actions: [KeyboardAction] = [
@@ -58,6 +62,8 @@ struct ImageKeyboard: DemoKeyboard {
     ]
     
     let bottomActions: KeyboardActionRow
+    
+    let config: KeyboardButtonRowCollectionView.Configuration
 }
 
 private extension EmojiKeyboard {

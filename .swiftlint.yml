@@ -11,6 +11,7 @@ disabled_rules:
 included:
   - Sources
   - Tests
+  - KeyboardKitDemo
 
 identifier_name:
   excluded:

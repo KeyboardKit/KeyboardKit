@@ -3,10 +3,10 @@ import KeyboardKit
 
 /**
  This demo keyboard mimics the native iOS emoji keyboard. It
- uses the `EmojiCategory` enum to add all available category
- items and their emojis to the keyboard.
+ uses the `EmojiCategory` enum to get all available category
+ items and their emojis and provide them to the keyboard.
  
- The keyboard actions are handled by the demo action handler.
+ 
  */
 struct EmojiKeyboard: DemoKeyboard {
     
@@ -14,15 +14,6 @@ struct EmojiKeyboard: DemoKeyboard {
     
     private let categories = EmojiCategory.all
     private var emoji: [KeyboardAction] = []
-    
-    static var currentPageIndex: Int {
-        get { userDefaults.integer(forKey: currentPageIndexKey )}
-        set { userDefaults.set(newValue, forKey: currentPageIndexKey )}
-    }
-    
-    private static var currentPageIndexKey: String { currentPageIndexSetting.key(for: "EmojiKeyboard") }
-    private static var currentPageIndexSetting: KeyboardSetting { .currentPageIndex }
-    private static let userDefaults = UserDefaults.standard
     
     /**
      This function re-arranges sorts the list of emojis from
@@ -34,8 +25,9 @@ struct EmojiKeyboard: DemoKeyboard {
      3   6   9
      ```
      */
-    public func orderEmojis(rowsPerPage: Int, pageSize: Int) -> [KeyboardAction] {
+    public mutating func orderEmojis(rowsPerPage: Int, pageSize: Int) -> [KeyboardAction] {
         var orderEmoji: [KeyboardAction] = []
+        emoji = emoji.evened(for: pageSize/rowsPerPage)
         var groups = emoji.count / pageSize
         groups += emoji.count % pageSize == 0 ? 0 : 1
         for indexGroup in 0..<groups {
@@ -55,7 +47,7 @@ struct EmojiKeyboard: DemoKeyboard {
                 let stringValue = row + currentColumn.description
                 tempArray[Int(stringValue)!] = emojisGroup[indexEmoji + start]
                 currentRow += 1
-                
+
             }
             orderEmoji += tempArray
         }
@@ -76,7 +68,7 @@ struct EmojiKeyboard: DemoKeyboard {
     public mutating func bottomActionsEmojiCategories(pageSize: Int) -> KeyboardActionRow {
         var bottomActions: KeyboardActionRow = []
         bottomActions.append(.keyboardType(.alphabetic(uppercased: false)))
-        for (index,category) in categories.enumerated() {
+        for (index, category) in categories.enumerated() {
             let startPage = emoji.count / pageSize
             emoji += category.emojiActions
             var endPage = (emoji.count / pageSize)

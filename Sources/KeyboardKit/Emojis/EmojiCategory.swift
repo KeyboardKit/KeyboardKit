@@ -3,6 +3,11 @@ import UIKit
 /**
  This enum contains the categories that the native iOS emoji
  keyboard currently has.
+ 
+ Note that the emojis in each category flow from top-leading
+ to bottom-trailing. In a keyboard with 5 rows and 3 columns,
+ the top-leading emoji will have an index of 0 and the emoji
+ horizontally next to it will have an index of 5.
 */
 public enum EmojiCategory: Equatable, CaseIterable {
 

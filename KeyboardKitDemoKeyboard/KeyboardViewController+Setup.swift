@@ -55,8 +55,8 @@ extension KeyboardViewController {
         let view = KeyboardButtonRowCollectionView(id: "EmojiKeyboard", actions: emojis, configuration: config) { [unowned self] in return self.button(for: $0) }
         let bottom = buttonRow(for: emojiBottomActions, distribution: .fillProportionally)
         
-        let pageIndex = EmojiKeyboard.currentPageIndex
-        emojiCategoryTitleLabel.text = keyboard.getNameCategoryEmoji(currentPage: pageIndex,bottomActions: emojiBottomActions)
+        // let pageIndex = EmojiKeyboard.currentPageIndex
+        emojiCategoryTitleLabel.text = keyboard.getNameCategoryEmoji(currentPage: 0, bottomActions: emojiBottomActions)
         
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -67,15 +67,12 @@ extension KeyboardViewController {
         stackView.addArrangedSubview(view)
         keyboardStackView.addArrangedSubview(stackView)
         keyboardStackView.addArrangedSubview(bottom)
+        emojiCollectionView = view
     }
     
     func setupImageKeyboard(for size: CGSize) {
         let keyboard = ImageKeyboard(in: self)
-        let isLandscape = deviceOrientation.isLandscape
-        let rowsPerPage = isLandscape ? 3 : 4
-        let buttonsPerRow = isLandscape ? 8 : 6
-        let config = KeyboardButtonRowCollectionView.Configuration(rowHeight: 50, rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)
-        let view = KeyboardButtonRowCollectionView(actions: keyboard.actions, configuration: config) { [unowned self] in return self.button(for: $0) }
+        let view = KeyboardButtonRowCollectionView(actions: keyboard.actions, configuration: keyboard.config) { [unowned self] in return self.button(for: $0) }
         let bottom = buttonRow(for: keyboard.bottomActions, distribution: .fillProportionally)
         keyboardStackView.addArrangedSubview(view)
         keyboardStackView.addArrangedSubview(bottom)
@@ -95,7 +92,8 @@ extension KeyboardViewController {
     
     @objc func checkCategoryEmoji(_ recognizer: UIPanGestureRecognizer){
         guard recognizer.state == .ended else { return }
-        let pageIndex = EmojiKeyboard.currentPageIndex
+        guard let view = emojiCollectionView else { return }
+        let pageIndex = view.currentPageIndex
         emojiCategoryTitleLabel.text = EmojiKeyboard(in: self).getNameCategoryEmoji(currentPage: pageIndex, bottomActions: emojiBottomActions)
     }
 }

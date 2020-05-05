@@ -133,7 +133,6 @@ private extension DemoKeyboardActionHandler {
     }
     
     func switchEmoji(page: Int) {
-        EmojiKeyboard.currentPageIndex = page
         demoViewController?.switchKeyboardType(to: .emojis)
     }
     
