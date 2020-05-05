@@ -25,7 +25,7 @@ extension KeyboardViewController {
         keyboardStackView.removeAllArrangedSubviews()
         switch keyboardType {
         case .alphabetic(let uppercased): setupAlphabeticKeyboard(uppercased: uppercased)
-        case .emojis: setupEmojiCategoriesKeyboard(for: size)
+        case .emojis: setupEmojiKeyboard(for: size)
         case .images: setupImageKeyboard(for: size)
         case .numeric: setupNumericKeyboard()
         case .symbolic: setupSymbolicKeyboard()
@@ -40,19 +40,7 @@ extension KeyboardViewController {
     }
     
     func setupEmojiKeyboard(for size: CGSize) {
-        let keyboard = EmojiKeyboard(in: self)
-        let isLandscape = size.width > 400
-        let rowsPerPage = isLandscape ? 4 : 5
-        let buttonsPerRow = isLandscape ? 10 : 8
-        let config = KeyboardButtonRowCollectionView.Configuration(rowHeight: 40, rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)
-        let view = KeyboardButtonRowCollectionView(actions: keyboard.actions, configuration: config) { [unowned self] in return self.button(for: $0) }
-        let bottom = buttonRow(for: keyboard.bottomActions, distribution: .fillProportionally)
-        keyboardStackView.addArrangedSubview(view)
-        keyboardStackView.addArrangedSubview(bottom)
-    }
-    
-    func setupEmojiCategoriesKeyboard(for size: CGSize) {
-        var keyboard = EmojiCategoriesKeyboard(in: self)
+        var keyboard = EmojiKeyboard(in: self)
         let isLandscape = size.width > 400
         let rowsPerPage = isLandscape ? 4 : 5
         let buttonsPerRow = isLandscape ? 10 : 8
@@ -108,7 +96,7 @@ extension KeyboardViewController {
         
         if recognizer.state == .ended {
             let page = UserDefaults.standard.integer(forKey: KeyboardSetting.currentPageIndex.key(for: "KeyboardButtonRowCollectionView"))
-            categoryEmoji.text = EmojiCategoriesKeyboard(in: self).getNameCategoryEmoji(currentPage: page, bottomActions:bottomActions)
+            categoryEmoji.text = EmojiKeyboard(in: self).getNameCategoryEmoji(currentPage: page, bottomActions:bottomActions)
         }
         
     }

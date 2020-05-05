@@ -20,9 +20,4 @@ class DemoAutocompleteSuggestionProvider: AutocompleteSuggestionProvider {
         let suggestions = suffixes.map { text + $0 }
         completion(.success(suggestions))
     }
-    
-    @available(*, deprecated, renamed: "autocompleteSuggestions(for:completion:)")
-    func provideAutocompleteSuggestions(for text: String, completion: AutocompleteResponse) {
-        autocompleteSuggestions(for: text, completion: completion)
-    }
 }

@@ -13,7 +13,7 @@ import KeyboardKit
  provides shared functionality.
  
  The demo keyboards are for demo purposes, so they lack some
- functionality, like adapting to other languages, device types etc.
+ functionality, like adapting to languages, device types etc.
  */
 protocol DemoKeyboard {}
 
