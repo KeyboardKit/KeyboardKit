@@ -34,7 +34,7 @@ public enum KeyboardAction: Equatable {
     command,
     custom(name: String),
     dismissKeyboard,
-    emojiCategory(_ category: EmojiCategory, startPage: Int, endPage: Int),
+    emojiCategory(_ category: EmojiCategory),
     escape,
     function,
     image(description: String, keyboardImageName: String, imageName: String),

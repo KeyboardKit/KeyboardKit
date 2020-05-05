@@ -40,65 +40,14 @@ struct EmojiKeyboard: DemoKeyboard {
         guard actionCategories.count > index else { return nil }
         return actionCategories[index].0
     }
-    
-    
-    
-    /**
-     This function re-arranges sorts the list of emojis from
-     top to bottom, to be correctly rendered within the grid.
-     
-     ```
-     1   4   7
-     2   5   8
-     3   6   9
-     ```
-     */
-    public mutating func orderEmojis(rowsPerPage: Int, pageSize: Int) -> [KeyboardAction] {
-        var orderEmoji: [KeyboardAction] = []
-        emoji = emoji.evened(for: pageSize/rowsPerPage)
-        var groups = emoji.count / pageSize
-        groups += emoji.count % pageSize == 0 ? 0 : 1
-        for indexGroup in 0..<groups {
-            let start = pageSize * indexGroup
-            var end = start + pageSize
-            end = end > emoji.count ? emoji.count : end
-            let emojisGroup = emoji[start..<end]
-            var tempArray = [KeyboardAction](repeating: .none, count: pageSize)
-            var currentColumn = 0
-            var currentRow = 0
-            for indexEmoji in 0..<emojisGroup.count {
-                if currentRow >= rowsPerPage {
-                    currentColumn += 1
-                    currentRow = 0
-                }
-                let row = currentRow == 0 ? "" : currentRow.description
-                let stringValue = row + currentColumn.description
-                tempArray[Int(stringValue)!] = emojisGroup[indexEmoji + start]
-                currentRow += 1
-
-            }
-            orderEmoji += tempArray
-        }
-        return orderEmoji
-    }
-    
-    func getNameCategoryEmoji(currentPage: Int, bottomActions: KeyboardActionRow) -> String {
-        for bottomAction in bottomActions {
-            if case let KeyboardAction.emojiCategory(category, startPage, endPage) = bottomAction {
-                if currentPage >= startPage && currentPage < endPage {
-                    return category.title
-                }
-            }
-        }
-        return ""
-    }
 }
 
 private extension EmojiKeyboard {
     
     static func createActions(for categories: [EmojiCategory], config: KeyboardButtonRowCollectionView.Configuration) -> [KeyboardAction] {
-        let actions = categories.flatMap { $0.emojiActions }
-        return actions
+        categories
+            .flatMap { $0.emojiActions }
+            .rearrangedForCollectionView(withConfig: config)
     }
     
     static func createActionCategories(for categories: [EmojiCategory]) -> [(EmojiCategory, KeyboardAction)] {
@@ -110,17 +59,45 @@ private extension EmojiKeyboard {
     }
     
     static func createBottomActions(for categories: [EmojiCategory]) -> KeyboardActionRow {
-        var actions = categories.map { KeyboardAction.emojiCategory($0, startPage: 0, endPage: 0) }
+        var actions = categories.map { KeyboardAction.emojiCategory($0) }
         actions.insert(.keyboardType(.alphabetic(uppercased: false)), at: 0)
         actions.append(.backspace)
         return actions
     }
 }
 
-private extension Collection where Element == KeyboardAction {
+private extension Array where Element == KeyboardAction {
     
-    func rearrangedForCollectionView() -> KeyboardAction {
-        fatalError()
+    /**
+     This function rearranges the actions from top to bottom,
+     to be correctly rendered within the grid.
+     
+     The result will be:
+     ```
+     1   4   7
+     2   5   8
+     3   6   9
+     ```
+     */
+    func rearrangedForCollectionView(withConfig config: KeyboardButtonRowCollectionView.Configuration) -> [KeyboardAction] {
+        var result: [KeyboardAction] = []
+        let pageSize = config.pageSize
+        let evened = self.evened(for: pageSize)
+        let groupCount = evened.count / pageSize
+        for groupIndex in 0..<groupCount {
+            var rows = KeyboardActionRows(repeating: [], count: config.rowsPerPage)
+            let startIndex = pageSize * groupIndex
+            let endIndex = startIndex + pageSize
+            let actions = evened[startIndex..<endIndex]
+            var currentRow = 0
+            actions.forEach {
+                let row = currentRow % config.rowsPerPage
+                rows[row].append($0)
+                currentRow += 1
+            }
+            result += rows.flatMap { $0 }
+        }
+        return result
     }
 }
 

@@ -3,6 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-02-20.
+//  Copyright © 2018 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
@@ -10,8 +11,9 @@ import Foundation
 public extension Array where Element == KeyboardAction {
     
     /**
-     Even out the action list to have as many rows as evenly
-     fits a grid with `size` columns.
+     Even out the action array to have as many actions as it
+     evenly fits a grid with `gridSize` number of columns or
+     a `gridSize` page size.
      */
     func evened(for gridSize: Int) -> [KeyboardAction] {
         var actions = self

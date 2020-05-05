@@ -58,7 +58,7 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     override func tapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
         switch action {
         case .character: return handleCharacter(action, for: sender)
-        case .emojiCategory(_, let startPage, _): return { [weak self] in self?.switchEmoji(page: startPage) }
+        case .emojiCategory: return { [weak self] in self?.switchToEmojiKeybard() }
         case .image(_, _, let imageName): return { [weak self] in self?.copyImage(UIImage(named: imageName)!) }
         case .keyboardType(let type): return { [weak self] in self?.demoViewController?.switchKeyboardType(to: type) }
         case .shift: return switchToUppercaseKeyboard
@@ -132,10 +132,6 @@ private extension DemoKeyboardActionHandler {
         image.saveToPhotos(completionTarget: self, completionSelector: saveCompletion)
     }
     
-    func switchEmoji(page: Int) {
-        demoViewController?.switchKeyboardType(to: .emojis)
-    }
-    
     func switchToAlphabeticKeyboard(_ state: KeyboardShiftState) {
         keyboardShiftState = state
         demoViewController?.switchKeyboardType(to: .alphabetic(uppercased: state.isUppercased))
@@ -143,6 +139,10 @@ private extension DemoKeyboardActionHandler {
     
     func switchToCapsLockedKeyboard() {
         switchToAlphabeticKeyboard(.capsLocked)
+    }
+    
+    func switchToEmojiKeybard() {
+        demoViewController?.switchKeyboardType(to: .emojis)
     }
     
     func switchToLowercaseKeyboard() {

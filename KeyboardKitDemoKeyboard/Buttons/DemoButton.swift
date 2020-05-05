@@ -77,7 +77,7 @@ private extension KeyboardAction {
         switch self {
         case .backspace: return "⌫"
         case .character(let text): return text
-        case .emojiCategory(let category, _, _): return buttonText(for: category)
+        case .emojiCategory(let category): return buttonText(for: category)
         case .keyboardType(let type): return buttonText(for: type)
         case .newLine: return "return"
         case .shift, .shiftDown: return "⇧"
