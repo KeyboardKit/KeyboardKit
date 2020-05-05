@@ -6,7 +6,7 @@ struct EmojiCategoriesKeyboard: DemoKeyboard {
     init(in viewController: KeyboardViewController) {
     }
     
-    var actions: [Emojis.EmojiTypes] = Emojis().getEmoji()
+    var actions: [EmojiCategory] = EmojiCategory.allCases
     private var emoji:[KeyboardAction] = []
     
     public func orderEmojis(rowsPerPage: Int, pageSize: Int) -> [KeyboardAction] {
@@ -63,10 +63,10 @@ struct EmojiCategoriesKeyboard: DemoKeyboard {
         for  (index,typeCategory) in self.actions.enumerated() {
             
             let startPage = self.emoji.count / pageSize
-            self.emoji += typeCategory.actions
+            self.emoji += typeCategory.emojiActions
             var endPage = (self.emoji.count / pageSize)
             endPage += index == (self.actions.count - 1) ? 1: 0
-            bottomActions.append(.switchEmoji(category: typeCategory.category, startPage: startPage, endPage: endPage, type: typeCategory.type))
+            bottomActions.append(.switchEmoji(category: typeCategory.title, startPage: startPage, endPage: endPage, type: typeCategory))
         }
         bottomActions.append(.backspace)
         
