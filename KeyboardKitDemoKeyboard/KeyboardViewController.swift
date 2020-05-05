@@ -46,8 +46,6 @@ import KeyboardKit
  */
 class KeyboardViewController: KeyboardInputViewController {
     
-    var categoryEmoji = UILabel()
-    var bottomActions:KeyboardActionRow = []
     // MARK: - View Controller Lifecycle
     
     override func viewDidLoad() {
@@ -87,6 +85,10 @@ class KeyboardViewController: KeyboardInputViewController {
     // MARK: - Properties
     
     let alerter = ToastAlert()
+    
+    var emojiCategoryTitleLabel = UILabel()
+    
+    var emojiBottomActions: KeyboardActionRow = []
     
     var keyboardType = KeyboardType.alphabetic(uppercased: false) {
         didSet { setupKeyboard() }

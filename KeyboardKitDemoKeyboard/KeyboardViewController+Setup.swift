@@ -49,17 +49,18 @@ extension KeyboardViewController {
             rowsPerPage: rowsPerPage,
             buttonsPerRow: buttonsPerRow
         )
-        bottomActions = keyboard.bottomActionsEmojiCategories(pageSize: config.pageSize) /**  this function it returns the number of pages for each category */
+        
+        emojiBottomActions = keyboard.bottomActionsEmojiCategories(pageSize: config.pageSize) /**  this function it returns the number of pages for each category */
         let emojis = keyboard.orderEmojis(rowsPerPage: config.rowsPerPage, pageSize: config.pageSize) /** this function changes the order as the emojis are shown from top to bottom */
         let view = KeyboardButtonRowCollectionView(id: "EmojiKeyboard", actions: emojis, configuration: config) { [unowned self] in return self.button(for: $0) }
-        let bottom = buttonRow(for: bottomActions, distribution: .fillProportionally)
+        let bottom = buttonRow(for: emojiBottomActions, distribution: .fillProportionally)
         
         let pageIndex = EmojiKeyboard.currentPageIndex
-        categoryEmoji.text = keyboard.getNameCategoryEmoji(currentPage: pageIndex,bottomActions: bottomActions)
+        emojiCategoryTitleLabel.text = keyboard.getNameCategoryEmoji(currentPage: pageIndex,bottomActions: emojiBottomActions)
         
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.addArrangedSubview(categoryEmoji)
+        stackView.addArrangedSubview(emojiCategoryTitleLabel)
         
         view.panGestureRecognizer.addTarget(self, action: #selector(checkCategoryEmoji(_:)))/** a gesture is added to detect each time the category is changed*/
         
@@ -67,6 +68,7 @@ extension KeyboardViewController {
         keyboardStackView.addArrangedSubview(stackView)
         keyboardStackView.addArrangedSubview(bottom)
     }
+    
     func setupImageKeyboard(for size: CGSize) {
         let keyboard = ImageKeyboard(in: self)
         let isLandscape = size.width > 400
@@ -94,6 +96,6 @@ extension KeyboardViewController {
     @objc func checkCategoryEmoji(_ recognizer: UIPanGestureRecognizer){
         guard recognizer.state == .ended else { return }
         let pageIndex = EmojiKeyboard.currentPageIndex
-        categoryEmoji.text = EmojiKeyboard(in: self).getNameCategoryEmoji(currentPage: pageIndex, bottomActions: bottomActions)
+        emojiCategoryTitleLabel.text = EmojiKeyboard(in: self).getNameCategoryEmoji(currentPage: pageIndex, bottomActions: emojiBottomActions)
     }
 }
