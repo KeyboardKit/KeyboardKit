@@ -124,6 +124,7 @@
 		A9530757246133A500CB37C3 /* AutocompleteSuggestionProvider+Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95307552461338600CB37C3 /* AutocompleteSuggestionProvider+Deprecated.swift */; };
 		A953075C2461532900CB37C3 /* KeyboardAction+Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A953075B2461532900CB37C3 /* KeyboardAction+Deprecated.swift */; };
 		A953075E2461540B00CB37C3 /* KeyboardInputViewController+Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A953075D2461540B00CB37C3 /* KeyboardInputViewController+Deprecated.swift */; };
+		A953076024618E5300CB37C3 /* KeyboardStateInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A953075F24618E5300CB37C3 /* KeyboardStateInspector.swift */; };
 		A953CA5C2457376600013375 /* KeyboardInputViewController+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = A953CA5B2457376600013375 /* KeyboardInputViewController+Gestures.swift */; };
 		A95922292423C27000CDE5B9 /* Global+IsKeyboardEnabled.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95922282423C27000CDE5B9 /* Global+IsKeyboardEnabled.swift */; };
 		A97047D223D4FFD7001AB983 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97047D123D4FFD7001AB983 /* UIView+Constraints.swift */; };
@@ -386,6 +387,7 @@
 		A95307552461338600CB37C3 /* AutocompleteSuggestionProvider+Deprecated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutocompleteSuggestionProvider+Deprecated.swift"; sourceTree = "<group>"; };
 		A953075B2461532900CB37C3 /* KeyboardAction+Deprecated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardAction+Deprecated.swift"; sourceTree = "<group>"; };
 		A953075D2461540B00CB37C3 /* KeyboardInputViewController+Deprecated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardInputViewController+Deprecated.swift"; sourceTree = "<group>"; };
+		A953075F24618E5300CB37C3 /* KeyboardStateInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardStateInspector.swift; sourceTree = "<group>"; };
 		A953CA5B2457376600013375 /* KeyboardInputViewController+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardInputViewController+Gestures.swift"; sourceTree = "<group>"; };
 		A95922282423C27000CDE5B9 /* Global+IsKeyboardEnabled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Global+IsKeyboardEnabled.swift"; sourceTree = "<group>"; };
 		A97047D123D4FFD7001AB983 /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
@@ -711,6 +713,7 @@
 			children = (
 				OBJ_19 /* AutocompleteBugFixTimer.swift */,
 				A95307552461338600CB37C3 /* AutocompleteSuggestionProvider+Deprecated.swift */,
+				A95922282423C27000CDE5B9 /* Global+IsKeyboardEnabled.swift */,
 				A953075B2461532900CB37C3 /* KeyboardAction+Deprecated.swift */,
 				A953075D2461540B00CB37C3 /* KeyboardInputViewController+Deprecated.swift */,
 				A903FB7023EBFD7800575482 /* StandardKeyboardActionHandler+Feedback.swift */,
@@ -943,7 +946,6 @@
 			children = (
 				OBJ_31 /* Array+Appending.swift */,
 				OBJ_32 /* CGFloat+KeyboardDimensions.swift */,
-				A95922282423C27000CDE5B9 /* Global+IsKeyboardEnabled.swift */,
 				OBJ_33 /* Sequence+Batch.swift */,
 				OBJ_34 /* String+Uppercased.swift */,
 				OBJ_42 /* UITextDocumentProxy+CurrentWord.swift */,
@@ -995,6 +997,7 @@
 				OBJ_56 /* KeyboardInputViewController.swift */,
 				A953CA5B2457376600013375 /* KeyboardInputViewController+Gestures.swift */,
 				OBJ_58 /* KeyboardShiftState.swift */,
+				A953075F24618E5300CB37C3 /* KeyboardStateInspector.swift */,
 				OBJ_59 /* KeyboardType.swift */,
 			);
 			path = Keyboard;
@@ -1510,6 +1513,7 @@
 				A9E204832425187600DC61FC /* URL+KeyboardSettings.swift in Sources */,
 				OBJ_294 /* KeyboardType.swift in Sources */,
 				A903FB7123EBFD7800575482 /* StandardKeyboardActionHandler+Feedback.swift in Sources */,
+				A953076024618E5300CB37C3 /* KeyboardStateInspector.swift in Sources */,
 				OBJ_295 /* Shadow.swift in Sources */,
 				OBJ_296 /* UIView+Shadow.swift in Sources */,
 				OBJ_297 /* KeyboardButtonCollectionView.swift in Sources */,

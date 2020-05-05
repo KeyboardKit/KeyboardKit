@@ -21,6 +21,7 @@ Some keyboard actions have been renamed as well.
 * `KeyboardAction.switchKeyboard` has been renamed to `KeyboardAction.nextKeyboard`
 * `KeyboardAction.switchToKeyboard` has been renamed to `KeyboardAction.keyboardType`
 * `addSwitchKeyboardGesture(to:)` has been renamed to `addNextKeyboardGesture(to:)`
+* The global `isKeyboardEnabled` has been replaced with a new `KeyboardStateInspector` protocol.
 
 ### Bug fixes
 
