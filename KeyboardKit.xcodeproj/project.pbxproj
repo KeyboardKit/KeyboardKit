@@ -1145,6 +1145,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84670456234A709500355331 /* Build configuration list for PBXNativeTarget "KeyboardKitDemo" */;
 			buildPhases = (
+				A953075A24613B6A00CB37C3 /* SwiftLint */,
 				84670441234A709400355331 /* Sources */,
 				84670442234A709400355331 /* Frameworks */,
 				84670443234A709400355331 /* Resources */,
@@ -1362,6 +1363,24 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 		84670428234A6B2E00355331 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		A953075A24613B6A00CB37C3 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (

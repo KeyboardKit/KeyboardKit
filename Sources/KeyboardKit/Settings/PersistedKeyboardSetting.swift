@@ -3,14 +3,17 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-03-17.
+//  Copyright © 2020 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
 
 /**
  This property wrapper can be used to store keyboard setting
- values to `UserDefaults`. You can use `KeyboardSetting`s or
- custom keys.
+ values to `UserDefaults`.
+ 
+ You can use a `KeyboardSetting` case or custom keys to wrap
+ a property in this behavior.
  
  Note that this wrapper persists *objects*, not *values*. It
  can't be used for
@@ -28,6 +31,7 @@ public struct PersistedKeyboardSetting<Value: Codable> {
         self.userDefaults = userDefaults
     }
     
+    @available(*, deprecated, message: "Use init with KeyboardSetting.custom()")
     public init(
         _ key: String,
         default defaultValue: Value,
