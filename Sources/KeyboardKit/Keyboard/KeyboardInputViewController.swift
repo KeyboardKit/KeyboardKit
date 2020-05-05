@@ -43,6 +43,14 @@ open class KeyboardInputViewController: UIInputViewController {
      */
     open lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(inputViewController: self)
     
+    /**
+     Get the current device orientation. If no window can be
+     resolved `portrait` is returned.
+     */
+    public var deviceOrientation: UIInterfaceOrientation {
+        view.window?.screen.orientation ?? .portrait
+    }
+    
     
     // MARK: - View Properties
     

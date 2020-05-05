@@ -35,7 +35,6 @@ struct EmojiKeyboard: DemoKeyboard {
      ```
      */
     public func orderEmojis(rowsPerPage: Int, pageSize: Int) -> [KeyboardAction] {
-        
         var orderEmoji: [KeyboardAction] = []
         var groups = emoji.count / pageSize
         groups += emoji.count % pageSize == 0 ? 0 : 1

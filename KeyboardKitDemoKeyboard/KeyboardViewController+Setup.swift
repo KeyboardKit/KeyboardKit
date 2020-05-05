@@ -41,7 +41,7 @@ extension KeyboardViewController {
     
     func setupEmojiKeyboard(for size: CGSize) {
         var keyboard = EmojiKeyboard(in: self)
-        let isLandscape = size.width > 400
+        let isLandscape = deviceOrientation.isLandscape
         let rowsPerPage = isLandscape ? 4 : 5
         let buttonsPerRow = isLandscape ? 10 : 8
         let config = KeyboardButtonRowCollectionView.Configuration(
@@ -71,7 +71,7 @@ extension KeyboardViewController {
     
     func setupImageKeyboard(for size: CGSize) {
         let keyboard = ImageKeyboard(in: self)
-        let isLandscape = size.width > 400
+        let isLandscape = deviceOrientation.isLandscape
         let rowsPerPage = isLandscape ? 3 : 4
         let buttonsPerRow = isLandscape ? 8 : 6
         let config = KeyboardButtonRowCollectionView.Configuration(rowHeight: 50, rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)
