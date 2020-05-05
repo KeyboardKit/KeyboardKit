@@ -49,8 +49,6 @@ public enum KeyboardAction: Equatable {
     space,
     tab
     
-    @available(*, deprecated, renamed: "keyboardType")
-    case switchToKeyboard(KeyboardType)
 }
 
 
@@ -105,7 +103,6 @@ public extension KeyboardAction {
         case .shiftDown: return true
         case .space: return false
         case .emojiCategory: return false
-        case .switchToKeyboard: return true
         case .tab: return true
         case .none: return false
         }

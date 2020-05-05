@@ -9,7 +9,6 @@
 import KeyboardKit
 
 /**
- 
  This demo keyboard has 24 buttons per page, which fits this
  demo app's two different grid sizes for portrait/landscape.
  It features one page of real emoji characters and four with
@@ -19,7 +18,6 @@ import KeyboardKit
  play with it) the keyboard may get an uneven set of buttons,
  which the grid engine handles by adding empty dummy buttons
  at the very end.
- 
  */
 struct ImageKeyboard: DemoKeyboard {
     

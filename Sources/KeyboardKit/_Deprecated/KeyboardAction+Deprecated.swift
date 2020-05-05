@@ -12,4 +12,7 @@ public extension KeyboardAction {
 
     @available(*, deprecated, renamed: "nextKeyboard")
     static var switchKeyboard: KeyboardAction { .nextKeyboard }
+    
+    @available(*, deprecated, renamed: "keyboardType")
+    static func switchToKeyboard(_ type: KeyboardType) -> KeyboardAction { .keyboardType(type) }
 }

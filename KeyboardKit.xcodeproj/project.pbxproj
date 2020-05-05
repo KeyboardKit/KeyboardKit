@@ -711,13 +711,13 @@
 			children = (
 				OBJ_19 /* AutocompleteBugFixTimer.swift */,
 				A95307552461338600CB37C3 /* AutocompleteSuggestionProvider+Deprecated.swift */,
+				A953075B2461532900CB37C3 /* KeyboardAction+Deprecated.swift */,
+				A953075D2461540B00CB37C3 /* KeyboardInputViewController+Deprecated.swift */,
 				A903FB7023EBFD7800575482 /* StandardKeyboardActionHandler+Feedback.swift */,
 				OBJ_21 /* UIInputViewController+AutocompleteBugFixTimer.swift */,
 				OBJ_49 /* UIView+LongPressAction.swift */,
 				OBJ_50 /* UIView+RepeatingAction.swift */,
 				OBJ_51 /* UIView+TapAction.swift */,
-				A953075B2461532900CB37C3 /* KeyboardAction+Deprecated.swift */,
-				A953075D2461540B00CB37C3 /* KeyboardInputViewController+Deprecated.swift */,
 			);
 			path = _Deprecated;
 			sourceTree = "<group>";
@@ -956,7 +956,6 @@
 		OBJ_47 /* Gestures */ = {
 			isa = PBXGroup;
 			children = (
-				847060042355A5D900B2B2A8 /* KeyboardGesture.swift */,
 				OBJ_48 /* RepeatingGestureRecognizer.swift */,
 			);
 			path = Gestures;
@@ -992,6 +991,7 @@
 		OBJ_55 /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
+				847060042355A5D900B2B2A8 /* KeyboardGesture.swift */,
 				OBJ_56 /* KeyboardInputViewController.swift */,
 				A953CA5B2457376600013375 /* KeyboardInputViewController+Gestures.swift */,
 				OBJ_58 /* KeyboardShiftState.swift */,

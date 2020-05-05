@@ -24,13 +24,18 @@ struct EmojiKeyboard: DemoKeyboard {
     private static var currentPageIndexSetting: KeyboardSetting { .currentPageIndex }
     private static let userDefaults = UserDefaults.standard
     
+    /**
+     This function re-arranges sorts the list of emojis from
+     top to bottom, to be correctly rendered within the grid.
+     
+     ```
+     1   4   7
+     2   5   8
+     3   6   9
+     ```
+     */
     public func orderEmojis(rowsPerPage: Int, pageSize: Int) -> [KeyboardAction] {
         
-        /** This function sorts the array of emojis from top to bottom
-         1   4   7
-         2   5   8
-         3   6   9
-         */
         var orderEmoji: [KeyboardAction] = []
         var groups = emoji.count / pageSize
         groups += emoji.count % pageSize == 0 ? 0 : 1

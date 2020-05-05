@@ -53,10 +53,10 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
         case .character: return handleCharacter(action, for: sender)
         case .emojiCategory(_, let startPage, _): return { [weak self] in self?.switchEmoji(page: startPage) }
         case .image(_, _, let imageName): return { [weak self] in self?.copyImage(UIImage(named: imageName)!) }
+        case .keyboardType(let type): return { [weak self] in self?.demoViewController?.switchKeyboardType(to: type) }
         case .shift: return switchToUppercaseKeyboard
         case .shiftDown: return switchToLowercaseKeyboard
         case .space: return handleSpace(for: sender)
-        case .switchToKeyboard(let type): return { [weak self] in self?.demoViewController?.switchKeyboardType(to: type) }
         default: return super.tapAction(for: action, sender: sender)
         }
     }

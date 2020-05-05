@@ -26,7 +26,7 @@ public protocol KeyboardButton: KeyboardButtonRowComponent {
 
 public extension KeyboardButton {
     
-    func animateStandardPress(factor: CGFloat = 1.18, completion: (() -> Void)? = nil) {
+    func animateStandardPress(factor: CGFloat = 1.1, completion: (() -> Void)? = nil) {
         let transform = CGAffineTransform(scaleX: factor, y: factor)
         animateTransform(transform, completion: completion)
     }

@@ -19,6 +19,10 @@ Some keyboard actions have been renamed as well.
 * `KeyboardAction.switchToKeyboard` has been renamed to `KeyboardAction.keyboardType`
 * `addSwitchKeyboardGesture(to:)` has been renamed to `addNextKeyboardGesture(to:)`
 
+### Breaking change
+
+* `KeyboardAction.switchToKeyboard` is now an alias for `keyboardType`. You can still use it when defining actions, but if you switch over `KeyboardAction`, you have to use `keyboardType` instead of `switchToKeyboard`. 
+
 
 ## 2.8.1
 
