@@ -15,7 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        print(isKeyboardEnabled("com.danielsaidi.KeyboardKitDemo.KeyboardKitDemoKeyboard"))
+        let isEnabled = isKeyboardEnabled("com.danielsaidi.KeyboardKitDemo.KeyboardKitDemoKeyboard")
+        print(isEnabled ? "Keyboard is enabled" : "Keyboard is disabled")
         return true
     }
 
