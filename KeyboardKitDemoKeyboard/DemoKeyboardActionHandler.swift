@@ -56,7 +56,7 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
         case .shift: return switchToUppercaseKeyboard
         case .shiftDown: return switchToLowercaseKeyboard
         case .space: return handleSpace(for: sender)
-        case .switchToKeyboard(let type): return { [weak self] in self?.demoViewController?.keyboardType = type }
+        case .switchToKeyboard(let type): return { [weak self] in self?.demoViewController?.switchKeyboardType(to: type) }
         default: return super.tapAction(for: action, sender: sender)
         }
     }
@@ -127,12 +127,12 @@ private extension DemoKeyboardActionHandler {
     
     func switchEmoji(page: Int) {
         EmojiKeyboard.currentPageIndex = page
-        demoViewController?.keyboardType = .emojis
+        demoViewController?.switchKeyboardType(to: .emojis)
     }
     
     func switchToAlphabeticKeyboard(_ state: KeyboardShiftState) {
         keyboardShiftState = state
-        demoViewController?.keyboardType = .alphabetic(uppercased: state.isUppercased)
+        demoViewController?.switchKeyboardType(to: .alphabetic(uppercased: state.isUppercased))
     }
     
     func switchToCapsLockedKeyboard() {
