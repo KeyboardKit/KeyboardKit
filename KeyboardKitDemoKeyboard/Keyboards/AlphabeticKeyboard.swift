@@ -44,7 +44,7 @@ private extension AlphabeticKeyboard {
     }
     
     static var switchAction: KeyboardAction {
-        .switchToKeyboard(.numeric)
+        .keyboardType(.numeric)
     }
 }
 

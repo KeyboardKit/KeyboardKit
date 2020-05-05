@@ -65,6 +65,6 @@ struct ImageKeyboard: DemoKeyboard {
 private extension EmojiKeyboard {
     
     static var switchAction: KeyboardAction {
-        .switchToKeyboard(.alphabetic(uppercased: false))
+        .keyboardType(.alphabetic(uppercased: false))
     }
 }

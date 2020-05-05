@@ -38,16 +38,19 @@ public enum KeyboardAction: Equatable {
     escape,
     function,
     image(description: String, keyboardImageName: String, imageName: String),
+    keyboardType(KeyboardType),
     moveCursorBackward,
     moveCursorForward,
     newLine,
+    nextKeyboard,
     option,
     shift,
     shiftDown,
     space,
-    switchKeyboard,
-    switchToKeyboard(KeyboardType),
     tab
+    
+    @available(*, deprecated, renamed: "keyboardType")
+    case switchToKeyboard(KeyboardType)
 }
 
 
@@ -92,15 +95,16 @@ public extension KeyboardAction {
         case .escape: return true
         case .function: return true
         case .image: return false
+        case .keyboardType: return true
         case .moveCursorBackward: return true
         case .moveCursorForward: return true
         case .newLine: return true
+        case .nextKeyboard: return true
         case .option: return true
         case .shift: return true
         case .shiftDown: return true
         case .space: return false
         case .emojiCategory: return false
-        case .switchKeyboard: return true
         case .switchToKeyboard: return true
         case .tab: return true
         case .none: return false

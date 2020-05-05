@@ -1,13 +1,23 @@
 # Release Notes
 
+KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions. 
+
 
 ## 2.9.0
 
 This version adds more emoji tools and an improved emoji keyboard in the demo app.
 
+Some keyboard actions have been renamed as well.
+
 ### New features
 
 * The `EmojiCategory` represents the native iOS emoji keyboard categories.
+
+### Deprecations
+
+* `KeyboardAction.switchKeyboard` has been renamed to `KeyboardAction.nextKeyboard`
+* `KeyboardAction.switchToKeyboard` has been renamed to `KeyboardAction.keyboardType`
+* `addSwitchKeyboardGesture(to:)` has been renamed to `addNextKeyboardGesture(to:)`
 
 
 ## 2.8.1

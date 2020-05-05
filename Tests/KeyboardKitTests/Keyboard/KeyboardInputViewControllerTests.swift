@@ -86,8 +86,8 @@ class KeyboardInputViewControllerTests: QuickSpec {
                 expect(newRepeat).toNot(be(oldRepeat))
             }
             
-            it("handles switch keyboard separately") {
-                button.action = .switchKeyboard
+            it("handles next keyboard separately") {
+                button.action = .nextKeyboard
                 viewController.addKeyboardGestures(to: button)
                 let tap = button.gestureRecognizers?.first { $0 is UITapGestureRecognizer }
                 let press = button.gestureRecognizers?.first { $0 is UILongPressGestureRecognizer }

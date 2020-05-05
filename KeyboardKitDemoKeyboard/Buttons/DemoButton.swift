@@ -68,7 +68,7 @@ private extension KeyboardAction {
     var buttonImage: UIImage? {
         switch self {
         case .image(_, let imageName, _): return UIImage(named: imageName)
-        case .switchKeyboard: return Asset.Images.Buttons.switchKeyboard.image
+        case .nextKeyboard: return Asset.Images.Buttons.switchKeyboard.image
         default: return nil
         }
     }

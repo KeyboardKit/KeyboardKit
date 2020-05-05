@@ -35,20 +35,20 @@ private extension DemoKeyboard {
     
     static func switchAction(for vc: KeyboardViewController) -> KeyboardAction {
         let needsSwitch = vc.needsInputModeSwitchKey
-        return needsSwitch ? .switchKeyboard : .switchToKeyboard(.emojis)
+        return needsSwitch ? .nextKeyboard : .keyboardType(.emojis)
     }
     
     static func imageAction(for vc: KeyboardViewController) -> KeyboardAction {
         let needsSwitch = vc.needsInputModeSwitchKey
-        return needsSwitch ? .switchToKeyboard(.emojis) : .switchToKeyboard(.images)
+        return needsSwitch ? .keyboardType(.emojis) : .keyboardType(.images)
     }
 }
 
 private extension Collection where Element == KeyboardAction {
     
     var withoutImageActions: [KeyboardAction] {
-        self.filter { $0 != .switchToKeyboard(.emojis) }
-            .filter { $0 != .switchToKeyboard(.images) }
+        self.filter { $0 != .keyboardType(.emojis) }
+            .filter { $0 != .keyboardType(.images) }
     }
 }
 

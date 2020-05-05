@@ -40,7 +40,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             it("is by default the tap action") {
                 expect(action(for: .dismissKeyboard)).toNot(beNil())
                 expect(action(for: .backspace)).toNot(beNil())
-                expect(action(for: .switchKeyboard)).to(beNil())
+                expect(action(for: .nextKeyboard)).to(beNil())
             }
         }
         
@@ -53,7 +53,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             it("is only applied to backspace") {
                 expect(action(for: .dismissKeyboard)).to(beNil())
                 expect(action(for: .backspace)).toNot(beNil())
-                expect(action(for: .switchKeyboard)).to(beNil())
+                expect(action(for: .nextKeyboard)).to(beNil())
             }
         }
         
@@ -66,7 +66,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             it("is not nil for action types with standard action") {
                 expect(action(for: .dismissKeyboard)).toNot(beNil())
                 expect(action(for: .backspace)).toNot(beNil())
-                expect(action(for: .switchKeyboard)).to(beNil())
+                expect(action(for: .nextKeyboard)).to(beNil())
             }
         }
         

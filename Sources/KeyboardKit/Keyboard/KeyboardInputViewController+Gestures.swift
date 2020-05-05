@@ -24,7 +24,7 @@ extension KeyboardInputViewController {
         addRepeatingGesture(to: button)
     }
     
-    func addSwitchKeyboardGesture(to button: KeyboardButton) {
+    func addNextKeyboardGesture(to button: KeyboardButton) {
         guard let button = button as? UIButton else { return }
         button.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
     }

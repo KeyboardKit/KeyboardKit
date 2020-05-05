@@ -122,6 +122,8 @@
 		A95306A8245D36B100CB37C3 /* UIScrollView+PageIndexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95306A4245D35F100CB37C3 /* UIScrollView+PageIndexTests.swift */; };
 		A95307532461260900CB37C3 /* EmojiCategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95307522461260900CB37C3 /* EmojiCategoryTests.swift */; };
 		A9530757246133A500CB37C3 /* AutocompleteSuggestionProvider+Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95307552461338600CB37C3 /* AutocompleteSuggestionProvider+Deprecated.swift */; };
+		A953075C2461532900CB37C3 /* KeyboardAction+Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A953075B2461532900CB37C3 /* KeyboardAction+Deprecated.swift */; };
+		A953075E2461540B00CB37C3 /* KeyboardInputViewController+Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A953075D2461540B00CB37C3 /* KeyboardInputViewController+Deprecated.swift */; };
 		A953CA5C2457376600013375 /* KeyboardInputViewController+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = A953CA5B2457376600013375 /* KeyboardInputViewController+Gestures.swift */; };
 		A95922292423C27000CDE5B9 /* Global+IsKeyboardEnabled.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95922282423C27000CDE5B9 /* Global+IsKeyboardEnabled.swift */; };
 		A97047D223D4FFD7001AB983 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97047D123D4FFD7001AB983 /* UIView+Constraints.swift */; };
@@ -382,6 +384,8 @@
 		A95306A4245D35F100CB37C3 /* UIScrollView+PageIndexTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+PageIndexTests.swift"; sourceTree = "<group>"; };
 		A95307522461260900CB37C3 /* EmojiCategoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCategoryTests.swift; sourceTree = "<group>"; };
 		A95307552461338600CB37C3 /* AutocompleteSuggestionProvider+Deprecated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutocompleteSuggestionProvider+Deprecated.swift"; sourceTree = "<group>"; };
+		A953075B2461532900CB37C3 /* KeyboardAction+Deprecated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardAction+Deprecated.swift"; sourceTree = "<group>"; };
+		A953075D2461540B00CB37C3 /* KeyboardInputViewController+Deprecated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardInputViewController+Deprecated.swift"; sourceTree = "<group>"; };
 		A953CA5B2457376600013375 /* KeyboardInputViewController+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardInputViewController+Gestures.swift"; sourceTree = "<group>"; };
 		A95922282423C27000CDE5B9 /* Global+IsKeyboardEnabled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Global+IsKeyboardEnabled.swift"; sourceTree = "<group>"; };
 		A97047D123D4FFD7001AB983 /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
@@ -712,6 +716,8 @@
 				OBJ_49 /* UIView+LongPressAction.swift */,
 				OBJ_50 /* UIView+RepeatingAction.swift */,
 				OBJ_51 /* UIView+TapAction.swift */,
+				A953075B2461532900CB37C3 /* KeyboardAction+Deprecated.swift */,
+				A953075D2461540B00CB37C3 /* KeyboardInputViewController+Deprecated.swift */,
 			);
 			path = _Deprecated;
 			sourceTree = "<group>";
@@ -1444,6 +1450,7 @@
 				OBJ_254 /* KeyboardActionRow.swift in Sources */,
 				A97047D223D4FFD7001AB983 /* UIView+Constraints.swift in Sources */,
 				OBJ_255 /* KeyboardActionRows.swift in Sources */,
+				A953075C2461532900CB37C3 /* KeyboardAction+Deprecated.swift in Sources */,
 				OBJ_256 /* StandardKeyboardActionHandler.swift in Sources */,
 				OBJ_257 /* KeyboardAlert.swift in Sources */,
 				A9BC830D24213B9200A28B87 /* PersistedKeyboardSetting.swift in Sources */,
@@ -1496,6 +1503,7 @@
 				A95306A7245D36AF00CB37C3 /* UIScrollView+PageIndex.swift in Sources */,
 				OBJ_290 /* HapticFeedback.swift in Sources */,
 				OBJ_291 /* KeyboardInputViewController.swift in Sources */,
+				A953075E2461540B00CB37C3 /* KeyboardInputViewController+Deprecated.swift in Sources */,
 				OBJ_292 /* KeyboardSetting.swift in Sources */,
 				OBJ_293 /* KeyboardShiftState.swift in Sources */,
 				A9E9A21F23FE5AA400844844 /* KeyboardAction+Grid.swift in Sources */,

@@ -71,7 +71,7 @@ struct EmojiKeyboard: DemoKeyboard {
     
     public mutating func bottomActionsEmojiCategories(pageSize: Int) -> KeyboardActionRow {
         var bottomActions: KeyboardActionRow = []
-        bottomActions.append(.switchToKeyboard(.alphabetic(uppercased: false)))
+        bottomActions.append(.keyboardType(.alphabetic(uppercased: false)))
         for (index,category) in categories.enumerated() {
             let startPage = emoji.count / pageSize
             emoji += category.emojiActions
