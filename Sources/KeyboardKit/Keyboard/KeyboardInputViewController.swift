@@ -44,6 +44,19 @@ open class KeyboardInputViewController: UIInputViewController {
     open lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(inputViewController: self)
     
     /**
+     This property can be used to handle which keyboard type
+     that is currently displayed by the view controller. You
+     can change this value by calling `changeKeyboardType()`,
+     which will change this value, then call `setupKeyboard`.
+     
+     If you have a single keyboard type in your app, you can
+     ignore this property.
+     */
+    open var keyboardType = KeyboardType.custom("") {
+        didSet { setupKeyboard() }
+    }
+    
+    /**
      Get the current device orientation. If no window can be
      resolved `portrait` is returned.
      */
@@ -90,6 +103,21 @@ open class KeyboardInputViewController: UIInputViewController {
     }
     
     /**
+     Change keyboard type.
+     
+     By default, this function sets `keyboardType` to `type`,
+     which in turn triggers `setupKeyboard()`.
+     
+     You can override this function to change what should be
+     done when a user or the system wants to change keyboard.
+     */
+    open func changeKeyboardType(to type: KeyboardType) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.keyboardType = type
+        }
+    }
+    
+    /**
      Setup any `UIButton` as a "next keyboard" button, which
      means that it will switch to the "next" system keyboard
      when tapped and display a keyboard list when pressed.
@@ -98,6 +126,14 @@ open class KeyboardInputViewController: UIInputViewController {
         let action = #selector(handleInputModeList(from:with:))
         button.addTarget(self, action: action, for: .allTouchEvents)
     }
+    
+    /**
+     Setup the keyboard, given the current state of the app.
+     
+     You can override this function to implement how a setup
+     should work in your app. By default, this does nothing.
+     */
+    open func setupKeyboard() {}
     
     
     // MARK: - UITextInputDelegate

@@ -11,7 +11,11 @@ This version adds more tools and thanks to @eduardoxlau, the demo has  an improv
 
 * The new `EmojiCategory` enum represents the native iOS emoji keyboard categories.
 * `StandardKeyboardActionHandler` has a new, open `endSentenceAction`.
+* `KeyboardInputViewController` has a new `keyboardType` property.
+* `KeyboardInputViewController` has a new `changeKeyboardType` function.
+* `KeyboardInputViewController` has a new `setupKeyboard` function.
 * `KeyboardInputViewController` has a new `deviceOrientation` extension.
+
 * The demo now handles switching to caps lock when shift is double-tapped.
 
 ### Changes

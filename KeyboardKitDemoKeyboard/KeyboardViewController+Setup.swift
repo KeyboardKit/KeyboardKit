@@ -11,15 +11,14 @@ import UIKit
 
 extension KeyboardViewController {
     
-    func setupKeyboard() {
-        setupKeyboard(for: view.bounds.size)
-    }
-    
     func setupKeyboard(for size: CGSize) {
         DispatchQueue.main.async {
             self.setupKeyboardAsync(for: size)
         }
     }
+}
+
+private extension KeyboardViewController {
     
     func setupKeyboardAsync(for size: CGSize) {
         keyboardStackView.removeAllArrangedSubviews()
@@ -78,7 +77,7 @@ extension KeyboardViewController {
 
 // MARK: - Private actions
 
-@objc extension KeyboardViewController {
+@objc private extension KeyboardViewController {
     
     /**
      For now, this pan action handler delays updating, since

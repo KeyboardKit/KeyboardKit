@@ -42,6 +42,7 @@ class KeyboardViewController: KeyboardInputViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        keyboardType = .alphabetic(.lowercased)
         keyboardActionHandler = DemoKeyboardActionHandler(inputViewController: self)
     }
     
@@ -82,10 +83,6 @@ class KeyboardViewController: KeyboardInputViewController {
     var emojiCollectionView: KeyboardButtonRowCollectionView!
     var emojiLabelUpdateAction = {}
     
-    private(set) var keyboardType = KeyboardType.alphabetic(.lowercased) {
-        didSet { setupKeyboard() }
-    }
-    
     
     // MARK: - Autocomplete
     
@@ -98,9 +95,13 @@ class KeyboardViewController: KeyboardInputViewController {
     
     // MARK: - Functions
     
+    override func setupKeyboard() {
+        setupKeyboard(for: view.bounds.size)
+    }
+    
     func switchKeyboardType(to type: KeyboardType){
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            self.keyboardType = type
+            self.changeKeyboardType(to: type)
         }
     }
 }
