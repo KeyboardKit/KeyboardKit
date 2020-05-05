@@ -41,15 +41,7 @@ extension KeyboardViewController {
     
     func setupEmojiKeyboard(for size: CGSize) {
         var keyboard = EmojiKeyboard(in: self)
-        let isLandscape = deviceOrientation.isLandscape
-        let rowsPerPage = isLandscape ? 4 : 5
-        let buttonsPerRow = isLandscape ? 10 : 8
-        let config = KeyboardButtonRowCollectionView.Configuration(
-            rowHeight: 40,
-            rowsPerPage: rowsPerPage,
-            buttonsPerRow: buttonsPerRow
-        )
-        
+        let config = keyboard.gridConfig
         emojiBottomActions = keyboard.bottomActionsEmojiCategories(pageSize: config.pageSize) /**  this function it returns the number of pages for each category */
         let emojis = keyboard.orderEmojis(rowsPerPage: config.rowsPerPage, pageSize: config.pageSize) /** this function changes the order as the emojis are shown from top to bottom */
         let view = KeyboardButtonRowCollectionView(id: "EmojiKeyboard", actions: emojis, configuration: config) { [unowned self] in return self.button(for: $0) }
@@ -72,7 +64,7 @@ extension KeyboardViewController {
     
     func setupImageKeyboard(for size: CGSize) {
         let keyboard = ImageKeyboard(in: self)
-        let view = KeyboardButtonRowCollectionView(actions: keyboard.actions, configuration: keyboard.config) { [unowned self] in return self.button(for: $0) }
+        let view = KeyboardButtonRowCollectionView(actions: keyboard.actions, configuration: keyboard.gridConfig) { [unowned self] in return self.button(for: $0) }
         let bottom = buttonRow(for: keyboard.bottomActions, distribution: .fillProportionally)
         keyboardStackView.addArrangedSubview(view)
         keyboardStackView.addArrangedSubview(bottom)

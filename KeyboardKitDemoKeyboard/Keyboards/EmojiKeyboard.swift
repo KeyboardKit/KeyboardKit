@@ -10,10 +10,21 @@ import KeyboardKit
  */
 struct EmojiKeyboard: DemoKeyboard {
     
-    init(in viewController: KeyboardViewController) {}
+    init(in viewController: KeyboardViewController) {
+        
+        let isLandscape = viewController.deviceOrientation.isLandscape
+        let rowsPerPage = isLandscape ? 4 : 5
+        let buttonsPerRow = isLandscape ? 10 : 8
+        gridConfig = KeyboardButtonRowCollectionView.Configuration(
+            rowHeight: 40,
+            rowsPerPage: rowsPerPage,
+            buttonsPerRow: buttonsPerRow
+        )
+    }
     
-    private let categories = EmojiCategory.all
-    private var emoji: [KeyboardAction] = []
+    let categories = EmojiCategory.all
+    private(set) var emoji: [KeyboardAction] = []
+    let gridConfig: KeyboardButtonRowCollectionView.Configuration
     
     /**
      This function re-arranges sorts the list of emojis from
