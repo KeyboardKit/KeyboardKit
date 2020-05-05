@@ -69,6 +69,10 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Actions
     
+    /**
+     This is the standard action that is used by the handler
+     when a user makes a certain gesture on a certain action.
+     */
     open func action(for gesture: KeyboardGesture, action: KeyboardAction, sender: Any?) -> GestureAction? {
         switch gesture {
         case .doubleTap: return doubleTapAction(for: action, sender: sender)
@@ -78,21 +82,51 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         }
     }
     
+    /**
+     This is the standard action that is used by the handler
+     when a user double taps a certain keyboard action.
+     */
     open func doubleTapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
-        if action != .space { return nil }
-        textDocumentProxy?.deleteBackward(times: 1)
-        return textDocumentProxyAction(for: .character(". "))
+        switch action {
+        case .space: return endSentenceAction()
+        default: return nil
+        }
     }
     
+    /**
+     This function will be used when ending a sentence, e.g.
+     by double-tapping space.
+     */
+    open func endSentenceAction() -> GestureAction? {
+        return { [weak self] in
+            self?.textDocumentProxy?.deleteBackward(times: 1)
+            self?.textDocumentProxyAction(for: .character("."))?()
+        }
+    }
+    
+    /**
+     This is the standard action that is used by the handler
+     when a user long presses a certain keyboard action.
+     */
     open func longPressAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
         tapAction(for: action, sender: sender)
     }
     
+    /**
+     This is the standard action that is used by the handler
+     when a user presses and holds a certain keyboard action.
+     */
     open func repeatAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
-        if action != .backspace { return nil }
-        return tapAction(for: action, sender: sender)
+        switch action {
+        case .backspace: return tapAction(for: action, sender: sender)
+        default: return nil
+        }
     }
     
+    /**
+     This is the standard action that is used by the handler
+     when a user long taps a certain keyboard action.
+     */
     open func tapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
         inputViewControllerAction(for: action) ?? textDocumentProxyAction(for: action)
     }
@@ -108,14 +142,17 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         triggerHapticFeedback(for: gesture, on: action, sender: sender)
     }
     
+    @available(*, deprecated, message: "Use handle(_ gesture:on:sender:) instead")
     open func handleLongPress(on action: KeyboardAction, view: UIView) {
         handle(.longPress, on: action, sender: view)
     }
     
+    @available(*, deprecated, message: "Use handle(_ gesture:on:sender:) instead")
     open func handleRepeat(on action: KeyboardAction, view: UIView) {
         handle(.repeatPress, on: action, sender: view)
     }
     
+    @available(*, deprecated, message: "Use handle(_ gesture:on:sender:) instead")
     open func handleTap(on action: KeyboardAction, view: UIView) {
         handle(.tap, on: action, sender: view)
     }

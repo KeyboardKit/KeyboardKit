@@ -12,18 +12,6 @@ import UIKit
  This class extends `UIInputViewController` with KeyboardKit
  specific properties and functionality. You can subclass the
  class to modify any standard behavior.
- 
- `keyboardActionHandler` can be used to handle any triggered
- keyboard actions. If you don't replace it with a custom one,
- a `StandardKeyboardActionHandler` one is used by default.
- 
- `keyboardStackView` view is a lazy view that's added to the
- keyboard extension view only when it's first called. Use it
- if you prefer to use `UIKit` to build your extension.
- 
- `addKeyboardGestures(to:)` it used to add keyboard gestures
- to keyboard buttons, e.g. `tap`, `long press` and `repeat`.
- These gestures are then forwarded to the action handler.
  */
 open class KeyboardInputViewController: UIInputViewController {
 
@@ -49,8 +37,9 @@ open class KeyboardInputViewController: UIInputViewController {
      This handler can be used to handle any keyboard actions
      that are triggered by the user or the system.
      
-     If no custom action handler is set, the controller will
-     use a `StandardKeyboardActionHandler` by default.
+     You can override this property with any custom keyboard
+     action handler. If no custom action handler is set, the
+     controller will use a `StandardKeyboardActionHandler`.
      */
     open lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(inputViewController: self)
     
@@ -59,12 +48,12 @@ open class KeyboardInputViewController: UIInputViewController {
     
     /**
      `keyboardStackView` is a regular `UIStackView` that you
-     can configure freely and add any views you like. Use it
-     if you prefer to use `UIKit` to create your keyboard.
+     can configure freely and add any views you like to. Use
+     it if you prefer to use `UIKit` to create your keyboard.
      
-     The view will be added to the extension view as soon as
-     you use. It will setup its constraints so that its size
-     resizes the extension.
+     This view will be added to the extension's view as soon
+     as you use it. It will setup its constraints so that it
+     resizes together with the extension.
      
      The standard axis is `vertical`, since the idea is that
      this view should be populated with `rows`, to which you
@@ -98,7 +87,8 @@ open class KeyboardInputViewController: UIInputViewController {
      when tapped and display a keyboard list when pressed.
      */
     public func setupNextKeyboardButton(_ button: UIButton) {
-        button.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
+        let action = #selector(handleInputModeList(from:with:))
+        button.addTarget(self, action: action, for: .allTouchEvents)
     }
     
     

@@ -11,13 +11,19 @@ Some keyboard actions have been renamed as well.
 
 ### New features
 
-* The `EmojiCategory` represents the native iOS emoji keyboard categories.
+* The new `EmojiCategory` enum represents the native iOS emoji keyboard categories.
+* `StandardKeyboardActionHandler` has a new, open `endSentenceAction`.
+
 
 ### Deprecations
 
 * `KeyboardAction.switchKeyboard` has been renamed to `KeyboardAction.nextKeyboard`
 * `KeyboardAction.switchToKeyboard` has been renamed to `KeyboardAction.keyboardType`
 * `addSwitchKeyboardGesture(to:)` has been renamed to `addNextKeyboardGesture(to:)`
+
+### Bug fixes
+
+* Double tap handling for space no longer inserts an additional space.
 
 ### Breaking change
 
