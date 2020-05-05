@@ -126,7 +126,7 @@ private extension DemoKeyboardActionHandler {
     }
     
     func switchEmoji(page: Int) {
-        UserDefaults.standard.set(page , forKey: KeyboardSetting.currentPageIndex.key(for: "KeyboardButtonRowCollectionView"))
+        EmojiKeyboard.currentPageIndex = page
         demoViewController?.keyboardType = .emojis
     }
     

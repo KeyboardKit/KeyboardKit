@@ -51,17 +51,15 @@ extension KeyboardViewController {
         )
         bottomActions = keyboard.bottomActionsEmojiCategories(pageSize: config.pageSize) /**  this function it returns the number of pages for each category */
         let emojis = keyboard.orderEmojis(rowsPerPage: config.rowsPerPage, pageSize: config.pageSize) /** this function changes the order as the emojis are shown from top to bottom */
-        let view = KeyboardButtonRowCollectionView(actions: emojis, configuration: config) { [unowned self] in return self.button(for: $0) }
+        let view = KeyboardButtonRowCollectionView(id: "EmojiKeyboard", actions: emojis, configuration: config) { [unowned self] in return self.button(for: $0) }
         let bottom = buttonRow(for: bottomActions, distribution: .fillProportionally)
         
-        let page = UserDefaults.standard.integer(forKey: KeyboardSetting.currentPageIndex.key(for: "KeyboardButtonRowCollectionView"))/** get current page*/
-        categoryEmoji.text = keyboard.getNameCategoryEmoji(currentPage: page,bottomActions:bottomActions)/** get current categoria*/
+        let pageIndex = EmojiKeyboard.currentPageIndex
+        categoryEmoji.text = keyboard.getNameCategoryEmoji(currentPage: pageIndex,bottomActions: bottomActions)
         
-        /**a stackView is created that contains a label with the current category and the view with the emojis*/
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.addArrangedSubview(categoryEmoji)
-        
         
         view.panGestureRecognizer.addTarget(self, action: #selector(checkCategoryEmoji(_:)))/** a gesture is added to detect each time the category is changed*/
         
@@ -92,12 +90,10 @@ extension KeyboardViewController {
         let rows = buttonRows(for: keyboard.actions, distribution: .fillProportionally)
         keyboardStackView.addArrangedSubviews(rows)
     }
+    
     @objc func checkCategoryEmoji(_ recognizer: UIPanGestureRecognizer){
-        
-        if recognizer.state == .ended {
-            let page = UserDefaults.standard.integer(forKey: KeyboardSetting.currentPageIndex.key(for: "KeyboardButtonRowCollectionView"))
-            categoryEmoji.text = EmojiKeyboard(in: self).getNameCategoryEmoji(currentPage: page, bottomActions:bottomActions)
-        }
-        
+        guard recognizer.state == .ended else { return }
+        let pageIndex = EmojiKeyboard.currentPageIndex
+        categoryEmoji.text = EmojiKeyboard(in: self).getNameCategoryEmoji(currentPage: pageIndex, bottomActions: bottomActions)
     }
 }

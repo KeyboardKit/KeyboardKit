@@ -1,4 +1,4 @@
-
+import Foundation
 import KeyboardKit
 
 /**
@@ -14,6 +14,15 @@ struct EmojiKeyboard: DemoKeyboard {
     
     private let categories = EmojiCategory.all
     private var emoji: [KeyboardAction] = []
+    
+    static var currentPageIndex: Int {
+        get { userDefaults.integer(forKey: currentPageIndexKey )}
+        set { userDefaults.set(newValue, forKey: currentPageIndexKey )}
+    }
+    
+    private static var currentPageIndexKey: String { currentPageIndexSetting.key(for: "EmojiKeyboard") }
+    private static var currentPageIndexSetting: KeyboardSetting { .currentPageIndex }
+    private static let userDefaults = UserDefaults.standard
     
     public func orderEmojis(rowsPerPage: Int, pageSize: Int) -> [KeyboardAction] {
         
