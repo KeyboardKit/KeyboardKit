@@ -5,9 +5,13 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 ## 2.9.0
 
-This version adds more features, fixes some bugs and deprecates some parts of the library. Also, thanks to @eduardoxlau, the demo has an improved emoji keyboard. 
+This is the last mino rversion before `3.0`, which will remove a bunch of deprecated members.
+
+This version adds more features, fixes some bugs and deprecates many parts of the library.
 
 A big change, which is not fully covered in these notes, is that `KeyboardInputViewController` and `StandardKeyboardActionHandler` now handles changing keyboard types. Even if you have to fill a "type" with meaning in your app, you now have implemented logic to help you handle this.
+
+Thanks to @eduardoxlau, the demo also has an improved emoji keyboard. 
 
 
 ### New features
