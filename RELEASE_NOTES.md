@@ -7,7 +7,7 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 This version removes all previously deprecated parts of the library, If you upgrade from an older version to `3.0` and have many breaking changes, perhaps upgrade to `2.9` first, to get deprecation help warnings.
 
-### Removed in this version
+### Removed in this version (related are grouped with / when possible)
 
 * `AutocompleteBugFixTimer`
 * `AutocompleteSuggestionProvider` `provideAutocompleteSuggestions`
@@ -19,13 +19,14 @@ This version removes all previously deprecated parts of the library, If you upgr
 * `KeyboardActionHandler` `handle` gesture on `UIView`
 * `KeyboardInputViewController` `addSwitchKeyboardGesture`
 * `StandardKeyboardActionHandler` `init` with feedback instances
-* `StandardKeyboardActionHandler` `giveHapticFeedbackForLongPress`
-* `StandardKeyboardActionHandler` `giveHapticFeedbackForRepeat`
-* `StandardKeyboardActionHandler` `giveHapticFeedbackForTap`
+* `StandardKeyboardActionHandler` `action` for view
+* `StandardKeyboardActionHandler` `animationButtonTap`
+* `StandardKeyboardActionHandler` `giveHapticFeedbackForLongPress/Repeat/Tap`
+* `StandardKeyboardActionHandler` `longPress/repeat/tapAction` for view
+* `StandardKeyboardActionHandler` `handleLongPress/Repeat/Tap`
+* `StandardKeyboardActionHandler` `triggerAudio/HapticFeedback`
 * `UIInputViewController` `createAutocompleteBugFixTimer`
-* `UIView` `add/removeLongPressAction`
-* `UIView` `add/removeRepeatingAction`
-* `UIView` `add/removeTapAction`
+* `UIView` `add/removeLongPress/Repeating/TapAction`
 * `isKeyboardEnabled` global function
 
 

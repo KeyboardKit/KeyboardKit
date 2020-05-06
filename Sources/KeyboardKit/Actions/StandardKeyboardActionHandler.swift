@@ -140,21 +140,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         triggerHapticFeedback(for: gesture, on: action, sender: sender)
     }
     
-    @available(*, deprecated, message: "Use handle(_ gesture:on:sender:) instead")
-    open func handleLongPress(on action: KeyboardAction, view: UIView) {
-        handle(.longPress, on: action, sender: view)
-    }
-    
-    @available(*, deprecated, message: "Use handle(_ gesture:on:sender:) instead")
-    open func handleRepeat(on action: KeyboardAction, view: UIView) {
-        handle(.repeatPress, on: action, sender: view)
-    }
-    
-    @available(*, deprecated, message: "Use handle(_ gesture:on:sender:) instead")
-    open func handleTap(on action: KeyboardAction, view: UIView) {
-        handle(.tap, on: action, sender: view)
-    }
-    
     
     // MARK: - Feedback
     
@@ -175,44 +160,5 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         case .repeatPress: hapticConfiguration.repeatFeedback.trigger()
         case .tap: hapticConfiguration.tapFeedback.trigger()
         }
-    }
-    
-    
-    // MARK: - DEPRECATED
-    
-    @available(*, deprecated, message: "Use action(for sender:) instead")
-    open func action(for gesture: KeyboardGesture, action: KeyboardAction, view: UIView) -> GestureAction? {
-        self.action(for: gesture, action: action, sender: view)
-    }
-    
-    @available(*, deprecated, message: "Use triggerAnimation(for:on:sender:) instead")
-    open func animationButtonTap(for view: UIView) {
-        triggerAnimation(for: .tap, on: .none, sender: view)
-    }
-    
-    @available(*, deprecated, message: "Use longPressAction(for sender:) instead")
-    open func longPressAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
-        tapAction(for: action, view: view)
-    }
-    
-    @available(*, deprecated, message: "Use repeatAction(for sender:) instead")
-    open func repeatAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
-        guard action == .backspace else { return nil }
-        return tapAction(for: action, view: view)
-    }
-    
-    @available(*, deprecated, message: "Use tapAction(for sender:) instead")
-    open func tapAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
-        return { action.standardTapAction?(self.inputViewController) }
-    }
-    
-    @available(*, deprecated, message: "Use triggerAudioFeedback(for:on:sender:) instead")
-    open func triggerAudioFeedback(for action: KeyboardAction) {
-        triggerAudioFeedback(for: .tap, on: action, sender: nil)
-    }
-    
-    @available(*, deprecated, message: "Use triggerHapticFeedback(for:on:sender:) instead")
-    open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
-        triggerHapticFeedback(for: gesture, on: action, sender: nil)
     }
 }

@@ -23,7 +23,4 @@ public typealias AutocompleteResult = Result<[String], Error>
 public protocol AutocompleteSuggestionProvider {
     
     func autocompleteSuggestions(for text: String, completion: AutocompleteResponse)
-
-    @available(*, deprecated, renamed: "autocompleteSuggestions(for:completion:)")
-    func provideAutocompleteSuggestions(for text: String, completion: AutocompleteResponse)
 }
