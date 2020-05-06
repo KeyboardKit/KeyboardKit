@@ -15,6 +15,8 @@ This version removes all previously deprecated parts of the library, If you upgr
 * `KeyboardAction` `switchToKeyboard`
 * `KeyboardAction` `standardInputViewControllerAction`
 * `KeyboardAction` `standardTextDocumentProxyAction`
+* `KeyboardActionHandler` `handleTap/Repeat/LongPress`
+* `KeyboardActionHandler` `handle` gesture on `UIView`
 * `KeyboardInputViewController` `addSwitchKeyboardGesture`
 * `StandardKeyboardActionHandler` `init` with feedback instances
 * `StandardKeyboardActionHandler` `giveHapticFeedbackForLongPress`
