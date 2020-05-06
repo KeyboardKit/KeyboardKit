@@ -5,18 +5,19 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 ## 2.9.0
 
-This version adds more features, fixes some bugs and deprecates some parts of the library. 
+This version adds more features, fixes some bugs and deprecates some parts of the library. Also, thanks to @eduardoxlau, the demo has an improved emoji keyboard. 
 
-Thanks to @eduardoxlau, the demo has an improved emoji keyboard.
+A big change, which is not fully covered in these notes, is that `KeyboardInputViewController` and `StandardKeyboardActionHandler` now handles changing keyboard types. Even if you have to fill a "type" with meaning in your app, you now have implemented logic to help you handle this.
+
 
 ### New features
 
 * `KeyboardInputViewController` has a new `deviceOrientation` property.
 * `KeyboardInputViewController` has a new `keyboardType` property.
-* `KeyboardInputViewController` has a new `changeKeyboardType` function.
-* `KeyboardInputViewController` has a new `changeKeyboardTypeDelay` property, which delays keyboard type changes for double-taps.
+* `KeyboardInputViewController` has new `can/changeKeyboardType` functions and properties.
 * `KeyboardInputViewController` has a new `setupKeyboard` function.
 * `KeyboardAction` has a new standard tap action for `.keyboardType`.
+* `StandardKeyboardActionHandler` has more logic for handling keyboard type changes.
 * The new `EmojiCategory` enum represents the native iOS emoji keyboard categories.
 * The new `KeyboardStateInspector` can be implemented to get info about the keyboard.
 
@@ -41,7 +42,6 @@ Thanks to @eduardoxlau, the demo has an improved emoji keyboard.
 
 * `KeyboardType.alphabetic` now uses a `KeyboardShiftState` property instead of a bool for if it's upper-cased or not.
 * `KeyboardAction.switchToKeyboard` is now an alias for `keyboardType`. You can still use it when defining actions, but if you switch over `KeyboardAction`, you have to use `keyboardType` instead of `switchToKeyboard`.
-* `StandardKeyboardActionHandler` now has a ``
 
 
 ## 2.8.1

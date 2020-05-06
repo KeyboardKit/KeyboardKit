@@ -55,42 +55,60 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         
         // MARK: - Actions
         
-        describe("long press action") {
+        context("actions") {
             
-            func action(for action: KeyboardAction) -> Any? {
-                return handler.longPressAction(for: action, sender: UIView())
+            let actions: [KeyboardAction] = [
+                .none,
+                .backspace,
+                .capsLock,
+                .character(""),
+                .command,
+                .custom(name: ""),
+                .dismissKeyboard,
+                .emojiCategory(.foods),
+                .escape,
+                .function,
+                .image(description: "", keyboardImageName: "", imageName: ""),
+                .keyboardType(.emojis),
+                .moveCursorBackward,
+                .moveCursorForward,
+                .newLine,
+                .nextKeyboard,
+                .option,
+                .shift,
+                .shiftDown,
+                .space,
+                .tab
+            ]
+            
+            describe("tap action") {
+                
+                it("is not nil for actions with standard action") {
+                    actions.forEach {
+                        let action = handler.tapAction(for: $0, sender: nil)
+                        expect(action == nil).to(equal($0.standardTapAction == nil))
+                    }
+                }
             }
             
-            it("is by default the tap action") {
-                expect(action(for: .dismissKeyboard)).toNot(beNil())
-                expect(action(for: .backspace)).toNot(beNil())
-                expect(action(for: .nextKeyboard)).to(beNil())
-            }
-        }
-        
-        describe("repeat action") {
-            
-            func action(for action: KeyboardAction) -> Any? {
-                return handler.repeatAction(for: action, sender: UIView())
+            describe("long press action") {
+                
+                it("is not nil for actions with standard action") {
+                    actions.forEach {
+                        let action = handler.longPressAction(for: $0, sender: nil)
+                        expect(action == nil).to(equal($0.standardLongPressAction == nil))
+                    }
+                }
             }
             
-            it("is only applied to backspace") {
-                expect(action(for: .dismissKeyboard)).to(beNil())
-                expect(action(for: .backspace)).toNot(beNil())
-                expect(action(for: .nextKeyboard)).to(beNil())
-            }
-        }
-        
-        describe("tap action") {
-            
-            func action(for action: KeyboardAction) -> Any? {
-                return handler.tapAction(for: action, sender: UIView())
-            }
-            
-            it("is not nil for action types with standard action") {
-                expect(action(for: .dismissKeyboard)).toNot(beNil())
-                expect(action(for: .backspace)).toNot(beNil())
-                expect(action(for: .nextKeyboard)).to(beNil())
+            describe("repeat action") {
+                
+                it("is not nil for actions with standard action") {
+                    actions.forEach {
+                        let action = handler.repeatAction(for: $0, sender: nil)
+                        expect(action == nil).to(equal($0.standardRepeatAction == nil))
+                    }
+                }
             }
         }
         

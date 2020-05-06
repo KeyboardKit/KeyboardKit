@@ -98,7 +98,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     open func doubleTapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
         switch action {
         case .space: return endSentenceAction()
-        default: return nil
+        default: return { action.standardDoubleTapAction?(self.inputViewController) }
         }
     }
     
@@ -109,7 +109,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     open func endSentenceAction() -> GestureAction? {
         return { [weak self] in
             self?.textDocumentProxy?.deleteBackward(times: 1)
-            self?.textDocumentProxyAction(for: .character("."))?()
+            self?.tapAction(for: .character("."), sender: nil)?()
         }
     }
     
@@ -118,7 +118,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      when a user long presses on a certain keyboard action.
      */
     open func longPressAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
-        tapAction(for: action, sender: sender)
+        guard let action = action.standardLongPressAction else { return nil }
+        return { action(self.inputViewController) }
     }
     
     /**
@@ -126,18 +127,17 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      when a user presses and holds a certain keyboard action.
      */
     open func repeatAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
-        switch action {
-        case .backspace: return tapAction(for: action, sender: sender)
-        default: return nil
-        }
+        guard let action = action.standardRepeatAction else { return nil }
+        return { action(self.inputViewController) }
     }
     
     /**
      This is the standard action that is used by the handler
-     when a user long taps a certain keyboard action.
+     when a user taps a certain keyboard action.
      */
     open func tapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
-        inputViewControllerAction(for: action) ?? textDocumentProxyAction(for: action)
+        guard let action = action.standardTapAction else { return nil }
+        return { action(self.inputViewController) }
     }
     
     
@@ -214,7 +214,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     @available(*, deprecated, message: "Use tapAction(for sender:) instead")
     open func tapAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
-        inputViewControllerAction(for: action) ?? textDocumentProxyAction(for: action)
+        return { action.standardTapAction?(self.inputViewController) }
     }
     
     @available(*, deprecated, message: "Use triggerAudioFeedback(for:on:sender:) instead")
@@ -225,21 +225,5 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     @available(*, deprecated, message: "Use triggerHapticFeedback(for:on:sender:) instead")
     open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
         triggerHapticFeedback(for: gesture, on: action, sender: nil)
-    }
-}
-
-
-// MARK: - Private Functions
-
-private extension StandardKeyboardActionHandler {
-    
-    func inputViewControllerAction(for action: KeyboardAction) -> GestureAction? {
-        guard let inputAction = action.standardInputViewControllerAction else { return nil }
-        return { inputAction(self.inputViewController) }
-    }
-    
-    func textDocumentProxyAction(for action: KeyboardAction) -> GestureAction? {
-        guard let proxyAction = action.standardTextDocumentProxyAction else { return nil }
-        return { proxyAction(self.textDocumentProxy) }
     }
 }

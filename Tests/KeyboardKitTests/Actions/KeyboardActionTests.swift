@@ -82,17 +82,12 @@ class KeyboardActionTests: QuickSpec {
             }
             
             it("is true for content actions") {
-                expect(result(for: .none)).to(beFalse())
                 expect(result(for: .backspace)).to(beTrue())
                 expect(result(for: .dismissKeyboard)).to(beTrue())
                 expect(result(for: .capsLock)).to(beTrue())
-                expect(result(for: .character(""))).to(beFalse())
                 expect(result(for: .command)).to(beTrue())
-                expect(result(for: .custom(name: ""))).to(beFalse())
-                expect(result(for: .emojiCategory(.foods))).to(beFalse())
                 expect(result(for: .escape)).to(beTrue())
                 expect(result(for: .function)).to(beTrue())
-                expect(result(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beFalse())
                 expect(result(for: .keyboardType(.email))).to(beTrue())
                 expect(result(for: .moveCursorBackward)).to(beTrue())
                 expect(result(for: .moveCursorForward)).to(beTrue())
@@ -101,70 +96,137 @@ class KeyboardActionTests: QuickSpec {
                 expect(result(for: .option)).to(beTrue())
                 expect(result(for: .shift)).to(beTrue())
                 expect(result(for: .shiftDown)).to(beTrue())
+                expect(result(for: .tab)).to(beTrue())
+                
+                expect(result(for: .none)).to(beFalse())
+                expect(result(for: .character(""))).to(beFalse())
+                expect(result(for: .custom(name: ""))).to(beFalse())
+                expect(result(for: .emojiCategory(.foods))).to(beFalse())
+                expect(result(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beFalse())
                 expect(result(for: .space)).to(beFalse())
+            }
+        }
+        
+        describe("standard double tap action") {
+            
+            func result(for action: KeyboardAction) -> KeyboardAction.GestureAction? {
+                action.standardDoubleTapAction
+            }
+            
+            it("is defined for no actions") {
+                expect(result(for: .none)).to(beNil())
+                expect(result(for: .backspace)).to(beNil())
+                expect(result(for: .capsLock)).to(beNil())
+                expect(result(for: .character("a"))).to(beNil())
+                expect(result(for: .dismissKeyboard)).to(beNil())
+                expect(result(for: .command)).to(beNil())
+                expect(result(for: .custom(name: ""))).to(beNil())
+                expect(result(for: .escape)).to(beNil())
+                expect(result(for: .function)).to(beNil())
+                expect(result(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beNil())
+                expect(result(for: .keyboardType(.email))).to(beNil())
+                expect(result(for: .moveCursorBackward)).to(beNil())
+                expect(result(for: .moveCursorForward)).to(beNil())
+                expect(result(for: .newLine)).to(beNil())
+                expect(result(for: .nextKeyboard)).to(beNil())
+                expect(result(for: .option)).to(beNil())
+                expect(result(for: .shift)).to(beNil())
+                expect(result(for: .shiftDown)).to(beNil())
+                expect(result(for: .space)).to(beNil())
+                expect(result(for: .tab)).to(beNil())
+            }
+        }
+        
+        describe("standard long press action") {
+            
+            func result(for action: KeyboardAction) -> Bool {
+                if action.standardTapAction != nil { return action.standardLongPressAction != nil }
+                return action.standardLongPressAction == nil
+            }
+            
+            it("is defined for all actions that has a standard tap action") {
+                expect(result(for: .none)).to(beTrue())
+                expect(result(for: .backspace)).to(beTrue())
+                expect(result(for: .capsLock)).to(beTrue())
+                expect(result(for: .character("a"))).to(beTrue())
+                expect(result(for: .dismissKeyboard)).to(beTrue())
+                expect(result(for: .command)).to(beTrue())
+                expect(result(for: .custom(name: ""))).to(beTrue())
+                expect(result(for: .escape)).to(beTrue())
+                expect(result(for: .function)).to(beTrue())
+                expect(result(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beTrue())
+                expect(result(for: .keyboardType(.email))).to(beTrue())
+                expect(result(for: .moveCursorBackward)).to(beTrue())
+                expect(result(for: .moveCursorForward)).to(beTrue())
+                expect(result(for: .newLine)).to(beTrue())
+                expect(result(for: .nextKeyboard)).to(beTrue())
+                expect(result(for: .option)).to(beTrue())
+                expect(result(for: .shift)).to(beTrue())
+                expect(result(for: .shiftDown)).to(beTrue())
+                expect(result(for: .space)).to(beTrue())
                 expect(result(for: .tab)).to(beTrue())
             }
         }
         
-        describe("standard input view controller action") {
+        describe("standard tap action") {
             
-            func action(for action: KeyboardAction) -> ((KeyboardInputViewController?) -> Void)? {
-                return action.standardInputViewControllerAction
+            func result(for action: KeyboardAction) -> KeyboardAction.GestureAction? {
+                action.standardTapAction
             }
             
             it("is defined for some actions") {
-                expect(action(for: .dismissKeyboard)).toNot(beNil())
-                expect(action(for: .keyboardType(.email))).toNot(beNil())
-                expect(action(for: .shift)).toNot(beNil())
-                expect(action(for: .shiftDown)).toNot(beNil())
+                expect(result(for: .backspace)).toNot(beNil())
+                expect(result(for: .character("a"))).toNot(beNil())
+                expect(result(for: .dismissKeyboard)).toNot(beNil())
+                expect(result(for: .keyboardType(.email))).toNot(beNil())
+                expect(result(for: .moveCursorBackward)).toNot(beNil())
+                expect(result(for: .moveCursorForward)).toNot(beNil())
+                expect(result(for: .newLine)).toNot(beNil())
+                expect(result(for: .shift)).toNot(beNil())
+                expect(result(for: .shiftDown)).toNot(beNil())
+                expect(result(for: .space)).toNot(beNil())
+                expect(result(for: .tab)).toNot(beNil())
                 
-                expect(action(for: .none)).to(beNil())
-                expect(action(for: .backspace)).to(beNil())
-                expect(action(for: .capsLock)).to(beNil())
-                expect(action(for: .character(""))).to(beNil())
-                expect(action(for: .command)).to(beNil())
-                expect(action(for: .custom(name: ""))).to(beNil())
-                expect(action(for: .escape)).to(beNil())
-                expect(action(for: .function)).to(beNil())
-                expect(action(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beNil())
-                expect(action(for: .moveCursorBackward)).to(beNil())
-                expect(action(for: .moveCursorForward)).to(beNil())
-                expect(action(for: .newLine)).to(beNil())
-                expect(action(for: .nextKeyboard)).to(beNil())
-                expect(action(for: .option)).to(beNil())
-                expect(action(for: .space)).to(beNil())
-                expect(action(for: .tab)).to(beNil())
+                expect(result(for: .none)).to(beNil())
+                expect(result(for: .capsLock)).to(beNil())
+                expect(result(for: .command)).to(beNil())
+                expect(result(for: .custom(name: ""))).to(beNil())
+                expect(result(for: .escape)).to(beNil())
+                expect(result(for: .function)).to(beNil())
+                expect(result(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beNil())
+                expect(result(for: .nextKeyboard)).to(beNil())
+                expect(result(for: .option)).to(beNil())
             }
         }
         
-        describe("standard text document proxy action") {
+        describe("standard repeat action") {
             
-            func action(for action: KeyboardAction) -> ((UITextDocumentProxy?) -> Void)? {
-                return action.standardTextDocumentProxyAction
+            func result(for action: KeyboardAction) -> KeyboardAction.GestureAction? {
+                action.standardRepeatAction
             }
             
             it("is defined for some actions") {
-                expect(action(for: .backspace)).toNot(beNil())
-                expect(action(for: .character("a"))).toNot(beNil())
-                expect(action(for: .moveCursorBackward)).toNot(beNil())
-                expect(action(for: .moveCursorForward)).toNot(beNil())
-                expect(action(for: .newLine)).toNot(beNil())
-                expect(action(for: .space)).toNot(beNil())
-                expect(action(for: .tab)).toNot(beNil())
+                expect(result(for: .backspace)).toNot(beNil())
                 
-                expect(action(for: .none)).to(beNil())
-                expect(action(for: .dismissKeyboard)).to(beNil())
-                expect(action(for: .capsLock)).to(beNil())
-                expect(action(for: .command)).to(beNil())
-                expect(action(for: .custom(name: ""))).to(beNil())
-                expect(action(for: .escape)).to(beNil())
-                expect(action(for: .function)).to(beNil())
-                expect(action(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beNil())
-                expect(action(for: .keyboardType(.email))).to(beNil())
-                expect(action(for: .nextKeyboard)).to(beNil())
-                expect(action(for: .option)).to(beNil())
-                expect(action(for: .shift)).to(beNil())
-                expect(action(for: .shiftDown)).to(beNil())
+                expect(result(for: .none)).to(beNil())
+                expect(result(for: .capsLock)).to(beNil())
+                expect(result(for: .character("a"))).to(beNil())
+                expect(result(for: .dismissKeyboard)).to(beNil())
+                expect(result(for: .command)).to(beNil())
+                expect(result(for: .custom(name: ""))).to(beNil())
+                expect(result(for: .escape)).to(beNil())
+                expect(result(for: .function)).to(beNil())
+                expect(result(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beNil())
+                expect(result(for: .keyboardType(.email))).to(beNil())
+                expect(result(for: .moveCursorBackward)).to(beNil())
+                expect(result(for: .moveCursorForward)).to(beNil())
+                expect(result(for: .newLine)).to(beNil())
+                expect(result(for: .nextKeyboard)).to(beNil())
+                expect(result(for: .option)).to(beNil())
+                expect(result(for: .shift)).to(beNil())
+                expect(result(for: .shiftDown)).to(beNil())
+                expect(result(for: .space)).to(beNil())
+                expect(result(for: .tab)).to(beNil())
             }
         }
     }

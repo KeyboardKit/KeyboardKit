@@ -56,6 +56,9 @@ public enum KeyboardAction: Equatable {
 
 public extension KeyboardAction {
     
+    typealias GestureAction = ((KeyboardInputViewController?) -> Void)
+    
+    
     /**
      Whether or not the action is a delete action.
      */
@@ -110,31 +113,55 @@ public extension KeyboardAction {
     
     /**
      The standard action, if any, that should be executed on
-     the input view controller when the action is triggered.
+     the input view controller, when the action is triggered
+     with a double-tap.
      */
-    var standardInputViewControllerAction: ((KeyboardInputViewController?) -> Void)? {
+    var standardDoubleTapAction: GestureAction? {
+        return nil
+    }
+    
+    /**
+     The standard action, if any, that should be executed on
+     the input view controller, when the action is triggered
+     with a long press.
+     */
+    var standardLongPressAction: GestureAction? {
         switch self {
-        case .dismissKeyboard: return { $0?.dismissKeyboard() }
-        case .keyboardType(let type): return { $0?.changeKeyboardType(to: type) }
-        case .shift: return { $0?.changeKeyboardType(to: .alphabetic(.uppercased)) }
-        case .shiftDown: return { $0?.changeKeyboardType(to: .alphabetic(.lowercased)) }
+        case .shift: return { $0?.changeKeyboardType(to: .alphabetic(.capsLocked)) }
+        default: return standardTapAction
+        }
+    }
+    
+    /**
+     The standard action, if any, that should be executed on
+     the input view controller, when the action is triggered
+     with a press and hold.
+     */
+    var standardRepeatAction: GestureAction? {
+        switch self {
+        case .backspace: return standardTapAction
         default: return nil
         }
     }
     
     /**
      The standard action, if any, that should be executed on
-     the text document proxy when the action is triggered.
+     the input view controller, when the action is triggered
+     with a tap.
      */
-    var standardTextDocumentProxyAction: ((UITextDocumentProxy?) -> Void)? {
+    var standardTapAction: GestureAction? {
         switch self {
-        case .backspace: return { $0?.deleteBackward() }
-        case .character(let char): return { $0?.insertText(char) }
-        case .moveCursorBackward: return { $0?.adjustTextPosition(byCharacterOffset: -1) }
-        case .moveCursorForward: return { $0?.adjustTextPosition(byCharacterOffset: 1) }
-        case .newLine: return { $0?.insertText("\n") }
-        case .space: return { $0?.insertText(" ") }
-        case .tab: return { $0?.insertText("\t") }
+        case .dismissKeyboard: return { $0?.dismissKeyboard() }
+        case .keyboardType(let type): return { $0?.changeKeyboardType(to: type) }
+        case .shift: return { $0?.changeKeyboardType(to: .alphabetic(.uppercased)) }
+        case .shiftDown: return { $0?.changeKeyboardType(to: .alphabetic(.lowercased)) }
+        case .backspace: return { $0?.textDocumentProxy.deleteBackward() }
+        case .character(let char): return { $0?.textDocumentProxy.insertText(char) }
+        case .moveCursorBackward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: -1) }
+        case .moveCursorForward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: 1) }
+        case .newLine: return { $0?.textDocumentProxy.insertText("\n") }
+        case .space: return { $0?.textDocumentProxy.insertText(" ") }
+        case .tab: return { $0?.textDocumentProxy.insertText("\t") }
         default: return nil
         }
     }
