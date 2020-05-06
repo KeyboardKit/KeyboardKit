@@ -1,6 +1,6 @@
 # Views
 
-KeyboardKit comes with a bunch of views that implement one or many of the component protocols.
+KeyboardKit comes with a bunch of views that implement one or many of the component protocols and can be composed into a complete keyboard. Some views include:
 
 * `KeyboardButtonView` implements `KeyboardButton`. It's a regular `UIButton` that can be setup with a primary and secondary action. 
 
@@ -13,3 +13,5 @@ KeyboardKit comes with a bunch of views that implement one or many of the compon
 * `KeyboardCollectionView` implements `KeyboardStackViewComponent`. It's a regular `UICollectionView` that can be customized in any way you like. However, since it contains very little logic, you can use the `KeyboardButtonCollectionView` and `KeyboardButtonRowCollectionView` subclasses to get more features out of the box.
 
 Since these views are regular views, you can use them in your hosting application as well.
+
+Take a look in `UIKit` for a complete list of components. You can also check out `KeyboardKitSwiftUI`, since SwiftUI uses different views.
