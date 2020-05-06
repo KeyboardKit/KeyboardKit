@@ -36,7 +36,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             
             func result(for type: KeyboardType) -> Bool {
                 inputViewController.keyboardType = type
-                return handler.shouldChangeToAlphabeticLowercaseAfterInput
+                return handler.shouldChangeToAlphabeticLowercase
             }
             
             it("is only true if current keyboard type is uppercase alpha") {
@@ -87,6 +87,16 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
                     actions.forEach {
                         let action = handler.tapAction(for: $0, sender: nil)
                         expect(action == nil).to(equal($0.standardTapAction == nil))
+                    }
+                }
+            }
+            
+            describe("double tap action") {
+                
+                it("is not nil for actions with standard action") {
+                    actions.forEach {
+                        let action = handler.doubleTapAction(for: $0, sender: nil)
+                        expect(action == nil).to(equal($0.standardDoubleTapAction == nil))
                     }
                 }
             }

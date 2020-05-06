@@ -58,6 +58,16 @@ public extension KeyboardAction {
     
     typealias GestureAction = ((KeyboardInputViewController?) -> Void)
     
+    /**
+     This action can used to end a sentence, e.g. when space
+     is double-tapped.
+     */
+    var endSentenceAction: GestureAction {
+        return {
+            $0?.textDocumentProxy.deleteBackward(times: 1)
+            KeyboardAction.character(".").standardTapAction?($0)
+        }
+    }
     
     /**
      Whether or not the action is a delete action.
@@ -117,7 +127,11 @@ public extension KeyboardAction {
      with a double-tap.
      */
     var standardDoubleTapAction: GestureAction? {
-        return nil
+        switch self {
+        case .space: return endSentenceAction
+        case .shift: return { $0?.changeKeyboardType(to: .alphabetic(.capsLocked)) }
+        default: return nil
+        }
     }
     
     /**

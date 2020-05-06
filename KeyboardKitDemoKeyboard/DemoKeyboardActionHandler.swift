@@ -37,17 +37,9 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     // MARK: - Actions
     
-    override func doubleTapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
-        switch action {
-        case .shift: return switchToCapsLockedKeyboard
-        default: return super.doubleTapAction(for: action, sender: sender)
-        }
-    }
-    
     override func longPressAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
         switch action {
         case .image(_, _, let imageName): return { [weak self] in self?.saveImage(UIImage(named: imageName)!) }
-        case .shift: return switchToCapsLockedKeyboard
         default: return super.longPressAction(for: action, sender: sender)
         }
     }
@@ -104,7 +96,7 @@ private extension DemoKeyboardActionHandler {
         return { [weak self] in
             baseAction?()
             guard let self = self else { return }
-            guard self.shouldChangeToAlphabeticLowercaseAfterInput else { return }
+            guard self.shouldChangeToAlphabeticLowercase else { return }
             self.inputViewController?.changeKeyboardType(to: .alphabetic(.lowercased))
         }
     }

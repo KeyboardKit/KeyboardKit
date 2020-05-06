@@ -67,8 +67,10 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     /**
      Whether or not the action handler should change back to
      lowercase alphabetic keyboard after next text input.
+     
+     `NOTE` This logic should be moved to `KeyboardAction`.
      */
-    open var shouldChangeToAlphabeticLowercaseAfterInput: Bool {
+    open var shouldChangeToAlphabeticLowercase: Bool {
         switch inputViewController?.keyboardType {
         case .alphabetic(let state): return state == .uppercased
         default: return false
@@ -96,21 +98,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      when a user double taps a certain keyboard action.
      */
     open func doubleTapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
-        switch action {
-        case .space: return endSentenceAction()
-        default: return { action.standardDoubleTapAction?(self.inputViewController) }
-        }
-    }
-    
-    /**
-     This function will be used when ending a sentence, e.g.
-     by double-tapping space.
-     */
-    open func endSentenceAction() -> GestureAction? {
-        return { [weak self] in
-            self?.textDocumentProxy?.deleteBackward(times: 1)
-            self?.tapAction(for: .character("."), sender: nil)?()
-        }
+        guard let action = action.standardDoubleTapAction else { return nil }
+        return { action(self.inputViewController) }
     }
     
     /**

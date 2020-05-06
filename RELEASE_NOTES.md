@@ -12,11 +12,11 @@ A big change, which is not fully covered in these notes, is that `KeyboardInputV
 
 ### New features
 
+* `KeyboardAction` has new `standardTap/DoubleTap/LongPress/Repeat` action properties.
 * `KeyboardInputViewController` has a new `deviceOrientation` property.
 * `KeyboardInputViewController` has a new `keyboardType` property.
 * `KeyboardInputViewController` has new `can/changeKeyboardType` functions and properties.
 * `KeyboardInputViewController` has a new `setupKeyboard` function.
-* `KeyboardAction` has a new standard tap action for `.keyboardType`.
 * `StandardKeyboardActionHandler` has more logic for handling keyboard type changes.
 * The new `EmojiCategory` enum represents the native iOS emoji keyboard categories.
 * The new `KeyboardStateInspector` can be implemented to get info about the keyboard.
@@ -29,9 +29,11 @@ A big change, which is not fully covered in these notes, is that `KeyboardInputV
 
 ### Deprecations
 
-* `KeyboardAction.switchKeyboard` has been renamed to `KeyboardAction.nextKeyboard`
-* `KeyboardAction.switchToKeyboard` has been renamed to `KeyboardAction.keyboardType`
-* `addSwitchKeyboardGesture(to:)` has been renamed to `addNextKeyboardGesture(to:)`
+* `KeyboardAction.switchKeyboard` has been renamed to `nextKeyboard`.
+* `KeyboardAction.switchToKeyboard` has been renamed to `keyboardType`.
+* `KeyboardAction.standardInputViewControllerAction` has been renamed to `standardTapAction`.
+* `KeyboardAction.standardTextDocumentProxyAction` is no longer used by the system`.
+* `addSwitchKeyboardGesture(to:)` has been renamed to `addNextKeyboardGesture(to:)`.
 * The global `isKeyboardEnabled` has been replaced with a new `KeyboardStateInspector` protocol.
 
 ### Bug fixes

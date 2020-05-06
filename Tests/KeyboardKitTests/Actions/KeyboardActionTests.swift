@@ -113,7 +113,10 @@ class KeyboardActionTests: QuickSpec {
                 action.standardDoubleTapAction
             }
             
-            it("is defined for no actions") {
+            it("is defined for some actions") {
+                expect(result(for: .shift)).toNot(beNil())
+                expect(result(for: .space)).toNot(beNil())
+                
                 expect(result(for: .none)).to(beNil())
                 expect(result(for: .backspace)).to(beNil())
                 expect(result(for: .capsLock)).to(beNil())
@@ -130,9 +133,7 @@ class KeyboardActionTests: QuickSpec {
                 expect(result(for: .newLine)).to(beNil())
                 expect(result(for: .nextKeyboard)).to(beNil())
                 expect(result(for: .option)).to(beNil())
-                expect(result(for: .shift)).to(beNil())
                 expect(result(for: .shiftDown)).to(beNil())
-                expect(result(for: .space)).to(beNil())
                 expect(result(for: .tab)).to(beNil())
             }
         }
