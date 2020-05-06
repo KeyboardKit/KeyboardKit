@@ -1,4 +1,4 @@
-# Keyboard Actions
+# Actions
 
 `KeyboardKit` comes with a set of actions that can be applied to your keyboard buttons:
 

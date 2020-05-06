@@ -67,23 +67,26 @@ Have a look at the demo app for more information and examples.
 
 ## Actions
 
-KeyboardKit comes with a set of actions that can be applied to your keyboard buttons, like `character` input, `backspace`, `newline`, `space`, `keyboard switcher`s etc.
+KeyboardKit comes with a set of actions that can be applied to your keyboard buttons, like `character` input, `backspace`, `newline`, `space` etc.
 
-Check out [this action guide][Keyboard-Actions] for more information about available actions and how to use them.
+Check out [this action guide][Actions] for more information about available actions and how to use them.
 
 
 ## Keyboard Types
 
 `KeyboardKit` comes with the following built-in keyboard types:
 
-* `alphabetic(uppercase/lowercase)`
+* `alphabetic(uppercased/lowercased/capsLocked)`
 * `numeric`
 * `symbolic`
 * `email`
 * `emojis`
+* `images`
 * `custom(name)`
 
-You can bind these types to keyboard buttons to let the user switch between different keyboard types. However, since they have no universal meaning but rather refer to a kind of keyboard, you have to implement the corresponding keyboards yourself.
+You can bind these types to keyboard buttons with the `keyboardType` action to let the user switch between different keyboard types. 
+
+However, since they have no universal meaning but rather refer to a kind of keyboard, you have to implement the corresponding keyboards yourself.
 
 
 ## UIKit
@@ -139,14 +142,8 @@ Note that you have to enable open access for the keyboard for audio feedback to 
 
 ## Demo Application
 
-This repository contains a demo app that demonstrates different kinds of keyboards, including:
+This repository contains a demo app that demonstrates different kinds of keyboards, like alphabetical (lower/uppercased and caps locked), numerical, symbols, emojis and images.
 
- * Alphabetical (lower + upper-case)
- * Numerical
- * Symbols
- * Emojis
- * Images
- 
 To keep the keyboard layout nice, the image switcher key is only displayed on notch devices, since they don't have to display a next keyboard button.
  
 Note that you have to enable open access in keyboard settings for haptic feedback and image actions to work.
@@ -184,9 +181,10 @@ KeyboardKit is available under the MIT license. See LICENSE file for more info.
 [Carthage]: https://github.com/Carthage/Carthage
 [CocoaPods]: https://cocoapods.org/
 
+[Actions]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Keyboard-Actions.md
 [Autocomplete]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Autocomplete.md
 [Components]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Components.md
-[Keyboard-Actions]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Keyboard-Actions.md
+[Keyboard-Types]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Keyboard-Types.md
 [Views]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Views.md
 
 [Guide]: https://shyngys.com/ios-custom-keyboard-guide
