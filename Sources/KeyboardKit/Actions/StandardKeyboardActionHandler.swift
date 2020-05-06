@@ -10,26 +10,24 @@ import UIKit
 
 /**
  This is the standard keyboard action handler. It is used by
- `KeyboardInputViewController`s by default, if you don't set
- `keyboardActionHandler` to a custom handler.
+ `KeyboardInputViewController` by default, if you do not set
+ `keyboardActionHandler` to a custom action handler.
  
- The handler uses the standard keyboard actions when actions
- are tapped, long pressed or repeated on your keyboard. This
- behavior can be tweaked by creating a subclass and override
- `xAction(for:sender:)` and `handleX(on:sender:)`.
+ This handler uses the standard `KeyboardAction` actions e.g.
+ when a user taps or presses down on buttons on the keyboard.
+ You can modify this behavior by creating a subclass of this
+ class and override `xAction(for:sender:)/handleX(on:sender:)`.
  
- You can enable haptic feedback by providing haptic feedback
- configuration when you create an instance of the class. You
- can adjust the standard feedback behavior by overriding the
- `triggerHapticFeedback(for:on:)` trigger function.
+ You can enable haptic feedback by providing a haptic config
+ when you create an instance of this class. You can override
+ the standard behavior by overriding `triggerHapticFeedback`.
  
- You can setup audio feedback by providing an audio feedback
- configuration when you create an instance of the class. You
- can adjust the standard feedback behavior by overriding the
- `triggerAudioFeedback(for action: KeyboardAction)` function.
+ You can enable audio feedback, by providing an audio config
+ when you create an instance of this class. You can override
+ the standard behavior by overriding `triggerAudioFeedback`.
  
- `IMPORTANT`: This class must inherit `NSObject`, to be able
- to set itself as target, e.g. when saving images.
+ `NOTE` This class inherits `NSObject` to be able to be used
+ as `target`, e.g. when saving images.
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
@@ -106,7 +104,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     /**
      This is the standard action that is used by the handler
-     when a user long presses a certain keyboard action.
+     when a user long presses on a certain keyboard action.
      */
     open func longPressAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
         tapAction(for: action, sender: sender)

@@ -5,7 +5,9 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 ## 2.9.0
 
-This version adds more tools and thanks to @eduardoxlau, the demo has  an improved emoji keyboard.
+This version adds more features, fixes some bugs and deprecates some parts of the library. 
+
+Thanks to @eduardoxlau, the demo has an improved emoji keyboard.
 
 ### New features
 
@@ -14,13 +16,13 @@ This version adds more tools and thanks to @eduardoxlau, the demo has  an improv
 * `KeyboardInputViewController` has a new `keyboardType` property.
 * `KeyboardInputViewController` has a new `changeKeyboardType` function.
 * `KeyboardInputViewController` has a new `setupKeyboard` function.
-* `KeyboardInputViewController` has a new `deviceOrientation` extension.
-
-* The demo now handles switching to caps lock when shift is double-tapped.
+* `KeyboardInputViewController` has a new `deviceOrientation` property.
+* The new `KeyboardStateInspector` can be implemented to get info about the keyboard.
 
 ### Changes
 
-* The standard tap animation does not scale up the button as much as before.
+* The demo now switches to caps lock when shift is double-tapped.
+* The standard tap animation does not scale up as much as before.
 * The standard haptic feedback for tap is light impact instead of medium.
 
 ### Deprecations
