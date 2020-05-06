@@ -3,6 +3,30 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions. 
 
 
+## 3.0.0
+
+This version removes all previously deprecated parts of the library, If you upgrade from an older version to `3.0` and have many breaking changes, perhaps upgrade to `2.9` first, to get deprecation help warnings.
+
+### Removed in this version
+
+* `AutocompleteBugFixTimer`
+* `AutocompleteSuggestionProvider` `provideAutocompleteSuggestions`
+* `KeyboardAction` `switchKeyboard`
+* `KeyboardAction` `switchToKeyboard`
+* `KeyboardAction` `standardInputViewControllerAction`
+* `KeyboardAction` `standardTextDocumentProxyAction`
+* `KeyboardInputViewController` `addSwitchKeyboardGesture`
+* `StandardKeyboardActionHandler` `init` with feedback instances
+* `StandardKeyboardActionHandler` `giveHapticFeedbackForLongPress`
+* `StandardKeyboardActionHandler` `giveHapticFeedbackForRepeat`
+* `StandardKeyboardActionHandler` `giveHapticFeedbackForTap`
+* `UIInputViewController` `createAutocompleteBugFixTimer`
+* `UIView` `add/removeLongPressAction`
+* `UIView` `add/removeRepeatingAction`
+* `UIView` `add/removeTapAction`
+* `isKeyboardEnabled` global function
+
+
 ## 2.9.1
 
 This version adds an `.emoji` keyboard action, which can be used if you need to separate characters from emojis.
