@@ -107,6 +107,25 @@ class KeyboardInputViewControllerTests: QuickSpec {
                 expect(repeating).toNot(beNil())
             }
         }
+        
+        describe("can change to keyboard type") {
+            
+            func result(from type: KeyboardType, to newType: KeyboardType) -> Bool {
+                viewController.keyboardType = type
+                return viewController.canChangeKeyboardType(to: newType)
+            }
+            
+            it("can change for most combinations") {
+                expect(result(from: .alphabetic(.lowercased), to: .alphabetic(.uppercased))).to(beTrue())
+                expect(result(from: .alphabetic(.uppercased), to: .alphabetic(.lowercased))).to(beTrue())
+                expect(result(from: .alphabetic(.capsLocked), to: .alphabetic(.lowercased))).to(beTrue())
+                expect(result(from: .emojis, to: .numeric)).to(beTrue())
+            }
+            
+            it("cannot change from alpha caps to alpha upper") {
+                expect(result(from: .alphabetic(.capsLocked), to: .alphabetic(.uppercased))).to(beFalse())
+            }
+        }
     }
 }
 

@@ -35,7 +35,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     // MARK: - Initialization
     
     public init(
-        inputViewController: UIInputViewController,
+        inputViewController: KeyboardInputViewController,
         hapticConfiguration: HapticFeedbackConfiguration = .noFeedback,
         audioConfiguration: AudioFeedbackConfiguration = .standard) {
         self.inputViewController = inputViewController
@@ -46,10 +46,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Dependencies
     
-    public private(set) weak var inputViewController: UIInputViewController?
-    
-    
-    // MARK: - Properties
+    public private(set) weak var inputViewController: KeyboardInputViewController?
     
     private let audioConfiguration: AudioFeedbackConfiguration
     
@@ -63,6 +60,20 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     // MARK: - Types
     
     public typealias GestureAction = () -> Void
+    
+    
+    // MARK: - Properties
+    
+    /**
+     Whether or not the action handler should change back to
+     lowercase alphabetic keyboard after next text input.
+     */
+    open var shouldChangeToAlphabeticLowercaseAfterInput: Bool {
+        switch inputViewController?.keyboardType {
+        case .alphabetic(let state): return state == .uppercased
+        default: return false
+        }
+    }
     
     
     // MARK: - Actions

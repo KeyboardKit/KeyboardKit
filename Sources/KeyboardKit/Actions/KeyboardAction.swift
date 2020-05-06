@@ -112,9 +112,12 @@ public extension KeyboardAction {
      The standard action, if any, that should be executed on
      the input view controller when the action is triggered.
      */
-    var standardInputViewControllerAction: ((UIInputViewController?) -> Void)? {
+    var standardInputViewControllerAction: ((KeyboardInputViewController?) -> Void)? {
         switch self {
-        case .dismissKeyboard: return { controller in controller?.dismissKeyboard() }
+        case .dismissKeyboard: return { $0?.dismissKeyboard() }
+        case .keyboardType(let type): return { $0?.changeKeyboardType(to: type) }
+        case .shift: return { $0?.changeKeyboardType(to: .alphabetic(.uppercased)) }
+        case .shiftDown: return { $0?.changeKeyboardType(to: .alphabetic(.lowercased)) }
         default: return nil
         }
     }
@@ -125,13 +128,13 @@ public extension KeyboardAction {
      */
     var standardTextDocumentProxyAction: ((UITextDocumentProxy?) -> Void)? {
         switch self {
-        case .backspace: return { proxy in proxy?.deleteBackward() }
-        case .character(let char): return { proxy in proxy?.insertText(char) }
-        case .moveCursorBackward: return { proxy in proxy?.adjustTextPosition(byCharacterOffset: -1) }
-        case .moveCursorForward: return { proxy in proxy?.adjustTextPosition(byCharacterOffset: 1) }
-        case .newLine: return { proxy in proxy?.insertText("\n") }
-        case .space: return { proxy in proxy?.insertText(" ") }
-        case .tab: return { proxy in proxy?.insertText("\t") }
+        case .backspace: return { $0?.deleteBackward() }
+        case .character(let char): return { $0?.insertText(char) }
+        case .moveCursorBackward: return { $0?.adjustTextPosition(byCharacterOffset: -1) }
+        case .moveCursorForward: return { $0?.adjustTextPosition(byCharacterOffset: 1) }
+        case .newLine: return { $0?.insertText("\n") }
+        case .space: return { $0?.insertText(" ") }
+        case .tab: return { $0?.insertText("\t") }
         default: return nil
         }
     }

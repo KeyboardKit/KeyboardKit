@@ -6,10 +6,11 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
+import KeyboardKit
 import Mockery
 import UIKit
 
-class MockInputViewController: UIInputViewController {
+class MockInputViewController: KeyboardInputViewController {
     
     var recorder = Mock()
     

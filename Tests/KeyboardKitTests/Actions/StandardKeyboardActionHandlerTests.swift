@@ -29,6 +29,30 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         }
         
         
+        
+        // MARK: - Properties
+        
+        describe("should change to alphabetic lowercase after input") {
+            
+            func result(for type: KeyboardType) -> Bool {
+                inputViewController.keyboardType = type
+                return handler.shouldChangeToAlphabeticLowercaseAfterInput
+            }
+            
+            it("is only true if current keyboard type is uppercase alpha") {
+                expect(result(for: .alphabetic(.uppercased))).to(beTrue())
+                expect(result(for: .alphabetic(.capsLocked))).to(beFalse())
+                expect(result(for: .alphabetic(.lowercased))).to(beFalse())
+                expect(result(for: .numeric)).to(beFalse())
+                expect(result(for: .symbolic)).to(beFalse())
+                expect(result(for: .email)).to(beFalse())
+                expect(result(for: .emojis)).to(beFalse())
+                expect(result(for: .images)).to(beFalse())
+                expect(result(for: .custom(""))).to(beFalse())
+            }
+        }
+        
+        
         // MARK: - Actions
         
         describe("long press action") {
@@ -111,7 +135,7 @@ private class StandardKeyboardActionHandlerTestClass: StandardKeyboardActionHand
     
     public init(
         recorder: MockKeyboardActionHandler,
-        inputViewController: UIInputViewController) {
+        inputViewController: KeyboardInputViewController) {
         self.recorder = recorder
         super.init(inputViewController: inputViewController)
     }

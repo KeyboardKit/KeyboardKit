@@ -20,8 +20,7 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     // MARK: - Initialization
     
-    public init(inputViewController: UIInputViewController) {
-        keyboardShiftState = .lowercased
+    public init(inputViewController: KeyboardInputViewController) {
         super.init(
             inputViewController: inputViewController,
             hapticConfiguration: .standard
@@ -30,9 +29,7 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     
     // MARK: - Properties
-    
-    private var keyboardShiftState: KeyboardShiftState
-    
+        
     private var demoViewController: KeyboardViewController? {
         inputViewController as? KeyboardViewController
     }
@@ -58,11 +55,8 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     override func tapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
         switch action {
         case .character: return handleCharacter(action, for: sender)
-        case .emojiCategory: return { [weak self] in self?.switchToEmojiKeybard() }
+        case .emojiCategory: return { [weak self] in self?.switchToEmojiKeyboard() }
         case .image(_, _, let imageName): return { [weak self] in self?.copyImage(UIImage(named: imageName)!) }
-        case .keyboardType(let type): return { [weak self] in self?.demoViewController?.switchKeyboardType(to: type) }
-        case .shift: return switchToUppercaseKeyboard
-        case .shiftDown: return switchToLowercaseKeyboard
         case .space: return handleSpace(for: sender)
         default: return super.tapAction(for: action, sender: sender)
         }
@@ -109,9 +103,9 @@ private extension DemoKeyboardActionHandler {
         let baseAction = super.tapAction(for: action, sender: sender)
         return { [weak self] in
             baseAction?()
-            let isUppercased = self?.keyboardShiftState == .uppercased
-            guard isUppercased else { return }
-            self?.switchToAlphabeticKeyboard(.lowercased)
+            guard let self = self else { return }
+            guard self.shouldChangeToAlphabeticLowercaseAfterInput else { return }
+            self.inputViewController?.changeKeyboardType(to: .alphabetic(.lowercased))
         }
     }
     
@@ -121,7 +115,7 @@ private extension DemoKeyboardActionHandler {
             baseAction?()
             let type = self?.demoViewController?.keyboardType
             if type?.isAlphabetic == true { return }
-            self?.switchToAlphabeticKeyboard(.lowercased)
+            self?.inputViewController?.changeKeyboardType(to: .alphabetic(.lowercased))
         }
     }
     
@@ -132,25 +126,11 @@ private extension DemoKeyboardActionHandler {
         image.saveToPhotos(completionTarget: self, completionSelector: saveCompletion)
     }
     
-    func switchToAlphabeticKeyboard(_ state: KeyboardShiftState) {
-        keyboardShiftState = state
-        demoViewController?.switchKeyboardType(to: .alphabetic(state))
-    }
-    
     func switchToCapsLockedKeyboard() {
-        switchToAlphabeticKeyboard(.capsLocked)
+        inputViewController?.changeKeyboardType(to: .alphabetic(.capsLocked))
     }
     
-    func switchToEmojiKeybard() {
-        demoViewController?.switchKeyboardType(to: .emojis)
-    }
-    
-    func switchToLowercaseKeyboard() {
-        switchToAlphabeticKeyboard(.lowercased)
-    }
-    
-    func switchToUppercaseKeyboard() {
-        if keyboardShiftState == .capsLocked { return }
-        switchToAlphabeticKeyboard( .uppercased)
+    func switchToEmojiKeyboard() {
+        inputViewController?.changeKeyboardType(to: .emojis)
     }
 }

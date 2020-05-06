@@ -11,12 +11,13 @@ Thanks to @eduardoxlau, the demo has an improved emoji keyboard.
 
 ### New features
 
-* The new `EmojiCategory` enum represents the native iOS emoji keyboard categories.
-* `StandardKeyboardActionHandler` has a new, open `endSentenceAction`.
+* `KeyboardInputViewController` has a new `deviceOrientation` property.
 * `KeyboardInputViewController` has a new `keyboardType` property.
 * `KeyboardInputViewController` has a new `changeKeyboardType` function.
+* `KeyboardInputViewController` has a new `changeKeyboardTypeDelay` property, which delays keyboard type changes for double-taps.
 * `KeyboardInputViewController` has a new `setupKeyboard` function.
-* `KeyboardInputViewController` has a new `deviceOrientation` property.
+* `KeyboardAction` has a new standard tap action for `.keyboardType`.
+* The new `EmojiCategory` enum represents the native iOS emoji keyboard categories.
 * The new `KeyboardStateInspector` can be implemented to get info about the keyboard.
 
 ### Changes
@@ -39,7 +40,8 @@ Thanks to @eduardoxlau, the demo has an improved emoji keyboard.
 ### Breaking change
 
 * `KeyboardType.alphabetic` now uses a `KeyboardShiftState` property instead of a bool for if it's upper-cased or not.
-* `KeyboardAction.switchToKeyboard` is now an alias for `keyboardType`. You can still use it when defining actions, but if you switch over `KeyboardAction`, you have to use `keyboardType` instead of `switchToKeyboard`. 
+* `KeyboardAction.switchToKeyboard` is now an alias for `keyboardType`. You can still use it when defining actions, but if you switch over `KeyboardAction`, you have to use `keyboardType` instead of `switchToKeyboard`.
+* `StandardKeyboardActionHandler` now has a ``
 
 
 ## 2.8.1

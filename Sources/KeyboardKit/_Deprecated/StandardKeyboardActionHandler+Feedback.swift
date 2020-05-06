@@ -11,7 +11,7 @@ extension StandardKeyboardActionHandler {
     
     @available(*, deprecated, message: "Use configuration-based init instead")
     public convenience init(
-        inputViewController: UIInputViewController,
+        inputViewController: KeyboardInputViewController,
         tapHapticFeedback: HapticFeedback = .none,
         longPressHapticFeedback: HapticFeedback = .none,
         repeatHapticFeedback: HapticFeedback = .none) {

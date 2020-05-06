@@ -34,6 +34,17 @@ open class KeyboardInputViewController: UIInputViewController {
     // MARK: - Properties
     
     /**
+     The seconds delay that `changeKeyboardType` uses before
+     changing the keyboard type.
+     
+     The delay is required when your keyboard has double tap
+     support, since it require that buttons stay around long
+     enough double taps to register. If you don't use double
+     taps, you can set this property to `0`.
+     */
+    public var changeKeyboardTypeDelay: TimeInterval = 0.2
+    
+    /**
      This handler can be used to handle any keyboard actions
      that are triggered by the user or the system.
      
@@ -72,10 +83,8 @@ open class KeyboardInputViewController: UIInputViewController {
      can configure freely and add any views you like to. Use
      it if you prefer to use `UIKit` to create your keyboard.
      
-     This view will be added to the extension's view as soon
-     as you use it. It will setup its constraints so that it
-     resizes together with the extension.
-     
+     This view is added to the extension view as soon as you
+     use it. It applies constraints so it fits the extension.
      The standard axis is `vertical`, since the idea is that
      this view should be populated with `rows`, to which you
      can add toolbars, buttons etc.
@@ -103,24 +112,33 @@ open class KeyboardInputViewController: UIInputViewController {
     }
     
     /**
-     Change keyboard type.
-     
-     By default, this function sets `keyboardType` to `type`,
-     which in turn triggers `setupKeyboard()`.
-     
-     You can override this function to change what should be
-     done when a user or the system wants to change keyboard.
+     Whether or not the input view controller can change its
+     keyboard type to a new specific type.
+     */
+    open func canChangeKeyboardType(to type: KeyboardType) -> Bool {
+        guard
+            case .alphabetic(let state) = keyboardType,
+            case .alphabetic(let newState) = type
+            else { return true }
+        if state == .capsLocked && newState == .uppercased { return false }
+        return true
+    }
+    
+    /**
+     Change keyboard type. This sets `keyboardType` to `type`
+     after `changeKeyboardTypeDelay` seconds, which triggers
+     `setupKeyboard()` when set.
      */
     open func changeKeyboardType(to type: KeyboardType) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+        let delay = changeKeyboardTypeDelay
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            guard self.canChangeKeyboardType(to: type) else { return }
             self.keyboardType = type
         }
     }
     
     /**
-     Setup any `UIButton` as a "next keyboard" button, which
-     means that it will switch to the "next" system keyboard
-     when tapped and display a keyboard list when pressed.
+     Setup any `UIButton` as a "next keyboard" system button.
      */
     public func setupNextKeyboardButton(_ button: UIButton) {
         let action = #selector(handleInputModeList(from:with:))
@@ -128,10 +146,10 @@ open class KeyboardInputViewController: UIInputViewController {
     }
     
     /**
-     Setup the keyboard, given the current state of the app.
+     Setup the keyboard, given the current state of your app.
      
      You can override this function to implement how a setup
-     should work in your app. By default, this does nothing.
+     should behave in your app. This does nothing by default.
      */
     open func setupKeyboard() {}
     
