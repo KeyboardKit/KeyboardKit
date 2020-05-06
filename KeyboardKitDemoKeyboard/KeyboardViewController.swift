@@ -79,6 +79,7 @@ class KeyboardViewController: KeyboardInputViewController {
     
     let alerter = ToastAlert()
     
+    var emojiKeyboard: EmojiKeyboard?
     var emojiCategoryTitleLabel = UILabel()
     var emojiCollectionView: KeyboardButtonRowCollectionView!
     var emojiLabelUpdateAction = {}

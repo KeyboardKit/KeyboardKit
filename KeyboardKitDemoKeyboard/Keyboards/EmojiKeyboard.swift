@@ -40,6 +40,14 @@ struct EmojiKeyboard: DemoKeyboard {
         guard actionCategories.count > index else { return nil }
         return actionCategories[index].0
     }
+    
+    /**
+     Get the first category that appears at a certain page.
+     */
+    func getPageIndex(for category: EmojiCategory) -> Int? {
+        guard let index = actionCategories.firstIndex(where: { $0.0 == category }) else { return nil }
+        return index / gridConfig.pageSize
+    }
 }
 
 private extension EmojiKeyboard {

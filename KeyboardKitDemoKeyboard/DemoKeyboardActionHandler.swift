@@ -47,7 +47,7 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     override func tapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
         switch action {
         case .character: return handleCharacter(action, for: sender)
-        case .emojiCategory: return { [weak self] in self?.switchToEmojiKeyboard() }
+        case .emojiCategory(let cat): return { [weak self] in self?.switchToEmojiKeyboardCategory(cat) }
         case .image(_, _, let imageName): return { [weak self] in self?.copyImage(UIImage(named: imageName)!) }
         case .space: return handleSpace(for: sender)
         default: return super.tapAction(for: action, sender: sender)
@@ -91,6 +91,10 @@ private extension DemoKeyboardActionHandler {
         alert("Copied to pasteboard!")
     }
     
+    /**
+     `NOTE` Changing to alphabetic lower case should be done
+     in `StandardKeyboardActionHandler`.
+     */
     func handleCharacter(_ action: KeyboardAction, for sender: Any?) -> GestureAction {
         let baseAction = super.tapAction(for: action, sender: sender)
         return { [weak self] in
@@ -101,6 +105,10 @@ private extension DemoKeyboardActionHandler {
         }
     }
     
+    /**
+     `NOTE` Changing to alphabetic lower case should be done
+     in `StandardKeyboardActionHandler`.
+     */
     func handleSpace(for sender: Any?) -> GestureAction {
         let baseAction = super.tapAction(for: .space, sender: sender)
         return { [weak self] in
@@ -118,11 +126,15 @@ private extension DemoKeyboardActionHandler {
         image.saveToPhotos(completionTarget: self, completionSelector: saveCompletion)
     }
     
-    func switchToCapsLockedKeyboard() {
-        inputViewController?.changeKeyboardType(to: .alphabetic(.capsLocked))
-    }
-    
-    func switchToEmojiKeyboard() {
-        inputViewController?.changeKeyboardType(to: .emojis)
+    func switchToEmojiKeyboardCategory(_ cat: EmojiCategory) {
+        guard
+            let vc = demoViewController,
+            let view = vc.emojiCollectionView,
+            let keyboard = vc.emojiKeyboard,
+            let index = keyboard.getPageIndex(for: cat)
+            else { return }
+        view.currentPageIndex = index
+        view.persistCurrentPageIndex()
+        vc.emojiCategoryTitleLabel.text = cat.title
     }
 }

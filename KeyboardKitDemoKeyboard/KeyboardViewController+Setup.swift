@@ -50,6 +50,7 @@ private extension KeyboardViewController {
         keyboardStackView.addArrangedSubview(view)
         keyboardStackView.addArrangedSubview(bottom)
         emojiCollectionView = view
+        emojiKeyboard = keyboard
         emojiLabelUpdateAction()
     }
     
@@ -75,9 +76,13 @@ private extension KeyboardViewController {
 }
 
 
-// MARK: - Private actions
+// MARK: - Actions
 
-@objc private extension KeyboardViewController {
+@objc extension KeyboardViewController {
+    
+    func refreshEmojiCategoryLabel() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: emojiLabelUpdateAction)
+    }
     
     /**
      For now, this pan action handler delays updating, since
@@ -85,6 +90,6 @@ private extension KeyboardViewController {
      */
     func refreshEmojiCategoryLabel(_ recognizer: UIPanGestureRecognizer) {
         guard recognizer.state == .ended else { return }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: emojiLabelUpdateAction)
+        refreshEmojiCategoryLabel()
     }
 }
