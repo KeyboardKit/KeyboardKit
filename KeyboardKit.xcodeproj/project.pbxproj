@@ -573,6 +573,9 @@
 		84670425234A6A8400355331 /* Project Files */ = {
 			isa = PBXGroup;
 			children = (
+				OBJ_238 /* Resources */,
+				OBJ_239 /* Fastlane */,
+				OBJ_241 /* Readmes */,
 				84670427234A6A9E00355331 /* .gitignore */,
 				84670426234A6A9E00355331 /* .swiftlint.yml */,
 				OBJ_243 /* KeyboardKit.podspec */,
@@ -978,9 +981,6 @@
 				84670446234A709400355331 /* KeyboardKitDemo */,
 				8467045E234A711100355331 /* KeyboardKitDemoKeyboard */,
 				OBJ_231 /* Products */,
-				OBJ_238 /* Resources */,
-				OBJ_239 /* Fastlane */,
-				OBJ_241 /* Readmes */,
 				84670425234A6A8400355331 /* Project Files */,
 				8467050B234A745A00355331 /* Frameworks */,
 			);

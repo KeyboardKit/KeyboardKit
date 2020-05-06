@@ -5,7 +5,7 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 ## 2.9.0
 
-This is the last mino rversion before `3.0`, which will remove a bunch of deprecated members.
+This is the last minor version before `3.0`, which will remove a bunch of deprecated members.
 
 This version adds more features, fixes some bugs and deprecates many parts of the library.
 
