@@ -3,6 +3,16 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions. 
 
 
+## 2.9.1
+
+This version extracts the logic of `KeyboardAction` `standardTapAction` into two additional functions:
+
+* `standardTapActionForController`
+* `standardTapActionForProxy`
+
+This makes it possible to use the standard function in other ways, should you need it.
+
+
 ## 2.9.0
 
 This is the last minor version before `3.0`, which will remove a bunch of deprecated members.
@@ -12,7 +22,6 @@ This version adds more features, fixes some bugs and deprecates many parts of th
 A big change, which is not fully covered in these notes, is that `KeyboardInputViewController` and `StandardKeyboardActionHandler` now handles changing keyboard types. Even if you have to fill a "type" with meaning in your app, you now have implemented logic to help you handle this.
 
 Thanks to @eduardoxlau, the demo also has an improved emoji keyboard. 
-
 
 ### New features
 
