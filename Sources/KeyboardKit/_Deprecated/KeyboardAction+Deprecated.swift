@@ -16,22 +16,13 @@ public extension KeyboardAction {
     @available(*, deprecated, renamed: "keyboardType")
     static func switchToKeyboard(_ type: KeyboardType) -> KeyboardAction { .keyboardType(type) }
     
-    @available(*, deprecated, renamed: "standardTapAction")
+    @available(*, deprecated, renamed: "standardTapActionForController")
     var standardInputViewControllerAction: ((KeyboardInputViewController?) -> Void)? {
-        standardTapAction
+        standardTapActionForController
     }
     
-    @available(*, deprecated, renamed: "standardTapAction")
+    @available(*, deprecated, renamed: "standardTapActionForProxy")
     var standardTextDocumentProxyAction: ((UITextDocumentProxy?) -> Void)? {
-        switch self {
-        case .backspace: return { $0?.deleteBackward() }
-        case .character(let char): return { $0?.insertText(char) }
-        case .moveCursorBackward: return { $0?.adjustTextPosition(byCharacterOffset: -1) }
-        case .moveCursorForward: return { $0?.adjustTextPosition(byCharacterOffset: 1) }
-        case .newLine: return { $0?.insertText("\n") }
-        case .space: return { $0?.insertText(" ") }
-        case .tab: return { $0?.insertText("\t") }
-        default: return nil
-        }
+        standardTapActionForProxy
     }
 }
