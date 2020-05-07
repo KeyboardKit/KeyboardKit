@@ -15,6 +15,7 @@ import UIKit
 public enum EmojiCategory: Equatable, CaseIterable {
 
     case
+    frequents,
     smileys,
     animals,
     foods,
@@ -31,12 +32,14 @@ public extension EmojiCategory {
      An ordered list of all available categories.
      */
     static var all: [EmojiCategory] { allCases }
+    static let keyFR = "keyboardKitFREmoji"
     
     /**
      An ordered list with all emojis in the category.
      */
     var emojis: [String] {
         switch self {
+        case .frequents: return frequents
         case .smileys: return smileys
         case .animals: return animals
         case .foods: return foods
@@ -54,9 +57,17 @@ public extension EmojiCategory {
     var emojiActions: [KeyboardAction] {
         emojis.map { .emoji(String($0)) }
     }
+    
+    private static let userDefaults = UserDefaults.standard
+    
 }
 
 private extension EmojiCategory {
+    
+    var frequents: [String] {
+        guard let actions: [String] = EmojiCategory.userDefaults.array(forKey: EmojiCategory.keyFR) as? [String] else { return "😂❤️😍😒👌☺️😊😘😭😩💕😔😏😁😳👍✌️😉😌💁‍♀️🙈😎🎶👀😑😴😄😜😋👏".toArray() }
+        return actions
+    }
     
     var activities: [String] { "⚽️🏀🏈⚾️🎾🏐🏉🎱🏓🏸🥅🏒🏑🏏⛳️🏹🎣🥊🥋🎽⛸🥌🛷🎿⛷🏂🏋️‍♀️🏋️‍♂️🤼‍♀️🤼‍♂️🤸‍♀️🤸‍♂️⛹️‍♀️⛹️‍♂️🤺🤾‍♀️🤾‍♂️🏌️‍♀️🏌️‍♂️🏇🧘‍♀️🧘‍♂️🏄‍♀️🏄‍♂️🏊‍♀️🏊‍♂️🤽‍♀️🤽‍♂️🚣‍♀️🚣‍♂️🧗‍♀️🧗‍♂️🚵‍♀️🚵‍♂️🚴‍♀️🚴‍♂️🏆🥇🥈🥉🏅🎖🏵🎗🎫🎟🎪🤹‍♀️🤹‍♂️🎭🎨🎬🎤🎧🎼🎹🥁🎷🎺🎸🎻🎲🎯🎳🎮🎰".toArray() }
     var animals: [String] { "🐶🐱🐭🐹🐰🦊🐻🐼🐨🐯🦁🐮🐷🐽🐸🐵🙈🙉🙊🐒🐔🐧🐦🐤🐣🐥🦆🦅🦉🦇🐺🐗🐴🦄🐝🐛🦋🐌🐚🐞🐜🦗🕷🕸🦂🐢🐍🦎🦖🦕🐙🦑🦐🦀🐡🐠🐟🐬🐳🐋🦈🐊🐅🐆🦓🦍🐘🦏🐪🐫🦒🐃🐂🐄🐎🐖🐏🐑🐐🦌🐕🐩🐈🐓🦃🕊🐇🐁🐀🐿🦔🐾🐉🐲🌵🎄🌲🌳🌴🌱🌿☘️🍀🎍🎋🍃🍂🍁🍄🌾💐🌷🌹🥀🌺🌸🌼🌻🌞🌝🌛🌜🌚🌕🌖🌗🌘🌑🌒🌓🌔🌙🌎🌍🌏💫⭐️🌟✨⚡️☄️💥🔥🌪🌈☀️🌤⛅️🌥☁️🌦🌧⛈🌩🌨❄️☃️⛄️🌬💨💧💦☔️☂️🌊🌫".toArray() }

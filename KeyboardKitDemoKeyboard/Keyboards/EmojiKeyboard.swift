@@ -76,6 +76,14 @@ private extension EmojiKeyboard {
 
 private extension Array where Element == KeyboardAction {
     
+    public func setRFEmoji(emoji: String) {
+        let frequents:EmojiCategory = .frequents
+        var emojis = frequents.emojis
+        emojis.insert(emoji, at: 0)
+        emojis.removeLast()
+        EmojiKeyboard.userDefaults.set(emojis, forKey: EmojiCategory.keyFR)
+    }
+    
     /**
      This function rearranges the actions from top to bottom,
      to be correctly rendered within the grid.

@@ -5,6 +5,7 @@ extension EmojiCategory {
     
     var title: String {
         switch self {
+        case .frequents: return "FREQUENTLY USED"
         case .smileys: return "SMILEYS & PEOPLE"
         case .animals: return "ANIMALS & NATURE"
         case .foods: return "FOODS & DRINKS"
