@@ -20,7 +20,7 @@ struct EmojiKeyboard: DemoKeyboard {
             buttonsPerRow: buttonsPerRow
         )
         actions = Self.createActions(for: categories, config: gridConfig)
-        actionCategories = Self.createActionCategories(for: categories)
+        actionCategories = Self.createActionCategories(for: categories, config: gridConfig)
         bottomActions = Self.createBottomActions(for: categories)
     }
     
@@ -48,24 +48,47 @@ struct EmojiKeyboard: DemoKeyboard {
         guard let index = actionCategories.firstIndex(where: { $0.0 == category }) else { return nil }
         return index / gridConfig.pageSize
     }
+    func setRFEmoji(emoji: String) {
+           let frequents:EmojiCategory = .frequents
+           var emojis = frequents.emojis
+           emojis.insert(emoji, at: 0)
+           emojis.removeLast()
+           UserDefaults.standard.set(emojis, forKey: EmojiCategory.keyFR)
+       }
 }
 
 private extension EmojiKeyboard {
     
     static func createActions(for categories: [EmojiCategory], config: KeyboardButtonRowCollectionView.Configuration) -> [KeyboardAction] {
-        categories
-            .flatMap { $0.emojiActions }
-            .rearrangedForCollectionView(withConfig: config)
-    }
-    
-    static func createActionCategories(for categories: [EmojiCategory]) -> [(EmojiCategory, KeyboardAction)] {
-        categories.flatMap { cat in
-            cat.emojiActions.compactMap { action in
-                (cat, action)
-            }
+        var emoji:[KeyboardAction] = []
+        for cat in categories {
+          for action in cat.emojiActions {
+              emoji.append(action)
+          }
+          if cat == .frequents{
+              for _ in 1 ... (config.rowsPerPage * config.buttonsPerRow) - emoji.count{
+                  emoji.append(.none)
+              }
+          }
         }
+       return emoji.rearrangedForCollectionView(withConfig: config)
     }
     
+    static func createActionCategories(for categories: [EmojiCategory], config: KeyboardButtonRowCollectionView.Configuration) -> [(EmojiCategory, KeyboardAction)] {
+        var actions:[(EmojiCategory, KeyboardAction)] = []
+        for cat in categories {
+            for action in cat.emojiActions {
+                actions.append((cat, action))
+            }
+            if cat == .frequents{
+                for _ in 1 ... (config.rowsPerPage * config.buttonsPerRow) - actions.count {
+                    actions.append((cat, .none))
+                }
+            }
+            
+        }
+        return actions
+    }
     static func createBottomActions(for categories: [EmojiCategory]) -> KeyboardActionRow {
         var actions = categories.map { KeyboardAction.emojiCategory($0) }
         actions.insert(.keyboardType(.alphabetic(.lowercased)), at: 0)
@@ -75,15 +98,7 @@ private extension EmojiKeyboard {
 }
 
 private extension Array where Element == KeyboardAction {
-    
-    public func setRFEmoji(emoji: String) {
-        let frequents:EmojiCategory = .frequents
-        var emojis = frequents.emojis
-        emojis.insert(emoji, at: 0)
-        emojis.removeLast()
-        EmojiKeyboard.userDefaults.set(emojis, forKey: EmojiCategory.keyFR)
-    }
-    
+
     /**
      This function rearranges the actions from top to bottom,
      to be correctly rendered within the grid.

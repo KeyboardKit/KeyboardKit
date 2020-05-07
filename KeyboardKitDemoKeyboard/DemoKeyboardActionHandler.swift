@@ -98,13 +98,23 @@ private extension DemoKeyboardActionHandler {
     func handleCharacter(_ action: KeyboardAction, for sender: Any?) -> GestureAction {
         let baseAction = super.tapAction(for: action, sender: sender)
         return { [weak self] in
+            self?.updateFrequentlyEmoji(action: action)
             baseAction?()
             guard let self = self else { return }
             guard self.shouldChangeToAlphabeticLowercase else { return }
             self.inputViewController?.changeKeyboardType(to: .alphabetic(.lowercased))
+            
+            
         }
     }
-    
+    func updateFrequentlyEmoji(action: KeyboardAction){
+        guard let
+            vc = self.demoViewController,
+            case let .character(value) = action,
+            let keyboard = vc.emojiKeyboard
+        else { return }
+        keyboard.setRFEmoji(emoji: value)
+    }
     /**
      `NOTE` Changing to alphabetic lower case should be done
      in `StandardKeyboardActionHandler`.
