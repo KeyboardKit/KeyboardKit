@@ -48,13 +48,14 @@ struct EmojiKeyboard: DemoKeyboard {
         guard let index = actionCategories.firstIndex(where: { $0.0 == category }) else { return nil }
         return index / gridConfig.pageSize
     }
-    func setRFEmoji(emoji: String) {
-           let frequents:EmojiCategory = .frequents
-           var emojis = frequents.emojis
-           emojis.insert(emoji, at: 0)
-           emojis.removeLast()
-           UserDefaults.standard.set(emojis, forKey: EmojiCategory.keyFR)
-       }
+    func setFREmoji(emoji: String) {
+      let frequents: EmojiCategory = .frequents
+      var emojis = frequents.emojis
+      guard !emojis.contains(emoji) else {return}
+      emojis.insert(emoji, at: 0)
+      emojis.removeLast()
+      UserDefaults.standard.set(emojis, forKey: EmojiCategory.keyFR)
+    }
 }
 
 private extension EmojiKeyboard {

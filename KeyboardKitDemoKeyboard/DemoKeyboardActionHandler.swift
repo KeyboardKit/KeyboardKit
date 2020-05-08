@@ -110,10 +110,11 @@ private extension DemoKeyboardActionHandler {
     func updateFrequentlyEmoji(action: KeyboardAction){
         guard let
             vc = self.demoViewController,
+            vc.keyboardType == .emojis,
             case let .character(value) = action,
             let keyboard = vc.emojiKeyboard
         else { return }
-        keyboard.setRFEmoji(emoji: value)
+        keyboard.setFREmoji(emoji: value)
     }
     /**
      `NOTE` Changing to alphabetic lower case should be done
