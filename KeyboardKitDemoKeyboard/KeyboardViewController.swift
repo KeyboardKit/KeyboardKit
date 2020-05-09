@@ -10,11 +10,10 @@ import UIKit
 import KeyboardKit
 
 /**
- This demo app handles system actions as normal (e.g. change
+ This demo keyboard handles system actions as normal (change
  keyboard, space, new line etc.), injects strings and emojis
- into the text proxy and handles the rightmost images in the
- emoji keyboard by copying them to the pasteboard on tap and
- saving them to the user's photo album on long press.
+ into the text proxy, copies tapped images to the pasteboard
+ and saves long pressed images to the user's photo album.
  
  IMPORTANT: To use this demo keyboard, you have to enable it
  in system settings ("Settings/General/Keyboards") then give
@@ -25,16 +24,8 @@ import KeyboardKit
  the photo album. This is already taken care of in this demo
  app, so you can just copy the setup into your own app.
  
- The keyboard is setup in `viewDidAppear(...)` since this is
- when `needsInputModeSwitchKey` first gets the correct value.
- Before this point, the value is `true` even if it should be
- `false`. If you find a way to solve this bug, you can setup
- the keyboard earlier.
- 
- The autocomplete parts of this class is the first iteration
- of autocomplete support in KeyboardKit. The intention is to
- move these parts to `KeyboardInputViewController` and a new
- api for working with autocomplete.
+ This demo keyboard also has a topmost auto complete toolbar
+ that displays dummy suggestions for the current word.
  */
 class KeyboardViewController: KeyboardInputViewController {
     
@@ -55,9 +46,8 @@ class KeyboardViewController: KeyboardInputViewController {
     
     // MARK: - Keyboard Functionality
     
-    override func textDidChange(_ textInput: UITextInput?) {
-        super.textDidChange(textInput)
-        requestAutocompleteSuggestions()
+    override func setupKeyboard() {
+        setupKeyboard(for: view.bounds.size)
     }
     
     override func selectionWillChange(_ textInput: UITextInput?) {
@@ -68,6 +58,11 @@ class KeyboardViewController: KeyboardInputViewController {
     override func selectionDidChange(_ textInput: UITextInput?) {
         super.selectionDidChange(textInput)
         autocompleteToolbar.reset()
+    }
+    
+    override func textDidChange(_ textInput: UITextInput?) {
+        super.textDidChange(textInput)
+        requestAutocompleteSuggestions()
     }
     
     
@@ -88,17 +83,4 @@ class KeyboardViewController: KeyboardInputViewController {
     lazy var autocompleteToolbar: AutocompleteToolbar = {
         AutocompleteToolbar(textDocumentProxy: textDocumentProxy)
     }()
-    
-    
-    // MARK: - Functions
-    
-    override func setupKeyboard() {
-        setupKeyboard(for: view.bounds.size)
-    }
-    
-    func switchKeyboardType(to type: KeyboardType){
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            self.changeKeyboardType(to: type)
-        }
-    }
 }
