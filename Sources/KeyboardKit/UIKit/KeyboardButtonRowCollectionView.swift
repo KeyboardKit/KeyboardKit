@@ -123,7 +123,11 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboar
     
     public let id: String
     public let configuration: Configuration
-    public let rows: KeyboardActionRows
+    public private(set) var rows: KeyboardActionRows
+    
+    public override var actions: [KeyboardAction] {
+        didSet { rows = actions.rows(for: configuration) }
+    }
     
     private let buttonCreator: KeyboardButtonCreator
     

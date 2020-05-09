@@ -38,7 +38,9 @@ open class KeyboardCollectionView: UICollectionView, KeyboardStackViewComponent,
     
     // MARK: - Properties
     
-    public let actions: [KeyboardAction]
+    public var actions: [KeyboardAction] {
+        didSet { refresh() }
+    }
     
     public let cellIdentifier = "Cell"
     

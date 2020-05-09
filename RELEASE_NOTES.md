@@ -14,6 +14,8 @@ This version also extracts the logic of `KeyboardAction` `standardTapAction` int
 
 This makes it possible to use the standard function in other ways, should you need it.
 
+This version also makes `actions` of `KeyboardCollectionView` mutable, causing changes to this property to refresh the view.
+
 
 ## 2.9.0
 
