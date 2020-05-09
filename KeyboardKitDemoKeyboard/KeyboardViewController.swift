@@ -38,17 +38,13 @@ import KeyboardKit
  */
 class KeyboardViewController: KeyboardInputViewController {
     
+    
     // MARK: - View Controller Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         keyboardType = .alphabetic(.lowercased)
         keyboardActionHandler = DemoKeyboardActionHandler(inputViewController: self)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        setupKeyboard()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

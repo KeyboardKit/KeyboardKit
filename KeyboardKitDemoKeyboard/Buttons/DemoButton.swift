@@ -59,7 +59,7 @@ private extension KeyboardAction {
     
     var buttonFontStyle: UIFont.TextStyle {
         switch self {
-        case .character: return .title2
+        case .character, .emoji: return .title2
         case .keyboardType(.emojis): return .title1
         default: return .body
         }
@@ -76,7 +76,7 @@ private extension KeyboardAction {
     var buttonText: String? {
         switch self {
         case .backspace: return "⌫"
-        case .character(let text): return text
+        case .character(let text), .emoji(let text): return text
         case .emojiCategory(let category): return buttonText(for: category)
         case .keyboardType(let type): return buttonText(for: type)
         case .newLine: return "return"

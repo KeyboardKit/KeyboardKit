@@ -2,7 +2,7 @@
 //  KeyboardViewController.swift
 //  KeyboardKit
 //
-//  Created by Dainel Saidi on 2018-03-13.
+//  Created by Daniel Saidi on 2018-03-13.
 //  Copyright © 2018 Daniel Saidi. All rights reserved.
 //
 
@@ -10,8 +10,10 @@ import UIKit
 
 /**
  This class extends `UIInputViewController` with KeyboardKit
- specific properties and functionality. You can subclass the
- class to modify any standard behavior.
+ specific properties and functionality.
+ 
+ You should let a keyboard extension `KeyboardViewController`
+ inherit this class instead of `UIInputViewController`
  */
 open class KeyboardInputViewController: UIInputViewController {
 

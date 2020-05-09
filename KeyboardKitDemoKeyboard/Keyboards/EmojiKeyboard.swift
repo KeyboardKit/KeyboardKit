@@ -12,7 +12,7 @@ struct EmojiKeyboard: DemoKeyboard {
     
     init(in viewController: KeyboardViewController) {
         let isLandscape = viewController.deviceOrientation.isLandscape
-        let rowsPerPage = isLandscape ? 4 : 5
+        let rowsPerPage = isLandscape ? 3 : 5
         let buttonsPerRow = isLandscape ? 10 : 8
         gridConfig = KeyboardButtonRowCollectionView.Configuration(
             rowHeight: 40,
