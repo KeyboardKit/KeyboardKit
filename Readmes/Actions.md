@@ -6,7 +6,7 @@
 * `capsLock` - changes the keyboard type to `.alphabetic(.capsLocked)` when `tapped`
 * `character` - sends a text character to the text proxy when `tapped`
 * `command` - represents the macOS `command` key
-* `custom(name:)` - a custom action if no other actions fits your needs
+* `custom(name:)` - a custom action if no other actions fit your needs
 * `dismissKeyboard` - dismisses the keyboard when `tapped`
 * `emoji`  - alias for `.character` and can be used to distict emojis
 * `emojiCategory(category:)` - can be used to show a specific emoji category

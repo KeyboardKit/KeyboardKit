@@ -67,26 +67,16 @@ Have a look at the demo app for more information and examples.
 
 ## Actions
 
-KeyboardKit comes with a set of actions that can be applied to your keyboard buttons, like `character` input, `backspace`, `newline`, `space` etc.
+KeyboardKit comes with a set of actions that can be applied to keyboard buttons, like `character` and `emoji` inputs, `backspace`, `newline`, `space`, `image` etc.
 
-Check out [this action guide][Actions] for more information about available actions and how to use them.
+Check out [this guide][Actions] for more information about available actions and how to use them.
 
 
 ## Keyboard Types
 
-`KeyboardKit` comes with the following built-in keyboard types:
+KeyboardKit comes with a set of keyboard types, like `alphabetic`, `numeric`, `symbolic`, `emoji` etc.
 
-* `alphabetic(uppercased/lowercased/capsLocked)`
-* `numeric`
-* `symbolic`
-* `email`
-* `emojis`
-* `images`
-* `custom(name)`
-
-You can bind these types to keyboard buttons with the `keyboardType` action to let the user switch between different keyboard types. 
-
-However, since they have no universal meaning but rather refer to a kind of keyboard, you have to implement the corresponding keyboards yourself.
+Check out [this guide][Keyboard-Types] for more information about available keyboard types and how to use them.
 
 
 ## UIKit
