@@ -51,14 +51,14 @@ class EmojiCategoryTests: QuickSpec {
             }
             
             it("contains the correct emoji set") {
-                expect(firstEmojiAction(for: .activities)).to(equal(.character("⚽️")))
-                expect(firstEmojiAction(for: .animals)).to(equal(.character("🐶")))
-                expect(firstEmojiAction(for: .flags)).to(equal(.character("🏳️")))
-                expect(firstEmojiAction(for: .foods)).to(equal(.character("🍏")))
-                expect(firstEmojiAction(for: .objects)).to(equal(.character("⌚️")))
-                expect(firstEmojiAction(for: .smileys)).to(equal(.character("😀")))
-                expect(firstEmojiAction(for: .symbols)).to(equal(.character("❤️")))
-                expect(firstEmojiAction(for: .travels)).to(equal(.character("🚗")))
+                expect(firstEmojiAction(for: .activities)).to(equal(.emoji("⚽️")))
+                expect(firstEmojiAction(for: .animals)).to(equal(.emoji("🐶")))
+                expect(firstEmojiAction(for: .flags)).to(equal(.emoji("🏳️")))
+                expect(firstEmojiAction(for: .foods)).to(equal(.emoji("🍏")))
+                expect(firstEmojiAction(for: .objects)).to(equal(.emoji("⌚️")))
+                expect(firstEmojiAction(for: .smileys)).to(equal(.emoji("😀")))
+                expect(firstEmojiAction(for: .symbols)).to(equal(.emoji("❤️")))
+                expect(firstEmojiAction(for: .travels)).to(equal(.emoji("🚗")))
             }
         }
     }

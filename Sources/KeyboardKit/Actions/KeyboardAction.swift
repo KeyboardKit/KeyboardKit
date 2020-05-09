@@ -34,6 +34,7 @@ public enum KeyboardAction: Equatable {
     command,
     custom(name: String),
     dismissKeyboard,
+    emoji(String),
     emojiCategory(_ category: EmojiCategory),
     escape,
     function,
@@ -92,6 +93,7 @@ public extension KeyboardAction {
     var isInputAction: Bool {
         switch self {
         case .character: return true
+        case .emoji: return true
         case .image: return true
         case .space: return true
         default: return false
@@ -106,13 +108,10 @@ public extension KeyboardAction {
         switch self {
         case .backspace: return true
         case .capsLock: return true
-        case .character: return false
         case .command: return true
-        case .custom: return false
         case .dismissKeyboard: return true
         case .escape: return true
         case .function: return true
-        case .image: return false
         case .keyboardType: return true
         case .moveCursorBackward: return true
         case .moveCursorForward: return true
@@ -121,10 +120,8 @@ public extension KeyboardAction {
         case .option: return true
         case .shift: return true
         case .shiftDown: return true
-        case .space: return false
-        case .emojiCategory: return false
         case .tab: return true
-        case .none: return false
+        default: return false
         }
     }
     
@@ -200,6 +197,7 @@ public extension KeyboardAction {
         switch self {
         case .backspace: return { $0?.deleteBackward() }
         case .character(let char): return { $0?.insertText(char) }
+        case .emoji(let char): return { $0?.insertText(char) }
         case .moveCursorBackward: return { $0?.adjustTextPosition(byCharacterOffset: -1) }
         case .moveCursorForward: return { $0?.adjustTextPosition(byCharacterOffset: 1) }
         case .newLine: return { $0?.insertText("\n") }

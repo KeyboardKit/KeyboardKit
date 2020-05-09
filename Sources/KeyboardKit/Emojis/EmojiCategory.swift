@@ -52,7 +52,7 @@ public extension EmojiCategory {
      An ordered list with all emoji actions in the category.
      */
     var emojiActions: [KeyboardAction] {
-        emojis.map { .character(String($0)) }
+        emojis.map { .emoji(String($0)) }
     }
 }
 

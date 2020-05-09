@@ -21,9 +21,10 @@ class KeyboardActionTests: QuickSpec {
                 action.isDeleteAction
             }
             
-            it("is true for content actions") {
-                expect(result(for: .none)).to(beFalse())
+            it("is true for some actions") {
                 expect(result(for: .backspace)).to(beTrue())
+                
+                expect(result(for: .none)).to(beFalse())
                 expect(result(for: .dismissKeyboard)).to(beFalse())
                 expect(result(for: .capsLock)).to(beFalse())
                 expect(result(for: .character(""))).to(beFalse())
@@ -51,17 +52,21 @@ class KeyboardActionTests: QuickSpec {
                 action.isInputAction
             }
             
-            it("is true for content actions") {
+            it("is true for some actions") {
+                expect(result(for: .character(""))).to(beTrue())
+                expect(result(for: .emoji(""))).to(beTrue())
+                expect(result(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beTrue())
+                expect(result(for: .space)).to(beTrue())
+                
                 expect(result(for: .none)).to(beFalse())
                 expect(result(for: .backspace)).to(beFalse())
                 expect(result(for: .dismissKeyboard)).to(beFalse())
                 expect(result(for: .capsLock)).to(beFalse())
-                expect(result(for: .character(""))).to(beTrue())
                 expect(result(for: .command)).to(beFalse())
                 expect(result(for: .custom(name: ""))).to(beFalse())
+                expect(result(for: .emojiCategory(.activities))).to(beFalse())
                 expect(result(for: .escape)).to(beFalse())
                 expect(result(for: .function)).to(beFalse())
-                expect(result(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beTrue())
                 expect(result(for: .keyboardType(.email))).to(beFalse())
                 expect(result(for: .moveCursorBackward)).to(beFalse())
                 expect(result(for: .moveCursorForward)).to(beFalse())
@@ -70,7 +75,6 @@ class KeyboardActionTests: QuickSpec {
                 expect(result(for: .option)).to(beFalse())
                 expect(result(for: .shift)).to(beFalse())
                 expect(result(for: .shiftDown)).to(beFalse())
-                expect(result(for: .space)).to(beTrue())
                 expect(result(for: .tab)).to(beFalse())
             }
         }
@@ -81,7 +85,7 @@ class KeyboardActionTests: QuickSpec {
                 action.isSystemAction
             }
             
-            it("is true for content actions") {
+            it("is true for some actions") {
                 expect(result(for: .backspace)).to(beTrue())
                 expect(result(for: .dismissKeyboard)).to(beTrue())
                 expect(result(for: .capsLock)).to(beTrue())
@@ -101,6 +105,7 @@ class KeyboardActionTests: QuickSpec {
                 expect(result(for: .none)).to(beFalse())
                 expect(result(for: .character(""))).to(beFalse())
                 expect(result(for: .custom(name: ""))).to(beFalse())
+                expect(result(for: .emoji(""))).to(beFalse())
                 expect(result(for: .emojiCategory(.foods))).to(beFalse())
                 expect(result(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beFalse())
                 expect(result(for: .space)).to(beFalse())
@@ -124,6 +129,8 @@ class KeyboardActionTests: QuickSpec {
                 expect(result(for: .dismissKeyboard)).to(beNil())
                 expect(result(for: .command)).to(beNil())
                 expect(result(for: .custom(name: ""))).to(beNil())
+                expect(result(for: .emoji(""))).to(beNil())
+                expect(result(for: .emojiCategory(.foods))).to(beNil())
                 expect(result(for: .escape)).to(beNil())
                 expect(result(for: .function)).to(beNil())
                 expect(result(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beNil())
@@ -179,6 +186,7 @@ class KeyboardActionTests: QuickSpec {
                 expect(result(for: .backspace)).toNot(beNil())
                 expect(result(for: .character("a"))).toNot(beNil())
                 expect(result(for: .dismissKeyboard)).toNot(beNil())
+                expect(result(for: .emoji(""))).toNot(beNil())
                 expect(result(for: .keyboardType(.email))).toNot(beNil())
                 expect(result(for: .moveCursorBackward)).toNot(beNil())
                 expect(result(for: .moveCursorForward)).toNot(beNil())
@@ -192,6 +200,7 @@ class KeyboardActionTests: QuickSpec {
                 expect(result(for: .capsLock)).to(beNil())
                 expect(result(for: .command)).to(beNil())
                 expect(result(for: .custom(name: ""))).to(beNil())
+                expect(result(for: .emojiCategory(.foods))).to(beNil())
                 expect(result(for: .escape)).to(beNil())
                 expect(result(for: .function)).to(beNil())
                 expect(result(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beNil())
@@ -215,6 +224,8 @@ class KeyboardActionTests: QuickSpec {
                 expect(result(for: .dismissKeyboard)).to(beNil())
                 expect(result(for: .command)).to(beNil())
                 expect(result(for: .custom(name: ""))).to(beNil())
+                expect(result(for: .emoji(""))).to(beNil())
+                expect(result(for: .emojiCategory(.foods))).to(beNil())
                 expect(result(for: .escape)).to(beNil())
                 expect(result(for: .function)).to(beNil())
                 expect(result(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beNil())

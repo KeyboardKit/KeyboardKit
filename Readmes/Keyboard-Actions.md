@@ -8,6 +8,7 @@
 * `command` - represents the macOS command key
 * `custom(name:)` - a custom fallback if no other actions fits your needs
 * `dismissKeyboard` - dismisses the keyboard when `tapped`
+* `emoji`  - alias for `.character, but can be used to distict emojis
 * `escape` - represents the macOS esc key
 * `function` - represents the macOS fn key
 * `image` - has a description, keyboard image name and image name

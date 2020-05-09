@@ -65,6 +65,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
                 .command,
                 .custom(name: ""),
                 .dismissKeyboard,
+                .emoji(""),
                 .emojiCategory(.foods),
                 .escape,
                 .function,

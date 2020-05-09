@@ -5,7 +5,9 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 ## 2.9.1
 
-This version extracts the logic of `KeyboardAction` `standardTapAction` into two additional functions:
+This version adds an `.emoji` keyboard action, which can be used if you need to separate characters from emojis.
+
+This version also extracts the logic of `KeyboardAction` `standardTapAction` into:
 
 * `standardTapActionForController`
 * `standardTapActionForProxy`
