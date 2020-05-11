@@ -49,6 +49,7 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
         case .character: return handleCharacter(action, for: sender)
         case .emojiCategory(let cat): return { [weak self] in self?.switchToEmojiKeyboardCategory(cat) }
         case .image(_, _, let imageName): return { [weak self] in self?.copyImage(UIImage(named: imageName)!) }
+        case .emoji: return updateFrequentlyEmoji(action, for: sender)
         case .space: return handleSpace(for: sender)
         default: return super.tapAction(for: action, sender: sender)
         }
@@ -98,7 +99,6 @@ private extension DemoKeyboardActionHandler {
     func handleCharacter(_ action: KeyboardAction, for sender: Any?) -> GestureAction {
         let baseAction = super.tapAction(for: action, sender: sender)
         return { [weak self] in
-            self?.updateFrequentlyEmoji(action: action)
             baseAction?()
             guard let self = self else { return }
             guard self.shouldChangeToAlphabeticLowercase else { return }
@@ -107,14 +107,20 @@ private extension DemoKeyboardActionHandler {
             
         }
     }
-    func updateFrequentlyEmoji(action: KeyboardAction){
-        guard let
-            vc = self.demoViewController,
-            vc.keyboardType == .emojis,
-            case let .character(value) = action,
-            let keyboard = vc.emojiKeyboard
-        else { return }
-        keyboard.setFREmoji(emoji: value)
+    func updateFrequentlyEmoji(_ action: KeyboardAction, for sender: Any?) -> GestureAction {
+         let baseAction = super.tapAction(for: action, sender: sender)
+       return { [weak self] in
+           baseAction?()
+           guard let
+            vc = self?.demoViewController,
+               vc.keyboardType == .emojis,
+               case let .emoji(value) = action,
+               let keyboard = vc.emojiKeyboard
+           else { return }
+           keyboard.setFREmoji(emoji: value)
+           
+           
+       }
     }
     /**
      `NOTE` Changing to alphabetic lower case should be done
