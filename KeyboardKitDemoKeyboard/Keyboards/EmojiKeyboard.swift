@@ -66,6 +66,16 @@ private extension EmojiKeyboard {
           for action in cat.emojiActions {
               emoji.append(action)
           }
+          /**
+          this function complete the remaining emojis on one page with action none
+          this is only for the frequent emoji category
+          The result will be for a 4 * 3 matrix:
+          ```
+          1   4   7   *
+          2   5   8   *
+          3   6   9   *
+          ```
+           */
           if cat == .frequents{
               for _ in 1 ... (config.rowsPerPage * config.buttonsPerRow) - emoji.count{
                   emoji.append(.none)
@@ -81,6 +91,16 @@ private extension EmojiKeyboard {
             for action in cat.emojiActions {
                 actions.append((cat, action))
             }
+            /**
+            this function complete the remaining emojis on one page with action none
+            this is only for the frequent emoji category
+            The result will be for a 4 * 3 matrix:
+            ```
+            1   4   7   *
+            2   5   8   *
+            3   6   9   *
+            ```
+             */
             if cat == .frequents{
                 for _ in 1 ... (config.rowsPerPage * config.buttonsPerRow) - actions.count {
                     actions.append((cat, .none))
