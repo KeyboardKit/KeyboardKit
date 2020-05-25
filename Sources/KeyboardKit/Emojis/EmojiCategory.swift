@@ -15,6 +15,7 @@ import UIKit
 public enum EmojiCategory: Equatable, CaseIterable {
 
     case
+    frequents,
     smileys,
     animals,
     foods,
@@ -37,6 +38,10 @@ public extension EmojiCategory {
      */
     var emojis: [String] {
         switch self {
+        case .frequents:
+            // Clients are responsible for their own implementation of this
+            // category.
+            return []
         case .smileys: return smileys
         case .animals: return animals
         case .foods: return foods
