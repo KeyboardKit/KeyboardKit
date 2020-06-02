@@ -18,6 +18,11 @@ open class KeyboardSpacerView: UIView, KeyboardButtonRowComponent {
     public convenience init(width: CGFloat) {
         self.init(frame: .zero)
         self.width = width
+        
+        // Make spacers interactable so that where they are used to pad out
+        // `KeyboardButtonRowCollectionView`s, the user will be able to drag
+        // that collection view even if they touch down in a spacer area.
+        backgroundColor = .clearInteractable
     }
     
     public var widthConstraint: NSLayoutConstraint?
