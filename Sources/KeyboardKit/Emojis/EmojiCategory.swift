@@ -1,16 +1,15 @@
 import UIKit
 
 /**
- This enum contains the categories that the native iOS emoji
- keyboard currently has.
+ This enum contains the emoji categories that the native iOS
+ emoji keyboard currently has.
  
- Note that in a native iOS keyboard, emojis flow from top to
- bottom, leading to trailing. If you present the emojis in a
- horizontal collection view, the order in this enum works.
+ In native iOS keyboards, emojis flow from top to bottom and
+ from leading to trailing. The lists in this file are listed
+ to represent this flow style.
  
  Also note that since native emojis change all the time, the
- enum will be outdated every now and then. When that happens,
- just adjust the strings in this file.
+ enum will be outdated every now and then.
 */
 public enum EmojiCategory: Equatable, CaseIterable {
 
@@ -35,13 +34,13 @@ public extension EmojiCategory {
     
     /**
      An ordered list with all emojis in the category.
+     
+     `frequent` is left empty, since clients are responsible
+     for their own implementation of this category.
      */
     var emojis: [String] {
         switch self {
-        case .frequents:
-            // Clients are responsible for their own implementation of this
-            // category.
-            return []
+        case .frequents: return []
         case .smileys: return smileys
         case .animals: return animals
         case .foods: return foods
