@@ -137,9 +137,9 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         describe("giving haptic feedback") {
             
             it("can't be properyly tested") {
-                handler.triggerHapticFeedback(for: .longPress, on: .dismissKeyboard)
-                handler.triggerHapticFeedback(for: .repeatPress, on: .backspace)
-                handler.triggerHapticFeedback(for: .tap, on: .dismissKeyboard)
+                handler.triggerHapticFeedback(for: .longPress, on: .dismissKeyboard, sender: nil)
+                handler.triggerHapticFeedback(for: .repeatPress, on: .backspace, sender: nil)
+                handler.triggerHapticFeedback(for: .tap, on: .dismissKeyboard, sender: nil)
                 // TODO Test this
             }
         }
@@ -171,7 +171,7 @@ private class StandardKeyboardActionHandlerTestClass: StandardKeyboardActionHand
     
     let recorder: MockKeyboardActionHandler
     
-    override func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
+    override func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         switch gesture {
         case .doubleTap: recorder.giveHapticFeedbackForDoubleTap(on: action)
         case .longPress: recorder.giveHapticFeedbackForLongPress(on: action)

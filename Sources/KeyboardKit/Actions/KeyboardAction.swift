@@ -10,19 +10,18 @@ import UIKit
 
 /**
  This action enum specifies all currently supported keyboard
- actions and their standard behavior.
+ actions. They can be bound to keyboard buttons or triggered
+ programatically.
  
- Most actions have a standard behavior for a certain gesture
- when their used in system keyboards. This standard behavior
- is provided through `standardInputViewControllerAction` and
- `standardTextDocumentProxyAction`. Keyboard action handlers
- can choose to use these standard actions or ignore them.
+ Many actions have a standard behavior for a certain gesture,
+ like how double tapping a `space` ends the current sentence.
+ These behaviors are specified as properties in this file.
  
- Many actions require manual handling since they do not have
- universal, app-agnostic behaviors. For instance, the `image`
- action depends on what you want to do with the tapped image.
- Actions like these are a way for you to express your intent,
- but require manual handling in a custom action handler.
+ Many actions do not have a universal, app-agnostic behavior.
+ For instance, the `image` action has no "standard" behavior.
+ Such actions are here to let you create keyboard extensions
+ declaratively by expressing intent, but do require explicit
+ handling in a custom action handler.
 */
 public enum KeyboardAction: Equatable {
     

@@ -28,17 +28,16 @@ class KeyboardImageActionsTests: QuickSpec {
                         && description == description
                 default: return false
                 }
-
             }
             
             it("is correctly created") {
-                let actions = KeyboardImageActions(
+                let actions = KeyboardActions(
                     imageNames: ["1", "2", "3"],
                     keyboardImageNamePrefix: "pre-",
                     keyboardImageNameSuffix: "-suf",
                     localizationKeyPrefix: "a-",
                     localizationKeySuffix: "-b",
-                    throwAssertionFailure: false).actions
+                    throwAssertionFailure: false)
                 
                 expect(actions.count).to(equal(3))
                 expect(verify(actions[0], "1", "pre-1-suf", "a-1-b")).to(beTrue())

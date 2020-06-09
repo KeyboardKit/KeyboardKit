@@ -1,5 +1,5 @@
 //
-//  KeyboardImageActions.swift
+//  KeyboardActions+Image.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-03-10.
@@ -8,52 +8,42 @@
 
 import Foundation
 
-/**
- This model represents a collection of `Image` actions. It's
- an easy way to create a set of actions from a list of image
- names, e.g. when creating an image-only emoji keyboard.
- */
-public struct KeyboardImageActions {
+public extension KeyboardActions {
     
     /**
-     Create an instance using image names and various params.
+     Map a list of image names to a list of `.image` actions,
+     using certain image name matching prefixes and suffixes.
      
-     The `keyboardImageName` prefix and suffix are used when
+     The `keyboardImageNamePrefix` and `Suffix` are used for
      mapping each `imageName` to a `keyboardImageName`. This
-     name can thus have a different name than the image name.
-     For instance, if you provide an `emoji-` prefix but let
-     the suffix be empty, an action that has the `imageName`
-     set to `heart` will have a `keyboardImageName` with the
-     value `emoji-heart`.
+     name can be different from the image name. For instance,
+     if you provide an `emoji-` prefix but let the suffix be
+     empty, an action that has the `imageName` set to `heart`
+     will have `emoji-heart` as `keyboardImageName`.
      
      The `localizationKey` prefix and suffix are used to map
-     each `imageName` to a localization key, just like it is
-     done for the `keyboardImageName`. This localization key
-     is then used to get a translated `description` for each
-     image. For instance, the description of an action where
-     `imageName` is `heart` may be `Heart`. This description
-     can e.g. be used for accessibility.
+     each `imageName` to a localization key, which will then
+     be used to get translated `description`s for each image,
+     which for instance can be used for accessibility labels.
      
-     `throwAssertionFailure` is a good way to crash your app
-     in development, if any image doesn't have a description
-     translation. It is `true` by default.
+     `throwAssertionFailure` will cause your app to crash in
+     development, whenever a translated description can't be
+     generated for an image. It is `true` by default.
      */
-    public init(
+    init(
         imageNames: [String],
         keyboardImageNamePrefix keyboardPrefix: String = "",
         keyboardImageNameSuffix keyboardSuffix: String = "",
         localizationKeyPrefix keyPrefix: String = "",
         localizationKeySuffix keySuffix: String = "",
         throwAssertionFailure throwFailure: Bool = true) {
-        actions = imageNames.map {
+        self = imageNames.map {
             .image(
                 description: $0.translatedDescription(keyPrefix, keySuffix, throwFailure),
                 keyboardImageName: "\(keyboardPrefix)\($0)\(keyboardSuffix)",
                 imageName: $0)
         }
     }
-    
-    public let actions: [KeyboardAction]
 }
 
 private extension String {

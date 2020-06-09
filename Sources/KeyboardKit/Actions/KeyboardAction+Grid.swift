@@ -11,9 +11,8 @@ import Foundation
 public extension Array where Element == KeyboardAction {
     
     /**
-     Even out the action array to have as many actions as it
-     evenly fits a grid with `gridSize` number of columns or
-     a `gridSize` page size.
+     Even out the array to evenly fit a grid with `gridSize`
+     number of columns or a `gridSize` page size.
      */
     func evened(for gridSize: Int) -> [KeyboardAction] {
         var actions = self
