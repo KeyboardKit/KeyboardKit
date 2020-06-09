@@ -22,6 +22,7 @@ This version removes all previously deprecated parts of the library, If you upgr
 
 ### Breaking changes, not previously marked as deprecated:
 
+* `EmojiCategory.frequents` has been renamed to `frequent`.
 * `KeyboardActionRow.from` has been changed to an initializer.
 * `KeyboardActionRows.from` has been changed to an initializer.
 * `KeyboardImageActions` has been converted to a `KeyboardActionRow+Images` extension initializer.
