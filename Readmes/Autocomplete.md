@@ -1,6 +1,6 @@
 # Autocomplete
 
-KeyboardKit supports autocomplete, which means that you can add a toolbar that displays autocomplete suggestions for the currently typed text and replaces text in your text document proxy when you tap a  suggestion in the toolbar.
+KeyboardKit provides autocomplete support, which means that your keyboard can display autocomplete suggestions that replace the current word when a user taps a suggestion. 
 
 You have to implement your own autocomplete provider and use it to provide the keyboard with suggestions. Have a look at the demo app for examples.
 

@@ -1,6 +1,6 @@
 # Actions
 
-`KeyboardKit` comes with a set of actions that can be applied to your keyboard buttons:
+KeyboardKit comes with a set of actions that can be applied to keyboard buttons or triggered programatically:
 
 * `backspace` - sends a backspace to the text proxy when `tapped` and repeats this action until the button is releasd
 * `capsLock` - changes the keyboard type to `.alphabetic(.capsLocked)` when `tapped`
