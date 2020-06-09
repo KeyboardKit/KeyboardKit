@@ -12,7 +12,12 @@ This version removes all previously deprecated parts of the library, If you upgr
 
 * `StandardKeyboardActionHandler` now has overridable logic for automatically switching keyboard types after handling actions.
 * `preferredKeyboardType(after:on:)` can be overridden to customize the keyboard type that th handler should switch to, if any.
-* `switchKeyboardIfNeeded(after:on:)` can be overridden to customize how the type switch is performed. 
+* `switchKeyboardIfNeeded(after:on:)` can be overridden to customize how the type switch is performed.
+
+
+### Changes
+
+* `Alert` has been moved into `Components` since it is a `UIKit` specific component.
 
 
 ### Breaking changes, not previously marked as deprecated:

@@ -77,23 +77,11 @@ KeyboardKit comes with a set of keyboard types, like `alphabetic`, `numeric`, `s
 [Read more here][Keyboard-Types]
 
 
-## Components
-
-KeyboardKit has many UIKit component that can be composed into UIKit-based keyboards, e.g. `vertical` and `horizontal components`, `button rows`, `collection views`, `toolbars` etc.
-
-Check out [this component guide][Components] and [this view guide][Views] for more information.
-
-
 ## Autocomplete
 
 KeyboardKit provides autocomplete support, which means that your keyboard can display autocomplete suggestions that replace the current word when a user taps a suggestion. 
 
 [Read more here][Autocomplete]
-
-
-## Alerts
-
-Since keyboard extensions can't display alerts, you can use any `KeyboardAlert` to alert messages over the keyboard. You can use the built-in `ToastAlert` or create a custom one.
 
 
 ## Haptic Feedback
@@ -113,6 +101,13 @@ KeyboardKit supports audio feedback, which means that users can get audio feedba
 ## Extensions
 
 `KeyboardKit` comes with a bunch of keyboard-specific extensions. Many are internal and only used within the library, but some are public and can be used to handle common logic, like saving and exporting images. Check out the example app for more information.
+
+
+## UIKit Components
+
+KeyboardKit has many UIKit component that can be composed into UIKit-based keyboards, e.g. `vertical` and `horizontal components`, `button rows`, `collection views`, `toolbars` etc.
+
+Check out [this component guide][Components] and [this view guide][Views] for more information.
 
 
 ## Demo Application
