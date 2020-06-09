@@ -9,25 +9,21 @@
 import UIKit
 
 /**
- This is the standard keyboard action handler. It is used by
- `KeyboardInputViewController` by default, if you do not set
- `keyboardActionHandler` to a custom action handler.
+ This action handler provides standard action handling for a
+ certain action and gesture. You can subclass it to override
+ any part that you want to modify with custom logic.
  
- This handler uses the standard `KeyboardAction` actions e.g.
- when a user taps or presses down on buttons on the keyboard.
- You can modify this behavior by creating a subclass of this
- class and override `xAction(for:sender:)/handleX(on:sender:)`.
+ `KeyboardInputViewController` uses this standard handler as
+ `keyboardActionHandler` by deafult, but you can replace the
+ standard action handling with a custom action handler.
  
- You can enable haptic feedback by providing a haptic config
- when you create an instance of this class. You can override
- the standard behavior by overriding `triggerHapticFeedback`.
+ You can enable haptic feedback by providing this class with
+ a `hapticConfiguration` and change the standard behavior by
+ overriding `triggerHapticFeedback`.
  
- You can enable audio feedback, by providing an audio config
- when you create an instance of this class. You can override
- the standard behavior by overriding `triggerAudioFeedback`.
- 
- `NOTE` This class inherits `NSObject` to be able to be used
- as `target`, e.g. when saving images.
+ You can enable audio feedback, by providing this class with
+ an `audioConfiguration` and change the standard behavior by
+ overriding `triggerAudioFeedback`.
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
@@ -62,19 +58,14 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     public typealias GestureAction = () -> Void
     
     
-    // MARK: - Properties
+    // MARK: - KeyboardActionHandler
     
-    /**
-     Whether or not the action handler should change back to
-     lowercase alphabetic keyboard after next text input.
-     
-     `NOTE` This logic should be moved to `KeyboardAction`.
-     */
-    open var shouldChangeToAlphabeticLowercase: Bool {
-        switch inputViewController?.keyboardType {
-        case .alphabetic(let state): return state == .uppercased
-        default: return false
-        }
+    open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
+        guard let gestureAction = self.action(for: gesture, action: action, sender: sender) else { return }
+        gestureAction()
+        triggerAnimation(for: gesture, on: action, sender: sender)
+        triggerAudioFeedback(for: gesture, on: action, sender: sender)
+        triggerHapticFeedback(for: gesture, on: action, sender: sender)
     }
     
     
@@ -130,17 +121,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     
-    // MARK: - Action Handling
-    
-    open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
-        guard let gestureAction = self.action(for: gesture, action: action, sender: sender) else { return }
-        gestureAction()
-        triggerAnimation(for: gesture, on: action, sender: sender)
-        triggerAudioFeedback(for: gesture, on: action, sender: sender)
-        triggerHapticFeedback(for: gesture, on: action, sender: sender)
-    }
-    
-    
     // MARK: - Feedback
     
     open func triggerAnimation(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
@@ -160,5 +140,32 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         case .repeatPress: hapticConfiguration.repeatFeedback.trigger()
         case .tap: hapticConfiguration.tapFeedback.trigger()
         }
+    }
+    
+    
+    // MARK: - Keyboard Type
+    
+    open func preferredKeyboardType(afterHandling gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardType? {
+        if shouldChangeToAlphabeticLowercase(after: gesture, on: action) { return .alphabetic(.lowercased) }
+        return nil
+    }
+    
+    open func switchKeyboardIfNeeded(afterHandling gesture: KeyboardGesture, on action: KeyboardAction) {
+        guard let type = preferredKeyboardType(afterHandling: gesture, on: action) else { return }
+        inputViewController?.changeKeyboardType(to: type)
+    }
+}
+
+
+// MARK: - Private Extensions
+
+private extension StandardKeyboardActionHandler {
+    
+    func shouldChangeToAlphabeticLowercase(after gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
+        guard let type = inputViewController?.keyboardType else { return false }
+        guard case .alphabetic(.uppercased) = type else { return false }
+        guard case .tap = gesture else { return false }
+        guard case .character = action else { return false }
+        return true
     }
 }

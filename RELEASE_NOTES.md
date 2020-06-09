@@ -8,11 +8,19 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 This version removes all previously deprecated parts of the library, If you upgrade from an older version to `3.0` and have many breaking changes, perhaps upgrade to `2.9` first, to get deprecation help warnings.
 
 
+### New features
+
+* `StandardKeyboardActionHandler` now has overridable logic for automatically switching keyboard types after handling actions.
+* `preferredKeyboardType(after:on:)` can be overridden to customize the keyboard type that th handler should switch to, if any.
+* `switchKeyboardIfNeeded(after:on:)` can be overridden to customize how the type switch is performed. 
+
+
 ### Breaking changes, not previously marked as deprecated:
 
 * `KeyboardActionRow.from` has been changed to an initializer.
 * `KeyboardActionRows.from` has been changed to an initializer.
-* `KeyboardImageActions` has been converted to a `KeyboardActionRow+Images` extension initializer. 
+* `KeyboardImageActions` has been converted to a `KeyboardActionRow+Images` extension initializer.
+* The `shouldChangeToAlphabeticLowercase` has been renamed to `preferredKeyboardType(afterHandling:on:)`. 
 
 
 ### Removed, previously deprecated parts:

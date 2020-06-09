@@ -29,30 +29,6 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         }
         
         
-        
-        // MARK: - Properties
-        
-        describe("should change to alphabetic lowercase after input") {
-            
-            func result(for type: KeyboardType) -> Bool {
-                inputViewController.keyboardType = type
-                return handler.shouldChangeToAlphabeticLowercase
-            }
-            
-            it("is only true if current keyboard type is uppercase alpha") {
-                expect(result(for: .alphabetic(.uppercased))).to(beTrue())
-                expect(result(for: .alphabetic(.capsLocked))).to(beFalse())
-                expect(result(for: .alphabetic(.lowercased))).to(beFalse())
-                expect(result(for: .numeric)).to(beFalse())
-                expect(result(for: .symbolic)).to(beFalse())
-                expect(result(for: .email)).to(beFalse())
-                expect(result(for: .emojis)).to(beFalse())
-                expect(result(for: .images)).to(beFalse())
-                expect(result(for: .custom(""))).to(beFalse())
-            }
-        }
-        
-        
         // MARK: - Actions
         
         context("actions") {
@@ -154,6 +130,25 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
                 handler.triggerAudioFeedback(for: .tap, on: .backspace, sender: nil)
                 handler.triggerAudioFeedback(for: .tap, on: .dismissKeyboard, sender: nil)
                 // TODO Test this
+            }
+        }
+        
+        
+        // MARK: - Keyboard Type
+        
+        describe("preferred keyboard type after gesture on action") {
+            
+            func result(for gesture: KeyboardGesture, on action: KeyboardAction, current type: KeyboardType) -> KeyboardType? {
+                inputViewController.keyboardType = type
+                return handler.preferredKeyboardType(afterHandling: gesture, on: action)
+            }
+            
+            it("is defined for character tap in uppercased alphabetic keyboard") {
+                expect(result(for: .tap, on: .character("foo"), current: .alphabetic(.uppercased))).to(equal(.alphabetic(.lowercased)))
+                expect(result(for: .tap, on: .character("foo"), current: .alphabetic(.capsLocked))).to(beNil())
+                expect(result(for: .tap, on: .character("foo"), current: .alphabetic(.lowercased))).to(beNil())
+                expect(result(for: .tap, on: .image(description: "", keyboardImageName: "", imageName: ""), current: .numeric)).to(beNil())
+                expect(result(for: .longPress, on: .character("foo"), current: .symbolic)).to(beNil())
             }
         }
     }
