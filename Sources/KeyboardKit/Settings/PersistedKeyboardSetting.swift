@@ -31,6 +31,15 @@ public struct PersistedKeyboardSetting<Value: Codable> {
         self.userDefaults = userDefaults
     }
     
+    public init(
+        key: String,
+        default defaultValue: Value,
+        userDefaults: UserDefaults = .standard) {
+        self.key = key
+        self.defaultValue = defaultValue
+        self.userDefaults = userDefaults
+    }
+    
     private let key: String
     private let defaultValue: Value
     private let userDefaults: UserDefaults
