@@ -3,6 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-10-15.
+//  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
@@ -38,8 +39,8 @@ public struct AudioFeedbackConfiguration {
     }
     
     /**
-     This configuration uses standard audio feedbacks, that
-     are defined in the library.
+     This configuration uses standard audio feedbacks, which
+     tries to replicate the standard system behavior.
     */
     public static var standard: AudioFeedbackConfiguration {
         AudioFeedbackConfiguration(

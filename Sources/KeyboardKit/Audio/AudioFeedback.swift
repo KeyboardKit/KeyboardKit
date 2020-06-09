@@ -10,11 +10,10 @@ import Foundation
 
 /**
  This enum provides audio feedback for keyboard actions. The
- enum cases can be triggered right away, using `AudioToolbox`.
+ feedback types can be triggered with the `trigger` function.
  
- The system audioplayer can be replaced by switching out the
- `systemPlayer` with another player. This is useful when you
- want to unit test the class or change its behavior.
+ The static `systemPlayer` uses a `StandardSystemAudioPlayer`
+ by default, but you can change it to any `SystemAudioPlayer`.
 */
 public enum AudioFeedback: Equatable {
     
