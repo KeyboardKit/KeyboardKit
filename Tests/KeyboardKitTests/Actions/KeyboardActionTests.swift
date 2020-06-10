@@ -42,6 +42,7 @@ class KeyboardActionTests: QuickSpec {
                 expect(result(for: .shift)).to(beFalse())
                 expect(result(for: .shiftDown)).to(beFalse())
                 expect(result(for: .space)).to(beFalse())
+                expect(result(for: .systemImage(description: "", keyboardImageName: "", imageName: ""))).to(beFalse())
                 expect(result(for: .tab)).to(beFalse())
             }
         }
@@ -57,6 +58,7 @@ class KeyboardActionTests: QuickSpec {
                 expect(result(for: .emoji(""))).to(beTrue())
                 expect(result(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beTrue())
                 expect(result(for: .space)).to(beTrue())
+                expect(result(for: .systemImage(description: "", keyboardImageName: "", imageName: ""))).to(beTrue())
                 
                 expect(result(for: .none)).to(beFalse())
                 expect(result(for: .backspace)).to(beFalse())
@@ -109,6 +111,7 @@ class KeyboardActionTests: QuickSpec {
                 expect(result(for: .emojiCategory(.foods))).to(beFalse())
                 expect(result(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beFalse())
                 expect(result(for: .space)).to(beFalse())
+                expect(result(for: .systemImage(description: "", keyboardImageName: "", imageName: ""))).to(beFalse())
             }
         }
         
@@ -141,6 +144,7 @@ class KeyboardActionTests: QuickSpec {
                 expect(result(for: .nextKeyboard)).to(beNil())
                 expect(result(for: .option)).to(beNil())
                 expect(result(for: .shiftDown)).to(beNil())
+                expect(result(for: .systemImage(description: "", keyboardImageName: "", imageName: ""))).to(beNil())
                 expect(result(for: .tab)).to(beNil())
             }
         }
@@ -172,6 +176,7 @@ class KeyboardActionTests: QuickSpec {
                 expect(result(for: .shift)).to(beTrue())
                 expect(result(for: .shiftDown)).to(beTrue())
                 expect(result(for: .space)).to(beTrue())
+                expect(result(for: .systemImage(description: "", keyboardImageName: "", imageName: ""))).to(beTrue())
                 expect(result(for: .tab)).to(beTrue())
             }
         }
@@ -206,6 +211,7 @@ class KeyboardActionTests: QuickSpec {
                 expect(result(for: .image(description: "", keyboardImageName: "", imageName: ""))).to(beNil())
                 expect(result(for: .nextKeyboard)).to(beNil())
                 expect(result(for: .option)).to(beNil())
+                expect(result(for: .systemImage(description: "", keyboardImageName: "", imageName: ""))).to(beNil())
             }
         }
         
@@ -238,6 +244,7 @@ class KeyboardActionTests: QuickSpec {
                 expect(result(for: .shift)).to(beNil())
                 expect(result(for: .shiftDown)).to(beNil())
                 expect(result(for: .space)).to(beNil())
+                expect(result(for: .systemImage(description: "", keyboardImageName: "", imageName: ""))).to(beNil())
                 expect(result(for: .tab)).to(beNil())
             }
         }

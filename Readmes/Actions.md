@@ -12,7 +12,7 @@ KeyboardKit comes with a set of actions that can be applied to keyboard buttons 
 * `emojiCategory(category:)` - can be used to show a specific emoji category
 * `escape` - represents the macOS `esc` key
 * `function` - represents the macOS `fn` key
-* `image` - has a description, keyboard image name and image name
+* `image` - represents an image, with a description, keyboard image name and image name
 * `keyboardType(type)` - changes the keyboard type to `.alphabetic(type)` when `tapped`
 * `moveCursorBackward` - moves the cursor back one position when `tapped`
 * `moveCursorForward` - moves the cursor forward one position when `tapped`
@@ -22,6 +22,7 @@ KeyboardKit comes with a set of actions that can be applied to keyboard buttons 
 * `shift` - changes the keyboard type to `.alphabetic(.uppercased)` when `tapped` and `.capslocked` when `double tapped`
 * `shiftDown` - changes the keyboard type to `.alphabetic(.lowercased)` when `tapped`
 * `space` - sends an empty space to the text proxy when `tapped` and ends the current sentence when `double tapped`
+* `systemImage` - represents a system image, with a description, keyboard image name and image name
 * `tab` - sends a tab character to the text proxy when `tapped`
 * `none`- use this for empty "placeholder" keys that do nothing
 

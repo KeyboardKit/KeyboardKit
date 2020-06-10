@@ -22,6 +22,9 @@ import UIKit
  Such actions are here to let you create keyboard extensions
  declaratively by expressing intent, but do require explicit
  handling in a custom action handler.
+ 
+ `image` can be used to refer to images embedded in the main
+ bundle and `systemImage`for system images.
 */
 public enum KeyboardAction: Equatable {
     
@@ -46,6 +49,7 @@ public enum KeyboardAction: Equatable {
     option,
     shift,
     shiftDown,
+    systemImage(description: String, keyboardImageName: String, imageName: String),
     space,
     tab
 }
@@ -87,6 +91,16 @@ public extension KeyboardAction {
     }
     
     /**
+     Whether or not the action is an image action.
+     */
+    var isImageAction: Bool {
+        switch self {
+        case .image, .systemImage: return true
+        default: return false
+        }
+    }
+    
+    /**
      Whether or not the action is a content input action.
      */
     var isInputAction: Bool {
@@ -95,6 +109,7 @@ public extension KeyboardAction {
         case .emoji: return true
         case .image: return true
         case .space: return true
+        case .systemImage: return true
         default: return false
         }
     }

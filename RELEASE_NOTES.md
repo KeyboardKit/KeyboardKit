@@ -5,12 +5,16 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 ## 3.0.0
 
-This version removes all previously deprecated parts of the library, If you upgrade from an older version to `3.0` and have many breaking changes, perhaps upgrade to `2.9` first, to get deprecation help warnings.
+This version removes all previously deprecated parts of the library and adds improved support for SwiftUI and iOS 13.
+
+If you upgrade from an older version to `3.0` and have many breaking changes, upgrading to `2.9` first provides deprecation help.
 
 
-### New features
+### New functionality
 
+* There is a new `systemImage` `KeyboardAction`, which can be used with SF Symbols.
 * `StandardKeyboardActionHandler` will now automatically switch to certain keyboards after handling certain action gestures. This logic is defined by `handleKeyboardSwitch(after:on:)` and `preferredKeyboardType(after:on:)`, which can both be overridden.
+
 
 ### Breaking changes, not previously marked as deprecated:
 

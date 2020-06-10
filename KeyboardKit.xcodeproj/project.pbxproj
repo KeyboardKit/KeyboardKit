@@ -465,6 +465,7 @@
 		A94265392490CDCC00EB5551 /* KeyboardKitDemoKeyboard_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				A94265552490D2BB00EB5551 /* Previews */,
 				A94265532490D1CB00EB5551 /* Supporting Files */,
 				A94265512490D1C400EB5551 /* KeyboardView.swift */,
 				A942653A2490CDCC00EB5551 /* KeyboardViewController.swift */,
@@ -478,6 +479,13 @@
 				A942653C2490CDCC00EB5551 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A94265552490D2BB00EB5551 /* Previews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Previews;
 			sourceTree = "<group>";
 		};
 		A95307542461308100CB37C3 /* Localization */ = {
