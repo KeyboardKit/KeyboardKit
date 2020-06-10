@@ -10,22 +10,26 @@ import UIKit
 import KeyboardKit
 
 /**
- This demo keyboard handles system actions as normal (change
- keyboard, space, new line etc.), injects strings and emojis
- into the text proxy, copies tapped images to the pasteboard
- and saves long pressed images to the user's photo album.
+ This UIKit-based demo keyboard demonstrates how to create a
+ UIKit-based keyboard extension using `KeyboardKit`.
  
- IMPORTANT: To use this demo keyboard, you have to enable it
- in system settings ("Settings/General/Keyboards") then give
- it full access (this requires enabling `RequestsOpenAccess`
- in `Info.plist`) if you want to use image buttons. You must
- also add a `NSPhotoLibraryAddUsageDescription` to your host
- app's `Info.plist` if you want to be able to save images to
- the photo album. This is already taken care of in this demo
- app, so you can just copy the setup into your own app.
+ This demo keyboard handles a bunch of actions, sends string
+ and emoji inputs to the text proxy, copies tapped images to
+ the pasteboard and saves long pressed images to photos etc.
+ It also has a topmost auto complete toolbar with three fake
+ suggestions for the currently active word.
  
- This demo keyboard also has a topmost auto complete toolbar
- that displays dummy suggestions for the current word.
+ `IMPORTANT` To use this keyboard, you must enable it in the
+ system keyboard settings ("Settings/General/Keyboards") and
+ give it full access, which is unfortunately required to use
+ some features like haptic and audio feedback, access to the
+ user's photos etc.
+ 
+ If you want to use these features in your own app, you must
+ add `RequestsOpenAccess` to the extension `Info.plist`, add
+ a `NSPhotoLibraryAddUsageDescription` to the **host** app's
+ `Info.plist` etc. This is already done in this demo app, so
+ you can just copy the setup into your own app.
  */
 class KeyboardViewController: KeyboardInputViewController {
     
