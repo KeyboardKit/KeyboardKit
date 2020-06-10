@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "KeyboardKitSwiftUI",
+        "repositoryURL": "https://github.com/danielsaidi/KeyboardKitSwiftUI",
+        "state": {
+          "branch": "3.0-beta",
+          "revision": "516a2678cf8c172cfec050870fd3e1fc7a413183",
+          "version": null
+        }
+      },
+      {
         "package": "Mockery",
         "repositoryURL": "https://github.com/danielsaidi/Mockery.git",
         "state": {

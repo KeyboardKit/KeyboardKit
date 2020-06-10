@@ -8,6 +8,7 @@
 
 import UIKit
 import KeyboardKit
+import KeyboardKitSwiftUI
 
 /**
  This SwiftUI-based demo keyboard demonstrates how to create
@@ -35,14 +36,9 @@ class KeyboardViewController: KeyboardInputViewController {
 
     @IBOutlet var nextKeyboardButton: UIButton!
     
-    override func updateViewConstraints() {
-        super.updateViewConstraints()
-        
-        // Add custom view sizing constraints here
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup(with: KeyboardView())
     }
     
     override func viewWillLayoutSubviews() {
@@ -50,3 +46,4 @@ class KeyboardViewController: KeyboardInputViewController {
         super.viewWillLayoutSubviews()
     }
 }
+
