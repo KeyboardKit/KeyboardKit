@@ -1,5 +1,5 @@
 //
-//  KeyboardToolbar.swift
+//  KeyboardToolbarView.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-20.
@@ -9,14 +9,14 @@
 import UIKit
 
 /**
- Keyboard toolbars are keyboard rows, that can be added to a
+ Keyboard toolbars are vertical rows, that can be added to a
  `KeyboardInputViewController`'s `keyboardStackView`.
  
- This base class can be subclassed to create custom toolbars.
- It has a horizontal stack view, that can be used to contain
- any views you want.
+ You can subclassed this class to create custom toolbars. It
+ has a horizontal stack view that can be used to contain any
+ views that you want the toolbar to present.
  */
-open class KeyboardToolbar: UIView, KeyboardStackViewComponent {
+open class KeyboardToolbarView: UIView, KeyboardStackViewComponent {
     
     public init(
         height: CGFloat = .standardKeyboardRowHeight,

@@ -1,5 +1,5 @@
 //
-//  KeyboardToolbarTests.swift
+//  KeyboardToolbarViewTests.swift
 //  KeyboardKitTests
 //
 //  Created by Daniel Saidi on 2019-05-28.
@@ -10,14 +10,14 @@ import Quick
 import Nimble
 import KeyboardKit
 
-class KeyboardToolbarTests: QuickSpec {
+class KeyboardToolbarViewTests: QuickSpec {
     
     override func spec() {
         
-        var view: KeyboardToolbar!
+        var view: KeyboardToolbarView!
         
         beforeEach {
-            view = KeyboardToolbar(height: 123)
+            view = KeyboardToolbarView(height: 123)
         }
         
         describe("created instance") {
@@ -34,7 +34,7 @@ class KeyboardToolbarTests: QuickSpec {
             }
             
             it("can use custom stackview config") {
-                view = KeyboardToolbar(height: 123, alignment: .center, distribution: .equalCentering)
+                view = KeyboardToolbarView(height: 123, alignment: .center, distribution: .equalCentering)
                 expect(view.stackView.alignment).to(equal(.center))
                 expect(view.stackView.distribution).to(equal(.equalCentering))
             }

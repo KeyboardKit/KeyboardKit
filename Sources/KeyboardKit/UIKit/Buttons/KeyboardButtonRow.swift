@@ -9,13 +9,8 @@
 import UIKit
 
 /**
- This view has a stack view, that presents buttons in a row.
- 
- This view can be created with a set of actions and a button
- creation block, which it uses to create and add buttons for
- each provided action to a horizontal `buttonStackView`. The
- button row can be added to the `KeyboardInputViewController`
- `keyboardStackView`.
+ This view presents buttons in horizontal rows. The provided
+ `buttonCreator` function maps each action to a view.
  */
 open class KeyboardButtonRow: UIView, KeyboardStackViewComponent {
     

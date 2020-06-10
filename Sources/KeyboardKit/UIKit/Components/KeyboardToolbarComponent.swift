@@ -10,9 +10,6 @@ import UIKit
 
 /**
  Toolbar components are view components that can be added to
- the horizontal stack view of a toolbar.
- 
- If a stack view uses another distribution than `fillEqually`,
- you must specify a width for each toolbar component.
+ a keyboard toolbar toolbar.
  */
 public protocol KeyboardToolbarComponent: HorizontalKeyboardComponent {}

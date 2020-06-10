@@ -9,8 +9,8 @@
 import UIKit
 
 /**
- Views that implement this protocol can be added to a button
- row as well as collection views.
+ This protocol can be implemented by views that can be added
+ to button rows and collection views.
  
  For convenience, you can use the `KeyboardButtonView` class
  instead of implementing this protocol from scratch.

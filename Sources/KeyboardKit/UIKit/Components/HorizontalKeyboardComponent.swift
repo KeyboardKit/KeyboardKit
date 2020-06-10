@@ -13,7 +13,7 @@ import UIKit
  to a horizontally flowing part of the keyboard.
  
  If a stack view uses another distribution than `fillEqually`,
- you must specify a `width` for each row component. 
+ you must specify a `width` for each row component.
  */
 public protocol HorizontalKeyboardComponent: UIView {
     

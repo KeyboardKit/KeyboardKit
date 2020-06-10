@@ -9,10 +9,12 @@
 import UIKit
 
 /**
- This collection view displays a single cell for each action.
+ This collection view displays a single cell for each action,
+ using the provided `buttonCreator` function which maps each
+ action to a view.
  
- You can customize it and its appearance in any way you want,
- e.g. by setting a custom flow layout.
+ Since this is a `UICollectionView`, you can customize it in
+ any way you want, e.g. by setting a custom flow layout.
  */
 open class KeyboardButtonCollectionView: KeyboardCollectionView {
     

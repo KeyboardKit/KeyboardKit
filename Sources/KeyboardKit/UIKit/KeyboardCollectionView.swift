@@ -11,7 +11,7 @@ import UIKit
 /**
  This view can be used as a base class for a collection view
  that presents keyboard action buttons. You must subclass it,
- since it returns empty cells for each action.
+ since it returns empty cells by default.
  
  `KeyboardKit` has two built-in subclasses that you can use:
  `KeyboardButtonCollectionView` displays buttons in a single

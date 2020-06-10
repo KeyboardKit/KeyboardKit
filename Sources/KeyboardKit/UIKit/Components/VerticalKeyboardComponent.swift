@@ -10,7 +10,11 @@ import UIKit
 
 /**
  This protocol represents a view component that can be added
- to a vertically flowing part of the keyboard.
+ to a vertically flowing part of the keyboard, e.g. the main
+ keyboard stack view.
+ 
+ You can set a custom `height` for this component. If you do
+ not, it will use its intrinsic content size.
  */
 public protocol VerticalKeyboardComponent: UIView {
     

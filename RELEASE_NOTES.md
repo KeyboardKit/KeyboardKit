@@ -12,18 +12,14 @@ This version removes all previously deprecated parts of the library, If you upgr
 
 * `StandardKeyboardActionHandler` will now automatically switch to certain keyboards after handling certain action gestures. This logic is defined by `handleKeyboardSwitch(after:on:)` and `preferredKeyboardType(after:on:)`, which can both be overridden.
 
-
-### Changes
-
-* `Alert` has been moved into `Components` since it is a `UIKit` specific component.
-
-
 ### Breaking changes, not previously marked as deprecated:
 
+* `AutocompleteToolbar` has been renamed to `AutocompleteToolbarVew`.
 * `EmojiCategory.frequents` has been renamed to `frequent`.
 * `KeyboardActionRow.from` has been changed to an initializer.
 * `KeyboardActionRows.from` has been changed to an initializer.
 * `KeyboardImageActions` has been converted to a `KeyboardActionRow+Images` extension initializer.
+* `KeyboardToolbar` has been renamed to `KeyboardToolbarView`. 
 * The `shouldChangeToAlphabeticLowercase` has been replaced with the automatic switching mentioned above.
 * The `isKeyboardEnabled` function now uses a `for` as external argument name.
 

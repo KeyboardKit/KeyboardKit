@@ -11,8 +11,6 @@ import UIKit
 /**
  Keyboard stack view components are "rows" that can be added
  to your `KeyboardInputViewController`'s `keyboardStackView`.
- 
- Some examples are button rows, toolbars, auto-complete bars
- etc.
+ Some examples are button rows, toolbars etc.
  */
 public protocol KeyboardStackViewComponent: VerticalKeyboardComponent {}

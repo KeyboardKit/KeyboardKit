@@ -1,5 +1,5 @@
 //
-//  AutocompleteToolbar.swift
+//  AutocompleteToolbarView.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-07-02.
@@ -11,27 +11,20 @@ import UIKit
 
 /**
  This toolbar can be used to present autocomplete suggestion
- to the user while she/he types into a text field.
+ while the user types.
  
  The toolbar is updated by calling `update(with: words)`. It
  resets the toolbar and populates it with new buttons, which
- are provided by the provided `buttonCreator`.
+ are provided by the `buttonCreator` function, that you must
+ provide. This function can return any view for a suggestion.
  
  The toolbar will by default distribute all suggestion views
  evenly within its available space. However, you can make it
  scrollable by calling `enableScrolling()`. This gives every
- suggestion view as much space as it needs and makes the bar
- scroll if needed. Call `disableScrolling()` to disable this
- behavior once again.
- 
- Since this is a `KeyboardToolbar`, it has a stack view that
- you can configure in any way you like.
- 
- Since the `buttonCreator` can provide any kind of views for
- any strings, you are not limited buttons. A toolbar can use
- views, buttons, separators etc.
+ suggestion the space it needs and makes the bar scroll when
+ needed. Calling `disableScrolling()` disables this behavior.
  */
-public class AutocompleteToolbar: KeyboardToolbar {
+public class AutocompleteToolbarView: KeyboardToolbarView {
 
     
     // MARK: - Initialization
@@ -146,7 +139,7 @@ public class AutocompleteToolbar: KeyboardToolbar {
 
 // MARK: - Temporary Fixes
 
-private extension AutocompleteToolbar {
+private extension AutocompleteToolbarView {
     
     /**
      Adjust the last suggestion view, removing its separator

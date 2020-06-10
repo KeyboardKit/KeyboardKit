@@ -11,6 +11,7 @@ import UIKit
 /**
  This protocol can be implemented by any class that presents
  keyboard content over multiple pages, e.g. an emoji keboard.
+ 
  It provides ways to persist page index, using user defaults.
  */
 public protocol PagedKeyboardComponent: UIView {

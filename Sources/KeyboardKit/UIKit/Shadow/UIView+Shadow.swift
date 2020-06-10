@@ -1,6 +1,6 @@
 //
 //  UIView+ShadowStyle.swift
-//  iExtra
+//  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-19.
 //  Copyright © 2019 Daniel Saidi. All rights reserved.

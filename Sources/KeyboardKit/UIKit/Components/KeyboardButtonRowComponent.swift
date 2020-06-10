@@ -8,10 +8,8 @@
 
 import UIKit
 
-
 /**
  This protocol represents a view component that can be added
- to the horizontal stack view of a keyboard button row. It's
- just an alias for `HorizontalKeyboardComponent`
+ to a keyboard button row.
  */
 public protocol KeyboardButtonRowComponent: HorizontalKeyboardComponent {}
