@@ -9,14 +9,10 @@
 import UIKit
 
 
-// MARK: - Intenral Functions
+// MARK: - Internal Functions
 
 extension KeyboardInputViewController {
     
-    /**
-     Add the standard keybard gestures for taps, double taps, long press
-     and repeat press. This is internal and is used by
-     */
     func addStandardKeyboardGestures(to button: KeyboardButton) {
         addDoubleTapGesture(to: button)
         addTapGesture(to: button)

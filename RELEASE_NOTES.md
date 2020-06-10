@@ -24,7 +24,8 @@ This version removes all previously deprecated parts of the library, If you upgr
 * `KeyboardActionRow.from` has been changed to an initializer.
 * `KeyboardActionRows.from` has been changed to an initializer.
 * `KeyboardImageActions` has been converted to a `KeyboardActionRow+Images` extension initializer.
-* The `shouldChangeToAlphabeticLowercase` has been replaced with the automatic switching mentioned above. 
+* The `shouldChangeToAlphabeticLowercase` has been replaced with the automatic switching mentioned above.
+* The `isKeyboardEnabled` function now uses a `for` as external argument name.
 
 
 ### Removed, previously deprecated parts:
