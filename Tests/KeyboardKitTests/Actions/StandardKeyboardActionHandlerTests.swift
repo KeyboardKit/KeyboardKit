@@ -140,7 +140,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             
             func result(for gesture: KeyboardGesture, on action: KeyboardAction, current type: KeyboardType) -> KeyboardType? {
                 inputViewController.keyboardType = type
-                return handler.preferredKeyboardType(afterHandling: gesture, on: action)
+                return handler.preferredKeyboardType(after: gesture, on: action)
             }
             
             it("is defined for character tap in uppercased alphabetic keyboard") {

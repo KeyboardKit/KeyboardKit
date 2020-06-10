@@ -66,6 +66,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         triggerAnimation(for: gesture, on: action, sender: sender)
         triggerAudioFeedback(for: gesture, on: action, sender: sender)
         triggerHapticFeedback(for: gesture, on: action, sender: sender)
+        handleKeyboardSwitch(after: gesture, on: action)
     }
     
     
@@ -143,16 +144,16 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     
-    // MARK: - Keyboard Type
+    // MARK: - Keyboard Type Switching
     
-    open func preferredKeyboardType(afterHandling gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardType? {
-        if shouldChangeToAlphabeticLowercase(after: gesture, on: action) { return .alphabetic(.lowercased) }
-        return nil
+    open func handleKeyboardSwitch(after gesture: KeyboardGesture, on action: KeyboardAction) {
+        guard let type = preferredKeyboardType(after: gesture, on: action) else { return }
+        inputViewController?.changeKeyboardType(to: type)
     }
     
-    open func switchKeyboardIfNeeded(afterHandling gesture: KeyboardGesture, on action: KeyboardAction) {
-        guard let type = preferredKeyboardType(afterHandling: gesture, on: action) else { return }
-        inputViewController?.changeKeyboardType(to: type)
+    open func preferredKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardType? {
+        if shouldChangeToAlphabeticLowercase(after: gesture, on: action) { return .alphabetic(.lowercased) }
+        return nil
     }
 }
 

@@ -10,9 +10,7 @@ This version removes all previously deprecated parts of the library, If you upgr
 
 ### New features
 
-* `StandardKeyboardActionHandler` now has overridable logic for automatically switching keyboard types after handling actions.
-* `preferredKeyboardType(after:on:)` can be overridden to customize the keyboard type that th handler should switch to, if any.
-* `switchKeyboardIfNeeded(after:on:)` can be overridden to customize how the type switch is performed.
+* `StandardKeyboardActionHandler` will now automatically switch to certain keyboards after handling certain action gestures. This logic is defined by `handleKeyboardSwitch(after:on:)` and `preferredKeyboardType(after:on:)`, which can both be overridden.
 
 
 ### Changes
@@ -26,7 +24,7 @@ This version removes all previously deprecated parts of the library, If you upgr
 * `KeyboardActionRow.from` has been changed to an initializer.
 * `KeyboardActionRows.from` has been changed to an initializer.
 * `KeyboardImageActions` has been converted to a `KeyboardActionRow+Images` extension initializer.
-* The `shouldChangeToAlphabeticLowercase` has been renamed to `preferredKeyboardType(afterHandling:on:)`. 
+* The `shouldChangeToAlphabeticLowercase` has been replaced with the automatic switching mentioned above. 
 
 
 ### Removed, previously deprecated parts:

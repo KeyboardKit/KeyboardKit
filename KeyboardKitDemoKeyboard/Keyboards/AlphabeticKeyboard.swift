@@ -27,8 +27,7 @@ private extension AlphabeticKeyboard {
     static func actions(
         uppercased: Bool,
         in viewController: KeyboardViewController) -> KeyboardActionRows {
-        KeyboardActionRows
-            .from(characters(uppercased: uppercased))
+        KeyboardActionRows(characters: characters(uppercased: uppercased))
             .addingSideActions(uppercased: uppercased)
             .appending(bottomActions(leftmost: switchAction, for: viewController))
     }
