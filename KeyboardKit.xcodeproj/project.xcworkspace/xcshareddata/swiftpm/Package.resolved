@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "KeyboardKit",
+        "repositoryURL": "/Users/danielsaidi/Projects/OpenSource/KeyboardKit",
+        "state": {
+          "branch": "3.0-beta",
+          "revision": "8c05a873d4280bfca31d409f9f0682f9289dc493",
+          "version": null
+        }
+      },
+      {
         "package": "Mockery",
         "repositoryURL": "https://github.com/danielsaidi/Mockery.git",
         "state": {
