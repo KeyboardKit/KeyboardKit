@@ -16,6 +16,7 @@ If you upgrade from an older version to `3.0` and have many breaking changes, up
 * There is a new `KeyboardContext`, which provides contextual information.
 * `StandardKeyboardContext` is used by default, whenever a keyboard extension is created.
 * `ObservableKeyboardContext` is used by whenever a keyboard switches over to use SwiftUI.
+* `StandardKeyboardActionHandler` will now automatically handle keyboard type switching delay, by checking whether or not the action has a double-tap action.
 * `StandardKeyboardActionHandler` will now automatically switch to certain keyboards after handling certain action gestures. This logic is defined by `handleKeyboardSwitch(after:on:)` and `preferredKeyboardType(after:on:)`, which can both be overridden.
 
 

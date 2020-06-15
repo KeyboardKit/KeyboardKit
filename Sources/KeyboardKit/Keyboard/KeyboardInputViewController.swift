@@ -12,8 +12,10 @@ import UIKit
  This class extends `UIInputViewController` with KeyboardKit
  specific properties and functionality.
  
- You should let a keyboard extension `KeyboardViewController`
- inherit this class instead of `UIInputViewController`
+ When you use KeyboardKit, let your `KeyboardViewController`
+ inherit this class instead of `UIInputViewController`. This
+ will provide it with a bunch of features that regular input
+ view controllers lack.
  */
 open class KeyboardInputViewController: UIInputViewController {
 
@@ -23,9 +25,7 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      This calls the super class' implementation then sets up
      the keyboard by calling `setupKeyboard`. If you want to
-     change the keyboard type that is used in your extension,
-     do so before this function is called and you don't have
-     to call `setupKeyboard` or `changeKeyboardType`.
+     change keyboard type later, call `changeKeyboardType`.
      */
     open override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,17 +51,6 @@ open class KeyboardInputViewController: UIInputViewController {
     
     
     // MARK: - Properties
-    
-    /**
-     The seconds delay that `changeKeyboardType` uses before
-     changing the keyboard type.
-     
-     The delay is required when your keyboard has double tap
-     support, since it require that buttons stay around long
-     enough double taps to register. If you don't use double
-     taps, you can set this property to `0`.
-     */
-    public var changeKeyboardTypeDelay: TimeInterval = 0.2
     
     /**
      This context provides keyboard-specific information. If
