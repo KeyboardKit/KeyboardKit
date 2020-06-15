@@ -15,6 +15,7 @@ import UIKit
  */
 public protocol KeyboardContext: AnyObject {
     
+    var hasFullAccess: Bool { get set }
     var keyboardType: KeyboardType { get set }
     var needsInputModeSwitchKey: Bool { get set }
 }
@@ -32,9 +33,16 @@ public extension KeyboardContext {
      */
     func changeKeyboardType(to type: KeyboardType, after delay: DispatchTimeInterval, completion: @escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            guard self.keyboardType.canBeReplaced(with: type) else { return }
-            self.keyboardType = type
-            completion()
+            self.changeKeyboardTypeAfterDelay(to: type, completion: completion)
         }
+    }
+}
+
+private extension KeyboardContext {
+    
+    func changeKeyboardTypeAfterDelay(to type: KeyboardType, completion: @escaping () -> Void) {
+        guard keyboardType.canBeReplaced(with: type) else { return }
+        keyboardType = type
+        completion()
     }
 }

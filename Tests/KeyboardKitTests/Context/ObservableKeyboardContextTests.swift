@@ -25,8 +25,12 @@ class ObservableKeyboardContextTests: QuickSpec {
             
             it("can be created with context") {
                 let standard = StandardKeyboardContext(keyboardType: .email)
+                standard.hasFullAccess = true
+                standard.needsInputModeSwitchKey = true
                 let context = ObservableKeyboardContext(from: standard)
                 expect(context.keyboardType).to(equal(.email))
+                expect(context.hasFullAccess).to(beTrue())
+                expect(context.needsInputModeSwitchKey).to(beTrue())
             }
         }
     }

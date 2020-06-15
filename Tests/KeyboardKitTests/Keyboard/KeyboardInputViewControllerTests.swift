@@ -33,6 +33,15 @@ class KeyboardInputViewControllerTests: QuickSpec {
         
         describe("view will appear") {
             
+            it("updates context") {
+                vc.hasFullAccessValue = true
+                vc.viewWillAppear(false)
+                expect(vc.context.hasFullAccess).to(beTrue())
+                vc.hasFullAccessValue = false
+                vc.viewWillAppear(false)
+                expect(vc.context.hasFullAccess).to(beFalse())
+            }
+            
             it("syncs with text document proxy") {
                 expect(vc.hasInvoked(vc.viewWillSyncWithTextDocumentProxy)).to(beFalse())
                 vc.viewWillAppear(false)
@@ -134,6 +143,9 @@ class KeyboardInputViewControllerTests: QuickSpec {
 private class TestClass: KeyboardInputViewController, Mockable {
     
     var mock = Mock()
+    
+    var hasFullAccessValue = false
+    override var hasFullAccess: Bool { hasFullAccessValue }
     
     var needsInputModeSwitchKeyValue = false
     override var needsInputModeSwitchKey: Bool { needsInputModeSwitchKeyValue }

@@ -22,9 +22,12 @@ public class ObservableKeyboardContext: KeyboardContext, ObservableObject {
     }
     
     public init(from context: KeyboardContext) {
-        self.keyboardType = context.keyboardType
+        hasFullAccess = context.hasFullAccess
+        keyboardType = context.keyboardType
+        needsInputModeSwitchKey = context.needsInputModeSwitchKey
     }
     
+    @Published public var hasFullAccess = false
     @Published public var keyboardType: KeyboardType
     @Published public var needsInputModeSwitchKey = false
 }

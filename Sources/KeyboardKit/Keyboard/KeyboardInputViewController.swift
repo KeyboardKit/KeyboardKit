@@ -34,6 +34,7 @@ open class KeyboardInputViewController: UIInputViewController {
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        context.hasFullAccess = hasFullAccess
         viewWillSyncWithTextDocumentProxy()
     }
     
