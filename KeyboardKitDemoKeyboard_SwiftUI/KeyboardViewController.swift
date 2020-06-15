@@ -35,16 +35,14 @@ import KeyboardKitSwiftUI
 class KeyboardViewController: KeyboardInputViewController {
 
     @IBOutlet var nextKeyboardButton: UIButton!
-    
-    //var context = KeyboardContext.global
-    
+        
     override func changeKeyboardType(to type: KeyboardType) {
         super.changeKeyboardType(to: type)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //setup(with: KeyboardView().environmentObject(KeyboardContext.global))
+        setup(with: KeyboardView())
     }
     
     override func viewWillLayoutSubviews() {

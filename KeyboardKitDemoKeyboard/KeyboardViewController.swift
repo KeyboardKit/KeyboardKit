@@ -38,7 +38,7 @@ class KeyboardViewController: KeyboardInputViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        keyboardType = .alphabetic(.lowercased)
+        context.keyboardType = .alphabetic(.lowercased)
         keyboardActionHandler = DemoKeyboardActionHandler(inputViewController: self)
     }
     

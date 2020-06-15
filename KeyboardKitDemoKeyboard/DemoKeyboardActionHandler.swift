@@ -98,7 +98,7 @@ private extension DemoKeyboardActionHandler {
         let baseAction = super.tapAction(for: .space, sender: sender)
         return { [weak self] in
             baseAction?()
-            let type = self?.demoViewController?.keyboardType
+            let type = self?.demoViewController?.context.keyboardType
             if type?.isAlphabetic == true { return }
             self?.inputViewController?.changeKeyboardType(to: .alphabetic(.lowercased))
         }

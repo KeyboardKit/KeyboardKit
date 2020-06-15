@@ -22,7 +22,7 @@ private extension KeyboardViewController {
     
     func setupKeyboardAsync(for size: CGSize) {
         keyboardStackView.removeAllArrangedSubviews()
-        switch keyboardType {
+        switch context.keyboardType {
         case .alphabetic(let state): setupAlphabeticKeyboard(for: state)
         case .emojis: setupEmojiKeyboard(for: size)
         case .images: setupImageKeyboard(for: size)

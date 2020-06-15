@@ -11,11 +11,11 @@ import KeyboardKitSwiftUI
 
 struct KeyboardView: View {
     
-    @EnvironmentObject var context: KeyboardContext
+    @EnvironmentObject var context: ObservableKeyboardContext
     
     var body: some View {
         Text(text).onTapGesture {
-            self.context.type = .email
+            self.context.keyboardType = .email
         }
     }
 }
@@ -23,7 +23,7 @@ struct KeyboardView: View {
 private extension KeyboardView {
     
     var text: String {
-        switch context.type {
+        switch context.keyboardType {
         case .alphabetic: return "alpha"
         default: return "other"
         }
