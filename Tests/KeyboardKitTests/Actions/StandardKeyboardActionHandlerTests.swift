@@ -139,7 +139,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         describe("preferred keyboard type after gesture on action") {
             
             func result(for gesture: KeyboardGesture, on action: KeyboardAction, current type: KeyboardType) -> KeyboardType? {
-                inputViewController.keyboardType = type
+                inputViewController.context.keyboardType = type
                 return handler.preferredKeyboardType(after: gesture, on: action)
             }
             

@@ -163,7 +163,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
 private extension StandardKeyboardActionHandler {
     
     func shouldChangeToAlphabeticLowercase(after gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
-        guard let type = inputViewController?.keyboardType else { return false }
+        guard let type = inputViewController?.context.keyboardType else { return false }
         guard case .alphabetic(.uppercased) = type else { return false }
         guard case .tap = gesture else { return false }
         guard case .character = action else { return false }

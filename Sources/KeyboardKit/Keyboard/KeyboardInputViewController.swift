@@ -47,6 +47,13 @@ open class KeyboardInputViewController: UIInputViewController {
     public var changeKeyboardTypeDelay: TimeInterval = 0.2
     
     /**
+     This context provides keyboard-specific information. If
+     you setup the keyboard to use SwiftUI, the context will
+     be converted to an `ObservableKeyboardContext`.
+     */
+    public var context: KeyboardContext = StandardKeyboardContext()
+    
+    /**
      This handler can be used to handle any keyboard actions
      that are triggered by the user or the system.
      
@@ -56,40 +63,14 @@ open class KeyboardInputViewController: UIInputViewController {
      */
     open lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(inputViewController: self)
     
-    /**
-     This property can be used to handle which keyboard type
-     that is currently displayed by the view controller. You
-     can change this value by calling `changeKeyboardType()`,
-     which will change this value, then call `setupKeyboard`.
-     
-     If you have a single keyboard type in your app, you can
-     ignore this property.
-     */
-    open var keyboardType = KeyboardType.custom("") {
-        didSet { setupKeyboard() }
-    }
-    
-    /**
-     Get the current device orientation. If no window can be
-     resolved `portrait` is returned.
-     */
-    public var deviceOrientation: UIInterfaceOrientation {
-        view.window?.screen.orientation ?? .portrait
-    }
-    
     
     // MARK: - View Properties
     
     /**
-     `keyboardStackView` is a regular `UIStackView` that you
-     can configure freely and add any views you like to. Use
-     it if you prefer to use `UIKit` to create your keyboard.
-     
-     This view is added to the extension view as soon as you
-     use it. It applies constraints so it fits the extension.
-     The standard axis is `vertical`, since the idea is that
-     this view should be populated with `rows`, to which you
-     can add toolbars, buttons etc.
+     `keyboardStackView` is a regular `UIStackView` that has
+     a `vertical` axis by default, to which you can add rows,
+     like toolbars, ros, buttons etc. It simplifies creating
+     `UIKit`-based keyboards.
      */
     public lazy var keyboardStackView: UIStackView = {
         let stackView = UIStackView(frame: .zero)
@@ -119,7 +100,7 @@ open class KeyboardInputViewController: UIInputViewController {
      */
     open func canChangeKeyboardType(to type: KeyboardType) -> Bool {
         guard
-            case .alphabetic(let state) = keyboardType,
+            case .alphabetic(let state) = context.keyboardType,
             case .alphabetic(let newState) = type
             else { return true }
         if state == .capsLocked && newState == .uppercased { return false }
@@ -135,16 +116,9 @@ open class KeyboardInputViewController: UIInputViewController {
         let delay = changeKeyboardTypeDelay
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             guard self.canChangeKeyboardType(to: type) else { return }
-            self.keyboardType = type
+            self.context.keyboardType = type
+            self.setupKeyboard()
         }
-    }
-    
-    /**
-     Setup any `UIButton` as a "next keyboard" system button.
-     */
-    public func setupNextKeyboardButton(_ button: UIButton) {
-        let action = #selector(handleInputModeList(from:with:))
-        button.addTarget(self, action: action, for: .allTouchEvents)
     }
     
     /**

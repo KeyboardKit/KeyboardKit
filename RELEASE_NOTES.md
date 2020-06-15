@@ -13,16 +13,33 @@ If you upgrade from an older version to `3.0` and have many breaking changes, up
 ### New functionality
 
 * There is a new `systemImage` `KeyboardAction`, which can be used with SF Symbols.
+* There is a new `KeyboardContext`, which provides contextual information.
+* `StandardKeyboardContext` is used by default, whenever a keyboard extension is created.
+* `ObservableKeyboardContext` is used by whenever a keyboard switches over to use SwiftUI.
 * `StandardKeyboardActionHandler` will now automatically switch to certain keyboards after handling certain action gestures. This logic is defined by `handleKeyboardSwitch(after:on:)` and `preferredKeyboardType(after:on:)`, which can both be overridden.
 
 
-### Breaking changes, not previously marked as deprecated:
+### SwiftUI
+
+* This repository has a new SwiftUI-based demo app, which is still in development.
+* `KeyboardImageButton` supports the new `systemImage` action.
+
+
+### Non-breaking changes:
+
+* `KeyboardInputViewController` `deviceOrientation` has been converted to a general `UIInputViewController` extension.
+* `KeyboardInputViewController` `setupNextKeyboardButton` has been converted to a general `UIInputViewController` extension.
+
+
+### Breaking changes:
 
 * `AutocompleteToolbar` has been renamed to `AutocompleteToolbarVew`.
 * `EmojiCategory.frequents` has been renamed to `frequent`.
 * `KeyboardActionRow.from` has been changed to an initializer.
 * `KeyboardActionRows.from` has been changed to an initializer.
 * `KeyboardImageActions` has been converted to a `KeyboardActionRow+Images` extension initializer.
+* `KeyboardInputViewController` has a new `keyboardContext`.
+* `KeyboardInputViewController` `keyboardType` has been moved to the context.
 * `KeyboardToolbar` has been renamed to `KeyboardToolbarView`. 
 * The `shouldChangeToAlphabeticLowercase` has been replaced with the automatic switching mentioned above.
 * The `isKeyboardEnabled` function now uses a `for` as external argument name.

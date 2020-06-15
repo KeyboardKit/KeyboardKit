@@ -111,7 +111,7 @@ class KeyboardInputViewControllerTests: QuickSpec {
         describe("can change to keyboard type") {
             
             func result(from type: KeyboardType, to newType: KeyboardType) -> Bool {
-                viewController.keyboardType = type
+                viewController.context.keyboardType = type
                 return viewController.canChangeKeyboardType(to: newType)
             }
             

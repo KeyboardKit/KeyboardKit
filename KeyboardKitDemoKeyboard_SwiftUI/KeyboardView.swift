@@ -6,10 +6,27 @@
 //
 
 import SwiftUI
+import KeyboardKit
+import KeyboardKitSwiftUI
 
 struct KeyboardView: View {
+    
+    @EnvironmentObject var context: KeyboardContext
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(text).onTapGesture {
+            self.context.type = .email
+        }
+    }
+}
+
+private extension KeyboardView {
+    
+    var text: String {
+        switch context.type {
+        case .alphabetic: return "alpha"
+        default: return "other"
+        }
     }
 }
 
