@@ -16,60 +16,69 @@ class KeyboardInputViewControllerTests: QuickSpec {
     
     override func spec() {
         
-        var viewController: TestClass!
+        var vc: TestClass!
         
         beforeEach {
-            viewController = TestClass(nibName: nil, bundle: nil)
+            vc = TestClass(nibName: nil, bundle: nil)
+        }
+        
+        describe("view did load") {
+            
+            it("sets up the keyboard") {
+                expect(vc.hasInvoked(vc.setupKeyboard)).to(beFalse())
+                vc.viewDidLoad()
+                expect(vc.hasInvoked(vc.setupKeyboard)).to(beTrue())
+            }
         }
         
         describe("view will appear") {
             
             it("syncs with text document proxy") {
-                viewController.viewWillAppear(false)
-                let exec = viewController.recorder.invokations(of: viewController.viewWillSyncWithTextDocumentProxy)
-                expect(exec.count).to(equal(1))
+                expect(vc.hasInvoked(vc.viewWillSyncWithTextDocumentProxy)).to(beFalse())
+                vc.viewWillAppear(false)
+                expect(vc.hasInvoked(vc.viewWillSyncWithTextDocumentProxy)).to(beTrue())
             }
         }
         
         describe("view will layout subviews") {
             
             it("updates context") {
-                viewController.needsInputModeSwitchKeyValue = true
-                viewController.viewWillLayoutSubviews()
-                expect(viewController.context.needsInputModeSwitchKey).to(beTrue())
-                viewController.needsInputModeSwitchKeyValue = false
-                viewController.viewWillLayoutSubviews()
-                expect(viewController.context.needsInputModeSwitchKey).to(beFalse())
+                vc.needsInputModeSwitchKeyValue = true
+                vc.viewWillLayoutSubviews()
+                expect(vc.context.needsInputModeSwitchKey).to(beTrue())
+                vc.needsInputModeSwitchKeyValue = false
+                vc.viewWillLayoutSubviews()
+                expect(vc.context.needsInputModeSwitchKey).to(beFalse())
             }
         }
         
         describe("action handler") {
             
             it("is standard handler by default") {
-                let handler = viewController.keyboardActionHandler
+                let handler = vc.keyboardActionHandler
                 let standard = handler as? StandardKeyboardActionHandler
                 expect(standard).toNot(beNil())
-                expect(standard?.inputViewController).to(be(viewController))
+                expect(standard?.inputViewController).to(be(vc))
             }
         }
         
         describe("keyboard stack view") {
             
             it("is not added to vc view if not referred") {
-                let view = viewController.view
-                viewController.viewDidLoad()
+                let view = vc.view
+                vc.viewDidLoad()
                 expect(view?.subviews.count).to(equal(2))
             }
             
             it("is added to vc view when it's first referred") {
-                let view = viewController.view
-                _ = viewController.keyboardStackView
+                let view = vc.view
+                _ = vc.keyboardStackView
                 expect(view?.subviews.count).to(equal(3))
-                expect(view?.subviews[2]).to(be(viewController.keyboardStackView))
+                expect(view?.subviews[2]).to(be(vc.keyboardStackView))
             }
             
             it("is correctly configured") {
-                let view = viewController.keyboardStackView
+                let view = vc.keyboardStackView
                 expect(view.axis).to(equal(.vertical))
                 expect(view.alignment).to(equal(.fill))
                 expect(view.distribution).to(equal(.equalSpacing))
@@ -85,11 +94,11 @@ class KeyboardInputViewControllerTests: QuickSpec {
             }
             
             it("removes already added gestures") {
-                viewController.addKeyboardGestures(to: button)
+                vc.addKeyboardGestures(to: button)
                 let oldTap = button.gestureRecognizers!.first { $0 is UITapGestureRecognizer }
                 let oldPress = button.gestureRecognizers!.first { $0 is UILongPressGestureRecognizer }
                 let oldRepeat = button.gestureRecognizers!.first { $0 is RepeatingGestureRecognizer }
-                viewController.addKeyboardGestures(to: button)
+                vc.addKeyboardGestures(to: button)
                 let newTap = button.gestureRecognizers!.first { $0 is UITapGestureRecognizer }
                 let newPress = button.gestureRecognizers!.first { $0 is UILongPressGestureRecognizer }
                 let newRepeat = button.gestureRecognizers!.first { $0 is RepeatingGestureRecognizer }
@@ -100,7 +109,7 @@ class KeyboardInputViewControllerTests: QuickSpec {
             
             it("handles next keyboard separately") {
                 button.action = .nextKeyboard
-                viewController.addKeyboardGestures(to: button)
+                vc.addKeyboardGestures(to: button)
                 let tap = button.gestureRecognizers?.first { $0 is UITapGestureRecognizer }
                 let press = button.gestureRecognizers?.first { $0 is UILongPressGestureRecognizer }
                 let repeating = button.gestureRecognizers?.first { $0 is RepeatingGestureRecognizer }
@@ -110,7 +119,7 @@ class KeyboardInputViewControllerTests: QuickSpec {
             }
             
             it("adds gestures to button") {
-                viewController.addKeyboardGestures(to: button)
+                vc.addKeyboardGestures(to: button)
                 let tap = button.gestureRecognizers!.first { $0 is UITapGestureRecognizer }
                 let press = button.gestureRecognizers!.first { $0 is UILongPressGestureRecognizer }
                 let repeating = button.gestureRecognizers!.first { $0 is RepeatingGestureRecognizer }
@@ -122,15 +131,19 @@ class KeyboardInputViewControllerTests: QuickSpec {
     }
 }
 
-private class TestClass: KeyboardInputViewController {
+private class TestClass: KeyboardInputViewController, Mockable {
     
-    var recorder = Mock()
+    var mock = Mock()
     
     var needsInputModeSwitchKeyValue = false
     override var needsInputModeSwitchKey: Bool { needsInputModeSwitchKeyValue }
     
     override func viewWillSyncWithTextDocumentProxy() {
-        recorder.invoke(viewWillSyncWithTextDocumentProxy, args: ())
+        mock.invoke(viewWillSyncWithTextDocumentProxy, args: ())
+    }
+    
+    override func setupKeyboard() {
+        mock.invoke(setupKeyboard, args: ())
     }
 }
 

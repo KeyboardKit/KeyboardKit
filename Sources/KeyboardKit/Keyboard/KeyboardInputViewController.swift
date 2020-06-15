@@ -20,6 +20,18 @@ open class KeyboardInputViewController: UIInputViewController {
     
     // MARK: - View Controller Lifecycle
     
+    /**
+     This calls the super class' implementation then sets up
+     the keyboard by calling `setupKeyboard`. If you want to
+     change the keyboard type that is used in your extension,
+     do so before this function is called and you don't have
+     to call `setupKeyboard` or `changeKeyboardType`.
+     */
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        setupKeyboard()
+    }
+    
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewWillSyncWithTextDocumentProxy()

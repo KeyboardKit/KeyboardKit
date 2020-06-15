@@ -20,16 +20,14 @@ import KeyboardKit
  suggestions for the currently active word.
  
  `IMPORTANT` To use this keyboard, you must enable it in the
- system keyboard settings ("Settings/General/Keyboards") and
+ system keyboard settings (`Settings/General/Keyboards`) and
  give it full access, which is unfortunately required to use
- some features like haptic and audio feedback, access to the
- user's photos etc.
- 
+ features like haptic and audio feedback, access photos etc.
  If you want to use these features in your own app, you must
- add `RequestsOpenAccess` to the extension `Info.plist`, add
+ add `RequestsOpenAccess` to the extension `Info.plist` then
  a `NSPhotoLibraryAddUsageDescription` to the **host** app's
  `Info.plist` etc. This is already done in this demo app, so
- you can just copy the setup into your own app.
+ just copy that setup into your own app.
  */
 class KeyboardViewController: KeyboardInputViewController {
     
@@ -38,7 +36,6 @@ class KeyboardViewController: KeyboardInputViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        context.keyboardType = .alphabetic(.lowercased)
         keyboardActionHandler = DemoKeyboardActionHandler(inputViewController: self)
     }
     

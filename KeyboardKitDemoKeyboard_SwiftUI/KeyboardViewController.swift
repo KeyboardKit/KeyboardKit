@@ -36,10 +36,6 @@ class KeyboardViewController: KeyboardInputViewController {
 
     @IBOutlet var nextKeyboardButton: UIButton!
         
-    override func changeKeyboardType(to type: KeyboardType) {
-        super.changeKeyboardType(to: type)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup(with: KeyboardView())
