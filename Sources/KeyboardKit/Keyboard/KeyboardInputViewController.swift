@@ -95,15 +95,12 @@ open class KeyboardInputViewController: UIInputViewController {
     }
     
     /**
-     Change keyboard type. This sets `keyboardType` to `type`
-     after `changeKeyboardTypeDelay` seconds, which triggers
-     `setupKeyboard()` when set.
+     Change keyboard type. By default, this is done with the
+     standard change action of the current context, but this
+     can be changed by overriding this function.
      */
-    open func changeKeyboardType(to type: KeyboardType) {
-        let delay = changeKeyboardTypeDelay
-        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            guard self.context.keyboardType.canBeReplaced(with: type) else { return }
-            self.context.keyboardType = type
+    open func changeKeyboardType(to type: KeyboardType, after delay: DispatchTimeInterval = .milliseconds(0)) {
+        context.changeKeyboardType(to: type, after: delay) {
             self.setupKeyboard()
         }
     }

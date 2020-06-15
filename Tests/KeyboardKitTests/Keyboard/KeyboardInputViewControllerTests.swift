@@ -127,7 +127,7 @@ private class TestClass: KeyboardInputViewController {
     var recorder = Mock()
     
     var needsInputModeSwitchKeyValue = false
-    override var needsInputModeSwitchKey: Bool { needsInputModeSwitchKeyValue }
+    override var needsInputModeSwitchKey: Bool { needsInputModeSwitchKeyValue }
     
     override func viewWillSyncWithTextDocumentProxy() {
         recorder.invoke(viewWillSyncWithTextDocumentProxy, args: ())

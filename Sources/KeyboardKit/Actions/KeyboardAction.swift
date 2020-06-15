@@ -196,7 +196,7 @@ public extension KeyboardAction {
         switch self {
         case .dismissKeyboard: return { $0?.dismissKeyboard() }
         case .keyboardType(let type): return { $0?.changeKeyboardType(to: type) }
-        case .shift: return { $0?.changeKeyboardType(to: .alphabetic(.uppercased)) }
+        case .shift: return { $0?.changeKeyboardType(to: .alphabetic(.uppercased), after: .milliseconds(200)) }
         case .shiftDown: return { $0?.changeKeyboardType(to: .alphabetic(.lowercased)) }
         default: return nil
         }
