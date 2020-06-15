@@ -31,6 +31,18 @@ class KeyboardInputViewControllerTests: QuickSpec {
             }
         }
         
+        describe("view will layout subviews") {
+            
+            it("updates context") {
+                viewController.needsInputModeSwitchKeyValue = true
+                viewController.viewWillLayoutSubviews()
+                expect(viewController.context.needsInputModeSwitchKey).to(beTrue())
+                viewController.needsInputModeSwitchKeyValue = false
+                viewController.viewWillLayoutSubviews()
+                expect(viewController.context.needsInputModeSwitchKey).to(beFalse())
+            }
+        }
+        
         describe("action handler") {
             
             it("is standard handler by default") {
@@ -113,6 +125,9 @@ class KeyboardInputViewControllerTests: QuickSpec {
 private class TestClass: KeyboardInputViewController {
     
     var recorder = Mock()
+    
+    var needsInputModeSwitchKeyValue = false
+    override var needsInputModeSwitchKey: Bool { needsInputModeSwitchKeyValue }
     
     override func viewWillSyncWithTextDocumentProxy() {
         recorder.invoke(viewWillSyncWithTextDocumentProxy, args: ())

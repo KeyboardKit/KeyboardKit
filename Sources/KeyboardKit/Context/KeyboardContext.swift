@@ -16,4 +16,5 @@ import UIKit
 public protocol KeyboardContext: AnyObject {
     
     var keyboardType: KeyboardType { get set }
+    var needsInputModeSwitchKey: Bool { get set }
 }

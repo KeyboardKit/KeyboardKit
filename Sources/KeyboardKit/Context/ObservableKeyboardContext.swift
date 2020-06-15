@@ -25,5 +25,6 @@ public class ObservableKeyboardContext: KeyboardContext, ObservableObject {
         self.keyboardType = context.keyboardType
     }
     
-    @Published public var keyboardType: KeyboardType = .alphabetic(.lowercased)
+    @Published public var keyboardType: KeyboardType
+    @Published public var needsInputModeSwitchKey = false
 }

@@ -21,5 +21,6 @@ public class StandardKeyboardContext: KeyboardContext {
         self.keyboardType = keyboardType
     }
     
-    public var keyboardType: KeyboardType = .alphabetic(.lowercased)
+    public var keyboardType: KeyboardType
+    public var needsInputModeSwitchKey = false
 }

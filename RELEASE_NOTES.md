@@ -40,7 +40,10 @@ If you upgrade from an older version to `3.0` and have many breaking changes, up
 * `KeyboardImageActions` has been converted to a `KeyboardActionRow+Images` extension initializer.
 * `KeyboardInputViewController` has a new `keyboardContext`.
 * `KeyboardInputViewController` `canChangeKeyboardType` has been moved to `KeyboardType`.
+* `KeyboardInputViewController` `changeKeyboardType` has been moved to `KeyboardContext`.
+* `KeyboardInputViewController` `changeKeyboardTypeDelay` is now an argument in `changeKeyboardType`.
 * `KeyboardInputViewController` `keyboardType` has been moved to the context.
+
 * `KeyboardToolbar` has been renamed to `KeyboardToolbarView`. 
 * The `shouldChangeToAlphabeticLowercase` has been replaced with the automatic switching mentioned above.
 * The `isKeyboardEnabled` function now uses a `for` as external argument name.

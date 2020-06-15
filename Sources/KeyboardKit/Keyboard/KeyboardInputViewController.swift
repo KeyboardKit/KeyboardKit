@@ -25,6 +25,11 @@ open class KeyboardInputViewController: UIInputViewController {
         viewWillSyncWithTextDocumentProxy()
     }
     
+    open override func viewWillLayoutSubviews() {
+        context.needsInputModeSwitchKey = needsInputModeSwitchKey
+        super.viewWillLayoutSubviews()
+    }
+    
     /**
      This function is called when this controller appears or
      when the text document proxy changes. You can use it to
@@ -55,11 +60,8 @@ open class KeyboardInputViewController: UIInputViewController {
     
     /**
      This handler can be used to handle any keyboard actions
-     that are triggered by the user or the system.
-     
-     You can override this property with any custom keyboard
-     action handler. If no custom action handler is set, the
-     controller will use a `StandardKeyboardActionHandler`.
+     that are triggered by the user or the system. It can be
+     replaced with any custom action handler.
      */
     open lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(inputViewController: self)
     
@@ -67,10 +69,8 @@ open class KeyboardInputViewController: UIInputViewController {
     // MARK: - View Properties
     
     /**
-     `keyboardStackView` is a regular `UIStackView` that has
-     a `vertical` axis by default, to which you can add rows,
-     like toolbars, ros, buttons etc. It simplifies creating
-     `UIKit`-based keyboards.
+     This is a regular, vertical `UIStackView`, to which you
+     can add toolbars, rows etc. to create `UIKit` keyboards.
      */
     public lazy var keyboardStackView: UIStackView = {
         let stackView = UIStackView(frame: .zero)
