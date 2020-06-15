@@ -105,7 +105,7 @@ KeyboardKit supports audio feedback, which means that users can get audio feedba
 
 ## UIKit Components
 
-KeyboardKit has many UIKit component that can be composed into UIKit-based keyboards, e.g. `vertical` and `horizontal components`, `button rows`, `collection views`, `toolbars` etc.
+KeyboardKit has many UIKit component and views that can be composed into UIKit-based keyboards, e.g. `vertical` and `horizontal components`, `button rows`, `collection views`, `toolbars` etc.
 
 Check out [this component guide][Components] and [this view guide][Views] for more information.
 

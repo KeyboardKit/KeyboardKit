@@ -95,19 +95,6 @@ open class KeyboardInputViewController: UIInputViewController {
     }
     
     /**
-     Whether or not the input view controller can change its
-     keyboard type to a new specific type.
-     */
-    open func canChangeKeyboardType(to type: KeyboardType) -> Bool {
-        guard
-            case .alphabetic(let state) = context.keyboardType,
-            case .alphabetic(let newState) = type
-            else { return true }
-        if state == .capsLocked && newState == .uppercased { return false }
-        return true
-    }
-    
-    /**
      Change keyboard type. This sets `keyboardType` to `type`
      after `changeKeyboardTypeDelay` seconds, which triggers
      `setupKeyboard()` when set.
@@ -115,7 +102,7 @@ open class KeyboardInputViewController: UIInputViewController {
     open func changeKeyboardType(to type: KeyboardType) {
         let delay = changeKeyboardTypeDelay
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            guard self.canChangeKeyboardType(to: type) else { return }
+            guard self.context.keyboardType.canBeReplaced(with: type) else { return }
             self.context.keyboardType = type
             self.setupKeyboard()
         }
