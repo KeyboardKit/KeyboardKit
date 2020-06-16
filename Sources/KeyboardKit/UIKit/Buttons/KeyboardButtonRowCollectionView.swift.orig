@@ -10,6 +10,9 @@ import UIKit
 
 /**
  This collection view displays keyboard buttons in a row. It
+<<<<<<< HEAD:Sources/KeyboardKit/UIKit/Buttons/KeyboardButtonRowCollectionView.swift
+ requies a `buttonCreator`, that maps each action to a view.
+=======
  can be used when the horizontal order is important.
  
  This view can be created with a set of actions and a button
@@ -21,6 +24,7 @@ import UIKit
  based keyboards, but does so with a performance cost. It is
  less performant than `KeyboardCollectionView` since it only
  reuses the cells, but recreates the button rows every time.
+>>>>>>> master:Sources/KeyboardKit/UIKit/KeyboardButtonRowCollectionView.swift
  */
 open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboardComponent, UICollectionViewDelegate {
     

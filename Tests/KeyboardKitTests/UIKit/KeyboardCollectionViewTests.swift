@@ -78,7 +78,6 @@ class KeyboardCollectionViewTests: QuickSpec {
             it("returns empty cell") {
                 let result = view.collectionView(view, cellForItemAt: IndexPath(row: 0, section: 0))
                 expect(result).toNot(beNil())
-                expect(result.subviews.count).to(equal(0))
             }
         }
     }

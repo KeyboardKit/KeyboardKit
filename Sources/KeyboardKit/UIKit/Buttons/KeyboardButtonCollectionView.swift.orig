@@ -9,6 +9,14 @@
 import UIKit
 
 /**
+<<<<<<< HEAD:Sources/KeyboardKit/UIKit/Buttons/KeyboardButtonCollectionView.swift
+ This collection view displays a single cell for each action,
+ using the provided `buttonCreator` function which maps each
+ action to a view.
+ 
+ Since this is a `UICollectionView`, you can customize it in
+ any way you want, e.g. by setting a custom flow layout.
+=======
  This collection view displays a single cell for each action.
  You can customize it and its appearance in any way you want,
  e.g. by setting a custom flow layout.
@@ -21,6 +29,7 @@ import UIKit
  based keyboards, but does so with a performance cost. It is
  less performant than `KeyboardCollectionView` since it only
  reuses the cells, but recreates the buttons every time.
+>>>>>>> master:Sources/KeyboardKit/UIKit/KeyboardButtonCollectionView.swift
  */
 open class KeyboardButtonCollectionView: KeyboardCollectionView {
     

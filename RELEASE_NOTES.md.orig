@@ -3,6 +3,7 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions. 
 
 
+<<<<<<< HEAD
 ## 3.0.0
 
 This version removes all previously deprecated parts of the library and adds improved support for SwiftUI and iOS 13.
@@ -73,11 +74,11 @@ If you upgrade from an older version to `3.0` and have many breaking changes, up
 * `UIInputViewController` `createAutocompleteBugFixTimer`
 * `UIView` `add/removeLongPress/Repeating/TapAction`
 * `isKeyboardEnabled` global function
-
-
+=======
 ## 2.9.2
 
 This version removes the subview fiddling from `KeyboardCollectionVew` to the built-in subclasses, since it can ruin the view hierarchy for collection views that don't add custom views to the cells.
+>>>>>>> master
 
 
 ## 2.9.1

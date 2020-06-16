@@ -9,8 +9,14 @@
 import UIKit
 
 /**
+<<<<<<< HEAD
+ This view can be used as a base class for a collection view
+ that presents keyboard action buttons. You must subclass it,
+ since it returns empty cells by default.
+=======
  This class can be used as a base class for collection views
  that present keyboard button cells for a set of actions.
+>>>>>>> master
  
  This class must be subclassed, since it returns empty cells
  for each action. `KeyboardKit` has two built-in subclasses:
