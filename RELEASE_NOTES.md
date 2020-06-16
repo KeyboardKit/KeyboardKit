@@ -3,6 +3,11 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions. 
 
 
+## 2.9.2
+
+This version removes the subview fiddling from `KeyboardCollectionVew` to the built-in subclasses, since it can ruin the view hierarchy for collection views that don't add custom views to the cells.
+
+
 ## 2.9.1
 
 This version adds an `.emoji` keyboard action, which can be used if you need to separate characters from emojis.
