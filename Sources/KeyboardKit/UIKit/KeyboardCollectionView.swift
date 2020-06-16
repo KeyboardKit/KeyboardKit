@@ -9,13 +9,14 @@
 import UIKit
 
 /**
- This view can be used as a base class for a collection view
- that presents keyboard action buttons. You must subclass it,
- since it returns empty cells for each action.
+ This class can be used as a base class for collection views
+ that present keyboard button cells for a set of actions.
  
- `KeyboardKit` has two built-in subclasses that you can use:
- `KeyboardButtonCollectionView` displays buttons in a single
- cell and `KeyboardButtonRowCollectionView` displays in rows.
+ This class must be subclassed, since it returns empty cells
+ for each action. `KeyboardKit` has two built-in subclasses:
+ 
+ * `KeyboardButtonCollectionView` displays single buttons
+ * `KeyboardButtonRowCollectionView` displays button rows
  */
 open class KeyboardCollectionView: UICollectionView, KeyboardStackViewComponent, UICollectionViewDataSource {
     
@@ -66,8 +67,6 @@ open class KeyboardCollectionView: UICollectionView, KeyboardStackViewComponent,
     }
     
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
-        cell.subviews.forEach { $0.removeFromSuperview() }
-        return cell
+        dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
     }
 }

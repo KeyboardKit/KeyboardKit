@@ -41,7 +41,7 @@ class KeyboardButtonCollectionViewTests: QuickSpec {
         
         describe("data source") {
             
-            it("returns cell with correcty configured buttob") {
+            it("returns cell with correcty configured button") {
                 let result = view.collectionView(view, cellForItemAt: IndexPath(row: 0, section: 0))
                 let button = result.subviews[0] as? TestButton
                 expect(button?.action).to(equal(.backspace))

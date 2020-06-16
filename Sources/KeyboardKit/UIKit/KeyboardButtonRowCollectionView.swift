@@ -9,12 +9,18 @@
 import UIKit
 
 /**
- This collection view displays keyboard buttons in a row.
+ This collection view displays keyboard buttons in a row. It
+ can be used when the horizontal order is important.
  
  This view can be created with a set of actions and a button
- creator block. It creates and adds a button for each action
- to a horizontal `buttonStackView`. This stack view can then
- be added to the keyboard view controller's main stack view.
+ creator, which creates a button for each action and adds it
+ to a horizontal `buttonStackView` that is then added to the
+ dequeued cell.
+ 
+ Note that the class aims at simplifying creating collection
+ based keyboards, but does so with a performance cost. It is
+ less performant than `KeyboardCollectionView` since it only
+ reuses the cells, but recreates the button rows every time.
  */
 open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboardComponent, UICollectionViewDelegate {
     
@@ -159,6 +165,7 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboar
     open override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath)
         let rowView = self.collectionView(collectionView, rowViewForItemAt: indexPath)
+        cell.subviews.forEach { $0.removeFromSuperview() }
         cell.addSubview(rowView, fill: true)
         return cell
     }

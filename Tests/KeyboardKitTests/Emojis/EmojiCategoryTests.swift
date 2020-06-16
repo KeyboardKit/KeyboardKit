@@ -28,6 +28,7 @@ class EmojiCategoryTests: QuickSpec {
             it("has built-in sort order") {
                 let categories = EmojiCategory.all
                 expect(categories).to(equal([
+                    .frequents,
                     .smileys,
                     .animals,
                     .foods,

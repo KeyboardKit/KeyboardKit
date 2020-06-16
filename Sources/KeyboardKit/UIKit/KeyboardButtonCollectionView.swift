@@ -10,9 +10,17 @@ import UIKit
 
 /**
  This collection view displays a single cell for each action.
- 
  You can customize it and its appearance in any way you want,
  e.g. by setting a custom flow layout.
+ 
+ This view can be created with a set of actions and a button
+ creator, which creates a button for each action and adds it
+ to the dequeued cell.
+ 
+ Note that the class aims at simplifying creating collection
+ based keyboards, but does so with a performance cost. It is
+ less performant than `KeyboardCollectionView` since it only
+ reuses the cells, but recreates the buttons every time.
  */
 open class KeyboardButtonCollectionView: KeyboardCollectionView {
     
@@ -48,6 +56,7 @@ open class KeyboardButtonCollectionView: KeyboardCollectionView {
     
     open override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath)
+        cell.subviews.forEach { $0.removeFromSuperview() }
         let action = self.action(at: indexPath)
         let button = buttonCreator(action)
         cell.addSubview(button, fill: true)
