@@ -19,6 +19,8 @@ If you upgrade from an older version to `3.0` and have many breaking changes, up
 * `StandardKeyboardActionHandler` now automatically handles keyboard type switching and only delays if an action has a double-tap action.
 * `StandardKeyboardActionHandler` now automatically switches to certain keyboards after certain actions, as defined by `handleKeyboardSwitch(after:on:)` and `preferredKeyboardType(after:on:)`.
 
+* The demo project contains a new `KeyboardKitSwiftUIPreviews` in which you can preview KeyboardKitSwiftUI views. 
+
 
 ### SwiftUI
 
@@ -36,6 +38,7 @@ If you upgrade from an older version to `3.0` and have many breaking changes, up
 
 * `AutocompleteToolbar` has been renamed to `AutocompleteToolbarVew`.
 * `EmojiCategory.frequents` has been renamed to `frequent`.
+* `KeyboardActionHandler` now requires `canHandle(_:on:)` to be implemented.
 * `KeyboardActionRow.from` has been changed to an initializer.
 * `KeyboardActionRows.from` has been changed to an initializer.
 * `KeyboardImageActions` has been converted to a `KeyboardActionRow+Images` extension initializer.

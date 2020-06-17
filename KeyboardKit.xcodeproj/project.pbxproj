@@ -541,9 +541,9 @@
 		A9E56EE52499632000158AB7 /* KeyboardKitSwiftUIPreviews */ = {
 			isa = PBXGroup;
 			children = (
-				A9E56EFC249969E500158AB7 /* Grids */,
-				A9E56EF92499696800158AB7 /* Extensions */,
 				A9E56EF42499663400158AB7 /* Buttons */,
+				A9E56EF92499696800158AB7 /* Extensions */,
+				A9E56EFC249969E500158AB7 /* Grids */,
 				A9E56EF02499633A00158AB7 /* Supporting Files */,
 			);
 			path = KeyboardKitSwiftUIPreviews;

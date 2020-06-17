@@ -20,6 +20,7 @@ import UIKit
  */
 public protocol KeyboardActionHandler: AnyObject {
     
+    func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) -> Bool
     func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?)
 }
 

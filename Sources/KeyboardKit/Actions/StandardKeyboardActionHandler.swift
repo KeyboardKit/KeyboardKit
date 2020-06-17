@@ -60,8 +60,15 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - KeyboardActionHandler
     
+    public func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) -> Bool {
+        self.action(for: gesture, on: action, sender: sender) != nil
+    }
+    
+    /**
+     Handle a certain `gesture` on a certain `action`
+     */
     open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
-        guard let gestureAction = self.action(for: gesture, action: action, sender: sender) else { return }
+        guard let gestureAction = self.action(for: gesture, on: action, sender: sender) else { return }
         gestureAction()
         triggerAnimation(for: gesture, on: action, sender: sender)
         triggerAudioFeedback(for: gesture, on: action, sender: sender)
@@ -76,7 +83,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      This is the standard action that is used by the handler
      when a user makes a certain gesture on a certain action.
      */
-    open func action(for gesture: KeyboardGesture, action: KeyboardAction, sender: Any?) -> GestureAction? {
+    open func action(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) -> GestureAction? {
         switch gesture {
         case .doubleTap: return doubleTapAction(for: action, sender: sender)
         case .longPress: return longPressAction(for: action, sender: sender)

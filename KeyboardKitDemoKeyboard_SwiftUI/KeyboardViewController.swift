@@ -38,7 +38,7 @@ class KeyboardViewController: KeyboardInputViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup(with: KeyboardView())
+        setup(with: KeyboardView(controller: self))
     }
     
     override func viewWillLayoutSubviews() {
