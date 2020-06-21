@@ -9,18 +9,23 @@
 import Foundation
 
 /**
- This context implementation provides non-observable context
- properties to the keyboard extension.
+ This standard context provides non-observable properties to
+ your keyboard extensions.
  
- This context is used by default, since a observable context
- requires iOS 13.0.
+ This context type is used by default by `KeyboardKit`. If a
+ keyboard extension targets iOS 13 or later, you can replace
+ it with a `ObservableKeyboardContext`.
  */
 public class StandardKeyboardContext: KeyboardContext {
     
-    public init(keyboardType: KeyboardType = .alphabetic(.lowercased)) {
+    public init(
+        actionHandler: KeyboardActionHandler,
+        keyboardType: KeyboardType) {
+        self.actionHandler = actionHandler
         self.keyboardType = keyboardType
     }
     
+    public var actionHandler: KeyboardActionHandler
     public var hasFullAccess = false
     public var keyboardType: KeyboardType
     public var needsInputModeSwitchKey = false

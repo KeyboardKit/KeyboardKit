@@ -18,7 +18,7 @@ import UIKit
  view controllers lack.
  */
 open class KeyboardInputViewController: UIInputViewController {
-
+    
     
     // MARK: - View Controller Lifecycle
     
@@ -58,14 +58,10 @@ open class KeyboardInputViewController: UIInputViewController {
      you setup the keyboard to use SwiftUI, the context will
      be converted to an `ObservableKeyboardContext`.
      */
-    public var context: KeyboardContext = StandardKeyboardContext()
-    
-    /**
-     This handler can be used to handle any keyboard actions
-     that are triggered by the user or the system. It can be
-     replaced with any custom action handler.
-     */
-    open lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(inputViewController: self)
+    public lazy var context: KeyboardContext = StandardKeyboardContext(
+        actionHandler: StandardKeyboardActionHandler(inputViewController: self),
+        keyboardType: .alphabetic(.lowercased)
+    )
     
     
     // MARK: - View Properties

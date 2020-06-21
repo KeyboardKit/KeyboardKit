@@ -12,12 +12,12 @@ If you upgrade from an older version to `3.0` and have many breaking changes, up
 
 ### New functionality
 
-* There is a new `systemImage` `KeyboardAction`, which can be used with SF Symbols.
-* There is a new `KeyboardContext`, which provides contextual information.
-* `StandardKeyboardContext` is used by default, whenever a keyboard extension is created.
-* `ObservableKeyboardContext` is used by whenever a keyboard switches over to use SwiftUI.
+* There is a new `KeyboardContext`, which provides important contextual information.
+* `StandardKeyboardContext` is the standard, non-observable implementation.
+* `ObservableKeyboardContext` is an iOS 13+ required, observable implementation.
 * `StandardKeyboardActionHandler` now automatically handles keyboard type switching and only delays if an action has a double-tap action.
 * `StandardKeyboardActionHandler` now automatically switches to certain keyboards after certain actions, as defined by `handleKeyboardSwitch(after:on:)` and `preferredKeyboardType(after:on:)`.
+* There is a new `systemImage` `KeyboardAction`, which can be used with SF Symbols.
 
 * The demo project contains a new `KeyboardKitSwiftUIPreviews` in which you can preview KeyboardKitSwiftUI views. 
 
@@ -36,18 +36,21 @@ If you upgrade from an older version to `3.0` and have many breaking changes, up
 
 ### Breaking changes:
 
+* `KeyboardInputViewController` has a new `keyboardContext` property.
+* `StandardKeyboardContext` is used by default, whenever a keyboard extension is created.
+* `ObservableKeyboardContext` is used by whenever a keyboard switches over to use SwiftUI.
+* `KeyboardInputViewController` `keyboardActionHandler` has been moved to `KeyboardContext`.
+* `KeyboardInputViewController` `canChangeKeyboardType` has been moved to `KeyboardType`.
+* `KeyboardInputViewController` `changeKeyboardType` has been moved to `KeyboardContext`.
+* `KeyboardInputViewController` `changeKeyboardTypeDelay` is now an argument in `changeKeyboardType`.
+* `KeyboardInputViewController` `keyboardType` has been moved to the context.
+
 * `AutocompleteToolbar` has been renamed to `AutocompleteToolbarVew`.
 * `EmojiCategory.frequents` has been renamed to `frequent`.
 * `KeyboardActionHandler` now requires `canHandle(_:on:)` to be implemented.
 * `KeyboardActionRow.from` has been changed to an initializer.
 * `KeyboardActionRows.from` has been changed to an initializer.
 * `KeyboardImageActions` has been converted to a `KeyboardActionRow+Images` extension initializer.
-* `KeyboardInputViewController` has a new `keyboardContext`.
-* `KeyboardInputViewController` `canChangeKeyboardType` has been moved to `KeyboardType`.
-* `KeyboardInputViewController` `changeKeyboardType` has been moved to `KeyboardContext`.
-* `KeyboardInputViewController` `changeKeyboardTypeDelay` is now an argument in `changeKeyboardType`.
-* `KeyboardInputViewController` `keyboardType` has been moved to the context.
-
 * `KeyboardToolbar` has been renamed to `KeyboardToolbarView`. 
 * The `shouldChangeToAlphabeticLowercase` has been replaced with the automatic switching mentioned above.
 * The `isKeyboardEnabled` function now uses a `for` as external argument name.

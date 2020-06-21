@@ -22,6 +22,18 @@ class KeyboardInputViewControllerTests: QuickSpec {
             vc = TestClass(nibName: nil, bundle: nil)
         }
         
+        describe("keyboard context") {
+            
+            it("is setup with default state") {
+                let context = vc.context
+                expect(context is StandardKeyboardContext).to(beTrue())
+                expect(context.actionHandler is StandardKeyboardActionHandler).to(beTrue())
+                expect(context.hasFullAccess).to(beFalse())
+                expect(context.keyboardType).to(equal(.alphabetic(.lowercased)))
+                expect(context.needsInputModeSwitchKey).to(beFalse())
+            }
+        }
+        
         describe("view did load") {
             
             it("sets up the keyboard") {
@@ -64,7 +76,7 @@ class KeyboardInputViewControllerTests: QuickSpec {
         describe("action handler") {
             
             it("is standard handler by default") {
-                let handler = vc.keyboardActionHandler
+                let handler = vc.context.actionHandler
                 let standard = handler as? StandardKeyboardActionHandler
                 expect(standard).toNot(beNil())
                 expect(standard?.inputViewController).to(be(vc))

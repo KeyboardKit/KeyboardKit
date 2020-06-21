@@ -9,9 +9,9 @@
 import Foundation
 
 /**
- This array typealias represents a "row" of keyboard actions.
+ This typealias represents a "row" of keyboard actions.
  
  This is just a semantic variation of `KeyboardActions` that
- makes it easier to talk about "rows" for certain components.
+ makes it easier to talk about and create action "rows".
  */
 public typealias KeyboardActionRow = KeyboardActions

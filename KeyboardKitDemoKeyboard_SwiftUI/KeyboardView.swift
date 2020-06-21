@@ -46,13 +46,21 @@ struct KeyboardView_Previews: PreviewProvider {
 extension View {
     
     func handle(action: KeyboardAction, with handler: KeyboardActionHandler) -> some View {
-        let hasTap = handler.
+        let hasTap = handler.canHandle(.tap, on: action, sender: nil)
+        let hasDoubleTap = handler.canHandle(.doubleTap, on: action, sender: nil)
+        let hasLongPress = handler.canHandle(.longPress, on: action, sender: nil)
+        let hasRepeatPress = handler.canHandle(.repeatPress, on: action, sender: nil)
+        
+        let tap = hasTap ? TapGesture().onEnded { _ in handler.handle(.tap, on: action) } : nil
+        let doubleTap = hasDoubleTap ? TapGesture(count: 2).onEnded { _ in handler.handle(.doubleTap, on: action) } : nil
+        let longPress = hasLongPress ? LongPressGesture(minimumDuration: 0.5).onEnded { _ in handler.handle(.longPress, on: action) } : nil
+        let repeatPress = hasRepeatPress ? DragGesture(minimumDistance: 0).onChanged { _ in handler.handle(.repeatPress, on: action) } : nil
+            
+        let gestures = [tap, doubleTap, longPress, repeatPress].compactMap { $0 }
         
         
-        let tap = TapGesture().onEnded { _ in handler.handle(.tap, on: action) }
-        let doubleTap = TapGesture(count: 2).onEnded { _ in handler.handle(.doubleTap, on: action) }
-        let press = LongPressGesture(minimumDuration: 0.5).onEnded { _ in handler.handle(.longPress, on: action) }
-        let repeating = DragGesture(minimumDistance: 0).onChanged { _ in handler.handle(.repeatPress, on: action) }
+        
+        
         return self
             .gesture(tap.sequenced(before: doubleTap))
             .gesture(press.sequenced(before: repeating))

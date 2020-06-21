@@ -12,7 +12,7 @@ import Foundation
  This typealias represents a list of keyboard actions "rows".
  
  This is just a semantic variation of `KeyboardActions` that
- makes it easier to talk about "rows" for certain components.
+ makes it easier to talk about and create action "rows".
  */
 public typealias KeyboardActionRows = [KeyboardActionRow]
 

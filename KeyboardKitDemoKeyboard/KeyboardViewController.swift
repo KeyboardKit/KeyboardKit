@@ -11,23 +11,26 @@ import KeyboardKit
 
 /**
  This UIKit-based demo keyboard demonstrates how to create a
- UIKit-based keyboard extension using `KeyboardKit`.
+ keyboard extension using `KeyboardKit` and `UIKit`.
  
- This demo keyboard handles a bunch of actions, sends string
- and emoji inputs to the text proxy, copies tapped images to
- the pasteboard and saves long pressed images to photos etc.
- It also has a topmost auto complete toolbar with three fake
- suggestions for the currently active word.
+ This keyboard sends text and emoji inputs to the text proxy,
+ copies tapped images to the device's pasteboard, saves long
+ pressed images to photos etc. It also adds an auto complete
+ toolbar that provides fake suggestions for the current word.
  
  `IMPORTANT` To use this keyboard, you must enable it in the
- system keyboard settings (`Settings/General/Keyboards`) and
+ system keyboard settings ("Settings/General/Keyboards") and
  give it full access, which is unfortunately required to use
- features like haptic and audio feedback, access photos etc.
+ some features like haptic and audio feedback, let it access
+ the user's photos etc.
+ 
  If you want to use these features in your own app, you must
- add `RequestsOpenAccess` to the extension `Info.plist` then
- a `NSPhotoLibraryAddUsageDescription` to the **host** app's
- `Info.plist` etc. This is already done in this demo app, so
- just copy that setup into your own app.
+ add `RequestsOpenAccess` to the extension's `Info.plist` to
+ make it possible for the user to enable full access. If you
+ want to allow the keyboard to access the user's photo album,
+ you must add the `NSPhotoLibraryAddUsageDescription` key to
+ the **host** application's `Info.plist`. Have a look at the
+ demo app and extension and copy the parts that you need.
  */
 class KeyboardViewController: KeyboardInputViewController {
     
@@ -36,7 +39,7 @@ class KeyboardViewController: KeyboardInputViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        keyboardActionHandler = DemoKeyboardActionHandler(inputViewController: self)
+        context.actionHandler = DemoKeyboardActionHandler(inputViewController: self)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

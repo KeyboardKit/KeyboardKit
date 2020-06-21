@@ -15,8 +15,35 @@ import UIKit
  */
 public protocol KeyboardContext: AnyObject {
     
+    /**
+     This handler can be used to handle any keyboard actions
+     that are triggered by the user or the system. It can be
+     replaced with any custom action handler.
+     */
+    var actionHandler: KeyboardActionHandler { get set }
+    
+    /**
+     Whether or not the keyboard extension has full access.
+     
+     Full access is required to access the pasteboard or the
+     photo library, to provide audio and haptic feedback etc.
+     */
     var hasFullAccess: Bool { get set }
+    
+    /**
+     The current keyboard type, which can be used in any way
+     you like. It has no built-in logic, but you can use the
+     current state to determine which keyboard to provide to
+     the user.
+     */
     var keyboardType: KeyboardType { get set }
+    
+    /**
+     Whether or not the keyboard extension most provide your
+     current user with an inpurt mode switch key, which is a
+     globe shaped key that switches keyboard when tapped and
+     shows a keyboard menu when pressed.
+     */
     var needsInputModeSwitchKey: Bool { get set }
 }
 

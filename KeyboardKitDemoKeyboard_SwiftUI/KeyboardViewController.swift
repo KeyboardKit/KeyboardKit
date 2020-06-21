@@ -12,25 +12,26 @@ import KeyboardKitSwiftUI
 
 /**
  This SwiftUI-based demo keyboard demonstrates how to create
- a SwiftUI-based keyboard extension using `KeyboardKit`.
+ a keyboard extension using `KeyboardKit` and `SwiftUI`.
  
- This demo keyboard handles a bunch of actions, sends string
- and emoji inputs to the text proxy, copies tapped images to
- the pasteboard and saves long pressed images to photos etc.
- It also has a topmost auto complete toolbar with three fake
- suggestions for the currently active word.
+ This keyboard sends text and emoji inputs to the text proxy,
+ copies tapped images to the device's pasteboard, saves long
+ pressed images to photos etc. It also adds an auto complete
+ toolbar that provides fake suggestions for the current word.
  
  `IMPORTANT` To use this keyboard, you must enable it in the
  system keyboard settings ("Settings/General/Keyboards") and
  give it full access, which is unfortunately required to use
- some features like haptic and audio feedback, access to the
- user's photos etc.
+ some features like haptic and audio feedback, let it access
+ the user's photos etc.
  
  If you want to use these features in your own app, you must
- add `RequestsOpenAccess` to the extension `Info.plist`, add
- a `NSPhotoLibraryAddUsageDescription` to the **host** app's
- `Info.plist` etc. This is already done in this demo app, so
- you can just copy the setup into your own app.
+ add `RequestsOpenAccess` to the extension's `Info.plist` to
+ make it possible for the user to enable full access. If you
+ want to allow the keyboard to access the user's photo album,
+ you must add the `NSPhotoLibraryAddUsageDescription` key to
+ the **host** application's `Info.plist`. Have a look at the
+ demo app and extension and copy the parts that you need.
  */
 class KeyboardViewController: KeyboardInputViewController {
 
