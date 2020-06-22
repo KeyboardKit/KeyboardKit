@@ -16,60 +16,78 @@ import UIKit
 public protocol KeyboardContext: AnyObject {
     
     /**
-     This handler can be used to handle any keyboard actions
-     that are triggered by the user or the system. It can be
-     replaced with any custom action handler.
+     This handler can handle actions that are triggered by a
+     user or the system. It can be replaced with any handler.
      */
     var actionHandler: KeyboardActionHandler { get set }
     
     /**
+     Whether or not a keyboard extension has a dictation key.
+     If so, the system dictation key will be disabled
+     */
+    var hasDictationKey: Bool { get set }
+    
+    /**
      Whether or not the keyboard extension has full access.
-     
-     Full access is required to access the pasteboard or the
-     photo library, to provide audio and haptic feedback etc.
      */
     var hasFullAccess: Bool { get set }
     
     /**
-     The current keyboard type, which can be used in any way
-     you like. It has no built-in logic, but you can use the
-     current state to determine which keyboard to provide to
-     the user.
+     The currently selected keyboard type, which can be used
+     in any way you like.
      */
     var keyboardType: KeyboardType { get set }
     
     /**
-     Whether or not the keyboard extension most provide your
-     current user with an inpurt mode switch key, which is a
-     globe shaped key that switches keyboard when tapped and
-     shows a keyboard menu when pressed.
+     Whether or not the keyboard extension must provide your
+     current user with an input mode switch key.
      */
     var needsInputModeSwitchKey: Bool { get set }
+    
+    /**
+     The current text document proxy.
+     */
+    var textDocumentProxy: UITextDocumentProxy { get set }
+    
+    /**
+     The current text input mode.
+     */
+    var textInputMode: UITextInputMode? { get set }
+    
+    /**
+     The current primary language of the keyboard.
+     */
+    var primaryLanguage: String? { get set }
 }
 
 public extension KeyboardContext {
     
     /**
      This function changes keyboard type, using the standard
-     system behavior, where some changes may be ignored. For
-     instance, it is not possible to change from caps locked
-     keyboards to upper-case ones.
+     system behavior, where it's not possible to change from
+     caps locked keyboards to upper-case ones.
      
      The delay can be used to allow a double-tap action time
      to finish before changing the keyboard.
      */
     func changeKeyboardType(to type: KeyboardType, after delay: DispatchTimeInterval, completion: @escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            self.changeKeyboardTypeAfterDelay(to: type, completion: completion)
+            guard self.keyboardType.canBeReplaced(with: type) else { return }
+            self.keyboardType = type
+            completion()
         }
     }
-}
-
-private extension KeyboardContext {
     
-    func changeKeyboardTypeAfterDelay(to type: KeyboardType, completion: @escaping () -> Void) {
-        guard keyboardType.canBeReplaced(with: type) else { return }
-        keyboardType = type
-        completion()
+    /**
+     Sync the context with the current state of the keyboard
+     input view controller.
+     */
+    func sync(with controller: UIInputViewController) {
+        self.hasDictationKey = controller.hasDictationKey
+        self.hasFullAccess = controller.hasFullAccess
+        self.needsInputModeSwitchKey = controller.needsInputModeSwitchKey
+        self.primaryLanguage = controller.primaryLanguage
+        self.textDocumentProxy = controller.textDocumentProxy
+        self.textInputMode = controller.textInputMode
     }
 }

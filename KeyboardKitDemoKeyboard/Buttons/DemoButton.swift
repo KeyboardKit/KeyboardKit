@@ -21,7 +21,7 @@ class DemoButton: KeyboardButtonView {
         backgroundColor = .clearInteractable
         buttonView?.backgroundColor = action.buttonColor(for: viewController)
         DispatchQueue.main.async { self.image?.image = action.buttonImage }
-        textLabel?.font = action.buttonFont
+        textLabel?.font = action.systemFont
         textLabel?.text = action.buttonText
         textLabel?.textColor = action.tintColor(in: viewController)
         buttonView?.tintColor = action.tintColor(in: viewController)
@@ -51,18 +51,6 @@ private extension KeyboardAction {
             ? (dark ? Asset.Colors.darkSystemButton : Asset.Colors.lightSystemButton)
             : (dark ? Asset.Colors.darkButton : Asset.Colors.lightButton)
         return asset.color
-    }
-    
-    var buttonFont: UIFont {
-        return .preferredFont(forTextStyle: buttonFontStyle)
-    }
-    
-    var buttonFontStyle: UIFont.TextStyle {
-        switch self {
-        case .character, .emoji: return .title2
-        case .keyboardType(.emojis): return .title1
-        default: return .body
-        }
     }
     
     var buttonImage: UIImage? {

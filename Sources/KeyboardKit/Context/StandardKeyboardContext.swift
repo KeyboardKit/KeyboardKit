@@ -6,7 +6,7 @@
 //  Copyright © 2020 Daniel Saidi. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /**
  This standard context provides non-observable properties to
@@ -19,14 +19,25 @@ import Foundation
 public class StandardKeyboardContext: KeyboardContext {
     
     public init(
+        controller: KeyboardInputViewController,
         actionHandler: KeyboardActionHandler,
         keyboardType: KeyboardType) {
         self.actionHandler = actionHandler
+        self.hasDictationKey = controller.hasDictationKey
+        self.hasFullAccess = controller.hasFullAccess
         self.keyboardType = keyboardType
+        self.needsInputModeSwitchKey = controller.needsInputModeSwitchKey
+        self.primaryLanguage = controller.primaryLanguage
+        self.textDocumentProxy = controller.textDocumentProxy
+        self.textInputMode = controller.textInputMode
     }
     
     public var actionHandler: KeyboardActionHandler
-    public var hasFullAccess = false
+    public var hasDictationKey: Bool
+    public var hasFullAccess: Bool
     public var keyboardType: KeyboardType
-    public var needsInputModeSwitchKey = false
+    public var needsInputModeSwitchKey: Bool
+    public var primaryLanguage: String?
+    public var textDocumentProxy: UITextDocumentProxy
+    public var textInputMode: UITextInputMode?
 }

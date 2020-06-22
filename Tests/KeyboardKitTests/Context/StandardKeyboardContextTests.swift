@@ -16,18 +16,30 @@ class StandardKeyboardContextTests: QuickSpec {
     override func spec() {
         
         var actionHandler: KeyboardActionHandler!
+        var controller: KeyboardInputViewController!
         
         beforeEach {
             actionHandler = MockKeyboardActionHandler()
+            controller = KeyboardInputViewController()
+
         }
         
         describe("context") {
             
             it("can be created with params") {
                 let context = StandardKeyboardContext(
+                    controller: controller,
                     actionHandler: actionHandler,
                     keyboardType: .images
                 )
+                
+                expect(context.hasDictationKey).to(equal(controller.hasDictationKey))
+                expect(context.hasFullAccess).to(equal(controller.hasFullAccess))
+                expect(context.needsInputModeSwitchKey).to(equal(controller.needsInputModeSwitchKey))
+                expect(context.primaryLanguage).to(beNil())
+                expect(context.textDocumentProxy).to(be(controller.textDocumentProxy))
+                expect(context.textInputMode).to(beNil())
+                
                 expect(context.actionHandler).to(be(actionHandler))
                 expect(context.keyboardType).to(equal(.images))
             }

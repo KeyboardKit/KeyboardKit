@@ -34,7 +34,7 @@ open class KeyboardInputViewController: UIInputViewController {
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        context.hasFullAccess = hasFullAccess
+        context.sync(with: self)
         viewWillSyncWithTextDocumentProxy()
     }
     
@@ -59,6 +59,7 @@ open class KeyboardInputViewController: UIInputViewController {
      be converted to an `ObservableKeyboardContext`.
      */
     public lazy var context: KeyboardContext = StandardKeyboardContext(
+        controller: self,
         actionHandler: StandardKeyboardActionHandler(inputViewController: self),
         keyboardType: .alphabetic(.lowercased)
     )
