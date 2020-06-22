@@ -17,7 +17,9 @@ If you upgrade from an older version to `3.0` and have many breaking changes, up
 * `ObservableKeyboardContext` is an iOS 13+ required, observable implementation.
 * `StandardKeyboardActionHandler` now automatically handles keyboard type switching and only delays if an action has a double-tap action.
 * `StandardKeyboardActionHandler` now automatically switches to certain keyboards after certain actions, as defined by `handleKeyboardSwitch(after:on:)` and `preferredKeyboardType(after:on:)`.
-* There is a new `systemImage` `KeyboardAction`, which can be used with SF Symbols.
+
+* `KeyboardAction` has a new `systemImage` case that can be used with SF Symbols.
+* `KeyboardAction` has new `systemFont` and `systemTextStyle` for preferred system look.
 
 * The demo project contains a new `KeyboardKitSwiftUIPreviews` in which you can preview KeyboardKitSwiftUI views. 
 

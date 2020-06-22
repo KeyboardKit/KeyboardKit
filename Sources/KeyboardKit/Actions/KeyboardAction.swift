@@ -220,4 +220,31 @@ public extension KeyboardAction {
         default: return nil
         }
     }
+    
+    /**
+     The standard system font, that is used when this action
+     is used in the system keyboard.
+     
+     A font will be defined even if the action doesn't exist
+     on a system level. It's just a suggestion, so ignore it
+     if you don't want to use it.
+     */
+    var systemFont: UIFont {
+        .preferredFont(forTextStyle: systemTextStyle)
+    }
+    
+    /**
+     The standard system text style if any, that is used for
+     this action when it's used in the system keyboard.
+     
+     A font will be defined even if the action doesn't exist
+     on a system level. It's just a suggestion, so ignore it
+     if you don't want to use it.
+    */
+    var systemTextStyle: UIFont.TextStyle {
+        switch self {
+        case .emoji: return .title1
+        default: return .title2
+        }
+    }
 }
