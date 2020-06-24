@@ -1,8 +1,8 @@
 //
-//  StandardKeyboardContextTests.swift
+//  KeyboardContextTests.swift
 //  KeyboardKitTests
 //
-//  Created by Daniel Saidi on 2020-06-15.
+//  Created by Daniel Saidi on 2020-06-22.
 //  Copyright © 2020 Daniel Saidi. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import Nimble
 import KeyboardKit
 import UIKit
 
-class StandardKeyboardContextTests: QuickSpec {
+class KeyboardContextTests: QuickSpec {
     
     override func spec() {
         
@@ -21,22 +21,19 @@ class StandardKeyboardContextTests: QuickSpec {
         beforeEach {
             actionHandler = MockKeyboardActionHandler()
             controller = KeyboardInputViewController()
-
         }
         
-        describe("context") {
+        describe("syncing context with controller") {
             
-            it("can be created with params") {
+            it("updates some properties") {
                 let context = StandardKeyboardContext(
                     controller: controller,
                     actionHandler: actionHandler,
                     keyboardType: .images
                 )
-                
-                expect(context.actionHandler).to(be(actionHandler))
+                context.sync(with: controller)
                 expect(context.hasDictationKey).to(equal(controller.hasDictationKey))
                 expect(context.hasFullAccess).to(equal(controller.hasFullAccess))
-                expect(context.keyboardType).to(equal(.images))
                 expect(context.needsInputModeSwitchKey).to(equal(controller.needsInputModeSwitchKey))
                 expect(context.primaryLanguage).to(beNil())
                 expect(context.textDocumentProxy).to(be(controller.textDocumentProxy))

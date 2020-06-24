@@ -49,7 +49,7 @@ class KeyboardActionTests: QuickSpec {
                 .shiftDown,
                 .space,
                 .systemImage(description: "", keyboardImageName: "", imageName: ""),
-                .tab,
+                .tab
             ]
             
             expected = []

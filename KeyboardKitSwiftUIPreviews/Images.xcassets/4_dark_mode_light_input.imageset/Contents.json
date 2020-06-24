@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "4_dark_mode_light_input.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

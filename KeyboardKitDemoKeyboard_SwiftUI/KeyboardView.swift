@@ -29,7 +29,7 @@ private extension KeyboardView {
     
     var keyboardView: AnyView {
         switch context.keyboardType {
-        case .alphabetic(let state): return AnyView(AlphabeticKeyboard(uppercased: true))
+        case .alphabetic(let state): return AnyView(AlphabeticKeyboard(state: state))
         default: return AnyView(Text("Not implemented"))
         }
     }
@@ -37,14 +37,14 @@ private extension KeyboardView {
 
 struct AlphabeticKeyboard: View {
     
-    let uppercased: Bool
+    let state: KeyboardShiftState
     
-    var actionRows: KeyboardActionRows {
-        let chars = uppercased ? characters.uppercased() : characters
+    var inputActions: KeyboardActionRows {
+        let chars = state.isUppercased ? inputCharacters.uppercased() : inputCharacters
         return KeyboardActionRows(characters: chars)
     }
     
-    let characters: [[String]] = [
+    let inputCharacters: [[String]] = [
         ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
         ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
         ["z", "x", "c", "v", "b", "n", "m"]
@@ -53,15 +53,29 @@ struct AlphabeticKeyboard: View {
     var body: some View {
         VStack(spacing: 13) {
             Text("Autocomplete")
-            ForEach(Array(actionRows.enumerated()), id: \.offset) { row in
-                HStack(spacing: 6) {
-                    ForEach(Array(row.element.enumerated()), id: \.offset) { action in
-                        InputButton(height: 42, action: action.element)
-                    }
-                }
+            inputButtons(for: inputActions[0])
+            HStack {
+                Spacer()
+                inputButtons(for: inputActions[1])
+                Spacer()
+            }
+            HStack {
+                InputButton(height: 42, action: .shift)
+                    .frame(width: 50)
+                inputButtons(for: inputActions[2])
+                InputButton(height: 42, action: .backspace)
+                    .frame(width: 50)
             }
             Text("System")
         }.padding(4)
+    }
+    
+    func inputButtons(for row: KeyboardActionRow) -> some View {
+        HStack(spacing: 6) {
+            ForEach(Array(row.enumerated()), id: \.offset) { action in
+                InputButton(height: 42, action: action.element)
+            }
+        }
     }
 }
 
@@ -70,18 +84,11 @@ struct InputButton: View {
     let height: CGFloat
     let action: KeyboardAction
     
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
     @EnvironmentObject var context: ObservableKeyboardContext
     
     var body: some View {
-        Text(text)
-        .systemFont(for: action)
-            
-            .frame(height: height)
-            .frame(maxWidth: .infinity)
-            .background(Color.white)
-            .cornerRadius(4)
-            .shadow(color: Color.black.opacity(0.3), radius: 0, x: 0, y: 1)
-            .keyboardAction(action, context: context)
+        Text(text).systemKeyboardButton(action, scheme: colorScheme, context: context)
     }
 }
 
@@ -92,16 +99,6 @@ private extension InputButton {
         case .character(let char): return char
         case .emoji(let emoji): return emoji
         default: return "-"
-        }
-    }
-}
-
-private extension KeyboardView {
-    
-    var text: String {
-        switch context.keyboardType {
-        case .alphabetic: return "alpha"
-        default: return "other"
         }
     }
 }
