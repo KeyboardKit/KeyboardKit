@@ -3,6 +3,11 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions. 
 
 
+## 2.9.3
+
+This version updates external test dependencies to their latest versions.
+
+
 ## 2.9.2
 
 This version removes the subview fiddling from `KeyboardCollectionVew` to the built-in subclasses, since it can ruin the view hierarchy for collection views that don't add custom views to the cells.
