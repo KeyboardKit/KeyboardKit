@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/danielsaidi/Mockery.git",
         "state": {
           "branch": null,
-          "revision": "873da92ef23789e0065fa25dff234f5cde03500b",
-          "version": "0.3.2"
+          "revision": "c4218042ee44c72d2c95a762ca2c40358c8db81e",
+          "version": "0.3.3"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/Quick/Nimble.git",
         "state": {
           "branch": null,
-          "revision": "f8657642dfdec9973efc79cc68bcef43a653a2bc",
-          "version": "8.0.2"
+          "revision": "2b1809051b4a65c1d7f5233331daa24572cd7fca",
+          "version": "8.1.1"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/Quick/Quick.git",
         "state": {
           "branch": null,
-          "revision": "09b3becb37cb2163919a3842a4c5fa6ec7130792",
-          "version": "2.2.1"
+          "revision": "0038bcbab4292f3b028632556507c124e5ba69f3",
+          "version": "3.0.0"
         }
       }
     ]

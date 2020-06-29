@@ -2222,15 +2222,15 @@
 			repositoryURL = "https://github.com/Quick/Quick.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.2.0;
+				minimumVersion = 3.0.0;
 			};
 		};
 		A97047D623D507D4001AB983 /* XCRemoteSwiftPackageReference "Nimble" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Quick/Nimble.git";
 			requirement = {
-				kind = exactVersion;
-				version = 8.0.2;
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.7;
 			};
 		};
 		A97047D923D507F2001AB983 /* XCRemoteSwiftPackageReference "Mockery" */ = {
@@ -2238,7 +2238,7 @@
 			repositoryURL = "https://github.com/danielsaidi/Mockery.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.0;
+				minimumVersion = 0.3.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
