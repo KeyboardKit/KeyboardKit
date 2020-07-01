@@ -136,7 +136,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
-        if action.isDeleteAction { return audioConfiguration.deleteFeedback.trigger() }
+        if action == .backspace { return audioConfiguration.deleteFeedback.trigger() }
         if action.isInputAction { return audioConfiguration.inputFeedback.trigger() }
         if action.isSystemAction { return audioConfiguration.systemFeedback.trigger() }
     }

@@ -9,7 +9,6 @@
 import Quick
 import Nimble
 import KeyboardKit
-import UIKit
 
 class KeyboardAction_GridTests: QuickSpec {
     

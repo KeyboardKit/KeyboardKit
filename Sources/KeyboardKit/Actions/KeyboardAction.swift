@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2018-02-02.
-//  Copyright © 2018 Daniel Saidi. All rights reserved.
+//  Copyright © 2020 Daniel Saidi. All rights reserved.
 //
 
 import UIKit
@@ -35,6 +35,7 @@ public enum KeyboardAction: Equatable {
     character(String),
     command,
     custom(name: String),
+    dictation,
     dismissKeyboard,
     emoji(String),
     emojiCategory(_ category: EmojiCategory),
@@ -81,27 +82,9 @@ public extension KeyboardAction {
     }
     
     /**
-     Whether or not the action is a delete action.
-     */
-    var isDeleteAction: Bool {
-        switch self {
-        case .backspace: return true
-        default: return false
-        }
-    }
-    
-    /**
-     Whether or not the action is an image action.
-     */
-    var isImageAction: Bool {
-        switch self {
-        case .image, .systemImage: return true
-        default: return false
-        }
-    }
-    
-    /**
      Whether or not the action is a content input action.
+     
+     Input actions use light buttons on iOS and ipadOS.
      */
     var isInputAction: Bool {
         switch self {
@@ -115,15 +98,18 @@ public extension KeyboardAction {
     }
     
     /**
-     Whether or not the action is something that handles the
-     system instead of any kind of content.
+     Whether or not the action handles the system or affects
+     the keyboard, instead of performing an input action.
+     
+     System actions use dark buttons on iOS and ipadOS.
      */
     var isSystemAction: Bool {
         switch self {
-        case .backspace: return true
         case .capsLock: return true
         case .command: return true
+        case .dictation: return true
         case .dismissKeyboard: return true
+        case .emojiCategory: return true
         case .escape: return true
         case .function: return true
         case .keyboardType: return true
@@ -136,115 +122,6 @@ public extension KeyboardAction {
         case .shiftDown: return true
         case .tab: return true
         default: return false
-        }
-    }
-    
-    /**
-     The standard action, if any, that should be executed on
-     an input view controller, when this action is triggered
-     with a double-tap.
-     */
-    var standardDoubleTapAction: GestureAction? {
-        switch self {
-        case .space: return endSentenceAction
-        case .shift: return { $0?.changeKeyboardType(to: .alphabetic(.capsLocked)) }
-        default: return nil
-        }
-    }
-    
-    /**
-     The standard action, if any, that should be executed on
-     an input view controller, when this action is triggered
-     with a long press.
-     */
-    var standardLongPressAction: GestureAction? {
-        switch self {
-        case .shift: return { $0?.changeKeyboardType(to: .alphabetic(.capsLocked)) }
-        default: return standardTapAction
-        }
-    }
-    
-    /**
-     The standard action, if any, that should be executed on
-     an input view controller, when this action is triggered
-     with a press and hold.
-     */
-    var standardRepeatAction: GestureAction? {
-        switch self {
-        case .backspace: return standardTapAction
-        default: return nil
-        }
-    }
-    
-    /**
-     The standard action, if any, that should be executed on
-     an input view controller or a text document proxy, when
-     this action is triggered with a tap.
-     */
-    var standardTapAction: GestureAction? {
-        if let action = standardTapActionForController { return action }
-        if let action = standardTapActionForProxy { return { action($0?.textDocumentProxy) } }
-        return nil
-    }
-    
-    /**
-     The standard action, if any, that should be executed on
-     an input view controller, when this action is triggered
-     with a tap.
-     */
-    var standardTapActionForController: InputViewControllerAction? {
-        switch self {
-        case .dismissKeyboard: return { $0?.dismissKeyboard() }
-        case .keyboardType(let type): return { $0?.changeKeyboardType(to: type) }
-        case .shift: return { $0?.changeKeyboardType(to: .alphabetic(.uppercased), after: .milliseconds(200)) }
-        case .shiftDown: return { $0?.changeKeyboardType(to: .alphabetic(.lowercased)) }
-        default: return nil
-        }
-    }
-    
-    /**
-     The standard action, if any, that should be executed on
-     a text document proxy when the action is triggered with
-     a tap.
-     */
-    var standardTapActionForProxy: TextDocumentProxyAction? {
-        switch self {
-        case .backspace: return { $0?.deleteBackward() }
-        case .character(let char): return { $0?.insertText(char) }
-        case .emoji(let char): return { $0?.insertText(char) }
-        case .moveCursorBackward: return { $0?.adjustTextPosition(byCharacterOffset: -1) }
-        case .moveCursorForward: return { $0?.adjustTextPosition(byCharacterOffset: 1) }
-        case .newLine: return { $0?.insertText("\n") }
-        case .space: return { $0?.insertText(" ") }
-        case .tab: return { $0?.insertText("\t") }
-        default: return nil
-        }
-    }
-    
-    /**
-     The standard system font, that is used when this action
-     is used in the system keyboard.
-     
-     A font will be defined even if the action doesn't exist
-     on a system level. It's just a suggestion, so ignore it
-     if you don't want to use it.
-     */
-    var systemFont: UIFont {
-        .preferredFont(forTextStyle: systemTextStyle)
-    }
-    
-    /**
-     The standard system text style if any, that is used for
-     this action when it's used in the system keyboard.
-     
-     A font will be defined even if the action doesn't exist
-     on a system level. It's just a suggestion, so ignore it
-     if you don't want to use it.
-    */
-    var systemTextStyle: UIFont.TextStyle {
-        switch self {
-        case .emoji: return .title1
-        default: return .title2
         }
     }
 }

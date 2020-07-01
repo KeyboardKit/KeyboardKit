@@ -88,20 +88,20 @@ struct InputButton: View {
     @EnvironmentObject var context: ObservableKeyboardContext
     
     var body: some View {
-        Text(text).systemKeyboardButton(action, scheme: colorScheme, context: context)
+        buttonContent.systemKeyboardButton(action, scheme: colorScheme, context: context)
     }
-}
-
-private extension InputButton {
     
-    var text: String {
+    var buttonContent: AnyView {
         switch action {
-        case .character(let char): return char
-        case .emoji(let emoji): return emoji
-        default: return "-"
+        case .character(let char): return AnyView(Text(char))
+        case .emoji(let emoji): return AnyView(Text(emoji))
+        case .shift: return AnyView(Image.backspace)
+        default: return AnyView(Text("-"))
         }
     }
 }
+
+
 
 struct KeyboardView_Previews: PreviewProvider {
     static var previews: some View {
