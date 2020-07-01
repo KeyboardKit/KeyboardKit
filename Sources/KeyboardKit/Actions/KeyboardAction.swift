@@ -33,6 +33,7 @@ public enum KeyboardAction: Equatable {
     backspace,
     capsLock,
     character(String),
+    control,
     command,
     custom(name: String),
     dictation,
@@ -107,6 +108,7 @@ public extension KeyboardAction {
         switch self {
         case .capsLock: return true
         case .command: return true
+        case .control: return true
         case .dictation: return true
         case .dismissKeyboard: return true
         case .emojiCategory: return true

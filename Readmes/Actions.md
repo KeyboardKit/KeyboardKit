@@ -6,6 +6,7 @@ KeyboardKit comes with a set of actions that can be applied to keyboard buttons 
 * `capsLock` - changes the keyboard type to `.alphabetic(.capsLocked)` when `tapped`
 * `character` - sends a text character to the text proxy when `tapped`
 * `command` - represents the macOS `command` key
+* `control` - represents the macOS `control` key
 * `custom(name:)` - a custom action if no other actions fit your needs
 * `dismissKeyboard` - dismisses the keyboard when `tapped`
 * `emoji`  - alias for `.character` and can be used to distict emojis
@@ -26,6 +27,9 @@ KeyboardKit comes with a set of actions that can be applied to keyboard buttons 
 * `tab` - sends a tab character to the text proxy when `tapped`
 * `none`- use this for empty "placeholder" keys that do nothing
 
+
+## Actions for tap, long press, repeat etc.
+
 The `tap` and `long press` behavior described above is the standard behavior that is automatically applied if you use the default action handler. If you don't use the default handler, you can handle any action in any way you like.
 
 All actions that has no explicit `long press` action default uses the same action as for `tap`.
@@ -33,3 +37,22 @@ All actions that has no explicit `long press` action default uses the same actio
 Many actions have no standard behavior, since their behavior depend on your application. For instance, `image` only represents an image button, but you have to decide what to do with a tapped or long pressed image.
 
 Some actions in the list represents actions from other platforms. For instance `command`, `function` and `option` do not exist in iOS, but may still serve a functional or semantical purpose in your keyboard.
+
+
+## Appearance
+
+The standard system look of each action depends on the current color scheme, keyboard appearance etc. `KeyboardKitSwiftUI` contains utilities to help you with this.
+
+
+## Icons
+
+Some actions have an icon that is displayed when the action is used in a system keyboard. `KeyboardKitSwiftUI` contains SF Symbols based icons for many actions.
+
+
+## Texts
+
+Some actions have a text that is displayed when the action is used in a system keyboard. `KeyboardKitSwiftUI` contains extensions for this.
+
+
+
+
