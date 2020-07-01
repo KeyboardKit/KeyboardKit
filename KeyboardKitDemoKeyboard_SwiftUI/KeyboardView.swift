@@ -92,12 +92,13 @@ struct InputButton: View {
     }
     
     var buttonContent: AnyView {
-        switch action {
-        case .character(let char): return AnyView(Text(char))
-        case .emoji(let emoji): return AnyView(Text(emoji))
-        case .shift: return AnyView(Image.backspace)
-        default: return AnyView(Text("-"))
+        if let text = action.systemKeyboardButtonText {
+            return AnyView(text)
         }
+        if let image = action.systemKeyboardButtonImage {
+            return AnyView(image)
+        }
+        return AnyView(Text("-"))
     }
 }
 

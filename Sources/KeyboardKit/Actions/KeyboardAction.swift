@@ -106,6 +106,7 @@ public extension KeyboardAction {
      */
     var isSystemAction: Bool {
         switch self {
+        case .backspace: return true
         case .capsLock: return true
         case .command: return true
         case .control: return true

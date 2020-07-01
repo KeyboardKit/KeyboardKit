@@ -92,10 +92,11 @@ class KeyboardActionTests: QuickSpec {
             
             it("is true for some actions") {
                 expected = [
-                    .dismissKeyboard,
+                    .backspace,
                     .capsLock,
                     .command,
                     .dictation,
+                    .dismissKeyboard,
                     .emojiCategory(.smileys),
                     .escape,
                     .function,
