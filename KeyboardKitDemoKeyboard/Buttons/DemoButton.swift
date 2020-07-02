@@ -68,7 +68,7 @@ private extension KeyboardAction {
         case .emojiCategory(let category): return buttonText(for: category)
         case .keyboardType(let type): return buttonText(for: type)
         case .newLine: return "return"
-        case .shift, .shiftDown: return "⇧"
+        case .shift: return "⇧"
         case .space: return "space"
         default: return nil
         }
@@ -102,7 +102,7 @@ private extension KeyboardAction {
     var buttonWidth: CGFloat {
         switch self {
         case .none: return 10
-        case .shift, .shiftDown, .backspace: return 60
+        case .shift, .backspace: return 60
         case .space: return 100
         default: return 50
         }
@@ -128,7 +128,8 @@ private extension KeyboardAction {
     
     var useDarkButton: Bool {
         switch self {
-        case .character, .image, .shiftDown, .space: return false
+        case .character, .image, .space: return false
+        case .shift(let currentState): return currentState != .lowercased
         default: return true
         }
     }
