@@ -33,30 +33,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         
         context("actions") {
             
-            let actions: [KeyboardAction] = [
-                .none,
-                .backspace,
-                .capsLock,
-                .character(""),
-                .command,
-                .custom(name: ""),
-                .dismissKeyboard,
-                .emoji(""),
-                .emojiCategory(.foods),
-                .escape,
-                .function,
-                .image(description: "", keyboardImageName: "", imageName: ""),
-                .keyboardType(.emojis),
-                .moveCursorBackward,
-                .moveCursorForward,
-                .newLine,
-                .nextKeyboard,
-                .option,
-                .shift,
-                .shiftDown,
-                .space,
-                .tab
-            ]
+            let actions = KeyboardAction.testActions
             
             describe("tap action") {
                 

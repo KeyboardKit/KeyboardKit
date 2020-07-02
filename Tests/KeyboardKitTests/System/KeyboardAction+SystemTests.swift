@@ -40,7 +40,6 @@ class KeyboardAction_SystemTests: QuickSpec {
                 
                 expect(result(for: .none)).to(beNil())
                 expect(result(for: .backspace)).to(beNil())
-                expect(result(for: .capsLock)).to(beNil())
                 expect(result(for: .command)).to(beNil())
                 expect(result(for: .control)).to(beNil())
                 expect(result(for: .custom(name: ""))).to(beNil())
@@ -54,8 +53,9 @@ class KeyboardAction_SystemTests: QuickSpec {
                 expect(result(for: .newLine)).to(beNil())
                 expect(result(for: .nextKeyboard)).to(beNil())
                 expect(result(for: .option)).to(beNil())
-                expect(result(for: .shift)).to(beNil())
-                expect(result(for: .shiftDown)).to(beNil())
+                expect(result(for: .shift(currentState: .lowercased))).to(beNil())
+                expect(result(for: .shift(currentState: .uppercased))).to(beNil())
+                expect(result(for: .shift(currentState: .capsLocked))).to(beNil())
                 expect(result(for: .space)).to(beNil())
                 expect(result(for: .tab)).to(beNil())
             }

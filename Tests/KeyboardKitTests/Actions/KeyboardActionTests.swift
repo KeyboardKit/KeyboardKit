@@ -17,7 +17,6 @@ extension KeyboardAction {
         [
             .none,
             .dismissKeyboard,
-            .capsLock,
             .character(""),
             .command,
             .control,
@@ -34,8 +33,9 @@ extension KeyboardAction {
             .newLine,
             .nextKeyboard,
             .option,
-            .shift,
-            .shiftDown,
+            .shift(currentState: .lowercased),
+            .shift(currentState: .uppercased),
+            .shift(currentState: .capsLocked),
             .space,
             .systemImage(description: "", keyboardImageName: "", imageName: ""),
             .tab
@@ -93,7 +93,6 @@ class KeyboardActionTests: QuickSpec {
             it("is true for some actions") {
                 expected = [
                     .backspace,
-                    .capsLock,
                     .command,
                     .control,
                     .dictation,
@@ -107,8 +106,9 @@ class KeyboardActionTests: QuickSpec {
                     .newLine,
                     .nextKeyboard,
                     .option,
-                    .shift,
-                    .shiftDown,
+                    .shift(currentState: .lowercased),
+                    .shift(currentState: .uppercased),
+                    .shift(currentState: .capsLocked),
                     .tab
                 ]
                 expected.forEach { expect(result(for: $0)).to(beTrue()) }

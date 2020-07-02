@@ -39,7 +39,7 @@ class KeyboardAction_ActionsTests: QuickSpec {
             }
             
             it("is defined for some actions") {
-                expected = [.shift, .space]
+                expected = [.shift(currentState: .lowercased), .space]
                 expected.forEach { expect(result(for: $0)).toNot(beNil()) }
                 unexpected.forEach { expect(result(for: $0)).to(beNil()) }
             }
@@ -66,7 +66,6 @@ class KeyboardAction_ActionsTests: QuickSpec {
             it("is defined for some actions") {
                 expected = [
                     .backspace,
-                    .capsLock,
                     .character(""),
                     .dismissKeyboard,
                     .emoji(""),
@@ -74,8 +73,9 @@ class KeyboardAction_ActionsTests: QuickSpec {
                     .moveCursorBackward,
                     .moveCursorForward,
                     .newLine,
-                    .shift,
-                    .shiftDown,
+                    .shift(currentState: .lowercased),
+                    .shift(currentState: .uppercased),
+                    .shift(currentState: .capsLocked),
                     .space,
                     .tab
                 ]

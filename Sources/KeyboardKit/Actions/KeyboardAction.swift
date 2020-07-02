@@ -31,7 +31,6 @@ public enum KeyboardAction: Equatable {
     case
     none,
     backspace,
-    capsLock,
     character(String),
     control,
     command,
@@ -49,8 +48,7 @@ public enum KeyboardAction: Equatable {
     newLine,
     nextKeyboard,
     option,
-    shift,
-    shiftDown,
+    shift(currentState: KeyboardShiftState),
     systemImage(description: String, keyboardImageName: String, imageName: String),
     space,
     tab
@@ -107,7 +105,6 @@ public extension KeyboardAction {
     var isSystemAction: Bool {
         switch self {
         case .backspace: return true
-        case .capsLock: return true
         case .command: return true
         case .control: return true
         case .dictation: return true
@@ -122,7 +119,6 @@ public extension KeyboardAction {
         case .nextKeyboard: return true
         case .option: return true
         case .shift: return true
-        case .shiftDown: return true
         case .tab: return true
         default: return false
         }

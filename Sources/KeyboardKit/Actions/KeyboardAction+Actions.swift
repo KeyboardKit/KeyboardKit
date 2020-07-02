@@ -18,7 +18,9 @@ public extension KeyboardAction {
     var standardDoubleTapAction: GestureAction? {
         switch self {
         case .space: return endSentenceAction
-        case .shift: return { $0?.changeKeyboardType(to: .alphabetic(.capsLocked)) }
+        case .shift(let currentState):
+            if currentState != .lowercased { return nil }
+            return { $0?.changeKeyboardType(to: .alphabetic(.capsLocked)) }
         default: return nil
         }
     }
@@ -65,11 +67,14 @@ public extension KeyboardAction {
      */
     var standardTapActionForController: InputViewControllerAction? {
         switch self {
-        case .capsLock: return { $0?.changeKeyboardType(to: .alphabetic(.lowercased)) }
         case .dismissKeyboard: return { $0?.dismissKeyboard() }
         case .keyboardType(let type): return { $0?.changeKeyboardType(to: type) }
-        case .shift: return { $0?.changeKeyboardType(to: .alphabetic(.uppercased), after: .milliseconds(200)) }
-        case .shiftDown: return { $0?.changeKeyboardType(to: .alphabetic(.lowercased)) }
+        case .shift(let currentState): return {
+            switch currentState {
+            case .lowercased: $0?.changeKeyboardType(to: .alphabetic(.uppercased), after: .milliseconds(200))
+            case .uppercased: $0?.changeKeyboardType(to: .alphabetic(.lowercased))
+            case .capsLocked: $0?.changeKeyboardType(to: .alphabetic(.lowercased))
+            }}
         default: return nil
         }
     }

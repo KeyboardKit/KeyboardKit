@@ -56,6 +56,7 @@ The demo project contains a new `KeyboardKitSwiftUIPreviews` in which you can pr
 * `EmojiCategory.frequents` has been renamed to `frequent`.
 * `KeyboardActionHandler` now requires `canHandle(_:on:)` to be implemented.
 * `KeyboardAction` has fewer `isXXX` properties.
+* `KeyboardAction` `.capsLock` and `shiftDown` are now part of `KeyboardAction.shift`.
 * `KeyboardActionRow.from` has been changed to an initializer.
 * `KeyboardActionRows.from` has been changed to an initializer.
 * `KeyboardImageActions` has been converted to a `KeyboardActionRow+Images` extension initializer.

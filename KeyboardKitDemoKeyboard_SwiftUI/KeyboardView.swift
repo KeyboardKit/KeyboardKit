@@ -37,10 +37,10 @@ private extension KeyboardView {
 
 struct AlphabeticKeyboard: View {
     
-    let state: KeyboardShiftState
+    let currentState: KeyboardShiftState
     
     var inputActions: KeyboardActionRows {
-        let chars = state.isUppercased ? inputCharacters.uppercased() : inputCharacters
+        let chars = currentState.isUppercased ? inputCharacters.uppercased() : inputCharacters
         return KeyboardActionRows(characters: chars)
     }
     
@@ -71,6 +71,15 @@ struct AlphabeticKeyboard: View {
         }.padding(4)
     }
     
+    func shiftAction: KeyboardAction {
+        switch currentState {
+            case .capsLocked: return .capsLock
+            case .uppercased: return .shiftDown
+            case .capsLocked: return .capsLock
+        }
+        
+    }
+    
     func inputButtons(for row: KeyboardActionRow) -> some View {
         HStack(spacing: 6) {
             ForEach(Array(row.enumerated()), id: \.offset) { action in
@@ -97,7 +106,7 @@ struct InputButton: View {
         if let text = action.systemKeyboardButtonText {
             return AnyView(Text(text))
         }
-        if let image = action.systemKeyboardButtonImage {
+        if let image = action.systemKeyboardButtonImage(for: context) {
             return AnyView(image)
         }
         return AnyView(Text("-"))

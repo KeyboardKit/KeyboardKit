@@ -16,7 +16,7 @@ class Array_AppendingTests: QuickSpec {
         
         describe("appending element") {
             
-            let row1: KeyboardActionRow = [.backspace, .capsLock]
+            let row1: KeyboardActionRow = [.backspace, .control]
             let row2: KeyboardActionRow = [.escape, .command]
             let row3: KeyboardActionRow = [.function, .character("a")]
             let rows: KeyboardActionRows = [row1, row2]
