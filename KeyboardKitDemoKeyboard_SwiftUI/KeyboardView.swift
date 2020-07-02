@@ -55,17 +55,18 @@ struct AlphabeticKeyboard: View {
             Text("Autocomplete")
             inputButtons(for: inputActions[0])
             HStack {
-                Spacer()
+                Spacer(minLength: 20)
                 inputButtons(for: inputActions[1])
-                Spacer()
+                Spacer(minLength: 20)
             }
             HStack {
-                InputButton(height: 42, action: .shift)
+                InputButton(action: .keyboardType(.alphabetic(.uppercased)))
                     .frame(width: 50)
                 inputButtons(for: inputActions[2])
-                InputButton(height: 42, action: .backspace)
+                InputButton(action: .backspace)
                     .frame(width: 50)
             }
+            InputButton(action: .emoji("😀"))
             Text("System")
         }.padding(4)
     }
@@ -73,7 +74,7 @@ struct AlphabeticKeyboard: View {
     func inputButtons(for row: KeyboardActionRow) -> some View {
         HStack(spacing: 6) {
             ForEach(Array(row.enumerated()), id: \.offset) { action in
-                InputButton(height: 42, action: action.element)
+                InputButton(action: action.element)
             }
         }
     }
@@ -81,7 +82,6 @@ struct AlphabeticKeyboard: View {
 
 struct InputButton: View {
     
-    let height: CGFloat
     let action: KeyboardAction
     
     @Environment(\.colorScheme) var colorScheme: ColorScheme

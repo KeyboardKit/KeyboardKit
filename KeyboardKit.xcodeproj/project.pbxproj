@@ -121,12 +121,11 @@
 		A95CC2C824ACF83300436FD3 /* KeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = A95CC2C724ACF83300436FD3 /* KeyboardKit */; };
 		A95CC2CA24ACF84300436FD3 /* KeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = A95CC2C924ACF84300436FD3 /* KeyboardKit */; };
 		A95CC2CC24ACF84B00436FD3 /* KeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = A95CC2CB24ACF84B00436FD3 /* KeyboardKit */; };
-		A95CC2CE24ACF84E00436FD3 /* KeyboardKitSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = A95CC2CD24ACF84E00436FD3 /* KeyboardKitSwiftUI */; };
 		A95CC2D024ACF85E00436FD3 /* KeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = A95CC2CF24ACF85E00436FD3 /* KeyboardKit */; };
+		A95CC2D324ADA8E800436FD3 /* KeyboardKitSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = A95CC2D224ADA8E800436FD3 /* KeyboardKitSwiftUI */; };
 		A9A9BA8324A38389000D4ABF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A9BA8224A38389000D4ABF /* Images.xcassets */; };
 		A9E56EE82499632000158AB7 /* KeyboardKitSwiftUIPreviews.h in Headers */ = {isa = PBXBuildFile; fileRef = A9E56EE62499632000158AB7 /* KeyboardKitSwiftUIPreviews.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9E56EF22499634800158AB7 /* KeyboardImageButtonPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E56EF12499634800158AB7 /* KeyboardImageButtonPreview.swift */; };
-		A9E56EF62499673100158AB7 /* KeyboardKitSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = A9E56EF52499673100158AB7 /* KeyboardKitSwiftUI */; };
 		A9E56EF82499685A00158AB7 /* NextKeyboardButtonPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E56EF72499685A00158AB7 /* NextKeyboardButtonPreview.swift */; };
 		A9E56EFB2499697600158AB7 /* Image+KeyboardPreviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E56EFA2499697600158AB7 /* Image+KeyboardPreviews.swift */; };
 		A9E56EFE249969F300158AB7 /* KeyboardGridPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E56EFD249969F300158AB7 /* KeyboardGridPreview.swift */; };
@@ -294,7 +293,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A95CC2CE24ACF84E00436FD3 /* KeyboardKitSwiftUI in Frameworks */,
+				A95CC2D324ADA8E800436FD3 /* KeyboardKitSwiftUI in Frameworks */,
 				A95CC2CC24ACF84B00436FD3 /* KeyboardKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,7 +303,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A95CC2D024ACF85E00436FD3 /* KeyboardKit in Frameworks */,
-				A9E56EF62499673100158AB7 /* KeyboardKitSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,7 +627,7 @@
 			name = KeyboardKitDemoKeyboard_SwiftUI;
 			packageProductDependencies = (
 				A95CC2CB24ACF84B00436FD3 /* KeyboardKit */,
-				A95CC2CD24ACF84E00436FD3 /* KeyboardKitSwiftUI */,
+				A95CC2D224ADA8E800436FD3 /* KeyboardKitSwiftUI */,
 			);
 			productName = KeyboardKitDemoKeyboard_SwiftUI;
 			productReference = A94265382490CDCC00EB5551 /* KeyboardKitDemoKeyboard_SwiftUI.appex */;
@@ -650,7 +648,6 @@
 			);
 			name = KeyboardKitSwiftUIPreviews;
 			packageProductDependencies = (
-				A9E56EF52499673100158AB7 /* KeyboardKitSwiftUI */,
 				A95CC2CF24ACF85E00436FD3 /* KeyboardKit */,
 			);
 			productName = KeyboardKitSwiftUIPreviews;
@@ -697,8 +694,8 @@
 			);
 			mainGroup = OBJ_5;
 			packageReferences = (
-				A942654E2490D19400EB5551 /* XCRemoteSwiftPackageReference "KeyboardKitSwiftUI" */,
 				A95CC2C624ACF83300436FD3 /* XCRemoteSwiftPackageReference "KeyboardKit" */,
+				A95CC2D124ADA8E800436FD3 /* XCRemoteSwiftPackageReference "KeyboardKitSwiftUI" */,
 			);
 			productRefGroup = OBJ_231 /* Products */;
 			projectDirPath = "";
@@ -1529,17 +1526,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A942654E2490D19400EB5551 /* XCRemoteSwiftPackageReference "KeyboardKitSwiftUI" */ = {
+		A95CC2C624ACF83300436FD3 /* XCRemoteSwiftPackageReference "KeyboardKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/danielsaidi/KeyboardKitSwiftUI";
+			repositoryURL = "https://github.com/danielsaidi/KeyboardKit";
 			requirement = {
 				branch = "3.0-beta";
 				kind = branch;
 			};
 		};
-		A95CC2C624ACF83300436FD3 /* XCRemoteSwiftPackageReference "KeyboardKit" */ = {
+		A95CC2D124ADA8E800436FD3 /* XCRemoteSwiftPackageReference "KeyboardKitSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/danielsaidi/KeyboardKit";
+			repositoryURL = "https://github.com/danielsaidi/KeyboardKitSwiftUI";
 			requirement = {
 				branch = "3.0-beta";
 				kind = branch;
@@ -1563,19 +1560,14 @@
 			package = A95CC2C624ACF83300436FD3 /* XCRemoteSwiftPackageReference "KeyboardKit" */;
 			productName = KeyboardKit;
 		};
-		A95CC2CD24ACF84E00436FD3 /* KeyboardKitSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A942654E2490D19400EB5551 /* XCRemoteSwiftPackageReference "KeyboardKitSwiftUI" */;
-			productName = KeyboardKitSwiftUI;
-		};
 		A95CC2CF24ACF85E00436FD3 /* KeyboardKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A95CC2C624ACF83300436FD3 /* XCRemoteSwiftPackageReference "KeyboardKit" */;
 			productName = KeyboardKit;
 		};
-		A9E56EF52499673100158AB7 /* KeyboardKitSwiftUI */ = {
+		A95CC2D224ADA8E800436FD3 /* KeyboardKitSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A942654E2490D19400EB5551 /* XCRemoteSwiftPackageReference "KeyboardKitSwiftUI" */;
+			package = A95CC2D124ADA8E800436FD3 /* XCRemoteSwiftPackageReference "KeyboardKitSwiftUI" */;
 			productName = KeyboardKitSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
