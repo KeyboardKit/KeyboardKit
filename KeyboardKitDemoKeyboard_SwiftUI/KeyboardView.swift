@@ -66,6 +66,13 @@ struct AlphabeticKeyboard: View {
                 InputButton(action: .backspace)
                     .frame(width: 50)
             }
+            HStack {
+                InputButton(action: .keyboardType(.numeric))
+                InputButton(action: .keyboardType(.emojis))
+                inputButtons(for: inputActions[2])
+                InputButton(action: .re)
+                    .frame(width: 50)
+            }
             InputButton(action: .emoji("😀"))
             Text("System")
         }.padding(4)

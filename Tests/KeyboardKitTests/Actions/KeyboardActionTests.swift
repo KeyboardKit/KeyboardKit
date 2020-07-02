@@ -17,6 +17,7 @@ extension KeyboardAction {
         [
             .none,
             .dismissKeyboard,
+            .done,
             .character(""),
             .command,
             .control,
@@ -26,6 +27,7 @@ extension KeyboardAction {
             .emoji(""),
             .emojiCategory(.smileys),
             .function,
+            .go,
             .image(description: "", keyboardImageName: "", imageName: ""),
             .keyboardType(.email),
             .moveCursorBackward,
@@ -33,6 +35,7 @@ extension KeyboardAction {
             .newLine,
             .nextKeyboard,
             .option,
+            .search,
             .shift(currentState: .lowercased),
             .shift(currentState: .uppercased),
             .shift(currentState: .capsLocked),
