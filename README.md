@@ -79,7 +79,7 @@ KeyboardKit comes with a set of keyboard types, like `alphabetic`, `numeric`, `s
 
 ## Autocomplete
 
-KeyboardKit provides autocomplete support, which means that your keyboard can display autocomplete suggestions that replace the current word when a user taps a suggestion. 
+KeyboardKit provides autocomplete support, which means that you can display autocomplete suggestions while users type. 
 
 [Read more here][Autocomplete]
 
@@ -100,23 +100,25 @@ KeyboardKit supports audio feedback, which means that users can get audio feedba
 
 ## Extensions
 
-`KeyboardKit` comes with a bunch of keyboard-specific extensions. Many are internal and only used within the library, but some are public and can be used to handle common logic, like saving and exporting images. Check out the example app for more information.
+KeyboardKit comes with a bunch of keyboard-specific extensions. Check out the example app and source code for more information.
 
 
-## UIKit Components
+## Views and components
 
-KeyboardKit has many UIKit component and views that can be composed into UIKit-based keyboards, e.g. `vertical` and `horizontal components`, `button rows`, `collection views`, `toolbars` etc.
+KeyboardKit comes with many views and components that can be composed into custom keyboards, e.g. `button`, `rows`, `toolbars` etc.
 
-Check out [this component guide][Components] and [this view guide][Views] for more information.
+[Read more here][Views].
 
 
 ## Demo Application
 
-This repository contains a demo app that demonstrates different keyboard types, like `alphabetical` (lower/uppercased and caps locked), `numerical`, `symbols`, `emojis` and `images`.
+This repository contains two demo apps that demonstrate different keyboard types, like `alphabetical` (lower/uppercased and caps locked), `numerical`, `symbols`, `emojis` and `images`.
+
+`KeyboardKitDemoKeyboard` uses `UIKit` while `KeyboardKitDemoKeyboard_SwiftUI` uses `SwiftUI`.
 
 Note that audio feedback, haptic feedback and image actions require full access. Also, the `image` switcher is only shown on notch devices.
 
-To run the demo app, open and run the `KeyboardKit.xcodeproj` project.
+To run the demo app, open and run the `KeyboardKit.xcodeproj` project then enable the keyboards under system settings. Don't forget to enable full access.
 
 
 ## Contact me
@@ -133,6 +135,8 @@ Feel free to reach out if you have questions or if you want to contribute in any
 KeyboardKit is proudly supported by:
 
 [![Anomaly Software](Resources/logos/anomaly.png "Anomaly Software")](http://anomaly.net.au/)
+
+Your company can support KeyboardKit by either sponsoring the project on GitHub Sponsors or by paying for consultation. I'ld be happy to help you out with your keyboard needs.
 
 
 ## License
@@ -152,7 +156,6 @@ KeyboardKit is available under the MIT license. See LICENSE file for more info.
 [Actions]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Actions.md
 [Audio]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Audio.md
 [Autocomplete]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Autocomplete.md
-[Components]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Components.md
 [Haptic]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Haptic.md
 [Keyboards]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Keyboards.md
 [Views]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Views.md

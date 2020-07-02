@@ -52,7 +52,7 @@ struct AlphabeticKeyboard: View {
     
     var body: some View {
         VStack(spacing: 13) {
-            Text("Autocomplete")
+            Text("Autocomplete TBD")
             inputButtons(for: inputActions[0])
             HStack {
                 Spacer(minLength: 20)
@@ -60,58 +60,26 @@ struct AlphabeticKeyboard: View {
                 Spacer(minLength: 20)
             }
             HStack {
-                InputButton(action: .shift(currentState: state))
+                SystemKeyboardButton(action: .shift(currentState: state))
                     .frame(width: 50)
                 inputButtons(for: inputActions[2])
-                InputButton(action: .backspace)
+                SystemKeyboardButton(action: .backspace)
                     .frame(width: 50)
             }
-            HStack {
-                InputButton(action: .keyboardType(.numeric))
-                InputButton(action: .keyboardType(.emojis))
-                inputButtons(for: inputActions[2])
-                InputButton(action: .re)
-                    .frame(width: 50)
-            }
-            InputButton(action: .emoji("😀"))
-            Text("System")
+            SystemKeyboardBottomRow(
+                leftmostAction: .keyboardType(.numeric),
+                buttonBuilder: SystemKeyboardBottomRow.standardButtonBuilder())
         }.padding(4)
     }
     
     func inputButtons(for row: KeyboardActionRow) -> some View {
         HStack(spacing: 6) {
             ForEach(Array(row.enumerated()), id: \.offset) { action in
-                InputButton(action: action.element)
+                SystemKeyboardButton(action: action.element)
             }
         }
     }
 }
-
-struct InputButton: View {
-    
-    let action: KeyboardAction
-    
-    @Environment(\.colorScheme) var colorScheme: ColorScheme
-    @EnvironmentObject var context: ObservableKeyboardContext
-    
-    var body: some View {
-        buttonContent
-            .systemKeyboardButtonStyle(for: action, scheme: colorScheme, context: context)
-            .keyboardAction(action, context: context)
-    }
-    
-    var buttonContent: AnyView {
-        if let text = action.systemKeyboardButtonText {
-            return AnyView(Text(text))
-        }
-        if let image = action.systemKeyboardButtonImage(for: context) {
-            return AnyView(image)
-        }
-        return AnyView(Text("-"))
-    }
-}
-
-
 
 struct KeyboardView_Previews: PreviewProvider {
     static var previews: some View {

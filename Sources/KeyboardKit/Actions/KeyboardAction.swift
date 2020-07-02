@@ -42,7 +42,6 @@ public enum KeyboardAction: Equatable {
     emojiCategory(_ category: EmojiCategory),
     escape,
     function,
-    go,
     image(description: String, keyboardImageName: String, imageName: String),
     keyboardType(KeyboardType),
     moveCursorBackward,

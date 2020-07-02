@@ -27,7 +27,6 @@ extension KeyboardAction {
             .emoji(""),
             .emojiCategory(.smileys),
             .function,
-            .go,
             .image(description: "", keyboardImageName: "", imageName: ""),
             .keyboardType(.email),
             .moveCursorBackward,

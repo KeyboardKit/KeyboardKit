@@ -52,7 +52,7 @@ The demo project contains a new `KeyboardKitSwiftUIPreviews` in which you can pr
 * `KeyboardInputViewController` `changeKeyboardTypeDelay` is now an argument in `changeKeyboardType`.
 * `KeyboardInputViewController` `keyboardType` has been moved to the context.
 
-* `AutocompleteToolbar` has been renamed to `AutocompleteToolbarVew`.
+* `AutocompleteToolbar` has been renamed to `AutocompleteToolbarView`.
 * `EmojiCategory.frequents` has been renamed to `frequent`.
 * `KeyboardActionHandler` now requires `canHandle(_:on:)` to be implemented.
 * `KeyboardAction` has new action types.
