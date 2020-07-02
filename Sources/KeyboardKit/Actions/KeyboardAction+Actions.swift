@@ -65,6 +65,7 @@ public extension KeyboardAction {
      */
     var standardTapActionForController: InputViewControllerAction? {
         switch self {
+        case .capsLock: return { $0?.changeKeyboardType(to: .alphabetic(.lowercased)) }
         case .dismissKeyboard: return { $0?.dismissKeyboard() }
         case .keyboardType(let type): return { $0?.changeKeyboardType(to: type) }
         case .shift: return { $0?.changeKeyboardType(to: .alphabetic(.uppercased), after: .milliseconds(200)) }

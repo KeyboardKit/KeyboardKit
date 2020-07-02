@@ -66,6 +66,7 @@ class KeyboardAction_ActionsTests: QuickSpec {
             it("is defined for some actions") {
                 expected = [
                     .backspace,
+                    .capsLock,
                     .character(""),
                     .dismissKeyboard,
                     .emoji(""),

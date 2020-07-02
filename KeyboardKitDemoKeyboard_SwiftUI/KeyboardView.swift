@@ -95,7 +95,7 @@ struct InputButton: View {
     
     var buttonContent: AnyView {
         if let text = action.systemKeyboardButtonText {
-            return AnyView(text)
+            return AnyView(Text(text))
         }
         if let image = action.systemKeyboardButtonImage {
             return AnyView(image)

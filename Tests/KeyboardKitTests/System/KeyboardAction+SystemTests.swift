@@ -17,22 +17,6 @@ class KeyboardAction_SystemTests: QuickSpec {
         
         let actions = KeyboardAction.testActions
         
-        var expected: [KeyboardAction]! {
-            didSet {
-                unexpected = actions
-                expected.forEach { action in
-                    unexpected.removeAll { $0 == action }
-                }
-            }
-        }
-        
-        var unexpected: [KeyboardAction]!
-        
-        beforeEach {
-            expected = []
-            unexpected = []
-        }
-        
         describe("system font") {
             
             it("is defined for all actions") {
