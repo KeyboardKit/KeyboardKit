@@ -18,7 +18,7 @@
                BlueprintIdentifier = "A94265372490CDCC00EB5551"
                BuildableName = "KeyboardKitDemoKeyboard_SwiftUI.appex"
                BlueprintName = "KeyboardKitDemoKeyboard_SwiftUI"
-               ReferencedContainer = "container:KeyboardKit.xcodeproj">
+               ReferencedContainer = "container:KeyboardKitDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -32,7 +32,7 @@
                BlueprintIdentifier = "84670444234A709400355331"
                BuildableName = "KeyboardKitDemo.app"
                BlueprintName = "KeyboardKitDemo"
-               ReferencedContainer = "container:KeyboardKit.xcodeproj">
+               ReferencedContainer = "container:KeyboardKitDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -64,7 +64,7 @@
             BlueprintIdentifier = "84670444234A709400355331"
             BuildableName = "KeyboardKitDemo.app"
             BlueprintName = "KeyboardKitDemo"
-            ReferencedContainer = "container:KeyboardKit.xcodeproj">
+            ReferencedContainer = "container:KeyboardKitDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -82,7 +82,7 @@
             BlueprintIdentifier = "84670444234A709400355331"
             BuildableName = "KeyboardKitDemo.app"
             BlueprintName = "KeyboardKitDemo"
-            ReferencedContainer = "container:KeyboardKit.xcodeproj">
+            ReferencedContainer = "container:KeyboardKitDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

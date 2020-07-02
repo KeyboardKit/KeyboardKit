@@ -684,7 +684,7 @@
 					};
 				};
 			};
-			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "KeyboardKit" */;
+			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "KeyboardKitDemo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -1514,7 +1514,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_2 /* Build configuration list for PBXProject "KeyboardKit" */ = {
+		OBJ_2 /* Build configuration list for PBXProject "KeyboardKitDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				OBJ_3 /* Debug */,

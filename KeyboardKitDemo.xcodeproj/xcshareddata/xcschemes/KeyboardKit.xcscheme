@@ -17,7 +17,7 @@
                BlueprintIdentifier = "KeyboardKit::KeyboardKit"
                BuildableName = "KeyboardKit.framework"
                BlueprintName = "KeyboardKit"
-               ReferencedContainer = "container:KeyboardKit.xcodeproj">
+               ReferencedContainer = "container:KeyboardKitDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -31,7 +31,7 @@
                BlueprintIdentifier = "84670444234A709400355331"
                BuildableName = "KeyboardKitDemo.app"
                BlueprintName = "KeyboardKitDemo"
-               ReferencedContainer = "container:KeyboardKit.xcodeproj">
+               ReferencedContainer = "container:KeyboardKitDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -49,7 +49,7 @@
                BlueprintIdentifier = "KeyboardKit::KeyboardKitTests"
                BuildableName = "KeyboardKitTests.xctest"
                BlueprintName = "KeyboardKitTests"
-               ReferencedContainer = "container:KeyboardKit.xcodeproj">
+               ReferencedContainer = "container:KeyboardKitDemo.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,7 +71,7 @@
             BlueprintIdentifier = "84670444234A709400355331"
             BuildableName = "KeyboardKitDemo.app"
             BlueprintName = "KeyboardKitDemo"
-            ReferencedContainer = "container:KeyboardKit.xcodeproj">
+            ReferencedContainer = "container:KeyboardKitDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -87,7 +87,7 @@
             BlueprintIdentifier = "KeyboardKit::KeyboardKit"
             BuildableName = "KeyboardKit.framework"
             BlueprintName = "KeyboardKit"
-            ReferencedContainer = "container:KeyboardKit.xcodeproj">
+            ReferencedContainer = "container:KeyboardKitDemo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

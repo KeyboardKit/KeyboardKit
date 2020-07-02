@@ -8,6 +8,11 @@
 
 import UIKit
 
+/**
+ The "system" extensions are just suggestions if you want to
+ mimic system keyboards. You do not have to use them in your
+ custom keyboards.
+ */
 public extension KeyboardAction {
     
     /**
@@ -18,6 +23,19 @@ public extension KeyboardAction {
      */
     var systemFont: UIFont {
         .preferredFont(forTextStyle: systemTextStyle)
+    }
+    
+    /**
+     The text that should be used by system keyboard buttons
+     that performs this action.
+     */
+    var systemKeyboardButtonText: String? {
+        switch self {
+        case .character(let char): return char
+        case .emoji(let emoji): return emoji
+        case .keyboardType(let type): return type.systemKeyboardButtonText
+        default: return nil
+        }
     }
     
     /**

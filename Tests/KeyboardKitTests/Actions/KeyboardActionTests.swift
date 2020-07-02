@@ -95,6 +95,7 @@ class KeyboardActionTests: QuickSpec {
                     .backspace,
                     .capsLock,
                     .command,
+                    .control,
                     .dictation,
                     .dismissKeyboard,
                     .emojiCategory(.smileys),

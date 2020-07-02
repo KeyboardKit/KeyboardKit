@@ -88,9 +88,7 @@ struct InputButton: View {
     @EnvironmentObject var context: ObservableKeyboardContext
     
     var body: some View {
-        let appearance = context.textDocumentProxy.keyboardAppearance ?? .light
-        
-        return buttonContent
+        buttonContent
             .systemKeyboardButtonStyle(for: action, scheme: colorScheme, context: context)
             .keyboardAction(action, context: context)
     }
