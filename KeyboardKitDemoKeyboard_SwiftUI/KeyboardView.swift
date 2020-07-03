@@ -29,26 +29,46 @@ private extension KeyboardView {
     
     var keyboardView: AnyView {
         switch context.keyboardType {
-        case .alphabetic(let state): return AnyView(AlphabeticKeyboard(state: state))
+        case .alphabetic(let state): return AnyView(AlphabeticKeyboard(inputSet: .english, state: state))
         default: return AnyView(Text("Not implemented"))
         }
     }
 }
 
-struct AlphabeticKeyboard: View {
+
+protocol SystemKeyboard: View {}
+
+extension SystemKeyboard {
     
-    let state: KeyboardShiftState
+    /**
+     Create a horizontal list of `SystemKeyboardButton` that
+     share the available horizontal space.
+     */
+    func systemButtons(for row: KeyboardActionRow) -> some View {
+        HStack(spacing: 6) {
+            ForEach(Array(row.enumerated()), id: \.offset) { action in
+                SystemKeyboardButton(action: action.element)
+            }
+        }
+    }
+}
+
+
+struct AlphabeticKeyboard: View, SystemKeyboard {
     
-    var inputActions: KeyboardActionRows {
-        let chars = state.isUppercased ? inputCharacters.uppercased() : inputCharacters
-        return KeyboardActionRows(characters: chars)
+    init(inputSet: KeyboardInputSet, state: KeyboardShiftState) {
+        self.inputSet = inputSet
+        self.state = state
     }
     
-    let inputCharacters: [[String]] = [
-        ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
-        ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
-        ["z", "x", "c", "v", "b", "n", "m"]
-    ]
+    private let inputSet: KeyboardInputSet
+    private let state: KeyboardShiftState
+    
+    var inputActions: KeyboardActionRows {
+        let inputs = inputSet.inputCharacters
+        let chars = state.isUppercased ? inputs.uppercased() : inputs
+        return KeyboardActionRows(characters: chars)
+    }
     
     /*TODO:
     Numeric keyboard
@@ -56,34 +76,24 @@ struct AlphabeticKeyboard: View {
     Emoji keyboard
      Image keyboard*/
     
-    
     var body: some View {
         VStack(spacing: 13) {
-            Text("Autocomplete TBD")
-            inputButtons(for: inputActions[0])
+            AutocompleteToolbar()
+            systemButtons(for: inputActions[0])
             HStack {
                 Spacer(minLength: 20)
-                inputButtons(for: inputActions[1])
+                systemButtons(for: inputActions[1])
                 Spacer(minLength: 20)
             }
             HStack {
                 SystemKeyboardButton(action: .shift(currentState: state))
                     .frame(width: 50)
-                inputButtons(for: inputActions[2])
+                systemButtons(for: inputActions[2])
                 SystemKeyboardButton(action: .backspace)
                     .frame(width: 50)
             }
             SystemKeyboardBottomRow(leftmostAction: .keyboardType(.numeric))
-                .font(.footnote)
         }.padding(4)
-    }
-    
-    func inputButtons(for row: KeyboardActionRow) -> some View {
-        HStack(spacing: 6) {
-            ForEach(Array(row.enumerated()), id: \.offset) { action in
-                SystemKeyboardButton(action: action.element)
-            }
-        }
     }
 }
 

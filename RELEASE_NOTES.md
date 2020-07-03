@@ -18,12 +18,14 @@ There is a new `KeyboardContext`, which provides important contextual informatio
 * `StandardKeyboardActionHandler` now automatically handles keyboard type switching and only delays if an action has a double-tap action.
 * `StandardKeyboardActionHandler` now automatically switches to certain keyboards after certain actions, as defined by `handleKeyboardSwitch(after:on:)` and `preferredKeyboardType(after:on:)`.
 
-There are new `KeyboardAction` types and props:
+There are new `KeyboardAction` types and properties:
 * `.control` represents the system.
 * `.systemImage` can be used with SF Symbols.
 * `.systemFont` and `.systemTextStyle` provide system look information.
 
-There is a new `System` namespace with utils to help you build native-imitating keyboards:
+There is a new `System` namespace with utils to help you build native-imitating system keyboards.
+
+There is a new `KeyboardInputSet` concept that will simplify building language-specific keyboards. For now, it contains English characters, numerics and symbols. 
 
 The demo project contains a new `KeyboardKitSwiftUIPreviews` in which you can preview KeyboardKitSwiftUI views. 
 
