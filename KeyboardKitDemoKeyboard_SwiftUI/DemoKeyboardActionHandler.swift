@@ -1,9 +1,9 @@
 //
 //  DemoKeyboardActionHandler.swift
-//  KeyboardKitExampleKeyboard
+//  KeyboardKitExampleKeyboard_SwiftUI
 //
-//  Created by Daniel Saidi on 2019-04-24.
-//  Copyright © 2019 Daniel Saidi. All rights reserved.
+//  Created by Daniel Saidi on 2020-07-02.
+//  Copyright © 2020 Daniel Saidi. All rights reserved.
 //
 
 import KeyboardKit
@@ -12,13 +12,16 @@ import UIKit
 /**
  This action handler inherits `StandardKeyboardActionHandler`
  and adds demo-specific functionality to it.
+ 
+ `TODO` The handler is not complete. It doesn't handle emoji
+ keyboards, alerts, autocomplete etc.
  */
 class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     
     // MARK: - Initialization
     
-    public init(inputViewController: KeyboardInputViewController) {
+    public init(inputViewController: KeyboardViewController) {
         super.init(
             inputViewController: inputViewController,
             hapticConfiguration: .standard
@@ -56,7 +59,8 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     override func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         super.handle(gesture, on: action, sender: sender)
-        demoViewController?.requestAutocompleteSuggestions()
+        print("TODO: Request new autocomplete suggestions")
+        //demoViewController?.requestAutocompleteSuggestions()
     }
 }
 
@@ -77,8 +81,10 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
 private extension DemoKeyboardActionHandler {
     
     func alert(_ message: String) {
-        guard let input = inputViewController as? KeyboardViewController else { return }
-        input.alerter.alert(message: message, in: input.view, withDuration: 4)
+        print("TODO: Implement SwiftUI alert")
+        print(message)
+        //guard let input = inputViewController as? KeyboardViewController else { return }
+        //input.alerter.alert(message: message, in: input.view, withDuration: 4)
     }
     
     func copyImage(_ image: UIImage) {
@@ -89,7 +95,7 @@ private extension DemoKeyboardActionHandler {
     }
     
     /**
-     `NOTE` Changing to alphabetic lower case should be done
+     `TODO` Changing to alphabetic lower case should be done
      in `StandardKeyboardActionHandler`.
      */
     func handleSpace(for sender: Any?) -> GestureAction {
@@ -110,14 +116,6 @@ private extension DemoKeyboardActionHandler {
     }
     
     func switchToEmojiKeyboardCategory(_ cat: EmojiCategory) {
-        guard
-            let vc = demoViewController,
-            let view = vc.emojiCollectionView,
-            let keyboard = vc.emojiKeyboard,
-            let index = keyboard.getPageIndex(for: cat)
-            else { return }
-        view.currentPageIndex = index
-        view.persistCurrentPageIndex()
-        vc.emojiCategoryTitleLabel.text = cat.title
+        print("TODO: Implement emoji keyboard")
     }
 }

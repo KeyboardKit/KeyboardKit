@@ -48,10 +48,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     private let hapticConfiguration: HapticFeedbackConfiguration
     
-    public var textDocumentProxy: UITextDocumentProxy? {
-        inputViewController?.textDocumentProxy
-    }
-    
     
     // MARK: - Types
     

@@ -40,10 +40,6 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup(with: KeyboardView(controller: self))
-    }
-    
-    override func viewWillLayoutSubviews() {
-        //self.nextKeyboardButton.isHidden = !self.needsInputModeSwitchKey
-        super.viewWillLayoutSubviews()
+        context.actionHandler = DemoKeyboardActionHandler(inputViewController: self)
     }
 }

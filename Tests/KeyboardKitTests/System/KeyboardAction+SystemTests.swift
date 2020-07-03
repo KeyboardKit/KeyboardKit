@@ -63,10 +63,18 @@ class KeyboardAction_SystemTests: QuickSpec {
         
         describe("system text style") {
             
+            func getActions(_ actions: KeyboardAction...) -> [KeyboardAction] { actions }
+            
             it("is custom for some actions, but defined for all") {
+                let expectedTitle1 = getActions(.emoji(""))
+                var expectedBody = actions.filter { $0.isSystemAction && $0.systemKeyboardButtonText != nil }
+                expectedBody.append(.character("abc"))
+                
                 actions.forEach {
-                    if $0 == .emoji("") {
+                    if expectedTitle1.contains($0) {
                         expect($0.systemTextStyle).to(equal(.title1))
+                    } else if expectedBody.contains($0) {
+                        expect($0.systemTextStyle).to(equal(.body))
                     } else {
                         expect($0.systemTextStyle).to(equal(.title2))
                     }

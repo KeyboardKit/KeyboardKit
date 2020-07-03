@@ -45,9 +45,22 @@ public extension KeyboardAction {
      just a suggestion, that you can ignore or override.
     */
     var systemTextStyle: UIFont.TextStyle {
+        if hasMultiCharSystemKeyboardButtonText { return .body }
         switch self {
         case .emoji: return .title1
         default: return .title2
         }
+    }
+}
+
+private extension KeyboardAction {
+    
+    /**
+     Whether or not the system button text contains multiple
+     characters.
+     */
+    var hasMultiCharSystemKeyboardButtonText: Bool {
+        guard let text = systemKeyboardButtonText else { return false }
+        return text.count > 1
     }
 }

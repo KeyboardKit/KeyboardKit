@@ -6,7 +6,7 @@
 //  Copyright © 2020 Daniel Saidi. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 /**
  This action enum specifies all currently supported keyboard
@@ -60,13 +60,6 @@ public enum KeyboardAction: Equatable {
 // MARK: - Public Extensions
 
 public extension KeyboardAction {
-    
-    
-    // MARK: - Types
-    
-    typealias GestureAction = (KeyboardInputViewController?) -> Void
-    typealias InputViewControllerAction = (KeyboardInputViewController?) -> Void
-    typealias TextDocumentProxyAction = (UITextDocumentProxy?) -> Void
     
     
     // MARK: - Properties

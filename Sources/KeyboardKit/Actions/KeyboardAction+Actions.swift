@@ -6,9 +6,17 @@
 //  Copyright © 2020 Daniel Saidi. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public extension KeyboardAction {
+    
+    
+    // MARK: - Types
+    
+    typealias GestureAction = (KeyboardInputViewController?) -> Void
+    typealias InputViewControllerAction = (KeyboardInputViewController?) -> Void
+    typealias TextDocumentProxyAction = (UITextDocumentProxy?) -> Void
+    
     
     /**
      The standard action, if any, that should be executed on

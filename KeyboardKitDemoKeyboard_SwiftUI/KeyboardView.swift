@@ -50,6 +50,13 @@ struct AlphabeticKeyboard: View {
         ["z", "x", "c", "v", "b", "n", "m"]
     ]
     
+    /*TODO:
+    Numeric keyboard
+    Symbolic keyboard
+    Emoji keyboard
+     Image keyboard*/
+    
+    
     var body: some View {
         VStack(spacing: 13) {
             Text("Autocomplete TBD")
@@ -66,9 +73,8 @@ struct AlphabeticKeyboard: View {
                 SystemKeyboardButton(action: .backspace)
                     .frame(width: 50)
             }
-            SystemKeyboardBottomRow(
-                leftmostAction: .keyboardType(.numeric),
-                buttonBuilder: SystemKeyboardBottomRow.standardButtonBuilder())
+            SystemKeyboardBottomRow(leftmostAction: .keyboardType(.numeric))
+                .font(.footnote)
         }.padding(4)
     }
     
