@@ -1,5 +1,5 @@
 //
-//  KeyboardInputSetTests.swift
+//  KeyboardInputSet+EnglishTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-07-03.
@@ -9,8 +9,6 @@
 import Quick
 import Nimble
 import KeyboardKit
-import Mockery
-import UIKit
 
 class KeyboardInputSetTests: QuickSpec {
     
@@ -19,7 +17,7 @@ class KeyboardInputSetTests: QuickSpec {
         describe("english sets") {
             
             func rows(in set: KeyboardInputSet) -> Int {
-                set.inputCharacters.count
+                set.inputRows.count
             }
             
             it("are correctly setup") {

@@ -463,6 +463,7 @@
 		A94265392490CDCC00EB5551 /* KeyboardKitDemoKeyboard_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				A990010D24B0DC0E003F1E21 /* New Group */,
 				A94C721D24B0D02E00077EEA /* Extension */,
 				A94C721A24AF0D8700077EEA /* Views */,
 				A94265532490D1CB00EB5551 /* Supporting Files */,
@@ -503,6 +504,13 @@
 				15133C74245862B300748945 /* EmojiCategory+L10n.swift */,
 			);
 			path = Localization;
+			sourceTree = "<group>";
+		};
+		A990010D24B0DC0E003F1E21 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		A9E56EE52499632000158AB7 /* KeyboardKitSwiftUIPreviews */ = {

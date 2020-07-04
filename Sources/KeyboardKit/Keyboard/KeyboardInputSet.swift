@@ -11,39 +11,27 @@ import Foundation
 /**
  A "keyboard input set" represents the text input parts of a
  system keyboard, i.e. the lighter input keys.
- 
- `TODO` It should be possible to initialize an input set for
- a supported locale. Implement this once we support multiple
- locales and this model has proven viable.
  */
-public struct KeyboardInputSet {
+public class KeyboardInputSet {
     
-    public let inputCharacters: [[String]]
+    public init(inputRows: [[String]]) {
+        self.inputRows = inputRows
+    }
+    
+    public let inputRows: [[String]]
 }
 
-public extension KeyboardInputSet {
-    
-    static var english: KeyboardInputSet {
-        KeyboardInputSet(inputCharacters: [
-            ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
-            ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
-            ["z", "x", "c", "v", "b", "n", "m"]
-        ])
-    }
-    
-    static var englishNumeric: KeyboardInputSet {
-        KeyboardInputSet(inputCharacters: [
-            ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
-            ["-", "/", ":", ";", "(", ")", "$", "&", "@", "\""],
-            [".", ",", "?", "!", "´"]
-        ])
-    }
-    
-    static var englishSymbolic: KeyboardInputSet {
-        KeyboardInputSet(inputCharacters: [
-            ["[", "]", "{", "}", "#", "%", "^", "*", "+", "="],
-            ["_", "\\", "|", "~", "<", ">", "€", "£", "¥", "•"],
-            [".", ",", "?", "!", "´"]
-        ])
-    }
-}
+/**
+ This input set should only be used in alphabetic keyboards.
+ */
+public class AlphabeticKeyboardInputSet: KeyboardInputSet {}
+
+/**
+ This input set should only be used in numeric keyboards.
+ */
+public class NumericKeyboardInputSet: KeyboardInputSet {}
+
+/**
+ This input set should only be used in symbolic keyboards.
+ */
+public class SymbolicKeyboardInputSet: KeyboardInputSet {}
