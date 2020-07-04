@@ -30,6 +30,8 @@ private extension KeyboardView {
     var keyboardView: AnyView {
         switch context.keyboardType {
         case .alphabetic(let state): return AnyView(AlphabeticKeyboard(inputSet: .english, state: state))
+        case .numeric: return AnyView(NumericKeyboard(inputSet: .englishNumeric))
+        case .symbolic: return AnyView(SymbolicKeyboard(inputSet: .englishSymbolic))
         default: return AnyView(Text("Not implemented"))
         }
     }
@@ -53,6 +55,13 @@ extension SystemKeyboard {
     }
 }
 
+extension SystemKeyboardButton {
+    
+    var wideSideKey: some View {
+        self.frame(width: 50)
+    }
+}
+
 
 struct AlphabeticKeyboard: View, SystemKeyboard {
     
@@ -71,8 +80,6 @@ struct AlphabeticKeyboard: View, SystemKeyboard {
     }
     
     /*TODO:
-    Numeric keyboard
-    Symbolic keyboard
     Emoji keyboard
      Image keyboard*/
     
@@ -86,13 +93,65 @@ struct AlphabeticKeyboard: View, SystemKeyboard {
                 Spacer(minLength: 20)
             }
             HStack {
-                SystemKeyboardButton(action: .shift(currentState: state))
-                    .frame(width: 50)
+                SystemKeyboardButton(action: .shift(currentState: state)).wideSideKey
                 systemButtons(for: inputActions[2])
-                SystemKeyboardButton(action: .backspace)
-                    .frame(width: 50)
+                SystemKeyboardButton(action: .backspace).wideSideKey
             }
             SystemKeyboardBottomRow(leftmostAction: .keyboardType(.numeric))
+        }.padding(4)
+    }
+}
+
+struct NumericKeyboard: View, SystemKeyboard {
+    
+    init(inputSet: KeyboardInputSet) {
+        self.inputSet = inputSet
+    }
+    
+    private let inputSet: KeyboardInputSet
+    
+    var inputActions: KeyboardActionRows {
+        KeyboardActionRows(characters: inputSet.inputCharacters)
+    }
+    
+    var body: some View {
+        VStack(spacing: 13) {
+            AutocompleteToolbar()
+            systemButtons(for: inputActions[0])
+            systemButtons(for: inputActions[1])
+            HStack {
+                SystemKeyboardButton(action: .keyboardType(.symbolic)).wideSideKey
+                systemButtons(for: inputActions[2])
+                SystemKeyboardButton(action: .backspace).wideSideKey
+            }
+            SystemKeyboardBottomRow(leftmostAction: .keyboardType(.alphabetic(.lowercased)))
+        }.padding(4)
+    }
+}
+
+struct SymbolicKeyboard: View, SystemKeyboard {
+    
+    init(inputSet: KeyboardInputSet) {
+        self.inputSet = inputSet
+    }
+    
+    private let inputSet: KeyboardInputSet
+    
+    var inputActions: KeyboardActionRows {
+        KeyboardActionRows(characters: inputSet.inputCharacters)
+    }
+    
+    var body: some View {
+        VStack(spacing: 13) {
+            AutocompleteToolbar()
+            systemButtons(for: inputActions[0])
+            systemButtons(for: inputActions[1])
+            HStack {
+                SystemKeyboardButton(action: .keyboardType(.numeric)).wideSideKey
+                systemButtons(for: inputActions[2])
+                SystemKeyboardButton(action: .backspace).wideSideKey
+            }
+            SystemKeyboardBottomRow(leftmostAction: .keyboardType(.alphabetic(.lowercased)))
         }.padding(4)
     }
 }

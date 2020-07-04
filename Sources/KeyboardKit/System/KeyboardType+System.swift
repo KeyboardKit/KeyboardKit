@@ -6,7 +6,6 @@
 //  Copyright © 2020 Daniel Saidi. All rights reserved.
 //
 
-import KeyboardKit
 import SwiftUI
 
 /**
@@ -22,6 +21,7 @@ public extension KeyboardType {
      */
     var systemKeyboardButtonText: String? {
         switch self {
+        case .alphabetic: return "ABC"
         case .numeric: return "123"
         case .symbolic: return "#+="
         default: return nil

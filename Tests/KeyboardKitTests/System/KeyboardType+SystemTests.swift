@@ -22,12 +22,11 @@ class KeyboardType_SystemTests: QuickSpec {
             }
             
             it("is defined for some types") {
+                expect(result(for: .alphabetic(.capsLocked))).to(equal("ABC"))
+                expect(result(for: .alphabetic(.lowercased))).to(equal("ABC"))
+                expect(result(for: .alphabetic(.uppercased))).to(equal("ABC"))
                 expect(result(for: .numeric)).to(equal("123"))
                 expect(result(for: .symbolic)).to(equal("#+="))
-                
-                expect(result(for: .alphabetic(.capsLocked))).to(beNil())
-                expect(result(for: .alphabetic(.lowercased))).to(beNil())
-                expect(result(for: .alphabetic(.uppercased))).to(beNil())
                 expect(result(for: .custom(""))).to(beNil())
                 expect(result(for: .email)).to(beNil())
                 expect(result(for: .emojis)).to(beNil())
