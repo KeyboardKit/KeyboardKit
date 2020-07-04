@@ -12,8 +12,13 @@ KeyboardKit has many SwiftUI views that can be composed into SwiftUI-based keybo
 * `KeyboardGrid` can be used to list actions in a grid with a certain number of `columns`. 
 * `KeyboardImageButton` shows an image with a tap and long press action.
 * `NextKeyboardButton` switches to the next system keyboard when it is tapped and opens a system keyboard menu when it is pressed.
-* `SystemKeyboardBottomRow` mimicks a system keyboard bottom row that is used for alphabetic, numeric and symbolic system keyboards.
+* `SystemKeyboardBottomRow` mimicks the bottom row in alphabetic, numeric and symbolic system keyboards.
 * `SystemKeyboardButton` mimicks the system keyboard buttons that are used in all system keyboards.
+* `SystemKeyboardButtonRow` mimicks a button row in alphabetic, numeric and symbolic system keyboards.
+
+* `AlphabeticSystemKeyboard` mimics an alphabetical system keyboard.
+* `NumericSystemKeyboard` mimics a numeric system keyboard.
+* `SymbolicSystemKeyboard` mimics a symbolic system keyboard.
 
 Since these views are regular views, you can use them in your hosting application as well, provided that is also uses SwiftUI.
 

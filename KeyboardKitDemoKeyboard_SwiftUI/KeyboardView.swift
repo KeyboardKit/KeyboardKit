@@ -10,6 +10,16 @@ import SwiftUI
 import KeyboardKit
 import KeyboardKitSwiftUI
 
+/**
+ This view is the main view that is used by the extension by
+ calling `setup(with:)` in `KeyboardViewController`.
+ 
+ The view will switch over the current keyboard type and add
+ the correct keyboard view.
+ 
+ `TODO` Add support for emoji keyboard
+ `TODO` Add support for image keyboard
+ */
 struct KeyboardView: View {
     
     init(controller: KeyboardInputViewController) {
@@ -27,132 +37,33 @@ struct KeyboardView: View {
 
 private extension KeyboardView {
     
-    var keyboardView: AnyView {
-        switch context.keyboardType {
-        case .alphabetic(let state): return AnyView(AlphabeticKeyboard(inputSet: .english, state: state))
-        case .numeric: return AnyView(NumericKeyboard(inputSet: .englishNumeric))
-        case .symbolic: return AnyView(SymbolicKeyboard(inputSet: .englishSymbolic))
-        default: return AnyView(Text("Not implemented"))
-        }
+    func alphabeticKeyboard(_ state: KeyboardShiftState) -> some View {
+        AlphabeticSystemKeyboard(inputSet: .english, state: state, topmostView: AnyView(AutocompleteToolbar()))
     }
-}
-
-
-protocol SystemKeyboard: View {}
-
-extension SystemKeyboard {
+    
+    func numericKeyboard() -> some View {
+        NumericSystemKeyboard(inputSet: .englishNumeric, topmostView: AnyView(AutocompleteToolbar()))
+    }
+    
+    func symbolicKeyboard() -> some View {
+        SymbolicSystemKeyboard(inputSet: .englishSymbolic, topmostView: AnyView(AutocompleteToolbar()))
+    }
     
     /**
-     Create a horizontal list of `SystemKeyboardButton` that
-     share the available horizontal space.
+     `TODO` After upgrading to Xcode 14 and Swift 5.3, we'll
+     move this into `body`, since switches will be supported.
      */
-    func systemButtons(for row: KeyboardActionRow) -> some View {
-        HStack(spacing: 6) {
-            ForEach(Array(row.enumerated()), id: \.offset) { action in
-                SystemKeyboardButton(action: action.element)
-            }
+    var keyboardView: AnyView {
+        switch context.keyboardType {
+        case .alphabetic(let state): return AnyView(alphabeticKeyboard(state))
+        case .numeric: return AnyView(numericKeyboard())
+        case .symbolic: return AnyView(symbolicKeyboard())
+        default: return AnyView(Button("This keyboard is not yet implemented", action: switchKeyboard))
         }
     }
-}
-
-extension SystemKeyboardButton {
     
-    var wideSideKey: some View {
-        self.frame(width: 50)
-    }
-}
-
-
-struct AlphabeticKeyboard: View, SystemKeyboard {
-    
-    init(inputSet: KeyboardInputSet, state: KeyboardShiftState) {
-        self.inputSet = inputSet
-        self.state = state
-    }
-    
-    private let inputSet: KeyboardInputSet
-    private let state: KeyboardShiftState
-    
-    var inputActions: KeyboardActionRows {
-        let inputs = inputSet.inputCharacters
-        let chars = state.isUppercased ? inputs.uppercased() : inputs
-        return KeyboardActionRows(characters: chars)
-    }
-    
-    /*TODO:
-    Emoji keyboard
-     Image keyboard*/
-    
-    var body: some View {
-        VStack(spacing: 13) {
-            AutocompleteToolbar()
-            systemButtons(for: inputActions[0])
-            HStack {
-                Spacer(minLength: 20)
-                systemButtons(for: inputActions[1])
-                Spacer(minLength: 20)
-            }
-            HStack {
-                SystemKeyboardButton(action: .shift(currentState: state)).wideSideKey
-                systemButtons(for: inputActions[2])
-                SystemKeyboardButton(action: .backspace).wideSideKey
-            }
-            SystemKeyboardBottomRow(leftmostAction: .keyboardType(.numeric))
-        }.padding(4)
-    }
-}
-
-struct NumericKeyboard: View, SystemKeyboard {
-    
-    init(inputSet: KeyboardInputSet) {
-        self.inputSet = inputSet
-    }
-    
-    private let inputSet: KeyboardInputSet
-    
-    var inputActions: KeyboardActionRows {
-        KeyboardActionRows(characters: inputSet.inputCharacters)
-    }
-    
-    var body: some View {
-        VStack(spacing: 13) {
-            AutocompleteToolbar()
-            systemButtons(for: inputActions[0])
-            systemButtons(for: inputActions[1])
-            HStack {
-                SystemKeyboardButton(action: .keyboardType(.symbolic)).wideSideKey
-                systemButtons(for: inputActions[2])
-                SystemKeyboardButton(action: .backspace).wideSideKey
-            }
-            SystemKeyboardBottomRow(leftmostAction: .keyboardType(.alphabetic(.lowercased)))
-        }.padding(4)
-    }
-}
-
-struct SymbolicKeyboard: View, SystemKeyboard {
-    
-    init(inputSet: KeyboardInputSet) {
-        self.inputSet = inputSet
-    }
-    
-    private let inputSet: KeyboardInputSet
-    
-    var inputActions: KeyboardActionRows {
-        KeyboardActionRows(characters: inputSet.inputCharacters)
-    }
-    
-    var body: some View {
-        VStack(spacing: 13) {
-            AutocompleteToolbar()
-            systemButtons(for: inputActions[0])
-            systemButtons(for: inputActions[1])
-            HStack {
-                SystemKeyboardButton(action: .keyboardType(.numeric)).wideSideKey
-                systemButtons(for: inputActions[2])
-                SystemKeyboardButton(action: .backspace).wideSideKey
-            }
-            SystemKeyboardBottomRow(leftmostAction: .keyboardType(.alphabetic(.lowercased)))
-        }.padding(4)
+    func switchKeyboard() {
+        context.actionHandler.handle(.tap, on: .keyboardType(.alphabetic(.lowercased)))
     }
 }
 
