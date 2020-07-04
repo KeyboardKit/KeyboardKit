@@ -56,6 +56,7 @@ private extension KeyboardView {
     var keyboardView: AnyView {
         switch context.keyboardType {
         case .alphabetic(let state): return AnyView(alphabeticKeyboard(state))
+        case .images: return AnyView(ImageKeyboard())
         case .numeric: return AnyView(numericKeyboard())
         case .symbolic: return AnyView(symbolicKeyboard())
         default: return AnyView(Button("This keyboard is not yet implemented", action: switchKeyboard))
