@@ -17,8 +17,8 @@ import KeyboardKitSwiftUI
  The view will switch over the current keyboard type and add
  the correct keyboard view.
  
- `TODO` Add support for emoji keyboard
- `TODO` Add support for image keyboard
+ `TODO` Add support for emoji keyboard, once lazy stacks are
+ supported. Now, the app crashes due to memory pressure.
  */
 struct KeyboardView: View {
     
@@ -28,10 +28,26 @@ struct KeyboardView: View {
     
     private let controller: KeyboardInputViewController
     
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
     @EnvironmentObject var context: ObservableKeyboardContext
     
     var body: some View {
-        keyboardView
+        ZStack {
+        
+            keyboardView
+            text
+        }
+    }
+    
+    var text: Text {
+        let a = context.textDocumentProxy.keyboardAppearance == .default
+        let b = context.textDocumentProxy.keyboardAppearance == .light
+        let c = context.textDocumentProxy.keyboardAppearance == .dark
+        let d = context.traitCollection.userInterfaceStyle == .light
+        let e = context.controller.traitCollection.userInterfaceStyle == .light
+        let f = colorScheme == .light
+        let str = "\(a) \(b) \(c) \(d) \(e) \(f)"
+        return Text(str)
     }
 }
 
@@ -56,7 +72,6 @@ private extension KeyboardView {
     var keyboardView: AnyView {
         switch context.keyboardType {
         case .alphabetic(let state): return AnyView(alphabeticKeyboard(state))
-        case .images: return AnyView(ImageKeyboard())
         case .numeric: return AnyView(numericKeyboard())
         case .symbolic: return AnyView(symbolicKeyboard())
         default: return AnyView(Button("This keyboard is not yet implemented", action: switchKeyboard))

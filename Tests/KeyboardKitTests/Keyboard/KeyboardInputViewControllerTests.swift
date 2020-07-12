@@ -64,12 +64,27 @@ class KeyboardInputViewControllerTests: QuickSpec {
         describe("view will layout subviews") {
             
             it("updates context") {
+                vc.hasDictationKeyValue = true
                 vc.needsInputModeSwitchKeyValue = true
                 vc.viewWillLayoutSubviews()
+                expect(vc.context.hasDictationKey).to(beTrue())
                 expect(vc.context.needsInputModeSwitchKey).to(beTrue())
+                vc.hasDictationKeyValue = false
                 vc.needsInputModeSwitchKeyValue = false
                 vc.viewWillLayoutSubviews()
+                expect(vc.context.hasDictationKey).to(beFalse())
                 expect(vc.context.needsInputModeSwitchKey).to(beFalse())
+            }
+        }
+        
+        describe("view will sync with text document proxy") {
+            
+            it("updates context") {
+                expect(vc.context.textDocumentProxy).to(be(vc.textDocumentProxy))
+                vc.context.textDocumentProxy = UIInputViewController().textDocumentProxy
+                expect(vc.context.textDocumentProxy).toNot(be(vc.textDocumentProxy))
+                vc.viewWillSyncWithTextDocumentProxy()
+                expect(vc.context.textDocumentProxy).to(be(vc.textDocumentProxy))
             }
         }
         
@@ -159,10 +174,17 @@ private class TestClass: KeyboardInputViewController, Mockable {
     var hasFullAccessValue = false
     override var hasFullAccess: Bool { hasFullAccessValue }
     
+    var hasDictationKeyValue = false
+    override var hasDictationKey: Bool {
+        get { hasDictationKeyValue }
+        set { hasDictationKeyValue = newValue }
+    }
+    
     var needsInputModeSwitchKeyValue = false
     override var needsInputModeSwitchKey: Bool { needsInputModeSwitchKeyValue }
     
     override func viewWillSyncWithTextDocumentProxy() {
+        super.viewWillSyncWithTextDocumentProxy()
         mock.invoke(viewWillSyncWithTextDocumentProxy, args: ())
     }
     

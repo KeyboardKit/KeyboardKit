@@ -34,6 +34,7 @@ class StandardKeyboardContextTests: QuickSpec {
                 )
                 
                 expect(context.actionHandler).to(be(actionHandler))
+                expect(context.controller).to(be(controller))
                 expect(context.hasDictationKey).to(equal(controller.hasDictationKey))
                 expect(context.hasFullAccess).to(equal(controller.hasFullAccess))
                 expect(context.keyboardType).to(equal(.images))
@@ -41,6 +42,7 @@ class StandardKeyboardContextTests: QuickSpec {
                 expect(context.primaryLanguage).to(beNil())
                 expect(context.textDocumentProxy).to(be(controller.textDocumentProxy))
                 expect(context.textInputMode).to(beNil())
+                expect(context.traitCollection).to(equal(controller.traitCollection))
             }
         }
     }

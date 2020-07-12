@@ -23,32 +23,41 @@ open class KeyboardInputViewController: UIInputViewController {
     // MARK: - View Controller Lifecycle
     
     /**
-     This calls the super class' implementation then sets up
-     the keyboard by calling `setupKeyboard`. If you want to
-     change keyboard type later, call `changeKeyboardType`.
+     This calls the super class implementation, then sets up
+     the keyboard by calling `setupKeyboard`.
      */
     open override func viewDidLoad() {
         super.viewDidLoad()
         setupKeyboard()
     }
     
+    /**
+     This calls the super class implementation then performs
+     a full context syncs.
+     */
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         context.sync(with: self)
         viewWillSyncWithTextDocumentProxy()
     }
     
+    /**
+     This calls the super class implementation, then updates
+     some `context` properties.
+     */
     open override func viewWillLayoutSubviews() {
+        context.hasDictationKey = hasDictationKey
         context.needsInputModeSwitchKey = needsInputModeSwitchKey
         super.viewWillLayoutSubviews()
     }
     
     /**
      This function is called when this controller appears or
-     when the text document proxy changes. You can use it to
-     apply a style that matches the proxy configuration.
+     when the text document proxy changes.
      */
-    open func viewWillSyncWithTextDocumentProxy() {}
+    open func viewWillSyncWithTextDocumentProxy() {
+        context.textDocumentProxy = textDocumentProxy
+    }
     
     
     // MARK: - Properties

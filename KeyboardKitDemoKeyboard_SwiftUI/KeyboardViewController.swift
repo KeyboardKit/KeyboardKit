@@ -34,8 +34,6 @@ import KeyboardKitSwiftUI
  demo app and extension and copy the parts that you need.
  */
 class KeyboardViewController: KeyboardInputViewController {
-
-    @IBOutlet var nextKeyboardButton: UIButton!
         
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -16,33 +16,47 @@ import UIKit
 public protocol KeyboardContext: AnyObject {
     
     /**
-     This handler can handle actions that are triggered by a
-     user or the system. It can be replaced with any handler.
+     The current keyboard action handler that can be used to
+     handle actions that are triggered by the user or system.
+     It can be replaced with any `KeyboardActionHandler`.
      */
     var actionHandler: KeyboardActionHandler { get set }
     
     /**
-     Whether or not a keyboard extension has a dictation key.
-     If so, the system dictation key will be disabled
+     The current keyboard input view controller. You can use
+     it when the context lacks information that you may need.
+     
+     Note that the `controller` is only set when the context
+     is created. It can't be observed.
+     */
+    var controller: KeyboardInputViewController { get }
+    
+    /**
+     Whether or not the keyboard extension has a "dictation"
+     key. If not, you can provide a custom dictation button.
      */
     var hasDictationKey: Bool { get set }
     
     /**
-     Whether or not the keyboard extension has full access.
+     Whether or not the keyboard extension has "full access".
      */
     var hasFullAccess: Bool { get set }
     
     /**
-     The currently selected keyboard type, which can be used
-     in any way you like.
+     The current keyboard type. You this type as you want.
      */
     var keyboardType: KeyboardType { get set }
     
     /**
-     Whether or not the keyboard extension must provide your
-     current user with an input mode switch key.
+     Whether or not the keyboard extension should provide an
+     input mode switch key.
      */
     var needsInputModeSwitchKey: Bool { get set }
+    
+    /**
+     The current primary language of the keyboard.
+     */
+    var primaryLanguage: String? { get set }
     
     /**
      The current text document proxy.
@@ -53,11 +67,6 @@ public protocol KeyboardContext: AnyObject {
      The current text input mode.
      */
     var textInputMode: UITextInputMode? { get set }
-    
-    /**
-     The current primary language of the keyboard.
-     */
-    var primaryLanguage: String? { get set }
 }
 
 public extension KeyboardContext {

@@ -70,8 +70,8 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
 @objc extension DemoKeyboardActionHandler {
     
     func handleImage(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        if error == nil { alert("Saved!") }
-        else { alert("Failed!") }
+        if error == nil { alert("Saved to photos!") }
+        else { alert("Failed to save to photos!") }
     }
 }
 
@@ -80,11 +80,14 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
 
 private extension DemoKeyboardActionHandler {
     
+    /**
+     `TODO` The alert approach doesn't work, since it messes
+     up the view hierarchy in SwiftUI. Create a SwiftUI one.
+     */
     func alert(_ message: String) {
-        print("TODO: Implement SwiftUI alert")
+        // guard let input = inputViewController as? KeyboardViewController else { return }
+        // input.alerter.alert(message: message, in: input.view, withDuration: 4)
         print(message)
-        //guard let input = inputViewController as? KeyboardViewController else { return }
-        //input.alerter.alert(message: message, in: input.view, withDuration: 4)
     }
     
     func copyImage(_ image: UIImage) {

@@ -23,6 +23,7 @@ public class StandardKeyboardContext: KeyboardContext {
         actionHandler: KeyboardActionHandler,
         keyboardType: KeyboardType) {
         self.actionHandler = actionHandler
+        self.controller = controller
         self.hasDictationKey = controller.hasDictationKey
         self.hasFullAccess = controller.hasFullAccess
         self.keyboardType = keyboardType
@@ -30,9 +31,11 @@ public class StandardKeyboardContext: KeyboardContext {
         self.primaryLanguage = controller.primaryLanguage
         self.textDocumentProxy = controller.textDocumentProxy
         self.textInputMode = controller.textInputMode
+        self.traitCollection = controller.traitCollection
     }
     
     public var actionHandler: KeyboardActionHandler
+    public var controller: KeyboardInputViewController
     public var hasDictationKey: Bool
     public var hasFullAccess: Bool
     public var keyboardType: KeyboardType
@@ -40,4 +43,5 @@ public class StandardKeyboardContext: KeyboardContext {
     public var primaryLanguage: String?
     public var textDocumentProxy: UITextDocumentProxy
     public var textInputMode: UITextInputMode?
+    public var traitCollection: UITraitCollection
 }
