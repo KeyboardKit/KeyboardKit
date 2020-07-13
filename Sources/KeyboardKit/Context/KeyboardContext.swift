@@ -43,6 +43,11 @@ public protocol KeyboardContext: AnyObject {
     var hasFullAccess: Bool { get set }
     
     /**
+     The current keyboard appearance.
+     */
+    var keyboardAppearance: UIKeyboardAppearance { get }
+    
+    /**
      The current keyboard type. You this type as you want.
      */
     var keyboardType: KeyboardType { get set }
@@ -67,7 +72,49 @@ public protocol KeyboardContext: AnyObject {
      The current text input mode.
      */
     var textInputMode: UITextInputMode? { get set }
+    
+    /**
+     The current user interface style.
+     */
+    @available(iOS 12.0, *)
+    var userInterfaceStyle: UIUserInterfaceStyle { get }
 }
+
+
+// MARK: - Public Properties
+
+public extension KeyboardContext {
+    
+    /**
+     The current keyboard appearance, which is resolved from
+     the `textDocumentProxy`.
+     */
+    var keyboardAppearance: UIKeyboardAppearance {
+        textDocumentProxy.keyboardAppearance ?? .light
+    }
+    
+    /**
+     The current user interface style. This is resolved from
+     the `controller`s `traitCollection`.
+     
+     `IMPORTANT` Both this and the `colorScheme` environment
+     property in SwiftUI will incorrectly be `.dark`, if the
+     keyboard appearance is `.dark` in light mode. This will
+     cause UI bugs in the built-in system styles, since dark
+     keyboard appearance in light mode doesn't look the same
+     as a keyboard in dark mode.
+     
+     Bug info (also reported to Apple in Feedback Assistant):
+     https://github.com/danielsaidi/KeyboardKit/issues/107
+     */
+    @available(iOS 12.0, *)
+    var userInterfaceStyle: UIUserInterfaceStyle {
+        controller.traitCollection.userInterfaceStyle
+    }
+}
+
+
+// MARK: - Public Functions
 
 public extension KeyboardContext {
     

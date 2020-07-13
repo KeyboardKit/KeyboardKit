@@ -33,20 +33,17 @@ struct KeyboardView: View {
     
     var body: some View {
         ZStack {
-        
             keyboardView
             text
         }
     }
     
     var text: Text {
-        let a = context.textDocumentProxy.keyboardAppearance == .default
-        let b = context.textDocumentProxy.keyboardAppearance == .light
-        let c = context.textDocumentProxy.keyboardAppearance == .dark
         let d = context.traitCollection.userInterfaceStyle == .light
-        let e = context.controller.traitCollection.userInterfaceStyle == .light
-        let f = colorScheme == .light
-        let str = "\(a) \(b) \(c) \(d) \(e) \(f)"
+        let e = context.controller.view.window?.traitCollection.userInterfaceStyle == .light
+        let f = context.controller.traitCollection.userInterfaceStyle == .light
+        let g = colorScheme == .light
+        let str = "\(d) \(e) \(f) \(g)"
         return Text(str)
     }
 }
