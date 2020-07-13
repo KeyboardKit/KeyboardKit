@@ -7,6 +7,7 @@
 //
 
 import KeyboardKit
+import KeyboardKitSwiftUI
 import UIKit
 
 /**
@@ -21,12 +22,18 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     // MARK: - Initialization
     
-    public init(inputViewController: KeyboardViewController) {
+    public init(inputViewController: KeyboardViewController, toastContext: KeyboardToastContext) {
+        self.toastContext = toastContext
         super.init(
             inputViewController: inputViewController,
             hapticConfiguration: .standard
         )
     }
+    
+    
+    // MARK: - Dependencies
+    
+    private let toastContext: KeyboardToastContext
     
     
     // MARK: - Properties
@@ -80,13 +87,8 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
 
 private extension DemoKeyboardActionHandler {
     
-    /**
-     `TODO` The alert approach doesn't work, since it messes
-     up the view hierarchy in SwiftUI. Create a SwiftUI one.
-     */
     func alert(_ message: String) {
-        // guard let input = inputViewController as? KeyboardViewController else { return }
-        // input.alerter.alert(message: message, in: input.view, withDuration: 4)
+        toastContext.present(message)
         print(message)
     }
     

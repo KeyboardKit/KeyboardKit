@@ -9,6 +9,7 @@
 import UIKit
 import KeyboardKit
 import KeyboardKitSwiftUI
+import SwiftUI
 
 /**
  This SwiftUI-based demo keyboard demonstrates how to create
@@ -34,10 +35,17 @@ import KeyboardKitSwiftUI
  demo app and extension and copy the parts that you need.
  */
 class KeyboardViewController: KeyboardInputViewController {
+    
+    let toastContext = KeyboardToastContext()
+    
+    var keyboardView: some View {
+        KeyboardView(controller: self)
+            .environmentObject(toastContext)
+    }
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup(with: KeyboardView(controller: self))
-        context.actionHandler = DemoKeyboardActionHandler(inputViewController: self)
+        setup(with: keyboardView)
+        context.actionHandler = DemoKeyboardActionHandler(inputViewController: self, toastContext: toastContext)
     }
 }

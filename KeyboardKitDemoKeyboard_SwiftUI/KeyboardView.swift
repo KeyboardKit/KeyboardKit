@@ -19,6 +19,9 @@ import KeyboardKitSwiftUI
  
  `TODO` Add support for emoji keyboard, once lazy stacks are
  supported. Now, the app crashes due to memory pressure.
+ 
+ `TODO` Move the `keyboardView` switch into `body` after the
+ projects has been upgraded to Swift 5.3.
  */
 struct KeyboardView: View {
     
@@ -30,21 +33,13 @@ struct KeyboardView: View {
     
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     @EnvironmentObject var context: ObservableKeyboardContext
+    @EnvironmentObject var toastContext: KeyboardToastContext
+    
+    var tttt: String { "\(toastContext.isActive)" }
     
     var body: some View {
-        ZStack {
-            keyboardView
-            text
-        }
-    }
-    
-    var text: Text {
-        let d = context.traitCollection.userInterfaceStyle == .light
-        let e = context.controller.view.window?.traitCollection.userInterfaceStyle == .light
-        let f = context.controller.traitCollection.userInterfaceStyle == .light
-        let g = colorScheme == .light
-        let str = "\(d) \(e) \(f) \(g)"
-        return Text(str)
+        keyboardView
+            .keyboardToast(isActive: $toastContext.isActive, content: toastContext.content, background: toastBackground)
     }
 }
 
@@ -62,10 +57,6 @@ private extension KeyboardView {
         SymbolicSystemKeyboard(inputSet: .englishSymbolic, topmostView: AnyView(AutocompleteToolbar()))
     }
     
-    /**
-     `TODO` After upgrading to Xcode 14 and Swift 5.3, we'll
-     move this into `body`, since switches will be supported.
-     */
     var keyboardView: AnyView {
         switch context.keyboardType {
         case .alphabetic(let state): return AnyView(alphabeticKeyboard(state))
@@ -77,6 +68,12 @@ private extension KeyboardView {
     
     func switchKeyboard() {
         context.actionHandler.handle(.tap, on: .keyboardType(.alphabetic(.lowercased)))
+    }
+    
+    var toastBackground: some View {
+        Color.white
+            .cornerRadius(3)
+            .shadow(color: Color.black.opacity(0.3), radius: 2, x: 1, y: 1)
     }
 }
 
