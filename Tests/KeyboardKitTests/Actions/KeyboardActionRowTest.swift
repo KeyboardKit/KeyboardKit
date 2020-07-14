@@ -18,7 +18,7 @@ class KeyboardActionRowTest: QuickSpec {
             
             it("converts strings to char actions") {
                 let chars = ["a", "b", "c"]
-                let row = KeyboardActionRow.from(chars)
+                let row = KeyboardActionRow(characters: chars)
                 expect(row.count).to(equal(3))
                 expect(row[0]).to(equal(.character("a")))
                 expect(row[1]).to(equal(.character("b")))

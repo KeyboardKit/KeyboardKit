@@ -21,7 +21,7 @@ class DemoButton: KeyboardButtonView {
         backgroundColor = .clearInteractable
         buttonView?.backgroundColor = action.buttonColor(for: viewController)
         DispatchQueue.main.async { self.image?.image = action.buttonImage }
-        textLabel?.font = action.buttonFont
+        textLabel?.font = action.systemFont
         textLabel?.text = action.buttonText
         textLabel?.textColor = action.tintColor(in: viewController)
         buttonView?.tintColor = action.tintColor(in: viewController)
@@ -53,18 +53,6 @@ private extension KeyboardAction {
         return asset.color
     }
     
-    var buttonFont: UIFont {
-        return .preferredFont(forTextStyle: buttonFontStyle)
-    }
-    
-    var buttonFontStyle: UIFont.TextStyle {
-        switch self {
-        case .character, .emoji: return .title2
-        case .keyboardType(.emojis): return .title1
-        default: return .body
-        }
-    }
-    
     var buttonImage: UIImage? {
         switch self {
         case .image(_, let imageName, _): return UIImage(named: imageName)
@@ -80,7 +68,7 @@ private extension KeyboardAction {
         case .emojiCategory(let category): return buttonText(for: category)
         case .keyboardType(let type): return buttonText(for: type)
         case .newLine: return "return"
-        case .shift, .shiftDown: return "⇧"
+        case .shift: return "⇧"
         case .space: return "space"
         default: return nil
         }
@@ -88,7 +76,7 @@ private extension KeyboardAction {
     
     func buttonText(for category: EmojiCategory) -> String {
         switch category {
-        case .frequents: return "🕓"
+        case .frequent: return "🕓"
         case .smileys: return "😀"
         case .animals: return "🐻"
         case .foods: return "🍔"
@@ -114,7 +102,7 @@ private extension KeyboardAction {
     var buttonWidth: CGFloat {
         switch self {
         case .none: return 10
-        case .shift, .shiftDown, .backspace: return 60
+        case .shift, .backspace: return 60
         case .space: return 100
         default: return 50
         }
@@ -134,13 +122,18 @@ private extension KeyboardAction {
     }
     
     func useDarkAppearance(in viewController: KeyboardInputViewController) -> Bool {
-        let appearance = viewController.textDocumentProxy.keyboardAppearance ?? .default
-        return appearance == .dark
+        if #available(iOSApplicationExtension 12.0, *) {
+            return viewController.traitCollection.userInterfaceStyle == .dark
+        } else {
+            let appearance = viewController.textDocumentProxy.keyboardAppearance ?? .default
+            return appearance == .dark
+        }
     }
     
     var useDarkButton: Bool {
         switch self {
-        case .character, .image, .shiftDown, .space: return false
+        case .character, .image, .space: return false
+        case .shift(let currentState): return currentState != .lowercased
         default: return true
         }
     }

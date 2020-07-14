@@ -12,84 +12,73 @@ import UIKit
  This class extends `UIInputViewController` with KeyboardKit
  specific properties and functionality.
  
- You should let a keyboard extension `KeyboardViewController`
- inherit this class instead of `UIInputViewController`
+ When you use KeyboardKit, let your `KeyboardViewController`
+ inherit this class instead of `UIInputViewController`. This
+ will provide it with a bunch of features that regular input
+ view controllers lack.
  */
 open class KeyboardInputViewController: UIInputViewController {
-
+    
     
     // MARK: - View Controller Lifecycle
     
+    /**
+     This calls the super class implementation, then sets up
+     the keyboard by calling `setupKeyboard`.
+     */
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        setupKeyboard()
+    }
+    
+    /**
+     This calls the super class implementation then performs
+     a full context syncs.
+     */
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        context.sync(with: self)
         viewWillSyncWithTextDocumentProxy()
     }
     
     /**
-     This function is called when this controller appears or
-     when the text document proxy changes. You can use it to
-     apply a style that matches the proxy configuration.
+     This calls the super class implementation, then updates
+     some `context` properties.
      */
-    open func viewWillSyncWithTextDocumentProxy() {}
+    open override func viewWillLayoutSubviews() {
+        context.hasDictationKey = hasDictationKey
+        context.needsInputModeSwitchKey = needsInputModeSwitchKey
+        super.viewWillLayoutSubviews()
+    }
+    
+    /**
+     This function is called when this controller appears or
+     when the text document proxy changes.
+     */
+    open func viewWillSyncWithTextDocumentProxy() {
+        context.textDocumentProxy = textDocumentProxy
+    }
     
     
     // MARK: - Properties
     
     /**
-     The seconds delay that `changeKeyboardType` uses before
-     changing the keyboard type.
-     
-     The delay is required when your keyboard has double tap
-     support, since it require that buttons stay around long
-     enough double taps to register. If you don't use double
-     taps, you can set this property to `0`.
+     This context provides keyboard-specific information. If
+     you setup the keyboard to use SwiftUI, the context will
+     be converted to an `ObservableKeyboardContext`.
      */
-    public var changeKeyboardTypeDelay: TimeInterval = 0.2
-    
-    /**
-     This handler can be used to handle any keyboard actions
-     that are triggered by the user or the system.
-     
-     You can override this property with any custom keyboard
-     action handler. If no custom action handler is set, the
-     controller will use a `StandardKeyboardActionHandler`.
-     */
-    open lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(inputViewController: self)
-    
-    /**
-     This property can be used to handle which keyboard type
-     that is currently displayed by the view controller. You
-     can change this value by calling `changeKeyboardType()`,
-     which will change this value, then call `setupKeyboard`.
-     
-     If you have a single keyboard type in your app, you can
-     ignore this property.
-     */
-    open var keyboardType = KeyboardType.custom("") {
-        didSet { setupKeyboard() }
-    }
-    
-    /**
-     Get the current device orientation. If no window can be
-     resolved `portrait` is returned.
-     */
-    public var deviceOrientation: UIInterfaceOrientation {
-        view.window?.screen.orientation ?? .portrait
-    }
+    public lazy var context: KeyboardContext = StandardKeyboardContext(
+        controller: self,
+        actionHandler: StandardKeyboardActionHandler(inputViewController: self),
+        keyboardType: .alphabetic(.lowercased)
+    )
     
     
     // MARK: - View Properties
     
     /**
-     `keyboardStackView` is a regular `UIStackView` that you
-     can configure freely and add any views you like to. Use
-     it if you prefer to use `UIKit` to create your keyboard.
-     
-     This view is added to the extension view as soon as you
-     use it. It applies constraints so it fits the extension.
-     The standard axis is `vertical`, since the idea is that
-     this view should be populated with `rows`, to which you
-     can add toolbars, buttons etc.
+     This is a regular, vertical `UIStackView`, to which you
+     can add toolbars, rows etc. to create `UIKit` keyboards.
      */
     public lazy var keyboardStackView: UIStackView = {
         let stackView = UIStackView(frame: .zero)
@@ -114,37 +103,14 @@ open class KeyboardInputViewController: UIInputViewController {
     }
     
     /**
-     Whether or not the input view controller can change its
-     keyboard type to a new specific type.
+     Change keyboard type. By default, this is done with the
+     standard change action of the current context, but this
+     can be changed by overriding this function.
      */
-    open func canChangeKeyboardType(to type: KeyboardType) -> Bool {
-        guard
-            case .alphabetic(let state) = keyboardType,
-            case .alphabetic(let newState) = type
-            else { return true }
-        if state == .capsLocked && newState == .uppercased { return false }
-        return true
-    }
-    
-    /**
-     Change keyboard type. This sets `keyboardType` to `type`
-     after `changeKeyboardTypeDelay` seconds, which triggers
-     `setupKeyboard()` when set.
-     */
-    open func changeKeyboardType(to type: KeyboardType) {
-        let delay = changeKeyboardTypeDelay
-        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            guard self.canChangeKeyboardType(to: type) else { return }
-            self.keyboardType = type
+    open func changeKeyboardType(to type: KeyboardType, after delay: DispatchTimeInterval = .milliseconds(0)) {
+        context.changeKeyboardType(to: type, after: delay) {
+            self.setupKeyboard()
         }
-    }
-    
-    /**
-     Setup any `UIButton` as a "next keyboard" system button.
-     */
-    public func setupNextKeyboardButton(_ button: UIButton) {
-        let action = #selector(handleInputModeList(from:with:))
-        button.addTarget(self, action: action, for: .allTouchEvents)
     }
     
     /**

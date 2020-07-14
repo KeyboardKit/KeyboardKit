@@ -3,6 +3,96 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions. 
 
 
+## 3.0.0
+
+This version removes all previously deprecated parts of the library and adds improved support for SwiftUI and iOS 13.
+
+If you upgrade from an older version to `3.0` and have many breaking changes, upgrading to `2.9` first provides deprecation help that may make the transition easier.
+
+
+### New functionality
+
+There is a new `KeyboardContext`, which provides important contextual information.
+* `StandardKeyboardContext` is the standard, non-observable implementation.
+* `ObservableKeyboardContext` is an iOS 13+ required, observable implementation.
+* `StandardKeyboardActionHandler` now automatically handles keyboard type switching and only delays if an action has a double-tap action.
+* `StandardKeyboardActionHandler` now automatically switches to certain keyboards after certain actions, as defined by `handleKeyboardSwitch(after:on:)` and `preferredKeyboardType(after:on:)`.
+
+There are new `KeyboardAction` types and properties:
+* `.control` represents the system.
+* `.systemImage` can be used with SF Symbols.
+* `.systemFont` and `.systemTextStyle` provide system look information.
+
+There is a new `System` namespace with utils to help you build native-imitating system keyboards.
+
+There is a new `KeyboardInputSet` concept that will simplify building language-specific keyboards. For now, it contains English characters, numerics and symbols. 
+
+The demo project contains a new `KeyboardKitSwiftUIPreviews` in which you can preview KeyboardKitSwiftUI views. 
+
+
+### SwiftUI
+
+* This repository has a new SwiftUI-based demo app, which is still in development.
+* `KeyboardImageButton` supports the new `systemImage` action.
+
+
+### Non-breaking changes:
+
+* `KeyboardInputViewController` `deviceOrientation` has been converted to a general `UIInputViewController` extension.
+* `setupNextKeyboardButton` has been converted to a general `UIInputViewController` extension.
+
+
+### Breaking changes:
+
+* `KeyboardInputViewController` has a new `keyboardContext` property.
+* `StandardKeyboardContext` is used by default, whenever a keyboard extension is created.
+* `ObservableKeyboardContext` is used by whenever a keyboard switches over to use SwiftUI.
+
+* `KeyboardInputViewController` `keyboardActionHandler` has been moved to `KeyboardContext`.
+* `KeyboardInputViewController` `canChangeKeyboardType` has been moved to `KeyboardType`.
+* `KeyboardInputViewController` `changeKeyboardType` has been moved to `KeyboardContext`.
+* `KeyboardInputViewController` `changeKeyboardTypeDelay` is now an argument in `changeKeyboardType`.
+* `KeyboardInputViewController` `keyboardType` has been moved to the context.
+
+* `AutocompleteToolbar` has been renamed to `AutocompleteToolbarView`.
+* `EmojiCategory.frequents` has been renamed to `frequent`.
+* `KeyboardActionHandler` now requires `canHandle(_:on:)` to be implemented.
+* `KeyboardAction` has new action types.
+* `KeyboardAction` has fewer `isXXX` properties.
+* `KeyboardAction` `.capsLock` and `shiftDown` are now part of `KeyboardAction.shift`.
+* `KeyboardActionRow.from` has been changed to an initializer.
+* `KeyboardActionRows.from` has been changed to an initializer.
+* `KeyboardImageActions` has been converted to a `KeyboardActionRow+Images` extension initializer.
+* `KeyboardToolbar` has been renamed to `KeyboardToolbarView`. 
+* The `shouldChangeToAlphabeticLowercase` has been replaced with the automatic switching mentioned above.
+* The `isKeyboardEnabled` function now uses a `for` as external argument name.
+
+
+### Removed, previously deprecated parts:
+
+* `AutocompleteBugFixTimer`
+* `AutocompleteSuggestionProvider` `provideAutocompleteSuggestions`
+* `KeyboardAction` `switchKeyboard`
+* `KeyboardAction` `switchToKeyboard`
+* `KeyboardAction` `standardInputViewControllerAction`
+* `KeyboardAction` `standardTextDocumentProxyAction`
+* `KeyboardActionHandler` `handleTap/Repeat/LongPress`
+* `KeyboardActionHandler` `handle` gesture on `UIView`
+* `KeyboardInputViewController` `addSwitchKeyboardGesture`
+* `PersistedKeyboardSetting` init with key
+* `StandardKeyboardActionHandler` `init` with feedback instances
+* `StandardKeyboardActionHandler` `action` for view
+* `StandardKeyboardActionHandler` `animationButtonTap`
+* `StandardKeyboardActionHandler` `giveHapticFeedbackForLongPress/Repeat/Tap`
+* `StandardKeyboardActionHandler` `longPress/repeat/tapAction` for view
+* `StandardKeyboardActionHandler` `handleLongPress/Repeat/Tap`
+* `StandardKeyboardActionHandler` `triggerAudio/HapticFeedback`
+* `UIColor` `clearTappable`
+* `UIInputViewController` `createAutocompleteBugFixTimer`
+* `UIView` `add/removeLongPress/Repeating/TapAction`
+* `isKeyboardEnabled` global function
+
+
 ## 2.9.3
 
 This version updates external test dependencies to their latest versions.

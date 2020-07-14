@@ -11,6 +11,9 @@ import UIKit
 /**
  This protocol represents a view component that can be added
  to a horizontally flowing part of the keyboard.
+ 
+ If a stack view uses another distribution than `fillEqually`,
+ you must specify a `width` for each row component.
  */
 public protocol HorizontalKeyboardComponent: UIView {
     

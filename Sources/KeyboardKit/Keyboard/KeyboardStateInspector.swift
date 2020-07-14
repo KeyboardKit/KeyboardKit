@@ -11,6 +11,9 @@ import Foundation
 /**
  This protocol can be implemented by any class or struct and
  provides any implementations with state-specific extensions.
+ 
+ You just have to implement the protocol to give a class the
+ `isKeyboardEnabled` functionality.
  */
 public protocol KeyboardStateInspector {}
 
@@ -23,7 +26,7 @@ public extension KeyboardStateInspector {
      `bundleId` of the *keyboard extension* and not the app.
      */
     func isKeyboardEnabled(
-        _ bundleId: String,
+        for bundleId: String,
         defaults: UserDefaults = .standard) -> Bool {
         let key = "AppleKeyboards"
         guard let settings = defaults.object(forKey: key) as? [String] else { return false }

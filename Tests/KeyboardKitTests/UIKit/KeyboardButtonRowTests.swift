@@ -20,7 +20,7 @@ class KeyboardButtonRowTests: QuickSpec {
         
         
         beforeEach {
-            actions = [.backspace, .capsLock]
+            actions = [.backspace, .control]
             view = KeyboardButtonRow(height: 123, actions: actions) { action in
                 let button = TestButton(type: .custom)
                 button.action = action
@@ -42,7 +42,7 @@ class KeyboardButtonRowTests: QuickSpec {
                 expect(stack.axis).to(equal(.horizontal))
                 expect(buttons.count).to(equal(2))
                 expect(buttons[0].action).to(equal(.backspace))
-                expect(buttons[1].action).to(equal(.capsLock))
+                expect(buttons[1].action).to(equal(.control))
             }
             
             it("can use custom stack view configuration") {

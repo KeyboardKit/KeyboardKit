@@ -29,58 +29,11 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         }
         
         
-        
-        // MARK: - Properties
-        
-        describe("should change to alphabetic lowercase after input") {
-            
-            func result(for type: KeyboardType) -> Bool {
-                inputViewController.keyboardType = type
-                return handler.shouldChangeToAlphabeticLowercase
-            }
-            
-            it("is only true if current keyboard type is uppercase alpha") {
-                expect(result(for: .alphabetic(.uppercased))).to(beTrue())
-                expect(result(for: .alphabetic(.capsLocked))).to(beFalse())
-                expect(result(for: .alphabetic(.lowercased))).to(beFalse())
-                expect(result(for: .numeric)).to(beFalse())
-                expect(result(for: .symbolic)).to(beFalse())
-                expect(result(for: .email)).to(beFalse())
-                expect(result(for: .emojis)).to(beFalse())
-                expect(result(for: .images)).to(beFalse())
-                expect(result(for: .custom(""))).to(beFalse())
-            }
-        }
-        
-        
         // MARK: - Actions
         
         context("actions") {
             
-            let actions: [KeyboardAction] = [
-                .none,
-                .backspace,
-                .capsLock,
-                .character(""),
-                .command,
-                .custom(name: ""),
-                .dismissKeyboard,
-                .emoji(""),
-                .emojiCategory(.foods),
-                .escape,
-                .function,
-                .image(description: "", keyboardImageName: "", imageName: ""),
-                .keyboardType(.emojis),
-                .moveCursorBackward,
-                .moveCursorForward,
-                .newLine,
-                .nextKeyboard,
-                .option,
-                .shift,
-                .shiftDown,
-                .space,
-                .tab
-            ]
+            let actions = KeyboardAction.testActions
             
             describe("tap action") {
                 
@@ -137,9 +90,9 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         describe("giving haptic feedback") {
             
             it("can't be properyly tested") {
-                handler.triggerHapticFeedback(for: .longPress, on: .dismissKeyboard)
-                handler.triggerHapticFeedback(for: .repeatPress, on: .backspace)
-                handler.triggerHapticFeedback(for: .tap, on: .dismissKeyboard)
+                handler.triggerHapticFeedback(for: .longPress, on: .dismissKeyboard, sender: nil)
+                handler.triggerHapticFeedback(for: .repeatPress, on: .backspace, sender: nil)
+                handler.triggerHapticFeedback(for: .tap, on: .dismissKeyboard, sender: nil)
                 // TODO Test this
             }
         }
@@ -154,6 +107,25 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
                 handler.triggerAudioFeedback(for: .tap, on: .backspace, sender: nil)
                 handler.triggerAudioFeedback(for: .tap, on: .dismissKeyboard, sender: nil)
                 // TODO Test this
+            }
+        }
+        
+        
+        // MARK: - Keyboard Type
+        
+        describe("preferred keyboard type after gesture on action") {
+            
+            func result(for gesture: KeyboardGesture, on action: KeyboardAction, current type: KeyboardType) -> KeyboardType? {
+                inputViewController.context.keyboardType = type
+                return handler.preferredKeyboardType(after: gesture, on: action)
+            }
+            
+            it("is defined for character tap in uppercased alphabetic keyboard") {
+                expect(result(for: .tap, on: .character("foo"), current: .alphabetic(.uppercased))).to(equal(.alphabetic(.lowercased)))
+                expect(result(for: .tap, on: .character("foo"), current: .alphabetic(.capsLocked))).to(beNil())
+                expect(result(for: .tap, on: .character("foo"), current: .alphabetic(.lowercased))).to(beNil())
+                expect(result(for: .tap, on: .image(description: "", keyboardImageName: "", imageName: ""), current: .numeric)).to(beNil())
+                expect(result(for: .longPress, on: .character("foo"), current: .symbolic)).to(beNil())
             }
         }
     }
@@ -171,7 +143,7 @@ private class StandardKeyboardActionHandlerTestClass: StandardKeyboardActionHand
     
     let recorder: MockKeyboardActionHandler
     
-    override func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
+    override func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         switch gesture {
         case .doubleTap: recorder.giveHapticFeedbackForDoubleTap(on: action)
         case .longPress: recorder.giveHapticFeedbackForLongPress(on: action)

@@ -10,22 +10,27 @@ import UIKit
 import KeyboardKit
 
 /**
- This demo keyboard handles system actions as normal (change
- keyboard, space, new line etc.), injects strings and emojis
- into the text proxy, copies tapped images to the pasteboard
- and saves long pressed images to the user's photo album.
+ This UIKit-based demo keyboard demonstrates how to create a
+ keyboard extension using `KeyboardKit` and `UIKit`.
  
- IMPORTANT: To use this demo keyboard, you have to enable it
- in system settings ("Settings/General/Keyboards") then give
- it full access (this requires enabling `RequestsOpenAccess`
- in `Info.plist`) if you want to use image buttons. You must
- also add a `NSPhotoLibraryAddUsageDescription` to your host
- app's `Info.plist` if you want to be able to save images to
- the photo album. This is already taken care of in this demo
- app, so you can just copy the setup into your own app.
+ This keyboard sends text and emoji inputs to the text proxy,
+ copies tapped images to the device's pasteboard, saves long
+ pressed images to photos etc. It also adds an auto complete
+ toolbar that provides fake suggestions for the current word.
  
- This demo keyboard also has a topmost auto complete toolbar
- that displays dummy suggestions for the current word.
+ `IMPORTANT` To use this keyboard, you must enable it in the
+ system keyboard settings ("Settings/General/Keyboards") and
+ give it full access, which is unfortunately required to use
+ some features like haptic and audio feedback, let it access
+ the user's photos etc.
+ 
+ If you want to use these features in your own app, you must
+ add `RequestsOpenAccess` to the extension's `Info.plist` to
+ make it possible for the user to enable full access. If you
+ want to allow the keyboard to access the user's photo album,
+ you must add the `NSPhotoLibraryAddUsageDescription` key to
+ the **host** application's `Info.plist`. Have a look at the
+ demo app and extension and copy the parts that you need.
  */
 class KeyboardViewController: KeyboardInputViewController {
     
@@ -34,8 +39,12 @@ class KeyboardViewController: KeyboardInputViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        keyboardType = .alphabetic(.lowercased)
-        keyboardActionHandler = DemoKeyboardActionHandler(inputViewController: self)
+        context.actionHandler = DemoKeyboardActionHandler(inputViewController: self)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        setupKeyboard()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -80,7 +89,7 @@ class KeyboardViewController: KeyboardInputViewController {
     
     lazy var autocompleteProvider = DemoAutocompleteSuggestionProvider()
     
-    lazy var autocompleteToolbar: AutocompleteToolbar = {
-        AutocompleteToolbar(textDocumentProxy: textDocumentProxy)
+    lazy var autocompleteToolbar: AutocompleteToolbarView = {
+        AutocompleteToolbarView(textDocumentProxy: textDocumentProxy)
     }()
 }

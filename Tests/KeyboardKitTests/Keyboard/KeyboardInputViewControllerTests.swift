@@ -16,48 +16,105 @@ class KeyboardInputViewControllerTests: QuickSpec {
     
     override func spec() {
         
-        var viewController: TestClass!
+        var vc: TestClass!
         
         beforeEach {
-            viewController = TestClass(nibName: nil, bundle: nil)
+            vc = TestClass(nibName: nil, bundle: nil)
+        }
+        
+        describe("keyboard context") {
+            
+            it("is setup with default state") {
+                let context = vc.context
+                expect(context is StandardKeyboardContext).to(beTrue())
+                expect(context.actionHandler is StandardKeyboardActionHandler).to(beTrue())
+                expect(context.hasFullAccess).to(beFalse())
+                expect(context.keyboardType).to(equal(.alphabetic(.lowercased)))
+                expect(context.needsInputModeSwitchKey).to(beFalse())
+            }
+        }
+        
+        describe("view did load") {
+            
+            it("sets up the keyboard") {
+                expect(vc.hasInvoked(vc.setupKeyboard)).to(beFalse())
+                vc.viewDidLoad()
+                expect(vc.hasInvoked(vc.setupKeyboard)).to(beTrue())
+            }
         }
         
         describe("view will appear") {
             
+            it("updates context") {
+                vc.hasFullAccessValue = true
+                vc.viewWillAppear(false)
+                expect(vc.context.hasFullAccess).to(beTrue())
+                vc.hasFullAccessValue = false
+                vc.viewWillAppear(false)
+                expect(vc.context.hasFullAccess).to(beFalse())
+            }
+            
             it("syncs with text document proxy") {
-                viewController.viewWillAppear(false)
-                let exec = viewController.recorder.invokations(of: viewController.viewWillSyncWithTextDocumentProxy)
-                expect(exec.count).to(equal(1))
+                expect(vc.hasInvoked(vc.viewWillSyncWithTextDocumentProxy)).to(beFalse())
+                vc.viewWillAppear(false)
+                expect(vc.hasInvoked(vc.viewWillSyncWithTextDocumentProxy)).to(beTrue())
+            }
+        }
+        
+        describe("view will layout subviews") {
+            
+            it("updates context") {
+                vc.hasDictationKeyValue = true
+                vc.needsInputModeSwitchKeyValue = true
+                vc.viewWillLayoutSubviews()
+                expect(vc.context.hasDictationKey).to(beTrue())
+                expect(vc.context.needsInputModeSwitchKey).to(beTrue())
+                vc.hasDictationKeyValue = false
+                vc.needsInputModeSwitchKeyValue = false
+                vc.viewWillLayoutSubviews()
+                expect(vc.context.hasDictationKey).to(beFalse())
+                expect(vc.context.needsInputModeSwitchKey).to(beFalse())
+            }
+        }
+        
+        describe("view will sync with text document proxy") {
+            
+            it("updates context") {
+                expect(vc.context.textDocumentProxy).to(be(vc.textDocumentProxy))
+                vc.context.textDocumentProxy = UIInputViewController().textDocumentProxy
+                expect(vc.context.textDocumentProxy).toNot(be(vc.textDocumentProxy))
+                vc.viewWillSyncWithTextDocumentProxy()
+                expect(vc.context.textDocumentProxy).to(be(vc.textDocumentProxy))
             }
         }
         
         describe("action handler") {
             
             it("is standard handler by default") {
-                let handler = viewController.keyboardActionHandler
+                let handler = vc.context.actionHandler
                 let standard = handler as? StandardKeyboardActionHandler
                 expect(standard).toNot(beNil())
-                expect(standard?.inputViewController).to(be(viewController))
+                expect(standard?.inputViewController).to(be(vc))
             }
         }
         
         describe("keyboard stack view") {
             
             it("is not added to vc view if not referred") {
-                let view = viewController.view
-                viewController.viewDidLoad()
+                let view = vc.view
+                vc.viewDidLoad()
                 expect(view?.subviews.count).to(equal(2))
             }
             
             it("is added to vc view when it's first referred") {
-                let view = viewController.view
-                _ = viewController.keyboardStackView
+                let view = vc.view
+                _ = vc.keyboardStackView
                 expect(view?.subviews.count).to(equal(3))
-                expect(view?.subviews[2]).to(be(viewController.keyboardStackView))
+                expect(view?.subviews[2]).to(be(vc.keyboardStackView))
             }
             
             it("is correctly configured") {
-                let view = viewController.keyboardStackView
+                let view = vc.keyboardStackView
                 expect(view.axis).to(equal(.vertical))
                 expect(view.alignment).to(equal(.fill))
                 expect(view.distribution).to(equal(.equalSpacing))
@@ -73,11 +130,11 @@ class KeyboardInputViewControllerTests: QuickSpec {
             }
             
             it("removes already added gestures") {
-                viewController.addKeyboardGestures(to: button)
+                vc.addKeyboardGestures(to: button)
                 let oldTap = button.gestureRecognizers!.first { $0 is UITapGestureRecognizer }
                 let oldPress = button.gestureRecognizers!.first { $0 is UILongPressGestureRecognizer }
                 let oldRepeat = button.gestureRecognizers!.first { $0 is RepeatingGestureRecognizer }
-                viewController.addKeyboardGestures(to: button)
+                vc.addKeyboardGestures(to: button)
                 let newTap = button.gestureRecognizers!.first { $0 is UITapGestureRecognizer }
                 let newPress = button.gestureRecognizers!.first { $0 is UILongPressGestureRecognizer }
                 let newRepeat = button.gestureRecognizers!.first { $0 is RepeatingGestureRecognizer }
@@ -88,7 +145,7 @@ class KeyboardInputViewControllerTests: QuickSpec {
             
             it("handles next keyboard separately") {
                 button.action = .nextKeyboard
-                viewController.addKeyboardGestures(to: button)
+                vc.addKeyboardGestures(to: button)
                 let tap = button.gestureRecognizers?.first { $0 is UITapGestureRecognizer }
                 let press = button.gestureRecognizers?.first { $0 is UILongPressGestureRecognizer }
                 let repeating = button.gestureRecognizers?.first { $0 is RepeatingGestureRecognizer }
@@ -98,7 +155,7 @@ class KeyboardInputViewControllerTests: QuickSpec {
             }
             
             it("adds gestures to button") {
-                viewController.addKeyboardGestures(to: button)
+                vc.addKeyboardGestures(to: button)
                 let tap = button.gestureRecognizers!.first { $0 is UITapGestureRecognizer }
                 let press = button.gestureRecognizers!.first { $0 is UILongPressGestureRecognizer }
                 let repeating = button.gestureRecognizers!.first { $0 is RepeatingGestureRecognizer }
@@ -107,34 +164,32 @@ class KeyboardInputViewControllerTests: QuickSpec {
                 expect(repeating).toNot(beNil())
             }
         }
-        
-        describe("can change to keyboard type") {
-            
-            func result(from type: KeyboardType, to newType: KeyboardType) -> Bool {
-                viewController.keyboardType = type
-                return viewController.canChangeKeyboardType(to: newType)
-            }
-            
-            it("can change for most combinations") {
-                expect(result(from: .alphabetic(.lowercased), to: .alphabetic(.uppercased))).to(beTrue())
-                expect(result(from: .alphabetic(.uppercased), to: .alphabetic(.lowercased))).to(beTrue())
-                expect(result(from: .alphabetic(.capsLocked), to: .alphabetic(.lowercased))).to(beTrue())
-                expect(result(from: .emojis, to: .numeric)).to(beTrue())
-            }
-            
-            it("cannot change from alpha caps to alpha upper") {
-                expect(result(from: .alphabetic(.capsLocked), to: .alphabetic(.uppercased))).to(beFalse())
-            }
-        }
     }
 }
 
-private class TestClass: KeyboardInputViewController {
+private class TestClass: KeyboardInputViewController, Mockable {
     
-    var recorder = Mock()
+    var mock = Mock()
+    
+    var hasFullAccessValue = false
+    override var hasFullAccess: Bool { hasFullAccessValue }
+    
+    var hasDictationKeyValue = false
+    override var hasDictationKey: Bool {
+        get { hasDictationKeyValue }
+        set { hasDictationKeyValue = newValue }
+    }
+    
+    var needsInputModeSwitchKeyValue = false
+    override var needsInputModeSwitchKey: Bool { needsInputModeSwitchKeyValue }
     
     override func viewWillSyncWithTextDocumentProxy() {
-        recorder.invoke(viewWillSyncWithTextDocumentProxy, args: ())
+        super.viewWillSyncWithTextDocumentProxy()
+        mock.invoke(viewWillSyncWithTextDocumentProxy, args: ())
+    }
+    
+    override func setupKeyboard() {
+        mock.invoke(setupKeyboard, args: ())
     }
 }
 

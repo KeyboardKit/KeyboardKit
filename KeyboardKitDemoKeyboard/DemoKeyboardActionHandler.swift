@@ -10,10 +10,8 @@ import KeyboardKit
 import UIKit
 
 /**
- 
  This action handler inherits `StandardKeyboardActionHandler`
  and adds demo-specific functionality to it.
- 
  */
 class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
@@ -46,7 +44,6 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     override func tapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
         switch action {
-        case .character: return handleCharacter(action, for: sender)
         case .emojiCategory(let cat): return { [weak self] in self?.switchToEmojiKeyboardCategory(cat) }
         case .image(_, _, let imageName): return { [weak self] in self?.copyImage(UIImage(named: imageName)!) }
         case .space: return handleSpace(for: sender)
@@ -95,25 +92,11 @@ private extension DemoKeyboardActionHandler {
      `NOTE` Changing to alphabetic lower case should be done
      in `StandardKeyboardActionHandler`.
      */
-    func handleCharacter(_ action: KeyboardAction, for sender: Any?) -> GestureAction {
-        let baseAction = super.tapAction(for: action, sender: sender)
-        return { [weak self] in
-            baseAction?()
-            guard let self = self else { return }
-            guard self.shouldChangeToAlphabeticLowercase else { return }
-            self.inputViewController?.changeKeyboardType(to: .alphabetic(.lowercased))
-        }
-    }
-    
-    /**
-     `NOTE` Changing to alphabetic lower case should be done
-     in `StandardKeyboardActionHandler`.
-     */
     func handleSpace(for sender: Any?) -> GestureAction {
         let baseAction = super.tapAction(for: .space, sender: sender)
         return { [weak self] in
             baseAction?()
-            let type = self?.demoViewController?.keyboardType
+            let type = self?.demoViewController?.context.keyboardType
             if type?.isAlphabetic == true { return }
             self?.inputViewController?.changeKeyboardType(to: .alphabetic(.lowercased))
         }

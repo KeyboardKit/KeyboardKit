@@ -17,9 +17,4 @@ public extension UIColor {
     static var clearInteractable: UIColor {
         UIColor(white: 1, alpha: 0.005)
     }
-    
-    @available(*, deprecated, renamed: "foo")
-    static var clearTappable: UIColor {
-        UIColor(white: 1, alpha: 0.005)
-    }
 }

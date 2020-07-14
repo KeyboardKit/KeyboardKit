@@ -37,7 +37,7 @@ public extension KeyboardSetting {
     var key: String { "\(keyPrefix)\(name)" }
     
     func key(for id: String) -> String { "\(key).\(id)" }
-    
+        
     var name: String {
         switch self {
         case .currentPageIndex: return "currentPageIndex"

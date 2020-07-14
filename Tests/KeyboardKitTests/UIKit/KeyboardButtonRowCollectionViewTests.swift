@@ -23,7 +23,7 @@ class KeyboardButtonRowCollectionViewTests: QuickSpec {
         var layout: KeyboardButtonRowCollectionView.Layout!
         
         beforeEach {
-            actions = [.capsLock, .moveCursorBackward, .backspace, .dismissKeyboard, .newLine]
+            actions = [.control, .moveCursorBackward, .backspace, .dismissKeyboard, .newLine]
             config = KeyboardButtonRowCollectionView.Configuration(rowHeight: 123, rowsPerPage: 2, buttonsPerRow: 2)
             view = TestClass(actions: actions, configuration: config) { action in
                 let button = TestButton(type: .custom)
@@ -105,7 +105,7 @@ class KeyboardButtonRowCollectionViewTests: QuickSpec {
                 let row2 = view.row(at: IndexPath(row: 1, section: 0))
                 let row3 = view.row(at: IndexPath(row: 2, section: 0))
                 let row4 = view.row(at: IndexPath(row: 3, section: 0))
-                expect(row1).to(equal([.capsLock, .moveCursorBackward]))
+                expect(row1).to(equal([.control, .moveCursorBackward]))
                 expect(row2).to(equal([.backspace, .dismissKeyboard]))
                 expect(row3).to(equal([.newLine, .none]))
                 expect(row4).to(equal([.none, .none]))
@@ -128,7 +128,7 @@ class KeyboardButtonRowCollectionViewTests: QuickSpec {
                 let actions = row.buttonStackView.arrangedSubviews.compactMap { $0 as? TestButton }.map { $0.action }
                 expect(row.height).to(equal(123))
                 expect(row.heightConstraint?.constant).to(equal(123))
-                expect(actions).to(equal([.capsLock, .moveCursorBackward]))
+                expect(actions).to(equal([.control, .moveCursorBackward]))
             }
         }
     }

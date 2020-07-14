@@ -9,20 +9,19 @@
 import Foundation
 
 /**
- This typealias represents multiple rows of keyboard actions.
+ This typealias represents a list of keyboard actions "rows".
+ 
+ This is just a semantic variation of `KeyboardActions` that
+ makes it easier to talk about and create action "rows".
  */
 public typealias KeyboardActionRows = [KeyboardActionRow]
-
-
-// MARK: - Public Functions
 
 public extension KeyboardActionRows {
     
     /**
-     Create keyboard action rows by mapping string arrays to
-     multiple rows character actions.
-     */
-    static func from(_ characters: [[String]]) -> KeyboardActionRows {
-        characters.map { KeyboardActionRow.from($0) }
+     Map string arrays to rows of `character` actions.
+    */
+    init(characters: [[String]]) {
+        self = characters.map { KeyboardActionRow(characters: $0) }
     }
 }

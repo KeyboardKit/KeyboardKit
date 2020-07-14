@@ -11,12 +11,8 @@ import UIKit
 /**
  This label is used by `AutocompleteToolbar` by default when
  no custom `buttonCreator` is provided. It mimics the native
- autocomplete label and will scroll when its content doesn't
- fit the screen.
- 
- This view is not a label, but a label that is nested within
- a scrollview as well as a plain label with centered content.
- The scrollable label is displayed if the text is too long.
+ autocomplete label which scrolls if its content doesn't fit
+ its frame.
 
  `TODO` - Implement horizontal blur.
  */

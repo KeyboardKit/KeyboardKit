@@ -9,25 +9,21 @@
 import UIKit
 
 /**
- This is the standard keyboard action handler. It is used by
- `KeyboardInputViewController` by default, if you do not set
- `keyboardActionHandler` to a custom action handler.
+ This action handler provides standard action handling for a
+ certain action and gesture. You can subclass it to override
+ any part that you want to modify with custom logic.
  
- This handler uses the standard `KeyboardAction` actions e.g.
- when a user taps or presses down on buttons on the keyboard.
- You can modify this behavior by creating a subclass of this
- class and override `xAction(for:sender:)/handleX(on:sender:)`.
+ `KeyboardInputViewController` uses this standard handler as
+ `keyboardActionHandler` by deafult, but you can replace the
+ standard action handling with a custom action handler.
  
- You can enable haptic feedback by providing a haptic config
- when you create an instance of this class. You can override
- the standard behavior by overriding `triggerHapticFeedback`.
+ You can enable haptic feedback by providing this class with
+ a `hapticConfiguration` and change the standard behavior by
+ overriding `triggerHapticFeedback`.
  
- You can enable audio feedback, by providing an audio config
- when you create an instance of this class. You can override
- the standard behavior by overriding `triggerAudioFeedback`.
- 
- `NOTE` This class inherits `NSObject` to be able to be used
- as `target`, e.g. when saving images.
+ You can enable audio feedback, by providing this class with
+ an `audioConfiguration` and change the standard behavior by
+ overriding `triggerAudioFeedback`.
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
@@ -52,29 +48,28 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     private let hapticConfiguration: HapticFeedbackConfiguration
     
-    public var textDocumentProxy: UITextDocumentProxy? {
-        inputViewController?.textDocumentProxy
-    }
-    
     
     // MARK: - Types
     
     public typealias GestureAction = () -> Void
     
     
-    // MARK: - Properties
+    // MARK: - KeyboardActionHandler
+    
+    public func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) -> Bool {
+        self.action(for: gesture, on: action, sender: sender) != nil
+    }
     
     /**
-     Whether or not the action handler should change back to
-     lowercase alphabetic keyboard after next text input.
-     
-     `NOTE` This logic should be moved to `KeyboardAction`.
+     Handle a certain `gesture` on a certain `action`
      */
-    open var shouldChangeToAlphabeticLowercase: Bool {
-        switch inputViewController?.keyboardType {
-        case .alphabetic(let state): return state == .uppercased
-        default: return false
-        }
+    open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
+        guard let gestureAction = self.action(for: gesture, on: action, sender: sender) else { return }
+        gestureAction()
+        triggerAnimation(for: gesture, on: action, sender: sender)
+        triggerAudioFeedback(for: gesture, on: action, sender: sender)
+        triggerHapticFeedback(for: gesture, on: action, sender: sender)
+        handleKeyboardSwitch(after: gesture, on: action)
     }
     
     
@@ -84,7 +79,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      This is the standard action that is used by the handler
      when a user makes a certain gesture on a certain action.
      */
-    open func action(for gesture: KeyboardGesture, action: KeyboardAction, sender: Any?) -> GestureAction? {
+    open func action(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) -> GestureAction? {
         switch gesture {
         case .doubleTap: return doubleTapAction(for: action, sender: sender)
         case .longPress: return longPressAction(for: action, sender: sender)
@@ -130,32 +125,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     
-    // MARK: - Action Handling
-    
-    open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
-        guard let gestureAction = self.action(for: gesture, action: action, sender: sender) else { return }
-        gestureAction()
-        triggerAnimation(for: gesture, on: action, sender: sender)
-        triggerAudioFeedback(for: gesture, on: action, sender: sender)
-        triggerHapticFeedback(for: gesture, on: action, sender: sender)
-    }
-    
-    @available(*, deprecated, message: "Use handle(_ gesture:on:sender:) instead")
-    open func handleLongPress(on action: KeyboardAction, view: UIView) {
-        handle(.longPress, on: action, sender: view)
-    }
-    
-    @available(*, deprecated, message: "Use handle(_ gesture:on:sender:) instead")
-    open func handleRepeat(on action: KeyboardAction, view: UIView) {
-        handle(.repeatPress, on: action, sender: view)
-    }
-    
-    @available(*, deprecated, message: "Use handle(_ gesture:on:sender:) instead")
-    open func handleTap(on action: KeyboardAction, view: UIView) {
-        handle(.tap, on: action, sender: view)
-    }
-    
-    
     // MARK: - Feedback
     
     open func triggerAnimation(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
@@ -163,7 +132,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
-        if action.isDeleteAction { return audioConfiguration.deleteFeedback.trigger() }
+        if action == .backspace { return audioConfiguration.deleteFeedback.trigger() }
         if action.isInputAction { return audioConfiguration.inputFeedback.trigger() }
         if action.isSystemAction { return audioConfiguration.systemFeedback.trigger() }
     }
@@ -178,41 +147,29 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     
-    // MARK: - DEPRECATED
+    // MARK: - Keyboard Type Switching
     
-    @available(*, deprecated, message: "Use action(for sender:) instead")
-    open func action(for gesture: KeyboardGesture, action: KeyboardAction, view: UIView) -> GestureAction? {
-        self.action(for: gesture, action: action, sender: view)
+    open func handleKeyboardSwitch(after gesture: KeyboardGesture, on action: KeyboardAction) {
+        guard let type = preferredKeyboardType(after: gesture, on: action) else { return }
+        inputViewController?.changeKeyboardType(to: type)
     }
     
-    @available(*, deprecated, message: "Use triggerAnimation(for:on:sender:) instead")
-    open func animationButtonTap(for view: UIView) {
-        triggerAnimation(for: .tap, on: .none, sender: view)
+    open func preferredKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardType? {
+        if shouldChangeToAlphabeticLowercase(after: gesture, on: action) { return .alphabetic(.lowercased) }
+        return nil
     }
+}
+
+
+// MARK: - Private Extensions
+
+private extension StandardKeyboardActionHandler {
     
-    @available(*, deprecated, message: "Use longPressAction(for sender:) instead")
-    open func longPressAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
-        tapAction(for: action, view: view)
-    }
-    
-    @available(*, deprecated, message: "Use repeatAction(for sender:) instead")
-    open func repeatAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
-        guard action == .backspace else { return nil }
-        return tapAction(for: action, view: view)
-    }
-    
-    @available(*, deprecated, message: "Use tapAction(for sender:) instead")
-    open func tapAction(for action: KeyboardAction, view: UIView) -> GestureAction? {
-        return { action.standardTapAction?(self.inputViewController) }
-    }
-    
-    @available(*, deprecated, message: "Use triggerAudioFeedback(for:on:sender:) instead")
-    open func triggerAudioFeedback(for action: KeyboardAction) {
-        triggerAudioFeedback(for: .tap, on: action, sender: nil)
-    }
-    
-    @available(*, deprecated, message: "Use triggerHapticFeedback(for:on:sender:) instead")
-    open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
-        triggerHapticFeedback(for: gesture, on: action, sender: nil)
+    func shouldChangeToAlphabeticLowercase(after gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
+        guard let type = inputViewController?.context.keyboardType else { return false }
+        guard case .alphabetic(.uppercased) = type else { return false }
+        guard case .tap = gesture else { return false }
+        guard case .character = action else { return false }
+        return true
     }
 }

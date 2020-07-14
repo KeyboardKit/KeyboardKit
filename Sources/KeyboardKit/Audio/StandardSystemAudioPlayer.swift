@@ -3,14 +3,13 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-10-15.
+//  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
 import AudioToolbox
 
 /**
- This class plays system audio with `AudioToolbox`. It's the
- standard system audio player and is used by `AudioFeedback`
- by default, if a custom player isn't provided.
+ This class plays system audio using `AudioToolbox`.
  */
 public class StandardSystemAudioPlayer: SystemAudioPlayer {
     

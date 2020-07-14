@@ -10,34 +10,23 @@ import UIKit
 
 /**
  This protocol can be implemented by classes that can handle
- triggered keyboard actions.
+ keyboard actions.
  
- A `StandardKeyboardActionHandler` is used by default by the
- `KeyboardInputViewController` class, but you can replace it
- with any custom action handler. See the demo for an example.
+ The `StandardKeyboardActionHandler` class provides standard
+ action handling by using the provided action's own standard
+ action for a provided gesture. `KeyboardInputViewController`
+ uses a standard handler as `keyboardActionHandler`, but you
+ can replace it with a custom action handler.
  */
 public protocol KeyboardActionHandler: AnyObject {
     
+    func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) -> Bool
     func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?)
-    
-    @available(*, deprecated, message: "Use handle(_ gesture:on:sender:) instead")
-    func handleTap(on action: KeyboardAction, view: UIView)
-    
-    @available(*, deprecated, message: "Use handle(_ gesture:on:sender:) instead")
-    func handleRepeat(on action: KeyboardAction, view: UIView)
-    
-    @available(*, deprecated, message: "Use handle(_ gesture:on:sender:) instead")
-    func handleLongPress(on action: KeyboardAction, view: UIView)
 }
 
 public extension KeyboardActionHandler {
     
     func handle(_ gesture: KeyboardGesture, on action: KeyboardAction) {
         handle(gesture, on: action, sender: nil)
-    }
-    
-    @available(*, deprecated, message: "Use handle(_ gesture:on:sender:) instead")
-    func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, view: UIView) {
-        handle(gesture, on: action, sender: view)
     }
 }
