@@ -7,7 +7,7 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 This version removes all previously deprecated parts of the library and adds improved support for SwiftUI and iOS 13.
 
-If you upgrade from an older version to `3.0` and have many breaking changes, upgrading to `2.9` first provides deprecation help.
+If you upgrade from an older version to `3.0` and have many breaking changes, upgrading to `2.9` first provides deprecation help that may make the transition easier.
 
 
 ### New functionality
