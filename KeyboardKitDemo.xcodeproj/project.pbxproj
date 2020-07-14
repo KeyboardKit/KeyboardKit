@@ -1542,7 +1542,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielsaidi/KeyboardKit";
 			requirement = {
-				branch = "3.0-beta";
+				branch = master;
 				kind = branch;
 			};
 		};
@@ -1550,7 +1550,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielsaidi/KeyboardKitSwiftUI";
 			requirement = {
-				branch = "3.0-beta";
+				branch = master;
 				kind = branch;
 			};
 		};
