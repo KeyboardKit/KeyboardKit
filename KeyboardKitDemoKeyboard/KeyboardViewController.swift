@@ -42,6 +42,11 @@ class KeyboardViewController: KeyboardInputViewController {
         context.actionHandler = DemoKeyboardActionHandler(inputViewController: self)
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        setupKeyboard()
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         setupKeyboard(for: size)

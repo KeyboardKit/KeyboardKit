@@ -122,8 +122,12 @@ private extension KeyboardAction {
     }
     
     func useDarkAppearance(in viewController: KeyboardInputViewController) -> Bool {
-        let appearance = viewController.textDocumentProxy.keyboardAppearance ?? .default
-        return appearance == .dark
+        if #available(iOSApplicationExtension 12.0, *) {
+            return viewController.traitCollection.userInterfaceStyle == .dark
+        } else {
+            let appearance = viewController.textDocumentProxy.keyboardAppearance ?? .default
+            return appearance == .dark
+        }
     }
     
     var useDarkButton: Bool {
