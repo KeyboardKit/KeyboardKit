@@ -45,7 +45,7 @@ public protocol KeyboardContext: AnyObject {
     /**
      The current keyboard appearance.
      */
-    var keyboardAppearance: UIKeyboardAppearance { get }
+    var keyboardAppearance: UIKeyboardAppearance { get }
     
     /**
      The current keyboard type. You this type as you want.
