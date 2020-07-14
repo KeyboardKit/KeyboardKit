@@ -46,15 +46,28 @@ struct KeyboardView: View {
 private extension KeyboardView {
     
     func alphabeticKeyboard(_ state: KeyboardShiftState) -> some View {
-        AlphabeticSystemKeyboard(inputSet: .english, state: state, topmostView: AnyView(AutocompleteToolbar()))
+        AlphabeticSystemKeyboard(
+            context: context,
+            inputSet: .english,
+            state: state,
+            topmostView: AnyView(AutocompleteToolbar()),
+            customBottomRow: .demoRow(for: context))
     }
     
     func numericKeyboard() -> some View {
-        NumericSystemKeyboard(inputSet: .englishNumeric, topmostView: AnyView(AutocompleteToolbar()))
+        NumericSystemKeyboard(
+            context: context,
+            inputSet: .englishNumeric,
+            topmostView: AnyView(AutocompleteToolbar()),
+            customBottomRow: .demoRow(for: context))
     }
     
     func symbolicKeyboard() -> some View {
-        SymbolicSystemKeyboard(inputSet: .englishSymbolic, topmostView: AnyView(AutocompleteToolbar()))
+        SymbolicSystemKeyboard(
+            context: context,
+            inputSet: .englishSymbolic,
+            topmostView: AnyView(AutocompleteToolbar()),
+            customBottomRow: .demoRow(for: context))
     }
     
     var keyboardView: AnyView {
