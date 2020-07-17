@@ -4,19 +4,10 @@ default_platform :ios
 
 platform :ios do
 
-
-  # Dependencies ***********************
-
-  desc "Resolve External Dependencies (the shell script makes Bitrise work)"
-  lane :resolve_dependencies do
-    sh("cd .. && xcodebuild -showBuildSettings -project KeyboardKit.xcodeproj -scheme KeyboardKit")
-    spm(command: "resolve")
-  end
-  
   
   # Lint =======================
   
-  desc "Run linting"
+  desc "Run SwiftLint"
   lane :lint do
     swiftlint(strict: true)
   end
