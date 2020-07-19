@@ -3,6 +3,13 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions. 
 
 
+## 3.0.1
+
+This version fixes a bug, where the globe button that is used by the demo keyboards didn't do anything.
+
+This version also fixes the system image's font weight.
+
+
 ## 3.0.0
 
 This version removes all previously deprecated parts of the library and adds improved support for SwiftUI and iOS 13.
