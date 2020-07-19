@@ -56,56 +56,54 @@ KeyboardKit supports both `UIKit` and `SwiftUI`, so you can pick the option that
 
 ## SwiftUI
 
-Since version `2.7.0`, KeyboardKit supports `SwiftUI` with new tools that helps you build SwiftUI-based keyboards. 
+Since version `2.7.0`, KeyboardKit provides new tools that help you build SwiftUI-based keyboards. SwiftUI will be the main focus going forward, with the aim to improve SwiftUI support in version `3.x` and move it to the main repo in `4.0`. When this happens, KeyboardKit will target iOS 13 and up.
 
-SwiftUI will be the main focus going forward. The current plan is to improve the SwiftUI development experience in version `3.x` and move the tools to the main repo in `4.0`. When this happens, KeyboardKit will target iOS 13 and up.
-
-Due to a [Swift toolchain bug][Bug], SwiftUI support must be kept in a separate library called [KeyboardKitSwiftUI][KeyboardKitSwiftUI]. This is hopefully temporary, until the bug is fixed. Until then, you must add both `KeyboardKit` and `KeyboardKitSwiftUI` if you want to use `KeyboardKit` with SwiftUI.
+Due to a [Swift toolchain bug][Bug], SwiftUI support must be kept in a [separate library][KeyboardKitSwiftUI]. Until the bug is fixed, you must add both `KeyboardKit` and `KeyboardKitSwiftUI` to your project, if you want to use `KeyboardKit` with SwiftUI.
 
 
 ## Actions
 
-KeyboardKit comes with a set of actions that can be applied to keyboard buttons or triggered programatically, like `character`, `emoji`, `backspace`, `newline`, `space`, `image` etc.
+KeyboardKit supports many different keyboard actions, like `character` inputs, `emoji` inputs, `backspace`, `newline`, `space`, `image` etc. You can even create your own, custom actions.
 
 [Read more here][Actions]
 
 
 ## Keyboard Types
 
-KeyboardKit comes with a set of keyboard types, like `alphabetic`, `numeric`, `symbolic`, `emoji` etc.
+KeyboardKit supports many different keyboard types, like `alphabetic`, `numeric`, `symbolic`, `emoji` etc. You can even create your own, custom keyboard types.
 
 [Read more here][Keyboard-Types]
 
 
 ## Autocomplete
 
-KeyboardKit provides autocomplete support, which means that you can display autocomplete suggestions while users type. 
+KeyboardKit supports autocomplete and can present autocomplete suggestions to users as they type. 
 
 [Read more here][Autocomplete]
 
 
 ## Haptic Feedback
 
-KeyboardKit supports haptic feedback, which means that users can get haptic feedback as they type.
+KeyboardKit supports haptic feedback and can give users haptic feedback as they type. 
 
-[Read more here][Haptic].
+[Read more here][Haptic-Feedback].
 
 
 ## Audio Feedback
 
-KeyboardKit supports audio feedback, which means that users can get audio feedback as they type.
+KeyboardKit supports audio feedback and can give users audio feedback as they type. 
 
-[Read more here][Audio].
+[Read more here][Audio-Feedback].
 
 
 ## Extensions
 
-KeyboardKit comes with a bunch of keyboard-specific extensions. Check out the example app and source code for more information.
+KeyboardKit comes with many keyboard-specific extensions. Check out the demo apps and source code for examples and more information.
 
 
 ## Views and components
 
-KeyboardKit comes with many views and components that can be composed into custom keyboards, e.g. `button`, `rows`, `toolbars` etc.
+KeyboardKit comes with many views and components that can be composed into custom UIKit and SwiftUI-based keyboards, e.g. `button`, `rows`, `toolbars` etc.
 
 [Read more here][Views].
 
@@ -154,10 +152,10 @@ KeyboardKit is available under the MIT license. See LICENSE file for more info.
 [CocoaPods]: https://cocoapods.org/
 
 [Actions]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Actions.md
-[Audio]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Audio.md
+[Audio-Feedback]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Audio-Feedback.md
 [Autocomplete]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Autocomplete.md
-[Haptic]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Haptic.md
-[Keyboards]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Keyboards.md
+[Haptic-Feedback]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Haptic-Feedback.md
+[Keyboard-Types]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Keyboard-Types.md
 [Views]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Views.md
 
 [Guide]: https://shyngys.com/ios-custom-keyboard-guide
