@@ -44,7 +44,7 @@ public extension KeyboardAction {
      For actions that don't exist on a system level, this is
      just a suggestion, that you can ignore or override.
     */
-    var systemTextStyle: UIFont.TextStyle {
+    var systemTextStyle: TextStyle {
         if hasMultiCharSystemKeyboardButtonText { return .body }
         switch self {
         case .emoji: return .title1
