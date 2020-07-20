@@ -9,9 +9,13 @@
 import Mockery
 import UIKit
 
-class MockTextDocumentProxy: NSObject, UITextDocumentProxy {
+class MockTextDocumentProxy: NSObject, UITextDocumentProxy, Mockable {
     
-    let recorder = Mock()
+    lazy var adjustTextPositionRef = MockReference(adjustTextPosition)
+    lazy var deleteBackwardRef = MockReference(deleteBackward)
+    lazy var insertTextRef = MockReference(insertText)
+    
+    let mock = Mock()
     
     var hasText: Bool = false
     
@@ -22,15 +26,15 @@ class MockTextDocumentProxy: NSObject, UITextDocumentProxy {
     var documentIdentifier: UUID = UUID()
     
     func adjustTextPosition(byCharacterOffset offset: Int) {
-        recorder.invoke(adjustTextPosition, args: (offset))
+        invoke(adjustTextPositionRef, args: (offset))
     }
     
     func deleteBackward() {
-        recorder.invoke(deleteBackward, args: ())
+        invoke(deleteBackwardRef, args: ())
     }
     
     func insertText(_ text: String) {
-        recorder.invoke(insertText, args: (text))
+        invoke(insertTextRef, args: (text))
     }
     
     func setMarkedText(_ markedText: String, selectedRange: NSRange) {}

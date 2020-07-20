@@ -16,7 +16,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/Quick/Quick.git", .upToNextMajor(from: "3.0.0")),
         .package(url: "https://github.com/Quick/Nimble.git", .upToNextMajor(from: "8.0.0")),
-        .package(url: "https://github.com/danielsaidi/Mockery.git", .upToNextMajor(from: "0.3.3"))
+        .package(url: "https://github.com/danielsaidi/Mockery.git", .upToNextMajor(from: "0.4.0"))
     ],
     targets: [
         .target(

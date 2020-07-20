@@ -12,39 +12,48 @@ import UIKit
 
 class MockKeyboardActionHandler: Mock, KeyboardActionHandler {
     
+    lazy var handleRef = MockReference(handle)
+    lazy var handleTapRef = MockReference(handleTap)
+    lazy var handleLongPressRef = MockReference(handleLongPress)
+    lazy var handleRepeatRef = MockReference(handleRepeat)
+    lazy var giveHapticFeedbackForTapRef = MockReference(giveHapticFeedbackForTap)
+    lazy var giveHapticFeedbackForDoubleTapRef = MockReference(giveHapticFeedbackForDoubleTap)
+    lazy var giveHapticFeedbackForLongPressRef = MockReference(giveHapticFeedbackForLongPress)
+    lazy var giveHapticFeedbackForRepeatRef = MockReference(giveHapticFeedbackForRepeat)
+    
     func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) -> Bool {
         true
     }
     
     func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
-        invoke(handle, args: (gesture, action, sender))
+        invoke(handleRef, args: (gesture, action, sender))
     }
     
     func handleTap(on action: KeyboardAction, view: UIView) {
-        invoke(handleTap, args: (action, view))
+        invoke(handleTapRef, args: (action, view))
     }
     
     func handleLongPress(on action: KeyboardAction, view: UIView) {
-        invoke(handleLongPress, args: (action, view))
+        invoke(handleLongPressRef, args: (action, view))
     }
     
     func handleRepeat(on action: KeyboardAction, view: UIView) {
-        invoke(handleRepeat, args: (action, view))
+        invoke(handleRepeatRef, args: (action, view))
     }
     
     func giveHapticFeedbackForTap(on action: KeyboardAction) {
-        invoke(giveHapticFeedbackForTap, args: action)
+        invoke(giveHapticFeedbackForTapRef, args: action)
     }
     
     func giveHapticFeedbackForDoubleTap(on action: KeyboardAction) {
-        invoke(giveHapticFeedbackForDoubleTap, args: action)
+        invoke(giveHapticFeedbackForDoubleTapRef, args: action)
     }
     
     func giveHapticFeedbackForLongPress(on action: KeyboardAction) {
-        invoke(giveHapticFeedbackForLongPress, args: action)
+        invoke(giveHapticFeedbackForLongPressRef, args: action)
     }
     
     func giveHapticFeedbackForRepeat(on action: KeyboardAction) {
-        invoke(giveHapticFeedbackForRepeat, args: action)
+        invoke(giveHapticFeedbackForRepeatRef, args: action)
     }
 }

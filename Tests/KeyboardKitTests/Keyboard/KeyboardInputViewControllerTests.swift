@@ -37,9 +37,9 @@ class KeyboardInputViewControllerTests: QuickSpec {
         describe("view did load") {
             
             it("sets up the keyboard") {
-                expect(vc.hasInvoked(vc.setupKeyboard)).to(beFalse())
+                expect(vc.hasInvoked(vc.setupKeyboardRef)).to(beFalse())
                 vc.viewDidLoad()
-                expect(vc.hasInvoked(vc.setupKeyboard)).to(beTrue())
+                expect(vc.hasInvoked(vc.setupKeyboardRef)).to(beTrue())
             }
         }
         
@@ -55,9 +55,9 @@ class KeyboardInputViewControllerTests: QuickSpec {
             }
             
             it("syncs with text document proxy") {
-                expect(vc.hasInvoked(vc.viewWillSyncWithTextDocumentProxy)).to(beFalse())
+                expect(vc.hasInvoked(vc.viewWillSyncWithTextDocumentProxyRef)).to(beFalse())
                 vc.viewWillAppear(false)
-                expect(vc.hasInvoked(vc.viewWillSyncWithTextDocumentProxy)).to(beTrue())
+                expect(vc.hasInvoked(vc.viewWillSyncWithTextDocumentProxyRef)).to(beTrue())
             }
         }
         
@@ -169,7 +169,10 @@ class KeyboardInputViewControllerTests: QuickSpec {
 
 private class TestClass: KeyboardInputViewController, Mockable {
     
-    var mock = Mock()
+    lazy var viewWillSyncWithTextDocumentProxyRef = MockReference(viewWillSyncWithTextDocumentProxy)
+    lazy var setupKeyboardRef = MockReference(setupKeyboard)
+    
+    let mock = Mock()
     
     var hasFullAccessValue = false
     override var hasFullAccess: Bool { hasFullAccessValue }
@@ -185,11 +188,11 @@ private class TestClass: KeyboardInputViewController, Mockable {
     
     override func viewWillSyncWithTextDocumentProxy() {
         super.viewWillSyncWithTextDocumentProxy()
-        mock.invoke(viewWillSyncWithTextDocumentProxy, args: ())
+        mock.invoke(viewWillSyncWithTextDocumentProxyRef, args: ())
     }
     
     override func setupKeyboard() {
-        mock.invoke(setupKeyboard, args: ())
+        mock.invoke(setupKeyboardRef, args: ())
     }
 }
 

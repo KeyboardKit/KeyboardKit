@@ -9,11 +9,13 @@
 import Mockery
 import UIKit
 
-class MockCollectionViewLayout: UICollectionViewFlowLayout {
+class MockCollectionViewLayout: UICollectionViewFlowLayout, Mockable {
     
-    var recorder = Mock()
+    lazy var invalidateLayoutRef = MockReference(invalidateLayout as () -> Void)
+    
+    var mock = Mock()
     
     override func invalidateLayout() {
-        recorder.invoke(invalidateLayout, args: ())
+        invoke(invalidateLayoutRef, args: ())
     }
 }

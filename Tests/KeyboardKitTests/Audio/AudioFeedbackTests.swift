@@ -37,7 +37,7 @@ class AudioFeedbackTest: QuickSpec {
                 AudioFeedback.systemPlayer = player
                 AudioFeedback.trigger(.custom(id: 123))
                 AudioFeedback.custom(id: 124).trigger()
-                let exec = player.invokations(of: player.playSystemAudio)
+                let exec = player.invokations(of: player.playSystemAudioRef)
                 expect(exec.count).to(equal(2))
                 expect(exec[0].arguments).to(equal(123))
                 expect(exec[1].arguments).to(equal(124))
@@ -49,7 +49,9 @@ class AudioFeedbackTest: QuickSpec {
 
 private class MockPlayer: Mock, SystemAudioPlayer {
     
+    lazy var playSystemAudioRef = MockReference(playSystemAudio)
+    
     func playSystemAudio(_ id: UInt32) {
-        invoke(playSystemAudio, args: (id))
+        invoke(playSystemAudioRef, args: (id))
     }
 }

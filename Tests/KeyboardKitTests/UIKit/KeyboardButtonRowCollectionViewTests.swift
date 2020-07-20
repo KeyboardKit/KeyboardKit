@@ -57,7 +57,7 @@ class KeyboardButtonRowCollectionViewTests: QuickSpec {
             it("restores current page index") {
                 view = TestClass(id: "test", actions: [], configuration: config) { _ in TestButton(type: .custom) }
                 view.layoutSubviews()
-                let exec = view.recorder.invokations(of: view.restoreCurrentPage)
+                let exec = view.invokations(of: view.restoreCurrentPageRef)
                 expect(exec.count).to(equal(1))
             }
         }
@@ -134,9 +134,11 @@ class KeyboardButtonRowCollectionViewTests: QuickSpec {
     }
 }
 
-private class TestClass: KeyboardButtonRowCollectionView {
+private class TestClass: KeyboardButtonRowCollectionView, Mockable {
     
-    var recorder = Mock()
+    lazy var restoreCurrentPageRef = MockReference(restoreCurrentPage)
+    
+    let mock = Mock()
     
     override func layoutSubviews() {
         frame = CGRect(x: 0, y: 0, width: 100, height: 100)
@@ -144,7 +146,7 @@ private class TestClass: KeyboardButtonRowCollectionView {
     }
     
     override func restoreCurrentPage() {
-        recorder.invoke(restoreCurrentPage, args: ())
+        invoke(restoreCurrentPageRef, args: ())
     }
 }
 

@@ -10,11 +10,13 @@ import KeyboardKit
 import Mockery
 import UIKit
 
-class MockInputViewController: KeyboardInputViewController {
+class MockInputViewController: KeyboardInputViewController, Mockable {
     
-    var recorder = Mock()
+    lazy var dismissKeyboardRef = MockReference(dismissKeyboard)
+    
+    let mock = Mock()
     
     override func dismissKeyboard() {
-        recorder.invoke(dismissKeyboard, args: ())
+        invoke(dismissKeyboardRef, args: ())
     }
 }

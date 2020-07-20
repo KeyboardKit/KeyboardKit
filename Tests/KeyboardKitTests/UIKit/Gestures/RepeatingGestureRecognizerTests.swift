@@ -29,8 +29,8 @@ class RepeatingGestureRecognizerTests: QuickSpec {
         describe("setting state") {
             
             func validateStartStopCount(_ startCount: Int, _ stopCount: Int) {
-                let start = recognizer.recorder.invokations(of: recognizer.startGesture)
-                let stop = recognizer.recorder.invokations(of: recognizer.stopGesture)
+                let start = recognizer.invokations(of: recognizer.startGestureRef)
+                let stop = recognizer.invokations(of: recognizer.stopGestureRef)
                 expect(start.count).to(equal(startCount))
                 expect(stop.count).to(equal(stopCount))
             }
@@ -131,9 +131,12 @@ class RepeatingGestureRecognizerTests: QuickSpec {
     }
 }
 
-private class TestClass: RepeatingGestureRecognizer {
+private class TestClass: RepeatingGestureRecognizer, Mockable {
     
-    var recorder = Mock()
+    lazy var startGestureRef = MockReference(startGesture)
+    lazy var stopGestureRef = MockReference(stopGesture)
+    
+    let mock = Mock()
     
     var setStates = [UIGestureRecognizer.State]()
     
@@ -142,12 +145,12 @@ private class TestClass: RepeatingGestureRecognizer {
     }
     
     override func startGesture() {
-        recorder.invoke(startGesture, args: ())
+        invoke(startGestureRef, args: ())
         super.startGesture()
     }
     
     override func stopGesture() {
-        recorder.invoke(stopGesture, args: ())
+        invoke(stopGestureRef, args: ())
         super.stopGesture()
     }
     

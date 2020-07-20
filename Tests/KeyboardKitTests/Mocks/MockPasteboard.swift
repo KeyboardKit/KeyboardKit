@@ -9,11 +9,13 @@
 import UIKit
 import Mockery
 
-class MockPasteboard: UIPasteboard {
+class MockPasteboard: UIPasteboard, Mockable {
+    
+    lazy var setDataRef = MockReference(setData)
 
-    let recorder = Mock()
+    let mock = Mock()
     
     override func setData(_ data: Data, forPasteboardType pasteboardType: String) {
-        recorder.invoke(setData, args: (data, pasteboardType))
+        invoke(setDataRef, args: (data, pasteboardType))
     }
 }

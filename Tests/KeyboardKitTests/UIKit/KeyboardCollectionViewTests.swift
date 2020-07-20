@@ -47,18 +47,17 @@ class KeyboardCollectionViewTests: QuickSpec {
         describe("refreshing") {
             
             beforeEach {
-                layout.recorder = Mock()
+                layout.mock = Mock()
                 view.refresh()
             }
             
             it("invalidates layout") {
-                let action: () -> Void = layout.invalidateLayout
-                let exec = layout.recorder.invokations(of: action)
+                let exec = layout.invokations(of: layout.invalidateLayoutRef)
                 expect(exec.count).to(equal(1))
             }
             
             it("reloads data") {
-                let exec = view.recorder.invokations(of: view.reloadData)
+                let exec = view.invokations(of: view.reloadDataRef)
                 expect(exec.count).to(equal(1))
             }
         }
@@ -83,11 +82,13 @@ class KeyboardCollectionViewTests: QuickSpec {
     }
 }
 
-private class TestClass: KeyboardCollectionView {
+private class TestClass: KeyboardCollectionView, Mockable {
     
-    var recorder = Mock()
+    lazy var reloadDataRef = MockReference(reloadData)
+    
+    let mock = Mock()
     
     override func reloadData() {
-        recorder.invoke(reloadData, args: ())
+        invoke(reloadDataRef, args: ())
     }
 }

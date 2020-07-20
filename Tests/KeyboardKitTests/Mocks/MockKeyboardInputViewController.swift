@@ -9,11 +9,13 @@
 import KeyboardKit
 import Mockery
 
-class MockKeyboardInputViewController: KeyboardInputViewController {
+class MockKeyboardInputViewController: KeyboardInputViewController, Mockable {
     
-    var recorder = Mock()
+    lazy var addKeyboardGesturesRef = MockReference(addKeyboardGestures)
+    
+    let mock = Mock()
     
     override func addKeyboardGestures(to button: KeyboardButton) {
-        recorder.invoke(addKeyboardGestures, args: (button))
+        invoke(addKeyboardGesturesRef, args: (button))
     }
 }
