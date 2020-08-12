@@ -3,6 +3,11 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions. 
 
 
+## 3.0.2
+
+This version makes all `StandardBookActionHandler` actions use `[weak self]`.
+
+
 ## 3.0.1
 
 This version fixes a bug, where the globe button that is used by the demo keyboards didn't do anything.

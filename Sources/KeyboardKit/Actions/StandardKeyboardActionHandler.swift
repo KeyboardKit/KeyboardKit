@@ -94,7 +94,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      */
     open func doubleTapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
         guard let action = action.standardDoubleTapAction else { return nil }
-        return { action(self.inputViewController) }
+        return { [weak self] in action(self?.inputViewController) }
     }
     
     /**
@@ -103,7 +103,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      */
     open func longPressAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
         guard let action = action.standardLongPressAction else { return nil }
-        return { action(self.inputViewController) }
+        return { [weak self] in action(self?.inputViewController) }
     }
     
     /**
@@ -112,7 +112,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      */
     open func repeatAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
         guard let action = action.standardRepeatAction else { return nil }
-        return { action(self.inputViewController) }
+        return { [weak self] in action(self?.inputViewController) }
     }
     
     /**
@@ -121,7 +121,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      */
     open func tapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
         guard let action = action.standardTapAction else { return nil }
-        return { action(self.inputViewController) }
+        return { [weak self] in action(self?.inputViewController) }
     }
     
     
