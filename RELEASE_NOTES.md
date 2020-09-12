@@ -5,7 +5,10 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 ## 3.0.2
 
-This version makes all `StandardBookActionHandler` actions use `[weak self]`.
+In this version:
+
+* A memory leak was fixed by making all `StandardBookActionHandler` actions use `[weak self]`.
+* The UIKit button shadow logic was improved by @jackhumbert.
 
 
 ## 3.0.1
