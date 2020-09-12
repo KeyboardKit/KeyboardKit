@@ -35,8 +35,6 @@ struct KeyboardView: View {
     @EnvironmentObject var context: ObservableKeyboardContext
     @EnvironmentObject var toastContext: KeyboardToastContext
     
-    var tttt: String { "\(toastContext.isActive)" }
-    
     var body: some View {
         keyboardView
             .keyboardToast(isActive: $toastContext.isActive, content: toastContext.content, background: toastBackground)

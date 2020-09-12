@@ -18,8 +18,8 @@ platform :ios do
   desc "Run unit tests"
   lane :test do
     # Note: Since UIKit tests must be run from a project and
-    # this project has no such project, we instead prompt to
-    # ask the developers to confirm that tests have been run.
+    # this project has no such project, we instead ask for a
+    # confirmation that the test suite has been run.
     # resolve_dependencies
     # run_tests(scheme: "KeyboardKit")
     confirm = prompt(text: "Have you successfully run all unit tests? [y/n]: ")
@@ -35,6 +35,7 @@ platform :ios do
   lane :version do |options|
     ensure_git_status_clean
     ensure_git_branch(branch: 'master')
+    
     lint
     test
 
