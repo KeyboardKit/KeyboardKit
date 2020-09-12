@@ -33,17 +33,19 @@ private extension CALayer {
         y: CGFloat = 2,
         blur: CGFloat = 4,
         spread: CGFloat = 0) {
+        let scale = UIScreen.main.scale
         masksToBounds = false
         shadowColor = color.cgColor
         shadowOpacity = alpha
-        shadowOffset = CGSize(width: 0, height: 0)
+        shadowOffset = .zero
         shadowRadius = blur / 2.0
         let rect = bounds.insetBy(dx: -spread, dy: -spread)
+        let inset = UIEdgeInsets(top: y, left: 0, bottom: 0, right: 0)
         let path = UIBezierPath(roundedRect: rect.offsetBy(dx: x, dy: y), cornerRadius: cornerRadius + spread)
-        path.append(UIBezierPath(roundedRect: bounds.inset(by: UIEdgeInsets(top: y, left: 0, bottom: 0, right: 0)), cornerRadius: cornerRadius).reversing())
+        path.append(UIBezierPath(roundedRect: bounds.inset(by: inset), cornerRadius: cornerRadius).reversing())
         shadowPath = path.cgPath
         shouldRasterize = true
-        rasterizationScale = UIScreen.main.scale
-        contentsScale = UIScreen.main.scale
+        rasterizationScale = scale
+        contentsScale = scale
     }
 }
