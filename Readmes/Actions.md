@@ -1,6 +1,6 @@
 # Actions
 
-KeyboardKit comes with a set of actions that can be applied to keyboard buttons or triggered programatically:
+KeyboardKit has a `KeyboardAction` enum with these actions:
 
 * `backspace` - sends a backspace to the text proxy when `tapped` and repeats this action until the button is releasd
 * `capsLock` - changes the keyboard type to `.alphabetic(.capsLocked)` when `tapped`
@@ -27,16 +27,25 @@ KeyboardKit comes with a set of actions that can be applied to keyboard buttons 
 * `tab` - sends a tab character to the text proxy when `tapped`
 * `none`- use this for empty "placeholder" keys that do nothing
 
+These actions can be applied to keyboard buttons or triggered programatically.
+
+
+## Handling actions
+
+You can use these actions in any way you like, but KeyboardKit lets you specify a `KeyboardActionHandler` that will be used to handle actions.
+
+`KeyboardContext` has an `actionHandler` property that can be used to get and set the current action handler.
+
+KeyboardKit will apply a `StandardKeyboardActionHandler` by default, but you can inject a custom action handler if you want.
+
 
 ## Actions for tap, long press, repeat etc.
 
-The `tap` and `long press` behavior described above is the standard behavior that is automatically applied if you use the default action handler. If you don't use the default handler, you can handle any action in any way you like.
+The `tap` and `long press` behaviors described above are the standard behaviors that are automatically applied if you use or inherit `StandardKeyboardActionHandler`. Actions that have no explicit `long press` action uses the same action as for `tap`.
 
-All actions that has no explicit `long press` action default uses the same action as for `tap`.
+Many actions have no standard behavior, since their behavior depend on your application. For instance, `image` requires that you decide what to do with a tapped or long pressed image, and implement it in your keyboard.
 
-Many actions have no standard behavior, since their behavior depend on your application. For instance, `image` only represents an image button, but you have to decide what to do with a tapped or long pressed image.
-
-Some actions in the list represents actions from other platforms. For instance `command`, `function` and `option` do not exist in iOS, but may still serve a functional or semantical purpose in your keyboard.
+You can handle actions that have no standard behavior by implementing a custom action handler, like the demo app does.
 
 
 ## Appearance

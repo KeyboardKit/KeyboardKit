@@ -1,6 +1,6 @@
 # Keyboard Types
 
-`KeyboardKit` comes with a set of keyboard types:
+`KeyboardKit` comes with a `KeyboardType` enum with these keyboard types:
 
 * `alphabetic(uppercased/lowercased/capsLocked)`
 * `numeric`
@@ -10,6 +10,6 @@
 * `images`
 * `custom(name)` - a custom type if no other types fit your needs
 
-`KeyboardInputViewController` has a `keyboardType` property and functions for changing the keyboard type. 
+`KeyboardContext` has a `keyboardType` property that can be used to get and set the current keyboard type. 
 
-However, these types have no universal meaning. You have to implement each type yourself, depending on what your app means with a "symbolic" keyboard.
+`IMPORTANT` Note that changing `keyboardType` will not achieve anything in itself. You must actively use the property in your extension, e.g. to switch over it to determine which keyboard to display. 

@@ -1,8 +1,6 @@
 # Haptic Feedback
 
-KeyboardKit supports haptic feedback, which means that users can get haptic feedback as they type:
-
-KeyboardKit comes with some built-in feedback types:
+KeyboardKit has an `HapticFeedback` enum with these types:
 
 * `error`
 * `success`
@@ -16,6 +14,8 @@ KeyboardKit comes with some built-in feedback types:
 
 * `none`
 
-You can enable haptic feedback by providing the `keyboardActionHandler` with a haptic feedback configuration. The default configuration is `.noFeedback`.
+You can enable haptic feedback by providing `StandardKeyboardActionHandler` with a `hapticConfiguration`. The default configuration is `.noFeedback`.
 
-`Important` Users must enable open access for haptic feedback to work.
+You can also trigger the various feedback types manually.
+
+`IMPORTANT` Users must enable open access for haptic feedback to work.

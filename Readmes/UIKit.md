@@ -1,33 +1,20 @@
-# Views and components
+# UIKit
 
 KeyboardKit comes with a bunch of built-in view and components that help you build both custom keyboards and keyboards that mimic a system keyboard.
 
-From KeyboardKit 3.0, `SwiftUI` will be the main focus moving forward.
+
+## Overview
+
+`UIKit` is the old, standard way of building custom keyboard extensions. You can setup your extension with constraints to make it resize to the size of your keyboard.
+
+KeyboardKit simplifies this setup, which can be pretty complicated. It can manage the constraints for you, by using a stack view that you can populate with any views you like.
+
+You can use any `UIKit` views you like to build your keyboard. You can then use any of the built-in views and extensions to add keyboard functionality to your views.
+
+From KeyboardKit 3.0, `SwiftUI` will be the main focus moving forward. SwiftUI support will be improved over time in 3.x. KeyboardKit 4.0, will then drop support for iOS 11 and 12 and move everything from [KeyboardKitSwiftUI][KeyboardKitSwiftUI] into this library.
 
 
-## SwiftUI
-
-KeyboardKit has many SwiftUI views that can be composed into SwiftUI-based keyboards. For instance:
-
-* `KeyboardGrid` can be used to list actions in a grid with a certain number of `columns`. 
-* `KeyboardImageButton` shows an image with a tap and long press action.
-* `NextKeyboardButton` switches to the next system keyboard when it is tapped and opens a system keyboard menu when it is pressed.
-* `SystemKeyboardBottomRow` mimicks the bottom row in alphabetic, numeric and symbolic system keyboards.
-* `SystemKeyboardButton` mimicks the system keyboard buttons that are used in all system keyboards.
-* `SystemKeyboardButtonRow` mimicks a button row in alphabetic, numeric and symbolic system keyboards.
-
-* `AlphabeticSystemKeyboard` mimics an alphabetical system keyboard.
-* `NumericSystemKeyboard` mimics a numeric system keyboard.
-* `SymbolicSystemKeyboard` mimics a symbolic system keyboard.
-
-Since these views are regular views, you can use them in your hosting application as well, provided that is also uses SwiftUI.
-
-Take a look in `KeyboardKitSwiftUI` for a complete list of components. 
-
-You can also check out `KeyboardKitSwiftUI`, since SwiftUI uses different views.
-
-
-## UIKit
+## Views
 
 KeyboardKit has many UIKit views that can be composed into UIKit-based keyboards:
 
@@ -39,7 +26,10 @@ KeyboardKit has many UIKit views that can be composed into UIKit-based keyboards
 
 Since these views are regular views, you can use them in your hosting application as well.
 
-SInce layout is much more complicated in UIKit than in SwiftUI, KeyboardKit also has many UIKit component that can be composed into UIKit-based keyboards:
+
+## Components
+
+Since layout is much more complicated in UIKit than in SwiftUI, KeyboardKit also has many UIKit component that can be composed into UIKit-based keyboards:
 
 * `VerticalKeyboardComponent` describe components that can be added to a vertical flow, e.g. a vertical stack view. It has a height constraint that.
 * `HorizontalKeyboardComponent` describe components that can be added to a horizontal flow, e.g. a horizontal stack view. It has a width constraint.
