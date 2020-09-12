@@ -26,7 +26,16 @@ class DemoButton: KeyboardButtonView {
         textLabel?.textColor = action.tintColor(in: viewController)
         buttonView?.tintColor = action.tintColor(in: viewController)
         width = action.buttonWidth(for: distribution)
-        applyShadow(.standardButtonShadow)
+        useDark = action.useDarkAppearance(in: viewController)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if useDark {
+            buttonView?.applyShadow(.standardButtonShadowDark)
+        } else {
+            buttonView?.applyShadow(.standardButtonShadowLight)
+        }
     }
     
     @IBOutlet weak var buttonView: UIView? {
@@ -38,6 +47,8 @@ class DemoButton: KeyboardButtonView {
     @IBOutlet weak var textLabel: UILabel? {
         didSet { textLabel?.text = "" }
     }
+    
+    var useDark: Bool = false
 }
 
 
