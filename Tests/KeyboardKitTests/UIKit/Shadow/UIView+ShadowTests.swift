@@ -24,8 +24,8 @@ class UIView_ShadowTests: QuickSpec {
                 view.applyShadow(shadow)
                 expect(layer.shadowColor).to(equal(shadow.color.cgColor))
                 expect(layer.shadowOpacity).to(equal(shadow.alpha))
-                expect(layer.shadowOffset.width).to(equal(shadow.x))
-                expect(layer.shadowOffset.height).to(equal(shadow.y))
+                expect(layer.shadowOffset.width).to(equal(0))
+                expect(layer.shadowOffset.height).to(equal(0))
                 expect(layer.shadowRadius).to(equal(shadow.blur/2))
             }
             
@@ -43,7 +43,7 @@ class UIView_ShadowTests: QuickSpec {
                 let shadow = Shadow.test(spread: 0)
                 let layer = view.layer
                 view.applyShadow(shadow)
-                expect(layer.shadowPath).to(beNil())
+                expect(layer.shadowPath).toNot(beNil())
             }
             
             it("applies shadow path if spread is not zero") {

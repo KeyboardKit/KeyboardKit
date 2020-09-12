@@ -1542,7 +1542,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielsaidi/KeyboardKit";
 			requirement = {
-				branch = "shadow-fixes";
+				branch = master;
 				kind = branch;
 			};
 		};

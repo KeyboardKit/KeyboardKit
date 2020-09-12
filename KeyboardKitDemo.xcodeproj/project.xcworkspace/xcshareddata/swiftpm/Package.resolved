@@ -5,8 +5,8 @@
         "package": "KeyboardKit",
         "repositoryURL": "https://github.com/danielsaidi/KeyboardKit",
         "state": {
-          "branch": "shadow-fixes",
-          "revision": "006282cb9f16b6b2f27776c1c3393460f40e2084",
+          "branch": "master",
+          "revision": "b007115b58ccd7e6152b7328c48e388b65ba33c7",
           "version": null
         }
       },
