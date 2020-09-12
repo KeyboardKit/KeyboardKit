@@ -5,6 +5,15 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 ## 3.0.2
 
+This version contains new protocols and classes:
+
+* The new `AutocompleteSuggestions` typealias makes the autocomplete apis cleaner.
+* There is a new `AutocompleteContext` protocol that can be used to manage suggestions. 
+* There is a new `StandardAutocompleteContext` implementation of `AutocompleteContext`.
+
+
+## 3.0.2
+
 In this version:
 
 * A memory leak was fixed by making all `StandardBookActionHandler` actions use `[weak self]`.

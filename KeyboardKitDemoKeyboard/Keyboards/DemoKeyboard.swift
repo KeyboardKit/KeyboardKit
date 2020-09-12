@@ -1,6 +1,6 @@
 //
 //  DemoKeyboard.swift
-//  KeyboardKitExampleKeyboard
+//  KeyboardKitDemoKeyboard
 //
 //  Created by Daniel Saidi on 2019-05-14.
 //  Copyright © 2019 Daniel Saidi. All rights reserved.

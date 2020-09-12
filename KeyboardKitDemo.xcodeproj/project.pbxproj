@@ -86,6 +86,8 @@
 		846704D8234A728400355331 /* favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 84670485234A718C00355331 /* favorite.png */; };
 		846704D9234A728400355331 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 84670486234A718C00355331 /* refresh.png */; };
 		846704DA234A728400355331 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 84670487234A718C00355331 /* image.png */; };
+		84834613250D6A6600C49F65 /* DemoAutocompleteSuggestionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846704B2234A725300355331 /* DemoAutocompleteSuggestionProvider.swift */; };
+		84834614250D6A6900C49F65 /* DemoAutocompleteSuggestionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846704B2234A725300355331 /* DemoAutocompleteSuggestionProvider.swift */; };
 		A942653B2490CDCC00EB5551 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942653A2490CDCC00EB5551 /* KeyboardViewController.swift */; };
 		A942653F2490CDCC00EB5551 /* KeyboardKitDemoKeyboard_SwiftUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A94265382490CDCC00EB5551 /* KeyboardKitDemoKeyboard_SwiftUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A94265522490D1C400EB5551 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94265512490D1C400EB5551 /* KeyboardView.swift */; };
@@ -335,6 +337,7 @@
 		84670446234A709400355331 /* KeyboardKitDemo */ = {
 			isa = PBXGroup;
 			children = (
+				84834612250D6A5700C49F65 /* Shared */,
 				84670469234A718C00355331 /* Assets */,
 				846704A5234A719200355331 /* Supporting Files */,
 				84670447234A709400355331 /* AppDelegate.swift */,
@@ -347,7 +350,6 @@
 		8467045E234A711100355331 /* KeyboardKitDemoKeyboard */ = {
 			isa = PBXGroup;
 			children = (
-				846704B1234A725300355331 /* Autocomplete */,
 				846704A7234A725300355331 /* Buttons */,
 				846704AB234A725300355331 /* Keyboards */,
 				A95307542461308100CB37C3 /* Localization */,
@@ -458,6 +460,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		84834612250D6A5700C49F65 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				846704B1234A725300355331 /* Autocomplete */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		A94265392490CDCC00EB5551 /* KeyboardKitDemoKeyboard_SwiftUI */ = {
@@ -866,6 +876,7 @@
 				8467044C234A709400355331 /* ViewController.swift in Sources */,
 				84670448234A709400355331 /* AppDelegate.swift in Sources */,
 				84670488234A718C00355331 /* Assets.swift in Sources */,
+				84834614250D6A6900C49F65 /* DemoAutocompleteSuggestionProvider.swift in Sources */,
 				8467044A234A709400355331 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -899,6 +910,7 @@
 				A94C721824AE238900077EEA /* DemoKeyboardActionHandler.swift in Sources */,
 				A942653B2490CDCC00EB5551 /* KeyboardViewController.swift in Sources */,
 				A94C721C24AF0DC500077EEA /* AutocompleteToolbar.swift in Sources */,
+				84834613250D6A6600C49F65 /* DemoAutocompleteSuggestionProvider.swift in Sources */,
 				A94265522490D1C400EB5551 /* KeyboardView.swift in Sources */,
 				A975F79124BDA652008BCF7E /* SystemKeyboardBottomRow+Demo.swift in Sources */,
 				A94265702490D9BF00EB5551 /* Assets.swift in Sources */,
@@ -1542,7 +1554,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielsaidi/KeyboardKit";
 			requirement = {
-				branch = master;
+				branch = autocomplete;
 				kind = branch;
 			};
 		};
