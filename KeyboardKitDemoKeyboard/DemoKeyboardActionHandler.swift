@@ -26,13 +26,6 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     }
     
     
-    // MARK: - Properties
-        
-    private var demoViewController: KeyboardViewController? {
-        inputViewController as? KeyboardViewController
-    }
-    
-    
     // MARK: - Actions
     
     override func longPressAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
@@ -56,7 +49,7 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     override func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         super.handle(gesture, on: action, sender: sender)
-        demoViewController?.requestAutocompleteSuggestions()
+        inputViewController?.performAutocomplete()
     }
 }
 
@@ -96,7 +89,7 @@ private extension DemoKeyboardActionHandler {
         let baseAction = super.tapAction(for: .space, sender: sender)
         return { [weak self] in
             baseAction?()
-            let type = self?.demoViewController?.context.keyboardType
+            let type = self?.inputViewController?.context.keyboardType
             if type?.isAlphabetic == true { return }
             self?.inputViewController?.changeKeyboardType(to: .alphabetic(.lowercased))
         }
@@ -111,7 +104,7 @@ private extension DemoKeyboardActionHandler {
     
     func switchToEmojiKeyboardCategory(_ cat: EmojiCategory) {
         guard
-            let vc = demoViewController,
+            let vc = inputViewController as? KeyboardViewController,
             let view = vc.emojiCollectionView,
             let keyboard = vc.emojiKeyboard,
             let index = keyboard.getPageIndex(for: cat)

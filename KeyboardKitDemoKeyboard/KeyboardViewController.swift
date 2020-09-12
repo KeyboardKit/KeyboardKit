@@ -59,21 +59,6 @@ class KeyboardViewController: KeyboardInputViewController {
         setupKeyboard(for: view.bounds.size)
     }
     
-    override func selectionWillChange(_ textInput: UITextInput?) {
-        super.selectionWillChange(textInput)
-        autocompleteToolbar.reset()
-    }
-    
-    override func selectionDidChange(_ textInput: UITextInput?) {
-        super.selectionDidChange(textInput)
-        autocompleteToolbar.reset()
-    }
-    
-    override func textDidChange(_ textInput: UITextInput?) {
-        super.textDidChange(textInput)
-        requestAutocompleteSuggestions()
-    }
-    
     
     // MARK: - Properties
     
@@ -87,16 +72,23 @@ class KeyboardViewController: KeyboardInputViewController {
     
     // MARK: - Autocomplete
     
-    lazy var autocompleteContext = StandardAutocompleteContext(
-        suggestionsDidChange: handleAutocompleteSuggestionsDidChange)
-    
     lazy var autocompleteProvider = DemoAutocompleteSuggestionProvider()
     
     lazy var autocompleteToolbar: AutocompleteToolbarView = {
         AutocompleteToolbarView(textDocumentProxy: textDocumentProxy)
     }()
     
-    func handleAutocompleteSuggestionsDidChange(_ suggestions: AutocompleteSuggestions) {
-        autocompleteToolbar.update(with: suggestions)
+    override func performAutocomplete() {
+        guard let word = textDocumentProxy.currentWord else { return resetAutocomplete() }
+        autocompleteProvider.autocompleteSuggestions(for: word) { [weak self] result in
+            switch result {
+            case .failure(let error): print(error.localizedDescription)
+            case .success(let result): self?.autocompleteToolbar.update(with: result)
+            }
+        }
+    }
+    
+    override func resetAutocomplete() {
+        autocompleteToolbar.reset()
     }
 }
