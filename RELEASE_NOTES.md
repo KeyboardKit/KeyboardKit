@@ -7,6 +7,7 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 This version contains new protocols and classes:
 
+* `KeyboardInputViewController` has new, empty `performAutocomplete` and `resetAutocomplete` functions that are called by the system at proper times.
 * The new `AutocompleteSuggestions` typealias makes the autocomplete apis cleaner.
 * There is a new `AutocompleteContext` protocol that can be used to manage suggestions. 
 * There is a new `StandardAutocompleteContext` implementation of `AutocompleteContext`.

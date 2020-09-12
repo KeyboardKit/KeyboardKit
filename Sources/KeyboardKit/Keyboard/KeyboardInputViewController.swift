@@ -16,6 +16,12 @@ import UIKit
  inherit this class instead of `UIInputViewController`. This
  will provide it with a bunch of features that regular input
  view controllers lack.
+ 
+ If your keyboard extension should use autocomplete, you can
+ override `performAutocomplete` and `resetAutocomplete`. The
+ two functions are called by `StandardKeyboardActionHandler`
+ and this class whenever a new autocomplete operation should
+ be performed or the current suggestions should be reset.
  */
 open class KeyboardInputViewController: UIInputViewController {
     
@@ -90,6 +96,32 @@ open class KeyboardInputViewController: UIInputViewController {
     }()
     
     
+    // MARK: - Keyboard Functionality
+    
+    /**
+     Setup the keyboard, given the current state of your app.
+     
+     You can override this function to implement how a setup
+     should behave in your app. This does nothing by default.
+     */
+    open func setupKeyboard() {}
+    
+    open override func selectionWillChange(_ textInput: UITextInput?) {
+        super.selectionWillChange(textInput)
+        resetAutocomplete()
+    }
+    
+    open override func selectionDidChange(_ textInput: UITextInput?) {
+        super.selectionDidChange(textInput)
+        resetAutocomplete()
+    }
+    
+    open override func textDidChange(_ textInput: UITextInput?) {
+        super.textDidChange(textInput)
+        performAutocomplete()
+    }
+    
+    
     // MARK: - Public Functions
     
     /**
@@ -113,13 +145,12 @@ open class KeyboardInputViewController: UIInputViewController {
         }
     }
     
-    /**
-     Setup the keyboard, given the current state of your app.
-     
-     You can override this function to implement how a setup
-     should behave in your app. This does nothing by default.
-     */
-    open func setupKeyboard() {}
+    
+    // MARK: - Autocomplete
+    
+    open func performAutocomplete() {}
+    
+    open func resetAutocomplete() {}
     
     
     // MARK: - UITextInputDelegate

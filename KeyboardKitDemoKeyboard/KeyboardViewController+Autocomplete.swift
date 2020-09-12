@@ -12,7 +12,7 @@ import UIKit
 extension KeyboardViewController {
     
     func requestAutocompleteSuggestions() {
-        let word = textDocumentProxy.currentWord ?? ""
+        guard let word = textDocumentProxy.currentWord else { return resetAutocompleteSuggestions() }
         autocompleteProvider.autocompleteSuggestions(for: word) { [weak self] in
             self?.handleAutocompleteSuggestionsResult($0)
         }

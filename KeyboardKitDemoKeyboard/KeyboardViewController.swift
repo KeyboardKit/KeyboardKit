@@ -90,8 +90,7 @@ class KeyboardViewController: KeyboardInputViewController {
     lazy var autocompleteContext = StandardAutocompleteContext(
         suggestionsDidChange: handleAutocompleteSuggestionsDidChange)
     
-    lazy var autocompleteProvider = DemoAutocompleteSuggestionProvider(
-        context: autocompleteContext)
+    lazy var autocompleteProvider = DemoAutocompleteSuggestionProvider()
     
     lazy var autocompleteToolbar: AutocompleteToolbarView = {
         AutocompleteToolbarView(textDocumentProxy: textDocumentProxy)

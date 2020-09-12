@@ -164,6 +164,41 @@ class KeyboardInputViewControllerTests: QuickSpec {
                 expect(repeating).toNot(beNil())
             }
         }
+        
+        describe("perform autocomplete") {
+            
+            it("is triggered by textDidChange") {
+                expect(vc.hasInvoked(vc.performAutocompleteRef)).to(beFalse())
+                vc.textDidChange(nil)
+                expect(vc.hasInvoked(vc.performAutocompleteRef)).to(beTrue())
+            }
+        }
+        
+        describe("reset autocomplete") {
+            
+            it("is triggered by selectionWillChange") {
+                expect(vc.hasInvoked(vc.resetAutocompleteRef)).to(beFalse())
+                vc.selectionWillChange(nil)
+                expect(vc.hasInvoked(vc.resetAutocompleteRef)).to(beTrue())
+            }
+        }
+        
+        describe("reset autocomplete") {
+            
+            it("is triggered by selectionWillChange") {
+                expect(vc.hasInvoked(vc.resetAutocompleteRef)).to(beFalse())
+                vc.selectionDidChange(nil)
+                expect(vc.hasInvoked(vc.resetAutocompleteRef)).to(beTrue())
+            }
+        }
+        
+        describe("text will change") {
+            
+            it("calls viewWillSyncWithTextDocumentProxy") {
+                vc.textWillChange(nil)
+                expect(vc.context.textDocumentProxy).to(be(vc.textDocumentProxy))
+            }
+        }
     }
 }
 
@@ -171,6 +206,8 @@ private class TestClass: KeyboardInputViewController, Mockable {
     
     lazy var viewWillSyncWithTextDocumentProxyRef = MockReference(viewWillSyncWithTextDocumentProxy)
     lazy var setupKeyboardRef = MockReference(setupKeyboard)
+    lazy var performAutocompleteRef = MockReference(performAutocomplete)
+    lazy var resetAutocompleteRef = MockReference(resetAutocomplete)
     
     let mock = Mock()
     
@@ -193,6 +230,14 @@ private class TestClass: KeyboardInputViewController, Mockable {
     
     override func setupKeyboard() {
         mock.invoke(setupKeyboardRef, args: ())
+    }
+    
+    override func performAutocomplete() {
+        mock.invoke(performAutocompleteRef, args: ())
+    }
+    
+    override func resetAutocomplete() {
+        mock.invoke(resetAutocompleteRef, args: ())
     }
 }
 
