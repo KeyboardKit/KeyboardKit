@@ -35,7 +35,6 @@ import KeyboardKit
 class KeyboardViewController: KeyboardInputViewController {
     
     
-    // MARK: - View Controller Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()

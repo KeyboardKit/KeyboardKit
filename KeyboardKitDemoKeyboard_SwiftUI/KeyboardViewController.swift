@@ -36,16 +36,44 @@ import SwiftUI
  */
 class KeyboardViewController: KeyboardInputViewController {
     
-    let toastContext = KeyboardToastContext()
     
-    var keyboardView: some View {
-        KeyboardView(controller: self)
-            .environmentObject(toastContext)
-    }
-        
+    // MARK: - View Controller Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup(with: keyboardView)
         context.actionHandler = DemoKeyboardActionHandler(inputViewController: self, toastContext: toastContext)
+    }
+    
+    
+    // MARK: - Properties
+    
+    let toastContext = KeyboardToastContext()
+    
+    var keyboardView: some View {
+        KeyboardView(controller: self)
+            .environmentObject(autocompleteContext)
+            .environmentObject(toastContext)
+    }
+    
+    
+    // MARK: - Autocomplete
+    
+    lazy var autocompleteContext = ObservableAutocompleteContext()
+    
+    lazy var autocompleteProvider = DemoAutocompleteSuggestionProvider()
+    
+    override func performAutocomplete() {
+        guard let word = textDocumentProxy.currentWord else { return resetAutocomplete() }
+        autocompleteProvider.autocompleteSuggestions(for: word) { [weak self] result in
+            switch result {
+            case .failure(let error): print(error.localizedDescription)
+            case .success(let result): self?.autocompleteContext.suggestions = result
+            }
+        }
+    }
+    
+    override func resetAutocomplete() {
+        autocompleteContext.suggestions = []
     }
 }
