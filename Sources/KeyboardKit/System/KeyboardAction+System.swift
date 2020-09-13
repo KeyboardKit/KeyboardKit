@@ -33,6 +33,7 @@ public extension KeyboardAction {
         switch self {
         case .character(let char): return char
         case .emoji(let emoji): return emoji
+        case .emojiCategory(let cat): return cat.fallbackDisplayEmoji
         case .keyboardType(let type): return type.systemKeyboardButtonText
         default: return nil
         }
@@ -48,6 +49,7 @@ public extension KeyboardAction {
         if hasMultiCharSystemKeyboardButtonText { return .body }
         switch self {
         case .emoji: return .title1
+        case .emojiCategory: return .title1
         default: return .title2
         }
     }
