@@ -22,7 +22,8 @@ You can then add any views you want to the keyboard view and use the rich set of
 
 [KeyboardKitSwiftUI][KeyboardKitSwiftUI] contains the following namespaces:
 
-* `Context` contains an observable context and SwiftUI-specific context extensions.
+* `Autocomplete` contains SwiftUI-specific autocomplete utilities.
+* `Context` contains SwiftUI-specific observable contexts and extensions.
 * `Extensions` contains SwiftUI-specific extensions.
 * `Gestures` contains SwiftUI-specific keyboard gestures. 
 * `Settings` contains SwiftUI-specific settings extensions.
