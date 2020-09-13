@@ -9,6 +9,7 @@ This version contains new features:
 
 * `EmojiCategory` is now `Codable`.
 * `EmojiCategory` has a `fallbackDisplayEmoji` that is used as system button text if no custom button image used.
+* `KeyboardAction` now has a standard tap action for `.emojiCategory`.
 * `KeyboardContext` now has an `emojiCategory`  property.
 
 

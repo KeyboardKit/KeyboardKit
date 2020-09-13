@@ -26,11 +26,4 @@ class DemoKeyboardActionHandler: DemoKeyboardActionHandlerBase {
     override func alert(_ message: String) {
         toastContext.present(message)
     }
-    
-    override func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
-        switch action {
-        case .emojiCategory(let category): inputViewController?.context.emojiCategory = category
-        default: super.handle(gesture, on: action, sender: sender)
-        }
-    }
 }
