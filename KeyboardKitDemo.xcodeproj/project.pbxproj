@@ -11,6 +11,10 @@
 		15D5728424604C490062BD01 /* EmojiKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D5728324604C490062BD01 /* EmojiKeyboard.swift */; };
 		84086E30235587DC0030D95A /* KeyboardViewController+Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84086E2F235587DC0030D95A /* KeyboardViewController+Buttons.swift */; };
 		84086E3423558C0F0030D95A /* KeyboardViewController+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84086E3323558C0F0030D95A /* KeyboardViewController+Setup.swift */; };
+		843CBFA5250E9E5500BA541F /* DemoImageKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CBFA4250E9E5500BA541F /* DemoImageKeyboard.swift */; };
+		843CBFA6250E9EAA00BA541F /* DemoImageKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CBFA4250E9E5500BA541F /* DemoImageKeyboard.swift */; };
+		843CBFA7250E9EAB00BA541F /* DemoImageKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CBFA4250E9E5500BA541F /* DemoImageKeyboard.swift */; };
+		843CBFAB250EA93100BA541F /* ImageKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CBFAA250EA93100BA541F /* ImageKeyboard.swift */; };
 		84623A9C235615600024987B /* ImageKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84623A9B235615600024987B /* ImageKeyboard.swift */; };
 		84670448234A709400355331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84670447234A709400355331 /* AppDelegate.swift */; };
 		8467044A234A709400355331 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84670449234A709400355331 /* SceneDelegate.swift */; };
@@ -204,6 +208,8 @@
 		15D5728324604C490062BD01 /* EmojiKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiKeyboard.swift; sourceTree = "<group>"; };
 		84086E2F235587DC0030D95A /* KeyboardViewController+Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardViewController+Buttons.swift"; sourceTree = "<group>"; };
 		84086E3323558C0F0030D95A /* KeyboardViewController+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardViewController+Setup.swift"; sourceTree = "<group>"; };
+		843CBFA4250E9E5500BA541F /* DemoImageKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoImageKeyboard.swift; sourceTree = "<group>"; };
+		843CBFAA250EA93100BA541F /* ImageKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageKeyboard.swift; sourceTree = "<group>"; };
 		84623A9B235615600024987B /* ImageKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageKeyboard.swift; sourceTree = "<group>"; };
 		84670426234A6A9E00355331 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		84670427234A6A9E00355331 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -317,6 +323,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		843CBFA9250EA92500BA541F /* Keyboards */ = {
+			isa = PBXGroup;
+			children = (
+				843CBFAA250EA93100BA541F /* ImageKeyboard.swift */,
+			);
+			path = Keyboards;
+			sourceTree = "<group>";
+		};
 		84670425234A6A8400355331 /* Project Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,6 +472,7 @@
 			children = (
 				846704B2234A725300355331 /* DemoAutocompleteSuggestionProvider.swift */,
 				84834617250D759000C49F65 /* DemoKeyboardActionHandlerBase.swift */,
+				843CBFA4250E9E5500BA541F /* DemoImageKeyboard.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -465,6 +480,7 @@
 		A94265392490CDCC00EB5551 /* KeyboardKitDemoKeyboard_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				843CBFA9250EA92500BA541F /* Keyboards */,
 				A94265532490D1CB00EB5551 /* Supporting Files */,
 				A94C721724AE238900077EEA /* DemoKeyboardActionHandler.swift */,
 				A94265512490D1C400EB5551 /* KeyboardView.swift */,
@@ -865,6 +881,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8467044C234A709400355331 /* ViewController.swift in Sources */,
+				843CBFA5250E9E5500BA541F /* DemoImageKeyboard.swift in Sources */,
 				84670448234A709400355331 /* AppDelegate.swift in Sources */,
 				84670488234A718C00355331 /* Assets.swift in Sources */,
 				84834614250D6A6900C49F65 /* DemoAutocompleteSuggestionProvider.swift in Sources */,
@@ -888,6 +905,7 @@
 				84623A9C235615600024987B /* ImageKeyboard.swift in Sources */,
 				846704B9234A725300355331 /* SymbolicKeyboard.swift in Sources */,
 				84670460234A711100355331 /* KeyboardViewController.swift in Sources */,
+				843CBFA6250E9EAA00BA541F /* DemoImageKeyboard.swift in Sources */,
 				84086E30235587DC0030D95A /* KeyboardViewController+Buttons.swift in Sources */,
 				846704B8234A725300355331 /* AlphabeticKeyboard.swift in Sources */,
 				15133C75245862B300748945 /* EmojiCategory+L10n.swift in Sources */,
@@ -902,10 +920,12 @@
 				A94C721824AE238900077EEA /* DemoKeyboardActionHandler.swift in Sources */,
 				A942653B2490CDCC00EB5551 /* KeyboardViewController.swift in Sources */,
 				8483461A250D75D500C49F65 /* DemoKeyboardActionHandlerBase.swift in Sources */,
+				843CBFA7250E9EAB00BA541F /* DemoImageKeyboard.swift in Sources */,
 				84834613250D6A6600C49F65 /* DemoAutocompleteSuggestionProvider.swift in Sources */,
 				A94265522490D1C400EB5551 /* KeyboardView.swift in Sources */,
 				A975F79124BDA652008BCF7E /* SystemKeyboardBottomRow+Demo.swift in Sources */,
 				A94265702490D9BF00EB5551 /* Assets.swift in Sources */,
+				843CBFAB250EA93100BA541F /* ImageKeyboard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1546,16 +1566,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielsaidi/KeyboardKit";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.1.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 		A95CC2D124ADA8E800436FD3 /* XCRemoteSwiftPackageReference "KeyboardKitSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielsaidi/KeyboardKitSwiftUI";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.1.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

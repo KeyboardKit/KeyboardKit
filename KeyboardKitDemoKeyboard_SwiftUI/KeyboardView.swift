@@ -36,12 +36,23 @@ struct KeyboardView: View {
     @EnvironmentObject var toastContext: KeyboardToastContext
     
     var body: some View {
-        ZStack {
-            keyboardView
-                .keyboardToast(isActive: $toastContext.isActive, content: toastContext.content, background: toastBackground)
+        keyboardView
+            .keyboardToast(isActive: $toastContext.isActive, content: toastContext.content, background: toastBackground)
+    }
+    
+    var keyboardView: AnyView {
+        switch context.keyboardType {
+        case .alphabetic(let state): return AnyView(alphabeticKeyboard(state))
+        case .images: return AnyView(imageKeyboard)
+        case .numeric: return AnyView(numericKeyboard)
+        case .symbolic: return AnyView(symbolicKeyboard)
+        default: return AnyView(Button("This keyboard is not yet implemented", action: switchKeyboard))
         }
     }
 }
+
+
+// MARK: - Views
 
 private extension KeyboardView {
     
@@ -58,7 +69,21 @@ private extension KeyboardView {
             customBottomRow: .demoRow(for: context))
     }
     
-    func numericKeyboard() -> some View {
+    /**
+     The image keyboard is a custom view that is implemented
+     in this project. The custom `frame` is only set to show
+     that SwiftUI-based keyboards currently lack the ability
+     to resize when their content change.
+     
+     `TODO` Remove the custom frame when resizing is solved.
+     */
+    var imageKeyboard: some View {
+        ImageKeyboard()
+            .padding()
+            .frame(height: 600)
+    }
+    
+    var numericKeyboard: some View {
         NumericSystemKeyboard(
             context: context,
             inputSet: .englishNumeric,
@@ -66,7 +91,7 @@ private extension KeyboardView {
             customBottomRow: .demoRow(for: context))
     }
     
-    func symbolicKeyboard() -> some View {
+    var symbolicKeyboard: some View {
         SymbolicSystemKeyboard(
             context: context,
             inputSet: .englishSymbolic,
@@ -74,23 +99,20 @@ private extension KeyboardView {
             customBottomRow: .demoRow(for: context))
     }
     
-    var keyboardView: AnyView {
-        switch context.keyboardType {
-        case .alphabetic(let state): return AnyView(alphabeticKeyboard(state))
-        case .numeric: return AnyView(numericKeyboard())
-        case .symbolic: return AnyView(symbolicKeyboard())
-        default: return AnyView(Button("This keyboard is not yet implemented", action: switchKeyboard))
-        }
-    }
-    
-    func switchKeyboard() {
-        context.actionHandler.handle(.tap, on: .keyboardType(.alphabetic(.lowercased)))
-    }
-    
     var toastBackground: some View {
         Color.white
             .cornerRadius(3)
             .shadow(color: Color.black.opacity(0.3), radius: 2, x: 1, y: 1)
+    }
+}
+
+
+// MARK: - Functions
+
+private extension KeyboardView {
+    
+    func switchKeyboard() {
+        context.actionHandler.handle(.tap, on: .keyboardType(.alphabetic(.lowercased)))
     }
 }
 

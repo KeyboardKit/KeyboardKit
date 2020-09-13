@@ -9,8 +9,8 @@
 import KeyboardKit
 
 /**
- This demo autocomplete suggestion provider just returns the
- current word suffixed with "ly", "er" and "ter".
+ This demo provider simply returns the current word suffixed
+ with "ly", "er" and "ter".
  
  This class is shared between the demo app and all keyboards.
  */

@@ -83,7 +83,7 @@ class DemoKeyboardActionHandlerBase: StandardKeyboardActionHandler {
     
     func saveImage(_ image: UIImage) {
         guard let input = inputViewController else { return }
-        guard input.hasFullAccess else { return alert("You must enable full access to save images to photos.") }
+        guard input.hasFullAccess else { return alert("You must enable full access to save images.") }
         let saveCompletion = #selector(handleImage(_:didFinishSavingWithError:contextInfo:))
         image.saveToPhotos(completionTarget: self, completionSelector: saveCompletion)
     }

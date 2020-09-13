@@ -5,18 +5,18 @@
         "package": "KeyboardKit",
         "repositoryURL": "https://github.com/danielsaidi/KeyboardKit",
         "state": {
-          "branch": null,
-          "revision": "25c1ea04c8f0073a58163d07d558a82d003b3835",
-          "version": "3.1.0"
+          "branch": "master",
+          "revision": "067a0541a584a217429d93ced85c55e341205baa",
+          "version": null
         }
       },
       {
         "package": "KeyboardKitSwiftUI",
         "repositoryURL": "https://github.com/danielsaidi/KeyboardKitSwiftUI",
         "state": {
-          "branch": null,
-          "revision": "3dd7d4ba6715e00ad6f6b062db1c740d8fa588c7",
-          "version": "3.1.0"
+          "branch": "master",
+          "revision": "816832785a675e2cd290891f2c174b46e955cfe7",
+          "version": null
         }
       }
     ]
