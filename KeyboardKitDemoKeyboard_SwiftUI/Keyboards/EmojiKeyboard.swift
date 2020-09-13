@@ -24,22 +24,16 @@ import SwiftUI
  */
 struct EmojiKeyboard: View {
     
-    init(category: EmojiCategory) {
-        self.category = category
-    }
-    
-    private let category: EmojiCategory
-    
     @EnvironmentObject var context: ObservableKeyboardContext
     
     var body: some View {
-        VStack {
+        VStack(spacing: 30) {
             KeyboardGrid(
                 actions: actions,
                 columns: isLandscape ? 8 : 6,
                 spacing: 0,
                 buttonBuilder: button)
-            SystemKeyboardButtonRow(actions: bottomActions)
+            bottomRow
         }
     }
 }
@@ -51,9 +45,22 @@ private extension EmojiKeyboard {
     }
     
     var bottomActions: KeyboardActions {
-        let cats = EmojiCategory.allCases.map { KeyboardAction.emojiCategory($0) }
-        guard context.needsInputModeSwitchKey else { return cats }
-        return [.nextKeyboard] + cats
+        let cats = EmojiCategory.allCases.filter { $0 != .frequent }
+        let actions = cats.map { KeyboardAction.emojiCategory($0) }
+        return [.keyboardType(.alphabetic(.lowercased))] + actions + [.backspace]
+    }
+    
+    var bottomRow: some View {
+        HStack(spacing: 10) {
+            ForEach(Array(bottomActions.enumerated()), id: \.offset) { item in
+                self.bottomView(for: item.element).keyboardAction(item.element, context: self.context)
+            }
+        }
+    }
+    
+    var category: EmojiCategory {
+        let category = context.emojiCategory
+        return category == .frequent ? .smileys : category
     }
     
     var emojis: [String] {
@@ -64,5 +71,10 @@ private extension EmojiKeyboard {
     
     func button(for action: KeyboardAction) -> some View {
         SystemKeyboardButton(action: action)
+    }
+    
+    func bottomView(for action: KeyboardAction) -> AnyView {
+        if let image = action.systemKeyboardButtonImage(for: context) { return AnyView(image) }
+        return AnyView(Text(action.systemKeyboardButtonText ?? ""))
     }
 }

@@ -7,7 +7,9 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 This version contains new features:
 
-* The `.emojiCategory` action has a `fallbackDisplayEmoji` that is used as system button text if no custom button image used.
+* `EmojiCategory` is now `Codable`.
+* `EmojiCategory` has a `fallbackDisplayEmoji` that is used as system button text if no custom button image used.
+* `KeyboardContext` now has an `emojiCategory`  property.
 
 
 ## 3.1.0

@@ -21,9 +21,12 @@ public class StandardKeyboardContext: KeyboardContext {
     public init(
         controller: KeyboardInputViewController,
         actionHandler: KeyboardActionHandler,
-        keyboardType: KeyboardType) {
+        keyboardType: KeyboardType,
+        defaults: UserDefaults = .standard) {
+        self.defaults = defaults
         self.actionHandler = actionHandler
         self.controller = controller
+        self.emojiCategory = .frequent
         self.hasDictationKey = controller.hasDictationKey
         self.hasFullAccess = controller.hasFullAccess
         self.keyboardType = keyboardType
@@ -34,8 +37,11 @@ public class StandardKeyboardContext: KeyboardContext {
         self.traitCollection = controller.traitCollection
     }
     
+    private let defaults: UserDefaults
+    
     public var actionHandler: KeyboardActionHandler
     public var controller: KeyboardInputViewController
+    public var emojiCategory: EmojiCategory
     public var hasDictationKey: Bool
     public var hasFullAccess: Bool
     public var keyboardType: KeyboardType

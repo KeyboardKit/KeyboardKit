@@ -71,7 +71,7 @@ private extension KeyboardView {
     }
     
     var emojiKeyboard: some View {
-        EmojiKeyboard(category: .smileys)
+        EmojiKeyboard()
             .padding()
             .frame(height: 600)
     }

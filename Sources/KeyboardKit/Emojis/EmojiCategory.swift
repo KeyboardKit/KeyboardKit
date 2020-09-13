@@ -11,7 +11,7 @@ import UIKit
  Also note that since native emojis change all the time, the
  enum will be outdated every now and then.
 */
-public enum EmojiCategory: Equatable, CaseIterable {
+public enum EmojiCategory: String, CaseIterable, Codable, Equatable {
 
     case
     frequent,

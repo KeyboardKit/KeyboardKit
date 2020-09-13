@@ -32,6 +32,12 @@ public protocol KeyboardContext: AnyObject {
     var controller: KeyboardInputViewController { get }
     
     /**
+     The emoji category that should be displayed when an app
+     switches over to an emoji keyboard.
+     */
+    var emojiCategory: EmojiCategory { get set }
+    
+    /**
      Whether or not the keyboard extension has a "dictation"
      key. If not, you can provide a custom dictation button.
      */
