@@ -29,6 +29,10 @@ class DemoKeyboardActionHandlerBase: StandardKeyboardActionHandler {
         )
     }
     
+    override func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
+        super.handle(gesture, on: action, sender: sender)
+    }
+    
     /**
      `NOTE` Changing to alphabetic lower case should be done
      in `StandardKeyboardActionHandler`, not here.

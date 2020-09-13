@@ -16,21 +16,12 @@ import UIKit
  */
 class DemoKeyboardActionHandler: DemoKeyboardActionHandlerBase {
     
-    
-    // MARK: - Initialization
-    
     public init(inputViewController: KeyboardViewController, toastContext: KeyboardToastContext) {
         self.toastContext = toastContext
         super.init(inputViewController: inputViewController)
     }
     
-    
-    // MARK: - Dependencies
-    
     private let toastContext: KeyboardToastContext
-    
-    
-    // MARK: - Actions
     
     override func alert(_ message: String) {
         toastContext.present(message)

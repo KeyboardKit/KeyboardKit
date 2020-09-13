@@ -114,6 +114,49 @@ class UITextDocumentProxy_CurrentWordTests: QuickSpec {
             }
         }
         
+        describe("is cursor at the end of the current word") {
+            
+            it("returns false if current word is missing") {
+                let result = proxy.isCursorAtTheEndOfTheCurrentWord
+                expect(result).to(beFalse())
+            }
+            
+            it("returns false if cursor is in the middle of a word") {
+                proxy.documentContextBeforeInput = "foo"
+                proxy.documentContextAfterInput = "bat"
+                let result = proxy.isCursorAtTheEndOfTheCurrentWord
+                expect(result).to(beFalse())
+            }
+            
+            it("returns false if cursor is at the beginning of a word") {
+                proxy.documentContextBeforeInput = ""
+                proxy.documentContextAfterInput = "Hello"
+                let result = proxy.isCursorAtTheEndOfTheCurrentWord
+                expect(result).to(beFalse())
+            }
+            
+            it("returns false if cursor is after a word delimiter") {
+                proxy.documentContextBeforeInput = "."
+                proxy.documentContextAfterInput = "Hello"
+                let result = proxy.isCursorAtTheEndOfTheCurrentWord
+                expect(result).to(beFalse())
+            }
+            
+            it("returns false if cursor is after a word delimiter") {
+                proxy.documentContextBeforeInput = " "
+                proxy.documentContextAfterInput = "Hello"
+                let result = proxy.isCursorAtTheEndOfTheCurrentWord
+                expect(result).to(beFalse())
+            }
+            
+            it("returns true if cursor is at the end of the current word") {
+                proxy.documentContextBeforeInput = "Period"
+                proxy.documentContextAfterInput = ""
+                let result = proxy.isCursorAtTheEndOfTheCurrentWord
+                expect(result).to(beTrue())
+            }
+        }
+        
         describe("replacing current word") {
             
             context("when current word is missing") {

@@ -48,6 +48,19 @@ public extension UITextDocumentProxy {
     }
     
     /**
+     Whether or not the text document proxy cursor is at the
+     end of the current word.
+     */
+    var isCursorAtTheEndOfTheCurrentWord: Bool {
+        if currentWord == nil { return false }
+        let postCount = currentWordPostCursorPart?.trimmingCharacters(in: .whitespaces).count ?? 0
+        if postCount > 0 { return false }
+        guard let pre = currentWordPreCursorPart else { return false }
+        let lastCharacter = String(pre.suffix(1))
+        return !wordDelimiters.contains(lastCharacter)
+    }
+    
+    /**
      Replace the current word with a replacement text.
      */
     func replaceCurrentWord(with replacement: String) {

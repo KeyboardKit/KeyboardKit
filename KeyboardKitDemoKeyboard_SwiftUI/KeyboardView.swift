@@ -36,8 +36,10 @@ struct KeyboardView: View {
     @EnvironmentObject var toastContext: KeyboardToastContext
     
     var body: some View {
-        keyboardView
-            .keyboardToast(isActive: $toastContext.isActive, content: toastContext.content, background: toastBackground)
+        ZStack {
+            keyboardView
+                .keyboardToast(isActive: $toastContext.isActive, content: toastContext.content, background: toastBackground)
+        }
     }
 }
 

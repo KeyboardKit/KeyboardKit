@@ -15,9 +15,6 @@ import UIKit
  */
 class DemoKeyboardActionHandler: DemoKeyboardActionHandlerBase {
     
-    
-    // MARK: - Actions
-    
     override func alert(_ message: String) {
         guard let input = inputViewController as? KeyboardViewController else { return }
         input.alerter.alert(message: message, in: input.view, withDuration: 4)
@@ -30,9 +27,6 @@ class DemoKeyboardActionHandler: DemoKeyboardActionHandlerBase {
         }
     }
 }
-
-
-// MARK: - Actions
 
 private extension DemoKeyboardActionHandler {
     

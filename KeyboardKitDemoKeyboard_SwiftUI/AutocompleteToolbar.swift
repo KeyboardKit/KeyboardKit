@@ -6,11 +6,19 @@
 //  Copyright © 2020 Daniel Saidi. All rights reserved.
 //
 
+import KeyboardKitSwiftUI
 import SwiftUI
 
 struct AutocompleteToolbar: View {
+    
+    @EnvironmentObject var context: ObservableAutocompleteContext
+    
     var body: some View {
-        Text("SwiftUI autocomplete comes later in 3.x").padding()
+        HStack {
+            ForEach(context.suggestions, id: \.self) {
+                Text($0)
+            }
+        }.frame(height: 45)
     }
 }
 

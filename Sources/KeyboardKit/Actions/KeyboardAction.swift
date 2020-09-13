@@ -69,9 +69,11 @@ public extension KeyboardAction {
      is double-tapped.
      */
     var endSentenceAction: GestureAction {
-        return {
-            $0?.textDocumentProxy.deleteBackward(times: 1)
-            KeyboardAction.character(".").standardTapAction?($0)
+        return { vc in
+            guard let proxy = vc?.textDocumentProxy else { return }
+            guard proxy.isCursorAtTheEndOfTheCurrentWord else { return }
+            proxy.deleteBackward(times: 1)
+            KeyboardAction.character(".").standardTapAction?(vc)
         }
     }
     

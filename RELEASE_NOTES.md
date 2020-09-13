@@ -3,7 +3,7 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions. 
 
 
-## 3.0.2
+## 3.1.0
 
 This version contains new protocols and classes:
 
@@ -11,6 +11,11 @@ This version contains new protocols and classes:
 * The new `AutocompleteSuggestions` typealias makes the autocomplete apis cleaner.
 * There is a new `AutocompleteContext` protocol that can be used to manage suggestions. 
 * There is a new `StandardAutocompleteContext` implementation of `AutocompleteContext`.
+* There is a new `UITextDocumentProxy` property to check if the proxy cursor is at the end of the current word.
+
+Bug fixes:
+
+* The "end sentence" action that is used by space double taps, uses the new proxy property to only close when the cursor is at the end of a word.
 
 
 ## 3.0.2
