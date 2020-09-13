@@ -123,7 +123,6 @@
 		A94265712490D9C300EB5551 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8467046B234A718C00355331 /* Colors.xcassets */; };
 		A94265722490D9C300EB5551 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8467046C234A718C00355331 /* Images.xcassets */; };
 		A94C721824AE238900077EEA /* DemoKeyboardActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94C721724AE238900077EEA /* DemoKeyboardActionHandler.swift */; };
-		A94C721C24AF0DC500077EEA /* AutocompleteToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94C721B24AF0DC500077EEA /* AutocompleteToolbar.swift */; };
 		A95CC2C824ACF83300436FD3 /* KeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = A95CC2C724ACF83300436FD3 /* KeyboardKit */; };
 		A95CC2CA24ACF84300436FD3 /* KeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = A95CC2C924ACF84300436FD3 /* KeyboardKit */; };
 		A95CC2CC24ACF84B00436FD3 /* KeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = A95CC2CB24ACF84B00436FD3 /* KeyboardKit */; };
@@ -261,7 +260,6 @@
 		A942653C2490CDCC00EB5551 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A94265512490D1C400EB5551 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		A94C721724AE238900077EEA /* DemoKeyboardActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboardActionHandler.swift; sourceTree = "<group>"; };
-		A94C721B24AF0DC500077EEA /* AutocompleteToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteToolbar.swift; sourceTree = "<group>"; };
 		A975F79024BDA652008BCF7E /* SystemKeyboardBottomRow+Demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SystemKeyboardBottomRow+Demo.swift"; sourceTree = "<group>"; };
 		A9A9BA8224A38389000D4ABF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A9E56EE42499632000158AB7 /* KeyboardKitSwiftUIPreviews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeyboardKitSwiftUIPreviews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -468,7 +466,6 @@
 			isa = PBXGroup;
 			children = (
 				A94265532490D1CB00EB5551 /* Supporting Files */,
-				A94C721B24AF0DC500077EEA /* AutocompleteToolbar.swift */,
 				A94C721724AE238900077EEA /* DemoKeyboardActionHandler.swift */,
 				A94265512490D1C400EB5551 /* KeyboardView.swift */,
 				A942653A2490CDCC00EB5551 /* KeyboardViewController.swift */,
@@ -904,7 +901,6 @@
 			files = (
 				A94C721824AE238900077EEA /* DemoKeyboardActionHandler.swift in Sources */,
 				A942653B2490CDCC00EB5551 /* KeyboardViewController.swift in Sources */,
-				A94C721C24AF0DC500077EEA /* AutocompleteToolbar.swift in Sources */,
 				8483461A250D75D500C49F65 /* DemoKeyboardActionHandlerBase.swift in Sources */,
 				84834613250D6A6600C49F65 /* DemoAutocompleteSuggestionProvider.swift in Sources */,
 				A94265522490D1C400EB5551 /* KeyboardView.swift in Sources */,
