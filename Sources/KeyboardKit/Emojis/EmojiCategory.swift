@@ -58,6 +58,24 @@ public extension EmojiCategory {
     var emojiActions: [KeyboardAction] {
         emojis.map { .emoji(String($0)) }
     }
+    
+    /**
+     The fallback emoji string that can be used by the emoji
+     category if the app doesn't provide a custom image.
+     */
+    var fallbackDisplayEmoji: String {
+        switch self {
+        case .frequent: return "🕓"
+        case .smileys: return "😀"
+        case .animals: return "🐻"
+        case .foods: return "🍔"
+        case .activities: return "⚽️"
+        case .travels: return "🚗"
+        case .objects: return "⏰"
+        case .symbols: return "💱"
+        case .flags: return "🏳️"
+        }
+    }
 }
 
 private extension EmojiCategory {

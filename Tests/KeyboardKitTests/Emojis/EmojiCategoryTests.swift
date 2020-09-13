@@ -17,6 +17,10 @@ class EmojiCategoryTests: QuickSpec {
         
         describe("emoji category") {
             
+            func fallbackEmoji(for category: EmojiCategory) -> String {
+                category.fallbackDisplayEmoji
+            }
+            
             func firstEmoji(for category: EmojiCategory) -> String {
                 category.emojis.first!
             }
@@ -38,6 +42,18 @@ class EmojiCategoryTests: QuickSpec {
                     .symbols,
                     .flags
                 ]))
+            }
+            
+            it("has a fallback display emoji") {
+                expect(fallbackEmoji(for: .frequent)).to(equal("🕓"))
+                expect(fallbackEmoji(for: .smileys)).to(equal("😀"))
+                expect(fallbackEmoji(for: .animals)).to(equal("🐻"))
+                expect(fallbackEmoji(for: .foods)).to(equal("🍔"))
+                expect(fallbackEmoji(for: .activities)).to(equal("⚽️"))
+                expect(fallbackEmoji(for: .travels)).to(equal("🚗"))
+                expect(fallbackEmoji(for: .objects)).to(equal("⏰"))
+                expect(fallbackEmoji(for: .symbols)).to(equal("💱"))
+                expect(fallbackEmoji(for: .flags)).to(equal("🏳️"))
             }
             
             it("contains the correct emojis") {
