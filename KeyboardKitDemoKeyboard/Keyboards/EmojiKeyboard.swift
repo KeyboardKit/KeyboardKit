@@ -5,8 +5,6 @@ import KeyboardKit
  This demo keyboard mimics the native iOS emoji keyboard. It
  uses the `EmojiCategory` enum to get all available category
  items and their emojis and provide them to the keyboard.
- 
- 
  */
 struct EmojiKeyboard: DemoKeyboard {
     

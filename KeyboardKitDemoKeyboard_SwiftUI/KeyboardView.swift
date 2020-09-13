@@ -43,6 +43,7 @@ struct KeyboardView: View {
     var keyboardView: AnyView {
         switch context.keyboardType {
         case .alphabetic(let state): return AnyView(alphabeticKeyboard(state))
+        case .emojis: return AnyView(emojiKeyboard)
         case .images: return AnyView(imageKeyboard)
         case .numeric: return AnyView(numericKeyboard)
         case .symbolic: return AnyView(symbolicKeyboard)
@@ -69,13 +70,16 @@ private extension KeyboardView {
             customBottomRow: .demoRow(for: context))
     }
     
+    var emojiKeyboard: some View {
+        EmojiKeyboard(category: .smileys)
+            .padding()
+            .frame(height: 600)
+    }
+    
     /**
-     The image keyboard is a custom view that is implemented
-     in this project. The custom `frame` is only set to show
-     that SwiftUI-based keyboards currently lack the ability
-     to resize when their content change.
-     
-     `TODO` Remove the custom frame when resizing is solved.
+     `TODO` The custom `height` is only applied to show that
+     SwiftUI keyboard extensions currently don't resize when
+     their content change. Remove `frame` when this is fixed.
      */
     var imageKeyboard: some View {
         ImageKeyboard()

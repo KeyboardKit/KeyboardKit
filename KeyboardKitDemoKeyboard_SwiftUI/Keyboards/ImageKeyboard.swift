@@ -1,6 +1,6 @@
 //
 //  ImageKeyboard.swift
-//  KeyboardKitDemoKeyboard_SwiftUI
+//  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-09-13.
 //  Copyright © 2020 Daniel Saidi. All rights reserved.
@@ -10,7 +10,15 @@ import KeyboardKit
 import KeyboardKitSwiftUI
 import SwiftUI
 
+/**
+ This keyboard is a custom view that is implemented for this
+ project alone. It implements the shared `DemoImageKeyboard`
+ and lists its images in a grid, where the number of columns
+ depend on if the grid is presented in portrait or landscape.
+ */
 struct ImageKeyboard: View, DemoImageKeyboard {
+    
+    @EnvironmentObject var context: ObservableKeyboardContext
     
     var body: some View {
         KeyboardGrid(
@@ -19,16 +27,14 @@ struct ImageKeyboard: View, DemoImageKeyboard {
             spacing: 20,
             buttonBuilder: button)
     }
-    
-    @EnvironmentObject var context: ObservableKeyboardContext
+}
+
+private extension ImageKeyboard {
     
     var isLandscape: Bool { context.controller.deviceOrientation.isLandscape }
     
     func button(for action: KeyboardAction) -> some View {
-        ZStack {
-            KeyboardImageButton(action: action)
-                .keyboardAction(action, context: context)
-            Text(context.keyboardType.systemKeyboardButtonText ?? "-")
-        }
+        KeyboardImageButton(action: action)
+            .keyboardAction(action, context: context)
     }
 }

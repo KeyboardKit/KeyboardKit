@@ -3,6 +3,13 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions. 
 
 
+## 3.1.1
+
+This version contains new features:
+
+* `EmojiCategory` has a `fallbackDisplayEmoji` that is used by the system buttons.
+
+
 ## 3.1.0
 
 This version contains new protocols and classes:
