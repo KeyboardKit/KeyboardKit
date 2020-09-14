@@ -56,18 +56,20 @@ KeyboardKit supports both `UIKit` and `SwiftUI`, so you can pick the option that
 
 ## UIKit
 
-[Read more here][UIKit] about creating keyboard extensions with `UIKit`.
+[Read more here][UIKit] about creating `UIKit`-based keyboard extensions.
+
+You can also follow [this tutorial][UIKit-Tutorial].
 
 `SwiftUI` is the main focus going forward, but UIKit support will still be around and improved if needed.
 
 
 ## SwiftUI
 
-[Read more here][SwiftUI] about creating keyboard extensions with `SwiftUI`.
+[Read more here][SwiftUI] about creating `SwiftUI`-based keyboard extensions.
 
-Due to a [Swift toolchain bug][Bug], SwiftUI support must be kept in a separate library called [KeyboardKitSwiftUI][KeyboardKitSwiftUI]. 
+You can also follow [this tutorial][SwiftUI-Tutorial].
 
-Until the bug is fixed, you must add both `KeyboardKit` and `KeyboardKitSwiftUI` to your project if you want to use `SwiftUI` to create keyboard extensions.
+`SwiftUI` is the main focus going forward, but the support is currently limited.
 
 
 ## Actions
@@ -162,7 +164,8 @@ KeyboardKit is available under the MIT license. See LICENSE file for more info.
 [Haptic-Feedback]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Haptic-Feedback.md
 [Keyboard-Types]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Keyboard-Types.md
 [SwiftUI]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/SwiftUI.md
+[SwiftUI-Tutorial]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/SwiftUI-Tutorial.md
 [UIKit]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/UIKit.md
+[UIKit-Tutorial]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/UIKit-Tutorial.md
 
 [Guide]: https://shyngys.com/ios-custom-keyboard-guide
-[Bug]: https://forums.swift.org/t/weak-linking-of-frameworks-with-greater-deployment-targets/26017/24

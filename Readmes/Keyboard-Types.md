@@ -1,6 +1,6 @@
 # Keyboard Types
 
-`KeyboardKit` comes with a `KeyboardType` enum with these keyboard types:
+KeyboardKit has a `KeyboardType` enum with these keyboard types:
 
 * `alphabetic(uppercased/lowercased/capsLocked)`
 * `numeric`

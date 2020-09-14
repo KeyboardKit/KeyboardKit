@@ -1,13 +1,18 @@
 # UIKit
 
-KeyboardKit comes with a bunch of built-in view and components that help you build both custom keyboards and keyboards that mimic a system keyboard.
+KeyboardKit comes with a bunch of built-in view and components that help you build `UIKit`-based keyboard extensions.
+
+
+## Tutorial
+
+If you're new to KeyboardKit, [this short tutorial][Tutorial] can help you get started.
 
 
 ## Overview
 
 `UIKit` is the old, standard way of building custom keyboard extensions. You can setup your extension with constraints to make it resize to the size of your keyboard.
 
-KeyboardKit simplifies this setup, which can be pretty complicated. It can manage the constraints for you, by using a stack view that you can populate with any views you like.
+KeyboardKit simplifies this setup (which can be pretty complicated) and can manage constraints by using a stack view that you can populate with any views you like.
 
 You can use any `UIKit` views you like to build your keyboard. You can then use any of the built-in views and extensions to add keyboard functionality to your views.
 
@@ -38,3 +43,6 @@ Since layout is much more complicated in UIKit than in SwiftUI, KeyboardKit also
 * `PagedKeyboardComponent` can be implemented by any view that display pages of keyboard buttons, e.g. collection views. It has functionality for persisting and restoring the current page index.
 
 Take a look in `UIKit/Views` and `UIKit/Components` for a complete list of views and components.
+
+
+[Tutorial]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/UIKit-Tutorial.md
