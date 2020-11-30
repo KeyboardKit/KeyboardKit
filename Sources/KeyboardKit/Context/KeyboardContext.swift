@@ -24,10 +24,7 @@ public protocol KeyboardContext: AnyObject {
     
     /**
      The current keyboard input view controller. You can use
-     it when the context lacks information that you may need.
-     
-     Note that the `controller` is only set when the context
-     is created. It can't be observed.
+     this to get information that is not in the context.
      */
     var controller: KeyboardInputViewController { get }
     

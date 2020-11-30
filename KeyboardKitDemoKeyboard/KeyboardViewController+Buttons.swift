@@ -18,17 +18,17 @@ extension KeyboardViewController {
         return view
     }
     
-    func buttonRow(for actions: KeyboardActionRow, distribution: UIStackView.Distribution) -> KeyboardStackViewComponent {
-        KeyboardButtonRow(actions: actions, distribution: distribution) {
-            button(for: $0, distribution: distribution)
-        }
-    }
-    
-    func buttonRows(for actionRows: KeyboardActionRows, distribution: UIStackView.Distribution) -> [KeyboardStackViewComponent] {
-        var rows = actionRows.map {
+    func buttonRows(for rows: KeyboardActionRows, distribution: UIStackView.Distribution) -> [KeyboardStackViewComponent] {
+        var rows = rows.map {
             buttonRow(for: $0, distribution: distribution)
         }
         rows.insert(autocompleteToolbar, at: 0)
         return rows
+    }
+    
+    func buttonRow(for row: KeyboardActionRow, distribution: UIStackView.Distribution) -> KeyboardStackViewComponent {
+        KeyboardButtonRow(actions: row, distribution: distribution) {
+            button(for: $0, distribution: distribution)
+        }
     }
 }

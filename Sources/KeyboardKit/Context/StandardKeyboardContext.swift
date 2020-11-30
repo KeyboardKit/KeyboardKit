@@ -14,16 +14,14 @@ import UIKit
  
  This context type is used by default by `KeyboardKit`. If a
  keyboard extension targets iOS 13 or later, you can replace
- it with a `ObservableKeyboardContext`.
+ it with a `KeyboardKitSwiftUI` `ObservableKeyboardContext`.
  */
 public class StandardKeyboardContext: KeyboardContext {
     
     public init(
         controller: KeyboardInputViewController,
         actionHandler: KeyboardActionHandler,
-        keyboardType: KeyboardType,
-        defaults: UserDefaults = .standard) {
-        self.defaults = defaults
+        keyboardType: KeyboardType) {
         self.actionHandler = actionHandler
         self.controller = controller
         self.emojiCategory = .frequent
@@ -36,8 +34,6 @@ public class StandardKeyboardContext: KeyboardContext {
         self.textInputMode = controller.textInputMode
         self.traitCollection = controller.traitCollection
     }
-    
-    private let defaults: UserDefaults
     
     public var actionHandler: KeyboardActionHandler
     public var controller: KeyboardInputViewController
