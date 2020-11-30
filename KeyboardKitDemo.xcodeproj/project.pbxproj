@@ -263,6 +263,7 @@
 		846704AF234A725300355331 /* DemoKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoKeyboard.swift; sourceTree = "<group>"; };
 		846704B2234A725300355331 /* DemoAutocompleteSuggestionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoAutocompleteSuggestionProvider.swift; sourceTree = "<group>"; };
 		84834617250D759000C49F65 /* DemoKeyboardActionHandlerBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboardActionHandlerBase.swift; sourceTree = "<group>"; };
+		A917E77F2574E0160048CC12 /* Readmes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Readmes; sourceTree = "<group>"; };
 		A94265382490CDCC00EB5551 /* KeyboardKitDemoKeyboard_SwiftUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KeyboardKitDemoKeyboard_SwiftUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A942653A2490CDCC00EB5551 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		A942653C2490CDCC00EB5551 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -279,7 +280,6 @@
 		A9E56EFD249969F300158AB7 /* KeyboardGridPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardGridPreview.swift; sourceTree = "<group>"; };
 		OBJ_238 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = SOURCE_ROOT; };
 		OBJ_239 /* Fastlane */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fastlane; sourceTree = SOURCE_ROOT; };
-		OBJ_241 /* Readmes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Readmes; sourceTree = SOURCE_ROOT; };
 		OBJ_242 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		OBJ_243 /* KeyboardKit.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = KeyboardKit.podspec; sourceTree = "<group>"; };
 		OBJ_244 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -337,13 +337,14 @@
 		84670425234A6A8400355331 /* Project Files */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_238 /* Resources */,
 				OBJ_239 /* Fastlane */,
-				OBJ_241 /* Readmes */,
+				A917E77F2574E0160048CC12 /* Readmes */,
+				OBJ_238 /* Resources */,
 				84670427234A6A9E00355331 /* .gitignore */,
 				84670426234A6A9E00355331 /* .swiftlint.yml */,
 				OBJ_243 /* KeyboardKit.podspec */,
 				OBJ_242 /* LICENSE */,
+				OBJ_6 /* Package.swift */,
 				OBJ_244 /* README.md */,
 				OBJ_245 /* RELEASE_NOTES.md */,
 				OBJ_246 /* swiftgen.yml */,
@@ -367,11 +368,11 @@
 		8467045E234A711100355331 /* KeyboardKitDemoKeyboard */ = {
 			isa = PBXGroup;
 			children = (
+				A917E7722574DEF70048CC12 /* Actions */,
 				846704A7234A725300355331 /* Buttons */,
 				846704AB234A725300355331 /* Keyboards */,
 				A95307542461308100CB37C3 /* Localization */,
 				846704BD234A725900355331 /* Supporting Files */,
-				846704A6234A725300355331 /* DemoKeyboardActionHandler.swift */,
 				8467045F234A711100355331 /* KeyboardViewController.swift */,
 				84086E2F235587DC0030D95A /* KeyboardViewController+Buttons.swift */,
 				84086E3323558C0F0030D95A /* KeyboardViewController+Setup.swift */,
@@ -480,6 +481,14 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		A917E7722574DEF70048CC12 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				846704A6234A725300355331 /* DemoKeyboardActionHandler.swift */,
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
 		A94265392490CDCC00EB5551 /* KeyboardKitDemoKeyboard_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -569,7 +578,6 @@
 		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
-				OBJ_6 /* Package.swift */,
 				84670446234A709400355331 /* KeyboardKitDemo */,
 				8467045E234A711100355331 /* KeyboardKitDemoKeyboard */,
 				A94265392490CDCC00EB5551 /* KeyboardKitDemoKeyboard_SwiftUI */,
@@ -598,7 +606,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84670456234A709500355331 /* Build configuration list for PBXNativeTarget "KeyboardKitDemo" */;
 			buildPhases = (
-				A953075A24613B6A00CB37C3 /* SwiftLint */,
+				A953075A24613B6A00CB37C3 /* [SwiftLint] */,
 				84670441234A709400355331 /* Sources */,
 				84670442234A709400355331 /* Frameworks */,
 				84670443234A709400355331 /* Resources */,
@@ -858,7 +866,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A953075A24613B6A00CB37C3 /* SwiftLint */ = {
+		A953075A24613B6A00CB37C3 /* [SwiftLint] */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -867,7 +875,7 @@
 			);
 			inputPaths = (
 			);
-			name = SwiftLint;
+			name = "[SwiftLint]";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -1571,7 +1579,7 @@
 			repositoryURL = "https://github.com/danielsaidi/KeyboardKit";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.1.1;
+				minimumVersion = 3.0.0;
 			};
 		};
 		A95CC2D124ADA8E800436FD3 /* XCRemoteSwiftPackageReference "KeyboardKitSwiftUI" */ = {

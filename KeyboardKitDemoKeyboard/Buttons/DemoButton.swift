@@ -79,7 +79,7 @@ private extension KeyboardAction {
         case .emojiCategory(let category): return buttonText(for: category)
         case .keyboardType(let type): return buttonText(for: type)
         case .newLine: return "return"
-        case .shift: return "⇧"
+        case .shift(let currentState): return currentState.isUppercased ? "⇪" : "⇧"
         case .space: return "space"
         default: return nil
         }
@@ -144,7 +144,6 @@ private extension KeyboardAction {
     var useDarkButton: Bool {
         switch self {
         case .character, .image, .space: return false
-        case .shift(let currentState): return currentState != .lowercased
         default: return true
         }
     }

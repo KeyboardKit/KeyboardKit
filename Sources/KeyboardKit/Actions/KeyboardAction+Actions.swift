@@ -8,6 +8,10 @@
 
 import UIKit
 
+/**
+ This extension defines standard actions for `KeyboardAction`
+ types that have standard actions.
+ */
 public extension KeyboardAction {
     
     

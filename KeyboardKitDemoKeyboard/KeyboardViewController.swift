@@ -37,18 +37,31 @@ class KeyboardViewController: KeyboardInputViewController {
     
     // MARK: - View Controller Lifecycle
     
+    /**
+     The demo injects a custom, demo-specific action handler
+     when the controller is created.
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         context.actionHandler = DemoKeyboardActionHandler(inputViewController: self)
     }
     
+    /**
+     The demo recreates the keyboard when a trait collection
+     changes, e.g. when the screen is rotated.
+     */
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         setupKeyboard()
     }
     
+    /**
+     The demo recreates the keyboard when the app is resized,
+     e.g. when resizing an iPad app in split screen.
+     */
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+        ToastAlert().alert(message: "igeaighueiaw", in: self.view, withDuration: 1)
         setupKeyboard(for: size)
     }
     
@@ -80,8 +93,8 @@ class KeyboardViewController: KeyboardInputViewController {
     
     override func performAutocomplete() {
         guard let word = textDocumentProxy.currentWord else { return resetAutocomplete() }
-        autocompleteProvider.autocompleteSuggestions(for: word) { [weak self] result in
-            switch result {
+        autocompleteProvider.autocompleteSuggestions(for: word) { [weak self] in
+            switch $0 {
             case .failure(let error): print(error.localizedDescription)
             case .success(let result): self?.autocompleteToolbar.update(with: result)
             }

@@ -11,17 +11,17 @@ import Foundation
 /**
  This action enum specifies all currently supported keyboard
  actions. They can be bound to keyboard buttons or triggered
- programatically.
+ programatically by handing them to a `KeyboardActionHandler`.
  
  Many actions have a standard behavior for a certain gesture,
  like how double tapping a `space` ends the current sentence.
  These behaviors are specified as properties in this file.
  
- Many actions do not have a universal, app-agnostic behavior.
- For instance, the `image` action has no "standard" behavior.
- Such actions are here to let you create keyboard extensions
- declaratively by expressing intent, but do require explicit
- handling in a custom action handler.
+ Many actions do not have a universal behavior. For instance,
+ the `image` action has no "standard" behavior. Such actions
+ are here to let you build keyboard extensions declaratively
+ by expressing intent, but require custom handling in custom
+ action handlers.
  
  `image` can be used to refer to images embedded in the main
  bundle and `systemImage`for system images.
