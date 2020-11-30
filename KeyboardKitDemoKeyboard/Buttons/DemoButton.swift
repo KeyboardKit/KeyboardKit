@@ -16,8 +16,12 @@ import KeyboardKit
  */
 class DemoButton: KeyboardButtonView {
     
+    
+    // MARK: - Setup
+    
     public func setup(with action: KeyboardAction, in viewController: KeyboardInputViewController, distribution: UIStackView.Distribution = .fillEqually) {
         super.setup(with: action, in: viewController)
+        useDarkAppearance = action.useDarkAppearance(in: viewController)
         backgroundColor = .clearInteractable
         buttonView?.backgroundColor = action.buttonColor(for: viewController)
         DispatchQueue.main.async { self.image?.image = action.buttonImage }
@@ -26,17 +30,27 @@ class DemoButton: KeyboardButtonView {
         textLabel?.textColor = action.tintColor(in: viewController)
         buttonView?.tintColor = action.tintColor(in: viewController)
         width = action.buttonWidth(for: distribution)
-        useDark = action.useDarkAppearance(in: viewController)
     }
+    
+    
+    // MARK: - View Lifecycle
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        if useDark {
+        if useDarkAppearance {
             buttonView?.applyShadow(.standardButtonShadowDark)
         } else {
             buttonView?.applyShadow(.standardButtonShadowLight)
         }
     }
+    
+    
+    // MARK: - Properties
+    
+    private var useDarkAppearance: Bool = false
+    
+    
+    // MARK: - Outlets
     
     @IBOutlet weak var buttonView: UIView? {
         didSet { buttonView?.layer.cornerRadius = 7 }
@@ -47,8 +61,6 @@ class DemoButton: KeyboardButtonView {
     @IBOutlet weak var textLabel: UILabel? {
         didSet { textLabel?.text = "" }
     }
-    
-    var useDark: Bool = false
 }
 
 
@@ -56,14 +68,20 @@ class DemoButton: KeyboardButtonView {
 
 private extension KeyboardAction {
     
+    /**
+     The button color of a button that uses this action.
+     */
     func buttonColor(for viewController: KeyboardInputViewController) -> UIColor {
-        let dark = useDarkAppearance(in: viewController)
-        let asset = useDarkButton
-            ? (dark ? Asset.Colors.darkSystemButton : Asset.Colors.lightSystemButton)
-            : (dark ? Asset.Colors.darkButton : Asset.Colors.lightButton)
+        let isDark = useDarkAppearance(in: viewController)
+        let standardColor = isDark ? Asset.Colors.darkButton : Asset.Colors.lightButton
+        let systemColor = isDark ? Asset.Colors.darkSystemButton : Asset.Colors.lightSystemButton
+        let asset = isSystemButton ? systemColor : standardColor
         return asset.color
     }
     
+    /**
+     The image to use for a button that uses this action.
+     */
     var buttonImage: UIImage? {
         switch self {
         case .image(_, let imageName, _): return UIImage(named: imageName)
@@ -72,6 +90,9 @@ private extension KeyboardAction {
         }
     }
     
+    /**
+     The text to use for a button that uses this action.
+     */
     var buttonText: String? {
         switch self {
         case .backspace: return "⌫"
@@ -85,6 +106,9 @@ private extension KeyboardAction {
         }
     }
     
+    /**
+     The text to show for an emoji category button.
+     */
     func buttonText(for category: EmojiCategory) -> String {
         switch category {
         case .frequent: return "🕓"
@@ -99,6 +123,9 @@ private extension KeyboardAction {
         }
     }
     
+    /**
+     The text to show for a keyboard switcher button.
+     */
     func buttonText(for keyboardType: KeyboardType) -> String {
         switch keyboardType {
         case .alphabetic: return "ABC"
@@ -110,41 +137,60 @@ private extension KeyboardAction {
         }
     }
     
+    /**
+     The width of certain system actions.
+     */
     var buttonWidth: CGFloat {
         switch self {
         case .none: return 10
-        case .shift, .backspace: return 60
+        case .newLine: return 120
+        case .shift, .backspace, .keyboardType: return 60
         case .space: return 100
         default: return 50
         }
     }
     
+    /**
+     The width of the button, when it's used in a stack view
+     with a certain distribution.
+     */
     func buttonWidth(for distribution: UIStackView.Distribution) -> CGFloat {
         let adjust = distribution == .fillProportionally
         return adjust ? buttonWidth * 100 : buttonWidth
     }
     
+    /**
+     Whether or not the button is a "system button" that has
+     a dark button style and that performs an action instead
+     of typing text.
+     */
+    var isSystemButton: Bool {
+        switch self {
+        case .character, .image, .space: return false
+        default: return true
+        }
+    }
+    
+    /**
+     The tint color of the button.
+     */
     func tintColor(in viewController: KeyboardInputViewController) -> UIColor {
-        let dark = useDarkAppearance(in: viewController)
-        let asset = useDarkButton
-            ? (dark ? Asset.Colors.darkSystemButtonText : Asset.Colors.lightSystemButtonText)
-            : (dark ? Asset.Colors.darkButtonText : Asset.Colors.lightButtonText)
+        let isDark = useDarkAppearance(in: viewController)
+        let standardColor = isDark ? Asset.Colors.darkButtonText : Asset.Colors.lightButtonText
+        let systemColor = isDark ? Asset.Colors.darkSystemButtonText : Asset.Colors.lightSystemButtonText
+        let asset = isSystemButton ? systemColor : standardColor
         return asset.color
     }
     
+    /**
+     Whether or not the keyboard action should apply a dark
+     */
     func useDarkAppearance(in viewController: KeyboardInputViewController) -> Bool {
         if #available(iOSApplicationExtension 12.0, *) {
             return viewController.traitCollection.userInterfaceStyle == .dark
         } else {
             let appearance = viewController.textDocumentProxy.keyboardAppearance ?? .default
             return appearance == .dark
-        }
-    }
-    
-    var useDarkButton: Bool {
-        switch self {
-        case .character, .image, .space: return false
-        default: return true
         }
     }
 }
