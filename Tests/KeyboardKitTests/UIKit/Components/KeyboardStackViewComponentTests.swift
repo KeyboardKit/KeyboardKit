@@ -33,25 +33,6 @@ class KeyboardStackViewComponentTests: QuickSpec {
                 expect(KeyboardButtonRow.standardHeight(for: .pad, bounds: .landscape)).to(equal(84))
             }
         }
-        
-        describe("standard row padding") {
-            
-            it("is correct for iPhone Portrait") {
-                expect(KeyboardButtonRow.standardRowPadding(for: .phone, bounds: .portrait)).to(equal(3))
-            }
-            
-            it("is correct for iPhone Landscape") {
-                expect(KeyboardButtonRow.standardRowPadding(for: .phone, bounds: .landscape)).to(equal(3))
-            }
-            
-            it("is correct for iPad Portrait") {
-                expect(KeyboardButtonRow.standardRowPadding(for: .pad, bounds: .portrait)).to(equal(5))
-            }
-            
-            it("is correct for iPad Landscape") {
-                expect(KeyboardButtonRow.standardRowPadding(for: .pad, bounds: .landscape)).to(equal(5))
-            }
-        }
     }
 }
 

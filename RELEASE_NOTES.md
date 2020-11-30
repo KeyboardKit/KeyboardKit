@@ -5,9 +5,18 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 ## 3.2.0
 
-This version adds new dimension properties to `KeyboardStackViewComponent` and deprecates `CGFloat+KeyboardDimensions`.
+`KeyboardStackViewComponent` has a new `standardHeight` function.
 
-The various `KeyboardStackViewComponent` implementations now uses the new `standardHeight` if no custom height is provided.
+This height is applied by default to the various component implementations, if no height is provided.
+
+`KeyboardButtonRowComponent` has a new `standardInsets` function.
+
+These insets should be applied as fake margins within each row component, e.g. keyboard buttons.
+
+
+### Deprecated:
+
+* `CGFloat+KeyboardDimensions`.
 
 
 ## 3.1.1

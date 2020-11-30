@@ -23,32 +23,16 @@ public protocol KeyboardStackViewComponent: VerticalKeyboardComponent {}
 public extension KeyboardStackViewComponent {
     
     /**
-     Get the standard height of vertical keyboard components
-     that are placed to your `KeyboardInputViewController`'s
-     `keyboardStackView` (i.e. keyboard "rows").
+     The standard height of a vertical keyboard component in
+     your `KeyboardInputViewController`'s `keyboardStackView`.
      
-     This is the `total` height of this component, including
-     any top and bottom padding that should be added to your
-     buttons. This padding must be added INSIDE the button's
-     view, since we do not want any spacing between our rows
-     that can create dead tap areas.
+     This is the `total` component height, including any top
+     and bottom padding that should be applied to every view
+     in the row. This padding must be added WITHIN each view,
+     since row spacing will create dead tap areas.
      */
     static func standardHeight(for device: UIDevice, screen: UIScreen) -> CGFloat {
         standardHeight(for: device.userInterfaceIdiom, bounds: screen.bounds)
-    }
-    
-    /**
-     The standard row insets of vertical keyboard components
-     are insets that should be applied within the row view.
-     
-     The reason for this is that keyboard stack views should
-     not have any row spacings, since that would create dead
-     tap areas. Instead, it's up to each button to apply the
-     correct padding within itself and apply gesture support
-     to its entire body.
-     */
-    static func standardRowPadding(for device: UIDevice, screen: UIScreen) -> CGFloat {
-        standardRowPadding(for: device.userInterfaceIdiom, bounds: screen.bounds)
     }
 }
 
@@ -56,10 +40,6 @@ extension KeyboardStackViewComponent {
     
     static func standardHeight(for idiom: UIUserInterfaceIdiom, bounds: CGRect) -> CGFloat {
         bounds.isLandscape ? standardLandscapeHeight(for: idiom) : standardPortraitHeight(for: idiom)
-    }
-    
-    static func standardRowPadding(for idiom: UIUserInterfaceIdiom, bounds: CGRect) -> CGFloat {
-        idiom == .pad ? 5 : 3
     }
 }
 

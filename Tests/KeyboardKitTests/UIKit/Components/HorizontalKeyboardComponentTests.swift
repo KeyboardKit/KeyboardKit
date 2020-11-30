@@ -9,8 +9,8 @@
 import Quick
 import Nimble
 import CoreGraphics
-import KeyboardKit
 import UIKit
+@testable import KeyboardKit
 
 class HorizontalKeyboardComponentTests: QuickSpec {
     
@@ -22,46 +22,46 @@ class HorizontalKeyboardComponentTests: QuickSpec {
             view = TestClass()
         }
         
-        describe("width constraint") {
+        describe("width") {
             
-            it("is nil by default") {
+            it("constraint is nil by default") {
                 expect(view.widthConstraint).to(beNil())
             }
-        }
-        
-        describe("getting width") {
             
-            it("returns intrinsic content width if constraint is nil") {
-                expect(view.width).to(equal(123))
+            describe("getting width") {
+                
+                it("returns intrinsic content width if constraint is nil") {
+                    expect(view.width).to(equal(123))
+                }
+                
+                it("returns constraint width if it is set") {
+                    view.width = 21
+                    expect(view.width).to(equal(21))
+                }
             }
             
-            it("returns constraint width if it is set") {
-                view.width = 21
-                expect(view.width).to(equal(21))
-            }
-        }
-        
-        describe("setting width") {
-            
-            it("creates width constraint if needed") {
-                view.width = 21
-                expect(view.widthConstraint).toNot(beNil())
-            }
-            
-            it("reuses width constraint if needed") {
-                view.width = 21
-                let constraint1 = view.widthConstraint
-                view.width = 25
-                let constraint2 = view.widthConstraint
-                expect(constraint1).to(be(constraint2))
-            }
-            
-            it("sets width constraint propertoes") {
-                view.width = 21
-                let constraint = view.widthConstraint
-                expect(constraint?.priority).to(equal(.defaultLow))
-                expect(constraint?.constant).to(equal(21))
-                expect(constraint?.isActive).to(beTrue())
+            describe("setting width") {
+                
+                it("creates width constraint if needed") {
+                    view.width = 21
+                    expect(view.widthConstraint).toNot(beNil())
+                }
+                
+                it("reuses width constraint if needed") {
+                    view.width = 21
+                    let constraint1 = view.widthConstraint
+                    view.width = 25
+                    let constraint2 = view.widthConstraint
+                    expect(constraint1).to(be(constraint2))
+                }
+                
+                it("sets width constraint propertoes") {
+                    view.width = 21
+                    let constraint = view.widthConstraint
+                    expect(constraint?.priority).to(equal(.defaultLow))
+                    expect(constraint?.constant).to(equal(21))
+                    expect(constraint?.isActive).to(beTrue())
+                }
             }
         }
     }
@@ -73,5 +73,16 @@ private class TestClass: UIView, HorizontalKeyboardComponent {
     
     override var intrinsicContentSize: CGSize {
         return CGSize(width: 123, height: 456)
+    }
+}
+
+private extension CGRect {
+    
+    static var landscape: CGRect {
+        CGRect(x: 0, y: 0, width: 2, height: 1)
+    }
+    
+    static var portrait: CGRect {
+        CGRect(x: 0, y: 0, width: 1, height: 2)
     }
 }
