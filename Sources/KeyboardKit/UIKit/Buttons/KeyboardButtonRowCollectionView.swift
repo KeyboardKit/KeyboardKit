@@ -173,7 +173,10 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboar
     open func collectionView(_ collectionView: UICollectionView, rowViewForItemAt indexPath: IndexPath) -> KeyboardButtonRow {
         let row = self.row(at: indexPath)
         let rowHeight = configuration.rowHeight
-        return KeyboardButtonRow(height: rowHeight, actions: row, buttonCreator: buttonCreator)
+        return KeyboardButtonRow(
+            actions: row,
+            height: rowHeight,
+            buttonCreator: buttonCreator)
     }
     
     

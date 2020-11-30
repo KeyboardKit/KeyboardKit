@@ -27,11 +27,11 @@ class KeyboardButtonRowComponentTests: QuickSpec {
             }
             
             it("is correct for iPad Portrait") {
-                expect(TestClass.standardInsets(for: .pad, bounds: .portrait)).to(equal(.all(5)))
+                expect(TestClass.standardInsets(for: .pad, bounds: .portrait)).to(equal(.horizontal(6, vertical: 4.5)))
             }
             
             it("is correct for iPad Landscape") {
-                expect(TestClass.standardInsets(for: .pad, bounds: .landscape)).to(equal(.all(5)))
+                expect(TestClass.standardInsets(for: .pad, bounds: .landscape)).to(equal(.horizontal(7, vertical: 6)))
             }
         }
     }

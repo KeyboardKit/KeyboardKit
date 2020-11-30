@@ -21,7 +21,7 @@ class KeyboardButtonRowTests: QuickSpec {
         
         beforeEach {
             actions = [.backspace, .control]
-            view = KeyboardButtonRow(height: 123, actions: actions) { action in
+            view = KeyboardButtonRow(actions: actions, height: 123) { action in
                 let button = TestButton(type: .custom)
                 button.action = action
                 return button
@@ -46,7 +46,7 @@ class KeyboardButtonRowTests: QuickSpec {
             }
             
             it("can use custom stack view configuration") {
-                view = KeyboardButtonRow(height: 123, actions: actions, alignment: .center, distribution: .equalCentering) { action in
+                view = KeyboardButtonRow(actions: actions, height: 123, alignment: .center, distribution: .equalCentering) { action in
                     let button = TestButton(type: .custom)
                     button.action = action
                     return button

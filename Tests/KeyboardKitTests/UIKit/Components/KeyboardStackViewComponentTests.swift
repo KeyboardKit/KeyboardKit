@@ -26,11 +26,11 @@ class KeyboardStackViewComponentTests: QuickSpec {
             }
             
             it("is correct for iPad Portrait") {
-                expect(KeyboardButtonRow.standardHeight(for: .pad, bounds: .portrait)).to(equal(65))
+                expect(KeyboardButtonRow.standardHeight(for: .pad, bounds: .portrait)).to(equal(66))
             }
             
             it("is correct for iPad Landscape") {
-                expect(KeyboardButtonRow.standardHeight(for: .pad, bounds: .landscape)).to(equal(84))
+                expect(KeyboardButtonRow.standardHeight(for: .pad, bounds: .landscape)).to(equal(86))
             }
         }
     }
