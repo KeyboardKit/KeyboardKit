@@ -61,7 +61,6 @@ class KeyboardViewController: KeyboardInputViewController {
      */
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        ToastAlert().alert(message: "igeaighueiaw", in: self.view, withDuration: 1)
         setupKeyboard(for: size)
     }
     

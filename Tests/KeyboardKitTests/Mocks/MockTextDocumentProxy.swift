@@ -20,7 +20,7 @@ import UIKit
 class MockTextDocumentProxy: NSObject, UITextDocumentProxy, Mockable {
     
     lazy var adjustTextPositionRef = MockReference(adjustTextPosition)
-    lazy var deleteBackwardRef = MockReference(deleteBackward)
+    lazy var deleteBackwardRef = MockReference(deleteBackward as () -> Void)
     lazy var insertTextRef = MockReference(insertText)
     lazy var setMarkedTextRef = MockReference(setMarkedText)
     lazy var unmarkTextRef = MockReference(unmarkText)
