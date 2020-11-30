@@ -1,6 +1,13 @@
 # Release Notes
 
-KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions. 
+KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions.
+
+
+## 3.2.0
+
+This version adds new dimension properties to `KeyboardStackViewComponent` and deprecates `CGFloat+KeyboardDimensions`.
+
+The various `KeyboardStackViewComponent` implementations now uses the new `standardHeight` if no custom height is provided.
 
 
 ## 3.1.1

@@ -1578,8 +1578,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielsaidi/KeyboardKit";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
+				branch = layout;
+				kind = branch;
 			};
 		};
 		A95CC2D124ADA8E800436FD3 /* XCRemoteSwiftPackageReference "KeyboardKitSwiftUI" */ = {

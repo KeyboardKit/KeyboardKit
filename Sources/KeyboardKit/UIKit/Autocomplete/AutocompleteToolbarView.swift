@@ -34,7 +34,7 @@ public class AutocompleteToolbarView: KeyboardToolbarView {
      must setup the buttons yourself if you use this option.
      */
     public init(
-        height: CGFloat = .standardKeyboardRowHeight,
+        height: CGFloat = standardHeight(for: .current, screen: .main),
         buttonCreator: @escaping ButtonCreator,
         alignment: UIStackView.Alignment = .fill,
         distribution: UIStackView.Distribution = .fillEqually) {
@@ -48,7 +48,7 @@ public class AutocompleteToolbarView: KeyboardToolbarView {
      that when tapped sends text to a `UITextDocumentProxy`.
      */
     public convenience init(
-        height: CGFloat = .standardKeyboardRowHeight,
+        height: CGFloat = standardHeight(for: .current, screen: .main),
         textDocumentProxy: UITextDocumentProxy,
         alignment: UIStackView.Alignment = .fill,
         distribution: UIStackView.Distribution = .fillEqually) {

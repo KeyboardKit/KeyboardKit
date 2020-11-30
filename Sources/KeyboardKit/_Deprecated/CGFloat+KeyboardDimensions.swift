@@ -10,9 +10,6 @@ import CoreGraphics
 
 public extension CGFloat {
     
-    /**
-     The standard height of keyboard row components, as used
-     by `KeyboardKit`.
-     */
-    static var standardKeyboardRowHeight: CGFloat { 50 }
+    @available(*, deprecated, message: "Use the KeyboardStackViewComponent standardHeight property instead.")
+    static var standardKeyboardRowHeight: CGFloat { 48 }
 }

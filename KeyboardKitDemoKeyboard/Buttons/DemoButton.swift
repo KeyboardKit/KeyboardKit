@@ -19,11 +19,19 @@ class DemoButton: KeyboardButtonView {
     
     // MARK: - Setup
     
-    public func setup(with action: KeyboardAction, in viewController: KeyboardInputViewController, distribution: UIStackView.Distribution = .fillEqually) {
+    public func setup(
+        with action: KeyboardAction,
+        in viewController: KeyboardInputViewController,
+        edgeInsets: UIEdgeInsets,
+        distribution: UIStackView.Distribution = .fillEqually) {
         super.setup(with: action, in: viewController)
         useDarkAppearance = action.useDarkAppearance(in: viewController)
         backgroundColor = .clearInteractable
         buttonView?.backgroundColor = action.buttonColor(for: viewController)
+        buttonViewTopMargin?.constant = edgeInsets.top
+        buttonViewBottomMargin?.constant = edgeInsets.bottom
+        buttonViewLeadingMargin?.constant = edgeInsets.left
+        buttonViewTrailingMargin?.constant = edgeInsets.right
         DispatchQueue.main.async { self.image?.image = action.buttonImage }
         textLabel?.font = action.systemFont
         textLabel?.text = action.buttonText
@@ -61,6 +69,17 @@ class DemoButton: KeyboardButtonView {
     @IBOutlet weak var textLabel: UILabel? {
         didSet { textLabel?.text = "" }
     }
+    
+    
+    // MARK: - Margins
+    
+    @IBOutlet weak var buttonViewBottomMargin: NSLayoutConstraint?
+    
+    @IBOutlet weak var buttonViewLeadingMargin: NSLayoutConstraint?
+    
+    @IBOutlet weak var buttonViewTopMargin: NSLayoutConstraint?
+    
+    @IBOutlet weak var buttonViewTrailingMargin: NSLayoutConstraint?
 }
 
 

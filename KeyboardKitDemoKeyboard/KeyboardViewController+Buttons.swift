@@ -14,6 +14,7 @@ extension KeyboardViewController {
     func button(for action: KeyboardAction, distribution: UIStackView.Distribution = .equalSpacing) -> UIView {
         if action == .none { return KeyboardSpacerView(width: 10) }
         let view = DemoButton.fromNib(owner: self)
+        let padding = KeyboardButtonRow.standard
         view.setup(with: action, in: self, distribution: distribution)
         return view
     }

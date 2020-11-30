@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DemoButton" customModule="KeyboardKitExampleKeyboard" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DemoButton" customModule="KeyboardKitDemoKeyboard" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="447"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -19,7 +17,7 @@
                     <rect key="frame" x="3" y="3" width="408" height="441"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rmz-HZ-CvF">
-                            <rect key="frame" x="197.5" y="207.5" width="13" height="24"/>
+                            <rect key="frame" x="197" y="206.5" width="14.5" height="26.5"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -32,11 +30,19 @@
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="rmz-HZ-CvF" firstAttribute="centerY" secondItem="IbC-mC-CMt" secondAttribute="centerY" constant="-1" id="CJI-XF-nVP"/>
-                        <constraint firstItem="Szk-Wp-Rcv" firstAttribute="top" secondItem="IbC-mC-CMt" secondAttribute="top" constant="10" id="MeP-aM-RJP"/>
-                        <constraint firstAttribute="bottom" secondItem="Szk-Wp-Rcv" secondAttribute="bottom" constant="10" id="Pno-uu-ky1"/>
-                        <constraint firstAttribute="trailing" secondItem="Szk-Wp-Rcv" secondAttribute="trailing" constant="10" id="RNb-24-RKl"/>
+                        <constraint firstItem="Szk-Wp-Rcv" firstAttribute="top" secondItem="IbC-mC-CMt" secondAttribute="top" constant="10" id="MeP-aM-RJP">
+                            <variation key="heightClass=regular-widthClass=regular" constant="15"/>
+                        </constraint>
+                        <constraint firstAttribute="bottom" secondItem="Szk-Wp-Rcv" secondAttribute="bottom" constant="10" id="Pno-uu-ky1">
+                            <variation key="heightClass=regular-widthClass=regular" constant="15"/>
+                        </constraint>
+                        <constraint firstAttribute="trailing" secondItem="Szk-Wp-Rcv" secondAttribute="trailing" constant="10" id="RNb-24-RKl">
+                            <variation key="heightClass=regular-widthClass=regular" constant="15"/>
+                        </constraint>
                         <constraint firstItem="rmz-HZ-CvF" firstAttribute="centerX" secondItem="IbC-mC-CMt" secondAttribute="centerX" id="cS1-Qb-cYb"/>
-                        <constraint firstItem="Szk-Wp-Rcv" firstAttribute="leading" secondItem="IbC-mC-CMt" secondAttribute="leading" constant="10" id="smw-uZ-Eu2"/>
+                        <constraint firstItem="Szk-Wp-Rcv" firstAttribute="leading" secondItem="IbC-mC-CMt" secondAttribute="leading" constant="10" id="smw-uZ-Eu2">
+                            <variation key="heightClass=regular-widthClass=regular" constant="15"/>
+                        </constraint>
                     </constraints>
                 </view>
             </subviews>
@@ -60,6 +66,10 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="buttonView" destination="IbC-mC-CMt" id="YsQ-vv-szg"/>
+                <outlet property="buttonViewBottomMargin" destination="rCJ-bJ-FO2" id="eAr-c1-kPH"/>
+                <outlet property="buttonViewLeadingMargin" destination="aBE-hx-GMs" id="NpC-wK-h9b"/>
+                <outlet property="buttonViewTopMargin" destination="Sgy-Tt-ege" id="fVu-jk-vMW"/>
+                <outlet property="buttonViewTrailingMargin" destination="o16-rQ-r8K" id="1Yk-xd-JYL"/>
                 <outlet property="image" destination="Szk-Wp-Rcv" id="Zmr-3n-lCw"/>
                 <outlet property="textLabel" destination="rmz-HZ-CvF" id="ccB-9b-jza"/>
             </connections>
