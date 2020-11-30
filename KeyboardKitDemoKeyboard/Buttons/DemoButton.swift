@@ -9,6 +9,8 @@
 import UIKit
 import KeyboardKit
 
+
+
 /**
  This demo-specific button view represents a keyboard button
  like the one used in the iOS system keyboard. The file also
@@ -25,7 +27,6 @@ class DemoButton: KeyboardButtonView {
         edgeInsets: UIEdgeInsets = DemoButton.standardInsets(for: .current, screen: .main),
         distribution: UIStackView.Distribution = .fillEqually) {
         super.setup(with: action, in: viewController)
-        useDarkAppearance = action.useDarkAppearance(in: viewController)
         backgroundColor = .clearInteractable
         buttonView?.backgroundColor = action.buttonColor(for: viewController)
         buttonViewTopMargin?.constant = edgeInsets.top
@@ -33,11 +34,13 @@ class DemoButton: KeyboardButtonView {
         buttonViewLeadingMargin?.constant = edgeInsets.left
         buttonViewTrailingMargin?.constant = edgeInsets.right
         DispatchQueue.main.async { self.image?.image = action.buttonImage }
-        textLabel?.font = action.systemFont
+        textLabel?.font = action.buttonFont
         textLabel?.text = action.buttonText
         textLabel?.textColor = action.tintColor(in: viewController)
         buttonView?.tintColor = action.tintColor(in: viewController)
         width = action.buttonWidth(for: distribution)
+        useClearButtonBackground = action.useClearBackground(in: viewController)
+        useDarkAppearance = action.useDarkAppearance(in: viewController)
     }
     
     
@@ -45,10 +48,13 @@ class DemoButton: KeyboardButtonView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        if useDarkAppearance {
-            buttonView?.applyShadow(.standardButtonShadowDark)
+        guard let view = buttonView else { return }
+        if useClearButtonBackground {
+            view.layer.shadowColor = UIColor.clear.cgColor
+        } else if useDarkAppearance {
+            view.applyShadow(.standardButtonShadowDark)
         } else {
-            buttonView?.applyShadow(.standardButtonShadowLight)
+            view.applyShadow(.standardButtonShadowLight)
         }
     }
     
@@ -56,6 +62,8 @@ class DemoButton: KeyboardButtonView {
     // MARK: - Properties
     
     private var useDarkAppearance: Bool = false
+    
+    private var useClearButtonBackground: Bool = false
     
     
     // MARK: - Outlets
@@ -91,11 +99,22 @@ private extension KeyboardAction {
      The button color of a button that uses this action.
      */
     func buttonColor(for viewController: KeyboardInputViewController) -> UIColor {
+        if useClearBackground(in: viewController) { return .clearInteractable }
         let isDark = useDarkAppearance(in: viewController)
         let standardColor = isDark ? Asset.Colors.darkButton : Asset.Colors.lightButton
         let systemColor = isDark ? Asset.Colors.darkSystemButton : Asset.Colors.lightSystemButton
         let asset = isSystemButton ? systemColor : standardColor
         return asset.color
+    }
+    
+    /**
+     The font to use for a button that uses this action.
+     */
+    var buttonFont: UIFont {
+        switch self {
+        case .emojiCategory: return UIFont.preferredFont(forTextStyle: .callout)
+        default: return systemFont
+        }
     }
     
     /**
@@ -162,8 +181,7 @@ private extension KeyboardAction {
     var buttonWidth: CGFloat {
         switch self {
         case .none: return 10
-        case .newLine: return 120
-        case .shift, .backspace, .keyboardType: return 60
+        case .shift, .backspace: return 60
         case .space: return 100
         default: return 50
         }
@@ -199,6 +217,14 @@ private extension KeyboardAction {
         let systemColor = isDark ? Asset.Colors.darkSystemButtonText : Asset.Colors.lightSystemButtonText
         let asset = isSystemButton ? systemColor : standardColor
         return asset.color
+    }
+    
+    /**
+     Whether or not the action should use a clear background
+     color, that is still interactable.
+     */
+    func useClearBackground(in viewController: KeyboardInputViewController) -> Bool {
+        viewController.context.keyboardType == .emojis
     }
     
     /**
