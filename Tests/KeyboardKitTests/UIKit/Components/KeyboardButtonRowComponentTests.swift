@@ -19,11 +19,11 @@ class KeyboardButtonRowComponentTests: QuickSpec {
         describe("standard row padding") {
             
             it("is correct for iPhone Portrait") {
-                expect(TestClass.standardInsets(for: .phone, bounds: .portrait)).to(equal(.all(3)))
+                expect(TestClass.standardInsets(for: .phone, bounds: .portrait)).to(equal(.horizontal(3, vertical: 6)))
             }
             
             it("is correct for iPhone Landscape") {
-                expect(TestClass.standardInsets(for: .phone, bounds: .landscape)).to(equal(.all(3)))
+                expect(TestClass.standardInsets(for: .phone, bounds: .landscape)).to(equal(.horizontal(3, vertical: 4)))
             }
             
             it("is correct for iPad Portrait") {
@@ -61,5 +61,9 @@ private extension UIEdgeInsets {
     
     static func all(_ all: CGFloat) -> UIEdgeInsets {
         self.init(top: all, left: all, bottom: all, right: all)
+    }
+    
+    static func horizontal(_ horizontal: CGFloat, vertical: CGFloat) -> UIEdgeInsets {
+        self.init(top: vertical, left: horizontal, bottom: vertical, right: horizontal)
     }
 }

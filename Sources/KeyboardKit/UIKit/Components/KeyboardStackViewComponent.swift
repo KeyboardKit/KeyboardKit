@@ -45,12 +45,12 @@ extension KeyboardStackViewComponent {
 
 private extension KeyboardStackViewComponent {
     
-    static func standardLandscapeHeight(for idiom: UIUserInterfaceIdiom) -> CGFloat {
-        idiom == .pad ? 84 : 42
+    static func standardPortraitHeight(for idiom: UIUserInterfaceIdiom) -> CGFloat {
+        idiom == .pad ? 65 : 54
     }
     
-    static func standardPortraitHeight(for idiom: UIUserInterfaceIdiom) -> CGFloat {
-        idiom == .pad ? 65 : 48
+    static func standardLandscapeHeight(for idiom: UIUserInterfaceIdiom) -> CGFloat {
+        idiom == .pad ? 84 : 38
     }
 }
 

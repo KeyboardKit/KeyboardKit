@@ -22,7 +22,7 @@ class DemoButton: KeyboardButtonView {
     public func setup(
         with action: KeyboardAction,
         in viewController: KeyboardInputViewController,
-        edgeInsets: UIEdgeInsets,
+        edgeInsets: UIEdgeInsets = DemoButton.standardInsets(for: .current, screen: .main),
         distribution: UIStackView.Distribution = .fillEqually) {
         super.setup(with: action, in: viewController)
         useDarkAppearance = action.useDarkAppearance(in: viewController)

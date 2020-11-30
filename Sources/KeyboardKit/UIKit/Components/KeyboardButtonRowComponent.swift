@@ -43,11 +43,11 @@ extension KeyboardButtonRowComponent {
 private extension KeyboardButtonRowComponent {
     
     static func standardPortraitInsets(for idiom: UIUserInterfaceIdiom) -> UIEdgeInsets {
-        idiom == .pad ? .all(5) : .all(3)
+        idiom == .pad ? .all(5) : .horizontal(3, vertical: 6)
     }
     
     static func standardLandscapeInsets(for idiom: UIUserInterfaceIdiom) -> UIEdgeInsets {
-        idiom == .pad ? .all(5) : .all(3)
+        idiom == .pad ? .all(5) : .horizontal(3, vertical: 4)
     }
 }
 
@@ -60,5 +60,9 @@ private extension UIEdgeInsets {
     
     static func all(_ all: CGFloat) -> UIEdgeInsets {
         self.init(top: all, left: all, bottom: all, right: all)
+    }
+    
+    static func horizontal(_ horizontal: CGFloat, vertical: CGFloat) -> UIEdgeInsets {
+        self.init(top: vertical, left: horizontal, bottom: vertical, right: horizontal)
     }
 }
