@@ -12,9 +12,14 @@ import Foundation
  A "keyboard input set" represents the text input parts of a
  system keyboard, i.e. the lighter input keys.
  
- Note that iPad may add additional inputs like punctionation
- and special characters. These inputs are considered to be a
- part of the keyboard layout, not the input set.
+ Some devices may add additional inputs to an input set. For
+ instance, iPad devices adds punctionation and characters to
+ the bottom rows. These inputs are not considered to be part
+ of the input set, but rater the full keyboard layout.
+ 
+ To implement a system keyboard, you need a `KeyboardLayout`
+ instead of just an input set, since a layout also specifies
+ the actions that surround the input set characters.
  */
 public class KeyboardInputSet: Equatable {
     
