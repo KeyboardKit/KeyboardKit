@@ -33,7 +33,12 @@ open class StandardKeyboardInputSetProvider: KeyboardInputSetProvider {
     }
     
     open var alphabeticTable: [String: AlphabeticKeyboardInputSet] {
-        ["en": .alphabetic_en]
+        [
+            "de": .alphabetic_de,
+            "en": .alphabetic_en,
+            "it": .alphabetic_it,
+            "sv": .alphabetic_sv
+        ]
     }
     
     open var numericInputSet: NumericKeyboardInputSet {
@@ -41,7 +46,12 @@ open class StandardKeyboardInputSetProvider: KeyboardInputSetProvider {
     }
     
     open var numericTable: [String: NumericKeyboardInputSet] {
-        ["en": .numeric_en]
+        [
+            "de": .numeric_de,
+            "en": .numeric_en,
+            "it": .numeric_it,
+            "sv": .numeric_sv
+        ]
     }
     
     open var symbolicInputSet: SymbolicKeyboardInputSet {
@@ -49,7 +59,12 @@ open class StandardKeyboardInputSetProvider: KeyboardInputSetProvider {
     }
     
     open var symbolicTable: [String: SymbolicKeyboardInputSet] {
-        ["en": .symbolic_en]
+        [
+            "de": .symbolic_de,
+            "en": .symbolic_en,
+            "it": .symbolic_it,
+            "sv": .symbolic_sv
+        ]
     }
     
     
