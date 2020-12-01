@@ -33,12 +33,17 @@ class StandardKeyboardContextTests: QuickSpec {
                     keyboardType: .images
                 )
                 
-                expect(context.actionHandler).to(be(actionHandler))
                 expect(context.controller).to(be(controller))
-                expect(context.hasDictationKey).to(equal(controller.hasDictationKey))
-                expect(context.hasFullAccess).to(equal(controller.hasFullAccess))
+                
+                expect(context.device).to(be(UIDevice.current))
+                
+                expect(context.actionHandler).to(be(actionHandler))
+                expect(context.emojiCategory).to(equal(.frequent))
                 expect(context.inputSetProvider is StandardKeyboardInputSetProvider).to(beTrue())
                 expect(context.keyboardType).to(equal(.images))
+                
+                expect(context.hasDictationKey).to(equal(controller.hasDictationKey))
+                expect(context.hasFullAccess).to(equal(controller.hasFullAccess))
                 expect(context.needsInputModeSwitchKey).to(equal(controller.needsInputModeSwitchKey))
                 expect(context.primaryLanguage).to(beNil())
                 expect(context.textDocumentProxy).to(be(controller.textDocumentProxy))

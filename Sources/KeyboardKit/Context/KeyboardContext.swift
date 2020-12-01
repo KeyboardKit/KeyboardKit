@@ -15,8 +15,19 @@ import UIKit
  */
 public protocol KeyboardContext: AnyObject {
     
-    @available(*, deprecated, message: "This property will be removed in KK 4. Usage is strongly discouraged.")
+    
+    // MARK: - DEPRECATED (Remove in KK 4)
+    
+    @available(*, deprecated, message: "This property will be removed in KK 4.0. Usage is strongly discouraged.")
     var controller: KeyboardInputViewController { get }
+    
+    
+    // MARK: - Static Properties
+    
+    /**
+     The current device.
+     */
+    var device: UIDevice { get }
     
     
     // MARK: - Manually set properties
@@ -40,8 +51,7 @@ public protocol KeyboardContext: AnyObject {
     
     /**
      The current keyboard type. You can change this with the
-     `changeKeyboardType` function, which lets you specify a
-     delay as well.
+     `changeKeyboardType` function, which supports delays.
      */
     var keyboardType: KeyboardType { get set }
     

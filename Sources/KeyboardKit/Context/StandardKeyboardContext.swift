@@ -18,12 +18,16 @@ import UIKit
  */
 public class StandardKeyboardContext: KeyboardContext {
     
+    
     public init(
+        device: UIDevice = .current,
         controller: KeyboardInputViewController,
         actionHandler: KeyboardActionHandler,
         keyboardType: KeyboardType,
         inputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider()) {
         self.controller = controller
+        
+        self.device = device
         
         self.actionHandler = actionHandler
         self.emojiCategory = .frequent
@@ -47,6 +51,7 @@ public class StandardKeyboardContext: KeyboardContext {
     public var inputSetProvider: KeyboardInputSetProvider
     public var keyboardType: KeyboardType
     
+    public var device: UIDevice
     public var deviceOrientation: UIInterfaceOrientation
     public var hasDictationKey: Bool
     public var hasFullAccess: Bool
