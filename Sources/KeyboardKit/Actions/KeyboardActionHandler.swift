@@ -12,9 +12,10 @@ import UIKit
  This protocol can be implemented by classes that can handle
  keyboard actions.
  
- KeyboardKit uses a `StandardKeyboardActionHandler` instance
- by default. You can change this by replacing `actionHandler`
- in the input view controller's `context`.
+ KeyboardKit registers a standard protocol implementation in
+ the input view controller's `context` when the extension is
+ started. You can replace this by registering a new instance
+ with the `actionHandler` property.
  */
 public protocol KeyboardActionHandler: AnyObject {
     

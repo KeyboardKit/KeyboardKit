@@ -1,5 +1,5 @@
 //
-//  KeyboardInputSet+EnglishTests.swift
+//  KeyboardInputSet+LocaleTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-07-03.
@@ -10,7 +10,7 @@ import Quick
 import Nimble
 import KeyboardKit
 
-class KeyboardInputSetTests: QuickSpec {
+class KeyboardInputSet_LocaleTests: QuickSpec {
     
     override func spec() {
         
@@ -21,9 +21,9 @@ class KeyboardInputSetTests: QuickSpec {
             }
             
             it("are correctly setup") {
-                expect(rows(in: .englishAlphabetic)).to(equal(3))
-                expect(rows(in: .englishNumeric)).to(equal(3))
-                expect(rows(in: .englishSymbolic)).to(equal(3))
+                expect(rows(in: .alphabetic_en)).to(equal(3))
+                expect(rows(in: .numeric_en)).to(equal(3))
+                expect(rows(in: .symbolic_en)).to(equal(3))
             }
         }
     }

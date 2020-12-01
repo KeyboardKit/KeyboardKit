@@ -10,7 +10,7 @@ import Foundation
 
 public extension KeyboardInputSet {
     
-    static var englishAlphabetic: AlphabeticKeyboardInputSet {
+    static var alphabetic_en: AlphabeticKeyboardInputSet {
         AlphabeticKeyboardInputSet(inputRows: [
             ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
             ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
@@ -18,7 +18,7 @@ public extension KeyboardInputSet {
         ])
     }
     
-    static var englishNumeric: NumericKeyboardInputSet {
+    static var numeric_en: NumericKeyboardInputSet {
         NumericKeyboardInputSet(inputRows: [
             ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
             ["-", "/", ":", ";", "(", ")", "$", "&", "@", "\""],
@@ -26,7 +26,7 @@ public extension KeyboardInputSet {
         ])
     }
     
-    static var englishSymbolic: SymbolicKeyboardInputSet {
+    static var symbolic_en: SymbolicKeyboardInputSet {
         SymbolicKeyboardInputSet(inputRows: [
             ["[", "]", "{", "}", "#", "%", "^", "*", "+", "="],
             ["_", "\\", "|", "~", "<", ">", "€", "£", "¥", "•"],

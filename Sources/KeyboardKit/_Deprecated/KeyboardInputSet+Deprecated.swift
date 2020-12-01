@@ -10,6 +10,12 @@ import Foundation
 
 public extension KeyboardInputSet {
     
-    @available(*, deprecated, renamed: "englishAlphabetic")
-    static var english: AlphabeticKeyboardInputSet { .englishAlphabetic }
+    @available(*, deprecated, renamed: "alphabetic_en")
+    static var english: AlphabeticKeyboardInputSet { .alphabetic_en }
+    
+    @available(*, deprecated, renamed: "numeric_en")
+    static var englishNumeric: NumericKeyboardInputSet { .numeric_en }
+    
+    @available(*, deprecated, renamed: "symbolic_en")
+    static var englishSymbolic: SymbolicKeyboardInputSet { .symbolic_en }
 }

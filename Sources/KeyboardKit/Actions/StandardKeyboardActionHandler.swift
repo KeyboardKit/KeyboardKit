@@ -10,8 +10,9 @@ import UIKit
 
 /**
  This standard keyboard action handler is used by default by
- KeyboardKit, and provides standard action handling. You can
- inherit it and customize any part of it as you see fit.
+ KeyboardKit, and provides standard handling of actions that
+ have a standard behavior. You can inherit it to create your
+ own action handler that buids on this foundation.
  
  You can replace the standard `hapticConfiguration` when you
  create an instance of this class. The default configuration

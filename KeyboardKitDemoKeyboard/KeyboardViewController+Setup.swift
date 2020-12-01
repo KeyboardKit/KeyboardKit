@@ -6,6 +6,7 @@
 //  Copyright © 2018 Daniel Saidi. All rights reserved.
 //
 
+import Foundation
 import KeyboardKit
 import UIKit
 
@@ -35,6 +36,9 @@ private extension KeyboardViewController {
     func setupAlphabeticKeyboard(for state: KeyboardShiftState) {
         let keyboard = AlphabeticKeyboard(uppercased: state.isUppercased, in: self)
         let rows = buttonRows(for: keyboard.actions, distribution: .fillProportionally)
+        let locale = Locale(identifier: "sv-SE")
+        let a = locale.languageCode
+        
         keyboardStackView.addArrangedSubviews(rows)
     }
     

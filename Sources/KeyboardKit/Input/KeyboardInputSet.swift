@@ -16,13 +16,17 @@ import Foundation
  and special characters. This should be handled by a service
  that takes device, locale & orientation into consideration.
  */
-public class KeyboardInputSet {
+public class KeyboardInputSet: Equatable {
     
     public init(inputRows: [[String]]) {
         self.inputRows = inputRows
     }
     
     public let inputRows: [[String]]
+    
+    public static func == (lhs: KeyboardInputSet, rhs: KeyboardInputSet) -> Bool {
+        lhs.inputRows == rhs.inputRows
+    }
 }
 
 /**
