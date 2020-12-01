@@ -37,6 +37,7 @@ class StandardKeyboardContextTests: QuickSpec {
                 expect(context.controller).to(be(controller))
                 expect(context.hasDictationKey).to(equal(controller.hasDictationKey))
                 expect(context.hasFullAccess).to(equal(controller.hasFullAccess))
+                expect(context.inputSetProvider is StandardKeyboardInputSetProvider).to(beTrue())
                 expect(context.keyboardType).to(equal(.images))
                 expect(context.needsInputModeSwitchKey).to(equal(controller.needsInputModeSwitchKey))
                 expect(context.primaryLanguage).to(beNil())

@@ -8,11 +8,12 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 This release contains input set improvements:
 
 * There is a new `KeyboardInputSetProvider` protocol.
-* The `InputSet+English` has been renamed to `InputSet+Locale` and has more sets.
-* There is now built-in support for basic English, German, Italian and Swedish. 
-* `KeyboardContext` gets a `StandardKeyboardInputSetProvider` instance at launch.
-* You can replace this instance at any time by setting the context's `inputSetProvider` to something else.
-* The standard provider uses the current locale to retrieve a suitable input set from the supported ones.
+* `StandardKeyboardInputSetProvider` uses the current locale and can be inherited.
+* `StaticKeyboardInputSetProvider` uses three static input sets. 
+* `InputSet+English` has been renamed to `InputSet+Locale` and has more sets.
+* `InputSet+Locale` extension has support for basic English, German, Italian and Swedish.
+* `StandardKeyboardInputSetProvider` will be used by default, but you can change this at anytime.
+* `StandardKeyboardInputSetProvider` tries to retrieve a suitable input set from the supported locales, else falls back to English.
 
 This release also improves the UIKit layout:
 
