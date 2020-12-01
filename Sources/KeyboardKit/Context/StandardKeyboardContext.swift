@@ -21,12 +21,14 @@ public class StandardKeyboardContext: KeyboardContext {
     public init(
         controller: KeyboardInputViewController,
         actionHandler: KeyboardActionHandler,
-        keyboardType: KeyboardType) {
+        keyboardType: KeyboardType,
+        inputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider()) {
         self.actionHandler = actionHandler
         self.controller = controller
         self.emojiCategory = .frequent
         self.hasDictationKey = controller.hasDictationKey
         self.hasFullAccess = controller.hasFullAccess
+        self.inputSetProvider = inputSetProvider
         self.keyboardType = keyboardType
         self.needsInputModeSwitchKey = controller.needsInputModeSwitchKey
         self.primaryLanguage = controller.primaryLanguage
@@ -40,6 +42,7 @@ public class StandardKeyboardContext: KeyboardContext {
     public var emojiCategory: EmojiCategory
     public var hasDictationKey: Bool
     public var hasFullAccess: Bool
+    public var inputSetProvider: KeyboardInputSetProvider
     public var keyboardType: KeyboardType
     public var needsInputModeSwitchKey: Bool
     public var primaryLanguage: String?

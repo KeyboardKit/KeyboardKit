@@ -46,12 +46,17 @@ public protocol KeyboardContext: AnyObject {
     var hasFullAccess: Bool { get set }
     
     /**
+     The current keyboard input set provider.
+     */
+    var inputSetProvider: KeyboardInputSetProvider { get set }
+    
+    /**
      The current keyboard appearance.
      */
     var keyboardAppearance: UIKeyboardAppearance { get }
     
     /**
-     The current keyboard type. You this type as you want.
+     The current keyboard type.
      */
     var keyboardType: KeyboardType { get set }
     
