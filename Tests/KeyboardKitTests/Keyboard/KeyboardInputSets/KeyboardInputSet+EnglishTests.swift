@@ -14,14 +14,14 @@ class KeyboardInputSetTests: QuickSpec {
     
     override func spec() {
         
-        describe("english sets") {
+        describe("english input sets") {
             
             func rows(in set: KeyboardInputSet) -> Int {
                 set.inputRows.count
             }
             
             it("are correctly setup") {
-                expect(rows(in: .english)).to(equal(3))
+                expect(rows(in: .englishAlphabetic)).to(equal(3))
                 expect(rows(in: .englishNumeric)).to(equal(3))
                 expect(rows(in: .englishSymbolic)).to(equal(3))
             }

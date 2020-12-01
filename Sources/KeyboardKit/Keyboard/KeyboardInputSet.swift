@@ -11,6 +11,10 @@ import Foundation
 /**
  A "keyboard input set" represents the text input parts of a
  system keyboard, i.e. the lighter input keys.
+ 
+ Note that iPad may add additional inputs like punctionation
+ and special characters. This should be handled by a service
+ that takes device, locale & orientation into consideration.
  */
 public class KeyboardInputSet {
     
