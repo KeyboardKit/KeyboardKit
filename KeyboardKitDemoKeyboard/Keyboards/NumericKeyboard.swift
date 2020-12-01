@@ -9,8 +9,8 @@
 import KeyboardKit
 
 /**
- This demo keyboard mimicks a numeric keyboard, and will use
- the input set provider in the view controller's context.
+ This demo keyboard mimicks a numeric keyboard, and uses the
+ current `inputSetProvider` to resolve its input keys.
  */
 struct NumericKeyboard: DemoKeyboard {
     

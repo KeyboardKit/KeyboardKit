@@ -40,14 +40,15 @@ struct KeyboardView: View {
             .keyboardToast(isActive: $toastContext.isActive, content: toastContext.content, background: toastBackground)
     }
     
-    var keyboardView: AnyView {
+    @ViewBuilder
+    var keyboardView: some View {
         switch context.keyboardType {
-        case .alphabetic(let state): return AnyView(alphabeticKeyboard(state))
-        case .emojis: return AnyView(emojiKeyboard)
-        case .images: return AnyView(imageKeyboard)
-        case .numeric: return AnyView(numericKeyboard)
-        case .symbolic: return AnyView(symbolicKeyboard)
-        default: return AnyView(Button("This keyboard is not yet implemented", action: switchKeyboard))
+        case .alphabetic(let state): alphabeticKeyboard(state)
+        case .emojis: emojiKeyboard
+        case .images: imageKeyboard
+        case .numeric: numericKeyboard
+        case .symbolic: symbolicKeyboard
+        default: Button("This keyboard is not yet implemented", action: switchKeyboard)
         }
     }
 }
@@ -64,7 +65,7 @@ private extension KeyboardView {
     func alphabeticKeyboard(_ state: KeyboardShiftState) -> some View {
         AlphabeticSystemKeyboard(
             context: context,
-            inputSet: .english,
+            inputSet: context.inputSetProvider.alphabeticInputSet,
             state: state,
             topmostView: autocompleteToolbar,
             customBottomRow: .demoRow(for: context))
@@ -90,7 +91,7 @@ private extension KeyboardView {
     var numericKeyboard: some View {
         NumericSystemKeyboard(
             context: context,
-            inputSet: .englishNumeric,
+            inputSet: context.inputSetProvider.numericInputSet,
             topmostView: autocompleteToolbar,
             customBottomRow: .demoRow(for: context))
     }
@@ -98,7 +99,7 @@ private extension KeyboardView {
     var symbolicKeyboard: some View {
         SymbolicSystemKeyboard(
             context: context,
-            inputSet: .englishSymbolic,
+            inputSet: context.inputSetProvider.symbolicInputSet,
             topmostView: autocompleteToolbar,
             customBottomRow: .demoRow(for: context))
     }

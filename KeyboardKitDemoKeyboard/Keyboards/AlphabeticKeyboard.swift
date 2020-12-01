@@ -9,8 +9,8 @@
 import KeyboardKit
 
 /**
- This demo keyboard mimicks an alphabetic keyboard, and will
- use the input set provider in the view controller's context.
+ This demo keyboard mimicks an alphabetic keyboard, and uses
+ the current `inputSetProvider` to resolve its input keys.
  */
 struct AlphabeticKeyboard: DemoKeyboard {
     
