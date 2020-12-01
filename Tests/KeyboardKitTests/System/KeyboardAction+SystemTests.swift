@@ -66,13 +66,16 @@ class KeyboardAction_SystemTests: QuickSpec {
             func getActions(_ actions: KeyboardAction...) -> [KeyboardAction] { actions }
             
             it("is custom for some actions, but defined for all") {
-                let expectedTitle1 = getActions(.emoji(""), .emojiCategory(.smileys))
+                let expectedTitle = getActions(.emoji(""))
+                let expectedCallout = getActions(.emojiCategory(.smileys))
                 var expectedBody = actions.filter { $0.isSystemAction && $0.systemKeyboardButtonText != nil }
                 expectedBody.append(.character("abc"))
                 
                 actions.forEach {
-                    if expectedTitle1.contains($0) {
+                    if expectedTitle.contains($0) {
                         expect($0.systemTextStyle).to(equal(.title1))
+                    } else if expectedCallout.contains($0) {
+                        expect($0.systemTextStyle).to(equal(.callout))
                     } else if expectedBody.contains($0) {
                         expect($0.systemTextStyle).to(equal(.body))
                     } else {

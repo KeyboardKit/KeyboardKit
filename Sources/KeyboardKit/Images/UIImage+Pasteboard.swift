@@ -11,8 +11,7 @@ import UIKit
 public extension UIImage {
     
     /**
-     Copies the image to the system pasteboard, using png as
-     file format.
+     Copies the image as png to the pasteboard.
      */
     func copyToPasteboard(_ pasteboard: UIPasteboard = .general) -> Bool {
         guard let data = pngData() else { return false }

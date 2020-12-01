@@ -9,8 +9,12 @@
 import UIKit
 
 /**
- This extension defines standard actions for `KeyboardAction`
- types that have standard actions.
+ This extension defines various standard actions for various
+ `KeyboardAction` types.
+ 
+ To customize which actions that are actually performed when
+ a user triggers a keyboard action, inject a custom keyboard
+ action handler into your keyboard.
  */
 public extension KeyboardAction {
     

@@ -9,21 +9,17 @@
 import UIKit
 
 /**
- This action handler provides standard action handling for a
- certain action and gesture. You can subclass it to override
- any part that you want to modify with custom logic.
+ This standard keyboard action handler is used by default by
+ KeyboardKit, and provides standard action handling. You can
+ inherit it and customize any part of it as you see fit.
  
- `KeyboardInputViewController` uses this standard handler as
- `keyboardActionHandler` by deafult, but you can replace the
- standard action handling with a custom action handler.
+ You can replace the standard `hapticConfiguration` when you
+ create an instance of this class. The default configuration
+ is `.noFeedback`.
  
- You can enable haptic feedback by providing this class with
- a `hapticConfiguration` and change the standard behavior by
- overriding `triggerHapticFeedback`.
- 
- You can enable audio feedback, by providing this class with
- an `audioConfiguration` and change the standard behavior by
- overriding `triggerAudioFeedback`.
+ You can replace the standard `audioConfiguration`, when you
+ create an instance of this class. The default configuration
+ is `.standard`.
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
