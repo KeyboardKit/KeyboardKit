@@ -20,6 +20,7 @@ public class StandardKeyboardContext: KeyboardContext {
     
     
     public init(
+        locale: Locale = .current,
         device: UIDevice = .current,
         controller: KeyboardInputViewController,
         actionHandler: KeyboardActionHandler,
@@ -33,6 +34,7 @@ public class StandardKeyboardContext: KeyboardContext {
         self.emojiCategory = .frequent
         self.inputSetProvider = inputSetProvider
         self.keyboardType = keyboardType
+        self.locale = locale
         
         self.deviceOrientation = controller.deviceOrientation
         self.hasDictationKey = controller.hasDictationKey
@@ -50,6 +52,7 @@ public class StandardKeyboardContext: KeyboardContext {
     public var emojiCategory: EmojiCategory
     public var inputSetProvider: KeyboardInputSetProvider
     public var keyboardType: KeyboardType
+    public var locale: Locale
     
     public var device: UIDevice
     public var deviceOrientation: UIInterfaceOrientation

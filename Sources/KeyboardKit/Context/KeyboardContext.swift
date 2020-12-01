@@ -55,6 +55,12 @@ public protocol KeyboardContext: AnyObject {
      */
     var keyboardType: KeyboardType { get set }
     
+    /**
+     The current locale. Note that setting this may not have
+     any side-effects on other properties like the input set.
+     */
+    var locale: Locale { get set }
+    
     
     // MARK: - Synced properties
     

@@ -41,6 +41,7 @@ class StandardKeyboardContextTests: QuickSpec {
                 expect(context.emojiCategory).to(equal(.frequent))
                 expect(context.inputSetProvider is StandardKeyboardInputSetProvider).to(beTrue())
                 expect(context.keyboardType).to(equal(.images))
+                expect(context.locale).to(equal(.current))
                 
                 expect(context.hasDictationKey).to(equal(controller.hasDictationKey))
                 expect(context.hasFullAccess).to(equal(controller.hasFullAccess))

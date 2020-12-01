@@ -36,29 +36,6 @@ import UIKit
  */
 open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     
-    public init(
-        device: UIDevice = .current,
-        locale: Locale = .current,
-        inputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider()) {
-        self.device = device
-        self.inputSetProvider = inputSetProvider
-        self.locale = locale
-    }
-    
-    init(
-        device: UIDevice = .current,
-        locale: Locale = .current,
-        device
-        inputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider()) {
-        self.device = device
-        self.inputSetProvider = inputSetProvider
-        self.locale = locale
-    }
-    
-    private let device: UIDevice
-    private let inputSetProvider: KeyboardInputSetProvider
-    private let locale: Locale
-    
     open func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         let rows = inputRows(for: context)
         fatalError()
@@ -74,11 +51,11 @@ private extension StandardKeyboardLayoutProvider {
     func inputRows(for context: KeyboardContext) -> [KeyboardInputSet.InputRow] {
         switch context.keyboardType {
         case .alphabetic(let state):
-            let rows = inputSetProvider.alphabeticInputSet.inputRows
+            let rows = context.inputSetProvider.alphabeticInputSet.inputRows
             return state.isUppercased ? rows.uppercased() : rows
-        case .numeric: return inputSetProvider.numericInputSet.inputRows
-        case .symbolic: return inputSetProvider.symbolicInputSet.inputRows
-        default: return inputSetProvider.alphabeticInputSet.inputRows
+        case .numeric: return context.inputSetProvider.numericInputSet.inputRows
+        case .symbolic: return context.inputSetProvider.symbolicInputSet.inputRows
+        default: return context.inputSetProvider.alphabeticInputSet.inputRows
         }
     }
 }
