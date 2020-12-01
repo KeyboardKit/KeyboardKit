@@ -49,7 +49,7 @@ public extension KeyboardAction {
         if hasMultiCharSystemKeyboardButtonText { return .body }
         switch self {
         case .emoji: return .title1
-        case .emojiCategory: return .title1
+        case .emojiCategory: return .callout
         default: return .title2
         }
     }

@@ -5,11 +5,13 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 ## 3.2.0
 
-`KeyboardStackViewComponent` has a new `standardHeight` function.
+This release brings improvement to the UIKit part of the library:
 
-This height is applied by default to the various component implementations, if no height is provided.
+* `KeyboardStackViewComponent` has a new `standardHeight` function that is applied by default to the various component implementations.
+* `KeyboardButtonRowComponent` has a new `standardInsets` function that is applied by defaukt to the `SystemKeyboardButtonView`.
+* `SystemKeyboardButtonView` is a generalization of the `DemoButton`. If applies a standard system behavior, but can be inherited and its behavior overriden.
 
-`KeyboardButtonRowComponent` has a new `standardInsets` function.
+The `UIKit` demo has been updated with these changes.
 
 These insets should be applied as fake margins within each row component, e.g. keyboard buttons.
 

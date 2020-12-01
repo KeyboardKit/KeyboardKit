@@ -9,8 +9,6 @@
 import UIKit
 import KeyboardKit
 
-
-
 /**
  This demo-specific button view represents a keyboard button
  like the one used in the iOS system keyboard. The file also
@@ -111,10 +109,8 @@ private extension KeyboardAction {
      The font to use for a button that uses this action.
      */
     var buttonFont: UIFont {
-        switch self {
-        case .emojiCategory: return UIFont.preferredFont(forTextStyle: .callout)
-        default: return systemFont
-        }
+        if useCalloutFont { return UIFont.preferredFont(forTextStyle: .callout) }
+        return systemFont
     }
     
     /**
@@ -217,6 +213,30 @@ private extension KeyboardAction {
         let systemColor = isDark ? Asset.Colors.darkSystemButtonText : Asset.Colors.lightSystemButtonText
         let asset = isSystemButton ? systemColor : standardColor
         return asset.color
+    }
+    
+    /**
+     Whether or not the action should use a clear background
+     color, that is still interactable.
+     */
+    var useCalloutFont: Bool {
+        switch self {
+        case .keyboardType(let type): return useCalloutFont(for: type)
+        case .space: return true
+        case .newLine: return true
+        default: return false
+        }
+    }
+    
+    /**
+     Whether or not the action should use a clear background
+     color, that is still interactable.
+     */
+    func useCalloutFont(for type: KeyboardType) -> Bool {
+        switch type {
+        case .alphabetic: return false
+        default: return true
+        }
     }
     
     /**

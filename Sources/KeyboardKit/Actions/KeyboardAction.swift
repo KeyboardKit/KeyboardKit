@@ -78,9 +78,8 @@ public extension KeyboardAction {
     }
     
     /**
-     Whether or not the action is a content input action.
-     
-     Input actions use light buttons on iOS and ipadOS.
+     Whether or not the action is an input action, which the
+     native keyboards render as light buttons.
      */
     var isInputAction: Bool {
         switch self {
@@ -94,10 +93,8 @@ public extension KeyboardAction {
     }
     
     /**
-     Whether or not the action handles the system or affects
-     the keyboard, instead of performing an input action.
-     
-     System actions use dark buttons on iOS and ipadOS.
+     Whether or not the action is a system action, which the
+     native keyboards render as dark buttons.
      */
     var isSystemAction: Bool {
         switch self {
