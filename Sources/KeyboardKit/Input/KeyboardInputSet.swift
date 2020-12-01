@@ -13,16 +13,18 @@ import Foundation
  system keyboard, i.e. the lighter input keys.
  
  Note that iPad may add additional inputs like punctionation
- and special characters. This should be handled by a service
- that takes device, locale & orientation into consideration.
+ and special characters. These inputs are considered to be a
+ part of the keyboard layout, not the input set.
  */
 public class KeyboardInputSet: Equatable {
     
-    public init(inputRows: [[String]]) {
+    public init(inputRows: [InputRow]) {
         self.inputRows = inputRows
     }
     
-    public let inputRows: [[String]]
+    public typealias InputRow = [String]
+    
+    public let inputRows: [InputRow]
     
     public static func == (lhs: KeyboardInputSet, rhs: KeyboardInputSet) -> Bool {
         lhs.inputRows == rhs.inputRows

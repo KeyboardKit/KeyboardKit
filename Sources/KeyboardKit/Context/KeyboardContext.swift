@@ -15,24 +15,43 @@ import UIKit
  */
 public protocol KeyboardContext: AnyObject {
     
+    @available(*, deprecated, message: "This property will be removed in KK 4. Usage is strongly discouraged.")
+    var controller: KeyboardInputViewController { get }
+    
+    
+    // MARK: - Manually set properties
+    
     /**
      The current keyboard action handler that can be used to
      handle actions that are triggered by the user or system.
-     It can be replaced with any `KeyboardActionHandler`.
      */
     var actionHandler: KeyboardActionHandler { get set }
-    
-    /**
-     The current keyboard input view controller. You can use
-     this to get information that is not in the context.
-     */
-    var controller: KeyboardInputViewController { get }
-    
+
     /**
      The emoji category that should be displayed when an app
      switches over to an emoji keyboard.
      */
     var emojiCategory: EmojiCategory { get set }
+    
+    /**
+     The current keyboard input set provider.
+     */
+    var inputSetProvider: KeyboardInputSetProvider { get set }
+    
+    /**
+     The current keyboard type. You can change this with the
+     `changeKeyboardType` function, which lets you specify a
+     delay as well.
+     */
+    var keyboardType: KeyboardType { get set }
+    
+    
+    // MARK: - Synced properties
+    
+    /**
+     The current device orientation.
+     */
+    var deviceOrientation: UIInterfaceOrientation { get set }
     
     /**
      Whether or not the keyboard extension has a "dictation"
@@ -44,21 +63,6 @@ public protocol KeyboardContext: AnyObject {
      Whether or not the keyboard extension has "full access".
      */
     var hasFullAccess: Bool { get set }
-    
-    /**
-     The current keyboard input set provider.
-     */
-    var inputSetProvider: KeyboardInputSetProvider { get set }
-    
-    /**
-     The current keyboard appearance.
-     */
-    var keyboardAppearance: UIKeyboardAppearance { get }
-    
-    /**
-     The current keyboard type.
-     */
-    var keyboardType: KeyboardType { get set }
     
     /**
      Whether or not the keyboard extension should provide an
@@ -82,10 +86,9 @@ public protocol KeyboardContext: AnyObject {
     var textInputMode: UITextInputMode? { get set }
     
     /**
-     The current user interface style.
+     The current trait collection.
      */
-    @available(iOS 12.0, *)
-    var userInterfaceStyle: UIUserInterfaceStyle { get }
+    var traitCollection: UITraitCollection { get set }
 }
 
 
@@ -95,31 +98,10 @@ public extension KeyboardContext {
     
     /**
      The current keyboard appearance, which is resolved from
-     the `textDocumentProxy`.
+     the `textDocumentProxy`, but has a fallback to `.light`.
      */
     var keyboardAppearance: UIKeyboardAppearance {
         textDocumentProxy.keyboardAppearance ?? .light
-    }
-    
-    /**
-     The current user interface style. This is resolved from
-     the `controller`s `traitCollection`.
-     
-     `IMPORTANT` Both this and the `colorScheme` environment
-     property in SwiftUI will incorrectly be `.dark`, if the
-     keyboard appearance is `.dark` in light mode. This will
-     cause UI bugs in the system styles, since dark keyboard
-     appearance in light mode does not look the same as dark
-     mode keyboards. You can see this bug in practice if you
-     run the demo app and activate the SwiftUI demo keyboard
-     on a text field that requires dark keyboard appearance.
-     
-     Bug info (also reported to Apple in Feedback Assistant):
-     https://github.com/danielsaidi/KeyboardKit/issues/107
-     */
-    @available(iOS 12.0, *)
-    var userInterfaceStyle: UIUserInterfaceStyle {
-        controller.traitCollection.userInterfaceStyle
     }
 }
 
@@ -149,11 +131,13 @@ public extension KeyboardContext {
      input view controller.
      */
     func sync(with controller: UIInputViewController) {
+        self.deviceOrientation = controller.deviceOrientation
         self.hasDictationKey = controller.hasDictationKey
         self.hasFullAccess = controller.hasFullAccess
         self.needsInputModeSwitchKey = controller.needsInputModeSwitchKey
         self.primaryLanguage = controller.primaryLanguage
         self.textDocumentProxy = controller.textDocumentProxy
         self.textInputMode = controller.textInputMode
+        self.traitCollection = controller.traitCollection
     }
 }

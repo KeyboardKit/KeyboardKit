@@ -1,5 +1,5 @@
 //
-//  KeyboardInputSet+English.swift
+//  KeyboardInputSet+Locale.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-07-04.
@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ This file contains `KeyboardInputSet`s for various locales.
+ */
 public extension KeyboardInputSet {
     
     

@@ -23,13 +23,16 @@ public class StandardKeyboardContext: KeyboardContext {
         actionHandler: KeyboardActionHandler,
         keyboardType: KeyboardType,
         inputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider()) {
-        self.actionHandler = actionHandler
         self.controller = controller
+        
+        self.actionHandler = actionHandler
         self.emojiCategory = .frequent
-        self.hasDictationKey = controller.hasDictationKey
-        self.hasFullAccess = controller.hasFullAccess
         self.inputSetProvider = inputSetProvider
         self.keyboardType = keyboardType
+        
+        self.deviceOrientation = controller.deviceOrientation
+        self.hasDictationKey = controller.hasDictationKey
+        self.hasFullAccess = controller.hasFullAccess
         self.needsInputModeSwitchKey = controller.needsInputModeSwitchKey
         self.primaryLanguage = controller.primaryLanguage
         self.textDocumentProxy = controller.textDocumentProxy
@@ -37,13 +40,16 @@ public class StandardKeyboardContext: KeyboardContext {
         self.traitCollection = controller.traitCollection
     }
     
+    unowned public var controller: KeyboardInputViewController
+    
     public var actionHandler: KeyboardActionHandler
-    public var controller: KeyboardInputViewController
     public var emojiCategory: EmojiCategory
-    public var hasDictationKey: Bool
-    public var hasFullAccess: Bool
     public var inputSetProvider: KeyboardInputSetProvider
     public var keyboardType: KeyboardType
+    
+    public var deviceOrientation: UIInterfaceOrientation
+    public var hasDictationKey: Bool
+    public var hasFullAccess: Bool
     public var needsInputModeSwitchKey: Bool
     public var primaryLanguage: String?
     public var textDocumentProxy: UITextDocumentProxy

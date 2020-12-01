@@ -23,10 +23,15 @@ This release also improves the UIKit layout:
 
 The `UIKit` demo has been updated with these changes.
 
+### Breaking changes:
+
+* I unfortunately had to remove `controller` from `KeyboardContext` and replace it with plain properties instead. The implementation 
+
 
 ### Deprecated:
 
 * `CGFloat+KeyboardDimensions`.
+* `KeyboardContext`'s `controller` is now marked as `unowner` and usage is strongly discouraged. Use the context properties instead.
 
 
 ## 3.1.1

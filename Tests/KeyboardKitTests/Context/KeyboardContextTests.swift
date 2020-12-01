@@ -32,12 +32,14 @@ class KeyboardContextTests: QuickSpec {
                     keyboardType: .images
                 )
                 context.sync(with: controller)
+                expect(context.deviceOrientation).to(equal(controller.deviceOrientation))
                 expect(context.hasDictationKey).to(equal(controller.hasDictationKey))
                 expect(context.hasFullAccess).to(equal(controller.hasFullAccess))
                 expect(context.needsInputModeSwitchKey).to(equal(controller.needsInputModeSwitchKey))
                 expect(context.primaryLanguage).to(beNil())
                 expect(context.textDocumentProxy).to(be(controller.textDocumentProxy))
                 expect(context.textInputMode).to(beNil())
+                expect(context.traitCollection).to(equal(controller.traitCollection))
             }
         }
     }
