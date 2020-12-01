@@ -9,12 +9,16 @@
 import KeyboardKit
 
 /**
- This demo keyboard mimicks an English numeric keyboard.
+ This demo keyboard mimicks a numeric keyboard, and will use
+ the input set provider in the view controller's context.
  */
 struct NumericKeyboard: DemoKeyboard {
     
     init(in viewController: KeyboardViewController) {
-        actions = type(of: self).actions(in: viewController)
+        let provider = viewController.context.inputSetProvider
+        actions = type(of: self).actions(
+            for: provider.numericInputSet,
+            in: viewController)
     }
     
     let actions: KeyboardActionRows
@@ -22,17 +26,13 @@ struct NumericKeyboard: DemoKeyboard {
 
 private extension NumericKeyboard {
     
-    static func actions(in viewController: KeyboardViewController) -> KeyboardActionRows {
-        KeyboardActionRows(characters: characters)
+    static func actions(
+        for set: NumericKeyboardInputSet,
+        in viewController: KeyboardViewController) -> KeyboardActionRows {
+        KeyboardActionRows(characters: set.inputRows)
             .addingSideActions()
             .appending(bottomActions(leftmost: switchAction, for: viewController))
     }
-    
-    static let characters: [[String]] = [
-        ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
-        ["-", "/", ":", ";", "(", ")", "$", "&", "@", "\""],
-        [".", ",", "?", "!", "´"]
-    ]
     
     static var switchAction: KeyboardAction {
         .keyboardType(.alphabetic(.lowercased))

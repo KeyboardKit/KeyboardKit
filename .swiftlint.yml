@@ -1,6 +1,7 @@
 disabled_rules:
   - function_body_length
   - function_parameter_count
+  - identifier_name
   - statement_position
   - trailing_whitespace
   - line_length

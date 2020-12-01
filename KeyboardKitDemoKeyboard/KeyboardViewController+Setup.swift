@@ -34,11 +34,8 @@ private extension KeyboardViewController {
     }
     
     func setupAlphabeticKeyboard(for state: KeyboardShiftState) {
-        let keyboard = AlphabeticKeyboard(uppercased: state.isUppercased, in: self)
+        let keyboard = AlphabeticKeyboard(isUppercased: state.isUppercased, in: self)
         let rows = buttonRows(for: keyboard.actions, distribution: .fillProportionally)
-        let locale = Locale(identifier: "sv-SE")
-        let a = locale.languageCode
-        
         keyboardStackView.addArrangedSubviews(rows)
     }
     

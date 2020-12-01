@@ -14,7 +14,10 @@ import KeyboardKit
 struct SymbolicKeyboard: DemoKeyboard {
     
     init(in viewController: KeyboardViewController) {
-        actions = type(of: self).actions(in: viewController)
+        let provider = viewController.context.inputSetProvider
+        actions = type(of: self).actions(
+            for: provider.symbolicInputSet,
+            in: viewController)
     }
     
     let actions: KeyboardActionRows
@@ -22,17 +25,13 @@ struct SymbolicKeyboard: DemoKeyboard {
 
 private extension SymbolicKeyboard {
     
-    static func actions(in viewController: KeyboardViewController) -> KeyboardActionRows {
-        KeyboardActionRows(characters: characters)
+    static func actions(
+        for set: SymbolicKeyboardInputSet,
+        in viewController: KeyboardViewController) -> KeyboardActionRows {
+        KeyboardActionRows(characters: set.inputRows)
             .addingSideActions()
             .appending(bottomActions(leftmost: switchAction, for: viewController))
     }
-    
-    static var characters: [[String]] = [
-        ["[", "]", "{", "}", "#", "%", "^", "*", "+", "="],
-        ["_", "\\", "|", "~", "<", ">", "€", "£", "¥", "•"],
-        [".", ",", "?", "!", "´"]
-    ]
     
     static var switchAction: KeyboardAction {
         .keyboardType(.alphabetic(.lowercased))

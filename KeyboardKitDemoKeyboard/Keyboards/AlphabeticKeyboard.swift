@@ -9,13 +9,16 @@
 import KeyboardKit
 
 /**
- This demo keyboard mimicks an English alphabetic keyboard.
+ This demo keyboard mimicks an alphabetic keyboard, and will
+ use the input set provider in the view controller's context.
  */
 struct AlphabeticKeyboard: DemoKeyboard {
     
-    init(uppercased: Bool, in viewController: KeyboardViewController) {
+    init(isUppercased: Bool, in viewController: KeyboardViewController) {
+        let provider = viewController.context.inputSetProvider
         actions = AlphabeticKeyboard.actions(
-            uppercased: uppercased,
+            for: provider.alphabeticInputSet,
+            isUppercased: isUppercased,
             in: viewController)
     }
 
@@ -25,21 +28,14 @@ struct AlphabeticKeyboard: DemoKeyboard {
 private extension AlphabeticKeyboard {
     
     static func actions(
-        uppercased: Bool,
+        for set: AlphabeticKeyboardInputSet,
+        isUppercased: Bool,
         in viewController: KeyboardViewController) -> KeyboardActionRows {
-        KeyboardActionRows(characters: characters(uppercased: uppercased))
-            .addingSideActions(uppercased: uppercased)
+        let inputRows = set.inputRows
+        let inputs = isUppercased ? inputRows.uppercased() : inputRows
+        return KeyboardActionRows(characters: isUppercased ? inputs.uppercased() : inputs)
+            .addingSideActions(isUppercased: isUppercased)
             .appending(bottomActions(leftmost: switchAction, for: viewController))
-    }
-    
-    static let characters: [[String]] = [
-        ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
-        ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
-        ["z", "x", "c", "v", "b", "n", "m"]
-    ]
-    
-    static func characters(uppercased: Bool) -> [[String]] {
-        uppercased ? characters.uppercased() : characters
     }
     
     static var switchAction: KeyboardAction {
@@ -49,9 +45,9 @@ private extension AlphabeticKeyboard {
 
 private extension Sequence where Iterator.Element == KeyboardActionRow {
     
-    func addingSideActions(uppercased: Bool) -> [Iterator.Element] {
+    func addingSideActions(isUppercased: Bool) -> [Iterator.Element] {
         var result = map { $0 }
-        result[2].insert(uppercased ? .shift(currentState: .uppercased) : .shift(currentState: .lowercased), at: 0)
+        result[2].insert(isUppercased ? .shift(currentState: .uppercased) : .shift(currentState: .lowercased), at: 0)
         result[2].insert(.none, at: 1)
         result[2].append(.none)
         result[2].append(.backspace)
