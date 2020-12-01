@@ -5,15 +5,22 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 ## 3.2.0
 
-This release brings improvement to the UIKit part of the library:
+This release contains input set improvements:
+
+* There is a new `KeyboardInputSetProvider` protocol.
+* The `InputSet+English` has been renamed to `InputSet+Locale` and has more sets.
+* There is now built-in support for basic English, German, Italian and Swedish. 
+* `KeyboardContext` gets a `StandardKeyboardInputSetProvider` instance at launch.
+* You can replace this instance at any time by setting the context's `inputSetProvider` to something else.
+* The standard provider uses the current locale to retrieve a suitable input set from the supported ones.
+
+This release also improves the UIKit layout:
 
 * `KeyboardStackViewComponent` has a new `standardHeight` function that is applied by default to the various component implementations.
 * `KeyboardButtonRowComponent` has a new `standardInsets` function that is applied by defaukt to the `SystemKeyboardButtonView`.
 * `SystemKeyboardButtonView` is a generalization of the `DemoButton`. If applies a standard system behavior, but can be inherited and its behavior overriden.
 
 The `UIKit` demo has been updated with these changes.
-
-These insets should be applied as fake margins within each row component, e.g. keyboard buttons.
 
 
 ### Deprecated:
