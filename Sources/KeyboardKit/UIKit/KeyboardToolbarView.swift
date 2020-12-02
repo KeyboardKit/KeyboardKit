@@ -19,7 +19,7 @@ import UIKit
 open class KeyboardToolbarView: UIView, KeyboardStackViewComponent {
     
     public init(
-        height: CGFloat = standardHeight(),
+        height: CGFloat = .standardKeyboardRowHeight(),
         alignment: UIStackView.Alignment = .fill,
         distribution: UIStackView.Distribution = .fillEqually) {
         super.init(frame: .zero)

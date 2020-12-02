@@ -24,10 +24,12 @@ The release also introduces a new "keyboard layout" concept, where a keyboard la
 
 There are new properties in the `KeyboardContext`.
 
-This release also improves the UIKit layout:
+This release also makes it easier to resolve system keyboard dimensions:
 
-* `KeyboardStackViewComponent` has a new `standardHeight` function that is applied by default to the various component implementations.
-* `KeyboardButtonRowComponent` has a new `standardInsets` function that is applied by defaukt to the `SystemKeyboardButtonView`.
+* `CGFloat+Keyboard` has utils to resolve the standard keyboard row height.
+* `KeyboardStackViewComponent`s use this new standard height as default height.
+* `UIEdgeInsets+Keyboard` has utils to resolve the standard keyboard row item insets.
+* `KeyboardButtonRowComponent`s use these new standard insets as default insets.
 * `SystemKeyboardButtonView` is a generalization of the `DemoButton`. If applies a standard system behavior, but can be inherited and its behavior overriden.
 
 The demos have been updated with these changes.
