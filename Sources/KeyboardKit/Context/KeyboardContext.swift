@@ -50,6 +50,11 @@ public protocol KeyboardContext: AnyObject {
     var inputSetProvider: KeyboardInputSetProvider { get set }
     
     /**
+     The current keyboard layout provider.
+     */
+    var keyboardLayoutProvider: KeyboardLayoutProvider { get set }
+    
+    /**
      The current keyboard type. You can change this with the
      `changeKeyboardType` function, which supports delays.
      */

@@ -5,15 +5,24 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 ## 3.2.0
 
-This release contains input set improvements:
+This release contains improvements to the input set logic:
 
 * There is a new `KeyboardInputSetProvider` protocol.
-* `StandardKeyboardInputSetProvider` uses the current locale and can be inherited.
-* `StaticKeyboardInputSetProvider` uses three static input sets. 
+    * `StandardKeyboardInputSetProvider` tries to use the current locale (fallback to English) and can be inherited.
+    * `StaticKeyboardInputSetProvider` uses three static input sets. 
 * `InputSet+English` has been renamed to `InputSet+Locale` and has more sets.
 * `InputSet+Locale` extension has support for basic English, German, Italian and Swedish.
-* `StandardKeyboardInputSetProvider` will be used by default, but you can change this at anytime.
-* `StandardKeyboardInputSetProvider` tries to retrieve a suitable input set from the supported locales, else falls back to English.
+* `StandardKeyboardInputSetProvider` is used by default in the context, but you can change this at anytime.
+
+The release also introduces a new "keyboard layout" concept, where a keyboard layout is an input set with surrounding actions:
+
+* There is a new `KeyboardLayout` struct.
+* There is a new `KeyboardLayoutProvider` protocol.
+    * `StandardKeyboardLayoutProvider` uses the current context and can be inherited.
+    * `StaticKeyboardLayoutProvider` uses a static layout that is provided at init.
+* `StandardKeyboardLayoutProvider` is used by default in the context, but you can change this at anytime.
+
+There are new properties in the `KeyboardContext`.
 
 This release also improves the UIKit layout:
 
@@ -21,17 +30,16 @@ This release also improves the UIKit layout:
 * `KeyboardButtonRowComponent` has a new `standardInsets` function that is applied by defaukt to the `SystemKeyboardButtonView`.
 * `SystemKeyboardButtonView` is a generalization of the `DemoButton`. If applies a standard system behavior, but can be inherited and its behavior overriden.
 
-The `UIKit` demo has been updated with these changes.
+The demos have been updated with these changes.
 
-### Breaking changes:
+### Bug fixes:
 
-* I unfortunately had to remove `controller` from `KeyboardContext` and replace it with plain properties instead. The implementation 
+* The context controller propertis are marked as `@unowned` to fix a memory leak. 
 
+### Deprecations:
 
-### Deprecated:
-
-* `CGFloat+KeyboardDimensions`.
-* `KeyboardContext`'s `controller` is now marked as `unowner` and usage is strongly discouraged. Use the context properties instead.
+* `CGFloat+KeyboardDimensions` is deprecated and will be removed in 4.0
+* `KeyboardContext`'s `controller` is now deprecated and will be removed in 4.0 .Usage is strongly discouraged. Use the context instead.
 
 
 ## 3.1.1
@@ -54,7 +62,7 @@ This version contains new protocols and classes:
 * There is a new `StandardAutocompleteContext` implementation of `AutocompleteContext`.
 * There is a new `UITextDocumentProxy` property to check if the proxy cursor is at the end of the current word.
 
-Bug fixes:
+### Bug fixes:
 
 * The "end sentence" action that is used by space double taps, uses the new proxy property to only close when the cursor is at the end of a word.
 

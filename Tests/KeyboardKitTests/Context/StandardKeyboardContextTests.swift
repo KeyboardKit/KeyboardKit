@@ -40,6 +40,7 @@ class StandardKeyboardContextTests: QuickSpec {
                 expect(context.actionHandler).to(be(actionHandler))
                 expect(context.emojiCategory).to(equal(.frequent))
                 expect(context.inputSetProvider is StandardKeyboardInputSetProvider).to(beTrue())
+                expect(context.keyboardLayoutProvider is StandardKeyboardLayoutProvider).to(beTrue())
                 expect(context.keyboardType).to(equal(.images))
                 expect(context.locale).to(equal(.current))
                 

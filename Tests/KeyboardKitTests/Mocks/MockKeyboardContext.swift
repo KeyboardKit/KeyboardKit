@@ -18,7 +18,8 @@ class MockKeyboardContext: KeyboardContext {
     
     var actionHandler: KeyboardActionHandler = MockKeyboardActionHandler()
     var emojiCategory: EmojiCategory = .frequent
-    lazy var inputSetProvider: KeyboardInputSetProvider = { fatalError("Not supported yet") }()
+    lazy var inputSetProvider: KeyboardInputSetProvider = { fatalError("Not implemented") }()
+    lazy var keyboardLayoutProvider: KeyboardLayoutProvider = { fatalError("Not implemented") }()
     var keyboardType: KeyboardType = .alphabetic(.lowercased)
     
     var deviceOrientation: UIInterfaceOrientation = .portrait
