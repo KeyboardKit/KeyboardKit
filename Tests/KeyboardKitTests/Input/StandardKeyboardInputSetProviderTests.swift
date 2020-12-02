@@ -1,5 +1,5 @@
 //
-//  KeyboardInputSet+EnglishTests.swift
+//  StandardKeyboardInputSetProviderTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-01.

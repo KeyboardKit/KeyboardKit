@@ -15,11 +15,6 @@ import UIKit
  to create a system keyboard layout for the provided context,
  which is not always what you want.
  
- This provider only supports locales that are also supported
- by the `StandardKeyboardInputSetProvider`, which means that
- non-supported locales will get the standard keyboard layout
- for English keyboards.
- 
  This provider will fallback to lowercased alphabetic layout
  if the current context state doesn't have a standard layout.
  One example is if the current keyboard type is `.emojis` or
@@ -34,6 +29,10 @@ import UIKit
  You can inherit and customize this class to create your own
  provider that builds on this foundation.
  
+ You can provide a custom left and right space action, which
+ gives you a chance to customize the default actions, but in
+ a limited way. If you want to make bigger changes, subclass.
+ 
  `IMPORTANT` This is a best effort. The iOS/iPadOS keyboards
  have layouts that depend on many factors. Some locales will
  not receive the correct layout with this implementation. To
@@ -41,6 +40,16 @@ import UIKit
  add the missing parts that you find and send a PR.
  */
 open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
+    
+    public init(
+        leftSpaceAction: KeyboardAction? = nil,
+        rightSpaceAction: KeyboardAction? = nil) {
+        self.leftSpaceAction = leftSpaceAction
+        self.rightSpaceAction = rightSpaceAction
+    }
+    
+    private let leftSpaceAction: KeyboardAction?
+    private let rightSpaceAction: KeyboardAction?
     
     open func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         let rows = context.actionRows
@@ -97,6 +106,7 @@ private extension StandardKeyboardLayoutProvider {
         }
         
         rows.append(iPadBottomActions(for: context))
+        
         return rows
     }
     
@@ -141,11 +151,18 @@ private extension StandardKeyboardLayoutProvider {
         if isDictationSupported {
             result.append(.dictation)
         }
+        if let action = leftSpaceAction {
+            result.append(action)
+        }
         result.append(.space)
+        if let action = rightSpaceAction {
+            result.append(action)
+        }
         if let action = switcher {
             result.append(action)
         }
         result.append(.dismissKeyboard)
+        
         return result
     }
 }
@@ -161,41 +178,42 @@ private extension StandardKeyboardLayoutProvider {
         var rows = rows
         
         if rows.count > 0 { rows[0] =
-            iPadUpperLeadingActions(for: context) +
+            iPhoneUpperLeadingActions(for: context) +
             rows[0] +
-            iPadUpperTrailingActions(for: context)
+            iPhoneUpperTrailingActions(for: context)
         }
         
         if rows.count > 1 { rows[1] =
-            iPadMiddleLeadingActions(for: context) +
+            iPhoneMiddleLeadingActions(for: context) +
             rows[1] +
-            iPadMiddleTrailingActions(for: context)
+            iPhoneMiddleTrailingActions(for: context)
         }
         
         if rows.count > 2 { rows[2] =
-            iPadLowerLeadingActions(for: context) +
+            iPhoneLowerLeadingActions(for: context) +
             rows[2] +
-            iPadLowerTrailingActions(for: context)
+            iPhoneLowerTrailingActions(for: context)
         }
         
-        rows.append(iPadBottomActions(for: context))
+        rows.append(iPhoneBottomActions(for: context))
+        
         return rows
     }
     
     func iPhoneUpperLeadingActions(for context: KeyboardContext) -> KeyboardActionRow {
-        context.needsInputModeSwitchKey ? [] : [.tab]
+        []
     }
     
     func iPhoneUpperTrailingActions(for context: KeyboardContext) -> KeyboardActionRow {
-        [.backspace]
+        []
     }
     
     func iPhoneMiddleLeadingActions(for context: KeyboardContext) -> KeyboardActionRow {
-        context.needsInputModeSwitchKey ? [] : [.keyboardType(.alphabetic(.capsLocked))]
+        []
     }
     
     func iPhoneMiddleTrailingActions(for context: KeyboardContext) -> KeyboardActionRow {
-        [.newLine]
+        []
     }
     
     func iPhoneLowerLeadingActions(for context: KeyboardContext) -> KeyboardActionRow {
@@ -204,16 +222,13 @@ private extension StandardKeyboardLayoutProvider {
     }
     
     func iPhoneLowerTrailingActions(for context: KeyboardContext) -> KeyboardActionRow {
-        iPadLowerLeadingActions(for: context)
+        [.backspace]
     }
     
     func iPhoneBottomActions(for context: KeyboardContext) -> KeyboardActionRow {
         var result = KeyboardActionRow()
         let switcher = context.keyboardType.standardBottomKeyboardSwitcherAction
         
-        if !context.needsInputModeSwitchKey {
-            result.append(.nextKeyboard)
-        }
         if let action = switcher {
             result.append(action)
         }
@@ -223,11 +238,15 @@ private extension StandardKeyboardLayoutProvider {
         if isDictationSupported {
             result.append(.dictation)
         }
-        result.append(.space)
-        if let action = switcher {
+        if let action = leftSpaceAction {
             result.append(action)
         }
-        result.append(.dismissKeyboard)
+        result.append(.space)
+        if let action = rightSpaceAction {
+            result.append(action)
+        }
+        result.append(.newLine)
+        
         return result
     }
 }
