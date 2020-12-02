@@ -10,6 +10,7 @@ import UIKit
 import KeyboardKit
 import KeyboardKitSwiftUI
 import SwiftUI
+import Combine
 
 /**
  This SwiftUI-based demo keyboard demonstrates how to create
@@ -51,9 +52,11 @@ class KeyboardViewController: KeyboardInputViewController {
     
     // MARK: - Properties
     
-    let toastContext = KeyboardToastContext()
+    private var cancellables = [AnyCancellable]()
     
-    var keyboardView: some View {
+    private let toastContext = KeyboardToastContext()
+    
+    private var keyboardView: some View {
         KeyboardView(controller: self)
             .environmentObject(autocompleteContext)
             .environmentObject(toastContext)
@@ -62,9 +65,9 @@ class KeyboardViewController: KeyboardInputViewController {
     
     // MARK: - Autocomplete
     
-    lazy var autocompleteContext = ObservableAutocompleteContext()
+    private lazy var autocompleteContext = ObservableAutocompleteContext()
     
-    lazy var autocompleteProvider = DemoAutocompleteSuggestionProvider()
+    private lazy var autocompleteProvider = DemoAutocompleteSuggestionProvider()
     
     override func performAutocomplete() {
         guard let word = textDocumentProxy.currentWord else { return resetAutocomplete() }
