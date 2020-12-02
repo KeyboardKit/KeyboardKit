@@ -43,6 +43,9 @@ class KeyboardViewController: KeyboardInputViewController {
         super.viewDidLoad()
         setup(with: keyboardView)
         context.actionHandler = DemoKeyboardActionHandler(inputViewController: self, toastContext: toastContext)
+        context.keyboardLayoutProvider = StandardKeyboardLayoutProvider(
+            leftSpaceAction: .keyboardType(.emojis),
+            rightSpaceAction: .keyboardType(.images))
     }
     
     

@@ -53,10 +53,6 @@ struct KeyboardView: View {
 
 private extension KeyboardView {
     
-    var autocompleteToolbar: AnyView {
-        AnyView(AutocompleteToolbar().frame(height: 45))
-    }
-    
     var emojiKeyboard: some View {
         EmojiKeyboard()
             .padding()
@@ -69,9 +65,13 @@ private extension KeyboardView {
     
     var systemKeyboard: some View {
         VStack {
-            autocompleteToolbar
-            SystemKeyboard(layout: context.keyboardLayoutProvider.keyboardLayout(for: context))
+            AutocompleteToolbar().frame(height: 45)
+            SystemKeyboard(layout: systemKeyboardLayout)
         }
+    }
+    
+    var systemKeyboardLayout: KeyboardLayout {
+        context.keyboardLayoutProvider.keyboardLayout(for: context)
     }
     
     var toastBackground: some View {
