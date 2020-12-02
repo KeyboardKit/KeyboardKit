@@ -15,7 +15,7 @@ import KeyboardKit
 struct NumericKeyboard: DemoKeyboard {
     
     init(in viewController: KeyboardViewController) {
-        let provider = viewController.context.inputSetProvider
+        let provider = viewController.context.keyboardInputProvider
         actions = type(of: self).actions(
             for: provider.numericInputSet,
             in: viewController)

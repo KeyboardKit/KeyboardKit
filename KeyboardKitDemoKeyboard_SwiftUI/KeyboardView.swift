@@ -65,7 +65,7 @@ private extension KeyboardView {
     func alphabeticKeyboard(_ state: KeyboardShiftState) -> some View {
         AlphabeticSystemKeyboard(
             context: context,
-            inputSet: context.inputSetProvider.alphabeticInputSet,
+            inputSet: context.keyboardInputProvider.alphabeticInputSet,
             state: state,
             topmostView: autocompleteToolbar,
             customBottomRow: .demoRow(for: context))
@@ -91,7 +91,7 @@ private extension KeyboardView {
     var numericKeyboard: some View {
         NumericSystemKeyboard(
             context: context,
-            inputSet: context.inputSetProvider.numericInputSet,
+            inputSet: context.keyboardInputProvider.numericInputSet,
             topmostView: autocompleteToolbar,
             customBottomRow: .demoRow(for: context))
     }
@@ -99,7 +99,7 @@ private extension KeyboardView {
     var symbolicKeyboard: some View {
         SymbolicSystemKeyboard(
             context: context,
-            inputSet: context.inputSetProvider.symbolicInputSet,
+            inputSet: context.keyboardInputProvider.symbolicInputSet,
             topmostView: autocompleteToolbar,
             customBottomRow: .demoRow(for: context))
     }

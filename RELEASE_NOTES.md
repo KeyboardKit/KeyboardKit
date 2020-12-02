@@ -38,8 +38,12 @@ The demos have been updated with these changes.
 
 ### Deprecations:
 
-* `CGFloat+KeyboardDimensions` is deprecated and will be removed in 4.0
-* `KeyboardContext`'s `controller` is now deprecated and will be removed in 4.0 .Usage is strongly discouraged. Use the context instead.
+* `CGFloat+KeyboardDimensions` is deprecated and will be removed in 4.0.
+* `KeyboardContext`'s `controller` is now deprecated and will be removed in 4.0 .Usage is strongly discouraged. Use the context instead. 
+
+### Breaking:
+
+* `KeyboardContext` has new properties to make the new input and layout additions possible. If you have created your own context, you will have to add these.
 
 
 ## 3.1.1
