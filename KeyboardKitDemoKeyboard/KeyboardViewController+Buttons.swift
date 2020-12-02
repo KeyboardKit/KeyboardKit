@@ -19,9 +19,7 @@ extension KeyboardViewController {
     }
     
     func buttonRows(for rows: KeyboardActionRows, distribution: UIStackView.Distribution) -> [KeyboardStackViewComponent] {
-        var rows = rows.map {
-            buttonRow(for: $0, distribution: distribution)
-        }
+        var rows = rows.map { buttonRow(for: $0, distribution: distribution) }
         rows.insert(autocompleteToolbar, at: 0)
         return rows
     }
