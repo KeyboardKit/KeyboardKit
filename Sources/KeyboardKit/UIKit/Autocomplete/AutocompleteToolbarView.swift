@@ -35,7 +35,7 @@ public class AutocompleteToolbarView: KeyboardToolbarView {
      */
     public init(
         buttonCreator: @escaping ButtonCreator,
-        height: CGFloat = standardHeight(for: .current, screen: .main),
+        height: CGFloat = standardHeight(),
         alignment: UIStackView.Alignment = .fill,
         distribution: UIStackView.Distribution = .fillEqually) {
         self.buttonCreator = buttonCreator
@@ -52,7 +52,7 @@ public class AutocompleteToolbarView: KeyboardToolbarView {
      */
     public convenience init(
         textDocumentProxy: UITextDocumentProxy,
-        height: CGFloat = standardHeight(for: .current, screen: .main),
+        height: CGFloat = standardHeight(),
         alignment: UIStackView.Alignment = .fill,
         distribution: UIStackView.Distribution = .fillEqually) {
         self.init(

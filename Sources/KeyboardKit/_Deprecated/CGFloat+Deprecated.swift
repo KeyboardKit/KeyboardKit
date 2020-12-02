@@ -7,6 +7,7 @@
 //
 
 import CoreGraphics
+import UIKit
 
 public extension CGFloat {
     

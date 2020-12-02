@@ -31,15 +31,15 @@ public extension KeyboardStackViewComponent {
      in the row. This padding must be added WITHIN each view,
      since row spacing will create dead tap areas.
      */
-    static func standardHeight(for device: UIDevice, screen: UIScreen) -> CGFloat {
-        standardHeight(for: device.userInterfaceIdiom, bounds: screen.bounds)
+    static func standardHeight(for device: UIDevice = .current, app: UIApplication = .shared) -> CGFloat {
+        standardHeight(for: device.userInterfaceIdiom, orientation: app.statusBarOrientation)
     }
 }
 
 extension KeyboardStackViewComponent {
     
-    static func standardHeight(for idiom: UIUserInterfaceIdiom, bounds: CGRect) -> CGFloat {
-        bounds.isLandscape ? standardLandscapeHeight(for: idiom) : standardPortraitHeight(for: idiom)
+    static func standardHeight(for idiom: UIUserInterfaceIdiom, orientation: UIInterfaceOrientation) -> CGFloat {
+        orientation.isLandscape ? standardLandscapeHeight(for: idiom) : standardPortraitHeight(for: idiom)
     }
 }
 

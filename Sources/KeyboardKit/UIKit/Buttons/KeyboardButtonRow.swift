@@ -16,7 +16,7 @@ open class KeyboardButtonRow: UIView, KeyboardStackViewComponent {
     
     public convenience init(
         actions: KeyboardActionRow,
-        height: CGFloat = standardHeight(for: .current, screen: .main),
+        height: CGFloat = standardHeight(),
         alignment: UIStackView.Alignment = .fill,
         distribution: UIStackView.Distribution = .fillEqually,
         buttonCreator: KeyboardButtonCreator) {

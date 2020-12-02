@@ -18,31 +18,20 @@ class KeyboardStackViewComponentTests: QuickSpec {
         describe("standard height") {
             
             it("is correct for iPhone Portrait") {
-                expect(KeyboardButtonRow.standardHeight(for: .phone, bounds: .portrait)).to(equal(54))
+                expect(KeyboardButtonRow.standardHeight(for: .phone, orientation: .portrait)).to(equal(54))
             }
             
             it("is correct for iPhone Landscape") {
-                expect(KeyboardButtonRow.standardHeight(for: .phone, bounds: .landscape)).to(equal(38))
+                expect(KeyboardButtonRow.standardHeight(for: .phone, orientation: .landscapeLeft)).to(equal(38))
             }
             
             it("is correct for iPad Portrait") {
-                expect(KeyboardButtonRow.standardHeight(for: .pad, bounds: .portrait)).to(equal(66))
+                expect(KeyboardButtonRow.standardHeight(for: .pad, orientation: .portrait)).to(equal(66))
             }
             
             it("is correct for iPad Landscape") {
-                expect(KeyboardButtonRow.standardHeight(for: .pad, bounds: .landscape)).to(equal(86))
+                expect(KeyboardButtonRow.standardHeight(for: .pad, orientation: .landscapeRight)).to(equal(86))
             }
         }
-    }
-}
-
-private extension CGRect {
-    
-    static var landscape: CGRect {
-        CGRect(x: 0, y: 0, width: 2, height: 1)
-    }
-    
-    static var portrait: CGRect {
-        CGRect(x: 0, y: 0, width: 1, height: 2)
     }
 }
