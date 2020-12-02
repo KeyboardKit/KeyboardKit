@@ -24,19 +24,11 @@ private extension KeyboardViewController {
     func setupKeyboardAsync(for size: CGSize) {
         keyboardStackView.removeAllArrangedSubviews()
         switch context.keyboardType {
-        case .alphabetic(let state): setupAlphabeticKeyboard(for: state)
+        case .alphabetic, .numeric, .symbolic: setupSystemKeyboard()
         case .emojis: setupEmojiKeyboard(for: size)
         case .images: setupImageKeyboard(for: size)
-        case .numeric: setupNumericKeyboard()
-        case .symbolic: setupSymbolicKeyboard()
         default: return
         }
-    }
-    
-    func setupAlphabeticKeyboard(for state: KeyboardShiftState) {
-        let keyboard = AlphabeticKeyboard(isUppercased: state.isUppercased, in: self)
-        let rows = buttonRows(for: keyboard.actions, distribution: .fillProportionally)
-        keyboardStackView.addArrangedSubviews(rows)
     }
     
     func setupEmojiKeyboard(for size: CGSize) {
@@ -63,15 +55,9 @@ private extension KeyboardViewController {
         keyboardStackView.addArrangedSubview(bottom)
     }
     
-    func setupNumericKeyboard() {
-        let keyboard = NumericKeyboard(in: self)
-        let rows = buttonRows(for: keyboard.actions, distribution: .fillProportionally)
-        keyboardStackView.addArrangedSubviews(rows)
-    }
-    
-    func setupSymbolicKeyboard() {
-        let keyboard = SymbolicKeyboard(in: self)
-        let rows = buttonRows(for: keyboard.actions, distribution: .fillProportionally)
+    func setupSystemKeyboard() {
+        let layout = context.keyboardLayoutProvider.keyboardLayout(for: context)
+        let rows = buttonRows(for: layout.actionRows, distribution: .fillProportionally)
         keyboardStackView.addArrangedSubviews(rows)
     }
 }
