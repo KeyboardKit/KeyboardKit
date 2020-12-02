@@ -15,7 +15,7 @@ import Foundation
  KeyboardKit registers a standard protocol implementation in
  the input view controller's `context` when the extension is
  started. You can replace this at any time, by registering a
- new instance with the `layoutProvider` property.
+ new priovider with the `keyboardLayoutProvider` property.
  */
 public protocol KeyboardLayoutProvider: AnyObject {
     

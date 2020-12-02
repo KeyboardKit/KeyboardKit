@@ -10,7 +10,7 @@ import KeyboardKit
 
 /**
  This demo keyboard mimicks a numeric keyboard, and uses the
- current `inputSetProvider` to resolve its input keys.
+ current `keyboardInputProvider` to resolve its keys.
  */
 struct NumericKeyboard: DemoKeyboard {
     

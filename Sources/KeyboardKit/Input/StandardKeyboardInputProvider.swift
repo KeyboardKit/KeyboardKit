@@ -1,5 +1,5 @@
 //
-//  StandardKeyboardInputSetProvider.swift
+//  StandardKeyboardInputProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-01.
@@ -19,7 +19,7 @@ import Foundation
  They are not part of the protocol, but you can use them and
  extend them in your own subclasses.
  */
-open class StandardKeyboardInputSetProvider: KeyboardInputSetProvider {
+open class StandardKeyboardInputProvider: KeyboardInputProvider {
     
     public init(locale: Locale = .current) {
         self.locale = locale

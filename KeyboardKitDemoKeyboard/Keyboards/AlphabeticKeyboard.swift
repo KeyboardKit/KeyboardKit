@@ -10,12 +10,12 @@ import KeyboardKit
 
 /**
  This demo keyboard mimicks an alphabetic keyboard, and uses
- the current `inputSetProvider` to resolve its input keys.
+ the current `keyboardInputProvider` to resolve its keys.
  */
 struct AlphabeticKeyboard: DemoKeyboard {
     
     init(isUppercased: Bool, in viewController: KeyboardViewController) {
-        let provider = viewController.context.inputSetProvider
+        let provider = viewController.context.keyboardInputProvider
         actions = AlphabeticKeyboard.actions(
             for: provider.alphabeticInputSet,
             isUppercased: isUppercased,

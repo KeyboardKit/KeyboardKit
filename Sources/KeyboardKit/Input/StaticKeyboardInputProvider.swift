@@ -1,5 +1,5 @@
 //
-//  StandardKeyboardInputSetProvider.swift
+//  StaticKeyboardInputProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-01.
@@ -15,7 +15,7 @@ import Foundation
  It can be used to return a static input set, without taking
  factors like locales into consideration.
  */
-public class StaticKeyboardInputSetProvider: KeyboardInputSetProvider {
+public class StaticKeyboardInputProvider: KeyboardInputProvider {
     
     public init(
         alphabeticInputSet: AlphabeticKeyboardInputSet,

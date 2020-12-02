@@ -258,13 +258,14 @@ private extension KeyboardContext {
     }
     
     var inputRows: [KeyboardInputSet.InputRow] {
+        let provider = keyboardInputProvider
         switch keyboardType {
         case .alphabetic(let state):
-            let rows = inputSetProvider.alphabeticInputSet.inputRows
+            let rows = provider.alphabeticInputSet.inputRows
             return state.isUppercased ? rows.uppercased() : rows
-        case .numeric: return inputSetProvider.numericInputSet.inputRows
-        case .symbolic: return inputSetProvider.symbolicInputSet.inputRows
-        default: return inputSetProvider.alphabeticInputSet.inputRows
+        case .numeric: return provider.numericInputSet.inputRows
+        case .symbolic: return provider.symbolicInputSet.inputRows
+        default: return provider.alphabeticInputSet.inputRows
         }
     }
 }

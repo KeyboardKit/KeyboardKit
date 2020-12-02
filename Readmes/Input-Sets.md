@@ -11,17 +11,11 @@ KeyboardKit has a `KeyboardInputSet` struct that represents rows of input charac
 
 ## Input set vs. keyboard layout
 
-A keyboard input set is the set of characters that make up the input part of a keyboard.
+A *keyboard input set* is the set of characters that make up the input part of a keyboard.
 
-A keyboard layout is made up of a keyboard input set, with additional surrounding actions.
+A *keyboard layout* is the total number of actions that make up the complete keyboard.
 
-While a `KeyboardInputSet` is locale-specific, a complete keyboard layout depends on:
-
-* locale
-* device type
-* device orientation
-
-KeyboardKit currently have no built-in way of creating keyboard layouts. 
+A keyboard layout can thus be constructed with an input set and additional surrounding actions. 
 
 
 ## Locale-specific input sets
@@ -41,16 +35,16 @@ You can get locale-speific input with the `KeyboardInputSet.<type>_<locale>` pro
 
 ## Input set providers
 
-The `KeyboardInptSetProvider` protocol can be used to provide an app with input sets in a more dynamic way. 
+The `KeyboardInputProvider` protocol can be used to resolve input sets in a more dynamic way. 
 
-There are some built-in implementations: 
+There are two built-in implementations:
 
-* `StaticKeyboardInputSetProvider` is manually created with three input sets.
-* `StandardKeyboardInputSetProvider` tries to resolve input sets for the current locale, with fallback to English if the locale isn't supported.
+* `StaticKeyboardInputProvider` is manually created with three input sets.
+* `StandardKeyboardInputProvider` tries to resolve input sets for the current locale, with fallback to English if the locale isn't supported.
 
-KeyboardKit will inject a `StandardKeyboardInptSetProvider` into the current context. 
+KeyboardKit will by default inject a `StandardKeyboardInputProvider` into the current context. 
 
-You can use it if you want to and replace it with a custom implementation at anytime.
+You can use this provider if you want to (for custom keyboards, you don't have to) and replace it with a custom implementation at anytime.
 
 
 ## Adding more locales
@@ -58,6 +52,6 @@ You can use it if you want to and replace it with a custom implementation at any
 Support for new locales can be added to KeyboardKit like this:
 
 * Add new locale-specific sets to `KeyboardInputSet+Locale`.
-* Add new locale-specific dictionary keys to `StandardKeyboardInputSetProvider`.
+* Add new locale-specific dictionary keys to `StandardKeyboardInputProvider`.
 
 I will gladly accept PRs that bring additional locale support to this library. 👍

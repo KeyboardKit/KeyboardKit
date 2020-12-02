@@ -7,12 +7,12 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 This release contains improvements to the input set logic:
 
-* There is a new `KeyboardInputSetProvider` protocol.
-    * `StandardKeyboardInputSetProvider` tries to use the current locale (fallback to English) and can be inherited.
-    * `StaticKeyboardInputSetProvider` uses three static input sets. 
+* There is a new `KeyboardInputProvider` protocol.
+    * `StandardKeyboardInputProvider` tries to use the current locale (fallback to English) and can be inherited.
+    * `StaticKeyboardInputProvider` uses three static input sets. 
 * `InputSet+English` has been renamed to `InputSet+Locale` and has more sets.
 * `InputSet+Locale` extension has support for basic English, German, Italian and Swedish.
-* `StandardKeyboardInputSetProvider` is used by default in the context, but you can change this at anytime.
+* `StandardKeyboardInputProvider` is used by default in the context, but you can change this at anytime.
 
 The release also introduces a new "keyboard layout" concept, where a keyboard layout is an input set with surrounding actions:
 

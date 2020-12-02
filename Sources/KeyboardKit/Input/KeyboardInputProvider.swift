@@ -1,5 +1,5 @@
 //
-//  KeyboardInputSetProvider.swift
+//  KeyboardInputProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-01.
@@ -15,9 +15,9 @@ import Foundation
  KeyboardKit registers a standard protocol implementation in
  the input view controller's `context` when the extension is
  started. You can replace this at any time, by registering a
- new instance with the `inputSetProvider` property.
+ new provider with the `keyboardInputProvider` property.
  */
-public protocol KeyboardInputSetProvider: AnyObject {
+public protocol KeyboardInputProvider: AnyObject {
     
     var alphabeticInputSet: AlphabeticKeyboardInputSet { get }
     var numericInputSet: NumericKeyboardInputSet { get }

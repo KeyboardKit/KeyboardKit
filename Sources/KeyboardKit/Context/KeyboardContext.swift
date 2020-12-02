@@ -45,9 +45,9 @@ public protocol KeyboardContext: AnyObject {
     var emojiCategory: EmojiCategory { get set }
     
     /**
-     The current keyboard input set provider.
+     The current keyboard input provider.
      */
-    var inputSetProvider: KeyboardInputSetProvider { get set }
+    var keyboardInputProvider: KeyboardInputProvider { get set }
     
     /**
      The current keyboard layout provider.
