@@ -8,8 +8,8 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 This release contains improvements to the input set logic:
 
 * There is a new `KeyboardInputProvider` protocol.
-    * `StandardKeyboardInputProvider` tries to use the current locale (fallback to English) and can be inherited.
-    * `StaticKeyboardInputProvider` uses three static input sets. 
+* `StandardKeyboardInputProvider` tries to use the current locale (fallback to English) and can be inherited.
+* `StaticKeyboardInputProvider` uses three static input sets. 
 * `InputSet+English` has been renamed to `InputSet+Locale` and has more sets.
 * `InputSet+Locale` extension has support for basic English, German, Italian and Swedish.
 * `StandardKeyboardInputProvider` is used by default in the context, but you can change this at anytime.
@@ -30,7 +30,6 @@ This release also makes it easier to resolve system keyboard dimensions:
 * `KeyboardStackViewComponent`s use this new standard height as default height.
 * `UIEdgeInsets+Keyboard` has utils to resolve the standard keyboard row item insets.
 * `KeyboardButtonRowComponent`s use these new standard insets as default insets.
-* `SystemKeyboardButtonView` is a generalization of the `DemoButton`. If applies a standard system behavior, but can be inherited and its behavior overriden.
 
 The demos have been updated with these changes.
 

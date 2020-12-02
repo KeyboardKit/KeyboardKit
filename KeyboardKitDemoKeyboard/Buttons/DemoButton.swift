@@ -22,7 +22,7 @@ class DemoButton: KeyboardButtonView {
     public func setup(
         with action: KeyboardAction,
         in viewController: KeyboardInputViewController,
-        edgeInsets: UIEdgeInsets = DemoButton.standardInsets(for: .current, screen: .main),
+        edgeInsets: UIEdgeInsets = .standardKeyboardRowItemInsets(),
         distribution: UIStackView.Distribution = .fillEqually) {
         super.setup(with: action, in: viewController)
         backgroundColor = .clearInteractable

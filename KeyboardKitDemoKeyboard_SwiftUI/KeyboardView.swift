@@ -19,9 +19,6 @@ import KeyboardKitSwiftUI
  
  `TODO` Add support for emoji keyboard, once lazy stacks are
  supported. Now, the app crashes due to memory pressure.
- 
- `TODO` Move the `keyboardView` switch into `body` after the
- projects has been upgraded to Swift 5.3.
  */
 struct KeyboardView: View {
     
@@ -43,12 +40,10 @@ struct KeyboardView: View {
     @ViewBuilder
     var keyboardView: some View {
         switch context.keyboardType {
-        case .alphabetic(let state): alphabeticKeyboard(state)
+        case .alphabetic, .numeric, .symbolic: systemKeyboard
         case .emojis: emojiKeyboard
         case .images: imageKeyboard
-        case .numeric: numericKeyboard
-        case .symbolic: symbolicKeyboard
-        default: Button("This keyboard is not yet implemented", action: switchKeyboard)
+        default: Button("This keyboard is not yet implemented", action: switchToDefaultKeyboard)
         }
     }
 }
@@ -62,46 +57,21 @@ private extension KeyboardView {
         AnyView(AutocompleteToolbar().frame(height: 45))
     }
     
-    func alphabeticKeyboard(_ state: KeyboardShiftState) -> some View {
-        AlphabeticSystemKeyboard(
-            context: context,
-            inputSet: context.keyboardInputProvider.alphabeticInputSet,
-            state: state,
-            topmostView: autocompleteToolbar,
-            customBottomRow: .demoRow(for: context))
-    }
-    
     var emojiKeyboard: some View {
         EmojiKeyboard()
             .padding()
-            .frame(height: 600)
     }
     
-    /**
-     `TODO` The custom `height` is only applied to show that
-     SwiftUI keyboard extensions currently don't resize when
-     their content change. Remove `frame` when this is fixed.
-     */
     var imageKeyboard: some View {
         ImageKeyboard()
             .padding()
-            .frame(height: 600)
     }
     
-    var numericKeyboard: some View {
-        NumericSystemKeyboard(
-            context: context,
-            inputSet: context.keyboardInputProvider.numericInputSet,
-            topmostView: autocompleteToolbar,
-            customBottomRow: .demoRow(for: context))
-    }
-    
-    var symbolicKeyboard: some View {
-        SymbolicSystemKeyboard(
-            context: context,
-            inputSet: context.keyboardInputProvider.symbolicInputSet,
-            topmostView: autocompleteToolbar,
-            customBottomRow: .demoRow(for: context))
+    var systemKeyboard: some View {
+        VStack {
+            autocompleteToolbar
+            SystemKeyboard(layout: context.keyboardLayoutProvider.keyboardLayout(for: context))
+        }
     }
     
     var toastBackground: some View {
@@ -116,8 +86,9 @@ private extension KeyboardView {
 
 private extension KeyboardView {
     
-    func switchKeyboard() {
-        context.actionHandler.handle(.tap, on: .keyboardType(.alphabetic(.lowercased)))
+    func switchToDefaultKeyboard() {
+        context.actionHandler
+            .handle(.tap, on: .keyboardType(.alphabetic(.lowercased)))
     }
 }
 
