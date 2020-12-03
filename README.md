@@ -22,7 +22,7 @@
 `KeyboardKit` is a helps you create custom keyboard extensions for `iOS` and `ipadOS`. It provides you with a rich set of keyboard-specific `tools` and `actions`, `haptic` and `audio` feedback support and lets you create keyboards with `characters`, `emojis`, `images` etc.
 
 <p align="center">
-    <img src ="Resources/Demo.gif" />
+    <img src ="Resources/Demo.gif" width="300" />
 </p>
 
 If you're new to iOS keyboard extensions, [this great guide][Guide] can help you get started. You can also have a look at the demo apps for examples on how to use this library. 
