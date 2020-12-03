@@ -64,11 +64,11 @@ private extension KeyboardViewController {
         return view
     }
     
-    func buttonRows(for rows: KeyboardActionRows, distribution: UIStackView.Distribution) -> [KeyboardStackViewComponent] {
+    func buttonRows(for rows: KeyboardActionRows, distribution: UIStackView.Distribution) -> [UIView] {
         rows.map { buttonRow(for: $0, distribution: distribution) }
     }
     
-    func buttonRow(for row: KeyboardActionRow, distribution: UIStackView.Distribution) -> KeyboardStackViewComponent {
+    func buttonRow(for row: KeyboardActionRow, distribution: UIStackView.Distribution) -> UIView {
         KeyboardButtonRow(actions: row, distribution: distribution) {
             button(for: $0, distribution: distribution)
         }

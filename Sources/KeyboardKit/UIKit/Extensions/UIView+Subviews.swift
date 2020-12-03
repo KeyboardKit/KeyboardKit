@@ -14,14 +14,14 @@ public extension UIView {
      Add a subview with an option to adjust its anchords to
      make it fill its superview.
      */
-    func addSubview(_ subview: UIView, fill: Bool) {
+    func addSubview(_ subview: UIView, fill: Bool, insets: UIEdgeInsets = .zero) {
         addSubview(subview)
         guard fill else { return }
         subview.translatesAutoresizingMaskIntoConstraints = false
-        subview.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        subview.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        subview.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        subview.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        subview.topAnchor.constraint(equalTo: topAnchor, constant: insets.top).isActive = true
+        subview.leftAnchor.constraint(equalTo: leftAnchor, constant: insets.left).isActive = true
+        subview.rightAnchor.constraint(equalTo: rightAnchor, constant: insets.right).isActive = true
+        subview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: insets.bottom).isActive = true
     }
     
     /**
