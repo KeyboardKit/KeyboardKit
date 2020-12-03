@@ -32,9 +32,7 @@ These actions can be applied to keyboard buttons or triggered programatically.
 
 ## Handling actions
 
-You can use these actions in any way you like, but KeyboardKit lets you specify a `KeyboardActionHandler` that will be used to handle actions.
-
-`KeyboardContext` has an `actionHandler` property that can be used to get and set the current action handler.
+You can use these actions in any way you like, but KeyboardKit lets you specify a `KeyboardActionHandler` that can be used to handle actions. `KeyboardContext` has an `actionHandler` property that can be used to get and set the current action handler.
 
 KeyboardKit will apply a `StandardKeyboardActionHandler` by default, but you can inject a custom action handler if you want.
 
@@ -50,18 +48,9 @@ You can handle actions that have no standard behavior by implementing a custom a
 
 ## Appearance
 
-The standard system look of each action depends on the current color scheme, keyboard appearance etc. `KeyboardKitSwiftUI` contains utilities to help you with this.
+The standard system look of each action depends on the current color scheme, keyboard appearance etc. `KeyboardKitSwiftUI` contains utilities to help you with this, but you can also apply keyboard actions to any views, with completely custom looks and behaviors.
 
 
-## Icons
+## Icons & Texts
 
-Some actions have an icon that is displayed when the action is used in a system keyboard. `KeyboardKitSwiftUI` contains SF Symbols based icons for many actions.
-
-
-## Texts
-
-Some actions have a text that is displayed when the action is used in a system keyboard. `KeyboardKitSwiftUI` contains extensions for this.
-
-
-
-
+Some actions have standard texts or icons when they are used in a system keyboard. `KeyboardKitSwiftUI` contains SF Symbols-based icons and standard texts for many actions.

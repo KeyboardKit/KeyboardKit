@@ -30,8 +30,6 @@ You can use this provider if you want to (for custom keyboards, you don't have t
 
 ## What about button sizes, row insets, margins etc.?
 
-When you hear "keyboard layout", you'd think that this also covers how the buttons are actually layed out on the keyboard.
-
-That is however not the case, at least not yet. Sizing and margins are so triky to get absolutely right, that KeyboardKit so far doesn't support it.
+When you hear "keyboard layout", you'd think that this also covers how the buttons are actually layed out on the keyboard. However, that is not the case, at least not yet. Sizing and margins are so tricky to get absolutely right, that KeyboardKit so far doesn't support it.
 
 If you have an idea on how to best inlude this in the library, I will gladly accept PRs that bring this support to this library. 👍

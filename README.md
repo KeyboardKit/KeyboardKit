@@ -19,7 +19,7 @@
 
 ## About KeyboardKit
 
-`KeyboardKit` is a helps you create custom keyboard extensions for `iOS` and `ipadOS`. It provides you with a rich set of `tools` and `actions`, `haptic` and `audio` feedback, input set and keyboard layouts etc. and lets you create keyboards with `characters`, `numbers`, `symbols`, `emojis`, `images` etc.
+`KeyboardKit` is a helps you create custom keyboard extensions for `iOS` and `ipadOS`. It provides you with a rich set of `tools` and `actions`, `haptic` and `audio` feedback, `input sets`, `keyboard layouts` etc. and lets you create keyboards with `characters`, `numbers`, `symbols`, `emojis`, `images` or entirely custom logic.
 
 You can create native looking keyboards like the example below, or completely custom keyboards:
 
@@ -53,7 +53,7 @@ end
 
 ## Getting Started
 
-When you use `KeyboardKit`, you should inherit `KeyboardInputViewController` instead of `UIInputViewController`. It provides you with many tools that helps you build custom keyboard extension.
+With `KeyboardKit`, you should inherit `KeyboardInputViewController` instead of `UIInputViewController`. It provides you with many tools that helps you build custom keyboard extension.
 
 KeyboardKit supports both `UIKit` and `SwiftUI`, so you can pick the option that suits your needs best. 
 
@@ -139,13 +139,11 @@ KeyboardKit comes with many keyboard-specific extensions. Check out the demo app
 This repository contains two demo apps that demonstrate different keyboard types, like `alphabetical` (lower/uppercased and caps locked), `numerical`, `symbols`, `emojis` and `images`.
 
 * `KeyboardKitDemoKeyboard` uses `UIKit` to implement various keyboards that mimics system keyboards. 
-* `KeyboardKitDemoKeyboard_SwiftUI` uses `SwiftUI` to implement various keyboards that mimics system keyboards.
+* `KeyboardKitDemoKeyboard_SwiftUI` uses `SwiftUI` to implement the same keyboards in another way.
 
-Since [KeyboardKitSwiftUI][KeyboardKitSwiftUI] is still under development, the `SwiftUI` demo app lacks a lot of functionality that the `UIKit` app has.
+Since [KeyboardKitSwiftUI][KeyboardKitSwiftUI] is still under development, the `SwiftUI` demo app lacks a lot of functionality that the `UIKit` app supports.
 
-To run the demo app, open and run the `KeyboardKit.xcodeproj` project then enable the keyboards under system settings. Don't forget to enable full access.
-
-`IMPORTANT` Audio feedback, haptic feedback and image actions require full access.
+To run the demo app, open and run the `KeyboardKit.xcodeproj` project, then enable the keyboards under system settings. Don't forget to enable full access to support all features, like audio and haptic feedback.
 
 
 ## Contact me
