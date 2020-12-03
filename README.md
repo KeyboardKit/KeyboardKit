@@ -19,7 +19,9 @@
 
 ## About KeyboardKit
 
-`KeyboardKit` is a helps you create custom keyboard extensions for `iOS` and `ipadOS`. It provides you with a rich set of keyboard-specific `tools` and `actions`, `haptic` and `audio` feedback support and lets you create keyboards with `characters`, `emojis`, `images` etc.
+`KeyboardKit` is a helps you create custom keyboard extensions for `iOS` and `ipadOS`. It provides you with a rich set of `tools` and `actions`, `haptic` and `audio` feedback, input set and keyboard layouts etc. and lets you create keyboards with `characters`, `numbers`, `symbols`, `emojis`, `images` etc.
+
+You can create native looking keyboards like the example below, or completely custom keyboards:
 
 <p align="center">
     <img src ="Resources/Demo.gif" width="300" />
@@ -58,20 +60,20 @@ KeyboardKit supports both `UIKit` and `SwiftUI`, so you can pick the option that
 
 ## UIKit
 
-[Read more here][UIKit] about creating `UIKit`-based keyboard extensions.
+KeyboardKit contains a rich set of tools to create `UIKit`-based keyboards. [Read more here][UIKit].
 
 You can also follow [this tutorial][UIKit-Tutorial].
 
-`SwiftUI` is the main focus going forward, but UIKit support will still be around and improved if needed.
+`SwiftUI` is the main focus going forward, but `UIKit` support will be around and be improved if needed.
 
 
 ## SwiftUI
 
-[Read more here][SwiftUI] about creating `SwiftUI`-based keyboard extensions.
+KeyboardKit can be extended with [KeyboardKitSwiftUI][KeyboardKitSwiftUI] to create `SwiftUI`-based keyboards. [Read more here][SwiftUI].
 
 You can also follow [this tutorial][SwiftUI-Tutorial].
 
-`SwiftUI` is the main focus going forward, but the support is currently limited.
+`SwiftUI` is the main focus going forward, and will be the main technology from version `4.0`.
 
 
 ## Actions
@@ -81,18 +83,29 @@ KeyboardKit supports many different keyboard actions, like `character` inputs, `
 [Read more here][Actions]
 
 
-## Input Sets
-
-KeyboardKit provides you with locale-specific input sets, which makes it easy to create `alphabetic`, `numeric` and `symbolic`  keyboards in many languages.
-
-[Read more here][Input-Sets]
-
-
 ## Keyboard Types
 
 KeyboardKit supports many different keyboard types, like `alphabetic`, `numeric`, `symbolic`, `emoji` etc. You can even create your own, custom keyboard types.
 
 [Read more here][Keyboard-Types]
+
+
+## Input Sets
+
+KeyboardKit provides you with locale-specific input sets, which makes it easy to create `alphabetic`, `numeric` and `symbolic`  keyboards in many languages.
+
+KeyboardKit comes with a set of locale-specific input sets for e.g. English, German, Italian and Swedish.
+
+[Read more here][Input-Sets]
+
+
+## Keyboard Layouts
+
+KeyboardKit can combine an input set with surrounding actions to create a keyboard layout, which is the total set of actions on a keyboard.
+
+KeyboardKit comes with a set of locale and device-specific keyboard layouts for iPhones and iPads.
+
+[Read more here][Keyboard-Layouts]
 
 
 ## Autocomplete
@@ -172,6 +185,7 @@ KeyboardKit is available under the MIT license. See LICENSE file for more info.
 [Autocomplete]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Autocomplete.md
 [Haptic-Feedback]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Haptic-Feedback.md
 [Input-Sets]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Input-Sets.md
+[Keyboard-Layouts]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Keyboard-Layouts.md
 [Keyboard-Types]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Keyboard-Types.md
 [SwiftUI]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/SwiftUI.md
 [SwiftUI-Tutorial]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/SwiftUI-Tutorial.md

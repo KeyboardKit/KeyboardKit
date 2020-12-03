@@ -15,7 +15,7 @@ A *keyboard input set* is the set of characters that make up the input part of a
 
 A *keyboard layout* is the total number of actions that make up the complete keyboard.
 
-A keyboard layout can thus be constructed with an input set and additional surrounding actions. 
+A keyboard layout can thus be constructed with an input set and additional surrounding actions, but doesn't have to 
 
 
 ## Locale-specific input sets
