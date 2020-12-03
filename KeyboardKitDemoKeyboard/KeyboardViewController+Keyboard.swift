@@ -48,10 +48,33 @@ extension KeyboardViewController {
     
     func setupSystemKeyboard() {
         let layout = context.keyboardLayoutProvider.keyboardLayout(for: context)
-        let rows = buttonRows(for: layout.actionRows, distribution: .fillProportionally)
+        var rows = buttonRows(for: layout.actionRows, distribution: .fillProportionally)
+        rows.insert(autocompleteToolbar, at: 0)
         keyboardStackView.addArrangedSubviews(rows)
     }
 }
+
+
+private extension KeyboardViewController {
+    
+    func button(for action: KeyboardAction, distribution: UIStackView.Distribution = .equalSpacing) -> UIView {
+        if action == .none { return KeyboardSpacerView(width: 10) }
+        let view = DemoButton.fromNib(owner: self)
+        view.setup(with: action, in: self, distribution: distribution)
+        return view
+    }
+    
+    func buttonRows(for rows: KeyboardActionRows, distribution: UIStackView.Distribution) -> [KeyboardStackViewComponent] {
+        rows.map { buttonRow(for: $0, distribution: distribution) }
+    }
+    
+    func buttonRow(for row: KeyboardActionRow, distribution: UIStackView.Distribution) -> KeyboardStackViewComponent {
+        KeyboardButtonRow(actions: row, distribution: distribution) {
+            button(for: $0, distribution: distribution)
+        }
+    }
+}
+
 
 
 // MARK: - Actions

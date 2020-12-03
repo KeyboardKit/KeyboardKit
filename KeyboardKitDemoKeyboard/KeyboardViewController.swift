@@ -19,18 +19,15 @@ import KeyboardKit
  toolbar that provides fake suggestions for the current word.
  
  `IMPORTANT` To use this keyboard, you must enable it in the
- system keyboard settings ("Settings/General/Keyboards") and
- give it full access, which is unfortunately required to use
- some features like haptic and audio feedback, let it access
- the user's photos etc.
+ system keyboard settings ("Settings/General/Keyboards"). It
+ needs full access for haptic and audio feedback, for access
+ to the user's photos etc.
  
  If you want to use these features in your own app, you must
  add `RequestsOpenAccess` to the extension's `Info.plist` to
- make it possible for the user to enable full access. If you
- want to allow the keyboard to access the user's photo album,
- you must add the `NSPhotoLibraryAddUsageDescription` key to
- the **host** application's `Info.plist`. Have a look at the
- demo app and extension and copy the parts that you need.
+ make it possible to enable full access. To access the photo
+ album, you have to add a `NSPhotoLibraryAddUsageDescription`
+ key to the `host` application's `Info.plist`.
  */
 class KeyboardViewController: KeyboardInputViewController {
     
@@ -92,7 +89,7 @@ class KeyboardViewController: KeyboardInputViewController {
     lazy var autocompleteProvider = DemoAutocompleteSuggestionProvider()
     
     lazy var autocompleteToolbar: AutocompleteToolbarView = {
-        AutocompleteToolbarView(textDocumentProxy: textDocumentProxy)
+        AutocompleteToolbarView(textDocumentProxy: textDocumentProxy, height: 50)
     }()
     
     override func performAutocomplete() {

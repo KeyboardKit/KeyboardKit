@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		15133C75245862B300748945 /* EmojiCategory+L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15133C74245862B300748945 /* EmojiCategory+L10n.swift */; };
 		15D5728424604C490062BD01 /* EmojiKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D5728324604C490062BD01 /* EmojiKeyboard.swift */; };
-		84086E30235587DC0030D95A /* KeyboardViewController+Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84086E2F235587DC0030D95A /* KeyboardViewController+Buttons.swift */; };
-		84086E3423558C0F0030D95A /* KeyboardViewController+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84086E3323558C0F0030D95A /* KeyboardViewController+Setup.swift */; };
+		84086E3423558C0F0030D95A /* KeyboardViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84086E3323558C0F0030D95A /* KeyboardViewController+Keyboard.swift */; };
 		843CBFA5250E9E5500BA541F /* DemoImageKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CBFA4250E9E5500BA541F /* DemoImageKeyboard.swift */; };
 		843CBFA6250E9EAA00BA541F /* DemoImageKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CBFA4250E9E5500BA541F /* DemoImageKeyboard.swift */; };
 		843CBFA7250E9EAB00BA541F /* DemoImageKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CBFA4250E9E5500BA541F /* DemoImageKeyboard.swift */; };
@@ -203,8 +202,7 @@
 /* Begin PBXFileReference section */
 		15133C74245862B300748945 /* EmojiCategory+L10n.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmojiCategory+L10n.swift"; sourceTree = "<group>"; };
 		15D5728324604C490062BD01 /* EmojiKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiKeyboard.swift; sourceTree = "<group>"; };
-		84086E2F235587DC0030D95A /* KeyboardViewController+Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardViewController+Buttons.swift"; sourceTree = "<group>"; };
-		84086E3323558C0F0030D95A /* KeyboardViewController+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardViewController+Setup.swift"; sourceTree = "<group>"; };
+		84086E3323558C0F0030D95A /* KeyboardViewController+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardViewController+Keyboard.swift"; sourceTree = "<group>"; };
 		843CBFA4250E9E5500BA541F /* DemoImageKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoImageKeyboard.swift; sourceTree = "<group>"; };
 		843CBFAA250EA93100BA541F /* ImageKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageKeyboard.swift; sourceTree = "<group>"; };
 		843CBFAC250EADAA00BA541F /* EmojiKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiKeyboard.swift; sourceTree = "<group>"; };
@@ -366,8 +364,7 @@
 				A95307542461308100CB37C3 /* Localization */,
 				846704BD234A725900355331 /* Supporting Files */,
 				8467045F234A711100355331 /* KeyboardViewController.swift */,
-				84086E2F235587DC0030D95A /* KeyboardViewController+Buttons.swift */,
-				84086E3323558C0F0030D95A /* KeyboardViewController+Setup.swift */,
+				84086E3323558C0F0030D95A /* KeyboardViewController+Keyboard.swift */,
 			);
 			path = KeyboardKitDemoKeyboard;
 			sourceTree = "<group>";
@@ -893,7 +890,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84086E3423558C0F0030D95A /* KeyboardViewController+Setup.swift in Sources */,
+				84086E3423558C0F0030D95A /* KeyboardViewController+Keyboard.swift in Sources */,
 				846704BE234A727F00355331 /* Assets.swift in Sources */,
 				15D5728424604C490062BD01 /* EmojiKeyboard.swift in Sources */,
 				846704B3234A725300355331 /* DemoKeyboardActionHandler.swift in Sources */,
@@ -903,7 +900,6 @@
 				84623A9C235615600024987B /* ImageKeyboard.swift in Sources */,
 				84670460234A711100355331 /* KeyboardViewController.swift in Sources */,
 				843CBFA6250E9EAA00BA541F /* DemoImageKeyboard.swift in Sources */,
-				84086E30235587DC0030D95A /* KeyboardViewController+Buttons.swift in Sources */,
 				15133C75245862B300748945 /* EmojiCategory+L10n.swift in Sources */,
 				84834619250D75D400C49F65 /* DemoKeyboardActionHandlerBase.swift in Sources */,
 			);
