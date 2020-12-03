@@ -12,26 +12,17 @@ import UIKit
 
 extension KeyboardViewController {
     
-    func setupKeyboard(for size: CGSize) {
-        DispatchQueue.main.async {
-            self.setupKeyboardAsync(for: size)
-        }
-    }
-}
-
-private extension KeyboardViewController {
-    
-    func setupKeyboardAsync(for size: CGSize) {
+    func setupDemoKeyboard() {
         keyboardStackView.removeAllArrangedSubviews()
         switch context.keyboardType {
         case .alphabetic, .numeric, .symbolic: setupSystemKeyboard()
-        case .emojis: setupEmojiKeyboard(for: size)
-        case .images: setupImageKeyboard(for: size)
+        case .emojis: setupEmojiKeyboard()
+        case .images: setupImageKeyboard()
         default: return
         }
     }
     
-    func setupEmojiKeyboard(for size: CGSize) {
+    func setupEmojiKeyboard() {
         let keyboard = EmojiKeyboard(in: self)
         let config = keyboard.gridConfig
         let view = KeyboardButtonRowCollectionView(id: "EmojiKeyboard", actions: keyboard.actions, configuration: config) { [unowned self] in return self.button(for: $0) }
@@ -47,7 +38,7 @@ private extension KeyboardViewController {
         emojiLabelUpdateAction()
     }
     
-    func setupImageKeyboard(for size: CGSize) {
+    func setupImageKeyboard() {
         let keyboard = ImageKeyboard(in: self)
         let view = KeyboardButtonRowCollectionView(actions: keyboard.actions, configuration: keyboard.gridConfig) { [unowned self] in return self.button(for: $0) }
         let bottom = buttonRow(for: keyboard.bottomActions, distribution: .fillProportionally)
@@ -67,16 +58,12 @@ private extension KeyboardViewController {
 
 @objc extension KeyboardViewController {
     
-    func refreshEmojiCategoryLabel() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: emojiLabelUpdateAction)
-    }
-    
     /**
      For now, this pan action handler delays updating, since
      the gesture ends before the scroll view stops scrolling.
      */
     func refreshEmojiCategoryLabel(_ recognizer: UIPanGestureRecognizer) {
         guard recognizer.state == .ended else { return }
-        refreshEmojiCategoryLabel()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: emojiLabelUpdateAction)
     }
 }

@@ -39,7 +39,7 @@ class KeyboardViewController: KeyboardInputViewController {
     
     /**
      The demo injects a custom, demo-specific action handler
-     when the controller is created.
+     and layout provider when the controller is created.
      */
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +50,8 @@ class KeyboardViewController: KeyboardInputViewController {
     }
     
     /**
-     The demo recreates the keyboard when a trait collection
-     changes, e.g. when the screen is rotated.
+     This demo recreates the keyboard when view controller's
+     trait collections change.
      */
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
@@ -59,19 +59,21 @@ class KeyboardViewController: KeyboardInputViewController {
     }
     
     /**
-     The demo recreates the keyboard when the app is resized,
-     e.g. when resizing an iPad app in split screen.
+     This demo recreates the keyboard when view controller's
+     size changes.
      */
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        setupKeyboard(for: size)
+        setupKeyboard()
     }
     
     
     // MARK: - Keyboard Functionality
     
     override func setupKeyboard() {
-        setupKeyboard(for: view.bounds.size)
+        DispatchQueue.main.async {
+            self.setupDemoKeyboard()
+        }
     }
     
     
