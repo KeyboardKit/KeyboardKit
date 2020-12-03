@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/danielsaidi/KeyboardKit",
         "state": {
           "branch": "master",
-          "revision": "a7496b2b6f223b7684a9f33d80cea439df736254",
+          "revision": "0e3d4d2f02b8020c6244235b1e9edbcb448a5e0a",
           "version": null
         }
       },
@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/danielsaidi/KeyboardKitSwiftUI",
         "state": {
           "branch": "master",
-          "revision": "187166bac9b8deaaab1d213ecc21233ba2e1cf97",
+          "revision": "42f1e7182b6c145b28dc71be8fe97a291538fb1c",
           "version": null
         }
       }

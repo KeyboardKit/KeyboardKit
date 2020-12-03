@@ -1,5 +1,5 @@
 //
-//  KeyboardViewController+Setup.swift
+//  KeyboardViewController+Keyboard.swift
 //  KeyboardKitDemoKeyboard
 //
 //  Created by Daniel Saidi on 2019-10-15.
@@ -10,6 +10,14 @@ import Foundation
 import KeyboardKit
 import UIKit
 
+/**
+ This extension sets up the different keyboards for the demo.
+ 
+ `NOTE` This extension has a hack for adding an edge padding
+ to the second row on English keyboards. This is just a hack
+ to show how this can be done and must be generalized before
+ something like this could be added to the core library.
+ */
 extension KeyboardViewController {
     
     func setupDemoKeyboard() {
@@ -64,14 +72,33 @@ private extension KeyboardViewController {
         return view
     }
     
-    func buttonRows(for rows: KeyboardActionRows, distribution: UIStackView.Distribution) -> [UIView] {
-        rows.map { buttonRow(for: $0, distribution: distribution) }
-    }
-    
-    func buttonRow(for row: KeyboardActionRow, distribution: UIStackView.Distribution) -> UIView {
+    func buttonRow(for row: KeyboardActionRow, index: Int = 0, distribution: UIStackView.Distribution) -> UIView {
         KeyboardButtonRow(actions: row, distribution: distribution) {
             button(for: $0, distribution: distribution)
         }
+    }
+    
+    func buttonRows(for rows: KeyboardActionRows, distribution: UIStackView.Distribution) -> [UIView] {
+        rows.enumerated().map { offset, row in
+            let row = buttonRow(for: row, distribution: distribution)
+            let insets = edgeInsets(atRow: offset)
+            let view = UIView()
+            view.addSubview(row, fill: true, insets: insets)
+            return view
+        }
+    }
+}
+
+private extension KeyboardViewController {
+    
+    func edgeInsets(atRow row: Int) -> UIEdgeInsets {
+        guard context.locale.identifier.starts(with: "en") else { return .zero }
+        guard row == 1 else { return .zero }
+        let isIpad = context.device.userInterfaceIdiom == .pad
+        let inset = UIScreen.main.bounds.width * 0.05
+        let left = inset
+        let right = isIpad ? 0 : -inset
+        return UIEdgeInsets(top: 0, left: left, bottom: 0, right: right)
     }
 }
 
