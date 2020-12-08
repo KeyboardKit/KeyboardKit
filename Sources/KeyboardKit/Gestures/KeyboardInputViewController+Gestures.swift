@@ -44,10 +44,11 @@ private extension KeyboardInputViewController {
     }
     
     func addRepeatingGesture(to button: KeyboardButton) {
+        weak var button = button
         let gesture = RepeatingGestureRecognizer { [weak self] in
             self?.handle(.repeatPress, on: button)
         }
-        button.addGestureRecognizer(gesture)
+        button?.addGestureRecognizer(gesture)
     }
     
     func addTapGesture(to button: KeyboardButton) {
