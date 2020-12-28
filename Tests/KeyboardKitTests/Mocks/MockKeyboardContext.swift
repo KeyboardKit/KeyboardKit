@@ -30,7 +30,7 @@ class MockKeyboardContext: KeyboardContext {
     var locale: Locale = .current
     var needsInputModeSwitchKey = false
     var primaryLanguage: String?
-    var textDocumentProxy: UITextDocumentProxy = UIInputViewController().textDocumentProxy
+    var textDocumentProxy: UITextDocumentProxy = MockTextDocumentProxy()
     var textInputMode: UITextInputMode?
     var traitCollection: UITraitCollection = .init()
 }

@@ -18,9 +18,22 @@ open class StandardKeyboardActionBehavior: KeyboardActionBehavior {
     
     public init() {}
     
-    open func shouldChangeToAlphabeticLowercase(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool {
+    public var endSentenceAction: KeyboardAction {
+        .character(". ")
+    }
+    
+    public func shouldEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool {
+        guard let preCursor = context.textDocumentProxy.documentContextBeforeInput else { return false }
+        guard preCursor.hasSuffix(" ") else { return false }
+        switch action {
+        case .space: return true
+        case .character(let char): return char == " "
+        default: return false
+        }
+    }
+    
+    open func shouldSwitchToAlphabeticLowercase(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool {
         guard case .alphabetic(.uppercased) = context.keyboardType else { return false }
-        guard case .tap = gesture else { return false }
         guard case .character = action else { return false }
         return true
     }
