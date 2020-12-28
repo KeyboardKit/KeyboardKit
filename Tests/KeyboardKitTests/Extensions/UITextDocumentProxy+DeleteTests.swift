@@ -8,7 +8,7 @@
 
 import Quick
 import Nimble
-@testable import KeyboardKit
+import KeyboardKit
 
 class UITextDocumentProxy_DeleteTests: QuickSpec {
     

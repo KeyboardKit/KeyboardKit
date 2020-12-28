@@ -8,7 +8,7 @@
 
 import Quick
 import Nimble
-@testable import KeyboardKit
+import KeyboardKit
 
 class UITextDocumentProxy_CurrentWordTests: QuickSpec {
     
@@ -111,27 +111,6 @@ class UITextDocumentProxy_CurrentWordTests: QuickSpec {
                     let result = proxy.currentWordPostCursorPart
                     expect(result).to(equal(expected))
                 }
-            }
-        }
-        
-        describe("is cursor at the beginning of a new sentence") {
-            
-            func result(for preCursorPart: String) -> Bool {
-                proxy.documentContextBeforeInput = preCursorPart
-                return proxy.isCursorAtTheBeginningOfASentence
-            }
-            
-            it("returns true if pre cursor part is missing") {
-                expect(proxy.isCursorAtTheBeginningOfASentence).to(beTrue())
-            }
-            
-            it("returns false if pre cursor part ends with a non-word delimiter") {
-                expect(result(for: "foo")).to(beFalse())
-            }
-            
-            it("returns false if pre cursor part ends with a word delimiter") {
-                expect(result(for: "foo.")).to(beTrue())
-                expect(result(for: "foo! ")).to(beTrue())
             }
         }
         

@@ -88,16 +88,6 @@ public extension UITextDocumentProxy {
 extension UITextDocumentProxy {
     
     /**
-     A list of characters that represent the end of a word.
-     
-     This only works for western keyboards. We should find a
-     way to handle this for e.g. chinese keyboards.
-     */
-    var wordDelimiters: [String] {
-        ["!", ".", ",", "?", ";", ":", " "]
-    }
-    
-    /**
      Check if a certain character should be included in the
      current word.
      */

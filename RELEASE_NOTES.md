@@ -18,8 +18,9 @@ Note that this is an experimental feature that may have to be revisited before 4
 
 ### New features
 
-* `UITextDocumentProxy` has a new `isCursorAtTheBeginningOfASentence` extension property.
-* `UITextDocumentProxy` has a new `endSentence` extension that removes any space before the cursor, then closes the sentence.
+* `UITextDocumentProxy` has a new `isCursorAtTheBeginningOfASentence` property.
+* `UITextDocumentProxy` has a new `endSentence` function that removes any space before the cursor, then closes the sentence.
+* `UITextDocumentProxy` has a new `wordDelimiters` property.
 
 ### Behavior changes
 
