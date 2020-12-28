@@ -22,11 +22,7 @@ import KeyboardKitSwiftUI
  */
 struct KeyboardView: View {
     
-    init(controller: KeyboardInputViewController) {
-        self.controller = controller
-    }
-    
-    private let controller: KeyboardInputViewController
+    let controller: KeyboardInputViewController
     
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     @EnvironmentObject var context: ObservableKeyboardContext

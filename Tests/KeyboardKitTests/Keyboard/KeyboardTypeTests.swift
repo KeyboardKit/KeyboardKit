@@ -33,46 +33,7 @@ class KeyboardTypeTests: QuickSpec {
                 expect(result(for: .custom(""))).to(beFalse())
             }
         }
-        
-        describe("standard bottom keyboard switcher action") {
-            
-            func result(for type: KeyboardType) -> KeyboardAction? {
-                type.standardBottomKeyboardSwitcherAction
-            }
-            
-            it("is only defined for some types") {
-                expect(result(for: .alphabetic(.lowercased))).to(equal(.keyboardType(.numeric)))
-                expect(result(for: .alphabetic(.uppercased))).to(equal(.keyboardType(.numeric)))
-                expect(result(for: .alphabetic(.capsLocked))).to(equal(.keyboardType(.numeric)))
-                expect(result(for: .numeric)).to(equal(.keyboardType(.alphabetic(.lowercased))))
-                expect(result(for: .symbolic)).to(equal(.keyboardType(.alphabetic(.lowercased))))
-                expect(result(for: .email)).to(beNil())
-                expect(result(for: .emojis)).to(beNil())
-                expect(result(for: .images)).to(beNil())
-                expect(result(for: .images)).to(beNil())
-                expect(result(for: .custom(""))).to(beNil())
-            }
-        }
-        
-        describe("standard side keyboard switcher action") {
-            
-            func result(for type: KeyboardType) -> KeyboardAction? {
-                type.standardSideKeyboardSwitcherAction
-            }
-            
-            it("is only defined for some types") {
-                expect(result(for: .alphabetic(.lowercased))).to(equal(KeyboardAction.shift(currentState: .lowercased)))
-                expect(result(for: .alphabetic(.uppercased))).to(equal(KeyboardAction.shift(currentState: .uppercased)))
-                expect(result(for: .alphabetic(.capsLocked))).to(equal(KeyboardAction.shift(currentState: .uppercased)))
-                expect(result(for: .numeric)).to(equal(.keyboardType(.symbolic)))
-                expect(result(for: .symbolic)).to(equal(.keyboardType(.numeric)))
-                expect(result(for: .email)).to(beNil())
-                expect(result(for: .emojis)).to(beNil())
-                expect(result(for: .images)).to(beNil())
-                expect(result(for: .images)).to(beNil())
-                expect(result(for: .custom(""))).to(beNil())
-            }
-        }
+
         
         describe("can be replaced with keyboard type") {
             

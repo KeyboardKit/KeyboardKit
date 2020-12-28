@@ -12,23 +12,19 @@ import UIKit
 /**
  This keyboard layout provider bases its layout decisions on
  factors like device, screen orientation and locale. It aims
- to create a system keyboard layout for the provided context,
- which is not always what you want.
+ to create a system keyboard layout for the provided context.
+ 
+ This may not always be what you want. If you want to create
+ keyboard extensions with a custom layout, you should either
+ not use a layout provider, or use a custom one. If you want
+ to create a custom one, you can inherit this class and then
+ build on its foundation.
  
  This provider will fallback to lowercased alphabetic layout
  if the current context state doesn't have a standard layout.
  One example is if the current keyboard type is `.emojis` or
- another non-standard keyboard. Make sure to check for these
- states your self, and only use this for standard use cases.
- 
- If you want to create a custom keyboard extension that does
- not rely on standard system keyboard conventions, you could
- register a custom layout provider or just ignore the entire
- layout provider concept altogether.
- 
- You can inherit and customize this class to create your own
- provider that builds on this foundation.
- 
+ another non-standard keyboard.
+
  You can provide a custom left and right space action, which
  gives you a chance to customize the default actions, but in
  a limited way. If you want to make bigger changes, subclass.
@@ -36,8 +32,8 @@ import UIKit
  `IMPORTANT` This is a best effort. The iOS/iPadOS keyboards
  have layouts that depend on many factors. Some locales will
  not receive the correct layout with this implementation. To
- solve this, either subclass and fill in the gaps, or better:
- add the missing parts that you find and send a PR.
+ solve this, either subclass this class and fill in the gaps,
+ or add the missing parts that you find and send a PR.
  */
 open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     
@@ -266,6 +262,27 @@ private extension KeyboardContext {
         case .numeric: return provider.numericInputSet.inputRows
         case .symbolic: return provider.symbolicInputSet.inputRows
         default: return provider.alphabeticInputSet.inputRows
+        }
+    }
+}
+
+private extension KeyboardType {
+    
+    var standardBottomKeyboardSwitcherAction: KeyboardAction? {
+        switch self {
+        case .alphabetic: return .keyboardType(.numeric)
+        case .numeric: return .keyboardType(.alphabetic(.lowercased))
+        case .symbolic: return .keyboardType(.alphabetic(.lowercased))
+        default: return nil
+        }
+    }
+
+    var standardSideKeyboardSwitcherAction: KeyboardAction? {
+        switch self {
+        case .alphabetic(let state): return .shift(currentState: state)
+        case .numeric: return .keyboardType(.symbolic)
+        case .symbolic: return .keyboardType(.numeric)
+        default: return nil
         }
     }
 }

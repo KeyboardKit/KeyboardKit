@@ -39,24 +39,6 @@ public extension KeyboardType {
         }
     }
     
-    var standardBottomKeyboardSwitcherAction: KeyboardAction? {
-        switch self {
-        case .alphabetic: return .keyboardType(.numeric)
-        case .numeric: return .keyboardType(.alphabetic(.lowercased))
-        case .symbolic: return .keyboardType(.alphabetic(.lowercased))
-        default: return nil
-        }
-    }
-    
-    var standardSideKeyboardSwitcherAction: KeyboardAction? {
-        switch self {
-        case .alphabetic(let state): return state.standardSiderSwitchAction
-        case .numeric: return .keyboardType(.symbolic)
-        case .symbolic: return .keyboardType(.numeric)
-        default: return nil
-        }
-    }
-    
     /**
      Whether or not the system can change keyboard type to a
      certain type. This is just the preferred behavior given
@@ -70,12 +52,5 @@ public extension KeyboardType {
             else { return true }
         if state == .capsLocked && newState == .uppercased { return false }
         return true
-    }
-}
-
-private extension KeyboardShiftState {
-    
-    var standardSiderSwitchAction: KeyboardAction {
-        isUppercased ? .shift(currentState: .uppercased) : .shift(currentState: .lowercased)
     }
 }
