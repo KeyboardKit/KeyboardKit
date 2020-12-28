@@ -29,6 +29,7 @@ class MockTextDocumentProxy: NSObject, UITextDocumentProxy, Mockable {
     
     var hasText: Bool = false
     
+    var autocapitalizationType: UITextAutocapitalizationType = .none
     var documentContextBeforeInput: String?
     var documentContextAfterInput: String?
     var selectedText: String?

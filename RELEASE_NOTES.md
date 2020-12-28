@@ -18,8 +18,11 @@ Note that this is an experimental feature that may have to be revisited before 4
 
 ### New features
 
-* `UITextDocumentProxy` has a new `isCursorAtTheBeginningOfASentence` property.
+* `KeyboardContext` has a new `preferredKeyboardType` property.
+* `UITextDocumentProxy` has a new `isCursorAtNewSentence` property.
+* `UITextDocumentProxy` has a new `isCursorAtNewWord` property.
 * `UITextDocumentProxy` has a new `endSentence` function that removes any space before the cursor, then closes the sentence.
+* `UITextDocumentProxy` has a new `sentenceDelimiters` property.
 * `UITextDocumentProxy` has a new `wordDelimiters` property.
 
 ### Behavior changes

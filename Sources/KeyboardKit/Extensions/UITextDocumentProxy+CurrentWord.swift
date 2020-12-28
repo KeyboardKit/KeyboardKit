@@ -8,6 +8,11 @@
 
 import UIKit
 
+/**
+ `NOTE` The concept of a current word only works for western
+ keyboards. We should find another approach for e.g. chinese
+ and other symbol-based keyboards.
+ */
 public extension UITextDocumentProxy {
     
     /**
@@ -45,16 +50,6 @@ public extension UITextDocumentProxy {
             result.append(char)
         }
         return result
-    }
-    
-    /**
-     Whether or not the text document proxy cursor is at the
-     beginning of a new sentence.
-     */
-    var isCursorAtTheBeginningOfASentence: Bool {
-        guard let pre = documentContextBeforeInput else { return true }
-        let lastCharacter = String(pre.suffix(1))
-        return wordDelimiters.contains(lastCharacter)
     }
     
     /**
