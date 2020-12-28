@@ -24,7 +24,7 @@ public extension KeyboardContext {
         case .allCharacters: return uppercased
         case .sentences: return proxy.isCursorAtNewSentence ? uppercased : keyboardType
         case .words: return proxy.isCursorAtNewWord ? uppercased : keyboardType
-        default: return keyboardType
+        default: return .alphabetic(.lowercased)
         }
     }
 }

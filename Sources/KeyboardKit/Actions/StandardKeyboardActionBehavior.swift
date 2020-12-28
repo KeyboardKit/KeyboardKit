@@ -16,9 +16,8 @@ open class StandardKeyboardActionBehavior: KeyboardActionBehavior {
     
     public init() {}
     
-    open func preferredKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> KeyboardType {
-        if shouldSwitchToAlphabeticLowercase(after: gesture, on: action, for: context) { return .alphabetic(.lowercased) }
-        return context.keyboardType
+    public func preferredKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> KeyboardType {
+        context.preferredKeyboardType
     }
     
     open func shouldEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool {
@@ -33,9 +32,7 @@ open class StandardKeyboardActionBehavior: KeyboardActionBehavior {
         }
     }
     
-    open func shouldSwitchToAlphabeticLowercase(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool {
-        guard case .alphabetic(.uppercased) = context.keyboardType else { return false }
-        guard case .character = action else { return false }
-        return true
+    open func shouldSwitchToPreferredKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool {
+        context.keyboardType != context.preferredKeyboardType
     }
 }

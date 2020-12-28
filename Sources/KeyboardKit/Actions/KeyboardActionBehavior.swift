@@ -32,4 +32,11 @@ public protocol KeyboardActionBehavior {
      the provided action has been performed.
      */
     func shouldEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool
+    
+    /**
+     Whether or not the current keyboard type should be auto
+     switched to the behavior's preferred keyboard type when
+     the provided action has been performed.
+     */
+    func shouldSwitchToPreferredKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool
 }

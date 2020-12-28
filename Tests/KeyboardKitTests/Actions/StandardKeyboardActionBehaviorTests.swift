@@ -29,16 +29,15 @@ class StandardKeyboardActionBehaviorTests: QuickSpec {
         
         describe("preferred keyboard type after gesture on action") {
             
-            func result(for gesture: KeyboardGesture, on action: KeyboardAction, current type: KeyboardType) -> KeyboardType? {
-                context.keyboardType = type
-                return behavior.preferredKeyboardType(after: gesture, on: action, for: context)
+            func result(for gesture: KeyboardGesture, on action: KeyboardAction, context: KeyboardContext) -> KeyboardType {
+                behavior.preferredKeyboardType(after: gesture, on: action, for: context)
             }
             
-            it("is defined for character tap in uppercased alphabetic keyboard") {
-                expect(result(for: .tap, on: .character("foo"), current: .alphabetic(.uppercased))).to(equal(KeyboardType.alphabetic(.lowercased)))
-                expect(result(for: .tap, on: .character("foo"), current: .alphabetic(.capsLocked))).to(equal(KeyboardType.alphabetic(.capsLocked)))
-                expect(result(for: .tap, on: .character("foo"), current: .alphabetic(.lowercased))).to(equal(KeyboardType.alphabetic(.lowercased)))
-                expect(result(for: .longPress, on: .character("foo"), current: .symbolic)).to(equal(.symbolic))
+            it("is the context's preferred keyboard type") {
+                proxy.documentContextBeforeInput = "Hello!"
+                proxy.autocapitalizationType = .allCharacters
+                context.keyboardType = .alphabetic(.lowercased)
+                expect(result(for: .tap, on: .character("i"), context: context)).to(equal(.alphabetic(.uppercased)))
             }
         }
         
@@ -60,18 +59,24 @@ class StandardKeyboardActionBehaviorTests: QuickSpec {
             }
         }
         
-        describe("should switch to alphabetic lowercase after gesture on action") {
+        describe("should switch to preferred keyboard type after gesture on action") {
             
             func result(for gesture: KeyboardGesture, on action: KeyboardAction, context: KeyboardContext) -> Bool {
-                behavior.shouldSwitchToAlphabeticLowercase(after: gesture, on: action, for: context)
+                behavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action, for: context)
             }
             
-            it("is only true for character action on uppercased alpha keyboard") {
-                context.keyboardType = .alphabetic(.uppercased)
-                expect(result(for: .tap, on: .character("i"), context: context)).to(beTrue())
-                expect(result(for: .tap, on: .command, context: context)).to(beFalse())
+            it("is true is the current keyboard type differs from the preferred one") {
+                proxy.documentContextBeforeInput = "Hello!"
+                proxy.autocapitalizationType = .allCharacters
                 context.keyboardType = .alphabetic(.lowercased)
-                expect(result(for: .tap, on: .character("s"), context: context)).to(beFalse())
+                expect(result(for: .tap, on: .character("i"), context: context)).to(beTrue())
+            }
+            
+            it("is false is the current keyboard type is the same as the preferred one") {
+                proxy.documentContextBeforeInput = "Hello!"
+                proxy.autocapitalizationType = .none
+                context.keyboardType = .alphabetic(.lowercased)
+                expect(result(for: .tap, on: .character("i"), context: context)).to(beFalse())
             }
         }
     }
