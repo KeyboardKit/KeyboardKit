@@ -36,7 +36,7 @@ class StandardKeyboardLayoutProviderTests: QuickSpec {
                 let lowerFirst = lower.first
                 let lowerLast = lower.last
                 let lowerCenter = lower.filter { $0 != lowerFirst && $0 != lowerLast }
-                expect(lowerFirst).to(equal(.shift(currentState: .lowercased)))
+                expect(lowerFirst).to(equal(KeyboardAction.shift(currentState: .lowercased)))
                 expect(lowerCenter).to(equal(rows[2]))
                 expect(lowerLast).to(equal(.backspace))
             }
@@ -60,12 +60,12 @@ class StandardKeyboardLayoutProviderTests: QuickSpec {
             it("is correct for a home button pad") {
                 context.needsInputModeSwitchKey = true
                 let result = provider.keyboardLayout(for: context, iPad: true, rows: rows).actionRows
-                expect(result[0].first).to(equal(.character("q")))
+                expect(result[0].first).to(equal(KeyboardAction.character("q")))
                 expect(result[0].last).to(equal(.backspace))
-                expect(result[1].first).to(equal(.character("a")))
+                expect(result[1].first).to(equal(KeyboardAction.character("a")))
                 expect(result[1].last).to(equal(.newLine))
-                expect(result[2].first).to(equal(.shift(currentState: .lowercased)))
-                expect(result[2].last).to(equal(.shift(currentState: .lowercased)))
+                expect(result[2].first).to(equal(KeyboardAction.shift(currentState: .lowercased)))
+                expect(result[2].last).to(equal(KeyboardAction.shift(currentState: .lowercased)))
                 let bottom: [KeyboardAction] = [.keyboardType(.numeric), .nextKeyboard, .done, .space, .escape, .keyboardType(.numeric), .dismissKeyboard]
                 expect(result[3]).to(equal(bottom))
             }
@@ -77,8 +77,8 @@ class StandardKeyboardLayoutProviderTests: QuickSpec {
                 expect(result[0].last).to(equal(.backspace))
                 expect(result[1].first).to(equal(.keyboardType(.alphabetic(.capsLocked))))
                 expect(result[1].last).to(equal(.newLine))
-                expect(result[2].first).to(equal(.shift(currentState: .lowercased)))
-                expect(result[2].last).to(equal(.shift(currentState: .lowercased)))
+                expect(result[2].first).to(equal(KeyboardAction.shift(currentState: .lowercased)))
+                expect(result[2].last).to(equal(KeyboardAction.shift(currentState: .lowercased)))
                 let bottom: [KeyboardAction] = [.nextKeyboard, .keyboardType(.numeric), .done, .space, .escape, .keyboardType(.numeric), .dismissKeyboard]
                 expect(result[3]).to(equal(bottom))
             }

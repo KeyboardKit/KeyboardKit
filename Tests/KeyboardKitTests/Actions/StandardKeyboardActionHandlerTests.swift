@@ -121,7 +121,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             }
             
             it("is defined for character tap in uppercased alphabetic keyboard") {
-                expect(result(for: .tap, on: .character("foo"), current: .alphabetic(.uppercased))).to(equal(.alphabetic(.lowercased)))
+                expect(result(for: .tap, on: .character("foo"), current: .alphabetic(.uppercased))).to(equal(KeyboardType.alphabetic(.lowercased)))
                 expect(result(for: .tap, on: .character("foo"), current: .alphabetic(.capsLocked))).to(beNil())
                 expect(result(for: .tap, on: .character("foo"), current: .alphabetic(.lowercased))).to(beNil())
                 expect(result(for: .tap, on: .image(description: "", keyboardImageName: "", imageName: ""), current: .numeric)).to(beNil())

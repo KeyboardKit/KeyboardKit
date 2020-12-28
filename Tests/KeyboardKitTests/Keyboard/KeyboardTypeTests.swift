@@ -61,9 +61,9 @@ class KeyboardTypeTests: QuickSpec {
             }
             
             it("is only defined for some types") {
-                expect(result(for: .alphabetic(.lowercased))).to(equal(.shift(currentState: .lowercased)))
-                expect(result(for: .alphabetic(.uppercased))).to(equal(.shift(currentState: .uppercased)))
-                expect(result(for: .alphabetic(.capsLocked))).to(equal(.shift(currentState: .uppercased)))
+                expect(result(for: .alphabetic(.lowercased))).to(equal(KeyboardAction.shift(currentState: .lowercased)))
+                expect(result(for: .alphabetic(.uppercased))).to(equal(KeyboardAction.shift(currentState: .uppercased)))
+                expect(result(for: .alphabetic(.capsLocked))).to(equal(KeyboardAction.shift(currentState: .uppercased)))
                 expect(result(for: .numeric)).to(equal(.keyboardType(.symbolic)))
                 expect(result(for: .symbolic)).to(equal(.keyboardType(.numeric)))
                 expect(result(for: .email)).to(beNil())
