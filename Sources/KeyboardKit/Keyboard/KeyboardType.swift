@@ -30,16 +30,6 @@ public enum KeyboardType: Equatable {
 public extension KeyboardType {
     
     /**
-     Whether or not the keyboard type is alphabetic.
-     */
-    var isAlphabetic: Bool {
-        switch self {
-        case .alphabetic: return true
-        default: return false
-        }
-    }
-    
-    /**
      Whether or not the system can change keyboard type to a
      certain type. This is just the preferred behavior given
      how the standard system behaves. You do not have to use
@@ -52,5 +42,26 @@ public extension KeyboardType {
             else { return true }
         if state == .capsLocked && newState == .uppercased { return false }
         return true
+    }
+    
+    /**
+     Whether or not the keyboard type is alphabetic.
+     */
+    var isAlphabetic: Bool {
+        switch self {
+        case .alphabetic: return true
+        default: return false
+        }
+    }
+    
+    /**
+     Whether or not the keyboard type is alphabetic and with
+     a certain shift state.
+     */
+    func isAlphabetic(with shiftState: KeyboardShiftState) -> Bool {
+        switch self {
+        case .alphabetic(let state): return state == shiftState
+        default: return false
+        }
     }
 }

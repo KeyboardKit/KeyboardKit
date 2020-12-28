@@ -53,6 +53,16 @@ class KeyboardContext_KeyboardTypeTests: QuickSpec {
                 expect(result(for: current, preCursorPart: "foo! ", type: type)).to(equal(expected))
             }
             
+            it("always returns caps-locled for caps-locked") {
+                let current = KeyboardType.alphabetic(.capsLocked)
+                let type = UITextAutocapitalizationType.sentences
+                expect(result(for: current, preCursorPart: "", type: type)).to(equal(current))
+                expect(result(for: current, preCursorPart: "foo", type: type)).to(equal(current))
+                expect(result(for: current, preCursorPart: "foo ", type: type)).to(equal(current))
+                expect(result(for: current, preCursorPart: "foo!", type: type)).to(equal(current))
+                expect(result(for: current, preCursorPart: "foo! ", type: type)).to(equal(current))
+            }
+            
             it("returns correct result for sentences capitalizaton") {
                 let current = KeyboardType.alphabetic(.lowercased)
                 let type = UITextAutocapitalizationType.sentences

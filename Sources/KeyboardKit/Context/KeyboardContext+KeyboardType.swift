@@ -18,13 +18,15 @@ public extension KeyboardContext {
     var preferredKeyboardType: KeyboardType {
         let proxy = textDocumentProxy
         guard let autoType = proxy.autocapitalizationType else { return keyboardType }
+        if keyboardType.isAlphabetic(with: .capsLocked) { return keyboardType }
         guard keyboardType.isAlphabetic else { return keyboardType }
         let uppercased = KeyboardType.alphabetic(.uppercased)
+        let lowercased = KeyboardType.alphabetic(.lowercased)
         switch autoType {
         case .allCharacters: return uppercased
-        case .sentences: return proxy.isCursorAtNewSentence ? uppercased : keyboardType
-        case .words: return proxy.isCursorAtNewWord ? uppercased : keyboardType
-        default: return .alphabetic(.lowercased)
+        case .sentences: return proxy.isCursorAtNewSentence ? uppercased : lowercased
+        case .words: return proxy.isCursorAtNewWord ? uppercased : lowercased
+        default: return lowercased
         }
     }
 }
