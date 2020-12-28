@@ -27,14 +27,6 @@ class StandardKeyboardActionBehaviorTests: QuickSpec {
             context.textDocumentProxy = proxy
         }
         
-        describe("end sentence action") {
-            
-            it("is a dot and a space") {
-                let action = behavior.endSentenceAction
-                expect(action).to(equal(.character(". ")))
-            }
-        }
-        
         describe("preferred keyboard type after gesture on action") {
             
             func result(for gesture: KeyboardGesture, on action: KeyboardAction, current type: KeyboardType) -> KeyboardType? {
@@ -58,11 +50,12 @@ class StandardKeyboardActionBehaviorTests: QuickSpec {
             }
             
             it("is only true for space after a previous space") {
-                proxy.documentContextBeforeInput = "hej "
+                proxy.documentContextBeforeInput = "hej  "
                 expect(result(for: .tap, on: .space, context: context)).to(beTrue())
                 expect(result(for: .tap, on: .character(" "), context: context)).to(beTrue())
                 expect(result(for: .tap, on: .command, context: context)).to(beFalse())
-                proxy.documentContextBeforeInput = "hej."
+                proxy.documentContextBeforeInput = "hej. "
+                expect(result(for: .tap, on: .space, context: context)).to(beFalse())
                 expect(result(for: .tap, on: .character(" "), context: context)).to(beFalse())
             }
         }

@@ -72,8 +72,10 @@ public extension KeyboardAction {
         return { vc in
             guard let proxy = vc?.textDocumentProxy else { return }
             guard proxy.isCursorAtTheEndOfTheCurrentWord else { return }
-            proxy.deleteBackward(times: 1)
-            KeyboardAction.character(".").standardTapAction?(vc)
+            while (proxy.documentContextBeforeInput ?? "").hasSuffix(" ") {
+                proxy.deleteBackward(times: 1)
+            }
+            proxy.insertText(". ")
         }
     }
     

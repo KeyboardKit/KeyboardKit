@@ -151,12 +151,10 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             }
             
             it("ends sentence with behavior action if behavior says yes") {
-                proxy.documentContextBeforeInput = " "
+                proxy.documentContextBeforeInput = "foo  "
                 handler.tryEndSentence(after: .tap, on: .character(" "))
-                let inv = handler.invokations(of: handler.handleRef)
-                expect(inv.count).to(equal(1))
-                expect(inv[0].arguments.0).to(equal(.tap))
-                expect(inv[0].arguments.1).to(equal(.character(". ")))
+                expect(proxy.hasInvoked(proxy.deleteBackwardRef, numberOfTimes: 2)).to(beTrue())
+                expect(proxy.hasInvoked(proxy.insertTextRef, numberOfTimes: 1)).to(beTrue())
             }
         }
         

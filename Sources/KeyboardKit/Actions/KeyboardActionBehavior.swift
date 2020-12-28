@@ -21,8 +21,15 @@ import Foundation
  */
 public protocol KeyboardActionBehavior {
     
-    var endSentenceAction: KeyboardAction { get }
-    
+    /**
+     The preferred keyboard type that should be applied when
+     the provided action has been performed.
+     */
     func preferredKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> KeyboardType
+    
+    /**
+     Whether or not the active sentence should be ended when
+     the provided action has been performed.
+     */
     func shouldEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool
 }

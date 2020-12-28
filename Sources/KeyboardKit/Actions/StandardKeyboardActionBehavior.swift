@@ -10,17 +10,11 @@ import Foundation
 
 /**
  This class defines how a standard, Western keyboard behaves.
- 
- You can subclass this class and override any implementation
- details you need.
+ You can subclass it and override any parts you need.
  */
 open class StandardKeyboardActionBehavior: KeyboardActionBehavior {
     
     public init() {}
-    
-    public var endSentenceAction: KeyboardAction {
-        .character(". ")
-    }
     
     open func preferredKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> KeyboardType {
         if shouldSwitchToAlphabeticLowercase(after: gesture, on: action, for: context) { return .alphabetic(.lowercased) }
@@ -28,11 +22,13 @@ open class StandardKeyboardActionBehavior: KeyboardActionBehavior {
     }
     
     open func shouldEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool {
-        guard let preCursor = context.textDocumentProxy.documentContextBeforeInput else { return false }
-        guard preCursor.hasSuffix(" ") else { return false }
+        let proxy = context.textDocumentProxy
+        let isAtEnd = proxy.isCursorAtTheEndOfTheCurrentWord
+        let isClosable = (proxy.documentContextBeforeInput ?? "").hasSuffix("  ")
+        let shouldClose = isAtEnd && isClosable
         switch action {
-        case .space: return true
-        case .character(let char): return char == " "
+        case .space: return shouldClose
+        case .character(let char): return char == " " && shouldClose
         default: return false
         }
     }

@@ -16,9 +16,14 @@ You can create your own behaviors as well as subclass and override parts of the 
 
 Note that this is an experimental feature that may have to be revisited before 4.0.
 
+### New features
+
+* The text document proxy has a new `endSentence` action that removes any space before the cursor, then closes the sentence.
+
 ### Behavior changes
 
 * The sentence ending logic is moved from double-tap on space to the new action behavior.
+* The sentence ending logic is no longer based on double-tap, which makes it easier to use.
 
 ### Bug fixes
 
@@ -26,6 +31,7 @@ Note that this is an experimental feature that may have to be revisited before 4
 
 ### Deprecations
 
+* `KeyboardAction` `endSentenceAction` has been moved to `UITextDocumentProxy+EndSentence`.
 * `StandardKeyboardActionHandler` `handleKeyboardSwitch` is renamed to `handleKeyboardTypeChange`.
 * `StandardKeyboardActionHandler` `preferredKeyboardType` has been moved to the action behavior.
 
