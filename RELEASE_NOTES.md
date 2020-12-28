@@ -3,6 +3,13 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions.
 
 
+## 3.2.1
+
+This release contains minor improvements and bug fixes:
+
+* The standard keyboard layout has been fixed to use the correct caps-lock button image.
+
+
 ## 3.2.0
 
 This release contains improvements to the input set logic:
