@@ -9,8 +9,8 @@
 import Quick
 import Nimble
 import Mockery
-import KeyboardKit
 import UIKit
+@testable import KeyboardKit
 
 class StandardKeyboardActionBehaviorTests: QuickSpec {
     
@@ -33,11 +33,33 @@ class StandardKeyboardActionBehaviorTests: QuickSpec {
                 behavior.preferredKeyboardType(after: gesture, on: action, for: context)
             }
             
-            it("is the context's preferred keyboard type") {
+            it("is by default the context preferred keyboard type") {
                 proxy.documentContextBeforeInput = "Hello!"
                 proxy.autocapitalizationType = .allCharacters
                 context.keyboardType = .alphabetic(.lowercased)
                 expect(result(for: .tap, on: .character("i"), context: context)).to(equal(.alphabetic(.uppercased)))
+            }
+            
+            it("is context preferred keyboard type if shift is double-tapped too slowly") {
+                context.keyboardType = .alphabetic(.uppercased)
+                behavior.lastShiftCheck = .distantPast
+                expect(result(for: .tap, on: .shift(currentState: .uppercased), context: context)).to(equal(.alphabetic(.lowercased)))
+            }
+            
+            it("is context preferred keyboard type if non-shift is double-tapped") {
+                context.keyboardType = .alphabetic(.uppercased)
+                expect(result(for: .tap, on: .command, context: context)).to(equal(.alphabetic(.lowercased)))
+            }
+            
+            it("is context preferred keyboard type if current keyboard type is not upper-cased") {
+                context.keyboardType = .alphabetic(.lowercased)
+                expect(result(for: .tap, on: .command, context: context)).to(equal(.alphabetic(.lowercased)))
+            }
+            
+            it("is caps-locked if shift is double-tapped quickly") {
+                context.keyboardType = .alphabetic(.uppercased)
+                behavior.lastShiftCheck = .distantPast
+                expect(result(for: .tap, on: .shift(currentState: .uppercased), context: context)).to(equal(.alphabetic(.lowercased)))
             }
         }
         

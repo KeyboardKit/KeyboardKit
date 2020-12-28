@@ -89,8 +89,23 @@ class KeyboardActionTests: QuickSpec {
                     .emoji(""),
                     .image(description: "", keyboardImageName: "", imageName: ""),
                     .space,
-                    .systemImage(description: "", keyboardImageName: "", imageName: "")
-                ]
+                    .systemImage(description: "", keyboardImageName: "", imageName: "")]
+                expected.forEach { expect(result(for: $0)).to(beTrue()) }
+                unexpected.forEach { expect(result(for: $0)).to(beFalse()) }
+            }
+        }
+        
+        describe("is input action") {
+            
+            func result(for action: KeyboardAction) -> Bool {
+                action.isShift
+            }
+            
+            it("is only true for all shift actions") {
+                expected = [
+                    .shift(currentState: .capsLocked),
+                    .shift(currentState: .lowercased),
+                    .shift(currentState: .uppercased)]
                 expected.forEach { expect(result(for: $0)).to(beTrue()) }
                 unexpected.forEach { expect(result(for: $0)).to(beFalse()) }
             }

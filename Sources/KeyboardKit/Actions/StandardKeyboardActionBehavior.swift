@@ -14,10 +14,16 @@ import Foundation
  */
 open class StandardKeyboardActionBehavior: KeyboardActionBehavior {
     
-    public init() {}
+    public init(doubleTapThreshold: TimeInterval = 0.2) {
+        self.doubleTapThreshold = doubleTapThreshold
+    }
+    
+    var lastShiftCheck = Date()
+    private let doubleTapThreshold: TimeInterval
     
     public func preferredKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> KeyboardType {
-        context.preferredKeyboardType
+        if shouldSwitchToCapsLock(after: gesture, on: action, for: context) { return .alphabetic(.capsLocked) }
+        return context.preferredKeyboardType
     }
     
     open func shouldEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool {
@@ -30,6 +36,14 @@ open class StandardKeyboardActionBehavior: KeyboardActionBehavior {
         case .character(let char): return char == " " && shouldClose
         default: return false
         }
+    }
+    
+    open func shouldSwitchToCapsLock(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool {
+        guard action.isShift else { return false }
+        guard context.keyboardType == .alphabetic(.uppercased) else { return false }
+        let isDoubleTap = Date().timeIntervalSinceReferenceDate - lastShiftCheck.timeIntervalSinceReferenceDate < doubleTapThreshold
+        lastShiftCheck = Date()
+        return isDoubleTap
     }
     
     open func shouldSwitchToPreferredKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool {

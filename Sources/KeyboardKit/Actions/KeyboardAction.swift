@@ -95,6 +95,16 @@ public extension KeyboardAction {
     }
     
     /**
+     Whether or not the action is a shift action.
+     */
+    var isShift: Bool {
+        switch self {
+        case .shift: return true
+        default: return false
+        }
+    }
+    
+    /**
      Whether or not the action is a system action, which the
      native keyboards render as dark buttons.
      */
