@@ -3,7 +3,16 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions.
 
 
-## 3.2.1
+## 3.3.0
+
+This release separates action handling from action behavior, which I hope makes the api:s cleaner and easier to test and also simplifies reusing behavior outside of an action handling context. 
+
+* `KeyboardActionBehavior` specifies how a keyboard action should behave.
+* `StandardKeyboardActionBehavior` specifies a standard behavior for a western keyboard.
+
+You can create your own behaviors as well as subclass and override parts of the standard behavior.
+
+Note that this is an experimental feature that may have to be revisited before v. 4.0.
 
 This release contains minor improvements and bug fixes:
 
