@@ -49,6 +49,16 @@ public extension UITextDocumentProxy {
     
     /**
      Whether or not the text document proxy cursor is at the
+     beginning of a new sentence.
+     */
+    var isCursorAtTheBeginningOfASentence: Bool {
+        guard let pre = documentContextBeforeInput else { return true }
+        let lastCharacter = String(pre.suffix(1))
+        return wordDelimiters.contains(lastCharacter)
+    }
+    
+    /**
+     Whether or not the text document proxy cursor is at the
      end of the current word.
      */
     var isCursorAtTheEndOfTheCurrentWord: Bool {
@@ -84,7 +94,7 @@ extension UITextDocumentProxy {
      way to handle this for e.g. chinese keyboards.
      */
     var wordDelimiters: [String] {
-        ["!", ".", ",", "?", " "]
+        ["!", ".", ",", "?", ";", ":", " "]
     }
     
     /**
