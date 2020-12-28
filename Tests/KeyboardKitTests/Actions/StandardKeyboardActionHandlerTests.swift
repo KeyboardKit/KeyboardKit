@@ -29,6 +29,30 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         }
         
         
+        // MARK: - KeyboardActionHandler
+        
+        describe("can handle gesture on action") {
+            
+            it("can handle any action that isn't nil") {
+                expect(handler.canHandle(.tap, on: .backspace, sender: nil)).to(beTrue())
+                expect(handler.canHandle(.doubleTap, on: .backspace, sender: nil)).to(beFalse())
+            }
+        }
+        
+        describe("handling gesture on action") {
+            
+            it("performs a bunch of actions") {
+                inputViewController.context.keyboardType = .alphabetic(.uppercased)
+                handler.handle(.tap, on: .character("a"))
+                // TODO: Test animation
+                // TODO: Test audio feedback
+                // TODO: Test haptic feedback
+                expect(inputViewController.hasInvoked(inputViewController.changeKeyboardTypeRef)).to(beTrue())
+                expect(inputViewController.hasInvoked(inputViewController.performAutocompleteRef)).to(beTrue())
+            }
+        }
+        
+        
         // MARK: - Actions
         
         context("actions") {
@@ -79,28 +103,28 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         
         // MARK: - Action Handling
         
-        describe("handling gesture on action") {
+        describe("handling keyboard type change for gesture on action") {
             
-            it("TODO") {}
-        }
-        
-        
-        // MARK: - Haptic Feedback
-        
-        describe("giving haptic feedback") {
+            it("does not change type if new type is same as current") {
+                inputViewController.context.keyboardType = .alphabetic(.lowercased)
+                handler.handleKeyboardTypeChange(after: .tap, on: .character("a"))
+                expect(inputViewController.hasInvoked(inputViewController.changeKeyboardTypeRef)).to(beFalse())
+            }
             
-            it("can't be properyly tested") {
-                handler.triggerHapticFeedback(for: .longPress, on: .dismissKeyboard, sender: nil)
-                handler.triggerHapticFeedback(for: .repeatPress, on: .backspace, sender: nil)
-                handler.triggerHapticFeedback(for: .tap, on: .dismissKeyboard, sender: nil)
-                // TODO Test this
+            it("changes type if new type is different from current") {
+                inputViewController.context.keyboardType = .alphabetic(.uppercased)
+                handler.handleKeyboardTypeChange(after: .tap, on: .character("a"))
+                let inv = inputViewController.invokations(of: inputViewController.changeKeyboardTypeRef)
+                expect(inv.count).to(equal(1))
+                expect(inv[0].arguments.0).to(equal(.alphabetic(.lowercased)))
             }
         }
         
+        describe("triggering animation for gesture on action") {
+            // TODO: Test
+        }
         
-        // MARK: - Audio Feedback
-        
-        describe("giving haptic feedback for long press") {
+        describe("triggering audio feedback for gesture on action") {
             
             it("can't be properyly tested") {
                 handler.triggerAudioFeedback(for: .tap, on: .dismissKeyboard, sender: nil)
@@ -110,22 +134,22 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             }
         }
         
-        
-        // MARK: - Keyboard Type
-        
-        describe("preferred keyboard type after gesture on action") {
+        describe("triggering autocomplete") {
             
-            func result(for gesture: KeyboardGesture, on action: KeyboardAction, current type: KeyboardType) -> KeyboardType? {
-                inputViewController.context.keyboardType = type
-                return handler.preferredKeyboardType(after: gesture, on: action)
+            it("calls input view controller") {
+                expect(inputViewController.hasInvoked(inputViewController.performAutocompleteRef)).to(beFalse())
+                handler.triggerAutocomplete()
+                expect(inputViewController.hasInvoked(inputViewController.performAutocompleteRef)).to(beTrue())
             }
+        }
+        
+        describe("triggering haptic feedback") {
             
-            it("is defined for character tap in uppercased alphabetic keyboard") {
-                expect(result(for: .tap, on: .character("foo"), current: .alphabetic(.uppercased))).to(equal(KeyboardType.alphabetic(.lowercased)))
-                expect(result(for: .tap, on: .character("foo"), current: .alphabetic(.capsLocked))).to(beNil())
-                expect(result(for: .tap, on: .character("foo"), current: .alphabetic(.lowercased))).to(beNil())
-                expect(result(for: .tap, on: .image(description: "", keyboardImageName: "", imageName: ""), current: .numeric)).to(beNil())
-                expect(result(for: .longPress, on: .character("foo"), current: .symbolic)).to(beNil())
+            it("can't be properyly tested") {
+                handler.triggerHapticFeedback(for: .longPress, on: .dismissKeyboard, sender: nil)
+                handler.triggerHapticFeedback(for: .repeatPress, on: .backspace, sender: nil)
+                handler.triggerHapticFeedback(for: .tap, on: .dismissKeyboard, sender: nil)
+                // TODO Test this
             }
         }
     }

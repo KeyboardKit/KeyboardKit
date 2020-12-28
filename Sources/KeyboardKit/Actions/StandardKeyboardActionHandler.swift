@@ -28,9 +28,11 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     // MARK: - Initialization
     
     public init(
+        behavior: KeyboardActionBehavior = StandardKeyboardActionBehavior(),
         inputViewController: KeyboardInputViewController,
         hapticConfiguration: HapticFeedbackConfiguration = .noFeedback,
         audioConfiguration: AudioFeedbackConfiguration = .standard) {
+        self.behavior = behavior
         self.inputViewController = inputViewController
         self.hapticConfiguration = hapticConfiguration
         self.audioConfiguration = audioConfiguration
@@ -39,11 +41,15 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Dependencies
     
+    public let behavior: KeyboardActionBehavior
+    
     public private(set) weak var inputViewController: KeyboardInputViewController?
     
     private let audioConfiguration: AudioFeedbackConfiguration
     
     private let hapticConfiguration: HapticFeedbackConfiguration
+    
+    private var context: KeyboardContext? { inputViewController?.context }
     
     
     // MARK: - Types
@@ -66,8 +72,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         triggerAnimation(for: gesture, on: action, sender: sender)
         triggerAudioFeedback(for: gesture, on: action, sender: sender)
         triggerHapticFeedback(for: gesture, on: action, sender: sender)
-        handleKeyboardSwitch(after: gesture, on: action)
-        inputViewController?.performAutocomplete()
+        triggerAutocomplete()
+        handleKeyboardTypeChange(after: gesture, on: action)
     }
     
     
@@ -123,7 +129,14 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     
-    // MARK: - Feedback
+    // MARK: - Action Handling
+    
+    open func handleKeyboardTypeChange(after gesture: KeyboardGesture, on action: KeyboardAction) {
+        guard let context = context else { return }
+        let newType = behavior.preferredKeyboardType(after: gesture, on: action, for: context)
+        if newType == context.keyboardType { return }
+        inputViewController?.changeKeyboardType(to: newType)
+    }
     
     open func triggerAnimation(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         (sender as? KeyboardButton)?.animateStandardTap()
@@ -133,6 +146,10 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         if action == .backspace { return audioConfiguration.deleteFeedback.trigger() }
         if action.isInputAction { return audioConfiguration.inputFeedback.trigger() }
         if action.isSystemAction { return audioConfiguration.systemFeedback.trigger() }
+    }
+    
+    open func triggerAutocomplete() {
+        inputViewController?.performAutocomplete()
     }
     
     open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
@@ -145,29 +162,16 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     
-    // MARK: - Keyboard Type Switching
+    // MARK: - Deprecated
     
+    @available(*, deprecated, renamed: "handleKeyboardTypeChange")
     open func handleKeyboardSwitch(after gesture: KeyboardGesture, on action: KeyboardAction) {
-        guard let type = preferredKeyboardType(after: gesture, on: action) else { return }
-        inputViewController?.changeKeyboardType(to: type)
+        handleKeyboardTypeChange(after: gesture, on: action)
     }
     
+    @available(*, deprecated, message: "Use KeyboardActionBehavior instead")
     open func preferredKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardType? {
-        if shouldChangeToAlphabeticLowercase(after: gesture, on: action) { return .alphabetic(.lowercased) }
-        return nil
-    }
-}
-
-
-// MARK: - Private Extensions
-
-private extension StandardKeyboardActionHandler {
-    
-    func shouldChangeToAlphabeticLowercase(after gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
-        guard let keyboardType = inputViewController?.context.keyboardType else { return false }
-        guard case .alphabetic(.uppercased) = keyboardType else { return false }
-        guard case .tap = gesture else { return false }
-        guard case .character = action else { return false }
-        return true
+        guard let context = context else { return nil }
+        return behavior.preferredKeyboardType(after: gesture, on: action, for: context)
     }
 }

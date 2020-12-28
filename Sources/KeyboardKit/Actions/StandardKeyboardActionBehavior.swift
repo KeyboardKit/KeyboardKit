@@ -22,7 +22,12 @@ open class StandardKeyboardActionBehavior: KeyboardActionBehavior {
         .character(". ")
     }
     
-    public func shouldEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool {
+    open func preferredKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> KeyboardType {
+        if shouldSwitchToAlphabeticLowercase(after: gesture, on: action, for: context) { return .alphabetic(.lowercased) }
+        return context.keyboardType
+    }
+    
+    open func shouldEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool {
         guard let preCursor = context.textDocumentProxy.documentContextBeforeInput else { return false }
         guard preCursor.hasSuffix(" ") else { return false }
         switch action {

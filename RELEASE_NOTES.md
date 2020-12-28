@@ -5,6 +5,8 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 ## 3.3.0
 
+### Action behavior
+
 This release separates action handling from action behavior, which I hope makes the api:s cleaner and easier to test and also simplifies reusing behavior outside of an action handling context. 
 
 * `KeyboardActionBehavior` specifies how a keyboard action should behave.
@@ -12,11 +14,20 @@ This release separates action handling from action behavior, which I hope makes 
 
 You can create your own behaviors as well as subclass and override parts of the standard behavior.
 
-Note that this is an experimental feature that may have to be revisited before v. 4.0.
+Note that this is an experimental feature that may have to be revisited before 4.0.
 
-This release contains minor improvements and bug fixes:
+### Bug fixes
+
+This release contains minor bug fixes.
 
 * The standard keyboard layout has been fixed to use the correct caps-lock button image.
+
+### Deprecations
+
+This release deprecates some members, that will be removed in v 4.0.
+
+* `StandardKeyboardActionHandler` `handleKeyboardSwitch` is renamed to `handleKeyboardTypeChange`.
+* `StandardKeyboardActionHandler` `preferredKeyboardType` has been moved to the action behavior.
 
 
 ## 3.2.0

@@ -12,7 +12,7 @@ import Foundation
  This protocol can be used to specify behavior rules for how
  various keyboard actions should behave. It aims to separate
  action handling from action behavior to make the api design
- cleaner and more understandable.
+ cleaner, more flexible and more understandable.
  
  This protocol can be extended with new functionality in any
  minor release. To avoid breaking changes, you could inherit
@@ -23,6 +23,6 @@ public protocol KeyboardActionBehavior {
     
     var endSentenceAction: KeyboardAction { get }
     
+    func preferredKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> KeyboardType
     func shouldEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool
-    func shouldSwitchToAlphabeticLowercase(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool
 }

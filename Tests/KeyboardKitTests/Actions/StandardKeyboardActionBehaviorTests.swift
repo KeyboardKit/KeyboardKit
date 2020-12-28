@@ -35,7 +35,23 @@ class StandardKeyboardActionBehaviorTests: QuickSpec {
             }
         }
         
-        describe("should end sentence") {
+        describe("preferred keyboard type after gesture on action") {
+            
+            func result(for gesture: KeyboardGesture, on action: KeyboardAction, current type: KeyboardType) -> KeyboardType? {
+                context.keyboardType = type
+                return behavior.preferredKeyboardType(after: gesture, on: action, for: context)
+            }
+            
+            it("is defined for character tap in uppercased alphabetic keyboard") {
+                expect(result(for: .tap, on: .character("foo"), current: .alphabetic(.uppercased))).to(equal(KeyboardType.alphabetic(.lowercased)))
+                expect(result(for: .tap, on: .character("foo"), current: .alphabetic(.capsLocked))).to(equal(KeyboardType.alphabetic(.capsLocked)))
+                expect(result(for: .tap, on: .character("foo"), current: .alphabetic(.lowercased))).to(equal(KeyboardType.alphabetic(.lowercased)))
+                expect(result(for: .longPress, on: .character("foo"), current: .symbolic)).to(equal(.symbolic))
+            }
+        }
+        
+        
+        describe("should end sentence after gesture on action") {
             
             func result(for gesture: KeyboardGesture, on action: KeyboardAction, context: KeyboardContext) -> Bool {
                 behavior.shouldEndSentence(after: gesture, on: action, for: context)
@@ -51,7 +67,7 @@ class StandardKeyboardActionBehaviorTests: QuickSpec {
             }
         }
         
-        describe("should switch to alphabetic lowercase") {
+        describe("should switch to alphabetic lowercase after gesture on action") {
             
             func result(for gesture: KeyboardGesture, on action: KeyboardAction, context: KeyboardContext) -> Bool {
                 behavior.shouldSwitchToAlphabeticLowercase(after: gesture, on: action, for: context)
