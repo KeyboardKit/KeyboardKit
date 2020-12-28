@@ -84,7 +84,7 @@ extension UITextDocumentProxy {
      way to handle this for e.g. chinese keyboards.
      */
     var wordDelimiters: [String] {
-        ["!", ".", ",", " "]
+        ["!", ".", ",", "?", " "]
     }
     
     /**
