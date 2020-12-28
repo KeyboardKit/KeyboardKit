@@ -73,8 +73,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         triggerAudioFeedback(for: gesture, on: action, sender: sender)
         triggerHapticFeedback(for: gesture, on: action, sender: sender)
         triggerAutocomplete()
-        tryChangeKeyboardType(after: gesture, on: action)
         tryEndSentence(after: gesture, on: action)
+        tryChangeKeyboardType(after: gesture, on: action)
     }
     
     
