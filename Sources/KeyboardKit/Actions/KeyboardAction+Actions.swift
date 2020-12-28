@@ -33,7 +33,6 @@ public extension KeyboardAction {
      */
     var standardDoubleTapAction: GestureAction? {
         switch self {
-        case .space: return endSentenceAction
         case .shift(let currentState):
             if currentState != .lowercased { return nil }
             return { $0?.changeKeyboardType(to: .alphabetic(.capsLocked)) }

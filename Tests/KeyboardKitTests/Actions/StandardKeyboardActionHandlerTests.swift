@@ -17,15 +17,18 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
     override func spec() {
         
         var handler: StandardKeyboardActionHandlerTestClass!
-        var recorder: MockKeyboardActionHandler!
+        
         var inputViewController: MockInputViewController!
+        var keyboardContext: MockKeyboardContext!
+        var proxy: MockTextDocumentProxy!
         
         beforeEach {
-            recorder = MockKeyboardActionHandler()
             inputViewController = MockInputViewController()
-            handler = StandardKeyboardActionHandlerTestClass(
-                recorder: recorder,
-                inputViewController: inputViewController)
+            keyboardContext = MockKeyboardContext()
+            inputViewController.context = keyboardContext
+            proxy = MockTextDocumentProxy()
+            keyboardContext.textDocumentProxy = proxy
+            handler = StandardKeyboardActionHandlerTestClass(inputViewController: inputViewController)
         }
         
         
@@ -42,13 +45,16 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         describe("handling gesture on action") {
             
             it("performs a bunch of actions") {
-                inputViewController.context.keyboardType = .alphabetic(.uppercased)
                 handler.handle(.tap, on: .character("a"))
-                // TODO: Test animation
-                // TODO: Test audio feedback
-                // TODO: Test haptic feedback
-                expect(inputViewController.hasInvoked(inputViewController.changeKeyboardTypeRef)).to(beTrue())
-                expect(inputViewController.hasInvoked(inputViewController.performAutocompleteRef)).to(beTrue())
+                // let inv = proxy.invokations(of: proxy.insertTextRef)
+                // expect(inv.count).to(equal(1))
+                // expect(inv[0].arguments).to(equal("a"))
+                expect(handler.hasInvoked(handler.triggerAnimationRef)).to(beTrue())
+                expect(handler.hasInvoked(handler.triggerAudioFeedbackRef)).to(beTrue())
+                expect(handler.hasInvoked(handler.triggerHapticFeedbackRef)).to(beTrue())
+                expect(handler.hasInvoked(handler.triggerAutocompleteRef)).to(beTrue())
+                expect(handler.hasInvoked(handler.tryChangeKeyboardTypeRef)).to(beTrue())
+                expect(handler.hasInvoked(handler.tryEndSentenceRef)).to(beTrue())
             }
         }
         
@@ -103,23 +109,6 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         
         // MARK: - Action Handling
         
-        describe("handling keyboard type change for gesture on action") {
-            
-            it("does not change type if new type is same as current") {
-                inputViewController.context.keyboardType = .alphabetic(.lowercased)
-                handler.handleKeyboardTypeChange(after: .tap, on: .character("a"))
-                expect(inputViewController.hasInvoked(inputViewController.changeKeyboardTypeRef)).to(beFalse())
-            }
-            
-            it("changes type if new type is different from current") {
-                inputViewController.context.keyboardType = .alphabetic(.uppercased)
-                handler.handleKeyboardTypeChange(after: .tap, on: .character("a"))
-                let inv = inputViewController.invokations(of: inputViewController.changeKeyboardTypeRef)
-                expect(inv.count).to(equal(1))
-                expect(inv[0].arguments.0).to(equal(.alphabetic(.lowercased)))
-            }
-        }
-        
         describe("triggering animation for gesture on action") {
             // TODO: Test
         }
@@ -152,27 +141,94 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
                 // TODO Test this
             }
         }
+        
+        describe("trying to end sentence after gesture on action") {
+            
+            it("does not end sentence if behavior says no") {
+                proxy.documentContextBeforeInput = ""
+                handler.tryEndSentence(after: .tap, on: .character("a"))
+                expect(handler.hasInvoked(handler.handleRef)).to(beFalse())
+            }
+            
+            it("ends sentence with behavior action if behavior says yes") {
+                proxy.documentContextBeforeInput = " "
+                handler.tryEndSentence(after: .tap, on: .character(" "))
+                let inv = handler.invokations(of: handler.handleRef)
+                expect(inv.count).to(equal(1))
+                expect(inv[0].arguments.0).to(equal(.tap))
+                expect(inv[0].arguments.1).to(equal(.character(". ")))
+            }
+        }
+        
+        describe("trying to change keyboard type after gesture on action") {
+            
+            it("does not change type if new type is same as current") {
+                keyboardContext.keyboardType = .alphabetic(.lowercased)
+                handler.tryChangeKeyboardType(after: .tap, on: .character("a"))
+                expect(inputViewController.hasInvoked(inputViewController.changeKeyboardTypeRef)).to(beFalse())
+            }
+            
+            it("changes type if new type is different from current") {
+                keyboardContext.keyboardType = .alphabetic(.uppercased)
+                handler.tryChangeKeyboardType(after: .tap, on: .character("a"))
+                let inv = inputViewController.invokations(of: inputViewController.changeKeyboardTypeRef)
+                expect(inv.count).to(equal(1))
+                expect(inv[0].arguments.0).to(equal(.alphabetic(.lowercased)))
+            }
+        }
     }
 }
 
 
-private class StandardKeyboardActionHandlerTestClass: StandardKeyboardActionHandler {
+private class StandardKeyboardActionHandlerTestClass: StandardKeyboardActionHandler, Mockable {
     
     public init(
-        recorder: MockKeyboardActionHandler,
         inputViewController: KeyboardInputViewController) {
-        self.recorder = recorder
         super.init(inputViewController: inputViewController)
     }
     
-    let recorder: MockKeyboardActionHandler
+    var mock = Mock()
+    
+    lazy var handleRef = MockReference(handle)
+    lazy var triggerAnimationRef = MockReference(triggerAnimation)
+    lazy var triggerAudioFeedbackRef = MockReference(triggerAudioFeedback)
+    lazy var triggerAutocompleteRef = MockReference(triggerAutocomplete)
+    lazy var triggerHapticFeedbackRef = MockReference(triggerHapticFeedback)
+    lazy var tryChangeKeyboardTypeRef = MockReference(tryChangeKeyboardType)
+    lazy var tryEndSentenceRef = MockReference(tryEndSentence)
+    
+    override func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
+        super.handle(gesture, on: action, sender: sender)
+        invoke(handleRef, args: (gesture, action, sender))
+    }
+    
+    override func triggerAnimation(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
+        super.triggerAnimation(for: gesture, on: action, sender: sender)
+        invoke(triggerAnimationRef, args: (gesture, action, sender))
+    }
+    
+    override func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
+        super.triggerAudioFeedback(for: gesture, on: action, sender: sender)
+        invoke(triggerAudioFeedbackRef, args: (gesture, action, sender))
+    }
+    
+    override func triggerAutocomplete() {
+        super.triggerAutocomplete()
+        invoke(triggerAutocompleteRef, args: ())
+    }
     
     override func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
-        switch gesture {
-        case .doubleTap: recorder.giveHapticFeedbackForDoubleTap(on: action)
-        case .longPress: recorder.giveHapticFeedbackForLongPress(on: action)
-        case .repeatPress: recorder.giveHapticFeedbackForRepeat(on: action)
-        case .tap: recorder.giveHapticFeedbackForTap(on: action)
-        }
+        super.triggerHapticFeedback(for: gesture, on: action, sender: sender)
+        invoke(triggerHapticFeedbackRef, args: (gesture, action, sender))
+    }
+    
+    override func tryChangeKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) {
+        super.tryChangeKeyboardType(after: gesture, on: action)
+        invoke(tryChangeKeyboardTypeRef, args: (gesture, action))
+    }
+    
+    override func tryEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction) {
+        super.tryEndSentence(after: gesture, on: action)
+        invoke(tryEndSentenceRef, args: (gesture, action))
     }
 }

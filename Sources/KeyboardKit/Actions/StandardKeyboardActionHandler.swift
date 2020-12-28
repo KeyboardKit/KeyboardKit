@@ -73,7 +73,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         triggerAudioFeedback(for: gesture, on: action, sender: sender)
         triggerHapticFeedback(for: gesture, on: action, sender: sender)
         triggerAutocomplete()
-        handleKeyboardTypeChange(after: gesture, on: action)
+        tryChangeKeyboardType(after: gesture, on: action)
+        tryEndSentence(after: gesture, on: action)
     }
     
     
@@ -131,13 +132,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Action Handling
     
-    open func handleKeyboardTypeChange(after gesture: KeyboardGesture, on action: KeyboardAction) {
-        guard let context = context else { return }
-        let newType = behavior.preferredKeyboardType(after: gesture, on: action, for: context)
-        if newType == context.keyboardType { return }
-        inputViewController?.changeKeyboardType(to: newType)
-    }
-    
     open func triggerAnimation(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         (sender as? KeyboardButton)?.animateStandardTap()
     }
@@ -161,12 +155,25 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         }
     }
     
+    open func tryEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction) {
+        guard let context = context else { return }
+        guard behavior.shouldEndSentence(after: gesture, on: action, for: context) else { return }
+        handle(.tap, on: behavior.endSentenceAction)
+    }
+    
+    open func tryChangeKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) {
+        guard let context = context else { return }
+        let newType = behavior.preferredKeyboardType(after: gesture, on: action, for: context)
+        if newType == context.keyboardType { return }
+        inputViewController?.changeKeyboardType(to: newType)
+    }
+    
     
     // MARK: - Deprecated
     
     @available(*, deprecated, renamed: "handleKeyboardTypeChange")
     open func handleKeyboardSwitch(after gesture: KeyboardGesture, on action: KeyboardAction) {
-        handleKeyboardTypeChange(after: gesture, on: action)
+        tryChangeKeyboardType(after: gesture, on: action)
     }
     
     @available(*, deprecated, message: "Use KeyboardActionBehavior instead")

@@ -40,7 +40,6 @@ class KeyboardAction_ActionsTests: QuickSpec {
             
             it("is defined for some actions") {
                 expected = [.shift(currentState: .lowercased), .space]
-                expected.forEach { expect(result(for: $0)).toNot(beNil()) }
                 unexpected.forEach { expect(result(for: $0)).to(beNil()) }
             }
         }

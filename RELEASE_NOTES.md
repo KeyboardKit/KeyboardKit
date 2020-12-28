@@ -16,19 +16,20 @@ You can create your own behaviors as well as subclass and override parts of the 
 
 Note that this is an experimental feature that may have to be revisited before 4.0.
 
-### Bug fixes
+### Behavior changes
 
-This release contains minor bug fixes.
+* The sentence ending logic is moved from double-tap on space to the new action behavior.
+
+### Bug fixes
 
 * The standard keyboard layout has been fixed to use the correct caps-lock button image.
 
 ### Deprecations
 
-This release deprecates some members, that will be removed in v 4.0.
-
 * `StandardKeyboardActionHandler` `handleKeyboardSwitch` is renamed to `handleKeyboardTypeChange`.
 * `StandardKeyboardActionHandler` `preferredKeyboardType` has been moved to the action behavior.
 
+These deprecations will be removed in v 4.0.
 
 ## 3.2.0
 
