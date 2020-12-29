@@ -72,7 +72,7 @@ public extension KeyboardAction {
         case .keyboardType(let type): return { $0?.changeKeyboardType(to: type) }
         case .shift(let currentState): return {
             switch currentState {
-            case .lowercased: $0?.changeKeyboardType(to: .alphabetic(.uppercased), after: .milliseconds(200))
+            case .lowercased: $0?.changeKeyboardType(to: .alphabetic(.uppercased))
             case .uppercased: $0?.changeKeyboardType(to: .alphabetic(.lowercased))
             case .capsLocked: $0?.changeKeyboardType(to: .alphabetic(.lowercased))
             }}

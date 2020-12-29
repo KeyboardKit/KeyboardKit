@@ -170,7 +170,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
                 handler.tryChangeKeyboardType(after: .tap, on: .character("a"))
                 let inv = inputViewController.invokations(of: inputViewController.changeKeyboardTypeRef)
                 expect(inv.count).to(equal(1))
-                expect(inv[0].arguments.0).to(equal(.alphabetic(.lowercased)))
+                expect(inv[0].arguments).to(equal(.alphabetic(.lowercased)))
             }
         }
     }

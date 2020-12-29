@@ -18,8 +18,8 @@ class MockInputViewController: KeyboardInputViewController, Mockable {
     
     let mock = Mock()
     
-    override func changeKeyboardType(to type: KeyboardType, after delay: DispatchTimeInterval = .milliseconds(0)) {
-        invoke(changeKeyboardTypeRef, args: (type, delay))
+    override func changeKeyboardType(to type: KeyboardType) {
+        invoke(changeKeyboardTypeRef, args: (type))
     }
     
     override func dismissKeyboard() {

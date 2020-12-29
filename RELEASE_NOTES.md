@@ -33,7 +33,8 @@ Note that this is an experimental feature that may have to be revisited before 4
 * The caps-lock double tap logic is moved from double-tap on shift to the new action behavior.
 * The sentence ending logic is moved from double-tap on space to the new action behavior.
 * The sentence ending logic is no longer based on double-tap, which makes it easier to use.
-* `KeyboardAction` `standardDoubleTapAction` is not defined for any actions anymore. 
+* `KeyboardAction` `standardDoubleTapAction` is not defined for any actions anymore.
+* `KeyboardInputViewController` `changeKeyboardType` has no time interval anymore.
 
 ### Bug fixes
 
@@ -42,9 +43,11 @@ Note that this is an experimental feature that may have to be revisited before 4
 ### Deprecations
 
 * `KeyboardAction` `endSentenceAction` has been moved to `UITextDocumentProxy+EndSentence`.
+* `KeyboardAction` `standardDoubleTapAction` is not used internally anymore.
+* `KeyboardContext` `changeKeyboardType` is not used internally anymore.
+* `KeyboardType` `canBeReplaced` is not used internally anymore.
 * `StandardKeyboardActionHandler` `handleKeyboardSwitch` is renamed to `handleKeyboardTypeChange`.
 * `StandardKeyboardActionHandler` `preferredKeyboardType` has been moved to the action behavior.
-* `KeyboardAction` `standardDoubleTapAction` is not used anymore. 
 
 These deprecations will be removed in v 4.0.
 

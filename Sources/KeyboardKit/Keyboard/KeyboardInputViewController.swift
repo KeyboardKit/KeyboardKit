@@ -139,10 +139,9 @@ open class KeyboardInputViewController: UIInputViewController {
      standard change action of the current context, but this
      can be changed by overriding this function.
      */
-    open func changeKeyboardType(to type: KeyboardType, after delay: DispatchTimeInterval = .milliseconds(0)) {
-        context.changeKeyboardType(to: type, after: delay) {
-            self.setupKeyboard()
-        }
+    open func changeKeyboardType(to type: KeyboardType) {
+        context.keyboardType = type
+        setupKeyboard()
     }
     
     

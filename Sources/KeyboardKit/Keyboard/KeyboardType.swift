@@ -30,21 +30,6 @@ public enum KeyboardType: Equatable {
 public extension KeyboardType {
     
     /**
-     Whether or not the system can change keyboard type to a
-     certain type. This is just the preferred behavior given
-     how the standard system behaves. You do not have to use
-     this behavior if you want to.
-     */
-    func canBeReplaced(with type: KeyboardType) -> Bool {
-        guard
-            case .alphabetic(let state) = self,
-            case .alphabetic(let newState) = type
-            else { return true }
-        if state == .capsLocked && newState == .uppercased { return false }
-        return true
-    }
-    
-    /**
      Whether or not the keyboard type is alphabetic.
      */
     var isAlphabetic: Bool {

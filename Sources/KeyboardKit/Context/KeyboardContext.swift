@@ -132,22 +132,6 @@ public extension KeyboardContext {
 public extension KeyboardContext {
     
     /**
-     This function changes keyboard type, using the standard
-     system behavior, where it's not possible to change from
-     caps locked keyboards to upper-case ones.
-     
-     The delay can be used to allow a double-tap action time
-     to finish before changing the keyboard.
-     */
-    func changeKeyboardType(to type: KeyboardType, after delay: DispatchTimeInterval, completion: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            guard self.keyboardType.canBeReplaced(with: type) else { return }
-            self.keyboardType = type
-            completion()
-        }
-    }
-    
-    /**
      Sync the context with the current state of the keyboard
      input view controller.
      */
