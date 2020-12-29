@@ -23,7 +23,10 @@ open class StandardKeyboardActionBehavior: KeyboardActionBehavior {
     
     public func preferredKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> KeyboardType {
         if shouldSwitchToCapsLock(after: gesture, on: action, for: context) { return .alphabetic(.capsLocked) }
-        return context.preferredKeyboardType
+        switch action {
+        case .shift: return context.keyboardType
+        default: return context.preferredKeyboardType
+        }
     }
     
     open func shouldEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool {
@@ -40,13 +43,16 @@ open class StandardKeyboardActionBehavior: KeyboardActionBehavior {
     
     open func shouldSwitchToCapsLock(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool {
         guard action.isShift else { return false }
-        guard context.keyboardType == .alphabetic(.uppercased) else { return false }
+        guard context.keyboardType.isAlphabetic else { return false }
         let isDoubleTap = Date().timeIntervalSinceReferenceDate - lastShiftCheck.timeIntervalSinceReferenceDate < doubleTapThreshold
         lastShiftCheck = Date()
         return isDoubleTap
     }
     
     open func shouldSwitchToPreferredKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool {
-        context.keyboardType != context.preferredKeyboardType
+        switch action {
+        case .shift: return true
+        default: return context.keyboardType != context.preferredKeyboardType
+        }
     }
 }

@@ -43,7 +43,7 @@ class StandardKeyboardActionBehaviorTests: QuickSpec {
             it("is context preferred keyboard type if shift is double-tapped too slowly") {
                 context.keyboardType = .alphabetic(.uppercased)
                 behavior.lastShiftCheck = .distantPast
-                expect(result(for: .tap, on: .shift(currentState: .uppercased), context: context)).to(equal(.alphabetic(.lowercased)))
+                expect(result(for: .tap, on: .shift(currentState: .uppercased), context: context)).to(equal(.alphabetic(.uppercased)))
             }
             
             it("is context preferred keyboard type if non-shift is double-tapped") {
@@ -58,8 +58,7 @@ class StandardKeyboardActionBehaviorTests: QuickSpec {
             
             it("is caps-locked if shift is double-tapped quickly") {
                 context.keyboardType = .alphabetic(.uppercased)
-                behavior.lastShiftCheck = .distantPast
-                expect(result(for: .tap, on: .shift(currentState: .uppercased), context: context)).to(equal(.alphabetic(.lowercased)))
+                expect(result(for: .tap, on: .shift(currentState: .uppercased), context: context)).to(equal(.alphabetic(.capsLocked)))
             }
         }
         
@@ -85,6 +84,12 @@ class StandardKeyboardActionBehaviorTests: QuickSpec {
             
             func result(for gesture: KeyboardGesture, on action: KeyboardAction, context: KeyboardContext) -> Bool {
                 behavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action, for: context)
+            }
+            
+            it("is true if the action is shift") {
+                expect(result(for: .tap, on: .shift(currentState: .capsLocked), context: context)).to(beTrue())
+                expect(result(for: .tap, on: .shift(currentState: .lowercased), context: context)).to(beTrue())
+                expect(result(for: .tap, on: .shift(currentState: .uppercased), context: context)).to(beTrue())
             }
             
             it("is true is the current keyboard type differs from the preferred one") {
