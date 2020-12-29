@@ -21,6 +21,7 @@ Note that this is an experimental feature that may have to be revisited before 4
 ### New features
 
 * `KeyboardContext` has a new `preferredKeyboardType` property.
+* `StandardKeyboardActionBehavior` has caps-lock double tap logic.
 * `UITextDocumentProxy` has a new `isCursorAtNewSentence` property.
 * `UITextDocumentProxy` has a new `isCursorAtNewWord` property.
 * `UITextDocumentProxy` has a new `endSentence` function that removes any space before the cursor, then closes the sentence.
@@ -29,8 +30,10 @@ Note that this is an experimental feature that may have to be revisited before 4
 
 ### Behavior changes
 
+* The caps-lock double tap logic is moved from double-tap on shift to the new action behavior.
 * The sentence ending logic is moved from double-tap on space to the new action behavior.
 * The sentence ending logic is no longer based on double-tap, which makes it easier to use.
+* `KeyboardAction` `standardDoubleTapAction` is not defined for any actions anymore. 
 
 ### Bug fixes
 
@@ -41,6 +44,7 @@ Note that this is an experimental feature that may have to be revisited before 4
 * `KeyboardAction` `endSentenceAction` has been moved to `UITextDocumentProxy+EndSentence`.
 * `StandardKeyboardActionHandler` `handleKeyboardSwitch` is renamed to `handleKeyboardTypeChange`.
 * `StandardKeyboardActionHandler` `preferredKeyboardType` has been moved to the action behavior.
+* `KeyboardAction` `standardDoubleTapAction` is not used anymore. 
 
 These deprecations will be removed in v 4.0.
 

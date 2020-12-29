@@ -98,8 +98,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      when a user double taps a certain keyboard action.
      */
     open func doubleTapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
-        guard let action = action.standardDoubleTapAction else { return nil }
-        return { [weak self] in action(self?.inputViewController) }
+        return nil
     }
     
     /**

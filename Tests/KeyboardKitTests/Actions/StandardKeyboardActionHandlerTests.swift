@@ -77,10 +77,9 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             
             describe("double tap action") {
                 
-                it("is not nil for actions with standard action") {
+                it("is nil for all actions with standard action") {
                     actions.forEach {
-                        let action = handler.doubleTapAction(for: $0, sender: nil)
-                        expect(action == nil).to(equal($0.standardDoubleTapAction == nil))
+                        expect(handler.doubleTapAction(for: $0, sender: nil)).to(beNil())
                     }
                 }
             }

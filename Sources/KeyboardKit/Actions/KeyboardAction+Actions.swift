@@ -25,21 +25,6 @@ public extension KeyboardAction {
     typealias InputViewControllerAction = (KeyboardInputViewController?) -> Void
     typealias TextDocumentProxyAction = (UITextDocumentProxy?) -> Void
     
-    
-    /**
-     The standard action, if any, that should be executed on
-     an input view controller, when this action is triggered
-     with a double-tap.
-     */
-    var standardDoubleTapAction: GestureAction? {
-        switch self {
-        case .shift(let currentState):
-            if currentState != .lowercased { return nil }
-            return { $0?.changeKeyboardType(to: .alphabetic(.capsLocked)) }
-        default: return nil
-        }
-    }
-    
     /**
      The standard action, if any, that should be executed on
      an input view controller, when this action is triggered

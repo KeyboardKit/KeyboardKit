@@ -32,18 +32,6 @@ class KeyboardAction_ActionsTests: QuickSpec {
             unexpected = []
         }
         
-        describe("standard double tap action") {
-            
-            func result(for action: KeyboardAction) -> KeyboardAction.GestureAction? {
-                action.standardDoubleTapAction
-            }
-            
-            it("is defined for some actions") {
-                expected = [.shift(currentState: .lowercased), .space]
-                unexpected.forEach { expect(result(for: $0)).to(beNil()) }
-            }
-        }
-        
         describe("standard long press action") {
             
             func result(for action: KeyboardAction) -> Bool {
