@@ -1,5 +1,5 @@
 //
-//  KeyboardActionBehavior.swift
+//  KeyboardBehavior.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-28.
@@ -9,17 +9,16 @@
 import Foundation
 
 /**
- This protocol can be used to specify behavior rules for how
- various keyboard actions should behave. It aims to separate
- action handling from action behavior to make the api design
- cleaner, more flexible and more understandable.
+ This protocol can be used to specify behavior rules for the
+ keyboard. It aims to separate behavior from action handling
+ to make the code cleaner, flexible and more understandable.
  
  This protocol can be extended with new functionality in any
  minor release. To avoid breaking changes, you could inherit
- `StandardKeyboardActionBehavior` and override any parts you
- need to change, instead of creating a completely new class.
+ `StandardKeyboardBehavior` then override any parts you need,
+ instead of creating a completely new class.
  */
-public protocol KeyboardActionBehavior {
+public protocol KeyboardBehavior {
     
     /**
      The preferred keyboard type that should be applied when

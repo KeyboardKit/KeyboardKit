@@ -1,5 +1,5 @@
 //
-//  StandardKeyboardActionBehavior.swift
+//  StandardKeyboardBehavior.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-28.
@@ -16,7 +16,7 @@ import Foundation
  the text document proxy. However, having this makes it easy
  to change the actual behavior, if you want or need to.
  */
-open class StandardKeyboardActionBehavior: KeyboardActionBehavior {
+open class StandardKeyboardBehavior: KeyboardBehavior {
     
     public init(doubleTapThreshold: TimeInterval = 0.2) {
         self.doubleTapThreshold = doubleTapThreshold

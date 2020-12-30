@@ -48,8 +48,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Properties
     
-    public var behavior: KeyboardActionBehavior? { context?.actionBehavior }
-    
     private var context: KeyboardContext? { inputViewController?.context }
     
     
@@ -157,14 +155,14 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     open func tryEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction) {
         guard let context = context else { return }
-        let behavior = context.actionBehavior
+        let behavior = context.keyboardBehavior
         guard behavior.shouldEndSentence(for: context, after: gesture, on: action) else { return }
         context.textDocumentProxy.endSentence()
     }
     
     open func tryChangeKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) {
         guard let context = context else { return }
-        let behavior = context.actionBehavior
+        let behavior = context.keyboardBehavior
         guard behavior.shouldSwitchToPreferredKeyboardType(for: context, after: gesture, on: action) else { return }
         let newType = behavior.preferredKeyboardType(for: context, after: gesture, on: action)
         inputViewController?.changeKeyboardType(to: newType)
@@ -181,7 +179,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     @available(*, deprecated, message: "Use KeyboardActionBehavior instead")
     open func preferredKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardType? {
         guard let context = context else { return nil }
-        let behavior = context.actionBehavior
+        let behavior = context.keyboardBehavior
         return behavior.preferredKeyboardType(for: context, after: gesture, on: action)
     }
 }

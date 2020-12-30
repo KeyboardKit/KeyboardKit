@@ -7,12 +7,12 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 This release contains a bunch of new features that makes the keyboard behave more like the native keyboards when typing, for instance auto-capitalization and auto-lowercasing.
 
-### Action behavior
+### Keyboard behavior
 
-This release separates action handling from action behavior, which I hope makes the code cleaner and easier to test and simplifies reusing behavior outside of an action handling context. 
+This release separates action handling from behavior, which I hope makes the code cleaner and easier to test and simplifies reusing behavior outside of an action handling context. 
 
-* `KeyboardActionBehavior` specifies how a keyboard action should behave.
-* `StandardKeyboardActionBehavior` specifies a standard behavior for a western keyboard.
+* `KeyboardBehavior` specifies how a keyboard should behave.
+* `StandardKeyboardBehavior` specifies the standard behavior of a western keyboard.
 
 You can create your own behaviors as well as subclass and override parts of the standard behavior.
 
@@ -22,7 +22,7 @@ Note that this is an experimental feature that may have to be revisited before 4
 
 * `KeyboardContext` has a new `preferredKeyboardType` property.
 * `KeyboardContext` has a new `actionBehavior` property.
-* `StandardKeyboardActionBehavior` has caps-lock double tap logic.
+* `StandardKeyboardBehavior` has caps-lock double tap logic.
 * `UITextDocumentProxy` has a new `isCursorAtNewSentence` property.
 * `UITextDocumentProxy` has a new `isCursorAtNewWord` property.
 * `UITextDocumentProxy` has a new `endSentence` function that removes any space before the cursor, then closes the sentence.
@@ -31,8 +31,8 @@ Note that this is an experimental feature that may have to be revisited before 4
 
 ### Behavior changes
 
-* The caps-lock double tap logic is moved from double-tap on shift to the new action behavior.
-* The sentence ending logic is moved from double-tap on space to the new action behavior.
+* The caps-lock double tap logic is moved from double-tap on shift to the new keyboard behavior.
+* The sentence ending logic is moved from double-tap on space to the new keyboard behavior.
 * The sentence ending logic is no longer based on double-tap, which makes it easier to use.
 * `KeyboardAction` `standardDoubleTapAction` is not defined for any actions anymore.
 * `KeyboardInputViewController` `changeKeyboardType` has no time interval anymore.
@@ -49,7 +49,7 @@ Note that this is an experimental feature that may have to be revisited before 4
 * `KeyboardContext` `changeKeyboardType` is not used internally anymore.
 * `KeyboardType` `canBeReplaced` is not used internally anymore.
 * `StandardKeyboardActionHandler` `handleKeyboardSwitch` is renamed to `handleKeyboardTypeChange`.
-* `StandardKeyboardActionHandler` `preferredKeyboardType` has been moved to the action behavior.
+* `StandardKeyboardActionHandler` `preferredKeyboardType` has been moved to the keyboard behavior.
 
 These deprecations will be removed in v 4.0.
 

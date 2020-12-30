@@ -1,5 +1,5 @@
 //
-//  StandardKeyboardActionBehaviorTests.swift
+//  StandardKeyboardBehaviorTests.swift
 //  KeyboardKitTests
 //
 //  Created by Daniel Saidi on 2019-05-06.
@@ -12,16 +12,16 @@ import Mockery
 import UIKit
 @testable import KeyboardKit
 
-class StandardKeyboardActionBehaviorTests: QuickSpec {
+class StandardKeyboardBehaviorTests: QuickSpec {
     
     override func spec() {
         
-        var behavior: StandardKeyboardActionBehavior!
+        var behavior: StandardKeyboardBehavior!
         var context: MockKeyboardContext!
         var proxy: MockTextDocumentProxy!
         
         beforeEach {
-            behavior = StandardKeyboardActionBehavior()
+            behavior = StandardKeyboardBehavior()
             context = MockKeyboardContext()
             proxy = MockTextDocumentProxy()
             context.textDocumentProxy = proxy

@@ -33,12 +33,6 @@ public protocol KeyboardContext: AnyObject {
     // MARK: - Manually set properties
     
     /**
-     This behavior determines how the keyboard should behave,
-     for instance to end sentences, switch keyboard etc.
-     */
-    var actionBehavior: KeyboardActionBehavior { get set }
-    
-    /**
      The action handler that will be used to handle keyboard
      actions that are triggered by the user or the system.
      */
@@ -49,6 +43,12 @@ public protocol KeyboardContext: AnyObject {
      switches over to an emoji keyboard.
      */
     var emojiCategory: EmojiCategory { get set }
+    
+    /**
+     This behavior determines how the keyboard should behave,
+     for instance to end sentences, switch keyboard etc.
+     */
+    var keyboardBehavior: KeyboardBehavior { get set }
     
     /**
      The current keyboard input provider.
