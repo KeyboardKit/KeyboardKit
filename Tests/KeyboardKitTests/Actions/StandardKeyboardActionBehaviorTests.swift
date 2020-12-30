@@ -30,7 +30,7 @@ class StandardKeyboardActionBehaviorTests: QuickSpec {
         describe("preferred keyboard type after gesture on action") {
             
             func result(for gesture: KeyboardGesture, on action: KeyboardAction, context: KeyboardContext) -> KeyboardType {
-                behavior.preferredKeyboardType(after: gesture, on: action, for: context)
+                behavior.preferredKeyboardType(for: context, after: gesture, on: action)
             }
             
             it("is by default the context preferred keyboard type") {
@@ -66,7 +66,7 @@ class StandardKeyboardActionBehaviorTests: QuickSpec {
         describe("should end sentence after gesture on action") {
             
             func result(for gesture: KeyboardGesture, on action: KeyboardAction, context: KeyboardContext) -> Bool {
-                behavior.shouldEndSentence(after: gesture, on: action, for: context)
+                behavior.shouldEndSentence(for: context, after: gesture, on: action)
             }
             
             it("is only true for space after a previous space") {
@@ -86,7 +86,7 @@ class StandardKeyboardActionBehaviorTests: QuickSpec {
         describe("should switch to preferred keyboard type after gesture on action") {
             
             func result(for gesture: KeyboardGesture, on action: KeyboardAction, context: KeyboardContext) -> Bool {
-                behavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action, for: context)
+                behavior.shouldSwitchToPreferredKeyboardType(for: context, after: gesture, on: action)
             }
             
             it("is true if the action is shift") {

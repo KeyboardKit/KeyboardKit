@@ -156,14 +156,14 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     open func tryEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction) {
         guard let context = context else { return }
-        guard behavior.shouldEndSentence(after: gesture, on: action, for: context) else { return }
+        guard behavior.shouldEndSentence(for: context, after: gesture, on: action) else { return }
         context.textDocumentProxy.endSentence()
     }
     
     open func tryChangeKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) {
         guard let context = context else { return }
-        guard behavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action, for: context) else { return }
-        let newType = behavior.preferredKeyboardType(after: gesture, on: action, for: context)
+        guard behavior.shouldSwitchToPreferredKeyboardType(for: context, after: gesture, on: action) else { return }
+        let newType = behavior.preferredKeyboardType(for: context, after: gesture, on: action)
         inputViewController?.changeKeyboardType(to: newType)
     }
     
@@ -178,6 +178,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     @available(*, deprecated, message: "Use KeyboardActionBehavior instead")
     open func preferredKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardType? {
         guard let context = context else { return nil }
-        return behavior.preferredKeyboardType(after: gesture, on: action, for: context)
+        return behavior.preferredKeyboardType(for: context, after: gesture, on: action)
     }
 }

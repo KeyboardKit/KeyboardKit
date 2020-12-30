@@ -21,15 +21,15 @@ open class StandardKeyboardActionBehavior: KeyboardActionBehavior {
     var lastShiftCheck = Date()
     private let doubleTapThreshold: TimeInterval
     
-    public func preferredKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> KeyboardType {
-        if shouldSwitchToCapsLock(after: gesture, on: action, for: context) { return .alphabetic(.capsLocked) }
+    public func preferredKeyboardType(for context: KeyboardContext, after gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardType {
+        if shouldSwitchToCapsLock(for: context, after: gesture, on: action) { return .alphabetic(.capsLocked) }
         switch action {
         case .shift: return context.keyboardType
         default: return context.preferredKeyboardType
         }
     }
     
-    open func shouldEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool {
+    open func shouldEndSentence(for context: KeyboardContext, after gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
         let proxy = context.textDocumentProxy
         let isNewWord = proxy.isCursorAtNewWord
         let isNewSentence = proxy.isCursorAtNewSentence
@@ -42,7 +42,7 @@ open class StandardKeyboardActionBehavior: KeyboardActionBehavior {
         }
     }
     
-    open func shouldSwitchToCapsLock(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool {
+    open func shouldSwitchToCapsLock(for context: KeyboardContext, after gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
         guard action.isShift else { return false }
         guard context.keyboardType.isAlphabetic else { return false }
         let isDoubleTap = Date().timeIntervalSinceReferenceDate - lastShiftCheck.timeIntervalSinceReferenceDate < doubleTapThreshold
@@ -50,7 +50,7 @@ open class StandardKeyboardActionBehavior: KeyboardActionBehavior {
         return isDoubleTap
     }
     
-    open func shouldSwitchToPreferredKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool {
+    open func shouldSwitchToPreferredKeyboardType(for context: KeyboardContext, after gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
         switch action {
         case .shift: return true
         default: return context.keyboardType != context.preferredKeyboardType
