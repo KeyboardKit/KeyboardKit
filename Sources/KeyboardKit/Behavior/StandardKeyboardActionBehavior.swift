@@ -64,8 +64,8 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     }
     
     public func shouldSwitchToPreferredKeyboardTypeAfterTextDidChange(for context: KeyboardContext) -> Bool {
-        let result = !hasSwitchedToPreferredKeyboardTypeAfterTextDidChange
+        let hasSwitched = hasSwitchedToPreferredKeyboardTypeAfterTextDidChange
         hasSwitchedToPreferredKeyboardTypeAfterTextDidChange = true
-        return result
+        return !hasSwitched && context.keyboardType != context.preferredKeyboardType
     }
 }

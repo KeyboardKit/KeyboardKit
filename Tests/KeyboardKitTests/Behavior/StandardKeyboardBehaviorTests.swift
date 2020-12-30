@@ -112,12 +112,22 @@ class StandardKeyboardBehaviorTests: QuickSpec {
         
         describe("should switch to preferred keyboard type after text did change") {
             
+            beforeEach {
+                proxy.autocapitalizationType = .sentences
+                proxy.documentContextBeforeInput = "foo. "
+            }
+            
             func result() -> Bool {
                 behavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange(for: context)
             }
             
-            it("is true the first time this is checked") {
+            it("is only true the first time this is checked") {
                 expect(result()).to(beTrue())
+                expect(result()).to(beFalse())
+            }
+            
+            it("is not true the current keyboard type is the preferred one") {
+                context.keyboardType = .alphabetic(.uppercased)
                 expect(result()).to(beFalse())
             }
         }

@@ -116,11 +116,6 @@ open class KeyboardInputViewController: UIInputViewController {
         resetAutocomplete()
     }
     
-    open override func textDidChange(_ textInput: UITextInput?) {
-        super.textDidChange(textInput)
-        performAutocomplete()
-    }
-    
     
     // MARK: - Public Functions
     
@@ -157,5 +152,24 @@ open class KeyboardInputViewController: UIInputViewController {
     open override func textWillChange(_ textInput: UITextInput?) {
         super.textWillChange(textInput)
         viewWillSyncWithTextDocumentProxy()
+    }
+    
+    open override func textDidChange(_ textInput: UITextInput?) {
+        super.textDidChange(textInput)
+        performAutocomplete()
+        tryChangeToPreferredKeyboardTypeAfterTextDidChange()
+    }
+}
+
+
+// MARK: - Private Functions
+
+private extension KeyboardInputViewController {
+    
+    func tryChangeToPreferredKeyboardTypeAfterTextDidChange() {
+        let behavior = context.keyboardBehavior
+        let shouldSwitch = behavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange(for: context)
+        guard shouldSwitch else { return }
+        changeKeyboardType(to: context.preferredKeyboardType)
     }
 }
