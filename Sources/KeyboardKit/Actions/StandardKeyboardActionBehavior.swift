@@ -31,9 +31,10 @@ open class StandardKeyboardActionBehavior: KeyboardActionBehavior {
     
     open func shouldEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction, for context: KeyboardContext) -> Bool {
         let proxy = context.textDocumentProxy
-        let isAtEnd = proxy.isCursorAtTheEndOfTheCurrentWord
+        let isNewWord = proxy.isCursorAtNewWord
+        let isNewSentence = proxy.isCursorAtNewSentence
         let isClosable = (proxy.documentContextBeforeInput ?? "").hasSuffix("  ")
-        let shouldClose = isAtEnd && isClosable
+        let shouldClose = isNewWord && !isNewSentence && isClosable
         switch action {
         case .space: return shouldClose
         case .character(let char): return char == " " && shouldClose

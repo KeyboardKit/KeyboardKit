@@ -51,6 +51,12 @@ class KeyboardViewController: KeyboardInputViewController {
             rightSpaceAction: .keyboardType(.images))
     }
     
+    override func textDidChange(_ textInput: UITextInput?) {
+        super.textDidChange(textInput)
+        context.keyboardType = context.preferredKeyboardType
+        setupKeyboard()
+    }
+    
     /**
      This demo recreates the keyboard when view controller's
      trait collections change.

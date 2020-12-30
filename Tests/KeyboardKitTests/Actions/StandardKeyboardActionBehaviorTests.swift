@@ -77,6 +77,9 @@ class StandardKeyboardActionBehaviorTests: QuickSpec {
                 proxy.documentContextBeforeInput = "hej. "
                 expect(result(for: .tap, on: .space, context: context)).to(beFalse())
                 expect(result(for: .tap, on: .character(" "), context: context)).to(beFalse())
+                proxy.documentContextBeforeInput = "hej.  "
+                expect(result(for: .tap, on: .space, context: context)).to(beFalse())
+                expect(result(for: .tap, on: .character(" "), context: context)).to(beFalse())
             }
         }
         
