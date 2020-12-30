@@ -21,6 +21,7 @@ Note that this is an experimental feature that may have to be revisited before 4
 ### New features
 
 * `KeyboardContext` has a new `preferredKeyboardType` property.
+* `KeyboardContext` has a new `actionBehavior` property.
 * `StandardKeyboardActionBehavior` has caps-lock double tap logic.
 * `UITextDocumentProxy` has a new `isCursorAtNewSentence` property.
 * `UITextDocumentProxy` has a new `isCursorAtNewWord` property.
@@ -35,6 +36,7 @@ Note that this is an experimental feature that may have to be revisited before 4
 * The sentence ending logic is no longer based on double-tap, which makes it easier to use.
 * `KeyboardAction` `standardDoubleTapAction` is not defined for any actions anymore.
 * `KeyboardInputViewController` `changeKeyboardType` has no time interval anymore.
+* `StandardKeyboardContext` initializer now has a default value for the keyboard type.
 
 ### Bug fixes
 

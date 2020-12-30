@@ -17,6 +17,7 @@ class MockKeyboardContext: KeyboardContext {
     var device: UIDevice = .current
     
     var actionHandler: KeyboardActionHandler = MockKeyboardActionHandler()
+    var actionBehavior: KeyboardActionBehavior = StandardKeyboardActionBehavior()
     var emojiCategory: EmojiCategory = .frequent
     lazy var keyboardInputProvider: KeyboardInputProvider = { fatalError("Not implemented") }()
     lazy var keyboardLayoutProvider: KeyboardLayoutProvider = { fatalError("Not implemented") }()

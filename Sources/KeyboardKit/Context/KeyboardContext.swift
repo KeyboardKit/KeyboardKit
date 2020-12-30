@@ -33,8 +33,14 @@ public protocol KeyboardContext: AnyObject {
     // MARK: - Manually set properties
     
     /**
-     The current keyboard action handler that can be used to
-     handle actions that are triggered by the user or system.
+     This behavior determines how the keyboard should behave,
+     for instance to end sentences, switch keyboard etc.
+     */
+    var actionBehavior: KeyboardActionBehavior { get set }
+    
+    /**
+     The action handler that will be used to handle keyboard
+     actions that are triggered by the user or the system.
      */
     var actionHandler: KeyboardActionHandler { get set }
 

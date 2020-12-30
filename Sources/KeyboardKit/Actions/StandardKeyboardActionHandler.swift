@@ -28,11 +28,9 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     // MARK: - Initialization
     
     public init(
-        behavior: KeyboardActionBehavior = StandardKeyboardActionBehavior(),
         inputViewController: KeyboardInputViewController,
         hapticConfiguration: HapticFeedbackConfiguration = .noFeedback,
         audioConfiguration: AudioFeedbackConfiguration = .standard) {
-        self.behavior = behavior
         self.inputViewController = inputViewController
         self.hapticConfiguration = hapticConfiguration
         self.audioConfiguration = audioConfiguration
@@ -41,13 +39,16 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Dependencies
     
-    public let behavior: KeyboardActionBehavior
-    
     public private(set) weak var inputViewController: KeyboardInputViewController?
     
     private let audioConfiguration: AudioFeedbackConfiguration
     
     private let hapticConfiguration: HapticFeedbackConfiguration
+    
+    
+    // MARK: - Properties
+    
+    public var behavior: KeyboardActionBehavior? { context?.actionBehavior }
     
     private var context: KeyboardContext? { inputViewController?.context }
     
@@ -156,12 +157,14 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     open func tryEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction) {
         guard let context = context else { return }
+        let behavior = context.actionBehavior
         guard behavior.shouldEndSentence(for: context, after: gesture, on: action) else { return }
         context.textDocumentProxy.endSentence()
     }
     
     open func tryChangeKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) {
         guard let context = context else { return }
+        let behavior = context.actionBehavior
         guard behavior.shouldSwitchToPreferredKeyboardType(for: context, after: gesture, on: action) else { return }
         let newType = behavior.preferredKeyboardType(for: context, after: gesture, on: action)
         inputViewController?.changeKeyboardType(to: newType)
@@ -178,6 +181,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     @available(*, deprecated, message: "Use KeyboardActionBehavior instead")
     open func preferredKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardType? {
         guard let context = context else { return nil }
+        let behavior = context.actionBehavior
         return behavior.preferredKeyboardType(for: context, after: gesture, on: action)
     }
 }
