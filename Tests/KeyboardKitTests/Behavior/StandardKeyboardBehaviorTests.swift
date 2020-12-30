@@ -121,12 +121,11 @@ class StandardKeyboardBehaviorTests: QuickSpec {
                 behavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange(for: context)
             }
             
-            it("is only true the first time this is checked") {
+            it("is true if the the current keyboard type is not the preferred one") {
                 expect(result()).to(beTrue())
-                expect(result()).to(beFalse())
             }
             
-            it("is not true the current keyboard type is the preferred one") {
+            it("is not true if the current keyboard type is the preferred one") {
                 context.keyboardType = .alphabetic(.uppercased)
                 expect(result()).to(beFalse())
             }
