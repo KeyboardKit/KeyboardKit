@@ -39,4 +39,11 @@ public protocol KeyboardActionBehavior {
      the provided action has been performed.
      */
     func shouldSwitchToPreferredKeyboardType(for context: KeyboardContext, after gesture: KeyboardGesture, on action: KeyboardAction) -> Bool
+
+    /**
+     Whether or not the current keyboard type should be auto
+     switched to the behavior's preferred keyboard type when
+     the text document proxy's text did change.
+     */
+    func shouldSwitchToPreferredKeyboardTypeAfterTextDidChange(for context: KeyboardContext) -> Bool
 }

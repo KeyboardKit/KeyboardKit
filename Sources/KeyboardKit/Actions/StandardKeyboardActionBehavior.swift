@@ -23,7 +23,9 @@ open class StandardKeyboardActionBehavior: KeyboardActionBehavior {
     }
     
     var lastShiftCheck = Date()
+    
     private let doubleTapThreshold: TimeInterval
+    private var hasSwitchedToPreferredKeyboardTypeAfterTextDidChange = false
     
     public func preferredKeyboardType(for context: KeyboardContext, after gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardType {
         if shouldSwitchToCapsLock(for: context, after: gesture, on: action) { return .alphabetic(.capsLocked) }
@@ -59,5 +61,11 @@ open class StandardKeyboardActionBehavior: KeyboardActionBehavior {
         case .shift: return true
         default: return context.keyboardType != context.preferredKeyboardType
         }
+    }
+    
+    public func shouldSwitchToPreferredKeyboardTypeAfterTextDidChange(for context: KeyboardContext) -> Bool {
+        let result = !hasSwitchedToPreferredKeyboardTypeAfterTextDidChange
+        hasSwitchedToPreferredKeyboardTypeAfterTextDidChange = true
+        return result
     }
 }
