@@ -159,9 +159,14 @@ Feel free to reach out if you have questions or if you want to contribute in any
 
 KeyboardKit is proudly supported by:
 
-[![Anomaly Software](Resources/logos/anomaly.png "Anomaly Software")](http://anomaly.net.au/)
+<a href="http://anomaly.net.au">
+    <img src="Resources/logos/anomaly.png" alt="Anomaly Software Logo" title="Anomaly Software" width=150 />
+</a>
+<a href="https://www.milocreative.com">
+    <img src="Resources/logos/milo.png" alt="Milo Creative Logo" title="Milo Creative" width=150 />
+</a>
 
-Your company can support KeyboardKit by either sponsoring the project on GitHub Sponsors or by paying for consultation. I'ld be happy to help you out with your keyboard needs.
+Your company can support KeyboardKit by either sponsoring the project on GitHub Sponsors or by paying for consultation.  I'ld be happy to help you out with your keyboard needs.
 
 
 ## License
@@ -191,3 +196,6 @@ KeyboardKit is available under the MIT license. See LICENSE file for more info.
 [UIKit-Tutorial]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/UIKit-Tutorial.md
 
 [Guide]: https://shyngys.com/ios-custom-keyboard-guide
+
+[Anomaly]: http://anomaly.net.au
+[Milo]: https://www.milocreative.com
