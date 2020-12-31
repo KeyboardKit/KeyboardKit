@@ -8,7 +8,7 @@
 
 import Quick
 import Nimble
-import Mockery
+import MockingKit
 @testable import KeyboardKit
 import UIKit
 

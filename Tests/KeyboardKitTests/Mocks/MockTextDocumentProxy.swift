@@ -6,7 +6,7 @@
 //  Copyright © 2019 Daniel Saidi. All rights reserved.
 //
 
-import Mockery
+import MockingKit
 import UIKit
 
 /**

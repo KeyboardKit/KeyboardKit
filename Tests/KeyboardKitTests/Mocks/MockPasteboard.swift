@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Mockery
+import MockingKit
 
 class MockPasteboard: UIPasteboard, Mockable {
     

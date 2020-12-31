@@ -7,7 +7,7 @@
 //
 
 import KeyboardKit
-import Mockery
+import MockingKit
 
 class MockKeyboardInputViewController: KeyboardInputViewController, Mockable {
     

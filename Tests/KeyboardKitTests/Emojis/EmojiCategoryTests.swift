@@ -9,7 +9,7 @@
 import Quick
 import Nimble
 import KeyboardKit
-import Mockery
+import MockingKit
 
 class EmojiCategoryTests: QuickSpec {
     
