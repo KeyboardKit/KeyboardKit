@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-28.
-//  Copyright © 2020 Daniel Saidi. All rights reserved.
+//  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
@@ -11,12 +11,10 @@ import Foundation
 /**
  This protocol can be used to specify behavior rules for the
  keyboard. It aims to separate behavior from action handling
- to make the code cleaner, flexible and more understandable.
+ to make the code cleaner and more understandable.
  
- This protocol can be extended with new functionality in any
- minor release. To avoid breaking changes, you could inherit
- `StandardKeyboardBehavior` then override any parts you need,
- instead of creating a completely new class.
+ `IMPORTANT` This is an experimental new feature, that could
+ be redesigned in any minor release until 4.0.
  */
 public protocol KeyboardBehavior {
     

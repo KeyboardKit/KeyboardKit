@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-01.
-//  Copyright © 2020 Daniel Saidi. All rights reserved.
+//  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
@@ -48,7 +48,7 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     private let rightSpaceAction: KeyboardAction?
     
     open func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
-        let rows = context.actionRows
+        let rows = context.actionRows(for: context)
         let iPad = context.device.userInterfaceIdiom == .pad
         return keyboardLayout(for: context, iPad: iPad, rows: rows)
     }
@@ -249,19 +249,20 @@ private extension StandardKeyboardLayoutProvider {
 
 private extension KeyboardContext {
 
-    var actionRows: KeyboardActionRows {
-        KeyboardActionRows(characters: inputRows)
+    func actionRows(for context: KeyboardContext) -> KeyboardActionRows {
+        let rows = inputRows(for: context)
+        return KeyboardActionRows(characters: rows)
     }
     
-    var inputRows: [KeyboardInputSet.InputRow] {
+    func inputRows(for context: KeyboardContext) -> [KeyboardInputSet.InputRow] {
         let provider = keyboardInputProvider
         switch keyboardType {
         case .alphabetic(let state):
-            let rows = provider.alphabeticInputSet.inputRows
+            let rows = provider.alphabeticInputSet(for: context).inputRows
             return state.isUppercased ? rows.uppercased() : rows
-        case .numeric: return provider.numericInputSet.inputRows
-        case .symbolic: return provider.symbolicInputSet.inputRows
-        default: return provider.alphabeticInputSet.inputRows
+        case .numeric: return provider.numericInputSet(for: context).inputRows
+        case .symbolic: return provider.symbolicInputSet(for: context).inputRows
+        default: return provider.alphabeticInputSet(for: context).inputRows
         }
     }
 }

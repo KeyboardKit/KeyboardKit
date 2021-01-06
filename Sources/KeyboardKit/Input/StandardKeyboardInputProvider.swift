@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-01.
-//  Copyright © 2020 Daniel Saidi. All rights reserved.
+//  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
@@ -21,16 +21,10 @@ import Foundation
  */
 open class StandardKeyboardInputProvider: KeyboardInputProvider {
     
-    public init(locale: Locale = .current) {
-        self.locale = locale
-    }
+    public init() {}
     
-
-    private let locale: Locale
-    
-    
-    open var alphabeticInputSet: AlphabeticKeyboardInputSet {
-        getInputSet(in: alphabeticTable, fallback: .alphabetic_en)
+    open func alphabeticInputSet(for context: KeyboardContext) -> AlphabeticKeyboardInputSet {
+        getInputSet(for: context, in: alphabeticTable, fallback: .alphabetic_en)
     }
     
     open var alphabeticTable: [String: AlphabeticKeyboardInputSet] {
@@ -42,8 +36,8 @@ open class StandardKeyboardInputProvider: KeyboardInputProvider {
         ]
     }
     
-    open var numericInputSet: NumericKeyboardInputSet {
-        getInputSet(in: numericTable, fallback: .numeric_en)
+    open func numericInputSet(for context: KeyboardContext) -> NumericKeyboardInputSet {
+        getInputSet(for: context, in: numericTable, fallback: .numeric_en)
     }
     
     open var numericTable: [String: NumericKeyboardInputSet] {
@@ -55,8 +49,8 @@ open class StandardKeyboardInputProvider: KeyboardInputProvider {
         ]
     }
     
-    open var symbolicInputSet: SymbolicKeyboardInputSet {
-        getInputSet(in: symbolicTable, fallback: .symbolic_en)
+    open func symbolicInputSet(for context: KeyboardContext) -> SymbolicKeyboardInputSet {
+        getInputSet(for: context, in: symbolicTable, fallback: .symbolic_en)
     }
     
     open var symbolicTable: [String: SymbolicKeyboardInputSet] {
@@ -69,7 +63,8 @@ open class StandardKeyboardInputProvider: KeyboardInputProvider {
     }
     
     
-    open func getInputSet<Type: KeyboardInputSet>(in table: [String: Type], fallback: Type) -> Type {
+    open func getInputSet<Type: KeyboardInputSet>(for context: KeyboardContext, in table: [String: Type], fallback: Type) -> Type {
+        let locale = context.locale
         if let set = table[locale.identifier] { return set }
         if let set = table[locale.languageCode ?? "en"] { return set }
         return fallback

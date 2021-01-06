@@ -3,7 +3,7 @@
 //  KeyboardKitDemo
 //
 //  Created by Daniel Saidi on 2019-10-01.
-//  Copyright © 2019 Daniel Saidi. All rights reserved.
+//  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
 import UIKit
