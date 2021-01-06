@@ -3,6 +3,11 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions.
 
 
+## 3.4.0
+
+This release adds a callout when tapping SwiftUI keyboard buttons, as well as a secondary action callout when long pressing swiftUI keyboard buttons.  
+
+
 ## 3.3.0
 
 This release contains a bunch of new features that makes the keyboard behave more like the native keyboards when typing, for instance auto-capitalization and auto-lowercasing.
