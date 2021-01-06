@@ -17,9 +17,11 @@
 
 ## About KeyboardKit
 
-`KeyboardKit` is a helps you create custom keyboard extensions for `iOS` and `ipadOS`. It provides you with a rich set of `tools` and `actions`, `haptic` and `audio` feedback, `input sets`, `keyboard layouts` etc. and lets you create keyboards with `characters`, `numbers`, `symbols`, `emojis`, `images` or entirely custom logic.
+KeyboardKit helps you create custom keyboard extensions for `iOS` and `ipadOS`.
 
-You can create native looking keyboards like the example below, or completely custom keyboards:
+KeyboardKit provides you with a rich set of `tools` and `actions`, `haptic` and `audio` feedback, `input sets`, `layouts` etc. and lets you create keyboards with `characters`, `numbers`, `symbols`, `emojis`, `images` or entirely custom logic.
+
+You can create native looking keyboards like the example below, or completely custom ones:
 
 <p align="center">
     <img src ="Resources/Demo.gif" width="300" />

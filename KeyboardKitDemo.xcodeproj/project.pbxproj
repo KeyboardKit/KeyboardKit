@@ -447,6 +447,7 @@
 		A94265392490CDCC00EB5551 /* KeyboardKitDemoKeyboard_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				A9867CBA25A5D43D006D6F14 /* SecondaryInputCallout */,
 				843CBFA9250EA92500BA541F /* Keyboards */,
 				A94265532490D1CB00EB5551 /* Supporting Files */,
 				A94C721724AE238900077EEA /* DemoKeyboardActionHandler.swift */,
@@ -470,6 +471,13 @@
 				15133C74245862B300748945 /* EmojiCategory+L10n.swift */,
 			);
 			path = Localization;
+			sourceTree = "<group>";
+		};
+		A9867CBA25A5D43D006D6F14 /* SecondaryInputCallout */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SecondaryInputCallout;
 			sourceTree = "<group>";
 		};
 		OBJ_231 /* Products */ = {
