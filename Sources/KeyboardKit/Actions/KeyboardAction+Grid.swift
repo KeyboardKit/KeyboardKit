@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-02-20.
-//  Copyright © 2018 Daniel Saidi. All rights reserved.
+//  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
 import Foundation

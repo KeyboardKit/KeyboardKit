@@ -22,6 +22,7 @@ class MockKeyboardContext: KeyboardContext {
     lazy var keyboardInputSetProvider: KeyboardInputSetProvider = { fatalError("Not implemented") }()
     lazy var keyboardLayoutProvider: KeyboardLayoutProvider = { fatalError("Not implemented") }()
     var keyboardType: KeyboardType = .alphabetic(.lowercased)
+    lazy var secondaryCalloutActionProvider: SecondaryCalloutActionProvider = { fatalError("Not implemented") }()
     
     var deviceOrientation: UIInterfaceOrientation = .portrait
     var hasDictationKey = false

@@ -18,7 +18,6 @@ import UIKit
  */
 public class StandardKeyboardContext: KeyboardContext {
     
-    
     public init(
         locale: Locale = .current,
         device: UIDevice = .current,
@@ -27,7 +26,8 @@ public class StandardKeyboardContext: KeyboardContext {
         keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior(),
         keyboardType: KeyboardType = .alphabetic(.lowercased),
         keyboardInputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider(),
-        keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider()) {
+        keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider(),
+        secondaryCalloutActionProvider: SecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider()) {
         self.controller = controller
         
         self.device = device
@@ -38,11 +38,12 @@ public class StandardKeyboardContext: KeyboardContext {
         self.keyboardInputSetProvider = keyboardInputSetProvider
         self.keyboardLayoutProvider = keyboardLayoutProvider
         self.keyboardType = keyboardType
-        self.locale = locale
+        self.secondaryCalloutActionProvider = secondaryCalloutActionProvider
         
         self.deviceOrientation = controller.deviceOrientation
         self.hasDictationKey = controller.hasDictationKey
         self.hasFullAccess = controller.hasFullAccess
+        self.locale = locale
         self.needsInputModeSwitchKey = controller.needsInputModeSwitchKey
         self.primaryLanguage = controller.primaryLanguage
         self.textDocumentProxy = controller.textDocumentProxy
@@ -58,12 +59,13 @@ public class StandardKeyboardContext: KeyboardContext {
     public var keyboardInputSetProvider: KeyboardInputSetProvider
     public var keyboardLayoutProvider: KeyboardLayoutProvider
     public var keyboardType: KeyboardType
-    public var locale: Locale
+    public var secondaryCalloutActionProvider: SecondaryCalloutActionProvider
     
     public var device: UIDevice
     public var deviceOrientation: UIInterfaceOrientation
     public var hasDictationKey: Bool
     public var hasFullAccess: Bool
+    public var locale: Locale
     public var needsInputModeSwitchKey: Bool
     public var primaryLanguage: String?
     public var textDocumentProxy: UITextDocumentProxy

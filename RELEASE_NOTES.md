@@ -7,12 +7,19 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 This release adds a callout when tapping SwiftUI keyboard buttons, as well as a secondary action callout when long pressing swiftUI keyboard buttons.
 
-### New protocols
+### New features
 
+This release has new features for secondary callout actions.
+
+* `KeyboardAction+SecondaryCalloutActions` is a new extension that specifies standard secondary callout actions for keyboard actions.
+* `KeyboardContext` has a new `secondaryCalloutActionProvider` property.
 * `SecondaryCalloutActionProvider` is a new protocol for providing secondary callout actions for keyboard actions.
+* `StandardSecondaryCalloutActionProvider` is a standard provider that returns the standard extension actions.
 
 
 ### Breaking changes
+
+This release also has breaking changes to experimental features.
 
 * `KeyboardInputProvider` has been renamed to `KeyboardInputSetProvider`
 * `KeyboardInputSetProvider`s properties are now context-based functions

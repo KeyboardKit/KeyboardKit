@@ -3,7 +3,7 @@
 //  KeyboardKitTests
 //
 //  Created by Daniel Saidi on 2018-10-04.
-//  Copyright © 2018 Daniel Saidi. All rights reserved.
+//  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
 import Quick

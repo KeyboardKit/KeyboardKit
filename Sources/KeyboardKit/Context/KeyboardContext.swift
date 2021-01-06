@@ -51,7 +51,7 @@ public protocol KeyboardContext: AnyObject {
     var keyboardBehavior: KeyboardBehavior { get set }
     
     /**
-     The current keyboard input provider.
+     The current keyboard input set provider.
      */
     var keyboardInputSetProvider: KeyboardInputSetProvider { get set }
     
@@ -101,6 +101,11 @@ public protocol KeyboardContext: AnyObject {
      The current primary language of the keyboard.
      */
     var primaryLanguage: String? { get set }
+    
+    /**
+     The current secondary callout action provider.
+     */
+    var secondaryCalloutActionProvider: SecondaryCalloutActionProvider { get set }
     
     /**
      The current text document proxy.
