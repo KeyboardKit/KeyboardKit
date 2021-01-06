@@ -62,7 +62,6 @@ open class StandardKeyboardInputSetProvider: KeyboardInputSetProvider {
         ]
     }
     
-    
     open func getInputSet<Type: KeyboardInputSet>(for context: KeyboardContext, in table: [String: Type], fallback: Type) -> Type {
         let locale = context.locale
         if let set = table[locale.identifier] { return set }
