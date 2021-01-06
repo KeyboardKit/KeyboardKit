@@ -16,6 +16,7 @@ This release adds a callout when tapping SwiftUI keyboard buttons, as well as a 
 
 * `KeyboardInputProvider` has been renamed to `KeyboardInputSetProvider`
 * `KeyboardInputSetProvider`s properties are now context-based functions
+* `KeyboardContext` `keyboardInputProvider` has been renamed to `keyboardInputSetProvider`
 
 
 ## 3.3.0

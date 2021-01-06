@@ -255,7 +255,7 @@ private extension KeyboardContext {
     }
     
     func inputRows(for context: KeyboardContext) -> [KeyboardInputSet.InputRow] {
-        let provider = keyboardInputProvider
+        let provider = keyboardInputSetProvider
         switch keyboardType {
         case .alphabetic(let state):
             let rows = provider.alphabeticInputSet(for: context).inputRows

@@ -1,5 +1,5 @@
 //
-//  StaticKeyboardInputProvider.swift
+//  StaticKeyboardInputSetProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-01.
@@ -12,7 +12,7 @@ import Foundation
  This keyboard input set provider returns the input set that
  it is initialized with, regardless of the provided context.
  */
-public class StaticKeyboardInputProvider: KeyboardInputProvider {
+public class StaticKeyboardInputSetProvider: KeyboardInputSetProvider {
     
     public init(
         alphabeticInputSet: AlphabeticKeyboardInputSet,

@@ -53,7 +53,7 @@ public protocol KeyboardContext: AnyObject {
     /**
      The current keyboard input provider.
      */
-    var keyboardInputProvider: KeyboardInputProvider { get set }
+    var keyboardInputSetProvider: KeyboardInputSetProvider { get set }
     
     /**
      The current keyboard layout provider.

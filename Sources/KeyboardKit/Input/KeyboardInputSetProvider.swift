@@ -1,5 +1,5 @@
 //
-//  KeyboardInputProvider.swift
+//  KeyboardInputSetProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-01.
@@ -20,7 +20,7 @@ import Foundation
  `IMPORTANT` This is an experimental new feature, that could
  be redesigned in any minor release until 4.0.
  */
-public protocol KeyboardInputProvider: AnyObject {
+public protocol KeyboardInputSetProvider: AnyObject {
     
     func alphabeticInputSet(for context: KeyboardContext) -> AlphabeticKeyboardInputSet
     func numericInputSet(for context: KeyboardContext) -> NumericKeyboardInputSet

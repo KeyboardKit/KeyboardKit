@@ -1,5 +1,5 @@
 //
-//  StandardKeyboardInputProviderTests.swift
+//  StandardKeyboardInputSetProviderTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-01.
@@ -11,15 +11,15 @@ import Nimble
 import Foundation
 import KeyboardKit
 
-class StandardKeyboardInputProviderTests: QuickSpec {
+class StandardKeyboardInputSetProviderTests: QuickSpec {
     
     override func spec() {
         
-        var provider: KeyboardInputProvider!
+        var provider: KeyboardInputSetProvider!
         var context: MockKeyboardContext!
         
         beforeEach {
-            provider = StandardKeyboardInputProvider()
+            provider = StandardKeyboardInputSetProvider()
             context = MockKeyboardContext()
         }
         
