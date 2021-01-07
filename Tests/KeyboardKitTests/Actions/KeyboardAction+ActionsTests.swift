@@ -35,12 +35,13 @@ class KeyboardAction_ActionsTests: QuickSpec {
         describe("standard long press action") {
             
             func result(for action: KeyboardAction) -> Bool {
-                if action.standardTapAction != nil { return action.standardLongPressAction != nil }
-                return action.standardLongPressAction == nil
+                action.standardLongPressAction != nil
             }
             
-            it("is defined for all actions that has a standard tap action") {
-                actions.forEach { expect(result(for: $0)).to(beTrue()) }
+            it("is defined for some actions") {
+                expected = [.backspace]
+                expected.forEach { expect(result(for: $0)).to(beTrue()) }
+                unexpected.forEach { expect(result(for: $0)).to(beFalse()) }
             }
         }
         
