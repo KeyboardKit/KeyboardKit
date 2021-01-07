@@ -25,7 +25,7 @@ class DemoKeyboardActionHandlerBase: StandardKeyboardActionHandler {
     init(inputViewController: KeyboardInputViewController) {
         super.init(
             inputViewController: inputViewController,
-            hapticConfiguration: .standard
+            hapticConfiguration: .noFeedback
         )
     }
     

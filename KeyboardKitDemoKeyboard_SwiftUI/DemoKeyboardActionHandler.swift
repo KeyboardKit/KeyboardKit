@@ -16,7 +16,9 @@ import UIKit
  */
 class DemoKeyboardActionHandler: DemoKeyboardActionHandlerBase {
     
-    public init(inputViewController: KeyboardViewController, toastContext: KeyboardToastContext) {
+    public init(
+        inputViewController: KeyboardViewController,
+        toastContext: KeyboardToastContext) {
         self.toastContext = toastContext
         super.init(inputViewController: inputViewController)
     }

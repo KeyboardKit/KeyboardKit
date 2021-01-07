@@ -60,8 +60,8 @@ private extension KeyboardView {
     }
     
     var systemKeyboard: some View {
-        VStack {
-            AutocompleteToolbar().frame(height: 45)
+        VStack(spacing: 0) {
+            AutocompleteToolbar().frame(height: 50)
             SystemKeyboard(layout: systemKeyboardLayout)
         }
     }
