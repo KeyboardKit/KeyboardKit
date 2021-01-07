@@ -1324,7 +1324,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielsaidi/KeyboardKitSwiftUI";
 			requirement = {
-				branch = "input-callout";
+				branch = master;
 				kind = branch;
 			};
 		};
