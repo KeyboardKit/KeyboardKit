@@ -32,9 +32,9 @@ These actions can be applied to keyboard buttons or triggered programatically.
 
 ## Handling actions
 
-You can use these actions in any way you like, but KeyboardKit lets you specify a `KeyboardActionHandler` that can be used to handle actions. `KeyboardContext` has an `actionHandler` property that can be used to get and set the current action handler.
+You can use these actions in any way you like, but KeyboardKit also lets you specify a `KeyboardActionHandler` that can be used to handle actions.
 
-KeyboardKit will apply a `StandardKeyboardActionHandler` by default, but you can inject a custom action handler if you want.
+`KeyboardContext` has an `actionHandler` that you can use for this. KeyboardKit will apply a `StandardKeyboardActionHandler` by default, but you can replace it with any custom action handler.
 
 
 ## Actions for tap, long press, repeat etc.
@@ -46,9 +46,30 @@ Many actions have no standard behavior, since their behavior depend on your appl
 You can handle actions that have no standard behavior by implementing a custom action handler, like the demo app does.
 
 
+## Secondary callout actions
+
+Secondary callout actions are actions that can be presented in a callout when an action is being pressed.
+
+You can use these actions in any way you like, but KeyboardKit also lets you specify a `SecondaryCalloutActionProvider` that can be used to provide secondary callout actions for keyboard actions.
+
+`KeyboardContext` has a `secondaryCalloutActionProvider` that you can use for this. KeyboardKit will apply a `StandardSecondaryCalloutActionProvider` by default, but you can replace it with any custom action handler.
+
+
+## Callouts
+
+KeyboardKit supports two different kind of callouts - input callouts and secondary input callouts:
+
+* Input callouts highlight the currently pressed keyboard.
+* Secondary input callouts present secondary inputs for the currently pressed keyboard. 
+
+These two callouts are SwiftUI exclusive and require `KeyboardKitSwiftUI`. The SwiftUI-based `SystemKeyboard` automatically sets up both callouts and the standard keyboard button gestures will trigger them accordingly.
+
+
 ## Appearance
 
-The standard system look of each action depends on the current color scheme, keyboard appearance etc. `KeyboardKitSwiftUI` contains utilities to help you with this, but you can also apply keyboard actions to any views, with completely custom looks and behaviors.
+The standard system look of each action depends on the current color scheme, keyboard appearance etc. 
+
+`KeyboardKitSwiftUI` contains utilities to help you with this, but you can also apply keyboard actions to any views, with completely custom looks and behaviors.
 
 
 ## Icons & Texts
