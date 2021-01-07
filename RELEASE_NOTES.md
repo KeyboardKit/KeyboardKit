@@ -17,6 +17,11 @@ This release has new features for secondary callout actions.
 * `StandardSecondaryCalloutActionProvider` is a standard provider that returns the standard extension actions.
 
 
+### Behavior changes
+
+Due to the new secondary input callout, which triggers on long presses, I decided to remove the standard long press action for all actions except backspace. This makes actions behave more like the native ones.  
+
+
 ### Breaking changes
 
 This release also has breaking changes to experimental features.

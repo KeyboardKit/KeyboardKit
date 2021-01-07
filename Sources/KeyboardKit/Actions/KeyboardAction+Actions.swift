@@ -32,8 +32,9 @@ public extension KeyboardAction {
      */
     var standardLongPressAction: GestureAction? {
         switch self {
-        case .shift: return { $0?.changeKeyboardType(to: .alphabetic(.capsLocked)) }
-        default: return standardTapAction
+        case .backspace: return standardTapAction
+        // case .shift: return { $0?.changeKeyboardType(to: .alphabetic(.capsLocked)) }
+        default: return nil
         }
     }
     
