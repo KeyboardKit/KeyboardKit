@@ -3,6 +3,11 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions.
 
 
+## 3.4.1
+
+This release fixes some visual artefacts in the callout bubbles.
+
+
 ## 3.4.0
 
 This release adds support for input callouts and secondary input callouts.
