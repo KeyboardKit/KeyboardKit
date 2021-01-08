@@ -40,7 +40,7 @@ private extension String {
         case "!": return "!¡".splitActions
         case "'", "’": return "'’‘`".splitActions
             
-        //case "%": return "%‰".splitActions    // TODO: Currently disabled, since the secondary callout can't display them properly.
+        case "%": return "%‰".splitActions
         case "=": return "=≠≈".splitActions
             
         case "kr": return "€$£¥₩₽".splitActions.appending(.character("kr"))
