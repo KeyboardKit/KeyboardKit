@@ -3,12 +3,31 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions.
 
 
+## 3.4.2
+
+This release adds curves and behavior changes to the callout bubbles.
+
+### Behavior changes
+
+* `InputCallout` has curves between the button area and the callout.
+* `InputCalloutContext` has a new `isEnabled` property that is only trued for phones, since this callout should not be displayed for iPads.
+* `SecondaryInputCallout` has curves between the button area and the callout.
+
+### New features
+
+New features in KeyboardKitSwiftUI:
+
+* `CalloutCurve` is a new shape that can be used to smoothen the two parts of a callout bubble.
+
+
 ## 3.4.1
 
 This release fixes some visual artefacts in the callout bubbles.
 
 
 ## 3.4.0
+
+From now on, release notes will include changes in both KeyboardKit and KeyboardKitSwiftUI.
 
 This release adds support for input callouts and secondary input callouts.
 
@@ -21,11 +40,24 @@ This release has new features for secondary callout actions.
 * `SecondaryCalloutActionProvider` is a protocol for providing secondary callout actions for keyboard actions.
 * `StandardSecondaryCalloutActionProvider` is a standard action provider that returns the standard secondary callout actions.
 
+* `CalloutStyle` is a shared style for keyboard button callout.
+* `InputCallout` is a callout that can highlight the currently pressed keyboard button.
+* `InputCalloutContext` can be used to control `InputCallout` views.
+* `InputCalloutStyle` can be used to style `InputCallout` views.
+* `SecondaryInputCallout` is a callout that can present secondary actions for the currently pressed keyboard button.
+* `SecondaryInputCalloutContext` can be used to control `SecondaryInputCallout` views.
+* `SecondaryInputCalloutStyle` can be used to style `SecondaryInputCallout` views.
+* `View+InputCallout` can be used to wrap any view in a `ZStack` with a topmost `InputCallout`
+* `View+SecondaryInputCallout` can be used to wrap any view in a `ZStack` with a topmost `SecondaryInputCallout`
+
+
 ### Behavior changes
 
 Since the new secondary input callout, which triggers on long press, I have removed the standard long press action for all actions except backspace. 
 
-This also makes standard KeyboardKit keyboards behave more like native iOS keyboards.  
+This also makes standard KeyboardKit keyboards behave more like native iOS keyboards.
+
+* `View+KeyboardGestures` has been extended with gestures for `InputCallout` and `SecondaryInputCallout`.
 
 ### Breaking changes
 
@@ -34,6 +66,7 @@ This release also has breaking changes to experimental features.
 * `KeyboardInputProvider` has been renamed to `KeyboardInputSetProvider`
 * `KeyboardInputSetProvider`s properties are now context-based functions
 * `KeyboardContext` `keyboardInputProvider` has been renamed to `keyboardInputSetProvider`
+* `ObservableKeyboardContext` `keyboardInputProvider` has been renamed to `keyboardInputSetProvider`
 
 
 ## 3.3.0
