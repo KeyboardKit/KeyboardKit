@@ -12,10 +12,10 @@ This release adds curves and behavior changes to the callout bubbles.
 * The disabled secondary % callout actions have been re-enabled.
 * `CalloutStyle` now applies button frame insets when configured for a system keyboard.
 * `InputCallout` has curves between the button area and the callout.
-* `InputCalloutContext` has a new `isEnabled` property that is only trued for phones, since this callout should not be displayed for iPads.
+* `InputCalloutContext` has a new `isEnabled` property that is only true for phones, since it should not be displayed on iPads.
 * `InputCalloutContext` no longer insets the button rect.
 * `SecondaryInputCallout` has curves between the button area and the callout and the design is improved.
-* `SystmeInputCalloutContext` no longer insets the button rect.
+* `SystemInputCalloutContext` no longer insets the button rect.
 
 ### New features
 
