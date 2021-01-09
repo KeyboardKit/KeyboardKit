@@ -11,4 +11,7 @@ public extension KeyboardType {
         if state == .capsLocked && newState == .uppercased { return false }
         return true
     }
+    
+    @available(*, deprecated, message: "Use KeyboardAction's standardButtonText")
+    var systemKeyboardButtonText: String? { standardButtonText }
 }

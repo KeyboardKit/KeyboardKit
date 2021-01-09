@@ -73,9 +73,10 @@ class StandardKeyboardLayoutProviderTests: QuickSpec {
             it("is correct for a non-home button pad") {
                 context.needsInputModeSwitchKey = false
                 let result = provider.keyboardLayout(for: context, iPad: true, rows: rows).actionRows
+                let expectedKeyboardType = KeyboardAction.keyboardType(.alphabetic(.capsLocked))
                 expect(result[0].first).to(equal(.tab))
                 expect(result[0].last).to(equal(.backspace))
-                expect(result[1].first).to(equal(.keyboardType(.alphabetic(.capsLocked))))
+                expect(result[1].first).to(equal(expectedKeyboardType))
                 expect(result[1].last).to(equal(.newLine))
                 expect(result[2].first).to(equal(KeyboardAction.shift(currentState: .lowercased)))
                 expect(result[2].last).to(equal(KeyboardAction.shift(currentState: .lowercased)))

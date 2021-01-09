@@ -21,7 +21,7 @@ class KeyboardAction_SystemTests: QuickSpec {
             
             it("is defined for all actions") {
                 actions.forEach {
-                    expect($0.systemFont).to(equal(UIFont.preferredFont(forTextStyle: $0.systemTextStyle)))
+                    expect($0.standardButtonFont).to(equal(UIFont.preferredFont(forTextStyle: $0.standardButtonTextStyle)))
                 }
             }
         }
@@ -29,15 +29,23 @@ class KeyboardAction_SystemTests: QuickSpec {
         describe("system keyboard button text") {
             
             func result(for action: KeyboardAction) -> String? {
-                action.systemKeyboardButtonText
+                action.standardButtonText
             }
             
             it("is defined for some actions") {
                 expect(result(for: .character("A"))).to(equal("A"))
                 expect(result(for: .emoji("🛸"))).to(equal("🛸"))
                 expect(result(for: .emojiCategory(.animals))).to(equal("🐻"))
+                
+                expect(result(for: .keyboardType(.alphabetic(.capsLocked)))).to(equal("ABC"))
+                expect(result(for: .keyboardType(.alphabetic(.lowercased)))).to(equal("ABC"))
+                expect(result(for: .keyboardType(.alphabetic(.uppercased)))).to(equal("ABC"))
                 expect(result(for: .keyboardType(.numeric))).to(equal("123"))
                 expect(result(for: .keyboardType(.symbolic))).to(equal("#+="))
+                expect(result(for: .keyboardType(.custom("")))).to(beNil())
+                expect(result(for: .keyboardType(.email))).to(beNil())
+                expect(result(for: .keyboardType(.emojis))).to(beNil())
+                expect(result(for: .keyboardType(.images))).to(beNil())
                 
                 expect(result(for: .none)).to(beNil())
                 expect(result(for: .backspace)).to(beNil())
@@ -68,18 +76,18 @@ class KeyboardAction_SystemTests: QuickSpec {
             it("is custom for some actions, but defined for all") {
                 let expectedTitle = getActions(.emoji(""))
                 let expectedCallout = getActions(.emojiCategory(.smileys))
-                var expectedBody = actions.filter { $0.isSystemAction && $0.systemKeyboardButtonText != nil }
+                var expectedBody = actions.filter { $0.isSystemAction && $0.standardButtonText != nil }
                 expectedBody.append(.character("abc"))
                 
                 actions.forEach {
                     if expectedTitle.contains($0) {
-                        expect($0.systemTextStyle).to(equal(.title1))
+                        expect($0.standardButtonTextStyle).to(equal(.title1))
                     } else if expectedCallout.contains($0) {
-                        expect($0.systemTextStyle).to(equal(.callout))
+                        expect($0.standardButtonTextStyle).to(equal(.callout))
                     } else if expectedBody.contains($0) {
-                        expect($0.systemTextStyle).to(equal(.body))
+                        expect($0.standardButtonTextStyle).to(equal(.body))
                     } else {
-                        expect($0.systemTextStyle).to(equal(.title2))
+                        expect($0.standardButtonTextStyle).to(equal(.title2))
                     }
                 }
             }

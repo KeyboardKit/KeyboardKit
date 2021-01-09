@@ -3,6 +3,20 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions.
 
 
+## 3.5.0
+
+This release deprecates some `system` properties in favor of the `standard` naming concept.
+
+In most cases, the system behavior *is* the standard behavior.
+
+### Deprecations
+
+* `KeyboardAction` `systemFont` is renamed to `standardButtonFont`.
+* `KeyboardAction` `systemKeyboardButtonText` is renamed to `standardButtonText`.
+* `KeyboardAction` `systemTextStyle` is renamed to `standardButtonTextStyle`.
+* `KeyboardType` `systemKeyboardButtonText` is deprecated.
+
+
 ## 3.4.2
 
 This release adds curves and behavior changes to the callout bubbles.
