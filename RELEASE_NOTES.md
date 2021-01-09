@@ -16,6 +16,22 @@ In most cases, the system behavior *is* the standard behavior.
 * `KeyboardAction` `systemTextStyle` is renamed to `standardButtonTextStyle`.
 * `KeyboardType` `systemKeyboardButtonText` is deprecated.
 
+* `Color` `systemKeyboardButtonBackgroundColorDark` has been renamed to `standardDarkButtonBackgroundColor` 
+* `Color` `systemKeyboardButtonBackgroundColorLight` has been renamed to `standardLightButtonBackgroundColor` 
+* `Color` `systemKeyboardButtonForegroundColor` has been renamed to `standardButtonForegroundColor` 
+* `Color` `systemKeyboardButtonShadowColor` has been renamed to `standardButtonShadowColor`
+* `KeyboardAction` `systemKeyboardButtonBackgroundColor` has been renamed to `standardButtonBackgroundColor` 
+* `KeyboardAction` `systemKeyboardButtonImage` has been renamed to `standardButtonImage` 
+* `KeyboardAction` `systemKeyboardButtonShadowColor` has been renamed to `standardButtonShadowColor`
+* `KeyboardShiftState` `systemImage` has been renamed to `standardButtonImage`
+* `KeyboardShiftState` `systemKeyboardButtonImage` was unused and has been deprecated.
+* `KeyboardType` `systemKeyboardButtonImage` has been renamed to `standardButtonImage`
+* `View` `systemKeyboardButtonStyle` has been renamed to `standardButtonStyle`
+* `View` `systemKeyboardButtonBackground` has been renamed to `standardButtonBackground`
+* `View` `systemKeyboardButtonFont` has been renamed to `standardButtonFont`
+* `View` `systemKeyboardButtonForeground` has been renamed to `standardButtonForeground`
+* `View` `systemKeyboardButtonShadow` has been renamed to `standardButtonShadow`
+
 
 ## 3.4.2
 

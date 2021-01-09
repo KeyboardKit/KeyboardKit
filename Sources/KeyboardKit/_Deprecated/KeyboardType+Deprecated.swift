@@ -12,6 +12,6 @@ public extension KeyboardType {
         return true
     }
     
-    @available(*, deprecated, message: "Use KeyboardAction's standardButtonText")
+    @available(*, deprecated, renamed: "standardButtonText")
     var systemKeyboardButtonText: String? { standardButtonText }
 }

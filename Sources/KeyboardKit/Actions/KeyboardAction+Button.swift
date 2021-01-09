@@ -1,5 +1,5 @@
 //
-//  KeyboardAction+System.swift
+//  KeyboardAction+Button.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-07-01.
@@ -52,17 +52,5 @@ private extension KeyboardAction {
     var hasMultiCharButtonText: Bool {
         guard let text = standardButtonText else { return false }
         return text.count > 1
-    }
-}
-
-extension KeyboardType {
-    
-    var standardButtonText: String? {
-        switch self {
-        case .alphabetic: return "ABC"
-        case .numeric: return "123"
-        case .symbolic: return "#+="
-        default: return nil
-        }
     }
 }
