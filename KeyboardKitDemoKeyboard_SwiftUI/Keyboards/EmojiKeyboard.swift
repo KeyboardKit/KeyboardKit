@@ -74,7 +74,7 @@ private extension EmojiKeyboard {
     }
     
     func bottomView(for action: KeyboardAction) -> AnyView {
-        if let image = action.systemKeyboardButtonImage(for: context) { return AnyView(image) }
-        return AnyView(Text(action.systemKeyboardButtonText ?? ""))
+        if let image = action.standardButtonImage(for: context) { return AnyView(image) }
+        return AnyView(Text(action.standardButtonText ?? ""))
     }
 }

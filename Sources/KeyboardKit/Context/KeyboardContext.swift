@@ -44,11 +44,17 @@ public protocol KeyboardContext: AnyObject {
 public extension KeyboardContext {
     
     /**
-     The current keyboard appearance. It's resolved from the
-     `textDocumentProxy`, with a fallback to `.light`.
+     The current keyboard appearance, with `.light` fallback.
      */
     var keyboardAppearance: UIKeyboardAppearance {
         textDocumentProxy.keyboardAppearance ?? .light
+    }
+    
+    /**
+     The current keyboard layout from the active provider.
+     */
+    var keyboardLayout: KeyboardLayout {
+        keyboardLayoutProvider.keyboardLayout(for: self)
     }
 }
 

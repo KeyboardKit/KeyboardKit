@@ -109,8 +109,7 @@ private extension KeyboardAction {
      The font to use for a button that uses this action.
      */
     var buttonFont: UIFont {
-        if useCalloutFont { return UIFont.preferredFont(forTextStyle: .callout) }
-        return systemFont
+        useCalloutFont ? UIFont.preferredFont(forTextStyle: .callout) : standardButtonFont
     }
     
     /**
@@ -162,12 +161,9 @@ private extension KeyboardAction {
      */
     func buttonText(for keyboardType: KeyboardType) -> String {
         switch keyboardType {
-        case .alphabetic: return "ABC"
         case .emojis: return "🙂"
         case .images: return "🖼️"
-        case .numeric: return "123"
-        case .symbolic: return "#+="
-        default: return "???"
+        default: return keyboardType.standardButtonText ?? "-"
         }
     }
     

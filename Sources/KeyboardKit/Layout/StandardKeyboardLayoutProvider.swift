@@ -29,11 +29,11 @@ import UIKit
  gives you a chance to customize the default actions, but in
  a limited way. If you want to make bigger changes, subclass.
  
- `IMPORTANT` This is a best effort. The iOS/iPadOS keyboards
- have layouts that depend on many factors. Some locales will
- not receive the correct layout with this implementation. To
- solve this, either subclass this class and fill in the gaps,
- or add the missing parts that you find and send a PR.
+ `IMPORTANT` This is a best effort experimental feature that
+ can be redesigned at any time before KK 4.0. The iOS/iPadOS
+ keyboards have layouts that depend on many factors, so as I
+ work on honoring them as well as possible, I may have to do
+ some changes to the protocol and this implementation.
  */
 open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     
