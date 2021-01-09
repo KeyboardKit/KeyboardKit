@@ -13,9 +13,9 @@ import Foundation
  input sets, e.g. for the keyboard extension's current state.
  
  KeyboardKit registers a standard protocol implementation in
- the input view controller's `context` when the extension is
- started. You can replace this at any time, by registering a
- new provider with the `keyboardInputProvider` property.
+ the keyboard context when the extension is started. You can
+ replace this at any time, by applying a new instance to the
+ context's `keyboardInputSetProvider` property.
 
  `IMPORTANT` This is an experimental new feature, that could
  be redesigned in any minor release until 4.0.

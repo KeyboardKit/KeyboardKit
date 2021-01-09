@@ -30,19 +30,18 @@ public class StandardKeyboardContext: KeyboardContext {
         secondaryCalloutActionProvider: SecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider()) {
         self.controller = controller
         
-        self.device = device
-        
         self.actionHandler = actionHandler
-        self.emojiCategory = .frequent
         self.keyboardBehavior = keyboardBehavior
         self.keyboardInputSetProvider = keyboardInputSetProvider
         self.keyboardLayoutProvider = keyboardLayoutProvider
-        self.keyboardType = keyboardType
         self.secondaryCalloutActionProvider = secondaryCalloutActionProvider
         
+        self.device = device
         self.deviceOrientation = controller.deviceOrientation
+        self.emojiCategory = .frequent
         self.hasDictationKey = controller.hasDictationKey
         self.hasFullAccess = controller.hasFullAccess
+        self.keyboardType = keyboardType
         self.locale = locale
         self.needsInputModeSwitchKey = controller.needsInputModeSwitchKey
         self.primaryLanguage = controller.primaryLanguage
