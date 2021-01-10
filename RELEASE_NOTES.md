@@ -5,9 +5,11 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 ## 3.5.0
 
-This release deprecates some `system` properties in favor of the `standard` naming concept.
+This release makes it easier to inject custom views into the `SwiftUI`-based `SystemKeyboard` and `AutocompleteToolbar`. 
 
-In most cases, the system behavior *is* the standard behavior.
+There is also a new `SystemKeyboardSpaceButton` which lets you present the current locale before fading to "space".
+
+The release also adds a spacebar drag gesture and deprecates some `haptic` properties as well as some `system` properties in favor of the `standard` naming concept (since the system behavior *is* the standard behavior).
 
 ### New features
  
@@ -15,6 +17,7 @@ In most cases, the system behavior *is* the standard behavior.
 * `HapticFeedback` has a new `longPressOnSpace` case.
 * `KeyboardAppearanceProvider` is a protocol for providing button content and style.
 * `KeyboardContext` has a new `keyboardAppearanceProvider` property.
+* `StandardKeyboardActionHandler` has new functionality for handling the space drag gesture.
 * `StandardKeyboardAppearanceProvider` is a standard appearance provider that returns standard values.
 
 * `SystemKeyboardButtonContent` is new view that extracts content logic from `SystemKeyboardButton`.

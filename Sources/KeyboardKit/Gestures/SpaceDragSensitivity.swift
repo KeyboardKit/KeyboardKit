@@ -19,9 +19,9 @@ public enum SpaceDragSensitivity {
     
     public var points: Int {
         switch self {
-        case .low: return 20
-        case .medium: return 10
-        case .high: return 5
+        case .low: return 10
+        case .medium: return 5
+        case .high: return 2
         case .points(let val): return val
         }
     }

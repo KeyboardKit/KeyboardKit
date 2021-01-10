@@ -225,8 +225,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
 private extension StandardKeyboardActionHandler {
 
     private func tryStartNewSpaceCursorDragGesture(from startLocation: CGPoint, to currentLocation: CGPoint) {
-        let lastStartLocation = currentDragStartLocation
-        let isNewDrag = lastStartLocation != startLocation
+        let isNewDrag = currentDragStartLocation != startLocation
         currentDragStartLocation = startLocation
         guard isNewDrag else { return }
         currentDragTextPositionOffset = 0

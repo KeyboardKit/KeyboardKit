@@ -33,7 +33,7 @@ class HapticFeedbackConfigurationTests: QuickSpec {
                 expect(config.tapFeedback).to(equal(HapticFeedback.none))
                 expect(config.doubleTapFeedback).to(equal(HapticFeedback.none))
                 expect(config.longPressFeedback).to(equal(HapticFeedback.none))
-                expect(config.longPressOnSpaceFeedback).to(equal(HapticFeedback.selectionChanged))
+                expect(config.longPressOnSpaceFeedback).to(equal(.mediumImpact))
                 expect(config.repeatFeedback).to(equal(HapticFeedback.none))
             }
         }
