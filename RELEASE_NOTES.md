@@ -9,13 +9,23 @@ This release deprecates some `system` properties in favor of the `standard` nami
 
 In most cases, the system behavior *is* the standard behavior.
 
-
 ### New features
  
+* `AutocompleteSuggestion` is a new protocol that makes the autocomplete provider concept more general.
 * `KeyboardAppearanceProvider` is a protocol for providing button content and style.
 * `StandardKeyboardAppearanceProvider` is a standard appearance provider that returns standard values.
 * `KeyboardContext` has a new `keyboardAppearanceProvider` property.
 
+* `SystemKeyboardButtonContent` is new view that extracts content logic from `SystemKeyboardButton`.
+* `SystemKeyboardButtonRowItem` can now be created with generic views. 
+* `SystemKeyboardSpaceButton` is new view that wraps `SystemKeyboardSpaceButtonContent` and applied a style and gestures to it.
+* `SystemKeyboardSpaceButtonContent` is new view that animates between a locale text and a space text.
+
+### Behavior changes
+
+* `SystemKeyboard` now wraps the `buttonBuilder` generated views in a `SystemKeyboardButtonRowItem`.
+* `SystemKeyboardButton` now applies a fallback text from the new appearance provider.
+* The standard `SystemKeyboard` button builder generates `SystemKeyboardButtonContent` instead of `SystemKeyboardButton`.
 
 ### Deprecations
 
@@ -23,6 +33,7 @@ In most cases, the system behavior *is* the standard behavior.
 * `KeyboardAction` `systemKeyboardButtonText` is renamed to `standardButtonText`.
 * `KeyboardAction` `systemTextStyle` is renamed to `standardButtonTextStyle`.
 * `KeyboardType` `systemKeyboardButtonText` is deprecated.
+* `String` implements `AutocompleteSuggestion` to avoid breaking changes in KK 3.5+. You should provide your own custom types, though.
 
 * `Color` `systemKeyboardButtonBackgroundColorDark` has been renamed to `standardDarkButtonBackgroundColor` 
 * `Color` `systemKeyboardButtonBackgroundColorLight` has been renamed to `standardLightButtonBackgroundColor` 
@@ -39,6 +50,11 @@ In most cases, the system behavior *is* the standard behavior.
 * `View` `systemKeyboardButtonFont` has been renamed to `standardButtonFont`
 * `View` `systemKeyboardButtonForeground` has been renamed to `standardButtonForeground`
 * `View` `systemKeyboardButtonShadow` has been renamed to `standardButtonShadow`
+
+### Breaking changes
+
+* `SystemKeyboardButtonRowItem` has been made generic.
+* `SystemKeyboard.ButtonBuilder` now returns an `AnyView` since you may want to use any custom view for any button.
 
 
 ## 3.4.2

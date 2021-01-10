@@ -24,4 +24,4 @@ public protocol AutocompleteSuggestionProvider {
 }
 
 public typealias AutocompleteResponse = (AutocompleteResult) -> Void
-public typealias AutocompleteResult = Result<AutocompleteSuggestions, Error>
+public typealias AutocompleteResult = Result<[AutocompleteSuggestion], Error>

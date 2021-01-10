@@ -23,11 +23,9 @@ import Foundation
  for when its suggestion changes.
  
  If you target later iOS versions, you should instead import
- `KeyboardKitSwiftUI` and use `ObservableAutocompleteContext`
- instead of the standard one. It's an `ObservableObject` and
- lets you bind its suggestions to your views.
+ `KeyboardKitSwiftUI` and use `ObservableAutocompleteContext`.
  */
 public protocol AutocompleteContext: AnyObject {
     
-    var suggestions: AutocompleteSuggestions { get set }
+    var suggestions: [AutocompleteSuggestion] { get set }
 }

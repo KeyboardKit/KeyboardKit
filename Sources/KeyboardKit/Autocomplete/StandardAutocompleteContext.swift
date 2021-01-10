@@ -19,14 +19,14 @@ import Foundation
  */
 public class StandardAutocompleteContext: AutocompleteContext {
     
-    public init(suggestionsDidChange: @escaping (AutocompleteSuggestions) -> Void) {
+    public init(suggestionsDidChange: @escaping ([AutocompleteSuggestion]) -> Void) {
         self.suggestions = []
         self.suggestionsDidChange = suggestionsDidChange
     }
     
-    private let suggestionsDidChange: (AutocompleteSuggestions) -> Void
+    private let suggestionsDidChange: ([AutocompleteSuggestion]) -> Void
     
-    public var suggestions: AutocompleteSuggestions {
+    public var suggestions: [AutocompleteSuggestion] {
         didSet { suggestionsDidChange(suggestions) }
     }
 }
