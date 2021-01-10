@@ -9,25 +9,28 @@
 import Foundation
 
 /**
- This configuration struct specifies a haptic feedback setup
- for custom keyboards.
+ This configuration specifies haptic feedback behavior for a
+ custom keyboard.
  */
 public struct HapticFeedbackConfiguration {
     
     public init(
-        tapFeedback: HapticFeedback,
-        doubleTapFeedback: HapticFeedback = .standardDoubleTapFeedback,
-        longPressFeedback: HapticFeedback,
-        repeatFeedback: HapticFeedback) {
+        tapFeedback: HapticFeedback = .none,
+        doubleTapFeedback: HapticFeedback = .none,
+        longPressFeedback: HapticFeedback = .none,
+        longPressOnSpaceFeedback: HapticFeedback = .lightImpact,
+        repeatFeedback: HapticFeedback = .none) {
         self.tapFeedback = tapFeedback
         self.doubleTapFeedback = doubleTapFeedback
         self.longPressFeedback = longPressFeedback
+        self.longPressOnSpaceFeedback = longPressOnSpaceFeedback
         self.repeatFeedback = repeatFeedback
     }
  
     public let tapFeedback: HapticFeedback
     public let doubleTapFeedback: HapticFeedback
     public let longPressFeedback: HapticFeedback
+    public let longPressOnSpaceFeedback: HapticFeedback
     public let repeatFeedback: HapticFeedback
     
     /**
@@ -38,20 +41,15 @@ public struct HapticFeedbackConfiguration {
             tapFeedback: .none,
             doubleTapFeedback: .none,
             longPressFeedback: .none,
+            longPressOnSpaceFeedback: .none,
             repeatFeedback: .none
         )
     }
     
     /**
-     This configuration uses standard haptic feedbacks, that
-     are defined in the library.
+     This configuration specifies a standard haptic feedback.
     */
     public static var standard: HapticFeedbackConfiguration {
-        HapticFeedbackConfiguration(
-            tapFeedback: .standardTapFeedback,
-            doubleTapFeedback: .standardDoubleTapFeedback,
-            longPressFeedback: .standardLongPressFeedback,
-            repeatFeedback: .none
-        )
+        HapticFeedbackConfiguration()
     }
 }

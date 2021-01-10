@@ -13,6 +13,7 @@ import UIKit
 class MockKeyboardActionHandler: Mock, KeyboardActionHandler {
     
     lazy var handleRef = MockReference(handle)
+    lazy var handleDragReg = MockReference(handleDrag)
     lazy var handleTapRef = MockReference(handleTap)
     lazy var handleLongPressRef = MockReference(handleLongPress)
     lazy var handleRepeatRef = MockReference(handleRepeat)
@@ -27,6 +28,10 @@ class MockKeyboardActionHandler: Mock, KeyboardActionHandler {
     
     func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         invoke(handleRef, args: (gesture, action, sender))
+    }
+    
+    func handleDrag(on action: KeyboardAction, from startLocation: CGPoint, to currentLocation: CGPoint) {
+        invoke(handleDragReg, args: (action, startLocation, currentLocation))
     }
     
     func handleTap(on action: KeyboardAction, view: UIView) {

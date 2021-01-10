@@ -22,30 +22,12 @@ class DemoKeyboardActionHandlerBase: StandardKeyboardActionHandler {
     
     // MARK: - Initialization
     
-    init(inputViewController: KeyboardInputViewController) {
-        super.init(
-            inputViewController: inputViewController,
-            hapticConfiguration: .noFeedback
-        )
-    }
-    
-    override func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
-        super.handle(gesture, on: action, sender: sender)
-    }
-    
-    /**
-     `NOTE` Changing to alphabetic lower case should be done
-     in `StandardKeyboardActionHandler`, not here.
-     */
-    func handleSpace(for sender: Any?) -> GestureAction {
-        let baseAction = super.tapAction(for: .space, sender: sender)
-        return { [weak self] in
-            baseAction?()
-            let type = self?.inputViewController?.context.keyboardType
-            if type?.isAlphabetic == true { return }
-            self?.inputViewController?.changeKeyboardType(to: .alphabetic(.lowercased))
-        }
-    }
+//    init(inputViewController: KeyboardInputViewController) {
+//        super.init(
+//            inputViewController: inputViewController,
+//            hapticConfiguration: .noFeedback
+//        )
+//    }
     
     override func longPressAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
         switch action {
@@ -57,7 +39,6 @@ class DemoKeyboardActionHandlerBase: StandardKeyboardActionHandler {
     override func tapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
         switch action {
         case .image(_, _, let imageName): return { [weak self] in self?.copyImage(UIImage(named: imageName)!) }
-        case .space: return handleSpace(for: sender)
         default: return super.tapAction(for: action, sender: sender)
         }
     }

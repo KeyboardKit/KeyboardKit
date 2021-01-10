@@ -12,9 +12,10 @@ In most cases, the system behavior *is* the standard behavior.
 ### New features
  
 * `AutocompleteSuggestion` is a new protocol that makes the autocomplete provider concept more general.
+* `HapticFeedback` has a new `longPressOnSpace` case.
 * `KeyboardAppearanceProvider` is a protocol for providing button content and style.
-* `StandardKeyboardAppearanceProvider` is a standard appearance provider that returns standard values.
 * `KeyboardContext` has a new `keyboardAppearanceProvider` property.
+* `StandardKeyboardAppearanceProvider` is a standard appearance provider that returns standard values.
 
 * `SystemKeyboardButtonContent` is new view that extracts content logic from `SystemKeyboardButton`.
 * `SystemKeyboardButtonRowItem` can now be created with generic views. 
@@ -23,12 +24,14 @@ In most cases, the system behavior *is* the standard behavior.
 
 ### Behavior changes
 
+* `HapticFeedback.standard` has almost no haptic feedback now, since that *is* the standard behavior. 
 * `SystemKeyboard` now wraps the `buttonBuilder` generated views in a `SystemKeyboardButtonRowItem`.
 * `SystemKeyboardButton` now applies a fallback text from the new appearance provider.
 * The standard `SystemKeyboard` button builder generates `SystemKeyboardButtonContent` instead of `SystemKeyboardButton`.
 
 ### Deprecations
 
+* `HapticFeedback` standard cases have been deprecated, since native keyboards have almost no haptic feedback.
 * `KeyboardAction` `systemFont` is renamed to `standardButtonFont`.
 * `KeyboardAction` `systemKeyboardButtonText` is renamed to `standardButtonText`.
 * `KeyboardAction` `systemTextStyle` is renamed to `standardButtonTextStyle`.

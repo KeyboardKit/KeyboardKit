@@ -31,7 +31,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     public init(
         inputViewController: KeyboardInputViewController,
-        hapticConfiguration: HapticFeedbackConfiguration = .noFeedback,
+        hapticConfiguration: HapticFeedbackConfiguration = .standard,
         audioConfiguration: AudioFeedbackConfiguration = .standard) {
         self.inputViewController = inputViewController
         self.hapticConfiguration = hapticConfiguration
@@ -51,6 +51,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     // MARK: - Properties
     
     private var context: KeyboardContext? { inputViewController?.context }
+    private var currentDragStartLocation: CGPoint?
+    private var currentDragTextPositionOffset: Int = 0
     
     
     // MARK: - Types
@@ -76,6 +78,32 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         triggerAutocomplete()
         tryEndSentence(after: gesture, on: action)
         tryChangeKeyboardType(after: gesture, on: action)
+    }
+    
+    /**
+     Handle a drag gesture on a certain action, from a start
+     location to the drag gesture's current location.
+     */
+    open func handleDrag(on action: KeyboardAction, from startLocation: CGPoint, to currentLocation: CGPoint) {
+        switch action {
+        case .space: handleSpaceCursorDragGesture(from: startLocation, to: currentLocation)
+        default: break
+        }
+    }
+    
+    /**
+     This function is called from `handleDrag` and moves the
+     text cursor according to the last handled offset.
+     */
+    open func handleSpaceCursorDragGesture(from startLocation: CGPoint, to currentLocation: CGPoint) {
+        tryStartNewSpaceCursorDragGesture(from: startLocation, to: currentLocation)
+        let triggerThreshold: CGFloat = 20
+        let dragDelta = startLocation.x - currentLocation.x
+        let textPositionOffset = Int(dragDelta / triggerThreshold)
+        guard textPositionOffset != currentDragTextPositionOffset else { return }
+        let offsetDelta = textPositionOffset - currentDragTextPositionOffset
+        context?.textDocumentProxy.adjustTextPosition(byCharacterOffset: -offsetDelta)
+        currentDragTextPositionOffset = textPositionOffset
     }
     
     
@@ -155,6 +183,10 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         }
     }
     
+    open func triggerHapticFeedbackForLongPressOnSpaceDragGesture() {
+        hapticConfiguration.longPressOnSpaceFeedback.trigger()
+    }
+    
     open func tryEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction) {
         guard let context = context else { return }
         let behavior = context.keyboardBehavior
@@ -183,5 +215,20 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         guard let context = context else { return nil }
         let behavior = context.keyboardBehavior
         return behavior.preferredKeyboardType(for: context, after: gesture, on: action)
+    }
+}
+
+
+// MARK: - Private Functions
+
+private extension StandardKeyboardActionHandler {
+
+    private func tryStartNewSpaceCursorDragGesture(from startLocation: CGPoint, to currentLocation: CGPoint) {
+        let lastStartLocation = currentDragStartLocation
+        let isNewDrag = lastStartLocation != startLocation
+        currentDragStartLocation = startLocation
+        guard isNewDrag else { return }
+        currentDragTextPositionOffset = 0
+        triggerHapticFeedbackForLongPressOnSpaceDragGesture()
     }
 }

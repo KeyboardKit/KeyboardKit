@@ -26,6 +26,7 @@ public protocol KeyboardActionHandler: AnyObject {
     
     func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) -> Bool
     func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?)
+    func handleDrag(on action: KeyboardAction, from startLocation: CGPoint, to currentLocation: CGPoint)
 }
 
 public extension KeyboardActionHandler {
