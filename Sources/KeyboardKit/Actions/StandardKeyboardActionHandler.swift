@@ -32,10 +32,12 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     public init(
         inputViewController: KeyboardInputViewController,
         hapticConfiguration: HapticFeedbackConfiguration = .standard,
-        audioConfiguration: AudioFeedbackConfiguration = .standard) {
+        audioConfiguration: AudioFeedbackConfiguration = .standard,
+        spaceDragSensitivity: SpaceDragSensitivity = .medium) {
         self.inputViewController = inputViewController
         self.hapticConfiguration = hapticConfiguration
         self.audioConfiguration = audioConfiguration
+        self.spaceDragSensitivity = spaceDragSensitivity
     }
     
     
@@ -44,8 +46,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     public private(set) weak var inputViewController: KeyboardInputViewController?
     
     private let audioConfiguration: AudioFeedbackConfiguration
-    
     private let hapticConfiguration: HapticFeedbackConfiguration
+    private let spaceDragSensitivity: SpaceDragSensitivity
     
     
     // MARK: - Properties
@@ -97,9 +99,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      */
     open func handleSpaceCursorDragGesture(from startLocation: CGPoint, to currentLocation: CGPoint) {
         tryStartNewSpaceCursorDragGesture(from: startLocation, to: currentLocation)
-        let triggerThreshold: CGFloat = 20
         let dragDelta = startLocation.x - currentLocation.x
-        let textPositionOffset = Int(dragDelta / triggerThreshold)
+        let textPositionOffset = Int(dragDelta / CGFloat(spaceDragSensitivity.points))
         guard textPositionOffset != currentDragTextPositionOffset else { return }
         let offsetDelta = textPositionOffset - currentDragTextPositionOffset
         context?.textDocumentProxy.adjustTextPosition(byCharacterOffset: -offsetDelta)

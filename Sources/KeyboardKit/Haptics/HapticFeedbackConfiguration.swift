@@ -18,7 +18,7 @@ public struct HapticFeedbackConfiguration {
         tapFeedback: HapticFeedback = .none,
         doubleTapFeedback: HapticFeedback = .none,
         longPressFeedback: HapticFeedback = .none,
-        longPressOnSpaceFeedback: HapticFeedback = .lightImpact,
+        longPressOnSpaceFeedback: HapticFeedback = .mediumImpact,
         repeatFeedback: HapticFeedback = .none) {
         self.tapFeedback = tapFeedback
         self.doubleTapFeedback = doubleTapFeedback
