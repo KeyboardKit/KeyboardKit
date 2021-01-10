@@ -19,7 +19,7 @@ open class StandardKeyboardAppearanceProvider: KeyboardAppearanceProvider {
     
     public init() {}
     
-    open func font(for action: KeyboardAction) -> UIFont? {
+    open func font(for action: KeyboardAction) -> UIFont {
         action.standardButtonFont
     }
     

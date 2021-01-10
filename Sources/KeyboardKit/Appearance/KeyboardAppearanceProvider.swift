@@ -22,6 +22,6 @@ import UIKit
  */
 public protocol KeyboardAppearanceProvider {
     
-    func font(for action: KeyboardAction) -> UIFont?
+    func font(for action: KeyboardAction) -> UIFont
     func text(for action: KeyboardAction) -> String?
 }
