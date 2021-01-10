@@ -9,14 +9,8 @@
 import Foundation
 
 /**
- This provider is used by default, and provides the standard
- secondary callout actions for the current locale, if any.
- 
- Note that this implementation only accepts and returns char
- actions, since that is what the built-in callout supports.
- 
- You can inherit and customize this class to create your own
- provider that builds on this foundation.
+ This provider provides secondary callouts with the standard
+ secondary callout actions for the provided action.
  */
 open class StandardSecondaryCalloutActionProvider: SecondaryCalloutActionProvider {
     

@@ -12,6 +12,11 @@ import Foundation
  This protocol can be implemented by classes that can return
  a set of secondary input characters for any keyboard action.
  
+ KeyboardKit registers a standard protocol implementation in
+ the keyboard context when the extension is started. You can
+ replace this at any time, by applying a new instance to the
+ context's `secondaryCalloutActionProvider` property.
+ 
  `IMPORTANT` This is an experimental new feature, that could
  be redesigned in any minor release until 4.0. 
  */

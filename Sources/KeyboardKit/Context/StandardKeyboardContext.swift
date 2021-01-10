@@ -23,6 +23,7 @@ public class StandardKeyboardContext: KeyboardContext {
         device: UIDevice = .current,
         controller: KeyboardInputViewController,
         actionHandler: KeyboardActionHandler,
+        keyboardAppearanceProvider: KeyboardAppearanceProvider = StandardKeyboardAppearanceProvider(),
         keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior(),
         keyboardType: KeyboardType = .alphabetic(.lowercased),
         keyboardInputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider(),
@@ -31,6 +32,7 @@ public class StandardKeyboardContext: KeyboardContext {
         self.controller = controller
         
         self.actionHandler = actionHandler
+        self.keyboardAppearanceProvider = keyboardAppearanceProvider
         self.keyboardBehavior = keyboardBehavior
         self.keyboardInputSetProvider = keyboardInputSetProvider
         self.keyboardLayoutProvider = keyboardLayoutProvider
@@ -54,6 +56,7 @@ public class StandardKeyboardContext: KeyboardContext {
     
     public var actionHandler: KeyboardActionHandler
     public var emojiCategory: EmojiCategory
+    public var keyboardAppearanceProvider: KeyboardAppearanceProvider
     public var keyboardBehavior: KeyboardBehavior
     public var keyboardInputSetProvider: KeyboardInputSetProvider
     public var keyboardLayoutProvider: KeyboardLayoutProvider

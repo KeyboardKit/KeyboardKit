@@ -19,6 +19,7 @@ public protocol KeyboardContext: AnyObject {
     var controller: KeyboardInputViewController { get }
 
     var actionHandler: KeyboardActionHandler { get set }
+    var keyboardAppearanceProvider: KeyboardAppearanceProvider { get set }
     var keyboardBehavior: KeyboardBehavior { get set }
     var keyboardInputSetProvider: KeyboardInputSetProvider { get set }
     var keyboardLayoutProvider: KeyboardLayoutProvider { get set }

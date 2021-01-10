@@ -18,9 +18,10 @@ class MockKeyboardContext: KeyboardContext {
     
     var actionHandler: KeyboardActionHandler = MockKeyboardActionHandler()
     var keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior()
-    lazy var keyboardInputSetProvider: KeyboardInputSetProvider = { fatalError("Not implemented") }()
-    lazy var keyboardLayoutProvider: KeyboardLayoutProvider = { fatalError("Not implemented") }()
-    lazy var secondaryCalloutActionProvider: SecondaryCalloutActionProvider = { fatalError("Not implemented") }()
+    lazy var keyboardAppearanceProvider: KeyboardAppearanceProvider = StandardKeyboardAppearanceProvider()
+    lazy var keyboardInputSetProvider: KeyboardInputSetProvider = StaticKeyboardInputSetProvider.empty
+    lazy var keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider()
+    lazy var secondaryCalloutActionProvider: SecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider()
     
     var deviceOrientation: UIInterfaceOrientation = .portrait
     var emojiCategory: EmojiCategory = .frequent

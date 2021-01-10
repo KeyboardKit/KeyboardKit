@@ -9,6 +9,14 @@ This release deprecates some `system` properties in favor of the `standard` nami
 
 In most cases, the system behavior *is* the standard behavior.
 
+
+### New features
+ 
+* `KeyboardAppearanceProvider` is a protocol for providing button content and style.
+* `StandardKeyboardAppearanceProvider` is a standard appearance provider that returns standard values.
+* `KeyboardContext` has a new `keyboardAppearanceProvider` property.
+
+
 ### Deprecations
 
 * `KeyboardAction` `systemFont` is renamed to `standardButtonFont`.

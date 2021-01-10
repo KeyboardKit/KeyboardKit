@@ -23,6 +23,13 @@ public class StaticKeyboardInputSetProvider: KeyboardInputSetProvider {
         self.symbolicInputSet = symbolicInputSet
     }
     
+    public static var empty: KeyboardInputSetProvider {
+        StaticKeyboardInputSetProvider(
+            alphabeticInputSet: AlphabeticKeyboardInputSet(inputRows: []),
+            numericInputSet: NumericKeyboardInputSet(inputRows: []),
+            symbolicInputSet: SymbolicKeyboardInputSet(inputRows: []))
+    }
+    
     private let alphabeticInputSet: AlphabeticKeyboardInputSet
     private let numericInputSet: NumericKeyboardInputSet
     private let symbolicInputSet: SymbolicKeyboardInputSet
