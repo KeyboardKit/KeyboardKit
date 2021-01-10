@@ -6,7 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /**
  This protocol can be implemented by classes or structs that
@@ -22,5 +22,6 @@ import Foundation
  */
 public protocol KeyboardAppearanceProvider {
     
-    func text(for action: KeyboardAction, context: KeyboardContext) -> String?
+    func font(for action: KeyboardAction) -> UIFont?
+    func text(for action: KeyboardAction) -> String?
 }

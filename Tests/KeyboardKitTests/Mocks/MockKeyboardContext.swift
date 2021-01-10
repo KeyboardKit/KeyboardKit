@@ -17,17 +17,16 @@ class MockKeyboardContext: KeyboardContext {
     var device: UIDevice = .current
     
     var actionHandler: KeyboardActionHandler = MockKeyboardActionHandler()
+    var keyboardAppearanceProvider: KeyboardAppearanceProvider = StandardKeyboardAppearanceProvider()
     var keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior()
-    lazy var keyboardAppearanceProvider: KeyboardAppearanceProvider = StandardKeyboardAppearanceProvider()
-    lazy var keyboardInputSetProvider: KeyboardInputSetProvider = StaticKeyboardInputSetProvider.empty
-    lazy var keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider()
-    lazy var secondaryCalloutActionProvider: SecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider()
+    var keyboardInputSetProvider: KeyboardInputSetProvider = StaticKeyboardInputSetProvider.empty
+    var keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider()
+    var secondaryCalloutActionProvider: SecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider()
     
     var deviceOrientation: UIInterfaceOrientation = .portrait
     var emojiCategory: EmojiCategory = .frequent
     var hasDictationKey = false
     var hasFullAccess = false
-    var keyboardAppearanceValue: UIKeyboardAppearance = .light
     var keyboardAppearance: UIKeyboardAppearance = .dark
     var keyboardType: KeyboardType = .alphabetic(.lowercased)
     var locale: Locale = .current

@@ -10,9 +10,8 @@ import UIKit
 
 /**
  This standard keyboard action handler is used by default by
- KeyboardKit, and provides standard handling of actions that
- have a standard behavior. You can inherit it to create your
- own action handler that buids on this foundation.
+ KeyboardKit and provides a standard implementation of how a
+ keyboard action is handled.
  
  You can replace the standard `hapticConfiguration` when you
  create an instance of this class. The default configuration
@@ -21,6 +20,9 @@ import UIKit
  You can replace the standard `audioConfiguration`, when you
  create an instance of this class. The default configuration
  is `.standard`.
+ 
+ You can inherit this class and override any implementations
+ to customize the standard behavior.
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     

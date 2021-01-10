@@ -6,22 +6,24 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /**
  This stnadard keybpard appearance provider just returns the
  standard values that are provided by various extensions.
  
  You can inherit this class and override any implementations
- to customize the standard appearance, or create a new class
- (decorator) that takes in another implementation then bases
- its logic on that implementation.
+ to customize the standard appearance.
  */
 open class StandardKeyboardAppearanceProvider: KeyboardAppearanceProvider {
     
     public init() {}
     
-    open func text(for action: KeyboardAction, context: KeyboardContext) -> String? {
+    open func font(for action: KeyboardAction) -> UIFont? {
+        action.standardButtonFont
+    }
+    
+    open func text(for action: KeyboardAction) -> String? {
         action.standardButtonText
     }
 }

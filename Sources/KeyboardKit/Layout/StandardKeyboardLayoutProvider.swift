@@ -16,9 +16,10 @@ import UIKit
  
  This may not always be what you want. If you want to create
  keyboard extensions with a custom layout, you should either
- not use a layout provider, or use a custom one. If you want
- to create a custom one, you can inherit this class and then
- build on its foundation.
+ not use a layout provider, or use a custom one.
+ 
+ You can inherit this class and override any implementations
+ to customize the standard layout.
  
  This provider will fallback to lowercased alphabetic layout
  if the current context state doesn't have a standard layout.

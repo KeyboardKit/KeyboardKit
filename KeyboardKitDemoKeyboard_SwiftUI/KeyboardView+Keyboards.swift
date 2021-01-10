@@ -39,13 +39,3 @@ extension KeyboardView {
             .shadow(color: Color.black.opacity(0.3), radius: 2, x: 1, y: 1)
     }
 }
-
-private extension KeyboardView {
-    
-    func buttonBuilder(action: KeyboardAction, size: CGSize) -> SystemKeyboardButtonRowItem {
-        switch action {
-        case .space: return SystemKeyboardButtonRowItem(action: action, button: SystemKeyboardButton(action: action, text: "SPACE"), keyboardSize: size)
-        default: return SystemKeyboard<SystemKeyboardButtonRowItem>.standardButtonBuilder(action: action, keyboardSize: size)
-        }
-    }
-}
