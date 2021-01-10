@@ -1,6 +1,6 @@
 //
 //  DemoKeyboardActionHandler.swift
-//  KeyboardKitDemoKeyboard_SwiftUI
+//  KeyboardKitDemo
 //
 //  Created by Daniel Saidi on 2020-07-02.
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
