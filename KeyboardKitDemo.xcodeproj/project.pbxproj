@@ -1328,7 +1328,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielsaidi/KeyboardKit";
 			requirement = {
-				branch = "button-appearance-provider";
+				branch = master;
 				kind = branch;
 			};
 		};
@@ -1336,7 +1336,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielsaidi/KeyboardKitSwiftUI";
 			requirement = {
-				branch = "button-appearance-provider";
+				branch = master;
 				kind = branch;
 			};
 		};

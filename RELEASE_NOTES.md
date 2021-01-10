@@ -53,6 +53,7 @@ In most cases, the system behavior *is* the standard behavior.
 
 ### Breaking changes
 
+* `AutocompleteToolbarView` and `AutocompleteToolbar` now use `AutocompleteSuggestion` instead of `String`. It makes them MUCH more powerful, so I hope this breaking change is acceptable.
 * `SystemKeyboardButtonRowItem` has been made generic.
 * `SystemKeyboard.ButtonBuilder` now returns an `AnyView` since you may want to use any custom view for any button.
 

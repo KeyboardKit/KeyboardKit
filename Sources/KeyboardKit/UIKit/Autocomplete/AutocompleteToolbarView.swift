@@ -13,7 +13,7 @@ import UIKit
  This toolbar can be used to present autocomplete suggestion
  while the user types.
  
- The toolbar is updated by calling `update(with: words)`. It
+ The toolbar is updated with `update(with: suggestions)`. It
  resets the toolbar and populates it with new buttons, which
  are provided by the `buttonCreator` function, that you must
  provide. This function can return any view for a suggestion.
@@ -57,7 +57,7 @@ public class AutocompleteToolbarView: KeyboardToolbarView {
         distribution: UIStackView.Distribution = .fillEqually) {
         self.init(
             buttonCreator: { AutocompleteToolbarLabel(
-                text: $0,
+                text: $0.title,
                 textDocumentProxy: textDocumentProxy) },
             height: height,
             alignment: alignment,
@@ -72,7 +72,7 @@ public class AutocompleteToolbarView: KeyboardToolbarView {
     
     // MARK: - Types
     
-    public typealias ButtonCreator = (String) -> (UIView)
+    public typealias ButtonCreator = (AutocompleteSuggestion) -> (UIView)
 
     
     // MARK: - Properties
@@ -81,9 +81,8 @@ public class AutocompleteToolbarView: KeyboardToolbarView {
     
     private var scrollView: UIScrollView?
     
-    private var suggestions: [String] = [] {
+    private var suggestions: [AutocompleteSuggestion] = [] {
         didSet {
-            if oldValue == suggestions { return }
             let buttons = suggestions.map { buttonCreator($0) }
             stackView.removeAllArrangedSubviews()
             stackView.addArrangedSubviews(buttons)
@@ -134,7 +133,7 @@ public class AutocompleteToolbarView: KeyboardToolbarView {
      This will remove all views from the stack view and then
      create new views for the new suggestions.
      */
-    public func update(with suggestions: [String]) {
+    public func update(with suggestions: [AutocompleteSuggestion]) {
         self.suggestions = suggestions
     }
 }
