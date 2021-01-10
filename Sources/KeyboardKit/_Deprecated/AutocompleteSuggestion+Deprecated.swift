@@ -6,7 +6,7 @@ extension String: AutocompleteSuggestion {
     public var replacement: String { self }
     public var title: String { self }
     public var subtitle: String? { nil }
-    public var additionalInfo: [String : Any] { [:] }
+    public var additionalInfo: [String: Any] { [:] }
 }
 
 @available(*, deprecated, message: "This typealias is no longer used and will be removed in KK 4")

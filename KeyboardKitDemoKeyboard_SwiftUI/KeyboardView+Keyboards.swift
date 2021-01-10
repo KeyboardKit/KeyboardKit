@@ -24,7 +24,7 @@ extension KeyboardView {
     
     var systemKeyboard: some View {
         VStack(spacing: 0) {
-            AutocompleteToolbar().frame(height: 50)
+            AutocompleteToolbar(buttonBuilder: autocompleteButtonBuilder).frame(height: 50)
             SystemKeyboard(layout: systemKeyboardLayout, buttonBuilder: buttonBuilder)
         }
     }
@@ -41,6 +41,14 @@ extension KeyboardView {
 }
 
 private extension KeyboardView {
+    
+    func autocompleteButtonBuilder(suggestion: AutocompleteSuggestion) -> AnyView {
+        guard let subtitle = suggestion.subtitle else { return AutocompleteToolbar.standardButton(for: suggestion) }
+        return AnyView(VStack(spacing: 0) {
+            Text(suggestion.title).font(.callout)
+            Text(subtitle).font(.footnote)
+        }.frame(maxWidth: .infinity))
+    }
     
     func buttonBuilder(action: KeyboardAction, size: CGSize) -> AnyView {
         switch action {

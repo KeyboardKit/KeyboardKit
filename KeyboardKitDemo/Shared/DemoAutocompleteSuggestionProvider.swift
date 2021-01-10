@@ -18,8 +18,29 @@ class DemoAutocompleteSuggestionProvider: AutocompleteSuggestionProvider {
     
     func autocompleteSuggestions(for text: String, completion: AutocompleteResponse) {
         guard text.count > 0 else { return completion(.success([])) }
-        let suffixes = ["ly", "er", "ter"]
-        let suggestions = suffixes.map { text + $0 }
-        completion(.success(suggestions))
+        completion(.success(suggestions(for: text)))
+    }
+}
+
+public struct DemoAutocompleteSuggestion: AutocompleteSuggestion {
+    
+    public var replacement: String
+    public var title: String { replacement }
+    public var subtitle: String?
+    public var additionalInfo: [String: Any] { [:] }
+}
+
+private extension DemoAutocompleteSuggestionProvider {
+    
+    func suggestions(for text: String) -> [DemoAutocompleteSuggestion] {
+        [
+            suggestion(text + "ly"),
+            suggestion(text + "er", "primary"),
+            suggestion(text + "ter")
+        ]
+    }
+    
+    func suggestion(_ word: String, _ subtitle: String? = nil) -> DemoAutocompleteSuggestion {
+        DemoAutocompleteSuggestion(replacement: word, subtitle: subtitle)
     }
 }
