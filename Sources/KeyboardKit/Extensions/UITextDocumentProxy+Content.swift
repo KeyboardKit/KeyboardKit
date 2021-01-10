@@ -39,7 +39,7 @@ public extension UITextDocumentProxy {
      A list of characters that can be the end of a sentence.
      */
     var sentenceDelimiters: [String] {
-        ["!", ".", "?"]
+        ["!", ".", "?", "\n"]
     }
     
     /**

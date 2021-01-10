@@ -25,7 +25,7 @@ extension KeyboardView {
     var systemKeyboard: some View {
         VStack(spacing: 0) {
             AutocompleteToolbar().frame(height: 50)
-            SystemKeyboard(layout: systemKeyboardLayout)
+            SystemKeyboard(layout: systemKeyboardLayout, buttonBuilder: buttonBuilder)
         }
     }
     
@@ -37,5 +37,15 @@ extension KeyboardView {
         Color.white
             .cornerRadius(3)
             .shadow(color: Color.black.opacity(0.3), radius: 2, x: 1, y: 1)
+    }
+}
+
+private extension KeyboardView {
+    
+    func buttonBuilder(action: KeyboardAction, size: CGSize) -> AnyView {
+        switch action {
+        case .space: return AnyView(SystemKeyboardSpaceButtonContent(localeText: "English", spaceText: "space"))
+        default: return SystemKeyboard.standardButtonBuilder(action: action, keyboardSize: size)
+        }
     }
 }
