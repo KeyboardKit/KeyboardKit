@@ -31,6 +31,7 @@ class KeyboardAction_SecondaryCalloutActionsTests: QuickSpec {
                 let swedish = Locale(identifier: "sv")
                 expect(result(for: .space, locale: english)).to(equal([]))
                 expect(result(for: .character("k"), locale: english)).to(equal([]))
+                expect(result(for: .character("E"), locale: english)).to(equal(actions(for: "eèéêëēėę".uppercased())))
                 expect(result(for: .character("e"), locale: english)).to(equal(actions(for: "eèéêëēėę")))
                 expect(result(for: .character("e"), locale: british)).to(equal(actions(for: "eèéêëēėę")))
                 expect(result(for: .character("e"), locale: swedish)).to(equal(actions(for: "eéëèêẽēę")))
