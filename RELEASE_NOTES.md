@@ -3,6 +3,11 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions.
 
 
+## 3.5.1
+
+This release fixes so that upper-cased chars gets secondary callout actions and that the input callout isn't dismissed if there are no secondary actions.  
+
+
 ## 3.5.0
 
 This release makes it easier to inject custom views into the `SwiftUI`-based `SystemKeyboard` and `AutocompleteToolbar`. 
