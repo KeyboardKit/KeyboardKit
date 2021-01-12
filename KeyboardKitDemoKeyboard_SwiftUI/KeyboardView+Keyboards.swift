@@ -18,7 +18,10 @@ extension KeyboardView {
     }
     
     var imageKeyboard: some View {
-        ImageKeyboard()
+        VStack {
+            ImageKeyboard()
+            
+        }
             .padding()
     }
     
@@ -42,12 +45,17 @@ extension KeyboardView {
 
 private extension KeyboardView {
     
-    func autocompleteButtonBuilder(suggestion: AutocompleteSuggestion) -> AnyView {
+    func autocompleteButton(for suggestion: AutocompleteSuggestion) -> AnyView {
         guard let subtitle = suggestion.subtitle else { return AutocompleteToolbar.standardButton(for: suggestion) }
         return AnyView(VStack(spacing: 0) {
             Text(suggestion.title).font(.callout)
             Text(subtitle).font(.footnote)
         }.frame(maxWidth: .infinity))
+    }
+    
+    func autocompleteButtonBuilder(suggestion: AutocompleteSuggestion) -> AnyView {
+        AnyView(autocompleteButton(for: suggestion)
+            .background(Color.clearInteractable))
     }
     
     func buttonBuilder(action: KeyboardAction, size: CGSize) -> AnyView {

@@ -35,7 +35,7 @@ private extension DemoAutocompleteSuggestionProvider {
     func suggestions(for text: String) -> [DemoAutocompleteSuggestion] {
         [
             suggestion(text + "ly"),
-            suggestion(text + "er", "primary"),
+            suggestion(text + "er", "Subtitle"),
             suggestion(text + "ter")
         ]
     }
