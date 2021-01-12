@@ -44,7 +44,7 @@ class KeyboardAction_SystemTests: QuickSpec {
                 expect(result(for: .keyboardType(.symbolic))).to(equal("#+="))
                 expect(result(for: .keyboardType(.custom("")))).to(beNil())
                 expect(result(for: .keyboardType(.email))).to(beNil())
-                expect(result(for: .keyboardType(.emojis))).to(beNil())
+                expect(result(for: .keyboardType(.emojis))).to(equal("☺"))
                 expect(result(for: .keyboardType(.images))).to(beNil())
                 
                 expect(result(for: .none)).to(beNil())
@@ -80,7 +80,11 @@ class KeyboardAction_SystemTests: QuickSpec {
                 expectedBody.append(.character("abc"))
                 
                 actions.forEach {
-                    if expectedTitle.contains($0) {
+                    if case .emoji = $0 {
+                        expect($0.standardButtonTextStyle).to(equal(.title1))
+                    } else if case .keyboardType(.emojis) = $0 {
+                        expect($0.standardButtonTextStyle).to(equal(.title2))
+                    } else if expectedTitle.contains($0) {
                         expect($0.standardButtonTextStyle).to(equal(.title1))
                     } else if expectedCallout.contains($0) {
                         expect($0.standardButtonTextStyle).to(equal(.callout))
