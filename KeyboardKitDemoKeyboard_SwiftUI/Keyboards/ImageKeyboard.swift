@@ -21,19 +21,32 @@ struct ImageKeyboard: View, DemoImageKeyboard {
     @EnvironmentObject var context: ObservableKeyboardContext
     
     var body: some View {
-        KeyboardGrid(
-            actions: actions,
-            columns: isLandscape ? 8 : 6,
-            spacing: 20,
-            buttonBuilder: button)
+        VStack(spacing: 30) {
+            KeyboardGrid(
+                actions: actions,
+                columns: columns,
+                spacing: 20,
+                buttonBuilder: imageButton)
+            bottomRow.frame(height: 40)
+        }.frame(height: 300)
     }
 }
 
 private extension ImageKeyboard {
     
+    var columns: Int { isLandscape ? 8 : 6 }
+    
     var isLandscape: Bool { context.controller.deviceOrientation.isLandscape }
     
+    var bottomRow: some View {
+        button(for: .nextKeyboard)
+    }
+    
     func button(for action: KeyboardAction) -> some View {
+        SystemKeyboardButton(action: action)
+    }
+    
+    func imageButton(for action: KeyboardAction) -> some View {
         KeyboardImageButton(action: action)
             .keyboardAction(action, context: context)
     }
