@@ -5,7 +5,9 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 ## 3.5.2
 
-This release fixes so that the secondary input gesture triggers a tap if there were no secondary actions in the callout.  
+This release fixes so that the secondary input gesture triggers a tap if there were no secondary actions in the callout.
+
+The release also makes the entire autocomplete button tappable, instead of just the text.
 
 
 ## 3.5.1
