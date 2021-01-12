@@ -15,6 +15,7 @@ public extension KeyboardType {
      */
     var standardButtonText: String? {
         switch self {
+        case .emojis: return "☺"
         case .alphabetic: return "ABC"
         case .numeric: return "123"
         case .symbolic: return "#+="
