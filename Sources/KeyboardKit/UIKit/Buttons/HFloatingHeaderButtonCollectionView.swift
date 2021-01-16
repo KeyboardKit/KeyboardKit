@@ -149,7 +149,7 @@ open class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, Horizont
     }
 }
 
-extension HFloatingHeaderButtonCollectionView{
+public extension HFloatingHeaderButtonCollectionView{
     @objc func moveToSection(bySection section: Int){
         guard section <= self.categorySectionAction.count else { return }
         self.scrollToItem(at: IndexPath(item: 0, section: section), at: .left, animated: true)
