@@ -48,22 +48,29 @@ open class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, Horizont
     public typealias KeyboardButtonCreator = (KeyboardAction) -> (UIView)
     
     public struct Configuration{
-        public init(headerHeight: CGFloat, rowHeight: CGFloat, rowsCount: Int){
-            self.headerHeight = headerHeight
-            self.rowHeight = rowHeight
+        public init(headerSize: CGSize, itemSize: CGSize, rowsCount: Int, titleColor: UIColor?, titleFont: UIFont?){
+            self.headerSize = headerSize
+            self.itemSize = itemSize
             self.rowsCount = rowsCount
+            self.titleColor = titleColor ?? UIColor(white: 0.6, alpha: 1.0)
+            self.titleFont = titleFont ?? UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
         }
         
-        public let headerHeight: CGFloat
-        public let rowHeight: CGFloat
+        public let titleColor: UIColor
+        public let titleFont: UIFont
+        
+        public let headerSize: CGSize
+        public let itemSize: CGSize
         public let rowsCount: Int
         
+        private let padding: CGFloat = 10
+        
         public var totalHeight: CGFloat{
-            headerHeight + rowHeight * CGFloat(rowsCount)
+            headerSize.height + itemSize.height * CGFloat(rowsCount) + padding * 2
         }
         
         public static var empty: Configuration{
-            Configuration(headerHeight: 0, rowHeight: 0, rowsCount: 0 )
+            Configuration(headerSize: .zero, itemSize: .zero, rowsCount: 0, titleColor: nil, titleFont: nil)
         }
     }
     // MARK: - Properties
@@ -110,8 +117,8 @@ open class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, Horizont
         cell.subviews.forEach { $0.removeFromSuperview() }
         let titleLabel = UILabel()
         titleLabel.text = self.categoryActions[indexPath.section].0
-        titleLabel.textColor = UIColor(white: 0.6, alpha: 1.0)
-        titleLabel.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
+        titleLabel.textColor = configuration.titleColor
+        titleLabel.font = configuration.titleFont
         cell.addSubview(titleLabel, fill: true)
         return cell
     }
@@ -120,12 +127,12 @@ open class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, Horizont
     
     // Item Size
     public func collectionView(_ collectionView: UICollectionView, horizontalFloatingHeaderItemSizeAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width:48, height: 48)
+        return configuration.itemSize
     }
     
     // Header Size
     public func collectionView(_ collectionView: UICollectionView, horizontalFloatingHeaderSizeAt section: Int) -> CGSize {
-        return CGSize(width:200, height:30)
+        return configuration.headerSize
     }
     
     // Vertial Spacing: Spacing Between Vertial Items

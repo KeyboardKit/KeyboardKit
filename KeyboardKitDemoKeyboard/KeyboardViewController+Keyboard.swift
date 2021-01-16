@@ -32,8 +32,8 @@ extension KeyboardViewController {
     
     func setupEmojiKeyboard() {
         let keyboard = EnhancedEmojiKeyboard(in: self)
-//        let config = keyboard.gridConfig
-        let view = HFloatingHeaderButtonCollectionView(id: "EmojiKeyboard", categoryActions: keyboard.categoryActions, configuration: HFloatingHeaderButtonCollectionView.Configuration(headerHeight: 40, rowHeight: 50, rowsCount: 4), buttonCreator: { [unowned self] in return self.button(for: $0) })
+        let config = keyboard.gridConfig
+        let view = HFloatingHeaderButtonCollectionView(id: "EnhancedEmojiKeyboard", categoryActions: keyboard.categoryActions, configuration: config, buttonCreator: { [unowned self] in return self.button(for: $0) })
         
         let bottom = buttonRow(for: keyboard.bottomActions, distribution: .fillProportionally)
         keyboardStackView.addArrangedSubview(view)
