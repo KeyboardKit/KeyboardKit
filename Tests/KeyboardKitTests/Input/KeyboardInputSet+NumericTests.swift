@@ -29,7 +29,7 @@ class KeyboardInputSet_NumericTests: QuickSpec {
             
             it("are correctly setup") {
                 expect(KeyboardInputSet.standardNumericTop).to(equal(["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]))
-                expect(KeyboardInputSet.standardNumericBottom).to(equal([".", ",", "?", "!", "´"]))
+                expect(KeyboardInputSet.standardNumericBottom).to(equal([".", ",", "?", "!", "’"]))
                 
                 expect(KeyboardInputSet.standardNumeric(currency: "$$$")).to(equal(
                     NumericKeyboardInputSet(inputRows: [

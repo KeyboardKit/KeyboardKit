@@ -1,17 +1,25 @@
-import UIKit
+//
+//  EmojiCategory.swift
+//  KeyboardKit
+//
+//  Created by Daniel Saidi on 2020-05-05.
+//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//
+
+import Foundation
 
 /**
  This enum contains the emoji categories that the native iOS
  emoji keyboard currently has.
  
  In native iOS keyboards, emojis flow from top to bottom and
- from leading to trailing. The lists in this file are listed
- to represent this flow style.
+ from leading to trailing. These lists use this flow as well. 
  
- Also note that since native emojis change all the time, the
- enum will be outdated every now and then.
+ Since the `frequent` category should list the most frequent
+ emojis, you can now register a static `recentEmojiProvider`.
+ By default, a `MostRecentEmojiProvider` will be used.
 */
-public enum EmojiCategory: String, CaseIterable, Codable, Equatable {
+public enum EmojiCategory: String, CaseIterable, Codable, EmojiProvider, Equatable {
 
     case
     frequent,
@@ -23,6 +31,8 @@ public enum EmojiCategory: String, CaseIterable, Codable, Equatable {
     objects,
     symbols,
     flags
+    
+    static var frequentEmojiProvider: FrequentEmojiProvider = MostRecentEmojiProvider()
 }
 
 public extension EmojiCategory {
@@ -40,7 +50,7 @@ public extension EmojiCategory {
      */
     var emojis: [String] {
         switch self {
-        case .frequent: return []
+        case .frequent: return Self.frequentEmojiProvider.emojis
         case .smileys: return smileys
         case .animals: return animals
         case .foods: return foods

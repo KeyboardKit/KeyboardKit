@@ -29,7 +29,7 @@ class KeyboardInputSet_SymbolicTests: QuickSpec {
             
             it("are correctly setup") {
                 expect(KeyboardInputSet.standardSymbolicTop).to(equal(["[", "]", "{", "}", "#", "%", "^", "*", "+", "="]))
-                expect(KeyboardInputSet.standardSymbolicBottom).to(equal([".", ",", "?", "!", "´"]))
+                expect(KeyboardInputSet.standardSymbolicBottom).to(equal([".", ",", "?", "!", "’"]))
                 
                 expect(KeyboardInputSet.standardSymbolic(center: ["a", "b", "c"])).to(equal(
                     SymbolicKeyboardInputSet(inputRows: [

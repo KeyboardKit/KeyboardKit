@@ -7,6 +7,17 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 This release fixes so that the secondary input gesture triggers a tap if there were no secondary actions in the callout.
 
+### New features
+
+* `EmojiCategory` now lets you register a frequent emoji provider, and uses that to populate the frequent category.
+* There is a new `EmojiProvider` protocol
+* There is a new `FrequentEmojiProvider` protocol
+* There is a new `MostRecentEmojiProvider` class
+
+### Behavior changes
+
+* `EmojiCategory` now implements `EmojiProvider`
+* `EmojiCategory.frequent` now saves the most recently saved emojis.
 
 ### Bug fixes
 
