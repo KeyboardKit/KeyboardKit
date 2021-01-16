@@ -19,15 +19,15 @@
 
 KeyboardKit helps you create custom keyboard extensions for `iOS` and `ipadOS`.
 
-KeyboardKit provides you with a rich set of `tools` and `actions`, `haptic` and `audio` feedback, `input sets`, `layouts` etc. and lets you create keyboards with `characters`, `numbers`, `symbols`, `emojis`, `images` or entirely custom logic.
+KeyboardKit provides you with a rich set of `tools` and `actions`, `haptic` and `audio` feedback, `input sets`, `keyboard layouts`, `autocomplete` etc. and It you create keyboards with `characters`, `numbers`, `symbols`, `emojis`, `images` or entirely custom keyboards that make use of the vast extensions to the native framework.
 
-You can create native looking keyboards like the example below, or completely custom ones:
+The end result can look something like this, or entirely different:
 
 <p align="center">
     <img src ="Resources/Demo.gif" width="300" />
 </p>
 
-If you're new to iOS keyboard extensions, [this great guide][Guide] can help you get started. You can also have a look at the demo apps for examples on how to use this library. 
+If you're new to iOS keyboard extensions, [this great guide][Guide] can help you get started. You can also have a look at the demo apps for inspiration. 
 
 
 ## Installation
@@ -66,22 +66,23 @@ With `KeyboardKit`, you should inherit `KeyboardInputViewController` instead of 
 KeyboardKit supports both `UIKit` and `SwiftUI`, so you can pick the option that suits your needs best. 
 
 
-## UIKit
+### UIKit
 
-KeyboardKit contains a rich set of tools to create `UIKit`-based keyboards. [Read more here][UIKit].
+KeyboardKit contains a rich set of tools to create `UIKit`-based keyboards. 
 
-You can also follow [this tutorial][UIKit-Tutorial].
-
-`SwiftUI` is the main focus going forward, but `UIKit` support will be around and be improved if needed.
+[Read more here][UIKit] and see [this tutorial][UIKit-Tutorial] for some examples. You can also checkout the UIKit demo for inspiration.
 
 
-## SwiftUI
+### SwiftUI
 
-KeyboardKit can be extended with [KeyboardKitSwiftUI][KeyboardKitSwiftUI] to create `SwiftUI`-based keyboards. [Read more here][SwiftUI].
+KeyboardKit can be extended with [KeyboardKitSwiftUI][KeyboardKitSwiftUI] to create `SwiftUI`-based keyboards. 
 
-You can also follow [this tutorial][SwiftUI-Tutorial].
+[Read more here][SwiftUI] and see [this tutorial][SwiftUI-Tutorial] for some examples. You can also checkout the SwiftUI demo for inspiration.
 
-`SwiftUI` is the main focus going forward, and will be the main technology from version `4.0`.
+
+### SwiftUI is the future
+
+`SwiftUI` is the main focus going forward, and will be the main technology from version `4.0`. UIKit-specific functionality will then be removed. [Read more about this decision here.][UIKit-Removal-post]
 
 
 ## Actions
@@ -102,16 +103,12 @@ KeyboardKit supports many different keyboard types, like `alphabetic`, `numeric`
 
 KeyboardKit provides you with locale-specific input sets, which makes it easy to create `alphabetic`, `numeric` and `symbolic`  keyboards in many languages.
 
-KeyboardKit comes with a set of locale-specific input sets for e.g. English, German, Italian and Swedish.
-
 [Read more here][Input-Sets]
 
 
 ## Keyboard Layouts
 
 KeyboardKit can combine an input set with surrounding actions to create a keyboard layout, which is the total set of actions on a keyboard.
-
-KeyboardKit comes with a set of locale and device-specific keyboard layouts for iPhones and iPads.
 
 [Read more here][Keyboard-Layouts]
 
@@ -149,7 +146,7 @@ This repository contains two demo apps that demonstrate different keyboard types
 * `KeyboardKitDemoKeyboard` uses `UIKit` to implement various keyboards that mimics system keyboards. 
 * `KeyboardKitDemoKeyboard_SwiftUI` uses `SwiftUI` to implement the same keyboards in another way.
 
-Since [KeyboardKitSwiftUI][KeyboardKitSwiftUI] is still under development, the `SwiftUI` demo app lacks a lot of functionality that the `UIKit` app supports.
+The demo apps are not intended to be production ready keyboards, but rather to give you inspiration to how you can build your own keyboards.
 
 To run the demo app, open and run the `KeyboardKit.xcodeproj` project, then enable the keyboards under system settings. Don't forget to enable full access to support all features, like audio and haptic feedback.
 
@@ -188,9 +185,6 @@ KeyboardKit is available under the MIT license. See LICENSE file for more info.
 
 [KeyboardKitSwiftUI]: https://github.com/danielsaidi/KeyboardKitSwiftUI
 
-[Carthage]: https://github.com/Carthage/Carthage
-[CocoaPods]: https://cocoapods.org/
-
 [Actions]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Actions.md
 [Audio-Feedback]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Audio-Feedback.md
 [Autocomplete]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Autocomplete.md
@@ -201,6 +195,7 @@ KeyboardKit is available under the MIT license. See LICENSE file for more info.
 [SwiftUI]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/SwiftUI.md
 [SwiftUI-Tutorial]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/SwiftUI-Tutorial.md
 [UIKit]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/UIKit.md
+[UIKit-Removal-post]: https://danielsaidi.com/blog/2021/01/15/removing-uikit-support-in-keyboardkit
 [UIKit-Tutorial]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/UIKit-Tutorial.md
 
 [Guide]: https://shyngys.com/ios-custom-keyboard-guide
