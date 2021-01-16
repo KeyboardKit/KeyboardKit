@@ -23,7 +23,6 @@ public protocol KeyboardContext: AnyObject {
     var keyboardBehavior: KeyboardBehavior { get set }
     var keyboardInputSetProvider: KeyboardInputSetProvider { get set }
     var keyboardLayoutProvider: KeyboardLayoutProvider { get set }
-    var secondaryCalloutActionProvider: SecondaryCalloutActionProvider { get set }
     
     var device: UIDevice { get }
     var deviceOrientation: UIInterfaceOrientation { get set }

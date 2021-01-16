@@ -27,8 +27,7 @@ public class StandardKeyboardContext: KeyboardContext {
         keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior(),
         keyboardType: KeyboardType = .alphabetic(.lowercased),
         keyboardInputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider(),
-        keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider(),
-        secondaryCalloutActionProvider: SecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider()) {
+        keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider()) {
         self.controller = controller
         
         self.actionHandler = actionHandler
@@ -36,7 +35,6 @@ public class StandardKeyboardContext: KeyboardContext {
         self.keyboardBehavior = keyboardBehavior
         self.keyboardInputSetProvider = keyboardInputSetProvider
         self.keyboardLayoutProvider = keyboardLayoutProvider
-        self.secondaryCalloutActionProvider = secondaryCalloutActionProvider
         
         self.device = device
         self.deviceOrientation = controller.deviceOrientation
@@ -61,7 +59,6 @@ public class StandardKeyboardContext: KeyboardContext {
     public var keyboardInputSetProvider: KeyboardInputSetProvider
     public var keyboardLayoutProvider: KeyboardLayoutProvider
     public var keyboardType: KeyboardType
-    public var secondaryCalloutActionProvider: SecondaryCalloutActionProvider
     
     public var device: UIDevice
     public var deviceOrientation: UIInterfaceOrientation
