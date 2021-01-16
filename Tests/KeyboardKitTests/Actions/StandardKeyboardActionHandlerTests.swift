@@ -55,6 +55,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
                 expect(handler.hasInvoked(handler.triggerAutocompleteRef)).to(beTrue())
                 expect(handler.hasInvoked(handler.tryChangeKeyboardTypeRef)).to(beTrue())
                 expect(handler.hasInvoked(handler.tryEndSentenceRef)).to(beTrue())
+                expect(handler.hasInvoked(handler.tryRegisterEmojiRef)).to(beTrue())
             }
         }
         
@@ -173,6 +174,31 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
                 expect(inv[0].arguments).to(equal(.alphabetic(.lowercased)))
             }
         }
+        
+        describe("trying to register emoji after gesture on action") {
+            
+            var mockProvider: MockFrequentEmojiProvider!
+            
+            beforeEach {
+                mockProvider = MockFrequentEmojiProvider()
+                EmojiCategory.frequentEmojiProvider = mockProvider
+            }
+            
+            it("aborts if gesture is not tap") {
+                handler.tryRegisterEmoji(after: .doubleTap, on: .emoji("a"))
+                expect(mockProvider.hasInvoked(mockProvider.registerEmojiRef)).to(beFalse())
+            }
+            
+            it("aborts if action is not emoji") {
+                handler.tryRegisterEmoji(after: .tap, on: .space)
+                expect(mockProvider.hasInvoked(mockProvider.registerEmojiRef)).to(beFalse())
+            }
+            
+            it("registers tapped emoji to emoji category provider") {
+                handler.tryRegisterEmoji(after: .tap, on: .emoji("a"))
+                expect(mockProvider.hasInvoked(mockProvider.registerEmojiRef)).to(beTrue())
+            }
+        }
     }
 }
 
@@ -193,6 +219,7 @@ private class StandardKeyboardActionHandlerTestClass: StandardKeyboardActionHand
     lazy var triggerHapticFeedbackRef = MockReference(triggerHapticFeedback)
     lazy var tryChangeKeyboardTypeRef = MockReference(tryChangeKeyboardType)
     lazy var tryEndSentenceRef = MockReference(tryEndSentence)
+    lazy var tryRegisterEmojiRef = MockReference(tryRegisterEmoji)
     
     override func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         super.handle(gesture, on: action, sender: sender)
@@ -227,5 +254,10 @@ private class StandardKeyboardActionHandlerTestClass: StandardKeyboardActionHand
     override func tryEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction) {
         super.tryEndSentence(after: gesture, on: action)
         invoke(tryEndSentenceRef, args: (gesture, action))
+    }
+    
+    override func tryRegisterEmoji(after gesture: KeyboardGesture, on action: KeyboardAction) {
+        super.tryRegisterEmoji(after: gesture, on: action)
+        invoke(tryRegisterEmojiRef, args: (gesture, action))
     }
 }

@@ -80,6 +80,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         triggerAutocomplete()
         tryEndSentence(after: gesture, on: action)
         tryChangeKeyboardType(after: gesture, on: action)
+        tryRegisterEmoji(after: gesture, on: action)
     }
     
     /**
@@ -201,6 +202,15 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         guard behavior.shouldSwitchToPreferredKeyboardType(for: context, after: gesture, on: action) else { return }
         let newType = behavior.preferredKeyboardType(for: context, after: gesture, on: action)
         inputViewController?.changeKeyboardType(to: newType)
+    }
+    
+    // TODO: Unit test
+    open func tryRegisterEmoji(after gesture: KeyboardGesture, on action: KeyboardAction) {
+        guard gesture == .tap else { return }
+        switch action {
+        case .emoji(let emoji): return EmojiCategory.frequentEmojiProvider.registerEmoji(emoji)
+        default: return
+        }
     }
     
     

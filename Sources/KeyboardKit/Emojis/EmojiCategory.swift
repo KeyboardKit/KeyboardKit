@@ -32,7 +32,7 @@ public enum EmojiCategory: String, CaseIterable, Codable, EmojiProvider, Equatab
     symbols,
     flags
     
-    static var frequentEmojiProvider: FrequentEmojiProvider = MostRecentEmojiProvider()
+    public static var frequentEmojiProvider: FrequentEmojiProvider = MostRecentEmojiProvider()
 }
 
 public extension EmojiCategory {

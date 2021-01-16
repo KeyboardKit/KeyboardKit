@@ -9,7 +9,7 @@ This release fixes so that the secondary input gesture triggers a tap if there w
 
 ### New features
 
-* `EmojiCategory` now lets you register a frequent emoji provider, and uses that to populate the frequent category.
+* `EmojiCategory` now lets you register a `frequentEmojiProvider`, and uses that to populate the frequent category.
 * There is a new `EmojiProvider` protocol
 * There is a new `FrequentEmojiProvider` protocol
 * There is a new `MostRecentEmojiProvider` class
@@ -17,7 +17,8 @@ This release fixes so that the secondary input gesture triggers a tap if there w
 ### Behavior changes
 
 * `EmojiCategory` now implements `EmojiProvider`
-* `EmojiCategory.frequent` now saves the most recently saved emojis.
+* `EmojiCategory.frequent` now returns emojis from the `frequentEmojiProvider`.
+* `StandardKeyboardActionHandler` now tries to register emojis with the `EmojiCategory` frequent emoji provider.
 
 ### Bug fixes
 
