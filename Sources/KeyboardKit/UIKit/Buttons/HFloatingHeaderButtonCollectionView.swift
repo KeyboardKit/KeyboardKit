@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, HorizontalFloatingHeaderLayoutDelegate, UICollectionViewDelegate{
+open class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, HorizontalFloatingHeaderLayoutDelegate, UICollectionViewDelegate{
     
     // MARK: - Initialization
     public init(
@@ -85,18 +85,18 @@ class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, HorizontalFlo
     
     // MARK: - UICollectionViewDataSource
     // Number of Sections
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+    open override func numberOfSections(in collectionView: UICollectionView) -> Int {
         self.categorySectionAction.count
     }
 
     // Number of Items
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    open override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let index = self.categorySectionAction.first(where: { $0.1 == section }) else { return 0 }
         return index.2
     }
 
     // Cells
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    open override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath)
         cell.subviews.forEach { $0.removeFromSuperview() }
         let action = self.categoryActions[indexPath.section].1[indexPath.item]
@@ -119,27 +119,27 @@ class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, HorizontalFlo
     // MARK: - HorizontalFloatingHeaderDelegate
     
     // Item Size
-    func collectionView(_ collectionView: UICollectionView, horizontalFloatingHeaderItemSizeAt indexPath: IndexPath) -> CGSize {
+    public func collectionView(_ collectionView: UICollectionView, horizontalFloatingHeaderItemSizeAt indexPath: IndexPath) -> CGSize {
         return CGSize(width:48, height: 48)
     }
     
     // Header Size
-    func collectionView(_ collectionView: UICollectionView, horizontalFloatingHeaderSizeAt section: Int) -> CGSize {
+    public func collectionView(_ collectionView: UICollectionView, horizontalFloatingHeaderSizeAt section: Int) -> CGSize {
         return CGSize(width:200, height:30)
     }
     
     // Vertial Spacing: Spacing Between Vertial Items
-    func collectionView(_ collectionView: UICollectionView, horizontalFloatingHeaderItemSpacingForSectionAt section: Int) -> CGFloat {
+    public func collectionView(_ collectionView: UICollectionView, horizontalFloatingHeaderItemSpacingForSectionAt section: Int) -> CGFloat {
         return 0.0
     }
     
     // Horizontal Spacing: Spacing Between Horizontal Items
-    func collectionView(_ collectionView: UICollectionView, horizontalFloatingHeaderColumnSpacingForSectionAt section: Int) -> CGFloat {
+    public func collectionView(_ collectionView: UICollectionView, horizontalFloatingHeaderColumnSpacingForSectionAt section: Int) -> CGFloat {
         return 0.0
     }
     
     // Section Insets
-    func collectionView(_ collectionView: UICollectionView, horizontalFloatingHeaderSectionInsetAt section: Int) -> UIEdgeInsets {
+    public func collectionView(_ collectionView: UICollectionView, horizontalFloatingHeaderSectionInsetAt section: Int) -> UIEdgeInsets {
         switch section{
         case 0:
             return UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
