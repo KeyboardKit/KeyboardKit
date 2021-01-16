@@ -52,6 +52,6 @@ public extension KeyboardInputSet {
     }
     
     static var standardNumericBottom: [String] {
-        [".", ",", "?", "!", "´"]
+        [".", ",", "?", "!", "’"]
     }
 }

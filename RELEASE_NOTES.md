@@ -7,9 +7,14 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 This release fixes so that the secondary input gesture triggers a tap if there were no secondary actions in the callout.
 
+
+### Bug fixes
+
+* The `´` accent was accidentally used in standard numeric keyboards. It has now been replaced with `’`, which is the correct one.
+
 ### Breaking changes
 
-* The secondary input provider has been removed from `KeyboardContext`, since it already resides in the secondary input context. This removes having to change both places.
+* `secondaryCalloutInputProvider` has been removed from `KeyboardContext`. It's now only in the secondary context.
 
 
 ## 3.5.2
