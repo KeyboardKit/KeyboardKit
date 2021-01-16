@@ -33,12 +33,8 @@ private extension DemoKeyboardActionHandler {
     func switchToEmojiKeyboardCategory(_ cat: EmojiCategory) {
         guard
             let vc = inputViewController as? KeyboardViewController,
-            let view = vc.emojiCollectionView,
-            let keyboard = vc.emojiKeyboard,
-            let index = keyboard.getPageIndex(for: cat)
+            let view = vc.emojiCollectionView
             else { return }
-        view.currentPageIndex = index
-        view.persistCurrentPageIndex()
-        vc.emojiCategoryTitleLabel.text = cat.title
+        view.moveToSection(byCategory: cat.title)
     }
 }
