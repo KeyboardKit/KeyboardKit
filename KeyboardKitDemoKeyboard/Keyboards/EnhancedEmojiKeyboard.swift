@@ -14,7 +14,7 @@ struct EnhancedEmojiKeyboard: DemoKeyboard {
     init(in viewController: KeyboardViewController) {
         let isLandscape = viewController.deviceOrientation.isLandscape
         let rowsPerPage = isLandscape ? 3 : 5
-        gridConfig = HFloatingHeaderButtonCollectionView.Configuration(headerSize: CGSize(width: 200, height: 30), itemSize: CGSize(width: 48, height: 48), rowsCount: rowsPerPage, titleColor: nil, titleFont: nil, headerWidthToFitText: true, itemWidthToFitText: true)
+        gridConfig = HFloatingHeaderButtonCollectionView.Configuration(headerSize: CGSize(width: 200, height: 30), itemSize: CGSize(width: 48, height: 48), rowsCount: rowsPerPage, titleColor: nil, titleFont: nil, headerWidthToFitText: true, itemFont: UIFont.preferredFont(forTextStyle: .callout), itemWidthToFitText: true,  edgeInsets: .standardKeyboardRowItemInsets())
         bottomActions = Self.createBottomActions(for: categories)
         categoryActions = Self.createCategoryActions(for: categories)
     }

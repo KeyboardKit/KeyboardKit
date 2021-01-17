@@ -49,17 +49,22 @@ open class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, Horizont
     
     public struct Configuration{
         public init(headerSize: CGSize, itemSize: CGSize, rowsCount: Int, titleColor: UIColor?, titleFont: UIFont?,
-                    headerWidthToFitText: Bool?, itemWidthToFitText: Bool?){
+                    headerWidthToFitText: Bool?, itemFont: UIFont?, itemWidthToFitText: Bool?, edgeInsets: UIEdgeInsets?){
             self.headerSize = headerSize
             self.itemSize = itemSize
             self.rowsCount = rowsCount
             self.titleColor = titleColor ?? UIColor(white: 0.6, alpha: 1.0)
             self.titleFont = titleFont ?? UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
             self.headerWidthToFitText = headerWidthToFitText ?? false
+            self.itemFont = itemFont ?? UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
             self.itemWidthToFitText = itemWidthToFitText ?? false
+            self.edgeInsets = edgeInsets ?? UIEdgeInsets.zero
         }
         
+        public let edgeInsets: UIEdgeInsets
+        
         public let itemWidthToFitText: Bool
+        public let itemFont: UIFont
         public let headerWidthToFitText: Bool
         
         public let titleColor: UIColor
@@ -76,7 +81,7 @@ open class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, Horizont
         }
         
         public static var empty: Configuration{
-            Configuration(headerSize: .zero, itemSize: .zero, rowsCount: 0, titleColor: nil, titleFont: nil, headerWidthToFitText: false, itemWidthToFitText: false)
+            Configuration(headerSize: .zero, itemSize: .zero, rowsCount: 0, titleColor: nil, titleFont: nil, headerWidthToFitText: false, itemFont: nil, itemWidthToFitText: false, edgeInsets: .zero)
         }
     }
     // MARK: - Properties
@@ -149,9 +154,9 @@ open class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, Horizont
         }()
         
         if let text = actionText{
-            let font = UIFont.preferredFont(forTextStyle: .callout)
-            let size = self.sizeToFitText(text: text, font: font)
-            return CGSize(width: size.width + 1, height: configuration.itemSize.height)
+            let size = self.sizeToFitText(text: text, font: configuration.itemFont)
+            let width = size.width + configuration.edgeInsets.left + configuration.edgeInsets.right
+            return CGSize(width: width, height: configuration.itemSize.height)
         }else{
             // Use default size
             return configuration.itemSize
