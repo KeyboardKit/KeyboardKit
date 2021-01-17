@@ -89,10 +89,9 @@ class KeyboardViewController: KeyboardInputViewController {
     // MARK: - Properties
     
     let alerter = ToastAlert()
-    
-    var emojiKeyboard: EmojiKeyboard?
+    var emojiKeyboard: EnhancedEmojiKeyboard?
     var emojiCategoryTitleLabel = UILabel()
-    var emojiCollectionView: KeyboardButtonRowCollectionView!
+    var emojiCollectionView: HFloatingHeaderButtonCollectionView!
     var emojiLabelUpdateAction = {}
     
     
