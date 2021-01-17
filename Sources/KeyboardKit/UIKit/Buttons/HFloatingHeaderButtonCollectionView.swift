@@ -48,13 +48,19 @@ open class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, Horizont
     public typealias KeyboardButtonCreator = (KeyboardAction) -> (UIView)
     
     public struct Configuration{
-        public init(headerSize: CGSize, itemSize: CGSize, rowsCount: Int, titleColor: UIColor?, titleFont: UIFont?){
+        public init(headerSize: CGSize, itemSize: CGSize, rowsCount: Int, titleColor: UIColor?, titleFont: UIFont?,
+                    headerWidthToFitText: Bool?, itemWidthToFitText: Bool?){
             self.headerSize = headerSize
             self.itemSize = itemSize
             self.rowsCount = rowsCount
             self.titleColor = titleColor ?? UIColor(white: 0.6, alpha: 1.0)
             self.titleFont = titleFont ?? UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
+            self.headerWidthToFitText = headerWidthToFitText ?? false
+            self.itemWidthToFitText = itemWidthToFitText ?? false
         }
+        
+        public let itemWidthToFitText: Bool
+        public let headerWidthToFitText: Bool
         
         public let titleColor: UIColor
         public let titleFont: UIFont
@@ -70,7 +76,7 @@ open class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, Horizont
         }
         
         public static var empty: Configuration{
-            Configuration(headerSize: .zero, itemSize: .zero, rowsCount: 0, titleColor: nil, titleFont: nil)
+            Configuration(headerSize: .zero, itemSize: .zero, rowsCount: 0, titleColor: nil, titleFont: nil, headerWidthToFitText: false, itemWidthToFitText: false)
         }
     }
     // MARK: - Properties
@@ -127,12 +133,41 @@ open class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, Horizont
     
     // Item Size
     public func collectionView(_ collectionView: UICollectionView, horizontalFloatingHeaderItemSizeAt indexPath: IndexPath) -> CGSize {
-        return configuration.itemSize
+        
+        if !configuration.itemWidthToFitText{
+            return configuration.itemSize
+        }
+        
+        // Dynamic Item Width
+        let actionText: String? = {
+            let action = self.categoryActions[indexPath.section].1[indexPath.item]
+            switch action {
+                case .character(let text): return text
+                default:
+                    return nil
+            }
+        }()
+        
+        if let text = actionText{
+            let font = UIFont.preferredFont(forTextStyle: .callout)
+            let size = self.sizeToFitText(text: text, font: font)
+            return CGSize(width: size.width + 1, height: configuration.itemSize.height)
+        }else{
+            // Use default size
+            return configuration.itemSize
+        }
     }
     
     // Header Size
     public func collectionView(_ collectionView: UICollectionView, horizontalFloatingHeaderSizeAt section: Int) -> CGSize {
-        return configuration.headerSize
+        if configuration.headerWidthToFitText{
+            let headerText:String = self.categoryActions[section].0
+            let size:CGSize = self.sizeToFitText(text: headerText, font: configuration.titleFont)
+            // `width + 1` to fix bugs, like 'FLAGS --> FLA...'
+            return CGSize(width: size.width + 1, height: configuration.headerSize.height)
+        }else{
+            return configuration.headerSize
+        }
     }
     
     // Vertial Spacing: Spacing Between Vertial Items
@@ -153,6 +188,11 @@ open class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, Horizont
         default:
             return UIEdgeInsets(top: 8, left: 8, bottom: 0, right: 0)
         }
+    }
+    
+    // MARK: - Size Function
+    private func sizeToFitText(text: String, font: UIFont) -> CGSize{
+        return text.size(withAttributes: [.font: font])
     }
 }
 
