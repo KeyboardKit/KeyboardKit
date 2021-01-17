@@ -23,6 +23,10 @@ open class StandardKeyboardAppearanceProvider: KeyboardAppearanceProvider {
         action.standardButtonFont
     }
     
+    open func fontWeight(for action: KeyboardAction, context: KeyboardContext) -> UIFont.Weight? {
+        return nil
+    }
+    
     open func text(for action: KeyboardAction) -> String? {
         action.standardButtonText
     }
