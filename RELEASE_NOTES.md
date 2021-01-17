@@ -9,6 +9,7 @@ This release fixes so that the secondary input gesture triggers a tap if there w
 
 ### New features
 
+* `Emoji` is a new struct that in the future will let us work more with emojis in a more structured and type-safe way.
 * `EmojiCategory` now lets you register a `frequentEmojiProvider`, and uses that to populate the frequent category.
 * There is a new `EmojiProvider` protocol
 * There is a new `FrequentEmojiProvider` protocol
