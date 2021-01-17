@@ -15,11 +15,20 @@ This release fixes so that the secondary input gesture triggers a tap if there w
 * There is a new `FrequentEmojiProvider` protocol
 * There is a new `MostRecentEmojiProvider` class
 
+* `AutocompleteToolbar` has a new, static  `standardReplacement` function.
+* `AutocompleteToolbar` has a new, static  `standardReplacementAction` function.
+* `AutocompleteToolbar` now lets you provide an optional, custom  `replacementAction` in init.
+* `EmojiCategoryKeyboard` is a new view that lists the emojis of a selected category and a menu.
+* `EmojiCategoryKeyboardMenu` is a new view that lets the user select one of multiple categories.
+* `EmojiKeyboard` is a new view that renders a set of emojis in a lazy grid. The item action is customizable.
+
 ### Behavior changes
 
 * `EmojiCategory` now implements `EmojiProvider`
 * `EmojiCategory.frequent` now returns emojis from the `frequentEmojiProvider`.
 * `StandardKeyboardActionHandler` now tries to register emojis with the `EmojiCategory` frequent emoji provider.
+
+* `SystemKeyboardButtonBody` now only offsets small caps texts. 
 
 ### Bug fixes
 
@@ -27,7 +36,9 @@ This release fixes so that the secondary input gesture triggers a tap if there w
 
 ### Deprecations
 
-* `KeyboardContext.emojiCategory` is deprecated. This should be persisted by the view instead.
+* `KeyboardContext.emojiCategory` has been deprecated. This should be persisted by the view instead.
+
+* `View+keyboardAction(:context:)` has been deprecated. 
 
 ### Breaking changes
 
