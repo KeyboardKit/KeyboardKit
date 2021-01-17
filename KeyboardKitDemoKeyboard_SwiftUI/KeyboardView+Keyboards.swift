@@ -18,10 +18,7 @@ extension KeyboardView {
     }
     
     var imageKeyboard: some View {
-        VStack {
-            ImageKeyboard()
-            
-        }
+        ImageKeyboard()
             .padding()
     }
     

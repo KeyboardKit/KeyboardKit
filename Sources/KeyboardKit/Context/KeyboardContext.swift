@@ -17,6 +17,9 @@ public protocol KeyboardContext: AnyObject {
     
     @available(*, deprecated, message: "This property will be removed in KK 4.0. Usage is strongly discouraged.")
     var controller: KeyboardInputViewController { get }
+    
+    @available(*, deprecated, message: "This property will be removed in KK 4.0. Usage is strongly discouraged.")
+    var emojiCategory: EmojiCategory { get set }
 
     var actionHandler: KeyboardActionHandler { get set }
     var keyboardAppearanceProvider: KeyboardAppearanceProvider { get set }
@@ -26,7 +29,6 @@ public protocol KeyboardContext: AnyObject {
     
     var device: UIDevice { get }
     var deviceOrientation: UIInterfaceOrientation { get set }
-    var emojiCategory: EmojiCategory { get set }
     var hasDictationKey: Bool { get set }
     var hasFullAccess: Bool { get set }
     var keyboardType: KeyboardType { get set }

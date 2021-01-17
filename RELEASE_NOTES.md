@@ -25,6 +25,10 @@ This release fixes so that the secondary input gesture triggers a tap if there w
 
 * The `´` accent was accidentally used in standard numeric keyboards. It has now been replaced with `’`, which is the correct one.
 
+### Deprecations
+
+* `KeyboardContext.emojiCategory` is deprecated. This should be persisted by the view instead.
+
 ### Breaking changes
 
 * `secondaryCalloutInputProvider` has been removed from `KeyboardContext`. It's now only in the secondary context.
