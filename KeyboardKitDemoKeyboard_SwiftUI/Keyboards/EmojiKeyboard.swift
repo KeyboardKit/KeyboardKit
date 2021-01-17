@@ -51,9 +51,10 @@ private extension EmojiKeyboard {
     }
     
     var bottomRow: some View {
-        HStack(spacing: 10) {
+        let handler = context.actionHandler
+        return HStack(spacing: 10) {
             ForEach(Array(bottomActions.enumerated()), id: \.offset) { item in
-                self.bottomView(for: item.element).keyboardAction(item.element, context: self.context)
+                self.bottomView(for: item.element).keyboardAction(item.element, actionHandler: handler)
             }
         }
     }

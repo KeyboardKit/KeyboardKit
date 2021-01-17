@@ -51,7 +51,7 @@ class EmojiCategoryTests: QuickSpec {
                 expect(fallbackEmoji(for: .foods)).to(equal("🍔"))
                 expect(fallbackEmoji(for: .activities)).to(equal("⚽️"))
                 expect(fallbackEmoji(for: .travels)).to(equal("🚗"))
-                expect(fallbackEmoji(for: .objects)).to(equal("⏰"))
+                expect(fallbackEmoji(for: .objects)).to(equal("💡"))
                 expect(fallbackEmoji(for: .symbols)).to(equal("💱"))
                 expect(fallbackEmoji(for: .flags)).to(equal("🏳️"))
             }

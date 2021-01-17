@@ -1,15 +1,18 @@
 //
-//  CustomButtonRowCollectionView.swift
+//  HFloatingHeaderButtonCollectionView.swift
 //  KeyboardKitDemoKeyboard
 //
 //  Created by 于留传 on 2021/1/16.
 //
 
+import KeyboardKit
 import UIKit
 
-open class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, HorizontalFloatingHeaderLayoutDelegate, UICollectionViewDelegate{
+open class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, HorizontalFloatingHeaderLayoutDelegate, UICollectionViewDelegate {
+    
     
     // MARK: - Initialization
+    
     public init(
         id: String = "HFloatingHeaderButtonCollectionView",
         categoryActions: [(String, KeyboardActions)],
@@ -34,6 +37,7 @@ open class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, Horizont
         setup()
     }
     
+    
     // MARK: - Setup
     
     func setup(){
@@ -44,10 +48,12 @@ open class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, Horizont
         register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
     }
     
+    
     // MARK: - Types
+    
     public typealias KeyboardButtonCreator = (KeyboardAction) -> (UIView)
     
-    public struct Configuration{
+    public struct Configuration {
         public init(headerSize: CGSize, itemSize: CGSize, rowsCount: Int, titleColor: UIColor?, titleFont: UIFont?,
                     headerWidthToFitText: Bool?, itemFont: UIFont?, itemWidthToFitText: Bool?, edgeInsets: UIEdgeInsets?){
             self.headerSize = headerSize
@@ -76,15 +82,18 @@ open class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, Horizont
         
         private let padding: CGFloat = 10
         
-        public var totalHeight: CGFloat{
+        public var totalHeight: CGFloat {
             headerSize.height + itemSize.height * CGFloat(rowsCount) + padding * 2
         }
         
-        public static var empty: Configuration{
+        public static var empty: Configuration {
             Configuration(headerSize: .zero, itemSize: .zero, rowsCount: 0, titleColor: nil, titleFont: nil, headerWidthToFitText: false, itemFont: nil, itemWidthToFitText: false, edgeInsets: .zero)
         }
     }
+    
+    
     // MARK: - Properties
+    
     public let headerIdentifier = "Header"
     
     public let id: String
@@ -92,6 +101,8 @@ open class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, Horizont
     public let categoryActions: [(String, KeyboardActions)]
     private let categorySectionAction: [(String, Int, Int)]
     private let buttonCreator: KeyboardButtonCreator
+    
+    
     // MARK: - Category
     
     static func createCategorySectionAction(for categoryActions: [(String, KeyboardActions)]) -> [(String, Int, Int)] {
@@ -101,7 +112,9 @@ open class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, Horizont
         }
     }
     
+    
     // MARK: - UICollectionViewDataSource
+    
     // Number of Sections
     open override func numberOfSections(in collectionView: UICollectionView) -> Int {
         self.categorySectionAction.count
@@ -134,6 +147,7 @@ open class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, Horizont
         return cell
     }
 
+    
     // MARK: - HorizontalFloatingHeaderDelegate
     
     // Item Size

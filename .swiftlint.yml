@@ -3,6 +3,7 @@ disabled_rules:
   - function_body_length
   - function_parameter_count
   - identifier_name
+  - large_tuple
   - statement_position
   - trailing_whitespace
   - line_length

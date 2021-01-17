@@ -2,20 +2,13 @@
 //  HorizontalFloatingHeaderLayout.swift
 //
 //  Created by 于留传 on 2021/1/15.
+//  Original by Diego Alberto Cruz Castillo on 12/30/15.
+//
+//  This is an adjusted version of this implementation:
+//  https://github.com/tysonkerridge/HorizontalFloatingHeaderLayout/blob/master/Pod/Classes/HorizontalFloatingHeaderLayout.swift
 //
 
-// The following is copied from
-// https://github.com/tysonkerridge/HorizontalFloatingHeaderLayout/blob/master/Pod/Classes/HorizontalFloatingHeaderLayout.swift
-// And, make some change to be compilable.
-
-//
-//  HorizontalFloatingHeaderLayout.swift
-//  Pods
-//
-//  Created by Diego Alberto Cruz Castillo on 12/30/15.
-//
-//
-
+import KeyboardKit
 import UIKit
 
 @objc public protocol HorizontalFloatingHeaderLayoutDelegate: class {
@@ -34,13 +27,13 @@ import UIKit
     
     // Line Spacing
     @objc optional func collectionView(_ collectionView: UICollectionView, horizontalFloatingHeaderColumnSpacingForSectionAt section: Int) -> CGFloat
-    
 }
 
+
 public class HorizontalFloatingHeaderLayout: UICollectionViewLayout {
-    
-    
+        
     // MARK: - Properties
+    
     public override var collectionViewContentSize: CGSize {
         get { return getContentSize() }
     }
@@ -147,9 +140,7 @@ public class HorizontalFloatingHeaderLayout: UICollectionViewLayout {
                 let attribute = itemAttribute(at: indexPath)
                 itemAttributes[indexPath] = attribute
             }
-            
         }
-        
     }
     
     
@@ -164,7 +155,9 @@ public class HorizontalFloatingHeaderLayout: UICollectionViewLayout {
         return itemsA + headersA
     }
     
+    
     //MARK: - ContentSize methods
+    
     private func getContentSize() -> CGSize {
         
         guard let collectionView = collectionView else {
@@ -182,7 +175,6 @@ public class HorizontalFloatingHeaderLayout: UICollectionViewLayout {
             }
         }
         
-        //
         let lastSection = collectionView.numberOfSections - 1
         let contentWidth = lastItemMaxX() + inset(ForSection: lastSection).right
         let safeAreaInsets: UIEdgeInsets = { if #available(iOS 11.0, *) { return collectionView.safeAreaInsets } else { return .zero } }()
@@ -227,16 +219,13 @@ public class HorizontalFloatingHeaderLayout: UICollectionViewLayout {
                 return headerSize(forSection: indexPath.section)
             }
             
-            //
             func position() -> CGPoint {
-                
                 if let itemsCount = collectionView?.numberOfItems(inSection: indexPath.section),
                     let firstItemAttributes = layoutAttributesForItem(at: indexPath),
                     let lastItemAttributes = layoutAttributesForItem(at: IndexPath(row: itemsCount - 1, section: indexPath.section)) {
                     let safeAreaInsets: UIEdgeInsets = { if #available(iOS 11.0, *) { return collectionView!.safeAreaInsets } else { return .zero } }()
                     let edgeX = collectionView!.contentOffset.x + collectionView!.contentInset.left + safeAreaInsets.left
                     let xByLeftBoundary = max(edgeX, firstItemAttributes.frame.minX)
-                    //
                     let width = size().width
                     let xByRightBoundary = lastItemAttributes.frame.maxX - width
                     let x = min(xByLeftBoundary,xByRightBoundary)
@@ -247,15 +236,11 @@ public class HorizontalFloatingHeaderLayout: UICollectionViewLayout {
                 
             }
             
-            //
             let attribute = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
             attribute.frame = CGRect(origin: position(), size: size())
-            
             return attribute
-            
         }
         
-        //
         guard let collectionView = collectionView else {
             return [:]
         }
@@ -292,7 +277,6 @@ public class HorizontalFloatingHeaderLayout: UICollectionViewLayout {
             return Array(sectionHeadersAttributes.keys)
         }
         
-        //
         let context = super.invalidationContext(forBoundsChange: newBounds)
         if !isSizeChanged() {
             context.invalidateSupplementaryElements(ofKind: UICollectionView.elementKindSectionHeader, at: headersIndexPaths())
