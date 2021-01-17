@@ -23,5 +23,6 @@ import UIKit
 public protocol KeyboardAppearanceProvider {
     
     func font(for action: KeyboardAction) -> UIFont
+    func fontWeight(for action: KeyboardAction, context: KeyboardContext) -> UIFont.Weight?
     func text(for action: KeyboardAction) -> String?
 }
