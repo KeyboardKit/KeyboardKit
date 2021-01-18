@@ -57,7 +57,7 @@ class KeyboardViewController: KeyboardInputViewController {
     private let toastContext = KeyboardToastContext()
     
     private var keyboardView: some View {
-        KeyboardView(controller: self)
+        KeyboardView()
             .environmentObject(autocompleteContext)
             .environmentObject(toastContext)
     }

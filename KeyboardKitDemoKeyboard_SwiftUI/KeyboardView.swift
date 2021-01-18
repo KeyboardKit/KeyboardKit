@@ -22,8 +22,6 @@ import KeyboardKitSwiftUI
  */
 struct KeyboardView: View {
     
-    let controller: KeyboardInputViewController
-    
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     @EnvironmentObject var context: ObservableKeyboardContext
     @EnvironmentObject var toastContext: KeyboardToastContext
@@ -57,6 +55,6 @@ private extension KeyboardView {
 
 struct KeyboardView_Previews: PreviewProvider {
     static var previews: some View {
-        KeyboardView(controller: KeyboardInputViewController())
+        KeyboardView()
     }
 }
