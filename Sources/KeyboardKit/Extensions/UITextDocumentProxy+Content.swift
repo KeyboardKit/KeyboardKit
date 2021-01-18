@@ -15,9 +15,9 @@ public extension UITextDocumentProxy {
      beginning of a new sentence.
      */
     var isCursorAtNewSentence: Bool {
-        guard let pre = documentContextBeforeInput?.replacingOccurrences(of: " ", with: "") else { return true }
+        guard let pre = trimmedDocumentContextBeforeInput else { return true }
         let lastCharacter = String(pre.suffix(1))
-        return pre.isEmpty || sentenceDelimiters.contains(lastCharacter)
+        return pre.isEmpty || lastCharacter.isSentenceDelimiter
     }
     
     /**
@@ -27,13 +27,49 @@ public extension UITextDocumentProxy {
     var isCursorAtNewWord: Bool {
         guard let pre = documentContextBeforeInput else { return true }
         let lastCharacter = String(pre.suffix(1))
-        return pre.isEmpty || wordDelimiters.contains(lastCharacter)
+        return pre.isEmpty || lastCharacter.isWordDelimiter
+    }
+    
+    /**
+     The last ended sentence right before the cursor, if any.
+     */
+    var sentenceBeforeInput: String? {
+        guard isCursorAtNewSentence else { return nil }
+        guard let context = documentContextBeforeInput else { return nil }
+        let components = context.split(by: sentenceDelimiters).filter { !$0.isEmpty }
+        let ignoreLast = components.last?.trimmed().count == 0
+        return ignoreLast ? nil : components.last
+    }
+    
+    /**
+     The last ended word right before the cursor, if any.
+     */
+    var wordBeforeInput: String? {
+        if isCursorAtNewSentence { return nil }
+        guard isCursorAtNewWord else { return nil }
+        guard let context = documentContextBeforeInput else { return nil }
+        guard let result = context.split(by: wordDelimiters).dropLast().last?.trimmed() else { return nil }
+        return result.isEmpty ? nil : result
     }
     
     /**
      A list of western sentence delimiters.
      */
     var sentenceDelimiters: [String] { String.sentenceDelimiters }
+    
+    /**
+     Trimmed textual content after the text cursor.
+     */
+    var trimmedDocumentContextAfterInput: String? {
+        documentContextAfterInput?.trimmed()
+    }
+    
+    /**
+     Trimmed textual content before the text cursor.
+     */
+    var trimmedDocumentContextBeforeInput: String? {
+        documentContextBeforeInput?.trimmed()
+    }
     
     /**
      A list of western word delimiters.
@@ -50,5 +86,24 @@ public extension UITextDocumentProxy {
             deleteBackward(times: 1)
         }
         insertText(". ")
+    }
+}
+
+
+// MARK: - Private Functions
+
+private extension String {
+    
+    var hasTrimmedContent: Bool {
+        !trimmed().isEmpty
+    }
+    
+    func split(by separators: [String]) -> [String] {
+        let separators = CharacterSet(charactersIn: separators.joined())
+        return components(separatedBy: separators)
+    }
+    
+    func trimmed() -> String {
+        trimmingCharacters(in: .whitespaces)
     }
 }

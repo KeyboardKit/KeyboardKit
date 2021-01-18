@@ -15,6 +15,7 @@ This release fixes so that the secondary input gesture triggers a tap if there w
 * There is a new `FrequentEmojiProvider` protocol
 * There is a new `MostRecentEmojiProvider` class
 * There is a new `String+Delimiters` extension with word and sentence delimiters.
+* There are new `UITextDocumentProxu+Content` extensions to get previous sentences and words.
 
 * `AutocompleteToolbar` has a new, static  `standardReplacement` function.
 * `AutocompleteToolbar` has a new, static  `standardReplacementAction` function.
