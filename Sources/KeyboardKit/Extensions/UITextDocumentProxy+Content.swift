@@ -8,11 +8,6 @@
 
 import UIKit
 
-/**
- `NOTE` These concepts of words and sentences only works for
- western keyboards. We should find another approach for e.g.
- chinese and other symbol-based keyboards.
- */
 public extension UITextDocumentProxy {
     
     /**
@@ -36,20 +31,14 @@ public extension UITextDocumentProxy {
     }
     
     /**
-     A list of characters that can be the end of a sentence.
+     A list of western sentence delimiters.
      */
-    var sentenceDelimiters: [String] {
-        ["!", ".", "?", "\n"]
-    }
+    var sentenceDelimiters: [String] { String.sentenceDelimiters }
     
     /**
-     A list of characters that can separate words.
+     A list of western word delimiters.
      */
-    var wordDelimiters: [String] {
-        var delimiters = sentenceDelimiters
-        delimiters.append(contentsOf: [",", ";", ":", " "])
-        return delimiters
-    }
+    var wordDelimiters: [String] { String.wordDelimiters }
     
     /**
      End the current sentence by removing all trailing space

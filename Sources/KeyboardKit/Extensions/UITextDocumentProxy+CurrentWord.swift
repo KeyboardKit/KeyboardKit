@@ -8,11 +8,6 @@
 
 import UIKit
 
-/**
- `NOTE` The concept of a current word only works for western
- keyboards. We should find another approach for e.g. chinese
- and other symbol-based keyboards.
- */
 public extension UITextDocumentProxy {
     
     /**

@@ -8,8 +8,8 @@
 
 import Quick
 import Nimble
-@testable import KeyboardKit
 import Foundation
+@testable import KeyboardKit
 
 private class TestSequenceItem: NSObject {
     
