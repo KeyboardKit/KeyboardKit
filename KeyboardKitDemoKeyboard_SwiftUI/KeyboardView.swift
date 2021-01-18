@@ -37,7 +37,7 @@ struct KeyboardView: View {
     var keyboardView: some View {
         switch context.keyboardType {
         case .alphabetic, .numeric, .symbolic: systemKeyboard
-        case .emojis: emojiKeyboard
+        case .emojis: EmojiCategoryKeyboard()
         case .images: imageKeyboard
         default: Button("???", action: switchToDefaultKeyboard)
         }

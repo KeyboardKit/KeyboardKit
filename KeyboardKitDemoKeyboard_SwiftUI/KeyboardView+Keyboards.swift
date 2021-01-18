@@ -12,11 +12,6 @@ import SwiftUI
 
 extension KeyboardView {
     
-    var emojiKeyboard: some View {
-        EmojiKeyboard()
-            .padding()
-    }
-    
     var imageKeyboard: some View {
         ImageKeyboard()
             .padding()

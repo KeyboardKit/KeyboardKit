@@ -92,6 +92,24 @@ public extension EmojiCategory {
         case .flags: return "🏳️"
         }
     }
+    
+    /**
+     The English title for the category. You can use this if
+     your extension only supports English.
+     */
+    var title: String {
+        switch self {
+        case .frequent: return "Frequently Used"
+        case .smileys: return "Smileys & People"
+        case .animals: return "Animals & Nature"
+        case .foods: return "Food & Drink"
+        case .activities: return "Activity"
+        case .travels: return "Travel & Places"
+        case .objects: return "Objects"
+        case .symbols: return "Symbols"
+        case .flags: return "Flags"
+        }
+    }
 }
 
 private extension String {
