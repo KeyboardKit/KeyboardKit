@@ -22,7 +22,6 @@ import KeyboardKitSwiftUI
  */
 struct KeyboardView: View {
     
-    @Environment(\.colorScheme) var colorScheme: ColorScheme
     @EnvironmentObject var context: ObservableKeyboardContext
     @EnvironmentObject var toastContext: KeyboardToastContext
     

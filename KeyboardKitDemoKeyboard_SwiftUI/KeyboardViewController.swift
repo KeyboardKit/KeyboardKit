@@ -52,8 +52,6 @@ class KeyboardViewController: KeyboardInputViewController {
     
     // MARK: - Properties
     
-    private var cancellables = [AnyCancellable]()
-    
     private let toastContext = KeyboardToastContext()
     
     private var keyboardView: some View {
