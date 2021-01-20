@@ -74,7 +74,6 @@ class KeyboardViewController: KeyboardInputViewController {
     
     override func performAutocomplete() {
         guard let word = textDocumentProxy.currentWord else { return resetAutocomplete() }
-        context.colorScheme
         autocompleteProvider.autocompleteSuggestions(for: word) { [weak self] result in
             switch result {
             case .failure(let error): print(error.localizedDescription)
