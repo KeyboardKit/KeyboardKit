@@ -39,6 +39,8 @@ This release fixes so that the secondary input gesture triggers a tap if there w
 ### Deprecations
 
 * `KeyboardContext.emojiCategory` has been deprecated. This should be persisted by the view instead.
+* `PhotosImageService` and the standard implementation has been deprecated. Copy it to your own project if you want to keep on using it.
+* `UIImage+Photos` has been deprecated. Copy it to your own project if you want to keep on using it.
 
 * `View+keyboardAction(:context:)` has been deprecated. 
 

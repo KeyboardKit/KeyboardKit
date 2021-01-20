@@ -16,6 +16,7 @@ import UIKit
  uses a target and a selector can't be used, e.g. in SwiftUI
  where views are structs and not classes. 
  */
+@available(*, deprecated, message: "This class will be removed in 4.0. Copy it to your own project to keep using it.")
 public class StandardPhotosImageService: NSObject, PhotosImageService {
     
     public typealias Completion = (Error?) -> Void

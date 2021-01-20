@@ -17,6 +17,8 @@ import UIKit
  uses a target and a selector can't be used, e.g. in SwiftUI
  where views are structs and not classes.
  */
+
+@available(*, deprecated, message: "This protocol will be removed in 4.0. Copy it to your own project to keep using it.")
 public protocol PhotosImageService: AnyObject {
     
     func saveImageToPhotos(_ image: UIImage, completion: @escaping (Error?) -> Void)
