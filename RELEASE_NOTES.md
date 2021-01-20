@@ -20,6 +20,7 @@ This release fixes so that the secondary input gesture triggers a tap if there w
 * `AutocompleteToolbar` has a new, static  `standardReplacement` function.
 * `AutocompleteToolbar` has a new, static  `standardReplacementAction` function.
 * `AutocompleteToolbar` now lets you provide an optional, custom  `replacementAction` in init.
+* `Color+Resources` is a new extension that provides asset-based colors that adapt to dark mode.
 * `EmojiCategoryKeyboard` is a new view that lists the emojis of a selected category and a menu.
 * `EmojiCategoryKeyboardMenu` is a new view that lets the user select one of multiple categories.
 * `EmojiKeyboard` is a new view that renders a set of emojis in a lazy grid. The item action is customizable.
@@ -30,7 +31,10 @@ This release fixes so that the secondary input gesture triggers a tap if there w
 * `EmojiCategory.frequent` now returns emojis from the `frequentEmojiProvider`.
 * `StandardKeyboardActionHandler` now tries to register emojis with the `EmojiCategory` frequent emoji provider.
 
-* `SystemKeyboardButtonBody` now only offsets small caps texts. 
+* `Color+Button` uses the new asset-based colors.
+* `SystemKeyboardButtonBody` now only offsets small caps texts.
+* The emoji action has a filled standard image instead of an outlined one.
+* Due to a secondary callout action bug, the secondary context is now created by the vc.
 
 ### Bug fixes
 
@@ -42,6 +46,7 @@ This release fixes so that the secondary input gesture triggers a tap if there w
 * `PhotosImageService` and the standard implementation has been deprecated. Copy it to your own project if you want to keep on using it.
 * `UIImage+Photos` has been deprecated. Copy it to your own project if you want to keep on using it.
 
+* Some button-specific `Color` extensions have been deprecated.
 * `View+keyboardAction(:context:)` has been deprecated. 
 
 ### Breaking changes
