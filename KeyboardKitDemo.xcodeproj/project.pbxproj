@@ -1342,7 +1342,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielsaidi/KeyboardKitSwiftUI";
 			requirement = {
-				branch = master;
+				branch = colors;
 				kind = branch;
 			};
 		};

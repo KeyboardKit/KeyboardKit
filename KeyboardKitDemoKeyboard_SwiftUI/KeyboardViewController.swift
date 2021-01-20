@@ -49,6 +49,11 @@ class KeyboardViewController: KeyboardInputViewController {
             rightSpaceAction: .keyboardType(.images))
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        context.traitCollection = traitCollection
+    }
+    
     
     // MARK: - Properties
     
@@ -69,6 +74,7 @@ class KeyboardViewController: KeyboardInputViewController {
     
     override func performAutocomplete() {
         guard let word = textDocumentProxy.currentWord else { return resetAutocomplete() }
+        context.colorScheme
         autocompleteProvider.autocompleteSuggestions(for: word) { [weak self] result in
             switch result {
             case .failure(let error): print(error.localizedDescription)
