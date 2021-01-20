@@ -46,7 +46,6 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         context.actionHandler = DemoKeyboardActionHandler(inputViewController: self)
-        context.keyboardAppearanceProvider = DemoKeyboardAppearanceProvider()
         context.keyboardLayoutProvider = StandardKeyboardLayoutProvider(
             leftSpaceAction: .keyboardType(.emojis),
             rightSpaceAction: .keyboardType(.images))

@@ -1,8 +1,8 @@
 //
-//  DemoAutocompleteSuggestionProvider.swift
-//  KeyboardKitDemo
+//  DemoKeyboardActionHandler.swift
+//  KeyboardKitDemoKeyboard
 //
-//  Created by Daniel Saidi on 2019-07-05.
+//  Created by Daniel Saidi on 2019-04-24.
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
@@ -11,23 +11,12 @@ import UIKit
 
 /**
  This action handler inherits `StandardKeyboardActionHandler`
- and adds demo-specific base functionality to it.
- 
- The class is shared between all keyboards. Each demo action
- handler inherit this class and adds functionality on top of
- the base functionality.
+ and adds `UIKit` demo-specific functionality to it.
  */
-class DemoKeyboardActionHandlerBase: StandardKeyboardActionHandler {
+class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     
-    // MARK: - Initialization
-    
-//    init(inputViewController: KeyboardInputViewController) {
-//        super.init(
-//            inputViewController: inputViewController,
-//            hapticConfiguration: .noFeedback
-//        )
-//    }
+    // MARK: - Overrides
     
     override func longPressAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
         switch action {
@@ -38,6 +27,7 @@ class DemoKeyboardActionHandlerBase: StandardKeyboardActionHandler {
     
     override func tapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
         switch action {
+        case .emojiCategory(let cat): return { [weak self] in self?.switchToEmojiKeyboardCategory(cat) }
         case .image(_, _, let imageName): return { [weak self] in self?.copyImage(UIImage(named: imageName)!) }
         default: return super.tapAction(for: action, sender: sender)
         }
@@ -52,7 +42,8 @@ class DemoKeyboardActionHandlerBase: StandardKeyboardActionHandler {
      that you use in real apps, e.g. `UIAlertController`.
      */
     func alert(_ message: String) {
-        assertionFailure("You must override alert")
+        guard let input = inputViewController as? KeyboardViewController else { return }
+        input.alerter.alert(message: message, in: input.view, withDuration: 4)
     }
     
     func copyImage(_ image: UIImage) {
@@ -75,5 +66,16 @@ class DemoKeyboardActionHandlerBase: StandardKeyboardActionHandler {
     @objc func handleImage(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         if error == nil { alert("Saved!") }
         else { alert("Failed!") }
+    }
+}
+
+private extension DemoKeyboardActionHandler {
+    
+    func switchToEmojiKeyboardCategory(_ cat: EmojiCategory) {
+        guard
+            let vc = inputViewController as? KeyboardViewController,
+            let view = vc.emojiCollectionView
+            else { return }
+        view.moveToSection(byCategory: cat.title)
     }
 }
