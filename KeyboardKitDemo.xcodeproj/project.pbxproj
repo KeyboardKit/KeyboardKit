@@ -588,7 +588,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 9999;
-				LastSwiftUpdateCheck = 1150;
+				LastSwiftUpdateCheck = 1230;
 				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = "Daniel Saidi";
 				TargetAttributes = {
