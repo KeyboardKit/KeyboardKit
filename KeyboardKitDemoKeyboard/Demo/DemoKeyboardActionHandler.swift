@@ -79,3 +79,32 @@ private extension DemoKeyboardActionHandler {
         view.moveToSection(byCategory: cat.title)
     }
 }
+
+private extension UIImage {
+    
+    func saveToPhotos(completionTarget: AnyObject?, completionSelector: Selector?) {
+        UIImageWriteToSavedPhotosAlbum(self, completionTarget, completionSelector, nil)
+    }
+    
+    func saveToPhotos(completion: @escaping (Error?) -> Void) {
+        let service = StandardPhotosImageService()
+        service.saveImageToPhotos(self, completion: completion)
+    }
+}
+
+private class StandardPhotosImageService: NSObject {
+    
+    public typealias Completion = (Error?) -> Void
+
+    private var completions = [Completion]()
+    
+    public func saveImageToPhotos(_ image: UIImage, completion: @escaping (Error?) -> Void) {
+        completions.append(completion)
+        image.saveToPhotos(completionTarget: self, completionSelector: #selector(didSave(_:error:contextInfo:)))
+    }
+    
+    @objc func didSave(_ image: UIImage, error: NSError?, contextInfo: UnsafeRawPointer) {
+        guard completions.count > 0 else { return }
+        completions.removeFirst()(error)
+    }
+}
