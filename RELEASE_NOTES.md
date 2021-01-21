@@ -3,7 +3,7 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions.
 
 
-## 3.6.
+## 3.6
 
 This release fixes so that the secondary input gesture triggers a tap if there were no secondary actions in the callout.
 
@@ -66,7 +66,7 @@ The release also makes the entire autocomplete button tappable, instead of just 
 This release fixes so that upper-cased chars gets secondary callout actions and that the input callout isn't dismissed if there are no secondary actions.  
 
 
-## 3.5.0
+## 3.5
 
 This release makes it easier to inject custom views into the `SwiftUI`-based `SystemKeyboard` and `AutocompleteToolbar`. 
 
@@ -151,7 +151,7 @@ This release adds curves and behavior changes to the callout bubbles.
 This release fixes some visual artefacts in the callout bubbles.
 
 
-## 3.4.0
+## 3.4
 
 From now on, release notes will include changes in both KeyboardKit and KeyboardKitSwiftUI.
 
@@ -195,7 +195,7 @@ This release also has breaking changes to experimental features.
 * `ObservableKeyboardContext` `keyboardInputProvider` has been renamed to `keyboardInputSetProvider`
 
 
-## 3.3.0
+## 3.3
 
 This release contains a bunch of new features that makes the keyboard behave more like the native keyboards when typing, for instance auto-capitalization and auto-lowercasing.
 
@@ -245,7 +245,7 @@ Note that this is an experimental feature that may have to be revisited before 4
 
 These deprecations will be removed in v 4.0.
 
-## 3.2.0
+## 3.2
 
 This release contains improvements to the input set logic:
 
@@ -299,7 +299,7 @@ This version contains new features:
 * `KeyboardContext` now has an `emojiCategory`  property.
 
 
-## 3.1.0
+## 3.1
 
 This version contains new protocols and classes:
 
@@ -329,7 +329,7 @@ This version fixes a bug, where the globe button that is used by the demo keyboa
 This version also fixes the system image's font weight.
 
 
-## 3.0.0
+## 3
 
 This version removes all previously deprecated parts of the library and adds improved support for SwiftUI and iOS 13.
 
@@ -443,7 +443,7 @@ This makes it possible to use the standard function in other ways, should you ne
 This version also makes `actions` of `KeyboardCollectionView` mutable, causing changes to this property to refresh the view.
 
 
-## 2.9.0
+## 2.9
 
 This is the last minor version before `3.0`, which will remove a bunch of deprecated members.
 
@@ -494,7 +494,7 @@ Thanks to @eduardoxlau, the demo also has an improved emoji keyboard.
 This version fixes some division by zero bugs.
 
 
-## 2.8.0
+## 2.8
 
 This version fixes a gesture-related memory leak by no longer using the gesture extensions that caused the problem. Instead, `KeyboardInputViewController` has a new set of internal gesture extensions that helps with adding gestures to a button.
 
@@ -536,7 +536,7 @@ These versions adjust the keyboard settings url.
 
 
 
-## 2.7.0
+## 2.7
 
 This version adds the very first (and so far limited) support for `SwiftUI`. Many new features are iOS 13-specific.
 
@@ -609,7 +609,7 @@ This version adds `enableScrolling()` and `disableScrolling()` to `AutocompleteT
 
 
 
-## 2.6.0
+## 2.6
 
 This version adds more autocomplete functionality:
 
@@ -628,7 +628,7 @@ Deprecations:
 
 
 
-## 2.5.0
+## 2.5
 
 This version adds a bunch of features, tweaks some behaviors and deprecates some logic:
 
@@ -658,13 +658,13 @@ The old `handle` functions are still declared in the `KeyboardActionHandler` pro
 
 
 
-## 2.4.0
+## 2.4
 
 This version adds Xcode 11 and iOS 13 support, including support for dark mode and high contrast color variants.
 
 
 
-## 2.3.0
+## 2.3
 
 This version adds autocomplete support, which includes an autocomplete suggestion provider protocol, a new toolbar and new extensions.
 
@@ -692,7 +692,7 @@ You can test the new repeating logic in the demo app.
 
 
 
-## 2.2.0
+## 2.2
 
 This version adds more keyboard actions that don't exist in iOS, but that may serve a functional or semantical purpose in your apps:
 
@@ -711,7 +711,7 @@ Thanks to [@arampak](https://github.com/arampak), the demo app now handles shift
 
 
 
-## 2.1.0
+## 2.1
 
 This version makes a bunch of previously internal extensions public. It also adds a lot more unit tests so that almost all parts of the library are tested.
 
@@ -729,7 +729,7 @@ I noticed that the build number bump still (and randomly) bumps the build number
 
 
 
-## 2.0.0
+## 2.0
 
 This version aim at streamlining the library and remove or refactor parts that make it hard to maintain. It contains several breaking changes, but I hope that the changes will make it easier for you as well, as the library moves forward.
 
@@ -753,7 +753,7 @@ New `KeyboardAction`s are added and `nextKeyboard` has been renamed to `switchKe
 
 
 
-## 1.0.0
+## 1.0
 
 This version upgrades `KeyboardKit` to Swift 5 and has many breaking changes:
 
@@ -769,7 +769,7 @@ This version upgrades `KeyboardKit` to Swift 5 and has many breaking changes:
 
 
 
-## 0.8.0
+## 0.8
 
 `Keyboard` has been given an optional ID, which can be used to uniquely identify a keyboard. This makes it easier to manage multiple keyboards in an app.
 
@@ -785,7 +785,7 @@ This version updates KeyboardKit to `Swift 4.2` and makes it ready for Xcode 10.
 
 
 
-## 0.7.0
+## 0.7
 
 The grid keyboard view controller uses a new way to calculate the available item space and item size for a certain number of rows and buttons per row. This means that we can now use top and bottom content insets to create vertical margins for grid-based keyboards.
 
@@ -805,6 +805,6 @@ No functional changes, just README updates and improvements. The version bump is
 
 
 
-## 0.6.0
+## 0.6
 
 This is a complete rewrite of the entire library. KeyboardKit now targets iOS 11 and the code has been improved a lot. Check out the demo app to see how to setup keyboards from now on.
