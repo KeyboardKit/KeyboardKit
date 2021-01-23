@@ -63,7 +63,7 @@ class StandardKeyboardBehaviorTests: QuickSpec {
         }
         
         
-        describe("should end sentence after gesture on action") {
+        describe("should end sentence") {
             
             func result(after gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
                 behavior.shouldEndSentence(for: context, after: gesture, on: action)
@@ -72,7 +72,7 @@ class StandardKeyboardBehaviorTests: QuickSpec {
             it("is only true for space after a previous space") {
                 proxy.documentContextBeforeInput = "hej  "
                 expect(result(after: .tap, on: .space)).to(beTrue())
-                expect(result(after: .tap, on: .character(" "))).to(beTrue())
+                expect(result(after: .tap, on: .character(" "))).to(beFalse())
                 expect(result(after: .tap, on: .command)).to(beFalse())
                 proxy.documentContextBeforeInput = "hej. "
                 expect(result(after: .tap, on: .space)).to(beFalse())
@@ -82,6 +82,23 @@ class StandardKeyboardBehaviorTests: QuickSpec {
                 expect(result(after: .tap, on: .character(" "))).to(beFalse())
             }
         }
+        
+        
+        describe("should switch to caps lock") {
+            
+            func result(after gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
+                behavior.shouldSwitchToCapsLock(for: context, after: gesture, on: action)
+            }
+            
+            it("is true if the action is shift") {
+                expect(result(after: .tap, on: .shift(currentState: .capsLocked))).to(beTrue())
+                expect(result(after: .tap, on: .shift(currentState: .lowercased))).to(beTrue())
+                expect(result(after: .tap, on: .shift(currentState: .uppercased))).to(beTrue())
+            }
+            
+            
+        }
+        
         
         describe("should switch to preferred keyboard type after gesture on action") {
             

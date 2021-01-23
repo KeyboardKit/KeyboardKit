@@ -15,16 +15,23 @@ import Foundation
  This class makes heavy use of default logic in for instance
  the text document proxy. However, having this makes it easy
  to change the actual behavior, if you want or need to.
+ 
+ `TODO` Test the threshold-based functionality.
  */
 open class StandardKeyboardBehavior: KeyboardBehavior {
     
-    public init(doubleTapThreshold: TimeInterval = 0.2) {
+    public init(
+        doubleTapThreshold: TimeInterval = 0.2,
+        endSentenceThreshold: TimeInterval = 3.0) {
         self.doubleTapThreshold = doubleTapThreshold
+        self.endSentenceThreshold = endSentenceThreshold
     }
     
     var lastShiftCheck = Date()
+    var lastSpaceTap = Date()
     
     private let doubleTapThreshold: TimeInterval
+    private let endSentenceThreshold: TimeInterval
     
     public func preferredKeyboardType(for context: KeyboardContext, after gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardType {
         if shouldSwitchToCapsLock(for: context, after: gesture, on: action) { return .alphabetic(.capsLocked) }
@@ -35,16 +42,15 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     }
     
     open func shouldEndSentence(for context: KeyboardContext, after gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
+        guard gesture == .tap, action == .space else { return false }
         let proxy = context.textDocumentProxy
         let isNewWord = proxy.isCursorAtNewWord
         let isNewSentence = proxy.isCursorAtNewSentence
         let isClosable = (proxy.documentContextBeforeInput ?? "").hasSuffix("  ")
-        let shouldClose = isNewWord && !isNewSentence && isClosable
-        switch action {
-        case .space: return shouldClose
-        case .character(let char): return char == " " && shouldClose
-        default: return false
-        }
+        let isEndingTap = Date().timeIntervalSinceReferenceDate - lastSpaceTap.timeIntervalSinceReferenceDate < endSentenceThreshold
+        let shouldClose = isEndingTap && isNewWord && !isNewSentence && isClosable
+        lastSpaceTap = Date()
+        return shouldClose
     }
     
     open func shouldSwitchToCapsLock(for context: KeyboardContext, after gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {

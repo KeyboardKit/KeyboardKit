@@ -152,7 +152,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             
             it("ends sentence with behavior action if behavior says yes") {
                 proxy.documentContextBeforeInput = "foo  "
-                handler.tryEndSentence(after: .tap, on: .character(" "))
+                handler.tryEndSentence(after: .tap, on: .space)
                 expect(proxy.hasInvoked(proxy.deleteBackwardRef, numberOfTimes: 2)).to(beTrue())
                 expect(proxy.hasInvoked(proxy.insertTextRef, numberOfTimes: 1)).to(beTrue())
             }
