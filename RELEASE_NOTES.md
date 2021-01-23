@@ -3,6 +3,13 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions.
 
 
+## 3.6.1
+
+This release adds a time threshold to the end sentence action.
+
+This release also fixes so that `CalloutCurve` and `CustomRoundedRect` handles invalid rects.
+
+
 ## 3.6
 
 This release fixes so that the secondary input gesture triggers a tap if there were no secondary actions in the callout.
