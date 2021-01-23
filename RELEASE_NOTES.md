@@ -3,6 +3,13 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions.
 
 
+## 3.6.2
+
+This release rolls back some changes to try improve dark appearance keyboards in SwiftUI. 
+
+Seems like dark appearance can't be detected, since this also enables dark mode. Hopefully this is easier to fix in KK 4.0.
+
+
 ## 3.6.1
 
 This release adds a time threshold to the end sentence action.
