@@ -3,6 +3,18 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions.
 
 
+## 3.6.3
+
+This release adds fake protocol implementations, to simplify creating SwiftUI previews.
+
+The release also adds some things for the future:
+
+* `KeyboardButtonWidth` is a new way to express the width of a keyboard button.
+* `View+KeyboardButtonWidth` is a new way to apply a width to a keyboard button.
+
+Although not used by the standard keyboards yet, I still wanted to add them before starting working on 4.0.
+
+
 ## 3.6.2
 
 This release rolls back some changes to try improve dark appearance keyboards in SwiftUI. 

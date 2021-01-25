@@ -9,14 +9,6 @@
 import MockingKit
 import UIKit
 
-/**
- `IMPORTANT` The mocked `deleteBackward` function is somehow
- not building in Xcode 12, where `args: ()` must be replaced
- with `args: 0`. I'm not sure why this is needed since other
- non-arg functions work as before. Perhaps it is just a beta
- bug that will be solved later? I'll revisit this when Xcode
- 12 is released.
- */
 class MockTextDocumentProxy: NSObject, UITextDocumentProxy, Mockable {
     
     lazy var adjustTextPositionRef = MockReference(adjustTextPosition)
