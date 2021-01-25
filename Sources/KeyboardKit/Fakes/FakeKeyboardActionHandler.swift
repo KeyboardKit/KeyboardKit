@@ -17,6 +17,8 @@ import UIKit
  */
 public class FakeKeyboardActionHandler: KeyboardActionHandler {
     
+    public init() {}
+    
     public func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) -> Bool { false }
     public func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {}
     public func handleDrag(on action: KeyboardAction, from startLocation: CGPoint, to currentLocation: CGPoint) {}

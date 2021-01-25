@@ -17,6 +17,10 @@ import UIKit
  */
 public class FakeTextDocumentProxy: NSObject, UITextDocumentProxy {
     
+    public override init() {
+        super.init()
+    }
+    
     public var autocapitalizationType: UITextAutocapitalizationType = .none
     public var documentContextBeforeInput: String?
     public var documentContextAfterInput: String?
