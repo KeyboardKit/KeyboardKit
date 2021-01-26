@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-extension View {
+public extension View {
     
     /**
      Bind the view's safe area to a binding.

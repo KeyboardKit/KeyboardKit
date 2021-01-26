@@ -8,7 +8,7 @@
 
 import Quick
 import Nimble
-import KeyboardKitSwiftUI
+import KeyboardKit
 import SwiftUI
 
 class Image_KeyboardTests: QuickSpec {
