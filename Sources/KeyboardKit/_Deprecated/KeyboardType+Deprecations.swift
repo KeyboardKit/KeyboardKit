@@ -1,4 +1,3 @@
-import KeyboardKit
 import SwiftUI
 
 public extension KeyboardType {
