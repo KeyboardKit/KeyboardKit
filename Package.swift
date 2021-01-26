@@ -1,4 +1,4 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.3
 
 import PackageDescription
 
@@ -20,7 +20,8 @@ let package = Package(
     targets: [
         .target(
             name: "KeyboardKit",
-            dependencies: []),
+            dependencies: [],
+            resources: [.process("Resources")]),
         .testTarget(
             name: "KeyboardKitTests",
             dependencies: ["KeyboardKit", "Quick", "Nimble", "MockingKit"])
