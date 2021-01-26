@@ -8,7 +8,6 @@
 import CoreGraphics
 import Combine
 import SwiftUI
-import KeyboardKit
 
 /**
  This struct specifies dimensions for a keyboard.

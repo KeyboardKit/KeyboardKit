@@ -6,7 +6,6 @@
 //  Copyright © 2020 Daniel Saidi. All rights reserved.
 //
 
-import KeyboardKit
 import SwiftUI
 
 /**
