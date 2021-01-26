@@ -19,4 +19,5 @@ KeyboardKit is a Swift library that can be used to create iOS keyboard extension
   s.swift_version = '5.3'
   s.ios.deployment_target = '13.0'
   s.source_files = 'Sources/KeyboardKit/**/*.swift'
+  s.resources = "Sources/KeyboardKit/Resources/*.xcassets"
 end

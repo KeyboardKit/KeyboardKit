@@ -21,6 +21,7 @@ let package = Package(
         .target(
             name: "KeyboardKit",
             dependencies: [],
+            exclude: ["Extensions/Bundle+Module.swift"],
             resources: [.process("Resources")]),
         .testTarget(
             name: "KeyboardKitTests",
