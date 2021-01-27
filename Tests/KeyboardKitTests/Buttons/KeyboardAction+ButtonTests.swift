@@ -10,6 +10,7 @@ import Quick
 import Nimble
 import KeyboardKit
 import UIKit
+import SwiftUI
 
 class KeyboardAction_SystemTests: QuickSpec {
     
@@ -21,7 +22,10 @@ class KeyboardAction_SystemTests: QuickSpec {
             
             it("is defined for all actions") {
                 actions.forEach {
-                    expect($0.standardButtonFont).to(equal(UIFont.preferredFont(forTextStyle: $0.standardButtonTextStyle)))
+                    expect($0.standardButtonFont).to(equal(
+                        $0.standardButtonTextStyle != nil ?
+                        Font.system($0.standardButtonTextStyle!) :
+                            Font.system(size: 22)))
                 }
             }
         }
@@ -81,17 +85,21 @@ class KeyboardAction_SystemTests: QuickSpec {
                 
                 actions.forEach {
                     if case .emoji = $0 {
-                        expect($0.standardButtonTextStyle).to(equal(.title1))
+                        expect($0.standardButtonTextStyle).to(equal(.title))
                     } else if case .keyboardType(.emojis) = $0 {
-                        expect($0.standardButtonTextStyle).to(equal(.title2))
+                        if #available(iOS 14.0, *) {
+                            expect($0.standardButtonTextStyle).to(equal(.title2))
+                        }
                     } else if expectedTitle.contains($0) {
-                        expect($0.standardButtonTextStyle).to(equal(.title1))
+                        expect($0.standardButtonTextStyle).to(equal(.title))
                     } else if expectedCallout.contains($0) {
                         expect($0.standardButtonTextStyle).to(equal(.callout))
                     } else if expectedBody.contains($0) {
                         expect($0.standardButtonTextStyle).to(equal(.body))
                     } else {
-                        expect($0.standardButtonTextStyle).to(equal(.title2))
+                        if #available(iOS 14.0, *) {
+                            expect($0.standardButtonTextStyle).to(equal(.title2))
+                        }
                     }
                 }
             }

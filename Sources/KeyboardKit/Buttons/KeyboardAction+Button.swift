@@ -25,8 +25,11 @@ public extension KeyboardAction {
     /**
      The standard button font in a system keyboard.
      */
-    var standardButtonFont: UIFont {
-        .preferredFont(forTextStyle: standardButtonTextStyle)
+    var standardButtonFont: Font {
+        if let style = standardButtonTextStyle {
+            return .system(style)
+        }
+        return .system(size: 22)
     }
     
     /**
@@ -78,12 +81,17 @@ public extension KeyboardAction {
     /**
      The standard button text style in a system keyboard.
     */
-    var standardButtonTextStyle: UIFont.TextStyle {
+    var standardButtonTextStyle: Font.TextStyle? {
         if hasMultiCharButtonText { return .body }
         switch self {
-        case .emoji: return .title1
+        case .emoji: return .title
         case .emojiCategory: return .callout
-        default: return .title2
+        default:
+            if #available(iOS 14.0, *) {
+                return .title2
+            } else {
+                return nil
+            }
         }
     }
 }

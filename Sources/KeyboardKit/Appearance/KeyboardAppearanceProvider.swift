@@ -6,7 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import UIKit
+import SwiftUI
 
 /**
  This protocol can be implemented by classes or structs that
@@ -22,7 +22,7 @@ import UIKit
  */
 public protocol KeyboardAppearanceProvider {
     
-    func font(for action: KeyboardAction) -> UIFont
-    func fontWeight(for action: KeyboardAction, context: KeyboardContext) -> UIFont.Weight?
+    func font(for action: KeyboardAction) -> Font
+    func fontWeight(for action: KeyboardAction, context: KeyboardContext) -> Font.Weight?
     func text(for action: KeyboardAction) -> String?
 }

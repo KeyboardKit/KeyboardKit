@@ -6,7 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import UIKit
+import SwiftUI
 
 /**
  This stnadard keybpard appearance provider just returns the
@@ -19,11 +19,11 @@ open class StandardKeyboardAppearanceProvider: KeyboardAppearanceProvider {
     
     public init() {}
     
-    open func font(for action: KeyboardAction) -> UIFont {
+    open func font(for action: KeyboardAction) -> Font {
         action.standardButtonFont
     }
     
-    open func fontWeight(for action: KeyboardAction, context: KeyboardContext) -> UIFont.Weight? {
+    open func fontWeight(for action: KeyboardAction, context: KeyboardContext) -> Font.Weight? {
         return nil
     }
     
