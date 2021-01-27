@@ -8,10 +8,16 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 /**
  This protocol can be implemented by any classes that can be
  used to provide the keyboard extension with contextual info.
+ 
+ `KeyboardKit` will automatically create a standard instance
+ when the extension is started and bind it to the input view
+ controller. It can be replaced with a custom one by setting
+ the input view controller's `context` property.
  */
 public protocol KeyboardContext: AnyObject {
     
@@ -38,6 +44,13 @@ public protocol KeyboardContext: AnyObject {
 // MARK: - Public Properties
 
 public extension KeyboardContext {
+    
+    /**
+     The current trait collection's color scheme.
+     */
+    var colorScheme: ColorScheme {
+        traitCollection.userInterfaceStyle == .dark ? .dark : .light
+    }
     
     /**
      The current keyboard appearance, with `.light` fallback.

@@ -9,13 +9,8 @@
 import UIKit
 
 /**
- This observable context provides observable properties to a
- keyboard extension that targets iOS 13 or later.
- 
- Whenever a `KeyboardInputViewController` uses `setup(with:)`
- to use `SwiftUI`, KeyboardKit replaces the standard context
- with an instance of this type then injects it into the view
- environment, so it can be accessed with `@EnvironmentObject`.
+ This keyboard context is an `ObservableObject` and provides
+ observable properties.
  */
 open class ObservableKeyboardContext: KeyboardContext, ObservableObject {
     

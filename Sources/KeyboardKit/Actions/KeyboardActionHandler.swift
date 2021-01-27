@@ -13,10 +13,9 @@ import UIKit
  keyboard actions.
  
  `KeyboardKit` will automatically create a standard instance
- when the keyboard extension is started and register it with
- the input view controller. It can be replaced with a custom
- one by setting the input view controller `actionHandler` to
- a new value.
+ when the extension is started and bind it to the input view
+ controller. It can be replaced with a custom one by setting
+ the input view controller's `actionHandler` property.
  */
 public protocol KeyboardActionHandler: AnyObject {
     
