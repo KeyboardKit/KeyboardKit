@@ -9,7 +9,9 @@ This release merges `KeyboardKit` with `KeyboardKitSwiftUI` and raises the deplo
 
 Although these release notes will aim at covering everything that changes in this major version, some things will most probably be missed. 
 
+### Breaking changes
 
+* All previous deprecations have been removed. 
 
 
 

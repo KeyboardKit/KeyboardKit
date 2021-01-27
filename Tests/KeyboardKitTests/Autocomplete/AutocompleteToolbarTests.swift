@@ -28,20 +28,22 @@ class AutocompleteToolbarTests: QuickSpec {
         
         describe("standard replacement") {
             
+            func result(for text: String) -> String {
+                let suggestion = AutocompleteSuggestion(text)
+                return AutocompleteToolbar.standardReplacement(for: suggestion, context: context)
+            }
+            
             it("adds a space when needed") {
-                let result = AutocompleteToolbar.standardReplacement(for: "Hello", context: context)
-                expect(result).to(equal("Hello "))
+                expect(result(for: "Hello")).to(equal("Hello "))
             }
             
             it("does not add an additional space if the suggestion replacement ends with one") {
-                let result = AutocompleteToolbar.standardReplacement(for: "Hello ", context: context)
-                expect(result).to(equal("Hello "))
+                expect(result(for: "Hello ")).to(equal("Hello "))
             }
             
             it("does not add an additional space if the text after the input starts with one") {
                 proxy.documentContextBeforeInput = " world!"
-                let result = AutocompleteToolbar.standardReplacement(for: "Hello ", context: context)
-                expect(result).to(equal("Hello "))
+                expect(result(for: "Hello ")).to(equal("Hello "))
             }
         }
         
@@ -49,14 +51,16 @@ class AutocompleteToolbarTests: QuickSpec {
             
             it("replaces current word in proxy") {
                 proxy.documentContextBeforeInput = "abc"
-                AutocompleteToolbar.standardReplacementAction(for: "Hello", context: context)
+                let suggestion = AutocompleteSuggestion("Hello")
+                AutocompleteToolbar.standardReplacementAction(for: suggestion, context: context)
                 let inv = proxy.invokations(of: proxy.insertTextRef)
                 expect(inv.count).to(equal(1))
                 expect(inv[0].arguments).to(equal("Hello "))
             }
             
             it("triggers action handler") {
-                AutocompleteToolbar.standardReplacementAction(for: "Hello", context: context)
+                let suggestion = AutocompleteSuggestion("Hello")
+                AutocompleteToolbar.standardReplacementAction(for: suggestion, context: context)
                 let inv = actionHandler.invokations(of: actionHandler.handleRef)
                 expect(inv.count).to(equal(1))
                 expect(inv[0].arguments.0).to(equal(.tap))
