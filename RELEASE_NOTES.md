@@ -9,12 +9,17 @@ This release merges `KeyboardKit` with `KeyboardKitSwiftUI` and raises the deplo
 
 Although these release notes will aim at covering everything that changes in this major version, some things will most probably be missed. 
 
+### Changed behavior
+
+* `KeyboardAction.emojiCategory` no longer has a  standard tap action.
+
 ### Breaking changes
 
 Removed deprecations:
 
 * All deprecations in the deprecation folders. 
 * `KeyboardAction` `endSentenceAction`.
+* `KeyboardContext` `emojiCategory`.
 * `StandardKeyboardActionHandler` `handleKeyboardSwitch`.
 * `StandardKeyboardActionHandler` `preferredKeyboardType(...)`.
 

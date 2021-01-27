@@ -39,7 +39,6 @@ public class ObservableKeyboardContext: KeyboardContext, ObservableObject {
         traitCollection = context.traitCollection
         
         controller = context.controller
-        emojiCategory = context.emojiCategory
     }
     
     unowned public var controller: KeyboardInputViewController
@@ -47,7 +46,6 @@ public class ObservableKeyboardContext: KeyboardContext, ObservableObject {
     public let device: UIDevice
     
     @Published public var actionHandler: KeyboardActionHandler
-    @Published public var emojiCategory: EmojiCategory
     @Published public var keyboardAppearanceProvider: KeyboardAppearanceProvider
     @Published public var keyboardBehavior: KeyboardBehavior
     @Published public var keyboardInputSetProvider: KeyboardInputSetProvider

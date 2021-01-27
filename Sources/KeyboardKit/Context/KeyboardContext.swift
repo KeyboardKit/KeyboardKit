@@ -18,9 +18,6 @@ public protocol KeyboardContext: AnyObject {
     @available(*, deprecated, message: "This property will be removed in KK 4.0. Usage is strongly discouraged.")
     var controller: KeyboardInputViewController { get }
     
-    @available(*, deprecated, message: "This property will be removed in KK 4.0. Usage is strongly discouraged.")
-    var emojiCategory: EmojiCategory { get set }
-
     var actionHandler: KeyboardActionHandler { get set }
     var keyboardAppearanceProvider: KeyboardAppearanceProvider { get set }
     var keyboardBehavior: KeyboardBehavior { get set }

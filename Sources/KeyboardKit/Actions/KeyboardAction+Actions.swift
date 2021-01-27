@@ -68,7 +68,6 @@ public extension KeyboardAction {
     var standardTapActionForController: InputViewControllerAction? {
         switch self {
         case .dismissKeyboard: return { $0?.dismissKeyboard() }
-        case .emojiCategory(let cat): return { $0?.context.emojiCategory = cat }
         case .keyboardType(let type): return { $0?.changeKeyboardType(to: type) }
         case .shift(let currentState): return {
             switch currentState {
