@@ -12,15 +12,11 @@ import UIKit
  This protocol can be implemented by classes that can handle
  keyboard actions.
  
- KeyboardKit will registers a `StandardKeyboardActionHandler`
- in the input view controller's `context` when the extension
- is started. You can replace the standard one by registering
- a new `actionHandler` in this context.
- 
- `StandardKeyboardActionHandler` has a LOT of built-in logic
- that can also be overridden. If you want to create a custom
- action handler, you should probably subclass it and replace
- the parts you want to customize.
+ `KeyboardKit` will automatically create a standard instance
+ when the keyboard extension is started and register it with
+ the input view controller. It can be replaced with a custom
+ one by setting the input view controller `actionHandler` to
+ a new value.
  */
 public protocol KeyboardActionHandler: AnyObject {
     

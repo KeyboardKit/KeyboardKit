@@ -62,7 +62,7 @@ public extension SystemKeyboard {
 
 private extension SystemKeyboard {
 
-    func row(at index: Int, actions: KeyboardActionRow) -> some View {
+    func row(at index: Int, actions: KeyboardActions) -> some View {
         HStack(spacing: 0) {
             rowEdgeSpacer(at: index)
             ForEach(Array(actions.enumerated()), id: \.offset) {

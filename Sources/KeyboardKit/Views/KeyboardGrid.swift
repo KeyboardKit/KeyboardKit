@@ -51,7 +51,7 @@ public struct KeyboardGrid<Button: View>: View {
 
 private extension KeyboardGrid {
 
-    func gridRow(for row: KeyboardActionRow) -> some View {
+    func gridRow(for row: KeyboardActions) -> some View {
         HStack(spacing: self.spacing) {
             ForEach(Array(row.enumerated()), id: \.offset) { item in
                 self.buttonBuilder(item.element)

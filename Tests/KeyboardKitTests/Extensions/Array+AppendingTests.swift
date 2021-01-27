@@ -16,9 +16,9 @@ class Array_AppendingTests: QuickSpec {
         
         describe("appending element") {
             
-            let row1: KeyboardActionRow = [.backspace, .control]
-            let row2: KeyboardActionRow = [.escape, .command]
-            let row3: KeyboardActionRow = [.function, .character("a")]
+            let row1: KeyboardActions = [.backspace, .control]
+            let row2: KeyboardActions = [.escape, .command]
+            let row3: KeyboardActions = [.function, .character("a")]
             let rows: KeyboardActionRows = [row1, row2]
             
             it("returns new collection and leaves original unaffected") {

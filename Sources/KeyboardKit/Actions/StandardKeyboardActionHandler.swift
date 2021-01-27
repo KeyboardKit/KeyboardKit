@@ -9,17 +9,13 @@
 import UIKit
 
 /**
- This standard keyboard action handler is used by default by
- KeyboardKit and provides a standard implementation of how a
- keyboard action is handled.
+ This action handler is used by default by `KeyboardKit` and
+ provides a standard way of handling keyboard actions.
  
- You can replace the standard `hapticConfiguration` when you
- create an instance of this class. The default configuration
- is `.noFeedback`.
- 
- You can replace the standard `audioConfiguration`, when you
- create an instance of this class. The default configuration
- is `.standard`.
+ You can provide a custom `haptic` and `audio` configuration
+ when you create an instance of this class. The standard aim
+ at mimicing the behavior of a native keyboard. You can also
+ provide a custom `spaceDragSensitivity`.
  
  You can inherit this class and override any implementations
  to customize the standard behavior.
@@ -43,6 +39,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Dependencies
     
+    @available(*, deprecated, message: "This will be removed")
     public private(set) weak var inputViewController: KeyboardInputViewController?
     
     private let audioConfiguration: AudioFeedbackConfiguration
@@ -211,21 +208,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         case .emoji(let emoji): return EmojiCategory.frequentEmojiProvider.registerEmoji(emoji)
         default: return
         }
-    }
-    
-    
-    // MARK: - Deprecated
-    
-    @available(*, deprecated, renamed: "handleKeyboardTypeChange")
-    open func handleKeyboardSwitch(after gesture: KeyboardGesture, on action: KeyboardAction) {
-        tryChangeKeyboardType(after: gesture, on: action)
-    }
-    
-    @available(*, deprecated, message: "Use KeyboardActionBehavior instead")
-    open func preferredKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardType? {
-        guard let context = context else { return nil }
-        let behavior = context.keyboardBehavior
-        return behavior.preferredKeyboardType(for: context, after: gesture, on: action)
     }
 }
 

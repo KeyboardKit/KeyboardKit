@@ -13,33 +13,27 @@ import Foundation
  */
 public typealias KeyboardActions = [KeyboardAction]
 
-public extension KeyboardActions {
+public extension Array where Element == KeyboardAction {
     
     /**
-     Map a list of strings to a list of `character` actions.
+     Map a string array to a list of `character` actions.
     */
     init(characters: [String]) {
         self = characters.map { .character($0) }
     }
 }
 
-
-/**
- This typealias represents a list of keyboard actions.
- */
-public typealias KeyboardActionRow = KeyboardActions
-
 /**
  This typealias represents a list of keyboard actions "rows".
  */
-public typealias KeyboardActionRows = [KeyboardActionRow]
+public typealias KeyboardActionRows = [KeyboardActions]
 
-public extension KeyboardActionRows {
+public extension Array where Element == KeyboardActions {
     
     /**
-     Map string arrays to rows of `character` actions.
+     Map a string array to a list of `character` action rows.
     */
     init(characters: [[String]]) {
-        self = characters.map { KeyboardActionRow(characters: $0) }
+        self = characters.map { KeyboardActions(characters: $0) }
     }
 }

@@ -11,11 +11,16 @@ Although these release notes will aim at covering everything that changes in thi
 
 ### Breaking changes
 
-* All previous deprecations have been removed. 
-* `KeyboardAction+endSentenceAction` has been removed.
+Removed deprecations:
 
+* All deprecations in the deprecation folders. 
+* `KeyboardAction` `endSentenceAction`.
+* `StandardKeyboardActionHandler` `handleKeyboardSwitch`.
+* `StandardKeyboardActionHandler` `preferredKeyboardType(...)`.
 
+Removed typealiases:
 
+* `KeyboardActionRow` - it's just confusing to have two typaliases for the same thing. 
 
 
 

@@ -154,7 +154,7 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboar
     
     // MARK: - UICollectionViewDataSource
     
-    open func row(at indexPath: IndexPath) -> KeyboardActionRow {
+    open func row(at indexPath: IndexPath) -> KeyboardActions {
         rows[indexPath.item]
     }
     

@@ -107,33 +107,33 @@ private extension StandardKeyboardLayoutProvider {
         return rows
     }
     
-    func iPadUpperLeadingActions(for context: KeyboardContext) -> KeyboardActionRow {
+    func iPadUpperLeadingActions(for context: KeyboardContext) -> KeyboardActions {
         context.needsInputModeSwitchKey ? [] : [.tab]
     }
     
-    func iPadUpperTrailingActions(for context: KeyboardContext) -> KeyboardActionRow {
+    func iPadUpperTrailingActions(for context: KeyboardContext) -> KeyboardActions {
         [.backspace]
     }
     
-    func iPadMiddleLeadingActions(for context: KeyboardContext) -> KeyboardActionRow {
+    func iPadMiddleLeadingActions(for context: KeyboardContext) -> KeyboardActions {
         context.needsInputModeSwitchKey ? [] : [.keyboardType(.alphabetic(.capsLocked))]
     }
     
-    func iPadMiddleTrailingActions(for context: KeyboardContext) -> KeyboardActionRow {
+    func iPadMiddleTrailingActions(for context: KeyboardContext) -> KeyboardActions {
         [.newLine]
     }
     
-    func iPadLowerLeadingActions(for context: KeyboardContext) -> KeyboardActionRow {
+    func iPadLowerLeadingActions(for context: KeyboardContext) -> KeyboardActions {
         guard let action = context.keyboardType.standardSideKeyboardSwitcherAction else { return [] }
         return [action]
     }
     
-    func iPadLowerTrailingActions(for context: KeyboardContext) -> KeyboardActionRow {
+    func iPadLowerTrailingActions(for context: KeyboardContext) -> KeyboardActions {
         iPadLowerLeadingActions(for: context)
     }
     
-    func iPadBottomActions(for context: KeyboardContext) -> KeyboardActionRow {
-        var result = KeyboardActionRow()
+    func iPadBottomActions(for context: KeyboardContext) -> KeyboardActions {
+        var result = KeyboardActions()
         let switcher = context.keyboardType.standardBottomKeyboardSwitcherAction
         
         if !context.needsInputModeSwitchKey {
@@ -197,33 +197,33 @@ private extension StandardKeyboardLayoutProvider {
         return rows
     }
     
-    func iPhoneUpperLeadingActions(for context: KeyboardContext) -> KeyboardActionRow {
+    func iPhoneUpperLeadingActions(for context: KeyboardContext) -> KeyboardActions {
         []
     }
     
-    func iPhoneUpperTrailingActions(for context: KeyboardContext) -> KeyboardActionRow {
+    func iPhoneUpperTrailingActions(for context: KeyboardContext) -> KeyboardActions {
         []
     }
     
-    func iPhoneMiddleLeadingActions(for context: KeyboardContext) -> KeyboardActionRow {
+    func iPhoneMiddleLeadingActions(for context: KeyboardContext) -> KeyboardActions {
         []
     }
     
-    func iPhoneMiddleTrailingActions(for context: KeyboardContext) -> KeyboardActionRow {
+    func iPhoneMiddleTrailingActions(for context: KeyboardContext) -> KeyboardActions {
         []
     }
     
-    func iPhoneLowerLeadingActions(for context: KeyboardContext) -> KeyboardActionRow {
+    func iPhoneLowerLeadingActions(for context: KeyboardContext) -> KeyboardActions {
         guard let action = context.keyboardType.standardSideKeyboardSwitcherAction else { return [] }
         return [action]
     }
     
-    func iPhoneLowerTrailingActions(for context: KeyboardContext) -> KeyboardActionRow {
+    func iPhoneLowerTrailingActions(for context: KeyboardContext) -> KeyboardActions {
         [.backspace]
     }
     
-    func iPhoneBottomActions(for context: KeyboardContext) -> KeyboardActionRow {
-        var result = KeyboardActionRow()
+    func iPhoneBottomActions(for context: KeyboardContext) -> KeyboardActions {
+        var result = KeyboardActions()
         let switcher = context.keyboardType.standardBottomKeyboardSwitcherAction
         
         if let action = switcher {

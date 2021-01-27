@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension KeyboardActions {
+public extension Array where Element == KeyboardAction {
     
     /**
      Map a list of image names to a list of `.image` actions,
