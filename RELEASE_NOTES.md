@@ -12,7 +12,7 @@ Although these release notes will aim at covering everything that changes in thi
 ### Breaking changes
 
 * All previous deprecations have been removed. 
-
+* `KeyboardAction+endSentenceAction` has been removed.
 
 
 

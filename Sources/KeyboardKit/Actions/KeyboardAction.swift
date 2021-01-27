@@ -15,16 +15,12 @@ import Foundation
  
  Many actions have a standard behavior for a certain gesture,
  like how double tapping a `space` ends the current sentence.
- These behaviors are specified as properties in this file.
+ If the behavior is always true, it's described here, but if
+ it depends on other factors, it's described elsewhere.
  
- Many actions do not have a universal behavior. For instance,
- the `image` action has no "standard" behavior. Such actions
- are here to let you build keyboard extensions declaratively
- by expressing intent, but require custom handling in custom
- action handlers.
- 
- `image` can be used to refer to images embedded in the main
- bundle and `systemImage`for system images.
+ Most actions do not have a universal behavior. Such actions
+ are here to let you build keyboard extensions declaratively,
+ but require custom handling in a custom action handler.
 */
 public enum KeyboardAction: Equatable {
     
@@ -60,24 +56,6 @@ public enum KeyboardAction: Equatable {
 // MARK: - Public Extensions
 
 public extension KeyboardAction {
-    
-    
-    // MARK: - Properties
-    
-    /**
-     This action can used to end a sentence, e.g. when space
-     is double-tapped.
-     */
-    var endSentenceAction: GestureAction {
-        return { vc in
-            guard let proxy = vc?.textDocumentProxy else { return }
-            guard proxy.isCursorAtTheEndOfTheCurrentWord else { return }
-            while (proxy.documentContextBeforeInput ?? "").hasSuffix(" ") {
-                proxy.deleteBackward(times: 1)
-            }
-            proxy.insertText(". ")
-        }
-    }
     
     /**
      Whether or not the action is an input action, which the
