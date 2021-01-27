@@ -22,17 +22,9 @@ class DemoAutocompleteSuggestionProvider: AutocompleteSuggestionProvider {
     }
 }
 
-public struct DemoAutocompleteSuggestion: AutocompleteSuggestion {
-    
-    public var replacement: String
-    public var title: String { replacement }
-    public var subtitle: String?
-    public var additionalInfo: [String: Any] { [:] }
-}
-
 private extension DemoAutocompleteSuggestionProvider {
     
-    func suggestions(for text: String) -> [DemoAutocompleteSuggestion] {
+    func suggestions(for text: String) -> [AutocompleteSuggestion] {
         [
             suggestion(text + "ly"),
             suggestion(text + "er", "Subtitle"),
@@ -40,7 +32,7 @@ private extension DemoAutocompleteSuggestionProvider {
         ]
     }
     
-    func suggestion(_ word: String, _ subtitle: String? = nil) -> DemoAutocompleteSuggestion {
-        DemoAutocompleteSuggestion(replacement: word, subtitle: subtitle)
+    func suggestion(_ word: String, _ subtitle: String? = nil) -> AutocompleteSuggestion {
+        AutocompleteSuggestion(replacement: word, title: word, subtitle: subtitle)
     }
 }
