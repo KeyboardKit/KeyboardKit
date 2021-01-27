@@ -34,7 +34,7 @@ public struct SystemKeyboardButtonContent: View {
     @ViewBuilder
     public var body: some View {
         if action == .nextKeyboard {
-            AnyView(NextKeyboardButton(controller: context.controller))
+            AnyView(NextKeyboardButton())
         } else if let image = buttonImage {
             AnyView(image)
         } else if let text = buttonText {

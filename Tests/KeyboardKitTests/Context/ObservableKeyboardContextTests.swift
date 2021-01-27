@@ -31,9 +31,7 @@ class ObservableKeyboardContextTests: QuickSpec {
                     actionHandler: actionHandler,
                     keyboardType: .images
                 )
-                
-                expect(context.controller).to(be(controller))
-                
+                                
                 expect(context.device).to(be(UIDevice.current))
                 
                 expect(context.actionHandler).to(be(actionHandler))

@@ -12,8 +12,6 @@ import UIKit
 
 class MockKeyboardContext: KeyboardContext {
     
-    var controller: KeyboardInputViewController = KeyboardInputViewController()
-    
     var device: UIDevice = .current
     
     var actionHandler: KeyboardActionHandler = MockKeyboardActionHandler()

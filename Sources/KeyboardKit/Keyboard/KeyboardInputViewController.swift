@@ -34,6 +34,7 @@ open class KeyboardInputViewController: UIInputViewController {
      */
     open override func viewDidLoad() {
         super.viewDidLoad()
+        Self.shared = self
         setupKeyboard()
     }
     
@@ -67,6 +68,8 @@ open class KeyboardInputViewController: UIInputViewController {
     
     
     // MARK: - Properties
+    
+    public static var shared: KeyboardInputViewController!
     
     /**
      This context provides keyboard-specific information.
