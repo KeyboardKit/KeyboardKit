@@ -7,7 +7,6 @@
 //
 
 import KeyboardKit
-import KeyboardKitSwiftUI
 import SwiftUI
 
 /**

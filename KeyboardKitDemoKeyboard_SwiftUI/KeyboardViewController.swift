@@ -8,7 +8,6 @@
 
 import UIKit
 import KeyboardKit
-import KeyboardKitSwiftUI
 import SwiftUI
 import Combine
 

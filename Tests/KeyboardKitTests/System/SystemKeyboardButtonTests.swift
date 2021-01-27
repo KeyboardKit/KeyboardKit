@@ -9,7 +9,6 @@
 import Quick
 import Nimble
 import KeyboardKit
-import KeyboardKitSwiftUI
 import SwiftUI
 
 class SystemKeyboardButtonTests: QuickSpec {
