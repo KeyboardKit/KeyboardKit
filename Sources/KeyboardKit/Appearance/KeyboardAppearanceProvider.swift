@@ -25,4 +25,5 @@ public protocol KeyboardAppearanceProvider {
     func font(for action: KeyboardAction) -> Font
     func fontWeight(for action: KeyboardAction, context: KeyboardContext) -> Font.Weight?
     func text(for action: KeyboardAction) -> String?
+    func image(for action: KeyboardAction, context: KeyboardContext) -> Image?
 }

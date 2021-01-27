@@ -30,4 +30,8 @@ open class StandardKeyboardAppearanceProvider: KeyboardAppearanceProvider {
     open func text(for action: KeyboardAction) -> String? {
         action.standardButtonText
     }
+    
+    open func image(for action: KeyboardAction, context: KeyboardContext) -> Image? {
+        action.standardButtonImage(for: context)
+    }
 }

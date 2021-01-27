@@ -40,6 +40,8 @@ public struct EmojiCategoryKeyboardMenu: View {
     private let font: Font
     private let selectedColor: Color
     
+    private var appearance: KeyboardAppearanceProvider { context.keyboardAppearanceProvider }
+    
     @State private var isInitialized = false
     @Binding private var selection: EmojiCategory
     @EnvironmentObject var context: ObservableKeyboardContext
@@ -62,14 +64,14 @@ public struct EmojiCategoryKeyboardMenu: View {
     private var backspaceButton: some View {
         let action = KeyboardAction.backspace
         let handler = context.actionHandler
-        let image = action.standardButtonImage(for: context)
+        let image = appearance.image(for: action, context: context)
         return image.keyboardAction(action, actionHandler: handler)
     }
     
     private var keyboardSwitchButton: some View {
         let action = KeyboardAction.keyboardType(.alphabetic(.lowercased))
         let handler = context.actionHandler
-        let text = action.standardButtonText ?? ""
+        let text = appearance.text(for: action)
         return Text(text).keyboardAction(action, actionHandler: handler)
     }
     
