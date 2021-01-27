@@ -35,7 +35,9 @@ private extension ImageKeyboard {
     
     var columns: Int { isLandscape ? 8 : 6 }
     
-    var isLandscape: Bool { context.controller.deviceOrientation.isLandscape }
+    var controller: KeyboardInputViewController { .shared }
+    
+    var isLandscape: Bool { controller.deviceOrientation.isLandscape }
     
     var bottomRow: some View {
         button(for: .nextKeyboard)
