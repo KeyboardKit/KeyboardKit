@@ -12,8 +12,13 @@ Although these release notes will aim at covering everything that changes in thi
 ### Changed behavior
 
 * `KeyboardAction.emojiCategory` no longer has a  standard tap action.
+* `KeyboardInputViewController` `context` is now an `ObservableKeyboardContext`.
 
 ### Breaking changes
+
+Removed classes:
+
+* `StandardKeyboardContext` has been replaced by `ObservableKeyboardContext`.
 
 Removed deprecations:
 

@@ -26,7 +26,7 @@ class KeyboardContextTests: QuickSpec {
         describe("syncing context with controller") {
             
             it("updates some properties") {
-                let context = StandardKeyboardContext(
+                let context = ObservableKeyboardContext(
                     controller: controller,
                     actionHandler: actionHandler,
                     keyboardType: .images

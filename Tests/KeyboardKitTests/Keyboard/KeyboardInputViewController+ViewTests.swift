@@ -33,12 +33,6 @@ class KeyboardInputViewController_ViewTests: QuickSpec {
                 expect(vc.view.subviews.contains(subview)).to(beFalse())
             }
             
-            it("converts context to observable context") {
-                expect(vc.context is StandardKeyboardContext).to(beTrue())
-                vc.setup(with: Text("Hello"))
-                expect(vc.context is ObservableKeyboardContext).to(beTrue())
-            }
-            
             it("adds child controller with environment data") {
                 expect(vc.children.count).to(equal(0))
                 vc.setup(with: Text("Hello"))

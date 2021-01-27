@@ -17,28 +17,37 @@ import UIKit
  with an instance of this type then injects it into the view
  environment, so it can be accessed with `@EnvironmentObject`.
  */
-public class ObservableKeyboardContext: KeyboardContext, ObservableObject {
+open class ObservableKeyboardContext: KeyboardContext, ObservableObject {
     
-    public init(from context: KeyboardContext) {
-        actionHandler = context.actionHandler
-        keyboardAppearanceProvider = context.keyboardAppearanceProvider
-        keyboardBehavior = context.keyboardBehavior
-        keyboardInputSetProvider = context.keyboardInputSetProvider
-        keyboardLayoutProvider = context.keyboardLayoutProvider
+    public init(
+        locale: Locale = .current,
+        device: UIDevice = .current,
+        controller: KeyboardInputViewController,
+        actionHandler: KeyboardActionHandler,
+        keyboardAppearanceProvider: KeyboardAppearanceProvider = StandardKeyboardAppearanceProvider(),
+        keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior(),
+        keyboardType: KeyboardType = .alphabetic(.lowercased),
+        keyboardInputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider(),
+        keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider()) {
+        self.controller = controller
         
-        device = context.device
-        deviceOrientation = context.deviceOrientation
-        hasDictationKey = context.hasDictationKey
-        hasFullAccess = context.hasFullAccess
-        keyboardType = context.keyboardType
-        locale = context.locale
-        needsInputModeSwitchKey = context.needsInputModeSwitchKey
-        primaryLanguage = context.primaryLanguage
-        textDocumentProxy = context.textDocumentProxy
-        textInputMode = context.textInputMode
-        traitCollection = context.traitCollection
+        self.actionHandler = actionHandler
+        self.keyboardAppearanceProvider = keyboardAppearanceProvider
+        self.keyboardBehavior = keyboardBehavior
+        self.keyboardInputSetProvider = keyboardInputSetProvider
+        self.keyboardLayoutProvider = keyboardLayoutProvider
         
-        controller = context.controller
+        self.device = device
+        self.deviceOrientation = controller.deviceOrientation
+        self.hasDictationKey = controller.hasDictationKey
+        self.hasFullAccess = controller.hasFullAccess
+        self.keyboardType = keyboardType
+        self.locale = locale
+        self.needsInputModeSwitchKey = controller.needsInputModeSwitchKey
+        self.primaryLanguage = controller.primaryLanguage
+        self.textDocumentProxy = controller.textDocumentProxy
+        self.textInputMode = controller.textInputMode
+        self.traitCollection = controller.traitCollection
     }
     
     unowned public var controller: KeyboardInputViewController

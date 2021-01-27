@@ -69,11 +69,9 @@ open class KeyboardInputViewController: UIInputViewController {
     // MARK: - Properties
     
     /**
-     This context provides keyboard-specific information. If
-     you setup the keyboard to use SwiftUI, the context will
-     be converted to an `ObservableKeyboardContext`.
+     This context provides keyboard-specific information.
      */
-    public lazy var context: KeyboardContext = StandardKeyboardContext(
+    public lazy var context = ObservableKeyboardContext(
         controller: self,
         actionHandler: StandardKeyboardActionHandler(inputViewController: self),
         keyboardType: .alphabetic(.lowercased)

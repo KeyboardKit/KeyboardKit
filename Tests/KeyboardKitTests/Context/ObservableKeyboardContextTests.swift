@@ -1,44 +1,54 @@
 //
-//  ObservableKeyboardContextTests.swift
+//  StandardKeyboardContextTests.swift
 //  KeyboardKitTests
 //
 //  Created by Daniel Saidi on 2020-06-15.
-//  Copyright © 2020 Daniel Saidi. All rights reserved.
+//  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
 import Quick
 import Nimble
 import KeyboardKit
-import SwiftUI
 import UIKit
 
 class ObservableKeyboardContextTests: QuickSpec {
-
+    
     override func spec() {
+        
+        var actionHandler: KeyboardActionHandler!
+        var controller: KeyboardInputViewController!
+        
+        beforeEach {
+            actionHandler = MockKeyboardActionHandler()
+            controller = KeyboardInputViewController()
+        }
         
         describe("context") {
             
-            it("can be created with context") {
-                let standard = StandardKeyboardContext(
-                    controller: KeyboardInputViewController(),
-                    actionHandler: MockKeyboardActionHandler(),
-                    keyboardType: .email)
-                standard.emojiCategory = .animals
-                standard.hasFullAccess = true
-                standard.needsInputModeSwitchKey = true
+            it("can be created with params") {
+                let context = ObservableKeyboardContext(
+                    controller: controller,
+                    actionHandler: actionHandler,
+                    keyboardType: .images
+                )
                 
-                let context = ObservableKeyboardContext(from: standard)
-                expect(context.actionHandler).to(be(standard.actionHandler))
-                expect(context.controller).to(be(standard.controller))
-                expect(context.hasDictationKey).to(equal(standard.hasDictationKey))
-                expect(context.hasFullAccess).to(equal(standard.hasFullAccess))
-                expect(context.keyboardInputSetProvider).to(be(standard.keyboardInputSetProvider))
-                expect(context.keyboardLayoutProvider).to(be(standard.keyboardLayoutProvider))
-                expect(context.keyboardType).to(equal(standard.keyboardType))
-                expect(context.needsInputModeSwitchKey).to(equal(standard.needsInputModeSwitchKey))
+                expect(context.controller).to(be(controller))
+                
+                expect(context.device).to(be(UIDevice.current))
+                
+                expect(context.actionHandler).to(be(actionHandler))
+                expect(context.keyboardInputSetProvider is StandardKeyboardInputSetProvider).to(beTrue())
+                expect(context.keyboardLayoutProvider is StandardKeyboardLayoutProvider).to(beTrue())
+                expect(context.keyboardType).to(equal(.images))
+                expect(context.locale).to(equal(.current))
+                
+                expect(context.hasDictationKey).to(equal(controller.hasDictationKey))
+                expect(context.hasFullAccess).to(equal(controller.hasFullAccess))
+                expect(context.needsInputModeSwitchKey).to(equal(controller.needsInputModeSwitchKey))
                 expect(context.primaryLanguage).to(beNil())
-                expect(context.textDocumentProxy).to(be(standard.textDocumentProxy))
+                expect(context.textDocumentProxy).to(be(controller.textDocumentProxy))
                 expect(context.textInputMode).to(beNil())
+                expect(context.traitCollection).to(equal(controller.traitCollection))
             }
         }
     }
