@@ -19,7 +19,7 @@ protocol DemoKeyboard {}
 
 extension DemoKeyboard {
     
-    static func bottomActions(leftmost: KeyboardAction, rightmost: KeyboardAction = .newLine, for vc: KeyboardViewController) -> KeyboardActionRow {
+    static func bottomActions(leftmost: KeyboardAction, rightmost: KeyboardAction = .newLine, for vc: KeyboardViewController) -> KeyboardActions {
         let actions = [leftmost, switchAction(for: vc), .space, imageAction(for: vc), .newLine]
         let includeImageAction = vc.context.keyboardType.shouldIncludeImageAction
         return includeImageAction ? actions : actions.withoutImageActions

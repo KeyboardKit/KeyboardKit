@@ -20,7 +20,7 @@ struct EnhancedEmojiKeyboard: DemoKeyboard {
     }
 
     let categoryActions: [(String, KeyboardActions)]
-    let bottomActions: KeyboardActionRow
+    let bottomActions: KeyboardActions
     let categories = EmojiCategory.all
     let gridConfig: HFloatingHeaderButtonCollectionView.Configuration
     
@@ -29,7 +29,7 @@ struct EnhancedEmojiKeyboard: DemoKeyboard {
 
 private extension EnhancedEmojiKeyboard {
     
-    static func createBottomActions(for categories: [EmojiCategory]) -> KeyboardActionRow {
+    static func createBottomActions(for categories: [EmojiCategory]) -> KeyboardActions {
         var actions = categories.map { KeyboardAction.emojiCategory($0) }
         actions.insert(.keyboardType(.alphabetic(.lowercased)), at: 0)
         actions.append(.backspace)

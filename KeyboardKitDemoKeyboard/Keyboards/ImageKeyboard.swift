@@ -31,7 +31,7 @@ struct ImageKeyboard: DemoKeyboard, DemoImageKeyboard {
         gridConfig = KeyboardButtonRowCollectionView.Configuration(rowHeight: 50, rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)
     }
     
-    let bottomActions: KeyboardActionRow
+    let bottomActions: KeyboardActions
     
     let gridConfig: KeyboardButtonRowCollectionView.Configuration
 }

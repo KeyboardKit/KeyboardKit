@@ -68,7 +68,7 @@ private extension KeyboardViewController {
         return view
     }
     
-    func buttonRow(for row: KeyboardActionRow, index: Int = 0, distribution: UIStackView.Distribution) -> UIView {
+    func buttonRow(for row: KeyboardActions, index: Int = 0, distribution: UIStackView.Distribution) -> UIView {
         KeyboardButtonRow(actions: row, distribution: distribution) {
             button(for: $0, distribution: distribution)
         }

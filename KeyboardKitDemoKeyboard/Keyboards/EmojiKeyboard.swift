@@ -24,7 +24,7 @@ struct EmojiKeyboard: DemoKeyboard {
     
     let actions: [KeyboardAction]
     let actionCategories: [(EmojiCategory, KeyboardAction)]
-    let bottomActions: KeyboardActionRow
+    let bottomActions: KeyboardActions
     let categories = EmojiCategory.all
     let gridConfig: KeyboardButtonRowCollectionView.Configuration
     
@@ -64,7 +64,7 @@ private extension EmojiKeyboard {
         }
     }
     
-    static func createBottomActions(for categories: [EmojiCategory]) -> KeyboardActionRow {
+    static func createBottomActions(for categories: [EmojiCategory]) -> KeyboardActions {
         var actions = categories.map { KeyboardAction.emojiCategory($0) }
         actions.insert(.keyboardType(.alphabetic(.lowercased)), at: 0)
         actions.append(.backspace)
