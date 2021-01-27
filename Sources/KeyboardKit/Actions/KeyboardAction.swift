@@ -13,14 +13,11 @@ import Foundation
  actions. They can be bound to keyboard buttons or triggered
  programatically by handing them to a `KeyboardActionHandler`.
  
- Many actions have a standard behavior for a certain gesture,
- like how double tapping a `space` ends the current sentence.
- If the behavior is always true, it's described here, but if
- it depends on other factors, it's described elsewhere.
- 
- Most actions do not have a universal behavior. Such actions
- are here to let you build keyboard extensions declaratively,
- but require custom handling in a custom action handler.
+ Many actions have a standard behavior for a certain gesture.
+ If a behavior is always true, it is defined here, otherwise
+ it's defined elsewhere. Many actions don't have a universal
+ behavior, and solely exist to let you create your keyboards
+ declaratively. These actions require custom handling.
 */
 public enum KeyboardAction: Equatable {
     

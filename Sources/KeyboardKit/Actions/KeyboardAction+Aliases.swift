@@ -13,7 +13,7 @@ import Foundation
  */
 public typealias KeyboardActions = [KeyboardAction]
 
-public extension Array where Element == KeyboardAction {
+public extension KeyboardActions {
     
     /**
      Map a string array to a list of `character` actions.
@@ -28,7 +28,7 @@ public extension Array where Element == KeyboardAction {
  */
 public typealias KeyboardActionRows = [KeyboardActions]
 
-public extension Array where Element == KeyboardActions {
+public extension KeyboardActionRows {
     
     /**
      Map a string array to a list of `character` action rows.

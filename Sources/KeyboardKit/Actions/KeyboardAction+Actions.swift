@@ -65,6 +65,7 @@ public extension KeyboardAction {
      an input view controller, when this action is triggered
      with a tap.
      */
+    @available(*, deprecated, message: "Tap actions should be gathered in one single place")
     var standardTapActionForController: InputViewControllerAction? {
         switch self {
         case .dismissKeyboard: return { $0?.dismissKeyboard() }
@@ -84,6 +85,7 @@ public extension KeyboardAction {
      a text document proxy when the action is triggered with
      a tap.
      */
+    @available(*, deprecated, message: "Tap actions should be gathered in one single place")
     var standardTapActionForProxy: TextDocumentProxyAction? {
         switch self {
         case .backspace: return { $0?.deleteBackward() }
