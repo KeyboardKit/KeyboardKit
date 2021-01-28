@@ -47,6 +47,6 @@ private extension ImageKeyboard {
     
     func imageButton(for action: KeyboardAction) -> some View {
         KeyboardImageButton(action: action)
-            .keyboardAction(action, actionHandler: context.actionHandler)
+            .keyboardGestures(for: action, actionHandler: context.actionHandler)
     }
 }

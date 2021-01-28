@@ -16,10 +16,12 @@ Although these release notes will aim at covering everything that changes in thi
 
 * `KeyboardInputViewController` has a new static `shared` instance.
 
+
 ### Changed behavior
 
 * `KeyboardAction.emojiCategory` no longer has a  standard tap action.
 * `KeyboardInputViewController` `context` is now an `ObservableKeyboardContext`.
+
 
 ### UIKit changes
 
@@ -29,36 +31,22 @@ New extensions:
 * `UIView+Keyboard` is now used to apply button gestures to a view. 
 
 
-### Renamed features
+### Breaking changes
 
-Functions:
-
-* `View` `keyboardAction(...)` has been renamed to `keyboardGestures(for: ...)`
-
-
-### Removed features
-
-All previews deprecations have been removed in this version.
-
-Functions:
-
-* `KeyboardInputViewController` `addKeyboardGestures` has been converted to `KeyboardButton+Gestures`.
-
-Removed types:
-
+* All previews deprecations have been removed in this version.
 * `KeyboardActionRow` - it's just confusing to have two typaliases for the same thing.
+* `KeyboardInputViewController` `addKeyboardGestures` has been converted to `KeyboardButton+Gestures`.
+* `PhotosImageService` and `StandardPhotosImageService` have been removed.
+* `Settings` has been entirely removed.
 * `StandardKeyboardContext` has been replaced by `ObservableKeyboardContext`.
-* `PhotosImageService` and `StandardPhotosImageService`.
-
-Removed extensions:
-
 * `UIImage+pasteboard` has been moved to the demo.
 * `UIImage+photos` has been moved to the demo.
-* `UIImage+resized`
-* `UIImage+tinted`
+* `UIImage+resized` has been removed.
+* `UIImage+tinted` has been removed.
 * `KeyboardInputViewController+Gestures` has been converted to `KeyboardButton+Gestures`.
 * `UIInputViewController+NextKeyboard` has been made an internal extension in `UIView+Keyboard`.
-* `View+ClearInteractable`
+* `View+ClearInteractable` has been removed.
+* `View` `keyboardAction(...)` has been renamed to `keyboardGestures(for: ...)`
 
 
 ## 3.6.3

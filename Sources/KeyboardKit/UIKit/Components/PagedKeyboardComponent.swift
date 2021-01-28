@@ -26,9 +26,7 @@ public protocol PagedKeyboardComponent: UIView {
 
 extension PagedKeyboardComponent {
     
-    var settingsKey: String {
-        KeyboardSetting.currentPageIndex.key(for: id)
-    }
+    var settingsKey: String { "com.keyboardkit.PagedKeyboardComponent.currentpage" }
 }
 
 public extension PagedKeyboardComponent {

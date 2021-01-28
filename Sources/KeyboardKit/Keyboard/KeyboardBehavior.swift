@@ -22,25 +22,35 @@ public protocol KeyboardBehavior {
      The preferred keyboard type that should be applied when
      the provided action has been performed.
      */
-    func preferredKeyboardType(for context: KeyboardContext, after gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardType
+    func preferredKeyboardType(
+        for context: KeyboardContext,
+        after gesture: KeyboardGesture,
+        on action: KeyboardAction) -> KeyboardType
     
     /**
      Whether or not the active sentence should be ended when
      the provided action has been performed.
      */
-    func shouldEndSentence(for context: KeyboardContext, after gesture: KeyboardGesture, on action: KeyboardAction) -> Bool
+    func shouldEndSentence(
+        for context: KeyboardContext,
+        after gesture: KeyboardGesture,
+        on action: KeyboardAction) -> Bool
     
     /**
      Whether or not the current keyboard type should be auto
      switched to the behavior's preferred keyboard type when
      the provided action has been performed.
      */
-    func shouldSwitchToPreferredKeyboardType(for context: KeyboardContext, after gesture: KeyboardGesture, on action: KeyboardAction) -> Bool
+    func shouldSwitchToPreferredKeyboardType(
+        for context: KeyboardContext,
+        after gesture: KeyboardGesture,
+        on action: KeyboardAction) -> Bool
 
     /**
      Whether or not the current keyboard type should be auto
      switched to the behavior's preferred keyboard type when
      the text document proxy's text did change.
      */
-    func shouldSwitchToPreferredKeyboardTypeAfterTextDidChange(for context: KeyboardContext) -> Bool
+    func shouldSwitchToPreferredKeyboardTypeAfterTextDidChange(
+        for context: KeyboardContext) -> Bool
 }
