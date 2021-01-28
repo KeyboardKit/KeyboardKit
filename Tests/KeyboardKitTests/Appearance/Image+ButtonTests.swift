@@ -1,5 +1,5 @@
 //
-//  Image+KeyboardTests.swift
+//  Image+ButtonTests.swift
 //  KeyboardKitTests
 //
 //  Created by Daniel Saidi on 2020-06-22.
