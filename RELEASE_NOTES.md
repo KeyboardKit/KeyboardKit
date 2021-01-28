@@ -25,8 +25,9 @@ Removed extensions:
 
 * `UIImage+pasteboard` has been moved to the demo.
 * `UIImage+photos` has been moved to the demo.
-* `UIImage+resized` has been removed.
-* `UIImage+tinted` has been removed.
+* `UIImage+resized`
+* `UIImage+tinted`
+* `View+ClearInteractable`
 
 Removed deprecations:
 

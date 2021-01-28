@@ -91,8 +91,7 @@ public extension KeyboardAction {
 private extension KeyboardAction {
     
     /**
-     Whether or not the system button text contains multiple
-     characters.
+     Whether or not the button text has multiple characters.
      */
     var hasMultiCharButtonText: Bool {
         guard let text = standardButtonText else { return false }

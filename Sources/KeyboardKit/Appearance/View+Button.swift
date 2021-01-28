@@ -28,14 +28,18 @@ public extension View {
     /**
      Apply a standard button background.
      */
-    func standardButtonBackground(for action: KeyboardAction, context: KeyboardContext) -> some View {
+    func standardButtonBackground(
+        for action: KeyboardAction,
+        context: KeyboardContext) -> some View {
         background(action.standardButtonBackgroundColor(for: context))
     }
     
     /**
      Apply a standard button font.
      */
-    func standardButtonFont(for action: KeyboardAction, context: KeyboardContext) -> some View {
+    func standardButtonFont(
+        for action: KeyboardAction,
+        context: KeyboardContext) -> some View {
         let provider = context.keyboardAppearanceProvider
         let rawFont = Font(provider.font(for: action))
         if let weight = provider.fontWeight(for: action, context: context) { return font(rawFont.weight(weight)) }
