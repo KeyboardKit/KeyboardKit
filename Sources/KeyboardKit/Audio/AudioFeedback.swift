@@ -41,7 +41,7 @@ public enum AudioFeedback: Equatable {
      The global system audio player that is used to play the
      audio feedback.
      */
-    public static var systemPlayer: SystemAudioPlayer = StandardSystemAudioPlayer()
+    static var systemPlayer: SystemAudioPlayer = StandardSystemAudioPlayer()
 }
 
 

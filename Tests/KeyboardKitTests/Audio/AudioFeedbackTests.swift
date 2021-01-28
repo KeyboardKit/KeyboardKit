@@ -8,8 +8,8 @@
 
 import Quick
 import Nimble
-import KeyboardKit
 import MockingKit
+@testable import KeyboardKit
 
 class AudioFeedbackTest: QuickSpec {
     
