@@ -19,19 +19,15 @@ Although these release notes will aim at covering everything that changes in thi
 
 ### Changed behavior
 
+* `AutocompleteToolbar` is now generic, which makes your .
+* `AutocompleteToolbar` now uses identifiable bar items, which leads to better separator handling.
+* `AutocompleteToolbar` now takes suggestions at init and doesn't require an environment injected `ObservableAutocompleteContext`. 
+* `AutocompleteToolbar` no longer requires an environment injected `ObservableKeyboardContext`, nor does its builder functions. 
 * `KeyboardAction.emojiCategory` no longer has a  standard tap action.
-* `KeyboardInputViewController` `context` is now an `ObservableKeyboardContext`.
+* `KeyboardInputViewController` `context` is now an `ObservableKeyboardContext`. 
 
 
-### UIKit changes
-
-In this version, `UIKit` support becomes the alternate approach.
-
-New extensions:
-* `UIView+Keyboard` is now used to apply button gestures to a view. 
-
-
-### Breaking changes
+### Removed functionality
 
 * All previews deprecations have been removed in this version.
 * `KeyboardActionRow` - it's just confusing to have two typaliases for the same thing.
@@ -47,6 +43,14 @@ New extensions:
 * `UIInputViewController+NextKeyboard` has been made an internal extension in `UIView+Keyboard`.
 * `View+ClearInteractable` has been removed.
 * `View` `keyboardAction(...)` has been renamed to `keyboardGestures(for: ...)`
+
+
+### UIKit changes
+
+In this version, `UIKit` support becomes the alternate approach.
+
+New extensions:
+* `UIView+Keyboard` is now used to apply button gestures to a view.
 
 
 ## 3.6.3

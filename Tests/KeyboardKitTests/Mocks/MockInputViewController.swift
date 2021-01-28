@@ -18,6 +18,10 @@ class MockInputViewController: KeyboardInputViewController, Mockable {
     
     let mock = Mock()
     
+    var textDocumentProxyReplacement: UITextDocumentProxy?
+    
+    override var textDocumentProxy: UITextDocumentProxy { textDocumentProxyReplacement ?? super.textDocumentProxy }
+    
     override func changeKeyboardType(to type: KeyboardType) {
         invoke(changeKeyboardTypeRef, args: (type))
     }

@@ -21,6 +21,7 @@ import KeyboardKit
  */
 struct KeyboardView: View {
     
+    @EnvironmentObject var autocompleteContext: ObservableAutocompleteContext
     @EnvironmentObject var context: ObservableKeyboardContext
     @EnvironmentObject var toastContext: KeyboardToastContext
     

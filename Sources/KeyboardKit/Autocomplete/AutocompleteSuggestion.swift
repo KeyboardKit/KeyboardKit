@@ -9,35 +9,14 @@
 import Foundation
 
 /**
- This protocol can be implemented by autocomplete suggestion
- providers. It can be anything, as long as it can answer the
- required properties.
- 
- You can use `additionalInfo` to store any app-specific data
- that you may need.
+ This protocol describes result data that can be returned by
+ an autocomplete suggestion provider. You can implement your
+ own types or use `StandardAutocompleteSuggestion`.
  */
-public struct AutocompleteSuggestion {
+public protocol AutocompleteSuggestion {
     
-    public init(_ text: String) {
-        self.replacement = text
-        self.title = text
-        self.subtitle = nil
-        self.additionalInfo = [:]
-    }
-    
-    public init(
-        replacement: String,
-        title: String,
-        subtitle: String? = nil,
-        additionalInfo: [String: Any] = [:]) {
-        self.replacement = replacement
-        self.title = title
-        self.subtitle = subtitle
-        self.additionalInfo = additionalInfo
-    }
-    
-    public let replacement: String
-    public let title: String
-    public let subtitle: String?
-    public let additionalInfo: [String: Any]
+    var replacement: String { get }
+    var title: String { get }
+    var subtitle: String? { get }
+    var additionalInfo: [String: Any] { get }
 }

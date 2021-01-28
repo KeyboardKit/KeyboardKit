@@ -18,7 +18,7 @@ extension KeyboardView {
     
     var systemKeyboard: some View {
         VStack(spacing: 0) {
-            AutocompleteToolbar(buttonBuilder: autocompleteButtonBuilder).frame(height: 50)
+            AutocompleteToolbar(suggestions: autocompleteContext.suggestions, buttonBuilder: autocompleteButtonBuilder).frame(height: 50)
             SystemKeyboard(layout: systemKeyboardLayout, buttonBuilder: buttonBuilder)
         }
     }

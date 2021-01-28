@@ -9,12 +9,11 @@
 import Foundation
 
 /**
- This protocol can be implemented by classes that can return
- autocomplete suggestions based on a certain text.
+ This protocol can be implemented by any classes that can be
+ used to get autocomplete suggestions for a certain text.
  
  You can implement the protocol in any way you like, e.g. to
  use a built-in database or by connecting to an external api.
- 
  Note that network operations require full access and can be
  slow for your users.
  */
