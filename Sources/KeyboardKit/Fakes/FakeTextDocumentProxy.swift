@@ -9,11 +9,7 @@
 import UIKit
 
 /**
- This is a fake `UITextDocumentProxy`. It can be used when a
- proxy is needed, but it doesn't have to work.
- 
- For instance, `SwiftUI` previews may require an instance to
- build, but the instance doesn't have to be real.
+ This fake text document proxy can be used for previews etc.
  */
 public class FakeTextDocumentProxy: NSObject, UITextDocumentProxy {
     

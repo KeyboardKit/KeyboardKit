@@ -9,11 +9,7 @@
 import UIKit
 
 /**
- This is a fake `KeyboardActionHandler`. It can be used when
- an action handler is needed, but it doesn't have to work.
- 
- For instance, `SwiftUI` previews may require an instance to
- build, but the instance doesn't have to be real.
+ This fake action handler can be used for previews etc.
  */
 public class FakeKeyboardActionHandler: KeyboardActionHandler {
     
