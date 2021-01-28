@@ -47,9 +47,20 @@ Although these release notes will aim at covering everything that changes in thi
 
 ### UIKit changes
 
-In this version, `UIKit` support becomes the alternate approach.
+In this version, `UIKit` support becomes a second class citizen.
+
+To avoid it blocking any SwiftUI naming conventions, types in the `UIKit` folder will be renamed to start with `UI`:
+
+* `AutocompleteToolbarLabel` -> `UIAutocompleteToolbarLabel`
+* `AutocompleteToolbarSeparator` -> `UIAutocompleteToolbarSeparator`
+* `AutocompleteToolbarView` -> `UIAutocompleteToolbar`
+* `KeyboardAlert` -> `UIKeyboardAlert`
+* `ToastAlert` -> `UIKeyboardToastAlert`
+
+
 
 New extensions:
+
 * `UIView+Keyboard` is now used to apply button gestures to a view.
 
 

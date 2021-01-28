@@ -1,5 +1,5 @@
 //
-//  ToastAlertTests.swift
+//  UIKeyboardToastAlertTests.swift
 //  KeyboardKitTests
 //
 //  Created by Daniel Saidi on 2018-02-25.
@@ -8,16 +8,16 @@
 
 import Quick
 import Nimble
-@testable import KeyboardKit
+import KeyboardKit
 
-class ToastAlertTests: QuickSpec {
+class UIKeyboardToastAlertTests: QuickSpec {
     
     override func spec() {
         
         describe("appearance") {
             
             it("uses standard appearance by default") {
-                let alerter = ToastAlert()
+                let alerter = UIKeyboardToastAlert()
                 expect(alerter.appearance.backgroundColor).to(equal(.white))
                 expect(alerter.appearance.cornerRadius).to(equal(10))
                 expect(alerter.appearance.font).to(equal(.systemFont(ofSize: 10)))

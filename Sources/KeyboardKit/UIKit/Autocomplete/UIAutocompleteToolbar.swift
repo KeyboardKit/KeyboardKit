@@ -1,5 +1,5 @@
 //
-//  AutocompleteToolbarView.swift
+//  UIAutocompleteToolbar.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-07-02.
@@ -10,8 +10,8 @@ import CoreGraphics
 import UIKit
 
 /**
- This toolbar can be used to present autocomplete suggestion
- while the user types.
+ This toolbar can be used to present autocomplete suggestion,
+ e.g. above the keyboard as the user types.
  
  The toolbar is updated with `update(with: suggestions)`. It
  resets the toolbar and populates it with new buttons, which
@@ -24,7 +24,7 @@ import UIKit
  suggestion the space it needs and makes the bar scroll when
  needed. Calling `disableScrolling()` disables this behavior.
  */
-public class AutocompleteToolbarView: KeyboardToolbarView {
+public class UIAutocompleteToolbar: KeyboardToolbarView {
 
     
     // MARK: - Initialization
@@ -56,7 +56,7 @@ public class AutocompleteToolbarView: KeyboardToolbarView {
         alignment: UIStackView.Alignment = .fill,
         distribution: UIStackView.Distribution = .fillEqually) {
         self.init(
-            buttonCreator: { AutocompleteToolbarLabel(
+            buttonCreator: { UIAutocompleteToolbarLabel(
                 text: $0.title,
                 textDocumentProxy: textDocumentProxy) },
             height: height,
@@ -119,7 +119,6 @@ public class AutocompleteToolbarView: KeyboardToolbarView {
         self.scrollView = scrollView
     }
     
-    
     /**
      Reset the toolbar by removing all suggestions.
      */
@@ -141,7 +140,7 @@ public class AutocompleteToolbarView: KeyboardToolbarView {
 
 // MARK: - Temporary Fixes
 
-private extension AutocompleteToolbarView {
+private extension UIAutocompleteToolbar {
     
     /**
      Adjust the last suggestion view, removing its separator
@@ -151,7 +150,7 @@ private extension AutocompleteToolbarView {
      handling in the stack view.
      */
     func tempAdjustLastSeparator(in views: [UIView]) {
-        guard let view = views.last as? AutocompleteToolbarLabel else { return }
+        guard let view = views.last as? UIAutocompleteToolbarLabel else { return }
         view.separator.hide()
     }
 }

@@ -1,5 +1,5 @@
 //
-//  KeyboardAlert.swift
+//  UIKeyboardAlert.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2018-02-01.
@@ -14,7 +14,7 @@ import UIKit
  be custom made, since keyboard extensions don't support the
  regular `UIAlertController` alert.
  */
-public protocol KeyboardAlert {
+public protocol UIKeyboardAlert {
     
     func alert(message: String, in view: UIView, withDuration: Double)
 }

@@ -38,7 +38,6 @@ public struct SystemKeyboardDimensions: KeyboardDimensions {
         context: KeyboardContext) -> CGFloat? {
         switch action {
         case .shift, .backspace: return shortButtonWidth
-        //case .space: return keyboardWidth * 0.5
         case .nextKeyboard: return shortButtonWidth
         case .keyboardType(let type): return widthKeyboardType(switchingTo: type, context: context)
         default: return nil

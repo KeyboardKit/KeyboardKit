@@ -57,7 +57,6 @@ private extension SystemKeyboardButtonContent {
     
     func textView(for text: String) -> some View {
         Text(text)
-            //.minimumScaleFactor(0.1)
             .lineLimit(1)
             .offset(y: text.isLowercased ? -2 : 0)
     }

@@ -1,5 +1,5 @@
 //
-//  ToastAlert.swift
+//  UIKeyboardToastAlert.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2018-02-01.
@@ -18,7 +18,7 @@ import UIKit
  `TODO:` This alerter should be refactored to use appearance
  proxies, e.g. combined with theme classes.
 */
-open class ToastAlert: KeyboardAlert {
+open class UIKeyboardToastAlert: UIKeyboardAlert {
     
     
     // MARK: - Initialization
@@ -75,7 +75,7 @@ open class ToastAlert: KeyboardAlert {
 
 // MARK: - Private Functions
 
-private extension ToastAlert {
+private extension UIKeyboardToastAlert {
 
     func createContainerView(for label: Label, in view: UIView) -> View {
         let container = View(frame: label.frame)

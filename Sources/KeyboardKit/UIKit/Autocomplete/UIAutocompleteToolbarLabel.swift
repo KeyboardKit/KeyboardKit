@@ -1,5 +1,5 @@
 //
-//  ScrollableLabel.swift
+//  UIAutocompleteToolbarLabel.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-12-09.
@@ -9,14 +9,11 @@
 import UIKit
 
 /**
- This label is used by `AutocompleteToolbar` by default when
+ This label view is used by the `UIAutocompleteToolbar` when
  no custom `buttonCreator` is provided. It mimics the native
- autocomplete label which scrolls if its content doesn't fit
- its frame.
-
- `TODO` - Implement horizontal blur.
+ autocomplete label.
  */
-open class AutocompleteToolbarLabel: UIView {
+open class UIAutocompleteToolbarLabel: UIView {
     
     
     // MARK: - Initialization
@@ -92,8 +89,8 @@ open class AutocompleteToolbarLabel: UIView {
         UILabel()
     }()
     
-    public lazy var separator: AutocompleteToolbarSeparator = {
-        AutocompleteToolbarSeparator()
+    public lazy var separator: UIAutocompleteToolbarSeparator = {
+        UIAutocompleteToolbarSeparator()
     }()
     
     
@@ -119,7 +116,7 @@ open class AutocompleteToolbarLabel: UIView {
 
 // MARK: - Setup
 
-private extension AutocompleteToolbarLabel {
+private extension UIAutocompleteToolbarLabel {
     
     func setup() {
         setupAccessibility()
@@ -147,7 +144,7 @@ private extension AutocompleteToolbarLabel {
 
 // MARK: - Private Functions
 
-private extension AutocompleteToolbarLabel {
+private extension UIAutocompleteToolbarLabel {
     
     func handleLayoutChange() {
         DispatchQueue.main.async {
@@ -169,7 +166,7 @@ private extension AutocompleteToolbarLabel {
 
 // MARK: - Private Actions
 
-@objc private extension AutocompleteToolbarLabel {
+@objc private extension UIAutocompleteToolbarLabel {
     
     func handleTap() {
         textDocumentProxy?.replaceCurrentWord(with: text + " ")
