@@ -12,10 +12,6 @@ import Foundation
  This class lets you store autocomplete suggestions. It will
  call the provided `suggestionsDidChange` block whenever the
  suggestion collection changes.
- 
- If you target iOS 13 and later, `KeyboardKitSwiftUI` can be
- used instead. It contains an `ObservableAutocompleteContext`
- that has better value binding capabilities.
  */
 public class StandardAutocompleteContext: AutocompleteContext {
     

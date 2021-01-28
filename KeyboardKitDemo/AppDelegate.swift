@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, KeyboardStateInspector {
 
     // MARK: UISceneSession Lifecycle
 
-    @available(iOS 13.0, *)
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
