@@ -31,6 +31,6 @@ public struct SystemKeyboardSpaceButton: View {
     public var body: some View {
         SystemKeyboardSpaceButtonContent(localeText: localeText, spaceText: spaceText)
             .standardButtonStyle(for: action, context: context)
-            .keyboardAction(action, actionHandler: context.actionHandler)
+            .keyboardGestures(for: action, actionHandler: context.actionHandler)
     }
 }

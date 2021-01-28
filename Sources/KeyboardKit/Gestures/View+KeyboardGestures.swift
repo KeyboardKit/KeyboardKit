@@ -14,11 +14,32 @@ public extension View {
     typealias KeyboardDragGestureAction = (_ startLocation: CGPoint, _ location: CGPoint) -> Void
     
     /**
-     Add keyboard-specific gesture actions to the view.
+     Apply keyboard-specific gestures to the view, using the
+     provided keyboard action and action handler.
+     */
+    @ViewBuilder
+    func keyboardGestures(
+        for action: KeyboardAction,
+        actionHandler: KeyboardActionHandler) -> some View {
+        if action == .nextKeyboard {
+            self
+        } else {
+            self.keyboardGestures(
+                action: action,
+                tapAction: { actionHandler.handle(.tap, on: action) },
+                doubleTapAction: { actionHandler.handle(.doubleTap, on: action) },
+                longPressAction: { actionHandler.handle(.longPress, on: action) },
+                repeatAction: { actionHandler.handle(.repeatPress, on: action) },
+                dragAction: { start, current in actionHandler.handleDrag(on: action, from: start, to: current) })
+        }
+    }
+    
+    /**
+     Apply keyboard-specific gestures to the view, using the
+     provided keyboard action blocks.
      
-     Some implicit built-in logic requires a provided action
-     to work, like updating callout contexts, but all action
-     blocks will be triggered correctly.
+     Some actions require a keyboard action, like updating a
+     callout contexts.
      */
     func keyboardGestures(
         action: KeyboardAction? = nil,

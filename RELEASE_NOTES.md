@@ -29,11 +29,18 @@ New extensions:
 * `UIView+Keyboard` is now used to apply button gestures to a view. 
 
 
-### Breaking changes
+### Renamed features
+
+Functions:
+
+* `View` `keyboardAction(...)` has been renamed to `keyboardGestures(for: ...)`
+
+
+### Removed features
 
 All previews deprecations have been removed in this version.
 
-Removed functions:
+Functions:
 
 * `KeyboardInputViewController` `addKeyboardGestures` has been converted to `KeyboardButton+Gestures`.
 
