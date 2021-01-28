@@ -11,7 +11,7 @@ import UIKit
 /**
  This fake context can be used for previews etc.
  */
-public class FakeKeyboardContext: KeyboardContext {
+public class FakeKeyboardContext: KeyboardContext, ObservableObject {
     
     public init() {}
     
