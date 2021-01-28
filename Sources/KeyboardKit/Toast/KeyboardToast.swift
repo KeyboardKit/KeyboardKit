@@ -11,15 +11,10 @@ import SwiftUI
 /**
  A `KeyboardToast` is a brief overlay with a custom `content`
  and `background`. It is intended to present information for
- a short while, then hide itself after a custom `duration`.
+ a short while, then hide itself.
  
  The easiest and preferred way to add a `Toast` to a `View`,
- is to use the `keyboardToast(...)` `View` extensions.
- 
- When a toast is presented, it wraps itself within a `ZStack`
- and centers itself over the target `presenter` which is the
- view that presents the toast. It then fades in using a fade
- animation, stays for a custom `duration` then fades out.
+ is to use the `keyboardToast(...)` view modifier.
  */
 public struct KeyboardToast<Presenter: View, Content: View, Background: View>: View {
     

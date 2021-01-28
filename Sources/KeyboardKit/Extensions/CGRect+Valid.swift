@@ -10,5 +10,9 @@ import CoreGraphics
 
 extension CGRect {
     
+    /**
+     This internal property is used to abort draving invalid
+     paths for views that have not yet been given a frame.
+     */
     var isValidForPath: Bool { !width.isNaN && !height.isNaN }
 }

@@ -14,14 +14,14 @@ public extension String {
      Whether or not this is a western sentence delimiter.
      */
     var isSentenceDelimiter: Bool {
-        count == 1 && Self.sentenceDelimiters.contains(self)
+        Self.sentenceDelimiters.contains(self)
     }
     
     /**
      Whether or not this is a western word delimiter.
      */
     var isWordDelimiter: Bool {
-        count == 1 && Self.wordDelimiters.contains(self)
+        Self.wordDelimiters.contains(self)
     }
     
     /**

@@ -11,15 +11,14 @@ import SwiftUI
 
 public extension EdgeInsets {
     
+    /**
+     Create insets from a `UIEdgeInsets` instance.
+     */
     init(insets: UIEdgeInsets) {
         self.init(
             top: insets.top,
             leading: insets.left,
             bottom: insets.bottom,
             trailing: insets.right)
-    }
-    
-    static func insets(from insets: UIEdgeInsets) -> EdgeInsets {
-        EdgeInsets(insets: insets)
     }
 }

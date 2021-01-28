@@ -17,7 +17,7 @@ public struct SystemKeyboardDimensions: KeyboardDimensions {
     
     public init(
         buttonHeight: CGFloat = .standardKeyboardRowHeight(),
-        buttonInsets: EdgeInsets = .insets(from: .standardKeyboardRowItemInsets()),
+        buttonInsets: EdgeInsets = EdgeInsets(insets: .standardKeyboardRowItemInsets()),
         longButtonWidth: CGFloat = 100.0,
         shortButtonWidth: CGFloat = 50.0) {
         self.buttonHeight = buttonHeight
