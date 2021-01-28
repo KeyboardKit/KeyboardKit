@@ -11,7 +11,7 @@ import SwiftUI
 public extension KeyboardShiftState {
     
     /**
-     The standard button image in a system keyboard.
+     The shift state's standard keyboard button image.
      */
     var standardButtonImage: Image {
         switch self {

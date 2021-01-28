@@ -11,7 +11,7 @@ import SwiftUI
 public extension KeyboardType {
     
     /**
-     The standard button image in a system keyboard.
+     The keyboard type's standard keyboard button image.
      */
     var standardButtonImage: Image? {
         switch self {
@@ -26,7 +26,7 @@ public extension KeyboardType {
     }
     
     /**
-     The standard button text in a system keyboard.
+     The keyboard type's standard keyboard button text.
      */
     var standardButtonText: String? {
         switch self {

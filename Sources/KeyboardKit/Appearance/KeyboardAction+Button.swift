@@ -12,7 +12,7 @@ import UIKit
 public extension KeyboardAction {
     
     /**
-     The standard button background in a system keyboard.
+     The action's standard keyboard button background color.
      */
     func standardButtonBackgroundColor(for context: KeyboardContext) -> Color {
         if case .none = self { return .clear }
@@ -23,14 +23,14 @@ public extension KeyboardAction {
     }
     
     /**
-     The standard button font in a system keyboard.
+     The action's standard keyboard button font.
      */
     var standardButtonFont: UIFont {
         .preferredFont(forTextStyle: standardButtonTextStyle)
     }
     
     /**
-     The standard button image in a system keyboard.
+     The action's standard keyboard button image.
      */
     func standardButtonImage(for context: KeyboardContext) -> Image? {
         switch self {
@@ -54,7 +54,7 @@ public extension KeyboardAction {
     }
     
     /**
-     The standard button shadow color in a system keyboard.
+     The action's standard keyboard button shadow color.
      */
     func standardButtonShadowColor(for context: KeyboardContext) -> Color {
         if case .none = self { return .clear }
@@ -63,7 +63,7 @@ public extension KeyboardAction {
     }
 
     /**
-     The standard button text in a system keyboard.
+     The action's standard keyboard button text.
      */
     var standardButtonText: String? {
         switch self {
@@ -76,7 +76,7 @@ public extension KeyboardAction {
     }
     
     /**
-     The standard button text style in a system keyboard.
+     The action's standard keyboard button text style.
     */
     var standardButtonTextStyle: UIFont.TextStyle {
         if hasMultiCharButtonText { return .body }

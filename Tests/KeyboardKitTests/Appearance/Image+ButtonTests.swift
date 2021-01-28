@@ -29,8 +29,6 @@ class Image_KeyboardTests: QuickSpec {
                 expect(result(for: .images)).to(equal(Image(systemName: "photo")))
                 expect(result(for: .keyboard)).to(equal(Image(systemName: "keyboard")))
                 expect(result(for: .keyboardDismiss)).to(equal(Image(systemName: "keyboard.chevron.compact.down")))
-                expect(result(for: .keyboardDismissLeft)).to(equal(Image(systemName: "keyboard.chevron.compact.left")))
-                expect(result(for: .keyboardDismissRight)).to(equal(Image(systemName: "keyboard.chevron.compact.right")))
                 expect(result(for: .moveCursorLeft)).to(equal(Image(systemName: "arrow.left")))
                 expect(result(for: .moveCursorRight)).to(equal(Image(systemName: "arrow.right")))
                 expect(result(for: .newLine)).to(equal(Image(systemName: "arrow.turn.down.left")))

@@ -23,8 +23,6 @@ public extension Image {
     static var images: Image { Image(systemName: "photo") }
     static var keyboard: Image { Image(systemName: "keyboard") }
     static var keyboardDismiss: Image { Image(systemName: "keyboard.chevron.compact.down") }
-    static var keyboardDismissLeft: Image { Image(systemName: "keyboard.chevron.compact.left") }
-    static var keyboardDismissRight: Image { Image(systemName: "keyboard.chevron.compact.right") }
     static var moveCursorLeft: Image { Image(systemName: "arrow.left") }
     static var moveCursorRight: Image { Image(systemName: "arrow.right") }
     static var newLine: Image { Image(systemName: "arrow.turn.down.left") }
@@ -35,4 +33,47 @@ public extension Image {
     static var shiftUppercased: Image { Image(systemName: "shift.fill") }
     static var tab: Image { Image(systemName: "arrow.right.to.line") }
     static var undo: Image { Image(systemName: "arrow.uturn.left") }
+}
+
+struct ImageButton_Previews: PreviewProvider {
+    
+    static var images: [Image] = [
+        .backspace,
+        .dictation,
+        .command,
+        .control,
+        .email,
+        //.emoji,
+        .globe,
+        .images,
+        .keyboard,
+        .keyboardDismiss,
+        .moveCursorLeft,
+        .moveCursorRight,
+        .newLine,
+        .option,
+        .redo,
+        .shiftCapslocked,
+        .shiftLowercased,
+        .shiftUppercased,
+        .tab,
+        .undo]
+    
+    static func listItem(for image: Image) -> some View {
+        image
+            .frame(width: 100, height: 60)
+            .background(Color.primary.colorInvert())
+    }
+    
+    static var previews: some View {
+        let images = Self.images.map { (UUID(), $0)}
+        Group {
+            ForEach(images, id: \.0) { img in
+                HStack {
+                    listItem(for: img.1)
+                    listItem(for: img.1).colorScheme(.dark)
+                }
+            }
+        }.previewLayout(.sizeThatFits)
+    }
 }
