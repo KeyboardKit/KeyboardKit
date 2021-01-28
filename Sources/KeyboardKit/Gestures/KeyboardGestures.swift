@@ -46,15 +46,16 @@ struct KeyboardGestures<Content: View>: View {
     private let inputCalloutContext: InputCalloutContext
     private let secondaryInputCalloutContext: SecondaryInputCalloutContext
     
-    @State private var isRepeatPressActive = false
-    @State private var isInputCalloutEnabled = true
+    private let repeatTimer = RepeatGestureTimer()
     
-    private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    @State private var isInputCalloutEnabled = true
+    @State private var isRepeatGestureActive = false {
+        didSet { isRepeatGestureActive ? startRepeatTimer() : stopRepeatTimer() }
+    }
     
     var body: some View {
         view.overlay(GeometryReader { geo in
             Color.clearInteractable
-                .onReceive(timer) { _ in self.handleRepeatPress() }
                 .gesture(tapGesture)
                 .simultaneousGesture(doubleTapGesture)
                 .simultaneousGesture(dragGesture(for: geo))
@@ -88,7 +89,7 @@ private extension KeyboardGestures {
                 inputCalloutContext.updateInput(for: action, geo: geo) }
             .onEnded { _ in
                 inputCalloutContext.reset()
-                isRepeatPressActive = false }
+                stopRepeatTimer() }
     }
     
     /**
@@ -96,8 +97,9 @@ private extension KeyboardGestures {
      */
     var longPressGesture: some Gesture {
         LongPressGesture().onEnded { _ in
-            self.longPressAction?()
-            self.isRepeatPressActive = true }
+            longPressAction?()
+            startRepeatTimer()
+        }
     }
     
     /**
@@ -153,8 +155,12 @@ private extension KeyboardGestures {
         dragAction?(drag.startLocation, drag.location)
     }
     
-    func handleRepeatPress() {
-        guard isRepeatPressActive else { return }
-        repeatAction?()
+    func startRepeatTimer() {
+        guard let action = repeatAction else { return }
+        repeatTimer.start(action: action)
+    }
+    
+    func stopRepeatTimer() {
+        repeatTimer.stop()
     }
 }

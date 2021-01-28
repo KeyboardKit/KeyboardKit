@@ -10,19 +10,23 @@ import Foundation
 
 /**
  This enum can be used to change the drag sensitivity of the
- spacebar. This represents how many points the spacebar must
- be dragged for the text cursor to move one step.
+ spacebar.
+ 
+ This sensitivity represents how many points a spacebar must
+ be dragged for the text cursor to move one step. This means
+ that the sensitivity is inverted, where higher point values
+ means that the cursor moves less.
  */
 public enum SpaceDragSensitivity {
     
-    case low, medium, high, points(Int)
+    case low, medium, high, custom(_ points: Int)
     
     public var points: Int {
         switch self {
         case .low: return 10
         case .medium: return 5
         case .high: return 2
-        case .points(let val): return val
+        case .custom(let points): return points
         }
     }
 }
