@@ -21,8 +21,7 @@ extension KeyboardInputViewController {
     }
     
     func addNextKeyboardGesture(to button: KeyboardButton) {
-        guard let button = button as? UIButton else { return }
-        setupNextKeyboardButton(button)
+        button.setupAsNextKeyboardButton(in: self)
     }
 }
 

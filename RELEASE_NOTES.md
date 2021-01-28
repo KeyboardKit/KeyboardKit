@@ -9,10 +9,19 @@ This release merges `KeyboardKit` with `KeyboardKitSwiftUI` and raises the deplo
 
 Although these release notes will aim at covering everything that changes in this major version, some things will most probably be missed. 
 
+
 ### Changed behavior
 
 * `KeyboardAction.emojiCategory` no longer has a  standard tap action.
 * `KeyboardInputViewController` `context` is now an `ObservableKeyboardContext`.
+
+### UIKit changes
+
+In this version, `UIKit` support becomes the alternate approach.
+
+New extensions:
+* `UIView+Keyboard` is now used to apply button gestures to a view. 
+
 
 ### Breaking changes
 
@@ -27,6 +36,7 @@ Removed extensions:
 * `UIImage+photos` has been moved to the demo.
 * `UIImage+resized`
 * `UIImage+tinted`
+* `UIInputViewController+NextKeyboard` has been made an internal extension in `UIView+Keyboard`.
 * `View+ClearInteractable`
 
 Removed deprecations:
