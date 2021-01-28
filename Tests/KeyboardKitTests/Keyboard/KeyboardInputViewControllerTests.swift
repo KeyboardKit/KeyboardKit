@@ -120,50 +120,6 @@ class KeyboardInputViewControllerTests: QuickSpec {
             }
         }
         
-        describe("adding keyboard gestures to button") {
-            
-            var button: TestButton!
-            
-            beforeEach {
-                button = TestButton(type: .custom)
-            }
-            
-            it("removes already added gestures") {
-                vc.addKeyboardGestures(to: button)
-                let oldTap = button.gestureRecognizers!.first { $0 is UITapGestureRecognizer }
-                let oldPress = button.gestureRecognizers!.first { $0 is UILongPressGestureRecognizer }
-                let oldRepeat = button.gestureRecognizers!.first { $0 is RepeatingGestureRecognizer }
-                vc.addKeyboardGestures(to: button)
-                let newTap = button.gestureRecognizers!.first { $0 is UITapGestureRecognizer }
-                let newPress = button.gestureRecognizers!.first { $0 is UILongPressGestureRecognizer }
-                let newRepeat = button.gestureRecognizers!.first { $0 is RepeatingGestureRecognizer }
-                expect(newTap).toNot(be(oldTap))
-                expect(newPress).toNot(be(oldPress))
-                expect(newRepeat).toNot(be(oldRepeat))
-            }
-            
-            it("handles next keyboard separately") {
-                button.action = .nextKeyboard
-                vc.addKeyboardGestures(to: button)
-                let tap = button.gestureRecognizers?.first { $0 is UITapGestureRecognizer }
-                let press = button.gestureRecognizers?.first { $0 is UILongPressGestureRecognizer }
-                let repeating = button.gestureRecognizers?.first { $0 is RepeatingGestureRecognizer }
-                expect(tap).to(beNil())
-                expect(press).to(beNil())
-                expect(repeating).to(beNil())
-            }
-            
-            it("adds gestures to button") {
-                vc.addKeyboardGestures(to: button)
-                let tap = button.gestureRecognizers!.first { $0 is UITapGestureRecognizer }
-                let press = button.gestureRecognizers!.first { $0 is UILongPressGestureRecognizer }
-                let repeating = button.gestureRecognizers!.first { $0 is RepeatingGestureRecognizer }
-                expect(tap).toNot(beNil())
-                expect(press).toNot(beNil())
-                expect(repeating).toNot(beNil())
-            }
-        }
-        
         describe("perform autocomplete") {
             
             it("is triggered by textDidChange") {

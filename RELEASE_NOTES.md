@@ -31,8 +31,15 @@ New extensions:
 
 ### Breaking changes
 
-Removed protocols and classes:
+All previews deprecations have been removed in this version.
 
+Removed functions:
+
+* `KeyboardInputViewController` `addKeyboardGestures` has been converted to `KeyboardButton+Gestures`.
+
+Removed types:
+
+* `KeyboardActionRow` - it's just confusing to have two typaliases for the same thing.
 * `StandardKeyboardContext` has been replaced by `ObservableKeyboardContext`.
 * `PhotosImageService` and `StandardPhotosImageService`.
 
@@ -42,21 +49,9 @@ Removed extensions:
 * `UIImage+photos` has been moved to the demo.
 * `UIImage+resized`
 * `UIImage+tinted`
+* `KeyboardInputViewController+Gestures` has been converted to `KeyboardButton+Gestures`.
 * `UIInputViewController+NextKeyboard` has been made an internal extension in `UIView+Keyboard`.
 * `View+ClearInteractable`
-
-Removed deprecations:
-
-* All deprecations in the deprecation folders. 
-* `KeyboardAction` `endSentenceAction`.
-* `KeyboardContext` `emojiCategory`.
-* `StandardKeyboardActionHandler` `handleKeyboardSwitch`.
-* `StandardKeyboardActionHandler` `preferredKeyboardType(...)`.
-
-Removed typealiases:
-
-* `KeyboardActionRow` - it's just confusing to have two typaliases for the same thing. 
-
 
 
 ## 3.6.3

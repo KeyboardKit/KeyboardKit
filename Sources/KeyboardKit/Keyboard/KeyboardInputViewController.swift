@@ -121,16 +121,6 @@ open class KeyboardInputViewController: UIInputViewController {
     // MARK: - Public Functions
     
     /**
-     Add `tap`, `long press` and `repeat` gestures to a view
-     that should serve as a keyboard button.
-     */
-    open func addKeyboardGestures(to button: KeyboardButton) {
-        button.gestureRecognizers?.forEach { button.removeGestureRecognizer($0) }
-        if button.action == .nextKeyboard { return addNextKeyboardGesture(to: button) }
-        addStandardKeyboardGestures(to: button)
-    }
-    
-    /**
      Change keyboard type. By default, this is done with the
      standard change action of the current context, but this
      can be changed by overriding this function.
