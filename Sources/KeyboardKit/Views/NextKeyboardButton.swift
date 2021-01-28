@@ -9,8 +9,8 @@
 import SwiftUI
 
 /**
- This button switches to the next system keyboard when it is
- tapped and opens a system keyboard menu when it is pressed.
+ This button switches to the next keyboard when it is tapped
+ and opens a keyboard switcher menu when it is pressed.
  */
 public struct NextKeyboardButton: UIViewRepresentable {
     

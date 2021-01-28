@@ -34,7 +34,7 @@ struct CustomRoundedRectangle: Shape {
     private let topRight: CGFloat
     private let bottomLeft: CGFloat
     private let bottomRight: CGFloat
-
+    
     func path(in rect: CGRect) -> Path {
         var path = Path()
         guard rect.isValidForPath else { return path }
@@ -45,7 +45,7 @@ struct CustomRoundedRectangle: Shape {
         let topRight = min(min(self.topRight, height/2), width/2)
         let bottomLeft = min(min(self.bottomLeft, height/2), width/2)
         let bottomRight = min(min(self.bottomRight, height/2), width/2)
-
+        
         path.move(to: CGPoint(x: width / 2.0, y: 0))
         path.addLine(to: CGPoint(x: width - topRight, y: 0))
         path.addArc(center: CGPoint(x: width - topRight, y: topRight), radius: topRight,
@@ -60,5 +60,16 @@ struct CustomRoundedRectangle: Shape {
         path.addArc(center: CGPoint(x: topLeft, y: topLeft), radius: topLeft,
                     startAngle: Angle(degrees: 180), endAngle: Angle(degrees: 270), clockwise: false)
         return path
+    }
+}
+
+struct CustomRoundedRectangle_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        CustomRoundedRectangle(topLeft: 10, topRight: 20, bottomLeft: 30, bottomRight: 40)
+            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+            .padding()
+            .background(Color.red)
+            .frame(width: 200, height: 200)
     }
 }
