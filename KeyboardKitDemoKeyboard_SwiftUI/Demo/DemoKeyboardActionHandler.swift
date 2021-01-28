@@ -60,44 +60,14 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     func saveImage(_ image: UIImage) {
         guard let input = inputViewController else { return }
         guard input.hasFullAccess else { return alert("You must enable full access to save images.") }
-        let saveCompletion = #selector(handleImage(_:didFinishSavingWithError:contextInfo:))
-        image.saveToPhotos(completionTarget: self, completionSelector: saveCompletion)
+        image.saveToPhotos(completion: handleImageDidSave)
     }
+}
 
-
-    // MARK: - Image Functions
-
-    @objc func handleImage(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+private extension DemoKeyboardActionHandler {
+    
+    func handleImageDidSave(WithError error: Error?) {
         if error == nil { alert("Saved!") }
         else { alert("Failed!") }
-    }
-}
-
-private extension UIImage {
-    
-    func saveToPhotos(completionTarget: AnyObject?, completionSelector: Selector?) {
-        UIImageWriteToSavedPhotosAlbum(self, completionTarget, completionSelector, nil)
-    }
-    
-    func saveToPhotos(completion: @escaping (Error?) -> Void) {
-        let service = StandardPhotosImageService()
-        service.saveImageToPhotos(self, completion: completion)
-    }
-}
-
-private class StandardPhotosImageService: NSObject {
-    
-    public typealias Completion = (Error?) -> Void
-
-    private var completions = [Completion]()
-    
-    public func saveImageToPhotos(_ image: UIImage, completion: @escaping (Error?) -> Void) {
-        completions.append(completion)
-        image.saveToPhotos(completionTarget: self, completionSelector: #selector(didSave(_:error:contextInfo:)))
-    }
-    
-    @objc func didSave(_ image: UIImage, error: NSError?, contextInfo: UnsafeRawPointer) {
-        guard completions.count > 0 else { return }
-        completions.removeFirst()(error)
     }
 }

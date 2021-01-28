@@ -88,6 +88,9 @@
 		84834613250D6A6600C49F65 /* DemoAutocompleteSuggestionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846704B2234A725300355331 /* DemoAutocompleteSuggestionProvider.swift */; };
 		84834614250D6A6900C49F65 /* DemoAutocompleteSuggestionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846704B2234A725300355331 /* DemoAutocompleteSuggestionProvider.swift */; };
 		A920AD6325A9ECBE007D957E /* KeyboardView+Keyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = A920AD6225A9ECBE007D957E /* KeyboardView+Keyboards.swift */; };
+		A92FA9BD25C2A04A006BBD7E /* UIImage+Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92FA9BC25C2A04A006BBD7E /* UIImage+Photos.swift */; };
+		A92FA9BE25C2A04A006BBD7E /* UIImage+Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92FA9BC25C2A04A006BBD7E /* UIImage+Photos.swift */; };
+		A92FA9BF25C2A04A006BBD7E /* UIImage+Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92FA9BC25C2A04A006BBD7E /* UIImage+Photos.swift */; };
 		A942653B2490CDCC00EB5551 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942653A2490CDCC00EB5551 /* KeyboardViewController.swift */; };
 		A942653F2490CDCC00EB5551 /* KeyboardKitDemoKeyboard_SwiftUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A94265382490CDCC00EB5551 /* KeyboardKitDemoKeyboard_SwiftUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A94265522490D1C400EB5551 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94265512490D1C400EB5551 /* KeyboardView.swift */; };
@@ -248,6 +251,7 @@
 		846704B2234A725300355331 /* DemoAutocompleteSuggestionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoAutocompleteSuggestionProvider.swift; sourceTree = "<group>"; };
 		A917E77F2574E0160048CC12 /* Readmes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Readmes; sourceTree = "<group>"; };
 		A920AD6225A9ECBE007D957E /* KeyboardView+Keyboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardView+Keyboards.swift"; sourceTree = "<group>"; };
+		A92FA9BC25C2A04A006BBD7E /* UIImage+Photos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Photos.swift"; sourceTree = "<group>"; };
 		A94265382490CDCC00EB5551 /* KeyboardKitDemoKeyboard_SwiftUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KeyboardKitDemoKeyboard_SwiftUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A942653A2490CDCC00EB5551 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		A942653C2490CDCC00EB5551 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -434,6 +438,7 @@
 			children = (
 				846704B2234A725300355331 /* DemoAutocompleteSuggestionProvider.swift */,
 				843CBFA4250E9E5500BA541F /* DemoImageKeyboard.swift */,
+				A92FA9BC25C2A04A006BBD7E /* UIImage+Photos.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -764,6 +769,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A92FA9BD25C2A04A006BBD7E /* UIImage+Photos.swift in Sources */,
 				A97D2CCF25B4569B00E270D8 /* DemoKeyboardAppearanceProvider.swift in Sources */,
 				8467044C234A709400355331 /* ViewController.swift in Sources */,
 				843CBFA5250E9E5500BA541F /* DemoImageKeyboard.swift in Sources */,
@@ -783,6 +789,7 @@
 				15D5728424604C490062BD01 /* EmojiKeyboard.swift in Sources */,
 				846704B3234A725300355331 /* DemoKeyboardActionHandler.swift in Sources */,
 				846704BC234A725300355331 /* DemoAutocompleteSuggestionProvider.swift in Sources */,
+				A92FA9BE25C2A04A006BBD7E /* UIImage+Photos.swift in Sources */,
 				846704BA234A725300355331 /* DemoKeyboard.swift in Sources */,
 				846704B4234A725300355331 /* DemoButton.swift in Sources */,
 				84623A9C235615600024987B /* ImageKeyboard.swift in Sources */,
@@ -799,6 +806,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A92FA9BF25C2A04A006BBD7E /* UIImage+Photos.swift in Sources */,
 				A94C721824AE238900077EEA /* DemoKeyboardActionHandler.swift in Sources */,
 				A942653B2490CDCC00EB5551 /* KeyboardViewController.swift in Sources */,
 				A97D2CCE25B4569400E270D8 /* DemoKeyboardAppearanceProvider.swift in Sources */,

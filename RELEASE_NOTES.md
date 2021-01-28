@@ -16,9 +16,14 @@ Although these release notes will aim at covering everything that changes in thi
 
 ### Breaking changes
 
-Removed classes:
+Removed protocols and classes:
 
 * `StandardKeyboardContext` has been replaced by `ObservableKeyboardContext`.
+* `PhotosImageService` and `StandardPhotosImageService`.
+
+Removed extensions:
+
+* `UIImage+saveToPhotos` has been moved to the demo.
 
 Removed deprecations:
 
