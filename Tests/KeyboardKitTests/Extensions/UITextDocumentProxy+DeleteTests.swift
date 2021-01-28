@@ -9,6 +9,7 @@
 import Quick
 import Nimble
 import KeyboardKit
+import MockingKit
 
 class UITextDocumentProxy_DeleteTests: QuickSpec {
     

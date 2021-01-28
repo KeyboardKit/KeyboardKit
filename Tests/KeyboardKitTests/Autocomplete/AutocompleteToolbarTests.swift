@@ -8,6 +8,7 @@
 
 import Quick
 import Nimble
+import MockingKit
 @testable import KeyboardKit
 
 class AutocompleteToolbarTests: QuickSpec {

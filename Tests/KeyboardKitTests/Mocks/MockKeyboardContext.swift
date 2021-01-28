@@ -8,6 +8,7 @@
 
 import Foundation
 import KeyboardKit
+import MockingKit
 import UIKit
 
 class MockKeyboardContext: KeyboardContext {

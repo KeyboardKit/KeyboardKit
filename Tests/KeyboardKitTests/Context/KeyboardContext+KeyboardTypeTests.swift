@@ -9,6 +9,7 @@
 import Quick
 import Nimble
 import KeyboardKit
+import MockingKit
 import UIKit
 
 class KeyboardContext_KeyboardTypeTests: QuickSpec {

@@ -8,11 +8,6 @@
 
 import SwiftUI
 
-/**
- `IMPORTANT!` Some of the intended images are only available
- in iOS 14 and later. If you support iOS 13, you may have to
- provide a custom image.
- */
 public extension Image {
     
     static var backspace: Image { Image(systemName: "delete.left") }

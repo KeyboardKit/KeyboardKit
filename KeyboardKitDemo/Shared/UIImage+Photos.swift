@@ -11,8 +11,11 @@ import UIKit
 public extension UIImage {
     
     /**
-     Saves an image to the user's photo album. This requires
-     the correct permission to be added to the `Info.plist`.
+     Saves an image to the user's photo album.
+     
+     This requires that the keyboard has full access and the
+     hosting app has the correct permission in `Info.plist`.
+     Failing to add this permission will make the app crash.
      */
     func saveToPhotos(completion: @escaping (Error?) -> Void) {
         ImageService.default.saveImageToPhotos(self, completion: completion)

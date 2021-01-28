@@ -23,7 +23,10 @@ Removed protocols and classes:
 
 Removed extensions:
 
-* `UIImage+saveToPhotos` has been moved to the demo.
+* `UIImage+pasteboard` has been moved to the demo.
+* `UIImage+photos` has been moved to the demo.
+* `UIImage+resized` has been removed.
+* `UIImage+tinted` has been removed.
 
 Removed deprecations:
 
