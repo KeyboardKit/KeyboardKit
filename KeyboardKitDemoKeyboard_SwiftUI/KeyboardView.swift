@@ -34,7 +34,7 @@ struct KeyboardView: View {
     var keyboardView: some View {
         switch context.keyboardType {
         case .alphabetic, .numeric, .symbolic: systemKeyboard
-        case .emojis: EmojiCategoryKeyboard().padding(.top)
+        case .emojis: emojiKeyboard
         case .images: imageKeyboard
         default: Button("???", action: switchToDefaultKeyboard)
         }
@@ -45,6 +45,15 @@ struct KeyboardView: View {
 // MARK: - Functions
 
 private extension KeyboardView {
+    
+    @ViewBuilder
+    var emojiKeyboard: some View {
+        if #available(iOSApplicationExtension 14.0, *) {
+            EmojiCategoryKeyboard().padding(.top)
+        } else {
+            Text("Requires iOS 14 or later")
+        }
+    }
     
     func switchToDefaultKeyboard() {
         context.actionHandler
