@@ -32,16 +32,9 @@ open class ObservableKeyboardContext: KeyboardContext, ObservableObject {
         self.keyboardLayoutProvider = keyboardLayoutProvider
         
         self.device = device
-        self.deviceOrientation = controller.deviceOrientation
-        self.hasDictationKey = controller.hasDictationKey
-        self.hasFullAccess = controller.hasFullAccess
         self.keyboardType = keyboardType
         self.locale = locale
-        self.needsInputModeSwitchKey = controller.needsInputModeSwitchKey
-        self.primaryLanguage = controller.primaryLanguage
-        self.textDocumentProxy = controller.textDocumentProxy
-        self.textInputMode = controller.textInputMode
-        self.traitCollection = controller.traitCollection
+        self.sync(with: controller)
     }
     
     public let device: UIDevice
@@ -52,13 +45,13 @@ open class ObservableKeyboardContext: KeyboardContext, ObservableObject {
     @Published public var keyboardInputSetProvider: KeyboardInputSetProvider
     @Published public var keyboardLayoutProvider: KeyboardLayoutProvider
     @Published public var keyboardType: KeyboardType
-    @Published public var deviceOrientation: UIInterfaceOrientation
-    @Published public var hasDictationKey: Bool
-    @Published public var hasFullAccess: Bool
+    @Published public var deviceOrientation: UIInterfaceOrientation = .portrait
+    @Published public var hasDictationKey: Bool = false
+    @Published public var hasFullAccess: Bool = false
     @Published public var locale: Locale
-    @Published public var needsInputModeSwitchKey: Bool
+    @Published public var needsInputModeSwitchKey: Bool = true
     @Published public var primaryLanguage: String?
-    @Published public var textDocumentProxy: UITextDocumentProxy
+    @Published public var textDocumentProxy: UITextDocumentProxy = FakeTextDocumentProxy()
     @Published public var textInputMode: UITextInputMode?
-    @Published public var traitCollection: UITraitCollection
+    @Published public var traitCollection: UITraitCollection = UITraitCollection()
 }
