@@ -7,8 +7,14 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 This release merges `KeyboardKit` with `KeyboardKitSwiftUI` and raises the deployment target to `iOS 13`.
 
+SwiftUI support is now a first-class citizen. UIKit support is still around, but will no longer be actively developed.
+
 Although these release notes will aim at covering everything that changes in this major version, some things will most probably be missed. 
 
+
+### New features
+
+* `KeyboardInputViewController` has a new static `shared` instance.
 
 ### Changed behavior
 
