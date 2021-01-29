@@ -10,6 +10,9 @@ import UIKit
 
 extension UIView {
 
+    /**
+     Remove all constraints that are apolied to the view.
+     */
     func removeAllConstraints() {
         var parent = self.superview
 

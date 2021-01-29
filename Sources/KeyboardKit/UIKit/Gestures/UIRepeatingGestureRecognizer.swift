@@ -1,5 +1,5 @@
 //
-//  RepeatingGestureRecognizer.swift
+//  UIRepeatingGestureRecognizer.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-30.
@@ -17,7 +17,7 @@ import UIKit
  This gesture does not cancel any other gestures, so you can
  use it together with taps and long presses.
  */
-open class RepeatingGestureRecognizer: UIGestureRecognizer {
+open class UIRepeatingGestureRecognizer: UIGestureRecognizer {
     
     
     // MARK: - Initialization
@@ -110,7 +110,7 @@ open class RepeatingGestureRecognizer: UIGestureRecognizer {
 
 // MARK: - Private Functions
 
-private extension RepeatingGestureRecognizer {
+private extension UIRepeatingGestureRecognizer {
     
     func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: repeatInterval, repeats: true) { [weak self] timer in
@@ -123,7 +123,7 @@ private extension RepeatingGestureRecognizer {
 
 // MARK: - UIGestureRecognizerDelegate
 
-extension RepeatingGestureRecognizer: UIGestureRecognizerDelegate {
+extension UIRepeatingGestureRecognizer: UIGestureRecognizerDelegate {
     
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true

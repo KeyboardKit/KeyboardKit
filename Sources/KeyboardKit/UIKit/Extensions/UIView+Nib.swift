@@ -6,13 +6,12 @@
 //  Copyright © 2016 Daniel Saidi. All rights reserved.
 //
 
-/*
+import UIKit
+
+/**
  This extension can create view instances from nibs. It uses
  the view's class name and bundle by default.
  */
-
-import UIKit
-
 public extension UIView {
     
     /**

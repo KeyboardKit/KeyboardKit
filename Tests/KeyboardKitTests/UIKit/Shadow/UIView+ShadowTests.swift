@@ -19,7 +19,7 @@ class UIView_ShadowTests: QuickSpec {
             
             it("applies shadow properties") {
                 let view = UIView()
-                let shadow = Shadow.test()
+                let shadow = UIShadow.test()
                 let layer = view.layer
                 view.applyShadow(shadow)
                 expect(layer.shadowColor).to(equal(shadow.color.cgColor))
@@ -31,7 +31,7 @@ class UIView_ShadowTests: QuickSpec {
             
             it("applies behavior properties") {
                 let view = UIView()
-                let shadow = Shadow.test()
+                let shadow = UIShadow.test()
                 let layer = view.layer
                 view.applyShadow(shadow)
                 expect(layer.shouldRasterize).to(beTrue())
@@ -40,7 +40,7 @@ class UIView_ShadowTests: QuickSpec {
             
             it("does not apply shadow path if spread is zero") {
                 let view = UIView()
-                let shadow = Shadow.test(spread: 0)
+                let shadow = UIShadow.test(spread: 0)
                 let layer = view.layer
                 view.applyShadow(shadow)
                 expect(layer.shadowPath).toNot(beNil())
@@ -48,7 +48,7 @@ class UIView_ShadowTests: QuickSpec {
             
             it("applies shadow path if spread is not zero") {
                 let view = UIView()
-                let shadow = Shadow.test(spread: 0.5)
+                let shadow = UIShadow.test(spread: 0.5)
                 let layer = view.layer
                 view.applyShadow(shadow)
                 expect(layer.shadowPath).toNot(beNil())
@@ -57,10 +57,10 @@ class UIView_ShadowTests: QuickSpec {
     }
 }
 
-private extension Shadow {
+private extension UIShadow {
     
-    static func test(spread: CGFloat = 0.8) -> Shadow {
-        return Shadow(
+    static func test(spread: CGFloat = 0.8) -> UIShadow {
+        return UIShadow(
             alpha: 0.75,
             blur: 0.123,
             color: .red,

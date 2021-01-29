@@ -131,7 +131,7 @@ class RepeatingGestureRecognizerTests: QuickSpec {
     }
 }
 
-private class TestClass: RepeatingGestureRecognizer, Mockable {
+private class TestClass: UIRepeatingGestureRecognizer, Mockable {
     
     lazy var startGestureRef = MockReference(startGesture)
     lazy var stopGestureRef = MockReference(stopGesture)

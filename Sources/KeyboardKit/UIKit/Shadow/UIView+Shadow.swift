@@ -13,7 +13,7 @@ public extension UIView {
     /**
      Apply a certain drop shadow effect.
      */
-    func applyShadow(_ shadow: Shadow) {
+    func applyShadow(_ shadow: UIShadow) {
         layer.applyShadow(
             color: shadow.color,
             alpha: shadow.alpha,

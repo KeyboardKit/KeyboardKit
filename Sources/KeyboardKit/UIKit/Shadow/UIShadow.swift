@@ -1,5 +1,5 @@
 //
-//  Shadow.swift
+//  UIShadow.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-19.
@@ -12,7 +12,7 @@ import UIKit
  This struct can be used together with the shadow extensions,
  to apply a shadow effect to a view.
  */
-public struct Shadow {
+public struct UIShadow {
     
     public init(
         alpha: Float,
@@ -39,15 +39,15 @@ public struct Shadow {
     /**
      The standard button shadow that replicates the iOS one.
      */
-    public static var standardButtonShadow: Shadow {
-        Shadow(alpha: 0.5, blur: 0.0, spread: 0, x: 0, y: 1)
+    public static var standardButtonShadow: UIShadow {
+        UIShadow(alpha: 0.5, blur: 0.0, spread: 0, x: 0, y: 1)
     }
 
-    public static var standardButtonShadowDark: Shadow {
-        Shadow(alpha: 0.5, blur: 0.0, spread: 0, x: 0, y: 1)
+    public static var standardButtonShadowDark: UIShadow {
+        UIShadow(alpha: 0.5, blur: 0.0, spread: 0, x: 0, y: 1)
     }
 
-    public static var standardButtonShadowLight: Shadow {
-        Shadow(alpha: 0.35, blur: 0.0, spread: 0, x: 0, y: 1)
+    public static var standardButtonShadowLight: UIShadow {
+        UIShadow(alpha: 0.35, blur: 0.0, spread: 0, x: 0, y: 1)
     }
 }

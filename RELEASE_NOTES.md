@@ -64,6 +64,8 @@ To avoid it blocking any SwiftUI naming conventions, types in the `UIKit` folder
 * `KeyboardToolbarComponent` -> `UIKeyboardToolbarComponent`
 * `KeyboardStackViewComponent` -> `UIKeyboardStackViewComponent`
 * `PagedKeyboardComponent` -> `UIPagedKeyboardComponent`
+* `RepeatingGestureRecognizer` -> `UIRepeatingGestureRecognizer`
+* `Shadow` -> `UIShadow`
 * `ToastAlert` -> `UIKeyboardToastAlert`
 * `VerticalKeyboardComponent` -> `UIVerticalKeyboardComponent`
 
