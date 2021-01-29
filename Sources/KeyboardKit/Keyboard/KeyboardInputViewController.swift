@@ -69,16 +69,21 @@ open class KeyboardInputViewController: UIInputViewController {
     
     // MARK: - Properties
     
+    /**
+     The shared input view controller. This is registered as
+     the keyboard extension is started.
+     */
     public static var shared: KeyboardInputViewController!
+    
+    /**
+     The keyboard action handler used by the
+     */
+    public lazy var keyboardActionHandler = StandardKeyboardActionHandler(inputViewController: self)
     
     /**
      This context provides keyboard-specific information.
      */
-    public lazy var context = ObservableKeyboardContext(
-        controller: self,
-        actionHandler: StandardKeyboardActionHandler(inputViewController: self),
-        keyboardType: .alphabetic(.lowercased)
-    )
+    public lazy var context = ObservableKeyboardContext(controller: self, actionHandler: keyboardActionHandler, keyboardType: .alphabetic(.lowercased))
     
     
     // MARK: - View Properties

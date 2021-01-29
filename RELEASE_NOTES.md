@@ -15,6 +15,7 @@ Although these release notes will aim at covering everything that changes in thi
 ### New features
 
 * `KeyboardInputViewController` has a new static `shared` instance.
+* `KeyboardInputViewController` has a new `keyboardActionHandler`.
 
 
 ### Changed behavior
@@ -24,10 +25,11 @@ Although these release notes will aim at covering everything that changes in thi
 * `AutocompleteToolbar` now takes suggestions at init and doesn't require an environment injected `ObservableAutocompleteContext`. 
 * `AutocompleteToolbar` no longer requires an environment injected `ObservableKeyboardContext`, nor does its builder functions. 
 * `KeyboardAction.emojiCategory` no longer has a  standard tap action.
-* `KeyboardInputViewController` `context` is now an `ObservableKeyboardContext`. 
+* `KeyboardInputViewController` `context` is now an `ObservableKeyboardContext`.
+* `KeyboardInputViewController` `context` is now called `keyboardContext`. 
 
 
-### Removed functionality
+### Removed/renamed
 
 * All previews deprecations have been removed in this version.
 * `KeyboardActionRow` - it's just confusing to have two typaliases for the same thing.
