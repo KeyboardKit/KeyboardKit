@@ -66,7 +66,7 @@ class VerticalKeyboardComponentTests: QuickSpec {
     }
 }
 
-private class TestClass: UIView, VerticalKeyboardComponent {
+private class TestClass: UIView, UIVerticalKeyboardComponent {
     
     var heightConstraint: NSLayoutConstraint?
     

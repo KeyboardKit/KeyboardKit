@@ -73,7 +73,7 @@ class PagedKeyboardComponentTests: QuickSpec {
 }
 
 
-private class TestClass: UIView, PagedKeyboardComponent {
+private class TestClass: UIView, UIPagedKeyboardComponent {
     
     var id: String { return "test" }
     var canPersistPageIndex = false

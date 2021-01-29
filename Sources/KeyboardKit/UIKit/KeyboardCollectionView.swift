@@ -18,7 +18,7 @@ import UIKit
  * `KeyboardButtonCollectionView` displays single buttons
  * `KeyboardButtonRowCollectionView` displays button rows
  */
-open class KeyboardCollectionView: UICollectionView, KeyboardStackViewComponent, UICollectionViewDataSource {
+open class KeyboardCollectionView: UICollectionView, UIKeyboardStackViewComponent, UICollectionViewDataSource {
     
     
     // MARK: - Initialization

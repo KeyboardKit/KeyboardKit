@@ -15,7 +15,7 @@ import UIKit
  For convenience, you can use `UIKeyboardButtonView` instead
  of implementing this protocol from scratch.
  */
-public protocol UIKeyboardButton: KeyboardButtonRowComponent {
+public protocol UIKeyboardButton: UIKeyboardButtonRowComponent {
     
     var action: KeyboardAction { get }
     var secondaryAction: KeyboardAction? { get }

@@ -54,10 +54,18 @@ To avoid it blocking any SwiftUI naming conventions, types in the `UIKit` folder
 * `AutocompleteToolbarLabel` -> `UIAutocompleteToolbarLabel`
 * `AutocompleteToolbarSeparator` -> `UIAutocompleteToolbarSeparator`
 * `AutocompleteToolbarView` -> `UIAutocompleteToolbar`
+* `HorizontalKeyboardComponent` -> `UIHorizontalKeyboardComponent`
 * `KeyboardAlert` -> `UIKeyboardAlert`
 * `KeyboardButton` -> `UIKeyboardButton`
+* `KeyboardButtonCollectionView` -> `UIKeyboardButtonCollectionView`
+* `KeyboardButtonRowCollectionView` -> `UIKeyboardButtonRowCollectionView`
 * `KeyboardButtonView` -> `UIKeyboardButtonView`
+* `KeyboardButtonRowComponent` -> `UIKeyboardButtonRowComponent`
+* `KeyboardToolbarComponent` -> `UIKeyboardToolbarComponent`
+* `KeyboardStackViewComponent` -> `UIKeyboardStackViewComponent`
+* `PagedKeyboardComponent` -> `UIPagedKeyboardComponent`
 * `ToastAlert` -> `UIKeyboardToastAlert`
+* `VerticalKeyboardComponent` -> `UIVerticalKeyboardComponent`
 
 
 

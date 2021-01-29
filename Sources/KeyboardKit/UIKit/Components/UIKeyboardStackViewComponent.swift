@@ -1,5 +1,5 @@
 //
-//  KeyboardComponent.swift
+//  UIKeyboardStackViewComponent.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-04-28.
@@ -13,4 +13,4 @@ import UIKit
  to your `KeyboardInputViewController`'s `keyboardStackView`.
  Some examples are button rows, toolbars etc.
  */
-public protocol KeyboardStackViewComponent: VerticalKeyboardComponent {}
+public protocol UIKeyboardStackViewComponent: UIVerticalKeyboardComponent {}

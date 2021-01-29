@@ -1,5 +1,5 @@
 //
-//  VerticalKeyboardComponent.swift
+//  UIVerticalKeyboardComponent.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-20.
@@ -16,12 +16,12 @@ import UIKit
  You can set a custom `height` for this component. If you do
  not, it will use its intrinsic content size.
  */
-public protocol VerticalKeyboardComponent: UIView {
+public protocol UIVerticalKeyboardComponent: UIView {
     
     var heightConstraint: NSLayoutConstraint? { get set }
 }
 
-public extension VerticalKeyboardComponent {
+public extension UIVerticalKeyboardComponent {
     
     /**
      This property gets/sets the constant of the component's
@@ -33,7 +33,7 @@ public extension VerticalKeyboardComponent {
     }
 }
 
-private extension VerticalKeyboardComponent {
+private extension UIVerticalKeyboardComponent {
     
     func setHeight(to height: CGFloat) {
         heightConstraint = heightConstraint ?? heightAnchor.constraint(equalToConstant: height)

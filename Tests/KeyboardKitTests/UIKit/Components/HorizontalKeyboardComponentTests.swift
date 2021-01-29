@@ -67,7 +67,7 @@ class HorizontalKeyboardComponentTests: QuickSpec {
     }
 }
 
-private class TestClass: UIView, HorizontalKeyboardComponent {
+private class TestClass: UIView, UIHorizontalKeyboardComponent {
     
     var widthConstraint: NSLayoutConstraint?
     

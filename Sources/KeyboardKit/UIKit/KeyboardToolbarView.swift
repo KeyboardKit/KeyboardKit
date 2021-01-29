@@ -16,7 +16,7 @@ import UIKit
  has a horizontal stack view that can be used to contain any
  views that you want the toolbar to present.
  */
-open class KeyboardToolbarView: UIView, KeyboardStackViewComponent {
+open class KeyboardToolbarView: UIView, UIKeyboardStackViewComponent {
     
     public init(
         height: CGFloat = .standardKeyboardRowHeight(),

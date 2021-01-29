@@ -1,5 +1,5 @@
 //
-//  PagedKeyboardPresenter.swift
+//  UIPagedKeyboardComponent.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-04-23.
@@ -14,7 +14,7 @@ import UIKit
  
  It provides ways to persist page index, using user defaults.
  */
-public protocol PagedKeyboardComponent: UIView {
+public protocol UIPagedKeyboardComponent: UIView {
 
     var id: String { get }
     
@@ -24,12 +24,12 @@ public protocol PagedKeyboardComponent: UIView {
     var numberOfPages: Int { get }
 }
 
-extension PagedKeyboardComponent {
+extension UIPagedKeyboardComponent {
     
-    var settingsKey: String { "com.keyboardkit.PagedKeyboardComponent.currentpage" }
+    var settingsKey: String { "com.keyboardkit.UIPagedKeyboardComponent.\(id).currentpage" }
 }
 
-public extension PagedKeyboardComponent {
+public extension UIPagedKeyboardComponent {
     
     var persistedCurrentPageIndex: Int {
         defaults.integer(forKey: settingsKey)
@@ -49,7 +49,7 @@ public extension PagedKeyboardComponent {
     }
 }
 
-private extension PagedKeyboardComponent {
+private extension UIPagedKeyboardComponent {
     
     var defaults: UserDefaults { .standard }
 }

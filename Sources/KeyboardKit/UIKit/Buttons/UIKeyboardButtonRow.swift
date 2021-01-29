@@ -12,7 +12,7 @@ import UIKit
  This view presents buttons in horizontal rows. The provided
  `buttonCreator` function maps each action to a view.
  */
-open class UIKeyboardButtonRow: UIView, KeyboardStackViewComponent {
+open class UIKeyboardButtonRow: UIView, UIKeyboardStackViewComponent {
     
     public convenience init(
         actions: KeyboardActions,

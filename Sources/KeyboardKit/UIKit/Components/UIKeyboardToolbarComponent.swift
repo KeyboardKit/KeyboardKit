@@ -1,5 +1,5 @@
 //
-//  KeyboardToolbarComponent.swift
+//  UIKeyboardToolbarComponent.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-20.
@@ -12,4 +12,4 @@ import UIKit
  Toolbar components are view components that can be added to
  a keyboard toolbar toolbar.
  */
-public protocol KeyboardToolbarComponent: HorizontalKeyboardComponent {}
+public protocol UIKeyboardToolbarComponent: UIHorizontalKeyboardComponent {}

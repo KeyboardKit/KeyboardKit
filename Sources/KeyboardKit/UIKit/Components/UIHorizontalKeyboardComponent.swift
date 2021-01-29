@@ -1,5 +1,5 @@
 //
-//  HorizontalKeyboardComponent.swift
+//  UIHorizontalKeyboardComponent.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-20.
@@ -15,12 +15,12 @@ import UIKit
  If a stack view uses another distribution than `fillEqually`,
  you must specify a `width` for each row component.
  */
-public protocol HorizontalKeyboardComponent: UIView {
+public protocol UIHorizontalKeyboardComponent: UIView {
     
     var widthConstraint: NSLayoutConstraint? { get set }
 }
 
-public extension HorizontalKeyboardComponent {
+public extension UIHorizontalKeyboardComponent {
     
     /**
      This property gets/sets the constant of the component's
@@ -32,7 +32,7 @@ public extension HorizontalKeyboardComponent {
     }
 }
 
-private extension HorizontalKeyboardComponent {
+private extension UIHorizontalKeyboardComponent {
     
     func setWidth(to width: CGFloat) {
         widthConstraint = widthConstraint ?? widthAnchor.constraint(equalToConstant: width)
