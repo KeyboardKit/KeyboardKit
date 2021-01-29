@@ -16,7 +16,6 @@ class MockKeyboardContext: KeyboardContext {
     var device: UIDevice = .current
     
     var actionHandler: KeyboardActionHandler = MockKeyboardActionHandler()
-    var keyboardAppearanceProvider: KeyboardAppearanceProvider = StandardKeyboardAppearanceProvider()
     var keyboardInputSetProvider: KeyboardInputSetProvider = StaticKeyboardInputSetProvider.empty
     var keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider()
     var secondaryCalloutActionProvider: SecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider()

@@ -22,7 +22,6 @@ import SwiftUI
 public protocol KeyboardContext: AnyObject {
     
     var actionHandler: KeyboardActionHandler { get set }
-    var keyboardAppearanceProvider: KeyboardAppearanceProvider { get set }
     var keyboardInputSetProvider: KeyboardInputSetProvider { get set }
     var keyboardLayoutProvider: KeyboardLayoutProvider { get set }
     

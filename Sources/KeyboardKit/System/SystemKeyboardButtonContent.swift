@@ -17,17 +17,19 @@ public struct SystemKeyboardButtonContent: View {
     
     public init(
         action: KeyboardAction,
+        appearance: KeyboardAppearanceProvider = keyboardInputViewController.keyboardAppearanceProvider,
         text: String? = nil,
         image: Image? = nil) {
+        self.appearance = appearance
         self.action = action
         self.text = text
         self.image = image
     }
     
+    private let appearance: KeyboardAppearanceProvider
     private let action: KeyboardAction
     private let image: Image?
     private let text: String?
-    private var appearance: KeyboardAppearanceProvider { context.keyboardAppearanceProvider }
     
     @EnvironmentObject var context: ObservableKeyboardContext
     

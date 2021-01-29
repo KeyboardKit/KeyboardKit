@@ -16,6 +16,7 @@ Although these release notes will aim at covering everything that changes in thi
 
 * `KeyboardInputViewController` has a new static `shared` instance.
 * `KeyboardInputViewController` has a new `keyboardActionHandler`.
+* `KeyboardInputViewController` has a new `keyboardAppearanceProvider`.
 * `KeyboardInputViewController` has a new `keyboardBehavior`.
 * `View` has new `keyboardInputViewController` convenience extensions.
 
@@ -36,7 +37,8 @@ Although these release notes will aim at covering everything that changes in thi
 
 * All previews deprecations have been removed in this version.
 * `KeyboardActionRow` - has been removed, since it's confusing to have two aliases for the same thing.
-* `KeyboardContext` `keyboardBehavior` is moved out to the input vc.
+* `KeyboardContext` `keyboardAppearanceProvider` has been moved to the input vc.
+* `KeyboardContext` `keyboardBehavior` has been moved to the input vc.
 * `KeyboardInputViewController` `addKeyboardGestures` has been converted to `KeyboardButton+Gestures`.
 * `PhotosImageService` and `StandardPhotosImageService` have been removed.
 * `Settings` has been entirely removed.
