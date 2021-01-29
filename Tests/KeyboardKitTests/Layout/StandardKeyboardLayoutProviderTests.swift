@@ -17,6 +17,7 @@ class StandardKeyboardLayoutProviderTests: QuickSpec {
         
         describe("standard keyboard input set provider") {
             
+            var inputSet: AlphabeticKeyboardInputSet!
             var provider: StandardKeyboardLayoutProvider!
             var context: MockKeyboardContext!
             var rows: KeyboardActionRows!
@@ -26,7 +27,8 @@ class StandardKeyboardLayoutProviderTests: QuickSpec {
                     leftSpaceAction: .done,
                     rightSpaceAction: .escape)
                 context = MockKeyboardContext()
-                rows = KeyboardActionRows(characters: KeyboardInputSet.alphabetic_en.inputRows)
+                inputSet = EnglishKeyboardInputSetProvider().alphabeticInputSet(for: context)
+                rows = KeyboardActionRows(characters: inputSet.inputRows)
             }
             
             func verifyStandardPhoneResult(_ result: KeyboardActionRows) {

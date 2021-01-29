@@ -14,6 +14,7 @@ Although these release notes will aim at covering everything that changes in thi
 
 ### New features
 
+* `KeyboardInputSetProvider` has new locale-specific implementations under `Input/Providers`.
 * `KeyboardInputViewController` has a new static `shared` instance.
 * `KeyboardInputViewController` has a new `keyboardActionHandler`.
 * `KeyboardInputViewController` has a new `keyboardAppearance`.
@@ -40,6 +41,7 @@ Although these release notes will aim at covering everything that changes in thi
 * `KeyboardAppearanceProvider` has been renamed to `KeyboardAppearance`.
 * `KeyboardContext` `keyboardAppearanceProvider` has been moved to the input vc.
 * `KeyboardContext` `keyboardBehavior` has been moved to the input vc.
+* `KeyboardInputSet` locale extensions have been converted to separate providers.
 * `KeyboardInputViewController` `addKeyboardGestures` has been converted to `KeyboardButton+Gestures`.
 * `KeyboardInputViewController+Gestures` has been converted to `KeyboardButton+Gestures`.
 * `PhotosImageService` and `StandardPhotosImageService` have been removed.

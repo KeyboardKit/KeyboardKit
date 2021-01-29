@@ -10,7 +10,7 @@ import Foundation
 
 /**
  This keyboard input set provider returns the input set that
- it is initialized with, regardless of the provided context.
+ it was initialized with, regardless of the provided context.
  */
 public class StaticKeyboardInputSetProvider: KeyboardInputSetProvider {
     

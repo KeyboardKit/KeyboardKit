@@ -10,7 +10,7 @@ import Foundation
 
 /**
  This protocol can be implemented by classes that can return
- input sets, e.g. for the keyboard extension's current state.
+ input sets for the keyboard extension context.
  
  KeyboardKit registers a standard protocol implementation in
  the keyboard context when the extension is started. You can
