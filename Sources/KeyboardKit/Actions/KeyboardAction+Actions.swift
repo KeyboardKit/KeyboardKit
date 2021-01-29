@@ -50,47 +50,23 @@ public extension KeyboardAction {
      this action is triggered with a tap.
      */
     var standardTapAction: GestureAction? {
-        if let action = standardTapActionForController { return action }
-        if let action = standardTapActionForProxy { return { action($0?.textDocumentProxy) } }
-        return nil
-    }
-    
-    /**
-     The standard action, if any, that should be executed on
-     an input view controller, when this action is triggered
-     with a tap.
-     */
-    @available(*, deprecated, message: "Tap actions should be gathered in one single place")
-    var standardTapActionForController: InputViewControllerAction? {
         switch self {
+        case .backspace: return { $0?.textDocumentProxy.deleteBackward() }
+        case .character(let char): return { $0?.textDocumentProxy.insertText(char) }
         case .dismissKeyboard: return { $0?.dismissKeyboard() }
+        case .emoji(let char): return { $0?.textDocumentProxy.insertText(char) }
         case .keyboardType(let type): return { $0?.changeKeyboardType(to: type) }
+        case .moveCursorBackward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: -1) }
+        case .moveCursorForward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: 1) }
+        case .newLine: return { $0?.textDocumentProxy.insertText("\n") }
         case .shift(let currentState): return {
             switch currentState {
             case .lowercased: $0?.changeKeyboardType(to: .alphabetic(.uppercased))
             case .uppercased: $0?.changeKeyboardType(to: .alphabetic(.lowercased))
             case .capsLocked: $0?.changeKeyboardType(to: .alphabetic(.lowercased))
             }}
-        default: return nil
-        }
-    }
-    
-    /**
-     The standard action, if any, that should be executed on
-     a text document proxy when the action is triggered with
-     a tap.
-     */
-    @available(*, deprecated, message: "Tap actions should be gathered in one single place")
-    var standardTapActionForProxy: TextDocumentProxyAction? {
-        switch self {
-        case .backspace: return { $0?.deleteBackward() }
-        case .character(let char): return { $0?.insertText(char) }
-        case .emoji(let char): return { $0?.insertText(char) }
-        case .moveCursorBackward: return { $0?.adjustTextPosition(byCharacterOffset: -1) }
-        case .moveCursorForward: return { $0?.adjustTextPosition(byCharacterOffset: 1) }
-        case .newLine: return { $0?.insertText("\n") }
-        case .space: return { $0?.insertText(" ") }
-        case .tab: return { $0?.insertText("\t") }
+        case .space: return { $0?.textDocumentProxy.insertText(" ") }
+        case .tab: return { $0?.textDocumentProxy.insertText("\t") }
         default: return nil
         }
     }
