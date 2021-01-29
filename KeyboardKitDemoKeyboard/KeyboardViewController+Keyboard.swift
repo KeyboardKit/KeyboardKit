@@ -44,7 +44,7 @@ extension KeyboardViewController {
     
     func setupImageKeyboard() {
         let keyboard = ImageKeyboard(in: self)
-        let view = KeyboardButtonRowCollectionView(actions: keyboard.actions, configuration: keyboard.gridConfig) { [unowned self] in return self.button(for: $0) }
+        let view = UIKeyboardButtonRowCollectionView(actions: keyboard.actions, configuration: keyboard.gridConfig) { [unowned self] in return self.button(for: $0) }
         let bottom = buttonRow(for: keyboard.bottomActions, distribution: .fillProportionally)
         keyboardStackView.addArrangedSubview(view)
         keyboardStackView.addArrangedSubview(bottom)
@@ -62,14 +62,14 @@ extension KeyboardViewController {
 private extension KeyboardViewController {
     
     func button(for action: KeyboardAction, distribution: UIStackView.Distribution = .equalSpacing) -> UIView {
-        if action == .none { return KeyboardSpacerView(width: 10) }
+        if action == .none { return UIKeyboardSpacerView(width: 10) }
         let view = DemoButton.fromNib(owner: self)
         view.setup(with: action, in: self, distribution: distribution)
         return view
     }
     
     func buttonRow(for row: KeyboardActions, index: Int = 0, distribution: UIStackView.Distribution) -> UIView {
-        KeyboardButtonRow(actions: row, distribution: distribution) {
+        UIKeyboardButtonRow(actions: row, distribution: distribution) {
             button(for: $0, distribution: distribution)
         }
     }

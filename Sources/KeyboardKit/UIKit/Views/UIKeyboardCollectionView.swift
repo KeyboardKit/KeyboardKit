@@ -1,5 +1,5 @@
 //
-//  KeyboardCollectionView.swift
+//  UIKeyboardCollectionView.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-04-23.
@@ -15,10 +15,10 @@ import UIKit
  This class must be subclassed, since it returns empty cells
  for each action. `KeyboardKit` has two built-in subclasses:
  
- * `KeyboardButtonCollectionView` displays single buttons
- * `KeyboardButtonRowCollectionView` displays button rows
+ * `UIKeyboardButtonCollectionView` displays single buttons
+ * `UIKeyboardButtonRowCollectionView` displays button rows
  */
-open class KeyboardCollectionView: UICollectionView, UIKeyboardStackViewComponent, UICollectionViewDataSource {
+open class UIKeyboardCollectionView: UICollectionView, UIKeyboardStackViewComponent, UICollectionViewDataSource {
     
     
     // MARK: - Initialization

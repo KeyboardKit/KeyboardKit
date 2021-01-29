@@ -22,7 +22,7 @@ import UIKit
  than `KeyboardCollectionView` since it recreates the button
  views each time a cell is reused.
  */
-open class UIKeyboardButtonCollectionView: KeyboardCollectionView {
+open class UIKeyboardButtonCollectionView: UIKeyboardCollectionView {
     
     
     // MARK: - Initialization

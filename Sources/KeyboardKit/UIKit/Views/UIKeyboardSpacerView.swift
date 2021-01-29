@@ -1,5 +1,5 @@
 //
-//  KeyboardSpacerView.swift
+//  UIKeyboardSpacerView.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-07.
@@ -14,7 +14,7 @@ import UIKit
  You could for instance map `.none` actions to this view, to
  let you declare "spaces" in your action collections.
  */
-open class KeyboardSpacerView: UIView, UIKeyboardButtonRowComponent {
+open class UIKeyboardSpacerView: UIView, UIKeyboardButtonRowComponent {
     
     public convenience init(width: CGFloat) {
         self.init(frame: .zero)

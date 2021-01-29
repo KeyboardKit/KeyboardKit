@@ -1,5 +1,5 @@
 //
-//  KeyboardToolbarView.swift
+//  UIKeyboardToolbarView.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-20.
@@ -16,7 +16,7 @@ import UIKit
  has a horizontal stack view that can be used to contain any
  views that you want the toolbar to present.
  */
-open class KeyboardToolbarView: UIView, UIKeyboardStackViewComponent {
+open class UIKeyboardToolbarView: UIView, UIKeyboardStackViewComponent {
     
     public init(
         height: CGFloat = .standardKeyboardRowHeight(),

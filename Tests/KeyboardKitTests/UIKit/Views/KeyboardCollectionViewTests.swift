@@ -82,7 +82,7 @@ class KeyboardCollectionViewTests: QuickSpec {
     }
 }
 
-private class TestClass: KeyboardCollectionView, Mockable {
+private class TestClass: UIKeyboardCollectionView, Mockable {
     
     lazy var reloadDataRef = MockReference(reloadData)
     

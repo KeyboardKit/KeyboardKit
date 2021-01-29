@@ -14,10 +14,10 @@ class KeyboardToolbarViewTests: QuickSpec {
     
     override func spec() {
         
-        var view: KeyboardToolbarView!
+        var view: UIKeyboardToolbarView!
         
         beforeEach {
-            view = KeyboardToolbarView(height: 123)
+            view = UIKeyboardToolbarView(height: 123)
         }
         
         describe("created instance") {
@@ -34,7 +34,7 @@ class KeyboardToolbarViewTests: QuickSpec {
             }
             
             it("can use custom stackview config") {
-                view = KeyboardToolbarView(height: 123, alignment: .center, distribution: .equalCentering)
+                view = UIKeyboardToolbarView(height: 123, alignment: .center, distribution: .equalCentering)
                 expect(view.stackView.alignment).to(equal(.center))
                 expect(view.stackView.distribution).to(equal(.equalCentering))
             }

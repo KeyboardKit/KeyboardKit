@@ -14,10 +14,10 @@ class KeyboardSpacerViewTests: QuickSpec {
     
     override func spec() {
         
-        var view: KeyboardSpacerView!
+        var view: UIKeyboardSpacerView!
         
         beforeEach {
-            view = KeyboardSpacerView(width: 123)
+            view = UIKeyboardSpacerView(width: 123)
         }
         
         describe("created instance") {

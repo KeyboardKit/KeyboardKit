@@ -12,7 +12,7 @@ struct EmojiKeyboard: DemoKeyboard {
         let isLandscape = viewController.deviceOrientation.isLandscape
         let rowsPerPage = isLandscape ? 3 : 5
         let buttonsPerRow = isLandscape ? 10 : 8
-        gridConfig = KeyboardButtonRowCollectionView.Configuration(
+        gridConfig = UIKeyboardButtonRowCollectionView.Configuration(
             rowHeight: 40,
             rowsPerPage: rowsPerPage,
             buttonsPerRow: buttonsPerRow
@@ -26,7 +26,7 @@ struct EmojiKeyboard: DemoKeyboard {
     let actionCategories: [(EmojiCategory, KeyboardAction)]
     let bottomActions: KeyboardActions
     let categories = EmojiCategory.all
-    let gridConfig: KeyboardButtonRowCollectionView.Configuration
+    let gridConfig: UIKeyboardButtonRowCollectionView.Configuration
     
     private var emoji: [KeyboardAction] = []
     
@@ -50,7 +50,7 @@ struct EmojiKeyboard: DemoKeyboard {
 
 private extension EmojiKeyboard {
     
-    static func createActions(for categories: [EmojiCategory], config: KeyboardButtonRowCollectionView.Configuration) -> [KeyboardAction] {
+    static func createActions(for categories: [EmojiCategory], config: UIKeyboardButtonRowCollectionView.Configuration) -> [KeyboardAction] {
         categories
             .flatMap { $0.emojiActions }
             .rearrangedForCollectionView(withConfig: config)
@@ -85,7 +85,7 @@ private extension Array where Element == KeyboardAction {
      3   6   9
      ```
      */
-    func rearrangedForCollectionView(withConfig config: KeyboardButtonRowCollectionView.Configuration) -> [KeyboardAction] {
+    func rearrangedForCollectionView(withConfig config: UIKeyboardButtonRowCollectionView.Configuration) -> [KeyboardAction] {
         var result: [KeyboardAction] = []
         let pageSize = config.pageSize
         let evened = self.evened(for: pageSize)

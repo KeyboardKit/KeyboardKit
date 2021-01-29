@@ -8,7 +8,7 @@
 import KeyboardKit
 import UIKit
 
-open class HFloatingHeaderButtonCollectionView: KeyboardCollectionView, HorizontalFloatingHeaderLayoutDelegate, UICollectionViewDelegate {
+open class HFloatingHeaderButtonCollectionView: UIKeyboardCollectionView, HorizontalFloatingHeaderLayoutDelegate, UICollectionViewDelegate {
     
     
     // MARK: - Initialization

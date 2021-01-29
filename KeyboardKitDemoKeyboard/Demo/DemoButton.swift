@@ -14,7 +14,7 @@ import KeyboardKit
  like the one used in the iOS system keyboard. The file also
  contains `KeyboardAction` extensions used by this class.
  */
-class DemoButton: KeyboardButtonView {
+class DemoButton: UIKeyboardButtonView {
     
     
     // MARK: - Setup

@@ -87,7 +87,7 @@ class KeyboardViewController: KeyboardInputViewController {
     
     // MARK: - Properties
     
-    let alerter = ToastAlert()
+    let alerter = UIKeyboardToastAlert()
     var emojiKeyboard: EnhancedEmojiKeyboard?
     var emojiCategoryTitleLabel = UILabel()
     var emojiCollectionView: HFloatingHeaderButtonCollectionView!
@@ -98,8 +98,8 @@ class KeyboardViewController: KeyboardInputViewController {
     
     lazy var autocompleteProvider = DemoAutocompleteSuggestionProvider()
     
-    lazy var autocompleteToolbar: AutocompleteToolbarView = {
-        AutocompleteToolbarView(textDocumentProxy: textDocumentProxy, height: 50)
+    lazy var autocompleteToolbar: UIAutocompleteToolbar = {
+        UIAutocompleteToolbar(textDocumentProxy: textDocumentProxy, height: 50)
     }()
     
     override func performAutocomplete() {

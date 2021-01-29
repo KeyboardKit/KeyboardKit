@@ -47,13 +47,13 @@ Although these release notes will aim at covering everything that changes in thi
 
 ### UIKit changes
 
-In this version, `UIKit` support becomes a second class citizen.
+In this version, `UIKit` is replaced by `SwiftUI` as the primary layout engine.
 
-To avoid it blocking any SwiftUI naming conventions, types in the `UIKit` folder will be renamed to start with `UI`:
+As such, to avoid `UIKit` parts blocking SwiftUI, types in the `UIKit` folder will be renamed to start with `UI`:
 
 * `AutocompleteToolbarLabel` -> `UIAutocompleteToolbarLabel`
 * `AutocompleteToolbarSeparator` -> `UIAutocompleteToolbarSeparator`
-* `AutocompleteToolbarView` -> `UIAutocompleteToolbar`
+* `AutocompleteToolbarView` -> `UIAutocompleteToolbar` (OBS! Name change as well.)
 * `HorizontalKeyboardComponent` -> `UIHorizontalKeyboardComponent`
 * `KeyboardAlert` -> `UIKeyboardAlert`
 * `KeyboardButton` -> `UIKeyboardButton`
@@ -61,19 +61,22 @@ To avoid it blocking any SwiftUI naming conventions, types in the `UIKit` folder
 * `KeyboardButtonRowCollectionView` -> `UIKeyboardButtonRowCollectionView`
 * `KeyboardButtonView` -> `UIKeyboardButtonView`
 * `KeyboardButtonRowComponent` -> `UIKeyboardButtonRowComponent`
+* `KeyboardCollectionView` -> `UIKeyboardCollectionView`
 * `KeyboardToolbarComponent` -> `UIKeyboardToolbarComponent`
+* `KeyboardToolbarView` -> `UIKeyboardToolbarView`
+* `KeyboardSpacerView` -> `UIKeyboardSpacerView`
 * `KeyboardStackViewComponent` -> `UIKeyboardStackViewComponent`
 * `PagedKeyboardComponent` -> `UIPagedKeyboardComponent`
 * `RepeatingGestureRecognizer` -> `UIRepeatingGestureRecognizer`
 * `Shadow` -> `UIShadow`
-* `ToastAlert` -> `UIKeyboardToastAlert`
+* `ToastAlert` -> `UIKeyboardToastAlert` (OBS! Name change as well.)
 * `VerticalKeyboardComponent` -> `UIVerticalKeyboardComponent`
 
+Their functionality remains intact, however.
 
+There are a new extension as well, as UIKit support moves away from the core layer:
 
-New extensions:
-
-* `UIView+Keyboard` is now used to apply button gestures to a view.
+* `UIView+Keyboard` is now used to apply button gestures to a view, instead of having this functionality in the view controller. 
 
 
 ## 3.6.3

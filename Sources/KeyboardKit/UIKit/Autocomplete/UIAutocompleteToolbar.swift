@@ -24,7 +24,7 @@ import UIKit
  suggestion the space it needs and makes the bar scroll when
  needed. Calling `disableScrolling()` disables this behavior.
  */
-public class UIAutocompleteToolbar: KeyboardToolbarView {
+public class UIAutocompleteToolbar: UIKeyboardToolbarView {
 
     
     // MARK: - Initialization
