@@ -16,7 +16,7 @@ Although these release notes will aim at covering everything that changes in thi
 
 * `KeyboardInputViewController` has a new static `shared` instance.
 * `KeyboardInputViewController` has a new `keyboardActionHandler`.
-* `KeyboardInputViewController` has a new `keyboardAppearanceProvider`.
+* `KeyboardInputViewController` has a new `keyboardAppearance`.
 * `KeyboardInputViewController` has a new `keyboardBehavior`.
 * `View` has new `keyboardInputViewController` convenience extensions.
 
@@ -36,20 +36,22 @@ Although these release notes will aim at covering everything that changes in thi
 ### Removed/renamed
 
 * All previews deprecations have been removed in this version.
-* `KeyboardActionRow` - has been removed, since it's confusing to have two aliases for the same thing.
+* `KeyboardActionRow` has been removed, since it's confusing to have two aliases for the same thing.
+* `KeyboardAppearanceProvider` has been renamed to `KeyboardAppearance`.
 * `KeyboardContext` `keyboardAppearanceProvider` has been moved to the input vc.
 * `KeyboardContext` `keyboardBehavior` has been moved to the input vc.
 * `KeyboardInputViewController` `addKeyboardGestures` has been converted to `KeyboardButton+Gestures`.
+* `KeyboardInputViewController+Gestures` has been converted to `KeyboardButton+Gestures`.
 * `PhotosImageService` and `StandardPhotosImageService` have been removed.
 * `Settings` has been entirely removed.
 * `StandardKeyboardContext` has been replaced by `ObservableKeyboardContext`.
 * `StandardKeyboardActionHandler` gesture actions has been gathered in a single `action(for:on)`.
 * `StandardKeyboardActionHandler` no longer takes an optional sender for keyboard actions.
+* `StandardKeyboardAppearanceProvider` has been renamed to `StandardKeyboardAppearance`.
 * `UIImage+pasteboard` has been moved to the demo.
 * `UIImage+photos` has been moved to the demo.
 * `UIImage+resized` has been removed.
 * `UIImage+tinted` has been removed.
-* `KeyboardInputViewController+Gestures` has been converted to `KeyboardButton+Gestures`.
 * `UIInputViewController+NextKeyboard` has been made an internal extension in `UIView+Keyboard`.
 * `View+ClearInteractable` has been removed.
 * `View` `keyboardAction(...)` has been renamed to `keyboardGestures(for: ...)`

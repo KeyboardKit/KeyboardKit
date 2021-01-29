@@ -1,5 +1,5 @@
 //
-//  DemoKeyboardAppearanceProvider.swift
+//  DemoKeyboardAppearance.swift
 //  KeyboardKitDemo
 //
 //  Created by Daniel Saidi on 2021-01-10.
@@ -10,10 +10,10 @@ import KeyboardKit
 import UIKit
 
 /**
- This provider inherits `StandardKeyboardAppearanceProvider`
- and adds demo-specific functionality to it.
+ This class inherits `StandardKeyboardAppearance` and adds a
+ demo-specific layer on top of it.
  */
-class DemoKeyboardAppearanceProvider: StandardKeyboardAppearanceProvider {
+class DemoKeyboardAppearance: StandardKeyboardAppearance {
     
     override func font(for action: KeyboardAction) -> UIFont {
         switch action {

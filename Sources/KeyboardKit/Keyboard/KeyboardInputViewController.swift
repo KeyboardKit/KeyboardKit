@@ -85,7 +85,7 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      The keyboard appearance provider used by the extension.
      */
-    public lazy var keyboardAppearanceProvider: KeyboardAppearanceProvider = StandardKeyboardAppearanceProvider()
+    public lazy var keyboardAppearance: KeyboardAppearance = StandardKeyboardAppearance()
 
     /**
      The keyboard behavior used by the extension.

@@ -1,5 +1,5 @@
 //
-//  KeyboardAppearanceProvider.swift
+//  KeyboardAppearance.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
@@ -9,15 +9,15 @@
 import UIKit
 
 /**
- This protocol can be implemented by classes or structs that
- can be used to control the appearance of a keyboard.
+ This protocol can be implemented by any classes that can be
+ used to retrieve appearance properties for a keyboard.
  
  KeyboardKit registers a standard protocol implementation in
- the keyboard context when the extension is started. You can
- replace this at any time, by applying a new instance to the
- context's `keyboardAppearanceProvider` property.
+ the input view controller when the extension is started. It
+ can be replaced with a custom implementation by setting the
+ `keyboardAppearance` property.
  */
-public protocol KeyboardAppearanceProvider {
+public protocol KeyboardAppearance {
     
     func font(for action: KeyboardAction) -> UIFont
     func fontWeight(for action: KeyboardAction, context: KeyboardContext) -> UIFont.Weight?

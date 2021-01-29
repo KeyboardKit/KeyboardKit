@@ -17,7 +17,7 @@ public struct SystemKeyboardButtonContent: View {
     
     public init(
         action: KeyboardAction,
-        appearance: KeyboardAppearanceProvider = keyboardInputViewController.keyboardAppearanceProvider,
+        appearance: KeyboardAppearance = keyboardInputViewController.keyboardAppearance,
         text: String? = nil,
         image: Image? = nil) {
         self.appearance = appearance
@@ -26,7 +26,7 @@ public struct SystemKeyboardButtonContent: View {
         self.image = image
     }
     
-    private let appearance: KeyboardAppearanceProvider
+    private let appearance: KeyboardAppearance
     private let action: KeyboardAction
     private let image: Image?
     private let text: String?

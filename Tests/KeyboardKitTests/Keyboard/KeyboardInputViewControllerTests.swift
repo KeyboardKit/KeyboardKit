@@ -99,8 +99,8 @@ class KeyboardInputViewControllerTests: QuickSpec {
         describe("keyboard appearance provider") {
             
             it("is standard behavior by default") {
-                let handler = vc.keyboardAppearanceProvider
-                let standard = handler as? StandardKeyboardAppearanceProvider
+                let handler = vc.keyboardAppearance
+                let standard = handler as? StandardKeyboardAppearance
                 expect(standard).toNot(beNil())
             }
         }

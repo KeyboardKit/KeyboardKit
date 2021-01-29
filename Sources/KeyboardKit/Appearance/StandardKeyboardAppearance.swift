@@ -1,5 +1,5 @@
 //
-//  StandardKeyboardAppearanceProvider.swift
+//  StandardKeyboardAppearance.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
@@ -9,13 +9,13 @@
 import UIKit
 
 /**
- This stnadard keybpard appearance provider just returns the
- standard values that are provided by various extensions.
+ This standard appearance returns a style that mimics native
+ system keyboards.
  
- You can inherit this class and override any implementations
+ You can inherit this class then override any parts you like
  to customize the standard appearance.
  */
-open class StandardKeyboardAppearanceProvider: KeyboardAppearanceProvider {
+open class StandardKeyboardAppearance: KeyboardAppearance {
     
     public init() {}
     
