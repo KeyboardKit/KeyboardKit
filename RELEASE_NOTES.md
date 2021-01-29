@@ -17,6 +17,7 @@ Although these release notes will aim at covering everything that changes in thi
 * `KeyboardInputViewController` has a new static `shared` instance.
 * `KeyboardInputViewController` has a new `keyboardActionHandler`.
 * `KeyboardInputViewController` has a new `keyboardBehavior`.
+* `View` has new `keyboardInputViewController` convenience extensions.
 
 
 ### Changed behavior
