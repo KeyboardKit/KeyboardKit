@@ -14,9 +14,6 @@ import SwiftUI
  
  You can modify the `.standard` style instance to change the
  standard global style of all callout views.
- 
- `IMPORTANT` This is an experimental feature that could have
- breaking changes in any minor release before 4.0.
  */
 public struct CalloutStyle {
     

@@ -16,9 +16,6 @@ import Foundation
  the keyboard context when the extension is started. You can
  replace this at any time, by applying a new instance to the
  context's `keyboardLayoutProvider` property.
- 
- `IMPORTANT` This is a best effort experimental feature that
- can be redesigned at any time before KK 4.0.
  */
 public protocol KeyboardLayoutProvider: AnyObject {
     

@@ -19,9 +19,6 @@ import SwiftUI
  
  You can inherit this class and override any `open` function
  to modify the callout behavior.
- 
- `IMPORTANT` This is an experimental feature that could have
- breaking changes in any minor release before 4.0.
  */
 open class SecondaryInputCalloutContext: ObservableObject {
     

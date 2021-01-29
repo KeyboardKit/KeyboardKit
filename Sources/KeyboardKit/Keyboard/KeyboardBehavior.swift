@@ -12,9 +12,6 @@ import Foundation
  This protocol can be used to specify behavior rules for the
  keyboard. It aims to separate behavior from action handling
  to make the code cleaner and more understandable.
- 
- `IMPORTANT` This is an experimental new feature, that could
- be redesigned in any minor release until 4.0.
  */
 public protocol KeyboardBehavior {
     

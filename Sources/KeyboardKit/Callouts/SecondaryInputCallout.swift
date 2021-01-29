@@ -15,9 +15,6 @@ import SwiftUI
  
  `TODO` This callout bubble currently breaks when wide chars
  are added to it. We should fix this in a later update.
- 
- `IMPORTANT` This is an experimental feature that could have
- breaking changes in any minor release before 4.0.
  */
 public struct SecondaryInputCallout: View {
     

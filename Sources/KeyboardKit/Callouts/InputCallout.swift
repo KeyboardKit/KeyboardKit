@@ -12,9 +12,6 @@ import SwiftUI
  This callout can be used to show the currently typed action
  above the pressed keyboard button. It supports `.character`
  actions and will ignore any other actions.
- 
- `IMPORTANT` This is an experimental feature that could have
- breaking changes in any minor release before 4.0.
  */
 public struct InputCallout: View {
     

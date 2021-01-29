@@ -16,9 +16,6 @@ import Foundation
  the keyboard context when the extension is started. You can
  replace this at any time, by applying a new instance to the
  context's `secondaryCalloutActionProvider` property.
- 
- `IMPORTANT` This is an experimental new feature, that could
- be redesigned in any minor release until 4.0. 
  */
 public protocol SecondaryCalloutActionProvider {
     
