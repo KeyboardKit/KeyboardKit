@@ -17,9 +17,10 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     public init(
         inputViewController: KeyboardViewController,
+        behavior: KeyboardBehavior,
         toastContext: KeyboardToastContext) {
         self.toastContext = toastContext
-        super.init(inputViewController: inputViewController)
+        super.init(inputViewController: inputViewController, behavior: behavior)
     }
     
     private let toastContext: KeyboardToastContext
