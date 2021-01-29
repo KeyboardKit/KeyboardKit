@@ -1,5 +1,5 @@
 //
-//  KeyboardButton.swift
+//  UIKeyboardButton.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-04-26.
@@ -12,10 +12,10 @@ import UIKit
  This protocol can be implemented by views that can be added
  to button rows and collection views.
  
- For convenience, you can use the `KeyboardButtonView` class
- instead of implementing this protocol from scratch.
+ For convenience, you can use `UIKeyboardButtonView` instead
+ of implementing this protocol from scratch.
  */
-public protocol KeyboardButton: KeyboardButtonRowComponent {
+public protocol UIKeyboardButton: KeyboardButtonRowComponent {
     
     var action: KeyboardAction { get }
     var secondaryAction: KeyboardAction? { get }
@@ -24,7 +24,7 @@ public protocol KeyboardButton: KeyboardButtonRowComponent {
 
 // MARK: - Animations
 
-public extension KeyboardButton {
+public extension UIKeyboardButton {
     
     func animateStandardPress(factor: CGFloat = 1.1, completion: (() -> Void)? = nil) {
         let transform = CGAffineTransform(scaleX: factor, y: factor)
@@ -42,7 +42,7 @@ public extension KeyboardButton {
     }
 }
 
-private extension KeyboardButton {
+private extension UIKeyboardButton {
     
     func animateTransform(_ transform: CGAffineTransform, completion: (() -> Void)? = nil) {
         UIView.animate(

@@ -1,6 +1,6 @@
 //
 //  View+ButtonTests.swift
-//  KeyboardKitTests
+//  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-06-24.
 //  Copyright © 2021 Daniel Saidi. All rights reserved.

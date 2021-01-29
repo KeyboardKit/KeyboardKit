@@ -1,5 +1,5 @@
 //
-//  KeyboardButtonView.swift
+//  UIKeyboardButtonView.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-04-28.
@@ -9,10 +9,10 @@
 import UIKit
 
 /**
- This class implements `KeyboardButton` and can be used as a
- base class for your app's keyboard buttons.
+ This class implements `UIKeyboardButton` and can be used as
+ a base class for UIKit-based extension buttons.
  */
-open class KeyboardButtonView: UIButton, KeyboardButton {
+open class UIKeyboardButtonView: UIButton, UIKeyboardButton {
     
     public private(set) var action: KeyboardAction = .none
     public private(set) var secondaryAction: KeyboardAction?

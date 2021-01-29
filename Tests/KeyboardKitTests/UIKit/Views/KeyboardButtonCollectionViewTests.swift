@@ -1,6 +1,6 @@
 //
 //  KeyboardButtonCollectionViewTests.swift
-//  KeyboardKitTests
+//  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-28.
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
@@ -50,7 +50,7 @@ class KeyboardButtonCollectionViewTests: QuickSpec {
     }
 }
 
-private class TestClass: KeyboardButtonCollectionView {
+private class TestClass: UIKeyboardButtonCollectionView {
     
     var recorder = Mock()
 }

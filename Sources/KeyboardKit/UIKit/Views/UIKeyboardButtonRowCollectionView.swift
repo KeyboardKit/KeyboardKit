@@ -1,5 +1,5 @@
 //
-//  KeyboardButtonRowCollectionView.swift
+//  UIKeyboardButtonRowCollectionView.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-02.
@@ -9,7 +9,7 @@
 import UIKit
 
 /**
- This collection view displays keyboard buttons in a row. It
+ This collection view displays keyboard buttons in a row and
  can be used when the horizontal order is important.
  
  This view can be created with a set of actions and a button
@@ -17,12 +17,12 @@ import UIKit
  to a horizontal `buttonStackView` that is then added to the
  dequeued cell.
  
- Note that the class aims at simplifying creating collection
- based keyboards, but does so with a performance cost. It is
- less performant than `KeyboardCollectionView` since it only
- reuses the cells, but recreates the button rows every time.
+ This view simplifies setting up a collection-based keyboard,
+ but does so at a performance cost. It's way less performant
+ than `KeyboardCollectionView` since it recreates the button
+ views each time a cell is reused.
  */
-open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboardComponent, UICollectionViewDelegate {
+open class UIKeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboardComponent, UICollectionViewDelegate {
     
     
     // MARK: - Initialization
@@ -170,10 +170,10 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboar
         return cell
     }
     
-    open func collectionView(_ collectionView: UICollectionView, rowViewForItemAt indexPath: IndexPath) -> KeyboardButtonRow {
+    open func collectionView(_ collectionView: UICollectionView, rowViewForItemAt indexPath: IndexPath) -> UIKeyboardButtonRow {
         let row = self.row(at: indexPath)
         let rowHeight = configuration.rowHeight
-        return KeyboardButtonRow(
+        return UIKeyboardButtonRow(
             actions: row,
             height: rowHeight,
             buttonCreator: buttonCreator)
@@ -192,7 +192,7 @@ open class KeyboardButtonRowCollectionView: KeyboardCollectionView, PagedKeyboar
 
 private extension Array where Element == KeyboardAction {
     
-    func rows(for configuration: KeyboardButtonRowCollectionView.Configuration) -> KeyboardActionRows {
+    func rows(for configuration: UIKeyboardButtonRowCollectionView.Configuration) -> KeyboardActionRows {
         var actions = self
         while actions.count % configuration.pageSize > 0 {
             actions.append(.none)

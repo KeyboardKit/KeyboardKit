@@ -1,5 +1,5 @@
 //
-//  KeyboardButton+Gestures.swift
+//  UIKeyboardButton+Gestures.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-28.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public extension KeyboardButton {
+public extension UIKeyboardButton {
     
     /**
      This function adds keyboard gestures to the button in a
@@ -26,19 +26,19 @@ public extension KeyboardButton {
 
 private extension KeyboardInputViewController {
     
-    func addDoubleTapGesture(to button: KeyboardButton) {
+    func addDoubleTapGesture(to button: UIKeyboardButton) {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
         gesture.numberOfTapsRequired = 2
         gesture.delegate = self
         button.addGestureRecognizer(gesture)
     }
     
-    func addLongPressGesture(to button: KeyboardButton) {
+    func addLongPressGesture(to button: UIKeyboardButton) {
         let gesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
         button.addGestureRecognizer(gesture)
     }
     
-    func addRepeatingGesture(to button: KeyboardButton) {
+    func addRepeatingGesture(to button: UIKeyboardButton) {
         weak var button = button
         let gesture = RepeatingGestureRecognizer { [weak self] in
             self?.handle(.repeatPress, on: button)
@@ -46,13 +46,13 @@ private extension KeyboardInputViewController {
         button?.addGestureRecognizer(gesture)
     }
     
-    func addTapGesture(to button: KeyboardButton) {
+    func addTapGesture(to button: UIKeyboardButton) {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         button.addGestureRecognizer(gesture)
     }
     
     func handle(_ gesture: KeyboardGesture, on button: UIView?) {
-        guard let button = button as? KeyboardButton else { return }
+        guard let button = button as? UIKeyboardButton else { return }
         context.actionHandler.handle(gesture, on: button.action, sender: button)
     }
 }

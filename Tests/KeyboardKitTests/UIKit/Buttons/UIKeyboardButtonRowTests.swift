@@ -1,6 +1,6 @@
 //
-//  KeyboardButtonRowTests.swift
-//  KeyboardKitTests
+//  UIKeyboardButtonRowTests.swift
+//  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-28.
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
@@ -11,17 +11,17 @@ import Nimble
 import KeyboardKit
 import UIKit
 
-class KeyboardButtonRowTests: QuickSpec {
+class UIKeyboardButtonRowTests: QuickSpec {
     
     override func spec() {
         
-        var view: KeyboardButtonRow!
+        var view: UIKeyboardButtonRow!
         var actions: [KeyboardAction]!
         
         
         beforeEach {
             actions = [.backspace, .control]
-            view = KeyboardButtonRow(actions: actions, height: 123) { action in
+            view = UIKeyboardButtonRow(actions: actions, height: 123) { action in
                 let button = TestButton(type: .custom)
                 button.action = action
                 return button
@@ -46,7 +46,7 @@ class KeyboardButtonRowTests: QuickSpec {
             }
             
             it("can use custom stack view configuration") {
-                view = KeyboardButtonRow(actions: actions, height: 123, alignment: .center, distribution: .equalCentering) { action in
+                view = UIKeyboardButtonRow(actions: actions, height: 123, alignment: .center, distribution: .equalCentering) { action in
                     let button = TestButton(type: .custom)
                     button.action = action
                     return button

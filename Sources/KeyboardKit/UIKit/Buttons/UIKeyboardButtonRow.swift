@@ -1,5 +1,5 @@
 //
-//  KeyboardButtonRow.swift
+//  UIKeyboardButtonRow.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-04-28.
@@ -12,7 +12,7 @@ import UIKit
  This view presents buttons in horizontal rows. The provided
  `buttonCreator` function maps each action to a view.
  */
-open class KeyboardButtonRow: UIView, KeyboardStackViewComponent {
+open class UIKeyboardButtonRow: UIView, KeyboardStackViewComponent {
     
     public convenience init(
         actions: KeyboardActions,

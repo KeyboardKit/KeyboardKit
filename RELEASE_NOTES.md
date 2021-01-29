@@ -55,6 +55,8 @@ To avoid it blocking any SwiftUI naming conventions, types in the `UIKit` folder
 * `AutocompleteToolbarSeparator` -> `UIAutocompleteToolbarSeparator`
 * `AutocompleteToolbarView` -> `UIAutocompleteToolbar`
 * `KeyboardAlert` -> `UIKeyboardAlert`
+* `KeyboardButton` -> `UIKeyboardButton`
+* `KeyboardButtonView` -> `UIKeyboardButtonView`
 * `ToastAlert` -> `UIKeyboardToastAlert`
 
 

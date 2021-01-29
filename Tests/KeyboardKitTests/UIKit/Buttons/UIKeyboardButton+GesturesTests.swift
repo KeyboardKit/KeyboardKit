@@ -1,5 +1,5 @@
 //
-//  KeyboardButton+GesturesTests.swift
+//  UIKeyboardButton+GesturesTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-28.
@@ -12,7 +12,7 @@ import KeyboardKit
 import MockingKit
 import UIKit
 
-class KeyboardButton_GesturesTests: QuickSpec {
+class UIKeyboardButton_GesturesTests: QuickSpec {
     
     override func spec() {
         
@@ -68,7 +68,7 @@ class KeyboardButton_GesturesTests: QuickSpec {
     }
 }
 
-private class TestButton: UIButton, KeyboardButton {
+private class TestButton: UIButton, UIKeyboardButton {
     var action: KeyboardAction = .backspace
     var secondaryAction: KeyboardAction? = KeyboardAction.none
     var widthConstraint: NSLayoutConstraint?

@@ -1,6 +1,6 @@
 //
-//  KeyboardButtonViewTests.swift
-//  KeyboardKitTests
+//  UIKeyboardButtonViewTests.swift
+//  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-28.
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
@@ -10,14 +10,14 @@ import Quick
 import Nimble
 import KeyboardKit
 
-class KeyboardButtonViewTests: QuickSpec {
+class UIKeyboardButtonViewTests: QuickSpec {
     
     override func spec() {
         
-        var view: KeyboardButtonView!
+        var view: UIKeyboardButtonView!
         
         beforeEach {
-            view = KeyboardButtonView(type: .custom)
+            view = UIKeyboardButtonView(type: .custom)
         }
         
         describe("created instance") {

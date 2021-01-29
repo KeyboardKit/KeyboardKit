@@ -160,7 +160,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     // MARK: - Action Handling
     
     open func triggerAnimation(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
-        (sender as? KeyboardButton)?.animateStandardTap()
+        (sender as? UIKeyboardButton)?.animateStandardTap()
     }
     
     open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {

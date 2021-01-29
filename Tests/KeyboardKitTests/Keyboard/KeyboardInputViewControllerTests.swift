@@ -1,6 +1,6 @@
 //
 //  KeyboardInputViewControllerTests.swift
-//  KeyboardKitTests
+//  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-28.
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
@@ -196,7 +196,7 @@ private class TestClass: KeyboardInputViewController, Mockable {
     }
 }
 
-private class TestButton: UIButton, KeyboardButton {
+private class TestButton: UIButton, UIKeyboardButton {
     var action: KeyboardAction = .backspace
     var secondaryAction: KeyboardAction? = KeyboardAction.none
     var widthConstraint: NSLayoutConstraint?

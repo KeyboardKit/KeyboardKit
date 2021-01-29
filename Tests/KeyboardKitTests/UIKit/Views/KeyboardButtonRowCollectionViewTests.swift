@@ -1,6 +1,6 @@
 //
 //  KeyboardButtonRowCollectionViewTests.swift
-//  KeyboardKitTests
+//  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-28.
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
@@ -19,18 +19,18 @@ class KeyboardButtonRowCollectionViewTests: QuickSpec {
         
         var view: TestClass!
         var actions: [KeyboardAction]!
-        var config: KeyboardButtonRowCollectionView.Configuration!
-        var layout: KeyboardButtonRowCollectionView.Layout!
+        var config: UIKeyboardButtonRowCollectionView.Configuration!
+        var layout: UIKeyboardButtonRowCollectionView.Layout!
         
         beforeEach {
             actions = [.control, .moveCursorBackward, .backspace, .dismissKeyboard, .newLine]
-            config = KeyboardButtonRowCollectionView.Configuration(rowHeight: 123, rowsPerPage: 2, buttonsPerRow: 2)
+            config = UIKeyboardButtonRowCollectionView.Configuration(rowHeight: 123, rowsPerPage: 2, buttonsPerRow: 2)
             view = TestClass(actions: actions, configuration: config) { action in
                 let button = TestButton(type: .custom)
                 button.action = action
                 return button
             }
-            layout = view.collectionViewLayout as? KeyboardButtonRowCollectionView.Layout
+            layout = view.collectionViewLayout as? UIKeyboardButtonRowCollectionView.Layout
         }
         
         describe("created instance") {
@@ -70,7 +70,7 @@ class KeyboardButtonRowCollectionViewTests: QuickSpec {
             }
             
             it("has correct empty values") {
-                let config = KeyboardButtonRowCollectionView.Configuration.empty
+                let config = UIKeyboardButtonRowCollectionView.Configuration.empty
                 expect(config.rowHeight).to(equal(0))
                 expect(config.rowsPerPage).to(equal(0))
                 expect(config.buttonsPerRow).to(equal(0))
@@ -118,7 +118,7 @@ class KeyboardButtonRowCollectionViewTests: QuickSpec {
             
             it("returns correct cell at index path") {
                 let cell = view.collectionView(view, cellForItemAt: IndexPath(row: 0, section: 0))
-                let subview = cell.subviews[0] as? KeyboardButtonRow
+                let subview = cell.subviews[0] as? UIKeyboardButtonRow
                 expect(subview?.height).to(equal(123))
                 expect(subview?.heightConstraint?.constant).to(equal(123))
             }
@@ -134,7 +134,7 @@ class KeyboardButtonRowCollectionViewTests: QuickSpec {
     }
 }
 
-private class TestClass: KeyboardButtonRowCollectionView, Mockable {
+private class TestClass: UIKeyboardButtonRowCollectionView, Mockable {
     
     lazy var restoreCurrentPageRef = MockReference(restoreCurrentPage)
     

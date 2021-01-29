@@ -1,5 +1,5 @@
 //
-//  KeyboardButtonCollectionView.swift
+//  UIKeyboardButtonCollectionView.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-02.
@@ -17,12 +17,12 @@ import UIKit
  creator, which creates a button for each action and adds it
  to the dequeued cell.
  
- Note that the class aims at simplifying creating collection
- based keyboards, but does so with a performance cost. It is
- less performant than `KeyboardCollectionView` since it only
- reuses the cells, but recreates the buttons every time.
+ This view simplifies setting up a collection-based keyboard,
+ but does so at a performance cost. It's way less performant
+ than `KeyboardCollectionView` since it recreates the button
+ views each time a cell is reused.
  */
-open class KeyboardButtonCollectionView: KeyboardCollectionView {
+open class UIKeyboardButtonCollectionView: KeyboardCollectionView {
     
     
     // MARK: - Initialization
