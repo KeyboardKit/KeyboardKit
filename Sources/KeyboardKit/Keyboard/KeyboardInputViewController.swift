@@ -78,7 +78,7 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      The keyboard action handler used by the extension.
      */
-    public lazy var keyboardActionHandler = StandardKeyboardActionHandler(
+    public lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(
         inputViewController: self,
         behavior: keyboardBehavior)
 

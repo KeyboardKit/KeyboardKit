@@ -87,13 +87,21 @@ class KeyboardInputViewControllerTests: QuickSpec {
             }
         }
         
-        describe("action handler") {
+        describe("keyboard action handler") {
             
             it("is standard handler by default") {
-                let handler = vc.context.actionHandler
+                let handler = vc.keyboardActionHandler
                 let standard = handler as? StandardKeyboardActionHandler
                 expect(standard).toNot(beNil())
-                expect(standard?.inputViewController).to(be(vc))
+            }
+        }
+        
+        describe("keyboard behavior") {
+            
+            it("is standard behavior by default") {
+                let handler = vc.keyboardBehavior
+                let standard = handler as? StandardKeyboardBehavior
+                expect(standard).toNot(beNil())
             }
         }
         
