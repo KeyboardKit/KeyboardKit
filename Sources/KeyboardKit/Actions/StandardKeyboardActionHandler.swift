@@ -56,21 +56,21 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Types
     
-    public typealias GestureAction = () -> Void
+    public typealias GestureAction = KeyboardAction.GestureAction
     
     
     // MARK: - KeyboardActionHandler
     
     public func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) -> Bool {
-        self.action(for: gesture, on: action, sender: sender) != nil
+        self.action(for: gesture, on: action) != nil
     }
     
     /**
      Handle a certain `gesture` on a certain `action`
      */
     open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
-        guard let gestureAction = self.action(for: gesture, on: action, sender: sender) else { return }
-        gestureAction()
+        guard let gestureAction = self.action(for: gesture, on: action) else { return }
+        gestureAction(.shared)
         triggerAnimation(for: gesture, on: action, sender: sender)
         triggerAudioFeedback(for: gesture, on: action, sender: sender)
         triggerHapticFeedback(for: gesture, on: action, sender: sender)
@@ -110,50 +110,15 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     /**
      This is the standard action that is used by the handler
-     when a user makes a certain gesture on a certain action.
+     when a gesture is performed on a certain action.
      */
-    open func action(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) -> GestureAction? {
+    open func action(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction.GestureAction? {
         switch gesture {
-        case .doubleTap: return doubleTapAction(for: action, sender: sender)
-        case .longPress: return longPressAction(for: action, sender: sender)
-        case .repeatPress: return repeatAction(for: action, sender: sender)
-        case .tap: return tapAction(for: action, sender: sender)
+        case .doubleTap: return action.standardDoubleTapAction
+        case .longPress: return action.standardLongPressAction
+        case .repeatPress: return action.standardRepeatAction
+        case .tap: return action.standardTapAction
         }
-    }
-    
-    /**
-     This is the standard action that is used by the handler
-     when a user double taps a certain keyboard action.
-     */
-    open func doubleTapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
-        return nil
-    }
-    
-    /**
-     This is the standard action that is used by the handler
-     when a user long presses on a certain keyboard action.
-     */
-    open func longPressAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
-        guard let action = action.standardLongPressAction else { return nil }
-        return { [weak self] in action(self?.inputViewController) }
-    }
-    
-    /**
-     This is the standard action that is used by the handler
-     when a user presses and holds a certain keyboard action.
-     */
-    open func repeatAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
-        guard let action = action.standardRepeatAction else { return nil }
-        return { [weak self] in action(self?.inputViewController) }
-    }
-    
-    /**
-     This is the standard action that is used by the handler
-     when a user taps a certain keyboard action.
-     */
-    open func tapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
-        guard let action = action.standardTapAction else { return nil }
-        return { [weak self] in action(self?.inputViewController) }
     }
     
     

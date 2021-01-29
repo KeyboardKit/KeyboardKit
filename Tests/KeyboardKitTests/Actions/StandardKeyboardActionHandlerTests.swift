@@ -59,25 +59,16 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         
         // MARK: - Actions
         
-        context("actions") {
+        context("action for gesture on action") {
             
             let actions = KeyboardAction.testActions
-            
-            describe("tap action") {
-                
-                it("is not nil for actions with standard action") {
-                    actions.forEach {
-                        let action = handler.tapAction(for: $0, sender: nil)
-                        expect(action == nil).to(equal($0.standardTapAction == nil))
-                    }
-                }
-            }
             
             describe("double tap action") {
                 
                 it("is nil for all actions with standard action") {
                     actions.forEach {
-                        expect(handler.doubleTapAction(for: $0, sender: nil)).to(beNil())
+                        let action = handler.action(for: .doubleTap, on: $0)
+                        expect(action == nil).to(equal($0.standardDoubleTapAction == nil))
                     }
                 }
             }
@@ -86,8 +77,18 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
                 
                 it("is not nil for actions with standard action") {
                     actions.forEach {
-                        let action = handler.longPressAction(for: $0, sender: nil)
+                        let action = handler.action(for: .longPress, on: $0)
                         expect(action == nil).to(equal($0.standardLongPressAction == nil))
+                    }
+                }
+            }
+            
+            describe("tap action") {
+                
+                it("is not nil for actions with standard action") {
+                    actions.forEach {
+                        let action = handler.action(for: .tap, on: $0)
+                        expect(action == nil).to(equal($0.standardTapAction == nil))
                     }
                 }
             }
@@ -96,7 +97,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
                 
                 it("is not nil for actions with standard action") {
                     actions.forEach {
-                        let action = handler.repeatAction(for: $0, sender: nil)
+                        let action = handler.action(for: .repeatPress, on: $0)
                         expect(action == nil).to(equal($0.standardRepeatAction == nil))
                     }
                 }

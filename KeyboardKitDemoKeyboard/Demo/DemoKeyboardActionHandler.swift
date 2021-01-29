@@ -18,18 +18,24 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     // MARK: - Overrides
     
-    override func longPressAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
+    override func action(for gesture: KeyboardGesture, on action: KeyboardAction) -> GestureAction? {
+        if let action = longPressAction(for: action) { return action }
+        if let action = tapAction(for: action) { return action }
+        return super.action(for: gesture, on: action)
+    }
+    
+    func longPressAction(for action: KeyboardAction) -> GestureAction? {
         switch action {
-        case .image(_, _, let imageName): return { [weak self] in self?.saveImage(UIImage(named: imageName)!) }
-        default: return super.longPressAction(for: action, sender: sender)
+        case .image(_, _, let imageName): return { [weak self] _ in self?.saveImage(UIImage(named: imageName)!) }
+        default: return nil
         }
     }
     
-    override func tapAction(for action: KeyboardAction, sender: Any?) -> GestureAction? {
+    func tapAction(for action: KeyboardAction) -> GestureAction? {
         switch action {
-        case .emojiCategory(let cat): return { [weak self] in self?.switchToEmojiKeyboardCategory(cat) }
-        case .image(_, _, let imageName): return { [weak self] in self?.copyImage(UIImage(named: imageName)!) }
-        default: return super.tapAction(for: action, sender: sender)
+        case .emojiCategory(let cat): return { [weak self] _ in self?.switchToEmojiKeyboardCategory(cat) }
+        case .image(_, _, let imageName): return { [weak self] _ in self?.copyImage(UIImage(named: imageName)!) }
+        default: return nil
         }
     }
     

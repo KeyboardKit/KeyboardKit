@@ -37,6 +37,8 @@ Although these release notes will aim at covering everything that changes in thi
 * `PhotosImageService` and `StandardPhotosImageService` have been removed.
 * `Settings` has been entirely removed.
 * `StandardKeyboardContext` has been replaced by `ObservableKeyboardContext`.
+* `StandardKeyboardActionHandler` gesture actions has been gathered in a single `action(for:on)`.
+* `StandardKeyboardActionHandler` no longer takes an optional sender for keyboard actions.
 * `UIImage+pasteboard` has been moved to the demo.
 * `UIImage+photos` has been moved to the demo.
 * `UIImage+resized` has been removed.

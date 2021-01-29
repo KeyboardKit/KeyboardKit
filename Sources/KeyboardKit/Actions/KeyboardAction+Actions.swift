@@ -22,20 +22,27 @@ public extension KeyboardAction {
     // MARK: - Types
     
     typealias GestureAction = (KeyboardInputViewController?) -> Void
-    typealias InputViewControllerAction = (KeyboardInputViewController?) -> Void
-    typealias TextDocumentProxyAction = (UITextDocumentProxy?) -> Void
     
     /**
-     The standard action, if any, that should be executed on
-     an input view controller, when this action is triggered
-     with a long press.
+     The action that by default should be triggered when the
+     keyboard action is triggered with a double tap.
      */
-    var standardLongPressAction: GestureAction? { nil }
+    var standardDoubleTapAction: GestureAction? { nil }
     
     /**
-     The standard action, if any, that should be executed on
-     an input view controller, when this action is triggered
-     with a press and hold.
+     The action that by default should be triggered when the
+     keyboard action is triggered with a long press.
+     */
+    var standardLongPressAction: GestureAction? {
+        switch self {
+        case .backspace: return standardTapAction
+        default: return nil
+        }
+    }
+    
+    /**
+     The action that by default should be triggered when the
+     keyboard action is triggered by pressing and holding.
      */
     var standardRepeatAction: GestureAction? {
         switch self {
@@ -45,9 +52,8 @@ public extension KeyboardAction {
     }
     
     /**
-     The standard action, if any, that should be executed on
-     an input view controller or a text document proxy, when
-     this action is triggered with a tap.
+     The action that by default should be triggered when the
+     keyboard action is triggered with a tap.
      */
     var standardTapAction: GestureAction? {
         switch self {

@@ -32,24 +32,25 @@ class KeyboardAction_ActionsTests: QuickSpec {
             unexpected = []
         }
         
-        describe("standard long press action") {
-            
-            func result(for action: KeyboardAction) -> Bool {
-                action.standardLongPressAction != nil
-            }
+        describe("standard double tap action") {
             
             it("is not defined for any actions") {
                 expected = []
-                expected.forEach { expect(result(for: $0)).to(beTrue()) }
-                unexpected.forEach { expect(result(for: $0)).to(beFalse()) }
+                expected.forEach { expect($0.standardDoubleTapAction).toNot(beNil()) }
+                unexpected.forEach { expect($0.standardDoubleTapAction).to(beNil()) }
+            }
+        }
+        
+        describe("standard long press action") {
+            
+            it("is defined for some actions") {
+                expected = [.backspace]
+                expected.forEach { expect($0.standardLongPressAction).toNot(beNil()) }
+                unexpected.forEach { expect($0.standardLongPressAction).to(beNil()) }
             }
         }
         
         describe("standard tap action") {
-            
-            func result(for action: KeyboardAction) -> KeyboardAction.GestureAction? {
-                action.standardTapAction
-            }
             
             it("is defined for some actions") {
                 expected = [
@@ -75,21 +76,17 @@ class KeyboardAction_ActionsTests: QuickSpec {
                     .space,
                     .tab
                 ]
-                expected.forEach { expect(result(for: $0)).toNot(beNil()) }
-                unexpected.forEach { expect(result(for: $0)).to(beNil()) }
+                expected.forEach { expect($0.standardTapAction).toNot(beNil()) }
+                unexpected.forEach { expect($0.standardTapAction).to(beNil()) }
             }
         }
         
         describe("standard repeat action") {
             
-            func result(for action: KeyboardAction) -> KeyboardAction.GestureAction? {
-                action.standardRepeatAction
-            }
-            
             it("is defined for some actions") {
                 expected = [.backspace]
-                expected.forEach { expect(result(for: $0)).toNot(beNil()) }
-                unexpected.forEach { expect(result(for: $0)).to(beNil()) }
+                expected.forEach { expect($0.standardRepeatAction).toNot(beNil()) }
+                unexpected.forEach { expect($0.standardRepeatAction).to(beNil()) }
             }
         }
     }
