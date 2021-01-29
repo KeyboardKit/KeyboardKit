@@ -16,6 +16,7 @@ Although these release notes will aim at covering everything that changes in thi
 
 * `KeyboardInputViewController` has a new static `shared` instance.
 * `KeyboardInputViewController` has a new `keyboardActionHandler`.
+* `KeyboardInputViewController` has a new `keyboardBehavior`.
 
 
 ### Changed behavior
@@ -26,13 +27,15 @@ Although these release notes will aim at covering everything that changes in thi
 * `AutocompleteToolbar` no longer requires an environment injected `ObservableKeyboardContext`, nor does its builder functions. 
 * `KeyboardAction.emojiCategory` no longer has a  standard tap action.
 * `KeyboardInputViewController` `context` is now an `ObservableKeyboardContext`.
-* `KeyboardInputViewController` `context` is now called `keyboardContext`. 
+* `KeyboardInputViewController` `context` is now called `keyboardContext`.
+* `StandardKeyboardActionHandler` now requires an injected keyboard behavior. 
 
 
 ### Removed/renamed
 
 * All previews deprecations have been removed in this version.
-* `KeyboardActionRow` - it's just confusing to have two typaliases for the same thing.
+* `KeyboardActionRow` - has been removed, since it's confusing to have two aliases for the same thing.
+* `KeyboardContext` `keyboardBehavior` is moved out to the input vc.
 * `KeyboardInputViewController` `addKeyboardGestures` has been converted to `KeyboardButton+Gestures`.
 * `PhotosImageService` and `StandardPhotosImageService` have been removed.
 * `Settings` has been entirely removed.

@@ -17,7 +17,6 @@ class MockKeyboardContext: KeyboardContext {
     
     var actionHandler: KeyboardActionHandler = MockKeyboardActionHandler()
     var keyboardAppearanceProvider: KeyboardAppearanceProvider = StandardKeyboardAppearanceProvider()
-    var keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior()
     var keyboardInputSetProvider: KeyboardInputSetProvider = StaticKeyboardInputSetProvider.empty
     var keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider()
     var secondaryCalloutActionProvider: SecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider()

@@ -16,7 +16,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
     
     override func spec() {
         
-        var handler: StandardKeyboardActionHandlerTestClass!
+        var handler: TestClass!
         
         var inputViewController: MockInputViewController!
         var proxy: MockTextDocumentProxy!
@@ -25,7 +25,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             inputViewController = MockInputViewController()
             proxy = MockTextDocumentProxy()
             inputViewController.context.textDocumentProxy = proxy
-            handler = StandardKeyboardActionHandlerTestClass(inputViewController: inputViewController)
+            handler = TestClass(inputViewController: inputViewController, behavior: inputViewController.keyboardBehavior)
         }
         
         
@@ -201,12 +201,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
 }
 
 
-private class StandardKeyboardActionHandlerTestClass: StandardKeyboardActionHandler, Mockable {
-    
-    public init(
-        inputViewController: KeyboardInputViewController) {
-        super.init(inputViewController: inputViewController)
-    }
+private class TestClass: StandardKeyboardActionHandler, Mockable {
     
     var mock = Mock()
     

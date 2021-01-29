@@ -76,14 +76,24 @@ open class KeyboardInputViewController: UIInputViewController {
     public static var shared: KeyboardInputViewController!
     
     /**
-     The keyboard action handler used by the
+     The keyboard action handler used by the extension.
      */
-    public lazy var keyboardActionHandler = StandardKeyboardActionHandler(inputViewController: self)
+    public lazy var keyboardActionHandler = StandardKeyboardActionHandler(
+        inputViewController: self,
+        behavior: keyboardBehavior)
+
+    /**
+     The keyboard behavior used by the extension.
+     */
+    public lazy var keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior()
     
     /**
      This context provides keyboard-specific information.
      */
-    public lazy var context = ObservableKeyboardContext(controller: self, actionHandler: keyboardActionHandler, keyboardType: .alphabetic(.lowercased))
+    public lazy var context = ObservableKeyboardContext(
+        controller: self,
+        actionHandler: keyboardActionHandler,
+        keyboardType: .alphabetic(.lowercased))
     
     
     // MARK: - View Properties
@@ -163,8 +173,7 @@ open class KeyboardInputViewController: UIInputViewController {
 private extension KeyboardInputViewController {
     
     func tryChangeToPreferredKeyboardTypeAfterTextDidChange() {
-        let behavior = context.keyboardBehavior
-        let shouldSwitch = behavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange(for: context)
+        let shouldSwitch = keyboardBehavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange(for: context)
         guard shouldSwitch else { return }
         changeKeyboardType(to: context.preferredKeyboardType)
     }

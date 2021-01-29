@@ -20,14 +20,12 @@ open class ObservableKeyboardContext: KeyboardContext, ObservableObject {
         controller: KeyboardInputViewController,
         actionHandler: KeyboardActionHandler,
         keyboardAppearanceProvider: KeyboardAppearanceProvider = StandardKeyboardAppearanceProvider(),
-        keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior(),
         keyboardType: KeyboardType = .alphabetic(.lowercased),
         keyboardInputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider(),
         keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider()) {
         
         self.actionHandler = actionHandler
         self.keyboardAppearanceProvider = keyboardAppearanceProvider
-        self.keyboardBehavior = keyboardBehavior
         self.keyboardInputSetProvider = keyboardInputSetProvider
         self.keyboardLayoutProvider = keyboardLayoutProvider
         
@@ -41,7 +39,6 @@ open class ObservableKeyboardContext: KeyboardContext, ObservableObject {
     
     @Published public var actionHandler: KeyboardActionHandler
     @Published public var keyboardAppearanceProvider: KeyboardAppearanceProvider
-    @Published public var keyboardBehavior: KeyboardBehavior
     @Published public var keyboardInputSetProvider: KeyboardInputSetProvider
     @Published public var keyboardLayoutProvider: KeyboardLayoutProvider
     @Published public var keyboardType: KeyboardType

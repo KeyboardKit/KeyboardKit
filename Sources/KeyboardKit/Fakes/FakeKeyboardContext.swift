@@ -20,7 +20,6 @@ public class FakeKeyboardContext: KeyboardContext {
 
     public var actionHandler: KeyboardActionHandler = FakeKeyboardActionHandler()
     public var keyboardAppearanceProvider: KeyboardAppearanceProvider = StandardKeyboardAppearanceProvider()
-    public var keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior()
     public var keyboardInputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider()
     public var keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider()
     

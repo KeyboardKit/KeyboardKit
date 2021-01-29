@@ -27,10 +27,12 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     public init(
         inputViewController: KeyboardInputViewController,
+        behavior: KeyboardBehavior,
         hapticConfiguration: HapticFeedbackConfiguration = .standard,
         audioConfiguration: AudioFeedbackConfiguration = .standard,
         spaceDragSensitivity: SpaceDragSensitivity = .medium) {
         self.inputViewController = inputViewController
+        self.behavior = behavior
         self.hapticConfiguration = hapticConfiguration
         self.audioConfiguration = audioConfiguration
         self.spaceDragSensitivity = spaceDragSensitivity
@@ -43,6 +45,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     public private(set) weak var inputViewController: KeyboardInputViewController?
     
     private let audioConfiguration: AudioFeedbackConfiguration
+    private let behavior: KeyboardBehavior
     private let hapticConfiguration: HapticFeedbackConfiguration
     private let spaceDragSensitivity: SpaceDragSensitivity
     
@@ -152,16 +155,18 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     open func tryEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction) {
-        guard let context = context else { return }
-        let behavior = context.keyboardBehavior
-        guard behavior.shouldEndSentence(for: context, after: gesture, on: action) else { return }
+        guard
+            let context = context,
+            behavior.shouldEndSentence(for: context, after: gesture, on: action)
+        else { return }
         context.textDocumentProxy.endSentence()
     }
     
     open func tryChangeKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) {
-        guard let context = context else { return }
-        let behavior = context.keyboardBehavior
-        guard behavior.shouldSwitchToPreferredKeyboardType(for: context, after: gesture, on: action) else { return }
+        guard
+            let context = context,
+            behavior.shouldSwitchToPreferredKeyboardType(for: context, after: gesture, on: action)
+        else { return }
         let newType = behavior.preferredKeyboardType(for: context, after: gesture, on: action)
         inputViewController?.changeKeyboardType(to: newType)
     }
