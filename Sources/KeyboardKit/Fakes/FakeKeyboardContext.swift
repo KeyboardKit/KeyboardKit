@@ -16,9 +16,6 @@ public class FakeKeyboardContext: KeyboardContext {
     public init() {}
     
     @available(*, deprecated, message: "This property will be removed in KK 4.0. Usage is strongly discouraged.")
-    public var controller: KeyboardInputViewController { KeyboardInputViewController() }
-    
-    @available(*, deprecated, message: "This property will be removed in KK 4.0. Usage is strongly discouraged.")
     public var emojiCategory: EmojiCategory = .smileys
 
     public var actionHandler: KeyboardActionHandler = FakeKeyboardActionHandler()

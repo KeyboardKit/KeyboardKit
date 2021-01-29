@@ -30,12 +30,7 @@ public extension KeyboardAction {
      an input view controller, when this action is triggered
      with a long press.
      */
-    var standardLongPressAction: GestureAction? {
-        switch self {
-        case .backspace: return standardTapAction
-        default: return nil
-        }
-    }
+    var standardLongPressAction: GestureAction? { nil }
     
     /**
      The standard action, if any, that should be executed on

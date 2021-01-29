@@ -38,8 +38,8 @@ class KeyboardAction_ActionsTests: QuickSpec {
                 action.standardLongPressAction != nil
             }
             
-            it("is defined for some actions") {
-                expected = [.backspace]
+            it("is not defined for any actions") {
+                expected = []
                 expected.forEach { expect(result(for: $0)).to(beTrue()) }
                 unexpected.forEach { expect(result(for: $0)).to(beFalse()) }
             }
