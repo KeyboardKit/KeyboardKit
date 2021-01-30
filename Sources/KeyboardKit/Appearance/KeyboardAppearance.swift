@@ -12,10 +12,10 @@ import UIKit
  This protocol can be implemented by any classes that can be
  used to retrieve appearance properties for a keyboard.
  
- KeyboardKit registers a standard protocol implementation in
- the input view controller when the extension is started. It
- can be replaced with a custom implementation by setting the
- `keyboardAppearance` property.
+ `KeyboardKit` will automatically create a standard instance
+ and bind it to the input view controller when the extension
+ is started. It can be replaced with a custom one by setting
+ the `keyboardAppearance` property.
  */
 public protocol KeyboardAppearance {
     

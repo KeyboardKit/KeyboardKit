@@ -99,11 +99,17 @@ open class KeyboardInputViewController: UIInputViewController {
         controller: self,
         actionHandler: keyboardActionHandler,
         keyboardType: .alphabetic(.lowercased))
+    
+    /**
+     The keyboard input set provider used by the extension.
+     */
+    public lazy var keyboardInputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider()
                     
     /**
      The keyboard layout provider used by the extension.
      */
-    public lazy var keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider()
+    public lazy var keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider(
+        inputSetProvider: keyboardInputSetProvider)
     
     
     // MARK: - View Properties

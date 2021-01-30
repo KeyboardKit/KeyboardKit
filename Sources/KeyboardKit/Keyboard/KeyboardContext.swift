@@ -15,9 +15,9 @@ import SwiftUI
  used to provide the keyboard extension with contextual info.
  
  `KeyboardKit` will automatically create a standard instance
- when the extension is started and bind it to the input view
- controller. It can be replaced with a custom one by setting
- the input view controller's `context` property.
+ and bind it to the input view controller when the extension
+ is started. It can be replaced with a custom one by setting
+ the `keyboardContext` property.
  */
 public protocol KeyboardContext: AnyObject {
     

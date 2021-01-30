@@ -12,10 +12,10 @@ import Foundation
  This protocol can be implemented by classes that can return
  keyboard layouts for the keyboard extension's current state.
  
- KeyboardKit registers a standard protocol implementation in
- the keyboard context when the extension is started. You can
- replace this at any time, by applying a new instance to the
- context's `keyboardLayoutProvider` property.
+ `KeyboardKit` will automatically create a standard instance
+ and bind it to the input view controller when the extension
+ is started. It can be replaced with a custom one by setting
+ the `keyboardLayoutProvider` property.
  */
 public protocol KeyboardLayoutProvider: AnyObject {
     
