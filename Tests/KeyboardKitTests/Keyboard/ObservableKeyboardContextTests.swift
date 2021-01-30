@@ -35,8 +35,6 @@ class ObservableKeyboardContextTests: QuickSpec {
                 expect(context.device).to(be(UIDevice.current))
                 
                 expect(context.actionHandler).to(be(actionHandler))
-                expect(context.keyboardInputSetProvider is StandardKeyboardInputSetProvider).to(beTrue())
-                expect(context.keyboardLayoutProvider is StandardKeyboardLayoutProvider).to(beTrue())
                 expect(context.keyboardType).to(equal(.images))
                 expect(context.locale).to(equal(.current))
                 

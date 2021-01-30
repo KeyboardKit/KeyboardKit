@@ -22,8 +22,6 @@ import SwiftUI
 public protocol KeyboardContext: AnyObject {
     
     var actionHandler: KeyboardActionHandler { get set }
-    var keyboardInputSetProvider: KeyboardInputSetProvider { get set }
-    var keyboardLayoutProvider: KeyboardLayoutProvider { get set }
     
     var device: UIDevice { get }
     var deviceOrientation: UIInterfaceOrientation { get set }
@@ -55,13 +53,6 @@ public extension KeyboardContext {
      */
     var keyboardAppearance: UIKeyboardAppearance {
         textDocumentProxy.keyboardAppearance ?? .light
-    }
-    
-    /**
-     The current keyboard layout from the active provider.
-     */
-    var keyboardLayout: KeyboardLayout {
-        keyboardLayoutProvider.keyboardLayout(for: self)
     }
 }
 

@@ -24,7 +24,7 @@ extension KeyboardView {
     }
     
     var systemKeyboardLayout: KeyboardLayout {
-        context.keyboardLayoutProvider.keyboardLayout(for: context)
+        keyboardLayoutProvider.keyboardLayout(for: context)
     }
     
     var toastBackground: some View {

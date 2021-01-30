@@ -15,11 +15,10 @@ import KeyboardKit
  
  The view will switch over the current keyboard type and add
  the correct keyboard view.
- 
- `TODO` Add support for emoji keyboard, once lazy stacks are
- supported. Now, the app crashes due to memory pressure.
  */
 struct KeyboardView: View {
+    
+    var keyboardLayoutProvider: KeyboardLayoutProvider
     
     @EnvironmentObject var autocompleteContext: ObservableAutocompleteContext
     @EnvironmentObject var context: ObservableKeyboardContext
@@ -63,6 +62,6 @@ private extension KeyboardView {
 
 struct KeyboardView_Previews: PreviewProvider {
     static var previews: some View {
-        KeyboardView()
+        KeyboardView(keyboardLayoutProvider: StandardKeyboardLayoutProvider())
     }
 }

@@ -39,17 +39,20 @@ import UIKit
 open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     
     public init(
+        inputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider(),
         leftSpaceAction: KeyboardAction? = nil,
         rightSpaceAction: KeyboardAction? = nil) {
+        self.inputSetProvider = inputSetProvider
         self.leftSpaceAction = leftSpaceAction
         self.rightSpaceAction = rightSpaceAction
     }
     
+    private let inputSetProvider: KeyboardInputSetProvider
     private let leftSpaceAction: KeyboardAction?
     private let rightSpaceAction: KeyboardAction?
     
     open func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
-        let rows = context.actionRows(for: context)
+        let rows = actionRows(for: context)
         let iPad = context.device.userInterfaceIdiom == .pad
         return keyboardLayout(for: context, iPad: iPad, rows: rows)
     }
@@ -248,7 +251,7 @@ private extension StandardKeyboardLayoutProvider {
     }
 }
 
-private extension KeyboardContext {
+private extension StandardKeyboardLayoutProvider {
 
     func actionRows(for context: KeyboardContext) -> KeyboardActionRows {
         let rows = inputRows(for: context)
@@ -256,8 +259,8 @@ private extension KeyboardContext {
     }
     
     func inputRows(for context: KeyboardContext) -> [KeyboardInputSet.InputRow] {
-        let provider = keyboardInputSetProvider
-        switch keyboardType {
+        let provider = inputSetProvider
+        switch context.keyboardType {
         case .alphabetic(let state):
             let rows = provider.alphabeticInputSet(for: context).inputRows
             return state.isUppercased ? rows.uppercased() : rows

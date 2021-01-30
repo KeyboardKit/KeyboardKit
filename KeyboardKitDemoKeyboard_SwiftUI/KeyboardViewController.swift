@@ -38,15 +38,15 @@ class KeyboardViewController: KeyboardInputViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup(with: keyboardView)
         context.actionHandler = DemoKeyboardActionHandler(
             inputViewController: self,
             behavior: keyboardBehavior,
             toastContext: toastContext)
         keyboardAppearance = DemoKeyboardAppearance()
-        context.keyboardLayoutProvider = StandardKeyboardLayoutProvider(
+        keyboardLayoutProvider = StandardKeyboardLayoutProvider(
             leftSpaceAction: .keyboardType(.emojis),
             rightSpaceAction: .keyboardType(.images))
+        setup(with: keyboardView)
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -60,7 +60,7 @@ class KeyboardViewController: KeyboardInputViewController {
     private let toastContext = KeyboardToastContext()
     
     private var keyboardView: some View {
-        KeyboardView()
+        KeyboardView(keyboardLayoutProvider: keyboardLayoutProvider)
             .environmentObject(autocompleteContext)
             .environmentObject(toastContext)
     }

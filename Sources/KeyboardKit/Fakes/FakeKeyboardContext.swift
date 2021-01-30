@@ -19,8 +19,6 @@ public class FakeKeyboardContext: KeyboardContext {
     public var emojiCategory: EmojiCategory = .smileys
 
     public var actionHandler: KeyboardActionHandler = FakeKeyboardActionHandler()
-    public var keyboardInputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider()
-    public var keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider()
     
     public var device: UIDevice = .current
     public var deviceOrientation: UIInterfaceOrientation = .portrait
