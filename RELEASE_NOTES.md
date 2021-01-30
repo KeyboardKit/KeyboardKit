@@ -45,6 +45,7 @@ Although these release notes will aim at covering everything that changes in thi
 * `KeyboardContext` `keyboardBehavior` has been moved to the input vc.
 * `KeyboardInputSet` locale extensions have been converted to separate providers.
 * `KeyboardInputViewController` `addKeyboardGestures` has been converted to `KeyboardButton+Gestures`.
+* `KeyboardInputViewController` `context` has been renamed to `keyboardContext`.
 * `KeyboardInputViewController+Gestures` has been converted to `KeyboardButton+Gestures`.
 * `PhotosImageService` and `StandardPhotosImageService` have been removed.
 * `Settings` has been entirely removed.

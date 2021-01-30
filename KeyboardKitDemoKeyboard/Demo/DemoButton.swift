@@ -240,7 +240,7 @@ private extension KeyboardAction {
      color, that is still interactable.
      */
     func useClearBackground(in viewController: KeyboardInputViewController) -> Bool {
-        viewController.context.keyboardType == .emojis
+        viewController.keyboardContext.keyboardType == .emojis
     }
     
     /**

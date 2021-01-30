@@ -25,7 +25,7 @@ class KeyboardInputViewControllerTests: QuickSpec {
         describe("keyboard context") {
             
             it("is setup with default state") {
-                let context = vc.context
+                let context = vc.keyboardContext
                 expect(context.actionHandler is StandardKeyboardActionHandler).to(beTrue())
                 expect(context.hasFullAccess).to(beFalse())
                 expect(context.keyboardType).to(equal(.alphabetic(.lowercased)))
@@ -47,10 +47,10 @@ class KeyboardInputViewControllerTests: QuickSpec {
             it("updates context") {
                 vc.hasFullAccessValue = true
                 vc.viewWillAppear(false)
-                expect(vc.context.hasFullAccess).to(beTrue())
+                expect(vc.keyboardContext.hasFullAccess).to(beTrue())
                 vc.hasFullAccessValue = false
                 vc.viewWillAppear(false)
-                expect(vc.context.hasFullAccess).to(beFalse())
+                expect(vc.keyboardContext.hasFullAccess).to(beFalse())
             }
             
             it("syncs with text document proxy") {
@@ -66,24 +66,24 @@ class KeyboardInputViewControllerTests: QuickSpec {
                 vc.hasDictationKeyValue = true
                 vc.needsInputModeSwitchKeyValue = true
                 vc.viewWillLayoutSubviews()
-                expect(vc.context.hasDictationKey).to(beTrue())
-                expect(vc.context.needsInputModeSwitchKey).to(beTrue())
+                expect(vc.keyboardContext.hasDictationKey).to(beTrue())
+                expect(vc.keyboardContext.needsInputModeSwitchKey).to(beTrue())
                 vc.hasDictationKeyValue = false
                 vc.needsInputModeSwitchKeyValue = false
                 vc.viewWillLayoutSubviews()
-                expect(vc.context.hasDictationKey).to(beFalse())
-                expect(vc.context.needsInputModeSwitchKey).to(beFalse())
+                expect(vc.keyboardContext.hasDictationKey).to(beFalse())
+                expect(vc.keyboardContext.needsInputModeSwitchKey).to(beFalse())
             }
         }
         
         describe("view will sync with text document proxy") {
             
             it("updates context") {
-                expect(vc.context.textDocumentProxy).to(be(vc.textDocumentProxy))
-                vc.context.textDocumentProxy = UIInputViewController().textDocumentProxy
-                expect(vc.context.textDocumentProxy).toNot(be(vc.textDocumentProxy))
+                expect(vc.keyboardContext.textDocumentProxy).to(be(vc.textDocumentProxy))
+                vc.keyboardContext.textDocumentProxy = UIInputViewController().textDocumentProxy
+                expect(vc.keyboardContext.textDocumentProxy).toNot(be(vc.textDocumentProxy))
                 vc.viewWillSyncWithTextDocumentProxy()
-                expect(vc.context.textDocumentProxy).to(be(vc.textDocumentProxy))
+                expect(vc.keyboardContext.textDocumentProxy).to(be(vc.textDocumentProxy))
             }
         }
         
@@ -168,7 +168,7 @@ class KeyboardInputViewControllerTests: QuickSpec {
             
             it("calls viewWillSyncWithTextDocumentProxy") {
                 vc.textWillChange(nil)
-                expect(vc.context.textDocumentProxy).to(be(vc.textDocumentProxy))
+                expect(vc.keyboardContext.textDocumentProxy).to(be(vc.textDocumentProxy))
             }
         }
     }

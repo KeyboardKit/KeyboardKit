@@ -24,7 +24,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         beforeEach {
             inputViewController = MockInputViewController()
             proxy = MockTextDocumentProxy()
-            inputViewController.context.textDocumentProxy = proxy
+            inputViewController.keyboardContext.textDocumentProxy = proxy
             handler = TestClass(inputViewController: inputViewController, behavior: inputViewController.keyboardBehavior)
         }
         
@@ -159,13 +159,13 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         describe("trying to change keyboard type after gesture on action") {
             
             it("does not change type if new type is same as current") {
-                inputViewController.context.keyboardType = .alphabetic(.lowercased)
+                inputViewController.keyboardContext.keyboardType = .alphabetic(.lowercased)
                 handler.tryChangeKeyboardType(after: .tap, on: .character("a"))
                 expect(inputViewController.hasInvoked(inputViewController.changeKeyboardTypeRef)).to(beFalse())
             }
             
             it("changes type if new type is different from current") {
-                inputViewController.context.keyboardType = .alphabetic(.uppercased)
+                inputViewController.keyboardContext.keyboardType = .alphabetic(.uppercased)
                 handler.tryChangeKeyboardType(after: .tap, on: .character("a"))
                 let inv = inputViewController.invokations(of: inputViewController.changeKeyboardTypeRef)
                 expect(inv.count).to(equal(1))

@@ -53,7 +53,7 @@ private extension KeyboardInputViewController {
     
     func handle(_ gesture: KeyboardGesture, on button: UIView?) {
         guard let button = button as? UIKeyboardButton else { return }
-        context.actionHandler.handle(gesture, on: button.action, sender: button)
+        keyboardContext.actionHandler.handle(gesture, on: button.action, sender: button)
     }
 }
 

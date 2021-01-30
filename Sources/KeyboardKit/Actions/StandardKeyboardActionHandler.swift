@@ -52,7 +52,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Properties
     
-    private var context: KeyboardContext? { inputViewController?.context }
+    private var context: KeyboardContext? { inputViewController?.keyboardContext }
     private var currentDragStartLocation: CGPoint?
     private var currentDragTextPositionOffset: Int = 0
     

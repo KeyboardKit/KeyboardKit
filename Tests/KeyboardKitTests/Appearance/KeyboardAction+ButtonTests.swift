@@ -70,7 +70,7 @@ class KeyboardAction_SystemTests: QuickSpec {
             
             func result(for action: KeyboardAction) -> Image? {
                 let controller = KeyboardInputViewController()
-                return action.standardButtonImage(for: controller.context)
+                return action.standardButtonImage(for: controller.keyboardContext)
             }
             
             it("is defined for some actions") {

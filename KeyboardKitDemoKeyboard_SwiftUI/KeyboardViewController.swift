@@ -38,7 +38,7 @@ class KeyboardViewController: KeyboardInputViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        context.actionHandler = DemoKeyboardActionHandler(
+        keyboardContext.actionHandler = DemoKeyboardActionHandler(
             inputViewController: self,
             behavior: keyboardBehavior,
             toastContext: toastContext)
@@ -47,11 +47,6 @@ class KeyboardViewController: KeyboardInputViewController {
             leftSpaceAction: .keyboardType(.emojis),
             rightSpaceAction: .keyboardType(.images))
         setup(with: keyboardView)
-    }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        context.traitCollection = traitCollection
     }
     
     

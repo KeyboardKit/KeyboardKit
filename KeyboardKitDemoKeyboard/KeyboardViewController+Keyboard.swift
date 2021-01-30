@@ -22,7 +22,7 @@ extension KeyboardViewController {
     
     func setupDemoKeyboard() {
         keyboardStackView.removeAllArrangedSubviews()
-        switch context.keyboardType {
+        switch keyboardContext.keyboardType {
         case .alphabetic, .numeric, .symbolic: setupSystemKeyboard()
         case .emojis: setupEmojiKeyboard()
         case .images: setupImageKeyboard()
@@ -51,7 +51,7 @@ extension KeyboardViewController {
     }
     
     func setupSystemKeyboard() {
-        let layout = keyboardLayoutProvider.keyboardLayout(for: context)
+        let layout = keyboardLayoutProvider.keyboardLayout(for: keyboardContext)
         var rows = buttonRows(for: layout.actionRows, distribution: .fillProportionally)
         rows.insert(autocompleteToolbar, at: 0)
         keyboardStackView.addArrangedSubviews(rows)
@@ -88,9 +88,9 @@ private extension KeyboardViewController {
 private extension KeyboardViewController {
     
     func edgeInsets(atRow row: Int) -> UIEdgeInsets {
-        guard context.locale.identifier.starts(with: "en") else { return .zero }
+        guard keyboardContext.locale.identifier.starts(with: "en") else { return .zero }
         guard row == 1 else { return .zero }
-        let isIpad = context.device.userInterfaceIdiom == .pad
+        let isIpad = keyboardContext.device.userInterfaceIdiom == .pad
         let inset = UIScreen.main.bounds.width * 0.05
         let left = inset
         let right = isIpad ? 0 : -inset

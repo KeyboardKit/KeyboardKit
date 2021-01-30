@@ -46,13 +46,12 @@ You can now add custom views and views provided by KeyboardKit to the provided v
 
 When you inherit `KeyboardInputViewController`, you get access to a lot of other information as well. 
 
-* The view controller has a `context` property that implements `KeyboardContext` and provides you with a lot of information.
+* The view controller has a `keyboardContext` that and provides you with a lot of information.
 * When you use `setup(with:)` to setup the controller with a SwiftUI view, the standard context will be replaced with an `ObservableKeyboardContext`.  
-* `context` contains an `actionHandler`, which you can use to handle keyboard actions.
-* You can call `actionHandler` programatically or with any button, to handle any keyboard actions you like.
+* The view controller has a `keyboardActionHandler` that you can use to handle keyboard actions.
+* You can call `keyboardActionHandler` programatically or with any button, to handle any keyboard actions you like.
 * You can subclass `StandardKeyboardActionHandler` or implement `KeyboardActionHandler` to create your own action handler.
-* You can change the context's `actionHandler` to change the global action handler.
-* You can use the `keyboardAction` view modifier to add keyboard gestures for a certain action to any view.
+* You can change the context's `keyboardActionHandler` to change the global action handler.
 * You can use the `keyboardGestures` view modifier to add keyboard gestures with custom actions to any view.  
 
 Check the documentation and demo apps for more information and examples.

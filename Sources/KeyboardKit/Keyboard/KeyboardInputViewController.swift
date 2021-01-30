@@ -44,7 +44,7 @@ open class KeyboardInputViewController: UIInputViewController {
      */
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        context.sync(with: self)
+        keyboardContext.sync(with: self)
         viewWillSyncWithTextDocumentProxy()
     }
     
@@ -53,8 +53,8 @@ open class KeyboardInputViewController: UIInputViewController {
      some `context` properties.
      */
     open override func viewWillLayoutSubviews() {
-        context.hasDictationKey = hasDictationKey
-        context.needsInputModeSwitchKey = needsInputModeSwitchKey
+        keyboardContext.hasDictationKey = hasDictationKey
+        keyboardContext.needsInputModeSwitchKey = needsInputModeSwitchKey
         super.viewWillLayoutSubviews()
     }
     
@@ -63,7 +63,7 @@ open class KeyboardInputViewController: UIInputViewController {
      when the text document proxy changes.
      */
     open func viewWillSyncWithTextDocumentProxy() {
-        context.textDocumentProxy = textDocumentProxy
+        keyboardContext.textDocumentProxy = textDocumentProxy
     }
     
     
@@ -95,7 +95,7 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      This context provides keyboard-specific information.
      */
-    public lazy var context = ObservableKeyboardContext(
+    public lazy var keyboardContext = ObservableKeyboardContext(
         controller: self,
         actionHandler: keyboardActionHandler,
         keyboardType: .alphabetic(.lowercased))
@@ -151,7 +151,7 @@ open class KeyboardInputViewController: UIInputViewController {
      can be changed by overriding this function.
      */
     open func changeKeyboardType(to type: KeyboardType) {
-        context.keyboardType = type
+        keyboardContext.keyboardType = type
         setupKeyboard()
     }
     
@@ -183,6 +183,7 @@ open class KeyboardInputViewController: UIInputViewController {
 private extension KeyboardInputViewController {
     
     func tryChangeToPreferredKeyboardTypeAfterTextDidChange() {
+        let context = keyboardContext
         let shouldSwitch = keyboardBehavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange(for: context)
         guard shouldSwitch else { return }
         changeKeyboardType(to: context.preferredKeyboardType)

@@ -21,7 +21,7 @@ extension DemoKeyboard {
     
     static func bottomActions(leftmost: KeyboardAction, rightmost: KeyboardAction = .newLine, for vc: KeyboardViewController) -> KeyboardActions {
         let actions = [leftmost, switchAction(for: vc), .space, imageAction(for: vc), .newLine]
-        let includeImageAction = vc.context.keyboardType.shouldIncludeImageAction
+        let includeImageAction = vc.keyboardContext.keyboardType.shouldIncludeImageAction
         return includeImageAction ? actions : actions.withoutImageActions
     }
 }

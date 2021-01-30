@@ -16,7 +16,7 @@ class View_ButtonTests: QuickSpec {
     override func spec() {
         
         let controller = KeyboardInputViewController()
-        var context: KeyboardContext { controller.context }
+        var context: KeyboardContext { controller.keyboardContext }
         
         describe("standard button style") {
             
