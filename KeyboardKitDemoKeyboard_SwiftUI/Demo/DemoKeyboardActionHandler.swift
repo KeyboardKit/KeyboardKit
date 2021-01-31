@@ -16,11 +16,17 @@ import UIKit
 class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     public init(
-        inputViewController: KeyboardViewController,
-        behavior: KeyboardBehavior,
+        keyboardContext: KeyboardContext,
+        keyboardBehavior: KeyboardBehavior,
+        autocompleteAction: @escaping () -> Void,
+        changeKeyboardTypeAction: @escaping (KeyboardType) -> Void,
         toastContext: KeyboardToastContext) {
         self.toastContext = toastContext
-        super.init(inputViewController: inputViewController, behavior: behavior)
+        super.init(
+            keyboardContext: keyboardContext,
+            keyboardBehavior: keyboardBehavior,
+            autocompleteAction: autocompleteAction,
+            changeKeyboardTypeAction: changeKeyboardTypeAction)
     }
     
     private let toastContext: KeyboardToastContext
@@ -58,15 +64,13 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     }
     
     func copyImage(_ image: UIImage) {
-        guard let input = inputViewController else { return }
-        guard input.hasFullAccess else { return alert("You must enable full access to copy images.") }
+        guard keyboardContext.hasFullAccess else { return alert("You must enable full access to copy images.") }
         guard image.copyToPasteboard() else { return alert("The image could not be copied.") }
         alert("Copied to pasteboard!")
     }
     
     func saveImage(_ image: UIImage) {
-        guard let input = inputViewController else { return }
-        guard input.hasFullAccess else { return alert("You must enable full access to save images.") }
+        guard keyboardContext.hasFullAccess else { return alert("You must enable full access to save images.") }
         image.saveToPhotos(completion: handleImageDidSave)
     }
 }

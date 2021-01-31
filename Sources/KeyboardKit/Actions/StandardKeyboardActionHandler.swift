@@ -26,15 +26,17 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     // MARK: - Initialization
     
     public init(
-        inputViewController: KeyboardInputViewController,
         keyboardContext: KeyboardContext,
         keyboardBehavior: KeyboardBehavior,
+        autocompleteAction: @escaping () -> Void,
+        changeKeyboardTypeAction: @escaping (KeyboardType) -> Void,
         hapticConfiguration: HapticFeedbackConfiguration = .standard,
         audioConfiguration: AudioFeedbackConfiguration = .standard,
         spaceDragSensitivity: SpaceDragSensitivity = .medium) {
-        self.inputViewController = inputViewController
         self.keyboardContext = keyboardContext
         self.keyboardBehavior = keyboardBehavior
+        self.autocompleteAction = autocompleteAction
+        self.changeKeyboardTypeAction = changeKeyboardTypeAction
         self.hapticConfiguration = hapticConfiguration
         self.audioConfiguration = audioConfiguration
         self.spaceDragSensitivity = spaceDragSensitivity
@@ -43,14 +45,14 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Dependencies
     
-    @available(*, deprecated, message: "This will be removed")
-    public private(set) weak var inputViewController: KeyboardInputViewController?
+    public let audioConfiguration: AudioFeedbackConfiguration
+    public let keyboardBehavior: KeyboardBehavior
+    public let keyboardContext: KeyboardContext
+    public let hapticConfiguration: HapticFeedbackConfiguration
+    public let spaceDragSensitivity: SpaceDragSensitivity
     
-    private let audioConfiguration: AudioFeedbackConfiguration
-    private let keyboardBehavior: KeyboardBehavior
-    private let keyboardContext: KeyboardContext
-    private let hapticConfiguration: HapticFeedbackConfiguration
-    private let spaceDragSensitivity: SpaceDragSensitivity
+    public let autocompleteAction: () -> Void
+    public let changeKeyboardTypeAction: (KeyboardType) -> Void
     
     
     // MARK: - Properties
@@ -79,7 +81,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         triggerAnimation(for: gesture, on: action, sender: sender)
         triggerAudioFeedback(for: gesture, on: action, sender: sender)
         triggerHapticFeedback(for: gesture, on: action, sender: sender)
-        triggerAutocomplete()
+        autocompleteAction()
         tryEndSentence(after: gesture, on: action)
         tryChangeKeyboardType(after: gesture, on: action)
         tryRegisterEmoji(after: gesture, on: action)
@@ -139,10 +141,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         if action.isSystemAction { return audioConfiguration.systemFeedback.trigger() }
     }
     
-    open func triggerAutocomplete() {
-        inputViewController?.performAutocomplete()
-    }
-    
     open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         switch gesture {
         case .doubleTap: hapticConfiguration.doubleTapFeedback.trigger()
@@ -166,7 +164,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         guard keyboardBehavior.shouldSwitchToPreferredKeyboardType(for: keyboardContext, after: gesture, on: action)
         else { return }
         let newType = keyboardBehavior.preferredKeyboardType(for: keyboardContext, after: gesture, on: action)
-        inputViewController?.changeKeyboardType(to: newType)
+        changeKeyboardTypeAction(newType)
     }
     
     // TODO: Unit test

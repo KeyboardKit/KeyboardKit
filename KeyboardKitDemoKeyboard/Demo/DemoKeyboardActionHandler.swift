@@ -15,8 +15,19 @@ import UIKit
  */
 class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
+    public init(
+        inputViewController: KeyboardViewController,
+        keyboardContext: KeyboardContext,
+        keyboardBehavior: KeyboardBehavior) {
+        self.inputViewController = inputViewController
+        super.init(
+            keyboardContext: keyboardContext,
+            keyboardBehavior: keyboardBehavior,
+            autocompleteAction: inputViewController.performAutocomplete,
+            changeKeyboardTypeAction: inputViewController.changeKeyboardType)
+    }
     
-    // MARK: - Overrides
+    private weak var inputViewController: KeyboardViewController?
     
     override func action(for gesture: KeyboardGesture, on action: KeyboardAction) -> GestureAction? {
         if let action = longPressAction(for: action) { return action }
@@ -48,7 +59,7 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
      that you use in real apps, e.g. `UIAlertController`.
      */
     func alert(_ message: String) {
-        guard let input = inputViewController as? KeyboardViewController else { return }
+        guard let input = inputViewController else { return }
         input.alerter.alert(message: message, in: input.view, withDuration: 4)
     }
     
@@ -75,7 +86,7 @@ private extension DemoKeyboardActionHandler {
     
     func switchToEmojiKeyboardCategory(_ cat: EmojiCategory) {
         guard
-            let vc = inputViewController as? KeyboardViewController,
+            let vc = inputViewController,
             let view = vc.emojiCollectionView
             else { return }
         view.moveToSection(byCategory: cat.title)
