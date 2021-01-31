@@ -183,7 +183,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             }
             
             it("aborts if gesture is not tap") {
-                handler.tryRegisterEmoji(after: .doubleTap, on: .emoji("a"))
+                handler.tryRegisterEmoji(after: .doubleTap, on: .emoji(Emoji("a")))
                 expect(mockProvider.hasInvoked(mockProvider.registerEmojiRef)).to(beFalse())
             }
             
@@ -193,7 +193,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             }
             
             it("registers tapped emoji to emoji category provider") {
-                handler.tryRegisterEmoji(after: .tap, on: .emoji("a"))
+                handler.tryRegisterEmoji(after: .tap, on: .emoji(Emoji("a")))
                 expect(mockProvider.hasInvoked(mockProvider.registerEmojiRef)).to(beTrue())
             }
         }

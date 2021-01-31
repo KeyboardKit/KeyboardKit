@@ -32,7 +32,7 @@ class MostRecentEmojiProviderTests: QuickSpec {
             it("returns anything stored in defaults") {
                 let list = ["a", "b", "c"]
                 defaults.registerResult(for: defaults.stringArrayRef) { _ in list }
-                expect(provider.emojis).to(equal(list))
+                expect(provider.emojis.map { $0.char }).to(equal(list))
             }
         }
         
@@ -41,7 +41,7 @@ class MostRecentEmojiProviderTests: QuickSpec {
             it("stores new emoji firstmost in user defaults") {
                 let list = ["a", "b", "c"]
                 defaults.registerResult(for: defaults.stringArrayRef) { _ in list }
-                provider.registerEmoji("c")
+                provider.registerEmoji(Emoji("c"))
                 let readInv = defaults.invokations(of: defaults.stringArrayRef)
                 let writeInv = defaults.invokations(of: defaults.setValueRef)
                 expect(readInv.count).to(equal(1))
@@ -53,7 +53,7 @@ class MostRecentEmojiProviderTests: QuickSpec {
             it("caps new emoji list to max count") {
                 let list = Array(repeating: "a", count: 100)
                 defaults.registerResult(for: defaults.stringArrayRef) { _ in list }
-                provider.registerEmoji("c")
+                provider.registerEmoji(Emoji("c"))
                 let inv = defaults.invokations(of: defaults.setValueRef)
                 let written = inv[0].arguments.0 as? [String]
                 expect(written?.count).to(equal(30))

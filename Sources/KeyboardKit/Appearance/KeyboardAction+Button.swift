@@ -68,8 +68,8 @@ public extension KeyboardAction {
     var standardButtonText: String? {
         switch self {
         case .character(let char): return char
-        case .emoji(let emoji): return emoji
-        case .emojiCategory(let cat): return cat.fallbackDisplayEmoji
+        case .emoji(let emoji): return emoji.char
+        case .emojiCategory(let cat): return cat.fallbackDisplayEmoji.char
         case .keyboardType(let type): return type.standardButtonText
         default: return nil
         }

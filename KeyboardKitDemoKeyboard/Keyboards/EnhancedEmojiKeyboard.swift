@@ -39,7 +39,7 @@ private extension EnhancedEmojiKeyboard {
     static func createCategoryActions(for categories: [EmojiCategory]) -> [(String, KeyboardActions)]{
         // Remove empty frequent
         categories.filter { $0.rawValue != "frequent"}.compactMap {
-            ($0.title, $0.emojis.map{ KeyboardAction.emoji(String($0))})
+            ($0.title, $0.emojis.map { KeyboardAction.emoji($0) })
         }
     }
 }

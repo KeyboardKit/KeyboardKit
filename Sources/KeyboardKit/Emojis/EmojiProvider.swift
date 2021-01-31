@@ -14,5 +14,5 @@ import Foundation
 */
 public protocol EmojiProvider {
     
-    var emojis: [String] { get }
+    var emojis: [Emoji] { get }
 }

@@ -24,7 +24,7 @@ extension KeyboardAction {
             .custom(name: ""),
             .dictation,
             .escape,
-            .emoji(""),
+            .emoji(Emoji("")),
             .emojiCategory(.smileys),
             .function,
             .image(description: "", keyboardImageName: "", imageName: ""),
@@ -86,7 +86,7 @@ class KeyboardActionTests: QuickSpec {
             it("is true for some actions") {
                 expected = [
                     .character(""),
-                    .emoji(""),
+                    .emoji(Emoji("")),
                     .image(description: "", keyboardImageName: "", imageName: ""),
                     .space,
                     .systemImage(description: "", keyboardImageName: "", imageName: "")]

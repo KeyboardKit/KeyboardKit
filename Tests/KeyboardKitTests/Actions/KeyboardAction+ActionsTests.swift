@@ -57,7 +57,7 @@ class KeyboardAction_ActionsTests: QuickSpec {
                     .backspace,
                     .character(""),
                     .dismissKeyboard,
-                    .emoji(""),
+                    .emoji(Emoji("")),
                     .keyboardType(.alphabetic(.lowercased)),
                     .keyboardType(.alphabetic(.uppercased)),
                     .keyboardType(.alphabetic(.capsLocked)),

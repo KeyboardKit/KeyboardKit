@@ -49,7 +49,7 @@ class KeyboardAction_SystemTests: QuickSpec {
             }
             
             it("is clear interactable for some actions") {
-                expected = [.emoji(""), .emojiCategory(.smileys)]
+                expected = [.emoji(Emoji("")), .emojiCategory(.smileys)]
                 expected.forEach { expect(result(for: $0)).to(equal(.clearInteractable)) }
                 unexpected.forEach { expect(result(for: $0)).toNot(equal(.clearInteractable)) }
             }
@@ -93,7 +93,7 @@ class KeyboardAction_SystemTests: QuickSpec {
                 expect(result(for: .none)).to(beNil())
                 expect(result(for: .character(""))).to(beNil())
                 expect(result(for: .custom(name: ""))).to(beNil())
-                expect(result(for: .emoji(""))).to(beNil())
+                expect(result(for: .emoji(Emoji("")))).to(beNil())
                 expect(result(for: .emojiCategory(.activities))).to(beNil())
                 expect(result(for: .escape)).to(beNil())
                 expect(result(for: .function)).to(beNil())
@@ -108,7 +108,7 @@ class KeyboardAction_SystemTests: QuickSpec {
             }
             
             it("is clear for emoji, not others") {
-                expected = [.none, .emoji("")]
+                expected = [.none, .emoji(Emoji(""))]
                 expected.forEach { expect(result(for: $0)).to(equal(.clear)) }
                 unexpected.forEach { expect(result(for: $0)).toNot(equal(.clear)) }
             }
@@ -131,7 +131,7 @@ class KeyboardAction_SystemTests: QuickSpec {
             
             it("is defined for some actions") {
                 expect(result(for: .character("A"))).to(equal("A"))
-                expect(result(for: .emoji("🛸"))).to(equal("🛸"))
+                expect(result(for: .emoji(Emoji("🛸")))).to(equal("🛸"))
                 expect(result(for: .emojiCategory(.animals))).to(equal("🐻"))
                 
                 expect(result(for: .keyboardType(.alphabetic(.capsLocked)))).to(equal("ABC"))
@@ -171,7 +171,7 @@ class KeyboardAction_SystemTests: QuickSpec {
             func getActions(_ actions: KeyboardAction...) -> [KeyboardAction] { actions }
             
             it("is custom for some actions, but defined for all") {
-                let expectedTitle = getActions(.emoji(""))
+                let expectedTitle = getActions(.emoji(Emoji("")))
                 let expectedCallout = getActions(.emojiCategory(.smileys))
                 var expectedBody = actions.filter { $0.isSystemAction && $0.standardButtonText != nil }
                 expectedBody.append(.character("abc"))

@@ -30,7 +30,10 @@ Although these release notes will aim at covering everything that changes in thi
 * `AutocompleteToolbar` is now generic, which makes your .
 * `AutocompleteToolbar` now uses identifiable bar items, which leads to better separator handling.
 * `AutocompleteToolbar` now takes suggestions at init and doesn't require an environment injected `ObservableAutocompleteContext`. 
-* `AutocompleteToolbar` no longer requires an environment injected `ObservableKeyboardContext`, nor does its builder functions. 
+* `AutocompleteToolbar` no longer requires an environment injected `ObservableKeyboardContext`, nor does its builder functions.
+* `EmojiCategory` now uses the `Emoji` type instead of a char.
+* `FrequentEmojiProvider` now uses the `Emoji` type instead of a char.
+* `KeyboardAction.emoji` now uses the `Emoji` type instead of a char.
 * `KeyboardAction.emojiCategory` no longer has a  standard tap action.
 * `KeyboardContext` no longer has any services, just inspectable properties.
 * `KeyboardInputViewController` `context` is now an `ObservableKeyboardContext`.

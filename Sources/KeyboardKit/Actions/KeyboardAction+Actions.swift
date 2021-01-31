@@ -60,7 +60,7 @@ public extension KeyboardAction {
         case .backspace: return { $0?.textDocumentProxy.deleteBackward() }
         case .character(let char): return { $0?.textDocumentProxy.insertText(char) }
         case .dismissKeyboard: return { $0?.dismissKeyboard() }
-        case .emoji(let char): return { $0?.textDocumentProxy.insertText(char) }
+        case .emoji(let emoji): return { $0?.textDocumentProxy.insertText(emoji.char) }
         case .keyboardType(let type): return { $0?.changeKeyboardType(to: type) }
         case .moveCursorBackward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: -1) }
         case .moveCursorForward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: 1) }

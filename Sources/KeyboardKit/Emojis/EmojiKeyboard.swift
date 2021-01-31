@@ -62,7 +62,7 @@ public struct EmojiKeyboard: View {
      */
     public static func standardButton(for emoji: Emoji, context: KeyboardContext, configuration: EmojiKeyboardConfiguration) -> AnyView {
         let handler = keyboardInputViewController.keyboardActionHandler
-        let action = { handler.handle(.tap, on: .emoji(emoji.char)) }
+        let action = { handler.handle(.tap, on: .emoji(emoji)) }
         return AnyView(Button(action: action) {
             Text(emoji.char)
                 .font(configuration.font)

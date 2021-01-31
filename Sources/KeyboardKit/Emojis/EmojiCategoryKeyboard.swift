@@ -71,7 +71,7 @@ public extension EmojiCategoryKeyboard {
     static func standardKeyboard(for category: EmojiCategory, configuration: EmojiKeyboardConfiguration) -> AnyView {
         AnyView(
             EmojiKeyboard(
-                emojis: category.emojis.map { Emoji(char: $0) },
+                emojis: category.emojis,
                 configuration: configuration)
                 .padding(.horizontal)
         )

@@ -13,9 +13,9 @@ import Foundation
  can be used to get a little bit of type safety, and to work
  more structured with emojis.
  */
-public struct Emoji {
+public struct Emoji: Equatable {
     
-    public init(char: String) {
+    public init(_ char: String) {
         self.char = char
     }
    
@@ -28,8 +28,6 @@ public extension Emoji {
      Get all emojis from all categories.
      */
     static var all: [Emoji] {
-        EmojiCategory.all.flatMap {
-            $0.emojis.map { Emoji(char: $0) }
-        }
+        EmojiCategory.all.flatMap { $0.emojis }
     }
 }

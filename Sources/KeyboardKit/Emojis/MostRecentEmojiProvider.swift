@@ -30,14 +30,19 @@ public class MostRecentEmojiProvider: FrequentEmojiProvider {
     private let maxCount: Int
     private let key = "com.keyboardkit.MostRecentEmojiProvider.emojis"
     
-    public var emojis: [String] {
+    public var emojis: [Emoji] {
+        emojiChars.map { Emoji($0) }
+    }
+    
+    public var emojiChars: [String] {
         defaults.stringArray(forKey: key) ?? []
     }
     
-    public func registerEmoji(_ emoji: String) {
-        var emojis = self.emojis.filter { $0 != emoji }
+    public func registerEmoji(_ emoji: Emoji) {
+        var emojis = self.emojis.filter { $0.char != emoji.char }
         emojis.insert(emoji, at: 0)
         let result = Array(emojis.prefix(maxCount))
-        defaults.set(result, forKey: key)
+        let chars = result.map { $0.char }
+        defaults.set(chars, forKey: key)
     }
 }

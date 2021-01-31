@@ -31,7 +31,7 @@ public enum KeyboardAction: Equatable {
     done,
     dictation,
     dismissKeyboard,
-    emoji(String),
+    emoji(Emoji),
     emojiCategory(_ category: EmojiCategory),
     escape,
     function,

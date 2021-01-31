@@ -18,11 +18,11 @@ class EmojiCategoryTests: QuickSpec {
         describe("emoji category") {
             
             func fallbackEmoji(for category: EmojiCategory) -> String {
-                category.fallbackDisplayEmoji
+                category.fallbackDisplayEmoji.char
             }
             
             func firstEmoji(for category: EmojiCategory) -> String {
-                category.emojis.first!
+                category.emojis.first!.char
             }
             
             func firstEmojiAction(for category: EmojiCategory) -> KeyboardAction {
@@ -68,14 +68,14 @@ class EmojiCategoryTests: QuickSpec {
             }
             
             it("contains the correct emoji set") {
-                expect(firstEmojiAction(for: .activities)).to(equal(.emoji("⚽️")))
-                expect(firstEmojiAction(for: .animals)).to(equal(.emoji("🐶")))
-                expect(firstEmojiAction(for: .flags)).to(equal(.emoji("🏳️")))
-                expect(firstEmojiAction(for: .foods)).to(equal(.emoji("🍏")))
-                expect(firstEmojiAction(for: .objects)).to(equal(.emoji("⌚️")))
-                expect(firstEmojiAction(for: .smileys)).to(equal(.emoji("😀")))
-                expect(firstEmojiAction(for: .symbols)).to(equal(.emoji("❤️")))
-                expect(firstEmojiAction(for: .travels)).to(equal(.emoji("🚗")))
+                expect(firstEmojiAction(for: .activities)).to(equal(.emoji(Emoji("⚽️"))))
+                expect(firstEmojiAction(for: .animals)).to(equal(.emoji(Emoji("🐶"))))
+                expect(firstEmojiAction(for: .flags)).to(equal(.emoji(Emoji("🏳️"))))
+                expect(firstEmojiAction(for: .foods)).to(equal(.emoji(Emoji("🍏"))))
+                expect(firstEmojiAction(for: .objects)).to(equal(.emoji(Emoji("⌚️"))))
+                expect(firstEmojiAction(for: .smileys)).to(equal(.emoji(Emoji("😀"))))
+                expect(firstEmojiAction(for: .symbols)).to(equal(.emoji(Emoji("❤️"))))
+                expect(firstEmojiAction(for: .travels)).to(equal(.emoji(Emoji("🚗"))))
             }
         }
     }

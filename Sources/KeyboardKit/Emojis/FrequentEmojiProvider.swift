@@ -18,5 +18,5 @@ import Foundation
 */
 public protocol FrequentEmojiProvider: EmojiProvider {
     
-    func registerEmoji(_ emoji: String)
+    func registerEmoji(_ emoji: Emoji)
 }
