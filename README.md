@@ -162,7 +162,7 @@ Feel free to reach out if you have questions or if you want to contribute in any
 
 ## Sponsors and Clients
 
-KeyboardKit is proudly sponsored by the following individuals and companies:
+This project is proudly sponsored by the following individuals and companies:
 
 * [@booch](https://github.com/booch)
 
@@ -173,7 +173,7 @@ KeyboardKit is proudly sponsored by the following individuals and companies:
     <img src="Resources/logos/milo.png" alt="Milo Creative Logo" title="Milo Creative" width=150 />
 </a>
 
-Your can support KeyboardKit by sponsoring the project on [GitHub Sponsors][Sponsors] or hire me for consultation. I'd be happy to help you out with your keyboard needs.
+You can support my work by sponsoring the project on [GitHub Sponsors][Sponsors] or hiring me for consultation. I'd be happy to help you out in any way that I can.
 
 
 ## License
