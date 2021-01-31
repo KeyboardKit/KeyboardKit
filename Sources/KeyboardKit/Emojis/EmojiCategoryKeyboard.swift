@@ -12,10 +12,6 @@ import SwiftUI
  This view lists all emojis from a selected category as well
  as a menu that lets the user select a new category.
  
- `TODO` The view should list a collection of emoji keyboards
- in an `HStack`, one for each category. However, I can't get
- it to scroll correctly.
- 
  `TODO` This can't be previewed when it depends on a context.
  For some reason, the preview engine then crashes. Return to
  it after 4.0 to see if a cleaned up context solves this.
@@ -63,12 +59,11 @@ public struct EmojiCategoryKeyboard: View {
         .onAppear(perform: initialize)
         .onDisappear(perform: saveCurrentCategory)
     }
-}
 
-@available(iOS 14.0, *)
-public extension EmojiCategoryKeyboard {
     
-    static func standardKeyboard(for category: EmojiCategory, configuration: EmojiKeyboardConfiguration) -> AnyView {
+    // MARK: - Public Static Builders
+    
+    public static func standardKeyboard(for category: EmojiCategory, configuration: EmojiKeyboardConfiguration) -> AnyView {
         AnyView(
             EmojiKeyboard(
                 emojis: category.emojis,
@@ -77,43 +72,44 @@ public extension EmojiCategoryKeyboard {
         )
     }
     
-    static func standardTitle(for category: EmojiCategory) -> String {
+    public static func standardTitle(for category: EmojiCategory) -> String {
         category.title
     }
     
-    static func standardTitleView(for category: EmojiCategory, title: String) -> AnyView {
+    public static func standardTitleView(for category: EmojiCategory, title: String) -> AnyView {
         AnyView(HStack {
             Text(title).font(.footnote).bold().textCase(.uppercase).opacity(0.4)
             Spacer()
         }.padding(.horizontal))
     }
-}
+    
 
-@available(iOS 14.0, *)
-private extension EmojiCategoryKeyboard {
+    // MARK: - Private Functions
     
-    var defaults: UserDefaults { .standard }
-    var defaultsKey: String { "com.keyboardkit.EmojiCategoryKeyboard.category" }
+    private var defaults: UserDefaults { .standard }
+    private var defaultsKey: String { "com.keyboardkit.EmojiCategoryKeyboard.category" }
     
-    var persistedCategory: EmojiCategory {
+    private var persistedCategory: EmojiCategory {
         let name = defaults.string(forKey: defaultsKey) ?? ""
         return categories.first { $0.rawValue == name } ?? .smileys
     }
     
-    func initialize() {
+    private func initialize() {
         if isInitialized { return }
         selection = initialSelection ?? persistedCategory
         isInitialized = true
     }
     
-    func saveCurrentCategory() {
+    private func saveCurrentCategory() {
         defaults.set(selection.rawValue, forKey: defaultsKey)
     }
 }
 
-//@available(iOS 14.0, *)
-//struct EmojiCategoryMenu_Keyboard: PreviewProvider {
-//    static var previews: some View {
-//        EmojiCategoryKeyboard(selection: .constant(.activities))
-//    }
-//}
+@available(iOS 14.0, *)
+struct EmojiCategoryMenu_Keyboard: PreviewProvider {
+    static var previews: some View {
+        SecondaryInputCalloutContext.shared = SecondaryInputCalloutContext(context: FakeKeyboardContext(), actionProvider: StandardSecondaryCalloutActionProvider(), actionHandler: FakeKeyboardActionHandler())
+        return EmojiCategoryKeyboard(selection: .smileys)
+            .environmentObject(ObservableKeyboardContext.preview)
+    }
+}

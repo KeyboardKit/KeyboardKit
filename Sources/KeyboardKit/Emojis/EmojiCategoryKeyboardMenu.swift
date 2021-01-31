@@ -90,9 +90,11 @@ public struct EmojiCategoryKeyboardMenu: View {
     }
 }
 
-//@available(iOS 14.0, *)
-//struct EmojiCategoryKeyboardMenu_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EmojiCategoryKeyboardMenu(selection: .constant(.activities))
-//    }
-//}
+@available(iOS 14.0, *)
+struct EmojiCategoryKeyboardMenu_Previews: PreviewProvider {
+    static var previews: some View {
+        SecondaryInputCalloutContext.shared = SecondaryInputCalloutContext(context: FakeKeyboardContext(), actionProvider: StandardSecondaryCalloutActionProvider(), actionHandler: FakeKeyboardActionHandler())
+        return EmojiCategoryKeyboardMenu(selection: .constant(.activities))
+            .environmentObject(ObservableKeyboardContext.preview)
+    }
+}
