@@ -42,8 +42,11 @@ Although these release notes will aim at covering everything that changes in thi
 * All previews deprecations have been removed in this version.
 * `KeyboardActionRow` has been removed, since it's confusing to have two aliases for the same thing.
 * `KeyboardAppearanceProvider` has been renamed to `KeyboardAppearance`.
+* `KeyboardContext` `actionHandler` has been moved to the input vc.
 * `KeyboardContext` `keyboardAppearanceProvider` has been moved to the input vc.
 * `KeyboardContext` `keyboardBehavior` has been moved to the input vc.
+* `KeyboardContext` `keyboardInputSetProvider` has been moved to the input vc.
+* `KeyboardContext` `keyboardLayoutProvider` has been moved to the input vc.
 * `KeyboardInputSet` locale extensions have been converted to separate providers.
 * `KeyboardInputViewController` `addKeyboardGestures` has been converted to `KeyboardButton+Gestures`.
 * `KeyboardInputViewController` `context` has been renamed to `keyboardContext`.

@@ -20,13 +20,16 @@ public struct SystemKeyboard: View {
     
     public init(
         layout: KeyboardLayout,
+        actionHandler: KeyboardActionHandler,
         dimensions: KeyboardDimensions = SystemKeyboardDimensions(),
         buttonBuilder: @escaping ButtonBuilder = Self.standardButtonBuilder) {
+        self.actionHandler = actionHandler
         self.rows = layout.actionRows
         self.dimensions = dimensions
         self.buttonBuilder = buttonBuilder
     }
     
+    private let actionHandler: KeyboardActionHandler
     private let buttonBuilder: ButtonBuilder
     private let dimensions: KeyboardDimensions
     private let rows: KeyboardActionRows
@@ -66,7 +69,11 @@ private extension SystemKeyboard {
         HStack(spacing: 0) {
             rowEdgeSpacer(at: index)
             ForEach(Array(actions.enumerated()), id: \.offset) {
-                SystemKeyboardButtonRowItem(action: $0.element, buttonContent: buttonBuilder($0.element, size), keyboardSize: size)
+                SystemKeyboardButtonRowItem(
+                    action: $0.element,
+                    actionHandler: actionHandler,
+                    buttonContent: buttonBuilder($0.element, size),
+                    keyboardSize: size)
             }
             rowEdgeSpacer(at: index)
         }

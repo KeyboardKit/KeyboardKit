@@ -18,20 +18,15 @@ open class ObservableKeyboardContext: KeyboardContext, ObservableObject {
         locale: Locale = .current,
         device: UIDevice = .current,
         controller: KeyboardInputViewController,
-        actionHandler: KeyboardActionHandler,
         keyboardType: KeyboardType = .alphabetic(.lowercased)) {
-        
-        self.actionHandler = actionHandler
-        
+        self.locale = locale
         self.device = device
         self.keyboardType = keyboardType
-        self.locale = locale
         self.sync(with: controller)
     }
     
     public let device: UIDevice
     
-    @Published public var actionHandler: KeyboardActionHandler
     @Published public var keyboardType: KeyboardType
     @Published public var deviceOrientation: UIInterfaceOrientation = .portrait
     @Published public var hasDictationKey: Bool = false

@@ -17,14 +17,17 @@ public struct SystemKeyboardButton: View {
     
     public init(
         action: KeyboardAction,
+        actionHandler: KeyboardActionHandler,
         text: String? = nil,
         image: Image? = nil) {
         self.action = action
+        self.actionHandler = actionHandler
         self.text = text
         self.image = image
     }
     
     private let action: KeyboardAction
+    private let actionHandler: KeyboardActionHandler
     private let image: Image?
     private let text: String?
     
@@ -34,6 +37,6 @@ public struct SystemKeyboardButton: View {
     public var body: some View {
         SystemKeyboardButtonContent(action: action, text: text, image: image)
             .standardButtonStyle(for: action, context: context)
-            .keyboardGestures(for: action, actionHandler: context.actionHandler)
+            .keyboardGestures(for: action, actionHandler: actionHandler)
     }
 }

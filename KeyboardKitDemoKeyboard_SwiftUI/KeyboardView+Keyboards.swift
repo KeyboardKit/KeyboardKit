@@ -12,14 +12,14 @@ import SwiftUI
 extension KeyboardView {
     
     var imageKeyboard: some View {
-        ImageKeyboard()
+        ImageKeyboard(actionHandler: keyboardActionHandler)
             .padding()
     }
     
     var systemKeyboard: some View {
         VStack(spacing: 0) {
             AutocompleteToolbar(suggestions: autocompleteContext.suggestions, buttonBuilder: autocompleteButtonBuilder).frame(height: 50)
-            SystemKeyboard(layout: systemKeyboardLayout, buttonBuilder: buttonBuilder)
+            SystemKeyboard(layout: systemKeyboardLayout, actionHandler: keyboardActionHandler, buttonBuilder: buttonBuilder)
         }
     }
     

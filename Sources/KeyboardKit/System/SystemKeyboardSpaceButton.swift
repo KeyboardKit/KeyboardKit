@@ -17,13 +17,18 @@ import SwiftUI
  */
 public struct SystemKeyboardSpaceButton: View {
     
-    public init(localeText: String, spaceText: String) {
+    public init(
+        localeText: String,
+        spaceText: String,
+        actionHandler: KeyboardActionHandler) {
         self.localeText = localeText
         self.spaceText = spaceText
+        self.actionHandler = actionHandler
     }
     
     private let localeText: String
     private let spaceText: String
+    private let actionHandler: KeyboardActionHandler
     private var action: KeyboardAction { .space }
     
     @EnvironmentObject var context: ObservableKeyboardContext
@@ -31,6 +36,6 @@ public struct SystemKeyboardSpaceButton: View {
     public var body: some View {
         SystemKeyboardSpaceButtonContent(localeText: localeText, spaceText: spaceText)
             .standardButtonStyle(for: action, context: context)
-            .keyboardGestures(for: action, actionHandler: context.actionHandler)
+            .keyboardGestures(for: action, actionHandler: actionHandler)
     }
 }

@@ -18,6 +18,7 @@ import KeyboardKit
  */
 struct KeyboardView: View {
     
+    var keyboardActionHandler: KeyboardActionHandler
     var keyboardLayoutProvider: KeyboardLayoutProvider
     
     @EnvironmentObject var autocompleteContext: ObservableAutocompleteContext
@@ -55,13 +56,15 @@ private extension KeyboardView {
     }
     
     func switchToDefaultKeyboard() {
-        context.actionHandler
+        keyboardActionHandler
             .handle(.tap, on: .keyboardType(.alphabetic(.lowercased)))
     }
 }
 
 struct KeyboardView_Previews: PreviewProvider {
     static var previews: some View {
-        KeyboardView(keyboardLayoutProvider: StandardKeyboardLayoutProvider())
+        KeyboardView(
+            keyboardActionHandler: FakeKeyboardActionHandler(),
+            keyboardLayoutProvider: StandardKeyboardLayoutProvider())
     }
 }

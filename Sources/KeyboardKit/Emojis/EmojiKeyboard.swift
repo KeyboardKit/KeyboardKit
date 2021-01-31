@@ -61,7 +61,8 @@ public struct EmojiKeyboard: View {
      applies the keyboard actions of an `.emoji` action.
      */
     public static func standardButton(for emoji: Emoji, context: KeyboardContext, configuration: EmojiKeyboardConfiguration) -> AnyView {
-        let action = { context.actionHandler.handle(.tap, on: .emoji(emoji.char)) }
+        let handler = keyboardInputViewController.keyboardActionHandler
+        let action = { handler.handle(.tap, on: .emoji(emoji.char)) }
         return AnyView(Button(action: action) {
             Text(emoji.char)
                 .font(configuration.font)

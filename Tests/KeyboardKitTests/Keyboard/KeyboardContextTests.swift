@@ -15,22 +15,16 @@ class KeyboardContextTests: QuickSpec {
     
     override func spec() {
         
-        var actionHandler: KeyboardActionHandler!
         var controller: KeyboardInputViewController!
         
         beforeEach {
-            actionHandler = MockKeyboardActionHandler()
             controller = KeyboardInputViewController()
         }
         
         describe("syncing context with controller") {
             
             it("updates some properties") {
-                let context = ObservableKeyboardContext(
-                    controller: controller,
-                    actionHandler: actionHandler,
-                    keyboardType: .images
-                )
+                let context = ObservableKeyboardContext(controller: controller, keyboardType: .images)
                 context.sync(with: controller)
                 expect(context.deviceOrientation).to(equal(controller.deviceOrientation))
                 expect(context.hasDictationKey).to(equal(controller.hasDictationKey))

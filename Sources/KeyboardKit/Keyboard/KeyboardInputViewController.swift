@@ -95,10 +95,7 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      This context provides keyboard-specific information.
      */
-    public lazy var keyboardContext = ObservableKeyboardContext(
-        controller: self,
-        actionHandler: keyboardActionHandler,
-        keyboardType: .alphabetic(.lowercased))
+    public lazy var keyboardContext = ObservableKeyboardContext(controller: self)
     
     /**
      The keyboard input set provider used by the extension.

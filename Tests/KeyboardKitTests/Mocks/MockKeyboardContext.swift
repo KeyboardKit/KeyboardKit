@@ -15,8 +15,6 @@ class MockKeyboardContext: KeyboardContext {
     
     var device: UIDevice = .current
     
-    var actionHandler: KeyboardActionHandler = MockKeyboardActionHandler()
-    
     var deviceOrientation: UIInterfaceOrientation = .portrait
     var emojiCategory: EmojiCategory = .frequent
     var hasDictationKey = false

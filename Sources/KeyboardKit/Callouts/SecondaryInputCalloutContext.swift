@@ -26,21 +26,25 @@ open class SecondaryInputCalloutContext: ObservableObject {
     // MARK: - Initialization
     
     public init(
+        context: KeyboardContext,
         actionProvider: SecondaryCalloutActionProvider,
-        context: KeyboardContext) {
-        self.actionProvider = actionProvider
+        actionHandler: KeyboardActionHandler) {
         self.context = context
+        self.actionProvider = actionProvider
+        self.actionHandler = actionHandler
     }
     
     
     // MARK: - Dependencies
     
-    public var actionProvider: SecondaryCalloutActionProvider
-    public var context: KeyboardContext
+    public let actionHandler: KeyboardActionHandler
+    public let actionProvider: SecondaryCalloutActionProvider
+    public let context: KeyboardContext
     
     
     // MARK: - Properties
     
+    @available(*, deprecated, message: "Inject instead")
     public static var shared: SecondaryInputCalloutContext!
     
     static let coordinateSpace = "com.keyboardkit.coordinate.SecondaryInputCallout"
@@ -82,7 +86,7 @@ open class SecondaryInputCalloutContext: ObservableObject {
      */
     open func handleSelectedAction() {
         guard let action = selectedAction else { return }
-        context.actionHandler.handle(.tap, on: action, sender: nil)
+        actionHandler.handle(.tap, on: action, sender: nil)
     }
     
     /**

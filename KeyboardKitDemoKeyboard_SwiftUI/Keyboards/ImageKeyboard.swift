@@ -17,6 +17,8 @@ import SwiftUI
  */
 struct ImageKeyboard: View, DemoImageKeyboard {
     
+    var actionHandler: KeyboardActionHandler
+    
     @EnvironmentObject var context: ObservableKeyboardContext
     
     var body: some View {
@@ -42,11 +44,11 @@ private extension ImageKeyboard {
     }
     
     func button(for action: KeyboardAction) -> some View {
-        SystemKeyboardButton(action: action)
+        SystemKeyboardButton(action: action, actionHandler: actionHandler)
     }
     
     func imageButton(for action: KeyboardAction) -> some View {
         KeyboardImageButton(action: action)
-            .keyboardGestures(for: action, actionHandler: context.actionHandler)
+            .keyboardGestures(for: action, actionHandler: actionHandler)
     }
 }

@@ -28,12 +28,21 @@ public extension KeyboardInputViewController {
      */
     func setup<Content: View>(
         with view: Content,
-        secondaryInputCalloutContext: ((ObservableKeyboardContext) -> SecondaryInputCalloutContext)? = nil) {
-        let context = keyboardContext
+        secondaryInputCalloutContext: SecondaryInputCalloutContext? = nil) {
         self.view.subviews.forEach { $0.removeFromSuperview() }
-        SecondaryInputCalloutContext.shared = secondaryInputCalloutContext?(context) ?? SecondaryInputCalloutContext(actionProvider: StandardSecondaryCalloutActionProvider(), context: context)
-        let view = view.environmentObject(context)
+        SecondaryInputCalloutContext.shared = secondaryInputCalloutContext ?? secondaryInputCalloutContextFallback
+        let view = view.environmentObject(keyboardContext)
         let controller = KeyboardHostingController(rootView: view)
         controller.add(to: self)
+    }
+}
+
+private extension KeyboardInputViewController {
+    
+    var secondaryInputCalloutContextFallback: SecondaryInputCalloutContext {
+        SecondaryInputCalloutContext(
+            context: keyboardContext,
+            actionProvider: StandardSecondaryCalloutActionProvider(),
+            actionHandler: keyboardActionHandler)
     }
 }

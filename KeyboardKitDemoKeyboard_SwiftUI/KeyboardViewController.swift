@@ -38,7 +38,7 @@ class KeyboardViewController: KeyboardInputViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        keyboardContext.actionHandler = DemoKeyboardActionHandler(
+        keyboardActionHandler = DemoKeyboardActionHandler(
             inputViewController: self,
             behavior: keyboardBehavior,
             toastContext: toastContext)
@@ -55,7 +55,9 @@ class KeyboardViewController: KeyboardInputViewController {
     private let toastContext = KeyboardToastContext()
     
     private var keyboardView: some View {
-        KeyboardView(keyboardLayoutProvider: keyboardLayoutProvider)
+        KeyboardView(
+            keyboardActionHandler: keyboardActionHandler,
+            keyboardLayoutProvider: keyboardLayoutProvider)
             .environmentObject(autocompleteContext)
             .environmentObject(toastContext)
     }

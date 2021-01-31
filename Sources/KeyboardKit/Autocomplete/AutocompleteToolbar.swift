@@ -104,9 +104,9 @@ public extension AutocompleteToolbar {
      replace the current word in the proxy with a suggestion.
      */
     static func standardReplacementAction(for suggestion: AutocompleteSuggestion) {
-        guard let vc = KeyboardInputViewController.shared else { return }
+        let vc = keyboardInputViewController
         let proxy = vc.textDocumentProxy
-        let actionHandler = vc.keyboardContext.actionHandler
+        let actionHandler = vc.keyboardActionHandler
         let replacement = Self.standardReplacement(for: suggestion)
         proxy.replaceCurrentWord(with: replacement)
         actionHandler.handle(.tap, on: .character(""))

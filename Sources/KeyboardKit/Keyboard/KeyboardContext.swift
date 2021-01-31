@@ -21,8 +21,6 @@ import SwiftUI
  */
 public protocol KeyboardContext: AnyObject {
     
-    var actionHandler: KeyboardActionHandler { get set }
-    
     var device: UIDevice { get }
     var deviceOrientation: UIInterfaceOrientation { get set }
     var hasDictationKey: Bool { get set }

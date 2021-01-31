@@ -16,8 +16,6 @@ public extension ObservableKeyboardContext {
      not use otherwise.
      */
     static var preview: ObservableKeyboardContext {
-        ObservableKeyboardContext(
-            controller: KeyboardInputViewController(),
-            actionHandler: FakeKeyboardActionHandler())
+        ObservableKeyboardContext(controller: KeyboardInputViewController())
     }
 }

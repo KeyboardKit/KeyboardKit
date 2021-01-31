@@ -26,7 +26,6 @@ class KeyboardInputViewControllerTests: QuickSpec {
             
             it("is setup with default state") {
                 let context = vc.keyboardContext
-                expect(context.actionHandler is StandardKeyboardActionHandler).to(beTrue())
                 expect(context.hasFullAccess).to(beFalse())
                 expect(context.keyboardType).to(equal(.alphabetic(.lowercased)))
                 expect(context.needsInputModeSwitchKey).to(beFalse())

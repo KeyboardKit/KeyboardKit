@@ -22,16 +22,19 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
     
     public init(
         action: KeyboardAction,
+        actionHandler: KeyboardActionHandler,
         buttonContent: Content,
         dimensions: KeyboardDimensions = SystemKeyboardDimensions(),
         keyboardSize: CGSize) {
         self.action = action
+        self.actionHandler = actionHandler
         self.buttonContent = buttonContent
         self.dimensions = dimensions
         self.keyboardSize = keyboardSize
     }
     
     private let action: KeyboardAction
+    private let actionHandler: KeyboardActionHandler
     private let buttonContent: Content
     private let dimensions: KeyboardDimensions
     private let keyboardSize: CGSize
@@ -47,7 +50,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
             .padding(dimensions.buttonInsets)
             .frame(height: dimensions.buttonHeight)
             .background(Color.clearInteractable)
-            .keyboardGestures(for: action, actionHandler: context.actionHandler)
+            .keyboardGestures(for: action, actionHandler: actionHandler)
     }
 }
 
