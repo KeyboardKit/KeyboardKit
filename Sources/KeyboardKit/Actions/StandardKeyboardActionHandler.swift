@@ -27,12 +27,14 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     public init(
         inputViewController: KeyboardInputViewController,
-        behavior: KeyboardBehavior,
+        keyboardContext: KeyboardContext,
+        keyboardBehavior: KeyboardBehavior,
         hapticConfiguration: HapticFeedbackConfiguration = .standard,
         audioConfiguration: AudioFeedbackConfiguration = .standard,
         spaceDragSensitivity: SpaceDragSensitivity = .medium) {
         self.inputViewController = inputViewController
-        self.behavior = behavior
+        self.keyboardContext = keyboardContext
+        self.keyboardBehavior = keyboardBehavior
         self.hapticConfiguration = hapticConfiguration
         self.audioConfiguration = audioConfiguration
         self.spaceDragSensitivity = spaceDragSensitivity
@@ -45,14 +47,14 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     public private(set) weak var inputViewController: KeyboardInputViewController?
     
     private let audioConfiguration: AudioFeedbackConfiguration
-    private let behavior: KeyboardBehavior
+    private let keyboardBehavior: KeyboardBehavior
+    private let keyboardContext: KeyboardContext
     private let hapticConfiguration: HapticFeedbackConfiguration
     private let spaceDragSensitivity: SpaceDragSensitivity
     
     
     // MARK: - Properties
     
-    private var context: KeyboardContext? { inputViewController?.keyboardContext }
     private var currentDragStartLocation: CGPoint?
     private var currentDragTextPositionOffset: Int = 0
     
@@ -104,7 +106,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         let textPositionOffset = Int(dragDelta / CGFloat(spaceDragSensitivity.points))
         guard textPositionOffset != currentDragTextPositionOffset else { return }
         let offsetDelta = textPositionOffset - currentDragTextPositionOffset
-        context?.textDocumentProxy.adjustTextPosition(byCharacterOffset: -offsetDelta)
+        keyboardContext.textDocumentProxy.adjustTextPosition(byCharacterOffset: -offsetDelta)
         currentDragTextPositionOffset = textPositionOffset
     }
     
@@ -155,19 +157,15 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     open func tryEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction) {
-        guard
-            let context = context,
-            behavior.shouldEndSentence(for: context, after: gesture, on: action)
+        guard keyboardBehavior.shouldEndSentence(for: keyboardContext, after: gesture, on: action)
         else { return }
-        context.textDocumentProxy.endSentence()
+        keyboardContext.textDocumentProxy.endSentence()
     }
     
     open func tryChangeKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) {
-        guard
-            let context = context,
-            behavior.shouldSwitchToPreferredKeyboardType(for: context, after: gesture, on: action)
+        guard keyboardBehavior.shouldSwitchToPreferredKeyboardType(for: keyboardContext, after: gesture, on: action)
         else { return }
-        let newType = behavior.preferredKeyboardType(for: context, after: gesture, on: action)
+        let newType = keyboardBehavior.preferredKeyboardType(for: keyboardContext, after: gesture, on: action)
         inputViewController?.changeKeyboardType(to: newType)
     }
     

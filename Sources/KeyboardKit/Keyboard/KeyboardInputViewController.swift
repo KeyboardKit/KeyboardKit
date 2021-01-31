@@ -80,7 +80,8 @@ open class KeyboardInputViewController: UIInputViewController {
      */
     public lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(
         inputViewController: self,
-        behavior: keyboardBehavior)
+        keyboardContext: keyboardContext,
+        keyboardBehavior: keyboardBehavior)
 
     /**
      The keyboard appearance used by the extension.
