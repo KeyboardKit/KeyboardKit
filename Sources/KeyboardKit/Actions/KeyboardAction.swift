@@ -9,15 +9,13 @@
 import Foundation
 
 /**
- This action enum specifies all currently supported keyboard
- actions. They can be bound to keyboard buttons or triggered
- programatically by handing them to a `KeyboardActionHandler`.
+ This enum specifies available keyboard actions. They can be
+ bound to keyboard buttons or triggered by an action handler.
  
- Many actions have a standard behavior for a certain gesture.
- If a behavior is always true, it is defined here, otherwise
- it's defined elsewhere. Many actions don't have a universal
- behavior, and solely exist to let you create your keyboards
- declaratively. These actions require custom handling.
+ Many actions have standard gesture behaviors. However, many
+ don't and are just here to let you create your keyboards in
+ a declarative way. Such actions require custom handling and
+ can for instance be handled by a custom action handler.
 */
 public enum KeyboardAction: Equatable {
     

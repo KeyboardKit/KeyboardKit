@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- This is a semantic representation of a list of actions.
+ This typealias represents a list of keyboard actions.
  */
 public typealias KeyboardActions = [KeyboardAction]
 
