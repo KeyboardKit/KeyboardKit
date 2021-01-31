@@ -1,5 +1,5 @@
 //
-//  UIImage+Globe.swift
+//  UIImage+Button.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-03-11.
