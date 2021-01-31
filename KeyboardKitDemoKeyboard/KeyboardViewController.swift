@@ -28,11 +28,6 @@ import KeyboardKit
  make it possible to enable full access. To access the photo
  album, you have to add a `NSPhotoLibraryAddUsageDescription`
  key to the `host` application's `Info.plist`.
- 
- `NOTE` Neither the demo nor KeyboardKit aims at solving the
- problem with pixel perfect keyboards, at least not in UIKit.
- This is a hard problem, which requires customizations for a
- range of languages, devices etc.
  */
 class KeyboardViewController: KeyboardInputViewController {
     

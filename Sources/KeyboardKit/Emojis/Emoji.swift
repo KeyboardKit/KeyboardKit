@@ -12,9 +12,6 @@ import Foundation
  This struct is just a wrapper around a single character. It
  can be used to get a little bit of type safety, and to work
  more structured with emojis.
- 
- `IMPORTANT` KK 4 will convert the strings in `EmojiCategory`
- to `Emoji` instances.
  */
 public struct Emoji {
     

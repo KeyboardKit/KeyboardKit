@@ -32,6 +32,7 @@ Although these release notes will aim at covering everything that changes in thi
 * `AutocompleteToolbar` now takes suggestions at init and doesn't require an environment injected `ObservableAutocompleteContext`. 
 * `AutocompleteToolbar` no longer requires an environment injected `ObservableKeyboardContext`, nor does its builder functions. 
 * `KeyboardAction.emojiCategory` no longer has a  standard tap action.
+* `KeyboardContext` no longer has any services, just inspectable properties.
 * `KeyboardInputViewController` `context` is now an `ObservableKeyboardContext`.
 * `KeyboardInputViewController` `context` is now called `keyboardContext`.
 * `StandardKeyboardActionHandler` now requires an injected keyboard behavior. 
