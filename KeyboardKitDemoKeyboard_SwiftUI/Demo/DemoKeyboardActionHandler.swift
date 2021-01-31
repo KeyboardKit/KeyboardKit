@@ -32,8 +32,8 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     private let toastContext: KeyboardToastContext
     
     override func action(for gesture: KeyboardGesture, on action: KeyboardAction) -> GestureAction? {
-        if let action = longPressAction(for: action) { return action }
-        if let action = tapAction(for: action) { return action }
+        if gesture == .longPress, let action = longPressAction(for: action) { return action }
+        if gesture == .tap, let action = tapAction(for: action) { return action }
         return super.action(for: gesture, on: action)
     }
     

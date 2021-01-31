@@ -134,6 +134,10 @@ private extension KeyboardGestures {
 
 private extension KeyboardGestures {
     
+    var shouldTapAfterSecondaryInputGesture: Bool {
+        dragAction == nil && longPressAction == nil && repeatAction == nil && !secondaryInputCalloutContext.isActive
+    }
+    
     func beginSecondaryInputGesture(for geo: GeometryProxy) {
         isInputCalloutEnabled = false
         secondaryInputCalloutContext.updateInputs(for: action, geo: geo)
@@ -143,8 +147,7 @@ private extension KeyboardGestures {
     
     func endSecondaryInputGesture() {
         isInputCalloutEnabled = true
-        let shouldTap = !secondaryInputCalloutContext.isActive
-        if shouldTap { tapAction?() }
+        if shouldTapAfterSecondaryInputGesture { tapAction?() }
         secondaryInputCalloutContext.endDragGesture()
         guard secondaryInputCalloutContext.isActive else { return }
     }
