@@ -15,46 +15,12 @@ class View_ButtonTests: QuickSpec {
 
     override func spec() {
         
-        let controller = KeyboardInputViewController()
-        var context: KeyboardContext { controller.keyboardContext }
-        
-        describe("standard button style") {
+        describe("keyboard button style") {
             
-            it("is defined") {
-                let result = Text("").standardButtonStyle(for: .backspace, context: context)
+            it("returns a view") {
+                let appearance = StandardKeyboardAppearance(context: MockKeyboardContext())
+                let result = Text("").keyboardButtonStyle(for: .backspace, appearance: appearance)
                 expect(result).toNot(beNil())
-            }
-        }
-            
-        describe("standard button background") {
-            
-            it("is defined") {
-                let background = Text("").standardButtonBackground(for: .backspace, context: context)
-                expect(background).toNot(beNil())
-            }
-        }
-        
-        describe("standard button font") {
-            
-            it("is defined") {
-                let font = Text("").standardButtonFont(for: .backspace, context: context)
-                expect(font).toNot(beNil())
-            }
-        }
-        
-        describe("standard button foreground") {
-            
-            it("is defined") {
-                let foreground = Text("").standardButtonForeground(for: context)
-                expect(foreground).toNot(beNil())
-            }
-        }
-        
-        describe("standard button shadow") {
-            
-            it("is defined") {
-                let value = Text("").standardButtonShadow(for: context)
-                expect(value).toNot(beNil())
             }
         }
     }

@@ -16,25 +16,38 @@ class SystemKeyboardButtonTests: QuickSpec {
     override func spec() {
         
         var actionHandler: KeyboardActionHandler!
+        var appearance: KeyboardAppearance!
         
         beforeEach {
             actionHandler = MockKeyboardActionHandler()
+            appearance = StandardKeyboardAppearance(context: MockKeyboardContext())
         }
         
         describe("system keyboard button") {
             
             it("can be created with just an action") {
-                let button = SystemKeyboardButton(action: .control, actionHandler: actionHandler)
+                let button = SystemKeyboardButton(
+                    action: .control,
+                    actionHandler: actionHandler,
+                    appearance: appearance)
                 expect(button).toNot(beNil())
             }
             
             it("can be created with a custom text") {
-                let button = SystemKeyboardButton(action: .control, actionHandler: actionHandler, text: "")
+                let button = SystemKeyboardButton(
+                    action: .control,
+                    actionHandler: actionHandler,
+                    appearance: appearance,
+                    text: "")
                 expect(button).toNot(beNil())
             }
             
             it("can be created with a custom image") {
-                let button = SystemKeyboardButton(action: .control, actionHandler: actionHandler, image: .command)
+                let button = SystemKeyboardButton(
+                    action: .control,
+                    actionHandler: actionHandler,
+                    appearance: appearance,
+                    image: .command)
                 expect(button).toNot(beNil())
             }
         }

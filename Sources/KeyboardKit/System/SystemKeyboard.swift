@@ -21,15 +21,18 @@ public struct SystemKeyboard: View {
     public init(
         layout: KeyboardLayout,
         actionHandler: KeyboardActionHandler,
+        appearance: KeyboardAppearance,
         dimensions: KeyboardDimensions = SystemKeyboardDimensions(),
         buttonBuilder: @escaping ButtonBuilder = Self.standardButtonBuilder) {
         self.actionHandler = actionHandler
+        self.appearance = appearance
         self.rows = layout.actionRows
         self.dimensions = dimensions
         self.buttonBuilder = buttonBuilder
     }
     
     private let actionHandler: KeyboardActionHandler
+    private let appearance: KeyboardAppearance
     private let buttonBuilder: ButtonBuilder
     private let dimensions: KeyboardDimensions
     private let rows: KeyboardActionRows
@@ -73,6 +76,7 @@ private extension SystemKeyboard {
                 SystemKeyboardButtonRowItem(
                     action: $0.element,
                     actionHandler: actionHandler,
+                    appearance: appearance,
                     buttonContent: buttonBuilder($0.element, size),
                     keyboardSize: size)
             }

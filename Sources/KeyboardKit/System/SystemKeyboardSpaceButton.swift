@@ -20,22 +20,26 @@ public struct SystemKeyboardSpaceButton: View {
     public init(
         localeText: String,
         spaceText: String,
-        actionHandler: KeyboardActionHandler) {
+        actionHandler: KeyboardActionHandler,
+        appearance: KeyboardAppearance) {
         self.localeText = localeText
         self.spaceText = spaceText
         self.actionHandler = actionHandler
+        self.appearance = appearance
     }
     
     private let localeText: String
     private let spaceText: String
     private let actionHandler: KeyboardActionHandler
+    private let appearance: KeyboardAppearance
+    
     private var action: KeyboardAction { .space }
     
     @EnvironmentObject private var context: ObservableKeyboardContext
     
     public var body: some View {
         SystemKeyboardSpaceButtonContent(localeText: localeText, spaceText: spaceText)
-            .standardButtonStyle(for: action, context: context)
+            .keyboardButtonStyle(for: action, appearance: appearance)
             .keyboardGestures(for: action, actionHandler: actionHandler)
     }
 }

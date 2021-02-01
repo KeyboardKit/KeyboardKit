@@ -78,6 +78,7 @@ Although these release notes will aim at covering everything that changes in thi
 * `UIImage+resized` has been removed.
 * `UIImage+tinted` has been removed.
 * `UIInputViewController+NextKeyboard` has been made an internal extension in `UIView+Keyboard`.
+* `View+Button` "standard button" functions have been replaced by a single `keyboardButtonStyle` function.
 * `View+ClearInteractable` has been removed.
 * `View` `keyboardAction(...)` has been renamed to `keyboardGestures(for: ...)`
 
