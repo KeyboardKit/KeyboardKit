@@ -54,7 +54,7 @@ private extension SystemKeyboardButtonContent {
     }
     
     var buttonText: String? {
-        text ?? appearance.text(for: action)
+        text ?? appearance.buttonText(for: action)
     }
     
     func textView(for text: String) -> some View {

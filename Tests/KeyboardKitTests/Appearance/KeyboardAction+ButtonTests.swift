@@ -100,6 +100,25 @@ class KeyboardAction_SystemTests: QuickSpec {
             }
         }
         
+        describe("standard button font") {
+            
+            it("is defined for all actions") {
+                actions.forEach {
+                    expect($0.standardButtonFont).to(equal(UIFont.preferredFont(forTextStyle: $0.standardButtonTextStyle)))
+                }
+            }
+        }
+        
+        describe("standard button foreground color") {
+            
+            it("is defined for all actions") {
+                actions.forEach {
+                    let color = $0.standardButtonForegroundColor(for: context)
+                    expect(color).to(equal(.standardButtonTint(for: context)))
+                }
+            }
+        }
+        
         describe("standard button shadow color") {
             
             func result(for action: KeyboardAction) -> Color {
@@ -110,15 +129,6 @@ class KeyboardAction_SystemTests: QuickSpec {
                 expected = [.none, .emoji(Emoji(""))]
                 expected.forEach { expect(result(for: $0)).to(equal(.clear)) }
                 unexpected.forEach { expect(result(for: $0)).toNot(equal(.clear)) }
-            }
-        }
-        
-        describe("standard button font") {
-            
-            it("is defined for all actions") {
-                actions.forEach {
-                    expect($0.standardButtonFont).to(equal(UIFont.preferredFont(forTextStyle: $0.standardButtonTextStyle)))
-                }
             }
         }
         

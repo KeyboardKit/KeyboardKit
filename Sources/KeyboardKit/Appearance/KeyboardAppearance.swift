@@ -20,8 +20,10 @@ import SwiftUI
  */
 public protocol KeyboardAppearance {
     
-    func font(for action: KeyboardAction) -> UIFont
-    func fontWeight(for action: KeyboardAction) -> UIFont.Weight?
-    func image(for action: KeyboardAction) -> Image?
-    func text(for action: KeyboardAction) -> String?
+    func buttonBackgroundColor(for action: KeyboardAction) -> Color
+    func buttonFont(for action: KeyboardAction) -> Font
+    func buttonForegroundColor(for action: KeyboardAction) -> Color
+    func buttonImage(for action: KeyboardAction) -> Image?
+    func buttonShadowColor(for action: KeyboardAction) -> Color
+    func buttonText(for action: KeyboardAction) -> String?
 }

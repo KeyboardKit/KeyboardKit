@@ -30,6 +30,13 @@ public extension KeyboardAction {
     }
     
     /**
+     The action's standard keyboard button foreground color.
+     */
+    func standardButtonForegroundColor(for context: KeyboardContext) -> Color {
+        .standardButtonTint(for: context)
+    }
+    
+    /**
      The action's standard keyboard button image.
      */
     var standardButtonImage: Image? {
