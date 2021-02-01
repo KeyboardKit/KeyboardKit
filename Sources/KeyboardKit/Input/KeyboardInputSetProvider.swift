@@ -10,7 +10,7 @@ import Foundation
 
 /**
  This protocol can be implemented by classes that can return
- input sets for the keyboard extension context.
+ keyboard input sets.
  
  `KeyboardKit` will automatically create a standard instance
  and bind it to the input view controller when the extension
@@ -19,7 +19,7 @@ import Foundation
  */
 public protocol KeyboardInputSetProvider: AnyObject {
     
-    func alphabeticInputSet(for context: KeyboardContext) -> AlphabeticKeyboardInputSet
-    func numericInputSet(for context: KeyboardContext) -> NumericKeyboardInputSet
-    func symbolicInputSet(for context: KeyboardContext) -> SymbolicKeyboardInputSet
+    func alphabeticInputSet() -> AlphabeticKeyboardInputSet
+    func numericInputSet() -> NumericKeyboardInputSet
+    func symbolicInputSet() -> SymbolicKeyboardInputSet
 }

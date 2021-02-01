@@ -23,11 +23,12 @@ class StandardKeyboardLayoutProviderTests: QuickSpec {
             var rows: KeyboardActionRows!
             
             beforeEach {
+                context = MockKeyboardContext()
                 provider = StandardKeyboardLayoutProvider(
+                    inputSetProvider: StandardKeyboardInputSetProvider(context: context),
                     leftSpaceAction: .done,
                     rightSpaceAction: .escape)
-                context = MockKeyboardContext()
-                inputSet = EnglishKeyboardInputSetProvider().alphabeticInputSet(for: context)
+                inputSet = EnglishKeyboardInputSetProvider().alphabeticInputSet()
                 rows = KeyboardActionRows(characters: inputSet.inputRows)
             }
             

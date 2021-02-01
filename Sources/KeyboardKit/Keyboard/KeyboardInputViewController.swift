@@ -113,7 +113,8 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      The extension's default keyboard input set provider.
      */
-    public lazy var keyboardInputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider()
+    public lazy var keyboardInputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider(
+        context: keyboardContext)
                     
     /**
      The extension's default keyboard layout provider.

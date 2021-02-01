@@ -18,9 +18,9 @@ public class StaticKeyboardInputSetProvider: KeyboardInputSetProvider {
         alphabeticInputSet: AlphabeticKeyboardInputSet,
         numericInputSet: NumericKeyboardInputSet,
         symbolicInputSet: SymbolicKeyboardInputSet) {
-        self.alphabeticInputSet = alphabeticInputSet
-        self.numericInputSet = numericInputSet
-        self.symbolicInputSet = symbolicInputSet
+        self.alphabeticInputSetValue = alphabeticInputSet
+        self.numericInputSetValue = numericInputSet
+        self.symbolicInputSetValue = symbolicInputSet
     }
     
     public static var empty: KeyboardInputSetProvider {
@@ -30,19 +30,19 @@ public class StaticKeyboardInputSetProvider: KeyboardInputSetProvider {
             symbolicInputSet: SymbolicKeyboardInputSet(inputRows: []))
     }
     
-    private let alphabeticInputSet: AlphabeticKeyboardInputSet
-    private let numericInputSet: NumericKeyboardInputSet
-    private let symbolicInputSet: SymbolicKeyboardInputSet
+    private let alphabeticInputSetValue: AlphabeticKeyboardInputSet
+    private let numericInputSetValue: NumericKeyboardInputSet
+    private let symbolicInputSetValue: SymbolicKeyboardInputSet
 
-    public func alphabeticInputSet(for context: KeyboardContext) -> AlphabeticKeyboardInputSet {
-        alphabeticInputSet
+    public func alphabeticInputSet() -> AlphabeticKeyboardInputSet {
+        alphabeticInputSetValue
     }
     
-    public func numericInputSet(for context: KeyboardContext) -> NumericKeyboardInputSet {
-        numericInputSet
+    public func numericInputSet() -> NumericKeyboardInputSet {
+        numericInputSetValue
     }
     
-    public func symbolicInputSet(for context: KeyboardContext) -> SymbolicKeyboardInputSet {
-        symbolicInputSet
+    public func symbolicInputSet() -> SymbolicKeyboardInputSet {
+        symbolicInputSetValue
     }
 }

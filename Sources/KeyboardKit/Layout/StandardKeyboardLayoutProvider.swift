@@ -39,7 +39,7 @@ import UIKit
 open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     
     public init(
-        inputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider(),
+        inputSetProvider: KeyboardInputSetProvider,
         leftSpaceAction: KeyboardAction? = nil,
         rightSpaceAction: KeyboardAction? = nil) {
         self.inputSetProvider = inputSetProvider
@@ -262,11 +262,11 @@ private extension StandardKeyboardLayoutProvider {
         let provider = inputSetProvider
         switch context.keyboardType {
         case .alphabetic(let state):
-            let rows = provider.alphabeticInputSet(for: context).inputRows
+            let rows = provider.alphabeticInputSet().inputRows
             return state.isUppercased ? rows.uppercased() : rows
-        case .numeric: return provider.numericInputSet(for: context).inputRows
-        case .symbolic: return provider.symbolicInputSet(for: context).inputRows
-        default: return provider.alphabeticInputSet(for: context).inputRows
+        case .numeric: return provider.numericInputSet().inputRows
+        case .symbolic: return provider.symbolicInputSet().inputRows
+        default: return provider.alphabeticInputSet().inputRows
         }
     }
 }

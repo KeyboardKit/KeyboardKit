@@ -17,18 +17,22 @@ import Foundation
  */
 open class StandardKeyboardInputSetProvider: KeyboardInputSetProvider {
     
-    public init() {}
-    
-    open func alphabeticInputSet(for context: KeyboardContext) -> AlphabeticKeyboardInputSet {
-        provider(for: context).alphabeticInputSet(for: context)
+    public init(context: KeyboardContext) {
+        self.context = context
     }
     
-    open func numericInputSet(for context: KeyboardContext) -> NumericKeyboardInputSet {
-        provider(for: context).numericInputSet(for: context)
+    private let context: KeyboardContext
+    
+    open func alphabeticInputSet() -> AlphabeticKeyboardInputSet {
+        provider(for: context).alphabeticInputSet()
     }
     
-    open func symbolicInputSet(for context: KeyboardContext) -> SymbolicKeyboardInputSet {
-        provider(for: context).symbolicInputSet(for: context)
+    open func numericInputSet() -> NumericKeyboardInputSet {
+        provider(for: context).numericInputSet()
+    }
+    
+    open func symbolicInputSet() -> SymbolicKeyboardInputSet {
+        provider(for: context).symbolicInputSet()
     }
     
     open var providerTable: [String: KeyboardInputSetProvider] {

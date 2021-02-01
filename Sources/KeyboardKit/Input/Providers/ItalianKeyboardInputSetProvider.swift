@@ -15,7 +15,7 @@ public class ItalianKeyboardInputSetProvider: KeyboardInputSetProvider {
     
     public init() {}
     
-    public func alphabeticInputSet(for context: KeyboardContext) -> AlphabeticKeyboardInputSet {
+    public func alphabeticInputSet() -> AlphabeticKeyboardInputSet {
         AlphabeticKeyboardInputSet(inputRows: [
             ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
             ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
@@ -23,11 +23,11 @@ public class ItalianKeyboardInputSetProvider: KeyboardInputSetProvider {
         ])
     }
     
-    public func numericInputSet(for context: KeyboardContext) -> NumericKeyboardInputSet {
+    public func numericInputSet() -> NumericKeyboardInputSet {
         .standard(currency: "€")
     }
     
-    public func symbolicInputSet(for context: KeyboardContext) -> SymbolicKeyboardInputSet {
+    public func symbolicInputSet() -> SymbolicKeyboardInputSet {
         .standard(currencies: ["$", "£", "¥"])
     }
 }

@@ -24,8 +24,8 @@ class StandardKeyboardInputSetProviderTests: QuickSpec {
         var swedish: KeyboardInputSetProvider!
         
         beforeEach {
-            provider = StandardKeyboardInputSetProvider()
             context = MockKeyboardContext()
+            provider = StandardKeyboardInputSetProvider(context: context)
             
             english = EnglishKeyboardInputSetProvider()
             german = GermanKeyboardInputSetProvider()
@@ -37,59 +37,59 @@ class StandardKeyboardInputSetProviderTests: QuickSpec {
             
             func alphabetic(for locale: String) -> KeyboardInputSet {
                 context.locale = Locale(identifier: locale)
-                return provider.alphabeticInputSet(for: context)
+                return provider.alphabeticInputSet()
             }
             
             func numeric(for locale: String) -> KeyboardInputSet {
                 context.locale = Locale(identifier: locale)
-                return provider.numericInputSet(for: context)
+                return provider.numericInputSet()
             }
             
             func symbolic(for locale: String) -> KeyboardInputSet {
                 context.locale = Locale(identifier: locale)
-                return provider.symbolicInputSet(for: context)
+                return provider.symbolicInputSet()
             }
             
             it("supports English") {
                 let locale = "en"
-                expect(alphabetic(for: locale)).to(equal(english.alphabeticInputSet(for: context)))
-                expect(numeric(for: locale)).to(equal(english.numericInputSet(for: context)))
-                expect(symbolic(for: locale)).to(equal(english.symbolicInputSet(for: context)))
+                expect(alphabetic(for: locale)).to(equal(english.alphabeticInputSet()))
+                expect(numeric(for: locale)).to(equal(english.numericInputSet()))
+                expect(symbolic(for: locale)).to(equal(english.symbolicInputSet()))
             }
             
             it("supports German") {
                 let locale = "de"
-                expect(alphabetic(for: locale)).to(equal(german.alphabeticInputSet(for: context)))
-                expect(numeric(for: locale)).to(equal(german.numericInputSet(for: context)))
-                expect(symbolic(for: locale)).to(equal(german.symbolicInputSet(for: context)))
+                expect(alphabetic(for: locale)).to(equal(german.alphabeticInputSet()))
+                expect(numeric(for: locale)).to(equal(german.numericInputSet()))
+                expect(symbolic(for: locale)).to(equal(german.symbolicInputSet()))
             }
             
             it("supports Italian") {
                 let locale = "it"
-                expect(alphabetic(for: locale)).to(equal(italian.alphabeticInputSet(for: context)))
-                expect(numeric(for: locale)).to(equal(italian.numericInputSet(for: context)))
-                expect(symbolic(for: locale)).to(equal(italian.symbolicInputSet(for: context)))
+                expect(alphabetic(for: locale)).to(equal(italian.alphabeticInputSet()))
+                expect(numeric(for: locale)).to(equal(italian.numericInputSet()))
+                expect(symbolic(for: locale)).to(equal(italian.symbolicInputSet()))
             }
             
             it("supports Swedish") {
                 let locale = "sv"
-                expect(alphabetic(for: locale)).to(equal(swedish.alphabeticInputSet(for: context)))
-                expect(numeric(for: locale)).to(equal(swedish.numericInputSet(for: context)))
-                expect(symbolic(for: locale)).to(equal(swedish.symbolicInputSet(for: context)))
+                expect(alphabetic(for: locale)).to(equal(swedish.alphabeticInputSet()))
+                expect(numeric(for: locale)).to(equal(swedish.numericInputSet()))
+                expect(symbolic(for: locale)).to(equal(swedish.symbolicInputSet()))
             }
             
             it("has fallback support for specific locale") {
                 let locale = "en-US"
-                expect(alphabetic(for: locale)).to(equal(english.alphabeticInputSet(for: context)))
-                expect(numeric(for: locale)).to(equal(english.numericInputSet(for: context)))
-                expect(symbolic(for: locale)).to(equal(english.symbolicInputSet(for: context)))
+                expect(alphabetic(for: locale)).to(equal(english.alphabeticInputSet()))
+                expect(numeric(for: locale)).to(equal(english.numericInputSet()))
+                expect(symbolic(for: locale)).to(equal(english.symbolicInputSet()))
             }
             
             it("has fallback support for non-existing locale") {
                 let locale = "abc"
-                expect(alphabetic(for: locale)).to(equal(english.alphabeticInputSet(for: context)))
-                expect(numeric(for: locale)).to(equal(english.numericInputSet(for: context)))
-                expect(symbolic(for: locale)).to(equal(english.symbolicInputSet(for: context)))
+                expect(alphabetic(for: locale)).to(equal(english.alphabeticInputSet()))
+                expect(numeric(for: locale)).to(equal(english.numericInputSet()))
+                expect(symbolic(for: locale)).to(equal(english.symbolicInputSet()))
             }
         }
     }

@@ -14,18 +14,16 @@ class GermanKeyboardInputSetProviderTests: QuickSpec {
     
     override func spec() {
         
-        var context: KeyboardContext!
         var provider: KeyboardInputSetProvider!
         
         beforeEach {
-            context = MockKeyboardContext()
             provider = GermanKeyboardInputSetProvider()
         }
         
         describe("input set provider") {
             
             it("has correct alphabetic input set") {
-                expect(provider.alphabeticInputSet(for: context).inputRows).to(equal([
+                expect(provider.alphabeticInputSet().inputRows).to(equal([
                     ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "ü"],
                     ["a", "s", "d", "f", "g", "h", "j", "k", "l", "ö", "ä"],
                     ["y", "x", "c", "v", "b", "n", "m"]
@@ -33,13 +31,13 @@ class GermanKeyboardInputSetProviderTests: QuickSpec {
             }
             
             it("has correct numeric input set") {
-                let rows = provider.numericInputSet(for: context).inputRows
+                let rows = provider.numericInputSet().inputRows
                 let expected = NumericKeyboardInputSet.standard(currency: "€").inputRows
                 expect(rows).to(equal(expected))
             }
             
             it("has correct symbolic input set") {
-                let rows = provider.symbolicInputSet(for: context).inputRows
+                let rows = provider.symbolicInputSet().inputRows
                 let expected = SymbolicKeyboardInputSet.standard(currencies: ["$", "£", "¥"]).inputRows
                 expect(rows).to(equal(expected))
             }
