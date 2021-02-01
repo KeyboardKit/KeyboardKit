@@ -21,7 +21,7 @@ import SwiftUI
 public protocol KeyboardAppearance {
     
     func font(for action: KeyboardAction) -> UIFont
-    func fontWeight(for action: KeyboardAction, context: KeyboardContext) -> UIFont.Weight?
+    func fontWeight(for action: KeyboardAction) -> UIFont.Weight?
     func image(for action: KeyboardAction) -> Image?
     func text(for action: KeyboardAction) -> String?
 }

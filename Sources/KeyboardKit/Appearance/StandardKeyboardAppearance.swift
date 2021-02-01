@@ -24,8 +24,9 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         action.standardButtonFont
     }
     
-    open func fontWeight(for action: KeyboardAction, context: KeyboardContext) -> UIFont.Weight? {
-        return nil
+    open func fontWeight(for action: KeyboardAction) -> UIFont.Weight? {
+        let hasImage = image(for: action) != nil
+        return hasImage ? .light : nil
     }
     
     public func image(for action: KeyboardAction) -> Image? {

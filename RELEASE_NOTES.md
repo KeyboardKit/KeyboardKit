@@ -40,6 +40,7 @@ Although these release notes will aim at covering everything that changes in thi
 * `KeyboardAction.emoji` now uses the `Emoji` type instead of a char.
 * `KeyboardAction.emojiCategory` no longer has a  standard tap action.
 * `KeyboardActionRow` `standardButtonImage` no longer takes a context.
+* `KeyboardAppearance` `fontWeight` no longer takes a context.
 * `KeyboardContext` no longer has any services, just inspectable properties.
 * `KeyboardInputViewController` `context` is now an `ObservableKeyboardContext`.
 * `KeyboardInputViewController` `context` is now called `keyboardContext`.

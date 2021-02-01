@@ -45,7 +45,7 @@ public extension View {
         context: KeyboardContext) -> some View {
         let provider = keyboardInputViewController.keyboardAppearance
         let rawFont = Font(provider.font(for: action))
-        if let weight = provider.fontWeight(for: action, context: context) { return font(rawFont.weight(weight)) }
+        if let weight = provider.fontWeight(for: action) { return font(rawFont.weight(weight)) }
         let hasImage = action.standardButtonImage != nil
         return hasImage ? font(rawFont.weight(.light)) : font(rawFont)
     }
