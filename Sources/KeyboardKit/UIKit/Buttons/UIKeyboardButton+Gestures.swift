@@ -68,13 +68,13 @@ private extension KeyboardInputViewController {
         handle(.longPress, on: gesture.view)
     }
     
+    func handleRepeat(_ gesture: UIGestureRecognizer) {
+        handle(.repeatPress, on: gesture.view)
+    }
+    
     func handleTap(_ gesture: UIGestureRecognizer) {
         handle(.tap, on: gesture.view)
         (gesture.view as? UIKeyboardButton)?.animateStandardTap()
-    }
-    
-    func handleRepeat(_ gesture: UIGestureRecognizer) {
-        handle(.repeatPress, on: gesture.view)
     }
 }
 
