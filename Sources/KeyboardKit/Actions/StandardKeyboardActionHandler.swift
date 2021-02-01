@@ -58,7 +58,10 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     // MARK: - Properties
     
     private var currentDragStartLocation: CGPoint?
+    
     private var currentDragTextPositionOffset: Int = 0
+    
+    private var keyboardInputViewController: KeyboardInputViewController { .shared }
     
     
     // MARK: - Types
@@ -77,7 +80,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      */
     open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         guard let gestureAction = self.action(for: gesture, on: action) else { return }
-        gestureAction(.shared)
+        gestureAction(keyboardInputViewController)
         triggerAudioFeedback(for: gesture, on: action, sender: sender)
         triggerHapticFeedback(for: gesture, on: action, sender: sender)
         autocompleteAction()

@@ -47,8 +47,6 @@ public struct AutocompleteToolbar: View {
     private let replacementAction: ReplacementAction
     private let separatorBuilder: SeparatorBuilder
     
-    private var proxy: UITextDocumentProxy { KeyboardInputViewController.shared.textDocumentProxy }
-    
     struct BarItem: Identifiable {
         init(_ suggestion: AutocompleteSuggestion) {
             self.suggestion = suggestion
@@ -89,10 +87,9 @@ public extension AutocompleteToolbar {
      build a text replacement for an autocomplete suggestion.
      */
     static func standardReplacement(for suggestion: AutocompleteSuggestion) -> String {
-        let replacement = suggestion.replacement
-        guard let vc = KeyboardInputViewController.shared else { return replacement }
         let space = " "
-        let proxy = vc.textDocumentProxy
+        let replacement = suggestion.replacement
+        let proxy = keyboardInputViewController.textDocumentProxy
         let endsWithSpace = replacement.hasSuffix(space)
         let hasNextSpace = proxy.documentContextAfterInput?.starts(with: space) ?? false
         let insertSpace = endsWithSpace || hasNextSpace
@@ -104,9 +101,8 @@ public extension AutocompleteToolbar {
      replace the current word in the proxy with a suggestion.
      */
     static func standardReplacementAction(for suggestion: AutocompleteSuggestion) {
-        let vc = keyboardInputViewController
-        let proxy = vc.textDocumentProxy
-        let actionHandler = vc.keyboardActionHandler
+        let proxy = keyboardInputViewController.textDocumentProxy
+        let actionHandler = keyboardInputViewController.keyboardActionHandler
         let replacement = Self.standardReplacement(for: suggestion)
         proxy.replaceCurrentWord(with: replacement)
         actionHandler.handle(.tap, on: .character(""))
@@ -148,7 +144,7 @@ private extension AutocompleteToolbar {
 struct AutocompleteToolbar_Previews: PreviewProvider {
     
     static var previews: some View {
-        KeyboardInputViewController.shared = KeyboardInputViewController()
+        KeyboardInputViewController.shared = .preview
         
         return VStack {
             AutocompleteToolbar(suggestions: suggestions).previewBar()
