@@ -34,7 +34,7 @@ open class ObservableKeyboardContext: KeyboardContext, ObservableObject {
     @Published public var locale: Locale
     @Published public var needsInputModeSwitchKey: Bool = true
     @Published public var primaryLanguage: String?
-    @Published public var textDocumentProxy: UITextDocumentProxy = FakeTextDocumentProxy()
+    @Published public var textDocumentProxy: UITextDocumentProxy = PreviewTextDocumentProxy()
     @Published public var textInputMode: UITextInputMode?
     @Published public var traitCollection: UITraitCollection = UITraitCollection()
 }

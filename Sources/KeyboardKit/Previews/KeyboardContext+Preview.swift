@@ -1,5 +1,5 @@
 //
-//  FakeKeyboardContext.swift
+//  KeyboardContext+Preview.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-25.
@@ -11,7 +11,7 @@ import UIKit
 /**
  This fake context can be used for previews etc.
  */
-public class FakeKeyboardContext: KeyboardContext {
+public class PreviewKeyboardContext: KeyboardContext {
     
     public init() {}
     
@@ -23,7 +23,7 @@ public class FakeKeyboardContext: KeyboardContext {
     public var locale: Locale = .current
     public var needsInputModeSwitchKey: Bool = true
     public var primaryLanguage: String?
-    public var textDocumentProxy: UITextDocumentProxy = FakeTextDocumentProxy()
+    public var textDocumentProxy: UITextDocumentProxy = PreviewTextDocumentProxy()
     public var textInputMode: UITextInputMode?
     public var traitCollection: UITraitCollection = UITraitCollection()
 }

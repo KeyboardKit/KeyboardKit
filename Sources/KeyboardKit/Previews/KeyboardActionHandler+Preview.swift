@@ -1,5 +1,5 @@
 //
-//  FakeKeyboardActionHandler.swift
+//  KeyboardActionHandler+Preview.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-25.
@@ -11,7 +11,7 @@ import UIKit
 /**
  This fake action handler can be used for previews etc.
  */
-public class FakeKeyboardActionHandler: KeyboardActionHandler {
+public class PreviewKeyboardActionHandler: KeyboardActionHandler {
     
     public init() {}
     

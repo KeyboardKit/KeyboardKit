@@ -14,9 +14,7 @@ import SwiftUI
  
  The context will automatically dismiss itself when the user
  ends the secondary gesture or drags too far down.
- 
- You can use `.shared` to get/set a shared context.
- 
+  
  You can inherit this class and override any `open` function
  to modify the callout behavior.
  */
@@ -26,10 +24,8 @@ open class SecondaryInputCalloutContext: ObservableObject {
     // MARK: - Initialization
     
     public init(
-        context: KeyboardContext,
         actionProvider: SecondaryCalloutActionProvider,
         actionHandler: KeyboardActionHandler) {
-        self.context = context
         self.actionProvider = actionProvider
         self.actionHandler = actionHandler
     }
@@ -39,7 +35,6 @@ open class SecondaryInputCalloutContext: ObservableObject {
     
     public let actionHandler: KeyboardActionHandler
     public let actionProvider: SecondaryCalloutActionProvider
-    public let context: KeyboardContext
     
     
     // MARK: - Properties

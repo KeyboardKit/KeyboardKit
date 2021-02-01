@@ -15,8 +15,7 @@ public extension SecondaryInputCalloutContext {
      */
     static var preview: SecondaryInputCalloutContext {
         SecondaryInputCalloutContext(
-            context: FakeKeyboardContext(),
-            actionProvider: PreviewSecondaryCalloutActionProvider.preview,
-            actionHandler: FakeKeyboardActionHandler())
+            actionProvider: PreviewSecondaryCalloutActionProvider(),
+            actionHandler: PreviewKeyboardActionHandler())
     }
 }

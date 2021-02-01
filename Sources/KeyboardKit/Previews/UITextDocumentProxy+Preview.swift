@@ -1,5 +1,5 @@
 //
-//  FakeTextDocumentProxy.swift
+//  UITextDocumentProxy+Preview.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-25.
@@ -11,7 +11,7 @@ import UIKit
 /**
  This fake text document proxy can be used for previews etc.
  */
-public class FakeTextDocumentProxy: NSObject, UITextDocumentProxy {
+public class PreviewTextDocumentProxy: NSObject, UITextDocumentProxy {
     
     public override init() {
         super.init()

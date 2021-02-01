@@ -1,5 +1,5 @@
 //
-//  StandardSecondaryCalloutActionProvider+Preview.swift
+//  SecondaryCalloutActionProvider+Preview.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-01.
@@ -11,12 +11,9 @@ import Foundation
 /**
  This class can be used when previewing keyboard views.
  */
-public class PreviewSecondaryCalloutActionProvider {
+public class PreviewSecondaryCalloutActionProvider: SecondaryCalloutActionProvider {
     
-    private init() {}
+    public init() {}
     
-    static var preview: SecondaryCalloutActionProvider {
-        StandardSecondaryCalloutActionProvider(
-            context: FakeKeyboardContext())
-    }
+    public func secondaryCalloutActions(for action: KeyboardAction) -> [KeyboardAction] { []}
 }
