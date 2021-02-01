@@ -31,7 +31,6 @@ public struct SystemKeyboardDimensions: KeyboardDimensions {
     public let longButtonWidth: CGFloat
     public let shortButtonWidth: CGFloat
     
-    
     public func width(
         for action: KeyboardAction,
         keyboardWidth: CGFloat,

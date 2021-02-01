@@ -31,8 +31,6 @@ public struct SystemKeyboardButtonContent: View {
     private let image: Image?
     private let text: String?
     
-    @EnvironmentObject var context: ObservableKeyboardContext
-    
     @ViewBuilder
     public var body: some View {
         if action == .nextKeyboard {

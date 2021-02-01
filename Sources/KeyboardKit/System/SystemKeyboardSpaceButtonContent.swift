@@ -28,7 +28,6 @@ public struct SystemKeyboardSpaceButtonContent: View {
     
     private static var lastLocaleText: String?
     
-    
     public var body: some View {
         ZStack {
             SystemKeyboardButtonContent(action: action, text: localeText).opacity(showLocale ? 1 : 0)

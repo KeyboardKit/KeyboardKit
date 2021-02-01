@@ -35,8 +35,6 @@ public struct SystemKeyboardSpaceButton: View {
     
     private var action: KeyboardAction { .space }
     
-    @EnvironmentObject private var context: ObservableKeyboardContext
-    
     public var body: some View {
         SystemKeyboardSpaceButtonContent(localeText: localeText, spaceText: spaceText)
             .keyboardButtonStyle(for: action, appearance: appearance)
