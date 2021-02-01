@@ -11,6 +11,20 @@ import SwiftUI
 public extension View {
     
     /**
+     Apply a keyboard button appearance to the view.
+     */
+    func keyboardButton(
+        for action: KeyboardAction,
+        appearance: KeyboardAppearance) -> some View {
+        self.background(appearance.buttonBackgroundColor(for: action))
+            .foregroundColor(appearance.buttonForegroundColor(for: action))
+            .cornerRadius(appearance.buttonCornerRadius(for: action))
+            .shadow(color: appearance.buttonShadowColor(for: action), radius: 0, x: 0, y: 1)
+            .shadow(color: appearance.buttonShadowColor(for: action), radius: 0, x: 0, y: 1)
+            .font(appearance.buttonFont(for: action))
+    }
+    
+    /**
      Apply the standard button style, including a background,
      foreground color, corner radius, shadow and font.
      */

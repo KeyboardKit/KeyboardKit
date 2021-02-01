@@ -6,7 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 import SwiftUI
 
 /**
@@ -21,6 +21,7 @@ import SwiftUI
 public protocol KeyboardAppearance {
     
     func buttonBackgroundColor(for action: KeyboardAction) -> Color
+    func buttonCornerRadius(for action: KeyboardAction) -> CGFloat
     func buttonFont(for action: KeyboardAction) -> Font
     func buttonForegroundColor(for action: KeyboardAction) -> Color
     func buttonImage(for action: KeyboardAction) -> Image?

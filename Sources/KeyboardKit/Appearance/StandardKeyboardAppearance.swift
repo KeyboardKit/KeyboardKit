@@ -30,6 +30,8 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         action.standardButtonBackgroundColor(for: context)
     }
     
+    open func buttonCornerRadius(for action: KeyboardAction) -> CGFloat { 4.0 }
+    
     open func buttonFont(for action: KeyboardAction) -> Font {
         let rawFont = Font(action.standardButtonFont)
         guard let weight = fontWeight(for: action) else { return rawFont }
