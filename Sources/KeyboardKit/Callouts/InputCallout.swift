@@ -15,14 +15,11 @@ import SwiftUI
  */
 public struct InputCallout: View {
     
-    public init(
-        context: InputCalloutContext,
-        style: InputCalloutStyle) {
-        self.context = context
+    public init(style: InputCalloutStyle) {
         self.style = style
     }
     
-    @ObservedObject private var context: InputCalloutContext
+    @EnvironmentObject private var context: InputCalloutContext
     
     private let style: InputCalloutStyle
     

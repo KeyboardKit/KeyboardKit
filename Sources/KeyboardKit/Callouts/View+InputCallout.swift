@@ -14,12 +14,10 @@ public extension View {
      This modifier can be applied to any view that should be
      able to present an input callout.
      */
-    func inputCallout(
-        context: InputCalloutContext,
-        style: InputCalloutStyle = .standard) -> some View {
+    func inputCallout(style: InputCalloutStyle = .standard) -> some View {
         ZStack {
             self
-            InputCallout(context: context, style: style)
+            InputCallout(style: style)
         }.coordinateSpace(name: InputCallout.coordinateSpace)
     }
 }
