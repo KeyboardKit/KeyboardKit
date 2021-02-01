@@ -109,7 +109,7 @@ open class SecondaryInputCalloutContext: ObservableObject {
      */
     open func updateInputs(for action: KeyboardAction?, geo: GeometryProxy, alignment: Alignment? = nil) {
         guard let action = action else { return reset() }
-        let actions = actionProvider.secondaryCalloutActions(for: action, in: context)
+        let actions = actionProvider.secondaryCalloutActions(for: action)
         self.buttonFrame = self.buttonFrame(for: geo)
         self.alignment = alignment ?? getAlignment(for: geo)
         self.actions = isLeading ? actions : actions.reversed()

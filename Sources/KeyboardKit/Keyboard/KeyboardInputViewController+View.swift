@@ -36,7 +36,7 @@ private extension KeyboardInputViewController {
     var secondaryInputCalloutContextFallback: SecondaryInputCalloutContext {
         SecondaryInputCalloutContext(
             context: keyboardContext,
-            actionProvider: StandardSecondaryCalloutActionProvider(),
+            actionProvider: PreviewSecondaryCalloutActionProvider.preview,
             actionHandler: keyboardActionHandler)
     }
 }

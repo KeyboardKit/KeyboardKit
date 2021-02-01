@@ -14,9 +14,13 @@ import Foundation
  */
 open class StandardSecondaryCalloutActionProvider: SecondaryCalloutActionProvider {
     
-    public init() {}
+    public init(context: KeyboardContext) {
+        self.context = context
+    }
     
-    open func secondaryCalloutActions(for action: KeyboardAction, in context: KeyboardContext) -> [KeyboardAction] {
+    private let context: KeyboardContext
+    
+    open func secondaryCalloutActions(for action: KeyboardAction) -> [KeyboardAction] {
         action.standardSecondaryCalloutActions(for: context.locale)
     }
 }

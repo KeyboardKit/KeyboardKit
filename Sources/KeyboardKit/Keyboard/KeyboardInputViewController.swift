@@ -124,7 +124,8 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      The extension's default secondary input callout context.
      */
-    public lazy var keyboardSecondaryInputActionProvider: SecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider()
+    public lazy var keyboardSecondaryInputActionProvider: SecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider(
+        context: keyboardContext)
     
     /**
      The extension's default secondary input callout context.

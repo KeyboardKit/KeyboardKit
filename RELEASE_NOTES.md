@@ -44,6 +44,7 @@ Although these release notes will aim at covering everything that changes in thi
 * `KeyboardContext` no longer has any services, just inspectable properties.
 * `KeyboardInputViewController` `context` is now an `ObservableKeyboardContext`.
 * `KeyboardInputViewController` `context` is now called `keyboardContext`.
+* `SecondaryCalloutActionProvider` no longer takes a context as function input.
 * `StandardKeyboardActionHandler` no longer depends on an input view controller.
 * `StandardKeyboardActionHandler` now requires an injected keyboard context and behavior.
 * `StandardKeyboardActionHandler` now requires an injected autocomplete and keyboard change action.

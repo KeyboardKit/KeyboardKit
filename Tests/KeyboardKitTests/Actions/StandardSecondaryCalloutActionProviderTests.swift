@@ -19,15 +19,15 @@ class StandardSecondaryCalloutActionProviderTests: QuickSpec {
         var context: MockKeyboardContext!
         
         beforeEach {
-            provider = StandardSecondaryCalloutActionProvider()
             context = MockKeyboardContext()
+            provider = StandardSecondaryCalloutActionProvider(context: context)
         }
         
         describe("secondary callout actions") {
             
             func validateResult(for action: KeyboardAction, locale: Locale) -> Bool {
                 context.locale = locale
-                let providerResult = provider.secondaryCalloutActions(for: action, in: context)
+                let providerResult = provider.secondaryCalloutActions(for: action)
                 let actionResult = action.standardSecondaryCalloutActions(for: locale)
                 return providerResult == actionResult
             }

@@ -11,8 +11,7 @@ import Foundation
 public extension KeyboardInputViewController {
     
     /**
-     This preview can be used when previewing keyboard views
-     that depend on an `KeyboardInputViewController`.
+     This preview can be used when previewing keyboard views.
      */
     static var preview: KeyboardInputViewController {
         KeyboardInputViewController()

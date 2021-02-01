@@ -19,5 +19,5 @@ import Foundation
  */
 public protocol SecondaryCalloutActionProvider {
     
-    func secondaryCalloutActions(for action: KeyboardAction, in context: KeyboardContext) -> [KeyboardAction]
+    func secondaryCalloutActions(for action: KeyboardAction) -> [KeyboardAction]
 }

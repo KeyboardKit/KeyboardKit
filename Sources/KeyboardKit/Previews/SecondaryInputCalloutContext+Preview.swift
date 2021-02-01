@@ -11,13 +11,12 @@ import Foundation
 public extension SecondaryInputCalloutContext {
     
     /**
-     This preview can be used when previewing keyboard views
-     that depend on an `ObservableKeyboardContext`.
+     This preview can be used when previewing keyboard views.
      */
     static var preview: SecondaryInputCalloutContext {
         SecondaryInputCalloutContext(
             context: FakeKeyboardContext(),
-            actionProvider: StandardSecondaryCalloutActionProvider(),
+            actionProvider: PreviewSecondaryCalloutActionProvider.preview,
             actionHandler: FakeKeyboardActionHandler())
     }
 }
