@@ -20,7 +20,6 @@ public extension View {
             .foregroundColor(appearance.buttonForegroundColor(for: action))
             .cornerRadius(appearance.buttonCornerRadius(for: action))
             .shadow(color: appearance.buttonShadowColor(for: action), radius: 0, x: 0, y: 1)
-            .shadow(color: appearance.buttonShadowColor(for: action), radius: 0, x: 0, y: 1)
             .font(appearance.buttonFont(for: action))
     }
     
