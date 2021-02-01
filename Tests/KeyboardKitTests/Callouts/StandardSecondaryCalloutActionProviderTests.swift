@@ -18,15 +18,9 @@ class StandardSecondaryCalloutActionProviderTests: QuickSpec {
         var provider: StandardSecondaryCalloutActionProvider!
         var context: MockKeyboardContext!
         
-        var english: EnglishSecondaryCalloutActionProvider!
-        var swedish: SwedishSecondaryCalloutActionProvider!
-        
         beforeEach {
             context = MockKeyboardContext()
             provider = StandardSecondaryCalloutActionProvider(context: context)
-            
-            english = EnglishSecondaryCalloutActionProvider()
-            swedish = SwedishSecondaryCalloutActionProvider()
         }
         
         describe("provider list") {
