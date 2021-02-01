@@ -45,6 +45,7 @@ Although these release notes will aim at covering everything that changes in thi
 * `KeyboardAction.emoji` now uses the `Emoji` type instead of a char.
 * `KeyboardAction.emojiCategory` no longer has a  standard tap action.
 * `KeyboardActionRow` `standardButtonImage` no longer takes a context.
+* `KeyboardBehavior` no longer takes a context as function input.
 * `KeyboardContext` no longer has any services, just inspectable properties.
 * `KeyboardInputSetProvider` no longer takes a context as function input.
 * `KeyboardInputViewController` `context` is now an `ObservableKeyboardContext`.
@@ -55,6 +56,7 @@ Although these release notes will aim at covering everything that changes in thi
 * `StandardKeyboardActionHandler` now requires an injected keyboard context and behavior.
 * `StandardKeyboardActionHandler` now requires an injected autocomplete and keyboard change action.
 * `StandardKeyboardActionHandler` `triggerAutocomplete` is replaced by an injectable function.
+* `StandardKeyboardBehavior` now requires an injected keyboard context.
 * `StandardKeyboardInputSetProvider` now requires an injected keyboard context. 
 
 

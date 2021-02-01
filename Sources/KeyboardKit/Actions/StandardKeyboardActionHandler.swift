@@ -153,15 +153,15 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     open func tryEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction) {
-        guard keyboardBehavior.shouldEndSentence(for: keyboardContext, after: gesture, on: action)
+        guard keyboardBehavior.shouldEndSentence(after: gesture, on: action)
         else { return }
         keyboardContext.textDocumentProxy.endSentence()
     }
     
     open func tryChangeKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) {
-        guard keyboardBehavior.shouldSwitchToPreferredKeyboardType(for: keyboardContext, after: gesture, on: action)
+        guard keyboardBehavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action)
         else { return }
-        let newType = keyboardBehavior.preferredKeyboardType(for: keyboardContext, after: gesture, on: action)
+        let newType = keyboardBehavior.preferredKeyboardType(after: gesture, on: action)
         changeKeyboardTypeAction(newType)
     }
     

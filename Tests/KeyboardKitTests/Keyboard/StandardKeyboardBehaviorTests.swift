@@ -21,16 +21,16 @@ class StandardKeyboardBehaviorTests: QuickSpec {
         var proxy: MockTextDocumentProxy!
         
         beforeEach {
-            behavior = StandardKeyboardBehavior()
-            context = MockKeyboardContext()
             proxy = MockTextDocumentProxy()
+            context = MockKeyboardContext()
             context.textDocumentProxy = proxy
+            behavior = StandardKeyboardBehavior(context: context)
         }
         
         describe("preferred keyboard type after gesture on action") {
             
             func result(after gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardType {
-                behavior.preferredKeyboardType(for: context, after: gesture, on: action)
+                behavior.preferredKeyboardType(after: gesture, on: action)
             }
             
             it("is by default the context preferred keyboard type") {
@@ -66,7 +66,7 @@ class StandardKeyboardBehaviorTests: QuickSpec {
         describe("should end sentence") {
             
             func result(after gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
-                behavior.shouldEndSentence(for: context, after: gesture, on: action)
+                behavior.shouldEndSentence(after: gesture, on: action)
             }
             
             it("is only true for space after a previous space") {
@@ -87,7 +87,7 @@ class StandardKeyboardBehaviorTests: QuickSpec {
         describe("should switch to caps lock") {
             
             func result(after gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
-                behavior.shouldSwitchToCapsLock(for: context, after: gesture, on: action)
+                behavior.shouldSwitchToCapsLock(after: gesture, on: action)
             }
             
             it("is true if the action is shift") {
@@ -103,7 +103,7 @@ class StandardKeyboardBehaviorTests: QuickSpec {
         describe("should switch to preferred keyboard type after gesture on action") {
             
             func result(after gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
-                behavior.shouldSwitchToPreferredKeyboardType(for: context, after: gesture, on: action)
+                behavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action)
             }
             
             it("is true if the action is shift") {
@@ -135,7 +135,7 @@ class StandardKeyboardBehaviorTests: QuickSpec {
             }
             
             func result() -> Bool {
-                behavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange(for: context)
+                behavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange()
             }
             
             it("is true if the the current keyboard type is not the preferred one") {

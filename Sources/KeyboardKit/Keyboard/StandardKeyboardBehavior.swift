@@ -19,23 +19,25 @@ import Foundation
 open class StandardKeyboardBehavior: KeyboardBehavior {
     
     public init(
+        context: KeyboardContext,
         doubleTapThreshold: TimeInterval = 0.2,
         endSentenceThreshold: TimeInterval = 3.0) {
+        self.context = context
         self.doubleTapThreshold = doubleTapThreshold
         self.endSentenceThreshold = endSentenceThreshold
     }
     
-    var lastShiftCheck = Date()
-    var lastSpaceTap = Date()
-    
+    private let context: KeyboardContext
     private let doubleTapThreshold: TimeInterval
     private let endSentenceThreshold: TimeInterval
     
+    var lastShiftCheck = Date()
+    var lastSpaceTap = Date()
+    
     public func preferredKeyboardType(
-        for context: KeyboardContext,
         after gesture: KeyboardGesture,
         on action: KeyboardAction) -> KeyboardType {
-        if shouldSwitchToCapsLock(for: context, after: gesture, on: action) { return .alphabetic(.capsLocked) }
+        if shouldSwitchToCapsLock(after: gesture, on: action) { return .alphabetic(.capsLocked) }
         switch action {
         case .shift: return context.keyboardType
         default: return context.preferredKeyboardType
@@ -43,7 +45,6 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     }
     
     open func shouldEndSentence(
-        for context: KeyboardContext,
         after gesture: KeyboardGesture,
         on action: KeyboardAction) -> Bool {
         guard gesture == .tap, action == .space else { return false }
@@ -58,7 +59,6 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     }
     
     open func shouldSwitchToCapsLock(
-        for context: KeyboardContext,
         after gesture: KeyboardGesture,
         on action: KeyboardAction) -> Bool {
         guard action.isShift else { return false }
@@ -69,7 +69,6 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     }
     
     open func shouldSwitchToPreferredKeyboardType(
-        for context: KeyboardContext,
         after gesture: KeyboardGesture,
         on action: KeyboardAction) -> Bool {
         switch action {
@@ -78,8 +77,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
         }
     }
     
-    public func shouldSwitchToPreferredKeyboardTypeAfterTextDidChange(
-        for context: KeyboardContext) -> Bool {
+    public func shouldSwitchToPreferredKeyboardTypeAfterTextDidChange() -> Bool {
         context.keyboardType != context.preferredKeyboardType
     }
 }

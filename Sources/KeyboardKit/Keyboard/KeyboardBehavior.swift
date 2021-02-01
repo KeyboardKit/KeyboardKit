@@ -20,7 +20,6 @@ public protocol KeyboardBehavior {
      the provided action has been performed.
      */
     func preferredKeyboardType(
-        for context: KeyboardContext,
         after gesture: KeyboardGesture,
         on action: KeyboardAction) -> KeyboardType
     
@@ -29,7 +28,6 @@ public protocol KeyboardBehavior {
      the provided action has been performed.
      */
     func shouldEndSentence(
-        for context: KeyboardContext,
         after gesture: KeyboardGesture,
         on action: KeyboardAction) -> Bool
     
@@ -39,7 +37,6 @@ public protocol KeyboardBehavior {
      the provided action has been performed.
      */
     func shouldSwitchToPreferredKeyboardType(
-        for context: KeyboardContext,
         after gesture: KeyboardGesture,
         on action: KeyboardAction) -> Bool
 
@@ -48,6 +45,5 @@ public protocol KeyboardBehavior {
      switched to the behavior's preferred keyboard type when
      the text document proxy's text did change.
      */
-    func shouldSwitchToPreferredKeyboardTypeAfterTextDidChange(
-        for context: KeyboardContext) -> Bool
+    func shouldSwitchToPreferredKeyboardTypeAfterTextDidChange() -> Bool
 }

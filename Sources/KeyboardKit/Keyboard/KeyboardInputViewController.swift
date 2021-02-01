@@ -98,7 +98,8 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      The extension's default keyboard behavior.
      */
-    public lazy var keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior()
+    public lazy var keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior(
+        context: keyboardContext)
     
     /**
      The extension's default keyboard context.
@@ -227,7 +228,7 @@ private extension KeyboardInputViewController {
     
     func tryChangeToPreferredKeyboardTypeAfterTextDidChange() {
         let context = keyboardContext
-        let shouldSwitch = keyboardBehavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange(for: context)
+        let shouldSwitch = keyboardBehavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange()
         guard shouldSwitch else { return }
         changeKeyboardType(to: context.preferredKeyboardType)
     }
