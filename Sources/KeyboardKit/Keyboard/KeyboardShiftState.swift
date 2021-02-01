@@ -9,8 +9,7 @@
 import Foundation
 
 /**
- This enum lists the shift states an alphabetic keyboard can
- be in.
+ This enum lists the various shift states a keyboard can use.
  */
 public enum KeyboardShiftState {
     case

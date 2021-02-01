@@ -12,11 +12,11 @@ import SwiftUI
 public extension KeyboardInputViewController {
     
     /**
-     Remove all subviews then add a `SwiftUI` view that pins
-     to the edges and resizes the extension to fit that view.
+     Removes all subviews from the view and adds a `SwiftUI`
+     view, that pins to the edges and resizes the extension.
      
      This function also applies `@EnvironmentObject`s to the
-     view. They can be used by all nested views.
+     view, that can be used by all nested views.
      */
     func setup<Content: View>(
         with view: Content,

@@ -15,8 +15,6 @@ import Foundation
  This class makes heavy use of default logic in for instance
  the text document proxy. However, having this makes it easy
  to change the actual behavior, if you want or need to.
- 
- `TODO` Test the threshold-based functionality.
  */
 open class StandardKeyboardBehavior: KeyboardBehavior {
     

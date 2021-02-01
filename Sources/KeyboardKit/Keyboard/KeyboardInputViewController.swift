@@ -10,18 +10,23 @@ import UIKit
 
 /**
  This class extends `UIInputViewController` with KeyboardKit
- specific properties and functionality.
+ specific functionality.
  
- When you use KeyboardKit, let your `KeyboardViewController`
- inherit this class instead of `UIInputViewController`. This
- will provide it with a bunch of features that regular input
- view controllers lack.
+ With KeyboardKit, let your `KeyboardViewController` inherit
+ this class instead of `UIInputViewController`. You then get
+ access to a bunch of features that regular controllers lack.
  
- If your keyboard extension should use autocomplete, you can
- override `performAutocomplete` and `resetAutocomplete`. The
- two functions are called by `StandardKeyboardActionHandler`
- and this class whenever a new autocomplete operation should
- be performed or the current suggestions should be reset.
+ To customize the keyboard setup, override `setupKeyboard`.
+ 
+ To change the keyboard type and automatically setup the new
+ keyboard, set the `keyboardType` property of this class and
+ not of its context. You can also call `changeKeyboardType()`
+ which can be overridden and customized.
+ 
+ To setup autocomplete, simply override `performAutocomplete`
+ and `resetAutocomplete`. They are automatically called when
+ the texst position changes or the action handler performs a
+ keyboard action.
  */
 open class KeyboardInputViewController: UIInputViewController {
     
@@ -128,6 +133,20 @@ open class KeyboardInputViewController: UIInputViewController {
         actionProvider: keyboardSecondaryInputActionProvider,
         actionHandler: keyboardActionHandler)
     
+    /**
+     The keyboard type that is currently used by the context.
+     
+     Setting this value will update the context's type, then
+     call `setupKeyboard`.
+     */
+    public var keyboardType: KeyboardType {
+        get { keyboardContext.keyboardType }
+        set {
+            keyboardContext.keyboardType = newValue
+            setupKeyboard()
+        }
+    }
+    
     
     // MARK: - View Properties
     
@@ -174,8 +193,7 @@ open class KeyboardInputViewController: UIInputViewController {
      can be changed by overriding this function.
      */
     open func changeKeyboardType(to type: KeyboardType) {
-        keyboardContext.keyboardType = type
-        setupKeyboard()
+        keyboardType = type
     }
     
     
