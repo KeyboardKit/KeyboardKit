@@ -133,8 +133,6 @@
 		A97D2CC525B44B7F00E270D8 /* EnhancedEmojiKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97D2CC425B44B7F00E270D8 /* EnhancedEmojiKeyboard.swift */; };
 		A97D2CC825B44BA200E270D8 /* HorizontalFloatingHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97D2CC625B44BA200E270D8 /* HorizontalFloatingHeaderLayout.swift */; };
 		A97D2CC925B44BA200E270D8 /* HFloatingHeaderButtonCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97D2CC725B44BA200E270D8 /* HFloatingHeaderButtonCollectionView.swift */; };
-		A97D2CCE25B4569400E270D8 /* DemoKeyboardAppearanceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97D2CCC25B4569400E270D8 /* DemoKeyboardAppearanceProvider.swift */; };
-		A97D2CCF25B4569B00E270D8 /* DemoKeyboardAppearanceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97D2CCC25B4569400E270D8 /* DemoKeyboardAppearanceProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -264,7 +262,6 @@
 		A97D2CC425B44B7F00E270D8 /* EnhancedEmojiKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnhancedEmojiKeyboard.swift; sourceTree = "<group>"; };
 		A97D2CC625B44BA200E270D8 /* HorizontalFloatingHeaderLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalFloatingHeaderLayout.swift; sourceTree = "<group>"; };
 		A97D2CC725B44BA200E270D8 /* HFloatingHeaderButtonCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HFloatingHeaderButtonCollectionView.swift; sourceTree = "<group>"; };
-		A97D2CCC25B4569400E270D8 /* DemoKeyboardAppearanceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoKeyboardAppearanceProvider.swift; sourceTree = "<group>"; };
 		OBJ_238 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = SOURCE_ROOT; };
 		OBJ_239 /* Fastlane */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fastlane; sourceTree = SOURCE_ROOT; };
 		OBJ_242 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -481,7 +478,6 @@
 			isa = PBXGroup;
 			children = (
 				A94C721724AE238900077EEA /* DemoKeyboardActionHandler.swift */,
-				A97D2CCC25B4569400E270D8 /* DemoKeyboardAppearanceProvider.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -776,7 +772,6 @@
 			files = (
 				A92FA9C125C2A86D006BBD7E /* UIImage+Pasteboard.swift in Sources */,
 				A92FA9BD25C2A04A006BBD7E /* UIImage+Photos.swift in Sources */,
-				A97D2CCF25B4569B00E270D8 /* DemoKeyboardAppearanceProvider.swift in Sources */,
 				8467044C234A709400355331 /* ViewController.swift in Sources */,
 				843CBFA5250E9E5500BA541F /* DemoImageKeyboard.swift in Sources */,
 				84670448234A709400355331 /* AppDelegate.swift in Sources */,
@@ -817,7 +812,6 @@
 				A92FA9C325C2A86D006BBD7E /* UIImage+Pasteboard.swift in Sources */,
 				A94C721824AE238900077EEA /* DemoKeyboardActionHandler.swift in Sources */,
 				A942653B2490CDCC00EB5551 /* KeyboardViewController.swift in Sources */,
-				A97D2CCE25B4569400E270D8 /* DemoKeyboardAppearanceProvider.swift in Sources */,
 				843CBFA7250E9EAB00BA541F /* DemoImageKeyboard.swift in Sources */,
 				84834613250D6A6600C49F65 /* DemoAutocompleteSuggestionProvider.swift in Sources */,
 				A94265522490D1C400EB5551 /* KeyboardView.swift in Sources */,

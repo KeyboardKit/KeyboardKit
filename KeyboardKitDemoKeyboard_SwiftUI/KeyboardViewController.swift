@@ -44,7 +44,6 @@ class KeyboardViewController: KeyboardInputViewController {
             autocompleteAction: performAutocomplete,
             changeKeyboardTypeAction: changeKeyboardType,
             toastContext: toastContext)
-        keyboardAppearance = DemoKeyboardAppearance()
         keyboardLayoutProvider = StandardKeyboardLayoutProvider(
             leftSpaceAction: .keyboardType(.emojis),
             rightSpaceAction: .keyboardType(.images))
