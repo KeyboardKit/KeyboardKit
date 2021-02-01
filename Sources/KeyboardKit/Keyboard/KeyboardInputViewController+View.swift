@@ -15,16 +15,8 @@ public extension KeyboardInputViewController {
      Remove all subviews then add a `SwiftUI` view that pins
      to the edges and resizes the extension to fit that view.
      
-     When this function is called, the input view controller
-     will convert its current `keyboardContext` object to an
-     `ObservableKeyboardContext` then provide it to the view
-     as an `@EnvironmentObject`.
-     
-     For now, since the `KeyboardInputViewController` in the
-     main repo cannot (yet) know about SwiftUI, the function
-     also sets a `SecondaryInputCalloutContext`. If you want
-     to use a custom secondary context, just inject one with
-     the `secondaryInputCalloutContext` builder function.
+     This function also applies `@EnvironmentObject`s to the
+     view. They can be used by all nested views.
      */
     func setup<Content: View>(
         with view: Content,
@@ -34,6 +26,7 @@ public extension KeyboardInputViewController {
         let view = view
             .environmentObject(keyboardContext)
             .environmentObject(keyboardInputCalloutContext)
+            .environmentObject(keyboardSecondaryInputCalloutContext)
         let controller = KeyboardHostingController(rootView: view)
         controller.add(to: self)
     }

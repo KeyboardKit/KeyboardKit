@@ -77,7 +77,7 @@ open class KeyboardInputViewController: UIInputViewController {
     public static var shared: KeyboardInputViewController!
     
     /**
-     The keyboard action handler used by the extension.
+     The extension's default keyboard action handler.
      */
     public lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(
         keyboardContext: keyboardContext,
@@ -86,35 +86,48 @@ open class KeyboardInputViewController: UIInputViewController {
         changeKeyboardTypeAction: changeKeyboardType)
 
     /**
-     The keyboard appearance used by the extension.
+     The extension's default keyboard appearance.
      */
     public lazy var keyboardAppearance: KeyboardAppearance = StandardKeyboardAppearance()
 
     /**
-     The keyboard behavior used by the extension.
+     The extension's default keyboard behavior.
      */
     public lazy var keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior()
     
     /**
-     This context provides keyboard-specific information.
+     The extension's default keyboard context.
      */
     public lazy var keyboardContext = ObservableKeyboardContext(controller: self)
     
     /**
-     The keyboard input callotu contexts used by the extension.
+     The extension's default input callout context.
      */
     public lazy var keyboardInputCalloutContext = InputCalloutContext()
     
     /**
-     The keyboard input set provider used by the extension.
+     The extension's default keyboard input set provider.
      */
     public lazy var keyboardInputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider()
                     
     /**
-     The keyboard layout provider used by the extension.
+     The extension's default keyboard layout provider.
      */
     public lazy var keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider(
         inputSetProvider: keyboardInputSetProvider)
+    
+    /**
+     The extension's default secondary input callout context.
+     */
+    public lazy var keyboardSecondaryInputActionProvider: SecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider()
+    
+    /**
+     The extension's default secondary input callout context.
+     */
+    public lazy var keyboardSecondaryInputCalloutContext = SecondaryInputCalloutContext(
+        context: keyboardContext,
+        actionProvider: keyboardSecondaryInputActionProvider,
+        actionHandler: keyboardActionHandler)
     
     
     // MARK: - View Properties

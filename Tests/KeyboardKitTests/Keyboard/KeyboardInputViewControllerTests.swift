@@ -142,6 +142,22 @@ class KeyboardInputViewControllerTests: QuickSpec {
             }
         }
         
+        describe("keyboard secondary input action provider") {
+            
+            it("is standard by default") {
+                let obj = vc.keyboardSecondaryInputActionProvider
+                expect(obj as? StandardSecondaryCalloutActionProvider).toNot(beNil())
+            }
+        }
+        
+        describe("keyboard secondary input callout context") {
+            
+            it("is correctly setup") {
+                let context = vc.keyboardSecondaryInputCalloutContext
+                expect(context).to(be(context))
+            }
+        }
+        
         describe("keyboard stack view") {
             
             it("is not added to vc view if not referred") {
