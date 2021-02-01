@@ -78,7 +78,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         guard let gestureAction = self.action(for: gesture, on: action) else { return }
         gestureAction(.shared)
-        triggerAnimation(for: gesture, on: action, sender: sender)
         triggerAudioFeedback(for: gesture, on: action, sender: sender)
         triggerHapticFeedback(for: gesture, on: action, sender: sender)
         autocompleteAction()
@@ -130,10 +129,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     
     // MARK: - Action Handling
-    
-    open func triggerAnimation(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
-        (sender as? UIKeyboardButton)?.animateStandardTap()
-    }
     
     open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         if action == .backspace { return audioConfiguration.deleteFeedback.trigger() }

@@ -53,8 +53,7 @@ private extension KeyboardInputViewController {
     
     func handle(_ gesture: KeyboardGesture, on button: UIView?) {
         guard let button = button as? UIKeyboardButton else { return }
-        let actionHandler = KeyboardInputViewController.shared.keyboardActionHandler
-        actionHandler.handle(gesture, on: button.action, sender: button)
+        keyboardActionHandler.handle(gesture, on: button.action, sender: button)
     }
 }
 
@@ -71,6 +70,7 @@ private extension KeyboardInputViewController {
     
     func handleTap(_ gesture: UIGestureRecognizer) {
         handle(.tap, on: gesture.view)
+        (gesture.view as? UIKeyboardButton)?.animateStandardTap()
     }
     
     func handleRepeat(_ gesture: UIGestureRecognizer) {

@@ -57,7 +57,6 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
                 // expect(inv.count).to(equal(1))
                 // expect(inv[0].arguments).to(equal("a"))
                 expect(self.mock.hasInvoked(self.autocompleteActionRef)).to(beTrue())
-                expect(handler.hasInvoked(handler.triggerAnimationRef)).to(beTrue())
                 expect(handler.hasInvoked(handler.triggerAudioFeedbackRef)).to(beTrue())
                 expect(handler.hasInvoked(handler.triggerHapticFeedbackRef)).to(beTrue())
                 expect(handler.hasInvoked(handler.tryChangeKeyboardTypeRef)).to(beTrue())
@@ -207,7 +206,6 @@ private class TestClass: StandardKeyboardActionHandler, Mockable {
     var mock = Mock()
 
     lazy var handleRef = MockReference(handle)
-    lazy var triggerAnimationRef = MockReference(triggerAnimation)
     lazy var triggerAudioFeedbackRef = MockReference(triggerAudioFeedback)
     lazy var triggerHapticFeedbackRef = MockReference(triggerHapticFeedback)
     lazy var tryChangeKeyboardTypeRef = MockReference(tryChangeKeyboardType)
@@ -217,11 +215,6 @@ private class TestClass: StandardKeyboardActionHandler, Mockable {
     override func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         super.handle(gesture, on: action, sender: sender)
         invoke(handleRef, args: (gesture, action, sender))
-    }
-
-    override func triggerAnimation(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
-        super.triggerAnimation(for: gesture, on: action, sender: sender)
-        invoke(triggerAnimationRef, args: (gesture, action, sender))
     }
 
     override func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
