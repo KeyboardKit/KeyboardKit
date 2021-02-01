@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- This class can be used when previewing keyboard views.
+ This class can be used to preview keyboard views.
  */
 public class PreviewSecondaryCalloutActionProvider: SecondaryCalloutActionProvider {
     

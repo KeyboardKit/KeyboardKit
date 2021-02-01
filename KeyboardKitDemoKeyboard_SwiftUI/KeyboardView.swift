@@ -68,12 +68,3 @@ private extension KeyboardView {
             .shadow(color: Color.black.opacity(0.3), radius: 2, x: 1, y: 1)
     }
 }
-
-struct KeyboardView_Previews: PreviewProvider {
-    static var previews: some View {
-        KeyboardView(
-            keyboardActionHandler: FakeKeyboardActionHandler(),
-            keyboardAppearance: StandardKeyboardAppearance(context: FakeKeyboardContext()),
-            keyboardLayoutProvider: StandardKeyboardLayoutProvider())
-    }
-}

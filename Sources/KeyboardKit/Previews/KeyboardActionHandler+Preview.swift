@@ -6,10 +6,10 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 
 /**
- This fake action handler can be used for previews etc.
+ This class can be used to preview keyboard views.
  */
 public class PreviewKeyboardActionHandler: KeyboardActionHandler {
     

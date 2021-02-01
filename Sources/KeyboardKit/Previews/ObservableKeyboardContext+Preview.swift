@@ -11,7 +11,7 @@ import Foundation
 public extension ObservableKeyboardContext {
     
     /**
-     This preview can be used when previewing keyboard views.
+     This preview can be used to preview keyboard views.
      */
     static var preview: ObservableKeyboardContext {
         ObservableKeyboardContext(controller: KeyboardInputViewController())

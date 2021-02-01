@@ -9,7 +9,7 @@
 import UIKit
 
 /**
- This fake context can be used for previews etc.
+ This class can be used to preview keyboard views.
  */
 public class PreviewKeyboardContext: KeyboardContext {
     
