@@ -30,6 +30,14 @@ open class StandardKeyboardInputSetProvider: KeyboardInputSetProvider {
         LocaleKey.swedish.key: SwedishKeyboardInputSetProvider()
     ])
     
+    open var providerDictionary: LocaleDictionary<KeyboardInputSetProvider> {
+        providerDictionaryValue
+    }
+    
+    open func provider(for context: KeyboardContext) -> KeyboardInputSetProvider {
+        providerDictionary.value(for: context.locale) ?? EnglishKeyboardInputSetProvider()
+    }
+    
     open func alphabeticInputSet() -> AlphabeticKeyboardInputSet {
         provider(for: context).alphabeticInputSet()
     }
@@ -40,13 +48,5 @@ open class StandardKeyboardInputSetProvider: KeyboardInputSetProvider {
     
     open func symbolicInputSet() -> SymbolicKeyboardInputSet {
         provider(for: context).symbolicInputSet()
-    }
-    
-    open var providerDictionary: LocaleDictionary<KeyboardInputSetProvider> {
-        providerDictionaryValue
-    }
-    
-    open func provider(for context: KeyboardContext) -> KeyboardInputSetProvider {
-        providerDictionary.value(for: context.locale) ?? EnglishKeyboardInputSetProvider()
     }
 }

@@ -20,7 +20,20 @@ open class StandardSecondaryCalloutActionProvider: SecondaryCalloutActionProvide
     
     private let context: KeyboardContext
     
+    private lazy var providerDictionaryValue: LocaleDictionary<SecondaryCalloutActionProvider> = LocaleDictionary([
+        LocaleKey.english.key: EnglishSecondaryCalloutActionProvider(),
+        LocaleKey.swedish.key: SwedishSecondaryCalloutActionProvider()
+    ])
+    
+    open var providerDictionary: LocaleDictionary<SecondaryCalloutActionProvider> {
+        providerDictionaryValue
+    }
+    
+    open func provider(for context: KeyboardContext) -> SecondaryCalloutActionProvider {
+        providerDictionary.value(for: context.locale) ?? EnglishSecondaryCalloutActionProvider()
+    }
+    
     open func secondaryCalloutActions(for action: KeyboardAction) -> [KeyboardAction] {
-        action.standardSecondaryCalloutActions(for: context.locale)
+        provider(for: context).secondaryCalloutActions(for: action)
     }
 }

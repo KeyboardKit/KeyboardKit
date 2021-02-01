@@ -19,14 +19,14 @@ import Foundation
 public struct LocaleDictionary<ItemType> {
     
     public init(_ dict: [String: ItemType]) {
-        self.dict = dict
+        self.dictionary = dict
     }
     
-    private let dict: [String: ItemType]
+    public let dictionary: [String: ItemType]
     
-    func value(for locale: Locale) -> ItemType? {
-        if let item = dict[locale.identifier] { return item }
-        if let item = dict[locale.languageCode ?? ""] { return item }
+    public func value(for locale: Locale) -> ItemType? {
+        if let item = dictionary[locale.identifier] { return item }
+        if let item = dictionary[locale.languageCode ?? ""] { return item }
         return nil
     }
 }

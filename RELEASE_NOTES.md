@@ -14,6 +14,7 @@ Although these release notes will aim at covering everything that changes in thi
 
 ### New features
 
+* `Callouts/Providers` have new locale-specific callout action providers.
 * `KeyboardAppearance` has a new `image(for:)`.
 * `KeyboardInputSetProvider` has new locale-specific implementations under `Input/Providers`.
 * `KeyboardInputViewController` has a new static `shared` instance.
@@ -61,6 +62,7 @@ Although these release notes will aim at covering everything that changes in thi
 
 * All previews deprecations have been removed in this version.
 * `InputCalloutContext.shared` has been removed. Use the environment object instead.
+* `KeyboardAction+SecondaryCalloutActions` has been replaced with new `Callouts/Providers` providers.
 * `KeyboardActionRow` has been removed, since it's confusing to have two aliases for the same thing.
 * `KeyboardAppearance` button properties are prefixed with `button`.
 * `KeyboardAppearance` `font` and `fontWeight` have been merged into a single `font` property.

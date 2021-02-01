@@ -18,28 +18,61 @@ class StandardSecondaryCalloutActionProviderTests: QuickSpec {
         var provider: StandardSecondaryCalloutActionProvider!
         var context: MockKeyboardContext!
         
+        var english: EnglishSecondaryCalloutActionProvider!
+        var swedish: SwedishSecondaryCalloutActionProvider!
+        
         beforeEach {
             context = MockKeyboardContext()
             provider = StandardSecondaryCalloutActionProvider(context: context)
+            
+            english = EnglishSecondaryCalloutActionProvider()
+            swedish = SwedishSecondaryCalloutActionProvider()
         }
         
-        describe("secondary callout actions") {
+        describe("provider list") {
             
-            func validateResult(for action: KeyboardAction, locale: Locale) -> Bool {
-                context.locale = locale
-                let providerResult = provider.secondaryCalloutActions(for: action)
-                let actionResult = action.standardSecondaryCalloutActions(for: locale)
-                return providerResult == actionResult
+            it("has locale-specific providers") {
+                let providers = provider.providerDictionary.dictionary
+                expect(providers.keys.count).to(equal(2))
+                expect(providers[LocaleKey.english.key] is EnglishSecondaryCalloutActionProvider).to(beTrue())
+                expect(providers[LocaleKey.german.key]).to(beNil())
+                expect(providers[LocaleKey.italian.key]).to(beNil())
+                expect(providers[LocaleKey.swedish.key] is SwedishSecondaryCalloutActionProvider).to(beTrue())
+            }
+        }
+        
+        describe("callout actions") {
+            
+            it("supports English") {
+                context.locale = Locale(identifier: LocaleKey.english.key)
+                let action = KeyboardAction.character("a")
+                let actions = provider.secondaryCalloutActions(for: action)
+                let expected = "aàáâäæãåā".map { KeyboardAction.character(String($0)) }
+                expect(actions).to(equal(expected))
             }
             
-            it("user standard extension result") {
-                let english = Locale(identifier: "en")
-                let british = Locale(identifier: "en-GB")
-                let swedish = Locale(identifier: "sv")
-                expect(validateResult(for: .space, locale: english)).to(beTrue())
-                expect(validateResult(for: .character("s"), locale: english)).to(beTrue())
-                expect(validateResult(for: .character("s"), locale: swedish)).to(beTrue())
-                expect(validateResult(for: .character("a"), locale: british)).to(beTrue())
+            it("supports Swedish") {
+                context.locale = Locale(identifier: LocaleKey.swedish.key)
+                let action = KeyboardAction.character("a")
+                let actions = provider.secondaryCalloutActions(for: action)
+                let expected = "aáàâãā".map { KeyboardAction.character(String($0)) }
+                expect(actions).to(equal(expected))
+            }
+            
+            it("has fallback support for specific locale") {
+                context.locale = Locale(identifier: "en-US")
+                let action = KeyboardAction.character("a")
+                let actions = provider.secondaryCalloutActions(for: action)
+                let expected = "aàáâäæãåā".map { KeyboardAction.character(String($0)) }
+                expect(actions).to(equal(expected))
+            }
+            
+            it("has fallback support for non-supported locale") {
+                context.locale = Locale(identifier: LocaleKey.german.key)
+                let action = KeyboardAction.character("a")
+                let actions = provider.secondaryCalloutActions(for: action)
+                let expected = "aàáâäæãåā".map { KeyboardAction.character(String($0)) }
+                expect(actions).to(equal(expected))
             }
         }
     }
