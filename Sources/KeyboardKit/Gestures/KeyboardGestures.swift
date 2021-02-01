@@ -21,9 +21,7 @@ struct KeyboardGestures<Content: View>: View {
         doubleTapAction: KeyboardGestureAction?,
         longPressAction: KeyboardGestureAction?,
         repeatAction: KeyboardGestureAction?,
-        dragAction: KeyboardDragGestureAction?,
-        inputCalloutContext: InputCalloutContext,
-        secondaryInputCalloutContext: SecondaryInputCalloutContext) {
+        dragAction: KeyboardDragGestureAction?) {
         self.view = view
         self.action = action
         self.tapAction = tapAction
@@ -31,8 +29,6 @@ struct KeyboardGestures<Content: View>: View {
         self.longPressAction = longPressAction
         self.repeatAction = repeatAction
         self.dragAction = dragAction
-        self.inputCalloutContext = inputCalloutContext
-        self.secondaryInputCalloutContext = secondaryInputCalloutContext
     }
     
     private let view: Content
@@ -43,8 +39,8 @@ struct KeyboardGestures<Content: View>: View {
     private let repeatAction: KeyboardGestureAction?
     private let dragAction: KeyboardDragGestureAction?
     
-    private let inputCalloutContext: InputCalloutContext
-    private let secondaryInputCalloutContext: SecondaryInputCalloutContext
+    @EnvironmentObject private var inputCalloutContext: InputCalloutContext
+    @EnvironmentObject private var secondaryInputCalloutContext: SecondaryInputCalloutContext
     
     private let repeatTimer = RepeatGestureTimer()
     

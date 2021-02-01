@@ -20,9 +20,7 @@ public extension View {
     @ViewBuilder
     func keyboardGestures(
         for action: KeyboardAction,
-        actionHandler: KeyboardActionHandler,
-        inputCalloutContext: InputCalloutContext,
-        secondaryInputCalloutContext: SecondaryInputCalloutContext) -> some View {
+        actionHandler: KeyboardActionHandler) -> some View {
         if action == .nextKeyboard {
             self
         } else {
@@ -32,9 +30,7 @@ public extension View {
                 doubleTapAction: { actionHandler.handle(.doubleTap, on: action) },
                 longPressAction: { actionHandler.handle(.longPress, on: action) },
                 repeatAction: { actionHandler.handle(.repeatPress, on: action) },
-                dragAction: { start, current in actionHandler.handleDrag(on: action, from: start, to: current) },
-                inputCalloutContext: inputCalloutContext,
-                secondaryInputCalloutContext: secondaryInputCalloutContext)
+                dragAction: { start, current in actionHandler.handleDrag(on: action, from: start, to: current) })
         }
     }
     
@@ -51,9 +47,7 @@ public extension View {
         doubleTapAction: KeyboardGestureAction? = nil,
         longPressAction: KeyboardGestureAction? = nil,
         repeatAction: KeyboardGestureAction? = nil,
-        dragAction: KeyboardDragGestureAction? = nil,
-        inputCalloutContext: InputCalloutContext,
-        secondaryInputCalloutContext: SecondaryInputCalloutContext) -> some View {
+        dragAction: KeyboardDragGestureAction? = nil) -> some View {
         KeyboardGestures(
             view: self,
             action: action,
@@ -61,8 +55,6 @@ public extension View {
             doubleTapAction: doubleTapAction,
             longPressAction: longPressAction,
             repeatAction: repeatAction,
-            dragAction: dragAction,
-            inputCalloutContext: inputCalloutContext,
-            secondaryInputCalloutContext: secondaryInputCalloutContext)
+            dragAction: dragAction)
     }
 }

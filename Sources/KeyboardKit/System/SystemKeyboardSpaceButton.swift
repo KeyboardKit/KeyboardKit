@@ -32,16 +32,10 @@ public struct SystemKeyboardSpaceButton: View {
     private var action: KeyboardAction { .space }
     
     @EnvironmentObject private var context: ObservableKeyboardContext
-    @EnvironmentObject private var inputCalloutContext: InputCalloutContext
-    @EnvironmentObject private var secondaryInputCalloutContext: SecondaryInputCalloutContext
     
     public var body: some View {
         SystemKeyboardSpaceButtonContent(localeText: localeText, spaceText: spaceText)
             .standardButtonStyle(for: action, context: context)
-            .keyboardGestures(
-                for: action,
-                actionHandler: actionHandler,
-                inputCalloutContext: inputCalloutContext,
-                secondaryInputCalloutContext: secondaryInputCalloutContext)
+            .keyboardGestures(for: action, actionHandler: actionHandler)
     }
 }
