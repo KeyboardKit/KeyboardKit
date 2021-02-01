@@ -50,7 +50,7 @@ public struct SystemKeyboardButtonContent: View {
 private extension SystemKeyboardButtonContent {
     
     var buttonImage: Image? {
-        image ?? action.standardButtonImage(for: context)
+        image ?? action.standardButtonImage
     }
     
     var buttonText: String? {

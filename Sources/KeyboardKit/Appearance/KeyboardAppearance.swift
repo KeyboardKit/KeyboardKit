@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 /**
  This protocol can be implemented by any classes that can be
@@ -21,5 +22,6 @@ public protocol KeyboardAppearance {
     
     func font(for action: KeyboardAction) -> UIFont
     func fontWeight(for action: KeyboardAction, context: KeyboardContext) -> UIFont.Weight?
+    func image(for action: KeyboardAction) -> Image?
     func text(for action: KeyboardAction) -> String?
 }

@@ -14,6 +14,7 @@ Although these release notes will aim at covering everything that changes in thi
 
 ### New features
 
+* `KeyboardAppearance` has a new `image(for:)`.
 * `KeyboardInputSetProvider` has new locale-specific implementations under `Input/Providers`.
 * `KeyboardInputViewController` has a new static `shared` instance.
 * `KeyboardInputViewController` has a new `keyboardActionHandler`.
@@ -38,6 +39,7 @@ Although these release notes will aim at covering everything that changes in thi
 * `FrequentEmojiProvider` now uses the `Emoji` type instead of a char.
 * `KeyboardAction.emoji` now uses the `Emoji` type instead of a char.
 * `KeyboardAction.emojiCategory` no longer has a  standard tap action.
+* `KeyboardActionRow` `standardButtonImage` no longer takes a context.
 * `KeyboardContext` no longer has any services, just inspectable properties.
 * `KeyboardInputViewController` `context` is now an `ObservableKeyboardContext`.
 * `KeyboardInputViewController` `context` is now called `keyboardContext`.

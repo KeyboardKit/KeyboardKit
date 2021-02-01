@@ -32,7 +32,7 @@ public extension KeyboardAction {
     /**
      The action's standard keyboard button image.
      */
-    func standardButtonImage(for context: KeyboardContext) -> Image? {
+    var standardButtonImage: Image? {
         switch self {
         case .backspace: return .backspace
         case .command: return .command

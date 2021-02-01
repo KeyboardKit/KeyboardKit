@@ -63,7 +63,7 @@ public struct EmojiCategoryKeyboardMenu: View {
     private var backspaceButton: some View {
         let action = KeyboardAction.backspace
         let handler = keyboardInputViewController.keyboardActionHandler
-        let image = action.standardButtonImage(for: context)
+        let image = action.standardButtonImage
         return image.keyboardGestures(for: action, actionHandler: handler)
     }
     

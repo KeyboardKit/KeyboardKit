@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+import SwiftUI
 import UIKit
 
 /**
@@ -25,6 +26,10 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     
     open func fontWeight(for action: KeyboardAction, context: KeyboardContext) -> UIFont.Weight? {
         return nil
+    }
+    
+    public func image(for action: KeyboardAction) -> Image? {
+        action.standardButtonImage
     }
     
     open func text(for action: KeyboardAction) -> String? {
