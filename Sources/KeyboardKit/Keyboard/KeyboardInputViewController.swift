@@ -103,7 +103,7 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      The keyboard input callotu contexts used by the extension.
      */
-    public lazy var keyboardInputCalloutContext: InputCalloutContext = InputCalloutContext()
+    public lazy var keyboardInputCalloutContext = InputCalloutContext()
     
     /**
      The keyboard input set provider used by the extension.
