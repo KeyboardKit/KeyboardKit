@@ -172,7 +172,7 @@ class KeyboardAction_SystemTests: QuickSpec {
             it("is custom for some actions, but defined for all") {
                 let expectedTitle = getActions(.emoji(Emoji("")))
                 let expectedCallout = getActions(.emojiCategory(.smileys))
-                var expectedBody = actions.filter { $0.isSystemAction && $0.standardButtonText != nil }
+                var expectedBody = actions.filter { $0 == .space || ($0.isSystemAction && $0.standardButtonText != nil) }
                 expectedBody.append(.character("abc"))
                 
                 actions.forEach {

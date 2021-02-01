@@ -83,6 +83,7 @@ public extension KeyboardAction {
         switch self {
         case .emoji: return .title1
         case .emojiCategory: return .callout
+        case .space: return .body
         default: return .title2
         }
     }
