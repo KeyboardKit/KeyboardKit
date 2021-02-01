@@ -256,9 +256,3 @@ private class TestClass: KeyboardInputViewController, Mockable {
         mock.invoke(resetAutocompleteRef, args: ())
     }
 }
-
-private class TestButton: UIButton, UIKeyboardButton {
-    var action: KeyboardAction = .backspace
-    var secondaryAction: KeyboardAction? = KeyboardAction.none
-    var widthConstraint: NSLayoutConstraint?
-}
