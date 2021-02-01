@@ -35,7 +35,9 @@ public struct SystemKeyboard: View {
     private let rows: KeyboardActionRows
     
     @State private var size: CGSize = .zero
-    @EnvironmentObject var context: ObservableKeyboardContext
+    
+    @EnvironmentObject private var context: ObservableKeyboardContext
+    @EnvironmentObject private var inputCalloutContext: InputCalloutContext
     
     public typealias ButtonBuilder = (KeyboardAction, KeyboardSize) -> AnyView
     public typealias KeyboardSize = CGSize
@@ -47,7 +49,7 @@ public struct SystemKeyboard: View {
             }
         }
         .bindSize(to: $size)
-        .inputCallout(style: .systemStyle(for: context))
+        .inputCallout(context: inputCalloutContext, style: .systemStyle(for: context))
         .secondaryInputCallout(for: context, style: .systemStyle(for: context))
     }
 }

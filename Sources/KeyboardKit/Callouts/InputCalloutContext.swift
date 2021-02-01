@@ -27,8 +27,6 @@ open class InputCalloutContext: ObservableObject {
     
     // MARK: - Properties
     
-    public static var shared = InputCalloutContext()
-    
     static let coordinateSpace = "com.keyboardkit.coordinate.InputCallout"
     
     public var input: String? { action?.input }

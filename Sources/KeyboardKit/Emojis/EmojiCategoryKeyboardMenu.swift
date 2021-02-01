@@ -42,7 +42,9 @@ public struct EmojiCategoryKeyboardMenu: View {
     
     @State private var isInitialized = false
     @Binding private var selection: EmojiCategory
-    @EnvironmentObject var context: ObservableKeyboardContext
+    
+    @EnvironmentObject private var context: ObservableKeyboardContext
+    @EnvironmentObject private var inputCalloutContext: InputCalloutContext
     
     public var body: some View {
         HStack(spacing: 0) {
@@ -63,14 +65,20 @@ public struct EmojiCategoryKeyboardMenu: View {
         let action = KeyboardAction.backspace
         let handler = keyboardInputViewController.keyboardActionHandler
         let image = action.standardButtonImage(for: context)
-        return image.keyboardGestures(for: action, actionHandler: handler)
+        return image.keyboardGestures(
+            for: action,
+            actionHandler: handler,
+            inputCalloutContext: inputCalloutContext)
     }
     
     private var keyboardSwitchButton: some View {
         let action = KeyboardAction.keyboardType(.alphabetic(.lowercased))
         let handler = keyboardInputViewController.keyboardActionHandler
         let text = action.standardButtonText ?? ""
-        return Text(text).keyboardGestures(for: action, actionHandler: handler)
+        return Text(text).keyboardGestures(
+            for: action,
+            actionHandler: handler,
+            inputCalloutContext: inputCalloutContext)
     }
     
     private var buttonList: some View {

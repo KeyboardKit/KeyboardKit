@@ -39,7 +39,8 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
     private let dimensions: KeyboardDimensions
     private let keyboardSize: CGSize
     
-    @EnvironmentObject var context: ObservableKeyboardContext
+    @EnvironmentObject private var context: ObservableKeyboardContext
+    @EnvironmentObject private var inputCalloutContext: InputCalloutContext
     
     public var body: some View {
         buttonContent
@@ -50,7 +51,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
             .padding(dimensions.buttonInsets)
             .frame(height: dimensions.buttonHeight)
             .background(Color.clearInteractable)
-            .keyboardGestures(for: action, actionHandler: actionHandler)
+            .keyboardGestures(for: action, actionHandler: actionHandler, inputCalloutContext: inputCalloutContext)
     }
 }
 

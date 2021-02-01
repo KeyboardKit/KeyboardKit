@@ -20,6 +20,7 @@ Although these release notes will aim at covering everything that changes in thi
 * `KeyboardInputViewController` has a new `keyboardAppearance`.
 * `KeyboardInputViewController` has a new `keyboardBehavior`.
 * `KeyboardInputViewController` has a new `keyboardContext`.
+* `KeyboardInputViewController` has a new `keyboardInputCalloutContext`.
 * `KeyboardInputViewController` has a new `keyboardInputSetProvider`.
 * `KeyboardInputViewController` has a new `keyboardLayoutProvider`.
 * `View` has new `keyboardInputViewController` convenience extensions.

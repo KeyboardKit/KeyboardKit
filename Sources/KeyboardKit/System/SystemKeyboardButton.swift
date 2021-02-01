@@ -31,12 +31,13 @@ public struct SystemKeyboardButton: View {
     private let image: Image?
     private let text: String?
     
-    @EnvironmentObject var context: ObservableKeyboardContext
+    @EnvironmentObject private var context: ObservableKeyboardContext
+    @EnvironmentObject private var inputCalloutContext: InputCalloutContext
     
     @ViewBuilder
     public var body: some View {
         SystemKeyboardButtonContent(action: action, text: text, image: image)
             .standardButtonStyle(for: action, context: context)
-            .keyboardGestures(for: action, actionHandler: actionHandler)
+            .keyboardGestures(for: action, actionHandler: actionHandler, inputCalloutContext: inputCalloutContext)
     }
 }

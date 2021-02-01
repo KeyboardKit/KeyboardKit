@@ -19,7 +19,8 @@ struct ImageKeyboard: View, DemoImageKeyboard {
     
     var actionHandler: KeyboardActionHandler
     
-    @EnvironmentObject var context: ObservableKeyboardContext
+    @EnvironmentObject private var context: ObservableKeyboardContext
+    @EnvironmentObject private var inputCalloutContext: InputCalloutContext
     
     var body: some View {
         VStack(spacing: 30) {
@@ -49,6 +50,6 @@ private extension ImageKeyboard {
     
     func imageButton(for action: KeyboardAction) -> some View {
         KeyboardImageButton(action: action)
-            .keyboardGestures(for: action, actionHandler: actionHandler)
+            .keyboardGestures(for: action, actionHandler: actionHandler, inputCalloutContext: inputCalloutContext)
     }
 }
