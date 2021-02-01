@@ -19,6 +19,7 @@ import KeyboardKit
 struct KeyboardView: View {
     
     var keyboardActionHandler: KeyboardActionHandler
+    var keyboardAppearance: KeyboardAppearance
     var keyboardLayoutProvider: KeyboardLayoutProvider
     
     @EnvironmentObject var autocompleteContext: ObservableAutocompleteContext
@@ -65,6 +66,7 @@ struct KeyboardView_Previews: PreviewProvider {
     static var previews: some View {
         KeyboardView(
             keyboardActionHandler: FakeKeyboardActionHandler(),
+            keyboardAppearance: StandardKeyboardAppearance(context: FakeKeyboardContext()),
             keyboardLayoutProvider: StandardKeyboardLayoutProvider())
     }
 }

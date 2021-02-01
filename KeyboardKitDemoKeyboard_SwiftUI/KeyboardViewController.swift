@@ -58,6 +58,7 @@ class KeyboardViewController: KeyboardInputViewController {
     private var keyboardView: some View {
         KeyboardView(
             keyboardActionHandler: keyboardActionHandler,
+            keyboardAppearance: keyboardAppearance,
             keyboardLayoutProvider: keyboardLayoutProvider)
             .environmentObject(autocompleteContext)
             .environmentObject(toastContext)

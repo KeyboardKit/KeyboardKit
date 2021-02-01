@@ -61,7 +61,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     private var currentDragTextPositionOffset: Int = 0
     
-    private var keyboardInputViewController: KeyboardInputViewController { .shared }
+    private var keyboardInputViewController: KeyboardInputViewController { .shared }
     
     
     // MARK: - Types
