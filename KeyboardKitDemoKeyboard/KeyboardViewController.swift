@@ -13,7 +13,10 @@ import KeyboardKit
  This UIKit-based demo keyboard demonstrates how to create a
  keyboard extension using `KeyboardKit` and `UIKit`.
  
- This keyboard sends text and emoji inputs to the text proxy,
+ The demo injects a custom, demo-specific action handler and
+ layout provider when the controller is created.
+ 
+ The demo then sends text and emoji inputs to the text proxy,
  copies tapped images to the device's pasteboard, saves long
  pressed images to photos etc. It also adds an auto complete
  toolbar that provides fake suggestions for the current word.
@@ -34,10 +37,6 @@ class KeyboardViewController: KeyboardInputViewController {
     
     // MARK: - View Controller Lifecycle
     
-    /**
-     The demo injects a custom, demo-specific action handler
-     and layout provider when the controller is created.
-     */
     override func viewDidLoad() {
         super.viewDidLoad()
         keyboardActionHandler = DemoKeyboardActionHandler(

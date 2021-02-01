@@ -10,7 +10,7 @@ import KeyboardKit
 import UIKit
 
 /**
- This action handler inherits `DemoKeyboardActionHandlerBase`
+ This action handler inherits `StandardKeyboardActionHandler`
  and adds `SwiftUI` demo-specific functionality to it.
  */
 class DemoKeyboardActionHandler: StandardKeyboardActionHandler {

@@ -104,10 +104,6 @@ private extension KeyboardViewController {
 
 @objc extension KeyboardViewController {
     
-    /**
-     For now, this pan action handler delays updating, since
-     the gesture ends before the scroll view stops scrolling.
-     */
     func refreshEmojiCategoryLabel(_ recognizer: UIPanGestureRecognizer) {
         guard recognizer.state == .ended else { return }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: emojiLabelUpdateAction)
