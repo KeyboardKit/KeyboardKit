@@ -19,12 +19,11 @@ import SwiftUI
  To bind a toast to a view, use the `keyboardToast` modifier:
  
  ```swift
- .keyboardToast(isPresented: $context.isActive, content: sheetContext.sheet, background: ...)
+ .keyboardToast(context: context, background: ...)
  ```
  
  Note that the context only manages the toast content, since
- the background, style etc. can be set when a toast is bound
- to a view.
+ the appearance can be set with the `toast` modifier.
  ```
  */
 public class KeyboardToastContext: ObservableObject {
@@ -33,6 +32,12 @@ public class KeyboardToastContext: ObservableObject {
     
     @Published public var isActive = false
     @Published public var content = AnyView(EmptyView())
+    
+    public var isActiveBinding: Binding<Bool> {
+        .init(get: { self.isActive },
+              set: { self.isActive = $0 }
+        )
+    }
     
     public func present(_ text: String) {
         present(Text(text).multilineTextAlignment(.center))

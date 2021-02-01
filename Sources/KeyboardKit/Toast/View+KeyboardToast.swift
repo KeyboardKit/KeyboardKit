@@ -9,12 +9,10 @@
 import SwiftUI
 
 public extension View {
-
+    
     /**
-     Present a centered toast over the view, using a custom
-     `content` view and `background`.
-     
-     This is best used together with `KeyboardToastContext`.
+     Present a centered toast, using a custom `content` view
+     and a custom `background`.
      */
     func keyboardToast<Content: View, Background: View>(
         isActive: Binding<Bool>,
@@ -24,6 +22,23 @@ public extension View {
         KeyboardToast(
             isActive: isActive,
             content: content,
+            background: background,
+            duration: duration,
+            presenter: { self }
+        )
+    }
+    
+    /**
+     Present a centered toast, using a custom `content` view
+     and a custom `background`.
+     */
+    func keyboardToast<Background: View>(
+        context: KeyboardToastContext,
+        background: Background,
+        duration: TimeInterval = 2) -> some View {
+        KeyboardToast(
+            isActive: context.isActiveBinding,
+            content: context.content,
             background: background,
             duration: duration,
             presenter: { self }

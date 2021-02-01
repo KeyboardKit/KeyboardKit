@@ -27,8 +27,9 @@ struct KeyboardView: View {
     @EnvironmentObject var toastContext: KeyboardToastContext
     
     var body: some View {
-        keyboardView
-            .keyboardToast(isActive: $toastContext.isActive, content: toastContext.content, background: toastBackground)
+        keyboardView.keyboardToast(
+            context: toastContext,
+            background: toastBackground)
     }
     
     @ViewBuilder
@@ -59,6 +60,12 @@ private extension KeyboardView {
     func switchToDefaultKeyboard() {
         keyboardActionHandler
             .handle(.tap, on: .keyboardType(.alphabetic(.lowercased)))
+    }
+    
+    var toastBackground: some View {
+        Color.white
+            .cornerRadius(3)
+            .shadow(color: Color.black.opacity(0.3), radius: 2, x: 1, y: 1)
     }
 }
 

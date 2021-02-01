@@ -32,12 +32,6 @@ extension KeyboardView {
     var systemKeyboardLayout: KeyboardLayout {
         keyboardLayoutProvider.keyboardLayout(for: context)
     }
-    
-    var toastBackground: some View {
-        Color.white
-            .cornerRadius(3)
-            .shadow(color: Color.black.opacity(0.3), radius: 2, x: 1, y: 1)
-    }
 }
 
 private extension KeyboardView {

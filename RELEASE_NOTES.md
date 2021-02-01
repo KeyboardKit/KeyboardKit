@@ -27,6 +27,7 @@ Although these release notes will aim at covering everything that changes in thi
 * `KeyboardInputViewController` has a new `keyboardSecondaryInputActionProvider`.
 * `KeyboardInputViewController` has a new `keyboardSecondaryInputCalloutContext`.
 * `View` has new `keyboardInputViewController` convenience extensions.
+* `View+keyboardToast` has new context-based function.
 
 
 ### Changed behavior
