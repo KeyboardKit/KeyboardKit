@@ -18,14 +18,11 @@ import SwiftUI
  */
 public struct SecondaryInputCallout: View {
     
-    public init(
-        context: SecondaryInputCalloutContext,
-        style: SecondaryInputCalloutStyle) {
-        self.context = context
+    public init(style: SecondaryInputCalloutStyle) {
         self.style = style
     }
     
-    @ObservedObject private var context: SecondaryInputCalloutContext
+    @EnvironmentObject private var context: SecondaryInputCalloutContext
     
     private let style: SecondaryInputCalloutStyle
     

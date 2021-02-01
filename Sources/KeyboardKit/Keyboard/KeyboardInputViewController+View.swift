@@ -22,7 +22,6 @@ public extension KeyboardInputViewController {
         with view: Content,
         secondaryInputCalloutContext: SecondaryInputCalloutContext? = nil) {
         self.view.subviews.forEach { $0.removeFromSuperview() }
-        SecondaryInputCalloutContext.shared = secondaryInputCalloutContext ?? secondaryInputCalloutContextFallback
         let view = view
             .environmentObject(keyboardContext)
             .environmentObject(keyboardInputCalloutContext)

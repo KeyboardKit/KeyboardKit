@@ -9,7 +9,7 @@ This release merges `KeyboardKit` with `KeyboardKitSwiftUI` and raises the deplo
 
 SwiftUI support is now a first-class citizen. UIKit support is still around, but will no longer be actively developed.
 
-Although these release notes will aim at covering everything that changes in this major version, some things will most probably be missed. 
+Although these release notes will aim at covering everything that changes in this major version, some things will most probably be missed.
 
 
 ### New features
@@ -23,6 +23,8 @@ Although these release notes will aim at covering everything that changes in thi
 * `KeyboardInputViewController` has a new `keyboardInputCalloutContext`.
 * `KeyboardInputViewController` has a new `keyboardInputSetProvider`.
 * `KeyboardInputViewController` has a new `keyboardLayoutProvider`.
+* `KeyboardInputViewController` has a new `keyboardSecondaryInputActionProvider`.
+* `KeyboardInputViewController` has a new `keyboardSecondaryInputCalloutContext`.
 * `View` has new `keyboardInputViewController` convenience extensions.
 
 
@@ -48,6 +50,7 @@ Although these release notes will aim at covering everything that changes in thi
 ### Removed/renamed
 
 * All previews deprecations have been removed in this version.
+* `InputCalloutContext.shared` has been removed. Use the environment object instead.
 * `KeyboardActionRow` has been removed, since it's confusing to have two aliases for the same thing.
 * `KeyboardAppearanceProvider` has been renamed to `KeyboardAppearance`.
 * `KeyboardContext` `actionHandler` has been moved to the input vc.
@@ -61,6 +64,7 @@ Although these release notes will aim at covering everything that changes in thi
 * `KeyboardInputViewController+Gestures` has been converted to `KeyboardButton+Gestures`.
 * `PhotosImageService` and `StandardPhotosImageService` have been removed.
 * `Settings` has been entirely removed.
+* `SecondaryInputCalloutContext.shared` has been removed. Use the environment object instead.
 * `StandardKeyboardContext` has been replaced by `ObservableKeyboardContext`.
 * `StandardKeyboardActionHandler` gesture actions has been gathered in a single `action(for:on)`.
 * `StandardKeyboardActionHandler` no longer takes an optional sender for keyboard actions.

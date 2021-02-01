@@ -41,6 +41,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
     
     @EnvironmentObject private var context: ObservableKeyboardContext
     @EnvironmentObject private var inputCalloutContext: InputCalloutContext
+    @EnvironmentObject private var secondaryInputCalloutContext: SecondaryInputCalloutContext
     
     public var body: some View {
         buttonContent
@@ -51,7 +52,11 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
             .padding(dimensions.buttonInsets)
             .frame(height: dimensions.buttonHeight)
             .background(Color.clearInteractable)
-            .keyboardGestures(for: action, actionHandler: actionHandler, inputCalloutContext: inputCalloutContext)
+            .keyboardGestures(
+                for: action,
+                actionHandler: actionHandler,
+                inputCalloutContext: inputCalloutContext,
+                secondaryInputCalloutContext: secondaryInputCalloutContext)
     }
 }
 

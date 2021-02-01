@@ -108,8 +108,8 @@ public struct EmojiCategoryKeyboard: View {
 @available(iOS 14.0, *)
 struct EmojiCategoryMenu_Keyboard: PreviewProvider {
     static var previews: some View {
-        SecondaryInputCalloutContext.shared = SecondaryInputCalloutContext(context: FakeKeyboardContext(), actionProvider: StandardSecondaryCalloutActionProvider(), actionHandler: FakeKeyboardActionHandler())
-        return EmojiCategoryKeyboard(selection: .smileys)
+        EmojiCategoryKeyboard(selection: .smileys)
             .environmentObject(ObservableKeyboardContext.preview)
+            .environmentObject(SecondaryInputCalloutContext.preview)
     }
 }

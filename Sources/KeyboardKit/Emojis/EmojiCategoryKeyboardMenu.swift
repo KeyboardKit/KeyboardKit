@@ -45,6 +45,7 @@ public struct EmojiCategoryKeyboardMenu: View {
     
     @EnvironmentObject private var context: ObservableKeyboardContext
     @EnvironmentObject private var inputCalloutContext: InputCalloutContext
+    @EnvironmentObject private var secondaryInputCalloutContext: SecondaryInputCalloutContext
     
     public var body: some View {
         HStack(spacing: 0) {
@@ -68,7 +69,8 @@ public struct EmojiCategoryKeyboardMenu: View {
         return image.keyboardGestures(
             for: action,
             actionHandler: handler,
-            inputCalloutContext: inputCalloutContext)
+            inputCalloutContext: inputCalloutContext,
+            secondaryInputCalloutContext: secondaryInputCalloutContext)
     }
     
     private var keyboardSwitchButton: some View {
@@ -78,7 +80,8 @@ public struct EmojiCategoryKeyboardMenu: View {
         return Text(text).keyboardGestures(
             for: action,
             actionHandler: handler,
-            inputCalloutContext: inputCalloutContext)
+            inputCalloutContext: inputCalloutContext,
+            secondaryInputCalloutContext: secondaryInputCalloutContext)
     }
     
     private var buttonList: some View {
@@ -101,8 +104,8 @@ public struct EmojiCategoryKeyboardMenu: View {
 @available(iOS 14.0, *)
 struct EmojiCategoryKeyboardMenu_Previews: PreviewProvider {
     static var previews: some View {
-        SecondaryInputCalloutContext.shared = SecondaryInputCalloutContext(context: FakeKeyboardContext(), actionProvider: StandardSecondaryCalloutActionProvider(), actionHandler: FakeKeyboardActionHandler())
-        return EmojiCategoryKeyboardMenu(selection: .constant(.activities))
+        EmojiCategoryKeyboardMenu(selection: .constant(.activities))
             .environmentObject(ObservableKeyboardContext.preview)
+            .environmentObject(SecondaryInputCalloutContext.preview)
     }
 }

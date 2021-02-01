@@ -44,9 +44,6 @@ open class SecondaryInputCalloutContext: ObservableObject {
     
     // MARK: - Properties
     
-    @available(*, deprecated, message: "Inject instead")
-    public static var shared: SecondaryInputCalloutContext!
-    
     static let coordinateSpace = "com.keyboardkit.coordinate.SecondaryInputCallout"
     
     public var isActive: Bool { !actions.isEmpty }

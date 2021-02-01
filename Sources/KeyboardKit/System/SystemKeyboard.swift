@@ -49,7 +49,7 @@ public struct SystemKeyboard: View {
         }
         .bindSize(to: $size)
         .inputCallout(style: .systemStyle(for: context))
-        .secondaryInputCallout(for: context, style: .systemStyle(for: context))
+        .secondaryInputCallout(style: .systemStyle(for: context))
     }
 }
 

@@ -21,7 +21,8 @@ public extension View {
     func keyboardGestures(
         for action: KeyboardAction,
         actionHandler: KeyboardActionHandler,
-        inputCalloutContext: InputCalloutContext) -> some View {
+        inputCalloutContext: InputCalloutContext,
+        secondaryInputCalloutContext: SecondaryInputCalloutContext) -> some View {
         if action == .nextKeyboard {
             self
         } else {
@@ -32,7 +33,8 @@ public extension View {
                 longPressAction: { actionHandler.handle(.longPress, on: action) },
                 repeatAction: { actionHandler.handle(.repeatPress, on: action) },
                 dragAction: { start, current in actionHandler.handleDrag(on: action, from: start, to: current) },
-                inputCalloutContext: inputCalloutContext)
+                inputCalloutContext: inputCalloutContext,
+                secondaryInputCalloutContext: secondaryInputCalloutContext)
         }
     }
     
@@ -51,7 +53,7 @@ public extension View {
         repeatAction: KeyboardGestureAction? = nil,
         dragAction: KeyboardDragGestureAction? = nil,
         inputCalloutContext: InputCalloutContext,
-        secondaryInputCalloutContext: SecondaryInputCalloutContext = .shared) -> some View {
+        secondaryInputCalloutContext: SecondaryInputCalloutContext) -> some View {
         KeyboardGestures(
             view: self,
             action: action,
