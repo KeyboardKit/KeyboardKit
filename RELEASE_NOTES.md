@@ -26,6 +26,9 @@ Although these release notes will aim at covering everything that changes in thi
 * `KeyboardInputViewController` has a new `keyboardLayoutProvider`.
 * `KeyboardInputViewController` has a new `keyboardSecondaryInputActionProvider`.
 * `KeyboardInputViewController` has a new `keyboardSecondaryInputCalloutContext`.
+* `Locale` is a new namespace with a few new locale-specific utils.
+* `LocaleDictionary` is a simple dictionary wrapper to work with localized resources.
+* `LocaleKey` is a simple enum to gather top-level locale identifiers.
 * `View` has new `keyboardInputViewController` convenience extensions.
 * `View+keyboardToast` has new context-based function.
 
