@@ -17,7 +17,7 @@ class View_KeyboardTests: QuickSpec {
         
         describe("keyboard input view controller") {
             
-            it("is the shared instnace") {
+            it("is the shared instance") {
                 let vc = MockInputViewController()
                 KeyboardInputViewController.shared = vc
                 let view = Text("")

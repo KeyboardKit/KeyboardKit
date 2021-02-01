@@ -12,14 +12,12 @@ import UIKit
 public extension CGFloat {
     
     /**
-     The standard, `total` row height of a vertical keyboard
-     row in a system keyboard, e.g. a row of input actions.
+     The standard total height of a row in a system keyboard.
      
-     Note that this is the total row height. It includes any
-     additional top and bottom insets that should be applied
-     within each row item view. These standard insets can be
-     retrieved with `standardKeyboardRowItemInsets` and must
-     be applied within each view to avoid dead tap areas.
+     Note that this is the TOTAL row height. It includes any
+     additional vertical insets that may be applied to every
+     row. Such insets must be applied to each button view to
+     avoid dead tap areas.
      */
     static func standardKeyboardRowHeight(
         for device: UIDevice = .current,

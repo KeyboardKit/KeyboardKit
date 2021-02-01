@@ -21,11 +21,6 @@ public indirect enum KeyboardButtonWidth {
     case available
     
     /**
-     Use a fixed width in points.
-     */
-    case fixed(_ points: CGFloat)
-    
-    /**
      Use the width from a `reference` button.
      */
     case fromReference
@@ -34,6 +29,11 @@ public indirect enum KeyboardButtonWidth {
      Use a percentual width of the total available width.
      */
     case percentage(_ percent: CGFloat)
+    
+    /**
+     Use a fixed width in points.
+     */
+    case points(_ points: CGFloat)
     
     /**
      Apply a certain width and use the result as a reference

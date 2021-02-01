@@ -9,18 +9,13 @@
 import Foundation
 
 /**
- A "keyboard layout" represents the total set of actions for
- a keyboard. This normally consists of rows of input buttons
- surrounded by system buttons on some or all rows.
+ A keyboard layout lists all available actions on a keyboard.
+ It's most often made up of multiple input button rows and a
+ set of surrounding system system buttons.
  
- Keyboard layouts depends on the current locale, the current
- device and orientation, whether or not it has a home button
- etc. This makes it more complicated to resolve layouts than
- input sets, since input sets just rely on a locale.
- 
- As such, there is no `KeyboardLayout+Locale` extension. You
- must instead use a `KeyboardLayoutProvider`, which lets you
- resolve keyboard layouts in a more abstract way.
+ A keyboard layout depends on the current locale, device and
+ orientation etc. It's therefore more complicated to resolve
+ a layout than an input set. Us
  */
 public class KeyboardLayout: Equatable {
     

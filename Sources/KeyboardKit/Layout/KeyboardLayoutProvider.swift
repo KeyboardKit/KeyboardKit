@@ -10,7 +10,7 @@ import Foundation
 
 /**
  This protocol can be implemented by classes that can return
- keyboard layouts for the keyboard extension's current state.
+ keyboard layouts for the current keyboard state.
  
  `KeyboardKit` will automatically create a standard instance
  and bind it to the input view controller when the extension
