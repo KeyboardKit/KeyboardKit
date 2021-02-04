@@ -29,7 +29,7 @@ class StandardKeyboardLayoutProviderTests: QuickSpec {
                     leftSpaceAction: .done,
                     rightSpaceAction: .escape)
                 inputSet = EnglishKeyboardInputSetProvider().alphabeticInputSet()
-                rows = KeyboardActionRows(characters: inputSet.inputRows)
+                rows = KeyboardActionRows(characters: inputSet.rows)
             }
             
             func verifyStandardPhoneResult(_ result: KeyboardActionRows) {

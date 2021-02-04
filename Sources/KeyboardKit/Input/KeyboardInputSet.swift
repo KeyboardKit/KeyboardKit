@@ -11,23 +11,31 @@ import Foundation
 /**
  A keyboard input set represents the input parts of a system
  keyboard, the center lighter input keys.
- 
- Some devices add additional inputs to system keyboards. For
- instance, iPad devices adds punctionation and characters to
- the bottom rows. These inputs are not considered to be part
- of the input set, but rater the keyboard layout.
  */
 public class KeyboardInputSet: Equatable {
     
-    public init(inputRows: [InputRow]) {
-        self.inputRows = inputRows
+    public init(rows: [KeyboardInputRow]) {
+        self.rows = rows
     }
     
-    public typealias InputRow = [String]
-    
-    public let inputRows: [InputRow]
+    public let rows: [KeyboardInputRow]
     
     public static func == (lhs: KeyboardInputSet, rhs: KeyboardInputSet) -> Bool {
-        lhs.inputRows == rhs.inputRows
+        lhs.rows == rhs.rows
     }
 }
+
+/**
+ This input set can be used in alphabetic keyboards.
+ */
+public class AlphabeticKeyboardInputSet: KeyboardInputSet {}
+
+/**
+ This input set can used in numeric keyboards.
+ */
+public class NumericKeyboardInputSet: KeyboardInputSet {}
+
+/**
+ This input set can be used in symbolic keyboards.
+ */
+public class SymbolicKeyboardInputSet: KeyboardInputSet {}

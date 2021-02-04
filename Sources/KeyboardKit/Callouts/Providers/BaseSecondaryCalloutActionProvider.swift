@@ -39,8 +39,3 @@ open class BaseSecondaryCalloutActionProvider: SecondaryCalloutActionProvider {
         ""
     }
 }
-
-private extension String {
-    
-    var isUppercased: Bool { self == uppercased() }
-}

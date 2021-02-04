@@ -61,9 +61,3 @@ private extension SystemKeyboardButtonContent {
             .offset(y: text.isLowercased ? -2 : 0)
     }
 }
-
-private extension String {
-    
-    var isLowercased: Bool { self == lowercased() }
-    var isUppercased: Bool { self != lowercased() }
-}

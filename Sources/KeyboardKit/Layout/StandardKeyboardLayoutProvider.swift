@@ -258,15 +258,15 @@ private extension StandardKeyboardLayoutProvider {
         return KeyboardActionRows(characters: rows)
     }
     
-    func inputRows(for context: KeyboardContext) -> [KeyboardInputSet.InputRow] {
+    func inputRows(for context: KeyboardContext) -> [KeyboardInputRow] {
         let provider = inputSetProvider
         switch context.keyboardType {
         case .alphabetic(let state):
-            let rows = provider.alphabeticInputSet().inputRows
+            let rows = provider.alphabeticInputSet().rows
             return state.isUppercased ? rows.uppercased() : rows
-        case .numeric: return provider.numericInputSet().inputRows
-        case .symbolic: return provider.symbolicInputSet().inputRows
-        default: return provider.alphabeticInputSet().inputRows
+        case .numeric: return provider.numericInputSet().rows
+        case .symbolic: return provider.symbolicInputSet().rows
+        default: return provider.alphabeticInputSet().rows
         }
     }
 }
