@@ -1,5 +1,6 @@
 import SwiftUI
 
+#if DEBUG
 /**
  This struct is just used to experiment with varios keyboard
  layouts, button cominations, widths etc.
@@ -7,7 +8,7 @@ import SwiftUI
  You have to use `live preview` for this preview to properly
  apply sizes.
  */
-struct KeyboardButtonWidthPreview: View {
+struct KeyboardLayoutPreview: View {
     
     @State var referenceSize: CGSize = .zero
     @State var totalSize: CGSize = .zero
@@ -48,18 +49,18 @@ struct KeyboardButtonWidthPreview: View {
             bars(count: 100)
             VStack(spacing: 0) {
                 repeatingView(count: 10, view: { button().width(.reference(.available), referenceSize: $referenceSize) })
-                repeatingView(count: 9, view: { button().width(.fromReference, referenceSize: $referenceSize) })
+                repeatingView(count: 9, view: { button().width(.useReference, referenceSize: $referenceSize) })
                 HStack(spacing: 0) {
                     systemButton().width(.percentage(0.125), totalWidth: totalWidth)
                     spacer()
-                    repeatingView(count: 7, view: { button().width(.fromReference, referenceSize: $referenceSize) })
+                    repeatingView(count: 7, view: { button().width(.useReference, referenceSize: $referenceSize) })
                     spacer()
                     systemButton().width(.percentage(0.125), totalWidth: totalWidth)
                 }
                 HStack(spacing: 0) {
                     systemButton().width(.percentage(0.125), totalWidth: totalWidth)
                     systemButton().width(.percentage(0.125), totalWidth: totalWidth)
-                    button().width(.fromReference, referenceSize: $referenceSize)
+                    button().width(.useReference, referenceSize: $referenceSize)
                     button()
                     systemButton().width(.percentage( 0.25), totalWidth: totalWidth)
                 }
@@ -71,9 +72,10 @@ struct KeyboardButtonWidthPreview: View {
     }
 }
 
-struct KeyboardButtonWidthPreview_Previews: PreviewProvider {
+struct KeyboardLayoutPreview_Previews: PreviewProvider {
     
     static var previews: some View {
-        KeyboardButtonWidthPreview()
+        KeyboardLayoutPreview()
     }
 }
+#endif
