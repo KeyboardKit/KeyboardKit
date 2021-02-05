@@ -23,11 +23,16 @@ public struct SystemKeyboard: View {
         actionHandler: KeyboardActionHandler,
         appearance: KeyboardAppearance,
         dimensions: KeyboardDimensions = SystemKeyboardDimensions(),
+        inputCalloutStyle: InputCalloutStyle? = nil,
+        secondaryInputCalloutStyle: SecondaryInputCalloutStyle? = nil,
         buttonBuilder: @escaping ButtonBuilder = Self.standardButtonBuilder) {
+        self.layout = layout
         self.actionHandler = actionHandler
         self.appearance = appearance
         self.rows = layout.actionRows
         self.dimensions = dimensions
+        self.inputCalloutStyle = inputCalloutStyle
+        self.secondaryInputCalloutStyle = secondaryInputCalloutStyle
         self.buttonBuilder = buttonBuilder
     }
     
@@ -36,8 +41,11 @@ public struct SystemKeyboard: View {
     private let buttonBuilder: ButtonBuilder
     private let dimensions: KeyboardDimensions
     private let rows: KeyboardActionRows
-    
-    @State private var size: CGSize = .zero
+    private let inputCalloutStyle: InputCalloutStyle?
+    private let layout: KeyboardLayout
+    private let secondaryInputCalloutStyle: SecondaryInputCalloutStyle?
+
+    @State private var keyboardSize: CGSize = .zero
     
     @EnvironmentObject private var context: ObservableKeyboardContext
     
@@ -50,9 +58,9 @@ public struct SystemKeyboard: View {
                 row(at: $0.offset, actions: $0.element)
             }
         }
-        .bindSize(to: $size)
-        .inputCallout(style: .systemStyle(for: context))
-        .secondaryInputCallout(style: .systemStyle(for: context))
+        .bindSize(to: $keyboardSize)
+        .inputCallout(style: inputCalloutStyle ?? .systemStyle(for: context))
+        .secondaryInputCallout(style: secondaryInputCalloutStyle ?? .systemStyle(for: context))
     }
 }
 
@@ -77,8 +85,8 @@ private extension SystemKeyboard {
                     action: $0.element,
                     actionHandler: actionHandler,
                     appearance: appearance,
-                    buttonContent: buttonBuilder($0.element, size),
-                    keyboardSize: size)
+                    buttonContent: buttonBuilder($0.element, keyboardSize),
+                    keyboardSize: keyboardSize)
             }
             rowEdgeSpacer(at: index)
         }
