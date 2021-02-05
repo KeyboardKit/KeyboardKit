@@ -23,17 +23,11 @@ import UIKit
 open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     
     public init(
-        inputSetProvider: KeyboardInputSetProvider,
-        leftSpaceAction: KeyboardAction? = nil,
-        rightSpaceAction: KeyboardAction? = nil) {
+        inputSetProvider: KeyboardInputSetProvider) {
         self.inputSetProvider = inputSetProvider
-        self.leftSpaceAction = leftSpaceAction
-        self.rightSpaceAction = rightSpaceAction
     }
     
     private let inputSetProvider: KeyboardInputSetProvider
-    private let leftSpaceAction: KeyboardAction?
-    private let rightSpaceAction: KeyboardAction?
     
     open func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         let rows = actionRows(for: context)
@@ -135,13 +129,7 @@ private extension StandardKeyboardLayoutProvider {
         if isDictationSupported {
             result.append(.dictation)
         }
-        if let action = leftSpaceAction {
-            result.append(action)
-        }
         result.append(.space)
-        if let action = rightSpaceAction {
-            result.append(action)
-        }
         if let action = switcher {
             result.append(action)
         }
@@ -222,13 +210,7 @@ private extension StandardKeyboardLayoutProvider {
         if isDictationSupported {
             result.append(.dictation)
         }
-        if let action = leftSpaceAction {
-            result.append(action)
-        }
         result.append(.space)
-        if let action = rightSpaceAction {
-            result.append(action)
-        }
         result.append(.newLine)
         
         return result

@@ -42,9 +42,7 @@ class KeyboardViewController: KeyboardInputViewController {
             inputViewController: self,
             toastContext: toastContext)
         keyboardLayoutProvider = StandardKeyboardLayoutProvider(
-            inputSetProvider: keyboardInputSetProvider,
-            leftSpaceAction: .keyboardType(.emojis),
-            rightSpaceAction: .keyboardType(.images))
+            inputSetProvider: keyboardInputSetProvider)
         setup(with: keyboardView)
     }
     

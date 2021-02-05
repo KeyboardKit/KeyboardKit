@@ -52,7 +52,7 @@ extension KeyboardViewController {
     
     func setupSystemKeyboard() {
         let layout = keyboardLayoutProvider.keyboardLayout(for: keyboardContext)
-        var rows = buttonRows(for: layout.actionRows, distribution: .fillProportionally)
+        var rows = buttonRows(for: layout.rows, distribution: .fillProportionally)
         rows.insert(autocompleteToolbar, at: 0)
         keyboardStackView.addArrangedSubviews(rows)
     }

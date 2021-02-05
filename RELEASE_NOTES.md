@@ -94,6 +94,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `StandardKeyboardActionHandler` no longer takes an optional sender for keyboard actions.
 * `StandardKeyboardActionHandler` gesture actions has been gathered in a single `action(for:on)`.
 * `StandardKeyboardAppearanceProvider` has been renamed to `StandardKeyboardAppearance`.
+* `StandardKeyboardLayoutProvider` no longer has left and right space actions. Implement this in a custom provider instead.
 * `UIImage+pasteboard` has been moved to the demo.
 * `UIImage+photos` has been moved to the demo.
 * `UIImage+resized` has been removed.

@@ -25,9 +25,7 @@ class StandardKeyboardLayoutProviderTests: QuickSpec {
             beforeEach {
                 context = MockKeyboardContext()
                 provider = StandardKeyboardLayoutProvider(
-                    inputSetProvider: StandardKeyboardInputSetProvider(context: context),
-                    leftSpaceAction: .done,
-                    rightSpaceAction: .escape)
+                    inputSetProvider: StandardKeyboardInputSetProvider(context: context))
                 inputSet = EnglishKeyboardInputSetProvider().alphabeticInputSet()
                 rows = KeyboardActionRows(characters: inputSet.rows)
             }
