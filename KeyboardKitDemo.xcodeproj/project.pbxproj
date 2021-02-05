@@ -300,14 +300,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		843CBFA9250EA92500BA541F /* Keyboards */ = {
-			isa = PBXGroup;
-			children = (
-				843CBFAA250EA93100BA541F /* ImageKeyboard.swift */,
-			);
-			path = Keyboards;
-			sourceTree = "<group>";
-		};
 		84670425234A6A8400355331 /* Project Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -448,22 +440,14 @@
 		A94265392490CDCC00EB5551 /* KeyboardKitDemoKeyboard_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				A99C28B925B8087200EFE8D9 /* Demo */,
-				843CBFA9250EA92500BA541F /* Keyboards */,
-				A94265532490D1CB00EB5551 /* Supporting Files */,
+				A94C721724AE238900077EEA /* DemoKeyboardActionHandler.swift */,
+				843CBFAA250EA93100BA541F /* ImageKeyboard.swift */,
+				A942653C2490CDCC00EB5551 /* Info.plist */,
 				A94265512490D1C400EB5551 /* KeyboardView.swift */,
 				A920AD6225A9ECBE007D957E /* KeyboardView+Keyboards.swift */,
 				A942653A2490CDCC00EB5551 /* KeyboardViewController.swift */,
 			);
 			path = KeyboardKitDemoKeyboard_SwiftUI;
-			sourceTree = "<group>";
-		};
-		A94265532490D1CB00EB5551 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A942653C2490CDCC00EB5551 /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		A95307542461308100CB37C3 /* Localization */ = {
@@ -472,14 +456,6 @@
 				15133C74245862B300748945 /* EmojiCategory+L10n.swift */,
 			);
 			path = Localization;
-			sourceTree = "<group>";
-		};
-		A99C28B925B8087200EFE8D9 /* Demo */ = {
-			isa = PBXGroup;
-			children = (
-				A94C721724AE238900077EEA /* DemoKeyboardActionHandler.swift */,
-			);
-			path = Demo;
 			sourceTree = "<group>";
 		};
 		A99C28BB25B8091F00EFE8D9 /* Demo */ = {
