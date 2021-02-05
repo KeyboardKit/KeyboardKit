@@ -103,7 +103,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `View+Button` "standard button" functions have been replaced by a single `keyboardButtonStyle` function.
 * `View+ClearInteractable` has been removed.
 * `View` `keyboardAction(...)` has been renamed to `keyboardGestures(for: ...)`.
-* `UIEdgeInsets+Keybpard` `standardKeyboardButtonInsets` has been renamed to `standardKeyboardButtonInsets`.
+* `UIEdgeInsets+Keyboard` `standardKeyboardButtonInsets` has been renamed to `standardKeyboardButtonInsets`.
 
 
 ### UIKit changes
