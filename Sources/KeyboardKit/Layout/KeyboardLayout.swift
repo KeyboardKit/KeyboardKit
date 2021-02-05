@@ -6,7 +6,8 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Foundation
+import CoreGraphics
+import SwiftUI
 
 /**
  Keyboard layouts list available actions on a keyboard. They
@@ -15,11 +16,18 @@ import Foundation
  */
 public class KeyboardLayout: Equatable {
     
-    public init(rows: KeyboardActionRows) {
+    public init(
+        rows: KeyboardActionRows,
+        buttonHeight: CGFloat,
+        buttonInsets: EdgeInsets) {
         self.rows = rows
+        self.buttonHeight = buttonHeight
+        self.buttonInsets = buttonInsets
     }
     
     public let rows: KeyboardActionRows
+    public let buttonHeight: CGFloat
+    public let buttonInsets: EdgeInsets
     
     public static func == (lhs: KeyboardLayout, rhs: KeyboardLayout) -> Bool {
         lhs.rows == rhs.rows

@@ -81,11 +81,13 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `KeyboardContext` `keyboardBehavior` has been moved to the input vc.
 * `KeyboardContext` `keyboardInputSetProvider` has been moved to the input vc.
 * `KeyboardContext` `keyboardLayoutProvider` has been moved to the input vc.
+* `KeyboardDimensions` is no longer used and has been removed.
 * `KeyboardInputSet` locale extensions have been converted to separate providers.
 * `KeyboardInputSet` standard input set extensions have been removed.
 * `KeyboardInputViewController` `addKeyboardGestures` has been converted to `KeyboardButton+Gestures`.
 * `KeyboardInputViewController` `context` has been renamed to `keyboardContext`.
 * `KeyboardInputViewController+Gestures` has been converted to `KeyboardButton+Gestures`.
+* `KeyboardLayout` `actionRows` has been renamed to `rows`.
 * `PhotosImageService` and `StandardPhotosImageService` have been removed.
 * `Settings` has been entirely removed.
 * `SecondaryInputCalloutContext.shared` has been removed. Use the environment object instead.
@@ -95,6 +97,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `StandardKeyboardActionHandler` gesture actions has been gathered in a single `action(for:on)`.
 * `StandardKeyboardAppearanceProvider` has been renamed to `StandardKeyboardAppearance`.
 * `StandardKeyboardLayoutProvider` no longer has left and right space actions. Implement this in a custom provider instead.
+* `SystemKeyboardDimensions` is no longer used and has been removed.
 * `UIImage+pasteboard` has been moved to the demo.
 * `UIImage+photos` has been moved to the demo.
 * `UIImage+resized` has been removed.

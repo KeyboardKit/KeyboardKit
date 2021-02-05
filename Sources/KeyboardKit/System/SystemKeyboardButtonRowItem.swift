@@ -25,33 +25,30 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
         actionHandler: KeyboardActionHandler,
         appearance: KeyboardAppearance,
         buttonContent: Content,
-        dimensions: KeyboardDimensions = SystemKeyboardDimensions(),
-        keyboardSize: CGSize) {
+        layout: KeyboardLayout) {
         self.action = action
         self.actionHandler = actionHandler
         self.appearance = appearance
         self.buttonContent = buttonContent
-        self.dimensions = dimensions
-        self.keyboardSize = keyboardSize
+        self.layout = layout
     }
     
     private let action: KeyboardAction
     private let actionHandler: KeyboardActionHandler
     private let appearance: KeyboardAppearance
     private let buttonContent: Content
-    private let dimensions: KeyboardDimensions
-    private let keyboardSize: CGSize
+    private let layout: KeyboardLayout
     
     @EnvironmentObject private var context: ObservableKeyboardContext
     
     public var body: some View {
         buttonContent
             .frame(maxWidth: .infinity)
-            .frame(height: dimensions.buttonHeight - dimensions.buttonInsets.top - dimensions.buttonInsets.bottom)
-            .applyWidth(for: action, from: dimensions, keyboardWidth: keyboardSize.width, context: context)
+            .frame(height: layout.buttonHeight - layout.buttonInsets.top - layout.buttonInsets.bottom)
+            .applyWidth(for: action)
             .keyboardButtonStyle(for: action, appearance: appearance)
-            .padding(dimensions.buttonInsets)
-            .frame(height: dimensions.buttonHeight)
+            .padding(layout.buttonInsets)
+            .frame(height: layout.buttonHeight)
             .background(Color.clearInteractable)
             .keyboardGestures(for: action, actionHandler: actionHandler)
     }
@@ -60,15 +57,5 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
 private extension View {
     
     @ViewBuilder
-    func applyWidth(
-        for action: KeyboardAction,
-        from dimensions: KeyboardDimensions,
-        keyboardWidth: CGFloat,
-        context: KeyboardContext) -> some View {
-        if let width = dimensions.width(for: action, keyboardWidth: keyboardWidth, context: context) {
-            self.frame(width: width)
-        } else {
-            self
-        }
-    }
+    func applyWidth(for action: KeyboardAction) -> some View { self }
 }

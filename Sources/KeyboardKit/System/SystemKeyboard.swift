@@ -22,7 +22,6 @@ public struct SystemKeyboard: View {
         layout: KeyboardLayout,
         actionHandler: KeyboardActionHandler,
         appearance: KeyboardAppearance,
-        dimensions: KeyboardDimensions = SystemKeyboardDimensions(),
         inputCalloutStyle: InputCalloutStyle? = nil,
         secondaryInputCalloutStyle: SecondaryInputCalloutStyle? = nil,
         buttonBuilder: @escaping ButtonBuilder = Self.standardButtonBuilder) {
@@ -30,7 +29,6 @@ public struct SystemKeyboard: View {
         self.actionHandler = actionHandler
         self.appearance = appearance
         self.rows = layout.rows
-        self.dimensions = dimensions
         self.inputCalloutStyle = inputCalloutStyle
         self.secondaryInputCalloutStyle = secondaryInputCalloutStyle
         self.buttonBuilder = buttonBuilder
@@ -39,7 +37,6 @@ public struct SystemKeyboard: View {
     private let actionHandler: KeyboardActionHandler
     private let appearance: KeyboardAppearance
     private let buttonBuilder: ButtonBuilder
-    private let dimensions: KeyboardDimensions
     private let rows: KeyboardActionRows
     private let inputCalloutStyle: InputCalloutStyle?
     private let layout: KeyboardLayout
@@ -85,7 +82,7 @@ private extension SystemKeyboard {
                     actionHandler: actionHandler,
                     appearance: appearance,
                     buttonContent: buttonBuilder($0.element, keyboardSize),
-                    keyboardSize: keyboardSize)
+                    layout: layout)
             }
         }
     }

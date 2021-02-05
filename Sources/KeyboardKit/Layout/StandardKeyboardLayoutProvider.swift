@@ -42,7 +42,10 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
         let rows = iPad
             ? iPadActions(for: context, rows: rows)
             : iPhoneActions(for: context, rows: rows)
-        return KeyboardLayout(rows: rows)
+        return KeyboardLayout(
+            rows: rows,
+            buttonHeight: .standardKeyboardRowHeight(),
+            buttonInsets: .standardKeyboardButtonInsets())
     }
 }
 
