@@ -30,7 +30,7 @@ extension KeyboardView {
     }
     
     var systemKeyboardLayout: KeyboardLayout {
-        keyboardLayoutProvider.keyboardLayout(for: context)
+        keyboardLayoutProvider.keyboardLayout(for: keyboardContext)
     }
 }
 

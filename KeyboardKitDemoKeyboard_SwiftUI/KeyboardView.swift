@@ -23,7 +23,7 @@ struct KeyboardView: View {
     var keyboardLayoutProvider: KeyboardLayoutProvider
     
     @EnvironmentObject var autocompleteContext: ObservableAutocompleteContext
-    @EnvironmentObject var context: ObservableKeyboardContext
+    @EnvironmentObject var keyboardContext: ObservableKeyboardContext
     @EnvironmentObject var toastContext: KeyboardToastContext
     
     var body: some View {
@@ -34,7 +34,7 @@ struct KeyboardView: View {
     
     @ViewBuilder
     var keyboardView: some View {
-        switch context.keyboardType {
+        switch keyboardContext.keyboardType {
         case .alphabetic, .numeric, .symbolic: systemKeyboard
         case .emojis: emojiKeyboard
         case .images: imageKeyboard
@@ -51,7 +51,7 @@ private extension KeyboardView {
     @ViewBuilder
     var emojiKeyboard: some View {
         if #available(iOSApplicationExtension 14.0, *) {
-            EmojiCategoryKeyboard().padding(.top)
+            EmojiCategoryKeyboard().padding(.vertical)
         } else {
             Text("Requires iOS 14 or later")
         }
