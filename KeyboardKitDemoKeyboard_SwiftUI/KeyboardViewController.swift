@@ -39,10 +39,7 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         keyboardActionHandler = DemoKeyboardActionHandler(
-            keyboardContext: keyboardContext,
-            keyboardBehavior: keyboardBehavior,
-            autocompleteAction: performAutocomplete,
-            changeKeyboardTypeAction: changeKeyboardType,
+            inputViewController: self,
             toastContext: toastContext)
         keyboardLayoutProvider = StandardKeyboardLayoutProvider(
             inputSetProvider: keyboardInputSetProvider,

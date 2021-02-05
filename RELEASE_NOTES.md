@@ -14,9 +14,12 @@ Although these release notes will aim at covering everything that changes in thi
 
 ### New features
 
+Besides the new things listed below, there are a bunch of new extensions, images etc. 
+
 * `Callouts/Providers` have new locale-specific callout action providers.
+* `Image.emoji` no longer requires iOS 14, but uses `person.crop.circle` as fallback on iOS 13.
 * `KeyboardAppearance` has a new `image(for:)`.
-* `KeyboardInputSetProvider` has new locale-specific implementations under `Input/Providers`.
+* `KeyboardInputSetProvider` has new locale-specific providers under `Input/Providers`.
 * `KeyboardInputViewController` has a new static `shared` instance.
 * `KeyboardInputViewController` has a new `keyboardActionHandler`.
 * `KeyboardInputViewController` has a new `keyboardAppearance`.
@@ -47,6 +50,7 @@ Although these release notes will aim at covering everything that changes in thi
 * `KeyboardActionRow` `standardButtonImage` no longer takes a context.
 * `KeyboardBehavior` no longer takes a context as function input.
 * `KeyboardContext` no longer has any services, just inspectable properties.
+* `KeyboardInputSetProvider` implementations now provides punctuation as well.
 * `KeyboardInputSetProvider` no longer takes a context as function input.
 * `KeyboardInputViewController` `context` is now an `ObservableKeyboardContext`.
 * `KeyboardInputViewController` `context` is now called `keyboardContext`.
@@ -75,6 +79,7 @@ Although these release notes will aim at covering everything that changes in thi
 * `KeyboardContext` `keyboardInputSetProvider` has been moved to the input vc.
 * `KeyboardContext` `keyboardLayoutProvider` has been moved to the input vc.
 * `KeyboardInputSet` locale extensions have been converted to separate providers.
+* `KeyboardInputSet` standard input set extensions have been removed.
 * `KeyboardInputViewController` `addKeyboardGestures` has been converted to `KeyboardButton+Gestures`.
 * `KeyboardInputViewController` `context` has been renamed to `keyboardContext`.
 * `KeyboardInputViewController+Gestures` has been converted to `KeyboardButton+Gestures`.
@@ -82,8 +87,9 @@ Although these release notes will aim at covering everything that changes in thi
 * `Settings` has been entirely removed.
 * `SecondaryInputCalloutContext.shared` has been removed. Use the environment object instead.
 * `StandardKeyboardContext` has been replaced by `ObservableKeyboardContext`.
-* `StandardKeyboardActionHandler` gesture actions has been gathered in a single `action(for:on)`.
+* `StandardKeyboardActionHandler` has a new vc-based initializer.
 * `StandardKeyboardActionHandler` no longer takes an optional sender for keyboard actions.
+* `StandardKeyboardActionHandler` gesture actions has been gathered in a single `action(for:on)`.
 * `StandardKeyboardAppearanceProvider` has been renamed to `StandardKeyboardAppearance`.
 * `UIImage+pasteboard` has been moved to the demo.
 * `UIImage+photos` has been moved to the demo.
@@ -92,7 +98,8 @@ Although these release notes will aim at covering everything that changes in thi
 * `UIInputViewController+NextKeyboard` has been made an internal extension in `UIView+Keyboard`.
 * `View+Button` "standard button" functions have been replaced by a single `keyboardButtonStyle` function.
 * `View+ClearInteractable` has been removed.
-* `View` `keyboardAction(...)` has been renamed to `keyboardGestures(for: ...)`
+* `View` `keyboardAction(...)` has been renamed to `keyboardGestures(for: ...)`.
+* `UIEdgeInsets+Keybpard` `standardKeyboardButtonInsets` has been renamed to `standardKeyboardButtonInsets`.
 
 
 ### UIKit changes

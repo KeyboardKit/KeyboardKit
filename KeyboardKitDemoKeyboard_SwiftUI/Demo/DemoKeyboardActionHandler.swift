@@ -16,17 +16,10 @@ import UIKit
 class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     public init(
-        keyboardContext: KeyboardContext,
-        keyboardBehavior: KeyboardBehavior,
-        autocompleteAction: @escaping () -> Void,
-        changeKeyboardTypeAction: @escaping (KeyboardType) -> Void,
+        inputViewController: KeyboardInputViewController,
         toastContext: KeyboardToastContext) {
         self.toastContext = toastContext
-        super.init(
-            keyboardContext: keyboardContext,
-            keyboardBehavior: keyboardBehavior,
-            autocompleteAction: autocompleteAction,
-            changeKeyboardTypeAction: changeKeyboardTypeAction)
+        super.init(inputViewController: inputViewController)
     }
     
     private let toastContext: KeyboardToastContext

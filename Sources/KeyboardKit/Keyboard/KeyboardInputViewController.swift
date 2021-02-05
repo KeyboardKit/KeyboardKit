@@ -84,10 +84,7 @@ open class KeyboardInputViewController: UIInputViewController {
      The extension's default keyboard action handler.
      */
     public lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(
-        keyboardContext: keyboardContext,
-        keyboardBehavior: keyboardBehavior,
-        autocompleteAction: performAutocomplete,
-        changeKeyboardTypeAction: changeKeyboardType)
+        inputViewController: self)
 
     /**
      The extension's default keyboard appearance.
@@ -202,8 +199,16 @@ open class KeyboardInputViewController: UIInputViewController {
     
     // MARK: - Autocomplete
     
+    /**
+     Perform an autocomplete operation. You can override the
+     function to provide custom autocomplete logic.
+     */
     open func performAutocomplete() {}
     
+    /**
+     Reset autocomplete state. You can override the function
+     to provide custom autocomplete logic.
+     */
     open func resetAutocomplete() {}
     
     

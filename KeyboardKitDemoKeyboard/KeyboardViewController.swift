@@ -40,9 +40,7 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         keyboardActionHandler = DemoKeyboardActionHandler(
-            inputViewController: self,
-            keyboardContext: keyboardContext,
-            keyboardBehavior: keyboardBehavior)
+            inputViewController: self)
         keyboardLayoutProvider = StandardKeyboardLayoutProvider(
             inputSetProvider: keyboardInputSetProvider,
             leftSpaceAction: .keyboardType(.emojis),

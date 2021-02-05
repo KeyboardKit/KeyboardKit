@@ -16,15 +16,9 @@ import UIKit
 class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     public init(
-        inputViewController: KeyboardViewController,
-        keyboardContext: KeyboardContext,
-        keyboardBehavior: KeyboardBehavior) {
+        inputViewController: KeyboardViewController) {
         self.inputViewController = inputViewController
-        super.init(
-            keyboardContext: keyboardContext,
-            keyboardBehavior: keyboardBehavior,
-            autocompleteAction: inputViewController.performAutocomplete,
-            changeKeyboardTypeAction: inputViewController.changeKeyboardType)
+        super.init(inputViewController: inputViewController)
     }
     
     private weak var inputViewController: KeyboardViewController?

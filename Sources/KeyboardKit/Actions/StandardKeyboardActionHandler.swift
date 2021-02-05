@@ -42,6 +42,20 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.spaceDragSensitivity = spaceDragSensitivity
     }
     
+    public init(
+        inputViewController: KeyboardInputViewController,
+        hapticConfiguration: HapticFeedbackConfiguration = .standard,
+        audioConfiguration: AudioFeedbackConfiguration = .standard,
+        spaceDragSensitivity: SpaceDragSensitivity = .medium) {
+        self.keyboardContext = inputViewController.keyboardContext
+        self.keyboardBehavior = inputViewController.keyboardBehavior
+        self.autocompleteAction = inputViewController.performAutocomplete
+        self.changeKeyboardTypeAction = inputViewController.changeKeyboardType
+        self.hapticConfiguration = hapticConfiguration
+        self.audioConfiguration = audioConfiguration
+        self.spaceDragSensitivity = spaceDragSensitivity
+    }
+    
     
     // MARK: - Dependencies
     
