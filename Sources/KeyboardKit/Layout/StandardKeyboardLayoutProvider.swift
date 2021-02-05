@@ -11,30 +11,14 @@ import UIKit
 
 /**
  This keyboard layout provider bases its layout decisions on
- factors like device, screen orientation and locale. It aims
- to create a system keyboard layout for the provided context.
+ factors like locale, device and screen orientation.
  
  This may not always be what you want. If you want to create
- keyboard extensions with a custom layout, you should either
- not use a layout provider, or use a custom one.
+ keyboards with a custom layout, you should either not use a
+ layout provider, or create a custom one.
  
  You can inherit this class and override any implementations
  to customize the standard layout.
- 
- This provider will fallback to lowercased alphabetic layout
- if the current context state doesn't have a standard layout.
- One example is if the current keyboard type is `.emojis` or
- another non-standard keyboard.
-
- You can provide a custom left and right space action, which
- gives you a chance to customize the default actions, but in
- a limited way. If you want to make bigger changes, subclass.
- 
- `IMPORTANT` This is a best effort experimental feature that
- can be redesigned at any time before KK 4.0. The iOS/iPadOS
- keyboards have layouts that depend on many factors, so as I
- work on honoring them as well as possible, I may have to do
- some changes to the protocol and this implementation.
  */
 open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     
@@ -64,7 +48,7 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
         let rows = iPad
             ? iPadActions(for: context, rows: rows)
             : iPhoneActions(for: context, rows: rows)
-        return KeyboardLayout(actionRows: rows)
+        return KeyboardLayout(rows: rows)
     }
 }
 

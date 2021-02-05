@@ -9,23 +9,19 @@
 import Foundation
 
 /**
- A keyboard layout lists all available actions on a keyboard.
- It's most often made up of multiple input button rows and a
- set of surrounding system system buttons.
- 
- A keyboard layout depends on the current locale, device and
- orientation etc. It's therefore more complicated to resolve
- a layout than an input set. Us
+ Keyboard layouts list available actions on a keyboard. They
+ most often consist of multiple input button rows surrounded
+ by system buttons.
  */
 public class KeyboardLayout: Equatable {
     
-    public init(actionRows: KeyboardActionRows) {
-        self.actionRows = actionRows
+    public init(rows: KeyboardActionRows) {
+        self.rows = rows
     }
     
-    public let actionRows: KeyboardActionRows
+    public let rows: KeyboardActionRows
     
     public static func == (lhs: KeyboardLayout, rhs: KeyboardLayout) -> Bool {
-        lhs.actionRows == rhs.actionRows
+        lhs.rows == rhs.rows
     }
 }

@@ -29,7 +29,7 @@ public struct SystemKeyboard: View {
         self.layout = layout
         self.actionHandler = actionHandler
         self.appearance = appearance
-        self.rows = layout.actionRows
+        self.rows = layout.rows
         self.dimensions = dimensions
         self.inputCalloutStyle = inputCalloutStyle
         self.secondaryInputCalloutStyle = secondaryInputCalloutStyle
