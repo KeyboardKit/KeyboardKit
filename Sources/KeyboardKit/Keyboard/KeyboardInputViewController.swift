@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+import SwiftUI
 import UIKit
 
 /**
@@ -57,6 +58,27 @@ open class KeyboardInputViewController: UIInputViewController {
     
     open func viewWillSyncWithTextDocumentProxy() {
         keyboardContext.textDocumentProxy = textDocumentProxy
+    }
+    
+    
+    // MARK: - Setup
+
+    /**
+     Remove all subviews from the vc view and add a `SwiftUI`
+     view to it. This will pin the view to the edges of this
+     extension and will resize the extension to fit the view.
+     
+     This function also applies `@EnvironmentObject`s to the
+     view, that can be used by all nested views.
+     */
+    open func setup<Content: View>(with view: Content) {
+        self.view.subviews.forEach { $0.removeFromSuperview() }
+        let view = view
+            .environmentObject(keyboardContext)
+            .environmentObject(keyboardInputCalloutContext)
+            .environmentObject(keyboardSecondaryInputCalloutContext)
+        let controller = KeyboardHostingController(rootView: view)
+        controller.add(to: self)
     }
     
     

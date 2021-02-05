@@ -30,6 +30,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `KeyboardInputViewController` has a new `keyboardLayoutProvider`.
 * `KeyboardInputViewController` has a new `keyboardSecondaryInputActionProvider`.
 * `KeyboardInputViewController` has a new `keyboardSecondaryInputCalloutContext`.
+* `KeyboardInputViewController` `setup(with:)` is now open and overridable.
 * `Locale` is a new namespace with a few new locale-specific utils.
 * `LocaleDictionary` is a simple dictionary wrapper to work with localized resources.
 * `LocaleKey` is a simple enum to gather top-level locale identifiers.
