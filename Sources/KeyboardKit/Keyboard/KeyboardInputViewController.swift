@@ -33,40 +33,28 @@ open class KeyboardInputViewController: UIInputViewController {
     
     // MARK: - View Controller Lifecycle
     
-    /**
-     This calls the super class implementation, then sets up
-     the keyboard by calling `setupKeyboard`.
-     */
     open override func viewDidLoad() {
         super.viewDidLoad()
         Self.shared = self
         setupKeyboard()
     }
     
-    /**
-     This calls the super class implementation then performs
-     a full context syncs.
-     */
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardContext.sync(with: self)
         viewWillSyncWithTextDocumentProxy()
     }
     
-    /**
-     This calls the super class implementation, then updates
-     some `context` properties.
-     */
     open override func viewWillLayoutSubviews() {
-        keyboardContext.hasDictationKey = hasDictationKey
-        keyboardContext.needsInputModeSwitchKey = needsInputModeSwitchKey
+        keyboardContext.sync(with: self)
         super.viewWillLayoutSubviews()
     }
     
-    /**
-     This function is called when this controller appears or
-     when the text document proxy changes.
-     */
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        keyboardContext.sync(with: self)
+        super.traitCollectionDidChange(previousTraitCollection)
+    }
+    
     open func viewWillSyncWithTextDocumentProxy() {
         keyboardContext.textDocumentProxy = textDocumentProxy
     }
@@ -164,7 +152,7 @@ open class KeyboardInputViewController: UIInputViewController {
     }()
     
     
-    // MARK: - Keyboard Functionality
+    // MARK: - Text And Selection Change
     
     /**
      Setup the keyboard, given the current state of your app.
@@ -184,20 +172,40 @@ open class KeyboardInputViewController: UIInputViewController {
         resetAutocomplete()
     }
     
+    open override func textWillChange(_ textInput: UITextInput?) {
+        super.textWillChange(textInput)
+        keyboardContext.textDocumentProxy = textDocumentProxy
+    }
+    
+    open override func textDidChange(_ textInput: UITextInput?) {
+        super.textDidChange(textInput)
+        performAutocomplete()
+        tryChangeToPreferredKeyboardTypeAfterTextDidChange()
+    }
+    
     
     // MARK: - Public Functions
     
     /**
-     Change keyboard type. By default, this is done with the
-     standard change action of the current context, but this
-     can be changed by overriding this function.
+     Change the keyboard locale.
+     
+     This function can be called directly or injected into a
+     nested service class to avoid bilinear dependencies.
+     */
+    open func changeKeyboardLocale(to locale: Locale) {
+        primaryLanguage = locale.languageCode
+        keyboardContext.locale = locale
+    }
+    
+    /**
+     Change the keyboard type.
+     
+     This function can be called directly or injected into a
+     nested service class to avoid bilinear dependencies.
      */
     open func changeKeyboardType(to type: KeyboardType) {
         keyboardType = type
     }
-    
-    
-    // MARK: - Autocomplete
     
     /**
      Perform an autocomplete operation. You can override the
@@ -210,20 +218,6 @@ open class KeyboardInputViewController: UIInputViewController {
      to provide custom autocomplete logic.
      */
     open func resetAutocomplete() {}
-    
-    
-    // MARK: - UITextInputDelegate
-    
-    open override func textWillChange(_ textInput: UITextInput?) {
-        super.textWillChange(textInput)
-        viewWillSyncWithTextDocumentProxy()
-    }
-    
-    open override func textDidChange(_ textInput: UITextInput?) {
-        super.textDidChange(textInput)
-        performAutocomplete()
-        tryChangeToPreferredKeyboardTypeAfterTextDidChange()
-    }
 }
 
 
