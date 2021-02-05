@@ -44,7 +44,7 @@ public struct SystemKeyboard: View {
     private let inputCalloutStyle: InputCalloutStyle?
     private let layout: KeyboardLayout
     private let secondaryInputCalloutStyle: SecondaryInputCalloutStyle?
-
+    
     @State private var keyboardSize: CGSize = .zero
     
     @EnvironmentObject private var context: ObservableKeyboardContext
@@ -65,7 +65,7 @@ public struct SystemKeyboard: View {
 }
 
 public extension SystemKeyboard {
-
+    
     /**
      This is the standard `buttonBuilder`, that will be used
      when no custom builder is provided to the view.
@@ -76,10 +76,9 @@ public extension SystemKeyboard {
 }
 
 private extension SystemKeyboard {
-
+    
     func row(at index: Int, actions: KeyboardActions) -> some View {
         HStack(spacing: 0) {
-            rowEdgeSpacer(at: index)
             ForEach(Array(actions.enumerated()), id: \.offset) {
                 SystemKeyboardButtonRowItem(
                     action: $0.element,
@@ -88,26 +87,6 @@ private extension SystemKeyboard {
                     buttonContent: buttonBuilder($0.element, keyboardSize),
                     keyboardSize: keyboardSize)
             }
-            rowEdgeSpacer(at: index)
         }
-    }
-    
-    @ViewBuilder
-    func rowEdgeSpacer(at index: Int) -> some View {
-        if index == 1 {
-            Spacer(minLength: secondRowPadding)
-        } else {
-            EmptyView()
-        }
-    }
-    
-    /**
-     A temp. way to get side padding on each side on English
-     iPhone keyboards.
-     */
-    var secondRowPadding: CGFloat {
-        guard Locale.current.identifier.starts(with: "en") else { return 0 }
-        guard UIDevice.current.userInterfaceIdiom == .phone else { return 0 }
-        return max(0, 20 * CGFloat(rows[0].count - rows[1].count))
     }
 }
