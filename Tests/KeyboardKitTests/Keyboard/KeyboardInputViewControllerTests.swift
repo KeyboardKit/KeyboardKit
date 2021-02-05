@@ -18,7 +18,18 @@ class KeyboardInputViewControllerTests: QuickSpec {
         
         var vc: TestClass!
         
+        func expectSyncedContext(for function: () -> Void) {
+            vc.hasFullAccessValue = true
+            function()
+            expect(vc.keyboardContext.hasFullAccess).to(beTrue())
+            vc.hasFullAccessValue = false
+            function()
+            expect(vc.keyboardContext.hasFullAccess).to(beFalse())
+            expect(vc.keyboardContext.textDocumentProxy).to(be(vc.textDocumentProxy))
+        }
+        
         beforeEach {
+            TestClass.shared = nil
             vc = TestClass(nibName: nil, bundle: nil)
         }
         
@@ -34,55 +45,33 @@ class KeyboardInputViewControllerTests: QuickSpec {
         
         describe("view did load") {
             
-            it("sets up the keyboard") {
-                expect(vc.hasInvoked(vc.setupKeyboardRef)).to(beFalse())
+            it("sets vc as shared") {
+                expect(TestClass.shared).to(beNil())
                 vc.viewDidLoad()
-                expect(vc.hasInvoked(vc.setupKeyboardRef)).to(beTrue())
+                expect(TestClass.shared).toNot(beNil())
             }
         }
         
         describe("view will appear") {
             
             it("updates context") {
-                vc.hasFullAccessValue = true
-                vc.viewWillAppear(false)
-                expect(vc.keyboardContext.hasFullAccess).to(beTrue())
-                vc.hasFullAccessValue = false
-                vc.viewWillAppear(false)
-                expect(vc.keyboardContext.hasFullAccess).to(beFalse())
-            }
-            
-            it("syncs with text document proxy") {
-                expect(vc.hasInvoked(vc.viewWillSyncWithTextDocumentProxyRef)).to(beFalse())
-                vc.viewWillAppear(false)
-                expect(vc.hasInvoked(vc.viewWillSyncWithTextDocumentProxyRef)).to(beTrue())
+                expectSyncedContext { vc.viewWillAppear(false) }
             }
         }
         
         describe("view will layout subviews") {
             
             it("updates context") {
-                vc.hasDictationKeyValue = true
-                vc.needsInputModeSwitchKeyValue = true
-                vc.viewWillLayoutSubviews()
-                expect(vc.keyboardContext.hasDictationKey).to(beTrue())
-                expect(vc.keyboardContext.needsInputModeSwitchKey).to(beTrue())
-                vc.hasDictationKeyValue = false
-                vc.needsInputModeSwitchKeyValue = false
-                vc.viewWillLayoutSubviews()
-                expect(vc.keyboardContext.hasDictationKey).to(beFalse())
-                expect(vc.keyboardContext.needsInputModeSwitchKey).to(beFalse())
+                expectSyncedContext(for: vc.viewWillLayoutSubviews)
             }
         }
         
-        describe("view will sync with text document proxy") {
+        describe("view trait collection did change") {
             
             it("updates context") {
-                expect(vc.keyboardContext.textDocumentProxy).to(be(vc.textDocumentProxy))
-                vc.keyboardContext.textDocumentProxy = UIInputViewController().textDocumentProxy
-                expect(vc.keyboardContext.textDocumentProxy).toNot(be(vc.textDocumentProxy))
-                vc.viewWillSyncWithTextDocumentProxy()
-                expect(vc.keyboardContext.textDocumentProxy).to(be(vc.textDocumentProxy))
+                expectSyncedContext {
+                    vc.traitCollectionDidChange(.none)
+                }
             }
         }
         
@@ -227,10 +216,11 @@ private class TestClass: KeyboardInputViewController, Mockable {
     
     let mock = Mock()
     
+    var hasDictationKeyValue = false
     var hasFullAccessValue = false
+    
     override var hasFullAccess: Bool { hasFullAccessValue }
     
-    var hasDictationKeyValue = false
     override var hasDictationKey: Bool {
         get { hasDictationKeyValue }
         set { hasDictationKeyValue = newValue }

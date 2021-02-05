@@ -14,6 +14,24 @@ class String_UppercasedTests: QuickSpec {
     
     override func spec() {
         
+        describe("is lowercased") {
+            
+            it("is only true for strings that can be and are lowercased") {
+                expect("foobar".isLowercased).to(beTrue())
+                expect("fooBar".isLowercased).to(beFalse())
+                expect("123".isLowercased).to(beFalse())
+            }
+        }
+        
+        describe("is uppercased") {
+            
+            it("is only true for strings that can be and are uppercased") {
+                expect("FOOBAR".isUppercased).to(beTrue())
+                expect("fooBar".isUppercased).to(beFalse())
+                expect("123".isUppercased).to(beFalse())
+            }
+        }
+
         describe("uppercasing string array") {
             
             it("uppercases all children") {

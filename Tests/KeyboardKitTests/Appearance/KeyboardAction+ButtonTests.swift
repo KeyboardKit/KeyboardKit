@@ -79,6 +79,7 @@ class KeyboardAction_SystemTests: QuickSpec {
                 expect(result(for: .dictation)).to(equal(.dictation))
                 expect(result(for: .dismissKeyboard)).to(equal(.keyboardDismiss))
                 expect(result(for: .keyboardType(.email))).to(equal(.email))
+                expect(result(for: .keyboardType(.emojis))).to(equal(.emoji))
                 expect(result(for: .moveCursorBackward)).to(equal(.moveCursorLeft))
                 expect(result(for: .moveCursorForward)).to(equal(.moveCursorRight))
                 expect(result(for: .newLine)).to(equal(.newLine))
