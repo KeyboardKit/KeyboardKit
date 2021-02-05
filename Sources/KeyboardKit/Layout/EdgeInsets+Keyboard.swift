@@ -1,32 +1,45 @@
 //
-//  UIEdgeInsets+Keyboard.swift
+//  EdgeInsets+Keyboard.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-04-28.
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+import SwiftUI
 import UIKit
+
+public extension EdgeInsets {
+    
+    /**
+     The standard edge insets of a system keyboard button in
+     a native keyboard.
+     
+     Thes insets should be INSIDE every button, to provide a
+     fake, visual space between buttons. Having a real space
+     between the buttons would cause dead tap areas.
+     */
+    static func standardKeyboardButtonInsets(
+        for device: UIDevice = .current,
+        app: UIApplication = .shared) -> EdgeInsets {
+        EdgeInsets(insets: .standardKeyboardButtonInsets())
+    }
+}
 
 public extension UIEdgeInsets {
     
     /**
-     The standard row item insets of a vertical keyboard row
-     item in a system keyboard.
+     The standard edge insets of a system keyboard button in
+     a native keyboard.
      
-     The insets should be applied INSIDE every row item view
-     to provide fake spaces between items, while keeping the
-     entire view tappable. Having a real space between views
-     would create dead tap areas.
-     
-     For a keyboard button, it should thus push in the edges
-     of the button body to fit these insets, then apply view
-     gestures to its entire body.
+     Thes insets should be INSIDE every button, to provide a
+     fake, visual space between buttons. Having a real space
+     between the buttons would cause dead tap areas.
      */
-    static func standardKeyboardRowItemInsets(
+    static func standardKeyboardButtonInsets(
         for device: UIDevice = .current,
         app: UIApplication = .shared) -> UIEdgeInsets {
-        standardKeyboardRowItemInsets(
+        standardKeyboardButtonInsets(
             for: device.userInterfaceIdiom,
             orientation: app.statusBarOrientation)
     }
@@ -37,7 +50,7 @@ extension UIEdgeInsets {
     /**
      This internal function is used by the unit test project.
      */
-    static func standardKeyboardRowItemInsets(
+    static func standardKeyboardButtonInsets(
         for idiom: UIUserInterfaceIdiom,
         orientation: UIInterfaceOrientation) -> UIEdgeInsets {
         orientation.isLandscape

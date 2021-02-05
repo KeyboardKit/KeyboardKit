@@ -1,5 +1,5 @@
 //
-//  UIEdgeInsets+KeyboardsTests.swift
+//  EdgeInsets+KeyboardsTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-11-30.
@@ -15,10 +15,10 @@ class UIEdgeInsets_KeyboardTests: QuickSpec {
     
     override func spec() {
         
-        describe("standard keyboard row item padding") {
+        describe("standard keyboard button padding") {
             
             func result(for idiom: UIUserInterfaceIdiom, orientation: UIInterfaceOrientation) -> UIEdgeInsets {
-                .standardKeyboardRowItemInsets(for: idiom, orientation: orientation)
+                .standardKeyboardButtonInsets(for: idiom, orientation: orientation)
             }
             
             it("is correct for iPhone Portrait") {

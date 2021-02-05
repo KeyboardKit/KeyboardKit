@@ -50,7 +50,7 @@ public extension KeyboardContext {
      The current keyboard appearance, with `.light` fallback.
      */
     var keyboardAppearance: UIKeyboardAppearance {
-        textDocumentProxy.keyboardAppearance ?? .light
+        textDocumentProxy.keyboardAppearance ?? .default
     }
 }
 

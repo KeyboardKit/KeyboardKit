@@ -16,10 +16,7 @@ public extension KeyboardType {
     var standardButtonImage: Image? {
         switch self {
         case .email: return .email
-        case .emojis:
-            if #available(iOS 14, *) {
-                return .emoji
-            } else { return nil }
+        case .emojis:return .emoji
         case .images: return .images
         default: return nil
         }
@@ -30,7 +27,6 @@ public extension KeyboardType {
      */
     var standardButtonText: String? {
         switch self {
-        case .emojis: return "☺"
         case .alphabetic: return "ABC"
         case .numeric: return "123"
         case .symbolic: return "#+="

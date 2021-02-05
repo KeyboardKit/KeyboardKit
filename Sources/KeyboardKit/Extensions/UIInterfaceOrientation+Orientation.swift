@@ -9,6 +9,11 @@
 import UIKit
 
 extension UIInterfaceOrientation {
+    
+    init?(_ orientation: UIDeviceOrientation) {
+        guard let orientation = orientation.interfaceOrientation else { return nil }
+        self = orientation
+    }
 
     var isLandscape: Bool {
         self == .landscapeLeft || self == .landscapeRight
@@ -16,5 +21,18 @@ extension UIInterfaceOrientation {
     
     var isPortrait: Bool {
         self == .portrait || self == .portraitUpsideDown
+    }
+}
+
+extension UIDeviceOrientation {
+    
+    var interfaceOrientation: UIInterfaceOrientation? {
+        switch self {
+        case .portrait: return .portrait
+        case .portraitUpsideDown: return .portraitUpsideDown
+        case .landscapeLeft: return .landscapeLeft
+        case .landscapeRight: return .landscapeRight
+        default: return nil
+        }
     }
 }

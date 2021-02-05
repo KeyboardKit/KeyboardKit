@@ -23,11 +23,7 @@ class KeyboardType_ButtonTests: QuickSpec {
             
             it("is defined for some types") {
                 expect(result(for: .email, contextType: .symbolic)).to(equal(.email))
-                if #available(iOS 14, *) {
-                    expect(result(for: .emojis, contextType: .email)).to(equal(.emoji))
-                } else {
-                    expect(result(for: .emojis, contextType: .email)).to(beNil())
-                }
+                expect(result(for: .emojis, contextType: .email)).to(equal(.emoji))
                 expect(result(for: .images, contextType: .numeric)).to(equal(.images))
                 
                 expect(result(for: .alphabetic(.capsLocked), contextType: .alphabetic(.lowercased))).to(beNil())

@@ -93,7 +93,7 @@ class KeyboardAction_SystemTests: QuickSpec {
                 expect(result(for: .character(""))).to(beNil())
                 expect(result(for: .custom(name: ""))).to(beNil())
                 expect(result(for: .emoji(Emoji("")))).to(beNil())
-                expect(result(for: .emojiCategory(.activities))).to(beNil())
+                expect(result(for: .emojiCategory(.smileys))).to(beNil())
                 expect(result(for: .escape)).to(beNil())
                 expect(result(for: .function)).to(beNil())
                 expect(result(for: .space)).to(beNil())
@@ -150,7 +150,6 @@ class KeyboardAction_SystemTests: QuickSpec {
                 expect(result(for: .keyboardType(.symbolic))).to(equal("#+="))
                 expect(result(for: .keyboardType(.custom("")))).to(beNil())
                 expect(result(for: .keyboardType(.email))).to(beNil())
-                expect(result(for: .keyboardType(.emojis))).to(equal("☺"))
                 expect(result(for: .keyboardType(.images))).to(beNil())
                 
                 expect(result(for: .none)).to(beNil())

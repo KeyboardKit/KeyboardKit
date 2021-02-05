@@ -22,7 +22,7 @@ class DemoButton: UIKeyboardButtonView {
     public func setup(
         with action: KeyboardAction,
         in viewController: KeyboardInputViewController,
-        edgeInsets: UIEdgeInsets = .standardKeyboardRowItemInsets(),
+        edgeInsets: UIEdgeInsets = .standardKeyboardButtonInsets(),
         distribution: UIStackView.Distribution = .fillEqually) {
         super.setup(with: action, in: viewController)
         backgroundColor = .clearInteractable
@@ -248,11 +248,6 @@ private extension KeyboardAction {
      Whether or not the keyboard action should apply a dark
      */
     func useDarkAppearance(in viewController: KeyboardInputViewController) -> Bool {
-        if #available(iOSApplicationExtension 12.0, *) {
-            return viewController.traitCollection.userInterfaceStyle == .dark
-        } else {
-            let appearance = viewController.textDocumentProxy.keyboardAppearance ?? .default
-            return appearance == .dark
-        }
+        viewController.traitCollection.userInterfaceStyle == .dark
     }
 }
