@@ -28,7 +28,7 @@ Note that you can also use CocoaPods to add KeyboardKit to your app.
 
 ## Step 3 - Setup your extension
 
-You are now ready to ue KeyboardKit to create your keyboard extension.
+You are now ready to use KeyboardKit to create your keyboard extension.
 
 * First, make `KeyboardViewController` inherit `KeyboardInputViewController` instead of `UIInputViewController`.
 * This gives your view controller access to a lot of additional functionality.
