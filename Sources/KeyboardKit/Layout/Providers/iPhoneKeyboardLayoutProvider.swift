@@ -98,4 +98,3 @@ private extension iPhoneKeyboardLayoutProvider {
         return row == 2 // Index 2 is the "wide keys" row
     }
 }
-
