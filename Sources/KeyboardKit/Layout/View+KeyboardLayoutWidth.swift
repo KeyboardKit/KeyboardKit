@@ -11,25 +11,25 @@ import SwiftUI
 public extension View {
     
     /**
-     Apply a certain keyboard button width type to this view.
+     Apply a certain layout width to the view.
      
-     The `totalWidth` parame is only required when using the
-     `.percentage` and `.reference(.percentage)` width types.
+     The `referenceSize` parameter is the base width that is
+     to be used by `.reference` and `.fromReference` widths.
      
-     The `referenceSize` binding param is only required when
-     using `.reference` and `.fromReference` width types.
+     The `totalWidth` parameter is the total available width
+     that is to be used by `.percentage` widths.
      
      `TODO` Unit test these extensions.
      */
     @ViewBuilder
-    func width(_ width: KeyboardLayoutWidth, totalWidth: CGFloat = .zero, referenceSize: Binding<CGSize> = .constant(.zero)) -> some View {
+    func width(_ width: KeyboardLayoutWidth, totalWidth: CGFloat, referenceWidth: CGFloat) -> some View {
         switch width {
         case .available: self.frame(maxWidth: .infinity)
         case .percentage(let percent): self.frame(width: percent * totalWidth)
         case .points(let points): self.frame(width: points)
-        case .reference: self.frame(maxWidth: .infinity).bindSize(to: referenceSize)
-        case .useReference: self.frame(width: referenceSize.width.wrappedValue)
-        case .useReferencePercentage(let percent): self.frame(width: percent * referenceSize.width.wrappedValue)
+        case .reference: self.frame(width: referenceWidth)
+        case .useReference: self.frame(width: referenceWidth)
+        case .useReferencePercentage(let percent): self.frame(width: percent * referenceWidth)
         }
     }
 }

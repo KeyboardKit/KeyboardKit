@@ -110,7 +110,10 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
      certain row and index.
      */
     open func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutWidth {
-        .available
+        switch action {
+        case .character: return row == 0 ? .reference : .useReference
+        default: return .available
+        }
     }
     
     /**

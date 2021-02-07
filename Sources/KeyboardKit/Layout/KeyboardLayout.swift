@@ -21,4 +21,55 @@ public class KeyboardLayout {
     }
     
     public let items: KeyboardLayoutItemRows
+    
+    public typealias TotalWidth = CGFloat
+    
+    var widthCache = [TotalWidth: CGFloat]()
+    
+    public func inputWidth(for totalWidth: TotalWidth) -> CGFloat {
+        if let result = widthCache[totalWidth] { return result }
+        let result = items.compactMap { $0.referenceWidth(for: totalWidth) }.min() ?? 0
+        widthCache[totalWidth] = result
+        return result
+    }
+}
+
+private extension KeyboardLayoutItemRow {
+    
+    var hasInputWidth: Bool {
+        contains { $0.size.width == .reference }
+    }
+    
+    func referenceWidth(for totalWidth: CGFloat) -> CGFloat? {
+        guard hasInputWidth else { return nil }
+        let taken = reduce(0) { $0 + $1.allocatedWidth(for: totalWidth) }
+        let remaining = totalWidth - taken
+        let totalRefPercentage = reduce(0) { $0 + $1.referencePercentage }
+        return remaining / totalRefPercentage
+    }
+}
+
+private extension KeyboardLayoutItem {
+    
+    func allocatedWidth(for totalWidth: CGFloat) -> CGFloat {
+        switch size.width {
+        case .available: return 0
+        case .percentage(let percentage): return totalWidth * percentage
+        case .points(let points): return points
+        case .reference: return 0
+        case .useReference: return 0
+        case .useReferencePercentage: return 0
+        }
+    }
+    
+    var referencePercentage: CGFloat {
+        switch size.width {
+        case .available: return 1
+        case .percentage: return 0
+        case .points: return 0
+        case .reference: return 1
+        case .useReference: return 1
+        case .useReferencePercentage(let percentage): return percentage
+        }
+    }
 }

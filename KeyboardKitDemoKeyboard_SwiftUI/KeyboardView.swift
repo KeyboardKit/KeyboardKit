@@ -106,13 +106,17 @@ private extension KeyboardView {
     }
     
     var systemKeyboard: some View {
-        VStack(spacing: 0) {
+        let layout = keyboardLayoutProvider.keyboardLayout(for: keyboardContext)
+        let width = UIScreen.main.bounds.width
+        let ref = layout.inputWidth(for: UIScreen.main.bounds.width)
+        return VStack(spacing: 0) {
             autocompleteBar
             SystemKeyboard(
-                layout: keyboardLayoutProvider.keyboardLayout(for: keyboardContext),
+                layout: layout,
                 appearance: keyboardAppearance,
                 actionHandler: keyboardActionHandler,
                 buttonBuilder: buttonBuilder)
+                .overlay(Text("\(width) | \(ref)"))
         }
     }
     
