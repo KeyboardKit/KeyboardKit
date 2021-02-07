@@ -49,8 +49,16 @@ public struct SystemKeyboard: View {
     
     public var body: some View {
         VStack(spacing: 0) {
-            ForEach(layout.items.enumerated().map { $0 }, id: \.offset) {
-                row(at: $0.offset, actions: $0.element)
+            ForEach(layout.items.enumerated().map { $0 }, id: \.offset) { row in
+                HStack(spacing: 0) {
+                    ForEach(Array(row.element.enumerated()), id: \.offset) {
+                        SystemKeyboardButtonRowItem(
+                            content: buttonBuilder($0.element.action, keyboardSize),
+                            item: $0.element,
+                            appearance: appearance,
+                            actionHandler: actionHandler)
+                    }
+                }
             }
         }
         .bindSize(to: $keyboardSize)
@@ -67,20 +75,5 @@ public extension SystemKeyboard {
      */
     static func standardButtonBuilder(action: KeyboardAction, keyboardSize: KeyboardSize) -> AnyView {
         AnyView(SystemKeyboardButtonContent(action: action))
-    }
-}
-
-private extension SystemKeyboard {
-    
-    func row(at index: Int, actions: KeyboardLayoutItemRow) -> some View {
-        HStack(spacing: 0) {
-            ForEach(Array(actions.enumerated()), id: \.offset) {
-                SystemKeyboardButtonRowItem(
-                    content: buttonBuilder($0.element.action, keyboardSize),
-                    item: $0.element,
-                    appearance: appearance,
-                    actionHandler: actionHandler)
-            }
-        }
     }
 }

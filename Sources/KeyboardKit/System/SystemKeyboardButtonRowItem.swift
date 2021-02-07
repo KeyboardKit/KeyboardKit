@@ -45,7 +45,6 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
             .applyWidth(for: item.action)
             .keyboardButtonStyle(for: item.action, appearance: appearance)
             .padding(item.insets)
-            .frame(height: item.size.height)
             .background(Color.clearInteractable)
             .keyboardGestures(for: item.action, actionHandler: actionHandler)
     }
