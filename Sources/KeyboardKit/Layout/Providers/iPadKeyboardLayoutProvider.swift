@@ -34,7 +34,7 @@ open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
      */
     open override func actions(for context: KeyboardContext, inputs: KeyboardInputRows) -> KeyboardActionRows {
         var actions = super.actions(for: context, inputs: inputs)
-        assert(actions.count > 2, "An iPad system layout requires at least 3 input rows.")
+        assert(actions.count > 2, "iPad layouts require at least 3 input rows.")
         let last = actions.suffix(3)
         actions.removeLast(3)
         actions.append(last[0] + [.backspace])
@@ -45,16 +45,16 @@ open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     }
     
     open override func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutWidth {
-        //if isSecondRowSpacer(action, row: row) { return .useReferencePercentage(0.4) }
-        //switch action {
-        //case dictationReplacement: return .useReference
-        //case .backspace: return .percentage(0.1)
-        //case .dismissKeyboard: return .useReferencePercentage(1.8)
-        //case .keyboardType: return row == 2 ? .available : .useReference
-        //case .nextKeyboard: return .useReference
-        //default: return super.itemSizeWidth(for: context, action: action, row: row, index: index)
-        //}
-        return super.itemSizeWidth(for: context, action: action, row: row, index: index)
+        if isSecondRowSpacer(action, row: row, index: index) { return .useReferencePercentage(0.4) }
+        if isSecondBottomSwitcher(action, row: row, index: index) { return .useReferencePercentage(2) }
+        switch action {
+        case dictationReplacement: return .useReference
+        case .backspace: return .percentage(0.1)
+        case .dismissKeyboard: return .useReferencePercentage(1.8)
+        case .keyboardType: return row == 2 ? .available : .useReference
+        case .nextKeyboard: return .useReference
+        default: return super.itemSizeWidth(for: context, action: action, row: row, index: index)
+        }
     }
     
     
@@ -89,7 +89,17 @@ open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
 
 private extension iPadKeyboardLayoutProvider {
     
-    func isSecondRowSpacer(_ action: KeyboardAction, row: Int) -> Bool {
-        action == .none && row == 1
+    func isSecondBottomSwitcher(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
+        switch action {
+        case .keyboardType: return row == 3 && index > 0
+        default: return false
+        }
+    }
+    
+    func isSecondRowSpacer(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
+        switch action {
+        case .none: return row == 1 && index == 0
+        default: return false
+        }
     }
 }
