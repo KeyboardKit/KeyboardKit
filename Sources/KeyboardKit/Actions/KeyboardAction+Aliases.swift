@@ -24,9 +24,14 @@ public extension KeyboardActions {
 }
 
 /**
- This typealias represents a list of keyboard actions "rows".
+ This typealias represents a list of keyboard actions.
  */
-public typealias KeyboardActionRows = [KeyboardActions]
+public typealias KeyboardActionRow = KeyboardActions
+
+/**
+ This typealias represents a list of keyboard action rows.
+ */
+public typealias KeyboardActionRows = [KeyboardActionRow]
 
 public extension KeyboardActionRows {
     

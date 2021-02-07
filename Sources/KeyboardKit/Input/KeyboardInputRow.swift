@@ -8,4 +8,12 @@
 
 import Foundation
 
+/**
+ This typealias represents a list of strings.
+ */
 public typealias KeyboardInputRow = [String]
+
+/**
+ This typealias represents a list of input rows.
+ */
+public typealias KeyboardInputRows = [KeyboardInputRow]

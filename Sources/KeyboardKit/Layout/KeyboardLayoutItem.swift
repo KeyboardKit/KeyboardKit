@@ -21,7 +21,7 @@ public struct KeyboardLayoutItem: Equatable {
     
     public init(
         action: KeyboardAction,
-        size: Size,
+        size: KeyboardLayoutItemSize,
         insets: EdgeInsets) {
         self.action = action
         self.size = size
@@ -29,20 +29,6 @@ public struct KeyboardLayoutItem: Equatable {
     }
     
     public let action: KeyboardAction
-    public let size: Size
+    public let size: KeyboardLayoutItemSize
     public let insets: EdgeInsets
-    
-    /**
-     This struct provides the size of a keyboard layout item.
-     */
-    public struct Size: Equatable {
-        
-        public init(width: KeyboardLayoutWidth, height: CGFloat) {
-            self.width = width
-            self.height = height
-        }
-        
-        public let width: KeyboardLayoutWidth
-        public let height: CGFloat
-    }
 }

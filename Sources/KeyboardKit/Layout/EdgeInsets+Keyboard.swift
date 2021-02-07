@@ -22,7 +22,7 @@ public extension EdgeInsets {
     static func standardKeyboardButtonInsets(
         for device: UIDevice = .current,
         app: UIApplication = .shared) -> EdgeInsets {
-        EdgeInsets(insets: .standardKeyboardButtonInsets())
+        EdgeInsets(insets: .standardKeyboardButtonInsets(for: device, app: app))
     }
 }
 

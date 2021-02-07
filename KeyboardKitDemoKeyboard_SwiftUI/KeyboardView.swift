@@ -110,8 +110,8 @@ private extension KeyboardView {
             autocompleteBar
             SystemKeyboard(
                 layout: keyboardLayoutProvider.keyboardLayout(for: keyboardContext),
-                actionHandler: keyboardActionHandler,
                 appearance: keyboardAppearance,
+                actionHandler: keyboardActionHandler,
                 buttonBuilder: buttonBuilder)
         }
     }

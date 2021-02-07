@@ -20,8 +20,8 @@ public struct SystemKeyboard: View {
     
     public init(
         layout: KeyboardLayout,
-        actionHandler: KeyboardActionHandler,
         appearance: KeyboardAppearance,
+        actionHandler: KeyboardActionHandler,
         inputCalloutStyle: InputCalloutStyle? = nil,
         secondaryInputCalloutStyle: SecondaryInputCalloutStyle? = nil,
         buttonBuilder: @escaping ButtonBuilder = Self.standardButtonBuilder) {

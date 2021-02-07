@@ -20,32 +20,13 @@ import UIKit
  You can inherit this class and override any implementations
  to customize the standard layout.
  */
-open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
+open class StandardKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     
-    public init(
-        inputSetProvider: KeyboardInputSetProvider) {
-        self.inputSetProvider = inputSetProvider
-    }
-    
-    private let inputSetProvider: KeyboardInputSetProvider
-    
-    open func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
-        let rows = actionRows(for: context)
-        let iPad = context.device.userInterfaceIdiom == .pad
-        return keyboardLayout(for: context, iPad: iPad, rows: rows)
-    }
-    
-    func keyboardLayout(
-        for context: KeyboardContext,
-        iPad: Bool,
-        rows: KeyboardActionRows) -> KeyboardLayout {
-        let rows = iPad
-            ? iPadActions(for: context, rows: rows)
-            : iPhoneActions(for: context, rows: rows)
-        return KeyboardLayout(
-            rows: rows,
-            buttonHeight: .standardKeyboardRowHeight(),
-            buttonInsets: .standardKeyboardButtonInsets())
+    open override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
+        super.keyboardLayout(for: context)
+//        let rows = actionRows(for: context)
+//        let iPad = context.device.userInterfaceIdiom == .pad
+//        return keyboardLayout(for: context, iPad: iPad, rows: rows)
     }
 }
 
