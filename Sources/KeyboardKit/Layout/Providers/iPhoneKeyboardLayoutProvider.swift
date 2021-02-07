@@ -40,7 +40,7 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
         return actions
     }
     
-    open override func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutWidth {
+    open override func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItemWidth {
         switch action {
         case dictationReplacement: return shortButtonWidth
         case .character: return isLastSymbolicInputRow(row, for: context) ? lastSymbolicInputWidth : .reference
@@ -87,13 +87,13 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
 
 private extension iPhoneKeyboardLayoutProvider {
     
-    var lastSymbolicInputWidth: KeyboardLayoutWidth { .percentage(0.14) }
+    var lastSymbolicInputWidth: KeyboardLayoutItemWidth { .percentage(0.14) }
     
-    var longButtonWidth: KeyboardLayoutWidth { .percentage(0.24) }
+    var longButtonWidth: KeyboardLayoutItemWidth { .percentage(0.24) }
     
-    var mediumButtonWidth: KeyboardLayoutWidth { shortButtonWidth }
+    var mediumButtonWidth: KeyboardLayoutItemWidth { shortButtonWidth }
     
-    var shortButtonWidth: KeyboardLayoutWidth { .percentage(0.11) }
+    var shortButtonWidth: KeyboardLayoutItemWidth { .percentage(0.11) }
     
     func isLastSymbolicInputRow(_ row: Int, for context: KeyboardContext) -> Bool {
         let isNumeric = context.keyboardType == .numeric

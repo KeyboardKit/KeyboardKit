@@ -46,7 +46,7 @@ open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
         return actions
     }
     
-    open override func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutWidth {
+    open override func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItemWidth {
         if isSecondRowSpacer(action, row: row, index: index) { return .useReferencePercentage(0.4) }
         if isSecondBottomSwitcher(action, row: row, index: index) { return .useReferencePercentage(2) }
         switch action {

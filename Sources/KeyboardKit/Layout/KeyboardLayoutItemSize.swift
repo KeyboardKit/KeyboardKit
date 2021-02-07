@@ -9,15 +9,16 @@
 import CoreGraphics
 
 /**
- This struct provides the size of a keyboard layout item.
+ This struct provides the size of a keyboard layout item. It
+ has a regular height, but a declarative width.
  */
 public struct KeyboardLayoutItemSize: Equatable {
     
-    public init(width: KeyboardLayoutWidth, height: CGFloat) {
+    public init(width: KeyboardLayoutItemWidth, height: CGFloat) {
         self.width = width
         self.height = height
     }
     
-    public let width: KeyboardLayoutWidth
+    public let width: KeyboardLayoutItemWidth
     public let height: CGFloat
 }

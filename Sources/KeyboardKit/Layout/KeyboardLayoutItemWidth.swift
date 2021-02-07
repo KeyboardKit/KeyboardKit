@@ -12,7 +12,7 @@ import CoreGraphics
  This enum describes various ways in which a keyboard layout
  can size its items.
  */
-public indirect enum KeyboardLayoutWidth: Equatable {
+public indirect enum KeyboardLayoutItemWidth: Equatable {
     
     /**
      Share any remaining width on the same row.
