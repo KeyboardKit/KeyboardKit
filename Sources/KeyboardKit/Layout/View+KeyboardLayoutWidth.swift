@@ -11,7 +11,7 @@ import SwiftUI
 public extension View {
     
     /**
-     Apply a certain keybard button width type to this view.
+     Apply a certain keyboard button width type to this view.
      
      The `totalWidth` parame is only required when using the
      `.percentage` and `.reference(.percentage)` width types.
@@ -27,24 +27,9 @@ public extension View {
         case .available: self.frame(maxWidth: .infinity)
         case .percentage(let percent): self.frame(width: percent * totalWidth)
         case .points(let points): self.frame(width: points)
-        case .reference(let width): self.frame(maxWidth: .infinity).frame(width: self.width(for: width, totalWidth: totalWidth, referenceSize: referenceSize.wrappedValue)).bindSize(to: referenceSize)
+        case .reference: self.frame(maxWidth: .infinity).bindSize(to: referenceSize)
         case .useReference: self.frame(width: referenceSize.width.wrappedValue)
         case .useReferencePercentage(let percent): self.frame(width: percent * referenceSize.width.wrappedValue)
-        }
-    }
-}
-
-private extension View {
-    
-    /**
-     Calculate the width in points for a certain width type.
-     */
-    func width(for width: KeyboardLayoutWidth, totalWidth: CGFloat, referenceSize: CGSize) -> CGFloat? {
-        switch width {
-        case .available: return nil
-        case .percentage(let percent): return percent * totalWidth
-        case .points(let points): return points
-        default: return 0
         }
     }
 }

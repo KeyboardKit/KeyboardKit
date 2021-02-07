@@ -15,8 +15,7 @@ import CoreGraphics
 public indirect enum KeyboardLayoutWidth: Equatable {
     
     /**
-     Share any remaining width with other `available` layout
-     items on the same row.
+     Share any remaining width on the same row.
      */
     case available
     
@@ -31,11 +30,15 @@ public indirect enum KeyboardLayoutWidth: Equatable {
     case points(_ points: CGFloat)
     
     /**
-     Apply a certain width and use the result as a reference
-     width that can then be used by other layout items using
-     either the `useReference` or `useReferencePercentage`.
+     This width is special and can be used to give all input
+     items the same width.
+     
+     A system keyboard will take each row that contains this
+     width type, select the row where the resulting width in
+     points is smallest, then use it for every item that use
+     the `input` or `inputPercentage` width types.
      */
-    case reference(_ width: KeyboardLayoutWidth = .available)
+    case reference
     
     /**
      Use the width of a `reference` item.
