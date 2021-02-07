@@ -17,11 +17,9 @@ import SwiftUI
 public class KeyboardLayout {
     
     public init(
-        rows: KeyboardActionRows,
         items: KeyboardLayoutItemRows,
         buttonHeight: CGFloat,
         buttonInsets: EdgeInsets) {
-        self.rows = rows
         self.items = items
         self.buttonHeight = buttonHeight
         self.buttonInsets = buttonInsets
@@ -30,5 +28,4 @@ public class KeyboardLayout {
     public let buttonHeight: CGFloat
     public let buttonInsets: EdgeInsets
     public let items: KeyboardLayoutItemRows
-    public let rows: KeyboardActionRows
 }

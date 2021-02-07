@@ -28,7 +28,6 @@ public struct SystemKeyboard: View {
         self.layout = layout
         self.actionHandler = actionHandler
         self.appearance = appearance
-        self.rows = layout.rows
         self.inputCalloutStyle = inputCalloutStyle
         self.secondaryInputCalloutStyle = secondaryInputCalloutStyle
         self.buttonBuilder = buttonBuilder
@@ -37,7 +36,6 @@ public struct SystemKeyboard: View {
     private let actionHandler: KeyboardActionHandler
     private let appearance: KeyboardAppearance
     private let buttonBuilder: ButtonBuilder
-    private let rows: KeyboardActionRows
     private let inputCalloutStyle: InputCalloutStyle?
     private let layout: KeyboardLayout
     private let secondaryInputCalloutStyle: SecondaryInputCalloutStyle?
@@ -51,7 +49,7 @@ public struct SystemKeyboard: View {
     
     public var body: some View {
         VStack(spacing: 0) {
-            ForEach(rows.enumerated().map { $0 }, id: \.offset) {
+            ForEach(layout.items.enumerated().map { $0 }, id: \.offset) {
                 row(at: $0.offset, actions: $0.element)
             }
         }
@@ -74,14 +72,14 @@ public extension SystemKeyboard {
 
 private extension SystemKeyboard {
     
-    func row(at index: Int, actions: KeyboardActions) -> some View {
+    func row(at index: Int, actions: KeyboardLayoutItemRow) -> some View {
         HStack(spacing: 0) {
             ForEach(Array(actions.enumerated()), id: \.offset) {
                 SystemKeyboardButtonRowItem(
-                    action: $0.element,
+                    action: $0.element.action,
                     actionHandler: actionHandler,
                     appearance: appearance,
-                    buttonContent: buttonBuilder($0.element, keyboardSize),
+                    buttonContent: buttonBuilder($0.element.action, keyboardSize),
                     layout: layout)
             }
         }
