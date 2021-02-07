@@ -16,16 +16,9 @@ import SwiftUI
  */
 public class KeyboardLayout {
     
-    public init(
-        items: KeyboardLayoutItemRows,
-        buttonHeight: CGFloat,
-        buttonInsets: EdgeInsets) {
+    public init(items: KeyboardLayoutItemRows) {
         self.items = items
-        self.buttonHeight = buttonHeight
-        self.buttonInsets = buttonInsets
     }
     
-    public let buttonHeight: CGFloat
-    public let buttonInsets: EdgeInsets
     public let items: KeyboardLayoutItemRows
 }

@@ -32,9 +32,7 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
         let inputs = self.inputs(for: context)
         let actions = self.actions(for: context, inputs: inputs)
         let items = self.items(for: context, actions: actions)
-        let height = CGFloat.standardKeyboardRowHeight(for: context.device)
-        let insets = EdgeInsets.standardKeyboardButtonInsets(for: context.device)
-        return KeyboardLayout(items: items, buttonHeight: height, buttonInsets: insets)
+        return KeyboardLayout(items: items)
     }
     
     
