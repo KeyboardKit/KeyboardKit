@@ -41,8 +41,9 @@ class KeyboardViewController: KeyboardInputViewController {
         keyboardActionHandler = DemoKeyboardActionHandler(
             inputViewController: self,
             toastContext: toastContext)
-        keyboardLayoutProvider = StandardKeyboardLayoutProvider(
-            inputSetProvider: keyboardInputSetProvider)
+        keyboardLayoutProvider = iPadKeyboardLayoutProvider(
+            inputSetProvider: keyboardInputSetProvider,
+            dictationReplacement: .keyboardType(.emojis))
         setup(with: keyboardView)
     }
     

@@ -29,9 +29,12 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
      Get a keyboard layout for the provided context.
      */
     open func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
-        let inputs = keyboardInputs(for: context)
-        let actions = keyboardActions(for: context, inputs: inputs)
-        return keyboardLayout(for: context, actions: actions)
+        let inputs = self.inputs(for: context)
+        let actions = self.actions(for: context, inputs: inputs)
+        let items = self.items(for: context, actions: actions)
+        let height = CGFloat.standardKeyboardRowHeight(for: context.device)
+        let insets = EdgeInsets.standardKeyboardButtonInsets(for: context.device)
+        return KeyboardLayout(rows: actions, items: items, buttonHeight: height, buttonInsets: insets)
     }
     
     
@@ -40,14 +43,14 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
     /**
      Get keyboard actions for the provided context and inputs.
      */
-    open func keyboardActions(for context: KeyboardContext, inputs: KeyboardInputRows) -> KeyboardActionRows {
+    open func actions(for context: KeyboardContext, inputs: KeyboardInputRows) -> KeyboardActionRows {
         KeyboardActionRows(characters: inputs)
     }
     
     /**
      Get keyboard inputs for the provided context.
      */
-    open func keyboardInputs(for context: KeyboardContext) -> KeyboardInputRows {
+    open func inputs(for context: KeyboardContext) -> KeyboardInputRows {
         switch context.keyboardType {
         case .alphabetic(let state):
             let rows = inputSetProvider.alphabeticInputSet().rows
@@ -59,22 +62,12 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
     }
     
     /**
-     Get a keyboard layout for the provided context and actions.
-     */
-    open func keyboardLayout(for context: KeyboardContext, actions: KeyboardActionRows) -> KeyboardLayout {
-        let items = keyboardLayoutItems(for: context, actions: actions)
-        let height = CGFloat.standardKeyboardRowHeight(for: context.device)
-        let insets = EdgeInsets.standardKeyboardButtonInsets(for: context.device)
-        return KeyboardLayout(rows: actions, items: items, buttonHeight: height, buttonInsets: insets)
-    }
-    
-    /**
      Get keyboard layout items for the provided context and actions.
      */
-    open func keyboardLayoutItems(for context: KeyboardContext, actions: KeyboardActionRows) -> KeyboardLayoutItemRows {
+    open func items(for context: KeyboardContext, actions: KeyboardActionRows) -> KeyboardLayoutItemRows {
         actions.enumerated().map { row in
             row.element.enumerated().map { action in
-                keyboardLayoutItem(for: context, action: action.element, row: row.offset, index: action.offset)
+                item(for: context, action: action.element, row: row.offset, index: action.offset)
             }
         }
     }
@@ -82,9 +75,9 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
     /**
      Get keyboard layout item for a certain action.
      */
-    open func keyboardLayoutItem(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItem {
-        let size = keyboardLayoutItemSize(for: context, action: action, row: row, index: index)
-        let insets = keyboardLayoutItemInsets(for: context, action: action, row: row, index: index)
+    open func item(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItem {
+        let size = itemSize(for: context, action: action, row: row, index: index)
+        let insets = itemInsets(for: context, action: action, row: row, index: index)
         return KeyboardLayoutItem(action: action, size: size, insets: insets)
     }
     
@@ -92,7 +85,7 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
      Get the keybpard layout insets for a certain action, at
      a certain row and index.
      */
-    open func keyboardLayoutItemInsets(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> EdgeInsets {
+    open func itemInsets(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> EdgeInsets {
         .standardKeyboardButtonInsets(for: context.device)
     }
     
@@ -100,9 +93,9 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
      Get the layout size for a certain keyboard action, at a
      certain row and index.
      */
-    open func keyboardLayoutItemSize(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItemSize {
-        let width = keyboardLayoutItemSizeWidth(for: context, action: action, row: row, index: index)
-        let height = keyboardLayoutItemSizeHeight(for: context, action: action, row: row, index: index)
+    open func itemSize(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItemSize {
+        let width = itemSizeWidth(for: context, action: action, row: row, index: index)
+        let height = itemSizeHeight(for: context, action: action, row: row, index: index)
         return KeyboardLayoutItemSize(width: width, height: height)
     }
     
@@ -110,7 +103,7 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
      Get the layout height for a certain keyboard action, at
      certain row and index.
      */
-    open func keyboardLayoutItemSizeHeight(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> CGFloat {
+    open func itemSizeHeight(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> CGFloat {
         .standardKeyboardRowHeight(for: context.device)
     }
     
@@ -118,7 +111,36 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
      Get the layout width for a certain keyboard action at a
      certain row and index.
      */
-    open func keyboardLayoutItemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutWidth {
+    open func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutWidth {
         .available
+    }
+    
+    /**
+     The keyboard switch action that should be on the bottom
+     input row which is above the bottommost row. By default
+     it's `shift` for `alphabetic`, `symbolic` for `numeric`
+     and `numeric` for `symbolic`.
+     */
+    open func keyboardSwitcherActionForBottomInputRow(for context: KeyboardContext) -> KeyboardAction? {
+        switch context.keyboardType {
+        case .alphabetic(let state): return .shift(currentState: state)
+        case .numeric: return .keyboardType(.symbolic)
+        case .symbolic: return .keyboardType(.numeric)
+        default: return nil
+        }
+    }
+    
+    /**
+     The keyboard switch action that should be on the bottom
+     keyboard row. By default it's `numeric` for `alphabetic`
+     keyboards and `alphabetic` for `numeric` and `symbolic`.
+     */
+    open func keyboardSwitchActionForBottomRow(for context: KeyboardContext) -> KeyboardAction? {
+        switch context.keyboardType {
+        case .alphabetic: return .keyboardType(.numeric)
+        case .numeric: return .keyboardType(.alphabetic(.lowercased))
+        case .symbolic: return .keyboardType(.alphabetic(.lowercased))
+        default: return nil
+        }
     }
 }
