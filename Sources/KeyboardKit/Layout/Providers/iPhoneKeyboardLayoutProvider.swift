@@ -41,7 +41,7 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     open override func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutWidth {
         switch action {
         case dictationReplacement: return shortButtonWidth
-        case .character: return isLastSymbolicInputRow(row, for: context) ? shortButtonWidth : .available
+        case .character: return isLastSymbolicInputRow(row, for: context) ? lastSymbolicInputWidth : .reference
         case .backspace: return mediumButtonWidth
         case .keyboardType: return shortButtonWidth
         case .nextKeyboard: return shortButtonWidth
@@ -84,6 +84,8 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
 }
 
 private extension iPhoneKeyboardLayoutProvider {
+    
+    var lastSymbolicInputWidth: KeyboardLayoutWidth { .percentage(0.14) }
     
     var longButtonWidth: KeyboardLayoutWidth { .percentage(0.24) }
     

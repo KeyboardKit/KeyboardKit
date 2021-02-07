@@ -64,7 +64,7 @@ private extension KeyboardLayoutItem {
     
     var referencePercentage: CGFloat {
         switch size.width {
-        case .available: return 1
+        case .available: return 0
         case .percentage: return 0
         case .points: return 0
         case .reference: return 1

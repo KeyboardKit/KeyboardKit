@@ -106,17 +106,13 @@ private extension KeyboardView {
     }
     
     var systemKeyboard: some View {
-        let layout = keyboardLayoutProvider.keyboardLayout(for: keyboardContext)
-        let width = UIScreen.main.bounds.width
-        let ref = layout.inputWidth(for: UIScreen.main.bounds.width)
-        return VStack(spacing: 0) {
+        VStack(spacing: 0) {
             autocompleteBar
             SystemKeyboard(
-                layout: layout,
+                layout: keyboardLayoutProvider.keyboardLayout(for: keyboardContext),
                 appearance: keyboardAppearance,
                 actionHandler: keyboardActionHandler,
                 buttonBuilder: buttonBuilder)
-                .overlay(Text("\(width) | \(ref)"))
         }
     }
     
@@ -132,10 +128,10 @@ private extension KeyboardView {
 
 private extension KeyboardView {
     
-    func buttonBuilder(action: KeyboardAction, size: CGSize) -> AnyView {
+    func buttonBuilder(action: KeyboardAction) -> AnyView {
         switch action {
         case .space: return AnyView(SystemKeyboardSpaceButtonContent(localeText: "English", spaceText: "space"))
-        default: return SystemKeyboard.standardButtonBuilder(action: action, keyboardSize: size)
+        default: return SystemKeyboard.standardButtonBuilder(action: action)
         }
     }
     
