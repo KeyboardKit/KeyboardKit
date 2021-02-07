@@ -47,14 +47,14 @@ open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     }
     
     open override func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItemWidth {
-        if isSecondRowSpacer(action, row: row, index: index) { return .useReferencePercentage(0.4) }
-        if isSecondBottomSwitcher(action, row: row, index: index) { return .useReferencePercentage(2) }
+        if isSecondRowSpacer(action, row: row, index: index) { return .inputPercentage(0.4) }
+        if isSecondBottomSwitcher(action, row: row, index: index) { return .inputPercentage(2) }
         switch action {
-        case dictationReplacement: return .reference
+        case dictationReplacement: return .input
         case .backspace: return .percentage(0.1)
-        case .dismissKeyboard: return .useReferencePercentage(1.8)
-        case .keyboardType: return row == 2 ? .available : .reference
-        case .nextKeyboard: return .reference
+        case .dismissKeyboard: return .inputPercentage(1.8)
+        case .keyboardType: return row == 2 ? .available : .input
+        case .nextKeyboard: return .input
         default: return super.itemSizeWidth(for: context, action: action, row: row, index: index)
         }
     }
@@ -93,7 +93,7 @@ private extension iPadKeyboardLayoutProvider {
     
     func isSecondBottomSwitcher(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
         switch action {
-        case .keyboardType: return row == 3 && index > 0
+        case .keyboardType: return row == 3 && index > 3
         default: return false
         }
     }

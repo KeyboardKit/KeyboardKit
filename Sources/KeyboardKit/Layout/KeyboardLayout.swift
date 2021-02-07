@@ -37,7 +37,7 @@ public class KeyboardLayout {
 private extension KeyboardLayoutItemRow {
     
     var hasInputWidth: Bool {
-        contains { $0.size.width == .reference }
+        contains { $0.size.width == .input }
     }
     
     func referenceWidth(for totalWidth: CGFloat) -> CGFloat? {
@@ -54,20 +54,20 @@ private extension KeyboardLayoutItem {
     func allocatedWidth(for totalWidth: CGFloat) -> CGFloat {
         switch size.width {
         case .available: return 0
+        case .input: return 0
+        case .inputPercentage: return 0
         case .percentage(let percentage): return totalWidth * percentage
         case .points(let points): return points
-        case .reference: return 0
-        case .useReferencePercentage: return 0
         }
     }
     
     var referencePercentage: CGFloat {
         switch size.width {
         case .available: return 0
+        case .input: return 1
+        case .inputPercentage(let percentage): return percentage
         case .percentage: return 0
         case .points: return 0
-        case .reference: return 1
-        case .useReferencePercentage(let percentage): return percentage
         }
     }
 }

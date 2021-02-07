@@ -21,6 +21,18 @@ public indirect enum KeyboardLayoutItemWidth: Equatable {
     case available
     
     /**
+     This width can be used to give all input items the same
+     width, based on the row with the smallest size based on
+     its items and their widths.
+     */
+    case input
+    
+    /**
+     Use a percentual width of the resulting `input` width.
+     */
+    case inputPercentage(_ percent: CGFloat)
+    
+    /**
      Use a percentual width of the total available row width.
      */
     case percentage(_ percent: CGFloat)
@@ -29,16 +41,4 @@ public indirect enum KeyboardLayoutItemWidth: Equatable {
      Use a fixed width in points.
      */
     case points(_ points: CGFloat)
-    
-    /**
-     This width is special and can be used to give all input
-     items the same width. You can also use a percent of the
-     input width by using the `inputPercentage` type.
-     */
-    case reference
-    
-    /**
-     Use the percentual width of a `reference` item.
-     */
-    case useReferencePercentage(_ percent: CGFloat)
 }
