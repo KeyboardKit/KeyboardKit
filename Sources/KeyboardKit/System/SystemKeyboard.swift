@@ -76,11 +76,10 @@ private extension SystemKeyboard {
         HStack(spacing: 0) {
             ForEach(Array(actions.enumerated()), id: \.offset) {
                 SystemKeyboardButtonRowItem(
-                    action: $0.element.action,
-                    actionHandler: actionHandler,
+                    content: buttonBuilder($0.element.action, keyboardSize),
+                    item: $0.element,
                     appearance: appearance,
-                    buttonContent: buttonBuilder($0.element.action, keyboardSize),
-                    layout: layout)
+                    actionHandler: actionHandler)
             }
         }
     }

@@ -21,36 +21,33 @@ import SwiftUI
 public struct SystemKeyboardButtonRowItem<Content: View>: View {
     
     public init(
-        action: KeyboardAction,
-        actionHandler: KeyboardActionHandler,
+        content: Content,
+        item: KeyboardLayoutItem,
         appearance: KeyboardAppearance,
-        buttonContent: Content,
-        layout: KeyboardLayout) {
-        self.action = action
-        self.actionHandler = actionHandler
+        actionHandler: KeyboardActionHandler) {
+        self.content = content
+        self.item = item
         self.appearance = appearance
-        self.buttonContent = buttonContent
-        self.layout = layout
+        self.actionHandler = actionHandler
     }
     
-    private let action: KeyboardAction
     private let actionHandler: KeyboardActionHandler
     private let appearance: KeyboardAppearance
-    private let buttonContent: Content
-    private let layout: KeyboardLayout
+    private let content: Content
+    private let item: KeyboardLayoutItem
     
     @EnvironmentObject private var context: ObservableKeyboardContext
     
     public var body: some View {
-        buttonContent
+        content
             .frame(maxWidth: .infinity)
-            .frame(height: layout.buttonHeight - layout.buttonInsets.top - layout.buttonInsets.bottom)
-            .applyWidth(for: action)
-            .keyboardButtonStyle(for: action, appearance: appearance)
-            .padding(layout.buttonInsets)
-            .frame(height: layout.buttonHeight)
+            .frame(height: item.size.height - item.insets.top - item.insets.bottom)
+            .applyWidth(for: item.action)
+            .keyboardButtonStyle(for: item.action, appearance: appearance)
+            .padding(item.insets)
+            .frame(height: item.size.height)
             .background(Color.clearInteractable)
-            .keyboardGestures(for: action, actionHandler: actionHandler)
+            .keyboardGestures(for: item.action, actionHandler: actionHandler)
     }
 }
 
