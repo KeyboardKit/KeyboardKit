@@ -15,10 +15,12 @@ import SwiftUI
  You can inherit this class and override any implementations
  to customize the standard layout.
  
- `TODO` Unit test this class.
- 
- `TODO` The bottom-right button should not be `.newLine` but
- rather the `primary` action for the current context.
+ `IMPORTANT` This layout provider has only been tested for a
+ couple of locales. If you create a new input set and inject
+ it into this layout, you may find that some buttons get the
+ wrong size or that system buttons are not where they should
+ be. If so, you must create a new layout provider. You could
+ then inherit this class and add some customizations.
  */
 open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     
