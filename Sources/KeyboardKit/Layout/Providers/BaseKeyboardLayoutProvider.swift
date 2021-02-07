@@ -111,7 +111,7 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
      */
     open func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItemWidth {
         switch action {
-        case .character: return row == 0 ? .reference : .useReference
+        case .character: return .reference
         default: return .available
         }
     }

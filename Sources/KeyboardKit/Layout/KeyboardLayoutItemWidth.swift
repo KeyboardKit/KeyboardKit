@@ -15,7 +15,8 @@ import CoreGraphics
 public indirect enum KeyboardLayoutItemWidth: Equatable {
     
     /**
-     Share any remaining width on the same row.
+     Share any remaining width with other `.available` width
+     items on the same row.
      */
     case available
     
@@ -31,19 +32,10 @@ public indirect enum KeyboardLayoutItemWidth: Equatable {
     
     /**
      This width is special and can be used to give all input
-     items the same width.
-     
-     A system keyboard will take each row that contains this
-     width type, select the row where the resulting width in
-     points is smallest, then use it for every item that use
-     the `input` or `inputPercentage` width types.
+     items the same width. You can also use a percent of the
+     input width by using the `inputPercentage` type.
      */
     case reference
-    
-    /**
-     Use the width of a `reference` item.
-     */
-    case useReference
     
     /**
      Use the percentual width of a `reference` item.

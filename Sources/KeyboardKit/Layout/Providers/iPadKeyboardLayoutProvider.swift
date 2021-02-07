@@ -50,11 +50,11 @@ open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
         if isSecondRowSpacer(action, row: row, index: index) { return .useReferencePercentage(0.4) }
         if isSecondBottomSwitcher(action, row: row, index: index) { return .useReferencePercentage(2) }
         switch action {
-        case dictationReplacement: return .useReference
+        case dictationReplacement: return .reference
         case .backspace: return .percentage(0.1)
         case .dismissKeyboard: return .useReferencePercentage(1.8)
-        case .keyboardType: return row == 2 ? .available : .useReference
-        case .nextKeyboard: return .useReference
+        case .keyboardType: return row == 2 ? .available : .reference
+        case .nextKeyboard: return .reference
         default: return super.itemSizeWidth(for: context, action: action, row: row, index: index)
         }
     }

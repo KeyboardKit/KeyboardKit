@@ -57,7 +57,6 @@ private extension KeyboardLayoutItem {
         case .percentage(let percentage): return totalWidth * percentage
         case .points(let points): return points
         case .reference: return 0
-        case .useReference: return 0
         case .useReferencePercentage: return 0
         }
     }
@@ -68,7 +67,6 @@ private extension KeyboardLayoutItem {
         case .percentage: return 0
         case .points: return 0
         case .reference: return 1
-        case .useReference: return 1
         case .useReferencePercentage(let percentage): return percentage
         }
     }

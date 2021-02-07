@@ -116,7 +116,6 @@ public extension View {
         case .percentage(let percent): self.frame(width: percent * totalWidth - insets)
         case .points(let points): self.frame(width: points - insets)
         case .reference: self.frame(width: referenceWidth - insets)
-        case .useReference: self.frame(width: referenceWidth - insets)
         case .useReferencePercentage(let percent): self.frame(width: percent * referenceWidth - insets)
         }
     }
