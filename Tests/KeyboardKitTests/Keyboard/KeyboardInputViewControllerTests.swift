@@ -134,7 +134,7 @@ class KeyboardInputViewControllerTests: QuickSpec {
         describe("keyboard secondary input action provider") {
             
             it("is standard by default") {
-                let obj = vc.keyboardSecondaryInputActionProvider
+                let obj = vc.keyboardSecondaryCalloutActionProvider
                 expect(obj as? StandardSecondaryCalloutActionProvider).toNot(beNil())
             }
         }

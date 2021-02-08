@@ -14,6 +14,11 @@ import SwiftUI
  
  You can inherit this class and override any `open` function
  to modify the callout behavior.
+ 
+ `KeyboardKit` will automatically create a standard instance
+ and bind it to the input view controller when the extension
+ is started. It can be replaced with a custom one by setting
+ the `keyboardInputCalloutContext` property.
  */
 open class InputCalloutContext: ObservableObject {
     

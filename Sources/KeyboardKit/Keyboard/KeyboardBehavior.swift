@@ -12,6 +12,11 @@ import Foundation
  This protocol can be used to specify behavior rules for the
  keyboard. It aims to separate behavior from action handling
  to make the code cleaner and more understandable.
+ 
+ `KeyboardKit` will automatically create a standard instance
+ and bind it to the input view controller when the extension
+ is started. It can be replaced with a custom one by setting
+ the `keyboardBehavior` property.
  */
 public protocol KeyboardBehavior {
     
