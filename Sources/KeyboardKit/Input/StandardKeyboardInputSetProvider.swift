@@ -9,28 +9,29 @@
 import Foundation
 
 /**
- This input set provider provides the standard input set for
- the locale of the current context. Note that the characters
- aren't shift adjusted and only returned as lowercased chars.
+ This standard provider has wrapped localized providers that
+ are activated depending on the context locale.
+ 
+ You can provide any number of localized providers in `init`.
+ By default, it will use all that exist in this library.
  */
 open class StandardKeyboardInputSetProvider: KeyboardInputSetProvider {
     
-    public init(context: KeyboardContext) {
+    public init(
+        context: KeyboardContext,
+        providers: [LocalizedService & KeyboardInputSetProvider] = [
+            EnglishKeyboardInputSetProvider(),
+            GermanKeyboardInputSetProvider(),
+            ItalianKeyboardInputSetProvider(),
+            SwedishKeyboardInputSetProvider()]) {
         self.context = context
+        let dict = Dictionary(uniqueKeysWithValues: providers.map { ($0.localeKey, $0) })
+        providerDictionary = LocaleDictionary(dict)
     }
     
     private let context: KeyboardContext
     
-    private lazy var providerDictionaryValue: LocaleDictionary<KeyboardInputSetProvider> = LocaleDictionary([
-        LocaleKey.english.key: EnglishKeyboardInputSetProvider(),
-        LocaleKey.german.key: GermanKeyboardInputSetProvider(),
-        LocaleKey.italian.key: ItalianKeyboardInputSetProvider(),
-        LocaleKey.swedish.key: SwedishKeyboardInputSetProvider()
-    ])
-    
-    open var providerDictionary: LocaleDictionary<KeyboardInputSetProvider> {
-        providerDictionaryValue
-    }
+    public var providerDictionary: LocaleDictionary<KeyboardInputSetProvider>
     
     open func provider(for context: KeyboardContext) -> KeyboardInputSetProvider {
         providerDictionary.value(for: context.locale) ?? EnglishKeyboardInputSetProvider()

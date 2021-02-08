@@ -8,8 +8,8 @@ import KeyboardKit
  */
 struct EmojiKeyboard: DemoKeyboard {
     
-    init(in viewController: KeyboardViewController) {
-        let isLandscape = viewController.deviceOrientation.isLandscape
+    init(context: KeyboardContext) {
+        let isLandscape = context.deviceOrientation.isLandscape
         let rowsPerPage = isLandscape ? 3 : 5
         let buttonsPerRow = isLandscape ? 10 : 8
         gridConfig = UIKeyboardButtonRowCollectionView.Configuration(

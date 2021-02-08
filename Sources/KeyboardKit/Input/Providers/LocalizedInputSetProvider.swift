@@ -1,5 +1,5 @@
 //
-//  LocalizedSecondaryCalloutActionProvider.swift
+//  LocalizedKeyboardInputSetProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-08.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol LocalizedSecondaryCalloutActionProvider: SecondaryCalloutActionProvider {
+public protocol LocalizedKeyboardInputSetProvider: KeyboardInputSetProvider{
     
     var localeKey: String { get }
 }

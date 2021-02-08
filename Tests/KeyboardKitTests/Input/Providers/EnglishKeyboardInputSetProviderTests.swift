@@ -16,11 +16,18 @@ class EnglishKeyboardInputSetProviderTests: QuickSpec {
     override func spec() {
         
         var device: MockDevice!
-        var provider: KeyboardInputSetProvider!
+        var provider: EnglishKeyboardInputSetProvider!
         
         beforeEach {
             device = MockDevice()
             provider = EnglishKeyboardInputSetProvider(device: device)
+        }
+        
+        describe("locale key") {
+            
+            it("is correct") {
+                expect(provider.localeKey).to(equal(LocaleKey.english.key))
+            }
         }
         
         describe("input set") {

@@ -11,13 +11,14 @@ import UIKit
 /**
  This class provides German keyboard input sets.
  */
-public class GermanKeyboardInputSetProvider: DeviceSpecificInputSetProvider {
+public class GermanKeyboardInputSetProvider: DeviceSpecificInputSetProvider, LocalizedService {
     
     public init(device: UIDevice = .current) {
         self.device = device
     }
     
     public let device: UIDevice
+    public let localeKey: String = LocaleKey.german.key
     
     public func alphabeticInputSet() -> AlphabeticKeyboardInputSet {
         AlphabeticKeyboardInputSet(rows: [

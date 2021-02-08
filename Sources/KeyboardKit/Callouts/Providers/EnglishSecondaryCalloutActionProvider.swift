@@ -11,7 +11,7 @@ import Foundation
 /**
  This class provides English secondary callout actions.
  */
-open class EnglishSecondaryCalloutActionProvider: BaseSecondaryCalloutActionProvider, LocalizedSecondaryCalloutActionProvider {
+open class EnglishSecondaryCalloutActionProvider: BaseSecondaryCalloutActionProvider, LocalizedService {
     
     public let localeKey: String = LocaleKey.english.key
     

@@ -11,13 +11,14 @@ import UIKit
 /**
  This class provides Swedish keyboard input sets.
  */
-public class SwedishKeyboardInputSetProvider: DeviceSpecificInputSetProvider {
+public class SwedishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, LocalizedService {
     
     public init(device: UIDevice = .current) {
         self.device = device
     }
     
     public let device: UIDevice
+    public let localeKey: String = LocaleKey.swedish.key
     
     public func alphabeticInputSet() -> AlphabeticKeyboardInputSet {
         AlphabeticKeyboardInputSet(rows: [

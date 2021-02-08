@@ -11,13 +11,14 @@ import UIKit
 /**
  This class provides English keyboard input sets.
  */
-public class EnglishKeyboardInputSetProvider: DeviceSpecificInputSetProvider {
+public class EnglishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, LocalizedService {
     
     public init(device: UIDevice = .current) {
         self.device = device
     }
     
     public let device: UIDevice
+    public let localeKey: String = LocaleKey.english.key
     
     public func alphabeticInputSet() -> AlphabeticKeyboardInputSet {
         AlphabeticKeyboardInputSet(rows: [

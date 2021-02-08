@@ -31,7 +31,7 @@ extension KeyboardViewController {
     }
     
     func setupEmojiKeyboard() {
-        let keyboard = EnhancedEmojiKeyboard(in: self)
+        let keyboard = EnhancedEmojiKeyboard(context: keyboardContext)
         let config = keyboard.gridConfig
         let view = HFloatingHeaderButtonCollectionView(id: "EnhancedEmojiKeyboard", categoryActions: keyboard.categoryActions, configuration: config, buttonCreator: { [unowned self] in return self.button(for: $0) })
         
@@ -43,7 +43,7 @@ extension KeyboardViewController {
     }
     
     func setupImageKeyboard() {
-        let keyboard = ImageKeyboard(in: self)
+        let keyboard = ImageKeyboard(in: self, context: keyboardContext)
         let view = UIKeyboardButtonRowCollectionView(actions: keyboard.actions, configuration: keyboard.gridConfig) { [unowned self] in return self.button(for: $0) }
         let bottom = buttonRow(for: keyboard.bottomActions, distribution: .fillProportionally)
         keyboardStackView.addArrangedSubview(view)
@@ -106,7 +106,6 @@ private extension KeyboardViewController {
 }
 
 
-
 // MARK: - Actions
 
 @objc extension KeyboardViewController {
@@ -114,5 +113,25 @@ private extension KeyboardViewController {
     func refreshEmojiCategoryLabel(_ recognizer: UIPanGestureRecognizer) {
         guard recognizer.state == .ended else { return }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: emojiLabelUpdateAction)
+    }
+}
+
+
+// MARK: - UIView Extensions
+
+extension UIView {
+    
+    /**
+     Add a subview with an option to adjust its anchords to
+     make it fill its superview.
+     */
+    func addSubview(_ subview: UIView, fill: Bool, insets: UIEdgeInsets = .zero) {
+        addSubview(subview)
+        guard fill else { return }
+        subview.translatesAutoresizingMaskIntoConstraints = false
+        subview.topAnchor.constraint(equalTo: topAnchor, constant: insets.top).isActive = true
+        subview.leftAnchor.constraint(equalTo: leftAnchor, constant: insets.left).isActive = true
+        subview.rightAnchor.constraint(equalTo: rightAnchor, constant: insets.right).isActive = true
+        subview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: insets.bottom).isActive = true
     }
 }

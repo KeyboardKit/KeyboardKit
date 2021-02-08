@@ -21,11 +21,11 @@ import KeyboardKit
  */
 struct ImageKeyboard: DemoKeyboard, DemoImageKeyboard {
     
-    init(in viewController: KeyboardViewController) {
+    init(in viewController: KeyboardViewController, context: KeyboardContext) {
         self.bottomActions = Self.bottomActions(
             leftmost: .keyboardType(.alphabetic(.lowercased)),
             for: viewController)
-        let isLandscape = viewController.deviceOrientation.isLandscape
+        let isLandscape = context.deviceOrientation.isLandscape
         let rowsPerPage = isLandscape ? 3 : 4
         let buttonsPerRow = isLandscape ? 8 : 6
         gridConfig = UIKeyboardButtonRowCollectionView.Configuration(rowHeight: 50, rowsPerPage: rowsPerPage, buttonsPerRow: buttonsPerRow)

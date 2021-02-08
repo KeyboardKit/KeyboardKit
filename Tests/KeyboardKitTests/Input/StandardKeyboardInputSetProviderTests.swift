@@ -33,15 +33,24 @@ class StandardKeyboardInputSetProviderTests: QuickSpec {
             swedish = SwedishKeyboardInputSetProvider()
         }
         
-        describe("provider list") {
+        describe("localized providers") {
             
-            it("has locale-specific providers") {
+            it("has standard locale-specific providers") {
                 let providers = provider.providerDictionary.dictionary
                 expect(providers.keys.count).to(equal(4))
                 expect(providers[LocaleKey.english.key] is EnglishKeyboardInputSetProvider).to(beTrue())
                 expect(providers[LocaleKey.german.key] is GermanKeyboardInputSetProvider).to(beTrue())
                 expect(providers[LocaleKey.italian.key] is ItalianKeyboardInputSetProvider).to(beTrue())
                 expect(providers[LocaleKey.swedish.key] is SwedishKeyboardInputSetProvider).to(beTrue())
+            }
+            
+            it("accepts custom providers") {
+                provider = StandardKeyboardInputSetProvider(
+                    context: context,
+                    providers: [EnglishKeyboardInputSetProvider()])
+                let providers = provider.providerDictionary.dictionary
+                expect(providers.keys.count).to(equal(1))
+                expect(providers[LocaleKey.english.key] is EnglishKeyboardInputSetProvider).to(beTrue())
             }
         }
         
