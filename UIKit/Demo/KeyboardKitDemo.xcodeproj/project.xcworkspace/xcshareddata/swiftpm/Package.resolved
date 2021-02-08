@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "KeyboardKit",
+        "repositoryURL": "https://github.com/danielsaidi/KeyboardKit",
+        "state": {
+          "branch": "v4.0",
+          "revision": "4ae5f6a5a680667398da8570d1146773c84e4b93",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
