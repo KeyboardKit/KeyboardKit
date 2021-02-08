@@ -9,25 +9,28 @@
 import Foundation
 
 /**
- This provider provides secondary callouts with the standard
- secondary callout actions for the provided action.
+ This standard callout action provider has wrapped localized
+ providers that is activated depending on the context locale.
+ 
+ You can provide any number of localized providers in `init`.
+ If you don't the provider will be initialized with the ones
+ that are in this library.
  */
 open class StandardSecondaryCalloutActionProvider: SecondaryCalloutActionProvider {
     
-    public init(context: KeyboardContext) {
+    public init(
+        context: KeyboardContext,
+        providers: [LocalizedSecondaryCalloutActionProvider] = [
+        EnglishSecondaryCalloutActionProvider(),
+        SwedishSecondaryCalloutActionProvider()]) {
         self.context = context
+        let dict = Dictionary(uniqueKeysWithValues: providers.map { ($0.localeKey, $0) })
+        providerDictionary = LocaleDictionary(dict)
     }
     
     private let context: KeyboardContext
     
-    private lazy var providerDictionaryValue: LocaleDictionary<SecondaryCalloutActionProvider> = LocaleDictionary([
-        LocaleKey.english.key: EnglishSecondaryCalloutActionProvider(),
-        LocaleKey.swedish.key: SwedishSecondaryCalloutActionProvider()
-    ])
-    
-    open var providerDictionary: LocaleDictionary<SecondaryCalloutActionProvider> {
-        providerDictionaryValue
-    }
+    open var providerDictionary: LocaleDictionary<SecondaryCalloutActionProvider>
     
     open func provider(for context: KeyboardContext) -> SecondaryCalloutActionProvider {
         providerDictionary.value(for: context.locale) ?? EnglishSecondaryCalloutActionProvider()

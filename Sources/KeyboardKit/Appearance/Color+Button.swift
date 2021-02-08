@@ -9,6 +9,8 @@
 import SwiftUI
 
 /**
+ This file contains keyboard-specific color extensions.
+ 
  `IMPORTANT` The `KeyboardContext`s `userInterfaceStyle` has
  an incorrect state when `keyboardAppearance` is `.dark` and
  the device runs in `.light` mode. The keyboard will then be

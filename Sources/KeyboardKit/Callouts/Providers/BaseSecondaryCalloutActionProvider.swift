@@ -12,10 +12,12 @@ import Foundation
  This base class can be used to build locale-specific action
  providers.
  
+ You can inherit this class and override any implementations
+ to customize the standard behavior.
+ 
  It's easiest to just override `secondaryCalloutActionString`
- and let `secondaryCalloutActions` handle casing & splitting.
- It will then provide the string function with a lower-cased
- string and handle returning a correctly cased result.
+ then return a string with all the callout action characters.
+ `secondaryCalloutActions` will then handle casing/splitting.
  */
 open class BaseSecondaryCalloutActionProvider: SecondaryCalloutActionProvider {
     

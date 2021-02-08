@@ -1,5 +1,5 @@
 //
-//  KeyboardAction+SecondaryCalloutActionsTests.swift
+//  StandardSecondaryCalloutActionProviderTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -23,15 +23,22 @@ class StandardSecondaryCalloutActionProviderTests: QuickSpec {
             provider = StandardSecondaryCalloutActionProvider(context: context)
         }
         
-        describe("provider list") {
+        describe("localized providers") {
             
-            it("has locale-specific providers") {
+            it("has standard locale-specific providers") {
                 let providers = provider.providerDictionary.dictionary
                 expect(providers.keys.count).to(equal(2))
                 expect(providers[LocaleKey.english.key] is EnglishSecondaryCalloutActionProvider).to(beTrue())
-                expect(providers[LocaleKey.german.key]).to(beNil())
-                expect(providers[LocaleKey.italian.key]).to(beNil())
                 expect(providers[LocaleKey.swedish.key] is SwedishSecondaryCalloutActionProvider).to(beTrue())
+            }
+            
+            it("accepts custom providers") {
+                provider = StandardSecondaryCalloutActionProvider(
+                    context: context,
+                    providers: [EnglishSecondaryCalloutActionProvider()])
+                let providers = provider.providerDictionary.dictionary
+                expect(providers.keys.count).to(equal(1))
+                expect(providers[LocaleKey.english.key] is EnglishSecondaryCalloutActionProvider).to(beTrue())
             }
         }
         

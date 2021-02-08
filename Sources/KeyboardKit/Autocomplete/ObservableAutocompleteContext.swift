@@ -8,6 +8,9 @@
 
 import Combine
 
+/**
+ This is an observable `AutocompleteContext` implementation.
+ */
 public class ObservableAutocompleteContext: ObservableObject, AutocompleteContext {
     
     public init() {}

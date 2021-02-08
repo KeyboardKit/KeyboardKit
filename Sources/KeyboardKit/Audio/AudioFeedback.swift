@@ -13,7 +13,8 @@ import Foundation
  feedback types can be triggered with the `trigger` function.
  
  The static `systemPlayer` uses a `StandardSystemAudioPlayer`
- by default, but you can change it to any `SystemAudioPlayer`.
+ by default, but you can change it to any `SystemAudioPlayer`
+ you like, e.g. when writing tests.
 */
 public enum AudioFeedback: Equatable {
     

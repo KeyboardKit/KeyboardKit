@@ -11,7 +11,9 @@ import Foundation
 /**
  This class provides Swedish secondary callout actions.
  */
-open class SwedishSecondaryCalloutActionProvider: BaseSecondaryCalloutActionProvider {
+open class SwedishSecondaryCalloutActionProvider: BaseSecondaryCalloutActionProvider, LocalizedSecondaryCalloutActionProvider {
+    
+    public let localeKey: String = LocaleKey.swedish.key
     
     open override func secondaryCalloutActions(for action: KeyboardAction) -> [KeyboardAction] {
         var actions = super.secondaryCalloutActions(for: action)
