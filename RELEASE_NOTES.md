@@ -19,6 +19,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `Callouts/Providers` have new locale-specific callout action providers.
 * `Image.emoji` no longer requires iOS 14, but uses `person.crop.circle` as fallback on iOS 13.
 * `Input` has new types and providers for working with keyboard layouts.
+* `KeyboardAction` has new actions - `ok`, `go`.
 * `KeyboardAppearance` has a new `image(for:)`.
 * `KeyboardInputSetProvider` has new locale-specific providers under `Input/Providers`.
 * `KeyboardInputViewController` has a new static `shared` instance.

@@ -27,7 +27,10 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     private let context: KeyboardContext
     
     open func buttonBackgroundColor(for action: KeyboardAction) -> Color {
-        action.standardButtonBackgroundColor(for: context)
+        switch action {
+        case .ok, .go: return .blue
+        default: return action.standardButtonBackgroundColor(for: context)
+        }
     }
     
     open func buttonCornerRadius(for action: KeyboardAction) -> CGFloat { 4.0 }
@@ -39,7 +42,10 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     }
     
     open func buttonForegroundColor(for action: KeyboardAction) -> Color {
-        action.standardButtonForegroundColor(for: context)
+        switch action {
+        case .ok, .go: return .white
+        default: return action.standardButtonForegroundColor(for: context)
+        }
     }
     
     open func buttonImage(for action: KeyboardAction) -> Image? {
@@ -60,5 +66,36 @@ private extension StandardKeyboardAppearance {
     func fontWeight(for action: KeyboardAction) -> UIFont.Weight? {
         let hasImage = buttonImage(for: action) != nil
         return hasImage ? .light : nil
+    }
+}
+
+struct StandardKeyboardAppearance_Previews: PreviewProvider {
+    
+    static var context = PreviewKeyboardContext()
+    static var appearance = StandardKeyboardAppearance(context: context)
+    
+    static var actions: [KeyboardAction] = [
+        .character(""),
+        .space,
+        .ok,
+        .go]
+    
+    static func view(for action: KeyboardAction) -> some View {
+        Text("A")
+            .padding()
+            .font(.title)
+            .keyboardButtonStyle(for: action, appearance: appearance)
+            .padding()
+    }
+    
+    static var previews: some View {
+        Group {
+            ForEach(Array(actions.enumerated()), id: \.offset) { action in
+                HStack(spacing: 0) {
+                    view(for: action.element)
+                    view(for: action.element).background(Color.black).colorScheme(.dark)
+                }
+            }
+        }.previewLayout(.sizeThatFits)
     }
 }
