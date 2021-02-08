@@ -28,10 +28,8 @@ class StandardKeyboardAppearanceTests: QuickSpec {
             it("is standard for all actions except primary actions") {
                 KeyboardAction.testActions.forEach {
                     let result = appearance.buttonBackgroundColor(for: $0)
-                    switch $0 {
-                    case .ok, .go: expect(result).to(equal(.blue))
-                    default: expect(result).to(equal($0.standardButtonBackgroundColor(for: context)))
-                    }
+                    let expected: Color = $0.isPrimaryAction ? .blue : $0.standardButtonBackgroundColor(for: context)
+                    expect(result).to(equal(expected))
                 }
             }
         }
@@ -54,6 +52,17 @@ class StandardKeyboardAppearanceTests: QuickSpec {
             
             it("is lightweight if action has image") {
                 expect(result(for: .backspace)).toNot(equal(result(for: .character(""))))
+            }
+        }
+        
+        describe("button foreground color") {
+            
+            it("is standard for all actions except primary actions") {
+                KeyboardAction.testActions.forEach {
+                    let result = appearance.buttonForegroundColor(for: $0)
+                    let expected: Color = $0.isPrimaryAction ? .white : $0.standardButtonForegroundColor(for: context)
+                    expect(result).to(equal(expected))
+                }
             }
         }
         

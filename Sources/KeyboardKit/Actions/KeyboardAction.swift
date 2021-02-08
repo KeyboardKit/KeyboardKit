@@ -70,6 +70,17 @@ public extension KeyboardAction {
     }
     
     /**
+     Whether or not the action is a primary action, which is
+     that it is intended to perform a committing action.
+     */
+    var isPrimaryAction: Bool {
+        switch self {
+        case .done, .go, .ok, .search: return true
+        default: return false
+        }
+    }
+    
+    /**
      Whether or not the action is a shift action.
      */
     var isShift: Bool {

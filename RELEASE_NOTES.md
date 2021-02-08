@@ -20,6 +20,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `Image.emoji` no longer requires iOS 14, but uses `person.crop.circle` as fallback on iOS 13.
 * `Input` has new types and providers for working with keyboard layouts.
 * `KeyboardAction` has new actions - `ok`, `go`.
+* `KeyboardAction` has new `isPrimaryAction` property.
 * `KeyboardAppearance` has a new `image(for:)`.
 * `KeyboardInputSetProvider` has new locale-specific providers under `Input/Providers`.
 * `KeyboardInputViewController` has a new static `shared` instance.
@@ -64,6 +65,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `StandardKeyboardActionHandler` now requires an injected keyboard context and behavior.
 * `StandardKeyboardActionHandler` now requires an injected autocomplete and keyboard change action.
 * `StandardKeyboardActionHandler` `triggerAutocomplete` is replaced by an injectable function.
+* `StandardKeyboardAppearance` will use `isPrimaryAction` to apply a blue color to those actions.
 * `StandardKeyboardBehavior` now requires an injected keyboard context.
 * `StandardKeyboardInputSetProvider` now requires an injected keyboard context. 
 

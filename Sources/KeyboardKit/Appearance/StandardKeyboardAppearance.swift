@@ -27,10 +27,8 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     private let context: KeyboardContext
     
     open func buttonBackgroundColor(for action: KeyboardAction) -> Color {
-        switch action {
-        case .ok, .go: return .blue
-        default: return action.standardButtonBackgroundColor(for: context)
-        }
+        if action.isPrimaryAction { return .blue }
+        return action.standardButtonBackgroundColor(for: context)
     }
     
     open func buttonCornerRadius(for action: KeyboardAction) -> CGFloat { 4.0 }
@@ -42,10 +40,8 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     }
     
     open func buttonForegroundColor(for action: KeyboardAction) -> Color {
-        switch action {
-        case .ok, .go: return .white
-        default: return action.standardButtonForegroundColor(for: context)
-        }
+        if action.isPrimaryAction { return .white }
+        return action.standardButtonForegroundColor(for: context)
     }
     
     open func buttonImage(for action: KeyboardAction) -> Image? {
