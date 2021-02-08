@@ -76,7 +76,7 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     }
     
     open func lowerLeadingActions(for context: KeyboardContext) -> KeyboardActions {
-        guard let action = keyboardSwitcherActionForBottomInputRow(for: context) else { return [] }
+        guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         return [action, .none]
     }
     

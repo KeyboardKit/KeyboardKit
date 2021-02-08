@@ -122,7 +122,7 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
      it's `shift` for `alphabetic`, `symbolic` for `numeric`
      and `numeric` for `symbolic`.
      */
-    open func keyboardSwitcherActionForBottomInputRow(for context: KeyboardContext) -> KeyboardAction? {
+    open func keyboardSwitchActionForBottomInputRow(for context: KeyboardContext) -> KeyboardAction? {
         switch context.keyboardType {
         case .alphabetic(let state): return .shift(currentState: state)
         case .numeric: return .keyboardType(.symbolic)

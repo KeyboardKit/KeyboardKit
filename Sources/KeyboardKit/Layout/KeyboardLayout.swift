@@ -28,7 +28,7 @@ public class KeyboardLayout {
     
     public func inputWidth(for totalWidth: TotalWidth) -> CGFloat {
         if let result = widthCache[totalWidth] { return result }
-        let result = items.compactMap { $0.referenceWidth(for: totalWidth) }.min() ?? 0
+        let result = items.compactMap { $0.inputWidth(for: totalWidth) }.min() ?? 0
         widthCache[totalWidth] = result
         return result
     }
@@ -40,11 +40,11 @@ private extension KeyboardLayoutItemRow {
         contains { $0.size.width == .input }
     }
     
-    func referenceWidth(for totalWidth: CGFloat) -> CGFloat? {
+    func inputWidth(for totalWidth: CGFloat) -> CGFloat? {
         guard hasInputWidth else { return nil }
         let taken = reduce(0) { $0 + $1.allocatedWidth(for: totalWidth) }
         let remaining = totalWidth - taken
-        let totalRefPercentage = reduce(0) { $0 + $1.referencePercentage }
+        let totalRefPercentage = reduce(0) { $0 + $1.inputPercentageFactor }
         return remaining / totalRefPercentage
     }
 }
@@ -61,7 +61,7 @@ private extension KeyboardLayoutItem {
         }
     }
     
-    var referencePercentage: CGFloat {
+    var inputPercentageFactor: CGFloat {
         switch size.width {
         case .available: return 0
         case .input: return 1

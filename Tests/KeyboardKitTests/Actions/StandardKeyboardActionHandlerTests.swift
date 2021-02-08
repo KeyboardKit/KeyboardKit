@@ -116,10 +116,6 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
 
         // MARK: - Action Handling
 
-        describe("triggering animation for gesture on action") {
-            // TODO: Test
-        }
-
         describe("triggering audio feedback for gesture on action") {
 
             it("can't be properyly tested") {

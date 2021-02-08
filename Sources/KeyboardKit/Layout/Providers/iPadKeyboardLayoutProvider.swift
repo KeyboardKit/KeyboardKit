@@ -79,12 +79,12 @@ open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     }
     
     open func lowerLeadingActions(for context: KeyboardContext) -> KeyboardActions {
-        guard let action = keyboardSwitcherActionForBottomInputRow(for: context) else { return [] }
+        guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         return [action]
     }
     
     open func lowerTrailingActions(for context: KeyboardContext) -> KeyboardActions {
-        guard let action = keyboardSwitcherActionForBottomInputRow(for: context) else { return [] }
+        guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         return [action]
     }
 }
