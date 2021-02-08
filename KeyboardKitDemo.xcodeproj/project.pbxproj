@@ -1314,7 +1314,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielsaidi/KeyboardKit";
 			requirement = {
-				branch = "layout-changes-v2";
+				branch = v4.0;
 				kind = branch;
 			};
 		};
