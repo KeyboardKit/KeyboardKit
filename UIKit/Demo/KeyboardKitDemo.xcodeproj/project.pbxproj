@@ -191,10 +191,10 @@
 		846704B2234A725300355331 /* DemoAutocompleteSuggestionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoAutocompleteSuggestionProvider.swift; sourceTree = "<group>"; };
 		A92FA9BC25C2A04A006BBD7E /* UIImage+Photos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Photos.swift"; sourceTree = "<group>"; };
 		A92FA9C025C2A86D006BBD7E /* UIImage+Pasteboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Pasteboard.swift"; sourceTree = "<group>"; };
+		A94216B025D1A85C00B1819A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A97D2CC425B44B7F00E270D8 /* EnhancedEmojiKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnhancedEmojiKeyboard.swift; sourceTree = "<group>"; };
 		A97D2CC625B44BA200E270D8 /* HorizontalFloatingHeaderLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalFloatingHeaderLayout.swift; sourceTree = "<group>"; };
 		A97D2CC725B44BA200E270D8 /* HFloatingHeaderButtonCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HFloatingHeaderButtonCollectionView.swift; sourceTree = "<group>"; };
-		OBJ_244 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,7 +220,7 @@
 		84670425234A6A8400355331 /* Project Files */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_244 /* README.md */,
+				A94216B025D1A85C00B1819A /* README.md */,
 			);
 			name = "Project Files";
 			sourceTree = "<group>";
