@@ -9,7 +9,8 @@
 import UIKit
 
 /**
- This class can be used to preview keyboard views.
+ This class can be used to preview keyboard views. Don't use
+ it in other situations.
  */
 public class PreviewTextDocumentProxy: NSObject, UITextDocumentProxy {
     

@@ -11,7 +11,8 @@ import Foundation
 public extension SecondaryInputCalloutContext {
     
     /**
-     This preview can be used to preview keyboard views.
+     This property can be used to preview keyboard views. Do
+     not use it in other situations.
      */
     static var preview: SecondaryInputCalloutContext {
         SecondaryInputCalloutContext(

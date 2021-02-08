@@ -40,6 +40,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `LocaleKey` is a simple enum to gather top-level locale identifiers.
 * `View` has new `keyboardInputViewController` convenience extensions.
 * `View+keyboardToast` has new context-based function.
+* There are new preview-specific implementations that can help you preview keyboard-based views.
 
 
 ### Changed behavior

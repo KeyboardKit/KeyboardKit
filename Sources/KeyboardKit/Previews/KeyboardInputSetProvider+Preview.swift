@@ -9,14 +9,18 @@
 import Foundation
 
 /**
- This class can be used to preview keyboard views.
+ This class can be used to preview keyboard views. Don't use
+ it in other situations.
  */
 public class PreviewKeyboardInputSetProvider: KeyboardInputSetProvider {
     
-    public init() {}
+    public init(context: ObservableKeyboardContext = .preview) {
+        self.context = context
+        self.provider = StandardKeyboardInputSetProvider(context: context)
+    }
     
-    private lazy var context = PreviewKeyboardContext()
-    private lazy var provider = StandardKeyboardInputSetProvider(context: context)
+    private let context: ObservableKeyboardContext
+    private let provider: KeyboardInputSetProvider
     
     public func alphabeticInputSet() -> AlphabeticKeyboardInputSet {
         provider.alphabeticInputSet()

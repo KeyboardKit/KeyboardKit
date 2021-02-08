@@ -9,11 +9,18 @@
 import Foundation
 
 /**
- This class can be used to preview keyboard views.
+ This class can be used to preview keyboard views. Don't use
+ it in other situations.
  */
 public class PreviewSecondaryCalloutActionProvider: SecondaryCalloutActionProvider {
     
-    public init() {}
+    public init(context: ObservableKeyboardContext = .preview) {
+        provider = StandardSecondaryCalloutActionProvider(context: context)
+    }
     
-    public func secondaryCalloutActions(for action: KeyboardAction) -> [KeyboardAction] { []}
+    private let provider: SecondaryCalloutActionProvider
+    
+    public func secondaryCalloutActions(for action: KeyboardAction) -> [KeyboardAction] {
+        provider.secondaryCalloutActions(for: action)
+    }
 }

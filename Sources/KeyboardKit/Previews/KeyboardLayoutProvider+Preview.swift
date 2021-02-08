@@ -9,13 +9,19 @@
 import Foundation
 
 /**
- This class can be used to preview keyboard views.
+ This class can be used to preview keyboard views. Don't use
+ it in other situations.
  */
 public class PreviewKeyboardLayoutProvider: KeyboardLayoutProvider {
     
-    public init() {}
+    public init(context: ObservableKeyboardContext = .preview) {
+        let inputProvider = StandardKeyboardInputSetProvider(context: context)
+        provider = StandardKeyboardLayoutProvider(inputSetProvider: inputProvider)
+    }
+    
+    private let provider: KeyboardLayoutProvider
     
     public func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
-        KeyboardLayout(items: [])
+        provider.keyboardLayout(for: context)
     }
 }

@@ -11,10 +11,6 @@ import SwiftUI
 /**
  This view lists all emojis from a selected category as well
  as a menu that lets the user select a new category.
- 
- `TODO` This can't be previewed when it depends on a context.
- For some reason, the preview engine then crashes. Return to
- it after 4.0 to see if a cleaned up context solves this.
  */
 @available(iOS 14.0, *)
 public struct EmojiCategoryKeyboard: View {
