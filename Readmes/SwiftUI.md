@@ -3,22 +3,6 @@
 KeyboardKit comes with a bunch of built-in view and components that help you build `SwiftUI`-based keyboard extensions.
 
 
-## Tutorial
-
-If you're new to KeyboardKit, [this short SwiftUI tutorial][Tutorial] can help you get started.
-
-
-## KeyboardKitSwiftUI
-
-Due to a [Swift toolchain bug][Bug], `SwiftUI` support must be kept in a separate library. 
-
-Until this bug is fixed, you must add both `KeyboardKit` and [KeyboardKitSwiftUI][KeyboardKitSwiftUI] to your project, if you want to create `SwiftUI`-based keyboard extensions.
-
-
-## Overview
-
-`UIKit` is the standard way of building custom keyboard extensions.  However, `SwiftUI` makes it a lot easier, since it doesn't require constraints, stack views etc.
-
 To build a keyboard extension with KeyboardKit, you just have to import `KeyboardKit` and [KeyboardKitSwiftUI][KeyboardKitSwiftUI] and call `setup<Content: View>(with view: Content)` in your `KeyboardViewController`. It takes a custom `SwiftUI` view and sets up the environment with an `ObservableKeyboardContext` and a standard keyboard style. You can then add any views you want to the keyboard view and use the rich set of extensions and utilities that this library provides.
 
 `SwiftUI` is the main focus moving forward. SwiftUI support will be improved over time in 3.x. KeyboardKit 4.0 will then drop support for iOS 11 and 12 and move everything from [KeyboardKitSwiftUI][KeyboardKitSwiftUI] into this library.

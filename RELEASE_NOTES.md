@@ -3,13 +3,15 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions.
 
 
-## 4.0 - WORK IN PROGRESS
+## 4.0 - SwiftUI: Rising
 
-This release merges `KeyboardKit` with `KeyboardKitSwiftUI` and raises the deployment target to `iOS 13`.
+In the shadows no more! It's time for SwiftUI to rise and become the unrelenting force we always knew it would grow into. The UIKit dragon is slain (or at least driven back into its `Sources/UIKit` cave) and the future is a bright, declarative one!
+
+This release merges `KeyboardKitSwiftUI` into `KeyboardKit` and raises the deployment target to `iOS 13`.
 
 SwiftUI support is now a first-class citizen. UIKit support is still around, but will no longer be actively developed.
 
-Although these release notes will aim at covering everything that changes in this major version, some things will most probably be missed.
+Although these release notes aim at covering everything that has changes in this major version, some things will most probably be missed.
 
 
 ### New features

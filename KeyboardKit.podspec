@@ -1,13 +1,13 @@
-# Run `pod lib lint KeyboardKit.podspec' to ensure this is a valid spec.
+# Run `pod lib lint' to ensure this is a valid spec.
 
 Pod::Spec.new do |s|
   s.name             = 'KeyboardKit'
   s.version          = '3.6.3'
   s.swift_versions   = ['5.3']
-  s.summary          = 'KeyboardKit helps you create iOS keyboard extensions.'
+  s.summary          = 'KeyboardKit helps you create keyboard extensions for iOS.'
 
   s.description      = <<-DESC
-KeyboardKit is a Swift library that can be used to create iOS keyboard extensions.
+KeyboardKit is a Swift library that helps you create keyboard extensions for iOS.
                        DESC
 
   s.homepage         = 'https://github.com/danielsaidi/KeyboardKit'
