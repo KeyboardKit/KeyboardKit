@@ -89,7 +89,7 @@ public extension AutocompleteToolbar {
     static func standardReplacement(for suggestion: AutocompleteSuggestion) -> String {
         let space = " "
         let replacement = suggestion.replacement
-        let proxy = keyboardInputViewController.textDocumentProxy
+        let proxy = KeyboardInputViewController.shared.textDocumentProxy
         let endsWithSpace = replacement.hasSuffix(space)
         let hasNextSpace = proxy.documentContextAfterInput?.starts(with: space) ?? false
         let insertSpace = endsWithSpace || hasNextSpace
@@ -101,8 +101,8 @@ public extension AutocompleteToolbar {
      replace the current word in the proxy with a suggestion.
      */
     static func standardReplacementAction(for suggestion: AutocompleteSuggestion) {
-        let proxy = keyboardInputViewController.textDocumentProxy
-        let actionHandler = keyboardInputViewController.keyboardActionHandler
+        let proxy = KeyboardInputViewController.shared.textDocumentProxy
+        let actionHandler = KeyboardInputViewController.shared.keyboardActionHandler
         let replacement = Self.standardReplacement(for: suggestion)
         proxy.replaceCurrentWord(with: replacement)
         actionHandler.handle(.tap, on: .character(""))

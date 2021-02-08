@@ -15,8 +15,8 @@ import SwiftUI
  The context will automatically dismiss itself when the user
  ends the secondary gesture or drags too far down.
   
- You can inherit this class and override any `open` function
- to modify the callout behavior.
+ You can inherit this class and override any open properties
+ and functions to customize the standard behavior.
  
  `KeyboardKit` will automatically create a standard instance
  and bind it to the input view controller when the extension

@@ -10,11 +10,13 @@ import Foundation
 
 /**
  This class defines how a standard, Western keyboard behaves.
- You can subclass it and override any parts you need.
  
  This class makes heavy use of default logic in for instance
  the text document proxy. However, having this makes it easy
  to change the actual behavior, if you want or need to.
+ 
+ You can inherit this class and override any open properties
+ and functions to customize the standard behavior.
  */
 open class StandardKeyboardBehavior: KeyboardBehavior {
     

@@ -17,7 +17,7 @@ public struct SystemKeyboardButtonContent: View {
     
     public init(
         action: KeyboardAction,
-        appearance: KeyboardAppearance = keyboardInputViewController.keyboardAppearance,
+        appearance: KeyboardAppearance = KeyboardInputViewController.shared.keyboardAppearance,
         text: String? = nil,
         image: Image? = nil) {
         self.appearance = appearance

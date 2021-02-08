@@ -17,8 +17,8 @@ import UIKit
  keyboards with a custom layout, you should either not use a
  layout provider, or create a custom one.
  
- You can inherit this class and override any implementations
- to customize the standard layout.
+ You can inherit this class and override any open properties
+ and functions to customize the standard behavior.
  */
 open class StandardKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     

@@ -12,8 +12,8 @@ import Foundation
  This base class can be used to build locale-specific action
  providers.
  
- You can inherit this class and override any implementations
- to customize the standard behavior.
+ You can inherit this class and override any open properties
+ and functions to customize the standard behavior.
  
  It's easiest to just override `secondaryCalloutActionString`
  then return a string with all the callout action characters.

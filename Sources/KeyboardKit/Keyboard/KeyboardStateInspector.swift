@@ -10,10 +10,7 @@ import Foundation
 
 /**
  This protocol can be implemented by any class or struct and
- provides any implementations with state-specific extensions.
- 
- You just have to implement the protocol to give a class the
- `isKeyboardEnabled` functionality.
+ provides its implementations with state-specific extensions.
  */
 public protocol KeyboardStateInspector {}
 

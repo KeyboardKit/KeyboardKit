@@ -13,8 +13,8 @@ import UIKit
  This standard appearance returns a style that mimics native
  system keyboards.
  
- You can inherit this class then override any parts you like
- to customize the standard appearance.
+ You can inherit this class and override any open properties
+ and functions to customize the standard behavior.
  
  `TODO` Unit test.
  */

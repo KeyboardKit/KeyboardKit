@@ -12,8 +12,8 @@ import UIKit
  This action handler provides standard ways of how to handle
  keyboard actions.
  
- You can inherit this class and override any implementations
- to customize the standard behavior.
+ You can inherit this class and override any open properties
+ and functions to customize the standard behavior.
  
  You can provide a custom `haptic` and `audio` configuration
  when you create an instance of this class. The standard aim

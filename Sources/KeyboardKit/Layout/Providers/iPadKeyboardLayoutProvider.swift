@@ -13,8 +13,8 @@ import SwiftUI
  a home button, adding iPad-specific system buttons around a
  basic set of input actions.
  
- You can inherit this class and override any implementations
- to customize the standard layout.
+ You can inherit this class and override any open properties
+ and functions to customize the standard behavior.
  
  `IMPORTANT` This layout provider has only been tested for a
  couple of locales. If you create a new input set and inject

@@ -12,8 +12,8 @@ import SwiftUI
  This context can be used to control input callout views, to
  present the currently typed character.
  
- You can inherit this class and override any `open` function
- to modify the callout behavior.
+ You can inherit this class and override any open properties
+ and functions to customize the standard behavior.
  
  `KeyboardKit` will automatically create a standard instance
  and bind it to the input view controller when the extension

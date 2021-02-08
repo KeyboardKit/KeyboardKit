@@ -12,8 +12,8 @@ import SwiftUI
  This class provides a keyboard layout that correspond to an
  iPhone with either a home button or notch.
  
- You can inherit this class and override any implementations
- to customize the standard layout.
+ You can inherit this class and override any open properties
+ and functions to customize the standard behavior.
  
  `IMPORTANT` This layout provider has only been tested for a
  couple of locales. If you create a new input set and inject
