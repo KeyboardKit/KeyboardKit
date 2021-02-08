@@ -16,15 +16,19 @@ import SwiftUI
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
  
- `IMPORTANT` This layout provider has only been tested for a
- couple of locales. If you create a new input set and inject
- it into this layout, you may find that some buttons get the
- wrong size or that system buttons are not where they should
- be. If so, you must create a new layout provider. You could
- then inherit this class and add some customizations.
- 
  `TODO` This class is currently used for iPad Air/Pro. These
  device types should use a different layout.
+ 
+ `TODO` This class sizes buttons according to their expected
+ size on an English keyboard. Other locales and orientations
+ may need customizations.
+
+ `IMPORTANT` This layout provider has only been tested for a
+ couple of locales. If you create a new input set and use it
+ with this layout, you may find that buttons are incorrectly
+ sized or placed. If so, create a new layout provider either
+ from scratch or by inheriting this one. Also, open an issue
+ if you think that a supported locale get the wrong size.
  */
 open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     
@@ -103,5 +107,50 @@ private extension iPadKeyboardLayoutProvider {
         case .none: return row == 1 && index == 0
         default: return false
         }
+    }
+}
+
+struct iPadKeyboardLayoutProvider_Previews: PreviewProvider {
+    
+    static var context = ObservableKeyboardContext.preview
+    
+    static var input = StandardKeyboardInputSetProvider(context: context)
+    
+    static var layout = iPadKeyboardLayoutProvider(inputSetProvider: input)
+    
+    static func previews(for locale: Locale, title: String) -> some View {
+        ScrollView {
+            Text(title).font(.title)
+            preview(for: locale, type: .alphabetic(.lowercased))
+            preview(for: locale, type: .numeric)
+            preview(for: locale, type: .symbolic)
+        }.padding()
+    }
+    
+    static func preview(for locale: Locale, type: KeyboardType) -> some View {
+        context.locale = locale
+        context.keyboardType = type
+        return VStack {
+            SystemKeyboard(
+                layout: layout.keyboardLayout(for: context),
+                appearance: StandardKeyboardAppearance(context: context),
+                actionHandler: PreviewKeyboardActionHandler(),
+                width: 768)
+                .frame(width: 768)
+                .environmentObject(context)
+                .environmentObject(InputCalloutContext.preview)
+                .environmentObject(SecondaryInputCalloutContext.preview)
+                .background(Color.gray)
+            
+        }
+    }
+    
+    static var previews: some View {
+        Group {
+            previews(for: LocaleKey.english.locale, title: "English")
+            previews(for: LocaleKey.german.locale, title: "German")
+            previews(for: LocaleKey.italian.locale, title: "Italian")
+            previews(for: LocaleKey.swedish.locale, title: "Swedish")
+        }.previewLayout(.sizeThatFits)
     }
 }

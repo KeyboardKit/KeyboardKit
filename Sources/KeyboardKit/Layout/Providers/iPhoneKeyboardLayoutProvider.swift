@@ -16,11 +16,11 @@ import SwiftUI
  and functions to customize the standard behavior.
  
  `IMPORTANT` This layout provider has only been tested for a
- couple of locales. If you create a new input set and inject
- it into this layout, you may find that some buttons get the
- wrong size or that system buttons are not where they should
- be. If so, you must create a new layout provider. You could
- then inherit this class and add some customizations.
+ couple of locales. If you create a new input set and use it
+ with this layout, you may find that buttons are incorrectly
+ sized or placed. If so, create a new layout provider either
+ from scratch or by inheriting this one. Also, open an issue
+ if you think that a supported locale get the wrong size.
  */
 open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     
@@ -62,16 +62,16 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
      */
     open func bottomActions(for context: KeyboardContext) -> KeyboardActionRow {
         var result = KeyboardActions()
-        let isPortrait = context.deviceOrientation.isPortrait
+        let portrait = context.deviceOrientation.isPortrait
         let needsInputSwitcher = context.needsInputModeSwitchKey
         let needsDictation = context.needsInputModeSwitchKey
         if let action = keyboardSwitchActionForBottomRow(for: context) { result.append(action) }
         if needsInputSwitcher { result.append(.nextKeyboard) }
         if !needsInputSwitcher { result.append(.keyboardType(.emojis)) }
-        if isPortrait, needsDictation, let action = dictationReplacement { result.append(action) }
+        if portrait, needsDictation, let action = dictationReplacement { result.append(action) }
         result.append(.space)
         result.append(.newLine) // TODO: Should be "primary"
-        if !isPortrait, needsDictation, let action = dictationReplacement { result.append(action) }
+        if !portrait, needsDictation, let action = dictationReplacement { result.append(action) }
         return result
     }
     
@@ -100,5 +100,50 @@ private extension iPhoneKeyboardLayoutProvider {
         let isSymbolic = context.keyboardType == .symbolic
         guard isNumeric || isSymbolic else { return false }
         return row == 2 // Index 2 is the "wide keys" row
+    }
+}
+
+struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
+    
+    static var context = ObservableKeyboardContext.preview
+    
+    static var input = StandardKeyboardInputSetProvider(context: context)
+    
+    static var layout = iPhoneKeyboardLayoutProvider(inputSetProvider: input)
+    
+    static func previews(for locale: Locale, title: String) -> some View {
+        ScrollView {
+            Text(title).font(.title)
+            preview(for: locale, type: .alphabetic(.lowercased))
+            preview(for: locale, type: .numeric)
+            preview(for: locale, type: .symbolic)
+        }.padding()
+    }
+    
+    static func preview(for locale: Locale, type: KeyboardType) -> some View {
+        context.locale = locale
+        context.keyboardType = type
+        return VStack {
+            SystemKeyboard(
+                layout: layout.keyboardLayout(for: context),
+                appearance: StandardKeyboardAppearance(context: context),
+                actionHandler: PreviewKeyboardActionHandler(),
+                width: 768)
+                .frame(width: 768)
+                .environmentObject(context)
+                .environmentObject(InputCalloutContext.preview)
+                .environmentObject(SecondaryInputCalloutContext.preview)
+                .background(Color.gray)
+            
+        }
+    }
+    
+    static var previews: some View {
+        Group {
+            previews(for: LocaleKey.english.locale, title: "English")
+            previews(for: LocaleKey.german.locale, title: "German")
+            previews(for: LocaleKey.italian.locale, title: "Italian")
+            previews(for: LocaleKey.swedish.locale, title: "Swedish")
+        }.previewLayout(.sizeThatFits)
     }
 }
