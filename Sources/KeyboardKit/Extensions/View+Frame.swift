@@ -10,6 +10,9 @@ import SwiftUI
 
 public extension View {
     
+    /**
+     Apply the size of a `CGSize` to the view.
+     */
     func frame(_ size: CGSize) -> some View {
         self.frame(width: size.width, height: size.height)
     }

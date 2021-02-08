@@ -8,7 +8,7 @@
 
 import UIKit
 
-public extension UIView {
+extension UIView {
     
     /**
      Add a subview with an option to adjust its anchords to

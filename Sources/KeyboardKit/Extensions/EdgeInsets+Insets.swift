@@ -12,7 +12,7 @@ import SwiftUI
 public extension EdgeInsets {
     
     /**
-     Create insets from a `UIEdgeInsets` instance.
+     Create `EdgeInsets` from a `UIEdgeInsets` instance.
      */
     init(insets: UIEdgeInsets) {
         self.init(

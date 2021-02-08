@@ -8,8 +8,8 @@
 
 import Quick
 import Nimble
-import KeyboardKit
 import UIKit
+@testable import KeyboardKit
 
 class KeyboardContextTests: QuickSpec {
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public extension UIInputViewController {
+extension UIInputViewController {
     
     /**
      Get the current device orientation. If no window can be

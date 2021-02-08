@@ -73,7 +73,9 @@ Besides the new things listed below, there are a bunch of new extensions, images
 
 ### Removed/renamed
 
-* All previews deprecations have been removed in this version.
+* All unused extensions have been removed.
+* All previous deprecations have been removed.
+* All internal-only used extensions have been made internal.
 * `InputCalloutContext.shared` has been removed. Use the environment object instead.
 * `KeyboardAction+SecondaryCalloutActions` has been replaced with new `Callouts/Providers` providers.
 * `KeyboardActionRow` has been removed, since it's confusing to have two aliases for the same thing.
