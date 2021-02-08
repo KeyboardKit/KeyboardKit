@@ -173,27 +173,27 @@ class KeyboardInputViewControllerTests: QuickSpec {
         describe("perform autocomplete") {
             
             it("is triggered by textDidChange") {
-                expect(vc.hasInvoked(vc.performAutocompleteRef)).to(beFalse())
+                expect(vc.hasCalled(vc.performAutocompleteRef)).to(beFalse())
                 vc.textDidChange(nil)
-                expect(vc.hasInvoked(vc.performAutocompleteRef)).to(beTrue())
+                expect(vc.hasCalled(vc.performAutocompleteRef)).to(beTrue())
             }
         }
         
         describe("reset autocomplete") {
             
             it("is triggered by selectionWillChange") {
-                expect(vc.hasInvoked(vc.resetAutocompleteRef)).to(beFalse())
+                expect(vc.hasCalled(vc.resetAutocompleteRef)).to(beFalse())
                 vc.selectionWillChange(nil)
-                expect(vc.hasInvoked(vc.resetAutocompleteRef)).to(beTrue())
+                expect(vc.hasCalled(vc.resetAutocompleteRef)).to(beTrue())
             }
         }
         
         describe("reset autocomplete") {
             
             it("is triggered by selectionWillChange") {
-                expect(vc.hasInvoked(vc.resetAutocompleteRef)).to(beFalse())
+                expect(vc.hasCalled(vc.resetAutocompleteRef)).to(beFalse())
                 vc.selectionDidChange(nil)
-                expect(vc.hasInvoked(vc.resetAutocompleteRef)).to(beTrue())
+                expect(vc.hasCalled(vc.resetAutocompleteRef)).to(beTrue())
             }
         }
         

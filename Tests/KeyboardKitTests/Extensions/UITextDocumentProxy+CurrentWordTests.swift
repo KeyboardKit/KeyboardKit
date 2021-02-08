@@ -167,9 +167,9 @@ class UITextDocumentProxy_CurrentWordTests: QuickSpec {
                 }
                 
                 it("aborts if current word is missing") {
-                    let adjust = proxy.invokations(of: proxy.adjustTextPositionRef)
-                    let delete = proxy.invokations(of: proxy.deleteBackwardRef)
-                    let insert = proxy.invokations(of: proxy.insertTextRef)
+                    let adjust = proxy.calls(to: proxy.adjustTextPositionRef)
+                    let delete = proxy.calls(to: proxy.deleteBackwardRef)
+                    let insert = proxy.calls(to: proxy.insertTextRef)
                     expect(adjust.count).to(equal(0))
                     expect(delete.count).to(equal(0))
                     expect(insert.count).to(equal(0))
@@ -184,20 +184,20 @@ class UITextDocumentProxy_CurrentWordTests: QuickSpec {
                 }
                 
                 it("does not adjust text position") {
-                    let adjust = proxy.invokations(of: proxy.adjustTextPositionRef)
-                    expect(adjust.count).to(equal(1))
-                    expect(adjust[0].arguments).to(equal(0))
+                    let calls = proxy.calls(to: proxy.adjustTextPositionRef)
+                    expect(calls.count).to(equal(1))
+                    expect(calls[0].arguments).to(equal(0))
                 }
                 
                 it("deletes backwards current word count times") {
-                    let delete = proxy.invokations(of: proxy.deleteBackwardRef)
-                    expect(delete.count).to(equal(4))
+                    let calls = proxy.calls(to: proxy.deleteBackwardRef)
+                    expect(calls.count).to(equal(4))
                 }
                 
                 it("inserts replacement text") {
-                    let insert = proxy.invokations(of: proxy.insertTextRef)
-                    expect(insert.count).to(equal(1))
-                    expect(insert[0].arguments).to(equal("replacement"))
+                    let calls = proxy.calls(to: proxy.insertTextRef)
+                    expect(calls.count).to(equal(1))
+                    expect(calls[0].arguments).to(equal("replacement"))
                 }
             }
             
@@ -209,20 +209,20 @@ class UITextDocumentProxy_CurrentWordTests: QuickSpec {
                 }
                 
                 it("adjusts text position post cursor count times") {
-                    let adjust = proxy.invokations(of: proxy.adjustTextPositionRef)
-                    expect(adjust.count).to(equal(1))
-                    expect(adjust[0].arguments).to(equal(11))
+                    let calls = proxy.calls(to: proxy.adjustTextPositionRef)
+                    expect(calls.count).to(equal(1))
+                    expect(calls[0].arguments).to(equal(11))
                 }
                 
                 it("deletes backwards current word count times") {
-                    let delete = proxy.invokations(of: proxy.deleteBackwardRef)
-                    expect(delete.count).to(equal(11))
+                    let calls = proxy.calls(to: proxy.deleteBackwardRef)
+                    expect(calls.count).to(equal(11))
                 }
                 
                 it("inserts replacement text") {
-                    let insert = proxy.invokations(of: proxy.insertTextRef)
-                    expect(insert.count).to(equal(1))
-                    expect(insert[0].arguments).to(equal("Swift"))
+                    let calls = proxy.calls(to: proxy.insertTextRef)
+                    expect(calls.count).to(equal(1))
+                    expect(calls[0].arguments).to(equal("Swift"))
                 }
             }
             
@@ -235,20 +235,20 @@ class UITextDocumentProxy_CurrentWordTests: QuickSpec {
                 }
                 
                 it("adjusts text position post cursor count times") {
-                    let adjust = proxy.invokations(of: proxy.adjustTextPositionRef)
-                    expect(adjust.count).to(equal(1))
-                    expect(adjust[0].arguments).to(equal(8))
+                    let calls = proxy.calls(to: proxy.adjustTextPositionRef)
+                    expect(calls.count).to(equal(1))
+                    expect(calls[0].arguments).to(equal(8))
                 }
                 
                 it("deletes backwards current word count times") {
-                    let delete = proxy.invokations(of: proxy.deleteBackwardRef)
-                    expect(delete.count).to(equal(11))
+                    let calls = proxy.calls(to: proxy.deleteBackwardRef)
+                    expect(calls.count).to(equal(11))
                 }
                 
                 it("inserts replacement text") {
-                    let insert = proxy.invokations(of: proxy.insertTextRef)
-                    expect(insert.count).to(equal(1))
-                    expect(insert[0].arguments).to(equal("Swift"))
+                    let calls = proxy.calls(to: proxy.insertTextRef)
+                    expect(calls.count).to(equal(1))
+                    expect(calls[0].arguments).to(equal("Swift"))
                 }
             }
         }

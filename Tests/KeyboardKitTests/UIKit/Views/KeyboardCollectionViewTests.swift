@@ -52,13 +52,13 @@ class KeyboardCollectionViewTests: QuickSpec {
             }
             
             it("invalidates layout") {
-                let exec = layout.invokations(of: layout.invalidateLayoutRef)
-                expect(exec.count).to(equal(1))
+                let calls = layout.calls(to: layout.invalidateLayoutRef)
+                expect(calls.count).to(equal(1))
             }
             
             it("reloads data") {
-                let exec = view.invokations(of: view.reloadDataRef)
-                expect(exec.count).to(equal(1))
+                let calls = view.calls(to: view.reloadDataRef)
+                expect(calls.count).to(equal(1))
             }
         }
         

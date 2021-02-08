@@ -56,12 +56,12 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
                 // let inv = proxy.invokations(of: proxy.insertTextRef)
                 // expect(inv.count).to(equal(1))
                 // expect(inv[0].arguments).to(equal("a"))
-                expect(self.mock.hasInvoked(self.autocompleteActionRef)).to(beTrue())
-                expect(handler.hasInvoked(handler.triggerAudioFeedbackRef)).to(beTrue())
-                expect(handler.hasInvoked(handler.triggerHapticFeedbackRef)).to(beTrue())
-                expect(handler.hasInvoked(handler.tryChangeKeyboardTypeRef)).to(beTrue())
-                expect(handler.hasInvoked(handler.tryEndSentenceRef)).to(beTrue())
-                expect(handler.hasInvoked(handler.tryRegisterEmojiRef)).to(beTrue())
+                expect(self.mock.hasCalled(self.autocompleteActionRef)).to(beTrue())
+                expect(handler.hasCalled(handler.triggerAudioFeedbackRef)).to(beTrue())
+                expect(handler.hasCalled(handler.triggerHapticFeedbackRef)).to(beTrue())
+                expect(handler.hasCalled(handler.tryChangeKeyboardTypeRef)).to(beTrue())
+                expect(handler.hasCalled(handler.tryEndSentenceRef)).to(beTrue())
+                expect(handler.hasCalled(handler.tryRegisterEmojiRef)).to(beTrue())
             }
         }
 
@@ -145,14 +145,14 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             it("does not end sentence if behavior says no") {
                 proxy.documentContextBeforeInput = ""
                 handler.tryEndSentence(after: .tap, on: .character("a"))
-                expect(handler.hasInvoked(handler.handleRef)).to(beFalse())
+                expect(handler.hasCalled(handler.handleRef)).to(beFalse())
             }
 
             it("ends sentence with behavior action if behavior says yes") {
                 proxy.documentContextBeforeInput = "foo  "
                 handler.tryEndSentence(after: .tap, on: .space)
-                expect(proxy.hasInvoked(proxy.deleteBackwardRef, numberOfTimes: 2)).to(beTrue())
-                expect(proxy.hasInvoked(proxy.insertTextRef, numberOfTimes: 1)).to(beTrue())
+                expect(proxy.hasCalled(proxy.deleteBackwardRef, numberOfTimes: 2)).to(beTrue())
+                expect(proxy.hasCalled(proxy.insertTextRef, numberOfTimes: 1)).to(beTrue())
             }
         }
 
@@ -161,13 +161,13 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             it("does not change type if new type is same as current") {
                 inputViewController.keyboardContext.keyboardType = .alphabetic(.lowercased)
                 handler.tryChangeKeyboardType(after: .tap, on: .character("a"))
-                expect(inputViewController.hasInvoked(inputViewController.changeKeyboardTypeRef)).to(beFalse())
+                expect(inputViewController.hasCalled(inputViewController.changeKeyboardTypeRef)).to(beFalse())
             }
 
             it("changes type if new type is different from current") {
                 inputViewController.keyboardContext.keyboardType = .alphabetic(.uppercased)
                 handler.tryChangeKeyboardType(after: .tap, on: .character("a"))
-                let inv = self.mock.invokations(of: self.changeKeyboardTypeActionRef)
+                let inv = self.mock.calls(to: self.changeKeyboardTypeActionRef)
                 expect(inv.count).to(equal(1))
                 expect(inv[0].arguments).to(equal(.alphabetic(.lowercased)))
             }
@@ -184,17 +184,17 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
 
             it("aborts if gesture is not tap") {
                 handler.tryRegisterEmoji(after: .doubleTap, on: .emoji(Emoji("a")))
-                expect(mockProvider.hasInvoked(mockProvider.registerEmojiRef)).to(beFalse())
+                expect(mockProvider.hasCalled(mockProvider.registerEmojiRef)).to(beFalse())
             }
 
             it("aborts if action is not emoji") {
                 handler.tryRegisterEmoji(after: .tap, on: .space)
-                expect(mockProvider.hasInvoked(mockProvider.registerEmojiRef)).to(beFalse())
+                expect(mockProvider.hasCalled(mockProvider.registerEmojiRef)).to(beFalse())
             }
 
             it("registers tapped emoji to emoji category provider") {
                 handler.tryRegisterEmoji(after: .tap, on: .emoji(Emoji("a")))
-                expect(mockProvider.hasInvoked(mockProvider.registerEmojiRef)).to(beTrue())
+                expect(mockProvider.hasCalled(mockProvider.registerEmojiRef)).to(beTrue())
             }
         }
     }

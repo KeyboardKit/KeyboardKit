@@ -57,8 +57,8 @@ class KeyboardButtonRowCollectionViewTests: QuickSpec {
             it("restores current page index") {
                 view = TestClass(id: "test", actions: [], configuration: config) { _ in TestButton(type: .custom) }
                 view.layoutSubviews()
-                let exec = view.invokations(of: view.restoreCurrentPageRef)
-                expect(exec.count).to(equal(1))
+                let calls = view.calls(to: view.restoreCurrentPageRef)
+                expect(calls.count).to(equal(1))
             }
         }
         

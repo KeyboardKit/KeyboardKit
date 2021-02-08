@@ -42,20 +42,20 @@ class MostRecentEmojiProviderTests: QuickSpec {
                 let list = ["a", "b", "c"]
                 defaults.registerResult(for: defaults.stringArrayRef) { _ in list }
                 provider.registerEmoji(Emoji("c"))
-                let readInv = defaults.invokations(of: defaults.stringArrayRef)
-                let writeInv = defaults.invokations(of: defaults.setValueRef)
-                expect(readInv.count).to(equal(1))
-                expect(writeInv.count).to(equal(1))
-                expect(writeInv[0].arguments.0 as? [String]).to(equal(["c", "a", "b"]))
-                expect(writeInv[0].arguments.1).to(equal(readInv[0].arguments))
+                let read = defaults.calls(to: defaults.stringArrayRef)
+                let write = defaults.calls(to: defaults.setValueRef)
+                expect(read.count).to(equal(1))
+                expect(write.count).to(equal(1))
+                expect(write[0].arguments.0 as? [String]).to(equal(["c", "a", "b"]))
+                expect(write[0].arguments.1).to(equal(read[0].arguments))
             }
             
             it("caps new emoji list to max count") {
                 let list = Array(repeating: "a", count: 100)
                 defaults.registerResult(for: defaults.stringArrayRef) { _ in list }
                 provider.registerEmoji(Emoji("c"))
-                let inv = defaults.invokations(of: defaults.setValueRef)
-                let written = inv[0].arguments.0 as? [String]
+                let calls = defaults.calls(to: defaults.setValueRef)
+                let written = calls[0].arguments.0 as? [String]
                 expect(written?.count).to(equal(30))
             }
         }

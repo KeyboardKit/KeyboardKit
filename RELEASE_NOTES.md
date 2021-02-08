@@ -18,6 +18,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 
 * `Callouts/Providers` have new locale-specific callout action providers.
 * `Image.emoji` no longer requires iOS 14, but uses `person.crop.circle` as fallback on iOS 13.
+* `Input` has new types and providers for working with keyboard layouts.
 * `KeyboardAppearance` has a new `image(for:)`.
 * `KeyboardInputSetProvider` has new locale-specific providers under `Input/Providers`.
 * `KeyboardInputViewController` has a new static `shared` instance.
@@ -31,7 +32,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `KeyboardInputViewController` has a new `keyboardSecondaryInputActionProvider`.
 * `KeyboardInputViewController` has a new `keyboardSecondaryInputCalloutContext`.
 * `KeyboardInputViewController` `setup(with:)` is now open and overridable.
-* `Layout` has new types for working with keyboard layouts.
+* `Layout` has new types and providers for working with keyboard layouts.
 * `Locale` is a new namespace with a few new locale-specific utils.
 * `LocaleDictionary` is a simple dictionary wrapper to work with localized resources.
 * `LocaleKey` is a simple enum to gather top-level locale identifiers.
@@ -87,7 +88,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `KeyboardInputViewController` `addKeyboardGestures` has been converted to `KeyboardButton+Gestures`.
 * `KeyboardInputViewController` `context` has been renamed to `keyboardContext`.
 * `KeyboardInputViewController+Gestures` has been converted to `KeyboardButton+Gestures`.
-* `KeyboardLayout` `actionRows` has been renamed to `rows`.
+* `KeyboardLayout` `actionRows` has been renamed to `items` and are of a new `KeyboardLayoutItemRows` type.
 * `PhotosImageService` and `StandardPhotosImageService` have been removed.
 * `Settings` has been entirely removed.
 * `SecondaryInputCalloutContext.shared` has been removed. Use the environment object instead.

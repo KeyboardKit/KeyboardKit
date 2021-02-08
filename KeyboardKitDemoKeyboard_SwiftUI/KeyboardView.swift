@@ -18,9 +18,9 @@ import KeyboardKit
  */
 struct KeyboardView: View {
     
-    var keyboardActionHandler: KeyboardActionHandler
-    var keyboardAppearance: KeyboardAppearance
-    var keyboardLayoutProvider: KeyboardLayoutProvider
+    var actionHandler: KeyboardActionHandler
+    var appearance: KeyboardAppearance
+    var layoutProvider: KeyboardLayoutProvider
     
     @EnvironmentObject var autocompleteContext: ObservableAutocompleteContext
     @EnvironmentObject var keyboardContext: ObservableKeyboardContext
@@ -82,8 +82,8 @@ private extension KeyboardView {
     
     var imageKeyboard: some View {
         ImageKeyboard(
-            actionHandler: keyboardActionHandler,
-            appearance: keyboardAppearance)
+            actionHandler: actionHandler,
+            appearance: appearance)
             .padding()
     }
     
@@ -92,7 +92,7 @@ private extension KeyboardView {
             .resizable()
             .aspectRatio(contentMode: .fit)
             .padding(5)
-            .keyboardButtonStyle(for: .character(""), appearance: keyboardAppearance)
+            .keyboardButtonStyle(for: .character(""), appearance: appearance)
             .padding(.standardKeyboardButtonInsets())
             .onTapGesture {
                 changeLocale(to: .swedish)
@@ -109,9 +109,9 @@ private extension KeyboardView {
         VStack(spacing: 0) {
             autocompleteBar
             SystemKeyboard(
-                layout: keyboardLayoutProvider.keyboardLayout(for: keyboardContext),
-                appearance: keyboardAppearance,
-                actionHandler: keyboardActionHandler,
+                layout: layoutProvider.keyboardLayout(for: keyboardContext),
+                appearance: appearance,
+                actionHandler: actionHandler,
                 buttonBuilder: buttonBuilder)
         }
     }
@@ -148,7 +148,7 @@ private extension KeyboardView {
     }
     
     func switchToDefaultKeyboard() {
-        keyboardActionHandler
+        actionHandler
             .handle(.tap, on: .keyboardType(.alphabetic(.lowercased)))
     }
 }

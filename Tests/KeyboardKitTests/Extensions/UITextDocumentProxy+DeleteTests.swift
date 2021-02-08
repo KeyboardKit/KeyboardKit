@@ -28,7 +28,7 @@ class UITextDocumentProxy_DeleteTests: QuickSpec {
             
             it("calls delete backwards correct number of times") {
                 proxy.deleteBackward(times: 11)
-                let delete = proxy.invokations(of: proxy.deleteBackwardRef)
+                let delete = proxy.calls(to: proxy.deleteBackwardRef)
                 expect(delete.count).to(equal(11))
             }
         }
