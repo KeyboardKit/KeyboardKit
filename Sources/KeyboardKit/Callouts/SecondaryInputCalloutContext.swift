@@ -41,14 +41,47 @@ open class SecondaryInputCalloutContext: ObservableObject {
     
     static let coordinateSpace = "com.keyboardkit.coordinate.SecondaryInputCallout"
     
+    /**
+     Whether or not the context has any current actions.
+     */
     public var isActive: Bool { !actions.isEmpty }
+    
+    /**
+     Whether or not the callout bubble should have a leading
+     alignment.
+     */
     public var isLeading: Bool { !isTrailing }
+    
+    /**
+     Whether or not the callout bubble should use a trailing
+     alignment.
+     */
     public var isTrailing: Bool { alignment.horizontal == .trailing }
+    
+    /**
+     The currently selected callout action, which updates as
+     the user swipes left and right.
+     */
     public var selectedAction: KeyboardAction? { isIndexValid(selectedIndex) ? actions[selectedIndex] : nil }
     
+    /**
+     The action that are currently active for the context.
+     */
     @Published private(set) var actions: [KeyboardAction] = []
+    
+    /**
+     The callout bubble alignment.
+     */
     @Published private(set) var alignment: Alignment = .leading
+    
+    /**
+     The frame of the button that is active for the context.
+     */
     @Published private(set) var buttonFrame: CGRect = .zero
+    
+    /**
+     The currently selected action index.
+     */
     @Published private(set) var selectedIndex: Int = -1
     
     

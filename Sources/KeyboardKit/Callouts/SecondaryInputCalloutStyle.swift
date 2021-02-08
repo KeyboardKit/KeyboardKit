@@ -9,7 +9,8 @@
 import SwiftUI
 
 /**
- This struct can be used to style `SecondaryInputCallout`s.
+ This can be used to style `SecondaryInputCallout` views, by
+ applying the `secondaryInputCalloutStyle` view modifier.
  
  You can modify the `.standard` style instance to change the
  standard global style of all `SecondaryInputCallout` views.
@@ -41,8 +42,14 @@ public struct SecondaryInputCalloutStyle {
 
 public extension SecondaryInputCalloutStyle {
     
+    /**
+     This is the standard style that will be used by default.
+     */
     static var standard = SecondaryInputCalloutStyle()
     
+    /**
+     This is the standard font that will be used by default.
+     */
     static var standardFont: Font {
         if #available(iOS 14.0, *) {
             return .title3
@@ -51,6 +58,9 @@ public extension SecondaryInputCalloutStyle {
         }
     }
     
+    /**
+     This is the standard style for a system styled callout.
+     */
     static func systemStyle(for context: KeyboardContext) -> SecondaryInputCalloutStyle {
         var style = SecondaryInputCalloutStyle.standard
         style.callout = .systemStyle(for: context)

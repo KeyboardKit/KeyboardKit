@@ -9,7 +9,8 @@
 import SwiftUI
 
 /**
- This struct can be used to style `InputCallout` views.
+ This can be used to style `InputCallout` views, by applying
+ the `inputCalloutStyle` view modifier.
  
  Note that the `calloutSize` width is not the total width of
  the callout, but the total size beyond the button area. The
@@ -37,8 +38,14 @@ public struct InputCalloutStyle {
 
 public extension InputCalloutStyle {
     
+    /**
+     This is the standard style that will be used by default.
+     */
     static var standard = InputCalloutStyle()
     
+    /**
+     This is the standard style for a system styled callout.
+     */
     static func systemStyle(for context: KeyboardContext) -> InputCalloutStyle {
         var style = InputCalloutStyle.standard
         style.callout = .systemStyle(for: context)

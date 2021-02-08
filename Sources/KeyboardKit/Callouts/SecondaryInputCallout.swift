@@ -54,8 +54,8 @@ private extension SecondaryInputCallout {
     var calloutStyle: CalloutStyle { style.callout }
     var cornerRadius: CGFloat { calloutStyle.cornerRadius }
     var curveSize: CGFloat { calloutStyle.curveSize }
-    var isLeading: Bool { !isTrailing }
-    var isTrailing: Bool { context.alignment.horizontal == .trailing }
+    var isLeading: Bool { context.isLeading }
+    var isTrailing: Bool { context.isTrailing }
     var verticalPaddingAdjustment: CGFloat { 2 * style.verticalPadding }
     
     var buttonArea: some View {

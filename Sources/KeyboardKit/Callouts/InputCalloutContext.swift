@@ -12,8 +12,6 @@ import SwiftUI
  This context can be used to control input callout views, to
  present the currently typed character.
  
- You can use `.shared` to get/set a shared context.
- 
  You can inherit this class and override any `open` function
  to modify the callout behavior.
  */
@@ -29,13 +27,30 @@ open class InputCalloutContext: ObservableObject {
     
     static let coordinateSpace = "com.keyboardkit.coordinate.InputCallout"
     
+    /**
+     The optional input of any currently active action.
+     */
     public var input: String? { action?.input }
-    open var isActive: Bool { input != nil && isEnabled }
-    open var isEnabled: Bool { UIDevice.current.userInterfaceIdiom == .phone }
     
-    private var asyncTag = 0
+    /**
+     Whether or not the context is enabled and has an input.
+     */
+    public var isActive: Bool { input != nil && isEnabled }
     
+    /**
+     Whether or not the context is enabled and will show any
+     callout. This is true by default for phones, else false.
+     */
+    @Published public var isEnabled: Bool = UIDevice.current.userInterfaceIdiom == .phone
+    
+    /**
+     The action that is currently active for the context.
+     */
     @Published private(set) var action: KeyboardAction?
+    
+    /**
+     The frame of the button that is active for the context.
+     */
     @Published private(set) var buttonFrame: CGRect = .zero
     
     
