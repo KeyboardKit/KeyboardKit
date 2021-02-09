@@ -32,8 +32,23 @@ KeyboardKit has a `KeyboardAction` enum with these actions:
 * `custom(name:)` - a custom action if no other actions fit your needs
 * `none`- use this for empty "placeholder" keys that do nothing
 
-Keyboard actions can be bound to any view (e.g. using the `keyboardGestures` view modifier) or triggered programmatically. They can be handled with a `KeyboardActionHandler`.
 
-`KeyboardInputViewController` has a `keyboardActionHandler` that can be used to hande keyboard actions. KeyboardKit will setup a `StandardKeyboardActionHandler` by default, but you can replace it with a custom handler if you need custom handling.
+## Handling actions
 
-To create a custom action handler, you can either start from scratch or inherit `StandardKeyboardActionHandler` and override any parts you like. 
+Keyboard actions can be applied to any view or triggered programmatically. They can be handled with a `KeyboardActionHandler`.
+
+`KeyboardInputViewController` has a `keyboardActionHandler` property that you can use. KeyboardKit will setup a standard action andler by default, but you can replace it with any custom handler.
+
+You can inherit `StandardKeyboardActionHandler` and override any parts of the standard behavior. This is recommended instead of building a completely new action handler from scratch. 
+
+## Secondary callout actions
+
+Keyboard actions can have secondary actions that are presented in a callout when a button with the action is long pressed.
+
+`KeyboardInputViewController` has a `keyboardSecondaryCalloutActionProvider` that can be used to provide secondary actions for various keyboard actions. KeyboardKit will set this to a `StandardSecondaryCalloutActionProvider` by default, but you can replace it with any custom provider.
+
+Read more about these callouts in the [callout][Callouts] readme.
+
+
+[Appearance]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Appearance.md
+[Callouts]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Callouts.md

@@ -16,37 +16,37 @@ import Foundation
  don't and are just here to let you create your keyboards in
  a declarative way. Such actions require custom handling and
  can for instance be handled by a custom action handler.
-*/
+ */
 public enum KeyboardAction: Equatable {
     
     case
-    none,
-    backspace,
-    character(String),
-    control,
-    command,
-    custom(name: String),
-    done,
-    dictation,
-    dismissKeyboard,
-    emoji(Emoji),
-    emojiCategory(_ category: EmojiCategory),
-    escape,
-    function,
-    go,
-    image(description: String, keyboardImageName: String, imageName: String),
-    keyboardType(KeyboardType),
-    moveCursorBackward,
-    moveCursorForward,
-    newLine,
-    nextKeyboard,
-    ok,
-    option,
-    search,
-    shift(currentState: KeyboardShiftState),
-    systemImage(description: String, keyboardImageName: String, imageName: String),
-    space,
-    tab
+        none,
+        backspace,
+        character(String),
+        command,
+        control,
+        custom(name: String),
+        done,
+        dictation,
+        dismissKeyboard,
+        emoji(Emoji),
+        emojiCategory(_ category: EmojiCategory),
+        escape,
+        function,
+        go,
+        image(description: String, keyboardImageName: String, imageName: String),
+        keyboardType(KeyboardType),
+        moveCursorBackward,
+        moveCursorForward,
+        newLine,
+        nextKeyboard,
+        ok,
+        option,
+        search,
+        shift(currentState: KeyboardShiftState),
+        systemImage(description: String, keyboardImageName: String, imageName: String),
+        space,
+        tab
 }
 
 
