@@ -73,31 +73,30 @@ class KeyboardAction_SystemTests: QuickSpec {
             }
             
             it("is defined for some actions") {
-                expect(result(for: .backspace)).to(equal(.backspace))
-                expect(result(for: .command)).to(equal(.command))
-                expect(result(for: .control)).to(equal(.control))
-                expect(result(for: .dictation)).to(equal(.dictation))
-                expect(result(for: .dismissKeyboard)).to(equal(.keyboardDismiss))
-                expect(result(for: .keyboardType(.email))).to(equal(.email))
-                expect(result(for: .keyboardType(.emojis))).to(equal(.emoji))
-                expect(result(for: .moveCursorBackward)).to(equal(.moveCursorLeft))
-                expect(result(for: .moveCursorForward)).to(equal(.moveCursorRight))
-                expect(result(for: .newLine)).to(equal(.newLine))
-                expect(result(for: .nextKeyboard)).to(equal(.globe))
-                expect(result(for: .option)).to(equal(.option))
-                expect(result(for: .shift(currentState: .lowercased))).to(equal(.shiftLowercased))
-                expect(result(for: .shift(currentState: .uppercased))).to(equal(.shiftUppercased))
-                expect(result(for: .shift(currentState: .capsLocked))).to(equal(.shiftCapslocked))
-                expect(result(for: .tab)).to(equal(.tab))
-                
-                expect(result(for: .none)).to(beNil())
-                expect(result(for: .character(""))).to(beNil())
-                expect(result(for: .custom(name: ""))).to(beNil())
-                expect(result(for: .emoji(Emoji("")))).to(beNil())
-                expect(result(for: .emojiCategory(.smileys))).to(beNil())
-                expect(result(for: .escape)).to(beNil())
-                expect(result(for: .function)).to(beNil())
-                expect(result(for: .space)).to(beNil())
+                expected = [
+                    .backspace,
+                    .command,
+                    .control,
+                    .dictation,
+                    .dismissKeyboard,
+                    .image(description: "", keyboardImageName: "", imageName: ""),
+                    .keyboardType(.email),
+                    .keyboardType(.emojis),
+                    .keyboardType(.images),
+                    .moveCursorBackward,
+                    .moveCursorForward,
+                    .newLine,
+                    .nextKeyboard,
+                    .option,
+                    .settings,
+                    .shift(currentState: .lowercased),
+                    .shift(currentState: .uppercased),
+                    .shift(currentState: .capsLocked),
+                    .systemImage(description: "", keyboardImageName: "", imageName: ""),
+                    .tab
+                ]
+                expected.forEach { expect(result(for: $0)).toNot(beNil()) }
+                unexpected.forEach { expect(result(for: $0)).to(beNil()) }
             }
         }
         

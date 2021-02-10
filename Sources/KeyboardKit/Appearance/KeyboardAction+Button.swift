@@ -53,6 +53,7 @@ public extension KeyboardAction {
         case .newLine: return .newLine
         case .nextKeyboard: return .globe
         case .option: return .option
+        case .settings: return .settings
         case .shift(let currentState): return currentState.standardButtonImage
         case .systemImage(_, let imageName, _): return Image(systemName: imageName)
         case .tab: return .tab

@@ -54,6 +54,8 @@ public extension KeyboardAction {
      keyboard action is triggered with a tap.
      */
     var standardTapAction: GestureAction? {
+        if self.isPrimaryAction { return { $0?.textDocumentProxy.insertText("\n") }}
+        
         switch self {
         case .backspace: return { $0?.textDocumentProxy.deleteBackward() }
         case .character(let char): return { $0?.textDocumentProxy.insertText(char) }

@@ -43,6 +43,7 @@ public enum KeyboardAction: Equatable {
         ok,
         option,
         search,
+        settings,
         shift(currentState: KeyboardShiftState),
         systemImage(description: String, keyboardImageName: String, imageName: String),
         space,
@@ -111,6 +112,7 @@ public extension KeyboardAction {
         case .nextKeyboard: return true
         case .option: return true
         case .shift: return true
+        case .settings: return true
         case .tab: return true
         default: return false
         }

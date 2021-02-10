@@ -25,14 +25,9 @@ KeyboardKit provides you with a rich set of `tools` and `actions`, `input sets` 
     <img src ="Resources/Demo.gif" width="300" />
 </p>
 
+KeyboardKit supports both `UIKit` and `SwiftUI`, but SwiftUI is the main focus going forward. You can read more about UIKit support [here][UIKit]. The rest of this readme assumes that you're using SwiftUI, although most information is valid for both UIKit and SwiftUI.
+
 If you're new to iOS keyboard extensions, [this great guide][Guide] will help you get started. You can also have a look at the demo app for inspiration.
-
-
-## SwiftUI & UIKit
-
-KeyboardKit supports both `UIKit` and `SwiftUI`, so you can pick what suits you best. However, SwiftUI is the main focus going forward, which means that the UIKit-exclusive parts will not be maintained as much from now on. 
-
-You can find UIKit-specific code in `Sources/UIKit` as well as a [UIKit readme][UIKit], [tutorial][UIKit-Tutorial] and demo app in the `UIKit` root folder. The rest of this readme assumes that you're using SwiftUI, although most information is valid for both UIKit and SwiftUI.
 
 
 ## Installation
@@ -66,18 +61,20 @@ end
 
 ## Getting Started
 
-To build a keyboard extension with KeyboardKit, start with adding `KeyboardKit` to your project as shown above. You should then let your `KeyboardViewController` inherit `KeyboardInputViewController` instead of `UIInputViewController`. It provides your extension with many convenient services, tools and extensions.
+To build a keyboard extension with KeyboardKit, start with adding `KeyboardKit` to your project as shown above. 
 
-You can then call `setup<Content: View>(with view: Content)` in your `KeyboardViewController` to setup the extension with any custom `SwiftUI` view. This will wire up everything and provide the view with the necessary environment objects.
+You should then let your `KeyboardViewController` inherit `KeyboardInputViewController` instead of `UIInputViewController`. It provides your extension with many convenient services, tools and extensions.
 
-`KeyboardInputViewController` has a bunch of services and tools that you can either use as is or replace with your own custom implementations. `keyboardContext` provides your extension with contextual information, while `keyboardActionHandler` can be used to handle various keyboard actions and `keyboardLayoutProvider` can provide you with various layouts etc. 
+`KeyboardInputViewController` has a bunch of services and tools that extends the native keyboard framework. For instance, `keyboardContext` provides your extension with contextual information, `keyboardActionHandler` can be used to handle keyboard-specific actions and gestures and `keyboardLayoutProvider` can provide you with keyboard layouts etc. There are many more tools here, as well as extensions that extend types like `UITextDocumentProxy` with more functionality. 
+
+`KeyboardViewController` has a `setup(with:)` function which can be used to setup your extension with any `SwiftUI` view. This will wire up everything and provide the view with the necessary environment objects, then resize the keyboard extension to fit the view. 
 
 To learn more about KeyboardKit and see it in practice, continue reading about the various parts of the library below, follow the [tutorial][Tutorial] and have a look at the demo app.
 
 
 ## Actions
 
-KeyboardKit supports many different keyboard actions, like `character` inputs, `emojis`, `backspace`, `space`, `newline`, `image` etc. You can even create your own, custom actions.
+KeyboardKit supports many different keyboard-specific actions, like `character` inputs, `emojis`, `backspace`, `space`, `newline`, `image` etc. You can even create your own, custom actions.
 
 [Read more here][Actions]
 
@@ -122,13 +119,6 @@ KeyboardKit lets you show callout bubbles as the users type, as well as secondar
 KeyboardKit contains emoji categories and keyboard views that let you present emojis like the native keyboards do.
 
 [Read more here][Emojis]
-
-
-## Gestures
-
-KeyboardKit supports a rich set of keyboard-specific gestures, like tap, double tap, long press, swipe etc. 
-
-[Read more here][Gestures]
 
 
 ## Autocomplete
