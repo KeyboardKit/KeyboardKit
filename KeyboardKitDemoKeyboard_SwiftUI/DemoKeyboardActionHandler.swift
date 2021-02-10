@@ -75,3 +75,45 @@ private extension DemoKeyboardActionHandler {
         else { alert("Failed!") }
     }
 }
+
+
+private extension UIImage {
+    
+    func copyToPasteboard(_ pasteboard: UIPasteboard = .general) -> Bool {
+        guard let data = pngData() else { return false }
+        pasteboard.setData(data, forPasteboardType: "public.png")
+        return true
+    }
+}
+
+
+private extension UIImage {
+    
+    func saveToPhotos(completion: @escaping (Error?) -> Void) {
+        ImageService.default.saveImageToPhotos(self, completion: completion)
+    }
+}
+
+
+/**
+ This class is used as a target/selector holder by the image
+ extension above.
+ */
+private class ImageService: NSObject {
+    
+    public typealias Completion = (Error?) -> Void
+
+    public static private(set) var `default` = ImageService()
+    
+    private var completions = [Completion]()
+    
+    public func saveImageToPhotos(_ image: UIImage, completion: @escaping (Error?) -> Void) {
+        completions.append(completion)
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveImageToPhotosDidComplete), nil)
+    }
+    
+    @objc func saveImageToPhotosDidComplete(_ image: UIImage, error: NSError?, contextInfo: UnsafeRawPointer) {
+        guard completions.count > 0 else { return }
+        completions.removeFirst()(error)
+    }
+}

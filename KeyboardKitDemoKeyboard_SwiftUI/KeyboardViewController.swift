@@ -63,9 +63,7 @@ class KeyboardViewController: KeyboardInputViewController {
     
     
     // MARK: - Autocomplete
-    
-    private lazy var autocompleteContext = ObservableAutocompleteContext()
-    
+        
     private lazy var autocompleteProvider = DemoAutocompleteSuggestionProvider()
     
     override func performAutocomplete() {

@@ -49,13 +49,10 @@ struct KeyboardView: View {
 private extension KeyboardView {
     
     var autocompleteBar: some View {
-        HStack {
-            AutocompleteToolbar(
-                suggestions: autocompleteContext.suggestions,
-                buttonBuilder: autocompleteBarButtonBuilder)
-            Spacer()
-            settingsButton
-        }.frame(height: 50)
+        AutocompleteToolbar(
+            suggestions: autocompleteContext.suggestions,
+            buttonBuilder: autocompleteBarButtonBuilder)
+            .frame(height: 50)
     }
     
     func autocompleteBarButton(for suggestion: AutocompleteSuggestion) -> AnyView {
@@ -85,24 +82,6 @@ private extension KeyboardView {
             actionHandler: actionHandler,
             appearance: appearance)
             .padding()
-    }
-    
-    var settingsButton: some View {
-        Image.settings
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .padding(5)
-            .keyboardButtonStyle(for: .character(""), appearance: appearance)
-            .padding(.standardKeyboardButtonInsets())
-            .onTapGesture {
-                changeLocale(to: .swedish)
-            }
-            .contextMenu {
-                localeButton(title: "English", locale: .english)
-                localeButton(title: "German", locale: .german)
-                localeButton(title: "Italian", locale: .italian)
-                localeButton(title: "Swedish", locale: .swedish)
-            }
     }
     
     var systemKeyboard: some View {
@@ -137,7 +116,7 @@ private extension KeyboardView {
     
     func changeLocale(to locale: LocaleKey) {
         DispatchQueue.main.async {
-            keyboardInputViewController.changeKeyboardLocale(to: locale.locale)
+            KeyboardInputViewController.shared.changeKeyboardLocale(to: locale.locale)
         }
     }
     
