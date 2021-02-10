@@ -49,9 +49,7 @@ You can trigger these actions manually, but a better and more dynamic way is to 
 
 ## Action handlers
 
-KeyboardKit has a `KeyboardActionHandler` protocol that can be implemented by any class that can be used to handle keyboard actions.
-
-Using an action handler instead of triggering actions directly gives you a much more dynamic and flexible way of handling actions.
+KeyboardKit has a `KeyboardActionHandler` protocol that can be implemented by any class that can be used to handle keyboard actions. Using an action handler instead of triggering actions directly gives you a very flexible way of handling actions.
 
 `KeyboardInputViewController` will automatically create a standard `keyboardActionHandler` when the extension is started. You can either use this handler as is or replace it with a custom one.
 

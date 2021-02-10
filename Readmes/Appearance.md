@@ -12,7 +12,7 @@ A *keyboard layout* determines how big the buttons are.
 
 ## Keyboard appearance
 
-KeyboardKit has a `KeyboardAppearance` struct that describes how keyboards should be styled. Using an appearance instead of styling views manually gives you a much more dynamic and flexible way of working with styling.
+KeyboardKit has a `KeyboardAppearance` struct that describes how keyboards should be styled. Using an appearance instead of styling views manually gives you a very flexible way of working with styling.
 
 `KeyboardInputViewController` will automatically create a standard `keyboardAppearance` when the extension is started. You can use this appearance as is or replace it with a custom one.
 

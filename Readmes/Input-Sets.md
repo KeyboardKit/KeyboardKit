@@ -18,7 +18,7 @@ A *keyboard layout* is the actions that make up the complete keyboard, together 
 
 ## Input set providers
 
-KeyboardKit has a `KeyboardInputSetProvider` protocol that can be used to provide input sets to the extension. Using an input set provider instead of creating input sets manually gives you a much more dynamic and flexible way of working with inputs.
+KeyboardKit has a `KeyboardInputSetProvider` protocol that can be used to provide input sets to the extension. Using an input set provider instead of creating input sets manually gives you a very flexible way of working with inputs.
 
 `KeyboardInputViewController` will automatically create a standard `keyboardInputSetProvider` when the extension is started. You can use this provider as is or replace it with a custom one.
 

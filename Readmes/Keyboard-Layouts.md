@@ -14,7 +14,7 @@ A *keyboard layout* is the actions that make up the complete keyboard, together 
 
 ## Keyboard layout providers
 
-KeyboardKit has a `KeyboardLayoutProvider` protocol that can be used to provide layouts to the extension. Using a layout provider instead of creating layouts manually gives you a much more dynamic and flexible way of working with layouts.
+KeyboardKit has a `KeyboardLayoutProvider` protocol that can be used to provide layouts to the extension. Using a layout provider instead of creating layouts manually gives you a very flexible way of working with layouts.
 
 `KeyboardInputViewController` will automatically create a standard `keyboardLayoutProvider` when the extension is started. You can use this provider as is or replace it with a custom one.
 
