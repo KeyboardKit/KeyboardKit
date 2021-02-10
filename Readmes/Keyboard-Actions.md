@@ -53,7 +53,7 @@ KeyboardKit has a `KeyboardActionHandler` protocol that can be implemented by an
 
 `KeyboardInputViewController` will automatically create a standard `keyboardActionHandler` when the extension is started. You can either use this handler as is or replace it with a custom one.
 
-Note that some parts of the library requires you to use an action handler, and that some of the actions above requires you to use a custom one. 
+Note that some parts of the library require you to use an action handler and that action that haven't got a standard behavior require you to use a custom action handler. 
 
 
 ## View gestures
