@@ -120,8 +120,6 @@
 
 /* Begin PBXFileReference section */
 		843CBFAA250EA93100BA541F /* ImageKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageKeyboard.swift; sourceTree = "<group>"; };
-		84670426234A6A9E00355331 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		84670427234A6A9E00355331 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		84670445234A709400355331 /* KeyboardKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeyboardKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84670447234A709400355331 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84670449234A709400355331 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -156,20 +154,11 @@
 		84670486234A718C00355331 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
 		84670487234A718C00355331 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		846704B2234A725300355331 /* DemoAutocompleteSuggestionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoAutocompleteSuggestionProvider.swift; sourceTree = "<group>"; };
-		A917E77F2574E0160048CC12 /* Readmes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Readmes; sourceTree = "<group>"; };
 		A94265382490CDCC00EB5551 /* KeyboardKitDemoKeyboard_SwiftUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KeyboardKitDemoKeyboard_SwiftUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A942653A2490CDCC00EB5551 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		A942653C2490CDCC00EB5551 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A94265512490D1C400EB5551 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		A94C721724AE238900077EEA /* DemoKeyboardActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboardActionHandler.swift; sourceTree = "<group>"; };
-		OBJ_238 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = SOURCE_ROOT; };
-		OBJ_239 /* Fastlane */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fastlane; sourceTree = SOURCE_ROOT; };
-		OBJ_242 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		OBJ_243 /* KeyboardKit.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = KeyboardKit.podspec; sourceTree = "<group>"; };
-		OBJ_244 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		OBJ_245 /* RELEASE_NOTES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = RELEASE_NOTES.md; sourceTree = "<group>"; };
-		OBJ_246 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
-		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,24 +181,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		84670425234A6A8400355331 /* Project Files */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_239 /* Fastlane */,
-				A917E77F2574E0160048CC12 /* Readmes */,
-				OBJ_238 /* Resources */,
-				84670427234A6A9E00355331 /* .gitignore */,
-				84670426234A6A9E00355331 /* .swiftlint.yml */,
-				OBJ_243 /* KeyboardKit.podspec */,
-				OBJ_242 /* LICENSE */,
-				OBJ_6 /* Package.swift */,
-				OBJ_244 /* README.md */,
-				OBJ_245 /* RELEASE_NOTES.md */,
-				OBJ_246 /* swiftgen.yml */,
-			);
-			name = "Project Files";
-			sourceTree = "<group>";
-		};
 		84670446234A709400355331 /* KeyboardKitDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,7 +287,6 @@
 				84670446234A709400355331 /* KeyboardKitDemo */,
 				A94265392490CDCC00EB5551 /* KeyboardKitDemoKeyboard_SwiftUI */,
 				OBJ_231 /* Products */,
-				84670425234A6A8400355331 /* Project Files */,
 				8467050B234A745A00355331 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -328,7 +298,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84670456234A709500355331 /* Build configuration list for PBXNativeTarget "KeyboardKitDemo" */;
 			buildPhases = (
-				A953075A24613B6A00CB37C3 /* [SwiftLint] */,
 				84670441234A709400355331 /* Sources */,
 				84670442234A709400355331 /* Frameworks */,
 				84670443234A709400355331 /* Resources */,
@@ -482,27 +451,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		A953075A24613B6A00CB37C3 /* [SwiftLint] */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[SwiftLint]";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		84670441234A709400355331 /* Sources */ = {
