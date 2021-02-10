@@ -29,6 +29,11 @@ The `StandardKeyboardInputSetProvider` is initialized with a list of locale-spec
 
 At the time of writing, this gives you support for `English`,  `German` `Italian` and `Swedish` out of the box.
 
-You can however use any custom provider that implements `KeyboardInputSetProvider` and `LocalizedService` with the standard provider, so it's easy to add your own locales to the existing solution.  
+You can inject any provider that implements `KeyboardInputSetProvider` and `LocalizedService` into the standard provider, so it's easy to add your own locales to the existing solution.  
 
 I will gladly accept any PRs that add more locale-specific providers to this library. 👍
+
+
+## Optional
+
+It's woth mentioning that the concept of input sets is just a convenience. KeyboardKit doesn't force you to use input sets. Your keyboard extensions can look and behave however you want.

@@ -58,6 +58,6 @@ Note that some parts of the library require you to use an action handler and tha
 
 ## View gestures
 
-Keyboard actions-specific gestures can be bound to any view by using the `keyboardGestures` view modifier.
+Keyboard action-specific gestures can be bound to any `SwiftUI` view with the `keyboardGestures` view modifier. This will setup gestures for `tap`, `double tap`, `long press`, `repeat press` and `drag`. The events will be routed to the provided action handler.
 
-This will setup gestures for `tap`, `double tap`, `long press`, `repeat press` and `drag`. The events will be routed to the provided action handler. 
+You can also use the `keyboardGestures` view modifier and provide it with completely custom actions as well.

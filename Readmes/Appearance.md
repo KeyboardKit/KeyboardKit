@@ -7,7 +7,7 @@ KeyboardKit lets you use any views you like to build your extensions. However, i
 
 A *keyboard appearance/style* determines the colors, fonts, shadows etc.
 
-A *keyboard layout* determines how big the buttons are.
+A *keyboard layout* determines how big the buttons are, how much insets they have etc.
 
 
 ## Keyboard appearance
@@ -16,7 +16,7 @@ KeyboardKit has a `KeyboardAppearance` struct that describes how keyboards shoul
 
 `KeyboardInputViewController` will automatically create a standard `keyboardAppearance` when the extension is started. You can use this appearance as is or replace it with a custom one.
 
-`StandardKeyboardAppearance` can be used together with a `SystemKeyboard` to create keyboard views that mimic the natie iOS keyboards. This makes it easy to style system keyboards and their buttons in any way you want.
+`StandardKeyboardAppearance` can be used together with a `SystemKeyboard` to create keyboard views that mimic native iOS keyboards. This makes it easy to style system keyboards and their buttons in any way you want.
 
 
 ## Resources & Assets
@@ -30,6 +30,6 @@ KeyboardKit comes with colors and images that makes it easy to create native-loo
 Have a look at the `Appearance` and `Resources` folders for more information.
 
 
-## Not required
+## Optional
 
-It's woth repeating that the concept of keyboard appearances is just a convenience for you to use if you want. KeyboardKit doesn't force you to stick with a specific look or layout. You can use any views you want in your keyboard extension.
+It's woth repeating that the concept of keyboard appearances is just a convenience for you to use if you want. KeyboardKit doesn't force you to stick with a specific look or layout. Your keyboard extensions can look and behave however you want.

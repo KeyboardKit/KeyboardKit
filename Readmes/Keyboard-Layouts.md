@@ -2,7 +2,7 @@
 
 KeyboardKit has a `KeyboardLayout` struct that represents the complete set of actions on a keyboard.
 
-Native keyboards like alphabetic, numeric and symbolic ones, are made up of a basic `input set`, surrounded by system buttons. These actions, together with their sizes and positions, make up the total keyboard layout.
+Native keyboards like alphabetic, numeric and symbolic ones, are made up of a basic `input set`, surrounded by system buttons. These actions, together with their sizes and positions, make up the total `keyboard layout`.
 
 
 ## Input set vs. keyboard layout
@@ -37,3 +37,8 @@ If you aim for pixel perfection, you will therefore probably have to customize t
 * Subclass `iPadKeyboardLayoutProvider` and override any parts you'd like to change.  
 
 I will gladly accept any PRs that improve the layout providers in this library. 👍
+
+
+## Optional
+
+It's woth mentioning that the concept of keyboard layouts is just a convenience. KeyboardKit doesn't force you to use keyboard layouts. Your keyboard extensions can look and behave however you want.

@@ -21,6 +21,6 @@ With SwiftUI, you can observe the `ObservableKeyboardContext` environment object
 Have a look at the demo application for some inspiration. It supports a couple of different keyboard views and uses the observable context as described above.
 
 
-## Not required
+## Optional
 
-It's woth mentioning that the concept of keyboard types is just a convenience for you to use if you want. KeyboardKit doesn't force you to stick with specific types or views. You can use any views you want in your keyboard extension.
+It's woth mentioning that the concept of keyboard types is just a convenience. KeyboardKit doesn't force you to use keyboard types. Your keyboard extensions can look and behave however you want.
