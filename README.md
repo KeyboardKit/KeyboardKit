@@ -19,15 +19,20 @@
 
 KeyboardKit is a Swift library that helps you create custom keyboard extensions for `iOS` and `ipadOS`.
 
-KeyboardKit provides you with a rich set of `tools` and `actions`, `input sets` and `layouts`, `appearances` and `autocomplete`, `haptic` and `audio` feedback etc. It lets you create keyboards with `characters`, `numbers`, `symbols`, `emojis`, `images` and more, or entirely custom ones that make use of the vast additional functionality that this library provides. The end result can look something like this...or entirely different:
+KeyboardKit provides you with `actions`, `input sets` and `layouts`, `appearances` and `autocomplete` support, `haptic` and `audio` feedback etc. It lets you create keyboards with `characters`, `numbers`, `symbols`, `emojis`, `images` and more or just use the additional `tools` and `extensions` that it provides. 
+
+The end result can look something like this...or entirely different:
 
 <p align="center">
     <img src ="Resources/Demo.gif" width="300" />
 </p>
 
-KeyboardKit supports both `UIKit` and `SwiftUI`, but SwiftUI is the main focus going forward. You can read more about UIKit support [here][UIKit]. The rest of this readme assumes that you're using SwiftUI, although most information is valid for both UIKit and SwiftUI.
-
 If you're new to iOS keyboard extensions, [this great guide][Guide] will help you get started. You can also have a look at the demo app for inspiration.
+
+
+## SwiftUI vs. UIKit
+
+KeyboardKit supports both `SwiftUI` and `UIKit`, but SwiftUI is the main focus going forward. You can read more about UIKit support [here][UIKit]. The rest of this readme assumes that you're using SwiftUI, although most information is valid for both UIKit and SwiftUI.
 
 
 ## Installation
@@ -61,86 +66,89 @@ end
 
 ## Getting Started
 
-To build a keyboard extension with KeyboardKit, start with adding `KeyboardKit` to your project as shown above. 
+To build a keyboard extension with KeyboardKit, start by adding `KeyboardKit` to your project, as shown above. 
 
-You should then let your `KeyboardViewController` inherit `KeyboardInputViewController` instead of `UIInputViewController`. It provides your extension with many convenient services, tools and extensions.
+You should then inherit `KeyboardInputViewController` instead of `UIInputViewController`. It provides you with many convenient services, tools and extensions that extend the native keyboard framework.
 
-`KeyboardInputViewController` has a bunch of services and tools that extends the native keyboard framework. For instance, `keyboardContext` provides your extension with contextual information, `keyboardActionHandler` can be used to handle keyboard-specific actions and gestures and `keyboardLayoutProvider` can provide you with keyboard layouts etc. There are many more tools here, as well as extensions that extend types like `UITextDocumentProxy` with more functionality. 
+For instance, `keyboardContext` provides you with contextual information, `keyboardActionHandler` can be used to handle keyboard-specific actions and `keyboardLayoutProvider` can provide you with keyboard layouts. There are much more here, as well as extensions that extend types like `UITextDocumentProxy` with more functionality. 
 
-`KeyboardViewController` has a `setup(with:)` function which can be used to setup your extension with any `SwiftUI` view. This will wire up everything and provide the view with the necessary environment objects, then resize the keyboard extension to fit the view. 
+`KeyboardInputViewController` also has a `setup(with:)` function that can be used to setup the extension with any `SwiftUI` view. This will make it the main view for the extension, inject the necessary environment objects and finally resize the keyboard extension to fit the view. 
 
-To learn more about KeyboardKit and see it in practice, continue reading about the various parts of the library below, follow the [tutorial][Tutorial] and have a look at the demo app.
+To learn more about and see KeyboardKit in practice, continue reading about the various parts of the library below and have a look at the demo app.
 
 
-## 💥 Keyboard Actions
+## Features
+
+
+### 💥 Keyboard Actions
 
 KeyboardKit comes with many keyboard-specific actions, like `character` inputs, `emojis`, `backspace`, `space`, `newline`, `image` etc. You can even create your own actions.
 
 [Read more here][Keyboard-Actions]
 
 
-## 😊 Keyboard Types
+### 😊 Keyboard Types
 
 KeyboardKit comes with many different keyboard types, like `alphabetic`, `numeric`, `symbolic`, `emoji` etc. You can even create your own types.
 
 [Read more here][Keyboard-Types]
 
 
-## 🔤 Input Sets
+### 🔤 Input Sets
 
-KeyboardKit comes with locale-specific input sets, which makes it easy to create `alphabetic`, `numeric` and `symbolic`  keyboards in different languages.
+KeyboardKit comes with an input set engine that make it easy to create `alphabetic`, `numeric` and `symbolic`  keyboards in different languages.
 
 [Read more here][Input-Sets]
 
 
-## ⌨️ Keyboard Layouts
+### ⌨️ Keyboard Layouts
 
-KeyboardKit comes with a layout engine that makes it easy to create keyboard layouts for various devices, orientations and locales.
+KeyboardKit comes with a layout engine that makes it easy to create specific keyboard layouts for various devices, orientations and locales.
 
 [Read more here][Keyboard-Layouts]
 
 
-## 🎨 Appearances
+### 🎨 Appearances
 
 KeyboardKit lets you create everything from completely custom keyboards to keyboards that imitate the native keyboards and can be styled with custom appearances.
 
 [Read more here][Appearance]
 
 
-## Callouts
+### 🗯 Callouts
 
 KeyboardKit lets you show callout bubbles as the users type, as well as secondary action callouts that can provide users with optional actions when long pressing a keyboard button.
 
 [Read more here][Callouts]
 
 
-## Autocomplete
+### 💡Autocomplete
 
 KeyboardKit can present autocomplete suggestions to users as they type. The core library doesn't come with an implemented engine, but you can inject your own. 
 
 [Read more here][Autocomplete]
 
 
-## Haptic Feedback
+### ✋ Haptic Feedback
 
-KeyboardKit supports haptic feedback and can give users haptic feedback as they type. 
+KeyboardKit keyboards can give users haptic feedback as they type. 
 
 [Read more here][Haptic-Feedback].
 
 
-## Audio Feedback
+### 🔈 Audio Feedback
 
-KeyboardKit supports audio feedback and can give users audio feedback as they type. 
+KeyboardKit keyboards can give users audio feedback as they type. 
 
 [Read more here][Audio-Feedback].
 
 
-## Extensions
+### 📦 Extensions
 
 KeyboardKit comes with many keyboard-specific extensions, like providing the text document proxy with powerful, otherwise missing functionalty etc. Check out the demo apps and source code for examples and more information.
 
 
-## Demo Applications
+## Demo Application
 
 This repository contains a demo app that demonstrates different keyboards, like `alphabetical` (lowercased, uppercased and capslocked), `numerical`, `symbols`, `emojis` and `images`.
 
