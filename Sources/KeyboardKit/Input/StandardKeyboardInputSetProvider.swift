@@ -19,7 +19,7 @@ open class StandardKeyboardInputSetProvider: KeyboardInputSetProvider {
     
     public init(
         context: KeyboardContext,
-        providers: [LocalizedService & KeyboardInputSetProvider] = [
+        providers: [KeyboardInputSetProvider & LocalizedService] = [
             EnglishKeyboardInputSetProvider(),
             GermanKeyboardInputSetProvider(),
             ItalianKeyboardInputSetProvider(),

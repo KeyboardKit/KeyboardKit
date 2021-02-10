@@ -19,7 +19,7 @@ open class StandardSecondaryCalloutActionProvider: SecondaryCalloutActionProvide
     
     public init(
         context: KeyboardContext,
-        providers: [LocalizedService & SecondaryCalloutActionProvider] = [
+        providers: [SecondaryCalloutActionProvider & LocalizedService] = [
             EnglishSecondaryCalloutActionProvider(),
             SwedishSecondaryCalloutActionProvider()]) {
         self.context = context

@@ -26,9 +26,9 @@ public enum KeyboardAction: Equatable {
         command,
         control,
         custom(name: String),
-        done,
         dictation,
         dismissKeyboard,
+        done,
         emoji(Emoji),
         emojiCategory(_ category: EmojiCategory),
         escape,
@@ -42,11 +42,12 @@ public enum KeyboardAction: Equatable {
         nextKeyboard,
         ok,
         option,
+        `return`,
         search,
         settings,
         shift(currentState: KeyboardShiftState),
-        systemImage(description: String, keyboardImageName: String, imageName: String),
         space,
+        systemImage(description: String, keyboardImageName: String, imageName: String),
         tab
 }
 

@@ -72,35 +72,35 @@ You should then let your `KeyboardViewController` inherit `KeyboardInputViewCont
 To learn more about KeyboardKit and see it in practice, continue reading about the various parts of the library below, follow the [tutorial][Tutorial] and have a look at the demo app.
 
 
-## Actions
+## 💥 Keyboard Actions
 
-KeyboardKit supports many different keyboard-specific actions, like `character` inputs, `emojis`, `backspace`, `space`, `newline`, `image` etc. You can even create your own, custom actions.
+KeyboardKit comes with many keyboard-specific actions, like `character` inputs, `emojis`, `backspace`, `space`, `newline`, `image` etc. You can even create your own actions.
 
-[Read more here][Actions]
+[Read more here][Keyboard-Actions]
 
 
-## Keyboard Types
+## 😊 Keyboard Types
 
-KeyboardKit supports many different keyboard types, like `alphabetic`, `numeric`, `symbolic`, `emoji` etc. You can even create your own, custom keyboard types.
+KeyboardKit comes with many different keyboard types, like `alphabetic`, `numeric`, `symbolic`, `emoji` etc. You can even create your own types.
 
 [Read more here][Keyboard-Types]
 
 
-## Input Sets
+## 🔤 Input Sets
 
-KeyboardKit provides you with locale-specific input sets, which makes it easy to create `alphabetic`, `numeric` and `symbolic`  keyboards in many languages.
+KeyboardKit comes with locale-specific input sets, which makes it easy to create `alphabetic`, `numeric` and `symbolic`  keyboards in different languages.
 
 [Read more here][Input-Sets]
 
 
-## Layouts
+## ⌨️ Keyboard Layouts
 
-KeyboardKit can combine an input set with surrounding actions to create a keyboard layout, which provides you with the total set of keyboard action as well as their sizes.
+KeyboardKit comes with a layout engine that makes it easy to create keyboard layouts for various devices, orientations and locales.
 
 [Read more here][Keyboard-Layouts]
 
 
-## Appearances
+## 🎨 Appearances
 
 KeyboardKit lets you create everything from completely custom keyboards to keyboards that imitate the native keyboards and can be styled with custom appearances.
 
@@ -112,13 +112,6 @@ KeyboardKit lets you create everything from completely custom keyboards to keybo
 KeyboardKit lets you show callout bubbles as the users type, as well as secondary action callouts that can provide users with optional actions when long pressing a keyboard button.
 
 [Read more here][Callouts]
-
-
-## Emojis
-
-KeyboardKit contains emoji categories and keyboard views that let you present emojis like the native keyboards do.
-
-[Read more here][Emojis]
 
 
 ## Autocomplete
@@ -142,23 +135,9 @@ KeyboardKit supports audio feedback and can give users audio feedback as they ty
 [Read more here][Audio-Feedback].
 
 
-## Localization
-
-KeyboardKit supports multiple locales. You can easily implement and inject your own localized services if the library doesn't support your specific locale. 
-
-[Read more here][Localization]
-
-
-## Resources & Assets
-
-KeyboardKit comes with colors and images that makes it really easy to create native-looking, dazzling keyboards. 
-
-[Read more here][Resources]
-
-
 ## Extensions
 
-KeyboardKit comes with many keyboard-specific extensions, like providing the text document proxy with powerful, otherwise missing functionalty. Check out the demo apps and source code for examples and more information.
+KeyboardKit comes with many keyboard-specific extensions, like providing the text document proxy with powerful, otherwise missing functionalty etc. Check out the demo apps and source code for examples and more information.
 
 
 ## Demo Applications
@@ -205,7 +184,6 @@ KeyboardKit is available under the MIT license. See LICENSE file for more info.
 [Website]: http://www.danielsaidi.com
 [Sponsors]: https://github.com/sponsors/danielsaidi
 
-[Actions]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Actions.md
 [Appearance]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Appearance.md
 [Audio-Feedback]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Audio-Feedback.md
 [Autocomplete]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Autocomplete.md
@@ -214,6 +192,7 @@ KeyboardKit is available under the MIT license. See LICENSE file for more info.
 [Emojis]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Emojis.md
 [Gestures]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Gestures.md
 [Input-Sets]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Input-Sets.md
+[Keyboard-Actions]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Keyboard-Actions.md
 [Keyboard-Layouts]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Keyboard-Layouts.md
 [Keyboard-Types]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Keyboard-Types.md
 [Localization]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Localization.md

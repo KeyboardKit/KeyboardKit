@@ -14,8 +14,8 @@ KeyboardKit has an `HapticFeedback` enum with these types:
 
 * `none`
 
-You can enable haptic feedback by providing `StandardKeyboardActionHandler` with a `hapticConfiguration`. The default configuration is `.noFeedback`.
+You can enable haptic feedback globally by providing `StandardKeyboardActionHandler` with a `hapticConfiguration`. The default configuration is `.noFeedback`.
 
-You can also trigger the various feedback types manually.
+You can also trigger the various haptic feedback types manually.
 
 `IMPORTANT` Users must enable open access for haptic feedback to work.

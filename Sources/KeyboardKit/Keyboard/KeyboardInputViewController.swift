@@ -74,6 +74,7 @@ open class KeyboardInputViewController: UIInputViewController {
     open func setup<Content: View>(with view: Content) {
         self.view.subviews.forEach { $0.removeFromSuperview() }
         let view = view
+            .environmentObject(autocompleteContext)
             .environmentObject(keyboardContext)
             .environmentObject(keyboardInputCalloutContext)
             .environmentObject(keyboardSecondaryInputCalloutContext)
@@ -89,6 +90,11 @@ open class KeyboardInputViewController: UIInputViewController {
      the keyboard extension is started.
      */
     public static var shared: KeyboardInputViewController!
+    
+    /**
+     The extension's default keyboard context.
+     */
+    public lazy var autocompleteContext = ObservableAutocompleteContext()
     
     /**
      The extension's default keyboard action handler.

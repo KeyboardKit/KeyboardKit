@@ -65,6 +65,7 @@ public extension KeyboardAction {
         case .moveCursorBackward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: -1) }
         case .moveCursorForward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: 1) }
         case .newLine: return { $0?.textDocumentProxy.insertText("\n") }
+        case .return: return { $0?.textDocumentProxy.insertText("\n") }
         case .shift(let currentState): return {
             switch currentState {
             case .lowercased: $0?.changeKeyboardType(to: .alphabetic(.uppercased))

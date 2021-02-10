@@ -23,10 +23,13 @@ extension KeyboardAction {
             .control,
             .custom(name: ""),
             .dictation,
-            .escape,
+            .dismissKeyboard,
+            .done,
             .emoji(Emoji("")),
             .emojiCategory(.smileys),
+            .escape,
             .function,
+            .go,
             .image(description: "", keyboardImageName: "", imageName: ""),
             
             .keyboardType(.alphabetic(.lowercased)),
@@ -43,11 +46,15 @@ extension KeyboardAction {
             .moveCursorForward,
             .newLine,
             .nextKeyboard,
+            .ok,
             .option,
+            .return,
             .search,
+            
             .shift(currentState: .lowercased),
             .shift(currentState: .uppercased),
             .shift(currentState: .capsLocked),
+            
             .space,
             .systemImage(description: "", keyboardImageName: "", imageName: ""),
             .tab

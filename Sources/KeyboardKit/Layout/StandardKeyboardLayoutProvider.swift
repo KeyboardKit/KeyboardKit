@@ -11,22 +11,21 @@ import UIKit
 
 /**
  This keyboard layout provider bases its layout decisions on
- factors like locale, device and screen orientation.
+ the type of device used, and will toggle between an `iPhone`
+ and an `iPad` specific layout provider.
  
- This may not always be what you want. If you want to create
- keyboards with a custom layout, you should either not use a
- layout provider, or create a custom one.
- 
- You can inherit this class and override any open properties
- and functions to customize the standard behavior.
+ To change the layouts provided by the class, you can either
+ replace `iPadProvider` and `iPhoneProvider` with completely
+ new providers. You can also inherit this class and override
+ `keyboardLayout(for:)` to return anything you like.
  */
 open class StandardKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     
-    private lazy var iPadProvider = iPadKeyboardLayoutProvider(
+    public lazy var iPadProvider = iPadKeyboardLayoutProvider(
         inputSetProvider: inputSetProvider,
         dictationReplacement: dictationReplacement)
     
-    private lazy var iPhoneProvider = iPhoneKeyboardLayoutProvider(
+    public lazy var iPhoneProvider = iPhoneKeyboardLayoutProvider(
         inputSetProvider: inputSetProvider,
         dictationReplacement: dictationReplacement)
     
