@@ -72,6 +72,8 @@ class KeyboardAction_ActionsTests: QuickSpec {
                     .moveCursorBackward,
                     .moveCursorForward,
                     .newLine,
+                    .ok,
+                    .return,
                     .search,
                     .shift(currentState: .lowercased),
                     .shift(currentState: .uppercased),

@@ -23,6 +23,13 @@ class StandardKeyboardAppearanceTests: QuickSpec {
             appearance = StandardKeyboardAppearance(context: context)
         }
         
+        describe("keyboard background color") {
+            
+            it("is clear") {
+                expect(appearance.keyboardBackgroundColor).to(equal(.clear))
+            }
+        }
+        
         describe("button background color") {
             
             it("is standard for all actions except primary actions") {

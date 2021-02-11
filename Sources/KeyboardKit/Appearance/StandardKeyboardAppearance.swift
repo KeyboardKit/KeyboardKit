@@ -15,8 +15,6 @@ import UIKit
  
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
- 
- `TODO` Unit test.
  */
 open class StandardKeyboardAppearance: KeyboardAppearance {
     
@@ -25,6 +23,8 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     }
     
     private let context: KeyboardContext
+    
+    open var keyboardBackgroundColor: Color { .clear }
     
     open func buttonBackgroundColor(for action: KeyboardAction) -> Color {
         if action.isPrimaryAction { return .blue }

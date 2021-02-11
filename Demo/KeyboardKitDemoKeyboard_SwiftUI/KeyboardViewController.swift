@@ -44,7 +44,7 @@ class KeyboardViewController: KeyboardInputViewController {
         keyboardLayoutProvider = StandardKeyboardLayoutProvider(
             inputSetProvider: keyboardInputSetProvider,
             dictationReplacement: .keyboardType(.emojis))
-        setup(with: keyboardView.edgesIgnoringSafeArea(.all).background(Color.red))
+        setup(with: keyboardView)
     }
     
     

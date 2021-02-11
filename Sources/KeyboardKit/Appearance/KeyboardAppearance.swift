@@ -20,6 +20,8 @@ import SwiftUI
  */
 public protocol KeyboardAppearance {
     
+    var keyboardBackgroundColor: Color { get }
+    
     func buttonBackgroundColor(for action: KeyboardAction) -> Color
     func buttonCornerRadius(for action: KeyboardAction) -> CGFloat
     func buttonFont(for action: KeyboardAction) -> Font
