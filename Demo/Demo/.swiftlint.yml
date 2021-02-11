@@ -1,0 +1,21 @@
+disabled_rules:
+  - cyclomatic_complexity
+  - function_body_length
+  - function_parameter_count
+  - identifier_name
+  - large_tuple
+  - statement_position
+  - trailing_whitespace
+  - line_length
+  - todo
+  - type_name
+  - vertical_whitespace
+
+identifier_name:
+  excluded:
+    - id
+    - x
+    - y
+    - dx
+    - dy
+    - vc
