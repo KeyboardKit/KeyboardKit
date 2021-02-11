@@ -52,9 +52,9 @@ struct KeyboardGestures<Content: View>: View {
     var body: some View {
         view.overlay(GeometryReader { geo in
             Color.clearInteractable
-                .gesture(tapGesture)
+                .gesture(dragGesture(for: geo))
+                .simultaneousGesture(tapGesture)
                 .simultaneousGesture(doubleTapGesture)
-                .simultaneousGesture(dragGesture(for: geo))
                 .simultaneousGesture(longPressGesture)
                 .simultaneousGesture(longPressDragGesture(for: geo))
         })
@@ -81,7 +81,7 @@ private extension KeyboardGestures {
     func dragGesture(for geo: GeometryProxy) -> some Gesture {
         DragGesture(minimumDistance: 0)
             .onChanged { _ in
-                guard isInputCalloutEnabled else { return }
+                //guard isInputCalloutEnabled else { return }
                 inputCalloutContext.updateInput(for: action, geo: geo) }
             .onEnded { _ in
                 inputCalloutContext.reset()
