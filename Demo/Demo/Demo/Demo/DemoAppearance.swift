@@ -24,7 +24,7 @@ final class DemoAppearance {
             //navbarAppearance.backgroundColor = .accent
             navbarAppearance.titleTextAttributes = titleAttributes
             navbarAppearance.largeTitleTextAttributes = largeTitleAttributes
-            navbar.tintColor = UIColor.darkGray
+            //navbar.tintColor = UIColor.darkGray
             navbar.standardAppearance = navbarAppearance
             navbar.scrollEdgeAppearance = navbarAppearance
         }
@@ -40,11 +40,11 @@ private extension DemoAppearance {
     }
     
     static var titleAttributes: [NSAttributedString.Key: Any] {
-        [.font: font(sized: 20), .foregroundColor: UIColor.darkGray, .shadow: shadow]
+        [.font: font(sized: 20), .foregroundColor: UIColor.label, .shadow: shadow]
     }
 
     static var largeTitleAttributes: [NSAttributedString.Key: Any] {
-        [.font: font(sized: 30), .foregroundColor: UIColor.darkGray, .shadow: shadow]
+        [.font: font(sized: 30), .foregroundColor: UIColor.label, .shadow: shadow]
     }
 
     static var shadow: NSShadow {

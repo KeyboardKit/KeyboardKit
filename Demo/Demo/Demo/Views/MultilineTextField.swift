@@ -37,13 +37,16 @@ public struct MultilineTextField: UIViewRepresentable {
 
     public func makeUIView(context: Context) -> UITextView {
         let view = UITextView()
+        view.backgroundColor = .clear
         view.font = .systemFont(ofSize: 20)
         view.isScrollEnabled = true
         view.isEditable = true
         view.isUserInteractionEnabled = true
         view.delegate = context.coordinator
         view.keyboardAppearance = appearance
-        view.becomeFirstResponder()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            view.becomeFirstResponder()
+        }
         return view
     }
     

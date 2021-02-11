@@ -28,7 +28,7 @@ struct EditScreen: View {
 private extension EditScreen {
     
     var footerText: some View {
-        Text("As you can see, dark apperance keyboards are not correctly rendered in light mode. This is because the keyboard extension is given a dark mode, regardless of the system mode.")
+        Text("Dark apperance keyboards are currently not correctly rendered. In light mode, they get dark mode colors. This is because the keyboard extension is given a dark mode, regardless of the system mode.")
             .multilineTextAlignment(.center)
     }
 }
