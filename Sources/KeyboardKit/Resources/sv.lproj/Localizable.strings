@@ -1,0 +1,13 @@
+/*
+ Localizable.strings
+ KeyboardKit
+ 
+ Created by Daniel Saidi on 2021-02-15.
+ Copyright © 2021 Daniel Saidi. All rights reserved.
+ */
+
+"locale" = "sv";
+"languageName" = "Svenska";
+
+"return" = "retur";
+"space" = "mellanslag";

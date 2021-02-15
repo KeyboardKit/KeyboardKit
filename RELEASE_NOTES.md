@@ -44,6 +44,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `Locale` is a new namespace with a few new locale-specific utils.
 * `LocaleDictionary` is a simple dictionary wrapper to work with localized resources.
 * `LocaleKey` is a simple enum to gather top-level locale identifiers.
+* `KKL10n` is a new enum that provides localized strings from KeyboardKit.
 * `SystemKeyboard` now highlights buttons when typing on iPad.
 * `View` has new `keyboardInputViewController` convenience extensions.
 * `View+keyboardToast` has new context-based function.
