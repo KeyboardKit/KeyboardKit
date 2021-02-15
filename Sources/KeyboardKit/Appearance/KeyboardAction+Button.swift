@@ -89,6 +89,7 @@ public extension KeyboardAction {
     var standardButtonTextStyle: UIFont.TextStyle {
         if hasMultiCharButtonText { return .body }
         switch self {
+        case .character: return .title1
         case .emoji: return .title1
         case .emojiCategory: return .callout
         case .space: return .body
