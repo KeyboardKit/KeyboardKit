@@ -129,7 +129,7 @@ private extension SecondaryInputCallout {
     }
     
     var positionY: CGFloat {
-        buttonFrame.origin.y - style.verticalPadding
+        buttonFrame.origin.y - style.verticalPadding + 2
     }
 }
 

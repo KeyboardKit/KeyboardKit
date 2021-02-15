@@ -22,10 +22,10 @@ public protocol KeyboardAppearance {
     
     var keyboardBackgroundColor: Color { get }
     
-    func buttonBackgroundColor(for action: KeyboardAction) -> Color
+    func buttonBackgroundColor(for action: KeyboardAction, isPressed: Bool) -> Color
     func buttonCornerRadius(for action: KeyboardAction) -> CGFloat
     func buttonFont(for action: KeyboardAction) -> Font
-    func buttonForegroundColor(for action: KeyboardAction) -> Color
+    func buttonForegroundColor(for action: KeyboardAction, isPressed: Bool) -> Color
     func buttonImage(for action: KeyboardAction) -> Image?
     func buttonShadowColor(for action: KeyboardAction) -> Color
     func buttonText(for action: KeyboardAction) -> String?

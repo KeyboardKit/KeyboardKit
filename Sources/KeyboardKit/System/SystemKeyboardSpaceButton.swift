@@ -35,9 +35,17 @@ public struct SystemKeyboardSpaceButton: View {
     
     private var action: KeyboardAction { .space }
     
+    @State private var isPressed = false
+    
     public var body: some View {
         SystemKeyboardSpaceButtonContent(localeText: localeText, spaceText: spaceText)
-            .keyboardButtonStyle(for: action, appearance: appearance)
-            .keyboardGestures(for: action, actionHandler: actionHandler)
+            .keyboardButtonStyle(
+                for: action,
+                appearance: appearance,
+                isPressed: isPressed)
+            .keyboardGestures(
+                for: action,
+                isPressed: $isPressed,
+                actionHandler: actionHandler)
     }
 }

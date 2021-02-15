@@ -34,7 +34,7 @@ class StandardKeyboardAppearanceTests: QuickSpec {
             
             it("is standard for all actions except primary actions") {
                 KeyboardAction.testActions.forEach {
-                    let result = appearance.buttonBackgroundColor(for: $0)
+                    let result = appearance.buttonBackgroundColor(for: $0, isPressed: false)
                     let expected: Color = $0.isPrimaryAction ? .blue : $0.standardButtonBackgroundColor(for: context)
                     expect(result).to(equal(expected))
                 }
@@ -66,7 +66,7 @@ class StandardKeyboardAppearanceTests: QuickSpec {
             
             it("is standard for all actions except primary actions") {
                 KeyboardAction.testActions.forEach {
-                    let result = appearance.buttonForegroundColor(for: $0)
+                    let result = appearance.buttonForegroundColor(for: $0, isPressed: false)
                     let expected: Color = $0.isPrimaryAction ? .white : $0.standardButtonForegroundColor(for: context)
                     expect(result).to(equal(expected))
                 }

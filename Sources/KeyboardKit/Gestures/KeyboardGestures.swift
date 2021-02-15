@@ -17,6 +17,7 @@ struct KeyboardGestures<Content: View>: View {
     init(
         view: Content,
         action: KeyboardAction?,
+        isPressed: Binding<Bool>,
         tapAction: KeyboardGestureAction?,
         doubleTapAction: KeyboardGestureAction?,
         longPressAction: KeyboardGestureAction?,
@@ -24,6 +25,7 @@ struct KeyboardGestures<Content: View>: View {
         dragAction: KeyboardDragGestureAction?) {
         self.view = view
         self.action = action
+        self.isPressed = isPressed
         self.tapAction = tapAction
         self.doubleTapAction = doubleTapAction
         self.longPressAction = longPressAction
@@ -33,6 +35,7 @@ struct KeyboardGestures<Content: View>: View {
     
     private let view: Content
     private let action: KeyboardAction?
+    private let isPressed: Binding<Bool>
     private let tapAction: KeyboardGestureAction?
     private let doubleTapAction: KeyboardGestureAction?
     private let longPressAction: KeyboardGestureAction?
@@ -72,6 +75,7 @@ private extension KeyboardGestures {
     var doubleTapGesture: some Gesture {
         TapGesture(count: 2).onEnded {
             doubleTapAction?()
+            triggerPressedHighlight()
         }
     }
     
@@ -81,9 +85,11 @@ private extension KeyboardGestures {
     func dragGesture(for geo: GeometryProxy) -> some Gesture {
         DragGesture(minimumDistance: 0)
             .onChanged { _ in
+                isPressed.wrappedValue = true
                 guard isInputCalloutEnabled else { return }
                 inputCalloutContext.updateInput(for: action, geo: geo) }
             .onEnded { _ in
+                isPressed.wrappedValue = false
                 inputCalloutContext.reset()
                 stopRepeatTimer() }
     }
@@ -120,6 +126,7 @@ private extension KeyboardGestures {
     var tapGesture: some Gesture {
         TapGesture().onEnded {
             tapAction?()
+            triggerPressedHighlight()
             inputCalloutContext.reset()
         }
     }
@@ -161,5 +168,13 @@ private extension KeyboardGestures {
     
     func stopRepeatTimer() {
         repeatTimer.stop()
+    }
+    
+    func triggerPressedHighlight() {
+        if isInputCalloutEnabled { return }
+        isPressed.wrappedValue = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            isPressed.wrappedValue = false
+        }
     }
 }

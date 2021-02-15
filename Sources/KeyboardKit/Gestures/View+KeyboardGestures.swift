@@ -20,12 +20,14 @@ public extension View {
     @ViewBuilder
     func keyboardGestures(
         for action: KeyboardAction,
+        isPressed: Binding<Bool> = .constant(false),
         actionHandler: KeyboardActionHandler) -> some View {
         if action == .nextKeyboard {
             self
         } else {
             self.keyboardGestures(
                 action: action,
+                isPressed: isPressed,
                 tapAction: { actionHandler.handle(.tap, on: action) },
                 doubleTapAction: { actionHandler.handle(.doubleTap, on: action) },
                 longPressAction: { actionHandler.handle(.longPress, on: action) },
@@ -43,6 +45,7 @@ public extension View {
      */
     func keyboardGestures(
         action: KeyboardAction? = nil,
+        isPressed: Binding<Bool> = .constant(false),
         tapAction: KeyboardGestureAction? = nil,
         doubleTapAction: KeyboardGestureAction? = nil,
         longPressAction: KeyboardGestureAction? = nil,
@@ -51,6 +54,7 @@ public extension View {
         KeyboardGestures(
             view: self,
             action: action,
+            isPressed: isPressed,
             tapAction: tapAction,
             doubleTapAction: doubleTapAction,
             longPressAction: longPressAction,

@@ -14,12 +14,11 @@ public extension KeyboardAction {
     /**
      The action's standard button background color.
      */
-    func standardButtonBackgroundColor(for context: KeyboardContext) -> Color {
-        if case .none = self { return .clear }
-        if case .emoji = self { return .clearInteractable }
-        if case .emojiCategory = self { return .clearInteractable }
-        if isSystemAction { return .standardDarkButton(for: context) }
-        return .standardButton(for: context)
+    func standardButtonBackgroundColor(for context: KeyboardContext, isPressed: Bool = false) -> Color {
+        if let color = standardButtonBackgroundColorForAllStates() { return color }
+        return isPressed
+            ? standardButtonBackgroundColorForPressedState(for: context)
+            : standardButtonBackgroundColorForIdleState(for: context)
     }
     
     /**
@@ -31,7 +30,7 @@ public extension KeyboardAction {
     
     /**
      The action's standard button font weight, if any.
-    */
+     */
     var standardButtonFontWeight: UIFont.Weight? {
         if standardButtonImage != nil { return .light }
         switch self {
@@ -43,8 +42,10 @@ public extension KeyboardAction {
     /**
      The action's standard button foreground color.
      */
-    func standardButtonForegroundColor(for context: KeyboardContext) -> Color {
-        .standardButtonTint(for: context)
+    func standardButtonForegroundColor(for context: KeyboardContext, isPressed: Bool = false) -> Color {
+        return isPressed
+            ? standardButtonForegroundColorForPressedState(for: context)
+            : standardButtonForegroundColorForIdleState(for: context)
     }
     
     /**
@@ -80,7 +81,7 @@ public extension KeyboardAction {
         if case .emoji = self { return .clear }
         return .standardButtonShadowColor(for: context)
     }
-
+    
     /**
      The action's standard button text.
      */
@@ -96,7 +97,7 @@ public extension KeyboardAction {
     
     /**
      The action's standard button text style.
-    */
+     */
     var standardButtonTextStyle: UIFont.TextStyle {
         if hasMultiCharButtonText { return .body }
         switch self {
@@ -117,5 +118,34 @@ private extension KeyboardAction {
     var hasMultiCharButtonText: Bool {
         guard let text = standardButtonText else { return false }
         return text.count > 1
+    }
+    
+    func standardButtonBackgroundColorForAllStates() -> Color? {
+        if case .none = self { return .clear }
+        if case .emoji = self { return .clearInteractable }
+        if case .emojiCategory = self { return .clearInteractable }
+        return nil
+    }
+    
+    func standardButtonBackgroundColorForIdleState(for context: KeyboardContext) -> Color {
+        if isPrimaryAction { return .blue }
+        if isSystemAction { return .standardDarkButton(for: context) }
+        return .standardButton(for: context)
+    }
+    
+    func standardButtonBackgroundColorForPressedState(for context: KeyboardContext) -> Color {
+        if isPrimaryAction { return context.colorScheme == .dark ? .standardDarkButton(for: context) : .white }
+        if isSystemAction { return .white }
+        return .standardDarkButton(for: context)
+    }
+    
+    func standardButtonForegroundColorForIdleState(for context: KeyboardContext) -> Color {
+        if isPrimaryAction { return .white }
+        return .standardButtonTint(for: context)
+    }
+    
+    func standardButtonForegroundColorForPressedState(for context: KeyboardContext) -> Color {
+        if isPrimaryAction { return context.colorScheme == .dark ? .white : .standardButtonTint(for: context) }
+        return .standardButtonTint(for: context)
     }
 }

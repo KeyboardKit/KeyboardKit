@@ -23,35 +23,61 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
     public init(
         content: Content,
         item: KeyboardLayoutItem,
+        keyboardWidth: CGFloat,
+        inputWidth: CGFloat,
         appearance: KeyboardAppearance,
         actionHandler: KeyboardActionHandler) {
         self.content = content
         self.item = item
+        self.keyboardWidth = keyboardWidth
+        self.inputWidth = inputWidth
         self.appearance = appearance
         self.actionHandler = actionHandler
     }
     
-    private let actionHandler: KeyboardActionHandler
-    private let appearance: KeyboardAppearance
     private let content: Content
     private let item: KeyboardLayoutItem
+    private let keyboardWidth: CGFloat
+    private let inputWidth: CGFloat
+    private let appearance: KeyboardAppearance
+    private let actionHandler: KeyboardActionHandler
     
+    @State private var isPressed = false
     @EnvironmentObject private var context: ObservableKeyboardContext
     
     public var body: some View {
         content
             .frame(maxWidth: .infinity)
             .frame(height: item.size.height - item.insets.top - item.insets.bottom)
-            .applyWidth(for: item.action)
-            .keyboardButtonStyle(for: item.action, appearance: appearance)
+            .rowItemWidth(for: item, totalWidth: keyboardWidth, referenceWidth: inputWidth)
+            .keyboardButtonStyle(
+                for: item.action,
+                appearance: appearance,
+                isPressed: isPressed)
             .padding(item.insets)
             .background(Color.clearInteractable)
-            .keyboardGestures(for: item.action, actionHandler: actionHandler)
+            .keyboardGestures(
+                for: item.action,
+                isPressed: $isPressed,
+                actionHandler: actionHandler)
     }
 }
 
-private extension View {
+public extension View {
     
+    /**
+     Apply a certain layout width to the view, in a way that
+     works with the rot item composition above.
+     */
     @ViewBuilder
-    func applyWidth(for action: KeyboardAction) -> some View { self }
+    func rowItemWidth(for item: KeyboardLayoutItem, totalWidth: CGFloat, referenceWidth: CGFloat) -> some View {
+        let insets = item.insets.leading + item.insets.trailing
+        switch item.size.width {
+        case .available: self.frame(maxWidth: .infinity)
+        case .input: self.frame(width: referenceWidth - insets)
+        case .inputPercentage(let percent): self.frame(width: percent * referenceWidth - insets)
+        case .percentage(let percent): self.frame(width: percent * totalWidth - insets)
+        case .points(let points): self.frame(width: points - insets)
+        }
+    }
 }

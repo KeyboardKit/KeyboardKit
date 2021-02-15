@@ -39,13 +39,15 @@ public struct SystemKeyboard: View {
         self.secondaryInputCalloutStyle = secondaryInputCalloutStyle
         self.buttonBuilder = buttonBuilder
         self.keyboardWidth = width
+        self.inputWidth = layout.inputWidth(for: keyboardWidth)
     }
     
     private let actionHandler: KeyboardActionHandler
     private let appearance: KeyboardAppearance
     private let buttonBuilder: ButtonBuilder
     private let inputCalloutStyle: InputCalloutStyle?
-    private var keyboardWidth: CGFloat
+    private let keyboardWidth: CGFloat
+    private let inputWidth: CGFloat
     private let layout: KeyboardLayout
     private let secondaryInputCalloutStyle: SecondaryInputCalloutStyle?
     
@@ -76,47 +78,26 @@ public extension SystemKeyboard {
 private extension SystemKeyboard {
     
     func rows(for layout: KeyboardLayout) -> some View {
-        let inputWidth = layout.inputWidth(for: keyboardWidth)
-        return ForEach(layout.items.enumerated().map { $0 }, id: \.offset) {
-            row(for: layout, items: $0.element, inputWidth: inputWidth)
+        ForEach(layout.items.enumerated().map { $0 }, id: \.offset) {
+            row(for: layout, items: $0.element)
         }
     }
     
-    func row(for layout: KeyboardLayout, items: KeyboardLayoutItemRow, inputWidth: CGFloat) -> some View {
+    func row(for layout: KeyboardLayout, items: KeyboardLayoutItemRow) -> some View {
         HStack(spacing: 0) {
             ForEach(Array(items.enumerated()), id: \.offset) {
-                rowItem(for: layout, item: $0.element, inputWidth: inputWidth)
+                rowItem(for: layout, item: $0.element)
             }
         }
     }
     
-    func rowItem(for layout: KeyboardLayout, item: KeyboardLayoutItem, inputWidth: CGFloat) -> some View {
-        buttonBuilder(item.action)
-            .frame(maxWidth: .infinity)
-            .frame(height: item.size.height - item.insets.top - item.insets.bottom)
-            .rowItemWidth(for: item, totalWidth: keyboardWidth, referenceWidth: inputWidth)
-            .keyboardButtonStyle(for: item.action, appearance: appearance)
-            .padding(item.insets)
-            .background(Color.clearInteractable)
-            .keyboardGestures(for: item.action, actionHandler: actionHandler)
-    }
-}
-
-public extension View {
-    
-    /**
-     Apply a certain layout width to the view, in a way that
-     works with the rot item composition above.
-     */
-    @ViewBuilder
-    func rowItemWidth(for item: KeyboardLayoutItem, totalWidth: CGFloat, referenceWidth: CGFloat) -> some View {
-        let insets = item.insets.leading + item.insets.trailing
-        switch item.size.width {
-        case .available: self.frame(maxWidth: .infinity)
-        case .input: self.frame(width: referenceWidth - insets)
-        case .inputPercentage(let percent): self.frame(width: percent * referenceWidth - insets)
-        case .percentage(let percent): self.frame(width: percent * totalWidth - insets)
-        case .points(let points): self.frame(width: points - insets)
-        }
+    func rowItem(for layout: KeyboardLayout, item: KeyboardLayoutItem) -> some View {
+        SystemKeyboardButtonRowItem(
+            content: buttonBuilder(item.action),
+            item: item,
+            keyboardWidth: keyboardWidth,
+            inputWidth: inputWidth,
+            appearance: appearance,
+            actionHandler: actionHandler)
     }
 }

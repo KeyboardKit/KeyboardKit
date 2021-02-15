@@ -34,10 +34,18 @@ public struct SystemKeyboardButton: View {
     private let image: Image?
     private let text: String?
     
+    @State private var isPressed = false
+    
     @ViewBuilder
     public var body: some View {
         SystemKeyboardButtonContent(action: action, text: text, image: image)
-            .keyboardButtonStyle(for: action, appearance: appearance)
-            .keyboardGestures(for: action, actionHandler: actionHandler)
+            .keyboardButtonStyle(
+                for: action,
+                appearance: appearance,
+                isPressed: isPressed)
+            .keyboardGestures(
+                for: action,
+                isPressed: $isPressed,
+                actionHandler: actionHandler)
     }
 }

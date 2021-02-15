@@ -26,9 +26,8 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     
     open var keyboardBackgroundColor: Color { .clear }
     
-    open func buttonBackgroundColor(for action: KeyboardAction) -> Color {
-        if action.isPrimaryAction { return .blue }
-        return action.standardButtonBackgroundColor(for: context)
+    open func buttonBackgroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
+        action.standardButtonBackgroundColor(for: context, isPressed: isPressed)
     }
     
     open func buttonCornerRadius(for action: KeyboardAction) -> CGFloat { 4.0 }
@@ -39,9 +38,8 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         return rawFont.weight(weight)
     }
     
-    open func buttonForegroundColor(for action: KeyboardAction) -> Color {
-        if action.isPrimaryAction { return .white }
-        return action.standardButtonForegroundColor(for: context)
+    open func buttonForegroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
+        action.standardButtonForegroundColor(for: context, isPressed: isPressed)
     }
     
     open func buttonImage(for action: KeyboardAction) -> Image? {
@@ -80,7 +78,7 @@ struct StandardKeyboardAppearance_Previews: PreviewProvider {
         Text("A")
             .padding()
             .font(.title)
-            .keyboardButtonStyle(for: action, appearance: appearance)
+            .keyboardButtonStyle(for: action, appearance: appearance, isPressed: false)
             .padding()
     }
     
