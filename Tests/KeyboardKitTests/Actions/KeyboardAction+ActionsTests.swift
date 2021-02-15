@@ -50,6 +50,34 @@ class KeyboardAction_ActionsTests: QuickSpec {
             }
         }
         
+        describe("standard press action") {
+            
+            it("is not defined for any actions") {
+                expected = [
+                    .keyboardType(.alphabetic(.lowercased)),
+                    .keyboardType(.alphabetic(.uppercased)),
+                    .keyboardType(.alphabetic(.capsLocked)),
+                    .keyboardType(.numeric),
+                    .keyboardType(.symbolic),
+                    .keyboardType(.email),
+                    .keyboardType(.emojis),
+                    .keyboardType(.images),
+                    .keyboardType(.custom(""))
+                ]
+                expected.forEach { expect($0.standardPressAction).toNot(beNil()) }
+                unexpected.forEach { expect($0.standardPressAction).to(beNil()) }
+            }
+        }
+        
+        describe("standard release action") {
+            
+            it("is not defined for any actions") {
+                expected = []
+                expected.forEach { expect($0.standardReleaseAction).toNot(beNil()) }
+                unexpected.forEach { expect($0.standardReleaseAction).to(beNil()) }
+            }
+        }
+        
         describe("standard tap action") {
             
             it("is defined for some actions") {

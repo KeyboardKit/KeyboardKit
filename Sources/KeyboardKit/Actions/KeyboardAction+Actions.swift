@@ -23,13 +23,13 @@ public extension KeyboardAction {
     
     /**
      The action that by default should be triggered when the
-     keyboard action is triggered with a double tap.
+     keyboard action is double tapped.
      */
     var standardDoubleTapAction: GestureAction? { nil }
     
     /**
      The action that by default should be triggered when the
-     keyboard action is triggered with a long press.
+     keyboard action is long pressed.
      */
     var standardLongPressAction: GestureAction? {
         switch self {
@@ -40,7 +40,24 @@ public extension KeyboardAction {
     
     /**
      The action that by default should be triggered when the
-     keyboard action is triggered by pressing and holding.
+     keyboard action is pressed down.
+     */
+    var standardPressAction: GestureAction? {
+        switch self {
+        case .keyboardType(let type): return { $0?.changeKeyboardType(to: type) }
+        default: return nil
+        }
+    }
+    
+    /**
+     The action that by default should be triggered when the
+     keyboard action is released.
+     */
+    var standardReleaseAction: GestureAction? { nil }
+    
+    /**
+     The action that by default should be triggered when the
+     keyboard action pressed and hold.
      */
     var standardRepeatAction: GestureAction? {
         switch self {
@@ -51,7 +68,7 @@ public extension KeyboardAction {
     
     /**
      The action that by default should be triggered when the
-     keyboard action is triggered with a tap.
+     keyboard action is tapped.
      */
     var standardTapAction: GestureAction? {
         if self.isPrimaryAction { return { $0?.textDocumentProxy.insertText("\n") }}

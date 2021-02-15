@@ -54,15 +54,22 @@ class KeyboardAction_SystemTests: QuickSpec {
                 unexpected.forEach { expect(result(for: $0)).toNot(equal(.clearInteractable)) }
             }
             
-            it("is standrd for other actions (requires bundle to be loaded)") {
-//                expected = [.none, .emoji(""), .emojiCategory(.smileys)]
-//                unexpected.forEach {
-//                    if ($0.isSystemAction) {
-//                        expect(result(for: $0)).to(equal(.standardDarkButton(for: context)))
-//                    } else {
-//                        expect(result(for: $0)).to(equal(.standardDarkButton(for: context)))
-//                    }
-//                }
+            it("is blue for primary actions") {
+                expected = [.done, .go, .ok, .search]
+                expected.forEach { expect(result(for: $0)).to(equal(.blue)) }
+                unexpected.forEach { expect(result(for: $0)).toNot(equal(.blue)) }
+            }
+            
+            it("is standard for all other actions") {
+                let nonStandard: [KeyboardAction] = [.none, .emoji(Emoji("")), .emojiCategory(.smileys), .done, .go, .ok, .search]
+                expected = actions.filter { !nonStandard.contains($0) }
+                expected.forEach {
+                    if $0.isSystemAction {
+                        expect(result(for: $0)).to(equal(Color.standardDarkButton(for: context)))
+                    } else {
+                        expect(result(for: $0)).to(equal(Color.standardButton(for: context)))
+                    }
+                }
             }
         }
         
@@ -124,10 +131,21 @@ class KeyboardAction_SystemTests: QuickSpec {
         
         describe("standard button foreground color") {
             
-            it("is defined for all actions") {
-                actions.forEach {
-                    let color = $0.standardButtonForegroundColor(for: context)
-                    expect(color).to(equal(.standardButtonTint(for: context)))
+            func result(for action: KeyboardAction) -> Color {
+                action.standardButtonForegroundColor(for: context)
+            }
+            
+            it("is white for primary actions") {
+                expected = [.done, .go, .ok, .search]
+                expected.forEach { expect(result(for: $0)).to(equal(.white)) }
+                unexpected.forEach { expect(result(for: $0)).toNot(equal(.white)) }
+            }
+            
+            it("is standard for all other actions") {
+                let nonStandard: [KeyboardAction] = [.done, .go, .ok, .search]
+                expected = actions.filter { !nonStandard.contains($0) }
+                expected.forEach {
+                    expect(result(for: $0)).to(equal(Color.standardButtonTint(for: context)))
                 }
             }
         }

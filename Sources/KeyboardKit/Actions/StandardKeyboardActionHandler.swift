@@ -139,6 +139,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         switch gesture {
         case .doubleTap: return action.standardDoubleTapAction
         case .longPress: return action.standardLongPressAction
+        case .press: return action.standardPressAction
+        case .release: return action.standardReleaseAction
         case .repeatPress: return action.standardRepeatAction
         case .tap: return action.standardTapAction
         }
@@ -157,6 +159,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         switch gesture {
         case .doubleTap: hapticConfiguration.doubleTapFeedback.trigger()
         case .longPress: hapticConfiguration.longPressFeedback.trigger()
+        case .press: hapticConfiguration.tapFeedback.trigger()
+        case .release: hapticConfiguration.tapFeedback.trigger()
         case .repeatPress: hapticConfiguration.repeatFeedback.trigger()
         case .tap: hapticConfiguration.tapFeedback.trigger()
         }

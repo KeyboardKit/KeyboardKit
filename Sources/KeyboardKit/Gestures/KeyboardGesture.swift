@@ -16,6 +16,8 @@ public enum KeyboardGesture {
 
     case tap
     case doubleTap
+    case press
+    case release
     case longPress
     case repeatPress
 }
