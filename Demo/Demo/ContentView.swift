@@ -33,6 +33,7 @@ struct ContentView: View {
                 Section(footer: footerText) {}
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .onAppear(perform: updateState)
         .onReceive(activePublisher) { _ in updateState() }
     }

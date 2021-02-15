@@ -60,8 +60,8 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
 private extension StandardKeyboardAppearance {
     
     func fontWeight(for action: KeyboardAction) -> UIFont.Weight? {
-        let hasImage = buttonImage(for: action) != nil
-        return hasImage ? .light : nil
+        if buttonImage(for: action) != nil { return .light }
+        return action.standardButtonFontWeight
     }
 }
 

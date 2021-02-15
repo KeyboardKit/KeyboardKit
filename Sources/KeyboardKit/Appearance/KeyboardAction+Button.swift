@@ -12,7 +12,7 @@ import UIKit
 public extension KeyboardAction {
     
     /**
-     The action's standard keyboard button background color.
+     The action's standard button background color.
      */
     func standardButtonBackgroundColor(for context: KeyboardContext) -> Color {
         if case .none = self { return .clear }
@@ -23,21 +23,32 @@ public extension KeyboardAction {
     }
     
     /**
-     The action's standard keyboard button font.
+     The action's standard button font.
      */
     var standardButtonFont: UIFont {
         .preferredFont(forTextStyle: standardButtonTextStyle)
     }
     
     /**
-     The action's standard keyboard button foreground color.
+     The action's standard button font weight, if any.
+    */
+    var standardButtonFontWeight: UIFont.Weight? {
+        if standardButtonImage != nil { return .light }
+        switch self {
+        case .character(let char): return char.isLowercased ? .light : nil
+        default: return nil
+        }
+    }
+    
+    /**
+     The action's standard button foreground color.
      */
     func standardButtonForegroundColor(for context: KeyboardContext) -> Color {
         .standardButtonTint(for: context)
     }
     
     /**
-     The action's standard keyboard button image.
+     The action's standard button image.
      */
     var standardButtonImage: Image? {
         switch self {
@@ -62,7 +73,7 @@ public extension KeyboardAction {
     }
     
     /**
-     The action's standard keyboard button shadow color.
+     The action's standard button shadow color.
      */
     func standardButtonShadowColor(for context: KeyboardContext) -> Color {
         if case .none = self { return .clear }
@@ -71,7 +82,7 @@ public extension KeyboardAction {
     }
 
     /**
-     The action's standard keyboard button text.
+     The action's standard button text.
      */
     var standardButtonText: String? {
         switch self {
@@ -84,12 +95,12 @@ public extension KeyboardAction {
     }
     
     /**
-     The action's standard keyboard button text style.
+     The action's standard button text style.
     */
     var standardButtonTextStyle: UIFont.TextStyle {
         if hasMultiCharButtonText { return .body }
         switch self {
-        case .character: return .title1
+        case .character(let char): return char.isLowercased ? .title1 : .title2
         case .emoji: return .title1
         case .emojiCategory: return .callout
         case .space: return .body

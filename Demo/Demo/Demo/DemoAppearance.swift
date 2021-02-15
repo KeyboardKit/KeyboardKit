@@ -7,32 +7,25 @@
 //
 
 import Foundation
-#if os(iOS)
 import UIKit
-#endif
 
 final class DemoAppearance {
     
     private init() {}
     
     static func apply() {
-        #if os(iOS)
-        if #available(iOS 13.0, *) {
-            let navbar = UINavigationBar.appearance()
-            let navbarAppearance = UINavigationBarAppearance()
-            navbarAppearance.configureWithOpaqueBackground()
-            //navbarAppearance.backgroundColor = .accent
-            navbarAppearance.titleTextAttributes = titleAttributes
-            navbarAppearance.largeTitleTextAttributes = largeTitleAttributes
-            //navbar.tintColor = UIColor.darkGray
-            navbar.standardAppearance = navbarAppearance
-            navbar.scrollEdgeAppearance = navbarAppearance
-        }
-        #endif
+        let navbar = UINavigationBar.appearance()
+        let navbarAppearance = UINavigationBarAppearance()
+        navbarAppearance.configureWithOpaqueBackground()
+        //navbarAppearance.backgroundColor = .accent
+        navbarAppearance.titleTextAttributes = titleAttributes
+        navbarAppearance.largeTitleTextAttributes = largeTitleAttributes
+        //navbar.tintColor = UIColor.darkGray
+        navbar.standardAppearance = navbarAppearance
+        navbar.scrollEdgeAppearance = navbarAppearance
     }
 }
 
-#if os(iOS)
 private extension DemoAppearance {
     
     static func font(sized size: CGFloat) -> UIFont {
@@ -54,4 +47,3 @@ private extension DemoAppearance {
         return shadow
     }
 }
-#endif

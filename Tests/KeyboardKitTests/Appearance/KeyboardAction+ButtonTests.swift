@@ -109,6 +109,19 @@ class KeyboardAction_SystemTests: QuickSpec {
             }
         }
         
+        describe("standard button font weight") {
+            
+            func result(for action: KeyboardAction) -> UIFont.Weight? {
+                action.standardButtonFontWeight
+            }
+            
+            it("is light for actions with image and lower cased char") {
+                expect(result(for: .character("A"))).to(beNil())
+                expect(result(for: .character("a"))).to(equal(.light))
+                expect(result(for: .backspace)).to(equal(.light))
+            }
+        }
+        
         describe("standard button foreground color") {
             
             it("is defined for all actions") {
@@ -199,6 +212,9 @@ class KeyboardAction_SystemTests: QuickSpec {
                         expect($0.standardButtonTextStyle).to(equal(.title2))
                     }
                 }
+                
+                expect(KeyboardAction.character("a").standardButtonTextStyle).to(equal(.title1))
+                expect(KeyboardAction.character("A").standardButtonTextStyle).to(equal(.title2))
             }
         }
     }

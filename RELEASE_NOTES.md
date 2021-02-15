@@ -23,6 +23,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `Input` has new types and providers for working with keyboard layouts.
 * `KeyboardAction` has new actions - `ok`, `go`.
 * `KeyboardAction` has new `isPrimaryAction` property.
+* `KeyboardAction` has new `standardButtonFontWeight` property.
 * `KeyboardAppearance` has a new `image(for:)`.
 * `KeyboardCasing` has a new `neutral` case that can be used to show the original state of the inuts.
 * `KeyboardInput` is a new input type that simplifies building unicode-based keyboards.
@@ -72,6 +73,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `StandardKeyboardActionHandler` now requires an injected autocomplete and keyboard change action.
 * `StandardKeyboardActionHandler` `triggerAutocomplete` is replaced by an injectable function.
 * `StandardKeyboardAppearance` will use `isPrimaryAction` to apply a blue color to those actions.
+* `StandardKeyboardAppearance` will fallback to the action's standard font weight instead of `nil`.
 * `StandardKeyboardBehavior` now requires an injected keyboard context.
 * `StandardKeyboardInputSetProvider` now requires an injected keyboard context. 
 
