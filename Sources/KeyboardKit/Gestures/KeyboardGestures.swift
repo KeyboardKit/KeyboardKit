@@ -21,6 +21,8 @@ struct KeyboardGestures<Content: View>: View {
         tapAction: KeyboardGestureAction?,
         doubleTapAction: KeyboardGestureAction?,
         longPressAction: KeyboardGestureAction?,
+        pressAction: KeyboardGestureAction?,
+        releaseAction: KeyboardGestureAction?,
         repeatAction: KeyboardGestureAction?,
         dragAction: KeyboardDragGestureAction?) {
         self.view = view
@@ -29,6 +31,8 @@ struct KeyboardGestures<Content: View>: View {
         self.tapAction = tapAction
         self.doubleTapAction = doubleTapAction
         self.longPressAction = longPressAction
+        self.pressAction = pressAction
+        self.releaseAction = releaseAction
         self.repeatAction = repeatAction
         self.dragAction = dragAction
     }
@@ -39,6 +43,8 @@ struct KeyboardGestures<Content: View>: View {
     private let tapAction: KeyboardGestureAction?
     private let doubleTapAction: KeyboardGestureAction?
     private let longPressAction: KeyboardGestureAction?
+    private let pressAction: KeyboardGestureAction?
+    private let releaseAction: KeyboardGestureAction?
     private let repeatAction: KeyboardGestureAction?
     private let dragAction: KeyboardDragGestureAction?
     
@@ -85,10 +91,12 @@ private extension KeyboardGestures {
     func dragGesture(for geo: GeometryProxy) -> some Gesture {
         DragGesture(minimumDistance: 0)
             .onChanged { _ in
+                pressAction?()
                 isPressed.wrappedValue = true
                 guard isInputCalloutEnabled else { return }
                 inputCalloutContext.updateInput(for: action, geo: geo) }
             .onEnded { _ in
+                releaseAction?()
                 isPressed.wrappedValue = false
                 inputCalloutContext.reset()
                 stopRepeatTimer() }

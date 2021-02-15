@@ -31,6 +31,8 @@ public extension View {
                 tapAction: { actionHandler.handle(.tap, on: action) },
                 doubleTapAction: { actionHandler.handle(.doubleTap, on: action) },
                 longPressAction: { actionHandler.handle(.longPress, on: action) },
+                pressAction: { actionHandler.handle(.press, on: action) },
+                releaseAction: { actionHandler.handle(.release, on: action) },
                 repeatAction: { actionHandler.handle(.repeatPress, on: action) },
                 dragAction: { start, current in actionHandler.handleDrag(on: action, from: start, to: current) })
         }
@@ -49,6 +51,8 @@ public extension View {
         tapAction: KeyboardGestureAction? = nil,
         doubleTapAction: KeyboardGestureAction? = nil,
         longPressAction: KeyboardGestureAction? = nil,
+        pressAction: KeyboardGestureAction? = nil,
+        releaseAction: KeyboardGestureAction? = nil,
         repeatAction: KeyboardGestureAction? = nil,
         dragAction: KeyboardDragGestureAction? = nil) -> some View {
         KeyboardGestures(
@@ -58,6 +62,8 @@ public extension View {
             tapAction: tapAction,
             doubleTapAction: doubleTapAction,
             longPressAction: longPressAction,
+            pressAction: pressAction,
+            releaseAction: releaseAction,
             repeatAction: repeatAction,
             dragAction: dragAction)
     }
