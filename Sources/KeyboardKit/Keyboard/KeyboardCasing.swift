@@ -21,11 +21,19 @@ public enum KeyboardCasing {
 
 public extension KeyboardCasing {
     
+    var isLowercased: Bool {
+        switch self {
+        case .lowercased: return true
+        case .uppercased, .capsLocked: return false
+        case .neutral: return false
+        }
+    }
+    
     var isUppercased: Bool {
         switch self {
         case .lowercased: return false
         case .uppercased, .capsLocked: return true
-        case .neutral: return true
+        case .neutral: return false
         }
     }
 }

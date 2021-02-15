@@ -3,7 +3,7 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions.
 
 
-## 4.0 - SwiftUI: Rising
+## 4.0 - SwiftUI: Rising - [Milestone](https://github.com/danielsaidi/KeyboardKit/milestone/16?closed=1).
 
 In the shadows no more! It's time for `SwiftUI` to rise and become the unrelenting force we always knew it would become. 
 
@@ -26,6 +26,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `KeyboardAction` has new `standardButtonFontWeight` property.
 * `KeyboardAppearance` has a new `image(for:)`.
 * `KeyboardCasing` has a new `neutral` case that can be used to show the original state of the inuts.
+* `KeyboardGesture` has new `press` and `release` gestures.
 * `KeyboardInput` is a new input type that simplifies building unicode-based keyboards.
 * `KeyboardInputSet` is now based on `KeyboardInput`s instead of strings.
 * `KeyboardInputSetProvider` has new locale-specific providers under `Input/Providers`.
@@ -64,6 +65,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `KeyboardActionRow` `standardButtonImage` no longer takes a context.
 * `KeyboardBehavior` no longer takes a context as function input.
 * `KeyboardContext` no longer has any services, just inspectable properties.
+* `KeyboardGestures` now handles the new press and release gestures.
 * `KeyboardInputSetProvider` implementations now provides punctuation as well.
 * `KeyboardInputSetProvider` no longer takes a context as function input.
 * `KeyboardInputViewController` `context` is now an `ObservableKeyboardContext`.
@@ -73,11 +75,13 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `StandardKeyboardActionHandler` no longer depends on an input view controller.
 * `StandardKeyboardActionHandler` now requires an injected keyboard context and behavior.
 * `StandardKeyboardActionHandler` now requires an injected autocomplete and keyboard change action.
+* `StandardKeyboardActionHandler` now handles the new press and release gestures.
 * `StandardKeyboardActionHandler` `triggerAutocomplete` is replaced by an injectable function.
 * `StandardKeyboardAppearance` will use `isPrimaryAction` to apply a blue color to those actions.
 * `StandardKeyboardAppearance` will fallback to the action's standard font weight instead of `nil`.
 * `StandardKeyboardBehavior` now requires an injected keyboard context.
-* `StandardKeyboardInputSetProvider` now requires an injected keyboard context. 
+* `StandardKeyboardInputSetProvider` now requires an injected keyboard context.
+* `View+KeyboardGestures` now handles the new press and release gestures.
 
 
 ### Removed/renamed

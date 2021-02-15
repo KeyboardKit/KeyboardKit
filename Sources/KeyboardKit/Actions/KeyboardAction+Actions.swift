@@ -78,7 +78,6 @@ public extension KeyboardAction {
         case .character(let char): return { $0?.textDocumentProxy.insertText(char) }
         case .dismissKeyboard: return { $0?.dismissKeyboard() }
         case .emoji(let emoji): return { $0?.textDocumentProxy.insertText(emoji.char) }
-        case .keyboardType(let type): return { $0?.changeKeyboardType(to: type) }
         case .moveCursorBackward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: -1) }
         case .moveCursorForward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: 1) }
         case .newLine: return { $0?.textDocumentProxy.insertText("\n") }
@@ -87,7 +86,8 @@ public extension KeyboardAction {
             switch currentState {
             case .lowercased, .neutral: $0?.changeKeyboardType(to: .alphabetic(.uppercased))
             case .uppercased, .capsLocked: $0?.changeKeyboardType(to: .alphabetic(.lowercased))
-            }}
+            }
+        }
         case .space: return { $0?.textDocumentProxy.insertText(" ") }
         case .tab: return { $0?.textDocumentProxy.insertText("\t") }
         default: return nil

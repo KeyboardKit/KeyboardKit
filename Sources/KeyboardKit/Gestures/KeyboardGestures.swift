@@ -53,6 +53,7 @@ struct KeyboardGestures<Content: View>: View {
     
     private let repeatTimer = RepeatGestureTimer()
     
+    @State private var isDragGestureTriggered = false
     @State private var isInputCalloutEnabled = true
     @State private var isRepeatGestureActive = false {
         didSet { isRepeatGestureActive ? startRepeatTimer() : stopRepeatTimer() }
@@ -91,12 +92,15 @@ private extension KeyboardGestures {
     func dragGesture(for geo: GeometryProxy) -> some Gesture {
         DragGesture(minimumDistance: 0)
             .onChanged { _ in
+                if isDragGestureTriggered { return }
+                isDragGestureTriggered = true
                 pressAction?()
                 isPressed.wrappedValue = true
                 guard isInputCalloutEnabled else { return }
                 inputCalloutContext.updateInput(for: action, geo: geo) }
             .onEnded { _ in
                 releaseAction?()
+                isDragGestureTriggered = false
                 isPressed.wrappedValue = false
                 inputCalloutContext.reset()
                 stopRepeatTimer() }
