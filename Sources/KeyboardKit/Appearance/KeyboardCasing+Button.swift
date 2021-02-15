@@ -1,5 +1,5 @@
 //
-//  KeyboardShiftState+Button.swift
+//  KeyboardCasing+Button.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-07-01.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public extension KeyboardShiftState {
+public extension KeyboardCasing {
     
     /**
      The shift state's standard keyboard button image.
@@ -17,6 +17,7 @@ public extension KeyboardShiftState {
         switch self {
         case .capsLocked: return .shiftCapslocked
         case .lowercased: return .shiftLowercased
+        case .neutral: return .shiftLowercased
         case .uppercased: return .shiftUppercased
         }
     }

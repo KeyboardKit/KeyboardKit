@@ -1,5 +1,5 @@
 //
-//  KeyboardShiftState+ButtonTests.swift
+//  KeyboardCasing+ButtonTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-07-02.

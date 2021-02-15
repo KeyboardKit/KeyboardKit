@@ -42,7 +42,21 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
      Get keyboard actions for the provided context and inputs.
      */
     open func actions(for context: KeyboardContext, inputs: KeyboardInputRows) -> KeyboardActionRows {
-        KeyboardActionRows(characters: inputs)
+        let characters = actionCharacters(for: context, inputs: inputs)
+        return KeyboardActionRows(characters: characters)
+    }
+    
+    /**
+     Get keyboard action characters for the provided context
+     and inputs.
+     */
+    open func actionCharacters(for context: KeyboardContext, inputs: KeyboardInputRows) -> [[String]] {
+        switch context.keyboardType {
+        case .alphabetic(let casing): return inputs.characters(for: casing)
+        case .numeric: return inputs.characters()
+        case .symbolic: return inputs.characters()
+        default: return []
+        }
     }
     
     /**
@@ -50,9 +64,7 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
      */
     open func inputs(for context: KeyboardContext) -> KeyboardInputRows {
         switch context.keyboardType {
-        case .alphabetic(let state):
-            let rows = inputSetProvider.alphabeticInputSet().rows
-            return state.isUppercased ? rows.uppercased() : rows
+        case .alphabetic: return inputSetProvider.alphabeticInputSet().rows
         case .numeric: return inputSetProvider.numericInputSet().rows
         case .symbolic: return inputSetProvider.symbolicInputSet().rows
         default: return []

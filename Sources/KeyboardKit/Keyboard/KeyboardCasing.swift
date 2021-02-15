@@ -1,5 +1,5 @@
 //
-//  KeyboardShiftState.swift
+//  KeyboardCasing.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-07-04.
@@ -11,19 +11,21 @@ import Foundation
 /**
  This enum lists the various shift states a keyboard can use.
  */
-public enum KeyboardShiftState {
+public enum KeyboardCasing {
     case
     lowercased,
     uppercased,
-    capsLocked
+    capsLocked,
+    neutral
 }
 
-public extension KeyboardShiftState {
+public extension KeyboardCasing {
     
     var isUppercased: Bool {
         switch self {
         case .lowercased: return false
         case .uppercased, .capsLocked: return true
+        case .neutral: return true
         }
     }
 }

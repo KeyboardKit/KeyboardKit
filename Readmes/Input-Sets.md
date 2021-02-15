@@ -2,7 +2,7 @@
 
 KeyboardKit has a `KeyboardInputSet` struct, which represents rows of input characters.
 
-This input set is then divided into three separate groups:
+An input set is divided into three sub-groups:
 
 * `AlphabeticKeyboardInputSet` for alphabetic keyboards.
 * `NumericKeyboardInputSet` for numeric keyboards.

@@ -18,7 +18,7 @@ import UIKit
 public enum KeyboardType: Equatable {
 
     case
-    alphabetic(_ state: KeyboardShiftState),
+    alphabetic(_ state: KeyboardCasing),
     numeric,
     symbolic,
     email,
@@ -43,9 +43,9 @@ public extension KeyboardType {
      Whether or not the keyboard type is alphabetic and with
      a certain shift state.
      */
-    func isAlphabetic(with shiftState: KeyboardShiftState) -> Bool {
+    func isAlphabetic(with casingType: KeyboardCasing) -> Bool {
         switch self {
-        case .alphabetic(let state): return state == shiftState
+        case .alphabetic(let casing): return casing == casingType
         default: return false
         }
     }

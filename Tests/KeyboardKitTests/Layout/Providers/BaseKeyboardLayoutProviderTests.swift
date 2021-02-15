@@ -21,9 +21,9 @@ class BaseKeyboardLayoutProviderTests: QuickSpec {
         beforeEach {
             context = MockKeyboardContext()
             inputProvider = MockKeyboardInputSetProvider()
-            inputProvider.alphabeticInputSetValue = AlphabeticKeyboardInputSet(rows: [["a", "b", "c"]])
-            inputProvider.numericInputSetValue = NumericKeyboardInputSet(rows: [["1", "2", "3"]])
-            inputProvider.symbolicInputSetValue = SymbolicKeyboardInputSet(rows: [[",", ".", "-"]])
+            inputProvider.alphabeticInputSetValue = AlphabeticKeyboardInputSet(rows: KeyboardInputRows([["a", "b", "c"]]))
+            inputProvider.numericInputSetValue = NumericKeyboardInputSet(rows: KeyboardInputRows([["1", "2", "3"]]))
+            inputProvider.symbolicInputSetValue = SymbolicKeyboardInputSet(rows: KeyboardInputRows([[",", ".", "-"]]))
             provider = BaseKeyboardLayoutProvider(
                 inputSetProvider: inputProvider,
                 dictationReplacement: .go)
@@ -46,43 +46,47 @@ class BaseKeyboardLayoutProviderTests: QuickSpec {
         describe("actions for context and inputs") {
             
             it("is character actions for the provided inputs") {
-                let inputs = [["a", "b", "c"], ["d", "e", "f"]]
+                let chars = [["a", "b", "c"], ["d", "e", "f"]]
+                let inputs = KeyboardInputRows(chars)
                 let actions = provider.actions(for: context, inputs: inputs)
-                let expected = KeyboardActionRows(characters: inputs)
+                let expected = KeyboardActionRows(characters: chars)
+                expect(actions).to(equal(expected))
+            }
+            
+            it("can resolve uppercased alphabetic input set") {
+                context.keyboardType = .alphabetic(.uppercased)
+                let chars = [["a", "b", "c"], ["d", "e", "f"]]
+                let inputs = KeyboardInputRows(chars)
+                let actions = provider.actions(for: context, inputs: inputs)
+                let expected = KeyboardActionRows(characters: chars.uppercased())
                 expect(actions).to(equal(expected))
             }
         }
         
         describe("inputs for context") {
             
-            it("can resolve lowercased alphabetic input set") {
+            it("can resolve alphabetic input set") {
                 context.keyboardType = .alphabetic(.lowercased)
                 let rows = provider.inputs(for: context)
-                expect(rows).to(equal([["a", "b", "c"]]))
-            }
-            
-            it("can resolve uppercased alphabetic input set") {
-                context.keyboardType = .alphabetic(.uppercased)
-                let rows = provider.inputs(for: context)
-                expect(rows).to(equal([["A", "B", "C"]]))
+                expect(rows.characters()).to(equal([["a", "b", "c"]]))
             }
             
             it("can resolve numeric input set") {
                 context.keyboardType = .numeric
                 let rows = provider.inputs(for: context)
-                expect(rows).to(equal([["1", "2", "3"]]))
+                expect(rows.characters()).to(equal([["1", "2", "3"]]))
             }
             
             it("can resolve symbolic input set") {
                 context.keyboardType = .symbolic
                 let rows = provider.inputs(for: context)
-                expect(rows).to(equal([[",", ".", "-"]]))
+                expect(rows.characters()).to(equal([[",", ".", "-"]]))
             }
             
             it("returns empty rows for unsupported keybard type") {
                 context.keyboardType = .emojis
                 let rows = provider.inputs(for: context)
-                expect(rows).to(equal([]))
+                expect(rows.characters()).to(equal([]))
             }
         }
         
@@ -132,7 +136,7 @@ class BaseKeyboardLayoutProviderTests: QuickSpec {
             it("is nil for unsupported keybard type") {
                 context.keyboardType = .emojis
                 let rows = provider.inputs(for: context)
-                expect(rows).to(equal([]))
+                expect(rows.characters()).to(equal([]))
             }
         }
         
@@ -165,7 +169,7 @@ class BaseKeyboardLayoutProviderTests: QuickSpec {
             it("is nil for unsupported keybard type") {
                 context.keyboardType = .emojis
                 let rows = provider.inputs(for: context)
-                expect(rows).to(equal([]))
+                expect(rows.characters()).to(equal([]))
             }
         }
     }

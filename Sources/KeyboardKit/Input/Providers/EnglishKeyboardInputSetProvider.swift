@@ -22,15 +22,15 @@ public class EnglishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, Lo
     
     public func alphabeticInputSet() -> AlphabeticKeyboardInputSet {
         AlphabeticKeyboardInputSet(rows: [
-            "qwertyuiop".chars,
-            "asdfghjkl".chars,
+            row("qwertyuiop"),
+            row("asdfghjkl"),
             row(phone: "zxcvbnm", pad: "zxcvbnm,.")
         ])
     }
     
     public func numericInputSet() -> NumericKeyboardInputSet {
         NumericKeyboardInputSet(rows: [
-            "1234567890".chars,
+            row("1234567890"),
             row(phone: "-/:;()$&@“", pad: "@#$&*()’”"),
             row(phone: ".,?!’", pad: "%-+=/;:,.")
         ])

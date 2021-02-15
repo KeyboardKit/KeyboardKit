@@ -45,7 +45,7 @@ public enum KeyboardAction: Equatable {
         `return`,
         search,
         settings,
-        shift(currentState: KeyboardShiftState),
+        shift(currentState: KeyboardCasing),
         space,
         systemImage(description: String, keyboardImageName: String, imageName: String),
         tab

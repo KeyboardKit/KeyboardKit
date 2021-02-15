@@ -1,5 +1,5 @@
 //
-//  KeyboardShiftStateTests.swift
+//  KeyboardCasingTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-07-04.
@@ -10,13 +10,13 @@ import Quick
 import Nimble
 import KeyboardKit
 
-class KeyboardShiftStateTests: QuickSpec {
+class KeyboardCasingTests: QuickSpec {
     
     override func spec() {
         
         describe("is uppercased") {
             
-            func result(for state: KeyboardShiftState) -> Bool {
+            func result(for state: KeyboardCasing) -> Bool {
                 return state.isUppercased
             }
             

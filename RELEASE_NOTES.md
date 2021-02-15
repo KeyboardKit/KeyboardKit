@@ -24,6 +24,9 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `KeyboardAction` has new actions - `ok`, `go`.
 * `KeyboardAction` has new `isPrimaryAction` property.
 * `KeyboardAppearance` has a new `image(for:)`.
+* `KeyboardCasing` has a new `neutral` case that can be used to show the original state of the inuts.
+* `KeyboardInput` is a new input type that simplifies building unicode-based keyboards.
+* `KeyboardInputSet` is now based on `KeyboardInput`s instead of strings.
 * `KeyboardInputSetProvider` has new locale-specific providers under `Input/Providers`.
 * `KeyboardInputViewController` has a new static `shared` instance.
 * `KeyboardInputViewController` has a new `keyboardActionHandler`.
@@ -97,6 +100,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `KeyboardInputViewController` `context` has been renamed to `keyboardContext`.
 * `KeyboardInputViewController+Gestures` has been converted to `KeyboardButton+Gestures`.
 * `KeyboardLayout` `actionRows` has been renamed to `items` and are of a new `KeyboardLayoutItemRows` type.
+* `KeyboardCasing` has been renamed to `KeyboardCasing`
 * `PhotosImageService` and `StandardPhotosImageService` have been removed.
 * `Settings` has been entirely removed.
 * `SecondaryInputCalloutContext.shared` has been removed. Use the environment object instead.
@@ -286,8 +290,8 @@ The release also adds a spacebar drag gesture and deprecates some `haptic` prope
 * `KeyboardAction` `systemKeyboardButtonBackgroundColor` has been renamed to `standardButtonBackgroundColor` 
 * `KeyboardAction` `systemKeyboardButtonImage` has been renamed to `standardButtonImage` 
 * `KeyboardAction` `systemKeyboardButtonShadowColor` has been renamed to `standardButtonShadowColor`
-* `KeyboardShiftState` `systemImage` has been renamed to `standardButtonImage`
-* `KeyboardShiftState` `systemKeyboardButtonImage` was unused and has been deprecated.
+* `KeyboardCasing` `systemImage` has been renamed to `standardButtonImage`
+* `KeyboardCasing` `systemKeyboardButtonImage` was unused and has been deprecated.
 * `KeyboardType` `systemKeyboardButtonImage` has been renamed to `standardButtonImage`
 * `View` `systemKeyboardButtonStyle` has been renamed to `standardButtonStyle`
 * `View` `systemKeyboardButtonBackground` has been renamed to `standardButtonBackground`
@@ -660,7 +664,7 @@ Thanks to @eduardoxlau, the demo also has an improved emoji keyboard.
 
 ### Breaking change
 
-* `KeyboardType.alphabetic` now uses a `KeyboardShiftState` property instead of a bool for if it's upper-cased or not.
+* `KeyboardType.alphabetic` now uses a `KeyboardCasing` property instead of a bool for if it's upper-cased or not.
 * `KeyboardAction.switchToKeyboard` is now an alias for `keyboardType`. You can still use it when defining actions, but if you switch over `KeyboardAction`, you have to use `keyboardType` instead of `switchToKeyboard`.
 
 
@@ -851,7 +855,7 @@ The new `UITextDocumentProxy+CurrentWord` extension helps you get the word that 
 
 Besides these additions, there are a bunch of new extensions, like `UITextDocumentProxy` `deleteBackwards(times:)`, which lets you delete a certain number of characters. Have a look at the `Extensions` namespace for a complete list.
 
-There is also a new `KeyboardShiftState` enum that you can use to keep track of which state your keyboard has, if any. This enum is extracted from demo app code that was provided by @arampak earlier this year. 
+There is also a new `KeyboardCasing` enum that you can use to keep track of which state your keyboard has, if any. This enum is extracted from demo app code that was provided by @arampak earlier this year. 
 
  **IMPORTANT** iOS has a bug that causes `textWillChange` and `textDidChange` to not be called when the user types, only when the cursor moves. This causes autocomplete problems, since the current word is not changing as the user types. Due to this, the input view controller must use an ugly hack to force the text document proxy to update. Have a look at the demo app to see how this is done.
 

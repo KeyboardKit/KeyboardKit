@@ -68,9 +68,8 @@ public extension KeyboardAction {
         case .return: return { $0?.textDocumentProxy.insertText("\n") }
         case .shift(let currentState): return {
             switch currentState {
-            case .lowercased: $0?.changeKeyboardType(to: .alphabetic(.uppercased))
-            case .uppercased: $0?.changeKeyboardType(to: .alphabetic(.lowercased))
-            case .capsLocked: $0?.changeKeyboardType(to: .alphabetic(.lowercased))
+            case .lowercased, .neutral: $0?.changeKeyboardType(to: .alphabetic(.uppercased))
+            case .uppercased, .capsLocked: $0?.changeKeyboardType(to: .alphabetic(.lowercased))
             }}
         case .space: return { $0?.textDocumentProxy.insertText(" ") }
         case .tab: return { $0?.textDocumentProxy.insertText("\t") }

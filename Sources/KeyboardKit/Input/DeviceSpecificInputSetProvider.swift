@@ -19,7 +19,15 @@ public protocol DeviceSpecificInputSetProvider: KeyboardInputSetProvider {
 
 public extension DeviceSpecificInputSetProvider {
     
+    func row(_ chars: String) -> KeyboardInputRow {
+        row(chars.chars)
+    }
+    
+    func row(_ chars: [String]) -> KeyboardInputRow {
+        KeyboardInputRow(chars)
+    }
+    
     func row(phone: String, pad: String) -> KeyboardInputRow {
-        device.isPhone ? phone.chars : pad.chars
+        KeyboardInputRow(device.isPhone ? phone.chars : pad.chars)
     }
 }

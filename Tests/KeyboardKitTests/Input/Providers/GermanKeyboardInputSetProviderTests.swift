@@ -39,7 +39,7 @@ class GermanKeyboardInputSetProviderTests: QuickSpec {
                 }
                 
                 it("has correct alphabetic input set") {
-                    expect(provider.alphabeticInputSet().rows).to(equal([
+                    expect(provider.alphabeticInputSet().rows.characters()).to(equal([
                         "qwertzuiopü".chars,
                         "asdfghjklöä".chars,
                         "yxcvbnm".chars
@@ -47,7 +47,7 @@ class GermanKeyboardInputSetProviderTests: QuickSpec {
                 }
                 
                 it("has correct numeric input set") {
-                    expect(provider.numericInputSet().rows).to(equal([
+                    expect(provider.numericInputSet().rows.characters()).to(equal([
                         "1234567890".chars,
                         "-/:;()€&@“".chars,
                         ".,?!’".chars
@@ -55,7 +55,7 @@ class GermanKeyboardInputSetProviderTests: QuickSpec {
                 }
                 
                 it("has correct symbolic input set") {
-                    expect(provider.symbolicInputSet().rows).to(equal([
+                    expect(provider.symbolicInputSet().rows.characters()).to(equal([
                         "[]{}#%^*+=".chars,
                         "_\\|~<>$£¥•".chars,
                         ".,?!’".chars
@@ -70,7 +70,7 @@ class GermanKeyboardInputSetProviderTests: QuickSpec {
                 }
                 
                 it("has correct alphabetic input set") {
-                    expect(provider.alphabeticInputSet().rows).to(equal([
+                    expect(provider.alphabeticInputSet().rows.characters()).to(equal([
                         "qwertzuiopü".chars,
                         "asdfghjklöä".chars,
                         "yxcvbnm,.ß".chars
@@ -78,7 +78,7 @@ class GermanKeyboardInputSetProviderTests: QuickSpec {
                 }
                 
                 it("has correct numeric input set") {
-                    expect(provider.numericInputSet().rows).to(equal([
+                    expect(provider.numericInputSet().rows.characters()).to(equal([
                         "1234567890+".chars,
                         "„§€%&/()=‘#".chars,
                         "—ˋ´…@;:,.-".chars
@@ -86,7 +86,7 @@ class GermanKeyboardInputSetProviderTests: QuickSpec {
                 }
                 
                 it("has correct symbolic input set") {
-                    expect(provider.symbolicInputSet().rows).to(equal([
+                    expect(provider.symbolicInputSet().rows.characters()).to(equal([
                         "1234567890*".chars,
                         "$£¥¿–\\[]{}|".chars,
                         "¡<>≠•^~!?_".chars

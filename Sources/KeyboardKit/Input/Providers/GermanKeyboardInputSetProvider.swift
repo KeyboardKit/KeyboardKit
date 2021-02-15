@@ -22,8 +22,8 @@ public class GermanKeyboardInputSetProvider: DeviceSpecificInputSetProvider, Loc
     
     public func alphabeticInputSet() -> AlphabeticKeyboardInputSet {
         AlphabeticKeyboardInputSet(rows: [
-            "qwertzuiopü".chars,
-            "asdfghjklöä".chars,
+            row("qwertzuiopü"),
+            row("asdfghjklöä"),
             row(phone: "yxcvbnm", pad: "yxcvbnm,.ß")
         ])
     }
