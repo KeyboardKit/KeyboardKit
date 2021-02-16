@@ -10,20 +10,16 @@ import Foundation
 
 /**
  This standard provider has wrapped localized providers that
- are activated depending on the context locale.
+ are activated depending on the context's locale.
  
  You can provide any number of localized providers in `init`.
- By default, it will use all that exist in this library.
+ By default, it will use all providers that exist in the lib.
  */
 open class StandardKeyboardInputSetProvider: KeyboardInputSetProvider {
     
     public init(
         context: KeyboardContext,
-        providers: [KeyboardInputSetProvider & LocalizedService] = [
-            EnglishKeyboardInputSetProvider(),
-            GermanKeyboardInputSetProvider(),
-            ItalianKeyboardInputSetProvider(),
-            SwedishKeyboardInputSetProvider()]) {
+        providers: [KeyboardInputSetProvider & LocalizedService] = [EnglishKeyboardInputSetProvider()]) {
         self.context = context
         let dict = Dictionary(uniqueKeysWithValues: providers.map { ($0.localeKey, $0) })
         providerDictionary = LocaleDictionary(dict)

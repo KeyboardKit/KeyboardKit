@@ -18,7 +18,7 @@ Although these release notes aim at covering everything that has changes in this
 
 Besides the new things listed below, there are a bunch of new extensions, images etc. 
 
-* `Callouts/Providers` have new locale-specific callout action providers.
+* `Callouts` has new types and providers for working with callouts.
 * `Image.emoji` no longer requires iOS 14, but uses `person.crop.circle` as fallback on iOS 13.
 * `Input` has new types and providers for working with keyboard layouts.
 * `KeyboardAction` has new actions - `ok`, `go`.
@@ -29,7 +29,6 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `KeyboardGesture` has new `press` and `release` gestures.
 * `KeyboardInput` is a new input type that simplifies building unicode-based keyboards.
 * `KeyboardInputSet` is now based on `KeyboardInput`s instead of strings.
-* `KeyboardInputSetProvider` has new locale-specific providers under `Input/Providers`.
 * `KeyboardInputViewController` has a new static `shared` instance.
 * `KeyboardInputViewController` has a new `keyboardActionHandler`.
 * `KeyboardInputViewController` has a new `keyboardAppearance`.
@@ -102,7 +101,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `KeyboardContext` `keyboardInputSetProvider` has been moved to the input vc.
 * `KeyboardContext` `keyboardLayoutProvider` has been moved to the input vc.
 * `KeyboardDimensions` is no longer used and has been removed.
-* `KeyboardInputSet` locale extensions have been converted to separate providers.
+* `KeyboardInputSet` locale extensions have been removed.
 * `KeyboardInputSet` standard input set extensions have been removed.
 * `KeyboardInputViewController` `addKeyboardGestures` has been converted to `KeyboardButton+Gestures`.
 * `KeyboardInputViewController` `context` has been renamed to `keyboardContext`.
