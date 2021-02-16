@@ -27,9 +27,8 @@ class StandardSecondaryCalloutActionProviderTests: QuickSpec {
             
             it("has standard locale-specific providers") {
                 let providers = provider.providerDictionary.dictionary
-                expect(providers.keys.count).to(equal(2))
+                expect(providers.keys.count).to(equal(1))
                 expect(providers[LocaleKey.english.key] is EnglishSecondaryCalloutActionProvider).to(beTrue())
-                expect(providers[LocaleKey.swedish.key] is SwedishSecondaryCalloutActionProvider).to(beTrue())
             }
             
             it("accepts custom providers") {
@@ -49,14 +48,6 @@ class StandardSecondaryCalloutActionProviderTests: QuickSpec {
                 let action = KeyboardAction.character("a")
                 let actions = provider.secondaryCalloutActions(for: action)
                 let expected = "aàáâäæãåā".map { KeyboardAction.character(String($0)) }
-                expect(actions).to(equal(expected))
-            }
-            
-            it("supports Swedish") {
-                context.locale = Locale(identifier: LocaleKey.swedish.key)
-                let action = KeyboardAction.character("a")
-                let actions = provider.secondaryCalloutActions(for: action)
-                let expected = "aáàâãā".map { KeyboardAction.character(String($0)) }
                 expect(actions).to(equal(expected))
             }
             
