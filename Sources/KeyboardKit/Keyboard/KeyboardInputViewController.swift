@@ -64,12 +64,14 @@ open class KeyboardInputViewController: UIInputViewController {
     // MARK: - Setup
 
     /**
-     Remove all subviews from the vc view and add a `SwiftUI`
-     view to it. This will pin the view to the edges of this
-     extension and will resize the extension to fit the view.
+     Setup KeyboardKit with a SwiftUI view.
      
-     This function also applies `@EnvironmentObject`s to the
-     view, that can be used by all nested views.
+     This will remove all subviews from the vc view then add
+     the provided view to it. The view will be pinned to the
+     edges of the vc view and resize the extension to fit.
+     
+     This also applies `@EnvironmentObject` instances to the
+     view, that can be used within the entire view hierarchy.
      */
     open func setup<Content: View>(with view: Content) {
         self.view.subviews.forEach { $0.removeFromSuperview() }
