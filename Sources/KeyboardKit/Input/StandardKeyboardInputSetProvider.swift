@@ -19,7 +19,7 @@ open class StandardKeyboardInputSetProvider: KeyboardInputSetProvider {
     
     public init(
         context: KeyboardContext,
-        providers: [KeyboardInputSetProvider & LocalizedService] = [EnglishKeyboardInputSetProvider()]) {
+        providers: [LocalizedKeyboardInputSetProvider] = [EnglishKeyboardInputSetProvider()]) {
         self.context = context
         let dict = Dictionary(uniqueKeysWithValues: providers.map { ($0.localeKey, $0) })
         providerDictionary = LocaleDictionary(dict)

@@ -19,7 +19,7 @@ open class StandardSecondaryCalloutActionProvider: SecondaryCalloutActionProvide
     
     public init(
         context: KeyboardContext,
-        providers: [SecondaryCalloutActionProvider & LocalizedService] = [EnglishSecondaryCalloutActionProvider()]) {
+        providers: [LocalizedSecondaryCalloutActionProvider] = [EnglishSecondaryCalloutActionProvider()]) {
         self.context = context
         let dict = Dictionary(uniqueKeysWithValues: providers.map { ($0.localeKey, $0) })
         providerDictionary = LocaleDictionary(dict)
