@@ -121,6 +121,13 @@ class KeyboardInputViewControllerTests: QuickSpec {
                 let obj = vc.keyboardInputSetProvider
                 expect(obj as? StandardKeyboardInputSetProvider).toNot(beNil())
             }
+            
+            it("is registered into the layout provider when changed") {
+                let newProvider = MockKeyboardInputSetProvider()
+                vc.keyboardInputSetProvider = newProvider
+                let layoutProvider = vc.keyboardLayoutProvider as? StandardKeyboardLayoutProvider
+                expect(layoutProvider?.inputSetProvider).to(be(newProvider))
+            }
         }
         
         describe("keyboard layout provider") {

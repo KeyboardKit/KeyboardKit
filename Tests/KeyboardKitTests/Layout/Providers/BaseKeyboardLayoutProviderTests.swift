@@ -30,7 +30,7 @@ class BaseKeyboardLayoutProviderTests: QuickSpec {
         }
         
         
-        describe("layout for context") {
+        describe("keyboard layout for context") {
             
             it("is items derived from action for the input items") {
                 let inputs = provider.inputs(for: context)
@@ -39,6 +39,16 @@ class BaseKeyboardLayoutProviderTests: QuickSpec {
                 let layout = provider.keyboardLayout(for: context)
                 let expected = KeyboardLayout(items: items)
                 expect(layout.items.count).to(equal(expected.items.count))
+            }
+        }
+        
+        describe("registering input set provider") {
+            
+            it("changes the provider instance") {
+                let newInputProvider = MockKeyboardInputSetProvider()
+                provider.register(inputSetProvider: newInputProvider)
+                expect(provider.inputSetProvider).toNot(be(inputProvider))
+                expect(provider.inputSetProvider).to(be(newInputProvider))
             }
         }
         

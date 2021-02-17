@@ -19,5 +19,14 @@ import Foundation
  */
 public protocol KeyboardLayoutProvider: AnyObject {
     
+    /**
+     Get a keyboard layout for the provided context.
+     */
     func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout
+    
+    /**
+     Try registering a new input set provider, if the layout
+     is based on one.
+     */
+    func register(inputSetProvider: KeyboardInputSetProvider)
 }

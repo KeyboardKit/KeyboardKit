@@ -11,8 +11,8 @@ import UIKit
 
 /**
  This keyboard layout provider bases its layout decisions on
- the type of device used, and will toggle between an `iPhone`
- and an `iPad` specific layout provider.
+ the type of device used. It will toggle between an `iPhone`
+ and `iPad` specific layout provider.
  
  To change the layouts provided by the class, you can either
  replace `iPadProvider` and `iPhoneProvider` with completely
@@ -29,10 +29,23 @@ open class StandardKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
         inputSetProvider: inputSetProvider,
         dictationReplacement: dictationReplacement)
     
+    /**
+     Get a keyboard layout for the provided context.
+     */
     open override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         let isPad = context.device.userInterfaceIdiom == .pad
         return isPad
             ? iPadProvider.keyboardLayout(for: context)
             : iPhoneProvider.keyboardLayout(for: context)
+    }
+    
+    /**
+     Register a new input set provider. This will be proxied
+     down to the child providers.
+     */
+    open override func register(inputSetProvider: KeyboardInputSetProvider) {
+        self.inputSetProvider = inputSetProvider
+        iPadProvider.register(inputSetProvider: inputSetProvider)
+        iPhoneProvider.register(inputSetProvider: inputSetProvider)
     }
 }

@@ -23,4 +23,6 @@ public class StaticKeyboardLayoutProvider: KeyboardLayoutProvider {
     public func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         layout
     }
+    
+    public func register(inputSetProvider: KeyboardInputSetProvider) {}
 }

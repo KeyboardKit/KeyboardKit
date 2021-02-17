@@ -127,7 +127,11 @@ open class KeyboardInputViewController: UIInputViewController {
      The extension's default keyboard input set provider.
      */
     public lazy var keyboardInputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider(
-        context: keyboardContext)
+        context: keyboardContext) {
+        didSet {
+            keyboardLayoutProvider.register(inputSetProvider: keyboardInputSetProvider)
+        }
+    }
                     
     /**
      The extension's default keyboard layout provider.
@@ -206,7 +210,8 @@ open class KeyboardInputViewController: UIInputViewController {
      Change the keyboard type.
      
      This function can be called directly or injected into a
-     nested service class to avoid bilinear dependencies.
+     nested service class to avoid bilinear dependencies. It
+     is injected into `StandardKeyboardActionHandler`.
      */
     open func changeKeyboardType(to type: KeyboardType) {
         keyboardContext.keyboardType = type
@@ -215,6 +220,10 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      Perform an autocomplete operation. You can override the
      function to provide custom autocomplete logic.
+     
+     This function can be called directly or injected into a
+     nested service class to avoid bilinear dependencies. It
+     is injected into `StandardKeyboardActionHandler`.
      */
     open func performAutocomplete() {}
     

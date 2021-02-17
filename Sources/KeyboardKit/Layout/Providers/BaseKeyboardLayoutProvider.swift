@@ -23,7 +23,7 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
     }
 
     public let dictationReplacement: KeyboardAction?
-    public let inputSetProvider: KeyboardInputSetProvider
+    public var inputSetProvider: KeyboardInputSetProvider
 
     /**
      Get a keyboard layout for the provided context.
@@ -33,6 +33,14 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
         let actions = self.actions(for: context, inputs: inputs)
         let items = self.items(for: context, actions: actions)
         return KeyboardLayout(items: items)
+    }
+    
+    /**
+     Register a new input set provider. This will affect the
+     keyboard layout that is provided by this class.
+     */
+    open func register(inputSetProvider: KeyboardInputSetProvider) {
+        self.inputSetProvider = inputSetProvider
     }
     
     
