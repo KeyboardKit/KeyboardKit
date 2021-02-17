@@ -34,9 +34,9 @@ public struct KeyboardInput: Equatable {
         self.lowercased = lowercased
     }
     
-    var neutral: String
-    var uppercased: String
-    var lowercased: String
+    public let neutral: String
+    public let uppercased: String
+    public let lowercased: String
     
     func character(for casing: KeyboardCasing) -> String {
         switch casing {
