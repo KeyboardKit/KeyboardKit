@@ -17,8 +17,6 @@ import UIKit
  this class instead of `UIInputViewController`. You then get
  access to a bunch of features that regular controllers lack.
  
- To customize the keyboard setup, override `setupKeyboard`.
- 
  To change the keyboard type and automatically setup the new
  keyboard, set the `keyboardType` property of this class and
  not of its context. You can also call `changeKeyboardType()`
@@ -37,7 +35,6 @@ open class KeyboardInputViewController: UIInputViewController {
     open override func viewDidLoad() {
         super.viewDidLoad()
         Self.shared = self
-        setupKeyboard()
     }
     
     open override func viewWillAppear(_ animated: Bool) {
@@ -151,20 +148,6 @@ open class KeyboardInputViewController: UIInputViewController {
         actionProvider: keyboardSecondaryCalloutActionProvider,
         actionHandler: keyboardActionHandler)
     
-    /**
-     The keyboard type that is currently used by the context.
-     
-     Setting this value will update the context's type, then
-     call `setupKeyboard`.
-     */
-    public var keyboardType: KeyboardType {
-        get { keyboardContext.keyboardType }
-        set {
-            keyboardContext.keyboardType = newValue
-            setupKeyboard()
-        }
-    }
-    
     
     // MARK: - View Properties
     
@@ -183,14 +166,6 @@ open class KeyboardInputViewController: UIInputViewController {
     
     
     // MARK: - Text And Selection Change
-    
-    /**
-     Setup the keyboard, given the current state of your app.
-     
-     You can override this function to implement how a setup
-     should behave in your app. This does nothing by default.
-     */
-    open func setupKeyboard() {}
     
     open override func selectionWillChange(_ textInput: UITextInput?) {
         super.selectionWillChange(textInput)
@@ -234,7 +209,7 @@ open class KeyboardInputViewController: UIInputViewController {
      nested service class to avoid bilinear dependencies.
      */
     open func changeKeyboardType(to type: KeyboardType) {
-        keyboardType = type
+        keyboardContext.keyboardType = type
     }
     
     /**

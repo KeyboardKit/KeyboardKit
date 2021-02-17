@@ -21,6 +21,9 @@ import KeyboardKit
  pressed images to photos etc. It also adds an auto complete
  toolbar that provides fake suggestions for the current word.
  
+ `NOTE` That this class calls `setupKeyboard` for big events.
+ It should observe the keyboard context instead.
+ 
  `IMPORTANT` To use this keyboard, you must enable it in the
  system keyboard settings ("Settings/General/Keyboards"). It
  needs full access for haptic and audio feedback, for access
@@ -43,6 +46,7 @@ class KeyboardViewController: KeyboardInputViewController {
             inputViewController: self)
         keyboardLayoutProvider = StandardKeyboardLayoutProvider(
             inputSetProvider: keyboardInputSetProvider)
+        setupKeyboard()
     }
     
     override func textDidChange(_ textInput: UITextInput?) {

@@ -105,6 +105,8 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `KeyboardInputSet` standard input set extensions have been removed.
 * `KeyboardInputViewController` `addKeyboardGestures` has been converted to `KeyboardButton+Gestures`.
 * `KeyboardInputViewController` `context` has been renamed to `keyboardContext`.
+* `KeyboardInputViewController` `keyboardType` has been removed - use the context directly!
+* `KeyboardInputViewController` `setupKeyboard` has been removed and moved to the UIKit demo.
 * `KeyboardInputViewController+Gestures` has been converted to `KeyboardButton+Gestures`.
 * `KeyboardLayout` `actionRows` has been renamed to `items` and are of a new `KeyboardLayoutItemRows` type.
 * `KeyboardCasing` has been renamed to `KeyboardCasing`
