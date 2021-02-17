@@ -40,6 +40,7 @@ public enum KeyboardAction: Equatable {
         moveCursorForward,
         newLine,
         nextKeyboard,
+        nextLanguage,
         ok,
         option,
         `return`,

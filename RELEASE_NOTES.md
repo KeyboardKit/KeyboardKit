@@ -21,7 +21,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `Callouts` has new types and providers for working with callouts.
 * `Image.emoji` no longer requires iOS 14, but uses `person.crop.circle` as fallback on iOS 13.
 * `Input` has new types and providers for working with keyboard layouts.
-* `KeyboardAction` has new actions - `ok`, `go`.
+* `KeyboardAction` has new actions - `go`, `nextLanguage`, `ok`, `return`.
 * `KeyboardAction` has new `isPrimaryAction` property.
 * `KeyboardAction` has new `standardButtonFontWeight` property.
 * `KeyboardAppearance` has a new `image(for:)`.
