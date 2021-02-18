@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  HomeScreen.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-11.
@@ -9,11 +9,9 @@
 import SwiftUI
 import KeyboardKit
 
-struct ContentView: View {
+struct HomeScreen: View {
     
-    @State private var isKeyboardActive = false
-    
-    @StateObject private var keyboardState = KeyboardState()
+    @StateObject private var keyboardState = KeyboardEnabledState(bundleId: "com.keyboardkit.demo.keyboard")
     
     var body: some View {
         NavigationView {
@@ -34,16 +32,10 @@ struct ContentView: View {
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        .onAppear(perform: updateState)
-        .onReceive(activePublisher) { _ in updateState() }
     }
 }
 
-private extension ContentView {
-    
-    var activePublisher: NotificationCenter.Publisher {
-        publisher(for: UIApplication.didBecomeActiveNotification)
-    }
+private extension HomeScreen {
     
     var footerText: some View {
         Text("You must enable the keyboard under system settings, then select it in your keyboard, using the globe button.")
@@ -51,36 +43,32 @@ private extension ContentView {
     }
     
     var stateColor: Color {
-        isKeyboardActive ? .green : .orange
+        isKeyboardEnabled ? .green : .orange
     }
     
     var stateIcon: Image {
-        isKeyboardActive ? .checkmark : .alert
+        isKeyboardEnabled ? .checkmark : .alert
     }
     
     var stateText: String {
-        isKeyboardActive ? "The keyboard is enabled" : "The keyboard is disabled"
+        isKeyboardEnabled ? "The keyboard is enabled" : "The keyboard is disabled"
     }
+}
+
+private extension HomeScreen {
     
-    func publisher(for notification: Notification.Name) -> NotificationCenter.Publisher {
-        NotificationCenter.default.publisher(for: notification)
+    var isKeyboardEnabled: Bool {
+        keyboardState.isKeyboardEnabled
     }
     
     func openSettings() {
         guard let url = URL.keyboardSettings else { return }
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
-    
-    func updateState() {
-        let bundleId = "com.keyboardkit.demo.keyboard"
-        isKeyboardActive = keyboardState.isKeyboardEnabled(for: bundleId)
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        HomeScreen()
     }
 }
-
-class KeyboardState: KeyboardStateInspector, ObservableObject {}

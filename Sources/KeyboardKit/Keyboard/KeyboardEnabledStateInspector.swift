@@ -1,5 +1,5 @@
 //
-//  KeyboardStateInspector.swift
+//  KeyboardEnabledStateInspector.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-05-05.
@@ -12,15 +12,18 @@ import Foundation
  This protocol can be implemented by any class or struct and
  provides its implementations with state-specific extensions.
  */
-public protocol KeyboardStateInspector {}
+public protocol KeyboardEnabledStateInspector {}
 
-public extension KeyboardStateInspector {
+public extension KeyboardEnabledStateInspector {
     
     /**
      Check if a certain keyboard extension is enabled.
      
      When you call this function, make sure that you use the
-     `bundleId` of the *keyboard extension* and not the app.
+     `bundleId` of the keyboard extension, not the app.
+     
+     - Parameter bundleId: The bundle id of the keyboard extension.
+     - Parameter notificationCenter: The notification center to use.     
      */
     func isKeyboardEnabled(
         for bundleId: String,

@@ -40,6 +40,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `KeyboardInputViewController` has a new `keyboardSecondaryInputActionProvider`.
 * `KeyboardInputViewController` has a new `keyboardSecondaryInputCalloutContext`.
 * `KeyboardInputViewController` `setup(with:)` is now open and overridable.
+* `KeyboardEnabledState` is a new observable class that keeps in sync with the keyboard enabled state.
 * `KeyboardLayoutProvider` has a new `register(inputSetProvider:)` to simplify changing global input set provider.
 * `Layout` has new types and providers for working with keyboard layouts.
 * `Locale` is a new namespace with a few new locale-specific utils.
@@ -111,6 +112,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `KeyboardInputViewController+Gestures` has been converted to `KeyboardButton+Gestures`.
 * `KeyboardLayout` `actionRows` has been renamed to `items` and are of a new `KeyboardLayoutItemRows` type.
 * `KeyboardCasing` has been renamed to `KeyboardCasing`
+* `KeyboardStateInspector` has been renamed to `KeyboardEnabledStateInspector`.
 * `PhotosImageService` and `StandardPhotosImageService` have been removed.
 * `Settings` has been entirely removed.
 * `SecondaryInputCalloutContext.shared` has been removed. Use the environment object instead.
