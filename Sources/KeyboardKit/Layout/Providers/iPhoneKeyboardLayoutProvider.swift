@@ -47,7 +47,7 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
         case .backspace: return mediumButtonWidth
         case .keyboardType: return shortButtonWidth
         case .nextKeyboard: return shortButtonWidth
-        case .newLine: return longButtonWidth
+        case .return: return longButtonWidth
         case .shift: return mediumButtonWidth
         default: return .available
         }
@@ -70,7 +70,7 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
         if !needsInputSwitcher { result.append(.keyboardType(.emojis)) }
         if portrait, needsDictation, let action = dictationReplacement { result.append(action) }
         result.append(.space)
-        result.append(.newLine) // TODO: Should be "primary"
+        result.append(.return) // TODO: Should be "primary"
         if !portrait, needsDictation, let action = dictationReplacement { result.append(action) }
         return result
     }
