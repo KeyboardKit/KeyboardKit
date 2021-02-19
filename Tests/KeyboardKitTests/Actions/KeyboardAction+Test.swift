@@ -46,6 +46,7 @@ extension KeyboardAction {
             .moveCursorForward,
             .newLine,
             .nextKeyboard,
+            .nextLocale,
             .ok,
             .option,
             .return,

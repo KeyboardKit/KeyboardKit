@@ -40,7 +40,7 @@ public enum KeyboardAction: Equatable {
         moveCursorForward,
         newLine,
         nextKeyboard,
-        nextLanguage,
+        nextLocale,
         ok,
         option,
         `return`,
@@ -112,6 +112,7 @@ public extension KeyboardAction {
         case .moveCursorForward: return true
         case .newLine: return true
         case .nextKeyboard: return true
+        case .nextLocale: return true
         case .option: return true
         case .shift: return true
         case .settings: return true

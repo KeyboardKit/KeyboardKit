@@ -92,6 +92,7 @@ class KeyboardActionTests: QuickSpec {
                     .moveCursorBackward,
                     .moveCursorForward,
                     .newLine,
+                    .nextLocale,
                     .nextKeyboard,
                     .option,
                     .shift(currentState: .lowercased),
