@@ -32,7 +32,22 @@ class StandardKeyboardLayoutProviderTests: QuickSpec {
         }
         
         
-        describe("keyboard layout for context") {
+        describe("keyboard layout provider for context") {
+            
+            it("is phone provider if context device is phone") {
+                device.userInterfaceIdiomValue = .phone
+                let result = provider.layoutProvider(for: context)
+                expect(result).to(be(provider.iPhoneProvider))
+            }
+            
+            it("is pad provider if context device is pad") {
+                device.userInterfaceIdiomValue = .pad
+                let result = provider.layoutProvider(for: context)
+                expect(result).to(be(provider.iPadProvider))
+            }
+        }
+        
+        describe("keyboard layout for context (just testing this one)") {
             
             it("is phone layout if context device is phone") {
                 device.userInterfaceIdiomValue = .phone

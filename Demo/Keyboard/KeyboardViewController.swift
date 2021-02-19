@@ -41,6 +41,12 @@ class KeyboardViewController: KeyboardInputViewController {
         // Change this if you want to try some other locales
         keyboardContext.locale = LocaleKey.english.locale
         
+        // Setup the locales that the keyboard supports
+        keyboardContext.locales = [
+            LocaleKey.english.locale,
+            LocaleKey.swedish.locale
+        ]
+        
         // Setup a custom action handler to handle images
         keyboardActionHandler = DemoKeyboardActionHandler(
             inputViewController: self,
@@ -54,7 +60,7 @@ class KeyboardViewController: KeyboardInputViewController {
                 SwedishKeyboardInputSetProvider()])
         
         // Setup a layout with .emojis instead of .dictation
-        keyboardLayoutProvider = StandardKeyboardLayoutProvider(
+        keyboardLayoutProvider = DemoKeyboardLayoutProvider(
             inputSetProvider: keyboardInputSetProvider,
             dictationReplacement: .keyboardType(.emojis))
         

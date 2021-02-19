@@ -19,33 +19,56 @@ import UIKit
  new providers. You can also inherit this class and override
  `keyboardLayout(for:)` to return anything you like.
  */
-open class StandardKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
+open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     
-    public lazy var iPadProvider = iPadKeyboardLayoutProvider(
+    public init(
+        inputSetProvider: KeyboardInputSetProvider,
+        dictationReplacement: KeyboardAction? = nil) {
+        self.inputSetProvider = inputSetProvider
+        self.dictationReplacement = dictationReplacement
+    }
+
+    public let dictationReplacement: KeyboardAction?
+    public var inputSetProvider: KeyboardInputSetProvider {
+        didSet {
+            iPadProvider.register(inputSetProvider: inputSetProvider)
+            iPhoneProvider.register(inputSetProvider: inputSetProvider)
+        }
+    }
+    
+    /**
+     The provider that will be used for iPad devices.
+     */
+    open lazy var iPadProvider = iPadKeyboardLayoutProvider(
         inputSetProvider: inputSetProvider,
         dictationReplacement: dictationReplacement)
     
-    public lazy var iPhoneProvider = iPhoneKeyboardLayoutProvider(
+    /**
+     The provider that will be used for iPhone devices.
+     */
+    open lazy var iPhoneProvider = iPhoneKeyboardLayoutProvider(
         inputSetProvider: inputSetProvider,
         dictationReplacement: dictationReplacement)
     
     /**
      Get a keyboard layout for the provided context.
      */
-    open override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
-        let isPad = context.device.userInterfaceIdiom == .pad
-        return isPad
-            ? iPadProvider.keyboardLayout(for: context)
-            : iPhoneProvider.keyboardLayout(for: context)
+    open func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
+        layoutProvider(for: context).keyboardLayout(for: context)
+    }
+    
+    /**
+     Get a keyboard layout provider for the provided context.
+     */
+    open func layoutProvider(for context: KeyboardContext) -> BaseKeyboardLayoutProvider {
+        context.device.isPad ? iPadProvider : iPhoneProvider
     }
     
     /**
      Register a new input set provider. This will be proxied
      down to the child providers.
      */
-    open override func register(inputSetProvider: KeyboardInputSetProvider) {
+    open func register(inputSetProvider: KeyboardInputSetProvider) {
         self.inputSetProvider = inputSetProvider
-        iPadProvider.register(inputSetProvider: inputSetProvider)
-        iPhoneProvider.register(inputSetProvider: inputSetProvider)
     }
 }
