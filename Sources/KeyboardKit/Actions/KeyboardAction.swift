@@ -114,6 +114,7 @@ public extension KeyboardAction {
         case .nextKeyboard: return true
         case .nextLocale: return true
         case .option: return true
+        case .return: return true
         case .shift: return true
         case .settings: return true
         case .tab: return true

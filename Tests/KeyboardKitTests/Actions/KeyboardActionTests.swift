@@ -95,6 +95,7 @@ class KeyboardActionTests: QuickSpec {
                     .nextLocale,
                     .nextKeyboard,
                     .option,
+                    .return,
                     .shift(currentState: .lowercased),
                     .shift(currentState: .uppercased),
                     .shift(currentState: .capsLocked),
