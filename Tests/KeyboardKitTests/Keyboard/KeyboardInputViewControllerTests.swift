@@ -237,14 +237,14 @@ private class TestClass: KeyboardInputViewController, Mockable {
     
     override func viewWillSyncWithTextDocumentProxy() {
         super.viewWillSyncWithTextDocumentProxy()
-        mock.invoke(viewWillSyncWithTextDocumentProxyRef, args: ())
+        mock.call(viewWillSyncWithTextDocumentProxyRef, args: ())
     }
     
     override func performAutocomplete() {
-        mock.invoke(performAutocompleteRef, args: ())
+        mock.call(performAutocompleteRef, args: ())
     }
     
     override func resetAutocomplete() {
-        mock.invoke(resetAutocompleteRef, args: ())
+        mock.call(resetAutocompleteRef, args: ())
     }
 }

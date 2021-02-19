@@ -17,6 +17,6 @@ class MockFrequentEmojiProvider: Mock, FrequentEmojiProvider {
     var emojis: [Emoji] = []
     
     func registerEmoji(_ emoji: Emoji) {
-        invoke(registerEmojiRef, args: emoji)
+        call(registerEmojiRef, args: emoji)
     }
 }

@@ -23,14 +23,14 @@ class MockKeyboardInputViewController: KeyboardInputViewController, Mockable {
     override var textDocumentProxy: UITextDocumentProxy { textDocumentProxyReplacement ?? super.textDocumentProxy }
     
     override func changeKeyboardType(to type: KeyboardType) {
-        invoke(changeKeyboardTypeRef, args: (type))
+        call(changeKeyboardTypeRef, args: (type))
     }
     
     override func dismissKeyboard() {
-        invoke(dismissKeyboardRef, args: ())
+        call(dismissKeyboardRef, args: ())
     }
     
     override func performAutocomplete() {
-        invoke(performAutocompleteRef, args: ())
+        call(performAutocompleteRef, args: ())
     }
 }

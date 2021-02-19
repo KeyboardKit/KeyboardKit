@@ -15,8 +15,8 @@ import UIKit
 class StandardKeyboardActionHandlerTests: QuickSpec {
     
     var mock: Mock!
-    func autocompleteAction() { mock.invoke(autocompleteActionRef, args: ()) }
-    func changeKeyboardTypeAction(_ type: KeyboardType) { mock.invoke(changeKeyboardTypeActionRef, args: (type))  }
+    func autocompleteAction() { mock.call(autocompleteActionRef, args: ()) }
+    func changeKeyboardTypeAction(_ type: KeyboardType) { mock.call(changeKeyboardTypeActionRef, args: (type))  }
     lazy var autocompleteActionRef = MockReference(autocompleteAction)
     lazy var changeKeyboardTypeActionRef = MockReference(changeKeyboardTypeAction)
 
@@ -210,31 +210,31 @@ private class TestClass: StandardKeyboardActionHandler, Mockable {
 
     override func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         super.handle(gesture, on: action, sender: sender)
-        invoke(handleRef, args: (gesture, action, sender))
+        call(handleRef, args: (gesture, action, sender))
     }
 
     override func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         super.triggerAudioFeedback(for: gesture, on: action, sender: sender)
-        invoke(triggerAudioFeedbackRef, args: (gesture, action, sender))
+        call(triggerAudioFeedbackRef, args: (gesture, action, sender))
     }
 
     override func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         super.triggerHapticFeedback(for: gesture, on: action, sender: sender)
-        invoke(triggerHapticFeedbackRef, args: (gesture, action, sender))
+        call(triggerHapticFeedbackRef, args: (gesture, action, sender))
     }
 
     override func tryChangeKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) {
         super.tryChangeKeyboardType(after: gesture, on: action)
-        invoke(tryChangeKeyboardTypeRef, args: (gesture, action))
+        call(tryChangeKeyboardTypeRef, args: (gesture, action))
     }
 
     override func tryEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction) {
         super.tryEndSentence(after: gesture, on: action)
-        invoke(tryEndSentenceRef, args: (gesture, action))
+        call(tryEndSentenceRef, args: (gesture, action))
     }
 
     override func tryRegisterEmoji(after gesture: KeyboardGesture, on action: KeyboardAction) {
         super.tryRegisterEmoji(after: gesture, on: action)
-        invoke(tryRegisterEmojiRef, args: (gesture, action))
+        call(tryRegisterEmojiRef, args: (gesture, action))
     }
 }

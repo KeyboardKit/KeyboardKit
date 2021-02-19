@@ -145,12 +145,12 @@ private class TestClass: UIRepeatingGestureRecognizer, Mockable {
     }
     
     override func startGesture() {
-        invoke(startGestureRef, args: ())
+        call(startGestureRef, args: ())
         super.startGesture()
     }
     
     override func stopGesture() {
-        invoke(stopGestureRef, args: ())
+        call(stopGestureRef, args: ())
         super.stopGesture()
     }
     

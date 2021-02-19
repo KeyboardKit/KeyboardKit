@@ -16,6 +16,6 @@ class MockCollectionViewLayout: UICollectionViewFlowLayout, Mockable {
     var mock = Mock()
     
     override func invalidateLayout() {
-        invoke(invalidateLayoutRef, args: ())
+        call(invalidateLayoutRef, args: ())
     }
 }

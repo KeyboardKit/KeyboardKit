@@ -146,7 +146,7 @@ private class TestClass: UIKeyboardButtonRowCollectionView, Mockable {
     }
     
     override func restoreCurrentPage() {
-        invoke(restoreCurrentPageRef, args: ())
+        call(restoreCurrentPageRef, args: ())
     }
 }
 

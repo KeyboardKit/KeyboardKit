@@ -89,6 +89,6 @@ private class TestClass: UIKeyboardCollectionView, Mockable {
     let mock = Mock()
     
     override func reloadData() {
-        invoke(reloadDataRef, args: ())
+        call(reloadDataRef, args: ())
     }
 }

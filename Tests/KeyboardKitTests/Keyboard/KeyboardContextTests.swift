@@ -8,6 +8,7 @@
 
 import Quick
 import Nimble
+import MockingKit
 import UIKit
 @testable import KeyboardKit
 
@@ -16,20 +17,28 @@ class KeyboardContextTests: QuickSpec {
     override func spec() {
         
         var controller: KeyboardInputViewController!
+        var context: KeyboardContext!
+        var proxy: MockTextDocumentProxy!
+        var traits: MockTraitCollection!
         
         beforeEach {
             controller = KeyboardInputViewController()
+            proxy = MockTextDocumentProxy()
+            traits = MockTraitCollection()
+            context = KeyboardContext(controller: controller, keyboardType: .images)
+            context.traitCollection = traits
+            context.textDocumentProxy = proxy
         }
         
-        describe("context") {
+        describe("initialization") {
             
-            it("can be created with params") {
-                let context = KeyboardContext(controller: controller, keyboardType: .images)
-                                
+            it("applies provided params") {
+                context = KeyboardContext(controller: controller, keyboardType: .images)
                 expect(context.device).to(be(UIDevice.current))
                 
                 expect(context.keyboardType).to(equal(.images))
                 expect(context.locale).to(equal(.current))
+                expect(context.locales).to(equal([.current]))
                 
                 expect(context.hasDictationKey).to(equal(controller.hasDictationKey))
                 expect(context.hasFullAccess).to(equal(controller.hasFullAccess))
@@ -38,6 +47,26 @@ class KeyboardContextTests: QuickSpec {
                 expect(context.textDocumentProxy).to(be(controller.textDocumentProxy))
                 expect(context.textInputMode).to(beNil())
                 expect(context.traitCollection).to(equal(controller.traitCollection))
+            }
+        }
+        
+        describe("color scheme") {
+            
+            it("is derived from trait collection") {
+                traits.userInterfaceStyleValue = .light
+                expect(context.colorScheme).to(equal(.light))
+                traits.userInterfaceStyleValue = .dark
+                expect(context.colorScheme).to(equal(.dark))
+            }
+        }
+        
+        describe("keybpard appearance") {
+            
+            it("is derived from proxy") {
+                proxy.keyboardAppearance = .light
+                expect(context.keyboardAppearance).to(equal(.light))
+                proxy.keyboardAppearance = .dark
+                expect(context.keyboardAppearance).to(equal(.dark))
             }
         }
         

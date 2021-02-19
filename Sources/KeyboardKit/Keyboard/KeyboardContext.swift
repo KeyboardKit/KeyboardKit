@@ -25,6 +25,7 @@ public class KeyboardContext: ObservableObject {
         controller: KeyboardInputViewController,
         keyboardType: KeyboardType = .alphabetic(.lowercased)) {
         self.locale = locale
+        self.locales = [locale]
         self.device = device
         self.keyboardType = keyboardType
         self.sync(with: controller)
@@ -37,6 +38,7 @@ public class KeyboardContext: ObservableObject {
     @Published public var hasDictationKey: Bool = false
     @Published public var hasFullAccess: Bool = false
     @Published public var locale: Locale
+    @Published public var locales: [Locale]
     @Published public var needsInputModeSwitchKey: Bool = true
     @Published public var primaryLanguage: String?
     @Published public var textDocumentProxy: UITextDocumentProxy = PreviewTextDocumentProxy()
