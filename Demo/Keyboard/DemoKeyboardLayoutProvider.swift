@@ -9,17 +9,20 @@
 import KeyboardKit
 
 /**
- This demo-specific layout provider appends a language picker button next to
- the space bar.
+ This demo-specific layout provider appends a "locale picker"
+ next to the space bar.
  */
 class DemoKeyboardLayoutProvider: StandardKeyboardLayoutProvider {
     
-    override func actions(for context: KeyboardContext, inputs: KeyboardInputRows) -> KeyboardActionRows {
-        var actions = super.actions(for: context, inputs: inputs)
-        var last = actions[actions.count - 1]
-        _ = actions.dropLast()
-        last.insert(.nextLocale, at: actions.count - 2)
-        actions.append(last)
-        return actions
+    override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
+        let layout = super.keyboardLayout(for: context)
+        guard context.locales.count > 1 else { return layout }
+        guard var lastRow = layout.items.last else { return layout }
+        var items = Array(layout.items.dropLast())
+        guard let system = (lastRow.first { $0.action.isSystemAction }) else { return layout }
+        let switcher = KeyboardLayoutItem(action: .nextLocale, size: system.size, insets: system.insets)
+        lastRow.insert(switcher, at: lastRow.count - 1)
+        items.append(lastRow)
+        return KeyboardLayout(items: items)
     }
 }
