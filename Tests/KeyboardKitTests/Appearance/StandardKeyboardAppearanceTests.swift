@@ -16,10 +16,10 @@ class StandardKeyboardAppearanceTests: QuickSpec {
     override func spec() {
         
         var appearance: KeyboardAppearance!
-        var context: MockKeyboardContext!
+        var context: KeyboardContext!
         
         beforeEach {
-            context = MockKeyboardContext()
+            context = KeyboardContext(controller: MockKeyboardInputViewController())
             appearance = StandardKeyboardAppearance(context: context)
         }
         

@@ -31,7 +31,7 @@ class KeyboardAction_SystemTests: QuickSpec {
         var unexpected: [KeyboardAction]!
         
         beforeEach {
-            context = MockKeyboardContext()
+            context = KeyboardContext(controller: MockKeyboardInputViewController())
             expected = []
             unexpected = []
         }

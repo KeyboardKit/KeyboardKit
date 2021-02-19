@@ -16,10 +16,10 @@ class StandardSecondaryCalloutActionProviderTests: QuickSpec {
     override func spec() {
         
         var provider: StandardSecondaryCalloutActionProvider!
-        var context: MockKeyboardContext!
+        var context: KeyboardContext!
         
         beforeEach {
-            context = MockKeyboardContext()
+            context = KeyboardContext(controller: MockKeyboardInputViewController())
             provider = StandardSecondaryCalloutActionProvider(context: context)
         }
         

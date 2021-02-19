@@ -17,12 +17,12 @@ class StandardKeyboardBehaviorTests: QuickSpec {
     override func spec() {
         
         var behavior: StandardKeyboardBehavior!
-        var context: MockKeyboardContext!
+        var context: KeyboardContext!
         var proxy: MockTextDocumentProxy!
         
         beforeEach {
             proxy = MockTextDocumentProxy()
-            context = MockKeyboardContext()
+            context = KeyboardContext(controller: MockKeyboardInputViewController())
             context.textDocumentProxy = proxy
             behavior = StandardKeyboardBehavior(context: context)
         }

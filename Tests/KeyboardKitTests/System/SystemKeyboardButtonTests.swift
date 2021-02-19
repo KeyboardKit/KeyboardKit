@@ -19,8 +19,9 @@ class SystemKeyboardButtonTests: QuickSpec {
         var appearance: KeyboardAppearance!
         
         beforeEach {
+            let context = KeyboardContext(controller: MockKeyboardInputViewController())
             actionHandler = MockKeyboardActionHandler()
-            appearance = StandardKeyboardAppearance(context: MockKeyboardContext())
+            appearance = StandardKeyboardAppearance(context: context)
         }
         
         describe("system keyboard button") {

@@ -16,10 +16,10 @@ class BaseKeyboardLayoutProviderTests: QuickSpec {
         
         var provider: BaseKeyboardLayoutProvider!
         var inputProvider: MockKeyboardInputSetProvider!
-        var context: MockKeyboardContext!
+        var context: KeyboardContext!
         
         beforeEach {
-            context = MockKeyboardContext()
+            context = KeyboardContext(controller: MockKeyboardInputViewController())
             inputProvider = MockKeyboardInputSetProvider()
             inputProvider.alphabeticInputSetValue = AlphabeticKeyboardInputSet(rows: KeyboardInputRows([["a", "b", "c"]]))
             inputProvider.numericInputSetValue = NumericKeyboardInputSet(rows: KeyboardInputRows([["1", "2", "3"]]))

@@ -21,7 +21,7 @@ class KeyboardContext_KeyboardTypeTests: QuickSpec {
         
         beforeEach {
             proxy = MockTextDocumentProxy()
-            context = MockKeyboardContext()
+            context = KeyboardContext(controller: MockKeyboardInputViewController())
             context.textDocumentProxy = proxy
             context.keyboardType = .alphabetic(.lowercased)
         }

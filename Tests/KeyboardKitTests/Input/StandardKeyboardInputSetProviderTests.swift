@@ -16,12 +16,12 @@ class StandardKeyboardInputSetProviderTests: QuickSpec {
     override func spec() {
         
         var provider: StandardKeyboardInputSetProvider!
-        var context: MockKeyboardContext!
+        var context: KeyboardContext!
         
         var english: KeyboardInputSetProvider!
         
         beforeEach {
-            context = MockKeyboardContext()
+            context = KeyboardContext(controller: MockKeyboardInputViewController())
             provider = StandardKeyboardInputSetProvider(context: context)
             
             english = EnglishKeyboardInputSetProvider()
