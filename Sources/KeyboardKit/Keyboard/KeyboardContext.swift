@@ -53,6 +53,13 @@ public class KeyboardContext: ObservableObject {
 public extension KeyboardContext {
     
     /**
+     Whether or not the context can select the next locale.
+     */
+    var canSelectNextLocale: Bool {
+        locales.count > 1
+    }
+    
+    /**
      The current trait collection's color scheme.
      */
     var colorScheme: ColorScheme {
@@ -71,6 +78,19 @@ public extension KeyboardContext {
 // MARK: - Public Functions
 
 public extension KeyboardContext {
+    
+    /**
+     Select the next locale in the `locales` list, depending
+     on the current `locale`. If `locale` is not in `locales`
+     or last in the list, the first list locale is selected.
+     */
+    func selectNextLocale() {
+        let fallback = locales.first ?? locale
+        guard let currentIndex = locales.firstIndex(of: locale) else { return locale = fallback }
+        let nextIndex = currentIndex.advanced(by: 1)
+        guard locales.count > nextIndex else { return locale = fallback }
+        locale = locales[nextIndex]
+    }
     
     /**
      Sync the context with the current state of the keyboard

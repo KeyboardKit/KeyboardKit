@@ -21,6 +21,10 @@ class KeyboardContextTests: QuickSpec {
         var proxy: MockTextDocumentProxy!
         var traits: MockTraitCollection!
         
+        func locale(for id: String) -> Locale {
+            Locale(identifier: id)
+        }
+        
         beforeEach {
             controller = KeyboardInputViewController()
             proxy = MockTextDocumentProxy()
@@ -50,6 +54,18 @@ class KeyboardContextTests: QuickSpec {
             }
         }
         
+        describe("can select next locale") {
+            
+            it("is only true if context has multiple localse") {
+                context.locales = []
+                expect(context.canSelectNextLocale).to(beFalse())
+                context.locales = [locale(for: "sv")]
+                expect(context.canSelectNextLocale).to(beFalse())
+                context.locales = [locale(for: "sv"), locale(for: "no")]
+                expect(context.canSelectNextLocale).to(beTrue())
+            }
+        }
+        
         describe("color scheme") {
             
             it("is derived from trait collection") {
@@ -60,13 +76,38 @@ class KeyboardContextTests: QuickSpec {
             }
         }
         
-        describe("keybpard appearance") {
+        describe("keyboard appearance") {
             
             it("is derived from proxy") {
                 proxy.keyboardAppearance = .light
                 expect(context.keyboardAppearance).to(equal(.light))
                 proxy.keyboardAppearance = .dark
                 expect(context.keyboardAppearance).to(equal(.dark))
+            }
+        }
+        
+        describe("selecting next locale") {
+            
+            beforeEach {
+                context.locale = locale(for: "sv")
+                context.locales = [locale(for: "en"), locale(for: "fi"), locale(for: "da")]
+            }
+            
+            it("select first item if the current locale is not in locales") {
+                context.selectNextLocale()
+                expect(context.locale.identifier).to(equal("en"))
+            }
+            
+            it("select first item if the current locale is last in locales") {
+                context.locale = locale(for: "da")
+                context.selectNextLocale()
+                expect(context.locale.identifier).to(equal("en"))
+            }
+            
+            it("select next item if the current locale is not last in locales") {
+                context.locale = locale(for: "fi")
+                context.selectNextLocale()
+                expect(context.locale.identifier).to(equal("da"))
             }
         }
         
