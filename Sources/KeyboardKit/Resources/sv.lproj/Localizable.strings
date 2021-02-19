@@ -9,5 +9,8 @@
 "locale" = "sv";
 "languageName" = "Svenska";
 
+"go" = "OK";
+"ok" = "OK";
 "return" = "retur";
+"search" = "sök";
 "space" = "mellanslag";

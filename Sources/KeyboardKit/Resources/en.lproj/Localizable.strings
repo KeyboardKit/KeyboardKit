@@ -9,5 +9,8 @@
 "locale" = "en";
 "languageName" = "English";
 
+"go" = "go";
+"ok" = "OK";
 "return" = "return";
+"search" = "search";
 "space" = "space";

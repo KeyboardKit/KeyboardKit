@@ -6,9 +6,13 @@ import SwiftUI
 public enum KKL10n: String, CaseIterable, Identifiable {
 
     case
-        languageName,
         locale,
+        languageName,
+        
+        go,
+        ok,
         `return`,
+        search,
         space
     
     public var id: String { rawValue }
@@ -33,7 +37,7 @@ struct L10n_Previews: PreviewProvider {
         NavigationView {
             List {
                 if missing.count == 0 {
-                    Text("All done!")
+                    Text("All translations are done!")
                 } else {
                     Text("Missing translations:")
                 }
@@ -43,7 +47,7 @@ struct L10n_Previews: PreviewProvider {
                         Text("\(item.text)")
                     }.padding(.vertical, 4)
                 }
-            }
+            }.navigationBarTitle("Translations")
         }
         .environment(\.locale, Locale(identifier: "sv"))
     }
