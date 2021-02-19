@@ -186,7 +186,7 @@ class KeyboardAction_SystemTests: QuickSpec {
                 expect(result(for: .keyboardType(.numeric))).to(equal("123"))
                 expect(result(for: .keyboardType(.symbolic))).to(equal("#+="))
                 expect(result(for: .keyboardType(.custom("")))).to(beNil())
-                expect(result(for: .nextLocale)).to(equal("en"))
+                expect(result(for: .nextLocale)).to(equal("EN"))
                 expect(result(for: .ok)).to(equal("OK"))
                 expect(result(for: .return)).to(equal("-"))
                 expect(result(for: .search)).to(equal("-"))

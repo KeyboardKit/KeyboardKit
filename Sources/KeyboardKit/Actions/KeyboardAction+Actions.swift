@@ -80,6 +80,7 @@ public extension KeyboardAction {
         case .emoji(let emoji): return { $0?.textDocumentProxy.insertText(emoji.char) }
         case .moveCursorBackward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: -1) }
         case .moveCursorForward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: 1) }
+        case .nextLocale: return { $0?.keyboardContext.selectNextLocale() }
         case .newLine: return { $0?.textDocumentProxy.insertText("\n") }
         case .return: return { $0?.textDocumentProxy.insertText("\n") }
         case .shift(let currentState): return {

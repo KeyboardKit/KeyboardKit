@@ -92,7 +92,7 @@ public extension KeyboardAction {
         case .emojiCategory(let cat): return cat.fallbackDisplayEmoji.char
         case .go: return KKL10n.go.text
         case .keyboardType(let type): return type.standardButtonText
-        case .nextLocale: return context.locale.languageCode
+        case .nextLocale: return context.locale.languageCode?.uppercased()
         case .ok: return KKL10n.ok.text
         case .return: return KKL10n.return.text
         case .search: return KKL10n.search.text

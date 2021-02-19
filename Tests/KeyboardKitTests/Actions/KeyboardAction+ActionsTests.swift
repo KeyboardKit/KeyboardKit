@@ -91,6 +91,7 @@ class KeyboardAction_ActionsTests: QuickSpec {
                     .moveCursorBackward,
                     .moveCursorForward,
                     .newLine,
+                    .nextLocale,
                     .ok,
                     .return,
                     .search,
