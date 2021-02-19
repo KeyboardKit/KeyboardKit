@@ -54,18 +54,6 @@ class KeyboardContextTests: QuickSpec {
             }
         }
         
-        describe("can select next locale") {
-            
-            it("is only true if context has multiple localse") {
-                context.locales = []
-                expect(context.canSelectNextLocale).to(beFalse())
-                context.locales = [locale(for: "sv")]
-                expect(context.canSelectNextLocale).to(beFalse())
-                context.locales = [locale(for: "sv"), locale(for: "no")]
-                expect(context.canSelectNextLocale).to(beTrue())
-            }
-        }
-        
         describe("color scheme") {
             
             it("is derived from trait collection") {

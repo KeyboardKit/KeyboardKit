@@ -52,6 +52,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `SystemKeyboard` now highlights buttons when typing on iPad.
 * `View` has new `keyboardInputViewController` convenience extensions.
 * `View+keyboardToast` has new context-based function.
+* `View+localeContextMenu` can be applied to any view to let the user change locale.
 * There are new preview-specific implementations that can help you preview keyboard-based views.
 
 

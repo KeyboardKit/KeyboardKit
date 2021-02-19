@@ -53,13 +53,6 @@ public class KeyboardContext: ObservableObject {
 public extension KeyboardContext {
     
     /**
-     Whether or not the context can select the next locale.
-     */
-    var canSelectNextLocale: Bool {
-        locales.count > 1
-    }
-    
-    /**
      The current trait collection's color scheme.
      */
     var colorScheme: ColorScheme {
