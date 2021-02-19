@@ -108,6 +108,15 @@ KeyboardKit comes with a layout engine that makes it easy to create specific key
 [Read more here][Keyboard-Layouts]
 
 
+### 🇸🇪 Localization
+
+KeyboardKit comes with built-in support for English keyboards and can be easily extended to support more locales. 
+
+KeyboardKit also has a `KKL10n` enum that provides localized texts.
+
+[Read more here][Localization]
+
+
 ### 🎨 Appearances
 
 KeyboardKit lets you create everything from completely custom keyboards to keyboards that imitate the native keyboards and can be styled with custom appearances.
