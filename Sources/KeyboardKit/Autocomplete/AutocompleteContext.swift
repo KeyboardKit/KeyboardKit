@@ -1,18 +1,20 @@
 //
-//  AutocompleteContext.swift
+//  ObservableAutocompleteContext.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-09-12.
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Foundation
+import Combine
 
 /**
- This protocol can be implemented by any class that can hold
- a collection of autocomplete suggestions.
+ This is an observable class that can be used to store a set
+ of autocomplete suggestions.
  */
-public protocol AutocompleteContext: AnyObject {
+public class AutocompleteContext: ObservableObject {
     
-    var suggestions: [AutocompleteSuggestion] { get set }
+    public init() {}
+    
+    @Published public var suggestions: [AutocompleteSuggestion] = []
 }

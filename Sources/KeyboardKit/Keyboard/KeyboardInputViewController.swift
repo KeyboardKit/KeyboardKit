@@ -93,7 +93,7 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      The extension's default keyboard context.
      */
-    public lazy var autocompleteContext = ObservableAutocompleteContext()
+    public lazy var autocompleteContext = AutocompleteContext()
     
     /**
      The extension's default keyboard action handler.

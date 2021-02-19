@@ -55,9 +55,10 @@ Besides the new things listed below, there are a bunch of new extensions, images
 
 ### Changed behavior
 
+* `AutocompleteContext` is now an observable object and not a protocol.
 * `AutocompleteToolbar` is now generic, which makes your .
 * `AutocompleteToolbar` now uses identifiable bar items, which leads to better separator handling.
-* `AutocompleteToolbar` now takes suggestions at init and doesn't require an environment injected `ObservableAutocompleteContext`. 
+* `AutocompleteToolbar` now takes suggestions at init and doesn't require an environment injected `AutocompleteContext`. 
 * `AutocompleteToolbar` no longer requires an environment injected `ObservableKeyboardContext`, nor does its builder functions.
 * `EmojiCategory` now uses the `Emoji` type instead of a char.
 * `FrequentEmojiProvider` now uses the `Emoji` type instead of a char.
@@ -65,6 +66,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `KeyboardAction.emojiCategory` no longer has a  standard tap action.
 * `KeyboardActionRow` `standardButtonImage` no longer takes a context.
 * `KeyboardBehavior` no longer takes a context as function input.
+* `KeyboardContext` is now an observable object and not a protocol.
 * `KeyboardContext` no longer has any services, just inspectable properties.
 * `KeyboardGestures` now handles the new press and release gestures.
 * `KeyboardInputSetProvider` implementations now provides punctuation as well.
@@ -113,6 +115,8 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `KeyboardLayout` `actionRows` has been renamed to `items` and are of a new `KeyboardLayoutItemRows` type.
 * `KeyboardCasing` has been renamed to `KeyboardCasing`
 * `KeyboardStateInspector` has been renamed to `KeyboardEnabledStateInspector`.
+* `ObservableAutocompleteContext` has been renamed to `AutocompleteContext`.
+* `ObservableKeyboardContext` has been renamed to `KeyboardContext`. 
 * `PhotosImageService` and `StandardPhotosImageService` have been removed.
 * `Settings` has been entirely removed.
 * `SecondaryInputCalloutContext.shared` has been removed. Use the environment object instead.
