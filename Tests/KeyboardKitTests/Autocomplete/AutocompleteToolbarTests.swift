@@ -15,11 +15,11 @@ class AutocompleteToolbarTests: QuickSpec {
     
     override func spec() {
         
-        var inputViewController: MockInputViewController!
+        var inputViewController: MockKeyboardInputViewController!
         var proxy: MockTextDocumentProxy!
         
         beforeEach {
-            inputViewController = MockInputViewController()
+            inputViewController = MockKeyboardInputViewController()
             proxy = MockTextDocumentProxy()
             inputViewController.textDocumentProxyReplacement = proxy
             KeyboardInputViewController.shared = inputViewController

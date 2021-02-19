@@ -16,10 +16,10 @@ class UIKeyboardButton_GesturesTests: QuickSpec {
     
     override func spec() {
         
-        var vc: MockInputViewController!
+        var vc: MockKeyboardInputViewController!
         
         beforeEach {
-            vc = MockInputViewController(nibName: nil, bundle: nil)
+            vc = MockKeyboardInputViewController(nibName: nil, bundle: nil)
         }
         
         describe("adding keyboard gestures to button") {
