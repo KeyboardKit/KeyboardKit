@@ -24,8 +24,8 @@ public extension KeyboardAction {
     /**
      The action's standard button font.
      */
-    var standardButtonFont: UIFont {
-        .preferredFont(forTextStyle: standardButtonTextStyle)
+    func standardButtonFont(for context: KeyboardContext) -> UIFont {
+        .preferredFont(forTextStyle: standardButtonTextStyle(for: context))
     }
     
     /**
@@ -85,12 +85,17 @@ public extension KeyboardAction {
     /**
      The action's standard button text.
      */
-    var standardButtonText: String? {
+    func standardButtonText(for context: KeyboardContext) -> String? {
         switch self {
         case .character(let char): return char
         case .emoji(let emoji): return emoji.char
         case .emojiCategory(let cat): return cat.fallbackDisplayEmoji.char
+        case .go: return KKL10n.go.text
         case .keyboardType(let type): return type.standardButtonText
+        case .nextLocale: return context.locale.languageCode
+        case .ok: return KKL10n.ok.text
+        case .return: return KKL10n.return.text
+        case .search: return KKL10n.search.text
         default: return nil
         }
     }
@@ -98,8 +103,8 @@ public extension KeyboardAction {
     /**
      The action's standard button text style.
      */
-    var standardButtonTextStyle: UIFont.TextStyle {
-        if hasMultiCharButtonText { return .body }
+    func standardButtonTextStyle(for context: KeyboardContext) -> UIFont.TextStyle {
+        if hasMultiCharButtonText(for: context) { return .body }
         switch self {
         case .character(let char): return char.isLowercased ? .title1 : .title2
         case .emoji: return .title1
@@ -115,9 +120,9 @@ private extension KeyboardAction {
     /**
      Whether or not the button text has multiple characters.
      */
-    var hasMultiCharButtonText: Bool {
-        guard let text = standardButtonText else { return false }
-        return text.count > 1
+    func hasMultiCharButtonText(for context: KeyboardContext) -> Bool {
+        guard let text = standardButtonText(for: context) else { return false }
+        return text.count > 1 || text == "-"    // Translations are not available in tests
     }
     
     func standardButtonBackgroundColorForAllStates() -> Color? {

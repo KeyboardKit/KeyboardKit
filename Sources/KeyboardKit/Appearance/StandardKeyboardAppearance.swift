@@ -33,7 +33,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     open func buttonCornerRadius(for action: KeyboardAction) -> CGFloat { 4.0 }
     
     open func buttonFont(for action: KeyboardAction) -> Font {
-        let rawFont = Font(action.standardButtonFont)
+        let rawFont = Font(action.standardButtonFont(for: context))
         guard let weight = fontWeight(for: action) else { return rawFont }
         return rawFont.weight(weight)
     }
@@ -51,7 +51,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     }
     
     open func buttonText(for action: KeyboardAction) -> String? {
-        action.standardButtonText
+        action.standardButtonText(for: context)
     }
 }
 

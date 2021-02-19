@@ -100,7 +100,7 @@ class StandardKeyboardAppearanceTests: QuickSpec {
             it("is standard for all actions") {
                 KeyboardAction.testActions.forEach {
                     let result = appearance.buttonText(for: $0)
-                    let standard = $0.standardButtonText
+                    let standard = $0.standardButtonText(for: context)
                     result.expectEqual(to: standard)
                 }
             }

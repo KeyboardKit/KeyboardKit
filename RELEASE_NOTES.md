@@ -21,11 +21,13 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `Callouts` has new types and providers for working with callouts.
 * `Image.emoji` no longer requires iOS 14, but uses `person.crop.circle` as fallback on iOS 13.
 * `Input` has new types and providers for working with keyboard layouts.
-* `KeyboardAction` has new actions - `go`, `nextLanguage`, `ok`, `return`.
+* `KeyboardAction` has new actions - `go`, `nextLocale`, `ok` and `return`.
+* `KeyboardAction` has new, localized standard button texts for some actions.
 * `KeyboardAction` has new `isPrimaryAction` property.
 * `KeyboardAction` has new `standardButtonFontWeight` property.
 * `KeyboardAppearance` has a new `image(for:)`.
-* `KeyboardCasing` has a new `neutral` case that can be used to show the original state of the inuts.
+* `KeyboardCasing` has a new `neutral` case that can be used to show the original state of the inputs.
+* `KeyboardContext` has a new  `locales` list and a new `selectNextLocale` function.
 * `KeyboardGesture` has new `press` and `release` gestures.
 * `KeyboardInput` is a new input type that simplifies building unicode-based keyboards.
 * `KeyboardInputSet` is now based on `KeyboardInput`s instead of strings.
@@ -62,6 +64,9 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `AutocompleteToolbar` no longer requires an environment injected `ObservableKeyboardContext`, nor does its builder functions.
 * `EmojiCategory` now uses the `Emoji` type instead of a char.
 * `FrequentEmojiProvider` now uses the `Emoji` type instead of a char.
+* `KeyboardAction` `standardButtonFont` has been coverted to a function.
+* `KeyboardAction` `standardButtonText` has been coverted to a function.
+* `KeyboardAction` `standardButtonTextStyle` has been coverted to a function.
 * `KeyboardAction.emoji` now uses the `Emoji` type instead of a char.
 * `KeyboardAction.emojiCategory` no longer has a  standard tap action.
 * `KeyboardActionRow` `standardButtonImage` no longer takes a context.

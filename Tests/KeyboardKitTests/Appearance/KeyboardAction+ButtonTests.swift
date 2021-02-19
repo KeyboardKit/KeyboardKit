@@ -109,9 +109,14 @@ class KeyboardAction_SystemTests: QuickSpec {
         
         describe("standard button font") {
             
+            func result(for action: KeyboardAction) -> UIFont {
+                action.standardButtonFont(for: context)
+            }
+            
             it("is defined for all actions") {
                 actions.forEach {
-                    expect($0.standardButtonFont).to(equal(UIFont.preferredFont(forTextStyle: $0.standardButtonTextStyle)))
+                    let expected = UIFont.preferredFont(forTextStyle: $0.standardButtonTextStyle(for: context))
+                    expect(result(for: $0)).to(equal(expected))
                 }
             }
         }
@@ -163,10 +168,10 @@ class KeyboardAction_SystemTests: QuickSpec {
             }
         }
         
-        describe("system button text") {
+        describe("standard button text") {
             
             func result(for action: KeyboardAction) -> String? {
-                action.standardButtonText
+                action.standardButtonText(for: context)
             }
             
             it("is defined for some actions") {
@@ -177,11 +182,14 @@ class KeyboardAction_SystemTests: QuickSpec {
                 expect(result(for: .keyboardType(.alphabetic(.capsLocked)))).to(equal("ABC"))
                 expect(result(for: .keyboardType(.alphabetic(.lowercased)))).to(equal("ABC"))
                 expect(result(for: .keyboardType(.alphabetic(.uppercased)))).to(equal("ABC"))
+                expect(result(for: .go)).to(equal("-"))
                 expect(result(for: .keyboardType(.numeric))).to(equal("123"))
                 expect(result(for: .keyboardType(.symbolic))).to(equal("#+="))
                 expect(result(for: .keyboardType(.custom("")))).to(beNil())
-                expect(result(for: .keyboardType(.email))).to(beNil())
-                expect(result(for: .keyboardType(.images))).to(beNil())
+                expect(result(for: .nextLocale)).to(equal("en"))
+                expect(result(for: .ok)).to(equal("OK"))
+                expect(result(for: .return)).to(equal("-"))
+                expect(result(for: .search)).to(equal("-"))
                 
                 expect(result(for: .none)).to(beNil())
                 expect(result(for: .backspace)).to(beNil())
@@ -192,6 +200,8 @@ class KeyboardAction_SystemTests: QuickSpec {
                 expect(result(for: .dismissKeyboard)).to(beNil())
                 expect(result(for: .escape)).to(beNil())
                 expect(result(for: .function)).to(beNil())
+                expect(result(for: .keyboardType(.email))).to(beNil())
+                expect(result(for: .keyboardType(.images))).to(beNil())
                 expect(result(for: .moveCursorBackward)).to(beNil())
                 expect(result(for: .moveCursorForward)).to(beNil())
                 expect(result(for: .newLine)).to(beNil())
@@ -209,30 +219,40 @@ class KeyboardAction_SystemTests: QuickSpec {
             
             func getActions(_ actions: KeyboardAction...) -> [KeyboardAction] { actions }
             
+            func result(for action: KeyboardAction) -> UIFont.TextStyle {
+                action.standardButtonTextStyle(for: context)
+            }
+            
             it("is custom for some actions, but defined for all") {
                 let expectedTitle = getActions(.emoji(Emoji("")))
                 let expectedCallout = getActions(.emojiCategory(.smileys))
-                var expectedBody = actions.filter { $0 == .space || ($0.isSystemAction && $0.standardButtonText != nil) }
+                var expectedBody = actions.filter { $0 == .space || ($0.isSystemAction && $0.standardButtonText(for: context) != nil) }
                 expectedBody.append(.character("abc"))
+                expectedBody.append(.go)
+                expectedBody.append(.ok)
+                expectedBody.append(.return)
+                expectedBody.append(.search)
                 
                 actions.forEach {
                     if case .emoji = $0 {
-                        expect($0.standardButtonTextStyle).to(equal(.title1))
+                        expect(result(for: $0)).to(equal(.title1))
                     } else if case .keyboardType(.emojis) = $0 {
-                        expect($0.standardButtonTextStyle).to(equal(.title2))
+                        expect(result(for: $0)).to(equal(.title2))
                     } else if expectedTitle.contains($0) {
-                        expect($0.standardButtonTextStyle).to(equal(.title1))
+                        expect(result(for: $0)).to(equal(.title1))
                     } else if expectedCallout.contains($0) {
-                        expect($0.standardButtonTextStyle).to(equal(.callout))
+                        expect(result(for: $0)).to(equal(.callout))
                     } else if expectedBody.contains($0) {
-                        expect($0.standardButtonTextStyle).to(equal(.body))
+                        expect(result(for: $0)).to(equal(.body))
                     } else {
-                        expect($0.standardButtonTextStyle).to(equal(.title2))
+                        expect(result(for: $0)).to(equal(.title2))
                     }
                 }
-                
-                expect(KeyboardAction.character("a").standardButtonTextStyle).to(equal(.title1))
-                expect(KeyboardAction.character("A").standardButtonTextStyle).to(equal(.title2))
+            }
+            
+            it("uses different font for lower and uppercased chars") {
+                expect(result(for: KeyboardAction.character("a"))).to(equal(.title1))
+                expect(result(for: KeyboardAction.character("A"))).to(equal(.title2))
             }
         }
     }

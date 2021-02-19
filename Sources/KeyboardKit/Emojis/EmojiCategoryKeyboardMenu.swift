@@ -70,7 +70,7 @@ public struct EmojiCategoryKeyboardMenu: View {
     private var keyboardSwitchButton: some View {
         let action = KeyboardAction.keyboardType(.alphabetic(.lowercased))
         let handler = KeyboardInputViewController.shared.keyboardActionHandler
-        let text = action.standardButtonText ?? ""
+        let text = action.standardButtonText(for: context) ?? ""
         return Text(text).keyboardGestures(for: action, actionHandler: handler)
     }
     
