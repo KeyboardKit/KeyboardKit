@@ -105,7 +105,7 @@ public struct EmojiCategoryKeyboard: View {
 struct EmojiCategoryMenu_Keyboard: PreviewProvider {
     static var previews: some View {
         EmojiCategoryKeyboard(selection: .smileys)
-            .environmentObject(ObservableKeyboardContext.preview)
+            .environmentObject(KeyboardContext.preview)
             .environmentObject(SecondaryInputCalloutContext.preview)
     }
 }

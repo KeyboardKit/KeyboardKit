@@ -1,5 +1,5 @@
 //
-//  ObservableKeyboardContext+Preview.swift
+//  KeyboardContext+Preview.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-28.
@@ -8,13 +8,13 @@
 
 import Foundation
 
-public extension ObservableKeyboardContext {
+public extension KeyboardContext {
     
     /**
      This property can be used to preview keyboard views. Do
      not use it in other situations.
      */
-    static var preview: ObservableKeyboardContext {
-        ObservableKeyboardContext(controller: KeyboardInputViewController())
+    static var preview: KeyboardContext {
+        KeyboardContext(controller: KeyboardInputViewController.preview)
     }
 }

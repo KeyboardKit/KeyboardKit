@@ -19,7 +19,7 @@ struct ImageKeyboard: View {
     var actionHandler: KeyboardActionHandler
     var appearance: KeyboardAppearance
     
-    @EnvironmentObject private var context: ObservableKeyboardContext
+    @EnvironmentObject private var context: KeyboardContext
     
     var body: some View {
         VStack(spacing: 30) {

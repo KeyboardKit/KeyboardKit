@@ -15,8 +15,7 @@ import SwiftUI
  
  `KeyboardKit` will automatically create a standard instance
  and bind it to the input view controller when the extension
- is started. It can be replaced with a custom one by setting
- the `keyboardAppearance` property.
+ is started. You can use it and replace it with a custom one.
  */
 public protocol KeyboardAppearance {
     

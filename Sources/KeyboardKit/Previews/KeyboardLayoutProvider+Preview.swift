@@ -14,7 +14,7 @@ import Foundation
  */
 public class PreviewKeyboardLayoutProvider: KeyboardLayoutProvider {
     
-    public init(context: ObservableKeyboardContext = .preview) {
+    public init(context: KeyboardContext = .preview) {
         let inputProvider = StandardKeyboardInputSetProvider(context: context)
         provider = StandardKeyboardLayoutProvider(inputSetProvider: inputProvider)
     }

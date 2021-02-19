@@ -11,28 +11,39 @@ import UIKit
 import SwiftUI
 
 /**
- This protocol can be implemented by any classes that can be
- used to provide the keyboard extension with contextual info.
+ This class provides keyboard extensions with contextual and
+ observable information.
  
- `KeyboardKit` will automatically create a standard instance
- and bind it to the input view controller when the extension
- is started. It can be replaced with a custom one by setting
- the `keyboardContext` property.
+ `KeyboardKit` will automatically create an instance of this
+ class and bind it to the input view controller.
  */
-public protocol KeyboardContext: AnyObject {
+public class KeyboardContext: ObservableObject {
     
-    var device: UIDevice { get }
-    var deviceOrientation: UIInterfaceOrientation { get set }
-    var hasDictationKey: Bool { get set }
-    var hasFullAccess: Bool { get set }
-    var keyboardType: KeyboardType { get set }
-    var locale: Locale { get set }
-    var needsInputModeSwitchKey: Bool { get set }
-    var primaryLanguage: String? { get set }
-    var textDocumentProxy: UITextDocumentProxy { get set }
-    var textInputMode: UITextInputMode? { get set }
-    var traitCollection: UITraitCollection { get set }
+    public init(
+        locale: Locale = .current,
+        device: UIDevice = .current,
+        controller: KeyboardInputViewController,
+        keyboardType: KeyboardType = .alphabetic(.lowercased)) {
+        self.locale = locale
+        self.device = device
+        self.keyboardType = keyboardType
+        self.sync(with: controller)
+    }
+    
+    public let device: UIDevice
+    
+    @Published public var keyboardType: KeyboardType
+    @Published public var deviceOrientation: UIInterfaceOrientation = .portrait
+    @Published public var hasDictationKey: Bool = false
+    @Published public var hasFullAccess: Bool = false
+    @Published public var locale: Locale
+    @Published public var needsInputModeSwitchKey: Bool = true
+    @Published public var primaryLanguage: String?
+    @Published public var textDocumentProxy: UITextDocumentProxy = PreviewTextDocumentProxy()
+    @Published public var textInputMode: UITextInputMode?
+    @Published public var traitCollection: UITraitCollection = UITraitCollection()
 }
+
 
 
 // MARK: - Public Properties

@@ -14,12 +14,12 @@ import Foundation
  */
 public class PreviewKeyboardInputSetProvider: KeyboardInputSetProvider {
     
-    public init(context: ObservableKeyboardContext = .preview) {
+    public init(context: KeyboardContext = .preview) {
         self.context = context
         self.provider = StandardKeyboardInputSetProvider(context: context)
     }
     
-    private let context: ObservableKeyboardContext
+    private let context: KeyboardContext
     private let provider: KeyboardInputSetProvider
     
     public func alphabeticInputSet() -> AlphabeticKeyboardInputSet {

@@ -51,7 +51,7 @@ public struct SystemKeyboard: View {
     private let layout: KeyboardLayout
     private let secondaryInputCalloutStyle: SecondaryInputCalloutStyle?
     
-    @EnvironmentObject private var context: ObservableKeyboardContext
+    @EnvironmentObject private var context: KeyboardContext
     
     public typealias ButtonBuilder = (KeyboardAction) -> AnyView
     

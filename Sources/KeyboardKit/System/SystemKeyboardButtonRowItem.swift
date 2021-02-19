@@ -43,7 +43,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
     private let actionHandler: KeyboardActionHandler
     
     @State private var isPressed = false
-    @EnvironmentObject private var context: ObservableKeyboardContext
+    @EnvironmentObject private var context: KeyboardContext
     
     public var body: some View {
         content

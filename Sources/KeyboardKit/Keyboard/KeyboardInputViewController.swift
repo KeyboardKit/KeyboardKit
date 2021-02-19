@@ -116,7 +116,7 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      The extension's default keyboard context.
      */
-    public lazy var keyboardContext = ObservableKeyboardContext(controller: self)
+    public lazy var keyboardContext = KeyboardContext(controller: self)
     
     /**
      The extension's default input callout context.

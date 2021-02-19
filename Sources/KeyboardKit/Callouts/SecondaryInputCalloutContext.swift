@@ -18,10 +18,8 @@ import SwiftUI
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
  
- `KeyboardKit` will automatically create a standard instance
- and bind it to the input view controller when the extension
- is started. It can be replaced with a custom one by setting
- the `keyboardSecondaryInputCalloutContext` property. 
+ `KeyboardKit` will automatically create an instance of this
+ class and bind it to the input view controller. 
  */
 open class SecondaryInputCalloutContext: ObservableObject {
     

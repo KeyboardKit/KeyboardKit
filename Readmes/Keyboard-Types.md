@@ -16,7 +16,7 @@ KeyboardKit has a `KeyboardType` enum with these types:
 
 `KeyboardContext` has a `keyboardType` that can be used to get and set the current keyboard type. However, this will not have any effect unless you actually use the type to create a keyboard view that you present to the user. 
 
-With SwiftUI, you can observe the `ObservableKeyboardContext` environment object and use its `keyboardType` to create a keyboard view. This will automatically change the UI when the `keyboardType` value changes.   
+With SwiftUI, you can observe the `KeyboardContext` environment object and use its `keyboardType` to create a keyboard view. This will automatically change the UI when the `keyboardType` value changes.   
 
 Have a look at the demo application for some inspiration. It supports a couple of different keyboard views and uses the observable context as described above.
 

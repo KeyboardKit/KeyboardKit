@@ -105,7 +105,7 @@ private extension iPhoneKeyboardLayoutProvider {
 
 struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
     
-    static var context = ObservableKeyboardContext.preview
+    static var context = KeyboardContext.preview
     
     static var input = StandardKeyboardInputSetProvider(context: context)
     

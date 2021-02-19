@@ -14,7 +14,7 @@ import Foundation
  */
 public class PreviewSecondaryCalloutActionProvider: SecondaryCalloutActionProvider {
     
-    public init(context: ObservableKeyboardContext = .preview) {
+    public init(context: KeyboardContext = .preview) {
         provider = StandardSecondaryCalloutActionProvider(context: context)
     }
     

@@ -46,7 +46,7 @@ public struct EmojiKeyboard: View {
     private let emojis: [EmojiKeyboardItem]
     private let rows: [GridItem]
     
-    @EnvironmentObject var context: ObservableKeyboardContext
+    @EnvironmentObject var context: KeyboardContext
     
     public var body: some View {
         LazyHGrid(rows: rows, spacing: config.horizontalSpacing) {
@@ -76,7 +76,7 @@ struct EmojiKeyboard_Previews: PreviewProvider {
         ScrollView(.horizontal) {
             EmojiKeyboard(emojis: Array(Emoji.all.prefix(50)))
         }
-        .environmentObject(ObservableKeyboardContext.preview)
+        .environmentObject(KeyboardContext.preview)
         .environmentObject(SecondaryInputCalloutContext.preview)
     }
 }

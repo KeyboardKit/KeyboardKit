@@ -43,7 +43,7 @@ public struct EmojiCategoryKeyboardMenu: View {
     @State private var isInitialized = false
     @Binding private var selection: EmojiCategory
     
-    @EnvironmentObject private var context: ObservableKeyboardContext
+    @EnvironmentObject private var context: KeyboardContext
     
     public var body: some View {
         HStack(spacing: 0) {
@@ -95,7 +95,7 @@ public struct EmojiCategoryKeyboardMenu: View {
 struct EmojiCategoryKeyboardMenu_Previews: PreviewProvider {
     static var previews: some View {
         EmojiCategoryKeyboardMenu(selection: .constant(.activities))
-            .environmentObject(ObservableKeyboardContext.preview)
+            .environmentObject(KeyboardContext.preview)
             .environmentObject(SecondaryInputCalloutContext.preview)
     }
 }

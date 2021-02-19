@@ -7,24 +7,17 @@
 //
 
 import Foundation
-import KeyboardKit
 import MockingKit
 import UIKit
+@testable import KeyboardKit
 
 class MockKeyboardContext: KeyboardContext {
     
-    var device: UIDevice = .current
-    
-    var deviceOrientation: UIInterfaceOrientation = .portrait
-    var emojiCategory: EmojiCategory = .frequent
-    var hasDictationKey = false
-    var hasFullAccess = false
-    var keyboardAppearance: UIKeyboardAppearance = .dark
-    var keyboardType: KeyboardType = .alphabetic(.lowercased)
-    var locale: Locale = .current
-    var needsInputModeSwitchKey = false
-    var primaryLanguage: String?
-    var textDocumentProxy: UITextDocumentProxy = MockTextDocumentProxy()
-    var textInputMode: UITextInputMode?
-    var traitCollection: UITraitCollection = .init()
+    public init(device: UIDevice = .current) {
+        super.init(
+            locale: .current,
+            device: device,
+            controller: MockKeyboardInputViewController(),
+            keyboardType: .alphabetic(.lowercased))
+    }
 }

@@ -65,7 +65,7 @@ private extension StandardKeyboardAppearance {
 
 struct StandardKeyboardAppearance_Previews: PreviewProvider {
     
-    static var context = ObservableKeyboardContext.preview
+    static var context = KeyboardContext.preview
     static var appearance = StandardKeyboardAppearance(context: context)
     
     static var actions: [KeyboardAction] = [
