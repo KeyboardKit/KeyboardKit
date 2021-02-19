@@ -8,7 +8,10 @@
 
 import Foundation
 
-extension String {
+public extension String {
     
-    var chars: [String] { self.map { String($0) } }
+    /**
+     Split the string into a list of individual characters.
+     */
+    var chars: [String] { map { String($0) } }
 }

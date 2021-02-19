@@ -22,7 +22,7 @@ struct KeyboardView: View {
     var appearance: KeyboardAppearance
     var layoutProvider: KeyboardLayoutProvider
     
-    @EnvironmentObject var autocompleteContext: ObservableAutocompleteContext
+    @EnvironmentObject var autocompleteContext: AutocompleteContext
     @EnvironmentObject var keyboardContext: KeyboardContext
     @EnvironmentObject var toastContext: KeyboardToastContext
     

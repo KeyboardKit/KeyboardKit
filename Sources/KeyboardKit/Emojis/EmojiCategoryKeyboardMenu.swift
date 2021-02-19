@@ -64,14 +64,20 @@ public struct EmojiCategoryKeyboardMenu: View {
         let action = KeyboardAction.backspace
         let handler = KeyboardInputViewController.shared.keyboardActionHandler
         let image = action.standardButtonImage
-        return image.keyboardGestures(for: action, actionHandler: handler)
+        return image.keyboardGestures(
+            for: action,
+            context: context,
+            actionHandler: handler)
     }
     
     private var keyboardSwitchButton: some View {
         let action = KeyboardAction.keyboardType(.alphabetic(.lowercased))
         let handler = KeyboardInputViewController.shared.keyboardActionHandler
         let text = action.standardButtonText(for: context) ?? ""
-        return Text(text).keyboardGestures(for: action, actionHandler: handler)
+        return Text(text).keyboardGestures(
+            for: action,
+            context: context,
+            actionHandler: handler)
     }
     
     private var buttonList: some View {

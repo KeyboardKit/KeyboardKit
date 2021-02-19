@@ -37,6 +37,8 @@ public struct SystemKeyboardSpaceButton: View {
     
     @State private var isPressed = false
     
+    @EnvironmentObject private var context: KeyboardContext
+    
     public var body: some View {
         SystemKeyboardSpaceButtonContent(localeText: localeText, spaceText: spaceText)
             .keyboardButtonStyle(
@@ -45,6 +47,7 @@ public struct SystemKeyboardSpaceButton: View {
                 isPressed: isPressed)
             .keyboardGestures(
                 for: action,
+                context: context,
                 isPressed: $isPressed,
                 actionHandler: actionHandler)
     }

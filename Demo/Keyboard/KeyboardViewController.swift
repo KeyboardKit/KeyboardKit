@@ -46,10 +46,24 @@ class KeyboardViewController: KeyboardInputViewController {
             inputViewController: self,
             toastContext: toastContext)
         
+        // Setup an input set provider with multiple locales
+        keyboardInputSetProvider = StandardKeyboardInputSetProvider(
+            context: keyboardContext,
+            providers: [
+                EnglishKeyboardInputSetProvider(),
+                SwedishKeyboardInputSetProvider()])
+        
         // Setup a layout with .emojis instead of .dictation
         keyboardLayoutProvider = StandardKeyboardLayoutProvider(
             inputSetProvider: keyboardInputSetProvider,
             dictationReplacement: .keyboardType(.emojis))
+        
+        // Setup a secondary callout action provider with multiple locales
+        keyboardSecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider(
+            context: keyboardContext,
+            providers: [
+                EnglishSecondaryCalloutActionProvider(),
+                SwedishSecondaryCalloutActionProvider()])
         
         // Setup the extension to use the keyboardView below
         setup(with: keyboardView)

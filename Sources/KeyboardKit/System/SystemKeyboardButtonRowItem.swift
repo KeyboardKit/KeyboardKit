@@ -43,6 +43,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
     private let actionHandler: KeyboardActionHandler
     
     @State private var isPressed = false
+    
     @EnvironmentObject private var context: KeyboardContext
     
     public var body: some View {
@@ -58,6 +59,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
             .background(Color.clearInteractable)
             .keyboardGestures(
                 for: item.action,
+                context: context,
                 isPressed: $isPressed,
                 actionHandler: actionHandler)
     }

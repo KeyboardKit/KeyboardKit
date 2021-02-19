@@ -36,6 +36,8 @@ public struct SystemKeyboardButton: View {
     
     @State private var isPressed = false
     
+    @EnvironmentObject private var context: KeyboardContext
+    
     @ViewBuilder
     public var body: some View {
         SystemKeyboardButtonContent(action: action, text: text, image: image)
@@ -45,6 +47,7 @@ public struct SystemKeyboardButton: View {
                 isPressed: isPressed)
             .keyboardGestures(
                 for: action,
+                context: context,
                 isPressed: $isPressed,
                 actionHandler: actionHandler)
     }
