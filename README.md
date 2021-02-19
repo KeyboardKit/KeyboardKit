@@ -172,6 +172,9 @@ This project is proudly sponsored by the following individuals and companies:
 
 * [@booch](https://github.com/booch)
 
+<a href="https://www.oribi.se/en">
+    <img src="Resources/logos/oribi.png" alt="Oribi Logo" title="Oribi" width=150 />
+</a>
 <a href="http://anomaly.net.au">
     <img src="Resources/logos/anomaly.png" alt="Anomaly Software Logo" title="Anomaly Software" width=150 />
 </a>
