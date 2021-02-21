@@ -66,4 +66,3 @@ private extension KeyboardEnabledState {
         notificationCenter.publisher(for: notification)
     }
 }
-
