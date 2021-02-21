@@ -16,32 +16,20 @@ public enum KKL10n: String, CaseIterable, Identifiable {
         space
     
     public var id: String { rawValue }
-    var key: String { rawValue }
-     
-    var hasText: Bool { text != key }
     
-    var text: String {
-        let text = NSLocalizedString(key, bundle: .module, comment: "")
-        let isMissing = text == key
-        return isMissing ? "-" : text
+    public var key: String { rawValue }
+    
+    public var text: String {
+        NSLocalizedString(key, bundle: .module, comment: "")
     }
 }
 
 struct L10n_Previews: PreviewProvider {
     
-    static var missing: [KKL10n] {
-        KKL10n.allCases.filter { !$0.hasText }
-    }
-
     static var previews: some View {
         NavigationView {
             List {
-                if missing.count == 0 {
-                    Text("All translations are done!")
-                } else {
-                    Text("Missing translations:")
-                }
-                ForEach(KKL10n.allCases.filter { !$0.hasText }) { item in
+                ForEach(KKL10n.allCases) { item in
                     VStack(alignment: .leading) {
                         Text("\(item.key)").font(.footnote)
                         Text("\(item.text)")

@@ -15,14 +15,13 @@ import KeyboardKit
 class DemoKeyboardLayoutProvider: StandardKeyboardLayoutProvider {
     
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
-        var layout = super.keyboardLayout(for: context)
+        let layout = super.keyboardLayout(for: context)
         var rows = layout.items
         guard rows.count > 0, context.locales.count > 1 else { return layout }
-        let row = rows.count - 1
-        guard let system = (rows[row].first { $0.action.isSystemAction }) else { return layout }
+        let rowIndex = rows.count - 1
+        guard let system = (rows[rowIndex].first { $0.action.isSystemAction }) else { return layout }
         let switcher = KeyboardLayoutItem(action: .nextLocale, size: system.size, insets: system.insets)
-        ro
-        rows.insert(switcher, after: .space, at: row)
+        rows.insert(switcher, after: .space, atRow: rowIndex)
         return KeyboardLayout(items: rows)
     }
 }
