@@ -15,18 +15,26 @@ import SwiftUI
  */
 public struct SystemKeyboardSpaceButtonContent: View {
     
-    public init(localeText: String, spaceText: String) {
+    public init(
+        localeText: String? = nil,
+        spaceText: String = KKL10n.space.text) {
         self.localeText = localeText
         self.spaceText = spaceText
     }
     
-    private let localeText: String
+    private let localeText: String?
     private let spaceText: String
     private var action: KeyboardAction { .space }
     
+    private static var lastLocaleText: String?
+    
+    private var localeDisplayText: String {
+        localeText ?? context.locale.localizedString(forLanguageCode: context.locale.languageCode ?? "en") ?? ""
+    }
+    
     @State private var showLocale = true
     
-    private static var lastLocaleText: String?
+    @EnvironmentObject private var context: KeyboardContext
     
     public var body: some View {
         ZStack {
@@ -41,13 +49,13 @@ public struct SystemKeyboardSpaceButtonContent: View {
 private extension SystemKeyboardSpaceButtonContent {
     
     var isNewLocale: Bool {
-        localeText != Self.lastLocaleText
+        localeDisplayText != Self.lastLocaleText
     }
     
     func performAnimation() {
         showLocale = isNewLocale
         guard isNewLocale else { return }
-        Self.lastLocaleText = localeText
+        Self.lastLocaleText = localeDisplayText
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             withAnimation { showLocale = false }
         }
@@ -56,6 +64,8 @@ private extension SystemKeyboardSpaceButtonContent {
 
 struct SystemKeyboardSpaceButtonContent_Previews: PreviewProvider {
     static var previews: some View {
-        SystemKeyboardSpaceButtonContent(localeText: "Swedish", spaceText: "space")
+        SystemKeyboardSpaceButtonContent(
+            localeText: "Swedish",
+            spaceText: "space")
     }
 }

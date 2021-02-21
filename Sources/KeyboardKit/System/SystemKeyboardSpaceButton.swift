@@ -10,29 +10,32 @@ import SwiftUI
 
 /**
  This view mimics the system space button, which starts with
- the provided `localeText`, then fades in `spaceText`.
+ displaying the `localeText`, then fading to the `spaceText`.
  
- This view renders a `SystemKeyboardSpaceButtonContent` then
- applies a standard button style and action gestures to it.
+ If you don't provide a `localeText`, this view will use the
+ context's current locale. If you don't provide a `spaceText`,
+ it will use the localized `KKL10n.space` text.
+ 
+ Provide empty strings if you don't want to display any text.
+ 
+ This view creates a `SystemKeyboardSpaceButtonContent` then
+ applies a keyboard button style and gestures to it.
  */
 public struct SystemKeyboardSpaceButton: View {
     
     public init(
-        localeText: String,
-        spaceText: String,
+        localeText: String? = nil,
+        spaceText: String = KKL10n.space.text,
         actionHandler: KeyboardActionHandler,
         appearance: KeyboardAppearance) {
-        self.localeText = localeText
-        self.spaceText = spaceText
+        self.content = SystemKeyboardSpaceButtonContent(localeText: localeText, spaceText: spaceText)
         self.actionHandler = actionHandler
         self.appearance = appearance
     }
     
-    private let localeText: String
-    private let spaceText: String
+    private let content: SystemKeyboardSpaceButtonContent
     private let actionHandler: KeyboardActionHandler
     private let appearance: KeyboardAppearance
-    
     private var action: KeyboardAction { .space }
     
     @State private var isPressed = false
@@ -40,7 +43,7 @@ public struct SystemKeyboardSpaceButton: View {
     @EnvironmentObject private var context: KeyboardContext
     
     public var body: some View {
-        SystemKeyboardSpaceButtonContent(localeText: localeText, spaceText: spaceText)
+        content
             .keyboardButtonStyle(
                 for: action,
                 appearance: appearance,
