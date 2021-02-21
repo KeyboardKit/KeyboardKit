@@ -29,7 +29,7 @@ public struct SystemKeyboardSpaceButtonContent: View {
     private static var lastLocaleText: String?
     
     private var localeDisplayText: String {
-        localeText ?? context.locale.localizedString(forLanguageCode: context.locale.languageCode ?? "en") ?? ""
+        localeText ??  context.locale.localizedString(forLanguageCode: context.locale.languageCode ?? "en") ?? ""
     }
     
     @State private var showLocale = true
@@ -38,7 +38,7 @@ public struct SystemKeyboardSpaceButtonContent: View {
     
     public var body: some View {
         ZStack {
-            SystemKeyboardButtonContent(action: action, text: localeText).opacity(showLocale ? 1 : 0)
+            SystemKeyboardButtonContent(action: action, text: localeDisplayText).opacity(showLocale ? 1 : 0)
             SystemKeyboardButtonContent(action: action, text: spaceText).opacity(!showLocale ? 1 : 0)
         }
         .transition(.opacity)
@@ -63,9 +63,10 @@ private extension SystemKeyboardSpaceButtonContent {
 }
 
 struct SystemKeyboardSpaceButtonContent_Previews: PreviewProvider {
+    
     static var previews: some View {
         SystemKeyboardSpaceButtonContent(
-            localeText: "Swedish",
-            spaceText: "space")
+            localeText: nil,
+            spaceText: "space").environmentObject(KeyboardContext(controller: .preview))
     }
 }
