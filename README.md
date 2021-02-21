@@ -5,10 +5,10 @@
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/github/v/release/danielsaidi/KeyboardKit?color=%2300550&sort=semver" alt="Version" />
+    <img src="https://img.shields.io/github/v/release/KeyboardKit/KeyboardKit?color=%2300550&sort=semver" alt="Version" />
     <img src="https://img.shields.io/cocoapods/p/KeyboardKit.svg?style=flat" alt="Platform" />
     <img src="https://img.shields.io/badge/Swift-5.3-orange.svg" alt="Swift 5.3" />
-    <img src="https://img.shields.io/github/license/danielsaidi/KeyboardKit" alt="MIT License" />
+    <img src="https://img.shields.io/github/license/KeyboardKit/KeyboardKit" alt="MIT License" />
     <a href="https://twitter.com/danielsaidi">
         <img src="https://img.shields.io/badge/contact-@danielsaidi-blue.svg?style=flat" alt="Twitter: @danielsaidi" />
     </a>
@@ -30,17 +30,12 @@ The end result can look something like this...or entirely different:
 If you're new to iOS keyboard extensions, [this great guide][Guide] will help you get started. You can also have a look at the demo app for inspiration.
 
 
-## SwiftUI vs. UIKit
-
-KeyboardKit supports both `SwiftUI` and `UIKit`, but SwiftUI is the main focus going forward. You can read more about UIKit support [here][UIKit]. The rest of this readme assumes that you're using SwiftUI, although most information is valid for both UIKit and SwiftUI.
-
-
 ## Installation
 
 ### Swift Package Manager
 
 ```
-https://github.com/danielsaidi/KeyboardKit.git
+https://github.com/KeyboardKit/KeyboardKit.git
 ```
 
 ### CocoaPods
@@ -66,15 +61,27 @@ end
 
 ## Getting Started
 
-To build a keyboard extension with KeyboardKit, start by adding `KeyboardKit` to your project, as shown above. 
+To build a keyboard extension with KeyboardKit, add `KeyboardKit` to your project as shown above.
 
-You should then inherit `KeyboardInputViewController` instead of `UIInputViewController`. It provides you with many convenient services, tools and extensions that extend the native keyboard framework.
+If you use Swift Package Manager, make sure to add KeyboardKit to your *keyboard extension*. You can add it to your hosting app as well, but the keyboard extension must have it.
 
-For instance, `keyboardContext` provides you with contextual information, `keyboardActionHandler` can be used to handle keyboard-specific actions and `keyboardLayoutProvider` can provide you with keyboard layouts. There are much more here, as well as extensions that extend types like `UITextDocumentProxy` with more functionality. 
+You can then `import KeyboardKit` and let your `KeyboardController` inherit `KeyboardInputViewController` instead of `UIInputViewController`. It's a KeyboardKit-specific controller that provides you with a lot of additional functionality that extends the native keyboard framework. Your controller will get a bunch of extra properties, like `keyboardContext`, `keyboardActionHandler`, `keyboardAppearance` etc. and the extension will get access to autocomplete logic, extensions and much, much more. 
 
-`KeyboardInputViewController` also has a `setup(with:)` function that can be used to setup the extension with any `SwiftUI` view. This will make it the main view for the extension, inject the necessary environment objects and finally resize the keyboard extension to fit the view. 
+`KeyboardInputViewController` has a `setup(with:)` function that can be used to setup your extension with any `SwiftUI` view. This will make the view the main view of the extension, inject necessary environment objects and finally resize the keyboard extension to fit the view. 
 
-To learn more about and see KeyboardKit in practice, continue reading about the various parts of the library below and have a look at the demo app.
+To learn more about and see KeyboardKit in practice, continue reading about the various parts of the library below and have a look at the demo app to see how it sets up a custom `keyboardView` and adjusts it depending on the keyboard type, locale etc.
+
+
+## Go Pro!
+
+KeyboardKit Pro is a license-based extensions that unlocks pro features, such as additional locales. Going pro is also a way to support this project. [Read more here][Pro]. 
+
+You can try KeyboardKit Pro in the demo app, by activating the commented out `setupPro` line in the demo app's `KeyboardViewController`.
+
+
+## SwiftUI vs. UIKit
+
+KeyboardKit supports both `SwiftUI` and `UIKit`, but SwiftUI is the main focus going forward. You can read more about UIKit support [here][UIKit]. The rest of this readme assumes that you're using SwiftUI, although most information is valid for both UIKit and SwiftUI.
 
 
 ## Features
@@ -166,12 +173,12 @@ The demo app is not intended to be production ready or provide pixel perfection,
 To run the demo app, open and run the `Demo/Demo.xcodeproj` project, then enable the keyboards under system settings. Enable full access to support all features, like audio and haptic feedback.
 
 
-## Contact me
+## Contact
 
 Feel free to reach out if you have questions or if you want to contribute in any way:
 
 * E-mail: [daniel.saidi@gmail.com][Email]
-* Twitter: [@danielsaidi][Twitter]
+* Twitter: [@KeyboardKit][Twitter]
 * Web site: [danielsaidi.com][Website]
 
 
@@ -200,30 +207,23 @@ KeyboardKit is available under the MIT license. See LICENSE file for more info.
 
 
 [Email]: mailto:daniel.saidi@gmail.com
-[Twitter]: http://www.twitter.com/danielsaidi
+[Twitter]: http://www.twitter.com/KeyboardKit
 [Website]: http://www.danielsaidi.com
 [Sponsors]: https://github.com/sponsors/danielsaidi
 
-[Appearance]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Appearance.md
-[Audio-Feedback]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Audio-Feedback.md
-[Autocomplete]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Autocomplete.md
-[Haptic-Feedback]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Haptic-Feedback.md
-[Callouts]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Callouts.md
-[Emojis]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Emojis.md
-[Gestures]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Gestures.md
-[Input-Sets]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Input-Sets.md
-[Keyboard-Actions]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Keyboard-Actions.md
-[Keyboard-Layouts]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Keyboard-Layouts.md
-[Keyboard-Types]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Keyboard-Types.md
-[Localization]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Localization.md
-[Resources]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/Resources.md
-[SwiftUI]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/SwiftUI.md
-[Tutorial]: https://github.com/danielsaidi/KeyboardKit/blob/master/Readmes/SwiftUI-Tutorial.md
+[Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
-[UIKit]: https://github.com/danielsaidi/KeyboardKit/blob/master/UIKit/README.md
-[UIKit-Tutorial]: https://github.com/danielsaidi/KeyboardKit/blob/master/UIKit/Tutorial.md
+[Appearance]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Appearance.md
+[Audio-Feedback]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Audio-Feedback.md
+[Autocomplete]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Autocomplete.md
+[Callouts]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Callouts.md
+[Haptic-Feedback]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Haptic-Feedback.md
+[Input-Sets]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Input-Sets.md
+[Keyboard-Actions]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Keyboard-Actions.md
+[Keyboard-Layouts]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Keyboard-Layouts.md
+[Keyboard-Types]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Keyboard-Types.md
+[Localization]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Localization.md
+
+[UIKit]: https://github.com/KeyboardKit/KeyboardKit/blob/master/UIKit/README.md
 
 [Guide]: https://shyngys.com/ios-custom-keyboard-guide
-
-[Anomaly]: http://anomaly.net.au
-[Milo]: https://www.milocreative.com

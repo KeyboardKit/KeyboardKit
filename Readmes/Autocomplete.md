@@ -15,15 +15,15 @@ You can override these functions to inject your custom autocomplete logic. Keybo
 
 ## Autocomplete suggestion providers
 
-KeyboardKit has a `AutocompleteSuggestionProvider` protocol that can be implemented by any class that can be used to provide suggestions for any text, such as the currently typed word.
+KeyboardKit has a `AutocompleteSuggestionProvider` protocol that can be implemented by any class that can be used to provide autocomplete suggestions as the user types.
 
-`KeyboardInputViewController` will not create a standard provider when the extension is started, since there is currently no built-in provider in the library.
+`KeyboardInputViewController` will automatically create an `AutocompleteContext` and bind it to its `autocompleteContext` property when the extension is started. You can use it as is or replace it with a custom one.
 
-However, it will create an `ObservableAutocompleteContext` and inject it into the view hierarchy. You can update this and use it by your own views to control which suggestions to show.
+`KeyboardInputViewController` will however *not* create a standard provider, since there is currently no built-in provider in the library.
+
+Note that the existing autocomplete protocols and contexts are really basic. If your keyboard is meant to provide a kick-ass autocomplete feature, I'd suggest using the existing tools as inspiration and build your own.
 
 
-## Demo application
+## Demo
 
-The demo application has a fake autocomplete feature that demonstrates how to implement autocomplete.
-
-Note that the existing autocomplete protocols and contexts are really basic. If your keyboard is meant to provide a kick-ass autocomplete feature, I'd suggest using the existing tools as inspiration and build your own. 
+The demo application has a *fake* autocomplete feature that demonstrates how to implement autocomplete. It will just autocomplete the current word with different suffixes. 

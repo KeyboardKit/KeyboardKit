@@ -3,6 +3,15 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions.
 
 
+## 4.0.1
+
+This patch fixes a few minor things:
+
+* ✨ `LocaleKey` now implements `CaseIterable`.
+* 🚑 `StandardKeyboardActionHandler` had a memory leak that has been fixed.
+
+
+
 ## 4.0 - SwiftUI: Rising - [Milestone](https://github.com/danielsaidi/KeyboardKit/milestone/16?closed=1).
 
 In the shadows no more! It's time for `SwiftUI` to rise and become the unrelenting force we always knew it would become. 

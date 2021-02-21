@@ -8,6 +8,7 @@
 
 import UIKit
 import KeyboardKit
+import KeyboardKitPro
 import SwiftUI
 import Combine
 
@@ -37,6 +38,9 @@ class KeyboardViewController: KeyboardInputViewController {
     // MARK: - View Controller Lifecycle
     
     override func viewDidLoad() {
+        
+        // Perform the bae initialization
+        super.viewDidLoad()
         
         // Change this if you want to try some other locales
         keyboardContext.locale = LocaleKey.english.locale
@@ -74,8 +78,9 @@ class KeyboardViewController: KeyboardInputViewController {
         // Setup the extension to use the keyboardView below
         setup(with: keyboardView)
         
-        // Setup the rest of the extension
-        super.viewDidLoad()
+        // Uncomment this line to setup KeyboardKit Pro with a demo license
+        // This will unlock more locales and (in time) more features
+        // setupPro(withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098", view: keyboardView)
     }
     
     

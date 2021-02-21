@@ -15,7 +15,7 @@ import Foundation
  This is just meant as a convenience within the library. You
  should go with a raw `Locale` if you want custom locales.
  */
-public enum LocaleKey: String {
+public enum LocaleKey: String, CaseIterable {
     
     case english = "en"
     case german = "de"
