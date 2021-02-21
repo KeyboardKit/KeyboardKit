@@ -109,7 +109,7 @@ private extension KeyboardView {
     
     func buttonBuilder(action: KeyboardAction) -> AnyView {
         switch action {
-        case .space: return AnyView(SystemKeyboardSpaceButtonContent(localeText: keyboardContext.locale.localizedString(forLanguageCode: keyboardContext.locale.languageCode ?? "en") ?? "-", spaceText: KKL10n.space.))
+        case .space: return AnyView(SystemKeyboardSpaceButtonContent())
         default: return SystemKeyboard.standardButtonBuilder(action: action)
         }
     }

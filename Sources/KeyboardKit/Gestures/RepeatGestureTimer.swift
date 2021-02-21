@@ -16,6 +16,8 @@ class RepeatGestureTimer {
     
     private var timer: Timer?
     
+    static let shared = RepeatGestureTimer()
+    
     deinit { stop() }
     
     func start(action: @escaping () -> Void) {

@@ -51,7 +51,7 @@ struct KeyboardGestures<Content: View>: View {
     @EnvironmentObject private var inputCalloutContext: InputCalloutContext
     @EnvironmentObject private var secondaryInputCalloutContext: SecondaryInputCalloutContext
     
-    private let repeatTimer = RepeatGestureTimer()
+    private let repeatTimer = RepeatGestureTimer.shared
     
     @State private var isDragGestureTriggered = false
     @State private var isInputCalloutEnabled = true
@@ -174,7 +174,7 @@ private extension KeyboardGestures {
     }
     
     func startRepeatTimer() {
-        guard let action = repeatAction else { return }
+        guard let action = repeatAction else { return repeatTimer.stop() }
         repeatTimer.start(action: action)
     }
     
