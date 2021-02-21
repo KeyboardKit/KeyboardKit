@@ -35,3 +35,23 @@ public extension KeyboardLayoutItemRow {
  This typealias represents a list of layout item rows.
  */
 public typealias KeyboardLayoutItemRows = [KeyboardLayoutItemRow]
+
+public extension KeyboardLayoutItemRows {
+    
+    func row(at index: Int) -> KeyboardLayoutItemRow? {
+        guard index >= 0, count > index else { return nil }
+        return self[index]
+    }
+    
+    mutating func insert(_ item: KeyboardLayoutItem, after action: KeyboardAction, atRow index: Int) {
+        guard var row = self.row(at: index) else { return }
+        row.insert(item, after: action)
+        self[index] = row
+    }
+    
+    mutating func insert(_ item: KeyboardLayoutItem, before action: KeyboardAction, atRow index: Int) {
+        guard var row = self.row(at: index) else { return }
+        row.insert(item, before: action)
+        self[index] = row
+    }
+}
