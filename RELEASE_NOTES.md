@@ -3,6 +3,14 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions.
 
 
+## 4.0.2
+
+This patch fixes a few minor things:
+
+* 🐛 Title2 font is now used for input keys with two characters.
+
+
+
 ## 4.0.1
 
 This patch fixes a few minor things:

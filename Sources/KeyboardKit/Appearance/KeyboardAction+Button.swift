@@ -104,7 +104,7 @@ public extension KeyboardAction {
      The action's standard button text style.
      */
     func standardButtonTextStyle(for context: KeyboardContext) -> UIFont.TextStyle {
-        if hasMultiCharButtonText(for: context) { return .body }
+        if useBodyFont(for: context) { return .body }
         switch self {
         case .character(let char): return char.isLowercased ? .title1 : .title2
         case .emoji: return .title1
@@ -116,14 +116,6 @@ public extension KeyboardAction {
 }
 
 private extension KeyboardAction {
-    
-    /**
-     Whether or not the button text has multiple characters.
-     */
-    func hasMultiCharButtonText(for context: KeyboardContext) -> Bool {
-        guard let text = standardButtonText(for: context) else { return false }
-        return text.count > 1 || text == "-"    // Translations are not available in tests
-    }
     
     func standardButtonBackgroundColorForAllStates() -> Color? {
         if case .none = self { return .clear }
@@ -152,5 +144,13 @@ private extension KeyboardAction {
     func standardButtonForegroundColorForPressedState(for context: KeyboardContext) -> Color {
         if isPrimaryAction { return context.colorScheme == .dark ? .white : .standardButtonTint(for: context) }
         return .standardButtonTint(for: context)
+    }
+    
+    func useBodyFont(for context: KeyboardContext) -> Bool {
+        if self == .space { return true }
+        guard let text = standardButtonText(for: context) else { return false }
+        if isSystemAction || isPrimaryAction { return text.count > 1 || text == "-" }
+        if isInputAction { return text.count > 2 }
+        return false
     }
 }

@@ -75,6 +75,9 @@ class KeyboardViewController: KeyboardInputViewController {
                 EnglishSecondaryCalloutActionProvider(),
                 SwedishSecondaryCalloutActionProvider()])
         
+        //keyboardAppearance = ColorTheme(context: keyboardContext)
+        //view.backgroundColor = UIColor(keyboardAppearance.keyboardBackgroundColor)
+        
         // Setup the extension to use the keyboardView below
         setup(with: keyboardView)
         
@@ -115,3 +118,23 @@ class KeyboardViewController: KeyboardInputViewController {
         autocompleteContext.suggestions = []
     }
 }
+
+//class ColorTheme: StandardKeyboardAppearance {
+//
+//    let blue = Color(red: 0, green: 70.0/255.0, blue: 180.0/255.0, opacity: 1)
+//    let yellow = Color(hue: 44, saturation: 87, brightness: 0.60)
+//
+//    override func buttonCornerRadius(for action: KeyboardAction) -> CGFloat {
+//        15
+//    }
+//
+//    override var keyboardBackgroundColor: Color { blue }
+//
+//    override func buttonForegroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
+//        action.isSystemAction ? super.buttonForegroundColor(for: action, isPressed: isPressed) : blue
+//    }
+//
+//    override func buttonBackgroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
+//        action.isSystemAction ? .yellow : super.buttonBackgroundColor(for: action, isPressed: isPressed)
+//    }
+//}

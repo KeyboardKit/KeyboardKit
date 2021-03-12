@@ -217,37 +217,39 @@ class KeyboardAction_SystemTests: QuickSpec {
         
         describe("standard button text style") {
             
-            func getActions(_ actions: KeyboardAction...) -> [KeyboardAction] { actions }
+            func getActions(_ actions: [KeyboardAction]) -> [KeyboardAction] { actions }
             
             func result(for action: KeyboardAction) -> UIFont.TextStyle {
                 action.standardButtonTextStyle(for: context)
             }
             
             it("is custom for some actions, but defined for all") {
-                let expectedTitle = getActions(.emoji(Emoji("")))
-                let expectedCallout = getActions(.emojiCategory(.smileys))
-                var expectedBody = actions.filter { $0 == .space || ($0.isSystemAction && $0.standardButtonText(for: context) != nil) }
-                expectedBody.append(.character("abc"))
-                expectedBody.append(.go)
-                expectedBody.append(.ok)
-                expectedBody.append(.return)
-                expectedBody.append(.search)
+                let expectTitle1 = getActions(
+                    [.character("a"),
+                     .character("kr"),
+                     .emoji(Emoji(""))])
+                let expectCallout = getActions([.emojiCategory(.smileys)])
+                let expectBody = getActions(
+                    [.character("abc"),
+                     .go,
+                     .keyboardType(.alphabetic(.capsLocked)),
+                     .keyboardType(.alphabetic(.lowercased)),
+                     .keyboardType(.alphabetic(.uppercased)),
+                     .keyboardType(.numeric),
+                     .keyboardType(.symbolic),
+                     .nextLocale,
+                     .ok,
+                     .return,
+                     .search,
+                     .space])
+                var expectTitle2 = actions.filter { !expectTitle1.contains($0) && !expectCallout.contains($0) && !expectBody.contains($0) }
+                expectTitle2.append(.character(""))
+                expectTitle2.append(.character("A"))
                 
-                actions.forEach {
-                    if case .emoji = $0 {
-                        expect(result(for: $0)).to(equal(.title1))
-                    } else if case .keyboardType(.emojis) = $0 {
-                        expect(result(for: $0)).to(equal(.title2))
-                    } else if expectedTitle.contains($0) {
-                        expect(result(for: $0)).to(equal(.title1))
-                    } else if expectedCallout.contains($0) {
-                        expect(result(for: $0)).to(equal(.callout))
-                    } else if expectedBody.contains($0) {
-                        expect(result(for: $0)).to(equal(.body))
-                    } else {
-                        expect(result(for: $0)).to(equal(.title2))
-                    }
-                }
+                expectBody.forEach { expect(result(for: $0)).to(equal(.body)) }
+                expectCallout.forEach { expect(result(for: $0)).to(equal(.callout)) }
+                expectTitle1.forEach { expect(result(for: $0)).to(equal(.title1)) }
+                expectTitle2.forEach { expect(result(for: $0)).to(equal(.title2)) }
             }
             
             it("uses different font for lower and uppercased chars") {
