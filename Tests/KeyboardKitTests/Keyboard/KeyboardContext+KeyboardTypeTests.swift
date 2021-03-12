@@ -44,56 +44,71 @@ class KeyboardContext_KeyboardTypeTests: QuickSpec {
                 expect(result(for: .symbolic, preCursorPart: "", type: .allCharacters)).to(equal(.symbolic))
             }
             
-            it("returns correct result for all characters capitalizaton") {
-                let current = KeyboardType.alphabetic(.lowercased)
-                let type = UITextAutocapitalizationType.allCharacters
-                let expected = KeyboardType.alphabetic(.uppercased)
-                expect(result(for: current, preCursorPart: "", type: type)).to(equal(expected))
-                expect(result(for: current, preCursorPart: "foo", type: type)).to(equal(expected))
-                expect(result(for: current, preCursorPart: "foo!", type: type)).to(equal(expected))
-                expect(result(for: current, preCursorPart: "foo! ", type: type)).to(equal(expected))
+            describe("when considering auto-capitalization") {
+                
+                it("returns correct result for all characters capitalizaton") {
+                    let current = KeyboardType.alphabetic(.lowercased)
+                    let type = UITextAutocapitalizationType.allCharacters
+                    let expected = KeyboardType.alphabetic(.uppercased)
+                    expect(result(for: current, preCursorPart: "", type: type)).to(equal(expected))
+                    expect(result(for: current, preCursorPart: "foo", type: type)).to(equal(expected))
+                    expect(result(for: current, preCursorPart: "foo!", type: type)).to(equal(expected))
+                    expect(result(for: current, preCursorPart: "foo! ", type: type)).to(equal(expected))
+                }
+                
+                it("always returns caps-locked for caps-locked") {
+                    let current = KeyboardType.alphabetic(.capsLocked)
+                    let type = UITextAutocapitalizationType.sentences
+                    expect(result(for: current, preCursorPart: "", type: type)).to(equal(current))
+                    expect(result(for: current, preCursorPart: "foo", type: type)).to(equal(current))
+                    expect(result(for: current, preCursorPart: "foo ", type: type)).to(equal(current))
+                    expect(result(for: current, preCursorPart: "foo!", type: type)).to(equal(current))
+                    expect(result(for: current, preCursorPart: "foo! ", type: type)).to(equal(current))
+                }
+                
+                it("returns correct result for sentences capitalizaton") {
+                    let current = KeyboardType.alphabetic(.lowercased)
+                    let type = UITextAutocapitalizationType.sentences
+                    let expected = KeyboardType.alphabetic(.uppercased)
+                    expect(result(for: current, preCursorPart: "", type: type)).to(equal(expected))
+                    expect(result(for: current, preCursorPart: "foo", type: type)).to(equal(current))
+                    expect(result(for: current, preCursorPart: "foo ", type: type)).to(equal(current))
+                    expect(result(for: current, preCursorPart: "foo!", type: type)).to(equal(expected))
+                    expect(result(for: current, preCursorPart: "foo! ", type: type)).to(equal(expected))
+                }
+                
+                it("returns correct result for words capitalizaton") {
+                    let current = KeyboardType.alphabetic(.lowercased)
+                    let type = UITextAutocapitalizationType.words
+                    let expected = KeyboardType.alphabetic(.uppercased)
+                    expect(result(for: current, preCursorPart: "", type: type)).to(equal(expected))
+                    expect(result(for: current, preCursorPart: "foo", type: type)).to(equal(current))
+                    expect(result(for: current, preCursorPart: "foo ", type: type)).to(equal(expected))
+                    expect(result(for: current, preCursorPart: "foo!", type: type)).to(equal(expected))
+                    expect(result(for: current, preCursorPart: "foo! ", type: type)).to(equal(expected))
+                }
+                
+                it("returns correct result for none capitalizaton") {
+                    let current = KeyboardType.alphabetic(.lowercased)
+                    let type = UITextAutocapitalizationType.none
+                    let expected = KeyboardType.alphabetic(.lowercased)
+                    expect(result(for: current, preCursorPart: "", type: type)).to(equal(expected))
+                    expect(result(for: current, preCursorPart: "foo", type: type)).to(equal(expected))
+                    expect(result(for: current, preCursorPart: "foo!", type: type)).to(equal(expected))
+                    expect(result(for: current, preCursorPart: "foo! ", type: type)).to(equal(expected))
+                }
             }
             
-            it("always returns caps-locled for caps-locked") {
-                let current = KeyboardType.alphabetic(.capsLocked)
-                let type = UITextAutocapitalizationType.sentences
-                expect(result(for: current, preCursorPart: "", type: type)).to(equal(current))
-                expect(result(for: current, preCursorPart: "foo", type: type)).to(equal(current))
-                expect(result(for: current, preCursorPart: "foo ", type: type)).to(equal(current))
-                expect(result(for: current, preCursorPart: "foo!", type: type)).to(equal(current))
-                expect(result(for: current, preCursorPart: "foo! ", type: type)).to(equal(current))
-            }
-            
-            it("returns correct result for sentences capitalizaton") {
-                let current = KeyboardType.alphabetic(.lowercased)
-                let type = UITextAutocapitalizationType.sentences
-                let expected = KeyboardType.alphabetic(.uppercased)
-                expect(result(for: current, preCursorPart: "", type: type)).to(equal(expected))
-                expect(result(for: current, preCursorPart: "foo", type: type)).to(equal(current))
-                expect(result(for: current, preCursorPart: "foo ", type: type)).to(equal(current))
-                expect(result(for: current, preCursorPart: "foo!", type: type)).to(equal(expected))
-                expect(result(for: current, preCursorPart: "foo! ", type: type)).to(equal(expected))
-            }
-            
-            it("returns correct result for words capitalizaton") {
-                let current = KeyboardType.alphabetic(.lowercased)
-                let type = UITextAutocapitalizationType.words
-                let expected = KeyboardType.alphabetic(.uppercased)
-                expect(result(for: current, preCursorPart: "", type: type)).to(equal(expected))
-                expect(result(for: current, preCursorPart: "foo", type: type)).to(equal(current))
-                expect(result(for: current, preCursorPart: "foo ", type: type)).to(equal(expected))
-                expect(result(for: current, preCursorPart: "foo!", type: type)).to(equal(expected))
-                expect(result(for: current, preCursorPart: "foo! ", type: type)).to(equal(expected))
-            }
-            
-            it("returns correct result for none capitalizaton") {
-                let current = KeyboardType.alphabetic(.lowercased)
-                let type = UITextAutocapitalizationType.none
-                let expected = KeyboardType.alphabetic(.lowercased)
-                expect(result(for: current, preCursorPart: "", type: type)).to(equal(expected))
-                expect(result(for: current, preCursorPart: "foo", type: type)).to(equal(expected))
-                expect(result(for: current, preCursorPart: "foo!", type: type)).to(equal(expected))
-                expect(result(for: current, preCursorPart: "foo! ", type: type)).to(equal(expected))
+            describe("when pressing space in numeric and  symbolic keyboard") {
+                
+                it("returns correct result") {
+                    expect(result(for: .numeric, preCursorPart: "foo, ", type: .sentences)).to(equal(.alphabetic(.lowercased)))
+                    expect(result(for: .numeric, preCursorPart: "foo. ", type: .sentences)).to(equal(.alphabetic(.uppercased)))
+                    expect(result(for: .numeric, preCursorPart: "123 ", type: .sentences)).to(equal(.alphabetic(.lowercased)))
+                    expect(result(for: .symbolic, preCursorPart: "foo, ", type: .sentences)).to(equal(.alphabetic(.lowercased)))
+                    expect(result(for: .symbolic, preCursorPart: "foo. ", type: .sentences)).to(equal(.alphabetic(.uppercased)))
+                    expect(result(for: .numeric, preCursorPart: "#€% ", type: .sentences)).to(equal(.alphabetic(.lowercased)))
+                }
             }
         }
     }

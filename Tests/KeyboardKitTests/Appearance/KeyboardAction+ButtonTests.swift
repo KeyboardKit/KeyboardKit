@@ -231,6 +231,7 @@ class KeyboardAction_SystemTests: QuickSpec {
                 let expectCallout = getActions([.emojiCategory(.smileys)])
                 let expectBody = getActions(
                     [.character("abc"),
+                     .done,
                      .go,
                      .keyboardType(.alphabetic(.capsLocked)),
                      .keyboardType(.alphabetic(.lowercased)),

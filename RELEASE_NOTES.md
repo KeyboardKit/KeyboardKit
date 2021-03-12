@@ -12,6 +12,7 @@ This patch fixes a few minor things:
 * 🌐 `.done` was accidentally missing a localized text.
 * 🐛 English, German and Italian keyboards used an invalid double quote key text.
 * 🐛 Title1 font is now used for input keys with two characters, e.g. Swedish "kr" currency.
+* 🐛 Numeric and symbolic keyboards didn't auto-switch to alphabetic when tapping space.
 
 
 

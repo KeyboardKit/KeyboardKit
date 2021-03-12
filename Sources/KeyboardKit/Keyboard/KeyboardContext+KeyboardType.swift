@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public extension KeyboardContext {
     
@@ -16,17 +17,36 @@ public extension KeyboardContext {
      autocapitalization type.
      */
     var preferredKeyboardType: KeyboardType {
-        let proxy = textDocumentProxy
-        guard let autoType = proxy.autocapitalizationType else { return keyboardType }
         if keyboardType.isAlphabetic(with: .capsLocked) { return keyboardType }
-        guard keyboardType.isAlphabetic else { return keyboardType }
+        if let type = preferredAutocapitalizedKeyboardType { return type }
+        if let type = preferredKeyboardTypeAfterNonAlphaSpace { return type }
+        return keyboardType
+    }
+}
+
+private extension KeyboardContext {
+    
+    var preferredAutocapitalizedKeyboardType: KeyboardType? {
+        guard let autoType = textDocumentProxy.autocapitalizationType else { return nil }
+        guard keyboardType.isAlphabetic else { return nil }
         let uppercased = KeyboardType.alphabetic(.uppercased)
         let lowercased = KeyboardType.alphabetic(.lowercased)
         switch autoType {
         case .allCharacters: return uppercased
-        case .sentences: return proxy.isCursorAtNewSentence ? uppercased : lowercased
-        case .words: return proxy.isCursorAtNewWord ? uppercased : lowercased
+        case .sentences: return textDocumentProxy.isCursorAtNewSentence ? uppercased : lowercased
+        case .words: return textDocumentProxy.isCursorAtNewWord ? uppercased : lowercased
         default: return lowercased
         }
     }
+    
+    var preferredKeyboardTypeAfterNonAlphaSpace: KeyboardType? {
+        guard
+            keyboardType == .numeric || keyboardType == .symbolic,
+            let before = textDocumentProxy.documentContextBeforeInput,
+            before.hasSuffix(" ") && !before.hasSuffix("  ")
+        else { return nil }
+        keyboardType = .alphabetic(.lowercased)
+        return preferredAutocapitalizedKeyboardType
+    }
 }
+
