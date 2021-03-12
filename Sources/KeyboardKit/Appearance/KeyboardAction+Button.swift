@@ -88,6 +88,7 @@ public extension KeyboardAction {
     func standardButtonText(for context: KeyboardContext) -> String? {
         switch self {
         case .character(let char): return char
+        case .done: return KKL10n.done.text
         case .emoji(let emoji): return emoji.char
         case .emojiCategory(let cat): return cat.fallbackDisplayEmoji.char
         case .go: return KKL10n.go.text
