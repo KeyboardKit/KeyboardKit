@@ -30,7 +30,7 @@ public class SwedishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, Lo
     }
     
     public func numericInputSet() -> NumericKeyboardInputSet {
-        let phoneCenter: [String] = "-/:;()".chars + ["kr"] + "&@“".chars
+        let phoneCenter: [String] = "-/:;()".chars + ["kr"] + "&@”".chars
         let padCenter: [String] = "@#".chars + ["kr"] + "&*()’”+•".chars
         return NumericKeyboardInputSet(rows: [
             row(phone: "1234567890", pad: "1234567890`"),

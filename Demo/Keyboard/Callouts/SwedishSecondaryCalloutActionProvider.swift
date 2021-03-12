@@ -24,6 +24,17 @@ public class SwedishSecondaryCalloutActionProvider: BaseSecondaryCalloutActionPr
     
     public override func secondaryCalloutActionString(for char: String) -> String {
         switch char {
+        case "a": return "aáàâãā"
+        case "c": return "cç"
+        case "e": return "eéëèêẽēę"
+        case "i": return "iīîíïìĩ"
+        case "n": return "nñ"
+        case "o": return "oœóòôõ"
+        case "s": return "sßśš"
+        case "u": return "uûúüùũū"
+        case "ä": return "äæ"
+        case "ö": return "öø"
+            
         case "-": return "-–—•"
         case "/": return "/\\"
         case "&": return "&§"
@@ -37,17 +48,6 @@ public class SwedishSecondaryCalloutActionProvider: BaseSecondaryCalloutActionPr
         case "=": return "=≠≈"
             
         case "kr": return "€$£¥₩₽"
-        
-        case "a": return "aáàâãā"
-        case "c": return "cç"
-        case "e": return "eéëèêẽēę"
-        case "i": return "iīîíïìĩ"
-        case "n": return "nñ"
-        case "o": return "oœóòôõ"
-        case "s": return "sßśš"
-        case "u": return "uûúüùũū"
-        case "ä": return "äæ"
-        case "ö": return "öø"
         
         default: return ""
         }

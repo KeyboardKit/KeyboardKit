@@ -49,4 +49,3 @@ private extension KeyboardContext {
         return preferredAutocapitalizedKeyboardType
     }
 }
-

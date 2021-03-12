@@ -16,10 +16,10 @@ import Combine
  This SwiftUI-based demo keyboard demonstrates how to create
  a keyboard extension using `KeyboardKit` and `SwiftUI`.
  
- This keyboard sends text and emoji inputs to the text proxy,
- copies tapped images to the device's pasteboard, saves long
- pressed images to photos etc. It also adds an auto complete
- toolbar that provides fake suggestions for the current word.
+ This keyboard manually registers demo-specific services, to
+ show you how it's done. It has also copied a Swedish locale
+ set from KeyboardKit Pro to show you how to add more locale
+ services to your own keyboard without using KeyboardKit Pro.
  
  `IMPORTANT` To use this keyboard, you must enable it in the
  system keyboard settings ("Settings/General/Keyboards"). It
