@@ -49,7 +49,7 @@ class EnglishKeyboardInputSetProviderTests: QuickSpec {
                 it("has correct numeric input set") {
                     expect(provider.numericInputSet().rows.characters()).to(equal([
                         "1234567890".chars,
-                        "-/:;()$&@“".chars,
+                        "-/:;()$&@”".chars,
                         ".,?!’".chars
                     ]))
                 }

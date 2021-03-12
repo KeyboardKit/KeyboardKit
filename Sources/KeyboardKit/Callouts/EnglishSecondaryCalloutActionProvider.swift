@@ -20,7 +20,7 @@ open class EnglishSecondaryCalloutActionProvider: BaseSecondaryCalloutActionProv
         case "-": return "-–—•"
         case "/": return "/\\"
         case "&": return "&§"
-        case "”": return "\"”“„»«"
+        case "”", "“": return "\"”“„»«"
         case ".": return ".…"
         case "?": return "?¿"
         case "!": return "!¡"

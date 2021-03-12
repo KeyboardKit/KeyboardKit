@@ -31,7 +31,7 @@ public class EnglishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, Lo
     public func numericInputSet() -> NumericKeyboardInputSet {
         NumericKeyboardInputSet(rows: [
             row("1234567890"),
-            row(phone: "-/:;()$&@“", pad: "@#$&*()’”"),
+            row(phone: "-/:;()$&@”", pad: "@#$&*()’”"),
             row(phone: ".,?!’", pad: "%-+=/;:,.")
         ])
     }

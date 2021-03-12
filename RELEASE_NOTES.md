@@ -10,6 +10,7 @@ This patch fixes a few minor things:
 * 🌐 Italian localization has been added.
 * 🌐 German localization has been added.
 * 🌐 `.done` was accidentally missing a localized text.
+* 🐛 English, German and Italian keyboards used an invalid double quote key text.
 * 🐛 Title1 font is now used for input keys with two characters, e.g. Swedish "kr" currency.
 
 
