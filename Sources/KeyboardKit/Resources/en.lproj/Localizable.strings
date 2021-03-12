@@ -9,6 +9,7 @@
 "locale" = "en";
 "languageName" = "English";
 
+"done" = "done";
 "go" = "go";
 "ok" = "OK";
 "return" = "return";

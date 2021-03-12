@@ -9,6 +9,7 @@
 "locale" = "sv";
 "languageName" = "Svenska";
 
+"done" = "klar";
 "go" = "OK";
 "ok" = "OK";
 "return" = "retur";

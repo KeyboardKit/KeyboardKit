@@ -7,7 +7,8 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 This patch fixes a few minor things:
 
-* 🐛 Title2 font is now used for input keys with two characters.
+* 🌐 `.done` was accidentally missing a localized text.
+* 🐛 Title1 font is now used for input keys with two characters, e.g. Swedish "kr" currency.
 
 
 
