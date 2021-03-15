@@ -3,10 +3,17 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions.
 
 
+## 4.1.0
+
+New features:
+
+* ✨ `SystemKeyboardSpaceButtonContent` has a new initializer that lets you inject a custom space view. 
+
+
+
 ## 4.0.3
 
 This patch fixes a bug with the numeric/symbolic auto-switch back to alphabetic, that could cause a keyboard to get stuck in alpha.
-
 
 
 ## 4.0.2

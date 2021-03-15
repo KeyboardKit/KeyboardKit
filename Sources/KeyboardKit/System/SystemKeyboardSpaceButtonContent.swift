@@ -11,7 +11,7 @@ import SwiftUI
 /**
  This view mimics the content of a system space button, that
  starts with displaying the provided `localeText` then fades
- in the `spaceText`.
+ to the `spaceText` (or `spaceView` if it's set).
  */
 public struct SystemKeyboardSpaceButtonContent: View {
     
@@ -20,10 +20,21 @@ public struct SystemKeyboardSpaceButtonContent: View {
         spaceText: String = KKL10n.space.text) {
         self.localeText = localeText
         self.spaceText = spaceText
+        self.spaceView = nil
+    }
+    
+    public init<SpaceView: View>(
+        localeText: String? = nil,
+        spaceView: SpaceView) {
+        self.localeText = localeText
+        self.spaceText = nil
+        self.spaceView = AnyView(spaceView)
     }
     
     private let localeText: String?
-    private let spaceText: String
+    private let spaceText: String?
+    private let spaceView: AnyView?
+    
     private var action: KeyboardAction { .space }
     
     private static var lastLocaleText: String?
@@ -38,11 +49,27 @@ public struct SystemKeyboardSpaceButtonContent: View {
     
     public var body: some View {
         ZStack {
-            SystemKeyboardButtonContent(action: action, text: localeDisplayText).opacity(showLocale ? 1 : 0)
-            SystemKeyboardButtonContent(action: action, text: spaceText).opacity(!showLocale ? 1 : 0)
+            localeView.opacity(showLocale ? 1 : 0)
+            nonLocaleView.opacity(!showLocale ? 1 : 0)
         }
         .transition(.opacity)
         .onAppear(perform: performAnimation)
+    }
+}
+
+private extension SystemKeyboardSpaceButtonContent {
+    
+    var localeView: some View {
+        SystemKeyboardButtonContent(action: action, text: localeDisplayText)
+    }
+    
+    @ViewBuilder
+    var nonLocaleView: some View {
+        if let view = spaceView {
+            view
+        } else {
+            SystemKeyboardButtonContent(action: action, text: spaceText)
+        }
     }
 }
 
