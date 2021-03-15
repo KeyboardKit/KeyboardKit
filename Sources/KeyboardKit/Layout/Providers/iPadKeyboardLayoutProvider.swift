@@ -16,19 +16,11 @@ import SwiftUI
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
  
- `TODO` This class is currently used for iPad Air/Pro. These
- device types should use a different layout.
+ This provider will return an `itemSize` that corresponds to
+ how a certain action is sized on an English system keyboard.
  
- `TODO` This class sizes buttons according to their expected
- size on an English keyboard. Other locales and orientations
- may need customizations.
-
- `IMPORTANT` This layout provider has only been tested for a
- couple of locales. If you create a new input set and use it
- with this layout, you may find that buttons are incorrectly
- sized or placed. If so, create a new layout provider either
- from scratch or by inheriting this one. Also, open an issue
- if you think that a supported locale get the wrong size.
+ `TODO` This class is currently used for iPad Air/Pro device
+ types as well, although they should use a different layout.
  */
 open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     

@@ -29,6 +29,7 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     }
 
     public let dictationReplacement: KeyboardAction?
+    
     public var inputSetProvider: KeyboardInputSetProvider {
         didSet {
             iPadProvider.register(inputSetProvider: inputSetProvider)

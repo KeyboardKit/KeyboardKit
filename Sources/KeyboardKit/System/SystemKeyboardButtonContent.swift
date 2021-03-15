@@ -9,9 +9,9 @@
 import SwiftUI
 
 /**
- This view resolves the correct content for a certain action,
- given a custom text and image, which overrides the standard
- behaviors for the provided action.
+ This view resolves the correct content for a certain action.
+ If provided, the optional text and image is used instead of
+ the standard action content.
  */
 public struct SystemKeyboardButtonContent: View {
     
