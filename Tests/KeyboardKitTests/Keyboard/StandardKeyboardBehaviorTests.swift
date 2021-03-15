@@ -125,6 +125,12 @@ class StandardKeyboardBehaviorTests: QuickSpec {
                 context.keyboardType = .alphabetic(.lowercased)
                 expect(result(after: .tap, on: .character("i"))).to(beFalse())
             }
+            
+            it("is false is the current keyboard type is the same as the preferred one") {
+                proxy.documentContextBeforeInput = "Hello. "
+                context.keyboardType = .symbolic
+                expect(result(after: .tap, on: .keyboardType(.numeric))).to(beFalse())
+            }
         }
         
         describe("should switch to preferred keyboard type after text did change") {

@@ -75,6 +75,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
         on action: KeyboardAction) -> Bool {
         switch action {
         case .shift: return true
+        case .keyboardType: return false
         default: return context.keyboardType != context.preferredKeyboardType
         }
     }

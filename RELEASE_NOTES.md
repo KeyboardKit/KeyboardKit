@@ -3,6 +3,12 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions.
 
 
+## 4.0.3
+
+This patch fixes a bug with the numeric/symbolic auto-switch back to alphabetic, that could cause a keyboard to get stuck in alpha.
+
+
+
 ## 4.0.2
 
 This patch fixes a few minor things:
