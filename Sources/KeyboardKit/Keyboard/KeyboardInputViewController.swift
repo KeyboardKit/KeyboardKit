@@ -207,23 +207,12 @@ open class KeyboardInputViewController: UIInputViewController {
     
     // MARK: - Public Functions
     
-    /**
-     Change the keyboard locale.
-     
-     This function can be called directly or injected into a
-     nested service class to avoid bilinear dependencies.
-     */
+    @available(*, deprecated, message: "Change the keyboard context locale directly. Use Combine to observe the result.")
     open func changeKeyboardLocale(to locale: Locale) {
         keyboardContext.locale = locale
     }
     
-    /**
-     Change the keyboard type.
-     
-     This function can be called directly or injected into a
-     nested service class to avoid bilinear dependencies. It
-     is injected into `StandardKeyboardActionHandler`.
-     */
+    @available(*, deprecated, message: "Change the keyboard context keyboardType directly. Use Combine to observe the result.")
     open func changeKeyboardType(to type: KeyboardType) {
         keyboardContext.keyboardType = type
     }
@@ -272,6 +261,6 @@ private extension KeyboardInputViewController {
         let context = keyboardContext
         let shouldSwitch = keyboardBehavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange()
         guard shouldSwitch else { return }
-        changeKeyboardType(to: context.preferredKeyboardType)
+        keyboardContext.keyboardType = context.preferredKeyboardType
     }
 }

@@ -31,6 +31,8 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 * `LocaleKey` has been deprecated.
 * `KeyboardLocale+key` has been deprecated.
+* `KeyboardInputViewController+changeKeyboardLocale` has been deprecated.
+* `KeyboardInputViewController+changeKeyboardType` has been deprecated.
 
 ### 💥 Breaking changes:
 

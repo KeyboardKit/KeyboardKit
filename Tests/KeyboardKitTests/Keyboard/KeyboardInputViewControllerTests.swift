@@ -242,7 +242,7 @@ class KeyboardInputViewControllerTests: QuickSpec {
         }
         
         
-        // MARK: - Public Functions
+        // MARK: - Observation
         
         describe("changing keyboard locale") {
             
@@ -254,14 +254,8 @@ class KeyboardInputViewControllerTests: QuickSpec {
             }
         }
         
-        describe("changing keyboard type") {
-            
-            it("replaces keyboard type in context") {
-                let type = KeyboardType.images
-                vc.changeKeyboardType(to: type)
-                expect(vc.keyboardContext.keyboardType).to(equal(type))
-            }
-        }
+        
+        // MARK: - Public Functions
         
         describe("performing autocomplete") {
             

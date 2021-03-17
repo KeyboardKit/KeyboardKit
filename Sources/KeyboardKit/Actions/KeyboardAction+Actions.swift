@@ -44,7 +44,7 @@ public extension KeyboardAction {
      */
     var standardPressAction: GestureAction? {
         switch self {
-        case .keyboardType(let type): return { $0?.changeKeyboardType(to: type) }
+        case .keyboardType(let type): return { $0?.keyboardContext.keyboardType = type }
         default: return nil
         }
     }
@@ -85,8 +85,8 @@ public extension KeyboardAction {
         case .return: return { $0?.textDocumentProxy.insertText("\n") }
         case .shift(let currentState): return {
             switch currentState {
-            case .lowercased, .neutral: $0?.changeKeyboardType(to: .alphabetic(.uppercased))
-            case .uppercased, .capsLocked: $0?.changeKeyboardType(to: .alphabetic(.lowercased))
+            case .lowercased, .neutral: $0?.keyboardContext.keyboardType = .alphabetic(.uppercased)
+            case .uppercased, .capsLocked: $0?.keyboardContext.keyboardType = .alphabetic(.lowercased)
             }
         }
         case .space: return { $0?.textDocumentProxy.insertText(" ") }

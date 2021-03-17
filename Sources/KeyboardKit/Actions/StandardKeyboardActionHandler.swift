@@ -51,7 +51,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.keyboardContext = inputViewController.keyboardContext
         self.keyboardBehavior = inputViewController.keyboardBehavior
         self.autocompleteAction = { input?.performAutocomplete() }
-        self.changeKeyboardTypeAction = { input?.changeKeyboardType(to: $0) }
+        self.changeKeyboardTypeAction = { input?.keyboardContext.keyboardType = $0 }
         self.hapticConfiguration = hapticConfiguration
         self.audioConfiguration = audioConfiguration
         self.spaceDragSensitivity = spaceDragSensitivity
