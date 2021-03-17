@@ -10,6 +10,7 @@ import Quick
 import Nimble
 import KeyboardKit
 import MockingKit
+import SwiftUI
 import UIKit
 
 class KeyboardInputViewControllerTests: QuickSpec {
@@ -33,15 +34,8 @@ class KeyboardInputViewControllerTests: QuickSpec {
             vc = TestClass(nibName: nil, bundle: nil)
         }
         
-        describe("keyboard context") {
-            
-            it("is setup with default state") {
-                let context = vc.keyboardContext
-                expect(context.hasFullAccess).to(beFalse())
-                expect(context.keyboardType).to(equal(.alphabetic(.lowercased)))
-                expect(context.needsInputModeSwitchKey).to(beFalse())
-            }
-        }
+        
+        // MARK: - View Controller Lifecycle
         
         describe("view did load") {
             
@@ -75,6 +69,22 @@ class KeyboardInputViewControllerTests: QuickSpec {
             }
         }
         
+        
+        // MARK: - Setup
+        
+        describe("setting up with view") {
+            
+            it("registers a hosting controller") {
+                expect(vc.children.count).to(equal(0))
+                vc.setup(with: Text("HEJ"))
+                expect(vc.children.count).to(equal(1))
+                expect(vc.view.subviews.count).to(equal(1))
+            }
+        }
+        
+        
+        // MARK: - Properties
+        
         describe("keyboard action handler") {
             
             it("is standard by default") {
@@ -101,8 +111,11 @@ class KeyboardInputViewControllerTests: QuickSpec {
         
         describe("keyboard context") {
             
-            it("is observable to self by default") {
+            it("is setup with default state") {
                 let context = vc.keyboardContext
+                expect(context.hasFullAccess).to(beFalse())
+                expect(context.keyboardType).to(equal(.alphabetic(.lowercased)))
+                expect(context.needsInputModeSwitchKey).to(beFalse())
                 expect(context.textDocumentProxy).to(be(vc.textDocumentProxy))
             }
         }
@@ -154,6 +167,9 @@ class KeyboardInputViewControllerTests: QuickSpec {
             }
         }
         
+        
+        // MARK: - View Properties
+        
         describe("keyboard stack view") {
             
             it("is not added to vc view if not referred") {
@@ -177,38 +193,103 @@ class KeyboardInputViewControllerTests: QuickSpec {
             }
         }
         
-        describe("perform autocomplete") {
-            
-            it("is triggered by textDidChange") {
-                expect(vc.hasCalled(vc.performAutocompleteRef)).to(beFalse())
-                vc.textDidChange(nil)
-                expect(vc.hasCalled(vc.performAutocompleteRef)).to(beTrue())
-            }
-        }
+        // MARK: - Text And Selection Change
         
-        describe("reset autocomplete") {
+        describe("selectionWillChange") {
             
-            it("is triggered by selectionWillChange") {
+            it("triggers resetAutocomplete") {
                 expect(vc.hasCalled(vc.resetAutocompleteRef)).to(beFalse())
                 vc.selectionWillChange(nil)
                 expect(vc.hasCalled(vc.resetAutocompleteRef)).to(beTrue())
             }
         }
         
-        describe("reset autocomplete") {
+        describe("selectionDidChange") {
             
-            it("is triggered by selectionWillChange") {
+            it("triggers resetAutocomplete") {
                 expect(vc.hasCalled(vc.resetAutocompleteRef)).to(beFalse())
                 vc.selectionDidChange(nil)
                 expect(vc.hasCalled(vc.resetAutocompleteRef)).to(beTrue())
             }
         }
         
-        describe("text will change") {
+        describe("textWillChange") {
             
-            it("calls viewWillSyncWithTextDocumentProxy") {
+            it("triggers viewWillSyncWithTextDocumentProxy") {
                 vc.textWillChange(nil)
                 expect(vc.keyboardContext.textDocumentProxy).to(be(vc.textDocumentProxy))
+            }
+        }
+        
+        describe("textDidChange") {
+            
+            it("triggers performAutocomplete") {
+                expect(vc.hasCalled(vc.performAutocompleteRef)).to(beFalse())
+                vc.textDidChange(nil)
+                expect(vc.hasCalled(vc.performAutocompleteRef)).to(beTrue())
+            }
+
+            it("tries to change keyboard type") {
+                vc.keyboardContext.keyboardType = .alphabetic(.lowercased)
+                vc.textDidChange(nil)
+                vc.keyboardContext.keyboardType = .alphabetic(.uppercased)
+            }
+        }
+        
+        
+        // MARK: - Public Functions
+        
+        describe("changing keyboard locale") {
+            
+            it("replaces locale of all locale-based dependencies") {
+                let locale = KeyboardLocale.swedish
+                vc.changeKeyboardLocale(to: locale.locale)
+                expect(vc.autocompleteSuggestionProvider.locale).to(equal(locale.locale))
+                expect(vc.keyboardContext.locale).to(equal(locale.locale))
+            }
+        }
+        
+        describe("changing keyboard type") {
+            
+            it("replaces keyboard type in context") {
+                let type = KeyboardType.images
+                vc.changeKeyboardType(to: type)
+                expect(vc.keyboardContext.keyboardType).to(equal(type))
+            }
+        }
+        
+        describe("performing autocomplete") {
+            
+            var provider: MockAutocompleteSuggestionProvider!
+            var proxy: MockTextDocumentProxy!
+            
+            beforeEach {
+                provider = MockAutocompleteSuggestionProvider()
+                proxy = MockTextDocumentProxy()
+                vc.autocompleteSuggestionProvider = provider
+                vc.textDocumentProxyValue = proxy
+            }
+            
+            it("aborts if text proxy has no current word") {
+                provider.autocompleteSuggestionsResult = .success([StandardAutocompleteSuggestion("")])
+                vc.performAutocomplete()
+                expect(vc.autocompleteContext.suggestions.count).toEventually(equal(0))
+            }
+            
+            it("writes result to autocomplete context") {
+                provider.autocompleteSuggestionsResult = .success([StandardAutocompleteSuggestion("")])
+                proxy.documentContextBeforeInput = "foo bar"
+                vc.performAutocomplete()
+                expect(vc.autocompleteContext.suggestions.count).toEventually(equal(1))
+            }
+        }
+        
+        describe("resetting autocomplete") {
+            
+            it("writes result to autocomplete context") {
+                vc.autocompleteContext.suggestions = [StandardAutocompleteSuggestion("")]
+                vc.resetAutocomplete()
+                expect(vc.autocompleteContext.suggestions.count).to(equal(0))
             }
         }
     }
@@ -235,6 +316,11 @@ private class TestClass: KeyboardInputViewController, Mockable {
     var needsInputModeSwitchKeyValue = false
     override var needsInputModeSwitchKey: Bool { needsInputModeSwitchKeyValue }
     
+    var textDocumentProxyValue: UITextDocumentProxy?
+    override var textDocumentProxy: UITextDocumentProxy {
+        textDocumentProxyValue ?? super.textDocumentProxy
+    }
+    
     override func viewWillSyncWithTextDocumentProxy() {
         super.viewWillSyncWithTextDocumentProxy()
         mock.call(viewWillSyncWithTextDocumentProxyRef, args: ())
@@ -242,9 +328,11 @@ private class TestClass: KeyboardInputViewController, Mockable {
     
     override func performAutocomplete() {
         mock.call(performAutocompleteRef, args: ())
+        super.performAutocomplete()
     }
     
     override func resetAutocomplete() {
         mock.call(resetAutocompleteRef, args: ())
+        super.resetAutocomplete()
     }
 }

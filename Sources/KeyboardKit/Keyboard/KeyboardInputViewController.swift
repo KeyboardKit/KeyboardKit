@@ -96,6 +96,11 @@ open class KeyboardInputViewController: UIInputViewController {
     public lazy var autocompleteContext = AutocompleteContext()
     
     /**
+     The extension's default autocomplete suggestion provider.
+     */
+    public lazy var autocompleteSuggestionProvider: AutocompleteSuggestionProvider = DisabledAutocompleteSuggestionProvider()
+    
+    /**
      The extension's default keyboard action handler.
      */
     public lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(
@@ -202,7 +207,7 @@ open class KeyboardInputViewController: UIInputViewController {
      nested service class to avoid bilinear dependencies.
      */
     open func changeKeyboardLocale(to locale: Locale) {
-        primaryLanguage = locale.languageCode
+        autocompleteSuggestionProvider.locale = locale
         keyboardContext.locale = locale
     }
     
@@ -225,13 +230,23 @@ open class KeyboardInputViewController: UIInputViewController {
      nested service class to avoid bilinear dependencies. It
      is injected into `StandardKeyboardActionHandler`.
      */
-    open func performAutocomplete() {}
+    open func performAutocomplete() {
+        guard let word = textDocumentProxy.currentWord else { return resetAutocomplete() }
+        autocompleteSuggestionProvider.autocompleteSuggestions(for: word) { [weak self] result in
+            switch result {
+            case .failure(let error): print(error.localizedDescription)
+            case .success(let result): self?.autocompleteContext.suggestions = result
+            }
+        }
+    }
     
     /**
      Reset autocomplete state. You can override the function
      to provide custom autocomplete logic.
      */
-    open func resetAutocomplete() {}
+    open func resetAutocomplete() {
+        autocompleteContext.suggestions = []
+    }
 }
 
 

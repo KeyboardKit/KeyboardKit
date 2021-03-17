@@ -14,6 +14,8 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 * `AutocompleteSuggestionProvider` has new functions for ignoring and learning words.
 * `KeyboardLocale` now implementes `Identifiable`.
 * `KeyboardLocale` has new `flag`, `id` and `localeIdentifier` properties.
+* `KeyboardInputViewController` has a new `autocompleteSuggestionProvider` property.
+* `KeyboardInputViewController` has now implemented `performAutocomplete` and `resetAutocomplete`.
 * `SystemKeyboardSpaceButtonContent` has a new initializer that lets you inject a custom space view.
 
 ### 🚚 Renamed:
