@@ -7,6 +7,7 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 New features:
 
+* ✨ `LocaleKey` has a new `flag` property.
 * ✨ `SystemKeyboardSpaceButtonContent` has a new initializer that lets you inject a custom space view. 
 
 

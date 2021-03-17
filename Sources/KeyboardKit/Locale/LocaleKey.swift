@@ -9,11 +9,7 @@
 import Foundation
 
 /**
- This enum gathers locale identifiers so that we do not have
- to repeat ourselves when working with locale-based features.
- 
- This is just meant as a convenience within the library. You
- should go with a raw `Locale` if you want custom locales.
+ This enum contains locales that are supported by KeyoardKit.
  */
 public enum LocaleKey: String, CaseIterable {
     
@@ -21,8 +17,28 @@ public enum LocaleKey: String, CaseIterable {
     case german = "de"
     case italian = "it"
     case swedish = "sv"
+}
+
+public extension LocaleKey {
     
-    public var key: String { rawValue }
+    /**
+     */
+    var key: String { rawValue }
     
-    public var locale: Locale { Locale(identifier: key) }
+    /**
+     The raw locale that is connected to the keyboard locale.
+     */
+    var locale: Locale { Locale(identifier: key) }
+    
+    /**
+     The corresponding flag emoji for the locale.
+     */
+    var flag: String {
+        switch self {
+        case .english: return "🇺🇸"
+        case .german: return "🇩🇪"
+        case .italian: return "🇮🇹"
+        case .swedish: return "🇸🇪"
+        }
+    }
 }
