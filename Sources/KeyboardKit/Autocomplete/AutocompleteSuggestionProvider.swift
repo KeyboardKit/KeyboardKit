@@ -20,7 +20,7 @@ import Foundation
  The KeyboardKit Pro `StandardAutocompleteSuggestionProvider`
  implementation can be unlocked with a pro license.
  */
-public protocol AutocompleteSuggestionProvider {
+public protocol AutocompleteSuggestionProvider: AnyObject {
     
     /**
      Get autocomplete suggestions for a certain text.
