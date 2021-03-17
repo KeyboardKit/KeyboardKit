@@ -1,5 +1,5 @@
 //
-//  LocaleKeyTests.swift
+//  KeyboardLocaleTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-03-17.
@@ -11,13 +11,13 @@ import Quick
 import Nimble
 import KeyboardKit
 
-class LocaleKeyTests: QuickSpec {
+class KeyboardLocaleTests: QuickSpec {
     
     override func spec() {
         
         describe("locale key") {
             
-            func result(for locale: LocaleKey) -> String {
+            func result(for locale: KeyboardLocale) -> String {
                 locale.key
             }
             
@@ -31,7 +31,7 @@ class LocaleKeyTests: QuickSpec {
         
         describe("locale") {
             
-            func result(for locale: LocaleKey) -> String {
+            func result(for locale: KeyboardLocale) -> String {
                 locale.locale.identifier
             }
             
@@ -45,7 +45,7 @@ class LocaleKeyTests: QuickSpec {
         
         describe("locale") {
             
-            func result(for locale: LocaleKey) -> String {
+            func result(for locale: KeyboardLocale) -> String {
                 locale.locale.identifier
             }
             
@@ -59,7 +59,7 @@ class LocaleKeyTests: QuickSpec {
         
         describe("flag") {
             
-            func result(for locale: LocaleKey) -> String {
+            func result(for locale: KeyboardLocale) -> String {
                 locale.flag
             }
             

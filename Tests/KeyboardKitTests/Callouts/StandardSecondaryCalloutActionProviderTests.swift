@@ -28,7 +28,7 @@ class StandardSecondaryCalloutActionProviderTests: QuickSpec {
             it("has standard locale-specific providers") {
                 let providers = provider.providerDictionary.dictionary
                 expect(providers.keys.count).to(equal(1))
-                expect(providers[LocaleKey.english.key] is EnglishSecondaryCalloutActionProvider).to(beTrue())
+                expect(providers[KeyboardLocale.english.key] is EnglishSecondaryCalloutActionProvider).to(beTrue())
             }
             
             it("accepts custom providers") {
@@ -37,14 +37,14 @@ class StandardSecondaryCalloutActionProviderTests: QuickSpec {
                     providers: [EnglishSecondaryCalloutActionProvider()])
                 let providers = provider.providerDictionary.dictionary
                 expect(providers.keys.count).to(equal(1))
-                expect(providers[LocaleKey.english.key] is EnglishSecondaryCalloutActionProvider).to(beTrue())
+                expect(providers[KeyboardLocale.english.key] is EnglishSecondaryCalloutActionProvider).to(beTrue())
             }
         }
         
         describe("callout actions") {
             
             it("supports English") {
-                context.locale = Locale(identifier: LocaleKey.english.key)
+                context.locale = Locale(identifier: KeyboardLocale.english.key)
                 let action = KeyboardAction.character("a")
                 let actions = provider.secondaryCalloutActions(for: action)
                 let expected = "aàáâäæãåā".map { KeyboardAction.character(String($0)) }
@@ -60,7 +60,7 @@ class StandardSecondaryCalloutActionProviderTests: QuickSpec {
             }
             
             it("has fallback support for non-supported locale") {
-                context.locale = Locale(identifier: LocaleKey.german.key)
+                context.locale = Locale(identifier: KeyboardLocale.german.key)
                 let action = KeyboardAction.character("a")
                 let actions = provider.secondaryCalloutActions(for: action)
                 let expected = "aàáâäæãåā".map { KeyboardAction.character(String($0)) }

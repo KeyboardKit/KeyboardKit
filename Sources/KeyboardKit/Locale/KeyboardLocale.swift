@@ -9,7 +9,9 @@
 import Foundation
 
 /**
- This enum contains locales that are supported by KeyboardKit.
+ This enum contains KeyboardKit-supported locales. They have
+ more information than their raw locales and can also have a
+ set of corresponding services attatched to them.
  */
 public enum KeyboardLocale: String, CaseIterable {
     

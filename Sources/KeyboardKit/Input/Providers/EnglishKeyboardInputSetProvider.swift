@@ -18,7 +18,7 @@ public class EnglishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, Lo
     }
     
     public let device: UIDevice
-    public let localeKey: String = LocaleKey.english.key
+    public let localeKey: String = KeyboardLocale.english.key
     
     public func alphabeticInputSet() -> AlphabeticKeyboardInputSet {
         AlphabeticKeyboardInputSet(rows: [

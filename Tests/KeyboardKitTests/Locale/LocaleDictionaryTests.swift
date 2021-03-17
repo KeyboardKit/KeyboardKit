@@ -21,19 +21,19 @@ class LocaleDictionaryTests: QuickSpec {
         beforeEach {
             stringDict = LocaleDictionary(
                 [
-                    LocaleKey.english.key: "English",
-                    LocaleKey.german.key: "German",
-                    LocaleKey.italian.key: "Italian",
-                    LocaleKey.swedish.key: "Swedish"
+                    KeyboardLocale.english.key: "English",
+                    KeyboardLocale.german.key: "German",
+                    KeyboardLocale.italian.key: "Italian",
+                    KeyboardLocale.swedish.key: "Swedish"
                 ]
             )
             
             intDict = LocaleDictionary(
                 [
-                    LocaleKey.english.key: 1,
-                    LocaleKey.german.key: 2,
-                    LocaleKey.italian.key: 3,
-                    LocaleKey.swedish.key: 4
+                    KeyboardLocale.english.key: 1,
+                    KeyboardLocale.german.key: 2,
+                    KeyboardLocale.italian.key: 3,
+                    KeyboardLocale.swedish.key: 4
                 ]
             )
         }
@@ -46,7 +46,7 @@ class LocaleDictionaryTests: QuickSpec {
             }
             
             it("can resolve existing values on locale") {
-                let locale = LocaleKey.swedish.locale
+                let locale = KeyboardLocale.swedish.locale
                 expect(stringDict.value(for: locale)).to(equal("Swedish"))
                 expect(intDict.value(for: locale)).to(equal(4))
             }

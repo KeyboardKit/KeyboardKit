@@ -139,10 +139,10 @@ struct iPadKeyboardLayoutProvider_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            previews(for: LocaleKey.english.locale, title: "English")
-            previews(for: LocaleKey.german.locale, title: "German")
-            previews(for: LocaleKey.italian.locale, title: "Italian")
-            previews(for: LocaleKey.swedish.locale, title: "Swedish")
+            previews(for: KeyboardLocale.english.locale, title: "English")
+            previews(for: KeyboardLocale.german.locale, title: "German")
+            previews(for: KeyboardLocale.italian.locale, title: "Italian")
+            previews(for: KeyboardLocale.swedish.locale, title: "Swedish")
         }.previewLayout(.sizeThatFits)
     }
 }

@@ -32,7 +32,7 @@ class StandardKeyboardInputSetProviderTests: QuickSpec {
             it("has standard locale-specific providers") {
                 let providers = provider.providerDictionary.dictionary
                 expect(providers.keys.count).to(equal(1))
-                expect(providers[LocaleKey.english.key] is EnglishKeyboardInputSetProvider).to(beTrue())
+                expect(providers[KeyboardLocale.english.key] is EnglishKeyboardInputSetProvider).to(beTrue())
             }
             
             it("accepts custom providers") {
@@ -41,14 +41,14 @@ class StandardKeyboardInputSetProviderTests: QuickSpec {
                     providers: [EnglishKeyboardInputSetProvider()])
                 let providers = provider.providerDictionary.dictionary
                 expect(providers.keys.count).to(equal(1))
-                expect(providers[LocaleKey.english.key] is EnglishKeyboardInputSetProvider).to(beTrue())
+                expect(providers[KeyboardLocale.english.key] is EnglishKeyboardInputSetProvider).to(beTrue())
             }
         }
         
         describe("input sets") {
             
             it("supports English") {
-                context.locale = Locale(identifier: LocaleKey.english.key)
+                context.locale = Locale(identifier: KeyboardLocale.english.key)
                 expect(provider.alphabeticInputSet()).to(equal(english.alphabeticInputSet()))
                 expect(provider.numericInputSet()).to(equal(english.numericInputSet()))
                 expect(provider.symbolicInputSet()).to(equal(english.symbolicInputSet()))
