@@ -7,25 +7,32 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 [Milestone](https://github.com/KeyboardKit/KeyboardKit/milestone/30).
 
-New features:
+### ✨ New features:
 
-* ✨ `KeyboardLocale` now implementes `Identifiable`.
-* ✨ `KeyboardLocale` has new `flag`, `id` and `localeIdentifier` properties.
-* ✨ `SystemKeyboardSpaceButtonContent` has a new initializer that lets you inject a custom space view.
+* `AutocompleteSuggestionProvider` has new functions for ignoring and learning words.
+* `KeyboardLocale` now implementes `Identifiable`.
+* `KeyboardLocale` has new `flag`, `id` and `localeIdentifier` properties.
+* `SystemKeyboardSpaceButtonContent` has a new initializer that lets you inject a custom space view.
 
-Renamed:
+### 🚚 Renamed:
 
 * `KeyboardLocale+key` has been renamed to `id`.
 * `LocaleKey` has been renamed to `KeyboardLocale`.
 
-Deprecated (removed in 5.0):
+### 🗑 Deprecated (removed in 5.0):
 
 * `LocaleKey` has been deprecated.
 * `KeyboardLocale+key` has been deprecated.
 
+### 💥 Breaking changes:
+
+* `AutocompleteSuggestionProvider` has new properties and functions that must be implemented. If you have an instance that breaks, just create dummy implementations that does nothing.
+
 
 
 ## 4.0.3
+
+### 🐛 Bug fixes
 
 This patch fixes a bug with the numeric/symbolic auto-switch back to alphabetic, that could cause a keyboard to get stuck in alpha.
 
@@ -33,14 +40,20 @@ This patch fixes a bug with the numeric/symbolic auto-switch back to alphabetic,
 
 ## 4.0.2
 
-This patch fixes a few minor things:
+This patch fixes a few minor things.
 
-* 🌐 Italian localization has been added.
-* 🌐 German localization has been added.
-* 🌐 `.done` was accidentally missing a localized text.
-* 🐛 English, German and Italian keyboards used an invalid double quote key text.
-* 🐛 Title1 font is now used for input keys with two characters, e.g. Swedish "kr" currency.
-* 🐛 Numeric and symbolic keyboards didn't auto-switch to alphabetic when tapping space.
+### 🌐 Localization
+
+* Italian localization has been added.
+* German localization has been added.
+* `.done` was accidentally missing a localized text.
+
+
+### 🐛 Bug fixes
+
+* English, German and Italian keyboards used an invalid double quote key text.
+* Title1 font is now used for input keys with two characters, e.g. Swedish "kr" currency.
+* Numeric and symbolic keyboards didn't auto-switch to alphabetic when tapping space.
 
 
 
@@ -48,8 +61,13 @@ This patch fixes a few minor things:
 
 This patch fixes a few minor things:
 
-* ✨ `LocaleKey` now implements `CaseIterable`.
-* 🚑 `StandardKeyboardActionHandler` had a memory leak that has been fixed.
+### ✨ New features
+
+* `LocaleKey` now implements `CaseIterable`.
+
+### 🚑 Critical fixes
+
+* `StandardKeyboardActionHandler` had a memory leak that has been fixed.
 
 
 
@@ -68,7 +86,7 @@ SwiftUI support is a first-class citizen from now on. `UIKit` support is still a
 Although these release notes aim at covering everything that has changes in this major version, some things will most probably be missed.
 
 
-### New features
+### ✨ New features
 
 Besides the new things listed below, there are a bunch of new extensions, images etc. 
 
@@ -110,7 +128,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * There are new preview-specific implementations that can help you preview keyboard-based views.
 
 
-### Changed behavior
+### 💥 Changed behavior
 
 * `AutocompleteContext` is now an observable object and not a protocol.
 * `AutocompleteToolbar` is now generic, which makes your .
@@ -147,7 +165,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `View+KeyboardGestures` now handles the new press and release gestures.
 
 
-### Removed/renamed
+### 🚚 Removed/renamed
 
 * All unused extensions have been removed.
 * All previous deprecations have been removed.
@@ -198,7 +216,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `UIEdgeInsets+Keyboard` `standardKeyboardButtonInsets` has been renamed to `standardKeyboardButtonInsets`.
 
 
-### UIKit changes
+### 💥 UIKit changes
 
 In this version, `UIKit` is replaced by `SwiftUI` as the primary layout engine.
 
