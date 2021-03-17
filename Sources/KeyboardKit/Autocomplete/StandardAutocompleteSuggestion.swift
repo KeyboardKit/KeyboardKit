@@ -14,9 +14,11 @@ import Foundation
  */
 public struct StandardAutocompleteSuggestion: AutocompleteSuggestion {
     
-    public init(_ text: String) {
+    public init(
+        _ text: String,
+        behavior: AutocompleteSuggestionBehavior = .manual) {
         self.replacement = text
-        self.behavior = .manual
+        self.behavior = behavior
         self.title = text
         self.subtitle = nil
         self.additionalInfo = [:]
