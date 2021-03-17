@@ -9,6 +9,8 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 ### ✨ New features:
 
+* `AutocompleteSuggestion` has a new `behavior` property.
+* `AutocompleteSuggestionBehavior` is a new enum that can indicate whether or not a suggestion should be applied automatically when entering a word delimiter.
 * `AutocompleteSuggestionProvider` has new functions for ignoring and learning words.
 * `KeyboardLocale` now implementes `Identifiable`.
 * `KeyboardLocale` has new `flag`, `id` and `localeIdentifier` properties.

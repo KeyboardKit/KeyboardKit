@@ -15,8 +15,46 @@ import Foundation
  */
 public protocol AutocompleteSuggestion {
     
+    /**
+     This text is what should be sent to the text proxy.
+     */
     var replacement: String { get }
+    
+    /**
+     The behavior indicates how the suggestion should behave.
+     */
+    var behavior: AutocompleteSuggestionBehavior { get }
+
+    /**
+     This text is what should be presented to the user.
+     */
     var title: String { get }
+    
+    /**
+     This optional subtitle is also optional to use.
+     */
     var subtitle: String? { get }
+    
+    /**
+     This dictionary can store additional information.
+     */
     var additionalInfo: [String: Any] { get }
+}
+
+public enum AutocompleteSuggestionBehavior {
+    
+    /**
+     Suggestions with this behavior should be applied when a
+     types a word delimiter or explicitly taps them.
+     
+     This corresponds to the white background suggestions in
+     a native system keyboard.
+     */
+    case automatic
+    
+    /**
+     Suggestions with this behavior should be applied when a
+     user explicitly taps them.
+     */
+    case manual
 }

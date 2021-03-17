@@ -16,6 +16,7 @@ public struct StandardAutocompleteSuggestion: AutocompleteSuggestion {
     
     public init(_ text: String) {
         self.replacement = text
+        self.behavior = .manual
         self.title = text
         self.subtitle = nil
         self.additionalInfo = [:]
@@ -23,16 +24,19 @@ public struct StandardAutocompleteSuggestion: AutocompleteSuggestion {
     
     public init(
         replacement: String,
-        title: String,
+        behavior: AutocompleteSuggestionBehavior = .manual,
+        title: String? = nil,
         subtitle: String? = nil,
         additionalInfo: [String: Any] = [:]) {
         self.replacement = replacement
-        self.title = title
+        self.behavior = behavior
+        self.title = title ?? replacement
         self.subtitle = subtitle
         self.additionalInfo = additionalInfo
     }
     
     public let replacement: String
+    public let behavior: AutocompleteSuggestionBehavior
     public let title: String
     public let subtitle: String?
     public let additionalInfo: [String: Any]
