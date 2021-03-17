@@ -18,6 +18,10 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 * `KeyboardInputViewController` has now implemented `performAutocomplete` and `resetAutocomplete`.
 * `SystemKeyboardSpaceButtonContent` has a new initializer that lets you inject a custom space view.
 
+### ✨ Changed behavior
+
+* `KeyboardInputViewController` now uses combine observation to keep locale in sync.
+
 ### 🚚 Renamed:
 
 * `KeyboardLocale+key` has been renamed to `id`.
@@ -132,7 +136,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * There are new preview-specific implementations that can help you preview keyboard-based views.
 
 
-### 💥 Changed behavior
+### ✨ Changed behavior
 
 * `AutocompleteContext` is now an observable object and not a protocol.
 * `AutocompleteToolbar` is now generic, which makes your .

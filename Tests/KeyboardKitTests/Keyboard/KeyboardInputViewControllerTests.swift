@@ -8,10 +8,10 @@
 
 import Quick
 import Nimble
-import KeyboardKit
 import MockingKit
 import SwiftUI
 import UIKit
+@testable import KeyboardKit
 
 class KeyboardInputViewControllerTests: QuickSpec {
     
@@ -43,6 +43,11 @@ class KeyboardInputViewControllerTests: QuickSpec {
                 expect(TestClass.shared).to(beNil())
                 vc.viewDidLoad()
                 expect(TestClass.shared).toNot(beNil())
+            }
+            
+            it("sets up context observations") {
+                vc.viewDidLoad()
+                expect(vc.cancellables.count).to(beGreaterThan(0))
             }
         }
         
@@ -243,9 +248,9 @@ class KeyboardInputViewControllerTests: QuickSpec {
             
             it("replaces locale of all locale-based dependencies") {
                 let locale = KeyboardLocale.swedish
-                vc.changeKeyboardLocale(to: locale.locale)
-                expect(vc.autocompleteSuggestionProvider.locale).to(equal(locale.locale))
-                expect(vc.keyboardContext.locale).to(equal(locale.locale))
+                vc.viewDidLoad()
+                vc.keyboardContext.locale = locale.locale
+                expect(vc.autocompleteSuggestionProvider.locale).toEventually(equal(locale.locale))
             }
         }
         

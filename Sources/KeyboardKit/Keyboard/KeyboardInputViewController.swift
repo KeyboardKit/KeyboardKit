@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+import Combine
 import SwiftUI
 import UIKit
 
@@ -35,6 +36,7 @@ open class KeyboardInputViewController: UIInputViewController {
     open override func viewDidLoad() {
         super.viewDidLoad()
         Self.shared = self
+        setupLocaleObservation()
     }
     
     open override func viewWillAppear(_ animated: Bool) {
@@ -80,6 +82,11 @@ open class KeyboardInputViewController: UIInputViewController {
         let controller = KeyboardHostingController(rootView: view)
         controller.add(to: self)
     }
+    
+    
+    // MARK: - Combine
+    
+    var cancellables = Set<AnyCancellable>()
     
     
     // MARK: - Properties
@@ -207,7 +214,6 @@ open class KeyboardInputViewController: UIInputViewController {
      nested service class to avoid bilinear dependencies.
      */
     open func changeKeyboardLocale(to locale: Locale) {
-        autocompleteSuggestionProvider.locale = locale
         keyboardContext.locale = locale
     }
     
@@ -253,6 +259,14 @@ open class KeyboardInputViewController: UIInputViewController {
 // MARK: - Private Functions
 
 private extension KeyboardInputViewController {
+    
+    func setupLocaleObservation() {
+        keyboardContext.$locale.sink { [weak self] in
+            guard let self = self else { return }
+            let locale = $0
+            self.autocompleteSuggestionProvider.locale = locale
+        }.store(in: &cancellables)
+    }
     
     func tryChangeToPreferredKeyboardTypeAfterTextDidChange() {
         let context = keyboardContext

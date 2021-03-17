@@ -210,12 +210,10 @@
 			isa = PBXGroup;
 			children = (
 				A921157F25D5910D003510D9 /* Assets */,
+				A9FDAA0926025DF600E628C3 /* Demo */,
 				A951A49025E015110022385A /* Callouts */,
 				A951A49225E015110022385A /* Input */,
 				A921155A25D58E4A003510D9 /* Supporting Files */,
-				A921156D25D5902F003510D9 /* DemoAutocompleteSuggestionProvider.swift */,
-				A921156E25D5902F003510D9 /* DemoKeyboardActionHandler.swift */,
-				A951A49A25E016660022385A /* DemoKeyboardLayoutProvider.swift */,
 				A921157925D59071003510D9 /* ImageKeyboard.swift */,
 				A921157525D5906A003510D9 /* KeyboardView.swift */,
 				A921153B25D58AC7003510D9 /* KeyboardViewController.swift */,
@@ -368,6 +366,16 @@
 				A921152725D58A94003510D9 /* HomeScreen.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		A9FDAA0926025DF600E628C3 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				A921156D25D5902F003510D9 /* DemoAutocompleteSuggestionProvider.swift */,
+				A921156E25D5902F003510D9 /* DemoKeyboardActionHandler.swift */,
+				A951A49A25E016660022385A /* DemoKeyboardLayoutProvider.swift */,
+			);
+			path = Demo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

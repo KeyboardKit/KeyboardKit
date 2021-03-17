@@ -42,13 +42,19 @@ class KeyboardViewController: KeyboardInputViewController {
         // Perform the bae initialization
         super.viewDidLoad()
         
-        // Change this if you want to try some other locales
-        keyboardContext.locale = LocaleKey.english.locale
+        // Setup a demo-specific autocomplete suggestion provider
+        // 💡 This will be overwritten if registering pro below
+        autocompleteSuggestionProvider = DemoAutocompleteSuggestionProvider()
+        
+        // Setup the demo to explicitly use English locale
+        // 💡 Change this if you want to try some other locales
+        keyboardContext.locale = KeyboardLocale.english.locale
         
         // Setup the locales that the keyboard supports
+        // 💡 This will be overwritten if registering pro below
         keyboardContext.locales = [
-            LocaleKey.english.locale,
-            LocaleKey.swedish.locale
+            KeyboardLocale.english.locale,
+            KeyboardLocale.swedish.locale    // The demo has additional Swedish support
         ]
         
         // Setup a custom action handler to handle images
@@ -57,6 +63,7 @@ class KeyboardViewController: KeyboardInputViewController {
             toastContext: toastContext)
         
         // Setup an input set provider with multiple locales
+        // 💡 This will be overwritten if registering pro below.
         keyboardInputSetProvider = StandardKeyboardInputSetProvider(
             context: keyboardContext,
             providers: [
@@ -69,21 +76,23 @@ class KeyboardViewController: KeyboardInputViewController {
             dictationReplacement: .keyboardType(.emojis))
         
         // Setup a secondary callout action provider with multiple locales
+        // 💡 This will be overwritten if registering pro below.
         keyboardSecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider(
             context: keyboardContext,
             providers: [
                 EnglishSecondaryCalloutActionProvider(),
                 SwedishSecondaryCalloutActionProvider()])
         
-        //keyboardAppearance = ColorTheme(context: keyboardContext)
-        //view.backgroundColor = UIColor(keyboardAppearance.keyboardBackgroundColor)
+        // keyboardAppearance can be used to style keyboards
+        // keyboardAppearance = ColorTheme(context: keyboardContext)
+        // view.backgroundColor = UIColor(keyboardAppearance.keyboardBackgroundColor)
         
         // Setup the extension to use the keyboardView below
         setup(with: keyboardView)
         
-        // Uncomment this line to setup KeyboardKit Pro with a demo license
-        // This will unlock more locales and (in time) more features
-        // setupPro(withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098", view: keyboardView)
+        // Setup KeyboardKit Pro. This unlocks more features.
+        // Comment out this line to disable Pro mode.
+        setupPro(withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098", view: keyboardView)
     }
     
     
@@ -102,20 +111,8 @@ class KeyboardViewController: KeyboardInputViewController {
     
     // MARK: - Autocomplete
     
-    private lazy var autocompleteProvider = DemoAutocompleteSuggestionProvider()
-    
     override func performAutocomplete() {
-        guard let word = textDocumentProxy.currentWord else { return resetAutocomplete() }
-        autocompleteProvider.autocompleteSuggestions(for: word) { [weak self] result in
-            switch result {
-            case .failure(let error): print(error.localizedDescription)
-            case .success(let result): self?.autocompleteContext.suggestions = result
-            }
-        }
-    }
-    
-    override func resetAutocomplete() {
-        autocompleteContext.suggestions = []
+        super.performAutocomplete()
     }
 }
 
