@@ -43,7 +43,7 @@ class KeyboardLocaleTests: QuickSpec {
             }
         }
         
-        describe("locale") {
+        describe("locale identifier") {
             
             func result(for locale: KeyboardLocale) -> String {
                 locale.locale.identifier

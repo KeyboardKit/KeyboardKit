@@ -17,6 +17,8 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 * `KeyboardInputViewController` has a new `autocompleteSuggestionProvider` property.
 * `KeyboardInputViewController` has now implemented `performAutocomplete` and `resetAutocomplete`.
 * `SystemKeyboardSpaceButtonContent` has a new initializer that lets you inject a custom space view.
+* `UITextDocumentProxy` has a new `isOpenAlternateQuotationBeforeInput(for:)` function.
+* `UITextDocumentProxy` has a new `isOpenQuotationBeforeInput(for:)` function.
 
 ### ✨ Changed behavior
 
