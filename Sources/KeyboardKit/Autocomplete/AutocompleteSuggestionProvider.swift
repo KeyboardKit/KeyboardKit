@@ -23,6 +23,12 @@ import Foundation
 public protocol AutocompleteSuggestionProvider: AnyObject {
     
     /**
+     The currently applied locale.
+     */
+    var locale: Locale { get set }
+    
+    
+    /**
      Get autocomplete suggestions for a certain text.
      */
     func autocompleteSuggestions(for text: String, completion: AutocompleteResponse)
