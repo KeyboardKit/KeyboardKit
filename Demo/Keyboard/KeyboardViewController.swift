@@ -91,7 +91,7 @@ class KeyboardViewController: KeyboardInputViewController {
         setup(with: keyboardView)
         
         // Setup KeyboardKit Pro. This unlocks more features.
-        // Comment out this line to disable Pro mode.
+        // 💡 Comment out this line to disable Pro mode.
         setupPro(withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098", view: keyboardView)
     }
     
