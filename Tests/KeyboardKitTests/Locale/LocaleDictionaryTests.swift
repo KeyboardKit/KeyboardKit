@@ -21,19 +21,19 @@ class LocaleDictionaryTests: QuickSpec {
         beforeEach {
             stringDict = LocaleDictionary(
                 [
-                    KeyboardLocale.english.key: "English",
-                    KeyboardLocale.german.key: "German",
-                    KeyboardLocale.italian.key: "Italian",
-                    KeyboardLocale.swedish.key: "Swedish"
+                    KeyboardLocale.english.id: "English",
+                    KeyboardLocale.german.id: "German",
+                    KeyboardLocale.italian.id: "Italian",
+                    KeyboardLocale.swedish.id: "Swedish"
                 ]
             )
             
             intDict = LocaleDictionary(
                 [
-                    KeyboardLocale.english.key: 1,
-                    KeyboardLocale.german.key: 2,
-                    KeyboardLocale.italian.key: 3,
-                    KeyboardLocale.swedish.key: 4
+                    KeyboardLocale.english.id: 1,
+                    KeyboardLocale.german.id: 2,
+                    KeyboardLocale.italian.id: 3,
+                    KeyboardLocale.swedish.id: 4
                 ]
             )
         }

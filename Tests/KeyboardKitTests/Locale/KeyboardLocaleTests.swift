@@ -18,7 +18,7 @@ class KeyboardLocaleTests: QuickSpec {
         describe("locale key") {
             
             func result(for locale: KeyboardLocale) -> String {
-                locale.key
+                locale.id
             }
             
             it("is valid for all cases") {

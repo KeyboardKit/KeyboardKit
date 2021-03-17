@@ -24,13 +24,14 @@ public enum KeyboardLocale: String, CaseIterable {
 public extension KeyboardLocale {
     
     /**
+     The unique identifier of the locale.
      */
-    var key: String { rawValue }
+    var id: String { rawValue }
     
     /**
      The raw locale that is connected to the keyboard locale.
      */
-    var locale: Locale { Locale(identifier: key) }
+    var locale: Locale { Locale(identifier: id) }
     
     /**
      The corresponding flag emoji for the locale.

@@ -26,7 +26,7 @@ class EnglishKeyboardInputSetProviderTests: QuickSpec {
         describe("locale key") {
             
             it("is correct") {
-                expect(provider.localeKey).to(equal(KeyboardLocale.english.key))
+                expect(provider.localeKey).to(equal(KeyboardLocale.english.id))
             }
         }
         

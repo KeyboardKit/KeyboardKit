@@ -13,7 +13,7 @@ import Foundation
  */
 open class EnglishSecondaryCalloutActionProvider: BaseSecondaryCalloutActionProvider, LocalizedService {
     
-    public let localeKey: String = KeyboardLocale.english.key
+    public let localeKey: String = KeyboardLocale.english.id
     
     open override func secondaryCalloutActionString(for char: String) -> String {
         switch char {

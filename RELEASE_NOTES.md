@@ -7,11 +7,13 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 New features:
 
-* ✨ `LocaleKey` has a new `flag` property.
+* ✨ `KeyboardLocale` has a new `flag` property.
+* ✨ `KeyboardLocale` has been made `Identifiable`.
 * ✨ `SystemKeyboardSpaceButtonContent` has a new initializer that lets you inject a custom space view.
 
 Renamed:
 
+* `KeyboardLocale+key` has been renamed to `id`.
 * `LocaleKey` has been renamed to `KeyboardLocale`.
 
 Deprecated:
