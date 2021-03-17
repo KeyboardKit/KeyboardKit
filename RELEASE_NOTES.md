@@ -3,12 +3,14 @@
 KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions.
 
 
-## 4.1.0
+## 4.1
+
+[Milestone](https://github.com/KeyboardKit/KeyboardKit/milestone/30).
 
 New features:
 
-* ✨ `KeyboardLocale` has a new `flag` property.
-* ✨ `KeyboardLocale` has been made `Identifiable`.
+* ✨ `KeyboardLocale` now implementes `Identifiable`.
+* ✨ `KeyboardLocale` has new `flag`, `id` and `localeIdentifier` properties.
 * ✨ `SystemKeyboardSpaceButtonContent` has a new initializer that lets you inject a custom space view.
 
 Renamed:
@@ -16,15 +18,17 @@ Renamed:
 * `KeyboardLocale+key` has been renamed to `id`.
 * `LocaleKey` has been renamed to `KeyboardLocale`.
 
-Deprecated:
+Deprecated (removed in 5.0):
 
-* `LocaleKey` has been deprecated and will be removed in `5.0`.
+* `LocaleKey` has been deprecated.
+* `KeyboardLocale+key` has been deprecated.
 
 
 
 ## 4.0.3
 
 This patch fixes a bug with the numeric/symbolic auto-switch back to alphabetic, that could cause a keyboard to get stuck in alpha.
+
 
 
 ## 4.0.2
@@ -49,9 +53,13 @@ This patch fixes a few minor things:
 
 
 
-## 4.0 - SwiftUI: Rising - [Milestone](https://github.com/danielsaidi/KeyboardKit/milestone/16?closed=1).
+## 4.0
 
-In the shadows no more! It's time for `SwiftUI` to rise and become the unrelenting force we always knew it would become. 
+[Milestone](https://github.com/danielsaidi/KeyboardKit/milestone/16?closed=1).
+
+SwiftUI: Rising. In the shadows no more! 
+
+It's time for `SwiftUI` to rise and become the unrelenting force we always knew it would become. 
 
 `KeyboardKitSwiftUI` has been merged into this repository and the deployment target is raised to `iOS 13`. 
 
@@ -224,6 +232,7 @@ There are a new extension as well, as UIKit support moves away from the core lay
 * `UIView+Keyboard` is now used to apply button gestures to a view, instead of having this functionality in the view controller. 
 
 
+
 ## 3.6.3
 
 This release adds fake protocol implementations, to simplify creating SwiftUI previews.
@@ -236,6 +245,7 @@ The release also adds some things for the future:
 Although not used by the standard keyboards yet, I still wanted to add them before starting working on 4.0.
 
 
+
 ## 3.6.2
 
 This release rolls back some changes to try improve dark appearance keyboards in SwiftUI. 
@@ -243,11 +253,13 @@ This release rolls back some changes to try improve dark appearance keyboards in
 Seems like dark appearance can't be detected, since this also enables dark mode. Hopefully this is easier to fix in KK 4.0.
 
 
+
 ## 3.6.1
 
 This release adds a time threshold to the end sentence action.
 
 This release also fixes so that `CalloutCurve` and `CustomRoundedRect` handles invalid rects.
+
 
 
 ## 3.6
@@ -301,6 +313,7 @@ This release fixes so that the secondary input gesture triggers a tap if there w
 * `secondaryCalloutInputProvider` has been removed from `KeyboardContext`. It's now only in the secondary context.
 
 
+
 ## 3.5.2
 
 This release fixes so that the secondary input gesture triggers a tap if there were no secondary actions in the callout.
@@ -308,9 +321,11 @@ This release fixes so that the secondary input gesture triggers a tap if there w
 The release also makes the entire autocomplete button tappable, instead of just the text.
 
 
+
 ## 3.5.1
 
 This release fixes so that upper-cased chars gets secondary callout actions and that the input callout isn't dismissed if there are no secondary actions.  
+
 
 
 ## 3.5
@@ -393,9 +408,11 @@ This release adds curves and behavior changes to the callout bubbles.
 * `CalloutCurve` is a new shape that can be used to smoothen the two parts of a callout bubble.
 
 
+
 ## 3.4.1
 
 This release fixes some visual artefacts in the callout bubbles.
+
 
 
 ## 3.4
@@ -440,6 +457,7 @@ This release also has breaking changes to experimental features.
 * `KeyboardInputSetProvider`s properties are now context-based functions
 * `KeyboardContext` `keyboardInputProvider` has been renamed to `keyboardInputSetProvider`
 * `ObservableKeyboardContext` `keyboardInputProvider` has been renamed to `keyboardInputSetProvider`
+
 
 
 ## 3.3
@@ -492,6 +510,8 @@ Note that this is an experimental feature that may have to be revisited before 4
 
 These deprecations will be removed in v 4.0.
 
+
+
 ## 3.2
 
 This release contains improvements to the input set logic:
@@ -536,6 +556,7 @@ The demos have been updated with these changes.
 * `KeyboardContext` has new properties to make the new input and layout additions possible. If you have created your own context, you will have to add these.
 
 
+
 ## 3.1.1
 
 This version contains new features:
@@ -544,6 +565,7 @@ This version contains new features:
 * `EmojiCategory` has a `fallbackDisplayEmoji` that is used as system button text if no custom button image used.
 * `KeyboardAction` now has a standard tap action for `.emojiCategory`.
 * `KeyboardContext` now has an `emojiCategory`  property.
+
 
 
 ## 3.1
@@ -561,12 +583,14 @@ This version contains new protocols and classes:
 * The "end sentence" action that is used by space double taps, uses the new proxy property to only close when the cursor is at the end of a word.
 
 
+
 ## 3.0.2
 
 In this version:
 
 * A memory leak was fixed by making all `StandardBookActionHandler` actions use `[weak self]`.
 * The UIKit button shadow logic was improved by @jackhumbert.
+
 
 
 ## 3.0.1
@@ -576,7 +600,8 @@ This version fixes a bug, where the globe button that is used by the demo keyboa
 This version also fixes the system image's font weight.
 
 
-## 3
+
+## 3.0
 
 This version removes all previously deprecated parts of the library and adds improved support for SwiftUI and iOS 13.
 
@@ -666,14 +691,17 @@ The demo project contains a new `KeyboardKitSwiftUIPreviews` in which you can pr
 * `isKeyboardEnabled` global function
 
 
+
 ## 2.9.3
 
 This version updates external test dependencies to their latest versions.
 
 
+
 ## 2.9.2
 
 This version removes the subview fiddling from `KeyboardCollectionVew` to the built-in subclasses, since it can ruin the view hierarchy for collection views that don't add custom views to the cells.
+
 
 
 ## 2.9.1
@@ -688,6 +716,7 @@ This version also extracts the logic of `KeyboardAction` `standardTapAction` int
 This makes it possible to use the standard function in other ways, should you need it.
 
 This version also makes `actions` of `KeyboardCollectionView` mutable, causing changes to this property to refresh the view.
+
 
 
 ## 2.9
@@ -736,9 +765,11 @@ Thanks to @eduardoxlau, the demo also has an improved emoji keyboard.
 * `KeyboardAction.switchToKeyboard` is now an alias for `keyboardType`. You can still use it when defining actions, but if you switch over `KeyboardAction`, you have to use `keyboardType` instead of `switchToKeyboard`.
 
 
+
 ## 2.8.1
 
 This version fixes some division by zero bugs.
+
 
 
 ## 2.8

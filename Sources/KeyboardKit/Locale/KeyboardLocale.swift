@@ -31,7 +31,12 @@ public extension KeyboardLocale {
     /**
      The raw locale that is connected to the keyboard locale.
      */
-    var locale: Locale { Locale(identifier: id) }
+    var locale: Locale { Locale(identifier: localeIdentifier) }
+    
+    /**
+     The identifier that is used to identify the raw locale.
+     */
+    var localeIdentifier: String { id }
     
     /**
      The corresponding flag emoji for the locale.
