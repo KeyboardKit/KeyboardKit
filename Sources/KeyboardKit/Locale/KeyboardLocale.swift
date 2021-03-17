@@ -1,5 +1,5 @@
 //
-//  LocaleKey.swift
+//  KeyboardLocale.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-01.
@@ -9,9 +9,9 @@
 import Foundation
 
 /**
- This enum contains locales that are supported by KeyoardKit.
+ This enum contains locales that are supported by KeyboardKit.
  */
-public enum LocaleKey: String, CaseIterable {
+public enum KeyboardLocale: String, CaseIterable {
     
     case english = "en"
     case german = "de"
@@ -19,7 +19,7 @@ public enum LocaleKey: String, CaseIterable {
     case swedish = "sv"
 }
 
-public extension LocaleKey {
+public extension KeyboardLocale {
     
     /**
      */
