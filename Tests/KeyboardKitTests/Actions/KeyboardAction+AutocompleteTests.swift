@@ -30,7 +30,6 @@ class KeyboardAction_AutocompleteTests: QuickSpec {
                 expected.append(.newLine)
                 expected.append(.return)
                 expected.append(.space)
-                
                 actions.forEach {
                     expect($0.shouldApplyAutocompleteSuggestion).to(equal(expected.contains($0)))
                 }

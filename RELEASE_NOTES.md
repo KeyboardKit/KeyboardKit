@@ -26,6 +26,7 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 * `KeyboardInputViewController` has a new `autocompleteSuggestionProvider` property.
 * `KeyboardInputViewController` has now implemented `performAutocomplete` and `resetAutocomplete`.
 * `SystemKeyboardSpaceButtonContent` has a new initializer that lets you inject a custom space view.
+* `UITextDocumentProxy` has a new `insertAutocompleteSuggestion` function.
 * `UITextDocumentProxy` has a new `isOpenAlternateQuotationBeforeInput(for:)` function.
 * `UITextDocumentProxy` has a new `isOpenQuotationBeforeInput(for:)` function.
 
