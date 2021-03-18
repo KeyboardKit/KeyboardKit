@@ -20,6 +20,7 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 * `AutocompleteToolbar` has a new `itemBuilder` initializer.
 * `AutocompleteToolbarItem` is a new view that replicates a native autocomplete item.
 * `AutocompleteToolbarItemText` is a new view that replicates the text of a native autocomplete item.
+* `KeyboardAction` has a new `shouldApplyAutocompleteSuggestion` property.
 * `KeyboardLocale` now implementes `Identifiable`.
 * `KeyboardLocale` has new `flag`, `id` and `localeIdentifier` properties.
 * `KeyboardInputViewController` has a new `autocompleteSuggestionProvider` property.

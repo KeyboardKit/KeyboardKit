@@ -2,6 +2,6 @@ import Foundation
 
 public extension KeyboardLocale {
     
-    @available(*, deprecated, renamed: "identifier")
+    @available(*, deprecated, renamed: "id")
     var key: String { id }
 }
