@@ -34,6 +34,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             handler = TestClass(
                 keyboardContext: inputViewController.keyboardContext,
                 keyboardBehavior: inputViewController.keyboardBehavior,
+                autocompleteContext: inputViewController.autocompleteContext,
                 autocompleteAction: self.autocompleteAction,
                 changeKeyboardTypeAction: self.changeKeyboardTypeAction)
         }

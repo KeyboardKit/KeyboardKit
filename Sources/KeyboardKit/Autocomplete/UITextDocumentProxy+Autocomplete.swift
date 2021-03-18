@@ -14,8 +14,9 @@ public extension UITextDocumentProxy {
      Replace the current word with the suggestion's text and
      the try to insert a space, if needed.
      */
-    func insertAutocompleteSuggestion(_ suggestion: AutocompleteSuggestion) {
+    func insertAutocompleteSuggestion(_ suggestion: AutocompleteSuggestion, tryInsertSpace: Bool = true) {
         replaceCurrentWord(with: suggestion.text)
+        guard tryInsertSpace else { return }
         tryInsertSpaceAfterSuggestion()
     }
 }

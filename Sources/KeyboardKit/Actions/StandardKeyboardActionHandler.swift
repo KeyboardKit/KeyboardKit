@@ -28,6 +28,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     public init(
         keyboardContext: KeyboardContext,
         keyboardBehavior: KeyboardBehavior,
+        autocompleteContext: AutocompleteContext,
         autocompleteAction: @escaping () -> Void,
         changeKeyboardTypeAction: @escaping (KeyboardType) -> Void,
         hapticConfiguration: HapticFeedbackConfiguration = .standard,
@@ -35,6 +36,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         spaceDragSensitivity: SpaceDragSensitivity = .medium) {
         self.keyboardContext = keyboardContext
         self.keyboardBehavior = keyboardBehavior
+        self.autocompleteContext = autocompleteContext
         self.autocompleteAction = autocompleteAction
         self.changeKeyboardTypeAction = changeKeyboardTypeAction
         self.hapticConfiguration = hapticConfiguration
@@ -50,6 +52,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         weak var input = inputViewController
         self.keyboardContext = inputViewController.keyboardContext
         self.keyboardBehavior = inputViewController.keyboardBehavior
+        self.autocompleteContext = inputViewController.autocompleteContext
         self.autocompleteAction = { input?.performAutocomplete() }
         self.changeKeyboardTypeAction = { input?.keyboardContext.keyboardType = $0 }
         self.hapticConfiguration = hapticConfiguration
@@ -61,6 +64,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     // MARK: - Dependencies
     
     public let audioConfiguration: AudioFeedbackConfiguration
+    public let autocompleteContext: AutocompleteContext
     public let keyboardBehavior: KeyboardBehavior
     public let keyboardContext: KeyboardContext
     public let hapticConfiguration: HapticFeedbackConfiguration
@@ -94,6 +98,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      Handle a certain `gesture` on a certain `action`
      */
     open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
+        tryApplyAutocompleteSuggestion(before: gesture, on: action)
         guard let gestureAction = self.action(for: gesture, on: action) else { return }
         gestureAction(keyboardInputViewController)
         triggerAudioFeedback(for: gesture, on: action, sender: sender)
@@ -169,6 +174,14 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     open func triggerHapticFeedbackForLongPressOnSpaceDragGesture() {
         hapticConfiguration.longPressOnSpaceFeedback.trigger()
+    }
+    
+    open func tryApplyAutocompleteSuggestion(before gesture: KeyboardGesture, on action: KeyboardAction) {
+        guard gesture == .tap else { return }
+        if autocompleteContext.suggestions.isEmpty { return }
+        guard action.shouldApplyAutocompleteSuggestion else { return }
+        guard let suggestion = (autocompleteContext.suggestions.first { $0.isAutocomplete }) else { return }
+        keyboardContext.textDocumentProxy.insertAutocompleteSuggestion(suggestion, tryInsertSpace: false)
     }
     
     open func tryEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction) {

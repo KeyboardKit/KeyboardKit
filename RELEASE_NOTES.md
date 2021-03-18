@@ -25,6 +25,7 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 * `KeyboardLocale` has new `flag`, `id` and `localeIdentifier` properties.
 * `KeyboardInputViewController` has a new `autocompleteSuggestionProvider` property.
 * `KeyboardInputViewController` has now implemented `performAutocomplete` and `resetAutocomplete`.
+* `StandardKeyboardActionHandler` has a new `tryApplyAutocompleteSuggestion` function.
 * `SystemKeyboardSpaceButtonContent` has a new initializer that lets you inject a custom space view.
 * `UITextDocumentProxy` has a new `insertAutocompleteSuggestion` function.
 * `UITextDocumentProxy` has a new `isOpenAlternateQuotationBeforeInput(for:)` function.
