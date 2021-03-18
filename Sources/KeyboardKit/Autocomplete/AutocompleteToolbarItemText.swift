@@ -10,7 +10,7 @@ import SwiftUI
 
 /**
  This view replicates the standard autocomplete toolbar item
- text is used in native iOS keyboards.
+ text that is used in native iOS keyboards.
  */
 public struct AutocompleteToolbarItemText: View {
     

@@ -17,6 +17,7 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 * `AutocompleteSuggestion` has new `isAutocomplete` and `isUnknown` properties.
 * `AutocompleteSuggestionProvider` has new functions for ignoring and learning words.
+* `AutocompleteToolbar` has a new `itemBuilder` initializer.
 * `AutocompleteToolbarItem` is a new view that replicates a native autocomplete item.
 * `AutocompleteToolbarItemText` is a new view that replicates the text of a native autocomplete item.
 * `KeyboardLocale` now implementes `Identifiable`.
@@ -40,6 +41,7 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 ### 🗑 Deprecated (removed in 5.0):
 
 * `AutocompleteSuggestion+replacement` has been deprecated due to the name change above.
+* `AutocompleteToolbar` - the `buttonBuilder` item  has been deprecated and replaced with the `itemBuilder` one.
 * `LocaleKey` has been deprecated due to the name change above.
 * `KeyboardLocale+key` has been deprecated.
 * `KeyboardInputViewController+changeKeyboardLocale` has been deprecated.

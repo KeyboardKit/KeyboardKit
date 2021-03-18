@@ -27,23 +27,24 @@ public struct AutocompleteToolbar: View {
      Create a new autocomplete toolbar.
      
      - Parameters:
-     - buttonBuilder: An optional, custom button builder. By default, the static `standardButton` will be used.
+     - suggestions: A list of suggestions to display in the toolbar.
+     - itemBuilder: An optional, custom button builder. By default, the static `standardButton` will be used.
      - separatorBuilder: An optional, custom separator builder. By default, the static `standardSeparator` will be used.
      - replacementAction: An optional, custom replacement action. By default, the static `standardReplacementAction` will be used.
      */
     public init(
         suggestions: [AutocompleteSuggestion],
-        buttonBuilder: @escaping ButtonBuilder = Self.standardButton,
+        itemBuilder: @escaping ButtonBuilder = Self.standardButton,
         separatorBuilder: @escaping SeparatorBuilder = Self.standardSeparator,
         replacementAction: @escaping ReplacementAction = Self.standardReplacementAction) {
         self.items = suggestions.map { BarItem($0) }
-        self.buttonBuilder = buttonBuilder
+        self.itemBuilder = itemBuilder
         self.separatorBuilder = separatorBuilder
         self.replacementAction = replacementAction
     }
     
-    private let buttonBuilder: ButtonBuilder
     private let items: [BarItem]
+    private let itemBuilder: ButtonBuilder
     private let replacementAction: ReplacementAction
     private let separatorBuilder: SeparatorBuilder
     
@@ -109,10 +110,7 @@ public extension AutocompleteToolbar {
      if no custom separator is provided in init.
      */
     static func standardSeparator(for suggestion: AutocompleteSuggestion) -> AnyView {
-        AnyView(Color.secondary
-                    .opacity(0.5)
-                    .frame(width: 1)
-                    .padding(.vertical, 8))
+        AnyView(AutocompleteToolbarSeparator())
     }
 }
 
@@ -122,15 +120,28 @@ private extension AutocompleteToolbar {
         item.id == items.last?.id
     }
     
+    func isNextItemAutocomplete(for item: BarItem) -> Bool {
+        guard let index = (items.firstIndex { $0.id == item.id }) else { return false }
+        let nextIndex = items.index(after: index)
+        guard nextIndex < items.count else { return false }
+        return items[nextIndex].suggestion.isAutocomplete
+    }
+    
+    func useSeparator(for item: BarItem) -> Bool {
+        if item.suggestion.isAutocomplete { return false }
+        if isLast(item) { return false }
+        return !isNextItemAutocomplete(for: item)
+    }
+    
     func view(for item: BarItem) -> some View {
         let action = { self.replacementAction(item.suggestion) }
         return Group {
             Button(action: action) {
-                buttonBuilder(item.suggestion)
+                itemBuilder(item.suggestion)
             }
             .background(Color.clearInteractable)
             .buttonStyle(PlainButtonStyle())
-            if !isLast(item) {
+            if useSeparator(for: item) {
                 separatorBuilder(item.suggestion)
             }
         }
@@ -143,15 +154,15 @@ struct AutocompleteToolbar_Previews: PreviewProvider {
         KeyboardInputViewController.shared = .preview
         return VStack {
             AutocompleteToolbar(suggestions: previewSuggestions).previewBar()
-            AutocompleteToolbar(suggestions: previewSuggestions, buttonBuilder: preview).previewBar()
+            AutocompleteToolbar(suggestions: previewSuggestions, itemBuilder: previewItem).previewBar()
         }.environmentObject(KeyboardContext.preview)
     }
     
-    static func preview(for suggestion: AutocompleteSuggestion) -> AnyView {
+    static func previewItem(for suggestion: AutocompleteSuggestion) -> AnyView {
         AnyView(
             HStack {
                 Spacer()
-                VStack(spacing: 10) {
+                VStack(spacing: 4) {
                     AutocompleteToolbarItemText(suggestion: suggestion)
                         .font(Font.body.bold())
                     if let subtitle = suggestion.subtitle {
@@ -172,8 +183,7 @@ struct AutocompleteToolbar_Previews: PreviewProvider {
 private extension View {
     
     func previewBar() -> some View {
-        self.frame(height: 80)
-            .background(Color.gray.opacity(0.3))
+        self.background(Color.gray.opacity(0.3))
             .cornerRadius(10)
             .padding()
     }
