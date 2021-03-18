@@ -19,7 +19,7 @@ public class SwedishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, Lo
     }
     
     public let device: UIDevice
-    public let localeKey: String = LocaleKey.swedish.key
+    public let localeKey: String = KeyboardLocale.swedish.id
     
     public func alphabeticInputSet() -> AlphabeticKeyboardInputSet {
         AlphabeticKeyboardInputSet(rows: [

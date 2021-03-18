@@ -31,9 +31,9 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 * `UITextDocumentProxy` has a new `isOpenAlternateQuotationBeforeInput(for:)` function.
 * `UITextDocumentProxy` has a new `isOpenQuotationBeforeInput(for:)` function.
 
-### ✨ Changed behavior
+### 💡 Changed behavior
 
-* `KeyboardInputViewController` now uses combine observation to keep locale in sync.
+* `KeyboardInputViewController` now uses combine observations to keep locale in sync.
 
 ### 🚚 Renamed:
 
@@ -156,7 +156,7 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * There are new preview-specific implementations that can help you preview keyboard-based views.
 
 
-### ✨ Changed behavior
+### 💡 Changed behavior
 
 * `AutocompleteContext` is now an observable object and not a protocol.
 * `AutocompleteToolbar` is now generic, which makes your .

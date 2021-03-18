@@ -60,6 +60,6 @@ private extension DemoAutocompleteSuggestionProvider {
     }
     
     func suggestion(_ word: String, _ subtitle: String? = nil) -> AutocompleteSuggestion {
-        StandardAutocompleteSuggestion(replacement: word, title: word, subtitle: subtitle)
+        StandardAutocompleteSuggestion(text: word, title: word, subtitle: subtitle)
     }
 }

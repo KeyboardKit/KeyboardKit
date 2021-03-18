@@ -13,7 +13,7 @@ import KeyboardKit
  */
 public class SwedishSecondaryCalloutActionProvider: BaseSecondaryCalloutActionProvider, LocalizedService {
     
-    public let localeKey: String = LocaleKey.swedish.key
+    public let localeKey: String = KeyboardLocale.swedish.id
     
     public override func secondaryCalloutActions(for action: KeyboardAction) -> [KeyboardAction] {
         var actions = super.secondaryCalloutActions(for: action)
