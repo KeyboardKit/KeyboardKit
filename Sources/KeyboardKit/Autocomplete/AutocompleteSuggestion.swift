@@ -24,6 +24,19 @@ public protocol AutocompleteSuggestion {
      The behavior indicates how the suggestion should behave.
      */
     var behavior: AutocompleteSuggestionBehavior { get }
+    
+    /**
+     Whether or not this suggestion is unknown to the system.
+     
+     Unknown suggestions can be returned e.g. when there are
+     not enough real suggestions. An autocomplete suggestion
+     provider can then for instance return a currently typed
+     word as an "unknown" suggestion.
+     
+     An unknown suggestion is typically surrounded by quotes
+     when presented in an iOS system keyboard.
+     */
+    var isUnknown: Bool { get }
 
     /**
      This text is what should be presented to the user.
