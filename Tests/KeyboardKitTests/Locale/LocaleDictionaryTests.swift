@@ -15,10 +15,20 @@ class LocaleDictionaryTests: QuickSpec {
     
     override func spec() {
         
+        var typedDict: LocaleDictionary<String>!
         var stringDict: LocaleDictionary<String>!
         var intDict: LocaleDictionary<Int>!
         
         beforeEach {
+            typedDict = LocaleDictionary(
+                [
+                    .english: "English",
+                    .german: "German",
+                    .italian: "Italian",
+                    .swedish: "Swedish"
+                ]
+            )
+            
             stringDict = LocaleDictionary(
                 [
                     KeyboardLocale.english.id: "English",
@@ -41,18 +51,30 @@ class LocaleDictionaryTests: QuickSpec {
         describe("locale dictionary") {
             
             it("can be created with any item type") {
+                expect(typedDict.dictionary.keys.sorted()).to(equal(["de", "en", "it", "sv"]))
+                expect(typedDict).toNot(beNil())
+                expect(stringDict.dictionary.keys.sorted()).to(equal(["de", "en", "it", "sv"]))
                 expect(stringDict).toNot(beNil())
                 expect(intDict).toNot(beNil())
             }
             
             it("can resolve existing values on locale") {
                 let locale = KeyboardLocale.swedish.locale
+                expect(typedDict.value(for: locale)).to(equal("Swedish"))
+                expect(stringDict.value(for: locale)).to(equal("Swedish"))
+                expect(intDict.value(for: locale)).to(equal(4))
+            }
+            
+            it("can resolve existing values on locale language code") {
+                let locale = Locale(identifier: "sv-SE")
+                expect(typedDict.value(for: locale)).to(equal("Swedish"))
                 expect(stringDict.value(for: locale)).to(equal("Swedish"))
                 expect(intDict.value(for: locale)).to(equal(4))
             }
             
             it("returns nil for non-existing locale") {
                 let locale = Locale(identifier: "abc")
+                expect(typedDict.value(for: locale)).to(beNil())
                 expect(stringDict.value(for: locale)).to(beNil())
                 expect(intDict.value(for: locale)).to(beNil())
             }
