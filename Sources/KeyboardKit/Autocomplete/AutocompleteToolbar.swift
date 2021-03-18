@@ -34,7 +34,7 @@ public struct AutocompleteToolbar: View {
      */
     public init(
         suggestions: [AutocompleteSuggestion],
-        itemBuilder: @escaping ButtonBuilder = Self.standardButton,
+        itemBuilder: @escaping ItemBuilder = Self.standardItem,
         separatorBuilder: @escaping SeparatorBuilder = Self.standardSeparator,
         replacementAction: @escaping ReplacementAction = Self.standardReplacementAction) {
         self.items = suggestions.map { BarItem($0) }
@@ -44,7 +44,7 @@ public struct AutocompleteToolbar: View {
     }
     
     private let items: [BarItem]
-    private let itemBuilder: ButtonBuilder
+    private let itemBuilder: ItemBuilder
     private let replacementAction: ReplacementAction
     private let separatorBuilder: SeparatorBuilder
     
@@ -56,7 +56,7 @@ public struct AutocompleteToolbar: View {
         public let suggestion: AutocompleteSuggestion
     }
     
-    public typealias ButtonBuilder = (AutocompleteSuggestion) -> AnyView
+    public typealias ItemBuilder = (AutocompleteSuggestion) -> AnyView
     public typealias ReplacementAction = (AutocompleteSuggestion) -> Void
     public typealias SeparatorBuilder = (AutocompleteSuggestion) -> AnyView
     
@@ -73,9 +73,9 @@ public extension AutocompleteToolbar {
     
     /**
      This is the standard function that's used by default to
-     build a button for an autocomplete suggestion.
+     build an item view for a certain suggestion.
      */
-    static func standardButton(for suggestion: AutocompleteSuggestion) -> AnyView {
+    static func standardItem(for suggestion: AutocompleteSuggestion) -> AnyView {
         AnyView(AutocompleteToolbarItem(suggestion: suggestion))
     }
     
@@ -106,11 +106,11 @@ public extension AutocompleteToolbar {
     }
     
     /**
-     This is the standard button separator that will be used
-     if no custom separator is provided in init.
+     This is the standard function that's used by default to
+     build a separator view for a certain suggestion.
      */
     static func standardSeparator(for suggestion: AutocompleteSuggestion) -> AnyView {
-        AnyView(AutocompleteToolbarSeparator().frame(height: 44))
+        AnyView(AutocompleteToolbarSeparator().frame(height: 30))
     }
 }
 

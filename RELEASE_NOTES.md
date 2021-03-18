@@ -35,6 +35,13 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 ### 🚚 Renamed:
 
 * `AutocompleteSuggestion+replacement` has been renamed to `text`.
+* `AutocompleteToolbar+ButtonBuilder` has been renamed to `ItemBuilder`.
+
+
+static func standardButton(for suggestion: AutocompleteSuggestion) -> AnyView {
+    AnyView(AutocompleteToolbarItem(suggestion: suggestion))
+}
+
 * `KeyboardLocale+key` has been renamed to `id`.
 * `LocaleKey` has been renamed to `KeyboardLocale`.
 

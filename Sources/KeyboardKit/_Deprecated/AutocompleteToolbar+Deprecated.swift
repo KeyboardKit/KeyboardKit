@@ -1,4 +1,4 @@
-import Foundation
+import SwiftUI
 
 public extension AutocompleteToolbar {
     
@@ -13,5 +13,13 @@ public extension AutocompleteToolbar {
             itemBuilder: buttonBuilder,
             separatorBuilder: separatorBuilder,
             replacementAction: replacementAction)
+    }
+    
+    @available(*, deprecated, renamed: "ItemBuilder")
+    typealias ButtonBuilder = ItemBuilder
+    
+    @available(*, deprecated, renamed: "standardItem")
+    static func standardButton(for suggestion: AutocompleteSuggestion) -> AnyView {
+        standardItem(for: suggestion)
     }
 }
