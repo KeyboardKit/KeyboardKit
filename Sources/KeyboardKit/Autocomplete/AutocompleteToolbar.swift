@@ -88,12 +88,12 @@ public extension AutocompleteToolbar {
      */
     static func standardReplacement(for suggestion: AutocompleteSuggestion) -> String {
         let space = " "
-        let replacement = suggestion.replacement
+        let text = suggestion.text
         let proxy = KeyboardInputViewController.shared.textDocumentProxy
-        let endsWithSpace = replacement.hasSuffix(space)
+        let endsWithSpace = text.hasSuffix(space)
         let hasNextSpace = proxy.documentContextAfterInput?.starts(with: space) ?? false
         let insertSpace = endsWithSpace || hasNextSpace
-        return insertSpace ? replacement : replacement + space
+        return insertSpace ? text : text + space
     }
     
     /**
@@ -153,7 +153,7 @@ struct AutocompleteToolbar_Previews: PreviewProvider {
     }
     
     static let suggestions: [AutocompleteSuggestion] = [
-        StandardAutocompleteSuggestion(text: "", title: "Foo", subtitle: "Reccomended"),
+        StandardAutocompleteSuggestion(text: "", title: "Foo", subtitle: "Recommended"),
         StandardAutocompleteSuggestion("Bar"),
         StandardAutocompleteSuggestion("Baz")]
     
