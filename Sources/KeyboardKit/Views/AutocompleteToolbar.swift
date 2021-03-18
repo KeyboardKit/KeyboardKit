@@ -157,7 +157,9 @@ struct AutocompleteToolbar_Previews: PreviewProvider {
             AutocompleteToolbar(suggestions: previewSuggestions).previewBar()
             AutocompleteToolbar(suggestions: previewSuggestions + [additionalSuggestion]).previewBar()
             AutocompleteToolbar(suggestions: previewSuggestions, itemBuilder: previewItem).previewBar()
-        }.environmentObject(KeyboardContext.preview)
+        }
+        .padding()
+        .environmentObject(KeyboardContext.preview)
     }
     
     static func previewItem(for suggestion: AutocompleteSuggestion) -> AnyView {
@@ -185,8 +187,8 @@ struct AutocompleteToolbar_Previews: PreviewProvider {
 private extension View {
     
     func previewBar() -> some View {
-        self.background(Color.gray.opacity(0.3))
+        self.padding(5)
+            .background(Color.gray.opacity(0.3))
             .cornerRadius(10)
-            .padding()
     }
 }

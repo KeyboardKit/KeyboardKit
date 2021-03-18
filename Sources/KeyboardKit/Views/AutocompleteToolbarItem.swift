@@ -66,7 +66,7 @@ struct AutocompleteToolbarItem_Previews: PreviewProvider {
 private extension View {
     
     func previewBar() -> some View {
-        self.frame(height: 50)
+        self.padding(5)
             .background(Color.gray.opacity(0.3))
             .cornerRadius(10)
     }
