@@ -38,19 +38,14 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 * `AutocompleteSuggestion+replacement` has been renamed to `text`.
 * `AutocompleteToolbar+ButtonBuilder` has been renamed to `ItemBuilder`.
-
-
-static func standardButton(for suggestion: AutocompleteSuggestion) -> AnyView {
-    AnyView(AutocompleteToolbarItem(suggestion: suggestion))
-}
-
 * `KeyboardLocale+key` has been renamed to `id`.
 * `LocaleKey` has been renamed to `KeyboardLocale`.
 
 ### 🗑 Deprecated (removed in 5.0):
 
 * `AutocompleteSuggestion+replacement` has been deprecated due to the name change above.
-* `AutocompleteToolbar` - the `buttonBuilder` item  has been deprecated and replaced with the `itemBuilder` one.
+* `AutocompleteToolbar+buttonBuilder` init has been deprecated and replaced with the `itemBuilder` one.
+* `AutocompleteToolbar+standardReplacement` has been deprecated.
 * `LocaleKey` has been deprecated due to the name change above.
 * `KeyboardLocale+key` has been deprecated.
 * `KeyboardInputViewController+changeKeyboardLocale` has been deprecated.

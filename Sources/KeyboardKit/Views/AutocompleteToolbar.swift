@@ -81,27 +81,12 @@ public extension AutocompleteToolbar {
     
     /**
      This is the standard function that's used by default to
-     build a text replacement for an autocomplete suggestion.
-     */
-    static func standardReplacement(for suggestion: AutocompleteSuggestion) -> String {
-        let space = " "
-        let text = suggestion.text
-        let proxy = KeyboardInputViewController.shared.textDocumentProxy
-        let endsWithSpace = text.hasSuffix(space)
-        let hasNextSpace = proxy.documentContextAfterInput?.starts(with: space) ?? false
-        let insertSpace = endsWithSpace || hasNextSpace
-        return insertSpace ? text : text + space
-    }
-    
-    /**
-     This is the standard function that's used by default to
      replace the current word in the proxy with a suggestion.
      */
     static func standardReplacementAction(for suggestion: AutocompleteSuggestion) {
         let proxy = KeyboardInputViewController.shared.textDocumentProxy
         let actionHandler = KeyboardInputViewController.shared.keyboardActionHandler
-        let replacement = Self.standardReplacement(for: suggestion)
-        proxy.replaceCurrentWord(with: replacement)
+        proxy.insertAutocompleteSuggestion(suggestion)
         actionHandler.handle(.tap, on: .character(""))
     }
     

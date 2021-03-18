@@ -22,4 +22,15 @@ public extension AutocompleteToolbar {
     static func standardButton(for suggestion: AutocompleteSuggestion) -> AnyView {
         standardItem(for: suggestion)
     }
+    
+    @available(*, deprecated, message: "This is no longer used and will be removed in 5.0.")
+    static func standardReplacement(for suggestion: AutocompleteSuggestion) -> String {
+        let space = " "
+        let text = suggestion.text
+        let proxy = KeyboardInputViewController.shared.textDocumentProxy
+        let endsWithSpace = text.hasSuffix(space)
+        let hasNextSpace = proxy.documentContextAfterInput?.starts(with: space) ?? false
+        let insertSpace = endsWithSpace || hasNextSpace
+        return insertSpace ? text : text + space
+    }
 }
