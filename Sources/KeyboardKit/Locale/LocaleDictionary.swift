@@ -18,6 +18,15 @@ import Foundation
  */
 public struct LocaleDictionary<ItemType> {
     
+    public init(_ dict: [KeyboardLocale: ItemType]) {
+        self.dictionary = Dictionary(
+            uniqueKeysWithValues: dict.keys.compactMap {
+                guard let value = dict[$0] else { return nil }
+                return ($0.localeIdentifier, value)
+            }
+        )
+    }
+    
     public init(_ dict: [String: ItemType]) {
         self.dictionary = dict
     }

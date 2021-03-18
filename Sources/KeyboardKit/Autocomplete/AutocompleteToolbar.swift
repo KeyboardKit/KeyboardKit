@@ -75,11 +75,7 @@ public extension AutocompleteToolbar {
      build a button for an autocomplete suggestion.
      */
     static func standardButton(for suggestion: AutocompleteSuggestion) -> AnyView {
-        AnyView(
-            Text(suggestion.title)
-                .lineLimit(1)
-                .frame(maxWidth: .infinity)
-        )
+        AnyView(AutocompleteToolbarItem(suggestion: suggestion))
     }
     
     /**
@@ -145,24 +141,19 @@ struct AutocompleteToolbar_Previews: PreviewProvider {
     
     static var previews: some View {
         KeyboardInputViewController.shared = .preview
-        
         return VStack {
-            AutocompleteToolbar(suggestions: suggestions).previewBar()
-            AutocompleteToolbar(suggestions: suggestions, buttonBuilder: preview).previewBar()
-        }
+            AutocompleteToolbar(suggestions: previewSuggestions).previewBar()
+            AutocompleteToolbar(suggestions: previewSuggestions, buttonBuilder: preview).previewBar()
+        }.environmentObject(KeyboardContext.preview)
     }
-    
-    static let suggestions: [AutocompleteSuggestion] = [
-        StandardAutocompleteSuggestion(text: "", title: "Foo", subtitle: "Recommended"),
-        StandardAutocompleteSuggestion("Bar"),
-        StandardAutocompleteSuggestion("Baz")]
     
     static func preview(for suggestion: AutocompleteSuggestion) -> AnyView {
         AnyView(
             HStack {
                 Spacer()
                 VStack(spacing: 10) {
-                    Text(suggestion.title).bold()
+                    AutocompleteToolbarItemText(suggestion: suggestion)
+                        .font(Font.body.bold())
                     if let subtitle = suggestion.subtitle {
                         Text(subtitle).font(.footnote)
                     }
@@ -171,6 +162,11 @@ struct AutocompleteToolbar_Previews: PreviewProvider {
             }
         )
     }
+    
+    static let previewSuggestions: [AutocompleteSuggestion] = [
+        StandardAutocompleteSuggestion("Baz", isUnknown: true),
+        StandardAutocompleteSuggestion("Bar", isAutocomplete: true),
+        StandardAutocompleteSuggestion(text: "", title: "Foo", subtitle: "Recommended")]
 }
 
 private extension View {
