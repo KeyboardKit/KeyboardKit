@@ -19,7 +19,6 @@ public struct AutocompleteToolbarSeparator: View {
             Color.secondary
                 .opacity(0.5)
                 .frame(width: 1)
-                .padding(.vertical, 8)
         )
     }
 }

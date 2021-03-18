@@ -110,7 +110,7 @@ public extension AutocompleteToolbar {
      if no custom separator is provided in init.
      */
     static func standardSeparator(for suggestion: AutocompleteSuggestion) -> AnyView {
-        AnyView(AutocompleteToolbarSeparator())
+        AnyView(AutocompleteToolbarSeparator().frame(height: 44))
     }
 }
 
@@ -152,8 +152,10 @@ struct AutocompleteToolbar_Previews: PreviewProvider {
     
     static var previews: some View {
         KeyboardInputViewController.shared = .preview
+        let additionalSuggestion = StandardAutocompleteSuggestion(text: "", title: "Foo", subtitle: "Recommended")
         return VStack {
             AutocompleteToolbar(suggestions: previewSuggestions).previewBar()
+            AutocompleteToolbar(suggestions: previewSuggestions + [additionalSuggestion]).previewBar()
             AutocompleteToolbar(suggestions: previewSuggestions, itemBuilder: previewItem).previewBar()
         }.environmentObject(KeyboardContext.preview)
     }
