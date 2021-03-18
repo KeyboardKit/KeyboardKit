@@ -153,7 +153,7 @@ struct AutocompleteToolbar_Previews: PreviewProvider {
     }
     
     static let suggestions: [AutocompleteSuggestion] = [
-        StandardAutocompleteSuggestion(replacement: "", title: "Foo", subtitle: "Reccomended"),
+        StandardAutocompleteSuggestion(text: "", title: "Foo", subtitle: "Reccomended"),
         StandardAutocompleteSuggestion("Bar"),
         StandardAutocompleteSuggestion("Baz")]
     

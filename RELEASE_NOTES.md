@@ -1,6 +1,12 @@
 # Release Notes
 
-KeyboardKit will only deprecate code in `minor` versions. Deprecated code will be removed in `major` versions.
+KeyboardKit tries to honor the following rules when new versions are released:
+
+* Only deprecate code in `minor` versions.
+* Only remove deprecated code in `major` versions.
+* Avoid introducing breaking changes in `minor` versions. 
+
+Breaking changes can still occur in minor versions, if the alternative is to not release new critical features.
 
 
 ## 4.1
@@ -9,8 +15,7 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 ### ✨ New features:
 
-* `AutocompleteSuggestion` has a new `behavior` property.
-* `AutocompleteSuggestionBehavior` is a new enum that can indicate whether or not a suggestion should be applied automatically when entering a word delimiter.
+* `AutocompleteSuggestion` has new `isAutocomplete` and `isUnknown` properties.
 * `AutocompleteSuggestionProvider` has new functions for ignoring and learning words.
 * `KeyboardLocale` now implementes `Identifiable`.
 * `KeyboardLocale` has new `flag`, `id` and `localeIdentifier` properties.
@@ -26,12 +31,14 @@ KeyboardKit will only deprecate code in `minor` versions. Deprecated code will b
 
 ### 🚚 Renamed:
 
+* `AutocompleteSuggestion+replacement` has been renamed to `text`.
 * `KeyboardLocale+key` has been renamed to `id`.
 * `LocaleKey` has been renamed to `KeyboardLocale`.
 
 ### 🗑 Deprecated (removed in 5.0):
 
-* `LocaleKey` has been deprecated.
+* `AutocompleteSuggestion+replacement` has been deprecated due to the name change above.
+* `LocaleKey` has been deprecated due to the name change above.
 * `KeyboardLocale+key` has been deprecated.
 * `KeyboardInputViewController+changeKeyboardLocale` has been deprecated.
 * `KeyboardInputViewController+changeKeyboardType` has been deprecated.

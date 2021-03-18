@@ -16,14 +16,24 @@ import Foundation
 public protocol AutocompleteSuggestion {
     
     /**
-     This text is what should be sent to the text proxy.
+     The text that should be sent to the text document proxy
+     and replace the current word.
+     
+     The `text` can differ from the `title`, for instance if
+     the title should be more expressive ("Did you mean <X>").
      */
-    var replacement: String { get }
+    var text: String { get }
+    
     
     /**
-     The behavior indicates how the suggestion should behave.
+     Whether or not this suggestion should be applied when a
+     user types a word delimiter.
+     
+     An autocompleting suggestion is typically surrounded by
+     a white, rounded square when presented in an iOS system
+     keyboard.
      */
-    var behavior: AutocompleteSuggestionBehavior { get }
+    var isAutocomplete: Bool { get }
     
     /**
      Whether or not this suggestion is unknown to the system.
@@ -38,36 +48,22 @@ public protocol AutocompleteSuggestion {
      */
     var isUnknown: Bool { get }
 
+
     /**
-     This text is what should be presented to the user.
+     The text that should be presented to the user.
+     
+     The `text` can differ from the `title`, for instance if
+     the title should be more expressive ("Did you mean <X>").
      */
     var title: String { get }
     
     /**
-     This optional subtitle is also optional to use.
+     An optional subtitle that can complete the `title`.
      */
     var subtitle: String? { get }
     
     /**
-     This dictionary can store additional information.
+     An optional dictionary that can contain additional info.
      */
     var additionalInfo: [String: Any] { get }
-}
-
-public enum AutocompleteSuggestionBehavior {
-    
-    /**
-     Suggestions with this behavior should be applied when a
-     types a word delimiter or explicitly taps them.
-     
-     This corresponds to the white background suggestions in
-     a native system keyboard.
-     */
-    case automatic
-    
-    /**
-     Suggestions with this behavior should be applied when a
-     user explicitly taps them.
-     */
-    case manual
 }

@@ -16,33 +16,33 @@ public struct StandardAutocompleteSuggestion: AutocompleteSuggestion {
     
     public init(
         _ text: String,
-        behavior: AutocompleteSuggestionBehavior = .manual,
+        isAutocomplete: Bool = false,
         isUnknown: Bool = false) {
-        self.replacement = text
-        self.behavior = behavior
+        self.text = text
+        self.isAutocomplete = isAutocomplete
+        self.isUnknown = isUnknown
         self.title = text
         self.subtitle = nil
-        self.isUnknown = isUnknown
         self.additionalInfo = [:]
     }
     
     public init(
-        replacement: String,
-        behavior: AutocompleteSuggestionBehavior = .manual,
+        text: String,
+        isAutocomplete: Bool = false,
+        isUnknown: Bool = false,
         title: String? = nil,
         subtitle: String? = nil,
-        isUnknown: Bool = false,
         additionalInfo: [String: Any] = [:]) {
-        self.replacement = replacement
-        self.behavior = behavior
-        self.title = title ?? replacement
-        self.subtitle = subtitle
+        self.text = text
+        self.isAutocomplete = isAutocomplete
         self.isUnknown = isUnknown
+        self.title = title ?? text
+        self.subtitle = subtitle
         self.additionalInfo = additionalInfo
     }
     
-    public let replacement: String
-    public let behavior: AutocompleteSuggestionBehavior
+    public let text: String
+    public let isAutocomplete: Bool
     public let isUnknown: Bool
     public let title: String
     public let subtitle: String?
