@@ -15,7 +15,7 @@ struct EditScreen: View {
     @State private var text = ""
     
     var body: some View {
-        DemoList("Regular text field") {
+        DemoList(title) {
             MultilineTextField(text: $text, appearance: appearance)
                 .frame(height: 200)
             if appearance == .dark {
@@ -26,6 +26,10 @@ struct EditScreen: View {
 }
 
 private extension EditScreen {
+    
+    var title: String {
+        appearance == .dark ? "Dark text field" : "Regular text field"
+    }
     
     var footerText: some View {
         Text("Dark apperance keyboards are currently not correctly rendered. In light mode, they get dark mode colors. This is because the keyboard extension is given a dark mode, regardless of the system mode.")

@@ -17,7 +17,7 @@ struct HomeScreen: View {
         NavigationView {
             DemoList("KeyboardKit") {
                 Section(header: Text("Type").padding(.top, 30)) {
-                    NavigationLink(destination: EditScreen(appearance: .light)) {
+                    NavigationLink(destination: EditScreen(appearance: .default)) {
                         DemoListItem(.type, "Type in a regular text field")
                     }
                     NavigationLink(destination: EditScreen(appearance: .dark)) {
