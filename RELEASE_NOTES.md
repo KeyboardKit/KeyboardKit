@@ -20,16 +20,21 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 * `AutocompleteToolbar` has a new `itemBuilder` initializer.
 * `AutocompleteToolbarItem` is a new view that replicates a native autocomplete item.
 * `AutocompleteToolbarItemText` is a new view that replicates the text of a native autocomplete item.
+* `KeyboardAction` has a new `isSpace` property.
 * `KeyboardAction` has a new `shouldApplyAutocompleteSuggestion` property.
+* `KeyboardAction` has a new `shouldRemoveAutocompleteInsertedSpace` property.
 * `KeyboardLocale` now implementes `Identifiable`.
 * `KeyboardLocale` has new `flag`, `id` and `localeIdentifier` properties.
 * `KeyboardInputViewController` has a new `autocompleteSuggestionProvider` property.
 * `KeyboardInputViewController` has now implemented `performAutocomplete` and `resetAutocomplete`.
 * `StandardKeyboardActionHandler` has a new `tryApplyAutocompleteSuggestion` function.
+* `StandardKeyboardActionHandler` has a new `tryRemoveAutocompleteInsertedSpace` function.
 * `SystemKeyboardSpaceButtonContent` has a new initializer that lets you inject a custom space view.
 * `UITextDocumentProxy` has a new `insertAutocompleteSuggestion` function.
 * `UITextDocumentProxy` has a new `isOpenAlternateQuotationBeforeInput(for:)` function.
 * `UITextDocumentProxy` has a new `isOpenQuotationBeforeInput(for:)` function.
+* `UITextDocumentProxy` has a new `tryRemoveAutocompleteInsertedSpace()` function.
+
 
 ### 💡 Changed behavior
 

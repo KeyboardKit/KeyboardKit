@@ -19,6 +19,12 @@ import UIKit
  when you create an instance of this class. The standard aim
  at mimicing the behavior of a native keyboard. You can also
  provide a custom `spaceDragSensitivity`.
+ 
+ `TODO` Many features in this class were hard to test and as
+ such, many tests are missing. I think that the more complex
+ pieces of logic could be extracted to protocols in separate
+ files to simplify testing and changing the behavior of this
+ class without having to subclass.
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
@@ -76,10 +82,10 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Properties
     
+    public var textDocumentProxy: UITextDocumentProxy { keyboardContext.textDocumentProxy }
+    
     private var currentDragStartLocation: CGPoint?
-    
     private var currentDragTextPositionOffset: Int = 0
-    
     private var keyboardInputViewController: KeyboardInputViewController { .shared }
     
     
@@ -98,12 +104,13 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      Handle a certain `gesture` on a certain `action`
      */
     open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
+        tryRemoveAutocompleteInsertedSpace(before: gesture, on: action)
         tryApplyAutocompleteSuggestion(before: gesture, on: action)
         guard let gestureAction = self.action(for: gesture, on: action) else { return }
         gestureAction(keyboardInputViewController)
+        autocompleteAction()
         triggerAudioFeedback(for: gesture, on: action, sender: sender)
         triggerHapticFeedback(for: gesture, on: action, sender: sender)
-        autocompleteAction()
         tryEndSentence(after: gesture, on: action)
         tryChangeKeyboardType(after: gesture, on: action)
         tryRegisterEmoji(after: gesture, on: action)
@@ -130,7 +137,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         let textPositionOffset = Int(dragDelta / CGFloat(spaceDragSensitivity.points))
         guard textPositionOffset != currentDragTextPositionOffset else { return }
         let offsetDelta = textPositionOffset - currentDragTextPositionOffset
-        keyboardContext.textDocumentProxy.adjustTextPosition(byCharacterOffset: -offsetDelta)
+        textDocumentProxy.adjustTextPosition(byCharacterOffset: -offsetDelta)
         currentDragTextPositionOffset = textPositionOffset
     }
     
@@ -181,29 +188,32 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         if autocompleteContext.suggestions.isEmpty { return }
         guard action.shouldApplyAutocompleteSuggestion else { return }
         guard let suggestion = (autocompleteContext.suggestions.first { $0.isAutocomplete }) else { return }
-        keyboardContext.textDocumentProxy.insertAutocompleteSuggestion(suggestion, tryInsertSpace: false)
+        textDocumentProxy.insertAutocompleteSuggestion(suggestion, tryInsertSpace: false)
     }
     
     open func tryEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction) {
-        guard keyboardBehavior.shouldEndSentence(after: gesture, on: action)
-        else { return }
-        keyboardContext.textDocumentProxy.endSentence()
+        guard keyboardBehavior.shouldEndSentence(after: gesture, on: action) else { return }
+        textDocumentProxy.endSentence()
     }
     
     open func tryChangeKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) {
-        guard keyboardBehavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action)
-        else { return }
+        guard keyboardBehavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action) else { return }
         let newType = keyboardBehavior.preferredKeyboardType(after: gesture, on: action)
         changeKeyboardTypeAction(newType)
     }
     
-    // TODO: Unit test
     open func tryRegisterEmoji(after gesture: KeyboardGesture, on action: KeyboardAction) {
         guard gesture == .tap else { return }
         switch action {
         case .emoji(let emoji): return EmojiCategory.frequentEmojiProvider.registerEmoji(emoji)
         default: return
         }
+    }
+    
+    open func tryRemoveAutocompleteInsertedSpace(before gesture: KeyboardGesture, on action: KeyboardAction) {
+        guard gesture == .tap else { return }
+        guard action.shouldRemoveAutocompleteInsertedSpace else { return }
+        textDocumentProxy.tryRemoveAutocompleteInsertedSpace()
     }
 }
 
