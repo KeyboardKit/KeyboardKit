@@ -37,7 +37,24 @@ public extension UITextDocumentProxy {
     func insertAutocompleteSuggestion(_ suggestion: AutocompleteSuggestion, tryInsertSpace: Bool = true) {
         replaceCurrentWord(with: suggestion.text)
         guard tryInsertSpace else { return }
-        tryInsertSpaceAfterSuggestion()
+        tryInsertSpaceAfterAutocomplete()
+    }
+    
+    /**
+     Try to insert a space char after performing autocompete
+     insertion.
+     
+     Calling this function instead of inserting a space char
+     directly puts the proxy in a state that makes the other
+     space functions work.
+     */
+    func tryInsertSpaceAfterAutocomplete() {
+        let space = " "
+        let hasPreviousSpace = documentContextBeforeInput?.hasSuffix(space) ?? false
+        let hasNextSpace = documentContextAfterInput?.hasPrefix(space) ?? false
+        if hasPreviousSpace || hasNextSpace { return }
+        insertText(space)
+        setState(.autoInserted)
     }
     
     /**
@@ -71,15 +88,6 @@ private extension UITextDocumentProxy {
     
     func setState(_ state: AutocompleteSpaceState) {
         ProxyState.state = state
-    }
-    
-    func tryInsertSpaceAfterSuggestion() {
-        let space = " "
-        let hasPreviousSpace = documentContextBeforeInput?.hasSuffix(space) ?? false
-        let hasNextSpace = documentContextAfterInput?.hasPrefix(space) ?? false
-        if hasPreviousSpace || hasNextSpace { return }
-        insertText(space)
-        setState(.autoInserted)
     }
 }
 

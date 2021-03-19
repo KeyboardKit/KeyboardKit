@@ -47,7 +47,9 @@ KeyboardKit Pro 4.1 also adds more locale-specific providers as well as a real a
 * `UITextDocumentProxy` has a new `insertAutocompleteSuggestion` function.
 * `UITextDocumentProxy` has a new `isOpenAlternateQuotationBeforeInput(for:)` function.
 * `UITextDocumentProxy` has a new `isOpenQuotationBeforeInput(for:)` function.
-* `UITextDocumentProxy` has a new `tryRemoveAutocompleteInsertedSpace()` function.
+* `UITextDocumentProxy` has a new `tryInsertSpaceAfterAutocomplete)` function.
+* `UITextDocumentProxy` has a new `tryReinsertAutocompleteRemovedSpace` function.
+* `UITextDocumentProxy` has a new `tryRemoveAutocompleteInsertedSpace` function.
 
 
 ### 💡 Changed behavior
