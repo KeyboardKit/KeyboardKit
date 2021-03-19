@@ -104,9 +104,10 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      Handle a certain `gesture` on a certain `action`
      */
     open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
+        if tryHandleReplaceAction(for: gesture, on: action) { return }
+        guard let gestureAction = self.action(for: gesture, on: action) else { return }
         tryRemoveAutocompleteInsertedSpace(before: gesture, on: action)
         tryApplyAutocompleteSuggestion(before: gesture, on: action)
-        guard let gestureAction = self.action(for: gesture, on: action) else { return }
         gestureAction(keyboardInputViewController)
         tryReinsertAutocompleteRemovedSpace(after: gesture, on: action)
         triggerAudioFeedback(for: gesture, on: action, sender: sender)
@@ -163,6 +164,12 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Action Handling
     
+    open func replacementAction(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction? {
+        if let action = replacementQuotationAction(for: gesture, on: action) { return action }
+        if let action = replacementAlternateQuotationAction(for: gesture, on: action) { return action }
+        return nil
+    }
+    
     open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         if action == .backspace { return audioConfiguration.deleteFeedback.trigger() }
         if action.isInputAction { return audioConfiguration.inputFeedback.trigger() }
@@ -191,15 +198,21 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         textDocumentProxy.insertAutocompleteSuggestion(suggestion, tryInsertSpace: false)
     }
     
-    open func tryEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction) {
-        guard keyboardBehavior.shouldEndSentence(after: gesture, on: action) else { return }
-        textDocumentProxy.endSentence()
-    }
-    
     open func tryChangeKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) {
         guard keyboardBehavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action) else { return }
         let newType = keyboardBehavior.preferredKeyboardType(after: gesture, on: action)
         changeKeyboardTypeAction(newType)
+    }
+    
+    open func tryHandleReplaceAction(for gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
+        guard let action = replacementAction(for: gesture, on: action) else { return false }
+        handle(gesture, on: action)
+        return true
+    }
+    
+    open func tryEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction) {
+        guard keyboardBehavior.shouldEndSentence(after: gesture, on: action) else { return }
+        textDocumentProxy.endSentence()
     }
     
     open func tryRegisterEmoji(after gesture: KeyboardGesture, on action: KeyboardAction) {
@@ -228,7 +241,33 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
 
 private extension StandardKeyboardActionHandler {
 
-    private func tryStartNewSpaceCursorDragGesture(from startLocation: CGPoint, to currentLocation: CGPoint) {
+    func replacementAlternateQuotationAction(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction? {
+        let locale = keyboardContext.locale
+        guard
+            gesture == .tap,
+            case let .character(char) = action,
+            let beginDelimiter = locale.alternateQuotationBeginDelimiter,
+            let endDelimiter = locale.alternateQuotationEndDelimiter,
+            char == endDelimiter,
+            textDocumentProxy.isOpenAlternateQuotationBeforeInput(for: locale)
+            else { return nil }
+        return .character(beginDelimiter)
+    }
+    
+    func replacementQuotationAction(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction? {
+        let locale = keyboardContext.locale
+        guard
+            gesture == .tap,
+            case let .character(char) = action,
+            let beginDelimiter = locale.quotationBeginDelimiter,
+            let endDelimiter = locale.quotationEndDelimiter,
+            char == endDelimiter,
+            textDocumentProxy.isOpenQuotationBeforeInput(for: locale)
+            else { return nil }
+        return .character(beginDelimiter)
+    }
+    
+    func tryStartNewSpaceCursorDragGesture(from startLocation: CGPoint, to currentLocation: CGPoint) {
         let isNewDrag = currentDragStartLocation != startLocation
         currentDragStartLocation = startLocation
         guard isNewDrag else { return }
