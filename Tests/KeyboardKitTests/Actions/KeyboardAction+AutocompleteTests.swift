@@ -40,6 +40,20 @@ class KeyboardAction_AutocompleteTests: QuickSpec {
             }
         }
         
+        describe("should reinsert autocomplete removed space") {
+            
+            func result(for action: KeyboardAction) -> Bool {
+                action.shouldReinsertAutocompleteInsertedSpace
+            }
+            
+            it("is true for word delimiters actions") {
+                actions.forEach {
+                    let expected = delimiterActions.contains($0) && !$0.isSpace
+                    expect(result(for: $0)).to(equal(expected))
+                }
+            }
+        }
+        
         describe("should remove autocomplete inserted space") {
             
             func result(for action: KeyboardAction) -> Bool {

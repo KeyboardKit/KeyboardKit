@@ -13,8 +13,18 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 [Milestone](https://github.com/KeyboardKit/KeyboardKit/milestone/30).
 
+This version is all about locales and autocomplete, overall: 
+
+This version adds support for `danish`, `finnish`, `norwegian` and `dutch`.
+
+This version also adds many new features aimed at an improved autocomplete experience.
+
+KeyboardKit Pro 4.1 also adds more locale-specific providers as well as a real autocomplete engine.
+
+
 ### ✨ New features:
 
+* `AutocompleteSpaceState` is a new enum that is used to keep track of how a 
 * `AutocompleteSuggestion` has new `isAutocomplete` and `isUnknown` properties.
 * `AutocompleteSuggestionProvider` has new functions for ignoring and learning words.
 * `AutocompleteToolbar` has a new `itemBuilder` initializer.
@@ -22,14 +32,18 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 * `AutocompleteToolbarItemText` is a new view that replicates the text of a native autocomplete item.
 * `KeyboardAction` has a new `isSpace` property.
 * `KeyboardAction` has a new `shouldApplyAutocompleteSuggestion` property.
+* `KeyboardAction` has a new `shouldReinsertAutocompleteInsertedSpace` property.
 * `KeyboardAction` has a new `shouldRemoveAutocompleteInsertedSpace` property.
 * `KeyboardLocale` now implementes `Identifiable`.
 * `KeyboardLocale` has new `flag`, `id` and `localeIdentifier` properties.
 * `KeyboardInputViewController` has a new `autocompleteSuggestionProvider` property.
 * `KeyboardInputViewController` has now implemented `performAutocomplete` and `resetAutocomplete`.
 * `StandardKeyboardActionHandler` has a new `tryApplyAutocompleteSuggestion` function.
+* `StandardKeyboardActionHandler` has a new `tryReinsertAutocompleteRemovedSpace` function.
 * `StandardKeyboardActionHandler` has a new `tryRemoveAutocompleteInsertedSpace` function.
 * `SystemKeyboardSpaceButtonContent` has a new initializer that lets you inject a custom space view.
+* `UITextDocumentProxy` has a new `hasAutocompleteInsertedSpace` property.
+* `UITextDocumentProxy` has a new `hasAutocompleteRemovedSpace` property.
 * `UITextDocumentProxy` has a new `insertAutocompleteSuggestion` function.
 * `UITextDocumentProxy` has a new `isOpenAlternateQuotationBeforeInput(for:)` function.
 * `UITextDocumentProxy` has a new `isOpenQuotationBeforeInput(for:)` function.

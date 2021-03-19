@@ -11,8 +11,28 @@ import UIKit
 public extension UITextDocumentProxy {
     
     /**
-     Replace the current word with the suggestion's text and
-     the try to insert a space, if needed.
+     Whether or not the proxy has a space before the current
+     input, that has been inserted with autocomplete.
+     */
+    var hasAutocompleteInsertedSpace: Bool {
+        ProxyState.state == .autoInserted && documentContextBeforeInput?.hasSuffix(" ") == true
+    }
+    
+    /**
+     Whether or not the proxy has removed a space before the
+     current input, that has been inserted with autocomplete.
+     */
+    var hasAutocompleteRemovedSpace: Bool {
+        ProxyState.state == .autoRemoved
+    }
+    
+    /**
+     Replace the current word with the suggestion text, then
+     try to insert a space if applicable and `tryInsertSpace`
+     is not explicitly set to `false`.
+     
+     If a space is automatically inserted, the proxy will be
+     set to an `autoInserted` state.
      */
     func insertAutocompleteSuggestion(_ suggestion: AutocompleteSuggestion, tryInsertSpace: Bool = true) {
         replaceCurrentWord(with: suggestion.text)
@@ -21,21 +41,37 @@ public extension UITextDocumentProxy {
     }
     
     /**
-     Remove any auto-inserted space before the current input,
-     that were inserted by `insertAutocompleteSuggestion`.
+     Try re-inserting any space that were previously removed
+     by `tryRemoveAutocompleteInsertedSpace`.
+     */
+    func tryReinsertAutocompleteRemovedSpace() {
+        if hasAutocompleteRemovedSpace { insertText(" ") }
+        resetState()
+    }
+    
+    /**
+     Try removing any space before the current text input if
+     is was inserted by `insertAutocompleteSuggestion`.
+     
+     If a space is automatically removed, this proxy will be
+     set to an `autoRemoved` state.
      */
     func tryRemoveAutocompleteInsertedSpace() {
-        guard
-            let text = documentContextBeforeInput,
-            text.hasSuffix(" "),
-            ProxyState.hasAutoInsertedSpace
-        else { return }
+        guard hasAutocompleteInsertedSpace else { return resetState() }
         deleteBackward()
-        ProxyState.hasAutoInsertedSpace = false
+        setState(.autoRemoved)
     }
 }
 
 private extension UITextDocumentProxy {
+    
+    func resetState() {
+        setState(.none)
+    }
+    
+    func setState(_ state: AutocompleteSpaceState) {
+        ProxyState.state = state
+    }
     
     func tryInsertSpaceAfterSuggestion() {
         let space = " "
@@ -43,7 +79,7 @@ private extension UITextDocumentProxy {
         let hasNextSpace = documentContextAfterInput?.hasPrefix(space) ?? false
         if hasPreviousSpace || hasNextSpace { return }
         insertText(space)
-        ProxyState.hasAutoInsertedSpace = true
+        setState(.autoInserted)
     }
 }
 
@@ -57,10 +93,6 @@ private final class ProxyState {
     /**
      This flag is used to keep track of if a space character
      has been inserted by `insertAutocompleteSuggestion`.
-     
-     Note that it is static and not thread safe. However, it
-     is short-lived, since the standard action handler calls
-     `tryRemoveAutocompleteInsertedSpace` for each action.
      */
-    static var hasAutoInsertedSpace = false
+    static var state = AutocompleteSpaceState.none
 }

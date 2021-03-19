@@ -24,18 +24,26 @@ class UITextDocumentProxy_AutocompleteTests: QuickSpec {
             proxy = MockTextDocumentProxy()
         }
         
-        func setupProxy(_ before: String, _ after: String) {
+        func setupProxy(_ before: String, _ after: String) {
             proxy.documentContextBeforeInput = before
             proxy.documentContextAfterInput = after
+        }
+        
+        func insertAutocompleteSuggestionWithMockAdjustments() {
+            proxy.insertAutocompleteSuggestion(suggestion)
+            if proxy.hasCalled(proxy.insertTextRef, numberOfTimes: 2) {
+                proxy.documentContextBeforeInput = " "
+            }
         }
         
         describe("insert autocomplete suggestion") {
             
             it("inserts word and space in empty proxy") {
                 proxy.documentContextBeforeInput = ""
-                proxy.insertAutocompleteSuggestion(suggestion)
+                insertAutocompleteSuggestionWithMockAdjustments()
                 let delete = proxy.calls(to: proxy.deleteBackwardRef)
                 let insert = proxy.calls(to: proxy.insertTextRef)
+                expect(proxy.hasAutocompleteInsertedSpace).to(beTrue())
                 expect(delete.count).to(equal(0))
                 expect(insert.count).to(equal(2))
                 expect(insert[0].arguments).to(equal(word))
@@ -44,9 +52,10 @@ class UITextDocumentProxy_AutocompleteTests: QuickSpec {
             
             it("inserts word and space when input is within a current word") {
                 setupProxy("foo", "bar")
-                proxy.insertAutocompleteSuggestion(suggestion)
+                insertAutocompleteSuggestionWithMockAdjustments()
                 let delete = proxy.calls(to: proxy.deleteBackwardRef)
                 let insert = proxy.calls(to: proxy.insertTextRef)
+                expect(proxy.hasAutocompleteInsertedSpace).to(beTrue())
                 expect(delete.count).to(equal(6))
                 expect(insert.count).to(equal(2))
                 expect(insert[0].arguments).to(equal(word))
@@ -55,9 +64,10 @@ class UITextDocumentProxy_AutocompleteTests: QuickSpec {
 
             it("inserts word and space when input has a leading space") {
                 setupProxy("foo ", "bar")
-                proxy.insertAutocompleteSuggestion(suggestion)
+                insertAutocompleteSuggestionWithMockAdjustments()
                 let delete = proxy.calls(to: proxy.deleteBackwardRef)
                 let insert = proxy.calls(to: proxy.insertTextRef)
+                expect(proxy.hasAutocompleteInsertedSpace).to(beTrue())
                 expect(delete.count).to(equal(3))
                 expect(insert.count).to(equal(2))
                 expect(insert[0].arguments).to(equal(word))
@@ -66,9 +76,10 @@ class UITextDocumentProxy_AutocompleteTests: QuickSpec {
 
             it("inserts only word when input has a trailing space") {
                 setupProxy("foo", " bar")
-                proxy.insertAutocompleteSuggestion(suggestion)
+                insertAutocompleteSuggestionWithMockAdjustments()
                 let delete = proxy.calls(to: proxy.deleteBackwardRef)
                 let insert = proxy.calls(to: proxy.insertTextRef)
+                expect(proxy.hasAutocompleteInsertedSpace).to(beFalse())
                 expect(delete.count).to(equal(3))
                 expect(insert.count).to(equal(1))
                 expect(insert[0].arguments).to(equal(word))
@@ -85,7 +96,7 @@ class UITextDocumentProxy_AutocompleteTests: QuickSpec {
             }
         }
         
-        describe("insert autocomplete suggestion") {
+        describe("removing autocomplete inserted space") {
             
             it("doesn't do anything if no auto inserted space exists") {
                 setupProxy("foo ", "bar")
@@ -98,12 +109,34 @@ class UITextDocumentProxy_AutocompleteTests: QuickSpec {
             
             it("backspaces once if an auto inserted space exists") {
                 setupProxy("foo ", "bar")
-                proxy.insertAutocompleteSuggestion(suggestion)
+                insertAutocompleteSuggestionWithMockAdjustments()
                 proxy.resetCalls()
-                setupProxy("foo ", "bar")   // Since the mock proxy behaves incorrectly
                 proxy.tryRemoveAutocompleteInsertedSpace()
                 let delete = proxy.calls(to: proxy.deleteBackwardRef)
                 expect(delete.count).to(equal(1))
+            }
+        }
+        
+        describe("reinserting autocomplete removed space") {
+            
+            beforeEach {
+                setupProxy("foo ", "bar")
+                insertAutocompleteSuggestionWithMockAdjustments()
+            }
+            
+            it("doesn't do anything if no auto removed space exists") {
+                proxy.resetCalls()
+                proxy.tryReinsertAutocompleteRemovedSpace()
+                let insert = proxy.calls(to: proxy.insertTextRef)
+                expect(insert.count).to(equal(0))
+            }
+            
+            it("inserts a single space auto removed space exists") {
+                proxy.tryRemoveAutocompleteInsertedSpace()
+                proxy.resetCalls()
+                proxy.tryReinsertAutocompleteRemovedSpace()
+                let insert = proxy.calls(to: proxy.insertTextRef)
+                expect(insert.count).to(equal(1))
             }
         }
     }

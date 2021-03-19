@@ -108,12 +108,13 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         tryApplyAutocompleteSuggestion(before: gesture, on: action)
         guard let gestureAction = self.action(for: gesture, on: action) else { return }
         gestureAction(keyboardInputViewController)
-        autocompleteAction()
+        tryReinsertAutocompleteRemovedSpace(after: gesture, on: action)
         triggerAudioFeedback(for: gesture, on: action, sender: sender)
         triggerHapticFeedback(for: gesture, on: action, sender: sender)
         tryEndSentence(after: gesture, on: action)
         tryChangeKeyboardType(after: gesture, on: action)
         tryRegisterEmoji(after: gesture, on: action)
+        autocompleteAction()
     }
     
     /**
@@ -208,6 +209,12 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         case .emoji(let emoji): return EmojiCategory.frequentEmojiProvider.registerEmoji(emoji)
         default: return
         }
+    }
+    
+    open func tryReinsertAutocompleteRemovedSpace(after gesture: KeyboardGesture, on action: KeyboardAction) {
+        guard gesture == .tap else { return }
+        guard action.shouldReinsertAutocompleteInsertedSpace else { return }
+        textDocumentProxy.tryReinsertAutocompleteRemovedSpace()
     }
     
     open func tryRemoveAutocompleteInsertedSpace(before gesture: KeyboardGesture, on action: KeyboardAction) {
