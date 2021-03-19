@@ -186,7 +186,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     open func tryApplyAutocompleteSuggestion(before gesture: KeyboardGesture, on action: KeyboardAction) {
         guard gesture == .tap else { return }
-        if autocompleteContext.suggestions.isEmpty { return }
         guard action.shouldApplyAutocompleteSuggestion else { return }
         guard let suggestion = (autocompleteContext.suggestions.first { $0.isAutocomplete }) else { return }
         textDocumentProxy.insertAutocompleteSuggestion(suggestion, tryInsertSpace: false)
