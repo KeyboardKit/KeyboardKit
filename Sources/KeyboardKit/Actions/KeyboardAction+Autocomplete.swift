@@ -23,4 +23,15 @@ public extension KeyboardAction {
         default: return false
         }
     }
+    
+    /**
+     Whether or not an action, when triggered, should remove
+     an autocomplete inserted space.
+     */
+    var shouldRemoveAutocompleteInsertedSpace: Bool {
+        switch self {
+        case .character(let char): return char.isWordDelimiter && !isSpace
+        default: return false
+        }
+    }
 }

@@ -25,13 +25,31 @@ class KeyboardAction_AutocompleteTests: QuickSpec {
         
         describe("should apply autocomplete suggestion") {
             
-            it("is true for word and sentence ending actions") {
+            func result(for action: KeyboardAction) -> Bool {
+                action.shouldApplyAutocompleteSuggestion
+            }
+            
+            it("is true for word delimiters and some other actions") {
                 var expected = delimiterActions!
                 expected.append(.newLine)
                 expected.append(.return)
                 expected.append(.space)
                 actions.forEach {
-                    expect($0.shouldApplyAutocompleteSuggestion).to(equal(expected.contains($0)))
+                    expect(result(for: $0)).to(equal(expected.contains($0)))
+                }
+            }
+        }
+        
+        describe("should remove autocomplete inserted space") {
+            
+            func result(for action: KeyboardAction) -> Bool {
+                action.shouldRemoveAutocompleteInsertedSpace
+            }
+            
+            it("is true for word delimiters actions") {
+                actions.forEach {
+                    let expected = delimiterActions.contains($0) && !$0.isSpace
+                    expect(result(for: $0)).to(equal(expected))
                 }
             }
         }

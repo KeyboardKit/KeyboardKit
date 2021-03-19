@@ -35,6 +35,10 @@ class KeyboardActionTests: QuickSpec {
         
         describe("is input action") {
             
+            func result(for action: KeyboardAction) -> Bool {
+                action.isInputAction
+            }
+            
             it("is true for some actions") {
                 expected = [
                     .character(""),
@@ -42,33 +46,59 @@ class KeyboardActionTests: QuickSpec {
                     .image(description: "", keyboardImageName: "", imageName: ""),
                     .space,
                     .systemImage(description: "", keyboardImageName: "", imageName: "")]
-                expected.forEach { expect($0.isInputAction).to(beTrue()) }
-                unexpected.forEach { expect($0.isInputAction).to(beFalse()) }
+                expected.forEach { expect(result(for: $0)).to(beTrue()) }
+                unexpected.forEach { expect(result(for: $0)).to(beFalse()) }
             }
         }
         
         describe("is primary action") {
             
+            func result(for action: KeyboardAction) -> Bool {
+                action.isPrimaryAction
+            }
+            
             it("is true for some actions") {
                 expected = [.done, .go, .ok, .search]
-                expected.forEach { expect($0.isPrimaryAction).to(beTrue()) }
-                unexpected.forEach { expect($0.isPrimaryAction).to(beFalse()) }
+                expected.forEach { expect(result(for: $0)).to(beTrue()) }
+                unexpected.forEach { expect(result(for: $0)).to(beFalse()) }
             }
         }
         
         describe("is shift") {
+            
+            func result(for action: KeyboardAction) -> Bool {
+                action.isShift
+            }
             
             it("is only true for all shift actions") {
                 expected = [
                     .shift(currentState: .capsLocked),
                     .shift(currentState: .lowercased),
                     .shift(currentState: .uppercased)]
-                expected.forEach { expect($0.isShift).to(beTrue()) }
-                unexpected.forEach { expect($0.isShift).to(beFalse()) }
+                expected.forEach { expect(result(for: $0)).to(beTrue()) }
+                unexpected.forEach { expect(result(for: $0)).to(beFalse()) }
+            }
+        }
+        
+        describe("is space") {
+            
+            func result(for action: KeyboardAction) -> Bool {
+                action.isSpace
+            }
+            
+            it("is only true for all shift actions") {
+                expected = [.space]
+                expect(result(for: .character(" "))).to(beTrue())
+                expected.forEach { expect(result(for: $0)).to(beTrue()) }
+                unexpected.forEach { expect(result(for: $0)).to(beFalse()) }
             }
         }
         
         describe("is system action") {
+            
+            func result(for action: KeyboardAction) -> Bool {
+                action.isSystemAction
+            }
             
             it("is true for some actions") {
                 expected = [
@@ -101,8 +131,8 @@ class KeyboardActionTests: QuickSpec {
                     .shift(currentState: .capsLocked),
                     .tab
                 ]
-                expected.forEach { expect($0.isSystemAction).to(beTrue()) }
-                unexpected.forEach { expect($0.isSystemAction).to(beFalse()) }
+                expected.forEach { expect(result(for: $0)).to(beTrue()) }
+                unexpected.forEach { expect(result(for: $0)).to(beFalse()) }
             }
         }
     }

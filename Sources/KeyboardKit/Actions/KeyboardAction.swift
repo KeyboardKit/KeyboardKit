@@ -94,6 +94,17 @@ public extension KeyboardAction {
     }
     
     /**
+     Whether or not the action is a shift action.
+     */
+    var isSpace: Bool {
+        switch self {
+        case .character(let char): return char == " "
+        case .space: return true
+        default: return false
+        }
+    }
+    
+    /**
      Whether or not the action is a system action, which the
      native keyboards render as dark buttons.
      */
