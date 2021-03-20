@@ -43,6 +43,11 @@ public extension KeyboardLocale {
     var localeIdentifier: String { id }
     
     /**
+     The unique identifier of the locale.
+     */
+    var localizedName: String { locale.localizedString(forIdentifier: id) ?? "" }
+    
+    /**
      The corresponding flag emoji for the locale.
      */
     var flag: String {

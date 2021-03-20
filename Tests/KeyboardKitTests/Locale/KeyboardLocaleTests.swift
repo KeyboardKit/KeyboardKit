@@ -34,6 +34,24 @@ class KeyboardLocaleTests: QuickSpec {
             }
         }
         
+        describe("locale identifier and keys") {
+            
+            func result(for locale: KeyboardLocale) -> String {
+                locale.localizedName
+            }
+            
+            it("is valid for all cases") {
+                expect(result(for: .danish)).to(equal("dansk"))
+                expect(result(for: .dutch)).to(equal("Nederlands"))
+                expect(result(for: .english)).to(equal("English"))
+                expect(result(for: .finnish)).to(equal("suomi"))
+                expect(result(for: .german)).to(equal("Deutsch"))
+                expect(result(for: .italian)).to(equal("italiano"))
+                expect(result(for: .norwegian)).to(equal("norsk bokmål"))
+                expect(result(for: .swedish)).to(equal("svenska"))
+            }
+        }
+        
         describe("flag") {
             
             func result(for locale: KeyboardLocale) -> String {
