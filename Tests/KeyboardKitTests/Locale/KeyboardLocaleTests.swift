@@ -24,6 +24,7 @@ class KeyboardLocaleTests: QuickSpec {
             
             it("is valid for all cases") {
                 expect(result(for: .danish, expected: "da")).to(beTrue())
+                expect(result(for: .dutch, expected: "nl")).to(beTrue())
                 expect(result(for: .english, expected: "en")).to(beTrue())
                 expect(result(for: .finnish, expected: "fi")).to(beTrue())
                 expect(result(for: .german, expected: "de")).to(beTrue())
@@ -41,6 +42,7 @@ class KeyboardLocaleTests: QuickSpec {
             
             it("is valid for all cases") {
                 expect(result(for: .danish)).to(equal("🇩🇰"))
+                expect(result(for: .dutch)).to(equal("🇳🇱"))
                 expect(result(for: .english)).to(equal("🇺🇸"))
                 expect(result(for: .finnish)).to(equal("🇫🇮"))
                 expect(result(for: .german)).to(equal("🇩🇪"))

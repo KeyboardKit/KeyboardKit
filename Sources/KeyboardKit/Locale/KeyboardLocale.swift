@@ -16,6 +16,7 @@ import Foundation
 public enum KeyboardLocale: String, CaseIterable, Identifiable {
     
     case danish = "da"
+    case dutch = "nl"
     case finnish = "fi"
     case english = "en"
     case german = "de"
@@ -47,6 +48,7 @@ public extension KeyboardLocale {
     var flag: String {
         switch self {
         case .danish: return "🇩🇰"
+        case .dutch: return "🇳🇱"
         case .english: return "🇺🇸"
         case .finnish: return "🇫🇮"
         case .german: return "🇩🇪"
