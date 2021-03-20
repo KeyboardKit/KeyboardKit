@@ -1,0 +1,16 @@
+/*
+ Localizable.strings
+ KeyboardKit
+ 
+ Created by Daniel Saidi on 2021-03-20.
+ Copyright © 2021 Daniel Saidi. All rights reserved.
+ */
+
+"locale" = "da";
+
+"done" = "OK";
+"go" = "Gå";
+"ok" = "OK";
+"return" = "Retur";
+"search" = "Søg";
+"space" = "Mellemrum";

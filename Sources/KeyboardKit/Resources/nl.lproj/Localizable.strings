@@ -2,15 +2,15 @@
  Localizable.strings
  KeyboardKit
  
- Created by Daniel Saidi on 2021-02-15.
+ Created by Daniel Saidi on 2021-03-20.
  Copyright © 2021 Daniel Saidi. All rights reserved.
  */
 
-"locale" = "en";
+"locale" = "nl";
 
-"done" = "done";
-"go" = "go";
+"done" = "gereed";
+"go" = "ga";
 "ok" = "OK";
 "return" = "return";
-"search" = "search";
-"space" = "space";
+"search" = "zoek";
+"space" = "spatie";

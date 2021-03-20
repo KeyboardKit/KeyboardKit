@@ -7,7 +7,6 @@ public enum KKL10n: String, CaseIterable, Identifiable {
 
     case
         locale,
-        languageName,
         
         done,
         go,
