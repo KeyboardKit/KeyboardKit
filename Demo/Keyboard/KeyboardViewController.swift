@@ -16,21 +16,14 @@ import Combine
  This SwiftUI-based demo keyboard demonstrates how to create
  a keyboard extension using `KeyboardKit` and `SwiftUI`.
  
- This keyboard manually registers demo-specific services, to
- show you how it's done. It has also copied a Swedish locale
- set from KeyboardKit Pro to show you how to add more locale
- services to your own keyboard without using KeyboardKit Pro.
+ This keyboard manually registers demo-specific services. It
+ has also copied a Swedish keyboard input set provider and a
+ secondary callout action provider from KeyboardKit Pro just
+ to show you how to do it without using KeyboardKit Pro.
  
  `IMPORTANT` To use this keyboard, you must enable it in the
  system keyboard settings ("Settings/General/Keyboards"). It
- needs full access for haptic and audio feedback, for access
- to the user's photos etc.
- 
- If you want to use these features in your own app, you must
- add `RequestsOpenAccess` to the extension's `Info.plist` to
- make it possible to enable full access. To access the photo
- album, you have to add a `NSPhotoLibraryAddUsageDescription`
- key to the `host` application's `Info.plist`.
+ needs full access for haptic and audio feedback.
  */
 class KeyboardViewController: KeyboardInputViewController {
     
@@ -42,28 +35,32 @@ class KeyboardViewController: KeyboardInputViewController {
         // Perform the bae initialization
         super.viewDidLoad()
         
-        // Setup a demo-specific autocomplete suggestion provider
-        // 💡 This will be overwritten if registering pro below
+        // Setup a demo-specific autocomplete provider
+        // 💡 This is overwritten if Pro is registered below
         autocompleteSuggestionProvider = DemoAutocompleteSuggestionProvider()
         
         // Setup the demo to explicitly use English locale
-        // 💡 Change this if you want to try some other locales
+        // 💡 The demo has additional Swedish support
+        // 💡 If you register Pro below, you get all locales
         keyboardContext.locale = KeyboardLocale.english.locale
         
         // Setup the locales that the keyboard supports
-        // 💡 This will be overwritten if registering pro below
+        // 💡 This is the order in which locales are listed
+        // 💡 This is overwritten if Pro is registered below
         keyboardContext.locales = [
             KeyboardLocale.english.locale,
-            KeyboardLocale.swedish.locale    // The demo has additional Swedish support
+            KeyboardLocale.swedish.locale
         ]
         
-        // Setup a custom action handler to handle images
+        // Setup a custom, demo-specific action handler
+        // 💡 Use custom handlers to handle custom logic
         keyboardActionHandler = DemoKeyboardActionHandler(
             inputViewController: self,
             toastContext: toastContext)
         
         // Setup an input set provider with multiple locales
-        // 💡 This will be overwritten if registering pro below.
+        // 💡 An input set specifies the keyboard input keys
+        // 💡 This is overwritten if Pro is registered below
         keyboardInputSetProvider = StandardKeyboardInputSetProvider(
             context: keyboardContext,
             providers: [
@@ -71,12 +68,13 @@ class KeyboardViewController: KeyboardInputViewController {
                 SwedishKeyboardInputSetProvider()])
         
         // Setup a layout with .emojis instead of .dictation
+        // 💡 A keyboard layout specifies the all keys/sizes
         keyboardLayoutProvider = DemoKeyboardLayoutProvider(
             inputSetProvider: keyboardInputSetProvider,
             dictationReplacement: .keyboardType(.emojis))
         
         // Setup a secondary callout action provider with multiple locales
-        // 💡 This will be overwritten if registering pro below.
+        // 💡 This is overwritten if Pro is registered below
         keyboardSecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider(
             context: keyboardContext,
             providers: [
@@ -88,10 +86,11 @@ class KeyboardViewController: KeyboardInputViewController {
         // view.backgroundColor = UIColor(keyboardAppearance.keyboardBackgroundColor)
         
         // Setup the extension to use the keyboardView below
-        setup(with: keyboardView)
-        
+        // 💡 Enable this line to run demo without Pro mode.
+        // setup(with: keyboardView)
+
         // Setup KeyboardKit Pro. This unlocks more features.
-        // 💡 Comment out this line to disable Pro mode.
+        // 💡 Disable this line to run demo without Pro mode.
         setupPro(withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098", view: keyboardView)
     }
     
@@ -111,27 +110,19 @@ class KeyboardViewController: KeyboardInputViewController {
     
     // MARK: - Autocomplete
     
+    /**
+     Override this function to add custom autocomplete logic
+     to your keyboard extension.
+     */
     override func performAutocomplete() {
         super.performAutocomplete()
     }
+    
+    /**
+     Override this function to add custom autocomplete reset
+     logic to your keyboard extension.
+     */
+    override func resetAutocomplete() {
+        super.resetAutocomplete()
+    }
 }
-
-//class ColorTheme: StandardKeyboardAppearance {
-//
-//    let blue = Color(red: 0, green: 70.0/255.0, blue: 180.0/255.0, opacity: 1)
-//    let yellow = Color(hue: 44, saturation: 87, brightness: 0.60)
-//
-//    override func buttonCornerRadius(for action: KeyboardAction) -> CGFloat {
-//        15
-//    }
-//
-//    override var keyboardBackgroundColor: Color { blue }
-//
-//    override func buttonForegroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
-//        action.isSystemAction ? super.buttonForegroundColor(for: action, isPressed: isPressed) : blue
-//    }
-//
-//    override func buttonBackgroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
-//        action.isSystemAction ? .yellow : super.buttonBackgroundColor(for: action, isPressed: isPressed)
-//    }
-//}
