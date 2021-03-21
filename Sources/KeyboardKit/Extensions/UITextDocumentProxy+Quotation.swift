@@ -41,7 +41,6 @@ public extension UITextDocumentProxy {
 private extension UITextDocumentProxy {
     
     func isOpenQuotationBeforeInput(beginDelimiter: String, endDelimiter: String) -> Bool {
-        if beginDelimiter == endDelimiter { return false }
         guard
             let text = documentContextBeforeInput?.reversed().toString(),
             let beginIndex = (text.firstIndex { String($0) == beginDelimiter })
