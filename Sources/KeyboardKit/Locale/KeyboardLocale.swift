@@ -15,10 +15,11 @@ import Foundation
  */
 public enum KeyboardLocale: String, CaseIterable, Identifiable {
     
+    case english = "en"
+    
     case danish = "da"
     case dutch = "nl"
     case finnish = "fi"
-    case english = "en"
     case german = "de"
     case italian = "it"
     case norwegian = "nb"
