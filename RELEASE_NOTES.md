@@ -53,6 +53,12 @@ KeyboardKit Pro 4.1 also adds more locale-specific providers as well as a real a
 * `UITextDocumentProxy` has a new `tryReinsertAutocompleteRemovedSpace` function.
 * `UITextDocumentProxy` has a new `tryRemoveAutocompleteInsertedSpace` function.
 
+### 🌐 New locales
+
+* 🇩🇰 Danish
+* 🇳🇱 Dutch
+* 🇫🇮 Finnish
+* 🇳🇴 Norwegian
 
 ### 💡 Changed behavior
 
@@ -98,7 +104,6 @@ This patch fixes a few minor things.
 * Italian localization has been added.
 * German localization has been added.
 * `.done` was accidentally missing a localized text.
-
 
 ### 🐛 Bug fixes
 
@@ -178,7 +183,6 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `View+localeContextMenu` can be applied to any view to let the user change locale.
 * There are new preview-specific implementations that can help you preview keyboard-based views.
 
-
 ### 💡 Changed behavior
 
 * `AutocompleteContext` is now an observable object and not a protocol.
@@ -214,7 +218,6 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `StandardKeyboardBehavior` now requires an injected keyboard context.
 * `StandardKeyboardInputSetProvider` now requires an injected keyboard context.
 * `View+KeyboardGestures` now handles the new press and release gestures.
-
 
 ### 🚚 Removed/renamed
 
@@ -265,7 +268,6 @@ Besides the new things listed below, there are a bunch of new extensions, images
 * `View+ClearInteractable` has been removed.
 * `View` `keyboardAction(...)` has been renamed to `keyboardGestures(for: ...)`.
 * `UIEdgeInsets+Keyboard` `standardKeyboardButtonInsets` has been renamed to `standardKeyboardButtonInsets`.
-
 
 ### 💥 UIKit changes
 
