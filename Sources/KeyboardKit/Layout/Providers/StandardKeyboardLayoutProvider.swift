@@ -14,6 +14,11 @@ import UIKit
  the type of device used. It will toggle between an `iPhone`
  and `iPad` specific layout provider.
  
+ Note that since this class depends on an input set provider,
+ you must register a new provider whenever it changes. It is
+ taken care of by the keyboard input view controller `didSet`
+ for its input set provider.
+ 
  To change the layouts provided by the class, you can either
  replace `iPadProvider` and `iPhoneProvider` with completely
  new providers. You can also inherit this class and override
