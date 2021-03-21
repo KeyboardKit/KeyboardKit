@@ -17,18 +17,6 @@ open class EnglishSecondaryCalloutActionProvider: BaseSecondaryCalloutActionProv
     
     open override func secondaryCalloutActionString(for char: String) -> String {
         switch char {
-        case "-": return "-–—•"
-        case "/": return "/\\"
-        case "&": return "&§"
-        case "”", "“": return "\"”“„»«"
-        case ".": return ".…"
-        case "?": return "?¿"
-        case "!": return "!¡"
-        case "'", "’": return "'’‘`"
-            
-        case "%": return "%‰"
-        case "=": return "=≠≈"
-        
         case "a": return "aàáâäæãåā"
         case "c": return "cçćč"
         case "e": return "eèéêëēėę"
@@ -40,6 +28,18 @@ open class EnglishSecondaryCalloutActionProvider: BaseSecondaryCalloutActionProv
         case "u": return "uûüùúū"
         case "y": return "yÿ"
         case "z": return "zžźż"
+            
+        case "-": return "-–—•"
+        case "/": return "/\\"
+        case "&": return "&§"
+        case "”", "“": return "\"”“„»«"
+        case ".": return ".…"
+        case "?": return "?¿"
+        case "!": return "!¡"
+        case "'", "’": return "'’‘`"
+            
+        case "%": return "%‰"
+        case "=": return "=≠≈"
             
         default: return ""
         }
