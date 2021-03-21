@@ -96,6 +96,7 @@ class UITextDocumentProxy_QuotationTests: QuickSpec {
             
             it("honors specific locale scenarios") {
                 expect(result(for: "This «Is me", locale: .italian)).to(beTrue())
+                expect(result(for: "This «Is me", locale: .norwegian)).to(beTrue())
             }
         }
     }

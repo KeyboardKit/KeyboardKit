@@ -243,29 +243,25 @@ private extension StandardKeyboardActionHandler {
 
     func replacementAlternateQuotationAction(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction? {
         let locale = keyboardContext.locale
-        guard
-            gesture == .tap,
-            case let .character(char) = action,
-            let beginDelimiter = locale.alternateQuotationBeginDelimiter,
-            let endDelimiter = locale.alternateQuotationEndDelimiter,
-            beginDelimiter != endDelimiter,
-            char == endDelimiter || char == "’",
-            !textDocumentProxy.isOpenAlternateQuotationBeforeInput(for: locale)
-            else { return nil }
+        guard gesture == .tap else { return nil }
+        guard case let .character(char) = action else { return nil }
+        guard let beginDelimiter = locale.alternateQuotationBeginDelimiter else { return nil }
+        guard let endDelimiter = locale.alternateQuotationEndDelimiter else { return nil }
+        guard beginDelimiter != endDelimiter else { return nil }
+        guard char == endDelimiter || char == "’" else { return nil }
+        guard !textDocumentProxy.isOpenAlternateQuotationBeforeInput(for: locale) else { return nil }
         return .character(beginDelimiter)
     }
     
     func replacementQuotationAction(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction? {
         let locale = keyboardContext.locale
-        guard
-            gesture == .tap,
-            case let .character(char) = action,
-            let beginDelimiter = locale.quotationBeginDelimiter,
-            let endDelimiter = locale.quotationEndDelimiter,
-            beginDelimiter != endDelimiter,
-            char == endDelimiter || char == "”",
-            !textDocumentProxy.isOpenQuotationBeforeInput(for: locale)
-            else { return nil }
+        guard gesture == .tap else { return nil }
+        guard case let .character(char) = action else { return nil }
+        guard let beginDelimiter = locale.quotationBeginDelimiter else { return nil }
+        guard let endDelimiter = locale.quotationEndDelimiter else { return nil }
+        guard beginDelimiter != endDelimiter else { return nil }
+        guard char == endDelimiter || char == "”" else { return nil }
+        guard !textDocumentProxy.isOpenQuotationBeforeInput(for: locale) else { return nil }
         return .character(beginDelimiter)
     }
     
