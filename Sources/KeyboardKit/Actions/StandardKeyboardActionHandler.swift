@@ -249,7 +249,7 @@ private extension StandardKeyboardActionHandler {
             let beginDelimiter = locale.alternateQuotationBeginDelimiter,
             let endDelimiter = locale.alternateQuotationEndDelimiter,
             beginDelimiter != endDelimiter,
-            char == endDelimiter,
+            char == endDelimiter || char == "’",
             !textDocumentProxy.isOpenAlternateQuotationBeforeInput(for: locale)
             else { return nil }
         return .character(beginDelimiter)
@@ -263,7 +263,7 @@ private extension StandardKeyboardActionHandler {
             let beginDelimiter = locale.quotationBeginDelimiter,
             let endDelimiter = locale.quotationEndDelimiter,
             beginDelimiter != endDelimiter,
-            char == endDelimiter,
+            char == endDelimiter || char == "”",
             !textDocumentProxy.isOpenQuotationBeforeInput(for: locale)
             else { return nil }
         return .character(beginDelimiter)
