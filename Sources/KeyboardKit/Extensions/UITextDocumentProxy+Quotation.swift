@@ -17,11 +17,9 @@ public extension UITextDocumentProxy {
      a single quotation delimiter for the provided locale.
      */
     func isOpenAlternateQuotationBeforeInput(for locale: Locale) -> Bool {
-        guard
-            let beginDelimiter = locale.alternateQuotationBeginDelimiter,
-            let endDelimiter = locale.alternateQuotationEndDelimiter
-        else { return false }
-        return isOpenQuotationBeforeInput(beginDelimiter: beginDelimiter, endDelimiter: endDelimiter)
+        isOpenQuotationBeforeInput(
+            beginDelimiter: locale.alternateQuotationBeginDelimiter,
+            endDelimiter: locale.alternateQuotationEndDelimiter)
     }
     
     /**
@@ -30,18 +28,18 @@ public extension UITextDocumentProxy {
      a double quotation delimiter for the provided locale.
      */
     func isOpenQuotationBeforeInput(for locale: Locale) -> Bool {
-        guard
-            let beginDelimiter = locale.quotationBeginDelimiter,
-            let endDelimiter = locale.quotationEndDelimiter
-        else { return false }
-        return isOpenQuotationBeforeInput(beginDelimiter: beginDelimiter, endDelimiter: endDelimiter)
+        isOpenQuotationBeforeInput(
+            beginDelimiter: locale.quotationBeginDelimiter,
+            endDelimiter: locale.quotationEndDelimiter)
     }
 }
 
 private extension UITextDocumentProxy {
     
-    func isOpenQuotationBeforeInput(beginDelimiter: String, endDelimiter: String) -> Bool {
+    func isOpenQuotationBeforeInput(beginDelimiter: String?, endDelimiter: String?) -> Bool {
         guard
+            let beginDelimiter = beginDelimiter,
+            let endDelimiter = endDelimiter,
             let text = documentContextBeforeInput?.reversed().toString(),
             let beginIndex = (text.firstIndex { String($0) == beginDelimiter })
         else { return false }

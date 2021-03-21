@@ -93,6 +93,10 @@ class UITextDocumentProxy_QuotationTests: QuickSpec {
                     expect(result(for: text, locale: $0)).to(equal(begin != end))
                 }
             }
+            
+            it("honors specific locale scenarios") {
+                expect(result(for: "This «Is me", locale: .italian)).to(beTrue())
+            }
         }
     }
 }
