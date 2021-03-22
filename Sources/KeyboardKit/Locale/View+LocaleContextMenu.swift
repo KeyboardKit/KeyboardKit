@@ -25,9 +25,9 @@ public extension View {
         } else {
             self.contextMenu(ContextMenu {
                 ForEach(Array(context.locales.enumerated()), id: \.offset) { locale in
-                    let code = locale.element.languageCode ?? ""
-                    let text = locale.element.localizedString(forLanguageCode: code) ?? "-"
-                    Button(text, action: { context.locale = locale.element })
+                    let locale = locale.element
+                    let text = locale.localizedString(forIdentifier: locale.identifier) ?? "-"
+                    Button(text.capitalized, action: { context.locale = locale })
                 }
             })
         }

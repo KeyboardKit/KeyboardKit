@@ -44,6 +44,7 @@ class UITextDocumentProxy_ReplaceTests: QuickSpec {
                     expect(result(for: "”", locale: .english)).to(equal("“"))
                     expect(result(for: "”", locale: .swedish)).to(beNil())
                     expect(result(for: "»", locale: .norwegian)).to(equal("«"))
+                    expect(result(for: "”", locale: .dutch)).to(equal("‘"))
                 }
                 
                 it("converts keyboard-specific end delimiters to begin delimiters") {
@@ -72,16 +73,11 @@ class UITextDocumentProxy_ReplaceTests: QuickSpec {
                     return proxy.preferredReplacement(for: text, locale: locale.locale)
                 }
                 
-                it("converts locale-specific end delimiters to end delimiters") {
-                    expect(result(for: "”", locale: .english)).to(beNil())
-                    expect(result(for: "”", locale: .swedish)).to(beNil())
-                    expect(result(for: "»", locale: .norwegian)).to(beNil())
-                }
-                
                 it("converts keyboard-specific end delimiters to end delimiters") {
                     expect(result(for: "”", locale: .english)).to(beNil())
                     expect(result(for: "”", locale: .swedish)).to(beNil())
                     expect(result(for: "”", locale: .norwegian)).to(equal("»"))
+                    expect(result(for: "”", locale: .dutch)).to(equal("’"))
                 }
             }
             

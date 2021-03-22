@@ -58,7 +58,7 @@ class UITextDocumentProxy_QuotationTests: QuickSpec {
             }
         }
         
-        describe("is open  quotation before input") {
+        describe("is open quotation before input") {
             
             func result(for text: String?, locale: KeyboardLocale) -> Bool {
                 proxy.documentContextBeforeInput = text
@@ -95,6 +95,7 @@ class UITextDocumentProxy_QuotationTests: QuickSpec {
             }
             
             it("honors specific locale scenarios") {
+                expect(result(for: "This ‘Is me", locale: .dutch)).to(beTrue())
                 expect(result(for: "This «Is me", locale: .italian)).to(beTrue())
                 expect(result(for: "This «Is me", locale: .norwegian)).to(beTrue())
             }
