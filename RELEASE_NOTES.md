@@ -6,7 +6,18 @@ KeyboardKit tries to honor the following rules when new versions are released:
 * Only remove deprecated code in `major` versions.
 * Avoid introducing breaking changes in `minor` versions. 
 
-Breaking changes can still occur in minor versions, if the alternative is to not release new critical features.
+Breaking changes can still occur in minor versions, if the alternative is to not release new critical features or fixes.
+
+
+## 4.2
+
+This version improves the layout engine.
+
+### ✨ New features
+
+* `BaseKeyboardLayoutProvider` has a new, open `keyboardReturnAction(for:)` function.
+* The iPhone and iPad layout providers can now be injected with locale-specific size providers that can customize the width of certain actions.
+* The iPhone and iPad layout providers now replaces `return` with `done`, `go` and `search` when applicable.
 
 
 ## 4.1
@@ -22,7 +33,7 @@ This version also adds many new features aimed at an improved autocomplete exper
 KeyboardKit Pro 4.1 also adds more locale-specific providers as well as a real autocomplete engine.
 
 
-### ✨ New features:
+### ✨ New features
 
 * `AutocompleteSpaceState` is a new enum that is used to keep track of how a 
 * `AutocompleteSuggestion` has new `isAutocomplete` and `isUnknown` properties.

@@ -36,7 +36,7 @@ open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
         let last = actions.suffix(3)
         actions.removeLast(3)
         actions.append(last[0] + [.backspace])
-        actions.append([.none] + last[1] + [.newLine])
+        actions.append([.none] + last[1] + [keyboardReturnAction(for: context)])
         actions.append(lowerLeadingActions(for: context) + last[2] + lowerTrailingActions(for: context))
         actions.append(bottomActions(for: context))
         return actions
@@ -57,6 +57,11 @@ open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     
     
     // MARK: - iPad Specific
+    
+    open override func keyboardReturnAction(for context: KeyboardContext) -> KeyboardAction {
+        let base = super.keyboardReturnAction(for: context)
+        return base == .return ? .newLine : base
+    }
     
     /**
      Get the bottom action row that should be below the main

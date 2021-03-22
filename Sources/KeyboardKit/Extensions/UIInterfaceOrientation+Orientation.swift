@@ -14,14 +14,6 @@ extension UIInterfaceOrientation {
         guard let orientation = orientation.interfaceOrientation else { return nil }
         self = orientation
     }
-
-    var isLandscape: Bool {
-        self == .landscapeLeft || self == .landscapeRight
-    }
-    
-    var isPortrait: Bool {
-        self == .portrait || self == .portraitUpsideDown
-    }
 }
 
 extension UIDeviceOrientation {

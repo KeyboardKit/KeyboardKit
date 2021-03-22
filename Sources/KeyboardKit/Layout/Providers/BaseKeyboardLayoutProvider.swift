@@ -137,6 +137,19 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
     }
     
     /**
+     The specific return action to use for a certain context.
+     */
+    open func keyboardReturnAction(for context: KeyboardContext) -> KeyboardAction {
+        let type = context.textDocumentProxy.returnKeyType
+        switch type {
+        case .done: return .done
+        case .go: return .go
+        case .search: return .search
+        default: return .return
+        }
+    }
+    
+    /**
      The keyboard switch action that should be on the bottom
      input row which is above the bottommost row. By default
      it's `shift` for `alphabetic`, `symbolic` for `numeric`

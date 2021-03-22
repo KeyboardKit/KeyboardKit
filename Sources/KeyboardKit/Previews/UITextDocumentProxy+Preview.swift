@@ -25,6 +25,7 @@ public class PreviewTextDocumentProxy: NSObject, UITextDocumentProxy {
     public var selectedText: String?
     public var documentInputMode: UITextInputMode?
     public var documentIdentifier: UUID = UUID()
+    public var returnKeyType: UIReturnKeyType = .default
     
     public func adjustTextPosition(byCharacterOffset offset: Int) {}
     public func deleteBackward() {}

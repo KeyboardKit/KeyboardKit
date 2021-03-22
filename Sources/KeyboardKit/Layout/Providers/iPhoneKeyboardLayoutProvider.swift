@@ -37,11 +37,13 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     }
     
     open override func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItemWidth {
+        if action.isPrimaryAction { return longButtonWidth }
         switch action {
         case dictationReplacement: return shortButtonWidth
         case .character: return isLastSymbolicInputRow(row, for: context) ? lastSymbolicInputWidth : .input
         case .backspace: return mediumButtonWidth
         case .keyboardType: return shortButtonWidth
+        case .newLine: return longButtonWidth
         case .nextKeyboard: return shortButtonWidth
         case .return: return longButtonWidth
         case .shift: return mediumButtonWidth
@@ -66,7 +68,7 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
         if !needsInputSwitcher { result.append(.keyboardType(.emojis)) }
         if portrait, needsDictation, let action = dictationReplacement { result.append(action) }
         result.append(.space)
-        result.append(.return) // TODO: Should be "primary"
+        result.append(keyboardReturnAction(for: context))
         if !portrait, needsDictation, let action = dictationReplacement { result.append(action) }
         return result
     }
@@ -103,6 +105,8 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
     
     static var context = KeyboardContext.preview
     
+    static var proxy = PreviewTextDocumentProxy()
+    
     static var input = StandardKeyboardInputSetProvider(context: context)
     
     static var layout = iPhoneKeyboardLayoutProvider(inputSetProvider: input)
@@ -117,8 +121,10 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
     }
     
     static func preview(for locale: Locale, type: KeyboardType) -> some View {
+        proxy.returnKeyType = UIReturnKeyType.search
         context.locale = locale
         context.keyboardType = type
+        context.textDocumentProxy = proxy
         return VStack {
             SystemKeyboard(
                 layout: layout.keyboardLayout(for: context),
