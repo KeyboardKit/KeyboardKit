@@ -120,9 +120,9 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         describe("triggering audio feedback for gesture on action") {
 
             it("can't be properyly tested") {
-                handler.triggerAudioFeedback(for: .tap, on: .dismissKeyboard, sender: nil)
-                handler.triggerAudioFeedback(for: .tap, on: .backspace, sender: nil)
-                handler.triggerAudioFeedback(for: .tap, on: .dismissKeyboard, sender: nil)
+                handler.triggerAudioFeedback(for: .tap, on: .dismissKeyboard)
+                handler.triggerAudioFeedback(for: .tap, on: .backspace)
+                handler.triggerAudioFeedback(for: .tap, on: .dismissKeyboard)
                 // TODO Test this
             }
         }
@@ -130,9 +130,9 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         describe("triggering haptic feedback") {
 
             it("can't be properyly tested") {
-                handler.triggerHapticFeedback(for: .longPress, on: .dismissKeyboard, sender: nil)
-                handler.triggerHapticFeedback(for: .repeatPress, on: .backspace, sender: nil)
-                handler.triggerHapticFeedback(for: .tap, on: .dismissKeyboard, sender: nil)
+                handler.triggerHapticFeedback(for: .longPress, on: .dismissKeyboard)
+                handler.triggerHapticFeedback(for: .repeatPress, on: .backspace)
+                handler.triggerHapticFeedback(for: .tap, on: .dismissKeyboard)
                 // TODO Test this
             }
         }
@@ -202,26 +202,26 @@ private class TestClass: StandardKeyboardActionHandler, Mockable {
 
     var mock = Mock()
 
-    lazy var handleRef = MockReference(handle)
-    lazy var triggerAudioFeedbackRef = MockReference(triggerAudioFeedback)
-    lazy var triggerHapticFeedbackRef = MockReference(triggerHapticFeedback)
+    lazy var handleRef = MockReference(handle as (KeyboardGesture, KeyboardAction) -> ())
+    lazy var triggerAudioFeedbackRef = MockReference(triggerAudioFeedback as (KeyboardGesture, KeyboardAction) -> ())
+    lazy var triggerHapticFeedbackRef = MockReference(triggerHapticFeedback as (KeyboardGesture, KeyboardAction) -> ())
     lazy var tryChangeKeyboardTypeRef = MockReference(tryChangeKeyboardType)
     lazy var tryEndSentenceRef = MockReference(tryEndSentence)
     lazy var tryRegisterEmojiRef = MockReference(tryRegisterEmoji)
 
-    override func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
-        super.handle(gesture, on: action, sender: sender)
-        call(handleRef, args: (gesture, action, sender))
+    override func handle(_ gesture: KeyboardGesture, on action: KeyboardAction) {
+        super.handle(gesture, on: action)
+        call(handleRef, args: (gesture, action))
     }
 
-    override func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
-        super.triggerAudioFeedback(for: gesture, on: action, sender: sender)
-        call(triggerAudioFeedbackRef, args: (gesture, action, sender))
+    override func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
+        super.triggerAudioFeedback(for: gesture, on: action)
+        call(triggerAudioFeedbackRef, args: (gesture, action))
     }
 
-    override func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
-        super.triggerHapticFeedback(for: gesture, on: action, sender: sender)
-        call(triggerHapticFeedbackRef, args: (gesture, action, sender))
+    override func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
+        super.triggerHapticFeedback(for: gesture, on: action)
+        call(triggerHapticFeedbackRef, args: (gesture, action))
     }
 
     override func tryChangeKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) {

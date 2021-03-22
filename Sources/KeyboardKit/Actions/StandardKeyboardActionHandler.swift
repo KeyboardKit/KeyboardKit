@@ -100,18 +100,19 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.action(for: gesture, on: action) != nil
     }
     
-    /**
-     Handle a certain `gesture` on a certain `action`
-     */
-    open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
-        if tryHandleReplacementAction(before: gesture, on: action) { return }
+    open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction) {
+        handle(gesture, on: action, replaced: false)
+    }
+    
+    open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, replaced: Bool) {
+        if !replaced && tryHandleReplacementAction(before: gesture, on: action) { return }
         guard let gestureAction = self.action(for: gesture, on: action) else { return }
         tryRemoveAutocompleteInsertedSpace(before: gesture, on: action)
         tryApplyAutocompleteSuggestion(before: gesture, on: action)
         gestureAction(keyboardInputViewController)
         tryReinsertAutocompleteRemovedSpace(after: gesture, on: action)
-        triggerAudioFeedback(for: gesture, on: action, sender: sender)
-        triggerHapticFeedback(for: gesture, on: action, sender: sender)
+        triggerAudioFeedback(for: gesture, on: action)
+        triggerHapticFeedback(for: gesture, on: action)
         tryEndSentence(after: gesture, on: action)
         tryChangeKeyboardType(after: gesture, on: action)
         tryRegisterEmoji(after: gesture, on: action)
@@ -164,13 +165,13 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Action Handling
     
-    open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
+    open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
         if action == .backspace { return audioConfiguration.deleteFeedback.trigger() }
         if action.isInputAction { return audioConfiguration.inputFeedback.trigger() }
         if action.isSystemAction { return audioConfiguration.systemFeedback.trigger() }
     }
     
-    open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
+    open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
         switch gesture {
         case .doubleTap: hapticConfiguration.doubleTapFeedback.trigger()
         case .longPress: hapticConfiguration.longPressFeedback.trigger()
@@ -206,7 +207,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
             let replacement = textDocumentProxy.preferredReplacement(for: char, locale: locale)
             else { return false }
         let newAction = KeyboardAction.character(replacement)
-        handle(.tap, on: newAction)
+        handle(.tap, on: newAction, replaced: true)
         return true
     }
     
@@ -233,6 +234,24 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         guard gesture == .tap else { return }
         guard action.shouldRemoveAutocompleteInsertedSpace else { return }
         textDocumentProxy.tryRemoveAutocompleteInsertedSpace()
+    }
+    
+    
+    // MARK: - Deprecated
+    
+    @available(*, deprecated, message: "Use the new function without sender instead.")
+    open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
+        handle(gesture, on: action)
+    }
+    
+    @available(*, deprecated, message: "Use the new function without sender instead.")
+    open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
+        triggerAudioFeedback(for: gesture, on: action)
+    }
+    
+    @available(*, deprecated, message: "Use the new function without sender instead.")
+    open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
+        triggerHapticFeedback(for: gesture, on: action)
     }
 }
 

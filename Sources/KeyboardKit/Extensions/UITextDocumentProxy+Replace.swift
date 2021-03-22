@@ -25,25 +25,17 @@ public extension UITextDocumentProxy {
 
 private extension UITextDocumentProxy {
     
-    func isAlternateEndDelimiter(_ text: String, for locale: Locale) -> Bool {
-        text == locale.alternateQuotationEndDelimiter || text == "’"
-    }
-    
-    func isEndDelimiter(_ text: String, for locale: Locale) -> Bool {
-        text == locale.quotationEndDelimiter || text == "”"
-    }
-    
     func preferredAlternateQuotationReplacement(for text: String, locale: Locale) -> String? {
-        guard isAlternateEndDelimiter(text, for: locale) else { return nil }
+        guard text == locale.alternateQuotationEndDelimiter || text == "‘"  else { return nil }
         let isOpen = isOpenAlternateQuotationBeforeInput(for: locale)
-        let replacement = isOpen ? locale.alternateQuotationEndDelimiter : locale.alternateQuotationBeginDelimiter
-        return replacement != text ? replacement : nil
+        let result = isOpen ? locale.alternateQuotationEndDelimiter : locale.alternateQuotationBeginDelimiter
+        return result == text ? nil : result
     }
     
     func preferredQuotationReplacement(for text: String, locale: Locale) -> String? {
-        guard isEndDelimiter(text, for: locale) else { return nil }
+        guard text == locale.quotationEndDelimiter || (text == "”" && text != locale.alternateQuotationEndDelimiter)  else { return nil }
         let isOpen = isOpenQuotationBeforeInput(for: locale)
-        let replacement = isOpen ? locale.quotationEndDelimiter : locale.quotationBeginDelimiter
-        return replacement != text ? replacement : nil
+        let result = isOpen ? locale.quotationEndDelimiter : locale.quotationBeginDelimiter
+        return result == text ? nil : result
     }
 }

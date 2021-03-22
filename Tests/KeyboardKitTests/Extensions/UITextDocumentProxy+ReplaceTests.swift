@@ -23,9 +23,19 @@ class UITextDocumentProxy_ReplaceTests: QuickSpec {
         
         describe("preferred replacement for text and locale") {
             
-            func result(for text: String, locale: KeyboardLocale) -> String? {
-                proxy.preferredReplacement(for: text, locale: locale.locale)
+            func result(for text: String?, locale: KeyboardLocale) -> String? {
+                guard let text = text else { return nil }
+                return proxy.preferredReplacement(for: text, locale: locale.locale)
             }
+            
+            func altBegin(for locale: KeyboardLocale) -> String? { locale.locale.alternateQuotationBeginDelimiter }
+            
+            func altEnd(for locale: KeyboardLocale) -> String? { locale.locale.alternateQuotationEndDelimiter }
+            
+            func begin(for locale: KeyboardLocale) -> String? { locale.locale.quotationBeginDelimiter }
+            
+            func end(for locale: KeyboardLocale) -> String? { locale.locale.quotationEndDelimiter }
+            
             
             describe("when text is non-quotation") {
                 
@@ -40,64 +50,64 @@ class UITextDocumentProxy_ReplaceTests: QuickSpec {
                     proxy.documentContextBeforeInput = "before"
                 }
                 
-                it("converts locale-specific end delimiters to begin delimiters") {
-                    expect(result(for: "”", locale: .english)).to(equal("“"))
-                    expect(result(for: "”", locale: .swedish)).to(beNil())
-                    expect(result(for: "»", locale: .norwegian)).to(equal("«"))
-                    expect(result(for: "”", locale: .dutch)).to(equal("‘"))
+                func resultForEndDelimiter(for locale: KeyboardLocale) -> String? {
+                    result(for: end(for: locale), locale: locale)
                 }
                 
-                it("converts keyboard-specific end delimiters to begin delimiters") {
-                    expect(result(for: "”", locale: .english)).to(equal("“"))
-                    expect(result(for: "”", locale: .swedish)).to(beNil())
-                    expect(result(for: "”", locale: .norwegian)).to(equal("«"))
+                func resultForAltEndDelimiter(for locale: KeyboardLocale) -> String? {
+                    result(for: altEnd(for: locale), locale: locale)
                 }
                 
-                it("converts locale-specific alternate end delimiters to begin delimiters") {
-                    expect(result(for: "’", locale: .english)).to(equal("‘"))
-                    expect(result(for: "’", locale: .swedish)).to(beNil())
-                    expect(result(for: "’", locale: .norwegian)).to(equal("‘"))
+                it("converts end delimiters to begin delimiters if they differ, else returns nil") {
+                    expect(resultForEndDelimiter(for: .danish)).to(equal(begin(for: .danish)))
+                    expect(resultForEndDelimiter(for: .dutch)).to(equal(begin(for: .dutch)))
+                    expect(resultForEndDelimiter(for: .english)).to(equal(begin(for: .english)))
+                    expect(resultForEndDelimiter(for: .finnish)).to(beNil())
+                    expect(result(for: "”", locale: .german)).to(equal(begin(for: .german)))
+                    expect(resultForEndDelimiter(for: .german)).to(equal(begin(for: .german)))
+                    expect(resultForEndDelimiter(for: .norwegian)).to(equal(begin(for: .norwegian)))
+                    expect(resultForEndDelimiter(for: .swedish)).to(beNil())
                 }
                 
-                it("converts keyboard-specific alternate end delimiters to begin delimiters") {
-                    expect(result(for: "’", locale: .english)).to(equal("‘"))
-                    expect(result(for: "’", locale: .swedish)).to(beNil())
-                    expect(result(for: "’", locale: .norwegian)).to(equal("‘"))
+                it("converts end delimiters to begin delimiters if they differ, else returns nil") {
+                    expect(resultForAltEndDelimiter(for: .danish)).to(equal(altBegin(for: .danish)))
+                    expect(resultForAltEndDelimiter(for: .dutch)).to(equal(altBegin(for: .dutch)))
+                    expect(resultForAltEndDelimiter(for: .english)).to(equal(altBegin(for: .english)))
+                    expect(resultForAltEndDelimiter(for: .finnish)).to(beNil())
+                    expect(resultForAltEndDelimiter(for: .german)).to(equal(altBegin(for: .german)))
+                    expect(resultForAltEndDelimiter(for: .norwegian)).to(equal(altBegin(for: .norwegian)))
+                    expect(resultForAltEndDelimiter(for: .swedish)).to(beNil())
                 }
             }
             
             describe("when proxy has open quotation before input") {
                 
-                func result(for text: String, locale: KeyboardLocale) -> String? {
+                func resultForEndDelimiter(for locale: KeyboardLocale) -> String? {
                     proxy.documentContextBeforeInput = locale.locale.quotationBeginDelimiter
-                    return proxy.preferredReplacement(for: text, locale: locale.locale)
+                    return result(for: end(for: locale), locale: locale)
                 }
                 
-                it("converts keyboard-specific end delimiters to end delimiters") {
-                    expect(result(for: "”", locale: .english)).to(beNil())
-                    expect(result(for: "”", locale: .swedish)).to(beNil())
-                    expect(result(for: "”", locale: .norwegian)).to(equal("»"))
-                    expect(result(for: "”", locale: .dutch)).to(equal("’"))
-                }
-            }
-            
-            describe("when proxy has open alternate quotation before input") {
-                
-                func result(for text: String, locale: KeyboardLocale) -> String? {
+                func resultForAltEndDelimiter(for locale: KeyboardLocale) -> String? {
                     proxy.documentContextBeforeInput = locale.locale.alternateQuotationBeginDelimiter
-                    return proxy.preferredReplacement(for: text, locale: locale.locale)
+                    return result(for: altEnd(for: locale), locale: locale)
                 }
                 
-                it("converts locale-specific alternate end delimiters to alternate end delimiters") {
-                    expect(result(for: "’", locale: .english)).to(beNil())
-                    expect(result(for: "’", locale: .swedish)).to(beNil())
-                    expect(result(for: "’", locale: .norwegian)).to(beNil())
+                it("does not convert end delimiters and returns nil") {
+                    expect(resultForEndDelimiter(for: .danish)).to(beNil())
+                    expect(resultForEndDelimiter(for: .dutch)).to(beNil())
+                    expect(resultForEndDelimiter(for: .english)).to(beNil())
+                    expect(resultForEndDelimiter(for: .finnish)).to(beNil())
+                    expect(resultForEndDelimiter(for: .norwegian)).to(beNil())
+                    expect(resultForEndDelimiter(for: .swedish)).to(beNil())
                 }
                 
-                it("converts keyboard-specific alternate end delimiters to alternate end delimiters") {
-                    expect(result(for: "’", locale: .english)).to(beNil())
-                    expect(result(for: "’", locale: .swedish)).to(beNil())
-                    expect(result(for: "’", locale: .norwegian)).to(beNil())
+                it("does not convert end delimiters and returns nil") {
+                    expect(resultForAltEndDelimiter(for: .danish)).to(beNil())
+                    expect(resultForAltEndDelimiter(for: .dutch)).to(beNil())
+                    expect(resultForAltEndDelimiter(for: .english)).to(beNil())
+                    expect(resultForAltEndDelimiter(for: .finnish)).to(beNil())
+                    expect(resultForAltEndDelimiter(for: .norwegian)).to(beNil())
+                    expect(resultForAltEndDelimiter(for: .swedish)).to(beNil())
                 }
             }
         }
