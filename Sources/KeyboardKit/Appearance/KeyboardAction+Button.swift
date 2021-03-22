@@ -95,6 +95,7 @@ public extension KeyboardAction {
         case .keyboardType(let type): return type.standardButtonText
         case .nextLocale: return context.locale.languageCode?.uppercased()
         case .ok: return KKL10n.ok.text
+        case .primary(let type): return type.standardButtonText
         case .return: return KKL10n.return.text
         case .search: return KKL10n.search.text
         default: return nil
@@ -112,6 +113,18 @@ public extension KeyboardAction {
         case .emojiCategory: return .callout
         case .space: return .body
         default: return .title2
+        }
+    }
+}
+
+private extension KeyboardAction.PrimaryType {
+    
+    var standardButtonText: String {
+        switch self {
+        case .done: return KKL10n.done.text
+        case .go: return KKL10n.go.text
+        case .ok: return KKL10n.ok.text
+        case .search: return KKL10n.search.text
         }
     }
 }

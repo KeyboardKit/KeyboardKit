@@ -58,7 +58,7 @@ class KeyboardActionTests: QuickSpec {
             }
             
             it("is true for some actions") {
-                expected = [.done, .go, .ok, .search]
+                expected = [.primary(.done), .primary(.go), .primary(.ok), .primary(.search)]
                 expected.forEach { expect(result(for: $0)).to(beTrue()) }
                 unexpected.forEach { expect(result(for: $0)).to(beFalse()) }
             }

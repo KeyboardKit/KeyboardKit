@@ -55,13 +55,13 @@ class KeyboardAction_SystemTests: QuickSpec {
             }
             
             it("is blue for primary actions") {
-                expected = [.done, .go, .ok, .search]
+                expected = [.primary(.done), .primary(.go), .primary(.ok), .primary(.search)]
                 expected.forEach { expect(result(for: $0)).to(equal(.blue)) }
                 unexpected.forEach { expect(result(for: $0)).toNot(equal(.blue)) }
             }
             
             it("is standard for all other actions") {
-                let nonStandard: [KeyboardAction] = [.none, .emoji(Emoji("")), .emojiCategory(.smileys), .done, .go, .ok, .search]
+                let nonStandard: [KeyboardAction] = [.none, .emoji(Emoji("")), .emojiCategory(.smileys), .primary(.done), .primary(.go), .primary(.ok), .primary(.search)]
                 expected = actions.filter { !nonStandard.contains($0) }
                 expected.forEach {
                     if $0.isSystemAction {
@@ -141,13 +141,13 @@ class KeyboardAction_SystemTests: QuickSpec {
             }
             
             it("is white for primary actions") {
-                expected = [.done, .go, .ok, .search]
+                expected = [.primary(.done), .primary(.go), .primary(.ok), .primary(.search)]
                 expected.forEach { expect(result(for: $0)).to(equal(.white)) }
                 unexpected.forEach { expect(result(for: $0)).toNot(equal(.white)) }
             }
             
             it("is standard for all other actions") {
-                let nonStandard: [KeyboardAction] = [.done, .go, .ok, .search]
+                let nonStandard: [KeyboardAction] = [.primary(.done), .primary(.go), .primary(.ok), .primary(.search)]
                 expected = actions.filter { !nonStandard.contains($0) }
                 expected.forEach {
                     expect(result(for: $0)).to(equal(Color.standardButtonTint(for: context)))
@@ -182,14 +182,14 @@ class KeyboardAction_SystemTests: QuickSpec {
                 expect(result(for: .keyboardType(.alphabetic(.capsLocked)))).to(equal("ABC"))
                 expect(result(for: .keyboardType(.alphabetic(.lowercased)))).to(equal("ABC"))
                 expect(result(for: .keyboardType(.alphabetic(.uppercased)))).to(equal("ABC"))
-                expect(result(for: .go)).to(equal("go"))
                 expect(result(for: .keyboardType(.numeric))).to(equal("123"))
                 expect(result(for: .keyboardType(.symbolic))).to(equal("#+="))
                 expect(result(for: .keyboardType(.custom("")))).to(beNil())
                 expect(result(for: .nextLocale)).to(equal("EN"))
-                expect(result(for: .ok)).to(equal("OK"))
+                expect(result(for: .primary(.go))).to(equal("go"))
+                expect(result(for: .primary(.ok))).to(equal("OK"))
+                expect(result(for: .primary(.search))).to(equal("search"))
                 expect(result(for: .return)).to(equal("return"))
-                expect(result(for: .search)).to(equal("search"))
                 
                 expect(result(for: .none)).to(beNil())
                 expect(result(for: .backspace)).to(beNil())
@@ -231,17 +231,17 @@ class KeyboardAction_SystemTests: QuickSpec {
                 let expectCallout = getActions([.emojiCategory(.smileys)])
                 let expectBody = getActions(
                     [.character("abc"),
-                     .done,
-                     .go,
                      .keyboardType(.alphabetic(.capsLocked)),
                      .keyboardType(.alphabetic(.lowercased)),
                      .keyboardType(.alphabetic(.uppercased)),
                      .keyboardType(.numeric),
                      .keyboardType(.symbolic),
                      .nextLocale,
-                     .ok,
+                     .primary(.done),
+                     .primary(.go),
+                     .primary(.ok),
+                     .primary(.search),
                      .return,
-                     .search,
                      .space])
                 var expectTitle2 = actions.filter { !expectTitle1.contains($0) && !expectCallout.contains($0) && !expectBody.contains($0) }
                 expectTitle2.append(.character(""))

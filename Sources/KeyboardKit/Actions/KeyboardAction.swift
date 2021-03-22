@@ -28,12 +28,10 @@ public enum KeyboardAction: Equatable {
         custom(name: String),
         dictation,
         dismissKeyboard,
-        done,
         emoji(Emoji),
         emojiCategory(_ category: EmojiCategory),
         escape,
         function,
-        go,
         image(description: String, keyboardImageName: String, imageName: String),
         keyboardType(KeyboardType),
         moveCursorBackward,
@@ -41,21 +39,32 @@ public enum KeyboardAction: Equatable {
         newLine,
         nextKeyboard,
         nextLocale,
-        ok,
         option,
+        primary(_ type: PrimaryType),
         `return`,
-        search,
         settings,
         shift(currentState: KeyboardCasing),
         space,
         systemImage(description: String, keyboardImageName: String, imageName: String),
         tab
+    
+    @available(*, deprecated, renamed: "primary")
+    case done, go, ok, search
 }
 
 
 // MARK: - Public Extensions
 
 public extension KeyboardAction {
+    
+    /**
+     This type can be used together with the `.primary` type.
+     A primary button is the color accented button that will
+     have the same effect as a return key.
+     */
+    enum PrimaryType: Equatable {
+        case done, go, ok, search
+    }
     
     /**
      Whether or not the action is an input action, which the
@@ -78,7 +87,7 @@ public extension KeyboardAction {
      */
     var isPrimaryAction: Bool {
         switch self {
-        case .done, .go, .ok, .search: return true
+        case .done, .go, .ok, .primary, .search: return true
         default: return false
         }
     }

@@ -28,7 +28,7 @@ class StandardKeyboardLayoutProviderTests: QuickSpec {
             inputProvider.symbolicInputSetValue = SymbolicKeyboardInputSet(rows: KeyboardInputRows([[",", ".", "-"], [",", ".", "-"], [",", ".", "-"]]))
             provider = StandardKeyboardLayoutProvider(
                 inputSetProvider: inputProvider,
-                dictationReplacement: .go)
+                dictationReplacement: .primary(.go))
         }
         
         

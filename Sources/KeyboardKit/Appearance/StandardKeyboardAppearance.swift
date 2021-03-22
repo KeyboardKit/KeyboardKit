@@ -71,8 +71,8 @@ struct StandardKeyboardAppearance_Previews: PreviewProvider {
     static var actions: [KeyboardAction] = [
         .character(""),
         .space,
-        .ok,
-        .go]
+        .primary(.ok),
+        .primary(.go)]
     
     static func view(for action: KeyboardAction) -> some View {
         Text("A")

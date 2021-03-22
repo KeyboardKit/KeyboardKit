@@ -142,9 +142,9 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
     open func keyboardReturnAction(for context: KeyboardContext) -> KeyboardAction {
         let type = context.textDocumentProxy.returnKeyType
         switch type {
-        case .done: return .done
-        case .go: return .go
-        case .search: return .search
+        case .done: return .primary(.done)
+        case .go: return .primary(.go)
+        case .search: return .primary(.search)
         default: return .return
         }
     }

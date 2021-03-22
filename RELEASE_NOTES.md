@@ -16,8 +16,14 @@ This version improves the layout engine.
 ### ✨ New features
 
 * `BaseKeyboardLayoutProvider` has a new, open `keyboardReturnAction(for:)` function.
+* `KeyboardAction.primary` is a new action type that gathers all primary action types. 
 * The iPhone and iPad layout providers can now be injected with locale-specific size providers that can customize the width of certain actions.
 * The iPhone and iPad layout providers now replaces `return` with `done`, `go` and `search` when applicable.
+
+### 🗑 Deprecated (removed in 5.0):
+
+* `KeyboardAction` `.done`, `.go`, `.ok` and `.search`  have been deprecated due to the new `primary` umbrella type.
+
 
 
 ## 4.1
