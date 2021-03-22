@@ -38,9 +38,8 @@ KeyboardKit Pro 4.1 also adds more locale-specific providers as well as a real a
 * `KeyboardLocale` has new `flag`, `id` and `localeIdentifier` properties.
 * `KeyboardInputViewController` has a new `autocompleteSuggestionProvider` property.
 * `KeyboardInputViewController` has now implemented `performAutocomplete` and `resetAutocomplete`.
-* `StandardKeyboardActionHandler` has a new `replacementAction` function.
 * `StandardKeyboardActionHandler` has a new `tryApplyAutocompleteSuggestion` function.
-* `StandardKeyboardActionHandler` has a new `tryHandleReplaceAction` function.
+* `StandardKeyboardActionHandler` has a new `tryHandleReplacementAction` function.
 * `StandardKeyboardActionHandler` has a new `tryReinsertAutocompleteRemovedSpace` function.
 * `StandardKeyboardActionHandler` has a new `tryRemoveAutocompleteInsertedSpace` function.
 * `SystemKeyboardSpaceButtonContent` has a new initializer that lets you inject a custom space view.

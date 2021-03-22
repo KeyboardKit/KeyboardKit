@@ -104,7 +104,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      Handle a certain `gesture` on a certain `action`
      */
     open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
-        if tryHandleReplaceAction(for: gesture, on: action) { return }
+        if tryHandleReplacementAction(before: gesture, on: action) { return }
         guard let gestureAction = self.action(for: gesture, on: action) else { return }
         tryRemoveAutocompleteInsertedSpace(before: gesture, on: action)
         tryApplyAutocompleteSuggestion(before: gesture, on: action)
@@ -198,7 +198,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         changeKeyboardTypeAction(newType)
     }
     
-    open func tryHandleReplaceAction(for gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
+    open func tryHandleReplacementAction(before gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
         let locale = keyboardContext.locale
         guard
             gesture == .tap,
