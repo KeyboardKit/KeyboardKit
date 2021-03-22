@@ -37,31 +37,30 @@ class UITextDocumentProxy_ReplaceTests: QuickSpec {
             describe("when proxy has no open quotation before input") {
                 
                 beforeEach {
-                    let a = "”“«»"
                     proxy.documentContextBeforeInput = "before"
                 }
                 
                 it("converts locale-specific end delimiters to begin delimiters") {
                     expect(result(for: "”", locale: .english)).to(equal("“"))
-                    expect(result(for: "”", locale: .swedish)).to(equal("”"))
+                    expect(result(for: "”", locale: .swedish)).to(beNil())
                     expect(result(for: "»", locale: .norwegian)).to(equal("«"))
                 }
                 
                 it("converts keyboard-specific end delimiters to begin delimiters") {
                     expect(result(for: "”", locale: .english)).to(equal("“"))
-                    expect(result(for: "”", locale: .swedish)).to(equal("”"))
+                    expect(result(for: "”", locale: .swedish)).to(beNil())
                     expect(result(for: "”", locale: .norwegian)).to(equal("«"))
                 }
                 
                 it("converts locale-specific alternate end delimiters to begin delimiters") {
                     expect(result(for: "’", locale: .english)).to(equal("‘"))
-                    expect(result(for: "’", locale: .swedish)).to(equal("’"))
+                    expect(result(for: "’", locale: .swedish)).to(beNil())
                     expect(result(for: "’", locale: .norwegian)).to(equal("‘"))
                 }
                 
                 it("converts keyboard-specific alternate end delimiters to begin delimiters") {
                     expect(result(for: "’", locale: .english)).to(equal("‘"))
-                    expect(result(for: "’", locale: .swedish)).to(equal("’"))
+                    expect(result(for: "’", locale: .swedish)).to(beNil())
                     expect(result(for: "’", locale: .norwegian)).to(equal("‘"))
                 }
             }
@@ -74,14 +73,14 @@ class UITextDocumentProxy_ReplaceTests: QuickSpec {
                 }
                 
                 it("converts locale-specific end delimiters to end delimiters") {
-                    expect(result(for: "”", locale: .english)).to(equal("”"))
-                    expect(result(for: "”", locale: .swedish)).to(equal("”"))
-                    expect(result(for: "»", locale: .norwegian)).to(equal("»"))
+                    expect(result(for: "”", locale: .english)).to(beNil())
+                    expect(result(for: "”", locale: .swedish)).to(beNil())
+                    expect(result(for: "»", locale: .norwegian)).to(beNil())
                 }
                 
                 it("converts keyboard-specific end delimiters to end delimiters") {
-                    expect(result(for: "”", locale: .english)).to(equal("”"))
-                    expect(result(for: "”", locale: .swedish)).to(equal("”"))
+                    expect(result(for: "”", locale: .english)).to(beNil())
+                    expect(result(for: "”", locale: .swedish)).to(beNil())
                     expect(result(for: "”", locale: .norwegian)).to(equal("»"))
                 }
             }
@@ -94,15 +93,15 @@ class UITextDocumentProxy_ReplaceTests: QuickSpec {
                 }
                 
                 it("converts locale-specific alternate end delimiters to alternate end delimiters") {
-                    expect(result(for: "’", locale: .english)).to(equal("’"))
-                    expect(result(for: "’", locale: .swedish)).to(equal("’"))
-                    expect(result(for: "’", locale: .norwegian)).to(equal("’"))
+                    expect(result(for: "’", locale: .english)).to(beNil())
+                    expect(result(for: "’", locale: .swedish)).to(beNil())
+                    expect(result(for: "’", locale: .norwegian)).to(beNil())
                 }
                 
                 it("converts keyboard-specific alternate end delimiters to alternate end delimiters") {
-                    expect(result(for: "’", locale: .english)).to(equal("’"))
-                    expect(result(for: "’", locale: .swedish)).to(equal("’"))
-                    expect(result(for: "’", locale: .norwegian)).to(equal("’"))
+                    expect(result(for: "’", locale: .english)).to(beNil())
+                    expect(result(for: "’", locale: .swedish)).to(beNil())
+                    expect(result(for: "’", locale: .norwegian)).to(beNil())
                 }
             }
         }

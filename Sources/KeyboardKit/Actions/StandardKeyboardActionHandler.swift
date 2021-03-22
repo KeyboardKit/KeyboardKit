@@ -164,12 +164,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Action Handling
     
-    open func replacementAction(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction? {
-        if let action = replacementQuotationAction(for: gesture, on: action) { return action }
-        if let action = replacementAlternateQuotationAction(for: gesture, on: action) { return action }
-        return nil
-    }
-    
     open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         if action == .backspace { return audioConfiguration.deleteFeedback.trigger() }
         if action.isInputAction { return audioConfiguration.inputFeedback.trigger() }
@@ -205,8 +199,14 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     open func tryHandleReplaceAction(for gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
-        guard let action = replacementAction(for: gesture, on: action) else { return false }
-        handle(gesture, on: action)
+        let locale = keyboardContext.locale
+        guard
+            gesture == .tap,
+            case let .character(char) = action,
+            let replacement = textDocumentProxy.preferredReplacement(for: char, locale: locale)
+            else { return false }
+        let newAction = KeyboardAction.character(replacement)
+        handle(.tap, on: newAction)
         return true
     }
     
@@ -240,30 +240,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
 // MARK: - Private Functions
 
 private extension StandardKeyboardActionHandler {
-
-    func replacementAlternateQuotationAction(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction? {
-        let locale = keyboardContext.locale
-        guard gesture == .tap else { return nil }
-        guard case let .character(char) = action else { return nil }
-        guard let beginDelimiter = locale.alternateQuotationBeginDelimiter else { return nil }
-        guard let endDelimiter = locale.alternateQuotationEndDelimiter else { return nil }
-        guard beginDelimiter != endDelimiter else { return nil }
-        guard char == endDelimiter || char == "’" else { return nil }
-        guard !textDocumentProxy.isOpenAlternateQuotationBeforeInput(for: locale) else { return nil }
-        return .character(beginDelimiter)
-    }
-    
-    func replacementQuotationAction(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction? {
-        let locale = keyboardContext.locale
-        guard gesture == .tap else { return nil }
-        guard case let .character(char) = action else { return nil }
-        guard let beginDelimiter = locale.quotationBeginDelimiter else { return nil }
-        guard let endDelimiter = locale.quotationEndDelimiter else { return nil }
-        guard beginDelimiter != endDelimiter else { return nil }
-        guard char == endDelimiter || char == "”" else { return nil }
-        guard !textDocumentProxy.isOpenQuotationBeforeInput(for: locale) else { return nil }
-        return .character(beginDelimiter)
-    }
     
     func tryStartNewSpaceCursorDragGesture(from startLocation: CGPoint, to currentLocation: CGPoint) {
         let isNewDrag = currentDragStartLocation != startLocation

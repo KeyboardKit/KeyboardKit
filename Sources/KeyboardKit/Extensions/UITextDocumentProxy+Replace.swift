@@ -36,12 +36,14 @@ private extension UITextDocumentProxy {
     func preferredAlternateQuotationReplacement(for text: String, locale: Locale) -> String? {
         guard isAlternateEndDelimiter(text, for: locale) else { return nil }
         let isOpen = isOpenAlternateQuotationBeforeInput(for: locale)
-        return isOpen ? locale.alternateQuotationEndDelimiter : locale.alternateQuotationBeginDelimiter
+        let replacement = isOpen ? locale.alternateQuotationEndDelimiter : locale.alternateQuotationBeginDelimiter
+        return replacement != text ? replacement : nil
     }
     
     func preferredQuotationReplacement(for text: String, locale: Locale) -> String? {
         guard isEndDelimiter(text, for: locale) else { return nil }
         let isOpen = isOpenQuotationBeforeInput(for: locale)
-        return isOpen ? locale.quotationEndDelimiter : locale.quotationBeginDelimiter
+        let replacement = isOpen ? locale.quotationEndDelimiter : locale.quotationBeginDelimiter
+        return replacement != text ? replacement : nil
     }
 }
