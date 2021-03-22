@@ -15,10 +15,9 @@ import Foundation
  */
 public enum KeyboardLocale: String, CaseIterable, Identifiable {
     
-    case english = "en"
-    
     case danish = "da"
     case dutch = "nl"
+    case english = "en"
     case finnish = "fi"
     case german = "de"
     case italian = "it"
@@ -62,5 +61,25 @@ public extension KeyboardLocale {
         case .norwegian: return "🇳🇴"
         case .swedish: return "🇸🇪"
         }
+    }
+}
+
+public extension Collection where Element == KeyboardLocale {
+    
+    /**
+     Sort the collection by the localized name of every item.
+     */
+    func sorted() -> [Element] {
+        sorted { $0.localizedName.lowercased() < $1.localizedName.lowercased() }
+    }
+    
+    /**
+     Sort the collection by the localized name of every item,
+     then insert a certain locale firstmost.
+     */
+    func sorted(insertFirst locale: Element) -> [Element] {
+        var res = sorted().filter { $0 != locale }
+        res.insert(locale, at: 0)
+        return res
     }
 }

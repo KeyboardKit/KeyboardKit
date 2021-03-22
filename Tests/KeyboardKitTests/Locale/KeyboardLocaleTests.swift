@@ -69,5 +69,38 @@ class KeyboardLocaleTests: QuickSpec {
                 expect(result(for: .swedish)).to(equal("🇸🇪"))
             }
         }
+        
+        describe("sorted by localized name") {
+            
+            it("is valid for all cases") {
+                let locales = KeyboardLocale.allCases.sorted()
+                let names = locales.map { $0.localizedName.capitalized }
+                expect(names).to(equal([
+                    "Dansk",
+                    "Deutsch",
+                    "English",
+                    "Italiano",
+                    "Nederlands",
+                    "Norsk Bokmål",
+                    "Suomi",
+                    "Svenska"
+                ]))
+            }
+            
+            it("can insert an existing locale firstmost") {
+                let locales = KeyboardLocale.allCases.sorted(insertFirst: .english)
+                let names = locales.map { $0.localizedName.capitalized }
+                expect(names).to(equal([
+                    "English",
+                    "Dansk",
+                    "Deutsch",
+                    "Italiano",
+                    "Nederlands",
+                    "Norsk Bokmål",
+                    "Suomi",
+                    "Svenska"
+                ]))
+            }
+        }
     }
 }
