@@ -202,9 +202,9 @@ private class TestClass: StandardKeyboardActionHandler, Mockable {
 
     var mock = Mock()
 
-    lazy var handleRef = MockReference(handle as (KeyboardGesture, KeyboardAction) -> ())
-    lazy var triggerAudioFeedbackRef = MockReference(triggerAudioFeedback as (KeyboardGesture, KeyboardAction) -> ())
-    lazy var triggerHapticFeedbackRef = MockReference(triggerHapticFeedback as (KeyboardGesture, KeyboardAction) -> ())
+    lazy var handleRef = MockReference(handle as (KeyboardGesture, KeyboardAction) -> Void)
+    lazy var triggerAudioFeedbackRef = MockReference(triggerAudioFeedback as (KeyboardGesture, KeyboardAction) -> Void)
+    lazy var triggerHapticFeedbackRef = MockReference(triggerHapticFeedback as (KeyboardGesture, KeyboardAction) -> Void)
     lazy var tryChangeKeyboardTypeRef = MockReference(tryChangeKeyboardType)
     lazy var tryEndSentenceRef = MockReference(tryEndSentence)
     lazy var tryRegisterEmojiRef = MockReference(tryRegisterEmoji)
