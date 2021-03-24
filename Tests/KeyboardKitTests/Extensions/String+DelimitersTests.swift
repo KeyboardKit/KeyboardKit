@@ -29,11 +29,11 @@ class String_DelimitersTests: QuickSpec {
             }
             
             it("provides sentence delimiters") {
-                expect(String.sentenceDelimiters).to(equal(["!", ".", "?", "\n"]))
+                expect(String.sentenceDelimiters).to(equal(["!", ".", "?"]))
             }
             
             it("provides word delimiters") {
-                expect(String.wordDelimiters).to(equal(["!", ".", "?", "\n", ",", ";", ":", " "]))
+                expect(String.wordDelimiters).to(equal(["!", ".", "?", ",", ";", ":", "\n", " "]))
             }
         }
     }

@@ -28,13 +28,13 @@ public extension String {
      A list of western sentence delimiters.
      */
     static var sentenceDelimiters: [String] {
-        ["!", ".", "?", "\n"]
+        ["!", ".", "?"]
     }
     
     /**
      A list of western word delimiters.
      */
     static var wordDelimiters: [String] {
-        sentenceDelimiters + [",", ";", ":", " "]
+        sentenceDelimiters + [",", ";", ":", "\n", " "]
     }
 }

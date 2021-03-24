@@ -114,7 +114,7 @@ class UITextDocumentProxy_ContentTests: QuickSpec {
             
             it("is correctly setup") {
                 let result = proxy.sentenceDelimiters
-                expect(result).to(equal(["!", ".", "?", "\n"]))
+                expect(result).to(equal(["!", ".", "?"]))
             }
         }
         
@@ -138,7 +138,7 @@ class UITextDocumentProxy_ContentTests: QuickSpec {
             
             it("is correctly setup") {
                 let result = proxy.wordDelimiters
-                expect(result).to(equal(["!", ".", "?", "\n", ",", ";", ":", " "]))
+                expect(result).to(equal(["!", ".", "?", ",", ";", ":", "\n", " "]))
             }
         }
     }

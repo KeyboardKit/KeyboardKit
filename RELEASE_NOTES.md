@@ -20,9 +20,13 @@ This version improves the layout engine.
 * The iPhone and iPad layout providers can now be injected with locale-specific size providers that can customize the width of certain actions.
 * The iPhone and iPad layout providers now replaces `return` with `done`, `go` and `search` when applicable.
 
+### 💡 Changed behavior
+
+* New line is now considered to be a `word` delimiter instead of a `sentence` delimiter.
+
 ### 🗑 Deprecated (removed in 5.0):
 
-* `KeyboardAction` `.done`, `.go`, `.ok` and `.search`  have been deprecated due to the new `primary` umbrella type.
+* `KeyboardAction` `.done`, `.go`, `.ok` and `.search`  have been deprecated and replaced with the new `primary` umbrella type.
 
 
 
@@ -37,7 +41,6 @@ This version adds support for `danish`, `finnish`, `norwegian` and `dutch`.
 This version also adds many new features aimed at an improved autocomplete experience.
 
 KeyboardKit Pro 4.1 also adds more locale-specific providers as well as a real autocomplete engine.
-
 
 ### ✨ New features
 
@@ -158,7 +161,6 @@ It's time for `SwiftUI` to rise and become the unrelenting force we always knew 
 SwiftUI support is a first-class citizen from now on. `UIKit` support is still around, but will no longer be actively developed. The future is a bright, declarative one!
 
 Although these release notes aim at covering everything that has changes in this major version, some things will most probably be missed.
-
 
 ### ✨ New features
 
