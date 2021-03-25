@@ -17,6 +17,7 @@ This version improves the layout engine.
 
 * `BaseKeyboardLayoutProvider` has a new, open `keyboardReturnAction(for:)` function.
 * `KeyboardAction.primary` is a new action type that gathers all primary action types.
+* `KKL10n` has new `text(for:)` functions that let you translate keys for specific contexts and locales. 
 * `String+sentenceDelimiters` and `wordDelimiters` can now be modified, if you have specific needs. 
 * The iPhone and iPad layout providers can now be injected with locale-specific size providers that can customize the width of certain actions.
 * The iPhone and iPad layout providers now replaces `return` with `done`, `go` and `search` when applicable.
