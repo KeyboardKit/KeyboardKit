@@ -35,19 +35,30 @@ public extension KKL10n {
     }
     
     func text(for context: KeyboardContext) -> String {
-        text(for: context.locale.identifier)
+        text(for: context.locale)
     }
     
     func text(for locale: KeyboardLocale) -> String {
-        text(for: locale.id)
+        text(for: locale.locale)
     }
     
-    func text(for language: String) -> String {
+    func text(for locale: Locale) -> String {
         guard
-            let bundlePath = Bundle.module.path(forResource: language, ofType: "lproj"),
+            let bundlePath = Bundle.module.bundlePath(for: locale),
             let bundle = Bundle(path: bundlePath)
         else { return "" }
         return NSLocalizedString(key, bundle: bundle, comment: "")
+    }
+}
+
+private extension Bundle {
+    
+    func bundlePath(for locale: Locale) -> String? {
+        bundlePath(named: locale.identifier) ?? bundlePath(named: locale.languageCode)
+    }
+    
+    func bundlePath(named name: String?) -> String? {
+        path(forResource: name ?? "", ofType: "lproj")
     }
 }
 
