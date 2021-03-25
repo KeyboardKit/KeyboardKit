@@ -26,15 +26,17 @@ public extension String {
     
     /**
      A list of western sentence delimiters.
+     
+     You can change this list to change how your keyboard is
+     handling things like sentence closing, autocomplete etc.
      */
-    static var sentenceDelimiters: [String] {
-        ["!", ".", "?"]
-    }
+    static var sentenceDelimiters = ["!", ".", "?"]
     
     /**
      A list of western word delimiters.
+     
+     You can change this list to change how your keyboard is
+     handling things like sentence closing, autocomplete etc.
      */
-    static var wordDelimiters: [String] {
-        sentenceDelimiters + [",", ";", ":", "\n", " "]
-    }
+    static var wordDelimiters = ["!", ".", "?", ",", ";", ":", "\n", " "]
 }

@@ -22,7 +22,7 @@ class KeyboardLayoutItemRowTests: QuickSpec {
         beforeEach {
             let size = KeyboardLayoutItemSize(width: .available, height: 100)
             let insets = EdgeInsets()
-            item = KeyboardLayoutItem(action: .done, size: size, insets: insets)
+            item = KeyboardLayoutItem(action: .primary(.done), size: size, insets: insets)
             let item1 = KeyboardLayoutItem(action: .command, size: size, insets: insets)
             let item2 = KeyboardLayoutItem(action: .space, size: size, insets: insets)
             let item3 = KeyboardLayoutItem(action: .backspace, size: size, insets: insets)
@@ -49,12 +49,12 @@ class KeyboardLayoutItemRowTests: QuickSpec {
                 
                 it("can insert item after first item") {
                     row.insert(item, after: .command)
-                    expect(rowActions).to(equal([.command, .done, .space, .backspace]))
+                    expect(rowActions).to(equal([.command, .primary(.done), .space, .backspace]))
                 }
                 
                 it("can insert item after last item") {
                     row.insert(item, after: .backspace)
-                    expect(rowActions).to(equal([.command, .space, .backspace, .done]))
+                    expect(rowActions).to(equal([.command, .space, .backspace, .primary(.done)]))
                 }
             }
             
@@ -67,12 +67,12 @@ class KeyboardLayoutItemRowTests: QuickSpec {
                 
                 it("can insert item before first item") {
                     row.insert(item, before: .command)
-                    expect(rowActions).to(equal([.done, .command, .space, .backspace]))
+                    expect(rowActions).to(equal([.primary(.done), .command, .space, .backspace]))
                 }
                 
                 it("can insert item before last item") {
                     row.insert(item, before: .backspace)
-                    expect(rowActions).to(equal([.command, .space, .done, .backspace]))
+                    expect(rowActions).to(equal([.command, .space, .primary(.done), .backspace]))
                 }
             }
         }
@@ -89,7 +89,7 @@ class KeyboardLayoutItemRowTests: QuickSpec {
                 
                 it("can insert item after item at first row") {
                     rows.insert(item, after: .command, atRow: 0)
-                    expect(rowsActions[0]).to(equal([.command, .done, .space, .backspace]))
+                    expect(rowsActions[0]).to(equal([.command, .primary(.done), .space, .backspace]))
                     expect(rowsActions[1]).to(equal(rowActions))
                     expect(rowsActions[2]).to(equal(rowActions))
                 }
@@ -98,7 +98,7 @@ class KeyboardLayoutItemRowTests: QuickSpec {
                     rows.insert(item, after: .backspace, atRow: 2)
                     expect(rowsActions[0]).to(equal(rowActions))
                     expect(rowsActions[1]).to(equal(rowActions))
-                    expect(rowsActions[2]).to(equal([.command, .space, .backspace, .done]))
+                    expect(rowsActions[2]).to(equal([.command, .space, .backspace, .primary(.done)]))
                 }
             }
             
@@ -112,7 +112,7 @@ class KeyboardLayoutItemRowTests: QuickSpec {
                 
                 it("can insert item before item at first row") {
                     rows.insert(item, before: .command, atRow: 0)
-                    expect(rowsActions[0]).to(equal([.done, .command, .space, .backspace]))
+                    expect(rowsActions[0]).to(equal([.primary(.done), .command, .space, .backspace]))
                     expect(rowsActions[1]).to(equal(rowActions))
                     expect(rowsActions[2]).to(equal(rowActions))
                 }
@@ -121,7 +121,7 @@ class KeyboardLayoutItemRowTests: QuickSpec {
                     rows.insert(item, before: .backspace, atRow: 2)
                     expect(rowsActions[0]).to(equal(rowActions))
                     expect(rowsActions[1]).to(equal(rowActions))
-                    expect(rowsActions[2]).to(equal([.command, .space, .done, .backspace]))
+                    expect(rowsActions[2]).to(equal([.command, .space, .primary(.done), .backspace]))
                 }
             }
         }

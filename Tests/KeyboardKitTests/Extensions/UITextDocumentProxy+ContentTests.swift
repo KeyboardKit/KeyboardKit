@@ -112,9 +112,8 @@ class UITextDocumentProxy_ContentTests: QuickSpec {
         
         describe("sentence delimiter list") {
             
-            it("is correctly setup") {
-                let result = proxy.sentenceDelimiters
-                expect(result).to(equal(["!", ".", "?"]))
+            it("is shorthand to static String property") {
+                expect(proxy.sentenceDelimiters).to(equal(String.sentenceDelimiters))
             }
         }
         
@@ -136,9 +135,8 @@ class UITextDocumentProxy_ContentTests: QuickSpec {
         
         describe("word delimiter list") {
             
-            it("is correctly setup") {
-                let result = proxy.wordDelimiters
-                expect(result).to(equal(["!", ".", "?", ",", ";", ":", "\n", " "]))
+            it("is shorthand to static String property") {
+                expect(proxy.wordDelimiters).to(equal(String.wordDelimiters))
             }
         }
     }
