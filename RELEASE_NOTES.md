@@ -25,6 +25,7 @@ This version improves the layout engine.
 ### 💡 Changed behavior
 
 * New line is now considered to be a `word` delimiter instead of a `sentence` delimiter.
+* Due to the new ways to localize content, some signatures must be changed to optional strings.
 
 ### 🗑 Deprecated (removed in 5.0):
 

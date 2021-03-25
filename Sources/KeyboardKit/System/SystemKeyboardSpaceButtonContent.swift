@@ -17,7 +17,7 @@ public struct SystemKeyboardSpaceButtonContent: View {
     
     public init(
         localeText: String? = nil,
-        spaceText: String = KKL10n.space.text) {
+        spaceText: String? = nil) {
         self.localeText = localeText
         self.spaceText = spaceText
         self.spaceView = nil
@@ -37,10 +37,12 @@ public struct SystemKeyboardSpaceButtonContent: View {
     
     private var action: KeyboardAction { .space }
     
+    private var locale: Locale { context.locale }
+    
     private static var lastLocaleText: String?
     
     private var localeDisplayText: String {
-        localeText ??  context.locale.localizedString(forLanguageCode: context.locale.languageCode ?? "en") ?? ""
+        localeText ??  locale.localizedString(forLanguageCode: locale.languageCode ?? "en") ?? ""
     }
     
     @State private var showLocale = true
@@ -68,7 +70,8 @@ private extension SystemKeyboardSpaceButtonContent {
         if let view = spaceView {
             view
         } else {
-            SystemKeyboardButtonContent(action: action, text: spaceText)
+            let text = spaceText ?? KKL10n.space.text(for: context)
+            SystemKeyboardButtonContent(action: action, text: text)
         }
     }
 }
@@ -91,9 +94,12 @@ private extension SystemKeyboardSpaceButtonContent {
 
 struct SystemKeyboardSpaceButtonContent_Previews: PreviewProvider {
     
+    static var context = KeyboardContext.preview
+    
     static var previews: some View {
         SystemKeyboardSpaceButtonContent(
             localeText: nil,
-            spaceText: "space").environmentObject(KeyboardContext(controller: .preview))
+            spaceText: "space")
+            .environmentObject(context)
     }
 }

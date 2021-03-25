@@ -25,15 +25,16 @@ public struct SystemKeyboardSpaceButton: View {
     
     public init(
         localeText: String? = nil,
-        spaceText: String = KKL10n.space.text,
+        spaceText: String? = nil,
         actionHandler: KeyboardActionHandler,
         appearance: KeyboardAppearance) {
-        self.content = SystemKeyboardSpaceButtonContent(localeText: localeText, spaceText: spaceText)
+        self.content = SystemKeyboardSpaceButtonContent(localeText: localeText, spaceText: "")
         self.actionHandler = actionHandler
         self.appearance = appearance
+        self.content = SystemKeyboardSpaceButtonContent(localeText: localeText , spaceText: spaceText ?? KKL10n.space.text(for: context))
     }
     
-    private let content: SystemKeyboardSpaceButtonContent
+    private var content: SystemKeyboardSpaceButtonContent
     private let actionHandler: KeyboardActionHandler
     private let appearance: KeyboardAppearance
     private var action: KeyboardAction { .space }
@@ -53,5 +54,16 @@ public struct SystemKeyboardSpaceButton: View {
                 context: context,
                 isPressed: $isPressed,
                 actionHandler: actionHandler)
+    }
+}
+
+struct SystemKeyboardSpaceButton_Previews: PreviewProvider {
+    
+    static let actionHandler = PreviewKeyboardActionHandler()
+    static let appearance = PreviewKeyboardAppearance()
+    
+    static var previews: some View {
+        SystemKeyboardSpaceButton(actionHandler: actionHandler, appearance: appearance)
+            .environmentObject(KeyboardContext.preview)
     }
 }

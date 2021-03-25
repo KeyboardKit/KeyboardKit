@@ -1,3 +1,11 @@
+//
+//  KKL10n.swift
+//  KeyboardKit
+//
+//  Created by Daniel Saidi on 2021-02-25.
+//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//
+
 import SwiftUI
 
 /**
@@ -14,24 +22,27 @@ public enum KKL10n: String, CaseIterable, Identifiable {
         `return`,
         search,
         space
+}
+
+public extension KKL10n {
     
-    public var id: String { rawValue }
+    var id: String { rawValue }
     
-    public var key: String { rawValue }
+    var key: String { rawValue }
     
-    public var text: String {
+    var text: String {
         NSLocalizedString(key, bundle: .module, comment: "")
     }
     
-    public func text(for context: KeyboardContext) -> String {
+    func text(for context: KeyboardContext) -> String {
         text(for: context.locale.identifier)
     }
     
-    public func text(for locale: KeyboardLocale) -> String {
+    func text(for locale: KeyboardLocale) -> String {
         text(for: locale.id)
     }
     
-    public func text(for language: String) -> String {
+    func text(for language: String) -> String {
         guard
             let bundlePath = Bundle.module.path(forResource: language, ofType: "lproj"),
             let bundle = Bundle(path: bundlePath)
@@ -40,7 +51,7 @@ public enum KKL10n: String, CaseIterable, Identifiable {
     }
 }
 
-struct L10n_Previews: PreviewProvider {
+struct KKL10n_Previews: PreviewProvider {
     
     static let context: KeyboardContext = {
         let context = KeyboardContext.preview
@@ -64,6 +75,5 @@ struct L10n_Previews: PreviewProvider {
                 }
             }.navigationBarTitle("Translations")
         }
-        .environment(\.locale, Locale(identifier: "sv"))
     }
 }
