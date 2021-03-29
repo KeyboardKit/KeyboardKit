@@ -59,6 +59,19 @@ open class KeyboardInputViewController: UIInputViewController {
         keyboardContext.textDocumentProxy = textDocumentProxy
     }
     
+    /**
+     This is boilerplate code for retrieving text input mode
+     from the active input modes, given the context's locale.
+     However, since the context syncs the input mode and the
+     code uses the context, we get a death loop. Solve this.
+     */
+    //    override var textInputMode: UITextInputMode? {
+    //        guard let languageCode = keyboardContext.locale.languageCode else { return super.textInputMode }
+    //        let modes = UITextInputMode.activeInputModes
+    //        let match = modes.first { $0.primaryLanguage?.hasPrefix(languageCode) == true }
+    //        return match ?? super.textInputMode
+    //    }
+    
     
     // MARK: - Setup
 

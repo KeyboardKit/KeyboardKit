@@ -22,6 +22,10 @@ This version improves the layout engine.
 * The iPhone and iPad layout providers can now be injected with locale-specific size providers that can customize the width of certain actions.
 * The iPhone and iPad layout providers now replaces `return` with `done`, `go` and `search` when applicable.
 
+### 🐛 Bug fixes
+
+* English (US) secondary actions now include actions for `$`. 
+
 ### 💡 Changed behavior
 
 * New line is now considered to be a `word` delimiter instead of a `sentence` delimiter.
