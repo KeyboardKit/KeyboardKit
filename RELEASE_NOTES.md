@@ -16,6 +16,8 @@ This version improves the layout engine.
 ### ✨ New features
 
 * `BaseKeyboardLayoutProvider` has a new, open `keyboardReturnAction(for:)` function.
+* `KeyboardAction` has a new `standardTextDocumentProxyAction`.
+* `KeyboardAction` has a new `standardTextDocumentProxyInputAction`.
 * `KeyboardAction.primary` is a new action type that gathers all primary action types.
 * `KKL10n` has new `text(for:)` functions that let you translate keys for specific contexts and locales. 
 * `String+sentenceDelimiters` and `wordDelimiters` can now be modified, if you have specific needs. 
