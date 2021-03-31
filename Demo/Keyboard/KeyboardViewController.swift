@@ -36,36 +36,33 @@ class KeyboardViewController: KeyboardInputViewController {
         super.viewDidLoad()
         
         // Setup a demo-specific autocomplete provider
+        // 💡 You can create your own autocomplete providers
         // 💡 This is overwritten if Pro is registered below
         autocompleteSuggestionProvider = DemoAutocompleteSuggestionProvider()
         
         // Setup the demo to explicitly use English locale
-        // 💡 The demo has additional Swedish support
+        // 💡 This is already done and just here to show how
         // 💡 If you register Pro below, you get all locales
         keyboardContext.locale = KeyboardLocale.english.locale
         
         // Setup the locales that the keyboard supports
-        // 💡 This is the order in which locales are listed
+        // 💡 This is already done and just here to show how
         // 💡 This is overwritten if Pro is registered below
-        keyboardContext.locales = [
-            KeyboardLocale.english.locale,
-            KeyboardLocale.swedish.locale
-        ]
+        keyboardContext.locales = [KeyboardLocale.english.locale]
         
         // Setup a custom, demo-specific action handler
-        // 💡 Use custom handlers to handle custom logic
+        // 💡 Custom action handlers can handle custom logic
         keyboardActionHandler = DemoKeyboardActionHandler(
             inputViewController: self,
             toastContext: toastContext)
         
-        // Setup an input set provider with multiple locales
-        // 💡 An input set specifies the keyboard input keys
+        // Setup an input set provider
+        // 💡 This is already done and just here to show how
+        // 💡 A keyboard input set specifies "input" actions
         // 💡 This is overwritten if Pro is registered below
         keyboardInputSetProvider = StandardKeyboardInputSetProvider(
             context: keyboardContext,
-            providers: [
-                EnglishKeyboardInputSetProvider(),
-                SwedishKeyboardInputSetProvider()])
+            providers: [EnglishKeyboardInputSetProvider()])
         
         // Setup a layout with .emojis instead of .dictation
         // 💡 A keyboard layout specifies the all keys/sizes
@@ -73,21 +70,21 @@ class KeyboardViewController: KeyboardInputViewController {
             inputSetProvider: keyboardInputSetProvider,
             dictationReplacement: .keyboardType(.emojis))
         
-        // Setup a secondary callout action provider with multiple locales
+        // Setup a secondary callout action provider
+        // 💡 This is already done and just here to show how
         // 💡 This is overwritten if Pro is registered below
         keyboardSecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider(
             context: keyboardContext,
-            providers: [
-                EnglishSecondaryCalloutActionProvider(),
-                SwedishSecondaryCalloutActionProvider()])
+            providers: [EnglishSecondaryCalloutActionProvider()])
         
         // keyboardAppearance can be used to style keyboards
-        // keyboardAppearance = ColorTheme(context: keyboardContext)
+        // This demo will soon demonstrate a color theme
+        // keyboardAppearance = <Insert your own custom appearance>
         // view.backgroundColor = UIColor(keyboardAppearance.keyboardBackgroundColor)
         
         // Setup the extension to use the keyboardView below
-        // 💡 Enable this line to run demo without Pro mode.
-        // setup(with: keyboardView)
+        // 💡 This is overwritten if Pro is registered below
+        setup(with: keyboardView)
 
         // Setup KeyboardKit Pro. This unlocks more features.
         // 💡 Disable this line to run demo without Pro mode.

@@ -57,8 +57,6 @@
 		A921164F25D5BA85003510D9 /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A921164225D5BA85003510D9 /* SourceSansPro-Bold.ttf */; };
 		A921166225D5BC2A003510D9 /* EditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921166125D5BC2A003510D9 /* EditScreen.swift */; };
 		A921166725D5BC4F003510D9 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921166625D5BC4F003510D9 /* MultilineTextField.swift */; };
-		A951A49425E015110022385A /* SwedishSecondaryCalloutActionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A951A49125E015110022385A /* SwedishSecondaryCalloutActionProvider.swift */; };
-		A951A49525E015110022385A /* SwedishKeyboardInputSetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A951A49325E015110022385A /* SwedishKeyboardInputSetProvider.swift */; };
 		A951A49B25E016660022385A /* DemoKeyboardLayoutProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A951A49A25E016660022385A /* DemoKeyboardLayoutProvider.swift */; };
 /* End PBXBuildFile section */
 
@@ -139,8 +137,6 @@
 		A921164225D5BA85003510D9 /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
 		A921166125D5BC2A003510D9 /* EditScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScreen.swift; sourceTree = "<group>"; };
 		A921166625D5BC4F003510D9 /* MultilineTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
-		A951A49125E015110022385A /* SwedishSecondaryCalloutActionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwedishSecondaryCalloutActionProvider.swift; sourceTree = "<group>"; };
-		A951A49325E015110022385A /* SwedishKeyboardInputSetProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwedishKeyboardInputSetProvider.swift; sourceTree = "<group>"; };
 		A951A49A25E016660022385A /* DemoKeyboardLayoutProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboardLayoutProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -211,8 +207,6 @@
 			children = (
 				A921157F25D5910D003510D9 /* Assets */,
 				A9FDAA0926025DF600E628C3 /* Demo */,
-				A951A49025E015110022385A /* Callouts */,
-				A951A49225E015110022385A /* Input */,
 				A921155A25D58E4A003510D9 /* Supporting Files */,
 				A921157925D59071003510D9 /* ImageKeyboard.swift */,
 				A921157525D5906A003510D9 /* KeyboardView.swift */,
@@ -341,22 +335,6 @@
 				A921166625D5BC4F003510D9 /* MultilineTextField.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		A951A49025E015110022385A /* Callouts */ = {
-			isa = PBXGroup;
-			children = (
-				A951A49125E015110022385A /* SwedishSecondaryCalloutActionProvider.swift */,
-			);
-			path = Callouts;
-			sourceTree = "<group>";
-		};
-		A951A49225E015110022385A /* Input */ = {
-			isa = PBXGroup;
-			children = (
-				A951A49325E015110022385A /* SwedishKeyboardInputSetProvider.swift */,
-			);
-			path = Input;
 			sourceTree = "<group>";
 		};
 		A98912BF25DE5D81007F4DFE /* Screens */ = {
@@ -581,9 +559,7 @@
 				A921153C25D58AC7003510D9 /* KeyboardViewController.swift in Sources */,
 				A921157A25D59071003510D9 /* ImageKeyboard.swift in Sources */,
 				A951A49B25E016660022385A /* DemoKeyboardLayoutProvider.swift in Sources */,
-				A951A49425E015110022385A /* SwedishSecondaryCalloutActionProvider.swift in Sources */,
 				A921156F25D5902F003510D9 /* DemoAutocompleteSuggestionProvider.swift in Sources */,
-				A951A49525E015110022385A /* SwedishKeyboardInputSetProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
