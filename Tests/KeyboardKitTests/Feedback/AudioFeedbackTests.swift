@@ -8,17 +8,16 @@
 
 import Quick
 import Nimble
-import MockingKit
-@testable import KeyboardKit
+import KeyboardKit
 
-class AudioFeedbackTest: QuickSpec {
+class AudioFeedbackTests: QuickSpec {
     
     override func spec() {
         
-        var player: MockPlayer!
+        var player: MockSystemAudioPlayer!
         
         beforeEach {
-            player = MockPlayer()
+            player = MockSystemAudioPlayer()
             AudioFeedback.player = player
         }
         
@@ -48,15 +47,5 @@ class AudioFeedbackTest: QuickSpec {
                 expect(calls[1].arguments).to(equal(124))
             }
         }
-    }
-}
-
-
-private class MockPlayer: Mock, SystemAudioPlayer {
-    
-    lazy var playSystemAudioRef = MockReference(playSystemAudio)
-    
-    func playSystemAudio(_ id: UInt32) {
-        call(playSystemAudioRef, args: (id))
     }
 }
