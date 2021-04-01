@@ -78,6 +78,14 @@ public class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
     }
     
     /**
+     Trigger feedback for when space is pressed so long that
+     it enters cursor drag state.
+     */
+    open func triggerFeedbackForLongPressOnSpaceDragGesture() {
+        hapticConfig.longPressOnSpaceFeedback.trigger()
+    }
+    
+    /**
      Trigger feedback for when a `gesture` is performed on a
      certain `action`.
      */

@@ -32,7 +32,7 @@ class StandardKeyboardFeedbackHandlerTests: QuickSpec {
             
             handler = StandardKeyboardFeedbackHandler(settings: FeedbackSettings())
             
-            AudioFeedback.systemPlayer = audioPlayer
+            AudioFeedback.player = audioPlayer
             HapticFeedback.player = hapticPlayer
         }
         
@@ -89,6 +89,15 @@ class StandardKeyboardFeedbackHandlerTests: QuickSpec {
             it("triggers audio and haptic feedback") {
                 handler.triggerFeedback(for: .press, on: .backspace)
                 expect(audioPlayer.hasCalled(audioPlayer.playSystemAudioRef)).to(beTrue())
+                expect(hapticPlayer.hasCalled(hapticPlayer.playRef)).to(beTrue())
+            }
+        }
+        
+        describe("trigger feedback for long press on space drag gesture") {
+            
+            it("triggers haptic feedback") {
+                handler.triggerFeedbackForLongPressOnSpaceDragGesture()
+                expect(audioPlayer.hasCalled(audioPlayer.playSystemAudioRef)).to(beFalse())
                 expect(hapticPlayer.hasCalled(hapticPlayer.playRef)).to(beTrue())
             }
         }

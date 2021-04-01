@@ -40,6 +40,12 @@ public protocol KeyboardFeedbackHandler {
      will behave for a certain action.
      */
     func triggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction)
+    
+    /**
+     Trigger feedback for when space is pressed so long that
+     it enters cursor drag state.
+     */
+    func triggerFeedbackForLongPressOnSpaceDragGesture()
  
     /**
      Trigger feedback for when a `gesture` is performed on a

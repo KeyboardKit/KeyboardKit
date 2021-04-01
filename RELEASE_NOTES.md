@@ -36,8 +36,8 @@ It also moves feedback from the standard keyboard action handler to a new feedba
 
 ### 🚚 Structure changes
 
-* `Audio` has been moved into `Feedback`.
-* `Haptics` has been moved into `Feedback`.
+* Audio feedback types have been moved into `Feedback`.
+* Haptic feedback types have been moved into `Feedback`.
 
 ### 🗑 Deprecated (removed in 5.0):
 
