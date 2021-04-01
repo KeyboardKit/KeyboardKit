@@ -112,6 +112,8 @@ class KeyboardInputViewControllerTests: QuickSpec {
                 expect(vc.keyboardContext.keyboardType).to(equal(.alphabetic(.lowercased)))
                 expect(vc.keyboardContext.needsInputModeSwitchKey).to(beFalse())
                 expect(vc.keyboardContext.textDocumentProxy).to(be(vc.textDocumentProxy))
+                expect(vc.keyboardFeedbackSettings.audioConfiguration).to(equal(.standard))
+                expect(vc.keyboardFeedbackSettings.hapticConfiguration).to(equal(.standard))
                 expect(vc.keyboardInputCalloutContext.buttonFrame).to(equal(.zero))
                 expect(vc.keyboardSecondaryInputCalloutContext.buttonFrame).to(equal(.zero))
             }

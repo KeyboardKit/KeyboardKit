@@ -82,8 +82,8 @@ open class KeyboardInputViewController: UIInputViewController {
         self.view.subviews.forEach { $0.removeFromSuperview() }
         let view = view
             .environmentObject(autocompleteContext)
-            .environmentObject(feedbackSettings)
             .environmentObject(keyboardContext)
+            .environmentObject(keyboardFeedbackSettings)
             .environmentObject(keyboardInputCalloutContext)
             .environmentObject(keyboardSecondaryInputCalloutContext)
         let host = KeyboardHostingController(rootView: view)
@@ -130,27 +130,27 @@ open class KeyboardInputViewController: UIInputViewController {
     // MARK: - Observables
     
     /**
-     The default observable autocomplete context.
+     The default, observable autocomplete context.
      */
     public lazy var autocompleteContext = AutocompleteContext()
     
     /**
-     The default observable feedback settings.
-     */
-    public lazy var feedbackSettings = KeyboardFeedbackSettings()
-    
-    /**
-     The default observable keyboard context.
+     The default, observable keyboard context.
      */
     public lazy var keyboardContext = KeyboardContext(controller: self)
     
     /**
-     The default observable input callout context.
+     The default, observable keyboard feedback settings.
+     */
+    public lazy var keyboardFeedbackSettings = KeyboardFeedbackSettings()
+    
+    /**
+     The default, observable input callout context.
      */
     public lazy var keyboardInputCalloutContext = InputCalloutContext()
     
     /**
-     The default observable secondary input callout context.
+     The default, observable secondary input callout context.
      */
     public lazy var keyboardSecondaryInputCalloutContext = SecondaryInputCalloutContext(
         actionProvider: keyboardSecondaryCalloutActionProvider,
@@ -191,7 +191,7 @@ open class KeyboardInputViewController: UIInputViewController {
      you are using the standard one.
      */
     public lazy var keyboardFeedbackHandler: KeyboardFeedbackHandler = StandardKeyboardFeedbackHandler(
-        settings: feedbackSettings)
+        settings: keyboardFeedbackSettings)
     
     /**
      The default keyboard input set provider.
