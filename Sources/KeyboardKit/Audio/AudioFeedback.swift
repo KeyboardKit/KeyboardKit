@@ -31,8 +31,8 @@ public enum AudioFeedback: Equatable {
     public var systemId: UInt32? {
         switch self {
         case .input: return 1104
-        case .system: return 1156
         case .delete: return 1155
+        case .system: return 1156
         case .custom(let value): return value
         case .none: return nil
         }

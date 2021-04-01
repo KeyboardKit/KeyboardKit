@@ -9,7 +9,29 @@ KeyboardKit tries to honor the following rules when new versions are released:
 Breaking changes can still occur in minor versions, if the alternative is to not release new critical features or fixes.
 
 
+## 4.3 (WIP)
+
+This version will improve the layout engine and make it easier to override button widths.
+
+It also moves feedback from the standard keyboard action handler to a new feedback handler.
+
+### ✨ New features
+
+* `StandardKeyboardActionHandler` has a new `triggerFeedback` function.
+* `StandardKeyboardActionHandler` has a new `shouldGiveFeedback` function.
+
+### 💡 Feedback behavior changes
+
+* `triggerFeedback` is now always called in `handle(gesture:on:)`.
+* `triggerFeedback` is responsible for if a feedback is given or not. 
+* `triggerFeedback` uses the new `shouldGiveFeedback` by default.
+* `shouldGiveFeedback` by default returns `true` if the gesture is `press` and the action has a tap action.
+* `triggerFeedback` calls `triggerAudioFeedback` and `triggerHapticFeedback` if feedback should be given.
+
+
 ## 4.2
+
+This version adds support for primary actions, such as `.done`, `.go`, `.search` etc.
 
 ### ✨ New features
 
@@ -25,7 +47,7 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 * English (US) secondary actions now include actions for `$`. 
 
-### 💡 Changed behavior
+### 💡 Behavior changes
 
 * New line is now considered to be a `word` delimiter instead of a `sentence` delimiter.
 * Due to the new ways to localize content, some signatures must be changed to optional strings.

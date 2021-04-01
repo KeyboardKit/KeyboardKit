@@ -22,9 +22,7 @@ import UIKit
  
  `TODO` Many features in this class were hard to test and as
  such, many tests are missing. I think that the more complex
- pieces of logic could be extracted to protocols in separate
- files to simplify testing and changing the behavior of this
- class without having to subclass.
+ pieces of logic could be extracted out of this class.
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
@@ -106,13 +104,12 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, replaced: Bool) {
         if !replaced && tryHandleReplacementAction(before: gesture, on: action) { return }
+        triggerFeedback(for: gesture, on: action)
         guard let gestureAction = self.action(for: gesture, on: action) else { return }
         tryRemoveAutocompleteInsertedSpace(before: gesture, on: action)
         tryApplyAutocompleteSuggestion(before: gesture, on: action)
         gestureAction(keyboardInputViewController)
         tryReinsertAutocompleteRemovedSpace(after: gesture, on: action)
-        triggerAudioFeedback(for: gesture, on: action)
-        triggerHapticFeedback(for: gesture, on: action)
         tryEndSentence(after: gesture, on: action)
         tryChangeKeyboardType(after: gesture, on: action)
         tryRegisterEmoji(after: gesture, on: action)
@@ -163,14 +160,49 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     
-    // MARK: - Action Handling
+    // MARK: - Feedback
     
+    /**
+     Whether or not a feedback should be given for a certain
+     gesture on a certain action.
+     
+     By default, the function will return `true` for a press
+     on a gesture that has a tap action or if the gesture is
+     not a tap and the action has an action for that gesture.
+     */
+    open func shouldGiveFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
+        if gesture == .press && self.action(for: .tap, on: action) != nil { return true }
+        if gesture != .tap && self.action(for: gesture, on: action) != nil { return true }
+        return false
+    }
+    
+    /**
+     Trigger audio and haptic feedback for a certain gesture
+     on a certain action.
+     
+     By default, the function checks `shouldGiveFeedback` to
+     determine if any feedback should be given. It will then
+     call `triggerAudioFeedback` and `triggerHapticFeedback`,
+     which are responsible to handle each type of feedback.
+     */
+    open func triggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
+        guard shouldGiveFeedback(for: gesture, on: action) else { return }
+        triggerAudioFeedback(for: gesture, on: action)
+        triggerHapticFeedback(for: gesture, on: action)
+    }
+    
+    /**
+     Trigger audio feedback for a specific action gesture.
+     */
     open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
         if action == .backspace { return audioConfiguration.deleteFeedback.trigger() }
         if action.isInputAction { return audioConfiguration.inputFeedback.trigger() }
         if action.isSystemAction { return audioConfiguration.systemFeedback.trigger() }
     }
     
+    /**
+     Trigger haptic feedback for a specific action gesture.
+     */
     open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
         switch gesture {
         case .doubleTap: hapticConfiguration.doubleTapFeedback.trigger()
@@ -182,9 +214,16 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         }
     }
     
+    /**
+     Trigger haptic feedback for when the user presses space
+     for a long time and starts dragging to move the cursor.
+     */
     open func triggerHapticFeedbackForLongPressOnSpaceDragGesture() {
         hapticConfiguration.longPressOnSpaceFeedback.trigger()
     }
+    
+    
+    // MARK: - Action Handling
     
     open func tryApplyAutocompleteSuggestion(before gesture: KeyboardGesture, on action: KeyboardAction) {
         guard gesture == .tap else { return }
