@@ -30,7 +30,7 @@ class StandardKeyboardFeedbackHandlerTests: QuickSpec {
             gestureAction = { _ in }
             hapticPlayer = MockHapticFeedbackPlayer()
             
-            handler = StandardKeyboardFeedbackHandler(settings: FeedbackSettings())
+            handler = StandardKeyboardFeedbackHandler(settings: KeyboardFeedbackSettings())
             
             AudioFeedback.player = audioPlayer
             HapticFeedback.player = hapticPlayer

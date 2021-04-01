@@ -19,11 +19,15 @@ It also moves feedback from the standard keyboard action handler to a new feedba
 
 * `AudioFeedbackConfiguration` has default init param values.
 * `HapticFeedbackPlayer` is a new protocol for preparing and playing haptic feedback.
-* `FeedbackSettings` is a new, observable settings object.
+* `KeyboardFeedbackHandler` is a new protocol for handling keyboard feedback.
+* `KeyboardFeedbackSettings` is a new, observable settings object.
 * `KeyboardInputViewController` has a new `setup(with:)` that takes a `UIStackView`.
+* `KeyboardInputViewController` has a new `keyboardFeedbackHandler` property.
+* `KeyboardInputViewController` has a new `keyboardFeedbackSettings` property.
 * `StandardHapticFeedbackPlayer` is a standard implementation that is used by default.
 * `StandardKeyboardActionHandler` has a new `triggerFeedback` function.
 * `StandardKeyboardActionHandler` has a new `shouldGiveFeedback` function.
+* `StandardKeyboardFeedbackHandler` is a standard feedback handler.
 * There are new mocks for the new classes.
 
 ### 💡 Behavior changes
@@ -37,8 +41,8 @@ It also moves feedback from the standard keyboard action handler to a new feedba
 
 ### 🚚 Structure changes
 
-* Audio feedback types have been moved into `Feedback`.
-* Haptic feedback types have been moved into `Feedback`.
+* Audio feedback types have been moved to `Feedback`.
+* Haptic feedback types have been moved to `Feedback`.
 
 ### 🗑 Deprecated (removed in 5.0):
 

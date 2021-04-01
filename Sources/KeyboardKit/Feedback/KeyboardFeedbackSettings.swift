@@ -1,5 +1,5 @@
 //
-//  FeedbackSettings.swift
+//  KeyboardFeedbackSettings.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-04-01.
@@ -12,7 +12,7 @@ import Foundation
  This class can be used to specify what kind of feedback the
  current keyboard should give to the user.
  */
-public class FeedbackSettings: ObservableObject {
+public class KeyboardFeedbackSettings: ObservableObject {
     
     public init(
         audioConfiguration: AudioFeedbackConfiguration = .standard,

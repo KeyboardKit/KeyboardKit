@@ -25,12 +25,12 @@ public class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
     /**
      Create a standard keyboard feedback handler instance.
      */
-    public init(settings: FeedbackSettings) {
+    public init(settings: KeyboardFeedbackSettings) {
         self.settings = settings
     }
     
     
-    private let settings: FeedbackSettings
+    private let settings: KeyboardFeedbackSettings
     
     private var audioConfig: AudioFeedbackConfiguration { settings.audioConfiguration }
     private var hapticConfig: HapticFeedbackConfiguration { settings.hapticConfiguration }

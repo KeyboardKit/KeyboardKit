@@ -17,7 +17,7 @@ class FeedbackSettingsTests: QuickSpec {
         describe("feedback settings") {
             
             it("uses standard configurations by default") {
-                let settings = FeedbackSettings()
+                let settings = KeyboardFeedbackSettings()
                 expect(settings.audioConfiguration).to(equal(.standard))
                 expect(settings.hapticConfiguration).to(equal(.standard))
             }
@@ -25,7 +25,7 @@ class FeedbackSettingsTests: QuickSpec {
             it("can use custom configurations") {
                 let audio = AudioFeedbackConfiguration(inputFeedback: .delete, deleteFeedback: .input, systemFeedback: .system)
                 let haptic = HapticFeedbackConfiguration(tapFeedback: .error, doubleTapFeedback: .warning, longPressFeedback: .success, longPressOnSpaceFeedback: .lightImpact, repeatFeedback: .error)
-                let settings = FeedbackSettings(audioConfiguration: audio, hapticConfiguration: haptic)
+                let settings = KeyboardFeedbackSettings(audioConfiguration: audio, hapticConfiguration: haptic)
                 expect(settings.audioConfiguration).toNot(equal(.standard))
                 expect(settings.hapticConfiguration).toNot(equal(.standard))
                 expect(settings.audioConfiguration).to(equal(audio))

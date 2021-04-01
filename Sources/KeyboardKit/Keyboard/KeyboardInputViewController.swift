@@ -137,7 +137,7 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      The default observable feedback settings.
      */
-    public lazy var feedbackSettings = FeedbackSettings()
+    public lazy var feedbackSettings = KeyboardFeedbackSettings()
     
     /**
      The default observable keyboard context.
