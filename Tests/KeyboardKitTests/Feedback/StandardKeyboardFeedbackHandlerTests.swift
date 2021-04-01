@@ -12,6 +12,9 @@ import KeyboardKit
 
 class StandardKeyboardFeedbackHandlerTests: QuickSpec {
     
+    typealias Action = KeyboardFeedbackHandler.GestureAction
+    typealias ActionProvider = KeyboardFeedbackHandler.GestureActionProvider
+    
     override func spec() {
         
         var handler: StandardKeyboardFeedbackHandler!
@@ -20,9 +23,6 @@ class StandardKeyboardFeedbackHandlerTests: QuickSpec {
         var actionProvider: ActionProvider!
         var gestureAction: Action!
         var hapticPlayer: MockHapticFeedbackPlayer!
-        
-        typealias Action = KeyboardFeedbackHandler.GestureAction
-        typealias ActionProvider = KeyboardFeedbackHandler.GestureActionProvider
         
         beforeEach {
             audioPlayer = MockSystemAudioPlayer()
