@@ -13,7 +13,7 @@ import UIKit
  feedback. You can call `prepare()` and `trigger()` on these
  hapic feedbacks to prepare and trigger the desired feedback.
 */
-public enum HapticFeedback: CaseIterable {
+public enum HapticFeedback: CaseIterable, Equatable {
     
     case
     error,

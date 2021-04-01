@@ -12,7 +12,7 @@ import Foundation
  This configuration struct specifies an audio feedback setup
  for custom keyboards.
  */
-public struct AudioFeedbackConfiguration {
+public struct AudioFeedbackConfiguration: Equatable {
     
     public init(
         inputFeedback: AudioFeedback,

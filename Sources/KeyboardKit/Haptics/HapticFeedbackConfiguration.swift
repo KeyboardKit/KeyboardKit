@@ -12,7 +12,7 @@ import Foundation
  This configuration specifies haptic feedback behavior for a
  custom keyboard.
  */
-public struct HapticFeedbackConfiguration {
+public struct HapticFeedbackConfiguration: Equatable {
     
     public init(
         tapFeedback: HapticFeedback = .none,

@@ -17,11 +17,13 @@ It also moves feedback from the standard keyboard action handler to a new feedba
 
 ### ✨ New features
 
+* `FeedbackSettings` is a new, observable settings object.
 * `StandardKeyboardActionHandler` has a new `triggerFeedback` function.
 * `StandardKeyboardActionHandler` has a new `shouldGiveFeedback` function.
 
-### 💡 Feedback behavior changes
+### 💡 Behavior changes
 
+* More feedback types are now `Equatable`.
 * `triggerFeedback` is now always called in `handle(gesture:on:)`.
 * `triggerFeedback` is responsible for if a feedback is given or not. 
 * `triggerFeedback` uses the new `shouldGiveFeedback` by default.

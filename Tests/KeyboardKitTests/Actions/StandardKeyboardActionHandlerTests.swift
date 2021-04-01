@@ -51,15 +51,22 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         }
 
         describe("handling gesture on action") {
-
-            it("performs a bunch of actions") {
-                handler.handle(.tap, on: .character("a"))
-                // let inv = proxy.invokations(of: proxy.insertTextRef)
-                // expect(inv.count).to(equal(1))
-                // expect(inv[0].arguments).to(equal("a"))
-                expect(self.mock.hasCalled(self.autocompleteActionRef)).to(beTrue())
+            
+            it("press triggers feedback") {
+                handler.handle(.press, on: .character("a"))
                 expect(handler.hasCalled(handler.triggerAudioFeedbackRef)).to(beTrue())
                 expect(handler.hasCalled(handler.triggerHapticFeedbackRef)).to(beTrue())
+            }
+            
+            it("tap doesn't trigger feedback") {
+                handler.handle(.tap, on: .character("a"))
+                expect(handler.hasCalled(handler.triggerAudioFeedbackRef)).to(beFalse())
+                expect(handler.hasCalled(handler.triggerHapticFeedbackRef)).to(beFalse())
+            }
+            
+            it("tap triggers a bunch of actions") {
+                handler.handle(.tap, on: .character("a"))
+                expect(self.mock.hasCalled(self.autocompleteActionRef)).to(beTrue())
                 expect(handler.hasCalled(handler.tryChangeKeyboardTypeRef)).to(beTrue())
                 expect(handler.hasCalled(handler.tryEndSentenceRef)).to(beTrue())
                 expect(handler.hasCalled(handler.tryRegisterEmojiRef)).to(beTrue())
