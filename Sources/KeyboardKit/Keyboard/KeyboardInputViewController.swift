@@ -65,6 +65,7 @@ open class KeyboardInputViewController: UIInputViewController {
     }
     
     
+    
     // MARK: - Setup
 
     /**
@@ -81,6 +82,7 @@ open class KeyboardInputViewController: UIInputViewController {
         self.view.subviews.forEach { $0.removeFromSuperview() }
         let view = view
             .environmentObject(autocompleteContext)
+            .environmentObject(feedbackSettings)
             .environmentObject(keyboardContext)
             .environmentObject(keyboardInputCalloutContext)
             .environmentObject(keyboardSecondaryInputCalloutContext)
@@ -108,9 +110,11 @@ open class KeyboardInputViewController: UIInputViewController {
     }
     
     
+    
     // MARK: - Combine
     
     var cancellables = Set<AnyCancellable>()
+    
     
     
     // MARK: - Properties
@@ -122,12 +126,18 @@ open class KeyboardInputViewController: UIInputViewController {
     public static var shared: KeyboardInputViewController!
     
     
+    
     // MARK: - Observables
     
     /**
      The default observable autocomplete context.
      */
     public lazy var autocompleteContext = AutocompleteContext()
+    
+    /**
+     The default observable feedback settings.
+     */
+    public lazy var feedbackSettings = FeedbackSettings()
     
     /**
      The default observable keyboard context.
@@ -145,6 +155,7 @@ open class KeyboardInputViewController: UIInputViewController {
     public lazy var keyboardSecondaryInputCalloutContext = SecondaryInputCalloutContext(
         actionProvider: keyboardSecondaryCalloutActionProvider,
         actionHandler: keyboardActionHandler)
+    
     
     
     // MARK: - Services
@@ -173,7 +184,21 @@ open class KeyboardInputViewController: UIInputViewController {
         context: keyboardContext)
     
     /**
+     The default keyboard feedback handler.
+     
+     If you replace this with a custom implementation, it is
+     very important to update the action handler as well, if
+     you are using the standard one.
+     */
+    public lazy var keyboardFeedbackHandler: KeyboardFeedbackHandler = StandardKeyboardFeedbackHandler(
+        settings: feedbackSettings)
+    
+    /**
      The default keyboard input set provider.
+     
+     If you replace this with a custom implementation, it is
+     very important that `didSet` is called, to register the
+     new instance with the `keyboardLayoutProvider`.
      */
     public lazy var keyboardInputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider(
         context: keyboardContext) {
@@ -191,6 +216,7 @@ open class KeyboardInputViewController: UIInputViewController {
      */
     public lazy var keyboardSecondaryCalloutActionProvider: SecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider(
         context: keyboardContext)
+    
     
     
     // MARK: - Text And Selection Change
@@ -215,6 +241,7 @@ open class KeyboardInputViewController: UIInputViewController {
         performAutocomplete()
         tryChangeToPreferredKeyboardTypeAfterTextDidChange()
     }
+    
     
     
     // MARK: - Autocomplete
@@ -244,6 +271,7 @@ open class KeyboardInputViewController: UIInputViewController {
     open func resetAutocomplete() {
         autocompleteContext.suggestions = []
     }
+    
     
     
     // MARK: - Deprecated

@@ -104,7 +104,7 @@ class KeyboardInputViewControllerTests: QuickSpec {
         
         // MARK: - Observables
         
-        describe("observable property collection") {
+        describe("observable properties") {
             
             it("has standard instances by default") {
                 expect(vc.autocompleteContext.suggestions.isEmpty).to(beTrue())
@@ -113,19 +113,21 @@ class KeyboardInputViewControllerTests: QuickSpec {
                 expect(vc.keyboardContext.needsInputModeSwitchKey).to(beFalse())
                 expect(vc.keyboardContext.textDocumentProxy).to(be(vc.textDocumentProxy))
                 expect(vc.keyboardInputCalloutContext.buttonFrame).to(equal(.zero))
+                expect(vc.keyboardSecondaryInputCalloutContext.buttonFrame).to(equal(.zero))
             }
         }
         
         
         // MARK: - Services
         
-        describe("service property collection") {
+        describe("service properties") {
             
             it("has standard instances by default") {
                 expect(vc.autocompleteSuggestionProvider as? DisabledAutocompleteSuggestionProvider).toNot(beNil())
                 expect(vc.keyboardActionHandler as? StandardKeyboardActionHandler).toNot(beNil())
                 expect(vc.keyboardAppearance as? StandardKeyboardAppearance).toNot(beNil())
                 expect(vc.keyboardBehavior as? StandardKeyboardBehavior).toNot(beNil())
+                expect(vc.keyboardFeedbackHandler as? StandardKeyboardFeedbackHandler).toNot(beNil())
                 expect(vc.keyboardInputSetProvider as? StandardKeyboardInputSetProvider).toNot(beNil())
                 expect(vc.keyboardLayoutProvider as? StandardKeyboardLayoutProvider).toNot(beNil())
                 expect(vc.keyboardSecondaryCalloutActionProvider as? StandardSecondaryCalloutActionProvider).toNot(beNil())
