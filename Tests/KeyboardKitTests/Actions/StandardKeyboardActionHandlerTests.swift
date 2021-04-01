@@ -26,6 +26,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         var feedbackHandler: MockKeyboardFeedbackHandler!
         var inputViewController: MockKeyboardInputViewController!
         var proxy: MockTextDocumentProxy!
+        var spaceDragHandler: MockDragGestureHandler!
         
         beforeEach {
             self.mock = Mock()
@@ -33,13 +34,15 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             inputViewController = MockKeyboardInputViewController()
             proxy = MockTextDocumentProxy()
             inputViewController.keyboardContext.textDocumentProxy = proxy
+            spaceDragHandler = MockDragGestureHandler()
             handler = TestClass(
                 keyboardContext: inputViewController.keyboardContext,
                 keyboardBehavior: inputViewController.keyboardBehavior,
                 keyboardFeedbackHandler: feedbackHandler,
                 autocompleteContext: inputViewController.autocompleteContext,
                 autocompleteAction: self.autocompleteAction,
-                changeKeyboardTypeAction: self.changeKeyboardTypeAction)
+                changeKeyboardTypeAction: self.changeKeyboardTypeAction,
+                spaceDragGestureHandler: spaceDragHandler)
         }
 
 
@@ -67,11 +70,20 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         
         describe("handling drag on action") {
             
-            context("when action is space") {
-                
-                it("starts new drag gesture, using the injected drag handler") {
-                    
+            it("uses space drag handler for space") {
+                handler.handleDrag(on: .space, from: .init(x: 1, y: 2), to: .init(x: 3, y: 4))
+                let calls = spaceDragHandler.calls(to: spaceDragHandler.handleDragGestureRef)
+                expect(calls.count).to(equal(1))
+                expect(calls[0].arguments.0).to(equal(.init(x: 1, y: 2)))
+                expect(calls[0].arguments.1).to(equal(.init(x: 3, y: 4)))
+            }
+            
+            it("doesn't do anything for other actions") {
+                let actions = KeyboardAction.testActions.filter { $0 != .space }
+                actions.forEach {
+                    handler.handleDrag(on: $0, from: .zero, to: .zero)
                 }
+                expect(spaceDragHandler.hasCalled(spaceDragHandler.handleDragGestureRef)).to(beFalse())
             }
         }
 

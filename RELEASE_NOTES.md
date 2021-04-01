@@ -18,6 +18,7 @@ It also moves feedback from the standard keyboard action handler to a new feedba
 ### ✨ New features
 
 * `AudioFeedbackConfiguration` has default init param values.
+* `DragGestureHandler` is a new protocol for handling drag gestures.
 * `HapticFeedbackPlayer` is a new protocol for preparing and playing haptic feedback.
 * `KeyboardFeedbackHandler` is a new protocol for handling keyboard feedback.
 * `KeyboardFeedbackSettings` is a new, observable settings object.
@@ -27,8 +28,8 @@ It also moves feedback from the standard keyboard action handler to a new feedba
 * `StandardHapticFeedbackPlayer` is a standard implementation that is used by default.
 * `StandardKeyboardActionHandler` has new, cleaner initializers.
 * `StandardKeyboardActionHandler` has a new `triggerFeedback` function.
-* `StandardKeyboardActionHandler` has a new `handleNewSpaceCursorDragGesture` function.
-* `StandardKeyboardFeedbackHandler` is a standard feedback handler.
+* `StandardKeyboardActionHandler` has a new `spaceDragGestureHandler` that is used to handle space drag gestures.
+* `StandardKeyboardFeedbackHandler` is a new, standard feedback handler.
 * There are new mocks for the new classes.
 
 ### 💡 Behavior changes
@@ -48,6 +49,8 @@ It also moves feedback from the standard keyboard action handler to a new feedba
 * `StandardKeyboardActionHandler` has deprecated the two audio/haptic configuration-based initializers.
 * `StandardKeyboardActionHandler` `audioConfiguration` is deprecated and converted to a computed property. 
 * `StandardKeyboardActionHandler` `hapticConfiguration` is deprecated and converted to a computed property.
+* `StandardKeyboardActionHandler` `spaceDragSensitivity` is deprecated.
+* `StandardKeyboardActionHandler` `handleSpaceCursorDragGesture` is deprecated.
 * `StandardKeyboardActionHandler` `triggerAudioFeedback` is deprecated.
 * `StandardKeyboardActionHandler` `triggerHapticFeedback` is deprecated.
 * `StandardKeyboardActionHandler` `triggerHapticFeedbackForLongPressOnSpaceDragGesture` is deprecated.
