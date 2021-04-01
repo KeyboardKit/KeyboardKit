@@ -9,11 +9,14 @@ KeyboardKit tries to honor the following rules when new versions are released:
 Breaking changes can still occur in minor versions, if the alternative is to not release new critical features or fixes.
 
 
-## 4.3 (WIP)
+## 4.4 (WIP)
 
 This version will improve the layout engine and make it easier to override button widths.
 
-It also moves feedback from the standard keyboard action handler to a new feedback handler.
+
+## 4.3
+
+This version introduces a bunch of changes to how feedback is being handled.
 
 ### ✨ New features
 
@@ -37,6 +40,7 @@ It also moves feedback from the standard keyboard action handler to a new feedba
 ### 💡 Behavior changes
 
 * More feedback types are now `Equatable`.
+* Action feedback (e.g. tap sound) is now given on `press` instead of `tap`.
 * `StandardKeyboardActionHandler` uses the new feedback handler to trigger feedback.
 
 ### 🚚 Structure changes
@@ -57,8 +61,6 @@ It also moves feedback from the standard keyboard action handler to a new feedba
 * `StandardKeyboardActionHandler` `triggerHapticFeedback` is deprecated.
 * `StandardKeyboardActionHandler` `triggerHapticFeedbackForLongPressOnSpaceDragGesture` is deprecated.
 
-
-keyboardFeedbackHandler
 
 
 ## 4.2
