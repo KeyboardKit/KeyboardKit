@@ -18,15 +18,20 @@ import UIKit
  this class instead of `UIInputViewController`. You then get
  access to a bunch of features that regular controllers lack.
  
- To change the keyboard type and automatically setup the new
- keyboard, set the `keyboardType` property of this class and
- not of its context. You can also call `changeKeyboardType()`
- which can be overridden and customized.
+ This class provides you with many services that you can use
+ when building your custom keyboard extensions, for instance
+ `keyboardActionHandler`, `keyboardFeedbackHandler` etc. You
+ can replace the standard implementations with custom types.
+ 
+ This class also provides you with many observable instances,
+ like `keyboardContext` and `autocompleteContext`. These are
+ injected as environment objects into the view hierarchy and
+ can be accessed in all parts of the view hierarchy.
  
  To setup autocomplete, simply override `performAutocomplete`
  and `resetAutocomplete`. They are automatically called when
- the texst position changes or the action handler performs a
- keyboard action.
+ needed and should update the `autocompleteContext` with new
+ suggestions. `resetAutocomplete` is already implemented.
  */
 open class KeyboardInputViewController: UIInputViewController {
     
@@ -58,19 +63,6 @@ open class KeyboardInputViewController: UIInputViewController {
     open func viewWillSyncWithTextDocumentProxy() {
         keyboardContext.textDocumentProxy = textDocumentProxy
     }
-    
-    /**
-     This is boilerplate code for retrieving text input mode
-     from the active input modes, given the context's locale.
-     However, since the context syncs the input mode and the
-     code uses the context, we get a death loop. Solve this.
-     */
-    //    override var textInputMode: UITextInputMode? {
-    //        guard let languageCode = keyboardContext.locale.languageCode else { return super.textInputMode }
-    //        let modes = UITextInputMode.activeInputModes
-    //        let match = modes.first { $0.primaryLanguage?.hasPrefix(languageCode) == true }
-    //        return match ?? super.textInputMode
-    //    }
     
     
     // MARK: - Setup
@@ -218,17 +210,7 @@ open class KeyboardInputViewController: UIInputViewController {
     }
     
     
-    // MARK: - Public Functions
-    
-    @available(*, deprecated, message: "Change the keyboard context locale directly. Use Combine to observe the result.")
-    open func changeKeyboardLocale(to locale: Locale) {
-        keyboardContext.locale = locale
-    }
-    
-    @available(*, deprecated, message: "Change the keyboard context keyboardType directly. Use Combine to observe the result.")
-    open func changeKeyboardType(to type: KeyboardType) {
-        keyboardContext.keyboardType = type
-    }
+    // MARK: - Autocomplete
     
     /**
      Perform an autocomplete operation. You can override the
@@ -254,6 +236,19 @@ open class KeyboardInputViewController: UIInputViewController {
      */
     open func resetAutocomplete() {
         autocompleteContext.suggestions = []
+    }
+    
+    
+    // MARK: - Deprecated
+    
+    @available(*, deprecated, message: "Change keyboardContext.locale directly.")
+    open func changeKeyboardLocale(to locale: Locale) {
+        keyboardContext.locale = locale
+    }
+    
+    @available(*, deprecated, message: "Change keyboardContext.keyboardType directly.")
+    open func changeKeyboardType(to type: KeyboardType) {
+        keyboardContext.keyboardType = type
     }
 }
 
