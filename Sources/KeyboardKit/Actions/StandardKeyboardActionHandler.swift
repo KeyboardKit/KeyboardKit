@@ -32,46 +32,40 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     public init(
         keyboardContext: KeyboardContext,
         keyboardBehavior: KeyboardBehavior,
+        keyboardFeedbackHandler: KeyboardFeedbackHandler,
         autocompleteContext: AutocompleteContext,
         autocompleteAction: @escaping () -> Void,
         changeKeyboardTypeAction: @escaping (KeyboardType) -> Void,
-        hapticConfiguration: HapticFeedbackConfiguration = .standard,
-        audioConfiguration: AudioFeedbackConfiguration = .standard,
         spaceDragSensitivity: SpaceDragSensitivity = .medium) {
-        self.keyboardContext = keyboardContext
-        self.keyboardBehavior = keyboardBehavior
-        self.autocompleteContext = autocompleteContext
         self.autocompleteAction = autocompleteAction
+        self.autocompleteContext = autocompleteContext
         self.changeKeyboardTypeAction = changeKeyboardTypeAction
-        self.hapticConfiguration = hapticConfiguration
-        self.audioConfiguration = audioConfiguration
+        self.keyboardBehavior = keyboardBehavior
+        self.keyboardContext = keyboardContext
+        self.keyboardFeedbackHandler = keyboardFeedbackHandler
         self.spaceDragSensitivity = spaceDragSensitivity
     }
     
     public init(
         inputViewController: KeyboardInputViewController,
-        hapticConfiguration: HapticFeedbackConfiguration = .standard,
-        audioConfiguration: AudioFeedbackConfiguration = .standard,
         spaceDragSensitivity: SpaceDragSensitivity = .medium) {
         weak var input = inputViewController
-        self.keyboardContext = inputViewController.keyboardContext
-        self.keyboardBehavior = inputViewController.keyboardBehavior
-        self.autocompleteContext = inputViewController.autocompleteContext
         self.autocompleteAction = { input?.performAutocomplete() }
+        self.autocompleteContext = inputViewController.autocompleteContext
         self.changeKeyboardTypeAction = { input?.keyboardContext.keyboardType = $0 }
-        self.hapticConfiguration = hapticConfiguration
-        self.audioConfiguration = audioConfiguration
+        self.keyboardBehavior = inputViewController.keyboardBehavior
+        self.keyboardContext = inputViewController.keyboardContext
+        self.keyboardFeedbackHandler = inputViewController.keyboardFeedbackHandler
         self.spaceDragSensitivity = spaceDragSensitivity
     }
     
     
     // MARK: - Dependencies
     
-    public let audioConfiguration: AudioFeedbackConfiguration
     public let autocompleteContext: AutocompleteContext
     public let keyboardBehavior: KeyboardBehavior
     public let keyboardContext: KeyboardContext
-    public let hapticConfiguration: HapticFeedbackConfiguration
+    public let keyboardFeedbackHandler: KeyboardFeedbackHandler
     public let spaceDragSensitivity: SpaceDragSensitivity
     
     public let autocompleteAction: () -> Void
@@ -128,17 +122,30 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     /**
-     This function is called from `handleDrag` and moves the
-     text cursor according to the last handled offset.
+     Handle a drag gesture on space, which by default should
+     move the cursor left and right after a long press. This
+     long press will by default trigger an initial feedback.
      */
     open func handleSpaceCursorDragGesture(from startLocation: CGPoint, to currentLocation: CGPoint) {
-        tryStartNewSpaceCursorDragGesture(from: startLocation, to: currentLocation)
+        handleSpaceCursorDragGestureInit(from: startLocation, to: currentLocation)
         let dragDelta = startLocation.x - currentLocation.x
         let textPositionOffset = Int(dragDelta / CGFloat(spaceDragSensitivity.points))
         guard textPositionOffset != currentDragTextPositionOffset else { return }
         let offsetDelta = textPositionOffset - currentDragTextPositionOffset
         textDocumentProxy.adjustTextPosition(byCharacterOffset: -offsetDelta)
         currentDragTextPositionOffset = textPositionOffset
+    }
+    
+    /**
+     This is called by `handleSpaceCursorDragGesture` and is
+     used to handle new drag gestures.
+     */
+    private func handleSpaceCursorDragGestureInit(from startLocation: CGPoint, to currentLocation: CGPoint) {
+        let isNewDrag = currentDragStartLocation != startLocation
+        currentDragStartLocation = startLocation
+        guard isNewDrag else { return }
+        currentDragTextPositionOffset = 0
+        keyboardFeedbackHandler.triggerFeedbackForLongPressOnSpaceDragGesture()
     }
     
     
@@ -163,20 +170,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     // MARK: - Feedback
     
     /**
-     Whether or not a feedback should be given for a certain
-     gesture on a certain action.
-     
-     By default, the function will return `true` for a press
-     on a gesture that has a tap action or if the gesture is
-     not a tap and the action has an action for that gesture.
-     */
-    open func shouldGiveFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
-        if gesture == .press && self.action(for: .tap, on: action) != nil { return true }
-        if gesture != .tap && self.action(for: gesture, on: action) != nil { return true }
-        return false
-    }
-    
-    /**
      Trigger audio and haptic feedback for a certain gesture
      on a certain action.
      
@@ -186,40 +179,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      which are responsible to handle each type of feedback.
      */
     open func triggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
-        guard shouldGiveFeedback(for: gesture, on: action) else { return }
-        triggerAudioFeedback(for: gesture, on: action)
-        triggerHapticFeedback(for: gesture, on: action)
-    }
-    
-    /**
-     Trigger audio feedback for a specific action gesture.
-     */
-    open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
-        if action == .backspace { return audioConfiguration.deleteFeedback.trigger() }
-        if action.isInputAction { return audioConfiguration.inputFeedback.trigger() }
-        if action.isSystemAction { return audioConfiguration.systemFeedback.trigger() }
-    }
-    
-    /**
-     Trigger haptic feedback for a specific action gesture.
-     */
-    open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
-        switch gesture {
-        case .doubleTap: hapticConfiguration.doubleTapFeedback.trigger()
-        case .longPress: hapticConfiguration.longPressFeedback.trigger()
-        case .press: hapticConfiguration.tapFeedback.trigger()
-        case .release: hapticConfiguration.tapFeedback.trigger()
-        case .repeatPress: hapticConfiguration.repeatFeedback.trigger()
-        case .tap: hapticConfiguration.tapFeedback.trigger()
-        }
-    }
-    
-    /**
-     Trigger haptic feedback for when the user presses space
-     for a long time and starts dragging to move the cursor.
-     */
-    open func triggerHapticFeedbackForLongPressOnSpaceDragGesture() {
-        hapticConfiguration.longPressOnSpaceFeedback.trigger()
+        keyboardFeedbackHandler.triggerFeedback(for: gesture, on: action, actionProvider: self.action)
     }
     
     
@@ -278,32 +238,80 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Deprecated
     
+    @available(*, deprecated, message: "Use the new keyboardFeedbackHandler-based initializer")
+    public init(
+        keyboardContext: KeyboardContext,
+        keyboardBehavior: KeyboardBehavior,
+        autocompleteContext: AutocompleteContext,
+        autocompleteAction: @escaping () -> Void,
+        changeKeyboardTypeAction: @escaping (KeyboardType) -> Void,
+        hapticConfiguration: HapticFeedbackConfiguration = .standard,
+        audioConfiguration: AudioFeedbackConfiguration = .standard,
+        spaceDragSensitivity: SpaceDragSensitivity = .medium) {
+        self.autocompleteAction = autocompleteAction
+        self.autocompleteContext = autocompleteContext
+        self.changeKeyboardTypeAction = changeKeyboardTypeAction
+        self.keyboardBehavior = keyboardBehavior
+        self.keyboardContext = keyboardContext
+        self.keyboardFeedbackHandler = StandardKeyboardFeedbackHandler(
+            settings: KeyboardFeedbackSettings(audioConfiguration: audioConfiguration, hapticConfiguration: hapticConfiguration))
+        self.spaceDragSensitivity = spaceDragSensitivity
+    }
+    
+    @available(*, deprecated, message: "Use the new keyboardFeedbackHandler-based initializer")
+    public init(
+        inputViewController: KeyboardInputViewController,
+        hapticConfiguration: HapticFeedbackConfiguration = .standard,
+        audioConfiguration: AudioFeedbackConfiguration = .standard,
+        spaceDragSensitivity: SpaceDragSensitivity) {
+        weak var input = inputViewController
+        self.autocompleteAction = { input?.performAutocomplete() }
+        self.autocompleteContext = inputViewController.autocompleteContext
+        self.changeKeyboardTypeAction = { input?.keyboardContext.keyboardType = $0 }
+        self.keyboardContext = inputViewController.keyboardContext
+        self.keyboardBehavior = inputViewController.keyboardBehavior
+        self.keyboardFeedbackHandler = StandardKeyboardFeedbackHandler(
+            settings: KeyboardFeedbackSettings(audioConfiguration: audioConfiguration, hapticConfiguration: hapticConfiguration))
+        self.spaceDragSensitivity = spaceDragSensitivity
+    }
+    
+    @available(*, deprecated, message: "Use the new keyboardFeedbackHandler")
+    public var audioConfiguration: AudioFeedbackConfiguration {
+        (keyboardFeedbackHandler as? StandardKeyboardFeedbackHandler)?.audioConfig ?? .standard
+    }
+    
+    @available(*, deprecated, message: "Use the new keyboardFeedbackHandler")
+    public var hapticConfiguration: HapticFeedbackConfiguration {
+        (keyboardFeedbackHandler as? StandardKeyboardFeedbackHandler)?.hapticConfig ?? .standard
+    }
+    
     @available(*, deprecated, message: "Use the new function without sender instead.")
     open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         handle(gesture, on: action)
     }
     
-    @available(*, deprecated, message: "Use the new function without sender instead.")
-    open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
-        triggerAudioFeedback(for: gesture, on: action)
+    @available(*, deprecated, message: "Use new keyboardFeedbackHandler instead.")
+    open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
+        keyboardFeedbackHandler.triggerAudioFeedback(for: gesture, on: action)
     }
     
-    @available(*, deprecated, message: "Use the new function without sender instead.")
+    @available(*, deprecated, message: "Use new keyboardFeedbackHandler instead.")
+    open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
+        keyboardFeedbackHandler.triggerHapticFeedback(for: gesture, on: action)
+    }
+    
+    @available(*, deprecated, message: "Use new keyboardFeedbackHandler instead.")
+    open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
+        keyboardFeedbackHandler.triggerAudioFeedback(for: gesture, on: action)
+    }
+    
+    @available(*, deprecated, message: "Use new keyboardFeedbackHandler instead.")
     open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
         triggerHapticFeedback(for: gesture, on: action)
     }
-}
-
-
-// MARK: - Private Functions
-
-private extension StandardKeyboardActionHandler {
     
-    func tryStartNewSpaceCursorDragGesture(from startLocation: CGPoint, to currentLocation: CGPoint) {
-        let isNewDrag = currentDragStartLocation != startLocation
-        currentDragStartLocation = startLocation
-        guard isNewDrag else { return }
-        currentDragTextPositionOffset = 0
-        triggerHapticFeedbackForLongPressOnSpaceDragGesture()
+    @available(*, deprecated, message: "Use new keyboardFeedbackHandler instead.")
+    open func triggerHapticFeedbackForLongPressOnSpaceDragGesture() {
+        keyboardFeedbackHandler.triggerFeedbackForLongPressOnSpaceDragGesture()
     }
 }

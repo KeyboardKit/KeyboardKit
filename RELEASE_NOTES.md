@@ -25,19 +25,16 @@ It also moves feedback from the standard keyboard action handler to a new feedba
 * `KeyboardInputViewController` has a new `keyboardFeedbackHandler` property.
 * `KeyboardInputViewController` has a new `keyboardFeedbackSettings` property.
 * `StandardHapticFeedbackPlayer` is a standard implementation that is used by default.
+* `StandardKeyboardActionHandler` has new, cleaner initializers.
 * `StandardKeyboardActionHandler` has a new `triggerFeedback` function.
-* `StandardKeyboardActionHandler` has a new `shouldGiveFeedback` function.
+* `StandardKeyboardActionHandler` has a new `handleNewSpaceCursorDragGesture` function.
 * `StandardKeyboardFeedbackHandler` is a standard feedback handler.
 * There are new mocks for the new classes.
 
 ### 💡 Behavior changes
 
 * More feedback types are now `Equatable`.
-* `triggerFeedback` is now always called in `handle(gesture:on:)`.
-* `triggerFeedback` is responsible for if a feedback is given or not. 
-* `triggerFeedback` uses the new `shouldGiveFeedback` by default.
-* `shouldGiveFeedback` by default returns `true` if the gesture is `press` and the action has a tap action.
-* `triggerFeedback` calls `triggerAudioFeedback` and `triggerHapticFeedback` if feedback should be given.
+* `StandardKeyboardActionHandler` uses the new feedback handler to trigger feedback.
 
 ### 🚚 Structure changes
 
@@ -47,8 +44,16 @@ It also moves feedback from the standard keyboard action handler to a new feedba
 ### 🗑 Deprecated (removed in 5.0):
 
 * `AudioFeedback` `systemPlayer` has been renamed to `player`.
-* `KeyboardInputViewController` `keyboardStackView` has been replaced with a new `setup(with:)`. 
+* `KeyboardInputViewController` `keyboardStackView` has been replaced with a new `setup(with:)`.
+* `StandardKeyboardActionHandler` has deprecated the two audio/haptic configuration-based initializers.
+* `StandardKeyboardActionHandler` `audioConfiguration` is deprecated and converted to a computed property. 
+* `StandardKeyboardActionHandler` `hapticConfiguration` is deprecated and converted to a computed property.
+* `StandardKeyboardActionHandler` `triggerAudioFeedback` is deprecated.
+* `StandardKeyboardActionHandler` `triggerHapticFeedback` is deprecated.
+* `StandardKeyboardActionHandler` `triggerHapticFeedbackForLongPressOnSpaceDragGesture` is deprecated.
 
+
+keyboardFeedbackHandler
 
 
 ## 4.2

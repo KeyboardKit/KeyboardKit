@@ -20,7 +20,7 @@ import Foundation
  kind of feedback that will be triggered. This means you can
  change feedback behavior at any time.
  */
-public class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
+open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
     
     /**
      Create a standard keyboard feedback handler instance.
@@ -30,10 +30,10 @@ public class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
     }
     
     
-    private let settings: KeyboardFeedbackSettings
+    public let settings: KeyboardFeedbackSettings
     
-    private var audioConfig: AudioFeedbackConfiguration { settings.audioConfiguration }
-    private var hapticConfig: HapticFeedbackConfiguration { settings.hapticConfiguration }
+    public var audioConfig: AudioFeedbackConfiguration { settings.audioConfiguration }
+    public var hapticConfig: HapticFeedbackConfiguration { settings.hapticConfiguration }
     
     
     /**
@@ -45,7 +45,7 @@ public class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
      on a gesture that has a tap action or if the gesture is
      not a tap and the action has an action for that gesture.
      */
-    public func shouldTriggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, actionProvider: GestureActionProvider) -> Bool {
+    open func shouldTriggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, actionProvider: GestureActionProvider) -> Bool {
         if gesture == .press && actionProvider(.tap, action) != nil { return true }
         if gesture != .tap && actionProvider(gesture, action) != nil { return true }
         return false

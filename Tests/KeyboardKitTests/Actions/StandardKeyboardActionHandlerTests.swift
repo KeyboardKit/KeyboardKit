@@ -23,17 +23,20 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
     override func spec() {
         
         var handler: TestClass!
+        var feedbackHandler: MockKeyboardFeedbackHandler!
         var inputViewController: MockKeyboardInputViewController!
         var proxy: MockTextDocumentProxy!
         
         beforeEach {
             self.mock = Mock()
+            feedbackHandler = MockKeyboardFeedbackHandler()
             inputViewController = MockKeyboardInputViewController()
             proxy = MockTextDocumentProxy()
             inputViewController.keyboardContext.textDocumentProxy = proxy
             handler = TestClass(
                 keyboardContext: inputViewController.keyboardContext,
                 keyboardBehavior: inputViewController.keyboardBehavior,
+                keyboardFeedbackHandler: feedbackHandler,
                 autocompleteContext: inputViewController.autocompleteContext,
                 autocompleteAction: self.autocompleteAction,
                 changeKeyboardTypeAction: self.changeKeyboardTypeAction)
@@ -49,20 +52,8 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
                 expect(handler.canHandle(.doubleTap, on: .backspace, sender: nil)).to(beFalse())
             }
         }
-
+        
         describe("handling gesture on action") {
-            
-            it("press triggers feedback") {
-                handler.handle(.press, on: .character("a"))
-                expect(handler.hasCalled(handler.triggerAudioFeedbackRef)).to(beTrue())
-                expect(handler.hasCalled(handler.triggerHapticFeedbackRef)).to(beTrue())
-            }
-            
-            it("tap doesn't trigger feedback") {
-                handler.handle(.tap, on: .character("a"))
-                expect(handler.hasCalled(handler.triggerAudioFeedbackRef)).to(beFalse())
-                expect(handler.hasCalled(handler.triggerHapticFeedbackRef)).to(beFalse())
-            }
             
             it("tap triggers a bunch of actions") {
                 handler.handle(.tap, on: .character("a"))
@@ -70,6 +61,17 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
                 expect(handler.hasCalled(handler.tryChangeKeyboardTypeRef)).to(beTrue())
                 expect(handler.hasCalled(handler.tryEndSentenceRef)).to(beTrue())
                 expect(handler.hasCalled(handler.tryRegisterEmojiRef)).to(beTrue())
+                expect(feedbackHandler.hasCalled(feedbackHandler.triggerFeedbackWithActionProviderRef)).to(beTrue())
+            }
+        }
+        
+        describe("handling drag on action") {
+            
+            context("when action is space") {
+                
+                it("starts new drag gesture, using the injected drag handler") {
+                    
+                }
             }
         }
 
@@ -123,26 +125,6 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
 
 
         // MARK: - Action Handling
-
-        describe("triggering audio feedback for gesture on action") {
-
-            it("can't be properyly tested") {
-                handler.triggerAudioFeedback(for: .tap, on: .dismissKeyboard)
-                handler.triggerAudioFeedback(for: .tap, on: .backspace)
-                handler.triggerAudioFeedback(for: .tap, on: .dismissKeyboard)
-                // TODO Test this
-            }
-        }
-
-        describe("triggering haptic feedback") {
-
-            it("can't be properyly tested") {
-                handler.triggerHapticFeedback(for: .longPress, on: .dismissKeyboard)
-                handler.triggerHapticFeedback(for: .repeatPress, on: .backspace)
-                handler.triggerHapticFeedback(for: .tap, on: .dismissKeyboard)
-                // TODO Test this
-            }
-        }
 
         describe("trying to end sentence after gesture on action") {
 
@@ -210,8 +192,6 @@ private class TestClass: StandardKeyboardActionHandler, Mockable {
     var mock = Mock()
 
     lazy var handleRef = MockReference(handle as (KeyboardGesture, KeyboardAction) -> Void)
-    lazy var triggerAudioFeedbackRef = MockReference(triggerAudioFeedback as (KeyboardGesture, KeyboardAction) -> Void)
-    lazy var triggerHapticFeedbackRef = MockReference(triggerHapticFeedback as (KeyboardGesture, KeyboardAction) -> Void)
     lazy var tryChangeKeyboardTypeRef = MockReference(tryChangeKeyboardType)
     lazy var tryEndSentenceRef = MockReference(tryEndSentence)
     lazy var tryRegisterEmojiRef = MockReference(tryRegisterEmoji)
@@ -220,17 +200,7 @@ private class TestClass: StandardKeyboardActionHandler, Mockable {
         super.handle(gesture, on: action)
         call(handleRef, args: (gesture, action))
     }
-
-    override func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
-        super.triggerAudioFeedback(for: gesture, on: action)
-        call(triggerAudioFeedbackRef, args: (gesture, action))
-    }
-
-    override func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
-        super.triggerHapticFeedback(for: gesture, on: action)
-        call(triggerHapticFeedbackRef, args: (gesture, action))
-    }
-
+    
     override func tryChangeKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) {
         super.tryChangeKeyboardType(after: gesture, on: action)
         call(tryChangeKeyboardTypeRef, args: (gesture, action))
