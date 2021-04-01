@@ -116,40 +116,44 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     
-    // MARK: - Actions
+    // MARK: - Open Functions
     
     /**
      This is the standard action that is used by the handler
      when a gesture is performed on a certain action.
      */
     open func action(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction.GestureAction? {
-        switch gesture {
-        case .doubleTap: return action.standardDoubleTapAction
-        case .longPress: return action.standardLongPressAction
-        case .press: return action.standardPressAction
-        case .release: return action.standardReleaseAction
-        case .repeatPress: return action.standardRepeatAction
-        case .tap: return action.standardTapAction
-        }
+        action.standardAction(for: gesture)
     }
     
-    
-    // MARK: - Feedback
+    /**
+     Try to resolve and handle a replacement keyboard action
+     before the `gesture` is performed on the `action`. When
+     this returns `true`, the caller should abort.
+     */
+    open func replacementAction(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction? {
+        guard
+            gesture == .tap,
+            case let .character(char) = action,
+            let replacement = textDocumentProxy.preferredReplacement(for: char, locale: keyboardContext.locale)
+            else { return nil }
+        return KeyboardAction.character(replacement)
+    }
     
     /**
      Trigger feedback for a certain `gesture` on an `action`.
      
-     By default this just calls the `keyboardFeedbackHandler`
-     to let it handle the feedback, but you can override the
-     function to easily customize gesture feedback.
+     By default this calls the `keyboardFeedbackHandler` but
+     you can override it to customize the feedback behavior.
      */
     open func triggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
         keyboardFeedbackHandler.triggerFeedback(for: gesture, on: action, actionProvider: self.action)
     }
     
-    
-    // MARK: - Action Handling
-    
+    /**
+     Try to apply an `isAutocomplete` autocomplete suggesion
+     before the `gesture` has been performed on the `action`.
+     */
     open func tryApplyAutocompleteSuggestion(before gesture: KeyboardGesture, on action: KeyboardAction) {
         guard gesture == .tap else { return }
         guard action.shouldApplyAutocompleteSuggestion else { return }
@@ -157,29 +161,40 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         textDocumentProxy.insertAutocompleteSuggestion(suggestion, tryInsertSpace: false)
     }
     
+    /**
+     Try to change `keyboardType` after a `gesture` has been
+     performed on the provided `action`.
+     */
     open func tryChangeKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) {
         guard keyboardBehavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action) else { return }
         let newType = keyboardBehavior.preferredKeyboardType(after: gesture, on: action)
         changeKeyboardTypeAction(newType)
     }
     
-    open func tryHandleReplacementAction(before gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
-        let locale = keyboardContext.locale
-        guard
-            gesture == .tap,
-            case let .character(char) = action,
-            let replacement = textDocumentProxy.preferredReplacement(for: char, locale: locale)
-            else { return false }
-        let newAction = KeyboardAction.character(replacement)
-        handle(.tap, on: newAction, replaced: true)
-        return true
-    }
-    
+    /**
+     Try to end the current sentence after the `gesture` has
+     been performed on the provided `action`.
+     */
     open func tryEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction) {
         guard keyboardBehavior.shouldEndSentence(after: gesture, on: action) else { return }
         textDocumentProxy.endSentence()
     }
     
+    /**
+     Try to resolve and handle a replacement keyboard action
+     before the `gesture` is performed on the `action`. When
+     this returns `true`, the caller should abort.
+     */
+    open func tryHandleReplacementAction(before gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
+        guard let action = replacementAction(for: gesture, on: action) else { return false }
+        handle(.tap, on: action, replaced: true)
+        return true
+    }
+    
+    /**
+     Try to register a certain emoji after the `gesture` has
+     been performed on the provided `action`.
+     */
     open func tryRegisterEmoji(after gesture: KeyboardGesture, on action: KeyboardAction) {
         guard gesture == .tap else { return }
         switch action {
@@ -188,12 +203,21 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         }
     }
     
+    /**
+     Try to reinsert an automatically removed space that was
+     removed due to autocomplete after the provided `gesture`
+     has been performed on the provided `action`.
+     */
     open func tryReinsertAutocompleteRemovedSpace(after gesture: KeyboardGesture, on action: KeyboardAction) {
         guard gesture == .tap else { return }
         guard action.shouldReinsertAutocompleteInsertedSpace else { return }
         textDocumentProxy.tryReinsertAutocompleteRemovedSpace()
     }
     
+    /**
+     Try to removed an autocomplete inserted space after the
+     `gesture` has been performed on the provided `action`.
+     */
     open func tryRemoveAutocompleteInsertedSpace(before gesture: KeyboardGesture, on action: KeyboardAction) {
         guard gesture == .tap else { return }
         guard action.shouldRemoveAutocompleteInsertedSpace else { return }
