@@ -16,10 +16,23 @@ import UIKit
  */
 public extension KeyboardAction {
     
-    
-    // MARK: - Types
-    
     typealias GestureAction = (KeyboardInputViewController?) -> Void
+    
+    
+    /**
+     The action that by default should be triggered when the
+     provided `gesture` is performed on the action.
+     */
+    func standardAction(for gesture: KeyboardGesture) -> GestureAction? {
+        switch gesture {
+        case .doubleTap: return standardDoubleTapAction
+        case .longPress: return standardLongPressAction
+        case .press: return standardPressAction
+        case .release: return standardReleaseAction
+        case .repeatPress: return standardRepeatAction
+        case .tap: return standardTapAction
+        }
+    }
     
     /**
      The action that by default should be triggered when the
@@ -91,7 +104,6 @@ public extension KeyboardAction {
      */
     var standardTextDocumentProxyAction: GestureAction? {
         if let action = standardTextDocumentProxyInputAction { return action }
-        
         switch self {
         case .moveCursorBackward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: -1) }
         case .moveCursorForward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: 1) }

@@ -10,24 +10,31 @@ import UIKit
 
 /**
  This standard keyboard action handler is used by default by
- KeyboardKit and provides standard ways of handling actions.
+ KeyboardKit and provides a standard way of handling actions.
  
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
- 
- You can provide a custom `haptic` and `audio` configuration
- when you create an instance of this class. The standard aim
- at mimicing the behavior of a native keyboard. You can also
- provide a custom `spaceDragSensitivity`.
- 
- `TODO` Many features in this class were hard to test and as
- such, many tests are missing. I think that the more complex
- pieces of logic could be extracted out of this class.
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     
     // MARK: - Initialization
+    
+    public convenience init(
+        inputViewController ivc: KeyboardInputViewController,
+        spaceDragGestureHandler: DragGestureHandler? = nil,
+        spaceDragSensitivity: SpaceDragSensitivity = .medium) {
+        weak var input = ivc
+        self.init(
+            keyboardContext: ivc.keyboardContext,
+            keyboardBehavior: ivc.keyboardBehavior,
+            keyboardFeedbackHandler: ivc.keyboardFeedbackHandler,
+            autocompleteContext: ivc.autocompleteContext,
+            autocompleteAction: { input?.performAutocomplete() },
+            changeKeyboardTypeAction: { input?.keyboardContext.keyboardType = $0 },
+            spaceDragGestureHandler: spaceDragGestureHandler,
+            spaceDragSensitivity: spaceDragSensitivity)
+    }
     
     public init(
         keyboardContext: KeyboardContext,
@@ -46,22 +53,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.keyboardFeedbackHandler = keyboardFeedbackHandler
         self.spaceDragGestureHandler = spaceDragGestureHandler ?? SpaceCursorDragGestureHandler(
             context: keyboardContext, feedbackHandler: keyboardFeedbackHandler, sensitivity: spaceDragSensitivity)
-    }
-    
-    public convenience init(
-        inputViewController ivc: KeyboardInputViewController,
-        spaceDragGestureHandler: DragGestureHandler? = nil,
-        spaceDragSensitivity: SpaceDragSensitivity = .medium) {
-        weak var input = ivc
-        self.init(
-            keyboardContext: ivc.keyboardContext,
-            keyboardBehavior: ivc.keyboardBehavior,
-            keyboardFeedbackHandler: ivc.keyboardFeedbackHandler,
-            autocompleteContext: ivc.autocompleteContext,
-            autocompleteAction: { input?.performAutocomplete() },
-            changeKeyboardTypeAction: { input?.keyboardContext.keyboardType = $0 },
-            spaceDragGestureHandler: spaceDragGestureHandler,
-            spaceDragSensitivity: spaceDragSensitivity)
     }
     
     

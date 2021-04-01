@@ -20,8 +20,10 @@ It also moves feedback from the standard keyboard action handler to a new feedba
 * `AudioFeedbackConfiguration` has default init param values.
 * `DragGestureHandler` is a new protocol for handling drag gestures.
 * `HapticFeedbackPlayer` is a new protocol for preparing and playing haptic feedback.
+* `KeyboardAction` has a new `standardAction(for:gesture)` function.
 * `KeyboardFeedbackHandler` is a new protocol for handling keyboard feedback.
 * `KeyboardFeedbackSettings` is a new, observable settings object.
+* `KeyboardGesture` is now `CaseIterable`.
 * `KeyboardInputViewController` has a new `setup(with:)` that takes a `UIStackView`.
 * `KeyboardInputViewController` has a new `keyboardFeedbackHandler` property.
 * `KeyboardInputViewController` has a new `keyboardFeedbackSettings` property.

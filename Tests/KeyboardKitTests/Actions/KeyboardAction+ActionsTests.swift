@@ -32,6 +32,30 @@ class KeyboardAction_ActionsTests: QuickSpec {
             unexpected = []
         }
         
+        describe("standard action for gesture") {
+            
+            func result(for action: KeyboardAction, gesture: KeyboardGesture, expected: KeyboardAction.GestureAction?) -> Bool {
+                let result = action.standardAction(for: gesture)
+                let lhs = result == nil
+                let rhs = expected == nil
+                return lhs == rhs
+            }
+            
+            func result(for action: KeyboardAction) -> Bool {
+                return
+                    result(for: action, gesture: .doubleTap, expected: action.standardDoubleTapAction) &&
+                    result(for: action, gesture: .longPress, expected: action.standardLongPressAction) &&
+                    result(for: action, gesture: .press, expected: action.standardPressAction) &&
+                    result(for: action, gesture: .release, expected: action.standardReleaseAction) &&
+                    result(for: action, gesture: .repeatPress, expected: action.standardRepeatAction) &&
+                    result(for: action, gesture: .tap, expected: action.standardTapAction)
+            }
+            
+            it("is not defined for any actions") {
+                KeyboardAction.testActions.forEach { expect(result(for: $0)).to(beTrue()) }
+            }
+        }
+        
         describe("standard double tap action") {
             
             func result(for action: KeyboardAction) -> Any? {
