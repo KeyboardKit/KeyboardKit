@@ -68,11 +68,11 @@ open class KeyboardInputViewController: UIInputViewController {
     // MARK: - Setup
 
     /**
-     Setup KeyboardKit with a SwiftUI view.
+     Setup KeyboardKit with a SwiftUI `View`.
      
-     This will remove all subviews from the vc view then add
-     the provided view to it. The view will be pinned to the
-     edges of the vc view and resize the extension to fit.
+     This will remove all subviews from the controller, then
+     add the view. The view will be pinned to the edges, and
+     resize the extension to fit its content.
      
      This also applies `@EnvironmentObject` instances to the
      view, that can be used within the entire view hierarchy.
@@ -84,8 +84,27 @@ open class KeyboardInputViewController: UIInputViewController {
             .environmentObject(keyboardContext)
             .environmentObject(keyboardInputCalloutContext)
             .environmentObject(keyboardSecondaryInputCalloutContext)
-        let controller = KeyboardHostingController(rootView: view)
-        controller.add(to: self)
+        let host = KeyboardHostingController(rootView: view)
+        host.add(to: self)
+    }
+    
+    /**
+     Setup KeyboardKit with a UIKit `UIStackView`.
+     
+     This will remove all subviews from the controller, then
+     add the view. The view will be pinned to the edges, and
+     resize the extension to fit its content.
+     
+     The view will be also setup to use a `vertical` axis, a
+     `fill` alignment and an `equalSpacing` districution.
+     */
+    open func setup(with view: UIStackView) {
+        self.view.subviews.forEach { $0.removeFromSuperview() }
+        view.frame = .zero
+        view.axis = .vertical
+        view.alignment = .fill
+        view.distribution = .equalSpacing
+        self.view.addSubview(view, fill: true)
     }
     
     
@@ -170,22 +189,6 @@ open class KeyboardInputViewController: UIInputViewController {
         actionHandler: keyboardActionHandler)
     
     
-    // MARK: - View Properties
-    
-    /**
-     This is a regular, vertical `UIStackView`, to which you
-     can add toolbars, rows etc. to create `UIKit` keyboards.
-     */
-    public lazy var keyboardStackView: UIStackView = {
-        let stackView = UIStackView(frame: .zero)
-        stackView.axis = .vertical
-        stackView.alignment = .fill
-        stackView.distribution = .equalSpacing
-        view.addSubview(stackView, fill: true)
-        return stackView
-    }()
-    
-    
     // MARK: - Text And Selection Change
     
     open override func selectionWillChange(_ textInput: UITextInput?) {
@@ -240,6 +243,13 @@ open class KeyboardInputViewController: UIInputViewController {
     
     
     // MARK: - Deprecated
+    
+    @available(*, deprecated, message: "Use the stack view-based setup(with:) and provide your own stack view.")
+    public lazy var keyboardStackView: UIStackView = {
+        let stackView = UIStackView(frame: .zero)
+        setup(with: stackView)
+        return stackView
+    }()
     
     @available(*, deprecated, message: "Change keyboardContext.locale directly.")
     open func changeKeyboardLocale(to locale: Locale) {

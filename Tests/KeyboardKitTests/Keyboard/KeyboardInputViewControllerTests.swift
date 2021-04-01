@@ -79,11 +79,25 @@ class KeyboardInputViewControllerTests: QuickSpec {
         
         describe("setting up with view") {
             
-            it("registers a hosting controller") {
+            it("creates and adds a keyboard hosting controller") {
                 expect(vc.children.count).to(equal(0))
                 vc.setup(with: Text("HEJ"))
                 expect(vc.children.count).to(equal(1))
                 expect(vc.view.subviews.count).to(equal(1))
+            }
+        }
+    
+        describe("setting up with stack view") {
+            
+            it("adds and configures the view") {
+                expect(vc.view.subviews.count).to(equal(2))
+                let view = UIStackView()
+                vc.setup(with: view)
+                expect(vc.view.subviews.count).to(equal(1))
+                expect(view.frame).to(equal(.zero))
+                expect(view.axis).to(equal(.vertical))
+                expect(view.alignment).to(equal(.fill))
+                expect(view.distribution).to(equal(.equalSpacing))
             }
         }
         
@@ -172,31 +186,6 @@ class KeyboardInputViewControllerTests: QuickSpec {
             }
         }
         
-        
-        // MARK: - View Properties
-        
-        describe("keyboard stack view") {
-            
-            it("is not added to vc view if not referred") {
-                let view = vc.view
-                vc.viewDidLoad()
-                expect(view?.subviews.count).to(equal(2))
-            }
-            
-            it("is added to vc view when it's first referred") {
-                let view = vc.view
-                _ = vc.keyboardStackView
-                expect(view?.subviews.count).to(equal(3))
-                expect(view?.subviews[2]).to(be(vc.keyboardStackView))
-            }
-            
-            it("is correctly configured") {
-                let view = vc.keyboardStackView
-                expect(view.axis).to(equal(.vertical))
-                expect(view.alignment).to(equal(.fill))
-                expect(view.distribution).to(equal(.equalSpacing))
-            }
-        }
         
         // MARK: - Text And Selection Change
         
