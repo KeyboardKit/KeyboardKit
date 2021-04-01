@@ -102,87 +102,43 @@ class KeyboardInputViewControllerTests: QuickSpec {
         }
         
         
-        // MARK: - Properties
+        // MARK: - Observables
         
-        describe("keyboard action handler") {
+        describe("observable property collection") {
             
-            it("is standard by default") {
-                let obj = vc.keyboardActionHandler
-                expect(obj as? StandardKeyboardActionHandler).toNot(beNil())
+            it("has standard instances by default") {
+                expect(vc.autocompleteContext.suggestions.isEmpty).to(beTrue())
+                expect(vc.keyboardContext.hasFullAccess).to(beFalse())
+                expect(vc.keyboardContext.keyboardType).to(equal(.alphabetic(.lowercased)))
+                expect(vc.keyboardContext.needsInputModeSwitchKey).to(beFalse())
+                expect(vc.keyboardContext.textDocumentProxy).to(be(vc.textDocumentProxy))
+                expect(vc.keyboardInputCalloutContext.buttonFrame).to(equal(.zero))
             }
         }
         
-        describe("keyboard appearance provider") {
+        
+        // MARK: - Services
+        
+        describe("service property collection") {
             
-            it("is standard by default") {
-                let obj = vc.keyboardAppearance
-                expect(obj as? StandardKeyboardAppearance).toNot(beNil())
+            it("has standard instances by default") {
+                expect(vc.autocompleteSuggestionProvider as? DisabledAutocompleteSuggestionProvider).toNot(beNil())
+                expect(vc.keyboardActionHandler as? StandardKeyboardActionHandler).toNot(beNil())
+                expect(vc.keyboardAppearance as? StandardKeyboardAppearance).toNot(beNil())
+                expect(vc.keyboardBehavior as? StandardKeyboardBehavior).toNot(beNil())
+                expect(vc.keyboardInputSetProvider as? StandardKeyboardInputSetProvider).toNot(beNil())
+                expect(vc.keyboardLayoutProvider as? StandardKeyboardLayoutProvider).toNot(beNil())
+                expect(vc.keyboardSecondaryCalloutActionProvider as? StandardSecondaryCalloutActionProvider).toNot(beNil())
             }
         }
         
-        describe("keyboard behavior") {
+        describe("changing keyboard input set provider") {
             
-            it("is standard by default") {
-                let obj = vc.keyboardBehavior
-                expect(obj as? StandardKeyboardBehavior).toNot(beNil())
-            }
-        }
-        
-        describe("keyboard context") {
-            
-            it("is setup with default state") {
-                let context = vc.keyboardContext
-                expect(context.hasFullAccess).to(beFalse())
-                expect(context.keyboardType).to(equal(.alphabetic(.lowercased)))
-                expect(context.needsInputModeSwitchKey).to(beFalse())
-                expect(context.textDocumentProxy).to(be(vc.textDocumentProxy))
-            }
-        }
-        
-        describe("keyboard input callout context") {
-            
-            it("is correctly setup") {
-                let context = vc.keyboardInputCalloutContext
-                expect(context).to(be(context))
-            }
-        }
-        
-        describe("keyboard input set provider") {
-            
-            it("is standard by default") {
-                let obj = vc.keyboardInputSetProvider
-                expect(obj as? StandardKeyboardInputSetProvider).toNot(beNil())
-            }
-            
-            it("is registered into the layout provider when changed") {
+            it("is registered into the layout provider") {
                 let newProvider = MockKeyboardInputSetProvider()
                 vc.keyboardInputSetProvider = newProvider
                 let layoutProvider = vc.keyboardLayoutProvider as? StandardKeyboardLayoutProvider
                 expect(layoutProvider?.inputSetProvider).to(be(newProvider))
-            }
-        }
-        
-        describe("keyboard layout provider") {
-            
-            it("is standard by default") {
-                let obj = vc.keyboardLayoutProvider
-                expect(obj as? StandardKeyboardLayoutProvider).toNot(beNil())
-            }
-        }
-        
-        describe("keyboard secondary input action provider") {
-            
-            it("is standard by default") {
-                let obj = vc.keyboardSecondaryCalloutActionProvider
-                expect(obj as? StandardSecondaryCalloutActionProvider).toNot(beNil())
-            }
-        }
-        
-        describe("keyboard secondary input callout context") {
-            
-            it("is correctly setup") {
-                let context = vc.keyboardSecondaryInputCalloutContext
-                expect(context).to(be(context))
             }
         }
         
@@ -244,7 +200,7 @@ class KeyboardInputViewControllerTests: QuickSpec {
         }
         
         
-        // MARK: - Public Functions
+        // MARK: - Autocomplete
         
         describe("performing autocomplete") {
             

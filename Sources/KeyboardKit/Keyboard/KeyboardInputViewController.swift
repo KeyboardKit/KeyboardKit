@@ -121,72 +121,76 @@ open class KeyboardInputViewController: UIInputViewController {
      */
     public static var shared: KeyboardInputViewController!
     
+    
+    // MARK: - Observables
+    
     /**
-     The extension's default keyboard context.
+     The default observable autocomplete context.
      */
     public lazy var autocompleteContext = AutocompleteContext()
     
     /**
-     The extension's default autocomplete suggestion provider.
+     The default observable keyboard context.
+     */
+    public lazy var keyboardContext = KeyboardContext(controller: self)
+    
+    /**
+     The default observable input callout context.
+     */
+    public lazy var keyboardInputCalloutContext = InputCalloutContext()
+    
+    /**
+     The default observable secondary input callout context.
+     */
+    public lazy var keyboardSecondaryInputCalloutContext = SecondaryInputCalloutContext(
+        actionProvider: keyboardSecondaryCalloutActionProvider,
+        actionHandler: keyboardActionHandler)
+    
+    
+    // MARK: - Services
+    
+    /**
+     The default autocomplete suggestion provider.
      */
     public lazy var autocompleteSuggestionProvider: AutocompleteSuggestionProvider = DisabledAutocompleteSuggestionProvider()
     
     /**
-     The extension's default keyboard action handler.
+     The default keyboard action handler.
      */
     public lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(
         inputViewController: self)
 
     /**
-     The extension's default keyboard appearance.
+     The default keyboard appearance.
      */
     public lazy var keyboardAppearance: KeyboardAppearance = StandardKeyboardAppearance(
         context: keyboardContext)
 
     /**
-     The extension's default keyboard behavior.
+     The default keyboard behavior.
      */
     public lazy var keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior(
         context: keyboardContext)
     
     /**
-     The extension's default keyboard context.
-     */
-    public lazy var keyboardContext = KeyboardContext(controller: self)
-    
-    /**
-     The extension's default input callout context.
-     */
-    public lazy var keyboardInputCalloutContext = InputCalloutContext()
-    
-    /**
-     The extension's default keyboard input set provider.
+     The default keyboard input set provider.
      */
     public lazy var keyboardInputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider(
         context: keyboardContext) {
-        didSet {
-            keyboardLayoutProvider.register(inputSetProvider: keyboardInputSetProvider)
-        }
+        didSet { keyboardLayoutProvider.register(inputSetProvider: keyboardInputSetProvider) }
     }
                     
     /**
-     The extension's default keyboard layout provider.
+     The default keyboard layout provider.
      */
     public lazy var keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider(
         inputSetProvider: keyboardInputSetProvider)
     
     /**
-     The extension's default secondary input action provider.
+     The default secondary input action provider.
      */
     public lazy var keyboardSecondaryCalloutActionProvider: SecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider(
         context: keyboardContext)
-    
-    /**
-     The extension's default secondary input callout context.
-     */
-    public lazy var keyboardSecondaryInputCalloutContext = SecondaryInputCalloutContext(
-        actionProvider: keyboardSecondaryCalloutActionProvider,
-        actionHandler: keyboardActionHandler)
     
     
     // MARK: - Text And Selection Change
