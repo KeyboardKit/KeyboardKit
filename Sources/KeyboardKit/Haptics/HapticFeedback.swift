@@ -9,9 +9,14 @@
 import UIKit
 
 /**
- This enum provides a streamlined way of working with haptic
- feedback. You can call `prepare()` and `trigger()` on these
- hapic feedbacks to prepare and trigger the desired feedback.
+ This enum contains various haptic feedback types.
+  
+ You can call `prepare()` and `trigger()` on either the type
+ or an instance, to prepare and trigger the desired feedback.
+ 
+ The feedback enum uses the static `player` to play feedback.
+ You can replace this instance with a custom player, e.g. to
+ mock functionality when writing tests.
 */
 public enum HapticFeedback: CaseIterable, Equatable {
     

@@ -39,6 +39,11 @@ It also moves feedback from the standard keyboard action handler to a new feedba
 * `Audio` has been moved into `Feedback`.
 * `Haptics` has been moved into `Feedback`.
 
+### 🗑 Deprecated (removed in 5.0):
+
+* `AudioFeedback` `systemPlayer` has been renamed to `player`.
+
+
 
 ## 4.2
 

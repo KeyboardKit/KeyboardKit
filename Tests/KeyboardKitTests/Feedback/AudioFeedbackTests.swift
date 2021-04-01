@@ -15,6 +15,13 @@ class AudioFeedbackTest: QuickSpec {
     
     override func spec() {
         
+        var player: MockPlayer!
+        
+        beforeEach {
+            player = MockPlayer()
+            AudioFeedback.player = player
+        }
+        
         describe("audio feedback") {
             
             func value(for feedback: AudioFeedback) -> UInt32? {
@@ -33,8 +40,6 @@ class AudioFeedbackTest: QuickSpec {
         describe("triggering feedback") {
             
             it("works both with static and instance approach") {
-                let player = MockPlayer()
-                AudioFeedback.systemPlayer = player
                 AudioFeedback.trigger(.custom(id: 123))
                 AudioFeedback.custom(id: 124).trigger()
                 let calls = player.calls(to: player.playSystemAudioRef)

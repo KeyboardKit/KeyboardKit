@@ -9,12 +9,14 @@
 import Foundation
 
 /**
- This enum provides audio feedback for keyboard actions. The
- feedback types can be triggered with the `trigger` function.
+ This enum contains various audio feedback types.
+  
+ You can call `trigger()` on either the type or an instance,
+ to trigger the desired feedback.
  
- The static `systemPlayer` uses a `StandardSystemAudioPlayer`
- by default, but you can change it to any `SystemAudioPlayer`
- you like, e.g. when writing tests.
+ The feedback enum uses the static `player` to play feedback.
+ You can replace this instance with a custom player, e.g. to
+ mock functionality when writing tests.
 */
 public enum AudioFeedback: Equatable {
     
@@ -41,7 +43,7 @@ public enum AudioFeedback: Equatable {
     /**
      The standard player that is used for audio feedback.
      */
-    public static var systemPlayer: SystemAudioPlayer = StandardSystemAudioPlayer()
+    public static var player: SystemAudioPlayer = StandardSystemAudioPlayer()
 }
 
 
@@ -55,6 +57,6 @@ public extension AudioFeedback {
     
     static func trigger(_ feedback: AudioFeedback) {
         guard let id = feedback.systemId else { return }
-        systemPlayer.playSystemAudio(id)
+        player.playSystemAudio(id)
     }
 }
