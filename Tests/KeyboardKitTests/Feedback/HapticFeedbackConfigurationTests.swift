@@ -14,9 +14,9 @@ class HapticFeedbackConfigurationTests: QuickSpec {
     
     override func spec() {
         
-        describe("default") {
+        describe("default initilizer") {
             
-            it("uses standard haptic feedback types") {
+            it("uses standard feedback") {
                 let config = HapticFeedbackConfiguration()
                 expect(config.tapFeedback).to(equal(HapticFeedback.none))
                 expect(config.doubleTapFeedback).to(equal(HapticFeedback.none))
@@ -28,7 +28,7 @@ class HapticFeedbackConfigurationTests: QuickSpec {
         
         describe("no feedback configuration") {
             
-            it("uses none for all") {
+            it("disables all feedback") {
                 let config = HapticFeedbackConfiguration.noFeedback
                 expect(config.tapFeedback).to(equal(HapticFeedback.none))
                 expect(config.doubleTapFeedback).to(equal(HapticFeedback.none))
@@ -40,7 +40,7 @@ class HapticFeedbackConfigurationTests: QuickSpec {
         
         describe("standard configuration") {
             
-            it("uses standard haptic feedback types") {
+            it("uses standard feedback") {
                 let config = HapticFeedbackConfiguration.standard
                 expect(config).to(equal(HapticFeedbackConfiguration()))
             }

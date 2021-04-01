@@ -14,9 +14,19 @@ class AudioFeedbackConfigurationTests: QuickSpec {
     
     override func spec() {
         
+        describe("default initializer") {
+            
+            it("uses standard feedback") {
+                let config = AudioFeedbackConfiguration()
+                expect(config.inputFeedback).to(equal(AudioFeedback.input))
+                expect(config.deleteFeedback).to(equal(AudioFeedback.delete))
+                expect(config.systemFeedback).to(equal(AudioFeedback.system))
+            }
+        }
+        
         describe("no feedback configuration") {
             
-            it("uses none for all") {
+            it("disables all feedback") {
                 let config = AudioFeedbackConfiguration.noFeedback
                 expect(config.inputFeedback).to(equal(AudioFeedback.none))
                 expect(config.deleteFeedback).to(equal(AudioFeedback.none))
@@ -26,11 +36,9 @@ class AudioFeedbackConfigurationTests: QuickSpec {
         
         describe("standard configuration") {
             
-            it("uses standard Audio feedbacks") {
+            it("uses standard feedback") {
                 let config = AudioFeedbackConfiguration.standard
-                expect(config.inputFeedback).to(equal(AudioFeedback.input))
-                expect(config.deleteFeedback).to(equal(AudioFeedback.delete))
-                expect(config.systemFeedback).to(equal(AudioFeedback.system))
+                expect(config).to(equal(AudioFeedbackConfiguration()))
             }
         }
     }

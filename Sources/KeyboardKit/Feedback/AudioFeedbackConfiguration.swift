@@ -9,15 +9,14 @@
 import Foundation
 
 /**
- This configuration struct specifies an audio feedback setup
- for custom keyboards.
+ This struct specifies audio feedback for a custom keyboard.
  */
 public struct AudioFeedbackConfiguration: Equatable {
     
     public init(
-        inputFeedback: AudioFeedback,
-        deleteFeedback: AudioFeedback,
-        systemFeedback: AudioFeedback) {
+        inputFeedback: AudioFeedback = .input,
+        deleteFeedback: AudioFeedback = .delete,
+        systemFeedback: AudioFeedback = .system) {
         self.inputFeedback = inputFeedback
         self.deleteFeedback = deleteFeedback
         self.systemFeedback = systemFeedback
@@ -43,10 +42,6 @@ public struct AudioFeedbackConfiguration: Equatable {
      tries to replicate the standard system behavior.
     */
     public static var standard: AudioFeedbackConfiguration {
-        AudioFeedbackConfiguration(
-            inputFeedback: .input,
-            deleteFeedback: .delete,
-            systemFeedback: .system
-        )
+        AudioFeedbackConfiguration()
     }
 }

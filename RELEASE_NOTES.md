@@ -17,6 +17,7 @@ It also moves feedback from the standard keyboard action handler to a new feedba
 
 ### ✨ New features
 
+* `AudioFeedbackConfiguration` has default init param values.
 * `HapticFeedbackPlayer` is a new protocol for preparing and playing haptic feedback.
 * `FeedbackSettings` is a new, observable settings object.
 * `StandardHapticFeedbackPlayer` is a standard implementation that is used by default.

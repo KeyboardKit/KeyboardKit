@@ -9,8 +9,7 @@
 import Foundation
 
 /**
- This configuration specifies haptic feedback behavior for a
- custom keyboard.
+ This struct specifies haptic feedback for a custom keyboard.
  */
 public struct HapticFeedbackConfiguration: Equatable {
     
