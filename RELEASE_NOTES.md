@@ -17,9 +17,12 @@ It also moves feedback from the standard keyboard action handler to a new feedba
 
 ### ✨ New features
 
+* `HapticFeedbackPlayer` is a new protocol for preparing and playing haptic feedback.
 * `FeedbackSettings` is a new, observable settings object.
+* `StandardHapticFeedbackPlayer` is a standard implementation that is used by default.
 * `StandardKeyboardActionHandler` has a new `triggerFeedback` function.
 * `StandardKeyboardActionHandler` has a new `shouldGiveFeedback` function.
+* There are new mocks for the new classes.
 
 ### 💡 Behavior changes
 

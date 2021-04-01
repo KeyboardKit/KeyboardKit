@@ -32,8 +32,8 @@ public class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
     
     private let settings: FeedbackSettings
     
-    private var audioConfiguration: AudioFeedbackConfiguration { settings.audioConfiguration }
-    private var hapticConfiguration: HapticFeedbackConfiguration { settings.hapticConfiguration }
+    private var audioConfig: AudioFeedbackConfiguration { settings.audioConfiguration }
+    private var hapticConfig: HapticFeedbackConfiguration { settings.hapticConfiguration }
     
     
     /**
@@ -82,9 +82,9 @@ public class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
      certain `action`.
      */
     open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
-        if action == .backspace { return audioConfiguration.deleteFeedback.trigger() }
-        if action.isInputAction { return audioConfiguration.inputFeedback.trigger() }
-        if action.isSystemAction { return audioConfiguration.systemFeedback.trigger() }
+        if action == .backspace { return audioConfig.deleteFeedback.trigger() }
+        if action.isInputAction { return audioConfig.inputFeedback.trigger() }
+        if action.isSystemAction { return audioConfig.systemFeedback.trigger() }
     }
     
     /**
@@ -93,12 +93,12 @@ public class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
      */
     open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
         switch gesture {
-        case .doubleTap: hapticConfiguration.doubleTapFeedback.trigger()
-        case .longPress: hapticConfiguration.longPressFeedback.trigger()
-        case .press: hapticConfiguration.tapFeedback.trigger()
-        case .release: hapticConfiguration.tapFeedback.trigger()
-        case .repeatPress: hapticConfiguration.repeatFeedback.trigger()
-        case .tap: hapticConfiguration.tapFeedback.trigger()
+        case .doubleTap: hapticConfig.doubleTapFeedback.trigger()
+        case .longPress: hapticConfig.longPressFeedback.trigger()
+        case .press: hapticConfig.tapFeedback.trigger()
+        case .release: hapticConfig.tapFeedback.trigger()
+        case .repeatPress: hapticConfig.repeatFeedback.trigger()
+        case .tap: hapticConfig.tapFeedback.trigger()
         }
     }
 }
