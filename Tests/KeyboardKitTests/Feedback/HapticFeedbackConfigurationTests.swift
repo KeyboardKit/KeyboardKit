@@ -14,6 +14,18 @@ class HapticFeedbackConfigurationTests: QuickSpec {
     
     override func spec() {
         
+        describe("default") {
+            
+            it("uses standard haptic feedback types") {
+                let config = HapticFeedbackConfiguration()
+                expect(config.tapFeedback).to(equal(HapticFeedback.none))
+                expect(config.doubleTapFeedback).to(equal(HapticFeedback.none))
+                expect(config.longPressFeedback).to(equal(HapticFeedback.none))
+                expect(config.longPressOnSpaceFeedback).to(equal(.mediumImpact))
+                expect(config.repeatFeedback).to(equal(HapticFeedback.none))
+            }
+        }
+        
         describe("no feedback configuration") {
             
             it("uses none for all") {
@@ -28,13 +40,9 @@ class HapticFeedbackConfigurationTests: QuickSpec {
         
         describe("standard configuration") {
             
-            it("uses standard haptic feedbacks") {
+            it("uses standard haptic feedback types") {
                 let config = HapticFeedbackConfiguration.standard
-                expect(config.tapFeedback).to(equal(HapticFeedback.none))
-                expect(config.doubleTapFeedback).to(equal(HapticFeedback.none))
-                expect(config.longPressFeedback).to(equal(HapticFeedback.none))
-                expect(config.longPressOnSpaceFeedback).to(equal(.mediumImpact))
-                expect(config.repeatFeedback).to(equal(HapticFeedback.none))
+                expect(config).to(equal(HapticFeedbackConfiguration()))
             }
         }
     }

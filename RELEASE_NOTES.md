@@ -33,6 +33,11 @@ It also moves feedback from the standard keyboard action handler to a new feedba
 * `shouldGiveFeedback` by default returns `true` if the gesture is `press` and the action has a tap action.
 * `triggerFeedback` calls `triggerAudioFeedback` and `triggerHapticFeedback` if feedback should be given.
 
+### 🚚 Structure changes
+
+* `Audio` has been moved into `Feedback`.
+* `Haptics` has been moved into `Feedback`.
+
 
 ## 4.2
 
