@@ -9,8 +9,8 @@
 import UIKit
 
 /**
- This action handler provides standard ways of how to handle
- keyboard actions.
+ This standard keyboard action handler is used by default by
+ KeyboardKit and provides standard ways of handling actions.
  
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
