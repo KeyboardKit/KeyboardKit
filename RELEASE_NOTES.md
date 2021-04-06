@@ -21,7 +21,8 @@ This version tweaks some more behaviors:
 
 ### 💡 Behavior changes
 
-* The standard keyboard behavior only auto-switches keyboard type on `.tap`.
+* `StandardKeyboardBehavior` now only auto-switches keyboard type on `.tap`.
+* `UITextDocumentProxy` handles newline when checing if cursor is at new sentence.
 
 
 

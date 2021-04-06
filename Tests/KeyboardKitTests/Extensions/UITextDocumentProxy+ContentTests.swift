@@ -47,6 +47,14 @@ class UITextDocumentProxy_ContentTests: QuickSpec {
                 expect(result(for: "foo.")).to(beTrue())
                 expect(result(for: "foo! ")).to(beTrue())
             }
+            
+            it("returns false if pre cursor has an unclosed sentence and a newline") {
+                expect(result(for: "foo\n")).to(beFalse())
+            }
+            
+            it("returns false if pre cursor has a closed sentence and a newline") {
+                expect(result(for: "foo!\n")).to(beTrue())
+            }
         }
         
         describe("is cursor at the beginning of a new word") {
