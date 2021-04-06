@@ -80,10 +80,8 @@ private extension KeyboardGestures {
      This is a plain double-tap gesure.
      */
     var doubleTapGesture: some Gesture {
-        TapGesture(count: 2).onEnded {
-            doubleTapAction?()
-            triggerPressedHighlight()
-        }
+        TapGesture(count: 2)
+            .onEnded { doubleTapAction?() }
     }
     
     /**
@@ -91,21 +89,16 @@ private extension KeyboardGestures {
      */
     func dragGesture(for geo: GeometryProxy) -> some Gesture {
         DragGesture(minimumDistance: 0)
-            .onChanged { _ in
-                handlePressGesture(for: geo) }
-            .onEnded { _ in
-                handleReleaseGesture()
-                }
+            .onChanged { _ in handlePressGesture(for: geo) }
+            .onEnded { _ in handleReleaseGesture() }
     }
     
     /**
      This is a plain long press gesure.
      */
     var longPressGesture: some Gesture {
-        LongPressGesture().onEnded { _ in
-            longPressAction?()
-            startRepeatTimer()
-        }
+        LongPressGesture()
+            .onEnded { _ in handleLongPressGesture() }
     }
     
     /**
@@ -128,11 +121,8 @@ private extension KeyboardGestures {
      This is a plain tap gesure.
      */
     var tapGesture: some Gesture {
-        TapGesture().onEnded {
-            tapAction?()
-            triggerPressedHighlight()
-            inputCalloutContext.reset()
-        }
+        TapGesture()
+            .onEnded(handleTapGesture)
     }
 }
 
@@ -159,6 +149,11 @@ private extension KeyboardGestures {
         guard secondaryInputCalloutContext.isActive else { return }
     }
     
+    func handleLongPressGesture() {
+        longPressAction?()
+        startRepeatTimer()
+    }
+    
     func handlePressGesture(for geo: GeometryProxy) {
         if isDragGestureTriggered { return }
         isDragGestureTriggered = true
@@ -182,6 +177,11 @@ private extension KeyboardGestures {
         dragAction?(drag.startLocation, drag.location)
     }
     
+    func handleTapGesture() {
+        tapAction?()
+        inputCalloutContext.reset()
+    }
+    
     func startRepeatTimer() {
         guard let action = repeatAction else { return repeatTimer.stop() }
         repeatTimer.start(action: action)
@@ -189,13 +189,5 @@ private extension KeyboardGestures {
     
     func stopRepeatTimer() {
         repeatTimer.stop()
-    }
-    
-    func triggerPressedHighlight() {
-        if isInputCalloutEnabled { return }
-        isPressed.wrappedValue = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            isPressed.wrappedValue = false
-        }
     }
 }
