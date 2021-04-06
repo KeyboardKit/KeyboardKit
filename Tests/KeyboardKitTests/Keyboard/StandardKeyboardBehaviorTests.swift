@@ -33,11 +33,18 @@ class StandardKeyboardBehaviorTests: QuickSpec {
                 behavior.preferredKeyboardType(after: gesture, on: action)
             }
             
-            it("is by default the context preferred keyboard type") {
+            it("is by default the context preferred keyboard type for tap gesture") {
                 proxy.documentContextBeforeInput = "Hello!"
                 proxy.autocapitalizationType = .allCharacters
                 context.keyboardType = .alphabetic(.lowercased)
                 expect(result(after: .tap, on: .character("i"))).to(equal(.alphabetic(.uppercased)))
+            }
+            
+            it("is by default the context current keyboard type for non-tap gesture") {
+                proxy.documentContextBeforeInput = "Hello!"
+                proxy.autocapitalizationType = .allCharacters
+                context.keyboardType = .alphabetic(.lowercased)
+                expect(result(after: .press, on: .character("i"))).to(equal(context.keyboardType))
             }
             
             it("is context preferred keyboard type if shift is double-tapped too slowly") {

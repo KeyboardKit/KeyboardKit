@@ -15,6 +15,16 @@ This version will improve the layout engine and make it easier to override butto
 
 
 
+## 4.3.2
+
+This version tweaks some more behaviors:
+
+### 💡 Behavior changes
+
+* The standard keyboard behavior only auto-switches keyboard type on `.tap`.
+
+
+
 ## 4.3.1
 
 This version tweaks `KeyboardGestures`  to avoid delays.

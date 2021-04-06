@@ -40,10 +40,8 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
         after gesture: KeyboardGesture,
         on action: KeyboardAction) -> KeyboardType {
         if shouldSwitchToCapsLock(after: gesture, on: action) { return .alphabetic(.capsLocked) }
-        switch action {
-        case .shift: return context.keyboardType
-        default: return context.preferredKeyboardType
-        }
+        guard gesture == .tap, !action.isShift else { return context.keyboardType }
+        return context.preferredKeyboardType
     }
     
     open func shouldEndSentence(
