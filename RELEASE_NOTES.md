@@ -14,6 +14,16 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 This version will improve the layout engine and make it easier to override button widths.
 
 
+## 4.3.1
+
+This version tweaks the keyboard gestures a little bit.
+
+### 💡 Behavior changes
+
+* `KeyboardGestures` places the drag gesture first, to avoid delays.
+
+
+
 ## 4.3
 
 This version introduces a bunch of changes to how feedback is being handled.

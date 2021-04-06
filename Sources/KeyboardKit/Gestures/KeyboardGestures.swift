@@ -62,9 +62,9 @@ struct KeyboardGestures<Content: View>: View {
     var body: some View {
         view.overlay(GeometryReader { geo in
             Color.clearInteractable
-                .gesture(tapGesture)
+                .gesture(dragGesture(for: geo))
+                .simultaneousGesture(tapGesture)
                 .simultaneousGesture(doubleTapGesture)
-                .simultaneousGesture(dragGesture(for: geo))
                 .simultaneousGesture(longPressGesture)
                 .simultaneousGesture(longPressDragGesture(for: geo))
         })
@@ -92,18 +92,10 @@ private extension KeyboardGestures {
     func dragGesture(for geo: GeometryProxy) -> some Gesture {
         DragGesture(minimumDistance: 0)
             .onChanged { _ in
-                if isDragGestureTriggered { return }
-                isDragGestureTriggered = true
-                pressAction?()
-                isPressed.wrappedValue = true
-                guard isInputCalloutEnabled else { return }
-                inputCalloutContext.updateInput(for: action, geo: geo) }
+                handlePressGesture(for: geo) }
             .onEnded { _ in
-                releaseAction?()
-                isDragGestureTriggered = false
-                isPressed.wrappedValue = false
-                inputCalloutContext.reset()
-                stopRepeatTimer() }
+                handleReleaseGesture()
+                }
     }
     
     /**
@@ -165,6 +157,23 @@ private extension KeyboardGestures {
         if shouldTapAfterSecondaryInputGesture { tapAction?() }
         secondaryInputCalloutContext.endDragGesture()
         guard secondaryInputCalloutContext.isActive else { return }
+    }
+    
+    func handlePressGesture(for geo: GeometryProxy) {
+        if isDragGestureTriggered { return }
+        isDragGestureTriggered = true
+        pressAction?()
+        isPressed.wrappedValue = true
+        guard isInputCalloutEnabled else { return }
+        inputCalloutContext.updateInput(for: action, geo: geo)
+    }
+    
+    func handleReleaseGesture() {
+        releaseAction?()
+        isDragGestureTriggered = false
+        isPressed.wrappedValue = false
+        inputCalloutContext.reset()
+        stopRepeatTimer()
     }
     
     func handleSecondaryInputDragGesture(_ drag: DragGesture.Value?) {
