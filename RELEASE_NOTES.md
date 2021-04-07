@@ -19,6 +19,10 @@ This version will improve the layout engine and make it easier to override butto
 
 This version adds new locales and tweaks some behavior.
 
+### ✨ New features
+
+* `EnglishKeyboardInputSetProvider` has new currency init params.
+
 ### 🌐 New locales
 
 * 🇬🇧 English U.K. (GB)

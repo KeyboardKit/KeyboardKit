@@ -61,6 +61,17 @@ class EnglishKeyboardInputSetProviderTests: QuickSpec {
                         ".,?!’".chars
                     ]))
                 }
+                
+                it("can vary currency symbols") {
+                    let provider = EnglishKeyboardInputSetProvider(
+                        device: device,
+                        numericCurrency: "å",
+                        symbolicCurrency: "ä")
+                    let numeric = provider.numericInputSet().rows[1].characters()
+                    let symbolic = provider.symbolicInputSet().rows[1].characters()
+                    expect(numeric).to(equal("-/:;()å&@”".chars))
+                    expect(symbolic).to(equal("_\\|~<>€ä¥•".chars))
+                }
             }
             
             context("for pads") {
@@ -91,6 +102,17 @@ class EnglishKeyboardInputSetProviderTests: QuickSpec {
                         "€£¥_^[]{}".chars,
                         "§|~…\\<>!?".chars
                     ]))
+                }
+                
+                it("can vary currency symbols") {
+                    let provider = EnglishKeyboardInputSetProvider(
+                        device: device,
+                        numericCurrency: "Å",
+                        symbolicCurrency: "Ä")
+                    let numeric = provider.numericInputSet().rows[1].characters()
+                    let symbolic = provider.symbolicInputSet().rows[1].characters()
+                    expect(numeric).to(equal("@#å&*()’”".chars))
+                    expect(symbolic).to(equal("€ä¥_^[]{}".chars))
                 }
             }
         }

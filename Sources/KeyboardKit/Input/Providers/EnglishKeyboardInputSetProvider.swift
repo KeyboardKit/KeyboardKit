@@ -10,14 +10,27 @@ import UIKit
 
 /**
  This class provides English keyboard input sets.
+ 
+ Since currencies can vary between English locales, you have
+ the option to override the currency symbol. You can provide
+ a `numericCurrency` that will be used for numeric keyboards,
+ and a `symbolicCurrency` that will be used for symbolic. By
+ default, `$` is used for numeric and `£` for symbolic.
  */
 public class EnglishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, LocalizedService {
     
-    public init(device: UIDevice = .current) {
+    public init(
+        device: UIDevice = .current,
+        numericCurrency: String = "$",
+        symbolicCurrency: String = "£") {
         self.device = device
+        self.numericCurrency = numericCurrency
+        self.symbolicCurrency = symbolicCurrency
     }
     
     public let device: UIDevice
+    public let numericCurrency: String
+    public let symbolicCurrency: String
     public let localeKey: String = KeyboardLocale.english.id
     
     public func alphabeticInputSet() -> AlphabeticKeyboardInputSet {
@@ -31,7 +44,7 @@ public class EnglishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, Lo
     public func numericInputSet() -> NumericKeyboardInputSet {
         NumericKeyboardInputSet(rows: [
             row("1234567890"),
-            row(phone: "-/:;()$&@”", pad: "@#$&*()’”"),
+            row(phone: "-/:;()\(numericCurrency)&@”", pad: "@#\(numericCurrency)&*()’”"),
             row(phone: ".,?!’", pad: "%-+=/;:,.")
         ])
     }
@@ -39,7 +52,7 @@ public class EnglishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, Lo
     public func symbolicInputSet() -> SymbolicKeyboardInputSet {
         SymbolicKeyboardInputSet(rows: [
             row(phone: "[]{}#%^*+=", pad: "1234567890"),
-            row(phone: "_\\|~<>€£¥•", pad: "€£¥_^[]{}"),
+            row(phone: "_\\|~<>€\(symbolicCurrency)¥•", pad: "€\(symbolicCurrency)¥_^[]{}"),
             row(phone: ".,?!’", pad: "§|~…\\<>!?")
         ])
     }
