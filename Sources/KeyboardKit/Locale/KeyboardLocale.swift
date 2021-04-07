@@ -18,6 +18,8 @@ public enum KeyboardLocale: String, CaseIterable, Identifiable {
     case danish = "da"
     case dutch = "nl"
     case english = "en"
+    case english_gb = "en-GB"
+    case english_us = "en-US"
     case finnish = "fi"
     case german = "de"
     case italian = "it"
@@ -43,9 +45,11 @@ public extension KeyboardLocale {
     var localeIdentifier: String { id }
     
     /**
-     The unique identifier of the locale.
+     The localized name of the locale.
      */
-    var localizedName: String { locale.localizedString(forIdentifier: id) ?? "" }
+    var localizedName: String {
+        locale.localizedString(forIdentifier: id) ?? ""
+    }
     
     /**
      The corresponding flag emoji for the locale.
@@ -55,6 +59,8 @@ public extension KeyboardLocale {
         case .danish: return "🇩🇰"
         case .dutch: return "🇳🇱"
         case .english: return "🇺🇸"
+        case .english_gb: return "🇬🇧"
+        case .english_us: return "🇺🇸"
         case .finnish: return "🇫🇮"
         case .german: return "🇩🇪"
         case .italian: return "🇮🇹"

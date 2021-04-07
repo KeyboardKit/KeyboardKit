@@ -15,40 +15,68 @@ class KeyboardLocaleTests: QuickSpec {
     
     override func spec() {
         
-        describe("locale identifier and keys") {
-            
-            func result(for locale: KeyboardLocale, expected: String) -> Bool {
-                let array = [locale.id, locale.locale.identifier, locale.localeIdentifier]
-                return array.allSatisfy { $0 == expected }
-            }
+        let locales = KeyboardLocale.allCases
+        
+        describe("locale identifier") {
             
             it("is valid for all cases") {
-                expect(result(for: .danish, expected: "da")).to(beTrue())
-                expect(result(for: .dutch, expected: "nl")).to(beTrue())
-                expect(result(for: .english, expected: "en")).to(beTrue())
-                expect(result(for: .finnish, expected: "fi")).to(beTrue())
-                expect(result(for: .german, expected: "de")).to(beTrue())
-                expect(result(for: .italian, expected: "it")).to(beTrue())
-                expect(result(for: .norwegian, expected: "nb")).to(beTrue())
-                expect(result(for: .swedish, expected: "sv")).to(beTrue())
+                let map = locales.map { ($0, $0.id) }
+                let result = Dictionary(uniqueKeysWithValues: map)
+                expect(result).to(equal(
+                    [
+                        .danish: "da",
+                        .dutch: "nl",
+                        .english: "en",
+                        .english_gb: "en-GB",
+                        .english_us: "en-US",
+                        .finnish: "fi",
+                        .german: "de",
+                        .italian: "it",
+                        .norwegian: "nb",
+                        .swedish: "sv"
+                    ]
+                ))
             }
         }
         
-        describe("locale identifier and keys") {
+        describe("locale identifier") {
             
-            func result(for locale: KeyboardLocale) -> String {
-                locale.localizedName
+            it("is identical to enum id") {
+                let map = locales.map { ($0, $0.id == $0.localeIdentifier) }
+                let result = Dictionary(uniqueKeysWithValues: map)
+                expect(result.allSatisfy { $0.value == true }).to(beTrue())
             }
+        }
+        
+        describe("embedded locale identifier") {
+            
+            it("is identical to enum id") {
+                let map = locales.map { ($0, $0.id == $0.locale.identifier) }
+                let result = Dictionary(uniqueKeysWithValues: map)
+                expect(result.allSatisfy { $0.value == true }).to(beTrue())
+            }
+        }
+        
+        describe("localized name") {
             
             it("is valid for all cases") {
-                expect(result(for: .danish)).to(equal("dansk"))
-                expect(result(for: .dutch)).to(equal("Nederlands"))
-                expect(result(for: .english)).to(equal("English"))
-                expect(result(for: .finnish)).to(equal("suomi"))
-                expect(result(for: .german)).to(equal("Deutsch"))
-                expect(result(for: .italian)).to(equal("italiano"))
-                expect(result(for: .norwegian)).to(equal("norsk bokmål"))
-                expect(result(for: .swedish)).to(equal("svenska"))
+                let map = locales.map { ($0, $0.localizedName) }
+                let result = Dictionary(uniqueKeysWithValues: map)
+                
+                expect(result).to(equal(
+                    [
+                        .danish: "dansk",
+                        .dutch: "Nederlands",
+                        .english: "English",
+                        .english_gb: "English (United Kingdom)",
+                        .english_us: "English (United States)",
+                        .finnish: "suomi",
+                        .german: "Deutsch",
+                        .italian: "italiano",
+                        .norwegian: "norsk bokmål",
+                        .swedish: "svenska"
+                    ]
+                ))
             }
         }
         
@@ -59,26 +87,36 @@ class KeyboardLocaleTests: QuickSpec {
             }
             
             it("is valid for all cases") {
-                expect(result(for: .danish)).to(equal("🇩🇰"))
-                expect(result(for: .dutch)).to(equal("🇳🇱"))
-                expect(result(for: .english)).to(equal("🇺🇸"))
-                expect(result(for: .finnish)).to(equal("🇫🇮"))
-                expect(result(for: .german)).to(equal("🇩🇪"))
-                expect(result(for: .italian)).to(equal("🇮🇹"))
-                expect(result(for: .norwegian)).to(equal("🇳🇴"))
-                expect(result(for: .swedish)).to(equal("🇸🇪"))
+                let map = locales.map { ($0, $0.flag) }
+                let result = Dictionary(uniqueKeysWithValues: map)
+                expect(result).to(equal(
+                    [
+                        .danish: "🇩🇰",
+                        .dutch: "🇳🇱",
+                        .english: "🇺🇸",
+                        .english_gb: "🇬🇧",
+                        .english_us: "🇺🇸",
+                        .finnish: "🇫🇮",
+                        .german: "🇩🇪",
+                        .italian: "🇮🇹",
+                        .norwegian: "🇳🇴",
+                        .swedish: "🇸🇪"
+                    ]
+                ))
             }
         }
         
-        describe("sorted by localized name") {
+        describe("sorted") {
             
-            it("is valid for all cases") {
+            it("is sorted by localized name") {
                 let locales = KeyboardLocale.allCases.sorted()
                 let names = locales.map { $0.localizedName.capitalized }
                 expect(names).to(equal([
                     "Dansk",
                     "Deutsch",
                     "English",
+                    "English (United Kingdom)",
+                    "English (United States)",
                     "Italiano",
                     "Nederlands",
                     "Norsk Bokmål",
@@ -94,6 +132,8 @@ class KeyboardLocaleTests: QuickSpec {
                     "English",
                     "Dansk",
                     "Deutsch",
+                    "English (United Kingdom)",
+                    "English (United States)",
                     "Italiano",
                     "Nederlands",
                     "Norsk Bokmål",

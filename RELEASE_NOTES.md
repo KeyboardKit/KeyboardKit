@@ -17,12 +17,17 @@ This version will improve the layout engine and make it easier to override butto
 
 ## 4.3.2
 
-This version tweaks some more behaviors:
+This version adds new locales and tweaks some behavior.
+
+### 🌐 New locales
+
+* 🇬🇧 English U.K. (GB)
+* 🇺🇸 English U.S. (same keyboard as base English but different region)
 
 ### 💡 Behavior changes
 
 * `StandardKeyboardBehavior` now only auto-switches keyboard type on `.tap`.
-* `UITextDocumentProxy` handles newline when checing if cursor is at new sentence.
+* `UITextDocumentProxy` handles new lines when checking if the cursor is at new sentence.
 
 
 
