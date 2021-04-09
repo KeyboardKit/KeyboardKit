@@ -59,5 +59,6 @@ private extension SystemKeyboardButtonContent {
         Text(text)
             .lineLimit(1)
             .offset(y: text.isLowercased ? -2 : 0)
+            .minimumScaleFactor(0.1)
     }
 }
