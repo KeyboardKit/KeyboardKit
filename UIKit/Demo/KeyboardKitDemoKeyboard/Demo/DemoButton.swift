@@ -32,7 +32,7 @@ class DemoButton: UIKeyboardButtonView {
         buttonViewLeadingMargin?.constant = edgeInsets.left
         buttonViewTrailingMargin?.constant = edgeInsets.right
         DispatchQueue.main.async { self.image?.image = action.buttonImage }
-        textLabel?.font = action.buttonFont
+        textLabel?.font = action.buttonFont(for: viewController)
         textLabel?.text = action.buttonText
         textLabel?.textColor = action.tintColor(in: viewController)
         buttonView?.tintColor = action.tintColor(in: viewController)
@@ -108,8 +108,8 @@ private extension KeyboardAction {
     /**
      The font to use for a button that uses this action.
      */
-    var buttonFont: UIFont {
-        useCalloutFont ? UIFont.preferredFont(forTextStyle: .callout) : standardButtonFont
+    func buttonFont(for viewController: KeyboardInputViewController) -> UIFont {
+        useCalloutFont ? UIFont.preferredFont(forTextStyle: .callout) : standardButtonFont(for: viewController.keyboardContext)
     }
     
     /**

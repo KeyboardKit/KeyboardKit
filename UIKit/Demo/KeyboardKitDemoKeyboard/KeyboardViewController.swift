@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+import Combine
 import UIKit
 import KeyboardKit
 
@@ -46,13 +47,14 @@ class KeyboardViewController: KeyboardInputViewController {
             inputViewController: self)
         keyboardLayoutProvider = StandardKeyboardLayoutProvider(
             inputSetProvider: keyboardInputSetProvider)
-        setupKeyboard()
+        setupStateObservation()
+        setup(with: stackView)
     }
     
     override func textDidChange(_ textInput: UITextInput?) {
         super.textDidChange(textInput)
         keyboardContext.keyboardType = keyboardContext.preferredKeyboardType
-        setupKeyboard()
+        setupDemoKeyboard()
     }
     
     /**
@@ -61,7 +63,7 @@ class KeyboardViewController: KeyboardInputViewController {
      */
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        setupKeyboard()
+        setupDemoKeyboard()
     }
     
     /**
@@ -70,21 +72,7 @@ class KeyboardViewController: KeyboardInputViewController {
      */
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        setupKeyboard()
-    }
-    
-    
-    // MARK: - Keyboard Functionality
-    
-    override func changeKeyboardType(to type: KeyboardType) {
-        super.changeKeyboardType(to: type)
-        setupKeyboard()
-    }
-    
-    override func setupKeyboard() {
-        DispatchQueue.main.async {
-            self.setupDemoKeyboard()
-        }
+        setupDemoKeyboard()
     }
     
     
@@ -95,6 +83,10 @@ class KeyboardViewController: KeyboardInputViewController {
     var emojiCategoryTitleLabel = UILabel()
     var emojiCollectionView: HFloatingHeaderButtonCollectionView!
     var emojiLabelUpdateAction = {}
+    
+    lazy var stackView = UIStackView()
+    
+    private var cancellables = Set<AnyCancellable>()
     
     
     // MARK: - Autocomplete
@@ -117,5 +109,20 @@ class KeyboardViewController: KeyboardInputViewController {
     
     override func resetAutocomplete() {
         autocompleteToolbar.reset()
+    }
+}
+
+private extension KeyboardViewController {
+    
+    func setupStateObservation() {
+        setupKeyboardTypeObservation()
+    }
+    
+    func setupKeyboardTypeObservation() {
+        keyboardContext.$keyboardType.sink { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.setupDemoKeyboard()
+            }
+        }.store(in: &cancellables)
     }
 }

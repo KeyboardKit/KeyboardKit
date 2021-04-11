@@ -10,7 +10,7 @@ import UIKit
 import KeyboardKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, KeyboardStateInspector {
+class AppDelegate: UIResponder, UIApplicationDelegate, KeyboardEnabledStateInspector {
     
     var window: UIWindow?
 

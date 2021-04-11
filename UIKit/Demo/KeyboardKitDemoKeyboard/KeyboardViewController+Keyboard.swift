@@ -21,7 +21,7 @@ import UIKit
 extension KeyboardViewController {
     
     func setupDemoKeyboard() {
-        keyboardStackView.removeAllArrangedSubviews()
+        stackView.removeAllArrangedSubviews()
         switch keyboardContext.keyboardType {
         case .alphabetic, .numeric, .symbolic: setupSystemKeyboard()
         case .emojis: setupEmojiKeyboard()
@@ -34,10 +34,9 @@ extension KeyboardViewController {
         let keyboard = EnhancedEmojiKeyboard(context: keyboardContext)
         let config = keyboard.gridConfig
         let view = HFloatingHeaderButtonCollectionView(id: "EnhancedEmojiKeyboard", categoryActions: keyboard.categoryActions, configuration: config, buttonCreator: { [unowned self] in return self.button(for: $0) })
-        
         let bottom = buttonRow(for: keyboard.bottomActions, distribution: .fillProportionally)
-        keyboardStackView.addArrangedSubview(view)
-        keyboardStackView.addArrangedSubview(bottom)
+        stackView.addArrangedSubview(view)
+        stackView.addArrangedSubview(bottom)
         emojiCollectionView = view
         emojiKeyboard = keyboard
     }
@@ -46,8 +45,8 @@ extension KeyboardViewController {
         let keyboard = ImageKeyboard(in: self, context: keyboardContext)
         let view = UIKeyboardButtonRowCollectionView(actions: keyboard.actions, configuration: keyboard.gridConfig) { [unowned self] in return self.button(for: $0) }
         let bottom = buttonRow(for: keyboard.bottomActions, distribution: .fillProportionally)
-        keyboardStackView.addArrangedSubview(view)
-        keyboardStackView.addArrangedSubview(bottom)
+        stackView.addArrangedSubview(view)
+        stackView.addArrangedSubview(bottom)
     }
     
     func setupSystemKeyboard() {
@@ -55,7 +54,7 @@ extension KeyboardViewController {
         let actions = buttonRows(for: layout.items)
         var rows = buttonRows(for: actions, distribution: .fillProportionally)
         rows.insert(autocompleteToolbar, at: 0)
-        keyboardStackView.addArrangedSubviews(rows)
+        stackView.addArrangedSubviews(rows)
     }
 }
 
