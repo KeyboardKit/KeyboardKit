@@ -16,7 +16,7 @@ public class PreviewKeyboardActionHandler: KeyboardActionHandler {
     
     public init() {}
     
-    public func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) -> Bool { false }
-    public func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {}
+    public func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction) -> Bool { false }
+    public func handle(_ gesture: KeyboardGesture, on action: KeyboardAction) {}
     public func handleDrag(on action: KeyboardAction, from startLocation: CGPoint, to currentLocation: CGPoint) {}
 }

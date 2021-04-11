@@ -114,7 +114,7 @@ open class SecondaryInputCalloutContext: ObservableObject {
      */
     open func handleSelectedAction() {
         guard let action = selectedAction else { return }
-        actionHandler.handle(.tap, on: action, sender: nil)
+        actionHandler.handle(.tap, on: action)
     }
     
     /**

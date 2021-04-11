@@ -51,8 +51,8 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
         describe("can handle gesture on action") {
 
             it("can handle any action that isn't nil") {
-                expect(handler.canHandle(.tap, on: .backspace, sender: nil)).to(beTrue())
-                expect(handler.canHandle(.doubleTap, on: .backspace, sender: nil)).to(beFalse())
+                expect(handler.canHandle(.tap, on: .backspace)).to(beTrue())
+                expect(handler.canHandle(.doubleTap, on: .backspace)).to(beFalse())
             }
         }
         

@@ -14,6 +14,11 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 This version will improve the layout engine and make it easier to override button widths.
 
 
+### 💥 Breaking changes:
+
+* `KeyboardActionHandler` has a convenience `handle` function that doesn't require a `sender`. This conflicts with the `StandardKeyboardActionHandler`, which has such a function as well. Subclassing `StandardKeyboardActionHandler` and calling `super.handle` thus cause a never-ending to loop. Therefore, the sender functions have been removed entirely. If you have a custom action handler that overrides `handle` or `canHandle`, you must remove this parameter.
+
+
 
 ## 4.3.2
 

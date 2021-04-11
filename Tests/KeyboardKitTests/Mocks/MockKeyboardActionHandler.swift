@@ -22,12 +22,12 @@ class MockKeyboardActionHandler: Mock, KeyboardActionHandler {
     lazy var giveHapticFeedbackForLongPressRef = MockReference(giveHapticFeedbackForLongPress)
     lazy var giveHapticFeedbackForRepeatRef = MockReference(giveHapticFeedbackForRepeat)
     
-    func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) -> Bool {
+    func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
         true
     }
     
-    func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
-        call(handleRef, args: (gesture, action, sender))
+    func handle(_ gesture: KeyboardGesture, on action: KeyboardAction) {
+        call(handleRef, args: (gesture, action))
     }
     
     func handleDrag(on action: KeyboardAction, from startLocation: CGPoint, to currentLocation: CGPoint) {

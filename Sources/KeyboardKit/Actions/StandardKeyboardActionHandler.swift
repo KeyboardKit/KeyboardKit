@@ -81,7 +81,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - KeyboardActionHandler
     
-    public func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) -> Bool {
+    public func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
         self.action(for: gesture, on: action) != nil
     }
     
@@ -269,11 +269,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
             context: inputViewController.keyboardContext,
             feedbackHandler: feedbackHandler,
             sensitivity: spaceDragSensitivity)
-    }
-    
-    @available(*, deprecated, message: "Use the new function without sender instead.")
-    open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, sender: Any?) {
-        handle(gesture, on: action)
     }
     
     @available(*, deprecated, message: "Use the new spaceDragGestureHandler instead.")
