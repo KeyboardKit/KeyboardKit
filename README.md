@@ -178,8 +178,8 @@ To run the demo app, open and run the `Demo/Demo.xcodeproj` project, then enable
 Feel free to reach out if you have questions or if you want to contribute in any way:
 
 * E-mail: [daniel.saidi@gmail.com][Email]
-* Twitter: [@KeyboardKit][Twitter]
-* Web site: [danielsaidi.com][Website]
+* Twitter: [@keyboardkitapp][Twitter]
+* Web site: [getkeyboardkit.com][Website]
 
 
 ## Sponsors and Clients
@@ -207,8 +207,8 @@ KeyboardKit is available under the MIT license. See LICENSE file for more info.
 
 
 [Email]: mailto:daniel.saidi@gmail.com
-[Twitter]: http://www.twitter.com/KeyboardKit
-[Website]: http://www.danielsaidi.com
+[Twitter]: http://www.twitter.com/keyboardkitapp
+[Website]: https://getkeyboardkit.com
 [Sponsors]: https://github.com/sponsors/danielsaidi
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
