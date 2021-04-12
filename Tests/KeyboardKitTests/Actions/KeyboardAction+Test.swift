@@ -46,8 +46,9 @@ extension KeyboardAction {
             .nextLocale,
             .option,
             .primary(.done),
-            .primary(.ok),
             .primary(.go),
+            .primary(.newLine),
+            .primary(.ok),
             .primary(.search),
             .return,
             

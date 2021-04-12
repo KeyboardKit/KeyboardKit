@@ -22,9 +22,11 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
         self.dictationReplacement = dictationReplacement
     }
 
+    
     public let dictationReplacement: KeyboardAction?
     public var inputSetProvider: KeyboardInputSetProvider
 
+    
     /**
      Get a keyboard layout for the provided context.
      */

@@ -13,6 +13,9 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 This version will improve the layout engine and make it easier to override button widths.
 
+### ✨ New features
+
+* `KeyboardAction.PrimaryType` has new `newLine` case, that can be used to force an arrow for primary buttons.
 
 ### 💥 Breaking changes:
 

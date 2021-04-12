@@ -55,13 +55,13 @@ class KeyboardAction_SystemTests: QuickSpec {
             }
             
             it("is blue for primary actions") {
-                expected = [.primary(.done), .primary(.go), .primary(.ok), .primary(.search)]
+                expected = [.primary(.done), .primary(.go), .primary(.newLine), .primary(.ok), .primary(.search)]
                 expected.forEach { expect(result(for: $0)).to(equal(.blue)) }
                 unexpected.forEach { expect(result(for: $0)).toNot(equal(.blue)) }
             }
             
             it("is standard for all other actions") {
-                let nonStandard: [KeyboardAction] = [.none, .emoji(Emoji("")), .emojiCategory(.smileys), .primary(.done), .primary(.go), .primary(.ok), .primary(.search)]
+                let nonStandard: [KeyboardAction] = [.none, .emoji(Emoji("")), .emojiCategory(.smileys), .primary(.done), .primary(.go), .primary(.newLine), .primary(.ok), .primary(.search)]
                 expected = actions.filter { !nonStandard.contains($0) }
                 expected.forEach {
                     if $0.isSystemAction {
@@ -95,6 +95,7 @@ class KeyboardAction_SystemTests: QuickSpec {
                     .newLine,
                     .nextKeyboard,
                     .option,
+                    .primary(.newLine),
                     .settings,
                     .shift(currentState: .lowercased),
                     .shift(currentState: .uppercased),
@@ -136,19 +137,20 @@ class KeyboardAction_SystemTests: QuickSpec {
         
         describe("standard button foreground color") {
             
+            let primary: [KeyboardAction] = [.primary(.done), .primary(.go), .primary(.newLine), .primary(.ok), .primary(.search)]
+            
             func result(for action: KeyboardAction) -> Color {
                 action.standardButtonForegroundColor(for: context)
             }
             
             it("is white for primary actions") {
-                expected = [.primary(.done), .primary(.go), .primary(.ok), .primary(.search)]
+                expected = primary
                 expected.forEach { expect(result(for: $0)).to(equal(.white)) }
                 unexpected.forEach { expect(result(for: $0)).toNot(equal(.white)) }
             }
             
             it("is standard for all other actions") {
-                let nonStandard: [KeyboardAction] = [.primary(.done), .primary(.go), .primary(.ok), .primary(.search)]
-                expected = actions.filter { !nonStandard.contains($0) }
+                expected = actions.filter { !primary.contains($0) }
                 expected.forEach {
                     expect(result(for: $0)).to(equal(Color.standardButtonTint(for: context)))
                 }
@@ -186,6 +188,7 @@ class KeyboardAction_SystemTests: QuickSpec {
                 expect(result(for: .keyboardType(.symbolic))).to(equal("#+="))
                 expect(result(for: .keyboardType(.custom("")))).to(beNil())
                 expect(result(for: .nextLocale)).to(equal("EN"))
+                expect(result(for: .primary(.done))).to(equal("done"))
                 expect(result(for: .primary(.go))).to(equal("go"))
                 expect(result(for: .primary(.ok))).to(equal("OK"))
                 expect(result(for: .primary(.search))).to(equal("search"))
@@ -207,6 +210,7 @@ class KeyboardAction_SystemTests: QuickSpec {
                 expect(result(for: .newLine)).to(beNil())
                 expect(result(for: .nextKeyboard)).to(beNil())
                 expect(result(for: .option)).to(beNil())
+                expect(result(for: .primary(.newLine))).to(beNil())
                 expect(result(for: .shift(currentState: .lowercased))).to(beNil())
                 expect(result(for: .shift(currentState: .uppercased))).to(beNil())
                 expect(result(for: .shift(currentState: .capsLocked))).to(beNil())

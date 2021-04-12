@@ -62,8 +62,8 @@ public extension KeyboardAction {
      A primary button is the color accented button that will
      have the same effect as a return key.
      */
-    enum PrimaryType: Equatable {
-        case done, go, ok, search
+    enum PrimaryType: Equatable, CaseIterable {
+        case done, go, newLine, ok, search
     }
     
     /**
