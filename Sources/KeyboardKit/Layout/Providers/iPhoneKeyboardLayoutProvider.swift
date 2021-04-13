@@ -110,7 +110,9 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
     
     static var proxy = PreviewTextDocumentProxy()
     
-    static var input = StandardKeyboardInputSetProvider(context: context)
+    static var input = StandardKeyboardInputSetProvider(
+        context: context,
+        providers: [EnglishKeyboardInputSetProvider(device: MockDevice())])
     
     static var layout = iPhoneKeyboardLayoutProvider(inputSetProvider: input)
     
