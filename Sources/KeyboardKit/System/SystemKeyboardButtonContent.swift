@@ -58,6 +58,6 @@ private extension SystemKeyboardButtonContent {
     func textView(for text: String) -> some View {
         Text(text)
             .lineLimit(1)
-            .offset(y: text.isLowercased ? -2 : 0)
+            .offset(y: action.isInputAction && text.isLowercased ? -2 : 0)
     }
 }
