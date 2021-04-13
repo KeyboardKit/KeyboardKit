@@ -1,5 +1,5 @@
 //
-//  Color+Resources.swift
+//  Color+KeyboardColor.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-20.
@@ -25,32 +25,15 @@ public extension Color {
 
 private extension Color {
     
-    static func color(for color: ResourceColor) -> Color {
+    static func color(for color: KeyboardColor) -> Color {
         color.color
     }
-}
-
-enum ResourceColor: String, CaseIterable, Identifiable {
-    
-    case standardButton
-    case standardButtonShadow
-    case standardButtonTint
-    case standardDarkAppearanceButton
-    case standardDarkAppearanceButtonTint
-    case standardDarkAppearanceDarkButton
-    case standardDarkButton
-    
-    var color: Color {
-        Color(rawValue, bundle: .module)
-    }
-    
-    var id: String { rawValue }
 }
 
 struct ColorResources_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ForEach(ResourceColor.allCases) { color in
+            ForEach(KeyboardColor.allCases) { color in
                 HStack {
                     color.color
                     color.color.colorScheme(.dark)
