@@ -228,28 +228,30 @@ class KeyboardAction_SystemTests: QuickSpec {
             }
             
             it("is custom for some actions, but defined for all") {
-                let expectTitle1 = getActions(
-                    [.character("a"),
-                     .character("kr"),
-                     .emoji(Emoji(""))])
-                let expectCallout = getActions([.emojiCategory(.smileys)])
                 let expectBody = getActions(
-                    [.character("abc"),
+                    [.space])
+                let expectCallout = getActions(
+                    [.emojiCategory(.smileys),
                      .keyboardType(.alphabetic(.capsLocked)),
                      .keyboardType(.alphabetic(.lowercased)),
                      .keyboardType(.alphabetic(.uppercased)),
                      .keyboardType(.numeric),
                      .keyboardType(.symbolic),
-                     .nextLocale,
                      .primary(.done),
                      .primary(.go),
                      .primary(.ok),
                      .primary(.search),
-                     .return,
-                     .space])
-                var expectTitle2 = actions.filter { !expectTitle1.contains($0) && !expectCallout.contains($0) && !expectBody.contains($0) }
-                expectTitle2.append(.character(""))
-                expectTitle2.append(.character("A"))
+                     .return])
+                let expectTitle1 = getActions(
+                    [.character("a"),
+                     .character("abc"),
+                     .character("kr"),
+                     .emoji(Emoji(""))])
+                let expectTitle2 = getActions(
+                    [.character("A"),
+                     .newLine,
+                     .keyboardType(.emojis),
+                     .nextLocale])
                 
                 expectBody.forEach { expect(result(for: $0)).to(equal(.body)) }
                 expectCallout.forEach { expect(result(for: $0)).to(equal(.callout)) }
