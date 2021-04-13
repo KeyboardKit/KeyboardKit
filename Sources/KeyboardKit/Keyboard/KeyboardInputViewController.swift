@@ -65,6 +65,27 @@ open class KeyboardInputViewController: UIInputViewController {
     }
     
     
+    // MARK: - Root View
+    
+    /**
+     This view is used to get an observable context that can
+     refresh the provided view when the locale changes.
+     */
+    private struct RootView<ViewType: View>: View {
+        
+        init(_ view: ViewType) {
+            self.view = view
+        }
+        
+        var view: ViewType
+        
+        @EnvironmentObject private var keyboardContext: KeyboardContext
+        
+        var body: some View {
+            view.id(keyboardContext.locale)
+        }
+    }
+    
     
     // MARK: - Setup
 
@@ -80,7 +101,7 @@ open class KeyboardInputViewController: UIInputViewController {
      */
     open func setup<Content: View>(with view: Content) {
         self.view.subviews.forEach { $0.removeFromSuperview() }
-        let view = view
+        let view = RootView(view)
             .environmentObject(autocompleteContext)
             .environmentObject(keyboardContext)
             .environmentObject(keyboardFeedbackSettings)

@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/danielsaidi/KeyboardKit.git",
         "state": {
           "branch": "master",
-          "revision": "4238c550ed99d78c34515b4e1e38d02ea8834fdf",
+          "revision": "5d8712d3ea44ea423069e56968e42de7bec3285f",
           "version": null
         }
       },
@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/KeyboardKit/KeyboardKitPro.git",
         "state": {
           "branch": "master",
-          "revision": "180c382e0ba16a328980675f4fcfdef82dd66afd",
+          "revision": "c471df131baa061c6dda88f039ff314cadd49be0",
           "version": null
         }
       }

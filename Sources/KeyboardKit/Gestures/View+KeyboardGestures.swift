@@ -29,7 +29,6 @@ public extension View {
         switch action {
         case .nextKeyboard: self
         case .nextLocale: self
-            .id(context?.locale.identifier ?? "en")
             .withKeyboardGestures(for: action, isPressed: isPressed, actionHandler: actionHandler)
             .withLocaleContextMenu(for: context)
         default: self
