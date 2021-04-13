@@ -114,15 +114,6 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
     
     static var layout = iPhoneKeyboardLayoutProvider(inputSetProvider: input)
     
-    static func previews(for locale: KeyboardLocale) -> some View {
-        VStack {
-            Text(locale.localizedName).font(.title)
-            preview(for: locale, type: .alphabetic(.lowercased))
-            preview(for: locale, type: .numeric)
-            preview(for: locale, type: .symbolic)
-        }.padding()
-    }
-    
     static func preview(for locale: KeyboardLocale, type: KeyboardType) -> some View {
         proxy.returnKeyType = UIReturnKeyType.search
         context.locale = locale.locale
@@ -137,7 +128,17 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
             .environmentObject(context)
             .environmentObject(InputCalloutContext.preview)
             .environmentObject(SecondaryInputCalloutContext.preview)
-            .background(Color.gray)
+            .background(Color.gray.opacity(0.4))
+    }
+    
+    static func previews(for locale: KeyboardLocale) -> some View {
+        VStack {
+            Text(locale.localizedName).font(.title)
+            preview(for: locale, type: .alphabetic(.lowercased))
+            preview(for: locale, type: .alphabetic(.uppercased))
+            preview(for: locale, type: .numeric)
+            preview(for: locale, type: .symbolic)
+        }.padding()
     }
     
     static var previews: some View {
@@ -145,7 +146,9 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
             HStack {
                 previews(for: .english)
             }
-        }.previewLayout(.sizeThatFits)
+        }
+        .frame(height: 980)
+        .previewLayout(.sizeThatFits)
     }
 }
 

@@ -108,7 +108,6 @@ public extension KeyboardAction {
      */
     func standardButtonTextStyle(for context: KeyboardContext) -> UIFont.TextStyle {
         if standardButtonImage != nil { return .title2 }
-        if useBodyFont(for: context) { return .body }
         switch self {
         case .character(let char): return char.isLowercased ? .title1 : .title2
         case .emoji: return .title1
@@ -171,11 +170,5 @@ private extension KeyboardAction {
     func standardButtonForegroundColorForPressedState(for context: KeyboardContext) -> Color {
         if isPrimaryAction { return context.colorScheme == .dark ? .white : .standardButtonTint(for: context) }
         return .standardButtonTint(for: context)
-    }
-    
-    func useBodyFont(for context: KeyboardContext) -> Bool {
-        guard let text = standardButtonText(for: context) else { return false }
-        if isInputAction { return text.count > 1 }
-        return false
     }
 }

@@ -118,15 +118,6 @@ struct iPadKeyboardLayoutProvider_Previews: PreviewProvider {
     
     static var layout = iPadKeyboardLayoutProvider(inputSetProvider: input)
     
-    static func previews(for locale: KeyboardLocale) -> some View {
-        VStack {
-            Text(locale.localizedName).font(.title)
-            preview(for: locale, type: .alphabetic(.lowercased))
-            preview(for: locale, type: .numeric)
-            preview(for: locale, type: .symbolic)
-        }.padding()
-    }
-    
     static func preview(for locale: KeyboardLocale, type: KeyboardType) -> some View {
         context.locale = locale.locale
         context.keyboardType = type
@@ -141,13 +132,23 @@ struct iPadKeyboardLayoutProvider_Previews: PreviewProvider {
             .background(Color.gray)
     }
     
+    static func previews(for locale: KeyboardLocale) -> some View {
+        VStack {
+            Text(locale.localizedName).font(.title)
+            preview(for: locale, type: .alphabetic(.lowercased))
+            preview(for: locale, type: .alphabetic(.uppercased))
+            preview(for: locale, type: .numeric)
+            preview(for: locale, type: .symbolic)
+        }.padding()
+    }
+    
     static var previews: some View {
         ScrollView {
             HStack {
                 previews(for: .english)
             }
         }
-        .frame(height: 900)
+        .frame(height: 1170)
         .previewLayout(.sizeThatFits)
     }
 }
