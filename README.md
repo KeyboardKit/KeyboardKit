@@ -76,12 +76,20 @@ To learn more about and see KeyboardKit in practice, continue reading about the 
 
 KeyboardKit Pro is a license-based extensions that unlocks pro features, such as additional locales. Going pro is also a way to support this project. [Read more here][Pro]. 
 
-You can try KeyboardKit Pro in the demo app, by activating the commented out `setupPro` line in the demo app's `KeyboardViewController`.
+KeyboardKit Pro is enabled by default in the demo app. It gives the demo app access to many locales and a fully functional autocomplete engine. 
 
 
 ## SwiftUI vs. UIKit
 
-KeyboardKit supports both `SwiftUI` and `UIKit`, but SwiftUI is the main focus going forward. You can read more about UIKit support [here][UIKit]. The rest of this readme assumes that you're using SwiftUI, although most information is valid for both UIKit and SwiftUI.
+KeyboardKit supports both `SwiftUI` and `UIKit`, but SwiftUI is the main focus going forward. 
+
+You can read more about UIKit support [here][UIKit]. The rest of this readme assumes that you're using SwiftUI, although most information is valid for both UIKit and SwiftUI.
+
+### Important about SwiftUI previews
+
+KeyboardKit contains color and text resources that are embedded within the Swift package and CocoaPods Pod. However, SwiftUI previews outside the original package cannot access there resources, since the `.module` bundle isn't defined. 
+
+Until this is solved in SwiftUI and SPM, call `KeyboardPreviews.enable()` in each preview to use fake colors and texts that don't break the preview.  
 
 
 ## Features

@@ -39,23 +39,13 @@ public enum KeyboardColor: String, CaseIterable, Identifiable {
      Whether or not to use the `previewColorProvider` when a
      color is presented in a preview.
      */
-    public static var usePreviewColorProvider = false
+    static var usePreviewColorProvider = false
     
     /**
      The color provider to use when `usePreviewColorProvider`
      is true and a color is resolved in a SwiftUI preview.
      */
-    public static var previewColorProvider: (KeyboardColor) -> Color = {
-        switch $0 {
-        case .standardButton: return .white
-        case .standardButtonShadow: return .black
-        case .standardButtonTint: return .black
-        case .standardDarkAppearanceButton: return .gray
-        case .standardDarkAppearanceButtonTint: return .white
-        case .standardDarkAppearanceDarkButton: return .gray
-        case .standardDarkButton: return .gray
-        }
-    }
+    static var previewColorProvider: (KeyboardColor) -> Color = { _ in .clear }
 }
 
 public extension KeyboardColor {

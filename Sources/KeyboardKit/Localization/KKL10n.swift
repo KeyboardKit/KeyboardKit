@@ -39,7 +39,7 @@ public enum KKL10n: String, CaseIterable, Identifiable {
      Whether or not to use the `previewTextProvider` when a
      color is presented in a preview.
      */
-    public static var usePreviewTexts = false
+    static var usePreviewTexts = false
 }
 
 public extension KKL10n {
