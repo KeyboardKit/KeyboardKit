@@ -11,15 +11,17 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 ## 4.4 (WIP)
 
-This version will improve the layout engine and make it easier to override button widths.
+This version improves the layout engine and makes it easier to override button widths.
 
-This verison also adds aworkaround to current SwiftUI and SPM limitations that make previews crash.
+The version also makes it possible to identify the active app and adds workarounds to current SwiftUI and SPM limitations that make previews crash.
 
 ### ✨ New features
 
 * `KeyboardAction.PrimaryType` has new `newLine` case, that can be used to force an arrow for primary buttons.
 * `KeyboardColor` is a new enum that exposes the raw color resources.
+* `KeyboardContext` has a new `activeAppBundleId` property that identifies the currently active app.
 * `KeyboardPreviewMode` is a new (hopefully temporary) class that has a static `enable()` function that makes SwiftUI previews work.
+* `KeyboardInputViewController` has a new `activeAppBundleId` property that identifies the currently active app.
 * `CGFloat+standardKeyboardButtonCornerRadius` is a new property for getting the standard corner radius of a system button.
 
 ### 💡 Behavior changes

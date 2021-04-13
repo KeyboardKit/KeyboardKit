@@ -33,6 +33,7 @@ public class KeyboardContext: ObservableObject {
     
     public let device: UIDevice
     
+    @Published public var activeAppBundleId: String?
     @Published public var keyboardType: KeyboardType
     @Published public var deviceOrientation: UIInterfaceOrientation = .portrait
     @Published public var hasDictationKey: Bool = false
@@ -89,7 +90,8 @@ public extension KeyboardContext {
      Sync the context with the current state of the keyboard
      input view controller.
      */
-    func sync(with controller: UIInputViewController) {
+    func sync(with controller: KeyboardInputViewController) {
+        self.activeAppBundleId = controller.activeAppBundleId
         self.deviceOrientation = controller.deviceOrientation
         self.hasDictationKey = controller.hasDictationKey
         self.hasFullAccess = controller.hasFullAccess

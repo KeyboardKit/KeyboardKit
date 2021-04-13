@@ -120,6 +120,14 @@ open class KeyboardInputViewController: UIInputViewController {
     // MARK: - Properties
     
     /**
+     Get the bundle id of the currently active app, that was
+     used to initialize the keyboard extension.
+     */
+    public var activeAppBundleId: String? {
+        parent?.value(forKey: "_hostBundleID") as? String
+    }
+    
+    /**
      The shared input view controller. This is registered as
      the keyboard extension is started.
      */
