@@ -237,6 +237,7 @@ class KeyboardAction_SystemTests: QuickSpec {
                      .keyboardType(.alphabetic(.uppercased)),
                      .keyboardType(.numeric),
                      .keyboardType(.symbolic),
+                     .nextLocale,
                      .primary(.done),
                      .primary(.go),
                      .primary(.ok),
@@ -249,9 +250,9 @@ class KeyboardAction_SystemTests: QuickSpec {
                      .emoji(Emoji(""))])
                 let expectTitle2 = getActions(
                     [.character("A"),
+                     .nextKeyboard,
                      .newLine,
-                     .keyboardType(.emojis),
-                     .nextLocale])
+                     .keyboardType(.emojis)])
                 
                 expectBody.forEach { expect(result(for: $0)).to(equal(.body)) }
                 expectCallout.forEach { expect(result(for: $0)).to(equal(.callout)) }
