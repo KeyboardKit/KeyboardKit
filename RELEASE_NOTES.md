@@ -16,6 +16,12 @@ This version will improve the layout engine and make it easier to override butto
 ### ✨ New features
 
 * `KeyboardAction.PrimaryType` has new `newLine` case, that can be used to force an arrow for primary buttons.
+* `CGFloat+standardKeyboardButtonCornerRadius` is a new property for getting the standard corner radius of a system button.
+
+### 💡 Behavior changes
+
+* `UIApplication+preferredKeyboardInterfaceOrientation` is a new scene-based way to retrieve the user interface orientation. This should remove some build warnings.
+
 
 ### 💥 Breaking changes:
 

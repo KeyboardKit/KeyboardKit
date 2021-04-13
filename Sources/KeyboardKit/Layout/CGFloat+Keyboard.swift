@@ -12,19 +12,38 @@ import UIKit
 public extension CGFloat {
     
     /**
-     The standard total height of a row in a system keyboard.
-     
-     Note that this is the TOTAL row height. It includes any
-     additional vertical insets that may be applied to every
-     row. Such insets must be applied to each button view to
-     avoid dead tap areas.
+     The standard corner radius of a system keyboard button.
+     */
+    static var standardKeyboardButtonCornerRadius: CGFloat {
+        standardKeyboardButtonCornerRadius()
+    }
+    
+    /**
+     The standard, total height, including insets, for a row
+     in a system keyboard.
+     */
+    static var standardKeyboardRowHeight: CGFloat {
+        standardKeyboardRowHeight()
+    }
+    
+    /**
+     The standard corner radius of a system keyboard button.
+     */
+    static func standardKeyboardButtonCornerRadius(
+        for device: UIDevice = .current) -> CGFloat {
+        4.0
+    }
+    
+    /**
+     The standard, total height, including insets, for a row
+     in a system keyboard.
      */
     static func standardKeyboardRowHeight(
         for device: UIDevice = .current,
         app: UIApplication = .shared) -> CGFloat {
         standardKeyboardRowHeight(
             for: device.userInterfaceIdiom,
-            orientation: app.statusBarOrientation)
+            orientation: app.preferredKeyboardInterfaceOrientation)
     }
 }
 
