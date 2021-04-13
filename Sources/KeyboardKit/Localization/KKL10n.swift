@@ -9,7 +9,19 @@
 import SwiftUI
 
 /**
- This enum maps towards keys in `Localizable.strings` files.
+ This enum contains keyboard-specific, resource-based texts.
+ 
+ Texts are embedded as resources in this KeyboardKit package
+ and use the SPM generated `.module` bundle by default. When
+ not using SPM, `.module` will be undefined and this linking
+ will fail. CocoaPods solves this by adding a `Bundle+module`
+ file that is ignored by SPM.
+ 
+ Another problem with this is that SwiftUI previews will not
+ work outside of this package, but crash since the module is
+ not found. If your previews keeps crashing due to this, you
+ can set the `usePreviewTexts` property to `true`. This will
+ cause the texts to use their raw values.
  */
 public enum KKL10n: String, CaseIterable, Identifiable {
 
@@ -22,6 +34,12 @@ public enum KKL10n: String, CaseIterable, Identifiable {
         `return`,
         search,
         space
+    
+    /**
+     Whether or not to use the `previewTextProvider` when a
+     color is presented in a preview.
+     */
+    public static var usePreviewTexts = false
 }
 
 public extension KKL10n {
@@ -43,11 +61,19 @@ public extension KKL10n {
     }
     
     func text(for locale: Locale) -> String {
+        if isSwiftUIPreview && Self.usePreviewTexts { return rawValue }
         guard
             let bundlePath = Bundle.module.bundlePath(for: locale),
             let bundle = Bundle(path: bundlePath)
         else { return "" }
         return NSLocalizedString(key, bundle: bundle, comment: "")
+    }
+}
+
+private extension KKL10n {
+    
+    var isSwiftUIPreview: Bool {
+        ProcessInfo.processInfo.isSwiftUIPreview
     }
 }
 

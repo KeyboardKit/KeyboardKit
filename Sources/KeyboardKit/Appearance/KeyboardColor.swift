@@ -9,7 +9,7 @@
 import SwiftUI
 
 /**
- This enum contains keyboard-specific colors.
+ This enum contains keyboard-specific, resource-based colors.
  
  Colors are embedded as resources in the KeyboardKit package
  and use the SPM generated `.module` bundle by default. When
@@ -63,7 +63,7 @@ public extension KeyboardColor {
     var id: String { rawValue }
     
     var color: Color {
-        if ProcessInfo.processInfo.isSwiftUIPreview && Self.usePreviewColorProvider {
+        if isSwiftUIPreview && Self.usePreviewColorProvider {
             return Self.previewColorProvider(self)
         } else {
             return Color(resourceName, bundle: .module)
@@ -71,6 +71,13 @@ public extension KeyboardColor {
     }
     
     var resourceName: String { rawValue }
+}
+
+private extension KeyboardColor {
+    
+    var isSwiftUIPreview: Bool {
+        ProcessInfo.processInfo.isSwiftUIPreview
+    }
 }
 
 struct KeyboardColor_Previews: PreviewProvider {
