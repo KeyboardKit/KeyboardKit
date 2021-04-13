@@ -17,6 +17,7 @@ This version will improve the layout engine and make it easier to override butto
 
 * `KeyboardAction.PrimaryType` has new `newLine` case, that can be used to force an arrow for primary buttons.
 * `KeyboardColor` is a new enum that exposes the raw color resources.
+* `KeyboardColor` has a new way of hijacking the SwiftUI preview process to avoid preview crashes.
 * `CGFloat+standardKeyboardButtonCornerRadius` is a new property for getting the standard corner radius of a system button.
 
 ### 💡 Behavior changes
