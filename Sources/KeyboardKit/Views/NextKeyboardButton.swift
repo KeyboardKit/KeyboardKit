@@ -17,7 +17,7 @@ public struct NextKeyboardButton: UIViewRepresentable {
     public init(
         controller: KeyboardInputViewController = .shared,
         tintColor: UIColor = .label,
-        pointSize: CGFloat = 25,
+        pointSize: CGFloat = 23,
         weight: UIImage.SymbolWeight = .light,
         scale: UIImage.SymbolScale = .medium) {
         self.button = NextKeyboardUIButton(

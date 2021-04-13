@@ -112,6 +112,9 @@ public extension KeyboardAction {
         case .character(let char): return char.isLowercased ? .title1 : .title2
         case .emoji: return .title1
         case .emojiCategory: return .callout
+        case .keyboardType: return .callout
+        case .primary: return .callout
+        case .return: return .callout
         case .space: return .body
         default: return .title2
         }
@@ -170,9 +173,7 @@ private extension KeyboardAction {
     }
     
     func useBodyFont(for context: KeyboardContext) -> Bool {
-        if self == .space { return true }
         guard let text = standardButtonText(for: context) else { return false }
-        if isSystemAction || isPrimaryAction { return text.count > 1 || text == "-" }
         if isInputAction { return text.count > 2 }
         return false
     }

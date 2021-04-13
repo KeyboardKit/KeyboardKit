@@ -13,23 +13,28 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 This version will improve the layout engine and make it easier to override button widths.
 
-This verison also adds a way to work around current SwiftUI and SPM limitations, that make previews crash since the auto-generated `.module` bundle is not available in previews. Just call `KeyboardPreviewMode.enable()` to replace texts and colors with dummy values.
+This verison also adds aworkaround to current SwiftUI and SPM limitations that make previews crash.
 
 ### ✨ New features
 
 * `KeyboardAction.PrimaryType` has new `newLine` case, that can be used to force an arrow for primary buttons.
 * `KeyboardColor` is a new enum that exposes the raw color resources.
-* `KeyboardPreviewMode` is a new (hopefully temporary) class that can be used to bypass bundle-based resources to make SwiftUI previews work.
+* `KeyboardPreviewMode` is a new (hopefully temporary) class that has a static `enable()` function that makes SwiftUI previews work.
 * `CGFloat+standardKeyboardButtonCornerRadius` is a new property for getting the standard corner radius of a system button.
 
 ### 💡 Behavior changes
 
+* Standard font sizes are adjusted to fit the native keyboards better.
 * `UIApplication+preferredKeyboardInterfaceOrientation` is a new scene-based way to retrieve the user interface orientation. This should remove some build warnings.
 
 
 ### 💥 Breaking changes:
 
-* `KeyboardActionHandler` has a convenience `handle` function that doesn't require a `sender`. This conflicts with the `StandardKeyboardActionHandler`, which has such a function as well. Subclassing `StandardKeyboardActionHandler` and calling `super.handle` thus cause a never-ending to loop. Therefore, the sender functions have been removed entirely. If you have a custom action handler that overrides `handle` or `canHandle`, you must remove this parameter.
+`KeyboardActionHandler` had a convenience `handle` function that didn't require a `sender`.  This did conflict with the `StandardKeyboardActionHandler`, which has such a function as well. 
+
+Subclassing `StandardKeyboardActionHandler` and calling `super.handle` thus caused a never-ending loop, since the convenience function called the sender function etc. 
+
+The sender-based functions have thus been removed. If you have a custom action handler that overrides `handle` or `canHandle`, you must remove the `sender` parameter.
 
 
 

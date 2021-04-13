@@ -103,7 +103,10 @@ private extension iPhoneKeyboardLayoutProvider {
 
 struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
     
-    static var context = KeyboardContext.preview
+    static var context = KeyboardContext(
+        device: MockDevice(),
+        controller: KeyboardInputViewController(),
+        keyboardType: .alphabetic(.lowercased))
     
     static var proxy = PreviewTextDocumentProxy()
     
@@ -111,41 +114,42 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
     
     static var layout = iPhoneKeyboardLayoutProvider(inputSetProvider: input)
     
-    static func previews(for locale: Locale, title: String) -> some View {
-        ScrollView {
-            Text(title).font(.title)
+    static func previews(for locale: KeyboardLocale) -> some View {
+        VStack {
+            Text(locale.localizedName).font(.title)
             preview(for: locale, type: .alphabetic(.lowercased))
             preview(for: locale, type: .numeric)
             preview(for: locale, type: .symbolic)
         }.padding()
     }
     
-    static func preview(for locale: Locale, type: KeyboardType) -> some View {
+    static func preview(for locale: KeyboardLocale, type: KeyboardType) -> some View {
         proxy.returnKeyType = UIReturnKeyType.search
-        context.locale = locale
+        context.locale = locale.locale
         context.keyboardType = type
         context.textDocumentProxy = proxy
-        return VStack {
-            SystemKeyboard(
-                layout: layout.keyboardLayout(for: context),
-                appearance: StandardKeyboardAppearance(context: context),
-                actionHandler: PreviewKeyboardActionHandler(),
-                width: 768)
-                .frame(width: 768)
-                .environmentObject(context)
-                .environmentObject(InputCalloutContext.preview)
-                .environmentObject(SecondaryInputCalloutContext.preview)
-                .background(Color.gray)
-            
-        }
+        context.needsInputModeSwitchKey = true
+        return SystemKeyboard(
+            layout: layout.keyboardLayout(for: context),
+            appearance: StandardKeyboardAppearance(context: context),
+            actionHandler: PreviewKeyboardActionHandler(),
+            width: 375)
+            .environmentObject(context)
+            .environmentObject(InputCalloutContext.preview)
+            .environmentObject(SecondaryInputCalloutContext.preview)
+            .background(Color.gray)
     }
     
     static var previews: some View {
-        Group {
-            previews(for: KeyboardLocale.english.locale, title: "English")
-            previews(for: KeyboardLocale.german.locale, title: "German")
-            previews(for: KeyboardLocale.italian.locale, title: "Italian")
-            previews(for: KeyboardLocale.swedish.locale, title: "Swedish")
+        ScrollView {
+            HStack {
+                previews(for: .english)
+            }
         }.previewLayout(.sizeThatFits)
     }
+}
+
+private class MockDevice: UIDevice {
+    
+    override var userInterfaceIdiom: UIUserInterfaceIdiom { .phone }
 }

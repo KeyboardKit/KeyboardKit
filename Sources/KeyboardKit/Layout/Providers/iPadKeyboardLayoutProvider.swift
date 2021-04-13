@@ -109,45 +109,50 @@ private extension iPadKeyboardLayoutProvider {
 
 struct iPadKeyboardLayoutProvider_Previews: PreviewProvider {
     
-    static var context = KeyboardContext.preview
+    static var context = KeyboardContext(
+        device: MockDevice(),
+        controller: KeyboardInputViewController(),
+        keyboardType: .alphabetic(.lowercased))
     
     static var input = StandardKeyboardInputSetProvider(context: context)
     
     static var layout = iPadKeyboardLayoutProvider(inputSetProvider: input)
     
-    static func previews(for locale: Locale, title: String) -> some View {
-        ScrollView {
-            Text(title).font(.title)
+    static func previews(for locale: KeyboardLocale) -> some View {
+        VStack {
+            Text(locale.localizedName).font(.title)
             preview(for: locale, type: .alphabetic(.lowercased))
             preview(for: locale, type: .numeric)
             preview(for: locale, type: .symbolic)
         }.padding()
     }
     
-    static func preview(for locale: Locale, type: KeyboardType) -> some View {
-        context.locale = locale
+    static func preview(for locale: KeyboardLocale, type: KeyboardType) -> some View {
+        context.locale = locale.locale
         context.keyboardType = type
-        return VStack {
-            SystemKeyboard(
-                layout: layout.keyboardLayout(for: context),
-                appearance: StandardKeyboardAppearance(context: context),
-                actionHandler: PreviewKeyboardActionHandler(),
-                width: 768)
-                .frame(width: 768)
-                .environmentObject(context)
-                .environmentObject(InputCalloutContext.preview)
-                .environmentObject(SecondaryInputCalloutContext.preview)
-                .background(Color.gray)
-            
-        }
+        return SystemKeyboard(
+            layout: layout.keyboardLayout(for: context),
+            appearance: StandardKeyboardAppearance(context: context),
+            actionHandler: PreviewKeyboardActionHandler(),
+            width: 768)
+            .environmentObject(context)
+            .environmentObject(InputCalloutContext.preview)
+            .environmentObject(SecondaryInputCalloutContext.preview)
+            .background(Color.gray)
     }
     
     static var previews: some View {
-        Group {
-            previews(for: KeyboardLocale.english.locale, title: "English")
-            previews(for: KeyboardLocale.german.locale, title: "German")
-            previews(for: KeyboardLocale.italian.locale, title: "Italian")
-            previews(for: KeyboardLocale.swedish.locale, title: "Swedish")
-        }.previewLayout(.sizeThatFits)
+        ScrollView {
+            HStack {
+                previews(for: .english)
+            }
+        }
+        .frame(height: 900)
+        .previewLayout(.sizeThatFits)
     }
+}
+
+private class MockDevice: UIDevice {
+    
+    override var userInterfaceIdiom: UIUserInterfaceIdiom { .pad }
 }
