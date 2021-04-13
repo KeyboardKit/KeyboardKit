@@ -107,6 +107,7 @@ public extension KeyboardAction {
      The action's standard button text style.
      */
     func standardButtonTextStyle(for context: KeyboardContext) -> UIFont.TextStyle {
+        if standardButtonImage != nil { return .title2 }
         if useBodyFont(for: context) { return .body }
         switch self {
         case .character(let char): return char.isLowercased ? .title1 : .title2
@@ -174,7 +175,7 @@ private extension KeyboardAction {
     
     func useBodyFont(for context: KeyboardContext) -> Bool {
         guard let text = standardButtonText(for: context) else { return false }
-        if isInputAction { return text.count > 2 }
+        if isInputAction { return text.count > 1 }
         return false
     }
 }

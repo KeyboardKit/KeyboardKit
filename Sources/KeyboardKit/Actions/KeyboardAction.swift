@@ -82,6 +82,16 @@ public extension KeyboardAction {
     }
     
     /**
+     Whether or not the action is a keyboard type action.
+     */
+    var isKeyboardType: Bool {
+        switch self {
+        case .keyboardType: return true
+        default: return false
+        }
+    }
+    
+    /**
      Whether or not the action is a primary action, which is
      that it is intended to perform a committing action.
      */
