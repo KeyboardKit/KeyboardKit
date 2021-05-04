@@ -74,8 +74,8 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
                 handler.handleDrag(on: .space, from: .init(x: 1, y: 2), to: .init(x: 3, y: 4))
                 let calls = spaceDragHandler.calls(to: spaceDragHandler.handleDragGestureRef)
                 expect(calls.count).to(equal(1))
-                expect(calls[0].arguments.0).to(equal(.init(x: 1, y: 2)))
-                expect(calls[0].arguments.1).to(equal(.init(x: 3, y: 4)))
+                expect(calls[0].arguments.0).to(equal(CGPoint.init(x: 1, y: 2)))
+                expect(calls[0].arguments.1).to(equal(CGPoint.init(x: 3, y: 4)))
             }
             
             it("doesn't do anything for other actions") {

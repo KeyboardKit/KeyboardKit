@@ -68,8 +68,9 @@ open class KeyboardInputViewController: UIInputViewController {
     // MARK: - Root View
     
     /**
-     This view is used to get an observable context that can
-     refresh the provided view when the locale changes.
+     This view is used as a wrapper view, to be able to bind
+     the keyboard view to properties that affect your layout
+     without triggering a view update.
      */
     private struct RootView<ViewType: View>: View {
         
@@ -79,10 +80,10 @@ open class KeyboardInputViewController: UIInputViewController {
         
         var view: ViewType
         
-        @EnvironmentObject private var keyboardContext: KeyboardContext
+        @EnvironmentObject private var context: KeyboardContext
         
         var body: some View {
-            view.id(keyboardContext.locale)
+            view.id("\(context.locale)\(context.deviceOrientation.isLandscape)")
         }
     }
     
