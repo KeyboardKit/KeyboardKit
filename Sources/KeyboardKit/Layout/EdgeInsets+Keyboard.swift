@@ -41,7 +41,9 @@ public extension UIEdgeInsets {
         app: UIApplication = .shared) -> UIEdgeInsets {
         standardKeyboardButtonInsets(
             for: device.userInterfaceIdiom,
-            orientation: app.preferredKeyboardInterfaceOrientation)
+            orientation: app.statusBarOrientation)
+            // orientation: app.preferredKeyboardInterfaceOrientation)
+            // 👆 This was an attempt to remove statusBarOrientation usage, but it doesn't work.
     }
 }
 
