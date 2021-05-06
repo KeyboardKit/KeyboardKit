@@ -12,21 +12,48 @@ import Foundation
  This private class is used to handle repeating actions on a
  keyboard button.
  */
-class RepeatGestureTimer {
-    
-    private var timer: Timer?
-    
-    static let shared = RepeatGestureTimer()
+public class RepeatGestureTimer {
     
     deinit { stop() }
     
+    
+    public static let shared = RepeatGestureTimer()
+    
+    
+    private var timer: Timer?
+    
+    private var startDate: Date?
+}
+
+public extension RepeatGestureTimer {
+    
+    var duration: TimeInterval? {
+        guard let date = startDate else { return nil }
+        return Date().timeIntervalSince(date)
+    }
+    
+    var isActive: Bool { timer != nil }
+    
+    var timeInterval: TimeInterval { 0.1 }
+    
     func start(action: @escaping () -> Void) {
         stop()
-        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in action() }
+        startDate = Date()
+        timer = Timer.scheduledTimer(
+            withTimeInterval: timeInterval,
+            repeats: true) { _ in action() }
     }
     
     func stop() {
         timer?.invalidate()
         timer = nil
+        startDate = nil
+    }
+}
+
+extension RepeatGestureTimer {
+    
+    func modifyStartDate(to date: Date) {
+        startDate = date
     }
 }

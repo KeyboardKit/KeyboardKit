@@ -104,6 +104,7 @@ public extension KeyboardAction {
      */
     var standardTextDocumentProxyAction: GestureAction? {
         if let action = standardTextDocumentProxyInputAction { return action }
+        
         switch self {
         case .moveCursorBackward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: -1) }
         case .moveCursorForward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: 1) }

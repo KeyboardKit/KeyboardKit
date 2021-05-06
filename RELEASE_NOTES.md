@@ -23,6 +23,8 @@ The version also makes it possible to identify the active app and adds workaroun
 * `KeyboardContext` has a new `activeAppBundleId` property that identifies the currently active app.
 * `KeyboardPreviewMode` is a new (hopefully temporary) class that has a static `enable()` function that makes SwiftUI previews work.
 * `KeyboardInputViewController` has a new `activeAppBundleId` property that identifies the currently active app.
+* `RepeatGestureTimer` has been made public and can be used to inspect how long a repeat gesture has been active.
+
 * `CGFloat+standardKeyboardButtonCornerRadius` is a new property for getting the standard corner radius of a system button.
 * `UITextDocumentProxy+delete` has a new extension for deleting backwards a certain range.
 
