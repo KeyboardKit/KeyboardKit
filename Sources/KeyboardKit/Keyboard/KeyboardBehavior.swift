@@ -20,6 +20,13 @@ import Foundation
 public protocol KeyboardBehavior {
     
     /**
+     The range that backspace should delete when it's repeat
+     pressed. Standard keyboards start increasing from chars
+     to words after a little while.
+     */
+    var backspaceRange: DeleteBackwardRange { get }
+    
+    /**
      The preferred keyboard type that should be applied when
      the provided action has been performed.
      */

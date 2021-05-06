@@ -1,5 +1,5 @@
 //
-//  DeleteBackwardsRange.swift
+//  DeleteBackwardRange.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-05-06.
@@ -12,7 +12,7 @@ import UIKit
  This enum can be used to vary how the backspace action will
  behave when pressing and holding the backspace key.
  */
-public enum DeleteBackwardsRange {
+public enum DeleteBackwardRange {
     
     case char, word, sentence
 }

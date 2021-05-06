@@ -37,7 +37,7 @@ class UITextDocumentProxy_DeleteTests: QuickSpec {
         
         describe("deleting backwards for range") {
             
-            func result(for range: DeleteBackwardsRange, _ expected: Int) -> Bool {
+            func result(for range: DeleteBackwardRange, _ expected: Int) -> Bool {
                 proxy.deleteBackward(range)
                 return proxy.hasCalled(proxy.deleteBackwardRef, numberOfTimes: expected)
             }
@@ -87,7 +87,7 @@ class UITextDocumentProxy_DeleteTests: QuickSpec {
         
         describe("delete backwards text for range") {
             
-            func result(for range: DeleteBackwardsRange) -> String? {
+            func result(for range: DeleteBackwardRange) -> String? {
                 proxy.deleteBackwardText(for: range)
             }
             

@@ -22,19 +22,27 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     
     public init(
         context: KeyboardContext,
+        timer: RepeatGestureTimer = .shared,
         doubleTapThreshold: TimeInterval = 0.2,
         endSentenceThreshold: TimeInterval = 3.0) {
         self.context = context
         self.doubleTapThreshold = doubleTapThreshold
         self.endSentenceThreshold = endSentenceThreshold
+        self.timer = timer
     }
     
     private let context: KeyboardContext
     private let doubleTapThreshold: TimeInterval
     private let endSentenceThreshold: TimeInterval
+    private let timer: RepeatGestureTimer
     
     var lastShiftCheck = Date()
     var lastSpaceTap = Date()
+    
+    public var backspaceRange: DeleteBackwardRange {
+        let duration = timer.duration ?? 0
+        return duration > 3 ? .word : .char
+    }
     
     public func preferredKeyboardType(
         after gesture: KeyboardGesture,

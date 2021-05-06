@@ -19,12 +19,32 @@ class StandardKeyboardBehaviorTests: QuickSpec {
         var behavior: StandardKeyboardBehavior!
         var context: KeyboardContext!
         var proxy: MockTextDocumentProxy!
+        var timer: RepeatGestureTimer!
         
         beforeEach {
+            timer = RepeatGestureTimer.shared
             proxy = MockTextDocumentProxy()
             context = KeyboardContext(controller: MockKeyboardInputViewController())
             context.textDocumentProxy = proxy
             behavior = StandardKeyboardBehavior(context: context)
+        }
+        
+        describe("backspace range") {
+            
+            func result(after seconds: TimeInterval) -> DeleteBackwardRange {
+                timer.start {}
+                timer.modifyStartDate(to: Date().addingTimeInterval(-seconds))
+                return behavior.backspaceRange
+            }
+            
+            it("is char before 3 seconds") {
+                expect(result(after: 0)).to(equal(.char))
+                expect(result(after: 2.9)).to(equal(.char))
+            }
+            
+            it("is words after 3 seconds") {
+                expect(result(after: 3.1)).to(equal(.word))
+            }
         }
         
         describe("preferred keyboard type after gesture on action") {

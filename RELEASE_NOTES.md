@@ -17,8 +17,9 @@ The version also makes it possible to identify the active app and adds workaroun
 
 ### ✨ New features
 
-* `DeleteBackwardsRange` is a new enum can be used when deleting backwards.
+* `DeleteBackwardRange` is a new enum can be used when deleting backwards.
 * `KeyboardAction.PrimaryType` has new `newLine` case, that can be used to force an arrow for primary buttons.
+* `KeyboardBehavior` has a new `backspaceRange` property.
 * `KeyboardColor` is a new enum that exposes the raw color resources.
 * `KeyboardContext` has a new `activeAppBundleId` property that identifies the currently active app.
 * `KeyboardPreviewMode` is a new (hopefully temporary) class that has a static `enable()` function that makes SwiftUI previews work.
@@ -35,9 +36,9 @@ The version also makes it possible to identify the active app and adds workaroun
 
 ### 💥 Breaking changes:
 
-`KeyboardActionHandler` had a convenience `handle` function that didn't require a `sender`.  This did conflict with the `StandardKeyboardActionHandler`, which has such a function as well. 
+* `KeyboardBehavior` has a new `backspaceRange` property that must be implemented. 
 
-Subclassing `StandardKeyboardActionHandler` and calling `super.handle` thus caused a never-ending loop, since the convenience function called the sender function etc. 
+Besides the points above, `KeyboardActionHandler` had a convenience `handle` function that didn't require a `sender`.  This caused a conflict with the `StandardKeyboardActionHandler` function with the same signature.  Subclassing `StandardKeyboardActionHandler` and calling `super.handle` thus caused a never-ending loop, since the convenience function called the sender function etc. 
 
 The sender-based functions have thus been removed. If you have a custom action handler that overrides `handle` or `canHandle`, you must remove the `sender` parameter.
 
@@ -1160,7 +1161,7 @@ The new `AutocompleteToolbar` is a toolbar that can display any results you rece
 
 The new `UITextDocumentProxy+CurrentWord` extension helps you get the word that is (most probably) being typed. You could use this when requesting autocomplete suggestions, if you only want to autocomplete the current word.
 
-Besides these additions, there are a bunch of new extensions, like `UITextDocumentProxy` `deleteBackwards(times:)`, which lets you delete a certain number of characters. Have a look at the `Extensions` namespace for a complete list.
+Besides these additions, there are a bunch of new extensions, like `UITextDocumentProxy` `deleteBackward(times:)`, which lets you delete a certain number of characters. Have a look at the `Extensions` namespace for a complete list.
 
 There is also a new `KeyboardCasing` enum that you can use to keep track of which state your keyboard has, if any. This enum is extracted from demo app code that was provided by @arampak earlier this year. 
 
