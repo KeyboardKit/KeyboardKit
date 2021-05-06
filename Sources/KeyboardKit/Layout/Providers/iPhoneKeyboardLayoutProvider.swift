@@ -103,6 +103,8 @@ private extension iPhoneKeyboardLayoutProvider {
 
 struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
     
+    static var previewWidth: CGFloat = 375
+    
     static var context = KeyboardContext(
         device: MockDevice(),
         controller: KeyboardInputViewController(),
@@ -110,11 +112,22 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
     
     static var proxy = PreviewTextDocumentProxy()
     
-    static var input = StandardKeyboardInputSetProvider(
-        context: context,
-        providers: [EnglishKeyboardInputSetProvider(device: MockDevice())])
+    static func input(for locale: KeyboardLocale) -> KeyboardInputSetProvider {
+        StandardKeyboardInputSetProvider(
+            context: context,
+            providers: [provider(for: locale)])
+    }
     
-    static var layout = iPhoneKeyboardLayoutProvider(inputSetProvider: input)
+    static func layout(for locale: KeyboardLocale) -> KeyboardLayoutProvider {
+        iPhoneKeyboardLayoutProvider(inputSetProvider: input(for: locale))
+    }
+    
+    static func provider(for locale: KeyboardLocale) -> LocalizedKeyboardInputSetProvider {
+        switch locale {
+        case .swedish: return SwedishKeyboardInputSetProvider(device: MockDevice())
+        default: return EnglishKeyboardInputSetProvider(device: MockDevice())
+        }
+    }
     
     static func preview(for locale: KeyboardLocale, type: KeyboardType) -> some View {
         proxy.returnKeyType = UIReturnKeyType.search
@@ -123,10 +136,10 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
         context.textDocumentProxy = proxy
         context.needsInputModeSwitchKey = true
         return SystemKeyboard(
-            layout: layout.keyboardLayout(for: context),
+            layout: layout(for: locale).keyboardLayout(for: context),
             appearance: StandardKeyboardAppearance(context: context),
             actionHandler: PreviewKeyboardActionHandler(),
-            width: 375)
+            width: previewWidth)
             .environmentObject(context)
             .environmentObject(InputCalloutContext.preview)
             .environmentObject(SecondaryInputCalloutContext.preview)
@@ -147,6 +160,7 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
         ScrollView {
             HStack {
                 previews(for: .english)
+                previews(for: .swedish)
             }
         }
         .frame(height: 980)
