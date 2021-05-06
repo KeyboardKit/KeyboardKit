@@ -12,6 +12,10 @@ import SwiftUI
  This class provides a keyboard layout that correspond to an
  iPhone with either a home button or notch.
  
+ The button widths that are calculated by this provider will
+ conform to system keyboards with 10x9x7 or a 11x11x7 inputs
+ or standard numeric/symbolic inputs.
+ 
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
  
@@ -37,16 +41,16 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     }
     
     open override func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItemWidth {
-        if action.isPrimaryAction { return bottomRowPrimaryButtonWidth }
+        if action.isPrimaryAction { return bottomRowPrimaryButtonWidth(for: context) }
         switch action {
-        case dictationReplacement: return bottomRowSystemButtonWidth
-        case .character: return isLastNumericInputRow(row, for: context) ? lastSymbolicInputWidth : .input
-        case .backspace: return thirdRowSystemButtonWidth
-        case .keyboardType: return bottomRowSystemButtonWidth
-        case .newLine: return bottomRowPrimaryButtonWidth
-        case .nextKeyboard: return bottomRowSystemButtonWidth
-        case .return: return bottomRowPrimaryButtonWidth
-        case .shift: return thirdRowSystemButtonWidth
+        case dictationReplacement: return bottomRowSystemButtonWidth(for: context)
+        case .character: return isLastNumericInputRow(row, for: context) ? lastSymbolicInputWidth(for: context) : .input
+        case .backspace: return thirdRowSystemButtonWidth(for: context)
+        case .keyboardType: return bottomRowSystemButtonWidth(for: context)
+        case .newLine: return bottomRowPrimaryButtonWidth(for: context)
+        case .nextKeyboard: return bottomRowSystemButtonWidth(for: context)
+        case .return: return bottomRowPrimaryButtonWidth(for: context)
+        case .shift: return thirdRowSystemButtonWidth(for: context)
         default: return .available
         }
     }
@@ -88,23 +92,31 @@ private extension iPhoneKeyboardLayoutProvider {
     /**
      The width of the last numeric/symbolic row input button.
      */
-    var lastSymbolicInputWidth: KeyboardLayoutItemWidth { .percentage(0.14) }
+    func lastSymbolicInputWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
+        .percentage(0.14)
+    }
     
     /**
      The width of the bottom-right primary (return) button.
      */
-    var bottomRowPrimaryButtonWidth: KeyboardLayoutItemWidth { .percentage(0.25) }
+    func bottomRowPrimaryButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
+        .percentage(0.25)
+    }
     
     /**
      The width of the bottom-right primary (return) button.
      */
-    var bottomRowSystemButtonWidth: KeyboardLayoutItemWidth { .percentage(0.125) }
+    func bottomRowSystemButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
+        .percentage(0.125)
+    }
     
     /**
      The system buttons that are shown to the left and right
      of the third row's input buttons.
      */
-    var thirdRowSystemButtonWidth: KeyboardLayoutItemWidth { .percentage(0.13) }
+    func thirdRowSystemButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
+        .percentage(0.13)
+    }
     
     /**
      Whether or not a certain row is the last input row in a
@@ -121,7 +133,7 @@ private extension iPhoneKeyboardLayoutProvider {
 struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
     
     static var overlayOpacity: Double = 1.0
-    static var previewWidth: CGFloat = 390
+    static var previewWidth: CGFloat = 390  // iPhone 12: 390x844
     
     static var context = KeyboardContext(
         device: MockDevice(),
