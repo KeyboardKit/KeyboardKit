@@ -17,17 +17,18 @@ The version also makes it possible to identify the active app and adds workaroun
 
 ### ✨ New features
 
+* `DeleteBackwardsRange` is a new enum can be used when deleting backwards.
 * `KeyboardAction.PrimaryType` has new `newLine` case, that can be used to force an arrow for primary buttons.
 * `KeyboardColor` is a new enum that exposes the raw color resources.
 * `KeyboardContext` has a new `activeAppBundleId` property that identifies the currently active app.
 * `KeyboardPreviewMode` is a new (hopefully temporary) class that has a static `enable()` function that makes SwiftUI previews work.
 * `KeyboardInputViewController` has a new `activeAppBundleId` property that identifies the currently active app.
 * `CGFloat+standardKeyboardButtonCornerRadius` is a new property for getting the standard corner radius of a system button.
+* `UITextDocumentProxy+delete` has a new extension for deleting backwards a certain range.
 
 ### 💡 Behavior changes
 
 * Standard font sizes are adjusted to fit the native keyboards better.
-* `UIApplication+preferredKeyboardInterfaceOrientation` is a new scene-based way to retrieve the user interface orientation. This should remove some build warnings.
 
 
 ### 💥 Breaking changes:
