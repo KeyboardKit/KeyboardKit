@@ -44,25 +44,25 @@ class StandardKeyboardFeedbackHandlerTests: QuickSpec {
             }
             
             it("returns true for press if an action is performed for tap") {
-                actionProvider = { gesture, action in return gesture == .tap ? gestureAction : nil }
+                actionProvider = { gesture, _ in return gesture == .tap ? gestureAction : nil }
                 let res = handler.shouldTriggerFeedback(for: .press, on: .character(""), actionProvider: actionProvider)
                 expect(res).to(beTrue())
             }
             
             it("returns true for tap even if an action is performed for tap") {
-                actionProvider = { gesture, action in return gesture == .tap ? gestureAction : nil }
+                actionProvider = { gesture, _ in return gesture == .tap ? gestureAction : nil }
                 let res = handler.shouldTriggerFeedback(for: .tap, on: .character(""), actionProvider: actionProvider)
                 expect(res).to(beFalse())
             }
             
             it("returns false for not tap but no action is performed for the gesture") {
-                actionProvider = { gesture, action in return gesture == .longPress ? gestureAction : nil }
+                actionProvider = { gesture, _ in return gesture == .longPress ? gestureAction : nil }
                 let res = handler.shouldTriggerFeedback(for: .release, on: .character(""), actionProvider: actionProvider)
                 expect(res).to(beFalse())
             }
             
             it("returns true for not tap and an action is performed for the gesture") {
-                actionProvider = { gesture, action in return gesture == .longPress ? gestureAction : nil }
+                actionProvider = { gesture, _ in return gesture == .longPress ? gestureAction : nil }
                 let res = handler.shouldTriggerFeedback(for: .longPress, on: .character(""), actionProvider: actionProvider)
                 expect(res).to(beTrue())
             }
@@ -77,7 +77,7 @@ class StandardKeyboardFeedbackHandlerTests: QuickSpec {
             }
             
             it("triggers audio and haptic feedback") {
-                actionProvider = { gesture, action in return gesture == .tap ? gestureAction : nil }
+                actionProvider = { gesture, _ in return gesture == .tap ? gestureAction : nil }
                 handler.triggerFeedback(for: .press, on: .backspace, actionProvider: actionProvider)
                 expect(audioPlayer.hasCalled(audioPlayer.playSystemAudioRef)).to(beTrue())
                 expect(hapticPlayer.hasCalled(hapticPlayer.playRef)).to(beTrue())
