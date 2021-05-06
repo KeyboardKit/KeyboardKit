@@ -37,16 +37,16 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     }
     
     open override func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItemWidth {
-        if action.isPrimaryAction { return longButtonWidth }
+        if action.isPrimaryAction { return bottomRowPrimaryButtonWidth }
         switch action {
-        case dictationReplacement: return shortButtonWidth
-        case .character: return isLastSymbolicInputRow(row, for: context) ? lastSymbolicInputWidth : .input
-        case .backspace: return mediumButtonWidth
-        case .keyboardType: return shortButtonWidth
-        case .newLine: return longButtonWidth
-        case .nextKeyboard: return shortButtonWidth
-        case .return: return longButtonWidth
-        case .shift: return mediumButtonWidth
+        case dictationReplacement: return bottomRowSystemButtonWidth
+        case .character: return isLastNumericInputRow(row, for: context) ? lastSymbolicInputWidth : .input
+        case .backspace: return thirdRowSystemButtonWidth
+        case .keyboardType: return bottomRowSystemButtonWidth
+        case .newLine: return bottomRowPrimaryButtonWidth
+        case .nextKeyboard: return bottomRowSystemButtonWidth
+        case .return: return bottomRowPrimaryButtonWidth
+        case .shift: return thirdRowSystemButtonWidth
         default: return .available
         }
     }
@@ -85,15 +85,32 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
 
 private extension iPhoneKeyboardLayoutProvider {
     
+    /**
+     The width of the last numeric/symbolic row input button.
+     */
     var lastSymbolicInputWidth: KeyboardLayoutItemWidth { .percentage(0.14) }
     
-    var longButtonWidth: KeyboardLayoutItemWidth { .percentage(0.24) }
+    /**
+     The width of the bottom-right primary (return) button.
+     */
+    var bottomRowPrimaryButtonWidth: KeyboardLayoutItemWidth { .percentage(0.25) }
     
-    var mediumButtonWidth: KeyboardLayoutItemWidth { shortButtonWidth }
+    /**
+     The width of the bottom-right primary (return) button.
+     */
+    var bottomRowSystemButtonWidth: KeyboardLayoutItemWidth { .percentage(0.125) }
     
-    var shortButtonWidth: KeyboardLayoutItemWidth { .percentage(0.11) }
+    /**
+     The system buttons that are shown to the left and right
+     of the third row's input buttons.
+     */
+    var thirdRowSystemButtonWidth: KeyboardLayoutItemWidth { .percentage(0.13) }
     
-    func isLastSymbolicInputRow(_ row: Int, for context: KeyboardContext) -> Bool {
+    /**
+     Whether or not a certain row is the last input row in a
+     numeric or symbolic keyboard.
+     */
+    func isLastNumericInputRow(_ row: Int, for context: KeyboardContext) -> Bool {
         let isNumeric = context.keyboardType == .numeric
         let isSymbolic = context.keyboardType == .symbolic
         guard isNumeric || isSymbolic else { return false }
@@ -103,7 +120,8 @@ private extension iPhoneKeyboardLayoutProvider {
 
 struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
     
-    static var previewWidth: CGFloat = 375
+    static var overlayOpacity: Double = 1.0
+    static var previewWidth: CGFloat = 390
     
     static var context = KeyboardContext(
         device: MockDevice(),
@@ -111,6 +129,27 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
         keyboardType: .alphabetic(.lowercased))
     
     static var proxy = PreviewTextDocumentProxy()
+    
+    static var image: some View {
+        Image(imageName, bundle: .module)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: previewWidth)
+            .opacity(overlayOpacity)
+    }
+    
+    static var imageName: String {
+        "iPhone12_\(context.locale.languageCode ?? "")_\(imageNameSuffix)"
+    }
+    
+    static var imageNameSuffix: String {
+        switch context.keyboardType {
+        case .alphabetic: return "alphabetic"
+        case .numeric: return "numeric"
+        case .symbolic: return "numeric"
+        default: return ""
+        }
+    }
     
     static func input(for locale: KeyboardLocale) -> KeyboardInputSetProvider {
         StandardKeyboardInputSetProvider(
@@ -130,7 +169,7 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
     }
     
     static func preview(for locale: KeyboardLocale, type: KeyboardType) -> some View {
-        proxy.returnKeyType = UIReturnKeyType.search
+        //proxy.returnKeyType = UIReturnKeyType.search
         context.locale = locale.locale
         context.keyboardType = type
         context.textDocumentProxy = proxy
@@ -143,6 +182,7 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
             .environmentObject(context)
             .environmentObject(InputCalloutContext.preview)
             .environmentObject(SecondaryInputCalloutContext.preview)
+            .background(image, alignment: .bottom)
             .background(Color.gray.opacity(0.4))
     }
     
