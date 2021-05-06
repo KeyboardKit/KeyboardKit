@@ -122,7 +122,7 @@ public extension KeyboardAction {
         if self.isPrimaryAction { return { $0?.textDocumentProxy.insertText("\n") }}
         
         switch self {
-        case .backspace: return { $0?.textDocumentProxy.deleteBackward() }
+        case .backspace: return { $0?.textDocumentProxy.deleteBackward(backspaceRange) }
         case .character(let char): return { $0?.textDocumentProxy.insertText(char) }
         case .emoji(let emoji): return { $0?.textDocumentProxy.insertText(emoji.char) }
         case .newLine: return { $0?.textDocumentProxy.insertText("\n") }
@@ -131,5 +131,13 @@ public extension KeyboardAction {
         case .tab: return { $0?.textDocumentProxy.insertText("\t") }
         default: return nil
         }
+    }
+}
+
+private extension KeyboardAction {
+    
+    var backspaceRange: DeleteBackwardRange {
+        guard let vc = KeyboardInputViewController.shared else { return .char }
+        return vc.keyboardBehavior.backspaceRange
     }
 }

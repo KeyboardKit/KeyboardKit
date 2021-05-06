@@ -11,9 +11,9 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 ## 4.4 (WIP)
 
-This version improves the layout engine and makes it easier to override button widths.
+This version makes it easier to override system keyboard button widths.
 
-The version also makes it possible to identify the active app and adds workarounds to current SwiftUI and SPM limitations that make previews crash.
+The version also makes it possible to identify the active app and adds workarounds to current SwiftUI and SPM limitations that make previews crash. It also makes the backspace delete range progressive, so that it increases over time.
 
 ### ✨ New features
 
@@ -32,6 +32,7 @@ The version also makes it possible to identify the active app and adds workaroun
 ### 💡 Behavior changes
 
 * Standard font sizes are adjusted to fit the native keyboards better.
+* The standard backspace range is now progressive and will increase after backspace has been pressed for a while.
 
 
 ### 💥 Breaking changes:
