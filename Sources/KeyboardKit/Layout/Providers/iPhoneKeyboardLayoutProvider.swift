@@ -64,7 +64,7 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
      */
     open func bottomActions(for context: KeyboardContext) -> KeyboardActionRow {
         var result = KeyboardActions()
-        let portrait = context.interfaceOrientation.isPortrait
+        let portrait = context.screenOrientation.isPortrait
         let needsInputSwitcher = context.needsInputModeSwitchKey
         let needsDictation = context.needsInputModeSwitchKey
         if let action = keyboardSwitchActionForBottomRow(for: context) { result.append(action) }
@@ -90,7 +90,7 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
 private extension iPhoneKeyboardLayoutProvider {
     
     func isPortrait(_ context: KeyboardContext) -> Bool {
-        context.interfaceOrientation.isPortrait
+        context.screenOrientation.isPortrait
     }
     
     /**
@@ -183,7 +183,7 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
         //proxy.returnKeyType = UIReturnKeyType.search
         context.locale = locale.locale
         context.keyboardType = type
-        context.interfaceOrientation = orientation
+        context.screenOrientation = orientation
         context.textDocumentProxy = proxy
         context.needsInputModeSwitchKey = true
         return SystemKeyboard(
@@ -232,12 +232,12 @@ private extension KeyboardContext {
     var previewImageName: String {
         let language = locale.languageCode ?? ""
         let keyboardType = keyboardType.previewImageSegment
-        let orientation = interfaceOrientation.previewImageSegment
+        let orientation = screenOrientation.previewImageSegment
         return "iPhone12_\(language)_\(keyboardType)_\(orientation)"
     }
     
     var previewWidth: CGFloat {
-        interfaceOrientation.isPortrait ? 390 : 844
+        screenOrientation.isPortrait ? 390 : 844
     }
 }
 

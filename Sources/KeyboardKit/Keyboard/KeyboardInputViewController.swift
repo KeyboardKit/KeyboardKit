@@ -83,7 +83,7 @@ open class KeyboardInputViewController: UIInputViewController {
         @EnvironmentObject private var context: KeyboardContext
         
         var body: some View {
-            view.id("\(context.locale)\(context.interfaceOrientation.isLandscape)")
+            view.id("\(context.locale)\(context.screenOrientation.isLandscape)")
         }
     }
     

@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIApplication {
 
-    @available(*, deprecated, message: "Use the KeyboardContext interfaceOrientation instead")
+    @available(*, deprecated, message: "Use the KeyboardContext screenOrientation instead")
     var preferredKeyboardInterfaceOrientation: UIInterfaceOrientation {
         let scene = windows.first?.windowScene
         return scene?.interfaceOrientation ?? .unknown

@@ -17,19 +17,20 @@ The version also makes it possible to identify the active app and adds workaroun
 
 ### ✨ New features
 
-* `CGFloat` has a new `standardKeyboardButtonCornerRadius` for getting the standard corner radius of a system button.
+* `CGFloat` has a new `standardKeyboardButtonCornerRadius` property.
 * `DeleteBackwardRange` is a new enum can be used when deleting backwards.
 * `KeyboardAction.PrimaryType` has new `newLine` case, that can be used to force an arrow for primary buttons.
 * `KeyboardBehavior` has a new `backspaceRange` property.
 * `KeyboardColor` is a new enum that exposes the raw color resources.
 * `KeyboardContext` has a new `activeAppBundleId` property that identifies the currently active app.
-* `KeyboardContext` has a new `interfaceOrientation` property that replaces `deviceOrientation`.
+* `KeyboardContext` has a new `screenOrientation` property that replaces `deviceOrientation`.
 * `KeyboardPreviewMode` is a new (hopefully temporary) class that has a static `enable()` function that makes SwiftUI previews work.
 * `KeyboardInputViewController` has a new `activeAppBundleId` property that identifies the currently active app.
 * `RepeatGestureTimer` has been made public and can be used to inspect how long a repeat gesture has been active.
 
 * `EdgeInsets+Keyboard` has new context-based extensions.
-* `UITextDocumentProxy+delete` has a new extension for deleting backwards a certain range.
+* `UIInputViewController+Orientation` renames `deviceOrientation` to `screenOrientation`.
+* `UITextDocumentProxy+Delete` has a new extension for deleting backwards a certain range.
 
 ### 💡 Behavior changes
 
@@ -39,9 +40,10 @@ The version also makes it possible to identify the active app and adds workaroun
 
 ### 🗑 Deprecated (removed in 5.0):
 
-* `KeyboardContext` `deviceOrientation` has been renamed to `interfaceOrientation`.
+* `KeyboardContext` `deviceOrientation` has been renamed to `screenOrientation`.
 * `UIApplication` `preferredKeyboardInterfaceOrientation` didn't work and will be removed.
 * `UIDeviceOrientation` `interfaceOrientation` is no longer used and will be removed.
+* `UIInputViewController` `deviceOrientation` has been renamed to `screenOrientation`.
 * `UIInterfaceOrientation` - the device orientation-based init is no longer used and will be removed.
 
 ### 💥 Breaking changes:

@@ -30,9 +30,7 @@ public extension CGFloat {
      The standard corner radius of a system keyboard button.
      */
     static func standardKeyboardButtonCornerRadius(
-        for device: UIDevice = .current) -> CGFloat {
-        4.0
-    }
+        for device: UIDevice = .current) -> CGFloat { 4.0 }
     
     /**
      The standard, total height, including insets, for a row

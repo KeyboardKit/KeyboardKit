@@ -37,20 +37,14 @@ public class KeyboardContext: ObservableObject {
     @Published public var keyboardType: KeyboardType
     @Published public var hasDictationKey: Bool = false
     @Published public var hasFullAccess: Bool = false
-    @Published public var interfaceOrientation: UIInterfaceOrientation = .portrait
     @Published public var locale: Locale
     @Published public var locales: [Locale]
     @Published public var needsInputModeSwitchKey: Bool = true
     @Published public var primaryLanguage: String?
+    @Published public var screenOrientation: UIInterfaceOrientation = .portrait
     @Published public var textDocumentProxy: UITextDocumentProxy = PreviewTextDocumentProxy()
     @Published public var textInputMode: UITextInputMode?
     @Published public var traitCollection: UITraitCollection = UITraitCollection()
-    
-    
-    // MARK: - Deprecations
-    
-    @available(*, deprecated, renamed: "interfaceOrientation")
-    public var deviceOrientation: UIInterfaceOrientation { interfaceOrientation }
 }
 
 
@@ -100,9 +94,9 @@ public extension KeyboardContext {
         self.activeAppBundleId = controller.activeAppBundleId
         self.hasDictationKey = controller.hasDictationKey
         self.hasFullAccess = controller.hasFullAccess
-        self.interfaceOrientation = controller.deviceOrientation
         self.needsInputModeSwitchKey = controller.needsInputModeSwitchKey
         self.primaryLanguage = controller.primaryLanguage
+        self.screenOrientation = controller.screenOrientation
         self.textDocumentProxy = controller.textDocumentProxy
         self.textInputMode = controller.textInputMode
         self.traitCollection = controller.traitCollection

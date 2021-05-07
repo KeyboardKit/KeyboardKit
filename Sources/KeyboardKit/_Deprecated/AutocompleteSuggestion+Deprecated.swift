@@ -1,5 +1,3 @@
-import Foundation
-
 public extension AutocompleteSuggestion {
     
     @available(*, deprecated, renamed: "text")
