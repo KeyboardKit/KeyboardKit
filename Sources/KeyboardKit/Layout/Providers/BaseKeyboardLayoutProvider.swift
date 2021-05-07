@@ -28,6 +28,21 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
 
     
     /**
+     Whether or not the alphabetic input set with an 11-11-7
+     layout, which is used by e.g. `German` and other nordic
+     countries. It's a richer input set than the English and
+     requires adjustments for some devices.
+     
+     I'm not at all happy with this name, but don't know the
+     proper name for this layout. If you know what it should
+     be called, just create an issue or a PR and I'll merge.
+     */
+    public lazy var hasElevenElevenSevenAlphabeticInput: Bool = {
+        inputSetProvider.alphabeticInputSet().rows.first?.count == 11
+    }()
+    
+    
+    /**
      Get a keyboard layout for the provided context.
      */
     open func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {

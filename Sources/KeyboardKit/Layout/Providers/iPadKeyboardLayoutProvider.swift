@@ -28,11 +28,14 @@ open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     // MARK: - Overrides
     
     /**
-     Get keyboard actions for the provided context and inputs.
+     Get keyboard actions for the given context and inputs.
+     
+     The provider will only adjust the base class actions if
+     they consist of three rows or more.
      */
     open override func actions(for context: KeyboardContext, inputs: KeyboardInputRows) -> KeyboardActionRows {
         var actions = super.actions(for: context, inputs: inputs)
-        assert(actions.count > 2, "iPad layouts require at least 3 input rows.")
+        guard actions.count > 2 else { return actions }
         let last = actions.suffix(3)
         actions.removeLast(3)
         actions.append(last[0] + [.backspace])
@@ -43,12 +46,16 @@ open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     }
     
     open override func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItemWidth {
-        if isSecondRowSpacer(action, row: row, index: index) { return .inputPercentage(0.4) }
-        if isSecondBottomSwitcher(action, row: row, index: index) { return .inputPercentage(2) }
+        let elevenElevenSeven = hasElevenElevenSevenAlphabeticInput
+        if isSecondRowSpacer(action, row: row, index: index) { return .inputPercentage(elevenElevenSeven ? 0.3 : 0.4) }
+        if isThirdRowLeadingSwitcher(action, row: row, index: index) { return elevenElevenSeven ? .inputPercentage(1.1) : .input }
+        if isThirdRowTrailingSwitcher(action, row: row, index: index) { return .available }
+        if isBottomRowLeadingSwitcher(action, row: row, index: index) { return .input }
+        if isBottomRowTrailingSwitcher(action, row: row, index: index) { return .inputPercentage(1.45) }
         switch action {
         case dictationReplacement: return .input
-        case .backspace: return .percentage(0.1)
-        case .dismissKeyboard: return .inputPercentage(1.8)
+        case .backspace: return .percentage(elevenElevenSeven ? 0.125 : 0.095)
+        case .dismissKeyboard: return .inputPercentage(1.45)
         case .keyboardType: return row == 2 ? .available : .input
         case .nextKeyboard: return .input
         default: return super.itemSizeWidth(for: context, action: action, row: row, index: index)
@@ -92,9 +99,20 @@ open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
 
 private extension iPadKeyboardLayoutProvider {
     
-    func isSecondBottomSwitcher(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
+    func isPortrait(_ context: KeyboardContext) -> Bool {
+        context.screenOrientation.isPortrait
+    }
+    
+    func isBottomRowLeadingSwitcher(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
         switch action {
-        case .keyboardType: return row == 3 && index > 3
+        case .shift, .keyboardType: return row == 3 && index == 0
+        default: return false
+        }
+    }
+    
+    func isBottomRowTrailingSwitcher(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
+        switch action {
+        case .shift, .keyboardType: return row == 3 && index > 0
         default: return false
         }
     }
@@ -105,52 +123,105 @@ private extension iPadKeyboardLayoutProvider {
         default: return false
         }
     }
+    
+    func isThirdRowLeadingSwitcher(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
+        switch action {
+        case .shift, .keyboardType: return row == 2 && index == 0
+        default: return false
+        }
+    }
+    
+    func isThirdRowTrailingSwitcher(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
+        switch action {
+        case .shift, .keyboardType: return row == 2 && index > 0
+        default: return false
+        }
+    }
 }
 
+/**
+ These previews are pretty complex, since we want to be able
+ to verify that the returned sizes are correct. We therefore
+ add a real screenshot below the generated SwiftUI view.
+ 
+ The real screenshots are not perfectly cropped to fit these
+ previews, but they give a great assistance in approximating
+ the size, so that it's not way off.
+ */
 struct iPadKeyboardLayoutProvider_Previews: PreviewProvider {
+    
+    static var proxy = PreviewTextDocumentProxy()
     
     static var context = KeyboardContext(
         device: MockDevice(),
         controller: KeyboardInputViewController(),
         keyboardType: .alphabetic(.lowercased))
     
-    static var input = StandardKeyboardInputSetProvider(
-        context: context,
-        providers: [EnglishKeyboardInputSetProvider(device: MockDevice())])
+    static var previewImage: some View {
+        Image(context.previewImageName, bundle: .module)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: context.previewWidth)
+            .opacity(0.8)
+    }
+
     
-    static var layout = iPadKeyboardLayoutProvider(inputSetProvider: input)
+    static func input(for locale: KeyboardLocale) -> KeyboardInputSetProvider {
+        StandardKeyboardInputSetProvider(
+            context: context,
+            providers: [provider(for: locale)])
+    }
     
-    static func preview(for locale: KeyboardLocale, type: KeyboardType) -> some View {
+    static func layout(for locale: KeyboardLocale) -> KeyboardLayoutProvider {
+        iPadKeyboardLayoutProvider(inputSetProvider: input(for: locale))
+    }
+    
+    static func provider(for locale: KeyboardLocale) -> LocalizedKeyboardInputSetProvider {
+        switch locale {
+        case .swedish: return SwedishKeyboardInputSetProvider(device: MockDevice())
+        default: return EnglishKeyboardInputSetProvider(device: MockDevice())
+        }
+    }
+    
+    
+    static func preview(for locale: KeyboardLocale, _ type: KeyboardType, _ orientation: UIInterfaceOrientation) -> some View {
+        //proxy.returnKeyType = UIReturnKeyType.search
         context.locale = locale.locale
         context.keyboardType = type
+        context.screenOrientation = orientation
+        context.textDocumentProxy = proxy
+        context.needsInputModeSwitchKey = true
         return SystemKeyboard(
-            layout: layout.keyboardLayout(for: context),
+            layout: layout(for: locale).keyboardLayout(for: context),
             appearance: StandardKeyboardAppearance(context: context),
             actionHandler: PreviewKeyboardActionHandler(),
-            width: 768)
+            width: context.previewWidth)
             .environmentObject(context)
             .environmentObject(InputCalloutContext.preview)
             .environmentObject(SecondaryInputCalloutContext.preview)
+            .background(previewImage)
             .background(Color.gray)
     }
     
-    static func previews(for locale: KeyboardLocale) -> some View {
+    static func previews(for locale: KeyboardLocale, _ orientation: UIInterfaceOrientation) -> some View {
         VStack {
             Text(locale.localizedName).font(.title)
-            preview(for: locale, type: .alphabetic(.lowercased))
-            preview(for: locale, type: .alphabetic(.uppercased))
-            preview(for: locale, type: .numeric)
-            preview(for: locale, type: .symbolic)
+            preview(for: locale, .alphabetic(.lowercased), orientation)
+            preview(for: locale, .alphabetic(.uppercased), orientation)
+            preview(for: locale, .numeric, orientation)
+            preview(for: locale, .symbolic, orientation)
+            Spacer()
         }.padding()
     }
     
     static var previews: some View {
-        ScrollView {
-            HStack {
-                previews(for: .english)
-            }
+        HStack {
+            previews(for: .english, .portrait)
+            previews(for: .swedish, .portrait)
+            previews(for: .english, .landscapeLeft)
+            previews(for: .swedish, .landscapeLeft)
         }
-        .frame(height: 1170)
+        .frame(height: 1600)
         .previewLayout(.sizeThatFits)
     }
 }
@@ -158,4 +229,37 @@ struct iPadKeyboardLayoutProvider_Previews: PreviewProvider {
 private class MockDevice: UIDevice {
     
     override var userInterfaceIdiom: UIUserInterfaceIdiom { .pad }
+}
+
+private extension KeyboardContext {
+    
+    var previewImageName: String {
+        let language = locale.languageCode ?? ""
+        let keyboardType = keyboardType.previewImageSegment
+        let orientation = screenOrientation.previewImageSegment
+        return "iPad_\(language)_\(keyboardType)_\(orientation)"
+    }
+    
+    var previewWidth: CGFloat {
+        screenOrientation.isPortrait ? 768 : 1024
+    }
+}
+
+private extension KeyboardType {
+    
+    var previewImageSegment: String {
+        switch self {
+        case .alphabetic: return "alphabetic"
+        case .numeric: return "numeric"
+        case .symbolic: return "numeric"
+        default: return ""
+        }
+    }
+}
+
+private extension UIInterfaceOrientation {
+    
+    var previewImageSegment: String {
+        isPortrait ? "portrait" : "landscape"
+    }
 }

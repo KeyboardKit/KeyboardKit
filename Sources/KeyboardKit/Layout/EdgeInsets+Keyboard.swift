@@ -57,7 +57,7 @@ extension UIEdgeInsets {
         orientation: UIInterfaceOrientation) -> UIEdgeInsets {
         orientation.isLandscape
             ? idiom == .pad ? .horizontal(7, vertical: 6) : .horizontal(3, vertical: 4)
-            : idiom == .pad ? .horizontal(6, vertical: 4.5) : .horizontal(3, vertical: 6)
+            : idiom == .pad ? .horizontal(6, vertical: 6) : .horizontal(3, vertical: 6)
     }
 }
 

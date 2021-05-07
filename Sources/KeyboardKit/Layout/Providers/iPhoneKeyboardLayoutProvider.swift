@@ -24,7 +24,10 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     // MARK: - Overrides
     
     /**
-     Get keyboard actions for the provided context and inputs.
+     Get keyboard actions for the given context and inputs.
+     
+     The provider will only adjust the base class actions if
+     they consist of at least one row.
      */
     open override func actions(for context: KeyboardContext, inputs: KeyboardInputRows) -> KeyboardActionRows {
         var actions = super.actions(for: context, inputs: inputs)
@@ -143,20 +146,21 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
     
     static var overlayOpacity: Double = 1.0
     
+    static var proxy = PreviewTextDocumentProxy()
+    
     static var context = KeyboardContext(
         device: MockDevice(),
         controller: KeyboardInputViewController(),
         keyboardType: .alphabetic(.lowercased))
     
-    static var proxy = PreviewTextDocumentProxy()
-    
-    static var image: some View {
+    static var previewImage: some View {
         Image(context.previewImageName, bundle: .module)
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(width: context.previewWidth)
             .opacity(overlayOpacity)
     }
+    
     
     static func input(for locale: KeyboardLocale) -> KeyboardInputSetProvider {
         StandardKeyboardInputSetProvider(
@@ -175,6 +179,7 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
         }
     }
     
+    
     static func preview(for locale: KeyboardLocale, _ type: KeyboardType, _ orientation: UIInterfaceOrientation) -> some View {
         //proxy.returnKeyType = UIReturnKeyType.search
         context.locale = locale.locale
@@ -190,7 +195,7 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
             .environmentObject(context)
             .environmentObject(InputCalloutContext.preview)
             .environmentObject(SecondaryInputCalloutContext.preview)
-            .background(image, alignment: .bottom)
+            .background(previewImage, alignment: .bottom)
             .background(Color.gray.opacity(0.4))
             .overlay(Text(context.previewImageName), alignment: .bottom)
     }
