@@ -35,9 +35,9 @@ public class KeyboardContext: ObservableObject {
     
     @Published public var activeAppBundleId: String?
     @Published public var keyboardType: KeyboardType
-    @Published public var deviceOrientation: UIInterfaceOrientation = .portrait
     @Published public var hasDictationKey: Bool = false
     @Published public var hasFullAccess: Bool = false
+    @Published public var interfaceOrientation: UIInterfaceOrientation = .portrait
     @Published public var locale: Locale
     @Published public var locales: [Locale]
     @Published public var needsInputModeSwitchKey: Bool = true
@@ -45,6 +45,12 @@ public class KeyboardContext: ObservableObject {
     @Published public var textDocumentProxy: UITextDocumentProxy = PreviewTextDocumentProxy()
     @Published public var textInputMode: UITextInputMode?
     @Published public var traitCollection: UITraitCollection = UITraitCollection()
+    
+    
+    // MARK: - Deprecations
+    
+    @available(*, deprecated, renamed: "interfaceOrientation")
+    public var deviceOrientation: UIInterfaceOrientation { interfaceOrientation }
 }
 
 
@@ -92,9 +98,9 @@ public extension KeyboardContext {
      */
     func sync(with controller: KeyboardInputViewController) {
         self.activeAppBundleId = controller.activeAppBundleId
-        self.deviceOrientation = controller.deviceOrientation
         self.hasDictationKey = controller.hasDictationKey
         self.hasFullAccess = controller.hasFullAccess
+        self.interfaceOrientation = controller.deviceOrientation
         self.needsInputModeSwitchKey = controller.needsInputModeSwitchKey
         self.primaryLanguage = controller.primaryLanguage
         self.textDocumentProxy = controller.textDocumentProxy
