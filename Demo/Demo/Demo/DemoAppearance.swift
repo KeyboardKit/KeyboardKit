@@ -17,10 +17,10 @@ final class DemoAppearance {
         let navbar = UINavigationBar.appearance()
         let navbarAppearance = UINavigationBarAppearance()
         navbarAppearance.configureWithOpaqueBackground()
-        //navbarAppearance.backgroundColor = .accent
+        // navbarAppearance.backgroundColor = .accent
         navbarAppearance.titleTextAttributes = titleAttributes
         navbarAppearance.largeTitleTextAttributes = largeTitleAttributes
-        //navbar.tintColor = UIColor.darkGray
+        // navbar.tintColor = UIColor.darkGray
         navbar.standardAppearance = navbarAppearance
         navbar.scrollEdgeAppearance = navbarAppearance
     }

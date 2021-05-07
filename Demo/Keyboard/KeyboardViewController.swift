@@ -8,7 +8,7 @@
 
 import UIKit
 import KeyboardKit
-import KeyboardKitPro
+// import KeyboardKitPro
 import SwiftUI
 import Combine
 
@@ -89,7 +89,7 @@ class KeyboardViewController: KeyboardInputViewController {
         // Setup KeyboardKit Pro. This unlocks more features.
         // 💡 Disable this line to run demo without Pro mode.
         //
-        setupPro(withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098", view: keyboardView)
+        // setupPro(withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098", view: keyboardView)
     }
     
     

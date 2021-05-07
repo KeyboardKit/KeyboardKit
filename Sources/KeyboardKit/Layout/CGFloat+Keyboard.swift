@@ -56,7 +56,7 @@ extension CGFloat {
         for idiom: UIUserInterfaceIdiom,
         orientation: UIInterfaceOrientation) -> CGFloat {
         orientation.isLandscape
-            ? idiom == .pad ? 86 : 38
+            ? idiom == .pad ? 86 : 40
             : idiom == .pad ? 66 : 54
     }
 }

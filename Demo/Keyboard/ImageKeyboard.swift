@@ -37,7 +37,7 @@ private extension ImageKeyboard {
     
     var columns: Int { isLandscape ? 8 : 6 }
     
-    var isLandscape: Bool { context.deviceOrientation.isLandscape }
+    var isLandscape: Bool { context.screenOrientation.isLandscape }
     
     var bottomRow: some View {
         button(for: .nextKeyboard)
