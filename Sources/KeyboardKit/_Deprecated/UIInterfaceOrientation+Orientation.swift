@@ -9,7 +9,8 @@
 import UIKit
 
 extension UIInterfaceOrientation {
-    
+
+    @available(*, deprecated, message: "This initializer will be removed in 5.0")
     init?(_ orientation: UIDeviceOrientation) {
         guard let orientation = orientation.interfaceOrientation else { return nil }
         self = orientation
@@ -18,6 +19,7 @@ extension UIInterfaceOrientation {
 
 extension UIDeviceOrientation {
     
+    @available(*, deprecated, message: "This property will be removed in 5.0")
     var interfaceOrientation: UIInterfaceOrientation? {
         switch self {
         case .portrait: return .portrait

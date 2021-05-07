@@ -41,6 +41,8 @@ The version also makes it possible to identify the active app and adds workaroun
 
 * `KeyboardContext` `deviceOrientation` has been renamed to `interfaceOrientation`.
 * `UIApplication` `preferredKeyboardInterfaceOrientation` didn't work and will be removed.
+* `UIDeviceOrientation` `interfaceOrientation` is no longer used and will be removed.
+* `UIInterfaceOrientation` - the device orientation-based init is no longer used and will be removed.
 
 ### 💥 Breaking changes:
 
