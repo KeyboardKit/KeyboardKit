@@ -12,10 +12,6 @@ import SwiftUI
  This class provides a keyboard layout that correspond to an
  iPhone with either a home button or notch.
  
- The button widths that are calculated by this provider will
- conform to system keyboards with 10x9x7 or a 11x11x7 inputs
- or standard numeric/symbolic inputs.
- 
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
  

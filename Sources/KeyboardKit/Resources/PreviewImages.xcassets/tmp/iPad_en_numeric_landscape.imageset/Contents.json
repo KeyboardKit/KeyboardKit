@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "iPhone12_en_numeric_landscape.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

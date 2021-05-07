@@ -35,7 +35,8 @@ The version also makes it possible to identify the active app and adds workaroun
 ### 💡 Behavior changes
 
 * Standard font sizes are adjusted to fit the native keyboards better.
-* The standard iPhone layout provider lays out  range is now progressive and will increase after backspace has been pressed for a while.
+* The standard iPhone layout provider has been adjusted to be more pixel-perfect to native layouts.
+* The standard iPhone landscape button height has been adjusted to be more pixel-perfect to native layouts.
 * The standard backspace range is now progressive and will increase after backspace has been pressed for a while.
 
 ### 🗑 Deprecated (removed in 5.0):

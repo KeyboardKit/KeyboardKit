@@ -10,8 +10,8 @@ import SwiftUI
 
 /**
  This class provides layouts that correspond to an iPad with
- a home button, adding iPad-specific system buttons around a
- basic set of input actions.
+ a home button and adds iPad-specific buttons around a basic
+ set of input actions.
  
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
@@ -19,8 +19,8 @@ import SwiftUI
  This provider will return an `itemSize` that corresponds to
  how a certain action is sized on an English system keyboard.
  
- `TODO` This class is currently used for iPad Air/Pro device
- types as well, although they should use a different layout.
+ `TODO` This provider is currently used for iPad Air and Pro
+ devices as well, although they should use different layouts.
  */
 open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     
