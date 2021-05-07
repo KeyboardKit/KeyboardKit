@@ -89,6 +89,10 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
 
 private extension iPhoneKeyboardLayoutProvider {
     
+    func isPortrait(_ context: KeyboardContext) -> Bool {
+        context.deviceOrientation.isPortrait
+    }
+    
     /**
      The width of the last numeric/symbolic row input button.
      */
@@ -100,14 +104,14 @@ private extension iPhoneKeyboardLayoutProvider {
      The width of the bottom-right primary (return) button.
      */
     func bottomRowPrimaryButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
-        .percentage(0.25)
+        .percentage(isPortrait(context) ? 0.25 : 0.195)
     }
     
     /**
      The width of the bottom-right primary (return) button.
      */
     func bottomRowSystemButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
-        .percentage(0.125)
+        .percentage(isPortrait(context) ? 0.125 : 0.097)
     }
     
     /**
@@ -130,10 +134,18 @@ private extension iPhoneKeyboardLayoutProvider {
     }
 }
 
+/**
+ These previews are pretty complex, since we want to be able
+ to verify that the returned sizes are correct. We therefore
+ add a real screenshot below the generated SwiftUI view.
+ 
+ The real screenshots are not perfectly cropped to fit these
+ previews, but they give a great assistance in approximating
+ the size, so that it's not way off.
+ */
 struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
     
     static var overlayOpacity: Double = 1.0
-    static var previewWidth: CGFloat = 390  // iPhone 12: 390x844
     
     static var context = KeyboardContext(
         device: MockDevice(),
@@ -143,24 +155,11 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
     static var proxy = PreviewTextDocumentProxy()
     
     static var image: some View {
-        Image(imageName, bundle: .module)
+        Image(context.previewImageName, bundle: .module)
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .frame(width: previewWidth)
+            .frame(width: context.previewWidth)
             .opacity(overlayOpacity)
-    }
-    
-    static var imageName: String {
-        "iPhone12_\(context.locale.languageCode ?? "")_\(imageNameSuffix)"
-    }
-    
-    static var imageNameSuffix: String {
-        switch context.keyboardType {
-        case .alphabetic: return "alphabetic"
-        case .numeric: return "numeric"
-        case .symbolic: return "numeric"
-        default: return ""
-        }
     }
     
     static func input(for locale: KeyboardLocale) -> KeyboardInputSetProvider {
@@ -180,40 +179,43 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
         }
     }
     
-    static func preview(for locale: KeyboardLocale, type: KeyboardType) -> some View {
+    static func preview(for locale: KeyboardLocale, _ type: KeyboardType, _ orientation: UIInterfaceOrientation) -> some View {
         //proxy.returnKeyType = UIReturnKeyType.search
         context.locale = locale.locale
         context.keyboardType = type
+        context.deviceOrientation = orientation
         context.textDocumentProxy = proxy
         context.needsInputModeSwitchKey = true
         return SystemKeyboard(
             layout: layout(for: locale).keyboardLayout(for: context),
             appearance: StandardKeyboardAppearance(context: context),
             actionHandler: PreviewKeyboardActionHandler(),
-            width: previewWidth)
+            width: context.previewWidth)
             .environmentObject(context)
             .environmentObject(InputCalloutContext.preview)
             .environmentObject(SecondaryInputCalloutContext.preview)
             .background(image, alignment: .bottom)
             .background(Color.gray.opacity(0.4))
+            .overlay(Text(context.previewImageName), alignment: .bottom)
     }
     
-    static func previews(for locale: KeyboardLocale) -> some View {
+    static func previews(for locale: KeyboardLocale, _ orientation: UIInterfaceOrientation) -> some View {
         VStack {
             Text(locale.localizedName).font(.title)
-            preview(for: locale, type: .alphabetic(.lowercased))
-            preview(for: locale, type: .alphabetic(.uppercased))
-            preview(for: locale, type: .numeric)
-            preview(for: locale, type: .symbolic)
+            preview(for: locale, .alphabetic(.lowercased), orientation)
+            preview(for: locale, .alphabetic(.uppercased), orientation)
+            preview(for: locale, .numeric, orientation)
+            preview(for: locale, .symbolic, orientation)
+            Spacer()
         }.padding()
     }
     
     static var previews: some View {
-        ScrollView {
-            HStack {
-                previews(for: .english)
-                previews(for: .swedish)
-            }
+        HStack {
+            previews(for: .english, .portrait)
+            previews(for: .swedish, .portrait)
+            previews(for: .english, .landscapeLeft)
+            previews(for: .swedish, .landscapeLeft)
         }
         .frame(height: 980)
         .previewLayout(.sizeThatFits)
@@ -223,4 +225,37 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
 private class MockDevice: UIDevice {
     
     override var userInterfaceIdiom: UIUserInterfaceIdiom { .phone }
+}
+
+private extension KeyboardContext {
+    
+    var previewImageName: String {
+        let language = locale.languageCode ?? ""
+        let keyboardType = keyboardType.previewImageSegment
+        let orientation = deviceOrientation.previewImageSegment
+        return "iPhone12_\(language)_\(keyboardType)_\(orientation)"
+    }
+    
+    var previewWidth: CGFloat {
+        deviceOrientation.isPortrait ? 390 : 844
+    }
+}
+
+private extension KeyboardType {
+    
+    var previewImageSegment: String {
+        switch self {
+        case .alphabetic: return "alphabetic"
+        case .numeric: return "numeric"
+        case .symbolic: return "numeric"
+        default: return ""
+        }
+    }
+}
+
+private extension UIInterfaceOrientation {
+    
+    var previewImageSegment: String {
+        isPortrait ? "portrait" : "landscape"
+    }
 }

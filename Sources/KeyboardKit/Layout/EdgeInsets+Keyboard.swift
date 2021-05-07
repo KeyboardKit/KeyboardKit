@@ -15,7 +15,7 @@ public extension EdgeInsets {
      The standard edge insets of a system keyboard button in
      a native keyboard.
      
-     Thes insets should be INSIDE every button, to provide a
+     These insets should be INSIDE each button, to provide a
      fake, visual space between buttons. Having a real space
      between the buttons would cause dead tap areas.
      */
@@ -32,7 +32,7 @@ public extension UIEdgeInsets {
      The standard edge insets of a system keyboard button in
      a native keyboard.
      
-     Thes insets should be INSIDE every button, to provide a
+     These insets should be INSIDE each button, to provide a
      fake, visual space between buttons. Having a real space
      between the buttons would cause dead tap areas.
      */

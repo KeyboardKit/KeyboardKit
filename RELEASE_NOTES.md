@@ -35,6 +35,9 @@ The version also makes it possible to identify the active app and adds workaroun
 * The standard iPhone layout provider lays out  range is now progressive and will increase after backspace has been pressed for a while.
 * The standard backspace range is now progressive and will increase after backspace has been pressed for a while.
 
+### 🗑 Deprecated (removed in 5.0):
+
+* `UIApplication.preferredKeyboardInterfaceOrientation` didn't work and will be removed.
 
 ### 💥 Breaking changes:
 

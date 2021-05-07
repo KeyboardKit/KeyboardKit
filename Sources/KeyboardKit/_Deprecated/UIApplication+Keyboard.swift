@@ -9,11 +9,8 @@
 import UIKit
 
 public extension UIApplication {
-    
-    /**
-     Get the interface orientation of the first window scene,
-     if any. If no scene is found, `.unknown` is returned.
-     */
+
+    @available(*, deprecated, message: "Use the KeyboardContext interfaceOrientation instead")
     var preferredKeyboardInterfaceOrientation: UIInterfaceOrientation {
         let scene = windows.first?.windowScene
         return scene?.interfaceOrientation ?? .unknown
