@@ -5,18 +5,18 @@
         "package": "KeyboardKit",
         "repositoryURL": "https://github.com/danielsaidi/KeyboardKit.git",
         "state": {
-          "branch": "master",
-          "revision": "4feb8ee56ab05b1bc5e250dd76745c787dae0553",
-          "version": null
+          "branch": null,
+          "revision": "9205edc3bed4ad4c836e3d80578580b079398799",
+          "version": "4.4.0"
         }
       },
       {
         "package": "KeyboardKitPro",
         "repositoryURL": "https://github.com/KeyboardKit/KeyboardKitPro.git",
         "state": {
-          "branch": "master",
-          "revision": "c471df131baa061c6dda88f039ff314cadd49be0",
-          "version": null
+          "branch": null,
+          "revision": "f120c3fbb6cdb4e26affee1b5eef746ab19b7ea7",
+          "version": "4.4.0"
         }
       }
     ]
