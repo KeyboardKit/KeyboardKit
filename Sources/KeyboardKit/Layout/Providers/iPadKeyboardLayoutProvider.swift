@@ -178,7 +178,7 @@ struct iPadKeyboardLayoutProvider_Previews: PreviewProvider {
     
     static func provider(for locale: KeyboardLocale) -> LocalizedKeyboardInputSetProvider {
         switch locale {
-        case .swedish: return SwedishKeyboardInputSetProvider(device: MockDevice())
+        case .swedish: return InternalSwedishKeyboardInputSetProvider(device: MockDevice())
         default: return EnglishKeyboardInputSetProvider(device: MockDevice())
         }
     }

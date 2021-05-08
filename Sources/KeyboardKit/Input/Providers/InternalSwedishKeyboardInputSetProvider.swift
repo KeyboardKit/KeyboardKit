@@ -1,6 +1,6 @@
 //
-//  SwedishKeyboardInputSetProvider.swift
-//  KeyboardKitPro
+//  InternalSwedishKeyboardInputSetProvider.swift
+//  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-01.
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
@@ -13,14 +13,14 @@ import UIKit
  used by previews and is not as complex as the real provider
  in KeyboardKit Pro.
  */
-class SwedishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, LocalizedService {
+class InternalSwedishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, LocalizedService {
     
     init(device: UIDevice = .current) {
         self.device = device
     }
     
-    public let device: UIDevice
-    public let localeKey: String = KeyboardLocale.swedish.id
+    let device: UIDevice
+    let localeKey: String = KeyboardLocale.swedish.id
     
     func alphabeticInputSet() -> AlphabeticKeyboardInputSet {
         AlphabeticKeyboardInputSet(rows: [
