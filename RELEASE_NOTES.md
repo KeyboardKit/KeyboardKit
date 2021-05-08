@@ -11,7 +11,7 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 ## 4.4
 
-This version adds features that make it easier to work with layouts and collections.
+This version adds new locales as well as features that make it easier to work with layouts and collections.
 
 In this version, you can also identify the active app ID, which makes it possible to adjust the keyboard accordingly.
 
@@ -21,6 +21,7 @@ There are also several tweaks and behavior changes that make system keyboards be
 
 * `CGFloat` has a new `standardKeyboardButtonCornerRadius` property.
 * `DeleteBackwardRange` is a new enum can be used when deleting backwards.
+* `EnglishKeyboardInputSetProvider` has new currency init params.
 * `KeyboardAction.PrimaryType` has new `newLine` case, that can be used to force an arrow for primary buttons.
 * `KeyboardBehavior` has a new `backspaceRange` property.
 * `KeyboardColor` is a new enum that exposes the raw color resources.
@@ -36,6 +37,11 @@ There are also several tweaks and behavior changes that make system keyboards be
 * `UIInputViewController+Orientation` renames `deviceOrientation` to `screenOrientation`.
 * `UITextDocumentProxy+Delete` has a new extension for deleting backwards a certain range.
 
+### 🌐 New locales
+
+* 🇬🇧 English U.K. (GB)
+* 🇺🇸 English U.S. (same keyboard as base English but different region)
+
 ### 💡 Behavior changes
 
 * `KeyboardAction` now implements `RowItem`.
@@ -43,6 +49,9 @@ There are also several tweaks and behavior changes that make system keyboards be
 * `iPhoneKeyboardLayoutProvider` has been adjusted layout buttons closer to native layouts.
 * `KeyboardInput` now implements `RowItem`.
 * `KeyboardLayoutItem` now implements `RowItem`.
+* `StandardKeyboardBehavior` now only auto-switches keyboard type on `.tap`.
+* `UITextDocumentProxy` handles new lines when checking if the cursor is at new sentence.
+
 * Standard font sizes are adjusted to fit the native keyboards better.
 * The standard backspace range is now progressive and will increase after backspace has been pressed for a while.
 
@@ -61,26 +70,6 @@ There are also several tweaks and behavior changes that make system keyboards be
 Besides the points above, `KeyboardActionHandler` had a convenience `handle` function that didn't require a `sender`.  This caused a conflict with the `StandardKeyboardActionHandler` function with the same signature.  Subclassing `StandardKeyboardActionHandler` and calling `super.handle` thus caused a never-ending loop, since the convenience function called the sender function etc. 
 
 The sender-based functions have thus been removed. If you have a custom action handler that overrides `handle` or `canHandle`, you must remove the `sender` parameter.
-
-
-
-## 4.3.2
-
-This version adds new locales and tweaks some behavior.
-
-### ✨ New features
-
-* `EnglishKeyboardInputSetProvider` has new currency init params.
-
-### 🌐 New locales
-
-* 🇬🇧 English U.K. (GB)
-* 🇺🇸 English U.S. (same keyboard as base English but different region)
-
-### 💡 Behavior changes
-
-* `StandardKeyboardBehavior` now only auto-switches keyboard type on `.tap`.
-* `UITextDocumentProxy` handles new lines when checking if the cursor is at new sentence.
 
 
 
