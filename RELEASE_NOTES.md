@@ -9,11 +9,13 @@ KeyboardKit tries to honor the following rules when new versions are released:
 Breaking changes can still occur in minor versions, if the alternative is to not release new critical features or fixes.
 
 
-## 4.4 (WIP)
+## 4.4
 
-This version improves the standard iPhone keyboard layout to make it mimic the native layout better.
+This version adds features that make it easier to work with layouts and collections.
 
-The version also makes it possible to identify the active app and adds workarounds to current SwiftUI and SPM limitations that make previews crash. It also makes the backspace delete range progressive, so that it increases over time.
+In this version, you can also identify the active app ID, which makes it possible to adjust the keyboard accordingly.
+
+There are also several tweaks and behavior changes that make system keyboards behave even more native-like.
 
 ### ✨ New features
 
@@ -27,16 +29,21 @@ The version also makes it possible to identify the active app and adds workaroun
 * `KeyboardPreviewMode` is a new (hopefully temporary) class that has a static `enable()` function that makes SwiftUI previews work.
 * `KeyboardInputViewController` has a new `activeAppBundleId` property that identifies the currently active app.
 * `RepeatGestureTimer` has been made public and can be used to inspect how long a repeat gesture has been active.
+* `RowItem` is a new protocol that makes it possible to gather row collection functions in one place - `Collection+RowItem`.
 
+* `Collection+RowItem` has new extensions that make it easier to add and remove row items to all collections that contain the new `RowItem` protocol.
 * `EdgeInsets+Keyboard` has new context-based extensions.
 * `UIInputViewController+Orientation` renames `deviceOrientation` to `screenOrientation`.
 * `UITextDocumentProxy+Delete` has a new extension for deleting backwards a certain range.
 
 ### 💡 Behavior changes
 
-* Standard font sizes are adjusted to fit the native keyboards better.
+* `KeyboardAction` now implements `RowItem`.
 * `iPadKeyboardLayoutProvider` has been adjusted layout buttons closer to native layouts.
 * `iPhoneKeyboardLayoutProvider` has been adjusted layout buttons closer to native layouts.
+* `KeyboardInput` now implements `RowItem`.
+* `KeyboardLayoutItem` now implements `RowItem`.
+* Standard font sizes are adjusted to fit the native keyboards better.
 * The standard backspace range is now progressive and will increase after backspace has been pressed for a while.
 
 ### 🗑 Deprecated (removed in 5.0):

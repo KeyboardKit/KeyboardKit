@@ -9,6 +9,14 @@
 import Foundation
 
 /**
+ This makes `KeyboardAction` conform to `RowItem`.
+ */
+extension KeyboardAction: RowItem {
+
+    public var rowId: KeyboardAction { self }
+}
+
+/**
  This typealias represents a list of keyboard actions.
  */
 public typealias KeyboardActions = [KeyboardAction]

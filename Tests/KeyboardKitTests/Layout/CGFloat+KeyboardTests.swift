@@ -26,11 +26,11 @@ class CGFloat_KeyboardTests: QuickSpec {
             }
             
             it("is correct for iPhone Landscape") {
-                expect(result(for: .phone, orientation: .landscapeLeft)).to(equal(38))
+                expect(result(for: .phone, orientation: .landscapeLeft)).to(equal(40))
             }
             
             it("is correct for iPad Portrait") {
-                expect(result(for: .pad, orientation: .portrait)).to(equal(66))
+                expect(result(for: .pad, orientation: .portrait)).to(equal(67))
             }
             
             it("is correct for iPad Landscape") {

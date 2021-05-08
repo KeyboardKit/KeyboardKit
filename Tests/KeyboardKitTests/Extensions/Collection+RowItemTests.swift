@@ -19,9 +19,10 @@ class KeyboardLayoutItemRowTests: QuickSpec {
         var row: KeyboardLayoutItemRow!
         var rows: KeyboardLayoutItemRows!
         
+        let size = KeyboardLayoutItemSize(width: .available, height: 100)
+        let insets = EdgeInsets()
+        
         beforeEach {
-            let size = KeyboardLayoutItemSize(width: .available, height: 100)
-            let insets = EdgeInsets()
             item = KeyboardLayoutItem(action: .primary(.done), size: size, insets: insets)
             let item1 = KeyboardLayoutItem(action: .command, size: size, insets: insets)
             let item2 = KeyboardLayoutItem(action: .space, size: size, insets: insets)
@@ -75,6 +76,22 @@ class KeyboardLayoutItemRowTests: QuickSpec {
                     expect(rowActions).to(equal([.command, .space, .primary(.done), .backspace]))
                 }
             }
+            
+            describe("removing action") {
+                
+                it("aborts if action is not found") {
+                    row.remove(.character("a"))
+                    expect(rowActions).to(equal([.command, .space, .backspace]))
+                }
+                
+                it("removes matching item") {
+                    let item = KeyboardLayoutItem(action: .backspace, size: size, insets: insets)
+                    row.insert(item, before: .command)
+                    expect(rowActions).to(equal([.backspace, .command, .space, .backspace]))
+                    row.remove(.backspace)
+                    expect(rowActions).to(equal([.command, .space]))
+                }
+            }
         }
         
         context("rows") {
@@ -122,6 +139,22 @@ class KeyboardLayoutItemRowTests: QuickSpec {
                     expect(rowsActions[0]).to(equal(rowActions))
                     expect(rowsActions[1]).to(equal(rowActions))
                     expect(rowsActions[2]).to(equal([.command, .space, .primary(.done), .backspace]))
+                }
+            }
+            
+            describe("removing action at row") {
+                
+                it("aborts if action is not found") {
+                    rows.remove(.character("a"), atRow: 2)
+                    expect(rowActions).to(equal([.command, .space, .backspace]))
+                }
+                
+                it("removes matching item") {
+                    let item = KeyboardLayoutItem(action: .backspace, size: size, insets: insets)
+                    rows.insert(item, before: .command, atRow: 2)
+                    expect(rowsActions[2]).to(equal([.backspace, .command, .space, .backspace]))
+                    rows.remove(.backspace, atRow: 2)
+                    expect(rowsActions[2]).to(equal([.command, .space]))
                 }
             }
         }

@@ -10,48 +10,23 @@ import CoreGraphics
 import SwiftUI
 
 /**
+ This makes `KeyboardLayoutItem` conform to `RowItem`.
+ */
+extension KeyboardLayoutItem: RowItem {
+
+    public var rowId: KeyboardAction { action }
+}
+
+/**
  This typealias represents a list of layout items.
  */
 public typealias KeyboardLayoutItemRow = [KeyboardLayoutItem]
 
-public extension KeyboardLayoutItemRow {
-    
-    func index(of action: KeyboardAction) -> Index? {
-        firstIndex { $0.action == action }
-    }
-    
-    mutating func insert(_ item: KeyboardLayoutItem, after action: KeyboardAction) {
-        guard let index = index(of: action) else { return }
-        insert(item, at: index.advanced(by: 1))
-    }
-    
-    mutating func insert(_ item: KeyboardLayoutItem, before action: KeyboardAction) {
-        guard let index = index(of: action) else { return }
-        insert(item, at: index)
-    }
-}
-
 /**
  This typealias represents a list of layout item rows.
+ 
+ The insert operations will use the first action found for a
+ row. If the same action appears many times at one row, like
+ the keyboard type shift on an iPad, pick an adjacent action.
  */
 public typealias KeyboardLayoutItemRows = [KeyboardLayoutItemRow]
-
-public extension KeyboardLayoutItemRows {
-    
-    func row(at index: Int) -> KeyboardLayoutItemRow? {
-        guard index >= 0, count > index else { return nil }
-        return self[index]
-    }
-    
-    mutating func insert(_ item: KeyboardLayoutItem, after action: KeyboardAction, atRow index: Int) {
-        guard var row = self.row(at: index) else { return }
-        row.insert(item, after: action)
-        self[index] = row
-    }
-    
-    mutating func insert(_ item: KeyboardLayoutItem, before action: KeyboardAction, atRow index: Int) {
-        guard var row = self.row(at: index) else { return }
-        row.insert(item, before: action)
-        self[index] = row
-    }
-}

@@ -30,7 +30,7 @@ class UIEdgeInsets_KeyboardTests: QuickSpec {
             }
             
             it("is correct for iPad Portrait") {
-                expect(result(for: .pad, orientation: .portrait)).to(equal(.horizontal(6, vertical: 4.5)))
+                expect(result(for: .pad, orientation: .portrait)).to(equal(.horizontal(6, vertical: 6)))
             }
             
             it("is correct for iPad Landscape") {

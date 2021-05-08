@@ -1,5 +1,5 @@
 //
-//  KeyboardInputRow.swift
+//  KeyboardInput.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-03.
@@ -9,13 +9,13 @@
 import Foundation
 
 /**
- This struct represents a keyboard input item, with an upper
- and a lowercased string.
+ This struct represents a keyboard input item with a neutral,
+ an uppercased and a lowercased string.
  
  You can either create an instance with just a string, which
  is the regular way of working with input sets. However, the
  struct also supports specific casings, which means that you
- can use it to create unicode keyboards as well.
+ can use it to create unicode keyboards etc.
  */
 public struct KeyboardInput: Equatable {
     
@@ -38,44 +38,11 @@ public struct KeyboardInput: Equatable {
     public let uppercased: String
     public let lowercased: String
     
-    func character(for casing: KeyboardCasing) -> String {
+    public func character(for casing: KeyboardCasing) -> String {
         switch casing {
         case .lowercased: return lowercased
         case .uppercased, .capsLocked: return uppercased
         case .neutral: return neutral
         }
-    }
-}
-
-
-/**
- This typealias represents a list of keyboard inputs.
- */
-public typealias KeyboardInputRow = [KeyboardInput]
-
-public extension KeyboardInputRow {
-    
-    init(_ row: [String]) {
-        self = row.map { KeyboardInput($0) }
-    }
-    
-    func characters(for casing: KeyboardCasing = .lowercased) -> [String] {
-        map { $0.character(for: casing) }
-    }
-}
-
-/**
- This typealias represents a list of keyboard input rows.
- */
-public typealias KeyboardInputRows = [KeyboardInputRow]
-
-public extension KeyboardInputRows {
-    
-    init(_ rows: [[String]]) {
-        self = rows.map { KeyboardInputRow($0) }
-    }
-    
-    func characters(for casing: KeyboardCasing = .lowercased) -> [[String]] {
-        map { $0.characters(for: casing) }
     }
 }
