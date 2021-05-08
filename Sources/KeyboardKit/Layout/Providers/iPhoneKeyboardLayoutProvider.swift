@@ -181,7 +181,7 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
     
     
     static func preview(for locale: KeyboardLocale, _ type: KeyboardType, _ orientation: UIInterfaceOrientation) -> some View {
-        //proxy.returnKeyType = UIReturnKeyType.search
+        // proxy.returnKeyType = UIReturnKeyType.search
         context.locale = locale.locale
         context.keyboardType = type
         context.screenOrientation = orientation
