@@ -9,6 +9,16 @@ KeyboardKit tries to honor the following rules when new versions are released:
 Breaking changes can still occur in minor versions, if the alternative is to not release new critical features or fixes.
 
 
+## 4.5
+
+This version adds new functionality for detecting external keyboards.
+
+### ✨ New features
+
+* `ExternalKeyboardContext` is a new iOS 14 exclusive class that lets you observe whether or not  an external keyboard is connected to the device.
+
+
+
 ## 4.4
 
 This version adds new locales as well as features that make it easier to work with layouts and collections.

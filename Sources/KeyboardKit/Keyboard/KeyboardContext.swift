@@ -48,7 +48,6 @@ public class KeyboardContext: ObservableObject {
 }
 
 
-
 // MARK: - Public Properties
 
 public extension KeyboardContext {

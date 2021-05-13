@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Antoine Baché on 2021-01-23.
-//  Copyright © 2017 Daniel Saidi. All rights reserved.
+//  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
