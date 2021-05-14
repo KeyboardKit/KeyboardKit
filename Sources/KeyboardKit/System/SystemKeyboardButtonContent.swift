@@ -34,13 +34,13 @@ public struct SystemKeyboardButtonContent: View {
     @ViewBuilder
     public var body: some View {
         if action == .nextKeyboard {
-            AnyView(NextKeyboardButton())
+            NextKeyboardButton()
         } else if let image = buttonImage {
-            AnyView(image)
+            image
         } else if let text = buttonText {
-            AnyView(textView(for: text))
+            textView(for: text)
         } else {
-            AnyView(Text(""))
+            Text("")
         }
     }
 }
