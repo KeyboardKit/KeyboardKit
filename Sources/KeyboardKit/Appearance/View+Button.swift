@@ -22,6 +22,5 @@ public extension View {
             .cornerRadius(appearance.buttonCornerRadius(for: action))
             .shadow(color: appearance.buttonShadowColor(for: action), radius: 0, x: 0, y: 1)
             .font(appearance.buttonFont(for: action))
-            .environment(\.sizeCategory, .medium)
     }
 }

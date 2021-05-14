@@ -91,7 +91,7 @@ private extension KeyboardView {
                 layout: layoutProvider.keyboardLayout(for: keyboardContext),
                 appearance: appearance,
                 actionHandler: actionHandler,
-                buttonBuilder: buttonBuilder).environment(\.sizeCategory, .medium)
+                buttonBuilder: buttonBuilder)
         }
     }
     

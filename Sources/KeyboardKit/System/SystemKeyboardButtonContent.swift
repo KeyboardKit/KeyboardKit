@@ -10,6 +10,7 @@ import SwiftUI
 
 /**
  This view resolves the correct content for a certain action.
+ 
  If provided, the optional text and image is used instead of
  the standard action content.
  */
