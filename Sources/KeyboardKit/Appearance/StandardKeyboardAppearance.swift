@@ -45,7 +45,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     }
     
     open func buttonImage(for action: KeyboardAction) -> Image? {
-        action.standardButtonImage
+        action.standardButtonImage(for: context)
     }
     
     open func buttonShadowColor(for action: KeyboardAction) -> Color {
@@ -61,6 +61,6 @@ private extension StandardKeyboardAppearance {
     
     func fontWeight(for action: KeyboardAction) -> Font.Weight? {
         if buttonImage(for: action) != nil { return .light }
-        return action.standardButtonFontWeight
+        return action.standardButtonFontWeight(for: context)
     }
 }

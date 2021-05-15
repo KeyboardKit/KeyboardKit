@@ -76,7 +76,7 @@ class KeyboardAction_SystemTests: QuickSpec {
         describe("standard button image") {
             
             func result(for action: KeyboardAction) -> Image? {
-                action.standardButtonImage
+                action.standardButtonImage(for: context)
             }
             
             it("is defined for some actions") {
@@ -143,7 +143,7 @@ class KeyboardAction_SystemTests: QuickSpec {
         describe("standard button font weight") {
             
             func result(for action: KeyboardAction) -> Font.Weight? {
-                action.standardButtonFontWeight
+                action.standardButtonFontWeight(for: context)
             }
             
             it("is light for actions with image and lower cased char") {

@@ -29,24 +29,24 @@ public extension KeyboardAction {
      The action's standard button font size.
      */
     func standardButtonFontSize(for context: KeyboardContext) -> CGFloat {
-        if standardButtonImage != nil { return 20 }
+        if standardButtonImage(for: context) != nil { return 20 }
         switch self {
         case .keyboardType(let type): return type.standardButtonFontSize(for: context)
-        case .return: return 16
         case .space: return 16
         default: break
         }
         
         let text = standardButtonText(for: context) ?? ""
         if isInputAction && text.isLowercased { return 26 }
+        if isSystemAction { return 16 }
         return 23
     }
     
     /**
      The action's standard button font weight, if any.
      */
-    var standardButtonFontWeight: Font.Weight? {
-        if standardButtonImage != nil { return .light }
+    func standardButtonFontWeight(for context: KeyboardContext) -> Font.Weight? {
+        if standardButtonImage(for: context) != nil { return .light }
         switch self {
         case .character(let char): return char.isLowercased ? .light : nil
         default: return nil
@@ -65,10 +65,11 @@ public extension KeyboardAction {
     /**
      The action's standard button image.
      */
-    var standardButtonImage: Image? {
+    func standardButtonImage(for context: KeyboardContext) -> Image? {
+        if let image = standardButtonTextImageReplacement(for: context) { return image }
+        
         switch self {
         case .backspace: return .backspace
-        case .character(let char): return char == "↵" ? .newLine : nil
         case .command: return .command
         case .control: return .control
         case .dictation: return .dictation
@@ -114,6 +115,17 @@ public extension KeyboardAction {
         case .primary(let type): return type.standardButtonText(for: context)
         case .return: return KKL10n.return.text(for: context)
         case .search: return KKL10n.search.text(for: context)
+        default: return nil
+        }
+    }
+    
+    /**
+     The action's standard button text image replacement, if
+     the text is an icon that has a related image.
+     */
+    func standardButtonTextImageReplacement(for context: KeyboardContext) -> Image? {
+        switch standardButtonText(for: context) {
+        case "↵": return .newLine
         default: return nil
         }
     }
@@ -229,7 +241,7 @@ struct KeyboardActionButton_Previews: PreviewProvider {
     }
     
     static func view(for action: KeyboardAction) -> some View {
-        let image = action.standardButtonImage
+        let image = action.standardButtonImage(for: context)
         let text = action.standardButtonText(for: context) ?? ""
         return Group {
             if image != nil {

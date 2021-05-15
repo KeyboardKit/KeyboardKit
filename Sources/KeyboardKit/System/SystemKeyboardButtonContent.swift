@@ -32,6 +32,8 @@ public struct SystemKeyboardButtonContent: View {
     private let image: Image?
     private let text: String?
     
+    @EnvironmentObject private var context: KeyboardContext
+    
     @ViewBuilder
     public var body: some View {
         if action == .nextKeyboard {
@@ -49,7 +51,7 @@ public struct SystemKeyboardButtonContent: View {
 private extension SystemKeyboardButtonContent {
     
     var buttonImage: Image? {
-        image ?? action.standardButtonImage
+        image ?? action.standardButtonImage(for: context)
     }
     
     var buttonText: String? {

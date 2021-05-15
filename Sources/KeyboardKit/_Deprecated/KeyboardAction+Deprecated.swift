@@ -1,6 +1,12 @@
 import UIKit
+import SwiftUI
 
 public extension KeyboardAction {
+    
+    @available(*, deprecated, message: "This will be removed in 5.0. Use the context-based function instead.")
+    var standardButtonImage: Image? {
+        standardButtonImage(for: .preview)
+    }
     
     @available(*, deprecated, message: "This will be removed in 5.0. Use standardButtonFont instead.")
     func standardButtonUIFont(for context: KeyboardContext) -> UIFont {

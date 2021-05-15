@@ -78,7 +78,7 @@ class StandardKeyboardAppearanceTests: QuickSpec {
             it("is standard for all actions") {
                 KeyboardAction.testActions.forEach {
                     let result = appearance.buttonImage(for: $0)
-                    let standard = $0.standardButtonImage
+                    let standard = $0.standardButtonImage(for: context)
                     result.expectEqual(to: standard)
                 }
             }

@@ -23,12 +23,14 @@ This version adds new functionality for detecting external keyboards.
 
 * `KeyboardAction` `standardButtonFont` has been renamed to `standardButtonUIFont`.
 * `KeyboardAction` `standardButtonFontWeight` has been renamed to `standardButtonUIFontWeight`.
+* `KeyboardAction` `standardButtonImage` has been converted to a function.
 * `UIApplication` `standardButtonTextStyle` has been renamed to `standardButtonUITextStyle`.
 
 ### 💥 Breaking changes
 
 * `KeyboardAction+standardButtonFont` now returns a `Font` instead of a `UIFont`.
 * `KeyboardAction+standardButtonFontWeight` now returns a `Font.Weight` instead of a `UIFont.Weight`.
+* `KeyboardAction` `standardButtonImage` - the property is deprecated in favor for the context-based function.
 * The old properties are now called `standardButtonUIFont` and `standardButtonUIFontWeight`. 
 
 
