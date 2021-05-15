@@ -39,7 +39,7 @@ public struct SystemKeyboardButtonContent: View {
         if action == .nextKeyboard {
             NextKeyboardButton()
         } else if let image = buttonImage {
-            image
+            image.flipped(for: context)
         } else if let text = buttonText {
             textView(for: text)
         } else {
@@ -62,5 +62,33 @@ private extension SystemKeyboardButtonContent {
         Text(text)
             .lineLimit(1)
             .offset(y: action.isInputAction && text.isLowercased ? -2 : 0)
+    }
+}
+
+private extension Image {
+    
+    @ViewBuilder
+    func flipped(for context: KeyboardContext) -> some View {
+        if context.isRtl {
+            self.rotation3DEffect(.degrees(180), axis: (x: 0.0, y: 1.0, z: 0.0))
+        } else {
+            self
+        }
+    }
+}
+
+private extension KeyboardContext {
+    
+    var isRtl: Bool {
+        let direction = Locale.characterDirection(forLanguage: locale.languageCode ?? "")
+        return direction == .rightToLeft
+    }
+}
+
+struct SystemKeyboardButtonContent_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        SystemKeyboardButtonContent(action: .backspace)
+            .environmentObject(KeyboardContext.preview)
     }
 }
