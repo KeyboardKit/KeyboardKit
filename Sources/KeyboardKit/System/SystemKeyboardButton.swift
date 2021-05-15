@@ -52,3 +52,25 @@ public struct SystemKeyboardButton: View {
                 actionHandler: actionHandler)
     }
 }
+
+struct SystemKeyboardButtonContent_Previews: PreviewProvider {
+    
+    static func button(for action: KeyboardAction) -> some View {
+        SystemKeyboardButton(
+            action: action,
+            actionHandler: PreviewKeyboardActionHandler(),
+            appearance: PreviewKeyboardAppearance())
+    }
+    
+    static var previews: some View {
+        VStack {
+            button(for: .character("a"))
+            button(for: .character("A"))
+        }
+        .environmentObject(KeyboardContext.preview)
+        .padding()
+        .background(Color.gray)
+        .cornerRadius(10)
+        .environment(\.sizeCategory, .extraExtraLarge)
+    }
+}

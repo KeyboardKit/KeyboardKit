@@ -153,7 +153,7 @@ open class KeyboardInputViewController: UIInputViewController {
      The shared input view controller. This is registered as
      the keyboard extension is started.
      */
-    public static var shared: KeyboardInputViewController!
+    public static var shared = KeyboardInputViewController()
     
     
     

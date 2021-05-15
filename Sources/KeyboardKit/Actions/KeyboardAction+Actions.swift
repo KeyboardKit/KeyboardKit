@@ -137,7 +137,7 @@ public extension KeyboardAction {
 private extension KeyboardAction {
     
     var backspaceRange: DeleteBackwardRange {
-        guard let vc = KeyboardInputViewController.shared else { return .char }
+        let vc = KeyboardInputViewController.shared
         return vc.keyboardBehavior.backspaceRange
     }
 }

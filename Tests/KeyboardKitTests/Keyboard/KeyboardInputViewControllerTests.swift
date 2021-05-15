@@ -30,7 +30,7 @@ class KeyboardInputViewControllerTests: QuickSpec {
         }
         
         beforeEach {
-            TestClass.shared = nil
+            TestClass.shared = TestClass(nibName: nil, bundle: nil)
             vc = TestClass(nibName: nil, bundle: nil)
         }
         
@@ -40,9 +40,9 @@ class KeyboardInputViewControllerTests: QuickSpec {
         describe("view did load") {
             
             it("sets vc as shared") {
-                expect(TestClass.shared).to(beNil())
+                expect(TestClass.shared).toNot(be(vc))
                 vc.viewDidLoad()
-                expect(TestClass.shared).toNot(beNil())
+                expect(TestClass.shared).to(be(vc))
             }
             
             it("sets up context observations") {
