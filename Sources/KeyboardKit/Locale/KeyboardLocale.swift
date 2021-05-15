@@ -68,6 +68,20 @@ public extension KeyboardLocale {
         case .swedish: return "🇸🇪"
         }
     }
+    
+    /**
+     Whether or not the locale is a left-to-right one.
+     */
+    var isLeftToRight: Bool {
+        switch self {
+        default: return true
+        }
+    }
+    
+    /**
+     Whether or not the locale is a right-to-left one.
+     */
+    var isRightToLeft: Bool { !isLeftToRight }
 }
 
 public extension Collection where Element == KeyboardLocale {

@@ -53,7 +53,7 @@ public struct SystemKeyboardButton: View {
     }
 }
 
-struct SystemKeyboardButtonContent_Previews: PreviewProvider {
+struct SystemKeyboardButton_Previews: PreviewProvider {
     
     static func button(for action: KeyboardAction) -> some View {
         SystemKeyboardButton(

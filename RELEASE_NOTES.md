@@ -11,14 +11,21 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 ## 4.5
 
-This version adds new functionality for detecting external keyboards.
+This version adds new functionality for detecting external keyboards, disabling dynamic type and use RTL locales.
 
 ### ✨ New features
 
 * `ExternalKeyboardContext` is a new iOS 14 exclusive class that lets you observe whether or not  an external keyboard is connected to the device.
 * `KeyboardAction` has a new `standardButtonFontSize` function.
+* `KeyboardLocale` has new `isLeftToRight` and `isRightToLeft` properties.
 * `KeyboardType` has a new `standardButtonFontSize` function.
+* `Locale` has new `characterDirection` and `lineDirection` properties.
+* `Locale` has new `isLeftToRight`, `isRightToLeft`, `isBottomToTop`, `isTopToBottom` properties.  
 * There are new localizations for the keyboard type key texts. 
+
+### 💡 Behavior changes
+
+* `KeyboardAction` now flips the standard keyboard button image for RTL locales.
 
 ### 🗑 Deprecated (removed in 5.0)
 

@@ -82,10 +82,6 @@ class KeyboardLocaleTests: QuickSpec {
         
         describe("flag") {
             
-            func result(for locale: KeyboardLocale) -> String {
-                locale.flag
-            }
-            
             it("is valid for all cases") {
                 let map = locales.map { ($0, $0.flag) }
                 let result = Dictionary(uniqueKeysWithValues: map)
@@ -101,6 +97,50 @@ class KeyboardLocaleTests: QuickSpec {
                         .italian: "🇮🇹",
                         .norwegian: "🇳🇴",
                         .swedish: "🇸🇪"
+                    ]
+                ))
+            }
+        }
+        
+        describe("is LTR") {
+            
+            it("is correct for all locales") {
+                let map = locales.map { ($0, $0.isLeftToRight) }
+                let result = Dictionary(uniqueKeysWithValues: map)
+                expect(result).to(equal(
+                    [
+                        .danish: true,
+                        .dutch: true,
+                        .english: true,
+                        .english_gb: true,
+                        .english_us: true,
+                        .finnish: true,
+                        .german: true,
+                        .italian: true,
+                        .norwegian: true,
+                        .swedish: true
+                    ]
+                ))
+            }
+        }
+        
+        describe("is RTL") {
+            
+            it("is inverted LTR value") {
+                let map = locales.map { ($0, $0.isRightToLeft != $0.isLeftToRight) }
+                let result = Dictionary(uniqueKeysWithValues: map)
+                expect(result).to(equal(
+                    [
+                        .danish: true,
+                        .dutch: true,
+                        .english: true,
+                        .english_gb: true,
+                        .english_us: true,
+                        .finnish: true,
+                        .german: true,
+                        .italian: true,
+                        .norwegian: true,
+                        .swedish: true
                     ]
                 ))
             }
