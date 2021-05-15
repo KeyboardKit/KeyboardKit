@@ -68,6 +68,7 @@ public extension KeyboardAction {
     var standardButtonImage: Image? {
         switch self {
         case .backspace: return .backspace
+        case .character(let char): return char == "↵" ? .newLine : nil
         case .command: return .command
         case .control: return .control
         case .dictation: return .dictation
@@ -211,6 +212,7 @@ struct KeyboardActionButton_Previews: PreviewProvider {
             .overlay(view(for: .character("Q")).offset(x: -177, y: -81))
             .overlay(view(for: .character("A")).offset(x: -178, y: -27))
             .overlay(view(for: .character("Ä")).offset(x: 177, y: -27))
+            .overlay(view(for: .newLine).offset(x: 147, y: 79))
     }
     
     static var numericPreview: some View {
@@ -223,6 +225,7 @@ struct KeyboardActionButton_Previews: PreviewProvider {
             .overlay(view(for: .character("kr")).offset(x: 58, y: -28))
             .overlay(view(for: .keyboardType(.symbolic)).offset(x: -170, y: 27))
             .overlay(view(for: .keyboardType(.alphabetic(.neutral))).offset(x: -171, y: 81))
+            .overlay(view(for: .character("↵")).offset(x: 147, y: 79))
     }
     
     static func view(for action: KeyboardAction) -> some View {
