@@ -11,7 +11,7 @@
 import KeyboardKit
 import UIKit
 
-@objc public protocol HorizontalFloatingHeaderLayoutDelegate: class {
+@objc public protocol HorizontalFloatingHeaderLayoutDelegate: AnyObject {
     
     // Item size
     func collectionView(_ collectionView: UICollectionView, horizontalFloatingHeaderItemSizeAt indexPath: IndexPath) -> CGSize

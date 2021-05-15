@@ -109,7 +109,9 @@ private extension KeyboardAction {
      The font to use for a button that uses this action.
      */
     func buttonFont(for viewController: KeyboardInputViewController) -> UIFont {
-        useCalloutFont ? UIFont.preferredFont(forTextStyle: .callout) : standardButtonFont(for: viewController.keyboardContext)
+        useCalloutFont
+            ? UIFont.preferredFont(forTextStyle: .callout)
+            : standardButtonUIFont(for: viewController.keyboardContext)
     }
     
     /**
