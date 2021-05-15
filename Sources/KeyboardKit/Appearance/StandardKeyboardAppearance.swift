@@ -35,7 +35,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     }
     
     open func buttonFont(for action: KeyboardAction) -> Font {
-        let rawFont = Font(action.standardButtonFont(for: context))
+        let rawFont = action.standardButtonFont(for: context)
         guard let weight = fontWeight(for: action) else { return rawFont }
         return rawFont.weight(weight)
     }
@@ -59,7 +59,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
 
 private extension StandardKeyboardAppearance {
     
-    func fontWeight(for action: KeyboardAction) -> UIFont.Weight? {
+    func fontWeight(for action: KeyboardAction) -> Font.Weight? {
         if buttonImage(for: action) != nil { return .light }
         return action.standardButtonFontWeight
     }

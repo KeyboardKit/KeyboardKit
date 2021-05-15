@@ -108,20 +108,6 @@ class KeyboardAction_SystemTests: QuickSpec {
             }
         }
         
-        describe("standard button font") {
-            
-            func result(for action: KeyboardAction) -> UIFont {
-                action.standardButtonFont(for: context)
-            }
-            
-            it("is defined for all actions") {
-                actions.forEach {
-                    let expected = UIFont.preferredFont(forTextStyle: $0.standardButtonTextStyle(for: context))
-                    expect(result(for: $0)).to(equal(expected))
-                }
-            }
-        }
-        
         describe("standard button font size") {
             
             func result(for action: KeyboardAction) -> CGFloat {
@@ -156,7 +142,7 @@ class KeyboardAction_SystemTests: QuickSpec {
         
         describe("standard button font weight") {
             
-            func result(for action: KeyboardAction) -> UIFont.Weight? {
+            func result(for action: KeyboardAction) -> Font.Weight? {
                 action.standardButtonFontWeight
             }
             
@@ -248,53 +234,6 @@ class KeyboardAction_SystemTests: QuickSpec {
                 expect(result(for: .shift(currentState: .capsLocked))).to(beNil())
                 expect(result(for: .space)).to(beNil())
                 expect(result(for: .tab)).to(beNil())
-            }
-        }
-        
-        describe("standard button text style") {
-            
-            func getActions(_ actions: [KeyboardAction]) -> [KeyboardAction] { actions }
-            
-            func result(for action: KeyboardAction) -> UIFont.TextStyle {
-                action.standardButtonTextStyle(for: context)
-            }
-            
-            it("is custom for some actions, but defined for all") {
-                let expectBody = getActions(
-                    [.space])
-                let expectCallout = getActions(
-                    [.emojiCategory(.smileys),
-                     .keyboardType(.alphabetic(.capsLocked)),
-                     .keyboardType(.alphabetic(.lowercased)),
-                     .keyboardType(.alphabetic(.uppercased)),
-                     .keyboardType(.numeric),
-                     .keyboardType(.symbolic),
-                     .nextLocale,
-                     .primary(.done),
-                     .primary(.go),
-                     .primary(.ok),
-                     .primary(.search),
-                     .return])
-                let expectTitle1 = getActions(
-                    [.character("a"),
-                     .character("abc"),
-                     .character("kr"),
-                     .emoji(Emoji(""))])
-                let expectTitle2 = getActions(
-                    [.character("A"),
-                     .nextKeyboard,
-                     .newLine,
-                     .keyboardType(.emojis)])
-                
-                expectBody.forEach { expect(result(for: $0)).to(equal(.body)) }
-                expectCallout.forEach { expect(result(for: $0)).to(equal(.callout)) }
-                expectTitle1.forEach { expect(result(for: $0)).to(equal(.title1)) }
-                expectTitle2.forEach { expect(result(for: $0)).to(equal(.title2)) }
-            }
-            
-            it("uses different font for lower and uppercased chars") {
-                expect(result(for: KeyboardAction.character("a"))).to(equal(.title1))
-                expect(result(for: KeyboardAction.character("A"))).to(equal(.title2))
             }
         }
     }

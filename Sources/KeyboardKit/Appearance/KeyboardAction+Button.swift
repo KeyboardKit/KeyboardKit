@@ -21,11 +21,8 @@ public extension KeyboardAction {
             : standardButtonBackgroundColorForIdleState(for: context)
     }
     
-    /**
-     The action's standard button font.
-     */
-    func standardButtonFont(for context: KeyboardContext) -> UIFont {
-        .preferredFont(forTextStyle: standardButtonTextStyle(for: context))
+    func standardButtonFont(for context: KeyboardContext) -> Font {
+        Font.system(size: standardButtonFontSize(for: context))
     }
     
     /**
@@ -48,7 +45,7 @@ public extension KeyboardAction {
     /**
      The action's standard button font weight, if any.
      */
-    var standardButtonFontWeight: UIFont.Weight? {
+    var standardButtonFontWeight: Font.Weight? {
         if standardButtonImage != nil { return .light }
         switch self {
         case .character(let char): return char.isLowercased ? .light : nil
@@ -119,21 +116,6 @@ public extension KeyboardAction {
         default: return nil
         }
     }
-    
-    /**
-     The action's standard button text style.
-     */
-    func standardButtonTextStyle(for context: KeyboardContext) -> UIFont.TextStyle {
-        if standardButtonImage != nil { return .title2 }
-        if useCalloutTextStyle(for: context) { return .callout }
-        switch self {
-        case .character(let char): return char.isLowercased ? .title1 : .title2
-        case .emoji: return .title1
-        case .emojiCategory: return .callout
-        case .space: return .body
-        default: return .title2
-        }
-    }
 }
 
 private extension KeyboardAction.PrimaryType {
@@ -185,12 +167,6 @@ private extension KeyboardAction {
     func standardButtonForegroundColorForPressedState(for context: KeyboardContext) -> Color {
         if isPrimaryAction { return context.colorScheme == .dark ? .white : .standardButtonTint(for: context) }
         return .standardButtonTint(for: context)
-    }
-    
-    func useCalloutTextStyle(for context: KeyboardContext) -> Bool {
-        guard let text = standardButtonText(for: context) else { return false }
-        if isPrimaryAction || isSystemAction { return !text.isEmpty }
-        return false
     }
 }
 
@@ -262,12 +238,5 @@ struct KeyboardActionButton_Previews: PreviewProvider {
         .font(action.standardButtonFont(for: context))
         .environment(\.sizeCategory, .medium)
         .foregroundColor(.red)
-    }
-}
-
-extension KeyboardAction {
-    
-    func standardButtonFont(for context: KeyboardContext) -> Font {
-        Font.system(size: standardButtonFontSize(for: context))
     }
 }
