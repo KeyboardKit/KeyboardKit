@@ -11,7 +11,19 @@ import SwiftUI
 public extension KeyboardType {
     
     /**
-     The keyboard type's standard keyboard button image.
+     The type's standard keyboard button font size.
+     */
+    func standardButtonFontSize(for context: KeyboardContext) -> CGFloat {
+        switch self {
+        case .alphabetic: return 15
+        case .numeric: return 16
+        case .symbolic: return 14
+        default: return 14
+        }
+    }
+    
+    /**
+     The type's standard keyboard button image.
      */
     var standardButtonImage: Image? {
         switch self {
@@ -23,7 +35,10 @@ public extension KeyboardType {
     }
     
     /**
-     The keyboard type's standard keyboard button text.
+     The type's standard keyboard button text.
+     
+     `TODO` Localize these texts and convert the property to
+     a function that takes a `context`.
      */
     var standardButtonText: String? {
         switch self {

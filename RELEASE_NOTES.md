@@ -18,6 +18,13 @@ This version adds new functionality for detecting external keyboards.
 * `ExternalKeyboardContext` is a new iOS 14 exclusive class that lets you observe whether or not  an external keyboard is connected to the device.
 
 
+### 💥 Breaking changes
+
+* `KeyboardAction+standardButtonFont` now returns a `Font` instead of a `UIFont`.
+* `KeyboardAction+standardButtonFontWeight` now returns a `Font.Weight` instead of a `UIFont.Weight`.
+* The old properties are now called `standardButtonUIFont` and `standardButtonUIFontWeight`. 
+
+
 
 ## 4.4
 
@@ -65,7 +72,7 @@ There are also several tweaks and behavior changes that make system keyboards be
 * Standard font sizes are adjusted to fit the native keyboards better.
 * The standard backspace range is now progressive and will increase after backspace has been pressed for a while.
 
-### 🗑 Deprecated (removed in 5.0):
+### 🗑 Deprecated (removed in 5.0)
 
 * `KeyboardContext` `deviceOrientation` has been renamed to `screenOrientation`.
 * `UIApplication` `preferredKeyboardInterfaceOrientation` didn't work and will be removed.
@@ -73,7 +80,7 @@ There are also several tweaks and behavior changes that make system keyboards be
 * `UIInputViewController` `deviceOrientation` has been renamed to `screenOrientation`.
 * `UIInterfaceOrientation` - the device orientation-based init is no longer used and will be removed.
 
-### 💥 Breaking changes:
+### 💥 Breaking changes
 
 * `KeyboardBehavior` has a new `backspaceRange` property that must be implemented. 
 
@@ -123,7 +130,7 @@ This version introduces a bunch of changes to how feedback is being handled.
 * Audio feedback types have been moved to `Feedback`.
 * Haptic feedback types have been moved to `Feedback`.
 
-### 🗑 Deprecated (removed in 5.0):
+### 🗑 Deprecated (removed in 5.0)
 
 * `AudioFeedback` `systemPlayer` has been renamed to `player`.
 * `KeyboardInputViewController` `keyboardStackView` has been replaced with a new `setup(with:)`.
@@ -161,7 +168,7 @@ This version adds support for primary actions, such as `.done`, `.go`, `.search`
 * New line is now considered to be a `word` delimiter instead of a `sentence` delimiter.
 * Due to the new ways to localize content, some signatures must be changed to optional strings.
 
-### 🗑 Deprecated (removed in 5.0):
+### 🗑 Deprecated (removed in 5.0)
 
 * `KeyboardAction` `.done`, `.go`, `.ok` and `.search`  have been deprecated and replaced with the new `primary` umbrella type.
 
@@ -222,14 +229,14 @@ KeyboardKit Pro 4.1 also adds more locale-specific providers as well as a real a
 
 * `KeyboardInputViewController` now uses combine observations to keep locale in sync.
 
-### 🚚 Renamed:
+### 🚚 Renamed
 
 * `AutocompleteSuggestion+replacement` has been renamed to `text`.
 * `AutocompleteToolbar+ButtonBuilder` has been renamed to `ItemBuilder`.
 * `KeyboardLocale+key` has been renamed to `id`.
 * `LocaleKey` has been renamed to `KeyboardLocale`.
 
-### 🗑 Deprecated (removed in 5.0):
+### 🗑 Deprecated (removed in 5.0)
 
 * `AutocompleteSuggestion+replacement` has been deprecated due to the name change above.
 * `AutocompleteToolbar+buttonBuilder` init has been deprecated and replaced with the `itemBuilder` one.
@@ -239,7 +246,7 @@ KeyboardKit Pro 4.1 also adds more locale-specific providers as well as a real a
 * `KeyboardInputViewController+changeKeyboardLocale` has been deprecated.
 * `KeyboardInputViewController+changeKeyboardType` has been deprecated.
 
-### 💥 Breaking changes:
+### 💥 Breaking changes
 
 * `AutocompleteSuggestionProvider` has new properties and functions that must be implemented. If you have an instance that breaks, just create dummy implementations that does nothing.
 

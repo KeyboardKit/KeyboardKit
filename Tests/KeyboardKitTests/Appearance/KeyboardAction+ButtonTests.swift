@@ -122,6 +122,38 @@ class KeyboardAction_SystemTests: QuickSpec {
             }
         }
         
+        describe("standard button font size") {
+            
+            func result(for action: KeyboardAction) -> CGFloat {
+                action.standardButtonFontSize(for: context)
+            }
+            
+            it("is defined for actions with image") {
+                expect(result(for: .keyboardType(.email))).to(equal(20))
+                expect(result(for: .keyboardType(.emojis))).to(equal(20))
+                expect(result(for: .shift(currentState: .lowercased))).to(equal(20))
+                expect(result(for: .backspace)).to(equal(20))
+            }
+            
+            it("is explicitly defined for some actions") {
+                expect(result(for: .keyboardType(.numeric))).to(equal(16))
+                expect(result(for: .return)).to(equal(16))
+                expect(result(for: .space)).to(equal(16))
+            }
+            
+            it("is pattern-defined for some actions") {
+                expect(result(for: .character("a"))).to(equal(26))
+                expect(result(for: .character("A"))).to(equal(23))
+                expect(result(for: .character("!"))).to(equal(23))
+                expect(result(for: .return)).to(equal(16))
+                expect(result(for: .space)).to(equal(16))
+            }
+            
+            it("has a default fallback size") {
+                expect(result(for: .emoji(Emoji("😃")))).to(equal(23))
+            }
+        }
+        
         describe("standard button font weight") {
             
             func result(for action: KeyboardAction) -> UIFont.Weight? {

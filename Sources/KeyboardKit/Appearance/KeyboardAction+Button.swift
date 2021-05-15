@@ -29,6 +29,23 @@ public extension KeyboardAction {
     }
     
     /**
+     The action's standard button font size.
+     */
+    func standardButtonFontSize(for context: KeyboardContext) -> CGFloat {
+        if standardButtonImage != nil { return 20 }
+        switch self {
+        case .keyboardType(let type): return type.standardButtonFontSize(for: context)
+        case .return: return 16
+        case .space: return 16
+        default: break
+        }
+        
+        let text = standardButtonText(for: context) ?? ""
+        if isInputAction && text.isLowercased { return 26 }
+        return 23
+    }
+    
+    /**
      The action's standard button font weight, if any.
      */
     var standardButtonFontWeight: UIFont.Weight? {
@@ -174,5 +191,83 @@ private extension KeyboardAction {
         guard let text = standardButtonText(for: context) else { return false }
         if isPrimaryAction || isSystemAction { return !text.isEmpty }
         return false
+    }
+}
+
+
+struct KeyboardActionButton_Previews: PreviewProvider {
+    
+    static var context = KeyboardContext.preview
+    static var appearance = StandardKeyboardAppearance(context: context)
+    
+    static var swedishAlphaLower = Image("iPhone12_sv_alphabetic_portrait_lowercase", bundle: .module)
+    static var swedishAlphaUpper = Image("iPhone12_sv_alphabetic_portrait", bundle: .module)
+    static var swedishNumeric = Image("iPhone12_sv_numeric_portrait", bundle: .module)
+    static var swedishSymbolic = Image("iPhone12_sv_symbolic_portrait", bundle: .module)
+    
+    static var previews: some View {
+        Group {
+            alphaLowerPreview
+            alphaUpperPreview
+            numericPreview
+        }.previewLayout(.sizeThatFits)
+    }
+    
+    static var alphaLowerPreview: some View {
+        swedishAlphaLower
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .overlay(view(for: .character("q")).offset(x: -178, y: -85))
+            .overlay(view(for: .character("a")).offset(x: -177, y: -30.5))
+            .overlay(view(for: .character("ä")).offset(x: 177, y: -30.5))
+            .overlay(view(for: .shift(currentState: .lowercased)).offset(x: -170, y: 26))
+            .overlay(view(for: .backspace).offset(x: 170, y: 26))
+            .overlay(view(for: .keyboardType(.numeric)).offset(x: -171, y: 80.5))
+            .overlay(view(for: .keyboardType(.emojis)).offset(x: -122, y: 80))
+            .overlay(view(for: .emoji(Emoji("😄"))).offset(x: 0, y: 80))
+            .overlay(view(for: .return).offset(x: 147, y: 79))
+    }
+    
+    static var alphaUpperPreview: some View {
+        swedishAlphaUpper
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .overlay(view(for: .character("Q")).offset(x: -177, y: -81))
+            .overlay(view(for: .character("A")).offset(x: -178, y: -27))
+            .overlay(view(for: .character("Ä")).offset(x: 177, y: -27))
+    }
+    
+    static var numericPreview: some View {
+        swedishNumeric
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .overlay(view(for: .character("1")).offset(x: -176, y: -81))
+            .overlay(view(for: .character("-")).offset(x: -176, y: -28))
+            .overlay(view(for: .character("/")).offset(x: -136, y: -28))
+            .overlay(view(for: .character("kr")).offset(x: 58, y: -28))
+            .overlay(view(for: .keyboardType(.symbolic)).offset(x: -170, y: 27))
+            .overlay(view(for: .keyboardType(.alphabetic(.neutral))).offset(x: -171, y: 81))
+    }
+    
+    static func view(for action: KeyboardAction) -> some View {
+        let image = action.standardButtonImage
+        let text = action.standardButtonText(for: context) ?? ""
+        return Group {
+            if image != nil {
+                image
+            } else {
+                Text(text)
+            }
+        }
+        .font(action.standardButtonFont(for: context))
+        .environment(\.sizeCategory, .medium)
+        .foregroundColor(.red)
+    }
+}
+
+extension KeyboardAction {
+    
+    func standardButtonFont(for context: KeyboardContext) -> Font {
+        Font.system(size: standardButtonFontSize(for: context))
     }
 }

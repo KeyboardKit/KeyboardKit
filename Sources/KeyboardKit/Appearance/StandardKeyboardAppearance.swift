@@ -64,34 +64,3 @@ private extension StandardKeyboardAppearance {
         return action.standardButtonFontWeight
     }
 }
-
-struct StandardKeyboardAppearance_Previews: PreviewProvider {
-    
-    static var context = KeyboardContext.preview
-    static var appearance = StandardKeyboardAppearance(context: context)
-    
-    static var actions: [KeyboardAction] = [
-        .character(""),
-        .space,
-        .primary(.ok),
-        .primary(.go)]
-    
-    static func view(for action: KeyboardAction) -> some View {
-        Text("A")
-            .padding()
-            .font(.title)
-            .keyboardButtonStyle(for: action, appearance: appearance, isPressed: false)
-            .padding()
-    }
-    
-    static var previews: some View {
-        Group {
-            ForEach(Array(actions.enumerated()), id: \.offset) { action in
-                HStack(spacing: 0) {
-                    view(for: action.element)
-                    view(for: action.element).background(Color.black).colorScheme(.dark)
-                }
-            }
-        }.previewLayout(.sizeThatFits)
-    }
-}
