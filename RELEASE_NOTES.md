@@ -18,6 +18,7 @@ This version adds new functionality for detecting external keyboards.
 * `ExternalKeyboardContext` is a new iOS 14 exclusive class that lets you observe whether or not  an external keyboard is connected to the device.
 * `KeyboardAction` has a new `standardButtonFontSize` function.
 * `KeyboardType` has a new `standardButtonFontSize` function.
+* There are new localizations for the keyboard type key texts. 
 
 ### 🗑 Deprecated (removed in 5.0)
 

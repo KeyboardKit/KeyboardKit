@@ -14,3 +14,7 @@
 "return" = "Retur";
 "search" = "Søg";
 "space" = "Mellemrum";
+
+"keyboardTypeAlphabetic" = "ABC";
+"keyboardTypeNumeric" = "123";
+"keyboardTypeSymbolic" = "#+=";

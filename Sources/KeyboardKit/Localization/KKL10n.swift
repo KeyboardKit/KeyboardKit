@@ -33,7 +33,11 @@ public enum KKL10n: String, CaseIterable, Identifiable {
         ok,
         `return`,
         search,
-        space
+        space,
+    
+        keyboardTypeAlphabetic,
+        keyboardTypeNumeric,
+        keyboardTypeSymbolic
     
     /**
      Whether or not to use the `previewTextProvider` when a

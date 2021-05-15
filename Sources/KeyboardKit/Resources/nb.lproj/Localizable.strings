@@ -14,3 +14,7 @@
 "return" = "retur";
 "search" = "søk";
 "space" = "mellomrom";
+
+"keyboardTypeAlphabetic" = "ABC";
+"keyboardTypeNumeric" = "123";
+"keyboardTypeSymbolic" = "#+=";

@@ -14,3 +14,7 @@
 "return" = "rivinvaihto";
 "search" = "etsi";
 "space" = "väli";
+
+"keyboardTypeAlphabetic" = "ABC";
+"keyboardTypeNumeric" = "123";
+"keyboardTypeSymbolic" = "#+=";

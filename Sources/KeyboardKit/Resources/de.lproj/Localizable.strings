@@ -14,3 +14,7 @@
 "return" = "↵";
 "search" = "Suchen";
 "space" = "Leerzeichen";
+
+"keyboardTypeAlphabetic" = "ABC";
+"keyboardTypeNumeric" = "123";
+"keyboardTypeSymbolic" = "#+=";

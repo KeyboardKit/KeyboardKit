@@ -42,9 +42,9 @@ public extension KeyboardType {
      */
     var standardButtonText: String? {
         switch self {
-        case .alphabetic: return "ABC"
-        case .numeric: return "123"
-        case .symbolic: return "#+="
+        case .alphabetic: return KKL10n.keyboardTypeAlphabetic.text
+        case .numeric: return KKL10n.keyboardTypeNumeric.text
+        case .symbolic: return KKL10n.keyboardTypeSymbolic.text
         default: return nil
         }
     }
