@@ -25,6 +25,7 @@ public enum KeyboardLocale: String, CaseIterable, Identifiable {
     case italian = "it"
     case norwegian = "nb"
     case swedish = "sv"
+    case french = "fr"
 }
 
 public extension KeyboardLocale {
@@ -66,6 +67,7 @@ public extension KeyboardLocale {
         case .italian: return "🇮🇹"
         case .norwegian: return "🇳🇴"
         case .swedish: return "🇸🇪"
+        case .french: return "🇫🇷"
         }
     }
     
