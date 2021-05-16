@@ -34,6 +34,11 @@ This version adds new locales, external keyboard detection, dynamic type disabli
 ### 💡 Behavior changes
 
 * `KeyboardAction` now flips the standard keyboard button image for RTL locales.
+* `SystemKeyboard` will now ignore dynamic type, just like the native keyboards.
+
+### 🐛 Bug fixes
+
+* The German localized newline symbol for Return is now correctly rendered as an image. 
 
 ### 🗑 Deprecated (removed in 5.0)
 
