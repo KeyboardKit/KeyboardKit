@@ -199,7 +199,9 @@ open class KeyboardInputViewController: UIInputViewController {
      The default keyboard action handler.
      */
     public lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(
-        inputViewController: self)
+        inputViewController: self) {
+        didSet { refreshProperties() }
+    }
 
     /**
      The default keyboard appearance.
@@ -232,7 +234,7 @@ open class KeyboardInputViewController: UIInputViewController {
      */
     public lazy var keyboardInputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider(
         context: keyboardContext) {
-        didSet { keyboardLayoutProvider.register(inputSetProvider: keyboardInputSetProvider) }
+        didSet { refreshProperties() }
     }
                     
     /**
@@ -245,7 +247,9 @@ open class KeyboardInputViewController: UIInputViewController {
      The default secondary input action provider.
      */
     public lazy var keyboardSecondaryCalloutActionProvider: SecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider(
-        context: keyboardContext)
+        context: keyboardContext) {
+        didSet { refreshProperties() }
+    }
     
     
     
@@ -328,6 +332,21 @@ open class KeyboardInputViewController: UIInputViewController {
 // MARK: - Private Functions
 
 private extension KeyboardInputViewController {
+    
+    func refreshProperties() {
+        refreshSecondaryInputCalloutContext()
+    }
+    
+    func refreshLayoutProvider() {
+        keyboardLayoutProvider.register(
+            inputSetProvider: keyboardInputSetProvider)
+    }
+    
+    func refreshSecondaryInputCalloutContext() {
+        keyboardSecondaryInputCalloutContext = SecondaryInputCalloutContext(
+            actionProvider: keyboardSecondaryCalloutActionProvider,
+            actionHandler: keyboardActionHandler)
+    }
     
     func setupLocaleObservation() {
         keyboardContext.$locale.sink { [weak self] in
