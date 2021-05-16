@@ -53,7 +53,8 @@ public extension KKL10n {
     var key: String { rawValue }
     
     var text: String {
-        NSLocalizedString(key, bundle: .module, comment: "")
+        if useRawText { return rawValue }
+        return NSLocalizedString(key, bundle: .module, comment: "")
     }
     
     func text(for context: KeyboardContext) -> String {
@@ -65,7 +66,7 @@ public extension KKL10n {
     }
     
     func text(for locale: Locale) -> String {
-        if isSwiftUIPreview && Self.usePreviewTexts { return rawValue }
+        if useRawText { return rawValue }
         guard
             let bundlePath = Bundle.module.bundlePath(for: locale),
             let bundle = Bundle(path: bundlePath)
@@ -78,6 +79,10 @@ private extension KKL10n {
     
     var isSwiftUIPreview: Bool {
         ProcessInfo.processInfo.isSwiftUIPreview
+    }
+    
+    var useRawText: Bool {
+        isSwiftUIPreview && Self.usePreviewTexts
     }
 }
 
