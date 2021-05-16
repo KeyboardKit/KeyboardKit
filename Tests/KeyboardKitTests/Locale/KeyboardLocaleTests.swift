@@ -34,6 +34,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .german: "de",
                         .italian: "it",
                         .norwegian: "nb",
+                        .spanish: "es",
                         .swedish: "sv"
                     ]
                 ))
@@ -76,6 +77,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .german: "Deutsch",
                         .italian: "italiano",
                         .norwegian: "norsk bokmål",
+                        .spanish: "español",
                         .swedish: "svenska"
                     ]
                 ))
@@ -99,6 +101,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .german: "🇩🇪",
                         .italian: "🇮🇹",
                         .norwegian: "🇳🇴",
+                        .spanish: "🇪🇸",
                         .swedish: "🇸🇪"
                     ]
                 ))
@@ -122,6 +125,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .german: true,
                         .italian: true,
                         .norwegian: true,
+                        .spanish: true,
                         .swedish: true
                     ]
                 ))
@@ -145,6 +149,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .german: true,
                         .italian: true,
                         .norwegian: true,
+                        .spanish: true,
                         .swedish: true
                     ]
                 ))
@@ -162,6 +167,7 @@ class KeyboardLocaleTests: QuickSpec {
                     "English",
                     "English (United Kingdom)",
                     "English (United States)",
+                    "Español",
                     "Français",
                     "Italiano",
                     "Nederlands",
@@ -180,6 +186,7 @@ class KeyboardLocaleTests: QuickSpec {
                     "Deutsch",
                     "English (United Kingdom)",
                     "English (United States)",
+                    "Español",
                     "Français",
                     "Italiano",
                     "Nederlands",

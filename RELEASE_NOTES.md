@@ -24,6 +24,11 @@ This version adds new functionality for detecting external keyboards, disabling 
 * Thanks to [@habaieba](https://github.com/habaieba), KeyboardKit now has French localization.
 * There are new localizations for the keyboard type key texts. 
 
+### 🌐 New locales
+
+* 🇫🇷 French
+* 🇪🇸 Spanish
+
 ### 💡 Behavior changes
 
 * `KeyboardAction` now flips the standard keyboard button image for RTL locales.

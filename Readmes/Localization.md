@@ -2,15 +2,17 @@
 
 KeyboardKit is localized in the following languages:
 
+* 🇺🇸 English (US - Default)
+
 * 🇩🇰 Danish
 * 🇳🇱 Dutch
-* 🇺🇸 English (US)
 * 🇬🇧 English (UK)
 * 🇫🇮 Finnish
 * 🇫🇷 French
 * 🇩🇪 German
 * 🇮🇹 Italian
 * 🇳🇴 Norwegian
+* 🇪🇸 Spanish
 * 🇸🇪 Swedish 
 
 

@@ -132,15 +132,17 @@ KeyboardKit comes with a layout engine that makes it easy to create specific key
 
 KeyboardKit is localized in the following languages:
 
+* 🇺🇸 English (US - Default)
+
 * 🇩🇰 Danish
 * 🇳🇱 Dutch
-* 🇺🇸 English (US)
 * 🇬🇧 English (UK)
 * 🇫🇮 Finnish
 * 🇫🇷 French
 * 🇩🇪 German
 * 🇮🇹 Italian
 * 🇳🇴 Norwegian
+* 🇪🇸 Spanish
 * 🇸🇪 Swedish
 
 KeyboardKit also supports localized keyboards, where the keyboard layout, secondary actions etc. behave just like they should for a certain locale.
