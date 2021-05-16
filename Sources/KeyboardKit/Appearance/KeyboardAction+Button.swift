@@ -41,7 +41,7 @@ public extension KeyboardAction {
         
         let text = standardButtonText(for: context) ?? ""
         if isInputAction && text.isLowercased { return 26 }
-        if isSystemAction { return 16 }
+        if isSystemAction || isPrimaryAction { return 16 }
         return 23
     }
     
