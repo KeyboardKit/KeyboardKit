@@ -17,8 +17,10 @@ This version adds new functionality for detecting external keyboards, disabling 
 
 * `ExternalKeyboardContext` is a new iOS 14 exclusive class that lets you observe whether or not  an external keyboard is connected to the device.
 * `KeyboardAction` has a new `standardButtonFontSize` function.
+* `KeyboardType` has a new, context-based `standardButtonImage` function that replaces the old property.
 * `KeyboardLocale` has new `isLeftToRight` and `isRightToLeft` properties.
 * `KeyboardType` has a new `standardButtonFontSize` function.
+* `KeyboardType` has a new, context-based `standardButtonText` function that replaces the old property.
 * `Locale` has new `characterDirection` and `lineDirection` properties.
 * `Locale` has new `isLeftToRight`, `isRightToLeft`, `isBottomToTop`, `isTopToBottom` properties.
 * Thanks to [@habaieba](https://github.com/habaieba), KeyboardKit now has French localization.
@@ -37,7 +39,8 @@ This version adds new functionality for detecting external keyboards, disabling 
 
 * `KeyboardAction` `standardButtonFont` has been renamed to `standardButtonUIFont`.
 * `KeyboardAction` `standardButtonFontWeight` has been renamed to `standardButtonUIFontWeight`.
-* `KeyboardAction` `standardButtonImage` has been converted to a function.
+* `KeyboardAction` `standardButtonImage` has been converted to a context-based function.
+* `KeyboardType` `standardButtonText` has been converted to a context-based function.
 * `UIApplication` `standardButtonTextStyle` has been renamed to `standardButtonUITextStyle`.
 
 ### 💥 Breaking changes

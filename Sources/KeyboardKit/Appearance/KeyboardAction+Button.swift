@@ -21,6 +21,9 @@ public extension KeyboardAction {
             : standardButtonBackgroundColorForIdleState(for: context)
     }
     
+    /**
+     The action's standard button font.
+     */
     func standardButtonFont(for context: KeyboardContext) -> Font {
         Font.system(size: standardButtonFontSize(for: context))
     }
@@ -109,7 +112,7 @@ public extension KeyboardAction {
         case .emoji(let emoji): return emoji.char
         case .emojiCategory(let cat): return cat.fallbackDisplayEmoji.char
         case .go: return KKL10n.go.text(for: context)
-        case .keyboardType(let type): return type.standardButtonText
+        case .keyboardType(let type): return type.standardButtonText(for: context)
         case .nextLocale: return context.locale.languageCode?.uppercased()
         case .ok: return KKL10n.ok.text(for: context)
         case .primary(let type): return type.standardButtonText(for: context)

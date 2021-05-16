@@ -54,7 +54,7 @@ class KeyboardType_ButtonTests: QuickSpec {
         describe("system keyboard button text") {
             
             func result(for type: KeyboardType) -> String? {
-                type.standardButtonText
+                type.standardButtonText(for: .preview)
             }
             
             it("is defined for some types") {

@@ -36,15 +36,12 @@ public extension KeyboardType {
     
     /**
      The type's standard keyboard button text.
-     
-     `TODO` Localize these texts and convert the property to
-     a function that takes a `context`.
      */
-    var standardButtonText: String? {
+    func standardButtonText(for context: KeyboardContext) -> String? {
         switch self {
-        case .alphabetic: return KKL10n.keyboardTypeAlphabetic.text
-        case .numeric: return KKL10n.keyboardTypeNumeric.text
-        case .symbolic: return KKL10n.keyboardTypeSymbolic.text
+        case .alphabetic: return KKL10n.keyboardTypeAlphabetic.text(for: context)
+        case .numeric: return KKL10n.keyboardTypeNumeric.text(for: context)
+        case .symbolic: return KKL10n.keyboardTypeSymbolic.text(for: context)
         default: return nil
         }
     }
