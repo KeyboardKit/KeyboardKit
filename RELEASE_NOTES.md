@@ -11,7 +11,7 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 ## 4.5
 
-This version adds new functionality for detecting external keyboards, disabling dynamic type and use RTL locales.
+This version adds new locales, external keyboard detection, dynamic type disabling and RTL locale support.
 
 ### ✨ New features
 

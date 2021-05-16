@@ -17,6 +17,8 @@ open class EnglishSecondaryCalloutActionProvider: BaseSecondaryCalloutActionProv
     
     open override func secondaryCalloutActionString(for char: String) -> String {
         switch char {
+        case "0": return "0°"
+
         case "a": return "aàáâäæãåā"
         case "c": return "cçćč"
         case "e": return "eèéêëēėę"
