@@ -15,10 +15,6 @@ import SwiftUI
  You can customize the buttons in the grid by using a custom
  `buttonBuilder` in the initalizer. If you do not, init will
  use the static `standardButton` function.
- 
- `TODO` This can't be previewed when it depends on a context.
- For some reason, the preview engine then crashes. Return to
- it after 4.0 to see if a cleaned up context solves this.
  */
 @available(iOS 14.0, *)
 public struct EmojiKeyboard: View {

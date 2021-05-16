@@ -17,10 +17,6 @@ import SwiftUI
 
  The menu currently has little customizations. We can extend
  it after 4.0, when everything resides in the main repo.
- 
- `TODO` This can't be previewed when it depends on a context.
- For some reason, the preview engine then crashes. Return to
- it after 4.0 to see if a cleaned up context solves this.
  */
 @available(iOS 14.0, *)
 public struct EmojiCategoryKeyboardMenu: View {
