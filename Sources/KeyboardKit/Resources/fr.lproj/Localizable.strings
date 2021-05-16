@@ -13,3 +13,7 @@
 "return" = "retour";
 "search" = "rechercher";
 "space" = "espace";
+
+"keyboardTypeAlphabetic" = "ABC";
+"keyboardTypeNumeric" = "123";
+"keyboardTypeSymbolic" = "#+=";

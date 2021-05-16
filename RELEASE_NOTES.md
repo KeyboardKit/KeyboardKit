@@ -20,7 +20,8 @@ This version adds new functionality for detecting external keyboards, disabling 
 * `KeyboardLocale` has new `isLeftToRight` and `isRightToLeft` properties.
 * `KeyboardType` has a new `standardButtonFontSize` function.
 * `Locale` has new `characterDirection` and `lineDirection` properties.
-* `Locale` has new `isLeftToRight`, `isRightToLeft`, `isBottomToTop`, `isTopToBottom` properties.  
+* `Locale` has new `isLeftToRight`, `isRightToLeft`, `isBottomToTop`, `isTopToBottom` properties.
+* Thanks to [@habaieba](https://github.com/habaieba), KeyboardKit now has French localization.
 * There are new localizations for the keyboard type key texts. 
 
 ### 💡 Behavior changes

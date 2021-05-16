@@ -1,16 +1,38 @@
 # Localization
 
+KeyboardKit is localized in the following languages:
 
-## Multi-locale support
+* 🇩🇰 Danish
+* 🇳🇱 Dutch
+* 🇺🇸 English (US)
+* 🇬🇧 English (UK)
+* 🇫🇮 Finnish
+* 🇫🇷 French
+* 🇩🇪 German
+* 🇮🇹 Italian
+* 🇳🇴 Norwegian
+* 🇸🇪 Swedish 
 
-KeyboardKit comes with built-in support for English keyboards, but can be extended to support more locales.
 
-These services must be localized to provide a fully localized keyboard:
+## Localized strings
 
-* `KeyboardInputSetProvider` - Provides input keys for system keyboards.
-* `SecondaryCalloutActionProvider` - Provides secondary callout actions for keyboard actions.
-* `KeyboardLayoutProvider` - Provides the full keyboard layout as well as size information.
-* Various behaviors, such as how " behaves.
+KeyboardKit has a `KKL10n` enum that provides localized texts for all locales. These texts are used by e.g. the `SystemKeyboard` componens, to localize certain keyboard keys.
+
+Localized texts are managed under `Sources/Resources`.
+
+
+## Localized keyboards
+
+Localized keyboards involves other parts than just localized strings.
+
+For instance, the following services must be localized in order to implement a localized keyboard:
+
+* `KeyboardLocale` - A keyboard-specific enum containing the locales above.
+* `KeyboardInputSetProvider` - Provides input keys for a system keyboard.
+* `SecondaryCalloutActionProvider` - Provides secondary callout actions.
+* `KeyboardLayoutProvider` - Provides the full keyboard layout (inputs + actions).
+
+While `KeyboardInputSetProvider` and `SecondaryCalloutActionProvider` *must* be localized, a new `KeyboardLayoutProvider` only has to be implemented if the keyboard layout deviates from the English 10-9-7 layout or the German 11-11-7 one.   
 
 To localize these services, create new implementations of the above protocols and replace these input view controller properties:
 
@@ -18,33 +40,16 @@ To localize these services, create new implementations of the above protocols an
 * `keyboardLayoutProvider`
 * `keyboardSecondaryCalloutActionProvider`
 
-If you upgrade to KeyboardKit Pro, your keyboard will automatically register the locales that you have unlocked. 
-
-Have a look at the demo app to see how you register more locales without upgrading to KeyboardKit Pro.
-
-
-## Localized strings
-
-KeyboardKit has a `KKL10n` enum that provides localized texts.
-
-This enum currently supports:
-
-* 🇺🇸 English
-* 🇩🇪 German
-* 🇮🇹 Italian
-* 🇸🇪 Swedish
-
-If you want, I'd gladly accept any PRs that extend this enum with more languages.
+Have a look at the demo app to see how it registers English-specific services. You don't have to do this in your own keyboards, since Engish is the default language and the only language that is implemented in KeyboardKit. It's just there to show you how to do it.
 
 
 ## KeyboardKit Pro
 
-KeyboardKit Pro extends KeyboardKit with more locales.
+[KeyboardKit Pro][Pro] extends KeyboardKit with support for more localized services and keyboards. While KeyboardKit comes with built-in support for English (US), [KeyboardKit Pro][Pro] adds support for all locales above.
 
-Registering KeyboardKit Pro can unlock the following locales:
+If you upgrade to KeyboardKit Pro, your keyboard will automatically register the locales that you have unlocked.
 
-* 🇩🇪 German
-* 🇮🇹 Italian
-* 🇸🇪 Swedish
+Read more [here][Pro].
 
-Different licenses support a different number of additional locales.
+
+[Pro]: https://github.com/KeyboardKit/KeyboardKitPro

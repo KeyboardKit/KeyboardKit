@@ -21,11 +21,11 @@ public enum KeyboardLocale: String, CaseIterable, Identifiable {
     case english_gb = "en-GB"
     case english_us = "en-US"
     case finnish = "fi"
+    case french = "fr"
     case german = "de"
     case italian = "it"
     case norwegian = "nb"
     case swedish = "sv"
-    case french = "fr"
 }
 
 public extension KeyboardLocale {
@@ -63,11 +63,11 @@ public extension KeyboardLocale {
         case .english_gb: return "🇬🇧"
         case .english_us: return "🇺🇸"
         case .finnish: return "🇫🇮"
+        case .french: return "🇫🇷"
         case .german: return "🇩🇪"
         case .italian: return "🇮🇹"
         case .norwegian: return "🇳🇴"
         case .swedish: return "🇸🇪"
-        case .french: return "🇫🇷"
         }
     }
     

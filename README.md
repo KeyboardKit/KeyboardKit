@@ -90,12 +90,14 @@ Until this is solved in SwiftUI and SPM, call `KeyboardPreviews.enable()` in eac
 
 
 
-## Features
+## Features 
 
 
-### 📦 Extensions
+### 📦 Extensions & Views
 
-Even though KeyboardKit contains so much more, you can use its' extensions alone to simplify working with keyboard extensions. For instance, it has a bunch of `UITextDocumentProxy` extensions that make your life easier. Check out the demo apps and source code for examples and more information.
+Even though KeyboardKit contains a lot of features, you can use its' extensions and views alone to simplify working with keyboard extensions. For instance, there are a bunch of `UITextDocumentProxy` extensions that make your life easier, and views that don't require you to use the rest of the library. 
+
+Check out the demo apps and source code for examples and more information.
 
 
 ### 💥 Keyboard Actions
@@ -128,19 +130,20 @@ KeyboardKit comes with a layout engine that makes it easy to create specific key
 
 ### 🇸🇪 Localization
 
-KeyboardKit comes with built-in support for English keyboards and can be easily extended to support more locales. KeyboardKit also has a `KKL10n` enum that provides localized texts.
-
-[KeyboardKit Pro][Pro] adds support for even more locales:
+KeyboardKit is localized in the following languages:
 
 * 🇩🇰 Danish
 * 🇳🇱 Dutch
 * 🇺🇸 English (US)
 * 🇬🇧 English (UK)
 * 🇫🇮 Finnish
+* 🇫🇷 French
 * 🇩🇪 German
 * 🇮🇹 Italian
 * 🇳🇴 Norwegian
 * 🇸🇪 Swedish
+
+KeyboardKit also supports localized keyboards, where the keyboard layout, secondary actions etc. behave just like they should for a certain locale.
 
 [Read more here][Localization]
 
