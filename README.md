@@ -18,9 +18,7 @@
 
 ## About KeyboardKit
 
-KeyboardKit is a Swift library that helps you create custom keyboard extensions for `iOS` and `iPadOS`.
-
-KeyboardKit contains tools for creating keyboards that mimic native iOS keyboards, as well as entirely custom ones. You can use any views you like and use the tools and extension in the library to create anything you like.
+KeyboardKit is a Swift library that helps you create custom keyboard extensions for `iOS` and `iPadOS`. It has tools for creating keyboards that mimic native keyboards, as well as entirely custom ones. You can use any views and use the tools in any way you like.
 
 The end result can look something like this...or entirely different:
 
@@ -28,7 +26,7 @@ The end result can look something like this...or entirely different:
     <img src ="Resources/Demo.gif" width="300" />
 </p>
 
-The movie above demonstrates an extensions that mimics a native keyboard. KeyboardKit lets you create rich system keyboards like that with support for multiple locales, multi-gestures, secondary action callouts etc. 
+The movie above demonstrates an extensions that mimics a native system keyboard. KeyboardKit lets you create rich system keyboards like that with support for multiple locales, multi-gestures, secondary action callouts etc. 
 
 If you're new to iOS keyboard extensions, [this great guide][Guide] will help you get started. You can also have a look at the demo app for inspiration.
 
@@ -84,9 +82,32 @@ KeyboardKit supports both `SwiftUI` and `UIKit`, but SwiftUI is the main focus g
 
 ### Important about SwiftUI previews
 
-KeyboardKit contains color and text resources that are embedded within the Swift package. However, SwiftUI previews outside this library can't access there resources, since the `.module` bundle isn't defined. This makes the previews crash. 
+KeyboardKit contains color and text resources that are embedded within the Swift Package. However, external SwiftUI previews can't access these resources, since the `.module` bundle isn't defined outside of this package. This makes the previews crash. 
 
-Until this is solved in SwiftUI and SPM, call `KeyboardPreviews.enable()` in each preview to use fake colors and texts that don't break the preview.  
+Until this is solved in SwiftUI and SPM, call `KeyboardPreviews.enable()` in each preview to use fake colors and texts that don't break the preview.
+
+
+
+## 🇸🇪 Localization
+
+KeyboardKit is localized in the following languages:
+
+* 🇺🇸 English (US - Default)
+
+* 🇩🇰 Danish
+* 🇳🇱 Dutch
+* 🇬🇧 English (UK)
+* 🇫🇮 Finnish
+* 🇫🇷 French
+* 🇩🇪 German
+* 🇮🇹 Italian
+* 🇳🇴 Norwegian
+* 🇪🇸 Spanish
+* 🇸🇪 Swedish
+
+KeyboardKit also supports localized keyboards, where the keyboard layout, secondary actions etc. behave just like they should for a certain locale.
+
+[Read more here][Localization]
 
 
 
@@ -126,28 +147,6 @@ KeyboardKit comes with an input set engine that make it easy to create `alphabet
 KeyboardKit comes with a layout engine that makes it easy to create specific keyboard layouts for various devices, orientations and locales.
 
 [Read more here][Keyboard-Layouts]
-
-
-### 🇸🇪 Localization
-
-KeyboardKit is localized in the following languages:
-
-* 🇺🇸 English (US - Default)
-
-* 🇩🇰 Danish
-* 🇳🇱 Dutch
-* 🇬🇧 English (UK)
-* 🇫🇮 Finnish
-* 🇫🇷 French
-* 🇩🇪 German
-* 🇮🇹 Italian
-* 🇳🇴 Norwegian
-* 🇪🇸 Spanish
-* 🇸🇪 Swedish
-
-KeyboardKit also supports localized keyboards, where the keyboard layout, secondary actions etc. behave just like they should for a certain locale.
-
-[Read more here][Localization]
 
 
 ### 🎨 Appearances
