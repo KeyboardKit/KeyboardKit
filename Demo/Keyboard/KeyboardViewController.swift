@@ -84,7 +84,7 @@ class KeyboardViewController: KeyboardInputViewController {
         
         // Setup the extension to use the keyboardView below
         // 💡 This is overwritten if Pro is registered below
-        setup(with: keyboardView)
+        // setup(with: keyboardView)
 
         // Setup KeyboardKit Pro. This unlocks more features.
         // 💡 Disable this line to run demo without Pro mode.

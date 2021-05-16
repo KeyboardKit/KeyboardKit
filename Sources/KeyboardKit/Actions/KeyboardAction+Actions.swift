@@ -85,7 +85,6 @@ public extension KeyboardAction {
      */
     var standardTapAction: GestureAction? {
         if let action = standardTextDocumentProxyAction { return action }
-        
         switch self {
         case .dismissKeyboard: return { $0?.dismissKeyboard() }
         case .nextLocale: return { $0?.keyboardContext.selectNextLocale() }
@@ -104,7 +103,6 @@ public extension KeyboardAction {
      */
     var standardTextDocumentProxyAction: GestureAction? {
         if let action = standardTextDocumentProxyInputAction { return action }
-        
         switch self {
         case .moveCursorBackward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: -1) }
         case .moveCursorForward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: 1) }
@@ -120,7 +118,6 @@ public extension KeyboardAction {
      */
     var standardTextDocumentProxyInputAction: GestureAction? {
         if self.isPrimaryAction { return { $0?.textDocumentProxy.insertText("\n") }}
-        
         switch self {
         case .backspace: return { $0?.textDocumentProxy.deleteBackward(backspaceRange) }
         case .character(let char): return { $0?.textDocumentProxy.insertText(char) }

@@ -334,6 +334,7 @@ open class KeyboardInputViewController: UIInputViewController {
 private extension KeyboardInputViewController {
     
     func refreshProperties() {
+        refreshLayoutProvider()
         refreshSecondaryInputCalloutContext()
     }
     

@@ -48,7 +48,7 @@ class RepeatGestureTimerTests: QuickSpec {
             it("is the time that has passed since the timer started") {
                 timer.start {}
                 timer.modifyStartDate(to: Date().addingTimeInterval(-5))
-                expect(timer.duration).to(beCloseTo(5))
+                expect(timer.duration).to(beCloseTo(5, within: 0.1))
             }
         }
         

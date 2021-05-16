@@ -136,13 +136,29 @@ class KeyboardInputViewControllerTests: QuickSpec {
             }
         }
         
-        describe("changing keyboard input set provider") {
+        describe("refreshing properties when changing service properties") {
             
-            it("is registered into the layout provider") {
-                let newProvider = MockKeyboardInputSetProvider()
-                vc.keyboardInputSetProvider = newProvider
+            func verifyRefresh() {
                 let layoutProvider = vc.keyboardLayoutProvider as? StandardKeyboardLayoutProvider
-                expect(layoutProvider?.inputSetProvider).to(be(newProvider))
+                let secondaryContext = vc.keyboardSecondaryInputCalloutContext
+                expect(layoutProvider?.inputSetProvider).to(be(vc.keyboardInputSetProvider))
+                expect(secondaryContext.actionProvider).to(be(vc.keyboardSecondaryCalloutActionProvider))
+                expect(secondaryContext.actionHandler).to(be(vc.keyboardActionHandler))
+            }
+            
+            it("is done for keyboard action handler") {
+                vc.keyboardActionHandler = MockKeyboardActionHandler()
+                verifyRefresh()
+            }
+            
+            it("is done for keyboard input set provider") {
+                vc.keyboardInputSetProvider = MockKeyboardInputSetProvider()
+                verifyRefresh()
+            }
+            
+            it("is done for keyboard secondary callout action provider") {
+                vc.keyboardSecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider(context: .preview)
+                verifyRefresh()
             }
         }
         

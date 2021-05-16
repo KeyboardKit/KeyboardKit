@@ -9,13 +9,14 @@ KeyboardKit tries to honor the following rules when new versions are released:
 Breaking changes can still occur in minor versions, if the alternative is to not release new critical features or fixes.
 
 
+## 4.5.2
+
+This version fixes a bug that caused the keyboard layout to not update.
+
+
 ## 4.5.1
 
 This version fixes a bug that caused the secondary actions to not update.
-
-### 🐛 Bug fixes
-
-* `KeyboardViewController` never recreated the secondary callout action context when the services did change. 
 
 
 ## 4.5
