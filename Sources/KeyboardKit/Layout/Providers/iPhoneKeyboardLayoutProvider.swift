@@ -232,9 +232,9 @@ private extension KeyboardContext {
     
     var previewImageName: String {
         let language = locale.languageCode ?? ""
-        let keyboardType = keyboardType.previewImageSegment
+        let type = keyboardType.previewImageSegment
         let orientation = screenOrientation.previewImageSegment
-        return "iPhone12_\(language)_\(keyboardType)_\(orientation)"
+        return "iPhone12_\(language)_\(type)_\(orientation)"
     }
     
     var previewWidth: CGFloat {

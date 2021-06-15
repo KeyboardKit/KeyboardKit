@@ -9,6 +9,11 @@ KeyboardKit tries to honor the following rules when new versions are released:
 Breaking changes can still occur in minor versions, if the alternative is to not release new critical features or fixes.
 
 
+## 4.5.3
+
+This version fixes compile errors in Xcode 12.4.
+
+
 ## 4.5.2
 
 This version fixes a bug that caused the keyboard layout to not update.
