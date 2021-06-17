@@ -51,7 +51,9 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.keyboardContext = keyboardContext
         self.keyboardFeedbackHandler = keyboardFeedbackHandler
         self.spaceDragGestureHandler = spaceDragGestureHandler ?? SpaceCursorDragGestureHandler(
-            context: keyboardContext, feedbackHandler: keyboardFeedbackHandler, sensitivity: spaceDragSensitivity)
+            context: keyboardContext,
+            feedbackHandler: keyboardFeedbackHandler,
+            sensitivity: spaceDragSensitivity)
     }
     
     
@@ -136,7 +138,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
             case let .character(char) = action,
             let replacement = textDocumentProxy.preferredReplacement(for: char, locale: keyboardContext.locale)
             else { return nil }
-        return KeyboardAction.character(replacement)
+        return .character(replacement)
     }
     
     /**
@@ -146,7 +148,10 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      you can override it to customize the feedback behavior.
      */
     open func triggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
-        keyboardFeedbackHandler.triggerFeedback(for: gesture, on: action, actionProvider: self.action)
+        keyboardFeedbackHandler.triggerFeedback(
+            for: gesture,
+            on: action,
+            actionProvider: self.action)
     }
     
     /**
@@ -242,7 +247,9 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.keyboardBehavior = keyboardBehavior
         self.keyboardContext = keyboardContext
         let feedbackHandler = StandardKeyboardFeedbackHandler(
-            settings: KeyboardFeedbackSettings(audioConfiguration: audioConfiguration, hapticConfiguration: hapticConfiguration))
+            settings: KeyboardFeedbackSettings(
+                audioConfiguration: audioConfiguration,
+                hapticConfiguration: hapticConfiguration))
         self.keyboardFeedbackHandler = feedbackHandler
         self.spaceDragGestureHandler = SpaceCursorDragGestureHandler(
             context: keyboardContext,
@@ -263,7 +270,9 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.keyboardContext = inputViewController.keyboardContext
         self.keyboardBehavior = inputViewController.keyboardBehavior
         let feedbackHandler = StandardKeyboardFeedbackHandler(
-            settings: KeyboardFeedbackSettings(audioConfiguration: audioConfiguration, hapticConfiguration: hapticConfiguration))
+            settings: KeyboardFeedbackSettings(
+                audioConfiguration: audioConfiguration,
+                hapticConfiguration: hapticConfiguration))
         self.keyboardFeedbackHandler = feedbackHandler
         self.spaceDragGestureHandler = SpaceCursorDragGestureHandler(
             context: inputViewController.keyboardContext,

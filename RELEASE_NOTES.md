@@ -11,7 +11,14 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 ## 4.5.3
 
-This version fixes compile errors in Xcode 12.4.
+### ✨ New features
+
+* `StandardKeyboardActionHandler` `canHandle` is now `open` instead of `public`.
+
+### 🐛 Bug fixes
+
+* This version fixes compile errors in Xcode 12.4.
+
 
 
 ## 4.5.2
@@ -19,9 +26,11 @@ This version fixes compile errors in Xcode 12.4.
 This version fixes a bug that caused the keyboard layout to not update.
 
 
+
 ## 4.5.1
 
 This version fixes a bug that caused the secondary actions to not update.
+
 
 
 ## 4.5
