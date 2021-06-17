@@ -14,10 +14,21 @@ import Foundation
  */
 public enum KeyboardGesture: CaseIterable {
 
+    /// Occurs when a button is pressed then released inside
     case tap
+    
+    /// Occurs when a button is double tapped
     case doubleTap
+    
+    /// Occurs when a button is pressed down
     case press
+    
+    /// Occurs when a button is released, inside or outside
     case release
+    
+    /// Occurs when a button is long pressed
     case longPress
+    
+    /// Occurs repeatedly when a button is pressed and held
     case repeatPress
 }
