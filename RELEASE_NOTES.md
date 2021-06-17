@@ -15,6 +15,10 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 * `StandardKeyboardActionHandler` `canHandle` is now `open` instead of `public`.
 
+### 💡 Behavior changes
+
+* `KeyboardGestures` now only applies a double tap gesture if a double tap action is provided.
+
 ### 🐛 Bug fixes
 
 * This version fixes compile errors in Xcode 12.4.
