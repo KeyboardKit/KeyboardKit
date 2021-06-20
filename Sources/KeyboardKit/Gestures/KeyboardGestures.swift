@@ -82,7 +82,6 @@ struct KeyboardGestures<Content: View>: View {
         view.overlay(GeometryReader { geo in
             Color.clearInteractable
                 .gesture(dragGesture(for: geo))
-                .simultaneousGesture(tapGesture)
                 .optionalGesture(doubleTapGesture)
                 .simultaneousGesture(longPressGesture)
                 .simultaneousGesture(longPressDragGesture(for: geo))
@@ -106,12 +105,13 @@ private extension KeyboardGestures {
 
     
     /**
-     This is a drag gesture that starts immediately.
+     This drag gesture is the most central gesture and takes
+     care of press, release, tap and drag action handling.
      */
     func dragGesture(for geo: GeometryProxy) -> some Gesture {
         DragGesture(minimumDistance: 0)
-            .onChanged { _ in handlePress(for: geo) }
-            .onEnded { _ in handleRelease() }
+            .onChanged { _ in handlePress(in: geo) }
+            .onEnded { handleRelease(in: geo, at: $0.location) }
     }
     
     /**
@@ -136,14 +136,6 @@ private extension KeyboardGestures {
                 }
             }
             .onEnded { _ in endSecondaryInput() }
-    }
-    
-    /**
-     This is a plain tap gesure.
-     */
-    var tapGesture: some Gesture {
-        TapGesture()
-            .onEnded(handleTap)
     }
 }
 
@@ -175,7 +167,7 @@ private extension KeyboardGestures {
         startRepeatTimer()
     }
     
-    func handlePress(for geo: GeometryProxy) {
+    func handlePress(in geo: GeometryProxy) {
         if isDragGestureTriggered { return }
         isDragGestureTriggered = true
         pressAction?()
@@ -184,8 +176,11 @@ private extension KeyboardGestures {
         inputCalloutContext.updateInput(for: action, geo: geo)
     }
     
-    func handleRelease() {
+    func handleRelease(in geo: GeometryProxy, at location: CGPoint) {
         releaseAction?()
+        if geo.contains(location) {
+            tapAction?()
+        }
         isDragGestureTriggered = false
         isPressed.wrappedValue = false
         inputCalloutContext.reset()
@@ -198,11 +193,6 @@ private extension KeyboardGestures {
         dragAction?(drag.startLocation, drag.location)
     }
     
-    func handleTap() {
-        tapAction?()
-        inputCalloutContext.reset()
-    }
-    
     func startRepeatTimer() {
         guard let action = repeatAction else { return repeatTimer.stop() }
         repeatTimer.start(action: action)
@@ -210,5 +200,19 @@ private extension KeyboardGestures {
     
     func stopRepeatTimer() {
         repeatTimer.stop()
+    }
+}
+
+
+// MARK: - GeometryProxy Extension
+
+private extension GeometryProxy {
+    
+    func contains(_ dragEndLocation: CGPoint) -> Bool {
+        let x = dragEndLocation.x
+        let y = dragEndLocation.y
+        guard x > 0, y > 0 else { return false }
+        guard x < size.width, y < size.height else { return false }
+        return true
     }
 }
