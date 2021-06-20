@@ -9,11 +9,30 @@
 import SwiftUI
 
 /**
- This view wraps a view then applies keyboard gestures to it.
- It can be applied with the `keyboardGestures` view modifier.
+ This view wraps a provided view and applies a collection of
+ optional gesture actions to it.
+ 
+ Although this view is internal, is can be created using the
+ public `keyboardGestures` view modifier.
  */
 struct KeyboardGestures<Content: View>: View {
     
+    /**
+     Apply a set of optional gesture actions to the provided
+     view, for a certain keyboard action.
+     
+     - Parameters:
+       - view: The view to apply the gestures to.
+       - action: The keyboard action to trigger.
+       - isPressed: Whether or not the button is pressed.
+       - tapAction: The action to trigger when the button is released within its bounds.
+       - doubleTapAction: The action to trigger when the button is double tapped.
+       - longPressAction: The action to trigger when the button is long pressed.
+       - pressAction: The action to trigger when the button is pressed.
+       - releaseAction: The action to trigger when the button is released, regardless of where the gesture ends.
+       - repeatAction: The action to trigger when the button is pressed and held.
+       - dragAction: The action to trigger when the button is dragged.
+     */
     init(
         view: Content,
         action: KeyboardAction?,
