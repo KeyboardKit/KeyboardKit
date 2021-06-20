@@ -85,7 +85,7 @@ public extension KeyboardAction {
         case .nextKeyboard: return .globe
         case .option: return .option
         case .primary(let type): return type.standardButtonImage
-        case .settings: return .settings
+        case .settings: return .keyboardSettings
         case .shift(let currentState): return currentState.standardButtonImage
         case .systemImage(_, let imageName, _): return Image(systemName: imageName)
         case .tab: return .tab

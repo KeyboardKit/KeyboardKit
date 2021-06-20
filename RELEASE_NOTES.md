@@ -23,6 +23,10 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 * This version fixes compile errors in Xcode 12.4.
 
+### 🗑 Deprecations (removed in 5.0)
+
+* `Image.settings` has been renamed to `keyboardSettings`.
+
 
 
 ## 4.5.2
@@ -68,7 +72,7 @@ This version adds new locales, external keyboard detection, dynamic type disabli
 
 * The German localized newline symbol for Return is now correctly rendered as an image. 
 
-### 🗑 Deprecated (removed in 5.0)
+### 🗑 Deprecations (removed in 5.0)
 
 * `KeyboardAction` `standardButtonFont` has been renamed to `standardButtonUIFont`.
 * `KeyboardAction` `standardButtonFontWeight` has been renamed to `standardButtonUIFontWeight`.
@@ -131,7 +135,7 @@ There are also several tweaks and behavior changes that make system keyboards be
 * Standard font sizes are adjusted to fit the native keyboards better.
 * The standard backspace range is now progressive and will increase after backspace has been pressed for a while.
 
-### 🗑 Deprecated (removed in 5.0)
+### 🗑 Deprecations (removed in 5.0)
 
 * `KeyboardContext` `deviceOrientation` has been renamed to `screenOrientation`.
 * `UIApplication` `preferredKeyboardInterfaceOrientation` didn't work and will be removed.
@@ -189,7 +193,7 @@ This version introduces a bunch of changes to how feedback is being handled.
 * Audio feedback types have been moved to `Feedback`.
 * Haptic feedback types have been moved to `Feedback`.
 
-### 🗑 Deprecated (removed in 5.0)
+### 🗑 Deprecations (removed in 5.0)
 
 * `AudioFeedback` `systemPlayer` has been renamed to `player`.
 * `KeyboardInputViewController` `keyboardStackView` has been replaced with a new `setup(with:)`.
@@ -227,7 +231,7 @@ This version adds support for primary actions, such as `.done`, `.go`, `.search`
 * New line is now considered to be a `word` delimiter instead of a `sentence` delimiter.
 * Due to the new ways to localize content, some signatures must be changed to optional strings.
 
-### 🗑 Deprecated (removed in 5.0)
+### 🗑 Deprecations (removed in 5.0)
 
 * `KeyboardAction` `.done`, `.go`, `.ok` and `.search`  have been deprecated and replaced with the new `primary` umbrella type.
 
@@ -295,7 +299,7 @@ KeyboardKit Pro 4.1 also adds more locale-specific providers as well as a real a
 * `KeyboardLocale+key` has been renamed to `id`.
 * `LocaleKey` has been renamed to `KeyboardLocale`.
 
-### 🗑 Deprecated (removed in 5.0)
+### 🗑 Deprecations (removed in 5.0)
 
 * `AutocompleteSuggestion+replacement` has been deprecated due to the name change above.
 * `AutocompleteToolbar+buttonBuilder` init has been deprecated and replaced with the `itemBuilder` one.
