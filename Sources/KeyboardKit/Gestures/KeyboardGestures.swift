@@ -72,11 +72,11 @@ struct KeyboardGestures<Content: View>: View {
     
     private let repeatTimer = RepeatGestureTimer.shared
     
-    @State private var isDragGestureTriggered = false
-    @State private var isInputCalloutEnabled = true
     @State private var isRepeatGestureActive = false {
         didSet { isRepeatGestureActive ? startRepeatTimer() : stopRepeatTimer() }
     }
+    
+    @State private var shouldApplyTapAction = true
     
     var body: some View {
         view.overlay(GeometryReader { geo in
@@ -103,7 +103,6 @@ private extension KeyboardGestures {
             .onEnded { action() }
     }
 
-    
     /**
      This drag gesture is the most central gesture and takes
      care of press, release, tap and drag action handling.
@@ -144,22 +143,15 @@ private extension KeyboardGestures {
 
 private extension KeyboardGestures {
     
-    // var shouldTapAfterSecondaryInputGesture: Bool {
-    //     dragAction == nil && longPressAction == nil && repeatAction == nil && !secondaryInputCalloutContext.isActive
-    // }
-    
     func beginSecondaryInput(for geo: GeometryProxy) {
-        isInputCalloutEnabled = false
         secondaryInputCalloutContext.updateInputs(for: action, geo: geo)
         guard secondaryInputCalloutContext.isActive else { return }
         inputCalloutContext.reset()
     }
     
     func endSecondaryInput() {
-        isInputCalloutEnabled = true
-        // if shouldTapAfterSecondaryInputGesture { tapAction?() }
+        shouldApplyTapAction = !secondaryInputCalloutContext.hasSelectedAction
         secondaryInputCalloutContext.endDragGesture()
-        guard secondaryInputCalloutContext.isActive else { return }
     }
     
     func handleLongPressGesture() {
@@ -168,20 +160,18 @@ private extension KeyboardGestures {
     }
     
     func handlePress(in geo: GeometryProxy) {
-        if isDragGestureTriggered { return }
-        isDragGestureTriggered = true
-        pressAction?()
+        if isPressed.wrappedValue { return }
         isPressed.wrappedValue = true
-        guard isInputCalloutEnabled else { return }
+        pressAction?()
         inputCalloutContext.updateInput(for: action, geo: geo)
     }
     
     func handleRelease(in geo: GeometryProxy, at location: CGPoint) {
         releaseAction?()
-        if geo.contains(location) {
+        if geo.contains(location), shouldApplyTapAction {
             tapAction?()
         }
-        isDragGestureTriggered = false
+        shouldApplyTapAction = true
         isPressed.wrappedValue = false
         inputCalloutContext.reset()
         stopRepeatTimer()

@@ -45,6 +45,11 @@ open class SecondaryInputCalloutContext: ObservableObject {
     static let coordinateSpace = "com.keyboardkit.coordinate.SecondaryInputCallout"
     
     /**
+     Whether or not the context has a selected action.
+     */
+    public var hasSelectedAction: Bool { selectedAction != nil }
+    
+    /**
      Whether or not the context has any current actions.
      */
     public var isActive: Bool { !actions.isEmpty }
