@@ -144,9 +144,9 @@ private extension KeyboardGestures {
 
 private extension KeyboardGestures {
     
-    var shouldTapAfterSecondaryInputGesture: Bool {
-        dragAction == nil && longPressAction == nil && repeatAction == nil && !secondaryInputCalloutContext.isActive
-    }
+    // var shouldTapAfterSecondaryInputGesture: Bool {
+    //     dragAction == nil && longPressAction == nil && repeatAction == nil && !secondaryInputCalloutContext.isActive
+    // }
     
     func beginSecondaryInput(for geo: GeometryProxy) {
         isInputCalloutEnabled = false
@@ -157,7 +157,7 @@ private extension KeyboardGestures {
     
     func endSecondaryInput() {
         isInputCalloutEnabled = true
-        if shouldTapAfterSecondaryInputGesture { tapAction?() }
+        // if shouldTapAfterSecondaryInputGesture { tapAction?() }
         secondaryInputCalloutContext.endDragGesture()
         guard secondaryInputCalloutContext.isActive else { return }
     }
