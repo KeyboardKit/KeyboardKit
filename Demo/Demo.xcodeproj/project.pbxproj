@@ -509,7 +509,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "swiftgen\n";
+			shellScript = "if which swiftgen >/dev/null; then\n  swiftgen\nfi\n";
 		};
 		A921162925D5B7CD003510D9 /* [SwiftLint] */ = {
 			isa = PBXShellScriptBuildPhase;
