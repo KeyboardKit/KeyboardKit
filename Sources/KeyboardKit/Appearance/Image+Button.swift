@@ -20,9 +20,9 @@ public extension Image {
     static var images: Image { Image(systemName: "photo") }
     static var keyboard: Image { Image(systemName: "keyboard") }
     static var keyboardDismiss: Image { Image(systemName: "keyboard.chevron.compact.down") }
+    static var keyboardLeft: Image { Image(systemName: "arrow.left") }
+    static var keyboardRight: Image { Image(systemName: "arrow.right") }
     static var keyboardSettings: Image { Image(systemName: settingsImageName) }
-    static var moveCursorLeft: Image { Image(systemName: "arrow.left") }
-    static var moveCursorRight: Image { Image(systemName: "arrow.right") }
     static var newLine: Image { Image(systemName: "arrow.turn.down.left") }
     static var option: Image { Image(systemName: "option") }
     static var redo: Image { Image(systemName: "arrow.uturn.right") }
@@ -65,9 +65,9 @@ struct ImageButton_Previews: PreviewProvider {
         .images,
         .keyboard,
         .keyboardDismiss,
+        .keyboardLeft,
+        .keyboardRight,
         .keyboardSettings,
-        .moveCursorLeft,
-        .moveCursorRight,
         .newLine,
         .option,
         .redo,

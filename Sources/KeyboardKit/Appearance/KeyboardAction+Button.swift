@@ -79,8 +79,8 @@ public extension KeyboardAction {
         case .dismissKeyboard: return .keyboardDismiss
         case .image(_, let imageName, _): return Image(imageName)
         case .keyboardType(let type): return type.standardButtonImage
-        case .moveCursorBackward: return .moveCursorLeft
-        case .moveCursorForward: return .moveCursorRight
+        case .moveCursorBackward: return .keyboardLeft
+        case .moveCursorForward: return .keyboardRight
         case .newLine: return .newLine
         case .nextKeyboard: return .globe
         case .option: return .option

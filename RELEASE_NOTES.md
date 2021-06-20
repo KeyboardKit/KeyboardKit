@@ -26,6 +26,7 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 ### 🗑 Deprecations (removed in 5.0)
 
 * `Image.settings` has been renamed to `keyboardSettings`.
+* `Image.moveCursorLeft/Right` have been renamed to `keyboardLeft/Right`.
 
 
 
