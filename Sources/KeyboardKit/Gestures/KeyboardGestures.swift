@@ -64,7 +64,7 @@ struct KeyboardGestures<Content: View>: View {
             Color.clearInteractable
                 .gesture(dragGesture(for: geo))
                 .simultaneousGesture(tapGesture)
-                .withOptionalGesture(doubleTapGesture)
+                .optionalGesture(doubleTapGesture)
                 .simultaneousGesture(longPressGesture)
                 .simultaneousGesture(longPressDragGesture(for: geo))
         })
@@ -191,20 +191,5 @@ private extension KeyboardGestures {
     
     func stopRepeatTimer() {
         repeatTimer.stop()
-    }
-}
-
-
-// MARK: - Provate View Extension
-
-private extension View {
-    
-    @ViewBuilder
-    func withOptionalGesture<GestureType: Gesture>(_ gesture: GestureType?) -> some View {
-        if let gesture = gesture {
-            self.gesture(gesture)
-        } else {
-            self
-        }
     }
 }
