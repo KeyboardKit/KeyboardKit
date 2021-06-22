@@ -83,7 +83,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - KeyboardActionHandler
     
-    public func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
+    open func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
         self.action(for: gesture, on: action) != nil
     }
     

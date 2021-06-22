@@ -9,15 +9,21 @@ KeyboardKit tries to honor the following rules when new versions are released:
 Breaking changes can still occur in minor versions, if the alternative is to not release new critical features or fixes.
 
 
-## 4.5.3
+## 4.5.4
 
 ### ✨ New features
 
 * `StandardKeyboardActionHandler` `canHandle` is now `open` instead of `public`.
 
+
+
+## 4.5.3
+
 ### 💡 Behavior changes
 
-* `KeyboardGestures` now only applies a double tap gesture if a double tap action is provided.
+* `KeyboardGestures` now use the drag gesture to trigger tap actions instead of a tap gesture. This increases responsiveness and ensures that taps aren't cancelled when you press for too long.
+* `KeyboardGestures` now only applies a double tap gesture if a double tap action is provided. 
+* The changes above helps reducing the number of active gestures and reduces the overall gesture complexity.
 
 ### 🐛 Bug fixes
 
