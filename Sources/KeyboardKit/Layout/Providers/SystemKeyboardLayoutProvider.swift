@@ -1,5 +1,5 @@
 //
-//  BaseKeyboardLayoutProvider.swift
+//  SystemKeyboardLayoutProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-02.
@@ -11,9 +11,9 @@ import SwiftUI
 
 /**
  This class can be inherited by any keyboard layout provider
- to get a base set of standard functionality.
+ to get basic functionality for a system keyboard.
  */
-open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
+open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     
     public init(
         inputSetProvider: KeyboardInputSetProvider,

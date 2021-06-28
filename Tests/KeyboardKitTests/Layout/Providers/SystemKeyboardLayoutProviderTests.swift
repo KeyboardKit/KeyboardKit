@@ -1,5 +1,5 @@
 //
-//  BaseKeyboardLayoutProviderTests.swift
+//  SystemKeyboardLayoutProviderTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-08.
@@ -10,11 +10,11 @@ import Quick
 import Nimble
 import KeyboardKit
 
-class BaseKeyboardLayoutProviderTests: QuickSpec {
+class SystemKeyboardLayoutProviderTests: QuickSpec {
     
     override func spec() {
         
-        var provider: BaseKeyboardLayoutProvider!
+        var provider: SystemKeyboardLayoutProvider!
         var inputProvider: MockKeyboardInputSetProvider!
         var context: KeyboardContext!
         
@@ -24,7 +24,7 @@ class BaseKeyboardLayoutProviderTests: QuickSpec {
             inputProvider.alphabeticInputSetValue = AlphabeticKeyboardInputSet(rows: KeyboardInputRows([["a", "b", "c"]]))
             inputProvider.numericInputSetValue = NumericKeyboardInputSet(rows: KeyboardInputRows([["1", "2", "3"]]))
             inputProvider.symbolicInputSetValue = SymbolicKeyboardInputSet(rows: KeyboardInputRows([[",", ".", "-"]]))
-            provider = BaseKeyboardLayoutProvider(
+            provider = SystemKeyboardLayoutProvider(
                 inputSetProvider: inputProvider,
                 dictationReplacement: .primary(.go))
         }

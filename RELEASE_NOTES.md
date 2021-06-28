@@ -9,6 +9,14 @@ KeyboardKit tries to honor the following rules when new versions are released:
 Breaking changes can still occur in minor versions, if the alternative is to not release new critical features or fixes.
 
 
+## 4.5.5
+
+### 🗑 Deprecations (removed in 5.0)
+
+* `BaseKeyboardLayoutProvider` has been renamed to `SystemKeyboardLayoutProvider`.
+
+
+
 ## 4.5.4
 
 ### ✨ New features

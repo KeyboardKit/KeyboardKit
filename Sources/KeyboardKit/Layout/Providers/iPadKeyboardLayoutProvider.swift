@@ -22,7 +22,7 @@ import SwiftUI
  `TODO` This provider is currently used for iPad Air and Pro
  devices as well, although they should use different layouts.
  */
-open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
+open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     
     
     // MARK: - Overrides
@@ -71,8 +71,8 @@ open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     }
     
     /**
-     Get the bottom action row that should be below the main
-     rows on input buttons.
+     Get the actions that should be bottommost on a keyboard
+     that uses the standard iPad system layout.
      */
     open func bottomActions(for context: KeyboardContext) -> KeyboardActionRow {
         var result = KeyboardActions()
@@ -99,10 +99,6 @@ open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
 
 private extension iPadKeyboardLayoutProvider {
     
-    func isPortrait(_ context: KeyboardContext) -> Bool {
-        context.screenOrientation.isPortrait
-    }
-    
     func isBottomRowLeadingSwitcher(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
         switch action {
         case .shift, .keyboardType: return row == 3 && index == 0
@@ -115,6 +111,10 @@ private extension iPadKeyboardLayoutProvider {
         case .shift, .keyboardType: return row == 3 && index > 0
         default: return false
         }
+    }
+    
+    func isPortrait(_ context: KeyboardContext) -> Bool {
+        context.screenOrientation.isPortrait
     }
     
     func isSecondRowSpacer(_ action: KeyboardAction, row: Int, index: Int) -> Bool {

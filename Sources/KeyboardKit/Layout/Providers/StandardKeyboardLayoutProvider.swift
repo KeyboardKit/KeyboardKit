@@ -66,7 +66,7 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     /**
      Get a keyboard layout provider for the provided context.
      */
-    open func layoutProvider(for context: KeyboardContext) -> BaseKeyboardLayoutProvider {
+    open func layoutProvider(for context: KeyboardContext) -> SystemKeyboardLayoutProvider {
         context.device.isPad ? iPadProvider : iPhoneProvider
     }
     

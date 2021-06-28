@@ -18,7 +18,7 @@ import SwiftUI
  This provider will return an `itemSize` that corresponds to
  how a certain action is sized on an English system keyboard.
  */
-open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
+open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     
     
     // MARK: - Overrides
