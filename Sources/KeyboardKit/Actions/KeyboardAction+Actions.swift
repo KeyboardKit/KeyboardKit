@@ -91,7 +91,7 @@ public extension KeyboardAction {
         case .shift(let currentState): return {
             switch currentState {
             case .lowercased, .neutral: $0?.keyboardContext.keyboardType = .alphabetic(.uppercased)
-            case .uppercased, .capsLocked: $0?.keyboardContext.keyboardType = .alphabetic(.lowercased)
+            case .auto, .capsLocked, .uppercased: $0?.keyboardContext.keyboardType = .alphabetic(.lowercased)
             }
         }
         default: return nil

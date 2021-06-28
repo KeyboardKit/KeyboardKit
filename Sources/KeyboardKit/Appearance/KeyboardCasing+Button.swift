@@ -11,10 +11,11 @@ import SwiftUI
 public extension KeyboardCasing {
     
     /**
-     The shift state's standard keyboard button image.
+     The standard keyboard button image when used with shift.
      */
     var standardButtonImage: Image {
         switch self {
+        case .auto: return .shiftLowercased
         case .capsLocked: return .shiftCapslocked
         case .lowercased: return .shiftLowercased
         case .neutral: return .shiftLowercased

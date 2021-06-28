@@ -11,6 +11,11 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 ## 4.5.5
 
+### ✨ New features
+
+* `KeyboardCasing` has a new `auto` case.
+
+
 ### 🗑 Deprecations (removed in 5.0)
 
 * `BaseKeyboardLayoutProvider` has been renamed to `SystemKeyboardLayoutProvider`.

@@ -18,6 +18,7 @@ class KeyboardInputTests: QuickSpec {
             
             it("returns the correct char") {
                 let input = KeyboardInput(neutral: "n", uppercased: "u", lowercased: "l")
+                expect(input.character(for: .auto)).to(equal("l"))
                 expect(input.character(for: .neutral)).to(equal("n"))
                 expect(input.character(for: .lowercased)).to(equal("l"))
                 expect(input.character(for: .uppercased)).to(equal("u"))

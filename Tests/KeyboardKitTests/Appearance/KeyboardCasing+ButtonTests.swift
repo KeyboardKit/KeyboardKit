@@ -22,6 +22,7 @@ class KeyboardCasing_ButtonTests: QuickSpec {
             }
             
             it("is defined for all states") {
+                expect(result(for: .auto)).to(equal(.shiftLowercased))
                 expect(result(for: .capsLocked)).to(equal(.shiftCapslocked))
                 expect(result(for: .lowercased)).to(equal(.shiftLowercased))
                 expect(result(for: .neutral)).to(equal(.shiftLowercased))

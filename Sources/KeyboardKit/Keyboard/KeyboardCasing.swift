@@ -17,16 +17,33 @@ import Foundation
  */
 public enum KeyboardCasing {
     case
+        
+        /// `.auto` is a transient state, that means that it
+        /// should automatically be replaced by another case
+        /// that is contextually correct.
+        auto,
+        
+        /// `.capsLocked` is an uppercased state that should
+        /// not be adjusted when typing.
         capsLocked,
+        
+        /// `.lowercased` should conform to the text proxy's
+        /// autocapitalization type.
         lowercased,
+        
+        /// `.uppercased` should conform to the text proxy's
+        /// autocapitalization type.
         uppercased,
-        neutral         // TODO: Remove in KK 5.0
+        
+        /// `.neutral` will be removed in 5.0 (TODO)
+        neutral
 }
 
 public extension KeyboardCasing {
     
     var isLowercased: Bool {
         switch self {
+        case .auto: return false
         case .capsLocked: return false
         case .lowercased: return true
         case .neutral: return false
@@ -36,6 +53,7 @@ public extension KeyboardCasing {
     
     var isUppercased: Bool {
         switch self {
+        case .auto: return false
         case .capsLocked: return true
         case .lowercased: return false
         case .neutral: return false

@@ -14,16 +14,33 @@ class KeyboardCasingTests: QuickSpec {
     
     override func spec() {
         
+        describe("is lowercased") {
+            
+            func result(for state: KeyboardCasing) -> Bool {
+                return state.isLowercased
+            }
+            
+            it("only applies to certain states") {
+                expect(result(for: .auto)).to(beFalse())
+                expect(result(for: .capsLocked)).to(beFalse())
+                expect(result(for: .lowercased)).to(beTrue())
+                expect(result(for: .neutral)).to(beFalse())
+                expect(result(for: .uppercased)).to(beFalse())
+            }
+        }
+        
         describe("is uppercased") {
             
             func result(for state: KeyboardCasing) -> Bool {
                 return state.isUppercased
             }
             
-            it("only applies to uppercased and capslocked states") {
-                expect(result(for: .lowercased)).to(beFalse())
-                expect(result(for: .uppercased)).to(beTrue())
+            it("only applies to certain states") {
+                expect(result(for: .auto)).to(beFalse())
                 expect(result(for: .capsLocked)).to(beTrue())
+                expect(result(for: .lowercased)).to(beFalse())
+                expect(result(for: .neutral)).to(beFalse())
+                expect(result(for: .uppercased)).to(beTrue())
             }
         }
     }
