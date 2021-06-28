@@ -189,8 +189,8 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     open func keyboardSwitchActionForBottomRow(for context: KeyboardContext) -> KeyboardAction? {
         switch context.keyboardType {
         case .alphabetic: return .keyboardType(.numeric)
-        case .numeric: return .keyboardType(.alphabetic(.lowercased))
-        case .symbolic: return .keyboardType(.alphabetic(.lowercased))
+        case .numeric: return .keyboardType(.alphabetic(.auto))
+        case .symbolic: return .keyboardType(.alphabetic(.auto))
         default: return nil
         }
     }

@@ -15,6 +15,9 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 * `KeyboardCasing` has a new `auto` case.
 
+### 💡 Behavior changes
+
+* `SystemKeyboardLayoutProvider` uses the new `auto` case for numeric and symbolic keyboard type switches.
 
 ### 🗑 Deprecations (removed in 5.0)
 

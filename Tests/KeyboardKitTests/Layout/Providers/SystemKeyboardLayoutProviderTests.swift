@@ -167,13 +167,13 @@ class SystemKeyboardLayoutProviderTests: QuickSpec {
             it("is shift for numeric input set") {
                 context.keyboardType = .numeric
                 let result = provider.keyboardSwitchActionForBottomRow(for: context)
-                expect(result).to(equal(.keyboardType(.alphabetic(.lowercased))))
+                expect(result).to(equal(.keyboardType(.alphabetic(.auto))))
             }
             
             it("is shift for symbolic input set") {
                 context.keyboardType = .symbolic
                 let result = provider.keyboardSwitchActionForBottomRow(for: context)
-                expect(result).to(equal(.keyboardType(.alphabetic(.lowercased))))
+                expect(result).to(equal(.keyboardType(.alphabetic(.auto))))
             }
             
             it("is nil for unsupported keybard type") {
