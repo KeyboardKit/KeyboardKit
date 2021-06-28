@@ -17,6 +17,13 @@ import Foundation
  
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
+ 
+ `NOTE` This class handles `shift` a bit different, since it
+ must handle double taps to switch to caps lock. Due to this,
+ it must not switch to the preferred keyboard, but must also
+ always try to do so. This behavior is tested to ensure that
+ is is behaving as it should, although it may be hard to see
+ why the code is the way it is.
  */
 open class StandardKeyboardBehavior: KeyboardBehavior {
     
@@ -48,8 +55,11 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
         after gesture: KeyboardGesture,
         on action: KeyboardAction) -> KeyboardType {
         if shouldSwitchToCapsLock(after: gesture, on: action) { return .alphabetic(.capsLocked) }
-        guard gesture == .tap, !action.isShift else { return context.keyboardType }
-        return context.preferredKeyboardType
+        let should = shouldSwitchToPreferredKeyboardType(after: gesture, on: action)
+        switch action {
+        case .shift: return context.keyboardType
+        default: return should ? context.preferredKeyboardType : context.keyboardType
+        }
     }
     
     open func shouldEndSentence(
@@ -79,9 +89,9 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
         after gesture: KeyboardGesture,
         on action: KeyboardAction) -> Bool {
         switch action {
-        case .shift: return true
         case .keyboardType: return false
-        default: return context.keyboardType != context.preferredKeyboardType
+        case .shift: return true
+        default: return gesture == .tap && context.keyboardType != context.preferredKeyboardType
         }
     }
     

@@ -5,9 +5,9 @@
         "package": "KeyboardKit",
         "repositoryURL": "https://github.com/danielsaidi/KeyboardKit.git",
         "state": {
-          "branch": null,
-          "revision": "878e7faaff4b4b06bb7e032c56eb43a87b261158",
-          "version": "4.5.4"
+          "branch": "abc-switch",
+          "revision": "43789dce1be94f1439fda8d5e4c6327ff9186193",
+          "version": null
         }
       },
       {

@@ -133,10 +133,24 @@ class StandardKeyboardBehaviorTests: QuickSpec {
                 behavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action)
             }
             
-            it("is true if the action is shift") {
+            it("is false if the action is shift") {
                 expect(result(after: .tap, on: .shift(currentState: .capsLocked))).to(beTrue())
                 expect(result(after: .tap, on: .shift(currentState: .lowercased))).to(beTrue())
                 expect(result(after: .tap, on: .shift(currentState: .uppercased))).to(beTrue())
+            }
+            
+            it("is false if the action is keyboard type") {
+                let types: [KeyboardType] = [
+                    .alphabetic(.neutral),
+                    .custom("foo"),
+                    .email,
+                    .emojis,
+                    .images,
+                    .numeric,
+                    .symbolic]
+                types.forEach {
+                    expect(result(after: .tap, on: .keyboardType($0))).to(beFalse())
+                }
             }
             
             it("is true is the current keyboard type differs from the preferred one") {
