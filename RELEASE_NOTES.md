@@ -19,6 +19,10 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 * `SystemKeyboardLayoutProvider` uses the new `auto` case for numeric and symbolic keyboard type switches.
 
+### 🐛 Bug fixes
+
+* This version fixes a bug that caused numeric and symbolid keyboards to always switch back to lowercased alphabetic keyboards.
+
 ### 🗑 Deprecations (removed in 5.0)
 
 * `BaseKeyboardLayoutProvider` has been renamed to `SystemKeyboardLayoutProvider`.
