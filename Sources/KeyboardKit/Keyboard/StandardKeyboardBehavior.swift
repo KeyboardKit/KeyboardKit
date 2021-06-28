@@ -69,11 +69,10 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     open func shouldSwitchToCapsLock(
         after gesture: KeyboardGesture,
         on action: KeyboardAction) -> Bool {
-        guard action.isShift else { return false }
-        guard context.keyboardType.isAlphabetic else { return false }
-        let isDoubleTap = Date().timeIntervalSinceReferenceDate - lastShiftCheck.timeIntervalSinceReferenceDate < doubleTapThreshold
-        lastShiftCheck = Date()
-        return isDoubleTap
+        switch action {
+        case .shift: return isDoubleShiftTap
+        default: return false
+        }
     }
     
     open func shouldSwitchToPreferredKeyboardType(
@@ -88,5 +87,15 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     
     public func shouldSwitchToPreferredKeyboardTypeAfterTextDidChange() -> Bool {
         context.keyboardType != context.preferredKeyboardType
+    }
+}
+
+private extension StandardKeyboardBehavior {
+    
+    var isDoubleShiftTap: Bool {
+        guard context.keyboardType.isAlphabetic else { return false }
+        let isDoubleTap = Date().timeIntervalSinceReferenceDate - lastShiftCheck.timeIntervalSinceReferenceDate < doubleTapThreshold
+        lastShiftCheck = Date()
+        return isDoubleTap
     }
 }
