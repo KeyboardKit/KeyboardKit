@@ -14,6 +14,7 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 ### 🗑 Deprecations (removed in 5.0)
 
 * `BaseKeyboardLayoutProvider` has been renamed to `SystemKeyboardLayoutProvider`.
+* `KeyboardCasing.neutral` will be removed in KeyboardKit 5.0. 
 
 
 

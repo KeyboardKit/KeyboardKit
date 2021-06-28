@@ -10,30 +10,36 @@ import Foundation
 
 /**
  This enum lists the various shift states a keyboard can use.
+ 
+ Note that `neutral` will be removed in KeyboardKit 5, but I
+ have chosen to not mark it as such, since that would create
+ a bunch of warnings within the framework.
  */
 public enum KeyboardCasing {
     case
-    lowercased,
-    uppercased,
-    capsLocked,
-    neutral
+        capsLocked,
+        lowercased,
+        uppercased,
+        neutral         // TODO: Remove in KK 5.0
 }
 
 public extension KeyboardCasing {
     
     var isLowercased: Bool {
         switch self {
+        case .capsLocked: return false
         case .lowercased: return true
-        case .uppercased, .capsLocked: return false
         case .neutral: return false
+        case .uppercased: return false
         }
     }
     
     var isUppercased: Bool {
         switch self {
+        case .capsLocked: return true
         case .lowercased: return false
-        case .uppercased, .capsLocked: return true
         case .neutral: return false
+        case .uppercased: return true
         }
     }
 }
