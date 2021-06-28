@@ -89,7 +89,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
         after gesture: KeyboardGesture,
         on action: KeyboardAction) -> Bool {
         switch action {
-        case .keyboardType: return false
+        case .keyboardType(let type): return type.shouldSwitchToPreferredKeyboardType
         case .shift: return true
         default: return gesture == .tap && context.keyboardType != context.preferredKeyboardType
         }
@@ -107,5 +107,26 @@ private extension StandardKeyboardBehavior {
         let isDoubleTap = Date().timeIntervalSinceReferenceDate - lastShiftCheck.timeIntervalSinceReferenceDate < doubleTapThreshold
         lastShiftCheck = Date()
         return isDoubleTap
+    }
+}
+
+private extension KeyboardType {
+    
+    var shouldSwitchToPreferredKeyboardType: Bool {
+        switch self {
+        case .alphabetic(let state): return state.shouldSwitchToPreferredKeyboardType
+        default: return false
+        }
+    }
+}
+
+
+private extension KeyboardCasing {
+    
+    var shouldSwitchToPreferredKeyboardType: Bool {
+        switch self {
+        case .auto: return true
+        default: return false
+        }
     }
 }
