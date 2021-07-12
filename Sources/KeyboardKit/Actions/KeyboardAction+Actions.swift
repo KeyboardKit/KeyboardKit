@@ -106,12 +106,6 @@ public extension KeyboardAction {
         switch self {
         case .moveCursorBackward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: -1) }
         case .moveCursorForward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: 1) }
-        case .shift(let currentState): return {
-            switch currentState {
-            case .lowercased, .neutral: $0?.keyboardContext.keyboardType = .alphabetic(.uppercased)
-            case .auto, .capsLocked, .uppercased: $0?.keyboardContext.keyboardType = .alphabetic(.lowercased)
-            }
-        }
         default: return nil
         }
     }
