@@ -20,9 +20,9 @@ class MockTextInput: UIResponder, Mockable, UITextInput {
     var beginningOfDocument = UITextPosition()
     var endOfDocument = UITextPosition()
     var hasText: Bool = false
-    var inputDelegate: UITextInputDelegate?
+    weak var inputDelegate: UITextInputDelegate?
     var markedTextRange: UITextRange?
-    var markedTextStyle: [NSAttributedString.Key : Any]?
+    var markedTextStyle: [NSAttributedString.Key: Any]?
     var selectedTextRange: UITextRange?
     var tokenizer: UITextInputTokenizer { fatalError() }
     
