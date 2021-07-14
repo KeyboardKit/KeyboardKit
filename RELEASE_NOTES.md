@@ -11,6 +11,10 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 ## 4.6
 
+### ✨ New features
+
+* There is a new `Proxy` namespace to which the `UITextDocumentProxy` extensions have been moved.
+
 ### 💥 Breaking changes
 
 * `KeyboardInputViewController` `viewWillSyncWithTextDocumentProxy` was not used internally and has been removed. If you override this in your own keyboards, just override `viewWillAppear` instead. 
