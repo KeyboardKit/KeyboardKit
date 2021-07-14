@@ -15,8 +15,14 @@ import KeyboardKit
  
  The view will switch over the current keyboard type and add
  the correct keyboard view.
+ 
+ Set `addTextFieldAboveKeyboard` to true to add a text field
+ above the demo keyboard. This text field will automatically
+ takes over as the main proxy instead of the main app.
  */
 struct KeyboardView: View {
+    
+    let addTextFieldAboveKeyboard = false
     
     var actionHandler: KeyboardActionHandler
     var appearance: KeyboardAppearance
@@ -87,7 +93,9 @@ private extension KeyboardView {
     var systemKeyboard: some View {
         VStack(spacing: 0) {
             autocompleteBar
-            textField           // Comment out this if you don't want to test the text field
+            if addTextFieldAboveKeyboard {
+                textField
+            }
             SystemKeyboard(
                 layout: layoutProvider.keyboardLayout(for: keyboardContext),
                 appearance: appearance,

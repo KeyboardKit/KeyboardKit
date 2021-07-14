@@ -11,7 +11,9 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 ## 4.6
 
-This version adds features that makes it possible to add text fields and text views to the keyboard extension and automatically redirect the keyboard there instead of using the hosting app.
+This version adds features that makes it possible to add text fields and text views to the keyboard extension and automatically redirect keyboard events there instead of using the hosting app.
+
+You can either set `KeyboardInputViewController.shared.textInputProxy` directly, or use the new `KeyboardTextField` and `KeyboardTextView` views that does this automatically.
 
 ### ✨ New features
 
