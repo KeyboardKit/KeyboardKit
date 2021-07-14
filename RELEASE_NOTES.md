@@ -11,9 +11,13 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 ## 4.6
 
+This version adds features that makes it possible to add text fields and text views to the keyboard extension and automatically redirect the keyboard there instead of using the hosting app.
+
 ### ✨ New features
 
 * There is a new `Proxy` namespace to which the `UITextDocumentProxy` extensions have been moved.
+* `KeyboardInputViewController` has a new `textInputProxy` that can be set to redirect the keyboard to that proxy instead of the original `textDocumentProxy`.
+* `KeyboardTextField` and `KeyboardTextView` are two new views that can be used in keyboard extensions and that will automatically redirect keyboard events to them when they become first responder.
 
 ### 💥 Breaking changes
 
