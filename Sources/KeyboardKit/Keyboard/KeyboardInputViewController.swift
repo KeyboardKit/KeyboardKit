@@ -47,7 +47,6 @@ open class KeyboardInputViewController: UIInputViewController {
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardContext.sync(with: self)
-        viewWillSyncWithTextDocumentProxy()
     }
     
     open override func viewWillLayoutSubviews() {
@@ -58,10 +57,6 @@ open class KeyboardInputViewController: UIInputViewController {
     open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         keyboardContext.sync(with: self)
         super.traitCollectionDidChange(previousTraitCollection)
-    }
-    
-    open func viewWillSyncWithTextDocumentProxy() {
-        keyboardContext.textDocumentProxy = textDocumentProxy
     }
     
     

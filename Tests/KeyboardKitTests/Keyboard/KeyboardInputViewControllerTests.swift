@@ -261,7 +261,6 @@ class KeyboardInputViewControllerTests: QuickSpec {
 
 private class TestClass: KeyboardInputViewController, Mockable {
     
-    lazy var viewWillSyncWithTextDocumentProxyRef = MockReference(viewWillSyncWithTextDocumentProxy)
     lazy var performAutocompleteRef = MockReference(performAutocomplete)
     lazy var resetAutocompleteRef = MockReference(resetAutocomplete)
     
@@ -283,11 +282,6 @@ private class TestClass: KeyboardInputViewController, Mockable {
     var textDocumentProxyValue: UITextDocumentProxy?
     override var textDocumentProxy: UITextDocumentProxy {
         textDocumentProxyValue ?? super.textDocumentProxy
-    }
-    
-    override func viewWillSyncWithTextDocumentProxy() {
-        super.viewWillSyncWithTextDocumentProxy()
-        mock.call(viewWillSyncWithTextDocumentProxyRef, args: ())
     }
     
     override func performAutocomplete() {
