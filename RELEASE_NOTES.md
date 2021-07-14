@@ -9,6 +9,14 @@ KeyboardKit tries to honor the following rules when new versions are released:
 Breaking changes can still occur in minor versions, if the alternative is to not release new critical features or fixes.
 
 
+## 4.5.6
+
+### 🐛 Bug fixes
+
+* `ibayramli2001` and `amirshane` have fixed a crash when deleting backwards without any content in the proxy.   
+
+
+
 ## 4.5.5
 
 ### ✨ New features

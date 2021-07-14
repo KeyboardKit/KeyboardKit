@@ -824,8 +824,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielsaidi/KeyboardKit.git";
 			requirement = {
-				branch = "abc-switch";
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.5;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

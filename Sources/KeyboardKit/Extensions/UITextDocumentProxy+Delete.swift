@@ -42,8 +42,9 @@ extension UITextDocumentProxy {
 
 private extension String {
     
-    var lastCharacter: String {
-        last != nil ? String(last!) : ""
+    var lastCharacter: String? {
+        guard let last = last else { return nil }
+        return String(last)
     }
     
     var lastSentenceSegment: String {
