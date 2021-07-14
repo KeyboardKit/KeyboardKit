@@ -102,6 +102,35 @@ class KeyboardInputViewControllerTests: QuickSpec {
         }
         
         
+        // MARK: - Properties
+        
+        describe("text document proxy") {
+            
+            it("returns the original text document proxy if no input proxy is defined") {
+                expect(vc.textDocumentProxy).to(be(vc.originalTextDocumentProxy))
+            }
+            
+            it("returns the input text document proxy if one is defined") {
+                let input = MockTextInput()
+                let proxy = TextInputProxy(input: input)
+                vc.textInputProxy = proxy
+                expect(vc.textDocumentProxy).to(be(proxy))
+            }
+        }
+        
+        describe("text input proxy") {
+            
+            it("makes vc sync with proxy when set") {
+                vc.mock.resetCalls()
+                let input = MockTextInput()
+                let proxy = TextInputProxy(input: input)
+                vc.textInputProxy = proxy
+                expect(vc.keyboardContext.textDocumentProxy).to(be(proxy))
+            }
+        }
+        
+        
+        
         // MARK: - Observables
         
         describe("observable properties") {

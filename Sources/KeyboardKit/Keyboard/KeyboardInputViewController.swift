@@ -145,11 +145,37 @@ open class KeyboardInputViewController: UIInputViewController {
     }
     
     /**
+     This internal property always returns the original text
+     document proxy, regardless of if another proxy is set.
+     */
+    var originalTextDocumentProxy: UITextDocumentProxy {
+        super.textDocumentProxy
+    }
+    
+    /**
      The shared input view controller. This is registered as
      the keyboard extension is started.
      */
     public static var shared = KeyboardInputViewController()
+
+    /**
+     A proxy to the text input object with which this custom
+     keyboard is interacting with.
+     
+     If you set `textInputProxy` to a custom object, it will
+     be used instead of the real text document proxy.
+     */
+    open override var textDocumentProxy: UITextDocumentProxy {
+        textInputProxy ?? originalTextDocumentProxy
+    }
     
+    /**
+     A custom text input proxy to which text input should be
+     redirected instead of the `textDocumentProxy`.
+     */
+    public var textInputProxy: TextInputProxy? {
+        didSet { keyboardContext.sync(with: self) }
+    }
     
     
     // MARK: - Observables
