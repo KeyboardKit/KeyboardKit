@@ -20,6 +20,10 @@ This version adds features that makes it possible to add text fields and text vi
 * `KeyboardTextField` and `KeyboardTextView` are two new views that can be used in keyboard extensions and that will automatically redirect keyboard events to them when they become first responder.
 * `TextInputProxy` is a new class that can be used to redirect the keyboard events to any text input.
 
+### 🐛 Bug fixes
+
+* This version fixes a gesture bug that caused the space tap action to be triggered even after long pressing and dragging the cursor around.   
+
 ### 💥 Breaking changes
 
 * `KeyboardInputViewController` `viewWillSyncWithTextDocumentProxy` was not used internally and has been removed. If you override this in your own keyboards, just override `viewWillAppear` instead. 

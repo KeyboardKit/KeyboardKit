@@ -131,7 +131,7 @@ private extension KeyboardGestures {
             .onChanged {
                 switch $0 {
                 case .first: break
-                case .second(_, let drag): handleSecondaryInputDrag(drag)
+                case .second(_, let drag): handleDelayedDrag(drag)
                 }
             }
             .onEnded { _ in endSecondaryInput() }
@@ -150,8 +150,15 @@ private extension KeyboardGestures {
     }
     
     func endSecondaryInput() {
-        shouldApplyTapAction = !secondaryInputCalloutContext.hasSelectedAction
+        shouldApplyTapAction = shouldApplyTapAction && !secondaryInputCalloutContext.hasSelectedAction
         secondaryInputCalloutContext.endDragGesture()
+    }
+    
+    func handleDelayedDrag(_ drag: DragGesture.Value?) {
+        shouldApplyTapAction = shouldApplyTapAction && action != .space
+        secondaryInputCalloutContext.updateSelection(with: drag)
+        guard let drag = drag else { return }
+        dragAction?(drag.startLocation, drag.location)
     }
     
     func handleLongPressGesture() {
@@ -175,12 +182,6 @@ private extension KeyboardGestures {
         isPressed.wrappedValue = false
         inputCalloutContext.reset()
         stopRepeatTimer()
-    }
-    
-    func handleSecondaryInputDrag(_ drag: DragGesture.Value?) {
-        secondaryInputCalloutContext.updateSelection(with: drag)
-        guard let drag = drag else { return }
-        dragAction?(drag.startLocation, drag.location)
     }
     
     func startRepeatTimer() {

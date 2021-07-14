@@ -32,7 +32,9 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.keyboardContext = ivc.keyboardContext
         self.keyboardFeedbackHandler = ivc.keyboardFeedbackHandler
         self.spaceDragGestureHandler = spaceDragGestureHandler ?? SpaceCursorDragGestureHandler(
-            context: ivc.keyboardContext, feedbackHandler: ivc.keyboardFeedbackHandler, sensitivity: spaceDragSensitivity)
+            context: ivc.keyboardContext,
+            feedbackHandler: ivc.keyboardFeedbackHandler,
+            sensitivity: spaceDragSensitivity)
     }
     
     public init(
