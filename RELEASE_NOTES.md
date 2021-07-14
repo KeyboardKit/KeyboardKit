@@ -18,6 +18,7 @@ This version adds features that makes it possible to add text fields and text vi
 * There is a new `Proxy` namespace to which the `UITextDocumentProxy` extensions have been moved.
 * `KeyboardInputViewController` has a new `textInputProxy` that can be set to redirect the keyboard to that proxy instead of the original `textDocumentProxy`.
 * `KeyboardTextField` and `KeyboardTextView` are two new views that can be used in keyboard extensions and that will automatically redirect keyboard events to them when they become first responder.
+* `TextInputProxy` is a new class that can be used to redirect the keyboard events to any text input.
 
 ### 💥 Breaking changes
 

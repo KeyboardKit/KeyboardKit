@@ -87,12 +87,21 @@ private extension KeyboardView {
     var systemKeyboard: some View {
         VStack(spacing: 0) {
             autocompleteBar
+            textField           // Comment out this if you don't want to test the text field
             SystemKeyboard(
                 layout: layoutProvider.keyboardLayout(for: keyboardContext),
                 appearance: appearance,
                 actionHandler: actionHandler,
                 buttonBuilder: buttonBuilder)
         }
+    }
+    
+    var textField: some View {
+        KeyboardTextField(config: {
+            $0.placeholder = "Try typing here, press return to stop."
+            $0.borderStyle = .roundedRect
+            $0.autocapitalizationType = .sentences
+        }).padding(3)
     }
     
     var toastBackground: some View {
