@@ -16,10 +16,15 @@ import Combine
  This SwiftUI-based demo keyboard demonstrates how to create
  a keyboard extension using `KeyboardKit` and `SwiftUI`.
  
- This keyboard manually registers demo-specific services. It
- has also copied a Swedish keyboard input set provider and a
- secondary callout action provider from KeyboardKit Pro just
- to show you how to do it without using KeyboardKit Pro.
+ This demo registers demo-specific services in `viewDidLoad`.
+ Feel free to play around with these to see how the keyboard
+ behavior changes.
+ 
+ You can also configure the demo with or without Pro support.
+ Without Pro, the demo only supports English and uses a fake
+ autocomplete engine. With Pro, the demo has support for all
+ available locales and uses a real autocomplete engine. Just
+ comment out `setupPro` to disable Pro support.
  
  `IMPORTANT` To use this keyboard, you must enable it in the
  system keyboard settings ("Settings/General/Keyboards"). It
@@ -97,7 +102,8 @@ class KeyboardViewController: KeyboardInputViewController {
         KeyboardView(
             actionHandler: keyboardActionHandler,
             appearance: keyboardAppearance,
-            layoutProvider: keyboardLayoutProvider)
+            layoutProvider: keyboardLayoutProvider,
+            addTextFieldAboveKeyboard: true)
             .environmentObject(toastContext)
     }
     
