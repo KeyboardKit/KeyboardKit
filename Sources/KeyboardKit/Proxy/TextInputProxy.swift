@@ -25,6 +25,7 @@ open class TextInputProxy: NSObject, UITextDocumentProxy {
      */
     public init(input: TextInput) {
         self.input = input
+        self.autocapitalizationType = input.autocapitalizationType ?? .none
         super.init()
     }
     
@@ -35,6 +36,8 @@ open class TextInputProxy: NSObject, UITextDocumentProxy {
     
     
     // MARK: - UITextDocumentProxy
+    
+    public var autocapitalizationType: UITextAutocapitalizationType
     
     open var documentContextAfterInput: String? {
         guard
