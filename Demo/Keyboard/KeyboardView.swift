@@ -22,10 +22,11 @@ import KeyboardKit
  */
 struct KeyboardView: View {
     
+    let addTextFieldAboveKeyboard = false
+    
     let actionHandler: KeyboardActionHandler
     let appearance: KeyboardAppearance
     let layoutProvider: KeyboardLayoutProvider
-    let addTextFieldAboveKeyboard: Bool
     
     @EnvironmentObject var autocompleteContext: AutocompleteContext
     @EnvironmentObject var keyboardContext: KeyboardContext
