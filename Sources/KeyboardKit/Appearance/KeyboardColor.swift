@@ -28,12 +28,14 @@ import SwiftUI
 public enum KeyboardColor: String, CaseIterable, Identifiable {
     
     case standardButton
-    case standardButtonShadow
     case standardButtonTint
+    case standardDarkButton
+    
+    case standardButtonShadow
+    
     case standardDarkAppearanceButton
     case standardDarkAppearanceButtonTint
     case standardDarkAppearanceDarkButton
-    case standardDarkButton
     
     /**
      Whether or not to use the `previewColorProvider` when a
@@ -52,6 +54,11 @@ public extension KeyboardColor {
     
     var id: String { rawValue }
     
+    /**
+     This color property is adaptive, since the bundle isn't
+     available when previewing these colors from another app
+     or library project except this library.
+     */
     var color: Color {
         if isSwiftUIPreview && Self.usePreviewColorProvider {
             return Self.previewColorProvider(self)
@@ -71,13 +78,21 @@ private extension KeyboardColor {
 }
 
 struct KeyboardColor_Previews: PreviewProvider {
+    
+    static func preview(for color: KeyboardColor) -> some View {
+        VStack(alignment: .leading) {
+            Text(color.resourceName).font(.footnote)
+            HStack {
+                color.color
+                color.color.colorScheme(.dark)
+            }.frame(height: 100)
+        }
+    }
+    
     static var previews: some View {
         return Group {
-            ForEach(KeyboardColor.allCases) { color in
-                HStack {
-                    color.color
-                    color.color.colorScheme(.dark)
-                }.frame(height: 100)
+            ForEach(KeyboardColor.allCases) {
+                preview(for: $0)
             }
         }.previewLayout(.sizeThatFits)
     }

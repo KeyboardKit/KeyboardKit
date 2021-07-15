@@ -1,5 +1,5 @@
 //
-//  Color+KeyboardColor.swift
+//  Color+Keyboard.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-20.
@@ -30,15 +30,31 @@ private extension Color {
     }
 }
 
-struct ColorResources_Previews: PreviewProvider {
+struct Color_Keyboard_Previews: PreviewProvider {
+    
+    static func preview(for color: Color, name: String) -> some View {
+        VStack(alignment: .leading) {
+            Text(name).font(.footnote)
+            HStack {
+                color
+                color.colorScheme(.dark)
+            }.frame(height: 100)
+        }
+    }
+    
     static var previews: some View {
         Group {
-            ForEach(KeyboardColor.allCases) { color in
-                HStack {
-                    color.color
-                    color.color.colorScheme(.dark)
-                }.frame(height: 100)
-            }
+            preview(for: .standardButton, name: "standardButton")
+            preview(for: .standardButtonTint, name: "standardButtonTint")
+            preview(for: .standardDarkButton, name: "standardDarkButton")
+            preview(for: .standardDarkButtonTint, name: "standardDarkButtonTint")
+            
+            preview(for: .standardButtonShadow, name: "standardButtonShadow")
+            
+            preview(for: .standardDarkAppearanceButton, name: "standardDarkAppearanceButton")
+            preview(for: .standardDarkAppearanceButtonTint, name: "standardDarkAppearanceButtonTint")
+            preview(for: .standardDarkAppearanceDarkButton, name: "standardDarkAppearanceDarkButton")
+            preview(for: .standardDarkAppearanceDarkButtonTint, name: "standardDarkAppearanceDarkButtonTint")
         }.previewLayout(.sizeThatFits)
     }
 }
