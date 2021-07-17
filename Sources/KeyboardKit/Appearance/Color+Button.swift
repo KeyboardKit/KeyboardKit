@@ -59,5 +59,11 @@ public extension Color {
 
 private extension KeyboardContext {
     
-    var useDarkAppearance: Bool { colorScheme == .light && keyboardAppearance == .dark }
+    var useDarkAppearance: Bool {
+        // This is how we want things to work, but according to the bug above...
+        // colorScheme == .light && keyboardAppearance == .dark
+        
+        // We go with the dark appearance colors for both dark appearance and dark mode
+        colorScheme == .dark
+    }
 }
