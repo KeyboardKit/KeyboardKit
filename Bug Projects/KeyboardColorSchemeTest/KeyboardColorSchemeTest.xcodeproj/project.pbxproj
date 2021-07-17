@@ -1,0 +1,497 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A9AB8E2626A2FBC0008C0B76 /* KeyboardColorSchemeTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AB8E2526A2FBC0008C0B76 /* KeyboardColorSchemeTestApp.swift */; };
+		A9AB8E2826A2FBC0008C0B76 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AB8E2726A2FBC0008C0B76 /* ContentView.swift */; };
+		A9AB8E2A26A2FBC2008C0B76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9AB8E2926A2FBC2008C0B76 /* Assets.xcassets */; };
+		A9AB8E2D26A2FBC2008C0B76 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9AB8E2C26A2FBC2008C0B76 /* Preview Assets.xcassets */; };
+		A9AB8E3526A2FC60008C0B76 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AB8E3426A2FC60008C0B76 /* MultilineTextField.swift */; };
+		A9AB8E3D26A2FD5F008C0B76 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AB8E3C26A2FD5F008C0B76 /* KeyboardViewController.swift */; };
+		A9AB8E4126A2FD5F008C0B76 /* Keyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A9AB8E3A26A2FD5F008C0B76 /* Keyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A9AB8E4926A307DF008C0B76 /* key_darkmode.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A9AB8E4726A307DF008C0B76 /* key_darkmode.jpeg */; };
+		A9AB8E4A26A307DF008C0B76 /* key_lightmode.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A9AB8E4826A307DF008C0B76 /* key_lightmode.jpeg */; };
+		A9AB8E4B26A308A9008C0B76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9AB8E2926A2FBC2008C0B76 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A9AB8E3F26A2FD5F008C0B76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9AB8E1A26A2FBBF008C0B76 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A9AB8E3926A2FD5F008C0B76;
+			remoteInfo = Keyboard;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A9AB8E4526A2FD5F008C0B76 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A9AB8E4126A2FD5F008C0B76 /* Keyboard.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A9AB8E2226A2FBC0008C0B76 /* KeyboardColorSchemeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeyboardColorSchemeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9AB8E2526A2FBC0008C0B76 /* KeyboardColorSchemeTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardColorSchemeTestApp.swift; sourceTree = "<group>"; };
+		A9AB8E2726A2FBC0008C0B76 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A9AB8E2926A2FBC2008C0B76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A9AB8E2C26A2FBC2008C0B76 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A9AB8E2E26A2FBC2008C0B76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9AB8E3426A2FC60008C0B76 /* MultilineTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
+		A9AB8E3A26A2FD5F008C0B76 /* Keyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Keyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9AB8E3C26A2FD5F008C0B76 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		A9AB8E3E26A2FD5F008C0B76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9AB8E4726A307DF008C0B76 /* key_darkmode.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = key_darkmode.jpeg; sourceTree = "<group>"; };
+		A9AB8E4826A307DF008C0B76 /* key_lightmode.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = key_lightmode.jpeg; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A9AB8E1F26A2FBC0008C0B76 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9AB8E3726A2FD5F008C0B76 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A9AB8E1926A2FBBF008C0B76 = {
+			isa = PBXGroup;
+			children = (
+				A9AB8E2426A2FBC0008C0B76 /* KeyboardColorSchemeTest */,
+				A9AB8E3B26A2FD5F008C0B76 /* Keyboard */,
+				A9AB8E2326A2FBC0008C0B76 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A9AB8E2326A2FBC0008C0B76 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A9AB8E2226A2FBC0008C0B76 /* KeyboardColorSchemeTest.app */,
+				A9AB8E3A26A2FD5F008C0B76 /* Keyboard.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A9AB8E2426A2FBC0008C0B76 /* KeyboardColorSchemeTest */ = {
+			isa = PBXGroup;
+			children = (
+				A9AB8E4626A307CF008C0B76 /* Resources */,
+				A9AB8E2926A2FBC2008C0B76 /* Assets.xcassets */,
+				A9AB8E2726A2FBC0008C0B76 /* ContentView.swift */,
+				A9AB8E2E26A2FBC2008C0B76 /* Info.plist */,
+				A9AB8E2526A2FBC0008C0B76 /* KeyboardColorSchemeTestApp.swift */,
+				A9AB8E3426A2FC60008C0B76 /* MultilineTextField.swift */,
+				A9AB8E2B26A2FBC2008C0B76 /* Preview Content */,
+			);
+			path = KeyboardColorSchemeTest;
+			sourceTree = "<group>";
+		};
+		A9AB8E2B26A2FBC2008C0B76 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				A9AB8E2C26A2FBC2008C0B76 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A9AB8E3B26A2FD5F008C0B76 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				A9AB8E3C26A2FD5F008C0B76 /* KeyboardViewController.swift */,
+				A9AB8E3E26A2FD5F008C0B76 /* Info.plist */,
+			);
+			path = Keyboard;
+			sourceTree = "<group>";
+		};
+		A9AB8E4626A307CF008C0B76 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A9AB8E4726A307DF008C0B76 /* key_darkmode.jpeg */,
+				A9AB8E4826A307DF008C0B76 /* key_lightmode.jpeg */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A9AB8E2126A2FBC0008C0B76 /* KeyboardColorSchemeTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9AB8E3126A2FBC2008C0B76 /* Build configuration list for PBXNativeTarget "KeyboardColorSchemeTest" */;
+			buildPhases = (
+				A9AB8E1E26A2FBC0008C0B76 /* Sources */,
+				A9AB8E1F26A2FBC0008C0B76 /* Frameworks */,
+				A9AB8E2026A2FBC0008C0B76 /* Resources */,
+				A9AB8E4526A2FD5F008C0B76 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A9AB8E4026A2FD5F008C0B76 /* PBXTargetDependency */,
+			);
+			name = KeyboardColorSchemeTest;
+			productName = KeyboardColorSchemeTest;
+			productReference = A9AB8E2226A2FBC0008C0B76 /* KeyboardColorSchemeTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A9AB8E3926A2FD5F008C0B76 /* Keyboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9AB8E4226A2FD5F008C0B76 /* Build configuration list for PBXNativeTarget "Keyboard" */;
+			buildPhases = (
+				A9AB8E3626A2FD5F008C0B76 /* Sources */,
+				A9AB8E3726A2FD5F008C0B76 /* Frameworks */,
+				A9AB8E3826A2FD5F008C0B76 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Keyboard;
+			productName = Keyboard;
+			productReference = A9AB8E3A26A2FD5F008C0B76 /* Keyboard.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A9AB8E1A26A2FBBF008C0B76 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					A9AB8E2126A2FBC0008C0B76 = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+					A9AB8E3926A2FD5F008C0B76 = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+				};
+			};
+			buildConfigurationList = A9AB8E1D26A2FBBF008C0B76 /* Build configuration list for PBXProject "KeyboardColorSchemeTest" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A9AB8E1926A2FBBF008C0B76;
+			productRefGroup = A9AB8E2326A2FBC0008C0B76 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A9AB8E2126A2FBC0008C0B76 /* KeyboardColorSchemeTest */,
+				A9AB8E3926A2FD5F008C0B76 /* Keyboard */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A9AB8E2026A2FBC0008C0B76 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9AB8E2D26A2FBC2008C0B76 /* Preview Assets.xcassets in Resources */,
+				A9AB8E2A26A2FBC2008C0B76 /* Assets.xcassets in Resources */,
+				A9AB8E4926A307DF008C0B76 /* key_darkmode.jpeg in Resources */,
+				A9AB8E4A26A307DF008C0B76 /* key_lightmode.jpeg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9AB8E3826A2FD5F008C0B76 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9AB8E4B26A308A9008C0B76 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A9AB8E1E26A2FBC0008C0B76 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9AB8E3526A2FC60008C0B76 /* MultilineTextField.swift in Sources */,
+				A9AB8E2826A2FBC0008C0B76 /* ContentView.swift in Sources */,
+				A9AB8E2626A2FBC0008C0B76 /* KeyboardColorSchemeTestApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9AB8E3626A2FD5F008C0B76 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9AB8E3D26A2FD5F008C0B76 /* KeyboardViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A9AB8E4026A2FD5F008C0B76 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A9AB8E3926A2FD5F008C0B76 /* Keyboard */;
+			targetProxy = A9AB8E3F26A2FD5F008C0B76 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A9AB8E2F26A2FBC2008C0B76 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A9AB8E3026A2FBC2008C0B76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A9AB8E3226A2FBC2008C0B76 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"KeyboardColorSchemeTest/Preview Content\"";
+				DEVELOPMENT_TEAM = PMEDFW438U;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = KeyboardColorSchemeTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.danielsaidi.keyboardcolorschemetest.KeyboardColorSchemeTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A9AB8E3326A2FBC2008C0B76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"KeyboardColorSchemeTest/Preview Content\"";
+				DEVELOPMENT_TEAM = PMEDFW438U;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = KeyboardColorSchemeTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.danielsaidi.keyboardcolorschemetest.KeyboardColorSchemeTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A9AB8E4326A2FD5F008C0B76 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PMEDFW438U;
+				INFOPLIST_FILE = Keyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.danielsaidi.keyboardcolorschemetest.KeyboardColorSchemeTest.Keyboard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A9AB8E4426A2FD5F008C0B76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PMEDFW438U;
+				INFOPLIST_FILE = Keyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.danielsaidi.keyboardcolorschemetest.KeyboardColorSchemeTest.Keyboard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A9AB8E1D26A2FBBF008C0B76 /* Build configuration list for PBXProject "KeyboardColorSchemeTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9AB8E2F26A2FBC2008C0B76 /* Debug */,
+				A9AB8E3026A2FBC2008C0B76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9AB8E3126A2FBC2008C0B76 /* Build configuration list for PBXNativeTarget "KeyboardColorSchemeTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9AB8E3226A2FBC2008C0B76 /* Debug */,
+				A9AB8E3326A2FBC2008C0B76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9AB8E4226A2FD5F008C0B76 /* Build configuration list for PBXNativeTarget "Keyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9AB8E4326A2FD5F008C0B76 /* Debug */,
+				A9AB8E4426A2FD5F008C0B76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A9AB8E1A26A2FBBF008C0B76 /* Project object */;
+}
