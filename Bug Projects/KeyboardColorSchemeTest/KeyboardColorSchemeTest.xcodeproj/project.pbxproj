@@ -14,8 +14,6 @@
 		A9AB8E3526A2FC60008C0B76 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AB8E3426A2FC60008C0B76 /* MultilineTextField.swift */; };
 		A9AB8E3D26A2FD5F008C0B76 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AB8E3C26A2FD5F008C0B76 /* KeyboardViewController.swift */; };
 		A9AB8E4126A2FD5F008C0B76 /* Keyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A9AB8E3A26A2FD5F008C0B76 /* Keyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		A9AB8E4926A307DF008C0B76 /* key_darkmode.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A9AB8E4726A307DF008C0B76 /* key_darkmode.jpeg */; };
-		A9AB8E4A26A307DF008C0B76 /* key_lightmode.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A9AB8E4826A307DF008C0B76 /* key_lightmode.jpeg */; };
 		A9AB8E4B26A308A9008C0B76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9AB8E2926A2FBC2008C0B76 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -54,8 +52,6 @@
 		A9AB8E3A26A2FD5F008C0B76 /* Keyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Keyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9AB8E3C26A2FD5F008C0B76 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		A9AB8E3E26A2FD5F008C0B76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A9AB8E4726A307DF008C0B76 /* key_darkmode.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = key_darkmode.jpeg; sourceTree = "<group>"; };
-		A9AB8E4826A307DF008C0B76 /* key_lightmode.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = key_lightmode.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +93,6 @@
 		A9AB8E2426A2FBC0008C0B76 /* KeyboardColorSchemeTest */ = {
 			isa = PBXGroup;
 			children = (
-				A9AB8E4626A307CF008C0B76 /* Resources */,
 				A9AB8E2926A2FBC2008C0B76 /* Assets.xcassets */,
 				A9AB8E2726A2FBC0008C0B76 /* ContentView.swift */,
 				A9AB8E2E26A2FBC2008C0B76 /* Info.plist */,
@@ -123,15 +118,6 @@
 				A9AB8E3E26A2FD5F008C0B76 /* Info.plist */,
 			);
 			path = Keyboard;
-			sourceTree = "<group>";
-		};
-		A9AB8E4626A307CF008C0B76 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				A9AB8E4726A307DF008C0B76 /* key_darkmode.jpeg */,
-				A9AB8E4826A307DF008C0B76 /* key_lightmode.jpeg */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,8 +202,6 @@
 			files = (
 				A9AB8E2D26A2FBC2008C0B76 /* Preview Assets.xcassets in Resources */,
 				A9AB8E2A26A2FBC2008C0B76 /* Assets.xcassets in Resources */,
-				A9AB8E4926A307DF008C0B76 /* key_darkmode.jpeg in Resources */,
-				A9AB8E4A26A307DF008C0B76 /* key_lightmode.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

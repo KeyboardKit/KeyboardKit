@@ -23,19 +23,8 @@ class KeyboardViewController: UIInputViewController {
             self.updateLabels()
         }
         
-        appearanceLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
-        schemeLabel = UILabel(frame: CGRect(x: 0, y: 30, width: 300, height: 30))
-        systemSchemeLabel = UILabel(frame: CGRect(x: 0, y: 60, width: 300, height: 30))
-        view.addSubview(appearanceLabel)
-        view.addSubview(schemeLabel)
-        view.addSubview(systemSchemeLabel)
-        
-        let image1 = UIImageView(image: UIImage(named: "key_lightmode"))
-        let image2 = UIImageView(image: UIImage(named: "key_darkmode"))
-        image1.frame.origin = CGPoint(x: 0, y: 100)
-        image2.frame.origin = CGPoint(x: 150, y: 100)
-        view.addSubview(image1)
-        view.addSubview(image2)
+        addLabels()
+        addImages()
         
         // Perform custom UI setup here
         nextKeyboardButton = UIButton(type: .system)
@@ -44,6 +33,8 @@ class KeyboardViewController: UIInputViewController {
         nextKeyboardButton.translatesAutoresizingMaskIntoConstraints = false
         nextKeyboardButton.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
         view.addSubview(nextKeyboardButton)
+        
+        overrideUserInterfaceStyle = .unspecified
         
         nextKeyboardButton.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         nextKeyboardButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
@@ -67,12 +58,36 @@ class KeyboardViewController: UIInputViewController {
         updateLabels()
     }
     
+    func addLabels() {
+        appearanceLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
+        schemeLabel = UILabel(frame: CGRect(x: 0, y: 30, width: 300, height: 30))
+        systemSchemeLabel = UILabel(frame: CGRect(x: 0, y: 60, width: 300, height: 30))
+        view.addSubview(appearanceLabel)
+        view.addSubview(schemeLabel)
+        view.addSubview(systemSchemeLabel)
+    }
+    
+    func addImages() {
+        let key_lightappearance_lightmode = UIImageView(image: UIImage(named: "key_lightappearance_lightmode"))
+        let key_lightappearance_darkmode = UIImageView(image: UIImage(named: "key_lightappearance_darkmode"))
+        let key_darkappearance_lightmode = UIImageView(image: UIImage(named: "key_darkappearance_lightmode"))
+        let key_darkappearance_darkmode = UIImageView(image: UIImage(named: "key_darkappearance_darkmode"))
+        key_lightappearance_lightmode.frame.origin = CGPoint(x: 300, y: 0)
+        key_lightappearance_darkmode.frame.origin = CGPoint(x: 350, y: 0)
+        key_darkappearance_lightmode.frame.origin = CGPoint(x: 300, y: 100)
+        key_darkappearance_darkmode.frame.origin = CGPoint(x: 350, y: 100)
+        view.addSubview(key_lightappearance_lightmode)
+        view.addSubview(key_lightappearance_darkmode)
+        view.addSubview(key_darkappearance_lightmode)
+        view.addSubview(key_darkappearance_darkmode)
+    }
+    
     func updateLabels() {
         
         // Various values to try finding one that defines the system color scheme, not the extension's
-        let parentColorScheme = parent?.traitCollection.userInterfaceStyle          // Always dark for dark appearance
-        let screenColorScheme = UIScreen.main.traitCollection.userInterfaceStyle    // Always dark
-        let systemColorScheme: UIUserInterfaceStyle? = screenColorScheme
+        let parentScheme = parent?.traitCollection.userInterfaceStyle          // Always dark for dark appearance
+        let screenScheme = UIScreen.main.traitCollection.userInterfaceStyle    // Always dark
+        let systemColorScheme: UIUserInterfaceStyle? = screenScheme
         
         let proxy = textDocumentProxy
         appearanceLabel.text = "Keyboard apperance: \(proxy.keyboardAppearance?.displayValue ?? "-") "
