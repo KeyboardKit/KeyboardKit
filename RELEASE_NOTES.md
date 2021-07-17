@@ -9,11 +9,24 @@ KeyboardKit tries to honor the following rules when new versions are released:
 Breaking changes can still occur in minor versions, if the alternative is to not release new critical features or fixes.
 
 
+## 4.6.2
+
+### 🐛 Bug fixes
+
+This version adjusts the colors that are used for dark keyboard appearance and dark mode keyboards, to make keyboards look better in dark appearance when in light mode. 
+
+The problem is discussed here:
+https://github.com/KeyboardKit/KeyboardKit/issues/285
+
+This fix makes the button a little brighter in dark mode, but that's a lot better than having them be a little darker in dark appearance light mode.
+
+
+
 ## 4.6.1
 
 ### 🐛 Bug fixes
 
-* This version fixes a bug that caused the keyboard type to not change when typing into a `TextInputProxy` text field.   
+This version fixes a bug that caused the keyboard type to not change when typing into a `TextInputProxy` text field.   
 
 
 
