@@ -15,8 +15,13 @@ class KeyboardViewController: UIInputViewController {
     @IBOutlet var schemeLabel: UILabel!
     @IBOutlet var systemSchemeLabel: UILabel!
     
+    var timer: Timer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in
+            self.updateLabels()
+        }
         
         appearanceLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
         schemeLabel = UILabel(frame: CGRect(x: 0, y: 30, width: 300, height: 30))
@@ -47,7 +52,6 @@ class KeyboardViewController: UIInputViewController {
     override func viewWillLayoutSubviews() {
         //self.nextKeyboardButton.isHidden = !self.needsInputModeSwitchKey
         super.viewWillLayoutSubviews()
-        updateLabels()
     }
     
     override func textWillChange(_ textInput: UITextInput?) {
@@ -64,10 +68,17 @@ class KeyboardViewController: UIInputViewController {
     }
     
     func updateLabels() {
+        
+        // Various values to try finding one that defines the system color scheme, not the extension's
+        let parentColorScheme = parent?.traitCollection.userInterfaceStyle          // Always dark for dark appearance
+        let screenColorScheme = UIScreen.main.traitCollection.userInterfaceStyle    // Always dark
+        let systemColorScheme: UIUserInterfaceStyle? = screenColorScheme
+        
         let proxy = textDocumentProxy
         appearanceLabel.text = "Keyboard apperance: \(proxy.keyboardAppearance?.displayValue ?? "-") "
         schemeLabel.text = "Color scheme: \(view.traitCollection.userInterfaceStyle.displayValue)"
-        systemSchemeLabel.text = "System color scheme: ???"
+        systemSchemeLabel.text = "System color scheme: \(systemColorScheme?.displayValue ?? "-")"
+        //view.backgroundColor = view.backgroundColor == .red ? .gray : .red        // To verify that the timer ticks
     }
 }
 
