@@ -35,21 +35,19 @@ class UITextDocumentProxy_DeleteTests: QuickSpec {
         }
         
         
-        describe("deleting backwards for range") {
+        describe("deleting backwards with range") {
             
             func result(for range: DeleteBackwardRange, _ expected: Int) -> Bool {
                 proxy.deleteBackward(range)
                 return proxy.hasCalled(proxy.deleteBackwardRef, numberOfTimes: expected)
             }
             
-            it("does not delete if no text exists before input") {
-                proxy.documentContextBeforeInput = nil
-                expect(result(for: .char, 0)).to(beTrue())
-                expect(result(for: .word, 0)).to(beTrue())
-                expect(result(for: .sentence, 0)).to(beTrue())
-            }
-            
-            context("char range") {
+            context("using char range") {
+                
+                it("deletes once if no text exists before input") {
+                    proxy.documentContextBeforeInput = nil
+                    expect(result(for: .char, 1)).to(beTrue())
+                }
                 
                 it("deletes last char") {
                     proxy.documentContextBeforeInput = "abc 123 "
@@ -57,7 +55,12 @@ class UITextDocumentProxy_DeleteTests: QuickSpec {
                 }
             }
             
-            context("word range") {
+            context("using word range") {
+                
+                it("deletes once if no text exists before input") {
+                    proxy.documentContextBeforeInput = nil
+                    expect(result(for: .word, 1)).to(beTrue())
+                }
                 
                 it("returns single word segment including trailing space") {
                     proxy.documentContextBeforeInput = "abc "
@@ -70,7 +73,12 @@ class UITextDocumentProxy_DeleteTests: QuickSpec {
                 }
             }
             
-            context("sentence range") {
+            context("using sentence range") {
+                
+                it("deletes once if no text exists before input") {
+                    proxy.documentContextBeforeInput = nil
+                    expect(result(for: .sentence, 1)).to(beTrue())
+                }
                 
                 it("returns single sentence segment including trailing space") {
                     proxy.documentContextBeforeInput = "abc 123. "
