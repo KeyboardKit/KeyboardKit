@@ -23,7 +23,7 @@ public extension UITextDocumentProxy {
      Delete backwards a certain range.
      */
     func deleteBackward(_ range: DeleteBackwardRange) {
-        guard let text = deleteBackwardText(for: range) else { return }
+        guard let text = deleteBackwardText(for: range) else { return deleteBackward() }
         deleteBackward(times: text.count)
     }
 }

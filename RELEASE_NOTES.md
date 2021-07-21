@@ -1,4 +1,4 @@
-# Release Notes
+# Release notes
 
 KeyboardKit tries to honor the following rules when new versions are released:
 
@@ -7,6 +7,14 @@ KeyboardKit tries to honor the following rules when new versions are released:
 * Avoid introducing breaking changes in `minor` versions. 
 
 Breaking changes can still occur in minor versions, if the alternative is to not release new critical features or fixes.
+
+
+## 4.6.3
+
+### 🐛 Bug fixes
+
+* Thanks to @junyng, deleting backwards now works even when `documentContextBeforeInput` is nil.
+
 
 
 ## 4.6.2
