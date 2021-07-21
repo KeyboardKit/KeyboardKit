@@ -11,6 +11,10 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 ## 4.6.3
 
+### 💡 Behavior changes
+
+* `KeyboardTextField` and `KeyboardTextView` now share functionality through a protocol.
+
 ### 🐛 Bug fixes
 
 * Thanks to @junyng, deleting backwards now works even when `documentContextBeforeInput` is nil.
@@ -23,8 +27,7 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 This version adjusts the colors that are used for dark keyboard appearance and dark mode keyboards, to make keyboards look better in dark appearance when in light mode. 
 
-The problem is discussed here:
-https://github.com/KeyboardKit/KeyboardKit/issues/285
+The problem is discussed [here](https://github.com/KeyboardKit/KeyboardKit/issues/285).
 
 This fix makes the button a little brighter in dark mode, but that's a lot better than having them be a little darker in dark appearance light mode.
 
