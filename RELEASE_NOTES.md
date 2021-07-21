@@ -6,18 +6,26 @@ KeyboardKit tries to honor the following rules when new versions are released:
 * Only remove deprecated code in `major` versions.
 * Avoid introducing breaking changes in `minor` versions. 
 
-Breaking changes can still occur in minor versions, if the alternative is to not release new critical features or fixes.
+Breaking changes can still occur in minor versions and patches, if the alternative is to not release new critical features or fixes.
 
 
 ## 4.6.3
 
+### ✨ New features
+
+* `KeyboardTextField` and `KeyboardTextView` now accepts a text binding, so that you can access the typed text.
+
 ### 💡 Behavior changes
 
-* `KeyboardTextField` and `KeyboardTextView` now share functionality through a protocol.
+* `KeyboardTextField` and `KeyboardTextView` now share functionality through a new protocol.
 
 ### 🐛 Bug fixes
 
 * Thanks to @junyng, deleting backwards now works even when `documentContextBeforeInput` is nil.
+
+### 💥 Breaking changes
+
+* `KeyboardTextField` and `KeyboardTextView` now requires a text binding. 
 
 
 

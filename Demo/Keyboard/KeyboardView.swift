@@ -28,6 +28,8 @@ struct KeyboardView: View {
     let appearance: KeyboardAppearance
     let layoutProvider: KeyboardLayoutProvider
     
+    @State private var text = "Text"
+    
     @EnvironmentObject var autocompleteContext: AutocompleteContext
     @EnvironmentObject var keyboardContext: KeyboardContext
     @EnvironmentObject var toastContext: KeyboardToastContext
@@ -105,7 +107,7 @@ private extension KeyboardView {
     }
     
     var textField: some View {
-        KeyboardTextField(config: {
+        KeyboardTextField(text: $text, config: {
             $0.placeholder = "Try typing here, press return to stop."
             $0.borderStyle = .roundedRect
             $0.autocapitalizationType = .sentences

@@ -28,29 +28,57 @@ public struct KeyboardTextView: UIViewRepresentable {
      Create a keyboard text view instance.
      
      - Parameters:
+       - text: A text binding that will be affected by the text view.
        - resignOnReturn: Whether or not to resign first responder when return is pressed.
        - config: A configuration block that can be used to configure the text View.
      */
     public init(
+        text: Binding<String>,
         resignOnReturn: Bool = true,
         config: @escaping ConfigAction = { _ in }) {
+        self._text = text
         self.config = config
         self.resignOnReturn = resignOnReturn
     }
+    
+    @Binding private var text: String
     
     private let config: ConfigAction
     private let resignOnReturn: Bool
     
     public typealias ConfigAction = (UITextView) -> Void
     
-    public func makeUIView(context: Context) -> UITextView {
-        let textView = KeyboardInputTextView()
-        textView.resignOnReturn = resignOnReturn
-        config(textView)
-        return textView
+    public func makeCoordinator() -> Coordinator {
+        Coordinator(text: $text)
     }
     
-    public func updateUIView(_ uiView: UITextView, context: Context) {}
+    public func makeUIView(context: Context) -> UITextView {
+        let view = KeyboardInputTextView()
+        view.delegate = context.coordinator
+        view.resignOnReturn = resignOnReturn
+        config(view)
+        return view
+    }
+    
+    public func updateUIView(_ view: UITextView, context: Context) {
+        view.text = text
+    }
+}
+
+public extension KeyboardTextView {
+    
+    class Coordinator: NSObject, UITextViewDelegate {
+        
+        init(text: Binding<String>) {
+            _text = text
+        }
+        
+        @Binding private var text: String
+
+        public func textViewDidChange(_ textView: UITextView) {
+            text = textView.text
+        }
+    }
 }
 
 class KeyboardInputTextView: UITextView, KeyboardInputTextComponent {
