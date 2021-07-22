@@ -11,6 +11,10 @@ Breaking changes can still occur in minor versions and patches, if the alternati
 
 ## 4.6.4
 
+### ✨ New features
+
+* `SystemKeyboardButton` has a new `contentConfig` init param that allows you to modify the button content before wrapping it in a style and applying gestures.
+
 ### 💡 Behavior changes
 
 * `KeyboardAction.primary` no longer applies autocomplete by default, which solves e.g. autocomplete suggestions being applied in the Safari address bar. 
