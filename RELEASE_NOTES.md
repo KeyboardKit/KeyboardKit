@@ -9,6 +9,14 @@ KeyboardKit tries to honor the following rules when new versions are released:
 Breaking changes can still occur in minor versions and patches, if the alternative is to not release new critical features or fixes.
 
 
+## 4.6.4
+
+### 💡 Behavior changes
+
+* `KeyboardAction.primary` no longer applies autocomplete by default, which solves e.g. autocomplete suggestions being applied in the Safari address bar. 
+
+
+
 ## 4.6.3
 
 ### ✨ New features
