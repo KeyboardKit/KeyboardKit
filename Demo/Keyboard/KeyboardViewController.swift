@@ -37,7 +37,7 @@ class KeyboardViewController: KeyboardInputViewController {
     
     override func viewDidLoad() {
         
-        // Perform the bae initialization
+        // Perform the base initialization
         super.viewDidLoad()
         
         // Setup a demo-specific autocomplete provider

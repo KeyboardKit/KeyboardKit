@@ -9,6 +9,18 @@ KeyboardKit tries to honor the following rules when new versions are released:
 Breaking changes can still occur in minor versions and patches, if the alternative is to not release new critical features or fixes.
 
 
+## 4.7
+
+This version makes KeyboardKit compile for Xcode 13.0 beta 3.
+
+From now, all new versions of KeyboardKit will support the latest Xcode version. 
+
+### 💥 Breaking changes
+
+* `CGFloat+Keyboard` and `EdgeInsets+Keyboard` now uses the shared vc instead of the shared application. 
+
+
+
 ## 4.6.4
 
 ### ✨ New features

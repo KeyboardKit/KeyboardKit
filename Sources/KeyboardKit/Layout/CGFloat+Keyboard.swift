@@ -38,12 +38,10 @@ public extension CGFloat {
      */
     static func standardKeyboardRowHeight(
         for device: UIDevice = .current,
-        app: UIApplication = .shared) -> CGFloat {
+        vc: KeyboardInputViewController = .shared) -> CGFloat {
         standardKeyboardRowHeight(
             for: device.userInterfaceIdiom,
-            orientation: app.statusBarOrientation)
-            // orientation: app.preferredKeyboardInterfaceOrientation)
-            // 👆 This was an attempt to remove statusBarOrientation usage, but it doesn't work.
+            orientation: vc.screenOrientation)
     }
 }
 
@@ -55,6 +53,7 @@ extension CGFloat {
     static func standardKeyboardRowHeight(
         for idiom: UIUserInterfaceIdiom,
         orientation: UIInterfaceOrientation) -> CGFloat {
+            
         orientation.isLandscape
             ? idiom == .pad ? 86 : 40
             : idiom == .pad ? 67 : 54

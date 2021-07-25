@@ -21,8 +21,8 @@ public extension EdgeInsets {
      */
     static func standardKeyboardButtonInsets(
         for device: UIDevice = .current,
-        app: UIApplication = .shared) -> EdgeInsets {
-        EdgeInsets(insets: .standardKeyboardButtonInsets(for: device, app: app))
+        vc: KeyboardInputViewController = .shared) -> EdgeInsets {
+        EdgeInsets(insets: .standardKeyboardButtonInsets(for: device, vc: vc))
     }
 }
 
@@ -38,13 +38,11 @@ public extension UIEdgeInsets {
      */
     static func standardKeyboardButtonInsets(
         for device: UIDevice = .current,
-        app: UIApplication = .shared) -> UIEdgeInsets {
+        vc: KeyboardInputViewController = .shared) -> UIEdgeInsets {
         standardKeyboardButtonInsets(
             for: device.userInterfaceIdiom,
-            orientation: app.statusBarOrientation)
-            // orientation: app.preferredKeyboardInterfaceOrientation)
-            // 👆 This was an attempt to remove statusBarOrientation usage, but it doesn't work.
-    }
+            orientation: vc.screenOrientation)
+        }
 }
 
 extension UIEdgeInsets {
