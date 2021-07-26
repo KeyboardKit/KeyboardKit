@@ -34,7 +34,6 @@ class KeyboardAction_AutocompleteTests: QuickSpec {
                 expected.append(.newLine)
                 expected.append(.return)
                 expected.append(.space)
-                expected.append(contentsOf: KeyboardAction.PrimaryType.allCases.map { .primary($0) })
                 actions.forEach {
                     expect(result(for: $0)).to(equal(expected.contains($0)))
                 }

@@ -15,7 +15,7 @@ import SwiftUI
  observable information.
  
  `KeyboardKit` will automatically create an instance of this
- class and bind it to the input view controller.
+ context and bind it to the main input view controller.
  */
 public class KeyboardContext: ObservableObject {
     
