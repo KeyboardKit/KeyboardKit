@@ -53,6 +53,11 @@ public struct KeyboardTextField: UIViewRepresentable {
         let view = KeyboardInputTextField()
         view.addTarget(context.coordinator, action: #selector(context.coordinator.textFieldDidChange), for: .editingChanged)
         view.resignOnReturn = resignOnReturn
+        view.backgroundColor = .clear
+        view.font = .systemFont(ofSize: 20)
+        view.isScrollEnabled = true
+        view.isEditable = true
+        view.isUserInteractionEnabled = true
         config(view)
         return view
     }
