@@ -37,6 +37,10 @@ class KeyboardViewController: KeyboardInputViewController {
     
     override func viewDidLoad() {
         
+        // Uncomment this line to customize when to use dark
+        // appearance colors.
+        // Color.darkAppearanceStrategy = { _ in false }
+        
         // Perform the base initialization
         super.viewDidLoad()
         
