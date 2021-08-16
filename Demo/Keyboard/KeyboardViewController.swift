@@ -94,7 +94,7 @@ class KeyboardViewController: KeyboardInputViewController {
         // Setup the extension to use the keyboardView below,
         // either without or with Pro enabled.
         // setup(with: keyboardView)
-        setupPro(withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098", view: keyboardView)
+        try? setupPro(withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098", view: keyboardView)
     }
     
     
