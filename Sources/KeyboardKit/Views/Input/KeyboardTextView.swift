@@ -56,6 +56,7 @@ public struct KeyboardTextView: UIViewRepresentable {
         let view = KeyboardInputTextView()
         view.delegate = context.coordinator
         view.resignOnReturn = resignOnReturn
+        view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         config(view)
         return view
     }

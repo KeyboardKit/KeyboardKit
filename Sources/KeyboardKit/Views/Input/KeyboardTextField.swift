@@ -53,6 +53,7 @@ public struct KeyboardTextField: UIViewRepresentable {
         let view = KeyboardInputTextField()
         view.addTarget(context.coordinator, action: #selector(context.coordinator.textFieldDidChange), for: .editingChanged)
         view.resignOnReturn = resignOnReturn
+        view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         config(view)
         return view
     }
