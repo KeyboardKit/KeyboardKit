@@ -9,6 +9,14 @@ KeyboardKit tries to honor the following rules when new versions are released:
 Breaking changes can still occur in minor versions and patches, if the alternative is to not release new critical features or fixes.
 
 
+## 4.7.2
+
+### 🐛 Bug fixes
+
+* Thanks to @AntoineBache, `KeyboardTextField` and `KeyboardTextView` no longer resize if their text content gets to wide. 
+
+
+
 ## 4.7.1
 
 ### ✨ New features
