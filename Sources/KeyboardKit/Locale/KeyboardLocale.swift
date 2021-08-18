@@ -13,7 +13,7 @@ import Foundation
  more information than their raw locales and can also have a
  set of corresponding services attatched to them.
  */
-public enum KeyboardLocale: String, CaseIterable, Identifiable {
+public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
     
     case danish = "da"
     case dutch = "nl"

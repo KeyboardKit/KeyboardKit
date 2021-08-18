@@ -9,6 +9,15 @@ KeyboardKit tries to honor the following rules when new versions are released:
 Breaking changes can still occur in minor versions and patches, if the alternative is to not release new critical features or fixes.
 
 
+
+## 4.7.3
+
+### ✨ New features
+
+* `KeyboardLocale` is now `Codable`.
+
+
+
 ## 4.7.2
 
 ### 🐛 Bug fixes
@@ -21,9 +30,7 @@ Breaking changes can still occur in minor versions and patches, if the alternati
 
 ### ✨ New features
 
-This version adds a temporary `Color.darkAppearanceStrategy`, which lets you control whether or not to apply a dark appearance color scheme to your keyboard.
-
-This property lets you work around the current color scheme bug that is described in `Color+Button.swift` and override the standard strategy of always applying dark apperance colors when  the keyboard context's `colorScheme` is `.dark`.
+* `Color.darkAppearanceStrategy` is a new, temporary property that lets you inject a custom strategy that controls whether or not to apply a dark appearance color scheme to your keyboard. This lets you work around the current color scheme bug that is described in `Color+Button.swift` and override the standard strategy of always applying dark apperance colors when the keyboard context's `colorScheme` is `.dark`.
 
 If you find a way to determine this correctly and to work around the system behavior, please share your findings.
 
