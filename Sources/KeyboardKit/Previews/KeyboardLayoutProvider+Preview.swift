@@ -1,5 +1,5 @@
 //
-//  KeyboardInputSetProvider+Preview.swift
+//  PreviewKeyboardLayoutProvider+Preview.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-25.

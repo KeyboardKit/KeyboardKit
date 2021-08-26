@@ -16,19 +16,26 @@ import Combine
  This SwiftUI-based demo keyboard demonstrates how to create
  a keyboard extension using `KeyboardKit` and `SwiftUI`.
  
- This demo registers demo-specific services in `viewDidLoad`.
- Feel free to play around with these to see how the keyboard
- behavior changes.
+ This demo registers demo-specific services in `viewDidLoad`
+ and sets up KeyboardKit with a `KeyboardView` that uses the
+ demo-specific services. Feel free to play around with these
+ to see how the keyboard behavior changes.
  
- You can also configure the demo with or without Pro support.
- Without Pro, the demo only supports English and uses a fake
- autocomplete engine. With Pro, the demo has support for all
- available locales and uses a real autocomplete engine. Just
- comment out `setupPro` to disable Pro support.
+ The demo can be configured with and without KeyboardKit Pro
+ support. Without Pro, the demo only supports English locale
+ and uses a fake autocomplete engine. With Pro, the demo has
+ support for all locales and uses a real autocomplete engine.
+ Just comment out `setupPro` to disable Pro support.
  
- `IMPORTANT` To use this keyboard, you must enable it in the
- system keyboard settings ("Settings/General/Keyboards"). It
- needs full access for haptic and audio feedback.
+ To use this keyboard, you must enable it in system settings
+ ("Settings/General/Keyboards"). It needs full access if you
+ want to enable haptic and audio feedback.
+
+ `IMPORTANT` The `KeyboardView` has many environment objects
+ that make it automatically update when these objects change.
+ The `KeyboardViewController` will not trigger these changes
+ automatically, so make sure to define your own app-specific
+ view that can setup these bindings.
  */
 class KeyboardViewController: KeyboardInputViewController {
     
