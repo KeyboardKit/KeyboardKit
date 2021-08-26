@@ -31,17 +31,19 @@ import SwiftUI
 public extension Color {
     
     /**
-     The standard light background color in a system keyboard.
+     The standard background color of light keys in a system
+     keyboard.
      */
-    static func standardButton(for context: KeyboardContext) -> Color {
-        darkAppearanceStrategy(context) ? .standardDarkAppearanceButton : .standardButton
+    static func standardButtonBackgroundColor(for context: KeyboardContext) -> Color {
+        darkAppearanceStrategy(context) ? .standardButtonBackgroundForDarkAppearance : .standardButtonBackground
     }
     
     /**
-     The standard button tint color in a system keyboard.
+     The standard foreground color of light keys in a system
+     keyboard.
      */
-    static func standardButtonTint(for context: KeyboardContext) -> Color {
-        darkAppearanceStrategy(context) ? .standardDarkAppearanceButtonTint : .standardButtonTint
+    static func standardButtonForegroundColor(for context: KeyboardContext) -> Color {
+        darkAppearanceStrategy(context) ? .standardButtonForegroundForDarkAppearance : .standardButtonForeground
     }
     
     /**
@@ -52,10 +54,19 @@ public extension Color {
     }
     
     /**
-     The standard dark background color in a system keyboard.
+     The standard background color of a dark key in a system
+     keyboard.
      */
-    static func standardDarkButton(for context: KeyboardContext) -> Color {
-        darkAppearanceStrategy(context) ? .standardDarkAppearanceDarkButton : .standardDarkButton
+    static func standardDarkButtonBackgroundColor(for context: KeyboardContext) -> Color {
+        darkAppearanceStrategy(context) ? .standardDarkButtonBackgroundForDarkAppearance : .standardDarkButtonBackground
+    }
+    
+    /**
+     The standard foreground color of a dark key in a system
+     keyboard.
+     */
+    static func standardDarkButtonForegroundColor(for context: KeyboardContext) -> Color {
+        darkAppearanceStrategy(context) ? .standardDarkButtonForegroundForDarkAppearance : .standardDarkButtonForeground
     }
 }
 

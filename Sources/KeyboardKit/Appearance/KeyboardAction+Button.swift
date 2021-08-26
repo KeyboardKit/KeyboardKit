@@ -165,24 +165,24 @@ private extension KeyboardAction {
     
     func standardButtonBackgroundColorForIdleState(for context: KeyboardContext) -> Color {
         if isPrimaryAction { return .blue }
-        if isSystemAction { return .standardDarkButton(for: context) }
-        return .standardButton(for: context)
+        if isSystemAction { return .standardDarkButtonBackgroundColor(for: context) }
+        return .standardButtonBackgroundColor(for: context)
     }
     
     func standardButtonBackgroundColorForPressedState(for context: KeyboardContext) -> Color {
-        if isPrimaryAction { return context.colorScheme == .dark ? .standardDarkButton(for: context) : .white }
+        if isPrimaryAction { return context.colorScheme == .dark ? .standardDarkButtonBackgroundColor(for: context) : .white }
         if isSystemAction { return .white }
-        return .standardDarkButton(for: context)
+        return .standardDarkButtonBackgroundColor(for: context)
     }
     
     func standardButtonForegroundColorForIdleState(for context: KeyboardContext) -> Color {
         if isPrimaryAction { return .white }
-        return .standardButtonTint(for: context)
+        return .standardButtonForegroundColor(for: context)
     }
     
     func standardButtonForegroundColorForPressedState(for context: KeyboardContext) -> Color {
-        if isPrimaryAction { return context.colorScheme == .dark ? .white : .standardButtonTint(for: context) }
-        return .standardButtonTint(for: context)
+        if isPrimaryAction { return context.colorScheme == .dark ? .white : .standardButtonForegroundColor(for: context) }
+        return .standardButtonForegroundColor(for: context)
     }
 }
 

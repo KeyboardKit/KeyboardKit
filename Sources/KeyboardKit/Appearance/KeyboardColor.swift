@@ -27,15 +27,15 @@ import SwiftUI
  */
 public enum KeyboardColor: String, CaseIterable, Identifiable {
     
-    case standardButton
-    case standardButtonTint
-    case standardDarkButton
-    
+    case standardButtonBackground
+    case standardButtonBackgroundForDarkAppearance
+    case standardButtonForeground
+    case standardButtonForegroundForDarkAppearance
     case standardButtonShadow
-    
-    case standardDarkAppearanceButton
-    case standardDarkAppearanceButtonTint
-    case standardDarkAppearanceDarkButton
+    case standardDarkButtonBackground
+    case standardDarkButtonBackgroundForDarkAppearance
+    case standardKeyboardBackground
+    case standardKeyboardBackgroundForDarkAppearance
     
     /**
      Whether or not to use the `previewColorProvider` when a

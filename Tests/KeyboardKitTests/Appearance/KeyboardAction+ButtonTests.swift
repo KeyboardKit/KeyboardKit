@@ -65,9 +65,9 @@ class KeyboardAction_SystemTests: QuickSpec {
                 expected = actions.filter { !nonStandard.contains($0) }
                 expected.forEach {
                     if $0.isSystemAction {
-                        expect(result(for: $0)).to(equal(Color.standardDarkButton(for: context)))
+                        expect(result(for: $0)).to(equal(Color.standardDarkButtonBackgroundColor(for: context)))
                     } else {
-                        expect(result(for: $0)).to(equal(Color.standardButton(for: context)))
+                        expect(result(for: $0)).to(equal(Color.standardButtonBackgroundColor(for: context)))
                     }
                 }
             }
@@ -170,7 +170,7 @@ class KeyboardAction_SystemTests: QuickSpec {
             it("is standard for all other actions") {
                 expected = actions.filter { !primary.contains($0) }
                 expected.forEach {
-                    expect(result(for: $0)).to(equal(Color.standardButtonTint(for: context)))
+                    expect(result(for: $0)).to(equal(Color.standardButtonForegroundColor(for: context)))
                 }
             }
         }

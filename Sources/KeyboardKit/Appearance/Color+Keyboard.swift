@@ -8,19 +8,24 @@
 
 import SwiftUI
 
+/**
+ These lazy `Color` extensions can be overridden if you want
+ to change the overall appearance of a keyboard extension in
+ the easiest way possible.
+ */
 public extension Color {
     
-    static var standardButton: Color = color(for: .standardButton)
-    static var standardButtonTint: Color = color(for: .standardButtonTint)
-    static var standardDarkButton: Color = color(for: .standardDarkButton)
-    static var standardDarkButtonTint: Color = color(for: .standardButtonTint)
-    
+    static var standardButtonBackground: Color = color(for: .standardButtonBackground)
+    static var standardButtonBackgroundForDarkAppearance: Color = color(for: .standardButtonBackgroundForDarkAppearance)
+    static var standardButtonForeground: Color = color(for: .standardButtonForeground)
+    static var standardButtonForegroundForDarkAppearance: Color = color(for: .standardButtonForegroundForDarkAppearance)
     static var standardButtonShadow: Color = color(for: .standardButtonShadow)
-    
-    static var standardDarkAppearanceButton: Color = color(for: .standardDarkAppearanceButton)
-    static var standardDarkAppearanceButtonTint: Color = color(for: .standardDarkAppearanceButtonTint)
-    static var standardDarkAppearanceDarkButton: Color = color(for: .standardDarkAppearanceDarkButton)
-    static var standardDarkAppearanceDarkButtonTint: Color = color(for: .standardDarkAppearanceButtonTint)
+    static var standardDarkButtonBackground: Color = color(for: .standardDarkButtonBackground)
+    static var standardDarkButtonBackgroundForDarkAppearance: Color = color(for: .standardDarkButtonBackgroundForDarkAppearance)
+    static var standardDarkButtonForeground: Color = color(for: .standardButtonForeground)
+    static var standardDarkButtonForegroundForDarkAppearance: Color = color(for: .standardButtonForegroundForDarkAppearance)
+    static var standardKeyboardBackground: Color = color(for: .standardKeyboardBackground)
+    static var standardKeyboardBackgroundForDarkAppearance: Color = color(for: .standardKeyboardBackgroundForDarkAppearance)
 }
 
 private extension Color {
@@ -44,17 +49,21 @@ struct Color_Keyboard_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            preview(for: .standardButton, name: "standardButton")
-            preview(for: .standardButtonTint, name: "standardButtonTint")
-            preview(for: .standardDarkButton, name: "standardDarkButton")
-            preview(for: .standardDarkButtonTint, name: "standardDarkButtonTint")
-            
-            preview(for: .standardButtonShadow, name: "standardButtonShadow")
-            
-            preview(for: .standardDarkAppearanceButton, name: "standardDarkAppearanceButton")
-            preview(for: .standardDarkAppearanceButtonTint, name: "standardDarkAppearanceButtonTint")
-            preview(for: .standardDarkAppearanceDarkButton, name: "standardDarkAppearanceDarkButton")
-            preview(for: .standardDarkAppearanceDarkButtonTint, name: "standardDarkAppearanceDarkButtonTint")
+            Group {
+                preview(for: .standardButtonBackground, name: "standardButtonBackground")
+                preview(for: .standardButtonBackgroundForDarkAppearance, name: "standardButtonBackgroundForDarkAppearance")
+                preview(for: .standardButtonForeground, name: "standardButtonForeground")
+                preview(for: .standardButtonForegroundForDarkAppearance, name: "standardButtonForegroundForDarkAppearance")
+                preview(for: .standardButtonShadow, name: "standardButtonShadow")
+            }
+            Group {
+                preview(for: .standardDarkButtonBackground, name: "standardDarkButtonBackground")
+                preview(for: .standardDarkButtonBackgroundForDarkAppearance, name: "standardDarkButtonBackgroundForDarkAppearance")
+                preview(for: .standardDarkButtonForeground, name: "standardDarkButtonForeground")
+                preview(for: .standardDarkButtonForegroundForDarkAppearance, name: "standardDarkButtonForegroundForDarkAppearance")
+                preview(for: .standardKeyboardBackground, name: "standardKeyboardBackground")
+                preview(for: .standardKeyboardBackgroundForDarkAppearance, name: "standardKeyboardBackgroundForDarkAppearance")
+            }
         }.previewLayout(.sizeThatFits)
     }
 }

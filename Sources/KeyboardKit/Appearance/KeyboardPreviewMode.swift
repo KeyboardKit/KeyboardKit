@@ -28,13 +28,15 @@ public final class KeyboardPreviewMode {
      */
     public static let colorProvider: ColorProvider = {
         switch $0 {
-        case .standardButton: return .white
+        case .standardButtonBackground: return .white
+        case .standardButtonBackgroundForDarkAppearance: return .gray
+        case .standardButtonForeground: return .black
+        case .standardButtonForegroundForDarkAppearance: return .white
         case .standardButtonShadow: return .black
-        case .standardButtonTint: return .black
-        case .standardDarkAppearanceButton: return .gray
-        case .standardDarkAppearanceButtonTint: return .white
-        case .standardDarkAppearanceDarkButton: return .gray
-        case .standardDarkButton: return .gray
+        case .standardDarkButtonBackground: return .gray
+        case .standardDarkButtonBackgroundForDarkAppearance: return .white
+        case .standardKeyboardBackground: return .gray
+        case .standardKeyboardBackgroundForDarkAppearance: return .white
         }
     }
     

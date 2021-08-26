@@ -10,11 +10,28 @@ Breaking changes can still occur in minor versions and patches, if the alternati
 
 
 
-## 4.7.3
+## 4.8.0
+
+This versions adds new colors, such as the standard keyboard background colors.
+
+The dark appearance colors have been renamed. The old names are now deprecated.
 
 ### ✨ New features
 
 * `KeyboardLocale` is now `Codable`.
+* `KeyboardColor` has new colors.
+* `Color+Keyboard` has new colors.
+
+### 🗑 Deprecations
+
+* Color extensions for the button background colors are now suffixed with `Background`.
+* Color extensions for the button tints colors are now suffixed with `Foreground` instead of `Tint`.
+* Color extensions with the name `standardDarkAppearance*` have been renamed to `standard*ForDarkAppearance`. 
+
+### 💥 Breaking changes
+
+* Since `KeyboardColor` is an enum, the dark appearance cases have been renamed to keep things tight. 
+
 
 
 
@@ -145,7 +162,7 @@ You can either set `KeyboardInputViewController.shared.textInputProxy` directly,
 
 * This version fixes a bug that caused numeric and symbolid keyboards to always switch back to lowercased alphabetic keyboards.
 
-### 🗑 Deprecations (will be removed in 5.0)
+### 🗑 Deprecations
 
 * `BaseKeyboardLayoutProvider` has been renamed to `SystemKeyboardLayoutProvider`.
 * `KeyboardCasing.neutral` is deprecated and will be removed. 
@@ -172,7 +189,7 @@ You can either set `KeyboardInputViewController.shared.textInputProxy` directly,
 
 * This version fixes compile errors in Xcode 12.4.
 
-### 🗑 Deprecations (will be removed in 5.0)
+### 🗑 Deprecations
 
 * `Image.settings` has been renamed to `keyboardSettings`.
 * `Image.moveCursorLeft/Right` have been renamed to `keyboardLeft/Right`.
@@ -222,7 +239,7 @@ This version adds new locales, external keyboard detection, dynamic type disabli
 
 * The German localized newline symbol for Return is now correctly rendered as an image. 
 
-### 🗑 Deprecations (will be removed in 5.0)
+### 🗑 Deprecations
 
 * `KeyboardAction` `standardButtonFont` has been renamed to `standardButtonUIFont`.
 * `KeyboardAction` `standardButtonFontWeight` has been renamed to `standardButtonUIFontWeight`.
@@ -285,7 +302,7 @@ There are also several tweaks and behavior changes that make system keyboards be
 * Standard font sizes are adjusted to fit the native keyboards better.
 * The standard backspace range is now progressive and will increase after backspace has been pressed for a while.
 
-### 🗑 Deprecations (will be removed in 5.0)
+### 🗑 Deprecations
 
 * `KeyboardContext` `deviceOrientation` has been renamed to `screenOrientation`.
 * `UIApplication` `preferredKeyboardInterfaceOrientation` didn't work and will be removed.
@@ -343,7 +360,7 @@ This version introduces a bunch of changes to how feedback is being handled.
 * Audio feedback types have been moved to `Feedback`.
 * Haptic feedback types have been moved to `Feedback`.
 
-### 🗑 Deprecations (will be removed in 5.0)
+### 🗑 Deprecations
 
 * `AudioFeedback` `systemPlayer` has been renamed to `player`.
 * `KeyboardInputViewController` `keyboardStackView` has been replaced with a new `setup(with:)`.
@@ -381,7 +398,7 @@ This version adds support for primary actions, such as `.done`, `.go`, `.search`
 * New line is now considered to be a `word` delimiter instead of a `sentence` delimiter.
 * Due to the new ways to localize content, some signatures must be changed to optional strings.
 
-### 🗑 Deprecations (will be removed in 5.0)
+### 🗑 Deprecations
 
 * `KeyboardAction` `.done`, `.go`, `.ok` and `.search`  have been deprecated and replaced with the new `primary` umbrella type.
 
@@ -449,7 +466,7 @@ KeyboardKit Pro 4.1 also adds more locale-specific providers as well as a real a
 * `KeyboardLocale+key` has been renamed to `id`.
 * `LocaleKey` has been renamed to `KeyboardLocale`.
 
-### 🗑 Deprecations (will be removed in 5.0)
+### 🗑 Deprecations
 
 * `AutocompleteSuggestion+replacement` has been deprecated due to the name change above.
 * `AutocompleteToolbar+buttonBuilder` init has been deprecated and replaced with the `itemBuilder` one.
