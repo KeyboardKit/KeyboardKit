@@ -64,6 +64,6 @@ struct SystemKeyboardSpaceButton_Previews: PreviewProvider {
     
     static var previews: some View {
         SystemKeyboardSpaceButton(actionHandler: actionHandler, appearance: appearance)
-            .environmentObject(KeyboardContext.preview)
+            .keyboardPreview()
     }
 }

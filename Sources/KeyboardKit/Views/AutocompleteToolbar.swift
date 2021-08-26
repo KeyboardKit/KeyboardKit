@@ -144,7 +144,7 @@ struct AutocompleteToolbar_Previews: PreviewProvider {
             AutocompleteToolbar(suggestions: previewSuggestions, itemBuilder: previewItem).previewBar()
         }
         .padding()
-        .environmentObject(KeyboardContext.preview)
+        .keyboardPreview()
     }
     
     static func previewItem(for suggestion: AutocompleteSuggestion) -> AnyView {

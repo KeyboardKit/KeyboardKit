@@ -97,7 +97,6 @@ public struct EmojiCategoryKeyboardMenu: View {
 struct EmojiCategoryKeyboardMenu_Previews: PreviewProvider {
     static var previews: some View {
         EmojiCategoryKeyboardMenu(selection: .constant(.activities))
-            .environmentObject(KeyboardContext.preview)
-            .environmentObject(SecondaryInputCalloutContext.preview)
+            .keyboardPreview()
     }
 }

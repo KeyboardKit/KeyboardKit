@@ -94,12 +94,10 @@ private extension SystemKeyboardSpaceButtonContent {
 
 struct SystemKeyboardSpaceButtonContent_Previews: PreviewProvider {
     
-    static var context = KeyboardContext.preview
-    
     static var previews: some View {
         SystemKeyboardSpaceButtonContent(
             localeText: nil,
             spaceText: "space")
-            .environmentObject(context)
+            .keyboardPreview()
     }
 }

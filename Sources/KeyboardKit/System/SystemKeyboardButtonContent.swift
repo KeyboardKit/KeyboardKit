@@ -89,6 +89,6 @@ struct SystemKeyboardButtonContent_Previews: PreviewProvider {
     
     static var previews: some View {
         SystemKeyboardButtonContent(action: .backspace)
-            .environmentObject(KeyboardContext.preview)
+            .keyboardPreview()
     }
 }

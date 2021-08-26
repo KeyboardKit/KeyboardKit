@@ -120,10 +120,10 @@ struct SystemKeyboardButton_Previews: PreviewProvider {
             button(for: .character("a"))
             button(for: .character("A"))
         }
-        .environmentObject(KeyboardContext.preview)
         .padding()
         .background(Color.gray)
         .cornerRadius(10)
         .environment(\.sizeCategory, .extraExtraLarge)
+        .keyboardPreview()
     }
 }
