@@ -18,7 +18,7 @@ import Foundation
  You can replace this instance with a custom player, e.g. to
  mock functionality when writing tests.
 */
-public enum AudioFeedback: Equatable {
+public enum AudioFeedback: Codable, Equatable {
     
     case
     input,

@@ -11,7 +11,7 @@ import Foundation
 /**
  This struct specifies audio feedback for a custom keyboard.
  */
-public struct AudioFeedbackConfiguration: Equatable {
+public struct AudioFeedbackConfiguration: Codable, Equatable {
     
     public init(
         inputFeedback: AudioFeedback = .input,

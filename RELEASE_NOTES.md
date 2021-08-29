@@ -18,6 +18,7 @@ The dark appearance colors have been renamed. The old names are now deprecated.
 
 ### ✨ New features
 
+* `AudioFeedback` and `AudioFeedbackConfiguration` is now `Codable`.
 * `KeyboardLocale` is now `Codable`.
 * `KeyboardColor` has new colors.
 * `Color+Keyboard` has new colors.
@@ -31,7 +32,6 @@ The dark appearance colors have been renamed. The old names are now deprecated.
 ### 💥 Breaking changes
 
 * Since `KeyboardColor` is an enum, the dark appearance cases have been renamed to keep things tight. 
-
 
 
 
