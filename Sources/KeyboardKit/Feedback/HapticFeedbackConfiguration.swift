@@ -10,8 +10,10 @@ import Foundation
 
 /**
  This struct specifies haptic feedback for a custom keyboard.
+ 
+ `TODO` Make this `Codable` (which requires Xcode 13) in 5.0.
  */
-public struct HapticFeedbackConfiguration: Codable, Equatable {
+public struct HapticFeedbackConfiguration: Equatable {
     
     public init(
         tapFeedback: HapticFeedback = .none,

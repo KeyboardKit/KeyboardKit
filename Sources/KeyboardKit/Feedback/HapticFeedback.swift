@@ -17,8 +17,10 @@ import UIKit
  The feedback enum uses the static `player` to play feedback.
  You can replace this instance with a custom player, e.g. to
  mock functionality when writing tests.
+ 
+ `TODO` Make this `Codable` (which requires Xcode 13) in 5.0.
 */
-public enum HapticFeedback: CaseIterable, Codable, Equatable {
+public enum HapticFeedback: CaseIterable, Equatable {
     
     case
     error,

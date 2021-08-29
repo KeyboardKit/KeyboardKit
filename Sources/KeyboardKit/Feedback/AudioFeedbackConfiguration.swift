@@ -10,8 +10,10 @@ import Foundation
 
 /**
  This struct specifies audio feedback for a custom keyboard.
+ 
+ `TODO` Make this `Codable` (which requires Xcode 13) in 5.0.
  */
-public struct AudioFeedbackConfiguration: Codable, Equatable {
+public struct AudioFeedbackConfiguration: Equatable {
     
     public init(
         inputFeedback: AudioFeedback = .input,

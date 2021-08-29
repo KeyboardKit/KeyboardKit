@@ -18,8 +18,6 @@ The dark appearance colors have been renamed. The old names are now deprecated.
 
 ### ✨ New features
 
-* `AudioFeedback` and `AudioFeedbackConfiguration` is now `Codable`.
-* `HapticFeedback` and `HapticFeedbackConfiguration` is now `Codable`.
 * `KeyboardLocale` is now `Codable`.
 * `KeyboardColor` has new colors.
 * `Color+Keyboard` has new colors.
