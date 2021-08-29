@@ -18,7 +18,7 @@ import UIKit
  You can replace this instance with a custom player, e.g. to
  mock functionality when writing tests.
 */
-public enum HapticFeedback: CaseIterable, Equatable {
+public enum HapticFeedback: CaseIterable, Codable, Equatable {
     
     case
     error,

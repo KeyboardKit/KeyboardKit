@@ -11,7 +11,7 @@ import Foundation
 /**
  This struct specifies haptic feedback for a custom keyboard.
  */
-public struct HapticFeedbackConfiguration: Equatable {
+public struct HapticFeedbackConfiguration: Codable, Equatable {
     
     public init(
         tapFeedback: HapticFeedback = .none,
