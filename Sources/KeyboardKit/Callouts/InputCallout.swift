@@ -72,6 +72,7 @@ private extension InputCallout {
         Text(context.input ?? "")
             .font(style.font)
             .frame(width: buttonSize.width + calloutSize.width, height: calloutSize.height)
+            .foregroundColor(calloutStyle.textColor)
             .background(calloutBackground)
             .offset(y: -buttonSize.height)
     }

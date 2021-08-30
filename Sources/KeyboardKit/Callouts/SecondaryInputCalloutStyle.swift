@@ -22,13 +22,11 @@ public struct SecondaryInputCalloutStyle {
         font: Font = Self.standardFont,
         selectedBackgroundColor: Color = Color.blue,
         selectedTextColor: Color = Color.white,
-        textColor: Color = .primary,
         verticalPadding: CGFloat = 5) {
         self.callout = callout
         self.font = font
         self.selectedBackgroundColor = selectedBackgroundColor
         self.selectedTextColor = selectedTextColor
-        self.textColor = textColor
         self.verticalPadding = verticalPadding
     }
     
@@ -36,7 +34,6 @@ public struct SecondaryInputCalloutStyle {
     public var font: Font
     public var selectedBackgroundColor: Color
     public var selectedTextColor: Color
-    public var textColor: Color
     public var verticalPadding: CGFloat
 }
 

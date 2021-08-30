@@ -22,6 +22,11 @@ The dark appearance colors have been renamed. The old names are now deprecated.
 * `KeyboardColor` has new colors.
 * `Color+Keyboard` has new colors.
 
+### 🐛 Bug fixes
+
+* `InputCallout` now applies the provided style's callout text color.
+* `SecondaryInputCallout` now uses the provided style's callout text color.
+
 ### 🗑 Deprecations
 
 * Color extensions for the button background colors are now suffixed with `Background`.
@@ -30,7 +35,8 @@ The dark appearance colors have been renamed. The old names are now deprecated.
 
 ### 💥 Breaking changes
 
-* Since `KeyboardColor` is an enum, the dark appearance cases have been renamed to keep things tight. 
+* `KeyboardColor`'s dark appearance cases have been renamed to keep things tight.
+* `SecondaryInputCalloutStyle`'s text color property has been removed. Use the callout style's text color instead.  
 
 
 

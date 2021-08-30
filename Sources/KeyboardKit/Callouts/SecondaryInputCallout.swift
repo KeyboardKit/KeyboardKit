@@ -91,7 +91,7 @@ private extension SecondaryInputCallout {
                 Text($0.element)
                     .frame(buttonSize)
                     .background(isSelected($0.offset) ? style.selectedBackgroundColor : .clear)
-                    .foregroundColor(isSelected($0.offset) ? style.selectedTextColor : style.textColor)
+                    .foregroundColor(isSelected($0.offset) ? style.selectedTextColor : style.callout.textColor)
                     .cornerRadius(cornerRadius)
                     .padding(.vertical, style.verticalPadding)
             }
