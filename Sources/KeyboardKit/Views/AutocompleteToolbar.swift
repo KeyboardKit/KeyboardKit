@@ -61,9 +61,11 @@ public struct AutocompleteToolbar: View {
     public typealias SeparatorBuilder = (AutocompleteSuggestion) -> AnyView
     
     public var body: some View {
-        HStack {
-            ForEach(items) {
-                self.view(for: $0)
+        if (!items.isEmpty) {
+            HStack {
+                ForEach(items) {
+                    self.view(for: $0)
+                }
             }
         }
     }
@@ -142,6 +144,7 @@ struct AutocompleteToolbar_Previews: PreviewProvider {
             AutocompleteToolbar(suggestions: previewSuggestions).previewBar()
             AutocompleteToolbar(suggestions: previewSuggestions + [additionalSuggestion]).previewBar()
             AutocompleteToolbar(suggestions: previewSuggestions, itemBuilder: previewItem).previewBar()
+            AutocompleteToolbar(suggestions: [], itemBuilder: previewItem).previewBar()
         }
         .padding()
         .keyboardPreview()
