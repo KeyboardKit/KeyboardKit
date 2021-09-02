@@ -50,7 +50,7 @@ public struct EmojiCategoryKeyboard: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 keyboardProvider(selection, configuration)
             }
-            EmojiCategoryKeyboardMenu(categories: categories, selection: $selection)
+            EmojiCategoryKeyboardMenu(categories: categories, selection: $selection, configuration: configuration)
         }
         .onAppear(perform: initialize)
         .onDisappear(perform: saveCurrentCategory)
