@@ -11,19 +11,22 @@ import SwiftUI
 /**
  This file contains keyboard-specific color extensions.
  
- `IMPORTANT` The KeyboardContext `colorScheme` becomes wrong
- when `keyboardAppearance` is `.dark` and the device runs in
- `.light` mode. The keyboard extension will be told that the
- colorScheme is `.dark` instead of `.light`.
-
- This is WRONG, since "dark appearance" keyboards should NOT
- look the same in light mode and dark mode. However, this is
- how iOS sets up the extension and not a bug in KeyboardKit.
+ These contextual colors may appear to be resolved in a very
+ strange way, but the reason is that iOS currently has a bug
+ that cause `colorScheme` to become incorrect when editing a
+ keyboard with the `keyboardAppearance` set to `.dark`. This
+ will set the `colorScheme` of the extesion to `.dark`, even
+ if the system uses `.light`.
  
- Until this is fixed, set the `Color.darkAppearanceStrategy`
- to a custom strategy if you want to customize KeyboardKit's
- standard strategy of always applying dark appearance colors
- when dark mode is enabled.
+ To work around this bug, the button background colors use a
+ temporary color set with the suffix `ForColorSchemeBug`. It
+ uses dark mode colors that are semi-transparent white, with
+ an opacity that makes them look good in both light mode and
+ dark appearance and dark mode.
+ 
+ For now, we also have a `Color.darkAppearanceStrategy` that
+ makes it possible to customize whether or not to use colors
+ for dark appearance.
  
  Issue report (also reported to Apple in Feedback Assistant):
  https://github.com/danielsaidi/KeyboardKit/issues/305
@@ -35,7 +38,7 @@ public extension Color {
      keyboard.
      */
     static func standardButtonBackgroundColor(for context: KeyboardContext) -> Color {
-        darkAppearanceStrategy(context) ? .standardButtonBackgroundForDarkAppearance : .standardButtonBackground
+        darkAppearanceStrategy(context) ? .standardButtonBackgroundForColorSchemeBug : .standardButtonBackground
     }
     
     /**
@@ -58,7 +61,7 @@ public extension Color {
      keyboard.
      */
     static func standardDarkButtonBackgroundColor(for context: KeyboardContext) -> Color {
-        darkAppearanceStrategy(context) ? .standardDarkButtonBackgroundForDarkAppearance : .standardDarkButtonBackground
+        darkAppearanceStrategy(context) ? .standardButtonBackgroundForColorSchemeBug : .standardDarkButtonBackground
     }
     
     /**
