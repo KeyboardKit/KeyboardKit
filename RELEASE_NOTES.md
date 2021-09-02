@@ -12,15 +12,24 @@ Breaking changes can still occur in minor versions and patches, if the alternati
 
 ## 4.8.0
 
-This versions adds new colors, such as the standard keyboard background colors.
+This versions adds new colors, such as the new standard keyboard background colors, which you can use to mimic keyboard backgrounds.
 
-The dark appearance colors have been renamed. The old names are now deprecated.
+There are new color scheme bug colors as well, which will be used to work around the iOS color scheme bug, described [here](https://github.com/KeyboardKit/KeyboardKit/issues/305) and in the docs.
+
+Finally, the dark appearance colors have been renamed and their old names deprecated.
 
 ### ✨ New features
 
 * `KeyboardLocale` is now `Codable`.
 * `KeyboardColor` has new colors.
 * `Color+Keyboard` has new colors.
+* `.standardButtonBackgroundForColorSchemeBug` is a new color scheme bug color.
+* `.standardDarkButtonBackgroundForColorSchemeBug` is a new color scheme bug color.
+
+### 💡 Behavior changes
+
+* The standard keyboard apperance now uses the new color scheme bug colors, which should make the keyboards look more like the standard ones in dark mode and for dark appearance keyboards. 
+
 
 ### 🐛 Bug fixes
 
