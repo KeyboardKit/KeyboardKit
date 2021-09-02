@@ -40,7 +40,8 @@ public struct SecondaryInputCalloutStyle {
 public extension SecondaryInputCalloutStyle {
     
     /**
-     This is the standard style that will be used by default.
+     This is the standard callout style that will be used by
+     default. It looks like a system keyboard callout.
      */
     static var standard = SecondaryInputCalloutStyle()
     
@@ -53,14 +54,5 @@ public extension SecondaryInputCalloutStyle {
         } else {
             return .body
         }
-    }
-    
-    /**
-     This is the standard style for a system styled callout.
-     */
-    static func systemStyle(for context: KeyboardContext) -> SecondaryInputCalloutStyle {
-        var style = SecondaryInputCalloutStyle.standard
-        style.callout = .systemStyle(for: context)
-        return style
     }
 }

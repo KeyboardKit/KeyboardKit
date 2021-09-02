@@ -48,7 +48,9 @@ public struct CalloutStyle {
 
 public extension CalloutStyle {
     
+    /**
+     This is the standard callout style that will be used by
+     default. It looks like a system keyboard callout.
+     */
     static var standard = CalloutStyle()
-    
-    static func systemStyle(for context: KeyboardContext) -> CalloutStyle { .standard }
 }

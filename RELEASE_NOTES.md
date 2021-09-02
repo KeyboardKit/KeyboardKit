@@ -14,7 +14,9 @@ Breaking changes can still occur in minor versions and patches, if the alternati
 
 This versions adds new colors, such as the new standard keyboard background colors, which you can use to mimic keyboard backgrounds.
 
-There are new color scheme bug colors as well, which will be used to work around the iOS color scheme bug, described [here](https://github.com/KeyboardKit/KeyboardKit/issues/305) and in the docs.
+There are other new colors as well, that are used to work around the iOS color scheme bug, described [here](https://github.com/KeyboardKit/KeyboardKit/issues/305) and in the docs.
+
+This makes it possible for us to finally workaround the dark mode color bug, and let the system keyboard look as the system keyboard in both dark mode and dark appearance keyboards.  
 
 Finally, the dark appearance colors have been renamed and their old names deprecated.
 
@@ -28,7 +30,9 @@ Finally, the dark appearance colors have been renamed and their old names deprec
 
 ### 💡 Behavior changes
 
-* The standard keyboard apperance now uses the new color scheme bug colors, which should make the keyboards look more like the standard ones in dark mode and for dark appearance keyboards. 
+* The standard keyboard apperance now uses the new color scheme bug colors, which should make the keyboards look more like the standard ones in dark mode and for dark appearance keyboards.
+* `CalloutStyle.standard` now uses the look of `systemStyle`, since that IS the standard. The system styles have been deprecated.
+* `SystemKeyboard` uses the new standard callout styles.  
 
 
 ### 🐛 Bug fixes
@@ -41,7 +45,8 @@ Finally, the dark appearance colors have been renamed and their old names deprec
 
 * Color extensions for the button background colors are now suffixed with `Background`.
 * Color extensions for the button tints colors are now suffixed with `Foreground` instead of `Tint`.
-* Color extensions with the name `standardDarkAppearance*` have been renamed to `standard*ForDarkAppearance`. 
+* Color extensions with the name `standardDarkAppearance*` have been renamed to `standard*ForDarkAppearance`.
+* `CalloutStyle.systemStyle`, `InputCalloutStyle.systemStyle` and `SecondaryInputCalloutStyle.systemStyle` are deprecated. 
 
 ### 💥 Breaking changes
 

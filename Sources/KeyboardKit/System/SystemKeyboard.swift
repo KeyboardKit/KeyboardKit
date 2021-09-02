@@ -59,8 +59,8 @@ public struct SystemKeyboard: View {
         VStack(spacing: 0) {
             rows(for: layout)
         }
-        .inputCallout(style: inputCalloutStyle ?? .systemStyle(for: context))
-        .secondaryInputCallout(style: secondaryInputCalloutStyle ?? .systemStyle(for: context))
+        .inputCallout(style: inputCalloutStyle ?? .standard)
+        .secondaryInputCallout(style: secondaryInputCalloutStyle ?? .standard)
     }
 }
 
