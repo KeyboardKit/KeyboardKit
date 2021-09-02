@@ -22,7 +22,7 @@ import KeyboardKit
  */
 struct KeyboardView: View {
     
-    let addTextFieldAboveKeyboard = true
+    let addTextFieldAboveKeyboard = false
     
     let actionHandler: KeyboardActionHandler
     let appearance: KeyboardAppearance

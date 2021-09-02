@@ -17,10 +17,21 @@ public extension View {
         for action: KeyboardAction,
         appearance: KeyboardAppearance,
         isPressed: Bool = false) -> some View {
-        self.background(appearance.buttonBackgroundColor(for: action, isPressed: isPressed))
+        self.background(keyboardButtonBackground(for: action, appearance: appearance, isPressed: isPressed))
             .foregroundColor(appearance.buttonForegroundColor(for: action, isPressed: isPressed))
+            .font(appearance.buttonFont(for: action))
+    }
+}
+
+private extension View {
+    
+    func keyboardButtonBackground(
+        for action: KeyboardAction,
+        appearance: KeyboardAppearance,
+        isPressed: Bool = false) -> some View {
+        appearance
+            .buttonBackgroundColor(for: action, isPressed: isPressed)
             .cornerRadius(appearance.buttonCornerRadius(for: action))
             .shadow(color: appearance.buttonShadowColor(for: action), radius: 0, x: 0, y: 1)
-            .font(appearance.buttonFont(for: action))
     }
 }

@@ -35,6 +35,7 @@ Finally, the dark appearance colors have been renamed and their old names deprec
 
 * `InputCallout` now applies the provided style's callout text color.
 * `SecondaryInputCallout` now uses the provided style's callout text color.
+* `View+Button` now applies shadows in a way that doesn't affect the button content.
 
 ### 🗑 Deprecations
 

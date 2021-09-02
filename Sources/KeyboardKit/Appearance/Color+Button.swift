@@ -61,7 +61,7 @@ public extension Color {
      keyboard.
      */
     static func standardDarkButtonBackgroundColor(for context: KeyboardContext) -> Color {
-        darkAppearanceStrategy(context) ? .standardButtonBackgroundForColorSchemeBug : .standardDarkButtonBackground
+        darkAppearanceStrategy(context) ? .standardDarkButtonBackgroundForColorSchemeBug : .standardDarkButtonBackground
     }
     
     /**

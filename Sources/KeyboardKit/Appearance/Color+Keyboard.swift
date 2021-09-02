@@ -16,7 +16,7 @@ import SwiftUI
 public extension Color {
     
     static var standardButtonBackground: Color = color(for: .standardButtonBackground)
-    static var standardButtonBackgroundForColorSchemeBug: Color = color(for: .standardDarkButtonBackgroundForColorSchemeBug)
+    static var standardButtonBackgroundForColorSchemeBug: Color = color(for: .standardButtonBackgroundForColorSchemeBug)
     static var standardButtonBackgroundForDarkAppearance: Color = color(for: .standardButtonBackgroundForDarkAppearance)
     static var standardButtonForeground: Color = color(for: .standardButtonForeground)
     static var standardButtonForegroundForDarkAppearance: Color = color(for: .standardButtonForegroundForDarkAppearance)
