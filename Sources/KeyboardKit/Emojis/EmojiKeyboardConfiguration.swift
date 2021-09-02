@@ -25,11 +25,13 @@ public struct EmojiKeyboardConfiguration {
     public init(
         itemSize: CGFloat = 40,
         font: Font = .system(size: 33),
+        categoryFont: Font = .system(size: 20),
         rows: Int = 5,
         horizontalSpacing: CGFloat = 10,
         verticalSpacing: CGFloat = 6) {
         self.itemSize = itemSize
         self.font = font
+        self.categoryFont = categoryFont
         self.rows = rows
         self.horizontalSpacing = horizontalSpacing
         self.verticalSpacing = verticalSpacing
@@ -37,6 +39,7 @@ public struct EmojiKeyboardConfiguration {
     
     public let itemSize: CGFloat
     public let font: Font
+    public let categoryFont: Font
     public let rows: Int
     public let horizontalSpacing: CGFloat
     public let verticalSpacing: CGFloat
