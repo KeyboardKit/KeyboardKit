@@ -18,9 +18,9 @@ import SwiftUI
 public struct CalloutStyle {
     
     public init(
-        backgroundColor: Color = .white,
+        backgroundColor: Color = .standardButtonBackground,
         borderColor: Color = Color.black.opacity(0.5),
-        buttonOverlayInset: CGSize = .zero,
+        buttonOverlayInset: CGSize = CGSize(width: 3, height: 6),
         cornerRadius: CGFloat = 5,
         curveSize: CGFloat = 10,
         shadowColor: Color = Color.black.opacity(0.1),
@@ -50,12 +50,5 @@ public extension CalloutStyle {
     
     static var standard = CalloutStyle()
     
-    static func systemStyle(for context: KeyboardContext) -> CalloutStyle {
-        let action = KeyboardAction.character("")
-        var style = CalloutStyle.standard
-        style.backgroundColor = action.standardButtonBackgroundColor(for: context)
-        style.buttonOverlayInset.width = 3
-        style.buttonOverlayInset.height = 6
-        return style
-    }
+    static func systemStyle(for context: KeyboardContext) -> CalloutStyle { .standard }
 }
