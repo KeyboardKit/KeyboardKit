@@ -29,11 +29,13 @@ public final class KeyboardPreviewMode {
     public static let colorProvider: ColorProvider = {
         switch $0 {
         case .standardButtonBackground: return .white
+        case .standardButtonBackgroundForColorSchemeBug: return .gray
         case .standardButtonBackgroundForDarkAppearance: return .gray
         case .standardButtonForeground: return .black
         case .standardButtonForegroundForDarkAppearance: return .white
         case .standardButtonShadow: return .black
         case .standardDarkButtonBackground: return .gray
+        case .standardDarkButtonBackgroundForColorSchemeBug: return .white
         case .standardDarkButtonBackgroundForDarkAppearance: return .white
         case .standardKeyboardBackground: return .gray
         case .standardKeyboardBackgroundForDarkAppearance: return .white

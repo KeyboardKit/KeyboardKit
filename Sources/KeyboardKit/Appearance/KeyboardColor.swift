@@ -28,11 +28,13 @@ import SwiftUI
 public enum KeyboardColor: String, CaseIterable, Identifiable {
     
     case standardButtonBackground
+    case standardButtonBackgroundForColorSchemeBug
     case standardButtonBackgroundForDarkAppearance
     case standardButtonForeground
     case standardButtonForegroundForDarkAppearance
     case standardButtonShadow
     case standardDarkButtonBackground
+    case standardDarkButtonBackgroundForColorSchemeBug
     case standardDarkButtonBackgroundForDarkAppearance
     case standardKeyboardBackground
     case standardKeyboardBackgroundForDarkAppearance
