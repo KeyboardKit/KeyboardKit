@@ -17,21 +17,37 @@ public extension View {
         for action: KeyboardAction,
         appearance: KeyboardAppearance,
         isPressed: Bool = false) -> some View {
-        self.background(keyboardButtonBackground(for: action, appearance: appearance, isPressed: isPressed))
+        let style = SystemKeyboardButtonBodyStyle(
+            buttonColor: appearance.buttonBackgroundColor(for: action, isPressed: isPressed),
+            cornerRadius: appearance.buttonCornerRadius(for: action),
+            shadowColor: appearance.buttonShadowColor(for: action),
+            shadowHeight: 1)
+        return self.background(SystemKeyboardButtonBody(style: style))
             .foregroundColor(appearance.buttonForegroundColor(for: action, isPressed: isPressed))
             .font(appearance.buttonFont(for: action))
     }
 }
 
-private extension View {
+struct View_Button_Previews: PreviewProvider {
     
-    func keyboardButtonBackground(
-        for action: KeyboardAction,
-        appearance: KeyboardAppearance,
-        isPressed: Bool = false) -> some View {
-        appearance
-            .buttonBackgroundColor(for: action, isPressed: isPressed)
-            .cornerRadius(appearance.buttonCornerRadius(for: action))
-            .shadow(color: appearance.buttonShadowColor(for: action), radius: 0, x: 0, y: 1)
+    static func button(for action: KeyboardAction) -> some View {
+        SystemKeyboardButton(
+            action: action,
+            actionHandler: PreviewKeyboardActionHandler(),
+            appearance: PreviewKeyboardAppearance()) {
+                $0.padding()
+            }
+    }
+    
+    static var previews: some View {
+        VStack {
+            button(for: .character("a"))
+            button(for: .character("A"))
+        }
+        .padding()
+        .background(Color.gray)
+        .cornerRadius(10)
+        .environment(\.sizeCategory, .extraExtraLarge)
+        .keyboardPreview()
     }
 }

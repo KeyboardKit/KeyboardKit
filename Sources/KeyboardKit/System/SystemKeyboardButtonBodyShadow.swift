@@ -1,0 +1,53 @@
+//
+//  SystemKeyboardButtonBodyShadow.swift
+//  KeyboardKit
+//
+//  Created by Daniel Saidi on 2021-09-02.
+//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//
+
+import SwiftUI
+
+/**
+ This view represents the bottom shadow of a standard system
+ keyboard button. Instead of being added as a shadow, it has
+ to be added as an overlay, and will cut out the shadow that
+ will be placed below the button shape.
+ 
+ This makes it possible to have an opaque shadow, even for a
+ button that has a semi-transparent color. This is needed to
+ render the shadow properly for the dark mode bug workaround
+ colors, which are semi-transparent in dark mode.
+ */
+struct SystemKeyboardButtonShadow: View {
+    
+    let style: SystemKeyboardButtonBodyStyle
+    
+    var body: some View {
+        buttonShape
+            .foregroundColor(style.shadowColor)
+            .offset(y: style.shadowHeight)
+            .mask(buttonMask)
+    }
+}
+
+extension SystemKeyboardButtonShadow {
+    
+    var buttonMask: some View {
+        GeometryReader {
+            let frame = CGRect(origin: .zero, size: $0.size)
+            let path: Path = {
+                var path = Rectangle()
+                    .inset(by: -style.shadowHeight)
+                    .path(in: frame)
+                path.addPath(buttonShape.path(in: frame))
+                return path
+            }()
+            path.fill(style: FillStyle(eoFill: true))
+        }
+    }
+    
+    var buttonShape: RoundedRectangle {
+        RoundedRectangle(cornerRadius: style.cornerRadius)
+    }
+}

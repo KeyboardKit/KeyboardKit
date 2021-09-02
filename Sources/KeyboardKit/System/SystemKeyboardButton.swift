@@ -112,7 +112,9 @@ struct SystemKeyboardButton_Previews: PreviewProvider {
         SystemKeyboardButton(
             action: action,
             actionHandler: PreviewKeyboardActionHandler(),
-            appearance: PreviewKeyboardAppearance())
+            appearance: PreviewKeyboardAppearance()) {
+                $0.padding()
+            }
     }
     
     static var previews: some View {
