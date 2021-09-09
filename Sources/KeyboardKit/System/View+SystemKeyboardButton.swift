@@ -14,20 +14,7 @@ public extension View {
      Apply a system keyboard button style using the provided
      `appearance` for the given `action`.
      */
-    func systemKeyboardButtonStyle(
-        for action: KeyboardAction,
-        appearance: KeyboardAppearance,
-        isPressed: Bool = false) -> some View {
-        self.systemKeyboardButtonStyle(
-            style: appearance.systemKeyboardButtonStyle(for: action, isPressed: isPressed)
-        )
-    }
-    
-    /**
-     Apply a system keyboard button style using the provided
-     `appearance` for the given `action`.
-     */
-    func systemKeyboardButtonStyle(style: SystemKeyboardButtonStyle) -> some View {
+    func systemKeyboardButtonStyle(_ style: SystemKeyboardButtonStyle) -> some View {
         self.background(SystemKeyboardButtonBody(style: style))
             .foregroundColor(style.foregroundColor)
             .font(style.font)

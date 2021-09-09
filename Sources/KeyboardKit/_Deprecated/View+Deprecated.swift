@@ -8,7 +8,7 @@ public extension View {
         appearance: KeyboardAppearance,
         isPressed: Bool = false) -> some View {
             self.systemKeyboardButtonStyle(
-                style: appearance.systemKeyboardButtonStyle(for: action, isPressed: isPressed)
+                appearance.systemKeyboardButtonStyle(for: action, isPressed: isPressed)
             )
         }
 }

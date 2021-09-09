@@ -25,7 +25,7 @@ It also exposes more system keyboard views and styles publicly.
 * `SystemKeyboardButtonStyle` is a new style that can be used to define a system keyboard button style. 
 * `SystemKeyboardButtonBorderStyle` is a new style that can be used to define a system keyboard button border.
 * `SystemKeyboardButtonShadowStyle` is a new style that can be used to define a system keyboard button shadow.
-* The `systemKeyboardButtonStyle` view extension has a new style-based signature.
+* `View+systemKeyboardButtonStyle` view extension now taes a style instead of an apperance, action and isPressed bool.
 
 ### 🐛 Bug fixes
 
@@ -34,7 +34,7 @@ It also exposes more system keyboard views and styles publicly.
 ### 🗑 Deprecations
 
 * `KeyboardAppearance` has deprecated all functions that now can be fetched from the new `systemKeyboardButtonStyle` style.
-* The `keyboardButtonStyle` view extension has been renamed `systemKeyboardButtonStyle`. 
+* `View+keyboardButtonStyle` has been replaced with `View+systemKeyboardButtonStyle`. 
 
 
 

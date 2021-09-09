@@ -56,9 +56,7 @@ public struct SystemKeyboardButton<Content: View>: View {
     public var body: some View {
         buttonContent
             .systemKeyboardButtonStyle(
-                for: action,
-                appearance: appearance,
-                isPressed: isPressed)
+                appearance.systemKeyboardButtonStyle(for: action, isPressed: isPressed))
             .keyboardGestures(
                 for: action,
                 context: context,
