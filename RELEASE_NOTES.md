@@ -10,10 +10,11 @@ Breaking changes can still occur in minor versions and patches, if the alternati
 
 
 
-## 4.8.1
+## 4.9.0
 
 ### ✨ New features
 
+* `KeyboardAppearance` has a new `systemKeyboardButtonStyle` function.
 * `NextKeyboardButton` has an iOS 14 exclusive `Color`-based initializer that is now used by `SystemKeyboardButtonContent`
 * `SystemKeyboardButtonBody` is a new view that represents the body of a system keyboard button.
 * `SystemKeyboardButtonShadow` is a new view that represents the shadow of a system keyboard button.
@@ -24,6 +25,10 @@ Breaking changes can still occur in minor versions and patches, if the alternati
 ### 🐛 Bug fixes
 
 * `SystemKeyboardButtonContent` now applies the appearance text color to the "next keyboard" button (on iOS 14+).
+
+### 🗑 Deprecations
+
+* `KeyboardAppearance` has deprecated all functions that now can be fetched from the new `systemKeyboardButtonStyle` style. 
 
 
 
