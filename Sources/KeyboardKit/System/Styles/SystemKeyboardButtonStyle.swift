@@ -28,10 +28,10 @@ public struct SystemKeyboardButtonStyle {
             self.shadow = shadow
         }
     
-    public let backgroundColor: Color
-    public let foregroundColor: Color
-    public let font: Font
-    public let cornerRadius: CGFloat
-    public let border: SystemKeyboardButtonBorderStyle
-    public let shadow: SystemKeyboardButtonShadowStyle
+    public var backgroundColor: Color
+    public var foregroundColor: Color
+    public var font: Font
+    public var cornerRadius: CGFloat
+    public var border: SystemKeyboardButtonBorderStyle
+    public var shadow: SystemKeyboardButtonShadowStyle
 }

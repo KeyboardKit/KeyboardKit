@@ -21,6 +21,6 @@ public struct SystemKeyboardButtonShadowStyle {
         self.size = size
     }
     
-    public let color: Color
-    public let size: CGFloat
+    public var color: Color
+    public var size: CGFloat
 }
