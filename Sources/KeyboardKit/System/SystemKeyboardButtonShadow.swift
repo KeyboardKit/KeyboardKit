@@ -19,11 +19,15 @@ import SwiftUI
  render the shadow properly for the dark mode bug workaround
  colors, which are semi-transparent in dark mode.
  */
-struct SystemKeyboardButtonShadow: View {
+public struct SystemKeyboardButtonShadow: View {
     
-    let style: SystemKeyboardButtonStyle
+    public init(style: SystemKeyboardButtonStyle) {
+        self.style = style
+    }
     
-    var body: some View {
+    private let style: SystemKeyboardButtonStyle
+    
+    public var body: some View {
         buttonShape
             .foregroundColor(style.shadow.color)
             .offset(y: style.shadow.size)
@@ -31,7 +35,7 @@ struct SystemKeyboardButtonShadow: View {
     }
 }
 
-extension SystemKeyboardButtonShadow {
+private extension SystemKeyboardButtonShadow {
     
     var buttonMask: some View {
         GeometryReader {

@@ -15,7 +15,8 @@ Breaking changes can still occur in minor versions and patches, if the alternati
 ### ✨ New features
 
 * `NextKeyboardButton` has an iOS 14 exclusive `Color`-based initializer that is now used by `SystemKeyboardButtonContent`
-* `SystemKeyboardButtonBody` is a new view that represents the body of a system keyboard button.1
+* `SystemKeyboardButtonBody` is a new view that represents the body of a system keyboard button.
+* `SystemKeyboardButtonShadow` is a new view that represents the shadow of a system keyboard button.
 * `SystemKeyboardButtonStyle` is a new style that can be used to define a system keyboard button style. 
 * `SystemKeyboardButtonBorderStyle` is a new style that can be used to define a system keyboard button border.
 * `SystemKeyboardButtonShadowStyle` is a new style that can be used to define a system keyboard button shadow.
