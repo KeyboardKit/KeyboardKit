@@ -19,8 +19,6 @@ import SwiftUI
  */
 public protocol KeyboardAppearance {
     
-    var keyboardBackgroundColor: Color { get }
-    
     func buttonImage(for action: KeyboardAction) -> Image?
     func buttonText(for action: KeyboardAction) -> String?
     func systemKeyboardButtonStyle(for action: KeyboardAction, isPressed: Bool) -> SystemKeyboardButtonStyle
@@ -38,6 +36,4 @@ public protocol KeyboardAppearance {
     func buttonForegroundColor(for action: KeyboardAction, isPressed: Bool) -> Color
     @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
     func buttonShadowColor(for action: KeyboardAction) -> Color
-    
-    
 }

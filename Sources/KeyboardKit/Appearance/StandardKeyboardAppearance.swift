@@ -24,19 +24,27 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     
     private let context: KeyboardContext
     
-    open var keyboardBackgroundColor: Color { .clear }
-    
+    /**
+     The button image to use for a certain `action`, if any.
+     */
     open func buttonImage(for action: KeyboardAction) -> Image? {
         action.standardButtonImage(
             for: context)
     }
     
+    /**
+     The button text to use for a certain `action`, if any.
+     */
     open func buttonText(for action: KeyboardAction) -> String? {
         action.standardButtonText(
             for: context)
     }
     
-    public func systemKeyboardButtonStyle(for action: KeyboardAction, isPressed: Bool) -> SystemKeyboardButtonStyle {
+    /**
+     The style to apply to system keyboard buttons when they
+     are presenting the provided action.
+     */
+    open func systemKeyboardButtonStyle(for action: KeyboardAction, isPressed: Bool) -> SystemKeyboardButtonStyle {
         SystemKeyboardButtonStyle(
             backgroundColor: action.standardButtonBackgroundColor(for: context, isPressed: isPressed),
             foregroundColor: action.standardButtonForegroundColor(for: context, isPressed: isPressed),
