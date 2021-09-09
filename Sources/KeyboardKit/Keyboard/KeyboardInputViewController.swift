@@ -59,11 +59,6 @@ open class KeyboardInputViewController: UIInputViewController {
         super.traitCollectionDidChange(previousTraitCollection)
     }
     
-    open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        DispatchQueue.main.async { self.keyboardContext.sync(with: self) }
-    }
-    
     
     // MARK: - Root View
     

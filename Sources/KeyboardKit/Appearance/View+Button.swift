@@ -17,15 +17,12 @@ public extension View {
         for action: KeyboardAction,
         appearance: KeyboardAppearance,
         isPressed: Bool = false) -> some View {
-        let style = SystemKeyboardButtonBodyStyle(
-            buttonColor: appearance.buttonBackgroundColor(for: action, isPressed: isPressed),
-            cornerRadius: appearance.buttonCornerRadius(for: action),
-            shadowColor: appearance.buttonShadowColor(for: action),
-            shadowHeight: 1)
-        return self.background(SystemKeyboardButtonBody(style: style))
-            .foregroundColor(appearance.buttonForegroundColor(for: action, isPressed: isPressed))
-            .font(appearance.buttonFont(for: action))
-    }
+            let style = SystemKeyboardButtonStyle(action: action, appearance: appearance, isPressed: isPressed)
+            return self
+                .background(SystemKeyboardButtonBody(style: style))
+                .foregroundColor(style.foregroundColor)
+                .font(appearance.buttonFont(for: action))
+        }
 }
 
 struct View_Button_Previews: PreviewProvider {

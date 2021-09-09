@@ -21,12 +21,12 @@ import SwiftUI
  */
 struct SystemKeyboardButtonShadow: View {
     
-    let style: SystemKeyboardButtonBodyStyle
+    let style: SystemKeyboardButtonStyle
     
     var body: some View {
         buttonShape
-            .foregroundColor(style.shadowColor)
-            .offset(y: style.shadowHeight)
+            .foregroundColor(style.shadow.color)
+            .offset(y: style.shadow.size)
             .mask(buttonMask)
     }
 }
@@ -38,7 +38,7 @@ extension SystemKeyboardButtonShadow {
             let frame = CGRect(origin: .zero, size: $0.size)
             let path: Path = {
                 var path = Rectangle()
-                    .inset(by: -style.shadowHeight)
+                    .inset(by: -style.shadow.size)
                     .path(in: frame)
                 path.addPath(buttonShape.path(in: frame))
                 return path

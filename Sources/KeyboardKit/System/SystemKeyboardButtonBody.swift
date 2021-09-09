@@ -10,20 +10,48 @@ import SwiftUI
 
 /**
  This view represents the body of a standard system keyboard
- button, which is the standard button type in iOS keyboards.
- 
- This view will apply a `backgroundColor` and a `shadowColor`
- with a `shadowSize` height, that is added below it. It then
- applies a corner radius and adds the provided content above
- everything.
+ button, which represents the buttons in an iOS keyboard.
  */
-struct SystemKeyboardButtonBody: View {
+public struct SystemKeyboardButtonBody: View {
     
-    let style: SystemKeyboardButtonBodyStyle
+    public init(style: SystemKeyboardButtonStyle) {
+        self.style = style
+    }
     
-    var body: some View {
-        style.buttonColor
+    private let style: SystemKeyboardButtonStyle
+    
+    public var body: some View {
+        RoundedRectangle(cornerRadius: style.cornerRadius)
+            .strokeBorder(style.border.color, lineWidth: style.border.size)
+            .background(style.backgroundColor)
             .cornerRadius(style.cornerRadius)
             .overlay(SystemKeyboardButtonShadow(style: style))
+    }
+}
+
+struct SystemKeyboardButtonBody_Previews: PreviewProvider {
+    
+    static func body(for action: KeyboardAction) -> SystemKeyboardButtonBody {
+        let style = SystemKeyboardButtonStyle(
+            backgroundColor: .yellow,
+            foregroundColor: .white,
+            cornerRadius: 20,
+            border: SystemKeyboardButtonBorderStyle(color: .red, size: 3),
+            shadow: SystemKeyboardButtonShadowStyle(color: .blue, size: 4)
+        )
+        return SystemKeyboardButtonBody(style: style)
+    }
+    
+    static var previews: some View {
+        VStack {
+            body(for: .character("a"))
+            body(for: .character("A"))
+            body(for: .backspace)
+        }
+        .padding()
+        .background(Color.gray)
+        .cornerRadius(10)
+        .environment(\.sizeCategory, .extraExtraLarge)
+        .keyboardPreview()
     }
 }
