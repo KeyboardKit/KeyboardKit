@@ -37,7 +37,11 @@ public struct SystemKeyboardButtonContent: View {
     @ViewBuilder
     public var body: some View {
         if action == .nextKeyboard {
-            NextKeyboardButton()
+            if #available(iOS 14.0, *) {
+                NextKeyboardButton(tintColor: appearance.buttonForegroundColor(for: .nextKeyboard, isPressed: false))
+            } else {
+                NextKeyboardButton()
+            }
         } else if let image = buttonImage {
             image.flipped(for: context)
         } else if let text = buttonText {

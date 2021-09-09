@@ -30,9 +30,9 @@ struct KeyboardView: View {
     
     @State private var text = "Text"
     
-    @EnvironmentObject var autocompleteContext: AutocompleteContext
-    @EnvironmentObject var keyboardContext: KeyboardContext
-    @EnvironmentObject var toastContext: KeyboardToastContext
+    @EnvironmentObject private var autocompleteContext: AutocompleteContext
+    @EnvironmentObject private var keyboardContext: KeyboardContext
+    @EnvironmentObject private var toastContext: KeyboardToastContext
     
     var body: some View {
         keyboardView.keyboardToast(

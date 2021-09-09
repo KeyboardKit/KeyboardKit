@@ -10,6 +10,18 @@ Breaking changes can still occur in minor versions and patches, if the alternati
 
 
 
+## 4.8.1
+
+### ✨ New features
+
+* `NextKeyboardButton` has an iOS 14 exclusive `Color`-based initializer that is now used by `SystemKeyboardButtonContent` 
+
+### 🐛 Bug fixes
+
+* `SystemKeyboardButtonContent` now applies the appearance text color to the "next keyboard" button (on iOS 14+).
+
+
+
 ## 4.8.0
 
 This versions adds new colors, such as the new standard keyboard background colors, which you can use to mimic keyboard backgrounds.
