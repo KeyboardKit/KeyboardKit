@@ -22,12 +22,14 @@ public struct SystemKeyboardButtonContent: View {
         text: String? = nil,
         image: Image? = nil) {
         self.appearance = appearance
+        self.style = appearance.systemKeyboardButtonStyle(for: action, isPressed: false)
         self.action = action
         self.text = text
         self.image = image
     }
     
     private let appearance: KeyboardAppearance
+    private let style: SystemKeyboardButtonStyle
     private let action: KeyboardAction
     private let image: Image?
     private let text: String?
@@ -38,7 +40,7 @@ public struct SystemKeyboardButtonContent: View {
     public var body: some View {
         if action == .nextKeyboard {
             if #available(iOS 14.0, *) {
-                NextKeyboardButton(tintColor: appearance.buttonForegroundColor(for: .nextKeyboard, isPressed: false))
+                NextKeyboardButton(tintColor: style.foregroundColor)
             } else {
                 NextKeyboardButton()
             }

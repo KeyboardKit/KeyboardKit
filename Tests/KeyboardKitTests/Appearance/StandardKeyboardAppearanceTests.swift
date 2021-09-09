@@ -30,23 +30,45 @@ class StandardKeyboardAppearanceTests: QuickSpec {
             }
         }
         
-        describe("button background color") {
+        describe("system keyboard button style") {
             
-            it("is standard for all actions except primary actions") {
-                KeyboardAction.testActions.forEach {
-                    let result = appearance.buttonBackgroundColor(for: $0, isPressed: false)
-                    let expected: Color = $0.isPrimaryAction ? .blue : $0.standardButtonBackgroundColor(for: context)
+            var styles: [(action: KeyboardAction, style: SystemKeyboardButtonStyle)]!
+            
+            beforeEach {
+                styles = KeyboardAction.testActions.map {
+                    (action: $0, style: appearance.systemKeyboardButtonStyle(for: $0, isPressed: false))
+                }
+            }
+            
+            it("backgroundColor is standard for all actions except primary actions") {
+                styles.forEach {
+                    let result = $0.style.backgroundColor
+                    let expected: Color = $0.action.isPrimaryAction ? .blue : $0.action.standardButtonBackgroundColor(for: context)
                     expect(result).to(equal(expected))
                 }
             }
-        }
-        
-        describe("button corner radius") {
             
-            it("is standard for all actions") {
-                KeyboardAction.testActions.forEach {
-                    let result = appearance.buttonCornerRadius(for: $0)
-                    expect(result).to(equal(4))
+            it("buttonCornerRadius is standard for all actions") {
+                styles.forEach {
+                    let result = $0.style.cornerRadius
+                    let expected: CGFloat = .standardKeyboardButtonCornerRadius(for: context.device)
+                    expect(result).to(equal(expected))
+                }
+            }
+            
+            it("buttonForegroundColor is standard for all actions except primary actions") {
+                styles.forEach {
+                    let result = $0.style.foregroundColor
+                    let expected: Color = $0.action.isPrimaryAction ? .white : $0.action.standardButtonForegroundColor(for: context)
+                    expect(result).to(equal(expected))
+                }
+            }
+            
+            it("buttonShadowColor is standard for all actions") {
+                styles.forEach {
+                    let result = $0.style.shadow.color
+                    let standard = $0.action.standardButtonShadowColor(for: context)
+                    expect(result).to(equal(standard))
                 }
             }
         }
@@ -62,17 +84,6 @@ class StandardKeyboardAppearanceTests: QuickSpec {
             }
         }
         
-        describe("button foreground color") {
-            
-            it("is standard for all actions except primary actions") {
-                KeyboardAction.testActions.forEach {
-                    let result = appearance.buttonForegroundColor(for: $0, isPressed: false)
-                    let expected: Color = $0.isPrimaryAction ? .white : $0.standardButtonForegroundColor(for: context)
-                    expect(result).to(equal(expected))
-                }
-            }
-        }
-        
         describe("button image") {
             
             it("is standard for all actions") {
@@ -80,17 +91,6 @@ class StandardKeyboardAppearanceTests: QuickSpec {
                     let result = appearance.buttonImage(for: $0)
                     let standard = $0.standardButtonImage(for: context)
                     result.expectEqual(to: standard)
-                }
-            }
-        }
-        
-        describe("button shadow color") {
-            
-            it("is standard for all actions") {
-                KeyboardAction.testActions.forEach {
-                    let result = appearance.buttonShadowColor(for: $0)
-                    let standard = $0.standardButtonShadowColor(for: context)
-                    expect(result).to(equal(standard))
                 }
             }
         }
