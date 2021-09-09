@@ -45,7 +45,7 @@ public struct SystemKeyboardSpaceButton: View {
     
     public var body: some View {
         content
-            .keyboardButtonStyle(
+            .systemKeyboardButtonStyle(
                 for: action,
                 appearance: appearance,
                 isPressed: isPressed)

@@ -1,5 +1,5 @@
 //
-//  View+Button.swift
+//  View+SystemKeyboardButton.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-06-24.
@@ -11,9 +11,10 @@ import SwiftUI
 public extension View {
     
     /**
-     Apply a keyboard button appearance to the view.
+     Apply a system keyboard button style using the provided
+     `appearance` for the given `action`.
      */
-    func keyboardButtonStyle(
+    func systemKeyboardButtonStyle(
         for action: KeyboardAction,
         appearance: KeyboardAppearance,
         isPressed: Bool = false) -> some View {

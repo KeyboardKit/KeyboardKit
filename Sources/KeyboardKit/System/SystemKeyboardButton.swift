@@ -55,7 +55,7 @@ public struct SystemKeyboardButton<Content: View>: View {
     @ViewBuilder
     public var body: some View {
         buttonContent
-            .keyboardButtonStyle(
+            .systemKeyboardButtonStyle(
                 for: action,
                 appearance: appearance,
                 isPressed: isPressed)

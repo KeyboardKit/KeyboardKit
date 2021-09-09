@@ -1,0 +1,12 @@
+import SwiftUI
+
+public extension View {
+    
+    @available(*, deprecated, renamed: "systemKeyboardButtonStyle")
+    func keyboardButtonStyle(
+        for action: KeyboardAction,
+        appearance: KeyboardAppearance,
+        isPressed: Bool = false) -> some View {
+            systemKeyboardButtonStyle(for: action, appearance: appearance, isPressed: isPressed)
+        }
+}

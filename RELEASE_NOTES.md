@@ -12,6 +12,10 @@ Breaking changes can still occur in minor versions and patches, if the alternati
 
 ## 4.9.0
 
+This version adds styles, which makes it a lot easier to style system keyboards.
+
+It also exposes more system keyboard views and styles publicly.
+
 ### ✨ New features
 
 * `KeyboardAppearance` has a new `systemKeyboardButtonStyle` function.

@@ -51,7 +51,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
             .frame(maxWidth: .infinity)
             .frame(height: item.size.height - item.insets.top - item.insets.bottom)
             .rowItemWidth(for: item, totalWidth: keyboardWidth, referenceWidth: inputWidth)
-            .keyboardButtonStyle(
+            .systemKeyboardButtonStyle(
                 for: item.action,
                 appearance: appearance,
                 isPressed: isPressed)
