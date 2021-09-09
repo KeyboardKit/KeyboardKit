@@ -30,6 +30,28 @@ class StandardKeyboardAppearanceTests: QuickSpec {
             }
         }
         
+        describe("button image") {
+            
+            it("is standard for all actions") {
+                KeyboardAction.testActions.forEach {
+                    let result = appearance.buttonImage(for: $0)
+                    let standard = $0.standardButtonImage(for: context)
+                    result.expectEqual(to: standard)
+                }
+            }
+        }
+        
+        describe("button text") {
+            
+            it("is standard for all actions") {
+                KeyboardAction.testActions.forEach {
+                    let result = appearance.buttonText(for: $0)
+                    let standard = $0.standardButtonText(for: context)
+                    result.expectEqual(to: standard)
+                }
+            }
+        }
+        
         describe("system keyboard button style") {
             
             var styles: [(action: KeyboardAction, style: SystemKeyboardButtonStyle)]!
@@ -71,38 +93,11 @@ class StandardKeyboardAppearanceTests: QuickSpec {
                     expect(result).to(equal(standard))
                 }
             }
-        }
-        
-        describe("button font") {
             
-            func result(for action: KeyboardAction) -> Font {
-                appearance.buttonFont(for: action)
-            }
-            
-            it("is lightweight if action has image") {
-                expect(result(for: .backspace)).toNot(equal(result(for: .character(""))))
-            }
-        }
-        
-        describe("button image") {
-            
-            it("is standard for all actions") {
-                KeyboardAction.testActions.forEach {
-                    let result = appearance.buttonImage(for: $0)
-                    let standard = $0.standardButtonImage(for: context)
-                    result.expectEqual(to: standard)
-                }
-            }
-        }
-        
-        describe("button text") {
-            
-            it("is standard for all actions") {
-                KeyboardAction.testActions.forEach {
-                    let result = appearance.buttonText(for: $0)
-                    let standard = $0.standardButtonText(for: context)
-                    result.expectEqual(to: standard)
-                }
+            it("buttonFont is lightweight if action has image") {
+                let backspace = appearance.systemKeyboardButtonStyle(for: .backspace, isPressed: false).font
+                let character = appearance.systemKeyboardButtonStyle(for: .character(""), isPressed: false).font
+                expect(backspace).toNot(equal(character))
             }
         }
     }

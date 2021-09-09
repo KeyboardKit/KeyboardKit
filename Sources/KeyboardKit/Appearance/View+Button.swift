@@ -21,7 +21,7 @@ public extension View {
             return self
                 .background(SystemKeyboardButtonBody(style: style))
                 .foregroundColor(style.foregroundColor)
-                .font(appearance.buttonFont(for: action))
+                .font(style.font)
         }
 }
 

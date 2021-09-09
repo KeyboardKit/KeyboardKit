@@ -26,12 +26,6 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     
     open var keyboardBackgroundColor: Color { .clear }
     
-    open func buttonFont(for action: KeyboardAction) -> Font {
-        let rawFont = action.standardButtonFont(for: context)
-        guard let weight = fontWeight(for: action) else { return rawFont }
-        return rawFont.weight(weight)
-    }
-    
     open func buttonImage(for action: KeyboardAction) -> Image? {
         action.standardButtonImage(
             for: context)
@@ -46,6 +40,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         SystemKeyboardButtonStyle(
             backgroundColor: action.standardButtonBackgroundColor(for: context, isPressed: isPressed),
             foregroundColor: action.standardButtonForegroundColor(for: context, isPressed: isPressed),
+            font: font(for: action),
             cornerRadius: .standardKeyboardButtonCornerRadius(for: context.device),
             border: .noBorder,
             shadow: SystemKeyboardButtonShadowStyle(
@@ -71,6 +66,11 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     }
     
     @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
+    open func buttonFont(for action: KeyboardAction) -> Font {
+        font(for: action)
+    }
+    
+    @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
     open func buttonForegroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
         systemKeyboardButtonStyle(for: action, isPressed: isPressed)
             .foregroundColor
@@ -84,6 +84,12 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
 }
 
 private extension StandardKeyboardAppearance {
+    
+    func font(for action: KeyboardAction) -> Font {
+        let rawFont = action.standardButtonFont(for: context)
+        guard let weight = fontWeight(for: action) else { return rawFont }
+        return rawFont.weight(weight)
+    }
     
     func fontWeight(for action: KeyboardAction) -> Font.Weight? {
         if buttonImage(for: action) != nil { return .light }

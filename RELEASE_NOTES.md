@@ -28,7 +28,8 @@ Breaking changes can still occur in minor versions and patches, if the alternati
 
 ### 🗑 Deprecations
 
-* `KeyboardAppearance` has deprecated all functions that now can be fetched from the new `systemKeyboardButtonStyle` style. 
+* `KeyboardAppearance` has deprecated all functions that now can be fetched from the new `systemKeyboardButtonStyle` style.
+* The `keyboardButtonStyle` view extension has been renamed `systemKeyboardButtonStyle`. 
 
 
 

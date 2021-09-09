@@ -16,11 +16,13 @@ public struct SystemKeyboardButtonStyle {
     public init(
         backgroundColor: Color,
         foregroundColor: Color,
+        font: Font,
         cornerRadius: CGFloat,
         border: SystemKeyboardButtonBorderStyle = .noBorder,
         shadow: SystemKeyboardButtonShadowStyle) {
             self.backgroundColor = backgroundColor
             self.foregroundColor = foregroundColor
+            self.font = font
             self.cornerRadius = cornerRadius
             self.border = border
             self.shadow = shadow
@@ -28,6 +30,7 @@ public struct SystemKeyboardButtonStyle {
     
     public let backgroundColor: Color
     public let foregroundColor: Color
+    public let font: Font
     public let cornerRadius: CGFloat
     public let border: SystemKeyboardButtonBorderStyle
     public let shadow: SystemKeyboardButtonShadowStyle

@@ -35,6 +35,7 @@ struct SystemKeyboardButtonBody_Previews: PreviewProvider {
         let style = SystemKeyboardButtonStyle(
             backgroundColor: .yellow,
             foregroundColor: .white,
+            font: .body,
             cornerRadius: 20,
             border: SystemKeyboardButtonBorderStyle(color: .red, size: 3),
             shadow: SystemKeyboardButtonShadowStyle(color: .blue, size: 4)
