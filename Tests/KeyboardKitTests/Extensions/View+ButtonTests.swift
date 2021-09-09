@@ -20,7 +20,10 @@ class View_ButtonTests: QuickSpec {
             it("returns a view") {
                 let context = KeyboardContext(controller: MockKeyboardInputViewController())
                 let appearance = StandardKeyboardAppearance(context: context)
-                let result = Text("").keyboardButtonStyle(for: .backspace, appearance: appearance, isPressed: true)
+                let result = Text("").systemKeyboardButtonStyle(
+                    for: .backspace,
+                    appearance: appearance,
+                    isPressed: true)
                 expect(result).toNot(beNil())
             }
         }

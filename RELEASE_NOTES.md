@@ -25,6 +25,7 @@ It also exposes more system keyboard views and styles publicly.
 * `SystemKeyboardButtonStyle` is a new style that can be used to define a system keyboard button style. 
 * `SystemKeyboardButtonBorderStyle` is a new style that can be used to define a system keyboard button border.
 * `SystemKeyboardButtonShadowStyle` is a new style that can be used to define a system keyboard button shadow.
+* The `systemKeyboardButtonStyle` view extension has a new style-based signature.
 
 ### 🐛 Bug fixes
 

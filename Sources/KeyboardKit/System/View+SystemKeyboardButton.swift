@@ -18,12 +18,20 @@ public extension View {
         for action: KeyboardAction,
         appearance: KeyboardAppearance,
         isPressed: Bool = false) -> some View {
-            let style = appearance.systemKeyboardButtonStyle(for: action, isPressed: isPressed)
-            return self
-                .background(SystemKeyboardButtonBody(style: style))
-                .foregroundColor(style.foregroundColor)
-                .font(style.font)
-        }
+        self.systemKeyboardButtonStyle(
+            style: appearance.systemKeyboardButtonStyle(for: action, isPressed: isPressed)
+        )
+    }
+    
+    /**
+     Apply a system keyboard button style using the provided
+     `appearance` for the given `action`.
+     */
+    func systemKeyboardButtonStyle(style: SystemKeyboardButtonStyle) -> some View {
+        self.background(SystemKeyboardButtonBody(style: style))
+            .foregroundColor(style.foregroundColor)
+            .font(style.font)
+    }
 }
 
 struct View_Button_Previews: PreviewProvider {
