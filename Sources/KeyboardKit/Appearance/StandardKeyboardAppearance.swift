@@ -27,11 +27,14 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     open var keyboardBackgroundColor: Color { .clear }
     
     open func buttonBackgroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
-        action.standardButtonBackgroundColor(for: context, isPressed: isPressed)
+        action.standardButtonBackgroundColor(
+            for: context,
+               isPressed: isPressed)
     }
     
     open func buttonCornerRadius(for action: KeyboardAction) -> CGFloat {
-        .standardKeyboardButtonCornerRadius(for: context.device)
+        .standardKeyboardButtonCornerRadius(
+            for: context.device)
     }
     
     open func buttonFont(for action: KeyboardAction) -> Font {
@@ -41,19 +44,36 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     }
     
     open func buttonForegroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
-        action.standardButtonForegroundColor(for: context, isPressed: isPressed)
+        action.standardButtonForegroundColor(
+            for: context,
+               isPressed: isPressed)
     }
     
     open func buttonImage(for action: KeyboardAction) -> Image? {
-        action.standardButtonImage(for: context)
+        action.standardButtonImage(
+            for: context)
     }
     
     open func buttonShadowColor(for action: KeyboardAction) -> Color {
-        action.standardButtonShadowColor(for: context)
+        action.standardButtonShadowColor(
+            for: context)
     }
     
     open func buttonText(for action: KeyboardAction) -> String? {
-        action.standardButtonText(for: context)
+        action.standardButtonText(
+            for: context)
+    }
+    
+    public func systemKeyboardButtonStyle(for action: KeyboardAction, isPressed: Bool) -> SystemKeyboardButtonStyle {
+        SystemKeyboardButtonStyle(
+            backgroundColor: action.standardButtonBackgroundColor(for: context, isPressed: isPressed),
+            foregroundColor: action.standardButtonForegroundColor(for: context, isPressed: isPressed),
+            cornerRadius: .standardKeyboardButtonCornerRadius(for: context.device),
+            border: .noBorder,
+            shadow: SystemKeyboardButtonShadowStyle(
+                color: action.standardButtonShadowColor(for: context),
+                size: 1)
+        )
     }
 }
 

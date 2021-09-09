@@ -26,20 +26,6 @@ public struct SystemKeyboardButtonStyle {
             self.shadow = shadow
         }
     
-    public init(
-        action: KeyboardAction,
-        appearance: KeyboardAppearance,
-        isPressed: Bool = false) {
-            self.init(
-                backgroundColor: appearance.buttonBackgroundColor(for: action, isPressed: isPressed),
-                foregroundColor: appearance.buttonForegroundColor(for: action, isPressed: isPressed),
-                cornerRadius: appearance.buttonCornerRadius(for: action),
-                shadow: SystemKeyboardButtonShadowStyle(
-                    color: appearance.buttonShadowColor(for: action),
-                    size: 1)
-            )
-        }
-    
     public let backgroundColor: Color
     public let foregroundColor: Color
     public let cornerRadius: CGFloat

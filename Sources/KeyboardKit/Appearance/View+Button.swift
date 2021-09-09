@@ -17,7 +17,7 @@ public extension View {
         for action: KeyboardAction,
         appearance: KeyboardAppearance,
         isPressed: Bool = false) -> some View {
-            let style = SystemKeyboardButtonStyle(action: action, appearance: appearance, isPressed: isPressed)
+            let style = appearance.systemKeyboardButtonStyle(for: action, isPressed: isPressed)
             return self
                 .background(SystemKeyboardButtonBody(style: style))
                 .foregroundColor(style.foregroundColor)

@@ -34,17 +34,17 @@ public struct SystemKeyboardButton<Content: View>: View {
         self.action = action
         self.actionHandler = actionHandler
         self.appearance = appearance
-        self.contentConfig = contentConfig
         self.text = text
         self.image = image
+            self.contentConfig = contentConfig
     }
     
     private let action: KeyboardAction
     private let actionHandler: KeyboardActionHandler
     private let appearance: KeyboardAppearance
-    private let contentConfig: ContentConfig
     private let image: Image?
     private let text: String?
+    private let contentConfig: ContentConfig
     
     public typealias ContentConfig = (SystemKeyboardButtonContent) -> Content
     
@@ -102,13 +102,23 @@ private extension SystemKeyboardButton {
             SystemKeyboardButtonContent(
                 action: action,
                 text: text,
-                image: image))
+                image: image)
+        )
     }
 }
 
 struct SystemKeyboardButton_Previews: PreviewProvider {
     
     static func button(for action: KeyboardAction) -> some View {
+        SystemKeyboardButton(
+            action: action,
+            actionHandler: PreviewKeyboardActionHandler(),
+            appearance: PreviewKeyboardAppearance()) {
+                $0.padding()
+            }
+    }
+    
+    static func customButton(for action: KeyboardAction) -> some View {
         SystemKeyboardButton(
             action: action,
             actionHandler: PreviewKeyboardActionHandler(),

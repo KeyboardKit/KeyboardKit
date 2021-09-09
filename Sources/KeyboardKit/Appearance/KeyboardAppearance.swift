@@ -28,4 +28,6 @@ public protocol KeyboardAppearance {
     func buttonImage(for action: KeyboardAction) -> Image?
     func buttonShadowColor(for action: KeyboardAction) -> Color
     func buttonText(for action: KeyboardAction) -> String?
+    
+    func systemKeyboardButtonStyle(for action: KeyboardAction, isPressed: Bool) -> SystemKeyboardButtonStyle
 }
