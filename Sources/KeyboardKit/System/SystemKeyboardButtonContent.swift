@@ -18,7 +18,7 @@ public struct SystemKeyboardButtonContent: View {
     
     public init(
         action: KeyboardAction,
-        appearance: KeyboardAppearance = KeyboardInputViewController.shared.keyboardAppearance,
+        appearance: KeyboardAppearance,
         text: String? = nil,
         image: Image? = nil) {
         self.appearance = appearance
@@ -94,7 +94,9 @@ private extension KeyboardContext {
 struct SystemKeyboardButtonContent_Previews: PreviewProvider {
     
     static var previews: some View {
-        SystemKeyboardButtonContent(action: .backspace)
+        SystemKeyboardButtonContent(
+            action: .backspace,
+            appearance: PreviewKeyboardAppearance())
             .keyboardPreview()
     }
 }

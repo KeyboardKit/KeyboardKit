@@ -28,10 +28,16 @@ public struct SystemKeyboardSpaceButton: View {
         spaceText: String? = nil,
         actionHandler: KeyboardActionHandler,
         appearance: KeyboardAppearance) {
-        self.content = SystemKeyboardSpaceButtonContent(localeText: localeText, spaceText: "")
+        self.content = SystemKeyboardSpaceButtonContent(
+            localeText: localeText,
+            spaceText: "",
+            appearance: appearance)
         self.actionHandler = actionHandler
         self.appearance = appearance
-        self.content = SystemKeyboardSpaceButtonContent(localeText: localeText, spaceText: spaceText ?? KKL10n.space.text(for: context))
+        self.content = SystemKeyboardSpaceButtonContent(
+            localeText: localeText,
+            spaceText: spaceText ?? KKL10n.space.text(for: context),
+            appearance: appearance)
     }
     
     private var content: SystemKeyboardSpaceButtonContent

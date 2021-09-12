@@ -17,23 +17,28 @@ public struct SystemKeyboardSpaceButtonContent: View {
     
     public init(
         localeText: String? = nil,
-        spaceText: String? = nil) {
+        spaceText: String? = nil,
+        appearance: KeyboardAppearance) {
         self.localeText = localeText
         self.spaceText = spaceText
         self.spaceView = nil
+        self.appearance = appearance
     }
     
     public init<SpaceView: View>(
         localeText: String? = nil,
-        spaceView: SpaceView) {
+        spaceView: SpaceView,
+        appearance: KeyboardAppearance) {
         self.localeText = localeText
         self.spaceText = nil
         self.spaceView = AnyView(spaceView)
+        self.appearance = appearance
     }
     
     private let localeText: String?
     private let spaceText: String?
     private let spaceView: AnyView?
+    private let appearance: KeyboardAppearance
     
     private var action: KeyboardAction { .space }
     
@@ -62,7 +67,10 @@ public struct SystemKeyboardSpaceButtonContent: View {
 private extension SystemKeyboardSpaceButtonContent {
     
     var localeView: some View {
-        SystemKeyboardButtonContent(action: action, text: localeDisplayText)
+        SystemKeyboardButtonContent(
+            action: action,
+            appearance: appearance,
+            text: localeDisplayText)
     }
     
     @ViewBuilder
@@ -71,7 +79,10 @@ private extension SystemKeyboardSpaceButtonContent {
             view
         } else {
             let text = spaceText ?? KKL10n.space.text(for: context)
-            SystemKeyboardButtonContent(action: action, text: text)
+            SystemKeyboardButtonContent(
+                action: action,
+                appearance: appearance,
+                text: text)
         }
     }
 }
@@ -97,7 +108,8 @@ struct SystemKeyboardSpaceButtonContent_Previews: PreviewProvider {
     static var previews: some View {
         SystemKeyboardSpaceButtonContent(
             localeText: nil,
-            spaceText: "space")
+            spaceText: "space",
+            appearance: PreviewKeyboardAppearance())
             .keyboardPreview()
     }
 }

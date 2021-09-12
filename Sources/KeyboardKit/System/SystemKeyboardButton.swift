@@ -99,6 +99,7 @@ private extension SystemKeyboardButton {
         contentConfig(
             SystemKeyboardButtonContent(
                 action: action,
+                appearance: appearance,
                 text: text,
                 image: image)
         )

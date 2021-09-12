@@ -34,7 +34,12 @@ It also exposes more system keyboard views and styles publicly.
 ### 🗑 Deprecations
 
 * `KeyboardAppearance` has deprecated all functions that now can be fetched from the new `systemKeyboardButtonStyle` style.
-* `View+keyboardButtonStyle` has been replaced with `View+systemKeyboardButtonStyle`. 
+* `View+keyboardButtonStyle` has been replaced with `View+systemKeyboardButtonStyle`.
+
+### 💥 Breaking changes
+
+* More system keyboard views require an explicit appearance to be injected.
+ 
 
 
 
