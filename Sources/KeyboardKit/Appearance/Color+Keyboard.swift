@@ -16,11 +16,13 @@ import SwiftUI
 public extension Color {
     
     static var standardButtonBackground: Color = color(for: .standardButtonBackground)
+    static var standardButtonBackgroundForColorSchemeBug: Color = color(for: .standardButtonBackgroundForColorSchemeBug)
     static var standardButtonBackgroundForDarkAppearance: Color = color(for: .standardButtonBackgroundForDarkAppearance)
     static var standardButtonForeground: Color = color(for: .standardButtonForeground)
     static var standardButtonForegroundForDarkAppearance: Color = color(for: .standardButtonForegroundForDarkAppearance)
     static var standardButtonShadow: Color = color(for: .standardButtonShadow)
     static var standardDarkButtonBackground: Color = color(for: .standardDarkButtonBackground)
+    static var standardDarkButtonBackgroundForColorSchemeBug: Color = color(for: .standardDarkButtonBackgroundForColorSchemeBug)
     static var standardDarkButtonBackgroundForDarkAppearance: Color = color(for: .standardDarkButtonBackgroundForDarkAppearance)
     static var standardDarkButtonForeground: Color = color(for: .standardButtonForeground)
     static var standardDarkButtonForegroundForDarkAppearance: Color = color(for: .standardButtonForegroundForDarkAppearance)
@@ -51,6 +53,7 @@ struct Color_Keyboard_Previews: PreviewProvider {
         Group {
             Group {
                 preview(for: .standardButtonBackground, name: "standardButtonBackground")
+                preview(for: .standardButtonBackgroundForColorSchemeBug, name: "standardButtonBackgroundForColorSchemeBug")
                 preview(for: .standardButtonBackgroundForDarkAppearance, name: "standardButtonBackgroundForDarkAppearance")
                 preview(for: .standardButtonForeground, name: "standardButtonForeground")
                 preview(for: .standardButtonForegroundForDarkAppearance, name: "standardButtonForegroundForDarkAppearance")
@@ -58,6 +61,7 @@ struct Color_Keyboard_Previews: PreviewProvider {
             }
             Group {
                 preview(for: .standardDarkButtonBackground, name: "standardDarkButtonBackground")
+                preview(for: .standardDarkButtonBackgroundForColorSchemeBug, name: "standardDarkButtonBackgroundForColorSchemeBug")
                 preview(for: .standardDarkButtonBackgroundForDarkAppearance, name: "standardDarkButtonBackgroundForDarkAppearance")
                 preview(for: .standardDarkButtonForeground, name: "standardDarkButtonForeground")
                 preview(for: .standardDarkButtonForegroundForDarkAppearance, name: "standardDarkButtonForegroundForDarkAppearance")

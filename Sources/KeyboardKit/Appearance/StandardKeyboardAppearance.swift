@@ -24,40 +24,80 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     
     private let context: KeyboardContext
     
-    open var keyboardBackgroundColor: Color { .clear }
-    
-    open func buttonBackgroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
-        action.standardButtonBackgroundColor(for: context, isPressed: isPressed)
-    }
-    
-    open func buttonCornerRadius(for action: KeyboardAction) -> CGFloat {
-        .standardKeyboardButtonCornerRadius(for: context.device)
-    }
-    
-    open func buttonFont(for action: KeyboardAction) -> Font {
-        let rawFont = action.standardButtonFont(for: context)
-        guard let weight = fontWeight(for: action) else { return rawFont }
-        return rawFont.weight(weight)
-    }
-    
-    open func buttonForegroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
-        action.standardButtonForegroundColor(for: context, isPressed: isPressed)
-    }
-    
+    /**
+     The button image to use for a certain `action`, if any.
+     */
     open func buttonImage(for action: KeyboardAction) -> Image? {
-        action.standardButtonImage(for: context)
+        action.standardButtonImage(
+            for: context)
     }
     
-    open func buttonShadowColor(for action: KeyboardAction) -> Color {
-        action.standardButtonShadowColor(for: context)
-    }
-    
+    /**
+     The button text to use for a certain `action`, if any.
+     */
     open func buttonText(for action: KeyboardAction) -> String? {
-        action.standardButtonText(for: context)
+        action.standardButtonText(
+            for: context)
+    }
+    
+    /**
+     The style to apply to system keyboard buttons when they
+     are presenting the provided action.
+     */
+    open func systemKeyboardButtonStyle(for action: KeyboardAction, isPressed: Bool) -> SystemKeyboardButtonStyle {
+        SystemKeyboardButtonStyle(
+            backgroundColor: action.standardButtonBackgroundColor(for: context, isPressed: isPressed),
+            foregroundColor: action.standardButtonForegroundColor(for: context, isPressed: isPressed),
+            font: font(for: action),
+            cornerRadius: .standardKeyboardButtonCornerRadius(for: context.device),
+            border: .noBorder,
+            shadow: SystemKeyboardButtonShadowStyle(
+                color: action.standardButtonShadowColor(for: context),
+                size: 1)
+        )
+    }
+    
+    
+    
+    // MARK: - Deprecated
+    
+    @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
+    open func buttonBackgroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
+        systemKeyboardButtonStyle(for: action, isPressed: isPressed)
+            .backgroundColor
+    }
+    
+    @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
+    open func buttonCornerRadius(for action: KeyboardAction) -> CGFloat {
+        systemKeyboardButtonStyle(for: action, isPressed: false)
+            .cornerRadius
+    }
+    
+    @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
+    open func buttonFont(for action: KeyboardAction) -> Font {
+        font(for: action)
+    }
+    
+    @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
+    open func buttonForegroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
+        systemKeyboardButtonStyle(for: action, isPressed: isPressed)
+            .foregroundColor
+    }
+    
+    @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
+    open func buttonShadowColor(for action: KeyboardAction) -> Color {
+        systemKeyboardButtonStyle(for: action, isPressed: false)
+            .shadow.color
     }
 }
 
 private extension StandardKeyboardAppearance {
+    
+    func font(for action: KeyboardAction) -> Font {
+        let rawFont = action.standardButtonFont(for: context)
+        guard let weight = fontWeight(for: action) else { return rawFont }
+        return rawFont.weight(weight)
+    }
     
     func fontWeight(for action: KeyboardAction) -> Font.Weight? {
         if buttonImage(for: action) != nil { return .light }

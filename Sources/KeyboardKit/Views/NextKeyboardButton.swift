@@ -28,6 +28,21 @@ public struct NextKeyboardButton: UIViewRepresentable {
             scale: scale)
     }
     
+    @available(iOS 14.0, *)
+    public init(
+        controller: KeyboardInputViewController = .shared,
+        tintColor: Color = .primary,
+        pointSize: CGFloat = 23,
+        weight: UIImage.SymbolWeight = .light,
+        scale: UIImage.SymbolScale = .medium) {
+        self.button = NextKeyboardUIButton(
+            controller: controller,
+            tintColor: UIColor(tintColor),
+            pointSize: pointSize,
+            weight: weight,
+            scale: scale)
+    }
+    
     private let button: UIButton
     
     public func makeUIView(context: Context) -> UIButton { button }

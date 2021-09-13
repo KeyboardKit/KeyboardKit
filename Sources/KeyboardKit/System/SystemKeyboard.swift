@@ -53,14 +53,14 @@ public struct SystemKeyboard: View {
     
     @EnvironmentObject private var context: KeyboardContext
     
-    public typealias ButtonBuilder = (KeyboardAction) -> AnyView
+    public typealias ButtonBuilder = (KeyboardAction, KeyboardAppearance) -> AnyView
     
     public var body: some View {
         VStack(spacing: 0) {
             rows(for: layout)
         }
-        .inputCallout(style: inputCalloutStyle ?? .systemStyle(for: context))
-        .secondaryInputCallout(style: secondaryInputCalloutStyle ?? .systemStyle(for: context))
+        .inputCallout(style: inputCalloutStyle ?? .standard)
+        .secondaryInputCallout(style: secondaryInputCalloutStyle ?? .standard)
     }
 }
 
@@ -70,8 +70,13 @@ public extension SystemKeyboard {
      This is the standard `buttonBuilder`, that will be used
      when no custom builder is provided to the view.
      */
-    static func standardButtonBuilder(action: KeyboardAction) -> AnyView {
-        AnyView(SystemKeyboardButtonContent(action: action))
+    static func standardButtonBuilder(
+        action: KeyboardAction,
+        appearance: KeyboardAppearance) -> AnyView {
+        AnyView(SystemKeyboardButtonContent(
+            action: action,
+            appearance: appearance)
+        )
     }
 }
 
@@ -93,7 +98,7 @@ private extension SystemKeyboard {
     
     func rowItem(for layout: KeyboardLayout, item: KeyboardLayoutItem) -> some View {
         SystemKeyboardButtonRowItem(
-            content: buttonBuilder(item.action),
+            content: buttonBuilder(item.action, appearance),
             item: item,
             keyboardWidth: keyboardWidth,
             inputWidth: inputWidth,
