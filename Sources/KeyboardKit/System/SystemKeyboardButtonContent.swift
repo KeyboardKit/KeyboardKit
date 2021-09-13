@@ -18,16 +18,18 @@ public struct SystemKeyboardButtonContent: View {
     
     public init(
         action: KeyboardAction,
-        appearance: KeyboardAppearance = KeyboardInputViewController.shared.keyboardAppearance,
+        appearance: KeyboardAppearance,
         text: String? = nil,
         image: Image? = nil) {
         self.appearance = appearance
+        self.style = appearance.systemKeyboardButtonStyle(for: action, isPressed: false)
         self.action = action
         self.text = text
         self.image = image
     }
     
     private let appearance: KeyboardAppearance
+    private let style: SystemKeyboardButtonStyle
     private let action: KeyboardAction
     private let image: Image?
     private let text: String?
@@ -37,7 +39,11 @@ public struct SystemKeyboardButtonContent: View {
     @ViewBuilder
     public var body: some View {
         if action == .nextKeyboard {
-            NextKeyboardButton()
+            if #available(iOS 14.0, *) {
+                NextKeyboardButton(tintColor: style.foregroundColor)
+            } else {
+                NextKeyboardButton()
+            }
         } else if let image = buttonImage {
             image.flipped(for: context)
         } else if let text = buttonText {
@@ -88,7 +94,9 @@ private extension KeyboardContext {
 struct SystemKeyboardButtonContent_Previews: PreviewProvider {
     
     static var previews: some View {
-        SystemKeyboardButtonContent(action: .backspace)
+        SystemKeyboardButtonContent(
+            action: .backspace,
+            appearance: PreviewKeyboardAppearance())
             .keyboardPreview()
     }
 }

@@ -34,17 +34,17 @@ public struct SystemKeyboardButton<Content: View>: View {
         self.action = action
         self.actionHandler = actionHandler
         self.appearance = appearance
-        self.contentConfig = contentConfig
         self.text = text
         self.image = image
+            self.contentConfig = contentConfig
     }
     
     private let action: KeyboardAction
     private let actionHandler: KeyboardActionHandler
     private let appearance: KeyboardAppearance
-    private let contentConfig: ContentConfig
     private let image: Image?
     private let text: String?
+    private let contentConfig: ContentConfig
     
     public typealias ContentConfig = (SystemKeyboardButtonContent) -> Content
     
@@ -55,10 +55,8 @@ public struct SystemKeyboardButton<Content: View>: View {
     @ViewBuilder
     public var body: some View {
         buttonContent
-            .keyboardButtonStyle(
-                for: action,
-                appearance: appearance,
-                isPressed: isPressed)
+            .systemKeyboardButtonStyle(
+                appearance.systemKeyboardButtonStyle(for: action, isPressed: isPressed))
             .keyboardGestures(
                 for: action,
                 context: context,
@@ -101,8 +99,10 @@ private extension SystemKeyboardButton {
         contentConfig(
             SystemKeyboardButtonContent(
                 action: action,
+                appearance: appearance,
                 text: text,
-                image: image))
+                image: image)
+        )
     }
 }
 
@@ -112,7 +112,18 @@ struct SystemKeyboardButton_Previews: PreviewProvider {
         SystemKeyboardButton(
             action: action,
             actionHandler: PreviewKeyboardActionHandler(),
-            appearance: PreviewKeyboardAppearance())
+            appearance: PreviewKeyboardAppearance()) {
+                $0.padding()
+            }
+    }
+    
+    static func customButton(for action: KeyboardAction) -> some View {
+        SystemKeyboardButton(
+            action: action,
+            actionHandler: PreviewKeyboardActionHandler(),
+            appearance: PreviewKeyboardAppearance()) {
+                $0.padding()
+            }
     }
     
     static var previews: some View {

@@ -10,28 +10,77 @@ Breaking changes can still occur in minor versions and patches, if the alternati
 
 
 
+## 4.9.0
+
+This version adds styles, which makes it a lot easier to style system keyboards.
+
+It also exposes more system keyboard views and styles publicly.
+
+### ✨ New features
+
+* `KeyboardAppearance` has a new `systemKeyboardButtonStyle` function.
+* `NextKeyboardButton` has an iOS 14 exclusive `Color`-based initializer that is now used by `SystemKeyboardButtonContent`
+* `SystemKeyboardButtonBody` is a new view that represents the body of a system keyboard button.
+* `SystemKeyboardButtonShadow` is a new view that represents the shadow of a system keyboard button.
+* `SystemKeyboardButtonStyle` is a new style that can be used to define a system keyboard button style. 
+* `SystemKeyboardButtonBorderStyle` is a new style that can be used to define a system keyboard button border.
+* `SystemKeyboardButtonShadowStyle` is a new style that can be used to define a system keyboard button shadow.
+* `View+systemKeyboardButtonStyle` view extension now taes a style instead of an apperance, action and isPressed bool.
+
+### 🐛 Bug fixes
+
+* `SystemKeyboardButtonContent` now applies the appearance text color to the "next keyboard" button (on iOS 14+).
+
+### 🗑 Deprecations
+
+* `KeyboardAppearance` has deprecated all functions that now can be fetched from the new `systemKeyboardButtonStyle` style.
+* `View+keyboardButtonStyle` has been replaced with `View+systemKeyboardButtonStyle`.
+
+### 💥 Breaking changes
+
+* More system keyboard views require an explicit appearance to be injected.
+ 
+
+
+
 ## 4.8.0
 
-This versions adds new colors, such as the standard keyboard background colors.
+This versions adds new colors, such as the new standard keyboard background colors, which you can use to mimic keyboard backgrounds.
 
-The dark appearance colors have been renamed. The old names are now deprecated.
+There are other new colors as well, that are used to work around the iOS color scheme bug, described [here](https://github.com/KeyboardKit/KeyboardKit/issues/305) and in the docs.
+
+This makes it possible for us to finally workaround the dark mode color bug, and let the system keyboard look as the system keyboard in both dark mode and dark appearance keyboards.  
+
+Finally, the dark appearance colors have been renamed and their old names deprecated.
 
 ### ✨ New features
 
 * `KeyboardLocale` is now `Codable`.
 * `KeyboardColor` has new colors.
 * `Color+Keyboard` has new colors.
+* `.standardButtonBackgroundForColorSchemeBug` is a new color scheme bug color.
+* `.standardDarkButtonBackgroundForColorSchemeBug` is a new color scheme bug color.
+
+### 💡 Behavior changes
+
+* The standard keyboard apperance now uses the new color scheme bug colors, which should make the keyboards look more like the standard ones in dark mode and for dark appearance keyboards.
+* `CalloutStyle.standard` now uses the look of `systemStyle`, since that IS the standard. The system styles have been deprecated.
+* `SystemKeyboard` uses the new standard callout styles.  
+
 
 ### 🐛 Bug fixes
 
 * `InputCallout` now applies the provided style's callout text color.
 * `SecondaryInputCallout` now uses the provided style's callout text color.
+* `View+Button` now applies shadows in a way that doesn't affect the button content.
+* `SystemKeyboard` now looks closer to the iOS system keyboards, in both dark mode and dark appearance.
 
 ### 🗑 Deprecations
 
 * Color extensions for the button background colors are now suffixed with `Background`.
 * Color extensions for the button tints colors are now suffixed with `Foreground` instead of `Tint`.
-* Color extensions with the name `standardDarkAppearance*` have been renamed to `standard*ForDarkAppearance`. 
+* Color extensions with the name `standardDarkAppearance*` have been renamed to `standard*ForDarkAppearance`.
+* `CalloutStyle.systemStyle`, `InputCalloutStyle.systemStyle` and `SecondaryInputCalloutStyle.systemStyle` are deprecated. 
 
 ### 💥 Breaking changes
 
