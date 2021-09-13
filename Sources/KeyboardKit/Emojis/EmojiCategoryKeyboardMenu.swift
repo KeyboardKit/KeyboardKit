@@ -24,16 +24,16 @@ public struct EmojiCategoryKeyboardMenu: View {
     public init(
         categories: [EmojiCategory] = EmojiCategory.all,
         selection: Binding<EmojiCategory>,
-        font: Font = .footnote,
+        configuration: EmojiKeyboardConfiguration,
         selectedColor: Color = Color.black.opacity(0.1)) {
         self.categories = categories.filter { $0.emojis.count > 0 }
         self._selection = selection
-        self.font = font
+        self.configuration = configuration
         self.selectedColor = selectedColor
     }
     
     private let categories: [EmojiCategory]
-    private let font: Font
+    private let configuration: EmojiKeyboardConfiguration
     private let selectedColor: Color
     
     @State private var isInitialized = false
@@ -50,7 +50,8 @@ public struct EmojiCategoryKeyboardMenu: View {
             Spacer()
             backspaceButton
             Spacer()
-        }.font(font)
+        }
+        .font(configuration.categoryFont)
     }
     
     
@@ -63,7 +64,7 @@ public struct EmojiCategoryKeyboardMenu: View {
         return image.keyboardGestures(
             for: action,
             context: context,
-            actionHandler: handler)
+            actionHandler: handler).scaledToFill()
     }
     
     private var keyboardSwitchButton: some View {
@@ -73,7 +74,7 @@ public struct EmojiCategoryKeyboardMenu: View {
         return Text(text).keyboardGestures(
             for: action,
             context: context,
-            actionHandler: handler)
+            actionHandler: handler).scaledToFill()
     }
     
     private var buttonList: some View {
@@ -96,7 +97,7 @@ public struct EmojiCategoryKeyboardMenu: View {
 @available(iOS 14.0, *)
 struct EmojiCategoryKeyboardMenu_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiCategoryKeyboardMenu(selection: .constant(.activities))
+        EmojiCategoryKeyboardMenu(selection: .constant(.activities), configuration: .standardPhonePortrait)
             .keyboardPreview()
     }
 }
