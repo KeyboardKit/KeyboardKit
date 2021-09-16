@@ -214,7 +214,7 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      The default autocomplete suggestion provider.
      */
-    public lazy var autocompleteSuggestionProvider: AutocompleteSuggestionProvider = DisabledAutocompleteSuggestionProvider()
+    public lazy var autocompleteProvider: AutocompleteProvider = DisabledAutocompleteProvider()
     
     /**
      The default keyboard action handler.
@@ -311,7 +311,7 @@ open class KeyboardInputViewController: UIInputViewController {
      */
     open func performAutocomplete() {
         guard let word = textDocumentProxy.currentWord else { return resetAutocomplete() }
-        autocompleteSuggestionProvider.autocompleteSuggestions(for: word) { [weak self] result in
+        autocompleteProvider.autocompleteSuggestions(for: word) { [weak self] result in
             switch result {
             case .failure(let error): print(error.localizedDescription)
             case .success(let result): self?.autocompleteContext.suggestions = result
@@ -374,7 +374,7 @@ private extension KeyboardInputViewController {
         keyboardContext.$locale.sink { [weak self] in
             guard let self = self else { return }
             let locale = $0
-            self.autocompleteSuggestionProvider.locale = locale
+            self.autocompleteProvider.locale = locale
         }.store(in: &cancellables)
     }
     

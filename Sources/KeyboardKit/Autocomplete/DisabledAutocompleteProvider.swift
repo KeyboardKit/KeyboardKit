@@ -1,5 +1,5 @@
 //
-//  DisabledAutocompleteSuggestionProvider.swift
+//  DisabledAutocompleteProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-03-17.
@@ -12,7 +12,7 @@ import Foundation
  This internal class is used as a placeholder provider until
  a real provider is injected.
  */
-class DisabledAutocompleteSuggestionProvider: AutocompleteSuggestionProvider {
+class DisabledAutocompleteProvider: AutocompleteProvider {
     
     var locale: Locale = .current
     

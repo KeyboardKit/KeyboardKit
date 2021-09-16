@@ -34,7 +34,9 @@ It also exposes more system keyboard views and styles publicly.
 
 ### 🗑 Deprecations
 
+* `AutocompleteSuggestionProvider` has been renamed to `AutocompleteProvider`.
 * `KeyboardAppearance` has deprecated all functions that now can be fetched from the new `systemKeyboardButtonStyle` style.
+* `KeyboardInputViewController` `autocompleteSuggestionProvider` has been renamed to `autocompleteProvider`.
 * `View+keyboardButtonStyle` has been replaced with `View+systemKeyboardButtonStyle`.
 
 ### 💥 Breaking changes

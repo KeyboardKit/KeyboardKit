@@ -1,5 +1,5 @@
 //
-//  MockAutocompleteSuggestionProvider.swift
+//  MockAutocompleteProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-03-17.
@@ -9,7 +9,7 @@
 import Foundation
 import KeyboardKit
 
-class MockAutocompleteSuggestionProvider: AutocompleteSuggestionProvider {
+class MockAutocompleteProvider: AutocompleteProvider {
     
     var locale: Locale = .current
     

@@ -154,7 +154,7 @@ class KeyboardInputViewControllerTests: QuickSpec {
         describe("service properties") {
             
             it("has standard instances by default") {
-                expect(vc.autocompleteSuggestionProvider as? DisabledAutocompleteSuggestionProvider).toNot(beNil())
+                expect(vc.autocompleteProvider as? DisabledAutocompleteProvider).toNot(beNil())
                 expect(vc.keyboardActionHandler as? StandardKeyboardActionHandler).toNot(beNil())
                 expect(vc.keyboardAppearance as? StandardKeyboardAppearance).toNot(beNil())
                 expect(vc.keyboardBehavior as? StandardKeyboardBehavior).toNot(beNil())
@@ -244,7 +244,7 @@ class KeyboardInputViewControllerTests: QuickSpec {
                 let locale = KeyboardLocale.swedish
                 vc.viewDidLoad()
                 vc.keyboardContext.locale = locale.locale
-                expect(vc.autocompleteSuggestionProvider.locale).toEventually(equal(locale.locale))
+                expect(vc.autocompleteProvider.locale).toEventually(equal(locale.locale))
             }
         }
         
@@ -253,13 +253,13 @@ class KeyboardInputViewControllerTests: QuickSpec {
         
         describe("performing autocomplete") {
             
-            var provider: MockAutocompleteSuggestionProvider!
+            var provider: MockAutocompleteProvider!
             var proxy: MockTextDocumentProxy!
             
             beforeEach {
-                provider = MockAutocompleteSuggestionProvider()
+                provider = MockAutocompleteProvider()
                 proxy = MockTextDocumentProxy()
-                vc.autocompleteSuggestionProvider = provider
+                vc.autocompleteProvider = provider
                 vc.textDocumentProxyValue = proxy
             }
             

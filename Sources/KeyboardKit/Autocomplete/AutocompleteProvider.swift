@@ -1,5 +1,5 @@
 //
-//  AutocompleteSuggestionProvider.swift
+//  AutocompleteProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-07-04.
@@ -17,10 +17,10 @@ import Foundation
  Note that network operations require full access and can be
  slow for your users.
  
- The KeyboardKit Pro `StandardAutocompleteSuggestionProvider`
- implementation can be unlocked with a pro license.
+ The KeyboardKit Pro `StandardAutocompleteProvider` provider
+ can be unlocked with a pro license.
  */
-public protocol AutocompleteSuggestionProvider: AnyObject {
+public protocol AutocompleteProvider: AnyObject {
     
     /**
      The currently applied locale.
