@@ -205,9 +205,10 @@
 		A921153A25D58AC7003510D9 /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
+				A9C365F326F3149300E87AFE /* Actions */,
 				A9C365F226F310ED00E87AFE /* Autocomplete */,
 				A921157F25D5910D003510D9 /* Assets */,
-				A9FDAA0926025DF600E628C3 /* Demo */,
+				A9FDAA0926025DF600E628C3 /* Layout */,
 				A921155A25D58E4A003510D9 /* Supporting Files */,
 				A921157925D59071003510D9 /* ImageKeyboard.swift */,
 				A921157525D5906A003510D9 /* KeyboardView.swift */,
@@ -355,13 +356,20 @@
 			path = Autocomplete;
 			sourceTree = "<group>";
 		};
-		A9FDAA0926025DF600E628C3 /* Demo */ = {
+		A9C365F326F3149300E87AFE /* Actions */ = {
 			isa = PBXGroup;
 			children = (
 				A921156E25D5902F003510D9 /* DemoKeyboardActionHandler.swift */,
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
+		A9FDAA0926025DF600E628C3 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
 				A951A49A25E016660022385A /* DemoKeyboardLayoutProvider.swift */,
 			);
-			path = Demo;
+			path = Layout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

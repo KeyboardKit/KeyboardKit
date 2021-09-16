@@ -10,8 +10,8 @@ import KeyboardKit
 import UIKit
 
 /**
- This action handler inherits `DemoKeyboardActionHandlerBase`
- and adds `SwiftUI` demo-specific functionality to it.
+ This demo-specific action handler adds demo-specific action
+ handling, such as saving or copying images.
  */
 class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     

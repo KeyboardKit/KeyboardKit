@@ -9,7 +9,7 @@
 import KeyboardKit
 
 /**
- This demo-specific layout provider appends a "locale picker"
+ This demo-specific layout provider adds a locale picker nest
  next to the space bar.
  */
 class DemoKeyboardLayoutProvider: StandardKeyboardLayoutProvider {
