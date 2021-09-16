@@ -31,7 +31,7 @@ public protocol AutocompleteSuggestionProvider: AnyObject {
     /**
      Get autocomplete suggestions for a certain text.
      */
-    func autocompleteSuggestions(for text: String, completion: AutocompleteResponse)
+    func autocompleteSuggestions(for text: String, completion: @escaping AutocompleteResponse)
     
     
     /**
@@ -43,37 +43,37 @@ public protocol AutocompleteSuggestionProvider: AnyObject {
      The provider's currently ignored words.
      */
     var ignoredWords: [String] { get set }
+        
+    /**
+     Whether or not the provider can lean words.
+     */
+    var canLearnWords: Bool { get }
     
+
     /**
      Whether or not the provider has ignored a certain word.
      */
     func hasIgnoredWord(_ word: String) -> Bool
     
     /**
+     Whether or not the provider has learned a certain word.
+     */
+    func hasLearnedWord(_ word: String) -> Bool
+
+    /**
      Make the provider ignore a certain word.
      */
     func ignoreWord(_ word: String)
     
     /**
-     Remove a certain ignored word from the provider.
-     */
-    func removeIgnoredWord(_ word: String)
-    
-    
-    /**
-     Whether or not the provider can lean words.
-     */
-    var canLearnWords: Bool { get }
-    
-    /**
-     Whether or not the provider has learned a certain word.
-     */
-    func hasLearnedWord(_ word: String) -> Bool
-    
-    /**
      Make the provider learn a certain word.
      */
     func learnWord(_ word: String)
+    
+    /**
+     Remove a certain ignored word from the provider.
+     */
+    func removeIgnoredWord(_ word: String)
     
     /**
      Make the provider unlearn a certain word.

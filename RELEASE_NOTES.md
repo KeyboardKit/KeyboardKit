@@ -40,7 +40,7 @@ It also exposes more system keyboard views and styles publicly.
 ### 💥 Breaking changes
 
 * More system keyboard views require an explicit appearance to be injected.
- 
+* The `AutocompleteSuggestionProvider` `autocompleteSuggestions` is now escaping.
 
 
 
