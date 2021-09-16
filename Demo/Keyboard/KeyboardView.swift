@@ -18,7 +18,7 @@ import KeyboardKit
  
  Set `addTextFieldAboveKeyboard` to true to add a text field
  above the demo keyboard. This text field will automatically
- takes over as the main proxy instead of the main app.
+ take over as the main proxy instead of the main app.
  */
 struct KeyboardView: View {
     
@@ -30,7 +30,6 @@ struct KeyboardView: View {
     
     @State private var text = "Text"
     
-    @EnvironmentObject private var autocompleteContext: AutocompleteContext
     @EnvironmentObject private var keyboardContext: KeyboardContext
     @EnvironmentObject private var toastContext: KeyboardToastContext
     
@@ -39,42 +38,12 @@ struct KeyboardView: View {
             context: toastContext,
             background: toastBackground)
     }
-    
-    @ViewBuilder
-    var keyboardView: some View {
-        switch keyboardContext.keyboardType {
-        case .alphabetic, .numeric, .symbolic: systemKeyboard
-        case .emojis: emojiKeyboard
-        case .images: imageKeyboard
-        default: Button("???", action: switchToDefaultKeyboard)
-        }
-    }
 }
 
 
 // MARK: - Private Views
 
 private extension KeyboardView {
-    
-    var autocompleteBar: some View {
-        AutocompleteToolbar(
-            suggestions: autocompleteContext.suggestions,
-            itemBuilder: autocompleteBarItemBuilder)
-            .frame(height: 50)
-    }
-    
-    func autocompleteBarItem(for suggestion: AutocompleteSuggestion) -> AnyView {
-        guard let subtitle = suggestion.subtitle else { return AutocompleteToolbar.standardItem(for: suggestion) }
-        return AnyView(VStack(spacing: 0) {
-            AutocompleteToolbarItemText(suggestion: suggestion)
-            Text(subtitle).font(.footnote)
-        }.frame(maxWidth: .infinity))
-    }
-    
-    func autocompleteBarItemBuilder(suggestion: AutocompleteSuggestion) -> AnyView {
-        AnyView(autocompleteBarItem(for: suggestion)
-                    .background(Color.clearInteractable))
-    }
     
     @ViewBuilder
     var emojiKeyboard: some View {
@@ -92,9 +61,19 @@ private extension KeyboardView {
             .padding()
     }
     
+    @ViewBuilder
+    var keyboardView: some View {
+        switch keyboardContext.keyboardType {
+        case .alphabetic, .numeric, .symbolic: systemKeyboard
+        case .emojis: emojiKeyboard
+        case .images: imageKeyboard
+        default: Button("???", action: switchToDefaultKeyboard)
+        }
+    }
+    
     var systemKeyboard: some View {
         VStack(spacing: 0) {
-            autocompleteBar
+            DemoAutocompleteToolbar()
             if addTextFieldAboveKeyboard {
                 textField
             }
