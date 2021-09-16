@@ -54,7 +54,7 @@ class KeyboardViewController: KeyboardInputViewController {
         // Setup a demo-specific autocomplete provider
         // 💡 You can create your own autocomplete providers
         // 💡 This is overwritten if Pro is registered below
-        autocompleteSuggestionProvider = DemoAutocompleteSuggestionProvider()
+        autocompleteSuggestionProvider = FakeAutocompleteSuggestionProvider()
         
         // Setup the demo to explicitly use English locale
         // 💡 This is already done and just here to show how

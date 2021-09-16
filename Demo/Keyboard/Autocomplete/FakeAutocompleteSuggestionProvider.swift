@@ -1,5 +1,5 @@
 //
-//  DemoAutocompleteSuggestionProvider.swift
+//  FakeAutocompleteSuggestionProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-07-05.
@@ -10,38 +10,28 @@ import Foundation
 import KeyboardKit
 
 /**
- This demo provider simply returns the current word suffixed
+ This fake provider simply returns the current word suffixed
  with "ly", "er" and "ter".
  
- The provider is registered by the input view controller, to
- show you how to can register your own provoder. However, it
- is overwritten by a `StandardAutocompleteSuggestionProvider`
- from KeyboardKit Pro when the demo registers a pro license.
+ This provider is registered by `KeyboardViewController`, to
+ show you how to can register your own provider. However, if
+ the demo registers KeyboardKit Pro as well, the provider is
+ replaced with a `StandardAutocompleteSuggestionProvider`.
  */
-class DemoAutocompleteSuggestionProvider: AutocompleteSuggestionProvider {
+class FakeAutocompleteSuggestionProvider: AutocompleteSuggestionProvider {
     
     var locale: Locale = .current
     
-    
     var canIgnoreWords: Bool { false }
-    
     var ignoredWords: [String] = []
-    
-    func hasIgnoredWord(_ word: String) -> Bool { false }
-    
-    func ignoreWord(_ word: String) {}
-    
-    func removeIgnoredWord(_ word: String) {}
-    
-    
     var canLearnWords: Bool { false }
     
+    func hasIgnoredWord(_ word: String) -> Bool { false }
     func hasLearnedWord(_ word: String) -> Bool { false }
-    
+    func ignoreWord(_ word: String) {}
     func learnWord(_ word: String) {}
-    
+    func removeIgnoredWord(_ word: String) {}
     func unlearnWord(_ word: String) {}
-    
     
     func autocompleteSuggestions(for text: String, completion: AutocompleteResponse) {
         guard text.count > 0 else { return completion(.success([])) }
@@ -49,7 +39,7 @@ class DemoAutocompleteSuggestionProvider: AutocompleteSuggestionProvider {
     }
 }
 
-private extension DemoAutocompleteSuggestionProvider {
+private extension FakeAutocompleteSuggestionProvider {
     
     func suggestions(for text: String) -> [AutocompleteSuggestion] {
         [

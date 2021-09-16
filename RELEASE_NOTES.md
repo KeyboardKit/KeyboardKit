@@ -29,6 +29,7 @@ It also exposes more system keyboard views and styles publicly.
 
 ### 🐛 Bug fixes
 
+* Thanks to [@ardavank](https://github.com/ardavank), the `EmojisCategoryKeyboardMenu` now uses fixd fonts.
 * `SystemKeyboardButtonContent` now applies the appearance text color to the "next keyboard" button (on iOS 14+).
 
 ### 🗑 Deprecations

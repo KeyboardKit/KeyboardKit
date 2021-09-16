@@ -16,7 +16,7 @@
 		A921154025D58AC7003510D9 /* Keyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A921153925D58AC7003510D9 /* Keyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A921155125D58D86003510D9 /* KeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = A921155025D58D86003510D9 /* KeyboardKit */; };
 		A921155625D58D95003510D9 /* KeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = A921155525D58D95003510D9 /* KeyboardKit */; };
-		A921156F25D5902F003510D9 /* DemoAutocompleteSuggestionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921156D25D5902F003510D9 /* DemoAutocompleteSuggestionProvider.swift */; };
+		A921156F25D5902F003510D9 /* FakeAutocompleteSuggestionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921156D25D5902F003510D9 /* FakeAutocompleteSuggestionProvider.swift */; };
 		A921157025D5902F003510D9 /* DemoKeyboardActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921156E25D5902F003510D9 /* DemoKeyboardActionHandler.swift */; };
 		A921157625D5906A003510D9 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921157525D5906A003510D9 /* KeyboardView.swift */; };
 		A921157A25D59071003510D9 /* ImageKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921157925D59071003510D9 /* ImageKeyboard.swift */; };
@@ -94,7 +94,7 @@
 		A921153925D58AC7003510D9 /* Keyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Keyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A921153B25D58AC7003510D9 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		A921153D25D58AC7003510D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A921156D25D5902F003510D9 /* DemoAutocompleteSuggestionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoAutocompleteSuggestionProvider.swift; sourceTree = "<group>"; };
+		A921156D25D5902F003510D9 /* FakeAutocompleteSuggestionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeAutocompleteSuggestionProvider.swift; sourceTree = "<group>"; };
 		A921156E25D5902F003510D9 /* DemoKeyboardActionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoKeyboardActionHandler.swift; sourceTree = "<group>"; };
 		A921157525D5906A003510D9 /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		A921157925D59071003510D9 /* ImageKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageKeyboard.swift; sourceTree = "<group>"; };
@@ -205,6 +205,7 @@
 		A921153A25D58AC7003510D9 /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
+				A9C365F226F310ED00E87AFE /* Autocomplete */,
 				A921157F25D5910D003510D9 /* Assets */,
 				A9FDAA0926025DF600E628C3 /* Demo */,
 				A921155A25D58E4A003510D9 /* Supporting Files */,
@@ -346,10 +347,17 @@
 			path = Screens;
 			sourceTree = "<group>";
 		};
+		A9C365F226F310ED00E87AFE /* Autocomplete */ = {
+			isa = PBXGroup;
+			children = (
+				A921156D25D5902F003510D9 /* FakeAutocompleteSuggestionProvider.swift */,
+			);
+			path = Autocomplete;
+			sourceTree = "<group>";
+		};
 		A9FDAA0926025DF600E628C3 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				A921156D25D5902F003510D9 /* DemoAutocompleteSuggestionProvider.swift */,
 				A921156E25D5902F003510D9 /* DemoKeyboardActionHandler.swift */,
 				A951A49A25E016660022385A /* DemoKeyboardLayoutProvider.swift */,
 			);
@@ -559,7 +567,7 @@
 				A921153C25D58AC7003510D9 /* KeyboardViewController.swift in Sources */,
 				A921157A25D59071003510D9 /* ImageKeyboard.swift in Sources */,
 				A951A49B25E016660022385A /* DemoKeyboardLayoutProvider.swift in Sources */,
-				A921156F25D5902F003510D9 /* DemoAutocompleteSuggestionProvider.swift in Sources */,
+				A921156F25D5902F003510D9 /* FakeAutocompleteSuggestionProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
