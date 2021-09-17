@@ -1,5 +1,5 @@
 //
-//  FakeAutocompleteSuggestionProvider.swift
+//  FakeAutocompleteProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-07-05.
@@ -16,9 +16,9 @@ import KeyboardKit
  This provider is registered by `KeyboardViewController`, to
  show you how to can register your own provider. However, if
  the demo registers KeyboardKit Pro as well, the provider is
- replaced with a `StandardAutocompleteSuggestionProvider`.
+ replaced with a `StandardAutocompleteProvider`.
  */
-class FakeAutocompleteSuggestionProvider: AutocompleteSuggestionProvider {
+class FakeAutocompleteProvider: AutocompleteProvider {
     
     var locale: Locale = .current
     
@@ -39,7 +39,7 @@ class FakeAutocompleteSuggestionProvider: AutocompleteSuggestionProvider {
     }
 }
 
-private extension FakeAutocompleteSuggestionProvider {
+private extension FakeAutocompleteProvider {
     
     func suggestions(for text: String) -> [AutocompleteSuggestion] {
         [

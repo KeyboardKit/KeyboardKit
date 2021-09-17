@@ -105,10 +105,12 @@ private extension KeyboardView {
 
 private extension KeyboardView {
     
-    func buttonBuilder(action: KeyboardAction) -> AnyView {
+    func buttonBuilder(
+        action: KeyboardAction,
+        appearance: KeyboardAppearance) -> AnyView {
         switch action {
-        case .space: return AnyView(SystemKeyboardSpaceButtonContent())
-        default: return SystemKeyboard.standardButtonBuilder(action: action)
+        case .space: return AnyView(SystemKeyboardSpaceButtonContent(appearance: appearance))
+        default: return SystemKeyboard.standardButtonBuilder(action: action, appearance: appearance)
         }
     }
     

@@ -29,7 +29,7 @@ public protocol AutocompleteProvider: AnyObject {
     
     
     /**
-     Get autocomplete suggestions for a certain text.
+     Get autocomplete suggestions for the provided `text`.
      */
     func autocompleteSuggestions(for text: String, completion: @escaping AutocompleteResponse)
     
