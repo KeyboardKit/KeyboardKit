@@ -33,6 +33,13 @@ public class KeyboardContext: ObservableObject {
     
     public let device: UIDevice
     
+    /**
+     This property can be set to `false` to stop the context
+     from syncing with the vc. It is experimental and can be
+     removed whenever.
+     */
+    public static var tempIsPreviewMode: Bool = false
+    
     @Published public var activeAppBundleId: String?
     @Published public var keyboardType: KeyboardType
     @Published public var hasDictationKey: Bool = false
@@ -90,6 +97,7 @@ public extension KeyboardContext {
      input view controller.
      */
     func sync(with controller: KeyboardInputViewController) {
+        if Self.tempIsPreviewMode { return }
         self.activeAppBundleId = controller.activeAppBundleId
         self.hasDictationKey = controller.hasDictationKey
         self.hasFullAccess = controller.hasFullAccess
