@@ -172,6 +172,9 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      A custom text input proxy to which text input should be
      redirected instead of the `textDocumentProxy`.
+     
+     If you want to modify this proxy, you can override this
+     property and apply another `didSet`.
      */
     public var textInputProxy: TextInputProxy? {
         didSet { keyboardContext.sync(with: self) }
