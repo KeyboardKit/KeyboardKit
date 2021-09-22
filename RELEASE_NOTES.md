@@ -1,12 +1,12 @@
 # Release notes
 
-KeyboardKit tries to honor the following rules when new versions are released:
+KeyboardKit tries to honor semantic versioning:
 
 * Only deprecate code in `minor` versions.
 * Only remove deprecated code in `major` versions.
 * Avoid introducing breaking changes in `minor` versions. 
 
-Breaking changes can still occur in minor versions and patches, if the alternative is to not release new critical features or fixes.
+Breaking changes can still occur in minor versions and patches, though, if the alternative is to not be able to release new critical features or fixes.
 
 
 
@@ -30,7 +30,7 @@ It also exposes more system keyboard views and styles publicly.
 
 ### 🐛 Bug fixes
 
-* Thanks to [@ardavank](https://github.com/ardavank), the `EmojisCategoryKeyboardMenu` now uses fixd fonts.
+* Thanks to [@ardavank](https://github.com/ardavank), the `EmojisCategoryKeyboardMenu` now uses fixed fonts.
 * `SystemKeyboardButtonContent` now applies the appearance text color to the "next keyboard" button (on iOS 14+).
 
 ### 🗑 Deprecations
