@@ -101,12 +101,12 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      Setup KeyboardKit with a SwiftUI `View`.
      
-     This will remove all subviews from the controller, then
-     add the view. The view will be pinned to the edges, and
-     resize the extension to fit its content.
+     This will remove all subviews, then add the view, which
+     will be pinned to the edges and resize the extension to
+     fit its content.
      
-     This also applies `@EnvironmentObject` instances to the
-     view, that can be used within the entire view hierarchy.
+     The function also injects the various contexts into the
+     view hiearchy, as `@EnvironmentObject`s.
      */
     open func setup<Content: View>(with view: Content) {
         self.view.subviews.forEach { $0.removeFromSuperview() }
@@ -119,26 +119,6 @@ open class KeyboardInputViewController: UIInputViewController {
         let host = KeyboardHostingController(rootView: view)
         host.add(to: self)
     }
-    
-    /**
-     Setup KeyboardKit with a UIKit `UIStackView`.
-     
-     This will remove all subviews from the controller, then
-     add the view. The view will be pinned to the edges, and
-     resize the extension to fit its content.
-     
-     The view will be also setup to use a `vertical` axis, a
-     `fill` alignment and an `equalSpacing` districution.
-     */
-    open func setup(with view: UIStackView) {
-        self.view.subviews.forEach { $0.removeFromSuperview() }
-        view.frame = .zero
-        view.axis = .vertical
-        view.alignment = .fill
-        view.distribution = .equalSpacing
-        self.view.addSubview(view, fill: true)
-    }
-    
     
     
     // MARK: - Combine
@@ -363,6 +343,17 @@ open class KeyboardInputViewController: UIInputViewController {
     open func changeKeyboardType(to type: KeyboardType) {
         keyboardContext.keyboardType = type
     }
+    
+    @available(*, deprecated, message: "This will be removed in 5.0")
+    open func setup(with view: UIStackView) {
+        self.view.subviews.forEach { $0.removeFromSuperview() }
+        view.frame = .zero
+        view.axis = .vertical
+        view.alignment = .fill
+        view.distribution = .equalSpacing
+        self.view.addSubview(view, fill: true)
+    }
+    
 }
 
 

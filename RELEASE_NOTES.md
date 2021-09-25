@@ -10,6 +10,16 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 4.9.1
+
+This version fixes the iOS 15 autorotate bug and adds a property that can suppress the `needsInputModeSwitchKey` warning.
+
+### 🗑 Deprecations
+
+* `KeyboardInputViewController` `setup(with:)` stack view variant is deprecated and will be removed in 5.0.
+
+
+
 ## 4.9.0
 
 This version adds styles, which makes it a lot easier to style system keyboards.
