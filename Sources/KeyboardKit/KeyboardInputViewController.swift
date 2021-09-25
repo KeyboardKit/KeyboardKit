@@ -151,6 +151,29 @@ open class KeyboardInputViewController: UIInputViewController {
     }
     
     /**
+     Set this property to either `true` or `false` to ignore
+     the real `needsInputModeSwitchKey` in all controllers.
+     */
+    public static var needsInputModeSwitchKeyOverride: Bool?
+    
+    /**
+     Set this property to either `true` or `false` to ignore
+     the real `needsInputModeSwitchKey` value.
+     */
+    public lazy var needsInputModeSwitchKeyOverride: Bool? = {
+        Self.needsInputModeSwitchKeyOverride
+    }()
+    
+    /**
+     Set this property to either `true` or `false` to ignore
+     the real `needsInputModeSwitchKey`. This can be used to
+     avoid warnings when previeweing etc.
+     */
+    open override var needsInputModeSwitchKey: Bool {
+        needsInputModeSwitchKeyOverride ?? super.needsInputModeSwitchKey
+    }
+    
+    /**
      This internal property always returns the original text
      document proxy, regardless of if another proxy is set.
      */
