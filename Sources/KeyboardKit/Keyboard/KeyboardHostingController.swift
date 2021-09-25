@@ -30,4 +30,9 @@ public class KeyboardHostingController<Content: View>: UIHostingController<Conte
         view.topAnchor.constraint(equalTo: controller.view.topAnchor).isActive = true
         view.bottomAnchor.constraint(equalTo: controller.view.bottomAnchor).isActive = true
     }
+    
+    public override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        updateViewConstraints()
+    }
 }
