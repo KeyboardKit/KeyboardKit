@@ -18,8 +18,8 @@ import Combine
  
  This demo registers demo-specific services in `viewDidLoad`
  and sets up KeyboardKit with a `KeyboardView` that uses the
- demo-specific services. Feel free to play around with these
- to see how the keyboard behavior changes.
+ services in `viewWillSetupKeyboard`. Feel free to play with
+ these to see how the keyboard behavior changes.
  
  The demo can be configured with and without KeyboardKit Pro
  support. Without Pro, the demo only supports English locale
@@ -97,11 +97,15 @@ class KeyboardViewController: KeyboardInputViewController {
         // This demo will soon demonstrate a color theme
         // keyboardAppearance = <Insert your own custom appearance>
         // view.backgroundColor = UIColor(keyboardAppearance.keyboardBackgroundColor)
+    }
+    
+    override func viewWillSetupKeyboard() {
+        super.viewWillSetupKeyboard()
         
         // Setup the extension to use the keyboardView below,
         // either without or with Pro enabled.
-        // setup(with: keyboardView)
-        try? setupPro(withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098", view: keyboardView)
+        setup(with: keyboardView)
+        //try? setupPro(withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098", view: keyboardView)
     }
     
     
