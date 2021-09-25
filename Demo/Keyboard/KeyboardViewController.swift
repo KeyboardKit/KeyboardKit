@@ -48,9 +48,6 @@ class KeyboardViewController: KeyboardInputViewController {
         // appearance colors.
         // Color.darkAppearanceStrategy = { _ in false }
         
-        // Perform the base initialization
-        super.viewDidLoad()
-        
         // Setup a demo-specific autocomplete provider
         // 💡 You can create your own autocomplete providers
         // 💡 This is overwritten if Pro is registered below
@@ -97,6 +94,9 @@ class KeyboardViewController: KeyboardInputViewController {
         // This demo will soon demonstrate a color theme
         // keyboardAppearance = <Insert your own custom appearance>
         // view.backgroundColor = UIColor(keyboardAppearance.keyboardBackgroundColor)
+        
+        // Perform the base initialization
+        super.viewDidLoad()
     }
     
     override func viewWillSetupKeyboard() {
@@ -104,8 +104,8 @@ class KeyboardViewController: KeyboardInputViewController {
         
         // Setup the extension to use the keyboardView below,
         // either without or with Pro enabled.
-        setup(with: keyboardView)
-        //try? setupPro(withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098", view: keyboardView)
+        // setup(with: keyboardView)
+        try? setupPro(withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098", view: keyboardView)
     }
     
     
