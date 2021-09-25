@@ -16,9 +16,9 @@ This version fixes the iOS 15 autorotate bug and adds a property that can suppre
 
 ### ✨ New features
 
-* `KeyboardInputViewController` has a new `viewWillSetupKeyboard` that can be overridden to setup the keyboard at the proper time.
-* `KeyboardInputViewController` has a new `needsInputModeSwitchKeyOverride` that can be set to make an input controllers ignore the real value.
-* `KeyboardInputViewController` has a new, static `needsInputModeSwitchKeyOverride` that can be set to make all input controllers ignore the real value.
+* `KeyboardInputViewController` has a new `viewWillSetupKeyboard` function that can be overridden to setup the keyboard at the proper time. It's just a convenience function. You can still setup the keyboard whenever you want.
+* `KeyboardInputViewController` has a new, static `needsInputModeSwitchKeyOverride` that can be set to make all input controllers ignore the real value. This can be useful when you want to create a keyboard preview and don't want all the warnings.
+* `KeyboardInputViewController` has a new `needsInputModeSwitchKeyOverride` that can be set to make an input controllers ignore the real value. It will default to the static property value.
 
 ### 🗑 Deprecations
 
