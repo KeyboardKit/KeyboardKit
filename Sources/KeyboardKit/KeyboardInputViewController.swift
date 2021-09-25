@@ -14,24 +14,37 @@ import UIKit
  This class extends `UIInputViewController` with KeyboardKit
  specific functionality.
  
- With KeyboardKit, let your `KeyboardViewController` inherit
- this class instead of `UIInputViewController`. You then get
- access to a bunch of features that regular controllers lack.
+ When you use KeyboardKit, inherit this class instead of the
+ regular `UIInputViewController` class. This will extend the
+ keyboard extension with a lot of additional features that a
+ regular keyboard extension lacks.
  
- This class provides you with many services that you can use
- when building your custom keyboard extensions, for instance
- `keyboardActionHandler`, `keyboardFeedbackHandler` etc. You
- can replace the standard implementations with custom types.
+ This class provides you with many utils that you can use to
+ build a more powerful keyboard extension, for instance:
  
+ * `autocompleteProvider` provides autocomplete suggestions
+ * `keyboardActionHandler` handles keyboard actions
+ * `keyboardAppearance` determines the keyboard design
+ * `keyboardBehavior` determines the keyboard behavior
+ * `keyboardFeedbackHandler` handles autio & haptic feedback
+ * `keyboardInputSetProvider` provides keybpard input actions
+ * `keyboardLayoutProvider` provides a keyboard layout
+ * `keyboardSecondaryCalloutActionProvider` provides secondary callout actions
+ 
+ You can replace any of these to customize how your keyboard
+ extension behaves.
+  
  This class also provides you with many observable instances,
- like `keyboardContext` and `autocompleteContext`. These are
- injected as environment objects into the view hierarchy and
- can be accessed in all parts of the view hierarchy.
+ for instance:
  
- To setup autocomplete, simply override `performAutocomplete`
- and `resetAutocomplete`. They are automatically called when
- needed and should update the `autocompleteContext` with new
- suggestions. `resetAutocomplete` is already implemented.
+ * `autocompleteContext` provides autocomplete information
+ * `keyboardContext` provides keybard information
+ * `keyboardFeedbackSettings` provides feedback settings
+ * `keyboardInputCalloutContext` provides callout information
+ * `keyboardSecondaryInputCalloutContext` provides secondary callout information
+ 
+ These contexts are injected as environment objects into the
+ root view and can be accessed anywhere in the hierarchy.
  */
 open class KeyboardInputViewController: UIInputViewController {
     
