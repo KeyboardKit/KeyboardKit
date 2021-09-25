@@ -19,6 +19,14 @@ import UIKit
  keyboard extension with a lot of additional features that a
  regular keyboard extension lacks.
  
+ Regarding the view controller lifecycle, there are some new
+ functions that you can override. These should be overridden
+ to assure that the keyboard is kept in sync, e.g.:
+ 
+ * `viewWillSetupKeyboard` is called when a controller needs
+ to setup or recreate the keyboard view. Override this, then
+ call `setup(with:)` or any other setup logic.
+ 
  This class provides you with many utils that you can use to
  build a more powerful keyboard extension, for instance:
  
@@ -55,6 +63,7 @@ open class KeyboardInputViewController: UIInputViewController {
         super.viewDidLoad()
         Self.shared = self
         setupLocaleObservation()
+        viewWillSetupKeyboard()
     }
     
     open override func viewWillAppear(_ animated: Bool) {
@@ -65,6 +74,10 @@ open class KeyboardInputViewController: UIInputViewController {
     open override func viewWillLayoutSubviews() {
         keyboardContext.sync(with: self)
         super.viewWillLayoutSubviews()
+    }
+    
+    open func viewWillSetupKeyboard() {
+        // Override and implement your keyboard setup logic.
     }
     
     open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

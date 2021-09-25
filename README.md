@@ -66,11 +66,15 @@ end
 
 To build a keyboard extension with KeyboardKit, add `KeyboardKit` to your project as shown above.
 
-If you use Swift Package Manager, make sure to add KeyboardKit to your *keyboard extension*. You can add it to your hosting app as well, but the keyboard extension must have it.
+If you use Swift Package Manager, make sure to add KeyboardKit to your keyboard extension. You can add it to the hosting app as well, but the keyboard extension must have it.
 
-You should then inherit `KeyboardInputViewController` instead of `UIInputViewController`. It provides you with a lot of additional functionality, e.g. extra properties like `keyboardContext`, `keyboardActionHandler`, `keyboardAppearance` etc. The extension will also get access to autocomplete logic, extensions and much more. 
+Then, you should then inherit `KeyboardInputViewController` instead of `UIInputViewController`. It provides you with a lot of additional functionality, e.g. extra observables like `keyboardContext` as well as services like `keyboardActionHandler`, `keyboardAppearance` etc. 
 
-`KeyboardInputViewController` has a `setup(with:)` function that can be used to setup your extension with any `SwiftUI` view. This will make it the main view of the extension, inject necessary environment objects and resize the keyboard extension to fit the view.
+Inheriting `KeyboardInputViewController` also gives extensions access to new view lifecycle functions, autocomplete logic, extensions and more. 
+
+`KeyboardInputViewController` will call `viewWillSetupKeyboard` whenever the keyboard must be created or re-created due to things like screen size changes. You can then use `setup(with:)` to setup your extension with any `SwiftUI` view. 
+
+Setting up the view controller with a SwiftUI view will make the view the main view of the extension, inject necessary environment objects and resize the keyboard extension to fit the view.
 
 Have a look at the demo application and read more below to see how it all fits together.
 
@@ -78,7 +82,9 @@ Have a look at the demo application and read more below to see how it all fits t
 
 ## SwiftUI vs. UIKit
 
-KeyboardKit supports both `SwiftUI` and `UIKit`, but SwiftUI is the main focus going forward. The rest of this readme assumes that you're using SwiftUI. You can read more about UIKit support [here][UIKit].
+KeyboardKit supports both `SwiftUI` and `UIKit`, but SwiftUI is the main focus going forward.
+
+The rest of this readme assumes that you're using SwiftUI. You can read more about UIKit support [here][UIKit].
 
 ### Important about SwiftUI previews
 

@@ -86,20 +86,6 @@ class KeyboardInputViewControllerTests: QuickSpec {
                 expect(vc.view.subviews.count).to(equal(1))
             }
         }
-    
-        describe("setting up with stack view") {
-            
-            it("adds and configures the view") {
-                expect(vc.view.subviews.count).to(equal(2))
-                let view = UIStackView()
-                vc.setup(with: view)
-                expect(vc.view.subviews.count).to(equal(1))
-                expect(view.frame).to(equal(.zero))
-                expect(view.axis).to(equal(.vertical))
-                expect(view.alignment).to(equal(.fill))
-                expect(view.distribution).to(equal(.equalSpacing))
-            }
-        }
         
         
         // MARK: - Properties
