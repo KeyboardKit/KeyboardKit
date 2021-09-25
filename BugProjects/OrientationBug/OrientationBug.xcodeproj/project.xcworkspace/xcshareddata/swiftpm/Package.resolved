@@ -5,9 +5,9 @@
         "package": "KeyboardKit",
         "repositoryURL": "git@github.com:KeyboardKit/KeyboardKit.git",
         "state": {
-          "branch": null,
-          "revision": "0f02c975055d5773b8be80fb050451f99a3fd5c3",
-          "version": "4.9.0"
+          "branch": "bug-fixes",
+          "revision": "d836afa606112fb8bc59c83f4ff81a2e7a1eaf9e",
+          "version": null
         }
       }
     ]

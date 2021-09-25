@@ -17,6 +17,7 @@
 		A922B26226FDA47C00E235A1 /* KeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = A922B26126FDA47C00E235A1 /* KeyboardKit */; };
 		A9A9328A26FDD24000E26E56 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A9328926FDD24000E26E56 /* KeyboardViewController.swift */; };
 		A9A9328E26FDD24100E26E56 /* StandardKeyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A9A9328726FDD24000E26E56 /* StandardKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A9A9329826FFC9FD00E26E56 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A9329726FFC9FD00E26E56 /* KeyboardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		A9A9328726FDD24000E26E56 /* StandardKeyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StandardKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9A9328926FDD24000E26E56 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		A9A9328B26FDD24100E26E56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9A9329726FFC9FD00E26E56 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 		A922B25226FDA1A000E235A1 /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
+				A9A9329726FFC9FD00E26E56 /* KeyboardView.swift */,
 				A922B25326FDA1A000E235A1 /* KeyboardViewController.swift */,
 				A922B25526FDA1A000E235A1 /* Info.plist */,
 			);
@@ -305,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A922B25426FDA1A000E235A1 /* KeyboardViewController.swift in Sources */,
+				A9A9329826FFC9FD00E26E56 /* KeyboardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -658,8 +662,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:KeyboardKit/KeyboardKit.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
+				branch = "bug-fixes";
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
