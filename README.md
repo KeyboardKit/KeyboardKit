@@ -127,46 +127,18 @@ Even though KeyboardKit contains a lot of features, you can use its' extensions 
 Check out the demo apps and source code for examples and more information.
 
 
-### 💥 Keyboard Actions
+### 💥 Actions
 
 KeyboardKit comes with many keyboard-specific actions, like `character` inputs, `emojis`, `backspace`, `space`, `newline`, `image` etc. You can even create your own actions.
 
 [Read more here][Keyboard-Actions]
 
 
-### 😊 Keyboard Types
-
-KeyboardKit comes with many different keyboard types, like `alphabetic`, `numeric`, `symbolic`, `emoji` etc. You can even create your own types.
-
-[Read more here][Keyboard-Types]
-
-
-### 🔤 Input Sets
-
-KeyboardKit comes with an input set engine that make it easy to create `alphabetic`, `numeric` and `symbolic`  keyboards in different languages.
-
-[Read more here][Input-Sets]
-
-
-### ⌨️ Keyboard Layouts
-
-KeyboardKit comes with a layout engine that makes it easy to create specific keyboard layouts for various devices, orientations and locales.
-
-[Read more here][Keyboard-Layouts]
-
-
-### 🎨 Appearances
+### 🎨 Appearance
 
 KeyboardKit lets you style your custom keyboards with custom appearances.
 
 [Read more here][Appearance]
-
-
-### 🗯 Callouts
-
-KeyboardKit lets you show callout bubbles as users type, as well as secondary action callouts with optional actions.
-
-[Read more here][Callouts]
 
 
 ### 💡Autocomplete
@@ -178,18 +150,84 @@ KeyboardKit can present autocomplete suggestions as users type. The core library
 [Read more here][Autocomplete]
 
 
-### ✋ Haptic Feedback
+### 🗯 Callouts
 
-KeyboardKit keyboards can give haptic feedback as users type. 
+KeyboardKit lets you show callout bubbles as users type, as well as secondary action callouts with optional actions.
 
-[Read more here][Haptic-Feedback].
+[Read more here][Callouts]
 
 
-### 🔈 Audio Feedback
+### 😊 Emojis
 
-KeyboardKit keyboards can give audio feedback as users type. 
+KeyboardKit defines emojis and emoji categories that you can use in your own keyboards.
 
-[Read more here][Audio-Feedback].
+
+### 👋 Feedback
+
+KeyboardKit keyboards can give audio and haptic feedback as users type. 
+
+Read more about [audio feedback][Audio-Feedback] and [haptic feedback][Haptic-Feedback].
+
+
+### 👆 Gestures
+
+KeyboardKit comes with keyboard-specific gestures that you can use in your own keyboards.
+
+
+### 🔤 Input
+
+KeyboardKit comes with an input set engine that make it easy to create `alphabetic`, `numeric` and `symbolic`  keyboards in different languages.
+
+[Read more here][Input-Sets]
+
+
+### 🔤 Keyboard Types
+
+KeyboardKit comes with many different keyboard types, like `alphabetic`, `numeric`, `symbolic`, `emoji` etc. You can even create your own types.
+
+[Read more here][Keyboard-Types]
+
+
+### ⌨️ Keyboard Layouts
+
+KeyboardKit comes with a layout engine that makes it easy to create specific keyboard layouts for various devices, orientations and locales.
+
+[Read more here][Keyboard-Layouts]
+
+
+### 🇸🇪 Locales
+
+KeyboardKit defines keyboard-specific locales that simplify handling supported languages.
+
+
+### 🌐 Localization
+
+KeyboardKit comes with translations for the supported keyboard locales.
+
+
+### 👁 Previews
+
+KeyboardKit defines a bunch of preview-specific types that simplify previewing keyboard views in SwiftUI.
+
+
+### ➡️ Proxy
+
+KeyboardKit defines a bunch of extensions to the text document proxu and ways to route text to other sources.
+
+
+### 🎨 Styles
+
+KeyboardKit defines a bunch of styles that simplify customizing the look of various keyboard components and buttons.
+
+
+### ⌨ System Keyboard Support
+
+KeyboardKit has a separate `System` section dedicated to replicating iOS system keyboards.
+
+
+### 🖼 Views
+
+KeyboardKit comes with a bunch of keyboard-specific views.
 
 
 
