@@ -34,6 +34,6 @@ extension KeyboardInputTextComponent {
     }
     
     func handleResignFirstResponder() {
-        KeyboardInputViewController.shared.textInputProxy = nil
+        viewController.textInputProxy = nil
     }
 }
