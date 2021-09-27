@@ -15,11 +15,11 @@ public extension KeyboardCasing {
      */
     var standardButtonImage: Image {
         switch self {
-        case .auto: return .shiftLowercased
-        case .capsLocked: return .shiftCapslocked
-        case .lowercased: return .shiftLowercased
-        case .neutral: return .shiftLowercased
-        case .uppercased: return .shiftUppercased
+        case .auto: return .keyboardShiftLowercased
+        case .capsLocked: return .keyboardShiftCapslocked
+        case .lowercased: return .keyboardShiftLowercased
+        case .neutral: return .keyboardShiftLowercased
+        case .uppercased: return .keyboardShiftUppercased
         }
     }
 }

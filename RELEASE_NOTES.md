@@ -10,6 +10,16 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 4.9.2
+
+This version renames images to avoid preview problems in apps that define the same image names.
+
+### 🗑 Deprecations
+
+* A bunch of images have been renamed with a `keyboard` name prefix.
+
+
+
 ## 4.9.1
 
 This version fixes the iOS 15 autorotate bug and adds a property that can suppress the `needsInputModeSwitchKey` warning.
@@ -31,6 +41,8 @@ This version fixes the iOS 15 autorotate bug and adds a property that can suppre
 This version adds styles, which makes it a lot easier to style system keyboards.
 
 It also exposes more system keyboard views and styles publicly.
+
+Starting with this version, the library will start deprecating stuff that willbe changed in KK 5. The aim is to release several patches to prepare the library for the changes to come through deprecations instead of breaking changes.
 
 ### ✨ New features
 

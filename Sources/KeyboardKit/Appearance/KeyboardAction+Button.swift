@@ -72,23 +72,23 @@ public extension KeyboardAction {
         if let image = standardButtonTextImageReplacement(for: context) { return image }
         
         switch self {
-        case .backspace: return .backspace
-        case .command: return .command
-        case .control: return .control
-        case .dictation: return .dictation
+        case .backspace: return .keyboardBackspace
+        case .command: return .keyboardCommand
+        case .control: return .keyboardControl
+        case .dictation: return .keyboardDictation
         case .dismissKeyboard: return .keyboardDismiss
         case .image(_, let imageName, _): return Image(imageName)
         case .keyboardType(let type): return type.standardButtonImage
         case .moveCursorBackward: return .keyboardLeft
         case .moveCursorForward: return .keyboardRight
-        case .newLine: return .newLine
-        case .nextKeyboard: return .globe
-        case .option: return .option
+        case .newLine: return .keyboardNewline
+        case .nextKeyboard: return .keyboardGlobe
+        case .option: return .keyboardOption
         case .primary(let type): return type.standardButtonImage
         case .settings: return .keyboardSettings
         case .shift(let currentState): return currentState.standardButtonImage
         case .systemImage(_, let imageName, _): return Image(systemName: imageName)
-        case .tab: return .tab
+        case .tab: return .keyboardTab
         default: return nil
         }
     }
@@ -128,7 +128,7 @@ public extension KeyboardAction {
      */
     func standardButtonTextImageReplacement(for context: KeyboardContext) -> Image? {
         switch standardButtonText(for: context) {
-        case "↵": return .newLine
+        case "↵": return .keyboardNewline
         default: return nil
         }
     }
@@ -138,7 +138,7 @@ private extension KeyboardAction.PrimaryType {
     
     var standardButtonImage: Image? {
         switch self {
-        case .newLine: return .newLine
+        case .newLine: return .keyboardNewline
         default: return nil
         }
     }

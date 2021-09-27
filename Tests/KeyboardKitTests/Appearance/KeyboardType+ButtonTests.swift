@@ -40,9 +40,9 @@ class KeyboardType_ButtonTests: QuickSpec {
             }
             
             it("is defined for some types") {
-                expect(result(for: .email)).to(equal(.email))
-                expect(result(for: .emojis)).to(equal(.emoji))
-                expect(result(for: .images)).to(equal(.images))
+                expect(result(for: .email)).to(equal(.keyboardEmail))
+                expect(result(for: .emojis)).to(equal(.keyboardEmoji))
+                expect(result(for: .images)).to(equal(.keyboardImages))
                 
                 expect(result(for: .alphabetic(.lowercased))).to(beNil())
                 expect(result(for: .custom(""))).to(beNil())

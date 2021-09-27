@@ -48,7 +48,7 @@ class SystemKeyboardButtonTests: QuickSpec {
                     action: .control,
                     actionHandler: actionHandler,
                     appearance: appearance,
-                    image: .command)
+                    image: .keyboardCommand)
                 expect(button).toNot(beNil())
             }
         }

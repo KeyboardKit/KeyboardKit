@@ -10,27 +10,27 @@ import SwiftUI
 
 public extension Image {
     
-    static var backspace: Image { Image(systemName: "delete.left") }
-    static var dictation: Image { Image(systemName: "mic") }
-    static var command: Image { Image(systemName: "command") }
-    static var control: Image { Image(systemName: "control") }
-    static var email: Image { Image(systemName: "envelope") }
-    static var emoji: Image { Image(systemName: emojiImageName) }
-    static var globe: Image { Image(systemName: "globe") }
-    static var images: Image { Image(systemName: "photo") }
     static var keyboard: Image { Image(systemName: "keyboard") }
+    static var keyboardBackspace: Image { Image(systemName: "delete.left") }
+    static var keyboardCommand: Image { Image(systemName: "command") }
+    static var keyboardControl: Image { Image(systemName: "control") }
+    static var keyboardDictation: Image { Image(systemName: "mic") }
     static var keyboardDismiss: Image { Image(systemName: "keyboard.chevron.compact.down") }
+    static var keyboardEmail: Image { Image(systemName: "envelope") }
+    static var keyboardEmoji: Image { Image(systemName: emojiImageName) }
+    static var keyboardGlobe: Image { Image(systemName: "globe") }
+    static var keyboardImages: Image { Image(systemName: "photo") }
     static var keyboardLeft: Image { Image(systemName: "arrow.left") }
+    static var keyboardNewline: Image { Image(systemName: "arrow.turn.down.left") }
+    static var keyboardOption: Image { Image(systemName: "option") }
+    static var keyboardRedo: Image { Image(systemName: "arrow.uturn.right") }
     static var keyboardRight: Image { Image(systemName: "arrow.right") }
     static var keyboardSettings: Image { Image(systemName: settingsImageName) }
-    static var newLine: Image { Image(systemName: "arrow.turn.down.left") }
-    static var option: Image { Image(systemName: "option") }
-    static var redo: Image { Image(systemName: "arrow.uturn.right") }
-    static var shiftCapslocked: Image { Image(systemName: "capslock.fill") }
-    static var shiftLowercased: Image { Image(systemName: "shift") }
-    static var shiftUppercased: Image { Image(systemName: "shift.fill") }
-    static var tab: Image { Image(systemName: "arrow.right.to.line") }
-    static var undo: Image { Image(systemName: "arrow.uturn.left") }
+    static var keyboardShiftCapslocked: Image { Image(systemName: "capslock.fill") }
+    static var keyboardShiftLowercased: Image { Image(systemName: "shift") }
+    static var keyboardShiftUppercased: Image { Image(systemName: "shift.fill") }
+    static var keyboardTab: Image { Image(systemName: "arrow.right.to.line") }
+    static var keyboardUndo: Image { Image(systemName: "arrow.uturn.left") }
 }
 
 private extension Image {
@@ -55,27 +55,28 @@ private extension Image {
 struct ImageButton_Previews: PreviewProvider {
     
     static var images: [Image] = [
-        .backspace,
-        .dictation,
-        .command,
-        .control,
-        .email,
-        .emoji,
-        .globe,
-        .images,
         .keyboard,
+        .keyboardBackspace,
+        .keyboardCommand,
+        .keyboardControl,
+        .keyboardDictation,
+        .keyboardDictation,
         .keyboardDismiss,
+        .keyboardEmail,
+        .keyboardEmoji,
+        .keyboardGlobe,
+        .keyboardImages,
         .keyboardLeft,
+        .keyboardNewline,
+        .keyboardOption,
+        .keyboardRedo,
         .keyboardRight,
         .keyboardSettings,
-        .newLine,
-        .option,
-        .redo,
-        .shiftCapslocked,
-        .shiftLowercased,
-        .shiftUppercased,
-        .tab,
-        .undo]
+        .keyboardShiftCapslocked,
+        .keyboardShiftLowercased,
+        .keyboardShiftUppercased,
+        .keyboardTab,
+        .keyboardUndo]
     
     static func listItem(for image: Image) -> some View {
         image
