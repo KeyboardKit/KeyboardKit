@@ -9,9 +9,9 @@
 import Foundation
 
 /**
- This preview appearance class can be used in previews.
+ This appearance can be used in previews.
  */
-class PreviewKeyboardAppearance: StandardKeyboardAppearance {
+public class PreviewKeyboardAppearance: StandardKeyboardAppearance {
     
     init() {
         super.init(context: .preview)

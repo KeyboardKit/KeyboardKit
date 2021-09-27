@@ -10,6 +10,14 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 4.9.3
+
+### ✨ New features
+
+* `PreviewKeyboardAppearance` has been made public.
+
+
+
 ## 4.9.2
 
 This version renames images to avoid preview problems in apps that define the same image names.
