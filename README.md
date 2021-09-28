@@ -18,7 +18,7 @@
 
 ## About KeyboardKit
 
-KeyboardKit is a Swift library that helps you create custom keyboard extensions for `iOS` and `iPadOS`. It has tools for creating keyboards that mimic native keyboards, as well as entirely custom ones. You can use any views and use the tools in any way you like.
+KeyboardKit is a Swift library that helps you create custom keyboard extensions for `iOS` and `iPadOS` using `SwiftUI`. 
 
 The end result can look something like this...or entirely different:
 
@@ -26,7 +26,7 @@ The end result can look something like this...or entirely different:
     <img src ="Resources/Demo.gif" width="300" />
 </p>
 
-The movie above demonstrates an extensions that mimics a native system keyboard. KeyboardKit lets you create rich system keyboards like that with support for multiple locales, multi-gestures, secondary action callouts etc. 
+KeyboardKit lets you create rich system keyboards with support for multiple locales, gestures, callouts etc. 
 
 If you're new to iOS keyboard extensions, [this great guide][Guide] will help you get started. You can also have a look at the demo app for inspiration.
 
@@ -64,33 +64,15 @@ end
 
 ## Getting Started
 
-To build a keyboard extension with KeyboardKit, add `KeyboardKit` to your project as shown above.
+To build a keyboard extension with KeyboardKit, first add `KeyboardKit` to your app's keyboard extension as shown above. You can add it to the main app target as well, if you want to use it there.
 
-If you use Swift Package Manager, make sure to add KeyboardKit to your keyboard extension. You can add it to the hosting app as well, but the keyboard extension must have it.
+Then, inherit `KeyboardInputViewController` instead of `UIInputViewController`. It provides you with a lot of additional functionality, e.g. new lifecycle functions, observables like `keyboardContext` and services like `keyboardActionHandler`, `keyboardAppearance`, autocomplete logic etc.  
 
-Then, you should then inherit `KeyboardInputViewController` instead of `UIInputViewController`. It provides you with a lot of additional functionality, e.g. extra observables like `keyboardContext` as well as services like `keyboardActionHandler`, `keyboardAppearance` etc. 
-
-Inheriting `KeyboardInputViewController` also gives extensions access to new view lifecycle functions, autocomplete logic, extensions and more. 
-
-`KeyboardInputViewController` will call `viewWillSetupKeyboard` whenever the keyboard must be created or re-created due to things like screen size changes. You can then use `setup(with:)` to setup your extension with any `SwiftUI` view. 
+`KeyboardInputViewController` will call `viewWillSetupKeyboard` whenever the keyboard must be created or re-created. You can use `setup(with:)` in that function, to setup your extension with any `SwiftUI` view. 
 
 Setting up the view controller with a SwiftUI view will make the view the main view of the extension, inject necessary environment objects and resize the keyboard extension to fit the view.
 
 Have a look at the demo application and read more below to see how it all fits together.
-
-
-
-## SwiftUI vs. UIKit
-
-KeyboardKit supports both `SwiftUI` and `UIKit`, but SwiftUI is the main focus going forward.
-
-The rest of this readme assumes that you're using SwiftUI. You can read more about UIKit support [here][UIKit].
-
-### Important about SwiftUI previews
-
-KeyboardKit contains color and text resources that are embedded within the Swift Package. However, external SwiftUI previews can't access these resources, since the `.module` bundle isn't defined outside of this package. This makes the previews crash. 
-
-Until this is solved in SwiftUI and SPM, call `KeyboardPreviews.enable()` in each preview to use fake colors and texts that don't break the preview.
 
 
 
@@ -247,6 +229,16 @@ KeyboardKit Pro is a license-based extensions that unlocks pro features, such as
 
 
 
+## Important about SwiftUI previews
+
+KeyboardKit contains color and text resources that are embedded within the Swift Package. 
+
+However, external SwiftUI previews can't access these resources, since the `.module` bundle isn't defined outside of this package. Trying to access these resources will cause these previews to crash. 
+
+Until this is solved in SwiftUI and SPM, call `KeyboardPreviews.enable()` in each preview to use fake colors and texts that don't break the preview.
+
+
+
 ## Contact
 
 Feel free to reach out if you have questions or if you want to contribute in any way:
@@ -297,7 +289,5 @@ KeyboardKit is available under the MIT license. See LICENSE file for more info.
 [Keyboard-Layouts]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Keyboard-Layouts.md
 [Keyboard-Types]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Keyboard-Types.md
 [Localization]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Localization.md
-
-[UIKit]: https://github.com/KeyboardKit/KeyboardKit/blob/master/UIKit/README.md
 
 [Guide]: https://shyngys.com/ios-custom-keyboard-guide
