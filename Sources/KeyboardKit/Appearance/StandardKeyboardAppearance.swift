@@ -56,39 +56,6 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
                 size: 1)
         )
     }
-    
-    
-    
-    // MARK: - Deprecated
-    
-    @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
-    open func buttonBackgroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
-        systemKeyboardButtonStyle(for: action, isPressed: isPressed)
-            .backgroundColor
-    }
-    
-    @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
-    open func buttonCornerRadius(for action: KeyboardAction) -> CGFloat {
-        systemKeyboardButtonStyle(for: action, isPressed: false)
-            .cornerRadius
-    }
-    
-    @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
-    open func buttonFont(for action: KeyboardAction) -> Font {
-        font(for: action)
-    }
-    
-    @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
-    open func buttonForegroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
-        systemKeyboardButtonStyle(for: action, isPressed: isPressed)
-            .foregroundColor
-    }
-    
-    @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
-    open func buttonShadowColor(for action: KeyboardAction) -> Color {
-        systemKeyboardButtonStyle(for: action, isPressed: false)
-            .shadow.color
-    }
 }
 
 private extension StandardKeyboardAppearance {

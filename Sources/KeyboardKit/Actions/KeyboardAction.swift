@@ -47,9 +47,6 @@ public enum KeyboardAction: Equatable {
         space,
         systemImage(description: String, keyboardImageName: String, imageName: String),
         tab
-    
-    @available(*, deprecated, renamed: "primary")
-    case done, go, ok, search
 }
 
 
@@ -102,7 +99,7 @@ public extension KeyboardAction {
      */
     var isPrimaryAction: Bool {
         switch self {
-        case .done, .go, .ok, .primary, .search: return true
+        case .primary: return true
         default: return false
         }
     }

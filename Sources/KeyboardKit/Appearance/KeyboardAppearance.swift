@@ -28,18 +28,4 @@ public protocol KeyboardAppearance {
     func buttonImage(for action: KeyboardAction) -> Image?
     func buttonText(for action: KeyboardAction) -> String?
     func systemKeyboardButtonStyle(for action: KeyboardAction, isPressed: Bool) -> SystemKeyboardButtonStyle
-    
-    
-    // MARK: - Deprecated
-    
-    @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
-    func buttonBackgroundColor(for action: KeyboardAction, isPressed: Bool) -> Color
-    @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
-    func buttonCornerRadius(for action: KeyboardAction) -> CGFloat
-    @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
-    func buttonFont(for action: KeyboardAction) -> Font
-    @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
-    func buttonForegroundColor(for action: KeyboardAction, isPressed: Bool) -> Color
-    @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
-    func buttonShadowColor(for action: KeyboardAction) -> Color
 }

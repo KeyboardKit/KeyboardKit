@@ -10,6 +10,18 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 5.0
+
+KeyboardKit 5.0 streamlines many concepts in the library, to make it easier to create and handle keyboards.
+
+KeyboardKit 5.0 also removes UIKit-specific functionality, as well as all previously deprecated functionality.
+
+### 💥 Breaking changes
+
+* All deprecated functionality has been removed.
+
+
+
 ## 4.9.3
 
 ### ✨ New features

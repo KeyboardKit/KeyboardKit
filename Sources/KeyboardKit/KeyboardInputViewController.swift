@@ -390,38 +390,6 @@ open class KeyboardInputViewController: UIInputViewController {
     open func resetAutocomplete() {
         autocompleteContext.suggestions = []
     }
-    
-    
-    
-    // MARK: - Deprecated
-    
-    @available(*, deprecated, message: "Use the stack view-based setup(with:) and provide your own stack view.")
-    public lazy var keyboardStackView: UIStackView = {
-        let stackView = UIStackView(frame: .zero)
-        setup(with: stackView)
-        return stackView
-    }()
-    
-    @available(*, deprecated, message: "Change keyboardContext.locale directly.")
-    open func changeKeyboardLocale(to locale: Locale) {
-        keyboardContext.locale = locale
-    }
-    
-    @available(*, deprecated, message: "Change keyboardContext.keyboardType directly.")
-    open func changeKeyboardType(to type: KeyboardType) {
-        keyboardContext.keyboardType = type
-    }
-    
-    @available(*, deprecated, message: "This will be removed in 5.0")
-    open func setup(with view: UIStackView) {
-        self.view.subviews.forEach { $0.removeFromSuperview() }
-        view.frame = .zero
-        view.axis = .vertical
-        view.alignment = .fill
-        view.distribution = .equalSpacing
-        self.view.addSubview(view, fill: true)
-    }
-    
 }
 
 

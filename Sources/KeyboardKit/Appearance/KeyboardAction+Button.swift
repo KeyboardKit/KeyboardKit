@@ -108,16 +108,12 @@ public extension KeyboardAction {
     func standardButtonText(for context: KeyboardContext) -> String? {
         switch self {
         case .character(let char): return char
-        case .done: return KKL10n.done.text(for: context)
         case .emoji(let emoji): return emoji.char
         case .emojiCategory(let cat): return cat.fallbackDisplayEmoji.char
-        case .go: return KKL10n.go.text(for: context)
         case .keyboardType(let type): return type.standardButtonText(for: context)
         case .nextLocale: return context.locale.languageCode?.uppercased()
-        case .ok: return KKL10n.ok.text(for: context)
         case .primary(let type): return type.standardButtonText(for: context)
         case .return: return KKL10n.return.text(for: context)
-        case .search: return KKL10n.search.text(for: context)
         default: return nil
         }
     }

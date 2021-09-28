@@ -170,23 +170,6 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             }
         }
         
-        describe("trying to change keyboard type after gesture on action") {
-
-            it("does not change type if new type is same as current") {
-                inputViewController.keyboardContext.keyboardType = .alphabetic(.lowercased)
-                handler.tryChangeKeyboardType(after: .tap, on: .character("a"))
-                expect(inputViewController.hasCalled(inputViewController.changeKeyboardTypeRef)).to(beFalse())
-            }
-
-            it("changes type if new type is different from current") {
-                inputViewController.keyboardContext.keyboardType = .alphabetic(.uppercased)
-                handler.tryChangeKeyboardType(after: .tap, on: .character("a"))
-                let calls = self.mock.calls(to: self.changeKeyboardTypeActionRef)
-                expect(calls.count).to(equal(1))
-                expect(calls[0].arguments).to(equal(.alphabetic(.lowercased)))
-            }
-        }
-        
         describe("trying to end sentence after gesture on action") {
 
             it("does not end sentence if behavior says no") {
