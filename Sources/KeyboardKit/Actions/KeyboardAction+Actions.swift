@@ -9,10 +9,13 @@
 import UIKit
 
 /**
- This extension defines standard actions for various actions.
+ This extension defines various actions that by default will
+ apply to various keyboard actions.
  
  You can trigger these actions directly, but a more flexible
- way is to use an action handler.
+ way is to use an action handler. You can also choose to not
+ trigger these actions at all and handle keyboard actions in
+ completely custom ways.
  */
 public extension KeyboardAction {
     
@@ -21,7 +24,7 @@ public extension KeyboardAction {
     
     /**
      The action that by default should be triggered when the
-     provided `gesture` is performed on the action.
+     provided `gesture` is performed on the keyboard action.
      */
     func standardAction(for gesture: KeyboardGesture) -> GestureAction? {
         switch gesture {
@@ -36,13 +39,13 @@ public extension KeyboardAction {
     
     /**
      The action that by default should be triggered when the
-     action is double tapped.
+     keyboard action is double tapped.
      */
     var standardDoubleTapAction: GestureAction? { nil }
     
     /**
      The action that by default should be triggered when the
-     action is long pressed.
+     keyboard action is long pressed.
      */
     var standardLongPressAction: GestureAction? {
         switch self {
@@ -53,7 +56,7 @@ public extension KeyboardAction {
     
     /**
      The action that by default should be triggered when the
-     action is pressed.
+     keyboard action is pressed.
      */
     var standardPressAction: GestureAction? {
         switch self {
@@ -64,13 +67,13 @@ public extension KeyboardAction {
     
     /**
      The action that by default should be triggered when the
-     action is released.
+     keyboard action is released.
      */
     var standardReleaseAction: GestureAction? { nil }
     
     /**
      The action that by default should be triggered when the
-     action is pressed, until it's released.
+     keyboard action is pressed, repeated until released.
      */
     var standardRepeatAction: GestureAction? {
         switch self {
@@ -81,7 +84,7 @@ public extension KeyboardAction {
     
     /**
      The action that by default should be triggered when the
-     action is tapped.
+     keyboard action is tapped.
      */
     var standardTapAction: GestureAction? {
         if let action = standardTextDocumentProxyAction { return action }
@@ -100,6 +103,9 @@ public extension KeyboardAction {
     
     /**
      The standard text document proxy action, if any.
+     
+     Text document proxy actions affect the proxy itself and
+     not its content.
      */
     var standardTextDocumentProxyAction: GestureAction? {
         if let action = standardTextDocumentProxyInputAction { return action }
@@ -113,13 +119,13 @@ public extension KeyboardAction {
     /**
      The standard text document proxy input action, if any.
      
-     An input action either inserts or deletes text from the
-     text document proxy.
+     Text document proxy input actions affect the text proxy
+     content, e.g. inserting or deleting text.
      */
     var standardTextDocumentProxyInputAction: GestureAction? {
         if self.isPrimaryAction { return { $0?.textDocumentProxy.insertText("\n") }}
         switch self {
-        case .backspace: return { $0?.textDocumentProxy.deleteBackward(backspaceRange) }
+        case .backspace: return { $0?.textDocumentProxy.deleteBackward($0?.keyboardBehavior.backspaceRange ?? .char) }
         case .character(let char): return { $0?.textDocumentProxy.insertText(char) }
         case .emoji(let emoji): return { $0?.textDocumentProxy.insertText(emoji.char) }
         case .newLine: return { $0?.textDocumentProxy.insertText("\n") }
@@ -128,13 +134,5 @@ public extension KeyboardAction {
         case .tab: return { $0?.textDocumentProxy.insertText("\t") }
         default: return nil
         }
-    }
-}
-
-private extension KeyboardAction {
-    
-    var backspaceRange: DeleteBackwardRange {
-        let vc = KeyboardInputViewController.shared
-        return vc.keyboardBehavior.backspaceRange
     }
 }
