@@ -19,7 +19,20 @@ import UIKit
  */
 public protocol KeyboardActionHandler: AnyObject {
     
+    /**
+     Whether or not the action handler can be used to handle
+     a certain `gesture` on a certain `action`.
+     */
     func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction) -> Bool
+    
+    /**
+     Try to handling a certain `gesture` n a certain `action`.
+     */
     func handle(_ gesture: KeyboardGesture, on action: KeyboardAction)
+    
+    /**
+     Handle a drag gesture on a certain action, from a start
+     location to the drag gesture's current location.
+     */
     func handleDrag(on action: KeyboardAction, from startLocation: CGPoint, to currentLocation: CGPoint)
 }
