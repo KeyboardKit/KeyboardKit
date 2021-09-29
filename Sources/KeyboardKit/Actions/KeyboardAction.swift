@@ -59,16 +59,19 @@ public extension KeyboardAction {
     
     /**
      This type can be used together with the `.primary` type.
+     
      A primary button is the color accented button that will
-     have the same effect as a return key.
+     have the same effect as return in a native iOS keyboard.
      */
     enum PrimaryType: Equatable, CaseIterable {
         case done, go, newLine, ok, search
     }
     
     /**
-     Whether or not the action is an input action, which the
-     native keyboards render as light buttons.
+     Whether or not the action is an input action.
+     
+     An input action button is rendered as a light button in
+     native iOS keyboards.
      */
     var isInputAction: Bool {
         switch self {
@@ -92,8 +95,10 @@ public extension KeyboardAction {
     }
     
     /**
-     Whether or not the action is a primary action, which is
-     that it is intended to perform a committing action.
+     Whether or not the action is a primary action.
+     
+     A primary button is the color accented button that will
+     have the same effect as return in a native iOS keyboard.
      */
     var isPrimaryAction: Bool {
         switch self {
@@ -113,7 +118,7 @@ public extension KeyboardAction {
     }
     
     /**
-     Whether or not the action is a shift action.
+     Whether or not the action is a space action.
      */
     var isSpace: Bool {
         switch self {
@@ -124,8 +129,10 @@ public extension KeyboardAction {
     }
     
     /**
-     Whether or not the action is a system action, which the
-     native keyboards render as dark buttons.
+     Whether or not the action is a system action.
+     
+     An system action button is rendered as a dark button in
+     native iOS keyboards.
      */
     var isSystemAction: Bool {
         switch self {
