@@ -1,5 +1,5 @@
 //
-//  KeyboardActions+Image.swift
+//  KeyboardActions+Images.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-03-10.
@@ -11,8 +11,9 @@ import Foundation
 public extension KeyboardActions {
     
     /**
-     Map a list of image names to a list of `.image` actions,
-     using certain image name matching prefixes and suffixes.
+     Create a keyboard action list, by mapping an image name
+     array to a list of `.image` actions, using certain name
+     matching prefixes and suffixes.
      
      `keyboardImageNamePrefix` and `keyboardImageNameSuffix`
      are used to map an `imageName` to a `keyboardImageName`.
