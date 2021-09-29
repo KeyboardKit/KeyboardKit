@@ -9,12 +9,13 @@
 import Foundation
 
 /**
- This protocol can be implemented by classes that can return
- keyboard layouts for the current keyboard state.
+ This protocol can be implemented by any classes that can be
+ used to generate a keyboard layout for a certain context.
  
  `KeyboardKit` will automatically create a standard instance
- and bind it to the input view controller when the extension
- is started. You can use it and replace it with a custom one.
+ when the keyboard input view controller is created. You can
+ use the standard instance as is or replace it with a custom
+ one if you want to customize your keyboard.
  */
 public protocol KeyboardLayoutProvider: AnyObject {
     
@@ -24,8 +25,7 @@ public protocol KeyboardLayoutProvider: AnyObject {
     func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout
     
     /**
-     Try registering a new input set provider, if the layout
-     is based on one.
+     Register a new input set provider.
      */
     func register(inputSetProvider: KeyboardInputSetProvider)
 }

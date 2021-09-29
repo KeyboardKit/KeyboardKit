@@ -11,8 +11,8 @@ import Foundation
 public extension KeyboardActions {
     
     /**
-     Create a keyboard action list by mapping a string array
-     to a list of `.character` actions.
+     Create keyboard actions by mapping characters to a list
+     of `.character` actions.
     */
     init(characters: [String]) {
         self = characters.map { .character($0) }
@@ -22,7 +22,8 @@ public extension KeyboardActions {
 public extension KeyboardActionRows {
     
     /**
-     Map a string array to a list of `character` action rows.
+     Create keyboard action rows by mapping characters lists
+     to `.character` action lists.
     */
     init(characters: [[String]]) {
         self = characters.map { KeyboardActions(characters: $0) }

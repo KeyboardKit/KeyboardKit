@@ -11,9 +11,9 @@ import Foundation
 public extension KeyboardActions {
     
     /**
-     Create a keyboard action list, by mapping an image name
-     array to a list of `.image` actions, using certain name
-     matching prefixes and suffixes.
+     Create keyboard actions by mapping image names to a set
+     of `.image` actions, using certain name matching prefix
+     and suffix rules.
      
      `keyboardImageNamePrefix` and `keyboardImageNameSuffix`
      are used to map an `imageName` to a `keyboardImageName`.

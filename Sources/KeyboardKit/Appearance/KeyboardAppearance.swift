@@ -11,14 +11,17 @@ import SwiftUI
 
 /**
  This protocol can be implemented by any classes that can be
- used to retrieve keyboard appearance properties.
+ used to provide appearance information for keyboard actions.
  
  Unlike a style, an appearance is contextual. It requires an
- implementation, while s style is just a struct.
+ implementation, while s style is just a struct. You can use
+ an appearance to generate styles that can be applied to the
+ keyboard and its buttons.
  
  `KeyboardKit` will automatically create a standard instance
- and bind it to the input view controller when the extension
- is started. You can use it and replace it with a custom one.
+ when the keyboard input view controller is created. You can
+ use the standard instance as is or replace it with a custom
+ one if you want to customize your keyboard.
  */
 public protocol KeyboardAppearance {
     

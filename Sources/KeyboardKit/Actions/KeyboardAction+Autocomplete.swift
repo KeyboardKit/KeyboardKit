@@ -26,7 +26,7 @@ public extension KeyboardAction {
     
     /**
      Whether or not an action, when triggered, should insert
-     an autocomplete removed space.
+     a previous autocomplete removed space.
      */
     var shouldReinsertAutocompleteInsertedSpace: Bool {
         shouldRemoveAutocompleteInsertedSpace

@@ -9,12 +9,17 @@
 import Foundation
 
 /**
- This protocol can be implemented by classes that can return
- keyboard input sets.
+ This protocol can be implemented by any classes that can be
+ used to provide a keyboard layout with input sets.
+ 
+ An input set defines the input keys on a keyboard. The keys
+ can then be used to create a layout, which defines the full
+ set of keys, described as layout items.
  
  `KeyboardKit` will automatically create a standard instance
- and bind it to the input view controller when the extension
- is started. You can use it and replace it with a custom one.
+ when the keyboard input view controller is created. You can
+ use the standard instance as is or replace it with a custom
+ one if you want to customize your keyboard.
  */
 public protocol KeyboardInputSetProvider: AnyObject {
     

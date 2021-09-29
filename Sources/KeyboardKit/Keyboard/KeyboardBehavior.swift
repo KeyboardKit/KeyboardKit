@@ -14,8 +14,9 @@ import Foundation
  to make the code cleaner and more understandable.
  
  `KeyboardKit` will automatically create a standard instance
- and bind it to the input view controller when the extension
- is started. You can use it and replace it with a custom one.
+ when the keyboard input view controller is created. You can
+ use the standard instance as is or replace it with a custom
+ one if you want to customize your keyboard.
  */
 public protocol KeyboardBehavior {
     
