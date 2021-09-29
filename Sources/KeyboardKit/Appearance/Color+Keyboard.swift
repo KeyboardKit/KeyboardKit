@@ -10,8 +10,7 @@ import SwiftUI
 
 /**
  These lazy `Color` extensions can be overridden if you want
- to change the overall appearance of a keyboard extension in
- the easiest way possible.
+ to easily change the overall appearance of a keyboard.
  */
 public extension Color {
     

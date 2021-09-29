@@ -11,7 +11,7 @@ import SwiftUI
 public extension KeyboardCasing {
     
     /**
-     The standard keyboard button image when used with shift.
+     The casing's standard button image.
      */
     var standardButtonImage: Image {
         switch self {

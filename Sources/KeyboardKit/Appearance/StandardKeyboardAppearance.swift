@@ -10,8 +10,8 @@ import SwiftUI
 import UIKit
 
 /**
- This standard appearance returns a style that mimics native
- system keyboards.
+ This standard appearance returns styles that replicates the
+ look of a native system keyboard.
  
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.

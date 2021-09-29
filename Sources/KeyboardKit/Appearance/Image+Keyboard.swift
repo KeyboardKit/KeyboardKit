@@ -8,6 +8,10 @@
 
 import SwiftUI
 
+/**
+ These lazy `Image` extensions can be overridden if you want
+ to easily change the overall appearance of a keyboard.
+ */
 public extension Image {
     
     static var keyboard: Image { Image(systemName: "keyboard") }

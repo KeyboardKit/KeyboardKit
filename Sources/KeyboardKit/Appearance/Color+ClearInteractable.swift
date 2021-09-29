@@ -11,8 +11,8 @@ import SwiftUI
 public extension Color {
 
     /**
-     This color can be used instead of `.clear`, which makes
-     a view stop registering touches and gestures.
+     This color can be used instead of `.clear` if the color
+     should be registering touches and gestures.
      */
     static var clearInteractable: Color {
         Color.white.opacity(0.001)

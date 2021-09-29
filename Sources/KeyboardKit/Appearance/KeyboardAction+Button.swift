@@ -46,7 +46,7 @@ public extension KeyboardAction {
     }
     
     /**
-     The action's standard button font weight, if any.
+     The action's standard button font weight.
      */
     func standardButtonFontWeight(for context: KeyboardContext) -> Font.Weight? {
         if standardButtonImage(for: context) != nil { return .light }
@@ -124,7 +124,7 @@ public extension KeyboardAction {
     
     /**
      The action's standard button text image replacement, if
-     the text is an icon that has a related image.
+     the text represents an image asset.
      */
     func standardButtonTextImageReplacement(for context: KeyboardContext) -> Image? {
         switch standardButtonText(for: context) {

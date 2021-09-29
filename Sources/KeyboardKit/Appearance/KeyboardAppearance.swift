@@ -14,7 +14,7 @@ import SwiftUI
  used to provide appearance information for keyboard actions.
  
  Unlike a style, an appearance is contextual. It requires an
- implementation, while s style is just a struct. You can use
+ implementation, while a style is just a struct. You can use
  an appearance to generate styles that can be applied to the
  keyboard and its buttons.
  

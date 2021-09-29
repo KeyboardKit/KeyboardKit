@@ -11,7 +11,7 @@ import SwiftUI
 public extension KeyboardType {
     
     /**
-     The type's standard keyboard button font size.
+     The keyboard type's standard button font size.
      */
     func standardButtonFontSize(for context: KeyboardContext) -> CGFloat {
         switch self {
@@ -23,7 +23,7 @@ public extension KeyboardType {
     }
     
     /**
-     The type's standard keyboard button image.
+     The keyboard type's standard button image.
      */
     var standardButtonImage: Image? {
         switch self {
@@ -35,7 +35,7 @@ public extension KeyboardType {
     }
     
     /**
-     The type's standard keyboard button text.
+     The keyboard type's standard button text.
      */
     func standardButtonText(for context: KeyboardContext) -> String? {
         switch self {

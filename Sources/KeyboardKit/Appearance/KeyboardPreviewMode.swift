@@ -14,9 +14,8 @@ import SwiftUI
  
  Call `KeyboardPreviewMode.enable()` in any crashing preview
  to bypass the undefined resources and make the preview work.
- You can also provide custom values.
- 
- Read more about the problem in `KKL10n` and `KeyboardColor`.
+ You can also provide custom values. Read more about this in
+ the `KeyboardColor` documentation.
  */
 public final class KeyboardPreviewMode {
     
