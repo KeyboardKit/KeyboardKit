@@ -10,7 +10,7 @@ import Foundation
 
 /**
  This protocol can be implemented by any classes that can be
- used to get autocomplete suggestions for a certain text.
+ used to provide autocomplete suggestions for a certain text.
  
  You can implement the protocol in any way you like, e.g. to
  use a built-in database or by connecting to an external api.
@@ -18,7 +18,9 @@ import Foundation
  slow for your users.
  
  The KeyboardKit Pro `StandardAutocompleteProvider` provider
- can be unlocked with a pro license.
+ can be unlocked with a license. KeyboardKit Pro also has an
+ `ExternalAutocompleteProvider` provider that can be used to
+ communicate with an external api or web service.
  */
 public protocol AutocompleteProvider: AnyObject {
     
@@ -35,19 +37,24 @@ public protocol AutocompleteProvider: AnyObject {
     
     
     /**
-     Whether or not the provider can lean words.
+     Whether or not the provider can ignore words.
      */
     var canIgnoreWords: Bool { get }
     
     /**
-     The provider's currently ignored words.
-     */
-    var ignoredWords: [String] { get set }
-        
-    /**
      Whether or not the provider can lean words.
      */
     var canLearnWords: Bool { get }
+    
+    /**
+     The provider's currently ignored words.
+     */
+    var ignoredWords: [String] { get }
+    
+    /**
+     The provider's currently learned words.
+     */
+    var learnedWords: [String] { get }
     
 
     /**

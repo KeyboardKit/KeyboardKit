@@ -16,6 +16,9 @@ import Foundation
  don't and are just here to let you create your keyboards in
  a declarative way. Such actions require custom handling and
  can for instance be handled by a custom action handler.
+ 
+ `TODO` Make this conform to `Codable` when all nested types
+ conform to it as well.
  */
 public enum KeyboardAction: Equatable {
     

@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- This struct is a standard result that can be returned by an
+ This struct is a standard suggestion that can be used by an
  autocomplete suggestion provider.
  */
 public struct StandardAutocompleteSuggestion: AutocompleteSuggestion {

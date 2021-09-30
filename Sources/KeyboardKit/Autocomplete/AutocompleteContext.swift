@@ -19,5 +19,6 @@ public class AutocompleteContext: ObservableObject {
     
     public init() {}
     
+    @Published public var isLoading = false
     @Published public var suggestions: [AutocompleteSuggestion] = []
 }

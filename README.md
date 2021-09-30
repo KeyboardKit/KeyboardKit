@@ -123,6 +123,11 @@ KeyboardKit lets you style your custom keyboards with custom appearances.
 [Read more here][Appearance]
 
 
+### 🔊 Audio
+
+KeyboardKit defines system audio types and ways to play them.
+
+
 ### 💡Autocomplete
 
 KeyboardKit can present autocomplete suggestions as users type. The core library doesn't come with an implemented engine, but you can inject your own. 
@@ -154,6 +159,11 @@ Read more about [audio feedback][Audio-Feedback] and [haptic feedback][Haptic-Fe
 ### 👆 Gestures
 
 KeyboardKit comes with keyboard-specific gestures that you can use in your own keyboards.
+
+
+### 👋 Haptics
+
+KeyboardKit defines haptic feedback types and ways to trigger them.
 
 
 ### 🔤 Input

@@ -20,11 +20,13 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 
 ### ✨ New features
 
+* `AutoCompleteContext` now has a published `isLoading` bool.
 * `SystemAudio` now implements `Identifiable` and `Codable`.
 
 ### 💥 Breaking changes
 
 * All deprecated functionality has been removed.
+* `AutocompleteProvider` `ignoredWords` is now read-only.
 * `AudioFeedback` has been renamed to `SystemAudio`.
 * `SystemAudio` `systemId` has been renamed to `id`.
 * `SystemAudio.player` is now `SystemAudioPlayer.shared`.
