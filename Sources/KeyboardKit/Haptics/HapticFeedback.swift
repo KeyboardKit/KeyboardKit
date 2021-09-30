@@ -20,7 +20,7 @@ import UIKit
  
  `TODO` Make this `Codable` (which requires Xcode 13) in 5.0.
 */
-public enum HapticFeedback: CaseIterable, Equatable {
+public enum HapticFeedback: CaseIterable, Codable, Equatable {
     
     case
     error,

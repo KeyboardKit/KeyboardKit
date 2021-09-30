@@ -22,7 +22,7 @@ public struct HapticFeedbackConfiguration: Equatable {
        - longPress: The feedback to use for long presses.
        - longPressOnSpace: The feedback to use for long presses on space.
        - repeat: The feedback to use for repeat.
-       - actionGestures: A list of action/gesture-specific feedback.
+       - actions: A list of action/gesture-specific feedback.
      */
     public init(
         tap: HapticFeedback = .none,
@@ -30,13 +30,13 @@ public struct HapticFeedbackConfiguration: Equatable {
         longPress: HapticFeedback = .none,
         longPressOnSpace: HapticFeedback = .mediumImpact,
         repeat: HapticFeedback = .none,
-        actionGestures: [ActionFeedback] = []) {
+        actions: [ActionFeedback] = []) {
         self.tap = tap
         self.doubleTap = doubleTap
         self.longPress = longPress
         self.longPressOnSpace = longPressOnSpace
         self.repeat = `repeat`
-        self.actionGestures = actionGestures
+        self.actions = actions
     }
     
     /**
@@ -47,7 +47,7 @@ public struct HapticFeedbackConfiguration: Equatable {
         public init(
             action: KeyboardAction,
             gesture: KeyboardGesture,
-            feedback: SystemAudio) {
+            feedback: HapticFeedback) {
             self.action = action
             self.gesture = gesture
             self.feedback = feedback
@@ -55,7 +55,7 @@ public struct HapticFeedbackConfiguration: Equatable {
         
         public let action: KeyboardAction
         public let gesture: KeyboardGesture
-        public let feedback: SystemAudio
+        public let feedback: HapticFeedback
     }
  
     /**
@@ -86,7 +86,7 @@ public struct HapticFeedbackConfiguration: Equatable {
     /**
      A list of action/gesture-specific feedback.
      */
-    public let actionGestures: [ActionFeedback]
+    public let actions: [ActionFeedback]
 }
 
 public extension HapticFeedbackConfiguration {

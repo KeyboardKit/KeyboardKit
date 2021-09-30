@@ -31,6 +31,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `Emoji` now implements `Codable` and `Identifiable`.
 * `EmojiCategory` has a new `emojisString` property.
 * `EmojiKeyboardConfiguration` has a new `systemFont` property.
+* `HapticFeedback` now implements `Codable`.
 * `HapticFeedbackConfiguration` init param and property names are shorter.
 * `HapticFeedbackConfiguration` now implements `Codable`.
 * `HapticFeedbackConfiguration` has a new action-specific feedback list.
@@ -43,6 +44,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `KeyboardCasing` now implements `Codable`.
 * `KeyboardGesture` is now `Codable` and `Equatable`.
 * `KeyboardType` now implements `Codable`.
+* `StandardKeyboardFeedbackHandler` now prefers action-specific feedback, if defined.
 * `SystemAudio` now implements `Identifiable` and `Codable`.
 * `View+Callout` has a new `calloutShadow` extension.
 

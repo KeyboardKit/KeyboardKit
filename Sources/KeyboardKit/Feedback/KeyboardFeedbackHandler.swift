@@ -20,11 +20,11 @@ public protocol KeyboardFeedbackHandler {
     
     /**
      Try to trigger user feedback for the provided `gesture`
-     on the provided `action`, given the `actionProvider`.
+     on the provided `action`.
      
-     The `actionProvider` param must be provided to give the
-     handler information on whether or not an action will be
-     called when the `gesture` is performed on the `action`.
+     The `actionProvider` is used to determine if the action
+     will actually trigger an operation for the gesture. The
+     handler should only trigger feedback if so is the case.
      */
     func triggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, actionProvider: GestureActionProvider)
     
@@ -33,11 +33,10 @@ public protocol KeyboardFeedbackHandler {
      certain `action`.
      
      Unlike the `triggerFeedback` function that requires you
-     to provide an `actionProvider`, this function should be
-     triggering the proper user feedback regardless of if an
-     action will actually be performed or not. This could be
-     used to for instance let the user try out how a gesture
-     will behave for a certain action.
+     to provide an `actionProvider`, this should trigger the
+     proper user feedback regardless of if an action will be
+     performed or not. This could e.g. be used to let a user
+     try out how a gesture will behave for a certain action.
      */
     func triggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction)
     
