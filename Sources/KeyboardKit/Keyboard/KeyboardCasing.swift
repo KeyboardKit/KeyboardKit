@@ -15,7 +15,7 @@ import Foundation
  have chosen to not mark it as such, since that would create
  a bunch of warnings within the framework.
  */
-public enum KeyboardCasing {
+public enum KeyboardCasing: Codable {
     case
         
         /// `.auto` is a transient state, that means that it

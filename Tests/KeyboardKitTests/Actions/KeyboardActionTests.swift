@@ -110,7 +110,7 @@ class KeyboardActionTests: QuickSpec {
                     .keyboardType(.email),
                     .keyboardType(.emojis),
                     .keyboardType(.images),
-                    .keyboardType(.custom("")),
+                    .keyboardType(.custom(named: "")),
                     .moveCursorBackward,
                     .moveCursorForward,
                     .newLine,

@@ -36,8 +36,12 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `HapticFeedbackConfiguration` has a new action dictionary.
 * `InputCallout` and `SecondaryInputCallout` are now previewable.
 * `InputCalloutContext` has a new `isEnabled` init parameter.
+* `KeyboardAction` now implements `Codable`.
 * `KeyboardAction` has a new `inputCalloutText` property.
 * `KeyboardAction` has a new `isCharacterAction` property.
+* `KeyboardAction.PrimaryType` now implements `Codable`.
+* `KeyboardCasing` now implements `Codable`.
+* `KeyboardType` now implements `Codable`.
 * `SystemAudio` now implements `Identifiable` and `Codable`.
 * `View+Callout` has a new `calloutShadow` extension.
 
@@ -62,6 +66,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `EmojiKeyboard` button builder no longer takes a context.
 * `InputCalloutContext` `buttonFrame(for:)` has been removed.
 * `InputCalloutContext` `updateInput(for:geo:)` has been renamed to `updateInput(for:,in:)`.
+* `KeyboardType.custom` has been renamed to `KeyboardType.custom(named:)`.
 * `SecondaryInputCalloutContext` init params have been reordered.
 * `SecondaryInputCalloutContext` `alignment` is now a `HorizontalAlignment`.
 * `SecondaryInputCalloutContext` `buttonFrame(for:)` has been removed.

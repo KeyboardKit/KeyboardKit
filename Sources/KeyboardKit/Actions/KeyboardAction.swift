@@ -16,11 +16,8 @@ import Foundation
  don't and are just here to let you create your keyboards in
  a declarative way. Such actions require custom handling and
  can for instance be handled by a custom action handler.
- 
- `TODO` Make this conform to `Codable` when all nested types
- conform to it as well.
  */
-public enum KeyboardAction: Equatable {
+public enum KeyboardAction: Codable, Equatable {
     
     case
         none,
@@ -28,11 +25,11 @@ public enum KeyboardAction: Equatable {
         character(String),
         command,
         control,
-        custom(name: String),
+        custom(named: String),
         dictation,
         dismissKeyboard,
         emoji(Emoji),
-        emojiCategory(_ category: EmojiCategory),
+        emojiCategory(EmojiCategory),
         escape,
         function,
         image(description: String, keyboardImageName: String, imageName: String),
@@ -43,7 +40,7 @@ public enum KeyboardAction: Equatable {
         nextKeyboard,
         nextLocale,
         option,
-        primary(_ type: PrimaryType),
+        primary(PrimaryType),
         `return`,
         settings,
         shift(currentState: KeyboardCasing),
@@ -63,7 +60,7 @@ public extension KeyboardAction {
      A primary button is the color accented button that will
      have the same effect as return in a native iOS keyboard.
      */
-    enum PrimaryType: Equatable, CaseIterable {
+    enum PrimaryType: CaseIterable, Codable, Equatable {
         case done, go, newLine, ok, search
     }
     

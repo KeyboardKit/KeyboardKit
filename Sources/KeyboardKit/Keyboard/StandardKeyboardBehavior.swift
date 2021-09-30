@@ -54,7 +54,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     public func preferredKeyboardType(
         after gesture: KeyboardGesture,
         on action: KeyboardAction) -> KeyboardType {
-        if shouldSwitchToCapsLock(after: gesture, on: action) { return .alphabetic(.capsLocked) }
+            if shouldSwitchToCapsLock(after: gesture, on: action) { return .alphabetic(.capsLocked) }
         let should = shouldSwitchToPreferredKeyboardType(after: gesture, on: action)
         switch action {
         case .shift: return context.keyboardType

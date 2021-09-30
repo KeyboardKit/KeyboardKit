@@ -141,7 +141,7 @@ class StandardKeyboardBehaviorTests: QuickSpec {
             
             it("is false for most keyboard types") {
                 let types: [KeyboardType] = [
-                    .custom("foo"),
+                    .custom(named: "foo"),
                     .email,
                     .emojis,
                     .images,
@@ -171,7 +171,7 @@ class StandardKeyboardBehaviorTests: QuickSpec {
             it("is false if the action is keyboard type") {
                 let types: [KeyboardType] = [
                     .alphabetic(.neutral),
-                    .custom("foo"),
+                    .custom(named: "foo"),
                     .email,
                     .emojis,
                     .images,

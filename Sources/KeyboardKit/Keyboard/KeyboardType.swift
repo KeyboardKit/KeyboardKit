@@ -15,16 +15,16 @@ import UIKit
  If you need a keyboard type that is not represented here or
  that is app-specific, you can use `.custom`.
  */
-public enum KeyboardType: Equatable {
+public enum KeyboardType: Codable, Equatable {
 
     case
-    alphabetic(_ state: KeyboardCasing),
+    alphabetic(KeyboardCasing),
     numeric,
     symbolic,
     email,
     emojis,
     images,
-    custom(_ name: String)
+    custom(named: String)
 }
 
 public extension KeyboardType {
