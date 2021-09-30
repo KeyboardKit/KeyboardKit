@@ -10,32 +10,52 @@ import Foundation
 
 /**
  This struct specifies audio feedback for a custom keyboard.
- 
- `TODO` Make this `Codable` (which requires Xcode 13) in 5.0.
  */
-public struct AudioFeedbackConfiguration: Equatable {
+public struct AudioFeedbackConfiguration: Codable, Equatable {
     
+    /**
+     Create a feedback configuration.
+     
+     - Parameters:
+       - input: The feedback to use for input keys.
+       - delete: The feedback to use for delete keys.
+       - system: The feedback to use for system keys.
+     */
     public init(
-        inputFeedback: SystemAudio = .input,
-        deleteFeedback: SystemAudio = .delete,
-        systemFeedback: SystemAudio = .system) {
-        self.inputFeedback = inputFeedback
-        self.deleteFeedback = deleteFeedback
-        self.systemFeedback = systemFeedback
+        input: SystemAudio = .input,
+        delete: SystemAudio = .delete,
+        system: SystemAudio = .system) {
+        self.input = input
+        self.delete = delete
+        self.system = system
     }
+    
+    /**
+     The audio to play when a delete key is pressed.
+     */
+     public let delete: SystemAudio
  
-    public let inputFeedback: SystemAudio
-    public let deleteFeedback: SystemAudio
-    public let systemFeedback: SystemAudio
+    /**
+     The audio to play when an input key is pressed.
+     */
+    public let input: SystemAudio
+    
+   /**
+    The audio to play when a system key is pressed.
+    */
+    public let system: SystemAudio
+}
+
+public extension AudioFeedbackConfiguration {
     
     /**
      This configuration disables all audio feedback.
      */
-    public static var noFeedback: AudioFeedbackConfiguration {
+    static var noFeedback: AudioFeedbackConfiguration {
         AudioFeedbackConfiguration(
-            inputFeedback: .none,
-            deleteFeedback: .none,
-            systemFeedback: .none
+            input: .none,
+            delete: .none,
+            system: .none
         )
     }
     
@@ -43,7 +63,7 @@ public struct AudioFeedbackConfiguration: Equatable {
      This configuration uses standard audio feedbacks, which
      tries to replicate the standard system behavior.
     */
-    public static var standard: AudioFeedbackConfiguration {
+    static var standard: AudioFeedbackConfiguration {
         AudioFeedbackConfiguration()
     }
 }

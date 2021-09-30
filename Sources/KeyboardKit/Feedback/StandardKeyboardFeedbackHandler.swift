@@ -82,7 +82,7 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
      it enters cursor drag state.
      */
     open func triggerFeedbackForLongPressOnSpaceDragGesture() {
-        hapticConfig.longPressOnSpaceFeedback.trigger()
+        hapticConfig.longPressOnSpace.trigger()
     }
     
     /**
@@ -90,9 +90,9 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
      certain `action`.
      */
     open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
-        if action == .backspace { return audioConfig.deleteFeedback.play() }
-        if action.isInputAction { return audioConfig.inputFeedback.play() }
-        if action.isSystemAction { return audioConfig.systemFeedback.play() }
+        if action == .backspace { return audioConfig.delete.play() }
+        if action.isInputAction { return audioConfig.input.play() }
+        if action.isSystemAction { return audioConfig.system.play() }
     }
     
     /**
@@ -101,12 +101,12 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
      */
     open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
         switch gesture {
-        case .doubleTap: hapticConfig.doubleTapFeedback.trigger()
-        case .longPress: hapticConfig.longPressFeedback.trigger()
-        case .press: hapticConfig.tapFeedback.trigger()
-        case .release: hapticConfig.tapFeedback.trigger()
-        case .repeatPress: hapticConfig.repeatFeedback.trigger()
-        case .tap: hapticConfig.tapFeedback.trigger()
+        case .doubleTap: hapticConfig.doubleTap.trigger()
+        case .longPress: hapticConfig.longPress.trigger()
+        case .press: hapticConfig.tap.trigger()
+        case .release: hapticConfig.tap.trigger()
+        case .repeatPress: hapticConfig.repeat.trigger()
+        case .tap: hapticConfig.tap.trigger()
         }
     }
 }

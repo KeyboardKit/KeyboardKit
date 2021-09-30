@@ -149,6 +149,16 @@ KeyboardKit lets you show callout bubbles as users type, as well as secondary ac
 KeyboardKit defines emojis and emoji categories that you can use in your own keyboards.
 
 
+### 🧩 Extensions
+
+KeyboardKit provides a bunch of extensions to native types.
+
+
+### ⌨️ External
+
+KeyboardKit lets you detect whether or not an external keyboard is used.
+
+
 ### 👋 Feedback
 
 KeyboardKit keyboards can give audio and haptic feedback as users type. 
