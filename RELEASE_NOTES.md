@@ -22,6 +22,9 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 
 * `AutoCompleteContext` has a new `isLoading` property.
 * `Collection+RowItem` has new extensions to affect all rows.
+* `EdgeInsets` has a new `init(all:)` initializer.
+* `EdgeInsets` has a new `init(horizontal:,vertical:)` initializer.
+* `EdgeInsets+Keyboard` has a new idion and orientation-based function.
 * `Emoji` now implements `Codable` and `Identifiable`.
 * `EmojiCategory` has a new `emojisString` property.
 * `EmojiKeyboardConfiguration` has a new `systemFont` property.
@@ -44,9 +47,12 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 ### 💥 Breaking changes
 
 * All deprecated functionality has been removed.
+* All UIKit-specific functionality has been removed.
+
 * `AutocompleteProvider` `ignoredWords` is now read-only.
 * `AutocompleteResponse` has been renamed to `AutocompleteCompletion`.
 * `AudioFeedback` has been renamed to `SystemAudio`.
+* `EdgeInsets+Keyboard` no longer contains `UIEdgeInsets` support.
 * `EmojiKeyboard` button builder no longer takes a context.
 * `InputCalloutContext` `buttonFrame(for:)` has been removed.
 * `InputCalloutContext` `updateInput(for:geo:)` has been renamed to `updateInput(for:,in:)`.
@@ -54,12 +60,14 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `SecondaryInputCalloutContext` `alignment` is now a `HorizontalAlignment`.
 * `SecondaryInputCalloutContext` `buttonFrame(for:)` has been removed.
 * `SecondaryInputCalloutContext` `updateInputs(for:geo:alignment)` has been renamed to `updateInputs(for:in:alignment:)`.
+* `Sequence` `batched(withBatchSize:)` has been renamed to `batched(into:)`. 
 * `StandardAutocompleteSuggestion` init parameters have been reordered.
 * `SystemAudio` `systemId` has been renamed to `id`.
 * `SystemAudio` `trigger` has been renamed to `play`.
 * `SystemAudio` `trigger` now only has a non-static version.
 * `SystemAudio.player` is now `SystemAudioPlayer.shared`.
 * `SystemAudioPlayer` now takes `SystemAudio` as argument.
+* `View+DynamicType` has been removed.
 
 
 

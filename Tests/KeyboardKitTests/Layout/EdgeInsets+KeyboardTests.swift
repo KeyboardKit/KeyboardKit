@@ -8,7 +8,7 @@
 
 import Quick
 import Nimble
-import UIKit
+import SwiftUI
 @testable import KeyboardKit
 
 class UIEdgeInsets_KeyboardTests: QuickSpec {
@@ -17,7 +17,7 @@ class UIEdgeInsets_KeyboardTests: QuickSpec {
         
         describe("standard keyboard button padding") {
             
-            func result(for idiom: UIUserInterfaceIdiom, orientation: UIInterfaceOrientation) -> UIEdgeInsets {
+            func result(for idiom: UIUserInterfaceIdiom, orientation: UIInterfaceOrientation) -> EdgeInsets {
                 .standardKeyboardButtonInsets(for: idiom, orientation: orientation)
             }
             

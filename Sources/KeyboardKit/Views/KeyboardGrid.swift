@@ -30,7 +30,7 @@ public struct KeyboardGrid<Button: View>: View {
         @ViewBuilder buttonBuilder: @escaping (KeyboardAction) -> Button) {
         let actions = actions.evened(for: columns)
         self.actions = actions
-        self.rows = actions.batched(withBatchSize: columns)
+        self.rows = actions.batched(into: columns)
         self.spacing = spacing
         self.buttonBuilder = buttonBuilder
     }

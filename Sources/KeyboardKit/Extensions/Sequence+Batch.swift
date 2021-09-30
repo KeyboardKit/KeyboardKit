@@ -16,7 +16,7 @@ public extension Sequence {
      For instance, batching up ["a", "b", "c"] in batches of
      max size 2 will return [["a", "b"], ["c"]].
      */
-    func batched(withBatchSize size: Int) -> [[Iterator.Element]] {
+    func batched(into size: Int) -> [[Iterator.Element]] {
         var result: [[Iterator.Element]] = []
         var batch: [Iterator.Element] = []
 
