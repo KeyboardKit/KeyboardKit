@@ -15,6 +15,9 @@ import SwiftUI
  */
 public struct Emoji: Equatable, Codable, Identifiable {
     
+    /**
+     Create an emoji instance, using a certain emoji `char`.
+     */
     public init(_ char: String) {
         self.char = char
     }

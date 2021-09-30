@@ -19,32 +19,32 @@ public struct StandardAutocompleteSuggestion: AutocompleteSuggestion {
         isAutocomplete: Bool = false,
         isUnknown: Bool = false) {
         self.text = text
+        self.title = text
         self.isAutocomplete = isAutocomplete
         self.isUnknown = isUnknown
-        self.title = text
         self.subtitle = nil
         self.additionalInfo = [:]
     }
     
     public init(
         text: String,
+        title: String? = nil,
         isAutocomplete: Bool = false,
         isUnknown: Bool = false,
-        title: String? = nil,
         subtitle: String? = nil,
         additionalInfo: [String: Any] = [:]) {
         self.text = text
+        self.title = title ?? text
         self.isAutocomplete = isAutocomplete
         self.isUnknown = isUnknown
-        self.title = title ?? text
         self.subtitle = subtitle
         self.additionalInfo = additionalInfo
     }
     
     public let text: String
+    public let title: String
     public let isAutocomplete: Bool
     public let isUnknown: Bool
-    public let title: String
     public let subtitle: String?
     public let additionalInfo: [String: Any]
 }

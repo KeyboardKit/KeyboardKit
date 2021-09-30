@@ -18,25 +18,6 @@ import Foundation
 public protocol AutocompleteSuggestion {
     
     /**
-     Whether or not this suggestion is an autocompete result.
-     
-     Autocomplete suggestions are typically shown in a white,
-     rounded square when presented in an iOS system keyboard.
-     They should automatically be applied when typing a word
-     delimiter.
-     */
-    var isAutocomplete: Bool { get }
-    
-    /**
-     Whether or not this suggestion is unknown to the system.
-     
-     Unknown suggestions are typically shown surrounded by a
-     quotation when presented in an iOS system keyboard. The
-     quotation should be removed if the word is learned.
-     */
-    var isUnknown: Bool { get }
-    
-    /**
      The text that should be sent to the text document proxy
      and replace the current word.
      
@@ -52,6 +33,26 @@ public protocol AutocompleteSuggestion {
      the title should be more detailed ("Did you mean <X>").
      */
     var title: String { get }
+    
+    /**
+     Whether or not this suggestion is an autocompete result.
+     
+     Autocomplete suggestions are typically shown in a white,
+     rounded square when presented in an iOS system keyboard.
+     
+     They should be applied when a word delimiter is typed.
+     */
+    var isAutocomplete: Bool { get }
+    
+    /**
+     Whether or not this suggestion is unknown to the system.
+     
+     Unknown suggestions are typically shown surrounded by a
+     quotation when presented in an iOS system keyboard.
+     
+     The quotation should be removed if the word is learned.
+     */
+    var isUnknown: Bool { get }
     
     /**
      An optional subtitle that can complete the `title`.

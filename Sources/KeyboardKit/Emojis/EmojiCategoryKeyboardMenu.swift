@@ -9,14 +9,11 @@
 import SwiftUI
 
 /**
- This view can be used to list a set of emoji categories and
+ This menu can be used to list a set of emoji categories and
  let each category button toggle a category selection.
  
  The menu buttons are also surrounded by a keyboard switcher
  and a backspace.
-
- The menu currently has little customizations. We can extend
- it after 4.0, when everything resides in the main repo.
  */
 @available(iOS 14.0, *)
 public struct EmojiCategoryKeyboardMenu: View {
@@ -83,8 +80,7 @@ public struct EmojiCategoryKeyboardMenu: View {
     }
     
     private func buttonListItem(for category: EmojiCategory) -> some View {
-        let action = { selection = category }
-        return Button(action: action) {
+        Button(action: { selection = category }) {
             Text(category.fallbackDisplayEmoji.char)
                 .padding(6)
                 .background(selection == category ? selectedColor : Color.clear)

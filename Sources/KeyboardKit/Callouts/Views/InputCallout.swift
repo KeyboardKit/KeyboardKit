@@ -10,8 +10,7 @@ import SwiftUI
 
 /**
  This callout can be used to show the currently typed action
- above the pressed keyboard button. It supports `.character`
- actions and will ignore any other actions.
+ above the pressed keyboard button.
  */
 public struct InputCallout: View {
     

@@ -10,11 +10,7 @@ import SwiftUI
 
 /**
  This callout can be used to present secondary input actions
- for akeyboard actions. It only supports `character` actions
- and will ignore any other actions.
- 
- The callout curves can be refined further. The trailing one
- should be wider and the leading one taller.
+ for a keyboard actions.
  */
 public struct SecondaryInputCallout: View {
     

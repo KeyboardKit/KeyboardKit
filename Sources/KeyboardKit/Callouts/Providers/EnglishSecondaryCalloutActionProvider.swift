@@ -15,6 +15,9 @@ open class EnglishSecondaryCalloutActionProvider: BaseSecondaryCalloutActionProv
     
     public let localeKey: String = KeyboardLocale.english.id
     
+    /**
+     Get secondary callout actions as a string for the `char`.
+     */
     open override func secondaryCalloutActionString(for char: String) -> String {
         switch char {
         case "0": return "0°"

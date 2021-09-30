@@ -50,6 +50,9 @@ public struct EmojiKeyboard: View {
         }.frame(height: config.totalHeight)
     }
     
+    
+    // MARK: - Public Extensions (here to make preview work)
+    
     /**
      This standard button builder will return an button that
      applies the keyboard actions of an `.emoji` action.

@@ -10,8 +10,8 @@ import CoreGraphics
 import SwiftUI
 
 /**
- This shape can be used to smoothen the parts of the callout
- bubbles that consist of a callout part and a button shape.
+ This curve can be used to smoothen the part where a callout
+ bubble meets the button area.
  */
 public struct CalloutCurve: Shape {
     

@@ -9,8 +9,9 @@
 import SwiftUI
 
 /**
- This view lists all emojis from a selected category as well
- as a menu that lets the user select a new category.
+ This keyboard lists all emojis from a selected category, as
+ well as a menu that lets the user select a new category and
+ change back to an alphabetic keyboard.
  */
 @available(iOS 14.0, *)
 public struct EmojiCategoryKeyboard: View {

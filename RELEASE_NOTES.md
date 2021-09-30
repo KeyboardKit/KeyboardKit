@@ -44,6 +44,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 
 * All deprecated functionality has been removed.
 * `AutocompleteProvider` `ignoredWords` is now read-only.
+* `AutocompleteResponse` has been renamed to `AutocompleteCompletion`.
 * `AudioFeedback` has been renamed to `SystemAudio`.
 * `EmojiKeyboard` button builder no longer takes a context.
 * `InputCalloutContext` `buttonFrame(for:)` has been removed.
@@ -52,6 +53,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `SecondaryInputCalloutContext` `alignment` is now a `HorizontalAlignment`.
 * `SecondaryInputCalloutContext` `buttonFrame(for:)` has been removed.
 * `SecondaryInputCalloutContext` `updateInputs(for:geo:alignment)` has been renamed to `updateInputs(for:in:alignment:)`.
+* `StandardAutocompleteSuggestion` init parameters have been reordered.
 * `SystemAudio` `systemId` has been renamed to `id`.
 * `SystemAudio` `trigger` has been renamed to `play`.
 * `SystemAudio` `trigger` now only has a non-static version.

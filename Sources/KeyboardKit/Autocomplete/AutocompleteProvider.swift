@@ -33,7 +33,7 @@ public protocol AutocompleteProvider: AnyObject {
     /**
      Get autocomplete suggestions for the provided `text`.
      */
-    func autocompleteSuggestions(for text: String, completion: @escaping AutocompleteResponse)
+    func autocompleteSuggestions(for text: String, completion: @escaping AutocompleteCompletion)
     
     
     /**
@@ -88,5 +88,6 @@ public protocol AutocompleteProvider: AnyObject {
     func unlearnWord(_ word: String)
 }
 
-public typealias AutocompleteResponse = (AutocompleteResult) -> Void
+public typealias AutocompleteCompletion = (AutocompleteResult) -> Void
+
 public typealias AutocompleteResult = Result<[AutocompleteSuggestion], Error>

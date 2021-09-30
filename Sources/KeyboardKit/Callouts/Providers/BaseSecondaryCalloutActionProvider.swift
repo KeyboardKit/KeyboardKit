@@ -27,6 +27,13 @@ open class BaseSecondaryCalloutActionProvider: SecondaryCalloutActionProvider {
     
     public init() {}
     
+    /**
+     Get secondary callout actions for the provided `action`.
+     
+     These are the secondary actions that are presented in a
+     callout when the user long presses the key of an action
+     that has alternative actions.
+     */
     open func secondaryCalloutActions(for action: KeyboardAction) -> [KeyboardAction] {
         switch action {
         case .character(let char): return secondaryCalloutActions(for: char)
@@ -34,6 +41,12 @@ open class BaseSecondaryCalloutActionProvider: SecondaryCalloutActionProvider {
         }
     }
     
+    /**
+     Get secondary callout actions for the provided `char`.
+     
+     This will split the `secondaryCalloutActionString` into
+     secondary `.character` actions.
+     */
     open func secondaryCalloutActions(for char: String) -> [KeyboardAction] {
         let charValue = char.lowercased()
         let result = secondaryCalloutActionString(for: charValue)
@@ -41,6 +54,12 @@ open class BaseSecondaryCalloutActionProvider: SecondaryCalloutActionProvider {
         return string.map { .character(String($0)) }
     }
     
+    /**
+     Get secondary callout actions as a string for the `char`.
+     
+     This will be split by the `secondaryCalloutActions`, to
+     create secondary `.character` actions.
+     */
     open func secondaryCalloutActionString(for char: String) -> String {
         ""
     }

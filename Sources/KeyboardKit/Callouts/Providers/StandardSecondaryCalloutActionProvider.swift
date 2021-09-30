@@ -15,6 +15,16 @@ import Foundation
  */
 open class StandardSecondaryCalloutActionProvider: SecondaryCalloutActionProvider {
     
+    /**
+     Create a standard provider.
+     
+     Injecting a context and not a locale keeps the provider
+     dynamic when the context changes language.
+     
+      - Parameters:
+        - context: The keyboard context to use.
+        - providers: The action providers to use.
+     */
     public init(
         context: KeyboardContext,
         providers: [LocalizedSecondaryCalloutActionProvider] = [EnglishSecondaryCalloutActionProvider()]) {
@@ -25,12 +35,21 @@ open class StandardSecondaryCalloutActionProvider: SecondaryCalloutActionProvide
     
     private let context: KeyboardContext
     
+    /**
+     This is used to resolve the a provider for the context.
+     */
     public var providerDictionary: LocaleDictionary<SecondaryCalloutActionProvider>
     
+    /**
+     Get the provider to use, given the provided context.
+     */
     open func provider(for context: KeyboardContext) -> SecondaryCalloutActionProvider {
         providerDictionary.value(for: context.locale) ?? EnglishSecondaryCalloutActionProvider()
     }
     
+    /**
+     Get secondary callout actions for the provided `action`.
+     */
     open func secondaryCalloutActions(for action: KeyboardAction) -> [KeyboardAction] {
         provider(for: context).secondaryCalloutActions(for: action)
     }

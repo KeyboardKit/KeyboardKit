@@ -9,6 +9,9 @@ import SwiftUI
 
 public extension View {
     
+    /**
+     Apply a callout shadow, using the provided `style`.
+     */
     func calloutShadow(style: CalloutStyle) -> some View {
         self.shadow(color: style.borderColor, radius: 0.4)
             .shadow(color: style.shadowColor, radius: style.shadowRadius)

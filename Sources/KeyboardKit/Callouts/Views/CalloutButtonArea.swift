@@ -8,6 +8,10 @@
 
 import SwiftUI
 
+/**
+ This view is the part of the callout that covers the button
+ that was tapped or pressed to trigger the callout.
+ */
 public struct CalloutButtonArea: View {
     
     public init(
