@@ -16,17 +16,17 @@ import Foundation
 public struct AudioFeedbackConfiguration: Equatable {
     
     public init(
-        inputFeedback: AudioFeedback = .input,
-        deleteFeedback: AudioFeedback = .delete,
-        systemFeedback: AudioFeedback = .system) {
+        inputFeedback: SystemAudio = .input,
+        deleteFeedback: SystemAudio = .delete,
+        systemFeedback: SystemAudio = .system) {
         self.inputFeedback = inputFeedback
         self.deleteFeedback = deleteFeedback
         self.systemFeedback = systemFeedback
     }
  
-    public let inputFeedback: AudioFeedback
-    public let deleteFeedback: AudioFeedback
-    public let systemFeedback: AudioFeedback
+    public let inputFeedback: SystemAudio
+    public let deleteFeedback: SystemAudio
+    public let systemFeedback: SystemAudio
     
     /**
      This configuration disables all audio feedback.

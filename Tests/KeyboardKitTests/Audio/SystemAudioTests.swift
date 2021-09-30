@@ -1,5 +1,5 @@
 //
-//  AudioFeedbackTests.swift
+//  SystemAudioTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-10-15.
@@ -10,7 +10,7 @@ import Quick
 import Nimble
 import KeyboardKit
 
-class AudioFeedbackTests: QuickSpec {
+class SystemAudioTests: QuickSpec {
     
     override func spec() {
         
@@ -18,13 +18,13 @@ class AudioFeedbackTests: QuickSpec {
         
         beforeEach {
             player = MockSystemAudioPlayer()
-            AudioFeedback.player = player
+            StandardSystemAudioPlayer.shared = player
         }
         
         describe("audio feedback") {
             
-            func value(for feedback: AudioFeedback) -> UInt32? {
-                feedback.systemId
+            func value(for feedback: SystemAudio) -> UInt32? {
+                feedback.id
             }
             
             it("if has valid system id") {
@@ -39,12 +39,12 @@ class AudioFeedbackTests: QuickSpec {
         describe("triggering feedback") {
             
             it("works both with static and instance approach") {
-                AudioFeedback.trigger(.custom(id: 123))
-                AudioFeedback.custom(id: 124).trigger()
+                SystemAudio.trigger(.custom(id: 123))
+                SystemAudio.custom(id: 124).trigger()
                 let calls = player.calls(to: player.playSystemAudioRef)
                 expect(calls.count).to(equal(2))
-                expect(calls[0].arguments).to(equal(123))
-                expect(calls[1].arguments).to(equal(124))
+                expect(calls[0].arguments.id).to(equal(123))
+                expect(calls[1].arguments.id).to(equal(124))
             }
         }
     }

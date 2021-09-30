@@ -13,5 +13,8 @@ import Foundation
  */
 public protocol SystemAudioPlayer {
     
-    func playSystemAudio(_ id: UInt32)
+    /**
+     Play a certain system audio sound.
+     **/
+    func playSystemAudio(_ audio: SystemAudio)
 }

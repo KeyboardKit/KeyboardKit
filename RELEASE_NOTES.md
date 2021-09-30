@@ -12,13 +12,23 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 5.0
 
-KeyboardKit 5.0 streamlines many concepts in the library, to make it easier to create and handle keyboards.
+KeyboardKit 5.0 streamlines the library and makes it easier to use.
 
-KeyboardKit 5.0 also removes UIKit-specific functionality, as well as all previously deprecated functionality.
+This new version also removes UIKit-specific things and previously deprecated functionality.
+
+KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
+
+### ✨ New features
+
+* `SystemAudio` now implements `Identifiable` and `Codable`.
 
 ### 💥 Breaking changes
 
 * All deprecated functionality has been removed.
+* `AudioFeedback` has been renamed to `SystemAudio`.
+* `SystemAudio` `systemId` has been renamed to `id`.
+* `SystemAudio.player` is now `SystemAudioPlayer.shared`.
+* `SystemAudioPlayer` now takes `SystemAudio` as argument.
 
 
 

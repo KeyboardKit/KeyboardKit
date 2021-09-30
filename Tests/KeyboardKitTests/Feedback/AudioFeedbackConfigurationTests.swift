@@ -18,9 +18,9 @@ class AudioFeedbackConfigurationTests: QuickSpec {
             
             it("uses standard feedback") {
                 let config = AudioFeedbackConfiguration()
-                expect(config.inputFeedback).to(equal(AudioFeedback.input))
-                expect(config.deleteFeedback).to(equal(AudioFeedback.delete))
-                expect(config.systemFeedback).to(equal(AudioFeedback.system))
+                expect(config.inputFeedback).to(equal(SystemAudio.input))
+                expect(config.deleteFeedback).to(equal(SystemAudio.delete))
+                expect(config.systemFeedback).to(equal(SystemAudio.system))
             }
         }
         
@@ -28,9 +28,9 @@ class AudioFeedbackConfigurationTests: QuickSpec {
             
             it("disables all feedback") {
                 let config = AudioFeedbackConfiguration.noFeedback
-                expect(config.inputFeedback).to(equal(AudioFeedback.none))
-                expect(config.deleteFeedback).to(equal(AudioFeedback.none))
-                expect(config.systemFeedback).to(equal(AudioFeedback.none))
+                expect(config.inputFeedback).to(equal(SystemAudio.none))
+                expect(config.deleteFeedback).to(equal(SystemAudio.none))
+                expect(config.systemFeedback).to(equal(SystemAudio.none))
             }
         }
         
