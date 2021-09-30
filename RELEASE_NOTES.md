@@ -21,10 +21,20 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 ### ✨ New features
 
 * `AutoCompleteContext` now has a published `isLoading` bool.
+* `InputCallout` and `SecondaryInputCallout` are now previewable.
 * `InputCalloutContext` now has an `isEnabled` init parameter.
 * `KeyboardAction` has a new `inputCalloutText` property.
 * `KeyboardAction` has a new `isCharacterAction` property.
 * `SystemAudio` now implements `Identifiable` and `Codable`.
+* `View+Callout` has a new `calloutShadow` extension.
+
+### 💡 Behavior changes
+
+* `InputCallout` and `SecondaryInputCallout` look more like the native callouts.
+
+### 🐛 Bug fixes
+
+* `InputCallout` and `SecondaryInputCallout` will no longer risk getting tiny tearing lines in some apps.   
 
 ### 💥 Breaking changes
 
@@ -34,6 +44,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `InputCalloutContext` `buttonFrame(for:)` has been removed.
 * `InputCalloutContext` `updateInput(for:geo:)` has been renamed to `updateInput(for:,in:)`.
 * `SecondaryInputCalloutContext` init params have been reordered.
+* `SecondaryInputCalloutContext` `alignment` is now a `HorizontalAlignment`.
 * `SecondaryInputCalloutContext` `buttonFrame(for:)` has been removed.
 * `SecondaryInputCalloutContext` `updateInputs(for:geo:alignment)` has been renamed to `updateInputs(for:in:alignment:)`.
 * `SystemAudio` `systemId` has been renamed to `id`.

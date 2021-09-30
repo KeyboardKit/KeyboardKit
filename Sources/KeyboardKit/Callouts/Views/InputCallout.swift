@@ -26,74 +26,68 @@ public struct InputCallout: View {
     static let coordinateSpace = InputCalloutContext.coordinateSpace
     
     public var body: some View {
-        ZStack(alignment: .bottom) {
-            buttonArea
-            callout
+        VStack(spacing: 0) {
+            callout.offset(y: 1)
+            button
         }
-        .position(x: positionX, y: positionY)
         .compositingGroup()
-        .shadow(color: calloutStyle.borderColor, radius: 0.4)
-        .shadow(color: calloutStyle.shadowColor, radius: calloutStyle.shadowRadius)
+        .calloutShadow(style: calloutStyle)
         .opacity(context.isActive ? 1 : 0)
+        .offset(y: -calloutSize.height/2)
     }
 }
 
 private extension InputCallout {
     
-    var backgroundColor: Color { calloutStyle.backgroundColor }
     var buttonFrame: CGRect { context.buttonFrame.insetBy(dx: buttonInset.width, dy: buttonInset.height) }
+    
     var buttonInset: CGSize { calloutStyle.buttonOverlayInset }
+    
     var buttonSize: CGSize { buttonFrame.size }
+    
     var calloutSize: CGSize { style.calloutSize }
+    
     var calloutStyle: CalloutStyle { style.callout }
+    
     var cornerRadius: CGFloat { calloutStyle.cornerRadius }
-    var curveSize: CGFloat { calloutStyle.curveSize }
+}
+
+private extension InputCallout {
     
-    var buttonArea: some View {
-        HStack(alignment: .top, spacing: 0) {
-            calloutCurve.rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
-            buttonAreaText
-            calloutCurve
-        }
-    }
-    
-    var buttonAreaText: some View {
-        Text("")
-            .frame(buttonSize)
-            .background(buttonAreaBackground)
-    }
-    
-    var buttonAreaBackground: some View {
-        CustomRoundedRectangle(bottomLeft: cornerRadius, bottomRight: cornerRadius)
-            .foregroundColor(backgroundColor)
+    var button: some View {
+        CalloutButtonArea(
+            frame: buttonFrame,
+            style: calloutStyle)
     }
     
     var callout: some View {
         Text(context.input ?? "")
             .font(style.font)
-            .frame(width: buttonSize.width + calloutSize.width, height: calloutSize.height)
+            .frame(width: calloutSize.width, height: calloutSize.height)
             .foregroundColor(calloutStyle.textColor)
-            .background(calloutBackground)
-            .offset(y: -buttonSize.height)
+            .background(calloutStyle.backgroundColor)
+            .cornerRadius(cornerRadius)
     }
+}
+
+struct InputCallout_Previews: PreviewProvider {
     
-    var calloutBackground: some View {
-        RoundedRectangle(cornerRadius: cornerRadius)
-            .foregroundColor(backgroundColor)
-    }
+    static let context = InputCalloutContext(isEnabled: true)
     
-    var calloutCurve: some View {
-        CalloutCurve()
-            .frame(width: curveSize, height: curveSize)
-            .foregroundColor(backgroundColor)
-            .offset(y: -1)
-    }
-    
-    var positionX: CGFloat {
-        buttonFrame.origin.x + buttonSize.width/2
-    }
-    
-    var positionY: CGFloat {
-        buttonFrame.origin.y + buttonSize.height - calloutSize.height/2
+    static var previews: some View {
+        VStack {
+            Color.red.frame(width: 40, height: 50)
+                .overlay(
+                    GeometryReader { geo in
+                        Color.clear
+                            .onAppear {
+                                context.updateInput(for: .character("A"), in: geo)
+                            }
+                    }
+                )
+            
+        }
+        .inputCallout(style: .standard)
+        .environmentObject(context)
     }
 }

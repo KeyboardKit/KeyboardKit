@@ -12,6 +12,9 @@ import SwiftUI
  This context can be used to handle input callouts that show
  the currently typed character.
  
+ You can inherit this class and override any open properties
+ and functions to customize the standard behavior.
+ 
  `KeyboardKit` will automatically create an instance of this
  class and bind it to the `KeyboardInputViewController`. The
  default instance will only be enabled for iPhone.

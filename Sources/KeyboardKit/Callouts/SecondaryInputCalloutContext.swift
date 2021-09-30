@@ -9,8 +9,8 @@
 import SwiftUI
 
 /**
- This context can be used to control secondary input callout
- views that can show secondary actions for a keyboard action.
+ This context can be used to handle input callouts that show
+ the secondary actions for a certain keyboard action.
  
  The context will automatically dismiss itself when the user
  ends the secondary gesture or drags too far down.
@@ -64,9 +64,7 @@ open class SecondaryInputCalloutContext: ObservableObject {
      Whether or not the secondary callout view should have a
      trailing alignment.
      */
-    public var isTrailing: Bool {
-        alignment.horizontal == .trailing
-    }
+    public var isTrailing: Bool { alignment == .trailing }
     
     /**
      The currently selected callout action, which updates as
@@ -84,7 +82,7 @@ open class SecondaryInputCalloutContext: ObservableObject {
     /**
      The callout bubble alignment.
      */
-    @Published private(set) var alignment: Alignment = .leading
+    @Published private(set) var alignment: HorizontalAlignment = .leading
     
     /**
      The frame of the button that is active for the context.
@@ -138,7 +136,7 @@ open class SecondaryInputCalloutContext: ObservableObject {
     /**
      Update the input actions for a certain keyboard action.
      */
-    open func updateInputs(for action: KeyboardAction?, in geo: GeometryProxy, alignment: Alignment? = nil) {
+    open func updateInputs(for action: KeyboardAction?, in geo: GeometryProxy, alignment: HorizontalAlignment? = nil) {
         guard let action = action else { return reset() }
         let actions = actionProvider.secondaryCalloutActions(for: action)
         self.buttonFrame = geo.frame(in: .named(Self.coordinateSpace))
@@ -181,7 +179,7 @@ private extension SecondaryInputCalloutContext {
         index >= 0 && index < actions.count
     }
     
-    func getAlignment(for geo: GeometryProxy) -> Alignment {
+    func getAlignment(for geo: GeometryProxy) -> HorizontalAlignment {
         let center = UIScreen.main.bounds.size.width / 2
         let isTrailing = buttonFrame.origin.x > center
         return isTrailing ? .trailing : .leading

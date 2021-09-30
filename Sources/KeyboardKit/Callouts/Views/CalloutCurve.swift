@@ -29,3 +29,22 @@ public struct CalloutCurve: Shape {
         return path
     }
 }
+
+struct CalloutCurve_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        VStack(spacing: 0) {
+            RoundedRectangle(cornerRadius: 20)
+            HStack(alignment: .top, spacing: 0) {
+                CalloutCurve().rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
+                    .frame(height: 20)
+                Color.black
+                CalloutCurve()
+                    .frame(height: 20)
+            }.frame(width: 100, height: 50)
+        }
+        .frame(height: 100)
+        .padding()
+        
+    }
+}

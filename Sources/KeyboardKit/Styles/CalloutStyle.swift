@@ -20,9 +20,9 @@ public struct CalloutStyle {
     public init(
         backgroundColor: Color = .standardButtonBackground,
         borderColor: Color = Color.black.opacity(0.5),
-        buttonOverlayInset: CGSize = CGSize(width: 3, height: 6),
-        cornerRadius: CGFloat = 5,
-        curveSize: CGFloat = 10,
+        buttonOverlayInset: CGSize = CGSize.zero,
+        cornerRadius: CGFloat = 10,
+        curveSize: CGSize = CGSize(width: 8, height: 15),
         shadowColor: Color = Color.black.opacity(0.1),
         shadowRadius: CGFloat = 5,
         textColor: Color = .primary) {
@@ -40,7 +40,7 @@ public struct CalloutStyle {
     public var borderColor: Color
     public var buttonOverlayInset: CGSize
     public var cornerRadius: CGFloat
-    public var curveSize: CGFloat
+    public var curveSize: CGSize
     public var shadowColor: Color
     public var shadowRadius: CGFloat
     public var textColor: Color

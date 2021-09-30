@@ -13,8 +13,8 @@ import SwiftUI
  for akeyboard actions. It only supports `character` actions
  and will ignore any other actions.
  
- `TODO` This callout bubble currently breaks when wide chars
- are added to it. We should fix this in a later update.
+ The callout curves can be refined further. The trailing one
+ should be wider and the leading one taller.
  */
 public struct SecondaryInputCallout: View {
     
@@ -27,15 +27,14 @@ public struct SecondaryInputCallout: View {
     private let style: SecondaryInputCalloutStyle
     
     public var body: some View {
-        VStack(alignment: context.alignment.horizontal, spacing: 0) {
+        VStack(alignment: context.alignment, spacing: 0) {
             callout
             buttonArea
         }
         .font(style.font)
         .compositingGroup()
         .position(x: positionX, y: positionY)
-        .shadow(color: calloutStyle.borderColor, radius: 0.4)
-        .shadow(color: calloutStyle.shadowColor, radius: calloutStyle.shadowRadius)
+        .calloutShadow(style: calloutStyle)
         .opacity(context.isActive ? 1 : 0)
         .onTapGesture(perform: context.reset)
     }
@@ -53,39 +52,15 @@ private extension SecondaryInputCallout {
     var calloutInputs: [String] { context.actions.compactMap { $0.input } }
     var calloutStyle: CalloutStyle { style.callout }
     var cornerRadius: CGFloat { calloutStyle.cornerRadius }
-    var curveSize: CGFloat { calloutStyle.curveSize }
+    var curveSize: CGSize { calloutStyle.curveSize }
     var isLeading: Bool { context.isLeading }
     var isTrailing: Bool { context.isTrailing }
-    var verticalPaddingAdjustment: CGFloat { 2 * style.verticalPadding }
     
     var buttonArea: some View {
-        HStack(alignment: .top, spacing: 0) {
-            calloutCurveLeading
-            buttonAreaText
-            calloutCurveTrailing
-        }
-    }
-    
-    var buttonAreaBackground: some View {
-        CustomRoundedRectangle(bottomLeft: cornerRadius, bottomRight: cornerRadius)
-            .foregroundColor(backgroundColor)
-    }
-    
-    var buttonAreaText: some View {
-        Text("")
-            .frame(buttonSize)
-            .background(buttonAreaBackground)
+        CalloutButtonArea(frame: buttonFrame, style: calloutStyle)
     }
     
     var callout: some View {
-        HStack(spacing: 0) {
-            calloutEdge
-            calloutBody
-            calloutEdge.rotationEffect(.degrees(180))
-        }
-    }
-    
-    var calloutBody: some View {
         HStack(spacing: 0) {
             ForEach(Array(calloutInputs.enumerated()), id: \.offset) {
                 Text($0.element)
@@ -95,29 +70,17 @@ private extension SecondaryInputCallout {
                     .cornerRadius(cornerRadius)
                     .padding(.vertical, style.verticalPadding)
             }
-        }.background(backgroundColor)
+        }
+        .padding(.horizontal, curveSize.width)
+        .background(calloutBackground)
     }
     
-    var calloutCurve: some View {
-        CalloutCurve()
-            .frame(width: curveSize, height: curveSize)
-            .foregroundColor(backgroundColor)
-    }
-    
-    var calloutCurveLeading: some View {
-        calloutCurve
-            .rotationEffect(.degrees(90))
-            .offset(y: isLeading ? -1 : 0)
-    }
-    
-    var calloutCurveTrailing: some View {
-        calloutCurve
-            .offset(y: isTrailing ? -1 : 0)
-    }
-    
-    var calloutEdge: some View {
-        CustomRoundedRectangle(topLeft: cornerRadius, bottomLeft: cornerRadius)
-            .frame(width: curveSize, height: buttonSize.height + 2 * style.verticalPadding)
+    var calloutBackground: some View {
+        CustomRoundedRectangle(
+            topLeft: cornerRadius,
+            topRight: cornerRadius,
+            bottomLeft: isLeading ? 4 : cornerRadius,
+            bottomRight: isTrailing ? 2 : cornerRadius)
             .foregroundColor(backgroundColor)
     }
     
@@ -129,7 +92,7 @@ private extension SecondaryInputCallout {
     }
     
     var positionY: CGFloat {
-        buttonFrame.origin.y - style.verticalPadding + 2
+        buttonFrame.origin.y - style.verticalPadding
     }
 }
 
@@ -153,5 +116,32 @@ private extension KeyboardAction {
         case .character(let char): return char
         default: return nil
         }
+    }
+}
+
+struct SecondaryInputCallout_Previews: PreviewProvider {
+    
+    static let context = SecondaryInputCalloutContext(
+        actionHandler: PreviewKeyboardActionHandler(),
+        actionProvider: PreviewSecondaryCalloutActionProvider())
+    
+    static var previews: some View {
+        VStack {
+            Color.red.frame(width: 40, height: 50)
+                .overlay(
+                    GeometryReader { geo in
+                        Color.clear
+                            .onAppear {
+                                context.updateInputs(
+                                    for: .character("S"),
+                                    in: geo,
+                                    alignment: .trailing
+                                )
+                            }
+                    }
+                )
+        }
+        .secondaryInputCallout(style: .standard)
+        .environmentObject(context)
     }
 }
