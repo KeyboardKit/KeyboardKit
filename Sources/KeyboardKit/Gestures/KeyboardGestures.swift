@@ -144,7 +144,7 @@ private extension KeyboardGestures {
 private extension KeyboardGestures {
     
     func beginSecondaryInput(for geo: GeometryProxy) {
-        secondaryInputCalloutContext.updateInputs(for: action, geo: geo)
+        secondaryInputCalloutContext.updateInputs(for: action, in: geo)
         guard secondaryInputCalloutContext.isActive else { return }
         inputCalloutContext.reset()
     }
@@ -170,7 +170,7 @@ private extension KeyboardGestures {
         if isPressed.wrappedValue { return }
         isPressed.wrappedValue = true
         pressAction?()
-        inputCalloutContext.register(action, in: geo)
+        inputCalloutContext.updateInput(for: action, in: geo)
     }
     
     func handleRelease(in geo: GeometryProxy, at location: CGPoint) {

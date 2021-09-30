@@ -237,8 +237,8 @@ open class KeyboardInputViewController: UIInputViewController {
      The default, observable secondary input callout context.
      */
     public lazy var keyboardSecondaryInputCalloutContext = SecondaryInputCalloutContext(
-        actionProvider: keyboardSecondaryCalloutActionProvider,
-        actionHandler: keyboardActionHandler)
+        actionHandler: keyboardActionHandler,
+        actionProvider: keyboardSecondaryCalloutActionProvider)
     
     
     
@@ -410,8 +410,8 @@ private extension KeyboardInputViewController {
     
     func refreshSecondaryInputCalloutContext() {
         keyboardSecondaryInputCalloutContext = SecondaryInputCalloutContext(
-            actionProvider: keyboardSecondaryCalloutActionProvider,
-            actionHandler: keyboardActionHandler)
+            actionHandler: keyboardActionHandler,
+            actionProvider: keyboardSecondaryCalloutActionProvider)
     }
     
     func setupLocaleObservation() {

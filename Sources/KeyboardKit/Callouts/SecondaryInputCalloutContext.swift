@@ -19,7 +19,7 @@ import SwiftUI
  and functions to customize the standard behavior.
  
  `KeyboardKit` will automatically create an instance of this
- class and bind it to the input view controller. 
+ class and bind it to the `KeyboardInputViewController`.
  */
 open class SecondaryInputCalloutContext: ObservableObject {
     
@@ -27,10 +27,10 @@ open class SecondaryInputCalloutContext: ObservableObject {
     // MARK: - Initialization
     
     public init(
-        actionProvider: SecondaryCalloutActionProvider,
-        actionHandler: KeyboardActionHandler) {
-        self.actionProvider = actionProvider
+        actionHandler: KeyboardActionHandler,
+        actionProvider: SecondaryCalloutActionProvider) {
         self.actionHandler = actionHandler
+        self.actionProvider = actionProvider
     }
     
     
@@ -55,22 +55,26 @@ open class SecondaryInputCalloutContext: ObservableObject {
     public var isActive: Bool { !actions.isEmpty }
     
     /**
-     Whether or not the callout bubble should have a leading
-     alignment.
+     Whether or not the secondary callout view should have a
+     leading alignment.
      */
     public var isLeading: Bool { !isTrailing }
     
     /**
-     Whether or not the callout bubble should use a trailing
-     alignment.
+     Whether or not the secondary callout view should have a
+     trailing alignment.
      */
-    public var isTrailing: Bool { alignment.horizontal == .trailing }
+    public var isTrailing: Bool {
+        alignment.horizontal == .trailing
+    }
     
     /**
      The currently selected callout action, which updates as
      the user swipes left and right.
      */
-    public var selectedAction: KeyboardAction? { isIndexValid(selectedIndex) ? actions[selectedIndex] : nil }
+    public var selectedAction: KeyboardAction? {
+        isIndexValid(selectedIndex) ? actions[selectedIndex] : nil
+    }
     
     /**
      The action that are currently active for the context.
@@ -94,15 +98,6 @@ open class SecondaryInputCalloutContext: ObservableObject {
     
     
     // MARK: - Functions
-    
-    /**
-     The visible button frame for the button view's geometry
-     proxy. You can apply an inset by subclassing this class
-     or adjusting the style.
-     */
-    open func buttonFrame(for geo: GeometryProxy) -> CGRect {
-        geo.frame(in: .named(Self.coordinateSpace))
-    }
     
     /**
      Handle the end of a secondary input drag gesture, which
@@ -143,10 +138,10 @@ open class SecondaryInputCalloutContext: ObservableObject {
     /**
      Update the input actions for a certain keyboard action.
      */
-    open func updateInputs(for action: KeyboardAction?, geo: GeometryProxy, alignment: Alignment? = nil) {
+    open func updateInputs(for action: KeyboardAction?, in geo: GeometryProxy, alignment: Alignment? = nil) {
         guard let action = action else { return reset() }
         let actions = actionProvider.secondaryCalloutActions(for: action)
-        self.buttonFrame = self.buttonFrame(for: geo)
+        self.buttonFrame = geo.frame(in: .named(Self.coordinateSpace))
         self.alignment = alignment ?? getAlignment(for: geo)
         self.actions = isLeading ? actions : actions.reversed()
         self.selectedIndex = startIndex

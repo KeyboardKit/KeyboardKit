@@ -13,10 +13,10 @@ import SwiftUI
  the currently typed character.
  
  `KeyboardKit` will automatically create an instance of this
- class and bind it to the input view controller. The default
- instance will only be enabled for iPhones.
+ class and bind it to the `KeyboardInputViewController`. The
+ default instance will only be enabled for iPhone.
  */
-public class InputCalloutContext: ObservableObject {
+open class InputCalloutContext: ObservableObject {
     
     
     // MARK: - Initialization
@@ -60,19 +60,19 @@ public class InputCalloutContext: ObservableObject {
     // MARK: - Functions
     
     /**
-     Update the current input for a certain keyboard action.
-     */
-    public func register(_ action: KeyboardAction?, in geo: GeometryProxy) {
-        self.action = action
-        self.buttonFrame = geo.frame(in: .named(Self.coordinateSpace))
-    }
-    
-    /**
      Reset the context. This will cause any current callouts
      to be dismissed.
      */
-    public func reset() {
+    open func reset() {
         action = nil
         buttonFrame = .zero
+    }
+    
+    /**
+     Update the current input for a certain keyboard action.
+     */
+    open func updateInput(for action: KeyboardAction?, in geo: GeometryProxy) {
+        self.action = action
+        self.buttonFrame = geo.frame(in: .named(Self.coordinateSpace))
     }
 }
