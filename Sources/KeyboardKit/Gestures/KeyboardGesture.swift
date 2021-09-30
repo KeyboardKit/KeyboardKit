@@ -12,7 +12,7 @@ import Foundation
  This enum defines the various ways a user can interact with
  keyboard actions, using KeyboardKit's built-in interactions.
  */
-public enum KeyboardGesture: CaseIterable {
+public enum KeyboardGesture: CaseIterable, Codable, Equatable {
 
     /// Occurs when a button is pressed then released inside
     case tap

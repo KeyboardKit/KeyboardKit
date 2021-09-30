@@ -20,14 +20,33 @@ public struct AudioFeedbackConfiguration: Codable, Equatable {
        - input: The feedback to use for input keys.
        - delete: The feedback to use for delete keys.
        - system: The feedback to use for system keys.
+       - actions: A list of action-specific feedback.
      */
     public init(
         input: SystemAudio = .input,
         delete: SystemAudio = .delete,
-        system: SystemAudio = .system) {
+        system: SystemAudio = .system,
+        actions: [ActionFeedback] = []) {
         self.input = input
         self.delete = delete
         self.system = system
+        self.actions = actions
+    }
+    
+    /**
+     This struct is used for action-specific audio feedback.
+     */
+    public struct ActionFeedback: Codable, Equatable {
+        
+        public init(
+            action: KeyboardAction,
+            feedback: SystemAudio) {
+            self.action = action
+            self.feedback = feedback
+        }
+        
+        public let action: KeyboardAction
+        public let feedback: SystemAudio
     }
     
     /**
@@ -44,6 +63,11 @@ public struct AudioFeedbackConfiguration: Codable, Equatable {
     The audio to play when a system key is pressed.
     */
     public let system: SystemAudio
+    
+    /**
+     The audio to play when an action is triggered.
+     */
+     public let actions: [ActionFeedback]
 }
 
 public extension AudioFeedbackConfiguration {

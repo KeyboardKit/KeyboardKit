@@ -22,30 +22,79 @@ public struct HapticFeedbackConfiguration: Equatable {
        - longPress: The feedback to use for long presses.
        - longPressOnSpace: The feedback to use for long presses on space.
        - repeat: The feedback to use for repeat.
+       - actionGestures: A list of action/gesture-specific feedback.
      */
     public init(
         tap: HapticFeedback = .none,
         doubleTap: HapticFeedback = .none,
         longPress: HapticFeedback = .none,
         longPressOnSpace: HapticFeedback = .mediumImpact,
-        repeat: HapticFeedback = .none) {
+        repeat: HapticFeedback = .none,
+        actionGestures: [ActionFeedback] = []) {
         self.tap = tap
         self.doubleTap = doubleTap
         self.longPress = longPress
         self.longPressOnSpace = longPressOnSpace
         self.repeat = `repeat`
+        self.actionGestures = actionGestures
+    }
+    
+    /**
+     This struct is used for action-specific audio feedback.
+     */
+    public struct ActionFeedback: Codable, Equatable {
+        
+        public init(
+            action: KeyboardAction,
+            gesture: KeyboardGesture,
+            feedback: SystemAudio) {
+            self.action = action
+            self.gesture = gesture
+            self.feedback = feedback
+        }
+        
+        public let action: KeyboardAction
+        public let gesture: KeyboardGesture
+        public let feedback: SystemAudio
     }
  
+    /**
+     The feedback to use for taps.
+     */
     public let tap: HapticFeedback
+    
+    /**
+     The feedback to use for double taps.
+     */
     public let doubleTap: HapticFeedback
+    
+    /**
+     The feedback to use for long presses.
+     */
     public let longPress: HapticFeedback
+    
+    /**
+     The feedback to use for long presses on space.
+     */
     public let longPressOnSpace: HapticFeedback
+    
+    /**
+     The feedback to use for repeat.
+     */
     public let `repeat`: HapticFeedback
+    
+    /**
+     A list of action/gesture-specific feedback.
+     */
+    public let actionGestures: [ActionFeedback]
+}
+
+public extension HapticFeedbackConfiguration {
     
     /**
      This configuration disables all haptic feedback.
      */
-    public static var noFeedback: HapticFeedbackConfiguration {
+    static var noFeedback: HapticFeedbackConfiguration {
         HapticFeedbackConfiguration(
             tap: .none,
             doubleTap: .none,
@@ -58,7 +107,7 @@ public struct HapticFeedbackConfiguration: Equatable {
     /**
      This configuration specifies a standard haptic feedback.
     */
-    public static var standard: HapticFeedbackConfiguration {
+    static var standard: HapticFeedbackConfiguration {
         HapticFeedbackConfiguration()
     }
 }

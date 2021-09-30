@@ -22,7 +22,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 
 * `AudioFeedbackConfiguration` init param and property names are shorter.
 * `AudioFeedbackConfiguration` now implements `Codable`.
-* `AudioFeedbackConfiguration` has a new action dictionary.
+* `AudioFeedbackConfiguration` has a new action-specific feedback list.
 * `AutoCompleteContext` has a new `isLoading` property.
 * `Collection+RowItem` has new extensions to affect all rows.
 * `EdgeInsets` has a new `init(all:)` initializer.
@@ -33,7 +33,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `EmojiKeyboardConfiguration` has a new `systemFont` property.
 * `HapticFeedbackConfiguration` init param and property names are shorter.
 * `HapticFeedbackConfiguration` now implements `Codable`.
-* `HapticFeedbackConfiguration` has a new action dictionary.
+* `HapticFeedbackConfiguration` has a new action-specific feedback list.
 * `InputCallout` and `SecondaryInputCallout` are now previewable.
 * `InputCalloutContext` has a new `isEnabled` init parameter.
 * `KeyboardAction` now implements `Codable`.
@@ -41,6 +41,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `KeyboardAction` has a new `isCharacterAction` property.
 * `KeyboardAction.PrimaryType` now implements `Codable`.
 * `KeyboardCasing` now implements `Codable`.
+* `KeyboardGesture` is now `Codable` and `Equatable`.
 * `KeyboardType` now implements `Codable`.
 * `SystemAudio` now implements `Identifiable` and `Codable`.
 * `View+Callout` has a new `calloutShadow` extension.
