@@ -38,7 +38,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
      be called, just create an issue or a PR and I'll merge.
      */
     public lazy var hasElevenElevenSevenAlphabeticInput: Bool = {
-        inputSetProvider.alphabeticInputSet().rows.first?.count == 11
+        inputSetProvider.alphabeticInputSet.rows.first?.count == 11
     }()
     
     
@@ -89,9 +89,9 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
      */
     open func inputs(for context: KeyboardContext) -> KeyboardInputRows {
         switch context.keyboardType {
-        case .alphabetic: return inputSetProvider.alphabeticInputSet().rows
-        case .numeric: return inputSetProvider.numericInputSet().rows
-        case .symbolic: return inputSetProvider.symbolicInputSet().rows
+        case .alphabetic: return inputSetProvider.alphabeticInputSet.rows
+        case .numeric: return inputSetProvider.numericInputSet.rows
+        case .symbolic: return inputSetProvider.symbolicInputSet.rows
         default: return []
         }
     }

@@ -23,7 +23,18 @@ import Foundation
  */
 public protocol KeyboardInputSetProvider: AnyObject {
     
-    func alphabeticInputSet() -> AlphabeticKeyboardInputSet
-    func numericInputSet() -> NumericKeyboardInputSet
-    func symbolicInputSet() -> SymbolicKeyboardInputSet
+    /**
+     Get the alphabetic input set to use.
+     */
+    var alphabeticInputSet: AlphabeticKeyboardInputSet { get }
+
+    /**
+     Get the numeric input set to use.
+     */
+    var numericInputSet: NumericKeyboardInputSet { get }
+
+    /**
+     Get the symbolic input set to use.
+     */
+    var symbolicInputSet: SymbolicKeyboardInputSet { get }
 }

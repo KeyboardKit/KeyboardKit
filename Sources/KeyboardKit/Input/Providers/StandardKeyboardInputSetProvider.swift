@@ -17,6 +17,16 @@ import Foundation
  */
 open class StandardKeyboardInputSetProvider: KeyboardInputSetProvider {
     
+    /**
+     Create a standard provider.
+     
+     Injecting a context and not a locale keeps the provider
+     dynamic when the context changes language.
+     
+      - Parameters:
+        - context: The keyboard context to use.
+        - providers: The action providers to use.
+     */
     public init(
         context: KeyboardContext,
         providers: [LocalizedKeyboardInputSetProvider] = [EnglishKeyboardInputSetProvider()]) {
@@ -27,21 +37,36 @@ open class StandardKeyboardInputSetProvider: KeyboardInputSetProvider {
     
     private let context: KeyboardContext
     
+    /**
+     This is used to resolve the a provider for the context.
+     */
     public var providerDictionary: LocaleDictionary<KeyboardInputSetProvider>
     
+    /**
+     Get the provider to use, given the provided context.
+     */
     open func provider(for context: KeyboardContext) -> KeyboardInputSetProvider {
         providerDictionary.value(for: context.locale) ?? EnglishKeyboardInputSetProvider()
     }
     
-    open func alphabeticInputSet() -> AlphabeticKeyboardInputSet {
-        provider(for: context).alphabeticInputSet()
+    /**
+     Get the alphabetic input set for the current `context`.
+     */
+    open var alphabeticInputSet: AlphabeticKeyboardInputSet {
+        provider(for: context).alphabeticInputSet
     }
     
-    open func numericInputSet() -> NumericKeyboardInputSet {
-        provider(for: context).numericInputSet()
+    /**
+     Get the numeric input set for the current `context`.
+     */
+    open var numericInputSet: NumericKeyboardInputSet {
+        provider(for: context).numericInputSet
     }
     
-    open func symbolicInputSet() -> SymbolicKeyboardInputSet {
-        provider(for: context).symbolicInputSet()
+    /**
+     Get the symbolic input set for the current `context`.
+     */
+    open var symbolicInputSet: SymbolicKeyboardInputSet {
+        provider(for: context).symbolicInputSet
     }
 }

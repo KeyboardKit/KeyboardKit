@@ -22,15 +22,24 @@ public class PreviewKeyboardInputSetProvider: KeyboardInputSetProvider {
     private let context: KeyboardContext
     private let provider: KeyboardInputSetProvider
     
-    public func alphabeticInputSet() -> AlphabeticKeyboardInputSet {
-        provider.alphabeticInputSet()
+    /**
+     Get the alphabetic input set to use.
+     */
+    public var alphabeticInputSet: AlphabeticKeyboardInputSet {
+        provider.alphabeticInputSet
     }
     
-    public func numericInputSet() -> NumericKeyboardInputSet {
-        provider.numericInputSet()
+    /**
+     Get the numeric input set to use.
+     */
+    public var numericInputSet: NumericKeyboardInputSet {
+        provider.numericInputSet
     }
     
-    public func symbolicInputSet() -> SymbolicKeyboardInputSet {
-        provider.symbolicInputSet()
+    /**
+     Get the symbolic input set to use.
+     */
+    public var symbolicInputSet: SymbolicKeyboardInputSet {
+        provider.symbolicInputSet
     }
 }
