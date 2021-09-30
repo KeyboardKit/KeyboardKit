@@ -12,8 +12,8 @@ import SwiftUI
  This view wraps a provided view and applies a collection of
  optional gesture actions to it.
  
- Although this view is internal, is can be created using the
- public `keyboardGestures` view modifier.
+ This view is internal. Apply it with the `keyboardGestures`
+ view modifier, which is public.
  */
 struct KeyboardGestures<Content: View>: View {
     

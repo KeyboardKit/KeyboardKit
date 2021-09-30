@@ -44,6 +44,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `KeyboardCasing` now implements `Codable`.
 * `KeyboardGesture` is now `Codable` and `Equatable`.
 * `KeyboardType` now implements `Codable`.
+* `SpaceDragSensitivity` now implements `Codable`. 
 * `StandardKeyboardFeedbackHandler` now prefers action-specific feedback, if defined.
 * `SystemAudio` now implements `Identifiable` and `Codable`.
 * `View+Callout` has a new `calloutShadow` extension.
@@ -75,6 +76,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `SecondaryInputCalloutContext` `buttonFrame(for:)` has been removed.
 * `SecondaryInputCalloutContext` `updateInputs(for:geo:alignment)` has been renamed to `updateInputs(for:in:alignment:)`.
 * `Sequence` `batched(withBatchSize:)` has been renamed to `batched(into:)`. 
+* `SpaceDragSensitivity.custom` has been renamed to `custom(points:)`.
 * `StandardAutocompleteSuggestion` init parameters have been reordered.
 * `SystemAudio` `systemId` has been renamed to `id`.
 * `SystemAudio` `trigger` has been renamed to `play`.

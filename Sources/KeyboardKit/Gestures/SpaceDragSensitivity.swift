@@ -17,9 +17,9 @@ import Foundation
  step. This means that the sensitivity is `inverted`. Higher
  values mean that the cursor moves less.
  */
-public enum SpaceDragSensitivity {
+public enum SpaceDragSensitivity: Codable {
     
-    case low, medium, high, custom(_ points: Int)
+    case low, medium, high, custom(points: Int)
     
     public var points: Int {
         switch self {
