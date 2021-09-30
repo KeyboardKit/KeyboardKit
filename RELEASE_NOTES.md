@@ -21,6 +21,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 ### ✨ New features
 
 * `AutoCompleteContext` has a new `isLoading` property.
+* `Collection+RowItem` has new extensions to affect all rows.
 * `Emoji` now implements `Codable` and `Identifiable`.
 * `EmojiCategory` has a new `emojisString` property.
 * `EmojiKeyboardConfiguration` has a new `systemFont` property.

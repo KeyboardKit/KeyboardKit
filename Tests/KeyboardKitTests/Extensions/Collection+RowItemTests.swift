@@ -96,7 +96,24 @@ class KeyboardLayoutItemRowTests: QuickSpec {
         
         context("rows") {
             
-            describe("inserting item after action at row") {
+            describe("inserting item after action in all rows") {
+                
+                it("does nothing if action doesn't exists") {
+                    rows.insert(item, after: .escape)
+                    expect(rowsActions[0]).to(equal(rowActions))
+                    expect(rowsActions[1]).to(equal(rowActions))
+                    expect(rowsActions[2]).to(equal(rowActions))
+                }
+                
+                it("inserts item if action exists") {
+                    rows.insert(item, after: .command)
+                    expect(rowsActions[0]).to(equal([.command, .primary(.done), .space, .backspace]))
+                    expect(rowsActions[1]).to(equal([.command, .primary(.done), .space, .backspace]))
+                    expect(rowsActions[2]).to(equal([.command, .primary(.done), .space, .backspace]))
+                }
+            }
+            
+            describe("inserting item after action in row") {
                 
                 it("aborts if row doesn't exist") {
                     rows.insert(item, after: .escape, atRow: -1)
@@ -104,22 +121,39 @@ class KeyboardLayoutItemRowTests: QuickSpec {
                     expect(rowsActions).to(equal([rowActions, rowActions, rowActions]))
                 }
                 
-                it("can insert item after item at first row") {
+                it("can insert item after item in first row") {
                     rows.insert(item, after: .command, atRow: 0)
                     expect(rowsActions[0]).to(equal([.command, .primary(.done), .space, .backspace]))
                     expect(rowsActions[1]).to(equal(rowActions))
                     expect(rowsActions[2]).to(equal(rowActions))
                 }
                 
-                it("can insert item after item at last row") {
+                it("can insert item after item in last row") {
                     rows.insert(item, after: .backspace, atRow: 2)
                     expect(rowsActions[0]).to(equal(rowActions))
                     expect(rowsActions[1]).to(equal(rowActions))
                     expect(rowsActions[2]).to(equal([.command, .space, .backspace, .primary(.done)]))
                 }
             }
+        
+            describe("inserting item before action in all rows") {
+                
+                it("does nothing if action doesn't exists") {
+                    rows.insert(item, before: .escape)
+                    expect(rowsActions[0]).to(equal(rowActions))
+                    expect(rowsActions[1]).to(equal(rowActions))
+                    expect(rowsActions[2]).to(equal(rowActions))
+                }
+                
+                it("inserts item if action exists") {
+                    rows.insert(item, before: .command)
+                    expect(rowsActions[0]).to(equal([.primary(.done), .command, .space, .backspace]))
+                    expect(rowsActions[1]).to(equal([.primary(.done), .command, .space, .backspace]))
+                    expect(rowsActions[2]).to(equal([.primary(.done), .command, .space, .backspace]))
+                }
+            }
             
-            describe("inserting item before action at row") {
+            describe("inserting item before action in row") {
                 
                 it("aborts if row doesn't exist") {
                     rows.insert(item, before: .escape, atRow: -1)
@@ -127,14 +161,14 @@ class KeyboardLayoutItemRowTests: QuickSpec {
                     expect(rowsActions).to(equal([rowActions, rowActions, rowActions]))
                 }
                 
-                it("can insert item before item at first row") {
+                it("can insert item before item in first row") {
                     rows.insert(item, before: .command, atRow: 0)
                     expect(rowsActions[0]).to(equal([.primary(.done), .command, .space, .backspace]))
                     expect(rowsActions[1]).to(equal(rowActions))
                     expect(rowsActions[2]).to(equal(rowActions))
                 }
                 
-                it("can insert item before item at last row") {
+                it("can insert item before item in last row") {
                     rows.insert(item, before: .backspace, atRow: 2)
                     expect(rowsActions[0]).to(equal(rowActions))
                     expect(rowsActions[1]).to(equal(rowActions))
@@ -142,7 +176,24 @@ class KeyboardLayoutItemRowTests: QuickSpec {
                 }
             }
             
-            describe("removing action at row") {
+            describe("removing item from all rows") {
+                
+                it("does nothing if action doesn't exists") {
+                    rows.remove(.escape)
+                    expect(rowsActions[0]).to(equal(rowActions))
+                    expect(rowsActions[1]).to(equal(rowActions))
+                    expect(rowsActions[2]).to(equal(rowActions))
+                }
+                
+                it("removes item if it exists") {
+                    rows.remove(.command)
+                    expect(rowsActions[0]).to(equal([.space, .backspace]))
+                    expect(rowsActions[1]).to(equal([.space, .backspace]))
+                    expect(rowsActions[2]).to(equal([.space, .backspace]))
+                }
+            }
+            
+            describe("removing action from row") {
                 
                 it("aborts if action is not found") {
                     rows.remove(.character("a"), atRow: 2)
