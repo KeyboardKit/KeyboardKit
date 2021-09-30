@@ -38,12 +38,12 @@ class SystemAudioTests: QuickSpec {
         
         describe("triggering feedback") {
             
-            it("works both with static and instance approach") {
-                SystemAudio.trigger(.custom(id: 123))
-                SystemAudio.custom(id: 124).trigger()
+            it("uses the shared audio player") {
+                SystemAudio.custom(id: 111).play()
+                SystemAudio.custom(id: 124).play()
                 let calls = player.calls(to: player.playSystemAudioRef)
                 expect(calls.count).to(equal(2))
-                expect(calls[0].arguments.id).to(equal(123))
+                expect(calls[0].arguments.id).to(equal(111))
                 expect(calls[1].arguments.id).to(equal(124))
             }
         }

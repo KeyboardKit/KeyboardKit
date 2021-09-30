@@ -41,8 +41,8 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     }
     
     /**
-     The style to apply to system keyboard buttons when they
-     are presenting the provided action.
+     The system keybard button style to use for the provided
+     `action` given a certain `isPressed` state.
      */
     open func systemKeyboardButtonStyle(for action: KeyboardAction, isPressed: Bool) -> SystemKeyboardButtonStyle {
         SystemKeyboardButtonStyle(

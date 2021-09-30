@@ -25,7 +25,19 @@ import SwiftUI
  */
 public protocol KeyboardAppearance {
     
+    /**
+     The button image to use for a certain `action`, if any.
+     */
     func buttonImage(for action: KeyboardAction) -> Image?
+    
+    /**
+     The button text to use for a certain `action`, if any.
+     */
     func buttonText(for action: KeyboardAction) -> String?
+    
+    /**
+     The system keybard button style to use for the provided
+     `action` given a certain `isPressed` state.
+     */
     func systemKeyboardButtonStyle(for action: KeyboardAction, isPressed: Bool) -> SystemKeyboardButtonStyle
 }

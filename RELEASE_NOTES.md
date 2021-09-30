@@ -53,6 +53,8 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `SecondaryInputCalloutContext` `buttonFrame(for:)` has been removed.
 * `SecondaryInputCalloutContext` `updateInputs(for:geo:alignment)` has been renamed to `updateInputs(for:in:alignment:)`.
 * `SystemAudio` `systemId` has been renamed to `id`.
+* `SystemAudio` `trigger` has been renamed to `play`.
+* `SystemAudio` `trigger` now only has a non-static version.
 * `SystemAudio.player` is now `SystemAudioPlayer.shared`.
 * `SystemAudioPlayer` now takes `SystemAudio` as argument.
 

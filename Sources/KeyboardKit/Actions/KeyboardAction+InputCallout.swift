@@ -10,6 +10,10 @@ import Foundation
 
 public extension KeyboardAction {
     
+    /**
+     The text that should be presented in a callout as users
+     tap on the action.
+     */
     var inputCalloutText: String? {
         switch self {
         case .character(let char): return char

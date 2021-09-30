@@ -90,9 +90,9 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
      certain `action`.
      */
     open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
-        if action == .backspace { return audioConfig.deleteFeedback.trigger() }
-        if action.isInputAction { return audioConfig.inputFeedback.trigger() }
-        if action.isSystemAction { return audioConfig.systemFeedback.trigger() }
+        if action == .backspace { return audioConfig.deleteFeedback.play() }
+        if action.isInputAction { return audioConfig.inputFeedback.play() }
+        if action.isSystemAction { return audioConfig.systemFeedback.play() }
     }
     
     /**

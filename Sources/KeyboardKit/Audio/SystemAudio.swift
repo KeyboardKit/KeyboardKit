@@ -46,11 +46,10 @@ public enum SystemAudio: Codable, Equatable, Identifiable {
 
 public extension SystemAudio {
     
-    func trigger() {
-        SystemAudio.trigger(self)
-    }
-    
-    static func trigger(_ audio: SystemAudio) {
-        StandardSystemAudioPlayer.shared.playSystemAudio(audio)
+    /**
+     Play the system audio, using the shared audio player.
+     */
+    func play() {
+        StandardSystemAudioPlayer.shared.playSystemAudio(self)
     }
 }
