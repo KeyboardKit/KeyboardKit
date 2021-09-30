@@ -20,9 +20,12 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 
 ### ✨ New features
 
-* `AutoCompleteContext` now has a published `isLoading` bool.
+* `AutoCompleteContext` has a new `isLoading` property.
+* `Emoji` now implements `Codable` and `Identifiable`.
+* `EmojiCategory` has a new `emojisString` property.
+* `EmojiKeyboardConfiguration` has a new `systemFont` property.
 * `InputCallout` and `SecondaryInputCallout` are now previewable.
-* `InputCalloutContext` now has an `isEnabled` init parameter.
+* `InputCalloutContext` has a new `isEnabled` init parameter.
 * `KeyboardAction` has a new `inputCalloutText` property.
 * `KeyboardAction` has a new `isCharacterAction` property.
 * `SystemAudio` now implements `Identifiable` and `Codable`.
@@ -30,6 +33,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 
 ### 💡 Behavior changes
 
+* `EmojiKeyboard` no longer requires a context environment variable.
 * `InputCallout` and `SecondaryInputCallout` look more like the native callouts.
 
 ### 🐛 Bug fixes
@@ -41,6 +45,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * All deprecated functionality has been removed.
 * `AutocompleteProvider` `ignoredWords` is now read-only.
 * `AudioFeedback` has been renamed to `SystemAudio`.
+* `EmojiKeyboard` button builder no longer takes a context.
 * `InputCalloutContext` `buttonFrame(for:)` has been removed.
 * `InputCalloutContext` `updateInput(for:geo:)` has been renamed to `updateInput(for:,in:)`.
 * `SecondaryInputCalloutContext` init params have been reordered.

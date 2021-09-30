@@ -44,14 +44,13 @@ public struct EmojiCategoryKeyboardMenu: View {
     public var body: some View {
         HStack(spacing: 0) {
             Spacer()
-            keyboardSwitchButton
+            keyboardSwitchButton.font(configuration.systemFont)
             Spacer()
-            buttonList
+            buttonList.font(configuration.categoryFont)
             Spacer()
-            backspaceButton
+            backspaceButton.font(configuration.systemFont)
             Spacer()
         }
-        .font(configuration.categoryFont)
     }
     
     

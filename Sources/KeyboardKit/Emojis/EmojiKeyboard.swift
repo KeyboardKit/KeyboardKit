@@ -30,7 +30,7 @@ public struct EmojiKeyboard: View {
         self.buttonBuilder = buttonBuilder
     }
     
-    public typealias ButtonBuilder = (Emoji, KeyboardContext, EmojiKeyboardConfiguration) -> AnyView
+    public typealias ButtonBuilder = (Emoji, EmojiKeyboardConfiguration) -> AnyView
     
     struct EmojiKeyboardItem: Identifiable {
         let id = UUID()
@@ -41,13 +41,11 @@ public struct EmojiKeyboard: View {
     private let config: EmojiKeyboardConfiguration
     private let emojis: [EmojiKeyboardItem]
     private let rows: [GridItem]
-    
-    @EnvironmentObject var context: KeyboardContext
-    
+        
     public var body: some View {
         LazyHGrid(rows: rows, spacing: config.horizontalSpacing) {
             ForEach(emojis) {
-                buttonBuilder($0.emoji, context, config)
+                buttonBuilder($0.emoji, config)
             }
         }.frame(height: config.totalHeight)
     }
@@ -56,7 +54,7 @@ public struct EmojiKeyboard: View {
      This standard button builder will return an button that
      applies the keyboard actions of an `.emoji` action.
      */
-    public static func standardButton(for emoji: Emoji, context: KeyboardContext, configuration: EmojiKeyboardConfiguration) -> AnyView {
+    public static func standardButton(for emoji: Emoji, configuration: EmojiKeyboardConfiguration) -> AnyView {
         let handler = KeyboardInputViewController.shared.keyboardActionHandler
         let action = { handler.handle(.tap, on: .emoji(emoji)) }
         return AnyView(Button(action: action) {
