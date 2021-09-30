@@ -9,15 +9,19 @@
 import Foundation
 
 /**
- This base class can be used to build locale-specific action
- providers.
+ This base class simplifies creating secondary callout input
+ providers, by providing a set of utility functions.
  
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
  
  It's easiest to just override `secondaryCalloutActionString`
- then return a string with all the callout action characters.
- `secondaryCalloutActions` will then handle casing/splitting.
+ and return a string with all callout characters. The string
+ is then split and returned by `secondaryCalloutActions`.
+ 
+ `EnglishSecondaryCalloutActionProvider` uses this technique
+ to specify secondary callout actions for U.S. English. Have
+ a look at that class for inspiration.
  */
 open class BaseSecondaryCalloutActionProvider: SecondaryCalloutActionProvider {
     

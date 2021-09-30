@@ -8,4 +8,8 @@
 
 import Foundation
 
+/**
+ This typealias represents a `SecondaryCalloutActionProvider`
+ that also implements `LocalizedService`.
+ */
 public typealias LocalizedSecondaryCalloutActionProvider = SecondaryCalloutActionProvider & LocalizedService

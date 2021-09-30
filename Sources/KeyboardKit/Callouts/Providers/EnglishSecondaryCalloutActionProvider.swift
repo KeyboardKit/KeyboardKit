@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- This class provides English secondary callout actions.
+ This class provides U.S. English secondary callout actions.
  */
 open class EnglishSecondaryCalloutActionProvider: BaseSecondaryCalloutActionProvider, LocalizedService {
     

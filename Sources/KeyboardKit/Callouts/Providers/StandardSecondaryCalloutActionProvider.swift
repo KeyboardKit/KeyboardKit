@@ -9,11 +9,9 @@
 import Foundation
 
 /**
- This standard provider has wrapped localized providers that
- are activated depending on the context locale.
- 
- You can provide any number of localized providers in `init`.
- By default, it will use all that exist in this library.
+ This standard provider takes many localized `providers` and
+ use the locale of the provided `context` to determine which
+ one to use.
  */
 open class StandardSecondaryCalloutActionProvider: SecondaryCalloutActionProvider {
     
