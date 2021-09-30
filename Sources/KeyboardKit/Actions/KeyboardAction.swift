@@ -68,6 +68,16 @@ public extension KeyboardAction {
     }
     
     /**
+     Whether or not the action is a character action.
+     */
+    var isCharacterAction: Bool {
+        switch self {
+        case .character: return true
+        default: return false
+        }
+    }
+    
+    /**
      Whether or not the action is an input action.
      
      An input action button is rendered as a light button in

@@ -33,11 +33,20 @@ class KeyboardActionTests: QuickSpec {
             unexpected = []
         }
         
-        describe("is input action") {
+        describe("is character action") {
             
             func result(for action: KeyboardAction) -> Bool {
-                action.isInputAction
+                action.isCharacterAction
             }
+            
+            it("is only true for character actions") {
+                expected = [.character("")]
+                expected.forEach { expect($0.isCharacterAction).to(beTrue()) }
+                unexpected.forEach { expect($0.isCharacterAction).to(beFalse()) }
+            }
+        }
+        
+        describe("is input action") {
             
             it("is true for some actions") {
                 expected = [
@@ -46,59 +55,42 @@ class KeyboardActionTests: QuickSpec {
                     .image(description: "", keyboardImageName: "", imageName: ""),
                     .space,
                     .systemImage(description: "", keyboardImageName: "", imageName: "")]
-                expected.forEach { expect(result(for: $0)).to(beTrue()) }
-                unexpected.forEach { expect(result(for: $0)).to(beFalse()) }
+                expected.forEach { expect($0.isInputAction).to(beTrue()) }
+                unexpected.forEach { expect($0.isInputAction).to(beFalse()) }
             }
         }
         
         describe("is primary action") {
             
-            func result(for action: KeyboardAction) -> Bool {
-                action.isPrimaryAction
-            }
-            
             it("is true for some actions") {
                 expected = [.primary(.done), .primary(.go), .primary(.newLine), .primary(.ok), .primary(.search)]
-                expected.forEach { expect(result(for: $0)).to(beTrue()) }
-                unexpected.forEach { expect(result(for: $0)).to(beFalse()) }
+                expected.forEach { expect($0.isPrimaryAction).to(beTrue()) }
+                unexpected.forEach { expect($0.isPrimaryAction).to(beFalse()) }
             }
         }
         
         describe("is shift") {
-            
-            func result(for action: KeyboardAction) -> Bool {
-                action.isShift
-            }
             
             it("is only true for all shift actions") {
                 expected = [
                     .shift(currentState: .capsLocked),
                     .shift(currentState: .lowercased),
                     .shift(currentState: .uppercased)]
-                expected.forEach { expect(result(for: $0)).to(beTrue()) }
-                unexpected.forEach { expect(result(for: $0)).to(beFalse()) }
+                expected.forEach { expect($0.isShift).to(beTrue()) }
+                unexpected.forEach { expect($0.isShift).to(beFalse()) }
             }
         }
         
         describe("is space") {
             
-            func result(for action: KeyboardAction) -> Bool {
-                action.isSpace
-            }
-            
-            it("is only true for all shift actions") {
-                expected = [.space]
-                expect(result(for: .character(" "))).to(beTrue())
-                expected.forEach { expect(result(for: $0)).to(beTrue()) }
-                unexpected.forEach { expect(result(for: $0)).to(beFalse()) }
+            it("is only true for all space actions") {
+                expected = [.space, .character(" ")]
+                expected.forEach { expect($0.isSpace).to(beTrue()) }
+                unexpected.forEach { expect($0.isSpace).to(beFalse()) }
             }
         }
         
         describe("is system action") {
-            
-            func result(for action: KeyboardAction) -> Bool {
-                action.isSystemAction
-            }
             
             it("is true for some actions") {
                 expected = [
@@ -131,8 +123,8 @@ class KeyboardActionTests: QuickSpec {
                     .shift(currentState: .capsLocked),
                     .tab
                 ]
-                expected.forEach { expect(result(for: $0)).to(beTrue()) }
-                unexpected.forEach { expect(result(for: $0)).to(beFalse()) }
+                expected.forEach { expect($0.isSystemAction).to(beTrue()) }
+                unexpected.forEach { expect($0.isSystemAction).to(beFalse()) }
             }
         }
     }

@@ -15,6 +15,6 @@ public extension InputCalloutContext {
      not use it in other situations.
      */
     static var preview: InputCalloutContext {
-        InputCalloutContext()
+        InputCalloutContext(isEnabled: true)
     }
 }

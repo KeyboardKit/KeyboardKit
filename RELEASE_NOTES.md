@@ -21,6 +21,9 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 ### ✨ New features
 
 * `AutoCompleteContext` now has a published `isLoading` bool.
+* `InputCalloutContext` now has an `isEnabled` init parameter.
+* `KeyboardAction` has a new `inputCalloutText` property.
+* `KeyboardAction` has a new `isCharacterAction` property.
 * `SystemAudio` now implements `Identifiable` and `Codable`.
 
 ### 💥 Breaking changes
@@ -28,6 +31,9 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * All deprecated functionality has been removed.
 * `AutocompleteProvider` `ignoredWords` is now read-only.
 * `AudioFeedback` has been renamed to `SystemAudio`.
+* `InputCalloutContext` is no longer open to inheritance.
+* `InputCalloutContext` `buttonFrame(for:)` has been removed.
+* `InputCalloutContext` `updateInput(for:geo:)` has been renamed to `register(_,in:)`.
 * `SystemAudio` `systemId` has been renamed to `id`.
 * `SystemAudio.player` is now `SystemAudioPlayer.shared`.
 * `SystemAudioPlayer` now takes `SystemAudio` as argument.

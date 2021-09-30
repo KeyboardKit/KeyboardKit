@@ -230,7 +230,8 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      The default, observable input callout context.
      */
-    public lazy var keyboardInputCalloutContext = InputCalloutContext()
+    public lazy var keyboardInputCalloutContext = InputCalloutContext(
+        isEnabled: UIDevice.current.userInterfaceIdiom == .phone)
     
     /**
      The default, observable secondary input callout context.

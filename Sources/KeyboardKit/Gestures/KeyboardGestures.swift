@@ -170,7 +170,7 @@ private extension KeyboardGestures {
         if isPressed.wrappedValue { return }
         isPressed.wrappedValue = true
         pressAction?()
-        inputCalloutContext.updateInput(for: action, geo: geo)
+        inputCalloutContext.register(action, in: geo)
     }
     
     func handleRelease(in geo: GeometryProxy, at location: CGPoint) {

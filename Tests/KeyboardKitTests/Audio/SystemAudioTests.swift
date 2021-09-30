@@ -32,7 +32,7 @@ class SystemAudioTests: QuickSpec {
                 expect(value(for: .system)).to(equal(1156))
                 expect(value(for: .delete)).to(equal(1155))
                 expect(value(for: .custom(id: 123))).to(equal(123))
-                expect(value(for: .none)).to(beNil())
+                expect(value(for: .none)).to(equal(0))
             }
         }
         
