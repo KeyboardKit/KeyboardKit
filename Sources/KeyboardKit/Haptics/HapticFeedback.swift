@@ -17,10 +17,8 @@ import UIKit
  The feedback enum uses the static `player` to play feedback.
  You can replace this instance with a custom player, e.g. to
  mock functionality when writing tests.
- 
- `TODO` Make this `Codable` (which requires Xcode 13) in 5.0.
 */
-public enum HapticFeedback: CaseIterable, Codable, Equatable {
+public enum HapticFeedback: String, CaseIterable, Codable, Equatable, Identifiable {
     
     case
     error,
@@ -35,10 +33,7 @@ public enum HapticFeedback: CaseIterable, Codable, Equatable {
     
     none
     
-    /**
-     The standard player that is used for haptic feedback.
-     */
-    public static var player: HapticFeedbackPlayer = StandardHapticFeedbackPlayer()
+    public var id: String { rawValue }
 }
 
 
@@ -46,19 +41,17 @@ public enum HapticFeedback: CaseIterable, Codable, Equatable {
 
 public extension HapticFeedback {
     
+    /**
+     Prepare the haptic feedback, using the shared player.
+     */
     func prepare() {
-        HapticFeedback.prepare(self)
+        StandardHapticFeedbackPlayer.shared.prepare(self)
     }
     
-    static func prepare(_ feedback: HapticFeedback) {
-        player.prepare(feedback)
-    }
-    
+    /**
+     Trigger the haptic feedback, using the shared player.
+     */
     func trigger() {
-        HapticFeedback.trigger(self)
-    }
-    
-    static func trigger(_ feedback: HapticFeedback) {
-        player.play(feedback)
+        StandardHapticFeedbackPlayer.shared.play(self)
     }
 }

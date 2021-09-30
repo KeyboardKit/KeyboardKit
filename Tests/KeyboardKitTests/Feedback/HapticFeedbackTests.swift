@@ -18,13 +18,13 @@ class HapticFeedbackTests: QuickSpec {
         
         beforeEach {
             player = MockHapticFeedbackPlayer()
-            HapticFeedback.player = player
+            StandardHapticFeedbackPlayer.shared = player
         }
         
         describe("preparing feedback") {
             
-            it("works both with static and instance approach") {
-                HapticFeedback.prepare(.success)
+            it("uses the shared audio player") {
+                HapticFeedback.success.prepare()
                 HapticFeedback.warning.prepare()
                 let calls = player.calls(to: player.prepareRef)
                 expect(calls.count).to(equal(2))
@@ -35,8 +35,8 @@ class HapticFeedbackTests: QuickSpec {
         
         describe("triggering feedback") {
             
-            it("works both with static and instance approach") {
-                HapticFeedback.trigger(.success)
+            it("uses the shared audio player") {
+                HapticFeedback.success.trigger()
                 HapticFeedback.warning.trigger()
                 let calls = player.calls(to: player.playRef)
                 expect(calls.count).to(equal(2))

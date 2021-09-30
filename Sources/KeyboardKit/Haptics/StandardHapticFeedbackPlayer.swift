@@ -53,6 +53,14 @@ public class StandardHapticFeedbackPlayer: HapticFeedbackPlayer {
     }
 }
 
+public extension StandardHapticFeedbackPlayer {
+    
+    /**
+     The standard player that is used for haptic feedback.
+     */
+    static var shared: HapticFeedbackPlayer = StandardHapticFeedbackPlayer()
+}
+
 private extension StandardHapticFeedbackPlayer {
     
     func triggerNotification(_ notification: UINotificationFeedbackGenerator.FeedbackType) {

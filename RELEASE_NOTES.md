@@ -31,7 +31,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `Emoji` now implements `Codable` and `Identifiable`.
 * `EmojiCategory` has a new `emojisString` property.
 * `EmojiKeyboardConfiguration` has a new `systemFont` property.
-* `HapticFeedback` now implements `Codable`.
+* `HapticFeedback` now implements `Identifiable` and `Codable`.
 * `HapticFeedbackConfiguration` init param and property names are shorter.
 * `HapticFeedbackConfiguration` now implements `Codable`.
 * `HapticFeedbackConfiguration` has a new action-specific feedback list.
@@ -45,7 +45,9 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `KeyboardGesture` is now `Codable` and `Equatable`.
 * `KeyboardType` now implements `Codable`.
 * `SpaceDragSensitivity` now implements `Codable`. 
+* `StandardHapticFeedbackPlayer` has a new `shared` player.
 * `StandardKeyboardFeedbackHandler` now prefers action-specific feedback, if defined.
+* `StandardSystemAudioPlayer` has a new `shared` player.
 * `SystemAudio` now implements `Identifiable` and `Codable`.
 * `View+Callout` has a new `calloutShadow` extension.
 
@@ -68,6 +70,8 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `AudioFeedback` has been renamed to `SystemAudio`.
 * `EdgeInsets+Keyboard` no longer contains `UIEdgeInsets` support.
 * `EmojiKeyboard` button builder no longer takes a context.
+* `HapticFeedback` `prepare` and `trigger` now only has a non-static version.
+* `HapticFeedback.player` has been removed.
 * `InputCalloutContext` `buttonFrame(for:)` has been removed.
 * `InputCalloutContext` `updateInput(for:geo:)` has been renamed to `updateInput(for:,in:)`.
 * `KeyboardType.custom` has been renamed to `KeyboardType.custom(named:)`.
@@ -80,7 +84,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `StandardAutocompleteSuggestion` init parameters have been reordered.
 * `SystemAudio` `systemId` has been renamed to `id`.
 * `SystemAudio` `trigger` has been renamed to `play`.
-* `SystemAudio` `trigger` now only has a non-static version.
+* `SystemAudio` `play` now only has a non-static version.
 * `SystemAudio.player` is now `SystemAudioPlayer.shared`.
 * `SystemAudioPlayer` now takes `SystemAudio` as argument.
 * `View+DynamicType` has been removed.
