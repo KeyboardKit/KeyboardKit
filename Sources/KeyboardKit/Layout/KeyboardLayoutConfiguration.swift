@@ -18,7 +18,14 @@ import SwiftUI
  */
 public struct KeyboardLayoutConfiguration {
     
-    
+    /**
+     Create a new layout configuration.
+     
+     - Parameters:
+       - buttonCornerRadius: The corner radius of a keyboard button in the keyboard.
+       - buttonInsets: The edge insets of a keyboard button in the keyboard.
+       - rowHeight: The total height incl. insets, of a row in the keyboard.
+    */
     public init(
         buttonCornerRadius: CGFloat,
         buttonInsets: EdgeInsets,
@@ -46,21 +53,33 @@ public struct KeyboardLayoutConfiguration {
 
 public extension KeyboardLayoutConfiguration {
     
+    /**
+     The standard configuration for an iPad in landscape.
+     */
     static let standardForPadLandscape = KeyboardLayoutConfiguration(
         buttonCornerRadius: 4,
         buttonInsets: .horizontal(7, vertical: 6),
         rowHeight: 86)
     
+    /**
+     The standard configuration for an iPad in portait.
+     */
     static let standardForPadPortrait = KeyboardLayoutConfiguration(
         buttonCornerRadius: 4,
         buttonInsets: .horizontal(6, vertical: 6),
         rowHeight: 67)
     
+    /**
+     The standard configuration for an iPhone in landscape.
+     */
     static let standardForPhoneLandscape = KeyboardLayoutConfiguration(
         buttonCornerRadius: 4,
         buttonInsets: .horizontal(3, vertical: 4),
         rowHeight: 40)
     
+    /**
+     The standard configuration for an iPhone in portrait.
+     */
     static let standardForPhonePortrait = KeyboardLayoutConfiguration(
         buttonCornerRadius: 4,
         buttonInsets: .horizontal(3, vertical: 6),
@@ -78,8 +97,7 @@ public extension KeyboardLayoutConfiguration {
     }
     
     /**
-     The standard configuration for the provided `idiom` and
-     screen `orientation`.
+     The standard configuration for the provided parameters.
      */
     static func standard(
         for idiom: UIUserInterfaceIdiom,

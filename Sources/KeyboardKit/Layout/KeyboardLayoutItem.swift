@@ -19,6 +19,14 @@ import SwiftUI
  */
 public struct KeyboardLayoutItem: Equatable {
     
+    /**
+     Create a new layout item.
+     
+     - Parameters:
+       - action: The keyboard action that should be used for the item.
+       - size: The layout size that should be used for the item.
+       - insets: The item insets that should be used for the item.
+     */
     public init(
         action: KeyboardAction,
         size: KeyboardLayoutItemSize,
@@ -28,7 +36,18 @@ public struct KeyboardLayoutItem: Equatable {
         self.insets = insets
     }
     
+    /**
+     The keyboard action that should be used for the item.
+     */
     public let action: KeyboardAction
+    
+    /**
+     The layout size that should be used for the item.
+     */
     public let size: KeyboardLayoutItemSize
+    
+    /**
+     The item insets that should be used for the item.
+     */
     public let insets: EdgeInsets
 }

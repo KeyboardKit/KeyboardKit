@@ -14,6 +14,14 @@ import SwiftUI
  */
 extension KeyboardLayoutItem: RowItem {
 
+    /**
+     The row ID, which is used to identify the item in a row.
+     
+     Note that you can have multiple items with the same row
+     ID in a row, but that will cause strange behaviors when
+     you use operations for adding and removing items in the
+     row, using the various convenience operations.
+     */
     public var rowId: KeyboardAction { action }
 }
 

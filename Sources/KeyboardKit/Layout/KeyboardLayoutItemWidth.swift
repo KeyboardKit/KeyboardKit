@@ -15,15 +15,14 @@ import CoreGraphics
 public indirect enum KeyboardLayoutItemWidth: Equatable {
     
     /**
-     Share any remaining width with other `.available` width
+     Share the remaining width with other `.available` width
      items on the same row.
      */
     case available
     
     /**
      This width can be used to give all input items the same
-     width, based on the row with the smallest size based on
-     its items and their widths.
+     width, based on the row with the smallest input width.
      */
     case input
     
