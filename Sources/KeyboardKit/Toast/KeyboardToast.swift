@@ -18,6 +18,9 @@ import SwiftUI
  */
 public struct KeyboardToast<Presenter: View, Content: View, Background: View>: View {
     
+    /**
+     Create a keybaord toast.
+     */
     public init(
         isActive: Binding<Bool>,
         content: Content,

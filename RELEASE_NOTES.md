@@ -79,6 +79,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `HapticFeedback.player` has been removed.
 * `InputCalloutContext` `buttonFrame(for:)` has been removed.
 * `InputCalloutContext` `updateInput(for:geo:)` has been renamed to `updateInput(for:,in:)`.
+* `KeyboardBehavior` has a new `shouldSwitchToCapsLock` function.
 * `KeyboardInputSetProvider` functions have been converted to properties.
 * `KeyboardType.custom` has been renamed to `KeyboardType.custom(named:)`.
 * `SecondaryInputCalloutContext` init params have been reordered.
