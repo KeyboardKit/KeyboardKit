@@ -19,14 +19,14 @@ class KeyboardLayoutConfigurationTests: QuickSpec {
             
             it("is correct for iPad Landscape") {
                 let config = KeyboardLayoutConfiguration.standardForPadLandscape
-                expect(config.buttonCornerRadius).to(equal(4))
+                expect(config.buttonCornerRadius).to(equal(6))
                 expect(config.buttonInsets).to(equal(.horizontal(7, vertical: 6)))
                 expect(config.rowHeight).to(equal(86))
             }
             
             it("is correct for iPad Portrait") {
                 let config = KeyboardLayoutConfiguration.standardForPadPortrait
-                expect(config.buttonCornerRadius).to(equal(4))
+                expect(config.buttonCornerRadius).to(equal(6))
                 expect(config.buttonInsets).to(equal(.horizontal(6, vertical: 6)))
                 expect(config.rowHeight).to(equal(67))
             }
@@ -56,14 +56,14 @@ class KeyboardLayoutConfigurationTests: QuickSpec {
             
             it("is correct for iPad Landscape") {
                 let config = config(for: .pad, orientation: .landscapeRight)
-                expect(config.buttonCornerRadius).to(equal(4))
+                expect(config.buttonCornerRadius).to(equal(6))
                 expect(config.buttonInsets).to(equal(.horizontal(7, vertical: 6)))
                 expect(config.rowHeight).to(equal(86))
             }
             
             it("is correct for iPad Portrait") {
                 let config = config(for: .pad, orientation: .portrait)
-                expect(config.buttonCornerRadius).to(equal(4))
+                expect(config.buttonCornerRadius).to(equal(6))
                 expect(config.buttonInsets).to(equal(.horizontal(6, vertical: 6)))
                 expect(config.rowHeight).to(equal(67))
             }

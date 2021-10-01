@@ -58,7 +58,7 @@ public extension KeyboardLayoutConfiguration {
      */
     static let standardForPadLandscape = KeyboardLayoutConfiguration(
         buttonCornerRadius: 6,
-        buttonInsets: .horizontal(7, vertical: 8),
+        buttonInsets: .horizontal(7, vertical: 6),
         rowHeight: 86)
     
     /**
@@ -66,7 +66,7 @@ public extension KeyboardLayoutConfiguration {
      */
     static let standardForPadPortrait = KeyboardLayoutConfiguration(
         buttonCornerRadius: 6,
-        buttonInsets: .horizontal(6, vertical: 8),
+        buttonInsets: .horizontal(6, vertical: 6),
         rowHeight: 67)
     
     /**

@@ -14,9 +14,7 @@ public extension UITextDocumentProxy {
      Delete backwards a certain number of times.
      */
     func deleteBackward(times: Int) {
-        for _ in 0..<times {
-            deleteBackward()
-        }
+        for _ in 0..<times { deleteBackward() }
     }
     
     /**

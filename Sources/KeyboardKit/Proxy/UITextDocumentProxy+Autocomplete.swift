@@ -12,7 +12,7 @@ public extension UITextDocumentProxy {
     
     /**
      Whether or not the proxy has a space before the current
-     input, that has been inserted with autocomplete.
+     input, that has been inserted by autocomplete.
      */
     var hasAutocompleteInsertedSpace: Bool {
         ProxyState.state == .autoInserted && documentContextBeforeInput?.hasSuffix(" ") == true
@@ -20,16 +20,15 @@ public extension UITextDocumentProxy {
     
     /**
      Whether or not the proxy has removed a space before the
-     current input, that has been inserted with autocomplete.
+     current input, that has been inserted by autocomplete.
      */
     var hasAutocompleteRemovedSpace: Bool {
         ProxyState.state == .autoRemoved
     }
     
     /**
-     Replace the current word with the suggestion text, then
-     try to insert a space if applicable and `tryInsertSpace`
-     is not explicitly set to `false`.
+     Replace the current word in the proxy with a suggestion,
+     then try to insert a space, if applicable.
      
      If a space is automatically inserted, the proxy will be
      set to an `autoInserted` state.
@@ -41,12 +40,11 @@ public extension UITextDocumentProxy {
     }
     
     /**
-     Try to insert a space char after performing autocompete
-     insertion.
+     Try inserting a space into the proxy after inserting an
+     autocompete suggestion.
      
-     Calling this function instead of inserting a space char
-     directly puts the proxy in a state that makes the other
-     space functions work.
+     Calling this function instead of just inserting a space
+     puts the proxy in the correct autocomplete state.
      */
     func tryInsertSpaceAfterAutocomplete() {
         let space = " "

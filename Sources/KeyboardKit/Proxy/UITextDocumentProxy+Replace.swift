@@ -13,8 +13,6 @@ public extension UITextDocumentProxy {
     /**
      Check if a certain text that is about to be sent to the
      proxy should be replaced with something else.
-     
-     This is currently limited to locale-specific quotations.
      */
     func preferredReplacement(for text: String, locale: Locale) -> String? {
         if let replacement = preferredQuotationReplacement(for: text, locale: locale) { return replacement }
