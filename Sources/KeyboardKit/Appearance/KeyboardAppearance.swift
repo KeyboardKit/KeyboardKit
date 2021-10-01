@@ -23,7 +23,7 @@ import SwiftUI
  use the standard instance as is or replace it with a custom
  one if you want to customize your keyboard.
  */
-public protocol KeyboardAppearance {
+public protocol KeyboardAppearance: AnyObject {
     
     /**
      The button image to use for a certain `action`, if any.

@@ -111,7 +111,7 @@ struct SystemKeyboardButton_Previews: PreviewProvider {
     static func button(for action: KeyboardAction) -> some View {
         SystemKeyboardButton(
             action: action,
-            actionHandler: PreviewKeyboardActionHandler(),
+            actionHandler: .preview,
             appearance: PreviewKeyboardAppearance()) {
                 $0.padding()
             }
@@ -120,7 +120,7 @@ struct SystemKeyboardButton_Previews: PreviewProvider {
     static func customButton(for action: KeyboardAction) -> some View {
         SystemKeyboardButton(
             action: action,
-            actionHandler: PreviewKeyboardActionHandler(),
+            actionHandler: .preview,
             appearance: PreviewKeyboardAppearance()) {
                 $0.padding()
             }

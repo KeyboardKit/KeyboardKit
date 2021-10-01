@@ -8,9 +8,16 @@
 
 import Foundation
 
+public extension SecondaryCalloutActionProvider where Self == PreviewSecondaryCalloutActionProvider {
+    
+    /**
+     This action provider can be used in SwiftUI previews.
+     */
+    static var preview: SecondaryCalloutActionProvider { PreviewSecondaryCalloutActionProvider() }
+}
+
 /**
- This class can be used to preview keyboard views. Don't use
- it in other situations.
+ This action provider can be used in SwiftUI previews.
  */
 public class PreviewSecondaryCalloutActionProvider: SecondaryCalloutActionProvider {
     

@@ -11,8 +11,7 @@ import Foundation
 public extension KeyboardInputViewController {
     
     /**
-     This property can be used to preview keyboard views. Do
-     not use it in other situations.
+     This controller can be used in SwiftUI previews.
      */
     static var preview: KeyboardInputViewController {
         KeyboardInputViewController()

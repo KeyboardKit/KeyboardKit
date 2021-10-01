@@ -63,11 +63,10 @@ public struct SystemKeyboardSpaceButton: View {
 
 struct SystemKeyboardSpaceButton_Previews: PreviewProvider {
     
-    static let actionHandler = PreviewKeyboardActionHandler()
-    static let appearance = PreviewKeyboardAppearance()
-    
     static var previews: some View {
-        SystemKeyboardSpaceButton(actionHandler: actionHandler, appearance: appearance)
+        return SystemKeyboardSpaceButton(
+            actionHandler: .preview,
+            appearance: PreviewKeyboardAppearance())
             .keyboardPreview()
     }
 }

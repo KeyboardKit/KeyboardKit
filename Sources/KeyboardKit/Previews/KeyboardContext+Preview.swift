@@ -11,8 +11,7 @@ import Foundation
 public extension KeyboardContext {
     
     /**
-     This property can be used to preview keyboard views. Do
-     not use it in other situations.
+     This preview context can be used in SwiftUI previews.
      */
     static var preview: KeyboardContext {
         KeyboardContext(controller: KeyboardInputViewController.preview)

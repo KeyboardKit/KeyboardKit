@@ -109,7 +109,7 @@ struct SystemKeyboardSpaceButtonContent_Previews: PreviewProvider {
         SystemKeyboardSpaceButtonContent(
             localeText: nil,
             spaceText: "space",
-            appearance: PreviewKeyboardAppearance())
+            appearance: .preview)
             .keyboardPreview()
     }
 }

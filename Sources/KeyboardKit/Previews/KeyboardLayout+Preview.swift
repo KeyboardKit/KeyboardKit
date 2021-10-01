@@ -1,5 +1,5 @@
 //
-//  PreviewKeyboardLayoutProvider+Preview.swift
+//  KeyboardLayout+Preview.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-08-26.
@@ -11,8 +11,7 @@ import Foundation
 public extension KeyboardLayout {
 
     /**
-     This value can be used to preview keyboards. Do not use
-     it in other situations.
+     This layout can be used in SwiftUI previews.
      */
     static var preview: KeyboardLayout {
         PreviewKeyboardLayoutProvider().keyboardLayout(for: .preview)

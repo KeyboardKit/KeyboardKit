@@ -118,7 +118,7 @@ private extension KeyboardAction {
 struct SecondaryInputCallout_Previews: PreviewProvider {
     
     static let context = SecondaryInputCalloutContext(
-        actionHandler: PreviewKeyboardActionHandler(),
+        actionHandler: .preview,
         actionProvider: PreviewSecondaryCalloutActionProvider())
     
     static var previews: some View {

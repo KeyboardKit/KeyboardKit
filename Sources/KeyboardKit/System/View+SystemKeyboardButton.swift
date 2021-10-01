@@ -26,7 +26,7 @@ struct View_Button_Previews: PreviewProvider {
     static func button(for action: KeyboardAction) -> some View {
         SystemKeyboardButton(
             action: action,
-            actionHandler: PreviewKeyboardActionHandler(),
+            actionHandler: .preview,
             appearance: PreviewKeyboardAppearance()) {
                 $0.padding()
             }

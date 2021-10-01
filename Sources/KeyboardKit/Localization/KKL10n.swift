@@ -11,17 +11,17 @@ import SwiftUI
 /**
  This enum contains keyboard-specific, resource-based texts.
  
- Texts are embedded as resources in this KeyboardKit package
- and use the SPM generated `.module` bundle by default. When
- not using SPM, `.module` will be undefined and this linking
- will fail. CocoaPods solves this by adding a `Bundle+module`
- file that is ignored by SPM.
+ Texts are embedded as resources in the package, and use the
+ SPM generated `.module` bundle by default. If not using SPM,
+ `.module` will be undefined and the linking will fail. This
+ is solved with the `Bundle+module` file.
  
  Another problem with this is that SwiftUI previews will not
- work outside of this package, but crash since the module is
- not found. If your previews keeps crashing due to this, you
- can set the `usePreviewTexts` property to `true`. This will
- cause the texts to use their raw values.
+ work outside of this package, since the module is not found
+ in previews. This will cause previews to crash. To fix this,
+ use the `KeyboardPreviewMode`.
+ 
+ `TODO` Add emoji category keyboard-specific texts.
  */
 public enum KKL10n: String, CaseIterable, Identifiable {
 

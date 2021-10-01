@@ -96,7 +96,7 @@ struct SystemKeyboardButtonContent_Previews: PreviewProvider {
     static var previews: some View {
         SystemKeyboardButtonContent(
             action: .backspace,
-            appearance: PreviewKeyboardAppearance())
+            appearance: .preview)
             .keyboardPreview()
     }
 }

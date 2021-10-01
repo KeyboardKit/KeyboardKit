@@ -210,7 +210,7 @@ struct iPadKeyboardLayoutProvider_Previews: PreviewProvider {
         return SystemKeyboard(
             layout: layout(for: locale).keyboardLayout(for: context),
             appearance: StandardKeyboardAppearance(context: context),
-            actionHandler: PreviewKeyboardActionHandler(),
+            actionHandler: .preview,
             width: context.previewWidth)
             .keyboardPreview(context: context)
             .background(previewImage)
