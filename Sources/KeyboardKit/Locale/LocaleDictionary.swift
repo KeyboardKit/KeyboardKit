@@ -12,9 +12,8 @@ import Foundation
  This dictionary can store items in a way that makes it easy
  to resolve them for a certain locale.
  
- When resolving items for locales, the dictionary will first
- try to find a value for the locale's `identifier`, then the
- locale's `languageCode`.
+ When resolving items, the dictionary will first try to find
+ a value for the locale `identifier`, then the `languageCode`.
  */
 public struct LocaleDictionary<ItemType> {
     
