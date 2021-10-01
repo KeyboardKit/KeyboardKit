@@ -24,6 +24,10 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     
     private let context: KeyboardContext
     
+    private var layoutConfig: KeyboardLayoutConfiguration {
+        .standard(for: context)
+    }
+    
     /**
      The button image to use for a certain `action`, if any.
      */
@@ -49,7 +53,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
             backgroundColor: action.standardButtonBackgroundColor(for: context, isPressed: isPressed),
             foregroundColor: action.standardButtonForegroundColor(for: context, isPressed: isPressed),
             font: font(for: action),
-            cornerRadius: .standardKeyboardButtonCornerRadius(for: context),
+            cornerRadius: layoutConfig.buttonCornerRadius,
             border: .noBorder,
             shadow: SystemKeyboardButtonShadowStyle(
                 color: action.standardButtonShadowColor(for: context),

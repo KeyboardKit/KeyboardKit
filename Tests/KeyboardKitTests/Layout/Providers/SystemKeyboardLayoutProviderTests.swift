@@ -17,9 +17,11 @@ class SystemKeyboardLayoutProviderTests: QuickSpec {
         var provider: SystemKeyboardLayoutProvider!
         var inputProvider: MockKeyboardInputSetProvider!
         var context: KeyboardContext!
+        var layoutConfig: KeyboardLayoutConfiguration!
         
         beforeEach {
             context = KeyboardContext(controller: MockKeyboardInputViewController())
+            layoutConfig = .standard(for: context)
             inputProvider = MockKeyboardInputSetProvider()
             inputProvider.alphabeticInputSetValue = AlphabeticKeyboardInputSet(rows: KeyboardInputRows([["a", "b", "c"]]))
             inputProvider.numericInputSetValue = NumericKeyboardInputSet(rows: KeyboardInputRows([["1", "2", "3"]]))
@@ -107,12 +109,12 @@ class SystemKeyboardLayoutProviderTests: QuickSpec {
                 let result = provider.items(for: context, actions: actions)
                 expect(result.count).to(equal(2))
                 expect(result[0][0].action).to(equal(.character("")))
-                expect(result[0][0].insets).to(equal(.standardKeyboardButtonInsets(for: context.device)))
-                expect(result[0][0].size.height).to(equal(.standardKeyboardRowHeight(for: .preview)))
+                expect(result[0][0].insets).to(equal(layoutConfig.buttonInsets))
+                expect(result[0][0].size.height).to(equal(layoutConfig.rowHeight))
                 expect(result[0][0].size.width).to(equal(.input))
                 expect(result[1][0].action).to(equal(.backspace))
-                expect(result[1][0].insets).to(equal(.standardKeyboardButtonInsets(for: context.device)))
-                expect(result[1][0].size.height).to(equal(.standardKeyboardRowHeight(for: .preview)))
+                expect(result[1][0].insets).to(equal(layoutConfig.buttonInsets))
+                expect(result[1][0].size.height).to(equal(layoutConfig.rowHeight))
                 expect(result[1][0].size.width).to(equal(.available))
             }
         }

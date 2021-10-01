@@ -22,7 +22,6 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         self.dictationReplacement = dictationReplacement
     }
 
-    
     public let dictationReplacement: KeyboardAction?
     public var inputSetProvider: KeyboardInputSetProvider
 
@@ -121,7 +120,8 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
      a certain row and index.
      */
     open func itemInsets(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> EdgeInsets {
-        .standardKeyboardButtonInsets(for: context.device)
+        let config = KeyboardLayoutConfiguration.standard(for: context)
+        return config.buttonInsets
     }
     
     /**
@@ -139,7 +139,8 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
      certain row and index.
      */
     open func itemSizeHeight(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> CGFloat {
-        .standardKeyboardRowHeight(for: context)
+        let config = KeyboardLayoutConfiguration.standard(for: context)
+        return config.rowHeight
     }
     
     /**

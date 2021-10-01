@@ -49,6 +49,8 @@ class StandardKeyboardAppearanceTests: QuickSpec {
             
             var styles: [(action: KeyboardAction, style: SystemKeyboardButtonStyle)]!
             
+            let config = KeyboardLayoutConfiguration.standard(for: .preview)
+            
             beforeEach {
                 styles = KeyboardAction.testActions.map {
                     (action: $0, style: appearance.systemKeyboardButtonStyle(for: $0, isPressed: false))
@@ -66,7 +68,7 @@ class StandardKeyboardAppearanceTests: QuickSpec {
             it("buttonCornerRadius is standard for all actions") {
                 styles.forEach {
                     let result = $0.style.cornerRadius
-                    let expected: CGFloat = .standardKeyboardButtonCornerRadius(for: .preview)
+                    let expected: CGFloat = config.buttonCornerRadius
                     expect(result).to(equal(expected))
                 }
             }
