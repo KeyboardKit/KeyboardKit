@@ -25,7 +25,6 @@ class KeyboardCasing_ButtonTests: QuickSpec {
                 expect(result(for: .auto)).to(equal(.keyboardShiftLowercased))
                 expect(result(for: .capsLocked)).to(equal(.keyboardShiftCapslocked))
                 expect(result(for: .lowercased)).to(equal(.keyboardShiftLowercased))
-                expect(result(for: .neutral)).to(equal(.keyboardShiftLowercased))
                 expect(result(for: .uppercased)).to(equal(.keyboardShiftUppercased))
             }
         }

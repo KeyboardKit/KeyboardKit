@@ -158,7 +158,6 @@ class StandardKeyboardBehaviorTests: QuickSpec {
                 let expectedFalse: [KeyboardType] = [
                     .alphabetic(.capsLocked),
                     .alphabetic(.lowercased),
-                    .alphabetic(.neutral),
                     .alphabetic(.uppercased)]
                 expectedTrue.forEach {
                     expect(result(after: .tap, on: .keyboardType($0))).to(beTrue())
@@ -170,7 +169,7 @@ class StandardKeyboardBehaviorTests: QuickSpec {
             
             it("is false if the action is keyboard type") {
                 let types: [KeyboardType] = [
-                    .alphabetic(.neutral),
+                    .alphabetic(.lowercased),
                     .custom(named: "foo"),
                     .email,
                     .emojis,

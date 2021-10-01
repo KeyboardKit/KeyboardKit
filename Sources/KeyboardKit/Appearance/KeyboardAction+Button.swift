@@ -235,7 +235,7 @@ struct KeyboardActionButton_Previews: PreviewProvider {
             .overlay(view(for: .character("/")).offset(x: -136, y: -28))
             .overlay(view(for: .character("kr")).offset(x: 58, y: -28))
             .overlay(view(for: .keyboardType(.symbolic)).offset(x: -170, y: 27))
-            .overlay(view(for: .keyboardType(.alphabetic(.neutral))).offset(x: -171, y: 81))
+            .overlay(view(for: .keyboardType(.alphabetic(.lowercased))).offset(x: -171, y: 81))
             .overlay(view(for: .character("↵")).offset(x: 147, y: 79))
     }
     

@@ -40,9 +40,6 @@ public enum KeyboardCasing: Codable {
      the text document proxy.
      */
     case uppercased
-    
-    /// `.neutral` will be removed in 5.0 (TODO)
-    case neutral
 }
 
 public extension KeyboardCasing {
@@ -55,7 +52,6 @@ public extension KeyboardCasing {
         case .auto: return false
         case .capsLocked: return false
         case .lowercased: return true
-        case .neutral: return false
         case .uppercased: return false
         }
     }
@@ -68,7 +64,6 @@ public extension KeyboardCasing {
         case .auto: return false
         case .capsLocked: return true
         case .lowercased: return false
-        case .neutral: return false
         case .uppercased: return true
         }
     }

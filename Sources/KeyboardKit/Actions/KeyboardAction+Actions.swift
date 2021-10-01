@@ -93,7 +93,7 @@ public extension KeyboardAction {
         case .nextLocale: return { $0?.keyboardContext.selectNextLocale() }
         case .shift(let currentState): return {
             switch currentState {
-            case .lowercased, .neutral: $0?.keyboardContext.keyboardType = .alphabetic(.uppercased)
+            case .lowercased: $0?.keyboardContext.keyboardType = .alphabetic(.uppercased)
             case .auto, .capsLocked, .uppercased: $0?.keyboardContext.keyboardType = .alphabetic(.lowercased)
             }
         }

@@ -43,7 +43,6 @@ public struct KeyboardInput: Equatable {
         case .auto: return lowercased
         case .lowercased: return lowercased
         case .uppercased, .capsLocked: return uppercased
-        case .neutral: return neutral
         }
     }
 }

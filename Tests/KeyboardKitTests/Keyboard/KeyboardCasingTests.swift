@@ -24,7 +24,6 @@ class KeyboardCasingTests: QuickSpec {
                 expect(result(for: .auto)).to(beFalse())
                 expect(result(for: .capsLocked)).to(beFalse())
                 expect(result(for: .lowercased)).to(beTrue())
-                expect(result(for: .neutral)).to(beFalse())
                 expect(result(for: .uppercased)).to(beFalse())
             }
         }
@@ -39,7 +38,6 @@ class KeyboardCasingTests: QuickSpec {
                 expect(result(for: .auto)).to(beFalse())
                 expect(result(for: .capsLocked)).to(beTrue())
                 expect(result(for: .lowercased)).to(beFalse())
-                expect(result(for: .neutral)).to(beFalse())
                 expect(result(for: .uppercased)).to(beTrue())
             }
         }
