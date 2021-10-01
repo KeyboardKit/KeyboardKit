@@ -49,7 +49,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
             backgroundColor: action.standardButtonBackgroundColor(for: context, isPressed: isPressed),
             foregroundColor: action.standardButtonForegroundColor(for: context, isPressed: isPressed),
             font: font(for: action),
-            cornerRadius: .standardKeyboardButtonCornerRadius(for: context.device),
+            cornerRadius: .standardKeyboardButtonCornerRadius(for: context),
             border: .noBorder,
             shadow: SystemKeyboardButtonShadowStyle(
                 color: action.standardButtonShadowColor(for: context),

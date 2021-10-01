@@ -139,7 +139,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
      certain row and index.
      */
     open func itemSizeHeight(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> CGFloat {
-        .standardKeyboardRowHeight(for: context.device)
+        .standardKeyboardRowHeight(for: context)
     }
     
     /**

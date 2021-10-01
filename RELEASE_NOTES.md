@@ -24,6 +24,8 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `AudioFeedbackConfiguration` now implements `Codable`.
 * `AudioFeedbackConfiguration` has a new action-specific feedback list.
 * `AutoCompleteContext` has a new `isLoading` property.
+* `CGFloat+Keyboard` has new `standardKeyboardRowHeight` functions and properties.
+* `CGFloat+Keyboard` has new `standardKeyboardButtonCornerRadoius` functions and properties.
 * `Collection+RowItem` has new extensions to affect all rows.
 * `EdgeInsets` has a new `init(all:)` initializer.
 * `EdgeInsets` has a new `init(horizontal:,vertical:)` initializer.
@@ -42,6 +44,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `KeyboardAction` has a new `isCharacterAction` property.
 * `KeyboardAction.PrimaryType` now implements `Codable`.
 * `KeyboardCasing` now implements `Codable`.
+* `KeyboardContext` has a new `screen` property.
 * `KeyboardGesture` is now `Codable` and `Equatable`.
 * `KeyboardType` now implements `Codable`.
 * `SpaceDragSensitivity` now implements `Codable`. 
@@ -68,6 +71,10 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `AutocompleteProvider` `ignoredWords` is now read-only.
 * `AutocompleteResponse` has been renamed to `AutocompleteCompletion`.
 * `AudioFeedback` has been renamed to `SystemAudio`.
+* `CGFloat` `standardKeyboardButtonCornerRadius` that returned different values depending on context, has been removed.
+* `CGFloat` `standardKeyboardButtonCornerRadius` function now only accepts idiom and orientation.
+* `CGFloat` `standardKeyboardRowHeight` that returned different values depending on context, has been removed.
+* `CGFloat` `standardKeyboardRowHeight` function now only accepts idiom and orientation.
 * `EdgeInsets+Keyboard` no longer contains `UIEdgeInsets` support.
 * `EmojiKeyboard` button builder no longer takes a context.
 * `HapticFeedback` `prepare` and `trigger` now only has a non-static version.

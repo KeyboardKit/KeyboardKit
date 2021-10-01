@@ -11,51 +11,79 @@ import UIKit
 
 public extension CGFloat {
     
-    /**
-     The standard corner radius of a system keyboard button.
-     */
-    static var standardKeyboardButtonCornerRadius: CGFloat {
-        standardKeyboardButtonCornerRadius()
-    }
+    
+    // MARK: - Corner Radius
+    
+    static let standardKeyboardButtonCornerRadiusForPadLandscape: CGFloat = 4
+    static let standardKeyboardButtonCornerRadiusForPadPortrait: CGFloat = 4
+    static let standardKeyboardButtonCornerRadiusForPhoneLandscape: CGFloat = 4
+    static let standardKeyboardButtonCornerRadiusForPhonePortrait: CGFloat = 4
     
     /**
-     The standard, total height, including insets, for a row
-     in a system keyboard.
-     */
-    static var standardKeyboardRowHeight: CGFloat {
-        standardKeyboardRowHeight()
-    }
-    
-    /**
-     The standard corner radius of a system keyboard button.
+     The standard corner radius of a system keyboard button,
+     given a certain `context`.
      */
     static func standardKeyboardButtonCornerRadius(
-        for device: UIDevice = .current) -> CGFloat { 4.0 }
+        for context: KeyboardContext) -> CGFloat {
+        standardKeyboardButtonCornerRadius(
+            for: context.device.userInterfaceIdiom,
+            in: context.screenOrientation,
+            withScreenSize: context.screen.bounds.size)
+    }
+    
+    /**
+     The standard corner radius of a system keyboard button,
+     given a certain `idiom` and `orientation`.
+     */
+    static func standardKeyboardButtonCornerRadius(
+        for idiom: UIUserInterfaceIdiom,
+        in orientation: UIInterfaceOrientation,
+        withScreenSize size: CGSize) -> CGFloat {
+        switch idiom {
+        case .pad: return orientation.isLandscape ?
+            standardKeyboardButtonCornerRadiusForPadLandscape :
+            standardKeyboardButtonCornerRadiusForPadPortrait
+        default: return orientation.isLandscape ?
+            standardKeyboardButtonCornerRadiusForPhoneLandscape :
+            standardKeyboardButtonCornerRadiusForPhonePortrait
+        }
+    }
+    
+    
+    // MARK: - Row height
+    
+    static let standardKeyboardRowHeightForPadLandscape: CGFloat = 86
+    static let standardKeyboardRowHeightForPadPortrait: CGFloat = 67
+    static let standardKeyboardRowHeightForPhoneLandscape: CGFloat = 40
+    static let standardKeyboardRowHeightForPhonePortrait: CGFloat = 54
     
     /**
      The standard, total height, including insets, for a row
-     in a system keyboard.
+     in a keyboard, given a certain `context`.
      */
     static func standardKeyboardRowHeight(
-        for device: UIDevice = .current,
-        vc: KeyboardInputViewController = .shared) -> CGFloat {
+        for context: KeyboardContext) -> CGFloat {
         standardKeyboardRowHeight(
-            for: device.userInterfaceIdiom,
-            orientation: vc.screenOrientation)
+            for: context.device.userInterfaceIdiom,
+            in: context.screenOrientation,
+            withScreenSize: context.screen.nativeBounds.size)
     }
-}
-
-extension CGFloat {
     
     /**
-     This internal function is used by the unit test project.
+     The standard, total height, including insets, for a row
+     in a keyboard, given a certain `idiom` and `orientation`.
      */
     static func standardKeyboardRowHeight(
         for idiom: UIUserInterfaceIdiom,
-        orientation: UIInterfaceOrientation) -> CGFloat {
-            
-        orientation.isLandscape
-            ? idiom == .pad ? 86 : 40
-            : idiom == .pad ? 67 : 54
+        in orientation: UIInterfaceOrientation,
+        withScreenSize size: CGSize) -> CGFloat {
+        switch idiom {
+        case .pad: return orientation.isLandscape ?
+            standardKeyboardRowHeightForPadLandscape :
+            standardKeyboardRowHeightForPadPortrait
+        default: return orientation.isLandscape ?
+            standardKeyboardRowHeightForPhoneLandscape :
+            standardKeyboardRowHeightForPhonePortrait
+        }
     }
 }

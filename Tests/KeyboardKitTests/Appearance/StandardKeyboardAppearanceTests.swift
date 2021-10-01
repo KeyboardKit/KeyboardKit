@@ -66,7 +66,7 @@ class StandardKeyboardAppearanceTests: QuickSpec {
             it("buttonCornerRadius is standard for all actions") {
                 styles.forEach {
                     let result = $0.style.cornerRadius
-                    let expected: CGFloat = .standardKeyboardButtonCornerRadius(for: context.device)
+                    let expected: CGFloat = .standardKeyboardButtonCornerRadius(for: .preview)
                     expect(result).to(equal(expected))
                 }
             }

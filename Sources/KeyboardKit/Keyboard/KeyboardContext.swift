@@ -22,11 +22,13 @@ public class KeyboardContext: ObservableObject {
     public init(
         locale: Locale = .current,
         device: UIDevice = .current,
+        screen: UIScreen = .main,
         controller: KeyboardInputViewController,
         keyboardType: KeyboardType = .alphabetic(.lowercased)) {
         self.locale = locale
         self.locales = [locale]
         self.device = device
+        self.screen = screen
         self.keyboardType = keyboardType
         self.sync(with: controller)
     }
@@ -48,6 +50,7 @@ public class KeyboardContext: ObservableObject {
     @Published public var locales: [Locale]
     @Published public var needsInputModeSwitchKey: Bool = true
     @Published public var primaryLanguage: String?
+    @Published public var screen: UIScreen
     @Published public var screenOrientation: UIInterfaceOrientation = .portrait
     @Published public var textDocumentProxy: UITextDocumentProxy = PreviewTextDocumentProxy()
     @Published public var textInputMode: UITextInputMode?

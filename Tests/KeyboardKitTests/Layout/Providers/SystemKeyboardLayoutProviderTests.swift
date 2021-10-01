@@ -108,11 +108,11 @@ class SystemKeyboardLayoutProviderTests: QuickSpec {
                 expect(result.count).to(equal(2))
                 expect(result[0][0].action).to(equal(.character("")))
                 expect(result[0][0].insets).to(equal(.standardKeyboardButtonInsets(for: context.device)))
-                expect(result[0][0].size.height).to(equal(.standardKeyboardRowHeight(for: context.device)))
+                expect(result[0][0].size.height).to(equal(.standardKeyboardRowHeight(for: .preview)))
                 expect(result[0][0].size.width).to(equal(.input))
                 expect(result[1][0].action).to(equal(.backspace))
                 expect(result[1][0].insets).to(equal(.standardKeyboardButtonInsets(for: context.device)))
-                expect(result[1][0].size.height).to(equal(.standardKeyboardRowHeight(for: context.device)))
+                expect(result[1][0].size.height).to(equal(.standardKeyboardRowHeight(for: .preview)))
                 expect(result[1][0].size.width).to(equal(.available))
             }
         }
