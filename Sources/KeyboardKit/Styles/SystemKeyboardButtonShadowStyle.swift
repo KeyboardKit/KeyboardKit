@@ -14,6 +14,13 @@ import SwiftUI
  */
 public struct SystemKeyboardButtonShadowStyle {
     
+    /**
+     Create a system keyboard button shadow style.
+     
+     - Parameters:
+       - color: The color of the shadow.
+       - size: The size of the shadow.
+     */
     public init(
         color: Color,
         size: CGFloat) {
@@ -21,6 +28,13 @@ public struct SystemKeyboardButtonShadowStyle {
         self.size = size
     }
     
+    /**
+     The color of the shadow.
+     */
     public var color: Color
+    
+    /**
+     The size of the shadow.
+     */
     public var size: CGFloat
 }

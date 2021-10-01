@@ -54,7 +54,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
             foregroundColor: action.standardButtonForegroundColor(for: context, isPressed: isPressed),
             font: font(for: action),
             cornerRadius: layoutConfig.buttonCornerRadius,
-            border: .noBorder,
+            border: .standard,
             shadow: SystemKeyboardButtonShadowStyle(
                 color: action.standardButtonShadowColor(for: context),
                 size: 1)

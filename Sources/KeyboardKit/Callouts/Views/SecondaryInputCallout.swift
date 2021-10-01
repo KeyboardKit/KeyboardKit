@@ -62,9 +62,9 @@ private extension SecondaryInputCallout {
                 Text($0.element)
                     .frame(buttonSize)
                     .background(isSelected($0.offset) ? style.selectedBackgroundColor : .clear)
-                    .foregroundColor(isSelected($0.offset) ? style.selectedTextColor : style.callout.textColor)
+                    .foregroundColor(isSelected($0.offset) ? style.selectedForegroundColor : style.callout.textColor)
                     .cornerRadius(cornerRadius)
-                    .padding(.vertical, style.verticalPadding)
+                    .padding(.vertical, style.verticalTextPadding)
             }
         }
         .padding(.horizontal, curveSize.width)
@@ -88,7 +88,7 @@ private extension SecondaryInputCallout {
     }
     
     var positionY: CGFloat {
-        buttonFrame.origin.y - style.verticalPadding
+        buttonFrame.origin.y - style.verticalTextPadding
     }
 }
 

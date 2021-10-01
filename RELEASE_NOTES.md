@@ -51,6 +51,8 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `StandardKeyboardFeedbackHandler` now prefers action-specific feedback, if defined.
 * `StandardSystemAudioPlayer` has a new `shared` player.
 * `SystemAudio` now implements `Identifiable` and `Codable`.
+* `SystemKeyboardButtonBorderStyle` has a new, static `standard` style.
+* `SystemKeyboardButtonShadowStyle` has a new, static `standard` style.
 * `View+Callout` has a new `calloutShadow` extension.
 
 ### 💡 Behavior changes
@@ -83,6 +85,8 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `SecondaryInputCalloutContext` `alignment` is now a `HorizontalAlignment`.
 * `SecondaryInputCalloutContext` `buttonFrame(for:)` has been removed.
 * `SecondaryInputCalloutContext` `updateInputs(for:geo:alignment)` has been renamed to `updateInputs(for:in:alignment:)`.
+* `SecondaryInputCalloutStyle` `selectedTextColor` has been renamed to `selectedForegroundColor`.
+* `SecondaryInputCalloutStyle` `verticalPadding` has been renamed to `verticalTextPadding`.
 * `Sequence` `batched(withBatchSize:)` has been renamed to `batched(into:)`. 
 * `SpaceDragSensitivity.custom` has been renamed to `custom(points:)`.
 * `StandardAutocompleteSuggestion` init parameters have been reordered.

@@ -17,6 +17,19 @@ import SwiftUI
  */
 public struct CalloutStyle {
     
+    /**
+     Create a callout style.
+     
+     - Parameters:
+       - backgroundColor: The background color to apply to the entire callout.
+       - borderColor: The border color to apply to the entire callout.
+       - buttonOverlayInset: The inset to apply to the button overlay.
+       - cornerRadius: The corner radius of the callout edges.
+       - curveSize: The size of the curve that links the button overlay and
+       - shadowColor: The shadow of the entire callout.
+       - shadowRadius: The shadow radius of the entire callout.
+       - textColor: The text color to use in the callout.
+     */
     public init(
         backgroundColor: Color = .standardButtonBackground,
         borderColor: Color = Color.black.opacity(0.5),
@@ -36,21 +49,58 @@ public struct CalloutStyle {
         self.textColor = textColor
     }
     
+    /**
+     The background color to apply to the entire callout.
+     */
     public var backgroundColor: Color
+    
+    /**
+     The border color to apply to the entire callout.
+     */
     public var borderColor: Color
+    
+    /**
+     The inset to apply to the part of the callout that will
+     overlap the tapped button.
+     
+     This must be used in a `SystemKeyboard`, where a button
+     has an intrinsic padding, which cause the buttons to be
+     larger than the visual area.
+     */
     public var buttonOverlayInset: CGSize
+    
+    /**
+     The corner radius of the callout edges.
+     */
     public var cornerRadius: CGFloat
+    
+    /**
+     The size of the curve that links the button overlay and
+     the callout bubble.
+     */
     public var curveSize: CGSize
+    
+    /**
+     The shadow of the entire callout.
+     */
     public var shadowColor: Color
+    
+    /**
+     The shadow radius of the entire callout.
+     */
     public var shadowRadius: CGFloat
+    
+    /**
+     The text color to use in the callout.
+     */
     public var textColor: Color
 }
 
 public extension CalloutStyle {
     
     /**
-     This is the standard callout style that will be used by
-     default. It looks like a system keyboard callout.
+     This standard style will be used by default. It aims to
+     look like a native system keyboard's callout.
      */
     static var standard = CalloutStyle()
 }

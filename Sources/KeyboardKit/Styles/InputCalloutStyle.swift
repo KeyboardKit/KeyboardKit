@@ -17,6 +17,14 @@ import SwiftUI
  */
 public struct InputCalloutStyle {
     
+    /**
+     Create an input callout style.
+     
+     - Parameters:
+       - callout: The callout style to use.
+       - calloutSize: The size of the callout above the button area.
+       - font: The font to use in the callout.
+     */
     public init(
         callout: CalloutStyle = .standard,
         calloutSize: CGSize = CGSize(width: 65, height: 60),
@@ -26,16 +34,27 @@ public struct InputCalloutStyle {
         self.font = font
     }
     
+    /**
+     The callout style to use.
+     */
     public var callout: CalloutStyle
+    
+    /**
+     The size of the callout above the button area.
+     */
     public var calloutSize: CGSize
+    
+    /**
+     The font to use in the callout.
+     */
     public var font: Font
 }
 
 public extension InputCalloutStyle {
     
     /**
-     This is the standard callout style that will be used by
-     default. It looks like a system keyboard callout.
+     This standard style will be used by default. It aims to
+     look like a native system keyboard's input callout.
      */
     static var standard = InputCalloutStyle()
 }
