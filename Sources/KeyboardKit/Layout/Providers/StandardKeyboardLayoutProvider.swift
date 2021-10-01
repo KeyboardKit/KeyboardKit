@@ -26,15 +26,29 @@ import UIKit
  */
 open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     
+    /**
+     Create a standard keyboard layout provider.
+     
+     - Parameters:
+       - inputSetProvider: The input set provider to use.
+       - dictationReplacement: An optional dictation replacement action.
+     */
     public init(
         inputSetProvider: KeyboardInputSetProvider,
         dictationReplacement: KeyboardAction? = nil) {
         self.inputSetProvider = inputSetProvider
         self.dictationReplacement = dictationReplacement
     }
-
+    
+    
+    /**
+     An optional dictation replacement action.
+     */
     public let dictationReplacement: KeyboardAction?
     
+    /**
+     The input set provider to use.
+     */
     public var inputSetProvider: KeyboardInputSetProvider {
         didSet {
             iPadProvider.register(inputSetProvider: inputSetProvider)
@@ -42,29 +56,31 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
         }
     }
     
+    
     /**
-     The provider that will be used for iPad devices.
+     The layout provider that is used for iPad devices.
      */
     open lazy var iPadProvider = iPadKeyboardLayoutProvider(
         inputSetProvider: inputSetProvider,
         dictationReplacement: dictationReplacement)
     
     /**
-     The provider that will be used for iPhone devices.
+     The layout provider that is used for iPhone devices.
      */
     open lazy var iPhoneProvider = iPhoneKeyboardLayoutProvider(
         inputSetProvider: inputSetProvider,
         dictationReplacement: dictationReplacement)
     
+    
     /**
-     Get a keyboard layout for the provided context.
+     Get a keyboard layout for a certain keyboard `context`.
      */
     open func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         layoutProvider(for: context).keyboardLayout(for: context)
     }
     
     /**
-     Get a keyboard layout provider for the provided context.
+     Get a keyboard layout provider for a certain `context`.
      */
     open func layoutProvider(for context: KeyboardContext) -> SystemKeyboardLayoutProvider {
         context.device.isPad ? iPadProvider : iPhoneProvider

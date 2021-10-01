@@ -57,16 +57,16 @@ public extension KeyboardLayoutConfiguration {
      The standard configuration for an iPad in landscape.
      */
     static let standardForPadLandscape = KeyboardLayoutConfiguration(
-        buttonCornerRadius: 4,
-        buttonInsets: .horizontal(7, vertical: 6),
+        buttonCornerRadius: 6,
+        buttonInsets: .horizontal(7, vertical: 8),
         rowHeight: 86)
     
     /**
      The standard configuration for an iPad in portait.
      */
     static let standardForPadPortrait = KeyboardLayoutConfiguration(
-        buttonCornerRadius: 4,
-        buttonInsets: .horizontal(6, vertical: 6),
+        buttonCornerRadius: 6,
+        buttonInsets: .horizontal(6, vertical: 8),
         rowHeight: 67)
     
     /**

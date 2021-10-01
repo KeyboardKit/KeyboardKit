@@ -90,6 +90,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `SystemAudio` `play` now only has a non-static version.
 * `SystemAudio.player` is now `SystemAudioPlayer.shared`.
 * `SystemAudioPlayer` now takes `SystemAudio` as argument.
+* `SystemKeyboardLayoutProvider` `hasElevenElevenSevenAlphabeticInput` is now computed instead of lazy.
 * `View+DynamicType` has been removed.
 
 
