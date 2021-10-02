@@ -37,7 +37,7 @@ private extension CalloutButtonArea {
     
     var backgroundColor: Color { style.backgroundColor }
     
-    var cornerRadius: CGFloat { style.cornerRadius }
+    var cornerRadius: CGFloat { style.buttonCornerRadius }
     
     var curveSize: CGSize { style.curveSize }
 }

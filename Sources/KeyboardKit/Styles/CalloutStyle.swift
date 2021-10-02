@@ -21,8 +21,9 @@ public struct CalloutStyle {
      Create a callout style.
      
      - Parameters:
-       - backgroundColor: The background color to apply to the entire callout.
-       - borderColor: The border color to apply to the entire callout.
+       - backgroundColor: The background color of the entire callout.
+       - borderColor: The border color of the entire callout.
+       - buttonCornerRadius: The corner radius of the callout edges.
        - buttonInset: The inset to apply to the button overlay.
        - cornerRadius: The corner radius of the callout edges.
        - curveSize: The size of the curve that links the button overlay and
@@ -33,6 +34,7 @@ public struct CalloutStyle {
     public init(
         backgroundColor: Color = .standardButtonBackground,
         borderColor: Color = Color.black.opacity(0.5),
+        buttonCornerRadius: CGFloat = 4,
         buttonInset: CGSize = CGSize.zero,
         cornerRadius: CGFloat = 10,
         curveSize: CGSize = CGSize(width: 8, height: 15),
@@ -41,6 +43,7 @@ public struct CalloutStyle {
         textColor: Color = .primary) {
         self.backgroundColor = backgroundColor
         self.borderColor = borderColor
+        self.buttonCornerRadius = buttonCornerRadius
         self.buttonInset = buttonInset
         self.cornerRadius = cornerRadius
         self.curveSize = curveSize
@@ -50,14 +53,19 @@ public struct CalloutStyle {
     }
     
     /**
-     The background color to apply to the entire callout.
+     The background color of the entire callout.
      */
     public var backgroundColor: Color
     
     /**
-     The border color to apply to the entire callout.
+     The border color of the entire callout.
      */
     public var borderColor: Color
+    
+    /**
+     The corner radius of the button overlay.
+     */
+    public var buttonCornerRadius: CGFloat
     
     /**
      The inset to apply to the part of the callout that will
