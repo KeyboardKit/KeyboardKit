@@ -235,9 +235,13 @@ KeyboardKit comes with a bunch of keyboard-specific views.
 
 ## Demo Application
 
-This repository contains a demo app that demonstrates different keyboards, like `alphabetical` (lowercased, uppercased and capslocked), `numerical`, `symbols`, `emojis` and `images`. It's not intended to be production ready, but rather to give you inspiration to how you can build your own keyboards.
+This repository contains a demo app that demonstrates different keyboards, like `alphabetical` (lowercased, uppercased and capslocked), `numerical`, `symbols`, `emojis` and `images`. 
+
+The demo app is not intended to be production ready, but rather to give you inspiration to how you can build your own keyboards. Just keep in mind that your keyboards can look anyway you like. They don't have to look like a system keyboard.
 
 To run the demo app, open and run the `Demo/Demo.xcodeproj` project, then enable the keyboards under system settings. Enable full access to support all features, like audio and haptic feedback.
+
+Note that you may have to update the KeyboardKit dependencies for the demo to run. If so, you can do that under `File/Swift Packages/Update to Latest Package Versions`.
 
 
 

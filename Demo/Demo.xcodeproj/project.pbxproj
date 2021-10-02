@@ -57,6 +57,9 @@
 		A921164F25D5BA85003510D9 /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A921164225D5BA85003510D9 /* SourceSansPro-Bold.ttf */; };
 		A921166225D5BC2A003510D9 /* EditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921166125D5BC2A003510D9 /* EditScreen.swift */; };
 		A921166725D5BC4F003510D9 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921166625D5BC4F003510D9 /* MultilineTextField.swift */; };
+		A9257D3527083B31000C7F3A /* RELEASE_NOTES.md in Resources */ = {isa = PBXBuildFile; fileRef = A9257D3227083B31000C7F3A /* RELEASE_NOTES.md */; };
+		A9257D3627083B31000C7F3A /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = A9257D3327083B31000C7F3A /* LICENSE */; };
+		A9257D3727083B31000C7F3A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A9257D3427083B31000C7F3A /* README.md */; };
 		A951A49B25E016660022385A /* DemoKeyboardLayoutProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A951A49A25E016660022385A /* DemoKeyboardLayoutProvider.swift */; };
 		A9C365F526F3184100E87AFE /* DemoAutocompleteToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C365F426F3184100E87AFE /* DemoAutocompleteToolbar.swift */; };
 /* End PBXBuildFile section */
@@ -138,6 +141,9 @@
 		A921164225D5BA85003510D9 /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
 		A921166125D5BC2A003510D9 /* EditScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScreen.swift; sourceTree = "<group>"; };
 		A921166625D5BC4F003510D9 /* MultilineTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
+		A9257D3227083B31000C7F3A /* RELEASE_NOTES.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = RELEASE_NOTES.md; path = ../RELEASE_NOTES.md; sourceTree = "<group>"; };
+		A9257D3327083B31000C7F3A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		A9257D3427083B31000C7F3A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A951A49A25E016660022385A /* DemoKeyboardLayoutProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboardLayoutProvider.swift; sourceTree = "<group>"; };
 		A9C365F426F3184100E87AFE /* DemoAutocompleteToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoAutocompleteToolbar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -318,8 +324,11 @@
 		A921162625D5B777003510D9 /* Project Files */ = {
 			isa = PBXGroup;
 			children = (
-				A921162725D5B781003510D9 /* swiftgen.yml */,
 				A921162C25D5B7FF003510D9 /* .swiftlint.yml */,
+				A9257D3327083B31000C7F3A /* LICENSE */,
+				A9257D3427083B31000C7F3A /* README.md */,
+				A9257D3227083B31000C7F3A /* RELEASE_NOTES.md */,
+				A921162725D5B781003510D9 /* swiftgen.yml */,
 			);
 			name = "Project Files";
 			sourceTree = "<group>";
@@ -490,8 +499,10 @@
 				A92115B125D5910D003510D9 /* box.png in Resources */,
 				A92115B225D5910D003510D9 /* favorite.png in Resources */,
 				A92115AE25D5910D003510D9 /* idea.png in Resources */,
+				A9257D3627083B31000C7F3A /* LICENSE in Resources */,
 				A921159D25D5910D003510D9 /* warning.png in Resources */,
 				A92115B025D5910D003510D9 /* trash.png in Resources */,
+				A9257D3727083B31000C7F3A /* README.md in Resources */,
 				A92115AA25D5910D003510D9 /* globe.png in Resources */,
 				A92115A525D5910D003510D9 /* cancel.png in Resources */,
 				A921159F25D5910D003510D9 /* note.png in Resources */,
@@ -501,6 +512,7 @@
 				A92115AF25D5910D003510D9 /* edit.png in Resources */,
 				A92115A425D5910D003510D9 /* label.png in Resources */,
 				A92115B325D5910D003510D9 /* refresh.png in Resources */,
+				A9257D3527083B31000C7F3A /* RELEASE_NOTES.md in Resources */,
 				A92115A925D5910D003510D9 /* help.png in Resources */,
 				A921159C25D5910D003510D9 /* rss.png in Resources */,
 				A92115AD25D5910D003510D9 /* video.png in Resources */,
