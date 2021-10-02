@@ -38,9 +38,13 @@ public struct InputCallout: View {
 
 private extension InputCallout {
     
-    var buttonFrame: CGRect { context.buttonFrame.insetBy(dx: buttonInset.width, dy: buttonInset.height) }
+    var buttonFrame: CGRect {
+        context.buttonFrame.insetBy(
+            dx: buttonInset.width,
+            dy: buttonInset.height)
+    }
     
-    var buttonInset: CGSize { calloutStyle.buttonOverlayInset }
+    var buttonInset: CGSize { calloutStyle.buttonInset }
     
     var buttonSize: CGSize { buttonFrame.size }
     

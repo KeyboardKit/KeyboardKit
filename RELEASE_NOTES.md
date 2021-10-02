@@ -74,6 +74,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `AutocompleteProvider` `ignoredWords` is now read-only.
 * `AutocompleteResponse` has been renamed to `AutocompleteCompletion`.
 * `AudioFeedback` has been renamed to `SystemAudio`.
+* `CalloutStyle` `buttonOverlayInset` has been renamed to `buttonInset`.
 * `CGFloat+Keyboard` has been replaced with `KeyboardLayoutConfiguration`.
 * `EdgeInsets+Keyboard` has been replaced with `KeyboardLayoutConfiguration`.
 * `EmojiKeyboard` button builder no longer takes a context.

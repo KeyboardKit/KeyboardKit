@@ -23,7 +23,7 @@ public struct CalloutStyle {
      - Parameters:
        - backgroundColor: The background color to apply to the entire callout.
        - borderColor: The border color to apply to the entire callout.
-       - buttonOverlayInset: The inset to apply to the button overlay.
+       - buttonInset: The inset to apply to the button overlay.
        - cornerRadius: The corner radius of the callout edges.
        - curveSize: The size of the curve that links the button overlay and
        - shadowColor: The shadow of the entire callout.
@@ -33,7 +33,7 @@ public struct CalloutStyle {
     public init(
         backgroundColor: Color = .standardButtonBackground,
         borderColor: Color = Color.black.opacity(0.5),
-        buttonOverlayInset: CGSize = CGSize.zero,
+        buttonInset: CGSize = CGSize.zero,
         cornerRadius: CGFloat = 10,
         curveSize: CGSize = CGSize(width: 8, height: 15),
         shadowColor: Color = Color.black.opacity(0.1),
@@ -41,7 +41,7 @@ public struct CalloutStyle {
         textColor: Color = .primary) {
         self.backgroundColor = backgroundColor
         self.borderColor = borderColor
-        self.buttonOverlayInset = buttonOverlayInset
+        self.buttonInset = buttonInset
         self.cornerRadius = cornerRadius
         self.curveSize = curveSize
         self.shadowColor = shadowColor
@@ -67,7 +67,7 @@ public struct CalloutStyle {
      has an intrinsic padding, which cause the buttons to be
      larger than the visual area.
      */
-    public var buttonOverlayInset: CGSize
+    public var buttonInset: CGSize
     
     /**
      The corner radius of the callout edges.

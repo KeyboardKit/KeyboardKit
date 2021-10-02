@@ -43,7 +43,7 @@ private extension SecondaryInputCallout {
     
     var backgroundColor: Color { calloutStyle.backgroundColor }
     var buttonFrame: CGRect { context.buttonFrame.insetBy(dx: buttonInset.width, dy: buttonInset.height) }
-    var buttonInset: CGSize { calloutStyle.buttonOverlayInset }
+    var buttonInset: CGSize { calloutStyle.buttonInset }
     var buttonSize: CGSize { buttonFrame.size }
     var calloutInputs: [String] { context.actions.compactMap { $0.input } }
     var calloutStyle: CalloutStyle { style.callout }

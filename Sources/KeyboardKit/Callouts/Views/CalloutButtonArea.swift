@@ -37,14 +37,6 @@ private extension CalloutButtonArea {
     
     var backgroundColor: Color { style.backgroundColor }
     
-    var buttonFrame: CGRect {
-        frame.insetBy(
-            dx: buttonInset.width,
-            dy: buttonInset.height)
-    }
-    
-    var buttonInset: CGSize { style.buttonOverlayInset }
-    
     var cornerRadius: CGFloat { style.cornerRadius }
     
     var curveSize: CGSize { style.curveSize }
@@ -55,7 +47,7 @@ private extension CalloutButtonArea {
     var buttonBody: some View {
         CustomRoundedRectangle(bottomLeft: cornerRadius, bottomRight: cornerRadius)
             .foregroundColor(backgroundColor)
-            .frame(buttonFrame.size)
+            .frame(frame.size)
     }
     
     var calloutCurve: some View {
