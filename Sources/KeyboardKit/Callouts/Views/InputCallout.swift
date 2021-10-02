@@ -30,9 +30,9 @@ public struct InputCallout: View {
             button
         }
         .compositingGroup()
-        .calloutShadow(style: calloutStyle)
         .opacity(context.isActive ? 1 : 0)
-        .offset(y: -calloutSize.height/2)
+        .calloutShadow(style: calloutStyle)
+        .position(x: positionX, y: positionY)
     }
 }
 
@@ -49,6 +49,14 @@ private extension InputCallout {
     var calloutStyle: CalloutStyle { style.callout }
     
     var cornerRadius: CGFloat { calloutStyle.cornerRadius }
+    
+    var positionX: CGFloat {
+        buttonFrame.origin.x + buttonSize.width/2
+    }
+    
+    var positionY: CGFloat {
+        buttonFrame.origin.y + buttonSize.height/2 - calloutSize.height/2
+    }
 }
 
 private extension InputCallout {

@@ -29,10 +29,10 @@ public struct SecondaryInputCallout: View {
         }
         .font(style.font)
         .compositingGroup()
-        .position(x: positionX, y: positionY)
-        .calloutShadow(style: calloutStyle)
         .opacity(context.isActive ? 1 : 0)
+        .calloutShadow(style: calloutStyle)
         .onTapGesture(perform: context.reset)
+        .position(x: positionX, y: positionY)
     }
 }
 
