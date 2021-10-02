@@ -10,16 +10,23 @@ import SwiftUI
 
 /**
  This view is meant to be used within a `SystemKeyboard` and
- will apply the correct frames and paddings to make the view
- behave well within an automatically generated keyboard view.
- 
- This view wraps a `SystemKeyboardButtonContent` and adjusts
- it to be used within a keyboard row. This involves applying
- height and paddings and new gestures in a way that make the
- buttons seem separated while actually sticking together.
+ will apply the correct frames and paddings, to mitigate any
+ dead tap areas that would exist if a system keyboard placed
+ its buttons with margins between the buttons and rows.
  */
 public struct SystemKeyboardButtonRowItem<Content: View>: View {
     
+    /**
+     Create a system keyboard button row item.
+     
+     - Parameters:
+       - content: The content view to use within the item.
+       - item: The layout item to use within the item.
+       - keyboardWidth: The total width of the keyboard.
+       - inputWidth: The input width within the keyboard.
+       - appearance: The appearance to apply to the item.
+       - actionHandler: The button style to apply.
+     */
     public init(
         content: Content,
         item: KeyboardLayoutItem,

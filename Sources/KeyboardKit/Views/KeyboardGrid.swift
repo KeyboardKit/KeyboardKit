@@ -23,6 +23,15 @@ import SwiftUI
  */
 public struct KeyboardGrid<Button: View>: View {
     
+    /**
+     Create a keyboard grid.
+     
+     - Parameters:
+       - actions: A list of actions to display in the grid.
+       - columns: The number of columns to present in the grid.
+       - spacing: The spaing between grid items.
+       - buttonBuilder: An custom button builder that will be used to create a button view for each action.
+     */
     public init(
         actions: [KeyboardAction],
         columns: Int,
@@ -74,7 +83,7 @@ struct KeyboardGrid_Previews: PreviewProvider {
     ]
 
     static var previews: some View {
-        KeyboardGrid(actions: actions, columns: 6) { _ in
+        KeyboardGrid(actions: actions, columns: 8) { _ in
             Image(systemName: "sun.max.fill")
                 .resizable()
                 .scaledToFit()

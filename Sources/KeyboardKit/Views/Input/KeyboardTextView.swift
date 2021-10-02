@@ -10,14 +10,13 @@ import SwiftUI
 import UIKit
 
 /**
- This view can be used within a keyboard extension, when you
- want to provide a multi-line text view next to the keyboard
- and have that receive user input instead of the hosting app.
+ This view can be used when you want to have multi-line text
+ input in a keyboard extension, and the input should receive
+ the text that is typed on the keyboard.
  
  The view will automatically register itself as an alternate
  proxy when it becomes first responder and unregister itself
- when it resigns first responder. This makes it receive user
- actions instead of the hosting app.
+ when it resigns as the first responder.
  
  `NOTE` that you must give this view a specific `height` for
  it to show up, otherwise it will collapse to zero height.
@@ -41,12 +40,19 @@ public struct KeyboardTextView: UIViewRepresentable {
         self.resignOnReturn = resignOnReturn
     }
     
+    
+    /**
+     This typealias represents the configuration action that
+     will be used to customize the embedded `UITextView`.
+     */
+    public typealias ConfigAction = (UITextView) -> Void
+    
+    
     @Binding private var text: String
     
     private let config: ConfigAction
     private let resignOnReturn: Bool
     
-    public typealias ConfigAction = (UITextView) -> Void
     
     public func makeCoordinator() -> Coordinator {
         Coordinator(text: $text)
@@ -67,7 +73,11 @@ public struct KeyboardTextView: UIViewRepresentable {
 }
 
 public extension KeyboardTextView {
-    
+
+    /**
+     This coordinator is used to keep the views in sync when
+     the text changes in the embedded text view.
+     */
     class Coordinator: NSObject, UITextViewDelegate {
         
         init(text: Binding<String>) {

@@ -11,9 +11,18 @@ import SwiftUI
 /**
  This view replicates the standard autocomplete toolbar item
  text that is used in native iOS keyboards.
+ 
+ The view will enforce a single line limit and resize itself
+ to share the available horizontal space with other views.
  */
 public struct AutocompleteToolbarItemText: View {
     
+    /**
+     Create an autocomplete toolbar item text view.
+     
+     - Parameters:
+       - suggestions: The suggestion to display in the view.
+     */
     public init(suggestion: AutocompleteSuggestion) {
         self.suggestion = suggestion
     }
@@ -43,11 +52,13 @@ private extension AutocompleteToolbarItemText {
 struct AutocompleteToolbarItemText_Previews: PreviewProvider {
     
     static var previews: some View {
-        VStack(spacing: 20) {
-            ForEach(KeyboardLocale.allCases) {
-                preview(for: $0)
-            }
-        }.padding()
+        ScrollView(.vertical) {
+            VStack(spacing: 20) {
+                ForEach(KeyboardLocale.allCases) {
+                    preview(for: $0)
+                }
+            }.padding()
+        }
     }
     
     static func preview(for locale: KeyboardLocale) -> some View {

@@ -23,6 +23,15 @@ import SwiftUI
  */
 public struct SystemKeyboardSpaceButton: View {
     
+    /**
+     Create a system keyboard space button.
+     
+     - Parameters:
+       - localeText: The name of the current locale, if any.
+       - spaceText: The localized name for "space", if any.
+       - actionHandler: The action handler to use.
+       - appearance: The appearance to apply to the button.
+     */
     public init(
         localeText: String? = nil,
         spaceText: String? = nil,

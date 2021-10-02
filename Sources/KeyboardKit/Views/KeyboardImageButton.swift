@@ -21,7 +21,7 @@ public struct KeyboardImageButton: View {
         action: KeyboardAction,
         tapAction: @escaping () -> Void = {},
         longPressAction: @escaping () -> Void = {}) {
-        self.image = Image(uiImage: action.image)
+        self.image = action.image
         self.tapAction = tapAction
         self.longPressAction = longPressAction
     }
@@ -54,11 +54,21 @@ public struct KeyboardImageButton: View {
 
 private extension KeyboardAction {
     
-    var image: UIImage {
+    var image: Image {
         switch self {
-        case .image(_, let imageName, _): return UIImage(named: imageName) ?? UIImage()
-        case .systemImage(_, let imageName, _): return UIImage(systemName: imageName) ?? UIImage()
-        default: return UIImage()
+        case .image(_, let imageName, _): return Image(imageName, bundle: .module)
+        case .systemImage(_, let imageName, _): return Image(systemName: imageName)
+        default: return Image("")
+        }
+    }
+}
+
+struct KeyboardImageButton_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        VStack {
+            KeyboardImageButton(action: .image(description: "", keyboardImageName: "iPhone12_sv_alphabetic_portrait_lowercase", imageName: ""))
+            KeyboardImageButton(action: .systemImage(description: "", keyboardImageName: "checkmark", imageName: ""))
         }
     }
 }

@@ -11,6 +11,9 @@ import Foundation
 /**
  This protocol can be implemented by any class or struct and
  provides its implementations with state-specific extensions.
+ 
+ However, the easiest way to observe the enabled state is to
+ create an `KeyboardEnabledState` instance.
  */
 public protocol KeyboardEnabledStateInspector {}
 
@@ -23,7 +26,7 @@ public extension KeyboardEnabledStateInspector {
      `bundleId` of the keyboard extension, not the app.
      
      - Parameter bundleId: The bundle id of the keyboard extension.
-     - Parameter notificationCenter: The notification center to use.     
+     - Parameter notificationCenter: The notification center to use to observe changes.     
      */
     func isKeyboardEnabled(
         for bundleId: String,

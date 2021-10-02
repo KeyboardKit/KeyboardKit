@@ -16,6 +16,11 @@ import SwiftUI
  
  `KeyboardKit` will automatically create an instance of this
  context and bind it to the main input view controller.
+ 
+ `KeyboardKit` will automatically sync this context with the
+ controller whenever needed. This means that any significant
+ changes will be synced to `@Published` properties that your
+ extension can observe to drive UI changes.
  */
 public class KeyboardContext: ObservableObject {
     
@@ -53,20 +58,80 @@ public class KeyboardContext: ObservableObject {
     public static var tempIsPreviewMode: Bool = false
     
     /**
-     The ID of the currently active app.
+     The bundle ID of the currently active app.
      */
     @Published public var activeAppBundleId: String?
+    
+    /**
+     The keyboard type that is currently used.
+     */
     @Published public var keyboardType: KeyboardType
+    
+    /**
+     Whether or not the input controller has a dictation key.
+     */
     @Published public var hasDictationKey: Bool = false
+    
+    /**
+     Whether or not the extension has been given full access.
+     */
     @Published public var hasFullAccess: Bool = false
+    
+    /**
+     The locale that is currently being used.
+     
+     This uses `Locale` instead of `KeyboardLocale`, since a
+     keyboard may have to support locales that are not built
+     into the library.
+     */
     @Published public var locale: Locale
+    
+    /**
+     The locales that are currently enabled for the keyboard.
+     
+     The `selectNextLocale` function can be called to select
+     the next locale in this list.
+     
+     This uses `Locale` instead of `KeyboardLocale`, since a
+     keyboard may have to support locales that are not built
+     into the library.
+     */
     @Published public var locales: [Locale]
+    
+    /**
+     Whether or not the keyboard should (must) have a switch
+     key for selecting the next keyboard.
+     */
     @Published public var needsInputModeSwitchKey: Bool = true
+    
+    /**
+     The primary language that is currently being used.
+     */
     @Published public var primaryLanguage: String?
+    
+    /**
+     The screen in which the keyboard is presented.
+     */
     @Published public var screen: UIScreen
+    
+    /**
+     The current screen orientation.
+     */
     @Published public var screenOrientation: UIInterfaceOrientation = .portrait
+    
+    /**
+     The text document proxy that is currently active.
+     */
     @Published public var textDocumentProxy: UITextDocumentProxy = PreviewTextDocumentProxy()
+    
+    /**
+     The text input mode of the input controller.
+     */
     @Published public var textInputMode: UITextInputMode?
+    
+    /**
+     The input controller's current trait collection.
+     */
     @Published public var traitCollection: UITraitCollection = UITraitCollection()
 }
 

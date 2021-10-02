@@ -10,10 +10,16 @@ import SwiftUI
 
 /**
  This view represents the body of a standard system keyboard
- button, which represents the buttons in an iOS keyboard.
+ button, excluding the button text or image.
  */
 public struct SystemKeyboardButtonBody: View {
     
+    /**
+     Create a system keyboard button body view.
+     
+     - Parameters:
+       - style: The button style to apply.
+     */
     public init(style: SystemKeyboardButtonStyle) {
         self.style = style
     }

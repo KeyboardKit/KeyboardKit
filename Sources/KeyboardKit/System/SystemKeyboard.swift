@@ -21,9 +21,24 @@ import SwiftUI
  total width of the keyboard, the view must be given a fixed
  width. If you don't provide an explicit width, the width of
  the shared input view controller's view will be used.
+ 
+ `IMPORTANT` In previews, you must provide a custom width to
+ get buttons to show up, since there is no shared controller.
  */
 public struct SystemKeyboard: View {
     
+    /**
+     Create an autocomplete toolbar.
+     
+     - Parameters:
+       - layout: The keyboard layout to use in the keyboard.
+       - appearance: The keyboard appearance to use in the keyboard.
+       - actionHandler: The action handler to use in the keyboard.
+       - inputCalloutStyle: The input callout style to use in the keyboard.
+       - secondaryInputCalloutStyle: The ssecondary input callout style to use in the keyboard.
+       - width: The total width of the keyboard, used for button size calculations.
+       - buttonBuilder: An optional, custom button builder. By default, the static `standardButton` will be used.
+     */
     public init(
         layout: KeyboardLayout,
         appearance: KeyboardAppearance,
@@ -104,5 +119,19 @@ private extension SystemKeyboard {
             inputWidth: inputWidth,
             appearance: appearance,
             actionHandler: actionHandler)
+    }
+}
+
+struct SystemKeyboard_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        SystemKeyboard(
+            layout: .preview,
+            appearance: .preview,
+            actionHandler: PreviewKeyboardActionHandler(),
+            width: UIScreen.main.bounds.width
+        )
+        .keyboardPreview()
+        .background(Color.standardKeyboardBackground)
     }
 }

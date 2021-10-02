@@ -15,6 +15,14 @@ import SwiftUI
  */
 public struct SystemKeyboardSpaceButtonContent: View {
     
+    /**
+     Create a system keyboard space button content view.
+     
+     - Parameters:
+       - localeText: The name of the current locale, if any.
+       - spaceText: The localized name for "space", if any.
+       - appearance: The appearance to apply to the button.
+     */
     public init(
         localeText: String? = nil,
         spaceText: String? = nil,
@@ -25,6 +33,14 @@ public struct SystemKeyboardSpaceButtonContent: View {
         self.appearance = appearance
     }
     
+    /**
+     Create a system keyboard space button content view.
+     
+     - Parameters:
+       - localeText: The name of the current locale, if any.
+       - spaceView: The custom view to use in the space button.
+       - appearance: The appearance to apply to the button.
+     */
     public init<SpaceView: View>(
         localeText: String? = nil,
         spaceView: SpaceView,

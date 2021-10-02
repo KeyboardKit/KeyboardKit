@@ -9,13 +9,23 @@
 import SwiftUI
 
 /**
- This view resolves the correct content for a certain action.
+ This view resolves the correct content for a certain action,
+ which will result in either a text or image or nothing.
  
- If provided, the optional text and image is used instead of
- the standard action content.
+ If provided, the optional `text` or `image` is used instead
+ of the standard action content.
  */
 public struct SystemKeyboardButtonContent: View {
     
+    /**
+     Create a system keyboard button content view.
+     
+     - Parameters:
+       - action: The action for which to generate content.
+       - appearance: The appearance to apply to the content.
+       - text: An explicit text, to replace the action content.
+       - image: An explicit image, to replace the action content.
+     */
     public init(
         action: KeyboardAction,
         appearance: KeyboardAppearance,

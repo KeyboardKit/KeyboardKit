@@ -14,6 +14,16 @@ import SwiftUI
  */
 public struct NextKeyboardButton: UIViewRepresentable {
     
+    /**
+     Create a new next keyboard button.
+     
+     - Parameters:
+       - controller: The controller to which the button should apply.
+       - tintColor: The tint color of the globe icon.
+       - pointSize: The point size of the globe icon.
+       - weight: The font weight of the globe icon.
+       - scale: The font scale of the globe icon.
+     */
     public init(
         controller: KeyboardInputViewController = .shared,
         tintColor: UIColor = .label,
@@ -28,6 +38,16 @@ public struct NextKeyboardButton: UIViewRepresentable {
             scale: scale)
     }
     
+    /**
+     Create a new next keyboard button.
+     
+     - Parameters:
+       - controller: The controller to which the button should apply.
+       - tintColor: The tint color of the globe icon.
+       - pointSize: The point size of the globe icon.
+       - weight: The font weight of the globe icon.
+       - scale: The font scale of the globe icon.
+     */
     @available(iOS 14.0, *)
     public init(
         controller: KeyboardInputViewController = .shared,
@@ -48,4 +68,11 @@ public struct NextKeyboardButton: UIViewRepresentable {
     public func makeUIView(context: Context) -> UIButton { button }
 
     public func updateUIView(_ uiView: UIButton, context: Context) {}
+}
+
+struct NextKeyboardButton_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        NextKeyboardButton()
+    }
 }

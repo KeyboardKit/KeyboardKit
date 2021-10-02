@@ -18,6 +18,12 @@ import SwiftUI
  */
 public struct AutocompleteToolbarItem: View {
     
+    /**
+     Create an autocomplete toolbar item.
+     
+     - Parameters:
+       - suggestions: The suggestion to display in the view.
+     */
     public init(suggestion: AutocompleteSuggestion) {
         self.suggestion = suggestion
     }
@@ -35,11 +41,13 @@ public struct AutocompleteToolbarItem: View {
 struct AutocompleteToolbarItem_Previews: PreviewProvider {
     
     static var previews: some View {
-        VStack(spacing: 20) {
-            ForEach(KeyboardLocale.allCases) {
-                preview(for: $0)
-            }
-        }.padding()
+        ScrollView(.vertical) {
+            VStack(spacing: 20) {
+                ForEach(KeyboardLocale.allCases) {
+                    preview(for: $0)
+                }
+            }.padding()
+        }
     }
     
     static func preview(for locale: KeyboardLocale) -> some View {

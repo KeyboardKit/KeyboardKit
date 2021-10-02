@@ -15,15 +15,17 @@ import SwiftUI
  */
 public struct SystemKeyboardButton<Content: View>: View {
     
-    /// Create a system keyboard button.
-    ///
-    /// - Parameters:
-    ///   - action: The keyboard action to apply.
-    ///   - actionHandler: The keyboard action handler to use.
-    ///   - appearance: The keyboard appearance to use.
-    ///   - text: An optional text to override the standard action content.
-    ///   - image: An optional image to override the standard action content.
-    ///   - contentConfig: A content configuration block that can be used to modify the button content before applying a style and gestures to it.
+    /**
+     Create a system keyboard button.
+     
+     - Parameters:
+       - action: The keyboard action to apply.
+       - actionHandler: The keyboard action handler to use.
+       - appearance: The keyboard appearance to use.
+       - text: An optional text to override the standard action content.
+       - image: An optional image to override the standard action content.
+       - contentConfig: A content configuration block that can be used to modify the button content before applying a style and gestures to it.
+     */
     public init(
         action: KeyboardAction,
         actionHandler: KeyboardActionHandler,
@@ -36,7 +38,7 @@ public struct SystemKeyboardButton<Content: View>: View {
         self.appearance = appearance
         self.text = text
         self.image = image
-            self.contentConfig = contentConfig
+        self.contentConfig = contentConfig
     }
     
     private let action: KeyboardAction
@@ -46,6 +48,10 @@ public struct SystemKeyboardButton<Content: View>: View {
     private let text: String?
     private let contentConfig: ContentConfig
     
+    /**
+     This typealias represents the configuration action that
+     is used to customize the content of the button.
+     */
     public typealias ContentConfig = (SystemKeyboardButtonContent) -> Content
     
     @State private var isPressed = false
@@ -67,16 +73,18 @@ public struct SystemKeyboardButton<Content: View>: View {
 
 public extension SystemKeyboardButton where Content == SystemKeyboardButtonContent {
     
-    /// Create a system keyboard button that does not modify
-    /// the content before applying a style and gestures.
-    ///
-    /// - Parameters:
-    ///   - action: The keyboard action to apply.
-    ///   - actionHandler: The keyboard action handler to use.
-    ///   - appearance: The keyboard appearance to use.
-    ///   - text: An optional text to override the standard action content.
-    ///   - image: An optional image to override the standard action content.
-    ///   - contentConfig: A content configuration block, to adjust the content before presenting it.
+    /**
+     Create a system keyboard button that does not modify
+     the content before applying a style and gestures.
+     
+     - Parameters:
+       - action: The keyboard action to apply.
+       - actionHandler: The keyboard action handler to use.
+       - appearance: The keyboard appearance to use.
+       - text: An optional text to override the standard action content.
+       - image: An optional image to override the standard action content.
+       - contentConfig: A content configuration block, to adjust the content before presenting it.
+     */
     init(
         action: KeyboardAction,
         actionHandler: KeyboardActionHandler,

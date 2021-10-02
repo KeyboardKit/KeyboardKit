@@ -14,6 +14,9 @@ import UIKit
  This state class implements `KeyboardEnabledStateInspector`
  by keeping a published `isKeyboardEnabled` in sync with the
  state of the associated keyboard.
+ 
+ This class will call `refresh` whenever the app or keyboard
+ extension becomes active.
  */
 public class KeyboardEnabledState: KeyboardEnabledStateInspector, ObservableObject {
     
@@ -24,7 +27,7 @@ public class KeyboardEnabledState: KeyboardEnabledStateInspector, ObservableObje
      `bundleId` of the keyboard extension, not the app.
      
      - Parameter bundleId: The bundle id of the keyboard extension.
-     - Parameter notificationCenter: The notification center to use.
+     - Parameter notificationCenter: The notification center to use to observe changes.
      */
     public init(
         bundleId: String,
@@ -43,7 +46,7 @@ public class KeyboardEnabledState: KeyboardEnabledStateInspector, ObservableObje
     
     /**
      Whether or not the keyboard with the provided bundle id
-     is enabled for the current system.
+     is enabled in system settings.
      */
     @Published public var isKeyboardEnabled: Bool = false
     

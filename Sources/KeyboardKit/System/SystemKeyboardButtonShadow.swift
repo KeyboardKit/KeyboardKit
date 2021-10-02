@@ -21,6 +21,12 @@ import SwiftUI
  */
 public struct SystemKeyboardButtonShadow: View {
     
+    /**
+     Create a system keyboard button shadow view.
+     
+     - Parameters:
+       - style: The button style to apply.
+     */
     public init(style: SystemKeyboardButtonStyle) {
         self.style = style
     }
