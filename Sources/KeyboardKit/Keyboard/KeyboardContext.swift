@@ -12,18 +12,28 @@ import SwiftUI
 
 /**
  This class provides keyboard extensions with contextual and
- observable information.
+ observable information. It's a central part of KeyboardKit.
  
  `KeyboardKit` will automatically create an instance of this
  context and bind it to the main input view controller.
  */
 public class KeyboardContext: ObservableObject {
     
+    /**
+     Create a context instance.
+     
+     - Parameters:
+       - controller: The controller to which the context should apply.
+       - locale: The locale to use, by default `.current`.
+       - device: The device to use, by default `.current`.
+       - screen: The screen to use, by default `.main`.
+       - keyboardType: The current keyboard tye, by default `.alphabetic(.lowercased)`
+     */
     public init(
+        controller: KeyboardInputViewController,
         locale: Locale = .current,
         device: UIDevice = .current,
         screen: UIScreen = .main,
-        controller: KeyboardInputViewController,
         keyboardType: KeyboardType = .alphabetic(.lowercased)) {
         self.locale = locale
         self.locales = [locale]
@@ -42,6 +52,9 @@ public class KeyboardContext: ObservableObject {
      */
     public static var tempIsPreviewMode: Bool = false
     
+    /**
+     The ID of the currently active app.
+     */
     @Published public var activeAppBundleId: String?
     @Published public var keyboardType: KeyboardType
     @Published public var hasDictationKey: Bool = false

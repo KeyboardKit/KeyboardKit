@@ -163,8 +163,8 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
     static var proxy = PreviewTextDocumentProxy()
     
     static var context = KeyboardContext(
-        device: MockDevice(),
         controller: KeyboardInputViewController(),
+        device: MockDevice(),
         keyboardType: .alphabetic(.lowercased))
     
     static var previewImage: some View {
