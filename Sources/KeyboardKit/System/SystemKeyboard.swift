@@ -34,8 +34,6 @@ public struct SystemKeyboard: View {
        - layout: The keyboard layout to use in the keyboard.
        - appearance: The keyboard appearance to use in the keyboard.
        - actionHandler: The action handler to use in the keyboard.
-       - inputCalloutStyle: The input callout style to use in the keyboard.
-       - secondaryInputCalloutStyle: The ssecondary input callout style to use in the keyboard.
        - width: The total width of the keyboard, used for button size calculations.
        - buttonBuilder: An optional, custom button builder. By default, the static `standardButton` will be used.
      */
@@ -43,39 +41,47 @@ public struct SystemKeyboard: View {
         layout: KeyboardLayout,
         appearance: KeyboardAppearance,
         actionHandler: KeyboardActionHandler,
-        inputCalloutStyle: InputCalloutStyle? = nil,
-        secondaryInputCalloutStyle: SecondaryInputCalloutStyle? = nil,
         width: CGFloat = KeyboardInputViewController.shared.view.frame.width,
         buttonBuilder: @escaping ButtonBuilder = Self.standardButtonBuilder) {
         self.layout = layout
         self.actionHandler = actionHandler
         self.appearance = appearance
-        self.inputCalloutStyle = inputCalloutStyle
-        self.secondaryInputCalloutStyle = secondaryInputCalloutStyle
         self.buttonBuilder = buttonBuilder
         self.keyboardWidth = width
         self.inputWidth = layout.inputWidth(for: keyboardWidth)
+            
+        // Temporary until everything uses style ***********
+        // let layoutConfig = KeyboardLayoutConfiguration.standard(for: context)
+        // var inputStyle = inputCalloutStyle
+        // inputStyle.callout.buttonCornerRadius = layoutConfig.buttonCornerRadius
+        // self.inputCalloutStyle = inputStyle
+        // var secondaryStyle = secondaryInputCalloutStyle
+        // secondaryStyle.callout = inputStyle.callout
+        // self.secondaryInputCalloutStyle = secondaryStyle
+        // Temporary until everything uses style ***********
     }
     
     private let actionHandler: KeyboardActionHandler
     private let appearance: KeyboardAppearance
     private let buttonBuilder: ButtonBuilder
-    private let inputCalloutStyle: InputCalloutStyle?
     private let keyboardWidth: CGFloat
     private let inputWidth: CGFloat
     private let layout: KeyboardLayout
-    private let secondaryInputCalloutStyle: SecondaryInputCalloutStyle?
     
     @EnvironmentObject private var context: KeyboardContext
     
+    /**
+     This typealias represents the action block that is used
+     to create button views for the system keyboard.
+     */
     public typealias ButtonBuilder = (KeyboardAction, KeyboardAppearance) -> AnyView
     
     public var body: some View {
         VStack(spacing: 0) {
             rows(for: layout)
         }
-        .inputCallout(style: inputCalloutStyle ?? .standard)
-        .secondaryInputCallout(style: secondaryInputCalloutStyle ?? .standard)
+        .inputCallout(style: .standard)
+        .secondaryInputCallout(style: .standard)
     }
 }
 
