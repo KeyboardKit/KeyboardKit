@@ -81,6 +81,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `EmojiKeyboard` button builder no longer takes a context.
 * `HapticFeedback` `prepare` and `trigger` now only has a non-static version.
 * `HapticFeedback.player` has been removed.
+* `InputCallout` now takes a context as init param instead of environment object.
 * `InputCalloutContext` `buttonFrame(for:)` has been removed.
 * `InputCalloutContext` `updateInput(for:geo:)` has been renamed to `updateInput(for:,in:)`.
 * `KeyboardBehavior` has a new `shouldSwitchToCapsLock` function.
@@ -88,6 +89,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `KeyboardContext` init params have been reordered.
 * `KeyboardInputSetProvider` functions have been converted to properties.
 * `KeyboardType.custom` has been renamed to `KeyboardType.custom(named:)`.
+* `SecondaryInputCallout` now takes a context as init param instead of environment object.
 * `SecondaryInputCalloutContext` init params have been reordered.
 * `SecondaryInputCalloutContext` `alignment` is now a `HorizontalAlignment`.
 * `SecondaryInputCalloutContext` `buttonFrame(for:)` has been removed.
@@ -106,6 +108,8 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `SystemKeyboardLayoutProvider` `hasElevenElevenSevenAlphabeticInput` is now computed instead of lazy.
 * `View+Callout` is now internal.
 * `View+DynamicType` has been removed.
+* `View+InputCallout` now takes a context as init param instead of environment object.
+* `View+SecondaryInputCallout` now takes a context as init param instead of environment object.
 
 
 

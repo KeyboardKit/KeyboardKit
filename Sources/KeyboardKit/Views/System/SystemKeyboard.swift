@@ -69,6 +69,8 @@ public struct SystemKeyboard: View {
     private let layout: KeyboardLayout
     
     @EnvironmentObject private var context: KeyboardContext
+    @EnvironmentObject private var inputContext: InputCalloutContext
+    @EnvironmentObject private var secondaryInputContext: SecondaryInputCalloutContext
     
     /**
      This typealias represents the action block that is used
@@ -80,8 +82,8 @@ public struct SystemKeyboard: View {
         VStack(spacing: 0) {
             rows(for: layout)
         }
-        .inputCallout(style: .standard)
-        .secondaryInputCallout(style: .standard)
+        .inputCallout(context: inputContext, style: .standard)
+        .secondaryInputCallout(context: secondaryInputContext, style: .standard)
     }
 }
 

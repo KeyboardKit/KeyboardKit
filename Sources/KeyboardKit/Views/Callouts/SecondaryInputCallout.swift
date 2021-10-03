@@ -14,11 +14,21 @@ import SwiftUI
  */
 public struct SecondaryInputCallout: View {
     
-    public init(style: SecondaryInputCalloutStyle) {
+    /**
+     Create a secondary input callout view.
+     
+     - Parameters:
+       - context: The context to bind against.
+       - style: The style to apply to the view.
+     */
+    public init(
+        context: SecondaryInputCalloutContext,
+        style: SecondaryInputCalloutStyle) {
+        self._context = ObservedObject(wrappedValue: context)
         self.style = style
     }
     
-    @EnvironmentObject private var context: SecondaryInputCalloutContext
+    @ObservedObject private var context: SecondaryInputCalloutContext
     
     private let style: SecondaryInputCalloutStyle
     
@@ -139,9 +149,8 @@ struct SecondaryInputCallout_Previews: PreviewProvider {
                 }
             )
         }
-        .secondaryInputCallout(style: .standard)
-        // .inputCallout(style: .preview1)
-        // .inputCallout(style: .preview2)
-        .environmentObject(context)
+        .secondaryInputCallout(context: context, style: .standard)
+        // .inputCallout(context: context, style: .preview1)
+        // .inputCallout(context: context, style: .preview2)
     }
 }

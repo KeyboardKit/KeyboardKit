@@ -14,14 +14,24 @@ import SwiftUI
  */
 public struct InputCallout: View {
     
-    public init(style: InputCalloutStyle) {
+    /**
+     Create an input callout view.
+     
+     - Parameters:
+       - context: The context to bind against.
+       - style: The style to apply to the view.
+     */
+    public init(
+        context: InputCalloutContext,
+        style: InputCalloutStyle) {
+        self._context = ObservedObject(wrappedValue: context)
         self.style = style
     }
     
-    @EnvironmentObject private var context: InputCalloutContext
+    @ObservedObject private var context: InputCalloutContext
     
     private let style: InputCalloutStyle
-    
+
     static let coordinateSpace = InputCalloutContext.coordinateSpace
     
     public var body: some View {
@@ -97,9 +107,8 @@ struct InputCallout_Previews: PreviewProvider {
                 }
             }
         )
-        .inputCallout(style: .standard)
-        // .inputCallout(style: .preview1)
-        // .inputCallout(style: .preview2)
-        .environmentObject(context)
+        .inputCallout(context: context, style: .standard)
+        // .inputCallout(context: context, style: .preview1)
+        // .inputCallout(context: context, style: .preview2)
     }
 }
