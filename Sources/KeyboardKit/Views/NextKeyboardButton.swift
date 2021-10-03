@@ -12,67 +12,67 @@ import SwiftUI
  This button switches to the next keyboard when it is tapped
  and opens a keyboard switcher menu when it is pressed.
  */
-public struct NextKeyboardButton: UIViewRepresentable {
+public struct NextKeyboardButton: View {
     
     /**
      Create a new next keyboard button.
      
      - Parameters:
+       - image: The image to use, default `.globe`.
        - controller: The controller to which the button should apply.
-       - tintColor: The tint color of the globe icon.
-       - pointSize: The point size of the globe icon.
-       - weight: The font weight of the globe icon.
-       - scale: The font scale of the globe icon.
      */
     public init(
-        controller: KeyboardInputViewController = .shared,
-        tintColor: UIColor = .label,
-        pointSize: CGFloat = 23,
-        weight: UIImage.SymbolWeight = .light,
-        scale: UIImage.SymbolScale = .medium) {
-        self.button = NextKeyboardUIButton(
-            controller: controller,
-            tintColor: tintColor,
-            pointSize: pointSize,
-            weight: weight,
-            scale: scale)
+        image: Image = .keyboardGlobe,
+        controller: KeyboardInputViewController = .shared) {
+        self.image = image
+        self.button = NextKeyboardButtonOverlay(controller: controller)
     }
     
-    /**
-     Create a new next keyboard button.
-     
-     - Parameters:
-       - controller: The controller to which the button should apply.
-       - tintColor: The tint color of the globe icon.
-       - pointSize: The point size of the globe icon.
-       - weight: The font weight of the globe icon.
-       - scale: The font scale of the globe icon.
-     */
-    @available(iOS 14.0, *)
-    public init(
-        controller: KeyboardInputViewController = .shared,
-        tintColor: Color = .primary,
-        pointSize: CGFloat = 23,
-        weight: UIImage.SymbolWeight = .light,
-        scale: UIImage.SymbolScale = .medium) {
-        self.button = NextKeyboardUIButton(
-            controller: controller,
-            tintColor: UIColor(tintColor),
-            pointSize: pointSize,
-            weight: weight,
-            scale: scale)
+    private let image: Image
+    private let button: NextKeyboardButtonOverlay
+    
+    public var body: some View {
+        image.overlay(button)
     }
-    
-    private let button: UIButton
-    
-    public func makeUIView(context: Context) -> UIButton { button }
-
-    public func updateUIView(_ uiView: UIButton, context: Context) {}
 }
 
 struct NextKeyboardButton_Previews: PreviewProvider {
     
     static var previews: some View {
         NextKeyboardButton()
+            .font(.title)
+    }
+}
+
+
+/**
+ This overlay view setup a `next keyboard` controller action
+ to a blank `UIKit` button.
+ 
+ This can hopefully be removed later, without public changes.
+ */
+private struct NextKeyboardButtonOverlay: UIViewRepresentable {
+    
+    init(
+        controller: KeyboardInputViewController = .shared) {
+        button = UIButton()
+        controller.setupNextKeyboardButton(button)
+    }
+    
+    let button: UIButton
+    
+    func makeUIView(context: Context) -> UIButton { button }
+
+    func updateUIView(_ uiView: UIButton, context: Context) {}
+}
+
+private extension UIInputViewController {
+    
+    /**
+     Setup any `UIButton` as a "next keyboard" system button.
+     */
+    func setupNextKeyboardButton(_ button: UIButton) {
+        let action = #selector(handleInputModeList(from:with:))
+        button.addTarget(self, action: action, for: .allTouchEvents)
     }
 }

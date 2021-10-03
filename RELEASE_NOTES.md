@@ -47,6 +47,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `KeyboardInputTextComponent` is now public.
 * `KeyboardLayoutConfiguration` is a new type that replaces the CGFloat and UIEdgeInsets keyboard extensions.
 * `KeyboardType` now implements `Codable`.
+* `NextKeyboardButton` is now SwiftUI-based and don't require any special setup.
 * `Preview` services have new, static `.preview` protocol properties.
 * `SpaceDragSensitivity` now implements `Codable`. 
 * `StandardHapticFeedbackPlayer` has a new `shared` player.
