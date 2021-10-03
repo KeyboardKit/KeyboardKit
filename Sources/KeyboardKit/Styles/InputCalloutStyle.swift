@@ -57,3 +57,22 @@ public extension InputCalloutStyle {
      */
     static var standard = InputCalloutStyle()
 }
+
+extension InputCalloutStyle {
+    
+    /**
+     This internal style is only used in previews.
+     */
+    static var preview1 = InputCalloutStyle(
+        callout: .preview1,
+        calloutSize: CGSize(width: 60, height: 40),
+        font: .body)
+    
+    /**
+     This internal style is only used in previews.
+     */
+    static var preview2 = InputCalloutStyle(
+        callout: .preview2,
+        calloutSize: CGSize(width: 70, height: 60),
+        font: .footnote)
+}

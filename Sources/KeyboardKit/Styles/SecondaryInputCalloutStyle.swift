@@ -84,3 +84,26 @@ public extension SecondaryInputCalloutStyle {
         }
     }
 }
+
+extension SecondaryInputCalloutStyle {
+    
+    /**
+     This internal style is only used in previews.
+     */
+    static var preview1 = SecondaryInputCalloutStyle(
+        callout: .preview1,
+        font: .headline,
+        selectedBackgroundColor: .yellow,
+        selectedForegroundColor: .black,
+        verticalTextPadding: 10)
+    
+    /**
+     This internal style is only used in previews.
+     */
+    static var preview2 = SecondaryInputCalloutStyle(
+        callout: .preview2,
+        font: .footnote,
+        selectedBackgroundColor: .black,
+        selectedForegroundColor: .yellow,
+        verticalTextPadding: 15)
+}

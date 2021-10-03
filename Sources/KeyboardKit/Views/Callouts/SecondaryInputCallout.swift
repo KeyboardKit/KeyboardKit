@@ -121,23 +121,27 @@ struct SecondaryInputCallout_Previews: PreviewProvider {
         actionHandler: .preview,
         actionProvider: PreviewSecondaryCalloutActionProvider())
     
+    static var button: some View {
+        Color.red.frame(width: 40, height: 50)
+    }
+    
     static var previews: some View {
         VStack {
-            Color.red.frame(width: 40, height: 50)
-                .overlay(
-                    GeometryReader { geo in
-                        Color.clear
-                            .onAppear {
-                                context.updateInputs(
-                                    for: .character("S"),
-                                    in: geo,
-                                    alignment: .trailing
-                                )
-                            }
+            button.overlay(
+                GeometryReader { geo in
+                    Color.clear.onAppear {
+                        context.updateInputs(
+                            for: .character("S"),
+                            in: geo,
+                            alignment: .trailing
+                        )
                     }
-                )
+                }
+            )
         }
         .secondaryInputCallout(style: .standard)
+        // .inputCallout(style: .preview1)
+        // .inputCallout(style: .preview2)
         .environmentObject(context)
     }
 }

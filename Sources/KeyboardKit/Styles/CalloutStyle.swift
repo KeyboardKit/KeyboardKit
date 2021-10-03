@@ -20,6 +20,14 @@ public struct CalloutStyle {
     /**
      Create a callout style.
      
+     When customizing these values, note that some are meant
+     to fit the context in which a callout is presented, e.g.
+     `buttonCornerRadius` which should use the same value as
+     the button that the callout is presented on top of.
+     
+     Only customize the parameters you need to customize and
+     use the default values for all other parameters.
+     
      - Parameters:
        - backgroundColor: The background color of the entire callout.
        - borderColor: The border color of the entire callout.
@@ -110,4 +118,29 @@ public extension CalloutStyle {
      This standard style aims to mimic the native iOS style.
      */
     static var standard = CalloutStyle()
+}
+
+extension CalloutStyle {
+    
+    /**
+     This internal style is only used in previews.
+     */
+    static var preview1 = CalloutStyle(
+        backgroundColor: .red,
+        borderColor: .white,
+        buttonCornerRadius: 10,
+        shadowColor: .green,
+        shadowRadius: 3,
+        textColor: .black)
+    
+    /**
+     This internal style is only used in previews.
+     */
+    static var preview2 = CalloutStyle(
+        backgroundColor: .green,
+        borderColor: .white,
+        buttonCornerRadius: 20,
+        shadowColor: .black,
+        shadowRadius: 10,
+        textColor: .red)
 }

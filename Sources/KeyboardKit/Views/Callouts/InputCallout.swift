@@ -85,20 +85,21 @@ struct InputCallout_Previews: PreviewProvider {
     
     static let context = InputCalloutContext(isEnabled: true)
     
+    static var button: some View {
+        Color.red.frame(width: 40, height: 50)
+    }
+    
     static var previews: some View {
-        VStack {
-            Color.red.frame(width: 40, height: 50)
-                .overlay(
-                    GeometryReader { geo in
-                        Color.clear
-                            .onAppear {
-                                context.updateInput(for: .character("A"), in: geo)
-                            }
-                    }
-                )
-            
-        }
+        button.overlay(
+            GeometryReader { geo in
+                Color.clear.onAppear {
+                    context.updateInput(for: .character("A"), in: geo)
+                }
+            }
+        )
         .inputCallout(style: .standard)
+        // .inputCallout(style: .preview1)
+        // .inputCallout(style: .preview2)
         .environmentObject(context)
     }
 }
