@@ -37,23 +37,10 @@ public struct SystemKeyboardButtonBody: View {
 
 struct SystemKeyboardButtonBody_Previews: PreviewProvider {
     
-    static func body(for action: KeyboardAction) -> SystemKeyboardButtonBody {
-        let style = SystemKeyboardButtonStyle(
-            backgroundColor: .yellow,
-            foregroundColor: .white,
-            font: .body,
-            cornerRadius: 20,
-            border: SystemKeyboardButtonBorderStyle(color: .red, size: 3),
-            shadow: SystemKeyboardButtonShadowStyle(color: .blue, size: 4)
-        )
-        return SystemKeyboardButtonBody(style: style)
-    }
-    
     static var previews: some View {
         VStack {
-            body(for: .character("a"))
-            body(for: .character("A"))
-            body(for: .backspace)
+            SystemKeyboardButtonBody(style: .preview1)
+            SystemKeyboardButtonBody(style: .preview2)
         }
         .padding()
         .background(Color.gray)

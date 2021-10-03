@@ -50,3 +50,21 @@ public extension SystemKeyboardButtonShadowStyle {
             size: 1)
     }
 }
+
+
+extension SystemKeyboardButtonShadowStyle {
+    
+    /**
+     This internal style is only used in previews.
+     */
+    static let previewStyle1 = SystemKeyboardButtonShadowStyle(
+        color: .blue,
+        size: 4)
+    
+    /**
+     This internal style is only used in previews.
+     */
+    static let previewStyle2 = SystemKeyboardButtonShadowStyle(
+        color: .green,
+        size: 8)
+}

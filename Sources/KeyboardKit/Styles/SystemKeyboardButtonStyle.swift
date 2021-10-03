@@ -69,3 +69,30 @@ public struct SystemKeyboardButtonStyle {
      */
     public var shadow: SystemKeyboardButtonShadowStyle
 }
+
+extension SystemKeyboardButtonStyle {
+    
+    /**
+     This internal style is only used in previews.
+     */
+    static let preview1 = SystemKeyboardButtonStyle(
+        backgroundColor: .yellow,
+        foregroundColor: .white,
+        font: .body,
+        cornerRadius: 20,
+        border: .previewStyle1,
+        shadow: .previewStyle1
+    )
+    
+    /**
+     This internal style is only used in previews.
+     */
+    static let preview2 = SystemKeyboardButtonStyle(
+        backgroundColor: .purple,
+        foregroundColor: .yellow,
+        font: .headline,
+        cornerRadius: 10,
+        border: .previewStyle2,
+        shadow: .previewStyle2
+    )
+}

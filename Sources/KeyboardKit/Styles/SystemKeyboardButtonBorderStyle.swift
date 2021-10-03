@@ -42,15 +42,26 @@ public struct SystemKeyboardButtonBorderStyle {
 public extension SystemKeyboardButtonBorderStyle {
     
     /**
-     This style means that no border should be applied. This
-     is the default style for system buttons.
-     */
-    static var noBorder: SystemKeyboardButtonBorderStyle {
-        SystemKeyboardButtonBorderStyle(color: .clear, size: 0)
-    }
-    
-    /**
      This standard style aims to mimic the native iOS style.
      */
-    static var standard = noBorder
+    static var standard = SystemKeyboardButtonBorderStyle(
+        color: .clear,
+        size: 0)
+}
+
+extension SystemKeyboardButtonBorderStyle {
+    
+    /**
+     This internal style is only used in previews.
+     */
+    static let previewStyle1 = SystemKeyboardButtonBorderStyle(
+        color: .red,
+        size: 3)
+    
+    /**
+     This internal style is only used in previews.
+     */
+    static let previewStyle2 = SystemKeyboardButtonBorderStyle(
+        color: .blue,
+        size: 5)
 }
