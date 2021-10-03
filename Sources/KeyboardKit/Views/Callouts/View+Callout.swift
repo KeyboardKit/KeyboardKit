@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public extension View {
+extension View {
     
     /**
      Apply a callout shadow, using the provided `style`.
