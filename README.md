@@ -222,15 +222,19 @@ KeyboardKit defines a bunch of extensions to the text document proxu and ways to
 KeyboardKit defines a bunch of styles that simplify customizing the look of various keyboard components and buttons.
 
 
-### ⌨ System Keyboard Support
-
-KeyboardKit has a separate `System` section dedicated to replicating iOS system keyboards.
-
-
 ### 🖼 Views
 
-KeyboardKit comes with a bunch of keyboard-specific views.
+KeyboardKit comes with a bunch of keyboard-specific views:
 
+* `Autocomplete` contains autocomplete toolbars and toolbar items.
+* `Callouts` contains input and secondary input callout views.
+* `Emojis` contains various emoji keyboards and keyboard components.
+* `Input` contains text inputs that can be used in a keyboard extension.
+* `System` contains views that can be used to mimic native systme keyboards. 
+* `KeyboardGrid` can be used to evenly space a set of views in a grid.
+* `NextKeyboardButton` can be used to switch to the next keyboard.
+
+You can also use these views without using the rest of KeyboardKit.
 
 
 ## Demo Application

@@ -30,8 +30,8 @@ public struct SecondaryInputCalloutStyle {
     public init(
         callout: CalloutStyle = .standard,
         font: Font = Self.standardFont,
-        selectedBackgroundColor: Color = Color.blue,
-        selectedForegroundColor: Color = Color.white,
+        selectedBackgroundColor: Color = .blue,
+        selectedForegroundColor: Color = .white,
         verticalTextPadding: CGFloat = 5) {
         self.callout = callout
         self.font = font
