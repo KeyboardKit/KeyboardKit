@@ -18,6 +18,12 @@ import CoreGraphics
  */
 open class StandardKeyboardAppearance: KeyboardAppearance {
     
+    /**
+     Create a standard keyboard appearance intance.
+     
+     - Parameters:
+       - context: The context to use for resolving styles.
+     */
     public init(context: KeyboardContext) {
         self.context = context
     }

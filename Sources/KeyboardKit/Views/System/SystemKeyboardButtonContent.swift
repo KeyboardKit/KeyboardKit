@@ -10,7 +10,8 @@ import SwiftUI
 
 /**
  This view resolves the correct content for a certain action,
- which will result in either a text or image or nothing.
+ which will result in either a text or image, or nothing. It
+ also sets up line limits, vertical offsets etc.
  
  If provided, the optional `text` or `image` is used instead
  of the standard action content.
@@ -32,21 +33,16 @@ public struct SystemKeyboardButtonContent: View {
         text: String? = nil,
         image: Image? = nil) {
         self.appearance = appearance
-        self.style = appearance.systemKeyboardButtonStyle(for: action, isPressed: false)
         self.action = action
         self.text = text
         self.image = image
     }
     
     private let appearance: KeyboardAppearance
-    private let style: SystemKeyboardButtonStyle
     private let action: KeyboardAction
     private let image: Image?
     private let text: String?
     
-    @EnvironmentObject private var context: KeyboardContext
-    
-    @ViewBuilder
     public var body: some View {
         if action == .nextKeyboard {
             NextKeyboardButton()
@@ -83,6 +79,5 @@ struct SystemKeyboardButtonContent_Previews: PreviewProvider {
         SystemKeyboardButtonContent(
             action: .backspace,
             appearance: .preview)
-            .keyboardPreview()
     }
 }
