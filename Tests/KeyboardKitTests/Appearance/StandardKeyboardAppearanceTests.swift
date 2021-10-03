@@ -84,8 +84,7 @@ class StandardKeyboardAppearanceTests: QuickSpec {
             it("buttonShadowColor is standard for all actions") {
                 styles.forEach {
                     let result = $0.style.shadow.color
-                    let standard = $0.action.standardButtonShadowColor(for: context)
-                    expect(result).to(equal(standard))
+                    expect(result).to(equal(.standardButtonShadow))
                 }
             }
             

@@ -10,7 +10,6 @@ import Quick
 import Nimble
 import KeyboardKit
 import SwiftUI
-import UIKit
 
 class KeyboardHostingControllerTests: QuickSpec {
     

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 /**
  This keyboard layout provider bases its layout decisions on

@@ -9,7 +9,8 @@
 import Quick
 import Nimble
 import MockingKit
-import UIKit
+import CoreGraphics
+import Foundation
 @testable import KeyboardKit
 
 class StandardKeyboardBehaviorTests: QuickSpec {

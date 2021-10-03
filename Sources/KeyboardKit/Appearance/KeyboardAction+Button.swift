@@ -6,8 +6,8 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+import CoreGraphics
 import SwiftUI
-import UIKit
 
 public extension KeyboardAction {
     

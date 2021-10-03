@@ -8,7 +8,6 @@
 
 import Quick
 import Nimble
-import UIKit
 @testable import KeyboardKit
 
 class EnglishKeyboardInputSetProviderTests: QuickSpec {

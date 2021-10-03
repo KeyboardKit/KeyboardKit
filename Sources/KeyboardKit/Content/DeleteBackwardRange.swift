@@ -6,7 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 /**
  This enum can be used to vary how the backspace action will

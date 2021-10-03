@@ -8,7 +8,6 @@
 
 import KeyboardKit
 import MockingKit
-import UIKit
 
 class MockFrequentEmojiProvider: Mock, FrequentEmojiProvider {
     

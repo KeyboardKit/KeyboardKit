@@ -6,7 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 
 /**
  This protocol can be implemented by any classes that can be

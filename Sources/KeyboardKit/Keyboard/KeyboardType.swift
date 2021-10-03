@@ -6,7 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 /**
  This enum contains all keyboard types that can currently be

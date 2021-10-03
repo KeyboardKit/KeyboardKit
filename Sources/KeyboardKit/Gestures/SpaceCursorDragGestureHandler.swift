@@ -7,7 +7,6 @@
 //
 
 import CoreGraphics
-import UIKit
 /**
  This drag gesture handler handles the space key cursor move
  drag gesture.
@@ -38,7 +37,6 @@ public class SpaceCursorDragGestureHandler: DragGestureHandler {
     
     private var currentDragStartLocation: CGPoint?
     private var currentDragTextPositionOffset: Int = 0
-    private var textDocumentProxy: UITextDocumentProxy { context.textDocumentProxy }
     
     /**
      Handle a drag gesture on space, which by default should
@@ -50,7 +48,7 @@ public class SpaceCursorDragGestureHandler: DragGestureHandler {
         let textPositionOffset = Int(dragDelta / CGFloat(sensitivity.points))
         guard textPositionOffset != currentDragTextPositionOffset else { return }
         let offsetDelta = textPositionOffset - currentDragTextPositionOffset
-        textDocumentProxy.adjustTextPosition(byCharacterOffset: -offsetDelta)
+        context.textDocumentProxy.adjustTextPosition(byCharacterOffset: -offsetDelta)
         currentDragTextPositionOffset = textPositionOffset
     }
 }

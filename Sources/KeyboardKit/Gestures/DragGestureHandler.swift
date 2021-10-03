@@ -7,7 +7,6 @@
 //
 
 import CoreGraphics
-import UIKit
 
 /**
  This protocol can be implemented by classes that can handle

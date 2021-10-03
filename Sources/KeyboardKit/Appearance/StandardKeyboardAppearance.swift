@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import UIKit
+import CoreGraphics
 
 /**
  This standard appearance returns styles that replicates the
