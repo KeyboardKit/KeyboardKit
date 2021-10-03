@@ -69,8 +69,7 @@ public struct SecondaryInputCalloutStyle {
 public extension SecondaryInputCalloutStyle {
     
     /**
-     This standard style will be used by default. It aims to
-     look like a native system keyboard's secondary callout.
+     This standard style aims to mimic the native iOS style.
      */
     static var standard = SecondaryInputCalloutStyle()
     

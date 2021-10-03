@@ -38,3 +38,15 @@ public struct SystemKeyboardButtonShadowStyle {
      */
     public var size: CGFloat
 }
+
+public extension SystemKeyboardButtonShadowStyle {
+    
+    /**
+     This standard style aims to mimic the native iOS style.
+     */
+    static var standard: SystemKeyboardButtonShadowStyle {
+        SystemKeyboardButtonShadowStyle(
+            color: .standardButtonShadow,
+            size: 1)
+    }
+}

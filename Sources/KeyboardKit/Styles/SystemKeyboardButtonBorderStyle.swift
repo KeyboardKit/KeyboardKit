@@ -50,8 +50,7 @@ public extension SystemKeyboardButtonBorderStyle {
     }
     
     /**
-     This standard style will be used by default. It aims to
-     look like the border of a native system keyboard button.
+     This standard style aims to mimic the native iOS style.
      */
     static var standard = noBorder
 }

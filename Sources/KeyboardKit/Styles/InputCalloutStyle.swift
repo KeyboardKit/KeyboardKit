@@ -53,8 +53,7 @@ public struct InputCalloutStyle {
 public extension InputCalloutStyle {
     
     /**
-     This standard style will be used by default. It aims to
-     look like a native system keyboard's input callout.
+     This standard style aims to mimic the native iOS style.
      */
     static var standard = InputCalloutStyle()
 }
