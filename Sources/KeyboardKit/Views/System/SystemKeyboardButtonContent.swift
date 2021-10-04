@@ -12,9 +12,6 @@ import SwiftUI
  This view resolves the correct content for a certain action,
  which will result in either a text or image, or nothing. It
  also sets up line limits, vertical offsets etc.
- 
- If provided, the optional `text` or `image` is used instead
- of the standard action content.
  */
 public struct SystemKeyboardButtonContent: View {
     
@@ -24,24 +21,16 @@ public struct SystemKeyboardButtonContent: View {
      - Parameters:
        - action: The action for which to generate content.
        - appearance: The appearance to apply to the content.
-       - text: An explicit text, to replace the action content.
-       - image: An explicit image, to replace the action content.
      */
     public init(
         action: KeyboardAction,
-        appearance: KeyboardAppearance,
-        text: String? = nil,
-        image: Image? = nil) {
+        appearance: KeyboardAppearance) {
         self.appearance = appearance
         self.action = action
-        self.text = text
-        self.image = image
     }
     
     private let appearance: KeyboardAppearance
     private let action: KeyboardAction
-    private let image: Image?
-    private let text: String?
     
     public var body: some View {
         if action == .nextKeyboard {
@@ -51,7 +40,7 @@ public struct SystemKeyboardButtonContent: View {
         } else if let text = buttonText {
             SystemKeyboardButtonText(
                 text: text,
-                isInputAction: action.isInputAction)
+                action: action)
         } else {
             Text("")
         }
@@ -61,11 +50,11 @@ public struct SystemKeyboardButtonContent: View {
 private extension SystemKeyboardButtonContent {
     
     var buttonImage: Image? {
-        image ?? appearance.buttonImage(for: action)
+        appearance.buttonImage(for: action)
     }
     
     var buttonText: String? {
-        text ?? appearance.buttonText(for: action)
+        appearance.buttonText(for: action)
     }
 }
 

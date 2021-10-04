@@ -22,30 +22,22 @@ public struct SystemKeyboardButton<Content: View>: View {
        - action: The keyboard action to apply.
        - actionHandler: The keyboard action handler to use.
        - appearance: The keyboard appearance to use.
-       - text: An optional text to override the standard action content.
-       - image: An optional image to override the standard action content.
        - contentConfig: A content configuration block that can be used to modify the button content before applying a style and gestures to it.
      */
     public init(
         action: KeyboardAction,
         actionHandler: KeyboardActionHandler,
         appearance: KeyboardAppearance,
-        text: String? = nil,
-        image: Image? = nil,
         contentConfig: @escaping ContentConfig) {
         self.action = action
         self.actionHandler = actionHandler
         self.appearance = appearance
-        self.text = text
-        self.image = image
         self.contentConfig = contentConfig
     }
     
     private let action: KeyboardAction
     private let actionHandler: KeyboardActionHandler
     private let appearance: KeyboardAppearance
-    private let image: Image?
-    private let text: String?
     private let contentConfig: ContentConfig
     
     /**
@@ -81,22 +73,16 @@ public extension SystemKeyboardButton where Content == SystemKeyboardButtonConte
        - action: The keyboard action to apply.
        - actionHandler: The keyboard action handler to use.
        - appearance: The keyboard appearance to use.
-       - text: An optional text to override the standard action content.
-       - image: An optional image to override the standard action content.
        - contentConfig: A content configuration block, to adjust the content before presenting it.
      */
     init(
         action: KeyboardAction,
         actionHandler: KeyboardActionHandler,
-        appearance: KeyboardAppearance,
-        text: String? = nil,
-        image: Image? = nil) {
+        appearance: KeyboardAppearance) {
         self.init(
             action: action,
             actionHandler: actionHandler,
             appearance: appearance,
-            text: text,
-            image: image,
             contentConfig: { $0 })
     }
 }
@@ -107,9 +93,7 @@ private extension SystemKeyboardButton {
         contentConfig(
             SystemKeyboardButtonContent(
                 action: action,
-                appearance: appearance,
-                text: text,
-                image: image)
+                appearance: appearance)
         )
     }
 }
@@ -121,21 +105,14 @@ struct SystemKeyboardButton_Previews: PreviewProvider {
             action: action,
             actionHandler: .preview,
             appearance: PreviewKeyboardAppearance()) {
-                $0.padding()
-            }
-    }
-    
-    static func customButton(for action: KeyboardAction) -> some View {
-        SystemKeyboardButton(
-            action: action,
-            actionHandler: .preview,
-            appearance: PreviewKeyboardAppearance()) {
-                $0.padding()
+                $0.frame(width: 60, height: 60)
             }
     }
     
     static var previews: some View {
         VStack {
+            button(for: .backspace)
+            button(for: .space)
             button(for: .character("a"))
             button(for: .character("A"))
         }

@@ -108,6 +108,8 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `SystemAudio.player` is now `SystemAudioPlayer.shared`.
 * `SystemAudioPlayer` now takes `SystemAudio` as argument.
 * `SystemKeyboard` no longer has any callout style init parameters.
+* `SystemKeyboardButton` no longer has text or image override init parameters.
+* `SystemKeyboardButtonContent` no longer has text or image override init parameters.
 * `SystemKeyboardLayoutProvider` `hasElevenElevenSevenAlphabeticInput` is now computed instead of lazy.
 * `View+Callout` is now internal.
 * `View+DynamicType` has been removed.

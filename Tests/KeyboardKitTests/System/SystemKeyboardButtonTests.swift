@@ -33,24 +33,6 @@ class SystemKeyboardButtonTests: QuickSpec {
                     appearance: appearance)
                 expect(button).toNot(beNil())
             }
-            
-            it("can be created with a custom text") {
-                let button = SystemKeyboardButton(
-                    action: .control,
-                    actionHandler: actionHandler,
-                    appearance: appearance,
-                    text: "")
-                expect(button).toNot(beNil())
-            }
-            
-            it("can be created with a custom image") {
-                let button = SystemKeyboardButton(
-                    action: .control,
-                    actionHandler: actionHandler,
-                    appearance: appearance,
-                    image: .keyboardCommand)
-                expect(button).toNot(beNil())
-            }
         }
     }
 }
