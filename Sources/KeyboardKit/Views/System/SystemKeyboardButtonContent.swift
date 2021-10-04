@@ -1,5 +1,5 @@
 //
-//  SystemKeyboardButton.swift
+//  SystemKeyboardButtonContent.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
@@ -49,7 +49,9 @@ public struct SystemKeyboardButtonContent: View {
         } else if let image = buttonImage {
             image
         } else if let text = buttonText {
-            textView(for: text)
+            SystemKeyboardButtonText(
+                text: text,
+                isInputAction: action.isInputAction)
         } else {
             Text("")
         }
@@ -65,19 +67,21 @@ private extension SystemKeyboardButtonContent {
     var buttonText: String? {
         text ?? appearance.buttonText(for: action)
     }
-    
-    func textView(for text: String) -> some View {
-        Text(text)
-            .lineLimit(1)
-            .offset(y: action.isInputAction && text.isLowercased ? -2 : 0)
-    }
 }
 
 struct SystemKeyboardButtonContent_Previews: PreviewProvider {
     
-    static var previews: some View {
+    static func preview(for action: KeyboardAction) -> some View {
         SystemKeyboardButtonContent(
-            action: .backspace,
+            action: action,
             appearance: .preview)
+    }
+    
+    static var previews: some View {
+        HStack {
+            preview(for: .backspace)
+            preview(for: .character("PascalCased"))
+            preview(for: .character("lowercased"))
+        }
     }
 }

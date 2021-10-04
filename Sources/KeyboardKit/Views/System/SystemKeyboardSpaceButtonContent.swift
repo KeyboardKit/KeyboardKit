@@ -12,6 +12,11 @@ import SwiftUI
  This view mimics the content of a system space button, that
  starts with displaying the provided `localeText` then fades
  to the `spaceText` (or `spaceView` if it's set).
+ 
+ Note that this view only generates the space button content,
+ since it is used in views where a button shape and gestures
+ are applied later, e.g. the `SystemKeyboard`. If you want a
+ complete space button, use `SystemKeyboardSpaceButton`.
  */
 public struct SystemKeyboardSpaceButtonContent: View {
     
@@ -56,8 +61,6 @@ public struct SystemKeyboardSpaceButtonContent: View {
     private let spaceView: AnyView?
     private let appearance: KeyboardAppearance
     
-    private var action: KeyboardAction { .space }
-    
     private var locale: Locale { context.locale }
     
     private static var lastLocaleText: String?
@@ -82,11 +85,12 @@ public struct SystemKeyboardSpaceButtonContent: View {
 
 private extension SystemKeyboardSpaceButtonContent {
     
+    func text(_ text: String) -> some View {
+        SystemKeyboardButtonText(text: text, action: .space)
+    }
+    
     var localeView: some View {
-        SystemKeyboardButtonContent(
-            action: action,
-            appearance: appearance,
-            text: localeDisplayText)
+        text(localeDisplayText)
     }
     
     @ViewBuilder
@@ -94,11 +98,7 @@ private extension SystemKeyboardSpaceButtonContent {
         if let view = spaceView {
             view
         } else {
-            let text = spaceText ?? KKL10n.space.text(for: context)
-            SystemKeyboardButtonContent(
-                action: action,
-                appearance: appearance,
-                text: text)
+            text(spaceText ?? KKL10n.space.text(for: context))
         }
     }
 }

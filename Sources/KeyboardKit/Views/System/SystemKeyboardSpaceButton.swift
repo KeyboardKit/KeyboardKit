@@ -73,7 +73,7 @@ public struct SystemKeyboardSpaceButton: View {
 struct SystemKeyboardSpaceButton_Previews: PreviewProvider {
     
     static var previews: some View {
-        return SystemKeyboardSpaceButton(
+        SystemKeyboardSpaceButton(
             actionHandler: .preview,
             appearance: PreviewKeyboardAppearance())
             .keyboardPreview()

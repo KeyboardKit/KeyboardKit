@@ -56,6 +56,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `SystemAudio` now implements `Identifiable` and `Codable`.
 * `SystemKeyboardButtonBorderStyle` has a new, static `standard` style.
 * `SystemKeyboardButtonShadowStyle` has a new, static `standard` style.
+* `SystemKeyboardButtonText` is a new view that just sets up text correctly. 
 * `View+Callout` has a new `calloutShadow` extension.
 
 ### 💡 Behavior changes
