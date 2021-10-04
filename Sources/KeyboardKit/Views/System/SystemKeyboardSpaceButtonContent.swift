@@ -66,7 +66,7 @@ public struct SystemKeyboardSpaceButtonContent: View {
     private static var lastLocaleText: String?
     
     private var localeDisplayText: String {
-        localeText ??  locale.localizedString(forLanguageCode: locale.languageCode ?? "en") ?? ""
+        localeText ??  locale.localizedLanguageName ?? ""
     }
     
     @State private var showLocale = true
@@ -121,11 +121,32 @@ private extension SystemKeyboardSpaceButtonContent {
 
 struct SystemKeyboardSpaceButtonContent_Previews: PreviewProvider {
     
-    static var previews: some View {
+    static var defaultTexts: some View {
         SystemKeyboardSpaceButtonContent(
             localeText: nil,
-            spaceText: "space",
+            spaceText: nil,
             appearance: .preview)
-            .keyboardPreview()
+    }
+    
+    static var specificTexts: some View {
+        SystemKeyboardSpaceButtonContent(
+            localeText: "LOCALE",
+            spaceText: "SPACE",
+            appearance: .preview)
+    }
+    
+    static var spaceView: some View {
+        SystemKeyboardSpaceButtonContent(
+            localeText: "locale",
+            spaceView: Image.keyboardGlobe,
+            appearance: .preview)
+    }
+    
+    static var previews: some View {
+        VStack {
+            defaultTexts
+            specificTexts
+            spaceView
+        }.keyboardPreview()
     }
 }
