@@ -26,14 +26,14 @@ public struct Emoji: Equatable, Codable, Identifiable {
      The character that can be used to display the emoji.
      */
     public let char: String
-    
-     /**
-      The unique id of the emoji.
-      */
-    public var id: String { char }
 }
 
 public extension Emoji {
+    
+    /**
+     The emoji's unique identifier.
+     */
+    var id: String { char }
     
     /**
      Get all emojis from all categories.

@@ -34,7 +34,7 @@ public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
 public extension KeyboardLocale {
     
     /**
-     The unique identifier of the locale.
+     The locale's unique identifier.
      */
     var id: String { rawValue }
     

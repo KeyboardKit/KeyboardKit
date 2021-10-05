@@ -15,7 +15,7 @@ import Foundation
  If you need a keyboard type that is not represented here or
  that is app-specific, you can use `.custom`.
  */
-public enum KeyboardType: Codable, Equatable {
+public enum KeyboardType: Codable, Equatable, Identifiable {
     
     /**
      `.alphabetic` represents keyboards that have alphabetic
@@ -82,6 +82,21 @@ public enum KeyboardType: Codable, Equatable {
 }
 
 public extension KeyboardType {
+    
+    /**
+     The type's unique identifier.
+     */
+    var id: String {
+        switch self {
+        case .alphabetic(let casing): return casing.id
+        case .numeric: return "numeric"
+        case .symbolic: return "symbolic"
+        case .email: return "email"
+        case .emojis: return "emojis"
+        case .images: return "images"
+        case .custom(let name): return name
+        }
+    }
     
     /**
      Whether or not the keyboard type is alphabetic.

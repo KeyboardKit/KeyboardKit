@@ -14,50 +14,55 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 KeyboardKit 5.0 streamlines the library and makes it easier to use.
 
-This new version also removes UIKit-specific things and previously deprecated functionality.
+This version also removes UIKit-specific functionality and previously deprecated functionality.
+
+The built-in types now implement protocols like `Codable` and `Identifiable` to greater extent.
+
+The built-in views no longer depend on environment objects, to make them easier to use. This may however result in more init parameters.
+
+The build-in views have a lot more previews than before, making them a lot easier to work with.
 
 KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 
 ### ✨ New features
 
-* `AudioFeedbackConfiguration` init param and property names are shorter.
 * `AudioFeedbackConfiguration` now implements `Codable`.
 * `AudioFeedbackConfiguration` has a new action-specific feedback list.
 * `AutoCompleteContext` has a new `isLoading` property.
+* `CalloutStyle` has a new, static `.standard` style.
 * `Collection+RowItem` has new extensions to affect all rows.
 * `EdgeInsets` has a new `init(all:)` initializer.
 * `EdgeInsets` has a new `init(horizontal:,vertical:)` initializer.
 * `Emoji` now implements `Codable` and `Identifiable`.
 * `EmojiCategory` has a new `emojisString` property.
 * `EmojiKeyboardConfiguration` has a new `systemFont` property.
-* `HapticFeedback` now implements `Identifiable` and `Codable`.
+* `HapticFeedback` now implements `Codable` and `Identifiable`.
 * `HapticFeedbackConfigurable` now implements `Codable`.
-* `HapticFeedbackConfiguration` init param and property names are shorter.
 * `HapticFeedbackConfiguration` now implements `Codable`.
 * `HapticFeedbackConfiguration` has a new action-specific feedback list.
-* `InputCallout` and `SecondaryInputCallout` are now previewable.
-* `InputCalloutContext` has a new `isEnabled` init parameter.
+* `InputCalloutStyle` has a new, static `.standard` style.
 * `KeyboardAction` now implements `Codable`.
 * `KeyboardAction` has a new `inputCalloutText` property.
 * `KeyboardAction` has a new `isCharacterAction` property.
-* `KeyboardAction.PrimaryType` now implements `Codable`.
-* `KeyboardCasing` now implements `Codable`.
+* `KeyboardAction.PrimaryType` now implements `Codable` and `Identifiable`.
+* `KeyboardCasing` now implements `Codable` and `Identifiable`.
 * `KeyboardContext` has a new `screen` property.
-* `KeyboardGesture` is now `Codable` and `Equatable`.
+* `KeyboardGesture` now implements `Codable`, `Equatable` and `Identifiable`.
 * `KeyboardInputTextComponent` is now public.
-* `KeyboardLayoutConfiguration` is a new type that replaces the CGFloat and UIEdgeInsets keyboard extensions.
-* `KeyboardType` now implements `Codable`.
+* `KeyboardLayoutConfiguration` is a new type that replaces the `CGFloat` and `UIEdgeInsets` extensions.
+* `KeyboardType` now implements `Codable` and `Identifiable`.
 * `NextKeyboardButton` is now SwiftUI-based and don't require any special setup.
 * `Preview` services have new, static `.preview` protocol properties.
-* `SpaceDragSensitivity` now implements `Codable`. 
+* `SecondaryInputCalloutStyle` has a new, static `.standard` style.
+* `SpaceDragSensitivity` now implements `Codable` and `Identifiable`. 
 * `StandardHapticFeedbackPlayer` has a new `shared` player.
 * `StandardKeyboardFeedbackHandler` now prefers action-specific feedback, if defined.
 * `StandardSystemAudioPlayer` has a new `shared` player.
-* `SystemAudio` now implements `Identifiable` and `Codable`.
+* `SystemAudio` now implements `Codable` and `Identifiable`.
 * `SystemKeyboardActionButton` is a new view that makes it easy to create action-based keyboard buttons.
-* `SystemKeyboardButton` is a new view that makes it easy to create keyboard buttons.
-* `SystemKeyboardButtonBorderStyle` has a new, static `standard` style.
-* `SystemKeyboardButtonShadowStyle` has a new, static `standard` style.
+* `SystemKeyboardButton` is a new view that makes it easy to create standalone keyboard buttons.
+* `SystemKeyboardButtonBorderStyle` has a new, static `.standard` style.
+* `SystemKeyboardButtonShadowStyle` has a new, static `.standard` style.
 * `SystemKeyboardButtonText` is a new view that just sets up text correctly. 
 * `SystemKeyboardSpaceButton` can now wrap any content.
 * `View+Callout` has a new `calloutShadow` extension.
@@ -86,6 +91,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * All deprecated functionality has been removed.
 * All UIKit-specific functionality has been removed.
 
+* `AudioFeedbackConfiguration` init params have changed.
 * `AutocompleteProvider` `ignoredWords` is now read-only.
 * `AutocompleteResponse` has been renamed to `AutocompleteCompletion`.
 * `AutocompleteToolbar` now requires an injected locale.
@@ -98,7 +104,9 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `EmojiKeyboard` button builder no longer takes a context.
 * `HapticFeedback` `prepare` and `trigger` now only has a non-static version.
 * `HapticFeedback.player` has been removed.
+* `HapticFeedbackConfiguration` init params have changed.
 * `InputCallout` now takes a context as init param instead of environment object.
+* `InputCalloutContext` init params have changed.
 * `InputCalloutContext` `buttonFrame(for:)` has been removed.
 * `InputCalloutContext` `updateInput(for:geo:)` has been renamed to `updateInput(for:,in:)`.
 * `KeyboardBehavior` has a new `shouldSwitchToCapsLock` function.
@@ -126,6 +134,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `SystemKeyboardActionButtonContent` no longer has text or image override init parameters.
 * `SystemKeyboardButton` has been renamed to `SystemKeyboardActionButton`.
 * `SystemKeyboardButtonContent` has been renamed to `SystemKeyboardActionButtonContent`.
+* `SystemKeyboardButtonRowItem` now requires an injected `context`.
 * `SystemKeyboardLayoutProvider` `hasElevenElevenSevenAlphabeticInput` is now computed instead of lazy.
 * `SystemKeyboardSpaceButton` has new init parameters.
 * `SystemKeyboardSpaceButtonContent` no longer requires an appearance, but requires specific content.

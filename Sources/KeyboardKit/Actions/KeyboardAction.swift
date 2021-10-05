@@ -60,8 +60,14 @@ public extension KeyboardAction {
      A primary button is the color accented button that will
      have the same effect as return in a native iOS keyboard.
      */
-    enum PrimaryType: CaseIterable, Codable, Equatable {
+    enum PrimaryType: String, CaseIterable, Codable, Equatable, Identifiable {
+        
         case done, go, newLine, ok, search
+        
+        /**
+         The type's unique identifier.
+         */
+        public var id: String { rawValue }
     }
     
     /**

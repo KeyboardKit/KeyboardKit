@@ -15,7 +15,7 @@ import Foundation
  have chosen to not mark it as such, since that would create
  a bunch of warnings within the framework.
  */
-public enum KeyboardCasing: Codable {
+public enum KeyboardCasing: String, Codable, Identifiable {
     
     /**
      `.auto` is a transient state, that means that it should
@@ -43,6 +43,11 @@ public enum KeyboardCasing: Codable {
 }
 
 public extension KeyboardCasing {
+    
+    /**
+     The casing's unique identifier.
+     */
+    var id: String { rawValue }
     
     /**
      Whether or not the casing represents a lowercased case.

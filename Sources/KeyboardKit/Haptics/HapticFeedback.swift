@@ -32,14 +32,17 @@ public enum HapticFeedback: String, CaseIterable, Codable, Equatable, Identifiab
     selectionChanged,
     
     none
-    
-    public var id: String { rawValue }
 }
 
 
 // MARK: - Public Functions
 
 public extension HapticFeedback {
+    
+    /**
+     The feedback's unique identifier.
+     */
+    var id: String { rawValue }
     
     /**
      Prepare the haptic feedback, using the shared player.

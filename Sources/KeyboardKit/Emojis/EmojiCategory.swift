@@ -32,12 +32,15 @@ public enum EmojiCategory: String, CaseIterable, Codable, EmojiProvider, Identif
     symbols,
     flags
     
-    public var id: String { rawValue }
-    
     public static var frequentEmojiProvider: FrequentEmojiProvider = MostRecentEmojiProvider()
 }
 
 public extension EmojiCategory {
+    
+    /**
+     The category's unique identifier.
+     */
+    var id: String { rawValue }
     
     /**
      An ordered list of all available categories.

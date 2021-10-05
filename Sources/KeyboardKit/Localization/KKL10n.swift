@@ -48,23 +48,41 @@ public enum KKL10n: String, CaseIterable, Identifiable {
 
 public extension KKL10n {
     
+    /**
+     The item's unique identifier.
+     */
     var id: String { rawValue }
     
+    /**
+     The item's localization key.
+     */
     var key: String { rawValue }
     
+    /**
+     The item's localized text.
+     */
     var text: String {
         if useRawText { return rawValue }
         return NSLocalizedString(key, bundle: .module, comment: "")
     }
     
+    /**
+     The item's localized text for a certain `context`.
+     */
     func text(for context: KeyboardContext) -> String {
         text(for: context.locale)
     }
     
+    /**
+     The item's localized text for a certain `locale`.
+     */
     func text(for locale: KeyboardLocale) -> String {
         text(for: locale.locale)
     }
     
+    /**
+     The item's localized text for a certain `locale`.
+     */
     func text(for locale: Locale) -> String {
         if useRawText { return rawValue }
         guard

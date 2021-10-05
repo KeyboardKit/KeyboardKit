@@ -26,11 +26,14 @@ public enum SystemAudio: Codable, Equatable, Identifiable {
     delete,
     custom(id: UInt32),
     none
+}
+
+public extension SystemAudio {
     
     /**
      The system sound ID that corresponds to the feedback.
      */
-    public var id: UInt32 {
+    var id: UInt32 {
         switch self {
         case .input: return 1104
         case .delete: return 1155
@@ -39,12 +42,6 @@ public enum SystemAudio: Codable, Equatable, Identifiable {
         case .none: return 0
         }
     }
-}
-
-
-// MARK: - Public Functions
-
-public extension SystemAudio {
     
     /**
      Play the system audio, using the shared audio player.

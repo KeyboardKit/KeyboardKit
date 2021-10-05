@@ -54,6 +54,9 @@ public enum KeyboardColor: String, CaseIterable, Identifiable {
 
 public extension KeyboardColor {
     
+    /**
+     The color's unique identifier.
+     */
     var id: String { rawValue }
     
     /**
