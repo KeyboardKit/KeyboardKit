@@ -15,7 +15,7 @@ public extension View {
     
     /**
      Apply keyboard-specific gestures to the view, using the
-     provided keyboard `action` and `actionHandler`.
+     provided `action`, `context` and `actionHandler`.
      
      If you provide an optional `KeyboardContext` the action
      can be provided with even more contextual actions.
@@ -23,9 +23,9 @@ public extension View {
     @ViewBuilder
     func keyboardGestures(
         for action: KeyboardAction,
-        context: KeyboardContext? = nil,
-        isPressed: Binding<Bool> = .constant(false),
-        actionHandler: KeyboardActionHandler) -> some View {
+        context: KeyboardContext,
+        actionHandler: KeyboardActionHandler,
+        isPressed: Binding<Bool> = .constant(false)) -> some View {
         switch action {
         case .nextKeyboard: self
         case .nextLocale: self
@@ -41,7 +41,6 @@ public extension View {
      provided action blocks.
      
      - Parameters:
-       - view: The view to apply the gestures to.
        - action: The keyboard action to trigger.
        - isPressed: Whether or not the button is pressed.
        - tapAction: The action to trigger when the button is released within its bounds.

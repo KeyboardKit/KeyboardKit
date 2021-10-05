@@ -118,6 +118,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `View+Callout` is now internal.
 * `View+DynamicType` has been removed.
 * `View+InputCallout` now takes a context as init param instead of environment object.
+* `View+KeyboardActions` has reordered the context-based function parameters and now requires a context.
 * `View+SecondaryInputCallout` now takes a context as init param instead of environment object.
 
 

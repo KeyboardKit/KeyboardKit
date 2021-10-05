@@ -65,8 +65,8 @@ public struct SystemKeyboardActionButton<Content: View>: View {
         button.keyboardGestures(
             for: action,
             context: context,
-            isPressed: $isPressed,
-            actionHandler: actionHandler)
+            actionHandler: actionHandler,
+            isPressed: $isPressed)
     }
 }
 

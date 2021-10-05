@@ -65,8 +65,8 @@ public struct SystemKeyboardSpaceButton: View {
             .keyboardGestures(
                 for: action,
                 context: context,
-                isPressed: $isPressed,
-                actionHandler: actionHandler)
+                actionHandler: actionHandler,
+                isPressed: $isPressed)
     }
 }
 

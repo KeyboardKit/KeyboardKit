@@ -64,8 +64,8 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
             .keyboardGestures(
                 for: item.action,
                 context: context,
-                isPressed: $isPressed,
-                actionHandler: actionHandler)
+                actionHandler: actionHandler,
+                isPressed: $isPressed)
     }
 }
 
