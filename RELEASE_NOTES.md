@@ -54,6 +54,7 @@ The changes below will not add item-specific bullets where a general bullet alre
 * `SystemKeyboardButton` is a new view that makes it easy to create standalone keyboard buttons.
 * `SystemKeyboardButtonBorderStyle` has a new, static `.standard` style.
 * `SystemKeyboardButtonShadowStyle` has a new, static `.standard` style.
+* `SystemKeyboardButtonShadowStyle` has new, default init parameter values.  
 * `SystemKeyboardButtonText` is a new view that just sets up text correctly. 
 * `SystemKeyboardSpaceButton` can now wrap any content.
 * `View+Callout` has a new `calloutShadow` extension.
@@ -67,6 +68,7 @@ The changes below will not add item-specific bullets where a general bullet alre
 * `SystemKeyboardActionButtonContent` now returns a `SystemKeyboardSpaceButtonContent` for `.space`. 
 * `SystemKeyboardButtonContent` now uses appearance for both text and image logic.
 * `SystemKeyboardButtonContent` no longer applies RTL transforms on the image, since SF symbols do this automatically.
+* `SystemKeyboardButtonStyle` now applies a standard shadow style by default.
 * `SystemKeyboardSpaceButtonContent` no longer auto-resolves texts, but instead show just what you provide it with.
 * `SystemKeyboardSpaceButton` now takes up as much horizontal space as it can.
 

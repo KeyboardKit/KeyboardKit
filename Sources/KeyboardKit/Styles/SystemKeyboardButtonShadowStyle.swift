@@ -11,6 +11,9 @@ import SwiftUI
 
 /**
  This style defines the shadow of a system keyboard button.
+ 
+ You can modify the `.standard` style instance to change the
+ standard, global style.
  */
 public struct SystemKeyboardButtonShadowStyle {
     
@@ -18,12 +21,12 @@ public struct SystemKeyboardButtonShadowStyle {
      Create a system keyboard button shadow style.
      
      - Parameters:
-       - color: The color of the shadow.
-       - size: The size of the shadow.
+       - color: The color of the shadow, by default `.standardButtonShadow`.
+       - size: The size of the shadow, by default 1.
      */
     public init(
-        color: Color,
-        size: CGFloat) {
+        color: Color = .standardButtonShadow,
+        size: CGFloat = 1) {
         self.color = color
         self.size = size
     }
@@ -45,9 +48,7 @@ public extension SystemKeyboardButtonShadowStyle {
      This standard style aims to mimic the native iOS style.
      */
     static var standard: SystemKeyboardButtonShadowStyle {
-        SystemKeyboardButtonShadowStyle(
-            color: .standardButtonShadow,
-            size: 1)
+        SystemKeyboardButtonShadowStyle()
     }
 }
 

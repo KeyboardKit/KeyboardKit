@@ -21,8 +21,8 @@ public struct SystemKeyboardButtonStyle {
        - foregroundColor: The border color to apply to the button.
        - font: The font to apply to the button.
        - cornerRadius: The corner radius to apply to the button.
-       - border: The border style to apply to the button.
-       - shadow: The shadow style to apply to the button.
+       - border: The border style to apply to the button, by default `.standard`.
+       - shadow: The shadow style to apply to the button, by default `.standard`.
      */
     public init(
         backgroundColor: Color,
@@ -30,7 +30,7 @@ public struct SystemKeyboardButtonStyle {
         font: Font,
         cornerRadius: CGFloat,
         border: SystemKeyboardButtonBorderStyle = .standard,
-        shadow: SystemKeyboardButtonShadowStyle) {
+        shadow: SystemKeyboardButtonShadowStyle = .standard) {
         self.backgroundColor = backgroundColor
         self.foregroundColor = foregroundColor
         self.font = font

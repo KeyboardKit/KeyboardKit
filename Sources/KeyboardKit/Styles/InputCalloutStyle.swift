@@ -1,5 +1,5 @@
 //
-//  SecondaryInputCalloutStyle.swift
+//  InputCalloutStyle.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -13,7 +13,7 @@ import SwiftUI
  the `inputCalloutStyle` view modifier.
  
  You can modify the `.standard` style instance to change the
- standard global style of all `InputCallout` views.
+ standard, global style.
  */
 public struct InputCalloutStyle {
     

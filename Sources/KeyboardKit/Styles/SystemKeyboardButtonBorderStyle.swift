@@ -11,6 +11,9 @@ import SwiftUI
 
 /**
  This style defines the border of a system keyboard button.
+ 
+ You can modify the `.standard` style instance to change the
+ standard, global style.
  */
 public struct SystemKeyboardButtonBorderStyle {
     

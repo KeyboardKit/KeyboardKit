@@ -13,7 +13,7 @@ import SwiftUI
  applying the `secondaryInputCalloutStyle` view modifier.
  
  You can modify the `.standard` style instance to change the
- standard global style of all `SecondaryInputCallout` views.
+ standard, global style.
  */
 public struct SecondaryInputCalloutStyle {
     

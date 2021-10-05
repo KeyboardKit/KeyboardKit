@@ -13,7 +13,7 @@ import SwiftUI
  type of view that is presented above a keyboard button.
  
  You can modify the `.standard` style instance to change the
- standard global style of all callout views.
+ standard, global style.
  */
 public struct CalloutStyle {
     
