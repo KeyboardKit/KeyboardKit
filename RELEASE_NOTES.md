@@ -12,13 +12,11 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 5.0
 
-KeyboardKit 5.0 streamlines the library and makes it easier to use.
+KeyboardKit 5.0 streamlines the library, improves styling and previewing and makes the library easier to use.
 
-This version also removes UIKit-specific functionality and previously deprecated functionality.
+The version also removes all UIKit-specific functionality as well as all previously deprecated functionality.
 
-KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
-
-The changes below will not add item-specific bullets where a general bullet already exists. 
+KeyboardKit 5.0 requires Xcode 13 and Swift 5.5. 
 
 ### ✨ New features
 
@@ -29,7 +27,6 @@ The changes below will not add item-specific bullets where a general bullet alre
 * `AudioFeedbackConfiguration` has a new action-specific feedback list.
 * `AutocompleteContext` has a new `isLoading` property.
 * `AutocompleteToolbarItemSubtitle` is a new view that renders autocomplete subtitles.
-* `CalloutStyle` has a new, static `.standard` style.
 * `Collection+RowItem` has new extensions to affect all rows.
 * `EdgeInsets` has a new `init(all:)` initializer.
 * `EdgeInsets` has a new `init(horizontal:,vertical:)` initializer.
@@ -37,7 +34,6 @@ The changes below will not add item-specific bullets where a general bullet alre
 * `EmojiKeyboardConfiguration` has a new `systemFont` property.
 * `HapticFeedbackConfiguration` has a new action-specific feedback list.
 * `InputCalloutContext` has a new, static `.disabled` context.
-* `InputCalloutStyle` has a new, static `.standard` style.
 * `KeyboardAction` has a new `inputCalloutText` property.
 * `KeyboardAction` has a new `isCharacterAction` property.
 * `KeyboardContext` has a new `screen` property.
@@ -45,19 +41,27 @@ The changes below will not add item-specific bullets where a general bullet alre
 * `KeyboardLayoutConfiguration` is a new type that replaces the `CGFloat` and `UIEdgeInsets` extensions.
 * `NextKeyboardButton` is now SwiftUI-based and don't require any special setup.
 * `Preview` services have new, static `.preview` protocol properties.
-* `SecondaryInputCalloutStyle` has a new, static `.standard` style.
 * `SecondaryInputCalloutContext` has a new, static `.disabled` context.
 * `StandardHapticFeedbackPlayer` has a new `shared` player.
 * `StandardKeyboardFeedbackHandler` now prefers action-specific feedback, if defined.
 * `StandardSystemAudioPlayer` has a new `shared` player.
 * `SystemKeyboardActionButton` is a new view that makes it easy to create action-based keyboard buttons.
 * `SystemKeyboardButton` is a new view that makes it easy to create standalone keyboard buttons.
-* `SystemKeyboardButtonBorderStyle` has a new, static `.standard` style.
-* `SystemKeyboardButtonShadowStyle` has a new, static `.standard` style.
-* `SystemKeyboardButtonShadowStyle` has new, default init parameter values.  
 * `SystemKeyboardButtonText` is a new view that just sets up text correctly. 
 * `SystemKeyboardSpaceButton` can now wrap any content.
 * `View+Callout` has a new `calloutShadow` extension.
+
+### 🎨 Styling
+
+* `AutocompleteToolbarStyle` is a new style that can be used to style autocomplete toolbars.
+* `AutocompleteToolbarItemStyle` is a new style that can be used to style autocomplete toolbar items.
+* `AutocompleteToolbarSeparatorStyle` is a new style that can be used to style autocomplete toolbar separators.
+* `CalloutStyle` has a new, static `.standard` style.
+* `InputCalloutStyle` has a new, static `.standard` style.
+* `SecondaryInputCalloutStyle` has a new, static `.standard` style.
+* `SystemKeyboardButtonBorderStyle` has a new, static `.standard` style.
+* `SystemKeyboardButtonShadowStyle` has a new, static `.standard` style.
+* `SystemKeyboardButtonShadowStyle` has new, default init parameter values.  
 
 ### 💡 Behavior changes
 

@@ -30,6 +30,7 @@ public struct AutocompleteToolbar: View {
      - Parameters:
        - suggestions: A list of suggestions to display in the toolbar.
        - locale: The locale to apply to the toolbar.
+       - style: The style to apply to the toolbar.
        - itemBuilder: An optional, custom item builder. By default, the static `standardItem` will be used.
        - separatorBuilder: An optional, custom separator builder. By default, the static `standardSeparator` will be used.
        - replacementAction: An optional, custom replacement action. By default, the static `standardReplacementAction` will be used.
@@ -37,18 +38,21 @@ public struct AutocompleteToolbar: View {
     public init(
         suggestions: [AutocompleteSuggestion],
         locale: Locale,
+        style: AutocompleteToolbarStyle,
         itemBuilder: @escaping ItemBuilder = Self.standardItem,
         separatorBuilder: @escaping SeparatorBuilder = Self.standardSeparator,
         replacementAction: @escaping ReplacementAction = Self.standardReplacementAction) {
         self.items = suggestions.map { BarItem($0) }
         self.itemBuilder = itemBuilder
         self.locale = locale
+        self.style = style
         self.separatorBuilder = separatorBuilder
         self.replacementAction = replacementAction
     }
     
     private let items: [BarItem]
     private let locale: Locale
+    private let style: AutocompleteToolbarStyle
     private let itemBuilder: ItemBuilder
     private let replacementAction: ReplacementAction
     private let separatorBuilder: SeparatorBuilder
@@ -71,7 +75,7 @@ public struct AutocompleteToolbar: View {
      to create autocomplete suggestion views, which are then
      wrapped in buttons that trigger the `replacementAction`.
      */
-    public typealias ItemBuilder = (AutocompleteSuggestion, Locale) -> AnyView
+    public typealias ItemBuilder = (AutocompleteSuggestion, Locale, AutocompleteToolbarStyle) -> AnyView
     
     /**
      This typealias represents the action block that is used
@@ -83,12 +87,15 @@ public struct AutocompleteToolbar: View {
      This typealias represents the action block that is used
      to create autocomplete suggestion separator views.
      */
-    public typealias SeparatorBuilder = (AutocompleteSuggestion) -> AnyView
+    public typealias SeparatorBuilder = (AutocompleteSuggestion, AutocompleteToolbarStyle) -> AnyView
     
     public var body: some View {
         HStack {
-            ForEach(items) {
-                self.view(for: $0)
+            ForEach(items) { item in
+                itemButton(for: item.suggestion)
+                if useSeparator(for: item) {
+                    separatorBuilder(item.suggestion, style)
+                }
             }
         }
     }
@@ -100,9 +107,10 @@ public extension AutocompleteToolbar {
      This is the default function that will be used to build
      an item view for the provided `suggestion`.
      */
-    static func standardItem(for suggestion: AutocompleteSuggestion, locale: Locale) -> AnyView {
+    static func standardItem(for suggestion: AutocompleteSuggestion, locale: Locale, style: AutocompleteToolbarStyle) -> AnyView {
         AnyView(AutocompleteToolbarItem(
             suggestion: suggestion,
+            style: style.item,
             locale: locale)
         )
     }
@@ -122,8 +130,24 @@ public extension AutocompleteToolbar {
      This is the default function that will be used to build
      an item separator after the provided `suggestion`.
      */
-    static func standardSeparator(for suggestion: AutocompleteSuggestion) -> AnyView {
-        AnyView(AutocompleteToolbarSeparator().frame(height: 30))
+    static func standardSeparator(for suggestion: AutocompleteSuggestion, style: AutocompleteToolbarStyle) -> AnyView {
+        AnyView(AutocompleteToolbarSeparator(
+            style: style.separator))
+    }
+}
+
+private extension AutocompleteToolbar {
+    
+    func itemButton(for suggestion: AutocompleteSuggestion) -> some View {
+        Button(action: { self.replacementAction(suggestion) }) {
+            itemBuilder(suggestion, locale, style)
+                .padding(.horizontal, 4)
+                .padding(.vertical, 10)
+                .background(suggestion.isAutocomplete ? style.autocompleteBackground.color : Color.clearInteractable)
+                .cornerRadius(style.autocompleteBackground.cornerRadius)
+        }
+        .background(Color.clearInteractable)
+        .buttonStyle(PlainButtonStyle())
     }
 }
 
@@ -145,20 +169,6 @@ private extension AutocompleteToolbar {
         if isLast(item) { return false }
         return !isNextItemAutocomplete(for: item)
     }
-    
-    func view(for item: BarItem) -> some View {
-        let action = { self.replacementAction(item.suggestion) }
-        return Group {
-            Button(action: action) {
-                itemBuilder(item.suggestion, locale)
-            }
-            .background(Color.clearInteractable)
-            .buttonStyle(PlainButtonStyle())
-            if useSeparator(for: item) {
-                separatorBuilder(item.suggestion)
-            }
-        }
-    }
 }
 
 struct AutocompleteToolbar_Previews: PreviewProvider {
@@ -169,24 +179,38 @@ struct AutocompleteToolbar_Previews: PreviewProvider {
         return VStack {
             AutocompleteToolbar(
                 suggestions: previewSuggestions,
-                locale: KeyboardLocale.english.locale).previewBar()
+                locale: KeyboardLocale.english.locale,
+                style: .standard).previewBar()
             AutocompleteToolbar(
                 suggestions: previewSuggestions + [additionalSuggestion],
-                locale: KeyboardLocale.spanish.locale).previewBar()
+                locale: KeyboardLocale.spanish.locale,
+                style: .standard).previewBar()
+            AutocompleteToolbar(
+                suggestions: previewSuggestions + [additionalSuggestion],
+                locale: KeyboardLocale.spanish.locale,
+                style: .preview1).previewBar()
+            AutocompleteToolbar(
+                suggestions: previewSuggestions + [additionalSuggestion],
+                locale: KeyboardLocale.spanish.locale,
+                style: .preview2).previewBar()
             AutocompleteToolbar(
                 suggestions: previewSuggestions,
                 locale: KeyboardLocale.swedish.locale,
+                style: .standard,
                 itemBuilder: previewItem).previewBar()
         }
         .padding()
     }
     
-    static func previewItem(for suggestion: AutocompleteSuggestion, locale: Locale) -> AnyView {
+    static func previewItem(for suggestion: AutocompleteSuggestion, locale: Locale, style: AutocompleteToolbarStyle) -> AnyView {
         AnyView(
             HStack {
                 Spacer()
                 VStack(spacing: 4) {
-                    AutocompleteToolbarItemTitle(suggestion: suggestion, locale: KeyboardLocale.swedish.locale)
+                    AutocompleteToolbarItemTitle(
+                        suggestion: suggestion,
+                        style: style.item,
+                        locale: KeyboardLocale.swedish.locale)
                         .font(Font.body.bold())
                     if let subtitle = suggestion.subtitle {
                         Text(subtitle).font(.footnote)

@@ -18,22 +18,28 @@ public struct AutocompleteToolbarSeparator: View {
      Create an autocomplete toolbar item separator.
      
      - Parameters:
-       - suggestions: The suggestion to display in the view.
+       - style: The style to apply to the separator line.
      */
-    public init() {}
+    public init(style: AutocompleteToolbarSeparatorStyle) {
+        self.style = style
+    }
+    
+    private let style: AutocompleteToolbarSeparatorStyle
     
     public var body: some View {
-        AnyView(
-            Color.secondary
-                .opacity(0.5)
-                .frame(width: 1)
-        )
+        style.color
+            .frame(width: style.width)
+            .frame(height: style.height)
     }
 }
 
 struct AutocompleteToolbarSeparator_Previews: PreviewProvider {
     
     static var previews: some View {
-        AutocompleteToolbarSeparator()
+        HStack {
+            AutocompleteToolbarSeparator(style: .standard)
+            AutocompleteToolbarSeparator(style: .preview1)
+            AutocompleteToolbarSeparator(style: .preview2)
+        }.frame(height: 50)
     }
 }

@@ -22,17 +22,22 @@ public struct AutocompleteToolbarItem: View {
      Create an autocomplete toolbar item.
      
      - Parameters:
-       - suggestions: The suggestion to display in the view.
+       - suggestion: The suggestion to display in the view.
+       - style: The style to apply to the item.
+       - locale: The locale to use to resolve quotation.
      */
     public init(
         suggestion: AutocompleteSuggestion,
+        style: AutocompleteToolbarItemStyle,
         locale: Locale) {
         self.suggestion = suggestion
+        self.style = style
         self.locale = locale
     }
     
     private let locale: Locale
     private let suggestion: AutocompleteSuggestion
+    private let style: AutocompleteToolbarItemStyle
         
     public var body: some View {
         VStack(spacing: 0) {
@@ -40,7 +45,7 @@ public struct AutocompleteToolbarItem: View {
             if let text = suggestion.subtitle {
                 subtitle(for: text)
             }
-        }.autocompleteToolbarItemBackground(for: suggestion)
+        }
     }
 }
 
@@ -49,13 +54,14 @@ private extension AutocompleteToolbarItem {
     var text: some View {
         AutocompleteToolbarItemTitle(
             suggestion: suggestion,
+            style: style,
             locale: locale)
     }
     
     func subtitle(for text: String) -> some View {
-        Text(suggestion.subtitle ?? "")
-            .lineLimit(1)
-            .font(.footnote)
+        AutocompleteToolbarItemSubtitle(
+            text: text,
+            style: style)
     }
 }
 
@@ -76,7 +82,9 @@ struct AutocompleteToolbarItem_Previews: PreviewProvider {
             Text(locale.identifier).font(.headline)
             AutocompleteToolbar(
                 suggestions: previewSuggestions,
-                locale: locale)
+                locale: locale,
+                style: .standard)
+                // style: .preview1)
             .previewBar()
         }
     }

@@ -21,17 +21,23 @@ public struct AutocompleteToolbarItemSubtitle: View {
      
      - Parameters:
        - text: The text to display in the view.
+       - style: The style to apply to the text.
      */
-    public init(text: String) {
+    public init(
+        text: String,
+        style: AutocompleteToolbarItemStyle) {
         self.text = text
+        self.style = style
     }
     
     private let text: String
+    private let style: AutocompleteToolbarItemStyle
         
     public var body: some View {
         Text(text)
             .lineLimit(1)
-            .font(.footnote)
+            .font(style.subtitleFont)
+            .foregroundColor(style.subtitleColor)
     }
 }
 
@@ -52,10 +58,21 @@ struct AutocompleteToolbarItemSubtitle_Previews: PreviewProvider {
             Text(locale.localeIdentifier).font(.headline)
             HStack {
                 ForEach(Array(previewSuggestions.enumerated()), id: \.offset) {
-                    AutocompleteToolbarItemSubtitle(text: $0.element.subtitle ?? "")
+                    previewSubtitle(for: $0.element, style: .standard)
+                    previewSubtitle(for: $0.element, style: .preview1)
+                    previewSubtitle(for: $0.element, style: .preview2)
                 }
             }.previewBar()
         }
+    }
+    
+    static func previewSubtitle(
+        for suggestion: AutocompleteSuggestion,
+        style: AutocompleteToolbarItemStyle) -> some View {
+        AutocompleteToolbarItemSubtitle(
+            text: suggestion.subtitle ?? "",
+            style: style
+        )
     }
     
     static let previewSuggestions: [AutocompleteSuggestion] = [
