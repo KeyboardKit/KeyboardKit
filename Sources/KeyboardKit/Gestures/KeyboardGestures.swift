@@ -67,9 +67,32 @@ struct KeyboardGestures<Content: View>: View {
     private let repeatAction: KeyboardGestureAction?
     private let dragAction: KeyboardDragGestureAction?
     
-    @EnvironmentObject private var inputCalloutContext: InputCalloutContext
-    @EnvironmentObject private var secondaryInputCalloutContext: SecondaryInputCalloutContext
+    /**
+     The shared input callout context.
+     
+     For now, this context is resolved like this, to avoid a
+     change that affects all topmost views in the library.
+     */
+    private var inputCalloutContext: InputCalloutContext? {
+        KeyboardInputViewController.shared.keyboardInputCalloutContext
+    }
     
+    /**
+     The shared input callout context.
+     
+     For now, this context is resolved like this, to avoid a
+     change that affects all topmost views in the library.
+     */
+    private var secondaryInputCalloutContext: SecondaryInputCalloutContext? {
+        KeyboardInputViewController.shared.keyboardSecondaryInputCalloutContext
+    }
+    
+    /**
+     The shared repeat timer.
+     
+     For now, this context is resolved like this, to avoid a
+     change that affects all topmost views in the library.
+     */
     private let repeatTimer = RepeatGestureTimer.shared
     
     @State private var isRepeatGestureActive = false {
@@ -144,19 +167,21 @@ private extension KeyboardGestures {
 private extension KeyboardGestures {
     
     func beginSecondaryInput(for geo: GeometryProxy) {
-        secondaryInputCalloutContext.updateInputs(for: action, in: geo)
-        guard secondaryInputCalloutContext.isActive else { return }
-        inputCalloutContext.reset()
+        guard let context = secondaryInputCalloutContext else { return }
+        context.updateInputs(for: action, in: geo)
+        guard context.isActive else { return }
+        inputCalloutContext?.reset()
     }
     
     func endSecondaryInput() {
-        shouldApplyTapAction = shouldApplyTapAction && !secondaryInputCalloutContext.hasSelectedAction
-        secondaryInputCalloutContext.endDragGesture()
+        guard let context = secondaryInputCalloutContext else { return }
+        shouldApplyTapAction = shouldApplyTapAction && !context.hasSelectedAction
+        context.endDragGesture()
     }
     
     func handleDelayedDrag(_ drag: DragGesture.Value?) {
         shouldApplyTapAction = shouldApplyTapAction && action != .space
-        secondaryInputCalloutContext.updateSelection(with: drag)
+        secondaryInputCalloutContext?.updateSelection(with: drag)
         guard let drag = drag else { return }
         dragAction?(drag.startLocation, drag.location)
     }
@@ -170,7 +195,7 @@ private extension KeyboardGestures {
         if isPressed.wrappedValue { return }
         isPressed.wrappedValue = true
         pressAction?()
-        inputCalloutContext.updateInput(for: action, in: geo)
+        inputCalloutContext?.updateInput(for: action, in: geo)
     }
     
     func handleRelease(in geo: GeometryProxy, at location: CGPoint) {
@@ -180,7 +205,7 @@ private extension KeyboardGestures {
         }
         shouldApplyTapAction = true
         isPressed.wrappedValue = false
-        inputCalloutContext.reset()
+        inputCalloutContext?.reset()
         stopRepeatTimer()
     }
     
