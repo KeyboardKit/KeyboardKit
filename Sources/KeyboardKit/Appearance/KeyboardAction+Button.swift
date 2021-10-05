@@ -114,6 +114,7 @@ public extension KeyboardAction {
         case .nextLocale: return context.locale.languageCode?.uppercased()
         case .primary(let type): return type.standardButtonText(for: context)
         case .return: return KKL10n.return.text(for: context)
+        case .space: return KKL10n.space.text(for: context)
         default: return nil
         }
     }

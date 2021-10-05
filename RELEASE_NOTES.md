@@ -60,6 +60,7 @@ The changes below will not add item-specific bullets where a general bullet alre
 ### 💡 Behavior changes
 
 * `InputCallout` and `SecondaryInputCallout` look more like the native callouts.
+* `KeyboardAction+Button` now returns `KKL10n.space` for `.space` action.
 * `KeyboardGestures` now resolves input contexts from the shared controller, instead of using environment objects.
 * `SystemKeyboardButtonContent` now uses appearance for both text and image logic.
 * `SystemKeyboardButtonContent` no longer applies RTL transforms on the image, since SF symbols do this automatically.
