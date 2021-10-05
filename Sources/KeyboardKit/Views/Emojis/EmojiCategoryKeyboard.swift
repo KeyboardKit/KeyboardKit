@@ -12,19 +12,26 @@ import SwiftUI
  This keyboard lists all emojis from a selected category, as
  well as a menu that lets the user select a new category and
  change back to an alphabetic keyboard.
+ 
+ As long as the view requires iOS 14, the extensions must be
+ kept in the main struct body for the previews to compile.
  */
 @available(iOS 14.0, *)
 public struct EmojiCategoryKeyboard: View {
     
     public init(
         categories: [EmojiCategory] = EmojiCategory.all,
+        appearance: KeyboardAppearance,
+        context: KeyboardContext,
         selection: EmojiCategory? = nil,
         configuration: EmojiKeyboardConfiguration = .standardPhonePortrait,
         keyboardProvider: @escaping KeyboardProvider = Self.standardKeyboard,
         titleProvider: @escaping TitleProvider = Self.standardTitle,
         titleViewProvider: @escaping TitleViewProvider = Self.standardTitleView) {
         self.categories = categories.filter { $0.emojis.count > 0 }
+        self.appearance = appearance
         self.configuration = configuration
+        self.context = context
         self.initialSelection = selection
         self.keyboardProvider = keyboardProvider
         self.titleProvider = titleProvider
@@ -35,15 +42,17 @@ public struct EmojiCategoryKeyboard: View {
     public typealias TitleProvider = (EmojiCategory) -> String
     public typealias TitleViewProvider = (EmojiCategory, String) -> AnyView
     
-    @State private var isInitialized = false
-    @State private var selection = EmojiCategory.smileys
-    
     private let initialSelection: EmojiCategory?
     private let categories: [EmojiCategory]
+    private let appearance: KeyboardAppearance
+    private let context: KeyboardContext
     private let configuration: EmojiKeyboardConfiguration
     private let keyboardProvider: KeyboardProvider
     private let titleProvider: TitleProvider
     private let titleViewProvider: TitleViewProvider
+    
+    @State private var isInitialized = false
+    @State private var selection = EmojiCategory.smileys
     
     public var body: some View {
         VStack(spacing: 0) {
@@ -51,7 +60,12 @@ public struct EmojiCategoryKeyboard: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 keyboardProvider(selection, configuration)
             }
-            EmojiCategoryKeyboardMenu(categories: categories, selection: $selection, configuration: configuration)
+            EmojiCategoryKeyboardMenu(
+                categories: categories,
+                appearance: appearance,
+                context: context,
+                selection: $selection,
+                configuration: configuration)
         }
         .onAppear(perform: initialize)
         .onDisappear(perform: saveCurrentCategory)
@@ -104,8 +118,12 @@ public struct EmojiCategoryKeyboard: View {
 
 @available(iOS 14.0, *)
 struct EmojiCategoryMenu_Keyboard: PreviewProvider {
+    
     static var previews: some View {
-        EmojiCategoryKeyboard(selection: .smileys)
+        EmojiCategoryKeyboard(
+            appearance: .preview,
+            context: .preview,
+            selection: .smileys)
             .keyboardPreview()
     }
 }

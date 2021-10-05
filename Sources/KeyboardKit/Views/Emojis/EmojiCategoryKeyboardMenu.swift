@@ -14,30 +14,37 @@ import SwiftUI
  
  The menu buttons are also surrounded by a keyboard switcher
  and a backspace.
+ 
+ As long as the view requires iOS 14, the extensions must be
+ kept in the main struct body for the previews to compile.
  */
 @available(iOS 14.0, *)
 public struct EmojiCategoryKeyboardMenu: View {
     
     public init(
         categories: [EmojiCategory] = EmojiCategory.all,
+        appearance: KeyboardAppearance,
+        context: KeyboardContext,
         selection: Binding<EmojiCategory>,
         configuration: EmojiKeyboardConfiguration,
         selectedColor: Color = Color.black.opacity(0.1)) {
         self.categories = categories.filter { $0.emojis.count > 0 }
+        self.appearance = appearance
+        self.context = context
         self._selection = selection
         self.configuration = configuration
         self.selectedColor = selectedColor
     }
     
     private let categories: [EmojiCategory]
+    private let appearance: KeyboardAppearance
+    private let context: KeyboardContext
     private let configuration: EmojiKeyboardConfiguration
     private let selectedColor: Color
     
     @State private var isInitialized = false
     @Binding private var selection: EmojiCategory
-    
-    @EnvironmentObject private var context: KeyboardContext
-    
+        
     public var body: some View {
         HStack(spacing: 0) {
             Spacer()
@@ -51,12 +58,12 @@ public struct EmojiCategoryKeyboardMenu: View {
     }
     
     
-    // MARK: - Private Extensions (here to make preview work)
+    // MARK: - Private Extensions
     
     private var backspaceButton: some View {
         let action = KeyboardAction.backspace
         let handler = KeyboardInputViewController.shared.keyboardActionHandler
-        let image = action.standardButtonImage(for: context)
+        let image = appearance.buttonImage(for: action)
         return image.keyboardGestures(
             for: action,
             context: context,
@@ -66,7 +73,7 @@ public struct EmojiCategoryKeyboardMenu: View {
     private var keyboardSwitchButton: some View {
         let action = KeyboardAction.keyboardType(.alphabetic(.lowercased))
         let handler = KeyboardInputViewController.shared.keyboardActionHandler
-        let text = action.standardButtonText(for: context) ?? ""
+        let text = appearance.buttonText(for: action) ?? "ABC"
         return Text(text).keyboardGestures(
             for: action,
             context: context,
@@ -92,7 +99,11 @@ public struct EmojiCategoryKeyboardMenu: View {
 @available(iOS 14.0, *)
 struct EmojiCategoryKeyboardMenu_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiCategoryKeyboardMenu(selection: .constant(.activities), configuration: .standardPhonePortrait)
+        EmojiCategoryKeyboardMenu(
+            appearance: .preview,
+            context: .preview,
+            selection: .constant(.activities),
+            configuration: .standardPhonePortrait)
             .keyboardPreview()
     }
 }
