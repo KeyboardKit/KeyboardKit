@@ -65,6 +65,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 
 * `EmojiKeyboard` no longer requires a context environment variable.
 * `InputCallout` and `SecondaryInputCallout` look more like the native callouts.
+* `SystemKeyboardActionButton` no longer applies keyboard gestures and no longer requires a context or action handler.
 * `SystemKeyboardButtonContent` now uses appearance for both text and image logic.
 * `SystemKeyboardButtonContent` no longer applies RTL transforms on the image, since SF symbols do this automatically.
 
@@ -110,7 +111,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `SystemAudio.player` is now `SystemAudioPlayer.shared`.
 * `SystemAudioPlayer` now takes `SystemAudio` as argument.
 * `SystemKeyboard` no longer has any callout style init parameters.
-* `SystemKeyboardActionButton` no longer has text or image override init parameters.
+* `SystemKeyboardActionButton` no longer has action handler, text or image init parameters.
 * `SystemKeyboardActionButtonContent` no longer has text or image override init parameters.
 * `SystemKeyboardButton` has been renamed to `SystemKeyboardActionButton`.
 * `SystemKeyboardButtonContent` has been renamed to `SystemKeyboardActionButtonContent`.
