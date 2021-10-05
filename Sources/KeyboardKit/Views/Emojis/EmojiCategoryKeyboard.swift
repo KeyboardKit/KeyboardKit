@@ -19,6 +19,20 @@ import SwiftUI
 @available(iOS 14.0, *)
 public struct EmojiCategoryKeyboard: View {
     
+    /**
+     Create an emoji category keyboard.
+     
+     - Parameters:
+       - categories: The categories to include in the menu.
+       - appearance: The appearance to apply to the menu.
+       - context: The context to bind the buttons to.
+       - selection: The current selection.
+       - configuration: The emoji keyboard configuration to use.
+       - selectedColor: The color of the selected category.
+       - keyboardProvider: A keyboard provider, by default `.standardKeyboard`.
+       - titleProvider: A title provider, by default `.standardTitle`.
+       - titleViewProvider: A title view provider, by default `.standardTitleView`.
+     */
     public init(
         categories: [EmojiCategory] = EmojiCategory.all,
         appearance: KeyboardAppearance,

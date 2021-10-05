@@ -19,6 +19,14 @@ import SwiftUI
 @available(iOS 14.0, *)
 public struct EmojiKeyboard: View {
     
+    /**
+     Create an emoji keyboard.
+     
+     - Parameters:
+       - emojis: The emojis to include in the menu.
+       - configuration: The emoji keyboard configuration to use.
+       - buttonBuilder: A emoji keyboard button builder, by default `.standardButton`.
+     */
     public init(
         emojis: [Emoji],
         configuration: EmojiKeyboardConfiguration = .standardPhonePortrait,
