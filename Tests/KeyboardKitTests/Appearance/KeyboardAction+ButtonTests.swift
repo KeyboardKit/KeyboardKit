@@ -210,6 +210,7 @@ class KeyboardAction_SystemTests: QuickSpec {
                 expect(result(for: .primary(.ok))).to(equal("OK"))
                 expect(result(for: .primary(.search))).to(equal("search"))
                 expect(result(for: .return)).to(equal("return"))
+                expect(result(for: .space)).to(equal("space"))
                 
                 expect(result(for: .none)).to(beNil())
                 expect(result(for: .backspace)).to(beNil())
@@ -231,7 +232,6 @@ class KeyboardAction_SystemTests: QuickSpec {
                 expect(result(for: .shift(currentState: .lowercased))).to(beNil())
                 expect(result(for: .shift(currentState: .uppercased))).to(beNil())
                 expect(result(for: .shift(currentState: .capsLocked))).to(beNil())
-                expect(result(for: .space)).to(beNil())
                 expect(result(for: .tab)).to(beNil())
             }
         }

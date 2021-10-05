@@ -111,7 +111,8 @@ private extension SystemKeyboardActionButton {
         contentConfig(
             SystemKeyboardActionButtonContent(
                 action: action,
-                appearance: appearance)
+                appearance: appearance,
+                context: context)
         )
     }
     
@@ -137,6 +138,7 @@ struct SystemKeyboardActionButton_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             button(for: .backspace)
+            button(for: .space)
             button(for: .nextKeyboard)
             button(for: .character("a"))
             button(for: .character("A"))

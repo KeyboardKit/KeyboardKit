@@ -73,7 +73,7 @@ public struct SystemKeyboard: View {
      This typealias represents the action block that is used
      to create button views for the system keyboard.
      */
-    public typealias ButtonBuilder = (KeyboardAction, KeyboardAppearance) -> AnyView
+    public typealias ButtonBuilder = (KeyboardAction, KeyboardAppearance, KeyboardContext) -> AnyView
     
     public var body: some View {
         VStack(spacing: 0) {
@@ -92,10 +92,12 @@ public extension SystemKeyboard {
      */
     static func standardButtonBuilder(
         action: KeyboardAction,
-        appearance: KeyboardAppearance) -> AnyView {
+        appearance: KeyboardAppearance,
+        context: KeyboardContext) -> AnyView {
         AnyView(SystemKeyboardActionButtonContent(
             action: action,
-            appearance: appearance)
+            appearance: appearance,
+            context: context)
         )
     }
 }
@@ -118,7 +120,7 @@ private extension SystemKeyboard {
     
     func rowItem(for layout: KeyboardLayout, item: KeyboardLayoutItem) -> some View {
         SystemKeyboardButtonRowItem(
-            content: buttonBuilder(item.action, appearance),
+            content: buttonBuilder(item.action, appearance, context),
             item: item,
             context: context,
             keyboardWidth: keyboardWidth,

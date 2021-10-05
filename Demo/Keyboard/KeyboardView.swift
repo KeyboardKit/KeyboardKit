@@ -31,10 +31,12 @@ struct KeyboardView: View {
     @State private var text = "Text"
     
     @EnvironmentObject private var keyboardContext: KeyboardContext
+    @EnvironmentObject private var inputContext: InputCalloutContext
+    @EnvironmentObject private var secondaryInputContext: SecondaryInputCalloutContext
     
     var body: some View {
         switch keyboardContext.keyboardType {
-        case .alphabetic, .numeric, .symbolic: systemKeyboard
+        case .alphabetic, .numeric, .symbolic: systemKeyboardStack
         case .emojis: emojiKeyboard
         default: Button("Unsupported keyboard", action: switchToDefaultKeyboard)
         }
@@ -59,16 +61,23 @@ private extension KeyboardView {
     }
     
     var systemKeyboard: some View {
+        SystemKeyboard(
+            layout: layoutProvider.keyboardLayout(for: keyboardContext),
+            appearance: appearance,
+            actionHandler: actionHandler,
+            context: keyboardContext,
+            inputContext: inputContext,
+            secondaryInputContext: secondaryInputContext,
+            buttonBuilder: buttonBuilder)
+    }
+    
+    var systemKeyboardStack: some View {
         VStack(spacing: 0) {
             DemoAutocompleteToolbar()
             if addTextFieldAboveKeyboard {
                 textField
             }
-            SystemKeyboard(
-                layout: layoutProvider.keyboardLayout(for: keyboardContext),
-                appearance: appearance,
-                actionHandler: actionHandler,
-                buttonBuilder: buttonBuilder)
+            systemKeyboard
         }
     }
     
@@ -94,7 +103,8 @@ private extension KeyboardView {
             localeText: keyboardContext.locale.localizedLanguageName ?? "",
             spaceText: KKL10n.space.text(for: keyboardContext.locale)
         ))
-        default: return SystemKeyboard.standardButtonBuilder(action: action, appearance: appearance)
+        default: return SystemKeyboard
+                .standardButtonBuilder(action: action, appearance: appearance)
         }
     }
     
