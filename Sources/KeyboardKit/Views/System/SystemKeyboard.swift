@@ -96,7 +96,7 @@ public extension SystemKeyboard {
     static func standardButtonBuilder(
         action: KeyboardAction,
         appearance: KeyboardAppearance) -> AnyView {
-        AnyView(SystemKeyboardButtonContent(
+        AnyView(SystemKeyboardActionButtonContent(
             action: action,
             appearance: appearance)
         )

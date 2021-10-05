@@ -1,5 +1,5 @@
 //
-//  SystemKeyboardButtonContent.swift
+//  SystemKeyboardActionButtonContent.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
@@ -13,7 +13,7 @@ import SwiftUI
  which will result in either a text or image, or nothing. It
  also sets up line limits, vertical offsets etc.
  */
-public struct SystemKeyboardButtonContent: View {
+public struct SystemKeyboardActionButtonContent: View {
     
     /**
      Create a system keyboard button content view.
@@ -47,7 +47,7 @@ public struct SystemKeyboardButtonContent: View {
     }
 }
 
-private extension SystemKeyboardButtonContent {
+private extension SystemKeyboardActionButtonContent {
     
     var buttonImage: Image? {
         appearance.buttonImage(for: action)
@@ -61,7 +61,7 @@ private extension SystemKeyboardButtonContent {
 struct SystemKeyboardButtonContent_Previews: PreviewProvider {
     
     static func preview(for action: KeyboardAction) -> some View {
-        SystemKeyboardButtonContent(
+        SystemKeyboardActionButtonContent(
             action: action,
             appearance: .preview)
     }

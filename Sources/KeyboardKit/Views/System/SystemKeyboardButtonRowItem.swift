@@ -58,8 +58,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
             .frame(maxWidth: .infinity)
             .frame(height: item.size.height - item.insets.top - item.insets.bottom)
             .rowItemWidth(for: item, totalWidth: keyboardWidth, referenceWidth: inputWidth)
-            .systemKeyboardButtonStyle(
-                appearance.systemKeyboardButtonStyle(for: item.action, isPressed: isPressed))
+            .systemKeyboardButtonStyle(buttonStyle)
             .padding(item.insets)
             .background(Color.clearInteractable)
             .keyboardGestures(
@@ -67,6 +66,13 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
                 context: context,
                 isPressed: $isPressed,
                 actionHandler: actionHandler)
+    }
+}
+
+private extension SystemKeyboardButtonRowItem {
+    
+    var buttonStyle: SystemKeyboardButtonStyle {
+        appearance.systemKeyboardButtonStyle(for: item.action, isPressed: isPressed)
     }
 }
 

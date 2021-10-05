@@ -10,8 +10,19 @@ import SwiftUI
 
 /**
  This view mimics the buttons that are used in an iOS system
- keyboard. It wraps a `SystemKeyboardButtonContent` view and
- applies a standard button style and action gestures to it.
+ keyboard. It wraps a `SystemKeyboardButton` view and uses a
+ `SystemKeyboardActionButtonContent` to resolves its content.
+ 
+ You can use the `contentConfig` to customize the content in
+ the button to fit your needs.
+ 
+ The view uses the provided `context` and `actionHandler` to
+ perform actions when the button is tapped, which means that
+ you can create this button anywhere and it will trigger the
+ correct gesture actions for tap, long press, drag etc.
+ 
+ `SystemKeyboardButton` can be used to create a basic button
+ that just looks correct, but doesn't do anything.
  */
 public struct SystemKeyboardActionButton<Content: View>: View {
     
@@ -44,25 +55,37 @@ public struct SystemKeyboardActionButton<Content: View>: View {
      This typealias represents the configuration action that
      is used to customize the content of the button.
      */
-    public typealias ContentConfig = (SystemKeyboardButtonContent) -> Content
+    public typealias ContentConfig = (SystemKeyboardActionButtonContent) -> Content
     
     @State private var isPressed = false
     
     @EnvironmentObject private var context: KeyboardContext
     
     public var body: some View {
-        SystemKeyboardButton(
-            content: buttonContent,
-            style: appearance.systemKeyboardButtonStyle(for: action, isPressed: isPressed))
-            .keyboardGestures(
-                for: action,
-                context: context,
-                isPressed: $isPressed,
-                actionHandler: actionHandler)
+        button.keyboardGestures(
+            for: action,
+            context: context,
+            isPressed: $isPressed,
+            actionHandler: actionHandler)
     }
 }
 
-public extension SystemKeyboardActionButton where Content == SystemKeyboardButtonContent {
+private extension SystemKeyboardActionButton {
+    
+    var button: some View {
+        SystemKeyboardButton(
+            content: buttonContent,
+            style: buttonStyle)
+    }
+    
+    var buttonStyle: SystemKeyboardButtonStyle {
+        appearance.systemKeyboardButtonStyle(
+            for: action,
+            isPressed: isPressed)
+    }
+}
+
+public extension SystemKeyboardActionButton where Content == SystemKeyboardActionButtonContent {
     
     /**
      Create a system keyboard button that does not modify
@@ -90,7 +113,7 @@ private extension SystemKeyboardActionButton {
     
     var buttonContent: some View {
         contentConfig(
-            SystemKeyboardButtonContent(
+            SystemKeyboardActionButtonContent(
                 action: action,
                 appearance: appearance)
         )

@@ -19,8 +19,8 @@ import SwiftUI
  the provided `content` with the provided `style`.
  
  `SystemKeyboardActionButton` can be used to create adaptive
- and contextual buttons. It requires an `action`, a `context`
- and an `appearance` and will create a fully functional view.
+ and contextual buttons that perform the correct actions for
+ taps, long presses, drags etc.
  */
 public struct SystemKeyboardButton<Content: View>: View {
     
