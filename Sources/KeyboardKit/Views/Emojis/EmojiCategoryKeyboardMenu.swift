@@ -29,7 +29,7 @@ public struct EmojiCategoryKeyboardMenu: View {
        - appearance: The appearance to apply to the menu.
        - context: The context to bind the buttons to.
        - selection: The current selection.
-       - configuration: The emoji keyboard configuration to use.
+       - style: The style to apply to the menu.
        - selectedColor: The color of the selected category.
      */
     public init(
@@ -37,20 +37,20 @@ public struct EmojiCategoryKeyboardMenu: View {
         appearance: KeyboardAppearance,
         context: KeyboardContext,
         selection: Binding<EmojiCategory>,
-        configuration: EmojiKeyboardConfiguration,
+        style: EmojiKeyboardStyle,
         selectedColor: Color = Color.black.opacity(0.1)) {
         self.categories = categories.filter { $0.emojis.count > 0 }
         self.appearance = appearance
         self.context = context
         self._selection = selection
-        self.configuration = configuration
+        self.style = style
         self.selectedColor = selectedColor
     }
     
     private let categories: [EmojiCategory]
     private let appearance: KeyboardAppearance
     private let context: KeyboardContext
-    private let configuration: EmojiKeyboardConfiguration
+    private let style: EmojiKeyboardStyle
     private let selectedColor: Color
     
     @State private var isInitialized = false
@@ -59,11 +59,11 @@ public struct EmojiCategoryKeyboardMenu: View {
     public var body: some View {
         HStack(spacing: 0) {
             Spacer()
-            keyboardSwitchButton.font(configuration.systemFont)
+            keyboardSwitchButton.font(style.systemFont)
             Spacer()
-            buttonList.font(configuration.categoryFont)
+            buttonList.font(style.categoryFont)
             Spacer()
-            backspaceButton.font(configuration.systemFont)
+            backspaceButton.font(style.systemFont)
             Spacer()
         }
     }
@@ -114,6 +114,6 @@ struct EmojiCategoryKeyboardMenu_Previews: PreviewProvider {
             appearance: .preview,
             context: .preview,
             selection: .constant(.activities),
-            configuration: .standardPhonePortrait)
+            style: .standardPhonePortrait)
     }
 }

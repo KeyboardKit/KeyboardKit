@@ -17,7 +17,7 @@ class EmojiKeyboardConfigurationTests: QuickSpec {
         
         describe("standard configuration list") {
             
-            func validate(_ config: EmojiKeyboardConfiguration, _ itemSize: CGFloat, _ rows: Int, _ horizontalSpacing: CGFloat, _ verticalSpacing: CGFloat) {
+            func validate(_ config: EmojiKeyboardStyle, _ itemSize: CGFloat, _ rows: Int, _ horizontalSpacing: CGFloat, _ verticalSpacing: CGFloat) {
                 expect(config.itemSize).to(equal(itemSize))
                 expect(config.rows).to(equal(rows))
                 expect(config.horizontalSpacing).to(equal(horizontalSpacing))

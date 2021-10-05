@@ -27,7 +27,7 @@ public struct EmojiCategoryKeyboard: View {
        - appearance: The appearance to apply to the menu.
        - context: The context to bind the buttons to.
        - selection: The current selection.
-       - configuration: The emoji keyboard configuration to use.
+       - style: The style to apply to the keyboard, by default `.standardPhonePortrait`.
        - selectedColor: The color of the selected category.
        - keyboardProvider: A keyboard provider, by default `.standardKeyboard`.
        - titleProvider: A title provider, by default `.standardTitle`.
@@ -38,13 +38,13 @@ public struct EmojiCategoryKeyboard: View {
         appearance: KeyboardAppearance,
         context: KeyboardContext,
         selection: EmojiCategory? = nil,
-        configuration: EmojiKeyboardConfiguration = .standardPhonePortrait,
+        style: EmojiKeyboardStyle = .standardPhonePortrait,
         keyboardProvider: @escaping KeyboardProvider = Self.standardKeyboard,
         titleProvider: @escaping TitleProvider = Self.standardTitle,
         titleViewProvider: @escaping TitleViewProvider = Self.standardTitleView) {
         self.categories = categories.filter { $0.emojis.count > 0 }
         self.appearance = appearance
-        self.configuration = configuration
+        self.style = style
         self.context = context
         self.initialSelection = selection
         self.keyboardProvider = keyboardProvider
@@ -52,7 +52,7 @@ public struct EmojiCategoryKeyboard: View {
         self.titleViewProvider = titleViewProvider
     }
     
-    public typealias KeyboardProvider = (EmojiCategory, EmojiKeyboardConfiguration) -> AnyView
+    public typealias KeyboardProvider = (EmojiCategory, EmojiKeyboardStyle) -> AnyView
     public typealias TitleProvider = (EmojiCategory) -> String
     public typealias TitleViewProvider = (EmojiCategory, String) -> AnyView
     
@@ -60,7 +60,7 @@ public struct EmojiCategoryKeyboard: View {
     private let categories: [EmojiCategory]
     private let appearance: KeyboardAppearance
     private let context: KeyboardContext
-    private let configuration: EmojiKeyboardConfiguration
+    private let style: EmojiKeyboardStyle
     private let keyboardProvider: KeyboardProvider
     private let titleProvider: TitleProvider
     private let titleViewProvider: TitleViewProvider
@@ -72,14 +72,14 @@ public struct EmojiCategoryKeyboard: View {
         VStack(spacing: 0) {
             titleViewProvider(selection, titleProvider(selection))
             ScrollView(.horizontal, showsIndicators: false) {
-                keyboardProvider(selection, configuration)
+                keyboardProvider(selection, style)
             }
             EmojiCategoryKeyboardMenu(
                 categories: categories,
                 appearance: appearance,
                 context: context,
                 selection: $selection,
-                configuration: configuration)
+                style: style)
         }
         .onAppear(perform: initialize)
         .onDisappear(perform: saveCurrentCategory)
@@ -88,11 +88,11 @@ public struct EmojiCategoryKeyboard: View {
     
     // MARK: - Public Static Builders
     
-    public static func standardKeyboard(for category: EmojiCategory, configuration: EmojiKeyboardConfiguration) -> AnyView {
+    public static func standardKeyboard(for category: EmojiCategory, style: EmojiKeyboardStyle) -> AnyView {
         AnyView(
             EmojiKeyboard(
                 emojis: category.emojis,
-                configuration: configuration)
+                style: style)
                 .padding(.horizontal)
         )
     }

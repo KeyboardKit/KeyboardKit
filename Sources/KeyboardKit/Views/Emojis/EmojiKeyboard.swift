@@ -24,21 +24,21 @@ public struct EmojiKeyboard: View {
      
      - Parameters:
        - emojis: The emojis to include in the menu.
-       - configuration: The emoji keyboard configuration to use.
+       - style: The style to apply to the keyboard, by default `.standardPhonePortrait`.
        - buttonBuilder: A emoji keyboard button builder, by default `.standardButton`.
      */
     public init(
         emojis: [Emoji],
-        configuration: EmojiKeyboardConfiguration = .standardPhonePortrait,
+        style: EmojiKeyboardStyle = .standardPhonePortrait,
         buttonBuilder: @escaping ButtonBuilder = Self.standardButton) {
-        self.config = configuration
-        let item = GridItem(.fixed(configuration.itemSize), spacing: config.verticalSpacing - 9)
+        let item = GridItem(.fixed(style.itemSize), spacing: style.verticalSpacing - 9)
         self.emojis = emojis.map { EmojiKeyboardItem(emoji: $0) }
-        self.rows = Array(repeating: item, count: config.rows)
+        self.style = style
+        self.rows = Array(repeating: item, count: style.rows)
         self.buttonBuilder = buttonBuilder
     }
     
-    public typealias ButtonBuilder = (Emoji, EmojiKeyboardConfiguration) -> AnyView
+    public typealias ButtonBuilder = (Emoji, EmojiKeyboardStyle) -> AnyView
     
     struct EmojiKeyboardItem: Identifiable {
         let id = UUID()
@@ -46,16 +46,16 @@ public struct EmojiKeyboard: View {
     }
     
     private let buttonBuilder: ButtonBuilder
-    private let config: EmojiKeyboardConfiguration
+    private let style: EmojiKeyboardStyle
     private let emojis: [EmojiKeyboardItem]
     private let rows: [GridItem]
         
     public var body: some View {
-        LazyHGrid(rows: rows, spacing: config.horizontalSpacing) {
+        LazyHGrid(rows: rows, spacing: style.horizontalSpacing) {
             ForEach(emojis) {
-                buttonBuilder($0.emoji, config)
+                buttonBuilder($0.emoji, style)
             }
-        }.frame(height: config.totalHeight)
+        }.frame(height: style.totalHeight)
     }
     
     
@@ -65,7 +65,7 @@ public struct EmojiKeyboard: View {
      This standard button builder will return an button that
      applies the keyboard actions of an `.emoji` action.
      */
-    public static func standardButton(for emoji: Emoji, configuration: EmojiKeyboardConfiguration) -> AnyView {
+    public static func standardButton(for emoji: Emoji, configuration: EmojiKeyboardStyle) -> AnyView {
         let handler = KeyboardInputViewController.shared.keyboardActionHandler
         let action = { handler.handle(.tap, on: .emoji(emoji)) }
         return AnyView(Button(action: action) {
