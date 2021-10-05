@@ -24,54 +24,39 @@ public struct SystemKeyboardSpaceButtonContent: View {
      Create a system keyboard space button content view.
      
      - Parameters:
-       - localeText: The name of the current locale, if any.
-       - spaceText: The localized name for "space", if any.
-       - appearance: The appearance to apply to the button.
+       - localeText: The display name of the current locale.
+       - spaceText: The localized name for "space".
      */
     public init(
-        localeText: String? = nil,
-        spaceText: String? = nil,
-        appearance: KeyboardAppearance) {
+        localeText: String,
+        spaceText: String) {
         self.localeText = localeText
         self.spaceText = spaceText
         self.spaceView = nil
-        self.appearance = appearance
     }
     
     /**
      Create a system keyboard space button content view.
      
      - Parameters:
-       - localeText: The name of the current locale, if any.
+       - localeText: The display name of the current locale.
        - spaceView: The custom view to use in the space button.
-       - appearance: The appearance to apply to the button.
      */
     public init<SpaceView: View>(
-        localeText: String? = nil,
-        spaceView: SpaceView,
-        appearance: KeyboardAppearance) {
+        localeText: String,
+        spaceView: SpaceView) {
         self.localeText = localeText
-        self.spaceText = nil
+        self.spaceText = ""
         self.spaceView = AnyView(spaceView)
-        self.appearance = appearance
     }
     
-    private let localeText: String?
-    private let spaceText: String?
+    private let localeText: String
+    private let spaceText: String
     private let spaceView: AnyView?
-    private let appearance: KeyboardAppearance
-    
-    private var locale: Locale { context.locale }
     
     private static var lastLocaleText: String?
     
-    private var localeDisplayText: String {
-        localeText ??  locale.localizedLanguageName ?? ""
-    }
-    
     @State private var showLocale = true
-    
-    @EnvironmentObject private var context: KeyboardContext
     
     public var body: some View {
         ZStack {
@@ -90,7 +75,7 @@ private extension SystemKeyboardSpaceButtonContent {
     }
     
     var localeView: some View {
-        text(localeDisplayText)
+        text(localeText)
     }
     
     @ViewBuilder
@@ -98,7 +83,7 @@ private extension SystemKeyboardSpaceButtonContent {
         if let view = spaceView {
             view
         } else {
-            text(spaceText ?? KKL10n.space.text(for: context))
+            text(spaceText)
         }
     }
 }
@@ -106,13 +91,13 @@ private extension SystemKeyboardSpaceButtonContent {
 private extension SystemKeyboardSpaceButtonContent {
     
     var isNewLocale: Bool {
-        localeDisplayText != Self.lastLocaleText
+        localeText != Self.lastLocaleText
     }
     
     func performAnimation() {
         showLocale = isNewLocale
         guard isNewLocale else { return }
-        Self.lastLocaleText = localeDisplayText
+        Self.lastLocaleText = localeText
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             withAnimation { showLocale = false }
         }
@@ -121,32 +106,27 @@ private extension SystemKeyboardSpaceButtonContent {
 
 struct SystemKeyboardSpaceButtonContent_Previews: PreviewProvider {
     
-    static var defaultTexts: some View {
+    static var spaceText: some View {
         SystemKeyboardSpaceButtonContent(
-            localeText: nil,
-            spaceText: nil,
-            appearance: .preview)
-    }
-    
-    static var specificTexts: some View {
-        SystemKeyboardSpaceButtonContent(
-            localeText: "LOCALE",
-            spaceText: "SPACE",
-            appearance: .preview)
+            localeText: KeyboardLocale.english.localizedName,
+            spaceText: KKL10n.space.text(for: .english))
     }
     
     static var spaceView: some View {
         SystemKeyboardSpaceButtonContent(
-            localeText: "locale",
-            spaceView: Image.keyboardGlobe,
-            appearance: .preview)
+            localeText: KeyboardLocale.spanish.localizedName,
+            spaceView: Image.keyboardGlobe)
     }
     
     static var previews: some View {
         VStack {
-            defaultTexts
-            specificTexts
-            spaceView
+            Group {
+                spaceText
+                spaceView
+            }
+            .padding()
+            .background(Color.red)
+            .cornerRadius(10)
         }.keyboardPreview()
     }
 }

@@ -63,11 +63,15 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 
 ### 💡 Behavior changes
 
+* Several views no longer depend on `KeyboardContext`.
+
 * `EmojiKeyboard` no longer requires a context environment variable.
 * `InputCallout` and `SecondaryInputCallout` look more like the native callouts.
 * `SystemKeyboardActionButton` no longer applies keyboard gestures and no longer requires a context or action handler.
 * `SystemKeyboardButtonContent` now uses appearance for both text and image logic.
 * `SystemKeyboardButtonContent` no longer applies RTL transforms on the image, since SF symbols do this automatically.
+* `SystemKeyboardSpaceButtonContent` no longer auto-resolves texts, but instead show just what you provide it with.
+* `SystemKeyboardSpaceButtonContent` no longer depends on `KeyboardContext`. 
 
 ### 🐛 Bug fixes
 
@@ -116,6 +120,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `SystemKeyboardButton` has been renamed to `SystemKeyboardActionButton`.
 * `SystemKeyboardButtonContent` has been renamed to `SystemKeyboardActionButtonContent`.
 * `SystemKeyboardLayoutProvider` `hasElevenElevenSevenAlphabeticInput` is now computed instead of lazy.
+* `SystemKeyboardSpaceButtonContent` no longer requires an appearance, but requires specific content.
 * `View+Callout` is now internal.
 * `View+DynamicType` has been removed.
 * `View+InputCallout` now takes a context as init param instead of environment object.

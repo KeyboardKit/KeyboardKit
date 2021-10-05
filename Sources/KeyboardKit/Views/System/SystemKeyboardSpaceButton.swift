@@ -33,20 +33,15 @@ public struct SystemKeyboardSpaceButton: View {
        - appearance: The appearance to apply to the button.
      */
     public init(
-        localeText: String? = nil,
-        spaceText: String? = nil,
+        localeText: String,
+        spaceText: String,
         actionHandler: KeyboardActionHandler,
         appearance: KeyboardAppearance) {
         self.content = SystemKeyboardSpaceButtonContent(
             localeText: localeText,
-            spaceText: "",
-            appearance: appearance)
+            spaceText: spaceText)
         self.actionHandler = actionHandler
         self.appearance = appearance
-        self.content = SystemKeyboardSpaceButtonContent(
-            localeText: localeText,
-            spaceText: spaceText ?? KKL10n.space.text(for: context),
-            appearance: appearance)
     }
     
     private var content: SystemKeyboardSpaceButtonContent
@@ -74,6 +69,8 @@ struct SystemKeyboardSpaceButton_Previews: PreviewProvider {
     
     static var previews: some View {
         SystemKeyboardSpaceButton(
+            localeText: "foo",
+            spaceText: "bar",
             actionHandler: .preview,
             appearance: PreviewKeyboardAppearance())
             .keyboardPreview()
