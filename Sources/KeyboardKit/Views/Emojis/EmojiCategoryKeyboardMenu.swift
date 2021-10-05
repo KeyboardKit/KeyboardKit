@@ -30,28 +30,24 @@ public struct EmojiCategoryKeyboardMenu: View {
        - context: The context to bind the buttons to.
        - selection: The current selection.
        - style: The style to apply to the menu.
-       - selectedColor: The color of the selected category.
      */
     public init(
         categories: [EmojiCategory] = EmojiCategory.all,
         appearance: KeyboardAppearance,
         context: KeyboardContext,
         selection: Binding<EmojiCategory>,
-        style: EmojiKeyboardStyle,
-        selectedColor: Color = Color.black.opacity(0.1)) {
+        style: EmojiKeyboardStyle) {
         self.categories = categories.filter { $0.emojis.count > 0 }
         self.appearance = appearance
         self.context = context
         self._selection = selection
         self.style = style
-        self.selectedColor = selectedColor
     }
     
     private let categories: [EmojiCategory]
     private let appearance: KeyboardAppearance
     private let context: KeyboardContext
     private let style: EmojiKeyboardStyle
-    private let selectedColor: Color
     
     @State private var isInitialized = false
     @Binding private var selection: EmojiCategory
@@ -101,7 +97,7 @@ public struct EmojiCategoryKeyboardMenu: View {
         Button(action: { selection = category }) {
             Text(category.fallbackDisplayEmoji.char)
                 .padding(6)
-                .background(selection == category ? selectedColor : Color.clear)
+                .background(selection == category ? style.selectedCategoryColor : Color.clear)
                 .clipShape(Circle())
         }
     }

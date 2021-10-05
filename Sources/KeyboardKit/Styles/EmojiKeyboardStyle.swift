@@ -31,6 +31,7 @@ public struct EmojiKeyboardStyle {
        - rows: The number of rows to use in the keyboard, by default `5`.
        - horizontalSpacing: The horizontal spacing to use, by default `10`.
        - verticalSpacing: The vertical spacing to use, by default `6`.
+       - selectedCategoryColor: The color to apply to the selected badge, by default `.black.opacity(0.1)`.
      */
     public init(
         itemSize: CGFloat = 40,
@@ -39,7 +40,8 @@ public struct EmojiKeyboardStyle {
         systemFont: Font = .system(size: 16),
         rows: Int = 5,
         horizontalSpacing: CGFloat = 10,
-        verticalSpacing: CGFloat = 6) {
+        verticalSpacing: CGFloat = 6,
+        selectedCategoryColor: Color = Color.black.opacity(0.1)) {
         self.itemSize = itemSize
         self.font = font
         self.categoryFont = categoryFont
@@ -47,6 +49,7 @@ public struct EmojiKeyboardStyle {
         self.rows = rows
         self.horizontalSpacing = horizontalSpacing
         self.verticalSpacing = verticalSpacing
+        self.selectedCategoryColor = selectedCategoryColor
     }
     
     /**
@@ -83,6 +86,11 @@ public struct EmojiKeyboardStyle {
      The vertical spacing to use.
      */
     public let verticalSpacing: CGFloat
+    
+    /**
+     The color to apply to the selected badge.
+     */
+    public let selectedCategoryColor: Color
     
     /**
      The total keyboard height.

@@ -31,7 +31,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `EdgeInsets` has a new `init(all:)` initializer.
 * `EdgeInsets` has a new `init(horizontal:,vertical:)` initializer.
 * `EmojiCategory` has a new `emojisString` property.
-* `EmojiKeyboardStyle` has a new `systemFont` property.
+* `EmojiKeyboardStyle` has new `systemFont` and `selectedCategoryColor` properties.
 * `HapticFeedbackConfiguration` has a new action-specific feedback list.
 * `InputCalloutContext` has a new, static `.disabled` context.
 * `KeyboardAction` has a new `inputCalloutText` property.
