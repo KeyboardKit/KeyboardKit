@@ -22,27 +22,8 @@ struct DemoAutocompleteToolbar: View {
     var body: some View {
         AutocompleteToolbar(
             suggestions: context.suggestions,
-            locale: keyboardContext.locale,
-            itemBuilder: itemBuilder)
+            locale: keyboardContext.locale)
             .frame(height: 50)
-    }
-}
-
-private extension DemoAutocompleteToolbar {
-    
-    func item(for suggestion: AutocompleteSuggestion, locale: Locale) -> AnyView {
-        guard let subtitle = suggestion.subtitle else { return AutocompleteToolbar.standardItem(for: suggestion, locale: locale) }
-        return AnyView(VStack(spacing: 0) {
-            AutocompleteToolbarItemText(suggestion: suggestion, locale: locale)
-            Text(subtitle).font(.footnote)
-        }.frame(maxWidth: .infinity))
-    }
-    
-    func itemBuilder(suggestion: AutocompleteSuggestion, locale: Locale) -> AnyView {
-        AnyView(
-            item(for: suggestion, locale: locale)
-                .background(Color.clearInteractable)
-        )
     }
 }
 

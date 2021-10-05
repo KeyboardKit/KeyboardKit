@@ -19,11 +19,11 @@ public struct SecondaryInputCallout: View {
      
      - Parameters:
        - context: The context to bind against.
-       - style: The style to apply to the view.
+       - style: The style to apply to the view, by default `.standard`.
      */
     public init(
         context: SecondaryInputCalloutContext,
-        style: SecondaryInputCalloutStyle) {
+        style: SecondaryInputCalloutStyle = .standard) {
         self._context = ObservedObject(wrappedValue: context)
         self.style = style
     }

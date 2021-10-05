@@ -30,7 +30,7 @@ public struct SystemKeyboardButton<Content: View>: View {
      
      - Parameters:
        - content: The content to present in the button.
-       - style: The style to apply to the button.
+       - style: The style to apply to the button
      */
     public init(
         content: Content,

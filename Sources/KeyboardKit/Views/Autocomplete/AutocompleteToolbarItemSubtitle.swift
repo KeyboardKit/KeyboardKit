@@ -21,11 +21,11 @@ public struct AutocompleteToolbarItemSubtitle: View {
      
      - Parameters:
        - text: The text to display in the view.
-       - style: The style to apply to the text.
+       - style: The style to apply to the text, by default `.standard`
      */
     public init(
         text: String,
-        style: AutocompleteToolbarItemStyle) {
+        style: AutocompleteToolbarItemStyle = .standard) {
         self.text = text
         self.style = style
     }

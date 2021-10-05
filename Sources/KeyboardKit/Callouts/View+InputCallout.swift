@@ -16,7 +16,7 @@ public extension View {
      
      - Parameters:
        - context: The context to bind against.
-       - style: The style to apply to the view.
+       - style: The style to apply to the view, by default `.standard`.
      */
     func inputCallout(
         context: InputCalloutContext,

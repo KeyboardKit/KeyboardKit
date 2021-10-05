@@ -30,7 +30,7 @@ public struct AutocompleteToolbar: View {
      - Parameters:
        - suggestions: A list of suggestions to display in the toolbar.
        - locale: The locale to apply to the toolbar.
-       - style: The style to apply to the toolbar.
+       - style: The style to apply to the toolbar, by default `.standard`.
        - itemBuilder: An optional, custom item builder. By default, the static `standardItem` will be used.
        - separatorBuilder: An optional, custom separator builder. By default, the static `standardSeparator` will be used.
        - replacementAction: An optional, custom replacement action. By default, the static `standardReplacementAction` will be used.
@@ -38,7 +38,7 @@ public struct AutocompleteToolbar: View {
     public init(
         suggestions: [AutocompleteSuggestion],
         locale: Locale,
-        style: AutocompleteToolbarStyle,
+        style: AutocompleteToolbarStyle = .standard,
         itemBuilder: @escaping ItemBuilder = Self.standardItem,
         separatorBuilder: @escaping SeparatorBuilder = Self.standardSeparator,
         replacementAction: @escaping ReplacementAction = Self.standardReplacementAction) {
@@ -107,7 +107,10 @@ public extension AutocompleteToolbar {
      This is the default function that will be used to build
      an item view for the provided `suggestion`.
      */
-    static func standardItem(for suggestion: AutocompleteSuggestion, locale: Locale, style: AutocompleteToolbarStyle) -> AnyView {
+    static func standardItem(
+        for suggestion: AutocompleteSuggestion,
+        locale: Locale,
+        style: AutocompleteToolbarStyle) -> AnyView {
         AnyView(AutocompleteToolbarItem(
             suggestion: suggestion,
             style: style.item,
@@ -119,7 +122,8 @@ public extension AutocompleteToolbar {
      This is the default action that will be used to trigger
      a text replacement when a `suggestion` is tapped.
      */
-    static func standardReplacementAction(for suggestion: AutocompleteSuggestion) {
+    static func standardReplacementAction(
+        for suggestion: AutocompleteSuggestion) {
         let proxy = KeyboardInputViewController.shared.textDocumentProxy
         let actionHandler = KeyboardInputViewController.shared.keyboardActionHandler
         proxy.insertAutocompleteSuggestion(suggestion)
@@ -130,7 +134,9 @@ public extension AutocompleteToolbar {
      This is the default function that will be used to build
      an item separator after the provided `suggestion`.
      */
-    static func standardSeparator(for suggestion: AutocompleteSuggestion, style: AutocompleteToolbarStyle) -> AnyView {
+    static func standardSeparator(
+        for suggestion: AutocompleteSuggestion,
+        style: AutocompleteToolbarStyle) -> AnyView {
         AnyView(AutocompleteToolbarSeparator(
             style: style.separator))
     }

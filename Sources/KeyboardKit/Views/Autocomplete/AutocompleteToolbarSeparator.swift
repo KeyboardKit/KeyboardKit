@@ -18,9 +18,9 @@ public struct AutocompleteToolbarSeparator: View {
      Create an autocomplete toolbar item separator.
      
      - Parameters:
-       - style: The style to apply to the separator line.
+       - style: The style to apply to the separator line, by default `.standard`.
      */
-    public init(style: AutocompleteToolbarSeparatorStyle) {
+    public init(style: AutocompleteToolbarSeparatorStyle = .standard) {
         self.style = style
     }
     

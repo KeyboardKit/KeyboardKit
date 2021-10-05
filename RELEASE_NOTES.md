@@ -53,9 +53,10 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 
 ### 🎨 Styling
 
-* `AutocompleteToolbarStyle` is a new style that can be used to style autocomplete toolbars.
-* `AutocompleteToolbarItemStyle` is a new style that can be used to style autocomplete toolbar items.
-* `AutocompleteToolbarSeparatorStyle` is a new style that can be used to style autocomplete toolbar separators.
+* `AutocompleteToolbarStyle` is a new style that can style autocomplete toolbars.
+* `AutocompleteToolbarItemStyle` is a new style that can style autocomplete toolbar items.
+* `AutocompleteToolbarItemBackgroundStyle` is a new style that can style the autocomplete highlight. 
+* `AutocompleteToolbarSeparatorStyle` is a new style that can style autocomplete toolbar separators.
 * `CalloutStyle` has a new, static `.standard` style.
 * `InputCalloutStyle` has a new, static `.standard` style.
 * `SecondaryInputCalloutStyle` has a new, static `.standard` style.
@@ -65,6 +66,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 
 ### 💡 Behavior changes
 
+* `AutocompleteToolbar` now applies the autocomplete background instead of the item view.
 * `AutocompleteToolbarItem`'s standard item builder now renders a subtitle if the suggestion has one.
 * `InputCallout` and `SecondaryInputCallout` look more like the native callouts.
 * `KeyboardAction+Button` now returns `KKL10n.space` for `.space` action.
@@ -121,6 +123,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `SystemKeyboardButtonRowItem` now requires an injected `context`.
 * `SystemKeyboardLayoutProvider` `hasElevenElevenSevenAlphabeticInput` is now computed instead of lazy.
 * `Toast` has been removed.
+* `View+Autocomplete` has been removed.
 * `View+Callout` is now internal.
 * `View+DynamicType` has been removed.
 

@@ -19,11 +19,11 @@ public struct InputCallout: View {
      
      - Parameters:
        - context: The context to bind against.
-       - style: The style to apply to the view.
+       - style: The style to apply to the view, by default `.standard`.
      */
     public init(
         context: InputCalloutContext,
-        style: InputCalloutStyle) {
+        style: InputCalloutStyle = .standard) {
         self._context = ObservedObject(wrappedValue: context)
         self.style = style
     }

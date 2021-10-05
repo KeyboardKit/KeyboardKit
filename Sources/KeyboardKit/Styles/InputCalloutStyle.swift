@@ -21,7 +21,7 @@ public struct InputCalloutStyle {
      Create an input callout style.
      
      - Parameters:
-       - callout: The callout style to use.
+       - callout: The callout style to use, by default `.standard`.
        - calloutSize: The size of the callout above the button area.
        - font: The font to use in the callout.
      */

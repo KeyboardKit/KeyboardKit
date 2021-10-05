@@ -14,9 +14,16 @@ import SwiftUI
  */
 public struct CalloutButtonArea: View {
     
+    /**
+     Create an autocomplete toolbar item style.
+     
+     - Parameters:
+       - frame: The button area frame.
+       - style: The style to use, by default `.standard`.
+     */
     public init(
         frame: CGRect,
-        style: CalloutStyle) {
+        style: CalloutStyle = .standard) {
         self.frame = frame
         self.style = style
     }

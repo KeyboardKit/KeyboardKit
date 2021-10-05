@@ -97,14 +97,15 @@ private extension KeyboardView {
     
     func buttonBuilder(
         action: KeyboardAction,
-        appearance: KeyboardAppearance) -> AnyView {
+        appearance: KeyboardAppearance,
+        context: KeyboardContext) -> AnyView {
         switch action {
-        case .space: return AnyView(SystemKeyboardSpaceButtonContent(
-            localeText: keyboardContext.locale.localizedLanguageName ?? "",
-            spaceText: KKL10n.space.text(for: keyboardContext.locale)
-        ))
-        default: return SystemKeyboard
-                .standardButtonBuilder(action: action, appearance: appearance)
+        // You can replace the default button content here.
+        default:
+            return SystemKeyboard.standardButtonBuilder(
+                action: action,
+                appearance: appearance,
+                context: context)
         }
     }
     

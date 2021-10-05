@@ -23,12 +23,12 @@ public struct AutocompleteToolbarItem: View {
      
      - Parameters:
        - suggestion: The suggestion to display in the view.
-       - style: The style to apply to the item.
+       - style: The style to apply to the item, by default `.standard`.
        - locale: The locale to use to resolve quotation.
      */
     public init(
         suggestion: AutocompleteSuggestion,
-        style: AutocompleteToolbarItemStyle,
+        style: AutocompleteToolbarItemStyle = .standard,
         locale: Locale) {
         self.suggestion = suggestion
         self.style = style
