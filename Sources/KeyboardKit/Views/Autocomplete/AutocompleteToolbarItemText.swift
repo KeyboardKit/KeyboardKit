@@ -23,14 +23,16 @@ public struct AutocompleteToolbarItemText: View {
      - Parameters:
        - suggestions: The suggestion to display in the view.
      */
-    public init(suggestion: AutocompleteSuggestion) {
+    public init(
+        suggestion: AutocompleteSuggestion,
+        locale: Locale) {
         self.suggestion = suggestion
+        self.locale = locale
     }
     
+    private let locale: Locale
     private let suggestion: AutocompleteSuggestion
-    
-    @EnvironmentObject private var context: KeyboardContext
-    
+        
     public var body: some View {
         Text(displayTitle)
             .lineLimit(1)
@@ -42,7 +44,6 @@ private extension AutocompleteToolbarItemText {
     
     var displayTitle: String {
         if !suggestion.isUnknown { return suggestion.title }
-        let locale = context.locale
         let beginDelimiter = locale.quotationBeginDelimiter ?? "\""
         let endDelimiter = locale.quotationEndDelimiter ?? "\""
         return "\(beginDelimiter)\(suggestion.title)\(endDelimiter)"
@@ -66,16 +67,12 @@ struct AutocompleteToolbarItemText_Previews: PreviewProvider {
             Text(locale.localeIdentifier).font(.headline)
             HStack {
                 ForEach(Array(previewSuggestions.enumerated()), id: \.offset) {
-                    AutocompleteToolbarItemText(suggestion: $0.element)
+                    AutocompleteToolbarItemText(
+                        suggestion: $0.element,
+                        locale: locale.locale)
                 }
             }.previewBar()
-        }.environmentObject(previewContext(with: locale))
-    }
-    
-    static func previewContext(with locale: KeyboardLocale) -> KeyboardContext {
-        let context = KeyboardContext.preview
-        context.locale = locale.locale
-        return context
+        }
     }
     
     static let previewSuggestions: [AutocompleteSuggestion] = [

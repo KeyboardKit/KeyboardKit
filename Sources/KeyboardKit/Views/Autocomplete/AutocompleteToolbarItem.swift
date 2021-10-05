@@ -24,17 +24,27 @@ public struct AutocompleteToolbarItem: View {
      - Parameters:
        - suggestions: The suggestion to display in the view.
      */
-    public init(suggestion: AutocompleteSuggestion) {
+    public init(
+        suggestion: AutocompleteSuggestion,
+        locale: Locale) {
         self.suggestion = suggestion
+        self.locale = locale
     }
     
+    private let locale: Locale
     private let suggestion: AutocompleteSuggestion
-    
-    @EnvironmentObject private var context: KeyboardContext
-    
+        
     public var body: some View {
-        AutocompleteToolbarItemText(suggestion: suggestion)
-            .autocompleteToolbarItemBackground(for: suggestion)
+        text.autocompleteToolbarItemBackground(for: suggestion)
+    }
+}
+
+private extension AutocompleteToolbarItem {
+ 
+    var text: some View {
+        AutocompleteToolbarItemText(
+            suggestion: suggestion,
+            locale: locale)
     }
 }
 
@@ -44,25 +54,20 @@ struct AutocompleteToolbarItem_Previews: PreviewProvider {
         ScrollView(.vertical) {
             VStack(spacing: 20) {
                 ForEach(KeyboardLocale.allCases) {
-                    preview(for: $0)
+                    preview(for: $0.locale)
                 }
             }.padding()
         }
     }
     
-    static func preview(for locale: KeyboardLocale) -> some View {
+    static func preview(for locale: Locale) -> some View {
         VStack(spacing: 5) {
-            Text(locale.localeIdentifier).font(.headline)
-            AutocompleteToolbar(suggestions: previewSuggestions)
-                .previewBar()
-                .environmentObject(previewContext(with: locale))
+            Text(locale.identifier).font(.headline)
+            AutocompleteToolbar(
+                suggestions: previewSuggestions,
+                locale: locale)
+            .previewBar()
         }
-    }
-    
-    static func previewContext(with locale: KeyboardLocale) -> KeyboardContext {
-        let context = KeyboardContext.preview
-        context.locale = locale.locale
-        return context
     }
     
     static let previewSuggestions: [AutocompleteSuggestion] = [

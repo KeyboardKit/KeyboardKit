@@ -64,9 +64,10 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 
 ### 💡 Behavior changes
 
-* Several views no longer depend on `KeyboardContext`.
+* A lot of views no longer require a `KeyboardContext` environment object. 
+* As a result, these views may require additional init parameters. 
+* The big win here, is that they are now context-agnostic and more versatile.
 
-* `EmojiKeyboard` no longer requires a context environment variable.
 * `InputCallout` and `SecondaryInputCallout` look more like the native callouts.
 * `SystemKeyboardActionButton` no longer applies keyboard gestures and no longer requires a context or action handler.
 * `SystemKeyboardButtonContent` now uses appearance for both text and image logic.
@@ -77,7 +78,8 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 
 ### 🐛 Bug fixes
 
-* `InputCallout` and `SecondaryInputCallout` will no longer risk getting tiny tearing lines in some apps.   
+* `InputCallout` and `SecondaryInputCallout` will no longer risk getting tiny tearing lines in some apps.
+* `SystemKeyboardActionButton` now handles the `.nextKeyboard` action correctly.   
 
 ### 💥 Breaking changes
 
@@ -86,6 +88,9 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 
 * `AutocompleteProvider` `ignoredWords` is now read-only.
 * `AutocompleteResponse` has been renamed to `AutocompleteCompletion`.
+* `AutocompleteToolbar` now requires an injected locale.
+* `AutocompleteToolbar` `ItemBuilder` now requires a locale as well.
+* `AutocompleteToolbarItem` now requires an injected locale.
 * `AudioFeedback` has been renamed to `SystemAudio`.
 * `CalloutStyle` `buttonOverlayInset` has been renamed to `buttonInset`.
 * `CGFloat+Keyboard` has been replaced with `KeyboardLayoutConfiguration`.

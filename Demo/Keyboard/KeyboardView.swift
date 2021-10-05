@@ -76,12 +76,6 @@ private extension KeyboardView {
             $0.autocapitalizationType = .sentences
         }).padding(3)
     }
-    
-    var toastBackground: some View {
-        Color.white
-            .cornerRadius(3)
-            .shadow(color: Color.black.opacity(0.3), radius: 2, x: 1, y: 1)
-    }
 }
 
 
