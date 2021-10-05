@@ -123,6 +123,7 @@ private extension SystemKeyboard {
         SystemKeyboardButtonRowItem(
             content: buttonBuilder(item.action, appearance),
             item: item,
+            context: context,
             keyboardWidth: keyboardWidth,
             inputWidth: inputWidth,
             appearance: appearance,

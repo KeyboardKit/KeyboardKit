@@ -22,6 +22,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
      - Parameters:
        - content: The content view to use within the item.
        - item: The layout item to use within the item.
+       - context: The keyboard context to which the item should apply.
        - keyboardWidth: The total width of the keyboard.
        - inputWidth: The input width within the keyboard.
        - appearance: The appearance to apply to the item.
@@ -30,12 +31,14 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
     public init(
         content: Content,
         item: KeyboardLayoutItem,
+        context: KeyboardContext,
         keyboardWidth: CGFloat,
         inputWidth: CGFloat,
         appearance: KeyboardAppearance,
         actionHandler: KeyboardActionHandler) {
         self.content = content
         self.item = item
+        self.context = context
         self.keyboardWidth = keyboardWidth
         self.inputWidth = inputWidth
         self.appearance = appearance
@@ -44,14 +47,13 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
     
     private let content: Content
     private let item: KeyboardLayoutItem
+    private var context: KeyboardContext
     private let keyboardWidth: CGFloat
     private let inputWidth: CGFloat
     private let appearance: KeyboardAppearance
     private let actionHandler: KeyboardActionHandler
     
     @State private var isPressed = false
-    
-    @EnvironmentObject private var context: KeyboardContext
     
     public var body: some View {
         content
@@ -91,6 +93,35 @@ public extension View {
         case .inputPercentage(let percent): self.frame(width: percent * referenceWidth - insets)
         case .percentage(let percent): self.frame(width: percent * totalWidth - insets)
         case .points(let points): self.frame(width: points - insets)
+        }
+    }
+}
+
+struct SystemKeyboardButtonRowItem_Previews: PreviewProvider {
+    
+    static func previewItem(_ text: String, width: KeyboardLayoutItemWidth) -> some View {
+        SystemKeyboardButtonRowItem(
+            content: Text(text),
+            item: KeyboardLayoutItem(
+                action: .backspace,
+                size: KeyboardLayoutItemSize(
+                    width: width,
+                    height: 100),
+                insets: .horizontal(0, vertical: 0)),
+            context: .preview,
+            keyboardWidth: 320,
+            inputWidth: 30,
+            appearance: .preview,
+            actionHandler: PreviewKeyboardActionHandler())
+    }
+    
+    static var previews: some View {
+        HStack {
+            previewItem("1", width: .inputPercentage(0.5))
+            previewItem("2", width: .input)
+            previewItem("3", width: .available)
+            previewItem("4", width: .percentage(0.1))
+            previewItem("5", width: .points(10))
         }
     }
 }

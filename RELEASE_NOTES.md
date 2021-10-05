@@ -16,49 +16,37 @@ KeyboardKit 5.0 streamlines the library and makes it easier to use.
 
 This version also removes UIKit-specific functionality and previously deprecated functionality.
 
-The built-in types now implement protocols like `Codable` and `Identifiable` to greater extent.
-
-The built-in views no longer depend on environment objects, to make them easier to use. This may however result in more init parameters.
-
-The build-in views have a lot more previews than before, making them a lot easier to work with.
-
 KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
+
+The changes below will not add item-specific bullets where a general bullet already exists. 
 
 ### ✨ New features
 
-* `AudioFeedbackConfiguration` now implements `Codable`.
+* Library types now implement protocols like `Codable` and `Identifiable` to greater extent.
+* Library views have a lot more previews than before, which make them much easier to adjust.
+* Library views no longer depend on environment objects, which make them easier to create and use.
+
 * `AudioFeedbackConfiguration` has a new action-specific feedback list.
 * `AutoCompleteContext` has a new `isLoading` property.
 * `CalloutStyle` has a new, static `.standard` style.
 * `Collection+RowItem` has new extensions to affect all rows.
 * `EdgeInsets` has a new `init(all:)` initializer.
 * `EdgeInsets` has a new `init(horizontal:,vertical:)` initializer.
-* `Emoji` now implements `Codable` and `Identifiable`.
 * `EmojiCategory` has a new `emojisString` property.
 * `EmojiKeyboardConfiguration` has a new `systemFont` property.
-* `HapticFeedback` now implements `Codable` and `Identifiable`.
-* `HapticFeedbackConfigurable` now implements `Codable`.
-* `HapticFeedbackConfiguration` now implements `Codable`.
 * `HapticFeedbackConfiguration` has a new action-specific feedback list.
 * `InputCalloutStyle` has a new, static `.standard` style.
-* `KeyboardAction` now implements `Codable`.
 * `KeyboardAction` has a new `inputCalloutText` property.
 * `KeyboardAction` has a new `isCharacterAction` property.
-* `KeyboardAction.PrimaryType` now implements `Codable` and `Identifiable`.
-* `KeyboardCasing` now implements `Codable` and `Identifiable`.
 * `KeyboardContext` has a new `screen` property.
-* `KeyboardGesture` now implements `Codable`, `Equatable` and `Identifiable`.
 * `KeyboardInputTextComponent` is now public.
 * `KeyboardLayoutConfiguration` is a new type that replaces the `CGFloat` and `UIEdgeInsets` extensions.
-* `KeyboardType` now implements `Codable` and `Identifiable`.
 * `NextKeyboardButton` is now SwiftUI-based and don't require any special setup.
 * `Preview` services have new, static `.preview` protocol properties.
 * `SecondaryInputCalloutStyle` has a new, static `.standard` style.
-* `SpaceDragSensitivity` now implements `Codable` and `Identifiable`. 
 * `StandardHapticFeedbackPlayer` has a new `shared` player.
 * `StandardKeyboardFeedbackHandler` now prefers action-specific feedback, if defined.
 * `StandardSystemAudioPlayer` has a new `shared` player.
-* `SystemAudio` now implements `Codable` and `Identifiable`.
 * `SystemKeyboardActionButton` is a new view that makes it easy to create action-based keyboard buttons.
 * `SystemKeyboardButton` is a new view that makes it easy to create standalone keyboard buttons.
 * `SystemKeyboardButtonBorderStyle` has a new, static `.standard` style.
@@ -69,34 +57,26 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 
 ### 💡 Behavior changes
 
-* A lot of views no longer require a `KeyboardContext` environment object. 
-* As a result, these views may require additional init parameters. 
-* The big win here, is that they are now context-agnostic and more versatile.
-
 * `InputCallout` and `SecondaryInputCallout` look more like the native callouts.
-* `SystemKeyboardActionButton` no longer applies keyboard gestures and no longer requires a context or action handler.
 * `SystemKeyboardButtonContent` now uses appearance for both text and image logic.
 * `SystemKeyboardButtonContent` no longer applies RTL transforms on the image, since SF symbols do this automatically.
 * `SystemKeyboardSpaceButtonContent` no longer auto-resolves texts, but instead show just what you provide it with.
-* `SystemKeyboardSpaceButtonContent` no longer depends on `KeyboardContext`. 
 * `SystemKeyboardSpaceButton` now takes up as much horizontal space as it can.
 
 ### 🐛 Bug fixes
 
-* `InputCallout` and `SecondaryInputCallout` will no longer risk getting tiny tearing lines in some apps.
-* `SystemKeyboardActionButton` now handles the `.nextKeyboard` action correctly.   
+* `InputCallout` and `SecondaryInputCallout` no longer get tear lines in some apps.   
+* `SystemKeyboardActionButton` now handles the `.nextKeyboard` action correctly.
 
 ### 💥 Breaking changes
 
 * All deprecated functionality has been removed.
 * All UIKit-specific functionality has been removed.
+* Library views that no longer depend on environment objects, may require more init parameters.
+* Initializer argument changes are omitted in the list below.
 
-* `AudioFeedbackConfiguration` init params have changed.
 * `AutocompleteProvider` `ignoredWords` is now read-only.
 * `AutocompleteResponse` has been renamed to `AutocompleteCompletion`.
-* `AutocompleteToolbar` now requires an injected locale.
-* `AutocompleteToolbar` `ItemBuilder` now requires a locale as well.
-* `AutocompleteToolbarItem` now requires an injected locale.
 * `AudioFeedback` has been renamed to `SystemAudio`.
 * `CalloutStyle` `buttonOverlayInset` has been renamed to `buttonInset`.
 * `CGFloat+Keyboard` has been replaced with `KeyboardLayoutConfiguration`.
@@ -104,18 +84,12 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `EmojiKeyboard` button builder no longer takes a context.
 * `HapticFeedback` `prepare` and `trigger` now only has a non-static version.
 * `HapticFeedback.player` has been removed.
-* `HapticFeedbackConfiguration` init params have changed.
-* `InputCallout` now takes a context as init param instead of environment object.
-* `InputCalloutContext` init params have changed.
 * `InputCalloutContext` `buttonFrame(for:)` has been removed.
 * `InputCalloutContext` `updateInput(for:geo:)` has been renamed to `updateInput(for:,in:)`.
 * `KeyboardBehavior` has a new `shouldSwitchToCapsLock` function.
 * `KeyboardCasing.neutral` has been removed.
-* `KeyboardContext` init params have been reordered.
 * `KeyboardInputSetProvider` functions have been converted to properties.
 * `KeyboardType.custom` has been renamed to `KeyboardType.custom(named:)`.
-* `SecondaryInputCallout` now takes a context as init param instead of environment object.
-* `SecondaryInputCalloutContext` init params have been reordered.
 * `SecondaryInputCalloutContext` `alignment` is now a `HorizontalAlignment`.
 * `SecondaryInputCalloutContext` `buttonFrame(for:)` has been removed.
 * `SecondaryInputCalloutContext` `updateInputs(for:geo:alignment)` has been renamed to `updateInputs(for:in:alignment:)`.
@@ -123,27 +97,18 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `SecondaryInputCalloutStyle` `verticalPadding` has been renamed to `verticalTextPadding`.
 * `Sequence` `batched(withBatchSize:)` has been renamed to `batched(into:)`. 
 * `SpaceDragSensitivity.custom` has been renamed to `custom(points:)`.
-* `StandardAutocompleteSuggestion` init parameters have been reordered.
 * `SystemAudio` `systemId` has been renamed to `id`.
 * `SystemAudio` `trigger` has been renamed to `play`.
 * `SystemAudio` `play` now only has a non-static version.
 * `SystemAudio.player` is now `SystemAudioPlayer.shared`.
 * `SystemAudioPlayer` now takes `SystemAudio` as argument.
-* `SystemKeyboard` no longer has any callout style init parameters.
-* `SystemKeyboardActionButton` has new init parameters.
-* `SystemKeyboardActionButtonContent` no longer has text or image override init parameters.
 * `SystemKeyboardButton` has been renamed to `SystemKeyboardActionButton`.
 * `SystemKeyboardButtonContent` has been renamed to `SystemKeyboardActionButtonContent`.
 * `SystemKeyboardButtonRowItem` now requires an injected `context`.
 * `SystemKeyboardLayoutProvider` `hasElevenElevenSevenAlphabeticInput` is now computed instead of lazy.
-* `SystemKeyboardSpaceButton` has new init parameters.
-* `SystemKeyboardSpaceButtonContent` no longer requires an appearance, but requires specific content.
 * `Toast` has been removed.
 * `View+Callout` is now internal.
 * `View+DynamicType` has been removed.
-* `View+InputCallout` now takes a context as init param instead of environment object.
-* `View+KeyboardActions` has reordered the context-based function parameters and now requires a context.
-* `View+SecondaryInputCallout` now takes a context as init param instead of environment object.
 
 
 
