@@ -24,6 +24,12 @@ open class InputCalloutContext: ObservableObject {
     
     // MARK: - Initialization
     
+    /**
+     Create a new context instance,
+     
+     - Parameters:
+       - isEnabled: Whether or not the context is enabled.
+     */
     public init(isEnabled: Bool) {
         self.isEnabled = isEnabled
     }
@@ -77,5 +83,15 @@ open class InputCalloutContext: ObservableObject {
     open func updateInput(for action: KeyboardAction?, in geo: GeometryProxy) {
         self.action = action
         self.buttonFrame = geo.frame(in: .named(Self.coordinateSpace))
+    }
+}
+
+public extension InputCalloutContext {
+    
+    /**
+     Create a disabled context instance.
+     */
+    static var disabled: InputCalloutContext {
+        InputCalloutContext(isEnabled: false)
     }
 }

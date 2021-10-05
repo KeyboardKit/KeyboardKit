@@ -211,8 +211,10 @@ struct iPadKeyboardLayoutProvider_Previews: PreviewProvider {
             layout: layout(for: locale).keyboardLayout(for: context),
             appearance: StandardKeyboardAppearance(context: context),
             actionHandler: .preview,
+            context: .preview,
+            inputContext: .preview,
+            secondaryInputContext: .preview,
             width: context.previewWidth)
-            .keyboardPreview(context: context)
             .background(previewImage)
             .background(Color.gray)
     }

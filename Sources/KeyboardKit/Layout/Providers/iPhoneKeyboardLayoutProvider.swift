@@ -205,8 +205,10 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
             layout: layout(for: locale).keyboardLayout(for: context),
             appearance: StandardKeyboardAppearance(context: context),
             actionHandler: .preview,
+            context: .preview,
+            inputContext: .preview,
+            secondaryInputContext: .preview,
             width: context.previewWidth)
-            .keyboardPreview(context: context)
             .background(previewImage, alignment: .bottom)
             .background(Color.gray.opacity(0.4))
             .overlay(Text(context.previewImageName), alignment: .bottom)

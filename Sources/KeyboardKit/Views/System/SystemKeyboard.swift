@@ -41,14 +41,21 @@ public struct SystemKeyboard: View {
         layout: KeyboardLayout,
         appearance: KeyboardAppearance,
         actionHandler: KeyboardActionHandler,
+        context: KeyboardContext,
+        inputContext: InputCalloutContext?,
+        secondaryInputContext: SecondaryInputCalloutContext?,
         width: CGFloat = KeyboardInputViewController.shared.view.frame.width,
         buttonBuilder: @escaping ButtonBuilder = Self.standardButtonBuilder) {
         self.layout = layout
         self.actionHandler = actionHandler
         self.appearance = appearance
-        self.buttonBuilder = buttonBuilder
         self.keyboardWidth = width
+        self.buttonBuilder = buttonBuilder
         self.inputWidth = layout.inputWidth(for: keyboardWidth)
+    
+        _context = ObservedObject(wrappedValue: context)
+        _inputContext = ObservedObject(wrappedValue: inputContext ?? .disabled)
+        _secondaryInputContext = ObservedObject(wrappedValue: secondaryInputContext ?? .disabled)
     }
     
     private let actionHandler: KeyboardActionHandler
@@ -58,9 +65,9 @@ public struct SystemKeyboard: View {
     private let inputWidth: CGFloat
     private let layout: KeyboardLayout
     
-    @EnvironmentObject private var context: KeyboardContext
-    @EnvironmentObject private var inputContext: InputCalloutContext
-    @EnvironmentObject private var secondaryInputContext: SecondaryInputCalloutContext
+    @ObservedObject private var context: KeyboardContext
+    @ObservedObject private var inputContext: InputCalloutContext
+    @ObservedObject private var secondaryInputContext: SecondaryInputCalloutContext
     
     /**
      This typealias represents the action block that is used
@@ -128,9 +135,11 @@ struct SystemKeyboard_Previews: PreviewProvider {
             layout: .preview,
             appearance: .preview,
             actionHandler: PreviewKeyboardActionHandler(),
+            context: .preview,
+            inputContext: .preview,
+            secondaryInputContext: .preview,
             width: UIScreen.main.bounds.width
         )
-        .keyboardPreview()
         .background(Color.standardKeyboardBackground)
     }
 }

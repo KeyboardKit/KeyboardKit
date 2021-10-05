@@ -114,12 +114,12 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      Setup KeyboardKit with a SwiftUI `View`.
      
-     This will remove all subviews, then add the view, which
-     will be pinned to the edges and resize the extension to
-     fit its content.
+     This will remove all subviews, then add the view pinned
+     to the edges of its view, so that the extension resizes
+     to fit its content.
      
-     The function also injects the various contexts into the
-     view hiearchy, as `@EnvironmentObject`s.
+     This will also inject the input controller's observable
+     objects as `@EnvironmentObject`s into the view hiearchy.
      */
     open func setup<Content: View>(with view: Content) {
         self.view.subviews.forEach { $0.removeFromSuperview() }

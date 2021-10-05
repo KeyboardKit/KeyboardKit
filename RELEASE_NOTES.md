@@ -35,6 +35,7 @@ The changes below will not add item-specific bullets where a general bullet alre
 * `EmojiCategory` has a new `emojisString` property.
 * `EmojiKeyboardConfiguration` has a new `systemFont` property.
 * `HapticFeedbackConfiguration` has a new action-specific feedback list.
+* `InputCalloutContext` has a new, static `.disabled` context.
 * `InputCalloutStyle` has a new, static `.standard` style.
 * `KeyboardAction` has a new `inputCalloutText` property.
 * `KeyboardAction` has a new `isCharacterAction` property.
@@ -44,6 +45,7 @@ The changes below will not add item-specific bullets where a general bullet alre
 * `NextKeyboardButton` is now SwiftUI-based and don't require any special setup.
 * `Preview` services have new, static `.preview` protocol properties.
 * `SecondaryInputCalloutStyle` has a new, static `.standard` style.
+* `SecondaryInputCalloutContext` has a new, static `.disabled` context.
 * `StandardHapticFeedbackPlayer` has a new `shared` player.
 * `StandardKeyboardFeedbackHandler` now prefers action-specific feedback, if defined.
 * `StandardSystemAudioPlayer` has a new `shared` player.

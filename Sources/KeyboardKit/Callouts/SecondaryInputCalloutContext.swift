@@ -26,6 +26,13 @@ open class SecondaryInputCalloutContext: ObservableObject {
     
     // MARK: - Initialization
     
+    /**
+     Create a new context instance,
+     
+     - Parameters:
+       - actionHandler: The action handler to use when tapping buttons.
+       - actionProvider: The action provider to use for resolving secondary actions.
+     */
     public init(
         actionHandler: KeyboardActionHandler,
         actionProvider: SecondaryCalloutActionProvider) {
@@ -163,6 +170,18 @@ open class SecondaryInputCalloutContext: ObservableObject {
         let newIndex = isIndexValid(index) ? index : startIndex
         if currentIndex != newIndex { triggerHapticFeedbackForSelectionChange() }
         self.selectedIndex = newIndex
+    }
+}
+
+
+// MARK: - Public functionality
+
+public extension SecondaryInputCalloutContext {
+    
+    static var disabled: SecondaryInputCalloutContext {
+        SecondaryInputCalloutContext(
+            actionHandler: PreviewKeyboardActionHandler(),
+            actionProvider: DisabledSecondaryCalloutActionProvider())
     }
 }
 
