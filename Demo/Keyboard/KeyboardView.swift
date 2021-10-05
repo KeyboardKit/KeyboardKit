@@ -31,12 +31,13 @@ struct KeyboardView: View {
     @State private var text = "Text"
     
     @EnvironmentObject private var keyboardContext: KeyboardContext
-    @EnvironmentObject private var toastContext: KeyboardToastContext
     
     var body: some View {
-        keyboardView.keyboardToast(
-            context: toastContext,
-            background: toastBackground)
+        switch keyboardContext.keyboardType {
+        case .alphabetic, .numeric, .symbolic: systemKeyboard
+        case .emojis: emojiKeyboard
+        default: Button("Unsupported keyboard", action: switchToDefaultKeyboard)
+        }
     }
 }
 
@@ -51,23 +52,6 @@ private extension KeyboardView {
             EmojiCategoryKeyboard().padding(.vertical)
         } else {
             Text("Requires iOS 14 or later")
-        }
-    }
-    
-    var imageKeyboard: some View {
-        ImageKeyboard(
-            actionHandler: actionHandler,
-            appearance: appearance)
-            .padding()
-    }
-    
-    @ViewBuilder
-    var keyboardView: some View {
-        switch keyboardContext.keyboardType {
-        case .alphabetic, .numeric, .symbolic: systemKeyboard
-        case .emojis: emojiKeyboard
-        case .images: imageKeyboard
-        default: Button("???", action: switchToDefaultKeyboard)
         }
     }
     
@@ -109,7 +93,10 @@ private extension KeyboardView {
         action: KeyboardAction,
         appearance: KeyboardAppearance) -> AnyView {
         switch action {
-        case .space: return AnyView(SystemKeyboardSpaceButtonContent(appearance: appearance))
+        case .space: return AnyView(SystemKeyboardSpaceButtonContent(
+            localeText: keyboardContext.locale.localizedLanguageName ?? "",
+            spaceText: KKL10n.space.text(for: keyboardContext.locale)
+        ))
         default: return SystemKeyboard.standardButtonBuilder(action: action, appearance: appearance)
         }
     }

@@ -19,7 +19,6 @@
 		A921156F25D5902F003510D9 /* FakeAutocompleteProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921156D25D5902F003510D9 /* FakeAutocompleteProvider.swift */; };
 		A921157025D5902F003510D9 /* DemoKeyboardActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921156E25D5902F003510D9 /* DemoKeyboardActionHandler.swift */; };
 		A921157625D5906A003510D9 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921157525D5906A003510D9 /* KeyboardView.swift */; };
-		A921157A25D59071003510D9 /* ImageKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921157925D59071003510D9 /* ImageKeyboard.swift */; };
 		A921159B25D5910D003510D9 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = A921158125D5910D003510D9 /* info.png */; };
 		A921159C25D5910D003510D9 /* rss.png in Resources */ = {isa = PBXBuildFile; fileRef = A921158225D5910D003510D9 /* rss.png */; };
 		A921159D25D5910D003510D9 /* warning.png in Resources */ = {isa = PBXBuildFile; fileRef = A921158325D5910D003510D9 /* warning.png */; };
@@ -101,7 +100,6 @@
 		A921156D25D5902F003510D9 /* FakeAutocompleteProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeAutocompleteProvider.swift; sourceTree = "<group>"; };
 		A921156E25D5902F003510D9 /* DemoKeyboardActionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoKeyboardActionHandler.swift; sourceTree = "<group>"; };
 		A921157525D5906A003510D9 /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
-		A921157925D59071003510D9 /* ImageKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageKeyboard.swift; sourceTree = "<group>"; };
 		A921158125D5910D003510D9 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		A921158225D5910D003510D9 /* rss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rss.png; sourceTree = "<group>"; };
 		A921158325D5910D003510D9 /* warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning.png; sourceTree = "<group>"; };
@@ -218,7 +216,6 @@
 				A921157F25D5910D003510D9 /* Assets */,
 				A9FDAA0926025DF600E628C3 /* Layout */,
 				A921155A25D58E4A003510D9 /* Supporting Files */,
-				A921157925D59071003510D9 /* ImageKeyboard.swift */,
 				A921157525D5906A003510D9 /* KeyboardView.swift */,
 				A921153B25D58AC7003510D9 /* KeyboardViewController.swift */,
 			);
@@ -588,7 +585,6 @@
 				A921157025D5902F003510D9 /* DemoKeyboardActionHandler.swift in Sources */,
 				A921157625D5906A003510D9 /* KeyboardView.swift in Sources */,
 				A921153C25D58AC7003510D9 /* KeyboardViewController.swift in Sources */,
-				A921157A25D59071003510D9 /* ImageKeyboard.swift in Sources */,
 				A9C365F526F3184100E87AFE /* DemoAutocompleteToolbar.swift in Sources */,
 				A951A49B25E016660022385A /* DemoKeyboardLayoutProvider.swift in Sources */,
 				A921156F25D5902F003510D9 /* FakeAutocompleteProvider.swift in Sources */,

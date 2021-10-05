@@ -124,6 +124,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `SystemKeyboardLayoutProvider` `hasElevenElevenSevenAlphabeticInput` is now computed instead of lazy.
 * `SystemKeyboardSpaceButton` has new init parameters.
 * `SystemKeyboardSpaceButtonContent` no longer requires an appearance, but requires specific content.
+* `Toast` has been removed.
 * `View+Callout` is now internal.
 * `View+DynamicType` has been removed.
 * `View+InputCallout` now takes a context as init param instead of environment object.
