@@ -27,7 +27,8 @@ The changes below will not add item-specific bullets where a general bullet alre
 * Library views no longer depend on environment objects, which make them easier to create and use.
 
 * `AudioFeedbackConfiguration` has a new action-specific feedback list.
-* `AutoCompleteContext` has a new `isLoading` property.
+* `AutocompleteContext` has a new `isLoading` property.
+* `AutocompleteToolbarItemSubtitle` is a new view that renders autocomplete subtitles.
 * `CalloutStyle` has a new, static `.standard` style.
 * `Collection+RowItem` has new extensions to affect all rows.
 * `EdgeInsets` has a new `init(all:)` initializer.
@@ -59,6 +60,7 @@ The changes below will not add item-specific bullets where a general bullet alre
 
 ### 💡 Behavior changes
 
+* `AutocompleteToolbarItem`'s standard item builder now renders a subtitle if the suggestion has one.
 * `InputCallout` and `SecondaryInputCallout` look more like the native callouts.
 * `KeyboardAction+Button` now returns `KKL10n.space` for `.space` action.
 * `KeyboardGestures` now resolves input contexts from the shared controller, instead of using environment objects.
@@ -82,6 +84,7 @@ The changes below will not add item-specific bullets where a general bullet alre
 
 * `AutocompleteProvider` `ignoredWords` is now read-only.
 * `AutocompleteResponse` has been renamed to `AutocompleteCompletion`.
+* `AutocompleteToolbarItemText` has been renamed to `AutocompleteToolbarItemTitle`.
 * `AudioFeedback` has been renamed to `SystemAudio`.
 * `CalloutStyle` `buttonOverlayInset` has been renamed to `buttonInset`.
 * `CGFloat+Keyboard` has been replaced with `KeyboardLayoutConfiguration`.

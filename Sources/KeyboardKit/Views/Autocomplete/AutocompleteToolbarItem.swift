@@ -35,16 +35,27 @@ public struct AutocompleteToolbarItem: View {
     private let suggestion: AutocompleteSuggestion
         
     public var body: some View {
-        text.autocompleteToolbarItemBackground(for: suggestion)
+        VStack(spacing: 0) {
+            text
+            if let text = suggestion.subtitle {
+                subtitle(for: text)
+            }
+        }.autocompleteToolbarItemBackground(for: suggestion)
     }
 }
 
 private extension AutocompleteToolbarItem {
  
     var text: some View {
-        AutocompleteToolbarItemText(
+        AutocompleteToolbarItemTitle(
             suggestion: suggestion,
             locale: locale)
+    }
+    
+    func subtitle(for text: String) -> some View {
+        Text(suggestion.subtitle ?? "")
+            .lineLimit(1)
+            .font(.footnote)
     }
 }
 

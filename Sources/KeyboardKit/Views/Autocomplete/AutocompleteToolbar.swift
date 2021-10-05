@@ -186,7 +186,7 @@ struct AutocompleteToolbar_Previews: PreviewProvider {
             HStack {
                 Spacer()
                 VStack(spacing: 4) {
-                    AutocompleteToolbarItemText(suggestion: suggestion, locale: KeyboardLocale.swedish.locale)
+                    AutocompleteToolbarItemTitle(suggestion: suggestion, locale: KeyboardLocale.swedish.locale)
                         .font(Font.body.bold())
                     if let subtitle = suggestion.subtitle {
                         Text(subtitle).font(.footnote)
@@ -206,8 +206,7 @@ struct AutocompleteToolbar_Previews: PreviewProvider {
 private extension View {
     
     func previewBar() -> some View {
-        self.padding(5)
-            .background(Color.gray.opacity(0.3))
+        self.background(Color.gray.opacity(0.3))
             .cornerRadius(10)
     }
 }

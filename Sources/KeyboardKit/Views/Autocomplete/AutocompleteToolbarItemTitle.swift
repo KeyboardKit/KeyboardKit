@@ -1,5 +1,5 @@
 //
-//  AutocompleteToolbarItemText.swift
+//  AutocompleteToolbarItemTitle.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-03-18.
@@ -10,15 +10,15 @@ import SwiftUI
 
 /**
  This view replicates the standard autocomplete toolbar item
- text that is used in native iOS keyboards.
+ title text that is used in native iOS keyboards.
  
  The view will enforce a single line limit and resize itself
  to share the available horizontal space with other views.
  */
-public struct AutocompleteToolbarItemText: View {
+public struct AutocompleteToolbarItemTitle: View {
     
     /**
-     Create an autocomplete toolbar item text view.
+     Create an autocomplete toolbar item title text view.
      
      - Parameters:
        - suggestions: The suggestion to display in the view.
@@ -40,7 +40,7 @@ public struct AutocompleteToolbarItemText: View {
     }
 }
 
-private extension AutocompleteToolbarItemText {
+private extension AutocompleteToolbarItemTitle {
     
     var displayTitle: String {
         if !suggestion.isUnknown { return suggestion.title }
@@ -50,7 +50,7 @@ private extension AutocompleteToolbarItemText {
     }
 }
 
-struct AutocompleteToolbarItemText_Previews: PreviewProvider {
+struct AutocompleteToolbarItemTitle_Previews: PreviewProvider {
     
     static var previews: some View {
         ScrollView(.vertical) {
@@ -67,7 +67,7 @@ struct AutocompleteToolbarItemText_Previews: PreviewProvider {
             Text(locale.localeIdentifier).font(.headline)
             HStack {
                 ForEach(Array(previewSuggestions.enumerated()), id: \.offset) {
-                    AutocompleteToolbarItemText(
+                    AutocompleteToolbarItemTitle(
                         suggestion: $0.element,
                         locale: locale.locale)
                 }
