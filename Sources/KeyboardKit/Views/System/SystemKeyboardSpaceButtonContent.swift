@@ -11,7 +11,7 @@ import SwiftUI
 /**
  This view mimics the content of a system space button, that
  starts with displaying the provided `localeText` then fades
- to the `spaceText` (or `spaceView` if it's set).
+ to the `spaceText` (or `spaceView`).
  
  Note that this view only generates the space button content,
  since it is used in views where a button shape and gestures

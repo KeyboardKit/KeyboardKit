@@ -31,8 +31,9 @@ public struct SystemKeyboardActionButton<Content: View>: View {
      
      - Parameters:
        - action: The keyboard action to apply.
+       - actionHandler: The action handler to use when triggering actions.
        - appearance: The keyboard appearance to use.
-       - isPressed: Whether or not the button is pressed.
+       - context: The keyboard context to which the button should apply.
        - contentConfig: A content configuration block that can be used to modify the button content before applying a style and gestures to it.
      */
     public init(
@@ -80,8 +81,9 @@ public extension SystemKeyboardActionButton where Content == SystemKeyboardActio
      
      - Parameters:
        - action: The keyboard action to apply.
+       - actionHandler: The action handler to use when triggering actions.
        - appearance: The keyboard appearance to use.
-       - isPressed: Whether or not the button is pressed.
+       - context: The keyboard context to which the button should apply.
      */
     init(
         action: KeyboardAction,

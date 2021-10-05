@@ -59,6 +59,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `SystemKeyboardButtonBorderStyle` has a new, static `standard` style.
 * `SystemKeyboardButtonShadowStyle` has a new, static `standard` style.
 * `SystemKeyboardButtonText` is a new view that just sets up text correctly. 
+* `SystemKeyboardSpaceButton` can now wrap any content.
 * `View+Callout` has a new `calloutShadow` extension.
 
 ### 💡 Behavior changes
@@ -72,6 +73,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `SystemKeyboardButtonContent` no longer applies RTL transforms on the image, since SF symbols do this automatically.
 * `SystemKeyboardSpaceButtonContent` no longer auto-resolves texts, but instead show just what you provide it with.
 * `SystemKeyboardSpaceButtonContent` no longer depends on `KeyboardContext`. 
+* `SystemKeyboardSpaceButton` now takes up as much horizontal space as it can.
 
 ### 🐛 Bug fixes
 
@@ -115,11 +117,12 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `SystemAudio.player` is now `SystemAudioPlayer.shared`.
 * `SystemAudioPlayer` now takes `SystemAudio` as argument.
 * `SystemKeyboard` no longer has any callout style init parameters.
-* `SystemKeyboardActionButton` no longer has action handler, text or image init parameters.
+* `SystemKeyboardActionButton` has new init parameters.
 * `SystemKeyboardActionButtonContent` no longer has text or image override init parameters.
 * `SystemKeyboardButton` has been renamed to `SystemKeyboardActionButton`.
 * `SystemKeyboardButtonContent` has been renamed to `SystemKeyboardActionButtonContent`.
 * `SystemKeyboardLayoutProvider` `hasElevenElevenSevenAlphabeticInput` is now computed instead of lazy.
+* `SystemKeyboardSpaceButton` has new init parameters.
 * `SystemKeyboardSpaceButtonContent` no longer requires an appearance, but requires specific content.
 * `View+Callout` is now internal.
 * `View+DynamicType` has been removed.
