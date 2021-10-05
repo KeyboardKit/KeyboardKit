@@ -44,7 +44,7 @@ private extension ImageKeyboard {
     }
     
     func button(for action: KeyboardAction) -> some View {
-        SystemKeyboardButton(
+        SystemKeyboardActionButton(
             action: action,
             actionHandler: actionHandler,
             appearance: appearance)

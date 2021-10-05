@@ -25,12 +25,12 @@ public struct SystemKeyboardButtonContent: View {
     public init(
         action: KeyboardAction,
         appearance: KeyboardAppearance) {
-        self.appearance = appearance
         self.action = action
+        self.appearance = appearance
     }
     
-    private let appearance: KeyboardAppearance
     private let action: KeyboardAction
+    private let appearance: KeyboardAppearance
     
     public var body: some View {
         if action == .nextKeyboard {

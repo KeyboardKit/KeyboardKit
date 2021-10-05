@@ -54,6 +54,8 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `StandardKeyboardFeedbackHandler` now prefers action-specific feedback, if defined.
 * `StandardSystemAudioPlayer` has a new `shared` player.
 * `SystemAudio` now implements `Identifiable` and `Codable`.
+* `SystemKeyboardActionButton` is a new view that makes it easy to create action-based keyboard buttons.
+* `SystemKeyboardButton` is a new view that makes it easy to create keyboard buttons.
 * `SystemKeyboardButtonBorderStyle` has a new, static `standard` style.
 * `SystemKeyboardButtonShadowStyle` has a new, static `standard` style.
 * `SystemKeyboardButtonText` is a new view that just sets up text correctly. 
@@ -108,7 +110,8 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `SystemAudio.player` is now `SystemAudioPlayer.shared`.
 * `SystemAudioPlayer` now takes `SystemAudio` as argument.
 * `SystemKeyboard` no longer has any callout style init parameters.
-* `SystemKeyboardButton` no longer has text or image override init parameters.
+* `SystemKeyboardActionButton` no longer has text or image override init parameters.
+* `SystemKeyboardButton` has been renamed to `SystemKeyboardActionButton`.
 * `SystemKeyboardButtonContent` no longer has text or image override init parameters.
 * `SystemKeyboardLayoutProvider` `hasElevenElevenSevenAlphabeticInput` is now computed instead of lazy.
 * `View+Callout` is now internal.

@@ -27,7 +27,7 @@ class SystemKeyboardButtonTests: QuickSpec {
         describe("system keyboard button") {
             
             it("can be created with just an action") {
-                let button = SystemKeyboardButton(
+                let button = SystemKeyboardActionButton(
                     action: .control,
                     actionHandler: actionHandler,
                     appearance: appearance)
