@@ -49,7 +49,10 @@ private extension KeyboardView {
     @ViewBuilder
     var emojiKeyboard: some View {
         if #available(iOSApplicationExtension 14.0, *) {
-            EmojiCategoryKeyboard().padding(.vertical)
+            EmojiCategoryKeyboard(
+                appearance: appearance,
+                context: keyboardContext)
+                .padding(.vertical)
         } else {
             Text("Requires iOS 14 or later")
         }

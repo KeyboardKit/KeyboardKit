@@ -80,6 +80,6 @@ struct EmojiKeyboard_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView(.horizontal) {
             EmojiKeyboard(emojis: Array(Emoji.all.prefix(50)))
-        }.keyboardPreview()
+        }
     }
 }

@@ -52,21 +52,22 @@ struct SystemKeyboardButton_Previews: PreviewProvider {
     
     static func button<Content: View>(for content: Content, style: SystemKeyboardButtonStyle) -> some View {
         SystemKeyboardButton(
-            content: content.frame(width: 60, height: 60),
+            content: content
+                .padding(.horizontal, 80)
+                .padding(.vertical, 20),
             style: style)
     }
     
     static var previews: some View {
-        VStack {
-            button(for: Text("hej"), style: .preview1)
-            button(for: Text("HEJ"), style: .preview2)
-            button(for: SystemKeyboardButtonText(text: "hej", action: .character("")), style: .preview1)
+        VStack(spacing: 20) {
+            button(for: Text("hello"), style: .preview1)
+            button(for: Text("HELLO"), style: .preview2)
+            button(for: SystemKeyboardButtonText(text: "🚀", action: .character("")), style: .preview1)
             button(for: Image.keyboardGlobe, style: .preview2)
         }
-        .padding()
-        .background(Color.gray)
+        .padding(50)
+        .background(Color.blue.opacity(0.4))
         .cornerRadius(10)
         .environment(\.sizeCategory, .extraExtraLarge)
-        .keyboardPreview()
     }
 }

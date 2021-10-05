@@ -127,6 +127,6 @@ struct SystemKeyboardSpaceButtonContent_Previews: PreviewProvider {
             .padding()
             .background(Color.red)
             .cornerRadius(10)
-        }.keyboardPreview()
+        }
     }
 }

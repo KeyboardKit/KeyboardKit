@@ -179,7 +179,6 @@ struct AutocompleteToolbar_Previews: PreviewProvider {
                 itemBuilder: previewItem).previewBar()
         }
         .padding()
-        .keyboardPreview()
     }
     
     static func previewItem(for suggestion: AutocompleteSuggestion, locale: Locale) -> AnyView {

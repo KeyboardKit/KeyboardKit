@@ -145,7 +145,6 @@ struct SystemKeyboardActionButton_Previews: PreviewProvider {
         .background(Color.gray)
         .cornerRadius(10)
         .environment(\.sizeCategory, .extraExtraLarge)
-        .keyboardPreview()
     }
 }
 

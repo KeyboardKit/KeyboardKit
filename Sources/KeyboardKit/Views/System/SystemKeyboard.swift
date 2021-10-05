@@ -49,16 +49,6 @@ public struct SystemKeyboard: View {
         self.buttonBuilder = buttonBuilder
         self.keyboardWidth = width
         self.inputWidth = layout.inputWidth(for: keyboardWidth)
-            
-        // Temporary until everything uses style ***********
-        // let layoutConfig = KeyboardLayoutConfiguration.standard(for: context)
-        // var inputStyle = inputCalloutStyle
-        // inputStyle.callout.buttonCornerRadius = layoutConfig.buttonCornerRadius
-        // self.inputCalloutStyle = inputStyle
-        // var secondaryStyle = secondaryInputCalloutStyle
-        // secondaryStyle.callout = inputStyle.callout
-        // self.secondaryInputCalloutStyle = secondaryStyle
-        // Temporary until everything uses style ***********
     }
     
     private let actionHandler: KeyboardActionHandler

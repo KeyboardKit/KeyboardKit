@@ -138,6 +138,5 @@ struct EmojiCategoryMenu_Keyboard: PreviewProvider {
             appearance: .preview,
             context: .preview,
             selection: .smileys)
-            .keyboardPreview()
     }
 }

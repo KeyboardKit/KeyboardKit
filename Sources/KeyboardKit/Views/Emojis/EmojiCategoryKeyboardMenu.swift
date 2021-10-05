@@ -115,6 +115,5 @@ struct EmojiCategoryKeyboardMenu_Previews: PreviewProvider {
             context: .preview,
             selection: .constant(.activities),
             configuration: .standardPhonePortrait)
-            .keyboardPreview()
     }
 }

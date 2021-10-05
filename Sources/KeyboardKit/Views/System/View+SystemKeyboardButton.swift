@@ -39,6 +39,5 @@ struct View_Button_Previews: PreviewProvider {
         .background(Color.gray)
         .cornerRadius(10)
         .environment(\.sizeCategory, .extraExtraLarge)
-        .keyboardPreview()
     }
 }
