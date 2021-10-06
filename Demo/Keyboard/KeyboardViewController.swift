@@ -8,7 +8,7 @@
 
 import UIKit
 import KeyboardKit
-// import KeyboardKitPro
+import KeyboardKitPro
 import SwiftUI
 import Combine
 
@@ -91,7 +91,7 @@ class KeyboardViewController: KeyboardInputViewController {
         // 💡 This is overwritten if Pro is registered below
         keyboardSecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider(
             context: keyboardContext,
-            providers: [EnglishSecondaryCalloutActionProvider()])
+            providers: [try? EnglishSecondaryCalloutActionProvider()].compactMap { $0 })
         
         // keyboardAppearance can be used to style keyboards
         // This demo will soon demonstrate a color theme
@@ -107,8 +107,8 @@ class KeyboardViewController: KeyboardInputViewController {
         
         // Setup the extension to use the keyboardView below,
         // either without or with Pro enabled.
-        setup(with: keyboardView)
-        // try? setupPro(withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098", view: keyboardView)
+        // setup(with: keyboardView)
+        try? setupPro(withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098", view: keyboardView)
     }
     
     
