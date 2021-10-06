@@ -73,6 +73,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `InputCallout` and `SecondaryInputCallout` look more like the native callouts.
 * `KeyboardAction+Button` now returns `KKL10n.space` for `.space` action.
 * `KeyboardGestures` now resolves input contexts from the shared controller, instead of using environment objects.
+* `StandardKeyboardAppearance` uses a small transparency to make standard buttons bleed through the underlying vibrancy.
 * `SystemKeyboard` uses the new callout styles in the appearance.
 * `SystemKeyboardActionButtonContent` now returns a `SystemKeyboardSpaceButtonContent` for `.space`. 
 * `SystemKeyboardButtonContent` now uses appearance for both text and image logic.

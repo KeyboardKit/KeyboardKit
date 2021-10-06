@@ -50,7 +50,10 @@ public struct SystemKeyboardButton<Content: View>: View {
 
 struct SystemKeyboardButton_Previews: PreviewProvider {
     
-    static func button<Content: View>(for content: Content, style: SystemKeyboardButtonStyle) -> some View {
+    static let appearance = StandardKeyboardAppearance(
+        context: .preview)
+    
+    static func previewButton<Content: View>(for content: Content, style: SystemKeyboardButtonStyle) -> some View {
         SystemKeyboardButton(
             content: content
                 .padding(.horizontal, 80)
@@ -58,16 +61,33 @@ struct SystemKeyboardButton_Previews: PreviewProvider {
             style: style)
     }
     
-    static var previews: some View {
-        VStack(spacing: 20) {
-            button(for: Text("hello"), style: .preview1)
-            button(for: Text("HELLO"), style: .preview2)
-            button(for: SystemKeyboardButtonText(text: "🚀", action: .character("")), style: .preview1)
-            button(for: Image.keyboardGlobe, style: .preview2)
+    static var previewImage: some View {
+        Image("photo-forest", bundle: .module)
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .edgesIgnoringSafeArea(.all)
+    }
+    
+    static var previewStack: some View {
+        ScrollView {
+            VStack(spacing: 20) {
+                previewButton(for: Text("hello"), style: .preview1)
+                previewButton(for: Text("HELLO"), style: .preview2)
+                previewButton(for: SystemKeyboardButtonText(text: "🚀", action: .character("")), style: .preview1)
+                previewButton(for: Image.keyboardGlobe, style: .preview2)
+                
+                previewButton(for: Text("input"), style: appearance.systemKeyboardButtonStyle(for: .character(""), isPressed: false))
+                previewButton(for: Text("input pressed"), style: appearance.systemKeyboardButtonStyle(for: .character(""), isPressed: true))
+                previewButton(for: Text("control"), style: appearance.systemKeyboardButtonStyle(for: .backspace, isPressed: false))
+                previewButton(for: Text("control pressed"), style: appearance.systemKeyboardButtonStyle(for: .backspace, isPressed: true))
+            }.padding(.top, 40)
         }
-        .padding(50)
-        .background(Color.blue.opacity(0.4))
-        .cornerRadius(10)
-        .environment(\.sizeCategory, .extraExtraLarge)
+    }
+    
+    static var previews: some View {
+        ZStack {
+            previewImage
+            previewStack
+        }
     }
 }

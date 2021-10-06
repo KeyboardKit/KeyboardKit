@@ -29,32 +29,18 @@ extension KeyboardAppearance where Self == PreviewKeyboardAppearance {
 /**
  This appearance can be used in SwiftUI previews.
  */
-public class PreviewKeyboardAppearance: KeyboardAppearance {
+public class PreviewKeyboardAppearance: StandardKeyboardAppearance {
     
     init() {
-        appearance = StandardKeyboardAppearance(context: .preview)
+        super.init(context: .preview)
     }
     
-    private let appearance: KeyboardAppearance
-    
-    public func buttonImage(for action: KeyboardAction) -> Image? {
-        appearance.buttonImage(for: action)
-    }
-    
-    public func buttonText(for action: KeyboardAction) -> String? {
-        appearance.buttonText(for: action)
-    }
-    
-    public func inputCalloutStyle() -> InputCalloutStyle {
+    public override func inputCalloutStyle() -> InputCalloutStyle {
         .preview1
     }
     
-    public func secondaryInputCalloutStyle() -> SecondaryInputCalloutStyle {
+    public override func secondaryInputCalloutStyle() -> SecondaryInputCalloutStyle {
         .preview1
-    }
-    
-    public func systemKeyboardButtonStyle(for action: KeyboardAction, isPressed: Bool) -> SystemKeyboardButtonStyle {
-        appearance.systemKeyboardButtonStyle(for: action, isPressed: isPressed)
     }
 }
 

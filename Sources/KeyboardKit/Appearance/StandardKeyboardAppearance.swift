@@ -72,8 +72,8 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
      */
     open func systemKeyboardButtonStyle(for action: KeyboardAction, isPressed: Bool) -> SystemKeyboardButtonStyle {
         SystemKeyboardButtonStyle(
-            backgroundColor: action.standardButtonBackgroundColor(for: context, isPressed: isPressed),
-            foregroundColor: action.standardButtonForegroundColor(for: context, isPressed: isPressed),
+            backgroundColor: backgroundColor(for: action, isPressed: isPressed),
+            foregroundColor: foregroundColor(for: action, isPressed: isPressed),
             font: font(for: action),
             cornerRadius: layoutConfig.buttonCornerRadius,
             border: .standard,
@@ -82,6 +82,14 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
 }
 
 private extension StandardKeyboardAppearance {
+    
+    func backgroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
+        let fullOpacity = context.colorScheme == .dark || isPressed
+        return action.standardButtonBackgroundColor(
+            for: context,
+            isPressed: isPressed)
+            .opacity(fullOpacity ? 1 : 0.95)
+    }
     
     func font(for action: KeyboardAction) -> Font {
         let rawFont = action.standardButtonFont(for: context)
@@ -92,5 +100,11 @@ private extension StandardKeyboardAppearance {
     func fontWeight(for action: KeyboardAction) -> Font.Weight? {
         if buttonImage(for: action) != nil { return .light }
         return action.standardButtonFontWeight(for: context)
+    }
+    
+    func foregroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
+        action.standardButtonForegroundColor(
+            for: context,
+            isPressed: isPressed)
     }
 }

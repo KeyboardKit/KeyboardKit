@@ -107,8 +107,10 @@ struct InputCallout_Previews: PreviewProvider {
                 }
             }
         )
-        .inputCallout(context: context, style: .standard)
-        // .inputCallout(context: context, style: .preview1)
-        // .inputCallout(context: context, style: .preview2)
+        .inputCallout(
+            context: context,
+//            style: .standard)
+//            style: .preview1)
+            style: .preview2)
     }
 }
