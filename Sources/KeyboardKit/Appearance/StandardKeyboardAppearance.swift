@@ -51,6 +51,22 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     }
     
     /**
+     The input callout style to apply when showing a callout
+     that shows the currently pressed key.
+     */
+    open func inputCalloutStyle() -> InputCalloutStyle {
+        .standard
+    }
+    
+    /**
+     The secondary input callout style to apply when showing
+     a callout that shows secondary input actions.
+     */
+    open func secondaryInputCalloutStyle() -> SecondaryInputCalloutStyle {
+        .standard
+    }
+    
+    /**
      The system keybard button style to use for the provided
      `action` given a certain `isPressed` state.
      */

@@ -10,6 +10,7 @@ import Quick
 import Nimble
 import KeyboardKit
 import SwiftUI
+import XCTest
 
 class StandardKeyboardAppearanceTests: QuickSpec {
 
@@ -42,6 +43,30 @@ class StandardKeyboardAppearanceTests: QuickSpec {
                     let standard = $0.standardButtonText(for: context)
                     result.expectEqual(to: standard)
                 }
+            }
+        }
+        
+        describe("input callout style") {
+            
+            it("is standard") {
+                let result = appearance.inputCalloutStyle()
+                let standard = InputCalloutStyle.standard
+                expect(result.callout).to(equal(standard.callout))
+                expect(result.calloutSize).to(equal(standard.calloutSize))
+                expect(result.font).to(equal(standard.font))
+            }
+        }
+        
+        describe("secondary input callout style") {
+            
+            it("is standard") {
+                let result = appearance.secondaryInputCalloutStyle()
+                let standard = SecondaryInputCalloutStyle.standard
+                expect(result.callout).to(equal(standard.callout))
+                expect(result.font).to(equal(standard.font))
+                expect(result.selectedBackgroundColor).to(equal(standard.selectedBackgroundColor))
+                expect(result.selectedForegroundColor).to(equal(standard.selectedForegroundColor))
+                expect(result.verticalTextPadding).to(equal(standard.verticalTextPadding))
             }
         }
         

@@ -45,6 +45,14 @@ public class PreviewKeyboardAppearance: KeyboardAppearance {
         appearance.buttonText(for: action)
     }
     
+    public func inputCalloutStyle() -> InputCalloutStyle {
+        .preview1
+    }
+    
+    public func secondaryInputCalloutStyle() -> SecondaryInputCalloutStyle {
+        .preview1
+    }
+    
     public func systemKeyboardButtonStyle(for action: KeyboardAction, isPressed: Bool) -> SystemKeyboardButtonStyle {
         appearance.systemKeyboardButtonStyle(for: action, isPressed: isPressed)
     }

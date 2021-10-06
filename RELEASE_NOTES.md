@@ -36,6 +36,8 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `InputCalloutContext` has a new, static `.disabled` context.
 * `KeyboardAction` has a new `inputCalloutText` property.
 * `KeyboardAction` has a new `isCharacterAction` property.
+* `KeyboardAppearance` has a new `inputCalloutStyle()` function.
+* `KeyboardAppearance` has a new `secondaryInputCalloutStyle()` function.
 * `KeyboardContext` has a new `screen` property.
 * `KeyboardInputTextComponent` is now public.
 * `KeyboardLayoutConfiguration` is a new type that replaces the `CGFloat` and `UIEdgeInsets` extensions.
@@ -71,6 +73,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `InputCallout` and `SecondaryInputCallout` look more like the native callouts.
 * `KeyboardAction+Button` now returns `KKL10n.space` for `.space` action.
 * `KeyboardGestures` now resolves input contexts from the shared controller, instead of using environment objects.
+* `SystemKeyboard` uses the new callout styles in the appearance.
 * `SystemKeyboardActionButtonContent` now returns a `SystemKeyboardSpaceButtonContent` for `.space`. 
 * `SystemKeyboardButtonContent` now uses appearance for both text and image logic.
 * `SystemKeyboardButtonContent` no longer applies RTL transforms on the image, since SF symbols do this automatically.

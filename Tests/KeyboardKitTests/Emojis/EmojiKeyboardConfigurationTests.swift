@@ -25,7 +25,7 @@ class EmojiKeyboardConfigurationTests: QuickSpec {
             }
             
             it("has valid cases") {
-                validate(.standardLargePadLandscape, 40, 8, 10, 6)
+                validate(.standardLargePadLandscape, 40, 6, 10, 6)
                 validate(.standardLargePadPortrait, 40, 5, 10, 6)
                 validate(.standardPadLandscape, 40, 5, 10, 6)
                 validate(.standardPadPortrait, 40, 3, 10, 6)

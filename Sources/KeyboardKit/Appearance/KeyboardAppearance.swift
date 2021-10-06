@@ -36,6 +36,18 @@ public protocol KeyboardAppearance: AnyObject {
     func buttonText(for action: KeyboardAction) -> String?
     
     /**
+     The input callout style to apply when showing a callout
+     that shows the currently pressed key.
+     */
+    func inputCalloutStyle() -> InputCalloutStyle
+    
+    /**
+     The secondary input callout style to apply when showing
+     a callout that shows secondary input actions.
+     */
+    func secondaryInputCalloutStyle() -> SecondaryInputCalloutStyle
+    
+    /**
      The system keybard button style to use for the provided
      `action` given a certain `isPressed` state.
      */

@@ -15,7 +15,7 @@ import SwiftUI
  You can modify the `.standard` style instance to change the
  standard, global style.
  */
-public struct CalloutStyle {
+public struct CalloutStyle: Equatable {
     
     /**
      Create a callout style.

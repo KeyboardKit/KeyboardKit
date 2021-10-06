@@ -23,17 +23,19 @@ public extension View {
 
 struct View_Button_Previews: PreviewProvider {
     
-    static func button<Content: View>(for content: Content) -> some View {
+    static func button<Content: View>(
+        for content: Content,
+        style: SystemKeyboardButtonStyle) -> some View {
         content
             .padding()
-            .systemKeyboardButtonStyle(.preview1)
+            .systemKeyboardButtonStyle(style)
     }
     
     static var previews: some View {
         VStack {
-            button(for: Text("a"))
-            button(for: Text("A"))
-            button(for: Image.keyboardGlobe)
+            button(for: Text("a"), style: .preview1)
+            button(for: Text("A"), style: .preview2)
+            button(for: Image.keyboardGlobe, style: .preview1)
         }
         .padding()
         .background(Color.gray)
