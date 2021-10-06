@@ -65,6 +65,24 @@ public struct SystemKeyboard: View {
     private let inputWidth: CGFloat
     private let layout: KeyboardLayout
     
+    private var layoutConfig: KeyboardLayoutConfiguration {
+        .standard(for: context)
+    }
+    
+    private var inputCalloutStyle: InputCalloutStyle {
+        var style = appearance.inputCalloutStyle()
+        let insets = layoutConfig.buttonInsets
+        style.callout.buttonInset = CGSize(width: insets.leading, height: insets.top)
+        return style
+    }
+    
+    private var secondaryInputCalloutStyle: SecondaryInputCalloutStyle {
+        var style = appearance.secondaryInputCalloutStyle()
+        let insets = layoutConfig.buttonInsets
+        style.callout.buttonInset = CGSize(width: insets.leading, height: insets.top)
+        return style
+    }
+    
     @ObservedObject private var context: KeyboardContext
     @ObservedObject private var inputContext: InputCalloutContext
     @ObservedObject private var secondaryInputContext: SecondaryInputCalloutContext
@@ -81,10 +99,11 @@ public struct SystemKeyboard: View {
         }
         .inputCallout(
             context: inputContext,
-            style: appearance.inputCalloutStyle())
+            keyboardContext: context,
+            style: inputCalloutStyle)
         .secondaryInputCallout(
             context: secondaryInputContext,
-            style: appearance.secondaryInputCalloutStyle())
+            style: secondaryInputCalloutStyle)
     }
 }
 

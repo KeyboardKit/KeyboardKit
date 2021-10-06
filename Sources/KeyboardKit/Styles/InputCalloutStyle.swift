@@ -14,6 +14,11 @@ import SwiftUI
  
  You can modify the `.standard` style instance to change the
  standard, global style.
+ 
+ Note that `calloutSize` only applies to portrait when on an
+ iPhone. In landscape, `InputCallout` will enforce a smaller
+ callout size, since a callout can't expand beyond the edges
+ of a keyboard extension.
  */
 public struct InputCalloutStyle {
     
@@ -22,12 +27,12 @@ public struct InputCalloutStyle {
      
      - Parameters:
        - callout: The callout style to use, by default `.standard`.
-       - calloutSize: The size of the callout above the button area.
+       - calloutSize: The size of the callout bubble.
        - font: The font to use in the callout.
      */
     public init(
         callout: CalloutStyle = .standard,
-        calloutSize: CGSize = CGSize(width: 65, height: 60),
+        calloutSize: CGSize = CGSize(width: 65, height: 55),
         font: Font = Font.largeTitle.weight(.light)) {
         self.callout = callout
         self.calloutSize = calloutSize
@@ -41,6 +46,9 @@ public struct InputCalloutStyle {
     
     /**
      The size of the callout above the button area.
+     
+     If the width is smaller than the button width, then the
+     `InputCallout` applies `buttonSize` plus padding.
      */
     public var calloutSize: CGSize
     
@@ -73,6 +81,6 @@ extension InputCalloutStyle {
      */
     static var preview2 = InputCalloutStyle(
         callout: .preview2,
-        calloutSize: CGSize(width: 70, height: 60),
+        calloutSize: CGSize(width: 10, height: 60),
         font: .footnote)
 }

@@ -19,16 +19,20 @@ public struct InputCallout: View {
      
      - Parameters:
        - context: The context to bind against.
+       - keyboardContext: The keyboard context to use for contextual decisions.
        - style: The style to apply to the view, by default `.standard`.
      */
     public init(
         context: InputCalloutContext,
+        keyboardContext: KeyboardContext,
         style: InputCalloutStyle = .standard) {
         self._context = ObservedObject(wrappedValue: context)
+        self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
         self.style = style
     }
     
     @ObservedObject private var context: InputCalloutContext
+    @ObservedObject private var keyboardContext: KeyboardContext
     
     private let style: InputCalloutStyle
 
@@ -58,11 +62,32 @@ private extension InputCallout {
     
     var buttonSize: CGSize { buttonFrame.size }
     
-    var calloutSize: CGSize { style.calloutSize }
+    var calloutSize: CGSize {
+        CGSize(
+            width: calloutSizeWidth,
+            height: calloutSizeHeight)
+    }
+    
+    var calloutSizeHeight: CGFloat {
+        let smallSize = buttonSize.height + 20
+        return enforceSmallSize ? smallSize : style.calloutSize.height
+    }
+    
+    var calloutSizeWidth: CGFloat {
+        let minSize = buttonSize.width + 20
+        return max(style.calloutSize.width, minSize)
+    }
     
     var calloutStyle: CalloutStyle { style.callout }
     
-    var cornerRadius: CGFloat { calloutStyle.cornerRadius }
+    var cornerRadius: CGFloat {
+        enforceSmallSize ? calloutStyle.buttonCornerRadius : calloutStyle.cornerRadius
+    }
+    
+    var enforceSmallSize: Bool {
+        keyboardContext.screenOrientation.isLandscape &&
+        keyboardContext.device.isPhone
+    }
     
     var positionX: CGFloat {
         buttonFrame.origin.x + buttonSize.width/2
@@ -109,6 +134,7 @@ struct InputCallout_Previews: PreviewProvider {
         )
         .inputCallout(
             context: context,
+            keyboardContext: .preview,
 //            style: .standard)
 //            style: .preview1)
             style: .preview2)

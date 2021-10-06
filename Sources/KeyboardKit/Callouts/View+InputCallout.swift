@@ -16,14 +16,19 @@ public extension View {
      
      - Parameters:
        - context: The context to bind against.
+       - keyboardContext: The keyboard context to use for contextual decisions.
        - style: The style to apply to the view, by default `.standard`.
      */
     func inputCallout(
         context: InputCalloutContext,
+        keyboardContext: KeyboardContext,
         style: InputCalloutStyle = .standard) -> some View {
         ZStack {
             self
-            InputCallout(context: context, style: style)
+            InputCallout(
+                context: context,
+                keyboardContext: keyboardContext,
+                style: style)
         }.coordinateSpace(name: InputCallout.coordinateSpace)
     }
 }
