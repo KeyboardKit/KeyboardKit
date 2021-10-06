@@ -60,6 +60,7 @@
 		A9257D3627083B31000C7F3A /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = A9257D3327083B31000C7F3A /* LICENSE */; };
 		A9257D3727083B31000C7F3A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A9257D3427083B31000C7F3A /* README.md */; };
 		A951A49B25E016660022385A /* DemoKeyboardLayoutProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A951A49A25E016660022385A /* DemoKeyboardLayoutProvider.swift */; };
+		A95D6753270DE99D0018A75B /* DemoAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D6752270DE99D0018A75B /* DemoAppearance.swift */; };
 		A9C365F526F3184100E87AFE /* DemoAutocompleteToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C365F426F3184100E87AFE /* DemoAutocompleteToolbar.swift */; };
 /* End PBXBuildFile section */
 
@@ -143,6 +144,7 @@
 		A9257D3327083B31000C7F3A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		A9257D3427083B31000C7F3A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A951A49A25E016660022385A /* DemoKeyboardLayoutProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboardLayoutProvider.swift; sourceTree = "<group>"; };
+		A95D6752270DE99D0018A75B /* DemoAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoAppearance.swift; sourceTree = "<group>"; };
 		A9C365F426F3184100E87AFE /* DemoAutocompleteToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoAutocompleteToolbar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -212,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				A9C365F326F3149300E87AFE /* Actions */,
+				A95D6751270DE98D0018A75B /* Appearance */,
 				A9C365F226F310ED00E87AFE /* Autocomplete */,
 				A921157F25D5910D003510D9 /* Assets */,
 				A9FDAA0926025DF600E628C3 /* Layout */,
@@ -345,6 +348,14 @@
 				A921166625D5BC4F003510D9 /* MultilineTextField.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		A95D6751270DE98D0018A75B /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+				A95D6752270DE99D0018A75B /* DemoAppearance.swift */,
+			);
+			path = Appearance;
 			sourceTree = "<group>";
 		};
 		A98912BF25DE5D81007F4DFE /* Screens */ = {
@@ -588,6 +599,7 @@
 				A9C365F526F3184100E87AFE /* DemoAutocompleteToolbar.swift in Sources */,
 				A951A49B25E016660022385A /* DemoKeyboardLayoutProvider.swift in Sources */,
 				A921156F25D5902F003510D9 /* FakeAutocompleteProvider.swift in Sources */,
+				A95D6753270DE99D0018A75B /* DemoAppearance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

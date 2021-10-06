@@ -53,6 +53,10 @@ class KeyboardViewController: KeyboardInputViewController {
         // 💡 This is overwritten if Pro is registered below
         autocompleteProvider = FakeAutocompleteProvider()
         
+        // Setup a demo-specific apearance
+        // 💡 You can play around with the DemoAppearance
+        keyboardAppearance = DemoAppearance(context: keyboardContext)
+        
         // Setup the demo to explicitly use English locale
         // 💡 This is already done and just here to show how
         // 💡 If you register Pro below, you get all locales
