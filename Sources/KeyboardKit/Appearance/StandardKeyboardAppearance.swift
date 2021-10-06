@@ -55,7 +55,10 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
      that shows the currently pressed key.
      */
     open func inputCalloutStyle() -> InputCalloutStyle {
-        .standard
+        var style = InputCalloutStyle.standard
+        let button = systemKeyboardButtonStyle(for: .character(""), isPressed: false)
+        style.callout.buttonCornerRadius = button.cornerRadius
+        return style
     }
     
     /**
@@ -63,7 +66,10 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
      a callout that shows secondary input actions.
      */
     open func secondaryInputCalloutStyle() -> SecondaryInputCalloutStyle {
-        .standard
+        var style = SecondaryInputCalloutStyle.standard
+        let button = systemKeyboardButtonStyle(for: .character(""), isPressed: false)
+        style.callout.buttonCornerRadius = button.cornerRadius
+        return style
     }
     
     /**
