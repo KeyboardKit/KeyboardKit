@@ -25,7 +25,7 @@ import Foundation
  */
 open class BaseSecondaryCalloutActionProvider: SecondaryCalloutActionProvider {
     
-    public init() {}
+    public init() throws {}
     
     /**
      Get secondary callout actions for the provided `action`.
@@ -60,7 +60,5 @@ open class BaseSecondaryCalloutActionProvider: SecondaryCalloutActionProvider {
      This will be split by the `secondaryCalloutActions`, to
      create secondary `.character` actions.
      */
-    open func secondaryCalloutActionString(for char: String) -> String {
-        ""
-    }
+    open func secondaryCalloutActionString(for char: String) -> String { "" }
 }

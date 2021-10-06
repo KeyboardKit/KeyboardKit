@@ -27,10 +27,19 @@ open class StandardSecondaryCalloutActionProvider: SecondaryCalloutActionProvide
      */
     public init(
         context: KeyboardContext,
-        providers: [LocalizedSecondaryCalloutActionProvider] = [EnglishSecondaryCalloutActionProvider()]) {
+        providers: [LocalizedSecondaryCalloutActionProvider] = [standardProvider]) {
         self.context = context
         let dict = Dictionary(uniqueKeysWithValues: providers.map { ($0.localeKey, $0) })
         providerDictionary = LocaleDictionary(dict)
+    }
+    
+    /**
+     Get the standard action provider, which is used when no
+     custom providers are provided.
+     */
+    public static var standardProvider: LocalizedSecondaryCalloutActionProvider {
+        guard let provider = try? EnglishSecondaryCalloutActionProvider() else { fatalError("EnglishSecondaryCalloutActionProvider could not be created.") }
+        return provider
     }
     
     private let context: KeyboardContext
@@ -44,7 +53,7 @@ open class StandardSecondaryCalloutActionProvider: SecondaryCalloutActionProvide
      Get the provider to use, given the provided context.
      */
     open func provider(for context: KeyboardContext) -> SecondaryCalloutActionProvider {
-        providerDictionary.value(for: context.locale) ?? EnglishSecondaryCalloutActionProvider()
+        providerDictionary.value(for: context.locale) ?? Self.standardProvider
     }
     
     /**

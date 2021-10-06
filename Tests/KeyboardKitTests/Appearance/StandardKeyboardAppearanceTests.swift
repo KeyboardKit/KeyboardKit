@@ -85,8 +85,9 @@ class StandardKeyboardAppearanceTests: QuickSpec {
             it("backgroundColor is standard for all actions except primary actions") {
                 styles.forEach {
                     let result = $0.style.backgroundColor
-                    let expected: Color = $0.action.isPrimaryAction ? .blue : $0.action.standardButtonBackgroundColor(for: context)
-                    expect(result).to(equal(expected))
+                    let expected: Color = $0.action.isPrimaryAction ?
+                        .blue : $0.action.standardButtonBackgroundColor(for: context)
+                    expect(result).to(equal(expected.opacity(0.95)))
                 }
             }
             

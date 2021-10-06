@@ -98,6 +98,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `AutocompleteResponse` has been renamed to `AutocompleteCompletion`.
 * `AutocompleteToolbarItemText` has been renamed to `AutocompleteToolbarItemTitle`.
 * `AudioFeedback` has been renamed to `SystemAudio`.
+* `BaseSecondaryCalloutActionProvider`'s init is now throwing.
 * `CalloutStyle` `buttonOverlayInset` has been renamed to `buttonInset`.
 * `CGFloat+Keyboard` has been replaced with `KeyboardLayoutConfiguration`.
 * `EdgeInsets+Keyboard` has been replaced with `KeyboardLayoutConfiguration`.
