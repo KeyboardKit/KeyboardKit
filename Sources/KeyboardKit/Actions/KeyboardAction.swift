@@ -9,44 +9,100 @@
 import Foundation
 
 /**
- This enum specifies available keyboard actions. They can be
- bound to keyboard buttons or triggered by an action handler.
+ This enum specifies available keyboard actions that you can
+ bind to keyboard buttons or trigger with an action handler.
  
  Many actions have standard gesture behaviors. However, many
  don't and are just here to let you create your keyboards in
- a declarative way. Such actions require custom handling and
- can for instance be handled by a custom action handler.
+ a declarative way.
+ 
+ Actions without a standard behavior require custom handling
+ and can for instance be handled by a custom action handler.
  */
 public enum KeyboardAction: Codable, Equatable {
     
     case
-        none,
-        backspace,
-        character(String),
-        command,
-        control,
-        custom(named: String),
-        dictation,
-        dismissKeyboard,
-        emoji(Emoji),
-        emojiCategory(EmojiCategory),
-        escape,
-        function,
-        image(description: String, keyboardImageName: String, imageName: String),
-        keyboardType(KeyboardType),
-        moveCursorBackward,
-        moveCursorForward,
-        newLine,
-        nextKeyboard,
-        nextLocale,
-        option,
-        primary(PrimaryType),
-        `return`,
-        settings,
-        shift(currentState: KeyboardCasing),
-        space,
-        systemImage(description: String, keyboardImageName: String, imageName: String),
-        tab
+    
+    /// A "no action" placeholder action.
+    none,
+    
+    /// `.backspace` deletes text backwards in the text document proxy when `tapped` and repeats this action until the button is `released`.
+    backspace,
+    
+    /// `.character` sends a text character to the text document proxy when `tapped`.
+    character(String),
+    
+    /// `.command` represents a macOS command key.
+    command,
+    
+    /// `.control` represents a macOS control key.
+    control,
+    
+    /// `.custom` is a custom, named action that you can handle in a custom action handler.
+    custom(named: String),
+    
+    /// `.dictation` represents an iOS dictation key.
+    dictation,
+    
+    /// `.dismissKeyboard` dismisses the keyboard when `tapped`.
+    dismissKeyboard,
+    
+    /// `.emoji` sends an emoji to the text document proxy when `tapped`.
+    emoji(Emoji),
+    
+    /// `.emojiCategory` can be used to show a specific emoji category.
+    emojiCategory(EmojiCategory),
+    
+    /// `.escape` represents a macOS `esc` key.
+    escape,
+    
+    /// `.function` represents a macOS `fn` key.
+    function,
+    
+    /// `.image` can be used to show an embedded image asset.
+    image(description: String, keyboardImageName: String, imageName: String),
+    
+    /// `.keyboardType` changes the keyboard type when `tapped`.
+    keyboardType(KeyboardType),
+    
+    /// `.moveCursorBackward` moves the cursor back one position when `tapped`.
+    moveCursorBackward,
+    
+    /// `.moveCursorForward` moves the cursor forward one position when `tapped`.
+    moveCursorForward,
+    
+    /// `.newLine` sends a new line character to the text proxy when `tapped`.
+    newLine,
+    
+    /// `.nextKeyboard` triggers the main keyboard switcher when `tapped` and `long pressed`.
+    nextKeyboard,
+    
+    /// `.nextLocale` selects the next locale in the keyboard context when `tapped` and `long pressed`.
+    nextLocale,
+    
+    /// `.option` represents a macOS `option` key.
+    option,
+    
+    /// `.primary` is a primary button, e.g. `go`, `search` etc..
+    primary(PrimaryType),
+    
+    /// `.return` has the same behavior as a `newLine`, but is supposed to show a text instead of an arrow.
+    `return`,
+    
+    /// `.settings` can be used to show a settings window or trigger a settings action.
+    settings,
+    
+    /// `.shift` changes the keyboard type to `.alphabetic(.uppercased)` when `tapped` and `.capslocked` when `double tapped`.
+    shift(currentState: KeyboardCasing),
+    
+    /// `.space` sends a space to the text document proxy when `tapped`.
+    space,
+    
+    /// `.systemImage` can be used to show a system image asset (SF Symbol).
+    systemImage(description: String, keyboardImageName: String, imageName: String),
+    
+    /// `.tab` sends a tab to the text document proxy when `tapped`.
+    tab
 }
 
 

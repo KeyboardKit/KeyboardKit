@@ -113,7 +113,7 @@ Check out the demo apps and source code for examples and more information.
 
 KeyboardKit comes with many keyboard-specific actions, like `character` inputs, `emojis`, `backspace`, `space`, `newline`, `image` etc. You can even create your own actions.
 
-[Read more here][Keyboard-Actions]
+[Read more here][Actions]
 
 
 ### 🎨 Appearance
@@ -307,13 +307,13 @@ KeyboardKit is available under the MIT license. See LICENSE file for more info.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
+[Actions]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Actions.md
 [Appearance]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Appearance.md
 [Audio-Feedback]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Audio-Feedback.md
 [Autocomplete]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Autocomplete.md
 [Callouts]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Callouts.md
 [Haptic-Feedback]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Haptic-Feedback.md
 [Input-Sets]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Input-Sets.md
-[Keyboard-Actions]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Keyboard-Actions.md
 [Keyboard-Layouts]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Keyboard-Layouts.md
 [Keyboard-Types]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Keyboard-Types.md
 [Localization]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Localization.md
