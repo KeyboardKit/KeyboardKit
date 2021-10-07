@@ -21,10 +21,20 @@ import Foundation
 public enum SystemAudio: Codable, Equatable, Identifiable {
     
     case
+    
+    /// `.input` represents the sound of an input key.
     input,
+    
+    /// `.system` represents the sound of a system key.
     system,
+    
+    /// `.delete` represents the sound of a delete key.
     delete,
+    
+    /// `.custom` represents a custom sound.
     custom(id: UInt32),
+    
+    /// `.none` represents no sound.
     none
 }
 

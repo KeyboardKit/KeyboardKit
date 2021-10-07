@@ -14,6 +14,9 @@ import Foundation
  */
 public struct StandardAutocompleteSuggestion: AutocompleteSuggestion {
     
+    /**
+     Create a suggestion where `text` & `title` are the same.
+     */
     public init(
         _ text: String,
         isAutocomplete: Bool = false,
@@ -26,6 +29,9 @@ public struct StandardAutocompleteSuggestion: AutocompleteSuggestion {
         self.additionalInfo = [:]
     }
     
+    /**
+     Create a suggestion with completely custom properties.
+     */
     public init(
         text: String,
         title: String? = nil,
@@ -41,10 +47,34 @@ public struct StandardAutocompleteSuggestion: AutocompleteSuggestion {
         self.additionalInfo = additionalInfo
     }
     
+    /**
+     The text that should be sent to the text document proxy
+     and replace the current word.
+     */
     public let text: String
+    
+    /**
+     The text that should be presented to the user.
+     */
     public let title: String
+    
+    /**
+     Whether or not this suggestion is an autocompete result.
+     */
     public let isAutocomplete: Bool
+    
+    /**
+     Whether or not this suggestion is unknown to the system.
+     */
     public let isUnknown: Bool
+    
+    /**
+     An optional subtitle that can complete the `title`.
+     */
     public let subtitle: String?
+    
+    /**
+     An optional dictionary that can contain additional info.
+     */
     public let additionalInfo: [String: Any]
 }

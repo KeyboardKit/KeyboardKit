@@ -125,7 +125,7 @@ public extension KeyboardAction {
     var standardTextDocumentProxyInputAction: GestureAction? {
         if self.isPrimaryAction { return { $0?.textDocumentProxy.insertText("\n") }}
         switch self {
-        case .backspace: return { $0?.textDocumentProxy.deleteBackward($0?.keyboardBehavior.backspaceRange ?? .char) }
+        case .backspace: return { $0?.textDocumentProxy.deleteBackward(range: $0?.keyboardBehavior.backspaceRange ?? .char) }
         case .character(let char): return { $0?.textDocumentProxy.insertText(char) }
         case .emoji(let emoji): return { $0?.textDocumentProxy.insertText(emoji.char) }
         case .newLine: return { $0?.textDocumentProxy.insertText("\n") }

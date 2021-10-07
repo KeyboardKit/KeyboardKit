@@ -61,7 +61,9 @@ KeyboardKit has a `KeyboardActionHandler` protocol that can be implemented by an
 
 Using an action handler instead of triggering actions directly gives you a very flexible way of handling actions, where you can change the behavior or an entire keyboard in one single place.
 
-`KeyboardInputViewController` will automatically create a `StandardKeyboardActionHandler` when the extension is started. You can either use this handler as is or replace it with a custom one.
+`KeyboardInputViewController` will automatically create a `StandardKeyboardActionHandler` when the extension is started. You can use this handler as is or replace it with a custom action handler.
+
+You can subclass the `StandardKeyboardActionHandler` and replace the parts you want or create an entirely custom action handler.
 
 Note that keyboard actions that haven't got a standard behavior require you to create and inject a custom action handler. 
 

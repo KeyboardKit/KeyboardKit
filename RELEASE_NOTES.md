@@ -131,6 +131,8 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `SystemKeyboardButtonRowItem` now requires an injected `context`.
 * `SystemKeyboardLayoutProvider` `hasElevenElevenSevenAlphabeticInput` is now computed instead of lazy.
 * `Toast` has been removed.
+* `UITextDocumentProxy` `deleteBackward` with range has been renamed to `deleteBackward(range:)`
+* `View+DynamicType` has been removed.
 * `View+Autocomplete` has been removed.
 * `View+Callout` is now internal.
 * `View+DynamicType` has been removed.
