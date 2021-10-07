@@ -26,6 +26,18 @@ class HapticFeedbackConfigurationTests: QuickSpec {
             }
         }
         
+        describe("enabled configuration") {
+            
+            it("enabled all feedback") {
+                let config = HapticFeedbackConfiguration.enabled
+                expect(config.tap).to(equal(.lightImpact))
+                expect(config.doubleTap).to(equal(.lightImpact))
+                expect(config.longPress).to(equal(.mediumImpact))
+                expect(config.longPressOnSpace).to(equal(.mediumImpact))
+                expect(config.repeat).to(equal(.selectionChanged))
+            }
+        }
+        
         describe("no feedback configuration") {
             
             it("disables all feedback") {

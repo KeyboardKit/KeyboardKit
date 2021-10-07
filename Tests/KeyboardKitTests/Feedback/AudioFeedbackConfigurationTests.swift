@@ -24,6 +24,14 @@ class AudioFeedbackConfigurationTests: QuickSpec {
             }
         }
         
+        describe("enabled configuration") {
+            
+            it("uses standard feedback") {
+                let config = AudioFeedbackConfiguration.enabled
+                expect(config).to(equal(AudioFeedbackConfiguration()))
+            }
+        }
+        
         describe("no feedback configuration") {
             
             it("disables all feedback") {

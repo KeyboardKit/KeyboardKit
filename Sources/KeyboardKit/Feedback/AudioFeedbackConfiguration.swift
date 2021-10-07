@@ -73,21 +73,22 @@ public struct AudioFeedbackConfiguration: Codable, Equatable {
 public extension AudioFeedbackConfiguration {
     
     /**
+     This specifies an `enabled` audio feedback config where
+     all feedback types generate some kind of feedback.
+    */
+    static let enabled: AudioFeedbackConfiguration = .standard
+    
+    /**
      This configuration disables all audio feedback.
      */
-    static var noFeedback: AudioFeedbackConfiguration {
-        AudioFeedbackConfiguration(
-            input: .none,
-            delete: .none,
-            system: .none
-        )
-    }
+    static let noFeedback = AudioFeedbackConfiguration(
+        input: .none,
+        delete: .none,
+        system: .none)
     
     /**
      This configuration uses standard audio feedbacks, which
      tries to replicate the standard system behavior.
     */
-    static var standard: AudioFeedbackConfiguration {
-        AudioFeedbackConfiguration()
-    }
+    static let standard = AudioFeedbackConfiguration()
 }

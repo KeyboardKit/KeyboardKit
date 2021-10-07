@@ -92,22 +92,30 @@ public struct HapticFeedbackConfiguration: Codable, Equatable {
 public extension HapticFeedbackConfiguration {
     
     /**
-     This configuration disables all haptic feedback.
-     */
-    static var noFeedback: HapticFeedbackConfiguration {
-        HapticFeedbackConfiguration(
-            tap: .none,
-            doubleTap: .none,
-            longPress: .none,
-            longPressOnSpace: .none,
-            repeat: .none
-        )
-    }
+     This specifies an enabled haptic feedback configuration,
+     where all feedback types generate some kind of feedback.
+    */
+    static let enabled = HapticFeedbackConfiguration(
+        tap: .lightImpact,
+        doubleTap: .lightImpact,
+        longPress: .mediumImpact,
+        longPressOnSpace: .mediumImpact,
+        repeat: .selectionChanged)
     
     /**
-     This configuration specifies a standard haptic feedback.
+     This configuration disables all haptic feedback.
+     */
+    static let noFeedback = HapticFeedbackConfiguration(
+        tap: .none,
+        doubleTap: .none,
+        longPress: .none,
+        longPressOnSpace: .none,
+        repeat: .none
+    )
+    
+    /**
+     This specifies a standard haptic feedback configuration,
+     where only `longPressOnSpace` triggers feedback.
     */
-    static var standard: HapticFeedbackConfiguration {
-        HapticFeedbackConfiguration()
-    }
+    static let standard = HapticFeedbackConfiguration()
 }

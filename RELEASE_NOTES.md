@@ -25,6 +25,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * Library views no longer depend on environment objects, which make them easier to create and use.
 
 * `AudioFeedbackConfiguration` has a new action-specific feedback list.
+* `AudioFeedbackConfiguration` has a new, static `enabled` configuration.
 * `AutocompleteContext` has a new `isLoading` property.
 * `AutocompleteToolbarItemSubtitle` is a new view that renders autocomplete subtitles.
 * `Collection+RowItem` has new extensions to affect all rows.
@@ -33,6 +34,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `EmojiCategory` has a new `emojisString` property.
 * `EmojiKeyboardStyle` has new `systemFont` and `selectedCategoryColor` properties.
 * `HapticFeedbackConfiguration` has a new action-specific feedback list.
+* `HapticFeedbackConfiguration` has a new, static `enabled` configuration.
 * `InputCalloutContext` has a new, static `.disabled` context.
 * `KeyboardAction` has a new `inputCalloutText` property.
 * `KeyboardAction` has a new `isCharacterAction` property.
