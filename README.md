@@ -244,7 +244,7 @@ Until this is solved in SwiftUI and SPM, call `KeyboardPreviews.enable()` in eac
 Feel free to reach out if you have questions or if you want to contribute in any way:
 
 * E-mail: [daniel.saidi@gmail.com][Email]
-* Twitter: [@keyboardkitapp][Twitter]
+* Twitter: [@getkeyboardkit][Twitter]
 * Web site: [getkeyboardkit.com][Website]
 
 
@@ -273,7 +273,7 @@ KeyboardKit is available under the MIT license. See LICENSE file for more info.
 
 
 [Email]: mailto:daniel.saidi@gmail.com
-[Twitter]: http://www.twitter.com/keyboardkitapp
+[Twitter]: https://twitter.com/getkeyboardkit
 [Website]: https://getkeyboardkit.com
 [Sponsors]: https://github.com/sponsors/danielsaidi
 
