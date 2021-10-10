@@ -10,10 +10,10 @@ import UIKit
 
 extension UIScreen {
     
-    var isIPadProLargeScreen: Bool { hasSize(.iPadProLargeScreenPortrait) }
-    var isIPadProSmallScreen: Bool { hasSize(.iPadProSmallScreenPortrait) }
-    var isIPadScreen: Bool { hasSize(.iPadScreenPortrait) }
-    var isIPhoneProMaxScreen: Bool { hasSize(.iPhoneProMaxScreenPortrait) }
+    var isIpadProLargeScreen: Bool { hasSize(.iPadProLargeScreenPortrait) }
+    var isIpadProSmallScreen: Bool { hasSize(.iPadProSmallScreenPortrait) }
+    var isIpadScreen: Bool { hasSize(.iPadScreenPortrait) }
+    var isIphoneProMaxScreen: Bool { hasSize(.iPhoneProMaxScreenPortrait) }
 }
 
 private extension UIScreen {

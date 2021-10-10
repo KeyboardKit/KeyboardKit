@@ -16,7 +16,7 @@ import SwiftUI
  This struct makes it easy to specify how standard keyboards
  are structured in various devices.
  */
-public struct KeyboardLayoutConfiguration {
+public struct KeyboardLayoutConfiguration: Equatable {
     
     /**
      Create a new layout configuration.
@@ -54,62 +54,100 @@ public struct KeyboardLayoutConfiguration {
 public extension KeyboardLayoutConfiguration {
     
     /**
-     The standard configuration for an iPad in landscape.
+     The standard config for the provided `context`.
      */
-    static let standardForPadLandscape = KeyboardLayoutConfiguration(
+    static func standard(
+        for context: KeyboardContext) -> KeyboardLayoutConfiguration {
+        standard(
+            forIdiom: context.device.userInterfaceIdiom,
+            screenSize: context.screen.bounds.size,
+            orientation: context.screenOrientation)
+    }
+    
+    /**
+     The standard config for the provided device and screen.
+     */
+    static func standard(
+        forIdiom idiom: UIUserInterfaceIdiom,
+        screenSize size: CGSize,
+        orientation: UIInterfaceOrientation) -> KeyboardLayoutConfiguration {
+        switch idiom {
+        case .pad: return standardPad(forScreenSize: size, orientation: orientation)
+        default: return standardPhone(forScreenSize: size, orientation: orientation)
+        }
+    }
+    
+    /**
+     The standard pad config for the provided `screen`.
+     */
+    static func standardPad(
+        forScreenSize size: CGSize,
+        orientation: UIInterfaceOrientation) -> KeyboardLayoutConfiguration {
+        let isPortrait = orientation.isPortrait
+        if size.isScreenSize(.iPadProLargeScreenPortrait) {
+            return isPortrait ? .standardPadPortrait : .standardPadLandscape
+        } else if size.isScreenSize(.iPadProSmallScreenPortrait) {
+            return isPortrait ? .standardPadPortrait : .standardPadLandscape
+        }
+        return isPortrait ? .standardPadPortrait : .standardPadLandscape
+    }
+    
+    /**
+     The standard phone config for the provided `screen`.
+     */
+    static func standardPhone(
+        forScreenSize size: CGSize,
+        orientation: UIInterfaceOrientation) -> KeyboardLayoutConfiguration {
+        let isPortrait = orientation.isPortrait
+        if size.isScreenSize(.iPhoneProMaxScreenPortrait) {
+            return isPortrait ? .standardPhoneProMaxPortrait : .standardPhoneProMaxLandscape
+        }
+        return isPortrait ? .standardPhonePortrait : .standardPhoneLandscape
+    }
+    
+    /**
+     The standard config for an iPad in landscape.
+     */
+    static let standardPadLandscape = KeyboardLayoutConfiguration(
         buttonCornerRadius: 6,
         buttonInsets: .horizontal(7, vertical: 6),
         rowHeight: 86)
     
     /**
-     The standard configuration for an iPad in portait.
+     The standard config for an iPad in portait.
      */
-    static let standardForPadPortrait = KeyboardLayoutConfiguration(
+    static let standardPadPortrait = KeyboardLayoutConfiguration(
         buttonCornerRadius: 6,
         buttonInsets: .horizontal(6, vertical: 6),
         rowHeight: 67)
     
     /**
-     The standard configuration for an iPhone in landscape.
+     The standard config for an iPhone in landscape.
      */
-    static let standardForPhoneLandscape = KeyboardLayoutConfiguration(
+    static let standardPhoneLandscape = KeyboardLayoutConfiguration(
         buttonCornerRadius: 4,
         buttonInsets: .horizontal(3, vertical: 4),
         rowHeight: 40)
     
     /**
-     The standard configuration for an iPhone in portrait.
+     The standard config for an iPhone in portrait.
      */
-    static let standardForPhonePortrait = KeyboardLayoutConfiguration(
+    static let standardPhonePortrait = KeyboardLayoutConfiguration(
         buttonCornerRadius: 4,
         buttonInsets: .horizontal(3, vertical: 6),
         rowHeight: 54)
     
     /**
-     The standard configuration for the provided `context`.
+     The standard config for an iPhone Pro Max in landscape.
      */
-    static func standard(
-        for context: KeyboardContext) -> KeyboardLayoutConfiguration {
-        standard(
-            for: context.device.userInterfaceIdiom,
-            in: context.screenOrientation,
-            withScreenSize: context.screen.bounds.size)
-    }
+    static let standardPhoneProMaxLandscape = KeyboardLayoutConfiguration
+        .standardPhoneLandscape
     
     /**
-     The standard configuration for the provided parameters.
+     The standard config for an iPhone Pro Max in portrait.
      */
-    static func standard(
-        for idiom: UIUserInterfaceIdiom,
-        in orientation: UIInterfaceOrientation,
-        withScreenSize size: CGSize) -> KeyboardLayoutConfiguration {
-        switch idiom {
-        case .pad: return orientation.isLandscape ?
-            standardForPadLandscape :
-            standardForPadPortrait
-        default: return orientation.isLandscape ?
-            standardForPhoneLandscape :
-            standardForPhonePortrait
-        }
-    }
+    static let standardPhoneProMaxPortrait = KeyboardLayoutConfiguration(
+        buttonCornerRadius: 4,
+        buttonInsets: .horizontal(3, vertical: 6),
+        rowHeight: 56)
 }

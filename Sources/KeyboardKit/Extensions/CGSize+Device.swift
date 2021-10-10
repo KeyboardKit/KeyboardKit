@@ -8,6 +8,10 @@
 
 import CoreGraphics
 
+/**
+ This extension specifies screen sizes, as they are reported
+ when the keyboard prints out the size.
+ */
 extension CGSize {
     
     static let iPadProLargeScreenPortrait = CGSize(width: 1024, height: 1366)
@@ -17,10 +21,14 @@ extension CGSize {
     static let iPadScreenPortrait = CGSize(width: 768, height: 1024)
     static let iPadScreenLandscape = iPadScreenPortrait.flipped()
     
-    static let iPhoneProMaxScreenPortrait = CGSize(width: 424, height: 946)
+    static let iPhoneProMaxScreenPortrait = CGSize(width: 428, height: 926)
     static let iPhoneProMaxScreenLandscape = iPhoneProMaxScreenPortrait.flipped()
     
     func flipped() -> CGSize {
         CGSize(width: height, height: width)
+    }
+    
+    func isScreenSize(_ size: CGSize) -> Bool {
+        self == size || self == size.flipped()
     }
 }

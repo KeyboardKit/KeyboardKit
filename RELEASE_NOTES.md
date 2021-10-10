@@ -14,7 +14,9 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 KeyboardKit 5.0 streamlines the library, improves styling and previewing and makes the library easier to use.
 
-The version also removes all UIKit-specific functionality as well as all previously deprecated functionality.
+This version also removes all UIKit-specific functionality as well as all previously deprecated functionality.
+
+This version also adjust keyboard button sizes to be more correct on more device types, e.g. iPhone Pro Max, iPad Pro etc. 
 
 KeyboardKit 5.0 requires Xcode 13 and Swift 5.5. 
 
@@ -43,6 +45,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `KeyboardContext` has a new `screen` property.
 * `KeyboardInputTextComponent` is now public.
 * `KeyboardLayoutConfiguration` is a new type that replaces the `CGFloat` and `UIEdgeInsets` extensions.
+* `KeyboardLayoutConfiguration` has a bunch of standard layout configs for different devices.  
 * `NextKeyboardButton` is now SwiftUI-based and don't require any special setup.
 * `Preview` services have new, static `.preview` protocol properties.
 * `SecondaryInputCalloutContext` has a new, static `.disabled` context.
