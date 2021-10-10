@@ -85,7 +85,7 @@ public extension KeyboardLayoutConfiguration {
         orientation: UIInterfaceOrientation) -> KeyboardLayoutConfiguration {
         let isPortrait = orientation.isPortrait
         if size.isScreenSize(.iPadProLargeScreenPortrait) {
-            return isPortrait ? .standardPadPortrait : .standardPadLandscape
+            return isPortrait ? .standardPadLargeProPortrait : .standardPadLandscape
         } else if size.isScreenSize(.iPadProSmallScreenPortrait) {
             return isPortrait ? .standardPadPortrait : .standardPadLandscape
         }
@@ -109,7 +109,7 @@ public extension KeyboardLayoutConfiguration {
      The standard config for an iPad in landscape.
      */
     static let standardPadLandscape = KeyboardLayoutConfiguration(
-        buttonCornerRadius: 6,
+        buttonCornerRadius: 4,
         buttonInsets: .horizontal(7, vertical: 6),
         rowHeight: 86)
     
@@ -117,9 +117,17 @@ public extension KeyboardLayoutConfiguration {
      The standard config for an iPad in portait.
      */
     static let standardPadPortrait = KeyboardLayoutConfiguration(
-        buttonCornerRadius: 6,
+        buttonCornerRadius: 4,
         buttonInsets: .horizontal(6, vertical: 4),
         rowHeight: 64)
+    
+    /**
+     The standard config for a large iPad Pro in landscape.
+     */
+    static let standardPadLargeProPortrait = KeyboardLayoutConfiguration(
+        buttonCornerRadius: 4,
+        buttonInsets: .horizontal(4, vertical: 4),
+        rowHeight: 69)
     
     /**
      The standard config for an iPhone in landscape.

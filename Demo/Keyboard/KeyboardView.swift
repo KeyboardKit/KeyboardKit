@@ -69,6 +69,7 @@ private extension KeyboardView {
             inputContext: inputContext,
             secondaryInputContext: secondaryInputContext,
             buttonBuilder: buttonBuilder)
+            .overlay(Text("\(keyboardContext.screen.bounds.size.width) \(keyboardContext.screen.bounds.size.height)"))
     }
     
     var systemKeyboardStack: some View {
