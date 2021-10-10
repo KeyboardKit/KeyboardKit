@@ -118,8 +118,8 @@ public extension KeyboardLayoutConfiguration {
      */
     static let standardPadPortrait = KeyboardLayoutConfiguration(
         buttonCornerRadius: 6,
-        buttonInsets: .horizontal(6, vertical: 6),
-        rowHeight: 67)
+        buttonInsets: .horizontal(6, vertical: 4),
+        rowHeight: 64)
     
     /**
      The standard config for an iPhone in landscape.
