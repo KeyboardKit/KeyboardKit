@@ -31,45 +31,8 @@ class KeyboardAction_SystemTests: QuickSpec {
         
         beforeEach {
             context = KeyboardContext(controller: MockKeyboardInputViewController())
+            unexpected = KeyboardAction.testActions
             expected = []
-            unexpected = []
-        }
-        
-        describe("standard button background color") {
-            
-            func result(for action: KeyboardAction) -> Color {
-                action.standardButtonBackgroundColor(for: context)
-            }
-            
-            it("is clear for some actions") {
-                expected = [.none]
-                expected.forEach { expect(result(for: $0)).to(equal(.clear)) }
-                unexpected.forEach { expect(result(for: $0)).toNot(equal(.clear)) }
-            }
-            
-            it("is clear interactable for some actions") {
-                expected = [.emoji(Emoji("")), .emojiCategory(.smileys)]
-                expected.forEach { expect(result(for: $0)).to(equal(.clearInteractable)) }
-                unexpected.forEach { expect(result(for: $0)).toNot(equal(.clearInteractable)) }
-            }
-            
-            it("is blue for primary actions") {
-                expected = [.primary(.done), .primary(.go), .primary(.newLine), .primary(.ok), .primary(.search)]
-                expected.forEach { expect(result(for: $0)).to(equal(.blue)) }
-                unexpected.forEach { expect(result(for: $0)).toNot(equal(.blue)) }
-            }
-            
-            it("is standard for all other actions") {
-                let nonStandard: [KeyboardAction] = [.none, .emoji(Emoji("")), .emojiCategory(.smileys), .primary(.done), .primary(.go), .primary(.newLine), .primary(.ok), .primary(.search)]
-                expected = actions.filter { !nonStandard.contains($0) }
-                expected.forEach {
-                    if $0.isSystemAction {
-                        expect(result(for: $0)).to(equal(Color.standardDarkButtonBackgroundColor(for: context)))
-                    } else {
-                        expect(result(for: $0)).to(equal(Color.standardButtonBackgroundColor(for: context)))
-                    }
-                }
-            }
         }
         
         describe("standard button image") {
@@ -104,86 +67,6 @@ class KeyboardAction_SystemTests: QuickSpec {
                 ]
                 expected.forEach { expect(result(for: $0)).toNot(beNil()) }
                 unexpected.forEach { expect(result(for: $0)).to(beNil()) }
-            }
-        }
-        
-        describe("standard button font size") {
-            
-            func result(for action: KeyboardAction) -> CGFloat {
-                action.standardButtonFontSize(for: context)
-            }
-            
-            it("is defined for actions with image") {
-                expect(result(for: .keyboardType(.email))).to(equal(20))
-                expect(result(for: .keyboardType(.emojis))).to(equal(20))
-                expect(result(for: .shift(currentState: .lowercased))).to(equal(20))
-                expect(result(for: .backspace)).to(equal(20))
-            }
-            
-            it("is explicitly defined for some actions") {
-                expect(result(for: .keyboardType(.numeric))).to(equal(16))
-                expect(result(for: .return)).to(equal(16))
-                expect(result(for: .space)).to(equal(16))
-            }
-            
-            it("is pattern-defined for some actions") {
-                expect(result(for: .character("a"))).to(equal(26))
-                expect(result(for: .character("A"))).to(equal(23))
-                expect(result(for: .character("!"))).to(equal(23))
-                expect(result(for: .return)).to(equal(16))
-                expect(result(for: .space)).to(equal(16))
-            }
-            
-            it("has a default fallback size") {
-                expect(result(for: .emoji(Emoji("😃")))).to(equal(23))
-            }
-        }
-        
-        describe("standard button font weight") {
-            
-            func result(for action: KeyboardAction) -> Font.Weight? {
-                action.standardButtonFontWeight(for: context)
-            }
-            
-            it("is light for actions with image and lower cased char") {
-                expect(result(for: .character("A"))).to(beNil())
-                expect(result(for: .character("a"))).to(equal(.light))
-                expect(result(for: .backspace)).to(equal(.light))
-            }
-        }
-        
-        describe("standard button foreground color") {
-            
-            let primary: [KeyboardAction] = [.primary(.done), .primary(.go), .primary(.newLine), .primary(.ok), .primary(.search)]
-            
-            func result(for action: KeyboardAction) -> Color {
-                action.standardButtonForegroundColor(for: context)
-            }
-            
-            it("is white for primary actions") {
-                expected = primary
-                expected.forEach { expect(result(for: $0)).to(equal(.white)) }
-                unexpected.forEach { expect(result(for: $0)).toNot(equal(.white)) }
-            }
-            
-            it("is standard for all other actions") {
-                expected = actions.filter { !primary.contains($0) }
-                expected.forEach {
-                    expect(result(for: $0)).to(equal(Color.standardButtonForegroundColor(for: context)))
-                }
-            }
-        }
-        
-        describe("standard button shadow color") {
-            
-            func result(for action: KeyboardAction) -> Color {
-                action.standardButtonShadowColor(for: context)
-            }
-            
-            it("is clear for emoji, not others") {
-                expected = [.none, .emoji(Emoji(""))]
-                expected.forEach { expect(result(for: $0)).to(equal(.clear)) }
-                unexpected.forEach { expect(result(for: $0)).toNot(equal(.clear)) }
             }
         }
         

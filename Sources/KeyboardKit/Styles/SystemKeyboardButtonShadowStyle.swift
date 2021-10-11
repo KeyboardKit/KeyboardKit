@@ -15,7 +15,7 @@ import SwiftUI
  You can modify the `.standard` style instance to change the
  standard, global style.
  */
-public struct SystemKeyboardButtonShadowStyle {
+public struct SystemKeyboardButtonShadowStyle: Equatable {
     
     /**
      Create a system keyboard button shadow style.
@@ -43,6 +43,13 @@ public struct SystemKeyboardButtonShadowStyle {
 }
 
 public extension SystemKeyboardButtonShadowStyle {
+    
+    /**
+     This style applies no shadow.
+     */
+    static var noShadow: SystemKeyboardButtonShadowStyle {
+        SystemKeyboardButtonShadowStyle(color: .clear)
+    }
     
     /**
      This standard style aims to mimic the native iOS style.

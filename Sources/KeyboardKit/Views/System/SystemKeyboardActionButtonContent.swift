@@ -93,7 +93,7 @@ private extension SystemKeyboardActionButtonContent {
     }
     
     var spaceText: String {
-        action.standardButtonText(for: context) ?? ""
+        appearance.buttonText(for: action) ?? ""
     }
 }
 

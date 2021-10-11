@@ -19,7 +19,7 @@ class KeyboardLayoutConfigurationTests: QuickSpec {
             
             it("is correct for iPad in landscape") {
                 let config = KeyboardLayoutConfiguration.standardPadLandscape
-                expect(config.buttonCornerRadius).to(equal(6))
+                expect(config.buttonCornerRadius).to(equal(8))
                 expect(config.buttonInsets).to(equal(.horizontal(7, vertical: 6)))
                 expect(config.rowHeight).to(equal(86))
             }
@@ -27,8 +27,8 @@ class KeyboardLayoutConfigurationTests: QuickSpec {
             it("is correct for iPad in portrait") {
                 let config = KeyboardLayoutConfiguration.standardPadPortrait
                 expect(config.buttonCornerRadius).to(equal(6))
-                expect(config.buttonInsets).to(equal(.horizontal(6, vertical: 6)))
-                expect(config.rowHeight).to(equal(67))
+                expect(config.buttonInsets).to(equal(.horizontal(6, vertical: 4)))
+                expect(config.rowHeight).to(equal(64))
             }
             
             it("is correct for iPhone in landscape") {
@@ -54,9 +54,9 @@ class KeyboardLayoutConfigurationTests: QuickSpec {
             
             it("is correct for iPhone Pro Max in portrait") {
                 let config = KeyboardLayoutConfiguration.standardPhoneProMaxPortrait
-                expect(config.buttonCornerRadius).to(equal(6))
-                expect(config.buttonInsets).to(equal(.horizontal(3, vertical: 5)))
-                expect(config.rowHeight).to(equal(60))
+                expect(config.buttonCornerRadius).to(equal(4))
+                expect(config.buttonInsets).to(equal(.horizontal(3, vertical: 6)))
+                expect(config.rowHeight).to(equal(56))
             }
         }
         
@@ -77,7 +77,7 @@ class KeyboardLayoutConfigurationTests: QuickSpec {
                 
                 it("is correct for landscape") {
                     let config = config(forIdiom: .pad, size: .iPadScreenLandscape, orientation: .landscapeRight)
-                    expect(config.buttonCornerRadius).to(equal(6))
+                    expect(config.buttonCornerRadius).to(equal(8))
                     expect(config.buttonInsets).to(equal(.horizontal(7, vertical: 6)))
                     expect(config.rowHeight).to(equal(86))
                 }
@@ -85,8 +85,8 @@ class KeyboardLayoutConfigurationTests: QuickSpec {
                 it("is correct for portrait") {
                     let config = config(forIdiom: .pad, size: .iPadScreenPortrait, orientation: .portrait)
                     expect(config.buttonCornerRadius).to(equal(6))
-                    expect(config.buttonInsets).to(equal(.horizontal(6, vertical: 6)))
-                    expect(config.rowHeight).to(equal(67))
+                    expect(config.buttonInsets).to(equal(.horizontal(6, vertical: 4)))
+                    expect(config.rowHeight).to(equal(64))
                 }
             }
             
@@ -94,16 +94,16 @@ class KeyboardLayoutConfigurationTests: QuickSpec {
                 
                 it("is correct for landscape") {
                     let config = config(forIdiom: .pad, size: .iPadProLargeScreenLandscape, orientation: .landscapeRight)
-                    expect(config.buttonCornerRadius).to(equal(6))
-                    expect(config.buttonInsets).to(equal(.horizontal(7, vertical: 6)))
-                    expect(config.rowHeight).to(equal(86))
+                    expect(config.buttonCornerRadius).to(equal(8))
+                    expect(config.buttonInsets).to(equal(.horizontal(7, vertical: 5)))
+                    expect(config.rowHeight).to(equal(88))
                 }
                 
                 it("is correct for portrait") {
                     let config = config(forIdiom: .pad, size: .iPadProLargeScreenPortrait, orientation: .portrait)
                     expect(config.buttonCornerRadius).to(equal(6))
-                    expect(config.buttonInsets).to(equal(.horizontal(6, vertical: 6)))
-                    expect(config.rowHeight).to(equal(67))
+                    expect(config.buttonInsets).to(equal(.horizontal(4, vertical: 4)))
+                    expect(config.rowHeight).to(equal(69))
                 }
             }
             
@@ -111,16 +111,12 @@ class KeyboardLayoutConfigurationTests: QuickSpec {
                 
                 it("is correct for landscape") {
                     let config = config(forIdiom: .pad, size: .iPadProSmallScreenLandscape, orientation: .landscapeRight)
-                    expect(config.buttonCornerRadius).to(equal(6))
-                    expect(config.buttonInsets).to(equal(.horizontal(7, vertical: 6)))
-                    expect(config.rowHeight).to(equal(86))
+                    expect(config).to(equal(.standardPadLandscape))
                 }
                 
                 it("is correct for portrait") {
                     let config = config(forIdiom: .pad, size: .iPadProSmallScreenPortrait, orientation: .portrait)
-                    expect(config.buttonCornerRadius).to(equal(6))
-                    expect(config.buttonInsets).to(equal(.horizontal(6, vertical: 6)))
-                    expect(config.rowHeight).to(equal(67))
+                    expect(config).to(equal(.standardPadPortrait))
                 }
             }
             
@@ -152,9 +148,9 @@ class KeyboardLayoutConfigurationTests: QuickSpec {
                 
                 it("is correct for portrait") {
                     let config = config(forIdiom: .phone, size: .iPhoneProMaxScreenLandscape, orientation: .portrait)
-                    expect(config.buttonCornerRadius).to(equal(6))
-                    expect(config.buttonInsets).to(equal(.horizontal(3, vertical: 5)))
-                    expect(config.rowHeight).to(equal(60))
+                    expect(config.buttonCornerRadius).to(equal(4))
+                    expect(config.buttonInsets).to(equal(.horizontal(3, vertical: 6)))
+                    expect(config.rowHeight).to(equal(56))
                 }
             }
         }

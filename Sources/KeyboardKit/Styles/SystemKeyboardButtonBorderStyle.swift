@@ -15,7 +15,7 @@ import SwiftUI
  You can modify the `.standard` style instance to change the
  standard, global style.
  */
-public struct SystemKeyboardButtonBorderStyle {
+public struct SystemKeyboardButtonBorderStyle: Equatable {
     
     /**
      Create a system keyboard button border style.
@@ -25,8 +25,8 @@ public struct SystemKeyboardButtonBorderStyle {
        - size: The size of the border.
      */
     public init(
-        color: Color,
-        size: CGFloat) {
+        color: Color = .clear,
+        size: CGFloat = 0) {
         self.color = color
         self.size = size
     }
@@ -45,11 +45,14 @@ public struct SystemKeyboardButtonBorderStyle {
 public extension SystemKeyboardButtonBorderStyle {
     
     /**
+     This style applies no border.
+     */
+    static var noBorder = SystemKeyboardButtonBorderStyle()
+    
+    /**
      This standard style aims to mimic the native iOS style.
      */
-    static var standard = SystemKeyboardButtonBorderStyle(
-        color: .clear,
-        size: 0)
+    static var standard = SystemKeyboardButtonBorderStyle()
 }
 
 extension SystemKeyboardButtonBorderStyle {
