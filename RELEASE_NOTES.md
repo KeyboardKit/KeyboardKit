@@ -106,6 +106,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `BaseSecondaryCalloutActionProvider`'s init is now throwing.
 * `CalloutStyle` `buttonOverlayInset` has been renamed to `buttonInset`.
 * `CGFloat+Keyboard` has been replaced with `KeyboardLayoutConfiguration`.
+* `Color` `clearInteractable` has been made as internal and will be removed over time.
 * `EdgeInsets+Keyboard` has been replaced with `KeyboardLayoutConfiguration`.
 * `EmojiKeyboard` button builder no longer takes a context.
 * `EmojiKeyboardConfiguration` has been renamed to `EmojiKeyboardStyle`

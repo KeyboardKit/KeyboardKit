@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public extension Color {
+extension Color {
 
     /**
      This color can be used instead of `.clear` if the color
