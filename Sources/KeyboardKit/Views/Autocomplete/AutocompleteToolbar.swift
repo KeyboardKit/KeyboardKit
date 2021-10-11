@@ -145,13 +145,13 @@ public extension AutocompleteToolbar {
 private extension AutocompleteToolbar {
     
     func itemButton(for suggestion: AutocompleteSuggestion) -> some View {
-        Button(action: { self.replacementAction(suggestion) }) {
+        Button(action: { self.replacementAction(suggestion) }, label: {
             itemBuilder(suggestion, locale, style)
                 .padding(.horizontal, 4)
                 .padding(.vertical, 10)
                 .background(suggestion.isAutocomplete ? style.autocompleteBackground.color : Color.clearInteractable)
                 .cornerRadius(style.autocompleteBackground.cornerRadius)
-        }
+        })
         .background(Color.clearInteractable)
         .buttonStyle(PlainButtonStyle())
     }
