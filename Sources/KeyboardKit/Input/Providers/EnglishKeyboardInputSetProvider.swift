@@ -14,12 +14,19 @@ import UIKit
  Since currencies can vary between English locales, you have
  the option to override the currency symbol. You can provide
  a `numericCurrency` that will be used for numeric keyboards,
- and a `symbolicCurrency` that will be used for symbolic.
- 
- By default, `$` is used for numeric and `£` for symbolic.
+ and a `symbolicCurrency` that will be used for symbolic. By
+ default, `$` is used for numeric and `£` for symbolic.
  */
 public class EnglishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, LocalizedService {
     
+    /**
+     Create a provider instance.
+     
+     - Parameters:
+       - device: The device for which the input should apply.
+       - numericCurrency: The currency to use for the numeric input set.
+       - symbolicCurrency: The currency to use for the symbolic input set.
+     */
     public init(
         device: UIDevice = .current,
         numericCurrency: String = "$",
@@ -29,11 +36,29 @@ public class EnglishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, Lo
         self.symbolicCurrency = symbolicCurrency
     }
     
+    /**
+     The device for which the input should apply.
+     */
     public let device: UIDevice
+    
+    /**
+     The currency to use for the numeric input set.
+     */
     public let numericCurrency: String
+    
+    /**
+     The currency to use for the symbolic input set.
+     */
     public let symbolicCurrency: String
+    
+    /**
+     The locale identifier.
+     */
     public let localeKey: String = KeyboardLocale.english.id
     
+    /**
+     The input set to use for alphabetic keyboards.
+     */
     public var alphabeticInputSet: AlphabeticKeyboardInputSet {
         AlphabeticKeyboardInputSet(rows: [
             row("qwertyuiop"),
@@ -42,6 +67,9 @@ public class EnglishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, Lo
         ])
     }
     
+    /**
+     The input set to use for numeric keyboards.
+     */
     public var numericInputSet: NumericKeyboardInputSet {
         NumericKeyboardInputSet(rows: [
             row("1234567890"),
@@ -50,6 +78,9 @@ public class EnglishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, Lo
         ])
     }
     
+    /**
+     The input set to use for symbolic keyboards.
+     */
     public var symbolicInputSet: SymbolicKeyboardInputSet {
         SymbolicKeyboardInputSet(rows: [
             row(phone: "[]{}#%^*+=", pad: "1234567890"),

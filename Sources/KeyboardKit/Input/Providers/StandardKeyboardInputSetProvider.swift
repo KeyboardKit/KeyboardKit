@@ -50,21 +50,21 @@ open class StandardKeyboardInputSetProvider: KeyboardInputSetProvider {
     }
     
     /**
-     Get the alphabetic input set for the current `context`.
+     The input set to use for alphabetic keyboards.
      */
     open var alphabeticInputSet: AlphabeticKeyboardInputSet {
         provider(for: context).alphabeticInputSet
     }
     
     /**
-     Get the numeric input set for the current `context`.
+     The input set to use for numeric keyboards.
      */
     open var numericInputSet: NumericKeyboardInputSet {
         provider(for: context).numericInputSet
     }
     
     /**
-     Get the symbolic input set for the current `context`.
+     The input set to use for symbolic keyboards.
      */
     open var symbolicInputSet: SymbolicKeyboardInputSet {
         provider(for: context).symbolicInputSet

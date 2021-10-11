@@ -8,6 +8,10 @@
 
 import Foundation
 
+/**
+ This disabled provider can be used to disable the secondary
+ actions from showing up in system keyboards.
+ */
 class DisabledSecondaryCalloutActionProvider: SecondaryCalloutActionProvider {
     
     func secondaryCalloutActions(for action: KeyboardAction) -> [KeyboardAction] { [] }

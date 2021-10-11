@@ -26,8 +26,9 @@ public class KeyboardEnabledState: KeyboardEnabledStateInspector, ObservableObje
      When you call this function, make sure that you use the
      `bundleId` of the keyboard extension, not the app.
      
-     - Parameter bundleId: The bundle id of the keyboard extension.
-     - Parameter notificationCenter: The notification center to use to observe changes.
+     - Parameters:
+       - bundleId: The bundle id of the keyboard extension.
+       - notificationCenter: The notification center to use to observe changes.
      */
     public init(
         bundleId: String,
@@ -55,7 +56,7 @@ public class KeyboardEnabledState: KeyboardEnabledStateInspector, ObservableObje
      with the provided bundle id.
      */
     public func refresh() {
-        isKeyboardEnabled = isKeyboardEnabled(for: bundleId)
+        isKeyboardEnabled = isKeyboardEnabled(withBundleId: bundleId)
     }
 }
 

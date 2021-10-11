@@ -21,88 +21,86 @@ import Foundation
  */
 public enum KeyboardAction: Codable, Equatable {
     
-    case
-    
     /// A "no action" placeholder action.
-    none,
+    case none
     
     /// `.backspace` deletes text backwards in the text document proxy when `tapped` and repeats this action until the button is `released`.
-    backspace,
+    case backspace
     
     /// `.character` sends a text character to the text document proxy when `tapped`.
-    character(String),
+    case character(String)
     
-    /// `.command` represents a macOS command key.
-    command,
+    /// `.command` represents a command key.
+    case command
     
-    /// `.control` represents a macOS control key.
-    control,
+    /// `.control` represents a control key.
+    case control
     
     /// `.custom` is a custom, named action that you can handle in a custom action handler.
-    custom(named: String),
+    case custom(named: String)
     
-    /// `.dictation` represents an iOS dictation key.
-    dictation,
+    /// `.dictation` represents a dictation key.
+    case dictation
     
     /// `.dismissKeyboard` dismisses the keyboard when `tapped`.
-    dismissKeyboard,
+    case dismissKeyboard
     
     /// `.emoji` sends an emoji to the text document proxy when `tapped`.
-    emoji(Emoji),
+    case emoji(Emoji)
     
     /// `.emojiCategory` can be used to show a specific emoji category.
-    emojiCategory(EmojiCategory),
+    case emojiCategory(EmojiCategory)
     
-    /// `.escape` represents a macOS `esc` key.
-    escape,
+    /// `.escape` represents an `esc` key.
+    case escape
     
-    /// `.function` represents a macOS `fn` key.
-    function,
+    /// `.function` represents a `fn` key.
+    case function
     
     /// `.image` can be used to show an embedded image asset.
-    image(description: String, keyboardImageName: String, imageName: String),
+    case image(description: String, keyboardImageName: String, imageName: String)
     
     /// `.keyboardType` changes the keyboard type when `tapped`.
-    keyboardType(KeyboardType),
+    case keyboardType(KeyboardType)
     
     /// `.moveCursorBackward` moves the cursor back one position when `tapped`.
-    moveCursorBackward,
+    case moveCursorBackward
     
     /// `.moveCursorForward` moves the cursor forward one position when `tapped`.
-    moveCursorForward,
+    case moveCursorForward
     
     /// `.newLine` sends a new line character to the text proxy when `tapped`.
-    newLine,
+    case newLine
     
     /// `.nextKeyboard` triggers the main keyboard switcher when `tapped` and `long pressed`.
-    nextKeyboard,
+    case nextKeyboard
     
     /// `.nextLocale` selects the next locale in the keyboard context when `tapped` and `long pressed`.
-    nextLocale,
+    case nextLocale
     
     /// `.option` represents a macOS `option` key.
-    option,
+    case option
     
     /// `.primary` is a primary button, e.g. `go`, `search` etc..
-    primary(PrimaryType),
+    case primary(PrimaryType)
     
     /// `.return` has the same behavior as a `newLine`, but is supposed to show a text instead of an arrow.
-    `return`,
+    case `return`
     
     /// `.settings` can be used to show a settings window or trigger a settings action.
-    settings,
+    case settings
     
     /// `.shift` changes the keyboard type to `.alphabetic(.uppercased)` when `tapped` and `.capslocked` when `double tapped`.
-    shift(currentState: KeyboardCasing),
+    case shift(currentState: KeyboardCasing)
     
     /// `.space` sends a space to the text document proxy when `tapped`.
-    space,
+    case space
     
     /// `.systemImage` can be used to show a system image asset (SF Symbol).
-    systemImage(description: String, keyboardImageName: String, imageName: String),
+    case systemImage(description: String, keyboardImageName: String, imageName: String)
     
     /// `.tab` sends a tab to the text document proxy when `tapped`.
-    tab
+    case tab
 }
 
 

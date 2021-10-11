@@ -24,17 +24,17 @@ import Foundation
 public protocol KeyboardInputSetProvider: AnyObject {
     
     /**
-     Get the alphabetic input set to use.
+     The input set to use for alphabetic keyboards.
      */
     var alphabeticInputSet: AlphabeticKeyboardInputSet { get }
 
     /**
-     Get the numeric input set to use.
+     The input set to use for numeric keyboards.
      */
     var numericInputSet: NumericKeyboardInputSet { get }
 
     /**
-     Get the symbolic input set to use.
+     The input set to use for symbolic keyboards.
      */
     var symbolicInputSet: SymbolicKeyboardInputSet { get }
 }

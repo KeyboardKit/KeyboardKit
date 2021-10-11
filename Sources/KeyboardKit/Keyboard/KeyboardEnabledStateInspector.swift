@@ -29,7 +29,7 @@ public extension KeyboardEnabledStateInspector {
      - Parameter notificationCenter: The notification center to use to observe changes.     
      */
     func isKeyboardEnabled(
-        for bundleId: String,
+        withBundleId bundleId: String,
         defaults: UserDefaults = .standard) -> Bool {
         let key = "AppleKeyboards"
         guard let settings = defaults.object(forKey: key) as? [String] else { return false }

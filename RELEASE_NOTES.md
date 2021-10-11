@@ -117,6 +117,7 @@ KeyboardKit 5.0 requires Xcode 13 and Swift 5.5.
 * `KeyboardAction+Button` styles have been moved into `StandardKeyboardAppearance`.
 * `KeyboardBehavior` has a new `shouldSwitchToCapsLock` function.
 * `KeyboardCasing.neutral` has been removed.
+* `KeyboardEnabledStateInspector` `isKeyboardEnabled` `for` parameters has been renamed to `withBundleId`. 
 * `KeyboardInputSetProvider` functions have been converted to properties.
 * `KeyboardType.custom` has been renamed to `KeyboardType.custom(named:)`.
 * `SecondaryInputCalloutContext` `alignment` is now a `HorizontalAlignment`.

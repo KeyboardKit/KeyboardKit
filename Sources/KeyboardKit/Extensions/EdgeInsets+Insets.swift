@@ -9,7 +9,7 @@
 import CoreGraphics
 import SwiftUI
 
-public extension EdgeInsets {
+extension EdgeInsets {
     
     /**
      Create an `EdgeInsets` with the same insets everywhere.

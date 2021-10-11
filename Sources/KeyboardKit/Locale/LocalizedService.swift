@@ -15,5 +15,8 @@ import Foundation
  */
 public protocol LocalizedService {
     
+    /**
+     The unique locale key to use when looking up values.
+     */
     var localeKey: String { get }
 }
