@@ -9,12 +9,15 @@
 import Foundation
 
 /**
- This class provides English secondary callout actions.
+ This class provides U.S. English secondary callout actions.
  */
 open class EnglishSecondaryCalloutActionProvider: BaseSecondaryCalloutActionProvider, LocalizedService {
     
     public let localeKey: String = KeyboardLocale.english.id
     
+    /**
+     Get secondary callout actions as a string for the `char`.
+     */
     open override func secondaryCalloutActionString(for char: String) -> String {
         switch char {
         case "0": return "0°"

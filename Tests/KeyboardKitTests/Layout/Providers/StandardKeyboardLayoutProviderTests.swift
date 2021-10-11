@@ -21,7 +21,9 @@ class StandardKeyboardLayoutProviderTests: QuickSpec {
         
         beforeEach {
             device = MockDevice()
-            context = KeyboardContext(device: device, controller: MockKeyboardInputViewController())
+            context = KeyboardContext(
+                controller: MockKeyboardInputViewController(),
+                device: device)
             inputProvider = MockKeyboardInputSetProvider()
             inputProvider.alphabeticInputSetValue = AlphabeticKeyboardInputSet(rows: KeyboardInputRows([["a", "b", "c"], ["a", "b", "c"], ["a", "b", "c"]]))
             inputProvider.numericInputSetValue = NumericKeyboardInputSet(rows: KeyboardInputRows([["1", "2", "3"], ["1", "2", "3"], ["1", "2", "3"]]))

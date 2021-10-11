@@ -22,7 +22,7 @@ class InternalSwedishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, L
     let device: UIDevice
     let localeKey: String = KeyboardLocale.swedish.id
     
-    func alphabeticInputSet() -> AlphabeticKeyboardInputSet {
+    var alphabeticInputSet: AlphabeticKeyboardInputSet {
         AlphabeticKeyboardInputSet(rows: [
             row("qwertyuiopå"),
             row("asdfghjklöä"),
@@ -30,7 +30,7 @@ class InternalSwedishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, L
         ])
     }
     
-    func numericInputSet() -> NumericKeyboardInputSet {
+    var numericInputSet: NumericKeyboardInputSet {
         let phoneCenter: [String] = "-/:;()".chars + ["kr"] + "&@”".chars
         let padCenter: [String] = "@#".chars + ["kr"] + "&*()’”+•".chars
         return NumericKeyboardInputSet(rows: [
@@ -40,7 +40,7 @@ class InternalSwedishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, L
         ])
     }
     
-    func symbolicInputSet() -> SymbolicKeyboardInputSet {
+    var symbolicInputSet: SymbolicKeyboardInputSet {
         SymbolicKeyboardInputSet(rows: [
             row(phone: "[]{}#%^*+=", pad: "1234567890´"),
             row(phone: "_\\|~<>€$£•", pad: "€$£^[]{}—˚…"),

@@ -72,10 +72,7 @@ public extension UITextDocumentProxy {
     }
 }
 
-
-// MARK: - Internal Properties
-
-extension UITextDocumentProxy {
+private extension UITextDocumentProxy {
     
     /**
      Check if a certain character should be included in the

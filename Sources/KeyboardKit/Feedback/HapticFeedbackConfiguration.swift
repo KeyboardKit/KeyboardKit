@@ -10,47 +10,112 @@ import Foundation
 
 /**
  This struct specifies haptic feedback for a custom keyboard.
- 
- `TODO` Make this `Codable` (which requires Xcode 13) in 5.0.
  */
-public struct HapticFeedbackConfiguration: Equatable {
+public struct HapticFeedbackConfiguration: Codable, Equatable {
     
+    /**
+     Create a feedback configuration.
+     
+     - Parameters:
+       - tap: The feedback to use for taps.
+       - doubleTap: The feedback to use for double taps.
+       - longPress: The feedback to use for long presses.
+       - longPressOnSpace: The feedback to use for long presses on space.
+       - repeat: The feedback to use for repeat.
+       - actions: A list of action/gesture-specific feedback.
+     */
     public init(
-        tapFeedback: HapticFeedback = .none,
-        doubleTapFeedback: HapticFeedback = .none,
-        longPressFeedback: HapticFeedback = .none,
-        longPressOnSpaceFeedback: HapticFeedback = .mediumImpact,
-        repeatFeedback: HapticFeedback = .none) {
-        self.tapFeedback = tapFeedback
-        self.doubleTapFeedback = doubleTapFeedback
-        self.longPressFeedback = longPressFeedback
-        self.longPressOnSpaceFeedback = longPressOnSpaceFeedback
-        self.repeatFeedback = repeatFeedback
+        tap: HapticFeedback = .none,
+        doubleTap: HapticFeedback = .none,
+        longPress: HapticFeedback = .none,
+        longPressOnSpace: HapticFeedback = .mediumImpact,
+        repeat: HapticFeedback = .none,
+        actions: [ActionFeedback] = []) {
+        self.tap = tap
+        self.doubleTap = doubleTap
+        self.longPress = longPress
+        self.longPressOnSpace = longPressOnSpace
+        self.repeat = `repeat`
+        self.actions = actions
+    }
+    
+    /**
+     This struct is used for action-specific audio feedback.
+     */
+    public struct ActionFeedback: Codable, Equatable {
+        
+        public init(
+            action: KeyboardAction,
+            gesture: KeyboardGesture,
+            feedback: HapticFeedback) {
+            self.action = action
+            self.gesture = gesture
+            self.feedback = feedback
+        }
+        
+        public let action: KeyboardAction
+        public let gesture: KeyboardGesture
+        public let feedback: HapticFeedback
     }
  
-    public let tapFeedback: HapticFeedback
-    public let doubleTapFeedback: HapticFeedback
-    public let longPressFeedback: HapticFeedback
-    public let longPressOnSpaceFeedback: HapticFeedback
-    public let repeatFeedback: HapticFeedback
+    /**
+     The feedback to use for taps.
+     */
+    public let tap: HapticFeedback
+    
+    /**
+     The feedback to use for double taps.
+     */
+    public let doubleTap: HapticFeedback
+    
+    /**
+     The feedback to use for long presses.
+     */
+    public let longPress: HapticFeedback
+    
+    /**
+     The feedback to use for long presses on space.
+     */
+    public let longPressOnSpace: HapticFeedback
+    
+    /**
+     The feedback to use for repeat.
+     */
+    public let `repeat`: HapticFeedback
+    
+    /**
+     A list of action/gesture-specific feedback.
+     */
+    public let actions: [ActionFeedback]
+}
+
+public extension HapticFeedbackConfiguration {
+    
+    /**
+     This specifies an enabled haptic feedback configuration,
+     where all feedback types generate some kind of feedback.
+    */
+    static let enabled = HapticFeedbackConfiguration(
+        tap: .lightImpact,
+        doubleTap: .lightImpact,
+        longPress: .mediumImpact,
+        longPressOnSpace: .mediumImpact,
+        repeat: .selectionChanged)
     
     /**
      This configuration disables all haptic feedback.
      */
-    public static var noFeedback: HapticFeedbackConfiguration {
-        HapticFeedbackConfiguration(
-            tapFeedback: .none,
-            doubleTapFeedback: .none,
-            longPressFeedback: .none,
-            longPressOnSpaceFeedback: .none,
-            repeatFeedback: .none
-        )
-    }
+    static let noFeedback = HapticFeedbackConfiguration(
+        tap: .none,
+        doubleTap: .none,
+        longPress: .none,
+        longPressOnSpace: .none,
+        repeat: .none
+    )
     
     /**
-     This configuration specifies a standard haptic feedback.
+     This specifies a standard haptic feedback configuration,
+     where only `longPressOnSpace` triggers feedback.
     */
-    public static var standard: HapticFeedbackConfiguration {
-        HapticFeedbackConfiguration()
-    }
+    static let standard = HapticFeedbackConfiguration()
 }

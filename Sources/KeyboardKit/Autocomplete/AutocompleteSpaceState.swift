@@ -14,5 +14,12 @@ import Foundation
  */
 public enum AutocompleteSpaceState {
     
-    case none, autoInserted, autoRemoved
+    /// This means that the proxy is not in a certain state.
+    case none
+    
+    /// This means that the proxy has an auto-inserted space.
+    case autoInserted
+    
+    /// This means that the proxy has an auto-removed space.
+    case autoRemoved
 }

@@ -23,23 +23,33 @@ import SwiftUI
  use the standard instance as is or replace it with a custom
  one if you want to customize your keyboard.
  */
-public protocol KeyboardAppearance {
+public protocol KeyboardAppearance: AnyObject {
     
+    /**
+     The button image to use for a certain `action`, if any.
+     */
     func buttonImage(for action: KeyboardAction) -> Image?
+    
+    /**
+     The button text to use for a certain `action`, if any.
+     */
     func buttonText(for action: KeyboardAction) -> String?
+    
+    /**
+     The input callout style to apply when showing a callout
+     that shows the currently pressed key.
+     */
+    func inputCalloutStyle() -> InputCalloutStyle
+    
+    /**
+     The secondary input callout style to apply when showing
+     a callout that shows secondary input actions.
+     */
+    func secondaryInputCalloutStyle() -> SecondaryInputCalloutStyle
+    
+    /**
+     The system keybard button style to use for the provided
+     `action` given a certain `isPressed` state.
+     */
     func systemKeyboardButtonStyle(for action: KeyboardAction, isPressed: Bool) -> SystemKeyboardButtonStyle
-    
-    
-    // MARK: - Deprecated
-    
-    @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
-    func buttonBackgroundColor(for action: KeyboardAction, isPressed: Bool) -> Color
-    @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
-    func buttonCornerRadius(for action: KeyboardAction) -> CGFloat
-    @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
-    func buttonFont(for action: KeyboardAction) -> Font
-    @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
-    func buttonForegroundColor(for action: KeyboardAction, isPressed: Bool) -> Color
-    @available(*, deprecated, message: "Use systemKeyboardButtonStyle instead")
-    func buttonShadowColor(for action: KeyboardAction) -> Color
 }

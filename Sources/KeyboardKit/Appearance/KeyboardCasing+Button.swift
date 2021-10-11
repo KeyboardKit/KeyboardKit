@@ -18,7 +18,6 @@ public extension KeyboardCasing {
         case .auto: return .keyboardShiftLowercased
         case .capsLocked: return .keyboardShiftCapslocked
         case .lowercased: return .keyboardShiftLowercased
-        case .neutral: return .keyboardShiftLowercased
         case .uppercased: return .keyboardShiftUppercased
         }
     }

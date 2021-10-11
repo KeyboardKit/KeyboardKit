@@ -13,8 +13,7 @@ extension ProcessInfo {
     /**
      Whether or not the process is running a SwiftUI preview.
      
-     You can check this in your SwiftUI previews, using this
-     piece of code:
+     You can check this in your SwiftUI previews, using this:
      
      ```
      if ProcessInfo.processInfo.isSwiftUIPreview { ... }

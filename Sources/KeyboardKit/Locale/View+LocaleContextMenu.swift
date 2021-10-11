@@ -11,9 +11,11 @@ import SwiftUI
 public extension View {
     
     /**
-     This applies a context menu that lists all locales that
-     are in the provided context. Picking items in this menu
-     changes the `locale` of the context.
+     Apply a context menu that lists all locales that are in
+     the provided `context`.
+     
+     Selecting a locale in the menu will change the `locale`
+     of the provided context.
      
      This function has no effect if the context doesn't have
      multiple locales.

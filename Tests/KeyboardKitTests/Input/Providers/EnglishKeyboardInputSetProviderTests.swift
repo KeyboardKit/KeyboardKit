@@ -8,7 +8,6 @@
 
 import Quick
 import Nimble
-import UIKit
 @testable import KeyboardKit
 
 class EnglishKeyboardInputSetProviderTests: QuickSpec {
@@ -39,7 +38,7 @@ class EnglishKeyboardInputSetProviderTests: QuickSpec {
                 }
                 
                 it("has correct alphabetic input set") {
-                    expect(provider.alphabeticInputSet().rows.characters()).to(equal([
+                    expect(provider.alphabeticInputSet.rows.characters()).to(equal([
                         "qwertyuiop".chars,
                         "asdfghjkl".chars,
                         "zxcvbnm".chars
@@ -47,7 +46,7 @@ class EnglishKeyboardInputSetProviderTests: QuickSpec {
                 }
                 
                 it("has correct numeric input set") {
-                    expect(provider.numericInputSet().rows.characters()).to(equal([
+                    expect(provider.numericInputSet.rows.characters()).to(equal([
                         "1234567890".chars,
                         "-/:;()$&@”".chars,
                         ".,?!’".chars
@@ -55,7 +54,7 @@ class EnglishKeyboardInputSetProviderTests: QuickSpec {
                 }
                 
                 it("has correct symbolic input set") {
-                    expect(provider.symbolicInputSet().rows.characters()).to(equal([
+                    expect(provider.symbolicInputSet.rows.characters()).to(equal([
                         "[]{}#%^*+=".chars,
                         "_\\|~<>€£¥•".chars,
                         ".,?!’".chars
@@ -67,8 +66,8 @@ class EnglishKeyboardInputSetProviderTests: QuickSpec {
                         device: device,
                         numericCurrency: "å",
                         symbolicCurrency: "ä")
-                    let numeric = provider.numericInputSet().rows[1].characters()
-                    let symbolic = provider.symbolicInputSet().rows[1].characters()
+                    let numeric = provider.numericInputSet.rows[1].characters()
+                    let symbolic = provider.symbolicInputSet.rows[1].characters()
                     expect(numeric).to(equal("-/:;()å&@”".chars))
                     expect(symbolic).to(equal("_\\|~<>€ä¥•".chars))
                 }
@@ -81,7 +80,7 @@ class EnglishKeyboardInputSetProviderTests: QuickSpec {
                 }
                 
                 it("has correct alphabetic input set") {
-                    expect(provider.alphabeticInputSet().rows.characters()).to(equal([
+                    expect(provider.alphabeticInputSet.rows.characters()).to(equal([
                         "qwertyuiop".chars,
                         "asdfghjkl".chars,
                         "zxcvbnm,.".chars
@@ -89,7 +88,7 @@ class EnglishKeyboardInputSetProviderTests: QuickSpec {
                 }
                 
                 it("has correct numeric input set") {
-                    expect(provider.numericInputSet().rows.characters()).to(equal([
+                    expect(provider.numericInputSet.rows.characters()).to(equal([
                         "1234567890".chars,
                         "@#$&*()’”".chars,
                         "%-+=/;:,.".chars
@@ -97,7 +96,7 @@ class EnglishKeyboardInputSetProviderTests: QuickSpec {
                 }
                 
                 it("has correct symbolic input set") {
-                    expect(provider.symbolicInputSet().rows.characters()).to(equal([
+                    expect(provider.symbolicInputSet.rows.characters()).to(equal([
                         "1234567890".chars,
                         "€£¥_^[]{}".chars,
                         "§|~…\\<>!?".chars
@@ -109,8 +108,8 @@ class EnglishKeyboardInputSetProviderTests: QuickSpec {
                         device: device,
                         numericCurrency: "Å",
                         symbolicCurrency: "Ä")
-                    let numeric = provider.numericInputSet().rows[1].characters()
-                    let symbolic = provider.symbolicInputSet().rows[1].characters()
+                    let numeric = provider.numericInputSet.rows[1].characters()
+                    let symbolic = provider.symbolicInputSet.rows[1].characters()
                     expect(numeric).to(equal("@#å&*()’”".chars))
                     expect(symbolic).to(equal("€ä¥_^[]{}".chars))
                 }

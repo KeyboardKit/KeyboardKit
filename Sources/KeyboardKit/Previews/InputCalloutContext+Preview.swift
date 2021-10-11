@@ -11,10 +11,9 @@ import Foundation
 public extension InputCalloutContext {
     
     /**
-     This property can be used to preview keyboard views. Do
-     not use it in other situations.
+     This preview context can be used in SwiftUI previews.
      */
     static var preview: InputCalloutContext {
-        InputCalloutContext()
+        InputCalloutContext(isEnabled: true)
     }
 }

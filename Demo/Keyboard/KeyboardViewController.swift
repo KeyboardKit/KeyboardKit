@@ -53,6 +53,10 @@ class KeyboardViewController: KeyboardInputViewController {
         // 💡 This is overwritten if Pro is registered below
         autocompleteProvider = FakeAutocompleteProvider()
         
+        // Setup a demo-specific apearance
+        // 💡 You can play around with the DemoAppearance
+        keyboardAppearance = DemoAppearance(context: keyboardContext)
+        
         // Setup the demo to explicitly use English locale
         // 💡 This is already done and just here to show how
         // 💡 If you register Pro below, you get all locales
@@ -66,8 +70,7 @@ class KeyboardViewController: KeyboardInputViewController {
         // Setup a custom, demo-specific action handler
         // 💡 Custom action handlers can handle custom logic
         keyboardActionHandler = DemoKeyboardActionHandler(
-            inputViewController: self,
-            toastContext: toastContext)
+            inputViewController: self)
         
         // Setup an input set provider
         // 💡 This is already done and just here to show how
@@ -88,7 +91,7 @@ class KeyboardViewController: KeyboardInputViewController {
         // 💡 This is overwritten if Pro is registered below
         keyboardSecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider(
             context: keyboardContext,
-            providers: [EnglishSecondaryCalloutActionProvider()])
+            providers: [try? EnglishSecondaryCalloutActionProvider()].compactMap { $0 })
         
         // keyboardAppearance can be used to style keyboards
         // This demo will soon demonstrate a color theme
@@ -110,15 +113,12 @@ class KeyboardViewController: KeyboardInputViewController {
     
     
     // MARK: - Properties
-    
-    private lazy var toastContext = KeyboardToastContext()
-    
+        
     private var keyboardView: some View {
         KeyboardView(
             actionHandler: keyboardActionHandler,
             appearance: keyboardAppearance,
             layoutProvider: keyboardLayoutProvider)
-            .environmentObject(toastContext)
     }
     
     

@@ -9,7 +9,8 @@
 import Quick
 import Nimble
 import MockingKit
-import UIKit
+import CoreGraphics
+import Foundation
 @testable import KeyboardKit
 
 class StandardKeyboardBehaviorTests: QuickSpec {
@@ -141,7 +142,7 @@ class StandardKeyboardBehaviorTests: QuickSpec {
             
             it("is false for most keyboard types") {
                 let types: [KeyboardType] = [
-                    .custom("foo"),
+                    .custom(named: "foo"),
                     .email,
                     .emojis,
                     .images,
@@ -158,7 +159,6 @@ class StandardKeyboardBehaviorTests: QuickSpec {
                 let expectedFalse: [KeyboardType] = [
                     .alphabetic(.capsLocked),
                     .alphabetic(.lowercased),
-                    .alphabetic(.neutral),
                     .alphabetic(.uppercased)]
                 expectedTrue.forEach {
                     expect(result(after: .tap, on: .keyboardType($0))).to(beTrue())
@@ -170,8 +170,8 @@ class StandardKeyboardBehaviorTests: QuickSpec {
             
             it("is false if the action is keyboard type") {
                 let types: [KeyboardType] = [
-                    .alphabetic(.neutral),
-                    .custom("foo"),
+                    .alphabetic(.lowercased),
+                    .custom(named: "foo"),
                     .email,
                     .emojis,
                     .images,

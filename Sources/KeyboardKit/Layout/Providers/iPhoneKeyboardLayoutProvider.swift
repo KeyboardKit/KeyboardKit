@@ -15,8 +15,9 @@ import SwiftUI
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
  
- This provider will return an `itemSize` that corresponds to
- how a certain action is sized on an English system keyboard.
+ `TODO` The layout specifics are pretty nasty below, but the
+ internal functionality can be extracted to the new keyboard
+ layout configuration type or expressed outside this class.
  */
 open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     
@@ -24,14 +25,15 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     // MARK: - Overrides
     
     /**
-     Get keyboard actions for the given context and inputs.
+     Get keyboard actions for the provided `context` and the
+     provided keyboard `inputs`.
      
-     The provider will only adjust the base class actions if
-     they consist of at least one row.
+     This provider will only adjust the base actions if they
+     consist of at least one row.
      */
     open override func actions(for context: KeyboardContext, inputs: KeyboardInputRows) -> KeyboardActionRows {
         var actions = super.actions(for: context, inputs: inputs)
-        assert(actions.count > 0, "iPhone layouts require at least 1 input row.")
+        guard actions.count > 0 else { return actions }
         let last = actions.last ?? []
         actions.removeLast()
         actions.append(lowerLeadingActions(for: context) + last + lowerTrailingActions(for: context))
@@ -39,6 +41,10 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         return actions
     }
     
+    /**
+     Get the keyboard layout item width of a certain `action`
+     for the provided `context`, `row` and row `index`.
+     */
     open override func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItemWidth {
         if action.isPrimaryAction { return bottomRowPrimaryButtonWidth(for: context) }
         switch action {
@@ -55,20 +61,22 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     }
     
     
-    // MARK: - iPad Specific
+    // MARK: - iPhone Specific
     
     /**
-     Get the bottom action row that should be below the main
-     rows on input buttons.
+     Get the actions that should be bottommost on a keyboard
+     that uses the standard iPhone keyboard layout.
+     
+     This is currently pretty messy and should be cleaned up.
      */
     open func bottomActions(for context: KeyboardContext) -> KeyboardActionRow {
         var result = KeyboardActions()
         let portrait = context.screenOrientation.isPortrait
-        let needsInputSwitcher = context.needsInputModeSwitchKey
+        let needsInputSwitch = context.needsInputModeSwitchKey
         let needsDictation = context.needsInputModeSwitchKey
         if let action = keyboardSwitchActionForBottomRow(for: context) { result.append(action) }
-        if needsInputSwitcher { result.append(.nextKeyboard) }
-        if !needsInputSwitcher { result.append(.keyboardType(.emojis)) }
+        if needsInputSwitch { result.append(.nextKeyboard) }
+        if !needsInputSwitch { result.append(.keyboardType(.emojis)) }
         if portrait, needsDictation, let action = dictationReplacement { result.append(action) }
         result.append(.space)
         result.append(keyboardReturnAction(for: context))
@@ -76,11 +84,17 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         return result
     }
     
+    /**
+     Additional leading actions to apply to the bottom row.
+     */
     open func lowerLeadingActions(for context: KeyboardContext) -> KeyboardActions {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         return [action, .none]
     }
     
+    /**
+     Additional trailing actions to apply to the bottom row.
+     */
     open func lowerTrailingActions(for context: KeyboardContext) -> KeyboardActions {
         [.none, .backspace]
     }
@@ -149,8 +163,8 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
     static var proxy = PreviewTextDocumentProxy()
     
     static var context = KeyboardContext(
-        device: MockDevice(),
         controller: KeyboardInputViewController(),
+        device: MockDevice(),
         keyboardType: .alphabetic(.lowercased))
     
     static var previewImage: some View {
@@ -190,9 +204,11 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
         return SystemKeyboard(
             layout: layout(for: locale).keyboardLayout(for: context),
             appearance: StandardKeyboardAppearance(context: context),
-            actionHandler: PreviewKeyboardActionHandler(),
+            actionHandler: .preview,
+            context: .preview,
+            inputContext: .preview,
+            secondaryInputContext: .preview,
             width: context.previewWidth)
-            .keyboardPreview(context: context)
             .background(previewImage, alignment: .bottom)
             .background(Color.gray.opacity(0.4))
             .overlay(Text(context.previewImageName), alignment: .bottom)

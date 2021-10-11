@@ -11,10 +11,27 @@ import SwiftUI
 
 /**
  This class can be inherited by any keyboard layout provider
- to get basic functionality for a system keyboard.
+ that needs basic functionality for creating system keyboard
+ layouts that depend on system-specific rules.
+ 
+ The class will use an `KeyboardInputSetProvider` to get the
+ input set, which is then used to create the complete layout.
+ Since native keyboards generally do not support `dictation`,
+ there is a `dictationReplacement` that can be used to place
+ another action where the dictation key would otherwise go.
+ 
+ If you want to create an entirely custom layout, you should
+ just implement `KeyboardLayoutProvider`.
  */
 open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     
+    /**
+     Create a system keyboard layout provider.
+     
+     - Parameters:
+       - inputSetProvider: The input set provider to use.
+       - dictationReplacement: An optional dictation replacement action.
+     */
     public init(
         inputSetProvider: KeyboardInputSetProvider,
         dictationReplacement: KeyboardAction? = nil) {
@@ -23,7 +40,14 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     }
 
     
+    /**
+     An optional dictation replacement action.
+     */
     public let dictationReplacement: KeyboardAction?
+    
+    /**
+     The input set provider to use.
+     */
     public var inputSetProvider: KeyboardInputSetProvider
 
     
@@ -35,15 +59,15 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
      
      I'm not at all happy with this name, but don't know the
      proper name for this layout. If you know what it should
-     be called, just create an issue or a PR and I'll merge.
+     be called, just create an issue or a PR.
      */
-    public lazy var hasElevenElevenSevenAlphabeticInput: Bool = {
-        inputSetProvider.alphabeticInputSet().rows.first?.count == 11
-    }()
+    public var hasElevenElevenSevenAlphabeticInput: Bool {
+        inputSetProvider.alphabeticInputSet.rows.first?.count == 11
+    }
     
     
     /**
-     Get a keyboard layout for the provided context.
+     Get a keyboard layout for a certain keyboard `context`.
      */
     open func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         let inputs = self.inputs(for: context)
@@ -64,7 +88,8 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     // MARK: - Overridable helper functions
     
     /**
-     Get keyboard actions for the provided context and inputs.
+     Get keyboard actions for the provided `context` and the
+     provided keyboard `inputs`.
      */
     open func actions(for context: KeyboardContext, inputs: KeyboardInputRows) -> KeyboardActionRows {
         let characters = actionCharacters(for: context, inputs: inputs)
@@ -72,8 +97,8 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     }
     
     /**
-     Get keyboard action characters for the provided context
-     and inputs.
+     Get a keyboard action character matrix for the provided
+     `context` and `inputs`.
      */
     open func actionCharacters(for context: KeyboardContext, inputs: KeyboardInputRows) -> [[String]] {
         switch context.keyboardType {
@@ -85,19 +110,20 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     }
     
     /**
-     Get keyboard inputs for the provided context.
+     Get keyboard inputs for the provided `context`.
      */
     open func inputs(for context: KeyboardContext) -> KeyboardInputRows {
         switch context.keyboardType {
-        case .alphabetic: return inputSetProvider.alphabeticInputSet().rows
-        case .numeric: return inputSetProvider.numericInputSet().rows
-        case .symbolic: return inputSetProvider.symbolicInputSet().rows
+        case .alphabetic: return inputSetProvider.alphabeticInputSet.rows
+        case .numeric: return inputSetProvider.numericInputSet.rows
+        case .symbolic: return inputSetProvider.symbolicInputSet.rows
         default: return []
         }
     }
     
     /**
-     Get keyboard layout items for the provided context and actions.
+     Get keyboard layout item rows for the provided `context`
+     and `actions`.
      */
     open func items(for context: KeyboardContext, actions: KeyboardActionRows) -> KeyboardLayoutItemRows {
         actions.enumerated().map { row in
@@ -108,7 +134,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     }
     
     /**
-     Get keyboard layout item for a certain action.
+     Get a keyboard layout item for the provided parameters.
      */
     open func item(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItem {
         let size = itemSize(for: context, action: action, row: row, index: index)
@@ -117,16 +143,15 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     }
     
     /**
-     Get the keybpard layout insets for a certain action, at
-     a certain row and index.
+     Get keyboard item insets for the provided parameters.
      */
     open func itemInsets(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> EdgeInsets {
-        .standardKeyboardButtonInsets(for: context.device)
+        let config = KeyboardLayoutConfiguration.standard(for: context)
+        return config.buttonInsets
     }
     
     /**
-     Get the layout size for a certain keyboard action, at a
-     certain row and index.
+     Get a keyboard item size for the provided parameters.
      */
     open func itemSize(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItemSize {
         let width = itemSizeWidth(for: context, action: action, row: row, index: index)
@@ -135,16 +160,17 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     }
     
     /**
-     Get the layout height for a certain keyboard action, at
-     certain row and index.
+     Get the keyboard layout item height of an `action`, for
+     the provided `context`, `row` and row `index`.
      */
     open func itemSizeHeight(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> CGFloat {
-        .standardKeyboardRowHeight(for: context.device)
+        let config = KeyboardLayoutConfiguration.standard(for: context)
+        return config.rowHeight
     }
     
     /**
-     Get the layout width for a certain keyboard action at a
-     certain row and index.
+     Get the keyboard layout item width of a certain `action`
+     for the provided `context`, `row` and row `index`.
      */
     open func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItemWidth {
         switch action {
@@ -154,7 +180,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     }
     
     /**
-     The specific return action to use for a certain context.
+     The return action to use for the provided `context`.
      */
     open func keyboardReturnAction(for context: KeyboardContext) -> KeyboardAction {
         let type = context.textDocumentProxy.returnKeyType
@@ -168,9 +194,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     
     /**
      The keyboard switch action that should be on the bottom
-     input row which is above the bottommost row. By default
-     it's `shift` for `alphabetic`, `symbolic` for `numeric`
-     and `numeric` for `symbolic`.
+     input row, which is above the bottommost row.
      */
     open func keyboardSwitchActionForBottomInputRow(for context: KeyboardContext) -> KeyboardAction? {
         switch context.keyboardType {
@@ -183,8 +207,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     
     /**
      The keyboard switch action that should be on the bottom
-     keyboard row. By default it's `numeric` for `alphabetic`
-     keyboards and `alphabetic` for `numeric` and `symbolic`.
+     keyboard row.
      */
     open func keyboardSwitchActionForBottomRow(for context: KeyboardContext) -> KeyboardAction? {
         switch context.keyboardType {

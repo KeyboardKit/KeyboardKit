@@ -19,5 +19,12 @@ import Foundation
  */
 public protocol SecondaryCalloutActionProvider {
     
+    /**
+     Get secondary callout actions for the provided `action`.
+     
+     These are the secondary actions that are presented in a
+     callout when the user long presses the key of an action
+     that has alternative actions.
+     */
     func secondaryCalloutActions(for action: KeyboardAction) -> [KeyboardAction]
 }

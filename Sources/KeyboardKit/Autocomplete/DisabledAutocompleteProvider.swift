@@ -21,20 +21,14 @@ class DisabledAutocompleteProvider: AutocompleteProvider {
     }
     
     var canIgnoreWords: Bool { false }
-    
+    var canLearnWords: Bool { false }
     var ignoredWords: [String] = []
+    var learnedWords: [String] = []
     
     func hasIgnoredWord(_ word: String) -> Bool { false }
-    
-    func ignoreWord(_ word: String) {}
-    
-    func removeIgnoredWord(_ word: String) {}
-    
-    var canLearnWords: Bool { false }
-    
     func hasLearnedWord(_ word: String) -> Bool { false }
-    
+    func ignoreWord(_ word: String) {}
     func learnWord(_ word: String) {}
-    
+    func removeIgnoredWord(_ word: String) {}
     func unlearnWord(_ word: String) {}
 }

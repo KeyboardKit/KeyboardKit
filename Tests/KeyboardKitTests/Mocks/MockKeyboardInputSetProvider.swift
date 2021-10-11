@@ -15,7 +15,7 @@ class MockKeyboardInputSetProvider: Mock, KeyboardInputSetProvider {
     var numericInputSetValue: NumericKeyboardInputSet = NumericKeyboardInputSet(rows: [])
     var symbolicInputSetValue: SymbolicKeyboardInputSet = SymbolicKeyboardInputSet(rows: [])
     
-    func alphabeticInputSet() -> AlphabeticKeyboardInputSet { alphabeticInputSetValue }
-    func numericInputSet() -> NumericKeyboardInputSet { numericInputSetValue }
-    func symbolicInputSet() -> SymbolicKeyboardInputSet { symbolicInputSetValue }
+    var alphabeticInputSet: AlphabeticKeyboardInputSet { alphabeticInputSetValue }
+    var numericInputSet: NumericKeyboardInputSet { numericInputSetValue }
+    var symbolicInputSet: SymbolicKeyboardInputSet { symbolicInputSetValue }
 }

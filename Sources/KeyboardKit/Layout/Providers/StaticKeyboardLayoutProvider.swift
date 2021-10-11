@@ -14,15 +14,33 @@ import Foundation
  */
 public class StaticKeyboardLayoutProvider: KeyboardLayoutProvider {
     
+    /**
+     Create a system keyboard layout provider.
+     
+     - Parameters:
+       - keyboardLayout: The keyboard layout to use.
+     */
     public init(keyboardLayout: KeyboardLayout) {
         self.layout = keyboardLayout
     }
     
+    
+    /**
+     The keyboard layout to use.
+     */
     private let layout: KeyboardLayout
     
+    
+    /**
+     Get a keyboard layout for a certain keyboard `context`.
+     */
     public func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         layout
     }
     
+    /**
+     Registering a new input set provider does nothing for a
+     static provider.
+     */
     public func register(inputSetProvider: KeyboardInputSetProvider) {}
 }

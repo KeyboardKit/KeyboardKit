@@ -13,7 +13,7 @@ class MockSystemAudioPlayer: Mock, SystemAudioPlayer {
     
     lazy var playSystemAudioRef = MockReference(playSystemAudio)
     
-    func playSystemAudio(_ id: UInt32) {
-        call(playSystemAudioRef, args: (id))
+    func playSystemAudio(_ audio: SystemAudio) {
+        call(playSystemAudioRef, args: (audio))
     }
 }

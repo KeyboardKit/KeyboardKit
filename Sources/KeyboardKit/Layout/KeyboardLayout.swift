@@ -10,22 +10,52 @@ import CoreGraphics
 import SwiftUI
 
 /**
- Keyboard layouts list available actions on a keyboard. They
- most often consist of multiple input button rows surrounded
- by system buttons, as well as size information.
+ A keyboard layout lists all available actions on a keyboard
+ as well as their size.
+ 
+ A keyboard layout most often consists of several input rows
+ where the input buttons are surrounded by system buttons on
+ either or both sides, as well as a bottom row, with a large
+ space button and several system buttons.
+ 
+ A keyboard layout can however be entirely custom. Implement
+ a custom `KeyboardLayoutProvider` to create your own layout.
  */
 public class KeyboardLayout {
     
+    /**
+     Create a new layout with the provided `items`.
+     
+     - Parameters:
+       - items: The layout item rows to show in the keyboard.
+    */
     public init(items: KeyboardLayoutItemRows) {
         self.items = items
     }
     
+    /**
+     The layout item rows to show in the keyboard.
+     */
     public let items: KeyboardLayoutItemRows
     
+    /**
+     This `CGFloat` typealias makes it easier to see where a
+     total width is expected.
+     */
     public typealias TotalWidth = CGFloat
     
+    /**
+     This cache is used to avoid having to recalculate width
+     information over and over.
+     */
     var widthCache = [TotalWidth: CGFloat]()
     
+    /**
+     Calculate the width of an input key given a `totalWidth`.
+     
+     This will find the smallest required input width in all
+     rows, which can then be applied to all input keys.
+     */
     public func inputWidth(for totalWidth: TotalWidth) -> CGFloat {
         if let result = widthCache[totalWidth] { return result }
         let result = items.compactMap { $0.inputWidth(for: totalWidth) }.min() ?? 0

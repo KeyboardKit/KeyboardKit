@@ -15,14 +15,9 @@ import UIKit
  */
 class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
-    public init(
-        inputViewController: KeyboardInputViewController,
-        toastContext: KeyboardToastContext) {
-        self.toastContext = toastContext
+    public init(inputViewController: KeyboardInputViewController) {
         super.init(inputViewController: inputViewController)
     }
-    
-    private let toastContext: KeyboardToastContext
     
     
     // MARK: - Overrides
@@ -55,9 +50,7 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
      messages in the keyboard extension. You can't use logic
      that you use in real apps, e.g. `UIAlertController`.
      */
-    func alert(_ message: String) {
-        toastContext.present(message)
-    }
+    func alert(_ message: String) {}
     
     func copyImage(_ image: UIImage) {
         guard keyboardContext.hasFullAccess else { return alert("You must enable full access to copy images.") }

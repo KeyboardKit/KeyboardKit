@@ -8,9 +8,16 @@
 
 import CoreGraphics
 
+public extension KeyboardActionHandler where Self == PreviewKeyboardActionHandler {
+    
+    /**
+     This action handler can be used in SwiftUI previews.
+     */
+    static var preview: KeyboardActionHandler { PreviewKeyboardActionHandler() }
+}
+
 /**
- This class can be used to preview keyboard views. Don't use
- it in other situations.
+ This action handler can be used in SwiftUI previews.
  */
 public class PreviewKeyboardActionHandler: KeyboardActionHandler {
     

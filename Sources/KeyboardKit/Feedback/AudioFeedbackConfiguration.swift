@@ -10,40 +10,85 @@ import Foundation
 
 /**
  This struct specifies audio feedback for a custom keyboard.
- 
- `TODO` Make this `Codable` (which requires Xcode 13) in 5.0.
  */
-public struct AudioFeedbackConfiguration: Equatable {
+public struct AudioFeedbackConfiguration: Codable, Equatable {
     
+    /**
+     Create a feedback configuration.
+     
+     - Parameters:
+       - input: The feedback to use for input keys.
+       - delete: The feedback to use for delete keys.
+       - system: The feedback to use for system keys.
+       - actions: A list of action-specific feedback.
+     */
     public init(
-        inputFeedback: AudioFeedback = .input,
-        deleteFeedback: AudioFeedback = .delete,
-        systemFeedback: AudioFeedback = .system) {
-        self.inputFeedback = inputFeedback
-        self.deleteFeedback = deleteFeedback
-        self.systemFeedback = systemFeedback
+        input: SystemAudio = .input,
+        delete: SystemAudio = .delete,
+        system: SystemAudio = .system,
+        actions: [ActionFeedback] = []) {
+        self.input = input
+        self.delete = delete
+        self.system = system
+        self.actions = actions
     }
+    
+    /**
+     This struct is used for action-specific audio feedback.
+     */
+    public struct ActionFeedback: Codable, Equatable {
+        
+        public init(
+            action: KeyboardAction,
+            feedback: SystemAudio) {
+            self.action = action
+            self.feedback = feedback
+        }
+        
+        public let action: KeyboardAction
+        public let feedback: SystemAudio
+    }
+    
+    /**
+     The audio to play when a delete key is pressed.
+     */
+     public let delete: SystemAudio
  
-    public let inputFeedback: AudioFeedback
-    public let deleteFeedback: AudioFeedback
-    public let systemFeedback: AudioFeedback
+    /**
+     The audio to play when an input key is pressed.
+     */
+    public let input: SystemAudio
+    
+   /**
+    The audio to play when a system key is pressed.
+    */
+    public let system: SystemAudio
+    
+    /**
+     The audio to play when an action is triggered.
+     */
+     public let actions: [ActionFeedback]
+}
+
+public extension AudioFeedbackConfiguration {
+    
+    /**
+     This specifies an `enabled` audio feedback config where
+     all feedback types generate some kind of feedback.
+    */
+    static let enabled: AudioFeedbackConfiguration = .standard
     
     /**
      This configuration disables all audio feedback.
      */
-    public static var noFeedback: AudioFeedbackConfiguration {
-        AudioFeedbackConfiguration(
-            inputFeedback: .none,
-            deleteFeedback: .none,
-            systemFeedback: .none
-        )
-    }
+    static let noFeedback = AudioFeedbackConfiguration(
+        input: .none,
+        delete: .none,
+        system: .none)
     
     /**
      This configuration uses standard audio feedbacks, which
      tries to replicate the standard system behavior.
     */
-    public static var standard: AudioFeedbackConfiguration {
-        AudioFeedbackConfiguration()
-    }
+    static let standard = AudioFeedbackConfiguration()
 }

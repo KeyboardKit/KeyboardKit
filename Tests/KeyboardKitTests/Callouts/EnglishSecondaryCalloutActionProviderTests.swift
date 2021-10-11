@@ -18,7 +18,7 @@ class EnglishSecondaryCalloutActionProviderTests: QuickSpec {
         var provider: EnglishSecondaryCalloutActionProvider!
         
         beforeEach {
-            provider = EnglishSecondaryCalloutActionProvider()
+            provider = try? EnglishSecondaryCalloutActionProvider()
         }
         
         describe("locale") {

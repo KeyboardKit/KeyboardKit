@@ -8,9 +8,16 @@
 
 import Foundation
 
+public extension KeyboardInputSetProvider where Self == PreviewKeyboardInputSetProvider {
+    
+    /**
+     This input set provider can be used in SwiftUI previews.
+     */
+    static var preview: KeyboardInputSetProvider { PreviewKeyboardInputSetProvider() }
+}
+
 /**
- This class can be used to preview keyboard views. Don't use
- it in other situations.
+ This input set provider can be used in SwiftUI previews.
  */
 public class PreviewKeyboardInputSetProvider: KeyboardInputSetProvider {
     
@@ -22,15 +29,24 @@ public class PreviewKeyboardInputSetProvider: KeyboardInputSetProvider {
     private let context: KeyboardContext
     private let provider: KeyboardInputSetProvider
     
-    public func alphabeticInputSet() -> AlphabeticKeyboardInputSet {
-        provider.alphabeticInputSet()
+    /**
+     Get the alphabetic input set to use.
+     */
+    public var alphabeticInputSet: AlphabeticKeyboardInputSet {
+        provider.alphabeticInputSet
     }
     
-    public func numericInputSet() -> NumericKeyboardInputSet {
-        provider.numericInputSet()
+    /**
+     Get the numeric input set to use.
+     */
+    public var numericInputSet: NumericKeyboardInputSet {
+        provider.numericInputSet
     }
     
-    public func symbolicInputSet() -> SymbolicKeyboardInputSet {
-        provider.symbolicInputSet()
+    /**
+     Get the symbolic input set to use.
+     */
+    public var symbolicInputSet: SymbolicKeyboardInputSet {
+        provider.symbolicInputSet
     }
 }

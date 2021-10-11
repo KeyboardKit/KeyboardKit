@@ -10,14 +10,13 @@ import SwiftUI
 import UIKit
 
 /**
- This view can be used within a keyboard extension, when you
- want to provide a single-line text field next to a keyboard
- and have that receive user input instead of the hosting app.
+ This view can be used when you want to have a text field in
+ a keyboard extension, and the text field should receive the
+ text that is typed on the keyboard.
  
  The view will automatically register itself as an alternate
  proxy when it becomes first responder and unregister itself
- when it resigns first responder. This makes it receive user
- actions instead of the hosting app.
+ when it resigns as the first responder.
  */
 public struct KeyboardTextField: UIViewRepresentable {
     
@@ -38,12 +37,19 @@ public struct KeyboardTextField: UIViewRepresentable {
         self.resignOnReturn = resignOnReturn
     }
     
+    
+    /**
+     This typealias represents the configuration action that
+     will be used to customize the embedded `UITextField`.
+     */
+    public typealias ConfigAction = (UITextField) -> Void
+    
+    
     @Binding private var text: String
     
     private let config: ConfigAction
     private let resignOnReturn: Bool
     
-    public typealias ConfigAction = (UITextField) -> Void
     
     public func makeCoordinator() -> Coordinator {
         Coordinator(text: $text)
@@ -65,6 +71,10 @@ public struct KeyboardTextField: UIViewRepresentable {
 
 public extension KeyboardTextField {
     
+    /**
+     This coordinator is used to keep the views in sync when
+     the text changes in the embedded text field.
+     */
     class Coordinator: NSObject {
         
         init(text: Binding<String>) {

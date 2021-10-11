@@ -9,9 +9,11 @@
 import Foundation
 
 /**
- This enum contains KeyboardKit-supported locales. They have
- more information than their raw locales and can also have a
- set of corresponding services attatched to them.
+ This enum contains KeyboardKit-supported keyboard locales.
+ 
+ Keyboard locales have more information than the raw locales
+ and can also have a set of corresponding services attatched
+ to them, e.g. when registering a Keyboard Kit Pro license.
  */
 public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
     
@@ -32,7 +34,7 @@ public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
 public extension KeyboardLocale {
     
     /**
-     The unique identifier of the locale.
+     The locale's unique identifier.
      */
     var id: String { rawValue }
     
@@ -78,7 +80,18 @@ public extension KeyboardLocale {
      */
     var isLeftToRight: Bool {
         switch self {
-        default: return true
+        case .danish: return true
+        case .dutch: return true
+        case .english: return true
+        case .english_gb: return true
+        case .english_us: return true
+        case .finnish: return true
+        case .french: return true
+        case .german: return true
+        case .italian: return true
+        case .norwegian: return true
+        case .swedish: return true
+        case .spanish: return true
         }
     }
     

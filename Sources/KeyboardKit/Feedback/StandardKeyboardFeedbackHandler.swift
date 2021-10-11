@@ -29,12 +29,10 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
         self.settings = settings
     }
     
-    
     public let settings: KeyboardFeedbackSettings
     
     public var audioConfig: AudioFeedbackConfiguration { settings.audioConfiguration }
     public var hapticConfig: HapticFeedbackConfiguration { settings.hapticConfiguration }
-    
     
     /**
      Whether or not a feedback should be given for a certain
@@ -82,7 +80,7 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
      it enters cursor drag state.
      */
     open func triggerFeedbackForLongPressOnSpaceDragGesture() {
-        hapticConfig.longPressOnSpaceFeedback.trigger()
+        hapticConfig.longPressOnSpace.trigger()
     }
     
     /**
@@ -90,9 +88,11 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
      certain `action`.
      */
     open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
-        if action == .backspace { return audioConfig.deleteFeedback.trigger() }
-        if action.isInputAction { return audioConfig.inputFeedback.trigger() }
-        if action.isSystemAction { return audioConfig.systemFeedback.trigger() }
+        let custom = audioConfig.actions.first { $0.action == action }
+        if let custom = custom { return custom.feedback.play() }
+        if action == .backspace { return audioConfig.delete.play() }
+        if action.isInputAction { return audioConfig.input.play() }
+        if action.isSystemAction { return audioConfig.system.play() }
     }
     
     /**
@@ -100,13 +100,15 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
      certain `action`.
      */
     open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
+        let custom = hapticConfig.actions.first { $0.action == action && $0.gesture == gesture }
+        if let custom = custom { return custom.feedback.trigger() }
         switch gesture {
-        case .doubleTap: hapticConfig.doubleTapFeedback.trigger()
-        case .longPress: hapticConfig.longPressFeedback.trigger()
-        case .press: hapticConfig.tapFeedback.trigger()
-        case .release: hapticConfig.tapFeedback.trigger()
-        case .repeatPress: hapticConfig.repeatFeedback.trigger()
-        case .tap: hapticConfig.tapFeedback.trigger()
+        case .doubleTap: hapticConfig.doubleTap.trigger()
+        case .longPress: hapticConfig.longPress.trigger()
+        case .press: hapticConfig.tap.trigger()
+        case .release: hapticConfig.tap.trigger()
+        case .repeatPress: hapticConfig.repeat.trigger()
+        case .tap: hapticConfig.tap.trigger()
         }
     }
 }

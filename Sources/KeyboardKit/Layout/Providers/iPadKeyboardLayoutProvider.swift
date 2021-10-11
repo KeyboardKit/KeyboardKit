@@ -9,18 +9,18 @@
 import SwiftUI
 
 /**
- This class provides layouts that correspond to an iPad with
- a home button and adds iPad-specific buttons around a basic
- set of input actions.
+ This class provides a keyboard layout that correspond to an
+ iPad with a home button.
  
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
  
- This provider will return an `itemSize` that corresponds to
- how a certain action is sized on an English system keyboard.
- 
  `TODO` This provider is currently used for iPad Air and Pro
  devices as well, although they should use different layouts.
+ 
+ `TODO` The layout specifics are pretty nasty below, but the
+ internal functionality can be extracted to the new keyboard
+ layout configuration type or expressed outside this class.
  */
 open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     
@@ -28,10 +28,11 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     // MARK: - Overrides
     
     /**
-     Get keyboard actions for the given context and inputs.
+     Get keyboard actions for the provided `context` and the
+     provided keyboard `inputs`.
      
-     The provider will only adjust the base class actions if
-     they consist of three rows or more.
+     This provider will only adjust the base actions if they
+     consist of three rows or more.
      */
     open override func actions(for context: KeyboardContext, inputs: KeyboardInputRows) -> KeyboardActionRows {
         var actions = super.actions(for: context, inputs: inputs)
@@ -45,6 +46,10 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         return actions
     }
     
+    /**
+     Get the keyboard layout item width of a certain `action`
+     for the provided `context`, `row` and row `index`.
+     */
     open override func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItemWidth {
         let elevenElevenSeven = hasElevenElevenSevenAlphabeticInput
         if isSecondRowSpacer(action, row: row, index: index) { return .inputPercentage(elevenElevenSeven ? 0.3 : 0.4) }
@@ -62,17 +67,22 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         }
     }
     
-    
-    // MARK: - iPad Specific
-    
+    /**
+     The return action to use for the provided `context`.
+     */
     open override func keyboardReturnAction(for context: KeyboardContext) -> KeyboardAction {
         let base = super.keyboardReturnAction(for: context)
         return base == .return ? .newLine : base
     }
     
+    
+    // MARK: - iPad Specific
+    
     /**
      Get the actions that should be bottommost on a keyboard
-     that uses the standard iPad system layout.
+     that uses the standard iPad keyboard layout.
+     
+     This is currently pretty messy and should be cleaned up.
      */
     open func bottomActions(for context: KeyboardContext) -> KeyboardActionRow {
         var result = KeyboardActions()
@@ -86,11 +96,17 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         return result
     }
     
+    /**
+     Additional leading actions to apply to the bottom row.
+     */
     open func lowerLeadingActions(for context: KeyboardContext) -> KeyboardActions {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         return [action]
     }
     
+    /**
+     Additional trailing actions to apply to the bottom row.
+     */
     open func lowerTrailingActions(for context: KeyboardContext) -> KeyboardActions {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         return [action]
@@ -153,8 +169,8 @@ struct iPadKeyboardLayoutProvider_Previews: PreviewProvider {
     static var proxy = PreviewTextDocumentProxy()
     
     static var context = KeyboardContext(
-        device: MockDevice(),
         controller: KeyboardInputViewController(),
+        device: MockDevice(),
         keyboardType: .alphabetic(.lowercased))
     
     static var previewImage: some View {
@@ -194,9 +210,11 @@ struct iPadKeyboardLayoutProvider_Previews: PreviewProvider {
         return SystemKeyboard(
             layout: layout(for: locale).keyboardLayout(for: context),
             appearance: StandardKeyboardAppearance(context: context),
-            actionHandler: PreviewKeyboardActionHandler(),
+            actionHandler: .preview,
+            context: .preview,
+            inputContext: .preview,
+            secondaryInputContext: .preview,
             width: context.previewWidth)
-            .keyboardPreview(context: context)
             .background(previewImage)
             .background(Color.gray)
     }

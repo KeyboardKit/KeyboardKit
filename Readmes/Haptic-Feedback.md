@@ -1,6 +1,11 @@
 # Haptic Feedback
 
-KeyboardKit has an `HapticFeedback` enum with these types:
+KeyboardKit defines haptic feedback types and ways to trigger them.
+
+
+## Haptic Feedback
+
+KeyboardKit has a `HapticFeedback` enum with these types:
 
 * `error`
 * `success`
@@ -14,9 +19,22 @@ KeyboardKit has an `HapticFeedback` enum with these types:
 
 * `none`
 
-You can enable haptic feedback globally by providing `StandardKeyboardActionHandler` with a `hapticConfiguration`. The default configuration is `.noFeedback`. You can also trigger the various feedback types manually.
+You can prepare and trigger these feedback types directly, using the `prepare()` and `trigger()` functions.
+
+
+## Configuration
+
+KeyboardKit has a `HapticFeedbackConfiguration` type that lets you configure haptic feedback.
+
+KeyboardKit defines a few predefined configurations:
+
+* `enabled` - enables all haptic feedback 
+* `noFeedback` - disables all haptic feedback
+* `standard` - only enables long press on `space` feedback 
+
+You can configure haptic feedback by registering a custom `feedback handler`.
 
 
 ## Full Access
 
-Haptic feedback requires full access. Users must manually enable full access under system settings. 
+Haptic feedback requires full access. 

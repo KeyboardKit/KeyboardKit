@@ -6,19 +6,22 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 import SwiftUI
 
-public extension EdgeInsets {
+extension EdgeInsets {
     
     /**
-     Create `EdgeInsets` from a `UIEdgeInsets` instance.
+     Create an `EdgeInsets` with the same insets everywhere.
      */
-    init(insets: UIEdgeInsets) {
-        self.init(
-            top: insets.top,
-            leading: insets.left,
-            bottom: insets.bottom,
-            trailing: insets.right)
+    static func all(_ all: CGFloat) -> EdgeInsets {
+        self.init(top: all, leading: all, bottom: all, trailing: all)
+    }
+    
+    /**
+     Create an `EdgeInsets` with horizontal/vertical values.
+     */
+    static func horizontal(_ horizontal: CGFloat, vertical: CGFloat) -> EdgeInsets {
+        self.init(top: vertical, leading: horizontal, bottom: vertical, trailing: horizontal)
     }
 }

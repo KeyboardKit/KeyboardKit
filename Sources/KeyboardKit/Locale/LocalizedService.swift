@@ -10,9 +10,13 @@ import Foundation
 
 /**
  This protocol can be implemented by services that are bound
- to a certain locale. It simplifies aggregating services.
+ to a certain locale. It simplifies aggregating services and
+ resolve the correct service for a certain locale.
  */
 public protocol LocalizedService {
     
+    /**
+     The unique locale key to use when looking up values.
+     */
     var localeKey: String { get }
 }

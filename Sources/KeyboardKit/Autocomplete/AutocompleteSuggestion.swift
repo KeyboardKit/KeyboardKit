@@ -10,8 +10,10 @@ import Foundation
 
 /**
  This protocol describes result data that can be returned by
- an autocomplete suggestion provider. You can implement your
- own types or use `StandardAutocompleteSuggestion`.
+ an autocomplete suggestion provider.
+ 
+ You can implement your own autocomplete suggestion types or
+ use the standard `StandardAutocompleteSuggestion`.
  */
 public protocol AutocompleteSuggestion {
     
@@ -20,42 +22,37 @@ public protocol AutocompleteSuggestion {
      and replace the current word.
      
      The `text` can differ from the `title`, for instance if
-     the title should be more expressive ("Did you mean <X>").
+     the title should be more detailed ("Did you mean <X>").
      */
     var text: String { get }
-    
+
+    /**
+     The text that should be presented to the user.
+     
+     The `text` can differ from the `title`, for instance if
+     the title should be more detailed ("Did you mean <X>").
+     */
+    var title: String { get }
     
     /**
-     Whether or not this suggestion should be applied when a
-     user types a word delimiter.
+     Whether or not this suggestion is an autocompete result.
      
-     An autocompleting suggestion is typically surrounded by
-     a white, rounded square when presented in an iOS system
-     keyboard.
+     Autocomplete suggestions are typically shown in a white,
+     rounded square when presented in an iOS system keyboard.
+     
+     They should be applied when a word delimiter is typed.
      */
     var isAutocomplete: Bool { get }
     
     /**
      Whether or not this suggestion is unknown to the system.
      
-     Unknown suggestions can be returned e.g. when there are
-     not enough real suggestions. An autocomplete suggestion
-     provider can then for instance return a currently typed
-     word as an "unknown" suggestion.
+     Unknown suggestions are typically shown surrounded by a
+     quotation when presented in an iOS system keyboard.
      
-     An unknown suggestion is typically surrounded by quotes
-     when presented in an iOS system keyboard.
+     The quotation should be removed if the word is learned.
      */
     var isUnknown: Bool { get }
-
-
-    /**
-     The text that should be presented to the user.
-     
-     The `text` can differ from the `title`, for instance if
-     the title should be more expressive ("Did you mean <X>").
-     */
-    var title: String { get }
     
     /**
      An optional subtitle that can complete the `title`.

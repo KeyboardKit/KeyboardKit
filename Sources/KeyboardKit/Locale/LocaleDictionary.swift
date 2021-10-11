@@ -12,12 +12,14 @@ import Foundation
  This dictionary can store items in a way that makes it easy
  to resolve them for a certain locale.
  
- When resolving items for locales, the dictionary will first
- try to find a value for the locale's `identifier`, then the
- locale's `languageCode`.
+ When resolving items, the dictionary will first try to find
+ a value for the locale `identifier`, then the `languageCode`.
  */
 public struct LocaleDictionary<ItemType> {
     
+    /**
+     Create a dictionary with locale entries.
+     */
     public init(_ dict: [KeyboardLocale: ItemType]) {
         self.dictionary = Dictionary(
             uniqueKeysWithValues: dict.keys.compactMap {
@@ -27,12 +29,29 @@ public struct LocaleDictionary<ItemType> {
         )
     }
     
-    public init(_ dict: [String: ItemType]) {
+    /**
+     Create a dictionary with locale entries.
+     */
+    public init(_ dict: [LocaleIdentifier: ItemType]) {
         self.dictionary = dict
     }
     
-    public let dictionary: [String: ItemType]
+    /**
+     This alias indicates the dictionary key type.
+     */
+    public typealias LocaleIdentifier = String
     
+    /**
+     The locale/valye dicitionary.
+     */
+    public let dictionary: [LocaleIdentifier: ItemType]
+    
+    /**
+     Get a certain value for the provided locale.
+     
+     The lookup will first check using the locale identifier
+     then the language code.
+     */
     public func value(for locale: Locale) -> ItemType? {
         if let item = dictionary[locale.identifier] { return item }
         if let item = dictionary[locale.languageCode ?? ""] { return item }

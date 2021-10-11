@@ -14,6 +14,14 @@ import Foundation
  */
 public class StaticKeyboardInputSetProvider: KeyboardInputSetProvider {
     
+    /**
+     Create a static provider.
+     
+      - Parameters:
+        - alphabeticInputSet: The alphabetic input set to use.
+        - numericInputSet: The numeric input set to use.
+        - symbolicInputSet: The symbolic input set to use.
+     */
     public init(
         alphabeticInputSet: AlphabeticKeyboardInputSet,
         numericInputSet: NumericKeyboardInputSet,
@@ -23,6 +31,9 @@ public class StaticKeyboardInputSetProvider: KeyboardInputSetProvider {
         self.symbolicInputSetValue = symbolicInputSet
     }
     
+    /**
+     Create a static, empty provider.
+     */
     public static var empty: KeyboardInputSetProvider {
         StaticKeyboardInputSetProvider(
             alphabeticInputSet: AlphabeticKeyboardInputSet(rows: []),
@@ -34,15 +45,24 @@ public class StaticKeyboardInputSetProvider: KeyboardInputSetProvider {
     private let numericInputSetValue: NumericKeyboardInputSet
     private let symbolicInputSetValue: SymbolicKeyboardInputSet
 
-    public func alphabeticInputSet() -> AlphabeticKeyboardInputSet {
+    /**
+     The alphabetic input set to use.
+     */
+    public var alphabeticInputSet: AlphabeticKeyboardInputSet {
         alphabeticInputSetValue
     }
     
-    public func numericInputSet() -> NumericKeyboardInputSet {
+    /**
+     The numeric input set to use.
+     */
+    public var numericInputSet: NumericKeyboardInputSet {
         numericInputSetValue
     }
     
-    public func symbolicInputSet() -> SymbolicKeyboardInputSet {
+    /**
+     The symbolic input set to use.
+     */
+    public var symbolicInputSet: SymbolicKeyboardInputSet {
         symbolicInputSetValue
     }
 }

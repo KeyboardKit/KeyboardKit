@@ -17,7 +17,7 @@ class EmojiKeyboardConfigurationTests: QuickSpec {
         
         describe("standard configuration list") {
             
-            func validate(_ config: EmojiKeyboardConfiguration, _ itemSize: CGFloat, _ rows: Int, _ horizontalSpacing: CGFloat, _ verticalSpacing: CGFloat) {
+            func validate(_ config: EmojiKeyboardStyle, _ itemSize: CGFloat, _ rows: Int, _ horizontalSpacing: CGFloat, _ verticalSpacing: CGFloat) {
                 expect(config.itemSize).to(equal(itemSize))
                 expect(config.rows).to(equal(rows))
                 expect(config.horizontalSpacing).to(equal(horizontalSpacing))
@@ -25,7 +25,7 @@ class EmojiKeyboardConfigurationTests: QuickSpec {
             }
             
             it("has valid cases") {
-                validate(.standardLargePadLandscape, 40, 8, 10, 6)
+                validate(.standardLargePadLandscape, 40, 6, 10, 6)
                 validate(.standardLargePadPortrait, 40, 5, 10, 6)
                 validate(.standardPadLandscape, 40, 5, 10, 6)
                 validate(.standardPadPortrait, 40, 3, 10, 6)

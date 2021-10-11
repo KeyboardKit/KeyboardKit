@@ -14,15 +14,13 @@ public extension UITextDocumentProxy {
      Delete backwards a certain number of times.
      */
     func deleteBackward(times: Int) {
-        for _ in 0..<times {
-            deleteBackward()
-        }
+        for _ in 0..<times { deleteBackward() }
     }
     
     /**
      Delete backwards a certain range.
      */
-    func deleteBackward(_ range: DeleteBackwardRange) {
+    func deleteBackward(range: DeleteBackwardRange) {
         guard let text = deleteBackwardText(for: range) else { return deleteBackward() }
         deleteBackward(times: text.count)
     }

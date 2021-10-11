@@ -10,6 +10,141 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 5.0
+
+KeyboardKit 5.0 streamlines the library, improves styling and previewing and makes the library easier to use.
+
+This version also removes all UIKit-specific functionality as well as all previously deprecated functionality.
+
+This version also adjust keyboard button sizes to be more correct on more device types, e.g. iPhone Pro Max, iPad Pro etc. 
+
+KeyboardKit 5.0 requires Xcode 13 and Swift 5.5. 
+
+### ✨ New features
+
+* Library types now implement protocols like `Codable` and `Identifiable` to greater extent.
+* Library views have a lot more previews than before, which make them much easier to adjust.
+* Library views no longer depend on environment objects, which make them easier to create and use.
+
+* `AudioFeedbackConfiguration` has a new action-specific feedback list.
+* `AudioFeedbackConfiguration` has a new, static `enabled` configuration.
+* `AutocompleteContext` has a new `isLoading` property.
+* `AutocompleteToolbarItemSubtitle` is a new view that renders autocomplete subtitles.
+* `Collection+RowItem` has new extensions to affect all rows.
+* `EdgeInsets` has a new `init(all:)` initializer.
+* `EdgeInsets` has a new `init(horizontal:,vertical:)` initializer.
+* `EmojiCategory` has a new `emojisString` property.
+* `EmojiKeyboardStyle` has new `systemFont` and `selectedCategoryColor` properties.
+* `HapticFeedbackConfiguration` has a new action-specific feedback list.
+* `HapticFeedbackConfiguration` has a new, static `enabled` configuration.
+* `InputCalloutContext` has a new, static `.disabled` context.
+* `KeyboardAction` has a new `inputCalloutText` property.
+* `KeyboardAction` has a new `isCharacterAction` property.
+* `KeyboardAppearance` has a new `inputCalloutStyle()` function.
+* `KeyboardAppearance` has a new `secondaryInputCalloutStyle()` function.
+* `KeyboardContext` has a new `screen` property.
+* `KeyboardInputTextComponent` is now public.
+* `KeyboardLayoutConfiguration` is a new type that replaces the `CGFloat` and `UIEdgeInsets` extensions.
+* `KeyboardLayoutConfiguration` has a bunch of standard layout configs for different devices.  
+* `NextKeyboardButton` is now SwiftUI-based and don't require any special setup.
+* `Preview` services have new, static `.preview` protocol properties.
+* `SecondaryInputCalloutContext` has a new, static `.disabled` context.
+* `StandardHapticFeedbackPlayer` has a new `shared` player.
+* `StandardKeyboardFeedbackHandler` now prefers action-specific feedback, if defined.
+* `StandardSystemAudioPlayer` has a new `shared` player.
+* `SystemKeyboardActionButton` is a new view that makes it easy to create action-based keyboard buttons.
+* `SystemKeyboardButton` is a new view that makes it easy to create standalone keyboard buttons.
+* `SystemKeyboardButtonText` is a new view that just sets up text correctly. 
+* `SystemKeyboardSpaceButton` can now wrap any content.
+* `View+Callout` has a new `calloutShadow` extension.
+
+### 🎨 Styling
+
+* `AutocompleteToolbarStyle` is a new style that can style autocomplete toolbars.
+* `AutocompleteToolbarItemStyle` is a new style that can style autocomplete toolbar items.
+* `AutocompleteToolbarItemBackgroundStyle` is a new style that can style the autocomplete highlight. 
+* `AutocompleteToolbarSeparatorStyle` is a new style that can style autocomplete toolbar separators.
+* `CalloutStyle` has a new, static `.standard` style.
+* `InputCalloutStyle` has a new, static `.standard` style.
+* `SecondaryInputCalloutStyle` has a new, static `.standard` style.
+* `SystemKeyboardButtonBorderStyle` has a new, static `.standard` style.
+* `SystemKeyboardButtonShadowStyle` has a new, static `.standard` style.
+* `SystemKeyboardButtonShadowStyle` has new, default init parameter values.  
+
+### 💡 Behavior changes
+
+* `AutocompleteToolbar` now applies the autocomplete background instead of the item view.
+* `AutocompleteToolbarItem`'s standard item builder now renders a subtitle if the suggestion has one.
+* `InputCallout` and `SecondaryInputCallout` look more like the native callouts.
+* `KeyboardAction+Button` now returns `KKL10n.space` for `.space` action.
+* `KeyboardGestures` now resolves input contexts from the shared controller, instead of using environment objects.
+* `StandardKeyboardAppearance` uses a small transparency to make standard buttons bleed through the underlying vibrancy.
+* `SystemKeyboard` uses the new callout styles in the appearance.
+* `SystemKeyboardActionButtonContent` now returns a `SystemKeyboardSpaceButtonContent` for `.space`. 
+* `SystemKeyboardButtonContent` now uses appearance for both text and image logic.
+* `SystemKeyboardButtonContent` no longer applies RTL transforms on the image, since SF symbols do this automatically.
+* `SystemKeyboardButtonStyle` now applies a standard shadow style by default.
+* `SystemKeyboardSpaceButtonContent` no longer auto-resolves texts, but instead show just what you provide it with.
+* `SystemKeyboardSpaceButton` now takes up as much horizontal space as it can.
+
+### 🐛 Bug fixes
+
+* `InputCallout` and `SecondaryInputCallout` no longer get tear lines in some apps.   
+* `SystemKeyboardActionButton` now handles the `.nextKeyboard` action correctly.
+
+### 💥 Breaking changes
+
+* All deprecated functionality has been removed.
+* All UIKit-specific functionality has been removed.
+* Library views that no longer depend on environment objects, may require more init parameters.
+* Initializer argument changes are omitted in the list below.
+
+* `AutocompleteProvider` `ignoredWords` is now read-only.
+* `AutocompleteResponse` has been renamed to `AutocompleteCompletion`.
+* `AutocompleteToolbarItemText` has been renamed to `AutocompleteToolbarItemTitle`.
+* `AudioFeedback` has been renamed to `SystemAudio`.
+* `BaseSecondaryCalloutActionProvider`'s init is now throwing.
+* `CalloutStyle` `buttonOverlayInset` has been renamed to `buttonInset`.
+* `CGFloat+Keyboard` has been replaced with `KeyboardLayoutConfiguration`.
+* `Color` `clearInteractable` has been made as internal and will be removed over time.
+* `EdgeInsets+Keyboard` has been replaced with `KeyboardLayoutConfiguration`.
+* `EmojiKeyboard` button builder no longer takes a context.
+* `EmojiKeyboardConfiguration` has been renamed to `EmojiKeyboardStyle`
+* `HapticFeedback` `prepare` and `trigger` now only has a non-static version.
+* `HapticFeedback.player` has been removed.
+* `InputCalloutContext` `buttonFrame(for:)` has been removed.
+* `InputCalloutContext` `updateInput(for:geo:)` has been renamed to `updateInput(for:,in:)`.
+* `KeyboardAction+Button` styles have been moved into `StandardKeyboardAppearance`.
+* `KeyboardBehavior` has a new `shouldSwitchToCapsLock` function.
+* `KeyboardCasing.neutral` has been removed.
+* `KeyboardEnabledStateInspector` `isKeyboardEnabled` `for` parameters has been renamed to `withBundleId`. 
+* `KeyboardInputSetProvider` functions have been converted to properties.
+* `KeyboardType.custom` has been renamed to `KeyboardType.custom(named:)`.
+* `SecondaryInputCalloutContext` `alignment` is now a `HorizontalAlignment`.
+* `SecondaryInputCalloutContext` `buttonFrame(for:)` has been removed.
+* `SecondaryInputCalloutContext` `updateInputs(for:geo:alignment)` has been renamed to `updateInputs(for:in:alignment:)`.
+* `SecondaryInputCalloutStyle` `selectedTextColor` has been renamed to `selectedForegroundColor`.
+* `SecondaryInputCalloutStyle` `verticalPadding` has been renamed to `verticalTextPadding`.
+* `Sequence` `batched(withBatchSize:)` has been renamed to `batched(into:)`. 
+* `SpaceDragSensitivity.custom` has been renamed to `custom(points:)`.
+* `SystemAudio` `systemId` has been renamed to `id`.
+* `SystemAudio` `trigger` has been renamed to `play`.
+* `SystemAudio` `play` now only has a non-static version.
+* `SystemAudio.player` is now `SystemAudioPlayer.shared`.
+* `SystemAudioPlayer` now takes `SystemAudio` as argument.
+* `SystemKeyboardButton` has been renamed to `SystemKeyboardActionButton`.
+* `SystemKeyboardButtonContent` has been renamed to `SystemKeyboardActionButtonContent`.
+* `SystemKeyboardButtonRowItem` now requires an injected `context`.
+* `SystemKeyboardLayoutProvider` `hasElevenElevenSevenAlphabeticInput` is now computed instead of lazy.
+* `Toast` has been removed.
+* `UITextDocumentProxy` `deleteBackward` with range has been renamed to `deleteBackward(range:)`
+* `View+DynamicType` has been removed.
+* `View+Autocomplete` has been removed.
+* `View+Callout` is now internal.
+* `View+DynamicType` has been removed.
+
+
+
 ## 4.9.3
 
 ### ✨ New features

@@ -28,7 +28,7 @@ class KeyboardType_ButtonTests: QuickSpec {
                 
                 expect(result(for: .email)).to(equal(14))
                 expect(result(for: .emojis)).to(equal(14))
-                expect(result(for: .custom(""))).to(equal(14))
+                expect(result(for: .custom(named: ""))).to(equal(14))
                 expect(result(for: .images)).to(equal(14))
             }
         }
@@ -45,7 +45,7 @@ class KeyboardType_ButtonTests: QuickSpec {
                 expect(result(for: .images)).to(equal(.keyboardImages))
                 
                 expect(result(for: .alphabetic(.lowercased))).to(beNil())
-                expect(result(for: .custom(""))).to(beNil())
+                expect(result(for: .custom(named: ""))).to(beNil())
                 expect(result(for: .numeric)).to(beNil())
                 expect(result(for: .symbolic)).to(beNil())
             }
@@ -64,7 +64,7 @@ class KeyboardType_ButtonTests: QuickSpec {
                 
                 expect(result(for: .email)).to(beNil())
                 expect(result(for: .emojis)).to(beNil())
-                expect(result(for: .custom(""))).to(beNil())
+                expect(result(for: .custom(named: ""))).to(beNil())
                 expect(result(for: .images)).to(beNil())
             }
         }

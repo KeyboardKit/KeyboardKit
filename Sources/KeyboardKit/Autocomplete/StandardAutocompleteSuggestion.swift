@@ -9,42 +9,72 @@
 import Foundation
 
 /**
- This struct is a standard result that can be returned by an
+ This struct is a standard suggestion that can be used by an
  autocomplete suggestion provider.
  */
 public struct StandardAutocompleteSuggestion: AutocompleteSuggestion {
     
+    /**
+     Create a suggestion where `text` & `title` are the same.
+     */
     public init(
         _ text: String,
         isAutocomplete: Bool = false,
         isUnknown: Bool = false) {
         self.text = text
+        self.title = text
         self.isAutocomplete = isAutocomplete
         self.isUnknown = isUnknown
-        self.title = text
         self.subtitle = nil
         self.additionalInfo = [:]
     }
     
+    /**
+     Create a suggestion with completely custom properties.
+     */
     public init(
         text: String,
+        title: String? = nil,
         isAutocomplete: Bool = false,
         isUnknown: Bool = false,
-        title: String? = nil,
         subtitle: String? = nil,
         additionalInfo: [String: Any] = [:]) {
         self.text = text
+        self.title = title ?? text
         self.isAutocomplete = isAutocomplete
         self.isUnknown = isUnknown
-        self.title = title ?? text
         self.subtitle = subtitle
         self.additionalInfo = additionalInfo
     }
     
+    /**
+     The text that should be sent to the text document proxy
+     and replace the current word.
+     */
     public let text: String
-    public let isAutocomplete: Bool
-    public let isUnknown: Bool
+    
+    /**
+     The text that should be presented to the user.
+     */
     public let title: String
+    
+    /**
+     Whether or not this suggestion is an autocompete result.
+     */
+    public let isAutocomplete: Bool
+    
+    /**
+     Whether or not this suggestion is unknown to the system.
+     */
+    public let isUnknown: Bool
+    
+    /**
+     An optional subtitle that can complete the `title`.
+     */
     public let subtitle: String?
+    
+    /**
+     An optional dictionary that can contain additional info.
+     */
     public let additionalInfo: [String: Any]
 }

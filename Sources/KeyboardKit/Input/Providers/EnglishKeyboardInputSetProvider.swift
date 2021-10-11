@@ -19,6 +19,14 @@ import UIKit
  */
 public class EnglishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, LocalizedService {
     
+    /**
+     Create a provider instance.
+     
+     - Parameters:
+       - device: The device for which the input should apply.
+       - numericCurrency: The currency to use for the numeric input set.
+       - symbolicCurrency: The currency to use for the symbolic input set.
+     */
     public init(
         device: UIDevice = .current,
         numericCurrency: String = "$",
@@ -28,12 +36,30 @@ public class EnglishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, Lo
         self.symbolicCurrency = symbolicCurrency
     }
     
+    /**
+     The device for which the input should apply.
+     */
     public let device: UIDevice
+    
+    /**
+     The currency to use for the numeric input set.
+     */
     public let numericCurrency: String
+    
+    /**
+     The currency to use for the symbolic input set.
+     */
     public let symbolicCurrency: String
+    
+    /**
+     The locale identifier.
+     */
     public let localeKey: String = KeyboardLocale.english.id
     
-    public func alphabeticInputSet() -> AlphabeticKeyboardInputSet {
+    /**
+     The input set to use for alphabetic keyboards.
+     */
+    public var alphabeticInputSet: AlphabeticKeyboardInputSet {
         AlphabeticKeyboardInputSet(rows: [
             row("qwertyuiop"),
             row("asdfghjkl"),
@@ -41,7 +67,10 @@ public class EnglishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, Lo
         ])
     }
     
-    public func numericInputSet() -> NumericKeyboardInputSet {
+    /**
+     The input set to use for numeric keyboards.
+     */
+    public var numericInputSet: NumericKeyboardInputSet {
         NumericKeyboardInputSet(rows: [
             row("1234567890"),
             row(phone: "-/:;()\(numericCurrency)&@”", pad: "@#\(numericCurrency)&*()’”"),
@@ -49,7 +78,10 @@ public class EnglishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, Lo
         ])
     }
     
-    public func symbolicInputSet() -> SymbolicKeyboardInputSet {
+    /**
+     The input set to use for symbolic keyboards.
+     */
+    public var symbolicInputSet: SymbolicKeyboardInputSet {
         SymbolicKeyboardInputSet(rows: [
             row(phone: "[]{}#%^*+=", pad: "1234567890"),
             row(phone: "_\\|~<>€\(symbolicCurrency)¥•", pad: "€\(symbolicCurrency)¥_^[]{}"),

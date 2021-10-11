@@ -19,5 +19,13 @@ public class AutocompleteContext: ObservableObject {
     
     public init() {}
     
+    /**
+     Whether or not suggestions are currently being fetched.
+     */
+    @Published public var isLoading = false
+    
+    /**
+     The last received autocomplete suggestions.
+     */
     @Published public var suggestions: [AutocompleteSuggestion] = []
 }

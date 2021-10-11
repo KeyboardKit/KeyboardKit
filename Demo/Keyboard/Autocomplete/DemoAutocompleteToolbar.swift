@@ -17,30 +17,13 @@ import SwiftUI
 struct DemoAutocompleteToolbar: View {
     
     @EnvironmentObject private var context: AutocompleteContext
+    @EnvironmentObject private var keyboardContext: KeyboardContext
     
     var body: some View {
         AutocompleteToolbar(
             suggestions: context.suggestions,
-            itemBuilder: itemBuilder)
+            locale: keyboardContext.locale)
             .frame(height: 50)
-    }
-}
-
-private extension DemoAutocompleteToolbar {
-    
-    func item(for suggestion: AutocompleteSuggestion) -> AnyView {
-        guard let subtitle = suggestion.subtitle else { return AutocompleteToolbar.standardItem(for: suggestion) }
-        return AnyView(VStack(spacing: 0) {
-            AutocompleteToolbarItemText(suggestion: suggestion)
-            Text(subtitle).font(.footnote)
-        }.frame(maxWidth: .infinity))
-    }
-    
-    func itemBuilder(suggestion: AutocompleteSuggestion) -> AnyView {
-        AnyView(
-            item(for: suggestion)
-                .background(Color.clearInteractable)
-        )
     }
 }
 

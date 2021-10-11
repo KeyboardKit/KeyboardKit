@@ -98,7 +98,7 @@ class KeyboardAction_ActionsTests: QuickSpec {
                     .keyboardType(.email),
                     .keyboardType(.emojis),
                     .keyboardType(.images),
-                    .keyboardType(.custom(""))
+                    .keyboardType(.custom(named: ""))
                 ]
                 expected.forEach { expect(result(for: $0)).toNot(beNil()) }
                 unexpected.forEach { expect(result(for: $0)).to(beNil()) }

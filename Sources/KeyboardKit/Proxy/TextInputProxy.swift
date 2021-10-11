@@ -16,17 +16,18 @@ import UIKit
  text from the main app to another custom text input. It can
  be used to add text fields to the keyboard extension itself.
  
- If you use `KeyboardTextField` and `KeyboardTextView`, they
- will manage this proxy switch automatically.
+ You can inherit and override this class to customize things
+ further.
  
  This class implements `UITextDocumentProxy`, which lets you
  customize proxy-related features. The class also implements
  `UITextInputTraits`, which lets you customize input-related
  features and behaviors like the return button type. Finally,
- it implements `UIKeyInput` to handle text insert and delete.
+ it implements `UIKeyInput` to handle text insert and delete. 
  
- You can inherit and override this class to customize things
- further.
+ If you use `KeyboardTextField` and `KeyboardTextView`, they
+ will manage this proxy switch automatically. If you have to
+ implement your own, have a look at them for inspiration.
  */
 open class TextInputProxy: NSObject, UITextDocumentProxy, UITextInputTraits {
     

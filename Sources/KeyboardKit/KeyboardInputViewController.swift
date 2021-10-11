@@ -114,12 +114,12 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      Setup KeyboardKit with a SwiftUI `View`.
      
-     This will remove all subviews, then add the view, which
-     will be pinned to the edges and resize the extension to
-     fit its content.
+     This will remove all subviews, then add the view pinned
+     to the edges of its view, so that the extension resizes
+     to fit its content.
      
-     The function also injects the various contexts into the
-     view hiearchy, as `@EnvironmentObject`s.
+     This will also inject the input controller's observable
+     objects as `@EnvironmentObject`s into the view hiearchy.
      */
     open func setup<Content: View>(with view: Content) {
         self.view.subviews.forEach { $0.removeFromSuperview() }
@@ -230,14 +230,15 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      The default, observable input callout context.
      */
-    public lazy var keyboardInputCalloutContext = InputCalloutContext()
+    public lazy var keyboardInputCalloutContext = InputCalloutContext(
+        isEnabled: UIDevice.current.userInterfaceIdiom == .phone)
     
     /**
      The default, observable secondary input callout context.
      */
     public lazy var keyboardSecondaryInputCalloutContext = SecondaryInputCalloutContext(
-        actionProvider: keyboardSecondaryCalloutActionProvider,
-        actionHandler: keyboardActionHandler)
+        actionHandler: keyboardActionHandler,
+        actionProvider: keyboardSecondaryCalloutActionProvider)
     
     
     
@@ -390,38 +391,6 @@ open class KeyboardInputViewController: UIInputViewController {
     open func resetAutocomplete() {
         autocompleteContext.suggestions = []
     }
-    
-    
-    
-    // MARK: - Deprecated
-    
-    @available(*, deprecated, message: "Use the stack view-based setup(with:) and provide your own stack view.")
-    public lazy var keyboardStackView: UIStackView = {
-        let stackView = UIStackView(frame: .zero)
-        setup(with: stackView)
-        return stackView
-    }()
-    
-    @available(*, deprecated, message: "Change keyboardContext.locale directly.")
-    open func changeKeyboardLocale(to locale: Locale) {
-        keyboardContext.locale = locale
-    }
-    
-    @available(*, deprecated, message: "Change keyboardContext.keyboardType directly.")
-    open func changeKeyboardType(to type: KeyboardType) {
-        keyboardContext.keyboardType = type
-    }
-    
-    @available(*, deprecated, message: "This will be removed in 5.0")
-    open func setup(with view: UIStackView) {
-        self.view.subviews.forEach { $0.removeFromSuperview() }
-        view.frame = .zero
-        view.axis = .vertical
-        view.alignment = .fill
-        view.distribution = .equalSpacing
-        self.view.addSubview(view, fill: true)
-    }
-    
 }
 
 
@@ -441,8 +410,8 @@ private extension KeyboardInputViewController {
     
     func refreshSecondaryInputCalloutContext() {
         keyboardSecondaryInputCalloutContext = SecondaryInputCalloutContext(
-            actionProvider: keyboardSecondaryCalloutActionProvider,
-            actionHandler: keyboardActionHandler)
+            actionHandler: keyboardActionHandler,
+            actionProvider: keyboardSecondaryCalloutActionProvider)
     }
     
     func setupLocaleObservation() {

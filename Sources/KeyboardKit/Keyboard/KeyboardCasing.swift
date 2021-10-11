@@ -15,48 +15,60 @@ import Foundation
  have chosen to not mark it as such, since that would create
  a bunch of warnings within the framework.
  */
-public enum KeyboardCasing {
-    case
-        
-        /// `.auto` is a transient state, that means that it
-        /// should automatically be replaced by another case
-        /// that is contextually correct.
-        auto,
-        
-        /// `.capsLocked` is an uppercased state that should
-        /// not be adjusted when typing.
-        capsLocked,
-        
-        /// `.lowercased` should conform to the text proxy's
-        /// autocapitalization type.
-        lowercased,
-        
-        /// `.uppercased` should conform to the text proxy's
-        /// autocapitalization type.
-        uppercased,
-        
-        /// `.neutral` will be removed in 5.0 (TODO)
-        neutral
+public enum KeyboardCasing: String, Codable, Identifiable {
+    
+    /**
+     `.auto` is a transient state, that means that it should
+     automatically be replaced by another case.
+     */
+    case auto
+    
+    /**
+     `.capsLocked` is an uppercased state that should not be
+     automatically adjusted when typing.
+     */
+    case capsLocked
+    
+    /**
+     `.lowercased` should follow the `autocapitalization` of
+     the text document proxy.
+     */
+    case lowercased
+    
+    /**
+     `.uppercased` should follow the `autocapitalization` of
+     the text document proxy.
+     */
+    case uppercased
 }
 
 public extension KeyboardCasing {
     
+    /**
+     The casing's unique identifier.
+     */
+    var id: String { rawValue }
+    
+    /**
+     Whether or not the casing represents a lowercased case.
+     */
     var isLowercased: Bool {
         switch self {
         case .auto: return false
         case .capsLocked: return false
         case .lowercased: return true
-        case .neutral: return false
         case .uppercased: return false
         }
     }
     
+    /**
+     Whether or not the casing represents an uppercased case.
+     */
     var isUppercased: Bool {
         switch self {
         case .auto: return false
         case .capsLocked: return true
         case .lowercased: return false
-        case .neutral: return false
         case .uppercased: return true
         }
     }

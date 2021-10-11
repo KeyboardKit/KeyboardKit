@@ -12,23 +12,31 @@ import Foundation
  This enum defines the various ways a user can interact with
  keyboard actions, using KeyboardKit's built-in interactions.
  */
-public enum KeyboardGesture: CaseIterable {
+public enum KeyboardGesture: String, CaseIterable, Codable, Equatable, Identifiable {
 
-    /// Occurs when a button is pressed then released inside
+    /// Occurs when a button is pressed then released inside.
     case tap
     
-    /// Occurs when a button is double tapped
+    /// Occurs when a button is double tapped.
     case doubleTap
     
-    /// Occurs when a button is pressed down
+    /// Occurs when a button is pressed down.
     case press
     
-    /// Occurs when a button is released, inside or outside
+    /// Occurs when a button is released, inside or outside.
     case release
     
-    /// Occurs when a button is long pressed
+    /// Occurs when a button is long pressed.
     case longPress
     
-    /// Occurs repeatedly when a button is pressed and held
+    /// Occurs repeatedly when a button is pressed and held.
     case repeatPress
+}
+
+public extension KeyboardGesture {
+    
+    /**
+     The gesture's unique identifier.
+     */
+    var id: String { rawValue }
 }

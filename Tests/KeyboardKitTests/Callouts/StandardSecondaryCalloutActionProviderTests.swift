@@ -34,7 +34,7 @@ class StandardSecondaryCalloutActionProviderTests: QuickSpec {
             it("accepts custom providers") {
                 provider = StandardSecondaryCalloutActionProvider(
                     context: context,
-                    providers: [EnglishSecondaryCalloutActionProvider()])
+                    providers: [StandardSecondaryCalloutActionProvider.standardProvider])
                 let providers = provider.providerDictionary.dictionary
                 expect(providers.keys.count).to(equal(1))
                 expect(providers[KeyboardLocale.english.id] is EnglishSecondaryCalloutActionProvider).to(beTrue())

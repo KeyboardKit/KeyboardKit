@@ -6,7 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 /**
  This extension defines various actions that by default will
@@ -93,7 +93,7 @@ public extension KeyboardAction {
         case .nextLocale: return { $0?.keyboardContext.selectNextLocale() }
         case .shift(let currentState): return {
             switch currentState {
-            case .lowercased, .neutral: $0?.keyboardContext.keyboardType = .alphabetic(.uppercased)
+            case .lowercased: $0?.keyboardContext.keyboardType = .alphabetic(.uppercased)
             case .auto, .capsLocked, .uppercased: $0?.keyboardContext.keyboardType = .alphabetic(.lowercased)
             }
         }
@@ -125,7 +125,7 @@ public extension KeyboardAction {
     var standardTextDocumentProxyInputAction: GestureAction? {
         if self.isPrimaryAction { return { $0?.textDocumentProxy.insertText("\n") }}
         switch self {
-        case .backspace: return { $0?.textDocumentProxy.deleteBackward($0?.keyboardBehavior.backspaceRange ?? .char) }
+        case .backspace: return { $0?.textDocumentProxy.deleteBackward(range: $0?.keyboardBehavior.backspaceRange ?? .char) }
         case .character(let char): return { $0?.textDocumentProxy.insertText(char) }
         case .emoji(let emoji): return { $0?.textDocumentProxy.insertText(emoji.char) }
         case .newLine: return { $0?.textDocumentProxy.insertText("\n") }

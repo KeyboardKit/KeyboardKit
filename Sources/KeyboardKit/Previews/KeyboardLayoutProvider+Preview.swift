@@ -1,5 +1,5 @@
 //
-//  PreviewKeyboardLayoutProvider+Preview.swift
+//  KeyboardLayoutProvider+Preview.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-25.
@@ -8,9 +8,17 @@
 
 import Foundation
 
+public extension KeyboardLayoutProvider where Self == PreviewKeyboardLayoutProvider {
+    
+    /**
+     This layout provider can be used in SwiftUI previews.
+     */
+    static var preview: KeyboardLayoutProvider { PreviewKeyboardLayoutProvider() }
+}
+
+
 /**
- This class can be used to preview keyboard views. Don't use
- it in other situations.
+ This layout provider can be used in SwiftUI previews.
  */
 public class PreviewKeyboardLayoutProvider: KeyboardLayoutProvider {
     

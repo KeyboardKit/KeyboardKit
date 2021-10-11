@@ -14,11 +14,25 @@ import CoreGraphics
  */
 public struct KeyboardLayoutItemSize: Equatable {
     
+    /**
+     Create a new layout item size.
+     
+     - Parameters:
+       - width: The declarative width of the item.
+       - height: The fixed height of the item.
+     */
     public init(width: KeyboardLayoutItemWidth, height: CGFloat) {
         self.width = width
         self.height = height
     }
     
+    /**
+     The declarative width of the item.
+     */
     public let width: KeyboardLayoutItemWidth
+    
+    /**
+     The fixed height of the item.
+     */
     public let height: CGFloat
 }

@@ -1,43 +1,67 @@
 # Callouts
 
-KeyboardKit has support for various callouts, that are presented as bubbles when the user types on system keyboards.
+KeyboardKit lets you show input callouts as users type, as well as secondary action callouts with secondary input actions.
 
 
 ## Input callouts
 
-An input callout can be used to show the currently typed character in a callout bubble. It's triggered by providing an observable context with the character to display. This callout type will automatically be enabled if you use a `SystemKeyboard`.
+An input callout shows the currently typed character in a callout bubble. 
 
-`KeyboardInputViewController` will automatically create an `InputCalloutContext` and bind it to its `keyboardInputCalloutContext` property when the extension is started. You can use it as is or replace it with a custom one.
+Input callouts are automatically triggered by providing an `InputCalloutContext` with the character to display. This is automatically enabled if you use a `SystemKeyboard`.
 
-The standard callout context will only work for `iPhone`, since iPads don't have these callouts by default. You can enable them for iPads or disable them altogether by creating a custom context and replace the standard one.
+`KeyboardInputViewController` will automatically create an `InputCalloutContext` and bind it to its `keyboardInputCalloutContext` property when the extension is started.
+
+The context will by default only work for `iPhone`, since iPads don't have these callouts. You can enable them for iPads or disable them altogether by changing the context's `isEnabled`.
+
+
+## Secondary action callouts
+
+A secondary action callout can be used to show secondary input actions in a callout bubble. 
+
+Ssecondary action callouts are automatically triggered by providing a `SecondaryInputCalloutContext` with the actions to display. This is automatically enabled if you use a `SystemKeyboard`.
+
+`KeyboardInputViewController` will automatically create a `SecondaryInputCalloutContext` and bind it to its `keyboardSecondaryInputCalloutContext` property when the extension is started.
+
+It will also create a `SecondaryCalloutActionProvider` and bind it to its `keyboardSecondaryCalloutActionProvider`. You can use it as is or replace it with a custom provider.
+
+Implementing a secondary action provider is easy. You can inherit `BaseSecondaryCalloutActionProvider` to get started.
+
+
+## Binding callouts to views
 
 To enable input callouts for custom views, follow these steps:
 
 * Apply the `.inputCallout(style:)` view modifier to the keyboard view (as done by `SystemKeyboard`).
 * Update the `InputCalloutContext` environment object with the characters you want to show (as done by `KeyboardGestures`). 
 
-
-## Secondary action callouts
-
-A secondary input callout can be used to show secondary keyboard actions in a callout bubble. It's triggered by providing an observable context with the actions to display. This callout type will automatically be enabled if you use a `SystemKeyboard`.
-
-`KeyboardInputViewController` will automatically create a `SecondaryCalloutActionProvider` and a `SecondaryInputCalloutContext` and bind them to its `keyboardSecondaryCalloutActionProvider` and `keyboardSecondaryInputCalloutContext` properties when the extension is started. You can use them as they are or replace them with custom ones.
-
-The action provider determines which secondary actions to show for certain keyboard actions. The standard provider has support for multiple locales and can be extended with custom locales.
-
 To enable secondary action callouts for custom views, follow these steps:
 
-* Apply the `.secondaryInputCallout(style:)` view modifier to the keyboard view (as done by `SystemKeyboard`).
+* Apply the `.secondaryInputCallout(style:)` view modifier to the keyboard view (as done in `SystemKeyboard`).
 * Update the `SecondarInputCalloutContext` environment object with the actions you want to show (as done by `KeyboardGestures`).
+
+Have a look at `SystemKeyboard` for examples on how this can be done.
 
 
 ## Supporting more locales
 
 The `StandardSecondaryCalloutActionProvider` is initialized with a list of locale-specific providers.  
 
-KeyboardKit will setup the standard provider with support `English`, but you can inject any provider that implements `SecondaryCalloutActionProvider` and `LocalizedService` into this provider.
+KeyboardKit will setup the standard provider with support for `English`, but you can inject any provider that implements `SecondaryCalloutActionProvider` and `LocalizedService` into this provider.
 
-Have a look at the demo app, which extends the standard provider with support for Swedish.
+You can implement a custom provider by inheriting `BaseSecondaryCalloutActionProvider` or create a completely custom one by implementing `SecondaryCalloutActionProvider` from scratch.
 
-I will gladly accept any PRs that add more locale-specific providers to this library. 👍
 
+## KeyboardKit Pro
+
+KeyboardKit Pro defines secondary action providers for all keyboard locales.
+
+[Read more here][Pro] regarding how to obtain a KeyboardKit Pro license. 
+
+
+## Demo
+
+The demo also registers a KeyboardKit Pro license, to demonstrate how the different locales provide different secondary actions. 
+
+
+
+[Pro]: https://github.com/KeyboardKit/KeyboardKitPro

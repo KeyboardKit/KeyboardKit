@@ -17,6 +17,11 @@ import Foundation
  when the keyboard input view controller is created. You can
  use the standard instance as is or replace it with a custom
  one if you want to customize your keyboard.
+ 
+ `IMPORTANT` Whenever you replace the standard behavior with
+ your own custom behavior, make sure to do so before calling
+ any other services that depend on the behavior, or recreate
+ the services that do depend on it.
  */
 public protocol KeyboardBehavior {
     
@@ -40,6 +45,14 @@ public protocol KeyboardBehavior {
      the provided action has been performed.
      */
     func shouldEndSentence(
+        after gesture: KeyboardGesture,
+        on action: KeyboardAction) -> Bool
+    
+    /**
+     Whether or not the keyboard should switch to a capslock
+     state after a gesture on an action.
+     */
+    func shouldSwitchToCapsLock(
         after gesture: KeyboardGesture,
         on action: KeyboardAction) -> Bool
     

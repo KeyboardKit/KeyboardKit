@@ -8,4 +8,8 @@
 
 import Foundation
 
+/**
+ This typealias represents a `KeyboardInputSetProvider` that
+ also implements `LocalizedService`.
+ */
 public typealias LocalizedKeyboardInputSetProvider = KeyboardInputSetProvider & LocalizedService

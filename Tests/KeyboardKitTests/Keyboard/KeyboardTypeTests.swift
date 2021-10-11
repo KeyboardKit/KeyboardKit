@@ -30,7 +30,7 @@ class KeyboardTypeTests: QuickSpec {
                 expect(result(for: .emojis)).to(beFalse())
                 expect(result(for: .images)).to(beFalse())
                 expect(result(for: .images)).to(beFalse())
-                expect(result(for: .custom(""))).to(beFalse())
+                expect(result(for: .custom(named: ""))).to(beFalse())
             }
         }
     }

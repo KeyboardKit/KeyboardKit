@@ -11,7 +11,8 @@ import KeyboardKit
 
 /**
  This fake provider simply returns the current word suffixed
- with "ly", "er" and "ter".
+ with "ly", "er" and "ter". It adds a subtitle to the middle
+ suggestion to show how this can be used.
  
  This provider is registered by `KeyboardViewController`, to
  show you how to can register your own provider. However, if
@@ -23,8 +24,9 @@ class FakeAutocompleteProvider: AutocompleteProvider {
     var locale: Locale = .current
     
     var canIgnoreWords: Bool { false }
-    var ignoredWords: [String] = []
     var canLearnWords: Bool { false }
+    var ignoredWords: [String] = []
+    var learnedWords: [String] = []
     
     func hasIgnoredWord(_ word: String) -> Bool { false }
     func hasLearnedWord(_ word: String) -> Bool { false }
@@ -33,7 +35,7 @@ class FakeAutocompleteProvider: AutocompleteProvider {
     func removeIgnoredWord(_ word: String) {}
     func unlearnWord(_ word: String) {}
     
-    func autocompleteSuggestions(for text: String, completion: AutocompleteResponse) {
+    func autocompleteSuggestions(for text: String, completion: AutocompleteCompletion) {
         guard text.count > 0 else { return completion(.success([])) }
         completion(.success(suggestions(for: text)))
     }
