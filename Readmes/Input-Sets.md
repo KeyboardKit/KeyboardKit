@@ -45,9 +45,9 @@ You can implement a custom provider by inheriting `DeviceSpecificInputSetProvide
 
 ## KeyboardKit Pro
 
-KeyboardKit Pro defines input sets for all keyboard locales and devices.
+KeyboardKit Pro defines locale-specific input sets for all keyboard locales.
 
-[Read more here][Pro] regarding how to obtain a KeyboardKit Pro license. 
+[Read more here][Pro]. 
 
 
 ## Optional

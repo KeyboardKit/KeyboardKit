@@ -53,14 +53,9 @@ You can implement a custom provider by inheriting `BaseSecondaryCalloutActionPro
 
 ## KeyboardKit Pro
 
-KeyboardKit Pro defines secondary action providers for all keyboard locales.
+KeyboardKit Pro defines locale-specific secondary input actions for all keyboard locales.
 
-[Read more here][Pro] regarding how to obtain a KeyboardKit Pro license. 
-
-
-## Demo
-
-The demo also registers a KeyboardKit Pro license, to demonstrate how the different locales provide different secondary actions. 
+[Read more here][Pro].  
 
 
 

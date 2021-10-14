@@ -322,7 +322,7 @@ KeyboardKit is available under the MIT license. See LICENSE file for more info.
 [Input-Sets]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Input-Sets.md
 [Keyboard-Layouts]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Keyboard-Layouts.md
 [Keyboard-Types]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Keyboard-Types.md
-[Locales]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Locales.md
+[Localization]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Localization.md
 [Previews]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Previews.md
 [Proxy]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Proxy.md
 [Styles]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Styles.md

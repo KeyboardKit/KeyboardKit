@@ -39,7 +39,7 @@ The `StandardAutocompleteProvider` is injected by default when a Pro license is 
 
 The `ExternalAutocompleteProvider` is a base class that you can subclass to implement a provided that fetches suggestions from a remote endpoint. This provided requires full access, but can let you provide very powerful autocomplete logic as long as the user is connected to the Internet.
 
-[Read more here][Pro] regarding how to obtain a KeyboardKit Pro license. 
+[Read more here][Pro]. 
 
 
 ## Demo

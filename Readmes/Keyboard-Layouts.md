@@ -48,6 +48,13 @@ If you aim for pixel perfection, you will therefore probably have to customize t
 I will gladly accept any PRs that improve the layout providers in this library. 👍
 
 
+## KeyboardKit Pro
+
+KeyboardKit Pro defines locale-specific layouts for all keyboard locales.
+
+[Read more here][Pro]. 
+
+
 ## Optional
 
 It's worth mentioning that keyboard layouts is just a convenience. KeyboardKit doesn't force you to use keyboard layouts. Your keyboard extensions can look and behave however you want.

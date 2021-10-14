@@ -1,4 +1,4 @@
-# Locales
+# Localization
 
 KeyboardKit defines keyboard-specific locales and provides localized content for the supported locales.
 
@@ -58,9 +58,9 @@ This involves specifying margins, system actions etc. to make the keyboard behav
 
 ## KeyboardKit Pro
 
-KeyboardKit Pro defines input sets and secondary actions for all keyboard locales.
+KeyboardKit Pro defines input sets, keyboard layouts and secondary input actions for all keyboard locales above.
 
-[Read more here][Pro] regarding how to obtain a KeyboardKit Pro license. 
+[Read more here][Pro]. 
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
