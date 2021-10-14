@@ -15,7 +15,9 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 ### ✨ New features
 
 * `UITextDocumentProxy` has a new `hasCurrentWord` property.
-* `KeyboardEnabledStateInspector` has a new `isFullAccessEnabled` enabled.
+* `KeyboardEnabledState` has a new `isKeyboardCurrentlyActive` property.
+* `KeyboardEnabledStateInspector` has a new `isFullAccessEnabled` property.
+* `KeyboardEnabledStateInspector` has a new `isKeyboardCurrentlyActive` function.
 
 
 

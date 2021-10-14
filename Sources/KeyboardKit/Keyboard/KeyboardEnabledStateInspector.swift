@@ -29,16 +29,28 @@ public extension KeyboardEnabledStateInspector {
     }
     
     /**
-     Check whether or not a certain keyboard extension is enabled.
+     Whether or not the keyboard extension with the provided
+     `bundleId` is currently being used in a text field.
      
-     When you call this function, make sure that you use the
-     `bundleId` of the keyboard extension, not the app.
+     - Parameter withBundleId: The bundle id of the keyboard extension.
+     */
+    func isKeyboardCurrentlyActive(
+        withBundleId bundleId: String) -> Bool {
+        let modes = UITextInputMode.activeInputModes
+        let displayedModes = modes.filter { $0.value(forKey: "isDisplayed") as? Int == 1 }
+        let id = displayedModes.map { $0.value(forKey: "identifier") as? String }
+        return bundleId == id.first
+    }
+    
+    /**
+     Whether or not the keyboard extension with the provided
+     `bundleId` has been enabled in System Settings.
      
-     - Parameter bundleId: The bundle id of the keyboard extension.
-     - Parameter notificationCenter: The notification center to use to observe changes.     
+     - Parameter withBundleId: The bundle id of the keyboard extension.
+     - Parameter defaults: The user defaults instance to check.     
      */
     func isKeyboardEnabled(
-        withBundleId bundleId: String, 
+        withBundleId bundleId: String,
         defaults: UserDefaults = .standard) -> Bool {
         let key = "AppleKeyboards"
         guard let settings = defaults.object(forKey: key) as? [String] else { return false }

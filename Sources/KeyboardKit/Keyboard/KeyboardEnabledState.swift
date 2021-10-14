@@ -23,11 +23,11 @@ public class KeyboardEnabledState: KeyboardEnabledStateInspector, ObservableObje
     /**
      Create an instance of this observable state class.
      
-     When you call this function, make sure that you use the
-     `bundleId` of the keyboard extension, not the app.
+     Make sure to use the `bundleId` of the keyboard and not
+     the main application.
      
      - Parameters:
-       - bundleId: The bundle id of the keyboard extension.
+       - bundleId: The bundle ID of the keyboard extension.
        - notificationCenter: The notification center to use to observe changes.
      */
     public init(
@@ -35,7 +35,10 @@ public class KeyboardEnabledState: KeyboardEnabledStateInspector, ObservableObje
         notificationCenter: NotificationCenter = .default) {
         self.bundleId = bundleId
         self.notificationCenter = notificationCenter
-        self.activePublisher.sink(receiveValue: { [weak self] _ in
+        activePublisher.sink(receiveValue: { [weak self] _ in
+            self?.refresh()
+        }).store(in: &cancellables)
+        textPublisher.delay(for: 0.5, scheduler: RunLoop.main).sink(receiveValue: { [weak self] _ in
             self?.refresh()
         }).store(in: &cancellables)
         refresh()
@@ -46,16 +49,22 @@ public class KeyboardEnabledState: KeyboardEnabledStateInspector, ObservableObje
     private let notificationCenter: NotificationCenter
     
     /**
-     Whether or not the keyboard with the provided bundle id
-     is enabled in system settings.
+     Whether or not the keyboard extension with the specific
+     ``bundleId`` is currently being used in a text field.
+     */
+    @Published public var isKeyboardCurrentlyActive: Bool = false
+    
+    /**
+     Whether or not the keyboard extension with the specific
+     ``bundleId`` has been enabled in System Settings.
      */
     @Published public var isKeyboardEnabled: Bool = false
     
     /**
-     Sync `isKeyboardEnabled` with the state of the keyboard
-     with the provided bundle id.
+     Refresh state for the currently used keyboard extension.
      */
     public func refresh() {
+        isKeyboardCurrentlyActive = isKeyboardCurrentlyActive(withBundleId: bundleId)
         isKeyboardEnabled = isKeyboardEnabled(withBundleId: bundleId)
     }
 }
@@ -64,6 +73,10 @@ private extension KeyboardEnabledState {
     
     var activePublisher: NotificationCenter.Publisher {
         publisher(for: UIApplication.didBecomeActiveNotification)
+    }
+    
+    var textPublisher: NotificationCenter.Publisher {
+        publisher(for: UITextInputMode.currentInputModeDidChangeNotification)
     }
     
     func publisher(for notification: Notification.Name) -> NotificationCenter.Publisher {

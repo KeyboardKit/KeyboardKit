@@ -12,15 +12,14 @@ import SwiftUI
 
 /**
  This class provides keyboard extensions with contextual and
- observable information. It's a central part of KeyboardKit.
+ observable information. It is a central part of KeyboardKit
+ and to create adaptive keyboards.
  
- `KeyboardKit` will automatically create an instance of this
- context and bind it to the main input view controller.
- 
- `KeyboardKit` will automatically sync this context with the
- controller whenever needed. This means that any significant
- changes will be synced to `@Published` properties that your
- extension can observe to drive UI changes.
+ KeyboardKit automatically creates an instance of this class
+ and adds it to the input view controller. It will also sync
+ the context with the input controller whenever needed. This
+ means that significant changes are synced to a `@Published`
+ property that your extension can observe.
  */
 public class KeyboardContext: ObservableObject {
     
