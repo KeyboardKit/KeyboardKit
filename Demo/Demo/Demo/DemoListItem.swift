@@ -30,7 +30,7 @@ struct DemoListItem: View {
                 Spacer()
                 rightImageView(for: image)
             }
-        }.background(Color.white.opacity(0.0001))
+        }.contentShape(Rectangle())
     }
 }
 

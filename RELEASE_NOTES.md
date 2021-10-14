@@ -10,6 +10,14 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 5.1
+
+### ✨ New features
+
+* `UITextDocumentProxy` has a new `hasCurrentWord` property.
+
+
+
 ## 5.0
 
 KeyboardKit 5.0 streamlines the library, improves styling and previewing and makes the library easier to use.

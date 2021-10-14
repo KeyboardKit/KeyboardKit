@@ -48,6 +48,14 @@ public extension UITextDocumentProxy {
     }
     
     /**
+     Whether or not a word is currently being touched by the
+     text input cursor.
+     */
+    var hasCurrentWord: Bool {
+        currentWord != nil
+    }
+    
+    /**
      Whether or not the text document proxy cursor is at the
      end of the current word.
      */
