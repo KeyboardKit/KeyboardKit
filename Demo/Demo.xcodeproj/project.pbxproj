@@ -61,6 +61,7 @@
 		A9257D3727083B31000C7F3A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A9257D3427083B31000C7F3A /* README.md */; };
 		A951A49B25E016660022385A /* DemoKeyboardLayoutProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A951A49A25E016660022385A /* DemoKeyboardLayoutProvider.swift */; };
 		A95D6753270DE99D0018A75B /* DemoAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D6752270DE99D0018A75B /* DemoAppearance.swift */; };
+		A99AE5C127183561004AD0A3 /* EnabledListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99AE5C027183561004AD0A3 /* EnabledListItem.swift */; };
 		A9C365F526F3184100E87AFE /* DemoAutocompleteToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C365F426F3184100E87AFE /* DemoAutocompleteToolbar.swift */; };
 /* End PBXBuildFile section */
 
@@ -145,6 +146,7 @@
 		A9257D3427083B31000C7F3A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A951A49A25E016660022385A /* DemoKeyboardLayoutProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboardLayoutProvider.swift; sourceTree = "<group>"; };
 		A95D6752270DE99D0018A75B /* DemoAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoAppearance.swift; sourceTree = "<group>"; };
+		A99AE5C027183561004AD0A3 /* EnabledListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnabledListItem.swift; sourceTree = "<group>"; };
 		A9C365F426F3184100E87AFE /* DemoAutocompleteToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoAutocompleteToolbar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -298,6 +300,7 @@
 				A92115BD25D595C8003510D9 /* DemoList.swift */,
 				A92115BE25D595C8003510D9 /* DemoListText.swift */,
 				A92115D925D5B47E003510D9 /* DemoListButton.swift */,
+				A99AE5C027183561004AD0A3 /* EnabledListItem.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -581,6 +584,7 @@
 				A921166225D5BC2A003510D9 /* EditScreen.swift in Sources */,
 				A92115C025D595C8003510D9 /* DemoAppearance.swift in Sources */,
 				A92115DA25D5B47E003510D9 /* DemoListButton.swift in Sources */,
+				A99AE5C127183561004AD0A3 /* EnabledListItem.swift in Sources */,
 				A921152825D58A94003510D9 /* HomeScreen.swift in Sources */,
 				A921152625D58A94003510D9 /* DemoApp.swift in Sources */,
 				A921162325D5B753003510D9 /* Fonts.swift in Sources */,
@@ -864,8 +868,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielsaidi/KeyboardKit.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

@@ -9,6 +9,10 @@
 import SwiftUI
 import KeyboardKit
 
+import Foundation
+
+class Test: UIInputViewController {}
+
 struct HomeScreen: View {
     
     @StateObject private var keyboardState = KeyboardEnabledState(bundleId: "com.keyboardkit.demo.keyboard")
@@ -24,11 +28,20 @@ struct HomeScreen: View {
                         DemoListItem(.type, "Type in a dark text field")
                     }
                 }
-                Section(header: Text("Setting")) {
-                    DemoListItem(stateIcon, stateText).foregroundColor(stateColor)
-                    DemoListButton(.settings, "System settings", .navigationArrow, action: openSettings)
+                Section(header: Text("Setting"), footer: footerText) {
+                    EnabledListItem(
+                        isEnabled: isKeyboardEnabled,
+                        enabledText: "Keyboard is enabled",
+                        disabledText: "Keyboard is disabled")
+                    EnabledListItem(
+                        isEnabled: isFullAccessEnabled,
+                        enabledText: "Full Access is enabled",
+                        disabledText: "Full Access is disabled")
+                    DemoListButton(
+                        .settings,
+                        "System settings",
+                        .navigationArrow, action: openSettings)
                 }
-                Section(footer: footerText) {}
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
@@ -39,23 +52,14 @@ private extension HomeScreen {
     
     var footerText: some View {
         Text("You must enable the keyboard under system settings, then select it in your keyboard, using the globe button.")
-            .multilineTextAlignment(.center)
-    }
-    
-    var stateColor: Color {
-        isKeyboardEnabled ? .green : .orange
-    }
-    
-    var stateIcon: Image {
-        isKeyboardEnabled ? .checkmark : .alert
-    }
-    
-    var stateText: String {
-        isKeyboardEnabled ? "The keyboard is enabled" : "The keyboard is disabled"
     }
 }
 
 private extension HomeScreen {
+    
+    var isFullAccessEnabled: Bool {
+        keyboardState.isFullAccessEnabled
+    }
     
     var isKeyboardEnabled: Bool {
         keyboardState.isKeyboardEnabled
