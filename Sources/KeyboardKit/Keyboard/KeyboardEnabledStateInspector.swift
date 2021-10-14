@@ -7,20 +7,29 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  This protocol can be implemented by any class or struct and
  provides its implementations with state-specific extensions.
  
  However, the easiest way to observe the enabled state is to
- create an `KeyboardEnabledState` instance.
+ just create an `KeyboardEnabledState` instance.
  */
 public protocol KeyboardEnabledStateInspector {}
 
 public extension KeyboardEnabledStateInspector {
     
     /**
-     Check if a certain keyboard extension is enabled.
+     Check whether or not the app has been given full access
+     in System Settings.
+     */
+    var isFullAccessEnabled: Bool {
+        FullAccessCheckController().hasFullAccess
+    }
+    
+    /**
+     Check whether or not a certain keyboard extension is enabled.
      
      When you call this function, make sure that you use the
      `bundleId` of the keyboard extension, not the app.
@@ -29,10 +38,12 @@ public extension KeyboardEnabledStateInspector {
      - Parameter notificationCenter: The notification center to use to observe changes.     
      */
     func isKeyboardEnabled(
-        withBundleId bundleId: String,
+        withBundleId bundleId: String, 
         defaults: UserDefaults = .standard) -> Bool {
         let key = "AppleKeyboards"
         guard let settings = defaults.object(forKey: key) as? [String] else { return false }
         return settings.contains(bundleId)
     }
 }
+
+private class FullAccessCheckController: UIInputViewController {}
