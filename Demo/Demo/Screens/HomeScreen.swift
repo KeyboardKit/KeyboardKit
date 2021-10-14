@@ -44,6 +44,7 @@ struct HomeScreen: View {
                 }
             }
         }
+        .environmentObject(keyboardState)
         .navigationViewStyle(StackNavigationViewStyle())
     }
 }

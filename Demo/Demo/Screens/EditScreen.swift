@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import KeyboardKit
 
 struct EditScreen: View {
     
@@ -14,26 +15,28 @@ struct EditScreen: View {
     
     @State private var text = ""
     
+    @EnvironmentObject private var keyboardState: KeyboardEnabledState
+    
     var body: some View {
         DemoList(title) {
             MultilineTextField(text: $text, appearance: appearance)
                 .frame(height: 200)
-            if appearance == .dark {
-                Section(footer: footerText) {}
-            }
+            EnabledListItem(
+                isEnabled: isActive,
+                enabledText: "Demo keyboard is selected",
+                disabledText: "Demo keyboard is not selected")
         }
     }
 }
 
 private extension EditScreen {
     
-    var title: String {
-        appearance == .dark ? "Dark text field" : "Regular text field"
+    var isActive: Bool {
+        keyboardState.isKeyboardCurrentlyActive
     }
     
-    var footerText: some View {
-        Text("Dark apperance keyboards are currently not correctly rendered. In light mode, they get dark mode colors. This is because the keyboard extension is given a dark mode, regardless of the system mode.")
-            .multilineTextAlignment(.center)
+    var title: String {
+        appearance == .dark ? "Dark text field" : "Regular text field"
     }
 }
 
