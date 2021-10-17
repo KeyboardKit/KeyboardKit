@@ -52,6 +52,24 @@ public struct InputCallout: View {
 
 private extension InputCallout {
     
+    var button: some View {
+        CalloutButtonArea(
+            frame: buttonFrame,
+            style: calloutStyle)
+    }
+    
+    var callout: some View {
+        Text(context.input ?? "")
+            .font(style.font)
+            .frame(minWidth: calloutSize.width, minHeight: calloutSize.height)
+            .foregroundColor(calloutStyle.textColor)
+            .background(calloutStyle.backgroundColor)
+            .cornerRadius(cornerRadius)
+    }
+}
+
+private extension InputCallout {
+    
     var buttonFrame: CGRect {
         context.buttonFrame.insetBy(
             dx: buttonInset.width,
@@ -69,12 +87,12 @@ private extension InputCallout {
     }
     
     var calloutSizeHeight: CGFloat {
-        let smallSize = buttonSize.height + 20
+        let smallSize = buttonSize.height
         return enforceSmallSize ? smallSize : style.calloutSize.height
     }
     
     var calloutSizeWidth: CGFloat {
-        let minSize = buttonSize.width + 20
+        let minSize = buttonSize.width + 2 * style.callout.curveSize.width + style.callout.cornerRadius
         return max(style.calloutSize.width, minSize)
     }
     
@@ -98,45 +116,56 @@ private extension InputCallout {
     }
 }
 
-private extension InputCallout {
-    
-    var button: some View {
-        CalloutButtonArea(
-            frame: buttonFrame,
-            style: calloutStyle)
-    }
-    
-    var callout: some View {
-        Text(context.input ?? "")
-            .font(style.font)
-            .frame(width: calloutSize.width, height: calloutSize.height)
-            .foregroundColor(calloutStyle.textColor)
-            .background(calloutStyle.backgroundColor)
-            .cornerRadius(cornerRadius)
-    }
-}
-
 struct InputCallout_Previews: PreviewProvider {
     
-    static let context = InputCalloutContext(isEnabled: true)
+    static let context1 = InputCalloutContext(isEnabled: true)
+    static let context2 = InputCalloutContext(isEnabled: true)
     
     static var button: some View {
-        Color.red.frame(width: 40, height: 50)
+        Color.red.frame(width: 40, height: 45)
+    }
+    
+    static var rowItem: some View {
+        Color.yellow.frame(width: 46, height: 51)
+    }
+    
+    static var rowItemStyle: InputCalloutStyle {
+        var style = InputCalloutStyle.standard
+        style.callout.buttonInset = CGSize(width: 3, height: 3)
+        return style
     }
     
     static var previews: some View {
-        button.overlay(
-            GeometryReader { geo in
-                Color.clear.onAppear {
-                    context.updateInput(for: .character("A"), in: geo)
+        VStack {
+            button.overlay(
+                GeometryReader { geo in
+                    Color.clear.onAppear {
+                        context1.updateInput(for: .character("a"), in: geo)
+                    }
                 }
-            }
-        )
-        .inputCallout(
-            context: context,
-            keyboardContext: .preview,
-//            style: .standard)
-//            style: .preview1)
-            style: .preview2)
+            )
+            .inputCallout(
+                context: context1,
+                keyboardContext: .preview,
+                style: .standard)
+    //            style: .preview1)
+    //            style: .preview2)
+            
+            
+            rowItem.overlay(
+                GeometryReader { geo in
+                    Color.clear.onAppear {
+                        context2.updateInput(for: .character("a"), in: geo)
+                    }
+                }
+            )
+            .inputCallout(
+                context: context2,
+                keyboardContext: .preview,
+                style: rowItemStyle)
+    //            style: .preview1)
+    //            style: .preview2)
+            
+        }
     }
 }

@@ -15,9 +15,19 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 ### ✨ New features
 
 * `UITextDocumentProxy` has a new `hasCurrentWord` property.
+* `InputCallout` has a new `calloutPadding` property.
 * `KeyboardEnabledState` has a new `isKeyboardCurrentlyActive` property.
 * `KeyboardEnabledStateInspector` has a new `isFullAccessEnabled` property.
 * `KeyboardEnabledStateInspector` has a new `isKeyboardCurrentlyActive` function.
+
+### 💡 Behavior changes
+
+* `InputCallout` now calculates a minimum callout width based on button size, curve size etc.
+* `InputCallout` now applies a minimum callout size instead of a fixed one, which means that the callout content can be larger.
+
+### 🐛 Bug fixes
+
+* `InputCallout` was rendered too wide by default, when used in `SystemKeyboard`. This has been fixed.
 
 
 
