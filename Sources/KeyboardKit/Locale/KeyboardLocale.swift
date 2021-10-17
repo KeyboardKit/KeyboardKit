@@ -22,10 +22,13 @@ public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
     case english = "en"
     case english_gb = "en-GB"
     case english_us = "en-US"
+    case estonian = "et"
     case finnish = "fi"
     case french = "fr"
     case german = "de"
     case italian = "it"
+    case latvian = "lv"
+    case lithuanian = "lt"
     case norwegian = "nb"
     case spanish = "es"
     case swedish = "sv"
@@ -65,10 +68,13 @@ public extension KeyboardLocale {
         case .english: return "🇺🇸"
         case .english_gb: return "🇬🇧"
         case .english_us: return "🇺🇸"
+        case .estonian: return "🇪🇪"
         case .finnish: return "🇫🇮"
         case .french: return "🇫🇷"
         case .german: return "🇩🇪"
         case .italian: return "🇮🇹"
+        case .latvian: return "🇱🇻"
+        case .lithuanian: return "🇱🇹"
         case .norwegian: return "🇳🇴"
         case .swedish: return "🇸🇪"
         case .spanish: return "🇪🇸"
@@ -78,22 +84,7 @@ public extension KeyboardLocale {
     /**
      Whether or not the locale is a left-to-right one.
      */
-    var isLeftToRight: Bool {
-        switch self {
-        case .danish: return true
-        case .dutch: return true
-        case .english: return true
-        case .english_gb: return true
-        case .english_us: return true
-        case .finnish: return true
-        case .french: return true
-        case .german: return true
-        case .italian: return true
-        case .norwegian: return true
-        case .swedish: return true
-        case .spanish: return true
-        }
-    }
+    var isLeftToRight: Bool { true }
     
     /**
      Whether or not the locale is a right-to-left one.

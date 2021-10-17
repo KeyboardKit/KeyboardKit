@@ -85,10 +85,13 @@ KeyboardKit is localized in the following languages:
 * 🇩🇰 Danish
 * 🇳🇱 Dutch
 * 🇬🇧 English (UK)
+* 🇪🇪 Estonian
 * 🇫🇮 Finnish
 * 🇫🇷 French
 * 🇩🇪 German
 * 🇮🇹 Italian
+* 🇱🇻 Latvian
+* 🇱🇹 Lithuanian
 * 🇳🇴 Norwegian
 * 🇪🇸 Spanish
 * 🇸🇪 Swedish

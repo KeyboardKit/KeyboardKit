@@ -43,7 +43,7 @@ Adding a new locale to KeyboardKit requires the following:
 * Implement a custom `KeyboardInputSetProvider`.
 * Implement a custom `SecondaryCalloutActionProvider`.
 
-If the locale has a keyboard layout that differs from the English 10-9-7 layout or the German 11-11-7 layouts, a new `KeyboardLayoutProvider` must be specified.
+If the locale requires a keyboard layout that differs from English or German layout, a new `KeyboardLayoutProvider` must be specified.
 
 Custom keyboard locales must ensure that the keyboard layout is correct for:
 

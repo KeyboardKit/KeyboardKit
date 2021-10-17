@@ -12,6 +12,16 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 5.1
 
+This version adds support for `estonian`, `latvian` and `lithuanian`.
+
+This version also adds new inspection capabilities and fixes some bugs. 
+
+### 🌐 New locales
+
+* 🇪🇪 Estonian
+* 🇱🇻 Latvian
+* 🇱🇹 Lithuanian
+
 ### ✨ New features
 
 * `UITextDocumentProxy` has a new `hasCurrentWord` property.
@@ -463,6 +473,11 @@ This version fixes a bug that caused the secondary actions to not update.
 
 This version adds new locales, external keyboard detection, dynamic type disabling and RTL locale support.
 
+### 🌐 New locales
+
+* 🇫🇷 French
+* 🇪🇸 Spanish
+
 ### ✨ New features
 
 * `ExternalKeyboardContext` is a new iOS 14 exclusive class that lets you observe whether or not  an external keyboard is connected to the device.
@@ -475,11 +490,6 @@ This version adds new locales, external keyboard detection, dynamic type disabli
 * `Locale` has new `isLeftToRight`, `isRightToLeft`, `isBottomToTop`, `isTopToBottom` properties.
 * Thanks to [@habaieba](https://github.com/habaieba), KeyboardKit now has French localization.
 * There are new localizations for the keyboard type key texts. 
-
-### 🌐 New locales
-
-* 🇫🇷 French
-* 🇪🇸 Spanish
 
 ### 💡 Behavior changes
 
@@ -515,6 +525,11 @@ In this version, you can also identify the active app ID, which makes it possibl
 
 There are also several tweaks and behavior changes that make system keyboards behave even more native-like.
 
+### 🌐 New locales
+
+* 🇬🇧 English U.K. (GB)
+* 🇺🇸 English U.S. (same keyboard as base English but different region)
+
 ### ✨ New features
 
 * `CGFloat` has a new `standardKeyboardButtonCornerRadius` property.
@@ -534,11 +549,6 @@ There are also several tweaks and behavior changes that make system keyboards be
 * `EdgeInsets+Keyboard` has new context-based extensions.
 * `UIInputViewController+Orientation` renames `deviceOrientation` to `screenOrientation`.
 * `UITextDocumentProxy+Delete` has a new extension for deleting backwards a certain range.
-
-### 🌐 New locales
-
-* 🇬🇧 English U.K. (GB)
-* 🇺🇸 English U.S. (same keyboard as base English but different region)
 
 ### 💡 Behavior changes
 
@@ -667,6 +677,13 @@ This version also adds many new features aimed at an improved autocomplete exper
 
 KeyboardKit Pro 4.1 also adds more locale-specific providers as well as a real autocomplete engine.
 
+### 🌐 New locales
+
+* 🇩🇰 Danish
+* 🇳🇱 Dutch
+* 🇫🇮 Finnish
+* 🇳🇴 Norwegian
+
 ### ✨ New features
 
 * `AutocompleteSpaceState` is a new enum that is used to keep track of how a 
@@ -698,13 +715,6 @@ KeyboardKit Pro 4.1 also adds more locale-specific providers as well as a real a
 * `UITextDocumentProxy` has a new `tryInsertSpaceAfterAutocomplete)` function.
 * `UITextDocumentProxy` has a new `tryReinsertAutocompleteRemovedSpace` function.
 * `UITextDocumentProxy` has a new `tryRemoveAutocompleteInsertedSpace` function.
-
-### 🌐 New locales
-
-* 🇩🇰 Danish
-* 🇳🇱 Dutch
-* 🇫🇮 Finnish
-* 🇳🇴 Norwegian
 
 ### 💡 Changed behavior
 
@@ -745,14 +755,14 @@ This patch fixes a bug with the numeric/symbolic auto-switch back to alphabetic,
 
 This patch fixes a few minor things.
 
-### 🌐 Localization
+### 🌐 New locales
 
-* Italian localization has been added.
-* German localization has been added.
-* `.done` was accidentally missing a localized text.
+* 🇮🇹 Italian
+* 🇩🇪 German
 
 ### 🐛 Bug fixes
 
+* `.done` was accidentally missing a localized text.
 * English, German and Italian keyboards used an invalid double quote key text.
 * Title1 font is now used for input keys with two characters, e.g. Swedish "kr" currency.
 * Numeric and symbolic keyboards didn't auto-switch to alphabetic when tapping space.

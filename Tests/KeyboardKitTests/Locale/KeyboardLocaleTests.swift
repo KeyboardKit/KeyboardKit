@@ -29,10 +29,13 @@ class KeyboardLocaleTests: QuickSpec {
                         .english: "en",
                         .english_gb: "en-GB",
                         .english_us: "en-US",
+                        .estonian: "et",
                         .french: "fr",
                         .finnish: "fi",
                         .german: "de",
                         .italian: "it",
+                        .latvian: "lv",
+                        .lithuanian: "lt",
                         .norwegian: "nb",
                         .spanish: "es",
                         .swedish: "sv"
@@ -72,10 +75,13 @@ class KeyboardLocaleTests: QuickSpec {
                         .english: "English",
                         .english_gb: "English (United Kingdom)",
                         .english_us: "English (United States)",
+                        .estonian: "eesti",
                         .finnish: "suomi",
                         .french: "français",
                         .german: "Deutsch",
                         .italian: "italiano",
+                        .latvian: "latviešu",
+                        .lithuanian: "lietuvių",
                         .norwegian: "norsk bokmål",
                         .spanish: "español",
                         .swedish: "svenska"
@@ -96,10 +102,13 @@ class KeyboardLocaleTests: QuickSpec {
                         .english: "🇺🇸",
                         .english_gb: "🇬🇧",
                         .english_us: "🇺🇸",
+                        .estonian: "🇪🇪",
                         .finnish: "🇫🇮",
                         .french: "🇫🇷",
                         .german: "🇩🇪",
                         .italian: "🇮🇹",
+                        .latvian: "🇱🇻",
+                        .lithuanian: "🇱🇹",
                         .norwegian: "🇳🇴",
                         .spanish: "🇪🇸",
                         .swedish: "🇸🇪"
@@ -120,10 +129,13 @@ class KeyboardLocaleTests: QuickSpec {
                         .english: true,
                         .english_gb: true,
                         .english_us: true,
+                        .estonian: true,
                         .finnish: true,
                         .french: true,
                         .german: true,
                         .italian: true,
+                        .latvian: true,
+                        .lithuanian: true,
                         .norwegian: true,
                         .spanish: true,
                         .swedish: true
@@ -135,22 +147,25 @@ class KeyboardLocaleTests: QuickSpec {
         describe("is RTL") {
             
             it("is inverted LTR value") {
-                let map = locales.map { ($0, $0.isRightToLeft != $0.isLeftToRight) }
+                let map = locales.map { ($0, $0.isRightToLeft) }
                 let result = Dictionary(uniqueKeysWithValues: map)
                 expect(result).to(equal(
                     [
-                        .danish: true,
-                        .dutch: true,
-                        .english: true,
-                        .english_gb: true,
-                        .english_us: true,
-                        .finnish: true,
-                        .french: true,
-                        .german: true,
-                        .italian: true,
-                        .norwegian: true,
-                        .spanish: true,
-                        .swedish: true
+                        .danish: false,
+                        .dutch: false,
+                        .english: false,
+                        .english_gb: false,
+                        .english_us: false,
+                        .estonian: false,
+                        .finnish: false,
+                        .french: false,
+                        .german: false,
+                        .italian: false,
+                        .latvian: false,
+                        .lithuanian: false,
+                        .norwegian: false,
+                        .spanish: false,
+                        .swedish: false
                     ]
                 ))
             }
@@ -164,12 +179,15 @@ class KeyboardLocaleTests: QuickSpec {
                 expect(names).to(equal([
                     "Dansk",
                     "Deutsch",
+                    "Eesti",
                     "English",
                     "English (United Kingdom)",
                     "English (United States)",
                     "Español",
                     "Français",
                     "Italiano",
+                    "Latviešu",
+                    "Lietuvių",
                     "Nederlands",
                     "Norsk Bokmål",
                     "Suomi",
@@ -184,11 +202,14 @@ class KeyboardLocaleTests: QuickSpec {
                     "English",
                     "Dansk",
                     "Deutsch",
+                    "Eesti",
                     "English (United Kingdom)",
                     "English (United States)",
                     "Español",
                     "Français",
                     "Italiano",
+                    "Latviešu",
+                    "Lietuvių",
                     "Nederlands",
                     "Norsk Bokmål",
                     "Suomi",
