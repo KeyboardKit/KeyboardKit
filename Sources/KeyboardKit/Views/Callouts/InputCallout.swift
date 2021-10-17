@@ -127,6 +127,7 @@ struct InputCallout_Previews: PreviewProvider {
     
     static var rowItem: some View {
         Color.yellow.frame(width: 46, height: 51)
+            .overlay(button)
     }
     
     static var rowItemStyle: InputCalloutStyle {
@@ -137,20 +138,23 @@ struct InputCallout_Previews: PreviewProvider {
     
     static var previews: some View {
         VStack {
+            
+            // Button
             button.overlay(
                 GeometryReader { geo in
                     Color.clear.onAppear {
                         context1.updateInput(for: .character("a"), in: geo)
                     }
                 }
-            )
-            .inputCallout(
+            ).inputCallout(
                 context: context1,
                 keyboardContext: .preview,
                 style: .standard)
-    //            style: .preview1)
-    //            style: .preview2)
+            //  style: .preview1)
+            //  style: .preview2)
             
+            
+            // Row Item
             
             rowItem.overlay(
                 GeometryReader { geo in
@@ -158,13 +162,12 @@ struct InputCallout_Previews: PreviewProvider {
                         context2.updateInput(for: .character("a"), in: geo)
                     }
                 }
-            )
-            .inputCallout(
+            ).inputCallout(
                 context: context2,
                 keyboardContext: .preview,
                 style: rowItemStyle)
-    //            style: .preview1)
-    //            style: .preview2)
+            //  style: .preview1)
+            //  style: .preview2)
             
         }
     }

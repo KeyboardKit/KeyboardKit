@@ -85,7 +85,7 @@ private extension SecondaryInputCallout {
         CustomRoundedRectangle(
             topLeft: cornerRadius,
             topRight: cornerRadius,
-            bottomLeft: isLeading ? 4 : cornerRadius,
+            bottomLeft: isLeading ? 2 : cornerRadius,
             bottomRight: isTrailing ? 2 : cornerRadius)
             .foregroundColor(backgroundColor)
     }
@@ -127,7 +127,11 @@ private extension KeyboardAction {
 
 struct SecondaryInputCallout_Previews: PreviewProvider {
     
-    static let context = SecondaryInputCalloutContext(
+    static let context1 = SecondaryInputCalloutContext(
+        actionHandler: .preview,
+        actionProvider: PreviewSecondaryCalloutActionProvider())
+    
+    static let context2 = SecondaryInputCalloutContext(
         actionHandler: .preview,
         actionProvider: PreviewSecondaryCalloutActionProvider())
     
@@ -135,22 +139,52 @@ struct SecondaryInputCallout_Previews: PreviewProvider {
         Color.red.frame(width: 40, height: 50)
     }
     
+    static var rowItem: some View {
+        Color.yellow.frame(width: 46, height: 56)
+            .overlay(button)
+    }
+    
+    static var rowItemStyle: SecondaryInputCalloutStyle {
+        var style = SecondaryInputCalloutStyle.standard
+        style.callout.buttonInset = CGSize(width: 3, height: 3)
+        return style
+    }
+    
     static var previews: some View {
         VStack {
+            
+            // Button
+            
             button.overlay(
                 GeometryReader { geo in
                     Color.clear.onAppear {
-                        context.updateInputs(
+                        context1.updateInputs(
+                            for: .character("S"),
+                            in: geo,
+                            alignment: .leading
+                        )
+                    }
+                }
+            ).secondaryInputCallout(
+                context: context1,
+                style: .standard)
+            
+            
+            // Row Item
+            
+            rowItem.overlay(
+                GeometryReader { geo in
+                    Color.clear.onAppear {
+                        context2.updateInputs(
                             for: .character("S"),
                             in: geo,
                             alignment: .trailing
                         )
                     }
                 }
-            )
+            ).secondaryInputCallout(
+                context: context2,
+                style: rowItemStyle)
         }
-        .secondaryInputCallout(context: context, style: .standard)
-        // .inputCallout(context: context, style: .preview1)
-        // .inputCallout(context: context, style: .preview2)
     }
 }

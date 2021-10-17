@@ -28,6 +28,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 ### 🐛 Bug fixes
 
 * `InputCallout` was rendered too wide by default, when used in `SystemKeyboard`. This has been fixed.
+* `SecondaryInputCallout` applied an incorrect leading corner radius. This has been fixed.
 
 
 
