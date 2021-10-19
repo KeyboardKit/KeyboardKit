@@ -11,7 +11,7 @@ import Foundation
 public extension KeyboardLayout {
 
     /**
-     This layout can be used in SwiftUI previews.
+     This preview layout can be used in SwiftUI previews.
      */
     static var preview: KeyboardLayout {
         PreviewKeyboardLayoutProvider().keyboardLayout(for: .preview)

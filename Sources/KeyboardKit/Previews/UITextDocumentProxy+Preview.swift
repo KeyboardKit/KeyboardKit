@@ -11,7 +11,7 @@ import UIKit
 public extension UITextDocumentProxy where Self == PreviewTextDocumentProxy {
     
     /**
-     This document proxy can be used in SwiftUI previews.
+     This preview proxy can be used in SwiftUI previews.
      */
     static var preview: UITextDocumentProxy { PreviewTextDocumentProxy() }
 }

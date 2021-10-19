@@ -13,46 +13,6 @@ import UIKit
 /**
  This class extends `UIInputViewController` with KeyboardKit
  specific functionality.
- 
- When you use KeyboardKit, inherit this class instead of the
- regular `UIInputViewController` class. This will extend the
- keyboard extension with a lot of additional features that a
- regular keyboard extension lacks.
- 
- Regarding the view controller lifecycle, there are some new
- functions that you can override. These should be overridden
- to assure that the keyboard is kept in sync, e.g.:
- 
- * `viewWillSetupKeyboard` is called when a controller needs
- to setup or recreate the keyboard view. Override this, then
- call `setup(with:)` or any other setup logic.
- 
- This class provides you with many utils that you can use to
- build a more powerful keyboard extension, for instance:
- 
- * `autocompleteProvider` provides autocomplete suggestions
- * `keyboardActionHandler` handles keyboard actions
- * `keyboardAppearance` determines the keyboard design
- * `keyboardBehavior` determines the keyboard behavior
- * `keyboardFeedbackHandler` handles autio & haptic feedback
- * `keyboardInputSetProvider` provides keybpard input actions
- * `keyboardLayoutProvider` provides a keyboard layout
- * `keyboardSecondaryCalloutActionProvider` provides secondary callout actions
- 
- You can replace any of these to customize how your keyboard
- extension behaves.
-  
- This class also provides you with many observable instances,
- for instance:
- 
- * `autocompleteContext` provides autocomplete information
- * `keyboardContext` provides keybard information
- * `keyboardFeedbackSettings` provides feedback settings
- * `keyboardInputCalloutContext` provides callout information
- * `keyboardSecondaryInputCalloutContext` provides secondary callout information
- 
- These contexts are injected as environment objects into the
- root view and can be accessed anywhere in the hierarchy.
  */
 open class KeyboardInputViewController: UIInputViewController {
     
@@ -152,22 +112,25 @@ open class KeyboardInputViewController: UIInputViewController {
     
     /**
      Set this property to either `true` or `false` to ignore
-     the real `needsInputModeSwitchKey` in all controllers.
+     the real `needsInputModeSwitchKey` value.
+     
+     This can be used to avoid warnings when previeweing etc.
      */
     public static var needsInputModeSwitchKeyOverride: Bool?
     
     /**
      Set this property to either `true` or `false` to ignore
      the real `needsInputModeSwitchKey` value.
+     
+     This can be used to avoid warnings when previeweing etc.
      */
     public lazy var needsInputModeSwitchKeyOverride: Bool? = {
         Self.needsInputModeSwitchKeyOverride
     }()
     
     /**
-     Set this property to either `true` or `false` to ignore
-     the real `needsInputModeSwitchKey`. This can be used to
-     avoid warnings when previeweing etc.
+     Whether or not the keyboards needs a "globe" button for
+     switching keyboard.
      */
     open override var needsInputModeSwitchKey: Bool {
         needsInputModeSwitchKeyOverride ?? super.needsInputModeSwitchKey
@@ -214,27 +177,44 @@ open class KeyboardInputViewController: UIInputViewController {
     
     /**
      The default, observable autocomplete context.
+     
+     This context is used as global state for the keyboard's
+     autocomplete, e.g. the current suggestions.
      */
     public lazy var autocompleteContext = AutocompleteContext()
     
     /**
      The default, observable keyboard context.
+     
+     This context is used as global state for the keyboard's
+     overall state and configuration like the current locale,
+     device, screen etc.
      */
     public lazy var keyboardContext = KeyboardContext(controller: self)
     
     /**
-     The default, observable keyboard feedback settings.
+     The default, observable feedback settings.
+     
+     This property is used as a global configuration for the
+     keyboard's feedback, e.g. audio and haptic feedback.
      */
     public lazy var keyboardFeedbackSettings = KeyboardFeedbackSettings()
     
     /**
      The default, observable input callout context.
+     
+     This context is used as global state for the keyboard's
+     input callout, which shows the currently typed char.
      */
     public lazy var keyboardInputCalloutContext = InputCalloutContext(
         isEnabled: UIDevice.current.userInterfaceIdiom == .phone)
     
     /**
      The default, observable secondary input callout context.
+     
+     This context is used as global state for the keyboard's
+     secondary input action callout, which shows a secondary
+     callout with actions for a long-pressed input key.
      */
     public lazy var keyboardSecondaryInputCalloutContext = SecondaryInputCalloutContext(
         actionHandler: keyboardActionHandler,
@@ -245,23 +225,20 @@ open class KeyboardInputViewController: UIInputViewController {
     // MARK: - Services
     
     /**
-     This provider will be used to provide the keyboard with
-     autocomplete suggestions.
+     This provider is used to provide the keyboard extension
+     with autocomplete suggestions.
      
-     You can replace this with your own implementations. The
-     controller will use a standard instance by default.
+     You can replace this instance with a custom instance. A
+     ``DisabledAutocompleteProvider`` is used by default.
      */
     public lazy var autocompleteProvider: AutocompleteProvider = DisabledAutocompleteProvider()
     
     /**
-     This action handler will be used to handle actions that
-     are triggered by users as they use the keyboard.
+     This action handler is used to handle actions that will
+     be triggered when the keyboard is being.
      
-     You can replace this with your own implementations. The
-     controller will use a standard instance by default.
-     
-     Note that you can use the handler to trigger any action
-     programatically as well.
+     You can replace this instance with a custom instance. A
+     ``StandardKeyboardActionHandler`` is used by default.
      */
     public lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(
         inputViewController: self) {
@@ -269,44 +246,47 @@ open class KeyboardInputViewController: UIInputViewController {
     }
 
     /**
-     This appearance will be used to control the look of the
-     keyboard, such as colors, fonts, margins etc.
+     This appearance can be used to customize the keyboard's
+     design, such as its colors, fonts etc.
      
-     You can replace this with your own implementations. The
-     controller will use a standard instance by default.
+     You can replace this instance with a custom instance. A
+     ``StandardKeyboardAppearance`` is used by default.
      */
     public lazy var keyboardAppearance: KeyboardAppearance = StandardKeyboardAppearance(
         context: keyboardContext)
 
     /**
-     This behavior will be used to control certain behaviors
-     of a keyboard. It is used to separate keyboard behavior
-     from action handling.
+     This behavior determines how the keyboard should behave
+     when when the keyboard is being used.
      
-     You can replace this with your own implementations. The
-     controller will use a standard instance by default.
+     You can replace this instance with a custom instance. A
+     ``StandardKeyboardBehavior`` is used by default.
      */
     public lazy var keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior(
         context: keyboardContext)
     
     /**
-     This handler will be used to handle feedback when users
-     use the keyboard, such as audio and haptic feedback.
+     This feedback handler is used to setup audio and haptic
+     feedback when the keyboard is being used.
      
-     If you replace this with a custom implementation, it is
-     very important to update the action handler as well, so
-     that the correct feedback handler is called.
+     You can replace this instance with a custom instance. A
+     ``StandardKeyboardFeedbackHandler`` is used by default.
+     
+     If you replace this instance with a custom instance, it
+     is very important to update the ``keyboardActionHandler``
+     as well, or to setup the custom instance before you use
+     the action handler for the first time.
      */
     public lazy var keyboardFeedbackHandler: KeyboardFeedbackHandler = StandardKeyboardFeedbackHandler(
         settings: keyboardFeedbackSettings)
     
     /**
-     This provider will be used to provide the keyboard with
-     input keys for the current keyboard context. These keys
-     will be used to make up the complete keyboard layout.
+     This provider is used to get input keys for the current
+     ``keyboardContext``. These keys will be used to make up
+     the complete keyboard layout.
      
-     You can replace this with your own implementations. The
-     controller will use a standard instance by default.
+     You can replace this instance with a custom instance. A
+     ``StandardKeyboardInputSetProvider`` is used by default.
      */
     public lazy var keyboardInputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider(
         context: keyboardContext) {
@@ -314,23 +294,24 @@ open class KeyboardInputViewController: UIInputViewController {
     }
                     
     /**
-     This provider will be used to provide the keyboard with
-     a keyboard layout for the current keyboard context. The
-     layout is the complete set of keys in a keyboard.
+     This provider is used to get a complete keyboard layout
+     for the current ``keyboardContext``. This layout is the
+     complete set of keys in a keyboard.
      
-     You can replace this with your own implementations. The
-     controller will use a standard instance by default.
+     You can replace this instance with a custom instance. A
+     ``StandardKeyboardLayoutProvider`` is used by default.
      */
     public lazy var keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider(
         inputSetProvider: keyboardInputSetProvider)
     
     /**
-     This provider will be used to provide the keyboard with
-     secondary callout actions, for instance when users long
-     press keys for alternate actions.
+     This provider is used to get a secondary callout action
+     collection for the current ``keyboardContext`` when the
+     keyboard is being used.
      
-     You can replace this with your own implementations. The
-     controller will use a standard instance by default.
+     You can replace this instance with a custom instance. A
+     ``StandardSecondaryCalloutActionProvider`` will be used
+     by default.
      */
     public lazy var keyboardSecondaryCalloutActionProvider: SecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider(
         context: keyboardContext) {
@@ -367,12 +348,12 @@ open class KeyboardInputViewController: UIInputViewController {
     // MARK: - Autocomplete
     
     /**
-     Perform an autocomplete operation. You can override the
-     function to provide custom autocomplete logic.
+     Perform an autocomplete operation.
      
-     This function can be called directly or injected into a
-     nested service class to avoid bilinear dependencies. It
-     is injected into `StandardKeyboardActionHandler`.
+     You can override this function to extend or replace the
+     default logic. By default, it uses the `currentWord` of
+     the ``textDocumentProxy`` to perform autocomplete using
+     the current ``autocompleteProvider``.
      */
     open func performAutocomplete() {
         guard let word = textDocumentProxy.currentWord else { return resetAutocomplete() }
@@ -385,8 +366,11 @@ open class KeyboardInputViewController: UIInputViewController {
     }
     
     /**
-     Reset autocomplete state. You can override the function
-     to provide custom autocomplete logic.
+     Reset the current autocomplete state.
+     
+     You can override this function to extend or replace the
+     default logic. By default, it resets the suggestions in
+     the ``autocompleteContext``.
      */
     open func resetAutocomplete() {
         autocompleteContext.suggestions = []

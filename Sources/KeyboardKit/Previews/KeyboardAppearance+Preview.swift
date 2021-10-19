@@ -11,7 +11,7 @@ import SwiftUI
 public extension KeyboardAppearance where Self == PreviewKeyboardAppearance {
     
     /**
-     This appearance can be used in SwiftUI previews.
+     This preview appearance can be used in SwiftUI previews.
      */
     static var preview: KeyboardAppearance { PreviewKeyboardAppearance() }
 }
@@ -20,7 +20,7 @@ public extension KeyboardAppearance where Self == PreviewKeyboardAppearance {
 extension KeyboardAppearance where Self == PreviewKeyboardAppearance {
     
     /**
-     This appearance can be used in SwiftUI previews.
+     This preview appearance can be used in SwiftUI previews.
      */
     static var crazy: KeyboardAppearance { CrazyPreviewKeyboardAppearance() }
 }

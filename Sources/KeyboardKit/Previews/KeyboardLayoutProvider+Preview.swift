@@ -11,7 +11,7 @@ import Foundation
 public extension KeyboardLayoutProvider where Self == PreviewKeyboardLayoutProvider {
     
     /**
-     This layout provider can be used in SwiftUI previews.
+     This preview provider can be used in SwiftUI previews.
      */
     static var preview: KeyboardLayoutProvider { PreviewKeyboardLayoutProvider() }
 }

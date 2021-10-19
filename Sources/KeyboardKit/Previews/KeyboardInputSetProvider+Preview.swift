@@ -11,7 +11,7 @@ import Foundation
 public extension KeyboardInputSetProvider where Self == PreviewKeyboardInputSetProvider {
     
     /**
-     This input set provider can be used in SwiftUI previews.
+     This preview provider can be used in SwiftUI previews.
      */
     static var preview: KeyboardInputSetProvider { PreviewKeyboardInputSetProvider() }
 }
