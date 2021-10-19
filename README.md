@@ -18,7 +18,7 @@
 
 ## About KeyboardKit
 
-KeyboardKit is a Swift library that helps you create custom keyboard extensions for `iOS` and `iPadOS` using `SwiftUI`. 
+KeyboardKit helps you build custom keyboard extensions for `iOS` and `iPadOS` using `SwiftUI`. 
 
 The end result can look something like this...or entirely different:
 
@@ -26,7 +26,7 @@ The end result can look something like this...or entirely different:
     <img src ="Resources/Demo.gif" width="300" />
 </p>
 
-KeyboardKit lets you create rich system keyboards with support for multiple locales, gestures, callouts etc. 
+KeyboardKit extends the native keyboard extension APIs to provide you with a lot more functionality, to simplify creating powerful keyboards. It also provides you with views to mimic the native system keyboards, with support for multiple locales, gestures, callouts etc. 
 
 If you're new to iOS keyboard extensions, [this great guide][Guide] will help you get started. You can also have a look at the demo app for inspiration.
 
@@ -34,43 +34,26 @@ If you're new to iOS keyboard extensions, [this great guide][Guide] will help yo
 
 ## Installation
 
-### Swift Package Manager
+The best way to add KeyboardKit to your app is to use the Swift Package Manager:
 
 ```
 https://github.com/KeyboardKit/KeyboardKit.git
 ```
 
-### CocoaPods
-
-```ruby
-target 'MyApp' do
-  pod 'KeyboardKit'
-end
-
-target 'MyKeyboard' do
-  pod 'KeyboardKit'
-end
-
-post_install do |installer|
-   installer.pods_project.targets.each do |target|
-      target.build_configurations.each do |config|
-          config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'No'
-      end
-   end
-end
-```
+You can add the library to the main app, the keyboard extension and any other targets that needs it.  
 
 
 
-## Getting Started
+## Getting started
 
-To build a keyboard extension with KeyboardKit, first add `KeyboardKit` to your app's keyboard extension as shown above. You can add it to the main app target as well, if you want to use it there.
+After adding KeyboardKit to your project, you can start using it in your application.
 
-Then, inherit `KeyboardInputViewController` instead of `UIInputViewController`. It provides you with a lot of additional functionality, e.g. new lifecycle functions, observables like `keyboardContext` and services like `keyboardActionHandler`, `keyboardAppearance`, autocomplete logic etc.  
+* The main app target can use KeyboardKit to check if a keyboard is enabled, if full access is granted etc. which helps you build a more helpful application.
+* The keyboard extension can use KeyboardKit to get access to a lot more functionality, which helps you build more powerful keyboard extensions.
 
-`KeyboardInputViewController` will call `viewWillSetupKeyboard` whenever the keyboard must be created or re-created. You can use `setup(with:)` in that function, to setup your extension with any `SwiftUI` view. 
+In your extension, let your `KeyboardViewController` inherit KeyboardKit's `KeyboardInputViewController` instead of `UIInputViewController` to give it access to a lot of additional functionality, like new lifecycle functions, observables like `keyboardContext` and services like `keyboardActionHandler`, `keyboardAppearance`, autocomplete logic etc.  
 
-Setting up the view controller with a SwiftUI view will make the view the main view of the extension, inject necessary environment objects and resize the keyboard extension to fit the view.
+`KeyboardInputViewController` will call `viewWillSetupKeyboard` when the keyboard should be created or re-created. You can use `setup(with:)` to setup your extension with any `SwiftUI` view which will make it the main view, inject necessary environment objects, resize the keyboard extension to fit the view etc.
 
 Have a look at the demo application and read more below to see how it all fits together.
 
