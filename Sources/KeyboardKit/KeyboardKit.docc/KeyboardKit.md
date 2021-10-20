@@ -39,6 +39,23 @@ In your extension, let your `KeyboardViewController` inherit KeyboardKit's `Keyb
 ### Keyboard
 
 - ``KeyboardInputViewController``
+- ``KeyboardContext``
+- ``KeyboardCasing``
+- ``KeyboardType``
 
+### Actions
 
+- ``KeyboardAction``
+- ``KeyboardActionHandler``
+- ``StandardKeyboardActionHandler``
 
+### Appearance
+
+- ``KeyboardAppearance``
+- ``StandardKeyboardAppearance``
+- ``KeyboardColor``
+
+### Behavior
+
+- ``KeyboardBehavior``
+- ``StandardKeyboardBehavior``

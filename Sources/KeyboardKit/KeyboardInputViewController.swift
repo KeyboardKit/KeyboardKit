@@ -229,7 +229,7 @@ open class KeyboardInputViewController: UIInputViewController {
      with autocomplete suggestions.
      
      You can replace this instance with a custom instance. A
-     ``DisabledAutocompleteProvider`` is used by default.
+     disabled provider is used by default.
      */
     public lazy var autocompleteProvider: AutocompleteProvider = DisabledAutocompleteProvider()
     

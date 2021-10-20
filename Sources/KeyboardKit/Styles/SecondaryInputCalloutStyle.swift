@@ -9,11 +9,11 @@
 import SwiftUI
 
 /**
- This can be used to style `SecondaryInputCallout` views, by
- applying the `secondaryInputCalloutStyle` view modifier.
+ This style can be applied to ``SecondaryInputCallout``s, to
+ customize things like the callout style, font, colors etc.
  
- You can modify the `.standard` style instance to change the
- standard, global style.
+ You can modify the ``standard`` style to change the default,
+ global style of all ``SecondaryInputCallout``s.
  */
 public struct SecondaryInputCalloutStyle {
     
@@ -21,8 +21,8 @@ public struct SecondaryInputCalloutStyle {
      Create a secondary input callout style.
      
      - Parameters:
-       - callout: The callout style to use.
-       - font: The font to use in the callout.
+       - callout: The callout style to use, by default ``CalloutStyle/standard``.
+       - font: The font to use in the callout, by default ``standardFont``.
        - selectedBackgroundColor: The background color of the selected item.
        - selectedForegroundColor: The foreground color of the selected item.
        - verticalTextPadding: The vertical padding to apply to text in the callout.

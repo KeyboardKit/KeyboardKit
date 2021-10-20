@@ -44,7 +44,8 @@ public class KeyboardEnabledState: KeyboardEnabledStateInspector, ObservableObje
         refresh()
     }
     
-    private let bundleId: String
+    public let bundleId: String
+    
     private var cancellables = Set<AnyCancellable>()
     private let notificationCenter: NotificationCenter
     

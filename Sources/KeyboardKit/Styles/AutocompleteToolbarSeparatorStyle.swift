@@ -9,11 +9,11 @@
 import SwiftUI
 
 /**
- This style can be applied to `AutocompleteToolbarSeparator`
+ This style can be applied to ``AutocompleteToolbarSeparator``
  views to control the color and width of the separator line.
  
- You can modify the `.standard` style instance to change the
- standard, global style.
+ You can modify the ``standard`` style to change the default,
+ global style of all ``AutocompleteToolbarSeparator``s.
  */
 public struct AutocompleteToolbarSeparatorStyle {
     

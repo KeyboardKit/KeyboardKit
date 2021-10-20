@@ -9,11 +9,11 @@
 import SwiftUI
 
 /**
- This style can be applied behind `AutocompleteToolbar` item
- views to control the color corner radius etc.
+ This style can be applied to customize the appearance of an
+ ``AutocompleteToolbarItem``s background.
  
- You can modify the `.standard` style instance to change the
- standard, global style.
+ You can modify the ``standard`` style to change the default,
+ global style of all highlighted autocomplete items.
  */
 public struct AutocompleteToolbarItemBackgroundStyle {
     

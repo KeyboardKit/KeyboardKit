@@ -13,8 +13,8 @@ import SwiftUI
  
  Unlike other styles, this has no `standard` style, since it
  depends on so many factors, like button type, layout config
- etc. Instead, use a `KeyboardAppearance` to resolve a style
- for a certain action.
+ etc. Instead, use a ``KeyboardAppearance``to resolve styles
+ for certain actions.
  */
 public struct SystemKeyboardButtonStyle {
     

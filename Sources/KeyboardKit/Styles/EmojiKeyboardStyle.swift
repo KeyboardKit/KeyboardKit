@@ -11,12 +11,13 @@ import Foundation
 import SwiftUI
 
 /**
- This style can be applied to an `EmojiCategoryKeyboard`, as
- well as an `EmojiKeyboard` and their nested views.
+ This style can be applied to emoji keyboard views, like the
+ ``EmojiKeyboard`` or ``EmojiCategoryKeyboard`` to customize
+ things like the font, number of rows, item spacing etc.
  
- Note that the struct has both an `itemSize` and a `font`. A
- lazy grid can use the itemSize as a precalculated cell size
- and then apply the font to each emoji.
+ Note that the style has both an ``itemSize`` and a ``font``
+ Lazy grids can use the ``itemSize`` as a precalculated cell
+ size, then apply the ``font`` to each emoji.
  */
 public struct EmojiKeyboardStyle {
     

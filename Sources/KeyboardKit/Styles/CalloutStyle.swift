@@ -10,10 +10,11 @@ import SwiftUI
 
 /**
  This struct can be used to style callout views, which are a
- type of view that is presented above a keyboard button.
+ type of view that is presented above a keyboard button, e.g.
+ when a user types or presses a key to get secondary actions.
  
- You can modify the `.standard` style instance to change the
- standard, global style.
+ You can modify the ``standard`` style to change the default,
+ global style of all callout views.
  */
 public struct CalloutStyle: Equatable {
     
@@ -22,8 +23,8 @@ public struct CalloutStyle: Equatable {
      
      When customizing these values, note that some are meant
      to fit the context in which a callout is presented, e.g.
-     `buttonCornerRadius` which should use the same value as
-     the button that the callout is presented on top of.
+     ``buttonCornerRadius``, which should use the same value
+     as the button that the callout is presented over.
      
      Only customize the parameters you need to customize and
      use the default values for all other parameters.

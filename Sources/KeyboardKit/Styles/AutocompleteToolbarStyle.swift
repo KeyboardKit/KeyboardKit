@@ -9,11 +9,10 @@
 import SwiftUI
 
 /**
- This style can be applied to `AutocompleteToolbar` views to
- customize fonts, colors, separators etc.
+ This style can be applied to ``AutocompleteToolbar`` views.
  
- You can modify the `.standard` style instance to change the
- standard, global style.
+ You can modify the ``standard`` style to change the default,
+ global style of all ``AutocompleteToolbar``s.
  */
 public struct AutocompleteToolbarStyle {
     
