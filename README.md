@@ -46,16 +46,24 @@ You can add the library to the main app, the keyboard extension and any other ta
 
 ## Getting started
 
-After adding KeyboardKit to your project, you can start using it in your application.
+After adding KeyboardKit to your project, you can start using it in your application and keyboard extension.
 
 * The main app target can use KeyboardKit to check if a keyboard is enabled, if full access is granted etc. which helps you build a more helpful application.
 * The keyboard extension can use KeyboardKit to get access to a lot more functionality, which helps you build more powerful keyboard extensions.
 
-In your extension, let your `KeyboardViewController` inherit KeyboardKit's `KeyboardInputViewController` instead of `UIInputViewController` to give it access to a lot of additional functionality, like new lifecycle functions, observables like `keyboardContext` and services like `keyboardActionHandler`, `keyboardAppearance`, autocomplete logic etc.  
+In your extension, let your `KeyboardViewController` inherit KeyboardKit's `KeyboardInputViewController` instead of `UIInputViewController`. This gives it access to a lot of additional functionality, observables like `keyboardContext`, services like `keyboardActionHandler`, `keyboardAppearance`, autocomplete etc.  
 
-`KeyboardInputViewController` will call `viewWillSetupKeyboard` when the keyboard should be created or re-created. You can use `setup(with:)` to setup your extension with any `SwiftUI` view which will make it the main view, inject necessary environment objects, resize the keyboard extension to fit the view etc.
+`KeyboardInputViewController` will call `viewWillSetupKeyboard` when the keyboard should be created or re-created. You can use `setup(with:)` to setup your extension with any `SwiftUI` view, to inject necessary environment objects, resize the keyboard extension to fit the view etc.
 
 Have a look at the demo application and read more below to see how it all fits together.
+
+
+
+## Documentation
+
+The [KeyboardKit documentation][Documentation] contains curated and structured information that makes it easy to overview the various parts of the library, see how the various parts connect to each other etc.
+
+Just download the documentation, extract the zip file and double-tap the `KeyboardKit.doccarchive` file to view the documentation directly in Xcode.
 
 
 
@@ -293,6 +301,7 @@ KeyboardKit is available under the MIT license. See LICENSE file for more info.
 [Website]: https://getkeyboardkit.com
 [Sponsors]: https://github.com/sponsors/danielsaidi
 
+[Documentation]: https://github.com/KeyboardKit/KeyboardKit/raw/master/Docs/KeyboardKit.doccarchive.zip
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 [Actions]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Actions.md
