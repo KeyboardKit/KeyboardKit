@@ -16,90 +16,93 @@ import Foundation
  don't and are just here to let you create your keyboards in
  a declarative way.
  
- Actions without a standard behavior require custom handling
- and can for instance be handled by a custom action handler.
+ Actions without a standard behavior require custom handling,
+ e.g. by using a custom ``KeyboardActionHandler``.
+ 
+ The documentation for the different enum cases describe the
+ standard behavior of each action, if any.
  */
 public enum KeyboardAction: Codable, Equatable {
     
     /// A "no action" placeholder action.
     case none
     
-    /// `.backspace` deletes text backwards in the text document proxy when `tapped` and repeats this action until the button is `released`.
+    /// Deletes text backwards in the text document proxy when tapped and repeats this action until the button is released.
     case backspace
     
-    /// `.character` sends a text character to the text document proxy when `tapped`.
+    /// Sends a text character to the text document proxy when tapped.
     case character(String)
     
-    /// `.command` represents a command key.
+    /// Represents a command (⌘) key.
     case command
     
-    /// `.control` represents a control key.
+    /// Represents a control (⌃) key.
     case control
     
-    /// `.custom` is a custom, named action that you can handle in a custom action handler.
+    /// A custom, named action that you can handle in a custom action handler.
     case custom(named: String)
     
-    /// `.dictation` represents a dictation key.
+    /// Represents a dictation key.
     case dictation
     
-    /// `.dismissKeyboard` dismisses the keyboard when `tapped`.
+    /// Dismisses the keyboard when tapped.
     case dismissKeyboard
     
-    /// `.emoji` sends an emoji to the text document proxy when `tapped`.
+    /// Sends an emoji to the text document proxy when tapped.
     case emoji(Emoji)
     
-    /// `.emojiCategory` can be used to show a specific emoji category.
+    /// Can be used to show a specific emoji category.
     case emojiCategory(EmojiCategory)
     
-    /// `.escape` represents an `esc` key.
+    /// Represents an escape (esc) key.
     case escape
     
-    /// `.function` represents a `fn` key.
+    /// Represents a function (fn) key.
     case function
     
-    /// `.image` can be used to show an embedded image asset.
+    /// Can be used to refer to an embedded image asset.
     case image(description: String, keyboardImageName: String, imageName: String)
     
-    /// `.keyboardType` changes the keyboard type when `tapped`.
+    /// Changes the keyboard type when tapped.
     case keyboardType(KeyboardType)
     
-    /// `.moveCursorBackward` moves the cursor back one position when `tapped`.
+    /// Moves the cursor back one position when tapped.
     case moveCursorBackward
     
-    /// `.moveCursorForward` moves the cursor forward one position when `tapped`.
+    /// Moves the cursor forward one position when tapped.
     case moveCursorForward
     
-    /// `.newLine` sends a new line character to the text proxy when `tapped`.
+    /// Sends a new line to the text proxy when tapped.
     case newLine
     
-    /// `.nextKeyboard` triggers the main keyboard switcher when `tapped` and `long pressed`.
+    /// Represents a next keyboard (🌐) button that triggers the keyboard switcher when tapped and pressed.
     case nextKeyboard
     
-    /// `.nextLocale` selects the next locale in the keyboard context when `tapped` and `long pressed`.
+    /// Selects the next locale in the keyboard context when tapped and pressed.
     case nextLocale
     
-    /// `.option` represents a macOS `option` key.
+    /// Represents an option (⌥) key.
     case option
     
-    /// `.primary` is a primary button, e.g. `go`, `search` etc..
+    /// A primary button, e.g. `go`, `search` etc.
     case primary(PrimaryType)
     
-    /// `.return` has the same behavior as a `newLine`, but is supposed to show a text instead of an arrow.
+    /// Has the same behavior as `newLine`, but is supposed to show a text instead of an arrow.
     case `return`
     
-    /// `.settings` can be used to show a settings window or trigger a settings action.
+    /// A custom action that can be used to show a settings screen or anything you like.
     case settings
     
-    /// `.shift` changes the keyboard type to `.alphabetic(.uppercased)` when `tapped` and `.capslocked` when `double tapped`.
+    /// Changes the keyboard type to `.alphabetic(.uppercased)` when tapped and `.capslocked` when double tapped.
     case shift(currentState: KeyboardCasing)
     
-    /// `.space` sends a space to the text document proxy when `tapped`.
+    /// Sends a space to the text document proxy when tapped.
     case space
     
-    /// `.systemImage` can be used to show a system image asset (SF Symbol).
+    /// Can be used to refer to a system image (SF Symbol).
     case systemImage(description: String, keyboardImageName: String, imageName: String)
     
-    /// `.tab` sends a tab to the text document proxy when `tapped`.
+    /// Sends a tab to the text document proxy when tapped.
     case tab
 }
 
@@ -109,10 +112,11 @@ public enum KeyboardAction: Codable, Equatable {
 public extension KeyboardAction {
     
     /**
-     This type can be used together with the `.primary` type.
+     This type can be used together with a `.primary` action.
      
-     A primary button is the color accented button that will
-     have the same effect as return in a native iOS keyboard.
+     Primary buttons are color accented buttons that trigger
+     a submit action in the keyboard. This submit is done by
+     sending a new line to the proxy, just as `.return` does.
      */
     enum PrimaryType: String, CaseIterable, Codable, Equatable, Identifiable {
         
