@@ -29,6 +29,14 @@ platform :ios do
   end
 
 
+  # Docs =======================
+  
+  desc "Build documentation"
+  lane :documentation do
+    sh('cd .. && fastlane/build-documentation.sh')
+  end
+
+
   # Version ================
 
   desc "Create a new version"
@@ -38,6 +46,7 @@ platform :ios do
     
     lint
     test
+    documentation
 
     bump_type = options[:type]
     if bump_type == nil or bump_type.empty?

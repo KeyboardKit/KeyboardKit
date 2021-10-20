@@ -26,6 +26,11 @@ Run SwiftLint
 fastlane ios test
 ```
 Run unit tests
+### ios documentation
+```
+fastlane ios documentation
+```
+Build documentation
 ### ios version
 ```
 fastlane ios version
