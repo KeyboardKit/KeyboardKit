@@ -171,7 +171,7 @@ extension KeyboardAction {
     
     func buttonBackgroundColorForPressedState(for context: KeyboardContext) -> Color {
         if isPrimaryAction { return context.colorScheme == .dark ? .standardDarkButtonBackgroundColor(for: context) : .white }
-        if isSystemAction { return .white }
+        if isSystemAction { return context.colorScheme == .dark ? .standardButtonBackgroundColor(for: context) : .white }
         return .standardDarkButtonBackgroundColor(for: context)
     }
     

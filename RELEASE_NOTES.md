@@ -12,7 +12,11 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 5.2
 
-This version bumps the package Swift version to 5.5 to enable extended DocC support.
+This version bumps the package's Swift version to 5.5 to enable extended DocC support.
+
+### 🐛 Bug fixes
+
+* This version corrects the system button highlight color in dark mode.   
 
 
 
