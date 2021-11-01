@@ -278,13 +278,16 @@ This project is proudly sponsored by the following individuals and companies:
 * [@booch](https://github.com/booch)
 
 <a href="https://www.oribi.se/en">
-    <img src="Resources/logos/oribi.png" alt="Oribi Logo" title="Oribi" width=150 />
+    <img src="Resources/logos/oribi.png" alt="Oribi Logo" title="Oribi" width=120 />
 </a>
 <a href="http://anomaly.net.au">
-    <img src="Resources/logos/anomaly.png" alt="Anomaly Software Logo" title="Anomaly Software" width=150 />
+    <img src="Resources/logos/anomaly.png" alt="Anomaly Software Logo" title="Anomaly Software" width=120 />
 </a>
 <a href="https://www.milocreative.com">
-    <img src="Resources/logos/milo.png" alt="Milo Creative Logo" title="Milo Creative" width=150 />
+    <img src="Resources/logos/milo.png" alt="Milo Creative Logo" title="Milo Creative" width=120 />
+</a>
+<a href="https://www.phonetoroam.com">
+    <img src="Resources/logos/phonetoroam.png" alt="phonetoroam Logo" title="phonetoroam" width=120 />
 </a>
 
 You can support KeyboardKit by sponsoring the project on [GitHub Sponsors][Sponsors], signing up for a [KeyboardKit Pro][Pro] license or hiring me for consultation.
