@@ -49,22 +49,46 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
      The input set provider to use.
      */
     public var inputSetProvider: KeyboardInputSetProvider
-
+    
     
     /**
-     Whether or not the alphabetic input set with an 11-11-7
-     layout, which is used by e.g. `German` and other nordic
-     countries. It's a richer input set than the English and
-     requires adjustments for some devices.
+     Whether or not the alphabetic input set uses an 11-11-X
+     layout, which is used by e.g. `German` keyboards.
      
-     I'm not at all happy with this name, but don't know the
-     proper name for this layout. If you know what it should
-     be called, just create an issue or a PR.
+     I'm not at all happy with this name. If you know how to
+     improve this, please create an issue or a PR.
      */
-    public var hasElevenElevenSevenAlphabeticInput: Bool {
-        inputSetProvider.alphabeticInputSet.rows.first?.count == 11
+    public var hasElevenElevenAlphabeticInput: Bool {
+        let rows = inputSetProvider.alphabeticInputSet.rows
+        let counts = (rows.map { $0.count }).prefix(2)
+        return counts == [11, 11]
     }
     
+    /**
+     Whether or not the alphabetic input set uses an 11-11-7
+     layout, which is used by e.g. `German` keyboards.
+     
+     I'm not at all happy with this name. If you know how to
+     improve this, please create an issue or a PR.
+     */
+    public var hasElevenElevenSevenAlphabeticInput: Bool {
+        let rows = inputSetProvider.alphabeticInputSet.rows
+        let counts = (rows.map { $0.count }).prefix(3)
+        return counts == [11, 11, 7]
+    }
+    
+    /**
+     Whether or not the alphabetic input set uses an 11-11-7
+     layout, which is used by e.g. `Russian` keyboards.
+     
+     I'm not at all happy with this name. If you know how to
+     improve this, please create an issue or a PR.
+     */
+    public var hasElevenElevenNineAlphabeticInput: Bool {
+        let rows = inputSetProvider.alphabeticInputSet.rows
+        let counts = (rows.map { $0.count }).prefix(3)
+        return counts == [11, 11, 9]
+    }
     
     /**
      Get a keyboard layout for a certain keyboard `context`.

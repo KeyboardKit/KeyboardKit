@@ -51,15 +51,15 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      for the provided `context`, `row` and row `index`.
      */
     open override func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItemWidth {
-        let elevenElevenSeven = hasElevenElevenSevenAlphabeticInput
-        if isSecondRowSpacer(action, row: row, index: index) { return .inputPercentage(elevenElevenSeven ? 0.3 : 0.4) }
-        if isThirdRowLeadingSwitcher(action, row: row, index: index) { return elevenElevenSeven ? .inputPercentage(1.1) : .input }
+        let elevenEleven = hasElevenElevenAlphabeticInput
+        if isSecondRowSpacer(action, row: row, index: index) { return .inputPercentage(elevenEleven ? 0.3 : 0.4) }
+        if isThirdRowLeadingSwitcher(action, row: row, index: index) { return elevenEleven ? .inputPercentage(1.1) : .input }
         if isThirdRowTrailingSwitcher(action, row: row, index: index) { return .available }
         if isBottomRowLeadingSwitcher(action, row: row, index: index) { return .input }
         if isBottomRowTrailingSwitcher(action, row: row, index: index) { return .inputPercentage(1.45) }
         switch action {
         case dictationReplacement: return .input
-        case .backspace: return .percentage(elevenElevenSeven ? 0.125 : 0.095)
+        case .backspace: return .percentage(elevenEleven ? 0.125 : 0.095)
         case .dismissKeyboard: return .inputPercentage(1.45)
         case .keyboardType: return row == 2 ? .available : .input
         case .nextKeyboard: return .input

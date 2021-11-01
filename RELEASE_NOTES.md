@@ -12,7 +12,14 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 5.2
 
-This version bumps the package's Swift version to 5.5 to enable extended DocC support.
+This version adds support for `russian` and `ukranian`.
+
+This version also bumps the package's Swift version to 5.5 to enable extended DocC support.
+
+### 🌐 New locales
+
+* 🇷🇺 Russian
+* 🇺🇦 Ukranian
 
 ### 🐛 Bug fixes
 
