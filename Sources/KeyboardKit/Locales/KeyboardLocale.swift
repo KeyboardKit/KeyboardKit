@@ -30,8 +30,10 @@ public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
     case latvian = "lv"
     case lithuanian = "lt"
     case norwegian = "nb"
+    case russian = "ru"
     case spanish = "es"
     case swedish = "sv"
+    case ukranian = "uk"
 }
 
 public extension KeyboardLocale {
@@ -76,8 +78,10 @@ public extension KeyboardLocale {
         case .latvian: return "🇱🇻"
         case .lithuanian: return "🇱🇹"
         case .norwegian: return "🇳🇴"
+        case .russian: return "🇷🇺"
         case .swedish: return "🇸🇪"
         case .spanish: return "🇪🇸"
+        case .ukranian: return "🇺🇦"
         }
     }
     

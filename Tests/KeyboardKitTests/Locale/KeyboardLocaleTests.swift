@@ -37,8 +37,10 @@ class KeyboardLocaleTests: QuickSpec {
                         .latvian: "lv",
                         .lithuanian: "lt",
                         .norwegian: "nb",
+                        .russian: "ru",
                         .spanish: "es",
-                        .swedish: "sv"
+                        .swedish: "sv",
+                        .ukranian: "uk"
                     ]
                 ))
             }
@@ -83,8 +85,10 @@ class KeyboardLocaleTests: QuickSpec {
                         .latvian: "latviešu",
                         .lithuanian: "lietuvių",
                         .norwegian: "norsk bokmål",
+                        .russian: "русский",
                         .spanish: "español",
-                        .swedish: "svenska"
+                        .swedish: "svenska",
+                        .ukranian: "українська"
                     ]
                 ))
             }
@@ -110,8 +114,10 @@ class KeyboardLocaleTests: QuickSpec {
                         .latvian: "🇱🇻",
                         .lithuanian: "🇱🇹",
                         .norwegian: "🇳🇴",
+                        .russian: "🇷🇺",
                         .spanish: "🇪🇸",
-                        .swedish: "🇸🇪"
+                        .swedish: "🇸🇪",
+                        .ukranian: "🇺🇦"
                     ]
                 ))
             }
@@ -137,8 +143,10 @@ class KeyboardLocaleTests: QuickSpec {
                         .latvian: true,
                         .lithuanian: true,
                         .norwegian: true,
+                        .russian: true,
                         .spanish: true,
-                        .swedish: true
+                        .swedish: true,
+                        .ukranian: true
                     ]
                 ))
             }
@@ -164,8 +172,10 @@ class KeyboardLocaleTests: QuickSpec {
                         .latvian: false,
                         .lithuanian: false,
                         .norwegian: false,
+                        .russian: false,
                         .spanish: false,
-                        .swedish: false
+                        .swedish: false,
+                        .ukranian: false
                     ]
                 ))
             }
@@ -191,7 +201,9 @@ class KeyboardLocaleTests: QuickSpec {
                     "Nederlands",
                     "Norsk Bokmål",
                     "Suomi",
-                    "Svenska"
+                    "Svenska",
+                    "Русский",
+                    "Українська"
                 ]))
             }
             
@@ -213,7 +225,9 @@ class KeyboardLocaleTests: QuickSpec {
                     "Nederlands",
                     "Norsk Bokmål",
                     "Suomi",
-                    "Svenska"
+                    "Svenska",
+                    "Русский",
+                    "Українська"
                 ]))
             }
         }
