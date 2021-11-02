@@ -89,7 +89,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func lowerLeadingActions(for context: KeyboardContext) -> KeyboardActions {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
-        if isRussianAlphabetic(context) { return [action] }
+        if isRussianAlphabetic(context) { return [action] }
         return [action, .none]
     }
     
@@ -97,7 +97,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      Additional trailing actions to apply to the bottom row.
      */
     open func lowerTrailingActions(for context: KeyboardContext) -> KeyboardActions {
-        if isRussianAlphabetic(context) { return [.backspace] }
+        if isRussianAlphabetic(context) { return [.backspace] }
         return [.none, .backspace]
     }
 }
