@@ -40,7 +40,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .russian: "ru",
                         .spanish: "es",
                         .swedish: "sv",
-                        .ukranian: "uk"
+                        .ukrainian: "uk"
                     ]
                 ))
             }
@@ -88,7 +88,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .russian: "русский",
                         .spanish: "español",
                         .swedish: "svenska",
-                        .ukranian: "українська"
+                        .ukrainian: "українська"
                     ]
                 ))
             }
@@ -117,7 +117,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .russian: "🇷🇺",
                         .spanish: "🇪🇸",
                         .swedish: "🇸🇪",
-                        .ukranian: "🇺🇦"
+                        .ukrainian: "🇺🇦"
                     ]
                 ))
             }
@@ -146,7 +146,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .russian: true,
                         .spanish: true,
                         .swedish: true,
-                        .ukranian: true
+                        .ukrainian: true
                     ]
                 ))
             }
@@ -175,7 +175,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .russian: false,
                         .spanish: false,
                         .swedish: false,
-                        .ukranian: false
+                        .ukrainian: false
                     ]
                 ))
             }
