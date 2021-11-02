@@ -84,8 +84,10 @@ KeyboardKit is localized in the following languages:
 * 🇱🇻 Latvian
 * 🇱🇹 Lithuanian
 * 🇳🇴 Norwegian
+* 🇷🇺 Russian
 * 🇪🇸 Spanish
 * 🇸🇪 Swedish
+* 🇺🇦 Ukranian
 
 KeyboardKit also supports localized keyboards, where the keyboard layout, secondary actions etc. behave just like they should for a certain locale.
 

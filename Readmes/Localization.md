@@ -3,51 +3,64 @@
 KeyboardKit defines keyboard-specific locales and provides localized content for the supported locales.
 
 
-## Keyboard Locale
+## Keyboard Locales
 
-KeyboardKit has a `KeyboardLocale` enum with these locales:
+KeyboardKit is localized in the following languages:
 
 * 🇺🇸 English (US - Default)
 
 * 🇩🇰 Danish
 * 🇳🇱 Dutch
 * 🇬🇧 English (UK)
-* 🇺🇸 English (US)
+* 🇪🇪 Estonian
 * 🇫🇮 Finnish
 * 🇫🇷 French
 * 🇩🇪 German
 * 🇮🇹 Italian
+* 🇱🇻 Latvian
+* 🇱🇹 Lithuanian
 * 🇳🇴 Norwegian
-* 🇸🇪 Swedish
+* 🇷🇺 Russian
 * 🇪🇸 Spanish
+* 🇸🇪 Swedish
+* 🇺🇦 Ukranian
 
-More locales will be added in the future.
+These locales can be accessed through the `KeyboardLocale` enum.
 
 
 ## Localized strings
 
-KeyboardKit has a `KKL10n` enum that provides localized texts for all locales. These texts are used to localize certain buttons, labels etc.
+KeyboardKit has a `KKL10n` enum that provides localized strings for all locales. These texts are used to localize certain buttons, labels etc.
 
-Localized texts are managed under `Sources/Resources`.
+Localized strings are managed under `Sources/Resources`.
+
+
+## Localized keyboards
+
+A completely localized keyboard doesn't just involve localized strings.
+
+To fully localize a keyboard, you must implement a locale-specific input set, keyboard layout, secondary callout actions etc.
+
+KeyboardKit only provides a completely localized English keyboard.
+
+[KeyboardKit Pro][Pro] provides completely localized keyboards for all keyboard locales.
 
 
 ## Adding new locales
 
-Keyboard locales does not just involve localized strings.
-
 Adding a new locale to KeyboardKit requires the following:
 
-* Define the new `KeyboardLocale` case
+* Define the new `KeyboardLocale` case.
 * Define its properties, like `flag`, `isLeftToRight` etc.
-* Provide a `Resources/<id>.lproj` folder.
+* Provide a `Resources/<id>.lproj` folder with localized strings.
 * Implement a custom `KeyboardInputSetProvider`.
 * Implement a custom `SecondaryCalloutActionProvider`.
 
-If the locale requires a keyboard layout that differs from English or German layout, a new `KeyboardLayoutProvider` must be specified.
+If the locale requires a keyboard layout that differs from a English, German or Russian layout, a new `KeyboardLayoutProvider` must be specified.
 
 Custom keyboard locales must ensure that the keyboard layout is correct for:
 
-* locale
+* Each locale
 * iPhone portrait
 * iPhone landscape
 * iPad portrait
@@ -58,7 +71,7 @@ This involves specifying margins, system actions etc. to make the keyboard behav
 
 ## KeyboardKit Pro
 
-KeyboardKit Pro defines input sets, keyboard layouts and secondary input actions for all keyboard locales above.
+KeyboardKit Pro provides completely localized keyboards for all keyboard locales, including locale-specific input sets, keyboard layouts and secondary input actions.
 
 [Read more here][Pro]. 
 
