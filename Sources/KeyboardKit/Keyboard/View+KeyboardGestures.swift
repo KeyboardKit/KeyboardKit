@@ -25,7 +25,8 @@ public extension View {
         for action: KeyboardAction,
         context: KeyboardContext,
         actionHandler: KeyboardActionHandler,
-        isPressed: Binding<Bool> = .constant(false)) -> some View {
+        isPressed: Binding<Bool> = .constant(false)
+    ) -> some View {
         switch action {
         case .nextKeyboard: self
         case .nextLocale: self
@@ -97,9 +98,19 @@ private extension View {
     func withLocaleContextMenu(
         for context: KeyboardContext?) -> some View {
         if let context = context {
-            self.localeContextMenu(for: context)
+            keyboardContextMenu(items: context.locales) { (locale: Locale) in
+                Button(locale.localizedAndCapitalized, action: { context.locale = locale })
+            }
         } else {
             self
         }
+    }
+}
+
+
+private extension Locale {
+    var localizedAndCapitalized: String {
+        let text = localizedString(forIdentifier: identifier) ?? "-"
+        return text.capitalized
     }
 }
