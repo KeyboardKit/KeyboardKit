@@ -10,6 +10,18 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 5.3
+
+### ✨ New features
+
+* `KeyboardFeedbackSettings` has new properties and functions:
+* - `isAudio/HapticFeedbackEnabled`
+* - `disableAudio/HapticFeedback()`
+* - `enableAudio/HapticFeedback()`
+* - `toggleAudio/HapticFeedback()`
+
+
+
 ## 5.2
 
 This version adds support for `russian` and `ukrainian`.
