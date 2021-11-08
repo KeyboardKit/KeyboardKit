@@ -25,7 +25,7 @@ import SwiftUI
  `IMPORTANT` In previews, you must provide a custom width to
  get buttons to show up, since there is no shared controller.
  */
-public struct SystemKeyboard<RowItem: View, ItemContent: View>: View {
+public struct SystemKeyboard<RowItem: View>: View {
 
     /**
      Create an autocomplete toolbar.
@@ -45,14 +45,12 @@ public struct SystemKeyboard<RowItem: View, ItemContent: View>: View {
         inputContext: InputCalloutContext?,
         secondaryInputContext: SecondaryInputCalloutContext?,
         width: CGFloat = KeyboardInputViewController.shared.view.frame.width,
-        rowItem: @escaping (KeyboardLayout, KeyboardLayoutItem, CGFloat, CGFloat) -> RowItem,
-        buttonBuilder: @escaping (KeyboardAction, KeyboardAppearance, KeyboardContext) -> ItemContent
+        @ViewBuilder rowItem: @escaping (KeyboardLayout, KeyboardLayoutItem, CGFloat, CGFloat) -> RowItem
     ) {
         self.layout = layout
         self.actionHandler = actionHandler
         self.appearance = appearance
         self.keyboardWidth = width
-        self.buttonBuilder = buttonBuilder
         self.rowItem = rowItem
         self.inputWidth = layout.inputWidth(for: keyboardWidth)
     
@@ -63,7 +61,6 @@ public struct SystemKeyboard<RowItem: View, ItemContent: View>: View {
     
     private let actionHandler: KeyboardActionHandler
     private let appearance: KeyboardAppearance
-    private let buttonBuilder: ButtonBuilder
     private let rowItem: (KeyboardLayout, KeyboardLayoutItem, CGFloat, CGFloat) -> RowItem
     private let keyboardWidth: CGFloat
     private let inputWidth: CGFloat
@@ -91,11 +88,11 @@ public struct SystemKeyboard<RowItem: View, ItemContent: View>: View {
     @ObservedObject private var inputContext: InputCalloutContext
     @ObservedObject private var secondaryInputContext: SecondaryInputCalloutContext
     
-    /**
-     This typealias represents the action block that is used
-     to create button views for the system keyboard.
-     */
-    public typealias ButtonBuilder = (KeyboardAction, KeyboardAppearance, KeyboardContext) -> ItemContent
+//    /**
+//     This typealias represents the action block that is used
+//     to create button views for the system keyboard.
+//     */
+//    public typealias ButtonBuilder = (KeyboardAction, KeyboardAppearance, KeyboardContext) -> ItemContent
     
     public var body: some View {
         VStack(spacing: 0) {
@@ -107,11 +104,12 @@ public struct SystemKeyboard<RowItem: View, ItemContent: View>: View {
             style: inputCalloutStyle)
         .secondaryInputCallout(
             context: secondaryInputContext,
-            style: secondaryInputCalloutStyle)
+            style: secondaryInputCalloutStyle
+        )
     }
 }
 
-public extension SystemKeyboard where ItemContent == AnyView, RowItem == SystemKeyboardButtonRowItem<AnyView> {
+public extension SystemKeyboard where RowItem == AnyView {
     init(
         layout: KeyboardLayout,
         appearance: KeyboardAppearance,
@@ -130,7 +128,7 @@ public extension SystemKeyboard where ItemContent == AnyView, RowItem == SystemK
             secondaryInputContext: secondaryInputContext,
             width: width,
             rowItem: { layout, item, keyboardWidth, inputWidth in
-                SystemKeyboardButtonRowItem(
+                let vw = SystemKeyboardButtonRowItem(
                     content: SystemKeyboard.standardButtonBuilder(action: item.action, appearance: appearance, context: context),
                     item: item,
                     context: context,
@@ -139,8 +137,10 @@ public extension SystemKeyboard where ItemContent == AnyView, RowItem == SystemK
                     appearance: appearance,
                     actionHandler: actionHandler
                 )
-            },
-            buttonBuilder: SystemKeyboard.standardButtonBuilder
+                AnyView(
+                    vw.withLocaleContextMenu(for: item.action == .nextLocale ? context : nil)
+                )
+            }
         )
     }
 }
@@ -200,6 +200,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
             }
     }
     static let actionHandlerPreview = PreviewKeyboardActionHandler()
+    
     @ViewBuilder
     static func systemPreviewRowItem(
         layout: KeyboardLayout,
@@ -207,9 +208,12 @@ struct SystemKeyboard_Previews: PreviewProvider {
         keyboardWidth: CGFloat,
         inputWidth: CGFloat
     ) -> some View {
-        let content = systemPreviewButtonBuilder(action: item.action, appearance: .preview, context: .preview)
-        SystemKeyboardButtonRowItem(
-            content: content,
+        let vw = SystemKeyboardButtonRowItem(
+            content: systemPreviewButtonBuilder(
+                action: item.action,
+                appearance: PreviewKeyboardAppearance.preview,
+                context: KeyboardContext.preview
+            ),
             item: item,
             context: .preview,
             keyboardWidth: keyboardWidth,
@@ -217,7 +221,14 @@ struct SystemKeyboard_Previews: PreviewProvider {
             appearance: .preview,
             actionHandler: actionHandlerPreview
         )
+        switch item.action {
+        case .space:
+            vw.opacity(0.5)
+        default:
+            vw
+        }
     }
+    
     static var previews: some View {
         
         SystemKeyboard(
@@ -228,8 +239,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
             inputContext: .preview,
             secondaryInputContext: .preview,
             width: UIScreen.main.bounds.width,
-            rowItem: systemPreviewRowItem,
-            buttonBuilder: systemPreviewButtonBuilder
+            rowItem: systemPreviewRowItem
         )
         .background(Color.standardKeyboardBackground)
     }
