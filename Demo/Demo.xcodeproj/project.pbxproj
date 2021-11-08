@@ -860,16 +860,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/KeyboardKit/KeyboardKitPro.git";
 			requirement = {
-				branch = locales;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.0;
 			};
 		};
 		A921154F25D58D85003510D9 /* XCRemoteSwiftPackageReference "KeyboardKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielsaidi/KeyboardKit.git";
 			requirement = {
-				branch = locales;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

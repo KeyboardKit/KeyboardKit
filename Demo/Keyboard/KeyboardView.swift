@@ -110,7 +110,6 @@ private extension KeyboardView {
     }
     
     func switchToDefaultKeyboard() {
-        actionHandler
-            .handle(.tap, on: .keyboardType(.alphabetic(.lowercased)))
+        keyboardContext.keyboardType = .alphabetic(.lowercased)
     }
 }
