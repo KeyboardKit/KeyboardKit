@@ -25,7 +25,7 @@ import SwiftUI
  `IMPORTANT` In previews, you must provide a custom width to
  get buttons to show up, since there is no shared controller.
  */
-public struct SystemKeyboard: View {
+public struct SystemKeyboard<ItemView: View>: View {
     
     /**
      Create an autocomplete toolbar.
@@ -45,7 +45,8 @@ public struct SystemKeyboard: View {
         inputContext: InputCalloutContext?,
         secondaryInputContext: SecondaryInputCalloutContext?,
         width: CGFloat = KeyboardInputViewController.shared.view.frame.width,
-        buttonBuilder: @escaping ButtonBuilder = Self.standardButtonBuilder) {
+        buttonBuilder: @escaping (KeyboardAction, KeyboardAppearance, KeyboardContext) -> ItemView
+    ) {
         self.layout = layout
         self.actionHandler = actionHandler
         self.appearance = appearance
@@ -60,7 +61,7 @@ public struct SystemKeyboard: View {
     
     private let actionHandler: KeyboardActionHandler
     private let appearance: KeyboardAppearance
-    private let buttonBuilder: ButtonBuilder
+    private let buttonBuilder: (KeyboardAction, KeyboardAppearance, KeyboardContext) -> ItemView
     private let keyboardWidth: CGFloat
     private let inputWidth: CGFloat
     private let layout: KeyboardLayout
@@ -91,7 +92,7 @@ public struct SystemKeyboard: View {
      This typealias represents the action block that is used
      to create button views for the system keyboard.
      */
-    public typealias ButtonBuilder = (KeyboardAction, KeyboardAppearance, KeyboardContext) -> AnyView
+    public typealias ButtonBuilder = (KeyboardAction, KeyboardAppearance, KeyboardContext) -> ItemView
     
     public var body: some View {
         VStack(spacing: 0) {
@@ -107,8 +108,30 @@ public struct SystemKeyboard: View {
     }
 }
 
+public extension SystemKeyboard where ItemView == AnyView {
+    init(
+        layout: KeyboardLayout,
+        appearance: KeyboardAppearance,
+        actionHandler: KeyboardActionHandler,
+        context: KeyboardContext,
+        inputContext: InputCalloutContext?,
+        secondaryInputContext: SecondaryInputCalloutContext?,
+        width: CGFloat = KeyboardInputViewController.shared.view.frame.width
+    ) {
+        self.init(
+            layout: layout,
+            appearance: appearance,
+            actionHandler: actionHandler,
+            context: context,
+            inputContext: inputContext,
+            secondaryInputContext: secondaryInputContext,
+            width: width,
+            buttonBuilder: SystemKeyboard.standardButtonBuilder
+        )
+    }
+}
+
 public extension SystemKeyboard {
-    
     /**
      This is the standard `buttonBuilder`, that will be used
      when no custom builder is provided to the view.
@@ -155,6 +178,22 @@ private extension SystemKeyboard {
 
 struct SystemKeyboard_Previews: PreviewProvider {
     
+    @ViewBuilder
+    static func systemPreviewButtonBuilder(
+        action: KeyboardAction,
+        appearance: KeyboardAppearance,
+        context: KeyboardContext
+    ) -> some View {
+            switch action {
+                case .backspace:
+                    Text("bksp")
+                default:
+                    SystemKeyboardActionButtonContent(
+                        action: action,
+                        appearance: appearance,
+                        context: context)
+            }
+    }
     static var previews: some View {
         SystemKeyboard(
             layout: .preview,
@@ -163,7 +202,8 @@ struct SystemKeyboard_Previews: PreviewProvider {
             context: .preview,
             inputContext: .preview,
             secondaryInputContext: .preview,
-            width: UIScreen.main.bounds.width
+            width: UIScreen.main.bounds.width,
+            buttonBuilder: systemPreviewButtonBuilder
         )
         .background(Color.standardKeyboardBackground)
     }
