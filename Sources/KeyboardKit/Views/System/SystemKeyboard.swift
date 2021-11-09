@@ -190,7 +190,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
     ) -> some View {
             switch action {
                 case .backspace:
-                    Text("bksp")
+                Text("bksp").opacity(0.2).foregroundColor(Color.red)
                 default:
                     SystemKeyboardActionButtonContent(
                         action: action,
@@ -223,7 +223,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
         )
         switch item.action {
         case .space:
-            vw.opacity(0.5)
+            vw.opacity(0.2).overlay(Text("This is an overlay, that is a view over the space bar view"))
         default:
             vw
         }
