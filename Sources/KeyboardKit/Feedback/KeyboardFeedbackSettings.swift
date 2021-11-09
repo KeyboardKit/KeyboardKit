@@ -11,7 +11,7 @@ import Foundation
 /**
  This class can be used to specify what kind of feedback the
  current keyboard should give to the user.
- 
+
  Any changes to the view controller's feedback settings will
  automatically apply as long as the view controler still has
  a ``StandardKeyboardFeedbackHandler`` instance that has the
@@ -31,70 +31,70 @@ public class KeyboardFeedbackSettings: ObservableObject {
 }
 
 public extension KeyboardFeedbackSettings {
-    
+
     /**
      Whether or not the ``audioConfiguration`` is enabled.
-     
+
      The configuration is enabled if it has any other config
      than ``AudioFeedbackConfiguration/noFeedback``.
      */
     var isAudioFeedbackEnabled: Bool {
         audioConfiguration != .noFeedback
     }
-    
+
     /**
      Whether or not the ``hapticConfiguration`` is enabled.
-     
+
      The configuration is enabled if it has any other config
      than ``HapticFeedbackConfiguration/noFeedback``.
      */
     var isHapticFeedbackEnabled: Bool {
         hapticConfiguration != .noFeedback
     }
-    
+
     /**
      Disable audio feedback.
-     
+
      This applies ``AudioFeedbackConfiguration/noFeedback``.
      */
     func disableAudioFeedback() {
         audioConfiguration = .noFeedback
     }
-    
+
     /**
      Disable haptic feedback.
-     
+
      This applies ``HapticFeedbackConfiguration/noFeedback``.
      */
     func disableHapticFeedback() {
         hapticConfiguration = .noFeedback
     }
-    
+
     /**
      Enable audio feedback.
-     
-     This applies ``AudioFeedbackConfiguration/enabled``.
+
+     This applies ``AudioFeedbackConfiguration/standard``.
      */
     func enableAudioFeedback() {
-        audioConfiguration = .enabled
+        audioConfiguration = .standard
     }
-    
+
     /**
      Enable haptic feedback.
-     
-     This applies ``HapticFeedbackConfiguration/enabled``.
+
+     This applies ``HapticFeedbackConfiguration/standard``.
      */
     func enableHapticFeedback() {
-        hapticConfiguration = .enabled
+        hapticConfiguration = .standard
     }
-    
+
     /**
      Toggle audio feedback between enabled and disabled.
      */
     func toggleAudioFeedback() {
         isAudioFeedbackEnabled ? disableAudioFeedback() : enableAudioFeedback()
     }
-    
+
     /**
      Toggle haptic feedback between enabled and disabled.
      */
