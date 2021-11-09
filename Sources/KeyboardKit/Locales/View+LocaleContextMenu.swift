@@ -21,7 +21,7 @@ public extension View {
      multiple locales.
      */
     @ViewBuilder
-    func keyboardContextMenu<T, V: View>(items: [T], createMenuItem: @escaping (T) -> V) -> some View {
+    func keyboardContextMenu<ItemType, ViewType: View>(items: [ItemType], createMenuItem: @escaping (ItemType) -> ViewType) -> some View {
         if items.count < 2 {
             self
         } else {
