@@ -117,6 +117,7 @@ public struct SystemKeyboard<RowItem: View>: View {
    - appearance: The keyboard appearance to use in the keyboard.
    - actionHandler: The action handler to use in the keyboard.
    - width: The total width of the keyboard, used for button size calculations.
+   - buttonBuilder: An optional, custom button builder. By default, the static `standardButton` will be used.
  */
 func standardSystemKeyboard(
         layout: KeyboardLayout,
