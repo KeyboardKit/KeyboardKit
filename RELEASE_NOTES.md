@@ -14,6 +14,8 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ### ✨ New features
  
+* `CGSize` device dimension properties are now public:
+    
 * `KeyboardFeedbackSettings` has new properties and functions:
     * `isAudio/HapticFeedbackEnabled`
     * `disableAudio/HapticFeedback()`
