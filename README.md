@@ -298,7 +298,7 @@ You can support KeyboardKit by sponsoring the project on [GitHub Sponsors][Spons
 
 ## License
 
-KeyboardKit is available under the MIT license. See LICENSE file for more info.
+KeyboardKit is available under the MIT license. See the [LICENSE][License] file for more info.
 
 
 [Email]: mailto:daniel.saidi@gmail.com
