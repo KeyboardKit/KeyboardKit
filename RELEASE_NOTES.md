@@ -13,12 +13,15 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 ## 5.3
 
 ### ✨ New features
-
+ 
+* `CGSize` device dimension properties are now public:
+    
 * `KeyboardFeedbackSettings` has new properties and functions:
-* - `isAudio/HapticFeedbackEnabled`
-* - `disableAudio/HapticFeedback()`
-* - `enableAudio/HapticFeedback()`
-* - `toggleAudio/HapticFeedback()`
+    * `isAudio/HapticFeedbackEnabled`
+    * `disableAudio/HapticFeedback()`
+    * `enableAudio/HapticFeedback()`
+    * `toggleAudio/HapticFeedback()`
+* `String` has new `vowels` and `isVowel` extenstion properties.
 
 
 

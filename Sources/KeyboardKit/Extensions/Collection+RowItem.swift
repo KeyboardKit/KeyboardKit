@@ -9,25 +9,6 @@
 import Foundation
 
 /**
- This protocol can be implemented by any type that is stored
- in "rows" that should be easily mutated.
- 
- The reason to why not using `Identifiable` instead, is that
- the row ID may not be unique. The same item may appear many
- times in the same row.
- */
-public protocol RowItem {
-    
-    associatedtype ID: Equatable
-    
-    /**
-     An ID that identifies the item in a row. Note that this
-     is not necessarily unique.
-     */
-    var rowId: ID { get }
-}
-
-/**
  This extension contains mutating functions for arrays where
  the elements are `RowItem`s. It is used to get the same api
  for all row types.

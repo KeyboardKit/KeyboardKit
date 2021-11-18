@@ -37,7 +37,7 @@ In your extension, let your `KeyboardViewController` inherit KeyboardKit's `Keyb
 
 This documentation is generated, using Xcode's new DocC documentation engine.
 
-Note that the engine currently omit things, like extensions to native types, like `UITextDocumentProxy`, `Color`, `View` etc. Future KeyboardKit versions will aim to incrementally improve these parts.  
+Note that the engine currently omit extensions. Future versions will aim to improve these parts.  
 
 
 
@@ -78,6 +78,13 @@ Note that the engine currently omit things, like extensions to native types, lik
 - ``AutocompleteSuggestion``
 - ``StandardAutocompleteSuggestion``
 
+### Autocomplete Types
+
+- ``AutocompleteCompletion``
+- ``AutocompleteResult``
+- ``AutocompleteSpaceState``
+
+
 ### Behavior
 
 - ``KeyboardBehavior``
@@ -93,6 +100,10 @@ Note that the engine currently omit things, like extensions to native types, lik
 - ``BaseSecondaryCalloutActionProvider``
 - ``EnglishSecondaryCalloutActionProvider``
 - ``LocalizedSecondaryCalloutActionProvider``
+
+### Content
+
+- ``DeleteBackwardRange``
 
 ### Emojis
 
@@ -153,9 +164,12 @@ Note that the engine currently omit things, like extensions to native types, lik
 - ``KeyboardLayoutItemRow``
 - ``KeyboardLayoutItemSize``
 - ``KeyboardLayoutItemWidth``
+- ``RowItem``
+
+### Layout Providers
+
 - ``KeyboardLayoutProvider``
 - ``StandardKeyboardLayoutProvider``
-
 - ``iPadKeyboardLayoutProvider``
 - ``iPhoneKeyboardLayoutProvider``
 - ``StaticKeyboardLayoutProvider``
@@ -232,10 +246,10 @@ Note that the engine currently omit things, like extensions to native types, lik
 - ``SystemKeyboardSpaceButtonContent``
 
 
-### Misc. enums
+### Typealiases
 
-These enums are used by other types. They are listed here to
-keep the other sections focused.
-
-- ``AutocompleteSpaceState``
-- ``DeleteBackwardRange``
+- ``KeyboardActionRow``
+- ``KeyboardActionRows``
+- ``KeyboardActions``
+- ``KeyboardInputRows``
+- ``KeyboardLayoutItemRows``
