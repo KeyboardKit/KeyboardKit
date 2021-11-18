@@ -109,6 +109,57 @@ public struct SystemKeyboard<RowItem: View>: View {
     }
 }
 
+public extension SystemKeyboard where RowItem == AnyView {
+/**
+ Convenience initializer that uses standard buttons.
+
+ - Parameters:
+   - layout: The keyboard layout to use in the keyboard.
+   - appearance: The keyboard appearance to use in the keyboard.
+   - actionHandler: The action handler to use in the keyboard.
+   - width: The total width of the keyboard, used for button size calculations.
+   - buttonBuilder: An optional, custom button builder. By default, the static `standardButton` will be used.
+ */
+    @available(*, deprecated, message: "Use standardSystemKeyboard() instead")
+    init(
+            layout: KeyboardLayout,
+            appearance: KeyboardAppearance,
+            actionHandler: KeyboardActionHandler,
+            context: KeyboardContext,
+            inputContext: InputCalloutContext?,
+            secondaryInputContext: SecondaryInputCalloutContext?,
+            width: CGFloat = KeyboardInputViewController.shared.view.frame.width,
+            buttonContent: @escaping ButtonBuilder<AnyView> = { action, appearance, context in
+                AnyView(standardButtonBuilder(action: action, appearance: appearance, context: context))
+            }
+    ) {
+        self.init(
+                layout: layout,
+                appearance: appearance,
+                actionHandler: actionHandler,
+                context: context,
+                inputContext: inputContext,
+                secondaryInputContext: secondaryInputContext,
+                width: width,
+                rowItem: { layout, item, keyboardWidth, inputWidth in
+                    AnyView(
+                            SystemKeyboardButtonRowItem(
+                                    content: buttonContent(item.action, appearance, context),
+                                    item: item,
+                                    context: context,
+                                    keyboardWidth: keyboardWidth,
+                                    inputWidth: inputWidth,
+                                    appearance: appearance,
+                                    actionHandler: actionHandler
+                            )
+                                    // Add locale context menu for `nextLocale` action
+                                    .withLocaleContextMenu(for: item.action == .nextLocale ? context : nil)
+                    )
+                }
+        )
+    }
+}
+
 /**
  Convenience initializer that uses standard buttons.
 
@@ -151,6 +202,7 @@ func standardSystemKeyboard(
                 .withLocaleContextMenu(for: item.action == .nextLocale ? context : nil)
     }
 }
+
 /**
  Convenience initializer that uses standard buttons frames, but allows for customizing the button content.
 
@@ -179,17 +231,17 @@ func standardSystemKeyboard<ButtonContent: View>(
             secondaryInputContext: secondaryInputContext,
             width: width,
             rowItem: { layout, item, keyboardWidth, inputWidth in
-                        SystemKeyboardButtonRowItem(
-                                content: buttonContent(item.action, appearance, context),
-                                item: item,
-                                context: context,
-                                keyboardWidth: keyboardWidth,
-                                inputWidth: inputWidth,
-                                appearance: appearance,
-                                actionHandler: actionHandler
-                        )
-                                // Add locale context menu for `nextLocale` action
-                                .withLocaleContextMenu(for: item.action == .nextLocale ? context : nil)
+                SystemKeyboardButtonRowItem(
+                        content: buttonContent(item.action, appearance, context),
+                        item: item,
+                        context: context,
+                        keyboardWidth: keyboardWidth,
+                        inputWidth: inputWidth,
+                        appearance: appearance,
+                        actionHandler: actionHandler
+                )
+                        // Add locale context menu for `nextLocale` action
+                        .withLocaleContextMenu(for: item.action == .nextLocale ? context : nil)
             }
     )
 }
