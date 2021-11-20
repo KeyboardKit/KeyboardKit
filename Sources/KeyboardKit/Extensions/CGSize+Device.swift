@@ -63,17 +63,17 @@ public extension CGSize {
     static let iPhoneProMaxScreenLandscape = iPhoneProMaxScreenPortrait.flipped()
     
     /**
+     Flip the size's height and width.
+     */
+    func flipped() -> CGSize {
+        CGSize(width: height, height: width)
+    }
+    
+    /**
      Whether or not the size matches another screen size, in
      any orientation.
      */
     func isScreenSize(_ size: CGSize) -> Bool {
         self == size || self == size.flipped()
-    }
-}
-
-private extension CGSize {
-    
-    func flipped() -> CGSize {
-        CGSize(width: height, height: width)
     }
 }

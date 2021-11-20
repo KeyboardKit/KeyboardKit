@@ -24,14 +24,17 @@ public struct KeyboardTextField: UIViewRepresentable {
      Create a keyboard text field instance.
      
      - Parameters:
+       - placeholder: An optional placeholder text to show when the text field is empty.
        - text: A text binding that will be affected by the text field.
        - resignOnReturn: Whether or not to resign first responder when return is pressed.
        - config: A configuration block that can be used to configure the text field.
      */
     public init(
+        _ placeholder: String? = nil,
         text: Binding<String>,
         resignOnReturn: Bool = true,
         config: @escaping ConfigAction = { _ in }) {
+        self.placeholder = placeholder
         self._text = text
         self.config = config
         self.resignOnReturn = resignOnReturn
@@ -47,6 +50,7 @@ public struct KeyboardTextField: UIViewRepresentable {
     
     @Binding private var text: String
     
+    private let placeholder: String?
     private let config: ConfigAction
     private let resignOnReturn: Bool
     
@@ -57,6 +61,7 @@ public struct KeyboardTextField: UIViewRepresentable {
     
     public func makeUIView(context: Context) -> UITextField {
         let view = KeyboardInputTextField()
+        view.placeholder = placeholder
         view.addTarget(context.coordinator, action: #selector(context.coordinator.textFieldDidChange), for: .editingChanged)
         view.resignOnReturn = resignOnReturn
         view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)

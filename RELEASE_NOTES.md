@@ -29,6 +29,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
     * disableAudio/HapticFeedback()
     * enableAudio/HapticFeedback()
     * toggleAudio/HapticFeedback()
+* `KeyboardTextField` has a new `placeholder` property.
 * `String` has new `vowels` and `isVowel` extension properties.
 
 
