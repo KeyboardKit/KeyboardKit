@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SwiftUIKit
 import KeyboardKit
 
 import Foundation
@@ -19,13 +20,13 @@ struct HomeScreen: View {
     
     var body: some View {
         NavigationView {
-            DemoList("KeyboardKit") {
-                Section(header: Text("Type").padding(.top, 30)) {
-                    NavigationLink(destination: EditScreen(appearance: .default)) {
-                        DemoListItem(.type, "Type in a regular text field")
+            List {
+                Section(header: Text("Type")) {
+                    ListNavigationLink(destination: EditScreen(appearance: .default)) {
+                        Label("Type in a regular text field", image: .type)
                     }
-                    NavigationLink(destination: EditScreen(appearance: .dark)) {
-                        DemoListItem(.type, "Type in a dark text field")
+                    ListNavigationLink(destination: EditScreen(appearance: .dark)) {
+                        Label("Type in a dark text field", image: .type)
                     }
                 }
                 Section(header: Text("Setting"), footer: footerText) {
@@ -37,12 +38,12 @@ struct HomeScreen: View {
                         isEnabled: isFullAccessEnabled,
                         enabledText: "Full Access is enabled",
                         disabledText: "Full Access is disabled")
-                    DemoListButton(
-                        .settings,
-                        "System settings",
-                        .navigationArrow, action: openSettings)
+                    
+                    ListButtonLink(action: openSettings) {
+                        Label("System settings", image: .settings)
+                    }
                 }
-            }
+            }.navigationTitle("KeyboardKit Demo")
         }
         .environmentObject(keyboardState)
         .navigationViewStyle(StackNavigationViewStyle())

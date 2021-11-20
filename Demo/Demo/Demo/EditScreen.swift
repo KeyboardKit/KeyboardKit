@@ -18,14 +18,16 @@ struct EditScreen: View {
     @EnvironmentObject private var keyboardState: KeyboardEnabledState
     
     var body: some View {
-        DemoList(title) {
-            MultilineTextField(text: $text, appearance: appearance)
-                .frame(height: 200)
-            EnabledListItem(
-                isEnabled: isActive,
-                enabledText: "Demo keyboard is selected",
-                disabledText: "Demo keyboard is not selected")
-        }
+        List {
+            Section(header: Text("Select the KeyboardKit keyboard and start typing")) {
+                MultilineTextField(text: $text, appearance: appearance)
+                    .frame(height: 200)
+                EnabledListItem(
+                    isEnabled: isActive,
+                    enabledText: "Demo keyboard is selected",
+                    disabledText: "Demo keyboard is not selected")
+            }
+        }.navigationTitle(title)
     }
 }
 

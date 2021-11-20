@@ -25,7 +25,7 @@ public extension KeyboardEnabledStateInspector {
      in System Settings.
      */
     var isFullAccessEnabled: Bool {
-        FullAccessCheckController().hasFullAccess
+        FullAccessInspector().hasFullAccess
     }
     
     /**
@@ -58,4 +58,4 @@ public extension KeyboardEnabledStateInspector {
     }
 }
 
-private class FullAccessCheckController: UIInputViewController {}
+private class FullAccessInspector: UIInputViewController {}

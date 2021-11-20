@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SwiftUIKit
 
 struct EnabledListItem: View {
     
@@ -15,10 +16,11 @@ struct EnabledListItem: View {
     let disabledText: String
     
     var body: some View {
-        DemoListItem(
-            isEnabled ? .checkmark : .alert,
-            isEnabled ? enabledText : disabledText)
-            .foregroundColor(isEnabled ? .green : .orange)
+        ListItem {
+            Label(
+                isEnabled ? enabledText : disabledText,
+                image: isEnabled ? .checkmark : .alert)
+        }.foregroundColor(isEnabled ? .green : .orange)
     }
 }
 

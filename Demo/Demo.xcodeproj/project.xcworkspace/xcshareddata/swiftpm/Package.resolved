@@ -18,6 +18,15 @@
           "revision": "d67f9ded6644ca0f20f5b2d53d205fe8b144648f",
           "version": "5.2.1"
         }
+      },
+      {
+        "package": "SwiftUIKit",
+        "repositoryURL": "https://github.com/danielsaidi/SwiftUIKit",
+        "state": {
+          "branch": null,
+          "revision": "7b38050373c6aafdaefe32a6fcfb8843b443a6d8",
+          "version": "2.2.0"
+        }
       }
     ]
   },

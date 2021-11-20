@@ -29,7 +29,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
     * disableAudio/HapticFeedback()
     * enableAudio/HapticFeedback()
     * toggleAudio/HapticFeedback()
-* `String` has new `vowels` and `isVowel` extenstion properties.
+* `String` has new `vowels` and `isVowel` extension properties.
 
 
 
