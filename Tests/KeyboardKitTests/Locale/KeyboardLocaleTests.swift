@@ -24,6 +24,7 @@ class KeyboardLocaleTests: QuickSpec {
                 let result = Dictionary(uniqueKeysWithValues: map)
                 expect(result).to(equal(
                     [
+                        .albanian: "sq",
                         .danish: "da",
                         .dutch: "nl",
                         .english: "en",
@@ -73,6 +74,7 @@ class KeyboardLocaleTests: QuickSpec {
                 
                 expect(result).to(equal(
                     [
+                        .albanian: "shqip",
                         .danish: "dansk",
                         .dutch: "Nederlands",
                         .english: "English",
@@ -103,6 +105,7 @@ class KeyboardLocaleTests: QuickSpec {
                 let result = Dictionary(uniqueKeysWithValues: map)
                 expect(result).to(equal(
                     [
+                        .albanian: "🇦🇱",
                         .danish: "🇩🇰",
                         .dutch: "🇳🇱",
                         .english: "🇺🇸",
@@ -131,28 +134,7 @@ class KeyboardLocaleTests: QuickSpec {
             it("is correct for all locales") {
                 let map = locales.map { ($0, $0.isLeftToRight) }
                 let result = Dictionary(uniqueKeysWithValues: map)
-                expect(result).to(equal(
-                    [
-                        .danish: true,
-                        .dutch: true,
-                        .english: true,
-                        .english_gb: true,
-                        .english_us: true,
-                        .estonian: true,
-                        .finnish: true,
-                        .french: true,
-                        .german: true,
-                        .icelandic: true,
-                        .italian: true,
-                        .latvian: true,
-                        .lithuanian: true,
-                        .norwegian: true,
-                        .russian: true,
-                        .spanish: true,
-                        .swedish: true,
-                        .ukrainian: true
-                    ]
-                ))
+                expect(result.values.allSatisfy { $0 == true }).to(beTrue())
             }
         }
         
@@ -161,28 +143,7 @@ class KeyboardLocaleTests: QuickSpec {
             it("is inverted LTR value") {
                 let map = locales.map { ($0, $0.isRightToLeft) }
                 let result = Dictionary(uniqueKeysWithValues: map)
-                expect(result).to(equal(
-                    [
-                        .danish: false,
-                        .dutch: false,
-                        .english: false,
-                        .english_gb: false,
-                        .english_us: false,
-                        .estonian: false,
-                        .finnish: false,
-                        .french: false,
-                        .german: false,
-                        .icelandic: false,
-                        .italian: false,
-                        .latvian: false,
-                        .lithuanian: false,
-                        .norwegian: false,
-                        .russian: false,
-                        .spanish: false,
-                        .swedish: false,
-                        .ukrainian: false
-                    ]
-                ))
+                expect(result.values.allSatisfy { $0 == false }).to(beTrue())
             }
         }
         
@@ -205,6 +166,7 @@ class KeyboardLocaleTests: QuickSpec {
                     "Lietuvių",
                     "Nederlands",
                     "Norsk Bokmål",
+                    "Shqip",
                     "Suomi",
                     "Svenska",
                     "Íslenska",
@@ -230,6 +192,7 @@ class KeyboardLocaleTests: QuickSpec {
                     "Lietuvių",
                     "Nederlands",
                     "Norsk Bokmål",
+                    "Shqip",
                     "Suomi",
                     "Svenska",
                     "Íslenska",
