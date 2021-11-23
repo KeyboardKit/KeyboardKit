@@ -36,6 +36,11 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 * `KeyboardTextField` has a new `placeholder` property.
 * `String` has new `vowels` and `isVowel` extension properties.
 
+### 💡 Behavior changes
+
+* Typing an alternate quotation delimiter (\`, ´, etc.) now switches back to the alphabetic keyboard.
+
+
 
 
 ## 5.2
