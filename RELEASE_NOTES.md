@@ -16,6 +16,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 * 🇦🇱 Albanian
 * 🇮🇸 Icelandic
+* 🇵🇱 Polish
 
 ### ✨ New features
  
