@@ -19,7 +19,7 @@ struct EditScreen: View {
     
     var body: some View {
         List {
-            Section(header: Text("Select the KeyboardKit keyboard and start typing")) {
+            Section {
                 MultilineTextField(text: $text, appearance: appearance)
                     .frame(height: 200)
                 EnabledListItem(
