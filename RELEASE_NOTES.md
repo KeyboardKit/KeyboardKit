@@ -40,6 +40,11 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 * Typing an alternate quotation delimiter (\`, ´, etc.) now switches back to the alphabetic keyboard.
 
+### 🐛 Bug fixes
+
+* `EmojiCategory.frequent` now uses the frequent provider to resolve its emojis.
+* `EmojiCategoryKeyboardMenu` now shows the "frequent" category once more.
+* `EmojiCategoryKeyboardMenu` has reduced circle padding to avoid clipping on smaller screens.
 
 
 
