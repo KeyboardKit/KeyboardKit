@@ -33,6 +33,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .french: "fr",
                         .finnish: "fi",
                         .german: "de",
+                        .icelandic: "is",
                         .italian: "it",
                         .latvian: "lv",
                         .lithuanian: "lt",
@@ -81,6 +82,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .finnish: "suomi",
                         .french: "français",
                         .german: "Deutsch",
+                        .icelandic: "íslenska",
                         .italian: "italiano",
                         .latvian: "latviešu",
                         .lithuanian: "lietuvių",
@@ -110,6 +112,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .finnish: "🇫🇮",
                         .french: "🇫🇷",
                         .german: "🇩🇪",
+                        .icelandic: "🇮🇸",
                         .italian: "🇮🇹",
                         .latvian: "🇱🇻",
                         .lithuanian: "🇱🇹",
@@ -139,6 +142,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .finnish: true,
                         .french: true,
                         .german: true,
+                        .icelandic: true,
                         .italian: true,
                         .latvian: true,
                         .lithuanian: true,
@@ -168,6 +172,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .finnish: false,
                         .french: false,
                         .german: false,
+                        .icelandic: false,
                         .italian: false,
                         .latvian: false,
                         .lithuanian: false,
@@ -202,6 +207,7 @@ class KeyboardLocaleTests: QuickSpec {
                     "Norsk Bokmål",
                     "Suomi",
                     "Svenska",
+                    "Íslenska",
                     "Русский",
                     "Українська"
                 ]))
@@ -226,6 +232,7 @@ class KeyboardLocaleTests: QuickSpec {
                     "Norsk Bokmål",
                     "Suomi",
                     "Svenska",
+                    "Íslenska",
                     "Русский",
                     "Українська"
                 ]))

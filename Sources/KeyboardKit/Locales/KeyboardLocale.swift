@@ -9,11 +9,14 @@
 import Foundation
 
 /**
- This enum contains KeyboardKit-supported keyboard locales.
+ This enum contains KeyboardKit-supported locales.
  
  Keyboard locales have more information than the raw locales
- and can also have a set of corresponding services attatched
- to them, e.g. when registering a Keyboard Kit Pro license.
+ and can also have a set of corresponding services attatched.
+ 
+ For instance, when a Keyboard Kit Pro license is registered,
+ the locales get services applied, e.g. for resolving locale
+ specific input sets and secondary callout actions.
  */
 public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
     
@@ -26,6 +29,7 @@ public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
     case finnish = "fi"
     case french = "fr"
     case german = "de"
+    case icelandic = "is"
     case italian = "it"
     case latvian = "lv"
     case lithuanian = "lt"
@@ -74,6 +78,7 @@ public extension KeyboardLocale {
         case .finnish: return "🇫🇮"
         case .french: return "🇫🇷"
         case .german: return "🇩🇪"
+        case .icelandic: return "🇮🇸"
         case .italian: return "🇮🇹"
         case .latvian: return "🇱🇻"
         case .lithuanian: return "🇱🇹"

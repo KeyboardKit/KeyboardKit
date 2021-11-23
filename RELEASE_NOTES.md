@@ -12,6 +12,10 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 5.3
 
+### 🌐 New locales
+
+* 🇮🇸 Icelandic
+
 ### ✨ New features
  
 * `CGSize` device dimension properties are now public:
