@@ -12,16 +12,59 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 5.3
 
+### 🌐 New locales
+
+* 🇦🇱 Albanian
+* 🇮🇸 Icelandic
+* 🇵🇱 Polish
+
 ### ✨ New features
  
 * `CGSize` device dimension properties are now public:
-    
+    * iPadProLargeScreenPortrait
+    * iPadProLargeScreenLandscape
+    * iPadProSmallScreenPortrait
+    * iPadProSmallScreenLandscape
+    * iPadScreenPortrait
+    * iPadScreenLandscape
+    * iPhoneProMaxScreenPortrait
+    * iPhoneProMaxScreenLandscape
+    * isScreenSize(...)
 * `KeyboardFeedbackSettings` has new properties and functions:
-    * `isAudio/HapticFeedbackEnabled`
-    * `disableAudio/HapticFeedback()`
-    * `enableAudio/HapticFeedback()`
-    * `toggleAudio/HapticFeedback()`
-* `String` has new `vowels` and `isVowel` extenstion properties.
+    * isAudio/HapticFeedbackEnabled
+    * disableAudio/HapticFeedback()
+    * enableAudio/HapticFeedback()
+    * toggleAudio/HapticFeedback()
+* `KeyboardTextField` has a new `placeholder` property.
+* `String` has new `vowels` and `isVowel` extension properties.
+
+### ✨ New KeyboardKit Pro features
+
+* `AudioFeedbackToggleButton` is a new view that can be used to toggle audio feedback on and off.
+* `EnabledLabel` is a new view that can be used to show different views depending on a provided enabled state.
+* `HapticFeedbackToggleButton` is a new view that can be used to toggle haptic feedback on and off.
+* `KeyboardActiveLabel` is a new view that can be used to present whether or not a keyboard extension is currently being used to edit a text field.
+* `KeyboardEnabledLabel` is a new view that can be used to present whether or not a keyboard extension is enabled in System Settings.
+* `License` now implements `Codable` and has a public initializer, as well as new `tier` and `additionalInfo` properties.
+* `LicenseCustomer` now implements `Codable` and has a public initializer, as well as a new `additionalInfo` property.
+* `LicenseTier` is a new type that defines the level of service for your specific license.
+* `ToggleToolbar` is a new view that can be used to toggle between two toolbars.
+
+### 💡 Behavior changes
+
+* Typing an alternate quotation delimiter (\`, ´, etc.) now switches back to the alphabetic keyboard.
+
+### 🐛 Bug fixes
+
+* The Finnish iPad input set provider has been corrected for numeric and symbolic inputs.
+* `EmojiCategory.frequent` now uses the frequent provider to resolve its emojis.
+* `EmojiCategoryKeyboardMenu` now shows the "frequent" category once more.
+* `EmojiCategoryKeyboardMenu` has reduced circle padding to avoid clipping on smaller screens.
+
+### 🗑 KeyboardKit Pro Deprecations
+
+* `KeyboardKitLicense` has been renamed to `License`.
+* `KeyboardKitLicense+Customer` has been converted to a typealias for `LicenseCustomer` and has been deprecated.
 
 
 

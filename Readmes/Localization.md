@@ -7,19 +7,23 @@ KeyboardKit defines keyboard-specific locales and provides localized content for
 
 KeyboardKit is localized in the following languages:
 
-* 🇺🇸 English (US - Default)
+* 🇺🇸 English
 
+* 🇦🇱 Albanian
 * 🇩🇰 Danish
 * 🇳🇱 Dutch
 * 🇬🇧 English (UK)
+* 🇺🇸 English (US)
 * 🇪🇪 Estonian
 * 🇫🇮 Finnish
 * 🇫🇷 French
 * 🇩🇪 German
+* 🇮🇸 Icelandic
 * 🇮🇹 Italian
 * 🇱🇻 Latvian
 * 🇱🇹 Lithuanian
 * 🇳🇴 Norwegian
+* 🇵🇱 Polish
 * 🇷🇺 Russian
 * 🇪🇸 Spanish
 * 🇸🇪 Swedish

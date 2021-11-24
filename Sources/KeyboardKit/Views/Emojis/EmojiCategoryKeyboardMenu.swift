@@ -96,7 +96,7 @@ public struct EmojiCategoryKeyboardMenu: View {
     private func buttonListItem(for category: EmojiCategory) -> some View {
         Button(action: { selection = category }, label: {
             Text(category.fallbackDisplayEmoji.char)
-                .padding(6)
+                .padding(3)
                 .background(selection == category ? style.selectedCategoryColor : Color.clear)
                 .clipShape(Circle())
         })

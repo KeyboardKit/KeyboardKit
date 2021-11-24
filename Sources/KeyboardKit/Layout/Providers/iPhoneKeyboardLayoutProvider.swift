@@ -32,13 +32,13 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      consist of at least one row.
      */
     open override func actions(for context: KeyboardContext, inputs: KeyboardInputRows) -> KeyboardActionRows {
-        var actions = super.actions(for: context, inputs: inputs)
-        guard actions.count > 0 else { return actions }
-        let last = actions.last ?? []
-        actions.removeLast()
-        actions.append(lowerLeadingActions(for: context) + last + lowerTrailingActions(for: context))
-        actions.append(bottomActions(for: context))
-        return actions
+        var rows = super.actions(for: context, inputs: inputs)
+        guard rows.count > 0 else { return rows }
+        let lastRow = rows.last ?? []
+        rows.removeLast()
+        rows.append(lowerLeadingActions(for: context) + lastRow + lowerTrailingActions(for: context))
+        rows.append(bottomActions(for: context))
+        return rows
     }
     
     /**
@@ -139,7 +139,7 @@ private extension iPhoneKeyboardLayoutProvider {
      */
     func thirdRowSystemButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
         if isRussianAlphabetic(context) { return .input }
-        return .percentage(0.13)
+        return .percentage(0.12)
     }
     
     /**

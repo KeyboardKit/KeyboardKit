@@ -59,7 +59,6 @@ public struct SystemKeyboard<RowItem: View>: View {
         self.keyboardWidth = width
         self.rowItem = rowItem
         self.inputWidth = layout.inputWidth(for: width)
-
         _context = ObservedObject(wrappedValue: context)
         _inputContext = ObservedObject(wrappedValue: inputContext ?? .disabled)
         _secondaryInputContext = ObservedObject(wrappedValue: secondaryInputContext ?? .disabled)

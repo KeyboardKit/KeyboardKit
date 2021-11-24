@@ -72,7 +72,8 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     public func preferredKeyboardType(
         after gesture: KeyboardGesture,
         on action: KeyboardAction) -> KeyboardType {
-            if shouldSwitchToCapsLock(after: gesture, on: action) { return .alphabetic(.capsLocked) }
+        if shouldSwitchToCapsLock(after: gesture, on: action) { return .alphabetic(.capsLocked) }
+        if action.isAlternateQuotationDelimiter(for: context) { return .alphabetic(.lowercased) }
         let should = shouldSwitchToPreferredKeyboardType(after: gesture, on: action)
         switch action {
         case .shift: return context.keyboardType
@@ -119,6 +120,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     open func shouldSwitchToPreferredKeyboardType(
         after gesture: KeyboardGesture,
         on action: KeyboardAction) -> Bool {
+            // if action.isAlternateQuotationDelimiter(for: context) { return true }
         switch action {
         case .keyboardType(let type): return type.shouldSwitchToPreferredKeyboardType
         case .shift: return true
@@ -143,6 +145,24 @@ private extension StandardKeyboardBehavior {
         let isDoubleTap = Date().timeIntervalSinceReferenceDate - lastShiftCheck.timeIntervalSinceReferenceDate < doubleTapThreshold
         lastShiftCheck = Date()
         return isDoubleTap
+    }
+}
+
+private extension KeyboardAction {
+    
+    func isAlternateQuotationDelimiter(for context: KeyboardContext) -> Bool {
+        switch self {
+        case .character(let char): return char.isAlternateQuotationDelimiter(for: context)
+        default: return false
+        }
+    }
+}
+
+private extension String {
+    
+    func isAlternateQuotationDelimiter(for context: KeyboardContext) -> Bool {
+        let locale = context.locale
+        return self == locale.alternateQuotationBeginDelimiter || self == locale.alternateQuotationEndDelimiter
     }
 }
 

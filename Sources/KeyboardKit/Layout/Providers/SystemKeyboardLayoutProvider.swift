@@ -78,6 +78,19 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     }
     
     /**
+     Whether or not the alphabetic input set uses an 11-11-8
+     layout, which is used by e.g. `Icelandic` keyboards.
+     
+     I'm not at all happy with this name. If you know how to
+     improve this, please create an issue or a PR.
+     */
+    public var hasElevenElevenEightAlphabeticInput: Bool {
+        let rows = inputSetProvider.alphabeticInputSet.rows
+        let counts = (rows.map { $0.count }).prefix(3)
+        return counts == [11, 11, 8]
+    }
+    
+    /**
      Whether or not the alphabetic input set uses an 11-11-7
      layout, which is used by e.g. `Russian` keyboards.
      

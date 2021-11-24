@@ -45,12 +45,7 @@
 		A92115B225D5910D003510D9 /* favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = A921159825D5910D003510D9 /* favorite.png */; };
 		A92115B325D5910D003510D9 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = A921159925D5910D003510D9 /* refresh.png */; };
 		A92115B425D5910D003510D9 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = A921159A25D5910D003510D9 /* image.png */; };
-		A92115C025D595C8003510D9 /* DemoAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92115B825D595C8003510D9 /* DemoAppearance.swift */; };
-		A92115C225D595C8003510D9 /* DemoListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92115BA25D595C8003510D9 /* DemoListItem.swift */; };
-		A92115C525D595C8003510D9 /* DemoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92115BD25D595C8003510D9 /* DemoList.swift */; };
-		A92115C625D595C8003510D9 /* DemoListText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92115BE25D595C8003510D9 /* DemoListText.swift */; };
 		A92115D025D5965A003510D9 /* Image+Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92115CF25D5965A003510D9 /* Image+Demo.swift */; };
-		A92115DA25D5B47E003510D9 /* DemoListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92115D925D5B47E003510D9 /* DemoListButton.swift */; };
 		A921162325D5B753003510D9 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921162225D5B753003510D9 /* Fonts.swift */; };
 		A921164E25D5BA85003510D9 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A921164125D5BA85003510D9 /* SourceSansPro-Regular.ttf */; };
 		A921164F25D5BA85003510D9 /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A921164225D5BA85003510D9 /* SourceSansPro-Bold.ttf */; };
@@ -63,6 +58,7 @@
 		A95D6753270DE99D0018A75B /* DemoAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D6752270DE99D0018A75B /* DemoAppearance.swift */; };
 		A99AE5C127183561004AD0A3 /* EnabledListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99AE5C027183561004AD0A3 /* EnabledListItem.swift */; };
 		A9C365F526F3184100E87AFE /* DemoAutocompleteToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C365F426F3184100E87AFE /* DemoAutocompleteToolbar.swift */; };
+		A9E491802748F22B0078F435 /* SwiftUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = A9E4917F2748F22B0078F435 /* SwiftUIKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,12 +124,7 @@
 		A921159825D5910D003510D9 /* favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorite.png; sourceTree = "<group>"; };
 		A921159925D5910D003510D9 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
 		A921159A25D5910D003510D9 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
-		A92115B825D595C8003510D9 /* DemoAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoAppearance.swift; sourceTree = "<group>"; };
-		A92115BA25D595C8003510D9 /* DemoListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoListItem.swift; sourceTree = "<group>"; };
-		A92115BD25D595C8003510D9 /* DemoList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoList.swift; sourceTree = "<group>"; };
-		A92115BE25D595C8003510D9 /* DemoListText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoListText.swift; sourceTree = "<group>"; };
 		A92115CF25D5965A003510D9 /* Image+Demo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Demo.swift"; sourceTree = "<group>"; };
-		A92115D925D5B47E003510D9 /* DemoListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoListButton.swift; sourceTree = "<group>"; };
 		A921162225D5B753003510D9 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		A921162725D5B781003510D9 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		A921162C25D5B7FF003510D9 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -156,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A921155125D58D86003510D9 /* KeyboardKit in Frameworks */,
+				A9E491802748F22B0078F435 /* SwiftUIKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,7 +189,6 @@
 				A92115B725D595C8003510D9 /* Demo */,
 				A921152B25D58A96003510D9 /* Preview Content */,
 				A92115CE25D59651003510D9 /* Resources */,
-				A98912BF25DE5D81007F4DFE /* Screens */,
 				A921155925D58E39003510D9 /* Supporting Files */,
 				A921166525D5BC44003510D9 /* Views */,
 			);
@@ -295,12 +286,8 @@
 			isa = PBXGroup;
 			children = (
 				A921152525D58A94003510D9 /* DemoApp.swift */,
-				A92115B825D595C8003510D9 /* DemoAppearance.swift */,
-				A92115BA25D595C8003510D9 /* DemoListItem.swift */,
-				A92115BD25D595C8003510D9 /* DemoList.swift */,
-				A92115BE25D595C8003510D9 /* DemoListText.swift */,
-				A92115D925D5B47E003510D9 /* DemoListButton.swift */,
-				A99AE5C027183561004AD0A3 /* EnabledListItem.swift */,
+				A921166125D5BC2A003510D9 /* EditScreen.swift */,
+				A921152725D58A94003510D9 /* HomeScreen.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -348,6 +335,7 @@
 		A921166525D5BC44003510D9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A99AE5C027183561004AD0A3 /* EnabledListItem.swift */,
 				A921166625D5BC4F003510D9 /* MultilineTextField.swift */,
 			);
 			path = Views;
@@ -359,15 +347,6 @@
 				A95D6752270DE99D0018A75B /* DemoAppearance.swift */,
 			);
 			path = Appearance;
-			sourceTree = "<group>";
-		};
-		A98912BF25DE5D81007F4DFE /* Screens */ = {
-			isa = PBXGroup;
-			children = (
-				A921166125D5BC2A003510D9 /* EditScreen.swift */,
-				A921152725D58A94003510D9 /* HomeScreen.swift */,
-			);
-			path = Screens;
 			sourceTree = "<group>";
 		};
 		A9C365F226F310ED00E87AFE /* Autocomplete */ = {
@@ -417,6 +396,7 @@
 			name = Demo;
 			packageProductDependencies = (
 				A921155025D58D86003510D9 /* KeyboardKit */,
+				A9E4917F2748F22B0078F435 /* SwiftUIKit */,
 			);
 			productName = Demo;
 			productReference = A921152225D58A94003510D9 /* Demo.app */;
@@ -473,6 +453,7 @@
 			packageReferences = (
 				A921154F25D58D85003510D9 /* XCRemoteSwiftPackageReference "KeyboardKit" */,
 				A91BED3925E447E1000BE8E6 /* XCRemoteSwiftPackageReference "KeyboardKitPro" */,
+				A9E4917E2748F22B0078F435 /* XCRemoteSwiftPackageReference "SwiftUIKit" */,
 			);
 			productRefGroup = A921152325D58A94003510D9 /* Products */;
 			projectDirPath = "";
@@ -578,12 +559,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A92115C225D595C8003510D9 /* DemoListItem.swift in Sources */,
-				A92115C625D595C8003510D9 /* DemoListText.swift in Sources */,
-				A92115C525D595C8003510D9 /* DemoList.swift in Sources */,
 				A921166225D5BC2A003510D9 /* EditScreen.swift in Sources */,
-				A92115C025D595C8003510D9 /* DemoAppearance.swift in Sources */,
-				A92115DA25D5B47E003510D9 /* DemoListButton.swift in Sources */,
 				A99AE5C127183561004AD0A3 /* EnabledListItem.swift in Sources */,
 				A921152825D58A94003510D9 /* HomeScreen.swift in Sources */,
 				A921152625D58A94003510D9 /* DemoApp.swift in Sources */,
@@ -861,7 +837,7 @@
 			repositoryURL = "https://github.com/KeyboardKit/KeyboardKitPro.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.2.0;
+				minimumVersion = 5.3.0;
 			};
 		};
 		A921154F25D58D85003510D9 /* XCRemoteSwiftPackageReference "KeyboardKit" */ = {
@@ -869,7 +845,15 @@
 			repositoryURL = "https://github.com/danielsaidi/KeyboardKit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.2.0;
+				minimumVersion = 5.3.0;
+			};
+		};
+		A9E4917E2748F22B0078F435 /* XCRemoteSwiftPackageReference "SwiftUIKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielsaidi/SwiftUIKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -889,6 +873,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A921154F25D58D85003510D9 /* XCRemoteSwiftPackageReference "KeyboardKit" */;
 			productName = KeyboardKit;
+		};
+		A9E4917F2748F22B0078F435 /* SwiftUIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A9E4917E2748F22B0078F435 /* XCRemoteSwiftPackageReference "SwiftUIKit" */;
+			productName = SwiftUIKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
