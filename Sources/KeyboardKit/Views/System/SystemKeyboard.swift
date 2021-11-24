@@ -265,9 +265,7 @@ public extension SystemKeyboard {
 
 private extension SystemKeyboard {
     func rows(for layout: KeyboardLayout) -> some View {
-        ForEach(layout.items.enumerated().map {
-            $0
-        }, id: \.offset) {
+        ForEach(Array(layout.items.enumerated()), id: \.offset) {
             row(for: layout, items: $0.element)
         }
     }
@@ -332,7 +330,6 @@ struct SystemKeyboard_Previews: PreviewProvider {
     }
 
     static var previews: some View {
-
         SystemKeyboard(
                 layout: .preview,
                 appearance: .preview,

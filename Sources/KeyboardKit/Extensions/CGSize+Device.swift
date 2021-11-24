@@ -77,10 +77,3 @@ public extension CGSize {
         self == size || self == size.flipped()
     }
 }
-
-private extension CGSize {
-
-    func flipped() -> CGSize {
-        CGSize(width: height, height: width)
-    }
-}
