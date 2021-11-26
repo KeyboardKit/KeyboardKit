@@ -21,15 +21,13 @@ public extension View {
      multiple locales.
      */
     @ViewBuilder
-    func localeContextMenu(for context: KeyboardContext) -> some View {
-        if context.locales.count < 2 {
+    func keyboardContextMenu<ItemType, ViewType: View>(items: [ItemType], createMenuItem: @escaping (ItemType) -> ViewType) -> some View {
+        if items.count < 2 {
             self
         } else {
             self.contextMenu(ContextMenu {
-                ForEach(Array(context.locales.enumerated()), id: \.offset) { locale in
-                    let locale = locale.element
-                    let text = locale.localizedString(forIdentifier: locale.identifier) ?? "-"
-                    Button(text.capitalized, action: { context.locale = locale })
+                ForEach(Array(items.enumerated()), id: \.offset) { (_, locale) in
+                    createMenuItem(locale)
                 }
             })
         }

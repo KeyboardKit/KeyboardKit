@@ -25,14 +25,12 @@ public extension View {
         for action: KeyboardAction,
         context: KeyboardContext,
         actionHandler: KeyboardActionHandler,
-        isPressed: Binding<Bool> = .constant(false)) -> some View {
-        switch action {
-        case .nextKeyboard: self
-        case .nextLocale: self
-            .withKeyboardGestures(for: action, isPressed: isPressed, actionHandler: actionHandler)
-            .withLocaleContextMenu(for: context)
-        default: self
-            .withKeyboardGestures(for: action, isPressed: isPressed, actionHandler: actionHandler)
+        isPressed: Binding<Bool> = .constant(false)
+    ) -> some View {
+        if action == .nextKeyboard {
+            self
+        } else {
+            withKeyboardGestures(for: action, isPressed: isPressed, actionHandler: actionHandler)
         }
     }
     
@@ -75,7 +73,7 @@ public extension View {
     }
 }
 
-private extension View {
+extension View {
     
     func withKeyboardGestures(
         for action: KeyboardAction,
@@ -95,11 +93,22 @@ private extension View {
     
     @ViewBuilder
     func withLocaleContextMenu(
-        for context: KeyboardContext?) -> some View {
+        for context: KeyboardContext?
+    ) -> some View {
         if let context = context {
-            self.localeContextMenu(for: context)
+            keyboardContextMenu(items: context.locales) { (locale: Locale) in
+                Button(locale.localizedAndCapitalized, action: { context.locale = locale })
+            }
         } else {
             self
         }
+    }
+}
+
+
+private extension Locale {
+    var localizedAndCapitalized: String {
+        let text = localizedString(forIdentifier: identifier) ?? "-"
+        return text.capitalized
     }
 }
