@@ -31,6 +31,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .english_gb: "en-GB",
                         .english_us: "en-US",
                         .estonian: "et",
+                        .farsi: "fa",
                         .french: "fr",
                         .finnish: "fi",
                         .german: "de",
@@ -39,6 +40,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .latvian: "lv",
                         .lithuanian: "lt",
                         .norwegian: "nb",
+                        .polish: "pl",
                         .russian: "ru",
                         .spanish: "es",
                         .swedish: "sv",
@@ -81,6 +83,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .english_gb: "English (United Kingdom)",
                         .english_us: "English (United States)",
                         .estonian: "eesti",
+                        .farsi: "فارسی",
                         .finnish: "suomi",
                         .french: "français",
                         .german: "Deutsch",
@@ -89,6 +92,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .latvian: "latviešu",
                         .lithuanian: "lietuvių",
                         .norwegian: "norsk bokmål",
+                        .polish: "polski",
                         .russian: "русский",
                         .spanish: "español",
                         .swedish: "svenska",
@@ -112,6 +116,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .english_gb: "🇬🇧",
                         .english_us: "🇺🇸",
                         .estonian: "🇪🇪",
+                        .farsi: "🇮🇷",
                         .finnish: "🇫🇮",
                         .french: "🇫🇷",
                         .german: "🇩🇪",
@@ -120,6 +125,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .latvian: "🇱🇻",
                         .lithuanian: "🇱🇹",
                         .norwegian: "🇳🇴",
+                        .polish: "🇵🇱",
                         .russian: "🇷🇺",
                         .spanish: "🇪🇸",
                         .swedish: "🇸🇪",
@@ -131,10 +137,34 @@ class KeyboardLocaleTests: QuickSpec {
         
         describe("is LTR") {
             
-            it("is correct for all locales") {
+            it("is correct for all locales but farsi") {
                 let map = locales.map { ($0, $0.isLeftToRight) }
                 let result = Dictionary(uniqueKeysWithValues: map)
-                expect(result.values.allSatisfy { $0 == true }).to(beTrue())
+                expect(result).to(equal(
+                    [
+                        .albanian: true,
+                        .danish: true,
+                        .dutch: true,
+                        .english: true,
+                        .english_gb: true,
+                        .english_us: true,
+                        .estonian: true,
+                        .farsi: false,
+                        .finnish: true,
+                        .french: true,
+                        .german: true,
+                        .icelandic: true,
+                        .italian: true,
+                        .latvian: true,
+                        .lithuanian: true,
+                        .norwegian: true,
+                        .polish: true,
+                        .russian: true,
+                        .spanish: true,
+                        .swedish: true,
+                        .ukrainian: true
+                    ]
+                ))
             }
         }
         
@@ -143,7 +173,31 @@ class KeyboardLocaleTests: QuickSpec {
             it("is inverted LTR value") {
                 let map = locales.map { ($0, $0.isRightToLeft) }
                 let result = Dictionary(uniqueKeysWithValues: map)
-                expect(result.values.allSatisfy { $0 == false }).to(beTrue())
+                expect(result).to(equal(
+                    [
+                        .albanian: false,
+                        .danish: false,
+                        .dutch: false,
+                        .english: false,
+                        .english_gb: false,
+                        .english_us: false,
+                        .estonian: false,
+                        .farsi: true,
+                        .finnish: false,
+                        .french: false,
+                        .german: false,
+                        .icelandic: false,
+                        .italian: false,
+                        .latvian: false,
+                        .lithuanian: false,
+                        .norwegian: false,
+                        .polish: false,
+                        .russian: false,
+                        .spanish: false,
+                        .swedish: false,
+                        .ukrainian: false
+                    ]
+                ))
             }
         }
         
@@ -166,12 +220,15 @@ class KeyboardLocaleTests: QuickSpec {
                     "Lietuvių",
                     "Nederlands",
                     "Norsk Bokmål",
+                    "Polski",
                     "Shqip",
                     "Suomi",
                     "Svenska",
                     "Íslenska",
                     "Русский",
-                    "Українська"
+                    "Українська",
+                    "فارسی",
+                    
                 ]))
             }
             
@@ -192,12 +249,14 @@ class KeyboardLocaleTests: QuickSpec {
                     "Lietuvių",
                     "Nederlands",
                     "Norsk Bokmål",
+                    "Polski",
                     "Shqip",
                     "Suomi",
                     "Svenska",
                     "Íslenska",
                     "Русский",
-                    "Українська"
+                    "Українська",
+                    "فارسی",
                 ]))
             }
         }
