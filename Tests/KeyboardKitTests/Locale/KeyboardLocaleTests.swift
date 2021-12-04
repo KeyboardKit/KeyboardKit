@@ -227,7 +227,7 @@ class KeyboardLocaleTests: QuickSpec {
                     "Íslenska",
                     "Русский",
                     "Українська",
-                    "فارسی",
+                    "فارسی"
                     
                 ]))
             }
@@ -256,7 +256,7 @@ class KeyboardLocaleTests: QuickSpec {
                     "Íslenska",
                     "Русский",
                     "Українська",
-                    "فارسی",
+                    "فارسی"
                 ]))
             }
         }
