@@ -58,7 +58,7 @@ public class KeyboardLayout {
      */
     public func inputWidth(for totalWidth: TotalWidth) -> CGFloat {
         if let result = widthCache[totalWidth] { return result }
-        let result = items.compactMap { $0.inputWidth(for: totalWidth) }.min() ?? 0
+        let result = itemRows.compactMap { $0.inputWidth(for: totalWidth) }.min() ?? 0
         widthCache[totalWidth] = result
         return result
     }

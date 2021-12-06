@@ -56,8 +56,8 @@ class StandardKeyboardLayoutProviderTests: QuickSpec {
                 let layout = provider.keyboardLayout(for: context)
                 let phoneLayout = provider.iPhoneProvider.keyboardLayout(for: context)
                 let padLayout = provider.iPadProvider.keyboardLayout(for: context)
-                expect(layout.items).to(equal(phoneLayout.items))
-                expect(layout.items).toNot(equal(padLayout.items))
+                expect(layout.itemRows).to(equal(phoneLayout.itemRows))
+                expect(layout.itemRows).toNot(equal(padLayout.itemRows))
             }
             
             it("is pad layout if context device is pad") {
@@ -65,8 +65,8 @@ class StandardKeyboardLayoutProviderTests: QuickSpec {
                 let layout = provider.keyboardLayout(for: context)
                 let phoneLayout = provider.iPhoneProvider.keyboardLayout(for: context)
                 let padLayout = provider.iPadProvider.keyboardLayout(for: context)
-                expect(layout.items).toNot(equal(phoneLayout.items))
-                expect(layout.items).to(equal(padLayout.items))
+                expect(layout.itemRows).toNot(equal(phoneLayout.itemRows))
+                expect(layout.itemRows).to(equal(padLayout.itemRows))
             }
         }
         

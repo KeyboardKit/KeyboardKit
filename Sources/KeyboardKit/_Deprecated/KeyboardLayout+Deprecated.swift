@@ -7,5 +7,6 @@ public extension KeyboardLayout {
         self.init(itemRows: items)
     }
     
+    @available(*, deprecated, renamed: "itemRows")
     var items: KeyboardLayoutItemRows { itemRows }
 }

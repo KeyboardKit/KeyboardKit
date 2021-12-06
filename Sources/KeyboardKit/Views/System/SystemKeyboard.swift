@@ -115,7 +115,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
 private extension SystemKeyboard {
 
     func itemRows(for layout: KeyboardLayout) -> some View {
-        ForEach(Array(layout.items.enumerated()), id: \.offset) {
+        ForEach(Array(layout.itemRows.enumerated()), id: \.offset) {
             items(for: layout, itemRow: $0.element)
         }
     }

@@ -40,7 +40,7 @@ class SystemKeyboardLayoutProviderTests: QuickSpec {
                 let items = provider.items(for: context, actions: actions)
                 let layout = provider.keyboardLayout(for: context)
                 let expected = KeyboardLayout(itemRows: items)
-                expect(layout.items.count).to(equal(expected.items.count))
+                expect(layout.itemRows.count).to(equal(expected.itemRows.count))
             }
         }
         
