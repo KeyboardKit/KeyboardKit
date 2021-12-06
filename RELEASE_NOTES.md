@@ -17,6 +17,8 @@ This release removes the need for using `AnyView` when creating custom view buil
 ### ✨ New features
 
 * `Locale` has new `localizedName` extension.
+* `StandardSystemKeyboardButtonView` is a new typealias that defines the standard system keyboard button view.
+* `StandardSystemKeyboardButtonContent` is a new typealias that defines the standard system keyboard button content.
 * `SystemKeyboard` has a new, static `standardKeyboardWidth`.
 * `View` has new, generic `localeContextMenu` extensions that can be used to create custom locale context menus.
 

@@ -230,57 +230,73 @@ public extension SystemKeyboard {
     }
 }
 
-
 struct SystemKeyboard_Previews: PreviewProvider {
     
     static let actionHandler = PreviewKeyboardActionHandler()
-
-    @ViewBuilder
-    static func previewButtonContent(
-        action: KeyboardAction,
-        appearance: KeyboardAppearance,
-        context: KeyboardContext) -> some View {
-        switch action {
-        case .backspace:
-            Text("<-").opacity(0.2).foregroundColor(Color.red)
-        default:
-            SystemKeyboardActionButtonContent(
-                action: action,
-                appearance: appearance,
-                context: context
-            )
-        }
-    }
 
     @ViewBuilder
     static func previewButton(
         item: KeyboardLayoutItem,
         keyboardWidth: CGFloat,
         inputWidth: CGFloat) -> some View {
-        let view = SystemKeyboardButtonRowItem(
-            content: previewButtonContent(
-                action: item.action,
-                appearance: PreviewKeyboardAppearance.preview,
-                context: KeyboardContext.preview
-            ),
-            item: item,
-            context: .preview,
-            keyboardWidth: keyboardWidth,
-            inputWidth: inputWidth,
-            appearance: .preview,
-            actionHandler: actionHandler
-        )
         switch item.action {
         case .space:
-            view.opacity(0.2)
-                .overlay(Text("This is a space bar overlay").multilineTextAlignment(.center))
+            Text("This is a space bar replacement")
+                .frame(maxWidth: .infinity)
+                .multilineTextAlignment(.center)
         default:
-            view
+            StandardSystemKeyboardButtonView(
+                content: previewButtonContent(item: item),
+                item: item,
+                context: .preview,
+                keyboardWidth: keyboardWidth,
+                inputWidth: inputWidth,
+                appearance: .preview,
+                actionHandler: actionHandler)
         }
     }
 
+    @ViewBuilder
+    static func previewButtonContent(
+        item: KeyboardLayoutItem) -> some View {
+        switch item.action {
+        case .backspace:
+            Text("<-").foregroundColor(Color.red)
+        default:
+            StandardSystemKeyboardButtonContent(
+                action: item.action,
+                appearance: PreviewKeyboardAppearance(),
+                context: .preview
+            )
+        }
+    }
+    
     static var previews: some View {
         VStack {
+            
+            // A standard system keyboard
+            SystemKeyboard(
+                layout: .preview,
+                appearance: PreviewKeyboardAppearance(),
+                actionHandler: PreviewKeyboardActionHandler(),
+                context: .preview,
+                inputContext: nil,
+                secondaryInputContext: nil,
+                width: UIScreen.main.bounds.width)
+            
+            
+            // A keyboard that replaces the button content
+            SystemKeyboard(
+                layout: .preview,
+                appearance: PreviewKeyboardAppearance(),
+                actionHandler: PreviewKeyboardActionHandler(),
+                context: .preview,
+                inputContext: nil,
+                secondaryInputContext: nil,
+                width: UIScreen.main.bounds.width,
+                buttonContentBuilder: previewButtonContent)
+            
+            // A keyboard that replaces entire button views
             SystemKeyboard(
                 layout: .preview,
                 appearance: PreviewKeyboardAppearance(),
@@ -290,29 +306,6 @@ struct SystemKeyboard_Previews: PreviewProvider {
                 secondaryInputContext: nil,
                 width: UIScreen.main.bounds.width,
                 buttonViewBuilder: previewButton)
-            SystemKeyboard(
-                layout: .preview,
-                appearance: PreviewKeyboardAppearance(),
-                actionHandler: PreviewKeyboardActionHandler(),
-                context: .preview,
-                inputContext: nil,
-                secondaryInputContext: nil,
-                width: UIScreen.main.bounds.width,
-                buttonContentBuilder: { item in
-                    previewButtonContent(
-                        action: item.action,
-                        appearance: PreviewKeyboardAppearance(),
-                        context: .preview
-                    )
-                })
-            SystemKeyboard(
-                layout: .preview,
-                appearance: PreviewKeyboardAppearance(),
-                actionHandler: PreviewKeyboardActionHandler(),
-                context: .preview,
-                inputContext: nil,
-                secondaryInputContext: nil,
-                width: UIScreen.main.bounds.width)
         }.background(Color.yellow)
     }
 }
