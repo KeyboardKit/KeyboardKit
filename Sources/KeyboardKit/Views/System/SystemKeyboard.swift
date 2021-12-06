@@ -109,7 +109,7 @@ public struct SystemKeyboard<RowItem: View>: View {
 }
 
 public extension SystemKeyboard where RowItem == AnyView {
-    
+
 /**
  Convenience initializer that uses standard buttons.
 
@@ -129,7 +129,7 @@ public extension SystemKeyboard where RowItem == AnyView {
         inputContext: InputCalloutContext?,
         secondaryInputContext: SecondaryInputCalloutContext?,
         width: CGFloat = KeyboardInputViewController.shared.view.frame.width,
-        buttonContent: @escaping ButtonBuilder<AnyView> = { action, appearance, context in
+        buttonBuilder: @escaping ButtonBuilder<AnyView> = { action, appearance, context in
             AnyView(standardButtonBuilder(action: action, appearance: appearance, context: context))
         }) {
         self.init(
@@ -143,7 +143,7 @@ public extension SystemKeyboard where RowItem == AnyView {
             rowItem: { item, keyboardWidth, inputWidth in
                 AnyView(
                     SystemKeyboardButtonRowItem(
-                        content: buttonContent(item.action, appearance, context),
+                        content: buttonBuilder(item.action, appearance, context),
                         item: item,
                         context: context,
                         keyboardWidth: keyboardWidth,
@@ -185,7 +185,7 @@ func standardSystemKeyboard(
         width: width) { item, keyboardWidth, inputWidth in
         // Use standard button builder
         SystemKeyboardButtonRowItem(
-                content: SystemKeyboard<SystemKeyboardActionButtonContent>.standardButtonBuilder(action: item.action, appearance: appearance, context: context),
+                content: defaultButtonBuilder(action: item.action, appearance: appearance, context: context),
                 item: item,
                 context: context,
                 keyboardWidth: keyboardWidth,
@@ -213,7 +213,7 @@ func standardSystemKeyboard<ButtonContent: View>(
     inputContext: InputCalloutContext?,
     secondaryInputContext: SecondaryInputCalloutContext?,
     width: CGFloat = KeyboardInputViewController.shared.view.frame.width,
-    buttonContent: @escaping ButtonBuilder<ButtonContent>) -> some View {
+    buttonBuilder: @escaping ButtonBuilder<ButtonContent>) -> some View {
     SystemKeyboard(
         layout: layout,
         appearance: appearance,
@@ -224,7 +224,7 @@ func standardSystemKeyboard<ButtonContent: View>(
         width: width,
         rowItem: { item, keyboardWidth, inputWidth in
             SystemKeyboardButtonRowItem(
-                content: buttonContent(item.action, appearance, context),
+                content: buttonBuilder(item.action, appearance, context),
                 item: item,
                 context: context,
                 keyboardWidth: keyboardWidth,
@@ -237,25 +237,36 @@ func standardSystemKeyboard<ButtonContent: View>(
 }
 
 public extension SystemKeyboard {
-    
+
     /**
      This is the standard system keyboard button builder that will be used
      when no custom builder is provided to the view.
      */
+    @available(*, deprecated, message: "Use defaultButtonBuilder() instead")
     static func standardButtonBuilder(
+        action: KeyboardAction,
+            appearance: KeyboardAppearance,
+            context: KeyboardContext) -> AnyView {
+        AnyView(defaultButtonBuilder(action: action, appearance: appearance, context: context))
+    }
+
+}
+/**
+ This is the standard `buttonBuilder`, that will be used
+ when no custom builder is provided to the view.
+ */
+func defaultButtonBuilder(
         action: KeyboardAction,
         appearance: KeyboardAppearance,
         context: KeyboardContext) -> SystemKeyboardActionButtonContent {
-        SystemKeyboardActionButtonContent(
+    SystemKeyboardActionButtonContent(
             action: action,
             appearance: appearance,
             context: context
-        )
-    }
+    )
 }
-
 private extension SystemKeyboard {
-    
+
     func rows(for layout: KeyboardLayout) -> some View {
         ForEach(Array(layout.items.enumerated()), id: \.offset) {
             row(for: layout, items: $0.element)
