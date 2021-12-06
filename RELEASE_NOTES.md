@@ -25,7 +25,9 @@ This release removes the need for using `AnyView` when creating custom view buil
 
 ### 🗑 Deprecations
 
-* The `SystemKeyboard` initializer that requires an `AnyView` button builder is now deprecated.
+* `SystemKeyboard` `AnyView` initializer has been replaced with generic initializers.
+* `KeyboardLayout` `items` initializer has been replaced with an `itemRows` initializer.
+* `KeyboardLayout` `item` has been replaced with `itemRows`.
 
 ### 💥 Breaking changes
 

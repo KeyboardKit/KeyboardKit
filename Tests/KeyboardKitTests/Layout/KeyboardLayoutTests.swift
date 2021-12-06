@@ -23,18 +23,18 @@ class KeyboardLayoutTests: QuickSpec {
             }
             
             it("returns 0 if no items exists") {
-                let layout = KeyboardLayout(items: [])
+                let layout = KeyboardLayout(itemRows: [])
                 expect(layout.inputWidth(for: 123)).to(equal(0))
             }
             
             it("returns cache if a cached result exists") {
-                let layout = KeyboardLayout(items: [])
+                let layout = KeyboardLayout(itemRows: [])
                 layout.widthCache[123] = 456
                 expect(layout.inputWidth(for: 123)).to(equal(456))
             }
             
             it("input width has precedence over available width") {
-                let layout = KeyboardLayout(items: [[
+                let layout = KeyboardLayout(itemRows: [[
                     item(.available),
                     item(.input),
                     item(.input),
@@ -45,7 +45,7 @@ class KeyboardLayoutTests: QuickSpec {
             }
             
             it("percentage width has precedence over input width") {
-                let layout = KeyboardLayout(items: [[
+                let layout = KeyboardLayout(itemRows: [[
                     item(.percentage(0.2)),
                     item(.input),
                     item(.input),
@@ -56,7 +56,7 @@ class KeyboardLayoutTests: QuickSpec {
             }
             
             it("fixed width has precedence over input width") {
-                let layout = KeyboardLayout(items: [[
+                let layout = KeyboardLayout(itemRows: [[
                     item(.points(50)),
                     item(.input),
                     item(.input),
@@ -67,7 +67,7 @@ class KeyboardLayoutTests: QuickSpec {
             }
             
             it("input percentage contribute to input width") {
-                let layout = KeyboardLayout(items: [[
+                let layout = KeyboardLayout(itemRows: [[
                     item(.points(50)),
                     item(.inputPercentage(0.6)),
                     item(.input),

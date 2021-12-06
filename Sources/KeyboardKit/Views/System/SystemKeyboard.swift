@@ -91,7 +91,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
 
     public var body: some View {
         VStack(spacing: 0) {
-            rows(for: layout)
+            itemRows(for: layout)
         }
         .inputCallout(
             context: inputContext,
@@ -104,6 +104,22 @@ public struct SystemKeyboard<ButtonView: View>: View {
     }
 }
 
+private extension SystemKeyboard {
+
+    func itemRows(for layout: KeyboardLayout) -> some View {
+        ForEach(Array(layout.items.enumerated()), id: \.offset) {
+            items(for: layout, itemRow: $0.element)
+        }
+    }
+
+    func items(for layout: KeyboardLayout, itemRow: KeyboardLayoutItemRow) -> some View {
+        HStack(spacing: 0) {
+            ForEach(Array(itemRow.enumerated()), id: \.offset) {
+                buttonViewBuilder($0.element, keyboardWidth, inputWidth)
+            }
+        }
+    }
+}
 
 
 
@@ -190,22 +206,6 @@ func standardSystemKeyboard<ButtonContent: View>(
     )
 }
 
-private extension SystemKeyboard {
-
-    func rows(for layout: KeyboardLayout) -> some View {
-        ForEach(Array(layout.items.enumerated()), id: \.offset) {
-            row(for: layout, items: $0.element)
-        }
-    }
-
-    func row(for layout: KeyboardLayout, items: KeyboardLayoutItemRow) -> some View {
-        HStack(spacing: 0) {
-            ForEach(Array(items.enumerated()), id: \.offset) {
-                buttonViewBuilder($0.element, keyboardWidth, inputWidth)
-            }
-        }
-    }
-}
 
 struct SystemKeyboard_Previews: PreviewProvider {
     
@@ -257,15 +257,6 @@ struct SystemKeyboard_Previews: PreviewProvider {
 
     static var previews: some View {
         VStack {
-            SystemKeyboard(
-                layout: .preview,
-                appearance: PreviewKeyboardAppearance(),
-                actionHandler: PreviewKeyboardActionHandler(),
-                context: .preview,
-                inputContext: nil,
-                secondaryInputContext: nil,
-                width: UIScreen.main.bounds.width,
-                buttonViewBuilder: previewButton)
             SystemKeyboard(
                 layout: .preview,
                 appearance: PreviewKeyboardAppearance(),

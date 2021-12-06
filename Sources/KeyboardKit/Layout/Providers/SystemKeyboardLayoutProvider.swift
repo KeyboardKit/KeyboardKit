@@ -110,7 +110,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         let inputs = self.inputs(for: context)
         let actions = self.actions(for: context, inputs: inputs)
         let items = self.items(for: context, actions: actions)
-        return KeyboardLayout(items: items)
+        return KeyboardLayout(itemRows: items)
     }
     
     /**
