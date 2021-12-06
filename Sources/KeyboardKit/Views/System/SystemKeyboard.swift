@@ -236,8 +236,7 @@ func standardSystemKeyboard<ButtonContent: View>(
     )
 }
 
-public extension SystemKeyboard {
-
+public extension SystemKeyboard where RowItem == AnyView {
     /**
      This is the standard system keyboard button builder that will be used
      when no custom builder is provided to the view.
