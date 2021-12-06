@@ -63,14 +63,14 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
             .systemKeyboardButtonStyle(buttonStyle)
             .padding(item.insets)
             .background(Color.clearInteractable)
-            .localeContextMenu(
-                for: item.action,
-                context: context)
             .keyboardGestures(
                 for: item.action,
                 context: context,
                 actionHandler: actionHandler,
                 isPressed: $isPressed)
+            .localeContextMenu(
+                for: item.action,
+                context: context)
     }
 }
 
