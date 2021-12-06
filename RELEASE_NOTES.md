@@ -17,7 +17,19 @@ This release removes the need for using `AnyView` when creating custom view buil
 ### ✨ New features
 
 * `Locale` has new `localizedName` extension.
-* `View` has new, generic `localeContextMenu` extensions that can be used to create custom locale context menus. 
+* `View` has new, generic `localeContextMenu` extensions that can be used to create custom locale context menus.
+
+### 💡 Behavior changes
+
+* `SystemKeyboard` `standardButtonBuilder` is no longer an `AnyView`.
+
+### 🗑 Deprecations
+
+* The `SystemKeyboard` initializer that requires an `AnyView` button builder is now deprecated.
+
+### 💥 Breaking changes
+
+* `SystemKeyboard` is now generic, which means that the static `standardButtonBuilder` is no longer available. Use the new, improved initializers instead.
 
 
 

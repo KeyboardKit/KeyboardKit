@@ -27,14 +27,15 @@ import SwiftUI
 public struct SystemKeyboardActionButton<Content: View>: View {
     
     /**
-     Create a system keyboard button.
+     Create a system keyboard button that adapts its content
+     to the provided action and appearance.
      
      - Parameters:
        - action: The keyboard action to apply.
        - actionHandler: The action handler to use when triggering actions.
        - appearance: The keyboard appearance to use.
        - context: The keyboard context to which the button should apply.
-       - contentConfig: A content configuration block that can be used to modify the button content before applying a style and gestures to it.
+       - contentConfig: A configuration block that can be used to modify the button content before applying a style and gestures to it.
      */
     public init(
         action: KeyboardAction,
@@ -76,8 +77,9 @@ public struct SystemKeyboardActionButton<Content: View>: View {
 public extension SystemKeyboardActionButton where Content == SystemKeyboardActionButtonContent {
     
     /**
-     Create a system keyboard button that does not modify
-     the content before applying a style and gestures.
+     Create a system keyboard button that does not adapt its
+     content, but uses the standard content for the provided
+     action and appearance.
      
      - Parameters:
        - action: The keyboard action to apply.
