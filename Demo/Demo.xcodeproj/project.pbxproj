@@ -186,11 +186,14 @@
 		A921152425D58A94003510D9 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				A92115B725D595C8003510D9 /* Demo */,
 				A921152B25D58A96003510D9 /* Preview Content */,
 				A92115CE25D59651003510D9 /* Resources */,
 				A921155925D58E39003510D9 /* Supporting Files */,
-				A921166525D5BC44003510D9 /* Views */,
+				A921152525D58A94003510D9 /* DemoApp.swift */,
+				A921166125D5BC2A003510D9 /* EditScreen.swift */,
+				A99AE5C027183561004AD0A3 /* EnabledListItem.swift */,
+				A921152725D58A94003510D9 /* HomeScreen.swift */,
+				A921166625D5BC4F003510D9 /* MultilineTextField.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -206,12 +209,13 @@
 		A921153A25D58AC7003510D9 /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
-				A9C365F326F3149300E87AFE /* Actions */,
-				A95D6751270DE98D0018A75B /* Appearance */,
 				A921157F25D5910D003510D9 /* Assets */,
-				A9C365F226F310ED00E87AFE /* Autocomplete */,
-				A9FDAA0926025DF600E628C3 /* Layout */,
 				A921155A25D58E4A003510D9 /* Supporting Files */,
+				A921156E25D5902F003510D9 /* DemoKeyboardActionHandler.swift */,
+				A95D6752270DE99D0018A75B /* DemoAppearance.swift */,
+				A9C365F426F3184100E87AFE /* DemoAutocompleteToolbar.swift */,
+				A921156D25D5902F003510D9 /* FakeAutocompleteProvider.swift */,
+				A951A49A25E016660022385A /* DemoKeyboardLayoutProvider.swift */,
 				A921157525D5906A003510D9 /* KeyboardView.swift */,
 				A921153B25D58AC7003510D9 /* KeyboardViewController.swift */,
 			);
@@ -282,16 +286,6 @@
 			path = "Cartoon Icons";
 			sourceTree = "<group>";
 		};
-		A92115B725D595C8003510D9 /* Demo */ = {
-			isa = PBXGroup;
-			children = (
-				A921152525D58A94003510D9 /* DemoApp.swift */,
-				A921166125D5BC2A003510D9 /* EditScreen.swift */,
-				A921152725D58A94003510D9 /* HomeScreen.swift */,
-			);
-			path = Demo;
-			sourceTree = "<group>";
-		};
 		A92115CE25D59651003510D9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,48 +324,6 @@
 				A921164225D5BA85003510D9 /* SourceSansPro-Bold.ttf */,
 			);
 			path = Source_Sans_Pro;
-			sourceTree = "<group>";
-		};
-		A921166525D5BC44003510D9 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				A99AE5C027183561004AD0A3 /* EnabledListItem.swift */,
-				A921166625D5BC4F003510D9 /* MultilineTextField.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		A95D6751270DE98D0018A75B /* Appearance */ = {
-			isa = PBXGroup;
-			children = (
-				A95D6752270DE99D0018A75B /* DemoAppearance.swift */,
-			);
-			path = Appearance;
-			sourceTree = "<group>";
-		};
-		A9C365F226F310ED00E87AFE /* Autocomplete */ = {
-			isa = PBXGroup;
-			children = (
-				A9C365F426F3184100E87AFE /* DemoAutocompleteToolbar.swift */,
-				A921156D25D5902F003510D9 /* FakeAutocompleteProvider.swift */,
-			);
-			path = Autocomplete;
-			sourceTree = "<group>";
-		};
-		A9C365F326F3149300E87AFE /* Actions */ = {
-			isa = PBXGroup;
-			children = (
-				A921156E25D5902F003510D9 /* DemoKeyboardActionHandler.swift */,
-			);
-			path = Actions;
-			sourceTree = "<group>";
-		};
-		A9FDAA0926025DF600E628C3 /* Layout */ = {
-			isa = PBXGroup;
-			children = (
-				A951A49A25E016660022385A /* DemoKeyboardLayoutProvider.swift */,
-			);
-			path = Layout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
