@@ -12,7 +12,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 5.4
 
-This release removes the need for using `AnyView` when creating custom view builders.
+Thanks to [@digitalheir](https://github.com/digitalheir), this release removes the need for using `AnyView` in many places.
 
 ### ✨ New features
 
@@ -24,6 +24,7 @@ This release removes the need for using `AnyView` when creating custom view buil
 
 ### 💡 Behavior changes
 
+* `SystemKeyboard` is now generic and have much better initializers.
 * `SystemKeyboard` `standardButtonBuilder` is no longer an `AnyView`.
 
 ### 🗑 Deprecations
