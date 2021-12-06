@@ -90,19 +90,6 @@ extension View {
             repeatAction: { actionHandler.handle(.repeatPress, on: action) },
             dragAction: { start, current in actionHandler.handleDrag(on: action, from: start, to: current) })
     }
-    
-    @ViewBuilder
-    func withLocaleContextMenu(
-        for context: KeyboardContext?
-    ) -> some View {
-        if let context = context {
-            keyboardContextMenu(items: context.locales) { (locale: Locale) in
-                Button(locale.localizedAndCapitalized, action: { context.locale = locale })
-            }
-        } else {
-            self
-        }
-    }
 }
 
 

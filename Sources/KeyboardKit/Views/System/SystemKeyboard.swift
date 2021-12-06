@@ -151,8 +151,6 @@ public extension SystemKeyboard where RowItem == AnyView {
                                     appearance: appearance,
                                     actionHandler: actionHandler
                             )
-                                    // Add locale context menu for `nextLocale` action
-                                    .withLocaleContextMenu(for: item.action == .nextLocale ? context : nil)
                     )
                 }
         )
@@ -197,8 +195,6 @@ func standardSystemKeyboard(
                 appearance: appearance,
                 actionHandler: actionHandler
         )
-                // Add locale context menu for `nextLocale` action
-                .withLocaleContextMenu(for: item.action == .nextLocale ? context : nil)
     }
 }
 
@@ -239,15 +235,14 @@ func standardSystemKeyboard<ButtonContent: View>(
                         appearance: appearance,
                         actionHandler: actionHandler
                 )
-                        // Add locale context menu for `nextLocale` action
-                        .withLocaleContextMenu(for: item.action == .nextLocale ? context : nil)
             }
     )
 }
 
 public extension SystemKeyboard {
+    
     /**
-     This is the standard `buttonBuilder`, that will be used
+     This is the standard system keyboard button builder that will be used
      when no custom builder is provided to the view.
      */
     static func standardButtonBuilder(
@@ -260,10 +255,10 @@ public extension SystemKeyboard {
                 context: context
         )
     }
-
 }
 
 private extension SystemKeyboard {
+    
     func rows(for layout: KeyboardLayout) -> some View {
         ForEach(Array(layout.items.enumerated()), id: \.offset) {
             row(for: layout, items: $0.element)
