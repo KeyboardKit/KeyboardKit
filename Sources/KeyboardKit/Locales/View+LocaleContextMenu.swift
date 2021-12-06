@@ -25,7 +25,7 @@ public extension View {
     func localeContextMenu(
         for context: KeyboardContext) -> some View {
         self.localeContextMenu(for: context) { locale in
-            Text(locale.localizedAndCapitalizedName)
+            Text(locale.localizedName.capitalized)
         }
     }
     
@@ -75,13 +75,5 @@ public extension View {
                 }
             })
         }
-    }
-}
-
-private extension Locale {
-    
-    var localizedAndCapitalizedName: String {
-        let text = localizedString(forIdentifier: identifier) ?? "-"
-        return text.capitalized
     }
 }

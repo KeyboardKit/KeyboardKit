@@ -10,6 +10,17 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 5.4
+
+This release removes the need for using `AnyView` when creating custom view builders.
+
+### ✨ New features
+
+* `Locale` has new `localizedName` extension.
+* `View` has new, generic `localeContextMenu` extensions that can be used to create custom locale context menus. 
+
+
+
 ## 5.3
 
 ### 🌐 New locales
