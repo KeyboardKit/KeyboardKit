@@ -51,7 +51,7 @@ public struct SystemKeyboard<RowItem: View>: View {
             inputContext: InputCalloutContext?,
             secondaryInputContext: SecondaryInputCalloutContext?,
             width: CGFloat = KeyboardInputViewController.shared.view.frame.width,
-            @ViewBuilder rowItem: @escaping (KeyboardLayout, KeyboardLayoutItem, CGFloat, CGFloat) -> RowItem
+            @ViewBuilder rowItem: @escaping (KeyboardLayoutItem, CGFloat, CGFloat) -> RowItem
     ) {
         self.layout = layout
         self.actionHandler = actionHandler
@@ -66,7 +66,7 @@ public struct SystemKeyboard<RowItem: View>: View {
 
     private let actionHandler: KeyboardActionHandler
     private let appearance: KeyboardAppearance
-    private let rowItem: (KeyboardLayout, KeyboardLayoutItem, CGFloat, CGFloat) -> RowItem
+    private let rowItem: (KeyboardLayoutItem, CGFloat, CGFloat) -> RowItem
     private let keyboardWidth: CGFloat
     private let inputWidth: CGFloat
     private let layout: KeyboardLayout
@@ -97,18 +97,19 @@ public struct SystemKeyboard<RowItem: View>: View {
         VStack(spacing: 0) {
             rows(for: layout)
         }
-                .inputCallout(
-                        context: inputContext,
-                        keyboardContext: context,
-                        style: inputCalloutStyle)
-                .secondaryInputCallout(
-                        context: secondaryInputContext,
-                        style: secondaryInputCalloutStyle
-                )
+        .inputCallout(
+            context: inputContext,
+            keyboardContext: context,
+            style: inputCalloutStyle)
+        .secondaryInputCallout(
+            context: secondaryInputContext,
+            style: secondaryInputCalloutStyle
+        )
     }
 }
 
 public extension SystemKeyboard where RowItem == AnyView {
+    
 /**
  Convenience initializer that uses standard buttons.
 
@@ -121,38 +122,37 @@ public extension SystemKeyboard where RowItem == AnyView {
  */
     @available(*, deprecated, message: "Use standardSystemKeyboard() instead")
     init(
-            layout: KeyboardLayout,
-            appearance: KeyboardAppearance,
-            actionHandler: KeyboardActionHandler,
-            context: KeyboardContext,
-            inputContext: InputCalloutContext?,
-            secondaryInputContext: SecondaryInputCalloutContext?,
-            width: CGFloat = KeyboardInputViewController.shared.view.frame.width,
-            buttonContent: @escaping ButtonBuilder<AnyView> = { action, appearance, context in
-                AnyView(standardButtonBuilder(action: action, appearance: appearance, context: context))
-            }
-    ) {
+        layout: KeyboardLayout,
+        appearance: KeyboardAppearance,
+        actionHandler: KeyboardActionHandler,
+        context: KeyboardContext,
+        inputContext: InputCalloutContext?,
+        secondaryInputContext: SecondaryInputCalloutContext?,
+        width: CGFloat = KeyboardInputViewController.shared.view.frame.width,
+        buttonContent: @escaping ButtonBuilder<AnyView> = { action, appearance, context in
+            AnyView(standardButtonBuilder(action: action, appearance: appearance, context: context))
+        }) {
         self.init(
-                layout: layout,
-                appearance: appearance,
-                actionHandler: actionHandler,
-                context: context,
-                inputContext: inputContext,
-                secondaryInputContext: secondaryInputContext,
-                width: width,
-                rowItem: { layout, item, keyboardWidth, inputWidth in
-                    AnyView(
-                            SystemKeyboardButtonRowItem(
-                                    content: buttonContent(item.action, appearance, context),
-                                    item: item,
-                                    context: context,
-                                    keyboardWidth: keyboardWidth,
-                                    inputWidth: inputWidth,
-                                    appearance: appearance,
-                                    actionHandler: actionHandler
-                            )
+            layout: layout,
+            appearance: appearance,
+            actionHandler: actionHandler,
+            context: context,
+            inputContext: inputContext,
+            secondaryInputContext: secondaryInputContext,
+            width: width,
+            rowItem: { item, keyboardWidth, inputWidth in
+                AnyView(
+                    SystemKeyboardButtonRowItem(
+                        content: buttonContent(item.action, appearance, context),
+                        item: item,
+                        context: context,
+                        keyboardWidth: keyboardWidth,
+                        inputWidth: inputWidth,
+                        appearance: appearance,
+                        actionHandler: actionHandler
                     )
-                }
+                )
+            }
         )
     }
 }
@@ -168,23 +168,21 @@ public extension SystemKeyboard where RowItem == AnyView {
    - buttonBuilder: An optional, custom button builder. By default, the static `standardButton` will be used.
  */
 func standardSystemKeyboard(
-        layout: KeyboardLayout,
-        appearance: KeyboardAppearance,
-        actionHandler: KeyboardActionHandler,
-        context: KeyboardContext,
-        inputContext: InputCalloutContext?,
-        secondaryInputContext: SecondaryInputCalloutContext?,
-        width: CGFloat = KeyboardInputViewController.shared.view.frame.width
-) -> some View {
+    layout: KeyboardLayout,
+    appearance: KeyboardAppearance,
+    actionHandler: KeyboardActionHandler,
+    context: KeyboardContext,
+    inputContext: InputCalloutContext?,
+    secondaryInputContext: SecondaryInputCalloutContext?,
+    width: CGFloat = KeyboardInputViewController.shared.view.frame.width) -> some View {
     SystemKeyboard(
-            layout: layout,
-            appearance: appearance,
-            actionHandler: actionHandler,
-            context: context,
-            inputContext: inputContext,
-            secondaryInputContext: secondaryInputContext,
-            width: width
-    ) { layout, item, keyboardWidth, inputWidth in
+        layout: layout,
+        appearance: appearance,
+        actionHandler: actionHandler,
+        context: context,
+        inputContext: inputContext,
+        secondaryInputContext: secondaryInputContext,
+        width: width) { item, keyboardWidth, inputWidth in
         // Use standard button builder
         SystemKeyboardButtonRowItem(
                 content: SystemKeyboard<SystemKeyboardActionButtonContent>.standardButtonBuilder(action: item.action, appearance: appearance, context: context),
@@ -208,34 +206,33 @@ func standardSystemKeyboard(
    - width: The total width of the keyboard, used for button size calculations.
  */
 func standardSystemKeyboard<ButtonContent: View>(
-        layout: KeyboardLayout,
-        appearance: KeyboardAppearance,
-        actionHandler: KeyboardActionHandler,
-        context: KeyboardContext,
-        inputContext: InputCalloutContext?,
-        secondaryInputContext: SecondaryInputCalloutContext?,
-        width: CGFloat = KeyboardInputViewController.shared.view.frame.width,
-        buttonContent: @escaping ButtonBuilder<ButtonContent>
-) -> some View {
+    layout: KeyboardLayout,
+    appearance: KeyboardAppearance,
+    actionHandler: KeyboardActionHandler,
+    context: KeyboardContext,
+    inputContext: InputCalloutContext?,
+    secondaryInputContext: SecondaryInputCalloutContext?,
+    width: CGFloat = KeyboardInputViewController.shared.view.frame.width,
+    buttonContent: @escaping ButtonBuilder<ButtonContent>) -> some View {
     SystemKeyboard(
-            layout: layout,
-            appearance: appearance,
-            actionHandler: actionHandler,
-            context: context,
-            inputContext: inputContext,
-            secondaryInputContext: secondaryInputContext,
-            width: width,
-            rowItem: { layout, item, keyboardWidth, inputWidth in
-                SystemKeyboardButtonRowItem(
-                        content: buttonContent(item.action, appearance, context),
-                        item: item,
-                        context: context,
-                        keyboardWidth: keyboardWidth,
-                        inputWidth: inputWidth,
-                        appearance: appearance,
-                        actionHandler: actionHandler
-                )
-            }
+        layout: layout,
+        appearance: appearance,
+        actionHandler: actionHandler,
+        context: context,
+        inputContext: inputContext,
+        secondaryInputContext: secondaryInputContext,
+        width: width,
+        rowItem: { item, keyboardWidth, inputWidth in
+            SystemKeyboardButtonRowItem(
+                content: buttonContent(item.action, appearance, context),
+                item: item,
+                context: context,
+                keyboardWidth: keyboardWidth,
+                inputWidth: inputWidth,
+                appearance: appearance,
+                actionHandler: actionHandler
+            )
+        }
     )
 }
 
@@ -246,13 +243,13 @@ public extension SystemKeyboard {
      when no custom builder is provided to the view.
      */
     static func standardButtonBuilder(
-            action: KeyboardAction,
-            appearance: KeyboardAppearance,
-            context: KeyboardContext) -> SystemKeyboardActionButtonContent {
+        action: KeyboardAction,
+        appearance: KeyboardAppearance,
+        context: KeyboardContext) -> SystemKeyboardActionButtonContent {
         SystemKeyboardActionButtonContent(
-                action: action,
-                appearance: appearance,
-                context: context
+            action: action,
+            appearance: appearance,
+            context: context
         )
     }
 }
@@ -268,7 +265,7 @@ private extension SystemKeyboard {
     func row(for layout: KeyboardLayout, items: KeyboardLayoutItemRow) -> some View {
         HStack(spacing: 0) {
             ForEach(Array(items.enumerated()), id: \.offset) {
-                self.rowItem(layout, $0.element, keyboardWidth, inputWidth)
+                self.rowItem($0.element, keyboardWidth, inputWidth)
             }
         }
     }
@@ -278,18 +275,17 @@ struct SystemKeyboard_Previews: PreviewProvider {
 
     @ViewBuilder
     static func systemPreviewButtonBuilder(
-            action: KeyboardAction,
-            appearance: KeyboardAppearance,
-            context: KeyboardContext
-    ) -> some View {
+        action: KeyboardAction,
+        appearance: KeyboardAppearance,
+        context: KeyboardContext) -> some View {
         switch action {
         case .backspace:
             Text("bksp").opacity(0.2).foregroundColor(Color.red)
         default:
             SystemKeyboardActionButtonContent(
-                    action: action,
-                    appearance: appearance,
-                    context: context
+                action: action,
+                appearance: appearance,
+                context: context
             )
         }
     }
@@ -298,43 +294,41 @@ struct SystemKeyboard_Previews: PreviewProvider {
 
     @ViewBuilder
     static func systemPreviewRowItem(
-            layout: KeyboardLayout,
-            item: KeyboardLayoutItem,
-            keyboardWidth: CGFloat,
-            inputWidth: CGFloat
-    ) -> some View {
-        let vw = SystemKeyboardButtonRowItem(
-                content: systemPreviewButtonBuilder(
-                        action: item.action,
-                        appearance: PreviewKeyboardAppearance.preview,
-                        context: KeyboardContext.preview
-                ),
-                item: item,
-                context: .preview,
-                keyboardWidth: keyboardWidth,
-                inputWidth: inputWidth,
-                appearance: .preview,
-                actionHandler: actionHandlerPreview
+        item: KeyboardLayoutItem,
+        keyboardWidth: CGFloat,
+        inputWidth: CGFloat) -> some View {
+        let view = SystemKeyboardButtonRowItem(
+            content: systemPreviewButtonBuilder(
+                action: item.action,
+                appearance: PreviewKeyboardAppearance.preview,
+                context: KeyboardContext.preview
+            ),
+            item: item,
+            context: .preview,
+            keyboardWidth: keyboardWidth,
+            inputWidth: inputWidth,
+            appearance: .preview,
+            actionHandler: actionHandlerPreview
         )
         switch item.action {
         case .space:
-            vw.opacity(0.2).overlay(Text("This is an overlay, that is a view over the space bar view"))
+            view.opacity(0.2)
+                .overlay(Text("This is an overla over the space bar").multilineTextAlignment(.center))
         default:
-            vw
+            view
         }
     }
 
     static var previews: some View {
         SystemKeyboard(
-                layout: .preview,
-                appearance: .preview,
-                actionHandler: actionHandlerPreview,
-                context: .preview,
-                inputContext: .preview,
-                secondaryInputContext: .preview,
-                width: UIScreen.main.bounds.width,
-                rowItem: systemPreviewRowItem
-        )
-                .background(Color.standardKeyboardBackground)
+            layout: .preview,
+            appearance: .preview,
+            actionHandler: actionHandlerPreview,
+            context: .preview,
+            inputContext: .preview,
+            secondaryInputContext: .preview,
+            width: UIScreen.main.bounds.width,
+            rowItem: systemPreviewRowItem
+        ).background(Color.yellow)
     }
 }
