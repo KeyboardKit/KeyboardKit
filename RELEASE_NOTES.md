@@ -17,6 +17,7 @@ This release removes the need for using `AnyView` when creating custom view buil
 ### ✨ New features
 
 * `Locale` has new `localizedName` extension.
+* `SystemKeyboard` has a new, static `standardKeyboardWidth`.
 * `View` has new, generic `localeContextMenu` extensions that can be used to create custom locale context menus.
 
 ### 💡 Behavior changes

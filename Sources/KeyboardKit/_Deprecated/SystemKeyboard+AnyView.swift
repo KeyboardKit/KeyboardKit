@@ -3,6 +3,9 @@ import SwiftUI
 
 public extension SystemKeyboard where ButtonView == AnyView {
 
+    @available(*, deprecated, message: "Use the new generic initializers instead.")
+    typealias ButtonContentBuilder = (KeyboardAction, KeyboardAppearance, KeyboardContext) -> AnyView
+    
     /**
      This deprecated initializer uses standard buttons views
      of the type ``SystemKeyboardButtonRowItem`` in which it
@@ -16,8 +19,8 @@ public extension SystemKeyboard where ButtonView == AnyView {
         context: KeyboardContext,
         inputContext: InputCalloutContext?,
         secondaryInputContext: SecondaryInputCalloutContext?,
-        width: CGFloat = KeyboardInputViewController.shared.view.frame.width,
-        buttonBuilder: @escaping ButtonContentBuilder<AnyView> = standardButtonBuilder) {
+        width: CGFloat = standardKeyboardWidth,
+        buttonBuilder: @escaping ButtonContentBuilder) {
         self.init(
             layout: layout,
             appearance: appearance,

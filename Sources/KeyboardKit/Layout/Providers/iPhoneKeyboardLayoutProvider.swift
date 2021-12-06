@@ -208,7 +208,7 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
         context.screenOrientation = orientation
         context.textDocumentProxy = proxy
         context.needsInputModeSwitchKey = true
-        return standardSystemKeyboard(
+        return SystemKeyboard(
             layout: layout(for: locale).keyboardLayout(for: context),
             appearance: StandardKeyboardAppearance(context: context),
             actionHandler: .preview,
