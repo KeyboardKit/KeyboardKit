@@ -211,11 +211,11 @@
 			children = (
 				A921157F25D5910D003510D9 /* Assets */,
 				A921155A25D58E4A003510D9 /* Supporting Files */,
-				A921156E25D5902F003510D9 /* DemoKeyboardActionHandler.swift */,
 				A95D6752270DE99D0018A75B /* DemoAppearance.swift */,
 				A9C365F426F3184100E87AFE /* DemoAutocompleteToolbar.swift */,
-				A921156D25D5902F003510D9 /* FakeAutocompleteProvider.swift */,
+				A921156E25D5902F003510D9 /* DemoKeyboardActionHandler.swift */,
 				A951A49A25E016660022385A /* DemoKeyboardLayoutProvider.swift */,
+				A921156D25D5902F003510D9 /* FakeAutocompleteProvider.swift */,
 				A921157525D5906A003510D9 /* KeyboardView.swift */,
 				A921153B25D58AC7003510D9 /* KeyboardViewController.swift */,
 			);
