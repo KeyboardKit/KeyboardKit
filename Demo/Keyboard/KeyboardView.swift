@@ -67,8 +67,7 @@ private extension KeyboardView {
             actionHandler: actionHandler,
             context: keyboardContext,
             inputContext: inputContext,
-            secondaryInputContext: secondaryInputContext,
-            buttonBuilder: buttonBuilder)
+            secondaryInputContext: secondaryInputContext)
     }
     
     var systemKeyboardStack: some View {
@@ -94,20 +93,6 @@ private extension KeyboardView {
 // MARK: - Private Functions
 
 private extension KeyboardView {
-    
-    func buttonBuilder(
-        action: KeyboardAction,
-        appearance: KeyboardAppearance,
-        context: KeyboardContext) -> AnyView {
-        switch action {
-        // You can replace the default button content here.
-        default:
-            return SystemKeyboard.standardButtonBuilder(
-                action: action,
-                appearance: appearance,
-                context: context)
-        }
-    }
     
     func switchToDefaultKeyboard() {
         keyboardContext.keyboardType = .alphabetic(.lowercased)

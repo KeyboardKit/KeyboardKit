@@ -23,21 +23,32 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     // MARK: - Overrides
     
     override func action(for gesture: KeyboardGesture, on action: KeyboardAction) -> GestureAction? {
-        if gesture == .longPress, let action = longPressAction(for: action) { return action }
-        if gesture == .tap, let action = tapAction(for: action) { return action }
-        return super.action(for: gesture, on: action)
+        let standard = super.action(for: gesture, on: action)
+        switch gesture {
+        case .longPress: return longPressAction(for: action) ?? standard
+        case .tap: return tapAction(for: action) ?? standard
+        default: return standard
+        }
     }
+    
+    override func handle(_ gesture: KeyboardGesture, on action: KeyboardAction) {
+        // Customize the action handling if needed
+        super.handle(gesture, on: action)
+    }
+    
+    
+    // MARK: - Custom actions
     
     func longPressAction(for action: KeyboardAction) -> GestureAction? {
         switch action {
-        case .image(_, _, let imageName): return { [weak self] _ in self?.saveImage(UIImage(named: imageName)!) }
+        case .image(_, _, let imageName): return { [weak self] _ in self?.saveImage(named: imageName) }
         default: return nil
         }
     }
     
     func tapAction(for action: KeyboardAction) -> GestureAction? {
         switch action {
-        case .image(_, _, let imageName): return { [weak self] _ in self?.copyImage(UIImage(named: imageName)!) }
+        case .image(_, _, let imageName): return { [weak self] _ in self?.copyImage(named: imageName) }
         default: return nil
         }
     }
@@ -58,9 +69,20 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
         alert("Copied to pasteboard!")
     }
     
+    func copyImage(named imageName: String) {
+        guard let image = UIImage(named: imageName) else { return }
+        copyImage(image)
+    }
+    
     func saveImage(_ image: UIImage) {
         guard keyboardContext.hasFullAccess else { return alert("You must enable full access to save images.") }
         image.saveToPhotos(completion: handleImageDidSave)
+        alert("Saved to photos!")
+    }
+    
+    func saveImage(named imageName: String) {
+        guard let image = UIImage(named: imageName) else { return }
+        saveImage(image)
     }
 }
 

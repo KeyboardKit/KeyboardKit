@@ -10,9 +10,9 @@ import SwiftUI
 
 /**
  This view is meant to be used within a `SystemKeyboard` and
- will apply the correct frames and paddings, to mitigate any
- dead tap areas that would exist if a system keyboard placed
- its buttons with margins between the buttons and rows.
+ will apply the frames and paddings to the view, to mitigate
+ dead tap areas, as well the correct appearance, style, view
+ gestures etc.
  */
 public struct SystemKeyboardButtonRowItem<Content: View>: View {
     
@@ -68,6 +68,9 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
                 context: context,
                 actionHandler: actionHandler,
                 isPressed: $isPressed)
+            .localeContextMenu(
+                for: item.action,
+                context: context)
     }
 }
 
@@ -79,6 +82,19 @@ private extension SystemKeyboardButtonRowItem {
 }
 
 public extension View {
+    
+    /**
+     Apply a locale context menu to the view if the provided
+     action is `nextLocale`.
+     */
+    @ViewBuilder
+    func localeContextMenu(for action: KeyboardAction, context: KeyboardContext) -> some View {
+        if action == .nextLocale {
+            self.localeContextMenu(for: context)
+        } else {
+            self
+        }
+    }
     
     /**
      Apply a certain layout width to the view, in a way that

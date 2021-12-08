@@ -12,7 +12,7 @@ import SwiftUI
 /**
  This demo-specific toolbar always applies a height to avoid
  that the keyboard resizes when it gets suggestions and when
- it's empty. It also presents any subtitles as footnote text.
+ it's empty.
  */
 struct DemoAutocompleteToolbar: View {
     

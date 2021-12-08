@@ -11,25 +11,58 @@ import SwiftUI
 public extension View {
     
     /**
-     Apply a context menu that lists all locales that are in
-     the provided `context`.
+     Apply a locale context menu that lists all locales in a
+     `context` and uses the localized name of each locale as
+     the button content.
      
-     Selecting a locale in the menu will change the `locale`
-     of the provided context.
-     
-     This function has no effect if the context doesn't have
-     multiple locales.
+     The function only has effects if there are at least two
+     locales in the provided collection.
      */
     @ViewBuilder
-    func localeContextMenu(for context: KeyboardContext) -> some View {
-        if context.locales.count < 2 {
+    func localeContextMenu(
+        for context: KeyboardContext) -> some View {
+        self.localeContextMenu(for: context) { locale in
+            Text(locale.localizedName.capitalized)
+        }
+    }
+    
+    /**
+     Apply a locale context menu that lists all locales in a
+     `context` and uses the `buttonContentBuilder` to create
+     a button label for each locale in the context.
+     
+     The function only has effects if there are at least two
+     locales in the provided collection.
+     */
+    @ViewBuilder
+    func localeContextMenu<ButtonView: View>(
+        for context: KeyboardContext,
+        buttonContentBuilder: @escaping (Locale) -> ButtonView) -> some View {
+        self.localeContextMenu(locales: context.locales) { locale in
+            Button(action: { context.locale = locale }) {
+                buttonContentBuilder(locale)
+            }
+        }
+    }
+    
+    /**
+     Apply a locale context menu that lists all the provided
+     `locales` and uses the `buttonViewBuilder` to create a view
+     for each locale in the collection.
+     
+     The function only has effects if there are at least two
+     locales in the provided collection.
+     */
+    @ViewBuilder
+    func localeContextMenu<ButtonView: View>(
+        locales: [Locale],
+        buttonViewBuilder: @escaping (Locale) -> ButtonView) -> some View {
+        if locales.count < 2 {
             self
         } else {
             self.contextMenu(ContextMenu {
-                ForEach(Array(context.locales.enumerated()), id: \.offset) { locale in
-                    let locale = locale.element
-                    let text = locale.localizedString(forIdentifier: locale.identifier) ?? "-"
-                    Button(text.capitalized, action: { context.locale = locale })
+                ForEach(Array(locales.enumerated()), id: \.offset) {
+                    buttonViewBuilder($0.element)
                 }
             })
         }

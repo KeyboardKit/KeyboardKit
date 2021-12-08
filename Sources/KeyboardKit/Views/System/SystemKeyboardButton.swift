@@ -14,14 +14,13 @@ import SwiftUI
  This view mimics the buttons that are used in an iOS system
  keyboard. It wraps the provided content and applies a style.
  
- Note that this view only mimics the look of a system button
- for the provided `content` and `style`. It does not add any
- gestures or actions. If you do apply gestures or wrap it in
- a `Button`, change the `style` according to press state etc.
+ Note that this view only mimics the look of a system button.
+ It does not add any gestures or actions and does not change
+ style when it's tapped. If you apply gestures or wrap it in
+ a `Button`, you can change style according to pressed state.
  
- If you want to create a more complete and functional button,
- `SystemKeyboardActionButton` will create a fully functional
- and contextually correct button for the provided `action`.
+ Use ``SystemKeyboardActionButton`` to get a complete button,
+ with gestures, pressed state handling etc.
  */
 public struct SystemKeyboardButton<Content: View>: View {
     

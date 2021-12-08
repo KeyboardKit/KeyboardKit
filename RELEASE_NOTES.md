@@ -10,6 +10,35 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 5.4
+
+Thanks to [@digitalheir](https://github.com/digitalheir), this release removes the need for using `AnyView` in many places.
+
+### ✨ New features
+
+* `Locale` has new `localizedName` extension.
+* `StandardSystemKeyboardButtonView` is a new typealias that defines the standard system keyboard button view.
+* `StandardSystemKeyboardButtonContent` is a new typealias that defines the standard system keyboard button content.
+* `SystemKeyboard` has a new, static `standardKeyboardWidth`.
+* `View` has new, generic `localeContextMenu` extensions that can be used to create custom locale context menus.
+
+### 💡 Behavior changes
+
+* `SystemKeyboard` is now generic and have much better initializers.
+* `SystemKeyboard` `standardButtonBuilder` is no longer an `AnyView`.
+
+### 🗑 Deprecations
+
+* `SystemKeyboard` `AnyView` initializer has been replaced with generic initializers.
+* `KeyboardLayout` `items` initializer has been replaced with an `itemRows` initializer.
+* `KeyboardLayout` `item` has been replaced with `itemRows`.
+
+### 💥 Breaking changes
+
+* `SystemKeyboard` is now generic, which means that the static `standardButtonBuilder` is no longer available. Use the new, improved initializers instead.
+
+
+
 ## 5.3
 
 ### 🌐 New locales

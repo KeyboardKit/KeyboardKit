@@ -27,16 +27,16 @@ public class KeyboardLayout {
      Create a new layout with the provided `items`.
      
      - Parameters:
-       - items: The layout item rows to show in the keyboard.
+       - itemRows: The layout item rows to show in the keyboard.
     */
-    public init(items: KeyboardLayoutItemRows) {
-        self.items = items
+    public init(itemRows: KeyboardLayoutItemRows) {
+        self.itemRows = itemRows
     }
     
     /**
      The layout item rows to show in the keyboard.
      */
-    public let items: KeyboardLayoutItemRows
+    public let itemRows: KeyboardLayoutItemRows
     
     /**
      This `CGFloat` typealias makes it easier to see where a
@@ -58,7 +58,7 @@ public class KeyboardLayout {
      */
     public func inputWidth(for totalWidth: TotalWidth) -> CGFloat {
         if let result = widthCache[totalWidth] { return result }
-        let result = items.compactMap { $0.inputWidth(for: totalWidth) }.min() ?? 0
+        let result = itemRows.compactMap { $0.inputWidth(for: totalWidth) }.min() ?? 0
         widthCache[totalWidth] = result
         return result
     }
