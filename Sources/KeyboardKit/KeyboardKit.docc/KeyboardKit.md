@@ -28,16 +28,16 @@ After adding KeyboardKit to your project, you can start using it in your applica
 * The main app target can use KeyboardKit to check if a keyboard is enabled, if full access is granted etc. which helps you build a more helpful application.
 * The keyboard extension can use KeyboardKit to get access to a lot more functionality, which helps you build more powerful keyboard extensions.
 
-In your extension, let your `KeyboardViewController` inherit KeyboardKit's `KeyboardInputViewController` instead of `UIInputViewController` to give it access to a lot of additional functionality, like new lifecycle functions, observables like `keyboardContext` and services like `keyboardActionHandler`, `keyboardAppearance`, autocomplete logic etc.  
+In your extension, let your `KeyboardViewController` inherit KeyboardKit's `KeyboardInputViewController` instead of `UIInputViewController`. This will give it access to a lot of additional functionality, like new lifecycle functions, observable properties like `keyboardContext` and services like `keyboardActionHandler`, `keyboardAppearance`, autocomplete logic etc.  
 
 `KeyboardInputViewController` will call `viewWillSetupKeyboard` when the keyboard should be created or re-created. You can use `setup(with:)` to setup your extension with any `SwiftUI` view which will make it the main view, inject necessary environment objects, resize the keyboard extension to fit the view etc.
 
 
 ## About this documentation
 
-This documentation is generated, using Xcode's new DocC documentation engine.
+This documentation is generated, using Xcode's new DocC engine. The documentation will be extended with examples later on.
 
-Note that the engine currently omit extensions. Future versions will aim to improve these parts.  
+Note that DocC currently omits extensions, which means that there are a lot more functionality in the library than is included in the documentation. Future versions will aim to improve these parts.  
 
 
 
