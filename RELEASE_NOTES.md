@@ -29,9 +29,10 @@ Thanks to [@digitalheir](https://github.com/digitalheir), this release removes t
 
 ### 🗑 Deprecations
 
-* `SystemKeyboard` `AnyView` initializer has been replaced with generic initializers.
+* `KeyboardActionRow` is the same thing as `KeyboardActions` and wasn't used in the library.
 * `KeyboardLayout` `items` initializer has been replaced with an `itemRows` initializer.
 * `KeyboardLayout` `item` has been replaced with `itemRows`.
+* `SystemKeyboard` `AnyView` initializer has been replaced with generic initializers.
 
 ### 💥 Breaking changes
 

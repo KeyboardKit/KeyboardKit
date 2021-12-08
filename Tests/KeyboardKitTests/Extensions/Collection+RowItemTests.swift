@@ -31,7 +31,7 @@ class KeyboardLayoutItemRowTests: QuickSpec {
             rows = [row, row, row]
         }
         
-        var rowActions: KeyboardActionRow {
+        var rowActions: KeyboardActions {
             row.map { $0.action }
         }
         

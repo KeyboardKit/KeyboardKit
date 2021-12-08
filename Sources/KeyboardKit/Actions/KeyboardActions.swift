@@ -1,34 +1,50 @@
 //
-//  KeyboardActions+Images.swift
+//  KeyboardAction+KeyboardActions.swift
 //  KeyboardKit
 //
-//  Created by Daniel Saidi on 2020-03-10.
+//  Created by Daniel Saidi on 2019-07-04.
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
 
+/**
+ This typealias represents a list of keyboard actions.
+ 
+ The typealias makes it easier to create and handle keyboard
+ action collections.
+ */
+public typealias KeyboardActions = [KeyboardAction]
+
 public extension KeyboardActions {
     
     /**
+     Create keyboard actions by mapping strings to a list of
+     ``KeyboardAction/character(_:)`` actions.
+    */
+    init(characters: [String]) {
+        self = characters.map { .character($0) }
+    }
+    
+    /**
      Create keyboard actions by mapping image names to a set
-     of `.image` actions, using certain name matching prefix
-     and suffix rules.
+     of ``KeyboardAction/image(description:keyboardImageName:imageName:)``
+     actions, using certain name prefix and suffix rules.
      
-     `keyboardImageNamePrefix` and `keyboardImageNameSuffix`
-     are used to map an `imageName` to a `keyboardImageName`.
-     For instance, if you provide an `emoji-` prefix but let
-     the suffix be empty, an action an `imageName` of `heart`
-     will have `emoji-heart` as `keyboardImageName`.
+     The optional keyboard image and localization key prefix
+     and suffix parameters can be used to generate different
+     names for every image name in the provided `imageNames`
+     array. For instance, providing a `emoji-` string as the
+     `keyboardImageNamePrefix` will generate an image action
+     where the `keyboardName` is prefixed with `emoji`.
      
-     The `localizationKey` prefix and suffix are used to map
-     an `imageName` to a localization key. This is then used
-     to get a translated `description` for each image, which
-     for instance can be used for accessibility labels.
+     The localization keys are optional, but will be used to
+     improve the overall accessibility of the keyboard image.
      
      `throwAssertionFailure` will cause your app to crash in
-     development, whenever a translated description can't be
-     generated for an image. It is `true` by default.
+     debug if a translation can't be retrieved for a certain
+     image. This helps you assert that all image actions are
+     accessible. It is `true` by default.
      */
     init(
         imageNames: [String],

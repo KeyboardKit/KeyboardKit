@@ -1,8 +1,8 @@
 //
-//  ImageActionKeyboardTests.swift
+//  KeyboardActionTests.swift
 //  KeyboardKit
 //
-//  Created by Daniel Saidi on 2020-03-10.
+//  Created by Daniel Saidi on 2019-07-04.
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
@@ -10,11 +10,23 @@ import Quick
 import Nimble
 import KeyboardKit
 
-class KeyboardImageActionsTests: QuickSpec {
+class KeyboardActionTests: QuickSpec {
     
     override func spec() {
         
-        describe("image actions") {
+        describe("creating keyboard actions from string array") {
+            
+            it("converts strings to char actions") {
+                let chars = ["a", "b", "c"]
+                let row = KeyboardActions(characters: chars)
+                expect(row.count).to(equal(3))
+                expect(row[0]).to(equal(.character("a")))
+                expect(row[1]).to(equal(.character("b")))
+                expect(row[2]).to(equal(.character("c")))
+            }
+        }
+        
+        describe("creating keyboard actions from images") {
             
             func verify(
                 _ action: KeyboardAction,
@@ -30,7 +42,7 @@ class KeyboardImageActionsTests: QuickSpec {
                 }
             }
             
-            it("is correctly created") {
+            it("converts arguments to image actions") {
                 let actions = KeyboardActions(
                     imageNames: ["1", "2", "3"],
                     keyboardImageNamePrefix: "pre-",
