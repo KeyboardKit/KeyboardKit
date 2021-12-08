@@ -55,7 +55,10 @@ Note that DocC currently omits extensions, which means that there are a lot more
 
 ### Actions
 
+- ``DeleteBackwardRange``
 - ``KeyboardAction``
+- ``KeyboardActions``
+- ``KeyboardActionRows``
 - ``KeyboardActionHandler``
 - ``StandardKeyboardActionHandler``
 
@@ -100,10 +103,6 @@ Note that DocC currently omits extensions, which means that there are a lot more
 - ``BaseSecondaryCalloutActionProvider``
 - ``EnglishSecondaryCalloutActionProvider``
 - ``LocalizedSecondaryCalloutActionProvider``
-
-### Content
-
-- ``DeleteBackwardRange``
 
 ### Emojis
 
