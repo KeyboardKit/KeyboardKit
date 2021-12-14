@@ -21,7 +21,7 @@ public typealias SuggestionsSeparatorBuilder<SeparatorView: View> = (Autocomplet
  This is the default function that will be used to build
  an item view for the provided `suggestion`.
  */
-func standardSuggestion(
+public func standardSuggestion(
         for suggestion: AutocompleteSuggestion,
         locale: Locale,
         style: AutocompleteToolbarStyle) -> AutocompleteToolbarItem {
@@ -36,7 +36,7 @@ func standardSuggestion(
  This is the default function that will be used to build
  an item separator after the provided `suggestion`.
  */
-func standardSuggestionsSeparator(
+public func standardSuggestionsSeparator(
         for suggestion: AutocompleteSuggestion,
         style: AutocompleteToolbarStyle) -> AutocompleteToolbarSeparator {
     AutocompleteToolbarSeparator(style: style.separator)
