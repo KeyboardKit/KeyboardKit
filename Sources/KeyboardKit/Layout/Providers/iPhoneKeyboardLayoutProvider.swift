@@ -69,7 +69,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      
      This is currently pretty messy and should be cleaned up.
      */
-    open func bottomActions(for context: KeyboardContext) -> KeyboardActionRow {
+    open func bottomActions(for context: KeyboardContext) -> KeyboardActions {
         var result = KeyboardActions()
         let portrait = context.screenOrientation.isPortrait
         let needsInputSwitch = context.needsInputModeSwitchKey

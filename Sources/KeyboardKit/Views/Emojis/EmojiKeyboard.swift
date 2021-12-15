@@ -8,9 +8,10 @@
 
 import SwiftUI
 
+@available(iOS 14.0, *)
 public extension EmojiKeyboard where EmojiButton == AnyView {
     @available(*, deprecated, message: "Use the new generic initializers instead.")
-    public typealias ButtonBuilder = EmojiButtonBuilder<AnyView>
+    typealias ButtonBuilder = EmojiButtonBuilder<AnyView>
 
     /**
      Create an emoji keyboard.
@@ -21,7 +22,7 @@ public extension EmojiKeyboard where EmojiButton == AnyView {
        - buttonBuilder: A emoji keyboard button builder, by default `.standardButton`.
      */
     @available(*, deprecated, message: "Use the new generic initializers instead.")
-    public init(
+    init(
             emojis: [Emoji],
             style: EmojiKeyboardStyle = .standardPhonePortrait,
             buttonBuilder: @escaping ButtonBuilder = Self.standardButton) {
@@ -36,12 +37,18 @@ public extension EmojiKeyboard where EmojiButton == AnyView {
      applies the keyboard actions of an `.emoji` action.
      */
     @available(*, deprecated, message: "Use standardEmojiButton.")
-    public static func standardButton(for emoji: Emoji, configuration: EmojiKeyboardStyle) -> AnyView {
+    static func standardButton(for emoji: Emoji, configuration: EmojiKeyboardStyle) -> AnyView {
         AnyView(standardEmojiButton(for: emoji, configuration: configuration))
     }
 }
 
 public typealias EmojiButtonBuilder<EmojiButton: View> = (Emoji, EmojiKeyboardStyle) -> EmojiButton
+
+@available(iOS 14.0, *)
+func standardEmojiKeyboard(emojis: [Emoji],
+                           style: EmojiKeyboardStyle = .standardPhonePortrait) -> some View {
+    EmojiKeyboard(emojis: emojis, style: style, emojiButtonBuilder: standardEmojiButton)
+}
 
 /**
  This view can be used to list an emoji collection using the
@@ -65,7 +72,7 @@ public struct EmojiKeyboard<EmojiButton: View>: View {
     public init(
             emojis: [Emoji],
             style: EmojiKeyboardStyle = .standardPhonePortrait,
-            emojiButtonBuilder: @escaping EmojiButtonBuilder<EmojiButton> = Self.standardEmojiButton
+            emojiButtonBuilder: @escaping EmojiButtonBuilder<EmojiButton>
     ) {
         let item = GridItem(.fixed(style.itemSize), spacing: style.verticalSpacing - 9)
         self.emojis = emojis.map {
@@ -73,7 +80,7 @@ public struct EmojiKeyboard<EmojiButton: View>: View {
         }
         self.style = style
         self.rows = Array(repeating: item, count: style.rows)
-        self.buttonBuilder = buttonBuilder
+        self.buttonBuilder = emojiButtonBuilder
     }
 
     struct EmojiKeyboardItem: Identifiable {
@@ -81,7 +88,7 @@ public struct EmojiKeyboard<EmojiButton: View>: View {
         let emoji: Emoji
     }
 
-    private let buttonBuilder: EmojoiButtonBuilder<EmojiButton>
+    private let buttonBuilder: EmojiButtonBuilder<EmojiButton>
     private let style: EmojiKeyboardStyle
     private let emojis: [EmojiKeyboardItem]
     private let rows: [GridItem]
@@ -94,22 +101,20 @@ public struct EmojiKeyboard<EmojiButton: View>: View {
         }.frame(height: style.totalHeight)
     }
 
-
     // MARK: - Public Extensions (here to make preview work)
 
-    /**
-     This standard button builder will return an button that
-     applies the keyboard actions of an `.emoji` action.
-     */
-    public static func standardEmojiButton(for emoji: Emoji, configuration: EmojiKeyboardStyle) -> some View {
-        let handler = KeyboardInputViewController.shared.keyboardActionHandler
-        let action = {
-            handler.handle(.tap, on: .emoji(emoji))
-        }
-        return Button(action: action) {
-            Text(emoji.char)
-                    .font(configuration.font)
-        }
+}
+/**
+ This standard button builder will return an button that
+ applies the keyboard actions of an `.emoji` action.
+ */
+public func standardEmojiButton(for emoji: Emoji, configuration: EmojiKeyboardStyle) -> some View {
+    let handler = KeyboardInputViewController.shared.keyboardActionHandler
+    let action = {
+        handler.handle(.tap, on: .emoji(emoji))
+    }
+    return Button(action: action) {
+        Text(emoji.char).font(configuration.font)
     }
 }
 
@@ -117,7 +122,10 @@ public struct EmojiKeyboard<EmojiButton: View>: View {
 struct EmojiKeyboard_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView(.horizontal) {
-            EmojiKeyboard(emojis: Array(Emoji.all.prefix(50)))
+            EmojiKeyboard(
+                emojis: Array(Emoji.all.prefix(50)),
+                emojiButtonBuilder: standardEmojiButton
+            )
         }
     }
 }
