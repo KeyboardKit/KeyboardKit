@@ -18,7 +18,7 @@ public typealias EmojiKeyboardProvider<EmojiKeyboard: View> = (EmojiCategory, Em
 public typealias EmojiTitleProvider<EmojiTitle: View> = (EmojiCategory, String) -> EmojiTitle
 
 @available(iOS 14.0, *)
-func standardEmojiTitleView(for category: EmojiCategory, title: String) -> some View {
+public func standardEmojiTitleView(for category: EmojiCategory, title: String) -> some View {
    HStack {
        Text(title).font(.footnote).bold().textCase(.uppercase).opacity(0.4)
        Spacer()
