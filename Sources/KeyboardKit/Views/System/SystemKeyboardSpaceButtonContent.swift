@@ -59,11 +59,11 @@ private struct StaticSpaceProperties {
 
 private extension SystemKeyboardSpaceButtonContent {
     
-    func text(_ text: String) -> some View {
+    func text(_ text: String) -> SystemKeyboardButtonText {
         SystemKeyboardButtonText(text: text, action: .space)
     }
     
-    var localeView: some View {
+    var localeView: SystemKeyboardButtonText {
         text(localeText)
     }
     
