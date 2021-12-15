@@ -127,7 +127,7 @@ public struct EmojiCategoryKeyboard<KeyboardView: View, TitleView: View>: View {
        - titleProvider: A title provider, by default `.standardTitle`.
        - titleViewProvider: A title view provider, by default `.standardTitleView`.
      */
-    init(
+    public init(
         categories: [EmojiCategory] = EmojiCategory.all,
         appearance: KeyboardAppearance,
         context: KeyboardContext,
