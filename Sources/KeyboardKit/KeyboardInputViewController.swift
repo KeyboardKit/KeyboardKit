@@ -21,6 +21,13 @@ open class KeyboardInputViewController: UIInputViewController {
     
     open override func viewDidLoad() {
         super.viewDidLoad()
+
+		/// Start with a default width that is non-zero to avoid bad math in SwiftUI if the
+		/// shared KeyboardInputViewController's view is not yet sized to anything appropriate
+		/// to the current screen. This is most likely to happen in a situatoin where the input
+		/// view controller is being instatiated within the context of a host app.
+		self.view.frame.size.width = UIScreen.main.bounds.width
+
         Self.shared = self
         setupLocaleObservation()
         viewWillSetupKeyboard()
