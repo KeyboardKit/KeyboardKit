@@ -103,14 +103,11 @@ open class KeyboardInputViewController: UIInputViewController {
     // MARK: - Properties
     
     /**
-     Get the bundle id of the currently active app, that was
-     used to initialize the keyboard extension, or if the view
-	 is instantiated directly within a host app, the bundle id
-	 of the main bundle
+     Get the bundle ID of the currently active app.
      */
     public var activeAppBundleId: String? {
-		if Bundle.main.bundlePath.hasSuffix(".appex") {
-			return parent?.value(forKey: "_hostBundleID") as? String
+        if Bundle.main.isExtension {
+            return parent?.value(forKey: "_hostBundleID") as? String
 		} else {
 			return Bundle.main.bundleIdentifier
 		}
