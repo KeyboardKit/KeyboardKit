@@ -14,6 +14,8 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 Thanks to [@digitalheir](https://github.com/digitalheir), this release removes the need for using `AnyView` in many places.
 
+Thanks to [@danielpunkass](https://github.com/danielpunkass), this release makes it possible to use the library within an app target.
+
 This version also adds missing emojis.
 
 ### ✨ New emojis
