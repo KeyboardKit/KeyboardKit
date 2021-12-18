@@ -53,9 +53,9 @@ public extension EmojiCategory {
      
      */
     var emojis: [Emoji] {
-        let empty = Character(" ")
-        return emojisString
-            .compactMap { $0 == empty ? nil : Emoji(String($0)) }
+        emojisString
+            .replacingOccurrences(of: "\n", with: "")
+            .compactMap { Emoji(String($0)) }
     }
     
     /**

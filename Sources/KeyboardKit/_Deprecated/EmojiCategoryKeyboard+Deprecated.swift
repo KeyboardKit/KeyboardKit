@@ -1,22 +1,29 @@
 import SwiftUI
 
 @available(iOS 14.0, *)
+public extension EmojiCategoryKeyboard {
+    
+    @available(*, deprecated, renamed: "CategoryTitleProvider")
+    typealias TitleProvider = CategoryTitleProvider
+}
+
+@available(iOS 14.0, *)
 public extension EmojiCategoryKeyboard where KeyboardView == AnyView {
     
     @available(*, deprecated, message: "Use the generic initializers instead.")
-    typealias KeyboardProvider = EmojiKeyboardProvider<AnyView>
+    typealias KeyboardProvider = (EmojiCategory, EmojiKeyboardStyle) -> AnyView
 }
 
 @available(iOS 14.0, *)
-public extension EmojiCategoryKeyboard where TitleView == AnyView {
+public extension EmojiCategoryKeyboard where CategoryTitleView == AnyView {
     
     @available(*, deprecated, message: "Use the generic initializers instead.")
-    typealias TitleViewProvider = EmojiTitleProvider<AnyView>
+    typealias TitleViewProvider = (EmojiCategory, String) -> AnyView
 }
 
 
 @available(iOS 14.0, *)
-public extension EmojiCategoryKeyboard where KeyboardView == AnyView, TitleView == AnyView {
+public extension EmojiCategoryKeyboard where KeyboardView == AnyView, CategoryTitleView == AnyView {
     
     @available(*, deprecated, message: "Use the generic initializers instead.")
     init(
@@ -34,9 +41,9 @@ public extension EmojiCategoryKeyboard where KeyboardView == AnyView, TitleView 
             context: context,
             selection: selection,
             style: style,
-            titleProvider: titleProvider,
-            titleViewProvider: titleViewProvider,
-            keyboardProvider: keyboardProvider)
+            categoryTitle: titleProvider,
+            categoryTitleView: titleViewProvider,
+            categoryKeyboard: keyboardProvider)
     }
     
     @available(*, deprecated, message: "Use the generic initializers instead.")
