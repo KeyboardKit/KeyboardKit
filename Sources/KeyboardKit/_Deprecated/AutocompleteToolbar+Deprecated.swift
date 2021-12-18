@@ -25,7 +25,7 @@ public extension AutocompleteToolbar where ItemView == AnyView, SeparatorView ==
             suggestions: suggestions,
             locale: locale,
             style: style,
-            itemView: itemBuilder,
+            itemView: { itemBuilder($0, $2, $1)},
             separatorView: separatorBuilder,
             action: replacementAction)
     }

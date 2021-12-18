@@ -82,10 +82,12 @@ public extension EmojiCategoryKeyboard where KeyboardView == AnyView, TitleView 
         self.titleProvider = titleProvider
         self.titleViewProvider = titleViewProvider
     }
+    
     @available(*, deprecated, message: "Use standardEmojiTitleView instead.")
     static func standardTitleView(for category: EmojiCategory, title: String) -> AnyView {
         AnyView(standardEmojiTitleView(for: category, title: title))
     }
+    
     @available(*, deprecated, message: "Use standardEmojiKeyboard instead.")
     static func standardKeyboard(for category: EmojiCategory, style: EmojiKeyboardStyle) -> AnyView {
         AnyView(standardEmojiKeyboard(for: category, style: style))
