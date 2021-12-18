@@ -14,12 +14,14 @@ import SwiftUI
  
  There are three ways to create a system keyboard. The first
  is to use the builder-less initializer to create a standard
- system keyboard with standard buttons. The second is to use
- the `buttonContentBuilder` initializer to create a keyboard
- that customizes each button's internal content, but without
- affecting the button's shape, paddings etc. The third is to
- use the `buttonViewBuilder` initializer to create keyboards
- where the entire button view can be replaced.
+ system keyboard with standard buttons.
+ 
+ The second is to use the `buttonContentBuilder` initializer
+ to create a keyboard that customizes each button's internal
+ content, but NOT affecting the button's shape, paddings etc.
+ 
+ The third is to use the `buttonViewBuilder` initializer, to
+ create a keyboard where the entire button can be customized.
  
  Since the widths of the keyboard buttons will depend on the
  total keyboard width, the view must be given a `width` when
@@ -35,16 +37,6 @@ public struct SystemKeyboard<ButtonView: View>: View {
     /**
      Create a system keyboard that uses a `buttonViewBuilder`
      to generate the entire button view for each layout item.
-     
-     The `buttonContentBuilder` initializer creates a system
-     keyboard that just replaces the internal button content
-     a
-     
-     
-     you just want to replace the button's intrinsic content.
-     
-     You can use the initializer that doesn't have a builder
-     when you just want to create a standard system keyboard.
      */
     public init(
         layout: KeyboardLayout,
@@ -112,34 +104,11 @@ public struct SystemKeyboard<ButtonView: View>: View {
     }
 }
 
-private extension SystemKeyboard {
-
-    func itemRows(for layout: KeyboardLayout) -> some View {
-        ForEach(Array(layout.itemRows.enumerated()), id: \.offset) {
-            items(for: layout, itemRow: $0.element)
-        }
-    }
-
-    func items(for layout: KeyboardLayout, itemRow: KeyboardLayoutItemRow) -> some View {
-        HStack(spacing: 0) {
-            ForEach(Array(itemRow.enumerated()), id: \.offset) {
-                buttonViewBuilder($0.element, keyboardWidth, inputWidth)
-            }
-        }
-    }
-}
-
 public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<AnyView> {
     
     /**
      Create a keyboard that uses a `buttonContentBuilder` to
-     generate the button view's content for each layout item.
-     
-     You can use the `buttonViewBuilder` initializer when it
-     should replace the entire button view instead.
-     
-     You can use the initializer that doesn't have a builder
-     when you just want to create a standard system keyboard.
+     customize the content of each button.
      */
     init<ButtonContentView: View>(
         layout: KeyboardLayout,
@@ -176,14 +145,8 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
 public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardActionButtonContent> {
     
     /**
-     Create a system keyboard that creates a standard button
-     view for each layout item.
-     
-     You can use the `buttonViewBuilder` initializer when it
-     should replace the entire button view instead.
-     
-     You can use the `buttonContentBuilder` initializer when
-     you just want to replace the button's intrinsic content.
+     Create a system keyboard that creates a standard system
+     keyboard, with standard button views.
      */
     init(
         layout: KeyboardLayout,
@@ -227,6 +190,23 @@ public extension SystemKeyboard {
      */
     static var standardKeyboardWidth: CGFloat {
         KeyboardInputViewController.shared.view.frame.width
+    }
+}
+
+private extension SystemKeyboard {
+
+    func itemRows(for layout: KeyboardLayout) -> some View {
+        ForEach(Array(layout.itemRows.enumerated()), id: \.offset) {
+            items(for: layout, itemRow: $0.element)
+        }
+    }
+
+    func items(for layout: KeyboardLayout, itemRow: KeyboardLayoutItemRow) -> some View {
+        HStack(spacing: 0) {
+            ForEach(Array(itemRow.enumerated()), id: \.offset) {
+                buttonViewBuilder($0.element, keyboardWidth, inputWidth)
+            }
+        }
     }
 }
 
