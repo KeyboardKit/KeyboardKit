@@ -12,9 +12,10 @@ import SwiftUI
  This view mimics native iOS system keyboards, like standard
  alphabetic, numeric and symbolic system keyboards.
  
- There are three ways to create a system keyboard. The first
- is to use the builder-less initializer to create a standard
- system keyboard with standard buttons.
+ There are three ways to create a system keyboard:
+ 
+ The first is to use the builderless initializer to create a
+ standard system keyboard with standard button views.
  
  The second is to use the `buttonContentBuilder` initializer
  to create a keyboard that customizes each button's internal

@@ -42,35 +42,7 @@ public func standardSuggestionsSeparator(
     AutocompleteToolbarSeparator(style: style.separator)
 }
 
-public extension AutocompleteToolbar where SuggestionView == AnyView, SeparatorView == AnyView {
 
-    /**
-     Create an autocomplete toolbar.
-
-     - Parameters:
-       - suggestions: A list of suggestions to display in the toolbar.
-       - locale: The locale to apply to the toolbar.
-       - style: The style to apply to the toolbar, by default `.standard`.
-       - itemBuilder: An optional, custom item builder. By default, the static `standardItem` will be used.
-       - separatorBuilder: An optional, custom separator builder. By default, the static `standardSeparator` will be used.
-       - replacementAction: An optional, custom replacement action. By default, the static `standardReplacementAction` will be used.
-     */
-    @available(*, deprecated, message: "Use the generic initializers instead.")
-    init(
-            suggestions: [AutocompleteSuggestion],
-            locale: Locale,
-            style: AutocompleteToolbarStyle = .standard,
-            itemBuilder: @escaping ItemBuilder = Self.standardItem,
-            separatorBuilder: @escaping SeparatorBuilder = Self.standardSeparator,
-            replacementAction: @escaping ReplacementAction = Self.standardReplacementAction) {
-        self.items = suggestions.map { BarItem($0) }
-        self.itemBuilder = itemBuilder
-        self.locale = locale
-        self.style = style
-        self.separatorBuilder = separatorBuilder
-        self.replacementAction = replacementAction
-    }
-}
 
 /**
  This view is a horizontal row with autocomplete buttons and
@@ -86,7 +58,7 @@ public extension AutocompleteToolbar where SuggestionView == AnyView, SeparatorV
  You should therefore only return views and not buttons when
  you provide a custom `buttonBuilder`.
  */
-public struct AutocompleteToolbar<SuggestionView: View, SeparatorView: View>: View {
+public struct AutocompleteToolbar<ItemView: View, SeparatorView: View>: View {
     /**
      Create an autocomplete toolbar.
 
@@ -102,7 +74,7 @@ public struct AutocompleteToolbar<SuggestionView: View, SeparatorView: View>: Vi
         suggestions: [AutocompleteSuggestion],
         locale: Locale,
         style: AutocompleteToolbarStyle = .standard,
-        itemBuilder: @escaping SuggestionBuilder<SuggestionView>,
+        itemBuilder: @escaping SuggestionBuilder<ItemView>,
         separatorBuilder: @escaping SuggestionsSeparatorBuilder<SeparatorView>,
         replacementAction: @escaping ReplacementAction = Self.standardReplacementAction) {
         self.items = suggestions.map { BarItem($0) }
@@ -113,12 +85,12 @@ public struct AutocompleteToolbar<SuggestionView: View, SeparatorView: View>: Vi
         self.replacementAction = replacementAction
     }
     
-    private let items: [BarItem]
-    private let locale: Locale
-    private let style: AutocompleteToolbarStyle
-    private let itemBuilder: SuggestionBuilder<SuggestionView>
-    private let replacementAction: ReplacementAction
-    private let separatorBuilder: SuggestionsSeparatorBuilder<SeparatorView>
+    let items: [BarItem]
+    let locale: Locale
+    let style: AutocompleteToolbarStyle
+    let itemBuilder: SuggestionBuilder<ItemView>
+    let replacementAction: ReplacementAction
+    let separatorBuilder: SuggestionsSeparatorBuilder<SeparatorView>
     
     /**
      This internal struct is used to encapsulate item data.
@@ -135,23 +107,9 @@ public struct AutocompleteToolbar<SuggestionView: View, SeparatorView: View>: Vi
 
     /**
      This typealias represents the action block that is used
-     to create autocomplete suggestion views, which are then
-     wrapped in buttons that trigger the `replacementAction`.
-     */
-    @available(*, deprecated, message: "Use the generic initializers instead.")
-    public typealias ItemBuilder = SuggestionBuilder<AnyView>
-    /**
-     This typealias represents the action block that is used
      to trigger a text replacement when tapping a suggestion.
      */
     public typealias ReplacementAction = (AutocompleteSuggestion) -> Void
-    
-    /**
-     This typealias represents the action block that is used
-     to create autocomplete suggestion separator views.
-     */
-    @available(*, deprecated, message: "Use the standardSuggestion instead.")
-    public typealias SeparatorBuilder = SuggestionsSeparatorBuilder<AnyView>
 
     public var body: some View {
         HStack {
@@ -176,31 +134,6 @@ public extension AutocompleteToolbar {
         let actionHandler = KeyboardInputViewController.shared.keyboardActionHandler
         proxy.insertAutocompleteSuggestion(suggestion)
         actionHandler.handle(.tap, on: .character(""))
-    }
-}
-public extension AutocompleteToolbar where SuggestionView == AnyView, SeparatorView == AnyView {
-
-    /**
-     This is the default function that will be used to build
-     an item view for the provided `suggestion`.
-     */
-    @available(*, deprecated, message: "Use the standardSuggestion instead.")
-    static func standardItem(
-        for suggestion: AutocompleteSuggestion,
-        locale: Locale,
-        style: AutocompleteToolbarStyle) -> AnyView {
-        AnyView(standardSuggestion(for: suggestion, locale: locale, style: style))
-    }
-    
-    /**
-     This is the default function that will be used to build
-     an item separator after the provided `suggestion`.
-     */
-    @available(*, deprecated, message: "Use the standardSuggestionsSeparator instead.")
-    static func standardSeparator(
-        for suggestion: AutocompleteSuggestion,
-        style: AutocompleteToolbarStyle) -> AnyView {
-        AnyView(standardSuggestionsSeparator(for: suggestion, style: style))
     }
 }
 
