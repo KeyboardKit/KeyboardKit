@@ -75,28 +75,30 @@ public extension AutocompleteToolbar where ItemView == AnyView, SeparatorView ==
     }
 }
 
+private extension AutocompleteToolbar where ItemView == AnyView, SeparatorView == AnyView {
+    
+    /**
+     This is the default function that will be used to build
+     an item view for the provided `suggestion`.
+     */
+    static func standardSuggestion(
+        for suggestion: AutocompleteSuggestion,
+        locale: Locale,
+        style: AutocompleteToolbarStyle) -> AutocompleteToolbarItem {
+        AutocompleteToolbarItem(
+                suggestion: suggestion,
+                style: style.item,
+                locale: locale
+        )
+    }
 
-/**
- This is the default function that will be used to build
- an item view for the provided `suggestion`.
- */
-private func standardSuggestion(
-    for suggestion: AutocompleteSuggestion,
-    locale: Locale,
-    style: AutocompleteToolbarStyle) -> AutocompleteToolbarItem {
-    AutocompleteToolbarItem(
-            suggestion: suggestion,
-            style: style.item,
-            locale: locale
-    )
-}
-
-/**
- This is the default function that will be used to build
- an item separator after the provided `suggestion`.
- */
-private func standardSuggestionsSeparator(
+    /**
+     This is the default function that will be used to build
+     an item separator after the provided `suggestion`.
+     */
+    static func standardSuggestionsSeparator(
         for suggestion: AutocompleteSuggestion,
         style: AutocompleteToolbarStyle) -> AutocompleteToolbarSeparator {
-    AutocompleteToolbarSeparator(style: style.separator)
+        AutocompleteToolbarSeparator(style: style.separator)
+    }
 }

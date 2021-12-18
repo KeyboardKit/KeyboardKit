@@ -41,15 +41,17 @@ This version also adds missing emojis.
 ### 💡 Behavior changes
 
 * `AutocompleteToolbar` is now generic.
+* `AutocompleteToolbar` has new initializers with different parameter names.
 * `SystemKeyboard` is now generic.
-* `SystemKeyboard` `standardButtonBuilder` is no longer an `AnyView`.
+* `SystemKeyboard` has new initializers with different parameter names.
 
 ### 🗑 Deprecations
 
 * `KeyboardActionRow` is the same thing as `KeyboardActions` and wasn't used in the library.
 * `KeyboardLayout` `items` initializer has been replaced with an `itemRows` initializer.
 * `KeyboardLayout` `item` has been replaced with `itemRows`.
-* `SystemKeyboard` `AnyView` initializer has been replaced with generic initializers.
+* The old `AnyView`-based `SystemKeyboard` initializers and builders have been replaced with the new, generic initializers.
+* The old `AnyView`-based `SystemKeyboard` initializers and builders have been replaced with the new, generic initializers.
 
 ### 💥 Breaking changes
 

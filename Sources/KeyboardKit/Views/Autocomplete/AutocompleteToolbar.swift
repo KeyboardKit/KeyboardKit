@@ -12,15 +12,13 @@ import SwiftUI
  This view is a horizontal row with autocomplete buttons and
  separator lines between the buttons.
  
- You can customize the button and the separator by injecting
- a custom `buttonBuilder` and/or `separatorBuilder`. You can
- also customize the `replacementAction` to determine what an
- autocomplete suggestion should do when it's tapped.
+ You can customize the item and separator views by providing
+ custom `itemView` and/or `separatorView` functions. You can
+ also customize the tap `action` of a suggestion.
  
- Note that the views that are returned by the `buttonBuilder`
- will be nested in a button that triggers `replacementAction`.
- You should therefore only return views and not buttons when
- you provide a custom `buttonBuilder`.
+ Note that the views that are returned by `itemView` will be
+ nested in a button that triggers the `action`. Therefore, a
+ custom `itemView` should only return views, not buttons.
  */
 public struct AutocompleteToolbar<ItemView: View, SeparatorView: View>: View {
     
