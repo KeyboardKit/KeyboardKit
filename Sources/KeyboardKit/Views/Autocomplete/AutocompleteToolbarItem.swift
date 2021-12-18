@@ -83,7 +83,9 @@ struct AutocompleteToolbarItem_Previews: PreviewProvider {
             AutocompleteToolbar(
                 suggestions: previewSuggestions,
                 locale: locale,
-                style: .standard)
+                style: .standard,
+                itemBuilder: standardSuggestion,
+                separatorBuilder: standardSuggestionsSeparator)
                 // style: .preview1)
             .previewBar()
         }
