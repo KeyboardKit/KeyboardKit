@@ -21,12 +21,13 @@ public extension AutocompleteToolbar where ItemView == AnyView, SeparatorView ==
         itemBuilder: @escaping ItemBuilder = Self.standardItem,
         separatorBuilder: @escaping SeparatorBuilder = Self.standardSeparator,
         replacementAction: @escaping ReplacementAction = Self.standardReplacementAction) {
-        self.items = suggestions.map { BarItem($0) }
-        self.itemBuilder = itemBuilder
-        self.locale = locale
-        self.style = style
-        self.separatorBuilder = separatorBuilder
-        self.replacementAction = replacementAction
+        self.init(
+            suggestions: suggestions,
+            locale: locale,
+            style: style,
+            itemView: itemBuilder,
+            separatorView: separatorBuilder,
+            action: replacementAction)
     }
     
     /**
@@ -35,14 +36,14 @@ public extension AutocompleteToolbar where ItemView == AnyView, SeparatorView ==
      wrapped in buttons that trigger the `replacementAction`.
      */
     @available(*, deprecated, message: "Use the generic initializers instead.")
-    typealias ItemBuilder = SuggestionBuilder<AnyView>
+    typealias ItemBuilder = (AutocompleteSuggestion, Locale, AutocompleteToolbarStyle) -> AnyView
     
     /**
      This typealias represents the action block that is used
      to create autocomplete suggestion separator views.
      */
     @available(*, deprecated, message: "Use the generic initializers instead.")
-    typealias SeparatorBuilder = SuggestionsSeparatorBuilder<AnyView>
+    typealias SeparatorBuilder = (AutocompleteSuggestion, AutocompleteToolbarStyle) -> AnyView
     
     /**
      This is the default function that will be used to build
@@ -66,4 +67,36 @@ public extension AutocompleteToolbar where ItemView == AnyView, SeparatorView ==
         style: AutocompleteToolbarStyle) -> AnyView {
         AnyView(standardSuggestionsSeparator(for: suggestion, style: style))
     }
+    
+    @available(*, deprecated, renamed: "standardAction")
+    static func standardReplacementAction(
+        for suggestion: AutocompleteSuggestion) {
+        Self.standardAction(for: suggestion)
+    }
+}
+
+
+/**
+ This is the default function that will be used to build
+ an item view for the provided `suggestion`.
+ */
+private func standardSuggestion(
+    for suggestion: AutocompleteSuggestion,
+    locale: Locale,
+    style: AutocompleteToolbarStyle) -> AutocompleteToolbarItem {
+    AutocompleteToolbarItem(
+            suggestion: suggestion,
+            style: style.item,
+            locale: locale
+    )
+}
+
+/**
+ This is the default function that will be used to build
+ an item separator after the provided `suggestion`.
+ */
+private func standardSuggestionsSeparator(
+        for suggestion: AutocompleteSuggestion,
+        style: AutocompleteToolbarStyle) -> AutocompleteToolbarSeparator {
+    AutocompleteToolbarSeparator(style: style.separator)
 }

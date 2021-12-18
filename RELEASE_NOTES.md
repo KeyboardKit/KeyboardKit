@@ -40,7 +40,8 @@ This version also adds missing emojis.
 
 ### 💡 Behavior changes
 
-* `SystemKeyboard` is now generic and have much better initializers.
+* `AutocompleteToolbar` is now generic.
+* `SystemKeyboard` is now generic.
 * `SystemKeyboard` `standardButtonBuilder` is no longer an `AnyView`.
 
 ### 🗑 Deprecations
