@@ -127,9 +127,9 @@ Although we aimed to implement the new generic views with no breaking changes, t
 
 ## 5.2
 
-This version adds support for `russian` and `ukrainian`.
+This version adds support for `Russian` and `Ukrainian` and bumps the package's Swift version to 5.5 to enable DocC support.
 
-This version also bumps the package's Swift version to 5.5 to enable extended DocC support.
+By adding DocC support, the documentation has been updated to allow for topics, cross-linking etc. You can download the documentation from the project website or find a zipped version in the `Docs` folder.
 
 ### 🌐 New locales
 
@@ -138,7 +138,7 @@ This version also bumps the package's Swift version to 5.5 to enable extended Do
 
 ### 🐛 Bug fixes
 
-* This version corrects the system button highlight color in dark mode.   
+* This version corrects the system button highlight color in dark mode.  
 
 
 

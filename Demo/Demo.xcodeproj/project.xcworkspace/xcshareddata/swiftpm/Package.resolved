@@ -5,9 +5,9 @@
         "package": "KeyboardKit",
         "repositoryURL": "https://github.com/danielsaidi/KeyboardKit.git",
         "state": {
-          "branch": "master",
-          "revision": "3fdf6340b32bd77cd2f806d5687a15e343c53e6a",
-          "version": null
+          "branch": null,
+          "revision": "09cd9c15d2f76edbb6533ffc050b8247522319fb",
+          "version": "5.4.0"
         }
       },
       {
