@@ -54,7 +54,7 @@ private extension KeyboardView {
             EmojiCategoryKeyboard(
                 appearance: appearance,
                 context: keyboardContext)
-                .padding(.vertical)
+                .padding(.top)
         } else {
             Text("Requires iOS 14 or later")
         }
