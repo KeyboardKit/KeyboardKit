@@ -12,13 +12,13 @@ public extension EmojiKeyboard where ButtonView == AnyView {
      - Parameters:
        - emojis: The emojis to include in the menu.
        - style: The style to apply to the keyboard, by default `.standardPhonePortrait`.
-       - buttonBuilder: A emoji keyboard button builder, by default `.standardButton`.
+       - buttonBuilder: A emoji keyboard button builder.
      */
     @available(*, deprecated, message: "Use the new generic initializers instead.")
     init(
         emojis: [Emoji],
         style: EmojiKeyboardStyle = .standardPhonePortrait,
-        buttonBuilder: @escaping ButtonBuilder = Self.standardButton) {
+        buttonBuilder: @escaping ButtonBuilder) {
         self.init(
             emojis: emojis,
             style: style,

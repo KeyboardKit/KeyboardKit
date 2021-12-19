@@ -11,10 +11,10 @@ import SwiftUI
 /**
  This view can be used to list an emoji collection using the
  provided configuration.
-
+ 
  You can customize the buttons in the grid by using a custom
- `buttonBuilder` in the initalizer. If you do not, init will
- use the static `standardButton` function.
+ `emojiButton` view builder function. You can also customize
+ the button taps when using the standard builder function.
  */
 @available(iOS 14.0, *)
 public struct EmojiKeyboard<ButtonView: View>: View {
@@ -25,7 +25,7 @@ public struct EmojiKeyboard<ButtonView: View>: View {
      - Parameters:
        - emojis: The emojis to include in the menu.
        - style: The style to apply to the keyboard, by default `.standardPhonePortrait`.
-       - emojiButton: A emoji keyboard button builder, by default `.standardEmojiButton`.
+       - emojiButton: A emoji keyboard button builder.
      */
     public init(
         emojis: [Emoji],
@@ -68,6 +68,15 @@ public struct EmojiKeyboard<ButtonView: View>: View {
 }
 
 @available(iOS 14.0, *)
+public extension EmojiKeyboard {
+    
+    static func standardEmojiAction(emoji: Emoji) {
+        let handler = KeyboardInputViewController.shared.keyboardActionHandler
+        handler.handle(.tap, on: .emoji(emoji))
+    }
+}
+
+@available(iOS 14.0, *)
 public extension EmojiKeyboard where ButtonView == EmojiKeyboardButton {
     
     /**
@@ -77,12 +86,12 @@ public extension EmojiKeyboard where ButtonView == EmojiKeyboardButton {
      - Parameters:
        - emojis: The emojis to include in the menu.
        - style: The style to apply to the keyboard, by default `.standardPhonePortrait`.
-       - emojiButtonBuilder: A emoji keyboard button builder, by default `.standardEmojiButton`.
+       - emojiButtonAction: The action to perform when an emoji is tapped, by default `.standardEmojiButtonAction`.
      */
     init(
         emojis: [Emoji],
-        style: EmojiKeyboardStyle = .standardPhonePortrait) {
-        let handler = KeyboardInputViewController.shared.keyboardActionHandler
+        style: EmojiKeyboardStyle = .standardPhonePortrait,
+        emojiButtonAction: @escaping (Emoji) -> Void = standardEmojiAction) {
         self.init(
             emojis: emojis,
             style: style,
@@ -90,7 +99,7 @@ public extension EmojiKeyboard where ButtonView == EmojiKeyboardButton {
                 EmojiKeyboardButton(
                     emoji: $0,
                     configuration: $1,
-                    action: { handler.handle(.tap, on: .emoji($0)) })
+                    action: emojiButtonAction)
             }
         )
     }
