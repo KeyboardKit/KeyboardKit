@@ -226,7 +226,9 @@ Note that DocC currently omits extensions, which means that there are a lot more
 - ``SecondaryInputCallout``
 - ``EmojiCategoryKeyboard``
 - ``EmojiCategoryKeyboardMenu``
+- ``EmojiCategoryTitle``
 - ``EmojiKeyboard``
+- ``EmojiKeyboardButton``
 - ``KeyboardGrid``
 - ``KeyboardImageButton``
 - ``KeyboardInputTextComponent``
