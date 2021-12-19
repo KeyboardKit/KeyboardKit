@@ -21,14 +21,8 @@ open class KeyboardInputViewController: UIInputViewController {
     
     open override func viewDidLoad() {
         super.viewDidLoad()
-
-		/// Start with a default width that is non-zero to avoid bad math in SwiftUI if the
-		/// shared KeyboardInputViewController's view is not yet sized to anything appropriate
-		/// to the current screen. This is most likely to happen in a situatoin where the input
-		/// view controller is being instatiated within the context of a host app.
-		self.view.frame.size.width = UIScreen.main.bounds.width
-
         Self.shared = self
+        setupInitialWidth()
         setupLocaleObservation()
         viewWillSetupKeyboard()
     }
@@ -408,6 +402,23 @@ private extension KeyboardInputViewController {
             actionProvider: keyboardSecondaryCalloutActionProvider)
     }
     
+    /**
+     Make sure that the controller view is setup to at least
+     have a standard width that isn't non-zero, to avoid bad
+     view layout in SwiftUI. Otherwise, we may run into some
+     problems when the controller's view is not yet sized to
+     anything appropriate. This is most likely to happen for
+     situations where the controller is being created within
+     the context of a host app.
+     */
+    func setupInitialWidth() {
+        view.frame.size.width = UIScreen.main.bounds.width
+    }
+    
+    /**
+     Observe any changes to the context locale, which should
+     trigger some locale-specific changes..
+     */
     func setupLocaleObservation() {
         keyboardContext.$locale.sink { [weak self] in
             guard let self = self else { return }
