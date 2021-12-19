@@ -8,14 +8,6 @@
 
 import SwiftUI
 
-@available(iOS 14.0, *)
-public func standardEmojiKeyboard(for category: EmojiCategory, style: EmojiKeyboardStyle) -> some View {
-    EmojiKeyboard(
-        emojis: category.emojis,
-        style: style)
-}
-
-
 /**
  This keyboard lists all emojis from a selected category, as
  well as a menu that lets the user select a new category and
