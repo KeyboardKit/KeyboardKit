@@ -39,9 +39,9 @@ public extension View {
         for context: KeyboardContext,
         buttonContentBuilder: @escaping (Locale) -> ButtonView) -> some View {
         self.localeContextMenu(locales: context.locales) { locale in
-            Button(action: { context.locale = locale }) {
+            Button(action: { context.locale = locale }, label: {
                 buttonContentBuilder(locale)
-            }
+            })
         }
     }
     
