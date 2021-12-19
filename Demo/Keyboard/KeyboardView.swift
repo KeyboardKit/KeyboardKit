@@ -53,9 +53,7 @@ private extension KeyboardView {
         if #available(iOSApplicationExtension 14.0, *) {
             EmojiCategoryKeyboard(
                 appearance: appearance,
-                context: keyboardContext,
-                keyboardProvider: standardEmojiKeyboard,
-                titleViewProvider: standardEmojiTitleView)
+                context: keyboardContext)
                 .padding(.vertical)
         } else {
             Text("Requires iOS 14 or later")

@@ -32,8 +32,8 @@ public extension EmojiCategoryKeyboard where KeyboardView == AnyView, CategoryTi
         context: KeyboardContext,
         selection: EmojiCategory? = nil,
         style: EmojiKeyboardStyle = .standardPhonePortrait,
-        keyboardProvider: @escaping KeyboardProvider = Self.standardKeyboard,
-        titleProvider: @escaping TitleProvider = Self.standardTitle,
+        keyboardProvider: @escaping KeyboardProvider,
+        titleProvider: @escaping TitleProvider = Self.standardCategoryTitle,
         titleViewProvider: @escaping TitleViewProvider = Self.standardTitleView) {
         self.init(
             categories: categories,
@@ -48,11 +48,6 @@ public extension EmojiCategoryKeyboard where KeyboardView == AnyView, CategoryTi
     
     @available(*, deprecated, message: "Use the generic initializers instead.")
     static func standardTitleView(for category: EmojiCategory, title: String) -> AnyView {
-        AnyView(standardEmojiTitleView(for: category, title: title))
-    }
-    
-    @available(*, deprecated, message: "Use the generic initializers instead.")
-    static func standardKeyboard(for category: EmojiCategory, style: EmojiKeyboardStyle) -> AnyView {
-        AnyView(standardEmojiKeyboard(for: category, style: style))
+        AnyView(EmojiCategoryTitle(title: title))
     }
 }

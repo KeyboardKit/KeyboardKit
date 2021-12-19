@@ -25,7 +25,7 @@ public struct EmojiKeyboard<ButtonView: View>: View {
      - Parameters:
        - emojis: The emojis to include in the menu.
        - style: The style to apply to the keyboard, by default `.standardPhonePortrait`.
-       - emojiButton: A emoji keyboard button builder.
+       - emojiButton: A emoji keyboard button builder function.
      */
     public init(
         emojis: [Emoji],
@@ -63,13 +63,18 @@ public struct EmojiKeyboard<ButtonView: View>: View {
             ForEach(emojis) {
                 emojiButton($0.emoji, style)
             }
-        }.frame(height: style.totalHeight)
+        }
+        .padding(.horizontal)
+        .frame(height: style.totalHeight)
     }
 }
 
 @available(iOS 14.0, *)
 public extension EmojiKeyboard {
     
+    /**
+     The standard action to use when tapping an emoji button.
+     */
     static func standardEmojiAction(emoji: Emoji) {
         let handler = KeyboardInputViewController.shared.keyboardActionHandler
         handler.handle(.tap, on: .emoji(emoji))

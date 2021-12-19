@@ -78,6 +78,8 @@ Although we aimed to implement the new generic views with no breaking changes, t
     * iPhoneProMaxScreenPortrait
     * iPhoneProMaxScreenLandscape
     * isScreenSize(...)
+* `EmojiKeyboardButton` is a new view that renders a standard emoji keyboard button.
+* `EmojiCategoryTitle` is a new view that renders a standard emoji category title.
 * `KeyboardFeedbackSettings` has new properties and functions:
     * isAudio/HapticFeedbackEnabled
     * disableAudio/HapticFeedback()

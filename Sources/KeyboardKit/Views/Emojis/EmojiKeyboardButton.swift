@@ -9,8 +9,7 @@
 import SwiftUI
 
 /**
- This button view is the standard button that is used by the
- ``EmojiKeyboard`` view.
+ This view renders a standard button for an emoji.
  */
 public struct EmojiKeyboardButton: View {
     
