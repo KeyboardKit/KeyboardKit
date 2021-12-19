@@ -24,8 +24,7 @@ public func standardEmojiTitleView(for category: EmojiCategory, title: String) -
 public func standardEmojiKeyboard(for category: EmojiCategory, style: EmojiKeyboardStyle) -> some View {
     EmojiKeyboard(
         emojis: category.emojis,
-        style: style,
-        emojiButtonBuilder: standardEmojiButton)
+        style: style)
         .padding(.horizontal)
 }
 
