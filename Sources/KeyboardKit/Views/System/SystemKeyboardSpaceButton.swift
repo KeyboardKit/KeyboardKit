@@ -9,8 +9,8 @@
 import SwiftUI
 
 /**
- This view mimics a system space button, with custom content,
- that takes up as much horizontal space as needed.
+ This view mimics a system keyboard space button with custom
+ content that takes up as much horizontal space as needed.
  
  This view will adapt its content to conform to the provided
  `appearance` and applies keyboard gestures for the provided

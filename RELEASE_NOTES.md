@@ -43,6 +43,7 @@ This version also adds missing emojis.
 * `AutocompleteToolbar` is now generic.
 * `EmojiKeyboard` is now generic.
 * `SystemKeyboard` is now generic.
+* `SystemKeyboardSpaceButtonContent` is now generic.
 
 ### 🗑 Deprecations
 

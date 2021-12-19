@@ -13,16 +13,17 @@ import SwiftUI
  starts with displaying the provided `localeText` then fades
  to the `spaceText` (or `spaceView`).
  
- Note that this view only generates the space button content,
- since it is used in views where a button shape and gestures
- are applied later, e.g. the `SystemKeyboard`. If you want a
- complete space button, use `SystemKeyboardSpaceButton`.
+ Note that this view does not render the shape of the button
+ or adds any gestures to the content. The reason is that the
+ view is used in other views where button shape and gestures
+ are applied later. If you want a complete space button, use
+ the `SystemKeyboardSpaceButton` view instead.
  */
 public struct SystemKeyboardSpaceButtonContent<SpaceView: View>: View {
 
-    
     /**
-     Create a system keyboard space button content view.
+     Create a system keyboard space button content view that
+     presents a custom view after presenting the locale.
      
      - Parameters:
        - localeText: The display name of the current locale.
@@ -52,16 +53,31 @@ public struct SystemKeyboardSpaceButtonContent<SpaceView: View>: View {
     }
 }
 
-private struct StaticSpaceProperties {
-    // TODO replace/remove static property?
+public extension SystemKeyboardSpaceButtonContent where SpaceView == AnyView {
+    
+    /**
+     Create a system keyboard space button content view that
+     presents a custom text after presenting the locale.
+
+     - Parameters:
+       - localeText: The display name of the current locale.
+       - spaceText: The localized name for "space".
+     */
+    init(
+        localeText: String,
+        spaceText: String) {
+        self.localeText = localeText
+        self.spaceText = spaceText
+        self.spaceView = nil
+    }
+}
+
+private struct SystemKeyboardSpaceButtonContentState {
+    
     static var lastLocaleText: String?
 }
 
 private extension SystemKeyboardSpaceButtonContent {
-    
-    func text(_ text: String) -> SystemKeyboardButtonText {
-        SystemKeyboardButtonText(text: text, action: .space)
-    }
     
     var localeView: SystemKeyboardButtonText {
         text(localeText)
@@ -75,33 +91,22 @@ private extension SystemKeyboardSpaceButtonContent {
             text(spaceText)
         }
     }
-}
-
-public extension SystemKeyboardSpaceButtonContent where SpaceView == AnyView {
-    /**
-     Create a system keyboard space button content view.
-
-     - Parameters:
-       - localeText: The display name of the current locale.
-       - spaceText: The localized name for "space".
-     */
-    init(localeText: String, spaceText: String) {
-        self.localeText = localeText
-        self.spaceText = spaceText
-        self.spaceView = nil
+    
+    func text(_ text: String) -> SystemKeyboardButtonText {
+        SystemKeyboardButtonText(text: text, action: .space)
     }
 }
 
 private extension SystemKeyboardSpaceButtonContent {
     
     var isNewLocale: Bool {
-        localeText != StaticSpaceProperties.lastLocaleText
+        localeText != SystemKeyboardSpaceButtonContentState.lastLocaleText
     }
     
     func performAnimation() {
         showLocale = isNewLocale
         guard isNewLocale else { return }
-        StaticSpaceProperties.lastLocaleText = localeText
+        SystemKeyboardSpaceButtonContentState.lastLocaleText = localeText
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             withAnimation { showLocale = false }
         }
