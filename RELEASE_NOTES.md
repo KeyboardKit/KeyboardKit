@@ -41,9 +41,8 @@ This version also adds missing emojis.
 ### 💡 Behavior changes
 
 * `AutocompleteToolbar` is now generic.
-* `AutocompleteToolbar` has new initializers with different parameter names.
+* `EmojiKeyboard` is now generic.
 * `SystemKeyboard` is now generic.
-* `SystemKeyboard` has new initializers with different parameter names.
 
 ### 🗑 Deprecations
 
@@ -55,7 +54,7 @@ This version also adds missing emojis.
 
 ### 💥 Breaking changes
 
-* `SystemKeyboard` is now generic, which means that the static `standardButtonBuilder` is no longer available. Use the new, improved initializers instead.
+Although we aimed to implement the new generic views with no breaking changes, there may be some that slipped us by.
 
 
 
