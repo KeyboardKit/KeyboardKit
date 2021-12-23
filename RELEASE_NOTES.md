@@ -12,8 +12,26 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 5.4.1
 
+This release fixes issues with `EmojiKeyboard` and `EmojiCategoryKeyboard`.
+
+The internal `EmojiKeyboardItem` that created unique IDs caused the emojis to constantly re-render. It has been removed. 
+
+Note that this change now requires emojis to be unique within a certain keyboard.
+
+
+### ✨ New features
+
+More styles now have var properties instead of lets, which means that it's easy to create and change a mutable copy of a style.
+
+* `AutocompleteToolbarStyle` are now vars instead of lets.
+* `AutocompleteToolbarItemStyle` are now vars instead of lets.
+* `AutocompleteToolbarItemBackgroundStyle` are now vars instead of lets.
+* `AutocompleteToolbarSeparatorStyle` are now vars instead of lets.
+* `EmojiKeyboardStyle` are now vars instead of lets.
+
 ### 💡 Behavior changes
 
+* `EmojiKeyboard` no longer generates unique IDs for each emoji.
 * `EmojiCategoryKeyboard` now resets scroll offset when changing category.
 * `EmojiCategoryKeyboard` now persists category changes right away instead of when disappearing.
 

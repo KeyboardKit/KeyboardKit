@@ -277,7 +277,7 @@ public extension EmojiCategoryKeyboard where KeyboardView == EmojiKeyboard<Emoji
 }
     
 @available(iOS 14.0, *)
-struct EmojiCategoryMenu_Keyboard: PreviewProvider {
+struct EmojiCategoryMenu_Previews: PreviewProvider {
     
     static var previews: some View {
         EmojiCategoryKeyboard(

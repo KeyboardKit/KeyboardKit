@@ -34,12 +34,12 @@ public struct AutocompleteToolbarItemBackgroundStyle {
     /**
      The background color to use.
      */
-    public let color: Color
+    public var color: Color
     
     /**
      The corner radius to use.
      */
-    public let cornerRadius: CGFloat
+    public var cornerRadius: CGFloat
 }
 
 public extension AutocompleteToolbarItemBackgroundStyle {

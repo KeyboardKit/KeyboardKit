@@ -105,6 +105,7 @@ public struct EmojiCategoryKeyboardMenu: View {
 
 @available(iOS 14.0, *)
 struct EmojiCategoryKeyboardMenu_Previews: PreviewProvider {
+    
     static var previews: some View {
         EmojiCategoryKeyboardMenu(
             appearance: .preview,

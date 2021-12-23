@@ -37,17 +37,17 @@ public struct AutocompleteToolbarSeparatorStyle {
     /**
      The color of the separator.
      */
-    public let color: Color
+    public var color: Color
     
     /**
      The height of the separator, it any.
      */
-    public let height: CGFloat
+    public var height: CGFloat
     
     /**
      The width of the separator.
      */
-    public let width: CGFloat
+    public var width: CGFloat
 }
 
 public extension AutocompleteToolbarSeparatorStyle {

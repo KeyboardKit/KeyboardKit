@@ -36,17 +36,17 @@ public struct AutocompleteToolbarStyle {
     /**
      The background style to apply behind autocomplete items.
      */
-    public let autocompleteBackground: AutocompleteToolbarItemBackgroundStyle
+    public var autocompleteBackground: AutocompleteToolbarItemBackgroundStyle
     
     /**
      The item style to apply to the toolbar items.
      */
-    public let item: AutocompleteToolbarItemStyle
+    public var item: AutocompleteToolbarItemStyle
     
     /**
      The separator style to apply to the toolbar separators.
      */
-    public let separator: AutocompleteToolbarSeparatorStyle
+    public var separator: AutocompleteToolbarSeparatorStyle
 }
 
 public extension AutocompleteToolbarStyle {

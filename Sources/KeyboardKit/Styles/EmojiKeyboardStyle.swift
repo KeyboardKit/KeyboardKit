@@ -56,42 +56,42 @@ public struct EmojiKeyboardStyle {
     /**
      The item size to use.
      */
-    public let itemSize: CGFloat
+    public var itemSize: CGFloat
     
     /**
      The font to apply to the emojis.
      */
-    public let font: Font
+    public var font: Font
     
     /**
      The font to apply to the category label.
      */
-    public let categoryFont: Font
+    public var categoryFont: Font
     
     /**
      The font to apply to the system button.
      */
-    public let systemFont: Font
+    public var systemFont: Font
     
     /**
      The number of rows to use in the keyboard.
      */
-    public let rows: Int
+    public var rows: Int
     
     /**
      The horizontal spacing to use.
      */
-    public let horizontalSpacing: CGFloat
+    public var horizontalSpacing: CGFloat
     
     /**
      The vertical spacing to use.
      */
-    public let verticalSpacing: CGFloat
+    public var verticalSpacing: CGFloat
     
     /**
      The color to apply to the selected badge.
      */
-    public let selectedCategoryColor: Color
+    public var selectedCategoryColor: Color
     
     /**
      The total keyboard height.

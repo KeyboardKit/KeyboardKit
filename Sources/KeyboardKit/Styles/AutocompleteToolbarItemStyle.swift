@@ -39,22 +39,22 @@ public struct AutocompleteToolbarItemStyle {
     /**
      The font to use for the title text.
      */
-    public let titleFont: Font
+    public var titleFont: Font
     
     /**
      The color to use for the title text.
      */
-    public let titleColor: Color
+    public var titleColor: Color
     
     /**
      The font to use for the subtitle text.
      */
-    public let subtitleFont: Font
+    public var subtitleFont: Font
     
     /**
      The color to use for the subtitle text.
      */
-    public let subtitleColor: Color
+    public var subtitleColor: Color
 }
 
 public extension AutocompleteToolbarItemStyle {
