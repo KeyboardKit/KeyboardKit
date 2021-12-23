@@ -113,6 +113,7 @@ public struct EmojiCategoryKeyboard<KeyboardView: View, CategoryTitleView: View>
     }
     
     private func saveCurrentCategory() {
+        guard isInitialized else { return }
         defaults.set(selection.rawValue, forKey: defaultsKey)
     }
     
@@ -133,7 +134,7 @@ public struct EmojiCategoryKeyboard<KeyboardView: View, CategoryTitleView: View>
                 style: style)
         }
         .onAppear(perform: initialize)
-        .onDisappear(perform: saveCurrentCategory)
+        .onChange(of: selection) { _ in saveCurrentCategory() }
     }
 }
 
