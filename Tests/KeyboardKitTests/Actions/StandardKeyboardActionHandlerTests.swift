@@ -120,7 +120,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             }
             
             it("is preferred replacement for tap on a valid char action") {
-                let res = handler.replacementAction(for: .tap, on: .character("”"))
+                let res = handler.replacementAction(for: .tap, on: .character("‘"))
                 expect(res).toNot(beNil())
             }
         }
@@ -194,7 +194,7 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             }
             
             it("returns true for tap on a valid char action") {
-                let res = handler.tryHandleReplacementAction(before: .tap, on: .character("”"))
+                let res = handler.tryHandleReplacementAction(before: .tap, on: .character("‘"))
                 expect(res).to(beTrue())
             }
         }
