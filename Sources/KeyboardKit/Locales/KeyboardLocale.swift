@@ -101,10 +101,8 @@ public extension KeyboardLocale {
      */
     var isLeftToRight: Bool {
         switch self {
-        case .farsi:
-            return false
-        default:
-            return true
+        case .farsi: return false
+        default: return true
         }
     }
     
