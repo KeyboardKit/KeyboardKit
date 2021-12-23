@@ -46,9 +46,6 @@
 		A92115B325D5910D003510D9 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = A921159925D5910D003510D9 /* refresh.png */; };
 		A92115B425D5910D003510D9 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = A921159A25D5910D003510D9 /* image.png */; };
 		A92115D025D5965A003510D9 /* Image+Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92115CF25D5965A003510D9 /* Image+Demo.swift */; };
-		A921162325D5B753003510D9 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921162225D5B753003510D9 /* Fonts.swift */; };
-		A921164E25D5BA85003510D9 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A921164125D5BA85003510D9 /* SourceSansPro-Regular.ttf */; };
-		A921164F25D5BA85003510D9 /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A921164225D5BA85003510D9 /* SourceSansPro-Bold.ttf */; };
 		A921166225D5BC2A003510D9 /* EditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921166125D5BC2A003510D9 /* EditScreen.swift */; };
 		A921166725D5BC4F003510D9 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921166625D5BC4F003510D9 /* MultilineTextField.swift */; };
 		A9257D3527083B31000C7F3A /* RELEASE_NOTES.md in Resources */ = {isa = PBXBuildFile; fileRef = A9257D3227083B31000C7F3A /* RELEASE_NOTES.md */; };
@@ -125,11 +122,8 @@
 		A921159925D5910D003510D9 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
 		A921159A25D5910D003510D9 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		A92115CF25D5965A003510D9 /* Image+Demo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Demo.swift"; sourceTree = "<group>"; };
-		A921162225D5B753003510D9 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		A921162725D5B781003510D9 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		A921162C25D5B7FF003510D9 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		A921164125D5BA85003510D9 /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
-		A921164225D5BA85003510D9 /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
 		A921166125D5BC2A003510D9 /* EditScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScreen.swift; sourceTree = "<group>"; };
 		A921166625D5BC4F003510D9 /* MultilineTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
 		A9257D3227083B31000C7F3A /* RELEASE_NOTES.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = RELEASE_NOTES.md; path = ../RELEASE_NOTES.md; sourceTree = "<group>"; };
@@ -290,19 +284,9 @@
 			isa = PBXGroup;
 			children = (
 				A921152925D58A96003510D9 /* Assets.xcassets */,
-				A921160425D5B6D7003510D9 /* Fonts */,
 				A92115CF25D5965A003510D9 /* Image+Demo.swift */,
-				A921162225D5B753003510D9 /* Fonts.swift */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		A921160425D5B6D7003510D9 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				A921163E25D5BA85003510D9 /* Source_Sans_Pro */,
-			);
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 		A921162625D5B777003510D9 /* Project Files */ = {
@@ -317,15 +301,6 @@
 			name = "Project Files";
 			sourceTree = "<group>";
 		};
-		A921163E25D5BA85003510D9 /* Source_Sans_Pro */ = {
-			isa = PBXGroup;
-			children = (
-				A921164125D5BA85003510D9 /* SourceSansPro-Regular.ttf */,
-				A921164225D5BA85003510D9 /* SourceSansPro-Bold.ttf */,
-			);
-			path = Source_Sans_Pro;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -333,8 +308,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A921153125D58A96003510D9 /* Build configuration list for PBXNativeTarget "Demo" */;
 			buildPhases = (
-				A921162925D5B7CD003510D9 /* [SwiftLint] */,
-				A921162825D5B7B9003510D9 /* [SwiftGen] */,
 				A921151E25D58A94003510D9 /* Sources */,
 				A921151F25D58A94003510D9 /* Frameworks */,
 				A921152025D58A94003510D9 /* Resources */,
@@ -423,9 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A921152D25D58A96003510D9 /* Preview Assets.xcassets in Resources */,
-				A921164F25D5BA85003510D9 /* SourceSansPro-Bold.ttf in Resources */,
 				A921152A25D58A96003510D9 /* Assets.xcassets in Resources */,
-				A921164E25D5BA85003510D9 /* SourceSansPro-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,45 +438,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		A921162825D5B7B9003510D9 /* [SwiftGen] */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[SwiftGen]";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftgen >/dev/null; then\n  swiftgen\nfi\n";
-		};
-		A921162925D5B7CD003510D9 /* [SwiftLint] */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[SwiftLint]";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		A921151E25D58A94003510D9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -515,7 +447,6 @@
 				A99AE5C127183561004AD0A3 /* EnabledListItem.swift in Sources */,
 				A921152825D58A94003510D9 /* HomeScreen.swift in Sources */,
 				A921152625D58A94003510D9 /* DemoApp.swift in Sources */,
-				A921162325D5B753003510D9 /* Fonts.swift in Sources */,
 				A92115D025D5965A003510D9 /* Image+Demo.swift in Sources */,
 				A921166725D5BC4F003510D9 /* MultilineTextField.swift in Sources */,
 			);
