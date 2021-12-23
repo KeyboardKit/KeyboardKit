@@ -32,13 +32,13 @@ public struct EmojiKeyboard<ButtonView: View>: View {
         style: EmojiKeyboardStyle = .standardPhonePortrait,
         emojiButton: @escaping EmojiButtonBuilder<ButtonView>) {
         let gridItem = GridItem(.fixed(style.itemSize), spacing: style.verticalSpacing - 9)
-        self.emojis = emojis.map { EmojiKeyboardItem(emoji: $0) }
+        self.emojis = emojis
         self.style = style
         self.rows = Array(repeating: gridItem, count: style.rows)
         self.emojiButton = emojiButton
     }
     
-    private let emojis: [EmojiKeyboardItem]
+    private let emojis: [Emoji]
     private let rows: [GridItem]
     private let style: EmojiKeyboardStyle
     private let emojiButton: EmojiButtonBuilder<ButtonView>
@@ -48,20 +48,11 @@ public struct EmojiKeyboard<ButtonView: View>: View {
      create an emoji button.
      */
     public typealias EmojiButtonBuilder<EmojiButton: View> = (Emoji, EmojiKeyboardStyle) -> EmojiButton
-    
-    /**
-     This internal struct is used to make it possible to use
-     the same emoji at multiple places in the same keyboard.
-     */
-    struct EmojiKeyboardItem: Identifiable {
-        let id = UUID()
-        let emoji: Emoji
-    }
 
     public var body: some View {
         LazyHGrid(rows: rows, spacing: style.horizontalSpacing) {
             ForEach(emojis) {
-                emojiButton($0.emoji, style)
+                emojiButton($0, style)
             }
         }
         .padding(.horizontal)
