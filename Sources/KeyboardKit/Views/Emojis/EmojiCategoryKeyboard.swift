@@ -70,21 +70,18 @@ public struct EmojiCategoryKeyboard<KeyboardView: View, CategoryTitleView: View>
      This is a typealias for a function that can be used for
      providing a title for an emoji category.
      */
-    @available(iOS 14.0, *)
     public typealias CategoryTitleProvider = (EmojiCategory) -> String
     
     /**
      This is a typealias for a function that can be used for
      providing a title view for an emoji category.
      */
-    @available(iOS 14.0, *)
     public typealias CategoryTitleViewProvider = (EmojiCategory, String) -> CategoryTitleView
 
     /**
      This is a typealias for a function that can be used for
      providing a keyboard view for an emoji category.
      */
-    @available(iOS 14.0, *)
     public typealias CategoryKeyboardProvider = (EmojiCategory, EmojiKeyboardStyle) -> KeyboardView
     
     
@@ -127,7 +124,7 @@ public struct EmojiCategoryKeyboard<KeyboardView: View, CategoryTitleView: View>
             categoryTitleView(selection, categoryTitle(selection))
             ScrollView(.horizontal, showsIndicators: false) {
                 categoryKeyboard(selection, style)
-            }
+            }.id(selection)
             EmojiCategoryKeyboardMenu(
                 categories: categories,
                 appearance: appearance,
@@ -164,14 +161,15 @@ public extension EmojiCategoryKeyboard where KeyboardView == EmojiKeyboard<Emoji
         style: EmojiKeyboardStyle = .standardPhonePortrait,
         categoryTitle: @escaping CategoryTitleProvider = standardCategoryTitle,
         categoryTitleView: @escaping CategoryTitleViewProvider) {
-        self.categories = categories.filter { $0.emojis.count > 0 }
-        self.appearance = appearance
-        self.style = style
-        self.context = context
-        self.initialSelection = selection
-        self.categoryTitle = categoryTitle
-        self.categoryTitleView = categoryTitleView
-        self.categoryKeyboard = Self.standardCategoryKeyboard
+        self.init(
+            categories: categories,
+            appearance: appearance,
+            context: context,
+            selection: selection,
+            style: style,
+            categoryTitle: categoryTitle,
+            categoryTitleView: categoryTitleView,
+            categoryKeyboard: Self.standardCategoryKeyboard)
     }
     
     /**
@@ -211,14 +209,15 @@ public extension EmojiCategoryKeyboard where CategoryTitleView == EmojiCategoryT
         style: EmojiKeyboardStyle = .standardPhonePortrait,
         categoryTitle: @escaping CategoryTitleProvider = standardCategoryTitle,
         categoryKeyboard: @escaping CategoryKeyboardProvider) {
-        self.categories = categories.filter { $0.emojis.count > 0 }
-        self.appearance = appearance
-        self.style = style
-        self.context = context
-        self.initialSelection = selection
-        self.categoryTitle = categoryTitle
-        self.categoryTitleView = Self.standardCategoryTitleView
-        self.categoryKeyboard = categoryKeyboard
+        self.init(
+            categories: categories,
+            appearance: appearance,
+            context: context,
+            selection: selection,
+            style: style,
+            categoryTitle: categoryTitle,
+            categoryTitleView: Self.standardCategoryTitleView,
+            categoryKeyboard: categoryKeyboard)
     }
     
     /**
@@ -254,14 +253,15 @@ public extension EmojiCategoryKeyboard where KeyboardView == EmojiKeyboard<Emoji
         selection: EmojiCategory? = nil,
         style: EmojiKeyboardStyle = .standardPhonePortrait,
         categoryTitle: @escaping CategoryTitleProvider = standardCategoryTitle) {
-        self.categories = categories.filter { $0.emojis.count > 0 }
-        self.appearance = appearance
-        self.style = style
-        self.context = context
-        self.initialSelection = selection
-        self.categoryTitle = categoryTitle
-        self.categoryTitleView = Self.standardCategoryTitleView
-        self.categoryKeyboard = Self.standardCategoryKeyboard
+        self.init(
+            categories: categories,
+            appearance: appearance,
+            context: context,
+            selection: selection,
+            style: style,
+            categoryTitle: categoryTitle,
+            categoryTitleView: Self.standardCategoryTitleView,
+            categoryKeyboard: Self.standardCategoryKeyboard)
     }
     
     /**
