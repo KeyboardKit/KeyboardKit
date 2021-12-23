@@ -32,7 +32,9 @@ public struct EmojiKeyboardStyle {
        - rows: The number of rows to use in the keyboard, by default `5`.
        - horizontalSpacing: The horizontal spacing to use, by default `10`.
        - verticalSpacing: The vertical spacing to use, by default `6`.
-       - selectedCategoryColor: The color to apply to the selected badge, by default `.black.opacity(0.1)`.
+       - selectedCategoryColor: The color to apply to the selected badge, by default `.primary.opacity(0.1)`.
+       - abcText: The text to use for the ABC button, by default `ABC`.
+       - backspaceIcon: The icon to use for the backspace button, by default `.keyboardBackspace`.
      */
     public init(
         itemSize: CGFloat = 40,
@@ -42,7 +44,9 @@ public struct EmojiKeyboardStyle {
         rows: Int = 5,
         horizontalSpacing: CGFloat = 10,
         verticalSpacing: CGFloat = 6,
-        selectedCategoryColor: Color = Color.black.opacity(0.1)) {
+        selectedCategoryColor: Color = .primary.opacity(0.1),
+        abcText: String = "ABC",
+        backspaceIcon: Image = .keyboardBackspace) {
         self.itemSize = itemSize
         self.font = font
         self.categoryFont = categoryFont
@@ -51,17 +55,19 @@ public struct EmojiKeyboardStyle {
         self.horizontalSpacing = horizontalSpacing
         self.verticalSpacing = verticalSpacing
         self.selectedCategoryColor = selectedCategoryColor
+        self.abcText = abcText
+        self.backspaceIcon = backspaceIcon
     }
     
     /**
-     The item size to use.
+     The text to use for the ABC button.
      */
-    public var itemSize: CGFloat
+    public var abcText: String
     
     /**
-     The font to apply to the emojis.
+     The icon to use for the backspace button.
      */
-    public var font: Font
+    public var backspaceIcon: Image
     
     /**
      The font to apply to the category label.
@@ -69,14 +75,9 @@ public struct EmojiKeyboardStyle {
     public var categoryFont: Font
     
     /**
-     The font to apply to the system button.
+     The font to apply to the emojis.
      */
-    public var systemFont: Font
-    
-    /**
-     The number of rows to use in the keyboard.
-     */
-    public var rows: Int
+    public var font: Font
     
     /**
      The horizontal spacing to use.
@@ -84,9 +85,14 @@ public struct EmojiKeyboardStyle {
     public var horizontalSpacing: CGFloat
     
     /**
-     The vertical spacing to use.
+     The item size to use.
      */
-    public var verticalSpacing: CGFloat
+    public var itemSize: CGFloat
+    
+    /**
+     The number of rows to use in the keyboard.
+     */
+    public var rows: Int
     
     /**
      The color to apply to the selected badge.
@@ -94,9 +100,19 @@ public struct EmojiKeyboardStyle {
     public var selectedCategoryColor: Color
     
     /**
+     The font to apply to the system button.
+     */
+    public var systemFont: Font
+    
+    /**
      The total keyboard height.
      */
     public var totalHeight: CGFloat { CGFloat(rows) * itemSize }
+    
+    /**
+     The vertical spacing to use.
+     */
+    public var verticalSpacing: CGFloat
 }
 
 public extension EmojiKeyboardStyle {

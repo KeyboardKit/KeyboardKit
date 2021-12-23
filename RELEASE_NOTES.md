@@ -28,12 +28,14 @@ More styles now have var properties instead of lets, which means that it's easy 
 * `AutocompleteToolbarItemBackgroundStyle` are now vars instead of lets.
 * `AutocompleteToolbarSeparatorStyle` are now vars instead of lets.
 * `EmojiKeyboardStyle` are now vars instead of lets.
+* `EmojiKeyboardStyle` now has new `abcText` and `backspaceIcon` to make category views no longer require appearance.
 
 ### 💡 Behavior changes
-
-* `EmojiKeyboard` no longer generates unique IDs for each emoji.
+ 
 * `EmojiCategoryKeyboard` now resets scroll offset when changing category.
 * `EmojiCategoryKeyboard` now persists category changes right away instead of when disappearing.
+* `EmojiKeyboard` no longer generates unique IDs for each emoji, which improves performance.
+* `EmojiKeyboardStyle` now uses the primary color instead of black to make highlighting show in dark mode.
 
 
 
