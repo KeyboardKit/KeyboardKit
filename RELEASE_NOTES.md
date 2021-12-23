@@ -10,6 +10,15 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 5.4.1
+
+### 💡 Behavior changes
+
+* `EmojiCategoryKeyboard` now resets scroll offset when changing category.
+* `EmojiCategoryKeyboard` now persists category changes right away instead of when disappearing.
+
+
+
 ## 5.4
 
 Thanks to [@digitalheir](https://github.com/digitalheir), this release removes the need for using `AnyView` in many places.

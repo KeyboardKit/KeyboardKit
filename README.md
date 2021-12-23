@@ -18,7 +18,9 @@
 
 ## About KeyboardKit
 
-KeyboardKit helps you build custom keyboard extensions for `iOS` and `iPadOS` using `SwiftUI`. 
+KeyboardKit helps you build custom keyboard extensions for `iOS` and `iPadOS` using `SwiftUI`.
+
+KeyboardKit extends the native keyboard extension APIs to provide you with a lot more functionality. It also provides you with views and utils to help mimic native keyboards, with support for multiple locales, gestures, callouts etc.
 
 The end result can look something like this...or entirely different:
 
@@ -26,7 +28,7 @@ The end result can look something like this...or entirely different:
     <img src ="Resources/Demo.gif" width="300" />
 </p>
 
-KeyboardKit extends the native keyboard extension APIs to provide you with a lot more functionality, to simplify creating powerful keyboards. It also provides you with views to mimic the native system keyboards, with support for multiple locales, gestures, callouts etc. 
+KeyboardKit doesn't force your keyboard to use a specific look or behavior. You can customize the look of the native keyboard freely or use a completely different design.
 
 If you're new to iOS keyboard extensions, [this great guide][Guide] will help you get started. You can also have a look at the demo app for inspiration.
 
@@ -46,10 +48,11 @@ You can add the library to the main app, the keyboard extension and any other ta
 
 ## Getting started
 
-After adding KeyboardKit to your project, you can start using it in your application and keyboard extension.
+Once KeyboardKit is added to your project, you can start using it in your application and keyboard extension.
 
-* The main app target can use KeyboardKit to check if a keyboard is enabled, if full access is granted etc. which helps you build a more helpful application.
-* The keyboard extension can use KeyboardKit to get access to a lot more functionality, which helps you build more powerful keyboard extensions.
+* The main app can use KeyboardKit to check if a keyboard is enabled, if full access is granted etc. which helps you build a more helpful application.
+* The main app can also use the various utils and views to mimic keyboards within the app itself.
+* The keyboard extension can use KeyboardKit to build more powerful custom keyboard functionality.
 
 In your extension, let your `KeyboardViewController` inherit KeyboardKit's `KeyboardInputViewController` instead of `UIInputViewController`. This gives it access to a lot of additional functionality, observables like `keyboardContext`, services like `keyboardActionHandler`, `keyboardAppearance`, autocomplete etc.  
 
@@ -61,10 +64,9 @@ Have a look at the demo application and read more below to see how it all fits t
 
 ## Documentation
 
-The [KeyboardKit documentation][Documentation] contains curated and structured information that makes it easy to overview the various parts of the library, see how the various parts connect to each other etc.
+The KeyboardKit documentation makes it easy to overview the various parts of the library.
 
-Just download the documentation, extract the zip file and double-tap the `KeyboardKit.doccarchive` file to view the documentation directly in Xcode.
-
+Just build the documentation directly in Xcode, using the "Product/Build Documentation" command.
 
 
 ## 🇸🇪 Localization
@@ -262,13 +264,19 @@ Note that you may have to update the KeyboardKit dependencies for the demo to ru
 
 ## KeyboardKit Pro
 
-KeyboardKit Pro is a license-based extensions that unlocks pro features, such as additional locales and an autocomplete engine. Going pro is also a way to support this project. 
+KeyboardKit Pro is a license-based extensions that unlocks pro features, such as additional locales, autocomplete implementation, convenience views etc. It can save you a lot of time when developing more complex keyboards.
+
+KeyboardKit Pro is also a way to support this project, which is completely free and developed by a single person (with great help from the community). If you appreciate this project, consider going Pro.  
+
+Note that KeyboardKit Pro extends this library by using the same extension points as is available to everyone.
 
 [Go Pro here!][Pro]
 
 
 
 ## Contact
+
+KeyboardKit is developed by Daniel Saidi, with great help from the community.
 
 Feel free to reach out if you have questions or if you want to contribute in any way:
 
@@ -277,11 +285,10 @@ Feel free to reach out if you have questions or if you want to contribute in any
 * Web site: [getkeyboardkit.com][Website]
 
 
+
 ## Sponsors and Clients
 
-This project is proudly sponsored by the following individuals and companies:
-
-* [@booch](https://github.com/booch)
+This project is proudly sponsored by the following companies:
 
 <a href="https://www.oribi.se/en">
     <img src="Resources/logos/oribi.png" alt="Oribi Logo" title="Oribi" width=120 />
@@ -332,3 +339,4 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Styles]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Styles.md
 
 [Guide]: https://shyngys.com/ios-custom-keyboard-guide
+[Git-LFS]: https://docs.github.com/en/repositories/working-with-files/managing-large-files
