@@ -28,7 +28,7 @@ More styles now have var properties instead of lets, which means that it's easy 
 * `AutocompleteToolbarItemBackgroundStyle` are now vars instead of lets.
 * `AutocompleteToolbarSeparatorStyle` are now vars instead of lets.
 * `EmojiKeyboardStyle` are now vars instead of lets.
-* `EmojiKeyboardStyle` now has new `abcText` and `backspaceIcon` to make category views no longer require appearance.
+* `EmojiKeyboardStyle` now has new `abcText` and `backspaceIcon` which will be used in the next minor version to make category views no longer require appearance.
 
 ### 💡 Behavior changes
  
