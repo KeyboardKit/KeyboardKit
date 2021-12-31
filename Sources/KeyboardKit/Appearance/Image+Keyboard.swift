@@ -27,7 +27,7 @@ public extension Image {
     static var keyboardImages: Image { Image(systemName: "photo") }
     static var keyboardLeft: Image { Image(systemName: "arrow.left") }
     static var keyboardNewline: Image { Image(systemName: "arrow.turn.down.left") }
-    static var keyboardNewlineRtl: Image { Image(systemName: "arrow.turn.down.left") }
+    static var keyboardNewlineRtl: Image { Image(systemName: "arrow.turn.down.right") }
     static var keyboardOption: Image { Image(systemName: "option") }
     static var keyboardRedo: Image { Image(systemName: "arrow.uturn.right") }
     static var keyboardRight: Image { Image(systemName: "arrow.right") }

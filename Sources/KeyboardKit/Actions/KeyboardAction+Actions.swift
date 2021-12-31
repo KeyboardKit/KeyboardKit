@@ -123,15 +123,15 @@ public extension KeyboardAction {
      content, e.g. inserting or deleting text.
      */
     var standardTextDocumentProxyInputAction: GestureAction? {
-        if self.isPrimaryAction { return { $0?.textDocumentProxy.insertText("\n") }}
+        if self.isPrimaryAction { return { $0?.textDocumentProxy.insertText(.newline) }}
         switch self {
         case .backspace: return { $0?.textDocumentProxy.deleteBackward(range: $0?.keyboardBehavior.backspaceRange ?? .char) }
         case .character(let char): return { $0?.textDocumentProxy.insertText(char) }
         case .emoji(let emoji): return { $0?.textDocumentProxy.insertText(emoji.char) }
-        case .newLine: return { $0?.textDocumentProxy.insertText("\n") }
-        case .return: return { $0?.textDocumentProxy.insertText("\n") }
-        case .space: return { $0?.textDocumentProxy.insertText(" ") }
-        case .tab: return { $0?.textDocumentProxy.insertText("\t") }
+        case .newLine: return { $0?.textDocumentProxy.insertText(.newline) }
+        case .return: return { $0?.textDocumentProxy.insertText(.newline) }
+        case .space: return { $0?.textDocumentProxy.insertText(.space) }
+        case .tab: return { $0?.textDocumentProxy.insertText(.tab) }
         default: return nil
         }
     }
