@@ -10,6 +10,17 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 5.5
+
+This release adds support for Farsi and RTL keyboards.
+
+### ✨ New features
+
+* `Image` has a new `.keyboardNewlineRtl` property.
+* `Image` has a new, context-specific `.keyboardNewline` function.
+
+
+
 ## 5.4.1
 
 This release fixes issues with `EmojiKeyboard` and `EmojiCategoryKeyboard`.

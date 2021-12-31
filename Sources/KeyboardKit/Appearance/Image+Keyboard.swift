@@ -26,6 +26,7 @@ public extension Image {
     static var keyboardImages: Image { Image(systemName: "photo") }
     static var keyboardLeft: Image { Image(systemName: "arrow.left") }
     static var keyboardNewline: Image { Image(systemName: "arrow.turn.down.left") }
+    static var keyboardNewlineRtl: Image { Image(systemName: "arrow.turn.down.left") }
     static var keyboardOption: Image { Image(systemName: "option") }
     static var keyboardRedo: Image { Image(systemName: "arrow.uturn.right") }
     static var keyboardRight: Image { Image(systemName: "arrow.right") }
@@ -35,6 +36,10 @@ public extension Image {
     static var keyboardShiftUppercased: Image { Image(systemName: "shift.fill") }
     static var keyboardTab: Image { Image(systemName: "arrow.right.to.line") }
     static var keyboardUndo: Image { Image(systemName: "arrow.uturn.left") }
+    
+    static func keyboardNewline(for context: KeyboardContext) -> Image {
+        context.locale.isLeftToRight ? .keyboardNewline : .keyboardNewlineRtl
+    }
 }
 
 private extension Image {
@@ -72,6 +77,7 @@ struct ImageButton_Previews: PreviewProvider {
         .keyboardImages,
         .keyboardLeft,
         .keyboardNewline,
+        .keyboardNewlineRtl,
         .keyboardOption,
         .keyboardRedo,
         .keyboardRight,

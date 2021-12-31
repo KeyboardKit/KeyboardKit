@@ -30,7 +30,7 @@ public extension KeyboardAction {
         case .newLine: return .keyboardNewline
         case .nextKeyboard: return .keyboardGlobe
         case .option: return .keyboardOption
-        case .primary(let type): return type.standardButtonImage
+        case .primary(let type): return type.standardButtonImage(for: context)
         case .settings: return .keyboardSettings
         case .shift(let currentState): return currentState.standardButtonImage
         case .systemImage(_, let imageName, _): return Image(systemName: imageName)
@@ -62,7 +62,7 @@ public extension KeyboardAction {
      */
     func standardButtonTextImageReplacement(for context: KeyboardContext) -> Image? {
         switch standardButtonText(for: context) {
-        case "↵": return .keyboardNewline
+        case "↵", "↳": return .keyboardNewline(for: context)
         default: return nil
         }
     }
@@ -70,9 +70,9 @@ public extension KeyboardAction {
 
 private extension KeyboardAction.PrimaryType {
     
-    var standardButtonImage: Image? {
+    func standardButtonImage(for context: KeyboardContext) -> Image? {
         switch self {
-        case .newLine: return .keyboardNewline
+        case .newLine: return .keyboardNewline(for: context)
         default: return nil
         }
     }
