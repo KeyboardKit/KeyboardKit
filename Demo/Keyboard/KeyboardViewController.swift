@@ -8,7 +8,7 @@
 
 import UIKit
 import KeyboardKit
-import KeyboardKitPro
+// import KeyboardKitPro
 import SwiftUI
 import Combine
 
@@ -60,7 +60,7 @@ class KeyboardViewController: KeyboardInputViewController {
         // Setup the demo to explicitly use English locale
         // 💡 This is already done and just here to show how
         // 💡 If you register Pro below, you get all locales
-        keyboardContext.locale = KeyboardLocale.english.locale
+        keyboardContext.locale = KeyboardLocale.farsi.locale
         
         // Setup the locales that the keyboard supports
         // 💡 This is already done and just here to show how
@@ -105,10 +105,12 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
         
+        primaryLanguage = "fa"
+        
         // Setup the extension to use the keyboardView below,
         // either without or with Pro enabled.
-        // setup(with: keyboardView)
-        try? setupPro(withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098", view: keyboardView)
+        setup(with: keyboardView)
+        // try? setupPro(withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098", view: keyboardView)
     }
     
     
