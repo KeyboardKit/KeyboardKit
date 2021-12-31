@@ -21,6 +21,7 @@ class Image_KeyboardTests: QuickSpec {
             
             it("are defined") {
                 expect(result(for: .keyboardBackspace)).to(equal(Image(systemName: "delete.left")))
+                expect(result(for: .keyboardBackspaceRtl)).to(equal(Image(systemName: "delete.right")))
                 expect(result(for: .keyboardCommand)).to(equal(Image(systemName: "command")))
                 expect(result(for: .keyboardControl)).to(equal(Image(systemName: "control")))
                 expect(result(for: .keyboardDictation)).to(equal(Image(systemName: "mic")))
@@ -31,6 +32,7 @@ class Image_KeyboardTests: QuickSpec {
                 expect(result(for: .keyboardDismiss)).to(equal(Image(systemName: "keyboard.chevron.compact.down")))
                 expect(result(for: .keyboardLeft)).to(equal(Image(systemName: "arrow.left")))
                 expect(result(for: .keyboardNewline)).to(equal(Image(systemName: "arrow.turn.down.left")))
+                expect(result(for: .keyboardNewlineRtl)).to(equal(Image(systemName: "arrow.turn.down.right")))
                 expect(result(for: .keyboardOption)).to(equal(Image(systemName: "option")))
                 expect(result(for: .keyboardRedo)).to(equal(Image(systemName: "arrow.uturn.right")))
                 expect(result(for: .keyboardRight)).to(equal(Image(systemName: "arrow.right")))

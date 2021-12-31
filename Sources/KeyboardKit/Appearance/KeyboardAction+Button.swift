@@ -18,7 +18,7 @@ public extension KeyboardAction {
         if let image = standardButtonTextImageReplacement(for: context) { return image }
         
         switch self {
-        case .backspace: return .keyboardBackspace
+        case .backspace: return .keyboardBackspace(for: context.locale)
         case .command: return .keyboardCommand
         case .control: return .keyboardControl
         case .dictation: return .keyboardDictation
@@ -27,10 +27,10 @@ public extension KeyboardAction {
         case .keyboardType(let type): return type.standardButtonImage
         case .moveCursorBackward: return .keyboardLeft
         case .moveCursorForward: return .keyboardRight
-        case .newLine: return .keyboardNewline
+        case .newLine: return .keyboardNewline(for: context.locale)
         case .nextKeyboard: return .keyboardGlobe
         case .option: return .keyboardOption
-        case .primary(let type): return type.standardButtonImage(for: context)
+        case .primary(let type): return type.standardButtonImage(for: context.locale)
         case .settings: return .keyboardSettings
         case .shift(let currentState): return currentState.standardButtonImage
         case .systemImage(_, let imageName, _): return Image(systemName: imageName)
@@ -49,7 +49,7 @@ public extension KeyboardAction {
         case .emojiCategory(let cat): return cat.fallbackDisplayEmoji.char
         case .keyboardType(let type): return type.standardButtonText(for: context)
         case .nextLocale: return context.locale.languageCode?.uppercased()
-        case .primary(let type): return type.standardButtonText(for: context)
+        case .primary(let type): return type.standardButtonText(for: context.locale)
         case .return: return KKL10n.return.text(for: context)
         case .space: return KKL10n.space.text(for: context)
         default: return nil
@@ -62,7 +62,7 @@ public extension KeyboardAction {
      */
     func standardButtonTextImageReplacement(for context: KeyboardContext) -> Image? {
         switch standardButtonText(for: context) {
-        case "↵", "↳": return .keyboardNewline(for: context)
+        case "↵", "↳": return .keyboardNewline(for: context.locale)
         default: return nil
         }
     }
@@ -70,20 +70,20 @@ public extension KeyboardAction {
 
 private extension KeyboardAction.PrimaryType {
     
-    func standardButtonImage(for context: KeyboardContext) -> Image? {
+    func standardButtonImage(for locale: Locale) -> Image? {
         switch self {
-        case .newLine: return .keyboardNewline(for: context)
+        case .newLine: return .keyboardNewline(for: locale)
         default: return nil
         }
     }
     
-    func standardButtonText(for context: KeyboardContext) -> String? {
+    func standardButtonText(for locale: Locale) -> String? {
         switch self {
-        case .done: return KKL10n.done.text(for: context)
-        case .go: return KKL10n.go.text(for: context)
+        case .done: return KKL10n.done.text(for: locale)
+        case .go: return KKL10n.go.text(for: locale)
         case .newLine: return nil
-        case .ok: return KKL10n.ok.text(for: context)
-        case .search: return KKL10n.search.text(for: context)
+        case .ok: return KKL10n.ok.text(for: locale)
+        case .search: return KKL10n.search.text(for: locale)
         }
     }
 }

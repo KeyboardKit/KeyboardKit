@@ -16,6 +16,7 @@ public extension Image {
     
     static var keyboard: Image { Image(systemName: "keyboard") }
     static var keyboardBackspace: Image { Image(systemName: "delete.left") }
+    static var keyboardBackspaceRtl: Image { Image(systemName: "delete.right") }
     static var keyboardCommand: Image { Image(systemName: "command") }
     static var keyboardControl: Image { Image(systemName: "control") }
     static var keyboardDictation: Image { Image(systemName: "mic") }
@@ -37,8 +38,12 @@ public extension Image {
     static var keyboardTab: Image { Image(systemName: "arrow.right.to.line") }
     static var keyboardUndo: Image { Image(systemName: "arrow.uturn.left") }
     
-    static func keyboardNewline(for context: KeyboardContext) -> Image {
-        context.locale.isLeftToRight ? .keyboardNewline : .keyboardNewlineRtl
+    static func keyboardBackspace(for locale: Locale) -> Image {
+        locale.isLeftToRight ? .keyboardBackspace : .keyboardBackspaceRtl
+    }
+    
+    static func keyboardNewline(for locale: Locale) -> Image {
+        locale.isLeftToRight ? .keyboardNewline : .keyboardNewlineRtl
     }
 }
 
