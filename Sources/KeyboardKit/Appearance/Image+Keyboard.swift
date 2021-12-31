@@ -37,6 +37,7 @@ public extension Image {
     static var keyboardShiftUppercased: Image { Image(systemName: "shift.fill") }
     static var keyboardTab: Image { Image(systemName: "arrow.right.to.line") }
     static var keyboardUndo: Image { Image(systemName: "arrow.uturn.left") }
+    static var keyboardZeroWidthSpace: Image { Image(systemName: "circle.dotted") }
     
     static func keyboardBackspace(for locale: Locale) -> Image {
         locale.isLeftToRight ? .keyboardBackspace : .keyboardBackspaceRtl
@@ -91,7 +92,8 @@ struct ImageButton_Previews: PreviewProvider {
         .keyboardShiftLowercased,
         .keyboardShiftUppercased,
         .keyboardTab,
-        .keyboardUndo]
+        .keyboardUndo,
+        .keyboardZeroWidthSpace]
     
     static func listItem(for image: Image) -> some View {
         image

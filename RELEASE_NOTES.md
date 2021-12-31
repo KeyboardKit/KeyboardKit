@@ -18,6 +18,7 @@ This release adds support for Farsi and RTL keyboards.
 
 * `Image` has a new `.keyboardBackspaceRtl` property and `.keyboardBackspace` function.
 * `Image` has a new `.keyboardNewlineRtl` property and `.keyboardBackspace` function.
+* `Image` has a new `.keyboardZeroWidthSpace` property with a temp arrow icon.
 * `String` has new, static `carriageReturn`, `newline`, `space`, `tab` and `zeroWidthSpace` properties.
 
 
