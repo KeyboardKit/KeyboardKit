@@ -64,7 +64,7 @@ Have a look at the demo application and read more below to see how it all fits t
 
 ## Documentation
 
-The KeyboardKit documentation makes it easy to overview the various parts of the library.
+The KeyboardKit documentation contains extensive information, code examples etc. and makes it easy to overview the various parts of the library.
 
 Just build the documentation directly in Xcode, using the "Product/Build Documentation" command.
 
@@ -227,6 +227,13 @@ KeyboardKit defines a bunch of extensions to `UITextDocumentProxy` and ways to r
 [Read more here][Proxy]
 
 
+### ⬅️ RTL
+
+KeyboardKit supports RTL (right-to-left) locales, but your extension need to be configured to support it.
+
+[Read more here][RTL]
+
+
 ### 🎨 Styles
 
 KeyboardKit defines a bunch of styles that simplify customizing the look of various keyboard components and buttons.
@@ -336,6 +343,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Localization]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Localization.md
 [Previews]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Previews.md
 [Proxy]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Proxy.md
+[RTL]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/RTL.md
 [Styles]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Styles.md
 
 [Guide]: https://shyngys.com/ios-custom-keyboard-guide
