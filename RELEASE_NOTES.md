@@ -21,6 +21,11 @@ This release adds support for Farsi and RTL keyboards.
 * `Image` has a new `.keyboardZeroWidthSpace` property with a temp arrow icon.
 * `String` has new, static `carriageReturn`, `newline`, `space`, `tab` and `zeroWidthSpace` properties.
 
+### 💡 Behavior changes
+  
+* `KeuyboardAction+Button` now resolves the new `zeroWidthSpace` character to the new `zeroWidthSpace` icon.
+* `KeuyboardAction+Button` now resolves RTL variants of backspace and newline.
+
 
 
 ## 5.4.1

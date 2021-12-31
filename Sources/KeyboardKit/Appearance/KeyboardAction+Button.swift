@@ -63,6 +63,7 @@ public extension KeyboardAction {
     func standardButtonTextImageReplacement(for context: KeyboardContext) -> Image? {
         switch standardButtonText(for: context) {
         case "↵", "↳": return .keyboardNewline(for: context.locale)
+        case String.zeroWidthSpace: return .keyboardZeroWidthSpace
         default: return nil
         }
     }
