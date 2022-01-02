@@ -23,11 +23,17 @@ struct DemoAutocompleteToolbar: View {
         AutocompleteToolbar(
             suggestions: context.suggestions,
             locale: keyboardContext.locale)
-            .frame(height: 50)
+            .frame(height: UIDevice.current.isPad ? 70 : 50)
     }
 }
 
+private extension UIDevice {
+    
+    var isPad: Bool { userInterfaceIdiom == .pad }
+}
+
 struct DemoAutocompleteToolbar_Previews: PreviewProvider {
+    
     static var previews: some View {
         DemoAutocompleteToolbar()
     }

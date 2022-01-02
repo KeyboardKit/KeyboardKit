@@ -27,9 +27,9 @@
 			<key>IsASCIICapable</key>
 			<false/>
 			<key>PrefersRightToLeft</key>
-			<true/>
+			<false/>
 			<key>PrimaryLanguage</key>
-			<string>fa</string>
+			<string>en-US</string>
 			<key>RequestsOpenAccess</key>
 			<true/>
 		</dict>
