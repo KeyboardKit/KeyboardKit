@@ -44,7 +44,7 @@ public extension KeyboardAction {
      */
     func standardButtonText(for context: KeyboardContext) -> String? {
         switch self {
-        case .character(let char): return char
+        case .character(let char): return standardButtonText(for: char)
         case .emoji(let emoji): return emoji.char
         case .emojiCategory(let cat): return cat.fallbackDisplayEmoji.char
         case .keyboardType(let type): return type.standardButtonText(for: context)
@@ -63,8 +63,17 @@ public extension KeyboardAction {
     func standardButtonTextImageReplacement(for context: KeyboardContext) -> Image? {
         switch standardButtonText(for: context) {
         case "↵", "↳": return .keyboardNewline(for: context.locale)
-        case String.zeroWidthSpace: return .keyboardZeroWidthSpace
         default: return nil
+        }
+    }
+}
+
+private extension KeyboardAction {
+    
+    func standardButtonText(for char: String) -> String {
+        switch char {
+        case .zeroWidthSpace: return "⁞"
+        default: return char
         }
     }
 }
