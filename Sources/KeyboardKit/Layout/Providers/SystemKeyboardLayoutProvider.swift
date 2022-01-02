@@ -104,6 +104,32 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     }
     
     /**
+     Whether or not the alphabetic input set has an 11-11-10
+     layout, which is used by `Persian` iPhone keyboards.
+     
+     I'm not at all happy with this name. If you know how to
+     improve this, please create an issue or a PR.
+     */
+    public var hasElevenElevenTenAlphabeticInput: Bool {
+        let rows = inputSetProvider.alphabeticInputSet.rows
+        let counts = (rows.map { $0.count }).prefix(3)
+        return counts == [11, 11, 10]
+    }
+    
+    /**
+     Whether or not the alphabetic input set has an 11-11-11
+     layout, which is used by `Persian` iPad keyboards.
+     
+     I'm not at all happy with this name. If you know how to
+     improve this, please create an issue or a PR.
+     */
+    public var hasElevenElevenElevenAlphabeticInput: Bool {
+        let rows = inputSetProvider.alphabeticInputSet.rows
+        let counts = (rows.map { $0.count }).prefix(3)
+        return counts == [11, 11, 11]
+    }
+    
+    /**
      Get a keyboard layout for a certain keyboard `context`.
      */
     open func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {

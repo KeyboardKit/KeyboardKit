@@ -91,6 +91,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         result.append(.nextKeyboard)
         if needsDictation, let action = dictationReplacement { result.append(action) }
         result.append(.space)
+        if isPersianAlphabetic(context) { result.append(.character(.zeroWidthSpace)) }
         if let action = keyboardSwitchActionForBottomRow(for: context) { result.append(action) }
         result.append(.dismissKeyboard)
         return result
@@ -101,6 +102,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func lowerLeadingActions(for context: KeyboardContext) -> KeyboardActions {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
+        if isPersianAlphabetic(context) { return [] }
         return [action]
     }
     
@@ -109,12 +111,21 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func lowerTrailingActions(for context: KeyboardContext) -> KeyboardActions {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
+        if isPersianAlphabetic(context) { return [] }
         return [action]
     }
 }
 
 private extension iPadKeyboardLayoutProvider {
     
+    func isPersianAlphabetic(_ context: KeyboardContext) -> Bool {
+        context.keyboardType.isAlphabetic && hasElevenElevenElevenAlphabeticInput
+    }
+    
+    func isRussianAlphabetic(_ context: KeyboardContext) -> Bool {
+        context.keyboardType.isAlphabetic && hasElevenElevenNineAlphabeticInput
+    }
+
     func isBottomRowLeadingSwitcher(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
         switch action {
         case .shift, .keyboardType: return row == 3 && index == 0

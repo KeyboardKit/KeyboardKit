@@ -79,6 +79,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         if !needsInputSwitch { result.append(.keyboardType(.emojis)) }
         if portrait, needsDictation, let action = dictationReplacement { result.append(action) }
         result.append(.space)
+        if isPersianAlphabetic(context) { result.append(.character(.zeroWidthSpace)) }
         result.append(keyboardReturnAction(for: context))
         if !portrait, needsDictation, let action = dictationReplacement { result.append(action) }
         return result
@@ -89,6 +90,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func lowerLeadingActions(for context: KeyboardContext) -> KeyboardActions {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
+        if isPersianAlphabetic(context) { return [] }
         if isRussianAlphabetic(context) { return [action] }
         return [action, .none]
     }
@@ -97,12 +99,17 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      Additional trailing actions to apply to the bottom row.
      */
     open func lowerTrailingActions(for context: KeyboardContext) -> KeyboardActions {
+        if isPersianAlphabetic(context) { return [.backspace] }
         if isRussianAlphabetic(context) { return [.backspace] }
         return [.none, .backspace]
     }
 }
 
 private extension iPhoneKeyboardLayoutProvider {
+    
+    func isPersianAlphabetic(_ context: KeyboardContext) -> Bool {
+        context.keyboardType.isAlphabetic && hasElevenElevenTenAlphabeticInput
+    }
     
     func isRussianAlphabetic(_ context: KeyboardContext) -> Bool {
         context.keyboardType.isAlphabetic && hasElevenElevenNineAlphabeticInput
@@ -138,6 +145,7 @@ private extension iPhoneKeyboardLayoutProvider {
      of the third row's input buttons.
      */
     func thirdRowSystemButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
+        if isPersianAlphabetic(context) { return .input }
         if isRussianAlphabetic(context) { return .input }
         return .percentage(0.12)
     }
