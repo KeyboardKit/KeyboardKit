@@ -12,7 +12,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 5.5
 
-This release adds support for Persian (Farsi) and RTL keyboards.
+Thanks to [@ardavank](https://github.com/ardavank), this release adds support for Persian (Farsi) and RTL keyboards.
 
 ### 🌐 New locale
 
@@ -29,7 +29,7 @@ This release adds support for Persian (Farsi) and RTL keyboards.
   
 * `KeyboardAction+Button` now resolves RTL variants of backspace and newline.
 * `KeyboardAction+Button` now resolves the new `zeroWidthSpace` character to the new `zeroWidthSpace` icon.
-* `KeyboardLocale` resolves `isLeftToRight` and `isRightToLeft` through its derived locale.
+* `KeyboardLocale` resolves `isLeftToRight` and `isRightToLeft` through its derived x§locale.
 
 
 
