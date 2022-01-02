@@ -38,5 +38,7 @@
 		<key>NSExtensionPrincipalClass</key>
 		<string>$(PRODUCT_MODULE_NAME).KeyboardViewController</string>
 	</dict>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2022 Daniel Saidi. All rights reserved.</string>
 </dict>
 </plist>
