@@ -26,4 +26,4 @@ You can however support multiple locales in the same extension, as long as they 
 To enable RTL for your keyboard extension, adjust the keyboard extension's Info.plist as such:
 
 * Set `PrefersRightToLeft` to `1`.
-* Set `PrimaryLanguage` to the language code of your primary RTL language, e.g. `fa` for Farsi.
+* Set `PrimaryLanguage` to the language code of your primary RTL language, e.g. `fa` for Perian (Farsi).

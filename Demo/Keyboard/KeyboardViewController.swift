@@ -60,7 +60,7 @@ class KeyboardViewController: KeyboardInputViewController {
         // Setup the demo to explicitly use English locale
         // 💡 This is already done and just here to show how
         // 💡 If you register Pro below, you get all locales
-        keyboardContext.locale = KeyboardLocale.farsi.locale
+        keyboardContext.locale = KeyboardLocale.persian.locale
         
         // Setup the locales that the keyboard supports
         // 💡 This is already done and just here to show how
