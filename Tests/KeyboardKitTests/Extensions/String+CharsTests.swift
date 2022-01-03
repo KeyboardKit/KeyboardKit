@@ -10,7 +10,7 @@ import Quick
 import Nimble
 import KeyboardKit
 
-class String_UppercasedTests: QuickSpec {
+class String_CharsTests: QuickSpec {
     
     override func spec() {
         

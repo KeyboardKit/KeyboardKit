@@ -1,0 +1,20 @@
+/*
+ Localizable.strings
+ KeyboardKit
+ 
+ Created by Daniel Saidi on 2021-05-30.
+ Copyright © 2021 Daniel Saidi. All rights reserved.
+ */
+
+"locale" = "ckb";
+
+"done" = "تەواو";
+"go" = "بڕؤ";
+"ok" = "OK";
+"return" = "↳";
+"search" = "گەڕان";
+"space" = "بۆشایی";
+
+"keyboardTypeAlphabetic" = "ا‌ب‌ج";
+"keyboardTypeNumeric" = "١٢٣";
+"keyboardTypeSymbolic" = "#+=";

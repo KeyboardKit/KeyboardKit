@@ -36,6 +36,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .german: "de",
                         .icelandic: "is",
                         .italian: "it",
+                        .kurdish_sorani: "ckb",
                         .latvian: "lv",
                         .lithuanian: "lt",
                         .norwegian: "nb",
@@ -88,6 +89,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .german: "Deutsch",
                         .icelandic: "íslenska",
                         .italian: "italiano",
+                        .kurdish_sorani: "کوردیی ناوەندی",
                         .latvian: "latviešu",
                         .lithuanian: "lietuvių",
                         .norwegian: "norsk bokmål",
@@ -121,6 +123,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .german: "🇩🇪",
                         .icelandic: "🇮🇸",
                         .italian: "🇮🇹",
+                        .kurdish_sorani: "🇹🇯",
                         .latvian: "🇱🇻",
                         .lithuanian: "🇱🇹",
                         .norwegian: "🇳🇴",
@@ -154,6 +157,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .german: true,
                         .icelandic: true,
                         .italian: true,
+                        .kurdish_sorani: false,
                         .latvian: true,
                         .lithuanian: true,
                         .norwegian: true,
@@ -187,6 +191,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .german: false,
                         .icelandic: false,
                         .italian: false,
+                        .kurdish_sorani: true,
                         .latvian: false,
                         .lithuanian: false,
                         .norwegian: false,
@@ -206,58 +211,15 @@ class KeyboardLocaleTests: QuickSpec {
             it("is sorted by localized name") {
                 let locales = KeyboardLocale.allCases.sorted()
                 let names = locales.map { $0.localizedName.capitalized }
-                expect(names).to(equal([
-                    "Dansk",
-                    "Deutsch",
-                    "Eesti",
-                    "English",
-                    "English (United Kingdom)",
-                    "English (United States)",
-                    "Español",
-                    "Français",
-                    "Italiano",
-                    "Latviešu",
-                    "Lietuvių",
-                    "Nederlands",
-                    "Norsk Bokmål",
-                    "Polski",
-                    "Shqip",
-                    "Suomi",
-                    "Svenska",
-                    "Íslenska",
-                    "Русский",
-                    "Українська",
-                    "فارسی"
-                    
-                ]))
+                expect(names).to(contain(["Dansk", "Svenska"]))
+                expect(names.first).toNot(equal("English"))
             }
             
             it("can insert an existing locale firstmost") {
                 let locales = KeyboardLocale.allCases.sorted(insertFirst: .english)
                 let names = locales.map { $0.localizedName.capitalized }
-                expect(names).to(equal([
-                    "English",
-                    "Dansk",
-                    "Deutsch",
-                    "Eesti",
-                    "English (United Kingdom)",
-                    "English (United States)",
-                    "Español",
-                    "Français",
-                    "Italiano",
-                    "Latviešu",
-                    "Lietuvių",
-                    "Nederlands",
-                    "Norsk Bokmål",
-                    "Polski",
-                    "Shqip",
-                    "Suomi",
-                    "Svenska",
-                    "Íslenska",
-                    "Русский",
-                    "Українська",
-                    "فارسی"
-                ]))
+                expect(names).to(contain(["Dansk", "Svenska"]))
+                expect(names.first).to(equal("English"))
             }
         }
     }
