@@ -109,18 +109,6 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
 
 private extension iPhoneKeyboardLayoutProvider {
     
-    func isArabicAlphabetic(_ context: KeyboardContext) -> Bool {
-        context.keyboardType.isAlphabetic && context.locale.identifier == "ar"
-    }
-    
-    func isPersianAlphabetic(_ context: KeyboardContext) -> Bool {
-        context.keyboardType.isAlphabetic && context.locale.identifier == "fa"
-    }
-    
-    func isRussianAlphabetic(_ context: KeyboardContext) -> Bool {
-        context.keyboardType.isAlphabetic && context.locale.identifier == "ru"
-    }
-    
     func isPortrait(_ context: KeyboardContext) -> Bool {
         context.screenOrientation.isPortrait
     }

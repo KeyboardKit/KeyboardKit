@@ -130,6 +130,34 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     }
     
     /**
+     Whether or not to use an Arabic alphabetic keyboard.
+     */
+    public func isArabic(_ context: KeyboardContext) -> Bool {
+        context.locale.identifier == "ar"
+    }
+    
+    /**
+     Whether or not to use an Arabic alphabetic keyboard.
+     */
+    public func isArabicAlphabetic(_ context: KeyboardContext) -> Bool {
+        context.keyboardType.isAlphabetic && isArabic(context)
+    }
+    
+    /**
+     Whether or not to use an Persian alphabetic keyboard.
+     */
+    public func isPersianAlphabetic(_ context: KeyboardContext) -> Bool {
+        context.keyboardType.isAlphabetic && context.locale.identifier == "fa"
+    }
+    
+    /**
+     Whether or not to use an Russian alphabetic keyboard.
+     */
+    public func isRussianAlphabetic(_ context: KeyboardContext) -> Bool {
+        context.keyboardType.isAlphabetic && context.locale.identifier == "ru"
+    }
+    
+    /**
      Get a keyboard layout for a certain keyboard `context`.
      */
     open func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {

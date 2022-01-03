@@ -39,8 +39,8 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         guard actions.count > 2 else { return actions }
         let last = actions.suffix(3)
         actions.removeLast(3)
-        actions.append(last[0] + [.backspace])
-        actions.append([.none] + last[1] + [keyboardReturnAction(for: context)])
+        actions.append(topLeadingActions(for: context) + last[0] + topTrailingActions(for: context))
+        actions.append(middleLeadingActions(for: context) + last[1] + middleTrailingActions(for: context))
         actions.append(lowerLeadingActions(for: context) + last[2] + lowerTrailingActions(for: context))
         actions.append(bottomActions(for: context))
         return actions
@@ -52,6 +52,8 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open override func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItemWidth {
         let elevenEleven = hasElevenElevenAlphabeticInput
+        if action == .backspace && isArabic(context) { return .input }
+        if isThirdRowLeadingSwitcher(action, row: row, index: index) && isArabic(context) { return .input }
         if isSecondRowSpacer(action, row: row, index: index) { return .inputPercentage(elevenEleven ? 0.3 : 0.4) }
         if isThirdRowLeadingSwitcher(action, row: row, index: index) { return elevenEleven ? .inputPercentage(1.1) : .input }
         if isThirdRowTrailingSwitcher(action, row: row, index: index) { return .available }
@@ -98,34 +100,57 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     }
     
     /**
-     Additional leading actions to apply to the bottom row.
+     Additional leading actions to apply to the lower row.
      */
     open func lowerLeadingActions(for context: KeyboardContext) -> KeyboardActions {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
+        if isArabicAlphabetic(context) { return [] }
         if isPersianAlphabetic(context) { return [] }
         return [action]
     }
     
     /**
-     Additional trailing actions to apply to the bottom row.
+     Additional trailing actions to apply to the lower row.
      */
     open func lowerTrailingActions(for context: KeyboardContext) -> KeyboardActions {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
+        if isArabicAlphabetic(context) { return [keyboardReturnAction(for: context)] }
         if isPersianAlphabetic(context) { return [] }
         return [action]
+    }
+    
+    /**
+     Additional leading actions to apply to the middle row.
+     */
+    open func middleLeadingActions(for context: KeyboardContext) -> KeyboardActions {
+        return [.none]
+    }
+    
+    /**
+     Additional trailing actions to apply to the middle row.
+     */
+    open func middleTrailingActions(for context: KeyboardContext) -> KeyboardActions {
+        if isArabic(context) { return [] }
+        return [keyboardReturnAction(for: context)]
+    }
+    
+    /**
+     Additional leading actions to apply to the top row.
+     */
+    open func topLeadingActions(for context: KeyboardContext) -> KeyboardActions {
+        return []
+    }
+    
+    /**
+     Additional trailing actions to apply to the top row.
+     */
+    open func topTrailingActions(for context: KeyboardContext) -> KeyboardActions {
+        return [.backspace]
     }
 }
 
 private extension iPadKeyboardLayoutProvider {
     
-    func isPersianAlphabetic(_ context: KeyboardContext) -> Bool {
-        context.keyboardType.isAlphabetic && hasElevenElevenElevenAlphabeticInput
-    }
-    
-    func isRussianAlphabetic(_ context: KeyboardContext) -> Bool {
-        context.keyboardType.isAlphabetic && hasElevenElevenNineAlphabeticInput
-    }
-
     func isBottomRowLeadingSwitcher(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
         switch action {
         case .shift, .keyboardType: return row == 3 && index == 0
