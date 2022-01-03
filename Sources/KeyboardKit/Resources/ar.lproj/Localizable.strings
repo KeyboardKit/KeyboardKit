@@ -6,14 +6,14 @@
  Copyright © 2022 Daniel Saidi. All rights reserved.
  */
 
-"locale" = "ckb";
+"locale" = "ar";
 
-"done" = "تەواو";
-"go" = "بڕؤ";
+"done" = "تم";
+"go" = "اذهـب";
 "ok" = "OK";
 "return" = "↳";
-"search" = "گەڕان";
-"space" = "بۆشایی";
+"search" = "بحث";
+"space" = "مسافة";
 
 "keyboardTypeAlphabetic" = "ا‌ب‌ج";
 "keyboardTypeNumeric" = "١٢٣";
