@@ -35,6 +35,10 @@ Thanks to [@ardavank](https://github.com/ardavank) and [@rawandahmad698](https:/
 * `KeyboardAction+Button` now resolves the new `zeroWidthSpace` character to the new `zeroWidthSpace` icon.
 * `KeyboardLocale` resolves `isLeftToRight` and `isRightToLeft` through its derived x§locale.
 
+### 🗑 Deprecations
+
+* `DeviceSpecificInputSetProvider` has a bunch of functions that just resolve to `KeyboardInputRow`. These are now marked as deprecated to make the type cleaner.
+
 
 
 ## 5.4.1

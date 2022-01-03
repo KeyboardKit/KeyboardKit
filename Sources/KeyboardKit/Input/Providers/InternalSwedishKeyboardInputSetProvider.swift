@@ -24,8 +24,8 @@ class InternalSwedishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, L
     
     var alphabeticInputSet: AlphabeticKeyboardInputSet {
         AlphabeticKeyboardInputSet(rows: [
-            row("qwertyuiopå"),
-            row("asdfghjklöä"),
+            KeyboardInputRow("qwertyuiopå"),
+            KeyboardInputRow("asdfghjklöä"),
             row(phone: "zxcvbnm", pad: "zxcvbnm,.")
         ])
     }
@@ -35,7 +35,7 @@ class InternalSwedishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, L
         let padCenter: [String] = "@#".chars + ["kr"] + "&*()’”+•".chars
         return NumericKeyboardInputSet(rows: [
             row(phone: "1234567890", pad: "1234567890`"),
-            row(device.isPhone ? phoneCenter : padCenter),
+            KeyboardInputRow(device.isPhone ? phoneCenter : padCenter),
             row(phone: ".,?!’", pad: "%_-=/;:,.")
         ])
     }

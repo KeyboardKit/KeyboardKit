@@ -16,6 +16,14 @@ public typealias KeyboardInputRow = [KeyboardInput]
 public extension KeyboardInputRow {
     
     /**
+     Create an input row from a string, where each character
+     is mapped to a `KeyboardInput`.
+     */
+    init(_ chars: String) {
+        self = chars.chars.map { KeyboardInput($0) }
+    }
+    
+    /**
      Create an input row from a string array, that is mapped
      to a `KeyboardInput` array.
      */
