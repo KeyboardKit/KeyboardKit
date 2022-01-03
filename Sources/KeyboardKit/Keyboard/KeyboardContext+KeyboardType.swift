@@ -30,6 +30,7 @@ private extension KeyboardContext {
         guard keyboardType.isAlphabetic else { return nil }
         let uppercased = KeyboardType.alphabetic(.uppercased)
         let lowercased = KeyboardType.alphabetic(.lowercased)
+        if locale.isRightToLeft { return lowercased }
         switch autoType {
         case .allCharacters: return uppercased
         case .sentences: return textDocumentProxy.isCursorAtNewSentence ? uppercased : lowercased

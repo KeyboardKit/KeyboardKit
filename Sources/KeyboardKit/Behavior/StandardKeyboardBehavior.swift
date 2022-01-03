@@ -120,7 +120,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     open func shouldSwitchToPreferredKeyboardType(
         after gesture: KeyboardGesture,
         on action: KeyboardAction) -> Bool {
-            // if action.isAlternateQuotationDelimiter(for: context) { return true }
+        // if action.isAlternateQuotationDelimiter(for: context) { return true }
         switch action {
         case .keyboardType(let type): return type.shouldSwitchToPreferredKeyboardType
         case .shift: return true
