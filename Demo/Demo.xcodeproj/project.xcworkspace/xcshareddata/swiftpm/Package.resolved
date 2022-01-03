@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/KeyboardKit/KeyboardKit.git",
         "state": {
           "branch": "kurdish-sorani",
-          "revision": "11c773f48b2805da666432cc492e842da0b7f799",
+          "revision": "5cb1d9afd29d2f754f33213a885c4362d51db662",
           "version": null
         }
       },
@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/KeyboardKit/KeyboardKitPro.git",
         "state": {
           "branch": "kurdish-sorani",
-          "revision": "38e8ebb6602384a9f19854e3752a2e7ee10cd98d",
+          "revision": "27ff8bd4d3a6185e595fb64d8c3fa750f5522087",
           "version": null
         }
       },
