@@ -12,10 +12,11 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 5.5
 
-Thanks to [@ardavank](https://github.com/ardavank), this release adds support for Persian (Farsi) and RTL keyboards.
+Thanks to [@ardavank](https://github.com/ardavank) and [@rawandahmad698](https://github.com/rawandahmad698), this release adds support for Persian (Farsi), Kurdish Sorani and RTL keyboards.
 
 ### 🌐 New locale
 
+* 🇹🇯 Kurdish Sorani
 * 🇮🇷 Persian
 
 ### ✨ New features
