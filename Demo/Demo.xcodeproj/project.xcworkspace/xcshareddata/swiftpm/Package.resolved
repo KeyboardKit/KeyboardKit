@@ -5,8 +5,8 @@
         "package": "KeyboardKit",
         "repositoryURL": "https://github.com/KeyboardKit/KeyboardKit.git",
         "state": {
-          "branch": "master",
-          "revision": "5656d7115c12cdaca2e1d242d303f98598d4d254",
+          "branch": "arabic",
+          "revision": "7135fd9253fec80216678310b1d9984c9784f241",
           "version": null
         }
       },
@@ -14,8 +14,8 @@
         "package": "KeyboardKitPro",
         "repositoryURL": "https://github.com/KeyboardKit/KeyboardKitPro.git",
         "state": {
-          "branch": "master",
-          "revision": "27ff8bd4d3a6185e595fb64d8c3fa750f5522087",
+          "branch": "arabic",
+          "revision": "a957d83d4a0155b43c89f5b95a83def3dae0c2d7",
           "version": null
         }
       },

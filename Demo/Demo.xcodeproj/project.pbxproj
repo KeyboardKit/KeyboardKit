@@ -877,7 +877,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/KeyboardKit/KeyboardKitPro.git";
 			requirement = {
-				branch = master;
+				branch = arabic;
 				kind = branch;
 			};
 		};
@@ -885,7 +885,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/KeyboardKit/KeyboardKit.git";
 			requirement = {
-				branch = master;
+				branch = arabic;
 				kind = branch;
 			};
 		};

@@ -90,6 +90,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func lowerLeadingActions(for context: KeyboardContext) -> KeyboardActions {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
+        if isArabicAlphabetic(context) { return [] }
         if isPersianAlphabetic(context) { return [] }
         if isRussianAlphabetic(context) { return [action] }
         return [action, .none]
@@ -99,6 +100,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      Additional trailing actions to apply to the bottom row.
      */
     open func lowerTrailingActions(for context: KeyboardContext) -> KeyboardActions {
+        if isArabicAlphabetic(context) { return [.none, .backspace] }
         if isPersianAlphabetic(context) { return [.backspace] }
         if isRussianAlphabetic(context) { return [.backspace] }
         return [.none, .backspace]
@@ -107,12 +109,16 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
 
 private extension iPhoneKeyboardLayoutProvider {
     
+    func isArabicAlphabetic(_ context: KeyboardContext) -> Bool {
+        context.keyboardType.isAlphabetic && context.locale.identifier == "ar"
+    }
+    
     func isPersianAlphabetic(_ context: KeyboardContext) -> Bool {
-        context.keyboardType.isAlphabetic && hasElevenElevenTenAlphabeticInput
+        context.keyboardType.isAlphabetic && context.locale.identifier == "fa"
     }
     
     func isRussianAlphabetic(_ context: KeyboardContext) -> Bool {
-        context.keyboardType.isAlphabetic && hasElevenElevenNineAlphabeticInput
+        context.keyboardType.isAlphabetic && context.locale.identifier == "ru"
     }
     
     func isPortrait(_ context: KeyboardContext) -> Bool {
