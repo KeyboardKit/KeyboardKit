@@ -25,6 +25,7 @@ class KeyboardLocaleTests: QuickSpec {
                 expect(result).to(equal(
                     [
                         .albanian: "sq",
+                        .arabic: "ar",
                         .danish: "da",
                         .dutch: "nl",
                         .english: "en",
@@ -78,6 +79,7 @@ class KeyboardLocaleTests: QuickSpec {
                 expect(result).to(equal(
                     [
                         .albanian: "shqip",
+                        .arabic: "العربية",
                         .danish: "dansk",
                         .dutch: "Nederlands",
                         .english: "English",
@@ -112,6 +114,7 @@ class KeyboardLocaleTests: QuickSpec {
                 expect(result).to(equal(
                     [
                         .albanian: "🇦🇱",
+                        .arabic: "🇦🇪",
                         .danish: "🇩🇰",
                         .dutch: "🇳🇱",
                         .english: "🇺🇸",
@@ -146,6 +149,7 @@ class KeyboardLocaleTests: QuickSpec {
                 expect(result).to(equal(
                     [
                         .albanian: true,
+                        .arabic: false,
                         .danish: true,
                         .dutch: true,
                         .english: true,
@@ -180,6 +184,7 @@ class KeyboardLocaleTests: QuickSpec {
                 expect(result).to(equal(
                     [
                         .albanian: false,
+                        .arabic: true,
                         .danish: false,
                         .dutch: false,
                         .english: false,

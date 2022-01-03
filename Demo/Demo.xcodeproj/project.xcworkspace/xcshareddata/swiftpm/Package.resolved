@@ -5,8 +5,8 @@
         "package": "KeyboardKit",
         "repositoryURL": "https://github.com/KeyboardKit/KeyboardKit.git",
         "state": {
-          "branch": "kurdish-sorani",
-          "revision": "5cb1d9afd29d2f754f33213a885c4362d51db662",
+          "branch": "master",
+          "revision": "5656d7115c12cdaca2e1d242d303f98598d4d254",
           "version": null
         }
       },
@@ -14,7 +14,7 @@
         "package": "KeyboardKitPro",
         "repositoryURL": "https://github.com/KeyboardKit/KeyboardKitPro.git",
         "state": {
-          "branch": "kurdish-sorani",
+          "branch": "master",
           "revision": "27ff8bd4d3a6185e595fb64d8c3fa750f5522087",
           "version": null
         }
