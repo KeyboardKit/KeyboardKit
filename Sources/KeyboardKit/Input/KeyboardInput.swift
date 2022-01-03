@@ -46,3 +46,8 @@ public struct KeyboardInput: Equatable {
         }
     }
 }
+
+extension KeyboardInput: RowItem {
+
+    public var rowId: KeyboardInput { self }
+}

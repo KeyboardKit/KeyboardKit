@@ -9,42 +9,40 @@
 import Foundation
 
 /**
- This makes `KeyboardInput` conform to `RowItem`. This gives
- the arrays below extended features to modify their content.
- */
-extension KeyboardInput: RowItem {
-
-    public var rowId: KeyboardInput { self }
-}
-
-/**
  This typealias represents a list of keyboard inputs.
  */
 public typealias KeyboardInputRow = [KeyboardInput]
 
 public extension KeyboardInputRow {
     
+    /**
+     Create an input row from a string array, that is mapped
+     to a `KeyboardInput` array.
+     */
     init(_ row: [String]) {
         self = row.map { KeyboardInput($0) }
     }
     
+    /**
+     Create an input row from a lowercased and an uppercased
+     arrays, which are mapped to a `KeyboardInput` array.
+     
+     Both arrays must contain the same amount of characters.
+     */
+    init(lowercased: [String], uppercased: [String]) {
+        assert(lowercased.count == uppercased.count, "The lowercased and uppercased string arrays must contain the same amount of characters")
+        self = lowercased.enumerated().map {
+            KeyboardInput(
+                neutral: lowercased[$0.offset],
+                uppercased: uppercased[$0.offset],
+                lowercased: lowercased[$0.offset])
+        }
+    }
+    
+    /**
+     Get all input characters for a certain keyboard casing.
+     */
     func characters(for casing: KeyboardCasing = .lowercased) -> [String] {
         map { $0.character(for: casing) }
-    }
-}
-
-/**
- This typealias represents a list of keyboard input rows.
- */
-public typealias KeyboardInputRows = [KeyboardInputRow]
-
-public extension KeyboardInputRows {
-    
-    init(_ rows: [[String]]) {
-        self = rows.map { KeyboardInputRow($0) }
-    }
-    
-    func characters(for casing: KeyboardCasing = .lowercased) -> [[String]] {
-        map { $0.characters(for: casing) }
     }
 }

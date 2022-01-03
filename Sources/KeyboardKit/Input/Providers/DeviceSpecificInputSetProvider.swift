@@ -32,11 +32,30 @@ public extension DeviceSpecificInputSetProvider {
     }
     
     /**
+     Create an input row from a lowercased and an uppercased
+     string, which are mapped to `.character` arrays.
+     */
+    func row(lowercased: String, uppercased: String) -> KeyboardInputRow {
+        row(lowercased: lowercased.chars,
+            uppercased: uppercased.chars)
+    }
+    
+    /**
      Create an input row from a string array, that is mapped
-     to a `.character` array.
+     to a `KeyboardInputRow` array.
      */
     func row(_ chars: [String]) -> KeyboardInputRow {
         KeyboardInputRow(chars)
+    }
+    
+    /**
+     Create an input row from a lowercased and an uppercased
+     arrays, which are mapped to `KeyboardInputRow` arrays.
+     */
+    func row(lowercased: [String], uppercased: [String]) -> KeyboardInputRow {
+        KeyboardInputRow(
+            lowercased: lowercased,
+            uppercased: uppercased)
     }
     
     /**

@@ -5,8 +5,8 @@
         "package": "KeyboardKit",
         "repositoryURL": "https://github.com/KeyboardKit/KeyboardKit.git",
         "state": {
-          "branch": "farsi",
-          "revision": "7737a11128fd981bc4c4d430133de4dd3a6ce22b",
+          "branch": "kurdish-sorani",
+          "revision": "11c773f48b2805da666432cc492e842da0b7f799",
           "version": null
         }
       },
@@ -14,8 +14,8 @@
         "package": "KeyboardKitPro",
         "repositoryURL": "https://github.com/KeyboardKit/KeyboardKitPro.git",
         "state": {
-          "branch": "farsi",
-          "revision": "8b137afcd67c0b8d69c5db4fcf3657df0b3ba266",
+          "branch": "kurdish-sorani",
+          "revision": "38e8ebb6602384a9f19854e3752a2e7ee10cd98d",
           "version": null
         }
       },

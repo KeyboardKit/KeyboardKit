@@ -21,9 +21,12 @@ Thanks to [@ardavank](https://github.com/ardavank) and [@rawandahmad698](https:/
 
 ### ✨ New features
 
+* `DeviceSpecificInputSetProvider` has new row functions for lower/uppercase characters.
 * `Image` has a new `.keyboardBackspaceRtl` property and `.keyboardBackspace` function.
 * `Image` has a new `.keyboardNewlineRtl` property and `.keyboardBackspace` function.
 * `Image` has a new `.keyboardZeroWidthSpace` property with a temp arrow icon.
+* `KeyboardInputRow` has a new initializer for lower/uppercase characters.
+* `KeyboardInputRows` has a new initializer for lower/uppercase characters.
 * `String` has new, static `carriageReturn`, `newline`, `space`, `tab` and `zeroWidthSpace` properties.
 
 ### 💡 Behavior changes
