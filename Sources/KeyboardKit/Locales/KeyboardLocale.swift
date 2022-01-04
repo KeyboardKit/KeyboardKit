@@ -22,6 +22,7 @@ public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
     
     case albanian = "sq"
     case arabic = "ar"
+    case brazilian = "pt-BR"
     case danish = "da"
     case dutch = "nl"
     case english = "en"
@@ -39,6 +40,7 @@ public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
     case norwegian = "nb"
     case persian = "fa"
     case polish = "pl"
+    case portuguese = "pt"
     case russian = "ru"
     case spanish = "es"
     case swedish = "sv"
@@ -76,6 +78,7 @@ public extension KeyboardLocale {
         switch self {
         case .albanian: return "🇦🇱"
         case .arabic: return "🇦🇪"
+        case .brazilian: return "🇧🇷"
         case .danish: return "🇩🇰"
         case .dutch: return "🇳🇱"
         case .english: return "🇺🇸"
@@ -93,6 +96,7 @@ public extension KeyboardLocale {
         case .norwegian: return "🇳🇴"
         case .persian: return "🇮🇷"
         case .polish: return "🇵🇱"
+        case .portuguese: return "🇵🇹"
         case .russian: return "🇷🇺"
         case .swedish: return "🇸🇪"
         case .spanish: return "🇪🇸"
