@@ -35,10 +35,14 @@ struct KeyboardView: View {
     @EnvironmentObject private var secondaryInputContext: SecondaryInputCalloutContext
     
     var body: some View {
-        switch keyboardContext.keyboardType {
-        case .alphabetic, .numeric, .symbolic: systemKeyboardStack
-        case .emojis: emojiKeyboard
-        default: Button("Unsupported keyboard", action: switchToDefaultKeyboard)
+        VStack(spacing: 0) {
+            if keyboardContext.keyboardType != .emojis {
+                DemoAutocompleteToolbar()
+            }
+            if addTextFieldAboveKeyboard {
+                textField
+            }
+            systemKeyboard
         }
     }
 }
@@ -48,18 +52,6 @@ struct KeyboardView: View {
 
 private extension KeyboardView {
     
-    @ViewBuilder
-    var emojiKeyboard: some View {
-        if #available(iOSApplicationExtension 14.0, *) {
-            EmojiCategoryKeyboard(
-                appearance: appearance,
-                context: keyboardContext)
-                .padding(.top)
-        } else {
-            Text("Requires iOS 14 or later")
-        }
-    }
-    
     var systemKeyboard: some View {
         SystemKeyboard(
             layout: layoutProvider.keyboardLayout(for: keyboardContext),
@@ -68,16 +60,6 @@ private extension KeyboardView {
             context: keyboardContext,
             inputContext: inputContext,
             secondaryInputContext: secondaryInputContext)
-    }
-    
-    var systemKeyboardStack: some View {
-        VStack(spacing: 0) {
-            DemoAutocompleteToolbar()
-            if addTextFieldAboveKeyboard {
-                textField
-            }
-            systemKeyboard
-        }
     }
     
     var textField: some View {
