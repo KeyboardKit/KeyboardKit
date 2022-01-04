@@ -21,6 +21,7 @@ KeyboardKit is localized in the following languages:
 * 🇫🇷 French
 * 🇩🇪 German
 * 🇮🇸 Icelandic
+* 🇮🇪 Irish
 * 🇮🇹 Italian
 * 🇹🇯 Kurdish Sorani
 * 🇱🇻 Latvian

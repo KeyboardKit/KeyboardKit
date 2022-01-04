@@ -1,0 +1,20 @@
+/*
+ Localizable.strings
+ KeyboardKit
+ 
+ Created by Daniel Saidi on 2022-01-04.
+ Copyright © 2022 Daniel Saidi. All rights reserved.
+ */
+
+"locale" = "ga_IE";
+
+"done" = "déanta";
+"go" = "téigh";
+"ok" = "OK";
+"return" = "ar ais";
+"search" = "cuardaigh";
+"space" = "spás";
+
+"keyboardTypeAlphabetic" = "ABC";
+"keyboardTypeNumeric" = "123";
+"keyboardTypeSymbolic" = "#+=";
