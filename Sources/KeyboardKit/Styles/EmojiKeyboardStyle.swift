@@ -123,4 +123,15 @@ public extension EmojiKeyboardStyle {
     static let standardPadPortrait = EmojiKeyboardStyle(rows: 3)
     static let standardPhoneLandscape = EmojiKeyboardStyle(rows: 3)
     static let standardPhonePortrait = EmojiKeyboardStyle(rows: 5)
+    
+    static func standard(for context: KeyboardContext) -> EmojiKeyboardStyle {
+        let isPortrait = context.screenOrientation.isPortrait
+        if context.device.isPhone {
+            return isPortrait ? .standardPhonePortrait : .standardPhoneLandscape
+        }
+        if context.screen.isIpadProLargeScreen {
+            return isPortrait ? .standardLargePadPortrait : .standardLargePadLandscape
+        }
+        return isPortrait ? .standardPadPortrait : .standardPadLandscape
+    }
 }

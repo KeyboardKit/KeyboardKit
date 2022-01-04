@@ -14,15 +14,21 @@ import SwiftUI
  
  There are three ways to create a system keyboard:
  
- The first is to use the builderless initializer to create a
- standard system keyboard with standard button views.
+ The first option is to use the builder-less initializer, to
+ create a standard system keyboard with standard buttons.
  
- The second is to use the `buttonContentBuilder` initializer
- to create a keyboard that customizes each button's internal
- content, but NOT affecting the button's shape, paddings etc.
+ The second is to use the `buttonContentBuilder` initializer,
+ to create a system keyboard that can customize the internal
+ content of each button, but doesn't affect the button shape,
+ padding, shadow etc.
  
  The third is to use the `buttonViewBuilder` initializer, to
- create a keyboard where the entire button can be customized.
+ create a system keyboard that can customize the entire view
+ for each button, including the button shape.
+ 
+ The keyboard will automatically replace the system keyboard
+ view with an ``EmojiCategoryKeyboard`` for iOS 14 and later
+ if the context's keyboard type is ``KeyboardType/emojis``.
  
  Since the widths of the keyboard buttons will depend on the
  total keyboard width, the view must be given a `width` when
@@ -91,6 +97,29 @@ public struct SystemKeyboard<ButtonView: View>: View {
     @ObservedObject private var secondaryInputContext: SecondaryInputCalloutContext
 
     public var body: some View {
+        if #available(iOS 14.0, *) {
+            switch context.keyboardType {
+            case .emojis: emojiKeyboard
+            default: systemKeyboard
+            }
+        } else {
+            systemKeyboard
+        }
+    }
+}
+
+private extension SystemKeyboard {
+    
+    @available(iOS 14.0, *)
+    var emojiKeyboard: some View {
+        EmojiCategoryKeyboard(
+            appearance: appearance,
+            context: context,
+            style: .standard(for: context))
+            .padding(.top)
+    }
+    
+    var systemKeyboard: some View {
         VStack(spacing: 0) {
             itemRows(for: layout)
         }

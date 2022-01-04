@@ -1,5 +1,5 @@
 //
-//  EmojiKeyboardConfigurationTests.swift
+//  EmojiKeyboardStyleTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-17.
@@ -11,7 +11,7 @@ import Quick
 import Nimble
 import KeyboardKit
 
-class EmojiKeyboardConfigurationTests: QuickSpec {
+class EmojiKeyboardStyleTests: QuickSpec {
     
     override func spec() {
         
