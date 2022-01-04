@@ -10,6 +10,17 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 5.6
+
+This version makes it easier to create and use the `SystemKeyboard`.
+
+### ✨ New features
+
+* `SystemKeyboard` now automatically renders an `EmojiCategoryKeyboard` on iOS 14 and later.
+* `SystemKeyboard` has new convenience initializers that just requires a `controller` instead of all granular configurations. The controller is auto-resolved to `.shared` if none is provided.
+
+
+
 ## 5.5
 
 Thanks to [@ardavank](https://github.com/ardavank) and [@rawandahmad698](https://github.com/rawandahmad698), this release adds support for Persian (Farsi), Arabic, Kurdish Sorani and RTL keyboards.
