@@ -76,6 +76,7 @@ KeyboardKit is localized in the following languages:
 * 🇺🇸 English
 
 * 🇦🇱 Albanian
+* 🇦🇪 Arabic
 * 🇩🇰 Danish
 * 🇳🇱 Dutch
 * 🇬🇧 English (UK)
@@ -86,6 +87,7 @@ KeyboardKit is localized in the following languages:
 * 🇩🇪 German
 * 🇮🇸 Icelandic
 * 🇮🇹 Italian
+* 🇹🇯 Kurdish Sorani
 * 🇱🇻 Latvian
 * 🇱🇹 Lithuanian
 * 🇳🇴 Norwegian
