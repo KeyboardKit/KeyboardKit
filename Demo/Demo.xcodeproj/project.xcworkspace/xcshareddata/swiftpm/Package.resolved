@@ -5,18 +5,18 @@
         "package": "KeyboardKit",
         "repositoryURL": "https://github.com/KeyboardKit/KeyboardKit.git",
         "state": {
-          "branch": "arabic",
-          "revision": "f8fc31a04a0d5b6ae11a2bc87e99f83ac932e6c7",
-          "version": null
+          "branch": null,
+          "revision": "fbe27f2d6a3aa034d250eace5312539bcdcc31c5",
+          "version": "5.5.0"
         }
       },
       {
         "package": "KeyboardKitPro",
         "repositoryURL": "https://github.com/KeyboardKit/KeyboardKitPro.git",
         "state": {
-          "branch": "arabic",
-          "revision": "5a4de84d6d1580397ac88daddffb414864a67da6",
-          "version": null
+          "branch": null,
+          "revision": "0ec786193eaa82a6cf6413df8f8a8e22f261a23d",
+          "version": "5.5.0"
         }
       },
       {
