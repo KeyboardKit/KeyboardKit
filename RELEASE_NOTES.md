@@ -12,7 +12,12 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 5.6
 
-This version makes it easier to create and use the `SystemKeyboard`.
+This version adds new locales and makes it easier to create and use the `SystemKeyboard`.
+
+### 🌐 New locales
+
+* 🇧🇷 Brazilian
+* 🇵🇹 Portuguese
 
 ### ✨ New features
 
@@ -25,7 +30,7 @@ This version makes it easier to create and use the `SystemKeyboard`.
 
 Thanks to [@ardavank](https://github.com/ardavank) and [@rawandahmad698](https://github.com/rawandahmad698), this release adds support for Persian (Farsi), Arabic, Kurdish Sorani and RTL keyboards.
 
-### 🌐 New locale
+### 🌐 New locales
 
 * 🇦🇪 Arabic
 * 🇹🇯 Kurdish Sorani
