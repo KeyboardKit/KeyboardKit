@@ -33,6 +33,7 @@ KeyboardKit is localized in the following languages:
 * 🇷🇺 Russian
 * 🇪🇸 Spanish
 * 🇸🇪 Swedish
+* 🇹🇷 Turkish
 * 🇺🇦 Ukrainian
 
 These locales can be accessed through the `KeyboardLocale` enum.

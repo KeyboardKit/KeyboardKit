@@ -99,6 +99,7 @@ KeyboardKit is localized in the following languages:
 * 🇷🇺 Russian
 * 🇪🇸 Spanish
 * 🇸🇪 Swedish
+* 🇹🇷 Turkish
 * 🇺🇦 Ukrainian
 
 KeyboardKit also supports localized keyboards, where the keyboard layout, secondary actions etc. behave just like they should for a certain locale.

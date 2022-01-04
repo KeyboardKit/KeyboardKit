@@ -19,6 +19,7 @@ This version adds support for new locales and makes it easier to create and use 
 * 🇧🇷 Brazilian
 * 🇮🇪 Irish
 * 🇵🇹 Portuguese
+* 🇹🇷 Turkish
 
 ### ✨ New features
 

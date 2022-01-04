@@ -45,6 +45,7 @@ public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
     case russian = "ru"
     case spanish = "es"
     case swedish = "sv"
+    case turkish = "tr"
     case ukrainian = "uk"
 }
 
@@ -102,6 +103,7 @@ public extension KeyboardLocale {
         case .russian: return "🇷🇺"
         case .swedish: return "🇸🇪"
         case .spanish: return "🇪🇸"
+        case .turkish: return "🇹🇷"
         case .ukrainian: return "🇺🇦"
         }
     }
