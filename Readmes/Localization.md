@@ -10,6 +10,8 @@ KeyboardKit is localized in the following languages:
 * 🇺🇸 English
 
 * 🇦🇱 Albanian
+* 🇦🇪 Arabic
+* 🇧🇷 Brazilian
 * 🇩🇰 Danish
 * 🇳🇱 Dutch
 * 🇬🇧 English (UK)
@@ -20,10 +22,13 @@ KeyboardKit is localized in the following languages:
 * 🇩🇪 German
 * 🇮🇸 Icelandic
 * 🇮🇹 Italian
+* 🇹🇯 Kurdish Sorani
 * 🇱🇻 Latvian
 * 🇱🇹 Lithuanian
 * 🇳🇴 Norwegian
+* 🇮🇷 Persian
 * 🇵🇱 Polish
+* 🇵🇹 Portuguese
 * 🇷🇺 Russian
 * 🇪🇸 Spanish
 * 🇸🇪 Swedish
