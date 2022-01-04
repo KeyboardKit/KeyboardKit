@@ -12,7 +12,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 5.6
 
-This version adds new locales and makes it easier to create and use the `SystemKeyboard`.
+This version adds support for new locales and makes it easier to create and use the `SystemKeyboard`.
 
 ### 🌐 New locales
 
