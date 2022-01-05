@@ -139,6 +139,7 @@ private extension iPhoneKeyboardLayoutProvider {
      of the third row's input buttons.
      */
     func thirdRowSystemButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
+        if hasTwelveElevenNineAlphabeticInput { return .percentage(0.11) }
         if isPersianAlphabetic(context) { return .input }
         if isRussianAlphabetic(context) { return .input }
         return .percentage(0.12)

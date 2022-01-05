@@ -130,6 +130,19 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     }
     
     /**
+     Whether or not the alphabetic input set uses an 11-10-9
+     layout, which is used by `Turkish` iPhone keyboards.
+     
+     I'm not at all happy with this name. If you know how to
+     improve this, please create an issue or a PR.
+     */
+    public var hasTwelveElevenNineAlphabeticInput: Bool {
+        let rows = inputSetProvider.alphabeticInputSet.rows
+        let counts = (rows.map { $0.count }).prefix(3)
+        return counts == [12, 11, 9]
+    }
+    
+    /**
      Whether or not to use an Arabic alphabetic keyboard.
      */
     public func isArabic(_ context: KeyboardContext) -> Bool {
