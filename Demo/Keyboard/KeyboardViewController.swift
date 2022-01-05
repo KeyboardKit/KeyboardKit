@@ -42,52 +42,52 @@ class KeyboardViewController: KeyboardInputViewController {
     
     // MARK: - View Controller Lifecycle
     
+    /**
+     You can configure your keyboard extension in many, many
+     ways. Some configurations below are already done in the
+     library and just here to show you how it's done and for
+     explaining what the various services do.
+     
+     Some configurations will be overridden by registering a
+     Pro license in `viewWillSetupKeyboard`. Just move these
+     configurations to after setting up pro.
+     */
     override func viewDidLoad() {
         
-        // Uncomment this line to customize when to use dark
-        // appearance colors.
-        // Color.darkAppearanceStrategy = { _ in false }
-        
         // Setup a demo-specific autocomplete provider
-        // 💡 You can create your own autocomplete providers
         // 💡 This is overwritten if Pro is registered below
         autocompleteProvider = FakeAutocompleteProvider()
         
-        // Setup a demo-specific apearance
-        // 💡 You can play around with the DemoAppearance
+        // Setup a demo-specific keyboard appearance
+        // 💡 Adjust the DemoAppearance to see what happens
         keyboardAppearance = DemoAppearance(context: keyboardContext)
         
         // Setup the demo to explicitly use English locale
-        // 💡 This is already done and just here to show how
-        // 💡 If you register Pro below, you get all locales
-        keyboardContext.locale = KeyboardLocale.persian.locale
+        // 💡 This is overwritten if Pro is registered below
+        keyboardContext.locale = KeyboardLocale.english.locale
         
         // Setup the locales that the keyboard supports
-        // 💡 This is already done and just here to show how
         // 💡 This is overwritten if Pro is registered below
         keyboardContext.locales = [KeyboardLocale.english.locale]
         
         // Setup a custom, demo-specific action handler
-        // 💡 Custom action handlers can handle custom logic
+        // 💡 You can create your own custom action handlers
         keyboardActionHandler = DemoKeyboardActionHandler(
             inputViewController: self)
         
-        // Setup an input set provider
-        // 💡 This is already done and just here to show how
-        // 💡 A keyboard input set specifies "input" actions
+        // Setup a standard input set provider
         // 💡 This is overwritten if Pro is registered below
         keyboardInputSetProvider = StandardKeyboardInputSetProvider(
             context: keyboardContext,
             providers: [EnglishKeyboardInputSetProvider()])
         
-        // Setup a layout with .emojis instead of .dictation
-        // 💡 A keyboard layout specifies the all keys/sizes
+        // Setup a demo-specific keyboard layout provider
+        // 💡 A layout provider defines the keyboard layout
         keyboardLayoutProvider = DemoKeyboardLayoutProvider(
             inputSetProvider: keyboardInputSetProvider,
             dictationReplacement: .keyboardType(.emojis))
         
         // Setup a secondary callout action provider
-        // 💡 This is already done and just here to show how
         // 💡 This is overwritten if Pro is registered below
         keyboardSecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider(
             context: keyboardContext,
@@ -102,10 +102,18 @@ class KeyboardViewController: KeyboardInputViewController {
         super.viewDidLoad()
     }
     
+    /**
+     This function is called whenever the keyboard should be
+     created or updated. Here, we either call the `setup` or
+     `setupPro` function, depending on if we want to use the
+     demo's Pro license or not.
+     */
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
-        // Setup the extension to use the keyboardView below,
-        // either without or with Pro enabled.
+        // 💡 If you use `setupPro` some configurations will
+        //    be reset, since a Pro license specifies things
+        //    like default locale. To change the Pro default
+        //    config, apply your own configs after setupPro.
         // setup(with: keyboardView)
         try? setupPro(withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098", view: keyboardView)
     }
