@@ -26,5 +26,15 @@ class KKL10nTests: QuickSpec {
                 }
             }
         }
+        
+        describe("text for locale") {
+            
+            it("is not empty for any keyboard locale") {
+                KeyboardLocale.allCases.forEach {
+                    let text = KKL10n.space.text(for: $0)
+                    expect(text.isEmpty).toNot(beTrue())
+                }
+            }
+        }
     }
 }
