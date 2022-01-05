@@ -20,18 +20,18 @@ class KeyboardLocaleTests: QuickSpec {
         describe("locale identifier") {
             
             it("is valid for all cases") {
-                let map = locales.map { ($0, $0.id) }
+                let map = locales.map { ($0, $0.locale.identifier) }
                 let result = Dictionary(uniqueKeysWithValues: map)
                 expect(result).to(equal(
                     [
                         .albanian: "sq",
                         .arabic: "ar",
-                        .brazilian: "pt-BR",
+                        .brazilian: "pt_BR",
                         .danish: "da",
                         .dutch: "nl",
                         .english: "en",
-                        .english_gb: "en-GB",
-                        .english_us: "en-US",
+                        .english_gb: "en_GB",
+                        .english_us: "en_US",
                         .estonian: "et",
                         .french: "fr",
                         .finnish: "fi",
@@ -45,7 +45,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .norwegian: "nb",
                         .persian: "fa",
                         .polish: "pl",
-                        .portuguese: "pt",
+                        .portuguese: "pt_PT",
                         .russian: "ru",
                         .spanish: "es",
                         .swedish: "sv",
@@ -103,7 +103,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .norwegian: "norsk bokmål",
                         .persian: "فارسی",
                         .polish: "polski",
-                        .portuguese: "português",
+                        .portuguese: "português (Portugal)",
                         .russian: "русский",
                         .spanish: "español",
                         .swedish: "svenska",

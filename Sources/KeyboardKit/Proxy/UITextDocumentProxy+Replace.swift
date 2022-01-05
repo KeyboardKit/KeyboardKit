@@ -15,7 +15,7 @@ public extension UITextDocumentProxy {
      proxy should be replaced with something else.
      */
     func preferredReplacement(for text: String, locale: Locale) -> String? {
-        if let replacement = preferredQuotationReplacement(for: text, locale: locale) { return replacement }
+         if let replacement = preferredQuotationReplacement(for: text, locale: locale) { return replacement }
         if let replacement = preferredAlternateQuotationReplacement(for: text, locale: locale) { return replacement }
         return nil
     }
