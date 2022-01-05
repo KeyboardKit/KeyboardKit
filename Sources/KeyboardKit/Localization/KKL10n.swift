@@ -93,7 +93,7 @@ public extension KKL10n {
     }
 }
 
-private extension KKL10n {
+extension KKL10n {
     
     var isSwiftUIPreview: Bool {
         ProcessInfo.processInfo.isSwiftUIPreview
@@ -104,7 +104,7 @@ private extension KKL10n {
     }
 }
 
-private extension Bundle {
+extension Bundle {
     
     func bundlePath(for locale: Locale) -> String? {
         bundlePath(named: locale.identifier) ?? bundlePath(named: locale.languageCode)
