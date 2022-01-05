@@ -10,6 +10,16 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 5.6.1
+
+This version performs minor behavior tweaks.
+
+### 💡 Behavior changes
+  
+* `String.wordDelimiters` has been extended with various brackets.
+
+
+
 ## 5.6
 
 This version adds support for new locales and makes it easier to create and use the `SystemKeyboard`.

@@ -38,5 +38,5 @@ public extension String {
      You can change this list to change how your keyboard is
      handling things like sentence closing, autocomplete etc.
      */
-    static var wordDelimiters = ["!", ".", "?", ",", ";", ":", .newline, " "]
+    static var wordDelimiters = "!.?,;:()[]{}<>".chars + [" ", .newline]
 }

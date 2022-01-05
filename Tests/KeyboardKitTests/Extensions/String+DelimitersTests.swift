@@ -33,7 +33,8 @@ class String_DelimitersTests: QuickSpec {
             }
             
             it("provides word delimiters") {
-                expect(String.wordDelimiters).to(equal(["!", ".", "?", ",", ";", ":", "\n", " "]))
+                let expected = "!.?,;:()[]{}<>".chars + [" ", .newline]
+                expect(String.wordDelimiters).to(equal(expected))
             }
         }
     }
