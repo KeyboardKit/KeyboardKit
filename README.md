@@ -248,6 +248,18 @@ KeyboardKit comes with a bunch of keyboard-specific views, like keyboards, tooba
 
 
 
+## KeyboardKit Pro
+
+KeyboardKit Pro is a license-based extensions that unlocks pro features, such as additional locales, autocomplete, convenience views etc. It can save you a lot of time when developing more complex keyboards.
+
+KeyboardKit Pro is also a way to support this project, which is otherwise completely free and developed by a single person (with great help from the community). If you appreciate this project, consider going Pro.  
+
+Note that KeyboardKit Pro extends this library by using the same extension points as is available to everyone.
+
+[Go Pro here!][Pro]
+
+
+
 ## Demo Application
 
 This repository contains a demo app that demonstrates different keyboards, like `alphabetical` (lowercased, uppercased and capslocked), `numerical`, `symbols`, `emojis` and `images`. 
@@ -257,18 +269,6 @@ The demo app is not intended to be production ready, but rather to give you insp
 To run the demo app, open and run the `Demo/Demo.xcodeproj` project, then enable the keyboards under system settings. Enable full access to support all features, like audio and haptic feedback.
 
 Note that you may have to update the KeyboardKit dependencies for the demo to run. If so, you can do that under `File/Swift Packages/Update to Latest Package Versions`.
-
-
-
-## KeyboardKit Pro
-
-KeyboardKit Pro is a license-based extensions that unlocks pro features, such as additional locales, autocomplete implementation, convenience views etc. It can save you a lot of time when developing more complex keyboards.
-
-KeyboardKit Pro is also a way to support this project, which is completely free and developed by a single person (with great help from the community). If you appreciate this project, consider going Pro.  
-
-Note that KeyboardKit Pro extends this library by using the same extension points as is available to everyone.
-
-[Go Pro here!][Pro]
 
 
 
