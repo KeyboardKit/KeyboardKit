@@ -58,7 +58,7 @@ Once KeyboardKit is added to your project, you can start using it in your applic
 
 The KeyboardKit documentation contains extensive information, code examples etc. and makes it easy to overview the various parts of the library.
 
-You can either [download][Documentation] the latest documentation or build it directly in Xcode, using the `Product/Build Documentation` menu alternative.
+You can either [download][Documentation] the documentation or build it directly in Xcode, using `Product/Build Documentation`.
 
 
 ## 🇸🇪 Localization
@@ -316,6 +316,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Sponsors]: https://github.com/sponsors/danielsaidi
 
 [Documentation]: https://github.com/danielsaidi/Documentation/blob/main/Docs/KeyboardKit.doccarchive.zip?raw=true
+[License]: https://github.com/KeyboardKit/KeyboardKit/blob/master/LICENSE
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 [Actions]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Actions.md

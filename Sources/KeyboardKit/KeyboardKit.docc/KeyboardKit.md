@@ -25,7 +25,7 @@ You can add KeyboardKit to the main app, the keyboard extension and any other ta
 
 ## Getting started
 
-After adding KeyboardKit to your project, you can start using it in your application.
+Once KeyboardKit is added to your project, you can start using it in your application and keyboard extension.
 
 Read more here: <doc:Getting-Started>
 
