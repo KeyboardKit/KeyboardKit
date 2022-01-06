@@ -50,15 +50,7 @@ You can add the library to the main app, the keyboard extension and any other ta
 
 Once KeyboardKit is added to your project, you can start using it in your application and keyboard extension.
 
-* The main app can use KeyboardKit to check if a keyboard is enabled, if full access is granted etc. which helps you build a more helpful application.
-* The main app can also use the various utils and views to mimic keyboards within the app itself.
-* The keyboard extension can use KeyboardKit to build more powerful custom keyboard functionality.
-
-In your extension, let your `KeyboardViewController` inherit KeyboardKit's `KeyboardInputViewController` instead of `UIInputViewController`. This gives it access to a lot of additional functionality, observables like `keyboardContext`, services like `keyboardActionHandler`, `keyboardAppearance`, autocomplete etc.  
-
-`KeyboardInputViewController` will call `viewWillSetupKeyboard` when the keyboard should be created or re-created. You can use `setup(with:)` to setup your extension with any `SwiftUI` view, to inject necessary environment objects, resize the keyboard extension to fit the view etc.
-
-Have a look at the demo application and read more below to see how it all fits together.
+[Read more here][Getting-Started]
 
 
 
@@ -66,7 +58,7 @@ Have a look at the demo application and read more below to see how it all fits t
 
 The KeyboardKit documentation contains extensive information, code examples etc. and makes it easy to overview the various parts of the library.
 
-Just build the documentation directly in Xcode, using the "Product/Build Documentation" command.
+You can either [download][Documentation] the latest documentation or build it directly in Xcode, using the `Product/Build Documentation` menu alternative.
 
 
 ## 🇸🇪 Localization
@@ -331,7 +323,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Website]: https://getkeyboardkit.com
 [Sponsors]: https://github.com/sponsors/danielsaidi
 
-[Documentation]: https://github.com/KeyboardKit/KeyboardKit/raw/master/Docs/KeyboardKit.doccarchive.zip
+[Documentation]: https://github.com/danielsaidi/Documentation/blob/main/Docs/KeyboardKit.doccarchive.zip?raw=true
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 [Actions]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Actions.md
@@ -343,6 +335,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Extensions]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Extensions.md
 [External]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/External.md
 [Gestures]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Gestures.md
+[Getting-Started]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Getting-Started.md
 [Haptic-Feedback]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Haptic-Feedback.md
 [Input-Sets]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Input-Sets.md
 [Keyboard-Layouts]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Keyboard-Layouts.md

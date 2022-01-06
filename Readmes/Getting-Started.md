@@ -1,8 +1,9 @@
 # Getting started
 
-Once KeyboardKit is added to your project, you can start using it in your application and keyboard extension.
+Once KeyboardKit is added to your project, you can start using it in your application.
 
-## Overview
+
+## How to use KeyboardKit
 
 You can use KeyboardKit in both your main application and your keyboard extension:
 
