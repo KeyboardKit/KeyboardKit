@@ -209,7 +209,7 @@ KeyboardKit comes with many different keyboard types, like `alphabetic`, `numeri
 
 KeyboardKit defines keyboard-specific locales and provides localized content for the supported locales.
 
-[Read more here][Locales]
+[Read more here][Localization]
 
 
 ### 👁 Previews
@@ -242,17 +242,9 @@ KeyboardKit defines a bunch of styles that simplify customizing the look of vari
 
 ### 🖼 Views
 
-KeyboardKit comes with a bunch of keyboard-specific views:
+KeyboardKit comes with a bunch of keyboard-specific views, like keyboards, toobars, buttons etc
 
-* `Autocomplete` contains autocomplete toolbars and toolbar items.
-* `Callouts` contains input and secondary input callout views.
-* `Emojis` contains various emoji keyboards and keyboard components.
-* `Input` contains text inputs that can be used in a keyboard extension.
-* `System` contains views that can be used to mimic native systme keyboards. 
-* `KeyboardGrid` can be used to evenly space a set of views in a grid.
-* `NextKeyboardButton` can be used to switch to the next keyboard.
-
-You can also use these views without using the rest of KeyboardKit.
+[Read more here][Views]
 
 
 
@@ -345,6 +337,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Proxy]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Proxy.md
 [RTL]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/RTL.md
 [Styles]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Styles.md
+[Views]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Views.md
 
 [Guide]: https://shyngys.com/ios-custom-keyboard-guide
 [Git-LFS]: https://docs.github.com/en/repositories/working-with-files/managing-large-files
