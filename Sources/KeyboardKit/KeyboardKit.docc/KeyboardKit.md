@@ -1,13 +1,15 @@
 # ``KeyboardKit``
 
-KeyboardKit helps you build custom keyboard extensions for iOS and iPadOS using SwiftUI.
+KeyboardKit helps you build custom keyboard extensions for iOS and iPadOS, using SwiftUI.
 
 
 ## Overview
 
 ![KeyboardKit logo](Logo.png)
 
-KeyboardKit extends the native keyboard extension APIs to provide you with a lot more functionality, to simplify creating powerful keyboards. It also provides you with views to mimic the native system keyboards, with support for multiple locales, gestures, callouts etc.
+KeyboardKit extends the native keyboard extension APIs to provide you with a lot more functionality. It also provides you with views and utils to help you mimic native keyboards.
+
+KeyboardKit is flexible and doesn't force your keyboard to look or behave in a certain way. You can go with a standard system keyboard, tweak the standard design a little (or a lot) or use completely custom views or designs.
 
 
 ## Installation
@@ -18,27 +20,21 @@ The best way to add KeyboardKit to your app is to use the Swift Package Manager.
 https://github.com/KeyboardKit/KeyboardKit.git
 ```
 
-You can add the library to the main app, the keyboard extension and any other targets that needs it.  
+You can add KeyboardKit to the main app, the keyboard extension and any other targets that needs it.
 
 
 ## Getting started
 
 After adding KeyboardKit to your project, you can start using it in your application.
 
-* The main app target can use KeyboardKit to check if a keyboard is enabled, if full access is granted etc. which helps you build a more helpful application.
-* The keyboard extension can use KeyboardKit to get access to a lot more functionality, which helps you build more powerful keyboard extensions.
-
-In your extension, let your `KeyboardViewController` inherit KeyboardKit's `KeyboardInputViewController` instead of `UIInputViewController`. This will give it access to a lot of additional functionality, like new lifecycle functions, observable properties like `keyboardContext` and services like `keyboardActionHandler`, `keyboardAppearance`, autocomplete logic etc.  
-
-`KeyboardInputViewController` will call `viewWillSetupKeyboard` when the keyboard should be created or re-created. You can use `setup(with:)` to setup your extension with any `SwiftUI` view which will make it the main view, inject necessary environment objects, resize the keyboard extension to fit the view etc.
+Read more here: <doc:Getting-Started>
 
 
 ## About this documentation
 
-This documentation is generated, using Xcode's new DocC engine. The documentation will be extended with examples later on.
+This documentation is generated with Xcode's new DocC engine.
 
-Note that DocC currently omits extensions, which means that there are a lot more functionality in the library than is included in the documentation. Future versions will aim to improve these parts.  
-
+Note that DocC currently omits extensions, which means that there are a lot of functionality in the library that is missing in the documentation. Future versions will aim to improve these parts.  
 
 
 ## Topics
