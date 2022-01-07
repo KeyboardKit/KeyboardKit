@@ -31,7 +31,7 @@ There are some breaking changes, but they shouldn't affect you if you haven't be
 
 ### 💡 Behavior changes
 
-* `EmojiCategoryStyle` is more correct for iPad devices.
+* `EmojiCategoryStyle` is adjusted to be more correct on iPad devices.
 * `EmojiCategoryKeyboard.CategoryTitleViewProvider` now takes a style.
 * `EmojiCategoryKeyboardTitle` now takes a style, but will default to `.standardPhonePortrait`. 
 * `String.wordDelimiters` has been extended with various brackets.

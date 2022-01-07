@@ -136,7 +136,14 @@ public extension EmojiKeyboardStyle {
      of all emoji keyboards in this configuration.
      */
     static var standardLargePadLandscape = EmojiKeyboardStyle(
-        rows: 6)
+        rows: 6,
+        itemSize: 60,
+        itemFont: .system(size: 50),
+        horizontalItemSpacing: 15,
+        verticalItemSpacing: 10,
+        verticalCategoryStackSpacing: 10,
+        categoryFont: .system(size: 18).bold(),
+        systemFont: .system(size: 18))
     
     /**
      The style to use for large iPads in portrait.
@@ -145,7 +152,14 @@ public extension EmojiKeyboardStyle {
      of all emoji keyboards in this configuration.
      */
     static var standardLargePadPortrait = EmojiKeyboardStyle(
-        rows: 5)
+        rows: 5,
+        itemSize: 60,
+        itemFont: .system(size: 50),
+        horizontalItemSpacing: 10,
+        verticalItemSpacing: 7,
+        verticalCategoryStackSpacing: 7,
+        categoryFont: .system(size: 18).bold(),
+        systemFont: .system(size: 18))
     
     /**
      The style to use for standard iPads in landscape.
