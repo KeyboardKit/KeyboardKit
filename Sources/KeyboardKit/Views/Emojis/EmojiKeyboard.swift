@@ -31,7 +31,7 @@ public struct EmojiKeyboard<ButtonView: View>: View {
         emojis: [Emoji],
         style: EmojiKeyboardStyle = .standardPhonePortrait,
         emojiButton: @escaping EmojiButtonBuilder<ButtonView>) {
-        let gridItem = GridItem(.fixed(style.itemSize), spacing: style.verticalSpacing - 9)
+        let gridItem = GridItem(.fixed(style.itemSize), spacing: style.verticalItemSpacing - 9)
         self.emojis = emojis
         self.style = style
         self.rows = Array(repeating: gridItem, count: style.rows)
@@ -50,7 +50,7 @@ public struct EmojiKeyboard<ButtonView: View>: View {
     public typealias EmojiButtonBuilder<EmojiButton: View> = (Emoji, EmojiKeyboardStyle) -> EmojiButton
 
     public var body: some View {
-        LazyHGrid(rows: rows, spacing: style.horizontalSpacing) {
+        LazyHGrid(rows: rows, spacing: style.horizontalItemSpacing) {
             ForEach(emojis) {
                 emojiButton($0, style)
             }
@@ -94,7 +94,7 @@ public extension EmojiKeyboard where ButtonView == EmojiKeyboardButton {
             emojiButton: {
                 EmojiKeyboardButton(
                     emoji: $0,
-                    configuration: $1,
+                    style: $1,
                     action: emojiButtonAction)
             }
         )

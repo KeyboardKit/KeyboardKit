@@ -18,7 +18,7 @@ public extension EmojiCategoryKeyboard where KeyboardView == AnyView {
 public extension EmojiCategoryKeyboard where CategoryTitleView == AnyView {
     
     @available(*, deprecated, message: "Use the generic initializers instead.")
-    typealias TitleViewProvider = (EmojiCategory, String) -> AnyView
+    typealias TitleViewProvider = (EmojiCategory, String, EmojiKeyboardStyle) -> AnyView
 }
 
 
@@ -47,7 +47,10 @@ public extension EmojiCategoryKeyboard where KeyboardView == AnyView, CategoryTi
     }
     
     @available(*, deprecated, message: "Use the generic initializers instead.")
-    static func standardTitleView(for category: EmojiCategory, title: String) -> AnyView {
-        AnyView(EmojiCategoryTitle(title: title))
+    static func standardTitleView(
+        for category: EmojiCategory,
+        title: String,
+        style: EmojiKeyboardStyle = .standardPhonePortrait) -> AnyView {
+        AnyView(EmojiCategoryTitle(title: title, style: .standardPhonePortrait))
     }
 }

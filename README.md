@@ -288,6 +288,8 @@ Feel free to reach out if you have questions or if you want to contribute in any
 
 ## Sponsors and Clients
 
+KeyboardKit is free, but please consider sponsoring the project to keep it going, if you find it useful.
+
 This project is proudly sponsored by the following companies:
 
 <a href="https://www.oribi.se/en">

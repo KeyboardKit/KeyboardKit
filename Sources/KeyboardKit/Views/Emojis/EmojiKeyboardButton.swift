@@ -15,20 +15,20 @@ public struct EmojiKeyboardButton: View {
     
     public init(
         emoji: Emoji,
-        configuration: EmojiKeyboardStyle,
+        style: EmojiKeyboardStyle,
         action: @escaping (Emoji) -> Void) {
         self.emoji = emoji
-        self.configuration = configuration
+        self.style = style
         self.action = action
     }
     
     private let emoji: Emoji
-    private let configuration: EmojiKeyboardStyle
+    private let style: EmojiKeyboardStyle
     private let action: (Emoji) -> Void
     
     public var body: some View {
         Button(action: { action(emoji) }, label: {
-            Text(emoji.char).font(configuration.font)
+            Text(emoji.char).font(style.itemFont)
         })
     }
 }
@@ -38,7 +38,7 @@ struct EmojiKeyboardButton_Previews: PreviewProvider {
     static var previews: some View {
         EmojiKeyboardButton(
             emoji: Emoji("😜"),
-            configuration: .standardPhonePortrait,
+            style: .standardPhonePortrait,
             action: { _ in })
     }
 }

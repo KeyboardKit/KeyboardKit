@@ -10,18 +10,36 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
-## 5.6.1
+## 5.7
 
-This version performs minor behavior tweaks and adds new extensions.
+This version improves emoji support.
+
+There are some breaking changes, but they shouldn't affect you if you haven't been customizing emoji keyboards. 
 
 ### ✨ New features
 
 * `Character` has new emoji properties: `isEmoji`, `isCombinedEmoji`, `isSimpleEmoji`.
+* `EmojiKeyboardStyle` has renamed and reorganized its parameters.
+* `EmojiKeyboardStyle` has a new `verticalKeyboardPadding` property.
+* `EmojiKeyboardStyle.standardLargePadLandscape` is now mutable.
+* `EmojiKeyboardStyle.standardLargePadPortrait` is now mutable.
+* `EmojiKeyboardStyle.standardPadLandscape` is now mutable.
+* `EmojiKeyboardStyle.standardPadPortrait` is now mutable.
+* `EmojiKeyboardStyle.standardPhoneLandscape` is now mutable.
+* `EmojiKeyboardStyle.standardPhonePortrait` is now mutable.
 * `String` has new emoji properties: `containsEmoji`, `containsOnlyEmojis`, `emojis`, `emojiScalars`, `emojiString`, `isSingleEmoji`.
 
 ### 💡 Behavior changes
-  
+
+* `EmojiCategoryStyle` is more correct for iPad devices.
+* `EmojiCategoryKeyboard.CategoryTitleViewProvider` now takes a style.
+* `EmojiCategoryKeyboardTitle` now takes a style, but will default to `.standardPhonePortrait`. 
 * `String.wordDelimiters` has been extended with various brackets.
+
+### 💥 Breaking changes
+
+* `EmojiKeyboardButton` has renamed `configuration` to `style`.
+* `EmojiKeyboardStyle` has renamed and reorganized its parameters. There is no deprecations, since the initializer has standard values for each parameter, which cause conflicts.  
 
 
 

@@ -15,45 +15,52 @@ import SwiftUI
  ``EmojiKeyboard`` or ``EmojiCategoryKeyboard`` to customize
  things like the font, number of rows, item spacing etc.
  
- Note that the style has both an ``itemSize`` and a ``font``
- Lazy grids can use the ``itemSize`` as a precalculated cell
- size, then apply the ``font`` to each emoji.
+ Note that the style has both an ``itemSize`` and ``itemFont``
+ parameter. SwiftUI grids use ``itemSize`` as pre-calculated
+ cell size, then apply ``itemFont`` to each emoji item. Make
+ sure to find a good combination when customizing the values.
  */
 public struct EmojiKeyboardStyle {
     
     /**
      Create an autocomplete toolbar item style.
      
+     The standard parameter values generates a keyboard that
+     is designed as a standard iPhone portrait keyboard.
+     
      - Parameters:
-       - itemSize: The item size to use, by default `40`.
-       - font: The font to apply to the emojis, by default `.system(size: 33)`.
-       - categoryFont: The font to apply to the category label, by default `.system(size: 20)`.
-       - systemFont: The font to apply to the system button, by default `.system(size: 16)`.
        - rows: The number of rows to use in the keyboard, by default `5`.
-       - horizontalSpacing: The horizontal spacing to use, by default `10`.
-       - verticalSpacing: The vertical spacing to use, by default `6`.
+       - itemSize: The emoji item size to use, by default `40`.
+       - itemFont: The font to apply to emojis, by default `.system(size: 33)`.
+       - horizontalItemSpacing: The horizontal spacing to use between emojis, by default `10`.
+       - verticalItemSpacing: The vertical spacing to use between emojis, by default `6`.
+       - verticalCategoryStackSpacing: The vertical spacing to apply to the vertical category keyboard stack, by default `0`.
+       - categoryFont: The font to apply to the category label, by default `.system(size: 14)`.
+       - systemFont: The font to apply to system buttons, by default `.system(size: 16)`.
        - selectedCategoryColor: The color to apply to the selected badge, by default `.primary.opacity(0.1)`.
        - abcText: The text to use for the ABC button, by default `ABC`.
        - backspaceIcon: The icon to use for the backspace button, by default `.keyboardBackspace`.
      */
     public init(
-        itemSize: CGFloat = 40,
-        font: Font = .system(size: 33),
-        categoryFont: Font = .system(size: 20),
-        systemFont: Font = .system(size: 16),
         rows: Int = 5,
-        horizontalSpacing: CGFloat = 10,
-        verticalSpacing: CGFloat = 6,
+        itemSize: CGFloat = 40,
+        itemFont: Font = .system(size: 33),
+        horizontalItemSpacing: CGFloat = 10,
+        verticalItemSpacing: CGFloat = 6,
+        verticalCategoryStackSpacing: CGFloat = 0,
+        categoryFont: Font = .system(size: 14),
+        systemFont: Font = .system(size: 16),
         selectedCategoryColor: Color = .primary.opacity(0.1),
         abcText: String = "ABC",
         backspaceIcon: Image = .keyboardBackspace) {
         self.itemSize = itemSize
-        self.font = font
+        self.itemFont = itemFont
         self.categoryFont = categoryFont
         self.systemFont = systemFont
         self.rows = rows
-        self.horizontalSpacing = horizontalSpacing
-        self.verticalSpacing = verticalSpacing
+        self.horizontalItemSpacing = horizontalItemSpacing
+        self.verticalItemSpacing = verticalItemSpacing
+        self.verticalCategoryStackSpacing = verticalCategoryStackSpacing
         self.selectedCategoryColor = selectedCategoryColor
         self.abcText = abcText
         self.backspaceIcon = backspaceIcon
@@ -75,14 +82,14 @@ public struct EmojiKeyboardStyle {
     public var categoryFont: Font
     
     /**
-     The font to apply to the emojis.
-     */
-    public var font: Font
-    
-    /**
      The horizontal spacing to use.
      */
-    public var horizontalSpacing: CGFloat
+    public var horizontalItemSpacing: CGFloat
+    
+    /**
+     The font to apply to the emojis.
+     */
+    public var itemFont: Font
     
     /**
      The item size to use.
@@ -110,20 +117,88 @@ public struct EmojiKeyboardStyle {
     public var totalHeight: CGFloat { CGFloat(rows) * itemSize }
     
     /**
+     The vertical spacing to apply to the vertical category keyboard stack.
+     */
+    public var verticalCategoryStackSpacing: CGFloat
+    
+    /**
      The vertical spacing to use.
      */
-    public var verticalSpacing: CGFloat
+    public var verticalItemSpacing: CGFloat
 }
 
 public extension EmojiKeyboardStyle {
     
-    static let standardLargePadLandscape = EmojiKeyboardStyle(rows: 6)
-    static let standardLargePadPortrait = EmojiKeyboardStyle(rows: 5)
-    static let standardPadLandscape = EmojiKeyboardStyle(rows: 5)
-    static let standardPadPortrait = EmojiKeyboardStyle(rows: 3)
-    static let standardPhoneLandscape = EmojiKeyboardStyle(rows: 3)
-    static let standardPhonePortrait = EmojiKeyboardStyle(rows: 5)
+    /**
+     The style to use for large iPads in landscape.
+     
+     This property can be changed to change the global style
+     of all emoji keyboards in this configuration.
+     */
+    static var standardLargePadLandscape = EmojiKeyboardStyle(
+        rows: 6)
     
+    /**
+     The style to use for large iPads in portrait.
+     
+     This property can be changed to change the global style
+     of all emoji keyboards in this configuration.
+     */
+    static var standardLargePadPortrait = EmojiKeyboardStyle(
+        rows: 5)
+    
+    /**
+     The style to use for standard iPads in landscape.
+     
+     This property can be changed to change the global style
+     of all emoji keyboards in this configuration.
+     */
+    static var standardPadLandscape = EmojiKeyboardStyle(
+        rows: 5,
+        itemSize: 60,
+        itemFont: .system(size: 50),
+        horizontalItemSpacing: 15,
+        verticalItemSpacing: 10,
+        verticalCategoryStackSpacing: 7,
+        categoryFont: .system(size: 18).bold(),
+        systemFont: .system(size: 18))
+    
+    /**
+     The style to use for standard iPads in landscape.
+     
+     This property can be changed to change the global style
+     of all emoji keyboards in this configuration.
+     */
+    static var standardPadPortrait = EmojiKeyboardStyle(
+        rows: 3,
+        itemSize: 80,
+        itemFont: .system(size: 60),
+        horizontalItemSpacing: 15,
+        verticalItemSpacing: 10,
+        verticalCategoryStackSpacing: 5,
+        categoryFont: .system(size: 18).bold(),
+        systemFont: .system(size: 18))
+    
+    /**
+     The style to use for iPhones in landscape.
+     
+     This property can be changed to change the global style
+     of all emoji keyboards in this configuration.
+     */
+    static var standardPhoneLandscape = EmojiKeyboardStyle(
+        rows: 3)
+    
+    /**
+     The style to use for iPhones in portrait.
+     
+     This property can be changed to change the global style
+     of all emoji keyboards in this configuration.
+     */
+    static var standardPhonePortrait = EmojiKeyboardStyle()
+    
+    /**
+     Get the standard style to use for a certain context.
+     */
     static func standard(for context: KeyboardContext) -> EmojiKeyboardStyle {
         let isPortrait = context.screenOrientation.isPortrait
         if context.device.isPhone {

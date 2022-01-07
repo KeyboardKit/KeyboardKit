@@ -36,7 +36,7 @@ public extension EmojiKeyboard where ButtonView == AnyView {
         return AnyView(
             EmojiKeyboardButton(
                 emoji: emoji,
-                configuration: configuration,
+                style: configuration,
                 action: { handler.handle(.tap, on: .emoji($0)) }
             )
         )

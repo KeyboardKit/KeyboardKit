@@ -38,8 +38,7 @@ struct HomeScreen: View {
                         isEnabled: isFullAccessEnabled,
                         enabledText: "Full Access is enabled",
                         disabledText: "Full Access is disabled")
-                    
-                    ListButtonLink(action: openSettings) {
+                    ListNavigationButton(action: openSettings) {
                         Label("System settings", image: .settings)
                     }
                 }
@@ -53,7 +52,7 @@ struct HomeScreen: View {
 private extension HomeScreen {
     
     var footerText: some View {
-        Text("You must enable the keyboard under system settings, then select it in your keyboard, using the globe button.")
+        Text("You must enable the KeyboardKit keyboard under system settings, then select when typing, using 🌐.")
     }
 }
 

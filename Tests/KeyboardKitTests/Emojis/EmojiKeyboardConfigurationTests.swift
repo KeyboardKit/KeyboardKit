@@ -20,8 +20,8 @@ class EmojiKeyboardStyleTests: QuickSpec {
             func validate(_ config: EmojiKeyboardStyle, _ itemSize: CGFloat, _ rows: Int, _ horizontalSpacing: CGFloat, _ verticalSpacing: CGFloat) {
                 expect(config.itemSize).to(equal(itemSize))
                 expect(config.rows).to(equal(rows))
-                expect(config.horizontalSpacing).to(equal(horizontalSpacing))
-                expect(config.verticalSpacing).to(equal(verticalSpacing))
+                expect(config.horizontalItemSpacing).to(equal(horizontalSpacing))
+                expect(config.verticalItemSpacing).to(equal(verticalSpacing))
             }
             
             it("has valid cases") {

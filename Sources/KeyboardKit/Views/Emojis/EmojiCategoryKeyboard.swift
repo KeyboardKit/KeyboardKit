@@ -76,7 +76,7 @@ public struct EmojiCategoryKeyboard<KeyboardView: View, CategoryTitleView: View>
      This is a typealias for a function that can be used for
      providing a title view for an emoji category.
      */
-    public typealias CategoryTitleViewProvider = (EmojiCategory, String) -> CategoryTitleView
+    public typealias CategoryTitleViewProvider = (EmojiCategory, String, EmojiKeyboardStyle) -> CategoryTitleView
 
     /**
      This is a typealias for a function that can be used for
@@ -121,22 +121,42 @@ public struct EmojiCategoryKeyboard<KeyboardView: View, CategoryTitleView: View>
     // MARK: - Body
     
     public var body: some View {
-        VStack(spacing: 0) {
-            categoryTitleView(selection, categoryTitle(selection))
-            ScrollView(.horizontal, showsIndicators: false) {
-                categoryKeyboard(selection, style)
-            }.id(selection)
-            EmojiCategoryKeyboardMenu(
-                categories: categories,
-                appearance: appearance,
-                context: context,
-                selection: $selection,
-                style: style)
+        VStack(spacing: style.verticalCategoryStackSpacing) {
+            title
+            keyboard
+            menu
         }
         .onAppear(perform: initialize)
         .onChange(of: selection) { _ in saveCurrentCategory() }
     }
 }
+
+
+// MARK: - Private View Extensions
+
+@available(iOS 14.0, *)
+private extension EmojiCategoryKeyboard {
+
+    var title: some View {
+        categoryTitleView(selection, categoryTitle(selection), style)
+    }
+    
+    var keyboard: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            categoryKeyboard(selection, style)
+        }.id(selection)
+    }
+    
+    var menu: some View {
+        EmojiCategoryKeyboardMenu(
+            categories: categories,
+            appearance: appearance,
+            context: context,
+            selection: $selection,
+            style: style)
+    }
+}
+
 
 @available(iOS 14.0, *)
 public extension EmojiCategoryKeyboard where KeyboardView == EmojiKeyboard<EmojiKeyboardButton> {
@@ -227,8 +247,9 @@ public extension EmojiCategoryKeyboard where CategoryTitleView == EmojiCategoryT
      */
     static func standardCategoryTitleView(
         category: EmojiCategory,
-        title: String) -> EmojiCategoryTitle {
-        EmojiCategoryTitle(title: title)
+        title: String,
+        style: EmojiKeyboardStyle) -> EmojiCategoryTitle {
+        EmojiCategoryTitle(title: title, style: style)
     }
 }
 
@@ -271,8 +292,9 @@ public extension EmojiCategoryKeyboard where KeyboardView == EmojiKeyboard<Emoji
      */
     static func standardCategoryTitleView(
         category: EmojiCategory,
-        title: String) -> EmojiCategoryTitle {
-        EmojiCategoryTitle(title: title)
+        title: String,
+        style: EmojiKeyboardStyle) -> EmojiCategoryTitle {
+        EmojiCategoryTitle(title: title, style: style)
     }
 }
     
