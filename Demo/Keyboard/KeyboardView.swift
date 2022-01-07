@@ -63,11 +63,11 @@ private extension KeyboardView {
     }
     
     var textField: some View {
-        KeyboardTextField(text: $text, config: {
+        KeyboardTextField(text: $text) {
             $0.placeholder = "Try typing here, press return to stop."
             $0.borderStyle = .roundedRect
             $0.autocapitalizationType = .sentences
-        }).padding(3)
+        }.padding(3)
     }
 }
 

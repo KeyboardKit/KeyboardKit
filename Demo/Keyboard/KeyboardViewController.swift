@@ -93,29 +93,30 @@ class KeyboardViewController: KeyboardInputViewController {
             context: keyboardContext,
             providers: [try? EnglishSecondaryCalloutActionProvider()].compactMap { $0 })
         
-        // keyboardAppearance can be used to style keyboards
-        // This demo will soon demonstrate a color theme
-        // keyboardAppearance = <Insert your own custom appearance>
-        // view.backgroundColor = UIColor(keyboardAppearance.keyboardBackgroundColor)
-        
         // Perform the base initialization
         super.viewDidLoad()
     }
     
     /**
      This function is called whenever the keyboard should be
-     created or updated. Here, we either call the `setup` or
-     `setupPro` function, depending on if we want to use the
-     demo's Pro license or not.
+     created or updated. Here, we call `setup` or `setupPro`,
+     depending on if we want to use KeyboardKit Pro or not.
+     
+     If you call `setupPro`, some of the configurations will
+     be reset, since a license specifies things like default
+     locale, unlocks autocomplete etc. If you want to change
+     the locale and locales in the demo, do so after calling
+     `setupPro`.
      */
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
-        // 💡 If you use `setupPro` some configurations will
-        //    be reset, since a Pro license specifies things
-        //    like default locale. To change the Pro default
-        //    config, apply your own configs after setupPro.
+        // 💡 Make sure that only one setup call is enabled.
         // setup(with: keyboardView)
         try? setupPro(withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098", view: keyboardView)
+        
+        // 💡 To change locales when using Pro, do so here:
+        // keyboardContext.locale = KeyboardLocale.english.locale
+        // keyboardContext.locales = [KeyboardLocale.english.locale]
     }
     
     

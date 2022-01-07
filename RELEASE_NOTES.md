@@ -36,6 +36,10 @@ There are some breaking changes, but they shouldn't affect you if you haven't be
 * `EmojiCategoryKeyboardTitle` now takes a style, but will default to `.standardPhonePortrait`. 
 * `String.wordDelimiters` has been extended with various brackets.
 
+### 🐛 Bug fixes
+
+* `EmojiCategory` now adds accidentally excluded 😵‍💫 emoji.
+
 ### 💥 Breaking changes
 
 * `EmojiKeyboardButton` has renamed `configuration` to `style`.
