@@ -262,13 +262,15 @@ Note that KeyboardKit Pro extends this library by using the same extension point
 
 ## Demo Application
 
-This repository contains a demo app that demonstrates different keyboards, like `alphabetical` (lowercased, uppercased and capslocked), `numerical`, `symbols`, `emojis` and `images`. 
+This repository contains a demo app that lets you try out KeyboardKit and KeyboardKit Pro.
 
-The demo app is not intended to be production ready, but rather to give you inspiration to how you can build your own keyboards. Just keep in mind that your keyboards can look anyway you like. They don't have to look like a system keyboard.
+The standard keyboard demonstrates different system keyboards, like `alphabetical` (lowercased, uppercased and capslocked), `numerical`, `symbols` and `emojis`.
+
+The "RTL" keyboard is the same as the standard keyboard, but with its Info.plist specifying RTL and an RTL primary language. 
+
+The demo app is not intended to be production ready, but rather to give you inspiration. Just keep in mind that your keyboards can look anyway you like. They don't have to look like a system keyboard.
 
 To run the demo app, open and run the `Demo/Demo.xcodeproj` project, then enable the keyboards under system settings. Enable full access to support all features, like audio and haptic feedback.
-
-Note that you may have to update the KeyboardKit dependencies for the demo to run. If so, you can do that under `File/Swift Packages/Update to Latest Package Versions`.
 
 
 
