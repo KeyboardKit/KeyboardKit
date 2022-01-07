@@ -12,7 +12,12 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 5.6.1
 
-This version performs minor behavior tweaks.
+This version performs minor behavior tweaks and adds new extensions.
+
+### ✨ New features
+
+* `Character` has new emoji properties: `isEmoji`, `isCombinedEmoji`, `isSimpleEmoji`.
+* `String` has new emoji properties: `containsEmoji`, `containsOnlyEmojis`, `emojis`, `emojiScalars`, `emojiString`, `isSingleEmoji`.
 
 ### 💡 Behavior changes
   
