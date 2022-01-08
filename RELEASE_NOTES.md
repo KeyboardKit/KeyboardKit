@@ -39,7 +39,8 @@ There are some breaking changes, but they shouldn't affect you if you haven't be
 
 * `EmojiCategoryStyle` is adjusted to be more correct on iPad devices.
 * `EmojiCategoryKeyboard.CategoryTitleViewProvider` now takes a style.
-* `EmojiCategoryKeyboardTitle` now takes a style, but will default to `.standardPhonePortrait`. 
+* `EmojiCategoryKeyboardTitle` now takes a style, but will default to `.standardPhonePortrait`.
+* `KeyboardAction.shift` now uses a lighter color scheme for uppercase. 
 * `String.wordDelimiters` has been extended with various brackets.
 
 ### 🐛 Bug fixes

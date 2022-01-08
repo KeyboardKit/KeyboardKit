@@ -149,6 +149,13 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
 
 extension KeyboardAction {
     
+    var isUppercaseShift: Bool {
+        switch self {
+        case .shift(let state): return state.isUppercased
+        default: return false
+        }
+    }
+    
     func buttonBackgroundColorForAllStates() -> Color? {
         if case .none = self { return .clear }
         if case .emoji = self { return .clearInteractable }
@@ -165,12 +172,14 @@ extension KeyboardAction {
     
     func buttonBackgroundColorForIdleState(for context: KeyboardContext) -> Color {
         if isPrimaryAction { return .blue }
+        if isUppercaseShift { return .standardButtonBackgroundColor(for: context) }
         if isSystemAction { return .standardDarkButtonBackgroundColor(for: context) }
         return .standardButtonBackgroundColor(for: context)
     }
     
     func buttonBackgroundColorForPressedState(for context: KeyboardContext) -> Color {
         if isPrimaryAction { return context.colorScheme == .dark ? .standardDarkButtonBackgroundColor(for: context) : .white }
+        if isUppercaseShift { return .standardDarkButtonBackgroundColor(for: context) }
         if isSystemAction { return context.colorScheme == .dark ? .standardButtonBackgroundColor(for: context) : .white }
         return .standardDarkButtonBackgroundColor(for: context)
     }
