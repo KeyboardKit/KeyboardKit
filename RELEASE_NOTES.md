@@ -16,6 +16,10 @@ This version improves emoji support.
 
 There are some breaking changes, but they shouldn't affect you if you haven't been customizing emoji keyboards. 
 
+### 🌐 New locales
+
+* 🇧🇾 Belarusian
+
 ### ✨ New features
 
 * `Character` has new emoji properties: `isEmoji`, `isCombinedEmoji`, `isSimpleEmoji`.

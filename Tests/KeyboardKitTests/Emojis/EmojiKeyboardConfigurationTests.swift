@@ -25,10 +25,10 @@ class EmojiKeyboardStyleTests: QuickSpec {
             }
             
             it("has valid cases") {
-                validate(.standardLargePadLandscape, 40, 6, 10, 6)
-                validate(.standardLargePadPortrait, 40, 5, 10, 6)
-                validate(.standardPadLandscape, 40, 5, 10, 6)
-                validate(.standardPadPortrait, 40, 3, 10, 6)
+                validate(.standardLargePadLandscape, 60, 6, 15, 10)
+                validate(.standardLargePadPortrait, 60, 5, 10, 7)
+                validate(.standardPadLandscape, 60, 5, 15, 10)
+                validate(.standardPadPortrait, 80, 3, 15, 10)
                 validate(.standardPhoneLandscape, 40, 3, 10, 6)
                 validate(.standardPhonePortrait, 40, 5, 10, 6)
             }

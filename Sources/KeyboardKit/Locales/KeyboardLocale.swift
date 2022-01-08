@@ -17,11 +17,15 @@ import Foundation
  For instance, when a Keyboard Kit Pro license is registered,
  the locales get services applied, e.g. for resolving locale
  specific input sets and secondary callout actions.
+ 
+ Find more locales here:
+ https://gist.github.com/jacobbubu/1836273
  */
 public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
     
     case albanian = "sq"
     case arabic = "ar"
+    case belarusian = "be"
     case brazilian = "pt_BR"
     case danish = "da"
     case dutch = "nl"
@@ -80,6 +84,7 @@ public extension KeyboardLocale {
         switch self {
         case .albanian: return "🇦🇱"
         case .arabic: return "🇦🇪"
+        case .belarusian: return "🇧🇾"
         case .brazilian: return "🇧🇷"
         case .danish: return "🇩🇰"
         case .dutch: return "🇳🇱"

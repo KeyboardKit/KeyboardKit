@@ -26,6 +26,7 @@ class KeyboardLocaleTests: QuickSpec {
                     [
                         .albanian: "sq",
                         .arabic: "ar",
+                        .belarusian: "be",
                         .brazilian: "pt_BR",
                         .danish: "da",
                         .dutch: "nl",
@@ -84,6 +85,7 @@ class KeyboardLocaleTests: QuickSpec {
                     [
                         .albanian: "shqip",
                         .arabic: "العربية",
+                        .belarusian: "беларуская",
                         .brazilian: "português (Brasil)",
                         .danish: "dansk",
                         .dutch: "Nederlands",
@@ -123,6 +125,7 @@ class KeyboardLocaleTests: QuickSpec {
                     [
                         .albanian: "🇦🇱",
                         .arabic: "🇦🇪",
+                        .belarusian: "🇧🇾",
                         .brazilian: "🇧🇷",
                         .danish: "🇩🇰",
                         .dutch: "🇳🇱",
@@ -155,79 +158,19 @@ class KeyboardLocaleTests: QuickSpec {
         
         describe("is LTR") {
             
-            it("is correct for all locales but farsi") {
-                let map = locales.map { ($0, $0.isLeftToRight) }
-                let result = Dictionary(uniqueKeysWithValues: map)
-                expect(result).to(equal(
-                    [
-                        .albanian: true,
-                        .arabic: false,
-                        .brazilian: true,
-                        .danish: true,
-                        .dutch: true,
-                        .english: true,
-                        .english_gb: true,
-                        .english_us: true,
-                        .estonian: true,
-                        .finnish: true,
-                        .french: true,
-                        .german: true,
-                        .icelandic: true,
-                        .irish: true,
-                        .italian: true,
-                        .kurdish_sorani: false,
-                        .latvian: true,
-                        .lithuanian: true,
-                        .norwegian: true,
-                        .persian: false,
-                        .polish: true,
-                        .portuguese: true,
-                        .russian: true,
-                        .spanish: true,
-                        .swedish: true,
-                        .turkish: true,
-                        .ukrainian: true
-                    ]
-                ))
+            it("is derived from resolved locale for all locales") {
+                locales.forEach {
+                    expect($0.isLeftToRight).to(equal($0.locale.isLeftToRight))
+                }
             }
         }
         
         describe("is RTL") {
             
-            it("is inverted LTR value") {
-                let map = locales.map { ($0, $0.isRightToLeft) }
-                let result = Dictionary(uniqueKeysWithValues: map)
-                expect(result).to(equal(
-                    [
-                        .albanian: false,
-                        .arabic: true,
-                        .brazilian: false,
-                        .danish: false,
-                        .dutch: false,
-                        .english: false,
-                        .english_gb: false,
-                        .english_us: false,
-                        .estonian: false,
-                        .finnish: false,
-                        .french: false,
-                        .german: false,
-                        .icelandic: false,
-                        .irish: false,
-                        .italian: false,
-                        .kurdish_sorani: true,
-                        .latvian: false,
-                        .lithuanian: false,
-                        .norwegian: false,
-                        .persian: true,
-                        .polish: false,
-                        .portuguese: false,
-                        .russian: false,
-                        .spanish: false,
-                        .swedish: false,
-                        .turkish: false,
-                        .ukrainian: false
-                    ]
-                ))
+            it("is derived from resolved locale for all locales") {
+                locales.forEach {
+                    expect($0.isRightToLeft).to(equal($0.locale.isRightToLeft))
+                }
             }
         }
         
