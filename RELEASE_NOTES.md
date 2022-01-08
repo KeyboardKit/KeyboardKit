@@ -12,13 +12,14 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 5.7
 
-This version improves emoji support.
+This version adds new locales and improves emoji support.
 
 There are some breaking changes, but they shouldn't affect you if you haven't been customizing emoji keyboards. 
 
 ### 🌐 New locales
 
 * 🇧🇾 Belarusian
+* 🇨🇿 Czech
 * 🇷🇴 Romanian
 
 ### ✨ New features
