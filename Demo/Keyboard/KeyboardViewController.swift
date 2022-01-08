@@ -110,6 +110,7 @@ class KeyboardViewController: KeyboardInputViewController {
      */
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
+        
         // 💡 Make sure that only one setup call is enabled.
         // setup(with: keyboardView)
         try? setupPro(withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098", view: keyboardView)

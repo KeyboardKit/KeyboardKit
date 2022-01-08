@@ -22,6 +22,9 @@ import SwiftUI
  
  If you want to create an entirely custom layout, you should
  just implement `KeyboardLayoutProvider`.
+ 
+ `TODO` I'm not at all happy with the `hasXXXAlphabeticInput`
+ names. If you know how to improve it, please do let me know.
  */
 open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     
@@ -52,94 +55,73 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     
     
     /**
+     The number of alphabetic inputs on each input row.
+     */
+    public var alphabeticInputCount: [Int] {
+        inputSetProvider.alphabeticInputSet.rows.map { $0.count }
+    }
+    
+    /**
      Whether or not the alphabetic input set uses an 11-11-X
      layout, which is used by e.g. `German` keyboards.
-     
-     I'm not at all happy with this name. If you know how to
-     improve this, please create an issue or a PR.
      */
     public var hasElevenElevenAlphabeticInput: Bool {
-        let rows = inputSetProvider.alphabeticInputSet.rows
-        let counts = (rows.map { $0.count }).prefix(2)
-        return counts == [11, 11]
+        alphabeticInputCount.prefix(2) == [11, 11]
     }
     
     /**
      Whether or not the alphabetic input set uses an 11-11-7
      layout, which is used by e.g. `German` keyboards.
-     
-     I'm not at all happy with this name. If you know how to
-     improve this, please create an issue or a PR.
      */
     public var hasElevenElevenSevenAlphabeticInput: Bool {
-        let rows = inputSetProvider.alphabeticInputSet.rows
-        let counts = (rows.map { $0.count }).prefix(3)
-        return counts == [11, 11, 7]
+        alphabeticInputCount.prefix(3) == [11, 11, 7]
     }
     
     /**
      Whether or not the alphabetic input set uses an 11-11-8
      layout, which is used by e.g. `Icelandic` keyboards.
-     
-     I'm not at all happy with this name. If you know how to
-     improve this, please create an issue or a PR.
      */
     public var hasElevenElevenEightAlphabeticInput: Bool {
-        let rows = inputSetProvider.alphabeticInputSet.rows
-        let counts = (rows.map { $0.count }).prefix(3)
-        return counts == [11, 11, 8]
+        alphabeticInputCount.prefix(3) == [11, 11, 8]
     }
     
     /**
      Whether or not the alphabetic input set uses an 11-11-7
      layout, which is used by e.g. `Russian` keyboards.
-     
-     I'm not at all happy with this name. If you know how to
-     improve this, please create an issue or a PR.
      */
     public var hasElevenElevenNineAlphabeticInput: Bool {
-        let rows = inputSetProvider.alphabeticInputSet.rows
-        let counts = (rows.map { $0.count }).prefix(3)
-        return counts == [11, 11, 9]
+        alphabeticInputCount.prefix(3) == [11, 11, 9]
     }
     
     /**
      Whether or not the alphabetic input set has an 11-11-10
      layout, which is used by `Persian` iPhone keyboards.
-     
-     I'm not at all happy with this name. If you know how to
-     improve this, please create an issue or a PR.
      */
     public var hasElevenElevenTenAlphabeticInput: Bool {
-        let rows = inputSetProvider.alphabeticInputSet.rows
-        let counts = (rows.map { $0.count }).prefix(3)
-        return counts == [11, 11, 10]
+        alphabeticInputCount.prefix(3) == [11, 11, 10]
     }
     
     /**
      Whether or not the alphabetic input set has an 11-11-11
      layout, which is used by `Persian` iPad keyboards.
-     
-     I'm not at all happy with this name. If you know how to
-     improve this, please create an issue or a PR.
      */
     public var hasElevenElevenElevenAlphabeticInput: Bool {
-        let rows = inputSetProvider.alphabeticInputSet.rows
-        let counts = (rows.map { $0.count }).prefix(3)
-        return counts == [11, 11, 11]
+        alphabeticInputCount.prefix(3) == [11, 11, 11]
     }
     
     /**
      Whether or not the alphabetic input set uses an 11-10-9
      layout, which is used by `Turkish` iPhone keyboards.
-     
-     I'm not at all happy with this name. If you know how to
-     improve this, please create an issue or a PR.
      */
     public var hasTwelveElevenNineAlphabeticInput: Bool {
-        let rows = inputSetProvider.alphabeticInputSet.rows
-        let counts = (rows.map { $0.count }).prefix(3)
-        return counts == [12, 11, 9]
+        alphabeticInputCount.prefix(3) == [12, 11, 9]
+    }
+    
+    /**
+     Whether or not the context keyboard type is alphabetic.
+     */
+    public func isAlphabetic(_ context: KeyboardContext) -> Bool {
+        context.keyboardType.isAlphabetic
     }
     
     /**
@@ -153,21 +135,28 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
      Whether or not to use an Arabic alphabetic keyboard.
      */
     public func isArabicAlphabetic(_ context: KeyboardContext) -> Bool {
-        context.keyboardType.isAlphabetic && isArabic(context)
+        isAlphabetic(context) && isArabic(context)
+    }
+    
+    /**
+     Whether or not to use an Belarusian alphabetic keyboard.
+     */
+    public func isBelarusianAlphabetic(_ context: KeyboardContext) -> Bool {
+        isAlphabetic(context) && context.locale.identifier == "be"
     }
     
     /**
      Whether or not to use an Persian alphabetic keyboard.
      */
     public func isPersianAlphabetic(_ context: KeyboardContext) -> Bool {
-        context.keyboardType.isAlphabetic && context.locale.identifier == "fa"
+        isAlphabetic(context) && context.locale.identifier == "fa"
     }
     
     /**
      Whether or not to use an Russian alphabetic keyboard.
      */
     public func isRussianAlphabetic(_ context: KeyboardContext) -> Bool {
-        context.keyboardType.isAlphabetic && context.locale.identifier == "ru"
+        isAlphabetic(context) && context.locale.identifier == "ru"
     }
     
     /**

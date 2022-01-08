@@ -12,6 +12,10 @@ import SwiftUI
  This class provides a keyboard layout that correspond to an
  iPad with a home button.
  
+ The provider will use input count patterns when the certain
+ pattern should determine the layout regardless of locale. A
+ locale-based layout is not as general, but is more precise.
+ 
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
  
@@ -65,8 +69,12 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         case .dismissKeyboard: return .inputPercentage(1.45)
         case .keyboardType: return row == 2 ? .available : .input
         case .nextKeyboard: return .input
-        default: return super.itemSizeWidth(for: context, action: action, row: row, index: index)
+        case .newLine:
+            if isBelarusianAlphabetic(context) { return .available }
+        default: break
         }
+        return super.itemSizeWidth(for: context, action: action, row: row, index: index)
+        
     }
     
     /**
@@ -116,6 +124,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         if isArabicAlphabetic(context) { return [keyboardReturnAction(for: context)] }
         if isPersianAlphabetic(context) { return [] }
+        if isBelarusianAlphabetic(context) { return [.newLine] }
         return [action]
     }
     
@@ -123,6 +132,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      Additional leading actions to apply to the middle row.
      */
     open func middleLeadingActions(for context: KeyboardContext) -> KeyboardActions {
+        if isBelarusianAlphabetic(context) { return [] }
         return [.none]
     }
     
@@ -131,6 +141,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func middleTrailingActions(for context: KeyboardContext) -> KeyboardActions {
         if isArabic(context) { return [] }
+        if isBelarusianAlphabetic(context) { return [] }
         return [keyboardReturnAction(for: context)]
     }
     

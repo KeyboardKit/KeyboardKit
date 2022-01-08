@@ -91,6 +91,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     open func lowerLeadingActions(for context: KeyboardContext) -> KeyboardActions {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         if isArabicAlphabetic(context) { return [] }
+        if isBelarusianAlphabetic(context) { return [action] }
         if isPersianAlphabetic(context) { return [] }
         if isRussianAlphabetic(context) { return [action] }
         return [action, .none]
@@ -101,6 +102,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func lowerTrailingActions(for context: KeyboardContext) -> KeyboardActions {
         if isArabicAlphabetic(context) { return [.none, .backspace] }
+        if isBelarusianAlphabetic(context) { return [.backspace] }
         if isPersianAlphabetic(context) { return [.backspace] }
         if isRussianAlphabetic(context) { return [.backspace] }
         return [.none, .backspace]
@@ -140,6 +142,7 @@ private extension iPhoneKeyboardLayoutProvider {
      */
     func thirdRowSystemButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
         if hasTwelveElevenNineAlphabeticInput { return .percentage(0.11) }
+        if isBelarusianAlphabetic(context) { return .available }
         if isPersianAlphabetic(context) { return .input }
         if isRussianAlphabetic(context) { return .input }
         return .percentage(0.12)
