@@ -52,7 +52,6 @@ There are some breaking changes, but they shouldn't affect you if you haven't be
 
 * A bunch of `SystemKeyboardLayoutProvider` `hasXXXAlphabeticInput` properties have been deprecated.
 
-
 ### 💥 Breaking changes
 
 * `EmojiKeyboardButton` has renamed `configuration` to `style`.

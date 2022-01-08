@@ -11,7 +11,9 @@ KeyboardKit is localized in the following languages:
 
 * 🇦🇱 Albanian
 * 🇦🇪 Arabic
+* 🇧🇾 Belarusian
 * 🇧🇷 Brazilian
+* 🇨🇿 Czech
 * 🇩🇰 Danish
 * 🇳🇱 Dutch
 * 🇬🇧 English (UK)
@@ -30,13 +32,14 @@ KeyboardKit is localized in the following languages:
 * 🇮🇷 Persian
 * 🇵🇱 Polish
 * 🇵🇹 Portuguese
+* 🇷🇴 Romanian
 * 🇷🇺 Russian
 * 🇪🇸 Spanish
 * 🇸🇪 Swedish
 * 🇹🇷 Turkish
 * 🇺🇦 Ukrainian
 
-These locales can be accessed through the `KeyboardLocale` enum.
+These locales can be accessed with the `KeyboardLocale` enum.
 
 
 ## Localized strings
