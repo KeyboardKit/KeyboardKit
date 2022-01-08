@@ -68,47 +68,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     public var hasElevenElevenAlphabeticInput: Bool {
         alphabeticInputCount.prefix(2) == [11, 11]
     }
-    
-    /**
-     Whether or not the alphabetic input set uses an 11-11-7
-     layout, which is used by e.g. `German` keyboards.
-     */
-    public var hasElevenElevenSevenAlphabeticInput: Bool {
-        alphabeticInputCount.prefix(3) == [11, 11, 7]
-    }
-    
-    /**
-     Whether or not the alphabetic input set uses an 11-11-8
-     layout, which is used by e.g. `Icelandic` keyboards.
-     */
-    public var hasElevenElevenEightAlphabeticInput: Bool {
-        alphabeticInputCount.prefix(3) == [11, 11, 8]
-    }
-    
-    /**
-     Whether or not the alphabetic input set uses an 11-11-7
-     layout, which is used by e.g. `Russian` keyboards.
-     */
-    public var hasElevenElevenNineAlphabeticInput: Bool {
-        alphabeticInputCount.prefix(3) == [11, 11, 9]
-    }
-    
-    /**
-     Whether or not the alphabetic input set has an 11-11-10
-     layout, which is used by `Persian` iPhone keyboards.
-     */
-    public var hasElevenElevenTenAlphabeticInput: Bool {
-        alphabeticInputCount.prefix(3) == [11, 11, 10]
-    }
-    
-    /**
-     Whether or not the alphabetic input set has an 11-11-11
-     layout, which is used by `Persian` iPad keyboards.
-     */
-    public var hasElevenElevenElevenAlphabeticInput: Bool {
-        alphabeticInputCount.prefix(3) == [11, 11, 11]
-    }
-    
+
     /**
      Whether or not the alphabetic input set uses an 11-10-9
      layout, which is used by `Turkish` iPhone keyboards.
@@ -143,6 +103,13 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
      */
     public func isBelarusianAlphabetic(_ context: KeyboardContext) -> Bool {
         isAlphabetic(context) && context.locale.identifier == "be"
+    }
+    
+    /**
+     Whether or not to use an Czech alphabetic keyboard.
+     */
+    public func isCzechAlphabetic(_ context: KeyboardContext) -> Bool {
+        isAlphabetic(context) && context.locale.identifier == "cs"
     }
     
     /**
