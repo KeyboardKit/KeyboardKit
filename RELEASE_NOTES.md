@@ -19,6 +19,7 @@ There are some breaking changes, but they shouldn't affect you if you haven't be
 ### 🌐 New locales
 
 * 🇧🇾 Belarusian
+* 🇷🇴 Romanian
 
 ### ✨ New features
 

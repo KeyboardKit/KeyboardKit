@@ -1,0 +1,20 @@
+/*
+ Localizable.strings
+ KeyboardKit
+ 
+ Created by Daniel Saidi on 2021-02-15.
+ Copyright © 2021 Daniel Saidi. All rights reserved.
+ */
+
+"locale" = "ro";
+
+"done" = "OK";
+"go" = "Acces";
+"ok" = "OK";
+"return" = "↵";
+"search" = "Căutare";
+"space" = "Spațiu";
+
+"keyboardTypeAlphabetic" = "ABC";
+"keyboardTypeNumeric" = "123";
+"keyboardTypeSymbolic" = "#+=";
