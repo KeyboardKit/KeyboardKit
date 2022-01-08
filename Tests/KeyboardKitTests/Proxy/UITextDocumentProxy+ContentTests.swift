@@ -57,6 +57,43 @@ class UITextDocumentProxy_ContentTests: QuickSpec {
             }
         }
         
+        describe("is cursor at the beginning of a new sentence with space") {
+            
+            func result(for preCursorPart: String) -> Bool {
+                prepareProxy(with: preCursorPart)
+                return proxy.isCursorAtNewSentenceWithSpace
+            }
+            
+            it("returns true if pre cursor part is missing") {
+                expect(proxy.isCursorAtNewSentence).to(beTrue())
+            }
+            
+            it("returns true if pre cursor is empty or ends with a sentence delimiter") {
+                expect(result(for: "")).to(beTrue())
+            }
+            
+            it("returns false if pre cursor part ends with a non-sentence delimiter") {
+                expect(result(for: "foo")).to(beFalse())
+            }
+            
+            it("returns false if pre cursor ends with a sentence delimiter") {
+                expect(result(for: "foo.")).to(beFalse())
+            }
+            
+            it("returns false if pre cursor has an unclosed sentence and a newline") {
+                expect(result(for: "foo\n")).to(beFalse())
+            }
+            
+            it("returns true if pre cursor has a closed sentence and a newline") {
+                expect(result(for: "foo!\n")).to(beTrue())
+            }
+            
+            it("returns false if pre cursor ends with a sentence delimiter followed by spaces") {
+                expect(result(for: "foo. ")).to(beTrue())
+                expect(result(for: "foo.   ")).to(beTrue())
+            }
+        }
+        
         describe("is cursor at the beginning of a new word") {
             
             func result(for preCursorPart: String) -> Bool {

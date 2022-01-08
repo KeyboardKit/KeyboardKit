@@ -73,8 +73,9 @@ class KeyboardContext_KeyboardTypeTests: QuickSpec {
                     expect(result(for: current, preCursorPart: "", type: type)).to(equal(expected))
                     expect(result(for: current, preCursorPart: "foo", type: type)).to(equal(current))
                     expect(result(for: current, preCursorPart: "foo ", type: type)).to(equal(current))
-                    expect(result(for: current, preCursorPart: "foo!", type: type)).to(equal(expected))
+                    expect(result(for: current, preCursorPart: "foo!", type: type)).to(equal(current))
                     expect(result(for: current, preCursorPart: "foo! ", type: type)).to(equal(expected))
+                    expect(result(for: current, preCursorPart: "foo!  ", type: type)).to(equal(expected))
                 }
                 
                 it("returns correct result for words capitalizaton") {

@@ -42,6 +42,7 @@ There are some breaking changes, but they shouldn't affect you if you haven't be
 * `EmojiCategoryKeyboardTitle` now takes a style, but will default to `.standardPhonePortrait`.
 * `KeyboardAction.shift` now uses a lighter color scheme for uppercase. 
 * `String.wordDelimiters` has been extended with various brackets.
+* `SystemKeyboard` now only uppercases for sentence autocapitalization after tapping a space after the sentence delimiter.
 
 ### 🐛 Bug fixes
 

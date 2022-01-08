@@ -16,8 +16,25 @@ public extension UITextDocumentProxy {
      */
     var isCursorAtNewSentence: Bool {
         guard let pre = trimmedDocumentContextBeforeInput?.replacingOccurrences(of: "\n", with: "") else { return true }
+        if pre.isEmpty { return true }
         let lastCharacter = String(pre.suffix(1))
-        return pre.isEmpty || lastCharacter.isSentenceDelimiter
+        return lastCharacter.isSentenceDelimiter
+    }
+    
+    /**
+     Whether or not the text document proxy cursor is at the
+     beginning of a new sentence, with trailing spaces after
+     the sentence delimiter.
+     */
+    var isCursorAtNewSentenceWithSpace: Bool {
+        guard let pre = documentContextBeforeInput else { return true }
+        if pre.isEmpty { return true }
+        let trimmed = pre.trimmingCharacters(in: .whitespacesAndNewlines)
+        let lastTrimmed = String(trimmed.suffix(1))
+        let isLastSpace = pre.last?.isWhitespace == true
+        let isLastNewline = pre.last?.isNewline == true
+        let isLastValid = isLastSpace || isLastNewline
+        return lastTrimmed.isSentenceDelimiter && isLastValid
     }
     
     /**
