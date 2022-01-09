@@ -61,7 +61,7 @@ class StandardKeyboardAppearanceTests: QuickSpec {
             
             it("is standard") {
                 let result = appearance.secondaryInputCalloutStyle()
-                let standard = SecondaryInputCalloutStyle.standard
+                let standard = ActionCalloutStyle.standard
                 expect(result.callout).to(equal(standard.callout))
                 expect(result.font).to(equal(standard.font))
                 expect(result.selectedBackgroundColor).to(equal(standard.selectedBackgroundColor))

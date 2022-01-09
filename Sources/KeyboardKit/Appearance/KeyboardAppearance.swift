@@ -26,6 +26,11 @@ import SwiftUI
 public protocol KeyboardAppearance: AnyObject {
     
     /**
+     The style to apply when presenting an ``ActionCallout``.
+     */
+    func actionCalloutStyle() -> ActionCalloutStyle
+    
+    /**
      The button image to use for a certain `action`, if any.
      */
     func buttonImage(for action: KeyboardAction) -> Image?
@@ -36,16 +41,9 @@ public protocol KeyboardAppearance: AnyObject {
     func buttonText(for action: KeyboardAction) -> String?
     
     /**
-     The input callout style to apply when showing a callout
-     that shows the currently pressed key.
+     The style to apply when presenting an ``InputCallout``.
      */
     func inputCalloutStyle() -> InputCalloutStyle
-    
-    /**
-     The secondary input callout style to apply when showing
-     a callout that shows secondary input actions.
-     */
-    func secondaryInputCalloutStyle() -> SecondaryInputCalloutStyle
     
     /**
      The system keybard button style to use for the provided

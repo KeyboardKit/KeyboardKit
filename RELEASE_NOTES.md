@@ -12,7 +12,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 5.8
 
-This version renames some types and init parameters.
+This version renames some types and init parameters to make things tighter in preparation for 6.0.
 
 ### ✨ New features
 
@@ -22,8 +22,12 @@ This version renames some types and init parameters.
 
 ### 🗑 Deprecations
 
+* `InputCalloutContext` has been renamed to `CalloutInputContext`.
+* `KeyboardInputViewController` `keyboardSecondaryInputCalloutContext` has been renamed to `actionCalloutContext`.
+* `SecondaryInputCalloutContext` has been renamed to `ActionCalloutContext`.
+* `SecondaryInputCalloutStyle` has been renamed to `ActionCalloutStyle`
 * `SystemKeyboard` has renamed `buttonViewBuilder` to `buttonView` and `buttonContentBuilder` to `buttonContent`.
-
+* `View+secondaryInputCallout` has been renamed to `actionCallout`
 
 
 ## 5.7

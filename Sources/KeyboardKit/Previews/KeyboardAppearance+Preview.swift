@@ -39,7 +39,7 @@ public class PreviewKeyboardAppearance: StandardKeyboardAppearance {
         .preview1
     }
     
-    public override func secondaryInputCalloutStyle() -> SecondaryInputCalloutStyle {
+    public override func actionCalloutStyle() -> ActionCalloutStyle {
         .preview1
     }
 }

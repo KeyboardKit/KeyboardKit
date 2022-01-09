@@ -70,21 +70,21 @@ struct KeyboardGestures<Content: View>: View {
     /**
      The shared input callout context.
      
-     For now, this context is resolved like this, to avoid a
-     change that affects all topmost views in the library.
+     `TODO` The context is resolved like this to avoid doing
+     changes that affects many library views.
      */
-    private var inputCalloutContext: InputCalloutContext? {
-        KeyboardInputViewController.shared.keyboardInputCalloutContext
+    private var actionCalloutContext: ActionCalloutContext? {
+        KeyboardInputViewController.shared.actionCalloutContext
     }
     
     /**
      The shared input callout context.
      
-     For now, this context is resolved like this, to avoid a
-     change that affects all topmost views in the library.
+     `TODO` The context is resolved like this to avoid doing
+     changes that affects many library views.
      */
-    private var secondaryInputCalloutContext: SecondaryInputCalloutContext? {
-        KeyboardInputViewController.shared.keyboardSecondaryInputCalloutContext
+    private var inputCalloutContext: InputCalloutContext? {
+        KeyboardInputViewController.shared.keyboardInputCalloutContext
     }
     
     /**
@@ -167,21 +167,21 @@ private extension KeyboardGestures {
 private extension KeyboardGestures {
     
     func beginSecondaryInput(for geo: GeometryProxy) {
-        guard let context = secondaryInputCalloutContext else { return }
+        guard let context = actionCalloutContext else { return }
         context.updateInputs(for: action, in: geo)
         guard context.isActive else { return }
         inputCalloutContext?.reset()
     }
     
     func endSecondaryInput() {
-        guard let context = secondaryInputCalloutContext else { return }
+        guard let context = actionCalloutContext else { return }
         shouldApplyTapAction = shouldApplyTapAction && !context.hasSelectedAction
         context.endDragGesture()
     }
     
     func handleDelayedDrag(_ drag: DragGesture.Value?) {
         shouldApplyTapAction = shouldApplyTapAction && action != .space
-        secondaryInputCalloutContext?.updateSelection(with: drag)
+        actionCalloutContext?.updateSelection(with: drag)
         guard let drag = drag else { return }
         dragAction?(drag.startLocation, drag.location)
     }

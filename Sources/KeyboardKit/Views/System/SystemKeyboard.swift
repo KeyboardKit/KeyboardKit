@@ -48,21 +48,21 @@ public struct SystemKeyboard<ButtonView: View>: View {
         layout: KeyboardLayout,
         appearance: KeyboardAppearance,
         actionHandler: KeyboardActionHandler,
-        context: KeyboardContext,
-        inputContext: InputCalloutContext?,
-        secondaryInputContext: SecondaryInputCalloutContext?,
+        keyboardContext: KeyboardContext,
+        actionCalloutContext: ActionCalloutContext?,
+        inputCalloutContext: InputCalloutContext?,
         width: CGFloat = standardKeyboardWidth,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder) {
         self.layout = layout
-        self.layoutConfig = .standard(for: context)
+        self.layoutConfig = .standard(for: keyboardContext)
         self.actionHandler = actionHandler
         self.appearance = appearance
         self.keyboardWidth = width
         self.buttonView = buttonView
         self.inputWidth = layout.inputWidth(for: width)
-        _context = ObservedObject(wrappedValue: context)
-        _inputContext = ObservedObject(wrappedValue: inputContext ?? .disabled)
-        _secondaryInputContext = ObservedObject(wrappedValue: secondaryInputContext ?? .disabled)
+        _keyboardContext = ObservedObject(wrappedValue: keyboardContext)
+        _actionCalloutContext = ObservedObject(wrappedValue: actionCalloutContext ?? .disabled)
+        _inputCalloutContext = ObservedObject(wrappedValue: inputCalloutContext ?? .disabled)
     }
 
     private let actionHandler: KeyboardActionHandler
@@ -76,6 +76,13 @@ public struct SystemKeyboard<ButtonView: View>: View {
     public typealias ButtonViewBuilder = (KeyboardLayoutItem, KeyboardWidth, KeyboardItemWidth) -> ButtonView
     public typealias KeyboardWidth = CGFloat
     public typealias KeyboardItemWidth = CGFloat
+    
+    private var actionCalloutStyle: ActionCalloutStyle {
+        var style = appearance.secondaryInputCalloutStyle()
+        let insets = layoutConfig.buttonInsets
+        style.callout.buttonInset = CGSize(width: insets.leading, height: insets.top)
+        return style
+    }
 
     private var inputCalloutStyle: InputCalloutStyle {
         var style = appearance.inputCalloutStyle()
@@ -83,21 +90,14 @@ public struct SystemKeyboard<ButtonView: View>: View {
         style.callout.buttonInset = CGSize(width: insets.leading, height: insets.top)
         return style
     }
-
-    private var secondaryInputCalloutStyle: SecondaryInputCalloutStyle {
-        var style = appearance.secondaryInputCalloutStyle()
-        let insets = layoutConfig.buttonInsets
-        style.callout.buttonInset = CGSize(width: insets.leading, height: insets.top)
-        return style
-    }
-
-    @ObservedObject private var context: KeyboardContext
-    @ObservedObject private var inputContext: InputCalloutContext
-    @ObservedObject private var secondaryInputContext: SecondaryInputCalloutContext
+    
+    @ObservedObject private var actionCalloutContext: ActionCalloutContext
+    @ObservedObject private var inputCalloutContext: InputCalloutContext
+    @ObservedObject private var keyboardContext: KeyboardContext
 
     public var body: some View {
         if #available(iOS 14.0, *) {
-            switch context.keyboardType {
+            switch keyboardContext.keyboardType {
             case .emojis: emojiKeyboard
             default: systemKeyboard
             }
@@ -115,11 +115,11 @@ public extension SystemKeyboard {
     static func standardButtonContent(
         item: KeyboardLayoutItem,
         appearance: KeyboardAppearance,
-        context: KeyboardContext) -> SystemKeyboardActionButtonContent {
+        keyboardContext: KeyboardContext) -> SystemKeyboardActionButtonContent {
         SystemKeyboardActionButtonContent(
             action: item.action,
             appearance: appearance,
-            context: context)
+            context: keyboardContext)
     }
     
     /**
@@ -129,13 +129,16 @@ public extension SystemKeyboard {
         item: KeyboardLayoutItem,
         appearance: KeyboardAppearance,
         actionHandler: KeyboardActionHandler,
-        context: KeyboardContext,
+        keyboardContext: KeyboardContext,
         keyboardWidth: KeyboardWidth,
         inputWidth: KeyboardItemWidth) -> SystemKeyboardButtonRowItem<SystemKeyboardActionButtonContent> {
         SystemKeyboardButtonRowItem(
-            content: standardButtonContent(item: item, appearance: appearance, context: context),
+            content: standardButtonContent(
+                item: item,
+                appearance: appearance,
+                keyboardContext: keyboardContext),
             item: item,
-            context: context,
+            context: keyboardContext,
             keyboardWidth: keyboardWidth,
             inputWidth: inputWidth,
             appearance: appearance,
@@ -150,8 +153,8 @@ private extension SystemKeyboard {
     var emojiKeyboard: some View {
         EmojiCategoryKeyboard(
             appearance: appearance,
-            context: context,
-            style: .standard(for: context))
+            context: keyboardContext,
+            style: .standard(for: keyboardContext))
             .padding(.top)
     }
     
@@ -159,14 +162,13 @@ private extension SystemKeyboard {
         VStack(spacing: 0) {
             itemRows(for: layout)
         }
+        .actionCallout(
+            context: actionCalloutContext,
+            style: actionCalloutStyle)
         .inputCallout(
-            context: inputContext,
-            keyboardContext: context,
+            context: inputCalloutContext,
+            keyboardContext: keyboardContext,
             style: inputCalloutStyle)
-        .secondaryInputCallout(
-            context: secondaryInputContext,
-            style: secondaryInputCalloutStyle
-        )
     }
 }
 
@@ -180,24 +182,24 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
         layout: KeyboardLayout,
         appearance: KeyboardAppearance,
         actionHandler: KeyboardActionHandler,
-        context: KeyboardContext,
-        inputContext: InputCalloutContext?,
-        secondaryInputContext: SecondaryInputCalloutContext?,
+        keyboardContext: KeyboardContext,
+        actionCalloutContext: ActionCalloutContext?,
+        inputCalloutContext: InputCalloutContext?,
         width: CGFloat = standardKeyboardWidth,
         @ViewBuilder buttonContent: @escaping (KeyboardLayoutItem) -> ButtonContentView) {
         self.init(
             layout: layout,
             appearance: appearance,
             actionHandler: actionHandler,
-            context: context,
-            inputContext: inputContext,
-            secondaryInputContext: secondaryInputContext,
+            keyboardContext: keyboardContext,
+            actionCalloutContext: actionCalloutContext,
+            inputCalloutContext: inputCalloutContext,
             width: width,
             buttonView: { item, keyboardWidth, inputWidth in
                 SystemKeyboardButtonRowItem(
                     content: AnyView(buttonContent(item)),
                     item: item,
-                    context: context,
+                    context: keyboardContext,
                     keyboardWidth: keyboardWidth,
                     inputWidth: inputWidth,
                     appearance: appearance,
@@ -218,24 +220,24 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
         layout: KeyboardLayout,
         appearance: KeyboardAppearance,
         actionHandler: KeyboardActionHandler,
-        context: KeyboardContext,
-        inputContext: InputCalloutContext?,
-        secondaryInputContext: SecondaryInputCalloutContext?,
+        keyboardContext: KeyboardContext,
+        actionCalloutContext: ActionCalloutContext?,
+        inputCalloutContext: InputCalloutContext?,
         width: CGFloat = standardKeyboardWidth) {
         self.init(
             layout: layout,
             appearance: appearance,
             actionHandler: actionHandler,
-            context: context,
-            inputContext: inputContext,
-            secondaryInputContext: secondaryInputContext,
+            keyboardContext: keyboardContext,
+            actionCalloutContext: actionCalloutContext,
+            inputCalloutContext: inputCalloutContext,
             width: width,
             buttonView: { item, keyboardWidth, inputWidth in
                 Self.standardButtonView(
                     item: item,
                     appearance: appearance,
                     actionHandler: actionHandler,
-                    context: context,
+                    keyboardContext: keyboardContext,
                     keyboardWidth: keyboardWidth,
                     inputWidth: inputWidth)
             }
@@ -320,9 +322,9 @@ struct SystemKeyboard_Previews: PreviewProvider {
                 layout: .preview,
                 appearance: PreviewKeyboardAppearance(),
                 actionHandler: PreviewKeyboardActionHandler(),
-                context: .preview,
-                inputContext: nil,
-                secondaryInputContext: nil,
+                keyboardContext: .preview,
+                actionCalloutContext: nil,
+                inputCalloutContext: nil,
                 width: UIScreen.main.bounds.width)
             
             
@@ -331,9 +333,9 @@ struct SystemKeyboard_Previews: PreviewProvider {
                 layout: .preview,
                 appearance: PreviewKeyboardAppearance(),
                 actionHandler: PreviewKeyboardActionHandler(),
-                context: .preview,
-                inputContext: nil,
-                secondaryInputContext: nil,
+                keyboardContext: .preview,
+                actionCalloutContext: nil,
+                inputCalloutContext: nil,
                 width: UIScreen.main.bounds.width,
                 buttonContent: previewButtonContent)
             
@@ -342,9 +344,9 @@ struct SystemKeyboard_Previews: PreviewProvider {
                 layout: .preview,
                 appearance: PreviewKeyboardAppearance(),
                 actionHandler: PreviewKeyboardActionHandler(),
-                context: .preview,
-                inputContext: nil,
-                secondaryInputContext: nil,
+                keyboardContext: .preview,
+                actionCalloutContext: nil,
+                inputCalloutContext: nil,
                 width: UIScreen.main.bounds.width,
                 buttonView: previewButton)
         }.background(Color.yellow)

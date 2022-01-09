@@ -13,7 +13,7 @@ import SwiftUI
  things like the callout style, padding, font etc.
  
  You can modify the ``standard`` style to change the default,
- global style of all ``InputCallout``s.
+ global style of all ``InputCallout`` views that use it.
  
  The ``calloutSize`` specifies a **minimum** size to use for
  the callout. If other factors, like button size, curve size,

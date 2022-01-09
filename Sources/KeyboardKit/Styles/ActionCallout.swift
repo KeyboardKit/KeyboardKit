@@ -1,5 +1,5 @@
 //
-//  SecondaryInputCalloutStyle.swift
+//  ActionCalloutStyle.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -9,13 +9,13 @@
 import SwiftUI
 
 /**
- This style can be applied to ``SecondaryInputCallout``s, to
- customize things like the callout style, font, colors etc.
+ This style can be applied to ``ActionCallout`` to customize
+ things like the callout style, padding, font etc.
  
  You can modify the ``standard`` style to change the default,
- global style of all ``SecondaryInputCallout``s.
+ global style of all ``ActionCallout`` views that use it.
  */
-public struct SecondaryInputCalloutStyle {
+public struct ActionCalloutStyle {
     
     /**
      Create a secondary input callout style.
@@ -66,12 +66,12 @@ public struct SecondaryInputCalloutStyle {
     public var verticalTextPadding: CGFloat
 }
 
-public extension SecondaryInputCalloutStyle {
+public extension ActionCalloutStyle {
     
     /**
      This standard style aims to mimic the native iOS style.
      */
-    static var standard = SecondaryInputCalloutStyle()
+    static var standard = ActionCalloutStyle()
     
     /**
      This is the standard font that will be used by default.
@@ -85,12 +85,12 @@ public extension SecondaryInputCalloutStyle {
     }
 }
 
-extension SecondaryInputCalloutStyle {
+extension ActionCalloutStyle {
     
     /**
      This internal style is only used in previews.
      */
-    static var preview1 = SecondaryInputCalloutStyle(
+    static var preview1 = ActionCalloutStyle(
         callout: .preview1,
         font: .headline,
         selectedBackgroundColor: .yellow,
@@ -100,7 +100,7 @@ extension SecondaryInputCalloutStyle {
     /**
      This internal style is only used in previews.
      */
-    static var preview2 = SecondaryInputCalloutStyle(
+    static var preview2 = ActionCalloutStyle(
         callout: .preview2,
         font: .footnote,
         selectedBackgroundColor: .black,

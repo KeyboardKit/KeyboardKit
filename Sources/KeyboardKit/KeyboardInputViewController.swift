@@ -86,10 +86,10 @@ open class KeyboardInputViewController: UIInputViewController {
         self.view.subviews.forEach { $0.removeFromSuperview() }
         let view = RootView(view)
             .environmentObject(autocompleteContext)
+            .environmentObject(actionCalloutContext)
             .environmentObject(keyboardContext)
             .environmentObject(keyboardFeedbackSettings)
             .environmentObject(keyboardInputCalloutContext)
-            .environmentObject(keyboardSecondaryInputCalloutContext)
         let host = KeyboardHostingController(rootView: view)
         host.add(to: self)
     }
@@ -180,6 +180,16 @@ open class KeyboardInputViewController: UIInputViewController {
     // MARK: - Observables
     
     /**
+     The default, observable action callout context.
+     
+     This is used as global state for the callouts that show
+     a set of secondary actions for a long-pressed input key.
+     */
+    public lazy var actionCalloutContext = ActionCalloutContext(
+        actionHandler: keyboardActionHandler,
+        actionProvider: keyboardSecondaryCalloutActionProvider)
+    
+    /**
      The default, observable autocomplete context.
      
      This context is used as global state for the keyboard's
@@ -190,9 +200,8 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      The default, observable keyboard context.
      
-     This context is used as global state for the keyboard's
-     overall state and configuration like the current locale,
-     device, screen etc.
+     This is used as global state for the keyboard's overall
+     state and configuration like locale, device, screen etc.
      */
     public lazy var keyboardContext = KeyboardContext(controller: self)
     
@@ -207,22 +216,11 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      The default, observable input callout context.
      
-     This context is used as global state for the keyboard's
-     input callout, which shows the currently typed char.
+     This is used as global state for the callouts that show
+     the currently typed character.
      */
     public lazy var keyboardInputCalloutContext = InputCalloutContext(
         isEnabled: UIDevice.current.userInterfaceIdiom == .phone)
-    
-    /**
-     The default, observable secondary input callout context.
-     
-     This context is used as global state for the keyboard's
-     secondary input action callout, which shows a secondary
-     callout with actions for a long-pressed input key.
-     */
-    public lazy var keyboardSecondaryInputCalloutContext = SecondaryInputCalloutContext(
-        actionHandler: keyboardActionHandler,
-        actionProvider: keyboardSecondaryCalloutActionProvider)
     
     
     
@@ -386,9 +384,15 @@ open class KeyboardInputViewController: UIInputViewController {
 
 private extension KeyboardInputViewController {
     
+    func refreshCalloutActionContext() {
+        actionCalloutContext = ActionCalloutContext(
+            actionHandler: keyboardActionHandler,
+            actionProvider: keyboardSecondaryCalloutActionProvider)
+    }
+    
     func refreshProperties() {
         refreshLayoutProvider()
-        refreshSecondaryInputCalloutContext()
+        refreshCalloutActionContext()
     }
     
     func refreshLayoutProvider() {
@@ -396,11 +400,6 @@ private extension KeyboardInputViewController {
             inputSetProvider: keyboardInputSetProvider)
     }
     
-    func refreshSecondaryInputCalloutContext() {
-        keyboardSecondaryInputCalloutContext = SecondaryInputCalloutContext(
-            actionHandler: keyboardActionHandler,
-            actionProvider: keyboardSecondaryCalloutActionProvider)
-    }
     
     /**
      Make sure that the controller view is setup to at least

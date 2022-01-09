@@ -3,7 +3,7 @@ import SwiftUI
 
 public extension SystemKeyboard {
     
-    @available(*, deprecated, message: "buttonViewBuilder has been renamed to buttonView")
+    @available(*, deprecated, message: "buttonViewBuilder has been renamed to buttonView, context to keyboardContext, inputContext to inputCalloutContext and secondaryInputContext to actionCalloutContext")
     init(
         layout: KeyboardLayout,
         appearance: KeyboardAppearance,
@@ -17,16 +17,16 @@ public extension SystemKeyboard {
             layout: layout,
             appearance: appearance,
             actionHandler: actionHandler,
-            context: context,
-            inputContext: inputContext,
-            secondaryInputContext: secondaryInputContext,
+            keyboardContext: context,
+            actionCalloutContext: secondaryInputContext,
+            inputCalloutContext: inputContext,
             buttonView: buttonViewBuilder)
     }
 }
 
 public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<AnyView> {
     
-    @available(*, deprecated, message: "buttonContentBuilder has been renamed to buttonContent")
+    @available(*, deprecated, message: "buttonContentBuilder has been renamed to buttonContent, context to keyboardContext, inputContext to inputCalloutContext and secondaryInputContext to actionCalloutContext")
     init<ButtonContentView: View>(
         layout: KeyboardLayout,
         appearance: KeyboardAppearance,
@@ -40,9 +40,9 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
             layout: layout,
             appearance: appearance,
             actionHandler: actionHandler,
-            context: context,
-            inputContext: inputContext,
-            secondaryInputContext: secondaryInputContext,
+            keyboardContext: context,
+            actionCalloutContext: secondaryInputContext,
+            inputCalloutContext: inputContext,
             width: width,
             buttonContent: buttonContentBuilder)
     }
@@ -58,6 +58,29 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
                 buttonContent: buttonContentBuilder)
     }
 }
+
+public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardActionButtonContent> {
+    
+    @available(*, deprecated, message: "context has been renamed to keyboardContext, inputContext to inputCalloutContext and secondaryInputContext to actionCalloutContext")
+    init(
+        layout: KeyboardLayout,
+        appearance: KeyboardAppearance,
+        actionHandler: KeyboardActionHandler,
+        context: KeyboardContext,
+        inputContext: InputCalloutContext?,
+        secondaryInputContext: ActionCalloutContext?,
+        width: CGFloat = standardKeyboardWidth) {
+        self.init(
+            layout: layout,
+            appearance: appearance,
+            actionHandler: actionHandler,
+            keyboardContext: context,
+            actionCalloutContext: secondaryInputContext,
+            inputCalloutContext: inputContext,
+            width: width)
+    }
+}
+
 
 public extension SystemKeyboard where ButtonView == AnyView {
 

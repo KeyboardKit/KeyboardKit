@@ -122,6 +122,7 @@ class KeyboardInputViewControllerTests: QuickSpec {
         describe("observable properties") {
             
             it("has standard instances by default") {
+                expect(vc.actionCalloutContext.buttonFrame).to(equal(.zero))
                 expect(vc.autocompleteContext.suggestions.isEmpty).to(beTrue())
                 expect(vc.keyboardContext.hasFullAccess).to(beFalse())
                 expect(vc.keyboardContext.keyboardType).to(equal(.alphabetic(.lowercased)))
@@ -130,7 +131,6 @@ class KeyboardInputViewControllerTests: QuickSpec {
                 expect(vc.keyboardFeedbackSettings.audioConfiguration).to(equal(.standard))
                 expect(vc.keyboardFeedbackSettings.hapticConfiguration).to(equal(.standard))
                 expect(vc.keyboardInputCalloutContext.buttonFrame).to(equal(.zero))
-                expect(vc.keyboardSecondaryInputCalloutContext.buttonFrame).to(equal(.zero))
             }
         }
         
@@ -154,11 +154,11 @@ class KeyboardInputViewControllerTests: QuickSpec {
         describe("refreshing properties when changing service properties") {
             
             func verifyRefresh() {
+                let actionContext = vc.actionCalloutContext
                 let layoutProvider = vc.keyboardLayoutProvider as? StandardKeyboardLayoutProvider
-                let secondaryContext = vc.keyboardSecondaryInputCalloutContext
                 expect(layoutProvider?.inputSetProvider).to(be(vc.keyboardInputSetProvider))
-                expect(secondaryContext.actionProvider).to(be(vc.keyboardSecondaryCalloutActionProvider))
-                expect(secondaryContext.actionHandler).to(be(vc.keyboardActionHandler))
+                expect(actionContext.actionProvider).to(be(vc.keyboardSecondaryCalloutActionProvider))
+                expect(actionContext.actionHandler).to(be(vc.keyboardActionHandler))
             }
             
             it("is done for keyboard action handler") {

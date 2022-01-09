@@ -20,6 +20,12 @@ import SwiftUI
  */
 class DemoAppearance: StandardKeyboardAppearance {
     
+    override func actionCalloutStyle() -> ActionCalloutStyle {
+        let style = super.actionCalloutStyle()
+        // style.callout.backgroundColor = .red
+        return style
+    }
+    
     override func buttonImage(for action: KeyboardAction) -> Image? {
         super.buttonImage(for: action)
     }
@@ -30,12 +36,6 @@ class DemoAppearance: StandardKeyboardAppearance {
     
     override func inputCalloutStyle() -> InputCalloutStyle {
         let style = super.inputCalloutStyle()
-        // style.callout.backgroundColor = .red
-        return style
-    }
-    
-    override func secondaryInputCalloutStyle() -> SecondaryInputCalloutStyle {
-        let style = super.secondaryInputCalloutStyle()
         // style.callout.backgroundColor = .red
         return style
     }

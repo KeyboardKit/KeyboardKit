@@ -25,9 +25,9 @@ public extension SystemKeyboard {
             layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
             appearance: controller.keyboardAppearance,
             actionHandler: controller.keyboardActionHandler,
-            context: controller.keyboardContext,
-            inputContext: controller.keyboardInputCalloutContext,
-            secondaryInputContext: controller.keyboardSecondaryInputCalloutContext,
+            keyboardContext: controller.keyboardContext,
+            actionCalloutContext: controller.actionCalloutContext,
+            inputCalloutContext: controller.keyboardInputCalloutContext,
             width: width,
             buttonView: buttonViewBuilder)
     }
@@ -48,9 +48,9 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
             layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
             appearance: controller.keyboardAppearance,
             actionHandler: controller.keyboardActionHandler,
-            context: controller.keyboardContext,
-            inputContext: controller.keyboardInputCalloutContext,
-            secondaryInputContext: controller.keyboardSecondaryInputCalloutContext,
+            keyboardContext: controller.keyboardContext,
+            actionCalloutContext: controller.actionCalloutContext,
+            inputCalloutContext: controller.keyboardInputCalloutContext,
             width: width,
             buttonContent: buttonContent)
     }
@@ -69,9 +69,9 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
             layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
             appearance: controller.keyboardAppearance,
             actionHandler: controller.keyboardActionHandler,
-            context: controller.keyboardContext,
-            inputContext: controller.keyboardInputCalloutContext,
-            secondaryInputContext: controller.keyboardSecondaryInputCalloutContext,
+            keyboardContext: controller.keyboardContext,
+            actionCalloutContext: controller.actionCalloutContext,
+            inputCalloutContext: controller.keyboardInputCalloutContext,
             width: width)
     }
 }

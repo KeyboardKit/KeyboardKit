@@ -22,15 +22,15 @@ public struct SecondaryInputCallout: View {
        - style: The style to apply to the view, by default `.standard`.
      */
     public init(
-        context: SecondaryInputCalloutContext,
-        style: SecondaryInputCalloutStyle = .standard) {
+        context: ActionCalloutContext,
+        style: ActionCalloutStyle = .standard) {
         self._context = ObservedObject(wrappedValue: context)
         self.style = style
     }
     
-    @ObservedObject private var context: SecondaryInputCalloutContext
+    @ObservedObject private var context: ActionCalloutContext
     
-    private let style: SecondaryInputCalloutStyle
+    private let style: ActionCalloutStyle
     
     public var body: some View {
         VStack(alignment: context.alignment, spacing: 0) {
@@ -127,11 +127,11 @@ private extension KeyboardAction {
 
 struct SecondaryInputCallout_Previews: PreviewProvider {
     
-    static let context1 = SecondaryInputCalloutContext(
+    static let context1 = ActionCalloutContext(
         actionHandler: .preview,
         actionProvider: PreviewSecondaryCalloutActionProvider())
     
-    static let context2 = SecondaryInputCalloutContext(
+    static let context2 = ActionCalloutContext(
         actionHandler: .preview,
         actionProvider: PreviewSecondaryCalloutActionProvider())
     
@@ -144,8 +144,8 @@ struct SecondaryInputCallout_Previews: PreviewProvider {
             .overlay(button)
     }
     
-    static var rowItemStyle: SecondaryInputCalloutStyle {
-        var style = SecondaryInputCalloutStyle.standard
+    static var rowItemStyle: ActionCalloutStyle {
+        var style = ActionCalloutStyle.standard
         style.callout.buttonInset = CGSize(width: 3, height: 3)
         return style
     }
@@ -165,7 +165,7 @@ struct SecondaryInputCallout_Previews: PreviewProvider {
                         )
                     }
                 }
-            ).secondaryInputCallout(
+            ).actionCallout(
                 context: context1,
                 style: .standard)
             
@@ -182,7 +182,7 @@ struct SecondaryInputCallout_Previews: PreviewProvider {
                         )
                     }
                 }
-            ).secondaryInputCallout(
+            ).actionCallout(
                 context: context2,
                 style: rowItemStyle)
         }

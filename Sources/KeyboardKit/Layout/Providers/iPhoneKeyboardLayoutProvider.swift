@@ -220,9 +220,9 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
             layout: layout(for: locale).keyboardLayout(for: context),
             appearance: StandardKeyboardAppearance(context: context),
             actionHandler: .preview,
-            context: .preview,
-            inputContext: .preview,
-            secondaryInputContext: .preview,
+            keyboardContext: .preview,
+            actionCalloutContext: .preview,
+            inputCalloutContext: .preview,
             width: context.previewWidth)
             .background(previewImage, alignment: .bottom)
             .background(Color.gray.opacity(0.4))

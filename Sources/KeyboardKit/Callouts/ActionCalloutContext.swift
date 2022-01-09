@@ -1,5 +1,5 @@
 //
-//  SecondaryInputCalloutContext.swift
+//  ActionCalloutContext.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -9,8 +9,8 @@
 import SwiftUI
 
 /**
- This context can be used to handle input callouts that show
- the secondary actions for a certain keyboard action.
+ This context can be used to handle callouts that show a set
+ of secondary actions for a keyboard action.
  
  The context will automatically dismiss itself when the user
  ends the secondary gesture or drags too far down.
@@ -18,10 +18,10 @@ import SwiftUI
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
  
- `KeyboardKit` will automatically create an instance of this
- class and bind it to the `KeyboardInputViewController`.
+ KeyboardKit automatically creates an instance of this class
+ and binds it to the ``KeyboardInputViewController``.
  */
-open class SecondaryInputCalloutContext: ObservableObject {
+open class ActionCalloutContext: ObservableObject {
     
     
     // MARK: - Initialization
@@ -176,10 +176,10 @@ open class SecondaryInputCalloutContext: ObservableObject {
 
 // MARK: - Public functionality
 
-public extension SecondaryInputCalloutContext {
+public extension ActionCalloutContext {
     
-    static var disabled: SecondaryInputCalloutContext {
-        SecondaryInputCalloutContext(
+    static var disabled: ActionCalloutContext {
+        ActionCalloutContext(
             actionHandler: PreviewKeyboardActionHandler(),
             actionProvider: DisabledSecondaryCalloutActionProvider())
     }
@@ -188,7 +188,7 @@ public extension SecondaryInputCalloutContext {
 
 // MARK: - Private functionality
 
-private extension SecondaryInputCalloutContext {
+private extension ActionCalloutContext {
     
     var startIndex: Int {
         isLeading ? 0 : actions.count - 1
