@@ -13,10 +13,8 @@ import Foundation
  keyboard. It aims to separate behavior from action handling
  to make the code cleaner and more understandable.
  
- `KeyboardKit` will automatically create a standard instance
- when the keyboard input view controller is created. You can
- use the standard instance as is or replace it with a custom
- one if you want to customize your keyboard.
+ KeyboardKit automatically creates an implementation of this
+ protocol and binds it to ``KeyboardInputViewController``.
  
  `IMPORTANT` Whenever you replace the standard behavior with
  your own custom behavior, make sure to do so before calling

@@ -16,10 +16,8 @@ import Foundation
  can then be used to create a layout, which defines the full
  set of keys, described as layout items.
  
- `KeyboardKit` will automatically create a standard instance
- when the keyboard input view controller is created. You can
- use the standard instance as is or replace it with a custom
- one if you want to customize your keyboard.
+ KeyboardKit automatically creates an implementation of this
+ protocol and binds it to ``KeyboardInputViewController``.
  */
 public protocol KeyboardInputSetProvider: AnyObject {
     
