@@ -43,6 +43,7 @@ K
 * `NumericKeyboardInputSet` has been renamed to `NumericInputSet`
 * `PreviewKeyboardInputSetProvider` has been renamed to `PreviewInputSetProvider`.
 * `PreviewSecondaryCalloutActionProvider` has been renamed to `PreviewCalloutActionProvider`.
+* `RowItem` has been renamed to `KeyboardRowItem`.
 * `SecondaryCalloutActionProvider` has been renamed to `CalloutActionProvider`. 
 * `SecondaryInputCalloutContext` has been renamed to `ActionCalloutContext`.
 * `SecondaryInputCalloutStyle` has been renamed to `ActionCalloutStyle`

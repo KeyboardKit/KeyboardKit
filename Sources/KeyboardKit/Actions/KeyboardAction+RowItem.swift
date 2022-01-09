@@ -11,7 +11,7 @@ import Foundation
 /**
  This extension makes `KeyboardAction` conform to `RowItem`.
  */
-extension KeyboardAction: RowItem {
+extension KeyboardAction: KeyboardRowItem {
 
     /**
      The row-specific ID to use when the action is presented

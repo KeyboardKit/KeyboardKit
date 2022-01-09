@@ -17,7 +17,7 @@ import Foundation
  first index found. If the same id appears many times at one
  row, pick an adjacent id instead.
  */
-public extension RangeReplaceableCollection where Element: RowItem, Index == Int {
+public extension RangeReplaceableCollection where Element: KeyboardRowItem, Index == Int {
     
     /**
      Get the index of a certain element id, if any.
@@ -71,7 +71,7 @@ public extension RangeReplaceableCollection where Element: RowItem, Index == Int
 public extension Array where
 Element: RangeReplaceableCollection,
 Element.Index == Int,
-Element.Element: RowItem {
+Element.Element: KeyboardRowItem {
     
     /**
      Get the row at a certain `index`.

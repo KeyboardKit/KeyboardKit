@@ -1,5 +1,5 @@
 //
-//  RowItem.swift
+//  KeyboardRowItem.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-05-08.
@@ -14,7 +14,7 @@
  the row ID may not be unique. The same item may appear many
  times in the same row.
  */
-public protocol RowItem {
+public protocol KeyboardRowItem {
     
     associatedtype ID: Equatable
     

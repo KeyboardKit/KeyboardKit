@@ -47,7 +47,11 @@ public struct InputSetItem: Equatable {
     }
 }
 
-extension InputSetItem: RowItem {
+extension InputSetItem: KeyboardRowItem {
 
+    /**
+     The row-specific ID to use when the action is presented
+     in a keyboard row.
+     */
     public var rowId: InputSetItem { self }
 }

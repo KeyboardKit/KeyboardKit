@@ -12,7 +12,7 @@ import SwiftUI
 /**
  This makes `KeyboardLayoutItem` conform to `RowItem`.
  */
-extension KeyboardLayoutItem: RowItem {
+extension KeyboardLayoutItem: KeyboardRowItem {
 
     /**
      The row ID, which is used to identify the item in a row.
