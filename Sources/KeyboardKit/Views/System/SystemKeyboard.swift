@@ -107,6 +107,43 @@ public struct SystemKeyboard<ButtonView: View>: View {
     }
 }
 
+public extension SystemKeyboard {
+    
+    /**
+     The standard view to use as button content.
+     */
+    static func standardButtonContent(
+        item: KeyboardLayoutItem,
+        appearance: KeyboardAppearance,
+        context: KeyboardContext) -> SystemKeyboardActionButtonContent {
+        SystemKeyboardActionButtonContent(
+            action: item.action,
+            appearance: appearance,
+            context: context)
+    }
+    
+    /**
+     The standard view to use as button view.
+     */
+    static func standardButtonView(
+        item: KeyboardLayoutItem,
+        appearance: KeyboardAppearance,
+        actionHandler: KeyboardActionHandler,
+        context: KeyboardContext,
+        keyboardWidth: KeyboardWidth,
+        inputWidth: KeyboardItemWidth) -> SystemKeyboardButtonRowItem<SystemKeyboardActionButtonContent> {
+        SystemKeyboardButtonRowItem(
+            content: standardButtonContent(item: item, appearance: appearance, context: context),
+            item: item,
+            context: context,
+            keyboardWidth: keyboardWidth,
+            inputWidth: inputWidth,
+            appearance: appearance,
+            actionHandler: actionHandler
+        )
+    }
+}
+
 private extension SystemKeyboard {
     
     @available(iOS 14.0, *)
@@ -194,18 +231,13 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
             secondaryInputContext: secondaryInputContext,
             width: width,
             buttonView: { item, keyboardWidth, inputWidth in
-                SystemKeyboardButtonRowItem(
-                    content: SystemKeyboardActionButtonContent(
-                        action: item.action,
-                        appearance: appearance,
-                        context: context),
+                Self.standardButtonView(
                     item: item,
+                    appearance: appearance,
+                    actionHandler: actionHandler,
                     context: context,
                     keyboardWidth: keyboardWidth,
-                    inputWidth: inputWidth,
-                    appearance: appearance,
-                    actionHandler: actionHandler
-                )
+                    inputWidth: inputWidth)
             }
         )
     }

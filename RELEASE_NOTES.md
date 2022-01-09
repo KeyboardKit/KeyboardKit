@@ -14,6 +14,12 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 This version renames some types and init parameters.
 
+### ✨ New features
+
+* `SystemKeyboard` has a new, static `standardButtonContent` function.
+* `SystemKeyboard` has a new, static `standardButtonView` function.
+
+
 ### 🗑 Deprecations
 
 * `SystemKeyboard` has renamed `buttonViewBuilder` to `buttonView` and `buttonContentBuilder` to `buttonContent`.
