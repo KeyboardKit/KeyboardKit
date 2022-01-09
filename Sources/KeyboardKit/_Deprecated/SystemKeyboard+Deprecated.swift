@@ -1,6 +1,64 @@
 import CoreGraphics
 import SwiftUI
 
+public extension SystemKeyboard {
+    
+    @available(*, deprecated, message: "buttonViewBuilder has been renamed to buttonView")
+    init(
+        layout: KeyboardLayout,
+        appearance: KeyboardAppearance,
+        actionHandler: KeyboardActionHandler,
+        context: KeyboardContext,
+        inputContext: InputCalloutContext?,
+        secondaryInputContext: SecondaryInputCalloutContext?,
+        width: CGFloat = standardKeyboardWidth,
+        @ViewBuilder buttonViewBuilder: @escaping ButtonViewBuilder) {
+        self.init(
+            layout: layout,
+            appearance: appearance,
+            actionHandler: actionHandler,
+            context: context,
+            inputContext: inputContext,
+            secondaryInputContext: secondaryInputContext,
+            buttonView: buttonViewBuilder)
+    }
+}
+
+public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<AnyView> {
+    
+    @available(*, deprecated, message: "buttonContentBuilder has been renamed to buttonContent")
+    init<ButtonContentView: View>(
+        layout: KeyboardLayout,
+        appearance: KeyboardAppearance,
+        actionHandler: KeyboardActionHandler,
+        context: KeyboardContext,
+        inputContext: InputCalloutContext?,
+        secondaryInputContext: SecondaryInputCalloutContext?,
+        width: CGFloat = standardKeyboardWidth,
+        @ViewBuilder buttonContentBuilder: @escaping (KeyboardLayoutItem) -> ButtonContentView) {
+        self.init(
+            layout: layout,
+            appearance: appearance,
+            actionHandler: actionHandler,
+            context: context,
+            inputContext: inputContext,
+            secondaryInputContext: secondaryInputContext,
+            width: width,
+            buttonContent: buttonContentBuilder)
+    }
+    
+    @available(*, deprecated, message: "buttonContentBuilder has been renamed to buttonContent")
+    init<ButtonContentView: View>(
+        controller: KeyboardInputViewController = .shared,
+        width: CGFloat = standardKeyboardWidth,
+        @ViewBuilder buttonContentBuilder: @escaping (KeyboardLayoutItem) -> ButtonContentView) {
+            self.init(
+                controller: controller,
+                width: width,
+                buttonContent: buttonContentBuilder)
+    }
+}
+
 public extension SystemKeyboard where ButtonView == AnyView {
 
     @available(*, deprecated, message: "Use the new generic initializers instead.")

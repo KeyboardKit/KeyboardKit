@@ -10,6 +10,16 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 5.8
+
+This version renames some types and init parameters.
+
+### 🗑 Deprecations
+
+* `SystemKeyboard` has renamed `buttonViewBuilder` to `buttonView` and `buttonContentBuilder` to `buttonContent`.
+
+
+
 ## 5.7
 
 This version adds new locales and improves emoji support.

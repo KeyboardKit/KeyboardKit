@@ -29,7 +29,7 @@ public extension SystemKeyboard {
             inputContext: controller.keyboardInputCalloutContext,
             secondaryInputContext: controller.keyboardSecondaryInputCalloutContext,
             width: width,
-            buttonViewBuilder: buttonViewBuilder)
+            buttonView: buttonViewBuilder)
     }
 }
 
@@ -43,7 +43,7 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
     init<ButtonContentView: View>(
         controller: KeyboardInputViewController = .shared,
         width: CGFloat = standardKeyboardWidth,
-        @ViewBuilder buttonContentBuilder: @escaping (KeyboardLayoutItem) -> ButtonContentView) {
+        @ViewBuilder buttonContent: @escaping (KeyboardLayoutItem) -> ButtonContentView) {
         self.init(
             layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
             appearance: controller.keyboardAppearance,
@@ -52,7 +52,7 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
             inputContext: controller.keyboardInputCalloutContext,
             secondaryInputContext: controller.keyboardSecondaryInputCalloutContext,
             width: width,
-            buttonContentBuilder: buttonContentBuilder)
+            buttonContent: buttonContent)
     }
 }
 

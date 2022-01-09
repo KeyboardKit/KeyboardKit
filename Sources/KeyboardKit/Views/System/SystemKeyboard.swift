@@ -17,12 +17,11 @@ import SwiftUI
  The first option is to use the builder-less initializer, to
  create a standard system keyboard with standard buttons.
  
- The second is to use the `buttonContentBuilder` initializer,
+ The second option is to use the `buttonContent` initializer,
  to create a system keyboard that can customize the internal
- content of each button, but doesn't affect the button shape,
- padding, shadow etc.
+ content of each button, but doesn't affect the button shape.
  
- The third is to use the `buttonViewBuilder` initializer, to
+ The third option is to use the `buttonView` initializer, to
  create a system keyboard that can customize the entire view
  for each button, including the button shape.
  
@@ -42,7 +41,7 @@ import SwiftUI
 public struct SystemKeyboard<ButtonView: View>: View {
 
     /**
-     Create a system keyboard that uses a `buttonViewBuilder`
+     Create a system keyboard that uses a custom `buttonView`
      to generate the entire button view for each layout item.
      */
     public init(
@@ -53,13 +52,13 @@ public struct SystemKeyboard<ButtonView: View>: View {
         inputContext: InputCalloutContext?,
         secondaryInputContext: SecondaryInputCalloutContext?,
         width: CGFloat = standardKeyboardWidth,
-        @ViewBuilder buttonViewBuilder: @escaping ButtonViewBuilder) {
+        @ViewBuilder buttonView: @escaping ButtonViewBuilder) {
         self.layout = layout
         self.layoutConfig = .standard(for: context)
         self.actionHandler = actionHandler
         self.appearance = appearance
         self.keyboardWidth = width
-        self.buttonViewBuilder = buttonViewBuilder
+        self.buttonView = buttonView
         self.inputWidth = layout.inputWidth(for: width)
         _context = ObservedObject(wrappedValue: context)
         _inputContext = ObservedObject(wrappedValue: inputContext ?? .disabled)
@@ -68,7 +67,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
 
     private let actionHandler: KeyboardActionHandler
     private let appearance: KeyboardAppearance
-    private let buttonViewBuilder: ButtonViewBuilder
+    private let buttonView: ButtonViewBuilder
     private let keyboardWidth: CGFloat
     private let inputWidth: CGFloat
     private let layout: KeyboardLayout
@@ -137,7 +136,7 @@ private extension SystemKeyboard {
 public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<AnyView> {
     
     /**
-     Create a keyboard that uses a `buttonContentBuilder` to
+     Create a keyboard that uses a custom `buttonContent` to
      customize the content of each button.
      */
     init<ButtonContentView: View>(
@@ -148,7 +147,7 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
         inputContext: InputCalloutContext?,
         secondaryInputContext: SecondaryInputCalloutContext?,
         width: CGFloat = standardKeyboardWidth,
-        @ViewBuilder buttonContentBuilder: @escaping (KeyboardLayoutItem) -> ButtonContentView) {
+        @ViewBuilder buttonContent: @escaping (KeyboardLayoutItem) -> ButtonContentView) {
         self.init(
             layout: layout,
             appearance: appearance,
@@ -157,9 +156,9 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
             inputContext: inputContext,
             secondaryInputContext: secondaryInputContext,
             width: width,
-            buttonViewBuilder: { item, keyboardWidth, inputWidth in
+            buttonView: { item, keyboardWidth, inputWidth in
                 SystemKeyboardButtonRowItem(
-                    content: AnyView(buttonContentBuilder(item)),
+                    content: AnyView(buttonContent(item)),
                     item: item,
                     context: context,
                     keyboardWidth: keyboardWidth,
@@ -194,7 +193,7 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
             inputContext: inputContext,
             secondaryInputContext: secondaryInputContext,
             width: width,
-            buttonViewBuilder: { item, keyboardWidth, inputWidth in
+            buttonView: { item, keyboardWidth, inputWidth in
                 SystemKeyboardButtonRowItem(
                     content: SystemKeyboardActionButtonContent(
                         action: item.action,
@@ -234,7 +233,7 @@ private extension SystemKeyboard {
     func items(for layout: KeyboardLayout, itemRow: KeyboardLayoutItemRow) -> some View {
         HStack(spacing: 0) {
             ForEach(Array(itemRow.enumerated()), id: \.offset) {
-                buttonViewBuilder($0.element, keyboardWidth, inputWidth)
+                buttonView($0.element, keyboardWidth, inputWidth)
             }
         }
     }
@@ -304,7 +303,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
                 inputContext: nil,
                 secondaryInputContext: nil,
                 width: UIScreen.main.bounds.width,
-                buttonContentBuilder: previewButtonContent)
+                buttonContent: previewButtonContent)
             
             // A keyboard that replaces entire button views
             SystemKeyboard(
@@ -315,7 +314,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
                 inputContext: nil,
                 secondaryInputContext: nil,
                 width: UIScreen.main.bounds.width,
-                buttonViewBuilder: previewButton)
+                buttonView: previewButton)
         }.background(Color.yellow)
     }
 }
