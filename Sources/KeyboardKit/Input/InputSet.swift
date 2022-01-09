@@ -15,11 +15,11 @@ import Foundation
  */
 public class InputSet: Equatable {
     
-    public init(rows: KeyboardInputRows) {
+    public init(rows: InputSetRows) {
         self.rows = rows
     }
     
-    public let rows: KeyboardInputRows
+    public let rows: InputSetRows
     
     public static func == (lhs: InputSet, rhs: InputSet) -> Bool {
         lhs.rows == rhs.rows

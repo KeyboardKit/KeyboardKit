@@ -25,9 +25,9 @@ class StandardKeyboardLayoutProviderTests: QuickSpec {
                 controller: MockKeyboardInputViewController(),
                 device: device)
             inputSetProvider = MockInputSetProvider()
-            inputSetProvider.alphabeticInputSetValue = AlphabeticInputSet(rows: KeyboardInputRows([["a", "b", "c"], ["a", "b", "c"], ["a", "b", "c"]]))
-            inputSetProvider.numericInputSetValue = NumericInputSet(rows: KeyboardInputRows([["1", "2", "3"], ["1", "2", "3"], ["1", "2", "3"]]))
-            inputSetProvider.symbolicInputSetValue = SymbolicInputSet(rows: KeyboardInputRows([[",", ".", "-"], [",", ".", "-"], [",", ".", "-"]]))
+            inputSetProvider.alphabeticInputSetValue = AlphabeticInputSet(rows: InputSetRows([["a", "b", "c"], ["a", "b", "c"], ["a", "b", "c"]]))
+            inputSetProvider.numericInputSetValue = NumericInputSet(rows: InputSetRows([["1", "2", "3"], ["1", "2", "3"], ["1", "2", "3"]]))
+            inputSetProvider.symbolicInputSetValue = SymbolicInputSet(rows: InputSetRows([[",", ".", "-"], [",", ".", "-"], [",", ".", "-"]]))
             provider = StandardKeyboardLayoutProvider(
                 inputSetProvider: inputSetProvider,
                 dictationReplacement: .primary(.go))

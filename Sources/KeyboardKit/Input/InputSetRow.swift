@@ -1,5 +1,5 @@
 //
-//  KeyboardInputRow.swift
+//  InputSetRow.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-03.
@@ -11,9 +11,9 @@ import Foundation
 /**
  This typealias represents a list of keyboard inputs.
  */
-public typealias KeyboardInputRow = [KeyboardInput]
+public typealias InputSetRow = [KeyboardInput]
 
-public extension KeyboardInputRow {
+public extension InputSetRow {
     
     /**
      Create an input row from a string, where each character

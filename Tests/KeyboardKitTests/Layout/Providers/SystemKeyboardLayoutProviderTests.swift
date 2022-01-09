@@ -23,9 +23,9 @@ class SystemKeyboardLayoutProviderTests: QuickSpec {
             context = KeyboardContext(controller: MockKeyboardInputViewController())
             layoutConfig = .standard(for: context)
             inputSetProvider = MockInputSetProvider()
-            inputSetProvider.alphabeticInputSetValue = AlphabeticInputSet(rows: KeyboardInputRows([["a", "b", "c"]]))
-            inputSetProvider.numericInputSetValue = NumericInputSet(rows: KeyboardInputRows([["1", "2", "3"]]))
-            inputSetProvider.symbolicInputSetValue = SymbolicInputSet(rows: KeyboardInputRows([[",", ".", "-"]]))
+            inputSetProvider.alphabeticInputSetValue = AlphabeticInputSet(rows: InputSetRows([["a", "b", "c"]]))
+            inputSetProvider.numericInputSetValue = NumericInputSet(rows: InputSetRows([["1", "2", "3"]]))
+            inputSetProvider.symbolicInputSetValue = SymbolicInputSet(rows: InputSetRows([[",", ".", "-"]]))
             provider = SystemKeyboardLayoutProvider(
                 inputSetProvider: inputSetProvider,
                 dictationReplacement: .primary(.go))
@@ -59,7 +59,7 @@ class SystemKeyboardLayoutProviderTests: QuickSpec {
             
             it("is character actions for the provided inputs") {
                 let chars = [["a", "b", "c"], ["d", "e", "f"]]
-                let inputs = KeyboardInputRows(chars)
+                let inputs = InputSetRows(chars)
                 let actions = provider.actions(for: context, inputs: inputs)
                 let expected = KeyboardActionRows(characters: chars)
                 expect(actions).to(equal(expected))
@@ -68,7 +68,7 @@ class SystemKeyboardLayoutProviderTests: QuickSpec {
             it("can resolve uppercased alphabetic input set") {
                 context.keyboardType = .alphabetic(.uppercased)
                 let chars = [["a", "b", "c"], ["d", "e", "f"]]
-                let inputs = KeyboardInputRows(chars)
+                let inputs = InputSetRows(chars)
                 let actions = provider.actions(for: context, inputs: inputs)
                 let expected = KeyboardActionRows(characters: chars.uppercased())
                 expect(actions).to(equal(expected))

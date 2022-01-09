@@ -38,7 +38,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      This provider will only adjust the base actions if they
      consist of three rows or more.
      */
-    open override func actions(for context: KeyboardContext, inputs: KeyboardInputRows) -> KeyboardActionRows {
+    open override func actions(for context: KeyboardContext, inputs: InputSetRows) -> KeyboardActionRows {
         var actions = super.actions(for: context, inputs: inputs)
         guard actions.count > 2 else { return actions }
         let last = actions.suffix(3)

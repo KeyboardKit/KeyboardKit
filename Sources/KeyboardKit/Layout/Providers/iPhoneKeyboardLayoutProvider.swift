@@ -31,7 +31,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      This provider will only adjust the base actions if they
      consist of at least one row.
      */
-    open override func actions(for context: KeyboardContext, inputs: KeyboardInputRows) -> KeyboardActionRows {
+    open override func actions(for context: KeyboardContext, inputs: InputSetRows) -> KeyboardActionRows {
         var rows = super.actions(for: context, inputs: inputs)
         guard rows.count > 0 else { return rows }
         let lastRow = rows.last ?? []

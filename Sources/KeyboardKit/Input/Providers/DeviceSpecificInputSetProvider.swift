@@ -25,8 +25,8 @@ public extension DeviceSpecificInputSetProvider {
     /**
      Create an input row from phone and pad-specific strings.
      */
-    func row(phone: String, pad: String) -> KeyboardInputRow {
-        KeyboardInputRow(device.isPhone ? phone.chars : pad.chars)
+    func row(phone: String, pad: String) -> InputSetRow {
+        InputSetRow(device.isPhone ? phone.chars : pad.chars)
     }
     
     /**
@@ -36,8 +36,8 @@ public extension DeviceSpecificInputSetProvider {
         phoneLowercased: String,
         phoneUppercased: String,
         padLowercased: String,
-        padUppercased: String) -> KeyboardInputRow {
-        KeyboardInputRow(
+        padUppercased: String) -> InputSetRow {
+        InputSetRow(
             lowercased: device.isPhone ? phoneLowercased.chars : padLowercased.chars,
             uppercased: device.isPhone ? phoneUppercased.chars : padUppercased.chars)
     }

@@ -15,7 +15,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 This version renames a bunch of types, properties and parameters to make things nicer in preparation for 6.0.
 
 ### ✨ New features
-
+K
 * `SystemKeyboard` has a new, static `standardButtonContent` function.
 * `SystemKeyboard` has a new, static `standardButtonView` function.
 
@@ -31,6 +31,7 @@ This version renames a bunch of types, properties and parameters to make things 
 * `DisabledSecondaryCalloutActionProvider` has been renamed to `DisabledCalloutActionProvider`.
 * `EnglishKeyboardInputSetProvider` has been renamed to `EnglishInputSetProvider`.
 * `EnglishSecondaryCalloutActionProvider` has been renamed to `EnglishCalloutActionProvider`.
+* `KeyboardInputRows` has been renamed to `InputSetRows`.
 * `KeyboardInputSet` has been renamed to `InputSet`.
 * `KeyboardInputSetProvider` has been renamed to `InputSetProvider`.
 * `KeyboardInputViewController` `keyboardInputCalloutContext` has been renamed to `inputCalloutContext`.

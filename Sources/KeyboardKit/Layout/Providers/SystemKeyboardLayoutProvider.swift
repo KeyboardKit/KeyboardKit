@@ -153,7 +153,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
      Get keyboard actions for the provided `context` and the
      provided keyboard `inputs`.
      */
-    open func actions(for context: KeyboardContext, inputs: KeyboardInputRows) -> KeyboardActionRows {
+    open func actions(for context: KeyboardContext, inputs: InputSetRows) -> KeyboardActionRows {
         let characters = actionCharacters(for: context, inputs: inputs)
         return KeyboardActionRows(characters: characters)
     }
@@ -162,7 +162,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
      Get a keyboard action character matrix for the provided
      `context` and `inputs`.
      */
-    open func actionCharacters(for context: KeyboardContext, inputs: KeyboardInputRows) -> [[String]] {
+    open func actionCharacters(for context: KeyboardContext, inputs: InputSetRows) -> [[String]] {
         switch context.keyboardType {
         case .alphabetic(let casing): return inputs.characters(for: casing)
         case .numeric: return inputs.characters()
@@ -174,7 +174,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     /**
      Get keyboard inputs for the provided `context`.
      */
-    open func inputs(for context: KeyboardContext) -> KeyboardInputRows {
+    open func inputs(for context: KeyboardContext) -> InputSetRows {
         switch context.keyboardType {
         case .alphabetic: return inputSetProvider.alphabeticInputSet.rows
         case .numeric: return inputSetProvider.numericInputSet.rows
