@@ -10,10 +10,10 @@ import SwiftUI
 
 /**
  This context can be used to handle callouts that show a set
- of secondary actions for a keyboard action.
+ of alternate actions for a certain keyboard action.
  
  The context will automatically dismiss itself when the user
- ends the secondary gesture or drags too far down.
+ ends the callout gesture or drags too far down.
   
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
@@ -31,7 +31,7 @@ open class ActionCalloutContext: ObservableObject {
      
      - Parameters:
        - actionHandler: The action handler to use when tapping buttons.
-       - actionProvider: The action provider to use for resolving secondary actions.
+       - actionProvider: The action provider to use for resolving callout actions.
      */
     public init(
         actionHandler: KeyboardActionHandler,
@@ -62,14 +62,12 @@ open class ActionCalloutContext: ObservableObject {
     public var isActive: Bool { !actions.isEmpty }
     
     /**
-     Whether or not the secondary callout view should have a
-     leading alignment.
+     Whether or not the action callout alignment is leading.
      */
     public var isLeading: Bool { !isTrailing }
     
     /**
-     Whether or not the secondary callout view should have a
-     trailing alignment.
+     Whether or not the action callout alignment is trailing.
      */
     public var isTrailing: Bool { alignment == .trailing }
     
@@ -105,8 +103,8 @@ open class ActionCalloutContext: ObservableObject {
     // MARK: - Functions
     
     /**
-     Handle the end of a secondary input drag gesture, which
-     should commit the selected action and reset the context.
+     Handle the end of the drag gesture, which should commit
+     the selected action and reset the context.
      */
     open func endDragGesture() {
         handleSelectedAction()

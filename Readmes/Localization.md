@@ -53,28 +53,25 @@ Localized strings are managed under `Sources/Resources`.
 
 A completely localized keyboard doesn't just involve localized strings.
 
-To fully localize a keyboard, you must implement a locale-specific input set, keyboard layout, secondary callout actions etc.
+To fully localize a keyboard, you must implement a locale-specific input set, keyboard layout, callout actions etc.
 
-KeyboardKit only provides a completely localized English keyboard.
-
-[KeyboardKit Pro][Pro] provides completely localized keyboards for all keyboard locales.
+While KeyboardKit only provides a completely localized English keyboard, [KeyboardKit Pro][Pro] provides completely localized keyboards for all keyboard locales.
 
 
-## Adding new locales
+## How to add a new locale
 
 Adding a new locale to KeyboardKit requires the following:
 
 * Define the new `KeyboardLocale` case.
 * Define its properties, like `flag`, `isLeftToRight` etc.
 * Provide a `Resources/<id>.lproj` folder with localized strings.
+* Implement a custom `CalloutActionProvider`.
 * Implement a custom `KeyboardInputSetProvider`.
-* Implement a custom `SecondaryCalloutActionProvider`.
 
-If the locale requires a keyboard layout that differs from a English, German or Russian layout, a new `KeyboardLayoutProvider` must be specified.
+If the locale generates a keyboard that looks off, you can either implement a new `KeyboardLayoutProvider` or adjust the `iPhoneKeyboardLayoutProvider` and `iPadKeyboardLayoutProvider` to handle the new layout.
 
-Custom keyboard locales must ensure that the keyboard layout is correct for:
+New locales must ensure that the keyboard layout is correct for:
 
-* Each locale
 * iPhone portrait
 * iPhone landscape
 * iPad portrait
@@ -85,7 +82,7 @@ This involves specifying margins, system actions etc. to make the keyboard behav
 
 ## KeyboardKit Pro
 
-KeyboardKit Pro provides completely localized keyboards for all keyboard locales, including locale-specific input sets, keyboard layouts and secondary input actions.
+KeyboardKit Pro provides completely localized keyboards for all keyboard locales, including locale-specific input sets, keyboard layouts and callout actions.
 
 [Read more here][Pro]. 
 

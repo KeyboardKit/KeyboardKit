@@ -91,14 +91,14 @@ Note that DocC currently omits extensions, which means that there are a lot of f
 
 ### Callouts
 
+- ``ActionCalloutContext``
+- ``CalloutActionProvider``
 - ``InputCalloutContext``
-- ``SecondaryInputCalloutContext``
-- ``SecondaryCalloutActionProvider``
-- ``StandardSecondaryCalloutActionProvider``
+- ``StandardCalloutActionProvider``
 
-- ``BaseSecondaryCalloutActionProvider``
-- ``EnglishSecondaryCalloutActionProvider``
-- ``LocalizedSecondaryCalloutActionProvider``
+- ``BaseCalloutActionProvider``
+- ``EnglishCalloutActionProvider``
+- ``LocalizedCalloutActionProvider``
 
 ### Emojis
 
@@ -184,11 +184,11 @@ Note that DocC currently omits extensions, which means that there are a lot of f
 
 - ``KeyboardPreviewMode``
 
+- ``PreviewCalloutActionProvider``
 - ``PreviewKeyboardActionHandler``
 - ``PreviewKeyboardAppearance``
 - ``PreviewKeyboardInputSetProvider``
 - ``PreviewKeyboardLayoutProvider``
-- ``PreviewSecondaryCalloutActionProvider``
 - ``PreviewTextDocumentProxy``
 
 ### Proxy
@@ -197,6 +197,7 @@ Note that DocC currently omits extensions, which means that there are a lot of f
 
 ### Styles
 
+- ``ActionCalloutStyle``
 - ``AutocompleteToolbarStyle``
 - ``AutocompleteToolbarItemStyle``
 - ``AutocompleteToolbarItemBackgroundStyle``
@@ -204,13 +205,13 @@ Note that DocC currently omits extensions, which means that there are a lot of f
 - ``CalloutStyle``
 - ``EmojiKeyboardStyle``
 - ``InputCalloutStyle``
-- ``SecondaryInputCalloutStyle``
 - ``SystemKeyboardButtonStyle``
 - ``SystemKeyboardButtonBorderStyle``
 - ``SystemKeyboardButtonShadowStyle``
 
 ### Views
 
+- ``ActionCallout``
 - ``AutocompleteToolbar``
 - ``AutocompleteToolbarItem``
 - ``AutocompleteToolbarItemSubtitle``
@@ -219,7 +220,6 @@ Note that DocC currently omits extensions, which means that there are a lot of f
 - ``CalloutButtonArea``
 - ``CalloutCurve``
 - ``InputCallout``
-- ``SecondaryInputCallout``
 - ``EmojiCategoryKeyboard``
 - ``EmojiCategoryKeyboardMenu``
 - ``EmojiCategoryTitle``

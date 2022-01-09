@@ -9,8 +9,7 @@
 import Foundation
 
 /**
- This disabled provider can be used to disable the secondary
- actions from showing up in system keyboards.
+ This provider can be used to disable callout actions.
  */
 class DisabledCalloutActionProvider: CalloutActionProvider {
     

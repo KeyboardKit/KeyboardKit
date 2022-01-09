@@ -8,6 +8,12 @@ public extension KeyboardInputViewController {
         set { actionCalloutContext = newValue }
     }
     
+    @available(*, deprecated, renamed: "inputCalloutContext")
+    var keyboardInputCalloutContext: InputCalloutContext {
+        get { inputCalloutContext }
+        set { inputCalloutContext = newValue }
+    }
+    
     @available(*, deprecated, renamed: "calloutActionProvider")
     var keyboardSecondaryCalloutActionProvider: CalloutActionProvider {
         get { calloutActionProvider }

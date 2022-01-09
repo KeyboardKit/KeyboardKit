@@ -27,7 +27,7 @@ public extension SystemKeyboard {
             actionHandler: controller.keyboardActionHandler,
             keyboardContext: controller.keyboardContext,
             actionCalloutContext: controller.actionCalloutContext,
-            inputCalloutContext: controller.keyboardInputCalloutContext,
+            inputCalloutContext: controller.inputCalloutContext,
             width: width,
             buttonView: buttonViewBuilder)
     }
@@ -50,7 +50,7 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
             actionHandler: controller.keyboardActionHandler,
             keyboardContext: controller.keyboardContext,
             actionCalloutContext: controller.actionCalloutContext,
-            inputCalloutContext: controller.keyboardInputCalloutContext,
+            inputCalloutContext: controller.inputCalloutContext,
             width: width,
             buttonContent: buttonContent)
     }
@@ -71,7 +71,7 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
             actionHandler: controller.keyboardActionHandler,
             keyboardContext: controller.keyboardContext,
             actionCalloutContext: controller.actionCalloutContext,
-            inputCalloutContext: controller.keyboardInputCalloutContext,
+            inputCalloutContext: controller.inputCalloutContext,
             width: width)
     }
 }

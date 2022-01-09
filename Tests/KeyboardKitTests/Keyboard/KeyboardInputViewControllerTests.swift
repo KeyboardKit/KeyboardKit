@@ -124,13 +124,13 @@ class KeyboardInputViewControllerTests: QuickSpec {
             it("has standard instances by default") {
                 expect(vc.actionCalloutContext.buttonFrame).to(equal(.zero))
                 expect(vc.autocompleteContext.suggestions.isEmpty).to(beTrue())
+                expect(vc.inputCalloutContext.buttonFrame).to(equal(.zero))
                 expect(vc.keyboardContext.hasFullAccess).to(beFalse())
                 expect(vc.keyboardContext.keyboardType).to(equal(.alphabetic(.lowercased)))
                 expect(vc.keyboardContext.needsInputModeSwitchKey).to(beFalse())
                 expect(vc.keyboardContext.textDocumentProxy).to(be(vc.textDocumentProxy))
                 expect(vc.keyboardFeedbackSettings.audioConfiguration).to(equal(.standard))
                 expect(vc.keyboardFeedbackSettings.hapticConfiguration).to(equal(.standard))
-                expect(vc.keyboardInputCalloutContext.buttonFrame).to(equal(.zero))
             }
         }
         
@@ -171,7 +171,7 @@ class KeyboardInputViewControllerTests: QuickSpec {
                 verifyRefresh()
             }
             
-            it("is done for keyboard secondary callout action provider") {
+            it("is done for callout action provider") {
                 vc.calloutActionProvider = StandardCalloutActionProvider(context: .preview)
                 verifyRefresh()
             }

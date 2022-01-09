@@ -3,7 +3,7 @@
 KeyboardKit comes with a bunch of keyboard-specific views, for instance:
 
 * `Autocomplete` is a namespace that contains autocomplete toolbars and toolbar items.
-* `Callouts` is a namespace that contains input and secondary input callout views.
+* `Callouts` is a namespace that contains input and action callout views.
 * `Emojis` is a namespace that contains various emoji keyboards and keyboard components.
 * `Input` is a namespace that contains text inputs that can be used in a keyboard extension.
 * `System` is a namespace that contains views that can be used to mimic native systme keyboards. 

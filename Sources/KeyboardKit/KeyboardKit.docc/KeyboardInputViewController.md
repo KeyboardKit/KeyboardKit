@@ -29,11 +29,11 @@ the ``autocompleteContext``.
 This class provides you with many observable properties for
 observing the keyboard's global state:
 
+* ``actionCalloutContext`` provides action callout information
 * ``autocompleteContext`` provides autocomplete information
+* ``inputCalloutContext`` provides input callout information
 * ``keyboardContext`` provides keybard information
 * ``keyboardFeedbackSettings`` provides feedback settings
-* ``keyboardInputCalloutContext`` provides callout information
-* ``keyboardSecondaryInputCalloutContext`` provides secondary callout information
 
 These contexts are injected as environment objects into the
 root view and can be accessed anywhere in the hierarchy.
@@ -45,13 +45,13 @@ This class also provides you with services that you can use
 to build more powerful keyboards:
 
 * ``autocompleteProvider`` is used to get autocomplete suggestions
+* ``calloutActionProvider`` is used to get callout actions
 * ``keyboardActionHandler`` is used to handle keyboard actions
 * ``keyboardAppearance`` is used to determine the keyboard design
 * ``keyboardBehavior`` is used to determine the keyboard behavior
 * ``keyboardFeedbackHandler`` is used to handle autio & haptic feedback
 * ``keyboardInputSetProvider`` is used to get input actions
 * ``keyboardLayoutProvider`` is used to get a keyboard layout
-* ``keyboardSecondaryCalloutActionProvider`` is used to get secondary callout actions
 
 You can replace any of these to customize how your keyboard
 extension behaves.

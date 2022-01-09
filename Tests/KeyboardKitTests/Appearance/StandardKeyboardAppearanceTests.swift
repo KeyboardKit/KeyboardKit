@@ -24,6 +24,19 @@ class StandardKeyboardAppearanceTests: QuickSpec {
             appearance = StandardKeyboardAppearance(context: context)
         }
         
+        describe("action callout style") {
+            
+            it("is standard") {
+                let result = appearance.actionCalloutStyle()
+                let standard = ActionCalloutStyle.standard
+                expect(result.callout).to(equal(standard.callout))
+                expect(result.font).to(equal(standard.font))
+                expect(result.selectedBackgroundColor).to(equal(standard.selectedBackgroundColor))
+                expect(result.selectedForegroundColor).to(equal(standard.selectedForegroundColor))
+                expect(result.verticalTextPadding).to(equal(standard.verticalTextPadding))
+            }
+        }
+        
         describe("button image") {
             
             it("is standard for all actions") {
@@ -54,19 +67,6 @@ class StandardKeyboardAppearanceTests: QuickSpec {
                 expect(result.callout).to(equal(standard.callout))
                 expect(result.calloutSize).to(equal(standard.calloutSize))
                 expect(result.font).to(equal(standard.font))
-            }
-        }
-        
-        describe("secondary input callout style") {
-            
-            it("is standard") {
-                let result = appearance.secondaryInputCalloutStyle()
-                let standard = ActionCalloutStyle.standard
-                expect(result.callout).to(equal(standard.callout))
-                expect(result.font).to(equal(standard.font))
-                expect(result.selectedBackgroundColor).to(equal(standard.selectedBackgroundColor))
-                expect(result.selectedForegroundColor).to(equal(standard.selectedForegroundColor))
-                expect(result.verticalTextPadding).to(equal(standard.verticalTextPadding))
             }
         }
         

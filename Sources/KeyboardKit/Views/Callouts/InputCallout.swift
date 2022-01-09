@@ -1,5 +1,5 @@
 //
-//  SecondaryInputCallout.swift
+//  InputCallout.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -15,7 +15,7 @@ import SwiftUI
 public struct InputCallout: View {
     
     /**
-     Create an input callout view.
+     Create an input callout.
      
      - Parameters:
        - context: The context to bind against.

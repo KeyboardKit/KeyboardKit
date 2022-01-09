@@ -24,8 +24,6 @@ Using an input set provider instead of creating input sets manually gives you a 
 
 `KeyboardInputViewController` will automatically create a `StandardKeyboardInputSetProvider` when the extension is started. You can use it as is or replace it with a custom provider.
 
-Implementing a secondary action provider is easy. You can inherit `BaseSecondaryCalloutActionProvider` to get started.
-
 
 ## Input set vs. keyboard layout
 

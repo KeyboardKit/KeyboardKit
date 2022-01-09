@@ -84,7 +84,7 @@ struct KeyboardGestures<Content: View>: View {
      changes that affects many library views.
      */
     private var inputCalloutContext: InputCalloutContext? {
-        KeyboardInputViewController.shared.keyboardInputCalloutContext
+        KeyboardInputViewController.shared.inputCalloutContext
     }
     
     /**
@@ -149,7 +149,7 @@ private extension KeyboardGestures {
      */
     func longPressDragGesture(for geo: GeometryProxy) -> some Gesture {
         LongPressGesture()
-            .onEnded { _ in beginSecondaryInput(for: geo) }
+            .onEnded { _ in beginActionCallout(for: geo) }
             .sequenced(before: DragGesture(minimumDistance: 0))
             .onChanged {
                 switch $0 {
@@ -157,7 +157,7 @@ private extension KeyboardGestures {
                 case .second(_, let drag): handleDelayedDrag(drag)
                 }
             }
-            .onEnded { _ in endSecondaryInput() }
+            .onEnded { _ in endActionCallout() }
     }
 }
 
@@ -166,14 +166,14 @@ private extension KeyboardGestures {
 
 private extension KeyboardGestures {
     
-    func beginSecondaryInput(for geo: GeometryProxy) {
+    func beginActionCallout(for geo: GeometryProxy) {
         guard let context = actionCalloutContext else { return }
         context.updateInputs(for: action, in: geo)
         guard context.isActive else { return }
         inputCalloutContext?.reset()
     }
     
-    func endSecondaryInput() {
+    func endActionCallout() {
         guard let context = actionCalloutContext else { return }
         shouldApplyTapAction = shouldApplyTapAction && !context.hasSelectedAction
         context.endDragGesture()

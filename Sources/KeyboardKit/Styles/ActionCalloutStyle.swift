@@ -18,7 +18,7 @@ import SwiftUI
 public struct ActionCalloutStyle {
     
     /**
-     Create a secondary input callout style.
+     Create an action callout style.
      
      - Parameters:
        - callout: The callout style to use, by default ``CalloutStyle/standard``.

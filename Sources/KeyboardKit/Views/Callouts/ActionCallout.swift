@@ -9,13 +9,13 @@
 import SwiftUI
 
 /**
- This callout can be used to present secondary input actions
- for a keyboard actions.
+ This callout can be used to present alternate actions for a
+ keyboard certain keyboard action.
  */
 public struct ActionCallout: View {
     
     /**
-     Create a secondary input callout view.
+     Create an action callout.
      
      - Parameters:
        - context: The context to bind against.

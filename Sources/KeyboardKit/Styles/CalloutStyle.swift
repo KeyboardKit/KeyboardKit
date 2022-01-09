@@ -11,7 +11,7 @@ import SwiftUI
 /**
  This struct can be used to style callout views, which are a
  type of view that is presented above a keyboard button, e.g.
- when a user types or presses a key to get secondary actions.
+ when a user types or long presses a key to get more actions.
  
  You can modify the ``standard`` style to change the default,
  global style of all callout views.

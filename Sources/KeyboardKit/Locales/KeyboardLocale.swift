@@ -12,11 +12,12 @@ import Foundation
  This enum contains KeyboardKit-supported locales.
  
  Keyboard locales have more information than the raw locales
- and can also have a set of corresponding services attatched.
+ and can also have a set of related services.
  
- For instance, when a Keyboard Kit Pro license is registered,
- the locales get services applied, e.g. for resolving locale
- specific input sets and secondary callout actions.
+ When a KeyboardKit Pro license is registered, these locales
+ unlock new properties for resolving locale-specific service
+ implementations of the ``KeyboardInputSetProvider`` as well
+ as the ``CalloutActionProvider`` protocols.
  
  Find more locales here:
  https://gist.github.com/jacobbubu/1836273

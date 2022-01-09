@@ -1,5 +1,5 @@
 //
-//  EnglishSecondaryCalloutActionProvider.swift
+//  EnglishCalloutActionProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-01.

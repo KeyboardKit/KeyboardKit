@@ -87,9 +87,9 @@ open class KeyboardInputViewController: UIInputViewController {
         let view = RootView(view)
             .environmentObject(autocompleteContext)
             .environmentObject(actionCalloutContext)
+            .environmentObject(inputCalloutContext)
             .environmentObject(keyboardContext)
             .environmentObject(keyboardFeedbackSettings)
-            .environmentObject(keyboardInputCalloutContext)
         let host = KeyboardHostingController(rootView: view)
         host.add(to: self)
     }
@@ -183,7 +183,7 @@ open class KeyboardInputViewController: UIInputViewController {
      The default, observable action callout context.
      
      This is used as global state for the callouts that show
-     a set of secondary actions for a long-pressed input key.
+     alternate actions for a long-pressed input key.
      */
     public lazy var actionCalloutContext = ActionCalloutContext(
         actionHandler: keyboardActionHandler,
@@ -196,6 +196,15 @@ open class KeyboardInputViewController: UIInputViewController {
      autocomplete, e.g. the current suggestions.
      */
     public lazy var autocompleteContext = AutocompleteContext()
+    
+    /**
+     The default, observable input callout context.
+     
+     This is used as global state for the callouts that show
+     the currently typed character.
+     */
+    public lazy var inputCalloutContext = InputCalloutContext(
+        isEnabled: UIDevice.current.userInterfaceIdiom == .phone)
     
     /**
      The default, observable keyboard context.
@@ -212,15 +221,6 @@ open class KeyboardInputViewController: UIInputViewController {
      keyboard's feedback, e.g. audio and haptic feedback.
      */
     public lazy var keyboardFeedbackSettings = KeyboardFeedbackSettings()
-    
-    /**
-     The default, observable input callout context.
-     
-     This is used as global state for the callouts that show
-     the currently typed character.
-     */
-    public lazy var keyboardInputCalloutContext = InputCalloutContext(
-        isEnabled: UIDevice.current.userInterfaceIdiom == .phone)
     
     
     

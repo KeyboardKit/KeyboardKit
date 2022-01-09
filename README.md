@@ -97,7 +97,7 @@ KeyboardKit is localized in the following languages:
 * 🇹🇷 Turkish
 * 🇺🇦 Ukrainian
 
-KeyboardKit also supports localized keyboards, where the keyboard layout, secondary actions etc. behave just like they should for a certain locale.
+KeyboardKit also supports localized keyboards, where the keyboard layout, callout actions etc. behave just like they should for a certain locale.
 
 [Read more here][Localization]
 
@@ -140,7 +140,7 @@ KeyboardKit can present autocomplete suggestions as users type.
 
 ### 🗯 Callouts
 
-KeyboardKit lets you show input callouts as users type, as well as secondary action callouts with secondary input actions.
+KeyboardKit lets you show input callouts as users type, as well as action callouts with alternate actions for the currently pressed key.
 
 [Read more here][Callouts]
 
