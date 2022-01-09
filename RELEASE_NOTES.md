@@ -26,7 +26,6 @@ This version renames some types and init parameters to make things tighter in pr
 * `CalloutActionProvider` `secondaryCalloutActions` has been renamed to `calloutActions`.
 * `DisabledSecondaryCalloutActionProvider` has been renamed to `DisabledCalloutActionProvider`.
 * `EnglishSecondaryCalloutActionProvider` has been renamed to `EnglishCalloutActionProvider`.
-* `InputCalloutContext` has been renamed to `CalloutInputContext`.
 * `KeyboardInputViewController` `keyboardSecondaryInputCalloutContext` has been renamed to `actionCalloutContext`.
 * `KeyboardInputViewController` `keyboardSecondaryCalloutActionProvider` has been renamed to `calloutActionContext`.
 * `LocalizedSecondaryCalloutActionProvider` has been renamed to `LocalizedCalloutActionProvider`.

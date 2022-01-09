@@ -187,7 +187,7 @@ open class KeyboardInputViewController: UIInputViewController {
      */
     public lazy var actionCalloutContext = ActionCalloutContext(
         actionHandler: keyboardActionHandler,
-        actionProvider: keyboardSecondaryCalloutActionProvider)
+        actionProvider: calloutActionProvider)
     
     /**
      The default, observable autocomplete context.
@@ -385,7 +385,7 @@ private extension KeyboardInputViewController {
     func refreshCalloutActionContext() {
         actionCalloutContext = ActionCalloutContext(
             actionHandler: keyboardActionHandler,
-            actionProvider: keyboardSecondaryCalloutActionProvider)
+            actionProvider: calloutActionProvider)
     }
     
     func refreshProperties() {

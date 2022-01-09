@@ -1,5 +1,5 @@
 //
-//  DisabledSecondaryCalloutActionProvider.swift
+//  DisabledCalloutActionProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-10-05.

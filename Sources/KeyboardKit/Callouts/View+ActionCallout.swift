@@ -23,7 +23,7 @@ public extension View {
         style: ActionCalloutStyle = .standard) -> some View {
         return ZStack {
             self
-            SecondaryInputCallout(context: context, style: style)
+            ActionCallout(context: context, style: style)
         }.coordinateSpace(name: ActionCalloutContext.coordinateSpace)
     }
 }

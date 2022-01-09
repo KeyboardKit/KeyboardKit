@@ -1,5 +1,5 @@
 //
-//  SecondaryInputCallout.swift
+//  ActionCallout.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -12,7 +12,7 @@ import SwiftUI
  This callout can be used to present secondary input actions
  for a keyboard actions.
  */
-public struct SecondaryInputCallout: View {
+public struct ActionCallout: View {
     
     /**
      Create a secondary input callout view.
@@ -49,7 +49,7 @@ public struct SecondaryInputCallout: View {
 
 // MARK: - Private Properties
 
-private extension SecondaryInputCallout {
+private extension ActionCallout {
     
     var backgroundColor: Color { calloutStyle.backgroundColor }
     var buttonFrame: CGRect { context.buttonFrame.insetBy(dx: buttonInset.width, dy: buttonInset.height) }
@@ -105,7 +105,7 @@ private extension SecondaryInputCallout {
 
 // MARK: - Private Functions
 
-private extension SecondaryInputCallout {
+private extension ActionCallout {
     
     func isSelected(_ offset: Int) -> Bool {
         context.selectedIndex == offset
@@ -125,15 +125,15 @@ private extension KeyboardAction {
     }
 }
 
-struct SecondaryInputCallout_Previews: PreviewProvider {
+struct ActionCallout_Previews: PreviewProvider {
     
     static let context1 = ActionCalloutContext(
         actionHandler: .preview,
-        actionProvider: PreviewSecondaryCalloutActionProvider())
+        actionProvider: PreviewCalloutActionProvider())
     
     static let context2 = ActionCalloutContext(
         actionHandler: .preview,
-        actionProvider: PreviewSecondaryCalloutActionProvider())
+        actionProvider: PreviewCalloutActionProvider())
     
     static var button: some View {
         Color.red.frame(width: 40, height: 50)
