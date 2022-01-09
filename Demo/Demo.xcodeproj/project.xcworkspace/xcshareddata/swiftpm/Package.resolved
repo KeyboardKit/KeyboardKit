@@ -23,9 +23,9 @@
         "package": "KeyboardKitPro",
         "repositoryURL": "https://github.com/KeyboardKit/KeyboardKitPro.git",
         "state": {
-          "branch": null,
-          "revision": "980370b2d5d2bbb04e6520e0092d460982bf16fa",
-          "version": "5.7.0"
+          "branch": "master",
+          "revision": "6a7c78585845ad805ee648b88c15870c9a13b0c5",
+          "version": null
         }
       },
       {

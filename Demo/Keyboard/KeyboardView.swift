@@ -30,9 +30,9 @@ struct KeyboardView: View {
     
     @State private var text = "Text"
     
+    @EnvironmentObject private var actionCalloutContext: ActionCalloutContext
     @EnvironmentObject private var keyboardContext: KeyboardContext
-    @EnvironmentObject private var inputContext: InputCalloutContext
-    @EnvironmentObject private var secondaryInputContext: SecondaryInputCalloutContext
+    @EnvironmentObject private var inputCalloutContext: InputCalloutContext
     
     var body: some View {
         VStack(spacing: 0) {
@@ -57,9 +57,9 @@ private extension KeyboardView {
             layout: layoutProvider.keyboardLayout(for: keyboardContext),
             appearance: appearance,
             actionHandler: actionHandler,
-            context: keyboardContext,
-            inputContext: inputContext,
-            secondaryInputContext: secondaryInputContext)
+            keyboardContext: keyboardContext,
+            actionCalloutContext: actionCalloutContext,
+            inputCalloutContext: inputCalloutContext)
     }
     
     var textField: some View {

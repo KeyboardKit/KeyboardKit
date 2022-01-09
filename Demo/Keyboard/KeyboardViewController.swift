@@ -58,6 +58,18 @@ class KeyboardViewController: KeyboardInputViewController {
         // 💡 This is overwritten if Pro is registered below
         autocompleteProvider = FakeAutocompleteProvider()
         
+        // Setup a callout action provider
+        // 💡 This is overwritten if Pro is registered below
+        calloutActionProvider = StandardCalloutActionProvider(
+            context: keyboardContext,
+            providers: [try? EnglishCalloutActionProvider()].compactMap { $0 })
+        
+        // Setup a standard input set provider
+        // 💡 This is overwritten if Pro is registered below
+        inputSetProvider = StandardInputSetProvider(
+            context: keyboardContext,
+            providers: [EnglishInputSetProvider()])
+        
         // Setup a demo-specific keyboard appearance
         // 💡 Adjust the DemoAppearance to see what happens
         keyboardAppearance = DemoAppearance(context: keyboardContext)
@@ -75,23 +87,11 @@ class KeyboardViewController: KeyboardInputViewController {
         keyboardActionHandler = DemoKeyboardActionHandler(
             inputViewController: self)
         
-        // Setup a standard input set provider
-        // 💡 This is overwritten if Pro is registered below
-        keyboardInputSetProvider = StandardKeyboardInputSetProvider(
-            context: keyboardContext,
-            providers: [EnglishKeyboardInputSetProvider()])
-        
         // Setup a demo-specific keyboard layout provider
         // 💡 A layout provider defines the keyboard layout
         keyboardLayoutProvider = DemoKeyboardLayoutProvider(
-            inputSetProvider: keyboardInputSetProvider,
+            inputSetProvider: inputSetProvider,
             dictationReplacement: .keyboardType(.emojis))
-        
-        // Setup a secondary callout action provider
-        // 💡 This is overwritten if Pro is registered below
-        keyboardSecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider(
-            context: keyboardContext,
-            providers: [try? EnglishSecondaryCalloutActionProvider()].compactMap { $0 })
         
         // Perform the base initialization
         super.viewDidLoad()
