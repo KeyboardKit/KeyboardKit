@@ -43,14 +43,13 @@ class KeyboardViewController: KeyboardInputViewController {
     // MARK: - View Controller Lifecycle
     
     /**
-     You can configure your keyboard extension in many, many
-     ways. Some configurations below are already done in the
-     library and just here to show you how it's done and for
-     explaining what the various services do.
+     You can configure KeyboardKit keyboards in many ways. A
+     few configurations below are already done by default in
+     the library and are just here to show you how it's done
+     and to explain what the various services do.
      
      Some configurations will be overridden by registering a
-     Pro license in `viewWillSetupKeyboard`. Just move these
-     configurations to after setting up pro.
+     Pro license in `viewWillSetupKeyboard`.
      */
     override func viewDidLoad() {
         
@@ -100,34 +99,25 @@ class KeyboardViewController: KeyboardInputViewController {
     /**
      This function is called whenever the keyboard should be
      created or updated. Here, we call `setup` or `setupPro`,
-     depending on if we want to use KeyboardKit Pro or not.
+     based on if we want to use KeyboardKit Pro or not.
      
-     If you call `setupPro`, some of the configurations will
-     be reset, since a license specifies things like default
-     locale, unlocks autocomplete etc. If you want to change
-     the locale and locales in the demo, do so after calling
-     `setupPro`.
+     `setupPro` will cause some configurations from above to
+     be overwritten by the license configuration. To use Pro
+     with custom locales, just change the locale and locales
+     after calling `setupPro`.
      */
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
         
         // 💡 Make sure that only one setup call is enabled.
-        // setup(with: keyboardView)
-        try? setupPro(withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098", view: keyboardView)
+        // setup(with: KeyboardView())
+        try? setupPro(
+            withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098",
+            view: KeyboardView())
         
         // 💡 To change locales when using Pro, do so here:
         // keyboardContext.locale = KeyboardLocale.english.locale
         // keyboardContext.locales = [KeyboardLocale.english.locale]
-    }
-    
-    
-    // MARK: - Properties
-        
-    private var keyboardView: some View {
-        KeyboardView(
-            actionHandler: keyboardActionHandler,
-            appearance: keyboardAppearance,
-            layoutProvider: keyboardLayoutProvider)
     }
     
     

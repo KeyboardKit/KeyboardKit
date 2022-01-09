@@ -21,13 +21,7 @@ import KeyboardKit
  take over as the main proxy instead of the main app.
  */
 struct KeyboardView: View {
-    
-    let addTextFieldAboveKeyboard = false
-    
-    let actionHandler: KeyboardActionHandler
-    let appearance: KeyboardAppearance
-    let layoutProvider: KeyboardLayoutProvider
-    
+        
     @State private var text = "Text"
     
     @EnvironmentObject private var actionCalloutContext: ActionCalloutContext
@@ -39,10 +33,7 @@ struct KeyboardView: View {
             if keyboardContext.keyboardType != .emojis {
                 DemoAutocompleteToolbar()
             }
-            if addTextFieldAboveKeyboard {
-                textField
-            }
-            systemKeyboard
+            SystemKeyboard()
         }
     }
 }
@@ -53,13 +44,7 @@ struct KeyboardView: View {
 private extension KeyboardView {
     
     var systemKeyboard: some View {
-        SystemKeyboard(
-            layout: layoutProvider.keyboardLayout(for: keyboardContext),
-            appearance: appearance,
-            actionHandler: actionHandler,
-            keyboardContext: keyboardContext,
-            actionCalloutContext: actionCalloutContext,
-            inputCalloutContext: inputCalloutContext)
+        SystemKeyboard()
     }
     
     var textField: some View {
