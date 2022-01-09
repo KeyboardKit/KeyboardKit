@@ -19,6 +19,9 @@ This version renames some types and init parameters to make things tighter in pr
 * `SystemKeyboard` has a new, static `standardButtonContent` function.
 * `SystemKeyboard` has a new, static `standardButtonView` function.
 
+### 💡 Behavior changes
+
+* `SystemKeyboard` now explicitly applies a `leftToRight` layout direction.
 
 ### 🗑 Deprecations
 

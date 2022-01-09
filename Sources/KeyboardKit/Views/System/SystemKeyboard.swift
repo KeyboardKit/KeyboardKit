@@ -169,6 +169,7 @@ private extension SystemKeyboard {
             context: inputCalloutContext,
             keyboardContext: keyboardContext,
             style: inputCalloutStyle)
+        .environment(\.layoutDirection, .leftToRight)
     }
 }
 
