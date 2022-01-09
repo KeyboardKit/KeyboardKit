@@ -9,38 +9,38 @@
 import Foundation
 
 /**
- This typealias represents a list of keyboard inputs.
+ This typealias represents a row of input set items.
  */
-public typealias InputSetRow = [KeyboardInput]
+public typealias InputSetRow = [InputSetItem]
 
 public extension InputSetRow {
     
     /**
      Create an input row from a string, where each character
-     is mapped to a `KeyboardInput`.
+     is mapped to a `InputSetItem`.
      */
     init(_ chars: String) {
-        self = chars.chars.map { KeyboardInput($0) }
+        self = chars.chars.map { InputSetItem($0) }
     }
     
     /**
      Create an input row from a string array, that is mapped
-     to a `KeyboardInput` array.
+     to a `InputSetItem` array.
      */
     init(_ row: [String]) {
-        self = row.map { KeyboardInput($0) }
+        self = row.map { InputSetItem($0) }
     }
     
     /**
      Create an input row from a lowercased and an uppercased
-     arrays, which are mapped to a `KeyboardInput` array.
+     arrays, which are mapped to a `InputSetItem` array.
      
      Both arrays must contain the same amount of characters.
      */
     init(lowercased: [String], uppercased: [String]) {
         assert(lowercased.count == uppercased.count, "The lowercased and uppercased string arrays must contain the same amount of characters")
         self = lowercased.enumerated().map {
-            KeyboardInput(
+            InputSetItem(
                 neutral: lowercased[$0.offset],
                 uppercased: uppercased[$0.offset],
                 lowercased: lowercased[$0.offset])

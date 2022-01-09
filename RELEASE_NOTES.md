@@ -31,6 +31,8 @@ K
 * `DisabledSecondaryCalloutActionProvider` has been renamed to `DisabledCalloutActionProvider`.
 * `EnglishKeyboardInputSetProvider` has been renamed to `EnglishInputSetProvider`.
 * `EnglishSecondaryCalloutActionProvider` has been renamed to `EnglishCalloutActionProvider`.
+* `KeyboardInput` has been renamed to `InputSetItem`.
+* `KeyboardInputRow` has been renamed to `InputSetRow`.
 * `KeyboardInputRows` has been renamed to `InputSetRows`.
 * `KeyboardInputSet` has been renamed to `InputSet`.
 * `KeyboardInputSetProvider` has been renamed to `InputSetProvider`.

@@ -1,5 +1,5 @@
 //
-//  KeyboardInput.swift
+//  InputSetItem.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-03.
@@ -17,7 +17,7 @@ import Foundation
  struct also supports specific casings, which means that you
  can use it to create unicode keyboards etc.
  */
-public struct KeyboardInput: Equatable {
+public struct InputSetItem: Equatable {
     
     public init(_ char: String) {
         self.neutral = char
@@ -47,7 +47,7 @@ public struct KeyboardInput: Equatable {
     }
 }
 
-extension KeyboardInput: RowItem {
+extension InputSetItem: RowItem {
 
-    public var rowId: KeyboardInput { self }
+    public var rowId: InputSetItem { self }
 }

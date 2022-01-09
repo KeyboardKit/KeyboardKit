@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- This typealias represents a list of keyboard input rows.
+ This typealias represents a list of input set rows.
  */
 public typealias InputSetRows = [InputSetRow]
 
@@ -17,7 +17,7 @@ public extension InputSetRows {
     
     /**
      Create input rows from a list of string array, that are
-     mapped to a `KeyboardInputRow` array.
+     mapped to a `InputSetRow` array.
      */
     init(_ rows: [[String]]) {
         self = rows.map { InputSetRow($0) }
@@ -25,7 +25,7 @@ public extension InputSetRows {
     
     /**
      Create input row from lowercased and an uppercased list
-     arrays, which are mapped to `KeyboardInputRow` arrays.
+     arrays, which are mapped to `InputSetRow` arrays.
      
      Both arrays must contain the same amount of characters.
      */

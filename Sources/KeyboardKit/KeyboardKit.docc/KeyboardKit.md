@@ -137,9 +137,10 @@ Note that DocC currently omits extensions, which means that there are a lot of f
 ### Input
 
 - ``InputSet``
+- ``InputSetItem``
 - ``InputSetProvider``
-- ``KeyboardInput``
-- ``KeyboardInputRow``
+- ``InputSetRow``
+- ``InputSetRows``
 - ``StandardInputSetProvider``
 
 - ``AlphabeticKeyboardInputSet``
