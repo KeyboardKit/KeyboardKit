@@ -248,6 +248,18 @@ open class KeyboardInputViewController: UIInputViewController {
     }
     
     /**
+     This provider is used to get an input set, that is used
+     to generate a complete keyboard layout.
+     
+     You can replace this instance with a custom instance. A
+     ``StandardKeyboardInputSetProvider`` is used by default.
+     */
+    public lazy var inputSetProvider: InputSetProvider = StandardInputSetProvider(
+        context: keyboardContext) {
+        didSet { refreshProperties() }
+    }
+    
+    /**
      This action handler is used to handle actions that will
      be triggered when the keyboard is being.
      
@@ -293,19 +305,6 @@ open class KeyboardInputViewController: UIInputViewController {
      */
     public lazy var keyboardFeedbackHandler: KeyboardFeedbackHandler = StandardKeyboardFeedbackHandler(
         settings: keyboardFeedbackSettings)
-    
-    /**
-     This provider is used to get input keys for the current
-     ``keyboardContext``. These keys will be used to make up
-     the complete keyboard layout.
-     
-     You can replace this instance with a custom instance. A
-     ``StandardKeyboardInputSetProvider`` is used by default.
-     */
-    public lazy var keyboardInputSetProvider: KeyboardInputSetProvider = StandardKeyboardInputSetProvider(
-        context: keyboardContext) {
-        didSet { refreshProperties() }
-    }
                     
     /**
      This provider is used to get a complete keyboard layout
@@ -316,7 +315,7 @@ open class KeyboardInputViewController: UIInputViewController {
      ``StandardKeyboardLayoutProvider`` is used by default.
      */
     public lazy var keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider(
-        inputSetProvider: keyboardInputSetProvider)
+        inputSetProvider: inputSetProvider)
     
     
     
@@ -395,7 +394,7 @@ private extension KeyboardInputViewController {
     
     func refreshLayoutProvider() {
         keyboardLayoutProvider.register(
-            inputSetProvider: keyboardInputSetProvider)
+            inputSetProvider: inputSetProvider)
     }
     
     

@@ -15,19 +15,19 @@ class SystemKeyboardLayoutProviderTests: QuickSpec {
     override func spec() {
         
         var provider: SystemKeyboardLayoutProvider!
-        var inputProvider: MockKeyboardInputSetProvider!
+        var inputSetProvider: MockInputSetProvider!
         var context: KeyboardContext!
         var layoutConfig: KeyboardLayoutConfiguration!
         
         beforeEach {
             context = KeyboardContext(controller: MockKeyboardInputViewController())
             layoutConfig = .standard(for: context)
-            inputProvider = MockKeyboardInputSetProvider()
-            inputProvider.alphabeticInputSetValue = AlphabeticInputSet(rows: KeyboardInputRows([["a", "b", "c"]]))
-            inputProvider.numericInputSetValue = NumericInputSet(rows: KeyboardInputRows([["1", "2", "3"]]))
-            inputProvider.symbolicInputSetValue = SymbolicInputSet(rows: KeyboardInputRows([[",", ".", "-"]]))
+            inputSetProvider = MockInputSetProvider()
+            inputSetProvider.alphabeticInputSetValue = AlphabeticInputSet(rows: KeyboardInputRows([["a", "b", "c"]]))
+            inputSetProvider.numericInputSetValue = NumericInputSet(rows: KeyboardInputRows([["1", "2", "3"]]))
+            inputSetProvider.symbolicInputSetValue = SymbolicInputSet(rows: KeyboardInputRows([[",", ".", "-"]]))
             provider = SystemKeyboardLayoutProvider(
-                inputSetProvider: inputProvider,
+                inputSetProvider: inputSetProvider,
                 dictationReplacement: .primary(.go))
         }
         
@@ -47,10 +47,10 @@ class SystemKeyboardLayoutProviderTests: QuickSpec {
         describe("registering input set provider") {
             
             it("changes the provider instance") {
-                let newInputProvider = MockKeyboardInputSetProvider()
-                provider.register(inputSetProvider: newInputProvider)
-                expect(provider.inputSetProvider).toNot(be(inputProvider))
-                expect(provider.inputSetProvider).to(be(newInputProvider))
+                let newProvider = MockInputSetProvider()
+                provider.register(inputSetProvider: newProvider)
+                expect(provider.inputSetProvider).toNot(be(inputSetProvider))
+                expect(provider.inputSetProvider).to(be(newProvider))
             }
         }
         

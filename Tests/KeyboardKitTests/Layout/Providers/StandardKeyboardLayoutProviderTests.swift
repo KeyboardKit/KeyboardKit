@@ -15,7 +15,7 @@ class StandardKeyboardLayoutProviderTests: QuickSpec {
     override func spec() {
         
         var provider: StandardKeyboardLayoutProvider!
-        var inputProvider: MockKeyboardInputSetProvider!
+        var inputSetProvider: MockInputSetProvider!
         var context: KeyboardContext!
         var device: MockDevice!
         
@@ -24,12 +24,12 @@ class StandardKeyboardLayoutProviderTests: QuickSpec {
             context = KeyboardContext(
                 controller: MockKeyboardInputViewController(),
                 device: device)
-            inputProvider = MockKeyboardInputSetProvider()
-            inputProvider.alphabeticInputSetValue = AlphabeticInputSet(rows: KeyboardInputRows([["a", "b", "c"], ["a", "b", "c"], ["a", "b", "c"]]))
-            inputProvider.numericInputSetValue = NumericInputSet(rows: KeyboardInputRows([["1", "2", "3"], ["1", "2", "3"], ["1", "2", "3"]]))
-            inputProvider.symbolicInputSetValue = SymbolicInputSet(rows: KeyboardInputRows([[",", ".", "-"], [",", ".", "-"], [",", ".", "-"]]))
+            inputSetProvider = MockInputSetProvider()
+            inputSetProvider.alphabeticInputSetValue = AlphabeticInputSet(rows: KeyboardInputRows([["a", "b", "c"], ["a", "b", "c"], ["a", "b", "c"]]))
+            inputSetProvider.numericInputSetValue = NumericInputSet(rows: KeyboardInputRows([["1", "2", "3"], ["1", "2", "3"], ["1", "2", "3"]]))
+            inputSetProvider.symbolicInputSetValue = SymbolicInputSet(rows: KeyboardInputRows([[",", ".", "-"], [",", ".", "-"], [",", ".", "-"]]))
             provider = StandardKeyboardLayoutProvider(
-                inputSetProvider: inputProvider,
+                inputSetProvider: inputSetProvider,
                 dictationReplacement: .primary(.go))
         }
         
@@ -73,12 +73,12 @@ class StandardKeyboardLayoutProviderTests: QuickSpec {
         describe("registering input set provider") {
             
             it("changes the provider instance for all providers") {
-                let newInputProvider = MockKeyboardInputSetProvider()
-                provider.register(inputSetProvider: newInputProvider)
-                expect(provider.inputSetProvider).toNot(be(inputProvider))
-                expect(provider.inputSetProvider).to(be(newInputProvider))
-                expect(provider.iPhoneProvider.inputSetProvider).to(be(newInputProvider))
-                expect(provider.iPadProvider.inputSetProvider).to(be(newInputProvider))
+                let newProvider = MockInputSetProvider()
+                provider.register(inputSetProvider: newProvider)
+                expect(provider.inputSetProvider).toNot(be(inputSetProvider))
+                expect(provider.inputSetProvider).to(be(newProvider))
+                expect(provider.iPhoneProvider.inputSetProvider).to(be(newProvider))
+                expect(provider.iPadProvider.inputSetProvider).to(be(newProvider))
             }
         }
     }

@@ -1,5 +1,5 @@
 //
-//  StandardKeyboardInputSetProviderTests.swift
+//  StandardInputSetProviderTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-01.
@@ -11,20 +11,20 @@ import Nimble
 import Foundation
 import KeyboardKit
 
-class StandardKeyboardInputSetProviderTests: QuickSpec {
+class StandardInputSetProviderTests: QuickSpec {
     
     override func spec() {
         
-        var provider: StandardKeyboardInputSetProvider!
+        var provider: StandardInputSetProvider!
         var context: KeyboardContext!
         
-        var english: KeyboardInputSetProvider!
+        var english: InputSetProvider!
         
         beforeEach {
             context = KeyboardContext(controller: MockKeyboardInputViewController())
-            provider = StandardKeyboardInputSetProvider(context: context)
+            provider = StandardInputSetProvider(context: context)
             
-            english = EnglishKeyboardInputSetProvider()
+            english = EnglishInputSetProvider()
         }
         
         describe("localized providers") {
@@ -32,16 +32,16 @@ class StandardKeyboardInputSetProviderTests: QuickSpec {
             it("has standard locale-specific providers") {
                 let providers = provider.providerDictionary.dictionary
                 expect(providers.keys.count).to(equal(1))
-                expect(providers[KeyboardLocale.english.id] is EnglishKeyboardInputSetProvider).to(beTrue())
+                expect(providers[KeyboardLocale.english.id] is EnglishInputSetProvider).to(beTrue())
             }
             
             it("accepts custom providers") {
-                provider = StandardKeyboardInputSetProvider(
+                provider = StandardInputSetProvider(
                     context: context,
-                    providers: [EnglishKeyboardInputSetProvider()])
+                    providers: [EnglishInputSetProvider()])
                 let providers = provider.providerDictionary.dictionary
                 expect(providers.keys.count).to(equal(1))
-                expect(providers[KeyboardLocale.english.id] is EnglishKeyboardInputSetProvider).to(beTrue())
+                expect(providers[KeyboardLocale.english.id] is EnglishInputSetProvider).to(beTrue())
             }
         }
         

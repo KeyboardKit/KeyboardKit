@@ -1,5 +1,5 @@
 //
-//  KeyboardInputSetProvider+Preview.swift
+//  InputSetProvider+Preview.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-25.
@@ -8,18 +8,18 @@
 
 import Foundation
 
-public extension KeyboardInputSetProvider where Self == PreviewKeyboardInputSetProvider {
+public extension InputSetProvider where Self == PreviewInputSetProvider {
     
     /**
      This preview provider can be used in SwiftUI previews.
      */
-    static var preview: KeyboardInputSetProvider { PreviewKeyboardInputSetProvider() }
+    static var preview: InputSetProvider { PreviewInputSetProvider() }
 }
 
 /**
  This input set provider can be used in SwiftUI previews.
  */
-public class PreviewKeyboardInputSetProvider: KeyboardInputSetProvider {
+public class PreviewInputSetProvider: InputSetProvider {
     
     /**
      Create a preview provider.
@@ -29,11 +29,11 @@ public class PreviewKeyboardInputSetProvider: KeyboardInputSetProvider {
      */
     public init(context: KeyboardContext = .preview) {
         self.context = context
-        self.provider = StandardKeyboardInputSetProvider(context: context)
+        self.provider = StandardInputSetProvider(context: context)
     }
     
     private let context: KeyboardContext
-    private let provider: KeyboardInputSetProvider
+    private let provider: InputSetProvider
     
     /**
      The input set to use for alphabetic keyboards.

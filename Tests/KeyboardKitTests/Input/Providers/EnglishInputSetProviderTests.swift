@@ -1,5 +1,5 @@
 //
-//  EnglishKeyboardInputSetProviderTests.swift
+//  EnglishInputSetProviderTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-07-03.
@@ -15,11 +15,11 @@ class EnglishKeyboardInputSetProviderTests: QuickSpec {
     override func spec() {
         
         var device: MockDevice!
-        var provider: EnglishKeyboardInputSetProvider!
+        var provider: EnglishInputSetProvider!
         
         beforeEach {
             device = MockDevice()
-            provider = EnglishKeyboardInputSetProvider(device: device)
+            provider = EnglishInputSetProvider(device: device)
         }
         
         describe("locale key") {
@@ -62,7 +62,7 @@ class EnglishKeyboardInputSetProviderTests: QuickSpec {
                 }
                 
                 it("can vary currency symbols") {
-                    let provider = EnglishKeyboardInputSetProvider(
+                    let provider = EnglishInputSetProvider(
                         device: device,
                         numericCurrency: "å",
                         symbolicCurrency: "ä")
@@ -104,7 +104,7 @@ class EnglishKeyboardInputSetProviderTests: QuickSpec {
                 }
                 
                 it("can vary currency symbols") {
-                    let provider = EnglishKeyboardInputSetProvider(
+                    let provider = EnglishInputSetProvider(
                         device: device,
                         numericCurrency: "Å",
                         symbolicCurrency: "Ä")

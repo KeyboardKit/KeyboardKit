@@ -42,5 +42,5 @@ public class StaticKeyboardLayoutProvider: KeyboardLayoutProvider {
      Registering a new input set provider does nothing for a
      static provider.
      */
-    public func register(inputSetProvider: KeyboardInputSetProvider) {}
+    public func register(inputSetProvider: InputSetProvider) {}
 }

@@ -142,11 +142,11 @@ class KeyboardInputViewControllerTests: QuickSpec {
             it("has standard instances by default") {
                 expect(vc.autocompleteProvider as? DisabledAutocompleteProvider).toNot(beNil())
                 expect(vc.calloutActionProvider as? StandardCalloutActionProvider).toNot(beNil())
+                expect(vc.inputSetProvider as? StandardInputSetProvider).toNot(beNil())
                 expect(vc.keyboardActionHandler as? StandardKeyboardActionHandler).toNot(beNil())
                 expect(vc.keyboardAppearance as? StandardKeyboardAppearance).toNot(beNil())
                 expect(vc.keyboardBehavior as? StandardKeyboardBehavior).toNot(beNil())
                 expect(vc.keyboardFeedbackHandler as? StandardKeyboardFeedbackHandler).toNot(beNil())
-                expect(vc.keyboardInputSetProvider as? StandardKeyboardInputSetProvider).toNot(beNil())
                 expect(vc.keyboardLayoutProvider as? StandardKeyboardLayoutProvider).toNot(beNil())
             }
         }
@@ -156,7 +156,7 @@ class KeyboardInputViewControllerTests: QuickSpec {
             func verifyRefresh() {
                 let actionContext = vc.actionCalloutContext
                 let layoutProvider = vc.keyboardLayoutProvider as? StandardKeyboardLayoutProvider
-                expect(layoutProvider?.inputSetProvider).to(be(vc.keyboardInputSetProvider))
+                expect(layoutProvider?.inputSetProvider).to(be(vc.inputSetProvider))
                 expect(actionContext.actionProvider).to(be(vc.calloutActionProvider))
                 expect(actionContext.actionHandler).to(be(vc.keyboardActionHandler))
             }
@@ -167,7 +167,7 @@ class KeyboardInputViewControllerTests: QuickSpec {
             }
             
             it("is done for keyboard input set provider") {
-                vc.keyboardInputSetProvider = MockKeyboardInputSetProvider()
+                vc.inputSetProvider = MockInputSetProvider()
                 verifyRefresh()
             }
             

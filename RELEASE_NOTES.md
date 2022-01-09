@@ -29,17 +29,21 @@ This version renames a bunch of types, properties and parameters to make things 
 * `BaseSecondaryCalloutActionProvider` has been renamed to `BaseCalloutActionProvider`.
 * `CalloutActionProvider` `secondaryCalloutActions` has been renamed to `calloutActions`.
 * `DisabledSecondaryCalloutActionProvider` has been renamed to `DisabledCalloutActionProvider`.
+* `EnglishKeyboardInputSetProvider` has been renamed to `EnglishInputSetProvider`.
 * `EnglishSecondaryCalloutActionProvider` has been renamed to `EnglishCalloutActionProvider`.
-* `KeyboardInputSet` has been renamed to `InputSet`
+* `KeyboardInputSet` has been renamed to `InputSet`.
+* `KeyboardInputSetProvider` has been renamed to `InputSetProvider`.
 * `KeyboardInputViewController` `keyboardInputCalloutContext` has been renamed to `inputCalloutContext`.
 * `KeyboardInputViewController` `keyboardSecondaryInputCalloutContext` has been renamed to `actionCalloutContext`.
 * `KeyboardInputViewController` `keyboardSecondaryCalloutActionProvider` has been renamed to `calloutActionContext`.
 * `LocalizedSecondaryCalloutActionProvider` has been renamed to `LocalizedCalloutActionProvider`.
 * `NumericKeyboardInputSet` has been renamed to `NumericInputSet`
+* `PreviewKeyboardInputSetProvider` has been renamed to `PreviewInputSetProvider`.
 * `PreviewSecondaryCalloutActionProvider` has been renamed to `PreviewCalloutActionProvider`.
 * `SecondaryCalloutActionProvider` has been renamed to `CalloutActionProvider`. 
 * `SecondaryInputCalloutContext` has been renamed to `ActionCalloutContext`.
 * `SecondaryInputCalloutStyle` has been renamed to `ActionCalloutStyle`
+* `StandardKeyboardInputSetProvider` has been renamed to `StandardInputSetProvider`.
 * `StandardSecondaryCalloutActionProvider` has been renamed to `StandardCalloutActionProvider`.
 * `SymbolicKeyboardInputSet` has been renamed to `SymbolicInputSet`
 * `SystemKeyboard` has renamed `buttonViewBuilder` to `buttonView` and `buttonContentBuilder` to `buttonContent`.

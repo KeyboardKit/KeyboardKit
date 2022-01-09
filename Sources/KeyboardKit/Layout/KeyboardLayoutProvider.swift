@@ -25,5 +25,5 @@ public protocol KeyboardLayoutProvider: AnyObject {
     /**
      Register a new input set provider.
      */
-    func register(inputSetProvider: KeyboardInputSetProvider)
+    func register(inputSetProvider: InputSetProvider)
 }

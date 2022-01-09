@@ -1,5 +1,5 @@
 //
-//  KeyboardInputSetProvider.swift
+//  InputSetProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-01.
@@ -10,16 +10,16 @@ import Foundation
 
 /**
  This protocol can be implemented by any classes that can be
- used to provide a input sets for keyboard layouts.
+ used to provide ``InputSet`` values for keyboard layouts.
  
- An input set defines the input keys on a keyboard. The keys
- can then be used to create a layout, which defines the full
- set of keys, including the surrounding system keys.
+ An ``InputSet`` defines the input keys on a system keyboard.
+ The keys can then be used to create a layout, which defines
+ the full set of keys, including the surrounding system keys.
  
  KeyboardKit automatically creates an implementation of this
  protocol and binds it to ``KeyboardInputViewController``.
  */
-public protocol KeyboardInputSetProvider: AnyObject {
+public protocol InputSetProvider: AnyObject {
     
     /**
      The input set to use for alphabetic keyboards.

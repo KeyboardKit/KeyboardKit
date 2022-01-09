@@ -1,5 +1,5 @@
 //
-//  EnglishKeyboardInputSetProvider.swift
+//  EnglishInputSetProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-01.
@@ -9,7 +9,7 @@
 import UIKit
 
 /**
- This class provides English keyboard input sets.
+ This input set provider provides English input sets.
  
  Since currencies can vary between English locales, you have
  the option to override the currency symbol. You can provide
@@ -17,7 +17,7 @@ import UIKit
  and a `symbolicCurrency` that will be used for symbolic. By
  default, `$` is used for numeric and `£` for symbolic.
  */
-public class EnglishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, LocalizedService {
+public class EnglishInputSetProvider: DeviceSpecificInputSetProvider, LocalizedService {
     
     /**
      Create a provider instance.

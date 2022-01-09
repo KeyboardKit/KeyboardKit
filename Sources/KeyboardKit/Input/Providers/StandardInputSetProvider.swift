@@ -1,5 +1,5 @@
 //
-//  StandardKeyboardInputSetProvider.swift
+//  StandardInputSetProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-01.
@@ -9,13 +9,11 @@
 import Foundation
 
 /**
- This standard provider has wrapped localized providers that
- are activated depending on the context's locale.
- 
- You can provide any number of localized providers in `init`.
- By default, it will use all providers that exist in the lib.
+ This input set provider is initialized with a collection of
+ localized providers and will use the provider with the same
+ locale as the context.
  */
-open class StandardKeyboardInputSetProvider: KeyboardInputSetProvider {
+open class StandardInputSetProvider: InputSetProvider {
     
     /**
      Create a standard provider.
@@ -29,7 +27,7 @@ open class StandardKeyboardInputSetProvider: KeyboardInputSetProvider {
      */
     public init(
         context: KeyboardContext,
-        providers: [LocalizedKeyboardInputSetProvider] = [EnglishKeyboardInputSetProvider()]) {
+        providers: [LocalizedInputSetProvider] = [EnglishInputSetProvider()]) {
         self.context = context
         let dict = Dictionary(uniqueKeysWithValues: providers.map { ($0.localeKey, $0) })
         providerDictionary = LocaleDictionary(dict)
@@ -40,13 +38,13 @@ open class StandardKeyboardInputSetProvider: KeyboardInputSetProvider {
     /**
      This is used to resolve the a provider for the context.
      */
-    public var providerDictionary: LocaleDictionary<KeyboardInputSetProvider>
+    public var providerDictionary: LocaleDictionary<InputSetProvider>
     
     /**
      Get the provider to use, given the provided context.
      */
-    open func provider(for context: KeyboardContext) -> KeyboardInputSetProvider {
-        providerDictionary.value(for: context.locale) ?? EnglishKeyboardInputSetProvider()
+    open func provider(for context: KeyboardContext) -> InputSetProvider {
+        providerDictionary.value(for: context.locale) ?? EnglishInputSetProvider()
     }
     
     /**

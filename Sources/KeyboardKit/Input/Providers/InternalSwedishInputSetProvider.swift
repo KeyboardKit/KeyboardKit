@@ -1,5 +1,5 @@
 //
-//  InternalSwedishKeyboardInputSetProvider.swift
+//  InternalSwedishInputSetProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-01.
@@ -9,11 +9,12 @@
 import UIKit
 
 /**
- This class provides Swedish keyboard input sets. It is only
- used by previews and is not as complex as the real provider
- in KeyboardKit Pro.
+ This input set provider provides Swedish input sets.
+ 
+ This class is only used for generating Swedish previews and
+ is not as complex as real providers in KeyboardKit Pro.
  */
-class InternalSwedishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, LocalizedService {
+class InternalSwedishInputSetProvider: DeviceSpecificInputSetProvider, LocalizedService {
     
     init(device: UIDevice = .current) {
         self.device = device

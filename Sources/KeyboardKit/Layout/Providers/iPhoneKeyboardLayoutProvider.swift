@@ -191,8 +191,8 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
     }
     
     
-    static func input(for locale: KeyboardLocale) -> KeyboardInputSetProvider {
-        StandardKeyboardInputSetProvider(
+    static func input(for locale: KeyboardLocale) -> InputSetProvider {
+        StandardInputSetProvider(
             context: context,
             providers: [provider(for: locale)])
     }
@@ -201,10 +201,10 @@ struct iPhoneKeyboardLayoutProvider_Previews: PreviewProvider {
         iPhoneKeyboardLayoutProvider(inputSetProvider: input(for: locale))
     }
     
-    static func provider(for locale: KeyboardLocale) -> LocalizedKeyboardInputSetProvider {
+    static func provider(for locale: KeyboardLocale) -> LocalizedInputSetProvider {
         switch locale {
-        case .swedish: return InternalSwedishKeyboardInputSetProvider(device: MockDevice())
-        default: return EnglishKeyboardInputSetProvider(device: MockDevice())
+        case .swedish: return InternalSwedishInputSetProvider(device: MockDevice())
+        default: return EnglishInputSetProvider(device: MockDevice())
         }
     }
     

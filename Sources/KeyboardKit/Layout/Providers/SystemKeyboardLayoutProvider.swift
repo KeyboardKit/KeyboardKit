@@ -14,11 +14,13 @@ import SwiftUI
  that needs basic functionality for creating system keyboard
  layouts that depend on system-specific rules.
  
- The class will use an `KeyboardInputSetProvider` to get the
- input set, which is then used to create the complete layout.
- Since native keyboards generally do not support `dictation`,
- there is a `dictationReplacement` that can be used to place
- another action where the dictation key would otherwise go.
+ This class will use an `InputSetProvider` and use the input
+ set it returns to create a keyboard layout.
+ 
+ Since keyboard extensions don't support `dictation` without
+ having to jump through hoops (see SwiftKey) the initializer
+ has a `dictationReplacement` parameter, that can be used to
+ place another action where the dictation key would go.
  
  If you want to create an entirely custom layout, you should
  just implement `KeyboardLayoutProvider`.
@@ -36,7 +38,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
        - dictationReplacement: An optional dictation replacement action.
      */
     public init(
-        inputSetProvider: KeyboardInputSetProvider,
+        inputSetProvider: InputSetProvider,
         dictationReplacement: KeyboardAction? = nil) {
         self.inputSetProvider = inputSetProvider
         self.dictationReplacement = dictationReplacement
@@ -51,7 +53,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     /**
      The input set provider to use.
      */
-    public var inputSetProvider: KeyboardInputSetProvider
+    public var inputSetProvider: InputSetProvider
     
     
     /**
@@ -140,7 +142,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
      Register a new input set provider. This will affect the
      keyboard layout that is provided by this class.
      */
-    open func register(inputSetProvider: KeyboardInputSetProvider) {
+    open func register(inputSetProvider: InputSetProvider) {
         self.inputSetProvider = inputSetProvider
     }
     

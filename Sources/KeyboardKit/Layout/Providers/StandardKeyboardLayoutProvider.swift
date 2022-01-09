@@ -33,7 +33,7 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
        - dictationReplacement: An optional dictation replacement action.
      */
     public init(
-        inputSetProvider: KeyboardInputSetProvider,
+        inputSetProvider: InputSetProvider,
         dictationReplacement: KeyboardAction? = nil) {
         self.inputSetProvider = inputSetProvider
         self.dictationReplacement = dictationReplacement
@@ -48,7 +48,7 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     /**
      The input set provider to use.
      */
-    public var inputSetProvider: KeyboardInputSetProvider {
+    public var inputSetProvider: InputSetProvider {
         didSet {
             iPadProvider.register(inputSetProvider: inputSetProvider)
             iPhoneProvider.register(inputSetProvider: inputSetProvider)
@@ -89,7 +89,7 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
      Register a new input set provider. This will be proxied
      down to the child providers.
      */
-    open func register(inputSetProvider: KeyboardInputSetProvider) {
+    open func register(inputSetProvider: InputSetProvider) {
         self.inputSetProvider = inputSetProvider
     }
 }

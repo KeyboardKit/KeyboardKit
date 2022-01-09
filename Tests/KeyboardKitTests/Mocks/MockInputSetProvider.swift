@@ -1,5 +1,5 @@
 //
-//  MockKeyboardInputSetProvider.swift
+//  MockInputSetProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-08.
@@ -9,7 +9,7 @@
 import KeyboardKit
 import MockingKit
 
-class MockKeyboardInputSetProvider: Mock, KeyboardInputSetProvider {
+class MockInputSetProvider: Mock, InputSetProvider {
     
     var alphabeticInputSetValue: AlphabeticInputSet = AlphabeticInputSet(rows: [])
     var numericInputSetValue: NumericInputSet = NumericInputSet(rows: [])
