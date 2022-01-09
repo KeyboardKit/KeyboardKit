@@ -22,12 +22,25 @@ This version renames some types and init parameters to make things tighter in pr
 
 ### 🗑 Deprecations
 
+* `BaseSecondaryCalloutActionProvider` has been renamed to `BaseCalloutActionProvider`.
+* `CalloutActionProvider` `secondaryCalloutActions` has been renamed to `calloutActions`.
+* `DisabledSecondaryCalloutActionProvider` has been renamed to `DisabledCalloutActionProvider`.
+* `EnglishSecondaryCalloutActionProvider` has been renamed to `EnglishCalloutActionProvider`.
 * `InputCalloutContext` has been renamed to `CalloutInputContext`.
 * `KeyboardInputViewController` `keyboardSecondaryInputCalloutContext` has been renamed to `actionCalloutContext`.
+* `KeyboardInputViewController` `keyboardSecondaryCalloutActionProvider` has been renamed to `calloutActionContext`.
+* `LocalizedSecondaryCalloutActionProvider` has been renamed to `LocalizedCalloutActionProvider`.
+* `PreviewSecondaryCalloutActionProvider` has been renamed to `PreviewCalloutActionProvider`.
+* `SecondaryCalloutActionProvider` has been renamed to `CalloutActionProvider`. 
 * `SecondaryInputCalloutContext` has been renamed to `ActionCalloutContext`.
 * `SecondaryInputCalloutStyle` has been renamed to `ActionCalloutStyle`
+* `StandardSecondaryCalloutActionProvider` has been renamed to `StandardCalloutActionProvider`.
 * `SystemKeyboard` has renamed `buttonViewBuilder` to `buttonView` and `buttonContentBuilder` to `buttonContent`.
 * `View+secondaryInputCallout` has been renamed to `actionCallout`
+
+### 💥 Breaking changes
+
+Even though most renamed functions have deprecated variants, open functions that can be overridden will have to be renamed if you have overridden them,  
 
 
 ## 5.7

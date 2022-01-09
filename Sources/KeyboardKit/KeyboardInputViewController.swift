@@ -236,6 +236,18 @@ open class KeyboardInputViewController: UIInputViewController {
     public lazy var autocompleteProvider: AutocompleteProvider = DisabledAutocompleteProvider()
     
     /**
+     This provider is used to get a callout actions when the
+     user long presses an input key.
+     
+     You can replace this instance with a custom instance. A
+     ``StandardCalloutActionProvider`` is used by default.
+     */
+    public lazy var calloutActionProvider: CalloutActionProvider = StandardCalloutActionProvider(
+        context: keyboardContext) {
+        didSet { refreshProperties() }
+    }
+    
+    /**
      This action handler is used to handle actions that will
      be triggered when the keyboard is being.
      
@@ -305,20 +317,6 @@ open class KeyboardInputViewController: UIInputViewController {
      */
     public lazy var keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider(
         inputSetProvider: keyboardInputSetProvider)
-    
-    /**
-     This provider is used to get a secondary callout action
-     collection for the current ``keyboardContext`` when the
-     keyboard is being used.
-     
-     You can replace this instance with a custom instance. A
-     ``StandardSecondaryCalloutActionProvider`` will be used
-     by default.
-     */
-    public lazy var keyboardSecondaryCalloutActionProvider: SecondaryCalloutActionProvider = StandardSecondaryCalloutActionProvider(
-        context: keyboardContext) {
-        didSet { refreshProperties() }
-    }
     
     
     

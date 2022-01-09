@@ -1,5 +1,5 @@
 //
-//  EnglishSecondaryCalloutActionProviderTests.swift
+//  EnglishCalloutActionProviderTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -11,14 +11,14 @@ import Nimble
 import Foundation
 import KeyboardKit
 
-class EnglishSecondaryCalloutActionProviderTests: QuickSpec {
+class EnglishCalloutActionProviderTests: QuickSpec {
     
     override func spec() {
         
-        var provider: EnglishSecondaryCalloutActionProvider!
+        var provider: EnglishCalloutActionProvider!
         
         beforeEach {
-            provider = try? EnglishSecondaryCalloutActionProvider()
+            provider = try? EnglishCalloutActionProvider()
         }
         
         describe("locale") {
@@ -32,14 +32,14 @@ class EnglishSecondaryCalloutActionProviderTests: QuickSpec {
             
             it("is defined for some actions") {
                 let action = KeyboardAction.character("a")
-                let actions = provider.secondaryCalloutActions(for: action)
+                let actions = provider.calloutActions(for: action)
                 let expected = "aàáâäæãåā".map { KeyboardAction.character(String($0)) }
                 expect(actions).to(equal(expected))
             }
             
             it("is empty for some actions") {
                 let action = KeyboardAction.character("å")
-                let actions = provider.secondaryCalloutActions(for: action)
+                let actions = provider.calloutActions(for: action)
                 expect(actions).to(equal([]))
             }
         }

@@ -1,5 +1,5 @@
 //
-//  SecondaryCalloutActionProvider.swift
+//  CalloutActionProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -15,14 +15,13 @@ import Foundation
  KeyboardKit automatically creates an implementation of this
  protocol and binds it to ``KeyboardInputViewController``.
  */
-public protocol SecondaryCalloutActionProvider {
+public protocol CalloutActionProvider {
     
     /**
-     Get secondary callout actions for the provided `action`.
+     Get callout actions for the provided `action`.
      
-     These are the secondary actions that are presented in a
-     callout when the user long presses the key of an action
-     that has alternative actions.
+     These actions are presented in a callout when a user is
+     long pressing this action.
      */
-    func secondaryCalloutActions(for action: KeyboardAction) -> [KeyboardAction]
+    func calloutActions(for action: KeyboardAction) -> [KeyboardAction]
 }

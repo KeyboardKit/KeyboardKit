@@ -35,7 +35,7 @@ open class ActionCalloutContext: ObservableObject {
      */
     public init(
         actionHandler: KeyboardActionHandler,
-        actionProvider: SecondaryCalloutActionProvider) {
+        actionProvider: CalloutActionProvider) {
         self.actionHandler = actionHandler
         self.actionProvider = actionProvider
     }
@@ -44,12 +44,12 @@ open class ActionCalloutContext: ObservableObject {
     // MARK: - Dependencies
     
     public let actionHandler: KeyboardActionHandler
-    public let actionProvider: SecondaryCalloutActionProvider
+    public let actionProvider: CalloutActionProvider
     
     
     // MARK: - Properties
     
-    static let coordinateSpace = "com.keyboardkit.coordinate.SecondaryInputCallout"
+    static let coordinateSpace = "com.keyboardkit.coordinate.ActionCallout"
     
     /**
      Whether or not the context has a selected action.
@@ -145,7 +145,7 @@ open class ActionCalloutContext: ObservableObject {
      */
     open func updateInputs(for action: KeyboardAction?, in geo: GeometryProxy, alignment: HorizontalAlignment? = nil) {
         guard let action = action else { return reset() }
-        let actions = actionProvider.secondaryCalloutActions(for: action)
+        let actions = actionProvider.calloutActions(for: action)
         self.buttonFrame = geo.frame(in: .named(Self.coordinateSpace))
         self.alignment = alignment ?? getAlignment(for: geo)
         self.actions = isLeading ? actions : actions.reversed()
@@ -181,7 +181,7 @@ public extension ActionCalloutContext {
     static var disabled: ActionCalloutContext {
         ActionCalloutContext(
             actionHandler: PreviewKeyboardActionHandler(),
-            actionProvider: DisabledSecondaryCalloutActionProvider())
+            actionProvider: DisabledCalloutActionProvider())
     }
 }
 
