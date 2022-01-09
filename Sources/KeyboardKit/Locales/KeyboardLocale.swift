@@ -11,15 +11,13 @@ import Foundation
 /**
  This enum contains KeyboardKit-supported locales.
  
- Keyboard locales have more information than the raw locales
- and can also have a set of related services.
+ Keyboard locales have more information than raw locales and
+ can also have a set of related services. For instance, when
+ a KeyboardKit Pro license is registered, it will unlock new
+ properties for resolving a ``CalloutActionProvider`` and an
+ ``InputSetProvider`` for each keyboard locale.
  
- When a KeyboardKit Pro license is registered, these locales
- unlock new properties for resolving locale-specific service
- implementations of the ``KeyboardInputSetProvider`` as well
- as the ``CalloutActionProvider`` protocols.
- 
- Find more locales here:
+ This website specifies a list of locale identifiers:
  https://gist.github.com/jacobbubu/1836273
  */
 public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {

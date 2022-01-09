@@ -66,7 +66,7 @@ Adding a new locale to KeyboardKit requires the following:
 * Define its properties, like `flag`, `isLeftToRight` etc.
 * Provide a `Resources/<id>.lproj` folder with localized strings.
 * Implement a custom `CalloutActionProvider`.
-* Implement a custom `KeyboardInputSetProvider`.
+* Implement a custom `InputSetProvider`.
 
 If the locale generates a keyboard that looks off, you can either implement a new `KeyboardLayoutProvider` or adjust the `iPhoneKeyboardLayoutProvider` and `iPadKeyboardLayoutProvider` to handle the new layout.
 

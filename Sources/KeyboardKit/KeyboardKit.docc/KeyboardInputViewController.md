@@ -46,11 +46,11 @@ to build more powerful keyboards:
 
 * ``autocompleteProvider`` is used to get autocomplete suggestions
 * ``calloutActionProvider`` is used to get callout actions
+* ``inputSetProvider`` is used to get input characters for the keyboard layout
 * ``keyboardActionHandler`` is used to handle keyboard actions
 * ``keyboardAppearance`` is used to determine the keyboard design
 * ``keyboardBehavior`` is used to determine the keyboard behavior
 * ``keyboardFeedbackHandler`` is used to handle autio & haptic feedback
-* ``keyboardInputSetProvider`` is used to get input actions
 * ``keyboardLayoutProvider`` is used to get a keyboard layout
 
 You can replace any of these to customize how your keyboard

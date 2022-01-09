@@ -5,24 +5,24 @@ KeyboardKit comes with an input set engine that make it easy to create `alphabet
 
 ## Keyboard Input Set
 
-KeyboardKit has a `KeyboardInputSet` struct that represents rows of input characters.
+KeyboardKit has an `InputSet` struct that represents rows of input characters.
 
 An input set is divided into three sub-groups:
 
-* `AlphabeticKeyboardInputSet` for alphabetic keyboards.
-* `NumericKeyboardInputSet` for numeric keyboards.
-* `SymbolicKeyboardInputSet` for symbolic keyboards.
+* `AlphabeticInputSet` for alphabetic keyboards.
+* `NumericInputSet` for numeric keyboards.
+* `SymbolicInputSet` for symbolic keyboards.
 
 You can provide KeyboardKit with input sets by implementing an input set provider.
 
 
 ## Input set providers
 
-KeyboardKit has a `KeyboardInputSetProvider` protocol that can be used to provide input sets to the extension. 
+KeyboardKit has an `InputSetProvider` protocol that can be used to provide input sets. 
 
-Using an input set provider instead of creating input sets manually gives you a dynamic way of working with inputs.
+Using an input set provider instead of creating input sets manually gives you a more dynamic way of working with inputs.
 
-`KeyboardInputViewController` will automatically create a `StandardKeyboardInputSetProvider` when the extension is started. You can use it as is or replace it with a custom provider.
+`KeyboardInputViewController` will automatically create a `StandardInputSetProvider` when the extension is started. You can use it as is or replace it with a custom provider.
 
 
 ## Input set vs. keyboard layout
@@ -32,13 +32,15 @@ A *keyboard input set* is the characters that make up the input part of a keyboa
 A *keyboard layout* is the actions that make up the complete keyboard, together with layout-specific information.
 
 
-## Supporting more locales
+## Locale-specific callouts
 
-The `StandardKeyboardInputSetProvider` is initialized with a list of locale-specific providers.
+For system keyboards, the input set depend on the current locale and may vary a lot between different locales.
 
-KeyboardKit will setup the standard provider with support for `English`, but you can inject any provider that implements `KeyboardInputSetProvider` and `LocalizedService` into this provider.
+KeyboardKit makes it easy to support multiple locales, where the `StandardInputSetProvider` is designed to accept a list of locale-specific providers.  
 
-You can implement a custom provider by inheriting `DeviceSpecificInputSetProvider` or create a completely custom one by implementing `InputSetProvider` from scratch.
+KeyboardKit will setup the standard provider with support for `English`, but you can inject any provider that implements `LocalizedInputSetProvider` into this provider.
+
+The `DeviceSpecificInputSetProvider` base class makes it easier to or create custom providers.
 
 
 ## KeyboardKit Pro
@@ -50,7 +52,7 @@ KeyboardKit Pro defines locale-specific input sets for all keyboard locales.
 
 ## Optional
 
-It's worth mentioning that the concept of input sets is just a convenience. KeyboardKit doesn't force you to use input sets. Your keyboard extensions can look and behave however you want.
+It's worth mentioning that the concept of input sets is just a convenience. Your keyboard extensions can look and behave however you want.
 
 
 

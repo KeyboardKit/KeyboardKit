@@ -10,7 +10,7 @@ import Quick
 import Nimble
 @testable import KeyboardKit
 
-class EnglishKeyboardInputSetProviderTests: QuickSpec {
+class EnglishInputSetProviderTests: QuickSpec {
     
     override func spec() {
         

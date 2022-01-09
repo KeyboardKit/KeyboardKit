@@ -136,20 +136,20 @@ Note that DocC currently omits extensions, which means that there are a lot of f
 
 ### Input
 
+- ``InputSet``
+- ``InputSetProvider``
 - ``KeyboardInput``
 - ``KeyboardInputRow``
-- ``KeyboardInputSet``
-- ``KeyboardInputSetProvider``
-- ``StandardKeyboardInputSetProvider``
+- ``StandardInputSetProvider``
 
 - ``AlphabeticKeyboardInputSet``
 - ``NumericKeyboardInputSet``
 - ``SymbolicKeyboardInputSet``
 
 - ``DeviceSpecificInputSetProvider``
-- ``EnglishKeyboardInputSetProvider``
-- ``LocalizedKeyboardInputSetProvider``
-- ``StaticKeyboardInputSetProvider``
+- ``EnglishInputSetProvider``
+- ``LocalizedInputSetProvider``
+- ``StaticInputSetProvider``
 
 ### Layout
 
@@ -185,9 +185,9 @@ Note that DocC currently omits extensions, which means that there are a lot of f
 - ``KeyboardPreviewMode``
 
 - ``PreviewCalloutActionProvider``
+- ``PreviewInputSetProvider``
 - ``PreviewKeyboardActionHandler``
 - ``PreviewKeyboardAppearance``
-- ``PreviewKeyboardInputSetProvider``
 - ``PreviewKeyboardLayoutProvider``
 - ``PreviewTextDocumentProxy``
 

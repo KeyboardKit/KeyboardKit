@@ -252,7 +252,7 @@ open class KeyboardInputViewController: UIInputViewController {
      to generate a complete keyboard layout.
      
      You can replace this instance with a custom instance. A
-     ``StandardKeyboardInputSetProvider`` is used by default.
+     ``StandardInputSetProvider`` is used by default.
      */
     public lazy var inputSetProvider: InputSetProvider = StandardInputSetProvider(
         context: keyboardContext) {
