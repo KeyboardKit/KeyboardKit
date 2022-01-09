@@ -10,11 +10,11 @@ import Foundation
 
 /**
  This protocol can be implemented by any classes that can be
- used to provide a keyboard layout with input sets.
+ used to provide a input sets for keyboard layouts.
  
  An input set defines the input keys on a keyboard. The keys
  can then be used to create a layout, which defines the full
- set of keys, described as layout items.
+ set of keys, including the surrounding system keys.
  
  KeyboardKit automatically creates an implementation of this
  protocol and binds it to ``KeyboardInputViewController``.
@@ -24,15 +24,15 @@ public protocol KeyboardInputSetProvider: AnyObject {
     /**
      The input set to use for alphabetic keyboards.
      */
-    var alphabeticInputSet: AlphabeticKeyboardInputSet { get }
+    var alphabeticInputSet: AlphabeticInputSet { get }
 
     /**
      The input set to use for numeric keyboards.
      */
-    var numericInputSet: NumericKeyboardInputSet { get }
+    var numericInputSet: NumericInputSet { get }
 
     /**
      The input set to use for symbolic keyboards.
      */
-    var symbolicInputSet: SymbolicKeyboardInputSet { get }
+    var symbolicInputSet: SymbolicInputSet { get }
 }

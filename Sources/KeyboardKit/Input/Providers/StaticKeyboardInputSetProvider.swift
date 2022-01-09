@@ -23,9 +23,9 @@ public class StaticKeyboardInputSetProvider: KeyboardInputSetProvider {
         - symbolicInputSet: The symbolic input set to use.
      */
     public init(
-        alphabeticInputSet: AlphabeticKeyboardInputSet,
-        numericInputSet: NumericKeyboardInputSet,
-        symbolicInputSet: SymbolicKeyboardInputSet) {
+        alphabeticInputSet: AlphabeticInputSet,
+        numericInputSet: NumericInputSet,
+        symbolicInputSet: SymbolicInputSet) {
         self.alphabeticInputSetValue = alphabeticInputSet
         self.numericInputSetValue = numericInputSet
         self.symbolicInputSetValue = symbolicInputSet
@@ -36,33 +36,33 @@ public class StaticKeyboardInputSetProvider: KeyboardInputSetProvider {
      */
     public static var empty: KeyboardInputSetProvider {
         StaticKeyboardInputSetProvider(
-            alphabeticInputSet: AlphabeticKeyboardInputSet(rows: []),
-            numericInputSet: NumericKeyboardInputSet(rows: []),
-            symbolicInputSet: SymbolicKeyboardInputSet(rows: []))
+            alphabeticInputSet: AlphabeticInputSet(rows: []),
+            numericInputSet: NumericInputSet(rows: []),
+            symbolicInputSet: SymbolicInputSet(rows: []))
     }
     
-    private let alphabeticInputSetValue: AlphabeticKeyboardInputSet
-    private let numericInputSetValue: NumericKeyboardInputSet
-    private let symbolicInputSetValue: SymbolicKeyboardInputSet
+    private let alphabeticInputSetValue: AlphabeticInputSet
+    private let numericInputSetValue: NumericInputSet
+    private let symbolicInputSetValue: SymbolicInputSet
 
     /**
      The alphabetic input set to use.
      */
-    public var alphabeticInputSet: AlphabeticKeyboardInputSet {
+    public var alphabeticInputSet: AlphabeticInputSet {
         alphabeticInputSetValue
     }
     
     /**
      The numeric input set to use.
      */
-    public var numericInputSet: NumericKeyboardInputSet {
+    public var numericInputSet: NumericInputSet {
         numericInputSetValue
     }
     
     /**
      The symbolic input set to use.
      */
-    public var symbolicInputSet: SymbolicKeyboardInputSet {
+    public var symbolicInputSet: SymbolicInputSet {
         symbolicInputSetValue
     }
 }

@@ -21,6 +21,12 @@ public extension KeyboardInputSetProvider where Self == PreviewKeyboardInputSetP
  */
 public class PreviewKeyboardInputSetProvider: KeyboardInputSetProvider {
     
+    /**
+     Create a preview provider.
+     
+     - Parameters:
+       - context: The context to use by the preview, by default `.preview`.
+     */
     public init(context: KeyboardContext = .preview) {
         self.context = context
         self.provider = StandardKeyboardInputSetProvider(context: context)
@@ -30,23 +36,23 @@ public class PreviewKeyboardInputSetProvider: KeyboardInputSetProvider {
     private let provider: KeyboardInputSetProvider
     
     /**
-     Get the alphabetic input set to use.
+     The input set to use for alphabetic keyboards.
      */
-    public var alphabeticInputSet: AlphabeticKeyboardInputSet {
+    public var alphabeticInputSet: AlphabeticInputSet {
         provider.alphabeticInputSet
     }
     
     /**
-     Get the numeric input set to use.
+     The input set to use for numeric keyboards.
      */
-    public var numericInputSet: NumericKeyboardInputSet {
+    public var numericInputSet: NumericInputSet {
         provider.numericInputSet
     }
     
     /**
-     Get the symbolic input set to use.
+     The input set to use for symbolic keyboards.
      */
-    public var symbolicInputSet: SymbolicKeyboardInputSet {
+    public var symbolicInputSet: SymbolicInputSet {
         provider.symbolicInputSet
     }
 }

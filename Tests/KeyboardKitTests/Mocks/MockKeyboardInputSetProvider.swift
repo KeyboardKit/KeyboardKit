@@ -11,11 +11,11 @@ import MockingKit
 
 class MockKeyboardInputSetProvider: Mock, KeyboardInputSetProvider {
     
-    var alphabeticInputSetValue: AlphabeticKeyboardInputSet = AlphabeticKeyboardInputSet(rows: [])
-    var numericInputSetValue: NumericKeyboardInputSet = NumericKeyboardInputSet(rows: [])
-    var symbolicInputSetValue: SymbolicKeyboardInputSet = SymbolicKeyboardInputSet(rows: [])
+    var alphabeticInputSetValue: AlphabeticInputSet = AlphabeticInputSet(rows: [])
+    var numericInputSetValue: NumericInputSet = NumericInputSet(rows: [])
+    var symbolicInputSetValue: SymbolicInputSet = SymbolicInputSet(rows: [])
     
-    var alphabeticInputSet: AlphabeticKeyboardInputSet { alphabeticInputSetValue }
-    var numericInputSet: NumericKeyboardInputSet { numericInputSetValue }
-    var symbolicInputSet: SymbolicKeyboardInputSet { symbolicInputSetValue }
+    var alphabeticInputSet: AlphabeticInputSet { alphabeticInputSetValue }
+    var numericInputSet: NumericInputSet { numericInputSetValue }
+    var symbolicInputSet: SymbolicInputSet { symbolicInputSetValue }
 }

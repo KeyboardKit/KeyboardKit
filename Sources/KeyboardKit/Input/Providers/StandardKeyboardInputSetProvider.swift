@@ -52,21 +52,21 @@ open class StandardKeyboardInputSetProvider: KeyboardInputSetProvider {
     /**
      The input set to use for alphabetic keyboards.
      */
-    open var alphabeticInputSet: AlphabeticKeyboardInputSet {
+    open var alphabeticInputSet: AlphabeticInputSet {
         provider(for: context).alphabeticInputSet
     }
     
     /**
      The input set to use for numeric keyboards.
      */
-    open var numericInputSet: NumericKeyboardInputSet {
+    open var numericInputSet: NumericInputSet {
         provider(for: context).numericInputSet
     }
     
     /**
      The input set to use for symbolic keyboards.
      */
-    open var symbolicInputSet: SymbolicKeyboardInputSet {
+    open var symbolicInputSet: SymbolicInputSet {
         provider(for: context).symbolicInputSet
     }
 }

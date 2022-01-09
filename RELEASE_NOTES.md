@@ -12,7 +12,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 5.8
 
-This version renames some types and init parameters to make things tighter in preparation for 6.0.
+This version renames a bunch of types, properties and parameters to make things nicer in preparation for 6.0.
 
 ### ✨ New features
 
@@ -25,19 +25,23 @@ This version renames some types and init parameters to make things tighter in pr
 
 ### 🗑 Deprecations
 
+* `AlphabeticKeyboardInputSet` has been renamed to `AlphabeticInputSet`
 * `BaseSecondaryCalloutActionProvider` has been renamed to `BaseCalloutActionProvider`.
 * `CalloutActionProvider` `secondaryCalloutActions` has been renamed to `calloutActions`.
 * `DisabledSecondaryCalloutActionProvider` has been renamed to `DisabledCalloutActionProvider`.
 * `EnglishSecondaryCalloutActionProvider` has been renamed to `EnglishCalloutActionProvider`.
+* `KeyboardInputSet` has been renamed to `InputSet`
 * `KeyboardInputViewController` `keyboardInputCalloutContext` has been renamed to `inputCalloutContext`.
 * `KeyboardInputViewController` `keyboardSecondaryInputCalloutContext` has been renamed to `actionCalloutContext`.
 * `KeyboardInputViewController` `keyboardSecondaryCalloutActionProvider` has been renamed to `calloutActionContext`.
 * `LocalizedSecondaryCalloutActionProvider` has been renamed to `LocalizedCalloutActionProvider`.
+* `NumericKeyboardInputSet` has been renamed to `NumericInputSet`
 * `PreviewSecondaryCalloutActionProvider` has been renamed to `PreviewCalloutActionProvider`.
 * `SecondaryCalloutActionProvider` has been renamed to `CalloutActionProvider`. 
 * `SecondaryInputCalloutContext` has been renamed to `ActionCalloutContext`.
 * `SecondaryInputCalloutStyle` has been renamed to `ActionCalloutStyle`
 * `StandardSecondaryCalloutActionProvider` has been renamed to `StandardCalloutActionProvider`.
+* `SymbolicKeyboardInputSet` has been renamed to `SymbolicInputSet`
 * `SystemKeyboard` has renamed `buttonViewBuilder` to `buttonView` and `buttonContentBuilder` to `buttonContent`.
 * `View+secondaryInputCallout` has been renamed to `actionCallout`
 

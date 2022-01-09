@@ -59,8 +59,8 @@ public class EnglishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, Lo
     /**
      The input set to use for alphabetic keyboards.
      */
-    public var alphabeticInputSet: AlphabeticKeyboardInputSet {
-        AlphabeticKeyboardInputSet(rows: [
+    public var alphabeticInputSet: AlphabeticInputSet {
+        AlphabeticInputSet(rows: [
             KeyboardInputRow("qwertyuiop"),
             KeyboardInputRow("asdfghjkl"),
             row(phone: "zxcvbnm", pad: "zxcvbnm,.")
@@ -70,8 +70,8 @@ public class EnglishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, Lo
     /**
      The input set to use for numeric keyboards.
      */
-    public var numericInputSet: NumericKeyboardInputSet {
-        NumericKeyboardInputSet(rows: [
+    public var numericInputSet: NumericInputSet {
+        NumericInputSet(rows: [
             KeyboardInputRow("1234567890"),
             row(phone: "-/:;()\(numericCurrency)&@”", pad: "@#\(numericCurrency)&*()’”"),
             row(phone: ".,?!’", pad: "%-+=/;:,.")
@@ -81,8 +81,8 @@ public class EnglishKeyboardInputSetProvider: DeviceSpecificInputSetProvider, Lo
     /**
      The input set to use for symbolic keyboards.
      */
-    public var symbolicInputSet: SymbolicKeyboardInputSet {
-        SymbolicKeyboardInputSet(rows: [
+    public var symbolicInputSet: SymbolicInputSet {
+        SymbolicInputSet(rows: [
             row(phone: "[]{}#%^*+=", pad: "1234567890"),
             row(phone: "_\\|~<>€\(symbolicCurrency)¥•", pad: "€\(symbolicCurrency)¥_^[]{}"),
             row(phone: ".,?!’", pad: "§|~…\\<>!?")
