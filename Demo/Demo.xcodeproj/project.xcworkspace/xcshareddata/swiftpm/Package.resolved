@@ -23,8 +23,8 @@
         "package": "KeyboardKitPro",
         "repositoryURL": "https://github.com/KeyboardKit/KeyboardKitPro.git",
         "state": {
-          "branch": "master",
-          "revision": "6a7c78585845ad805ee648b88c15870c9a13b0c5",
+          "branch": "new-locales",
+          "revision": "23c1c1b1955aa79ada0c491f745e7c99e87fb412",
           "version": null
         }
       },

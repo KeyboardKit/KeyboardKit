@@ -20,6 +20,7 @@ This version also harmonizes `KeyboardLocale` naming to put the language first a
 
 * 🇧🇪 Dutch (Belgium)
 * 🇧🇪 French (Belgium)
+* 🇦🇹 German (Austria)
 
 ### ✨ New features
 

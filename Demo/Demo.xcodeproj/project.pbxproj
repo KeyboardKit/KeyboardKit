@@ -886,7 +886,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/KeyboardKit/KeyboardKitPro.git";
 			requirement = {
-				branch = master;
+				branch = "new-locales";
 				kind = branch;
 			};
 		};

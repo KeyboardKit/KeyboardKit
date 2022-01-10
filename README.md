@@ -81,6 +81,7 @@ KeyboardKit is localized in the following languages:
 * 🇫🇷 French
 * 🇧🇪 French (Belgium)
 * 🇩🇪 German
+* 🇦🇹 German (Austria)
 * 🇮🇸 Icelandic
 * 🇮🇪 Irish
 * 🇮🇹 Italian

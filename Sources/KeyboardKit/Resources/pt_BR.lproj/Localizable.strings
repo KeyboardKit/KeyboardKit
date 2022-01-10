@@ -6,7 +6,7 @@
  Copyright © 2022 Daniel Saidi. All rights reserved.
  */
 
-"locale" = "pt-BR";
+"locale" = "pt_BR";
 
 "done" = "concludío";
 "go" = "ir";
