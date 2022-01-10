@@ -1,0 +1,20 @@
+/*
+ Localizable.strings
+ KeyboardKit
+ 
+ Created by Daniel Saidi on 2022-01-10.
+ Copyright © 2022 Daniel Saidi. All rights reserved.
+ */
+
+"locale" = "sl";
+
+"done" = "Končano";
+"go" = "Pojdi";
+"ok" = "OK";
+"return" = "↵";
+"search" = "Išči";
+"space" = "Preslednica";
+
+"keyboardTypeAlphabetic" = "ABC";
+"keyboardTypeNumeric" = "123";
+"keyboardTypeSymbolic" = "#+=";

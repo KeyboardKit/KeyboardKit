@@ -99,6 +99,7 @@ KeyboardKit is localized in the following languages:
 * 🇧🇷 Portuguese (Brazil)
 * 🇷🇴 Romanian
 * 🇷🇺 Russian
+* 🇸🇮 Slovenian
 * 🇪🇸 Spanish
 * 🇸🇪 Swedish
 * 🇹🇷 Turkish
