@@ -74,7 +74,7 @@ public class EnglishInputSetProvider: DeviceSpecificInputSetProvider, LocalizedS
         NumericInputSet(rows: [
             InputSetRow("1234567890"),
             row(phone: "-/:;()\(numericCurrency)&@”", pad: "@#\(numericCurrency)&*()’”"),
-            row(phone: ".,?!’", pad: "%-+=/;:,.")
+            row(phone: ".,?!’", pad: "%-+=/;:!?")
         ])
     }
     

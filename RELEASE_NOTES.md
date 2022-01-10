@@ -99,6 +99,7 @@ There are some breaking changes, but they shouldn't affect you if you haven't be
 * `KeyboardAction.shift` now uses a lighter color scheme for uppercase. 
 * `String.wordDelimiters` has been extended with various brackets.
 * `SystemKeyboard` now only uppercases for sentence autocapitalization after tapping a space after the sentence delimiter.
+* Several iPad layouts has adjusted the lower-right keys for numeric keyboards, to have `,` and `.` on the alphabetic keyboard and `!` and `?` on the numeric and symbolic. This is because these symbols currently don't adjust for uppercase and there is no swipe down support.  
 
 ### 🐛 Bug fixes
 
@@ -121,9 +122,9 @@ This version adds support for new locales and makes it easier to create and use 
 
 ### 🌐 New locales
 
-* 🇧🇷 Brazilian
 * 🇮🇪 Irish
 * 🇵🇹 Portuguese
+* 🇧🇷 Portuguese (Brazil)
 * 🇹🇷 Turkish
 
 ### ✨ New features

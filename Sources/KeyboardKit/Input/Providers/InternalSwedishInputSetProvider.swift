@@ -37,7 +37,7 @@ class InternalSwedishInputSetProvider: DeviceSpecificInputSetProvider, Localized
         return NumericInputSet(rows: [
             row(phone: "1234567890", pad: "1234567890`"),
             InputSetRow(device.isPhone ? phoneCenter : padCenter),
-            row(phone: ".,?!’", pad: "%_-=/;:,.")
+            row(phone: ".,?!’", pad: "%_-=/;:!?")
         ])
     }
     
