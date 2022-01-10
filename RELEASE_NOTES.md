@@ -18,9 +18,11 @@ This version also harmonizes `KeyboardLocale` naming to put the language first a
 
 ### 🌐 New locales
 
+* 🇭🇷 Croatian
 * 🇧🇪 Dutch (Belgium)
 * 🇧🇪 French (Belgium)
 * 🇦🇹 German (Austria)
+* 🇭🇺 Hungarian
 
 ### ✨ New features
 
