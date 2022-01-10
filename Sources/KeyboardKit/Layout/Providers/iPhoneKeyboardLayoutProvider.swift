@@ -49,7 +49,11 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         if action.isPrimaryAction { return bottomRowPrimaryButtonWidth(for: context) }
         switch action {
         case dictationReplacement: return bottomRowSystemButtonWidth(for: context)
-        case .character: return isLastNumericInputRow(row, for: context) ? lastSymbolicInputWidth(for: context) : .input
+        case .character:
+            if isGreekAlphabetic(context) {
+                return .percentage(0.1)
+            }
+            return isLastNumericInputRow(row, for: context) ? lastSymbolicInputWidth(for: context) : .input
         case .backspace: return thirdRowSystemButtonWidth(for: context)
         case .keyboardType: return bottomRowSystemButtonWidth(for: context)
         case .newLine: return bottomRowPrimaryButtonWidth(for: context)
