@@ -20,6 +20,10 @@ import SwiftUI
  
  KeyboardKit automatically creates an implementation of this
  protocol and binds it to ``KeyboardInputViewController``.
+ 
+ `TODO` From KeyboardKit 6.0, the various styles will be put
+ into a single `SystemKeyboardStyle` property, so that it is
+ easy to just return `.standard` in custom appearances.
  */
 public protocol KeyboardAppearance: AnyObject {
     

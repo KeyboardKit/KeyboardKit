@@ -74,11 +74,13 @@ KeyboardKit is localized in the following languages:
 * 🇨🇿 Czech
 * 🇩🇰 Danish
 * 🇳🇱 Dutch
+* 🇧🇪 Dutch (Belgian)
 * 🇬🇧 English (UK)
 * 🇺🇸 English (US)
 * 🇪🇪 Estonian
 * 🇫🇮 Finnish
 * 🇫🇷 French
+* 🇧🇪 French (Belgian)
 * 🇩🇪 German
 * 🇮🇸 Icelandic
 * 🇮🇪 Irish

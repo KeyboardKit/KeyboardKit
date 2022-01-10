@@ -12,10 +12,15 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 5.8
 
-This version renames a bunch of types, properties and parameters to make things nicer in preparation for 6.0.
+This version adds new locales and renames a bunch of types, properties and parameters to make things nicer in preparation for 6.0.
+
+### 🌐 New locales
+
+* 🇧🇪 Dutch (Belgium)
+* 🇧🇪 French (Belgium)
 
 ### ✨ New features
-K
+
 * `SystemKeyboard` has a new, static `standardButtonContent` function.
 * `SystemKeyboard` has a new, static `standardButtonView` function.
 
