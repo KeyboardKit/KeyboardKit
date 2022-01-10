@@ -14,6 +14,8 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 This version adds new locales and renames a bunch of types, properties and parameters to make things nicer in preparation for 6.0.
 
+This version also harmonizes `KeyboardLocale` naming to put the language first and the optional country second. This means that the new Belgian locales are called `french_belgium` and `dutch_belgium` and `brazilian` has been renamed to `portuguese_brazil`.  
+
 ### 🌐 New locales
 
 * 🇧🇪 Dutch (Belgium)
@@ -44,6 +46,7 @@ This version adds new locales and renames a bunch of types, properties and param
 * `KeyboardInputViewController` `keyboardInputCalloutContext` has been renamed to `inputCalloutContext`.
 * `KeyboardInputViewController` `keyboardSecondaryInputCalloutContext` has been renamed to `actionCalloutContext`.
 * `KeyboardInputViewController` `keyboardSecondaryCalloutActionProvider` has been renamed to `calloutActionContext`.
+* `KeyboardLocale` `.brazilian` has been renamed to `.portuguese_brazil`.
 * `LocalizedSecondaryCalloutActionProvider` has been renamed to `LocalizedCalloutActionProvider`.
 * `NumericKeyboardInputSet` has been renamed to `NumericInputSet`
 * `PreviewKeyboardInputSetProvider` has been renamed to `PreviewInputSetProvider`.
