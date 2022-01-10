@@ -117,8 +117,15 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     /**
      Whether or not to use an Greek alphabetic keyboard.
      */
+    public func isGreek(_ context: KeyboardContext) -> Bool {
+        context.locale.identifier == "el"
+    }
+    
+    /**
+     Whether or not to use an Greek alphabetic keyboard.
+     */
     public func isGreekAlphabetic(_ context: KeyboardContext) -> Bool {
-        isAlphabetic(context) && context.locale.identifier == "el"
+        isAlphabetic(context) && isGreek(context)
     }
     
     /**

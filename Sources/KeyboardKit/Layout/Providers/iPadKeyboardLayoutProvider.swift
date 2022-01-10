@@ -65,7 +65,9 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         if isBottomRowTrailingSwitcher(action, row: row, index: index) { return .inputPercentage(1.45) }
         switch action {
         case dictationReplacement: return .input
-        case .backspace: return .percentage(elevenEleven ? 0.125 : 0.095)
+        case .backspace:
+            if isGreekAlphabetic(context) { return .percentage(0.125) }
+            return .percentage(elevenEleven ? 0.125 : 0.095)
         case .dismissKeyboard: return .inputPercentage(1.45)
         case .keyboardType: return row == 2 ? .available : .input
         case .nextKeyboard: return .input

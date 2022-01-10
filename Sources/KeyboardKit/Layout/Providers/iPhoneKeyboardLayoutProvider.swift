@@ -50,9 +50,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         switch action {
         case dictationReplacement: return bottomRowSystemButtonWidth(for: context)
         case .character:
-            if isGreekAlphabetic(context) {
-                return .percentage(0.1)
-            }
+            if isGreekAlphabetic(context) { return .percentage(0.1) }
             return isLastNumericInputRow(row, for: context) ? lastSymbolicInputWidth(for: context) : .input
         case .backspace: return thirdRowSystemButtonWidth(for: context)
         case .keyboardType: return bottomRowSystemButtonWidth(for: context)
