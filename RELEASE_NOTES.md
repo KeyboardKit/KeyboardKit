@@ -24,6 +24,7 @@ This version also harmonizes `KeyboardLocale` naming to put the language first a
 * 🇨🇭 French (Switzerland)
 * 🇦🇹 German (Austria)
 * 🇨🇭 German (Switzerland)
+* 🇬🇷 Greek
 * 🇭🇺 Hungarian
 * 🇸🇮 Slovenian
 
