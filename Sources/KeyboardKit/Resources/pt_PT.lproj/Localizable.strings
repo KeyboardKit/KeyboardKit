@@ -6,7 +6,7 @@
  Copyright © 2022 Daniel Saidi. All rights reserved.
  */
 
-"locale" = "pt";
+"locale" = "pt_PT";
 
 "done" = "OK";
 "go" = "ir";

@@ -23,8 +23,10 @@ KeyboardKit is localized in the following languages:
 * 🇫🇮 Finnish
 * 🇫🇷 French
 * 🇧🇪 French (Belgium)
+* 🇨🇭 French (Switzerland)
 * 🇩🇪 German
 * 🇦🇹 German (Austria)
+* 🇨🇭 German (Switzerland)
 * 🇭🇺 Hungarian
 * 🇮🇸 Icelandic
 * 🇮🇪 Irish
