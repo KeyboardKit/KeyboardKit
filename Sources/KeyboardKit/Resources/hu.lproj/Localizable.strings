@@ -2,18 +2,18 @@
  Localizable.strings
  KeyboardKit
  
- Created by Daniel Saidi on 2022-01-08.
+ Created by Daniel Saidi on 2022-01-10.
  Copyright © 2022 Daniel Saidi. All rights reserved.
  */
 
-"locale" = "cs";
+"locale" = "hu";
 
-"done" = "Hotovo";
-"go" = "Otevřít";
+"done" = "Kész";
+"go" = "Ugrás";
 "ok" = "OK";
-"return" = "Enter";
-"search" = "Hledat";
-"space" = "Mezerník";
+"return" = "Return";
+"search" = "Keresés";
+"space" = "Szóköz";
 
 "keyboardTypeAlphabetic" = "ABC";
 "keyboardTypeNumeric" = "123";

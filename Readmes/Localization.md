@@ -13,6 +13,7 @@ KeyboardKit is localized in the following languages:
 * 🇦🇪 Arabic
 * 🇧🇾 Belarusian
 * 🇨🇿 Czech
+* 🇭🇷 Croatian
 * 🇩🇰 Danish
 * 🇳🇱 Dutch
 * 🇧🇪 Dutch (Belgium)
@@ -24,6 +25,7 @@ KeyboardKit is localized in the following languages:
 * 🇧🇪 French (Belgium)
 * 🇩🇪 German
 * 🇦🇹 German (Austria)
+* 🇭🇺 Hungarian
 * 🇮🇸 Icelandic
 * 🇮🇪 Irish
 * 🇮🇹 Italian
