@@ -1,13 +1,8 @@
 # Localization
 
-KeyboardKit defines keyboard-specific locales and provides localized content for the supported locales.
+KeyboardKit is localized in 39 keyboard-specific locales:
 
-
-## Keyboard Locales
-
-KeyboardKit is localized in the following languages:
-
-* 🇺🇸 English
+* 🇺🇸 English (Default)
 
 * 🇦🇱 Albanian
 * 🇦🇪 Arabic
@@ -50,21 +45,23 @@ KeyboardKit is localized in the following languages:
 
 These locales can be accessed with the `KeyboardLocale` enum.
 
+Each locale provides localized strings and locale information. KeyboardKit Pro then provides support for fully localized input sets, keyboard layouts, callout actions etc.
+
 
 ## Localized strings
 
 KeyboardKit has a `KKL10n` enum that provides localized strings for all locales. These texts are used to localize certain buttons, labels etc.
 
-Localized strings are managed under `Sources/Resources`.
+Localized strings are stored in `Sources/Resources`.
 
 
 ## Localized keyboards
 
 A completely localized keyboard doesn't just involve localized strings.
 
-To fully localize a keyboard, you must implement a locale-specific input set, keyboard layout, callout actions etc.
+To fully localize a keyboard, you must implement locale-specific input sets, keyboard layouts, callout actions etc.
 
-While KeyboardKit only provides a completely localized English keyboard, [KeyboardKit Pro][Pro] provides completely localized keyboards for all keyboard locales.
+While KeyboardKit only provides localized strings, locale information and a localized English keyboard, [KeyboardKit Pro][Pro] provides completely localized keyboards for all keyboard locales.
 
 
 ## How to add a new locale
@@ -93,7 +90,7 @@ This involves specifying margins, system actions etc. to make the keyboard behav
 
 KeyboardKit Pro provides completely localized keyboards for all keyboard locales, including locale-specific input sets, keyboard layouts and callout actions.
 
-[Read more here][Pro]. 
+[Read more here][Pro].
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

@@ -61,52 +61,15 @@ The KeyboardKit documentation contains extensive information, code examples etc.
 You can either [download][Documentation] the documentation or build it directly in Xcode, using `Product/Build Documentation`.
 
 
+
 ## 🇸🇪 Localization
 
-KeyboardKit is localized in the following languages:
+KeyboardKit is localized in 39 keyboard-specific locales:
 
-* 🇺🇸 English
-
-* 🇦🇱 Albanian
-* 🇦🇪 Arabic
-* 🇧🇾 Belarusian
-* 🇨🇿 Czech
-* 🇭🇷 Croatian
-* 🇩🇰 Danish
-* 🇳🇱 Dutch
-* 🇧🇪 Dutch (Belgium)
-* 🇬🇧 English (UK)
-* 🇺🇸 English (US)
-* 🇪🇪 Estonian
-* 🇫🇮 Finnish
-* 🇫🇷 French
-* 🇧🇪 French (Belgium)
-* 🇨🇭 French (Switzerland)
-* 🇩🇪 German
-* 🇦🇹 German (Austria)
-* 🇨🇭 German (Switzerland)
-* 🇬🇷 Greek
-* 🇭🇺 Hungarian
-* 🇮🇸 Icelandic
-* 🇮🇪 Irish
-* 🇮🇹 Italian
-* 🇹🇯 Kurdish Sorani
-* 🇱🇻 Latvian
-* 🇱🇹 Lithuanian
-* 🇳🇴 Norwegian
-* 🇮🇷 Persian
-* 🇵🇱 Polish
-* 🇵🇹 Portuguese
-* 🇧🇷 Portuguese (Brazil)
-* 🇷🇴 Romanian
-* 🇷🇺 Russian
-* 🇸🇮 Slovenian
-* 🇪🇸 Spanish
-* 🇸🇪 Swedish
-* 🇹🇷 Turkish
-* 🇺🇦 Ukrainian
-
-KeyboardKit also supports localized keyboards, where the keyboard layout, callout actions etc. behave just like they should for a certain locale.
+🇺🇸 🇦🇱 🇦🇪 🇧🇾 🇨🇿 🇭🇷 🇩🇰 🇳🇱 🇧🇪 🇬🇧 <br />
+🇺🇸 🇪🇪 🇫🇮 🇫🇷 🇧🇪 🇨🇭 🇩🇪 🇦🇹 🇨🇭 🇬🇷 <br />
+🇭🇺 🇮🇸 🇮🇪 🇮🇹 🇹🇯 🇱🇻 🇱🇹 🇳🇴 🇮🇷 🇵🇱 <br />
+🇵🇹 🇧🇷 🇷🇴 🇷🇺 🇸🇮 🇪🇸 🇸🇪 🇹🇷 🇺🇦
 
 [Read more here][Localization]
 
