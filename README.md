@@ -255,7 +255,7 @@ KeyboardKit is developed by Daniel Saidi, with great help from the community.
 
 Feel free to reach out if you have questions or if you want to contribute in any way:
 
-* E-mail: [daniel.saidi@gmail.com][Email]
+* E-mail: [info@getkeyboardkit.com][Email]
 * Twitter: [@getkeyboardkit][Twitter]
 * Web site: [getkeyboardkit.com][Website]
 
@@ -291,14 +291,14 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 
 
 
-[Email]: mailto:daniel.saidi@gmail.com
+[Email]: mailto:info@getkeyboardkit.com
 [Twitter]: https://twitter.com/getkeyboardkit
 [Website]: https://getkeyboardkit.com
 [Sponsors]: https://github.com/sponsors/danielsaidi
+[Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 [Documentation]: https://github.com/danielsaidi/Documentation/blob/main/Docs/KeyboardKit.doccarchive.zip?raw=true
 [License]: https://github.com/KeyboardKit/KeyboardKit/blob/master/LICENSE
-[Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 [Actions]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Actions.md
 [Appearance]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Appearance.md
@@ -322,4 +322,3 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Views]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Views.md
 
 [Guide]: https://shyngys.com/ios-custom-keyboard-guide
-[Git-LFS]: https://docs.github.com/en/repositories/working-with-files/managing-large-files
