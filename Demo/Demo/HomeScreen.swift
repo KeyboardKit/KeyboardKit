@@ -29,7 +29,7 @@ struct HomeScreen: View {
                         Label("Type in a dark text field", image: .type)
                     }
                 }
-                Section(header: Text("Setting"), footer: footerText) {
+                Section(header: Text("Keyboard"), footer: footerText) {
                     EnabledListItem(
                         isEnabled: isKeyboardEnabled,
                         enabledText: "Keyboard is enabled",
@@ -52,7 +52,7 @@ struct HomeScreen: View {
 private extension HomeScreen {
     
     var footerText: some View {
-        Text("You must enable the KeyboardKit keyboard under system settings, then select when typing, using 🌐.")
+        Text("You must enable the KeyboardKit keyboard under system settings, then select it with 🌐 when typing.")
     }
 }
 

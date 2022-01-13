@@ -264,19 +264,22 @@ Feel free to reach out if you have questions or if you want to contribute in any
 This project is proudly sponsored by the following companies:
 
 <a href="https://www.oribi.se/en">
-    <img src="Resources/logos/oribi.png" alt="Oribi Logo" title="Oribi" width=120 />
+    <img src="Resources/sponsors/oribi.png" alt="Oribi Icon" title="Oribi" width=120 />
 </a>
 <a href="https://www.phonetoroam.com">
-    <img src="Resources/logos/phonetoroam.png" alt="phonetoroam Logo" title="phonetoroam" width=120 />
+    <img src="Resources/sponsors/phonetoroam.png" alt="phonetoroam Icon" title="phonetoroam" width=120 />
 </a>
 <a href="https://vitalisapps.com">
-    <img src="Resources/logos/vitalis.png" alt="Vitalis Logo" title="Vitalis" width=120 />
+    <img src="Resources/sponsors/vitalis.png" alt="Vitalis Icon" title="Vitalis" width=120 />
+</a>
+<a href="https://letterkey.eu">
+    <img src="Resources/sponsors/letterkey.png" alt="LetterKey Icon" title="LetterKey" width=120 />
 </a>
 <a href="http://anomaly.net.au">
-    <img src="Resources/logos/anomaly.png" alt="Anomaly Software Logo" title="Anomaly Software" width=120 />
+    <img src="Resources/sponsors/anomaly.png" alt="Anomaly Software Icon" title="Anomaly Software" width=120 />
 </a>
 <a href="https://www.milocreative.com">
-    <img src="Resources/logos/milo.png" alt="Milo Creative Logo" title="Milo Creative" width=120 />
+    <img src="Resources/sponsors/milo.png" alt="Milo Creative Icon" title="Milo Creative" width=120 />
 </a>
 
 KeyboardKit is free, but please consider sponsoring the project if you find it useful. You can support KeyboardKit through [GitHub Sponsors][Sponsors], by signing up for a [Pro][Pro] license, paying for support, donations etc.
