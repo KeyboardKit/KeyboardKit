@@ -300,8 +300,6 @@ Feel free to reach out if you have questions or if you want to contribute in any
 
 ## Sponsors and Clients
 
-KeyboardKit is free, but please consider sponsoring the project to keep it going, if you find it useful.
-
 This project is proudly sponsored by the following companies:
 
 <a href="https://www.oribi.se/en">
@@ -320,7 +318,7 @@ This project is proudly sponsored by the following companies:
     <img src="Resources/logos/milo.png" alt="Milo Creative Logo" title="Milo Creative" width=120 />
 </a>
 
-You can support KeyboardKit by sponsoring the project on [GitHub Sponsors][Sponsors], signing up for a [KeyboardKit Pro][Pro] license or hiring me for consultation.
+KeyboardKit is free, but please consider sponsoring the project if you find it useful. You can support KeyboardKit through [GitHub Sponsors][Sponsors], by signing up for a [Pro][Pro] license, paying for support, donations etc.
 
 
 
