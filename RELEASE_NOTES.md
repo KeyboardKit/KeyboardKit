@@ -64,6 +64,7 @@ This version also harmonizes `KeyboardLocale` naming to put the language first a
 * `SecondaryInputCalloutStyle` has been renamed to `ActionCalloutStyle`
 * `StandardKeyboardInputSetProvider` has been renamed to `StandardInputSetProvider`.
 * `StandardSecondaryCalloutActionProvider` has been renamed to `StandardCalloutActionProvider`.
+* `String` `isVowel` is deprecated and will be removed in 6.0.
 * `SymbolicKeyboardInputSet` has been renamed to `SymbolicInputSet`
 * `SystemKeyboard` has renamed `buttonViewBuilder` to `buttonView` and `buttonContentBuilder` to `buttonContent`.
 * `View+secondaryInputCallout` has been renamed to `actionCallout`
