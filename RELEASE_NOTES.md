@@ -71,7 +71,7 @@ This version also harmonizes `KeyboardLocale` naming to put the language first a
 
 ### 💥 Breaking changes
 
-Even though most renamed functions have deprecated variants, open functions that can be overridden will have to be renamed if you have overridden them,  
+Even though most renamed functions have deprecated variants, open functions that can be overridden will have to be renamed if you have overridden them. 
 
 
 ## 5.7

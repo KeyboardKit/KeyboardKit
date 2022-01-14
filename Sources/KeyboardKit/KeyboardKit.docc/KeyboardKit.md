@@ -23,21 +23,18 @@ https://github.com/KeyboardKit/KeyboardKit.git
 You can add KeyboardKit to the main app, the keyboard extension and any other targets that needs it.
 
 
-## Getting started
-
-Once KeyboardKit is added to your project, you can start using it in your application and keyboard extension.
-
-Read more here: <doc:Getting-Started>
-
-
 ## About this documentation
 
 This documentation is generated with Xcode's new DocC engine.
 
-Note that DocC currently omits extensions, which means that there are a lot of functionality in the library that is missing in the documentation. Future versions will aim to improve these parts.  
+Note that DocC currently omits extensions, which means that there are a lot of functionality in the library that is missing in the documentation. Future versions will aim to improve this.
 
 
 ## Topics
+
+### Articles
+
+- <doc:Getting-Started>
 
 ### Keyboard
 
@@ -143,9 +140,9 @@ Note that DocC currently omits extensions, which means that there are a lot of f
 - ``InputSetRows``
 - ``StandardInputSetProvider``
 
-- ``AlphabeticKeyboardInputSet``
-- ``NumericKeyboardInputSet``
-- ``SymbolicKeyboardInputSet``
+- ``AlphabeticInputSet``
+- ``NumericInputSet``
+- ``SymbolicInputSet``
 
 - ``DeviceSpecificInputSetProvider``
 - ``EnglishInputSetProvider``
@@ -158,6 +155,7 @@ Note that DocC currently omits extensions, which means that there are a lot of f
 - ``KeyboardLayoutConfiguration``
 - ``KeyboardLayoutItem``
 - ``KeyboardLayoutItemRow``
+- ``KeyboardLayoutItemRows``
 - ``KeyboardLayoutItemSize``
 - ``KeyboardLayoutItemWidth``
 - ``KeyboardRowItem``
@@ -242,3 +240,5 @@ Note that DocC currently omits extensions, which means that there are a lot of f
 - ``SystemKeyboardButtonText``
 - ``SystemKeyboardSpaceButton``
 - ``SystemKeyboardSpaceButtonContent``
+- ``StandardSystemKeyboardButtonContent``
+- ``StandardSystemKeyboardButtonView``
