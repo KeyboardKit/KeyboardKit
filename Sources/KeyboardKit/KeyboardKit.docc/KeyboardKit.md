@@ -32,7 +32,7 @@ Note that DocC currently omits extensions, which means that there are a lot of f
 
 ## Topics
 
-### Articles
+### Essentials
 
 - <doc:Getting-Started>
 

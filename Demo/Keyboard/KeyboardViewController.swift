@@ -43,6 +43,14 @@ class KeyboardViewController: KeyboardInputViewController {
     // MARK: - View Controller Lifecycle
     
     /**
+     The demo persists the current locale so that it can use
+     it the next time the demo keyboard is opened.
+     */
+    deinit {
+        lastLocaleId = keyboardContext.locale.identifier
+    }
+    
+    /**
      You can configure KeyboardKit keyboards in many ways. A
      few configurations below are already done by default in
      the library and are just here to show you how it's done
@@ -116,6 +124,7 @@ class KeyboardViewController: KeyboardInputViewController {
             view: KeyboardView())
         
         // 💡 To change locales when using Pro, do so here:
+        keyboardContext.locale = lastLocale ?? KeyboardLocale.english.locale
         // keyboardContext.locale = KeyboardLocale.english.locale
         // keyboardContext.locales = [KeyboardLocale.english.locale]
     }
@@ -137,5 +146,28 @@ class KeyboardViewController: KeyboardInputViewController {
      */
     override func resetAutocomplete() {
         super.resetAutocomplete()
+    }
+    
+    
+    
+    // MARK: - Locale Persistency
+    
+    var defaults: UserDefaults { .standard }
+    let defaultsLocaleKey = "last-locale"
+    
+    /**
+     The last locale used by the keyboard, if any.
+     */
+    var lastLocale: Locale? {
+        guard let id = lastLocaleId else { return nil }
+        return Locale(identifier: id)
+    }
+    
+    /**
+     The last locale ID used by the keyboard, if any.
+     */
+    var lastLocaleId: String? {
+        get { defaults.string(forKey: defaultsLocaleKey) }
+        set { defaults.set(newValue, forKey: defaultsLocaleKey) }
     }
 }
