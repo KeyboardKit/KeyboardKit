@@ -31,6 +31,9 @@ public enum KeyboardAction: Codable, Equatable {
     /// Inserts a text character when tapped.
     case character(String)
     
+    /// Inserts a text character when tapped, but should be rendered as empty space.
+    case characterMargin(String)
+    
     /// Represents a command (⌘) key.
     case command
     

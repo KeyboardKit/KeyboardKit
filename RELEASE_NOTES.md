@@ -10,6 +10,16 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 5.9
+
+This version adds tap behavior to the margin next to character inputs.
+
+### ✨ New features
+
+* `KeyboardAction` has a new `characterMargin` action.
+
+
+
 ## 5.8
 
 This version adds new locales and renames a bunch of types, properties and parameters to make things nicer in preparation for 6.0.
