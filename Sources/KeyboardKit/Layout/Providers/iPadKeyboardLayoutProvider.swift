@@ -28,29 +28,33 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     // MARK: - Overrides
     
     /**
-     Get keyboard actions for the provided `context` and the
-     provided keyboard `inputs`.
+     Get keyboard actions for the `inputs` and `context`.
      
-     This provider will only adjust the base actions if they
-     consist of three rows or more.
+     Note that `inputs` is an input set and does not contain
+     the bottommost space key row, which we therefore append.
      */
-    open override func actions(for context: KeyboardContext, inputs: InputSetRows) -> KeyboardActionRows {
-        var actions = super.actions(for: context, inputs: inputs)
-        guard actions.count > 2 else { return actions }
-        let last = actions.suffix(3)
-        actions.removeLast(3)
-        actions.append(topLeadingActions(for: context) + last[0] + topTrailingActions(for: context))
-        actions.append(middleLeadingActions(for: context) + last[1] + middleTrailingActions(for: context))
-        actions.append(lowerLeadingActions(for: context) + last[2] + lowerTrailingActions(for: context))
-        actions.append(bottomActions(for: context))
-        return actions
+    open override func actions(
+        for inputs: InputSetRows,
+        context: KeyboardContext) -> KeyboardActionRows {
+        var rows = super.actions(for: inputs, context: context)
+        guard rows.count > 2 else { return rows }
+        let last = rows.suffix(3)
+        rows.removeLast(3)
+        rows.append(topLeadingActions(for: context) + last[0] + topTrailingActions(for: context))
+        rows.append(middleLeadingActions(for: context) + last[1] + middleTrailingActions(for: context))
+        rows.append(lowerLeadingActions(for: context) + last[2] + lowerTrailingActions(for: context))
+        rows.append(bottomActions(for: context))
+        return rows
     }
     
     /**
-     Get the keyboard layout item width of a certain `action`
-     for the provided `context`, `row` and row `index`.
+     Get a layout item width for the provided parameters.
      */
-    open override func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItemWidth {
+    open override func itemSizeWidth(
+        for action: KeyboardAction,
+        row: Int,
+        index: Int,
+        context: KeyboardContext) -> KeyboardLayoutItemWidth {
         let elevenEleven = hasElevenElevenAlphabeticInput
         if action == .backspace && isArabic(context) { return .input }
         if isThirdRowLeadingSwitcher(action, row: row, index: index) && isArabic(context) { return .input }
@@ -71,8 +75,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
             if isBelarusianAlphabetic(context) { return .available }
         default: break
         }
-        return super.itemSizeWidth(for: context, action: action, row: row, index: index)
-        
+        return super.itemSizeWidth(for: action, row: row, index: index, context: context)
     }
     
     /**

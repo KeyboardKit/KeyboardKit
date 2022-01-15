@@ -24,9 +24,6 @@ import SwiftUI
  
  If you want to create an entirely custom layout, you should
  just implement `KeyboardLayoutProvider`.
- 
- `TODO` I'm not at all happy with the `hasXXXAlphabeticInput`
- names. If you know how to improve it, please do let me know.
  */
 open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     
@@ -57,98 +54,12 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     
     
     /**
-     The number of alphabetic inputs on each input row.
-     */
-    public var alphabeticInputCount: [Int] {
-        inputSetProvider.alphabeticInputSet.rows.map { $0.count }
-    }
-    
-    /**
-     Whether or not the alphabetic input set uses an 11-11-X
-     layout, which is used by e.g. `German` keyboards.
-     */
-    public var hasElevenElevenAlphabeticInput: Bool {
-        alphabeticInputCount.prefix(2) == [11, 11]
-    }
-
-    /**
-     Whether or not the alphabetic input set uses an 11-10-9
-     layout, which is used by `Turkish` iPhone keyboards.
-     */
-    public var hasTwelveElevenNineAlphabeticInput: Bool {
-        alphabeticInputCount.prefix(3) == [12, 11, 9]
-    }
-    
-    /**
-     Whether or not the context keyboard type is alphabetic.
-     */
-    public func isAlphabetic(_ context: KeyboardContext) -> Bool {
-        context.keyboardType.isAlphabetic
-    }
-    
-    /**
-     Whether or not to use an Arabic alphabetic keyboard.
-     */
-    public func isArabic(_ context: KeyboardContext) -> Bool {
-        context.locale.identifier == "ar"
-    }
-    
-    /**
-     Whether or not to use an Arabic alphabetic keyboard.
-     */
-    public func isArabicAlphabetic(_ context: KeyboardContext) -> Bool {
-        isAlphabetic(context) && isArabic(context)
-    }
-    
-    /**
-     Whether or not to use an Belarusian alphabetic keyboard.
-     */
-    public func isBelarusianAlphabetic(_ context: KeyboardContext) -> Bool {
-        isAlphabetic(context) && context.locale.identifier == "be"
-    }
-    
-    /**
-     Whether or not to use an Czech alphabetic keyboard.
-     */
-    public func isCzechAlphabetic(_ context: KeyboardContext) -> Bool {
-        isAlphabetic(context) && context.locale.identifier == "cs"
-    }
-    
-    /**
-     Whether or not to use an Greek alphabetic keyboard.
-     */
-    public func isGreek(_ context: KeyboardContext) -> Bool {
-        context.locale.identifier == "el"
-    }
-    
-    /**
-     Whether or not to use an Greek alphabetic keyboard.
-     */
-    public func isGreekAlphabetic(_ context: KeyboardContext) -> Bool {
-        isAlphabetic(context) && isGreek(context)
-    }
-    
-    /**
-     Whether or not to use an Persian alphabetic keyboard.
-     */
-    public func isPersianAlphabetic(_ context: KeyboardContext) -> Bool {
-        isAlphabetic(context) && context.locale.identifier == "fa"
-    }
-    
-    /**
-     Whether or not to use an Russian alphabetic keyboard.
-     */
-    public func isRussianAlphabetic(_ context: KeyboardContext) -> Bool {
-        isAlphabetic(context) && context.locale.identifier == "ru"
-    }
-    
-    /**
      Get a keyboard layout for a certain keyboard `context`.
      */
     open func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
-        let inputs = self.inputs(for: context)
-        let actions = self.actions(for: context, inputs: inputs)
-        let items = self.items(for: context, actions: actions)
+        let inputs = self.inputRows(for: context)
+        let actions = self.actions(for: inputs, context: context)
+        let items = self.items(for: actions, context: context)
         return KeyboardLayout(itemRows: items)
     }
     
@@ -164,31 +75,29 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     // MARK: - Overridable helper functions
     
     /**
-     Get keyboard actions for the provided `context` and the
-     provided keyboard `inputs`.
+     Get keyboard actions for the `inputs` and `context`.
      */
-    open func actions(for context: KeyboardContext, inputs: InputSetRows) -> KeyboardActionRows {
-        let characters = actionCharacters(for: context, inputs: inputs)
+    open func actions(for rows: InputSetRows, context: KeyboardContext) -> KeyboardActionRows {
+        let characters = actionCharacters(for: rows, context: context)
         return KeyboardActionRows(characters: characters)
     }
     
     /**
-     Get a keyboard action character matrix for the provided
-     `context` and `inputs`.
+     Get actions characters for the `inputs` and `context`.
      */
-    open func actionCharacters(for context: KeyboardContext, inputs: InputSetRows) -> [[String]] {
+    open func actionCharacters(for rows: InputSetRows, context: KeyboardContext) -> [[String]] {
         switch context.keyboardType {
-        case .alphabetic(let casing): return inputs.characters(for: casing)
-        case .numeric: return inputs.characters()
-        case .symbolic: return inputs.characters()
+        case .alphabetic(let casing): return rows.characters(for: casing)
+        case .numeric: return rows.characters()
+        case .symbolic: return rows.characters()
         default: return []
         }
     }
     
     /**
-     Get keyboard inputs for the provided `context`.
+     Get input set rows for the provided `context`.
      */
-    open func inputs(for context: KeyboardContext) -> InputSetRows {
+    open func inputRows(for context: KeyboardContext) -> InputSetRows {
         switch context.keyboardType {
         case .alphabetic: return inputSetProvider.alphabeticInputSet.rows
         case .numeric: return inputSetProvider.numericInputSet.rows
@@ -198,57 +107,54 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     }
     
     /**
-     Get keyboard layout item rows for the provided `context`
-     and `actions`.
+     Get layout item rows for the `actions` and `context`.
      */
-    open func items(for context: KeyboardContext, actions: KeyboardActionRows) -> KeyboardLayoutItemRows {
+    open func items(for actions: KeyboardActionRows, context: KeyboardContext) -> KeyboardLayoutItemRows {
         actions.enumerated().map { row in
             row.element.enumerated().map { action in
-                item(for: context, action: action.element, row: row.offset, index: action.offset)
+                item(for: action.element, row: row.offset, index: action.offset, context: context)
             }
         }
     }
     
     /**
-     Get a keyboard layout item for the provided parameters.
+     Get a layout item for the provided parameters.
      */
-    open func item(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItem {
-        let size = itemSize(for: context, action: action, row: row, index: index)
-        let insets = itemInsets(for: context, action: action, row: row, index: index)
+    open func item(for action: KeyboardAction, row: Int, index: Int, context: KeyboardContext) -> KeyboardLayoutItem {
+        let size = itemSize(for: action, row: row, index: index, context: context)
+        let insets = itemInsets(for: action, row: row, index: index, context: context)
         return KeyboardLayoutItem(action: action, size: size, insets: insets)
     }
     
     /**
-     Get keyboard item insets for the provided parameters.
+     Get layout item insets for the provided parameters.
      */
-    open func itemInsets(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> EdgeInsets {
+    open func itemInsets(for action: KeyboardAction, row: Int, index: Int, context: KeyboardContext) -> EdgeInsets {
         let config = KeyboardLayoutConfiguration.standard(for: context)
         return config.buttonInsets
     }
     
     /**
-     Get a keyboard item size for the provided parameters.
+     Get a layout item size for the provided parameters.
      */
-    open func itemSize(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItemSize {
-        let width = itemSizeWidth(for: context, action: action, row: row, index: index)
-        let height = itemSizeHeight(for: context, action: action, row: row, index: index)
+    open func itemSize(for action: KeyboardAction, row: Int, index: Int, context: KeyboardContext) -> KeyboardLayoutItemSize {
+        let width = itemSizeWidth(for: action, row: row, index: index, context: context)
+        let height = itemSizeHeight(for: action, row: row, index: index, context: context)
         return KeyboardLayoutItemSize(width: width, height: height)
     }
     
     /**
-     Get the keyboard layout item height of an `action`, for
-     the provided `context`, `row` and row `index`.
+     Get a layout item height for the provided parameters.
      */
-    open func itemSizeHeight(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> CGFloat {
+    open func itemSizeHeight(for action: KeyboardAction, row: Int, index: Int, context: KeyboardContext) -> CGFloat {
         let config = KeyboardLayoutConfiguration.standard(for: context)
         return config.rowHeight
     }
     
     /**
-     Get the keyboard layout item width of a certain `action`
-     for the provided `context`, `row` and row `index`.
+     Get a layout item width for the provided parameters.
      */
-    open func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItemWidth {
+    open func itemSizeWidth(for action: KeyboardAction, row: Int, index: Int, context: KeyboardContext) -> KeyboardLayoutItemWidth {
         switch action {
         case .character: return .input
         default: return .available
@@ -270,7 +176,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     
     /**
      The keyboard switch action that should be on the bottom
-     input row, which is above the bottommost row.
+     input row, which is the row above the bottommost row.
      */
     open func keyboardSwitchActionForBottomInputRow(for context: KeyboardContext) -> KeyboardAction? {
         switch context.keyboardType {
@@ -283,7 +189,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     
     /**
      The keyboard switch action that should be on the bottom
-     keyboard row.
+     keyboard row, which is the row with the space button.
      */
     open func keyboardSwitchActionForBottomRow(for context: KeyboardContext) -> KeyboardAction? {
         switch context.keyboardType {
@@ -292,5 +198,53 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         case .symbolic: return .keyboardType(.alphabetic(.auto))
         default: return nil
         }
+    }
+    
+    
+    // MARK: - Deprecated
+    
+    @available(*, deprecated, message: "Use for:context instead")
+    open func actions(for context: KeyboardContext, inputs: InputSetRows) -> KeyboardActionRows {
+        actions(for: inputs, context: context)
+    }
+    
+    @available(*, deprecated, message: "Use for:context instead")
+    open func actionCharacters(for context: KeyboardContext, inputs: InputSetRows) -> [[String]] {
+        actionCharacters(for: inputs, context: context)
+    }
+    
+    @available(*, deprecated, renamed: "inputRows")
+    open func inputs(for context: KeyboardContext) -> InputSetRows {
+        inputRows(for: context)
+    }
+    
+    @available(*, deprecated, message: "Use for:context instead")
+    open func items(for context: KeyboardContext, actions: KeyboardActionRows) -> KeyboardLayoutItemRows {
+        items(for: actions, context: context)
+    }
+    
+    @available(*, deprecated, message: "Use for:row:index:context instead")
+    open func item(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItem {
+        item(for: action, row: row, index: index, context: context)
+    }
+    
+    @available(*, deprecated, message: "Use for:row:index:context instead")
+    open func itemInsets(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> EdgeInsets {
+        itemInsets(for: action, row: row, index: index, context: context)
+    }
+    
+    @available(*, deprecated, message: "Use for:row:index:context instead")
+    open func itemSize(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItemSize {
+        itemSize(for: action, row: row, index: index, context: context)
+    }
+    
+    @available(*, deprecated, message: "Use for:row:index:context instead")
+    open func itemSizeHeight(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> CGFloat {
+        itemSizeHeight(for: action, row: row, index: index, context: context)
+    }
+    
+    @available(*, deprecated, message: "Use for:row:index:context instead")
+    open func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItemWidth {
+        itemSizeWidth(for: action, row: row, index: index, context: context)
     }
 }

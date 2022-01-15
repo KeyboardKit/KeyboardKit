@@ -21,15 +21,15 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     // MARK: - Overrides
     
     /**
-     Get keyboard actions for the provided `context` and the
-     provided keyboard `inputs`.
+     Get keyboard actions for the `inputs` and `context`.
      
      Note that `inputs` is an input set and does not contain
-     the bottommost space key row, which we therefore add in
-     this function.
+     the bottommost space key row, which we therefore append.
      */
-    open override func actions(for context: KeyboardContext, inputs: InputSetRows) -> KeyboardActionRows {
-        var rows = super.actions(for: context, inputs: inputs)
+    open override func actions(
+        for inputs: InputSetRows,
+        context: KeyboardContext) -> KeyboardActionRows {
+        var rows = super.actions(for: inputs, context: context)
         guard rows.count > 0 else { return rows }
         let lastRow = rows.last ?? []
         rows.removeLast()
@@ -42,19 +42,23 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      Get the keyboard layout item width of a certain `action`
      for the provided `context`, `row` and row `index`.
      */
-    open override func itemSizeWidth(for context: KeyboardContext, action: KeyboardAction, row: Int, index: Int) -> KeyboardLayoutItemWidth {
-        if action.isPrimaryAction { return bottomRowPrimaryButtonWidth(for: context) }
+    open override func itemSizeWidth(
+        for action: KeyboardAction,
+        row: Int,
+        index: Int,
+        context: KeyboardContext) -> KeyboardLayoutItemWidth {
+        if action.isPrimaryAction { return bottomPrimaryButtonWidth(for: context) }
         switch action {
-        case dictationReplacement: return bottomRowSystemButtonWidth(for: context)
+        case dictationReplacement: return bottomSystemButtonWidth(for: context)
         case .character:
             if isGreekAlphabetic(context) { return .percentage(0.1) }
             return isLastNumericInputRow(row, for: context) ? lastSymbolicInputWidth(for: context) : .input
-        case .backspace: return thirdRowSystemButtonWidth(for: context)
-        case .keyboardType: return bottomRowSystemButtonWidth(for: context)
-        case .newLine: return bottomRowPrimaryButtonWidth(for: context)
-        case .nextKeyboard: return bottomRowSystemButtonWidth(for: context)
-        case .return: return bottomRowPrimaryButtonWidth(for: context)
-        case .shift: return thirdRowSystemButtonWidth(for: context)
+        case .backspace: return lowerSystemButtonWidth(for: context)
+        case .keyboardType: return bottomSystemButtonWidth(for: context)
+        case .newLine: return bottomPrimaryButtonWidth(for: context)
+        case .nextKeyboard: return bottomSystemButtonWidth(for: context)
+        case .return: return bottomPrimaryButtonWidth(for: context)
+        case .shift: return lowerSystemButtonWidth(for: context)
         default: return .available
         }
     }
@@ -131,14 +135,14 @@ private extension iPhoneKeyboardLayoutProvider {
     /**
      The width of the bottom-right primary (return) button.
      */
-    func bottomRowPrimaryButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
+    func bottomPrimaryButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
         .percentage(isPortrait(context) ? 0.25 : 0.195)
     }
     
     /**
      The width of the bottom-right primary (return) button.
      */
-    func bottomRowSystemButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
+    func bottomSystemButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
         .percentage(isPortrait(context) ? 0.125 : 0.097)
     }
     
@@ -146,7 +150,7 @@ private extension iPhoneKeyboardLayoutProvider {
      The system buttons that are shown to the left and right
      of the third row's input buttons.
      */
-    func thirdRowSystemButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
+    func lowerSystemButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
         if hasTwelveElevenNineAlphabeticInput { return .percentage(0.11) }
         if isBelarusianAlphabetic(context) { return .available }
         if isCzechAlphabetic(context) { return .input }

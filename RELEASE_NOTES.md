@@ -18,6 +18,10 @@ This version adds tap behavior to the margin next to character inputs.
 
 * `KeyboardAction` has a new `characterMargin` action.
 
+### 🗑 Deprecations
+
+* `SystemKeyboardLayoutProvider` has been redesigned to let all functions that take multiple parameters with an initial context, place the context parameter last. This gives a cleaner and more harmonized public api.   
+* `SystemKeyboardLayoutProvider` `inputs(for:)` has been renamed to `inputRows(for:)`.
 
 
 ## 5.8
