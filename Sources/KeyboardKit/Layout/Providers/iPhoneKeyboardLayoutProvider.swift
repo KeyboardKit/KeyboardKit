@@ -28,8 +28,9 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      Get keyboard actions for the provided `context` and the
      provided keyboard `inputs`.
      
-     This provider will only adjust the base actions if they
-     consist of at least one row.
+     Note that `inputs` is an input set and does not contain
+     the bottommost space key row, which we therefore add in
+     this function.
      */
     open override func actions(for context: KeyboardContext, inputs: InputSetRows) -> KeyboardActionRows {
         var rows = super.actions(for: context, inputs: inputs)
@@ -66,10 +67,10 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     // MARK: - iPhone Specific
     
     /**
-     Get the actions that should be bottommost on a keyboard
-     that uses the standard iPhone keyboard layout.
+     Get the actions of the bottommost space key row.
      
-     This is currently pretty messy and should be cleaned up.
+     You can override this function to adjust or replace the
+     actions on the bottommost row.
      */
     open func bottomActions(for context: KeyboardContext) -> KeyboardActions {
         var result = KeyboardActions()
@@ -88,7 +89,10 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     }
     
     /**
-     Additional leading actions to apply to the bottom row.
+     Get the leading actions to add to the lower input row.
+     
+     You can override this function to adjust or replace the
+     leading actions on the lower input row.
      */
     open func lowerLeadingActions(for context: KeyboardContext) -> KeyboardActions {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
@@ -101,7 +105,10 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     }
     
     /**
-     Additional trailing actions to apply to the bottom row.
+     Get the trailing actions to add to the lower input row.
+     
+     You can override this function to adjust or replace the
+     trailing actions on the lower input row.
      */
     open func lowerTrailingActions(for context: KeyboardContext) -> KeyboardActions {
         if isCzechAlphabetic(context) { return [.backspace] }
