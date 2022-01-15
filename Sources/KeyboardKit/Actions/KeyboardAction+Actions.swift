@@ -127,6 +127,7 @@ public extension KeyboardAction {
         switch self {
         case .backspace: return { $0?.textDocumentProxy.deleteBackward(range: $0?.keyboardBehavior.backspaceRange ?? .char) }
         case .character(let char): return { $0?.textDocumentProxy.insertText(char) }
+        case .characterMargin(let char): return { $0?.textDocumentProxy.insertText(char) }
         case .emoji(let emoji): return { $0?.textDocumentProxy.insertText(emoji.char) }
         case .newLine: return { $0?.textDocumentProxy.insertText(.newline) }
         case .return: return { $0?.textDocumentProxy.insertText(.newline) }

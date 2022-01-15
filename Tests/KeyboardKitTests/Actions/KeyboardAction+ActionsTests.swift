@@ -128,6 +128,7 @@ class KeyboardAction_ActionsTests: QuickSpec {
                 expected = [
                     .backspace,
                     .character(""),
+                    .characterMargin(""),
                     .dismissKeyboard,
                     .emoji(Emoji("")),
                     .moveCursorBackward,
@@ -161,6 +162,7 @@ class KeyboardAction_ActionsTests: QuickSpec {
                 expected = [
                     .backspace,
                     .character(""),
+                    .characterMargin(""),
                     .emoji(Emoji("")),
                     .moveCursorBackward,
                     .moveCursorForward,
