@@ -35,9 +35,9 @@ class SystemKeyboardLayoutProviderTests: QuickSpec {
         describe("keyboard layout for context") {
             
             it("is items derived from action for the input items") {
-                let inputs = provider.inputs(for: context)
-                let actions = provider.actions(for: context, inputs: inputs)
-                let items = provider.items(for: context, actions: actions)
+                let inputs = provider.inputRows(for: context)
+                let actions = provider.actions(for: inputs, context: context)
+                let items = provider.items(for: actions, context: context)
                 let layout = provider.keyboardLayout(for: context)
                 let expected = KeyboardLayout(itemRows: items)
                 expect(layout.itemRows.count).to(equal(expected.itemRows.count))
@@ -60,7 +60,7 @@ class SystemKeyboardLayoutProviderTests: QuickSpec {
             it("is character actions for the provided inputs") {
                 let chars = [["a", "b", "c"], ["d", "e", "f"]]
                 let inputs = InputSetRows(chars)
-                let actions = provider.actions(for: context, inputs: inputs)
+                let actions = provider.actions(for: inputs, context: context)
                 let expected = KeyboardActionRows(characters: chars)
                 expect(actions).to(equal(expected))
             }
@@ -69,7 +69,7 @@ class SystemKeyboardLayoutProviderTests: QuickSpec {
                 context.keyboardType = .alphabetic(.uppercased)
                 let chars = [["a", "b", "c"], ["d", "e", "f"]]
                 let inputs = InputSetRows(chars)
-                let actions = provider.actions(for: context, inputs: inputs)
+                let actions = provider.actions(for: inputs, context: context)
                 let expected = KeyboardActionRows(characters: chars.uppercased())
                 expect(actions).to(equal(expected))
             }
@@ -79,25 +79,25 @@ class SystemKeyboardLayoutProviderTests: QuickSpec {
             
             it("can resolve alphabetic input set") {
                 context.keyboardType = .alphabetic(.lowercased)
-                let rows = provider.inputs(for: context)
+                let rows = provider.inputRows(for: context)
                 expect(rows.characters()).to(equal([["a", "b", "c"]]))
             }
             
             it("can resolve numeric input set") {
                 context.keyboardType = .numeric
-                let rows = provider.inputs(for: context)
+                let rows = provider.inputRows(for: context)
                 expect(rows.characters()).to(equal([["1", "2", "3"]]))
             }
             
             it("can resolve symbolic input set") {
                 context.keyboardType = .symbolic
-                let rows = provider.inputs(for: context)
+                let rows = provider.inputRows(for: context)
                 expect(rows.characters()).to(equal([[",", ".", "-"]]))
             }
             
             it("returns empty rows for unsupported keybard type") {
                 context.keyboardType = .emojis
-                let rows = provider.inputs(for: context)
+                let rows = provider.inputRows(for: context)
                 expect(rows.characters()).to(equal([]))
             }
         }
@@ -106,7 +106,7 @@ class SystemKeyboardLayoutProviderTests: QuickSpec {
             
             it("is character actions for the provided inputs") {
                 let actions: KeyboardActionRows = [[.character("")], [.backspace]]
-                let result = provider.items(for: context, actions: actions)
+                let result = provider.items(for: actions, context: context)
                 expect(result.count).to(equal(2))
                 expect(result[0][0].action).to(equal(.character("")))
                 expect(result[0][0].insets).to(equal(layoutConfig.buttonInsets))
@@ -147,7 +147,7 @@ class SystemKeyboardLayoutProviderTests: QuickSpec {
             
             it("is nil for unsupported keybard type") {
                 context.keyboardType = .emojis
-                let rows = provider.inputs(for: context)
+                let rows = provider.inputRows(for: context)
                 expect(rows.characters()).to(equal([]))
             }
         }
@@ -180,7 +180,7 @@ class SystemKeyboardLayoutProviderTests: QuickSpec {
             
             it("is nil for unsupported keybard type") {
                 context.keyboardType = .emojis
-                let rows = provider.inputs(for: context)
+                let rows = provider.inputRows(for: context)
                 expect(rows.characters()).to(equal([]))
             }
         }

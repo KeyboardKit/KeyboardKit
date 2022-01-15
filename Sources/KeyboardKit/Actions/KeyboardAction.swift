@@ -134,6 +134,9 @@ public extension KeyboardAction {
     
     /**
      Whether or not the action is a character action.
+     
+     Note that ``characterMargin(_:)`` is excluded, since it
+     is only meant to be used in layouts.
      */
     var isCharacterAction: Bool {
         switch self {
@@ -147,6 +150,9 @@ public extension KeyboardAction {
      
      An input action button is rendered as a light button in
      native iOS keyboards.
+     
+     Note that ``characterMargin(_:)`` is excluded, since it
+     is only meant to be used in layouts.
      */
     var isInputAction: Bool {
         switch self {
