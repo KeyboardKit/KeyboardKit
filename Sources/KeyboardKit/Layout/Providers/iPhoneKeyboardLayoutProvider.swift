@@ -31,9 +31,11 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         context: KeyboardContext) -> KeyboardActionRows {
         var rows = super.actions(for: inputs, context: context)
         guard rows.count > 0 else { return rows }
-        let lastRow = rows.last ?? []
+        let lower = rows.last ?? []
+        let lowerLeading = lowerLeadingActions(for: lower, context: context)
+        let lowerTrailing = lowerTrailingActions(for: lower, context: context)
         rows.removeLast()
-        rows.append(lowerLeadingActions(for: context) + lastRow + lowerTrailingActions(for: context))
+        rows.append(lowerLeading + lower + lowerTrailing)
         rows.append(bottomActions(for: context))
         return rows
     }
@@ -94,7 +96,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      You can override this function to adjust or replace the
      leading actions on the lower input row.
      */
-    open func lowerLeadingActions(for context: KeyboardContext) -> KeyboardActions {
+    open func lowerLeadingActions(for actions: KeyboardActions, context: KeyboardContext) -> KeyboardActions {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         if isCzechAlphabetic(context) { return [action] }
         if isArabicAlphabetic(context) { return [] }
@@ -110,12 +112,25 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      You can override this function to adjust or replace the
      trailing actions on the lower input row.
      */
-    open func lowerTrailingActions(for context: KeyboardContext) -> KeyboardActions {
+    open func lowerTrailingActions(for actions: KeyboardActions, context: KeyboardContext) -> KeyboardActions {
         if isCzechAlphabetic(context) { return [.backspace] }
         if isBelarusianAlphabetic(context) { return [.backspace] }
         if isPersianAlphabetic(context) { return [.backspace] }
         if isRussianAlphabetic(context) { return [.backspace] }
         return [.none, .backspace]
+    }
+    
+    
+    // MARK: - Deprecated
+    
+    @available(*, deprecated, message: "Use for:context instead")
+    open func lowerLeadingActions(for context: KeyboardContext) -> KeyboardActions {
+        lowerLeadingActions(for: [], context: context)
+    }
+    
+    @available(*, deprecated, message: "Use for:context instead")
+    open func lowerTrailingActions(for context: KeyboardContext) -> KeyboardActions {
+        lowerTrailingActions(for: [], context: context)
     }
 }
 
