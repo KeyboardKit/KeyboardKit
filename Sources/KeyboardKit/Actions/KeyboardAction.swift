@@ -10,27 +10,25 @@ import Foundation
 
 /**
  This enum specifies available keyboard actions that you can
- bind to keyboard buttons or trigger with an action handler.
+ bind to buttons or trigger with an action handler.
  
- Many actions have standard gesture behaviors. However, many
- don't and are just here to let you create your keyboards in
- a declarative way.
+ Many keyboard actions have standard behaviors, as described
+ in the documentation. However, many don't and are just here
+ to let you create keyboards in a declarative way.
  
  Actions without a standard behavior require custom handling,
- e.g. by using a custom ``KeyboardActionHandler``.
+ e.g. by creating a custom ``KeyboardActionHandler``.
  
- The documentation for the different enum cases describe the
- standard behavior of each action, if any.
+ Note that ``character(_:)`` accepts a `String` instead of a
+ `Character`. This is because some system keys actually send
+ multiple characters when tapped.
  */
 public enum KeyboardAction: Codable, Equatable {
     
-    /// A "no action" placeholder action.
-    case none
-    
-    /// Deletes text backwards in the text document proxy when tapped and repeats this action until the button is released.
+    /// Deletes text backwards when pressed and repeats that action until released.
     case backspace
     
-    /// Sends a text character to the text document proxy when tapped.
+    /// Inserts a text character when tapped.
     case character(String)
     
     /// Represents a command (⌘) key.
@@ -39,7 +37,7 @@ public enum KeyboardAction: Codable, Equatable {
     /// Represents a control (⌃) key.
     case control
     
-    /// A custom, named action that you can handle in a custom action handler.
+    /// A custom action that you can handle in any way you want, using a custom action handler.
     case custom(named: String)
     
     /// Represents a dictation key.
@@ -48,7 +46,7 @@ public enum KeyboardAction: Codable, Equatable {
     /// Dismisses the keyboard when tapped.
     case dismissKeyboard
     
-    /// Sends an emoji to the text document proxy when tapped.
+    /// Inserts an emoji when tapped.
     case emoji(Emoji)
     
     /// Can be used to show a specific emoji category.
@@ -60,7 +58,7 @@ public enum KeyboardAction: Codable, Equatable {
     /// Represents a function (fn) key.
     case function
     
-    /// Can be used to refer to an embedded image asset.
+    /// Can be used to refer to an image asset.
     case image(description: String, keyboardImageName: String, imageName: String)
     
     /// Changes the keyboard type when tapped.
@@ -72,37 +70,40 @@ public enum KeyboardAction: Codable, Equatable {
     /// Moves the cursor forward one position when tapped.
     case moveCursorForward
     
-    /// Sends a new line to the text proxy when tapped.
+    /// Represents a new line (⏎) key that uses an arrow icon and not a return text.
     case newLine
     
-    /// Represents a next keyboard (🌐) button that triggers the keyboard switcher when tapped and pressed.
+    /// Represents a keyboard switcher (🌐) button and triggers the keyboard switch action when tapped or pressed.
     case nextKeyboard
     
-    /// Selects the next locale in the keyboard context when tapped and pressed.
+    /// Triggers the locale switch action when tapped and pressed.
     case nextLocale
+    
+    /// A placeholder action that does nothing and should not be rendered.
+    case none
     
     /// Represents an option (⌥) key.
     case option
     
-    /// A primary button, e.g. `go`, `search` etc.
+    /// Represents a primary return button, e.g. `go`, `search` etc.
     case primary(PrimaryType)
     
-    /// Has the same behavior as `newLine`, but is supposed to show a text instead of an arrow.
+    /// Represents a return (⏎) key that uses a return text and not an arrow icon.
     case `return`
     
-    /// A custom action that can be used to show a settings screen or anything you like.
+    /// A custom action that can be used to e.g. show a settings screen.
     case settings
     
     /// Changes the keyboard type to `.alphabetic(.uppercased)` when tapped and `.capslocked` when double tapped.
     case shift(currentState: KeyboardCasing)
     
-    /// Sends a space to the text document proxy when tapped.
+    /// Inserts a space when tapped.
     case space
     
     /// Can be used to refer to a system image (SF Symbol).
     case systemImage(description: String, keyboardImageName: String, imageName: String)
     
-    /// Sends a tab to the text document proxy when tapped.
+    /// Inserts a tab when tapped.
     case tab
 }
 
