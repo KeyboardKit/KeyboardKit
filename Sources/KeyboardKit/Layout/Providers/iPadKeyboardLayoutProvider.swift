@@ -43,7 +43,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         result.append(middleLeadingActions(for: context) + actions[1] + middleTrailingActions(for: context))
         result.append(lowerLeadingActions(for: context) + actions[2] + lowerTrailingActions(for: context))
         result.append(bottomActions(for: context))
-        return actions
+        return result
     }
     
     /**

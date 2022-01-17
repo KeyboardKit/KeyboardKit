@@ -10,6 +10,12 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 5.8.2
+
+This version fixes an iPad layout bug that was introduced by 5.8.1.
+
+
+
 ## 5.8.1
 
 This version adds tap behavior to the margin next to character inputs.
@@ -30,6 +36,7 @@ Despite the aim described in the release notes header, this patch contains some 
 * `SystemKeyboardLayoutProvider` has new margin action functions.
 * `SystemKeyboardLayoutProvider` has been redesigned to let all functions that take multiple parameters with an initial context, place the context parameter last. This gives a cleaner and more harmonized public api.   
 * `SystemKeyboardLayoutProvider` `inputs(for:)` has been renamed to `inputRows(for:)`.
+
 
 
 ## 5.8
@@ -94,6 +101,7 @@ This version also harmonizes `KeyboardLocale` naming to put the language first a
 ### 💥 Breaking changes
 
 Even though most renamed functions have deprecated variants, open functions that can be overridden will have to be renamed if you have overridden them. 
+
 
 
 ## 5.7
