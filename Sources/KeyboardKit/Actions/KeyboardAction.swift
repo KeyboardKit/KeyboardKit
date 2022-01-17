@@ -157,6 +157,7 @@ public extension KeyboardAction {
     var isInputAction: Bool {
         switch self {
         case .character: return true
+        case .characterMargin: return true
         case .emoji: return true
         case .image: return true
         case .space: return true

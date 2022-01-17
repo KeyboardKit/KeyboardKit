@@ -10,7 +10,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
-## 5.9
+## 5.8.1
 
 This version adds tap behavior to the margin next to character inputs.
 
@@ -24,6 +24,8 @@ This version adds tap behavior to the margin next to character inputs.
 * `iPhoneKeyboardLayoutProvider` will now add `characterMargin` to the empty surrounding space around a character key.
 
 ### 🗑 Deprecations
+
+Despite the aim described in the release notes header, this patch contains some deprecations, that will only affect devs who create their own system keyboard layouts. 
 
 * `SystemKeyboardLayoutProvider` has new margin action functions.
 * `SystemKeyboardLayoutProvider` has been redesigned to let all functions that take multiple parameters with an initial context, place the context parameter last. This gives a cleaner and more harmonized public api.   

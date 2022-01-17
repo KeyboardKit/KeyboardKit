@@ -50,6 +50,7 @@ class KeyboardActionTests: QuickSpec {
             it("is true for some actions") {
                 expected = [
                     .character(""),
+                    .characterMargin(""),
                     .emoji(Emoji("")),
                     .image(description: "", keyboardImageName: "", imageName: ""),
                     .space,
