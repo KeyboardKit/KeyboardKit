@@ -239,4 +239,14 @@ public extension KeyboardAction {
         default: return false
         }
     }
+    
+    /**
+     Whether or not the action is an uppercase shift.
+     */
+    var isUppercaseShift: Bool {
+        switch self {
+        case .shift(let state): return state.isUppercased
+        default: return false
+        }
+    }
 }

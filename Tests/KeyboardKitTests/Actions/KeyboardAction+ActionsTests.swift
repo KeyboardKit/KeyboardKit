@@ -191,6 +191,7 @@ class KeyboardAction_ActionsTests: QuickSpec {
                 expected = [
                     .backspace,
                     .character(""),
+                    .characterMargin(""),
                     .emoji(Emoji("")),
                     .newLine,
                     .primary(.done),

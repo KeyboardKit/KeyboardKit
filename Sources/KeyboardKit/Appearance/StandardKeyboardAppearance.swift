@@ -138,7 +138,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     
     open func buttonShadowStyle(for action: KeyboardAction) -> SystemKeyboardButtonShadowStyle {
         switch action {
-        case .emoji, .emojiCategory, .none: return .noShadow
+        case .characterMargin, .emoji, .emojiCategory, .none: return .noShadow
         default: return .standard
         }
     }
@@ -149,18 +149,14 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
 
 extension KeyboardAction {
     
-    var isUppercaseShift: Bool {
-        switch self {
-        case .shift(let state): return state.isUppercased
-        default: return false
-        }
-    }
-    
     func buttonBackgroundColorForAllStates() -> Color? {
-        if case .none = self { return .clear }
-        if case .emoji = self { return .clearInteractable }
-        if case .emojiCategory = self { return .clearInteractable }
-        return nil
+        switch self {
+        case .none: return .clear
+        case .characterMargin: return .clearInteractable
+        case .emoji: return .clearInteractable
+        case .emojiCategory: return .clearInteractable
+        default: return nil
+        }
     }
     
     func buttonBackgroundColor(for context: KeyboardContext, isPressed: Bool = false) -> Color {
@@ -177,6 +173,14 @@ extension KeyboardAction {
         return .standardButtonBackgroundColor(for: context)
     }
     
+    func buttonForegroundColorForAllStates() -> Color? {
+        switch self {
+        case .none: return .clear
+        case .characterMargin: return .clearInteractable
+        default: return nil
+        }
+    }
+    
     func buttonBackgroundColorForPressedState(for context: KeyboardContext) -> Color {
         if isPrimaryAction { return context.colorScheme == .dark ? .standardDarkButtonBackgroundColor(for: context) : .white }
         if isUppercaseShift { return .standardDarkButtonBackgroundColor(for: context) }
@@ -185,6 +189,7 @@ extension KeyboardAction {
     }
     
     func buttonForegroundColor(for context: KeyboardContext, isPressed: Bool = false) -> Color {
+        if let color = buttonForegroundColorForAllStates() { return color }
         return isPressed ?
             buttonForegroundColorForPressedState(for: context) :
             buttonForegroundColorForIdleState(for: context)

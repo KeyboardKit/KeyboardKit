@@ -186,7 +186,7 @@ class StandardKeyboardAppearanceTests: QuickSpec {
                 it("is noStyle for some actions") {
                     styles.forEach {
                         switch $0.action {
-                        case .none, .emoji, .emojiCategory: expect($0.style.shadow).to(equal(.noShadow))
+                        case .none, .characterMargin(""), .emoji, .emojiCategory: expect($0.style.shadow).to(equal(.noShadow))
                         default: expect($0.style.shadow).to(equal(.standard))
                         }
                     }

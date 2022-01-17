@@ -17,6 +17,7 @@ extension KeyboardAction {
             .none,
             .dismissKeyboard,
             .character(""),
+            .characterMargin(""),
             .command,
             .control,
             .custom(named: ""),

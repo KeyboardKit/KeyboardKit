@@ -21,6 +21,7 @@ This version adds tap behavior to the margin next to character inputs.
 ### 💡 Behavior changes
 
 * `iPadKeyboardLayoutProvider` and `iPhoneKeyboardLayoutProvider` now only adjust input sets with three rows.
+* `iPhoneKeyboardLayoutProvider` will now add `characterMargin` to the empty surrounding space around a character key.
 
 ### 🗑 Deprecations
 

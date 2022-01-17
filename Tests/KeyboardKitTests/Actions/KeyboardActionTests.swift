@@ -126,5 +126,16 @@ class KeyboardActionTests: QuickSpec {
                 unexpected.forEach { expect($0.isSystemAction).to(beFalse()) }
             }
         }
+        
+        describe("is uppercase shift") {
+            
+            it("is only true for uppercase shift actions") {
+                expected = [
+                    .shift(currentState: .capsLocked),
+                    .shift(currentState: .uppercased)]
+                expected.forEach { expect($0.isUppercaseShift).to(beTrue()) }
+                unexpected.forEach { expect($0.isUppercaseShift).to(beFalse()) }
+            }
+        }
     }
 }
