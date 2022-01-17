@@ -95,4 +95,39 @@ public extension SystemKeyboardLayoutProvider {
     func isRussianAlphabetic(_ context: KeyboardContext) -> Bool {
         isAlphabetic(context) && context.locale.identifier == "ru"
     }
+    
+    /**
+     Whether or not to use an Russian alphabetic keyboard.
+     */
+    func isUkrainianAlphabetic(_ context: KeyboardContext) -> Bool {
+        isAlphabetic(context) && context.locale.identifier == "uk"
+    }
+    
+    /**
+     Get the leading margin action for a certain action row.
+     */
+    func leadingMarginAction(for actions: KeyboardActions) -> KeyboardAction {
+        marginAction(for: actions.first { $0.isInputAction })
+    }
+    
+    /**
+     Get the trailing margin action for a certain action row.
+     */
+    func trailingMarginAction(for actions: KeyboardActions) -> KeyboardAction {
+        marginAction(for: actions.last { $0.isInputAction })
+    }
+    
+    /**
+     Get a margin action for a certain action, if any.
+     
+     This function returns `characterMargin` for `character`
+     and `none` for all other action types.
+     */
+    func marginAction(for action: KeyboardAction?) -> KeyboardAction {
+        guard let action = action else { return .none }
+        switch action {
+        case .character(let char): return .characterMargin(char)
+        default: return .none
+        }
+    }
 }

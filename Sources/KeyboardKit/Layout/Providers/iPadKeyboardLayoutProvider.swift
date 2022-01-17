@@ -36,15 +36,14 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     open override func actions(
         for inputs: InputSetRows,
         context: KeyboardContext) -> KeyboardActionRows {
-        var rows = super.actions(for: inputs, context: context)
-        guard rows.count > 2 else { return rows }
-        let last = rows.suffix(3)
-        rows.removeLast(3)
-        rows.append(topLeadingActions(for: context) + last[0] + topTrailingActions(for: context))
-        rows.append(middleLeadingActions(for: context) + last[1] + middleTrailingActions(for: context))
-        rows.append(lowerLeadingActions(for: context) + last[2] + lowerTrailingActions(for: context))
-        rows.append(bottomActions(for: context))
-        return rows
+        let actions = super.actions(for: inputs, context: context)
+        guard actions.count == 3 else { return actions }
+        var result = KeyboardActionRows()
+        result.append(topLeadingActions(for: context) + actions[0] + topTrailingActions(for: context))
+        result.append(middleLeadingActions(for: context) + actions[1] + middleTrailingActions(for: context))
+        result.append(lowerLeadingActions(for: context) + actions[2] + lowerTrailingActions(for: context))
+        result.append(bottomActions(for: context))
+        return actions
     }
     
     /**
