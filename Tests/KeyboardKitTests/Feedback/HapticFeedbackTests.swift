@@ -10,6 +10,7 @@ import Quick
 import Nimble
 import KeyboardKit
 
+#if os(iOS) || os(watchOS) || os(macOS)
 class HapticFeedbackTests: QuickSpec {
     
     override func spec() {
@@ -46,3 +47,4 @@ class HapticFeedbackTests: QuickSpec {
         }
     }
 }
+#endif

@@ -77,7 +77,7 @@ public extension ActionCalloutStyle {
      This is the standard font that will be used by default.
      */
     static var standardFont: Font {
-        if #available(iOS 14.0, *) {
+        if #available(iOS 14.0, tvOS 14.0, *) {
             return .title3
         } else {
             return .body

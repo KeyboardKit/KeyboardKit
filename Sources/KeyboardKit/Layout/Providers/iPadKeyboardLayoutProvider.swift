@@ -177,7 +177,11 @@ private extension iPadKeyboardLayoutProvider {
     }
     
     func isPortrait(_ context: KeyboardContext) -> Bool {
+        #if os(iOS) || os(macOS) || os(watchOS)
         context.screenOrientation.isPortrait
+        #else
+        return false
+        #endif
     }
     
     func isSecondRowSpacer(_ action: KeyboardAction, row: Int, index: Int) -> Bool {

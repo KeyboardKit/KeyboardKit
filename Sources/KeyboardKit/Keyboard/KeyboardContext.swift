@@ -113,10 +113,13 @@ public class KeyboardContext: ObservableObject {
      */
     @Published public var screen: UIScreen
     
+    
+    #if os(iOS) || os(watchOS)
     /**
      The current screen orientation.
      */
     @Published public var screenOrientation: UIInterfaceOrientation = .portrait
+    #endif
     
     /**
      The text document proxy that is currently active.
@@ -183,7 +186,9 @@ public extension KeyboardContext {
         self.hasFullAccess = controller.hasFullAccess
         self.needsInputModeSwitchKey = controller.needsInputModeSwitchKey
         self.primaryLanguage = controller.primaryLanguage
+        #if os(iOS) || os(watchOS)
         self.screenOrientation = controller.screenOrientation
+        #endif
         self.textDocumentProxy = controller.textDocumentProxy
         self.textInputMode = controller.textInputMode
         self.traitCollection = controller.traitCollection

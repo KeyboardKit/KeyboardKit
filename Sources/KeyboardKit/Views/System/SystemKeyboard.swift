@@ -96,7 +96,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
     @ObservedObject private var keyboardContext: KeyboardContext
 
     public var body: some View {
-        if #available(iOS 14.0, *) {
+        if #available(iOS 14.0, tvOS 14.0, *) {
             switch keyboardContext.keyboardType {
             case .emojis: emojiKeyboard
             default: systemKeyboard
@@ -149,7 +149,7 @@ public extension SystemKeyboard {
 
 private extension SystemKeyboard {
     
-    @available(iOS 14.0, *)
+    @available(iOS 14.0, tvOS 14.0, *)
     var emojiKeyboard: some View {
         EmojiCategoryKeyboard(
             appearance: appearance,

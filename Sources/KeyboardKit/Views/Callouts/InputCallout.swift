@@ -88,7 +88,7 @@ private extension InputCallout {
     
     var calloutSizeHeight: CGFloat {
         let smallSize = buttonSize.height
-        return enforceSmallSize ? smallSize : style.calloutSize.height
+        return shouldEnforceSmallSize ? smallSize : style.calloutSize.height
     }
     
     var calloutSizeWidth: CGFloat {
@@ -99,12 +99,16 @@ private extension InputCallout {
     var calloutStyle: CalloutStyle { style.callout }
     
     var cornerRadius: CGFloat {
-        enforceSmallSize ? calloutStyle.buttonCornerRadius : calloutStyle.cornerRadius
+        shouldEnforceSmallSize ? calloutStyle.buttonCornerRadius : calloutStyle.cornerRadius
     }
     
-    var enforceSmallSize: Bool {
+    var shouldEnforceSmallSize: Bool {
+        #if os(iOS) || os(watchOS) || os(macOS)
         keyboardContext.screenOrientation.isLandscape &&
         keyboardContext.device.isPhone
+        #else
+        return false
+        #endif
     }
     
     var positionX: CGFloat {

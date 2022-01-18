@@ -89,11 +89,15 @@ public extension View {
      */
     @ViewBuilder
     func localeContextMenu(for action: KeyboardAction, context: KeyboardContext) -> some View {
+        #if os(iOS) || os(macOS) || os(watchOS)
         if action == .nextLocale {
             self.localeContextMenu(for: context)
         } else {
             self
         }
+        #else
+        self
+        #endif
     }
     
     /**

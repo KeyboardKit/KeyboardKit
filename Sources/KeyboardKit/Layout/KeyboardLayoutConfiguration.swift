@@ -58,12 +58,17 @@ public extension KeyboardLayoutConfiguration {
      */
     static func standard(
         for context: KeyboardContext) -> KeyboardLayoutConfiguration {
+        #if os(iOS) || os(watchOS) || os(macOS)
         standard(
             forIdiom: context.device.userInterfaceIdiom,
             screenSize: context.screen.bounds.size,
             orientation: context.screenOrientation)
+        #else
+        .standardPadLandscape
+        #endif
     }
     
+    #if os(iOS) || os(watchOS) || os(macOS)
     /**
      The standard config for the provided device and screen.
      */
@@ -104,6 +109,7 @@ public extension KeyboardLayoutConfiguration {
         }
         return isPortrait ? .standardPhonePortrait : .standardPhoneLandscape
     }
+    #endif
     
     /**
      The standard config for an iPad in landscape.

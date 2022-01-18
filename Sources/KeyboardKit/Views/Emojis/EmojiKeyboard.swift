@@ -16,7 +16,7 @@ import SwiftUI
  `emojiButton` view builder function. You can also customize
  the button taps when using the standard builder function.
  */
-@available(iOS 14.0, *)
+@available(iOS 14.0, tvOS 14.0, *)
 public struct EmojiKeyboard<ButtonView: View>: View {
 
     /**
@@ -60,7 +60,7 @@ public struct EmojiKeyboard<ButtonView: View>: View {
     }
 }
 
-@available(iOS 14.0, *)
+@available(iOS 14.0, tvOS 14.0, *)
 public extension EmojiKeyboard {
     
     /**
@@ -72,7 +72,7 @@ public extension EmojiKeyboard {
     }
 }
 
-@available(iOS 14.0, *)
+@available(iOS 14.0, tvOS 14.0, *)
 public extension EmojiKeyboard where ButtonView == EmojiKeyboardButton {
     
     /**
@@ -101,7 +101,7 @@ public extension EmojiKeyboard where ButtonView == EmojiKeyboardButton {
     }
 }
 
-@available(iOS 14.0, *)
+@available(iOS 14.0, tvOS 14.0, *)
 struct EmojiKeyboard_Previews: PreviewProvider {
     
     static var previews: some View {

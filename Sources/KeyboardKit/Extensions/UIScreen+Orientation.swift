@@ -8,6 +8,7 @@
 
 import UIKit
 
+#if os(iOS) || os(watchOS) || os(macOS)
 extension UIScreen {
     
     /**
@@ -26,3 +27,4 @@ extension UIScreen {
         }
     }
 }
+#endif

@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(watchOS) || os(macOS)
 import SwiftUI
 
 /**
@@ -232,3 +233,4 @@ private extension GeometryProxy {
         return true
     }
 }
+#endif

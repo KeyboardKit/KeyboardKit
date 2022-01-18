@@ -33,7 +33,9 @@ class StandardKeyboardFeedbackHandlerTests: QuickSpec {
             handler = StandardKeyboardFeedbackHandler(settings: KeyboardFeedbackSettings())
             
             StandardSystemAudioPlayer.shared = audioPlayer
+            #if os(iOS) || os(watchOS) || os(macOS)
             StandardHapticFeedbackPlayer.shared = hapticPlayer
+            #endif
         }
         
         describe("should trigger feedback") {

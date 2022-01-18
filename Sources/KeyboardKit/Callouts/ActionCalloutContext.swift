@@ -135,7 +135,9 @@ open class ActionCalloutContext: ObservableObject {
      override this to change or disable the haptic feedback.
      */
     open func triggerHapticFeedbackForSelectionChange() {
+        #if os(iOS) || os(watchOS) || os(macOS)
         HapticFeedback.selectionChanged.trigger()
+        #endif
     }
     
     /**
@@ -152,6 +154,8 @@ open class ActionCalloutContext: ObservableObject {
         triggerHapticFeedbackForSelectionChange()
     }
     
+    
+    #if os(iOS) || os(watchOS) || os(macOS)
     /**
      Update the selected input action when a drag gesture is
      changed by a drag gesture.
@@ -169,6 +173,7 @@ open class ActionCalloutContext: ObservableObject {
         if currentIndex != newIndex { triggerHapticFeedbackForSelectionChange() }
         self.selectedIndex = newIndex
     }
+    #endif
 }
 
 
@@ -202,6 +207,7 @@ private extension ActionCalloutContext {
         return isTrailing ? .trailing : .leading
     }
     
+    #if os(iOS)
     func shouldReset(for dragValue: DragGesture.Value) -> Bool {
         dragValue.translation.height > buttonFrame.height
     }
@@ -211,4 +217,5 @@ private extension ActionCalloutContext {
         if translation == 0 { return true }
         return isLeading ? translation > 0 : translation < 0
     }
+    #endif
 }

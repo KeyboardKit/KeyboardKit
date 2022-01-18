@@ -11,7 +11,7 @@ import SwiftUI
 /**
  This view renders a standard title for an emoji category.
  */
-@available(iOS 14.0, *)
+@available(iOS 14.0, tvOS 14.0, *)
 public struct EmojiCategoryTitle: View {
     
     public init(
@@ -36,7 +36,7 @@ public struct EmojiCategoryTitle: View {
     }
 }
 
-@available(iOS 14.0, *)
+@available(iOS 14.0, tvOS 14.0, *)
 struct EmojiCategoryTitle_Previews: PreviewProvider {
     
     static var previews: some View {

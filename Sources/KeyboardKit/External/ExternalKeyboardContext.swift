@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(watchOS) || os(macOS)
 import GameKit
 
 /**
@@ -35,3 +36,4 @@ public class ExternalKeyboardContext: ObservableObject {
         isExternalKeyboardConnected = GCKeyboard.coalesced != nil
     }
 }
+#endif

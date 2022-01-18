@@ -46,9 +46,11 @@ public struct KeyboardImageButton: View {
         image
             .resizable()
             .scaledToFit()
+            .accessibility(addTraits: .isButton)
+            #if os(iOS) || os(watchOS) || os(macOS)
             .onTapGesture(perform: tapAction)
             .onLongPressGesture(perform: longPressAction)
-            .accessibility(addTraits: .isButton)
+            #endif
     }
 }
 

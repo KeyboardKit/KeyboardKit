@@ -16,7 +16,7 @@ import SwiftUI
  As long as the view requires iOS 14, the extensions must be
  kept in the main struct body for the previews to compile.
  */
-@available(iOS 14.0, *)
+@available(iOS 14.0, tvOS 14.0, *)
 public struct EmojiCategoryKeyboard<KeyboardView: View, CategoryTitleView: View>: View {
     
     /**
@@ -127,14 +127,16 @@ public struct EmojiCategoryKeyboard<KeyboardView: View, CategoryTitleView: View>
             menu
         }
         .onAppear(perform: initialize)
+        #if os(iOS) || os(watchOS) || os(macOS)
         .onChange(of: selection) { _ in saveCurrentCategory() }
+        #endif
     }
 }
 
 
 // MARK: - Private View Extensions
 
-@available(iOS 14.0, *)
+@available(iOS 14.0, tvOS 14.0, *)
 private extension EmojiCategoryKeyboard {
 
     var title: some View {
@@ -158,7 +160,7 @@ private extension EmojiCategoryKeyboard {
 }
 
 
-@available(iOS 14.0, *)
+@available(iOS 14.0, tvOS 14.0, *)
 public extension EmojiCategoryKeyboard where KeyboardView == EmojiKeyboard<EmojiKeyboardButton> {
     
     /**
@@ -206,7 +208,7 @@ public extension EmojiCategoryKeyboard where KeyboardView == EmojiKeyboard<Emoji
     }
 }
 
-@available(iOS 14.0, *)
+@available(iOS 14.0, tvOS 14.0, *)
 public extension EmojiCategoryKeyboard where CategoryTitleView == EmojiCategoryTitle {
     
     /**
@@ -253,7 +255,7 @@ public extension EmojiCategoryKeyboard where CategoryTitleView == EmojiCategoryT
     }
 }
 
-@available(iOS 14.0, *)
+@available(iOS 14.0, tvOS 14.0, *)
 public extension EmojiCategoryKeyboard where KeyboardView == EmojiKeyboard<EmojiKeyboardButton>, CategoryTitleView == EmojiCategoryTitle {
     
     /**
@@ -298,7 +300,7 @@ public extension EmojiCategoryKeyboard where KeyboardView == EmojiKeyboard<Emoji
     }
 }
     
-@available(iOS 14.0, *)
+@available(iOS 14.0, tvOS 14.0, *)
 struct EmojiCategoryMenu_Previews: PreviewProvider {
     
     static var previews: some View {

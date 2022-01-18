@@ -7,7 +7,8 @@ let package = Package(
     defaultLocalization: "en",
     platforms: [
         .iOS(.v13),
-        .macOS(.v11)
+        .macOS(.v11),
+        .tvOS(.v13)
     ],
     products: [
         .library(
@@ -15,9 +16,9 @@ let package = Package(
             targets: ["KeyboardKit"])
     ],
     dependencies: [
-        .package(url: "https://github.com/Quick/Quick.git", .upToNextMajor(from: "3.0.0")),
+        .package(url: "https://github.com/Quick/Quick.git", .upToNextMajor(from: "4.0.0")),
         .package(url: "https://github.com/Quick/Nimble.git", .upToNextMajor(from: "9.0.0")),
-        .package(url: "https://github.com/danielsaidi/MockingKit.git", .upToNextMajor(from: "0.9.0"))
+        .package(url: "https://github.com/danielsaidi/MockingKit.git", .upToNextMajor(from: "1.0.0"))
     ],
     targets: [
         .target(

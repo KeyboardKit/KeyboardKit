@@ -44,6 +44,8 @@ public extension HapticFeedback {
      */
     var id: String { rawValue }
     
+    
+    #if os(iOS) || os(watchOS) || os(macOS)
     /**
      Prepare the haptic feedback, using the shared player.
      */
@@ -57,4 +59,5 @@ public extension HapticFeedback {
     func trigger() {
         StandardHapticFeedbackPlayer.shared.play(self)
     }
+    #endif
 }

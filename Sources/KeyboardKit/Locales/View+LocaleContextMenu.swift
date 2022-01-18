@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+#if os(iOS) || os(macOS) || os(watchOS)
 public extension View {
     
     /**
@@ -68,3 +69,4 @@ public extension View {
         }
     }
 }
+#endif

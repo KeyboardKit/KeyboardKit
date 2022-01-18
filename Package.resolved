@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/danielsaidi/MockingKit.git",
         "state": {
           "branch": null,
-          "revision": "ebb888c98bd1de2f2409c7b06f2386a55120d910",
-          "version": "0.9.4"
+          "revision": "eee43230c648991cc2d14fa290d01e561c3adc5a",
+          "version": "1.0.0"
         }
       },
       {
@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/Quick/Quick.git",
         "state": {
           "branch": null,
-          "revision": "8cce6acd38f965f5baa3167b939f86500314022b",
-          "version": "3.1.2"
+          "revision": "bd86ca0141e3cfb333546de5a11ede63f0c4a0e6",
+          "version": "4.0.0"
         }
       }
     ]

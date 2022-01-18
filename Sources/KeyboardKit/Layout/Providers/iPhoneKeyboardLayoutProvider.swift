@@ -75,19 +75,19 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func bottomActions(for context: KeyboardContext) -> KeyboardActions {
         var result = KeyboardActions()
-        let portrait = context.screenOrientation.isPortrait
         let needsInputSwitch = context.needsInputModeSwitchKey
         let needsDictation = context.needsInputModeSwitchKey
         if let action = keyboardSwitchActionForBottomRow(for: context) { result.append(action) }
         if needsInputSwitch { result.append(.nextKeyboard) }
         if !needsInputSwitch { result.append(.keyboardType(.emojis)) }
-        if portrait, needsDictation, let action = dictationReplacement { result.append(action) }
+        if isPortrait(context), needsDictation, let action = dictationReplacement { result.append(action) }
         result.append(.space)
         if isPersianAlphabetic(context) { result.append(.character(.zeroWidthSpace)) }
         result.append(keyboardReturnAction(for: context))
-        if !portrait, needsDictation, let action = dictationReplacement { result.append(action) }
+        if !isPortrait(context), needsDictation, let action = dictationReplacement { result.append(action) }
         return result
-    }    
+    }
+    
     /**
      Get leading actions to add to the lower inputs row.
      */
@@ -169,7 +169,11 @@ private extension iPhoneKeyboardLayoutProvider {
     }
     
     func isPortrait(_ context: KeyboardContext) -> Bool {
-        context.screenOrientation.isPortrait
+        #if os(iOS) || os(watchOS) || os(macOS)
+        return context.screenOrientation.isPortrait
+        #else
+        return false
+        #endif
     }
     
     /**

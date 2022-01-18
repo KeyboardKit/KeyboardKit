@@ -43,6 +43,7 @@ public extension Emoji {
     }
 }
 
+#if os(iOS)
 @available(iOS 14.0, *)
 struct Emoji_Previews: PreviewProvider {
     
@@ -56,3 +57,4 @@ struct Emoji_Previews: PreviewProvider {
         }
     }
 }
+#endif

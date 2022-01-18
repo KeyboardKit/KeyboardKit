@@ -8,6 +8,7 @@
 
 import UIKit
 
+#if os(iOS) || os(watchOS) || os(macOS)
 class MockScreen: UIScreen {
     
     var boundsValue = CGRect.zero
@@ -18,3 +19,4 @@ class MockScreen: UIScreen {
     }
     
 }
+#endif

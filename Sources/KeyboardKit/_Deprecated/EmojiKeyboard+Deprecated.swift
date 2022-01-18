@@ -1,6 +1,6 @@
 import SwiftUI
 
-@available(iOS 14.0, *)
+@available(iOS 14.0, tvOS 14.0, *)
 public extension EmojiKeyboard where ButtonView == AnyView {
     
     @available(*, deprecated, message: "Use the new generic initializers instead.")
