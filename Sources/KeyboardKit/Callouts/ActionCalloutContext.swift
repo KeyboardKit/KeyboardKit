@@ -135,9 +135,7 @@ open class ActionCalloutContext: ObservableObject {
      override this to change or disable the haptic feedback.
      */
     open func triggerHapticFeedbackForSelectionChange() {
-        #if os(iOS) || os(watchOS) || os(macOS)
         HapticFeedback.selectionChanged.trigger()
-        #endif
     }
     
     /**

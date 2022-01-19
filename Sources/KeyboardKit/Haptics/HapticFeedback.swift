@@ -17,6 +17,9 @@ import Foundation
  The feedback enum uses the static `player` to play feedback.
  You can replace this instance with a custom player, e.g. to
  mock functionality when writing tests.
+ 
+ Note that this enum is available on tvOS, where there is no
+ haptic feedback. However,
 */
 public enum HapticFeedback: String, CaseIterable, Codable, Equatable, Identifiable {
     
@@ -44,20 +47,23 @@ public extension HapticFeedback {
      */
     var id: String { rawValue }
     
-    
     #if os(iOS) || os(watchOS) || os(macOS)
+    static var player = StandardHapticFeedbackPlayer.shared
+    #else
+    static var player = DisabledHapticFeedbackPlayer.shared
+    #endif
+    
     /**
      Prepare the haptic feedback, using the shared player.
      */
     func prepare() {
-        StandardHapticFeedbackPlayer.shared.prepare(self)
+        Self.player.prepare(self)
     }
     
     /**
      Trigger the haptic feedback, using the shared player.
      */
     func trigger() {
-        StandardHapticFeedbackPlayer.shared.play(self)
+        Self.player.play(self)
     }
-    #endif
 }

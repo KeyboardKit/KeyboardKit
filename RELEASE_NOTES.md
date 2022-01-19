@@ -10,6 +10,21 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 5.9
+
+This version makes the library build on more platforms.
+
+### 📺 Platform support
+
+* This version makes the library build on tvOS.
+
+### ✨ New features
+
+* `DisabledHapticFeedbackPlayer` is a new feedback player that is used on tvOS.
+* `StandardHapticFeedbackPlayer` is now open to subclassing.
+
+
+
 ## 5.8.2
 
 This version fixes an iPad layout bug that was introduced by 5.8.1.

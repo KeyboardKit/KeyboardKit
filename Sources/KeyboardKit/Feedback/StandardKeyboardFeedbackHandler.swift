@@ -80,9 +80,7 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
      it enters cursor drag state.
      */
     open func triggerFeedbackForLongPressOnSpaceDragGesture() {
-        #if os(iOS) || os(watchOS) || os(macOS)
         hapticConfig.longPressOnSpace.trigger()
-        #endif
     }
     
     /**
@@ -102,7 +100,6 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
      certain `action`.
      */
     open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
-        #if os(iOS) || os(watchOS) || os(macOS)
         let custom = hapticConfig.actions.first { $0.action == action && $0.gesture == gesture }
         if let custom = custom { return custom.feedback.trigger() }
         switch gesture {
@@ -113,6 +110,5 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
         case .repeatPress: hapticConfig.repeat.trigger()
         case .tap: hapticConfig.tap.trigger()
         }
-        #endif
     }
 }

@@ -127,9 +127,7 @@ public struct EmojiCategoryKeyboard<KeyboardView: View, CategoryTitleView: View>
             menu
         }
         .onAppear(perform: initialize)
-        #if os(iOS) || os(watchOS) || os(macOS)
         .onChange(of: selection) { _ in saveCurrentCategory() }
-        #endif
     }
 }
 

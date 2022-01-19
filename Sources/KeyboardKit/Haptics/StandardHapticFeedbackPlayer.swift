@@ -12,8 +12,16 @@ import UIKit
 /**
  This standard haptic feedback player uses system types when
  preparing and playing haptic feedback.
+ 
+ You can use, modify and replace the ``shared`` player. This
+ lets you customize the global haptic experience, where this
+ standard player is used.
+ 
+ Note that the player is currently only supported on certain
+ platforms, where ``UIImpactFeedbackGenerator`` is available.
+ System haptics could be used to remote this limitation.
  */
-public class StandardHapticFeedbackPlayer: HapticFeedbackPlayer {
+open class StandardHapticFeedbackPlayer: HapticFeedbackPlayer {
     
     public init() {}
     
@@ -26,7 +34,7 @@ public class StandardHapticFeedbackPlayer: HapticFeedbackPlayer {
     /**
      Play a certain haptic feedback type.
      */
-    public func play(_ feedback: HapticFeedback) {
+    open func play(_ feedback: HapticFeedback) {
         switch feedback {
         case .error: triggerNotification(.error)
         case .success: triggerNotification(.success)
@@ -42,7 +50,7 @@ public class StandardHapticFeedbackPlayer: HapticFeedbackPlayer {
     /**
      Prepare a certain haptic feedback type for being played.
      */
-    public func prepare(_ feedback: HapticFeedback) {
+    open func prepare(_ feedback: HapticFeedback) {
         switch feedback {
         case .error, .success, .warning: notificationGenerator.prepare()
         case .lightImpact: lightImpactGenerator.prepare()
@@ -57,9 +65,9 @@ public class StandardHapticFeedbackPlayer: HapticFeedbackPlayer {
 public extension StandardHapticFeedbackPlayer {
     
     /**
-     The standard player that is used for haptic feedback.
+     This shared instance is used on some platforms.
      */
-    static var shared: HapticFeedbackPlayer = StandardHapticFeedbackPlayer()
+    static var shared = StandardHapticFeedbackPlayer()
 }
 
 private extension StandardHapticFeedbackPlayer {
