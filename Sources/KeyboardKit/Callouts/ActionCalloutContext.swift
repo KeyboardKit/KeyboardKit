@@ -200,12 +200,16 @@ private extension ActionCalloutContext {
     }
     
     func getAlignment(for geo: GeometryProxy) -> HorizontalAlignment {
+        #if os(iOS) || os(macOS)
         let center = UIScreen.main.bounds.size.width / 2
         let isTrailing = buttonFrame.origin.x > center
         return isTrailing ? .trailing : .leading
+        #else
+        return .leading
+        #endif
     }
     
-    #if os(iOS)
+    #if os(iOS) || os(macOS) || os(watchOS)
     func shouldReset(for dragValue: DragGesture.Value) -> Bool {
         dragValue.translation.height > buttonFrame.height
     }

@@ -113,6 +113,7 @@ extension Bundle {
     }
 }
 
+#if os(iOS) || os(macOS) || os(tvOS)
 struct KKL10n_Previews: PreviewProvider {
     
     static let context: KeyboardContext = {
@@ -139,3 +140,4 @@ struct KKL10n_Previews: PreviewProvider {
         }
     }
 }
+#endif

@@ -6,7 +6,9 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS) || os(tvOS)
 import CoreGraphics
+
 /**
  This drag gesture handler handles the space key cursor move
  drag gesture.
@@ -63,3 +65,4 @@ private extension SpaceCursorDragGestureHandler {
         feedbackHandler.triggerFeedbackForLongPressOnSpaceDragGesture()
     }
 }
+#endif

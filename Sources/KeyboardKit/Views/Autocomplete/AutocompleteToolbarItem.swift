@@ -65,6 +65,7 @@ private extension AutocompleteToolbarItem {
     }
 }
 
+#if os(iOS) || os(macOS) || os(tvOS)
 struct AutocompleteToolbarItem_Previews: PreviewProvider {
     
     static var previews: some View {
@@ -94,6 +95,7 @@ struct AutocompleteToolbarItem_Previews: PreviewProvider {
         StandardAutocompleteSuggestion("Bar", isAutocomplete: true),
         StandardAutocompleteSuggestion(text: "", title: "Baz", subtitle: "Recommended")]
 }
+#endif
 
 private extension View {
     

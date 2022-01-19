@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS) || os(tvOS)
 import KeyboardKit
 import MockingKit
 import UIKit
@@ -62,3 +63,4 @@ class MockKeyboardActionHandler: Mock, KeyboardActionHandler {
         call(giveHapticFeedbackForRepeatRef, args: action)
     }
 }
+#endif

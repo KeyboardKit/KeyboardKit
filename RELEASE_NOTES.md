@@ -14,19 +14,31 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 This version makes the library build on more platforms.
 
+Note that many features are still only available on iOS and iPadOS.
+
 ### 📺 Platform support
 
 * This version makes the library build on tvOS.
 
 ### ✨ New features
 
-* `DisabledHapticFeedbackPlayer` is a new feedback player that is used on tvOS.
+* `DeviceSpecificInputSetProvider` has new rows functions.
+* `DeviceType` is a new enum that can be used to determine device type without having to use the real platform-specific device type.
+* `DisabledHapticFeedbackPlayer` is a new feedback player that is used on tvOS and watchOS.
 * `StandardHapticFeedbackPlayer` is now open to subclassing.
+* `StandardKeyboardLayoutProvider` has a new `fallbackProvider` that is used when device is not iPhone or iPad.
 * `StandardSystemAudioPlayer` is now open to subclassing.
+* `StaticKeyboardBehavior` is a new behavior type that is used on watchOS.
+
+### 💡 Behavior changes
+
+* `DeviceSpecificInputSetProvider` no longer requires a `UIDevice`.
+* `EnglishInputSetProvider` no longer requires UIKit.
 
 ### 🗑 Deprecations
 
-* `SystemAudioPlayer` `playSystemAudio` has been renamed to `play`.
+* `SystemAudioPlayer` `playSystemAudio` has been renamed to `play`. 
+* The `UIDevice`-based input set provider initializers are replaced by device-agnostic ones.
 
 
 

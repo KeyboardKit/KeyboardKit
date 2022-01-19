@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS) || os(tvOS)
 import UIKit
 
 class MockTraitCollection: UITraitCollection {
@@ -14,3 +15,4 @@ class MockTraitCollection: UITraitCollection {
     
     override var userInterfaceStyle: UIUserInterfaceStyle { userInterfaceStyleValue }
 }
+#endif

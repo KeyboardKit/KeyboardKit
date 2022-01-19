@@ -88,7 +88,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     // MARK: - Overridable Button Style Components
     
     open func buttonBackgroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
-        let fullOpacity = context.colorScheme == .dark || isPressed
+        let fullOpacity = context.hasDarkColorScheme || isPressed
         return action.buttonBackgroundColor(for: context, isPressed: isPressed)
             .opacity(fullOpacity ? 1 : 0.95)
     }
@@ -182,9 +182,9 @@ extension KeyboardAction {
     }
     
     func buttonBackgroundColorForPressedState(for context: KeyboardContext) -> Color {
-        if isPrimaryAction { return context.colorScheme == .dark ? .standardDarkButtonBackgroundColor(for: context) : .white }
+        if isPrimaryAction { return context.hasDarkColorScheme ? .standardDarkButtonBackgroundColor(for: context) : .white }
         if isUppercaseShift { return .standardDarkButtonBackgroundColor(for: context) }
-        if isSystemAction { return context.colorScheme == .dark ? .standardButtonBackgroundColor(for: context) : .white }
+        if isSystemAction { return context.hasDarkColorScheme ? .standardButtonBackgroundColor(for: context) : .white }
         return .standardDarkButtonBackgroundColor(for: context)
     }
     
@@ -201,7 +201,7 @@ extension KeyboardAction {
     }
     
     func buttonForegroundColorForPressedState(for context: KeyboardContext) -> Color {
-        if isPrimaryAction { return context.colorScheme == .dark ? .white : .standardButtonForegroundColor(for: context) }
+        if isPrimaryAction { return context.hasDarkColorScheme ? .white : .standardButtonForegroundColor(for: context) }
         return .standardButtonForegroundColor(for: context)
     }
 }

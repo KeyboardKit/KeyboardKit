@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS) || os(tvOS)
 import Foundation
 
 /**
@@ -137,3 +138,4 @@ public extension KeyboardAction {
         }
     }
 }
+#endif

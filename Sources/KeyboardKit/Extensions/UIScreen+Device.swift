@@ -8,6 +8,7 @@
 
 import UIKit
 
+#if os(iOS) || os(macOS) || os(tvOS)
 extension UIScreen {
     
     var isIpadProLargeScreen: Bool { hasSize(.iPadProLargeScreenPortrait) }
@@ -22,3 +23,4 @@ private extension UIScreen {
         bounds.size == size || bounds.size == size.flipped()
     }
 }
+#endif

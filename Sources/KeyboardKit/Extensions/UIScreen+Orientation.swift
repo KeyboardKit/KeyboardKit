@@ -8,7 +8,7 @@
 
 import UIKit
 
-#if os(iOS) || os(macOS) || os(watchOS)
+#if os(iOS) || os(macOS)
 extension UIScreen {
     
     /**

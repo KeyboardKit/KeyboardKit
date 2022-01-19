@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS)
 import Quick
 import Nimble
 import KeyboardKit
@@ -33,9 +34,7 @@ class StandardKeyboardFeedbackHandlerTests: QuickSpec {
             handler = StandardKeyboardFeedbackHandler(settings: KeyboardFeedbackSettings())
             
             StandardSystemAudioPlayer.shared = audioPlayer
-            #if os(iOS) || os(macOS) || os(watchOS)
             StandardHapticFeedbackPlayer.shared = hapticPlayer
-            #endif
         }
         
         describe("should trigger feedback") {
@@ -123,3 +122,4 @@ class StandardKeyboardFeedbackHandlerTests: QuickSpec {
         }
     }
 }
+#endif

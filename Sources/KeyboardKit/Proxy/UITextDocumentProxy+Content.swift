@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS) || os(tvOS)
 import UIKit
 
 public extension UITextDocumentProxy {
@@ -124,3 +125,4 @@ private extension String {
         trimmingCharacters(in: .whitespaces)
     }
 }
+#endif

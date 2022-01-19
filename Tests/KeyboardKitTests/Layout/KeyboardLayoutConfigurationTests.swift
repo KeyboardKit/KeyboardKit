@@ -6,12 +6,12 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS)
 import Quick
 import Nimble
 import UIKit
 @testable import KeyboardKit
 
-#if os(iOS) || os(macOS) || os(watchOS)
 class KeyboardLayoutConfigurationTests: QuickSpec {
     
     override func spec() {

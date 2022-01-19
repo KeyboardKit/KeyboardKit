@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS) || os(tvOS)
 import Quick
 import Nimble
 import KeyboardKit
@@ -113,3 +114,4 @@ class UITextDocumentProxy_ReplaceTests: QuickSpec {
         }
     }
 }
+#endif

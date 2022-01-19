@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS) || os(tvOS)
 import Foundation
 import UIKit
 
@@ -53,3 +54,4 @@ private extension Array where Element == Character {
     
     func toString() -> String { String(self) }
 }
+#endif

@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS) || os(tvOS)
 import UIKit
 import MockingKit
 
@@ -48,3 +49,4 @@ class MockTextInput: UIResponder, Mockable, UITextInput {
     func textRange(from fromPosition: UITextPosition, to toPosition: UITextPosition) -> UITextRange? { UITextRange() }
     func unmarkText() {}
 }
+#endif

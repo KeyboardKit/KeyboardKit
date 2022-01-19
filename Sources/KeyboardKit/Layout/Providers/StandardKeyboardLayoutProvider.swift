@@ -55,6 +55,16 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
         }
     }
     
+    /**
+     The layout provider that is used when the device is not
+     an iPhone or iPad.
+     
+     For not, this will just return an empty layout, so make
+     sure to replace this when you use the standard provider
+     on other device types than iPhone and iPad.
+     */
+    open lazy var fallbackProvider = StaticKeyboardLayoutProvider(
+        keyboardLayout: KeyboardLayout(itemRows: []))
     
     /**
      The layout provider that is used for iPad devices.
@@ -81,8 +91,12 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     /**
      Get a keyboard layout provider for a certain `context`.
      */
-    open func layoutProvider(for context: KeyboardContext) -> SystemKeyboardLayoutProvider {
+    open func layoutProvider(for context: KeyboardContext) -> KeyboardLayoutProvider {
+        #if os(iOS) || os(macOS) || os(tvOS)
         context.device.isPad ? iPadProvider : iPhoneProvider
+        #else
+        fallbackProvider
+        #endif
     }
     
     /**

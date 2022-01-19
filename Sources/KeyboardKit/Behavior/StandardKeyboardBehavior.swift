@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS) || os(tvOS)
 import Foundation
 
 /**
@@ -47,6 +48,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
         self.repeatGestureTimer = repeatGestureTimer
     }
     
+    
     private let context: KeyboardContext
     private let doubleTapThreshold: TimeInterval
     private let endSentenceThreshold: TimeInterval
@@ -55,11 +57,11 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     var lastShiftCheck = Date()
     var lastSpaceTap = Date()
     
+    
     /**
-     The range that backspace should delete when it's repeat
-     pressed. Standard keyboards start increasing from chars
-     to words after a little while.
-     */
+    The range that the backspace key should delete when the
+    key is long pressed.
+    */
     public var backspaceRange: DeleteBackwardRange {
         let duration = repeatGestureTimer.duration ?? 0
         return duration > 3 ? .word : .char
@@ -67,7 +69,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     
     /**
      The preferred keyboard type that should be applied when
-     the provided action has been performed.
+     a certain gesture has been performed on an action.
      */
     public func preferredKeyboardType(
         after gesture: KeyboardGesture,
@@ -82,8 +84,8 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     }
     
     /**
-     Whether or not the active sentence should be ended when
-     the provided action has been performed.
+     Whether or not to end the currently typed sentence when
+     a certain gesture has been performed on an action.
      */
     open func shouldEndSentence(
         after gesture: KeyboardGesture,
@@ -100,8 +102,8 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     }
     
     /**
-     Whether or not the keyboard should switch to a capslock
-     state after a gesture on an action.
+     Whether or not to switch to capslock when a gesture has
+     been performed on an action.
      */
     open func shouldSwitchToCapsLock(
         after gesture: KeyboardGesture,
@@ -113,9 +115,8 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     }
     
     /**
-     Whether or not the current keyboard type should be auto
-     switched to the behavior's preferred keyboard type when
-     the provided action has been performed.
+     Whether or not to switch to the preferred keyboard type
+     when a certain gesture has been performed on an action.
      */
     open func shouldSwitchToPreferredKeyboardType(
         after gesture: KeyboardGesture,
@@ -129,9 +130,8 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     }
     
     /**
-     Whether or not the current keyboard type should be auto
-     switched to the behavior's preferred keyboard type when
-     the text document proxy's text did change.
+     Whether or not to switch to the preferred keyboard type
+     after the text document proxy text did change.
      */
     public func shouldSwitchToPreferredKeyboardTypeAfterTextDidChange() -> Bool {
         context.keyboardType != context.preferredKeyboardType
@@ -186,3 +186,4 @@ private extension KeyboardCasing {
         }
     }
 }
+#endif

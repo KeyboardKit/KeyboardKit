@@ -1,3 +1,4 @@
+#if os(iOS)
 import Foundation
 
 public extension SystemKeyboardActionButton {
@@ -20,3 +21,4 @@ public extension SystemKeyboardActionButton where Content == SystemKeyboardActio
             contentConfig: { $0 })
     }
 }
+#endif

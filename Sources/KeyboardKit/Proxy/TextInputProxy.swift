@@ -9,6 +9,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(tvOS)
 import UIKit
 
 /**
@@ -143,3 +144,4 @@ open class TextInputProxy: NSObject, UITextDocumentProxy, UITextInputTraits {
     public var smartInsertDeleteType: UITextSmartInsertDeleteType
     public var smartQuotesType: UITextSmartQuotesType
 }
+#endif

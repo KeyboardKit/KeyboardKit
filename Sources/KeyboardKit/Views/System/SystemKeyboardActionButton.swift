@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS) || os(tvOS)
 import SwiftUI
 
 /**
@@ -157,14 +158,11 @@ private extension View {
     func onPressGesture(
         onPressed: @escaping () -> Void,
         onReleased: @escaping () -> Void) -> some View {
-        #if os(iOS) || os(macOS) || os(watchOS)
         self.gesture(
             DragGesture(minimumDistance: 0)
                 .onChanged { _ in onPressed() }
                 .onEnded { _ in onReleased() }
         )
-        #else
-        self
-        #endif
     }
 }
+#endif

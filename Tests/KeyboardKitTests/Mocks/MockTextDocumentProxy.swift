@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS) || os(tvOS)
 import MockingKit
 import UIKit
 
@@ -54,3 +55,4 @@ open class MockTextDocumentProxy: NSObject, UITextDocumentProxy, Mockable {
         call(unmarkTextRef, args: ())
     }
 }
+#endif

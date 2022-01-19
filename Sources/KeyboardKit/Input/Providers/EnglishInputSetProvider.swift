@@ -6,7 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 /**
  This input set provider provides English input sets.
@@ -20,26 +20,18 @@ import UIKit
 public class EnglishInputSetProvider: DeviceSpecificInputSetProvider, LocalizedService {
     
     /**
-     Create a provider instance.
+     Create an English input set provider.
      
      - Parameters:
-       - device: The device for which the input should apply.
        - numericCurrency: The currency to use for the numeric input set.
        - symbolicCurrency: The currency to use for the symbolic input set.
      */
     public init(
-        device: UIDevice = .current,
         numericCurrency: String = "$",
         symbolicCurrency: String = "£") {
-        self.device = device
         self.numericCurrency = numericCurrency
         self.symbolicCurrency = symbolicCurrency
     }
-    
-    /**
-     The device for which the input should apply.
-     */
-    public let device: UIDevice
     
     /**
      The currency to use for the numeric input set.

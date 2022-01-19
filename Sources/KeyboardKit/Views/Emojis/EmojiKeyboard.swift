@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS) || os(tvOS)
 import SwiftUI
 
 /**
@@ -110,3 +111,4 @@ struct EmojiKeyboard_Previews: PreviewProvider {
         }
     }
 }
+#endif

@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS) || os(tvOS)
 import UIKit
 
 public extension UITextDocumentProxy {
@@ -91,3 +92,4 @@ private extension UITextDocumentProxy {
         return !wordDelimiters.contains("\(character)")
     }
 }
+#endif

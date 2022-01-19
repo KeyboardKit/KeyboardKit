@@ -6,7 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 /**
  This input set provider provides Swedish input sets.
@@ -16,11 +16,6 @@ import UIKit
  */
 class InternalSwedishInputSetProvider: DeviceSpecificInputSetProvider, LocalizedService {
     
-    init(device: UIDevice = .current) {
-        self.device = device
-    }
-    
-    let device: UIDevice
     let localeKey: String = KeyboardLocale.swedish.id
     
     var alphabeticInputSet: AlphabeticInputSet {
@@ -36,7 +31,7 @@ class InternalSwedishInputSetProvider: DeviceSpecificInputSetProvider, Localized
         let padCenter: [String] = "@#".chars + ["kr"] + "&*()’”+•".chars
         return NumericInputSet(rows: [
             row(phone: "1234567890", pad: "1234567890`"),
-            InputSetRow(device.isPhone ? phoneCenter : padCenter),
+            row(phone: phoneCenter, pad : padCenter),
             row(phone: ".,?!’", pad: "%_-=/;:!?")
         ])
     }

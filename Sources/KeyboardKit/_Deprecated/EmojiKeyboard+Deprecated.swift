@@ -1,5 +1,6 @@
 import SwiftUI
 
+#if os(iOS) || os(tvOS)
 @available(iOS 14.0, tvOS 14.0, *)
 public extension EmojiKeyboard where ButtonView == AnyView {
     
@@ -42,3 +43,4 @@ public extension EmojiKeyboard where ButtonView == AnyView {
         )
     }
 }
+#endif

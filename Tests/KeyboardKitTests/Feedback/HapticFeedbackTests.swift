@@ -6,11 +6,11 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS)
 import Quick
 import Nimble
 import KeyboardKit
 
-#if os(iOS) || os(macOS) || os(watchOS)
 class HapticFeedbackTests: QuickSpec {
     
     override func spec() {

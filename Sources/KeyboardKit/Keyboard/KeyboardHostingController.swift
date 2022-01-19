@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS) || os(tvOS)
 import SwiftUI
 
 /**
@@ -41,3 +42,4 @@ public class KeyboardHostingController<Content: View>: UIHostingController<Conte
         updateViewConstraints()
     }
 }
+#endif

@@ -24,49 +24,46 @@ import Foundation
 public protocol KeyboardBehavior {
     
     /**
-     The range that backspace should delete when it's repeat
-     pressed. Standard keyboards start increasing from chars
-     to words after a little while.
+     The range that the backspace key should delete when the
+     key is long pressed.
      */
     var backspaceRange: DeleteBackwardRange { get }
     
     /**
      The preferred keyboard type that should be applied when
-     the provided action has been performed.
+     a certain gesture has been performed on an action.
      */
     func preferredKeyboardType(
         after gesture: KeyboardGesture,
         on action: KeyboardAction) -> KeyboardType
     
     /**
-     Whether or not the active sentence should be ended when
-     the provided action has been performed.
+     Whether or not to end the currently typed sentence when
+     a certain gesture has been performed on an action.
      */
     func shouldEndSentence(
         after gesture: KeyboardGesture,
         on action: KeyboardAction) -> Bool
     
     /**
-     Whether or not the keyboard should switch to a capslock
-     state after a gesture on an action.
+     Whether or not to switch to capslock when a gesture has
+     been performed on an action.
      */
     func shouldSwitchToCapsLock(
         after gesture: KeyboardGesture,
         on action: KeyboardAction) -> Bool
     
     /**
-     Whether or not the current keyboard type should be auto
-     switched to the behavior's preferred keyboard type when
-     the provided action has been performed.
+     Whether or not to switch to the preferred keyboard type
+     when a certain gesture has been performed on an action.
      */
     func shouldSwitchToPreferredKeyboardType(
         after gesture: KeyboardGesture,
         on action: KeyboardAction) -> Bool
 
     /**
-     Whether or not the current keyboard type should be auto
-     switched to the behavior's preferred keyboard type when
-     the text document proxy's text did change.
+     Whether or not to switch to the preferred keyboard type
+     after the text document proxy text did change.
      */
     func shouldSwitchToPreferredKeyboardTypeAfterTextDidChange() -> Bool
 }

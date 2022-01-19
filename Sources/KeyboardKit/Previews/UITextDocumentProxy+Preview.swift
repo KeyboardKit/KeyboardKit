@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(tvOS)
 import UIKit
 
 public extension UITextDocumentProxy where Self == PreviewTextDocumentProxy {
@@ -40,3 +41,4 @@ public class PreviewTextDocumentProxy: NSObject, UITextDocumentProxy {
     public func setMarkedText(_ markedText: String, selectedRange: NSRange) {}
     public func unmarkText() {}
 }
+#endif

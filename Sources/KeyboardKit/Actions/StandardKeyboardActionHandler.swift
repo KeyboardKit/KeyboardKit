@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS) || os(tvOS)
 import UIKit
 
 /**
@@ -14,6 +15,10 @@ import UIKit
  
  You can inherit this class and override any open properties
  and functions to customize the standard action behavior.
+ 
+ Note that this action handler is only available on keyboard
+ supporting platforms. For watchOS and macOS, a disabled one
+ will be injected. Replace this with a custom action handler.
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
@@ -255,3 +260,4 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         textDocumentProxy.tryRemoveAutocompleteInsertedSpace()
     }
 }
+#endif

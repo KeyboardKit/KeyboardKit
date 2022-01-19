@@ -23,6 +23,8 @@ import SwiftUI
  */
 public class KeyboardContext: ObservableObject {
     
+    
+    #if os(iOS) || os(macOS) || os(tvOS)
     /**
      Create a context instance.
      
@@ -46,8 +48,29 @@ public class KeyboardContext: ObservableObject {
         self.keyboardType = keyboardType
         self.sync(with: controller)
     }
+    #else
+    /**
+     Create a context instance.
+     
+     - Parameters:
+       - controller: The controller to which the context should apply.
+       - locale: The locale to use, by default `.current`.
+       - device: The device to use, by default `.current`.
+       - screen: The screen to use, by default `.main`.
+       - keyboardType: The current keyboard tye, by default `.alphabetic(.lowercased)`
+     */
+    public init(
+        locale: Locale = .current,
+        keyboardType: KeyboardType = .alphabetic(.lowercased)) {
+        self.locale = locale
+        self.locales = [locale]
+        self.keyboardType = keyboardType
+    }
+    #endif
     
+    #if os(iOS) || os(macOS) || os(tvOS)
     public let device: UIDevice
+    #endif
     
     /**
      This property can be set to `false` to stop the context
@@ -108,19 +131,23 @@ public class KeyboardContext: ObservableObject {
      */
     @Published public var primaryLanguage: String?
     
+    #if os(iOS) || os(macOS) || os(tvOS)
     /**
      The screen in which the keyboard is presented.
      */
     @Published public var screen: UIScreen
+    #endif
     
     
-    #if os(iOS) || os(watchOS)
+    #if os(iOS)
     /**
      The current screen orientation.
      */
     @Published public var screenOrientation: UIInterfaceOrientation = .portrait
     #endif
     
+    
+    #if os(iOS) || os(macOS) || os(tvOS)
     /**
      The text document proxy that is currently active.
      */
@@ -135,11 +162,13 @@ public class KeyboardContext: ObservableObject {
      The input controller's current trait collection.
      */
     @Published public var traitCollection: UITraitCollection = UITraitCollection()
+    #endif
 }
 
 
 // MARK: - Public Properties
 
+#if os(iOS) || os(macOS) || os(tvOS)
 public extension KeyboardContext {
     
     /**
@@ -156,11 +185,24 @@ public extension KeyboardContext {
         textDocumentProxy.keyboardAppearance ?? .default
     }
 }
+#endif
 
 
 // MARK: - Public Functions
 
 public extension KeyboardContext {
+    
+    /**
+     Whether or not the context specifies that we should use
+     a dark color scheme.
+     */
+    var hasDarkColorScheme: Bool {
+        #if os(iOS) || os(macOS) || os(tvOS)
+        colorScheme == .dark
+        #else
+        false
+        #endif
+    }
     
     /**
      Select the next locale in the `locales` list, depending
@@ -175,6 +217,7 @@ public extension KeyboardContext {
         locale = locales[nextIndex]
     }
     
+    #if os(iOS) || os(macOS) || os(tvOS)
     /**
      Sync the context with the current state of the keyboard
      input view controller.
@@ -186,11 +229,12 @@ public extension KeyboardContext {
         self.hasFullAccess = controller.hasFullAccess
         self.needsInputModeSwitchKey = controller.needsInputModeSwitchKey
         self.primaryLanguage = controller.primaryLanguage
-        #if os(iOS) || os(watchOS)
+        #if os(iOS)
         self.screenOrientation = controller.screenOrientation
         #endif
         self.textDocumentProxy = controller.textDocumentProxy
         self.textInputMode = controller.textInputMode
         self.traitCollection = controller.traitCollection
     }
+    #endif
 }

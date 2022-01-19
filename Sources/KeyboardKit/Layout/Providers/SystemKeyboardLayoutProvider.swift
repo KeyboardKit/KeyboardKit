@@ -165,6 +165,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
      The return action to use for the provided `context`.
      */
     open func keyboardReturnAction(for context: KeyboardContext) -> KeyboardAction {
+        #if os(iOS) || os(macOS) || os(tvOS)
         let type = context.textDocumentProxy.returnKeyType
         switch type {
         case .done: return .primary(.done)
@@ -172,6 +173,9 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         case .search: return .primary(.search)
         default: return .return
         }
+        #else
+        return .return
+        #endif
     }
     
     /**

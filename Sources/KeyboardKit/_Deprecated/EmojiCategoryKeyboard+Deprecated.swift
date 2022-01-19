@@ -1,3 +1,4 @@
+#if os(iOS) || os(macOS) || os(tvOS)
 import SwiftUI
 
 @available(iOS 14.0, tvOS 14.0, *)
@@ -54,3 +55,4 @@ public extension EmojiCategoryKeyboard where KeyboardView == AnyView, CategoryTi
         AnyView(EmojiCategoryTitle(title: title, style: .standardPhonePortrait))
     }
 }
+#endif

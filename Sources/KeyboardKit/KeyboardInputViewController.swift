@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS) || os(tvOS)
 import Combine
 import SwiftUI
 import UIKit
@@ -69,7 +70,7 @@ open class KeyboardInputViewController: UIInputViewController {
         }
         
         var bodyId: String {
-            #if os(iOS) || os(macOS) || os(watchOS)
+            #if os(iOS) || os(macOS)
             "\(context.locale)\(context.screenOrientation.isLandscape)"
             #else
             "\(context.locale)"
@@ -438,3 +439,4 @@ private extension KeyboardInputViewController {
         keyboardContext.keyboardType = context.preferredKeyboardType
     }
 }
+#endif

@@ -1,5 +1,6 @@
 import Foundation
 
+#if os(iOS) || os(macOS) || os(tvOS)
 public extension KeyboardInputViewController {
 
     @available(*, deprecated, renamed: "actionCalloutContext")
@@ -26,3 +27,4 @@ public extension KeyboardInputViewController {
         set { calloutActionProvider = newValue }
     }
 }
+#endif

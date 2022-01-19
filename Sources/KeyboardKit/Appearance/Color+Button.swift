@@ -93,6 +93,6 @@ public extension Color {
         // ...but according to the bug above, we go with the
         // dark appearance look for both dark appearance and
         // dark mode.
-        $0.colorScheme == .dark
+        $0.hasDarkColorScheme
     }
 }

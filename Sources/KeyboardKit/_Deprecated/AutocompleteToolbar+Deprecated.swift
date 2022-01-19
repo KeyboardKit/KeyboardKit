@@ -1,3 +1,4 @@
+#if os(iOS) || os(tvOS)
 import SwiftUI
 
 public extension AutocompleteToolbar where ItemView == AnyView, SeparatorView == AnyView {
@@ -102,3 +103,4 @@ private extension AutocompleteToolbar where ItemView == AnyView, SeparatorView =
         AutocompleteToolbarSeparator(style: style.separator)
     }
 }
+#endif

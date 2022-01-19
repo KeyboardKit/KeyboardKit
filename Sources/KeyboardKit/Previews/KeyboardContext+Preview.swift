@@ -14,6 +14,10 @@ public extension KeyboardContext {
      This preview context can be used in SwiftUI previews.
      */
     static var preview: KeyboardContext {
+        #if os(iOS) || os(macOS) || os(tvOS)
         KeyboardContext(controller: KeyboardInputViewController.preview)
+        #else
+        KeyboardContext()
+        #endif
     }
 }

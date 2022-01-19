@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS) || os(tvOS)
 import MockingKit
 import UIKit
 
@@ -19,3 +20,4 @@ class MockCollectionViewLayout: UICollectionViewFlowLayout, Mockable {
         call(invalidateLayoutRef, args: ())
     }
 }
+#endif

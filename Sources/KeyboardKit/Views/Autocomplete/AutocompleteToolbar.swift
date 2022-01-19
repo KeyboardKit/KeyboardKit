@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS) || os(tvOS)
 import SwiftUI
 
 /**
@@ -314,3 +315,4 @@ private extension View {
             .cornerRadius(10)
     }
 }
+#endif

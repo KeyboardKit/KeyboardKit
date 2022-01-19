@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS) || os(tvOS)
 import SwiftUI
 import UIKit
 
@@ -114,3 +115,4 @@ class KeyboardInputTextField: UITextField, KeyboardInputTextComponent {
         return super.resignFirstResponder()
     }
 }
+#endif

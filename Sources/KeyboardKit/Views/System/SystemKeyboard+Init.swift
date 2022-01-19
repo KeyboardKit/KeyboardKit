@@ -6,6 +6,7 @@
 //  Copyright © 2022 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS) || os(tvOS)
 import CoreGraphics
 import Foundation
 import SwiftUI
@@ -75,3 +76,4 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
             width: width)
     }
 }
+#endif

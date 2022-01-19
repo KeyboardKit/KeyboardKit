@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS) || os(tvOS)
 import Foundation
 import Combine
 import UIKit
@@ -84,3 +85,4 @@ private extension KeyboardEnabledState {
         notificationCenter.publisher(for: notification)
     }
 }
+#endif
