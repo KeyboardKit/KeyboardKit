@@ -41,6 +41,7 @@ KeyboardKit is localized in 42 keyboard-specific locales:
 * 🇷🇸 Serbian
 * 🇷🇸 Serbian (Latin)
 * 🇸🇮 Slovenian
+* 🇸🇰 Slovak
 * 🇪🇸 Spanish
 * 🇸🇪 Swedish
 * 🇹🇷 Turkish

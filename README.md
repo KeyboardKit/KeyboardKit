@@ -67,8 +67,8 @@ KeyboardKit is localized in 42 keyboard-specific locales:
 🇺🇸 🇦🇱 🇦🇪 🇧🇾 🇧🇬 🇨🇿 🇭🇷 🇩🇰 🇳🇱 🇧🇪 <br />
 🇬🇧 🇺🇸 🇪🇪 🇫🇮 🇫🇷 🇧🇪 🇨🇭 🇩🇪 🇦🇹 🇨🇭 <br />
 🇬🇷 🇭🇺 🇮🇸 🇮🇪 🇮🇹 🇹🇯 🇱🇻 🇱🇹 🇳🇴 🇮🇷 <br />
-🇵🇱 🇵🇹 🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸 🇸🇮 🇪🇸 🇸🇪 <br />
-🇹🇷 🇺🇦
+🇵🇱 🇵🇹 🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 <br />
+🇸🇪 🇹🇷 🇺🇦
 
 [Read more here][Localization]
 

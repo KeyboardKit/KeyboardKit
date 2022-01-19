@@ -25,6 +25,7 @@ Note that many features are still only available on iOS and iPadOS.
 * 🇧🇬 Bulgarian
 * 🇷🇸 Serbian
 * 🇷🇸 Serbian (Latin)
+* 🇸🇰 Slovak
 
 ### ✨ New features
 
