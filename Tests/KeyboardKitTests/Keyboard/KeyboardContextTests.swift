@@ -108,7 +108,7 @@ class KeyboardContextTests: QuickSpec {
                 expect(context.hasFullAccess).to(equal(controller.hasFullAccess))
                 expect(context.needsInputModeSwitchKey).to(equal(controller.needsInputModeSwitchKey))
                 expect(context.primaryLanguage).to(beNil())
-                #if os(iOS) || os(watchOS) || os(macOS)
+                #if os(iOS) || os(macOS) || os(watchOS)
                 expect(context.screenOrientation).to(equal(controller.screenOrientation))
                 #endif
                 expect(context.textDocumentProxy).to(be(controller.textDocumentProxy))

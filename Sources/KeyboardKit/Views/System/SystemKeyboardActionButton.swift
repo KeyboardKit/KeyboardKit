@@ -157,7 +157,7 @@ private extension View {
     func onPressGesture(
         onPressed: @escaping () -> Void,
         onReleased: @escaping () -> Void) -> some View {
-        #if os(iOS) || os(watchOS) || os(macOS)
+        #if os(iOS) || os(macOS) || os(watchOS)
         self.gesture(
             DragGesture(minimumDistance: 0)
                 .onChanged { _ in onPressed() }

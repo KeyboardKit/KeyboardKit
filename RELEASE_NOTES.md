@@ -22,6 +22,11 @@ This version makes the library build on more platforms.
 
 * `DisabledHapticFeedbackPlayer` is a new feedback player that is used on tvOS.
 * `StandardHapticFeedbackPlayer` is now open to subclassing.
+* `StandardSystemAudioPlayer` is now open to subclassing.
+
+### 🗑 Deprecations
+
+* `SystemAudioPlayer` `playSystemAudio` has been renamed to `play`.
 
 
 

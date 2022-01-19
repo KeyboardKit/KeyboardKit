@@ -11,7 +11,7 @@ import Nimble
 import UIKit
 @testable import KeyboardKit
 
-#if os(iOS) || os(watchOS) || os(macOS)
+#if os(iOS) || os(macOS) || os(watchOS)
 class KeyboardLayoutConfigurationTests: QuickSpec {
     
     override func spec() {

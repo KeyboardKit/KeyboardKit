@@ -33,7 +33,7 @@ class StandardKeyboardFeedbackHandlerTests: QuickSpec {
             handler = StandardKeyboardFeedbackHandler(settings: KeyboardFeedbackSettings())
             
             StandardSystemAudioPlayer.shared = audioPlayer
-            #if os(iOS) || os(watchOS) || os(macOS)
+            #if os(iOS) || os(macOS) || os(watchOS)
             StandardHapticFeedbackPlayer.shared = hapticPlayer
             #endif
         }
@@ -74,14 +74,14 @@ class StandardKeyboardFeedbackHandlerTests: QuickSpec {
             
             it("aborts if no action should be performed") {
                 handler.triggerFeedback(for: .press, on: .backspace, actionProvider: actionProvider)
-                expect(audioPlayer.hasCalled(audioPlayer.playSystemAudioRef)).to(beFalse())
+                expect(audioPlayer.hasCalled(audioPlayer.playRef)).to(beFalse())
                 expect(hapticPlayer.hasCalled(hapticPlayer.playRef)).to(beFalse())
             }
             
             it("triggers audio and haptic feedback") {
                 actionProvider = { gesture, _ in return gesture == .tap ? gestureAction : nil }
                 handler.triggerFeedback(for: .press, on: .backspace, actionProvider: actionProvider)
-                expect(audioPlayer.hasCalled(audioPlayer.playSystemAudioRef)).to(beTrue())
+                expect(audioPlayer.hasCalled(audioPlayer.playRef)).to(beTrue())
                 expect(hapticPlayer.hasCalled(hapticPlayer.playRef)).to(beTrue())
             }
         }
@@ -90,7 +90,7 @@ class StandardKeyboardFeedbackHandlerTests: QuickSpec {
             
             it("triggers audio and haptic feedback") {
                 handler.triggerFeedback(for: .press, on: .backspace)
-                expect(audioPlayer.hasCalled(audioPlayer.playSystemAudioRef)).to(beTrue())
+                expect(audioPlayer.hasCalled(audioPlayer.playRef)).to(beTrue())
                 expect(hapticPlayer.hasCalled(hapticPlayer.playRef)).to(beTrue())
             }
         }
@@ -99,7 +99,7 @@ class StandardKeyboardFeedbackHandlerTests: QuickSpec {
             
             it("triggers haptic feedback") {
                 handler.triggerFeedbackForLongPressOnSpaceDragGesture()
-                expect(audioPlayer.hasCalled(audioPlayer.playSystemAudioRef)).to(beFalse())
+                expect(audioPlayer.hasCalled(audioPlayer.playRef)).to(beFalse())
                 expect(hapticPlayer.hasCalled(hapticPlayer.playRef)).to(beTrue())
             }
         }
@@ -108,7 +108,7 @@ class StandardKeyboardFeedbackHandlerTests: QuickSpec {
             
             it("triggers audio feedback only") {
                 handler.triggerAudioFeedback(for: .press, on: .backspace)
-                expect(audioPlayer.hasCalled(audioPlayer.playSystemAudioRef)).to(beTrue())
+                expect(audioPlayer.hasCalled(audioPlayer.playRef)).to(beTrue())
                 expect(hapticPlayer.hasCalled(hapticPlayer.playRef)).to(beFalse())
             }
         }
@@ -117,7 +117,7 @@ class StandardKeyboardFeedbackHandlerTests: QuickSpec {
             
             it("triggers haptic feedback only") {
                 handler.triggerHapticFeedback(for: .press, on: .backspace)
-                expect(audioPlayer.hasCalled(audioPlayer.playSystemAudioRef)).to(beFalse())
+                expect(audioPlayer.hasCalled(audioPlayer.playRef)).to(beFalse())
                 expect(hapticPlayer.hasCalled(hapticPlayer.playRef)).to(beTrue())
             }
         }

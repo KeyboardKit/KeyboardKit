@@ -16,5 +16,5 @@ public protocol SystemAudioPlayer {
     /**
      Play a certain system audio sound.
      **/
-    func playSystemAudio(_ audio: SystemAudio)
+    func play(_ audio: SystemAudio)
 }

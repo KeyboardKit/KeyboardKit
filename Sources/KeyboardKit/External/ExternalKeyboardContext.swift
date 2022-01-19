@@ -6,7 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(watchOS) || os(macOS)
+#if os(iOS) || os(macOS) || os(watchOS)
 import GameKit
 
 /**

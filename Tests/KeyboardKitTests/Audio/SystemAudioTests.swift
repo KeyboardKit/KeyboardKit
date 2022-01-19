@@ -41,7 +41,7 @@ class SystemAudioTests: QuickSpec {
             it("uses the shared audio player") {
                 SystemAudio.custom(id: 111).play()
                 SystemAudio.custom(id: 124).play()
-                let calls = player.calls(to: player.playSystemAudioRef)
+                let calls = player.calls(to: player.playRef)
                 expect(calls.count).to(equal(2))
                 expect(calls[0].arguments.id).to(equal(111))
                 expect(calls[1].arguments.id).to(equal(124))

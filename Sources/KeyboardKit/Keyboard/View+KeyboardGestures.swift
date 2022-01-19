@@ -59,7 +59,7 @@ public extension View {
         releaseAction: KeyboardGestureAction? = nil,
         repeatAction: KeyboardGestureAction? = nil,
         dragAction: KeyboardDragGestureAction? = nil) -> some View {
-        #if os(iOS) || os(watchOS) || os(macOS)
+        #if os(iOS) || os(macOS) || os(watchOS)
         KeyboardGestures(
             view: self,
             action: action,

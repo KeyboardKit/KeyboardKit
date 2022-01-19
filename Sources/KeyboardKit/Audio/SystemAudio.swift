@@ -53,10 +53,16 @@ public extension SystemAudio {
         }
     }
     
+    #if os(iOS) || os(macOS) || os(tvOS)
+    static var player = StandardSystemAudioPlayer.shared
+    #else
+    static var player = DisabledSystemAudioPlayer()
+    #endif
+    
     /**
      Play the system audio, using the shared audio player.
      */
     func play() {
-        StandardSystemAudioPlayer.shared.playSystemAudio(self)
+        Self.player.play(self)
     }
 }

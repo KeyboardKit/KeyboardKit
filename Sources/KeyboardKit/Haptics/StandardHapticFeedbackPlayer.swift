@@ -6,20 +6,20 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(watchOS) || os(macOS)
+#if os(iOS) || os(macOS) || os(watchOS)
 import UIKit
 
 /**
- This standard haptic feedback player uses system types when
- preparing and playing haptic feedback.
- 
+ This player uses system features to prepare and play haptic
+ feedback. It's the default ``HapticFeedback`` player on all
+ platforms where it's supported.
+
  You can use, modify and replace the ``shared`` player. This
- lets you customize the global haptic experience, where this
- standard player is used.
+ lets you customize the global haptic feedback experience.
  
  Note that the player is currently only supported on certain
- platforms, where ``UIImpactFeedbackGenerator`` is available.
- System haptics could be used to remote this limitation.
+ platforms and that haptic feedback requires full access. We
+ can try to work around this by using system audio.
  */
 open class StandardHapticFeedbackPlayer: HapticFeedbackPlayer {
     

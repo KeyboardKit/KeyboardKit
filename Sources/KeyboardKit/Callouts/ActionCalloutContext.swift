@@ -153,7 +153,7 @@ open class ActionCalloutContext: ObservableObject {
     }
     
     
-    #if os(iOS) || os(watchOS) || os(macOS)
+    #if os(iOS) || os(macOS) || os(watchOS)
     /**
      Update the selected input action when a drag gesture is
      changed by a drag gesture.

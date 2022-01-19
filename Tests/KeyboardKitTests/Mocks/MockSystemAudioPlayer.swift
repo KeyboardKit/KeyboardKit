@@ -9,11 +9,13 @@
 import KeyboardKit
 import MockingKit
 
-class MockSystemAudioPlayer: Mock, SystemAudioPlayer {
+class MockSystemAudioPlayer: StandardSystemAudioPlayer, Mockable {
     
-    lazy var playSystemAudioRef = MockReference(playSystemAudio)
+    let mock = Mock()
     
-    func playSystemAudio(_ audio: SystemAudio) {
-        call(playSystemAudioRef, args: (audio))
+    lazy var playRef = MockReference(play)
+    
+    override func play(_ audio: SystemAudio) {
+        call(playRef, args: (audio))
     }
 }

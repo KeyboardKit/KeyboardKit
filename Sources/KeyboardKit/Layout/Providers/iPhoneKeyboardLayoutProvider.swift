@@ -169,7 +169,7 @@ private extension iPhoneKeyboardLayoutProvider {
     }
     
     func isPortrait(_ context: KeyboardContext) -> Bool {
-        #if os(iOS) || os(watchOS) || os(macOS)
+        #if os(iOS) || os(macOS) || os(watchOS)
         return context.screenOrientation.isPortrait
         #else
         return false

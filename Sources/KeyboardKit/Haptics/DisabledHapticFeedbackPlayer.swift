@@ -9,10 +9,8 @@
 import Foundation
 
 /**
- This haptic feedback player does not do anything and can be
- used on platforms where haptic feedback is not available.
- 
- You can use the ``
+ This disabled player doesn't do anything and can be used on
+ platforms where haptic feedback is not available.
  */
 public class DisabledHapticFeedbackPlayer: HapticFeedbackPlayer {
     
@@ -30,12 +28,4 @@ public class DisabledHapticFeedbackPlayer: HapticFeedbackPlayer {
      Prepare a certain haptic feedback type for being played.
      */
     public func prepare(_ feedback: HapticFeedback) {}
-}
-
-public extension DisabledHapticFeedbackPlayer {
-    
-    /**
-     This shared instance is used on some platforms.
-     */
-    static var shared = DisabledHapticFeedbackPlayer()
 }

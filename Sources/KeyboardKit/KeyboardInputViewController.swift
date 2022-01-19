@@ -69,7 +69,7 @@ open class KeyboardInputViewController: UIInputViewController {
         }
         
         var bodyId: String {
-            #if os(iOS) || os(watchOS) || os(macOS)
+            #if os(iOS) || os(macOS) || os(watchOS)
             "\(context.locale)\(context.screenOrientation.isLandscape)"
             #else
             "\(context.locale)"

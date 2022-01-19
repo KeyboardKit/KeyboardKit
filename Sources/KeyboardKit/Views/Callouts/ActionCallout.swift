@@ -41,7 +41,7 @@ public struct ActionCallout: View {
         .compositingGroup()
         .opacity(context.isActive ? 1 : 0)
         .calloutShadow(style: calloutStyle)
-        #if os(iOS) || os(watchOS) || os(macOS)
+        #if os(iOS) || os(macOS) || os(watchOS)
         .onTapGesture(perform: context.reset)
         #endif
         .position(x: positionX, y: positionY)

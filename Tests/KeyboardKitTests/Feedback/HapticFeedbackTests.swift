@@ -10,7 +10,7 @@ import Quick
 import Nimble
 import KeyboardKit
 
-#if os(iOS) || os(watchOS) || os(macOS)
+#if os(iOS) || os(macOS) || os(watchOS)
 class HapticFeedbackTests: QuickSpec {
     
     override func spec() {
