@@ -17,6 +17,7 @@ KeyboardKit is localized in 48 keyboard-specific locales:
 * 🇺🇸 English (US)
 * 🇪🇪 Estonian
 * 🇫🇴 Faroese
+* 🇵🇭 Filipino
 * 🇫🇮 Finnish
 * 🇫🇷 French
 * 🇧🇪 French (Belgium)

@@ -1,0 +1,20 @@
+/*
+ Localizable.strings
+ KeyboardKit
+ 
+ Created by Daniel Saidi on 2022-01-20.
+ Copyright © 2022 Daniel Saidi. All rights reserved.
+ */
+
+"locale" = "fil";
+
+"done" = "tapos na";
+"go" = "pumunta";
+"ok" = "OK";
+"return" = "susunod";
+"search" = "hanapin";
+"space" = "space";
+
+"keyboardTypeAlphabetic" = "ABC";
+"keyboardTypeNumeric" = "123";
+"keyboardTypeSymbolic" = "#+=";
