@@ -18,7 +18,7 @@ Note that many features are still only available on iOS and iPadOS.
 
 ### 📺 Platform support
 
-* This version makes the library build on tvOS.
+* This version makes the library build on tvOS and watchOS.
 
 ### ✨ New features
 
@@ -38,7 +38,7 @@ Note that many features are still only available on iOS and iPadOS.
 ### 🗑 Deprecations
 
 * `SystemAudioPlayer` `playSystemAudio` has been renamed to `play`. 
-* The `UIDevice`-based input set provider initializers are replaced by device-agnostic ones.
+* All input set providers have the `UIDevice`-based initializer replaced by a device-agnostic one.
 
 
 
