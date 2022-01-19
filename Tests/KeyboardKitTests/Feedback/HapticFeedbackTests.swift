@@ -19,7 +19,7 @@ class HapticFeedbackTests: QuickSpec {
         
         beforeEach {
             player = MockHapticFeedbackPlayer()
-            StandardHapticFeedbackPlayer.shared = player
+            HapticFeedback.player = player
         }
         
         describe("preparing feedback") {

@@ -20,6 +20,12 @@ Note that many features are still only available on iOS and iPadOS.
 
 * This version makes the library build on tvOS and watchOS.
 
+### 🌐 New locales
+
+* 🇧🇬 Bulgarian
+* 🇷🇸 Serbian
+* 🇷🇸 Serbian (Latin)
+
 ### ✨ New features
 
 * `DeviceSpecificInputSetProvider` has new rows functions.

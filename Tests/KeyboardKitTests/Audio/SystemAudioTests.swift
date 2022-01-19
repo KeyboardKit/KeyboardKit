@@ -19,7 +19,7 @@ class SystemAudioTests: QuickSpec {
         
         beforeEach {
             player = MockSystemAudioPlayer()
-            StandardSystemAudioPlayer.shared = player
+            SystemAudio.player = player
         }
         
         describe("audio feedback") {

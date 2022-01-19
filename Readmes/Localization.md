@@ -1,12 +1,13 @@
 # Localization
 
-KeyboardKit is localized in 39 keyboard-specific locales:
+KeyboardKit is localized in 42 keyboard-specific locales:
 
 * 🇺🇸 English (Default)
 
 * 🇦🇱 Albanian
 * 🇦🇪 Arabic
 * 🇧🇾 Belarusian
+* 🇧🇬 Bulgarian
 * 🇨🇿 Czech
 * 🇭🇷 Croatian
 * 🇩🇰 Danish
@@ -37,6 +38,8 @@ KeyboardKit is localized in 39 keyboard-specific locales:
 * 🇧🇷 Portuguese (Brazil)
 * 🇷🇴 Romanian
 * 🇷🇺 Russian
+* 🇷🇸 Serbian
+* 🇷🇸 Serbian (Latin)
 * 🇸🇮 Slovenian
 * 🇪🇸 Spanish
 * 🇸🇪 Swedish
