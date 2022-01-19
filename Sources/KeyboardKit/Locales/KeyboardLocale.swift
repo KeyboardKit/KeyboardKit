@@ -22,6 +22,8 @@ import Foundation
  */
 public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
     
+    case english = "en"
+    
     case albanian = "sq"
     case arabic = "ar"
     case belarusian = "be"
@@ -31,10 +33,10 @@ public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
     case danish = "da"
     case dutch = "nl"
     case dutch_belgium = "nl_BE"
-    case english = "en"
     case english_gb = "en_GB"
     case english_us = "en_US"
     case estonian = "et"
+    case faroese = "fo"
     case finnish = "fi"
     case french = "fr"
     case french_belgium = "fr_BE"
@@ -100,23 +102,25 @@ public extension KeyboardLocale {
      */
     var flag: String {
         switch self {
+        case .english: return "🇺🇸"
+            
         case .albanian: return "🇦🇱"
         case .arabic: return "🇦🇪"
         case .belarusian: return "🇧🇾"
         case .bulgarian: return "🇧🇬"
         case .croatian: return "🇭🇷"
         case .czech: return "🇨🇿"
-        case .dutch_belgium: return "🇧🇪"
-        case .french_belgium: return "🇧🇪"
-        case .french_switzerland: return "🇨🇭"
         case .danish: return "🇩🇰"
         case .dutch: return "🇳🇱"
-        case .english: return "🇺🇸"
+        case .dutch_belgium: return "🇧🇪"
         case .english_gb: return "🇬🇧"
         case .english_us: return "🇺🇸"
         case .estonian: return "🇪🇪"
+        case .faroese: return "🇫🇴"
         case .finnish: return "🇫🇮"
         case .french: return "🇫🇷"
+        case .french_belgium: return "🇧🇪"
+        case .french_switzerland: return "🇨🇭"
         case .german: return "🇩🇪"
         case .german_austria: return "🇦🇹"
         case .german_switzerland: return "🇨🇭"
