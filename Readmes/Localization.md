@@ -33,6 +33,7 @@ KeyboardKit is localized in 46 keyboard-specific locales:
 * 🇱🇹 Lithuanian
 * 🇲🇰 Macedonian
 * 🇲🇹 Maltese
+* 🇲🇳 Mongolian
 * 🇳🇴 Norwegian
 * 🇮🇷 Persian
 * 🇵🇱 Polish
