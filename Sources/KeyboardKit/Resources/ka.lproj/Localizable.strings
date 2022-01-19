@@ -1,0 +1,20 @@
+/*
+ Localizable.strings
+ KeyboardKit
+ 
+ Created by Daniel Saidi on 2022-01-20.
+ Copyright © 2022 Daniel Saidi. All rights reserved.
+ */
+
+"locale" = "ka";
+
+"done" = "მზადაა";
+"go" = "გადასვლა";
+"ok" = "OK";
+"return" = "შეყვანა";
+"search" = "ძიება";
+"space" = "ჰარი";
+
+"keyboardTypeAlphabetic" = "ა";
+"keyboardTypeNumeric" = "123";
+"keyboardTypeSymbolic" = "#+=";
