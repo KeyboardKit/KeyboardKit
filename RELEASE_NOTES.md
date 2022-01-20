@@ -23,13 +23,13 @@ Note that many features are still only available on iOS and iPadOS.
 ### 🌐 New locales
 
 * 🇧🇬 Bulgarian
+* 🇦🇩 Catalan
 * 🇫🇴 Faroese
 * 🇵🇭 Filipino
 * 🇬🇪 Georgian
 * 🇲🇰 Macedonian
 * 🇲🇹 Maltese
 * 🇲🇳 Mongolian
-* 🇲🇩 Romanian (Moldova)
 * 🇷🇸 Serbian
 * 🇷🇸 Serbian (Latin)
 * 🇸🇰 Slovak

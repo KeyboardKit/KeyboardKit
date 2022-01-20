@@ -8,8 +8,9 @@ KeyboardKit is localized in 50 keyboard-specific locales:
 * 🇦🇪 Arabic
 * 🇧🇾 Belarusian
 * 🇧🇬 Bulgarian
-* 🇨🇿 Czech
+* 🇦🇩 Catalan
 * 🇭🇷 Croatian
+* 🇨🇿 Czech
 * 🇩🇰 Danish
 * 🇳🇱 Dutch
 * 🇧🇪 Dutch (Belgium)
