@@ -20,8 +20,8 @@ class InternalSwedishInputSetProvider: DeviceSpecificInputSetProvider, Localized
     
     var alphabeticInputSet: AlphabeticInputSet {
         AlphabeticInputSet(rows: [
-            InputSetRow("qwertyuiopå"),
-            InputSetRow("asdfghjklöä"),
+            row("qwertyuiopå"),
+            row("asdfghjklöä"),
             row(phone: "zxcvbnm", pad: "zxcvbnm,.")
         ])
     }
