@@ -27,11 +27,10 @@ class InternalSwedishInputSetProvider: DeviceSpecificInputSetProvider, Localized
     }
     
     var numericInputSet: NumericInputSet {
-        let phoneCenter: [String] = "-/:;()".chars + ["kr"] + "&@”".chars
-        let padCenter: [String] = "@#".chars + ["kr"] + "&*()’”+•".chars
-        return NumericInputSet(rows: [
+        NumericInputSet(rows: [
             row(phone: "1234567890", pad: "1234567890`"),
-            row(phone: phoneCenter, pad : padCenter),
+            row(phone: "-/:;()".chars + ["kr"] + "&@”".chars,
+                pad: "@#".chars + ["kr"] + "&*()’”+•".chars),
             row(phone: ".,?!’", pad: "%_-=/;:!?")
         ])
     }

@@ -61,7 +61,7 @@ public extension InputSetProvider {
      */
     func row(
         lowercased: [String],
-        uppercased: [String])  -> InputSetRow {
+        uppercased: [String]) -> InputSetRow {
         InputSetRow(
             lowercased: lowercased,
             uppercased: uppercased)
