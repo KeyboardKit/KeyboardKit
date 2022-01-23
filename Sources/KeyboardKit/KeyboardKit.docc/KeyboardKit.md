@@ -66,6 +66,7 @@ Note that DocC currently omits extensions, which means that there are a lot of f
 - ``SystemAudio``
 - ``SystemAudioPlayer``
 - ``StandardSystemAudioPlayer``
+- ``DisabledSystemAudioPlayer``
 
 ### Autocomplete
 
@@ -80,11 +81,11 @@ Note that DocC currently omits extensions, which means that there are a lot of f
 - ``AutocompleteResult``
 - ``AutocompleteSpaceState``
 
-
 ### Behavior
 
 - ``KeyboardBehavior``
 - ``StandardKeyboardBehavior``
+- ``StaticKeyboardBehavior``
 
 ### Callouts
 
@@ -96,6 +97,10 @@ Note that DocC currently omits extensions, which means that there are a lot of f
 - ``BaseCalloutActionProvider``
 - ``EnglishCalloutActionProvider``
 - ``LocalizedCalloutActionProvider``
+
+### Device
+
+- ``DeviceType``
 
 ### Emojis
 
@@ -130,6 +135,7 @@ Note that DocC currently omits extensions, which means that there are a lot of f
 - ``HapticFeedback``
 - ``HapticFeedbackPlayer``
 - ``StandardHapticFeedbackPlayer``
+- ``DisabledHapticFeedbackPlayer``
 
 ### Input
 
