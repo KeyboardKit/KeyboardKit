@@ -93,14 +93,15 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func lowerLeadingActions(for actions: KeyboardActionRows, context: KeyboardContext) -> KeyboardActions {
         guard isExpectedPhoneInputActions(actions) else { return [] }
-        guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
-        if isCzechAlphabetic(context) { return [action] }
+        guard let switcher = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         if isArabicAlphabetic(context) { return [] }
-        if isBelarusianAlphabetic(context) { return [action] }
+        if isElevenElevenNineAlphabetic(context) { return [switcher] }
         if isPersianAlphabetic(context) { return [] }
-        if isRussianAlphabetic(context) { return [action] }
-        if isUkrainianAlphabetic(context) { return [action] }
-        return [action, leadingMarginAction(for: actions[2])]
+        if isRussianAlphabetic(context) { return [switcher] }
+        if isTenTenEightAlphabetic(context) { return [switcher] }
+        if isTwelveTwelveNineAlphabetic(context) { return [switcher] }
+        if isUkrainianAlphabetic(context) { return [switcher] }
+        return [switcher, leadingMarginAction(for: actions[2])]
     }
     
     /**
@@ -108,10 +109,11 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func lowerTrailingActions(for actions: KeyboardActionRows, context: KeyboardContext) -> KeyboardActions {
         guard isExpectedPhoneInputActions(actions) else { return [] }
-        if isCzechAlphabetic(context) { return [.backspace] }
-        if isBelarusianAlphabetic(context) { return [.backspace] }
+        if isArabicAlphabetic(context) { return [trailingMarginAction(for: actions[2]), .backspace] }
+        if isElevenElevenNineAlphabetic(context) { return [.backspace] }
         if isPersianAlphabetic(context) { return [.backspace] }
-        if isRussianAlphabetic(context) { return [.backspace] }
+        if isTenTenEightAlphabetic(context) { return [.backspace] }
+        if isTwelveTwelveNineAlphabetic(context) { return [.backspace] }
         if isUkrainianAlphabetic(context) { return [.backspace] }
         return [trailingMarginAction(for: actions[2]), .backspace]
     }
@@ -194,7 +196,7 @@ private extension iPhoneKeyboardLayoutProvider {
      The width of the bottom-right primary (return) button.
      */
     func bottomSystemButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
-        .percentage(isPortrait(context) ? 0.125 : 0.097)
+        .percentage(isPortrait(context) ? 0.123 : 0.095)
     }
     
     /**
@@ -202,13 +204,16 @@ private extension iPhoneKeyboardLayoutProvider {
      of the third row's input buttons.
      */
     func lowerSystemButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
+        let bottomWidth = bottomSystemButtonWidth(for: context)
+        let standard = isPortrait(context) ? bottomWidth : .percentage(0.12)
+        if isArabicAlphabetic(context) { return isPortrait(context) ? bottomWidth : .percentage(0.14) }
         if hasTwelveElevenNineAlphabeticInput { return .percentage(0.11) }
-        if isBelarusianAlphabetic(context) { return .available }
-        if isCzechAlphabetic(context) { return .input }
+        if isElevenElevenNineAlphabetic(context) { return .input }
+        if isTenTenEightAlphabetic(context) { return .input }
+        if isTwelveTwelveNineAlphabetic(context) { return .available }
         if isPersianAlphabetic(context) { return .input }
-        if isRussianAlphabetic(context) { return .input }
         if isUkrainianAlphabetic(context) { return .input }
-        return .percentage(0.12)
+        return standard
     }
     
     /**

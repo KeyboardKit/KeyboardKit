@@ -12,9 +12,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 5.9
 
-This version makes the library build on more platforms.
-
-Note that many features are still only available on iOS and iPadOS.
+This version adds new locales and makes the library build on more platforms.
 
 ### 📺 Platform support
 

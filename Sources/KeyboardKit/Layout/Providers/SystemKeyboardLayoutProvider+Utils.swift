@@ -8,6 +8,17 @@
 
 import Foundation
 
+/**
+ These extensions are utils for the iPhone and iPad keyboard
+ layout providers. They are temporary and should not be used
+ when you subclass these classes, since I may remove them if
+ they are no longer used, as I look for a better approach to
+ dynamic layouts. These will be made internal in 6.0.
+ 
+ Note that these properties just describe the input set, NOT
+ the layout. For instance, Arabic uses 11-11-9, but does NOT
+ share the same layout as LTR 11-11-9 keyboards.
+ */
 public extension SystemKeyboardLayoutProvider {
     
     /**
@@ -62,10 +73,27 @@ public extension SystemKeyboardLayoutProvider {
     }
     
     /**
-     Whether or not to use an Czech alphabetic keyboard.
+     Whether or not to use an 10-10-8 keyboard layout, which
+     is used by e.g. `Czech` and `Slovak` keyboards.
      */
-    func isCzechAlphabetic(_ context: KeyboardContext) -> Bool {
-        isAlphabetic(context) && context.locale.identifier == "cs"
+    func isTenTenEightAlphabetic(_ context: KeyboardContext) -> Bool {
+        isAlphabetic(context) && alphabeticInputCount.prefix(3) == [10, 10, 8]
+    }
+    
+    /**
+     Whether or not to use an 11-11-9 keyboard layout, which
+     is used by e.g. `Belarusian` and `Mongol` keyboards.
+     */
+    func isTwelveTwelveNineAlphabetic(_ context: KeyboardContext) -> Bool {
+        isAlphabetic(context) && alphabeticInputCount.prefix(3) == [12, 12, 9]
+    }
+    
+    /**
+     Whether or not to use an 11-11-9 keyboard layout, which
+     is used by e.g. `Russian` and `Bulgarian` keyboards.
+     */
+    func isElevenElevenNineAlphabetic(_ context: KeyboardContext) -> Bool {
+        isAlphabetic(context) && alphabeticInputCount.prefix(3) == [11, 11, 9]
     }
     
     /**
