@@ -54,26 +54,22 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         row: Int,
         index: Int,
         context: KeyboardContext) -> KeyboardLayoutItemWidth {
-        let elevenEleven = hasElevenElevenAlphabeticInput
-        if action == .backspace && isArabic(context) { return .input }
-        if isThirdRowLeadingSwitcher(action, row: row, index: index) && isArabic(context) { return .input }
-        if isSecondRowSpacer(action, row: row, index: index) { return .inputPercentage(elevenEleven ? 0.3 : 0.4) }
-        if isThirdRowLeadingSwitcher(action, row: row, index: index) { return elevenEleven ? .inputPercentage(1.1) : .input }
-        if isThirdRowTrailingSwitcher(action, row: row, index: index) { return .available }
-        if isBottomRowLeadingSwitcher(action, row: row, index: index) { return .input }
-        if isBottomRowTrailingSwitcher(action, row: row, index: index) { return .inputPercentage(1.45) }
+        if isMiddleLeadingSpacer(action, row: row, index: index) { return middleLeadingSpacerWidth(for: context) }
+        if isLowerLeadingSwitcher(action, row: row, index: index) { return lowerLeadingSwitcherWidth(for: context) }
+        if isLowerTrailingSwitcher(action, row: row, index: index) { return lowerTrailingSwitcherWidth(for: context) }
+        if isBottomLeadingSwitcher(action, row: row, index: index) { return bottomLeadingSwitcherWidth(for: context) }
+        if isBottomTrailingSwitcher(action, row: row, index: index) { return bottomTrailingSwitcherWidth(for: context) }
+            
         switch action {
         case dictationReplacement: return .input
-        case .backspace:
-            if isGreekAlphabetic(context) { return .percentage(0.125) }
-            return .percentage(elevenEleven ? 0.125 : 0.095)
+        case .backspace: return backspaceWidth(for: context)
         case .dismissKeyboard: return .inputPercentage(1.45)
         case .keyboardType: return row == 2 ? .available : .input
         case .nextKeyboard: return .input
-        case .newLine:
-            if isBelarusianAlphabetic(context) { return .available }
+        case .newLine: if hasTwelveTwelveTenAlphabeticInput { return .available }
         default: break
         }
+            
         return super.itemSizeWidth(for: action, row: row, index: index, context: context)
     }
     
@@ -124,7 +120,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         if isArabicAlphabetic(context) { return [keyboardReturnAction(for: context)] }
         if isPersianAlphabetic(context) { return [] }
-        if isBelarusianAlphabetic(context) { return [.newLine] }
+        if hasTwelveTwelveTenAlphabeticInput { return [.newLine] }
         return [action]
     }
     
@@ -132,7 +128,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      Additional leading actions to apply to the middle row.
      */
     open func middleLeadingActions(for context: KeyboardContext) -> KeyboardActions {
-        if isBelarusianAlphabetic(context) { return [] }
+        if hasTwelveTwelveTenAlphabeticInput { return [] }
         return [.none]
     }
     
@@ -141,7 +137,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func middleTrailingActions(for context: KeyboardContext) -> KeyboardActions {
         if isArabic(context) { return [] }
-        if isBelarusianAlphabetic(context) { return [] }
+        if hasTwelveTwelveTenAlphabeticInput { return [] }
         return [keyboardReturnAction(for: context)]
     }
     
@@ -160,16 +156,54 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     }
 }
 
+
+// MARK: - Width functions
+
 private extension iPadKeyboardLayoutProvider {
     
-    func isBottomRowLeadingSwitcher(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
+    func backspaceWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
+        if isArabic(context) { return .input }
+        if isPersian(context) { return .input }
+        if hasTwelveTwelveTenAlphabeticInput { return .input }
+        return .percentage(0.125)
+    }
+    
+    func middleLeadingSpacerWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
+        .inputPercentage(0.3)
+    }
+    
+    func lowerLeadingSwitcherWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
+        if hasElevenElevenNineAlphabeticInput { return .inputPercentage(1.1) }
+        return .input
+    }
+    
+    func lowerTrailingSwitcherWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
+        .available
+    }
+    
+    func bottomLeadingSwitcherWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
+        lowerLeadingSwitcherWidth(for: context)
+    }
+    
+    func bottomTrailingSwitcherWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
+        lowerLeadingSwitcherWidth(for: context)
+    }
+}
+
+
+
+// MARK: - Private utils
+
+private extension iPadKeyboardLayoutProvider {
+    
+    func isBottomLeadingSwitcher(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
         switch action {
         case .shift, .keyboardType: return row == 3 && index == 0
         default: return false
         }
     }
     
-    func isBottomRowTrailingSwitcher(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
+    func isBottomTrailingSwitcher(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
         switch action {
         case .shift, .keyboardType: return row == 3 && index > 0
         default: return false
@@ -184,21 +218,21 @@ private extension iPadKeyboardLayoutProvider {
         #endif
     }
     
-    func isSecondRowSpacer(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
+    func isMiddleLeadingSpacer(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
         switch action {
         case .none: return row == 1 && index == 0
         default: return false
         }
     }
     
-    func isThirdRowLeadingSwitcher(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
+    func isLowerLeadingSwitcher(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
         switch action {
         case .shift, .keyboardType: return row == 2 && index == 0
         default: return false
         }
     }
     
-    func isThirdRowTrailingSwitcher(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
+    func isLowerTrailingSwitcher(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
         switch action {
         case .shift, .keyboardType: return row == 2 && index > 0
         default: return false

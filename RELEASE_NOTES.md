@@ -46,6 +46,11 @@ This version adds new locales and makes the library build on more platforms.
 
 * `DeviceSpecificInputSetProvider` no longer requires a `UIDevice`.
 * `EnglishInputSetProvider` no longer requires UIKit.
+* The iPhone and iPad keyboard layout provides have been adjusted to provide better layouts. 
+
+### 🐛 Bug fixes
+
+* Some iPad incorrect layouts have been adjusted.
 
 ### 🗑 Deprecations
 

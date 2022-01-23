@@ -29,19 +29,27 @@ public extension SystemKeyboardLayoutProvider {
     }
     
     /**
-     Whether or not the alphabetic input set uses an 11-11-X
-     layout, which is used by e.g. `German` keyboards.
+     Whether or not the alphabetic input set uses an 11-10-9
+     layout, which is used by e.g. `Swedish` iPad.
      */
-    var hasElevenElevenAlphabeticInput: Bool {
-        alphabeticInputCount.prefix(2) == [11, 11]
+    var hasElevenElevenNineAlphabeticInput: Bool {
+        alphabeticInputCount.prefix(3) == [11, 11, 9]
     }
-
+    
     /**
      Whether or not the alphabetic input set uses an 11-10-9
-     layout, which is used by `Turkish` iPhone keyboards.
+     layout, which is used by e.g. `Turkish` iPad.
      */
     var hasTwelveElevenNineAlphabeticInput: Bool {
         alphabeticInputCount.prefix(3) == [12, 11, 9]
+    }
+    
+    /**
+     Whether or not the alphabetic input set uses a 12-12-10
+     layout, which is used by e.g. `Belarusian` iPad.
+     */
+    var hasTwelveTwelveTenAlphabeticInput: Bool {
+        alphabeticInputCount.prefix(3) == [12, 12, 10]
     }
     
     /**
@@ -52,7 +60,7 @@ public extension SystemKeyboardLayoutProvider {
     }
     
     /**
-     Whether or not to use an Arabic alphabetic keyboard.
+     Whether or not to use an Arabic keyboard.
      */
     func isArabic(_ context: KeyboardContext) -> Bool {
         context.locale.identifier == "ar"
@@ -66,15 +74,8 @@ public extension SystemKeyboardLayoutProvider {
     }
     
     /**
-     Whether or not to use an Belarusian alphabetic keyboard.
-     */
-    func isBelarusianAlphabetic(_ context: KeyboardContext) -> Bool {
-        isAlphabetic(context) && context.locale.identifier == "be"
-    }
-    
-    /**
      Whether or not to use an 10-10-8 keyboard layout, which
-     is used by e.g. `Czech` and `Slovak` keyboards.
+     is used by e.g. `Czech` iPhone keyboards.
      */
     func isTenTenEightAlphabetic(_ context: KeyboardContext) -> Bool {
         isAlphabetic(context) && alphabeticInputCount.prefix(3) == [10, 10, 8]
@@ -82,7 +83,7 @@ public extension SystemKeyboardLayoutProvider {
     
     /**
      Whether or not to use an 11-11-9 keyboard layout, which
-     is used by e.g. `Belarusian` and `Mongol` keyboards.
+     is used by e.g. `Belarusian` iPhone keyboards.
      */
     func isTwelveTwelveNineAlphabetic(_ context: KeyboardContext) -> Bool {
         isAlphabetic(context) && alphabeticInputCount.prefix(3) == [12, 12, 9]
@@ -90,14 +91,14 @@ public extension SystemKeyboardLayoutProvider {
     
     /**
      Whether or not to use an 11-11-9 keyboard layout, which
-     is used by e.g. `Russian` and `Bulgarian` keyboards.
+     is used by e.g. `Russian` iPhone keyboards.
      */
     func isElevenElevenNineAlphabetic(_ context: KeyboardContext) -> Bool {
         isAlphabetic(context) && alphabeticInputCount.prefix(3) == [11, 11, 9]
     }
     
     /**
-     Whether or not to use an Greek alphabetic keyboard.
+     Whether or not to use an Greek keyboard.
      */
     func isGreek(_ context: KeyboardContext) -> Bool {
         context.locale.identifier == "el"
@@ -111,10 +112,17 @@ public extension SystemKeyboardLayoutProvider {
     }
     
     /**
+     Whether or not to use an Persian keyboard.
+     */
+    func isPersian(_ context: KeyboardContext) -> Bool {
+        context.locale.identifier == "fa"
+    }
+    
+    /**
      Whether or not to use an Persian alphabetic keyboard.
      */
     func isPersianAlphabetic(_ context: KeyboardContext) -> Bool {
-        isAlphabetic(context) && context.locale.identifier == "fa"
+        isAlphabetic(context) && isPersian(context)
     }
     
     /**
