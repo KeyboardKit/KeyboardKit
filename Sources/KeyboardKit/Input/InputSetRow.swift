@@ -33,7 +33,7 @@ public extension InputSetRow {
     
     /**
      Create an input row from a lowercased and an uppercased
-     arrays, which are mapped to a `InputSetItem` array.
+     string array, which are mapped to `InputSetItem` arrays.
      
      Both arrays must contain the same amount of characters.
      */

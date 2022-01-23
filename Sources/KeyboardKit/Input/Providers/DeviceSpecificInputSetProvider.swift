@@ -20,22 +20,6 @@ public protocol DeviceSpecificInputSetProvider: InputSetProvider {}
 public extension DeviceSpecificInputSetProvider {
     
     /**
-     Create an input row from a string.
-     */
-    func row(_ chars: String,
-        deviceType: DeviceType = .current) -> InputSetRow {
-        InputSetRow(chars.chars)
-    }
-    
-    /**
-     Create an input row from a char array.
-     */
-    func row(_ chars: [String],
-        deviceType: DeviceType = .current) -> InputSetRow {
-        InputSetRow(chars)
-    }
-    
-    /**
      Create an input row from phone and pad-specific strings.
      */
     func row(

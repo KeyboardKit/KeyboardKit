@@ -34,9 +34,10 @@ This version adds new locales and makes the library build on more platforms.
 
 ### ✨ New features
 
-* `DeviceSpecificInputSetProvider` has new rows functions.
+* `DeviceSpecificInputSetProvider` has new row functions.
 * `DeviceType` is a new enum that can be used to determine device type without having to use the real platform-specific device type.
 * `DisabledHapticFeedbackPlayer` is a new feedback player that is used on tvOS and watchOS.
+* `InputSetProvider` has new row functions.
 * `StandardHapticFeedbackPlayer` is now open to subclassing.
 * `StandardKeyboardLayoutProvider` has a new `fallbackProvider` that is used when device is not iPhone or iPad.
 * `StandardSystemAudioPlayer` is now open to subclassing.
