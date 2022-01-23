@@ -44,7 +44,6 @@ KeyboardKit is localized in 50 keyboard-specific locales:
 * 🇵🇹 Portuguese
 * 🇧🇷 Portuguese (Brazil)
 * 🇷🇴 Romanian
-* 🇲🇩 Romanian (Moldova)
 * 🇷🇺 Russian
 * 🇷🇸 Serbian
 * 🇷🇸 Serbian (Latin)

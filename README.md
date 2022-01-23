@@ -7,7 +7,7 @@
 <p align="center">
     <img src="https://img.shields.io/github/v/release/KeyboardKit/KeyboardKit?color=%2300550&sort=semver" alt="Version" />
     <img src="https://img.shields.io/cocoapods/p/KeyboardKit.svg?style=flat" alt="Platform" />
-    <img src="https://img.shields.io/badge/Swift-5.3-orange.svg" alt="Swift 5.3" />
+    <img src="https://img.shields.io/badge/Swift-5.5-orange.svg" alt="Swift 5.5" />
     <img src="https://img.shields.io/github/license/KeyboardKit/KeyboardKit" alt="MIT License" />
     <a href="https://twitter.com/danielsaidi">
         <img src="https://img.shields.io/badge/contact-@danielsaidi-blue.svg?style=flat" alt="Twitter: @danielsaidi" />
@@ -29,6 +29,20 @@ The end result can look something like this...or entirely different:
 KeyboardKit is flexible and doesn't force your keyboard to look or behave in a certain way. You can go with a standard system keyboard, tweak the standard design a little (or a lot) or use completely custom views or designs.
 
 If you're new to iOS keyboard extensions, [this great guide][Guide] will help you get started. You can also have a look at the demo app for inspiration.
+
+
+
+## Platform Support
+
+KeyboardKit supports the following platforms:
+
+* iOS 13.0
+* tvOS 13.0
+* watchOS 6.0
+
+macOS support is coming in KeyboardKit 6.0.
+
+Note that not all features are available on all platforms.
 
 
 
