@@ -10,6 +10,16 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 6.0
+
+This version adds new locales and makes the library build on more platforms.
+
+### 📺 Platform support
+
+* KeyboardKit now supports iOS, iPadOS, macOS, tvOS and watchOS.
+
+
+
 ## 5.9.1
 
 This version polishes the action callout on iPad and makes the core library build on macOS. 
