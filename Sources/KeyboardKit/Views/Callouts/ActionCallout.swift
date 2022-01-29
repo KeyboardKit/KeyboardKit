@@ -23,13 +23,16 @@ public struct ActionCallout: View {
      */
     public init(
         context: ActionCalloutContext,
+        device: DeviceType = .current,
         style: ActionCalloutStyle = .standard) {
         self._context = ObservedObject(wrappedValue: context)
+        self.device = device
         self.style = style
     }
     
     @ObservedObject private var context: ActionCalloutContext
     
+    private let device: DeviceType
     private let style: ActionCalloutStyle
     
     public var body: some View {
@@ -66,6 +69,7 @@ private extension ActionCallout {
     
     var buttonArea: some View {
         CalloutButtonArea(frame: buttonFrame, style: calloutStyle)
+            .opacity(isPad ? 0 : 1)
     }
     
     var callout: some View {
@@ -87,8 +91,8 @@ private extension ActionCallout {
         CustomRoundedRectangle(
             topLeft: cornerRadius,
             topRight: cornerRadius,
-            bottomLeft: isLeading ? 2 : cornerRadius,
-            bottomRight: isTrailing ? 2 : cornerRadius)
+            bottomLeft: !isPad && isLeading ? 2 : cornerRadius,
+            bottomRight: !isPad && isTrailing ? 2 : cornerRadius)
             .foregroundColor(backgroundColor)
     }
     
@@ -108,6 +112,8 @@ private extension ActionCallout {
 // MARK: - Private Functions
 
 private extension ActionCallout {
+    
+    var isPad: Bool { device == .pad }
     
     func isSelected(_ offset: Int) -> Bool {
         context.selectedIndex == offset

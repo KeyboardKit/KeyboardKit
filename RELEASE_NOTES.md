@@ -21,6 +21,7 @@ This version polishes the max size of action callout buttons.
 
 ### 💡 Behavior changes
 
+* `ActionCallout` now renders differently on iPad devices.
 * `ActionCalloutContext` now requires a little less swiping to change action.
 
 
