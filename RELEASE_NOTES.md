@@ -12,11 +12,11 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 5.9.1
 
-This version polishes the max size of action callout buttons. 
+This version polishes the action callout on iPad and makes the core library build on macOS. 
 
 ### 📺 Platform support
 
-* This version makes the core library (not KeyboardKit Pro) build on macOS.
+* This version makes the core library build on macOS. KeyboardKit Pro will add macOS support in 6.0.
 
 ### ✨ New Features
 
