@@ -10,6 +10,17 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 5.9.1
+
+This version polishes the max size of action callout buttons. 
+
+
+### ✨ New Features
+
+* `ActionCalloutStyle` has a new `maxButtonSize` property.
+
+
+
 ## 5.9
 
 This version adds new locales and makes the library build on more platforms.

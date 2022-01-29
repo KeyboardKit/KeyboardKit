@@ -36,11 +36,19 @@ public class PreviewKeyboardAppearance: StandardKeyboardAppearance {
     }
     
     public override func inputCalloutStyle() -> InputCalloutStyle {
-        .preview1
+        InputCalloutStyle(
+            callout: .preview1,
+            calloutSize: CGSize(width: 0, height: 40),
+            font: .body)
     }
     
     public override func actionCalloutStyle() -> ActionCalloutStyle {
-        .preview1
+        ActionCalloutStyle(
+            callout: .preview1,
+            font: .headline,
+            selectedBackgroundColor: .yellow,
+            selectedForegroundColor: .black,
+            verticalTextPadding: 10)
     }
 }
 

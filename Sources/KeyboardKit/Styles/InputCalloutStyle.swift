@@ -70,30 +70,13 @@ public struct InputCalloutStyle {
     public var font: Font
 }
 
+
+// MARK: - Standard Style
+
 public extension InputCalloutStyle {
     
     /**
      This standard style aims to mimic the native iOS style.
      */
     static var standard = InputCalloutStyle()
-}
-
-extension InputCalloutStyle {
-    
-    /**
-     This internal style is only used in previews.
-     */
-    static var preview1 = InputCalloutStyle(
-        callout: .preview1,
-        calloutSize: CGSize(width: 0, height: 40),
-        font: .body)
-    
-    /**
-     This internal style is only used in previews.
-     */
-    static var preview2 = InputCalloutStyle(
-        callout: .preview2,
-        calloutPadding: EdgeInsets(top: 10, leading: 20, bottom: 30, trailing: 40),
-        calloutSize: CGSize(width: 100, height: 60),
-        font: .footnote)
 }

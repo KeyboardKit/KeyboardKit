@@ -47,6 +47,29 @@ open class ActionCalloutContext: ObservableObject {
     public let actionProvider: CalloutActionProvider
     
     
+    // MARK: - Published Properties
+    
+    /**
+     The action that are currently active for the context.
+     */
+    @Published private(set) var actions: [KeyboardAction] = []
+    
+    /**
+     The callout bubble alignment.
+     */
+    @Published private(set) var alignment: HorizontalAlignment = .leading
+    
+    /**
+     The frame of the currently pressed keyboard button.
+     */
+    @Published private(set) var buttonFrame: CGRect = .zero
+    
+    /**
+     The currently selected action index.
+     */
+    @Published private(set) var selectedIndex: Int = -1
+    
+    
     // MARK: - Properties
     
     static let coordinateSpace = "com.keyboardkit.coordinate.ActionCallout"
@@ -78,26 +101,6 @@ open class ActionCalloutContext: ObservableObject {
     public var selectedAction: KeyboardAction? {
         isIndexValid(selectedIndex) ? actions[selectedIndex] : nil
     }
-    
-    /**
-     The action that are currently active for the context.
-     */
-    @Published private(set) var actions: [KeyboardAction] = []
-    
-    /**
-     The callout bubble alignment.
-     */
-    @Published private(set) var alignment: HorizontalAlignment = .leading
-    
-    /**
-     The frame of the button that is active for the context.
-     */
-    @Published private(set) var buttonFrame: CGRect = .zero
-    
-    /**
-     The currently selected action index.
-     */
-    @Published private(set) var selectedIndex: Int = -1
     
     
     // MARK: - Functions

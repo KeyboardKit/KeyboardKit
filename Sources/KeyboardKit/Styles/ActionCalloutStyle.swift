@@ -30,11 +30,13 @@ public struct ActionCalloutStyle {
     public init(
         callout: CalloutStyle = .standard,
         font: Font = Self.standardFont,
+        maxButtonSize: CGSize = CGSize(width: 50, height: 50),
         selectedBackgroundColor: Color = .blue,
         selectedForegroundColor: Color = .white,
         verticalTextPadding: CGFloat = 5) {
         self.callout = callout
         self.font = font
+        self.maxButtonSize = maxButtonSize
         self.selectedBackgroundColor = selectedBackgroundColor
         self.selectedForegroundColor = selectedForegroundColor
         self.verticalTextPadding = verticalTextPadding
@@ -51,6 +53,11 @@ public struct ActionCalloutStyle {
     public var font: Font
     
     /**
+     The max size of the callout buttons.
+     */
+    public var maxButtonSize: CGSize
+    
+    /**
      The background color of the selected item.
      */
     public var selectedBackgroundColor: Color
@@ -65,6 +72,9 @@ public struct ActionCalloutStyle {
      */
     public var verticalTextPadding: CGFloat
 }
+
+
+// MARK: - Standard Style
 
 public extension ActionCalloutStyle {
     
@@ -83,27 +93,4 @@ public extension ActionCalloutStyle {
             return .body
         }
     }
-}
-
-extension ActionCalloutStyle {
-    
-    /**
-     This internal style is only used in previews.
-     */
-    static var preview1 = ActionCalloutStyle(
-        callout: .preview1,
-        font: .headline,
-        selectedBackgroundColor: .yellow,
-        selectedForegroundColor: .black,
-        verticalTextPadding: 10)
-    
-    /**
-     This internal style is only used in previews.
-     */
-    static var preview2 = ActionCalloutStyle(
-        callout: .preview2,
-        font: .footnote,
-        selectedBackgroundColor: .black,
-        selectedForegroundColor: .yellow,
-        verticalTextPadding: 15)
 }

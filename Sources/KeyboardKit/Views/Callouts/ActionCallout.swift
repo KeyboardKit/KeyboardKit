@@ -56,7 +56,7 @@ private extension ActionCallout {
     var backgroundColor: Color { calloutStyle.backgroundColor }
     var buttonFrame: CGRect { context.buttonFrame.insetBy(dx: buttonInset.width, dy: buttonInset.height) }
     var buttonInset: CGSize { calloutStyle.buttonInset }
-    var buttonSize: CGSize { buttonFrame.size }
+    var calloutButtonSize: CGSize { buttonFrame.size.limited(to: style.maxButtonSize) }
     var calloutInputs: [String] { context.actions.compactMap { $0.input } }
     var calloutStyle: CalloutStyle { style.callout }
     var cornerRadius: CGFloat { calloutStyle.cornerRadius }
@@ -72,7 +72,7 @@ private extension ActionCallout {
         HStack(spacing: 0) {
             ForEach(Array(calloutInputs.enumerated()), id: \.offset) {
                 Text($0.element)
-                    .frame(buttonSize)
+                    .frame(calloutButtonSize)
                     .background(isSelected($0.offset) ? style.selectedBackgroundColor : .clear)
                     .foregroundColor(isSelected($0.offset) ? style.selectedForegroundColor : style.callout.textColor)
                     .cornerRadius(cornerRadius)
@@ -93,7 +93,7 @@ private extension ActionCallout {
     }
     
     var positionX: CGFloat {
-        let buttonWidth = buttonSize.width
+        let buttonWidth = calloutButtonSize.width
         let adjustment = (CGFloat(calloutInputs.count) * buttonWidth)/2
         let signedAdjustment = isTrailing ? -adjustment + buttonWidth : adjustment
         return buttonFrame.origin.x + signedAdjustment
@@ -116,6 +116,15 @@ private extension ActionCallout {
 
 
 // MARK: - Private Extensions
+
+private extension CGSize {
+    
+    func limited(to size: CGSize) -> CGSize {
+        CGSize(
+            width: min(width, size.width),
+            height: min(height, size.height))
+    }
+}
 
 private extension KeyboardAction {
     
