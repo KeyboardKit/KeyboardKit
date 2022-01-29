@@ -10,6 +10,12 @@ import Foundation
 
 /**
  This class provides U.S. English callout actions.
+ 
+ You can use the class as a template when you want to create
+ your own callout action provider.
+ 
+ KeyboardKit Pro adds a provider for each ``KeyboardLocale``
+ Check out the demo app to see them in action.
  */
 open class EnglishCalloutActionProvider: BaseCalloutActionProvider, LocalizedService {
     

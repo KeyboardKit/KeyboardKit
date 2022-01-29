@@ -58,7 +58,7 @@ public extension KeyboardLayoutConfiguration {
      */
     static func standard(
         for context: KeyboardContext) -> KeyboardLayoutConfiguration {
-        #if os(iOS) || os(macOS)
+        #if os(iOS)
         standard(
             forIdiom: context.device.userInterfaceIdiom,
             screenSize: context.screen.bounds.size,
@@ -68,7 +68,7 @@ public extension KeyboardLayoutConfiguration {
         #endif
     }
     
-    #if os(iOS) || os(macOS)
+    #if os(iOS)
     /**
      The standard config for the provided device and screen.
      */

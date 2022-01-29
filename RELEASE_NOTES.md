@@ -14,6 +14,9 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 This version polishes the max size of action callout buttons. 
 
+### 📺 Platform support
+
+* This version makes the core library (not KeyboardKit Pro) build on macOS.
 
 ### ✨ New Features
 

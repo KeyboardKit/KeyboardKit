@@ -7,8 +7,11 @@
 //
 
 import Foundation
-import UIKit
 import SwiftUI
+
+#if canImport(UIKit)
+import UIKit
+#endif
 
 /**
  This class provides keyboard extensions with contextual and
@@ -24,7 +27,7 @@ import SwiftUI
 public class KeyboardContext: ObservableObject {
     
     
-    #if os(iOS) || os(macOS) || os(tvOS)
+    #if os(iOS) || os(tvOS)
     /**
      Create a context instance.
      
@@ -53,10 +56,7 @@ public class KeyboardContext: ObservableObject {
      Create a context instance.
      
      - Parameters:
-       - controller: The controller to which the context should apply.
        - locale: The locale to use, by default `.current`.
-       - device: The device to use, by default `.current`.
-       - screen: The screen to use, by default `.main`.
        - keyboardType: The current keyboard tye, by default `.alphabetic(.lowercased)`
      */
     public init(
@@ -68,7 +68,7 @@ public class KeyboardContext: ObservableObject {
     }
     #endif
     
-    #if os(iOS) || os(macOS) || os(tvOS)
+    #if os(iOS) || os(tvOS)
     public let device: UIDevice
     #endif
     
@@ -131,7 +131,7 @@ public class KeyboardContext: ObservableObject {
      */
     @Published public var primaryLanguage: String?
     
-    #if os(iOS) || os(macOS) || os(tvOS)
+    #if os(iOS) || os(tvOS)
     /**
      The screen in which the keyboard is presented.
      */
@@ -147,7 +147,7 @@ public class KeyboardContext: ObservableObject {
     #endif
     
     
-    #if os(iOS) || os(macOS) || os(tvOS)
+    #if os(iOS) || os(tvOS)
     /**
      The text document proxy that is currently active.
      */
@@ -168,7 +168,7 @@ public class KeyboardContext: ObservableObject {
 
 // MARK: - Public Properties
 
-#if os(iOS) || os(macOS) || os(tvOS)
+#if os(iOS) || os(tvOS)
 public extension KeyboardContext {
     
     /**
@@ -197,7 +197,7 @@ public extension KeyboardContext {
      a dark color scheme.
      */
     var hasDarkColorScheme: Bool {
-        #if os(iOS) || os(macOS) || os(tvOS)
+        #if os(iOS) || os(tvOS)
         colorScheme == .dark
         #else
         false
@@ -217,7 +217,7 @@ public extension KeyboardContext {
         locale = locales[nextIndex]
     }
     
-    #if os(iOS) || os(macOS) || os(tvOS)
+    #if os(iOS) || os(tvOS)
     /**
      Sync the context with the current state of the keyboard
      input view controller.

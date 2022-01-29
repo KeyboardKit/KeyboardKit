@@ -10,6 +10,9 @@ import CoreGraphics
 
 extension CGSize {
     
+    /**
+     Limit a size's width and height to that of another size.
+     */
     func limited(to size: CGSize) -> CGSize {
         CGSize(
             width: min(width, size.width),

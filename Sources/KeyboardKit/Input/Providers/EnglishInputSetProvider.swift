@@ -16,6 +16,9 @@ import Foundation
  a `numericCurrency` that will be used for numeric keyboards,
  and a `symbolicCurrency` that will be used for symbolic. By
  default, `$` is used for numeric and `£` for symbolic.
+ 
+ KeyboardKit Pro adds a provider for each ``KeyboardLocale``
+ Check out the demo app to see them in action.
  */
 public class EnglishInputSetProvider: DeviceSpecificInputSetProvider, LocalizedService {
     

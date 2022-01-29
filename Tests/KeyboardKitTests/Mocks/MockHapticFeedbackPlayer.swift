@@ -9,7 +9,7 @@
 import KeyboardKit
 import MockingKit
 
-#if os(iOS) || os(macOS)
+#if os(iOS)
 class MockHapticFeedbackPlayer: StandardHapticFeedbackPlayer, Mockable {
     
     let mock = Mock()

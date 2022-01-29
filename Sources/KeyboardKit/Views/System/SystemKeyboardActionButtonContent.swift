@@ -6,7 +6,6 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(macOS) || os(tvOS)
 import SwiftUI
 
 /**
@@ -42,7 +41,11 @@ public struct SystemKeyboardActionButtonContent: View {
     
     public var body: some View {
         if action == .nextKeyboard {
+            #if os(iOS) || os(tvOS)
             NextKeyboardButton()
+            #else
+            Image.keyboardGlobe
+            #endif
         } else if action == .space {
             spaceView
         } else if let image = buttonImage {
@@ -98,6 +101,7 @@ private extension SystemKeyboardActionButtonContent {
     }
 }
 
+#if os(iOS) || os(tvOS)
 struct SystemKeyboardButtonContent_Previews: PreviewProvider {
     
     static let multiLocaleContext: KeyboardContext = {

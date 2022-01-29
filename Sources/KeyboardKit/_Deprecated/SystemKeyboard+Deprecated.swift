@@ -1,7 +1,7 @@
 import CoreGraphics
 import SwiftUI
 
-#if os(iOS) || os(macOS) || os(tvOS)
+#if os(iOS) || os(tvOS)
 public extension SystemKeyboard {
     
     @available(*, deprecated, message: "buttonViewBuilder has been renamed to buttonView, context to keyboardContext, inputContext to inputCalloutContext and secondaryInputContext to actionCalloutContext")

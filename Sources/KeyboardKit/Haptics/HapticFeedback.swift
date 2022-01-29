@@ -47,7 +47,7 @@ public extension HapticFeedback {
      */
     var id: String { rawValue }
     
-    #if os(iOS) || os(macOS)
+    #if os(iOS)
     static var player = StandardHapticFeedbackPlayer.shared
     #else
     static var player = DisabledHapticFeedbackPlayer()

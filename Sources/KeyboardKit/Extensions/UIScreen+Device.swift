@@ -6,9 +6,9 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(tvOS)
 import UIKit
 
-#if os(iOS) || os(macOS) || os(tvOS)
 extension UIScreen {
     
     var isIpadProLargeScreen: Bool { hasSize(.iPadProLargeScreenPortrait) }

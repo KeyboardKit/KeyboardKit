@@ -1,6 +1,6 @@
 import Foundation
 
-#if os(iOS) || os(macOS) || os(tvOS)
+#if os(iOS) || os(tvOS)
 public extension KeyboardInputViewController {
 
     @available(*, deprecated, renamed: "actionCalloutContext")

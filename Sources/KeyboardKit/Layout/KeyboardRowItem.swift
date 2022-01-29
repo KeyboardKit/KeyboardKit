@@ -6,6 +6,8 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+import Foundation
+
 /**
  This protocol can be implemented by any type that is stored
  in "rows" that should be easily mutated.

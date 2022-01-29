@@ -214,7 +214,7 @@ public extension EmojiKeyboardStyle {
      Get the standard style to use for a certain context.
      */
     static func standard(for context: KeyboardContext) -> EmojiKeyboardStyle {
-        #if os(iOS) || os(macOS)
+        #if os(iOS)
         let isPortrait = context.screenOrientation.isPortrait
         if context.device.isPhone {
             return isPortrait ? .standardPhonePortrait : .standardPhoneLandscape

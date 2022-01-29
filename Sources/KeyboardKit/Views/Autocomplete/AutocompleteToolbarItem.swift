@@ -65,7 +65,7 @@ private extension AutocompleteToolbarItem {
     }
 }
 
-#if os(iOS) || os(macOS) || os(tvOS)
+#if os(iOS) || os(tvOS)
 struct AutocompleteToolbarItem_Previews: PreviewProvider {
     
     static var previews: some View {

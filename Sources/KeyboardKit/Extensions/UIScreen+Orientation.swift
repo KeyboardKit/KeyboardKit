@@ -6,9 +6,9 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
-#if os(iOS) || os(macOS)
 extension UIScreen {
     
     /**

@@ -103,7 +103,7 @@ private extension InputCallout {
     }
     
     var shouldEnforceSmallSize: Bool {
-        #if os(iOS) || os(macOS)
+        #if os(iOS)
         keyboardContext.screenOrientation.isLandscape &&
         keyboardContext.device.isPhone
         #elseif os(watchOS)

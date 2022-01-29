@@ -206,7 +206,7 @@ private extension ActionCalloutContext {
     }
     
     func getAlignment(for geo: GeometryProxy) -> HorizontalAlignment {
-        #if os(iOS) || os(macOS)
+        #if os(iOS)
         let center = UIScreen.main.bounds.size.width / 2
         let isTrailing = buttonFrame.origin.x > center
         return isTrailing ? .trailing : .leading

@@ -113,7 +113,7 @@ extension Bundle {
     }
 }
 
-#if os(iOS) || os(macOS) || os(tvOS)
+#if os(iOS) || os(tvOS)
 struct KKL10n_Previews: PreviewProvider {
     
     static let context: KeyboardContext = {

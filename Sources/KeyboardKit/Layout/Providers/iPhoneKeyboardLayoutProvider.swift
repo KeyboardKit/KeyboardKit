@@ -171,7 +171,7 @@ private extension iPhoneKeyboardLayoutProvider {
     }
     
     func isPortrait(_ context: KeyboardContext) -> Bool {
-        #if os(iOS) || os(macOS)
+        #if os(iOS)
         return context.screenOrientation.isPortrait
         #else
         return false

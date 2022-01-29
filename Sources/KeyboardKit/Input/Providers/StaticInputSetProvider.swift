@@ -9,7 +9,8 @@
 import Foundation
 
 /**
- This input set provider returns the input set that was initialized with, regardless of the provided context.
+ This input set provider just returns the input sets that it
+ was initialized with.
  */
 public class StaticInputSetProvider: InputSetProvider {
     

@@ -75,7 +75,7 @@ struct KeyboardGestures<Content: View>: View {
      changes that affects many library views.
      */
     private var actionCalloutContext: ActionCalloutContext? {
-        #if os(iOS) || os(macOS)
+        #if os(iOS)
         KeyboardInputViewController.shared.actionCalloutContext
         #else
         nil
@@ -89,7 +89,7 @@ struct KeyboardGestures<Content: View>: View {
      changes that affects many library views.
      */
     private var inputCalloutContext: InputCalloutContext? {
-        #if os(iOS) || os(macOS)
+        #if os(iOS)
         KeyboardInputViewController.shared.inputCalloutContext
         #else
         nil

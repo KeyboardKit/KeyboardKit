@@ -26,7 +26,7 @@ public extension KeyboardContext {
 private extension KeyboardContext {
     
     var preferredAutocapitalizedKeyboardType: KeyboardType? {
-        #if os(iOS) || os(macOS) || os(tvOS)
+        #if os(iOS) || os(tvOS)
         guard let autoType = textDocumentProxy.autocapitalizationType else { return nil }
         guard keyboardType.isAlphabetic else { return nil }
         let uppercased = KeyboardType.alphabetic(.uppercased)
@@ -44,7 +44,7 @@ private extension KeyboardContext {
     }
     
     var preferredKeyboardTypeAfterNonAlphaSpace: KeyboardType? {
-        #if os(iOS) || os(macOS) || os(tvOS)
+        #if os(iOS) || os(tvOS)
         guard
             keyboardType == .numeric || keyboardType == .symbolic,
             let before = textDocumentProxy.documentContextBeforeInput,
