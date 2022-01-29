@@ -19,6 +19,10 @@ This version polishes the max size of action callout buttons.
 
 * `ActionCalloutStyle` has a new `maxButtonSize` property.
 
+### 💡 Behavior changes
+
+* `ActionCalloutContext` now requires a little less swiping to change action.
+
 
 
 ## 5.9

@@ -166,8 +166,11 @@ open class ActionCalloutContext: ObservableObject {
         if shouldReset(for: value) { return reset() }
         guard shouldUpdateSelection(with: value) else { return }
         let translation = value.translation.width
-        let buttonWidth = buttonFrame.size.width
-        let offset = Int(abs(translation) / buttonWidth)
+        let standardStyle = ActionCalloutStyle.standard
+        let maxButtonSize = standardStyle.maxButtonSize
+        let buttonSize = buttonFrame.size.limited(to: maxButtonSize)
+        let indexWidth = 0.9 * buttonSize.width
+        let offset = Int(abs(translation) / indexWidth)
         let index = isLeading ? offset : actions.count - offset - 1
         let currentIndex = self.selectedIndex
         let newIndex = isIndexValid(index) ? index : startIndex

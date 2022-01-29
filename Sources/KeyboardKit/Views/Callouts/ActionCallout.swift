@@ -114,18 +114,6 @@ private extension ActionCallout {
     }
 }
 
-
-// MARK: - Private Extensions
-
-private extension CGSize {
-    
-    func limited(to size: CGSize) -> CGSize {
-        CGSize(
-            width: min(width, size.width),
-            height: min(height, size.height))
-    }
-}
-
 private extension KeyboardAction {
     
     var input: String? {
