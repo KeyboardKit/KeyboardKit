@@ -18,7 +18,9 @@
 
 ## About KeyboardKit
 
-KeyboardKit helps you build custom keyboard extensions for `iOS` and `iPadOS`, using `SwiftUI`. It extends the native APIs to provide you with more functionality and has views and utils to let you mimic native keyboards.
+KeyboardKit helps you build custom keyboard extensions for `iOS`, `iPadOS`, `macOS`, `tvOS` and `watchOS`, using `SwiftUI`. 
+
+KeyboardKit extends the native keyboard APIs with more functionality and has views and utils to let you create custom keyboards or mimic native ones.
 
 The end result can look something like this...or entirely different:
 
@@ -37,12 +39,11 @@ If you're new to iOS keyboard extensions, [this great guide][Guide] will help yo
 KeyboardKit supports the following platforms:
 
 * iOS 13.0
+* macOS 11.0
 * tvOS 13.0
 * watchOS 6.0
 
-macOS support is coming in KeyboardKit 6.0.
-
-Note that not all features are available on all platforms.
+Note that not all features are available on all platforms and that some components that may compile for a certain platform may not make sense on that platform. 
 
 
 
@@ -54,7 +55,7 @@ The best way to add KeyboardKit to your app is to use the Swift Package Manager:
 https://github.com/KeyboardKit/KeyboardKit.git
 ```
 
-You can add the library to the main app, the keyboard extension and any other targets that needs it.  
+You can add the library to the main app, the keyboard extension and any other targets that need it.  
 
 
 
@@ -90,7 +91,7 @@ KeyboardKit is localized in 50 keyboard-specific locales:
 
 ## Features 
 
-Even though KeyboardKit contains a lot of features, you can use its' extensions and views alone to simplify working with keyboard extensions. For instance, there are a bunch of `UITextDocumentProxy` extensions that make your life easier, and views that don't require you to use the rest of the library. 
+Besides all features listed below, KeyboardKit also contains a lot of extensions to native types. For instance, there are a bunch of `UITextDocumentProxy` extensions that make your life easier, and views that don't require you to use the rest of the library. 
 
 Check out the demo apps and source code for examples and more information.
 
@@ -252,13 +253,16 @@ Note that KeyboardKit Pro extends this library by using the same extension point
 
 This repository contains a demo app that lets you try out KeyboardKit and KeyboardKit Pro.
 
-The standard keyboard demonstrates different system keyboards, like `alphabetical` (lowercased, uppercased and capslocked), `numerical`, `symbols` and `emojis`.
+The demo consists of a main app and two keyboard extensions:
 
-The "RTL" keyboard is the same as the standard keyboard, but with its Info.plist specifying RTL and an RTL primary language. 
+* The standard keyboard demonstrates a system keyboard that has `alphabetical` (lowercased, uppercased and capslocked), `numeric`, `symbolic` and `emoji` keyboards.
+* The `RTL` keyboard is the same as the standard keyboard, but with its Info.plist specifying RTL and an RTL primary language. 
 
-The demo app is not intended to be production ready, but rather to give you inspiration. Just keep in mind that your keyboards can look anyway you like. They don't have to look like a system keyboard.
+The demo app is not intended to be production ready, but rather to give you inspiration.
 
 To run the demo app, open and run the `Demo/Demo.xcodeproj` project, then enable the keyboards under system settings. Enable full access to support all features, like audio and haptic feedback.
+
+Just keep in mind that your keyboards can look anyway you like. They don't have to look like a system keyboard.
 
 
 
