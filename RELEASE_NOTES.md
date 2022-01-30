@@ -18,6 +18,10 @@ This version adds new locales and makes the library build on more platforms.
 
 * KeyboardKit now supports iOS, iPadOS, macOS, tvOS and watchOS.
 
+### 💥 Breaking changes
+
+* All previously deprecated code has been removed.
+
 
 
 ## 5.9.1

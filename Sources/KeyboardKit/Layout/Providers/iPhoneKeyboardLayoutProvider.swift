@@ -149,19 +149,6 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         guard shouldAddUpperMarginActions(for: actions, context: context) else { return [] }
         return [trailingMarginAction(for: actions[1])]
     }
-    
-    
-    // MARK: - Deprecated
-    
-    @available(*, deprecated, message: "Use for:context instead")
-    open func lowerLeadingActions(for context: KeyboardContext) -> KeyboardActions {
-        lowerLeadingActions(for: [], context: context)
-    }
-    
-    @available(*, deprecated, message: "Use for:context instead")
-    open func lowerTrailingActions(for context: KeyboardContext) -> KeyboardActions {
-        lowerTrailingActions(for: [], context: context)
-    }
 }
 
 private extension iPhoneKeyboardLayoutProvider {
