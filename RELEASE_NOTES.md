@@ -25,6 +25,7 @@ This version adds new locales and makes the library build on more platforms.
 ### 💥 Breaking changes
 
 * All previously deprecated code has been removed.
+* `KeyboardInputViewController` `needsInputModeSwitchKeyOverride` has been removed.
 
 
 

@@ -136,24 +136,6 @@ open class KeyboardInputViewController: UIInputViewController {
     public var didMoveToParent = false
     
     /**
-     Set this property to either `true` or `false` to ignore
-     the real `needsInputModeSwitchKey` value.
-     
-     This can be used to avoid warnings when previeweing etc.
-     */
-    public static var needsInputModeSwitchKeyOverride: Bool?
-    
-    /**
-     Set this property to either `true` or `false` to ignore
-     the real `needsInputModeSwitchKey` value.
-     
-     This can be used to avoid warnings when previeweing etc.
-     */
-    public lazy var needsInputModeSwitchKeyOverride: Bool? = {
-        Self.needsInputModeSwitchKeyOverride
-    }()
-    
-    /**
      Whether or not the keyboards needs a "globe" button for
      switching keyboard.
      */
