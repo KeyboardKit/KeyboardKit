@@ -47,6 +47,11 @@ open class KeyboardInputViewController: UIInputViewController {
         super.traitCollectionDidChange(previousTraitCollection)
     }
     
+    open override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
+        didMoveToParent = true
+    }
+    
     
     // MARK: - Root View
     
@@ -124,6 +129,13 @@ open class KeyboardInputViewController: UIInputViewController {
     }
     
     /**
+     This property is set when the controller has been moved
+     to its parent. This is when we can start looking at the
+     ``needsInputModeSwitchKey`` property without a warning.
+     */
+    public var didMoveToParent = false
+    
+    /**
      Set this property to either `true` or `false` to ignore
      the real `needsInputModeSwitchKey` value.
      
@@ -146,7 +158,8 @@ open class KeyboardInputViewController: UIInputViewController {
      switching keyboard.
      */
     open override var needsInputModeSwitchKey: Bool {
-        needsInputModeSwitchKeyOverride ?? super.needsInputModeSwitchKey
+        if !didMoveToParent { return false }
+        return super.needsInputModeSwitchKey
     }
     
     /**
@@ -164,11 +177,9 @@ open class KeyboardInputViewController: UIInputViewController {
     public static var shared = KeyboardInputViewController()
 
     /**
-     A proxy to the text input object with which this custom
-     keyboard is interacting with.
-     
-     If you set `textInputProxy` to a custom object, it will
-     be used instead of the real text document proxy.
+     The text document proxy to use, which can either be the
+     original text input proxy or the ``textInputProxy``, if
+     it is set to a custom value.
      */
     open override var textDocumentProxy: UITextDocumentProxy {
         textInputProxy ?? originalTextDocumentProxy

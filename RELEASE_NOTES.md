@@ -18,6 +18,10 @@ This version adds new locales and makes the library build on more platforms.
 
 * KeyboardKit now supports iOS, iPadOS, macOS, tvOS and watchOS.
 
+### ✨ New Features
+
+* `KeyboardInputViewController` has a new `didMoveToParent` property, which is used to avoid calling `needsInputModeSwitchKey` when it generates a warning. 
+
 ### 💥 Breaking changes
 
 * All previously deprecated code has been removed.
