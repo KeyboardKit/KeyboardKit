@@ -22,7 +22,7 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     // MARK: - Overrides
     
-    override func action(for gesture: KeyboardGesture, on action: KeyboardAction) -> GestureAction? {
+    override func action(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction.GestureAction? {
         let standard = super.action(for: gesture, on: action)
         switch gesture {
         case .longPress: return longPressAction(for: action) ?? standard
@@ -39,14 +39,14 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     // MARK: - Custom actions
     
-    func longPressAction(for action: KeyboardAction) -> GestureAction? {
+    func longPressAction(for action: KeyboardAction) -> KeyboardAction.GestureAction? {
         switch action {
         case .image(_, _, let imageName): return { [weak self] _ in self?.saveImage(named: imageName) }
         default: return nil
         }
     }
     
-    func tapAction(for action: KeyboardAction) -> GestureAction? {
+    func tapAction(for action: KeyboardAction) -> KeyboardAction.GestureAction? {
         switch action {
         case .image(_, _, let imageName): return { [weak self] _ in self?.copyImage(named: imageName) }
         default: return nil

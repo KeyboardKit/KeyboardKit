@@ -11,11 +11,11 @@ import SwiftUI
 
 /**
  This protocol can be implemented by classes that can define
- styles and appearance information for keyboard actions.
+ styles and appearances for keyboard actions.
  
  Unlike a style, appearances are contextual and more complex.
- You can use an aappearance to generate styles that can then
- be applied to various parts of the keyboard.
+ You can use appearances to generate styles that can then be
+ applied to various parts of a keyboard.
  */
 public protocol KeyboardAppearance: AnyObject {
     

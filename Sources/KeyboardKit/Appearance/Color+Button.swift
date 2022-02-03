@@ -11,18 +11,16 @@ import SwiftUI
 /**
  This file contains keyboard-specific color extensions.
  
- These contextual colors may appear to be resolved in a very
- strange way, but the reason is that iOS currently has a bug
- that cause `colorScheme` to become incorrect when editing a
- keyboard with `keyboardAppearance` set to `dark`. This will
- set the `colorScheme` of the extension to `dark`, even when
- the system is `light`.
+ These contextual colors may appear to be strangely resolved,
+ but the reason is that iOS provides an invalid color scheme
+ when editing a text field with its `keyboardAppearance` set
+ to `dark`. This will cause iOS to set the extension's color
+ scheme to `dark` even if the system color scheme is `light`.
  
- To work around this bug, the button background colors use a
- temporary color set with the suffix `ForColorSchemeBug`. It
- uses dark mode colors that are semi-transparent white, with
- an opacity that makes them look good in both light mode and
- dark appearance and dark mode.
+ To work around this, the button backgrounds use a temporary
+ color set with the suffix `ForColorSchemeBug` that are semi
+ transparent white with an opacity that makes them look good
+ in both light and dark mode.
  
  For now, the `Color.darkAppearanceStrategy` property can be
  used to customize whether or not to use dark appearance.
@@ -33,19 +31,21 @@ import SwiftUI
 public extension Color {
     
     /**
-     The standard background color of light keys in a system
-     keyboard.
+     The standard background color of light keyboard buttons.
      */
     static func standardButtonBackgroundColor(for context: KeyboardContext) -> Color {
-        darkAppearanceStrategy(context) ? .standardButtonBackgroundForColorSchemeBug : .standardButtonBackground
+        darkAppearanceStrategy(context) ?
+            .standardButtonBackgroundForColorSchemeBug :
+            .standardButtonBackground
     }
     
     /**
-     The standard foreground color of light keys in a system
-     keyboard.
+     The standard foreground color of light keyboard buttons.
      */
     static func standardButtonForegroundColor(for context: KeyboardContext) -> Color {
-        darkAppearanceStrategy(context) ? .standardButtonForegroundForDarkAppearance : .standardButtonForeground
+        darkAppearanceStrategy(context) ?
+            .standardButtonForegroundForDarkAppearance :
+            .standardButtonForeground
     }
     
     /**
@@ -56,19 +56,21 @@ public extension Color {
     }
     
     /**
-     The standard background color of a dark key in a system
-     keyboard.
+     The standard background color of dark keyboard buttons.
      */
     static func standardDarkButtonBackgroundColor(for context: KeyboardContext) -> Color {
-        darkAppearanceStrategy(context) ? .standardDarkButtonBackgroundForColorSchemeBug : .standardDarkButtonBackground
+        darkAppearanceStrategy(context) ?
+            .standardDarkButtonBackgroundForColorSchemeBug :
+            .standardDarkButtonBackground
     }
     
     /**
-     The standard foreground color of a dark key in a system
-     keyboard.
+     The standard foreground color of dark keyboard buttons.
      */
     static func standardDarkButtonForegroundColor(for context: KeyboardContext) -> Color {
-        darkAppearanceStrategy(context) ? .standardDarkButtonForegroundForDarkAppearance : .standardDarkButtonForeground
+        darkAppearanceStrategy(context) ?
+            .standardDarkButtonForegroundForDarkAppearance :
+            .standardDarkButtonForeground
     }
 }
 
