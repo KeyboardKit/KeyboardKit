@@ -61,32 +61,32 @@ public struct HapticFeedbackConfiguration: Codable, Equatable {
     /**
      The feedback to use for taps.
      */
-    public let tap: HapticFeedback
+    public var tap: HapticFeedback
     
     /**
      The feedback to use for double taps.
      */
-    public let doubleTap: HapticFeedback
+    public var doubleTap: HapticFeedback
     
     /**
      The feedback to use for long presses.
      */
-    public let longPress: HapticFeedback
+    public var longPress: HapticFeedback
     
     /**
      The feedback to use for long presses on space.
      */
-    public let longPressOnSpace: HapticFeedback
+    public var longPressOnSpace: HapticFeedback
     
     /**
      The feedback to use for repeat.
      */
-    public let `repeat`: HapticFeedback
+    public var `repeat`: HapticFeedback
     
     /**
      A list of action/gesture-specific feedback.
      */
-    public let actions: [ActionFeedback]
+    public var actions: [ActionFeedback]
 }
 
 public extension HapticFeedbackConfiguration {

@@ -20,12 +20,18 @@ This version adds new locales and makes the library build on more platforms.
 
 ### ✨ New Features
 
-* Autocomplete now only applies autocorrections for pure `space` actions and not character actions with a single space.
-* `KeyboardInputViewController` has a new `didMoveToParent` property, which is used to avoid calling `needsInputModeSwitchKey` when it generates a warning. 
+* `AudioFeedbackConfiguration` is now mutable.
+* `HapticFeedbackConfiguration` is now mutable.
+* `KeyboardInputViewController` has a new `didMoveToParent` property, which is used to avoid calling `needsInputModeSwitchKey` when it generates a warning.
+
+### 💡 Behavior changes
+
+* Autocomplete now only applies autocorrections for pure `space` actions and not character actions with a single space. 
 
 ### 💥 Breaking changes
 
 * All previously deprecated code has been removed.
+
 * `Color.standardButtonBackgroundColor(for:)` has been renamed to `standardButtonBackground(for:)`.
 * `Color.standardButtonForegroundColor(for:)` has been renamed to `standardButtonForeground(for:)`.
 * `Color.standardButtonShadowColor(for:)` has been renamed to `standardButtonShadow(for:)`.

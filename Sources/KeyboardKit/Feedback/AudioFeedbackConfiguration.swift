@@ -52,22 +52,22 @@ public struct AudioFeedbackConfiguration: Codable, Equatable {
     /**
      The audio to play when a delete key is pressed.
      */
-     public let delete: SystemAudio
+     public var delete: SystemAudio
  
     /**
      The audio to play when an input key is pressed.
      */
-    public let input: SystemAudio
+    public var input: SystemAudio
     
    /**
     The audio to play when a system key is pressed.
     */
-    public let system: SystemAudio
+    public var system: SystemAudio
     
     /**
      The audio to play when an action is triggered.
      */
-     public let actions: [ActionFeedback]
+     public var actions: [ActionFeedback]
 }
 
 public extension AudioFeedbackConfiguration {
