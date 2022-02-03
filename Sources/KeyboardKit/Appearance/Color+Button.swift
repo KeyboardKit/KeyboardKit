@@ -33,7 +33,7 @@ public extension Color {
     /**
      The standard background color of light keyboard buttons.
      */
-    static func standardButtonBackgroundColor(for context: KeyboardContext) -> Color {
+    static func standardButtonBackground(for context: KeyboardContext) -> Color {
         darkAppearanceStrategy(context) ?
             .standardButtonBackgroundForColorSchemeBug :
             .standardButtonBackground
@@ -42,23 +42,23 @@ public extension Color {
     /**
      The standard foreground color of light keyboard buttons.
      */
-    static func standardButtonForegroundColor(for context: KeyboardContext) -> Color {
+    static func standardButtonForeground(for context: KeyboardContext) -> Color {
         darkAppearanceStrategy(context) ?
             .standardButtonForegroundForDarkAppearance :
             .standardButtonForeground
     }
     
     /**
-     The standard button shadow color in a system keyboard.
+     The standard shadow color of keyboard buttons.
      */
-    static func standardButtonShadowColor(for context: KeyboardContext) -> Color {
+    static func standardButtonShadow(for context: KeyboardContext) -> Color {
         .standardButtonShadow
     }
     
     /**
      The standard background color of dark keyboard buttons.
      */
-    static func standardDarkButtonBackgroundColor(for context: KeyboardContext) -> Color {
+    static func standardDarkButtonBackground(for context: KeyboardContext) -> Color {
         darkAppearanceStrategy(context) ?
             .standardDarkButtonBackgroundForColorSchemeBug :
             .standardDarkButtonBackground
@@ -67,7 +67,7 @@ public extension Color {
     /**
      The standard foreground color of dark keyboard buttons.
      */
-    static func standardDarkButtonForegroundColor(for context: KeyboardContext) -> Color {
+    static func standardDarkButtonForeground(for context: KeyboardContext) -> Color {
         darkAppearanceStrategy(context) ?
             .standardDarkButtonForegroundForDarkAppearance :
             .standardDarkButtonForeground

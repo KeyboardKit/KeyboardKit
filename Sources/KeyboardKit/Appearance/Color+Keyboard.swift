@@ -14,19 +14,77 @@ import SwiftUI
  */
 public extension Color {
     
-    static var standardButtonBackground: Color = color(for: .standardButtonBackground)
-    static var standardButtonBackgroundForColorSchemeBug: Color = color(for: .standardButtonBackgroundForColorSchemeBug)
-    static var standardButtonBackgroundForDarkAppearance: Color = color(for: .standardButtonBackgroundForDarkAppearance)
-    static var standardButtonForeground: Color = color(for: .standardButtonForeground)
-    static var standardButtonForegroundForDarkAppearance: Color = color(for: .standardButtonForegroundForDarkAppearance)
-    static var standardButtonShadow: Color = color(for: .standardButtonShadow)
-    static var standardDarkButtonBackground: Color = color(for: .standardDarkButtonBackground)
-    static var standardDarkButtonBackgroundForColorSchemeBug: Color = color(for: .standardDarkButtonBackgroundForColorSchemeBug)
-    static var standardDarkButtonBackgroundForDarkAppearance: Color = color(for: .standardDarkButtonBackgroundForDarkAppearance)
-    static var standardDarkButtonForeground: Color = color(for: .standardButtonForeground)
-    static var standardDarkButtonForegroundForDarkAppearance: Color = color(for: .standardButtonForegroundForDarkAppearance)
-    static var standardKeyboardBackground: Color = color(for: .standardKeyboardBackground)
-    static var standardKeyboardBackgroundForDarkAppearance: Color = color(for: .standardKeyboardBackgroundForDarkAppearance)
+    /**
+     The standard background color of light keyboard buttons.
+     */
+    static var standardButtonBackground = color(for: .standardButtonBackground)
+    
+    /**
+     The standard background color of light keyboard buttons
+     when accounting for the iOS dark mode bug.
+     */
+    static var standardButtonBackgroundForColorSchemeBug = color(for: .standardButtonBackgroundForColorSchemeBug)
+    
+    /**
+     The standard background color of light keyboard buttons
+     in dark keyboard appearance.
+     */
+    static var standardButtonBackgroundForDarkAppearance = color(for: .standardButtonBackgroundForDarkAppearance)
+    
+    /**
+     The standard foreground color of light keyboard buttons.
+     */
+    static var standardButtonForeground = color(for: .standardButtonForeground)
+    
+    /**
+     The standard foreground color of light keyboard buttons
+     in dark keyboard appearance.
+     */
+    static var standardButtonForegroundForDarkAppearance = color(for: .standardButtonForegroundForDarkAppearance)
+    
+    /**
+     The standard shadow color of keyboard buttons.
+     */
+    static var standardButtonShadow = color(for: .standardButtonShadow)
+    
+    /**
+     The standard background color of a dark keyboard button.
+     */
+    static var standardDarkButtonBackground = color(for: .standardDarkButtonBackground)
+    
+    /**
+     The standard background color of a dark keyboard button
+     when accounting for the iOS dark mode bug.
+     */
+    static var standardDarkButtonBackgroundForColorSchemeBug = color(for: .standardDarkButtonBackgroundForColorSchemeBug)
+    
+    /**
+     The standard background color of a dark keyboard button
+     in dark keyboard appearance.
+     */
+    static var standardDarkButtonBackgroundForDarkAppearance = color(for: .standardDarkButtonBackgroundForDarkAppearance)
+    
+    /**
+     The standard foreground color of a dark keyboard button.
+     */
+    static var standardDarkButtonForeground = color(for: .standardButtonForeground)
+    
+    /**
+     The standard foreground color of a dark keyboard button
+     in dark keyboard appearance.
+     */
+    static var standardDarkButtonForegroundForDarkAppearance = color(for: .standardButtonForegroundForDarkAppearance)
+    
+    /**
+     The standard keyboard background color.
+     */
+    static var standardKeyboardBackground = color(for: .standardKeyboardBackground)
+    
+    /**
+     The standard keyboard background color in dark keyboard
+     appearance.
+     */
+    static var standardKeyboardBackgroundForDarkAppearance = color(for: .standardKeyboardBackgroundForDarkAppearance)
 }
 
 private extension Color {

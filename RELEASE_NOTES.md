@@ -26,6 +26,11 @@ This version adds new locales and makes the library build on more platforms.
 ### 💥 Breaking changes
 
 * All previously deprecated code has been removed.
+* `Color.standardButtonBackgroundColor(for:)` has been renamed to `standardButtonBackground(for:)`.
+* `Color.standardButtonForegroundColor(for:)` has been renamed to `standardButtonForeground(for:)`.
+* `Color.standardButtonShadowColor(for:)` has been renamed to `standardButtonShadow(for:)`.
+* `Color.standardDarkButtonBackgroundColor(for:)` has been renamed to `standardDarkButtonBackground(for:)`.
+* `Color.standardDarkButtonForegroundColor(for:)` has been renamed to `standardDarkButtonForeground(for:)`.
 * `KeyboardAction` `isKeyboardType` has been removed.
 * `KeyboardAction` `isSpace` has been removed.
 * `KeyboardAction` `standardTextDocumentProxyInputAction` has been merged with `standardTextDocumentProxyAction`.
