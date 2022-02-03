@@ -33,7 +33,7 @@ public protocol KeyboardAppearance: AnyObject {
      The button style to use for a certain `action`, given a
      certain `isPressed` state.
      */
-    func buttonStyle(for action: KeyboardAction, isPressed: Bool) -> SystemKeyboardButtonStyle
+    func buttonStyle(for action: KeyboardAction, isPressed: Bool) -> KeyboardButtonStyle
     
     /**
      The button text to use for a certain `action`, if any.

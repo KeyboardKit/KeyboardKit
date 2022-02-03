@@ -32,7 +32,7 @@ class DemoAppearance: StandardKeyboardAppearance {
     
     override func buttonStyle(
         for action: KeyboardAction,
-        isPressed: Bool) -> SystemKeyboardButtonStyle {
+        isPressed: Bool) -> KeyboardButtonStyle {
         let style = super.buttonStyle(for: action, isPressed: isPressed)
         // style.cornerRadius = 10
         return style

@@ -76,7 +76,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
 
 private extension SystemKeyboardButtonRowItem {
     
-    var buttonStyle: SystemKeyboardButtonStyle {
+    var buttonStyle: KeyboardButtonStyle {
         appearance.buttonStyle(for: item.action, isPressed: isPressed)
     }
 }

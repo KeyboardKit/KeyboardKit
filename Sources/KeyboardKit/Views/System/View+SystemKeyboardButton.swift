@@ -14,7 +14,7 @@ public extension View {
      Apply a system keyboard button style using the provided
      `appearance` for the given `action`.
      */
-    func systemKeyboardButtonStyle(_ style: SystemKeyboardButtonStyle) -> some View {
+    func systemKeyboardButtonStyle(_ style: KeyboardButtonStyle) -> some View {
         self.background(SystemKeyboardButtonBody(style: style))
             .foregroundColor(style.foregroundColor)
             .font(style.font)
@@ -25,7 +25,7 @@ struct View_Button_Previews: PreviewProvider {
     
     static func button<Content: View>(
         for content: Content,
-        style: SystemKeyboardButtonStyle) -> some View {
+        style: KeyboardButtonStyle) -> some View {
         content
             .padding()
             .systemKeyboardButtonStyle(style)

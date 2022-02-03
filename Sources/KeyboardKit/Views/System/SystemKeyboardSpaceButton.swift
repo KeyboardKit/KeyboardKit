@@ -75,7 +75,7 @@ private extension SystemKeyboardSpaceButton {
             style: buttonStyle)
     }
     
-    var buttonStyle: SystemKeyboardButtonStyle {
+    var buttonStyle: KeyboardButtonStyle {
         appearance.buttonStyle(
             for: action,
             isPressed: isPressed)

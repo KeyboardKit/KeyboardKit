@@ -1,5 +1,5 @@
 //
-//  SystemKeyboardButtonStyle.swift
+//  KeyboardButtonStyle.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-09-02.
@@ -16,7 +16,7 @@ import SwiftUI
  etc. Instead, use a ``KeyboardAppearance``to resolve styles
  for certain actions.
  */
-public struct SystemKeyboardButtonStyle {
+public struct KeyboardButtonStyle {
     
     /**
      Create a system keyboard button style.
@@ -34,8 +34,8 @@ public struct SystemKeyboardButtonStyle {
         foregroundColor: Color,
         font: Font,
         cornerRadius: CGFloat,
-        border: SystemKeyboardButtonBorderStyle = .standard,
-        shadow: SystemKeyboardButtonShadowStyle = .standard) {
+        border: KeyboardButtonBorderStyle = .standard,
+        shadow: KeyboardButtonShadowStyle = .standard) {
         self.backgroundColor = backgroundColor
         self.foregroundColor = foregroundColor
         self.font = font
@@ -67,20 +67,20 @@ public struct SystemKeyboardButtonStyle {
     /**
      The border style to apply to the button.
      */
-    public var border: SystemKeyboardButtonBorderStyle
+    public var border: KeyboardButtonBorderStyle
     
     /**
      The shadow style to apply to the button.
      */
-    public var shadow: SystemKeyboardButtonShadowStyle
+    public var shadow: KeyboardButtonShadowStyle
 }
 
-extension SystemKeyboardButtonStyle {
+extension KeyboardButtonStyle {
     
     /**
      This internal style is only used in previews.
      */
-    static let preview1 = SystemKeyboardButtonStyle(
+    static let preview1 = KeyboardButtonStyle(
         backgroundColor: .yellow,
         foregroundColor: .white,
         font: .body,
@@ -92,7 +92,7 @@ extension SystemKeyboardButtonStyle {
     /**
      This internal style is only used in previews.
      */
-    static let preview2 = SystemKeyboardButtonStyle(
+    static let preview2 = KeyboardButtonStyle(
         backgroundColor: .purple,
         foregroundColor: .yellow,
         font: .headline,

@@ -33,13 +33,13 @@ public struct SystemKeyboardButton<Content: View>: View {
      */
     public init(
         content: Content,
-        style: SystemKeyboardButtonStyle) {
+        style: KeyboardButtonStyle) {
         self.content = content
         self.style = style
     }
     
     private let content: Content
-    private let style: SystemKeyboardButtonStyle
+    private let style: KeyboardButtonStyle
     
     public var body: some View {
         content.systemKeyboardButtonStyle(style)
@@ -52,7 +52,7 @@ struct SystemKeyboardButton_Previews: PreviewProvider {
     static let appearance = StandardKeyboardAppearance(
         context: .preview)
     
-    static func previewButton<Content: View>(for content: Content, style: SystemKeyboardButtonStyle) -> some View {
+    static func previewButton<Content: View>(for content: Content, style: KeyboardButtonStyle) -> some View {
         SystemKeyboardButton(
             content: content
                 .padding(.horizontal, 80)

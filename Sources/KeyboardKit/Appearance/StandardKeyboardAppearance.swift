@@ -57,8 +57,8 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
      The button style to use for a certain `action`, given a
      certain `isPressed` state.
      */
-    open func buttonStyle(for action: KeyboardAction, isPressed: Bool) -> SystemKeyboardButtonStyle {
-        SystemKeyboardButtonStyle(
+    open func buttonStyle(for action: KeyboardAction, isPressed: Bool) -> KeyboardButtonStyle {
+        KeyboardButtonStyle(
             backgroundColor: buttonBackgroundColor(for: action, isPressed: isPressed),
             foregroundColor: buttonForegroundColor(for: action, isPressed: isPressed),
             font: buttonFont(for: action),
@@ -105,7 +105,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
      You can override this function to customize this single
      button style property.
      */
-    open func buttonBorderStyle(for action: KeyboardAction) -> SystemKeyboardButtonBorderStyle {
+    open func buttonBorderStyle(for action: KeyboardAction) -> KeyboardButtonBorderStyle {
         switch action {
         case .emoji, .emojiCategory, .none: return .noBorder
         default: return .standard
@@ -184,7 +184,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
      You can override this function to customize this single
      button style property.
      */
-    open func buttonShadowStyle(for action: KeyboardAction) -> SystemKeyboardButtonShadowStyle {
+    open func buttonShadowStyle(for action: KeyboardAction) -> KeyboardButtonShadowStyle {
         switch action {
         case .characterMargin, .emoji, .emojiCategory, .none: return .noShadow
         default: return .standard

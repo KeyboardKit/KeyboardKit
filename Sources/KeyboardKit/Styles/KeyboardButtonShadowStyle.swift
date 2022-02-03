@@ -1,5 +1,5 @@
 //
-//  SystemKeyboardButtonShadowStyle.swift
+//  KeyboardButtonShadowStyle.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-09-09.
@@ -15,7 +15,7 @@ import SwiftUI
  You can modify the ``standard`` style to change the default,
  global style of all system keyboard buttons.
  */
-public struct SystemKeyboardButtonShadowStyle: Equatable {
+public struct KeyboardButtonShadowStyle: Equatable {
     
     /**
      Create a system keyboard button shadow style.
@@ -42,37 +42,37 @@ public struct SystemKeyboardButtonShadowStyle: Equatable {
     public var size: CGFloat
 }
 
-public extension SystemKeyboardButtonShadowStyle {
+public extension KeyboardButtonShadowStyle {
     
     /**
      This style applies no shadow.
      */
-    static var noShadow: SystemKeyboardButtonShadowStyle {
-        SystemKeyboardButtonShadowStyle(color: .clear)
+    static var noShadow: KeyboardButtonShadowStyle {
+        KeyboardButtonShadowStyle(color: .clear)
     }
     
     /**
      This standard style aims to mimic the native iOS style.
      */
-    static var standard: SystemKeyboardButtonShadowStyle {
-        SystemKeyboardButtonShadowStyle()
+    static var standard: KeyboardButtonShadowStyle {
+        KeyboardButtonShadowStyle()
     }
 }
 
 
-extension SystemKeyboardButtonShadowStyle {
+extension KeyboardButtonShadowStyle {
     
     /**
      This internal style is only used in previews.
      */
-    static let previewStyle1 = SystemKeyboardButtonShadowStyle(
+    static let previewStyle1 = KeyboardButtonShadowStyle(
         color: .blue,
         size: 4)
     
     /**
      This internal style is only used in previews.
      */
-    static let previewStyle2 = SystemKeyboardButtonShadowStyle(
+    static let previewStyle2 = KeyboardButtonShadowStyle(
         color: .green,
         size: 8)
 }

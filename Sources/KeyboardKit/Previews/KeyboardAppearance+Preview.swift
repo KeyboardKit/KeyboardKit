@@ -57,7 +57,7 @@ public class PreviewKeyboardAppearance: StandardKeyboardAppearance {
  */
 class CrazyPreviewKeyboardAppearance: PreviewKeyboardAppearance {
     
-    public override func buttonStyle(for action: KeyboardAction, isPressed: Bool) -> SystemKeyboardButtonStyle {
+    public override func buttonStyle(for action: KeyboardAction, isPressed: Bool) -> KeyboardButtonStyle {
         isPressed ? .preview2 : .preview1
     }
 }

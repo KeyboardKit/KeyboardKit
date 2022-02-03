@@ -37,6 +37,9 @@ This version adds new locales and makes the library build on more platforms.
 * `KeyboardAppearance` `systemKeyboardButtonStyle(for:)` has been renamed to `buttonStyle(for:)`.
 * `KeyboardInputViewController` `needsInputModeSwitchKeyOverride` has been removed.
 * `StandardKeyboardActionHandler` `GestureAction` has been removed.
+* `SystemKeyboardButtonStyle` has been renamed to `KeyboardButtonStyle`.
+* `SystemKeyboardButtonBorderStyle` has been renamed to `KeyboardButtonBorderStyle`.
+* `SystemKeyboardButtonShadowStyle` has been renamed to `KeyboardButtonShadowStyle`.
 
 
 

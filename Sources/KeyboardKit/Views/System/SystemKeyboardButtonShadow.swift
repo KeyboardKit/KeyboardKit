@@ -27,11 +27,11 @@ public struct SystemKeyboardButtonShadow: View {
      - Parameters:
        - style: The button style to apply.
      */
-    public init(style: SystemKeyboardButtonStyle) {
+    public init(style: KeyboardButtonStyle) {
         self.style = style
     }
     
-    private let style: SystemKeyboardButtonStyle
+    private let style: KeyboardButtonStyle
     
     public var body: some View {
         buttonShape

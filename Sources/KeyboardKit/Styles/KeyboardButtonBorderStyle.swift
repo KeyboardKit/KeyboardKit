@@ -1,5 +1,5 @@
 //
-//  SystemKeyboardButtonBorderStyle.swift
+//  KeyboardButtonBorderStyle.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-09-09.
@@ -10,12 +10,12 @@ import Foundation
 import SwiftUI
 
 /**
- This style defines the border of a system keyboard button.
+ This style defines the border of a keyboard button.
  
  You can modify the ``standard`` style to change the default,
  global style of all system keyboard buttons.
  */
-public struct SystemKeyboardButtonBorderStyle: Equatable {
+public struct KeyboardButtonBorderStyle: Equatable {
     
     /**
      Create a system keyboard button border style.
@@ -42,32 +42,32 @@ public struct SystemKeyboardButtonBorderStyle: Equatable {
     public var size: CGFloat
 }
 
-public extension SystemKeyboardButtonBorderStyle {
+public extension KeyboardButtonBorderStyle {
     
     /**
      This style applies no border.
      */
-    static var noBorder = SystemKeyboardButtonBorderStyle()
+    static var noBorder = KeyboardButtonBorderStyle()
     
     /**
      This standard style aims to mimic the native iOS style.
      */
-    static var standard = SystemKeyboardButtonBorderStyle()
+    static var standard = KeyboardButtonBorderStyle()
 }
 
-extension SystemKeyboardButtonBorderStyle {
+extension KeyboardButtonBorderStyle {
     
     /**
      This internal style is only used in previews.
      */
-    static let previewStyle1 = SystemKeyboardButtonBorderStyle(
+    static let previewStyle1 = KeyboardButtonBorderStyle(
         color: .red,
         size: 3)
     
     /**
      This internal style is only used in previews.
      */
-    static let previewStyle2 = SystemKeyboardButtonBorderStyle(
+    static let previewStyle2 = KeyboardButtonBorderStyle(
         color: .blue,
         size: 5)
 }
