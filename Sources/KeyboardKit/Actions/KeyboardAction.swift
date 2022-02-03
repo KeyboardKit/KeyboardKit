@@ -13,11 +13,11 @@ import Foundation
  bind to buttons or trigger with an action handler.
  
  Many keyboard actions have standard behaviors, as described
- in the documentation. However, many don't and are just here
- to let you create keyboards in a declarative way.
+ in the documentation for each case. However, many don't and
+ just exist to let you create keyboards in a declarative way.
  
  Actions without a standard behavior require custom handling,
- e.g. by creating a custom ``KeyboardActionHandler``.
+ for instance by creating a custom ``KeyboardActionHandler``.
  
  Note that ``character(_:)`` accepts a `String` instead of a
  `Character`. This is because some system keys actually send
@@ -116,11 +116,10 @@ public enum KeyboardAction: Codable, Equatable {
 public extension KeyboardAction {
     
     /**
-     This type can be used together with a `.primary` action.
+     This enum can be used together with ``primary(_:)``.
      
      Primary buttons are color accented buttons that trigger
-     a submit action in the keyboard. This submit is done by
-     sending a new line to the proxy, just as `.return` does.
+     a submit action in the keyboard, just like ``return``.
      */
     enum PrimaryType: String, CaseIterable, Codable, Equatable, Identifiable {
         
@@ -146,13 +145,11 @@ public extension KeyboardAction {
     }
     
     /**
-     Whether or not the action is an input action.
+     Whether or not the action is an input action, which are
+     inserting content into the proxy.
      
      An input action button is rendered as a light button in
      native iOS keyboards.
-     
-     Note that ``characterMargin(_:)`` is excluded, since it
-     is only meant to be used in layouts.
      */
     var isInputAction: Bool {
         switch self {
@@ -167,20 +164,10 @@ public extension KeyboardAction {
     }
     
     /**
-     Whether or not the action is a keyboard type action.
-     */
-    var isKeyboardType: Bool {
-        switch self {
-        case .keyboardType: return true
-        default: return false
-        }
-    }
-    
-    /**
-     Whether or not the action is a primary action.
+     Whether or not the action is a ``primary(_:)`` action.
      
-     A primary button is the color accented button that will
-     have the same effect as return in a native iOS keyboard.
+     A primary action button is a color accented button with
+     the same effect as ``return`` in native iOS keyboards.
      */
     var isPrimaryAction: Bool {
         switch self {
@@ -190,7 +177,8 @@ public extension KeyboardAction {
     }
     
     /**
-     Whether or not the action is a shift action.
+     Whether or not the action is a ``shift(currentState:)``
+     action.
      */
     var isShift: Bool {
         switch self {
@@ -199,16 +187,6 @@ public extension KeyboardAction {
         }
     }
     
-    /**
-     Whether or not the action is a space action.
-     */
-    var isSpace: Bool {
-        switch self {
-        case .character(let char): return char == " "
-        case .space: return true
-        default: return false
-        }
-    }
     
     /**
      Whether or not the action is a system action.

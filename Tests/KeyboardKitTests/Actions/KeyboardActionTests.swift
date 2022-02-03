@@ -81,15 +81,6 @@ class KeyboardActionTests: QuickSpec {
             }
         }
         
-        describe("is space") {
-            
-            it("is only true for all space actions") {
-                expected = [.space, .character(" ")]
-                expected.forEach { expect($0.isSpace).to(beTrue()) }
-                unexpected.forEach { expect($0.isSpace).to(beFalse()) }
-            }
-        }
-        
         describe("is system action") {
             
             it("is true for some actions") {

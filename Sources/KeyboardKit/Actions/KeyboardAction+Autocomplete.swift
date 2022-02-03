@@ -38,7 +38,7 @@ public extension KeyboardAction {
      */
     var shouldRemoveAutocompleteInsertedSpace: Bool {
         switch self {
-        case .character(let char): return char.isWordDelimiter && !isSpace
+        case .character(let char): return char.isWordDelimiter && self != .space
         default: return false
         }
     }

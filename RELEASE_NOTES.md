@@ -20,11 +20,14 @@ This version adds new locales and makes the library build on more platforms.
 
 ### ✨ New Features
 
+* Autocomplete now only applies autocorrections for pure `space` actions and not character actions with a single space.
 * `KeyboardInputViewController` has a new `didMoveToParent` property, which is used to avoid calling `needsInputModeSwitchKey` when it generates a warning. 
 
 ### 💥 Breaking changes
 
 * All previously deprecated code has been removed.
+* `KeyboardAction` `isKeyboardType` has been removed.
+* `KeyboardAction` `isSpace` has been removed.
 * `KeyboardInputViewController` `needsInputModeSwitchKeyOverride` has been removed.
 
 

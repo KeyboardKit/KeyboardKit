@@ -48,7 +48,7 @@ class KeyboardAction_AutocompleteTests: QuickSpec {
             
             it("is true for word delimiters actions") {
                 actions.forEach {
-                    let expected = delimiterActions.contains($0) && !$0.isSpace
+                    let expected = delimiterActions.contains($0) && $0 != .space
                     expect(result(for: $0)).to(equal(expected))
                 }
             }
@@ -62,7 +62,7 @@ class KeyboardAction_AutocompleteTests: QuickSpec {
             
             it("is true for word delimiters actions") {
                 actions.forEach {
-                    let expected = delimiterActions.contains($0) && !$0.isSpace
+                    let expected = delimiterActions.contains($0) && $0 != .space
                     expect(result(for: $0)).to(equal(expected))
                 }
             }
