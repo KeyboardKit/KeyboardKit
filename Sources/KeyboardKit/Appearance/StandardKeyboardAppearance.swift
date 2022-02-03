@@ -41,7 +41,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
      */
     open func actionCalloutStyle() -> ActionCalloutStyle {
         var style = ActionCalloutStyle.standard
-        let button = systemKeyboardButtonStyle(for: .character(""), isPressed: false)
+        let button = buttonStyle(for: .character(""), isPressed: false)
         style.callout.buttonCornerRadius = button.cornerRadius
         return style
     }
@@ -51,6 +51,20 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
      */
     open func buttonImage(for action: KeyboardAction) -> Image? {
         action.standardButtonImage(for: context)
+    }
+    
+    /**
+     The button style to use for a certain `action`, given a
+     certain `isPressed` state.
+     */
+    open func buttonStyle(for action: KeyboardAction, isPressed: Bool) -> SystemKeyboardButtonStyle {
+        SystemKeyboardButtonStyle(
+            backgroundColor: buttonBackgroundColor(for: action, isPressed: isPressed),
+            foregroundColor: buttonForegroundColor(for: action, isPressed: isPressed),
+            font: buttonFont(for: action),
+            cornerRadius: buttonCornerRadius(for: action),
+            border: buttonBorderStyle(for: action),
+            shadow: buttonShadowStyle(for: action))
     }
     
     /**
@@ -65,34 +79,32 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
      */
     open func inputCalloutStyle() -> InputCalloutStyle {
         var style = InputCalloutStyle.standard
-        let button = systemKeyboardButtonStyle(for: .character(""), isPressed: false)
+        let button = buttonStyle(for: .character(""), isPressed: false)
         style.callout.buttonCornerRadius = button.cornerRadius
         return style
-    }
-    
-    /**
-     The system keybard button style to use for the provided
-     `action` given a certain `isPressed` state.
-     */
-    open func systemKeyboardButtonStyle(for action: KeyboardAction, isPressed: Bool) -> SystemKeyboardButtonStyle {
-        SystemKeyboardButtonStyle(
-            backgroundColor: buttonBackgroundColor(for: action, isPressed: isPressed),
-            foregroundColor: buttonForegroundColor(for: action, isPressed: isPressed),
-            font: buttonFont(for: action),
-            cornerRadius: buttonCornerRadius(for: action),
-            border: buttonBorderStyle(for: action),
-            shadow: buttonShadowStyle(for: action))
     }
     
     
     // MARK: - Overridable Button Style Components
     
+    /**
+     The button background color to use for a certain action.
+     
+     You can override this function to customize this single
+     button style property.
+     */
     open func buttonBackgroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
         let fullOpacity = context.hasDarkColorScheme || isPressed
         return action.buttonBackgroundColor(for: context, isPressed: isPressed)
             .opacity(fullOpacity ? 1 : 0.95)
     }
     
+    /**
+     The button botder style to use for a certain action.
+     
+     You can override this function to customize this single
+     button style property.
+     */
     open func buttonBorderStyle(for action: KeyboardAction) -> SystemKeyboardButtonBorderStyle {
         switch action {
         case .emoji, .emojiCategory, .none: return .noBorder
@@ -100,16 +112,34 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         }
     }
     
+    /**
+     The button corner radius to use for a certain action.
+     
+     You can override this function to customize this single
+     button style property.
+     */
     open func buttonCornerRadius(for action: KeyboardAction) -> CGFloat {
         layoutConfig.buttonCornerRadius
     }
     
+    /**
+     The button font to use for a certain action.
+     
+     You can override this function to customize this single
+     button style property.
+     */
     open func buttonFont(for action: KeyboardAction) -> Font {
         let rawFont = Font.system(size: buttonFontSize(for: action))
         guard let weight = buttonFontWeight(for: action) else { return rawFont }
         return rawFont.weight(weight)
     }
     
+    /**
+     The button font size to use for a certain action.
+     
+     You can override this function to customize this single
+     button style property.
+     */
     open func buttonFontSize(for action: KeyboardAction) -> CGFloat {
         if buttonImage(for: action) != nil { return 20 }
         switch action {
@@ -124,6 +154,12 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         return 23
     }
     
+    /**
+     The button font weight to use for a certain action.
+     
+     You can override this function to customize this single
+     button style property.
+     */
     open func buttonFontWeight(for action: KeyboardAction) -> Font.Weight? {
         if buttonImage(for: action) != nil { return .light }
         switch action {
@@ -132,10 +168,22 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         }
     }
     
+    /**
+     The button foreground color to use for a certain action.
+     
+     You can override this function to customize this single
+     button style property.
+     */
     open func buttonForegroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
         action.buttonForegroundColor(for: context, isPressed: isPressed)
     }
     
+    /**
+     The button shadow style to use for a certain action.
+     
+     You can override this function to customize this single
+     button style property.
+     */
     open func buttonShadowStyle(for action: KeyboardAction) -> SystemKeyboardButtonShadowStyle {
         switch action {
         case .characterMargin, .emoji, .emojiCategory, .none: return .noShadow

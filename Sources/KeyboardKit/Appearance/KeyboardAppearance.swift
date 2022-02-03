@@ -30,6 +30,12 @@ public protocol KeyboardAppearance: AnyObject {
     func buttonImage(for action: KeyboardAction) -> Image?
     
     /**
+     The button style to use for a certain `action`, given a
+     certain `isPressed` state.
+     */
+    func buttonStyle(for action: KeyboardAction, isPressed: Bool) -> SystemKeyboardButtonStyle
+    
+    /**
      The button text to use for a certain `action`, if any.
      */
     func buttonText(for action: KeyboardAction) -> String?
@@ -38,10 +44,4 @@ public protocol KeyboardAppearance: AnyObject {
      The style to apply when presenting an ``InputCallout``.
      */
     func inputCalloutStyle() -> InputCalloutStyle
-    
-    /**
-     The system keybard button style to use for the provided
-     `action` given a certain `isPressed` state.
-     */
-    func systemKeyboardButtonStyle(for action: KeyboardAction, isPressed: Bool) -> SystemKeyboardButtonStyle
 }

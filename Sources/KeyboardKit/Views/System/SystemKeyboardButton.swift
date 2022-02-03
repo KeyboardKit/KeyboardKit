@@ -75,10 +75,10 @@ struct SystemKeyboardButton_Previews: PreviewProvider {
                 previewButton(for: SystemKeyboardButtonText(text: "🚀", action: .character("")), style: .preview1)
                 previewButton(for: Image.keyboardGlobe, style: .preview2)
                 
-                previewButton(for: Text("input"), style: appearance.systemKeyboardButtonStyle(for: .character(""), isPressed: false))
-                previewButton(for: Text("input pressed"), style: appearance.systemKeyboardButtonStyle(for: .character(""), isPressed: true))
-                previewButton(for: Text("control"), style: appearance.systemKeyboardButtonStyle(for: .backspace, isPressed: false))
-                previewButton(for: Text("control pressed"), style: appearance.systemKeyboardButtonStyle(for: .backspace, isPressed: true))
+                previewButton(for: Text("input"), style: appearance.buttonStyle(for: .character(""), isPressed: false))
+                previewButton(for: Text("input pressed"), style: appearance.buttonStyle(for: .character(""), isPressed: true))
+                previewButton(for: Text("control"), style: appearance.buttonStyle(for: .backspace, isPressed: false))
+                previewButton(for: Text("control pressed"), style: appearance.buttonStyle(for: .backspace, isPressed: true))
             }.padding(.top, 40)
         }
     }

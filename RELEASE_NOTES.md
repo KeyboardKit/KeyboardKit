@@ -34,6 +34,7 @@ This version adds new locales and makes the library build on more platforms.
 * `KeyboardAction` `isKeyboardType` has been removed.
 * `KeyboardAction` `isSpace` has been removed.
 * `KeyboardAction` `standardTextDocumentProxyInputAction` has been merged with `standardTextDocumentProxyAction`.
+* `KeyboardAppearance` `systemKeyboardButtonStyle(for:)` has been renamed to `buttonStyle(for:)`.
 * `KeyboardInputViewController` `needsInputModeSwitchKeyOverride` has been removed.
 * `StandardKeyboardActionHandler` `GestureAction` has been removed.
 
