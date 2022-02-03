@@ -13,9 +13,6 @@ import Foundation
  keyboard. It aims to separate behavior from action handling
  to make the code cleaner and more understandable.
  
- KeyboardKit automatically creates an implementation of this
- protocol and binds it to ``KeyboardInputViewController``.
- 
  `IMPORTANT` Whenever you replace the standard behavior with
  your own custom behavior, make sure to do so before calling
  any other services that depend on the behavior, or recreate

@@ -10,20 +10,12 @@ import CoreGraphics
 import SwiftUI
 
 /**
- This protocol can be implemented by any classes that can be
- used to provide appearance information for keyboard actions.
+ This protocol can be implemented by classes that can define
+ styles and appearance information for keyboard actions.
  
- Unlike a style, an appearance is contextual. It requires an
- implementation, while a style is just a struct. You can use
- an appearance to generate styles that can be applied to the
- keyboard and its buttons.
- 
- KeyboardKit automatically creates an implementation of this
- protocol and binds it to ``KeyboardInputViewController``.
- 
- `TODO` From KeyboardKit 6.0, the various styles will be put
- into a single `SystemKeyboardStyle` property, so that it is
- easy to just return `.standard` in custom appearances.
+ Unlike a style, appearances are contextual and more complex.
+ You can use an aappearance to generate styles that can then
+ be applied to various parts of the keyboard.
  */
 public protocol KeyboardAppearance: AnyObject {
     

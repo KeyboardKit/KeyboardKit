@@ -9,22 +9,19 @@
 import CoreGraphics
 
 /**
- This protocol can be implemented by any classes that can be
- used to handle keyboard actions.
- 
- KeyboardKit automatically creates an implementation of this
- protocol and binds it to ``KeyboardInputViewController``.
+ This protocol can be implemented by classes that can handle
+ ``KeyboardAction`` events in various ways.
  */
 public protocol KeyboardActionHandler: AnyObject {
     
     /**
-     Whether or not the action handler can be used to handle
-     a certain `gesture` on a certain `action`.
+     Whether or not this action handler can handle a certain
+     `gesture` on a certain `action`.
      */
     func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction) -> Bool
     
     /**
-     Try to handling a certain `gesture` n a certain `action`.
+     Handle a certain `gesture` on a certain `action`.
      */
     func handle(_ gesture: KeyboardGesture, on action: KeyboardAction)
     

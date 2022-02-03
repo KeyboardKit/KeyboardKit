@@ -17,8 +17,8 @@ import UIKit
  and functions to customize the standard action behavior.
  
  Note that this action handler is only available on keyboard
- supporting platforms. For watchOS and macOS, a disabled one
- will be injected. Replace this with a custom action handler.
+ supporting platforms. For unsupported platforms, a disabled
+ action handler will be used by default.
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
@@ -83,11 +83,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     private var keyboardInputViewController: KeyboardInputViewController { .shared }
     
     
-    // MARK: - Types
-    
-    public typealias GestureAction = KeyboardAction.GestureAction
-    
-    
     // MARK: - KeyboardActionHandler
     
     /**
@@ -145,8 +140,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      when a gesture is performed on a certain action.
      
      You can override this function to customize how actions
-     are handled by. By default, the `standardAction` of the
-     `action` is triggered.
+     should behave. By default, the standard action is used.
      */
     open func action(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction.GestureAction? {
         action.standardAction(for: gesture)
@@ -154,14 +148,10 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     /**
      Try to resolve a replacement keyboard action before the
-     `gesture` is performed on the `action`.
-     
-     This should happen when, for instance, a quotation char
-     is tapped, and it should be replaced with an ending one.
+     `gesture` is performed on the provided `action`.
      
      You can override this function to customize how actions
-     are replaced. By default, the `preferredReplacement` of
-     the `textDocumentProxy` will be used.
+     should be replaced.
      */
     open func replacementAction(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction? {
         guard
@@ -175,9 +165,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     /**
      Trigger feedback for a certain `gesture` on an `action`.
      
-     You can override the function to customize how feedback
-     is triggered. By default, the `keyboardFeedbackHandler`
-     will be used.
+     You can override this function to customize how actions
+     trigger feedback.
      */
     open func triggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
         keyboardFeedbackHandler.triggerFeedback(
@@ -218,8 +207,10 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     /**
      Try to resolve and handle a replacement keyboard action
-     before the `gesture` is performed on the `action`. When
-     this returns `true`, the caller should abort.
+     before the `gesture` is performed on the `action`.
+     
+     When this returns true, the caller should stop handling
+     the provided action.
      */
     open func tryHandleReplacementAction(before gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
         guard let action = replacementAction(for: gesture, on: action) else { return false }

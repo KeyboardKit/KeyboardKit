@@ -11,7 +11,7 @@ import Foundation
 public extension KeyboardAction {
     
     /**
-     Whether or not the action, when triggered, should apply
+     Whether or not the action should apply currently active
      autocomplete suggestions where `isAutocomplete` is true.
      */
     var shouldApplyAutocompleteSuggestion: Bool {
@@ -25,16 +25,16 @@ public extension KeyboardAction {
     }
     
     /**
-     Whether or not an action, when triggered, should insert
-     a previous autocomplete removed space.
+     Whether or not the action should insert an autocomplete
+     removed space.
      */
     var shouldReinsertAutocompleteInsertedSpace: Bool {
         shouldRemoveAutocompleteInsertedSpace
     }
     
     /**
-     Whether or not an action, when triggered, should remove
-     an autocomplete inserted space.
+     Whether or not the action should remove an autocomplete
+     inserted space.
      */
     var shouldRemoveAutocompleteInsertedSpace: Bool {
         switch self {

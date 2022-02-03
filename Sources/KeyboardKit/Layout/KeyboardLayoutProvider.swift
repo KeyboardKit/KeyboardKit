@@ -11,9 +11,6 @@ import Foundation
 /**
  This protocol can be implemented by any classes that can be
  used to generate a keyboard layout for a certain context.
- 
- KeyboardKit automatically creates an implementation of this
- protocol and binds it to ``KeyboardInputViewController``.
  */
 public protocol KeyboardLayoutProvider: AnyObject {
     

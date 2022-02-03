@@ -182,33 +182,6 @@ class KeyboardAction_ActionsTests: QuickSpec {
             }
         }
         
-        describe("standard text document proxy input action") {
-            
-            func result(for action: KeyboardAction) -> Any? {
-                action.standardTextDocumentProxyInputAction
-            }
-            
-            it("is defined for some actions") {
-                expected = [
-                    .backspace,
-                    .character(""),
-                    .characterMargin(""),
-                    .emoji(Emoji("")),
-                    .newLine,
-                    .primary(.done),
-                    .primary(.go),
-                    .primary(.newLine),
-                    .primary(.ok),
-                    .primary(.search),
-                    .return,
-                    .space,
-                    .tab
-                ]
-                expected.forEach { expect(result(for: $0)).toNot(beNil()) }
-                unexpected.forEach { expect(result(for: $0)).to(beNil()) }
-            }
-        }
-        
         describe("standard repeat action") {
             
             func result(for action: KeyboardAction) -> Any? {

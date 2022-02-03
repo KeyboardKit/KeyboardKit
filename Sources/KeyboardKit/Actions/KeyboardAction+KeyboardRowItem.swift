@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- This extension makes `KeyboardAction` conform to `RowItem`.
+ This extension makes this enum implement ``KeyboardRowItem``.
  */
 extension KeyboardAction: KeyboardRowItem {
 

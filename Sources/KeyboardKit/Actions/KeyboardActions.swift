@@ -9,8 +9,10 @@
 import Foundation
 
 /**
- This typealias represents a ``KeyboardAction`` array and is
- used to simplify creating and handling action collections.
+ This typealias represents a ``KeyboardAction`` array.
+ 
+ The typealias makes it easier to create and handle keyboard
+ action collections.
  */
 public typealias KeyboardActions = [KeyboardAction]
 

@@ -11,9 +11,6 @@ import Foundation
 /**
  This protocol can be implemented by any classes that can be
  used to get callout actions for a keyboard action.
- 
- KeyboardKit automatically creates an implementation of this
- protocol and binds it to ``KeyboardInputViewController``.
  */
 public protocol CalloutActionProvider {
     

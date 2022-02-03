@@ -15,9 +15,6 @@ import Foundation
  An ``InputSet`` defines the input keys on a system keyboard.
  The keys can then be used to create a layout, which defines
  the full set of keys, including the surrounding system keys.
- 
- KeyboardKit automatically creates an implementation of this
- protocol and binds it to ``KeyboardInputViewController``.
  */
 public protocol InputSetProvider: AnyObject {
     

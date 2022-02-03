@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- This typealias represents a list of keyboard action rows.
+ This typealias represents a ``KeyboardActions`` array.
  
  The typealias makes it easier to create and handle keyboard
  action collections that represent multiple rows.
