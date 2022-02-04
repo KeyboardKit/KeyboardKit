@@ -123,11 +123,37 @@ class KeyboardViewController: KeyboardInputViewController {
             withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098",
             view: KeyboardView())
         
-        // 💡 To change locales when using Pro, do so here:
-        keyboardContext.locale = lastLocale ?? KeyboardLocale.english.locale
-        // keyboardContext.locale = KeyboardLocale.english.locale
-        // keyboardContext.locales = [KeyboardLocale.english.locale]
+        // 💡 To change locales when using Pro, do so here
+        keyboardContext.locale = lastLocale ?? defaultLocale.locale
+        keyboardContext.locales = applicableLocales.map { $0.locale }
     }
+    
+    
+    
+    // MARK: - Locale handling
+    
+    /**
+     In the demo, let's just include LTR locales for the LTR
+     demo and vice versa.
+     */
+    var applicableLocales: [KeyboardLocale] {
+        KeyboardLocale.allCases.filter { $0.isRightToLeft == isRtlKeyboard }
+    }
+    
+    /**
+     The default locale depends on if the demo is LTR or RTL.
+     */
+    var defaultLocale: KeyboardLocale {
+        isRtlKeyboard ? .arabic : .english
+    }
+    
+    /**
+     Whether or not the demo is an RTL keyboard.
+     */
+    var isRtlKeyboard: Bool {
+        Bundle.main.bundleIdentifier?.contains("rtl") == true
+    }
+    
     
     
     // MARK: - Autocomplete
@@ -153,6 +179,7 @@ class KeyboardViewController: KeyboardInputViewController {
     // MARK: - Locale Persistency
     
     var defaults: UserDefaults { .standard }
+    
     let defaultsLocaleKey = "last-locale"
     
     /**
