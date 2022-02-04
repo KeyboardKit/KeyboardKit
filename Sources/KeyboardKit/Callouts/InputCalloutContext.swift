@@ -36,7 +36,7 @@ open class InputCalloutContext: ObservableObject {
     
     // MARK: - Properties
     
-    static let coordinateSpace = "com.keyboardkit.coordinate.InputCallout"
+    public static let coordinateSpace = "com.keyboardkit.coordinate.InputCallout"
     
     /**
      The optional input of any currently active action.
@@ -48,6 +48,9 @@ open class InputCalloutContext: ObservableObject {
      */
     public var isActive: Bool { input != nil && isEnabled }
     
+    
+    // MARK: - Published Properties
+    
     /**
      Whether or not the context is enabled, which means that
      it will show callouts as the user types.
@@ -57,12 +60,12 @@ open class InputCalloutContext: ObservableObject {
     /**
      The action that is currently active for the context.
      */
-    @Published private(set) var action: KeyboardAction?
+    @Published public private(set) var action: KeyboardAction?
     
     /**
      The frame of the button that is active for the context.
      */
-    @Published private(set) var buttonFrame: CGRect = .zero
+    @Published public private(set) var buttonFrame: CGRect = .zero
     
     
     // MARK: - Functions
