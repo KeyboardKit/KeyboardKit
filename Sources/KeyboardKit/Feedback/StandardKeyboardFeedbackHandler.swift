@@ -11,8 +11,7 @@ import Foundation
 
 /**
  This standard keyboard feedback handler is used by standard
- by KeyboardKit and can be used to trigger standard feeeback
- when a user performs gestures on keyboard actions.
+ by KeyboardKit and can trigger audio and haptic feeeback.
  
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.

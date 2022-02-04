@@ -11,8 +11,7 @@ import Foundation
 
 /**
  This protocol can be implemented by any classes that can be
- used to trigger user feedback when a user performs gestures
- on keyboard actions.
+ used to trigger audio and haptic feedback.
  */
 public protocol KeyboardFeedbackHandler {
     

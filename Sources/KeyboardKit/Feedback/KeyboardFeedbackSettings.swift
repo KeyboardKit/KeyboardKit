@@ -11,11 +11,6 @@ import Foundation
 /**
  This class can be used to specify what kind of feedback the
  current keyboard should give to the user.
-
- Any changes to the view controller's feedback settings will
- automatically apply as long as the view controler still has
- a ``StandardKeyboardFeedbackHandler`` instance that has the
- controller's feedback settings applied.
  */
 public class KeyboardFeedbackSettings: ObservableObject {
     
