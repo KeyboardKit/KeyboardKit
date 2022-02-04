@@ -53,37 +53,6 @@ open class KeyboardInputViewController: UIInputViewController {
     }
     
     
-    // MARK: - Root View
-    
-    /**
-     This view is used as a wrapper view, to be able to bind
-     the keyboard view to properties that affect your layout
-     without triggering a view update.
-     */
-    private struct RootView<ViewType: View>: View {
-        
-        init(_ view: ViewType) {
-            self.view = view
-        }
-        
-        var view: ViewType
-        
-        @EnvironmentObject private var context: KeyboardContext
-        
-        var body: some View {
-            view.id(bodyId)
-        }
-        
-        var bodyId: String {
-            #if os(iOS) || os(macOS)
-            "\(context.locale)\(context.colorScheme)\(context.screenOrientation.isLandscape)"
-            #else
-            "\(context.locale)\(context.colorScheme)"
-            #endif
-        }
-    }
-    
-    
     // MARK: - Setup
 
     /**
@@ -98,7 +67,7 @@ open class KeyboardInputViewController: UIInputViewController {
      */
     open func setup<Content: View>(with view: Content) {
         self.view.subviews.forEach { $0.removeFromSuperview() }
-        let view = RootView(view)
+        let view = KeyboardRootView(view)
             .environmentObject(autocompleteContext)
             .environmentObject(actionCalloutContext)
             .environmentObject(inputCalloutContext)
