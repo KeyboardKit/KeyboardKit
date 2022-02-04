@@ -33,6 +33,7 @@ This version adds new locales and makes the library build on more platforms.
 
 * All previously deprecated code has been removed.
 
+* `Bundle` `isExtension` has been made internal.
 * `Color.standardButtonBackgroundColor(for:)` has been renamed to `standardButtonBackground(for:)`.
 * `Color.standardButtonForegroundColor(for:)` has been renamed to `standardButtonForeground(for:)`.
 * `Color.standardButtonShadowColor(for:)` has been renamed to `standardButtonShadow(for:)`.
