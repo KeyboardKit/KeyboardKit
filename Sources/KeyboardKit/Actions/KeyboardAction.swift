@@ -9,15 +9,19 @@
 import Foundation
 
 /**
- This enum specifies available keyboard actions that you can
- bind to buttons or trigger with an action handler.
+ This enum defines keyboard-specific actions that correspond
+ to actions that can be found on various keyboards. Keyboard
+ actions are fundamental building-blocks in the library.
  
- Many keyboard actions have standard behaviors, as described
- in the documentation for each case. However, many don't and
- just exist to let you create keyboards in a declarative way.
+ Keyboard actions can be bound to buttons and triggered with
+ a ``KeyboardActionHandler``. Keyboard actions are also used
+ to define keyboard layouts and provide a declarative way to
+ express a layout without having to specify exactly how your
+ actions will be executed.
  
- Actions without a standard behavior require custom handling,
- for instance by creating a custom ``KeyboardActionHandler``.
+ Many keyboard actions have standard behaviors that are used
+ by default by the library. To customize how the actions are
+ handled, you can implement a custom ``KeyboardActionHandler``.
  
  Note that ``character(_:)`` accepts a `String` instead of a
  `Character`. This is because some system keys actually send

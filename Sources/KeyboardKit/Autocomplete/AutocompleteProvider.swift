@@ -10,17 +10,30 @@ import Foundation
 
 /**
  This protocol can be implemented by any classes that can be
- used to provide autocomplete suggestions for a certain text.
+ used to provide autocomplete suggestions for the typed text.
+ 
+ The key function when using an autocomplete provider is the
+ ``autocompleteSuggestions(for:completion:)``, which returns
+ suggestions based on the provided text.
  
  You can implement the protocol in any way you like, e.g. to
- use a built-in database or by connecting to an external api.
- Note that network operations require full access and can be
- slow for your users.
+ use native Swift technologies, your own local library or by
+ calling an external api. Note that using network operations
+ require full access and can be slow for your users. 
  
- The KeyboardKit Pro `StandardAutocompleteProvider` provider
- can be unlocked with a license. KeyboardKit Pro also has an
- `ExternalAutocompleteProvider` provider that can be used to
- communicate with an external api or web service.
+ Note that KeyboardKit doesn't have an autocomplete provider
+ implementation as it does for most other protocols. It only
+ has an internal, disabled one that it uses as a placeholder
+ until you inject your own provider or use a KeyboardKit Pro
+ license to unlock the standard provider that it provides.
+ 
+ KeyboardKit Pro has two autocomplete providers that you get
+ access to as soon as you register a pro license. By default,
+ it will register a `StandardAutocompleteProvider`, which is
+ a basic provider that provides locale-specific autocomplete
+ without word prediction. KeyboardKit Pro also comes with an
+ additional `ExternalAutocompleteProvider` provider that can
+ be used to communicate with an external api or web service.
  */
 public protocol AutocompleteProvider: AnyObject {
     

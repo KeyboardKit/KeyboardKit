@@ -75,8 +75,8 @@ class KeyboardViewController: KeyboardInputViewController {
             providers: [EnglishInputSetProvider()])
         
         // Setup a demo-specific keyboard appearance
-        // 💡 Adjust the DemoAppearance to see what happens
-        keyboardAppearance = DemoAppearance(context: keyboardContext)
+        // 💡 Adjust the DemoKeyboardAppearance to see what happens
+        keyboardAppearance = DemoKeyboardAppearance(context: keyboardContext)
         
         // Setup the demo to explicitly use English locale
         // 💡 This is overwritten if Pro is registered below

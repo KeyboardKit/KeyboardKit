@@ -1,33 +1,23 @@
 # ``KeyboardKit``
 
-KeyboardKit helps you build custom keyboard extensions for iOS and iPadOS, using SwiftUI.
+KeyboardKit helps you build custom keyboard extensions for iOS and iPadOS.
 
 
 ## Overview
 
 ![KeyboardKit logo](Logo.png)
 
-KeyboardKit extends the native keyboard extension APIs to provide you with a lot more functionality. It also provides you with views and utils to help you mimic native keyboards.
+KeyboardKit extends the native keyboard extension APIs that are provided by Apple, to provide you with a lot more functionality than is available by default. 
 
-KeyboardKit is flexible and doesn't force your keyboard to look or behave in a certain way. You can go with a standard system keyboard, tweak the standard design a little (or a lot) or use completely custom views or designs.
+KeyboardKit also provides you with views and tools to help you mimic native iOS keyboards. See ``SystemKeyboard`` for more info.
 
-
-## Installation
-
-The best way to add KeyboardKit to your app is to use the Swift Package Manager.
-
-```
-https://github.com/KeyboardKit/KeyboardKit.git
-```
-
-You can add KeyboardKit to the main app, the keyboard extension and any other targets that needs it.
+KeyboardKit is flexible and doesn't force your keyboard to look or behave in a certain way. You can use ``SystemKeyboard`` to mimic native iOS keyboards and style them a little (or a lot) or use completely custom views or designs.
 
 
-## About this documentation
+#### About this documentation
 
-This documentation is generated with Xcode's new DocC engine.
+This documentation is generated with Xcode's new DocC engine. Since DocC currently omits extensions, a lot of library functionality is currently missing in the documentation.
 
-Note that DocC currently omits extensions, which means that there are a lot of functionality in the library that is missing in the documentation. Future versions will aim to improve this.
 
 
 ## Topics
@@ -35,6 +25,10 @@ Note that DocC currently omits extensions, which means that there are a lot of f
 ### Essentials
 
 - <doc:Getting-Started>
+- <doc:Going-Further>
+- <doc:Understanding-Keyboard-Actions>
+- <doc:Understanding-Keyboard-Appearance>
+- <doc:Understanding-Autocomplete>
 
 ### Keyboard
 
@@ -210,9 +204,9 @@ Note that DocC currently omits extensions, which means that there are a lot of f
 - ``CalloutStyle``
 - ``EmojiKeyboardStyle``
 - ``InputCalloutStyle``
-- ``SystemKeyboardButtonStyle``
-- ``SystemKeyboardButtonBorderStyle``
-- ``SystemKeyboardButtonShadowStyle``
+- ``KeyboardButtonStyle``
+- ``KeyboardButtonBorderStyle``
+- ``KeyboardButtonShadowStyle``
 
 ### Views
 

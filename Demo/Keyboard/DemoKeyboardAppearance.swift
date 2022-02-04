@@ -1,5 +1,5 @@
 //
-//  DemoAppearance.swift
+//  DemoKeyboardAppearance.swift
 //  Keyboard
 //
 //  Created by Daniel Saidi on 2021-10-06.
@@ -18,7 +18,7 @@ import SwiftUI
  the look of the keyboard. Give it a try by changing some of
  the styles below.
  */
-class DemoAppearance: StandardKeyboardAppearance {
+class DemoKeyboardAppearance: StandardKeyboardAppearance {
     
     override func actionCalloutStyle() -> ActionCalloutStyle {
         let style = super.actionCalloutStyle()

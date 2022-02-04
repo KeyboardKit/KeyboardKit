@@ -1,6 +1,17 @@
 # Getting started
 
-Once KeyboardKit is installed, you can start using it in your application.
+This article discusses how to install KeyboardKit and get started using it in your app.
+
+
+## Installation
+
+The best way to install KeyboardKit is with the Swift Package Manager.
+
+```
+https://github.com/KeyboardKit/KeyboardKit.git
+```
+
+You can add KeyboardKit to the main app, the keyboard extension and any other targets that needs it.
 
 
 
@@ -19,9 +30,9 @@ Other platforms, such as macOS, watchOS and tvOS can use KeyboardKit as well, ev
 
 ## How to setup KeyboardKit
 
-In your keyboard extension, let `KeyboardViewController` inherit `KeyboardInputViewController` instead of `UIInputViewController`. This will give it access to a lot of additional functionality, like new lifecycle functions, observable properties like `keyboardContext`, services like `keyboardActionHandler` and much more.
+In your keyboard extension, let `KeyboardViewController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`. This will give it access to a lot of additional functionality, like new lifecycle functions, observable properties like ``KeyboardInputViewController/keyboardContext``, services like ``KeyboardInputViewController/keyboardActionHandler`` and much more.
 
-The controller will call `viewWillSetupKeyboard` when the keyboard should be created or re-created. You can use `setup(with:)` to setup your extension with any `SwiftUI` view:
+The controller will call `viewWillSetupKeyboard` when the keyboard should be created or re-created. You can use ``KeyboardInputViewController/setup(with:)`` to setup your extension with any `SwiftUI` view:
 
 ```swift
 func viewWillSetupKeyboard() {
@@ -32,7 +43,7 @@ func viewWillSetupKeyboard() {
 
 This will inject a bunch of environment objects into the view hierarchy and setup the extension to resize itself after the size of the provided view. 
 
-It's important that the view you use observes the global `KeyboardContext`, either with an environment object:
+It's important that the view you use observes the global ``KeyboardContext``, either with an environment object:
 
 ```swift
 struct MyKeyboardView: View {
@@ -65,13 +76,3 @@ struct MyKeyboardView: View {
 If the view doens't observe the keyboard context, it will be unresponsive to context changes. If your view doesn't react when you tap the shift or numeric key, that is most probably the cause. 
 
 Once your keyboard is created, KeyboardKit will observe context changes to automatically update the keyboard, e.g. when the keyboard type changes.
-
-
-
-## Going further
-
-If you followed the example above, you should now have a `SystemKeyboard`-based keyboard that observes the keyboard context and automatically does a bunch of things right out of the box. 
-
-Have a look in the documentation for more articles on how to configure KeyboardKit, create your own service implementations etc. 
-
-You can also have a look at the demo app, which replaces most services with demo-specific implementations.  

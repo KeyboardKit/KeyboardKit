@@ -34,7 +34,7 @@ If you're new to iOS keyboard extensions, [this great guide][Guide] will help yo
 
 
 
-## Platform Support
+## Supported Platforms
 
 KeyboardKit supports the following platforms:
 
