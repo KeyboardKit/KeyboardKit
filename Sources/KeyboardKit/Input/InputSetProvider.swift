@@ -52,6 +52,19 @@ public extension InputSetProvider {
     
     /**
      Create an input row from a lowercased and an uppercased
+     strings, which are mapped to `InputSetItem` arrays.
+     
+     Both arrays must contain the same amount of characters.
+     */
+    func row(
+        lowercased: String,
+        uppercased: String) -> InputSetRow {
+        row(lowercased: lowercased.chars,
+            uppercased: uppercased.chars)
+    }
+    
+    /**
+     Create an input row from a lowercased and an uppercased
      string array, which are mapped to `InputSetItem` arrays.
      
      Both arrays must contain the same amount of characters.

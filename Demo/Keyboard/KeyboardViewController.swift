@@ -14,12 +14,11 @@ import Combine
 
 /**
  This SwiftUI-based demo keyboard demonstrates how to create
- a keyboard extension using `KeyboardKit` and `SwiftUI`.
+ a keyboard extension with `KeyboardKit`.
  
- This demo registers demo-specific services in `viewDidLoad`
- and sets up KeyboardKit with a `KeyboardView` that uses the
- services in `viewWillSetupKeyboard`. Feel free to play with
- these to see how the keyboard behavior changes.
+ The demo makes demo-specific configurations in `viewDidLoad`
+ and sets up the keyboard with a `KeyboardView`. Play around
+ with the demo to see how the keyboard changes.
  
  The demo can be configured with and without KeyboardKit Pro
  support. Without Pro, the demo only supports English locale
@@ -30,12 +29,10 @@ import Combine
  To use this keyboard, you must enable it in system settings
  ("Settings/General/Keyboards"). It needs full access if you
  want to enable haptic and audio feedback.
-
- `IMPORTANT` The `KeyboardView` has many environment objects
- that make it automatically update when these objects change.
- The `KeyboardViewController` will not trigger these changes
- automatically, so make sure to define your own app-specific
- view that can setup these bindings.
+ 
+ `IMPORTANT` The `KeyboardView` is needed to ensure that the
+ keyboard observes and reacts to context changes. If we just
+ inject a `SystemKeyboard` in `setup`, it would become stale.
  */
 class KeyboardViewController: KeyboardInputViewController {
     
@@ -100,7 +97,7 @@ class KeyboardViewController: KeyboardInputViewController {
             inputSetProvider: inputSetProvider,
             dictationReplacement: .keyboardType(.emojis))
         
-        // Perform the base initialization
+        // Call super to perform the base initialization
         super.viewDidLoad()
     }
     
