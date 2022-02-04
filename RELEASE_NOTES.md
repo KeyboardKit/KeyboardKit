@@ -26,7 +26,8 @@ This version adds new locales and makes the library build on more platforms.
 
 ### 💡 Behavior changes
 
-* Autocomplete now only applies autocorrections for pure `space` actions and not character actions with a single space. 
+* Autocomplete now only applies autocorrections for pure `space` actions and not character actions with a single space.
+* `StandardKeyboardFeedbackHandler` now triggers the haptic feedback for long press on space, not the `SpaceCursorDragGestureHandler`. 
 
 ### 💥 Breaking changes
 
@@ -46,6 +47,7 @@ This version adds new locales and makes the library build on more platforms.
 * `SystemKeyboardButtonStyle` has been renamed to `KeyboardButtonStyle`.
 * `SystemKeyboardButtonBorderStyle` has been renamed to `KeyboardButtonBorderStyle`.
 * `SystemKeyboardButtonShadowStyle` has been renamed to `KeyboardButtonShadowStyle`.
+* `StandardKeyboardFeedbackHandler` `triggerFeedbackForLongPressOnSpaceDragGesture` has been removed.
 
 
 

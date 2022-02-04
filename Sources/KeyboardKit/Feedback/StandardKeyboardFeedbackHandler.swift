@@ -77,20 +77,13 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
     }
     
     /**
-     Trigger feedback for when space is pressed so long that
-     it enters cursor drag state.
-     */
-    open func triggerFeedbackForLongPressOnSpaceDragGesture() {
-        hapticConfig.longPressOnSpace.trigger()
-    }
-    
-    /**
      Trigger feedback for when a `gesture` is performed on a
      certain `action`.
      */
     open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
         let custom = audioConfig.actions.first { $0.action == action }
         if let custom = custom { return custom.feedback.play() }
+        if action == .space && gesture == .longPress { return }
         if action == .backspace { return audioConfig.delete.play() }
         if action.isInputAction { return audioConfig.input.play() }
         if action.isSystemAction { return audioConfig.system.play() }
@@ -103,6 +96,7 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
     open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
         let custom = hapticConfig.actions.first { $0.action == action && $0.gesture == gesture }
         if let custom = custom { return custom.feedback.trigger() }
+        if action == .space && gesture == .longPress { return hapticConfig.longPressOnSpace.trigger() }
         switch gesture {
         case .doubleTap: hapticConfig.doubleTap.trigger()
         case .longPress: hapticConfig.longPress.trigger()

@@ -94,15 +94,6 @@ class StandardKeyboardFeedbackHandlerTests: QuickSpec {
             }
         }
         
-        describe("trigger feedback for long press on space drag gesture") {
-            
-            it("triggers haptic feedback") {
-                handler.triggerFeedbackForLongPressOnSpaceDragGesture()
-                expect(audioPlayer.hasCalled(audioPlayer.playRef)).to(beFalse())
-                expect(hapticPlayer.hasCalled(hapticPlayer.playRef)).to(beTrue())
-            }
-        }
-        
         describe("trigger audio feedback") {
             
             it("triggers audio feedback only") {

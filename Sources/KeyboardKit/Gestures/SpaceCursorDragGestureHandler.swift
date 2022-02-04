@@ -62,7 +62,6 @@ private extension SpaceCursorDragGestureHandler {
         currentDragStartLocation = startLocation
         guard isNewDrag else { return }
         currentDragTextPositionOffset = 0
-        feedbackHandler.triggerFeedbackForLongPressOnSpaceDragGesture()
     }
 }
 #endif
