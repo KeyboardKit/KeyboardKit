@@ -73,13 +73,13 @@ class StandardKeyboardAppearanceTests: QuickSpec {
         
         describe("system keyboard button style") {
             
-            var styles: [(action: KeyboardAction, style: SystemKeyboardButtonStyle)]!
+            var styles: [(action: KeyboardAction, style: KeyboardButtonStyle)]!
             
             let config = KeyboardLayoutConfiguration.standard(for: .preview)
             
             beforeEach {
                 styles = KeyboardAction.testActions.map {
-                    (action: $0, style: appearance.systemKeyboardButtonStyle(for: $0, isPressed: false))
+                    (action: $0, style: appearance.buttonStyle(for: $0, isPressed: false))
                 }
             }
             
@@ -152,8 +152,8 @@ class StandardKeyboardAppearanceTests: QuickSpec {
                 }
                 
                 it("is lightweight if action has image") {
-                    let backspace = appearance.systemKeyboardButtonStyle(for: .backspace, isPressed: false).font
-                    let character = appearance.systemKeyboardButtonStyle(for: .character(""), isPressed: false).font
+                    let backspace = appearance.buttonStyle(for: .backspace, isPressed: false).font
+                    let character = appearance.buttonStyle(for: .character(""), isPressed: false).font
                     expect(backspace).toNot(equal(character))
                 }
             }
