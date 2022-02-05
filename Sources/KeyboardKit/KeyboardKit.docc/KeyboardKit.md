@@ -29,6 +29,8 @@ This documentation is generated with Xcode's new DocC engine. Since DocC current
 - <doc:Understanding-Keyboard-Actions>
 - <doc:Understanding-Keyboard-Appearance>
 - <doc:Understanding-Keyboard-Feedback>
+- <doc:Understanding-Keyboard-Input-Sets>
+- <doc:Understanding-Keyboard-Layout>
 - <doc:Understanding-Autocomplete>
 
 ### Keyboard

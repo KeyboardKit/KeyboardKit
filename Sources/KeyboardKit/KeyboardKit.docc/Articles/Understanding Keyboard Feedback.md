@@ -27,7 +27,7 @@ Many keyboard actions have standard feedbacks, while others don't and require cu
 
 You can create a custom handler by either inheriting and customizing the standard class (which gives you a lot of functionality for free) or by creating a new implementation from scratch. When you're implementation is ready, just replace the controller service with your own implementation to make the library use it instead.
 
-For instance, here is a custom feedback handler that extend ``StandardKeyboardFeedbackHandler`` and trigger a string haptic feedback when the return button is long pressed:
+For instance, here is a custom feedback handler that extends ``StandardKeyboardFeedbackHandler`` and trigger a string haptic feedback when the return button is long pressed:
 
 ```swift
 class MyKeyboardFeedbackHandler: StandardKeyboardFeedbackHandler {

@@ -10,8 +10,11 @@ import Foundation
 
 /**
  An input set defines the input keys on a keyboard. The keys
- can then be used to create a layout, which defines the full
- set of keys, including the surrounding system keys.
+ can then be used to create a keyboard layout, which defines
+ the full set of keys, including the surrounding system keys.
+ 
+ The most flexible way to generate an input set is to use an
+ ``InputSetProvider``.
  */
 public class InputSet: Equatable {
     

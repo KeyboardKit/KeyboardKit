@@ -10,16 +10,16 @@ import CoreGraphics
 import SwiftUI
 
 /**
- A keyboard layout lists all available actions on a keyboard
- as well as their size.
+ A keyboard layout defines all available keyboard actions on
+ a keyboard, as well as their size.
  
  A keyboard layout most often consists of several input rows
  where the input buttons are surrounded by system buttons on
  either or both sides, as well as a bottom row, with a large
  space button and several system buttons.
  
- A keyboard layout can however be entirely custom. Implement
- a custom `KeyboardLayoutProvider` to create your own layout.
+ The most flexible way to generate a keyboard layout is with
+ a ``KeyboardLayoutProvider``.
  */
 public class KeyboardLayout {
     
@@ -36,7 +36,7 @@ public class KeyboardLayout {
     /**
      The layout item rows to show in the keyboard.
      */
-    public let itemRows: KeyboardLayoutItemRows
+    public var itemRows: KeyboardLayoutItemRows
     
     /**
      This `CGFloat` typealias makes it easier to see where a

@@ -43,7 +43,7 @@ Many keyboard actions have standard behaviors, while others don't and require cu
 
 You can create a custom action handler by either inheriting and customizing the standard class (which gives you a lot of functionality for free) or by creating a new implementation from scratch. When you're implementation is ready, just replace the controller service with your own implementation to make the library use it instead.
 
-For instance, here is a custom action handler that extend ``StandardKeyboardActionHandler`` with the capabilities to copy and save images:
+For instance, here is a custom action handler that extends ``StandardKeyboardActionHandler`` with the capabilities to copy and save images:
 
 ```swift
 class MyActionHandler: StandardKeyboardActionHandler {

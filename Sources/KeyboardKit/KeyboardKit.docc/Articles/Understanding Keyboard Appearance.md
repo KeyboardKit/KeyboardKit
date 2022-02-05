@@ -18,10 +18,10 @@ If you want to change the style of some buttons or callouts or change the the te
 
 You can create a custom appearance by either inheriting and customizing the standard class (which gives you a lot of functionality for free) or by creating a new implementation from scratch. When you're implementation is ready, just replace the controller service with your own implementation to make the library use it instead.
 
-For instance, here is a custom appearance that extend ``StandardKeyboardAppearance`` and makes all input actions and callouts red:
+For instance, here is a custom appearance that extends ``StandardKeyboardAppearance`` and makes all input actions and callouts red:
 
 ```swift
-class MyAppearance: StandardKeyboardAppearance {
+class MyKeyboardAppearance: StandardKeyboardAppearance {
     
     override func actionCalloutStyle() -> ActionCalloutStyle {
         let style = super.actionCalloutStyle()
@@ -52,7 +52,7 @@ To use this implementation instead of the standard one, just replace the standar
 class MyKeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
-        keyboardAppearance = MyAppearance()
+        keyboardAppearance = MyKeyboardAppearance()
         super.viewDidLoad()
     }
 }
