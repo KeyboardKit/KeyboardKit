@@ -65,7 +65,6 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
                 expect(handler.hasCalled(handler.tryChangeKeyboardTypeRef)).to(beTrue())
                 expect(handler.hasCalled(handler.tryEndSentenceRef)).to(beTrue())
                 expect(handler.hasCalled(handler.tryRegisterEmojiRef)).to(beTrue())
-                expect(feedbackHandler.hasCalled(feedbackHandler.triggerFeedbackWithActionProviderRef)).to(beTrue())
             }
         }
         
@@ -127,17 +126,42 @@ class StandardKeyboardActionHandlerTests: QuickSpec {
             }
         }
         
+        describe("should trigger feedback for gesture on action") {
+            
+            it("returns false for press if no action is performed for tap") {
+                let res = handler.shouldTriggerFeedback(for: .press, on: .control)
+                expect(res).to(beFalse())
+            }
+            
+            it("returns true for press if an action is performed for tap") {
+                let res = handler.shouldTriggerFeedback(for: .press, on: .character(""))
+                expect(res).to(beTrue())
+            }
+            
+            it("returns true for tap even if an action is performed for tap") {
+                let res = handler.shouldTriggerFeedback(for: .tap, on: .character(""))
+                expect(res).to(beFalse())
+            }
+            
+            it("returns false for not tap but no action is performed for the gesture") {
+                let res = handler.shouldTriggerFeedback(for: .release, on: .character(""))
+                expect(res).to(beFalse())
+            }
+            
+            it("returns true for not tap and an action is performed for the gesture") {
+                let res = handler.shouldTriggerFeedback(for: .longPress, on: .space)
+                expect(res).to(beTrue())
+            }
+        }
+        
         describe("trigger feedback for gesture on action") {
 
             it("calls injected feedback handler") {
-                handler.triggerFeedback(for: .doubleTap, on: .backspace)
-                handler.triggerFeedback(for: .release, on: .return)
-                let calls = feedbackHandler.calls(to: feedbackHandler.triggerFeedbackWithActionProviderRef)
-                expect(calls.count).to(equal(2))
-                expect(calls[0].arguments.0).to(equal(.doubleTap))
-                expect(calls[0].arguments.1).to(equal(.backspace))
-                expect(calls[1].arguments.0).to(equal(.release))
-                expect(calls[1].arguments.1).to(equal(.return))
+                handler.triggerFeedback(for: .press, on: .character(""))
+                let calls = feedbackHandler.calls(to: feedbackHandler.triggerFeedbackRef)
+                expect(calls.count).to(equal(1))
+                expect(calls[0].arguments.0).to(equal(.press))
+                expect(calls[0].arguments.1).to(equal(.character("")))
             }
         }
         

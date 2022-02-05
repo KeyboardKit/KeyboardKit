@@ -45,7 +45,6 @@ You can create a custom action handler by either inheriting and customizing the 
 
 For instance, here is a custom action handler that extend ``StandardKeyboardActionHandler`` with the capabilities to copy and save images:
 
-
 ```swift
 class MyActionHandler: StandardKeyboardActionHandler {
     

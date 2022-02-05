@@ -12,19 +12,9 @@ import MockingKit
 
 class MockKeyboardFeedbackHandler: Mock, KeyboardFeedbackHandler {
     
-    lazy var triggerFeedbackRef = MockReference(triggerFeedback)
-    lazy var triggerFeedbackWithActionProviderRef = MockReference(triggerFeedbackWithActionProvider)
-    
+    lazy var triggerFeedbackRef = MockReference(triggerFeedback)    
     lazy var triggerAudioFeedbackRef = MockReference(triggerAudioFeedback)
     lazy var triggerHapticFeedbackRef = MockReference(triggerHapticFeedback)
-    
-    func triggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, actionProvider: GestureActionProvider) {
-        triggerFeedbackWithActionProvider(for: gesture, on: action)
-    }
-    
-    func triggerFeedbackWithActionProvider(for gesture: KeyboardGesture, on action: KeyboardAction) {
-        call(triggerFeedbackWithActionProviderRef, args: (gesture, action))
-    }
     
     func triggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
         call(triggerFeedbackRef, args: (gesture, action))

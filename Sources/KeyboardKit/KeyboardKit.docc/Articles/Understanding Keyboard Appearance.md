@@ -20,7 +20,6 @@ You can create a custom appearance by either inheriting and customizing the stan
 
 For instance, here is a custom appearance that extend ``StandardKeyboardAppearance`` and makes all input actions and callouts red:
 
-
 ```swift
 class MyAppearance: StandardKeyboardAppearance {
     

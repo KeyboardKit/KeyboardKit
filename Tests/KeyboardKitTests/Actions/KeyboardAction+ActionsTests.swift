@@ -77,7 +77,7 @@ class KeyboardAction_ActionsTests: QuickSpec {
             }
             
             it("is defined for some actions") {
-                expected = [.backspace]
+                expected = [.backspace, .space]
                 expected.forEach { expect(result(for: $0)).toNot(beNil()) }
                 unexpected.forEach { expect(result(for: $0)).to(beNil()) }
             }

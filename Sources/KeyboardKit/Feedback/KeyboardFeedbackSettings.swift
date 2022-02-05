@@ -14,6 +14,13 @@ import Foundation
  */
 public class KeyboardFeedbackSettings: ObservableObject {
     
+    /**
+     Create a settings instance.
+     
+     - Parameters:
+       - audioConfiguration: The configuration to use for audio feedback.
+       - hapticConfiguration: The configuration to use for haptic feedback.
+     */
     public init(
         audioConfiguration: AudioFeedbackConfiguration = .standard,
         hapticConfiguration: HapticFeedbackConfiguration = .standard) {
@@ -21,8 +28,23 @@ public class KeyboardFeedbackSettings: ObservableObject {
         self.hapticConfiguration = hapticConfiguration
     }
     
+    /**
+     The configuration to use for audio feedback.
+     */
     @Published public var audioConfiguration: AudioFeedbackConfiguration
+    
+    /**
+     The configuration to use for haptic feedback.
+     */
     @Published public var hapticConfiguration: HapticFeedbackConfiguration
+}
+
+public extension KeyboardFeedbackSettings {
+    
+    /**
+     This specifies a standard feedback configuration.
+    */
+    static let standard = KeyboardFeedbackSettings()
 }
 
 public extension KeyboardFeedbackSettings {

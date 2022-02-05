@@ -163,16 +163,32 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     /**
-     Trigger feedback for a certain `gesture` on an `action`.
+     Whether or not a feedback should be given for a certain
+     gesture on a certain action.
+     
+     By default, the function will return `true` for a press
+     on a gesture that has a tap action or if the gesture is
+     not a tap and the action has an action for that gesture.
+     
+     You can override this function to customize how actions
+     trigger feedback.
+     */
+    open func shouldTriggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
+        if gesture == .press && self.action(for: .tap, on: action) != nil { return true }
+        if gesture != .tap && self.action(for: gesture, on: action) != nil { return true }
+        return false
+    }
+    
+    /**
+     Trigger feedback for a certain `gesture` on an `action`,
+     if ``shouldTriggerFeedback(for:on:)`` returns `true`.
      
      You can override this function to customize how actions
      trigger feedback.
      */
     open func triggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
-        keyboardFeedbackHandler.triggerFeedback(
-            for: gesture,
-            on: action,
-            actionProvider: self.action)
+        guard shouldTriggerFeedback(for: gesture, on: action) else { return }
+        keyboardFeedbackHandler.triggerFeedback(for: gesture, on: action)
     }
     
     /**

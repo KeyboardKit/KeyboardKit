@@ -10,8 +10,8 @@
 import Foundation
 
 /**
- This standard keyboard feedback handler is used by standard
- by KeyboardKit and can trigger audio and haptic feeeback.
+ This feedback handler is used by default by KeyboardKit and
+ can trigger audio and haptic feeeback.
  
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
@@ -24,43 +24,28 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
     
     /**
      Create a standard keyboard feedback handler instance.
+     
+     - Parameters:
+       - settings: The feedback settings to use.
      */
     public init(settings: KeyboardFeedbackSettings) {
         self.settings = settings
     }
     
+    /**
+     The feedback settings to use.
+     */
     public let settings: KeyboardFeedbackSettings
     
+    /**
+     The audio configuration to use, derived from ``settings``.
+     */
     public var audioConfig: AudioFeedbackConfiguration { settings.audioConfiguration }
+    
+    /**
+     The haptic configuration to use, derived from ``settings``.
+     */
     public var hapticConfig: HapticFeedbackConfiguration { settings.hapticConfiguration }
-    
-    /**
-     Whether or not a feedback should be given for a certain
-     gesture on a certain action, given the provided gesture
-     action provider.
-     
-     By default, the function will return `true` for a press
-     on a gesture that has a tap action or if the gesture is
-     not a tap and the action has an action for that gesture.
-     */
-    open func shouldTriggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, actionProvider: GestureActionProvider) -> Bool {
-        if gesture == .press && actionProvider(.tap, action) != nil { return true }
-        if gesture != .tap && actionProvider(gesture, action) != nil { return true }
-        return false
-    }
-    
-    /**
-     Try to trigger user feedback for a certain gesture on a
-     certain action, given a certain gesture action provider.
-     
-     By default, the function checks `shouldGiveFeedback` to
-     determine if any feedback should be given. It will then
-     call `triggerAudioFeedback` and `triggerHapticFeedback`.
-     */
-    open func triggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction, actionProvider: GestureActionProvider) {
-        guard shouldTriggerFeedback(for: gesture, on: action, actionProvider: actionProvider) else { return }
-        triggerFeedback(for: gesture, on: action)
-    }
     
     /**
      Try to trigger user feedback for a certain gesture on a
