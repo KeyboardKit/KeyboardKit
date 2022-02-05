@@ -19,20 +19,21 @@ import Foundation
  express a layout without having to specify exactly how your
  actions will be executed.
  
- Many keyboard actions have standard behaviors that are used
- by default by the library. To customize how the actions are
- handled, you can implement a custom ``KeyboardActionHandler``.
- 
- Note that ``character(_:)`` accepts a `String` instead of a
- `Character`. This is because some system keys actually send
- multiple characters when tapped.
+ Many keyboard actions have standard behaviors, while others
+ don't and require custom handling. To customize how actions
+ are handled, you can implement a custom action handler
  */
 public enum KeyboardAction: Codable, Equatable {
     
     /// Deletes text backwards when pressed and repeats that action until released.
     case backspace
     
-    /// Inserts a text character when tapped.
+    /**
+     Inserts a text character when tapped.
+     
+     This case takes a `String` instead of `Character` since
+     some keys send multiple characters when they are tapped.
+     */
     case character(String)
     
     /// Inserts a text character when tapped, but should be rendered as empty space.

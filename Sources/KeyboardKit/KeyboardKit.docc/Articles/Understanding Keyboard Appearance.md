@@ -1,31 +1,22 @@
 # Understanding Keyboard Appearance
 
-This article describes what keyboard appearance is and how to use it. 
+This article describes the KeyboardKit appearance model and how to use it. 
 
 
 ## Keyboard appearance
 
-KeyboardKit has a ``KeyboardAppearance`` protocol that describes keyboard appearance-specific things like styles, texts and images.
+KeyboardKit has a ``KeyboardAppearance`` protocol that describes styles and appearances for different parts of a keyboard.
 
-KeyboardKit sets up a ``StandardKeyboardAppearance`` instance by default when a ``KeyboardInputViewController`` is initalized. The library will use this appearance to dynamically determine how a keyboard and its components should look.
+Many views in the library use an appearance if they have to be able to generate different styles. This is true for e.g. ``SystemKeyboard``, which renders many different components and buttons. Views that only need to be styled in a certain way can just ask for a fixed style instead of an appearance.
 
-Library views take an appearance instance when dynamic appearance capabilities are needed, while other views just take a style. Let's discuss the difference between appearances and styles.
-
-
-
-## Keyboard appearance vs. styles
-
-While styles are static structs that describe the style of a specific component, keyboard appearances are classes that can resolve styles dynamically, e.g. based on action.
-
-Views should use an appearance when they have to be able to generate many different styles (think ``SystemKeyboard`` with all its buttons) and a style if it only relies on the style.
+KeyboardKit will create a ``StandardKeyboardAppearance`` as the keyboard extension is started, then apply this instance to ``KeyboardInputViewController/keyboardAppearance``. This instance will then be used by default to determine how your appearance-based views will look.
 
 
+## How to create a custom appearance
 
-## Creating a custom keyboard appearance
+If you want to change the style of some buttons or callouts or change the the text or image to use for buttons, you can implement a custom keyboard appearance.
 
-To create a custom keyboard appearance, you can either inherit and customize ``StandardKeyboardAppearance`` or implement a brand new ``KeyboardAppearance`` from scratch.
-
-Inheriting and customizing ``StandardKeyboardAppearance`` is highly recommended, since you get access to a bunch of already implemented logic and can add your own custom logic to the mix.
+You can create a custom appearance by either inheriting and customizing the standard class (which gives you a lot of functionality for free) or by creating a new implementation from scratch. When you're implementation is ready, just replace the controller service with your own implementation to make the library use it instead.
 
 For instance, here is a custom appearance that extend ``StandardKeyboardAppearance`` and makes all input actions and callouts red:
 
@@ -56,7 +47,7 @@ class MyAppearance: StandardKeyboardAppearance {
 }
 ```
 
-To use this appearance instead of the standard one, you can inject it in ``KeyboardInputViewController/viewDidLoad()``:
+To use this implementation instead of the standard one, just replace the standard instance like this:
 
 ```swift
 class MyKeyboardViewController: KeyboardInputViewController {
@@ -68,4 +59,4 @@ class MyKeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-This will make KeyboardKit use your custom appearance everywhere and generate a red keyboard.
+This will make KeyboardKit use your custom implementation everywhere instead of the standard one.

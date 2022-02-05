@@ -318,6 +318,17 @@ open class KeyboardInputViewController: UIInputViewController {
     // MARK: - Autocomplete
     
     /**
+     The text that is provided to the ``autocompleteProvider``
+     when ``performAutocomplete()`` is called.
+     
+     By default, the text document proxy's current word will
+     be used. You can override this property to change that.
+     */
+    open var autocompleteText: String? {
+        textDocumentProxy.currentWord
+    }
+    
+    /**
      Perform an autocomplete operation.
      
      You can override this function to extend or replace the
@@ -326,8 +337,8 @@ open class KeyboardInputViewController: UIInputViewController {
      the current ``autocompleteProvider``.
      */
     open func performAutocomplete() {
-        guard let word = textDocumentProxy.currentWord else { return resetAutocomplete() }
-        autocompleteProvider.autocompleteSuggestions(for: word) { [weak self] result in
+        guard let text = autocompleteText else { return resetAutocomplete() }
+        autocompleteProvider.autocompleteSuggestions(for: text) { [weak self] result in
             switch result {
             case .failure(let error): print(error.localizedDescription)
             case .success(let result): self?.autocompleteContext.suggestions = result

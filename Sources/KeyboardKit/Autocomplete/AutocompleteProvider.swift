@@ -10,30 +10,27 @@ import Foundation
 
 /**
  This protocol can be implemented by any classes that can be
- used to provide autocomplete suggestions for the typed text.
+ used to give autocomplete suggestions as the user types.
  
  The key function when using an autocomplete provider is the
  ``autocompleteSuggestions(for:completion:)``, which returns
  suggestions based on the provided text.
  
- You can implement the protocol in any way you like, e.g. to
- use native Swift technologies, your own local library or by
- calling an external api. Note that using network operations
- require full access and can be slow for your users. 
+ KeyboardKit doesn't have an autocomplete provider as it has
+ for most other services, just an internal disabled one that
+ it uses as a placeholder until you inject your own provider
+ or use KeyboardKit Pro.
  
- Note that KeyboardKit doesn't have an autocomplete provider
- implementation as it does for most other protocols. It only
- has an internal, disabled one that it uses as a placeholder
- until you inject your own provider or use a KeyboardKit Pro
- license to unlock the standard provider that it provides.
+ KeyboardKit Pro unlocks two autocomplete providers when you
+ register a valid license. The `StandardAutocompleteProvider`
+ is locale-specific and non-predictive, and is injected when
+ you register a license. `ExternalAutocompleteProvider` is a
+ base class that can be inherited to communicate with an api.
  
- KeyboardKit Pro has two autocomplete providers that you get
- access to as soon as you register a pro license. By default,
- it will register a `StandardAutocompleteProvider`, which is
- a basic provider that provides locale-specific autocomplete
- without word prediction. KeyboardKit Pro also comes with an
- additional `ExternalAutocompleteProvider` provider that can
- be used to communicate with an external api or web service.
+ If you don't have a Pro license, you can implement a custom
+ autocomplete provider in any way you like. When you're done,
+ just replace the controller service with the implementation
+ to make the library use it instead.
  */
 public protocol AutocompleteProvider: AnyObject {
     

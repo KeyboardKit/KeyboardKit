@@ -12,31 +12,29 @@ import CoreGraphics
  This protocol can be implemented by classes that can handle
  ``KeyboardAction`` events.
  
- Many views in the library use actions and an action handler.
- This gives you a very flexible setup, where you can use the
- actions you want, then dynamically handle the actions using
- an action handler.
+ Many views in the library use actions and an action handler
+ to give you a flexible setup, where you can provide actions
+ without having to specify how they are to be handled.
  
- Just call ``handle(_:on:)`` on an action handler to trigger
- an action programatically. This is convenient when you have
- to trigger actions from other parts of your custom keyboard.
+ You can trigger keyboard actions programatically by calling
+ ``handle(_:on:)``. This is convenient when you must trigger
+ actions from other parts of your keyboard.
  
  KeyboardKit will create a ``StandardKeyboardActionHandler``
  instance when the keyboard extension is started, then apply
  it to ``KeyboardInputViewController/keyboardActionHandler``.
  It will then use this instance by default to handle actions.
- You can use this action handler in your own code as well.
  
- Many keyboard actions have standard behaviors that are used
- by default by the library. To customize how the actions are
- handled, you can implement a custom ``KeyboardActionHandler``.
+ Many keyboard actions have standard behaviors, while others
+ don't and require custom handling. To customize how actions
+ are handled, you can implement a custom action handler.
  
- You can create a custom action handler by either inheriting
- and customizing the ``StandardKeyboardActionHandler`` class
- or by implementing ``KeyboardActionHandler`` in a brand new
- implementation. Inheriting ``StandardKeyboardActionHandler``
- is highly recommended, since you get a bunch of implemented
- logic that you can override with your own custom logic.
+ You can create a custom implementation of this protocol, by
+ either inheriting and customizing the standard class (which
+ gives you a lot of functionality for free) or by creating a
+ new implementation from scratch. When you're implementation
+ is ready, just replace the controller service with your own
+ implementation to make the library use it instead.
  */
 public protocol KeyboardActionHandler: AnyObject {
     
