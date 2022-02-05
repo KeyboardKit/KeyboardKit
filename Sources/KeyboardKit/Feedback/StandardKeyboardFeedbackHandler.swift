@@ -48,12 +48,11 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
     public var hapticConfig: HapticFeedbackConfiguration { settings.hapticConfiguration }
     
     /**
-     Try to trigger user feedback for a certain gesture on a
-     certain action, given a certain gesture action provider.
+     Trigger feedback for when a `gesture` is performed on a
+     certain `action`.
      
-     By default, the function checks `shouldGiveFeedback` to
-     determine if any feedback should be given. It will then
-     call `triggerAudioFeedback` and `triggerHapticFeedback`.
+     You can override this function to customize the default
+     feedback behavior.
      */
     open func triggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
         triggerAudioFeedback(for: gesture, on: action)
@@ -63,6 +62,9 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
     /**
      Trigger feedback for when a `gesture` is performed on a
      certain `action`.
+     
+     You can override this function to customize the default
+     audio feedback behavior.
      */
     open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
         let custom = audioConfig.actions.first { $0.action == action }
@@ -76,6 +78,9 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
     /**
      Trigger feedback for when a `gesture` is performed on a
      certain `action`.
+     
+     You can override this function to customize the default
+     haptic feedback behavior.
      */
     open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
         let custom = hapticConfig.actions.first { $0.action == action && $0.gesture == gesture }

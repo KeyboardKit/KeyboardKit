@@ -38,6 +38,8 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     
     /**
      The style to apply when presenting an ``ActionCallout``.
+     
+     You can override this function to customize this style.
      */
     open func actionCalloutStyle() -> ActionCalloutStyle {
         var style = ActionCalloutStyle.standard
@@ -48,6 +50,9 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     
     /**
      The button image to use for a certain `action`, if any.
+     
+     You can override this function to customize the default
+     button image that is used for an action.
      */
     open func buttonImage(for action: KeyboardAction) -> Image? {
         action.standardButtonImage(for: context)
@@ -56,6 +61,8 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     /**
      The button style to use for a certain `action`, given a
      certain `isPressed` state.
+     
+     You can override this function to customize this style.
      */
     open func buttonStyle(for action: KeyboardAction, isPressed: Bool) -> KeyboardButtonStyle {
         KeyboardButtonStyle(
@@ -69,6 +76,9 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     
     /**
      The button text to use for a certain `action`, if any.
+     
+     You can override this function to customize the default
+     button text that is used for an action.
      */
     open func buttonText(for action: KeyboardAction) -> String? {
         action.standardButtonText(for: context)
@@ -76,6 +86,8 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     
     /**
      The style to apply when presenting an ``InputCallout``.
+     
+     You can override this function to customize this style.
      */
     open func inputCalloutStyle() -> InputCalloutStyle {
         var style = InputCalloutStyle.standard
