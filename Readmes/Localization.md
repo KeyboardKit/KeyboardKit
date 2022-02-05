@@ -77,24 +77,7 @@ While KeyboardKit only provides localized strings, locale information and a loca
 
 ## How to add a new locale
 
-Adding a new locale to KeyboardKit requires the following:
-
-* Define the new `KeyboardLocale` case.
-* Define its properties, like `flag`, `isLeftToRight` etc.
-* Provide a `Resources/<id>.lproj` folder with localized strings.
-* Implement a custom `CalloutActionProvider`.
-* Implement a custom `InputSetProvider`.
-
-If the locale generates a keyboard that looks off, you can either implement a new `KeyboardLayoutProvider` or adjust the `iPhoneKeyboardLayoutProvider` and `iPadKeyboardLayoutProvider` to handle the new layout.
-
-New locales must ensure that the keyboard layout is correct for:
-
-* iPhone portrait
-* iPhone landscape
-* iPad portrait
-* iPad landscape  
-
-This involves specifying margins, system actions etc. to make the keyboard behave correctly for all these cases.
+Please see the documentation for information on how to add more locales to KeyboardKit.
 
 
 ## KeyboardKit Pro

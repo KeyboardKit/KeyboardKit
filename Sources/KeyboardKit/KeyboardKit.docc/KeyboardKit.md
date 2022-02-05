@@ -31,6 +31,7 @@ This documentation is generated with Xcode's new DocC engine. Since DocC current
 - <doc:Understanding-Keyboard-Feedback>
 - <doc:Understanding-Keyboard-Input-Sets>
 - <doc:Understanding-Keyboard-Layout>
+- <doc:Understanding-Keyboard-Localization>
 - <doc:Understanding-Autocomplete>
 
 ### Keyboard

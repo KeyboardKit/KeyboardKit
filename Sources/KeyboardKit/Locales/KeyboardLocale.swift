@@ -17,6 +17,18 @@ import Foundation
  properties for resolving a ``CalloutActionProvider`` and an
  ``InputSetProvider`` for each keyboard locale.
  
+ Each keyboard locale also has localized content that can be
+ accessed with the ``KKL10n`` translation enum.
+ 
+ You can change the locale of a keyboard extension using the
+ ``KeyboardContext/locale`` property, which will cause parts
+ of the keyboard that needs it to automatically update.
+ 
+ You can change the available locales of keyboard extensions
+ using the ``KeyboardContext/locales`` property, which makes
+ it possible to navigate through the available locales using
+ the ``KeyboardContext/selectNextLocale()`` function.
+ 
  This website specifies a list of locale identifiers:
  https://gist.github.com/jacobbubu/1836273
  */
