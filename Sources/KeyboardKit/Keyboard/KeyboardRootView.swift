@@ -28,10 +28,12 @@ struct KeyboardRootView<ViewType: View>: View {
     }
     
     var bodyId: String {
-        #if os(iOS) || os(macOS)
+        #if os(iOS)
         "\(context.locale)\(context.colorScheme)\(context.screenOrientation.isLandscape)"
-        #else
+        #elseif os(tvOS)
         "\(context.locale)\(context.colorScheme)"
+        #else
+        "\(context.locale)"
         #endif
     }
 }
