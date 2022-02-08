@@ -18,9 +18,10 @@ public extension SystemKeyboard {
      to customize the entire view for each layout item.
      */
     init(
-        controller: KeyboardInputViewController = .shared,
+        controller: KeyboardInputViewController? = nil,
         width: CGFloat? = nil,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder) {
+        let controller = controller ?? .shared
         self.init(
             layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
             appearance: controller.keyboardAppearance,
@@ -40,8 +41,9 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
      views. See ``SystemKeyboard/standardButtonView(item:appearance:actionHandler:keyboardContext:keyboardWidth:inputWidth:)`` for more info.
      */
     init(
-        controller: KeyboardInputViewController = .shared,
+        controller: KeyboardInputViewController? = nil,
         width: CGFloat? = nil) {
+        let controller = controller ?? .shared
         self.init(
             layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
             appearance: controller.keyboardAppearance,
@@ -60,9 +62,10 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
      to customize the content of each button.
      */
     init<ButtonContentView: View>(
-        controller: KeyboardInputViewController = .shared,
+        controller: KeyboardInputViewController? = nil,
         width: CGFloat? = nil,
         @ViewBuilder buttonContent: @escaping (KeyboardLayoutItem) -> ButtonContentView) {
+        let controller = controller ?? .shared
         self.init(
             layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
             appearance: controller.keyboardAppearance,
