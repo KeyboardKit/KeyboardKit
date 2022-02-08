@@ -2,47 +2,11 @@
   "object": {
     "pins": [
       {
-        "package": "CwlCatchException",
-        "repositoryURL": "https://github.com/mattgallagher/CwlCatchException.git",
+        "package": "KeyboardKitPro",
+        "repositoryURL": "https://github.com/KeyboardKit/KeyboardKitPro.git",
         "state": {
-          "branch": null,
-          "revision": "35f9e770f54ce62dd8526470f14c6e137cef3eea",
-          "version": "2.1.1"
-        }
-      },
-      {
-        "package": "CwlPreconditionTesting",
-        "repositoryURL": "https://github.com/mattgallagher/CwlPreconditionTesting.git",
-        "state": {
-          "branch": null,
-          "revision": "c21f7bab5ca8eee0a9998bbd17ca1d0eb45d4688",
-          "version": "2.1.0"
-        }
-      },
-      {
-        "package": "MockingKit",
-        "repositoryURL": "https://github.com/danielsaidi/MockingKit.git",
-        "state": {
-          "branch": null,
-          "revision": "eee43230c648991cc2d14fa290d01e561c3adc5a",
-          "version": "1.0.0"
-        }
-      },
-      {
-        "package": "Nimble",
-        "repositoryURL": "https://github.com/danielsaidi/Nimble.git",
-        "state": {
-          "branch": "main",
-          "revision": "1ca9fa3ae260e696e76ca68938bf9428c3ec02c6",
-          "version": null
-        }
-      },
-      {
-        "package": "Quick",
-        "repositoryURL": "https://github.com/danielsaidi/Quick.git",
-        "state": {
-          "branch": "main",
-          "revision": "1efe9551db0ad6a6e979f33366969750123d14d9",
+          "branch": "v6",
+          "revision": "856b9cceb3627d63ad407c99a04915bb91645422",
           "version": null
         }
       },

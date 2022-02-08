@@ -18,9 +18,7 @@
 
 ## About KeyboardKit
 
-KeyboardKit helps you build custom keyboard extensions for `iOS` and `iPadOS`. 
-
-KeyboardKit extends Apple's native keyboard extension APIs and provides you with a lot more functionality than is otherwise available. 
+KeyboardKit helps you build custom keyboard extensions for `iOS` and `iPadOS`. It extends the native keyboard APIs and provides you with a lot more functionality than is otherwise available. 
 
 The end result can look something like this...or entirely different:
 
