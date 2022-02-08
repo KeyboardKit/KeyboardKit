@@ -13,37 +13,46 @@ import SwiftUI
  This view mimics native iOS system keyboards, like standard
  alphabetic, numeric and symbolic system keyboards.
  
- There are three ways to create a system keyboard:
+ There are several ways to create a system keyboard:
  
- The first option is to use the builder-less initializer, to
- create a standard system keyboard with standard buttons.
+ One is to use the builder-less initializer to create a view
+ that uses standard buttons.
  
- The second option is to use the `buttonContent` initializer,
- to create a system keyboard that can customize the internal
- content of each button, but doesn't affect the button shape.
+ Another is to use the `buttonContent` initializer to create
+ a view that customizes the intrinsic content of each button,
+ but doesn't affect its shape.
  
- The third option is to use the `buttonView` initializer, to
- create a system keyboard that can customize the entire view
- for each button, including the button shape.
+ A third is to use the `buttonView` initializer, to create a
+ view that customizes the entire view for each button.
  
- The keyboard will automatically replace the system keyboard
- view with an ``EmojiCategoryKeyboard`` for iOS 14 and later
- if the context's keyboard type is ``KeyboardType/emojis``.
+ You also have `controller`-based initializers that are more
+ convenient to use than the initializers that require you to
+ inject a layout, appearance, services, contexts etc.
  
- Since the widths of the keyboard buttons will depend on the
- total keyboard width, the view must be given a `width` when
- it's created. If you don't provide a width, it will use the
- static `standardKeyboardWidth`, which uses the width of the
- shared input view controller's view.
+ Since the keyboard button widths depends on the total width,
+ you must provide the view with a `width`. If you do not, it
+ will use the ``standardKeyboardWidth`` which uses the width
+ of the shared input view controller view.
  
- `IMPORTANT` In previews, you must provide a custom width to
- get buttons to show up, since there is no shared controller.
+ If you look at the initializer source code, you may find it
+ strange that the default values for `controller` and `width`
+ are nil instead of the values, and that the values are then
+ resolved within the initializer. The reason is that there's
+ a bug in Xcode, that makes the default init parameters fail
+ to compile when they're part of a binary framework. As such,
+ we make the default parameter values `nil` and then resolve
+ the values in the initializer body instead, which fixes the
+ bonary framework problem.
+ 
+ On iOS 14, the keyboard will automatically switch to use an
+ ``EmojiCategoryKeyboard`` if ``KeyboardContext/keyboardType``
+ changes to ``KeyboardType/emojis``.
  */
 public struct SystemKeyboard<ButtonView: View>: View {
 
     /**
      Create a system keyboard that uses a custom `buttonView`
-     to generate the entire button view for each layout item.
+     to customize the entire view for each layout item.
      */
     public init(
         layout: KeyboardLayout,
@@ -52,8 +61,9 @@ public struct SystemKeyboard<ButtonView: View>: View {
         keyboardContext: KeyboardContext,
         actionCalloutContext: ActionCalloutContext?,
         inputCalloutContext: InputCalloutContext?,
-        width: CGFloat = standardKeyboardWidth,
+        width: CGFloat? = nil,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder) {
+        let width = width ?? Self.standardKeyboardWidth
         self.layout = layout
         self.layoutConfig = .standard(for: keyboardContext)
         self.actionHandler = actionHandler
@@ -108,6 +118,79 @@ public struct SystemKeyboard<ButtonView: View>: View {
     }
 }
 
+public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardActionButtonContent> {
+    
+    /**
+     Create a system keyboard view that uses standard button
+     views. See ``SystemKeyboard/standardButtonView(item:appearance:actionHandler:keyboardContext:keyboardWidth:inputWidth:)`` for more info.
+     */
+    init(
+        layout: KeyboardLayout,
+        appearance: KeyboardAppearance,
+        actionHandler: KeyboardActionHandler,
+        keyboardContext: KeyboardContext,
+        actionCalloutContext: ActionCalloutContext?,
+        inputCalloutContext: InputCalloutContext?,
+        width: CGFloat? = nil) {
+        self.init(
+            layout: layout,
+            appearance: appearance,
+            actionHandler: actionHandler,
+            keyboardContext: keyboardContext,
+            actionCalloutContext: actionCalloutContext,
+            inputCalloutContext: inputCalloutContext,
+            width: width,
+            buttonView: { item, keyboardWidth, inputWidth in
+                Self.standardButtonView(
+                    item: item,
+                    appearance: appearance,
+                    actionHandler: actionHandler,
+                    keyboardContext: keyboardContext,
+                    keyboardWidth: keyboardWidth,
+                    inputWidth: inputWidth)
+            }
+        )
+    }
+}
+
+public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<AnyView> {
+    
+    /**
+     Create a system keyboard view that uses `buttonContent`
+     to customize the content of each button.
+     */
+    init<ButtonContentView: View>(
+        layout: KeyboardLayout,
+        appearance: KeyboardAppearance,
+        actionHandler: KeyboardActionHandler,
+        keyboardContext: KeyboardContext,
+        actionCalloutContext: ActionCalloutContext?,
+        inputCalloutContext: InputCalloutContext?,
+        width: CGFloat? = nil,
+        @ViewBuilder buttonContent: @escaping (KeyboardLayoutItem) -> ButtonContentView) {
+        self.init(
+            layout: layout,
+            appearance: appearance,
+            actionHandler: actionHandler,
+            keyboardContext: keyboardContext,
+            actionCalloutContext: actionCalloutContext,
+            inputCalloutContext: inputCalloutContext,
+            width: width,
+            buttonView: { item, keyboardWidth, inputWidth in
+                SystemKeyboardButtonRowItem(
+                    content: AnyView(buttonContent(item)),
+                    item: item,
+                    context: keyboardContext,
+                    keyboardWidth: keyboardWidth,
+                    inputWidth: inputWidth,
+                    appearance: appearance,
+                    actionHandler: actionHandler
+                )
+            }
+        )
+    }
+}
+
 public extension SystemKeyboard {
     
     /**
@@ -148,6 +231,17 @@ public extension SystemKeyboard {
     }
 }
 
+public extension SystemKeyboard {
+    
+    /**
+     This is the standard keyboard width, which is retrieved
+     from ``KeyboardInputViewController/shared``.
+     */
+    static var standardKeyboardWidth: CGFloat {
+        KeyboardInputViewController.shared.view.frame.width
+    }
+}
+
 private extension SystemKeyboard {
     
     @available(iOS 14.0, tvOS 14.0, *)
@@ -174,90 +268,6 @@ private extension SystemKeyboard {
     }
 }
 
-public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<AnyView> {
-    
-    /**
-     Create a keyboard that uses a custom `buttonContent` to
-     customize the content of each button.
-     */
-    init<ButtonContentView: View>(
-        layout: KeyboardLayout,
-        appearance: KeyboardAppearance,
-        actionHandler: KeyboardActionHandler,
-        keyboardContext: KeyboardContext,
-        actionCalloutContext: ActionCalloutContext?,
-        inputCalloutContext: InputCalloutContext?,
-        width: CGFloat = standardKeyboardWidth,
-        @ViewBuilder buttonContent: @escaping (KeyboardLayoutItem) -> ButtonContentView) {
-        self.init(
-            layout: layout,
-            appearance: appearance,
-            actionHandler: actionHandler,
-            keyboardContext: keyboardContext,
-            actionCalloutContext: actionCalloutContext,
-            inputCalloutContext: inputCalloutContext,
-            width: width,
-            buttonView: { item, keyboardWidth, inputWidth in
-                SystemKeyboardButtonRowItem(
-                    content: AnyView(buttonContent(item)),
-                    item: item,
-                    context: keyboardContext,
-                    keyboardWidth: keyboardWidth,
-                    inputWidth: inputWidth,
-                    appearance: appearance,
-                    actionHandler: actionHandler
-                )
-            }
-        )
-    }
-}
-
-public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardActionButtonContent> {
-    
-    /**
-     Create a system keyboard that creates a standard system
-     keyboard, with standard button views.
-     */
-    init(
-        layout: KeyboardLayout,
-        appearance: KeyboardAppearance,
-        actionHandler: KeyboardActionHandler,
-        keyboardContext: KeyboardContext,
-        actionCalloutContext: ActionCalloutContext?,
-        inputCalloutContext: InputCalloutContext?,
-        width: CGFloat = standardKeyboardWidth) {
-        self.init(
-            layout: layout,
-            appearance: appearance,
-            actionHandler: actionHandler,
-            keyboardContext: keyboardContext,
-            actionCalloutContext: actionCalloutContext,
-            inputCalloutContext: inputCalloutContext,
-            width: width,
-            buttonView: { item, keyboardWidth, inputWidth in
-                Self.standardButtonView(
-                    item: item,
-                    appearance: appearance,
-                    actionHandler: actionHandler,
-                    keyboardContext: keyboardContext,
-                    keyboardWidth: keyboardWidth,
-                    inputWidth: inputWidth)
-            }
-        )
-    }
-}
-
-public extension SystemKeyboard {
-    
-    /**
-     This is the standard keyboard width, which is retrieved
-     from ``KeyboardInputViewController/shared``.
-     */
-    static var standardKeyboardWidth: CGFloat {
-        KeyboardInputViewController.shared.view.frame.width
-    }
-}
-
 private extension SystemKeyboard {
 
     func itemRows(for layout: KeyboardLayout) -> some View {
@@ -275,6 +285,10 @@ private extension SystemKeyboard {
     }
 }
 
+/**
+ `IMPORTANT` In previews, you must provide a custom width to
+ get buttons to show up, since there is no shared controller.
+ */
 struct SystemKeyboard_Previews: PreviewProvider {
     
     static let actionHandler = PreviewKeyboardActionHandler()

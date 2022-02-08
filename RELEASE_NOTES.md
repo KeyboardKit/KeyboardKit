@@ -27,7 +27,8 @@ This version adds new locales and makes the library build on more platforms.
 ### 💡 Behavior changes
 
 * Autocomplete now only applies autocorrections for pure `space` actions and not character actions with a single space.
-* `StandardKeyboardFeedbackHandler` now triggers the haptic feedback for long press on space, not the `SpaceCursorDragGestureHandler`. 
+* `StandardKeyboardFeedbackHandler` now triggers the haptic feedback for long press on space, not the `SpaceCursorDragGestureHandler`.
+* `SystemKeyboard` initializers now use `nil` as default value for the controller and width, to avoid Swift errors in binary framework builds.  
 
 ### 💥 Breaking changes
 

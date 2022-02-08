@@ -14,14 +14,13 @@ import SwiftUI
 public extension SystemKeyboard {
     
     /**
-     Create a system keyboard for the `controller` that uses
-     a `buttonViewBuilder` to generate an entire button view
-     for each layout item.
+     Create a system keyboard that uses a custom `buttonView`
+     to customize the entire view for each layout item.
      */
     init(
         controller: KeyboardInputViewController = .shared,
-        width: CGFloat = standardKeyboardWidth,
-        @ViewBuilder buttonViewBuilder: @escaping ButtonViewBuilder) {
+        width: CGFloat? = nil,
+        @ViewBuilder buttonView: @escaping ButtonViewBuilder) {
         self.init(
             layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
             appearance: controller.keyboardAppearance,
@@ -30,20 +29,39 @@ public extension SystemKeyboard {
             actionCalloutContext: controller.actionCalloutContext,
             inputCalloutContext: controller.inputCalloutContext,
             width: width,
-            buttonView: buttonViewBuilder)
+            buttonView: buttonView)
+    }
+}
+
+public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardActionButtonContent> {
+    
+    /**
+     Create a system keyboard view that uses standard button
+     views. See ``SystemKeyboard/standardButtonView(item:appearance:actionHandler:keyboardContext:keyboardWidth:inputWidth:)`` for more info.
+     */
+    init(
+        controller: KeyboardInputViewController = .shared,
+        width: CGFloat? = nil) {
+        self.init(
+            layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
+            appearance: controller.keyboardAppearance,
+            actionHandler: controller.keyboardActionHandler,
+            keyboardContext: controller.keyboardContext,
+            actionCalloutContext: controller.actionCalloutContext,
+            inputCalloutContext: controller.inputCalloutContext,
+            width: width)
     }
 }
 
 public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<AnyView> {
     
     /**
-     Create a system keyboard for the `controller` that uses
-     a `buttonContentBuilder` to customize the internal view
-     content of each button.
+     Create a system keyboard view that uses `buttonContent`
+     to customize the content of each button.
      */
     init<ButtonContentView: View>(
         controller: KeyboardInputViewController = .shared,
-        width: CGFloat = standardKeyboardWidth,
+        width: CGFloat? = nil,
         @ViewBuilder buttonContent: @escaping (KeyboardLayoutItem) -> ButtonContentView) {
         self.init(
             layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
@@ -54,26 +72,6 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
             inputCalloutContext: controller.inputCalloutContext,
             width: width,
             buttonContent: buttonContent)
-    }
-}
-
-public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardActionButtonContent> {
-    
-    /**
-     Create a system keyboard for the `controller` that uses
-     standard button views.
-     */
-    init(
-        controller: KeyboardInputViewController = .shared,
-        width: CGFloat = standardKeyboardWidth) {
-        self.init(
-            layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
-            appearance: controller.keyboardAppearance,
-            actionHandler: controller.keyboardActionHandler,
-            keyboardContext: controller.keyboardContext,
-            actionCalloutContext: controller.actionCalloutContext,
-            inputCalloutContext: controller.inputCalloutContext,
-            width: width)
     }
 }
 #endif
