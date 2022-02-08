@@ -12,7 +12,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 6.0
 
-This version adds new locales and makes the library build on more platforms.
+This version makes the library build on more platforms and removes old, deprecated code.
 
 ### 📺 Platform support
 

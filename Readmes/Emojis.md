@@ -3,26 +3,18 @@
 KeyboardKit defines emojis and emoji categories that you can use in your own keyboards.
 
 
-## Emoji Category
+## Emoji
 
-KeyboardKit has a `EmojiCategory` enum that defines the various available emoji categories and their emojis.
+Although you can use plain text to handle emojis, KeyboardKit has an `Emoji` type to let you handle emojis in a more structured way, as well as string extensions that let you detect and handle emojis.
 
-Note that keeping this list up to date is a massive job, that you are more than welcome to help out with.
+KeyboardKit also has a `EmojiCategory` enum that defines the various available emoji categories and their emojis.
 
 
-## Keyboards
+## Views
 
-KeyboardKit has an `EmojiKeyboard` that just lists provided emojis in a grid.
-
-It also has a `EmojiCategoryKeyboard` that replicates the system keyboard, and lists the provided categories and their emojis.
-
-Note that these views are only supported in iOS 14+, which is why the `SystemKeyboard` doesn't automatically add them at the moment. 
+KeyboardKit has an `EmojiKeyboard` view that lists any provided emojis in a grid and an `EmojiCategoryKeyboard` view that replicates the system emoji keyboard and lists the provided categories and their emojis.
 
 
 ## Frequent Emojis
 
-You can use the `FrequentEmojiProvider` protocol to resolve frequently used emojis.
-
-The `MostRecentEmojiProvider` implements this protocol by just keeping track of the most recently selected emojis.
-
-You can implement your own frequent provider as well.
+You can use the `FrequentEmojiProvider` protocol to resolve frequently used emojis. The `MostRecentEmojiProvider` implements this protocol by just keeping track of the most recently selected emojis, but you can implement your own provider as well.

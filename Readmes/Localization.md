@@ -68,16 +68,16 @@ Localized strings are stored in `Sources/Resources`.
 
 ## Localized keyboards
 
-A completely localized keyboard doesn't just involve localized strings.
+A completely localized keyboard doesn't just involve localized strings. To fully localize a keyboard, you must implement locale-specific input sets, keyboard layouts, callout actions etc.
 
-To fully localize a keyboard, you must implement locale-specific input sets, keyboard layouts, callout actions etc.
-
-While KeyboardKit only provides localized strings, locale information and a localized English keyboard, [KeyboardKit Pro][Pro] provides completely localized keyboards for all keyboard locales.
+While KeyboardKit only provides localized strings, locale information and a localized English keyboard, [KeyboardKit Pro][Pro] provides completely localized keyboards for all keyboard locales. 
 
 
 ## How to add a new locale
 
-Please see the documentation for information on how to add more locales to KeyboardKit.
+Note that `KeyboardContext` don't rely on the KeyboardKit-specific `KeyboardLocale`, but rather on the general `Locale` type. This means that you don't need to add more `KeyboardLocale`s to create keyboards that are localized in oher languages.
+
+However, if you DO need to add a new `KeyboardLocale`, there are a number of things that you need to do, as mentioned above. Please see the documentation for more information.
 
 
 ## KeyboardKit Pro

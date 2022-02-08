@@ -5,7 +5,7 @@ KeyboardKit comes with many keyboard-specific actions, like `character` inputs, 
 
 ## Built-in actions
 
-KeyboardKit has a `KeyboardAction` enum with these actions:
+KeyboardKit has a `KeyboardAction` enum with a bunch of actions, such as:
 
 * `backspace` - deletes text backwards in the text document proxy when `tapped` and repeats this action until the button is released.
 * `character` - sends a text character to the text document proxy when `tapped`.
@@ -37,22 +37,14 @@ KeyboardKit has a `KeyboardAction` enum with these actions:
 
 * `none`- an "no action" placeholder action.
 
+Note that some keyboard actions require custom handling.
+
 
 ## Gestures
 
-Some keyboard actions have standard gesture actions, as described above. 
+Some keyboard actions have standard gesture actions, as described above. These actions can be accessed with the `standardAction(for: gesture)` function. Although you could trigger it manually, a more dynamic way is to use an action handler.
 
-These actions can be accessed with:
-
-* `standardAction(for: gesture)`
-* `standardDoubleTapAction`
-* `standardLongPressAction`
-* `standardPressAction`
-* `standardReleaseAction`
-* `standardRepeatAction`
-* `standardTapAction`
-
-You can trigger these actions manually, but a better and more dynamic way is to use an action handler.
+You can also use the `keyboardGestures` view modifier to bind keyboard-specific gestures to any `SwiftUI` view. This will setup view gestures for a certain action.
 
 
 ## Action handlers
@@ -61,13 +53,11 @@ KeyboardKit has a `KeyboardActionHandler` protocol that can be implemented by an
 
 Using an action handler instead of triggering actions directly gives you a very flexible way of handling actions, where you can change the behavior or an entire keyboard in one single place.
 
-`KeyboardInputViewController` will automatically create a `StandardKeyboardActionHandler` when the extension is started. You can use this handler as is or replace it with a custom action handler.
 
-You can subclass the `StandardKeyboardActionHandler` and replace the parts you want or create an entirely custom action handler.
+## Read more
 
-Note that keyboard actions that haven't got a standard behavior require you to create and inject a custom action handler. 
+Have a look in the [documentation][Documentation] for more in-depth information on actions and action handlers.
 
 
-## Connect an action to a `View`
 
-Keyboard action gestures can be bound to any `SwiftUI` view with the `keyboardGestures` view modifier. This will setup gestures for that will be routed to the provided action handler.
+[Documentation]: https://github.com/danielsaidi/Documentation/blob/main/Docs/KeyboardKit.doccarchive.zip?raw=true

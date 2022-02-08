@@ -5,20 +5,14 @@ KeyboardKit supports RTL (right-to-left) locales, but your extension need to be 
 
 ## Supported Locales
 
-KeyboardKit currently supports the following RTL locales:
-
-* 🇮🇷 Persian
-
-Applying an RTL locale will cause the keyboard extension layout to be flipped.
+KeyboardKit supports a couple of RTL locales, such as Arabic, Kurdish Sorani and Persian.
 
 
-## Current limitations
+## Mixing LTR and RTL
 
-KeyboardKit currently doesn't support mixing LTR and RTL locales in the same keyboard extension.
+KeyboardKit currently doesn't support mixing LTR and RTL in the same keyboard extension. To support both LTR and RTL, you must create two different keyboard extensions.
 
-To use both LTR and RTL, you must currently create two different keyboard extensions.
-
-You can however support multiple locales in the same extension, as long as they are all LTR or RTL. 
+You can however support multiple locales in the same extension, as long as they all have the same text direction. 
  
 
 ## Enable RTL

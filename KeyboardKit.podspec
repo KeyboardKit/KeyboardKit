@@ -17,7 +17,11 @@ KeyboardKit is a Swift library that helps you create keyboard extensions for iOS
   s.social_media_url = 'https://twitter.com/danielsaidi'
 
   s.swift_version = '5.5'
+  
   s.ios.deployment_target = '13.0'
+  s.macos.deployment_target = '11.0'
+  s.tvos.deployment_target = '13.0'
+  s.watchos.deployment_target = '6.0'
   
   s.source_files = 'Sources/KeyboardKit/**/*.swift'
   s.resources = "Sources/KeyboardKit/Resources"

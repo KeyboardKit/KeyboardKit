@@ -5,22 +5,12 @@ KeyboardKit comes with an appearance engine that lets you easily style your keyb
 
 ## Keyboard appearance
 
-KeyboardKit has a `KeyboardAppearance` protocol that describes how keyboards should be styled. 
-
-Using an appearance instead of styling views manually gives you a very flexible way of styling your keyboards, where you can change the look or an entire keyboard by just replacing the appearance.
-
-`KeyboardInputViewController` will automatically create a `StandardKeyboardAppearance` when the extension is started. You can use this appearance as is or replace it with a custom appearance.
-
-You can subclass the `StandardKeyboardAppearance` and replace the parts you want or create an entirely custom appearance.
+KeyboardKit has a `KeyboardAppearance` protocol that describes how a keyboard should be styled. Using an appearance gives you a flexible way of styling your keyboards, where you can change the look or an entire keyboard by just replacing the appearance.
 
 
-## Appearance vs. Style
+## Appearance vs. style
 
-In KeyboardKit, some views are styled with an `appearance`, while some are styled with a `style`.
-
-The difference between appearances and styles, are that appearances are dynamic, while styles are fixed.
-
-Dynamic views use appearances, since their look can change depending on their context, while basic views use fixed styles.    
+The difference between appearances and styles, is that appearances are dynamic while styles are fixed. In KeyboardKit, views use an appearance if they need dynamic styling or generate views that need to be styled, while basic views just use a style.    
 
 
 ## Appearance vs layout
@@ -34,11 +24,15 @@ KeyboardKit comes with colors and images that makes it easy to create native-loo
 
 * `Image` has a bunch of static extensions with keyboard-specific images, e.g. `.keyboardBackspace`.
 * `Color` has a bunch of static extensions with keyboard-specific colors, e.g. `.standardButtonBackgroundColor(for:)`.
-* Some keyboard types have standard image, text and color information, e.g. `KeyboardAction`. 
+* Some KeyboardKit types have standard image, text and color information, e.g. `KeyboardAction`. 
 
-Have a look at the `Sources/Resources` folder for more information.
+Have a look at the `Sources/Resources` and `Sources/Appearance` folders for more information.
 
 
-## Optional
+## Read more
 
-It's woth repeating that the appearance concept is just a convenience. KeyboardKit doesn't force you to stick with a specific look or layout. Your keyboard extensions can look and behave however you want.
+Have a look in the [documentation][Documentation] for more in-depth information on keyboard appearance and styling.
+
+
+
+[Documentation]: https://github.com/danielsaidi/Documentation/blob/main/Docs/KeyboardKit.doccarchive.zip?raw=true

@@ -10,4 +10,4 @@ KeyboardKit comes with a bunch of keyboard-specific views, for instance:
 * `KeyboardGrid` can be used to evenly space a set of views in a grid.
 * `NextKeyboardButton` can be used to switch to the next keyboard.
 
-You can also use these views without using the rest of KeyboardKit.
+Have a look at the source code and demo apps for more information about these views.

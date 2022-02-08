@@ -5,7 +5,7 @@ KeyboardKit defines haptic feedback types and ways to trigger them.
 
 ## Haptic Feedback
 
-KeyboardKit has a `HapticFeedback` enum with these types:
+KeyboardKit has a `HapticFeedback` enum with some pre-defined feedback types, such as:
 
 * `error`
 * `success`
@@ -32,9 +32,18 @@ KeyboardKit defines a few predefined configurations:
 * `noFeedback` - disables all haptic feedback
 * `standard` - only enables long press on `space` feedback 
 
-You can configure haptic feedback by registering a custom `feedback handler`.
+You can configure the haptic feedback in your keyboard by modifying the `keyboardFeedbackSettings` of the input view controller or registering a custom `keyboardFeedbackHandler`.
 
 
 ## Full Access
 
 Haptic feedback requires full access. 
+
+
+## Read more
+
+Have a look in the [documentation][Documentation] for more in-depth information on audio and haptic feedback.
+
+
+
+[Documentation]: https://github.com/danielsaidi/Documentation/blob/main/Docs/KeyboardKit.doccarchive.zip?raw=true

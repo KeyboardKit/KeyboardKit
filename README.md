@@ -9,8 +9,8 @@
     <img src="https://img.shields.io/cocoapods/p/KeyboardKit.svg?style=flat" alt="Platform" />
     <img src="https://img.shields.io/badge/Swift-5.5-orange.svg" alt="Swift 5.5" />
     <img src="https://img.shields.io/github/license/KeyboardKit/KeyboardKit" alt="MIT License" />
-    <a href="https://twitter.com/danielsaidi">
-        <img src="https://img.shields.io/badge/contact-@danielsaidi-blue.svg?style=flat" alt="Twitter: @danielsaidi" />
+    <a href="https://twitter.com/getkeyboardkit">
+        <img src="https://img.shields.io/badge/contact-@getkeyboardkit-blue.svg?style=flat" alt="Twitter: @getkeyboardkit" />
     </a>
 </p>
 
@@ -26,7 +26,7 @@ The end result can look something like this...or entirely different:
     <img src ="Resources/Demo.gif" width="300" />
 </p>
 
-If you're new to iOS keyboard extensions, [this great guide][Guide] will help you get started. You can also have a look at the demo app for inspiration.
+If you're new to iOS keyboard extensions, [this great guide][Guide] will help you get started. You can also have a look at the demo apps for inspiration.
 
 
 
@@ -39,13 +39,13 @@ KeyboardKit supports the following platforms:
 * tvOS 13.0
 * watchOS 6.0
 
-Although the library builds on all platform, some features are unavailable on some platforms. 
+Although KeyboardKit builds on all platform, some features are unavailable on some platforms. 
 
 
 
 ## Installation
 
-The best way to install KeyboardKit is with the Swift Package Manager.
+The best way to install KeyboardKit is to use the Swift Package Manager.
 
 ```
 https://github.com/KeyboardKit/KeyboardKit.git
@@ -87,9 +87,7 @@ KeyboardKit is localized in 50 keyboard-specific locales:
 
 ## Features 
 
-Besides all features listed below, KeyboardKit also contains a lot of extensions to native types. For instance, there are a bunch of `UITextDocumentProxy` extensions that make your life easier, and views that don't require you to use the rest of the library. 
-
-Check out the demo apps and source code for examples and more information.
+KeyboardKit comes packed with features. Checkout the list below, and have a look at the documentation, demo apps and source code for even more information and examples.
 
 
 ### 💥 Actions
@@ -169,7 +167,7 @@ KeyboardKit defines haptic feedback types and ways to trigger them.
 [Read more here][Haptic-Feedback]
 
 
-### 🔤 Input
+### 🔤 Input Sets
 
 KeyboardKit comes with an input set engine that make it easy to create `alphabetic`, `numeric` and `symbolic`  keyboards in different languages.
 
@@ -220,7 +218,7 @@ KeyboardKit supports RTL (right-to-left) locales, but your extension need to be 
 
 ### 🎨 Styles
 
-KeyboardKit defines a bunch of styles that simplify customizing the look of various keyboard components and buttons.
+KeyboardKit defines a bunch of styles that simplify customizing the look of various keyboard components.
 
 [Read more here][Styles]
 
@@ -239,24 +237,18 @@ KeyboardKit Pro is a license-based extensions that unlocks pro features, such as
 
 KeyboardKit Pro is also a way to support this project, which is otherwise completely free and developed by a single person (with great help from the community). If you appreciate this project, consider going Pro.  
 
-Note that KeyboardKit Pro extends this library by using the same extension points as is available to everyone.
-
-[Go Pro here!][Pro]
+[Read more here][Pro]
 
 
 
-## Demo Application
+## Demo Applications
 
-This repository contains a `Demo` folder that has two demo apps that lets you try out KeyboardKit and KeyboardKit Pro.
-
-The KeyboardKit demo consists of a main app and two extensions:
+This repository contains a `Demo` folder with two demo apps that lets you try out KeyboardKit and KeyboardKit Pro:
 
 * The standard demo has a system keyboard that mimics an English keyboard and a unicode-based keyboard.
 * The pro demo has a system keyboard with support for all keyboard locales and an `RTL` variant as well. 
 
-These demo apps are not intended to be production ready, but rather to give you inspiration.
-
-To run the demo app, open and run the project, then enable the keyboards under system settings. Enable full access to support all features, like audio and haptic feedback.
+To run the demo apps, open and run the projects, then enable the keyboards under system settings. Full access is required forfeatures like audio and haptic feedback.
 
 
 

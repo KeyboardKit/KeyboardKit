@@ -19,4 +19,13 @@ KeyboardKit also defines gesture handlers, timers etc. to implement various gest
 
 ## Binding gestures to views
 
-Keyboard action gestures can be bound to any `SwiftUI` view with the `keyboardGestures` view modifier. This will setup gestures for that will be routed to the provided action handler.
+You can use the `keyboardGestures` view modifier to bind keyboard-specific gestures to any `SwiftUI` view. This will setup view gestures for a certain action.
+
+
+## Read more
+
+Have a look in the [documentation][Documentation] for more in-depth information on gestures.
+
+
+
+[Documentation]: https://github.com/danielsaidi/Documentation/blob/main/Docs/KeyboardKit.doccarchive.zip?raw=true
