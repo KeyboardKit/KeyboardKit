@@ -75,6 +75,26 @@ public struct SystemKeyboard<ButtonView: View>: View {
         _actionCalloutContext = ObservedObject(wrappedValue: actionCalloutContext ?? .disabled)
         _inputCalloutContext = ObservedObject(wrappedValue: inputCalloutContext ?? .disabled)
     }
+    
+    /**
+     Create a system keyboard that uses a custom `buttonView`
+     to customize the entire view for each layout item.
+     */
+    init(
+        controller: KeyboardInputViewController? = nil,
+        width: CGFloat? = nil,
+        @ViewBuilder buttonView: @escaping ButtonViewBuilder) {
+        let controller = controller ?? .shared
+        self.init(
+            layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
+            appearance: controller.keyboardAppearance,
+            actionHandler: controller.keyboardActionHandler,
+            keyboardContext: controller.keyboardContext,
+            actionCalloutContext: controller.actionCalloutContext,
+            inputCalloutContext: controller.inputCalloutContext,
+            width: width,
+            buttonView: buttonView)
+    }
 
     private let actionHandler: KeyboardActionHandler
     private let appearance: KeyboardAppearance
@@ -122,7 +142,9 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
     
     /**
      Create a system keyboard view that uses standard button
-     views. See ``SystemKeyboard/standardButtonView(item:appearance:actionHandler:keyboardContext:keyboardWidth:inputWidth:)`` for more info.
+     views for all layout items.
+     
+     See ``SystemKeyboard/standardButtonView(item:appearance:actionHandler:keyboardContext:keyboardWidth:inputWidth:)`` for more info.
      */
     init(
         layout: KeyboardLayout,
@@ -151,13 +173,33 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
             }
         )
     }
+    
+    /**
+     Create a system keyboard view that uses standard button
+     views for all layout items.
+     
+     See ``SystemKeyboard/standardButtonView(item:appearance:actionHandler:keyboardContext:keyboardWidth:inputWidth:)`` for more info.
+     */
+    init(
+        controller: KeyboardInputViewController? = nil,
+        width: CGFloat? = nil) {
+        let controller = controller ?? .shared
+        self.init(
+            layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
+            appearance: controller.keyboardAppearance,
+            actionHandler: controller.keyboardActionHandler,
+            keyboardContext: controller.keyboardContext,
+            actionCalloutContext: controller.actionCalloutContext,
+            inputCalloutContext: controller.inputCalloutContext,
+            width: width)
+    }
 }
 
 public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<AnyView> {
     
     /**
      Create a system keyboard view that uses `buttonContent`
-     to customize the content of each button.
+     to customize the content of each layout item.
      */
     init<ButtonContentView: View>(
         layout: KeyboardLayout,
@@ -188,6 +230,26 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
                 )
             }
         )
+    }
+    
+    /**
+     Create a system keyboard view that uses `buttonContent`
+     to customize the content of each layout item.
+     */
+    init<ButtonContentView: View>(
+        controller: KeyboardInputViewController? = nil,
+        width: CGFloat? = nil,
+        @ViewBuilder buttonContent: @escaping (KeyboardLayoutItem) -> ButtonContentView) {
+        let controller = controller ?? .shared
+        self.init(
+            layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
+            appearance: controller.keyboardAppearance,
+            actionHandler: controller.keyboardActionHandler,
+            keyboardContext: controller.keyboardContext,
+            actionCalloutContext: controller.actionCalloutContext,
+            inputCalloutContext: controller.inputCalloutContext,
+            width: width,
+            buttonContent: buttonContent)
     }
 }
 
