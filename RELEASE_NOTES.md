@@ -20,6 +20,7 @@ This version makes the library build on more platforms and removes old, deprecat
 
 ### ✨ New Features
 
+* `ActionCalloutContext` has a new `verticalOffset` that can be used to move the callout up and down.
 * `AudioFeedbackConfiguration` is now mutable.
 * `HapticFeedbackConfiguration` is now mutable.
 * `KeyboardInputViewController` has a new `didMoveToParent` property, which is used to avoid calling `needsInputModeSwitchKey` when it generates a warning.
@@ -27,6 +28,8 @@ This version makes the library build on more platforms and removes old, deprecat
 ### 💡 Behavior changes
 
 * Autocomplete now only applies autocorrections for pure `space` actions and not character actions with a single space.
+* `ActionCallout` uses the new `ActionCalloutContext` `verticalOffset` to offset the callout bubble.
+* `ActionCalloutContext` applies a vertical offset to iPad devices, and adjust the demo toolbar to be 50 on iPad as well.
 * `StandardKeyboardFeedbackHandler` now triggers the haptic feedback for long press on space, not the `SpaceCursorDragGestureHandler`.
 * `SystemKeyboard` initializers now use `nil` as default value for the controller and width, to avoid Swift errors in binary framework builds.  
 
