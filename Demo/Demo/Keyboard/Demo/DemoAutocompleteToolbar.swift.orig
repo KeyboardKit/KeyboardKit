@@ -22,7 +22,11 @@ struct DemoAutocompleteToolbar: View {
         AutocompleteToolbar(
             suggestions: context.suggestions,
             locale: keyboardContext.locale)
+<<<<<<< HEAD:Demo/Demo/Keyboard/Demo/DemoAutocompleteToolbar.swift
+            .frame(height: isPad ? 70 : 50)
+=======
             .frame(height: 50)
+>>>>>>> master:Demo/Keyboard/DemoAutocompleteToolbar.swift
     }
 }
 
