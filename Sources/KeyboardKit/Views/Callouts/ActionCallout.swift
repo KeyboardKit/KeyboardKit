@@ -48,6 +48,7 @@ public struct ActionCallout: View {
         .onTapGesture(perform: context.reset)
         #endif
         .position(x: positionX, y: positionY)
+        .offset(y: context.verticalOffset)
     }
 }
 
@@ -94,6 +95,10 @@ private extension ActionCallout {
             bottomLeft: !isPad && isLeading ? 2 : cornerRadius,
             bottomRight: !isPad && isTrailing ? 2 : cornerRadius)
             .foregroundColor(backgroundColor)
+    }
+    
+    var offsetY: CGFloat {
+        isPad ? 20 : 0
     }
     
     var positionX: CGFloat {

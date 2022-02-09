@@ -23,7 +23,7 @@ struct DemoAutocompleteToolbar: View {
         AutocompleteToolbar(
             suggestions: context.suggestions,
             locale: keyboardContext.locale)
-            .frame(height: UIDevice.current.isPad ? 70 : 50)
+            .frame(height: 50)
     }
 }
 
