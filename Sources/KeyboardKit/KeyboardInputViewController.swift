@@ -34,7 +34,7 @@ open class KeyboardInputViewController: UIInputViewController {
     }
     
     open override func viewWillLayoutSubviews() {
-        keyboardContext.sync(with: self)
+        // keyboardContext.sync(with: self)
         super.viewWillLayoutSubviews()
     }
     
