@@ -49,7 +49,7 @@ class KeyboardViewController: KeyboardInputViewController {
         // 💡 Play with this to change the keyboard's layout
         keyboardLayoutProvider = DemoKeyboardLayoutProvider(
             inputSetProvider: inputSetProvider,
-            dictationReplacement: .keyboardType(.emojis))
+            dictationReplacement: nil)
         
         // Call super to perform the base initialization
         super.viewDidLoad()

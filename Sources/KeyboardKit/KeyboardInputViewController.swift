@@ -47,11 +47,6 @@ open class KeyboardInputViewController: UIInputViewController {
         super.traitCollectionDidChange(previousTraitCollection)
     }
     
-    open override func didMove(toParent parent: UIViewController?) {
-        super.didMove(toParent: parent)
-        didMoveToParent = true
-    }
-    
     
     // MARK: - Setup
 
@@ -95,22 +90,6 @@ open class KeyboardInputViewController: UIInputViewController {
 		} else {
 			return Bundle.main.bundleIdentifier
 		}
-    }
-    
-    /**
-     This property is set when the controller has been moved
-     to its parent. This is when we can start looking at the
-     ``needsInputModeSwitchKey`` property without a warning.
-     */
-    public var didMoveToParent = false
-    
-    /**
-     Whether or not the keyboards needs a "globe" button for
-     switching keyboard.
-     */
-    open override var needsInputModeSwitchKey: Bool {
-        if !didMoveToParent { return false }
-        return super.needsInputModeSwitchKey
     }
     
     /**

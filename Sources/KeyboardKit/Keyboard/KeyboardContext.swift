@@ -124,7 +124,7 @@ public class KeyboardContext: ObservableObject {
      Whether or not the keyboard should (must) have a switch
      key for selecting the next keyboard.
      */
-    @Published public var needsInputModeSwitchKey: Bool = true
+    @Published public var needsInputModeSwitchKey: Bool = false
     
     /**
      The primary language that is currently being used.
