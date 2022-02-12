@@ -59,13 +59,6 @@ class KeyboardInputViewControllerTests: QuickSpec {
             }
         }
         
-        describe("view will layout subviews") {
-            
-            it("updates context") {
-                expectSyncedContext(for: vc.viewWillLayoutSubviews)
-            }
-        }
-        
         describe("view trait collection did change") {
             
             it("updates context") {
