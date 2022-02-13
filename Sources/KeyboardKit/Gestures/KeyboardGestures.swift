@@ -44,6 +44,7 @@ struct KeyboardGestures<Content: View>: View {
         pressAction: KeyboardGestureAction?,
         releaseAction: KeyboardGestureAction?,
         repeatAction: KeyboardGestureAction?,
+        repeatTimer: RepeatGestureTimer = .shared,
         dragAction: KeyboardDragGestureAction?) {
         self.view = view
         self.action = action
@@ -54,6 +55,7 @@ struct KeyboardGestures<Content: View>: View {
         self.pressAction = pressAction
         self.releaseAction = releaseAction
         self.repeatAction = repeatAction
+        self.repeatTimer = repeatTimer
         self.dragAction = dragAction
     }
     
@@ -66,43 +68,8 @@ struct KeyboardGestures<Content: View>: View {
     private let pressAction: KeyboardGestureAction?
     private let releaseAction: KeyboardGestureAction?
     private let repeatAction: KeyboardGestureAction?
+    private let repeatTimer: RepeatGestureTimer
     private let dragAction: KeyboardDragGestureAction?
-    
-    /**
-     The shared input callout context.
-     
-     `TODO` The context is resolved like this to avoid doing
-     changes that affects many library views.
-     */
-    private var actionCalloutContext: ActionCalloutContext? {
-        #if os(iOS)
-        KeyboardInputViewController.shared.actionCalloutContext
-        #else
-        nil
-        #endif
-    }
-    
-    /**
-     The shared input callout context.
-     
-     `TODO` The context is resolved like this to avoid doing
-     changes that affects many library views.
-     */
-    private var inputCalloutContext: InputCalloutContext? {
-        #if os(iOS)
-        KeyboardInputViewController.shared.inputCalloutContext
-        #else
-        nil
-        #endif
-    }
-    
-    /**
-     The shared repeat timer.
-     
-     For now, this context is resolved like this, to avoid a
-     change that affects all topmost views in the library.
-     */
-    private let repeatTimer = RepeatGestureTimer.shared
     
     @State private var isRepeatGestureActive = false {
         didSet { isRepeatGestureActive ? startRepeatTimer() : stopRepeatTimer() }
@@ -118,6 +85,34 @@ struct KeyboardGestures<Content: View>: View {
                 .simultaneousGesture(longPressGesture)
                 .simultaneousGesture(longPressDragGesture(for: geo))
         })
+    }
+}
+
+
+// MARK: - Contexts
+
+private extension KeyboardGestures {
+    
+    /**
+     The shared input callout context.
+     */
+    var actionCalloutContext: ActionCalloutContext? {
+        #if os(iOS)
+        KeyboardInputViewController.shared.actionCalloutContext
+        #else
+        nil
+        #endif
+    }
+    
+    /**
+     The shared input callout context.
+     */
+    var inputCalloutContext: InputCalloutContext? {
+        #if os(iOS)
+        KeyboardInputViewController.shared.inputCalloutContext
+        #else
+        nil
+        #endif
     }
 }
 

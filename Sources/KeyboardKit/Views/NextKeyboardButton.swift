@@ -47,15 +47,14 @@ struct NextKeyboardButton_Previews: PreviewProvider {
 
 
 /**
- This overlay view setup a `next keyboard` controller action
- to a blank `UIKit` button.
- 
- This can hopefully be removed later, without public changes.
+ This overlay sets up a `next keyboard` controller action on
+ a blank `UIKit` button. This can hopefully be removed later,
+ without public changes.
  */
 private struct NextKeyboardButtonOverlay: UIViewRepresentable {
     
     init(
-        controller: KeyboardInputViewController = .shared) {
+        controller: KeyboardInputViewController) {
         button = UIButton()
         controller.setupNextKeyboardButton(button)
     }

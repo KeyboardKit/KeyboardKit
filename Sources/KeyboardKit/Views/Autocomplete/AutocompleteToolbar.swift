@@ -212,8 +212,9 @@ public extension AutocompleteToolbar {
      */
     static func standardAction(
         for suggestion: AutocompleteSuggestion) {
-        let proxy = KeyboardInputViewController.shared.textDocumentProxy
-        let actionHandler = KeyboardInputViewController.shared.keyboardActionHandler
+        let controller = KeyboardInputViewController.shared
+        let proxy = controller.textDocumentProxy
+        let actionHandler = controller.keyboardActionHandler
         proxy.insertAutocompleteSuggestion(suggestion)
         actionHandler.handle(.tap, on: .character(""))
     }
