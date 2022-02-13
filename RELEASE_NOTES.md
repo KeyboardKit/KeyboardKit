@@ -10,6 +10,25 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 5.9.2
+
+This version polishes the action callout on iPad further and fixes a layout bug. 
+
+### ✨ New Features
+
+* `ActionCalloutContext` has a new `verticalOffset` property.
+
+### 💡 Behavior changes
+
+* `ActionCallout` is now pushed down a bit on iPad devices.
+* `KeyboardInputViewController` no longer syncs context on `viewWillLayoutSubviews`.
+
+### 🐛 Bug fixes
+
+* `KeyboardInputViewController` could get stuck in a loop due to syncing context in `viewWillLayoutSubviews`.
+
+
+
 ## 5.9.1
 
 This version polishes the action callout on iPad and makes the core library build on macOS. 
