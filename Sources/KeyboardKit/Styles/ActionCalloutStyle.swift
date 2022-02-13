@@ -25,6 +25,7 @@ public struct ActionCalloutStyle {
        - font: The font to use in the callout, by default ``standardFont``.
        - selectedBackgroundColor: The background color of the selected item.
        - selectedForegroundColor: The foreground color of the selected item.
+       - verticalOffset: The vertical offset of the action callout, by default 20 on iPad devices.
        - verticalTextPadding: The vertical padding to apply to text in the callout.
      */
     public init(
@@ -33,12 +34,15 @@ public struct ActionCalloutStyle {
         maxButtonSize: CGSize = CGSize(width: 50, height: 50),
         selectedBackgroundColor: Color = .blue,
         selectedForegroundColor: Color = .white,
+        verticalOffset: CGFloat? = nil,
         verticalTextPadding: CGFloat = 5) {
         self.callout = callout
         self.font = font
         self.maxButtonSize = maxButtonSize
         self.selectedBackgroundColor = selectedBackgroundColor
         self.selectedForegroundColor = selectedForegroundColor
+        let standardVerticalOffset: CGFloat = DeviceType.current == .pad ? 20 : 0
+        self.verticalOffset = verticalOffset ?? standardVerticalOffset
         self.verticalTextPadding = verticalTextPadding
     }
     
@@ -66,6 +70,11 @@ public struct ActionCalloutStyle {
      The foreground color of the selected item.
      */
     public var selectedForegroundColor: Color
+    
+    /**
+     The vertical offset to apply to the callout.
+     */
+    public var verticalOffset: CGFloat
     
     /**
      The vertical padding to apply to text in the callout.

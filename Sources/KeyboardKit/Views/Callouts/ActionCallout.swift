@@ -48,7 +48,7 @@ public struct ActionCallout: View {
         .onTapGesture(perform: context.reset)
         #endif
         .position(x: positionX, y: positionY)
-        .offset(y: context.verticalOffset)
+        .offset(y: style.verticalOffset)
     }
 }
 

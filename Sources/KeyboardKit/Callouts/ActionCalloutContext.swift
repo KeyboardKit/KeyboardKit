@@ -38,7 +38,6 @@ open class ActionCalloutContext: ObservableObject {
         actionProvider: CalloutActionProvider) {
         self.actionHandler = actionHandler
         self.actionProvider = actionProvider
-        self.verticalOffset = standardVerticalOffset
     }
     
     
@@ -102,11 +101,6 @@ open class ActionCalloutContext: ObservableObject {
      The currently selected action index.
      */
     @Published public private(set) var selectedIndex: Int = -1
-
-    /**
-     The frame of the currently pressed keyboard button.
-    */
-    @Published private(set) var verticalOffset: CGFloat = 0
 
 
     // MARK: - Functions
@@ -202,10 +196,6 @@ public extension ActionCalloutContext {
 // MARK: - Private functionality
 
 private extension ActionCalloutContext {
-    
-    var standardVerticalOffset: CGFloat {
-        DeviceType.current == .pad ? 20 : 0
-    }
     
     var startIndex: Int {
         isLeading ? 0 : actions.count - 1

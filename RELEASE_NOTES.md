@@ -37,6 +37,7 @@ This version makes the library build on more platforms and removes old, deprecat
 
 * All previously deprecated code has been removed.
 
+* `ActionCalloutContext` `verticalOffset` has been moved to `ActionCalloutStyle`.
 * `Bundle` `isExtension` has been made internal.
 * `Color.standardButtonBackgroundColor(for:)` has been renamed to `standardButtonBackground(for:)`.
 * `Color.standardButtonForegroundColor(for:)` has been renamed to `standardButtonForeground(for:)`.
