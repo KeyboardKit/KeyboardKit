@@ -34,6 +34,21 @@ open class InputCalloutContext: ObservableObject {
     }
     
     
+    // MARK: - Shared
+    
+    /**
+     The shared context is resolved by returning the context
+     of ``KeyboardInputViewController/shared``.
+     */
+    static var shared: InputCalloutContext? {
+        #if os(iOS)
+        KeyboardInputViewController.shared.inputCalloutContext
+        #else
+        nil
+        #endif
+    }
+    
+    
     // MARK: - Properties
     
     public static let coordinateSpace = "com.keyboardkit.coordinate.InputCallout"

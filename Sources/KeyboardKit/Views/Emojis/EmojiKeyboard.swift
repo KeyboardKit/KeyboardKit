@@ -65,10 +65,16 @@ public struct EmojiKeyboard<ButtonView: View>: View {
 public extension EmojiKeyboard {
     
     /**
+     This typealias represents an emoji-based action.
+     */
+    typealias EmojiAction = (Emoji) -> Void
+    
+    /**
      The standard action to use when tapping an emoji button.
      */
     static func standardEmojiAction(emoji: Emoji) {
-        let handler = KeyboardInputViewController.shared.keyboardActionHandler
+        let controller = KeyboardInputViewController.shared
+        let handler = controller.keyboardActionHandler
         handler.handle(.tap, on: .emoji(emoji))
     }
 }
@@ -83,12 +89,12 @@ public extension EmojiKeyboard where ButtonView == EmojiKeyboardButton {
      - Parameters:
        - emojis: The emojis to include in the menu.
        - style: The style to apply to the keyboard, by default `.standardPhonePortrait`.
-       - emojiButtonAction: The action to perform when an emoji is tapped, by default `.standardEmojiButtonAction`.
+       - emojiButtonAction: The action to perform when an emoji is tapped, by default ``standardEmojiAction(emoji:)``.
      */
     init(
         emojis: [Emoji],
         style: EmojiKeyboardStyle = .standardPhonePortrait,
-        emojiButtonAction: @escaping (Emoji) -> Void = standardEmojiAction) {
+        emojiButtonAction: @escaping EmojiAction = standardEmojiAction) {
         self.init(
             emojis: emojis,
             style: style,

@@ -31,24 +31,28 @@ public struct EmojiCategoryKeyboardMenu: View {
        - context: The context to bind the buttons to.
        - selection: The current selection.
        - style: The style to apply to the menu.
+       - actionHandler: The action handler to use, by default the shared one.
      */
     public init(
         categories: [EmojiCategory] = EmojiCategory.all,
         appearance: KeyboardAppearance,
         context: KeyboardContext,
         selection: Binding<EmojiCategory>,
-        style: EmojiKeyboardStyle) {
+        style: EmojiKeyboardStyle,
+        actionHandler: KeyboardActionHandler = KeyboardInputViewController.shared.keyboardActionHandler) {
         self.categories = categories.filter { $0.emojis.count > 0 }
         self.appearance = appearance
         self.context = context
         self._selection = selection
         self.style = style
+        self.actionHandler = actionHandler
     }
     
     private let categories: [EmojiCategory]
     private let appearance: KeyboardAppearance
     private let context: KeyboardContext
     private let style: EmojiKeyboardStyle
+    private let actionHandler: KeyboardActionHandler
     
     @State private var isInitialized = false
     @Binding private var selection: EmojiCategory
@@ -70,22 +74,20 @@ public struct EmojiCategoryKeyboardMenu: View {
     
     private var backspaceButton: some View {
         let action = KeyboardAction.backspace
-        let handler = KeyboardInputViewController.shared.keyboardActionHandler
         let image = appearance.buttonImage(for: action)
         return image.keyboardGestures(
             for: action,
             context: context,
-            actionHandler: handler).scaledToFill()
+            actionHandler: actionHandler).scaledToFill()
     }
     
     private var keyboardSwitchButton: some View {
         let action = KeyboardAction.keyboardType(.alphabetic(.lowercased))
-        let handler = KeyboardInputViewController.shared.keyboardActionHandler
         let text = appearance.buttonText(for: action) ?? "ABC"
         return Text(text).keyboardGestures(
             for: action,
             context: context,
-            actionHandler: handler).scaledToFill()
+            actionHandler: actionHandler).scaledToFill()
     }
     
     private var buttonList: some View {

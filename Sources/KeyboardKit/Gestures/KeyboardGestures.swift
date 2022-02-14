@@ -94,26 +94,14 @@ struct KeyboardGestures<Content: View>: View {
 private extension KeyboardGestures {
     
     /**
-     The shared input callout context.
+     The action callout context to use.
      */
-    var actionCalloutContext: ActionCalloutContext? {
-        #if os(iOS)
-        KeyboardInputViewController.shared.actionCalloutContext
-        #else
-        nil
-        #endif
-    }
+    var actionCalloutContext: ActionCalloutContext? { .shared }
     
     /**
-     The shared input callout context.
+     The input callout context to use.
      */
-    var inputCalloutContext: InputCalloutContext? {
-        #if os(iOS)
-        KeyboardInputViewController.shared.inputCalloutContext
-        #else
-        nil
-        #endif
-    }
+    var inputCalloutContext: InputCalloutContext? { .shared }
 }
 
 

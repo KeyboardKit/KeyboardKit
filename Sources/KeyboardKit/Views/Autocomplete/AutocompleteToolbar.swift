@@ -255,31 +255,38 @@ private extension AutocompleteToolbar {
 
 struct AutocompleteToolbar_Previews: PreviewProvider {
     
+    static let additional = [
+        StandardAutocompleteSuggestion(text: "", title: "Foo", subtitle: "Recommended")
+    ]
+    
     static var previews: some View {
-        KeyboardInputViewController.shared = .preview
-        let additionalSuggestion = StandardAutocompleteSuggestion(text: "", title: "Foo", subtitle: "Recommended")
         return VStack {
             AutocompleteToolbar(
                 suggestions: previewSuggestions,
                 locale: KeyboardLocale.english.locale,
-                style: .standard).previewBar()
+                style: .standard,
+                action: { _ in }).previewBar()
             AutocompleteToolbar(
-                suggestions: previewSuggestions + [additionalSuggestion],
+                suggestions: previewSuggestions + additional,
                 locale: KeyboardLocale.spanish.locale,
-                style: .standard).previewBar()
+                style: .standard,
+                action: { _ in }).previewBar()
             AutocompleteToolbar(
-                suggestions: previewSuggestions + [additionalSuggestion],
+                suggestions: previewSuggestions + additional,
                 locale: KeyboardLocale.spanish.locale,
-                style: .preview1).previewBar()
+                style: .preview1,
+                action: { _ in }).previewBar()
             AutocompleteToolbar(
-                suggestions: previewSuggestions + [additionalSuggestion],
+                suggestions: previewSuggestions + additional,
                 locale: KeyboardLocale.spanish.locale,
-                style: .preview2).previewBar()
+                style: .preview2,
+                action: { _ in }).previewBar()
             AutocompleteToolbar(
                 suggestions: previewSuggestions,
                 locale: KeyboardLocale.swedish.locale,
                 style: .standard,
-                itemView: previewItem).previewBar()
+                itemView: previewItem,
+                action: { _ in }).previewBar()
         }
         .padding()
     }

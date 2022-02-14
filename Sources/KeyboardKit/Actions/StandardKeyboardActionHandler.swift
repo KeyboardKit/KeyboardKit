@@ -79,9 +79,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     // MARK: - Properties
     
     public var textDocumentProxy: UITextDocumentProxy { keyboardContext.textDocumentProxy }
-    
-    private var keyboardInputViewController: KeyboardInputViewController { .shared }
-    
+        
     
     // MARK: - KeyboardActionHandler
     
@@ -113,7 +111,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         guard let gestureAction = self.action(for: gesture, on: action) else { return }
         tryRemoveAutocompleteInsertedSpace(before: gesture, on: action)
         tryApplyAutocompleteSuggestion(before: gesture, on: action)
-        gestureAction(keyboardInputViewController)
+        gestureAction(.shared)
         tryReinsertAutocompleteRemovedSpace(after: gesture, on: action)
         tryEndSentence(after: gesture, on: action)
         tryChangeKeyboardType(after: gesture, on: action)

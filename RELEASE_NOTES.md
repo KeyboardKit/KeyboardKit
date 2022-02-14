@@ -20,9 +20,11 @@ This version makes the library build on more platforms and removes old, deprecat
 
 ### ✨ New Features
 
+* `ActionCalloutContext` has a new, static `shared` property.
 * `ActionCalloutContext` has a new `verticalOffset` that can be used to move the callout up and down.
 * `AudioFeedbackConfiguration` is now mutable.
 * `HapticFeedbackConfiguration` is now mutable.
+* `InputCalloutContext` has a new, static `shared` property.
 * `KeyboardInputViewController` has a new `didMoveToParent` property, which is used to avoid calling `needsInputModeSwitchKey` when it generates a warning.
 
 ### 💡 Behavior changes
