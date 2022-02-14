@@ -35,6 +35,10 @@ This version makes the library build on more platforms and removes old, deprecat
 * `StandardKeyboardFeedbackHandler` now triggers the haptic feedback for long press on space, not the `SpaceCursorDragGestureHandler`.
 * `SystemKeyboard` initializers now use `nil` as default value for the controller and width, to avoid Swift errors in binary framework builds.  
 
+### 🐛 Bug fixes
+
+* `UITextDocumentProxy` `isCursorAtNewSentenceWithSpace` has been adjusted to handle non-empty space content.
+
 ### 💥 Breaking changes
 
 * All previously deprecated code has been removed.

@@ -13,7 +13,7 @@ public extension UITextDocumentProxy {
     
     /**
      Whether or not the text document proxy cursor is at the
-     beginning of a new sentence.
+     immediate beginning of a new sentence.
      */
     var isCursorAtNewSentence: Bool {
         guard let pre = trimmedDocumentContextBeforeInput?.replacingOccurrences(of: "\n", with: "") else { return true }
@@ -25,12 +25,12 @@ public extension UITextDocumentProxy {
     /**
      Whether or not the text document proxy cursor is at the
      beginning of a new sentence, with trailing spaces after
-     the sentence delimiter.
+     the last sentence delimiter.
      */
     var isCursorAtNewSentenceWithSpace: Bool {
         guard let pre = documentContextBeforeInput else { return true }
-        if pre.isEmpty { return true }
         let trimmed = pre.trimmingCharacters(in: .whitespacesAndNewlines)
+        if pre.isEmpty || trimmed.isEmpty { return true }
         let lastTrimmed = String(trimmed.suffix(1))
         let isLastSpace = pre.last?.isWhitespace == true
         let isLastNewline = pre.last?.isNewline == true

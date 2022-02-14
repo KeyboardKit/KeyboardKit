@@ -69,8 +69,16 @@ class UITextDocumentProxy_ContentTests: QuickSpec {
                 expect(proxy.isCursorAtNewSentence).to(beTrue())
             }
             
-            it("returns true if pre cursor is empty or ends with a sentence delimiter") {
+            it("returns true if pre cursor is empty") {
                 expect(result(for: "")).to(beTrue())
+            }
+            
+            it("returns true if pre cursor is a space") {
+                expect(result(for: " ")).to(beTrue())
+            }
+            
+            it("returns true if pre cursor is a sentence delimiter") {
+                expect(result(for: "\n")).to(beTrue())
             }
             
             it("returns false if pre cursor part ends with a non-sentence delimiter") {
@@ -87,6 +95,10 @@ class UITextDocumentProxy_ContentTests: QuickSpec {
             
             it("returns true if pre cursor has a closed sentence and a newline") {
                 expect(result(for: "foo!\n")).to(beTrue())
+            }
+            
+            it("returns true if pre cursor has a closed sentence and multiple newlines") {
+                expect(result(for: "foo!\n\n")).to(beTrue())
             }
             
             it("returns false if pre cursor ends with a sentence delimiter followed by spaces") {
