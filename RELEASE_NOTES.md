@@ -10,6 +10,16 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 5.9.3
+
+This version adjust orientation change handling further.
+
+### 🐛 Bug fixes
+
+* `KeyboardInputViewController` re-adds sync for layout change, but only once after `viewDidLayoutSubviews` if orientation changes.
+
+
+
 ## 5.9.2
 
 This version polishes the action callout on iPad further and fixes a layout bug. 
