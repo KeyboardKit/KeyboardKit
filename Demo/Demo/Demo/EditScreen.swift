@@ -31,7 +31,9 @@ struct EditScreen: View {
                     enabledText: "Demo keyboard is selected",
                     disabledText: "Demo keyboard is not selected")
             }
-        }.navigationTitle(title)
+        }
+        .listStyle(.insetGrouped)
+        .navigationTitle(title)
     }
 }
 

@@ -33,6 +33,11 @@ open class KeyboardInputViewController: UIInputViewController {
         keyboardContext.sync(with: self)
     }
     
+    open override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        keyboardContext.syncAfterLayout(with: self)
+    }
+    
     open func viewWillSetupKeyboard() {
         // Override and implement your keyboard setup logic.
     }

@@ -236,5 +236,10 @@ public extension KeyboardContext {
         self.textInputMode = controller.textInputMode
         self.traitCollection = controller.traitCollection
     }
+    
+    func syncAfterLayout(with controller: KeyboardInputViewController) {
+        guard controller.screenOrientation != screenOrientation else { return }
+        sync(with: controller)
+    }
     #endif
 }

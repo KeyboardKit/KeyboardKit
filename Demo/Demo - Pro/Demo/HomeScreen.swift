@@ -42,7 +42,9 @@ struct HomeScreen: View {
                         Label("System settings", image: .settings)
                     }
                 }
-            }.navigationTitle("KeyboardKit Demo")
+            }
+            .listStyle(.insetGrouped)
+            .navigationTitle("KeyboardKit Demo")
         }
         .navigationViewStyle(.stack)
         .environmentObject(keyboardState)
