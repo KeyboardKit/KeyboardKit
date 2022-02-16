@@ -41,17 +41,17 @@ class KeyboardContextTests: QuickSpec {
                 context = KeyboardContext(controller: controller, keyboardType: .images)
                 expect(context.device).to(be(UIDevice.current))
                 
-                expect(context.keyboardType).to(equal(.images))
-                expect(context.locale).to(equal(.current))
-                expect(context.locales).to(equal([.current]))
+                expect(context.keyboardType).toEventually(equal(.images))
+                expect(context.locale).toEventually(equal(.current))
+                expect(context.locales).toEventually(equal([.current]))
                 
-                expect(context.hasDictationKey).to(equal(controller.hasDictationKey))
-                expect(context.hasFullAccess).to(equal(controller.hasFullAccess))
-                expect(context.needsInputModeSwitchKey).to(equal(controller.needsInputModeSwitchKey))
-                expect(context.primaryLanguage).to(beNil())
-                expect(context.textDocumentProxy).to(be(controller.textDocumentProxy))
-                expect(context.textInputMode).to(beNil())
-                expect(context.traitCollection).to(equal(controller.traitCollection))
+                expect(context.hasDictationKey).toEventually(equal(controller.hasDictationKey))
+                expect(context.hasFullAccess).toEventually(equal(controller.hasFullAccess))
+                expect(context.needsInputModeSwitchKey).toEventually(equal(controller.needsInputModeSwitchKey))
+                expect(context.primaryLanguage).toEventually(beNil())
+                expect(context.textDocumentProxy).toEventually(be(controller.textDocumentProxy))
+                expect(context.textInputMode).toEventually(beNil())
+                expect(context.traitCollection).toEventually(equal(controller.traitCollection))
             }
         }
         
@@ -105,16 +105,16 @@ class KeyboardContextTests: QuickSpec {
             it("updates some properties") {
                 let context = KeyboardContext(controller: controller, keyboardType: .images)
                 context.sync(with: controller)
-                expect(context.hasDictationKey).to(equal(controller.hasDictationKey))
-                expect(context.hasFullAccess).to(equal(controller.hasFullAccess))
-                expect(context.needsInputModeSwitchKey).to(equal(controller.needsInputModeSwitchKey))
-                expect(context.primaryLanguage).to(beNil())
+                expect(context.hasDictationKey).toEventually(equal(controller.hasDictationKey))
+                expect(context.hasFullAccess).toEventually(equal(controller.hasFullAccess))
+                expect(context.needsInputModeSwitchKey).toEventually(equal(controller.needsInputModeSwitchKey))
+                expect(context.primaryLanguage).toEventually(beNil())
                 #if os(iOS) || os(macOS)
-                expect(context.screenOrientation).to(equal(controller.screenOrientation))
+                expect(context.screenOrientation).toEventually(equal(controller.screenOrientation))
                 #endif
-                expect(context.textDocumentProxy).to(be(controller.textDocumentProxy))
-                expect(context.textInputMode).to(beNil())
-                expect(context.traitCollection).to(equal(controller.traitCollection))
+                expect(context.textDocumentProxy).toEventually(be(controller.textDocumentProxy))
+                expect(context.textInputMode).toEventually(beNil())
+                expect(context.traitCollection).toEventually(equal(controller.traitCollection))
             }
         }
     }

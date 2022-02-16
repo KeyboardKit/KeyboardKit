@@ -23,11 +23,11 @@ class KeyboardInputViewControllerTests: QuickSpec {
         func expectSyncedContext(for function: () -> Void) {
             vc.hasFullAccessValue = true
             function()
-            expect(vc.keyboardContext.hasFullAccess).to(beTrue())
+            expect(vc.keyboardContext.hasFullAccess).toEventually(beTrue())
             vc.hasFullAccessValue = false
             function()
-            expect(vc.keyboardContext.hasFullAccess).to(beFalse())
-            expect(vc.keyboardContext.textDocumentProxy).to(be(vc.textDocumentProxy))
+            expect(vc.keyboardContext.hasFullAccess).toEventually(beFalse())
+            expect(vc.keyboardContext.textDocumentProxy).toEventually(be(vc.textDocumentProxy))
         }
         
         beforeEach {
@@ -105,7 +105,7 @@ class KeyboardInputViewControllerTests: QuickSpec {
                 let input = MockTextInput()
                 let proxy = TextInputProxy(input: input)
                 vc.textInputProxy = proxy
-                expect(vc.keyboardContext.textDocumentProxy).to(be(proxy))
+                expect(vc.keyboardContext.textDocumentProxy).toEventually(be(proxy))
             }
         }
         
@@ -116,15 +116,15 @@ class KeyboardInputViewControllerTests: QuickSpec {
         describe("observable properties") {
             
             it("has standard instances by default") {
-                expect(vc.actionCalloutContext.buttonFrame).to(equal(.zero))
-                expect(vc.autocompleteContext.suggestions.isEmpty).to(beTrue())
-                expect(vc.inputCalloutContext.buttonFrame).to(equal(.zero))
-                expect(vc.keyboardContext.hasFullAccess).to(beFalse())
-                expect(vc.keyboardContext.keyboardType).to(equal(.alphabetic(.lowercased)))
-                expect(vc.keyboardContext.needsInputModeSwitchKey).to(beFalse())
-                expect(vc.keyboardContext.textDocumentProxy).to(be(vc.textDocumentProxy))
-                expect(vc.keyboardFeedbackSettings.audioConfiguration).to(equal(.standard))
-                expect(vc.keyboardFeedbackSettings.hapticConfiguration).to(equal(.standard))
+                expect(vc.actionCalloutContext.buttonFrame).toEventually(equal(.zero))
+                expect(vc.autocompleteContext.suggestions.isEmpty).toEventually(beTrue())
+                expect(vc.inputCalloutContext.buttonFrame).toEventually(equal(.zero))
+                expect(vc.keyboardContext.hasFullAccess).toEventually(beFalse())
+                expect(vc.keyboardContext.keyboardType).toEventually(equal(.alphabetic(.lowercased)))
+                expect(vc.keyboardContext.needsInputModeSwitchKey).toEventually(beFalse())
+                expect(vc.keyboardContext.textDocumentProxy).toEventually(be(vc.textDocumentProxy))
+                expect(vc.keyboardFeedbackSettings.audioConfiguration).toEventually(equal(.standard))
+                expect(vc.keyboardFeedbackSettings.hapticConfiguration).toEventually(equal(.standard))
             }
         }
         

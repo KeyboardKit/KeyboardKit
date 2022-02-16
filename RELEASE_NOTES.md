@@ -10,11 +10,21 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 5.9.4
+
+This version adjust orientation change handling further.
+
+### 💡 Behavior changes
+
+* `KeyboardInputViewController` now wraps the context sync in a `DispatchQueue.main.async` block. This seems to improve the behavior quite a bit.
+
+
+
 ## 5.9.3
 
 This version adjust orientation change handling further.
 
-### 🐛 Bug fixes
+### 💡 Behavior changes
 
 * `KeyboardInputViewController` re-adds sync for layout change, but only once after `viewDidLayoutSubviews` if orientation changes.
 

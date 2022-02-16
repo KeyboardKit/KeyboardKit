@@ -224,22 +224,26 @@ public extension KeyboardContext {
      */
     func sync(with controller: KeyboardInputViewController) {
         if Self.tempIsPreviewMode { return }
-        self.activeAppBundleId = controller.activeAppBundleId
-        self.hasDictationKey = controller.hasDictationKey
-        self.hasFullAccess = controller.hasFullAccess
-        self.needsInputModeSwitchKey = controller.needsInputModeSwitchKey
-        self.primaryLanguage = controller.primaryLanguage
-        #if os(iOS)
-        self.screenOrientation = controller.screenOrientation
-        #endif
-        self.textDocumentProxy = controller.textDocumentProxy
-        self.textInputMode = controller.textInputMode
-        self.traitCollection = controller.traitCollection
+        DispatchQueue.main.async {
+            self.activeAppBundleId = controller.activeAppBundleId
+            self.hasDictationKey = controller.hasDictationKey
+            self.hasFullAccess = controller.hasFullAccess
+            self.needsInputModeSwitchKey = controller.needsInputModeSwitchKey
+            self.primaryLanguage = controller.primaryLanguage
+            #if os(iOS)
+            self.screenOrientation = controller.screenOrientation
+            #endif
+            self.textDocumentProxy = controller.textDocumentProxy
+            self.textInputMode = controller.textInputMode
+            self.traitCollection = controller.traitCollection
+        }
     }
     
     func syncAfterLayout(with controller: KeyboardInputViewController) {
-        guard controller.screenOrientation != screenOrientation else { return }
-        sync(with: controller)
+        #if os(iOS)
+        if controller.screenOrientation == screenOrientation { return }
+        self.sync(with: controller)
+        #endif
     }
     #endif
 }
