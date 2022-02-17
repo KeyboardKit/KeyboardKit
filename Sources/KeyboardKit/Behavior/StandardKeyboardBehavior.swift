@@ -39,7 +39,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
      */
     public init(
         context: KeyboardContext,
-        doubleTapThreshold: TimeInterval = 0.2,
+        doubleTapThreshold: TimeInterval = 0.5,
         endSentenceThreshold: TimeInterval = 3.0,
         repeatGestureTimer: RepeatGestureTimer = .shared) {
         self.context = context
@@ -143,7 +143,7 @@ private extension StandardKeyboardBehavior {
     var isDoubleShiftTap: Bool {
         guard context.keyboardType.isAlphabetic else { return false }
         let isDoubleTap = Date().timeIntervalSinceReferenceDate - lastShiftCheck.timeIntervalSinceReferenceDate < doubleTapThreshold
-        lastShiftCheck = Date()
+        lastShiftCheck = isDoubleTap ? Date().addingTimeInterval(-1) : Date()
         return isDoubleTap
     }
 }
