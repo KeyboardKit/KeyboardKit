@@ -223,13 +223,13 @@ public extension AutocompleteToolbar {
 private extension AutocompleteToolbar {
     
     func itemButton(for suggestion: AutocompleteSuggestion) -> some View {
-        Button(action: { action(suggestion) }) {
+        Button(action: { action(suggestion) }, label: {
             itemView(suggestion, style, locale)
                 .padding(.horizontal, 4)
                 .padding(.vertical, 10)
                 .background(suggestion.isAutocomplete ? style.autocompleteBackground.color : Color.clearInteractable)
                 .cornerRadius(style.autocompleteBackground.cornerRadius)
-        }
+        })
     }
 }
 

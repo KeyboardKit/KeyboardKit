@@ -15,6 +15,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## iOS
 
+### ios documentation
+
+```sh
+[bundle exec] fastlane ios documentation
+```
+
+Build documentation
+
 ### ios lint
 
 ```sh
@@ -31,13 +39,13 @@ Run SwiftLint
 
 Run unit tests
 
-### ios documentation
+### ios ensure_release_ready
 
 ```sh
-[bundle exec] fastlane ios documentation
+[bundle exec] fastlane ios ensure_release_ready
 ```
 
-Build documentation
+Ensure that the repo is valid for release
 
 ### ios version
 
