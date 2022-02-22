@@ -119,13 +119,22 @@ class StandardKeyboardBehaviorTests: QuickSpec {
                 behavior.shouldSwitchToCapsLock(after: gesture, on: action)
             }
             
-            it("is true if the action is shift") {
-                expect(result(after: .tap, on: .shift(currentState: .capsLocked))).to(beTrue())
-                expect(result(after: .tap, on: .shift(currentState: .lowercased))).to(beTrue())
-                expect(result(after: .tap, on: .shift(currentState: .uppercased))).to(beTrue())
+            it("is false if keyboard type is not alphabetic when action is double tap on shift") {
+                context.keyboardType = .numeric
+                expect(result(after: .tap, on: .shift(currentState: .capsLocked))).to(beFalse())
+                expect(result(after: .tap, on: .shift(currentState: .lowercased))).to(beFalse())
+                expect(result(after: .tap, on: .shift(currentState: .lowercased))).to(beFalse())
+                expect(result(after: .tap, on: .shift(currentState: .uppercased))).to(beFalse())
+                expect(result(after: .tap, on: .shift(currentState: .uppercased))).to(beFalse())
             }
             
-            
+            it("is true if keyboard type is alphabetic and action is double tap on shift") {
+                expect(result(after: .tap, on: .shift(currentState: .capsLocked))).to(beTrue())
+                expect(result(after: .tap, on: .shift(currentState: .lowercased))).to(beFalse())
+                expect(result(after: .tap, on: .shift(currentState: .lowercased))).to(beTrue())
+                expect(result(after: .tap, on: .shift(currentState: .uppercased))).to(beFalse())
+                expect(result(after: .tap, on: .shift(currentState: .uppercased))).to(beTrue())
+            }
         }
         
         

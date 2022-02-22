@@ -142,7 +142,9 @@ private extension StandardKeyboardBehavior {
     
     var isDoubleShiftTap: Bool {
         guard context.keyboardType.isAlphabetic else { return false }
-        let isDoubleTap = Date().timeIntervalSinceReferenceDate - lastShiftCheck.timeIntervalSinceReferenceDate < doubleTapThreshold
+        let date = Date().timeIntervalSinceReferenceDate
+        let lastDate = lastShiftCheck.timeIntervalSinceReferenceDate
+        let isDoubleTap = (date - lastDate) < doubleTapThreshold
         lastShiftCheck = isDoubleTap ? Date().addingTimeInterval(-1) : Date()
         return isDoubleTap
     }
