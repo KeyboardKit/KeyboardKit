@@ -1,0 +1,19 @@
+/*
+ Localizable.strings
+ KeyboardKit
+
+ Created by Aram Vardanyan on 2022-03-26.
+ */
+
+"locale" = "hy_AM";
+
+"done" = "հաստատել";
+"go" = "գնալ";
+"ok" = "լավ";
+"return" = "↵";
+"search" = "փնտրել";
+"space" = "բացատ";
+
+"keyboardTypeAlphabetic" = "ԱԲԳ";
+"keyboardTypeNumeric" = "123";
+"keyboardTypeSymbolic" = "#+=";

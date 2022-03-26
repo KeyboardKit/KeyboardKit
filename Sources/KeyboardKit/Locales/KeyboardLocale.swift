@@ -36,6 +36,7 @@ public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
     
     case english = "en"
     
+    case armenian = "hy_AM"
     case albanian = "sq"
     case arabic = "ar"
     case belarusian = "be"
@@ -118,6 +119,7 @@ public extension KeyboardLocale {
         switch self {
         case .english: return "🇺🇸"
             
+        case .armenian: return "🇦🇲"
         case .albanian: return "🇦🇱"
         case .arabic: return "🇦🇪"
         case .belarusian: return "🇧🇾"
