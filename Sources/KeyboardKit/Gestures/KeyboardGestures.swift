@@ -130,17 +130,23 @@ private extension KeyboardGestures {
     
     /**
      This is a plain long press gesure.
+     minimumDuration:  The minimum duration of the long press that must elapse before the gesture succeeds.
+     maximumDistance: The maximum distance that the fingers or cursor performing the long press can move before the gesture fails.
      */
     var longPressGesture: some Gesture {
-        LongPressGesture()
+        
+        LongPressGesture(minimumDuration: 0.25, maximumDistance: 10)
             .onEnded { _ in handleLongPressGesture() }
     }
     
     /**
      This is a drag gesture that starts after a long press.
+     minimumDuration:  The minimum duration of the long press that must elapse before the gesture succeeds.
+     maximumDistance: The maximum distance that the fingers or cursor performing the long press can move before the gesture fails.
      */
     func longPressDragGesture(for geo: GeometryProxy) -> some Gesture {
-        LongPressGesture()
+        
+        LongPressGesture(minimumDuration: 0.25, maximumDistance: 10)
             .onEnded { _ in beginActionCallout(for: geo) }
             .sequenced(before: DragGesture(minimumDistance: 0))
             .onChanged {
