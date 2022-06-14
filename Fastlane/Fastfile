@@ -4,14 +4,6 @@ default_platform :ios
 
 platform :ios do
 
-
-  # Documentation ==============
-    
-  desc "Build documentation"
-  lane :documentation do |options|
-    sh('cd .. && fastlane/build-documentation.sh')
-  end
-
   
   # Lint =======================
   
@@ -45,21 +37,92 @@ platform :ios do
   desc "Create a new version"
   lane :version do |options|
     ensure_release_ready
-    
     documentation
 
     bump_type = options[:type]
-    if bump_type == nil or bump_type.empty?
-      bump_type = "patch"
-    end
-    
-    version = version_bump_podspec(path: "KeyboardKit.podspec", bump_type: bump_type)
+    version = version_bump_podspec(
+        path: "KeyboardKit.podspec",
+        bump_type: bump_type)
+
     git_commit(path: "*", message: "Bump to #{version}")
-  
     add_git_tag(tag: version)
     push_git_tags()
     push_to_git_remote()
     pod_push()
   end
-  
+
+
+  # Docs =======================
+
+  desc "Build documentation for all platforms"
+  lane :docc do
+    sh('cd .. && rm -rf Docs')
+    docc_platform(destination: 'iOS', name: 'ios')
+    docc_platform(destination: 'OS X', name: 'osx')
+    docc_platform(destination: 'tvOS', name: 'tvos')
+    docc_platform(destination: 'watchOS', name: 'watchos')
+  end
+
+  desc "Build documentation for a single platform"
+  lane :docc_platform do |values|
+    sh('cd .. && mkdir -p Docs')
+    docc_delete_derived_data
+    sh('cd .. && xcodebuild docbuild \
+      -scheme KeyboardKit \
+      -destination \'generic/platform=' + values[:destination] + '\'')
+    sh('cd .. && \
+      find ~/Library/Developer/Xcode/DerivedData \
+      -name "KeyboardKit.doccarchive" \
+      -exec cp -R {} Docs \;')
+    sh('cd .. && \
+      mv Docs/KeyboardKit.doccarchive Docs/KeyboardKit_' + values[:name] + '.doccarchive')
+  end
+
+  desc "Delete documentation derived data (may be historic duplicates)"
+  lane :docc_delete_derived_data do
+    sh('find ~/Library/Developer/Xcode/DerivedData \
+      -name "KeyboardKit.doccarchive" \
+      -exec rm -Rf {} \; || true')
+  end
+
+  desc "Build static documentation websites for all platforms"
+  lane :docc_web do
+    docc
+    docc_web_platform(name: 'ios')
+    docc_web_platform(name: 'osx')
+    docc_web_platform(name: 'tvos')
+    docc_web_platform(name: 'watchos')
+  end
+
+  desc "Build static documentation website for a single platform"
+  lane :docc_web_platform do |values|
+    sh('cd .. && $(xcrun --find docc) process-archive \
+      transform-for-static-hosting Docs/KeyboardKit_' + values[:name] + '.doccarchive \
+      --output-path Docs/web_' + values[:name] + ' \
+      --hosting-base-path KeyboardKit')
+  end
+
+  desc "Build static web documentation (macOS only)"
+  lane :docc_web_plugin do
+    sh('cd .. && mkdir -p Docs')
+    sh('cd .. && swift package \
+        --allow-writing-to-directory Docs \
+        generate-documentation \
+        --disable-indexing \
+        --transform-for-static-hosting \
+        --hosting-base-path KeyboardKit \
+        --output-path Docs/web')
+  end
+
+  desc "Build and preview static documentation website (macOS only)"
+  lane :docc_webpreview_plugin do
+    sh('cd .. && mkdir -p Docs')
+    sh('cd .. && swift package \
+        --disable-sandbox \
+        preview-documentation \
+        --transform-for-static-hosting \
+        --hosting-base-path KeyboardKit \
+        --output-path Docs/web')
+  end
+
 end

@@ -17,7 +17,7 @@ class KKL10nTests: QuickSpec {
     override func spec() {
         
         describe("bundle path for locale") {
-            
+
             it("is valid for all keyboard locales") {
                 KeyboardLocale.allCases.forEach {
                     let bundle = Bundle.module
