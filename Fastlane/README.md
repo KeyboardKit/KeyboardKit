@@ -15,14 +15,6 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## iOS
 
-### ios documentation
-
-```sh
-[bundle exec] fastlane ios documentation
-```
-
-Build documentation
-
 ### ios lint
 
 ```sh
@@ -54,6 +46,62 @@ Ensure that the repo is valid for release
 ```
 
 Create a new version
+
+### ios docc
+
+```sh
+[bundle exec] fastlane ios docc
+```
+
+Build documentation for all platforms
+
+### ios docc_platform
+
+```sh
+[bundle exec] fastlane ios docc_platform
+```
+
+Build documentation for a single platform
+
+### ios docc_delete_derived_data
+
+```sh
+[bundle exec] fastlane ios docc_delete_derived_data
+```
+
+Delete documentation derived data (may be historic duplicates)
+
+### ios docc_web
+
+```sh
+[bundle exec] fastlane ios docc_web
+```
+
+Build static documentation websites for all platforms
+
+### ios docc_web_platform
+
+```sh
+[bundle exec] fastlane ios docc_web_platform
+```
+
+Build static documentation website for a single platform
+
+### ios docc_web_plugin
+
+```sh
+[bundle exec] fastlane ios docc_web_plugin
+```
+
+Build static web documentation (macOS only)
+
+### ios docc_webpreview_plugin
+
+```sh
+[bundle exec] fastlane ios docc_webpreview_plugin
+```
+
+Build and preview static documentation website (macOS only)
 
 ----
 

@@ -32,12 +32,7 @@ If you're new to iOS keyboard extensions, [this great guide][Guide] will help yo
 
 ## Supported Platforms
 
-KeyboardKit supports the following platforms:
-
-* iOS 13.0
-* macOS 11.0
-* tvOS 13.0
-* watchOS 6.0
+KeyboardKit supports `iOS 13`, `macOS 11`, `tvOS 13` and `watchOS 6`.
 
 Although KeyboardKit builds on all platform, some features are unavailable on some platforms. 
 
@@ -49,6 +44,12 @@ The best way to install KeyboardKit is to use the Swift Package Manager.
 
 ```
 https://github.com/KeyboardKit/KeyboardKit.git
+```
+
+KeyboardKit also supports CocoaPods:
+
+```
+pod KeyboardKit
 ```
 
 You can add the library to the main app, the keyboard extension and any other targets that need it.
@@ -65,9 +66,9 @@ Once KeyboardKit is added to your project, you can start using it in your applic
 
 ## Documentation
 
-The KeyboardKit documentation contains extensive information, code examples etc. and makes it easy to overview the various parts of the library.
+The [online documentation][Documentation] contains more information, code examples etc. and makes it easy to overview the various parts of the library.
 
-You can either [download][Documentation] the documentation or build it directly in Xcode, using `Product/Build Documentation`.
+The online documentation is currently iOS only. To generate documentation for other platforms, open the package in Xcode, select a simulator then run `Product/Build Documentation`.
 
 
 
@@ -300,7 +301,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Sponsors]: https://github.com/sponsors/danielsaidi
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
-[Documentation]: https://github.com/danielsaidi/Documentation/blob/main/Docs/KeyboardKit.doccarchive.zip?raw=true
+[Documentation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/
 [License]: https://github.com/KeyboardKit/KeyboardKit/blob/master/LICENSE
 
 [Actions]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Actions.md

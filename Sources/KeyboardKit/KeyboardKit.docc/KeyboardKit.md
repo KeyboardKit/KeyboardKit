@@ -12,9 +12,43 @@ KeyboardKit helps you build custom keyboards with Swift and SwiftUI. It extends 
 KeyboardKit also provides you with utilities that lets you mimic native iOS keyboards. You can use ``SystemKeyboard`` and style it a little (or a lot) or use completely custom views or designs.
 
 
-#### About this documentation
+## Supported Platforms
 
-This documentation is generated with Xcode's new DocC engine. Since DocC currently omits extensions, a lot of library functionality is currently missing in the documentation.
+KeyboardKit supports `iOS 13`, `macOS 11`, `tvOS 13` and `watchOS 6`.
+
+Although KeyboardKit builds on all platform, some features are unavailable on some platforms.
+
+
+
+## Installation
+
+The best way to add KeyboardKit to your app is to use the Swift Package Manager.
+
+```
+https://github.com/danielsaidi/KeyboardKit.git
+```
+
+KeyboardKit also supports CocoaPods:
+
+```
+pod KeyboardKit
+```
+
+You can add the library to the main app, the keyboard extension and any other targets that need it.
+
+
+
+## About this documentation
+
+The online documentation is currently iOS only. To generate documentation for other platforms, open the package in Xcode, select a simulator then run `Product/Build Documentation`.
+
+Note that type extensions are not included in this documentation.
+
+
+
+## License
+
+KeyboardKit is available under the MIT license.
 
 
 
