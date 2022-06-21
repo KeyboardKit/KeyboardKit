@@ -45,7 +45,7 @@ platform :ios do
   desc "Create a new version"
   lane :version do |options|
     ensure_release_ready
-    documentation
+    # documentation
 
     bump_type = options[:type]
     version = version_bump_podspec(
