@@ -18,8 +18,6 @@
 		A921166225D5BC2A003510D9 /* EditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921166125D5BC2A003510D9 /* EditScreen.swift */; };
 		A921166725D5BC4F003510D9 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921166625D5BC4F003510D9 /* MultilineTextField.swift */; };
 		A929F70A27B17E3700EB754F /* KeyboardKitPro in Frameworks */ = {isa = PBXBuildFile; productRef = A929F70927B17E3700EB754F /* KeyboardKitPro */; };
-		A929F70C27B17E4400EB754F /* KeyboardKitPro in Frameworks */ = {isa = PBXBuildFile; productRef = A929F70B27B17E4400EB754F /* KeyboardKitPro */; };
-		A929F70E27B17E4800EB754F /* KeyboardKitPro in Frameworks */ = {isa = PBXBuildFile; productRef = A929F70D27B17E4800EB754F /* KeyboardKitPro */; };
 		A93EC12D27826A6200C354DF /* KeyboardRTL.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A93EC12627826A6200C354DF /* KeyboardRTL.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A93EC13627826ABC00C354DF /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921157525D5906A003510D9 /* KeyboardView.swift */; };
 		A93EC13827826ABC00C354DF /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921153B25D58AC7003510D9 /* KeyboardViewController.swift */; };
@@ -104,7 +102,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A929F70C27B17E4400EB754F /* KeyboardKitPro in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,7 +109,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A929F70E27B17E4800EB754F /* KeyboardKitPro in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +262,6 @@
 			);
 			name = Keyboard;
 			packageProductDependencies = (
-				A929F70B27B17E4400EB754F /* KeyboardKitPro */,
 			);
 			productName = Keyboard;
 			productReference = A921153925D58AC7003510D9 /* Keyboard.appex */;
@@ -286,7 +281,6 @@
 			);
 			name = KeyboardRTL;
 			packageProductDependencies = (
-				A929F70D27B17E4800EB754F /* KeyboardKitPro */,
 			);
 			productName = KeyboardRTL;
 			productReference = A93EC12627826A6200C354DF /* KeyboardRTL.appex */;
@@ -727,7 +721,7 @@
 			repositoryURL = "https://github.com/KeyboardKit/KeyboardKitPro.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
+				minimumVersion = 6.0.3;
 			};
 		};
 		A9E4917E2748F22B0078F435 /* XCRemoteSwiftPackageReference "SwiftUIKit" */ = {
@@ -742,16 +736,6 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		A929F70927B17E3700EB754F /* KeyboardKitPro */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A929F70827B17E3700EB754F /* XCRemoteSwiftPackageReference "KeyboardKitPro" */;
-			productName = KeyboardKitPro;
-		};
-		A929F70B27B17E4400EB754F /* KeyboardKitPro */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A929F70827B17E3700EB754F /* XCRemoteSwiftPackageReference "KeyboardKitPro" */;
-			productName = KeyboardKitPro;
-		};
-		A929F70D27B17E4800EB754F /* KeyboardKitPro */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A929F70827B17E3700EB754F /* XCRemoteSwiftPackageReference "KeyboardKitPro" */;
 			productName = KeyboardKitPro;
