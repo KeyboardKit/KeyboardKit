@@ -1,25 +1,23 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "KeyboardKitPro",
-        "repositoryURL": "https://github.com/KeyboardKit/KeyboardKitPro.git",
-        "state": {
-          "branch": null,
-          "revision": "67e12986580ed4af9fbd8829cf8e9fe95b66cd6e",
-          "version": "6.0.0"
-        }
-      },
-      {
-        "package": "SwiftUIKit",
-        "repositoryURL": "https://github.com/danielsaidi/SwiftUIKit",
-        "state": {
-          "branch": null,
-          "revision": "9bfab2d0913e372015f32eff86850d3a76e7c41d",
-          "version": "2.3.3"
-        }
+  "pins" : [
+    {
+      "identity" : "keyboardkitpro",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/KeyboardKit/KeyboardKitPro.git",
+      "state" : {
+        "revision" : "67e12986580ed4af9fbd8829cf8e9fe95b66cd6e",
+        "version" : "6.0.0"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "swiftuikit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/danielsaidi/SwiftUIKit",
+      "state" : {
+        "revision" : "ab6ef570c7c8100b98693394417a9905c925ccae",
+        "version" : "2.7.0"
+      }
+    }
+  ],
+  "version" : 2
 }

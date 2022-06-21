@@ -10,6 +10,15 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 6.0.1
+
+This version fixes bugs in the Kurdish Sorani keyboard.
+
+### 🐛 Bug fixes
+
+* Tapping `"ھ"` now inserts `"ه"` for Kurdish Sorani.
+
+
 ## 6.0
 
 This version makes the library build on more platforms and removes old, deprecated code.

@@ -152,12 +152,19 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      should be replaced.
      */
     open func replacementAction(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction? {
-        guard
-            gesture == .tap,
-            case let .character(char) = action,
-            let replacement = textDocumentProxy.preferredReplacement(for: char, locale: keyboardContext.locale)
-            else { return nil }
-        return .character(replacement)
+
+        // Apply proxy-based replacements, if any
+        if case let .character(char) = action,
+           gesture == .tap,
+           let replacement = textDocumentProxy.preferredReplacement(for: char, locale: keyboardContext.locale)
+        { return .character(replacement) }
+
+        // Apply Kurdish replacements, if any
+        if keyboardContext.locale.identifier == "ckb" && action == .character("ھ") {
+            return .character("ه")
+        }
+
+        return nil
     }
     
     /**

@@ -12,6 +12,7 @@ KeyboardKit helps you build custom keyboards with Swift and SwiftUI. It extends 
 KeyboardKit also provides you with utilities that lets you mimic native iOS keyboards. You can use ``SystemKeyboard`` and style it a little (or a lot) or use completely custom views or designs.
 
 
+
 ## Supported Platforms
 
 KeyboardKit supports `iOS 13`, `macOS 11`, `tvOS 13` and `watchOS 6`.
