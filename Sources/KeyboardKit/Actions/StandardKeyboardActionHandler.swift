@@ -156,8 +156,9 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         // Apply proxy-based replacements, if any
         if case let .character(char) = action,
            gesture == .tap,
-           let replacement = textDocumentProxy.preferredReplacement(for: char, locale: keyboardContext.locale)
-        { return .character(replacement) }
+           let replacement = textDocumentProxy.preferredReplacement(for: char, locale: keyboardContext.locale) {
+            return .character(replacement)
+        }
 
         // Apply Kurdish replacements, if any
         if keyboardContext.locale.identifier == "ckb" && action == .character("ھ") {
