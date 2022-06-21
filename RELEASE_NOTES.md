@@ -10,6 +10,16 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 6.0.2
+
+This version fixes bugs in the Kurdish Sorani keyboard.
+
+### 🐛 Bug fixes
+
+* Tapping `"ھ"` triggered multiple inserts.
+
+
+
 ## 6.0.1
 
 This version fixes bugs in the Kurdish Sorani keyboard.

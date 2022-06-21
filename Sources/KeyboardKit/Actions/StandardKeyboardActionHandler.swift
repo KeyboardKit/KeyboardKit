@@ -152,10 +152,10 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      should be replaced.
      */
     open func replacementAction(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction? {
+        guard gesture == .tap else { return nil }
 
         // Apply proxy-based replacements, if any
         if case let .character(char) = action,
-           gesture == .tap,
            let replacement = textDocumentProxy.preferredReplacement(for: char, locale: keyboardContext.locale) {
             return .character(replacement)
         }
