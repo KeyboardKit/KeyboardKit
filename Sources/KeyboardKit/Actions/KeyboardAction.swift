@@ -121,22 +121,6 @@ public enum KeyboardAction: Codable, Equatable {
 public extension KeyboardAction {
     
     /**
-     This enum can be used together with ``primary(_:)``.
-     
-     Primary buttons are color accented buttons that trigger
-     a submit action in the keyboard, just like ``return``.
-     */
-    enum PrimaryType: String, CaseIterable, Codable, Equatable, Identifiable {
-        
-        case done, go, newLine, ok, search
-        
-        /**
-         The type's unique identifier.
-         */
-        public var id: String { rawValue }
-    }
-    
-    /**
      Whether or not the action is a character action.
      
      Note that ``characterMargin(_:)`` is excluded, since it

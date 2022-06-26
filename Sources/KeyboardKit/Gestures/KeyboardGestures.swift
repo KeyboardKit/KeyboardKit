@@ -138,6 +138,9 @@ private extension KeyboardGestures {
     
     /**
      This is a drag gesture that starts after a long press.
+
+     This gesture is used to present and dismiss the callout
+     that presents secondary actions.
      */
     func longPressDragGesture(for geo: GeometryProxy) -> some Gesture {
         LongPressGesture()

@@ -10,6 +10,18 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 6.0.3
+
+This version adds more primary button types.
+
+### ✨ New Features
+
+* `KeyboardAction.PrimaryType` has new `join` and `custom` cases.
+* `KeyboardAction.PrimaryType` now maps unrepresented `UIReturnKeyType` types to the new `custom` type.
+
+
+
+
 ## 6.0.2
 
 This version fixes bugs in the Kurdish Sorani keyboard.

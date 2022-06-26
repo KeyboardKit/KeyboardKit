@@ -77,23 +77,3 @@ private extension KeyboardAction {
         }
     }
 }
-
-private extension KeyboardAction.PrimaryType {
-    
-    func standardButtonImage(for locale: Locale) -> Image? {
-        switch self {
-        case .newLine: return .keyboardNewline(for: locale)
-        default: return nil
-        }
-    }
-    
-    func standardButtonText(for locale: Locale) -> String? {
-        switch self {
-        case .done: return KKL10n.done.text(for: locale)
-        case .go: return KKL10n.go.text(for: locale)
-        case .newLine: return nil
-        case .ok: return KKL10n.ok.text(for: locale)
-        case .search: return KKL10n.search.text(for: locale)
-        }
-    }
-}
