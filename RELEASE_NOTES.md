@@ -19,6 +19,9 @@ This version adds more primary button types.
 * `KeyboardAction.PrimaryType` has new `join` and `custom` cases.
 * `KeyboardAction.PrimaryType` now maps unrepresented `UIReturnKeyType` types to the new `custom` type.
 
+### 💡 Behavior changes
+
+* `KeyboardGestures` shortens the time it takes for the secondary action callout to be presented.
 
 
 

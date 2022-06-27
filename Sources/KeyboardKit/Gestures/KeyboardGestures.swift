@@ -143,7 +143,7 @@ private extension KeyboardGestures {
      that presents secondary actions.
      */
     func longPressDragGesture(for geo: GeometryProxy) -> some Gesture {
-        LongPressGesture()
+        LongPressGesture(minimumDuration: 0.4, maximumDistance: 50)
             .onEnded { _ in beginActionCallout(for: geo) }
             .sequenced(before: DragGesture(minimumDistance: 0))
             .onChanged {
