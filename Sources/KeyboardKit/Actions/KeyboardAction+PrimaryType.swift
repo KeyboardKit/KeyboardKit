@@ -2,15 +2,11 @@
 //  KeyboardAction+PrimaryType.swift
 //  KeyboardKit
 //
-//  Created by Daniel Saidi on 202-06-23.
+//  Created by Daniel Saidi on 2022-06-23.
 //  Copyright © 2022 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI
-
-#if canImport(UIKit)
-import UIKit
-#endif
 
 public extension KeyboardAction {
 
@@ -64,26 +60,6 @@ public extension KeyboardAction {
         public static var allCases: [KeyboardAction.PrimaryType] {
             return [.done, .go, .join, .newLine, .ok, .search]
         }
-
-        #if canImport(UIKit)
-        public static func type(for nativeType: UIReturnKeyType) -> PrimaryType {
-            switch nativeType {
-            case .default: return .ok
-            case .go: return .go
-            case .google: return .custom(title: "Google")
-            case .join: return .join
-            case .next: return .custom(title: "next")
-            case .route: return .custom(title: "route")
-            case .search: return .search
-            case .send: return .custom(title: "send")
-            case .yahoo: return .custom(title: "Google")
-            case .done: return .done
-            case .emergencyCall: return .custom(title: "emergencyCall")
-            case .continue: return .custom(title: "continue")
-            @unknown default: return .custom(title: "unknown")
-            }
-        }
-        #endif
     }
 }
 
