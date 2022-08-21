@@ -17,6 +17,7 @@ import SwiftUI
  You can also provide custom values. Read more about this in
  the `KeyboardColor` documentation.
  */
+@available(*, deprecated, message: "Preview mode is no longer needed and enabling it has no effect.")
 public final class KeyboardPreviewMode {
     
     public typealias ColorProvider = (KeyboardColor) -> Color
@@ -43,6 +44,5 @@ public final class KeyboardPreviewMode {
     
     public static func enable(
         colorProvider: ColorProvider? = colorProvider) {
-        KKL10n.usePreviewTexts = true
     }
 }

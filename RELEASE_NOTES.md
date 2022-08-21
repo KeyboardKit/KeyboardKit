@@ -24,7 +24,13 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ### 💡 Behavior changes
 
+* `KeyboardColor` no longer needs or is affected by enabling preview mode.
+* `KKL10n` no longer needs or is affected by enabling preview mode.
 * `StandardAutocompleteProvider` in KeyboardKit Pro uses the new case adjustments to provide better completions.
+
+### 🗑 Deprecations
+
+* `KeyboardPreviewMode` is not longer needed and enabling it has no effect from now on. 
 
 
 

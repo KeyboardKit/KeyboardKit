@@ -218,8 +218,6 @@ KeyboardKit is available under the MIT license.
 
 ### Previews
 
-- ``KeyboardPreviewMode``
-
 - ``PreviewCalloutActionProvider``
 - ``PreviewInputSetProvider``
 - ``PreviewKeyboardActionHandler``
