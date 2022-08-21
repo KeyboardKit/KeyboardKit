@@ -20,7 +20,7 @@ class KKL10nTests: QuickSpec {
 
             it("is valid for all keyboard locales") {
                 KeyboardLocale.allCases.forEach {
-                    let bundle = Bundle.module
+                    let bundle = Bundle.keyboardKit
                     let path = bundle.bundlePath(for: $0.locale) ?? ""
                     expect(path).toNot(beNil())
                     expect(FileManager.default.fileExists(atPath: path)).to(beTrue())

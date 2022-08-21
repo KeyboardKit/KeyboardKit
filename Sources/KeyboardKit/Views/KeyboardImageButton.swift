@@ -58,7 +58,7 @@ private extension KeyboardAction {
     
     var image: Image {
         switch self {
-        case .image(_, let imageName, _): return Image(imageName, bundle: .module)
+        case .image(_, let imageName, _): return Image(imageName, bundle: .keyboardKit)
         case .systemImage(_, let imageName, _): return Image(systemName: imageName)
         default: return Image("")
         }

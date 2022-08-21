@@ -61,7 +61,7 @@ struct SystemKeyboardButton_Previews: PreviewProvider {
     }
     
     static var previewImage: some View {
-        Image("photo-forest", bundle: .module)
+        Image("photo-forest", bundle: .keyboardKit)
             .resizable()
             .aspectRatio(contentMode: .fill)
             .edgesIgnoringSafeArea(.all)
