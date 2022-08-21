@@ -110,27 +110,4 @@ platform :ios do
       --hosting-base-path KeyboardKit')
   end
 
-  desc "Build static web documentation (macOS only)"
-  lane :docc_web_plugin do
-    sh('cd .. && mkdir -p Docs')
-    sh('cd .. && swift package \
-        --allow-writing-to-directory Docs \
-        generate-documentation \
-        --disable-indexing \
-        --transform-for-static-hosting \
-        --hosting-base-path KeyboardKit \
-        --output-path Docs/web')
-  end
-
-  desc "Build and preview static documentation website (macOS only)"
-  lane :docc_webpreview_plugin do
-    sh('cd .. && mkdir -p Docs')
-    sh('cd .. && swift package \
-        --disable-sandbox \
-        preview-documentation \
-        --transform-for-static-hosting \
-        --hosting-base-path KeyboardKit \
-        --output-path Docs/web')
-  end
-
 end
