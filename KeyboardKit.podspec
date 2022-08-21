@@ -3,11 +3,11 @@
 Pod::Spec.new do |s|
   s.name             = 'KeyboardKit'
   s.version          = '6.1.0'
-  s.swift_versions   = ['5.5']
-  s.summary          = 'KeyboardKit helps you create keyboard extensions for iOS.'
+  s.swift_versions   = ['5.6']
+  s.summary          = 'KeyboardKit helps you create custom keyboard for iOS and iPadOS.'
 
   s.description      = <<-DESC
-KeyboardKit is a Swift library that helps you create keyboard extensions for iOS.
+KeyboardKit is a Swift and library that helps you create custom keyboard for iOS and iPadOS, using SwiftUI.'
                        DESC
 
   s.homepage         = 'https://github.com/danielsaidi/KeyboardKit'
@@ -16,7 +16,7 @@ KeyboardKit is a Swift library that helps you create keyboard extensions for iOS
   s.source           = { :git => 'https://github.com/danielsaidi/KeyboardKit.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/danielsaidi'
 
-  s.swift_version = '5.5'
+  s.swift_version = '5.6'
   
   s.ios.deployment_target = '13.0'
   s.macos.deployment_target = '11.0'
