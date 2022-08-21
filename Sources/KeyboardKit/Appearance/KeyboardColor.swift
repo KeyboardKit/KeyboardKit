@@ -9,21 +9,7 @@
 import SwiftUI
 
 /**
- This enum contains keyboard-specific, resource-based colors.
- 
- Colors are embedded as resources in the KeyboardKit package
- and use the SPM generated `.module` bundle by default. When
- not using SPM, `.module` will be undefined and this linking
- will fail. CocoaPods solves this by adding a `Bundle+module`
- file that is ignored by SPM.
- 
- Another problem with this is that SwiftUI previews will not
- work outside of this package, but crash since the module is
- not found. If your previews keeps crashing due to this, you
- can set the `usePreviewColorProvider` property to true. You
- can also replace the `previewColorProvider` property with a
- custom provider. Note that the preview colors are incorrect
- and do not support dark mode.
+ This enum defines keyboard-specific, asset-based colors.
  */
 public enum KeyboardColor: String, CaseIterable, Identifiable {
     
@@ -38,18 +24,17 @@ public enum KeyboardColor: String, CaseIterable, Identifiable {
     case standardDarkButtonBackgroundForDarkAppearance
     case standardKeyboardBackground
     case standardKeyboardBackgroundForDarkAppearance
-    
+}
+
+public extension KeyboardColor {
+
     /**
-     Whether or not to use the `previewColorProvider` when a
-     color is presented in a preview.
+     The bundle to use to retrieve bundle-based color assets.
+
+     You should only override this value when the entire set
+     of colors should be loaded from another bundle.
      */
-    static var usePreviewColorProvider = false
-    
-    /**
-     The color provider to use when `usePreviewColorProvider`
-     is true and a color is resolved in a SwiftUI preview.
-     */
-    static var previewColorProvider: (KeyboardColor) -> Color = { _ in .clear }
+    static var bundle: Bundle = .keyboardKit
 }
 
 public extension KeyboardColor {
@@ -60,26 +45,16 @@ public extension KeyboardColor {
     var id: String { rawValue }
     
     /**
-     This color property is adaptive, since the bundle isn't
-     available when previewing these colors from another app
-     or library project except this library.
+     The color value.
      */
     var color: Color {
-        if isSwiftUIPreview && Self.usePreviewColorProvider {
-            return Self.previewColorProvider(self)
-        } else {
-            return Color(resourceName, bundle: .module)
-        }
+        Color(resourceName, bundle: Self.bundle)
     }
-    
-    var resourceName: String { rawValue }
-}
 
-private extension KeyboardColor {
-    
-    var isSwiftUIPreview: Bool {
-        ProcessInfo.processInfo.isSwiftUIPreview
-    }
+    /**
+     The color asset name in the bundle asset catalog.
+     */
+    var resourceName: String { rawValue }
 }
 
 struct KeyboardColor_Previews: PreviewProvider {
@@ -87,18 +62,22 @@ struct KeyboardColor_Previews: PreviewProvider {
     static func preview(for color: KeyboardColor) -> some View {
         VStack(alignment: .leading) {
             Text(color.resourceName).font(.footnote)
-            HStack {
+            HStack(spacing: 0) {
                 color.color
                 color.color.colorScheme(.dark)
-            }.frame(height: 100)
+            }
+            .frame(height: 100)
+            .cornerRadius(10)
         }
     }
     
     static var previews: some View {
-        return Group {
-            ForEach(KeyboardColor.allCases) {
-                preview(for: $0)
-            }
-        }.previewLayout(.sizeThatFits)
+        ScrollView {
+            VStack {
+                ForEach(KeyboardColor.allCases) {
+                    preview(for: $0)
+                }
+            }.padding()
+        }.background(Color.black.opacity(0.1).edgesIgnoringSafeArea(.all))
     }
 }

@@ -44,7 +44,5 @@ public final class KeyboardPreviewMode {
     public static func enable(
         colorProvider: ColorProvider? = colorProvider) {
         KKL10n.usePreviewTexts = true
-        KeyboardColor.previewColorProvider = colorProvider ?? self.colorProvider
-        KeyboardColor.usePreviewColorProvider = true
     }
 }
