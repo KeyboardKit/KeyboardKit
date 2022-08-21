@@ -89,7 +89,6 @@ KeyboardKit is available under the MIT license.
 ### Appearance
 
 - ``KeyboardAppearance``
-- ``KeyboardColor``
 - ``StandardKeyboardAppearance``
 
 ### Audio
@@ -128,6 +127,10 @@ KeyboardKit is available under the MIT license.
 - ``BaseCalloutActionProvider``
 - ``EnglishCalloutActionProvider``
 - ``LocalizedCalloutActionProvider``
+
+### Colors
+
+- ``KeyboardColor``
 
 ### Device
 
