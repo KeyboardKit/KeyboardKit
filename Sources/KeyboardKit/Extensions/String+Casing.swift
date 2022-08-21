@@ -9,7 +9,12 @@
 import Foundation
 
 public extension String {
-    
+
+    /**
+     Whether or not the string is capitalized.
+     */
+    var isCapitalized: Bool { self == capitalized }
+
     /**
      Whether or not the string is lowercased.
      */

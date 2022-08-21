@@ -13,9 +13,18 @@ import KeyboardKit
 class String_UppercasedTests: QuickSpec {
     
     override func spec() {
-        
+
+        describe("is capitalized") {
+
+            it("is only true for capitalized strings") {
+                expect("Foobar".isCapitalized).to(beTrue())
+                expect("Foo Bar".isCapitalized).to(beTrue())
+                expect("Foo bar".isCapitalized).to(beFalse())
+            }
+        }
+
         describe("is lowercased") {
-            
+
             it("is only true for strings that can be and are lowercased") {
                 expect("foobar".isLowercased).to(beTrue())
                 expect("fooBar".isLowercased).to(beFalse())
