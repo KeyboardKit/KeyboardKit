@@ -318,10 +318,7 @@ open class KeyboardInputViewController: UIInputViewController {
     open func performAutocomplete() {
         guard let text = autocompleteText else { return resetAutocomplete() }
         autocompleteProvider.autocompleteSuggestions(for: text) { [weak self] result in
-            switch result {
-            case .failure(let error): print(error.localizedDescription)
-            case .success(let result): self?.autocompleteContext.suggestions = result
-            }
+            self?.updateAutocompleteContext(with: result)
         }
     }
     
@@ -341,7 +338,7 @@ open class KeyboardInputViewController: UIInputViewController {
 // MARK: - Private Functions
 
 private extension KeyboardInputViewController {
-    
+
     func refreshCalloutActionContext() {
         actionCalloutContext = ActionCalloutContext(
             actionHandler: keyboardActionHandler,
@@ -358,15 +355,10 @@ private extension KeyboardInputViewController {
             inputSetProvider: inputSetProvider)
     }
     
-    
     /**
      Make sure that the controller view is setup to at least
      have a standard width that isn't non-zero, to avoid bad
-     view layout in SwiftUI. Otherwise, we may run into some
-     problems when the controller's view is not yet sized to
-     anything appropriate. This is most likely to happen for
-     situations where the controller is being created within
-     the context of a host app.
+     view layout in SwiftUI.
      */
     func setupInitialWidth() {
         view.frame.size.width = UIScreen.main.bounds.width
@@ -389,6 +381,22 @@ private extension KeyboardInputViewController {
         let shouldSwitch = keyboardBehavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange()
         guard shouldSwitch else { return }
         keyboardContext.keyboardType = context.preferredKeyboardType
+    }
+
+    /**
+     Update the autocomplete context with a certain result.
+
+     This is performed async to avoid that any network-based
+     operations update the context from a background thread.
+     */
+    func updateAutocompleteContext(with result: AutocompleteResult) {
+        DispatchQueue.main.async { [weak self] in
+            guard let context = self?.autocompleteContext else { return }
+            switch result {
+            case .failure(let error): context.lastError = error
+            case .success(let result): context.suggestions = result
+            }
+        }
     }
 }
 #endif

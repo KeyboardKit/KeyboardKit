@@ -18,14 +18,22 @@ import Combine
 public class AutocompleteContext: ObservableObject {
     
     public init() {}
-    
+
     /**
      Whether or not suggestions are currently being fetched.
      */
-    @Published public var isLoading = false
+    @Published
+    public var isLoading = false
+
+    /**
+     The last received autocomplete error.
+     */
+    @Published
+    public var lastError: Error?
     
     /**
      The last received autocomplete suggestions.
      */
-    @Published public var suggestions: [AutocompleteSuggestion] = []
+    @Published
+    public var suggestions: [AutocompleteSuggestion] = []
 }

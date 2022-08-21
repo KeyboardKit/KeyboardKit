@@ -14,7 +14,9 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ### ✨ New Features
 
+* `AutocompleteContext` has a new `lastError` property.
 * `AutocompleteProvider` has a new `caseAdjust(suggestion:for:)` extension to help handle casing.
+* `Bundle+KeyboardKit` adds a new `.keyboardKit` bundle.
 * `StandardAutocompleteProvider` has a new `caseAdjustExactMatch` init argument to let you choose whether or not to apply the case adjustment to exact matches.
 * `String+Casing` adds an `isCapitalized` property to String.
 
@@ -27,6 +29,8 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 * `KeyboardColor` no longer needs or is affected by enabling preview mode.
 * `KKL10n` no longer needs or is affected by enabling preview mode.
 * `StandardAutocompleteProvider` in KeyboardKit Pro uses the new case adjustments to provide better completions.
+* `KeyboardInputViewController` will now update the autocomplete context on the main queue.
+* `KeyboardInputViewController` will now write any autocomplete errors to the context's `lastError` property.
 
 ### 🗑 Deprecations
 
