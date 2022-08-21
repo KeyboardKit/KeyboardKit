@@ -14,8 +14,17 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ### ✨ New Features
 
-* `String+Casing` adds an `isCapitalized` property to String.
 * `AutocompleteProvider` has a new `caseAdjust(suggestion:for:)` extension to help handle casing.
+* `StandardAutocompleteProvider` has a new `caseAdjustExactMatch` init argument to let you choose whether or not to apply the case adjustment to exact matches.
+* `String+Casing` adds an `isCapitalized` property to String.
+
+### 🌐 New locales
+
+* 🇹🇯 Kurdish Sorani (Arabic)
+
+### 💡 Behavior changes
+
+* `StandardAutocompleteProvider` in KeyboardKit Pro uses the new case adjustments to provide better completions.
 
 
 
