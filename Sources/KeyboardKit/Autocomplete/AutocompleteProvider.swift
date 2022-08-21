@@ -17,9 +17,10 @@ import Foundation
  suggestions based on the provided text.
  
  KeyboardKit doesn't have an autocomplete provider as it has
- for most other services, just an internal disabled one that
- it uses as a placeholder until you inject your own provider
- or use KeyboardKit Pro.
+ for most other services. It will instead create and setup a
+ ``DisabledAutocompleteProvider`` that serves as a temporary
+ placeholder service until you inject your own or register a
+ KeyboardKit Pro license.
  
  KeyboardKit Pro unlocks two autocomplete providers when you
  register a valid license. The `StandardAutocompleteProvider`
@@ -96,6 +97,29 @@ public protocol AutocompleteProvider: AnyObject {
      Make the provider unlearn a certain word.
      */
     func unlearnWord(_ word: String)
+}
+
+public extension AutocompleteProvider {
+
+    /**
+     Case-adjust a certain suggestion for the current text.
+
+     Native autocomplete follow the casing of the input text,
+     to some extent. For instance, capitalized and uppercase
+     input texts will affect the casig of native suggestions.
+
+     For now, the function adjusts the resulting casing when
+     the `text` value is either capitalized or uppercased.
+     */
+    func caseAdjust(suggestion: String, for text: String) -> String {
+        if text.count > 1 && text == text.uppercased() {
+            return suggestion.uppercased()
+        }
+        if text.isCapitalized {
+            return suggestion.capitalized
+        }
+        return suggestion
+    }
 }
 
 public typealias AutocompleteCompletion = (AutocompleteResult) -> Void

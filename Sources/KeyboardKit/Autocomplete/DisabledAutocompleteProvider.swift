@@ -9,26 +9,26 @@
 import Foundation
 
 /**
- This internal class is used as a placeholder provider until
- a real provider is injected.
+ This class is by default used as a placeholder autocomplete
+ provider, until a real provider is injected.
  */
-class DisabledAutocompleteProvider: AutocompleteProvider {
+public class DisabledAutocompleteProvider: AutocompleteProvider {
     
-    var locale: Locale = .current
+    public var locale: Locale = .current
     
-    func autocompleteSuggestions(for text: String, completion: (AutocompleteResult) -> Void) {
+    public func autocompleteSuggestions(for text: String, completion: (AutocompleteResult) -> Void) {
         completion(.success([]))
     }
     
-    var canIgnoreWords: Bool { false }
-    var canLearnWords: Bool { false }
-    var ignoredWords: [String] = []
-    var learnedWords: [String] = []
+    public var canIgnoreWords: Bool { false }
+    public var canLearnWords: Bool { false }
+    public var ignoredWords: [String] = []
+    public var learnedWords: [String] = []
     
-    func hasIgnoredWord(_ word: String) -> Bool { false }
-    func hasLearnedWord(_ word: String) -> Bool { false }
-    func ignoreWord(_ word: String) {}
-    func learnWord(_ word: String) {}
-    func removeIgnoredWord(_ word: String) {}
-    func unlearnWord(_ word: String) {}
+    public func hasIgnoredWord(_ word: String) -> Bool { false }
+    public func hasLearnedWord(_ word: String) -> Bool { false }
+    public func ignoreWord(_ word: String) {}
+    public func learnWord(_ word: String) {}
+    public func removeIgnoredWord(_ word: String) {}
+    public func unlearnWord(_ word: String) {}
 }

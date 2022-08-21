@@ -13,7 +13,7 @@ import Combine
  of autocomplete suggestions.
  
  `KeyboardKit` will automatically create an instance of this
- class and bind it to the input view controller.
+ class then bind it to the input view controller.
  */
 public class AutocompleteContext: ObservableObject {
     

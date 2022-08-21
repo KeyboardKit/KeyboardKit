@@ -10,6 +10,15 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 6.1.0
+
+### ✨ New Features
+
+* `String+Casing` adds an `isCapitalized` property to String.
+* `AutocompleteProvider` has a new `caseAdjust(suggestion:for:)` extension to help handle casing.
+
+
+
 ## 6.0.3
 
 This version adds more primary button types.
