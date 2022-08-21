@@ -9,17 +9,7 @@
 import SwiftUI
 
 /**
- This enum contains keyboard-specific, resource-based texts.
- 
- Texts are embedded as resources in the package, and use the
- SPM generated `.module` bundle by default. If not using SPM,
- `.module` will be undefined and the linking will fail. This
- is solved with the `Bundle+module` file.
- 
- Another problem with this is that SwiftUI previews will not
- work outside of this package, since the module is not found
- in previews. This will cause previews to crash. To fix this,
- use the `KeyboardPreviewMode`.
+ This enum defines keyboard-specific, localized texts.
  
  `TODO` Add emoji category keyboard-specific texts.
  */
@@ -36,12 +26,17 @@ public enum KKL10n: String, CaseIterable, Identifiable {
         keyboardTypeAlphabetic,
         keyboardTypeNumeric,
         keyboardTypeSymbolic
-    
+}
+
+public extension KKL10n {
+
     /**
-     Whether or not to use the `previewTextProvider` when a
-     color is presented in a preview.
+     The bundle to use to retrieve localized strings.
+
+     You should only override this value when the entire set
+     of localized texts should be loaded from another bundle.
      */
-    static var usePreviewTexts = false
+    static var bundle: Bundle = .keyboardKit
 }
 
 public extension KKL10n {
@@ -60,8 +55,7 @@ public extension KKL10n {
      The item's localized text.
      */
     var text: String {
-        if useRawText { return rawValue }
-        return NSLocalizedString(key, bundle: .module, comment: "")
+        NSLocalizedString(key, bundle: Self.bundle, comment: "")
     }
     
     /**
@@ -82,23 +76,11 @@ public extension KKL10n {
      The item's localized text for a certain `locale`.
      */
     func text(for locale: Locale) -> String {
-        if useRawText { return rawValue }
         guard
-            let bundlePath = Bundle.module.bundlePath(for: locale),
+            let bundlePath = Self.bundle.bundlePath(for: locale),
             let bundle = Bundle(path: bundlePath)
         else { return "" }
         return NSLocalizedString(key, bundle: bundle, comment: "")
-    }
-}
-
-extension KKL10n {
-    
-    var isSwiftUIPreview: Bool {
-        ProcessInfo.processInfo.isSwiftUIPreview
-    }
-    
-    var useRawText: Bool {
-        isSwiftUIPreview && Self.usePreviewTexts
     }
 }
 
