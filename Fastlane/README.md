@@ -95,22 +95,6 @@ Build static documentation websites for all platforms
 
 Build static documentation website for a single platform
 
-### ios docc_web_plugin
-
-```sh
-[bundle exec] fastlane ios docc_web_plugin
-```
-
-Build static web documentation (macOS only)
-
-### ios docc_webpreview_plugin
-
-```sh
-[bundle exec] fastlane ios docc_webpreview_plugin
-```
-
-Build and preview static documentation website (macOS only)
-
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.

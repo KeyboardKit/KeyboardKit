@@ -120,13 +120,21 @@ public extension KeyboardFeedbackSettings {
      Toggle audio feedback between enabled and disabled.
      */
     func toggleAudioFeedback() {
-        isAudioFeedbackEnabled ? disableAudioFeedback() : enableAudioFeedback()
+        if isAudioFeedbackEnabled {
+            disableAudioFeedback()
+        } else {
+            enableAudioFeedback()
+        }
     }
 
     /**
      Toggle haptic feedback between enabled and disabled.
      */
     func toggleHapticFeedback() {
-        isHapticFeedbackEnabled ? disableHapticFeedback() : enableHapticFeedback()
+        if isHapticFeedbackEnabled {
+            disableHapticFeedback()
+        } else {
+            enableHapticFeedback()
+        }
     }
 }
