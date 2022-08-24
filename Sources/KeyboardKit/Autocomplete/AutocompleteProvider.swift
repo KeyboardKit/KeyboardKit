@@ -99,29 +99,6 @@ public protocol AutocompleteProvider: AnyObject {
     func unlearnWord(_ word: String)
 }
 
-public extension AutocompleteProvider {
-
-    /**
-     Case-adjust a certain suggestion for the current text.
-
-     Native autocomplete follow the casing of the input text,
-     to some extent. For instance, capitalized and uppercase
-     input texts will affect the casig of native suggestions.
-
-     For now, the function adjusts the resulting casing when
-     the `text` value is either capitalized or uppercased.
-     */
-    func caseAdjust(suggestion: String, for text: String) -> String {
-        if text.count > 1 && text == text.uppercased() {
-            return suggestion.uppercased()
-        }
-        if text.isCapitalized {
-            return suggestion.capitalized
-        }
-        return suggestion
-    }
-}
-
 public typealias AutocompleteCompletion = (AutocompleteResult) -> Void
 
 public typealias AutocompleteResult = Result<[AutocompleteSuggestion], Error>

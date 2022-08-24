@@ -2,11 +2,24 @@
 
 KeyboardKit tries to honor semantic versioning:
 
-* Only deprecate code in `minor` versions.
 * Only remove deprecated code in `major` versions.
-* Avoid introducing breaking changes in `minor` versions. 
+* Only deprecate code in `minor` and `patch` versions.
+* Avoid breaking changes in `minor` and `patch` versions.
+* Code can be marked as deprecated at any time.
 
 Breaking changes can still occur in minor versions and patches, though, if the alternative is to not be able to release new critical features or fixes.
+
+
+
+## 6.1.1
+
+### ✨ New Features
+
+* `String` has a new `caseAdjusted(for:)` function.
+
+### 🗑 Deprecations
+
+* The `AutocompleteProvider` `caseAdjust` that was added in last version, has been deprecated. 
 
 
 
