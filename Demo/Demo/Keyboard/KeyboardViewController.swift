@@ -35,6 +35,11 @@ class KeyboardViewController: KeyboardInputViewController {
         
         // Setup a fake, demo-specific autocomplete provider
         autocompleteProvider = FakeAutocompleteProvider()
+
+        // Setup an alternate input set.
+        // 💡 We can use a regular input set provider with an alternate input set.
+        // inputSetProvider = EnglishInputSetProvider(
+        //     alphabetic: .englishAzerty)
         
         // Setup a demo-specific keyboard appearance
         // 💡 Play with this to change style of the keyboard

@@ -33,7 +33,7 @@ public class EnglishInputSetProvider: InputSetProvider, LocalizedService {
         numericCurrency: String = "$",
         symbolicCurrency: String = "£"
     ) {
-        self.alphabeticInputSet = .english
+        self.alphabeticInputSet = alphabetic
         self.numericInputSet = .english(currency: numericCurrency)
         self.symbolicInputSet = .english(currency: symbolicCurrency)
 
