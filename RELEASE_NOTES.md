@@ -11,15 +11,11 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
-## 6.1.1
+## 6.2
 
 ### ✨ New Features
 
-* `String` has a new `caseAdjusted(for:)` function.
-
-### 🗑 Deprecations
-
-* The `AutocompleteProvider` `caseAdjust` that was added in last version, has been deprecated. 
+* `KeyboardContext` has a new `setLocale()` function to simplify setting a keyboard locale. 
 
 
 

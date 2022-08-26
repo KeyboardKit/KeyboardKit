@@ -74,29 +74,41 @@ class KeyboardContextTests: QuickSpec {
                 expect(context.keyboardAppearance).to(equal(.dark))
             }
         }
-        
+
         describe("selecting next locale") {
-            
+
             beforeEach {
                 context.locale = locale(for: "sv")
                 context.locales = [locale(for: "en"), locale(for: "fi"), locale(for: "da")]
             }
-            
+
             it("select first item if the current locale is not in locales") {
                 context.selectNextLocale()
                 expect(context.locale.identifier).to(equal("en"))
             }
-            
+
             it("select first item if the current locale is last in locales") {
                 context.locale = locale(for: "da")
                 context.selectNextLocale()
                 expect(context.locale.identifier).to(equal("en"))
             }
-            
+
             it("select next item if the current locale is not last in locales") {
                 context.locale = locale(for: "fi")
                 context.selectNextLocale()
                 expect(context.locale.identifier).to(equal("da"))
+            }
+        }
+
+        describe("setting keyboard locale") {
+
+            beforeEach {
+                context.locale = locale(for: "sv")
+            }
+
+            it("sets the context locale") {
+                context.setLocale(.catalan)
+                expect(context.locale.identifier).to(equal("ca"))
             }
         }
         

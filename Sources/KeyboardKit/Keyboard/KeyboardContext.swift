@@ -85,11 +85,6 @@ public class KeyboardContext: ObservableObject {
     @Published public var activeAppBundleId: String?
     
     /**
-     The keyboard type that is currently used.
-     */
-    @Published public var keyboardType: KeyboardType
-    
-    /**
      Whether or not the input controller has a dictation key.
      */
     @Published public var hasDictationKey: Bool = false
@@ -98,25 +93,25 @@ public class KeyboardContext: ObservableObject {
      Whether or not the extension has been given full access.
      */
     @Published public var hasFullAccess: Bool = false
+
+    /**
+     The keyboard type that is currently used.
+     */
+    @Published public var keyboardType: KeyboardType
     
     /**
      The locale that is currently being used.
      
-     This uses `Locale` instead of `KeyboardLocale`, since a
-     keyboard may have to support locales that are not built
-     into the library.
+     This uses `Locale` instead of ``KeyboardLocale``, since
+     keyboards can use locales that are not in that enum.
      */
     @Published public var locale: Locale
     
     /**
      The locales that are currently enabled for the keyboard.
-     
-     The `selectNextLocale` function can be called to select
-     the next locale in this list.
-     
-     This uses `Locale` instead of `KeyboardLocale`, since a
-     keyboard may have to support locales that are not built
-     into the library.
+
+     ``selectNextLocale()`` can be called to select the next
+     locale in this list.
      */
     @Published public var locales: [Locale]
     
@@ -130,7 +125,8 @@ public class KeyboardContext: ObservableObject {
      The primary language that is currently being used.
      */
     @Published public var primaryLanguage: String?
-    
+
+
     #if os(iOS) || os(tvOS)
     /**
      The screen in which the keyboard is presented.
@@ -205,9 +201,9 @@ public extension KeyboardContext {
     }
     
     /**
-     Select the next locale in the `locales` list, depending
-     on the current `locale`. If `locale` is not in `locales`
-     or last in the list, the first list locale is selected.
+     Select the next locale in ``locales``, depending on the
+     ``locale``. If ``locale`` is last in ``locales`` or not
+     in the list, the first list locale is selected.
      */
     func selectNextLocale() {
         let fallback = locales.first ?? locale
@@ -215,6 +211,13 @@ public extension KeyboardContext {
         let nextIndex = currentIndex.advanced(by: 1)
         guard locales.count > nextIndex else { return locale = fallback }
         locale = locales[nextIndex]
+    }
+
+    /**
+     Set ``locale`` to the provided keyboard locale's locale.
+     */
+    func setLocale(_ locale: KeyboardLocale) {
+        self.locale = locale.locale
     }
     
     #if os(iOS) || os(tvOS)
