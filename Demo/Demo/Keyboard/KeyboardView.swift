@@ -20,15 +20,7 @@ import SwiftUI
  */
 struct KeyboardView: View {
     
-    /*
-    init(context: KeyboardContext) {
-       _context = ObservedObject(wrappedValue: context)
-    }
-    */
-    
     @State private var text = "Text"
-    
-    // @ObservedObject private var context: KeyboardContext
     
     @EnvironmentObject private var context: KeyboardContext
     
