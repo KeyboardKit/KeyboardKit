@@ -21,7 +21,8 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ### 🗑 Deprecations
 
-* The `InputSetProvider` `row` extensions are deprecated. Use `.init` instead. 
+* The `InputSetProvider` `row` extensions are deprecated.
+* The `InputSetRow` initializer extensions are deprecated. 
 
 
 
