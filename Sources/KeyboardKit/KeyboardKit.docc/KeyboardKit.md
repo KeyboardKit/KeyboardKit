@@ -59,13 +59,13 @@ KeyboardKit is available under the MIT license.
 
 - <doc:Getting-Started>
 - <doc:Going-Further>
-- <doc:Understanding-Keyboard-Actions>
-- <doc:Understanding-Keyboard-Appearance>
-- <doc:Understanding-Keyboard-Feedback>
-- <doc:Understanding-Keyboard-Input-Sets>
-- <doc:Understanding-Keyboard-Layout>
-- <doc:Understanding-Keyboard-Localization>
+- <doc:Understanding-Actions>
+- <doc:Understanding-Appearance>
 - <doc:Understanding-Autocomplete>
+- <doc:Understanding-Feedback>
+- <doc:Understanding-Input-Sets>
+- <doc:Understanding-Layout>
+- <doc:Understanding-Localization>
 
 ### Keyboard
 

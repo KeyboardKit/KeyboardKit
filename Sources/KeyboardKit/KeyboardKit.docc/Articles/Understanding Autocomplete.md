@@ -5,18 +5,20 @@ This article describes the KeyboardKit autocomplete model and how to use it.
 
 ## Autocomplete provider
 
-KeyboardKit has a ``AutocompleteProvider`` protocol that that can be used to give autocomplete suggestions as the user types.
+KeyboardKit has a ``AutocompleteProvider`` protocol that that describes how to provide a keyboard with autocomplete suggestions as the user types.
 
 KeyboardKit doesn't have an autocomplete provider as it has for most other services, just an internal disabled one that it uses as a placeholder until you inject your own provider or use KeyboardKit Pro.
 
-KeyboardKit Pro unlocks two autocomplete providers when you register a valid license. The `StandardAutocompleteProvider` is locale-specific and non-predictive, and is injected when you register a license. `ExternalAutocompleteProvider` is a base class that can be inherited to communicate with an api.
+KeyboardKit Pro unlocks two autocomplete providers when you register a valid license. The `StandardAutocompleteProvider` is local and locale-specific, while `ExternalAutocompleteProvider` can be inherited to implement an autocomplete provider that communicates with an external api.
 
 
 ## How to create a custom provider
 
-If you don't have a Pro license, you can implement a custom autocomplete provider in any way you like. When you're done, just replace the controller service with the implementation to make the library use it instead. 
+If you don't have a Pro license, you can implement a custom autocomplete provider. 
 
-For instance, here is a custom autocomplete provider that just adds a suffix to the provided text:
+You can create a custom autocomplete provider by implementing the ``AutocompleteProvider`` protocol.
+
+For instance, here is an implementation that just adds a suffix to the provided text's current word:
 
 
 ```swift
@@ -25,6 +27,7 @@ class MyAutocompleteProvider: AutocompleteProvider {
     var locale: Locale = .current
 
     func autocompleteSuggestions(for text: String, completion: AutocompleteCompletion) {
+        let word = text.split(by: String.wordDelimiters).last ?? ""
         if text.isEmpty { return completion(.success([])) }
         completion(.success(suggestions(for: text)))
     }
@@ -59,7 +62,6 @@ private extension FakeAutocompleteProvider {
             subtitle: subtitle)
     }
 }
-
 ```
 
 To use this implementation instead of the standard one, just replace the standard instance like this:
@@ -81,10 +83,12 @@ This will make KeyboardKit use your custom implementation everywhere instead of 
 
 ``KeyboardInputViewController`` has a ``KeyboardInputViewController/performAutocomplete()`` function that you can call at any time to perform an autocomplete operation for the typed text. 
 
-A successful autocomplete operation will update the controller's ``AutocompleteContext``. You can use its ``AutocompleteContext/suggestions`` in any way you like or use the ``AutocompleteToolbar`` to display and apply autocomplete suggestions automatically.
+A successful autocomplete operation will update the controller's ``AutocompleteContext`` instance, after which the ``AutocompleteContext/suggestions`` can be used in any way you like.
+
+One way to use an autocomple result, is to pass its suggestions to an ``AutocompleteToolbar``, which will display and apply autocomplete suggestions automatically.
 
 If you ever need to reset the current autocomplete state, you can call ``KeyboardInputViewController/resetAutocomplete()`` to reset any existing suggestions.
 
-The controller has a ``KeyboardInputViewController/autocompleteText`` property that it uses when performing autocomplete. By default, the text document proxy's current word will be used, but you can override ``KeyboardInputViewController/autocompleteText`` and customize this in any way you want. 
+The controller has a ``KeyboardInputViewController/autocompleteText`` property that it uses when performing autocomplete. By default, the text document proxy's text before the input cursor will be used, but you can override it to customize the behavior in any way you want. 
 
 You can override ``KeyboardInputViewController/performAutocomplete()`` and ``KeyboardInputViewController/resetAutocomplete()`` as well, to customize the default autocomplete behavior. 

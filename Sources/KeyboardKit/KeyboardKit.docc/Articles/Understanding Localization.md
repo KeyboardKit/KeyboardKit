@@ -1,4 +1,4 @@
-# Understanding Keyboard Localization
+# Understanding Localization
 
 This article describes the KeyboardKit localization model and how to use it. 
 
@@ -14,16 +14,16 @@ Each keyboard locale also has localized content that can be accessed with the ``
 
 ## Localized content
 
-Localized strings for each locale are kept under `Resources`.
+KeyboardKit defines localized strings for each locale in files that are kept under `Resources`.
 
 
 ## How to change the current locale 
 
-You can change the locale of a keyboard extension using the ``KeyboardContext/locale`` property, which will cause parts of the keyboard that needs it to automatically update.
+You can change the current locale for a keyboard extension by setting the ``KeyboardContext/locale`` property to a new `Locale`. This will cause parts of the keyboard to automatically update.
 
-Note that the context locale is a regular `Locale` and not a ``KeyboardLocale``. This makes it possible to use regular locales without having to create new ``KeyboardLocale``s.
+The context uses is a regular `Locale` and not a ``KeyboardLocale``, since it should be possible to use any locale without first having to create a new ``KeyboardLocale``.
 
-You can change the available locales of keyboard extensions using the ``KeyboardContext/locales`` property, which makes it possible to loop through the available locales using the ``KeyboardContext/selectNextLocale()`` function.
+You can change the available locales of a keyboard extension by setting the ``KeyboardContext/locales`` property, which makes it possible to loop through the available locales with ``KeyboardContext/selectNextLocale()``.
 
 
 ## How to create a new locale
@@ -40,7 +40,7 @@ You must also create new features in KeyboardKit Pro:
 * Implement a new `CalloutActionProvider`.
 * Implement a new `InputSetProvider`.
 
-If the locale generates a keyboard that looks off, you can either implement a new ``KeyboardLayoutProvider`` or adjust the ``iPhoneKeyboardLayoutProvider`` and ``iPadKeyboardLayoutProvider`` to handle the new layout.
+If the locale generates a system keyboard that looks off, you can either implement a new ``KeyboardLayoutProvider`` or adjust the ``iPhoneKeyboardLayoutProvider`` and ``iPadKeyboardLayoutProvider`` to handle the new layout.
 
 New locales must ensure that the keyboard layout is correct for:
 

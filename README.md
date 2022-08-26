@@ -88,7 +88,9 @@ KeyboardKit is localized in 50 keyboard-specific locales:
 
 ## Features 
 
-KeyboardKit comes packed with features. Checkout the list below, and have a look at the documentation, demo apps and source code for even more information and examples.
+KeyboardKit comes packed with features to help you build powerful keyboards. 
+
+Have a look at the documentation, demo apps and source code for more information and examples.
 
 
 ### 💥 Actions
