@@ -11,12 +11,35 @@ import Foundation
 public extension AlphabeticInputSet {
 
     /**
-     A standard, English `qwerty` input set.
+     A standard, English `QWERTY` input set.
      */
     static let english = AlphabeticInputSet(rows: [
         .init("qwertyuiop"),
         .init("asdfghjkl"),
         .init(phone: "zxcvbnm", pad: "zxcvbnm,.")
+    ])
+
+    /**
+     An English `AZERTY` input set.
+     */
+    static let englishAzerty = AlphabeticInputSet(rows: [
+        .init("azertyuiop"),
+        .init("qsdfghjklm"),
+        .init(phone: "wxcvbn", pad: "zxcvbnm,.‘")
+    ])
+
+    /**
+     An English `QWERTY` input set.
+     */
+    static let englishQwerty = AlphabeticInputSet.english
+
+    /**
+     An English `QWERTZ` input set.
+     */
+    static let englishQwertz = AlphabeticInputSet(rows: [
+        .init("qwertzuiop"),
+        .init("asdfghjkl"),
+        .init(phone: "yxcvbnm", pad: "yxcvbnm,")
     ])
 }
 

@@ -26,10 +26,12 @@ public class EnglishInputSetProvider: InputSetProvider, LocalizedService {
      Create an English input set provider.
      
      - Parameters:
+       - alphabetic: The alphabetic input set to use, by default ``AlphabeticInputSet/english``.
        - numericCurrency: The currency to use for the numeric input set.
        - symbolicCurrency: The currency to use for the symbolic input set.
      */
     public init(
+        alphabetic: AlphabeticInputSet = .english,
         numericCurrency: String = "$",
         symbolicCurrency: String = "£"
     ) {
@@ -37,6 +39,7 @@ public class EnglishInputSetProvider: InputSetProvider, LocalizedService {
         self.numericInputSet = .english(currency: numericCurrency)
         self.symbolicInputSet = .english(currency: symbolicCurrency)
 
+        // Deprecated
         self._numericCurrency = numericCurrency
         self._symbolicCurrency = symbolicCurrency
     }

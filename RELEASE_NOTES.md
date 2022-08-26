@@ -19,7 +19,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 * `InputSetRow` has new convenience initializers.
 * `KeyboardContext` has a new KeyboardLocale-based `setLocale()`.
 
-* `AlphabeticInputSet` has a new `.english` input set.
+* `AlphabeticInputSet` has new `.english`, `.englishQwerty`, `.englishAzerty`, `.englishQwertz` input sets.
 * `NumericInputSet` has a new `.english` input set.
 * `SymbolicInputSet` has a new `.english` input set.
 
