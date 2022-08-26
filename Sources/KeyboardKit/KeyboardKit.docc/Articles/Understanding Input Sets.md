@@ -9,7 +9,7 @@ In KeyboardKit, an ``InputSet`` defines input keys on a keyboard, which can then
 
 Input sets and keyboard layouts are central components when creating a ``SystemKeyboard``, where flexibility and configurability is important features. If you want to create a custom keyboard, you don't have to use these concepts.
 
-KeyboardKit provides you with a few localized input sets, such as ``AlphabeticInputSet/english``, ``NumericInputSet/english`` and ``SymbolicInputSet/english``.
+KeyboardKit provides you with a few localized input sets, such as ``AlphabeticInputSet/english``, ``NumericInputSet/english(currency:)`` and ``SymbolicInputSet/english(currency:)``.
 
 
 ## Input set providers

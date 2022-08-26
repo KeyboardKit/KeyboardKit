@@ -47,5 +47,5 @@ Have a look in the [documentation][Documentation] for more in-depth information 
 
 
 
-[Documentation]: https://github.com/danielsaidi/Documentation/blob/main/Docs/KeyboardKit.doccarchive.zip?raw=true
+[Documentation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

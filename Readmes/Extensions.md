@@ -15,4 +15,4 @@ These extensions extend the capabilities of the native types and make it a lot e
 The [documentation][Documentation] currently omits native type extensions. Instead, have a look in the source code for a complete list.
 
 
-[Documentation]: https://github.com/danielsaidi/Documentation/blob/main/Docs/KeyboardKit.doccarchive.zip?raw=true
+[Documentation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/
