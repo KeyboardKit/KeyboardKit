@@ -11,6 +11,15 @@ Input sets and keyboard layouts are central components when creating a ``SystemK
 
 KeyboardKit provides you with a few localized input sets, such as ``AlphabeticInputSet/english``, ``NumericInputSet/english(currency:)`` and ``SymbolicInputSet/english(currency:)``.
 
+KeyboardKit Pro expands this futher, and contains additional variations for the 50+ locales it supports, such as `AlphabeticInputSet.polish`, `AlphabeticInputSet.danish` etc.
+
+
+## Input set variations
+
+Some languages have support for multiple input set variations. For instance, English supports `QWERTY`, `AZERTY`, `QWERTZ` and `Dvorak`.
+
+KeyboardKit supports these variations for `English`, which you can create with the same kind of builders like the input sets above, i.e. `AlphabeticInputSet.english`, `AlphabeticInputSet.englishAzerty`, `AlphabeticInputSet.englishQwerty` and `AlphabeticInputSet.englishQwertz`.
+
 
 ## Input set providers
 
@@ -20,14 +29,9 @@ KeyboardKit will by default create a ``StandardInputSetProvider`` and apply it t
 
 KeyboardKit also has an ``EnglishInputSetProvider`` that defines the alphabetic, numeric and symbolic inputs for U.S. English. This provider is used by the standard provider, which supports injecting multiple locale-specific providers.
 
-KeyboardKit Pro contains additional input set providers for the 50+ locales it supports. This means KeyboardKit Pro lets you create a completely localized ``SystemKeyboard`` for all available locales with just a single line of code.
+KeyboardKit Pro contains additional input set providers for the 50+ locales it supports, such as `SpanishInputSetProvider`, `SwedishInputSetProvider` etc. where each Pro locale can create the input set provider it prefers. 
 
-
-## Input set variations
-
-Some languages have support for multiple input set variations. For instance, English supports `QWERTY`, `AZERTY`, `QWERTZ` and `Dvorak`.
-
-KeyboardKit supports these variations for `English`, while KeyboardKit Pro contains additional variations for the 50+ locales it supports. 
+KeyboardKit Pro thus lets you create a completely localized ``SystemKeyboard`` for all available locales with just a single line of code.
 
 
 ## How to create a custom input set provider

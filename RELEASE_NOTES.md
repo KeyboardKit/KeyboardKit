@@ -13,15 +13,19 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 6.2
 
+This release adds a bunch of new emojis that have been added since emojis were last updated.
+
+It also adds input set variants, such as `.englishQwerty`, `.englishAzerty`, `.englishQwertz` etc. and introduces AlphabeticInputSet, NumericInputSet and SymbolicInputSet builders for all locales. 
+
 ### ✨ New Features
 
 * `EmojiCategory` has a bunch of new emojis.
+* `EnglishInputSetProvider` now supports specifying an alphabetic input set.
 * `InputSetRow` has new convenience initializers.
 * `KeyboardContext` has a new KeyboardLocale-based `setLocale()`.
 
-* `AlphabeticInputSet` has new `.english`, `.englishQwerty`, `.englishAzerty`, `.englishQwertz` input sets.
-* `NumericInputSet` has a new `.english` input set.
-* `SymbolicInputSet` has a new `.english` input set.
+* `AlphabeticInputSet`, `NumericInputSet` and `SymbolicInputSet` has new set builders for `.english`.
+* `AlphabeticInputSet` also has new `.englishQwerty`, `.englishAzerty`, `.englishQwertz` input sets.
 
 ### 🗑 Deprecations
 

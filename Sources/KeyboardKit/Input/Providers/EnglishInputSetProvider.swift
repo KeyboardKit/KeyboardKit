@@ -11,11 +11,9 @@ import Foundation
 /**
  This input set provider provides English input sets.
  
- Since currencies can vary between English keyboards, you have
- the option to override the currency symbols that are used in the . You can provide
- a `numericCurrency` that will be used for numeric keyboards,
- and a `symbolicCurrency` that will be used for symbolic. By
- default, `$` is used for numeric and `£` for symbolic.
+ Since currencies can vary between English keyboards, we can
+ override the currency symbols that are shown in the numeric
+ and symbolic keyboards.
  
  KeyboardKit Pro adds a provider for each ``KeyboardLocale``
  Check out the demo app to see them in action.
@@ -27,8 +25,8 @@ public class EnglishInputSetProvider: InputSetProvider, LocalizedService {
      
      - Parameters:
        - alphabetic: The alphabetic input set to use, by default ``AlphabeticInputSet/english``.
-       - numericCurrency: The currency to use for the numeric input set.
-       - symbolicCurrency: The currency to use for the symbolic input set.
+       - numericCurrency: The currency to use for the numeric input set, by default `$`.
+       - symbolicCurrency: The currency to use for the symbolic input set, by default `£`.
      */
     public init(
         alphabetic: AlphabeticInputSet = .english,
@@ -81,4 +79,67 @@ public class EnglishInputSetProvider: InputSetProvider, LocalizedService {
      */
     @available(*, deprecated, message: "This is no longer used.")
     public var symbolicCurrency: String { _symbolicCurrency }
+}
+
+public extension AlphabeticInputSet {
+
+    /**
+     A standard, English `QWERTY` input set.
+     */
+    static let english = AlphabeticInputSet(rows: [
+        .init("qwertyuiop"),
+        .init("asdfghjkl"),
+        .init(phone: "zxcvbnm", pad: "zxcvbnm,.")
+    ])
+
+    /**
+     An English `AZERTY` input set.
+     */
+    static let englishAzerty = AlphabeticInputSet(rows: [
+        .init("azertyuiop"),
+        .init("qsdfghjklm"),
+        .init(phone: "wxcvbn", pad: "zxcvbnm,.‘")
+    ])
+
+    /**
+     An English `QWERTY` input set.
+     */
+    static let englishQwerty = AlphabeticInputSet.english
+
+    /**
+     An English `QWERTZ` input set.
+     */
+    static let englishQwertz = AlphabeticInputSet(rows: [
+        .init("qwertzuiop"),
+        .init("asdfghjkl"),
+        .init(phone: "yxcvbnm", pad: "yxcvbnm,")
+    ])
+}
+
+public extension NumericInputSet {
+
+    /**
+     A standard, English input set.
+     */
+    static func english(currency: String) -> NumericInputSet {
+        NumericInputSet(rows: [
+            .init("1234567890"),
+            .init(phone: "-/:;()\(currency)&@”", pad: "@#\(currency)&*()’”"),
+            .init(phone: ".,?!’", pad: "%-+=/;:!?")
+        ])
+    }
+}
+
+public extension SymbolicInputSet {
+
+    /**
+     A standard, English input set.
+     */
+    static func english(currency: String) -> SymbolicInputSet {
+        SymbolicInputSet(rows: [
+            .init(phone: "[]{}#%^*+=", pad: "1234567890"),
+            .init(phone: "_\\|~<>€\(currency)¥•", pad: "€\(currency)¥_^[]{}"),
+            .init(phone: ".,?!’", pad: "§|~…\\<>!?")
+        ])
+    }
 }

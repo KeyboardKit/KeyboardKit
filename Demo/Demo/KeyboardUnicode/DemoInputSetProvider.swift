@@ -10,7 +10,7 @@ import KeyboardKit
 
 /**
  This demo-specific input set provider replaces the standard
- English alphabetical input set with a unicode one.
+ English alphabetic input set with a unicode one.
  
  For some unicode keyboards, numeric and symbolic input sets
  make no sense. If so, you should create a custom layout and
