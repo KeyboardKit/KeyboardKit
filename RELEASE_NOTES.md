@@ -16,7 +16,12 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 ### ✨ New Features
 
 * `EmojiCategory` has a bunch of new emojis.
-* `KeyboardContext` has a new `setLocale()` function to simplify setting a keyboard locale. 
+* `InputSetRow` has new convenience initializers.
+* `KeyboardContext` has a new KeyboardLocale-based `setLocale()`.
+
+### 🗑 Deprecations
+
+* The `InputSetProvider` `row` extensions are deprecated. Use `.init` instead. 
 
 
 

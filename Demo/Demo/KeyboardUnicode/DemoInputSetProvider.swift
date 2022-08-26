@@ -22,8 +22,8 @@ class DemoInputSetProvider: DeviceSpecificInputSetProvider {
     
     var alphabeticInputSet: AlphabeticInputSet {
         AlphabeticInputSet(rows: [
-            row(lowercased: "qẅëṛẗÿüïöṗ", uppercased: "QẄЁṚṪŸÜЇÖṖ"),
-            row(lowercased: "äṡḋḟġḧjḳḷ", uppercased: "ÄṠḊḞĠḦJḲḶ"),
+            .init(lowercased: "qẅëṛẗÿüïöṗ", uppercased: "QẄЁṚṪŸÜЇÖṖ"),
+            .init(lowercased: "äṡḋḟġḧjḳḷ", uppercased: "ÄṠḊḞĠḦJḲḶ"),
             row(
                 phoneLowercased: "żẍċṿḅṅṁ",
                 phoneUppercased: "ŻẌĊṾḄṄṀ",

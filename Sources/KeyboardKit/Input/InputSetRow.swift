@@ -20,7 +20,7 @@ public extension InputSetRow {
      is mapped to a `InputSetItem`.
      */
     init(_ chars: String) {
-        self = chars.chars.map { InputSetItem($0) }
+        self.init(chars.chars)
     }
     
     /**
@@ -30,11 +30,24 @@ public extension InputSetRow {
     init(_ row: [String]) {
         self = row.map { InputSetItem($0) }
     }
-    
+
     /**
      Create an input row from a lowercased and an uppercased
-     string array, which are mapped to `InputSetItem` arrays.
-     
+     string, which are mapped to ``InputSetItem`` lists.
+
+     Both arrays must contain the same amount of characters.
+     */
+    init(lowercased: String, uppercased: String) {
+        self.init(
+            lowercased: lowercased.chars,
+            uppercased: uppercased.chars
+        )
+    }
+
+    /**
+     Create an input row from a lowercased and an uppercased
+     string, which are mapped to ``InputSetItem`` lists.
+
      Both arrays must contain the same amount of characters.
      */
     init(lowercased: [String], uppercased: [String]) {

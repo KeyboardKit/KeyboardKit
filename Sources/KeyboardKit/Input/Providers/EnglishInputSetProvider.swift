@@ -56,8 +56,8 @@ public class EnglishInputSetProvider: DeviceSpecificInputSetProvider, LocalizedS
      */
     public var alphabeticInputSet: AlphabeticInputSet {
         AlphabeticInputSet(rows: [
-            row("qwertyuiop"),
-            row("asdfghjkl"),
+            .init("qwertyuiop"),
+            .init("asdfghjkl"),
             row(phone: "zxcvbnm", pad: "zxcvbnm,.")
         ])
     }
@@ -67,7 +67,7 @@ public class EnglishInputSetProvider: DeviceSpecificInputSetProvider, LocalizedS
      */
     public var numericInputSet: NumericInputSet {
         NumericInputSet(rows: [
-            row("1234567890"),
+            .init("1234567890"),
             row(phone: "-/:;()\(numericCurrency)&@”", pad: "@#\(numericCurrency)&*()’”"),
             row(phone: ".,?!’", pad: "%-+=/;:!?")
         ])
