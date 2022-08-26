@@ -11,8 +11,8 @@ import Foundation
 /**
  This input set provider provides English input sets.
  
- Since currencies can vary between English locales, you have
- the option to override the currency symbol. You can provide
+ Since currencies can vary between English keyboards, you have
+ the option to override the currency symbols that are used in the . You can provide
  a `numericCurrency` that will be used for numeric keyboards,
  and a `symbolicCurrency` that will be used for symbolic. By
  default, `$` is used for numeric and `£` for symbolic.
@@ -31,20 +31,15 @@ public class EnglishInputSetProvider: InputSetProvider, LocalizedService {
      */
     public init(
         numericCurrency: String = "$",
-        symbolicCurrency: String = "£") {
-        self.numericCurrency = numericCurrency
-        self.symbolicCurrency = symbolicCurrency
+        symbolicCurrency: String = "£"
+    ) {
+        self.alphabeticInputSet = .english
+        self.numericInputSet = .english(currency: numericCurrency)
+        self.symbolicInputSet = .english(currency: symbolicCurrency)
+
+        self._numericCurrency = numericCurrency
+        self._symbolicCurrency = symbolicCurrency
     }
-    
-    /**
-     The currency to use for the numeric input set.
-     */
-    public let numericCurrency: String
-    
-    /**
-     The currency to use for the symbolic input set.
-     */
-    public let symbolicCurrency: String
     
     /**
      The locale identifier.
@@ -54,33 +49,33 @@ public class EnglishInputSetProvider: InputSetProvider, LocalizedService {
     /**
      The input set to use for alphabetic keyboards.
      */
-    public var alphabeticInputSet: AlphabeticInputSet {
-        AlphabeticInputSet(rows: [
-            .init("qwertyuiop"),
-            .init("asdfghjkl"),
-            .init(phone: "zxcvbnm", pad: "zxcvbnm,.")
-        ])
-    }
+    public let alphabeticInputSet: AlphabeticInputSet
     
     /**
      The input set to use for numeric keyboards.
      */
-    public var numericInputSet: NumericInputSet {
-        NumericInputSet(rows: [
-            .init("1234567890"),
-            .init(phone: "-/:;()\(numericCurrency)&@”", pad: "@#\(numericCurrency)&*()’”"),
-            .init(phone: ".,?!’", pad: "%-+=/;:!?")
-        ])
-    }
+    public let numericInputSet: NumericInputSet
     
     /**
      The input set to use for symbolic keyboards.
      */
-    public var symbolicInputSet: SymbolicInputSet {
-        SymbolicInputSet(rows: [
-            .init(phone: "[]{}#%^*+=", pad: "1234567890"),
-            .init(phone: "_\\|~<>€\(symbolicCurrency)¥•", pad: "€\(symbolicCurrency)¥_^[]{}"),
-            .init(phone: ".,?!’", pad: "§|~…\\<>!?")
-        ])
-    }
+    public let symbolicInputSet: SymbolicInputSet
+
+
+    // MARK: - Deprecated
+
+    private let _numericCurrency: String
+    private let _symbolicCurrency: String
+
+    /**
+     The currency to use for the numeric input set.
+     */
+    @available(*, deprecated, message: "This is no longer used.")
+    public var numericCurrency: String { _numericCurrency }
+
+    /**
+     The currency to use for the symbolic input set.
+     */
+    @available(*, deprecated, message: "This is no longer used.")
+    public var symbolicCurrency: String { _symbolicCurrency }
 }

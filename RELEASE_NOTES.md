@@ -19,9 +19,14 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 * `InputSetRow` has new convenience initializers.
 * `KeyboardContext` has a new KeyboardLocale-based `setLocale()`.
 
+* `AlphabeticInputSet` has a new `.english` input set.
+* `NumericInputSet` has a new `.english` input set.
+* `SymbolicInputSet` has a new `.english` input set.
+
 ### 🗑 Deprecations
 
 * `DeviceSpecificInputSetProvider` has been deprecated.
+* The `EnglishInputSetProvider` currency properties have been deprecated. 
 * The `InputSetProvider` row extensions have been deprecated.
 * The `InputSetRow` initializer extensions have been deprecated. 
 

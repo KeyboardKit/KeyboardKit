@@ -178,16 +178,16 @@ KeyboardKit is available under the MIT license.
 - ``InputSetProvider``
 - ``InputSetRow``
 - ``InputSetRows``
+- ``LocalizedInputSetProvider``
 - ``StandardInputSetProvider``
+- ``StaticInputSetProvider``
 
 - ``AlphabeticInputSet``
 - ``NumericInputSet``
 - ``SymbolicInputSet``
 
-- ``DeviceSpecificInputSetProvider``
 - ``EnglishInputSetProvider``
-- ``LocalizedInputSetProvider``
-- ``StaticInputSetProvider``
+
 
 ### Layout
 
