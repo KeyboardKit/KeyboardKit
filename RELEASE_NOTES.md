@@ -15,11 +15,12 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ### ✨ New Features
 
+* `EmojiCategory` has a bunch of new emojis.
 * `KeyboardContext` has a new `setLocale()` function to simplify setting a keyboard locale. 
 
 
 
-## 6.1.0
+## 6.1
 
 ### ✨ New Features
 
