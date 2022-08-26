@@ -20,7 +20,7 @@ import Foundation
  KeyboardKit Pro adds a provider for each ``KeyboardLocale``
  Check out the demo app to see them in action.
  */
-public class EnglishInputSetProvider: DeviceSpecificInputSetProvider, LocalizedService {
+public class EnglishInputSetProvider: InputSetProvider, LocalizedService {
     
     /**
      Create an English input set provider.
@@ -58,7 +58,7 @@ public class EnglishInputSetProvider: DeviceSpecificInputSetProvider, LocalizedS
         AlphabeticInputSet(rows: [
             .init("qwertyuiop"),
             .init("asdfghjkl"),
-            row(phone: "zxcvbnm", pad: "zxcvbnm,.")
+            .init(phone: "zxcvbnm", pad: "zxcvbnm,.")
         ])
     }
     
@@ -68,8 +68,8 @@ public class EnglishInputSetProvider: DeviceSpecificInputSetProvider, LocalizedS
     public var numericInputSet: NumericInputSet {
         NumericInputSet(rows: [
             .init("1234567890"),
-            row(phone: "-/:;()\(numericCurrency)&@”", pad: "@#\(numericCurrency)&*()’”"),
-            row(phone: ".,?!’", pad: "%-+=/;:!?")
+            .init(phone: "-/:;()\(numericCurrency)&@”", pad: "@#\(numericCurrency)&*()’”"),
+            .init(phone: ".,?!’", pad: "%-+=/;:!?")
         ])
     }
     
@@ -78,9 +78,9 @@ public class EnglishInputSetProvider: DeviceSpecificInputSetProvider, LocalizedS
      */
     public var symbolicInputSet: SymbolicInputSet {
         SymbolicInputSet(rows: [
-            row(phone: "[]{}#%^*+=", pad: "1234567890"),
-            row(phone: "_\\|~<>€\(symbolicCurrency)¥•", pad: "€\(symbolicCurrency)¥_^[]{}"),
-            row(phone: ".,?!’", pad: "§|~…\\<>!?")
+            .init(phone: "[]{}#%^*+=", pad: "1234567890"),
+            .init(phone: "_\\|~<>€\(symbolicCurrency)¥•", pad: "€\(symbolicCurrency)¥_^[]{}"),
+            .init(phone: ".,?!’", pad: "§|~…\\<>!?")
         ])
     }
 }

@@ -17,15 +17,15 @@ public extension InputSetRow {
     
     /**
      Create an input row from a string, where each character
-     is mapped to a `InputSetItem`.
+     is mapped to a ``InputSetItem``.
      */
     init(_ chars: String) {
         self.init(chars.chars)
     }
     
     /**
-     Create an input row from a string array, that is mapped
-     to a `InputSetItem` array.
+     Create an input row from an array, where each character
+     is mapped to a ``InputSetItem``.
      */
     init(_ row: [String]) {
         self = row.map { InputSetItem($0) }
@@ -33,11 +33,12 @@ public extension InputSetRow {
 
     /**
      Create an input row from a lowercased and an uppercased
-     string, which are mapped to ``InputSetItem`` lists.
+     string, where each char is mapped to a ``InputSetItem``.
 
      Both arrays must contain the same amount of characters.
      */
-    init(lowercased: String, uppercased: String) {
+    init(lowercased: String, uppercased: String
+    ) {
         self.init(
             lowercased: lowercased.chars,
             uppercased: uppercased.chars
@@ -46,7 +47,7 @@ public extension InputSetRow {
 
     /**
      Create an input row from a lowercased and an uppercased
-     string, which are mapped to ``InputSetItem`` lists.
+     array, where each char is mapped to a ``InputSetItem``.
 
      Both arrays must contain the same amount of characters.
      */
@@ -58,6 +59,54 @@ public extension InputSetRow {
                 uppercased: uppercased[$0.offset],
                 lowercased: lowercased[$0.offset])
         }
+    }
+
+    /**
+     Create an input row from phone and pad-specific strings,
+     where each character is mapped to a ``InputSetItem``.
+     */
+    init(phone: String, pad: String, deviceType: DeviceType = .current) {
+        self.init(deviceType == .pad ? pad.chars : phone.chars)
+    }
+
+    /**
+     Create an input row from phone and pad-specific strings,
+     where each character is mapped to a ``InputSetItem``.
+     */
+    init(phone: [String], pad: [String], deviceType: DeviceType = .current) {
+        self.init(deviceType == .pad ? pad : phone)
+    }
+
+    /**
+     Create an input row from phone and pad-specific strings,
+     where each character is mapped to a ``InputSetItem``.
+     */
+    init(
+        phoneLowercased: String,
+        phoneUppercased: String,
+        padLowercased: String,
+        padUppercased: String,
+        deviceType: DeviceType = .current
+    ) {
+        self.init(
+            lowercased: deviceType == .pad ? padLowercased.chars : phoneLowercased.chars,
+            uppercased: deviceType == .pad ? padUppercased.chars : phoneUppercased.chars)
+    }
+
+    /**
+     Create an input row from phone and pad-specific strings,
+     where each character is mapped to a ``InputSetItem``.
+     */
+    init(
+        phoneLowercased: [String],
+        phoneUppercased: [String],
+        padLowercased: [String],
+        padUppercased: [String],
+        deviceType: DeviceType = .current
+    ) {
+        self.init(
+            lowercased: deviceType == .pad ? padLowercased : phoneLowercased,
+            uppercased: deviceType == .pad ? padUppercased : phoneUppercased)
     }
     
     /**

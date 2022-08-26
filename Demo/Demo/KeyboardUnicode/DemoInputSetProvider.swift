@@ -16,7 +16,7 @@ import KeyboardKit
  make no sense. If so, you should create a custom layout and
  remove the numeric/symbolic switches.
  */
-class DemoInputSetProvider: DeviceSpecificInputSetProvider {
+class DemoInputSetProvider: InputSetProvider {
     
     let baseProvider = EnglishInputSetProvider()
     
@@ -24,7 +24,7 @@ class DemoInputSetProvider: DeviceSpecificInputSetProvider {
         AlphabeticInputSet(rows: [
             .init(lowercased: "qẅëṛẗÿüïöṗ", uppercased: "QẄЁṚṪŸÜЇÖṖ"),
             .init(lowercased: "äṡḋḟġḧjḳḷ", uppercased: "ÄṠḊḞĠḦJḲḶ"),
-            row(
+            .init(
                 phoneLowercased: "żẍċṿḅṅṁ",
                 phoneUppercased: "ŻẌĊṾḄṄṀ",
                 padLowercased: "żẍċṿḅṅṁ,.",

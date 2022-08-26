@@ -21,8 +21,9 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ### 🗑 Deprecations
 
-* The `InputSetProvider` `row` extensions are deprecated.
-* The `InputSetRow` initializer extensions are deprecated. 
+* `DeviceSpecificInputSetProvider` has been deprecated.
+* The `InputSetProvider` row extensions have been deprecated.
+* The `InputSetRow` initializer extensions have been deprecated. 
 
 
 
