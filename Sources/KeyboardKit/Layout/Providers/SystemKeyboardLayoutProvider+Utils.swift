@@ -36,30 +36,12 @@ public extension SystemKeyboardLayoutProvider {
         Array(alphabeticInputCount.prefix(rows.count)) == rows
     }
 
-    
-
     /**
-     Whether or not to use an 10-10-8 keyboard layout, which
-     is used by e.g. `Czech` iPhone keyboards.
+     Whether or not the current input set is alphabetic with
+     the provided number of inputs.
      */
-    func isTenTenEightAlphabetic(_ context: KeyboardContext) -> Bool {
-        context.isAlphabetic && alphabeticInputCount.prefix(3) == [10, 10, 8]
-    }
-
-    /**
-     Whether or not to use an 11-11-9 keyboard layout, which
-     is used by e.g. `Belarusian` iPhone keyboards.
-     */
-    func isTwelveTwelveNineAlphabetic(_ context: KeyboardContext) -> Bool {
-        context.isAlphabetic && alphabeticInputCount.prefix(3) == [12, 12, 9]
-    }
-
-    /**
-     Whether or not to use an 11-11-9 keyboard layout, which
-     is used by e.g. `Russian` iPhone keyboards.
-     */
-    func isElevenElevenNineAlphabetic(_ context: KeyboardContext) -> Bool {
-        context.isAlphabetic && alphabeticInputCount.prefix(3) == [11, 11, 9]
+    func isAlphabeticWithInputCount(_ context: KeyboardContext, _ rows: [Int]) -> Bool {
+        context.isAlphabetic && hasAlphabeticInputCount(rows)
     }
 
     /**

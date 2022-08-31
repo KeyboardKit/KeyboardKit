@@ -16,6 +16,22 @@ extension SystemKeyboardLayoutProvider {
     }
 }
 
+@available(*, deprecated, message: "Use isAlphabeticWithInputCount(_) instead.")
+extension SystemKeyboardLayoutProvider {
+
+    func isTenTenEightAlphabetic(_ context: KeyboardContext) -> Bool {
+        isAlphabeticWithInputCount(context, [10, 10, 8])    // Czech
+    }
+
+    func isElevenElevenNineAlphabetic(_ context: KeyboardContext) -> Bool {
+        isAlphabeticWithInputCount(context, [11, 11, 9])    // Russian
+    }
+
+    func isTwelveTwelveNineAlphabetic(_ context: KeyboardContext) -> Bool {
+        isAlphabeticWithInputCount(context, [12, 12, 9])    // Belarusian
+    }
+}
+
 @available(*, deprecated, message: "Use KeyboardContext extensions instead.")
 extension SystemKeyboardLayoutProvider {
     
