@@ -94,7 +94,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     open func lowerLeadingActions(for actions: KeyboardActionRows, context: KeyboardContext) -> KeyboardActions {
         guard isExpectedPhoneInputActions(actions) else { return [] }
         guard let switcher = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
-        if isArabicAlphabetic(context) { return [] }
+        if context.isAlphabetic(.arabic) { return [] }
         if isElevenElevenNineAlphabetic(context) { return [switcher] }
         if context.isAlphabetic(.kurdish_sorani_arabic) { return [] }
         if context.isAlphabetic(.persian) { return [] }
@@ -110,7 +110,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func lowerTrailingActions(for actions: KeyboardActionRows, context: KeyboardContext) -> KeyboardActions {
         guard isExpectedPhoneInputActions(actions) else { return [] }
-        if isArabicAlphabetic(context) { return [trailingMarginAction(for: actions[2]), .backspace] }
+        if context.isAlphabetic(.arabic) { return [trailingMarginAction(for: actions[2]), .backspace] }
         if isElevenElevenNineAlphabetic(context) { return [.backspace] }
         if context.isAlphabetic(.kurdish_sorani_arabic) { return [.backspace] }
         if context.isAlphabetic(.persian) { return [.backspace] }
@@ -195,7 +195,7 @@ private extension iPhoneKeyboardLayoutProvider {
     func lowerSystemButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
         let bottomWidth = bottomSystemButtonWidth(for: context)
         let standard = isPortrait(context) ? bottomWidth : .percentage(0.12)
-        if isArabicAlphabetic(context) { return isPortrait(context) ? bottomWidth : .percentage(0.14) }
+        if context.isAlphabetic(.arabic) { return isPortrait(context) ? bottomWidth : .percentage(0.14) }
         if hasTwelveElevenNineAlphabeticInput { return .percentage(0.11) }
         if isElevenElevenNineAlphabetic(context) { return .input }
         if context.is(.kurdish_sorani_arabic) { return .input }

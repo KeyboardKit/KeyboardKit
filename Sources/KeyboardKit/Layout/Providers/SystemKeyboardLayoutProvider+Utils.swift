@@ -60,20 +60,6 @@ public extension SystemKeyboardLayoutProvider {
     }
 
     /**
-     Whether or not to the context is Arabic.
-     */
-    func isArabic(_ context: KeyboardContext) -> Bool {
-        context.locale.identifier == KeyboardLocale.arabic.localeIdentifier
-    }
-
-    /**
-     Whether or not to the context is Arabic alphabetic.
-     */
-    func isArabicAlphabetic(_ context: KeyboardContext) -> Bool {
-        isAlphabetic(context) && isArabic(context)
-    }
-
-    /**
      Whether or not to use an 10-10-8 keyboard layout, which
      is used by e.g. `Czech` iPhone keyboards.
      */
@@ -129,6 +115,14 @@ public extension SystemKeyboardLayoutProvider {
 
 @available(*, deprecated, message: "Use KeyboardContext extensions instead.")
 extension SystemKeyboardLayoutProvider {
+
+    func isArabic(_ context: KeyboardContext) -> Bool {
+        context.locale.identifier == KeyboardLocale.arabic.localeIdentifier
+    }
+
+    func isArabicAlphabetic(_ context: KeyboardContext) -> Bool {
+        isAlphabetic(context) && isArabic(context)
+    }
 
     func isGreek(_ context: KeyboardContext) -> Bool {
         context.locale.identifier == KeyboardLocale.greek.localeIdentifier
