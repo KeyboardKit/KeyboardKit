@@ -60,18 +60,17 @@ public extension SystemKeyboardLayoutProvider {
     }
 
     /**
-     Whether or not to use an Arabic keyboard.
+     Whether or not to the context is Arabic.
      */
-    func isArabicStyle(_ context: KeyboardContext) -> Bool {
-        context.locale.identifier == KeyboardLocale.arabic.localeIdentifier ||
-        context.locale.identifier == KeyboardLocale.kurdish_sorani_arabic.localeIdentifier
+    func isArabic(_ context: KeyboardContext) -> Bool {
+        context.locale.identifier == KeyboardLocale.arabic.localeIdentifier
     }
 
     /**
-     Whether or not to use an Arabic alphabetic keyboard.
+     Whether or not to the context is Arabic alphabetic.
      */
-    func isArabicAlphabeticStyle(_ context: KeyboardContext) -> Bool {
-        isAlphabetic(context) && isArabicStyle(context)
+    func isArabicAlphabetic(_ context: KeyboardContext) -> Bool {
+        isAlphabetic(context) && isArabic(context)
     }
 
     /**
@@ -99,42 +98,57 @@ public extension SystemKeyboardLayoutProvider {
     }
 
     /**
-     Whether or not to use an Greek keyboard.
+     Whether or not to the context is Greek.
      */
     func isGreek(_ context: KeyboardContext) -> Bool {
         context.locale.identifier == KeyboardLocale.greek.localeIdentifier
     }
 
     /**
-     Whether or not to use an Greek alphabetic keyboard.
+     Whether or not to the context is Greek alphabetic.
      */
     func isGreekAlphabetic(_ context: KeyboardContext) -> Bool {
         isAlphabetic(context) && isGreek(context)
     }
 
     /**
-     Whether or not to use an Persian keyboard.
+     Whether or not to the context is Kurdish Sorani Arabic.
+     */
+    func isKurdishSoraniArabic(_ context: KeyboardContext) -> Bool {
+        context.locale.identifier == KeyboardLocale.kurdish_sorani_arabic.localeIdentifier
+    }
+
+    /**
+     Whether or not to this context is Kurdish Sorani Arabic
+     alphabetic.
+     */
+    func isKurdishSoraniArabicAlphabetic(_ context: KeyboardContext) -> Bool {
+        isAlphabetic(context) && isKurdishSoraniArabic(context)
+    }
+
+    /**
+     Whether or not to the context is Persian.
      */
     func isPersian(_ context: KeyboardContext) -> Bool {
         context.locale.identifier == KeyboardLocale.persian.localeIdentifier
     }
 
     /**
-     Whether or not to use an Persian alphabetic keyboard.
+     Whether or not to the context is Persian alphabetic.
      */
     func isPersianAlphabetic(_ context: KeyboardContext) -> Bool {
         isAlphabetic(context) && isPersian(context)
     }
 
     /**
-     Whether or not to use an Russian alphabetic keyboard.
+     Whether or not to the context is Russian alphabetic.
      */
     func isRussianAlphabetic(_ context: KeyboardContext) -> Bool {
         isAlphabetic(context) && context.locale.identifier == KeyboardLocale.russian.localeIdentifier
     }
 
     /**
-     Whether or not to use an Russian alphabetic keyboard.
+     Whether or not to the context is Ukranian alphabetic.
      */
     func isUkrainianAlphabetic(_ context: KeyboardContext) -> Bool {
         isAlphabetic(context) && context.locale.identifier == KeyboardLocale.ukrainian.localeIdentifier

@@ -94,8 +94,9 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     open func lowerLeadingActions(for actions: KeyboardActionRows, context: KeyboardContext) -> KeyboardActions {
         guard isExpectedPhoneInputActions(actions) else { return [] }
         guard let switcher = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
-        if isArabicAlphabeticStyle(context) { return [] }
+        if isArabicAlphabetic(context) { return [] }
         if isElevenElevenNineAlphabetic(context) { return [switcher] }
+        if isKurdishSoraniArabicAlphabetic(context) { return [] }
         if isPersianAlphabetic(context) { return [] }
         if isRussianAlphabetic(context) { return [switcher] }
         if isTenTenEightAlphabetic(context) { return [switcher] }
@@ -109,8 +110,9 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func lowerTrailingActions(for actions: KeyboardActionRows, context: KeyboardContext) -> KeyboardActions {
         guard isExpectedPhoneInputActions(actions) else { return [] }
-        if isArabicAlphabeticStyle(context) { return [trailingMarginAction(for: actions[2]), .backspace] }
+        if isArabicAlphabetic(context) { return [trailingMarginAction(for: actions[2]), .backspace] }
         if isElevenElevenNineAlphabetic(context) { return [.backspace] }
+        if isKurdishSoraniArabicAlphabetic(context) { return [.backspace] }
         if isPersianAlphabetic(context) { return [.backspace] }
         if isTenTenEightAlphabetic(context) { return [.backspace] }
         if isTwelveTwelveNineAlphabetic(context) { return [.backspace] }
@@ -193,9 +195,10 @@ private extension iPhoneKeyboardLayoutProvider {
     func lowerSystemButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
         let bottomWidth = bottomSystemButtonWidth(for: context)
         let standard = isPortrait(context) ? bottomWidth : .percentage(0.12)
-        if isArabicAlphabeticStyle(context) { return isPortrait(context) ? bottomWidth : .percentage(0.14) }
+        if isArabicAlphabetic(context) { return isPortrait(context) ? bottomWidth : .percentage(0.14) }
         if hasTwelveElevenNineAlphabeticInput { return .percentage(0.11) }
         if isElevenElevenNineAlphabetic(context) { return .input }
+        if isKurdishSoraniArabic(context) { return .input }
         if isTenTenEightAlphabetic(context) { return .input }
         if isTwelveTwelveNineAlphabetic(context) { return .available }
         if isPersianAlphabetic(context) { return .input }
