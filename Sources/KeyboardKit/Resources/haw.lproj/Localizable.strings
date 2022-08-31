@@ -2,18 +2,18 @@
  Localizable.strings
  KeyboardKit
  
- Created by Daniel Saidi on 2022-08-30.
+ Created by Daniel Saidi on 2022-09-01.
  Copyright © 2022 Daniel Saidi. All rights reserved.
  */
 
-"locale" = "sw";
+"locale" = "haw";
 
-"done" = "kumaliza";
-"go" = "kwenda";
+"done" = "Pau";
+"go" = "Hele";
 "ok" = "OK";
-"return" = "kurudi";
-"search" = "kupata";
-"space" = "nafasi";
+"return" = "Kāhoʻi";
+"search" = "Huli iā";
+"space" = "Kaʻahua";
 
 "keyboardTypeAlphabetic" = "ABC";
 "keyboardTypeNumeric" = "123";

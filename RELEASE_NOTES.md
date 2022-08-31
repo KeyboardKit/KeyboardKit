@@ -11,14 +11,18 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
-## 6.2.1
+## 6.3
 
 ### ✨ New Features
 
 * `KeyboardContext` has new `hasKeyboardLocale` and `hasKeyboardLocale` functions.
+* `AlphabeticInputSet` has a new `qwerty` input set builder.
+* `NumericInputSet` has a new `standard` input set builder.
+* `SymbolicInputSet` has a new `standard` input set builder.
 
 ### 🌐 New locales
 
+* 🇺🇸 Hawaiian
 * 🇰🇪 Swahili
 
 ### 🗑 Deprecations
@@ -31,8 +35,6 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 This release adds a bunch of new emojis that have been added since emojis were last updated.
 
-It also adds input set variants, such as `.englishQwerty`, `.englishAzerty`, `.englishQwertz` etc. and introduces AlphabeticInputSet, NumericInputSet and SymbolicInputSet builders for all locales. 
-
 ### ✨ New Features
 
 * `EmojiCategory` has a bunch of new emojis.
@@ -41,7 +43,6 @@ It also adds input set variants, such as `.englishQwerty`, `.englishAzerty`, `.e
 * `KeyboardContext` has a new KeyboardLocale-based `setLocale()`.
 
 * `AlphabeticInputSet`, `NumericInputSet` and `SymbolicInputSet` has new set builders for `.english`.
-* `AlphabeticInputSet` also has new `.englishQwerty`, `.englishAzerty`, `.englishQwertz` input sets.
 
 ### 🗑 Deprecations
 

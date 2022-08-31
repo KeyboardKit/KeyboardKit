@@ -22,6 +22,9 @@ public class EnglishInputSetProvider: InputSetProvider, LocalizedService {
     
     /**
      Create an English input set provider.
+
+     This input set supports QWERTY, QWERTZ and AZERTY, with
+     QWERTY being the default.
      
      - Parameters:
        - alphabetic: The alphabetic input set to use, by default ``AlphabeticInputSet/english``.
@@ -84,36 +87,9 @@ public class EnglishInputSetProvider: InputSetProvider, LocalizedService {
 public extension AlphabeticInputSet {
 
     /**
-     A standard, English `QWERTY` input set.
+     A standard, English input set.
      */
-    static let english = AlphabeticInputSet(rows: [
-        .init("qwertyuiop"),
-        .init("asdfghjkl"),
-        .init(phone: "zxcvbnm", pad: "zxcvbnm,.")
-    ])
-
-    /**
-     An English `AZERTY` input set.
-     */
-    static let englishAzerty = AlphabeticInputSet(rows: [
-        .init("azertyuiop"),
-        .init("qsdfghjklm"),
-        .init(phone: "wxcvbn", pad: "zxcvbnm,.‘")
-    ])
-
-    /**
-     An English `QWERTY` input set.
-     */
-    static let englishQwerty = AlphabeticInputSet.english
-
-    /**
-     An English `QWERTZ` input set.
-     */
-    static let englishQwertz = AlphabeticInputSet(rows: [
-        .init("qwertzuiop"),
-        .init("asdfghjkl"),
-        .init(phone: "yxcvbnm", pad: "yxcvbnm,")
-    ])
+    static let english = AlphabeticInputSet.qwerty
 }
 
 public extension NumericInputSet {
@@ -122,11 +98,7 @@ public extension NumericInputSet {
      A standard, English input set.
      */
     static func english(currency: String) -> NumericInputSet {
-        NumericInputSet(rows: [
-            .init("1234567890"),
-            .init(phone: "-/:;()\(currency)&@”", pad: "@#\(currency)&*()’”"),
-            .init(phone: ".,?!’", pad: "%-+=/;:!?")
-        ])
+        .standard(currency: currency)
     }
 }
 
@@ -136,10 +108,6 @@ public extension SymbolicInputSet {
      A standard, English input set.
      */
     static func english(currency: String) -> SymbolicInputSet {
-        SymbolicInputSet(rows: [
-            .init(phone: "[]{}#%^*+=", pad: "1234567890"),
-            .init(phone: "_\\|~<>€\(currency)¥•", pad: "€\(currency)¥_^[]{}"),
-            .init(phone: ".,?!’", pad: "§|~…\\<>!?")
-        ])
+        .standard(currencies: "€\(currency)¥".chars)
     }
 }
