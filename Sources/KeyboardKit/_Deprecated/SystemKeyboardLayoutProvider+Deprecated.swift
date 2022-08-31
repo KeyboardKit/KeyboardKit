@@ -3,6 +3,10 @@ import Foundation
 @available(*, deprecated, message: "Use KeyboardContext extensions instead.")
 extension SystemKeyboardLayoutProvider {
 
+    func isAlphabetic(_ context: KeyboardContext) -> Bool {
+        context.keyboardType.isAlphabetic
+    }
+
     func isArabic(_ context: KeyboardContext) -> Bool {
         context.locale.identifier == KeyboardLocale.arabic.localeIdentifier
     }

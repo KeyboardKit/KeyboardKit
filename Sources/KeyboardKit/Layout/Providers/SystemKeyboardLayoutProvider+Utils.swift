@@ -53,18 +53,11 @@ public extension SystemKeyboardLayoutProvider {
     }
 
     /**
-     Whether or not the context keyboard type is alphabetic.
-     */
-    func isAlphabetic(_ context: KeyboardContext) -> Bool {
-        context.keyboardType.isAlphabetic
-    }
-
-    /**
      Whether or not to use an 10-10-8 keyboard layout, which
      is used by e.g. `Czech` iPhone keyboards.
      */
     func isTenTenEightAlphabetic(_ context: KeyboardContext) -> Bool {
-        isAlphabetic(context) && alphabeticInputCount.prefix(3) == [10, 10, 8]
+        context.isAlphabetic && alphabeticInputCount.prefix(3) == [10, 10, 8]
     }
 
     /**
@@ -72,7 +65,7 @@ public extension SystemKeyboardLayoutProvider {
      is used by e.g. `Belarusian` iPhone keyboards.
      */
     func isTwelveTwelveNineAlphabetic(_ context: KeyboardContext) -> Bool {
-        isAlphabetic(context) && alphabeticInputCount.prefix(3) == [12, 12, 9]
+        context.isAlphabetic && alphabeticInputCount.prefix(3) == [12, 12, 9]
     }
 
     /**
@@ -80,7 +73,7 @@ public extension SystemKeyboardLayoutProvider {
      is used by e.g. `Russian` iPhone keyboards.
      */
     func isElevenElevenNineAlphabetic(_ context: KeyboardContext) -> Bool {
-        isAlphabetic(context) && alphabeticInputCount.prefix(3) == [11, 11, 9]
+        context.isAlphabetic && alphabeticInputCount.prefix(3) == [11, 11, 9]
     }
 
     /**
@@ -109,5 +102,16 @@ public extension SystemKeyboardLayoutProvider {
         case .character(let char): return .characterMargin(char)
         default: return .none
         }
+    }
+}
+
+
+// MARK: - KeyboardContext Extension
+
+private extension KeyboardContext {
+
+    /// This property makes the context checks above shorter.
+    var isAlphabetic: Bool {
+        keyboardType.isAlphabetic
     }
 }
