@@ -13,6 +13,10 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 6.2.1
 
+### ✨ New Features
+
+* `KeyboardContext` has new `hasKeyboardLocale` and `hasKeyboardLocale` functions.
+
 ### 🌐 New locales
 
 * 🇰🇪 Swahili
