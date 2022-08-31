@@ -127,20 +127,6 @@ public extension SystemKeyboardLayoutProvider {
     }
 
     /**
-     Whether or not to the context is Persian.
-     */
-    func isPersian(_ context: KeyboardContext) -> Bool {
-        context.locale.identifier == KeyboardLocale.persian.localeIdentifier
-    }
-
-    /**
-     Whether or not to the context is Persian alphabetic.
-     */
-    func isPersianAlphabetic(_ context: KeyboardContext) -> Bool {
-        isAlphabetic(context) && isPersian(context)
-    }
-
-    /**
      Whether or not to the context is Russian alphabetic.
      */
     func isRussianAlphabetic(_ context: KeyboardContext) -> Bool {
@@ -180,5 +166,18 @@ public extension SystemKeyboardLayoutProvider {
         case .character(let char): return .characterMargin(char)
         default: return .none
         }
+    }
+}
+
+
+@available(*, deprecated, message: "Use KeyboardContext extensions instead.")
+extension SystemKeyboardLayoutProvider {
+
+    func isPersian(_ context: KeyboardContext) -> Bool {
+        context.locale.identifier == KeyboardLocale.persian.localeIdentifier
+    }
+
+    func isPersianAlphabetic(_ context: KeyboardContext) -> Bool {
+        isAlphabetic(context) && isPersian(context)
     }
 }

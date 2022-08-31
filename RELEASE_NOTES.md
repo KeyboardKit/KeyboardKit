@@ -21,6 +21,10 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 * 🇰🇪 Swahili
 
+### 🗑 Deprecations
+
+* All `SystemKeyboardLayoutProvider` context-based locale functions have been deprecated.
+
 
 
 ## 6.2

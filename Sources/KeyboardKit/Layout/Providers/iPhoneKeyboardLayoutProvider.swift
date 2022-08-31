@@ -82,7 +82,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         if !needsInputSwitch { result.append(.keyboardType(.emojis)) }
         if isPortrait(context), needsDictation, let action = dictationReplacement { result.append(action) }
         result.append(.space)
-        if isPersianAlphabetic(context) { result.append(.character(.zeroWidthSpace)) }
+        if context.isAlphabetic(.persian) { result.append(.character(.zeroWidthSpace)) }
         result.append(keyboardReturnAction(for: context))
         if !isPortrait(context), needsDictation, let action = dictationReplacement { result.append(action) }
         return result
@@ -97,7 +97,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         if isArabicAlphabetic(context) { return [] }
         if isElevenElevenNineAlphabetic(context) { return [switcher] }
         if isKurdishSoraniArabicAlphabetic(context) { return [] }
-        if isPersianAlphabetic(context) { return [] }
+        if context.isAlphabetic(.persian) { return [] }
         if isRussianAlphabetic(context) { return [switcher] }
         if isTenTenEightAlphabetic(context) { return [switcher] }
         if isTwelveTwelveNineAlphabetic(context) { return [switcher] }
@@ -113,7 +113,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         if isArabicAlphabetic(context) { return [trailingMarginAction(for: actions[2]), .backspace] }
         if isElevenElevenNineAlphabetic(context) { return [.backspace] }
         if isKurdishSoraniArabicAlphabetic(context) { return [.backspace] }
-        if isPersianAlphabetic(context) { return [.backspace] }
+        if context.isAlphabetic(.persian) { return [.backspace] }
         if isTenTenEightAlphabetic(context) { return [.backspace] }
         if isTwelveTwelveNineAlphabetic(context) { return [.backspace] }
         if isUkrainianAlphabetic(context) { return [.backspace] }
@@ -201,7 +201,7 @@ private extension iPhoneKeyboardLayoutProvider {
         if isKurdishSoraniArabic(context) { return .input }
         if isTenTenEightAlphabetic(context) { return .input }
         if isTwelveTwelveNineAlphabetic(context) { return .available }
-        if isPersianAlphabetic(context) { return .input }
+        if context.isAlphabetic(.persian) { return .input }
         if isUkrainianAlphabetic(context) { return .input }
         return standard
     }
@@ -242,5 +242,21 @@ private extension iPhoneKeyboardLayoutProvider {
         guard isExpectedPhoneInputActions(actions) else { return false }
         if isGreekAlphabetic(context) { return true }
         return false
+    }
+}
+
+
+// MARK: - KeyboardContext Extension
+
+private extension KeyboardContext {
+
+    /// This function makes the context checks above shorter.
+    func `is`(_ locale: KeyboardLocale) -> Bool {
+        hasKeyboardLocale(locale)
+    }
+
+    /// This function makes the context checks above shorter.
+    func isAlphabetic(_ locale: KeyboardLocale) -> Bool {
+        hasKeyboardLocale(locale) && keyboardType.isAlphabetic
     }
 }

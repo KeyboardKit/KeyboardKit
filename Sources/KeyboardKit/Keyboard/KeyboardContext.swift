@@ -201,18 +201,10 @@ public extension KeyboardContext {
     }
 
     /**
-     Whether or not the context has a certain keyboard locale.
+     Whether or not the context has a certain locale.
      */
     func hasKeyboardLocale(_ locale: KeyboardLocale) -> Bool {
         self.locale.identifier == locale.localeIdentifier
-    }
-
-    /**
-     Whether or not the context has a certain keyboard locale
-     and keyboard type.
-     */
-    func hasKeyboardLocale(_ locale: KeyboardLocale, type: KeyboardType) -> Bool {
-        hasKeyboardLocale(locale) && hasKeyboardType(type)
     }
 
     /**

@@ -97,7 +97,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         result.append(.nextKeyboard)
         if needsDictation, let action = dictationReplacement { result.append(action) }
         result.append(.space)
-        if isPersianAlphabetic(context) { result.append(.character(.zeroWidthSpace)) }
+        if context.isAlphabetic(.persian) { result.append(.character(.zeroWidthSpace)) }
         if let action = keyboardSwitchActionForBottomRow(for: context) { result.append(action) }
         result.append(.dismissKeyboard)
         return result
@@ -110,7 +110,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         if isArabicAlphabetic(context) { return [] }
         if isKurdishSoraniArabicAlphabetic(context) { return [] }
-        if isPersianAlphabetic(context) { return [] }
+        if context.isAlphabetic(.persian) { return [] }
         return [action]
     }
 
@@ -121,7 +121,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         if isArabicAlphabetic(context) { return [keyboardReturnAction(for: context)] }
         if isKurdishSoraniArabicAlphabetic(context) { return [keyboardReturnAction(for: context)] }
-        if isPersianAlphabetic(context) { return [] }
+        if context.isAlphabetic(.persian) { return [] }
         if hasTwelveTwelveTenAlphabeticInput { return [.newLine] }
         return [action]
     }
@@ -159,7 +159,6 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     }
 }
 
-
 // MARK: - Width functions
 
 private extension iPadKeyboardLayoutProvider {
@@ -167,7 +166,7 @@ private extension iPadKeyboardLayoutProvider {
     func backspaceWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
         if isArabic(context) { return .input }
         if isKurdishSoraniArabic(context) { return .input }
-        if isPersian(context) { return .input }
+        if context.is(.persian) { return .input }
         if hasTwelveTwelveTenAlphabeticInput { return .input }
         return .percentage(0.125)
     }
@@ -241,5 +240,21 @@ private extension iPadKeyboardLayoutProvider {
         case .shift, .keyboardType: return row == 2 && index > 0
         default: return false
         }
+    }
+}
+
+
+// MARK: - KeyboardContext Extension
+
+private extension KeyboardContext {
+
+    /// This function makes the context checks above shorter.
+    func `is`(_ locale: KeyboardLocale) -> Bool {
+        hasKeyboardLocale(locale)
+    }
+
+    /// This function makes the context checks above shorter.
+    func isAlphabetic(_ locale: KeyboardLocale) -> Bool {
+        hasKeyboardLocale(locale) && keyboardType.isAlphabetic
     }
 }

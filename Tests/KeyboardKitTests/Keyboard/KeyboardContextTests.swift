@@ -90,42 +90,7 @@ class KeyboardContextTests: QuickSpec {
             }
         }
 
-        describe("has keyboard locale and type") {
-
-            func result(for locale: KeyboardLocale, _ type: KeyboardType) -> Bool {
-                context.hasKeyboardLocale(locale, type: type)
-            }
-
-            it("returns true for matching type") {
-                context.keyboardType = .emojis
-                context.setLocale(.swedish)
-                expect(result(for: .swedish, .emojis)).to(beTrue())
-                expect(result(for: .swedish, .numeric)).to(beFalse())
-                expect(result(for: .finnish, .emojis)).to(beFalse())
-                expect(result(for: .german, .emojis)).to(beFalse())
-                expect(result(for: .norwegian, .emojis)).to(beFalse())
-            }
-        }
-
         describe("has keyboard type") {
-
-            func result(for type: KeyboardType) -> Bool {
-                context.hasKeyboardType(type)
-            }
-
-            it("returns true for matching type") {
-                context.keyboardType = .emojis
-                expect(result(for: .emojis)).to(beTrue())
-                expect(result(for: .alphabetic(.auto))).to(beFalse())
-                expect(result(for: .custom(named: ""))).to(beFalse())
-                expect(result(for: .email)).to(beFalse())
-                expect(result(for: .images)).to(beFalse())
-                expect(result(for: .numeric)).to(beFalse())
-                expect(result(for: .symbolic)).to(beFalse())
-            }
-        }
-
-        describe("has keyboard type with locale") {
 
             func result(for type: KeyboardType) -> Bool {
                 context.hasKeyboardType(type)
