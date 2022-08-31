@@ -1,8 +1,24 @@
 import Foundation
 
-@available(*, deprecated, message: "Use KeyboardContext extensions instead.")
+@available(*, deprecated, message: "Use hasAlphabeticInputCount(_) instead.")
 extension SystemKeyboardLayoutProvider {
 
+    var hasElevenElevenNineAlphabeticInput: Bool {
+        hasAlphabeticInputCount([11, 11, 9])
+    }
+
+    var hasTwelveElevenNineAlphabeticInput: Bool {
+        hasAlphabeticInputCount([12, 11, 9])
+    }
+
+    var hasTwelveTwelveTenAlphabeticInput: Bool {
+        hasAlphabeticInputCount([12, 12, 10])
+    }
+}
+
+@available(*, deprecated, message: "Use KeyboardContext extensions instead.")
+extension SystemKeyboardLayoutProvider {
+    
     func isAlphabetic(_ context: KeyboardContext) -> Bool {
         context.keyboardType.isAlphabetic
     }

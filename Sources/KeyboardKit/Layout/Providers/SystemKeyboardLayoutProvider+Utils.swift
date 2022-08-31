@@ -29,28 +29,14 @@ public extension SystemKeyboardLayoutProvider {
     }
 
     /**
-     Whether or not the alphabetic input set uses an 11-10-9
-     layout, which is used by e.g. `Swedish` iPad.
+     Whether or not the current alphabetic input set has the
+     provided number of inputs.
      */
-    var hasElevenElevenNineAlphabeticInput: Bool {
-        alphabeticInputCount.prefix(3) == [11, 11, 9]
+    func hasAlphabeticInputCount(_ rows: [Int]) -> Bool {
+        Array(alphabeticInputCount.prefix(rows.count)) == rows
     }
 
-    /**
-     Whether or not the alphabetic input set uses an 11-10-9
-     layout, which is used by e.g. `Turkish` iPad.
-     */
-    var hasTwelveElevenNineAlphabeticInput: Bool {
-        alphabeticInputCount.prefix(3) == [12, 11, 9]
-    }
-
-    /**
-     Whether or not the alphabetic input set uses a 12-12-10
-     layout, which is used by e.g. `Belarusian` iPad.
-     */
-    var hasTwelveTwelveTenAlphabeticInput: Bool {
-        alphabeticInputCount.prefix(3) == [12, 12, 10]
-    }
+    
 
     /**
      Whether or not to use an 10-10-8 keyboard layout, which

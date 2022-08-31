@@ -23,7 +23,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ### 🗑 Deprecations
 
-* All `SystemKeyboardLayoutProvider` context-based locale functions have been deprecated.
+* A bunch of `SystemKeyboardLayoutProvider` layout util functions have been deprecated.
 
 
 

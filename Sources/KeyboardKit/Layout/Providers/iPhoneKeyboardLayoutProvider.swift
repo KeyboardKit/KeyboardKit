@@ -196,7 +196,7 @@ private extension iPhoneKeyboardLayoutProvider {
         let bottomWidth = bottomSystemButtonWidth(for: context)
         let standard = isPortrait(context) ? bottomWidth : .percentage(0.12)
         if context.isAlphabetic(.arabic) { return isPortrait(context) ? bottomWidth : .percentage(0.14) }
-        if hasTwelveElevenNineAlphabeticInput { return .percentage(0.11) }
+        if hasAlphabeticInputCount([12, 11, 9]) { return .percentage(0.11) }    // e.g. Turkish
         if isElevenElevenNineAlphabetic(context) { return .input }
         if context.is(.kurdish_sorani_arabic) { return .input }
         if isTenTenEightAlphabetic(context) { return .input }

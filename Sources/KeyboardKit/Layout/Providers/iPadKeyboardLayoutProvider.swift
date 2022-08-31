@@ -66,7 +66,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         case .dismissKeyboard: return .inputPercentage(1.45)
         case .keyboardType: return row == 2 ? .available : .input
         case .nextKeyboard: return .input
-        case .newLine: if hasTwelveTwelveTenAlphabeticInput { return .available }
+        case .newLine: if hasAlphabeticInputCount([12, 12, 10]) { return .available }   // e.g. Belarusian
         default: break
         }
 
@@ -122,7 +122,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         if context.isAlphabetic(.arabic) { return [keyboardReturnAction(for: context)] }
         if context.isAlphabetic(.kurdish_sorani_arabic) { return [keyboardReturnAction(for: context)] }
         if context.isAlphabetic(.persian) { return [] }
-        if hasTwelveTwelveTenAlphabeticInput { return [.newLine] }
+        if hasAlphabeticInputCount([12, 12, 10]) { return [.newLine] }  // e.g. Belarusian
         return [action]
     }
 
@@ -130,7 +130,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      Additional leading actions to apply to the middle row.
      */
     open func middleLeadingActions(for context: KeyboardContext) -> KeyboardActions {
-        if hasTwelveTwelveTenAlphabeticInput { return [] }
+        if hasAlphabeticInputCount([12, 12, 10]) { return [] }  // e.g. Belarusian
         return [.none]
     }
 
@@ -140,7 +140,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     open func middleTrailingActions(for context: KeyboardContext) -> KeyboardActions {
         if context.isAlphabetic(.arabic) { return [] }
         if context.isAlphabetic(.kurdish_sorani_arabic) { return [] }
-        if hasTwelveTwelveTenAlphabeticInput { return [] }
+        if hasAlphabeticInputCount([12, 12, 10]) { return [] }  // e.g. Belarusian
         return [keyboardReturnAction(for: context)]
     }
 
@@ -167,7 +167,7 @@ private extension iPadKeyboardLayoutProvider {
         if context.is(.arabic) { return .input }
         if context.is(.kurdish_sorani_arabic) { return .input }
         if context.is(.persian) { return .input }
-        if hasTwelveTwelveTenAlphabeticInput { return .input }
+        if hasAlphabeticInputCount([12, 12, 10]) { return .input }  // e.g. Belarusian
         return .percentage(0.125)
     }
 
@@ -176,7 +176,7 @@ private extension iPadKeyboardLayoutProvider {
     }
 
     func lowerLeadingSwitcherWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
-        if hasElevenElevenNineAlphabeticInput { return .inputPercentage(1.1) }
+        if hasAlphabeticInputCount([11, 11, 9]) { return .inputPercentage(1.1) }    // e.g. Swedish
         return .input
     }
 
