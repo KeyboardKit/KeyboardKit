@@ -98,20 +98,6 @@ public extension SystemKeyboardLayoutProvider {
     }
 
     /**
-     Whether or not to the context is Greek.
-     */
-    func isGreek(_ context: KeyboardContext) -> Bool {
-        context.locale.identifier == KeyboardLocale.greek.localeIdentifier
-    }
-
-    /**
-     Whether or not to the context is Greek alphabetic.
-     */
-    func isGreekAlphabetic(_ context: KeyboardContext) -> Bool {
-        isAlphabetic(context) && isGreek(context)
-    }
-
-    /**
      Get the leading margin action for a certain action row.
      */
     func leadingMarginAction(for actions: KeyboardActions) -> KeyboardAction {
@@ -143,6 +129,14 @@ public extension SystemKeyboardLayoutProvider {
 
 @available(*, deprecated, message: "Use KeyboardContext extensions instead.")
 extension SystemKeyboardLayoutProvider {
+
+    func isGreek(_ context: KeyboardContext) -> Bool {
+        context.locale.identifier == KeyboardLocale.greek.localeIdentifier
+    }
+
+    func isGreekAlphabetic(_ context: KeyboardContext) -> Bool {
+        isAlphabetic(context) && isGreek(context)
+    }
 
     func isKurdishSoraniArabic(_ context: KeyboardContext) -> Bool {
         context.locale.identifier == KeyboardLocale.kurdish_sorani_arabic.localeIdentifier

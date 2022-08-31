@@ -55,7 +55,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         switch action {
         case dictationReplacement: return bottomSystemButtonWidth(for: context)
         case .character:
-            if isGreekAlphabetic(context) { return .percentage(0.1) }
+            if context.isAlphabetic(.greek) { return .percentage(0.1) }
             return isLastNumericInputRow(row, for: context) ? lastSymbolicInputWidth(for: context) : .input
         case .backspace: return lowerSystemButtonWidth(for: context)
         case .keyboardType: return bottomSystemButtonWidth(for: context)
@@ -222,7 +222,7 @@ private extension iPhoneKeyboardLayoutProvider {
      */
     func shouldAddLowerMarginActions(for actions: KeyboardActionRows, context: KeyboardContext) -> Bool {
         guard isExpectedPhoneInputActions(actions) else { return false }
-        if isGreekAlphabetic(context) { return true }
+        if context.isAlphabetic(.greek) { return true }
         return false
     }
 
@@ -231,7 +231,7 @@ private extension iPhoneKeyboardLayoutProvider {
      */
     func shouldAddMiddleMarginActions(for actions: KeyboardActionRows, context: KeyboardContext) -> Bool {
         guard isExpectedPhoneInputActions(actions) else { return false }
-        if isGreekAlphabetic(context) { return true }
+        if context.isAlphabetic(.greek) { return true }
         return actions[0].count > actions[1].count
     }
 
@@ -240,7 +240,7 @@ private extension iPhoneKeyboardLayoutProvider {
      */
     func shouldAddUpperMarginActions(for actions: KeyboardActionRows, context: KeyboardContext) -> Bool {
         guard isExpectedPhoneInputActions(actions) else { return false }
-        if isGreekAlphabetic(context) { return true }
+        if context.isAlphabetic(.greek) { return true }
         return false
     }
 }
