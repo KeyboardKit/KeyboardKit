@@ -109,7 +109,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     open func lowerLeadingActions(for context: KeyboardContext) -> KeyboardActions {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         if isArabicAlphabetic(context) { return [] }
-        if isKurdishSoraniArabicAlphabetic(context) { return [] }
+        if context.isAlphabetic(.kurdish_sorani_arabic) { return [] }
         if context.isAlphabetic(.persian) { return [] }
         return [action]
     }
@@ -120,7 +120,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     open func lowerTrailingActions(for context: KeyboardContext) -> KeyboardActions {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         if isArabicAlphabetic(context) { return [keyboardReturnAction(for: context)] }
-        if isKurdishSoraniArabicAlphabetic(context) { return [keyboardReturnAction(for: context)] }
+        if context.isAlphabetic(.kurdish_sorani_arabic) { return [keyboardReturnAction(for: context)] }
         if context.isAlphabetic(.persian) { return [] }
         if hasTwelveTwelveTenAlphabeticInput { return [.newLine] }
         return [action]
@@ -139,7 +139,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func middleTrailingActions(for context: KeyboardContext) -> KeyboardActions {
         if isArabic(context) { return [] }
-        if isKurdishSoraniArabicAlphabetic(context) { return [] }
+        if context.isAlphabetic(.kurdish_sorani_arabic) { return [] }
         if hasTwelveTwelveTenAlphabeticInput { return [] }
         return [keyboardReturnAction(for: context)]
     }
@@ -165,7 +165,7 @@ private extension iPadKeyboardLayoutProvider {
 
     func backspaceWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
         if isArabic(context) { return .input }
-        if isKurdishSoraniArabic(context) { return .input }
+        if context.is(.kurdish_sorani_arabic) { return .input }
         if context.is(.persian) { return .input }
         if hasTwelveTwelveTenAlphabeticInput { return .input }
         return .percentage(0.125)

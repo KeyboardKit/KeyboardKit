@@ -112,21 +112,6 @@ public extension SystemKeyboardLayoutProvider {
     }
 
     /**
-     Whether or not to the context is Kurdish Sorani Arabic.
-     */
-    func isKurdishSoraniArabic(_ context: KeyboardContext) -> Bool {
-        context.locale.identifier == KeyboardLocale.kurdish_sorani_arabic.localeIdentifier
-    }
-
-    /**
-     Whether or not to this context is Kurdish Sorani Arabic
-     alphabetic.
-     */
-    func isKurdishSoraniArabicAlphabetic(_ context: KeyboardContext) -> Bool {
-        isAlphabetic(context) && isKurdishSoraniArabic(context)
-    }
-
-    /**
      Get the leading margin action for a certain action row.
      */
     func leadingMarginAction(for actions: KeyboardActions) -> KeyboardAction {
@@ -158,6 +143,14 @@ public extension SystemKeyboardLayoutProvider {
 
 @available(*, deprecated, message: "Use KeyboardContext extensions instead.")
 extension SystemKeyboardLayoutProvider {
+
+    func isKurdishSoraniArabic(_ context: KeyboardContext) -> Bool {
+        context.locale.identifier == KeyboardLocale.kurdish_sorani_arabic.localeIdentifier
+    }
+
+    func isKurdishSoraniArabicAlphabetic(_ context: KeyboardContext) -> Bool {
+        isAlphabetic(context) && isKurdishSoraniArabic(context)
+    }
 
     func isPersian(_ context: KeyboardContext) -> Bool {
         context.locale.identifier == KeyboardLocale.persian.localeIdentifier
