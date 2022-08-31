@@ -1,13 +1,11 @@
-# KeyboardKit
-
 <p align="center">
-    <img src ="Resources/Logo.png" width=600 />
+    <img src ="Resources/Logo.png" width=600 alt="KeyboardKit Logo" title="KeyboardKit" />
 </p>
 
 <p align="center">
     <img src="https://img.shields.io/github/v/release/KeyboardKit/KeyboardKit?color=%2300550&sort=semver" alt="Version" />
     <img src="https://img.shields.io/cocoapods/p/KeyboardKit.svg?style=flat" alt="Platform" />
-    <img src="https://img.shields.io/badge/Swift-5.5-orange.svg" alt="Swift 5.5" />
+    <img src="https://img.shields.io/badge/Swift-5.6-orange.svg" alt="Swift 5.6" />
     <img src="https://img.shields.io/github/license/KeyboardKit/KeyboardKit" alt="MIT License" />
     <a href="https://twitter.com/getkeyboardkit">
         <img src="https://img.shields.io/badge/contact-@getkeyboardkit-blue.svg?style=flat" alt="Twitter: @getkeyboardkit" />
@@ -20,11 +18,13 @@
 
 KeyboardKit helps you build custom keyboard extensions with Swift and SwiftUI. It extends the native keyboard APIs and provides you with a lot more functionality than is otherwise available. 
 
-The end result can look something like this...or entirely different:
+The result can look like this or completely different:
 
 <p align="center">
     <img src ="Resources/Demo.gif" width="300" />
 </p>
+
+KeyboardKit supports using entirely custom views, but provides you with a large set of tools and views that make it easy to replicate the native iOS keyboards. 
 
 If you're new to iOS keyboard extensions, [this great guide][Guide] will help you get started. You can also have a look at the demo apps for inspiration.
 
@@ -40,13 +40,13 @@ Although KeyboardKit builds on all platform, some features are unavailable on so
 
 ## Installation
 
-The best way to install KeyboardKit is to use the Swift Package Manager.
+KeyboardKit can be installed with the Swift Package Manager:
 
 ```
 https://github.com/KeyboardKit/KeyboardKit.git
 ```
 
-KeyboardKit also supports CocoaPods:
+or with CocoaPods:
 
 ```
 pod KeyboardKit
@@ -58,23 +58,21 @@ You can add the library to the main app, the keyboard extension and any other ta
 
 ## Getting started
 
-Once KeyboardKit is added to your project, you can start using it in your application and keyboard extension.
-
-[Read more here][Getting-Started]
+The online documentation has a [getting-started guide][Getting-Started] that will help you get started with the library.
 
 
 
 ## Documentation
 
-The [online documentation][Documentation] contains more information, code examples etc. and makes it easy to overview the various parts of the library.
+The [online documentation][Documentation] has articles, code examples etc. that let you overview the various parts of the library.
 
-The online documentation is currently iOS only. To generate documentation for other platforms, open the package in Xcode, select a simulator then run `Product/Build Documentation`.
+The online documentation is currently iOS-specific. To generate documentation for other platforms, open the package in Xcode, select a simulator then run `Product/Build Documentation`.
 
 
 
 ## 🇸🇪 Localization
 
-KeyboardKit is localized in 50 keyboard-specific locales:
+KeyboardKit is localized in 50+ keyboard-specific locales:
 
 🇺🇸 🇦🇱 🇦🇪 🇧🇾 🇧🇬 🇦🇩 🇭🇷 🇨🇿 🇩🇰 🇳🇱 <br />
 🇧🇪 🇬🇧 🇺🇸 🇪🇪 🇫🇴 🇵🇭 🇫🇮 🇫🇷 🇧🇪 🇨🇭 <br />
@@ -89,8 +87,6 @@ KeyboardKit is localized in 50 keyboard-specific locales:
 ## Features 
 
 KeyboardKit comes packed with features to help you build powerful keyboards. 
-
-Have a look at the documentation, demo apps and source code for more information and examples.
 
 
 ### 💥 Actions
@@ -248,10 +244,12 @@ KeyboardKit Pro is also a way to support this project, which is otherwise comple
 
 This repository contains a `Demo` folder with two demo apps that lets you try out KeyboardKit and KeyboardKit Pro:
 
-* The standard demo has a system keyboard that mimics an English keyboard and a unicode-based keyboard.
-* The pro demo has a system keyboard with support for all keyboard locales and an `RTL` variant as well. 
+* `Demo` has a system keyboard that mimics an English keyboard, as well as a unicode-based keyboard.
+* `Demo - Pro` shows you how to use KeyboardKit Pro and has one keyboard for LTR locales, and one for RTL locales. 
 
-To run the demo apps, open and run the projects, then enable the keyboards under system settings. Full access is required forfeatures like audio and haptic feedback.
+To run the demo apps, open and run the projects, then enable the keyboards you want to try under System Settings. 
+
+Note that you need to enable full access to try some features, like audio and haptic feedback.
 
 
 
@@ -264,9 +262,12 @@ Feel free to reach out if you have questions or if you want to contribute in any
 * Web site: [getkeyboardkit.com][Website]
 
 
-## Sponsors and Clients
 
-This project is proudly sponsored by the following companies:
+## Support
+
+You can sponsor this project on [GitHub Sponsors][Sponsors] or get in touch for paid support. 
+
+KeyboardKit is proudly sponsored by the following companies:
 
 <a href="https://www.oribi.se/en">
     <img src="Resources/sponsors/oribi.png" alt="Oribi Icon" title="Oribi" width=120 />
@@ -287,7 +288,7 @@ This project is proudly sponsored by the following companies:
     <img src="Resources/sponsors/milo.png" alt="Milo Creative Icon" title="Milo Creative" width=120 />
 </a>
 
-KeyboardKit is free, but please consider sponsoring the project if you find it useful. You can support KeyboardKit through [GitHub Sponsors][Sponsors], by signing up for a [Pro][Pro] license, paying for support, donations etc.
+KeyboardKit is free, but please consider sponsoring the project or upgrading to KeyboardKit Pro if you find it useful.
 
 
 
@@ -304,6 +305,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 [Documentation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/
+[Getting-Started]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/getting-started
 [License]: https://github.com/KeyboardKit/KeyboardKit/blob/master/LICENSE
 
 [Actions]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Actions.md
@@ -315,7 +317,6 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Extensions]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Extensions.md
 [External]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/External.md
 [Gestures]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Gestures.md
-[Getting-Started]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Getting-Started.md
 [Haptic-Feedback]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Haptic-Feedback.md
 [Input-Sets]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Input-Sets.md
 [Keyboard-Layouts]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Keyboard-Layouts.md

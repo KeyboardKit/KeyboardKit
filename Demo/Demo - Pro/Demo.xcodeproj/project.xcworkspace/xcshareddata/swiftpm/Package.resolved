@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/KeyboardKit/KeyboardKitPro.git",
       "state" : {
-        "revision" : "b8352fc4d3998b547cf5ea138ff23adc3b91590b",
-        "version" : "6.0.3"
+        "revision" : "278d9f812497ae5c38aad3ca2b73f2e80048230b",
+        "version" : "6.2.0"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/danielsaidi/SwiftUIKit",
       "state" : {
-        "revision" : "ab6ef570c7c8100b98693394417a9905c925ccae",
-        "version" : "2.7.0"
+        "revision" : "62743e560c186ff40f7048e08c45f22672a14ad9",
+        "version" : "2.8.0"
       }
     }
   ],
