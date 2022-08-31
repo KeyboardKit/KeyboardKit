@@ -23,13 +23,13 @@ Although KeyboardKit builds on all platform, some features are unavailable on so
 
 ## Installation
 
-The best way to add KeyboardKit to your app is to use the Swift Package Manager.
+KeyboardKit can be installed with the Swift Package Manager:
 
 ```
-https://github.com/danielsaidi/KeyboardKit.git
+https://github.com/KeyboardKit/KeyboardKit.git
 ```
 
-KeyboardKit also supports CocoaPods:
+or with CocoaPods:
 
 ```
 pod KeyboardKit
@@ -41,9 +41,21 @@ You can add the library to the main app, the keyboard extension and any other ta
 
 ## About this documentation
 
-The online documentation is currently iOS only. To generate documentation for other platforms, open the package in Xcode, select a simulator then run `Product/Build Documentation`.
+The online documentation is currently iOS-specific. To generate documentation for other platforms, open the package in Xcode, select a simulator then run `Product/Build Documentation`.
 
-Note that type extensions are not included in this documentation.
+Note that extensions to native types are not included in this documentation. Future versions of this library will aim at adding protocols for these extensions, to make them appear in the documentation.
+
+
+
+## 🇸🇪 Localization
+
+KeyboardKit is localized in 50+ keyboard-specific locales:
+
+🇺🇸 🇦🇱 🇦🇪 🇧🇾 🇧🇬 🇦🇩 🇭🇷 🇨🇿 🇩🇰 🇳🇱 <br />
+🇧🇪 🇬🇧 🇺🇸 🇪🇪 🇫🇴 🇵🇭 🇫🇮 🇫🇷 🇧🇪 🇨🇭 <br />
+🇬🇪 🇩🇪 🇦🇹 🇨🇭 🇬🇷 🇭🇺 🇮🇸 🇮🇪 🇮🇹 🇹🇯 <br />
+🇱🇻 🇱🇹 🇲🇰 🇲🇹 🇲🇳 🇳🇴 🇮🇷 🇵🇱 🇵🇹 🇧🇷 <br />
+🇷🇴 🇷🇺 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 🇹🇷 🇺🇦 <br />
 
 
 

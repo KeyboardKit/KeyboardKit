@@ -33,6 +33,7 @@ KeyboardKit is localized in 50 keyboard-specific locales:
 * 🇮🇪 Irish
 * 🇮🇹 Italian
 * 🇹🇯 Kurdish Sorani
+* 🇹🇯 Kurdish Sorani (Arabic)
 * 🇱🇻 Latvian
 * 🇱🇹 Lithuanian
 * 🇲🇰 Macedonian
@@ -50,7 +51,8 @@ KeyboardKit is localized in 50 keyboard-specific locales:
 * 🇸🇮 Slovenian
 * 🇸🇰 Slovak
 * 🇪🇸 Spanish
-* 🇸🇪 Swedish
+* 🇸🇪 Swahili
+* 🇰🇪 Swedish
 * 🇹🇷 Turkish
 * 🇺🇦 Ukrainian
 

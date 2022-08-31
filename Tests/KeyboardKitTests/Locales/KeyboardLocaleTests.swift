@@ -72,6 +72,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .slovenian: "sl",
                         .slovak: "sk",
                         .spanish: "es",
+                        .swahili: "sw",
                         .swedish: "sv",
                         .turkish: "tr",
                         .ukrainian: "uk"
@@ -154,6 +155,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .slovenian: "slovenščina",
                         .slovak: "slovenčina",
                         .spanish: "español",
+                        .swahili: "Kiswahili",
                         .swedish: "svenska",
                         .turkish: "Türkçe",
                         .ukrainian: "українська"
@@ -218,6 +220,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .slovak: "🇸🇰",
                         .spanish: "🇪🇸",
                         .swedish: "🇸🇪",
+                        .swahili: "🇰🇪",
                         .turkish: "🇹🇷",
                         .ukrainian: "🇺🇦"
                     ]

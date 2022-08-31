@@ -11,6 +11,14 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 6.2.1
+
+### 🌐 New locales
+
+* 🇰🇪 Swahili
+
+
+
 ## 6.2
 
 This release adds a bunch of new emojis that have been added since emojis were last updated.
