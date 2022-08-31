@@ -127,20 +127,6 @@ public extension SystemKeyboardLayoutProvider {
     }
 
     /**
-     Whether or not to the context is Russian alphabetic.
-     */
-    func isRussianAlphabetic(_ context: KeyboardContext) -> Bool {
-        isAlphabetic(context) && context.locale.identifier == KeyboardLocale.russian.localeIdentifier
-    }
-
-    /**
-     Whether or not to the context is Ukranian alphabetic.
-     */
-    func isUkrainianAlphabetic(_ context: KeyboardContext) -> Bool {
-        isAlphabetic(context) && context.locale.identifier == KeyboardLocale.ukrainian.localeIdentifier
-    }
-
-    /**
      Get the leading margin action for a certain action row.
      */
     func leadingMarginAction(for actions: KeyboardActions) -> KeyboardAction {
@@ -179,5 +165,13 @@ extension SystemKeyboardLayoutProvider {
 
     func isPersianAlphabetic(_ context: KeyboardContext) -> Bool {
         isAlphabetic(context) && isPersian(context)
+    }
+
+    func isRussianAlphabetic(_ context: KeyboardContext) -> Bool {
+        isAlphabetic(context) && context.locale.identifier == KeyboardLocale.russian.localeIdentifier
+    }
+
+    func isUkrainianAlphabetic(_ context: KeyboardContext) -> Bool {
+        isAlphabetic(context) && context.locale.identifier == KeyboardLocale.ukrainian.localeIdentifier
     }
 }

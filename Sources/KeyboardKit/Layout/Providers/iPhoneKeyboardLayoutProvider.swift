@@ -98,10 +98,10 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         if isElevenElevenNineAlphabetic(context) { return [switcher] }
         if isKurdishSoraniArabicAlphabetic(context) { return [] }
         if context.isAlphabetic(.persian) { return [] }
-        if isRussianAlphabetic(context) { return [switcher] }
+        if context.isAlphabetic(.russian) { return [switcher] }
         if isTenTenEightAlphabetic(context) { return [switcher] }
         if isTwelveTwelveNineAlphabetic(context) { return [switcher] }
-        if isUkrainianAlphabetic(context) { return [switcher] }
+        if context.isAlphabetic(.ukrainian) { return [switcher] }
         return [switcher, leadingMarginAction(for: actions[2])]
     }
 
@@ -116,7 +116,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         if context.isAlphabetic(.persian) { return [.backspace] }
         if isTenTenEightAlphabetic(context) { return [.backspace] }
         if isTwelveTwelveNineAlphabetic(context) { return [.backspace] }
-        if isUkrainianAlphabetic(context) { return [.backspace] }
+        if context.isAlphabetic(.ukrainian) { return [.backspace] }
         return [trailingMarginAction(for: actions[2]), .backspace]
     }
 
@@ -202,7 +202,7 @@ private extension iPhoneKeyboardLayoutProvider {
         if isTenTenEightAlphabetic(context) { return .input }
         if isTwelveTwelveNineAlphabetic(context) { return .available }
         if context.isAlphabetic(.persian) { return .input }
-        if isUkrainianAlphabetic(context) { return .input }
+        if context.isAlphabetic(.ukrainian) { return .input }
         return standard
     }
 
