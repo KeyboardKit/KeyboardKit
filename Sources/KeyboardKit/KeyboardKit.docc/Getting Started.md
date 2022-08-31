@@ -1,6 +1,6 @@
 # Getting started
 
-This article discusses how to install KeyboardKit and get started using it in your app.
+This article discusses how get started using KeyboardKit in your app.
 
 
 ## How to use KeyboardKit
@@ -33,7 +33,7 @@ This will make the provided view the main view of the keyboard extension, and ca
 
 Once your keyboard is created, KeyboardKit will observe context changes to automatically update the keyboard, e.g. when the keyboard type changes.
 
-Note that it's important that the view observes the global ``KeyboardInputViewController/keyboardContext``, either by using the injected environment object or by setting it up as an observed object, otherwise it will be unresponsive to context changes. If your view doesn't react when you tap the shift or numeric key, that is most probably the cause.
+It's important that the view observes the global ``KeyboardInputViewController/keyboardContext``, either by using the injected environment object or by setting it up as an observed object, otherwise it will be unresponsive to context changes. If your view doesn't react when you tap the shift or numeric key, that is most probably the cause.
 
 
 
