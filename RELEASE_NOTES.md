@@ -13,6 +13,8 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 6.3
 
+This release adds two new locales and a bunch of input set changes.
+
 ### 👑 KeyboardKit Pro changes
 
 * `AlphabeticInputSet` has new `qwertz` and `azerty` input set builders.
