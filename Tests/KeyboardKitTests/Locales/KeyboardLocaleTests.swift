@@ -11,6 +11,7 @@ import Quick
 import Nimble
 import KeyboardKit
 
+// swiftlint:disable type_body_length
 class KeyboardLocaleTests: QuickSpec {
     
     override func spec() {
