@@ -120,7 +120,6 @@ public extension KeyboardLocale {
     var flag: String {
         switch self {
         case .english: return "🇺🇸"
-            
         case .albanian: return "🇦🇱"
         case .arabic: return "🇦🇪"
         case .belarusian: return "🇧🇾"
@@ -130,6 +129,7 @@ public extension KeyboardLocale {
         case .czech: return "🇨🇿"
         case .danish: return "🇩🇰"
         case .dutch: return "🇳🇱"
+
         case .dutch_belgium: return "🇧🇪"
         case .english_gb: return "🇬🇧"
         case .english_us: return "🇺🇸"
@@ -140,6 +140,7 @@ public extension KeyboardLocale {
         case .french: return "🇫🇷"
         case .french_belgium: return "🇧🇪"
         case .french_switzerland: return "🇨🇭"
+
         case .georgian: return "🇬🇪"
         case .german: return "🇩🇪"
         case .german_austria: return "🇦🇹"
@@ -150,6 +151,7 @@ public extension KeyboardLocale {
         case .icelandic: return "🇮🇸"
         case .irish: return "🇮🇪"
         case .italian: return "🇮🇹"
+
         case .kurdish_sorani: return "🇹🇯"
         case .kurdish_sorani_arabic: return "🇹🇯"
         case .latvian: return "🇱🇻"
@@ -160,6 +162,7 @@ public extension KeyboardLocale {
         case .norwegian: return "🇳🇴"
         case .persian: return "🇮🇷"
         case .polish: return "🇵🇱"
+
         case .portuguese: return "🇵🇹"
         case .portuguese_brazil: return "🇧🇷"
         case .romanian: return "🇷🇴"
@@ -170,6 +173,7 @@ public extension KeyboardLocale {
         case .slovenian: return "🇸🇮"
         case .spanish: return "🇪🇸"
         case .swahili: return "🇰🇪"
+            
         case .swedish: return "🇸🇪"
         case .turkish: return "🇹🇷"
         case .ukrainian: return "🇺🇦"
