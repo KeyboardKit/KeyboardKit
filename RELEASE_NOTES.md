@@ -13,7 +13,15 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 6.3
 
-### ✨ New Features
+### 👑 KeyboardKit Pro changes
+
+* `AlphabeticInputSet` has new `qwertz` and `azerty` input set builders.
+* `AlphabeticInputSet`, `NumericInputSet` and `SymbolicInputSet` has input set builders for all keyboard locales.
+* `InputSetProvider`s that support `QWERTY`, `QWERTZ` and `AZERTY` now lets you inject a custom alphabetic input set.
+* `KurdishSoraniArabicInputSetProvider` has been tweaked to render a more correct layout.
+* `StandardInputSetProvider` now handles lexicon-based completions differently and ignores single-char suggestions.
+
+### ✨ New features
 
 * `KeyboardContext` has new `hasKeyboardLocale` and `hasKeyboardLocale` functions.
 * `AlphabeticInputSet` has a new `qwerty` input set builder.
@@ -28,7 +36,6 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 ### 🗑 Deprecations
 
 * A bunch of `SystemKeyboardLayoutProvider` layout util functions have been deprecated.
-
 
 
 ## 6.2
