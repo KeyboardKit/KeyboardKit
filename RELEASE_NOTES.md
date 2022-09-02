@@ -16,6 +16,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 ### ✨ New features
 
 * `KeyboardLayoutItem` properties are now mutable.
+* `KeyboardRowItem` has a bunch of new collection extensions.
 
 
 

@@ -9,8 +9,13 @@
 import Foundation
 
 /**
- This protocol can be implemented by any type that is stored
- in "rows" that should be easily mutated.
+ This protocol can be implemented by types that represent an
+ item in a kind of row, such as input sets, layout items etc.
+
+ The reason for having this protocol is mainly to have a way
+ to share functionality. It is implemented by ``InputSetItem``
+ and ``KeyboardLayoutItem`` and provide collection extension
+ functions in `KeyboardRowItem+Collection`.
  
  The reason to why not using `Identifiable` instead, is that
  the row ID may not be unique. The same item may appear many

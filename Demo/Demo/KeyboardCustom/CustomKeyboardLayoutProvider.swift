@@ -24,19 +24,14 @@ class CustomKeyboardLayoutProvider: DemoKeyboardLayoutProvider {
 
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         let layout = super.keyboardLayout(for: context)
-        var row = layout.itemRows[1]
-        guard
-            let kItem = (row.first { $0.action == .character("K") }),
-            var iItem = (row.first { $0.action == .character("I") })
-            // let tItem = (row.first { $0.action == .character("t") })
-        else { return layout }
-        iItem.size = KeyboardLayoutItemSize(
-            width: .inputPercentage(2),
-            height: iItem.size.height)
-        row.remove(iItem)
-        row.insert(iItem, after: kItem.action)
-        // row.insert(iItem, before: tItem)
-        layout.itemRows[1] = row
+        guard let templateItem = layout.itemRows.first?.first else { return layout }
+        let widerItem = KeyboardLayoutItem(
+            action: .character("I"),
+            size: KeyboardLayoutItemSize(
+                width: .inputPercentage(2),
+                height: templateItem.size.height),
+            insets: templateItem.insets)
+        layout.itemRows.replace(KeyboardAction.character("I"), with: widerItem)
         return layout
     }
 }
