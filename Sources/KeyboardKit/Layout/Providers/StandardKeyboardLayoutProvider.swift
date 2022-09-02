@@ -29,7 +29,7 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
      Create a standard keyboard layout provider.
      
      - Parameters:
-       - device: The device type to generate layouts for.
+       - device: The device type to generate layouts for, by default `.current`.
        - inputSetProvider: The input set provider to use.
        - dictationReplacement: An optional dictation replacement action.
      */

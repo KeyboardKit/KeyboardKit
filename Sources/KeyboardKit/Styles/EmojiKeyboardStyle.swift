@@ -52,7 +52,8 @@ public struct EmojiKeyboardStyle {
         systemFont: Font = .system(size: 16),
         selectedCategoryColor: Color = .primary.opacity(0.1),
         abcText: String = "ABC",
-        backspaceIcon: Image = .keyboardBackspace) {
+        backspaceIcon: Image = .keyboardBackspace
+    ) {
         self.itemSize = itemSize
         self.itemFont = itemFont
         self.categoryFont = categoryFont
@@ -65,7 +66,7 @@ public struct EmojiKeyboardStyle {
         self.abcText = abcText
         self.backspaceIcon = backspaceIcon
     }
-    
+
     /**
      The text to use for the ABC button.
      */
@@ -212,11 +213,18 @@ public extension EmojiKeyboardStyle {
     
     /**
      Get the standard style to use for a certain context.
+
+     - Parameters:
+       - context: The context to base the style on.
+       - device: The device type to base the style on, by default `.current`.
      */
-    static func standard(for context: KeyboardContext) -> EmojiKeyboardStyle {
+    static func standard(
+        for context: KeyboardContext,
+        device: DeviceType = .current
+    ) -> EmojiKeyboardStyle {
         #if os(iOS)
         let isPortrait = context.screenOrientation.isPortrait
-        if context.device.isPhone {
+        if device == .phone {
             return isPortrait ? .standardPhonePortrait : .standardPhoneLandscape
         }
         if context.screen.isIpadProLargeScreen {

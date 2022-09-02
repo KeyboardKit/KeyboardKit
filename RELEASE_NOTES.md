@@ -15,7 +15,8 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ### ✨ New features
 
-* `CaseAdjustable` is a new protocol that 
+* `CaseAdjustable` is a new protocol that
+* `EmojiKeyboardStyle` now lets you provide a device type in the standard style builder. 
 * `InputSet` properties are now mutable.
 * `InputSetItem` properties are now mutable.
 * `KeyboardColorReader` is a new protocol that is implemented by `Color` and lets its implementations access keyboard colors.
