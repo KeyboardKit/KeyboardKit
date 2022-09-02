@@ -6,18 +6,14 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
+import CoreGraphics
 import KeyboardKit
 import MockingKit
-import UIKit
 
 class MockKeyboardActionHandler: Mock, KeyboardActionHandler {
     
     lazy var handleRef = MockReference(handle)
     lazy var handleDragReg = MockReference(handleDrag)
-    lazy var handleTapRef = MockReference(handleTap)
-    lazy var handleLongPressRef = MockReference(handleLongPress)
-    lazy var handleRepeatRef = MockReference(handleRepeat)
     lazy var giveHapticFeedbackForTapRef = MockReference(giveHapticFeedbackForTap)
     lazy var giveHapticFeedbackForDoubleTapRef = MockReference(giveHapticFeedbackForDoubleTap)
     lazy var giveHapticFeedbackForLongPressRef = MockReference(giveHapticFeedbackForLongPress)
@@ -34,19 +30,7 @@ class MockKeyboardActionHandler: Mock, KeyboardActionHandler {
     func handleDrag(on action: KeyboardAction, from startLocation: CGPoint, to currentLocation: CGPoint) {
         call(handleDragReg, args: (action, startLocation, currentLocation))
     }
-    
-    func handleTap(on action: KeyboardAction, view: UIView) {
-        call(handleTapRef, args: (action, view))
-    }
-    
-    func handleLongPress(on action: KeyboardAction, view: UIView) {
-        call(handleLongPressRef, args: (action, view))
-    }
-    
-    func handleRepeat(on action: KeyboardAction, view: UIView) {
-        call(handleRepeatRef, args: (action, view))
-    }
-    
+
     func giveHapticFeedbackForTap(on action: KeyboardAction) {
         call(giveHapticFeedbackForTapRef, args: action)
     }
@@ -63,4 +47,3 @@ class MockKeyboardActionHandler: Mock, KeyboardActionHandler {
         call(giveHapticFeedbackForRepeatRef, args: action)
     }
 }
-#endif

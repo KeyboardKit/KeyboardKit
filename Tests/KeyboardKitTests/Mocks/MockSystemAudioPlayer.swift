@@ -6,18 +6,14 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(macOS) || os(tvOS)
 import KeyboardKit
 import MockingKit
 
-class MockSystemAudioPlayer: StandardSystemAudioPlayer, Mockable {
-    
-    let mock = Mock()
+class MockSystemAudioPlayer: Mock, SystemAudioPlayer {
     
     lazy var playRef = MockReference(play)
     
-    override func play(_ audio: SystemAudio) {
+    func play(_ audio: SystemAudio) {
         call(playRef, args: (audio))
     }
 }
-#endif

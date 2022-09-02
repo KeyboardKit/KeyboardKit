@@ -6,7 +6,6 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
 import Foundation
 
 /**
@@ -54,4 +53,3 @@ public protocol KeyboardFeedbackHandler {
      */
     func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction)
 }
-#endif

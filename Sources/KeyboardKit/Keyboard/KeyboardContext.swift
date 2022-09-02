@@ -68,11 +68,6 @@ public class KeyboardContext: ObservableObject {
     }
     #endif
     
-    #if os(iOS) || os(tvOS)
-    @available(*, deprecated, message: "Use deviceType instead.")
-    public var device: UIDevice = .current
-    #endif
-    
     /**
      This property can be set to `false` to stop the context
      from syncing with the vc. It is experimental and can be
@@ -204,6 +199,14 @@ public class KeyboardContext: ObservableObject {
         guard let controller = controller else { return }
         self.sync(with: controller)
     }
+    #endif
+
+
+    // MARK: - Deprecated
+
+    #if os(iOS) || os(tvOS)
+    @available(*, deprecated, message: "Use deviceType instead.")
+    public var device: UIDevice = .current
     #endif
 }
 

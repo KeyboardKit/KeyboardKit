@@ -6,7 +6,6 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
 import Quick
 import Nimble
 import SwiftUI
@@ -21,7 +20,7 @@ class StandardKeyboardAppearanceTests: QuickSpec {
         var context: KeyboardContext!
         
         beforeEach {
-            context = KeyboardContext(controller: MockKeyboardInputViewController())
+            context = KeyboardContext()
             appearance = StandardKeyboardAppearance(context: context)
         }
         
@@ -207,4 +206,3 @@ private extension Optional where Wrapped: Equatable {
         }
     }
 }
-#endif

@@ -9,20 +9,16 @@
 import KeyboardKit
 import MockingKit
 
-#if os(iOS)
-class MockHapticFeedbackPlayer: StandardHapticFeedbackPlayer, Mockable {
-    
-    let mock = Mock()
+class MockHapticFeedbackPlayer: Mock, HapticFeedbackPlayer {
     
     lazy var playRef = MockReference(play)
     lazy var prepareRef = MockReference(prepare)
     
-    override func play(_ feedback: HapticFeedback) {
+    func play(_ feedback: HapticFeedback) {
         call(playRef, args: (feedback))
     }
     
-    override func prepare(_ feedback: HapticFeedback) {
+    func prepare(_ feedback: HapticFeedback) {
         call(prepareRef, args: (feedback))
     }
 }
-#endif

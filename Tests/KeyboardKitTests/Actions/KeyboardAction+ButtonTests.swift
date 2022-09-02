@@ -6,7 +6,6 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
 import Quick
 import Nimble
 import KeyboardKit
@@ -31,7 +30,7 @@ class KeyboardAction_ImagesTests: QuickSpec {
         var unexpected: [KeyboardAction]!
         
         beforeEach {
-            context = KeyboardContext(controller: MockKeyboardInputViewController())
+            context = KeyboardContext()
             unexpected = KeyboardAction.testActions
             expected = []
         }
@@ -121,4 +120,3 @@ class KeyboardAction_ImagesTests: QuickSpec {
         }
     }
 }
-#endif

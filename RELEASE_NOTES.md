@@ -13,7 +13,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 6.4
 
-This release makes more functionality available for macOS and watchOS.
+This release makes more types, extensions, mocks and unit tests available for macOS and watchOS.
 
 This release also converts a bunch of type extensions to protocols, which make the functionality show up in DocC and become available to more types.
 
@@ -21,14 +21,16 @@ There are also new layout utilities that make adjusting keyboard locales a lot e
 
 ### ✨ New features
 
-* `CaseAdjustable` is a new protocol that
-* `EmojiKeyboardStyle` now lets you provide a device type in the standard style builder. 
+* `CaseAdjustable` is a new protocol that can be implemented by types that should be able to adjust themselves to a casing.
+* `EmojiKeyboardStyle` now lets you provide a device type in the standard style builder.
+* `HapticFeedback` now uses `HapticFeedbackPlayer` for its `player`. 
 * `InputCallout` now lets you provide a device type in the initializer.
 * `InputSet` properties are now mutable.
 * `InputSetItem` properties are now mutable.
 * `KeyboardColorReader` is a new protocol that is implemented by `Color` and lets its implementations access keyboard colors.
 * `KeyboardContext` has a new `keyboardType` property.
 * `KeyboardContext` no longer requires a controller in the initializer, although it's good to provide one.
+* `KeyboardFeedbackHandler` is now available on all platforms.
 * `KeyboardImageReader` is a new protocol that is implemented by `Image` and lets its implementations access keyboard images.
 * `KeyboardLayout` has new ideal height and inset properties, which can be used to create new item types easier.
 * `KeyboardLayoutConfiguration` properties are now mutable.
@@ -37,6 +39,8 @@ There are also new layout utilities that make adjusting keyboard locales a lot e
 * `KeyboardLayoutItemSize` properties are now mutable.
 * `KeyboardRowItem` has a bunch of new collection extensions.
 * `StandardAutocompleteSuggestion` properties are now mutable.
+* `StandardKeyboardFeedbackHandler` is now available on all platforms.
+* `SystemAudio` now uses `SystemAudioPlayer` for its `player`.
 
 ### 💡 Behavior changes
 
@@ -50,10 +54,10 @@ There are also new layout utilities that make adjusting keyboard locales a lot e
 * The `Color.DarkAppearanceStrategy` is no longer used and has been deprecated.
 * The `KeyboardContext` `device` initializer and property has been deprecated.
 * The `KeyboardLayoutConfiguration` standard configuration for idiom has been deprecated.
+* The `MockCollectionViewLayout` is no longer used and has been deprecated.
 * Two `Sequence` extensions for mapping casing are no longer used and have been deprecated.
 * The `StandardKeyboardLayoutProvider` `fallbackProvider` has been deprecated.
 * The `StandardKeyboardLayoutProvider` `layoutProvider(for:)` has been renamed to `keyboardLayoutProvider(for:)`.
-
 
 
 ## 6.3

@@ -6,7 +6,6 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
 import Quick
 import Nimble
 import Foundation
@@ -20,7 +19,7 @@ class StandardCalloutActionProviderTests: QuickSpec {
         var context: KeyboardContext!
         
         beforeEach {
-            context = KeyboardContext(controller: MockKeyboardInputViewController())
+            context = KeyboardContext()
             provider = StandardCalloutActionProvider(context: context)
         }
         
@@ -70,4 +69,3 @@ class StandardCalloutActionProviderTests: QuickSpec {
         }
     }
 }
-#endif

@@ -6,7 +6,6 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
 import Quick
 import Nimble
 import KeyboardKit
@@ -21,7 +20,7 @@ class SystemKeyboardLayoutProviderTests: QuickSpec {
         var layoutConfig: KeyboardLayoutConfiguration!
         
         beforeEach {
-            context = KeyboardContext(controller: MockKeyboardInputViewController())
+            context = KeyboardContext()
             layoutConfig = .standard(for: context)
             inputSetProvider = MockInputSetProvider()
             inputSetProvider.alphabeticInputSetValue = AlphabeticInputSet(rows: [["a", "b", "c"]].map(InputSetRow.init))
@@ -188,4 +187,3 @@ class SystemKeyboardLayoutProviderTests: QuickSpec {
         }
     }
 }
-#endif

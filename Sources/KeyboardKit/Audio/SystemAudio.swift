@@ -54,9 +54,9 @@ public extension SystemAudio {
     }
     
     #if os(iOS) || os(macOS) || os(tvOS)
-    static var player = StandardSystemAudioPlayer.shared
+    static var player: SystemAudioPlayer = StandardSystemAudioPlayer.shared
     #else
-    static var player = DisabledSystemAudioPlayer()
+    static var player: SystemAudioPlayer = DisabledSystemAudioPlayer()
     #endif
     
     /**

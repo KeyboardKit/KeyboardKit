@@ -99,7 +99,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     
     /**
-     Try to handling a certain `gesture` n a certain `action`.
+     Try handling a certain `gesture` on a certain `action`.
      
      This function is used by the standard action handler to
      handle the cases where the action can be triggered as a

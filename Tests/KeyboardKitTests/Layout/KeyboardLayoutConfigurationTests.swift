@@ -6,10 +6,14 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS)
+import CoreGraphics
 import Quick
 import Nimble
+
+#if os(iOS)
 import UIKit
+#endif
+
 @testable import KeyboardKit
 
 class KeyboardLayoutConfigurationTests: QuickSpec {
@@ -60,7 +64,8 @@ class KeyboardLayoutConfigurationTests: QuickSpec {
                 expect(config.rowHeight).to(equal(56))
             }
         }
-        
+
+        #if os(iOS)
         describe("standard keyboard configuration") {
             
             func config(
@@ -155,6 +160,6 @@ class KeyboardLayoutConfigurationTests: QuickSpec {
                 }
             }
         }
+        #endif
     }
 }
-#endif

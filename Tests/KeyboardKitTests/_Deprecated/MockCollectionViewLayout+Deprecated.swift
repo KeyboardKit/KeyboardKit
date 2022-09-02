@@ -10,6 +10,7 @@
 import MockingKit
 import UIKit
 
+@available(*, deprecated, message: "This will be removed in KeyboardKit 7.")
 class MockCollectionViewLayout: UICollectionViewFlowLayout, Mockable {
     
     lazy var invalidateLayoutRef = MockReference(invalidateLayout as () -> Void)
