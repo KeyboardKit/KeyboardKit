@@ -70,7 +70,6 @@ KeyboardKit is available under the MIT license.
 ### Articles
 
 - <doc:Getting-Started>
-- <doc:Going-Further>
 - <doc:Understanding-Actions>
 - <doc:Understanding-Appearance>
 - <doc:Understanding-Autocomplete>
@@ -83,7 +82,6 @@ KeyboardKit is available under the MIT license.
 
 - ``KeyboardInputViewController``
 - ``KeyboardContext``
-- ``KeyboardCasing``
 - ``KeyboardType``
 - ``KeyboardEnabledState``
 - ``KeyboardEnabledStateInspector``
@@ -141,6 +139,7 @@ KeyboardKit is available under the MIT license.
 ### Casing
 
 - ``CaseAdjustable``
+- ``KeyboardCasing``
 
 ### Colors
 

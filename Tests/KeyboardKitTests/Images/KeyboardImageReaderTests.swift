@@ -1,5 +1,5 @@
 //
-//  Image+ButtonTests.swift
+//  KeyboardImageReaderTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-06-22.
@@ -11,7 +11,7 @@ import Nimble
 import KeyboardKit
 import SwiftUI
 
-class Image_KeyboardTests: QuickSpec {
+class KeyboardImageReaderTests: QuickSpec {
     
     override func spec() {
         

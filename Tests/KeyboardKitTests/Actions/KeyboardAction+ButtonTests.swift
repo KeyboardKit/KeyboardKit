@@ -1,5 +1,5 @@
 //
-//  KeyboardAction+ButtonTests.swift
+//  KeyboardAction+ImagesTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-11.
@@ -12,7 +12,7 @@ import Nimble
 import KeyboardKit
 import SwiftUI
 
-class KeyboardAction_SystemTests: QuickSpec {
+class KeyboardAction_ImagesTests: QuickSpec {
     
     override func spec() {
         
