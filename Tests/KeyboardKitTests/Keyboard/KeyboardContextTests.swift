@@ -39,12 +39,12 @@ class KeyboardContextTests: QuickSpec {
             
             it("applies provided params") {
                 context = KeyboardContext(controller: controller, keyboardType: .images)
-                expect(context.device).to(be(UIDevice.current))
-                
+
                 expect(context.keyboardType).toEventually(equal(.images))
                 expect(context.locale).toEventually(equal(.current))
                 expect(context.locales).toEventually(equal([.current]))
                 
+                expect(context.deviceType).to(equal(.current))
                 expect(context.hasDictationKey).toEventually(equal(controller.hasDictationKey))
                 expect(context.hasFullAccess).toEventually(equal(controller.hasFullAccess))
                 expect(context.needsInputModeSwitchKey).toEventually(equal(controller.needsInputModeSwitchKey))

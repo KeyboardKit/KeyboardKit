@@ -27,6 +27,7 @@ There are also new layout utilities that make adjusting keyboard locales a lot e
 * `InputSet` properties are now mutable.
 * `InputSetItem` properties are now mutable.
 * `KeyboardColorReader` is a new protocol that is implemented by `Color` and lets its implementations access keyboard colors.
+* `KeyboardContext` has a new `keyboardType` property.
 * `KeyboardContext` no longer requires a controller in the initializer, although it's good to provide one.
 * `KeyboardImageReader` is a new protocol that is implemented by `Image` and lets its implementations access keyboard images.
 * `KeyboardLayout` has new ideal height and inset properties, which can be used to create new item types easier.
@@ -48,6 +49,7 @@ There are also new layout utilities that make adjusting keyboard locales a lot e
 ### 🗑 Deprecations
 
 * The `Color.DarkAppearanceStrategy` is no longer used and has been deprecated.
+* The `KeyboardContext` `device` initializer and property has been deprecated.
 * Two `Sequence` extensions for mapping casing are no longer used and have been deprecated.
 * The `StandardKeyboardLayoutProvider` `fallbackProvider` has been deprecated.
 * The `StandardKeyboardLayoutProvider` `layoutProvider(for:)` has been deprecated.

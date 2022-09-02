@@ -30,24 +30,22 @@ public class KeyboardContext: ObservableObject {
     #if os(iOS) || os(tvOS)
     /**
      Create a context instance.
-     
+
      - Parameters:
        - controller: The controller with which the context should sync, if any.
        - locale: The locale to use, by default `.current`.
-       - device: The device to use, by default `.current`.
+       - device: The device to use, by default ``DeviceType/current``.
        - screen: The screen to use, by default `.main`.
        - keyboardType: The current keyboard tye, by default `.alphabetic(.lowercased)`
      */
     public init(
         controller: KeyboardInputViewController? = nil,
         locale: Locale = .current,
-        device: UIDevice = .current,
         screen: UIScreen = .main,
         keyboardType: KeyboardType = .alphabetic(.lowercased)
     ) {
         self.locale = locale
         self.locales = [locale]
-        self.device = device
         self.screen = screen
         self.keyboardType = keyboardType
         guard let controller = controller else { return }
@@ -71,7 +69,8 @@ public class KeyboardContext: ObservableObject {
     #endif
     
     #if os(iOS) || os(tvOS)
-    public let device: UIDevice
+    @available(*, deprecated, message: "Use deviceType instead.")
+    public var device: UIDevice = .current
     #endif
     
     /**
@@ -84,22 +83,36 @@ public class KeyboardContext: ObservableObject {
     /**
      The bundle ID of the currently active app.
      */
-    @Published public var activeAppBundleId: String?
+    @Published
+    public var activeAppBundleId: String?
+
+
+    /**
+     The device type that is currently used.
+
+     By default, this is ``DeviceType/current``, but you can
+     change it to anything you like.
+     */
+    @Published
+    public var deviceType: DeviceType = .current
     
     /**
      Whether or not the input controller has a dictation key.
      */
-    @Published public var hasDictationKey: Bool = false
+    @Published
+    public var hasDictationKey: Bool = false
     
     /**
      Whether or not the extension has been given full access.
      */
-    @Published public var hasFullAccess: Bool = false
+    @Published
+    public var hasFullAccess: Bool = false
 
     /**
      The keyboard type that is currently used.
      */
-    @Published public var keyboardType: KeyboardType
+    @Published
+    public var keyboardType: KeyboardType
     
     /**
      The locale that is currently being used.
@@ -107,7 +120,8 @@ public class KeyboardContext: ObservableObject {
      This uses `Locale` instead of ``KeyboardLocale``, since
      keyboards can use locales that are not in that enum.
      */
-    @Published public var locale: Locale
+    @Published
+    public var locale: Locale
     
     /**
      The locales that are currently enabled for the keyboard.
@@ -115,25 +129,29 @@ public class KeyboardContext: ObservableObject {
      ``selectNextLocale()`` can be called to select the next
      locale in this list.
      */
-    @Published public var locales: [Locale]
+    @Published
+    public var locales: [Locale]
     
     /**
      Whether or not the keyboard should (must) have a switch
      key for selecting the next keyboard.
      */
-    @Published public var needsInputModeSwitchKey: Bool = false
+    @Published
+    public var needsInputModeSwitchKey: Bool = false
     
     /**
      The primary language that is currently being used.
      */
-    @Published public var primaryLanguage: String?
+    @Published
+    public var primaryLanguage: String?
 
 
     #if os(iOS) || os(tvOS)
     /**
      The screen in which the keyboard is presented.
      */
-    @Published public var screen: UIScreen
+    @Published
+    public var screen: UIScreen
     #endif
     
     
@@ -141,7 +159,8 @@ public class KeyboardContext: ObservableObject {
     /**
      The current screen orientation.
      */
-    @Published public var screenOrientation: UIInterfaceOrientation = .portrait
+    @Published
+    public var screenOrientation: UIInterfaceOrientation = .portrait
     #endif
     
     
@@ -149,17 +168,42 @@ public class KeyboardContext: ObservableObject {
     /**
      The text document proxy that is currently active.
      */
-    @Published public var textDocumentProxy: UITextDocumentProxy = PreviewTextDocumentProxy()
+    @Published
+    public var textDocumentProxy: UITextDocumentProxy = PreviewTextDocumentProxy()
     
     /**
      The text input mode of the input controller.
      */
-    @Published public var textInputMode: UITextInputMode?
+    @Published
+    public var textInputMode: UITextInputMode?
     
     /**
      The input controller's current trait collection.
      */
-    @Published public var traitCollection: UITraitCollection = UITraitCollection()
+    @Published
+    public var traitCollection: UITraitCollection = UITraitCollection()
+    #endif
+
+
+    // MARK: - Deprecated
+
+    #if os(iOS) || os(tvOS)
+    @available(*, deprecated, message: "Use initializer without device instead.")
+    public init(
+        controller: KeyboardInputViewController? = nil,
+        locale: Locale = .current,
+        device: UIDevice = .current,
+        screen: UIScreen = .main,
+        keyboardType: KeyboardType = .alphabetic(.lowercased)
+    ) {
+        self.locale = locale
+        self.locales = [locale]
+        self.device = device
+        self.screen = screen
+        self.keyboardType = keyboardType
+        guard let controller = controller else { return }
+        self.sync(with: controller)
+    }
     #endif
 }
 
