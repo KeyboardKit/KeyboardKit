@@ -246,10 +246,33 @@ KeyboardKit Pro is also a way to support this project, which is otherwise comple
 
 This repository contains a `Demo` folder with two demo apps that lets you try out KeyboardKit and KeyboardKit Pro:
 
-* `Demo` has a system keyboard that mimics an English keyboard, as well as a unicode-based keyboard.
-* `Demo - Pro` shows you how to use KeyboardKit Pro and has one keyboard for LTR locales, and one for RTL locales. 
+### Demo
 
-To run the demo apps, open and run the projects, then enable the keyboards you want to try under System Settings. 
+This app sets up KeyboardKit with SPM and lets you type in a light and dark text field. 
+
+The app has two different keyboards:
+
+* The `English` keyboard uses a `SystemKeyboard` to mimic a native English keyboard.
+* The `Unicode` keyboard uses a `SystemKeyboard` and a custom, unicode-based input set.
+
+Have a look at the app to see how both the app and the keyboard targets must link the KeyboardKit package to work.  
+
+### Demo - Pro
+
+This app looks and behaves like the demo app, but uses KeyboardKit Pro instead.
+
+The app has two different keyboards:
+
+* The `System LTR` keyboard uses a `SystemKeyboards` and lets you try out all left-to-right locales.
+* The `System RTL` keyboard uses a `SystemKeyboards` and lets you try out all right-to-left locales.
+
+Thanks to KeyboardKit Pro, these apps offer autocomplete as well.
+
+Have a look at this app to see how the closed-source KeyboardKit Pro only has to be added to the main app target. 
+
+### How to run the demo apps
+
+To run the demo apps, open and run these projects, then enable the keyboards you want to try under System Settings.
 
 Note that you need to enable full access to try some features, like audio and haptic feedback.
 

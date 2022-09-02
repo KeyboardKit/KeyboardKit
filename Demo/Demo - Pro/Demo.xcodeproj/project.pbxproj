@@ -629,7 +629,7 @@
 				DEVELOPMENT_TEAM = PMEDFW438U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KeyboardRTL/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = RTL;
+				INFOPLIST_KEY_CFBundleDisplayName = "System RTL";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Daniel Saidi. All rights reserved.";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -656,7 +656,7 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KeyboardRTL/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = RTL;
+				INFOPLIST_KEY_CFBundleDisplayName = "System RTL";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Daniel Saidi. All rights reserved.";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
