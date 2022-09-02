@@ -13,6 +13,12 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 6.4
 
+This release makes more functionality available for macOS and watchOS.
+
+This release also converts a bunch of type extensions to protocols, which make the functionality show up in DocC and become available to more types.
+
+There are also new layout utilities that make adjusting keyboard locales a lot easier.
+
 ### ✨ New features
 
 * `CaseAdjustable` is a new protocol that
@@ -23,7 +29,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 * `KeyboardColorReader` is a new protocol that is implemented by `Color` and lets its implementations access keyboard colors.
 * `KeyboardContext` no longer requires a controller in the initializer, although it's good to provide one.
 * `KeyboardImageReader` is a new protocol that is implemented by `Image` and lets its implementations access keyboard images.
-* `KeyboardLayout` has new ideal height and inset properties.
+* `KeyboardLayout` has new ideal height and inset properties, which can be used to create new item types easier.
 * `KeyboardLayoutConfiguration` properties are now mutable.
 * `KeyboardLayoutItem` properties are now mutable.
 * `KeyboardLayoutItemSize` properties are now mutable.
