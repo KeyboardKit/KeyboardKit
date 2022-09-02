@@ -25,6 +25,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 * `KeyboardLayoutItemSize` properties are now mutable.
 * `KeyboardRowItem` has a bunch of new collection extensions.
 * `StandardAutocompleteSuggestion` properties are now mutable.
+* `StandardKeyboardLayoutProvider` now lets you inject a custom device type.
 
 ### 💡 Behavior changes
 

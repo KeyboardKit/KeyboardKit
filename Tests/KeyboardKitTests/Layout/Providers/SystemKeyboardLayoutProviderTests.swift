@@ -71,7 +71,8 @@ class SystemKeyboardLayoutProviderTests: QuickSpec {
                 let chars = [["a", "b", "c"], ["d", "e", "f"]]
                 let inputs = chars.map(InputSetRow.init)
                 let actions = provider.actions(for: inputs, context: context)
-                let expected = KeyboardActionRows(characters: chars.uppercased())
+                let expectedChars = [["A", "B", "C"], ["D", "E", "F"]]
+                let expected = KeyboardActionRows(characters: expectedChars)
                 expect(actions).to(equal(expected))
             }
         }

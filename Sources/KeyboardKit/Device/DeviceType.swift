@@ -31,7 +31,7 @@ public extension DeviceType {
      */
     static var current: DeviceType {
         #if os(iOS)
-        UIDevice.current.isPad ? .pad : .phone
+        UIDevice.current.userInterfaceIdiom == .pad ? .pad : .phone
         #elseif os(macOS)
         .mac
         #elseif os(tvOS)

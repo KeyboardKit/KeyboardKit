@@ -29,16 +29,25 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
      Create a standard keyboard layout provider.
      
      - Parameters:
+       - device: The device type to generate layouts for.
        - inputSetProvider: The input set provider to use.
        - dictationReplacement: An optional dictation replacement action.
      */
     public init(
+        device: DeviceType = .current,
         inputSetProvider: InputSetProvider,
-        dictationReplacement: KeyboardAction? = nil) {
+        dictationReplacement: KeyboardAction? = nil
+    ) {
+        self.device = device
         self.inputSetProvider = inputSetProvider
         self.dictationReplacement = dictationReplacement
     }
-    
+
+
+    /**
+     The device type to generate layouts for.
+     */
+    public let device: DeviceType
     
     /**
      An optional dictation replacement action.
@@ -85,7 +94,8 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
      Get a keyboard layout for a certain keyboard `context`.
      */
     open func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
-        layoutProvider(for: context).keyboardLayout(for: context)
+        layoutProvider(for: context)
+            .keyboardLayout(for: context)
     }
     
     /**
@@ -93,7 +103,7 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
      */
     open func layoutProvider(for context: KeyboardContext) -> KeyboardLayoutProvider {
         #if os(iOS) || os(tvOS)
-        context.device.isPad ? iPadProvider : iPhoneProvider
+        device == .pad ? iPadProvider : iPhoneProvider
         #else
         fallbackProvider
         #endif

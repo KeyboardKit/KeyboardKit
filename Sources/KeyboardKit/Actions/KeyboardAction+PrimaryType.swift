@@ -55,7 +55,8 @@ public extension KeyboardAction {
         }
 
         /**
-         All unique primary button types, excluding custom.
+         All unique keyboard action types, but excluding the
+         ``KeyboardAction/custom(named:)`` type.
          */
         public static var allCases: [KeyboardAction.PrimaryType] {
             return [.done, .go, .join, .newLine, .ok, .search]
