@@ -112,16 +112,14 @@ KeyboardKit is available under the MIT license.
 
 ### Autocomplete
 
+- ``AutocompleteCompletion``
 - ``AutocompleteContext``
 - ``AutocompleteProvider``
-- ``AutocompleteSuggestion``
-- ``StandardAutocompleteSuggestion``
-
-### Autocomplete Types
-
-- ``AutocompleteCompletion``
 - ``AutocompleteResult``
 - ``AutocompleteSpaceState``
+- ``AutocompleteSuggestion``
+- ``DisabledAutocompleteProvider``
+- ``StandardAutocompleteSuggestion``
 
 ### Behavior
 
@@ -140,9 +138,14 @@ KeyboardKit is available under the MIT license.
 - ``EnglishCalloutActionProvider``
 - ``LocalizedCalloutActionProvider``
 
+### Casing
+
+- ``CaseAdjustable``
+
 ### Colors
 
 - ``KeyboardColor``
+- ``KeyboardColorReader``
 
 ### Device
 

@@ -15,8 +15,10 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ### ✨ New features
 
+* `CaseAdjustable` is a new protocol that 
 * `InputSet` properties are now mutable.
 * `InputSetItem` properties are now mutable.
+* `KeyboardColorReader` is a new protocol that is implemented by `Color` and lets its implementations access keyboard colors.
 * `KeyboardLayout` has new ideal height and inset properties.
 * `KeyboardLayoutConfiguration` properties are now mutable.
 * `KeyboardLayoutItem` properties are now mutable.
@@ -24,6 +26,15 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 * `KeyboardRowItem` has a bunch of new collection extensions.
 * `StandardAutocompleteSuggestion` properties are now mutable.
 
+### 💡 Behavior changes
+
+* `Color` extensions have been moved to `KeyboardColorReader`.
+* `String` casing extensions have been moved to `CaseAdjustable`.
+
+### 🗑 Deprecations
+
+* The `Color.DarkAppearanceStrategy` is no longer used and has been deprecated.
+* Two `Sequence` extensions for mapping casing are no longer used and have been deprecated.
 
 
 ## 6.3
