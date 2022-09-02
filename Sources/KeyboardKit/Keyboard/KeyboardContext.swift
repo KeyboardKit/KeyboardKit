@@ -32,23 +32,25 @@ public class KeyboardContext: ObservableObject {
      Create a context instance.
      
      - Parameters:
-       - controller: The controller to which the context should apply.
+       - controller: The controller with which the context should sync, if any.
        - locale: The locale to use, by default `.current`.
        - device: The device to use, by default `.current`.
        - screen: The screen to use, by default `.main`.
        - keyboardType: The current keyboard tye, by default `.alphabetic(.lowercased)`
      */
     public init(
-        controller: KeyboardInputViewController,
+        controller: KeyboardInputViewController? = nil,
         locale: Locale = .current,
         device: UIDevice = .current,
         screen: UIScreen = .main,
-        keyboardType: KeyboardType = .alphabetic(.lowercased)) {
+        keyboardType: KeyboardType = .alphabetic(.lowercased)
+    ) {
         self.locale = locale
         self.locales = [locale]
         self.device = device
         self.screen = screen
         self.keyboardType = keyboardType
+        guard let controller = controller else { return }
         self.sync(with: controller)
     }
     #else

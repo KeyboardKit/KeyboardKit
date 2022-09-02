@@ -6,7 +6,6 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
 import Quick
 import Nimble
 import KeyboardKit
@@ -17,13 +16,9 @@ class StandardKeyboardLayoutProviderTests: QuickSpec {
         
         var inputSetProvider: MockInputSetProvider!
         var context: KeyboardContext!
-        var device: MockDevice!
         
         beforeEach {
-            device = MockDevice()
-            context = KeyboardContext(
-                controller: MockKeyboardInputViewController(),
-                device: device)
+            context = KeyboardContext()
             inputSetProvider = MockInputSetProvider()
             inputSetProvider.alphabeticInputSetValue = AlphabeticInputSet(rows: [["a", "b", "c"], ["a", "b", "c"], ["a", "b", "c"]].map(InputSetRow.init))
             inputSetProvider.numericInputSetValue = NumericInputSet(rows: [["1", "2", "3"], ["1", "2", "3"], ["1", "2", "3"]].map(InputSetRow.init))
@@ -41,13 +36,13 @@ class StandardKeyboardLayoutProviderTests: QuickSpec {
             
             it("is phone provider if context device is phone") {
                 let provider = provider(for: .phone)
-                let result = provider.layoutProvider(for: context)
+                let result = provider.layoutProvider
                 expect(result).to(be(provider.iPhoneProvider))
             }
             
             it("is pad provider if context device is pad") {
                 let provider = provider(for: .pad)
-                let result = provider.layoutProvider(for: context)
+                let result = provider.layoutProvider
                 expect(result).to(be(provider.iPadProvider))
             }
         }
@@ -87,4 +82,3 @@ class StandardKeyboardLayoutProviderTests: QuickSpec {
         }
     }
 }
-#endif

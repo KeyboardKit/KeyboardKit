@@ -21,6 +21,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 * `InputSet` properties are now mutable.
 * `InputSetItem` properties are now mutable.
 * `KeyboardColorReader` is a new protocol that is implemented by `Color` and lets its implementations access keyboard colors.
+* `KeyboardContext` no longer requires a controller in the initializer, although it's good to provide one.
 * `KeyboardLayout` has new ideal height and inset properties.
 * `KeyboardLayoutConfiguration` properties are now mutable.
 * `KeyboardLayoutItem` properties are now mutable.
@@ -34,6 +35,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 * `Color` extensions have been moved to `KeyboardColorReader`.
 * `StandardKeyboardLayoutProvider` now fallbacks to iPhone layout instead of an empty layout.
+* `StandardKeyboardLayoutProviderTests` now runs on all platforms.
 * `String` casing extensions have been moved to `CaseAdjustable`.
 
 ### 🗑 Deprecations
