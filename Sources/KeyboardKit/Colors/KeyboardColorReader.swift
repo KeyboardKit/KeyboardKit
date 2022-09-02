@@ -13,7 +13,7 @@ import SwiftUI
  able to access keyboard-specific colors.
 
  This protocol is implemented by `Color`. This means that it
- is possible to e.g. use `Color.standardButtonBackground` to
+ is possible to use e.g. `Color.standardButtonBackground` to
  get the standard button background.
 
  The context-based color functions may look strange, but the
@@ -29,7 +29,6 @@ import SwiftUI
 
  Issue report (also reported to Apple in Feedback Assistant):
  https://github.com/danielsaidi/KeyboardKit/issues/305
- 
  */
 public protocol KeyboardColorReader {}
 

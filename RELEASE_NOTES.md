@@ -22,6 +22,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 * `InputSetItem` properties are now mutable.
 * `KeyboardColorReader` is a new protocol that is implemented by `Color` and lets its implementations access keyboard colors.
 * `KeyboardContext` no longer requires a controller in the initializer, although it's good to provide one.
+* `KeyboardImageReader` is a new protocol that is implemented by `Image` and lets its implementations access keyboard images.
 * `KeyboardLayout` has new ideal height and inset properties.
 * `KeyboardLayoutConfiguration` properties are now mutable.
 * `KeyboardLayoutItem` properties are now mutable.

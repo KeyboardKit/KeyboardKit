@@ -9,10 +9,18 @@
 import SwiftUI
 
 /**
- These lazy `Image` extensions can be overridden if you want
- to easily change the overall appearance of a keyboard.
+ This protocol can be implemented by any type that should be
+ able to access keyboard-specific images.
+
+ This protocol is implemented by `Image`. This means that it
+ is possible to use e.g. `Image.keyboardSettings` to get the
+ standard keyboard settings icon.
  */
-public extension Image {
+public protocol KeyboardImageReader {}
+
+extension Image: KeyboardImageReader {}
+
+public extension KeyboardImageReader {
     
     static var keyboard: Image { Image(systemName: "keyboard") }
     static var keyboardBackspace: Image { Image(systemName: "delete.left") }
@@ -48,7 +56,7 @@ public extension Image {
     }
 }
 
-private extension Image {
+private extension KeyboardImageReader {
     
     static var isiOS14: Bool {
         if #available(iOS 14, *) {
@@ -67,7 +75,7 @@ private extension Image {
     }
 }
 
-struct ImageButton_Previews: PreviewProvider {
+struct KeyboardImageReader_Previews: PreviewProvider {
     
     static var images: [Image] = [
         .keyboard,
