@@ -11,6 +11,14 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 6.4
+
+### ✨ New features
+
+* `KeyboardLayoutItem` properties are now mutable.
+
+
+
 ## 6.3
 
 This release adds two new locales and a bunch of input set changes.

@@ -37,7 +37,11 @@ open class KeyboardInputViewController: UIInputViewController {
         super.viewDidLayoutSubviews()
         keyboardContext.syncAfterLayout(with: self)
     }
-    
+
+    /**
+     This function is called whenever the keyboard should be
+     created or updated.
+     */
     open func viewWillSetupKeyboard() {
         // Override and implement your keyboard setup logic.
     }

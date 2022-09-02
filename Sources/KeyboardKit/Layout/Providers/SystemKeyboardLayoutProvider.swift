@@ -13,9 +13,10 @@ import SwiftUI
  This class can be inherited by any keyboard layout provider
  that needs basic functionality for creating system keyboard
  layouts that depend on system-specific rules.
- 
- This class will use an `InputSetProvider` and use the input
- set it returns to create a keyboard layout.
+
+ The class is used by the ``iPadKeyboardLayoutProvider`` and
+ and the ``iPhoneKeyboardLayoutProvider``, since they aim to
+ create platforms-specific system keyboard layouts.
  
  Since keyboard extensions don't support `dictation` without
  having to jump through hoops (see SwiftKey) the initializer

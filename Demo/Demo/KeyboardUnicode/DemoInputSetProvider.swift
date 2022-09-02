@@ -9,12 +9,13 @@
 import KeyboardKit
 
 /**
- This demo-specific input set provider replaces the standard
- English alphabetic input set with a unicode one.
- 
- For some unicode keyboards, numeric and symbolic input sets
- make no sense. If so, you should create a custom layout and
- remove the numeric/symbolic switches.
+ This demo-specific `InputSetProvider` can be used to create
+ a custom, Unicode-based input set.
+
+ Note that for some Unicode keyboards, it makes little sense
+ to have a numeric and a symbolic keyboard. If so, you could
+ create a custom `KeyboardLayoutProvider` that removes these
+ keyboard switches.
  */
 class DemoInputSetProvider: InputSetProvider {
     
