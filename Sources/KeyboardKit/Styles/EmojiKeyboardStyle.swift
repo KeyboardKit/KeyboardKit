@@ -216,15 +216,13 @@ public extension EmojiKeyboardStyle {
 
      - Parameters:
        - context: The context to base the style on.
-       - device: The device type to base the style on, by default `.current`.
      */
     static func standard(
-        for context: KeyboardContext,
-        device: DeviceType = .current
+        for context: KeyboardContext
     ) -> EmojiKeyboardStyle {
         #if os(iOS)
         let isPortrait = context.screenOrientation.isPortrait
-        if device == .phone {
+        if context.deviceType == .phone {
             return isPortrait ? .standardPhonePortrait : .standardPhoneLandscape
         }
         if context.screen.isIpadProLargeScreen {

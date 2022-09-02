@@ -29,26 +29,18 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
      Create a standard keyboard layout provider.
      
      - Parameters:
-       - device: The device type to generate layouts for, by default `.current`.
        - inputSetProvider: The input set provider to use.
        - dictationReplacement: An optional dictation replacement action.
      */
     public init(
-        device: DeviceType = .current,
         inputSetProvider: InputSetProvider,
         dictationReplacement: KeyboardAction? = nil
     ) {
-        self.device = device
         self.inputSetProvider = inputSetProvider
         self.dictationReplacement = dictationReplacement
     }
 
 
-    /**
-     The device type to generate layouts for.
-     */
-    public let device: DeviceType
-    
     /**
      An optional dictation replacement action.
      */
@@ -81,15 +73,15 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     /**
      The layout provider that is used for iPhone devices.
      */
-    open var layoutProvider: KeyboardLayoutProvider {
-        device == .pad ? iPadProvider : iPhoneProvider
+    open func keyboardLayoutProvider(for context: KeyboardContext) -> KeyboardLayoutProvider {
+        context.deviceType == .pad ? iPadProvider : iPhoneProvider
     }
 
     /**
      Get a keyboard layout for a certain keyboard `context`.
      */
     open func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
-        layoutProvider
+        keyboardLayoutProvider(for: context)
             .keyboardLayout(for: context)
     }
     
@@ -109,8 +101,8 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     open lazy var fallbackProvider = StaticKeyboardLayoutProvider(
         keyboardLayout: KeyboardLayout(itemRows: []))
 
-    @available(*, deprecated, message: "Use layoutProvider instead. This will be removed in KeyboardKit 7.")
+    @available(*, deprecated, renamed: "keyboardLayoutProvider(for:)")
     open func layoutProvider(for context: KeyboardContext) -> KeyboardLayoutProvider {
-        layoutProvider
+        keyboardLayoutProvider(for: context)
     }
 }

@@ -20,25 +20,21 @@ public struct InputCallout: View {
      - Parameters:
        - context: The context to bind against.
        - keyboardContext: The keyboard context to use for contextual decisions.
-       - device: The device type to render for, by default `.current`.
        - style: The style to apply to the view, by default `.standard`.
      */
     public init(
         context: InputCalloutContext,
         keyboardContext: KeyboardContext,
-        device: DeviceType = .current,
         style: InputCalloutStyle = .standard
     ) {
         self._context = ObservedObject(wrappedValue: context)
         self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
-        self.device = device
         self.style = style
     }
     
     @ObservedObject private var context: InputCalloutContext
     @ObservedObject private var keyboardContext: KeyboardContext
 
-    private let device: DeviceType
     private let style: InputCalloutStyle
 
     static let coordinateSpace = InputCalloutContext.coordinateSpace
@@ -110,7 +106,7 @@ private extension InputCallout {
     var shouldEnforceSmallSize: Bool {
         #if os(iOS)
         keyboardContext.screenOrientation.isLandscape &&
-        device == .phone
+        keyboardContext.deviceType == .phone
         #elseif os(watchOS)
         return true
         #else

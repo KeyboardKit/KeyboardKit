@@ -32,12 +32,11 @@ There are also new layout utilities that make adjusting keyboard locales a lot e
 * `KeyboardImageReader` is a new protocol that is implemented by `Image` and lets its implementations access keyboard images.
 * `KeyboardLayout` has new ideal height and inset properties, which can be used to create new item types easier.
 * `KeyboardLayoutConfiguration` properties are now mutable.
+* `KeyboardLayoutConfiguration` has a new standard layout for device type.
 * `KeyboardLayoutItem` properties are now mutable.
 * `KeyboardLayoutItemSize` properties are now mutable.
 * `KeyboardRowItem` has a bunch of new collection extensions.
 * `StandardAutocompleteSuggestion` properties are now mutable.
-* `StandardKeyboardLayoutProvider` now lets you inject a custom device type.
-* `StandardKeyboardLayoutProvider` has a new `layoutProvider` property.
 
 ### 💡 Behavior changes
 
@@ -50,9 +49,10 @@ There are also new layout utilities that make adjusting keyboard locales a lot e
 
 * The `Color.DarkAppearanceStrategy` is no longer used and has been deprecated.
 * The `KeyboardContext` `device` initializer and property has been deprecated.
+* The `KeyboardLayoutConfiguration` standard configuration for idiom has been deprecated.
 * Two `Sequence` extensions for mapping casing are no longer used and have been deprecated.
 * The `StandardKeyboardLayoutProvider` `fallbackProvider` has been deprecated.
-* The `StandardKeyboardLayoutProvider` `layoutProvider(for:)` has been deprecated.
+* The `StandardKeyboardLayoutProvider` `layoutProvider(for:)` has been renamed to `keyboardLayoutProvider(for:)`.
 
 
 

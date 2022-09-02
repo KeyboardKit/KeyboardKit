@@ -19,7 +19,8 @@ public struct ActionCallout: View {
      
      - Parameters:
        - context: The context to bind against.
-       - style: The style to apply to the view, by default `.standard`.
+       - device: The device type to use, by default ``DeviceType/current``.
+       - style: The style to apply to the view, by default ``ActionCalloutStyle/standard``.
      */
     public init(
         context: ActionCalloutContext,

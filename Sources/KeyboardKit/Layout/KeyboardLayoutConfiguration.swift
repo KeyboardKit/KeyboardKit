@@ -29,7 +29,8 @@ public struct KeyboardLayoutConfiguration: Equatable {
     public init(
         buttonCornerRadius: CGFloat,
         buttonInsets: EdgeInsets,
-        rowHeight: CGFloat) {
+        rowHeight: CGFloat
+    ) {
         self.buttonCornerRadius = buttonCornerRadius
         self.buttonInsets = buttonInsets
         self.rowHeight = rowHeight
@@ -56,11 +57,10 @@ public extension KeyboardLayoutConfiguration {
     /**
      The standard config for the provided `context`.
      */
-    static func standard(
-        for context: KeyboardContext) -> KeyboardLayoutConfiguration {
+    static func standard(for context: KeyboardContext) -> KeyboardLayoutConfiguration {
         #if os(iOS)
         standard(
-            forIdiom: context.device.userInterfaceIdiom,
+            forDevice: context.deviceType,
             screenSize: context.screen.bounds.size,
             orientation: context.screenOrientation)
         #else
@@ -73,15 +73,15 @@ public extension KeyboardLayoutConfiguration {
      The standard config for the provided device and screen.
      */
     static func standard(
-        forIdiom idiom: UIUserInterfaceIdiom,
+        forDevice device: DeviceType,
         screenSize size: CGSize,
         orientation: UIInterfaceOrientation) -> KeyboardLayoutConfiguration {
-        switch idiom {
+        switch device {
         case .pad: return standardPad(forScreenSize: size, orientation: orientation)
         default: return standardPhone(forScreenSize: size, orientation: orientation)
         }
     }
-    
+
     /**
      The standard pad config for the provided `screen`.
      */
