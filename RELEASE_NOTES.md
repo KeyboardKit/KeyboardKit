@@ -28,16 +28,21 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 * `KeyboardRowItem` has a bunch of new collection extensions.
 * `StandardAutocompleteSuggestion` properties are now mutable.
 * `StandardKeyboardLayoutProvider` now lets you inject a custom device type.
+* `StandardKeyboardLayoutProvider` has a new `layoutProvider` property.
 
 ### 💡 Behavior changes
 
 * `Color` extensions have been moved to `KeyboardColorReader`.
+* `StandardKeyboardLayoutProvider` now fallbacks to iPhone layout instead of an empty layout.
 * `String` casing extensions have been moved to `CaseAdjustable`.
 
 ### 🗑 Deprecations
 
 * The `Color.DarkAppearanceStrategy` is no longer used and has been deprecated.
 * Two `Sequence` extensions for mapping casing are no longer used and have been deprecated.
+* The `StandardKeyboardLayoutProvider` `fallbackProvider` has been deprecated.
+* The `StandardKeyboardLayoutProvider` `layoutProvider(for:)` has been deprecated.
+
 
 
 ## 6.3
