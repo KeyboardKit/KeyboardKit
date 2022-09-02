@@ -10,7 +10,7 @@ import Foundation
 
 /**
  This struct represents a keyboard input item with a neutral,
- an uppercased and a lowercased string.
+ uppercased and lowercased string.
  
  You can either create an instance with just a string, which
  is the regular way of working with input sets. However, the
@@ -18,13 +18,27 @@ import Foundation
  can use it to create unicode keyboards etc.
  */
 public struct InputSetItem: Equatable {
-    
+
+    /**
+     Create an input set item.
+
+     - Parameters:
+       - char: The char to use for all casings.
+     */
     public init(_ char: String) {
         self.neutral = char
         self.uppercased = char.uppercased()
         self.lowercased = char.lowercased()
     }
-    
+
+    /**
+     Create an input set item with individual char values.
+
+     - Parameters:
+       - neutral: The neutral char value.
+       - uppercased: The uppercased char value.
+       - lowercased: The lowercased char value.
+     */
     public init(
         neutral: String,
         uppercased: String,
@@ -33,11 +47,25 @@ public struct InputSetItem: Equatable {
         self.uppercased = uppercased
         self.lowercased = lowercased
     }
-    
-    public let neutral: String
-    public let uppercased: String
-    public let lowercased: String
-    
+
+    /**
+     The neutral char value.
+     */
+    public var neutral: String
+
+    /**
+     The uppercased char value.
+     */
+    public var uppercased: String
+
+    /**
+     The lowercased char value.
+     */
+    public var lowercased: String
+
+    /**
+     Resolve the character to use for a certain casing.
+     */
     public func character(for casing: KeyboardCasing) -> String {
         switch casing {
         case .auto: return lowercased

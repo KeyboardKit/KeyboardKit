@@ -15,8 +15,14 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ### ✨ New features
 
+* `InputSet` properties are now mutable.
+* `InputSetItem` properties are now mutable.
+* `KeyboardLayout` has new ideal height and inset properties.
+* `KeyboardLayoutConfiguration` properties are now mutable.
 * `KeyboardLayoutItem` properties are now mutable.
+* `KeyboardLayoutItemSize` properties are now mutable.
 * `KeyboardRowItem` has a bunch of new collection extensions.
+* `StandardAutocompleteSuggestion` properties are now mutable.
 
 
 

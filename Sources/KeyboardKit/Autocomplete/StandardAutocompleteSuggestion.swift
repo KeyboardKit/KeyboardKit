@@ -51,30 +51,30 @@ public struct StandardAutocompleteSuggestion: AutocompleteSuggestion {
      The text that should be sent to the text document proxy
      and replace the current word.
      */
-    public let text: String
+    public var text: String
     
     /**
      The text that should be presented to the user.
      */
-    public let title: String
+    public var title: String
     
     /**
      Whether or not this suggestion is an autocompete result.
      */
-    public let isAutocomplete: Bool
+    public var isAutocomplete: Bool
     
     /**
      Whether or not this suggestion is unknown to the system.
      */
-    public let isUnknown: Bool
+    public var isUnknown: Bool
     
     /**
      An optional subtitle that can complete the `title`.
      */
-    public let subtitle: String?
+    public var subtitle: String?
     
     /**
      An optional dictionary that can contain additional info.
      */
-    public let additionalInfo: [String: Any]
+    public var additionalInfo: [String: Any]
 }

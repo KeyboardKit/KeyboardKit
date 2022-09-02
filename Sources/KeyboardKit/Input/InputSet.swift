@@ -22,7 +22,7 @@ public class InputSet: Equatable {
         self.rows = rows
     }
     
-    public let rows: InputSetRows
+    public var rows: InputSetRows
     
     public static func == (lhs: InputSet, rhs: InputSet) -> Bool {
         lhs.rows == rhs.rows

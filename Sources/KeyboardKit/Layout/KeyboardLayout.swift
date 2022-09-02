@@ -28,15 +28,35 @@ public class KeyboardLayout {
      
      - Parameters:
        - itemRows: The layout item rows to show in the keyboard.
+       - idealItemHeight: An optional, ideal item height, otherwise picked from the first item.
+       - idealItemInsets: An optional, ideal item inset value, otherwise picked from the first item.
     */
-    public init(itemRows: KeyboardLayoutItemRows) {
-        self.itemRows = itemRows
+    public init(
+        itemRows rows: KeyboardLayoutItemRows,
+        idealItemHeight height: Double? = nil,
+        idealItemInsets insets: EdgeInsets? = nil
+    ) {
+        self.itemRows = rows
+        self.idealItemHeight = height ?? Self.resolveIdealItemHeight(for: rows)
+        self.idealItemInsets = insets ?? Self.resolveIdealItemInsets(for: rows)
     }
     
     /**
      The layout item rows to show in the keyboard.
      */
     public var itemRows: KeyboardLayoutItemRows
+
+    /**
+     The ideal item height, which can be used if you want to
+     quickly add new items to the layout.
+     */
+    public var idealItemHeight: Double
+
+    /**
+     The ideal item inserts. This can be used if you want to
+     quickly add new items to the layout.
+     */
+    public var idealItemInsets: EdgeInsets
     
     /**
      This `CGFloat` typealias makes it easier to see where a
@@ -61,6 +81,19 @@ public class KeyboardLayout {
         let result = itemRows.compactMap { $0.inputWidth(for: totalWidth) }.min() ?? 0
         widthCache[totalWidth] = result
         return result
+    }
+}
+
+private extension KeyboardLayout {
+
+    static func resolveIdealItemHeight(for rows: KeyboardLayoutItemRows) -> Double {
+        let item = rows.flatMap { $0 }.first
+        return Double(item?.size.height ?? .zero)
+    }
+
+    static func resolveIdealItemInsets(for rows: KeyboardLayoutItemRows) -> EdgeInsets {
+        let item = rows.flatMap { $0 }.first
+        return item?.insets ?? EdgeInsets()
     }
 }
 

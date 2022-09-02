@@ -24,13 +24,12 @@ class CustomKeyboardLayoutProvider: DemoKeyboardLayoutProvider {
 
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         let layout = super.keyboardLayout(for: context)
-        guard let templateItem = layout.itemRows.first?.first else { return layout }
         let widerItem = KeyboardLayoutItem(
             action: .character("I"),
             size: KeyboardLayoutItemSize(
                 width: .inputPercentage(2),
-                height: templateItem.size.height),
-            insets: templateItem.insets)
+                height: layout.idealItemHeight),
+            insets: layout.idealItemInsets)
         layout.itemRows.replace(KeyboardAction.character("I"), with: widerItem)
         return layout
     }

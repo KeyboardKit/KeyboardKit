@@ -38,17 +38,17 @@ public struct KeyboardLayoutConfiguration: Equatable {
     /**
      The corner radius of a keyboard button in the keyboard.
      */
-    public let buttonCornerRadius: CGFloat
+    public var buttonCornerRadius: CGFloat
     
     /**
      The edge insets of a keyboard button in the keyboard.
      */
-    public let buttonInsets: EdgeInsets
+    public var buttonInsets: EdgeInsets
     
     /**
      The total height incl. insets, of a row in the keyboard.
      */
-    public let rowHeight: CGFloat
+    public var rowHeight: CGFloat
 }
 
 public extension KeyboardLayoutConfiguration {
