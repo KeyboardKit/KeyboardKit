@@ -13,6 +13,13 @@ import Foundation
  behave when pressing and holding the backspace key.
  */
 public enum DeleteBackwardRange {
-    
-    case char, word, sentence
+
+    /// Delete a single char at a time.
+    case char
+
+    /// Delete an entire word at a time.
+    case word
+
+    /// Delete an entire sentence at a time.
+    case sentence
 }
