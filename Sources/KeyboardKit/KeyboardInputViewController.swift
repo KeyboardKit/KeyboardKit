@@ -91,17 +91,6 @@ open class KeyboardInputViewController: UIInputViewController {
     // MARK: - Properties
     
     /**
-     Get the bundle ID of the currently active app.
-     */
-    public var activeAppBundleId: String? {
-        if Bundle.main.isExtension {
-            return parent?.value(forKey: "_hostBundleID") as? String
-		} else {
-			return Bundle.main.bundleIdentifier
-		}
-    }
-    
-    /**
      This internal property always returns the original text
      document proxy, regardless of if another proxy is set.
      */

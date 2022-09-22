@@ -51,6 +51,7 @@ The demos have been adjusted as well, and there is a brand new demo keyboard tha
 ### 💡 Behavior changes
 
 * `Color` extensions have been moved to `KeyboardColorReader`.
+* `KeyboardContext` `activeAppBundleId` has been converted to a calculated property.
 * `StandardKeyboardLayoutProvider` now fallbacks to iPhone layout instead of an empty layout.
 * `StandardKeyboardLayoutProviderTests` now runs on all platforms.
 * `String` casing extensions have been moved to `CaseAdjustable`.
@@ -63,7 +64,9 @@ The demos have been adjusted as well, and there is a brand new demo keyboard tha
 
 * The `Color.DarkAppearanceStrategy` is no longer used and has been deprecated.
 * The `KeyboardContext` `device` initializer and property has been deprecated.
+* The `KeyboardContext` `activeAppBundleId` no longer works in iOS 16 and has been deprecated.
 * The `KeyboardLayoutConfiguration` standard configuration for idiom has been deprecated.
+* The `KeyboardInputViewController` `activeAppBundleId` no longer works in iOS 16 and has been deprecated.
 * The `MockCollectionViewLayout` is no longer used and has been deprecated.
 * Two `Sequence` extensions for mapping casing are no longer used and have been deprecated.
 * The `StandardKeyboardLayoutProvider` `fallbackProvider` has been deprecated.

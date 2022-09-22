@@ -74,12 +74,6 @@ public class KeyboardContext: ObservableObject {
      removed whenever.
      */
     public static var tempIsPreviewMode: Bool = false
-    
-    /**
-     The bundle ID of the currently active app.
-     */
-    @Published
-    public var activeAppBundleId: String?
 
 
     /**
@@ -291,7 +285,6 @@ public extension KeyboardContext {
     func sync(with controller: KeyboardInputViewController) {
         if Self.tempIsPreviewMode { return }
         DispatchQueue.main.async {
-            self.activeAppBundleId = controller.activeAppBundleId
             self.hasDictationKey = controller.hasDictationKey
             self.hasFullAccess = controller.hasFullAccess
             self.needsInputModeSwitchKey = controller.needsInputModeSwitchKey
