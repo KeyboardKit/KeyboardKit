@@ -13,11 +13,17 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 6.4
 
-This release makes more types, extensions, mocks and unit tests available for macOS and watchOS.
+This release bumps the package Swift version to 5.6.
 
-This release also converts a bunch of type extensions to protocols, which make the functionality show up in DocC and become available to more types.
+The release makes more types, extensions, mocks and unit tests available for macOS, tvOS and watchOS.
 
-There are also new layout utilities that make adjusting keyboard locales a lot easier.
+The release also binds a bunch of extensions to protocols, which make them show up in DocC and makes it possible to use them on more types.
+
+There are also new layout utilities that make adjusting keyboard locales a lot easier. 
+
+A bunch of struct properties have been converted from `let` to `var` as well.
+
+The demos have been adjusted as well, and there is a brand new demo keyboard that shows how to customize the layout. 
 
 ### ✨ New features
 
@@ -48,6 +54,10 @@ There are also new layout utilities that make adjusting keyboard locales a lot e
 * `StandardKeyboardLayoutProvider` now fallbacks to iPhone layout instead of an empty layout.
 * `StandardKeyboardLayoutProviderTests` now runs on all platforms.
 * `String` casing extensions have been moved to `CaseAdjustable`.
+
+### 🐛 Bug fixes
+
+* A memory leak has been fixed.
 
 ### 🗑 Deprecations
 
