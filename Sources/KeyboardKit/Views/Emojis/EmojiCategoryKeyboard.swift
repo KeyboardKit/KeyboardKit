@@ -41,7 +41,8 @@ public struct EmojiCategoryKeyboard<KeyboardView: View, CategoryTitleView: View>
         style: EmojiKeyboardStyle = .standardPhonePortrait,
         categoryTitle: @escaping CategoryTitleProvider = standardCategoryTitle,
         categoryTitleView: @escaping CategoryTitleViewProvider,
-        categoryKeyboard: @escaping CategoryKeyboardProvider) {
+        categoryKeyboard: @escaping CategoryKeyboardProvider
+    ) {
         self.categories = categories.filter { $0.emojis.count > 0 }
         self.appearance = appearance
         self.style = style
@@ -182,7 +183,8 @@ public extension EmojiCategoryKeyboard where KeyboardView == EmojiKeyboard<Emoji
         selection: EmojiCategory? = nil,
         style: EmojiKeyboardStyle = .standardPhonePortrait,
         categoryTitle: @escaping CategoryTitleProvider = standardCategoryTitle,
-        categoryTitleView: @escaping CategoryTitleViewProvider) {
+        categoryTitleView: @escaping CategoryTitleViewProvider
+    ) {
         self.init(
             categories: categories,
             appearance: appearance,
@@ -200,7 +202,8 @@ public extension EmojiCategoryKeyboard where KeyboardView == EmojiKeyboard<Emoji
      */
     static func standardCategoryKeyboard(
         category: EmojiCategory,
-        style: EmojiKeyboardStyle) -> EmojiKeyboard<EmojiKeyboardButton> {
+        style: EmojiKeyboardStyle
+    ) -> EmojiKeyboard<EmojiKeyboardButton> {
         EmojiKeyboard(
             emojis: category.emojis,
             style: style)
@@ -230,7 +233,8 @@ public extension EmojiCategoryKeyboard where CategoryTitleView == EmojiCategoryT
         selection: EmojiCategory? = nil,
         style: EmojiKeyboardStyle = .standardPhonePortrait,
         categoryTitle: @escaping CategoryTitleProvider = standardCategoryTitle,
-        categoryKeyboard: @escaping CategoryKeyboardProvider) {
+        categoryKeyboard: @escaping CategoryKeyboardProvider
+    ) {
         self.init(
             categories: categories,
             appearance: appearance,
@@ -275,7 +279,8 @@ public extension EmojiCategoryKeyboard where KeyboardView == EmojiKeyboard<Emoji
         context: KeyboardContext,
         selection: EmojiCategory? = nil,
         style: EmojiKeyboardStyle = .standardPhonePortrait,
-        categoryTitle: @escaping CategoryTitleProvider = standardCategoryTitle) {
+        categoryTitle: @escaping CategoryTitleProvider = standardCategoryTitle
+    ) {
         self.init(
             categories: categories,
             appearance: appearance,

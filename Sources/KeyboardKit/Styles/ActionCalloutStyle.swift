@@ -35,7 +35,8 @@ public struct ActionCalloutStyle {
         selectedBackgroundColor: Color = .blue,
         selectedForegroundColor: Color = .white,
         verticalOffset: CGFloat? = nil,
-        verticalTextPadding: CGFloat = 5) {
+        verticalTextPadding: CGFloat = 5
+    ) {
         self.callout = callout
         self.font = font
         self.maxButtonSize = maxButtonSize

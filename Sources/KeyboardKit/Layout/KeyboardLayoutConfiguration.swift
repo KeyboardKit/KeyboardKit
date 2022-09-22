@@ -75,7 +75,8 @@ public extension KeyboardLayoutConfiguration {
     static func standard(
         forDevice device: DeviceType,
         screenSize size: CGSize,
-        orientation: UIInterfaceOrientation) -> KeyboardLayoutConfiguration {
+        orientation: UIInterfaceOrientation
+    ) -> KeyboardLayoutConfiguration {
         switch device {
         case .pad: return standardPad(forScreenSize: size, orientation: orientation)
         default: return standardPhone(forScreenSize: size, orientation: orientation)
@@ -87,7 +88,8 @@ public extension KeyboardLayoutConfiguration {
      */
     static func standardPad(
         forScreenSize size: CGSize,
-        orientation: UIInterfaceOrientation) -> KeyboardLayoutConfiguration {
+        orientation: UIInterfaceOrientation
+    ) -> KeyboardLayoutConfiguration {
         let isPortrait = orientation.isPortrait
         if size.isScreenSize(.iPadProLargeScreenPortrait) {
             return isPortrait ? .standardPadLargeProPortrait : .standardPadLargeProLandscape
@@ -102,7 +104,8 @@ public extension KeyboardLayoutConfiguration {
      */
     static func standardPhone(
         forScreenSize size: CGSize,
-        orientation: UIInterfaceOrientation) -> KeyboardLayoutConfiguration {
+        orientation: UIInterfaceOrientation
+    ) -> KeyboardLayoutConfiguration {
         let isPortrait = orientation.isPortrait
         if size.isScreenSize(.iPhoneProMaxScreenPortrait) {
             return isPortrait ? .standardPhoneProMaxPortrait : .standardPhoneProMaxLandscape

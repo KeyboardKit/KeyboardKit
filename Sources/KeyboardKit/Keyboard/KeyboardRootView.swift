@@ -21,7 +21,8 @@ struct KeyboardRootView<ViewType: View>: View {
     
     var view: ViewType
     
-    @EnvironmentObject private var context: KeyboardContext
+    @EnvironmentObject
+    private var context: KeyboardContext
     
     var body: some View {
         view.id(bodyId)

@@ -23,7 +23,8 @@ public struct CalloutButtonArea: View {
      */
     public init(
         frame: CGRect,
-        style: CalloutStyle = .standard) {
+        style: CalloutStyle = .standard
+    ) {
         self.frame = frame
         self.style = style
     }

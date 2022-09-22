@@ -58,7 +58,8 @@ public extension View {
         pressAction: KeyboardGestureAction? = nil,
         releaseAction: KeyboardGestureAction? = nil,
         repeatAction: KeyboardGestureAction? = nil,
-        dragAction: KeyboardDragGestureAction? = nil) -> some View {
+        dragAction: KeyboardDragGestureAction? = nil
+    ) -> some View {
         #if os(iOS) || os(macOS) || os(watchOS)
         KeyboardGestures(
             view: self,
@@ -82,7 +83,8 @@ extension View {
     func withKeyboardGestures(
         for action: KeyboardAction,
         isPressed: Binding<Bool> = .constant(false),
-        actionHandler: KeyboardActionHandler) -> some View {
+        actionHandler: KeyboardActionHandler
+    ) -> some View {
         self.keyboardGestures(
             action: action,
             isPressed: isPressed,

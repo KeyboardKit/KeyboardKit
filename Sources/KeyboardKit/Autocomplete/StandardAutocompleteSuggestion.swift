@@ -20,7 +20,8 @@ public struct StandardAutocompleteSuggestion: AutocompleteSuggestion {
     public init(
         _ text: String,
         isAutocomplete: Bool = false,
-        isUnknown: Bool = false) {
+        isUnknown: Bool = false
+    ) {
         self.text = text
         self.title = text
         self.isAutocomplete = isAutocomplete
@@ -38,7 +39,8 @@ public struct StandardAutocompleteSuggestion: AutocompleteSuggestion {
         isAutocomplete: Bool = false,
         isUnknown: Bool = false,
         subtitle: String? = nil,
-        additionalInfo: [String: Any] = [:]) {
+        additionalInfo: [String: Any] = [:]
+    ) {
         self.text = text
         self.title = title ?? text
         self.isAutocomplete = isAutocomplete

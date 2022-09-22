@@ -28,7 +28,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     public init(
         inputViewController ivc: KeyboardInputViewController,
         spaceDragGestureHandler: DragGestureHandler? = nil,
-        spaceDragSensitivity: SpaceDragSensitivity = .medium) {
+        spaceDragSensitivity: SpaceDragSensitivity = .medium
+    ) {
         weak var input = ivc
         self.autocompleteAction = { input?.performAutocomplete() }
         self.autocompleteContext = ivc.autocompleteContext
@@ -50,7 +51,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         autocompleteAction: @escaping () -> Void,
         changeKeyboardTypeAction: @escaping (KeyboardType) -> Void,
         spaceDragGestureHandler: DragGestureHandler? = nil,
-        spaceDragSensitivity: SpaceDragSensitivity = .medium) {
+        spaceDragSensitivity: SpaceDragSensitivity = .medium
+    ) {
         self.autocompleteAction = autocompleteAction
         self.autocompleteContext = autocompleteContext
         self.changeKeyboardTypeAction = changeKeyboardTypeAction

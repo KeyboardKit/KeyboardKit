@@ -31,7 +31,8 @@ public struct SystemKeyboardSpaceButtonContent<SpaceView: View>: View {
      */
     public init(
         localeText: String,
-        spaceView: SpaceView) {
+        spaceView: SpaceView
+    ) {
         self.localeText = localeText
         self.spaceText = ""
         self.spaceView = spaceView

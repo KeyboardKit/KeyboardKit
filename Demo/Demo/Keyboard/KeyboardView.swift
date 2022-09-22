@@ -22,9 +22,11 @@ import SwiftUI
  */
 struct KeyboardView: View {
     
-    @State private var text = "Text"
+    @State
+    private var text = "Text"
     
-    @EnvironmentObject private var context: KeyboardContext
+    @EnvironmentObject
+    private var context: KeyboardContext
     
     var body: some View {
         VStack(spacing: 0) {

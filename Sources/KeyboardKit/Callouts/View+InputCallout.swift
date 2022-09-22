@@ -22,7 +22,8 @@ public extension View {
     func inputCallout(
         context: InputCalloutContext,
         keyboardContext: KeyboardContext,
-        style: InputCalloutStyle = .standard) -> some View {
+        style: InputCalloutStyle = .standard
+    ) -> some View {
         ZStack {
             self
             InputCallout(

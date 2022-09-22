@@ -54,13 +54,15 @@ public class KeyboardEnabledState: KeyboardEnabledStateInspector, ObservableObje
      Whether or not the keyboard extension with the specific
      ``bundleId`` is currently being used in a text field.
      */
-    @Published public var isKeyboardCurrentlyActive: Bool = false
+    @Published
+    public var isKeyboardCurrentlyActive: Bool = false
     
     /**
      Whether or not the keyboard extension with the specific
      ``bundleId`` has been enabled in System Settings.
      */
-    @Published public var isKeyboardEnabled: Bool = false
+    @Published
+    public var isKeyboardEnabled: Bool = false
     
     /**
      Refresh state for the currently used keyboard extension.

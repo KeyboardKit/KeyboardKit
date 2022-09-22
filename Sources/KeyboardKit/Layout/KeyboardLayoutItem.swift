@@ -30,7 +30,8 @@ public struct KeyboardLayoutItem: Equatable {
     public init(
         action: KeyboardAction,
         size: KeyboardLayoutItemSize,
-        insets: EdgeInsets) {
+        insets: EdgeInsets
+    ) {
         self.action = action
         self.size = size
         self.insets = insets

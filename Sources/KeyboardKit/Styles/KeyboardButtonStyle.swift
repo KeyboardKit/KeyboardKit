@@ -35,7 +35,8 @@ public struct KeyboardButtonStyle {
         font: Font,
         cornerRadius: CGFloat,
         border: KeyboardButtonBorderStyle = .standard,
-        shadow: KeyboardButtonShadowStyle = .standard) {
+        shadow: KeyboardButtonShadowStyle = .standard
+    ) {
         self.backgroundColor = backgroundColor
         self.foregroundColor = foregroundColor
         self.font = font

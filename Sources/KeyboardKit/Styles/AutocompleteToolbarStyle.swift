@@ -27,7 +27,8 @@ public struct AutocompleteToolbarStyle {
     public init(
         item: AutocompleteToolbarItemStyle = .standard,
         separator: AutocompleteToolbarSeparatorStyle = .standard,
-        autocompleteBackground: AutocompleteToolbarItemBackgroundStyle = .standard) {
+        autocompleteBackground: AutocompleteToolbarItemBackgroundStyle = .standard
+    ) {
         self.item = item
         self.separator = separator
         self.autocompleteBackground = autocompleteBackground

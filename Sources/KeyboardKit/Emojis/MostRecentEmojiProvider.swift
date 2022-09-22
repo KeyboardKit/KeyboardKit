@@ -27,7 +27,8 @@ public class MostRecentEmojiProvider: FrequentEmojiProvider {
      */
     public init(
         maxCount: Int = 30,
-        defaults: UserDefaults = .standard) {
+        defaults: UserDefaults = .standard
+    ) {
         self.maxCount = maxCount
         self.defaults = defaults
     }

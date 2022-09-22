@@ -39,7 +39,8 @@ public struct EmojiCategoryKeyboardMenu: View {
         context: KeyboardContext,
         selection: Binding<EmojiCategory>,
         style: EmojiKeyboardStyle,
-        actionHandler: KeyboardActionHandler = KeyboardInputViewController.shared.keyboardActionHandler) {
+        actionHandler: KeyboardActionHandler = KeyboardInputViewController.shared.keyboardActionHandler
+    ) {
         self.categories = categories.filter { $0.emojis.count > 0 }
         self.appearance = appearance
         self.context = context

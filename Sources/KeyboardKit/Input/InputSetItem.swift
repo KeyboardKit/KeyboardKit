@@ -42,7 +42,8 @@ public struct InputSetItem: Equatable {
     public init(
         neutral: String,
         uppercased: String,
-        lowercased: String) {
+        lowercased: String
+    ) {
         self.neutral = neutral
         self.uppercased = uppercased
         self.lowercased = lowercased

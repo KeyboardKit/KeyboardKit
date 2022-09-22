@@ -25,7 +25,8 @@ public struct ActionCallout: View {
     public init(
         context: ActionCalloutContext,
         device: DeviceType = .current,
-        style: ActionCalloutStyle = .standard) {
+        style: ActionCalloutStyle = .standard
+    ) {
         self._context = ObservedObject(wrappedValue: context)
         self.device = device
         self.style = style

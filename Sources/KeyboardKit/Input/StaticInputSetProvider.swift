@@ -25,7 +25,8 @@ public class StaticInputSetProvider: InputSetProvider {
     public init(
         alphabeticInputSet: AlphabeticInputSet,
         numericInputSet: NumericInputSet,
-        symbolicInputSet: SymbolicInputSet) {
+        symbolicInputSet: SymbolicInputSet
+    ) {
         self.alphabeticInputSetValue = alphabeticInputSet
         self.numericInputSetValue = numericInputSet
         self.symbolicInputSetValue = symbolicInputSet

@@ -26,7 +26,8 @@ public struct AudioFeedbackConfiguration: Codable, Equatable {
         input: SystemAudio = .input,
         delete: SystemAudio = .delete,
         system: SystemAudio = .system,
-        actions: [ActionFeedback] = []) {
+        actions: [ActionFeedback] = []
+    ) {
         self.input = input
         self.delete = delete
         self.system = system
@@ -40,7 +41,8 @@ public struct AudioFeedbackConfiguration: Codable, Equatable {
         
         public init(
             action: KeyboardAction,
-            feedback: SystemAudio) {
+            feedback: SystemAudio
+        ) {
             self.action = action
             self.feedback = feedback
         }

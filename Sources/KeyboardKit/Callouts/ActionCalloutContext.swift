@@ -35,7 +35,8 @@ open class ActionCalloutContext: ObservableObject {
      */
     public init(
         actionHandler: KeyboardActionHandler,
-        actionProvider: CalloutActionProvider) {
+        actionProvider: CalloutActionProvider
+    ) {
         self.actionHandler = actionHandler
         self.actionProvider = actionProvider
     }

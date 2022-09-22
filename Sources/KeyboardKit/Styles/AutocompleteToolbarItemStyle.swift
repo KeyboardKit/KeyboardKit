@@ -29,7 +29,8 @@ public struct AutocompleteToolbarItemStyle {
         titleFont: Font = .body,
         titleColor: Color = .primary,
         subtitleFont: Font = .footnote,
-        subtitleColor: Color = .primary) {
+        subtitleColor: Color = .primary
+    ) {
         self.titleFont = titleFont
         self.titleColor = titleColor
         self.subtitleFont = subtitleFont

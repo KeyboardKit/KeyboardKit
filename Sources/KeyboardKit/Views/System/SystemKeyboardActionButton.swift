@@ -43,7 +43,8 @@ public struct SystemKeyboardActionButton<Content: View>: View {
         actionHandler: KeyboardActionHandler,
         appearance: KeyboardAppearance,
         context: KeyboardContext,
-        contentConfig: @escaping ContentConfig) {
+        contentConfig: @escaping ContentConfig
+    ) {
         self.action = action
         self.actionHandler = actionHandler
         self.appearance = appearance
@@ -57,7 +58,8 @@ public struct SystemKeyboardActionButton<Content: View>: View {
     private let context: KeyboardContext
     private let contentConfig: ContentConfig
 
-    @State private var isPressed: Bool = false
+    @State
+    private var isPressed: Bool = false
     
     /**
      This typealias represents the configuration action that
@@ -92,7 +94,8 @@ public extension SystemKeyboardActionButton where Content == SystemKeyboardActio
         action: KeyboardAction,
         actionHandler: KeyboardActionHandler,
         appearance: KeyboardAppearance,
-        context: KeyboardContext) {
+        context: KeyboardContext
+    ) {
         self.init(
             action: action,
             actionHandler: actionHandler,

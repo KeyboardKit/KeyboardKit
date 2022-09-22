@@ -16,7 +16,8 @@ public struct EmojiKeyboardButton: View {
     public init(
         emoji: Emoji,
         style: EmojiKeyboardStyle,
-        action: @escaping (Emoji) -> Void) {
+        action: @escaping (Emoji) -> Void
+    ) {
         self.emoji = emoji
         self.style = style
         self.action = action

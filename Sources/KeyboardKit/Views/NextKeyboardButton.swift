@@ -24,7 +24,8 @@ public struct NextKeyboardButton: View {
      */
     public init(
         image: Image = .keyboardGlobe,
-        controller: KeyboardInputViewController = .shared) {
+        controller: KeyboardInputViewController = .shared
+    ) {
         self.image = image
         self.button = NextKeyboardButtonOverlay(controller: controller)
     }
@@ -53,8 +54,7 @@ struct NextKeyboardButton_Previews: PreviewProvider {
  */
 private struct NextKeyboardButtonOverlay: UIViewRepresentable {
     
-    init(
-        controller: KeyboardInputViewController) {
+    init(controller: KeyboardInputViewController) {
         button = UIButton()
         controller.setupNextKeyboardButton(button)
     }

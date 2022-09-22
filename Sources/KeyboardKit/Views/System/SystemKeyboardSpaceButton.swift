@@ -35,7 +35,8 @@ public struct SystemKeyboardSpaceButton<Content: View>: View {
         actionHandler: KeyboardActionHandler,
         appearance: KeyboardAppearance,
         context: KeyboardContext,
-        @ViewBuilder content: @escaping ContentBuilder) {
+        @ViewBuilder content: @escaping ContentBuilder
+    ) {
         self.actionHandler = actionHandler
         self.appearance = appearance
         self.context = context

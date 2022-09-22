@@ -33,7 +33,8 @@ public struct SystemKeyboardButton<Content: View>: View {
      */
     public init(
         content: Content,
-        style: KeyboardButtonStyle) {
+        style: KeyboardButtonStyle
+    ) {
         self.content = content
         self.style = style
     }

@@ -34,7 +34,8 @@ public class KeyboardFeedbackSettings: ObservableObject {
      */
     public init(
         audioConfiguration: AudioFeedbackConfiguration = .standard,
-        hapticConfiguration: HapticFeedbackConfiguration = .standard) {
+        hapticConfiguration: HapticFeedbackConfiguration = .standard
+    ) {
         self.audioConfiguration = audioConfiguration
         self.hapticConfiguration = hapticConfiguration
     }

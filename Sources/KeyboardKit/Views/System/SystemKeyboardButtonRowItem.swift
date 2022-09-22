@@ -35,7 +35,8 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
         keyboardWidth: CGFloat,
         inputWidth: CGFloat,
         appearance: KeyboardAppearance,
-        actionHandler: KeyboardActionHandler) {
+        actionHandler: KeyboardActionHandler
+    ) {
         self.content = content
         self.item = item
         self.context = context
@@ -53,7 +54,8 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
     private let appearance: KeyboardAppearance
     private let actionHandler: KeyboardActionHandler
     
-    @State private var isPressed = false
+    @State
+    private var isPressed = false
     
     public var body: some View {
         content

@@ -26,7 +26,8 @@ public struct KeyboardButtonBorderStyle: Equatable {
      */
     public init(
         color: Color = .clear,
-        size: CGFloat = 0) {
+        size: CGFloat = 0
+    ) {
         self.color = color
         self.size = size
     }

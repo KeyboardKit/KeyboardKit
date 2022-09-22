@@ -20,7 +20,8 @@ public extension View {
      */
     func actionCallout(
         context: ActionCalloutContext,
-        style: ActionCalloutStyle = .standard) -> some View {
+        style: ActionCalloutStyle = .standard
+    ) -> some View {
         return ZStack {
             self
             ActionCallout(context: context, style: style)

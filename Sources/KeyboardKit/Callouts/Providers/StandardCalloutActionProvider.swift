@@ -27,7 +27,8 @@ open class StandardCalloutActionProvider: CalloutActionProvider {
      */
     public init(
         context: KeyboardContext,
-        providers: [LocalizedCalloutActionProvider] = [standardProvider]) {
+        providers: [LocalizedCalloutActionProvider] = [standardProvider]
+    ) {
         self.context = context
         let dict = Dictionary(uniqueKeysWithValues: providers.map { ($0.localeKey, $0) })
         providerDictionary = LocaleDictionary(dict)

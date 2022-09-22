@@ -35,7 +35,8 @@ public struct KeyboardTextView: UIViewRepresentable {
     public init(
         text: Binding<String>,
         resignOnReturn: Bool = true,
-        config: @escaping ConfigAction = { _ in }) {
+        config: @escaping ConfigAction = { _ in }
+    ) {
         self._text = text
         self.config = config
         self.resignOnReturn = resignOnReturn

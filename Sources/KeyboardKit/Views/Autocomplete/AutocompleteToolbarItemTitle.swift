@@ -28,7 +28,8 @@ public struct AutocompleteToolbarItemTitle: View {
     public init(
         suggestion: AutocompleteSuggestion,
         style: AutocompleteToolbarItemStyle = .standard,
-        locale: Locale) {
+        locale: Locale
+    ) {
         self.suggestion = suggestion
         self.style = style
         self.locale = locale

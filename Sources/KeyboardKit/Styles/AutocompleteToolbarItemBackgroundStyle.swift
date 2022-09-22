@@ -26,7 +26,8 @@ public struct AutocompleteToolbarItemBackgroundStyle {
      */
     public init(
         color: Color = .white.opacity(0.5),
-        cornerRadius: CGFloat = 4) {
+        cornerRadius: CGFloat = 4
+    ) {
         self.color = color
         self.cornerRadius = cornerRadius
     }

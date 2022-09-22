@@ -1,59 +1,61 @@
 {
-  "pins" : [
-    {
-      "identity" : "cwlcatchexception",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mattgallagher/CwlCatchException.git",
-      "state" : {
-        "revision" : "35f9e770f54ce62dd8526470f14c6e137cef3eea",
-        "version" : "2.1.1"
+  "object": {
+    "pins": [
+      {
+        "package": "CwlCatchException",
+        "repositoryURL": "https://github.com/mattgallagher/CwlCatchException.git",
+        "state": {
+          "branch": null,
+          "revision": "35f9e770f54ce62dd8526470f14c6e137cef3eea",
+          "version": "2.1.1"
+        }
+      },
+      {
+        "package": "CwlPreconditionTesting",
+        "repositoryURL": "https://github.com/mattgallagher/CwlPreconditionTesting.git",
+        "state": {
+          "branch": null,
+          "revision": "c21f7bab5ca8eee0a9998bbd17ca1d0eb45d4688",
+          "version": "2.1.0"
+        }
+      },
+      {
+        "package": "MockingKit",
+        "repositoryURL": "https://github.com/danielsaidi/MockingKit.git",
+        "state": {
+          "branch": null,
+          "revision": "3e51adb1a3922cdccbe84a3088b7fa4d67ae236d",
+          "version": "1.1.0"
+        }
+      },
+      {
+        "package": "Nimble",
+        "repositoryURL": "https://github.com/danielsaidi/Nimble.git",
+        "state": {
+          "branch": "main",
+          "revision": "f76b83c051fb3e6c120a33ebac200efba883065a",
+          "version": null
+        }
+      },
+      {
+        "package": "Quick",
+        "repositoryURL": "https://github.com/danielsaidi/Quick.git",
+        "state": {
+          "branch": "main",
+          "revision": "1efe9551db0ad6a6e979f33366969750123d14d9",
+          "version": null
+        }
+      },
+      {
+        "package": "SwiftUIKit",
+        "repositoryURL": "https://github.com/danielsaidi/SwiftUIKit",
+        "state": {
+          "branch": null,
+          "revision": "62743e560c186ff40f7048e08c45f22672a14ad9",
+          "version": "2.8.0"
+        }
       }
-    },
-    {
-      "identity" : "cwlpreconditiontesting",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mattgallagher/CwlPreconditionTesting.git",
-      "state" : {
-        "revision" : "c21f7bab5ca8eee0a9998bbd17ca1d0eb45d4688",
-        "version" : "2.1.0"
-      }
-    },
-    {
-      "identity" : "mockingkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/danielsaidi/MockingKit.git",
-      "state" : {
-        "revision" : "73a4da96623a2f6e9ea794cf37f36f2009dff065",
-        "version" : "1.1.1"
-      }
-    },
-    {
-      "identity" : "nimble",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/danielsaidi/Nimble.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "f76b83c051fb3e6c120a33ebac200efba883065a"
-      }
-    },
-    {
-      "identity" : "quick",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/danielsaidi/Quick.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "1efe9551db0ad6a6e979f33366969750123d14d9"
-      }
-    },
-    {
-      "identity" : "swiftuikit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/danielsaidi/SwiftUIKit",
-      "state" : {
-        "revision" : "993e0aa7e77b0b1c425d9e055aeade6443400679",
-        "version" : "2.9.0"
-      }
-    }
-  ],
-  "version" : 2
+    ]
+  },
+  "version": 1
 }

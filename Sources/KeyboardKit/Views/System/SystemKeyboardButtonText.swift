@@ -25,7 +25,8 @@ public struct SystemKeyboardButtonText: View {
      */
     public init(
         text: String,
-        action: KeyboardAction) {
+        action: KeyboardAction
+    ) {
         self.text = text
         self.isInputAction = action.isInputAction
     }

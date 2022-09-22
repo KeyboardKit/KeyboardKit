@@ -29,7 +29,8 @@ public struct SystemKeyboardActionButtonContent: View {
     public init(
         action: KeyboardAction,
         appearance: KeyboardAppearance,
-        context: KeyboardContext) {
+        context: KeyboardContext
+    ) {
         self.action = action
         self.appearance = appearance
         self.context = context

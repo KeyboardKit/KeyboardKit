@@ -34,7 +34,8 @@ public struct KeyboardTextField: UIViewRepresentable {
         _ placeholder: String? = nil,
         text: Binding<String>,
         resignOnReturn: Bool = true,
-        config: @escaping ConfigAction = { _ in }) {
+        config: @escaping ConfigAction = { _ in }
+    ) {
         self.placeholder = placeholder
         self._text = text
         self.config = config
@@ -48,8 +49,8 @@ public struct KeyboardTextField: UIViewRepresentable {
      */
     public typealias ConfigAction = (UITextField) -> Void
     
-    
-    @Binding private var text: String
+    @Binding
+    private var text: String
     
     private let placeholder: String?
     private let config: ConfigAction

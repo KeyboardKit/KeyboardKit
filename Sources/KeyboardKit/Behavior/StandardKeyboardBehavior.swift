@@ -41,7 +41,8 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
         context: KeyboardContext,
         doubleTapThreshold: TimeInterval = 0.5,
         endSentenceThreshold: TimeInterval = 3.0,
-        repeatGestureTimer: RepeatGestureTimer = .shared) {
+        repeatGestureTimer: RepeatGestureTimer = .shared
+    ) {
         self.context = context
         self.doubleTapThreshold = doubleTapThreshold
         self.endSentenceThreshold = endSentenceThreshold
@@ -73,7 +74,8 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
      */
     public func preferredKeyboardType(
         after gesture: KeyboardGesture,
-        on action: KeyboardAction) -> KeyboardType {
+        on action: KeyboardAction
+    ) -> KeyboardType {
         if shouldSwitchToCapsLock(after: gesture, on: action) { return .alphabetic(.capsLocked) }
         if action.isAlternateQuotationDelimiter(for: context) { return .alphabetic(.lowercased) }
         let should = shouldSwitchToPreferredKeyboardType(after: gesture, on: action)
@@ -89,7 +91,8 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
      */
     open func shouldEndSentence(
         after gesture: KeyboardGesture,
-        on action: KeyboardAction) -> Bool {
+        on action: KeyboardAction
+    ) -> Bool {
         guard gesture == .tap, action == .space else { return false }
         let proxy = context.textDocumentProxy
         let isNewWord = proxy.isCursorAtNewWord
@@ -107,7 +110,8 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
      */
     open func shouldSwitchToCapsLock(
         after gesture: KeyboardGesture,
-        on action: KeyboardAction) -> Bool {
+        on action: KeyboardAction
+    ) -> Bool {
         switch action {
         case .shift: return isDoubleShiftTap
         default: return false
@@ -120,7 +124,8 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
      */
     open func shouldSwitchToPreferredKeyboardType(
         after gesture: KeyboardGesture,
-        on action: KeyboardAction) -> Bool {
+        on action: KeyboardAction
+    ) -> Bool {
         // if action.isAlternateQuotationDelimiter(for: context) { return true }
         switch action {
         case .keyboardType(let type): return type.shouldSwitchToPreferredKeyboardType

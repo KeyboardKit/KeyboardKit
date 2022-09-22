@@ -31,7 +31,8 @@ public struct EmojiKeyboard<ButtonView: View>: View {
     public init(
         emojis: [Emoji],
         style: EmojiKeyboardStyle = .standardPhonePortrait,
-        emojiButton: @escaping EmojiButtonBuilder<ButtonView>) {
+        emojiButton: @escaping EmojiButtonBuilder<ButtonView>
+    ) {
         let gridItem = GridItem(.fixed(style.itemSize), spacing: style.verticalItemSpacing - 9)
         self.emojis = emojis
         self.style = style
@@ -94,7 +95,8 @@ public extension EmojiKeyboard where ButtonView == EmojiKeyboardButton {
     init(
         emojis: [Emoji],
         style: EmojiKeyboardStyle = .standardPhonePortrait,
-        emojiButtonAction: @escaping EmojiAction = standardEmojiAction) {
+        emojiButtonAction: @escaping EmojiAction = standardEmojiAction
+    ) {
         self.init(
             emojis: emojis,
             style: style,

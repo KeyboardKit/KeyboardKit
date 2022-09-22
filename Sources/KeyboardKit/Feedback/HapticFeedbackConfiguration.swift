@@ -30,7 +30,8 @@ public struct HapticFeedbackConfiguration: Codable, Equatable {
         longPress: HapticFeedback = .none,
         longPressOnSpace: HapticFeedback = .mediumImpact,
         repeat: HapticFeedback = .none,
-        actions: [ActionFeedback] = []) {
+        actions: [ActionFeedback] = []
+    ) {
         self.tap = tap
         self.doubleTap = doubleTap
         self.longPress = longPress
@@ -47,7 +48,8 @@ public struct HapticFeedbackConfiguration: Codable, Equatable {
         public init(
             action: KeyboardAction,
             gesture: KeyboardGesture,
-            feedback: HapticFeedback) {
+            feedback: HapticFeedback
+        ) {
             self.action = action
             self.gesture = gesture
             self.feedback = feedback

@@ -37,7 +37,8 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
      */
     public init(
         inputSetProvider: InputSetProvider,
-        dictationReplacement: KeyboardAction? = nil) {
+        dictationReplacement: KeyboardAction? = nil
+    ) {
         self.inputSetProvider = inputSetProvider
         self.dictationReplacement = dictationReplacement
     }

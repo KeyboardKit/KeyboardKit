@@ -13,21 +13,19 @@ import SwiftUI
  This view mimics native iOS system keyboards, like standard
  alphabetic, numeric and symbolic system keyboards.
  
- There are several ways to create a system keyboard:
- 
- One is to use the builder-less initializer to create a view
- that uses standard buttons.
- 
- Another is to use the `buttonContent` initializer to create
- a view that customizes the intrinsic content of each button,
- but doesn't affect its shape.
- 
- A third is to use the `buttonView` initializer, to create a
- view that customizes the entire view for each button.
- 
+ There are several ways to create a system keyboard. Use the
+ initializer without a view builder function to get a system
+ keyboard that uses standard buttons. Use the `buttonContent`
+ initializer to get a system keyboard that uses custom views
+ for each button's content, but with a standard button shape,
+ background color, shadows etc. Finally, use the `buttonView`
+ initializer to get a system keyboard that uses custom views
+ for the entire button.
+
  You also have `controller`-based initializers that are more
- convenient to use than the initializers that require you to
- inject a layout, appearance, services, contexts etc.
+ convenient to use than the regular initializers, since they
+ don't require you to provide a layout, appearance, services,
+ contexts etc. Instead, they fetch it from the controller.
  
  Since the keyboard button widths depends on the total width,
  you must provide the view with a `width`. If you do not, it

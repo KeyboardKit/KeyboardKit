@@ -28,7 +28,8 @@ public struct AutocompleteToolbarSeparatorStyle {
     public init(
         color: Color = .secondary.opacity(0.5),
         width: CGFloat = 1,
-        height: CGFloat = 30) {
+        height: CGFloat = 30
+    ) {
         self.color = color
         self.width = width
         self.height = height

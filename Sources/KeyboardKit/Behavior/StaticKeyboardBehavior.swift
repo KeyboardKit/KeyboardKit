@@ -38,7 +38,8 @@ public class StaticKeyboardBehavior: KeyboardBehavior {
      */
     public func preferredKeyboardType(
         after gesture: KeyboardGesture,
-        on action: KeyboardAction) -> KeyboardType {
+        on action: KeyboardAction
+    ) -> KeyboardType {
         context.keyboardType
     }
     
@@ -48,7 +49,8 @@ public class StaticKeyboardBehavior: KeyboardBehavior {
      */
     public func shouldEndSentence(
         after gesture: KeyboardGesture,
-        on action: KeyboardAction) -> Bool {
+        on action: KeyboardAction
+    ) -> Bool {
         false
     }
     
@@ -58,7 +60,8 @@ public class StaticKeyboardBehavior: KeyboardBehavior {
      */
     public func shouldSwitchToCapsLock(
         after gesture: KeyboardGesture,
-        on action: KeyboardAction) -> Bool {
+        on action: KeyboardAction
+    ) -> Bool {
         false
     }
     
@@ -68,7 +71,8 @@ public class StaticKeyboardBehavior: KeyboardBehavior {
      */
     public func shouldSwitchToPreferredKeyboardType(
         after gesture: KeyboardGesture,
-        on action: KeyboardAction) -> Bool {
+        on action: KeyboardAction
+    ) -> Bool {
         false
     }
     

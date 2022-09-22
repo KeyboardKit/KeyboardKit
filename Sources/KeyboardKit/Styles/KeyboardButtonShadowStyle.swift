@@ -26,7 +26,8 @@ public struct KeyboardButtonShadowStyle: Equatable {
      */
     public init(
         color: Color = .standardButtonShadow,
-        size: CGFloat = 1) {
+        size: CGFloat = 1
+    ) {
         self.color = color
         self.size = size
     }

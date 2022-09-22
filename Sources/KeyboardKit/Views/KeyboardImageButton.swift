@@ -20,7 +20,8 @@ public struct KeyboardImageButton: View {
     public init(
         action: KeyboardAction,
         tapAction: @escaping () -> Void = {},
-        longPressAction: @escaping () -> Void = {}) {
+        longPressAction: @escaping () -> Void = {}
+    ) {
         self.image = action.image
         self.tapAction = tapAction
         self.longPressAction = longPressAction
@@ -32,7 +33,8 @@ public struct KeyboardImageButton: View {
     public init(
         image: Image,
         tapAction: @escaping () -> Void = {},
-        longPressAction: @escaping () -> Void = {}) {
+        longPressAction: @escaping () -> Void = {}
+    ) {
         self.image = image
         self.tapAction = tapAction
         self.longPressAction = longPressAction

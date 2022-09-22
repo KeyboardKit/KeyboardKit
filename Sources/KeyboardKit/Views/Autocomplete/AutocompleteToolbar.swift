@@ -40,7 +40,8 @@ public struct AutocompleteToolbar<ItemView: View, SeparatorView: View>: View {
         style: AutocompleteToolbarStyle = .standard,
         itemView: @escaping ItemViewBuilder,
         separatorView: @escaping SeparatorViewBuilder,
-        action: @escaping ReplacementAction = standardAction) {
+        action: @escaping ReplacementAction = standardAction
+    ) {
         self.items = suggestions.map { BarItem($0) }
         self.itemView = itemView
         self.locale = locale
@@ -118,7 +119,8 @@ public extension AutocompleteToolbar where ItemView == AutocompleteToolbarItem {
         locale: Locale,
         style: AutocompleteToolbarStyle = .standard,
         separatorView: @escaping SeparatorViewBuilder,
-        action: @escaping ReplacementAction = standardAction) {
+        action: @escaping ReplacementAction = standardAction
+    ) {
         self.items = suggestions.map { BarItem($0) }
         self.locale = locale
         self.style = style
@@ -133,7 +135,8 @@ public extension AutocompleteToolbar where ItemView == AutocompleteToolbarItem {
     static func standardItemView(
         suggestion: AutocompleteSuggestion,
         style: AutocompleteToolbarStyle,
-        locale: Locale) -> AutocompleteToolbarItem {
+        locale: Locale
+    ) -> AutocompleteToolbarItem {
         AutocompleteToolbarItem(
             suggestion: suggestion,
             style: style.item,

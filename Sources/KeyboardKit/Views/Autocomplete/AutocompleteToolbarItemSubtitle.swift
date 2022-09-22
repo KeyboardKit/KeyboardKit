@@ -25,7 +25,8 @@ public struct AutocompleteToolbarItemSubtitle: View {
      */
     public init(
         text: String,
-        style: AutocompleteToolbarItemStyle = .standard) {
+        style: AutocompleteToolbarItemStyle = .standard
+    ) {
         self.text = text
         self.style = style
     }
