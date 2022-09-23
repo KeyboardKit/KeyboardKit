@@ -105,13 +105,6 @@ KeyboardKit comes with an appearance engine that lets you easily style your keyb
 [Read more here][Appearance]
 
 
-### 🔊 Audio
-
-KeyboardKit defines system audio types and ways to play them.
-
-[Read more here][Audio-Feedback]
-
-
 ### 💡Autocomplete
 
 KeyboardKit can present autocomplete suggestions as users type.
@@ -161,16 +154,9 @@ KeyboardKit comes with keyboard-specific gestures that you can use in your own k
 [Read more here][Gestures]
 
 
-### 👋 Haptics
-
-KeyboardKit defines haptic feedback types and ways to trigger them.
-
-[Read more here][Haptic-Feedback]
-
-
 ### 🔤 Input Sets
 
-KeyboardKit comes with an input set engine that make it easy to create `alphabetic`, `numeric` and `symbolic`  keyboards in different languages.
+KeyboardKit comes with an input set engine that make it easy to create `alphabetic`, `numeric` and `symbolic` keyboards in different languages.
 
 [Read more here][Input-Sets]
 
@@ -244,33 +230,18 @@ KeyboardKit Pro is also a way to support this project, which is otherwise comple
 
 ## Demo Applications
 
-This repository contains a `Demo` folder with two demo apps that lets you try out KeyboardKit and KeyboardKit Pro:
+This repository contains a `Demo` folder with two demo apps that lets you try out KeyboardKit.
 
-### Demo
+The `Demo` app uses KeyboardKit and lets you type in a light and dark text field. It has three keyboards:
 
-This app sets up KeyboardKit with SPM and lets you type in a light and dark text field. 
+* `English` uses a `SystemKeyboard` to mimic a native English keyboard.
+* `Unicode` uses a `SystemKeyboard` and a custom, unicode-based input set.
+* `Custom` shows you how to easily customize input sets and layouts.
 
-The app has two different keyboards:
+The `Demo - Pro` app uses KeyboardKit Pro and supports 50+ locales, autocomplete etc. It has two keyboards:  
 
-* The `English` keyboard uses a `SystemKeyboard` to mimic a native English keyboard.
-* The `Unicode` keyboard uses a `SystemKeyboard` and a custom, unicode-based input set.
-
-Have a look at the app to see how both the app and the keyboard targets must link the KeyboardKit package to work.  
-
-### Demo - Pro
-
-This app looks and behaves like the demo app, but uses KeyboardKit Pro instead.
-
-The app has two different keyboards:
-
-* The `System LTR` keyboard uses a `SystemKeyboards` and lets you try out all left-to-right locales.
-* The `System RTL` keyboard uses a `SystemKeyboards` and lets you try out all right-to-left locales.
-
-Thanks to KeyboardKit Pro, these apps offer autocomplete as well.
-
-Have a look at this app to see how the closed-source KeyboardKit Pro only has to be added to the main app target. 
-
-### How to run the demo apps
+* `System LTR` uses a `SystemKeyboard` with all left-to-right locales.
+* `System RTL` uses a `SystemKeyboard` with all right-to-left locales.
 
 To run the demo apps, open and run these projects, then enable the keyboards you want to try under System Settings.
 
