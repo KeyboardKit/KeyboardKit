@@ -8,9 +8,9 @@ This article discusses how get started using KeyboardKit in your app.
 You can use KeyboardKit in different ways in your iOS app targets:
 
 * Keyboard extensions can use KeyboardKit to create more powerful keyboards.
-* Main apps can use KeyboardKit to check if a keyboard is enabled, has full access etc.
-* Main apps can create KeyboardKit-based input controllers and use them for its text fields.
-* Other targets can use KeyboardKit to build upon its functionality.
+* Apps can use KeyboardKit to check if a keyboard is enabled, has full access etc.
+* Apps can create custom input controllers and use KeyboardKit for the text field.
+* Other targets, like widgets can use KeyboardKit to build upon its functionality.
 
 Other platforms, such as macOS, watchOS and tvOS can use KeyboardKit as well, even though creating custom keyboards on those platforms may not be the most common use-case. 
 
@@ -156,3 +156,7 @@ If you followed the example above, you should now have a keyboard that observes 
 You can now customize your keyboards in all kind of ways. You can change things in the keyboard context to update the keyboard, switch out the main keyboard input controller's various services to change things like the input set, keyboard layout, callouts, audio and haptic feedback etc. You can also use entirely custom views. 
 
 Have a look in the documentation for more articles on how to configure KeyboardKit, create your own service implementations etc. You can also have a look at the demo apps, which replace many services with demo-specific implementations.  
+
+If you're new to iOS keyboard extensions, [this great guide][Guide] will help you get started. You can also have a look at the demo apps for inspiration.
+
+[Guide]: https://shyngys.com/ios-custom-keyboard-guide
