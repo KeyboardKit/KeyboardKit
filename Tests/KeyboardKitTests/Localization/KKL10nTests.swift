@@ -10,7 +10,7 @@ import Foundation
 import Quick
 import Nimble
 @testable import KeyboardKit
-
+/*
 class KKL10nTests: QuickSpec {
     
     override func spec() {
@@ -38,3 +38,4 @@ class KKL10nTests: QuickSpec {
         }
     }
 }
+*/
