@@ -15,15 +15,11 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 This release bumps the package Swift version to 5.6.
 
-The release makes more types, extensions, mocks and unit tests available for macOS, tvOS and watchOS.
+The release also makes more types, extensions, mocks and unit tests available for macOS, tvOS and watchOS, and binds a bunch of extensions to protocols, which make them show up in DocC and makes it possible to use them on more types.
 
-The release also binds a bunch of extensions to protocols, which make them show up in DocC and makes it possible to use them on more types.
+There are also new layout utilities that make adjusting keyboard locales a lot easier, and a bunch of struct properties have been converted from `let` to `var` as well, to make them mutable.
 
-There are also new layout utilities that make adjusting keyboard locales a lot easier. 
-
-A bunch of struct properties have been converted from `let` to `var` as well.
-
-The demos have been adjusted as well, and there is a brand new demo keyboard that shows how to customize the layout. 
+The demos have been adjusted as well. There's also a brand new demo keyboard that shows how to customize the layout. 
 
 ### 👑 KeyboardKit Pro changes
 
@@ -81,6 +77,7 @@ The demos have been adjusted as well, and there is a brand new demo keyboard tha
 * Two `Sequence` extensions for mapping casing are no longer used and have been deprecated.
 * The `StandardKeyboardLayoutProvider` `fallbackProvider` has been deprecated.
 * The `StandardKeyboardLayoutProvider` `layoutProvider(for:)` has been renamed to `keyboardLayoutProvider(for:)`.
+
 
 
 ## 6.3
