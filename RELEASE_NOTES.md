@@ -25,6 +25,16 @@ A bunch of struct properties have been converted from `let` to `var` as well.
 
 The demos have been adjusted as well, and there is a brand new demo keyboard that shows how to customize the layout. 
 
+### 👑 KeyboardKit Pro changes
+
+* `KurdishSoraniPcInputSetProvider` is a new input set provider for Kurdish Sorani PC.
+* `KurdishSoraniPcCalloutActionProvider` is a new callout action provider for Kurdish Sorani PC.
+* `AlphabeticInputSet` has new `kurdishSoraniPc` input set builder.
+
+### 🌐 New locales
+
+* 🇹🇯 Kurdish Sorani PC
+
 ### ✨ New features
 
 * `CaseAdjustable` is a new protocol that can be implemented by types that should be able to adjust themselves to a casing.
