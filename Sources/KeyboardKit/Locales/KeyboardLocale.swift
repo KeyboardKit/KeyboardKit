@@ -66,6 +66,7 @@ public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
     case irish = "ga_IE"
     case italian = "it"
     case kurdish_sorani = "ckb"
+    case kurdish_sorani_pc = "ckb_PC"
     case kurdish_sorani_arabic = "ckb_AR"
     case latvian = "lv"
     case lithuanian = "lt"
@@ -154,6 +155,7 @@ public extension KeyboardLocale {
 
         case .kurdish_sorani: return "🇹🇯"
         case .kurdish_sorani_arabic: return "🇹🇯"
+        case .kurdish_sorani_pc: return "🇹🇯"
         case .latvian: return "🇱🇻"
         case .lithuanian: return "🇱🇹"
         case .macedonian: return "🇲🇰"
@@ -161,8 +163,8 @@ public extension KeyboardLocale {
         case .mongolian: return "🇲🇳"
         case .norwegian: return "🇳🇴"
         case .persian: return "🇮🇷"
-        case .polish: return "🇵🇱"
 
+        case .polish: return "🇵🇱"
         case .portuguese: return "🇵🇹"
         case .portuguese_brazil: return "🇧🇷"
         case .romanian: return "🇷🇴"
@@ -172,8 +174,8 @@ public extension KeyboardLocale {
         case .slovak: return "🇸🇰"
         case .slovenian: return "🇸🇮"
         case .spanish: return "🇪🇸"
+
         case .swahili: return "🇰🇪"
-            
         case .swedish: return "🇸🇪"
         case .turkish: return "🇹🇷"
         case .ukrainian: return "🇺🇦"
