@@ -163,7 +163,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         }
 
         // Apply Kurdish replacements, if any
-        if keyboardContext.locale.identifier == "ckb" && action == .character("ھ") {
+        if keyboardContext.locale.identifier.hasPrefix("ckb") && action == .character("ھ") {
             return .character("ه")
         }
 
