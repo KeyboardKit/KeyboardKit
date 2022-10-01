@@ -1,5 +1,6 @@
 import Foundation
 
+#if os(iOS) || os(tvOS)
 public extension KeyboardContext {
 
     /**
@@ -15,3 +16,4 @@ public extension KeyboardContext {
         KeyboardInputViewController.shared.activeAppBundleId
     }
 }
+#endif

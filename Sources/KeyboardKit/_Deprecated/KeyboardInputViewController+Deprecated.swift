@@ -1,10 +1,4 @@
-//
-//  File.swift
-//  
-//
-//  Created by Daniel Saidi on 2022-09-22.
-//
-
+#if os(iOS) || os(tvOS)
 import Foundation
 
 public extension KeyboardInputViewController {
@@ -21,3 +15,4 @@ public extension KeyboardInputViewController {
         }
     }
 }
+#endif
