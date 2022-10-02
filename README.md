@@ -76,7 +76,7 @@ KeyboardKit is localized in 50+ keyboard-specific locales ([read more][Localizat
 KeyboardKit also comes packed with a bunch of features to help you build amazing and powerful keyboards:
  
 * 💥 [Actions][Actions] - KeyboardKit comes with keyboard actions like characters, emojis, actions, custom ones etc.
-* 🎨 [Appearance][Appearance] - KeyboardKit comes with an appearance engine that lets you easily style your keyboards.
+* 🎨 [Appearances][Appearances] - KeyboardKit comes with an appearance engine that lets you easily style your keyboards.
 * 💡 [Autocomplete][Autocomplete] - KeyboardKit can present autocomplete suggestions as the user types.
 * 🗯 [Callouts][Callouts] - KeyboardKit can show input callouts, as well as long press callouts with secondary actions.
 * 😊 [Emojis][Emojis] - KeyboardKit defines emojis and emoji categories that you can use in your own keyboards.
@@ -175,8 +175,8 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Documentation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/
 [Getting-Started]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/getting-started
 [Actions]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-actions
+[Appearances]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-appearances
 
-[Appearance]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Appearance.md
 [Audio-Feedback]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Audio-Feedback.md
 [Autocomplete]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Autocomplete.md
 [Callouts]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Callouts.md

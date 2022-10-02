@@ -5,9 +5,9 @@ This article describes the KeyboardKit action model and how to use it.
 
 ## Keyboard actions
 
-In KeyboardKit, keyboard actions are fundamental building-blocks that can be bound to buttons and triggered programmatically, using a ``KeyboardActionHandler``.
+In KeyboardKit, keyboard actions are fundamental building-blocks that can be bound to buttons and triggered programmatically, using a ``KeyboardActionHandler``. 
 
-The ``KeyboardAction`` enum defines a bunch of keyboard-specific actions, where the descriptions below are the standard behaviors of the various action.
+The ``KeyboardAction`` enum defines a bunch of actions, where these descriptions are the standard behaviors of the various actions:
 
 ### Inputs
 
@@ -50,17 +50,11 @@ The ``KeyboardAction`` enum defines a bunch of keyboard-specific actions, where 
 
 
 
-## How to trigger keyboard actions
-
-Keyboard actions can be triggered by keyboard-specific gestures that are applied to various buttons. If you use a ``SystemKeyboard``, this will be done automatically. You can also trigger a keyboard action programmatically by using a ``KeyboardActionHandler``.
-
-
-
 ## How to handle keyboard actions
 
-Keyboard actions can be handled with a ``KeyboardActionHandler``, which is a protocol that can be implemented by any class that can be used to handle various gestures on various keyboard actions.
+Keyboard actions can be handled with a ``KeyboardActionHandler``, which is a protocol that can be implemented by any class that can be used to handle actions. 
 
-KeyboardKit will by defaut create a ``StandardKeyboardActionHandler`` and bind it to the input controller's ``KeyboardInputViewController/keyboardActionHandler``. You can replace this instance with any custom action handler if you want to customize how actions are handled.
+KeyboardKit will by default create a ``StandardKeyboardActionHandler`` and bind it to the input controller's ``KeyboardInputViewController/keyboardActionHandler``. You can replace it with a custom handler to customize how actions are handled.
 
 You can trigger keyboard actions programmatically by calling ``KeyboardActionHandler/handle(_:on:)``:
 
@@ -80,6 +74,8 @@ class MyClass {
 ```
 
 This is convenient when you must trigger actions from other parts of your keyboard, for instance as a side-effect when the user does something else than typing.
+
+Keyboard actions can also be triggered by keyboard-specific gestures that are applied to buttons. If you use a ``SystemKeyboard``, this will be done automatically. You can apply these gestures to any button.
 
 Although the ``StandardKeyboardActionHandler`` will handle most actions properly, there may come a time when you will have to customize how certain actions are handled. If so, you will have to create a custom keyboard action handler. 
 
