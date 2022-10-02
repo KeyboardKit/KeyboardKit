@@ -1,53 +1,68 @@
 # Understanding Actions
 
-This article describes KeyboardKit action model and how to use it. 
+This article describes the KeyboardKit action model and how to use it. 
 
 
 ## Keyboard actions
 
-Keyboard actions are fundamental building-blocks that can be bound to buttons and triggered using a ``KeyboardActionHandler``.
+In KeyboardKit, keyboard actions are fundamental building-blocks that can be bound to buttons and triggered programmatically, using a ``KeyboardActionHandler``.
 
-The ``KeyboardAction`` enum defines a bunch of keyboard-specific actions, such as characters, key representations, mode switches, actions etc.
+The ``KeyboardAction`` enum defines a bunch of keyboard-specific actions, where the descriptions below are the standard behaviors of the various action.
 
-* `backspace` - deletes text backwards in the text document proxy when `tapped` and repeats this action until the button is released.
-* `character` - sends a text character to the text document proxy when `tapped`.
-* `command` - represents a macOS command key.
-* `control` - represents a macOS control key.
-* `dictation` - represents an iOS dictation key.
-* `dismissKeyboard` - dismisses the keyboard when `tapped`.
-* `emoji` - sends an emoji to the text document proxy when `tapped`.
-* `emojiCategory(category:)` - can be used to show a specific emoji category.
-* `escape` - represents a macOS `esc` key.
-* `function` - represents a macOS `fn` key.
-* `image` - can be used to show an embedded image asset.
-* `keyboardType` - changes the keyboard type when `tapped`.
-* `moveCursorBackward` - moves the cursor back one position when `tapped`.
-* `moveCursorForward` - moves the cursor forward one position when `tapped`.
-* `newLine` - sends a new line character to the text proxy when `tapped`.
-* `nextKeyboard` - triggers the main keyboard switcher when `tapped` and `long pressed`.
-* `nextLocale` - selects the next locale in the keyboard context when `tapped` and `long pressed`.
-* `none`- an "no action" placeholder action.
-* `option` - represents a macOS `option` key.
-* `primary` - a primary button, e.g. `go`, `search` etc.
-* `return` - has the same behavior as a `newLine`, but is supposed to show a text instead of an arrow.
-* `settings` - can be used to show a settings window or trigger a settings action.
-* `shift` - changes the keyboard type to `.alphabetic(.uppercased)` when `tapped` and `.capslocked` when `double tapped`.
-* `space` - sends a space to the text document proxy when `tapped`.
-* `systemImage` - can be used to show a system image asset (SF Symbol).
-* `tab` - sends a tab to the text document proxy when `tapped`.
+### Inputs
 
-You can even create custom actions and handle them based on their unique identifiers.
+* ``KeyboardAction/character(_:)`` - sends a text character to the text document proxy when tapped.
+* ``KeyboardAction/emoji(_:)`` - sends an emoji to the text document proxy when tapped.
+* ``KeyboardAction/newLine`` - sends a new line character to the text proxy when tapped.
+* ``KeyboardAction/return`` - has the same behavior as a `newLine`, but is supposed to show a erturn text instead of an arrow.
+* ``KeyboardAction/space`` - sends a space to the text document proxy when `tapped`.
+* ``KeyboardAction/tab`` - sends a tab to the text document proxy when `tapped`.
 
-Keyboard actions are also used to define declarative keyboard layouts, using ``InputSet``s and ``KeyboardLayout``s.
+### Actions
+
+* ``KeyboardAction/backspace`` - deletes text backwards in the text document proxy when tapped and repeats this action until the button is released.
+* ``KeyboardAction/dismissKeyboard`` - dismisses the keyboard when tapped.
+* ``KeyboardAction/emojiCategory(_:)`` - can be used to show a specific emoji category.
+* ``KeyboardAction/keyboardType(_:)`` - changes the keyboard type when tapped.
+* ``KeyboardAction/moveCursorBackward`` - moves the input cursor back one step when tapped.
+* ``KeyboardAction/moveCursorForward`` - moves the input cursor forward one step when tapped.
+* ``KeyboardAction/nextKeyboard`` - triggers the main keyboard switcher when tapped and long pressed.
+* ``KeyboardAction/nextLocale`` - selects the next locale in the keyboard context when tapped and long pressed.
+* ``KeyboardAction/shift(currentState:)`` - changes the keyboard type to ``KeyboardType/alphabetic(_:)`` `.uppercased` when tapped and `.capslocked` when double tapped.
+
+### System
+
+* ``KeyboardAction/command`` - represents a macOS command key.
+* ``KeyboardAction/control`` - represents a macOS control key.
+* ``KeyboardAction/dictation`` - represents an iOS dictation key.
+* ``KeyboardAction/escape`` - represents a macOS `esc` key.
+* ``KeyboardAction/function`` - represents a macOS `fn` key.
+* ``KeyboardAction/option`` - represents a macOS `option` key.
+* ``KeyboardAction/primary(_:)`` - represents a primary button, e.g. `go`, `search` etc.
+
+### Custom
+
+* ``KeyboardAction/custom(named:)`` - a custom, named action that you can handle in any way.
+* ``KeyboardAction/image(description:keyboardImageName:imageName:)`` - can be used to show an embedded image asset.
+* ``KeyboardAction/none``- a "no action" placeholder action.
+* ``KeyboardAction/settings`` - can be used to show a settings window or trigger a settings action.
+* ``KeyboardAction/systemImage(description:keyboardImageName:imageName:)`` - can be used to show a system image asset (SF Symbol).
 
 
-## How to handle actions
 
-Keyboard actions are handled with a ``KeyboardActionHandler``, which is a protocol that can be implemented by any class that can handle keyboard actions.
+## How to trigger keyboard actions
 
-KeyboardKit will by default create a ``StandardKeyboardActionHandler`` instance and apply it to ``KeyboardInputViewController/keyboardActionHandler``, which is then used by default. You can replace this standard instance with a custom one.
+Keyboard actions can be triggered by keyboard-specific gestures that are applied to various buttons. If you use a ``SystemKeyboard``, this will be done automatically. You can also trigger a keyboard action programmatically by using a ``KeyboardActionHandler``.
 
-You can trigger keyboard actions programatically by calling ``KeyboardActionHandler/handle(_:on:)``:
+
+
+## How to handle keyboard actions
+
+Keyboard actions can be handled with a ``KeyboardActionHandler``, which is a protocol that can be implemented by any class that can be used to handle various gestures on various keyboard actions.
+
+KeyboardKit will by defaut create a ``StandardKeyboardActionHandler`` and bind it to the input controller's ``KeyboardInputViewController/keyboardActionHandler``. You can replace this instance with any custom action handler if you want to customize how actions are handled.
+
+You can trigger keyboard actions programmatically by calling ``KeyboardActionHandler/handle(_:on:)``:
 
 ```swift
 class MyClass {
@@ -64,17 +79,19 @@ class MyClass {
 }
 ```
 
-This is convenient when you must trigger actions from other parts of your keyboard, for instance as a side-effect when the user does something else than typing. 
+This is convenient when you must trigger actions from other parts of your keyboard, for instance as a side-effect when the user does something else than typing.
+
+Although the ``StandardKeyboardActionHandler`` will handle most actions properly, there may come a time when you will have to customize how certain actions are handled. If so, you will have to create a custom keyboard action handler. 
 
 
 
 ## How to create a custom keyboard action handler
 
-Many keyboard actions have standard behaviors, while others require custom handling. To customize how keyboard actions are handled, or to handle actions that have no default behavior, you can implement a custom action handler.
+You can create a custom keyboard action handler if you want to customize how keyboard actions are handled, or to handle actions that have no default behavior.
 
-You can create a custom action handler by either inheriting and customizing the ``StandardKeyboardActionHandler`` base class (which gives you a lot of functionality for free) or by implementing the ``KeyboardActionHandler`` protocol from scratch. 
+You can create a custom action handler by inheriting the ``StandardKeyboardActionHandler`` base class (which gives you a lot of functionality for free) or by implementing the ``KeyboardActionHandler`` protocol from scratch. 
 
-For instance, here is a custom implementation that inherits the base class and extends it with the capabilities to copy and save images:
+For instance, here is a custom action handler that inherits ``StandardKeyboardActionHandler`` and extends it with the capabilities to copy and save images:
 
 ```swift
 class MyActionHandler: StandardKeyboardActionHandler {
@@ -82,9 +99,6 @@ class MyActionHandler: StandardKeyboardActionHandler {
     public init(inputViewController: KeyboardInputViewController) {
         super.init(inputViewController: inputViewController)
     }
-    
-    
-    // MARK: - Overrides
     
     override func action(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction.GestureAction? {
         let standard = super.action(for: gesture, on: action)
@@ -94,9 +108,6 @@ class MyActionHandler: StandardKeyboardActionHandler {
         default: return standard
         }
     }
-    
-    
-    // MARK: - Custom actions
     
     func longPressAction(for action: KeyboardAction) -> KeyboardAction.GestureAction? {
         switch action {
@@ -111,12 +122,10 @@ class MyActionHandler: StandardKeyboardActionHandler {
         default: return nil
         }
     }
-    
-    ...
 }
 ```
 
-To use this implementation instead of the standard one, just replace the standard instance like this:
+To use this action handler instead of the standard one, just set the input controller's ``KeyboardInputViewController/keyboardActionHandler`` like this:
 
 ```swift
 class MyKeyboardViewController: KeyboardInputViewController {
@@ -128,4 +137,4 @@ class MyKeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-This will make KeyboardKit use your custom implementation everywhere instead of the standard one.
+This will make KeyboardKit use your custom implementation instead of the standard one.
