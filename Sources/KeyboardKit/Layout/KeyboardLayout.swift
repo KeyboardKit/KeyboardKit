@@ -69,12 +69,14 @@ public class KeyboardLayout {
      information over and over.
      */
     var widthCache = [TotalWidth: CGFloat]()
-    
+
     /**
      Calculate the width of an input key given a `totalWidth`.
      
      This will find the smallest required input width in all
-     rows, which can then be applied to all input keys.
+     rows, which can then be applied to all input keys. This
+     value will then be cached for the `totalWidth`, so that
+     it doesn't have to be calculated again.
      */
     public func inputWidth(for totalWidth: TotalWidth) -> CGFloat {
         if let result = widthCache[totalWidth] { return result }
