@@ -176,9 +176,9 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Getting-Started]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/getting-started
 [Actions]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-actions
 [Appearances]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-appearances
+[Autocomplete]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-autocomplete
 
 [Audio-Feedback]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Audio-Feedback.md
-[Autocomplete]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Autocomplete.md
 [Callouts]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Callouts.md
 [Emojis]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Emojis.md
 [Extensions]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Extensions.md
