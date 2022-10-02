@@ -10,12 +10,12 @@ import SwiftUI
 
 /**
  This enum defines keyboard-specific, localized texts.
- 
- `TODO` Add emoji category keyboard-specific texts.
  */
 public enum KKL10n: String, CaseIterable, Identifiable {
 
     case
+        localizedName,
+
         done,
         go,
         ok,
@@ -56,6 +56,14 @@ public extension KKL10n {
      */
     var text: String {
         NSLocalizedString(key, bundle: Self.bundle, comment: "")
+    }
+
+    /**
+     Whether or not the KKL10n case has been localized for a
+     certain `locale`.
+     */
+    func hasText(for locale: KeyboardLocale) -> Bool {
+        text(for: locale.locale) != rawValue
     }
     
     /**

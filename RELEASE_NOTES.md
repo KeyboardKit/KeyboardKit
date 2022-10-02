@@ -11,6 +11,21 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 6.5
+
+This release adds a new localized strings and new document proxy extensions.
+
+### ✨ New features
+
+* `KeyboardLocale` now supports defining a localized string to override its localized name.
+
+### 💡 Behavior changes
+
+* `KeyboardLocale` now uses `localizedName` from its localized strings, if any.
+* `KeyboardLocale.kurdish_sorani_pc` has a new localized name.
+
+
+
 ## 6.4
 
 This release bumps the package Swift version to 5.6.

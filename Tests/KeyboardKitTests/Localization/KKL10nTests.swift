@@ -9,12 +9,13 @@
 import Foundation
 import Quick
 import Nimble
+import XCTest
 @testable import KeyboardKit
-/*
+
 class KKL10nTests: QuickSpec {
     
     override func spec() {
-        
+
         describe("bundle path for locale") {
 
             it("is valid for all keyboard locales") {
@@ -26,9 +27,24 @@ class KKL10nTests: QuickSpec {
                 }
             }
         }
-        
+
+        describe("localized name") {
+
+            func result(for locale: KeyboardLocale) -> String {
+                KKL10n.localizedName.text(for: locale)
+            }
+
+            it("is only specified for a few locales") {
+                let expected: [KeyboardLocale] = [.kurdish_sorani_pc]
+                KeyboardLocale.allCases.forEach {
+                    let hasText = KKL10n.localizedName.hasText(for: $0)
+                    XCTAssertEqual(hasText, expected.contains($0))
+                }
+            }
+        }
+
         describe("text for locale") {
-            
+
             it("is not empty for any keyboard locale") {
                 KeyboardLocale.allCases.forEach {
                     let text = KKL10n.space.text(for: $0)
@@ -38,4 +54,3 @@ class KKL10nTests: QuickSpec {
         }
     }
 }
-*/
