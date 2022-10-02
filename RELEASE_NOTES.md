@@ -11,9 +11,15 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
-## 6.5
+## 6.4.1
 
 This release adds a new localized strings and new document proxy extensions.
+
+### 👑 KeyboardKit Pro
+
+* `UITextDocumentProxy` has a new `fullDocumentContext()` extension for getting all text, not just the available one.
+* `UITextDocumentProxy` has a new `fullDocumentContextBeforeInput()` extension for getting all text before the input.
+* `UITextDocumentProxy` has a new `fullDocumentContextAfterInput()` extension for getting all text after the input.
 
 ### ✨ New features
 
