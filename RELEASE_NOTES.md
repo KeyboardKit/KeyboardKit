@@ -22,7 +22,7 @@ This release adds a new localized strings and new document proxy extensions.
 ### 💡 Behavior changes
 
 * `KeyboardLocale` now uses `localizedName` from its localized strings, if any.
-* `KeyboardLocale.kurdish_sorani_arabic` has a new localized name.
+* `KeyboardLocale.kurdish_sorani_arabic` has a new localized name and adjusted keyboard layouts.
 
 
 

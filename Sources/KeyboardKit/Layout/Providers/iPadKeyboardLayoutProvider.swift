@@ -110,6 +110,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         if context.isAlphabetic(.arabic) { return [] }
         if context.isAlphabetic(.kurdish_sorani_arabic) { return [] }
+        if context.isAlphabetic(.kurdish_sorani_pc) { return [] }
         if context.isAlphabetic(.persian) { return [] }
         return [action]
     }
@@ -121,6 +122,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         if context.isAlphabetic(.arabic) { return [keyboardReturnAction(for: context)] }
         if context.isAlphabetic(.kurdish_sorani_arabic) { return [keyboardReturnAction(for: context)] }
+        if context.isAlphabetic(.kurdish_sorani_pc) { return [keyboardReturnAction(for: context)] }
         if context.isAlphabetic(.persian) { return [] }
         if hasAlphabeticInputCount([12, 12, 10]) { return [.newLine] }  // e.g. Belarusian
         return [action]
@@ -140,6 +142,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     open func middleTrailingActions(for context: KeyboardContext) -> KeyboardActions {
         if context.isAlphabetic(.arabic) { return [] }
         if context.isAlphabetic(.kurdish_sorani_arabic) { return [] }
+        if context.isAlphabetic(.kurdish_sorani_pc) { return [] }
         if hasAlphabeticInputCount([12, 12, 10]) { return [] }  // e.g. Belarusian
         return [keyboardReturnAction(for: context)]
     }
@@ -166,6 +169,7 @@ private extension iPadKeyboardLayoutProvider {
     func backspaceWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
         if context.is(.arabic) { return .input }
         if context.is(.kurdish_sorani_arabic) { return .input }
+        if context.is(.kurdish_sorani_pc) { return .input }
         if context.is(.persian) { return .input }
         if hasAlphabeticInputCount([12, 12, 10]) { return .input }  // e.g. Belarusian
         return .percentage(0.125)

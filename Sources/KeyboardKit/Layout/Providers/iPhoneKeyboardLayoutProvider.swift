@@ -96,6 +96,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         guard let switcher = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         if context.isAlphabetic(.arabic) { return [] }
         if context.isAlphabetic(.kurdish_sorani_arabic) { return [] }
+        if context.isAlphabetic(.kurdish_sorani_pc) { return [] }
         if context.isAlphabetic(.persian) { return [] }
         if context.isAlphabetic(.russian) { return [switcher] }
         if context.isAlphabetic(.ukrainian) { return [switcher] }
@@ -112,6 +113,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         guard isExpectedPhoneInputActions(actions) else { return [] }
         if context.isAlphabetic(.arabic) { return [trailingMarginAction(for: actions[2]), .backspace] }
         if context.isAlphabetic(.kurdish_sorani_arabic) { return [.backspace] }
+        if context.isAlphabetic(.kurdish_sorani_pc) { return [trailingMarginAction(for: actions[2]), .backspace] }
         if context.isAlphabetic(.persian) { return [.backspace] }
         if context.isAlphabetic(.ukrainian) { return [.backspace] }
         if isAlphabeticWithInputCount(context, [10, 10, 8]) { return [.backspace] } // e.g. Czech
@@ -197,6 +199,7 @@ private extension iPhoneKeyboardLayoutProvider {
         let standard = isPortrait(context) ? bottomWidth : .percentage(0.12)
         if context.is(.kurdish_sorani_arabic) { return .input }
         if context.isAlphabetic(.arabic) { return isPortrait(context) ? bottomWidth : .percentage(0.14) }
+        if context.isAlphabetic(.kurdish_sorani_pc) { return isPortrait(context) ? bottomWidth : .percentage(0.14) }
         if context.isAlphabetic(.persian) { return .input }
         if context.isAlphabetic(.ukrainian) { return .input }
         if hasAlphabeticInputCount([12, 11, 9]) { return .percentage(0.11) }        // e.g. Turkish
