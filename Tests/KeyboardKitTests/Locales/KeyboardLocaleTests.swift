@@ -141,7 +141,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .irish: "Gaeilge (Éire)",
                         .italian: "italiano",
                         .kurdish_sorani: "کوردیی ناوەندی",
-                        .kurdish_sorani_arabic: "کوردیی ناوەندی (ئەرژەنتین)",
+                        .kurdish_sorani_arabic: "کوردی سۆرانی (عەرەبی)",
                         .kurdish_sorani_pc: "کوردیی ناوەندی" + " (PC)",
                         .latvian: "latviešu",
                         .lithuanian: "lietuvių",

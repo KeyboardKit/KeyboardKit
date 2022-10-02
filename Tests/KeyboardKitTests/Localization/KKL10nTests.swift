@@ -35,7 +35,7 @@ class KKL10nTests: QuickSpec {
             }
 
             it("is only specified for a few locales") {
-                let expected: [KeyboardLocale] = [.kurdish_sorani_pc]
+                let expected: [KeyboardLocale] = [.kurdish_sorani_arabic]
                 KeyboardLocale.allCases.forEach {
                     let hasText = KKL10n.localizedName.hasText(for: $0)
                     XCTAssertEqual(hasText, expected.contains($0))
