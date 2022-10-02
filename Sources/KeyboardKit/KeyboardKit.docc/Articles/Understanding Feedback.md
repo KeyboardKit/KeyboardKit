@@ -1,33 +1,31 @@
-# Understanding Haptic & Audio Feedback
+# Understanding Feedback
 
-This article describes the KeyboardKit feedback model and how to use it. 
+This article describes the KeyboardKit feedback model and how to use it to get audio and haptic feedback. 
 
 
 ## Keyboard feedback
 
-KeyboardKit has a ``KeyboardAppearance`` protocol that can be used to trigger audio and haptic feedback as the user types.
+In KeyboardKit, keyboard feedback is a way to trigger audio and haptic feedback as the user types. 
 
-Various parts of the library use a feedback handler to give audio and haptic feedback to the user, when it's applicable.
+Keyboard feedback can be handled with a ``KeyboardFeedbackHandler``, which is a protocol that can be implemented by any class that can be used to handle keyboard feedback.
 
-KeyboardKit will by default create a ``StandardKeyboardFeedbackHandler`` instance and apply it to ``KeyboardInputViewController/keyboardFeedbackHandler``, which is then used by default. You can replace this standard instance with a custom one.
+KeyboardKit will by default create a ``StandardKeyboardFeedbackHandler`` and bind it to the input controller's ``KeyboardInputViewController/keyboardFeedbackHandler``. You can replace it with a custom handler to customize how audio and haptic feedback is handled.
 
 
 ## Keyboard feedback settings
 
-KeyboardKit has an observable ``KeyboardFeedbackSettings`` class that can be used to configure the the audio and haptic feedback to use for various actions.
+KeyboardKit also has an observable ``KeyboardFeedbackSettings`` class that can be used to configure the the audio and haptic feedback to use for various actions.
 
-KeyboardKit will create an instance and apply this instance to ``KeyboardInputViewController/keyboardFeedbackSettings``, which is then used by default. You can replace this standard instance with a custom one. 
-
-The standard settings instance is by default used by ``StandardKeyboardFeedbackHandler``, which means that you can change the basic feedback behavior without having to create a custom feedback handler.
+KeyboardKit will by default create a settings instance and apply it to the input controller's ``KeyboardInputViewController/keyboardFeedbackSettings``. You can then configure this instance to change the audio and haptic feedback behavior without having to create a custom feedback handler.
 
 
-## How to create a custom handler
+## How to create a custom keyboard feedback handler
 
-Many keyboard actions have standard feedbacks, while others require custom handling. To customize how keyboard feedback is handled, or to trigger feedback for actions that have no default feedback, you can implement a custom feedback handler.
+You can create a custom keyboard feedback handler if you want to customize how feedback is handled, or to handle various feedback types that have no default behavior.
 
-You can create a custom feedback handler by either inheriting and customizing the ``StandardKeyboardFeedbackHandler`` base class (which gives you a lot of functionality for free) or by implementing the ``KeyboardFeedbackHandler`` protocol from scratch.
+You can create a custom feedback handler by inheriting the ``StandardKeyboardFeedbackHandler`` base class (which gives you a lot of functionality for free) or by implementing the ``KeyboardFeedbackHandler`` protocol from scratch.
 
-For instance, here is a custom implementation that inherits the base class and trigger haptic feedback when the return button is long pressed:
+For instance, here is a custom handler that inherits the base class and triggers haptic feedback when the return button is long pressed:
 
 ```swift
 class MyKeyboardFeedbackHandler: StandardKeyboardFeedbackHandler {
@@ -41,7 +39,7 @@ class MyKeyboardFeedbackHandler: StandardKeyboardFeedbackHandler {
 }
 ```
 
-To use this implementation instead of the standard one, just replace the standard instance like this:
+To use this feedback handler instead of the standard one, just set the input controller's ``KeyboardInputViewController/keyboardFeedbackHandler`` like this:
 
 ```swift
 class MyKeyboardViewController: KeyboardInputViewController {
@@ -53,24 +51,22 @@ class MyKeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-This will make KeyboardKit use your custom implementation everywhere instead of the standard one.
+This will make KeyboardKit use your custom implementation instead of the standard one.
+
 
 
 ## How to trigger feedback without a handler
 
-You don't need to use a feedback handler to trigger audio and haptic feedback, although that is the most flexible approach. 
-
-If you just want to trigger audio or haptic feedback, KeyboardKit has other, more straightforward types as well: 
+You don't need to use a feedback handler to trigger audio and haptic feedback, although that is the most flexible approach for doing so. To just trigger audio or haptic feedback, KeyboardKit has more straightforward ways: 
 
 ### System audio
 
-KeyboardKit has a ``SystemAudio`` enum that describes various system audio sounds.
-
-You can play any system audio sound with ``SystemAudio/play()``. You can also inject a new global ``SystemAudio/player`` to customize how system audio is played.
+KeyboardKit has a ``SystemAudio`` enum that describes various system audio sounds, such as ``SystemAudio``. You can play any system audio sound with ``SystemAudio/play()``. You can also inject a new global ``SystemAudio/player`` to customize how system audio is played.
 
 ### Haptic feedback
 
-KeyboardKit has a ``HapticFeedback`` enum that describes various types of haptic feedback.
+KeyboardKit has a ``HapticFeedback`` enum that describes various haptic feedback types. You can trigger any haptic feedback with ``HapticFeedback/trigger()``. You can also inject a new global ``HapticFeedback/player`` to customize how haptic feedback is triggered.
 
-You can trigger any haptic feedback with ``HapticFeedback/trigger()``. You can also inject a new global ``HapticFeedback/player`` to customize how haptic feedback is triggered.
+### Full access needed
 
+Note that your keyboard extension needs full access to be enabled to be able to play system audio and trigger haptic feedback. Full access must be enabled by the user, under `System Settings > General > Keyboards > Your Keyboard`.

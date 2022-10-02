@@ -52,7 +52,7 @@ The ``KeyboardAction`` enum defines a bunch of actions, where these descriptions
 
 ## How to handle keyboard actions
 
-Keyboard actions can be handled with a ``KeyboardActionHandler``, which is a protocol that can be implemented by any class that can be used to handle actions. 
+Keyboard actions can be handled with a ``KeyboardActionHandler``, which is a protocol that can be implemented by any class that can be used to handle keyboard actions. 
 
 KeyboardKit will by default create a ``StandardKeyboardActionHandler`` and bind it to the input controller's ``KeyboardInputViewController/keyboardActionHandler``. You can replace it with a custom handler to customize how actions are handled.
 
