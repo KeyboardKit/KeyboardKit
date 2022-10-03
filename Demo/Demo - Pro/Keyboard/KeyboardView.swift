@@ -20,22 +20,28 @@ import SwiftUI
  */
 struct KeyboardView: View {
     
-    /*
-    init(context: KeyboardContext) {
-       _context = ObservedObject(wrappedValue: context)
-    }
-    */
-    
-    // @ObservedObject private var context: KeyboardContext
-    
-    @EnvironmentObject private var context: KeyboardContext
+    @EnvironmentObject
+    private var autocompleteContext: AutocompleteContext
+
+    @EnvironmentObject
+    private var keyboardContext: KeyboardContext
     
     var body: some View {
         VStack(spacing: 0) {
-            if context.keyboardType != .emojis {
-                DemoAutocompleteToolbar()
+            if keyboardContext.keyboardType != .emojis {
+                autocompleteToolbar
             }
             SystemKeyboard()
         }
+    }
+}
+
+private extension KeyboardView {
+
+    var autocompleteToolbar: some View {
+        AutocompleteToolbar(
+            suggestions: autocompleteContext.suggestions,
+            locale: keyboardContext.locale
+        ).frame(height: 50)
     }
 }

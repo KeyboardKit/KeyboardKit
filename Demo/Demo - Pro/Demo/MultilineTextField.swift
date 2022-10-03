@@ -24,7 +24,8 @@ public struct MultilineTextField: UIViewRepresentable {
         self.configuration = configuration
     }
     
-    @Binding public var text: String
+    @Binding
+    public var text: String
     
     private let appearance: UIKeyboardAppearance
     private let configuration: Configuration
@@ -52,7 +53,8 @@ public struct MultilineTextField: UIViewRepresentable {
             self._text = text
         }
     
-        @Binding public var text: String
+        @Binding
+        public var text: String
         
         public func textViewDidChange(_ textView: UITextView) {
             text = textView.text

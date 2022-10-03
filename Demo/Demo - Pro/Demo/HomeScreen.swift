@@ -16,16 +16,17 @@ import SwiftUIKit
  */
 struct HomeScreen: View {
     
-    @StateObject private var keyboardState = KeyboardEnabledState(bundleId: "com.keyboardkit.demo.keyboard")
+    @StateObject
+    private var keyboardState = KeyboardEnabledState(bundleId: "com.keyboardkit.demo.keyboard")
     
     var body: some View {
         NavigationView {
             List {
                 Section(header: Text("Type")) {
-                    ListNavigationLink(destination: EditScreen(appearance: .default)) {
+                    NavigationLink(destination: EditScreen(appearance: .default)) {
                         Label("Type in a regular text field", image: .type)
                     }
-                    ListNavigationLink(destination: EditScreen(appearance: .dark)) {
+                    NavigationLink(destination: EditScreen(appearance: .dark)) {
                         Label("Type in a dark text field", image: .type)
                     }
                 }
@@ -38,11 +39,12 @@ struct HomeScreen: View {
                         isEnabled: isFullAccessEnabled,
                         enabledText: "Full Access is enabled",
                         disabledText: "Full Access is disabled")
-                    ListNavigationButton(action: openSettings) {
+                    Button(action: openSettings) {
                         Label("System settings", image: .settings)
                     }
                 }
             }
+            .buttonStyle(.list)
             .listStyle(.insetGrouped)
             .navigationTitle("KeyboardKit Demo")
         }

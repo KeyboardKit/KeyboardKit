@@ -17,9 +17,11 @@ struct EditScreen: View {
     
     let appearance: UIKeyboardAppearance
     
-    @State private var text = ""
+    @State
+    private var text = ""
     
-    @EnvironmentObject private var keyboardState: KeyboardEnabledState
+    @EnvironmentObject
+    private var keyboardState: KeyboardEnabledState
     
     var body: some View {
         List {

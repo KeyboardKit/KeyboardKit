@@ -26,12 +26,15 @@ struct KeyboardView: View {
     private var text = "Text"
     
     @EnvironmentObject
-    private var context: KeyboardContext
+    private var autocompleteContext: AutocompleteContext
+
+    @EnvironmentObject
+    private var keyboardContext: KeyboardContext
     
     var body: some View {
         VStack(spacing: 0) {
-            if context.keyboardType != .emojis {
-                DemoAutocompleteToolbar()
+            if keyboardContext.keyboardType != .emojis {
+                autocompleteToolbar
             }
             SystemKeyboard()
         }
@@ -42,6 +45,13 @@ struct KeyboardView: View {
 // MARK: - Private Views
 
 private extension KeyboardView {
+
+    var autocompleteToolbar: some View {
+        AutocompleteToolbar(
+            suggestions: autocompleteContext.suggestions,
+            locale: keyboardContext.locale
+        ).frame(height: 50)
+    }
 
     /// This text field can be added to the VStack above, to
     /// test typing in a text field within the keyboard view.
