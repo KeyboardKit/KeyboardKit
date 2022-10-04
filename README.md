@@ -17,6 +17,8 @@
 
 KeyboardKit is a Swift library that helps you build custom keyboards with Swift and SwiftUI. It extends the native keyboard APIs and provides you with a lot more functionality than is otherwise available.
 
+The end result can look something like this...or entirely different:
+
 <p align="center">
     <img src ="Resources/Demo.gif" width="300" />
 </p>

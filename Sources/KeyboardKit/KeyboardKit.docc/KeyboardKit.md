@@ -189,6 +189,10 @@ KeyboardKit is available under the MIT license.
 - ``StandardHapticFeedbackPlayer``
 - ``DisabledHapticFeedbackPlayer``
 
+### Images
+
+- ``KeyboardImageReader``
+
 ### Input
 
 - ``InputSet``
@@ -205,7 +209,6 @@ KeyboardKit is available under the MIT license.
 - ``SymbolicInputSet``
 
 - ``EnglishInputSetProvider``
-
 
 ### Layout
 
