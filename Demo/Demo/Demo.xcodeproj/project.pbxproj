@@ -13,7 +13,6 @@
 		A921152625D58A94003510D9 /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921152525D58A94003510D9 /* DemoApp.swift */; };
 		A921152825D58A94003510D9 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921152725D58A94003510D9 /* HomeScreen.swift */; };
 		A921152A25D58A96003510D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A921152925D58A96003510D9 /* Assets.xcassets */; };
-		A921152D25D58A96003510D9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A921152C25D58A96003510D9 /* Preview Assets.xcassets */; };
 		A921153C25D58AC7003510D9 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921153B25D58AC7003510D9 /* KeyboardViewController.swift */; };
 		A921154025D58AC7003510D9 /* Keyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A921153925D58AC7003510D9 /* Keyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A921156F25D5902F003510D9 /* FakeAutocompleteProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921156D25D5902F003510D9 /* FakeAutocompleteProvider.swift */; };
@@ -117,7 +116,6 @@
 		A921152525D58A94003510D9 /* DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoApp.swift; sourceTree = "<group>"; };
 		A921152725D58A94003510D9 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		A921152925D58A96003510D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A921152C25D58A96003510D9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A921152E25D58A96003510D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A921153925D58AC7003510D9 /* Keyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Keyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A921153B25D58AC7003510D9 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
@@ -239,7 +237,6 @@
 		A921152425D58A94003510D9 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				A921152B25D58A96003510D9 /* Preview Content */,
 				A92115CE25D59651003510D9 /* Resources */,
 				A921155925D58E39003510D9 /* Supporting Files */,
 				A921152525D58A94003510D9 /* DemoApp.swift */,
@@ -249,14 +246,6 @@
 				A921166625D5BC4F003510D9 /* MultilineTextField.swift */,
 			);
 			path = Demo;
-			sourceTree = "<group>";
-		};
-		A921152B25D58A96003510D9 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				A921152C25D58A96003510D9 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		A921153A25D58AC7003510D9 /* Keyboard */ = {
@@ -517,7 +506,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A921152D25D58A96003510D9 /* Preview Assets.xcassets in Resources */,
 				A921152A25D58A96003510D9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -769,7 +757,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Demo/Preview Content\"";
 				DEVELOPMENT_TEAM = PMEDFW438U;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Demo/Info.plist;
@@ -792,7 +779,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_ASSET_PATHS = "\"Demo/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Demo/Info.plist;
@@ -870,7 +856,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.keyboardkit.demo.KeyboardCustom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -897,7 +883,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.keyboardkit.demo.KeyboardCustom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
