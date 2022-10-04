@@ -33,6 +33,10 @@ class KeyboardViewController: KeyboardInputViewController {
      used by the keyboard.
      */
     override func viewDidLoad() {
+
+        // Set a custom keyboard locale
+        // 💡 Changing locale without KeyboardKit Pro or custom input sets will only change some button texts.
+        keyboardContext.setLocale(.english)
         
         // Setup a fake, demo-specific autocomplete provider.
         // 💡 You can change this provider to see how the autocomplete changes.
