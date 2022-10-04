@@ -6,32 +6,44 @@ If you're new to iOS keyboard extensions, [this great guide][Guide] will help yo
 
 
 
-## How to setup KeyboardKit
-
-To setup KeyboardKit, you must first install it using Swift Package Manager (preferred) or CocoaPods. See the main readme for more information on how to install the library.
-
-Once installed, you must link KeyboardKit to all targets that should be able to use it, then remember to add `import KeyboardKit` to all files that should be able to use it.
-
-
-
 ## How to use KeyboardKit
 
-You can use KeyboardKit in different ways in your iOS app targets:
+You can use KeyboardKit in many different ways:
 
 * Keyboard extensions can use KeyboardKit to create more powerful keyboards.
 * Apps can use KeyboardKit to check if a keyboard is enabled, has full access etc.
 * Apps can create custom input controllers and use KeyboardKit for the text field.
 * Other targets, like widgets can use KeyboardKit to build upon its functionality.
 
-KeyboardKit supports iOS, iPadOS, macOS, tvOS and watchOS, even though some functionality is not available on all platforms. 
+KeyboardKit supports iOS, iPadOS, macOS, tvOS and watchOS, although some functionality is only available on some platforms.
 
 
 
-## How to setup a keyboard extension
+## How to install KeyboardKit
 
-In your keyboard extension, make `KeyboardViewController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`. This gives it access to a lot of additional functionality, new lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboard()``, observable properties like ``KeyboardInputViewController/keyboardContext``, services like ``KeyboardInputViewController/keyboardActionHandler`` and much more.
+KeyboardKit can be installed with the Swift Package Manager:
 
-`KeyboardViewController` will call ``KeyboardInputViewController/viewWillSetupKeyboard()`` when the keyboard should be created or re-created. You can then use ``KeyboardInputViewController/setup(with:)`` to make the keyboard extension use any `SwiftUI` view, for instance:
+```
+https://github.com/KeyboardKit/KeyboardKit.git
+```
+
+or with CocoaPods:
+
+```
+pod KeyboardKit
+```
+
+You can add the library to the main app, the keyboard extension and any other targets that need it. 
+
+
+
+## How to setup KeyboardKit
+
+In your keyboard extension, `import KeyboardKit` then make `KeyboardViewController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`. 
+
+Inheriting ``KeyboardInputViewController`` gives your controller access to a lot of additional functionality, such as new lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboard()``, observable properties like ``KeyboardInputViewController/keyboardContext``, keyboard services like ``KeyboardInputViewController/keyboardActionHandler`` and much more.
+
+Your controller will call ``KeyboardInputViewController/viewWillSetupKeyboard()`` when the keyboard should be created. You can then use ``KeyboardInputViewController/setup(with:)`` to make the keyboard extension use any `SwiftUI` view, for instance:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -40,12 +52,10 @@ class KeyboardViewController: KeyboardInputViewController {
         super.viewWillSetupKeyboard()
         setup(with: MyKeyboardView())
     }
-
-    ...
 }
 ```
 
-This will make the view the main view of the keyboard extension, which will make sure that the extension resizes to fit its content. It will also inject all observable properties as environment objects into the view hierarchy, to ensure that the view updates automatically as the observable objects change. 
+This will make the view you use the main view of the keyboard extension, which makes the extension size to fit its content. It also injects all observable properties as environment objects into the view hierarchy, to ensure that the view updates whenever they change. 
 
 If you want to create a standard keyboard that imitates the iOS stock keyboard, you can use a ``SystemKeyboard``;
 
@@ -75,7 +85,7 @@ struct MyKeyboardView: View {
 }
 ```
 
-The view above creates a system keyboard that displays an autocomplete toolbar when it doesn't display an emojis keyboard.
+The view above creates a system keyboard with an autocomplete toolbar that only shows when the system keyboard doesn't display an emojis keyboard. The view will automatically update when things change, such as the ``KeyboardContext/keyboardType``.
 
 It's important that the view observes the global ``KeyboardInputViewController/keyboardContext``, either by using the injected environment object or by setting it up as an observed object, otherwise it will be unresponsive to context changes. If your view doesn't react when you change keyboard type, this is most probably the cause.
 
