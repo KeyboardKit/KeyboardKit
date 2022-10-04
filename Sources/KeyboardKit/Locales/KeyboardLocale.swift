@@ -112,9 +112,7 @@ public extension KeyboardLocale {
      The localized name of the locale.
      */
     var localizedName: String {
-        KKL10n.localizedName.hasText(for: self)
-            ? KKL10n.localizedName.text(for: self)
-            : locale.localizedString(forIdentifier: id) ?? ""
+        locale.localizedString(forIdentifier: id) ?? ""
     }
     
     /**

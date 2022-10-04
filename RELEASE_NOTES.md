@@ -11,6 +11,21 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 6.4.2
+
+This release rolls back the localized name adjustment in the last version.
+
+The Kurdish Sorani Arabic language folder uses a localization ID that isn't recognized by Apple, which causes uploads to App Store generate a warning.
+
+If you want to customize the display name for a keyboard locale, you have to do so manually in your app.
+
+### 💡 Behavior changes
+
+* `KeyboardLocale` now only resolves `localizedName` from its ID, as it did before 6.4.1.
+* The new `KKL10n` `localizedName` property has been rolled back.
+
+
+
 ## 6.4.1
 
 This release adds a new localized strings and new document proxy extensions.

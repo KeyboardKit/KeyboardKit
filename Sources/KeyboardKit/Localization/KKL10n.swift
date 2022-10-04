@@ -14,8 +14,6 @@ import SwiftUI
 public enum KKL10n: String, CaseIterable, Identifiable {
 
     case
-        localizedName,
-
         done,
         go,
         ok,
