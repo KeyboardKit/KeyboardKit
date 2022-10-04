@@ -17,9 +17,9 @@ This release adds a new localized strings and new document proxy extensions.
 
 ### 👑 KeyboardKit Pro
 
-* `UITextDocumentProxy` has a new `fullDocumentContext()` extension for getting all text, not just the available one.
-* `UITextDocumentProxy` has a new `fullDocumentContextBeforeInput()` extension for getting all text before the input.
-* `UITextDocumentProxy` has a new `fullDocumentContextAfterInput()` extension for getting all text after the input.
+* `UITextDocumentProxy` has a new `fullDocumentContext()` extension that gets all the text from the proxy, not just the closest one.
+* `UITextDocumentProxy` has a new `fullDocumentContextBeforeInput()` extension that gets all the text before the input cursor.
+* `UITextDocumentProxy` has a new `fullDocumentContextAfterInput()` extension that gets all the text after the input cursor.
 
 ### ✨ New features
 
