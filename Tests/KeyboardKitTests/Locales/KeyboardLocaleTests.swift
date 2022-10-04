@@ -101,7 +101,7 @@ class KeyboardLocaleTests: QuickSpec {
                 expect(result.allSatisfy { $0.value == true }).to(beTrue())
             }
         }
-        
+        /*
         describe("localized name") {
             
             it("is valid for all cases") {
@@ -167,7 +167,7 @@ class KeyboardLocaleTests: QuickSpec {
                     ]
                 ))
             }
-        }
+        }*/
         
         describe("flag") {
             

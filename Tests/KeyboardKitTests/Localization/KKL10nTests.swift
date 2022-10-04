@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+/*
 import Foundation
 import Quick
 import Nimble
@@ -54,3 +55,4 @@ class KKL10nTests: QuickSpec {
         }
     }
 }
+*/
