@@ -52,9 +52,13 @@ Note that extensions to native types are not included in this documentation. Fut
 KeyboardKit is localized in 50+ keyboard-specific locales:
 
 🇺🇸 🇦🇱 🇦🇪 🇧🇾 🇧🇬 🇦🇩 🇭🇷 🇨🇿 🇩🇰 🇳🇱 <br />
+
 🇧🇪 🇬🇧 🇺🇸 🇪🇪 🇫🇴 🇵🇭 🇫🇮 🇫🇷 🇨🇭 🇬🇪 <br />
+
 🇩🇪 🇦🇹 🇬🇷 🇭🇺 🇮🇸 🇮🇪 🇮🇹 🇹🇯 🇱🇻 🇱🇹 <br />
+
 🇲🇰 🇲🇹 🇲🇳 🇳🇴 🇮🇷 🇵🇱 🇵🇹 🇧🇷 🇷🇴 🇷🇺 <br />
+
 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 🇹🇷 🇺🇦 🇺🇸 🇧🇪 <br />
 
 
@@ -71,7 +75,7 @@ KeyboardKit is available under the MIT license.
 
 - <doc:Getting-Started>
 - <doc:Understanding-Actions>
-- <doc:Understanding-Appearance>
+- <doc:Understanding-Appearances>
 - <doc:Understanding-Autocomplete>
 - <doc:Understanding-Feedback>
 - <doc:Understanding-Input-Sets>
