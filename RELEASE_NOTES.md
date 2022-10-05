@@ -11,6 +11,16 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 6.4.3
+
+### ✨ New features
+
+* `ActionCalloutStyle.standardFont` can now be set to change the global callout font.
+* `KeyboardButtonShadowStyle.standard` can now be set to change the global style.
+* `KeyboardColorReader` standard values can now be set to change the global style.  
+
+
+
 ## 6.4.2
 
 This release rolls back the localized name adjustment in the last version.

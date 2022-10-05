@@ -55,6 +55,8 @@ public extension AutocompleteToolbarSeparatorStyle {
     
     /**
      This standard style aims to mimic the native iOS style.
+
+     This can be set to change the standard value everywhere.
      */
     static var standard = AutocompleteToolbarSeparatorStyle()
 }

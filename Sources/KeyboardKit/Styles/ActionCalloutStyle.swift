@@ -90,17 +90,24 @@ public extension ActionCalloutStyle {
     
     /**
      This standard style aims to mimic the native iOS style.
+
+     This can be set to change the standard value everywhere.
      */
     static var standard = ActionCalloutStyle()
     
     /**
      This is the standard font that will be used by default.
+
+     This can be set to change the standard value everywhere.
+     You must change it before using the .``standard`` style,
+     otherwise you will also have to change the style, since
+     it will hold a reference to the old font.
      */
-    static var standardFont: Font {
+    static var standardFont: Font = {
         if #available(iOS 14.0, tvOS 14.0, watchOS 7.0, *) {
             return .title3
         } else {
             return .body
         }
-    }
+    }()
 }
