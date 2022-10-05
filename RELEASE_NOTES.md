@@ -13,6 +13,10 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## 6.4.3
 
+### 👑 KeyboardKit Pro
+
+* The `UITextDocumentProxy` full text content extensions are now configurable.
+
 ### ✨ New features
 
 * `ActionCalloutStyle.standardFont` can now be set to change the global callout font.
