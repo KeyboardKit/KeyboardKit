@@ -1,6 +1,7 @@
 # Understanding Feedback
 
-This article describes the KeyboardKit feedback model and how to use it to get audio and haptic feedback. 
+This article describes the KeyboardKit feedback engine and how to use it to get audio and haptic feedback. 
+
 
 
 ## Keyboard feedback
@@ -12,11 +13,13 @@ Keyboard feedback can be handled with a ``KeyboardFeedbackHandler``, which is a 
 KeyboardKit will by default create a ``StandardKeyboardFeedbackHandler`` and bind it to the input controller's ``KeyboardInputViewController/keyboardFeedbackHandler``. You can replace it with a custom handler to customize how audio and haptic feedback is handled.
 
 
+
 ## Keyboard feedback settings
 
 KeyboardKit also has an observable ``KeyboardFeedbackSettings`` class that can be used to configure the the audio and haptic feedback to use for various actions.
 
 KeyboardKit will by default create a settings instance and apply it to the input controller's ``KeyboardInputViewController/keyboardFeedbackSettings``. You can then configure this instance to change the audio and haptic feedback behavior without having to create a custom feedback handler.
+
 
 
 ## How to create a custom keyboard feedback handler

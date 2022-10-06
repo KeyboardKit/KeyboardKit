@@ -1,6 +1,6 @@
 # Understanding Appearances
 
-This article describes the KeyboardKit appearance model and how to use it. 
+This article describes the KeyboardKit appearance engine and how to use it. 
 
 
 ## Keyboard appearances

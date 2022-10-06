@@ -1,6 +1,6 @@
 # Understanding Autocomplete
 
-This article describes the KeyboardKit autocomplete model and how to use it. 
+This article describes the KeyboardKit autocomplete engine and how to use it.
 
 
 ## Autocomplete provider

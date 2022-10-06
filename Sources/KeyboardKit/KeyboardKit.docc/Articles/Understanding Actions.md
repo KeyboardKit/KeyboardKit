@@ -1,6 +1,6 @@
 # Understanding Actions
 
-This article describes the KeyboardKit action model and how to use it. 
+This article describes the KeyboardKit action engine and how to use it. 
 
 
 ## Keyboard actions

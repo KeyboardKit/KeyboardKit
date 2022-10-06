@@ -3,44 +3,40 @@
 This article describes the KeyboardKit input set model and how to use it. 
 
 
-## Input sets
 
-In KeyboardKit, an ``InputSet`` defines input keys on a keyboard, which can then be combined with other actions to create a ``KeyboardLayout``, which defines the full set of keys on a keyboard.
+## Input sets vs keyboard layouts
 
-Input sets and keyboard layouts are central components when creating a ``SystemKeyboard``, where flexibility and configurability is important features. If you want to create a custom keyboard, you don't have to use these concepts.
+In KeyboardKit, ``InputSet``s and ``KeyboardLayout``s are central concepts when creating ``SystemKeyboard``s. You can also use them when you create custom keyboards, but you don't have to.
 
-KeyboardKit provides you with a few localized input sets, such as ``AlphabeticInputSet/english``, ``NumericInputSet/english(currency:)`` and ``SymbolicInputSet/english(currency:)``.
+An ``InputSet`` defines the input keys on a keyboard, which can be combined with other actions to create a ``KeyboardLayout`` that defines the full set of actions on a keyboard, as well as their heights, sizes etc. This means that you can use many different input sets with a single keyboard layout. 
 
-KeyboardKit Pro expands this futher, and contains additional variations for the 50+ locales it supports, such as `AlphabeticInputSet.polish`, `AlphabeticInputSet.danish` etc.
+A typical system keyboard layout has several rows, where center input buttons are surrounded by action buttons on one or both sides.
 
-
-## Input set variations
-
-Some languages have support for multiple input set variations. For instance, English supports `QWERTY`, `AZERTY`, `QWERTZ` and `Dvorak`.
-
-KeyboardKit supports these variations for `English`, which you can create with the same kind of builders like the input sets above, i.e. `AlphabeticInputSet.english`, `AlphabeticInputSet.englishAzerty`, `AlphabeticInputSet.englishQwerty` and `AlphabeticInputSet.englishQwertz`.
 
 
 ## Input set providers
 
-KeyboardKit has a ``InputSetProvider`` protocol that can be implemented by any classes that can be used to provide alphabetic, numeric and symbolic ``InputSet``s.
+KeyboardKit provides you with a few localized input sets, such as ``AlphabeticInputSet/english``, ``NumericInputSet/english(currency:)`` and ``SymbolicInputSet/english(currency:)``, which can be used to create English keyboards. You can easily create your own custom input sets as well.
 
-KeyboardKit will by default create a ``StandardInputSetProvider`` and apply it to ``KeyboardInputViewController/inputSetProvider``, which is then used by default. You can replace this standard instance with a custom one.
+However, instead of creating and using input sets directly, the most flexible way is to use an ``InputSetProvider``. KeyboardKit will by default create a ``StandardInputSetProvider`` and apply it to ``KeyboardInputViewController/inputSetProvider`` when it's initialized initialized. You can replace this provider with a custom one if you want to.
 
 KeyboardKit also has an ``EnglishInputSetProvider`` that defines the alphabetic, numeric and symbolic inputs for U.S. English. This provider is used by the standard provider, which supports injecting multiple locale-specific providers.
 
-KeyboardKit Pro contains additional input set providers for the 50+ locales it supports, such as `SpanishInputSetProvider`, `SwedishInputSetProvider` etc. where each Pro locale can create the input set provider it prefers. 
 
-KeyboardKit Pro thus lets you create a completely localized ``SystemKeyboard`` for all available locales with just a single line of code.
+
+## KeyboardKit Pro
+
+[KeyboardKit Pro][Pro] unlocks additional input set providers for the 50+ locales it supports, e.g. `PolishInputSetProvider`, localized input sets like `AlphabeticInputSet.filipino` and input set variations like `AlphabeticInputSet.azerty`, `AlphabeticInputSet.qwertz`. 
+
+This means that [KeyboardKit Pro][Pro] lets you create fully localized ``SystemKeyboard``s for all available locales with a single line of code.
+
 
 
 ## How to create a custom input set provider
 
-If you don't have a KeyboardKit Pro license, you can create a custom input set provider.
-
 You can create a custom input set provider by by implementing the ``InputSetProvider`` protocol.
 
-For instance, here is a custom provider that inherits ``EnglishInputSetProvider`` and replaces the dollar sign with a Russian ruble sign (₽) (...because, why not?):
+For instance, here is a custom provider that inherits ``EnglishInputSetProvider`` and replaces the dollar sign with a Yen sign (¥):
 
 ```swift
 class MyInputSetProvider: EnglishInputSetProvider {
@@ -67,3 +63,6 @@ class MyKeyboardViewController: KeyboardInputViewController {
 ```
 
 This will make KeyboardKit use your custom implementation everywhere instead of the standard one.
+
+
+[Pro]: https://github.com/KeyboardKit/KeyboardKitPro
