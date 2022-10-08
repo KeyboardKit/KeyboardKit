@@ -11,16 +11,28 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 6.5
+
+This version adjusts the KeyboardKit Pro license model. 
+
+There are some minor breaking changes in KeyboardKit Pro that should be straightforward to fix. 
+ 
+### 👑 KeyboardKit Pro
+  
+* `License` contains new information and capabilities, to enable future license features.
+* `ProInputSetProvider` now nests all pro input set providers for a cleaer api.
+* `ProCalloutActionProvider` now nests all pro callout action providers for a cleaer api.
+ 
+
+
 ## 6.4.4
 
 ### 👑 KeyboardKit Pro
 
 * The `UITextDocumentProxy` full text content extensions have been tweaked to perform better.
-* There is an alternate build for Xcode 13 and Bitcode that can be fetched from the `6.4.4_bitcode` tag.
 
 ### 💡 Behavior changes
 
-* `KeyboardLocale` re-introduces reading `localizedName` from localized strings, if any.
 * `KeyboardLocale.kurdish_sorani_arabic` uses `ckb_IQ` instead of `ckb_AR` to get a valid locale identifier.
 * `View+LocaleContextMenu` now iterates over the locales without enumerating.
 
@@ -31,7 +43,6 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 ### 👑 KeyboardKit Pro
 
 * The `UITextDocumentProxy` full text content extensions are now configurable.
-* There is an alternate build for Xcode 13 and Bitcode that can be fetched from the `6.4.3_bitcode` tag.
 
 ### ✨ New features
 
