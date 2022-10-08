@@ -81,6 +81,9 @@ KeyboardKit is available under the MIT license.
 - <doc:Understanding-Input-Sets>
 - <doc:Understanding-Layout>
 - <doc:Understanding-Localization>
+- <doc:Understanding-Previews>
+- <doc:Understanding-Proxy-Extensions>
+- <doc:Understanding-Text-Routing>
 
 ### Keyboard
 

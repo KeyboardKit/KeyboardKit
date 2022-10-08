@@ -55,7 +55,17 @@ public extension UITextDocumentProxy {
     var hasCurrentWord: Bool {
         currentWord != nil
     }
-    
+
+    /**
+     Whether or not the text document proxy cursor is at the
+     beginning of a new word.
+     */
+    var isCursorAtNewWord: Bool {
+        guard let pre = documentContextBeforeInput else { return true }
+        let lastCharacter = String(pre.suffix(1))
+        return pre.isEmpty || lastCharacter.isWordDelimiter
+    }
+
     /**
      Whether or not the text document proxy cursor is at the
      end of the current word.
@@ -68,6 +78,22 @@ public extension UITextDocumentProxy {
         let lastCharacter = String(pre.suffix(1))
         return !wordDelimiters.contains(lastCharacter)
     }
+
+    /**
+     The last ended word right before the cursor, if any.
+     */
+    var wordBeforeInput: String? {
+        if isCursorAtNewSentence { return nil }
+        guard isCursorAtNewWord else { return nil }
+        guard let context = documentContextBeforeInput else { return nil }
+        guard let result = context.split(by: wordDelimiters).dropLast().last?.trimmed() else { return nil }
+        return result.isEmpty ? nil : result
+    }
+
+    /**
+     A list of western word delimiters.
+     */
+    var wordDelimiters: [String] { String.wordDelimiters }
     
     /**
      Replace the current word with a replacement text.

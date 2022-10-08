@@ -3,12 +3,11 @@
 This article describes the KeyboardKit keyboard layout engine and how to use it. 
 
 
-
 ## Input sets vs keyboard layouts
 
 In KeyboardKit, ``InputSet``s and ``KeyboardLayout``s are central concepts when creating ``SystemKeyboard``s. You can also use them when you create custom keyboards, but you don't have to.
 
-An ``InputSet`` defines the input keys on a keyboard, which can be combined with other actions to create a ``KeyboardLayout`` that defines the full set of actions on a keyboard, as well as their heights, sizes etc. This means that you can use many different input sets with a single keyboard layout. 
+An ``InputSet`` defines the input keys on a keyboard, which can be combined with other actions to create a ``KeyboardLayout``, which defines the full set of actions on a keyboard as well as insets, sizes etc. This means that you can use many different input sets with a single keyboard layout. 
 
 A typical system keyboard layout has several rows, where center input buttons are surrounded by action buttons on one or both sides.
 
@@ -18,7 +17,7 @@ A typical system keyboard layout has several rows, where center input buttons ar
 
 The most flexible way to generate a keyboard layout is with a ``KeyboardLayoutProvider``. KeyboardKit will by default create a ``StandardKeyboardLayoutProvider`` and apply it to ``KeyboardInputViewController/keyboardLayoutProvider`` when it's initialized. You can replace this provider with a custom one if you want to.
 
-The ``StandardKeyboardLayoutProvider`` is initialized with an ``InputSetProvider``, which makes it possible to vary the input set while keeping the surrounding keys intact. It uses iPhone and iPad-specific providers to generate device-specific layouts.
+The ``StandardKeyboardLayoutProvider`` is initialized with an ``InputSetProvider``, which makes it possible to vary the input set while keeping the surrounding keys intact. It uses an ``iPhoneKeyboardLayoutProvider`` and an ``iPadKeyboardLayoutProvider`` to generate device-specific layouts.
 
 
 
@@ -28,6 +27,17 @@ The ``StandardKeyboardLayoutProvider`` is initialized with an ``InputSetProvider
 
 This means that [KeyboardKit Pro][Pro] lets you create fully localized ``SystemKeyboard``s for all available locales with a single line of code.
 
+
+
+## How to customize the standard layout provider
+
+If you want to make minor customizations to the standard layout provider, there are a couple of options:
+
+* Subclass ``StandardKeyboardLayoutProvider`` and override ``StandardKeyboardLayoutProvider/keyboardLayout(for:)``.
+* Create a new ``StandardKeyboardLayoutProvider`` instance and inject a custom ``StandardKeyboardLayoutProvider/iPadProvider``.
+* Create a new ``StandardKeyboardLayoutProvider`` instance and inject a custom ``StandardKeyboardLayoutProvider/iphoneProvider``.
+
+You can also create a completely custom keyboard layout provider, see below.
 
 
 ## How to create a custom keyboard layout provider

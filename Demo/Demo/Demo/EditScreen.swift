@@ -51,6 +51,7 @@ private extension EditScreen {
 }
 
 struct EditScreen_Previews: PreviewProvider {
+
     static var previews: some View {
         EditScreen(appearance: .default)
     }

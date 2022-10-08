@@ -1,4 +1,4 @@
-# Getting started
+# Getting Started
 
 This article discusses how get started using KeyboardKit in your app.
 

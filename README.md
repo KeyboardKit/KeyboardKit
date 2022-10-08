@@ -97,9 +97,10 @@ KeyboardKit comes packed features to help you build amazing and powerful keyboar
 * 💱 [Keyboard Types][Keyboard-Types] - KeyboardKit supports keyboard types, like `alphabetic`, `numeric`, `symbolic` etc.
 * 🌐 [Locales][Localization]- KeyboardKit defines keyboard-specific locales with localized content and assets.
 * 👁 [Previews][Previews] - KeyboardKit defines a bunch of tools that simplify previewing keyboard views in SwiftUI.
-* ➡️ [Proxy][Proxy] - KeyboardKit defines a bunch of extensions to `UITextDocumentProxy` and ways to proxy text.
+* ➡️ [Proxy][Proxy] - KeyboardKit defines a bunch of extensions to `UITextDocumentProxy`.
 * ⬅️ [RTL][RTL] - KeyboardKit supports RTL (right-to-left) locales, such as Arabic, Persian, Kurdish etc.
 * 🎨 [Styles][Styles] - KeyboardKit defines a bunch of styles that simplify customizing the look of various components.
+* 🚏 [Text Routing][Text-Routing] - KeyboardKit lets you route text to other destinations than the main app.
 * 🖼 [Views][Views] - KeyboardKit comes with a bunch of keyboard-specific views, like keyboards, toobars, buttons etc.
 
 
@@ -185,6 +186,11 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Appearances]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-appearances
 [Autocomplete]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-autocomplete
 [Feedback]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-feedback
+[Layout]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-layout
+[Localization]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-localization
+[Previews]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-previews.md
+[Proxy]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-proxy-extensions.md
+[Text-Routing]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-text-routing.md
 
 [Callouts]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Callouts.md
 [Emojis]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Emojis.md
@@ -192,11 +198,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [External]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/External.md
 [Gestures]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Gestures.md
 [Input-Sets]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Input-Sets.md
-[Keyboard-Layouts]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Keyboard-Layouts.md
 [Keyboard-Types]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Keyboard-Types.md
-[Localization]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Localization.md
-[Previews]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Previews.md
-[Proxy]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Proxy.md
 [RTL]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/RTL.md
 [Styles]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Styles.md
 [Views]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Views.md

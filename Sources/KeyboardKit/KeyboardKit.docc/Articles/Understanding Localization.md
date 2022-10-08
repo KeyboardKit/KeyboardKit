@@ -6,7 +6,7 @@ This article describes the KeyboardKit localization model and how to use it.
 
 ## Keyboard locale
 
-KeyboardKit has a ``KeyboardLocale`` enum that defines all available keyboard locales.
+KeyboardKit has a ``KeyboardLocale`` enum that defines all keyboard-specific locales that are defined by the library.
 
 Keyboard locales have more information than raw locales and can also have a set of related services. For instance, when a [KeyboardKit Pro][Pro] license is registered, it unlocks ways to get a ``CalloutActionProvider`` and an ``InputSetProvider`` for each locale.
 
@@ -42,7 +42,7 @@ You can change the available locales of a keyboard extension by setting ``Keyboa
 
 
 
-## How to create a new locale
+## How to add a new locale to the lubrary
 
 Since ``KeyboardLocale``s are hard-coded into the library, you can add more locales by either forking the library and adding what you need, or provide a new locale in a pull request and ask for it to get added to the main library.
 
