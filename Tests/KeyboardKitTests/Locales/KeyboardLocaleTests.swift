@@ -55,7 +55,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .irish: "ga_IE",
                         .italian: "it",
                         .kurdish_sorani: "ckb",
-                        .kurdish_sorani_arabic: "ckb_AR",
+                        .kurdish_sorani_arabic: "ckb_IQ",
                         .kurdish_sorani_pc: "ckb_PC",
                         .latvian: "lv",
                         .lithuanian: "lt",
@@ -100,7 +100,7 @@ class KeyboardLocaleTests: QuickSpec {
                 expect(result.allSatisfy { $0.value == true }).to(beTrue())
             }
         }
-        /*
+
         describe("localized name") {
             
             it("is valid for all cases") {
@@ -140,7 +140,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .irish: "Gaeilge (Éire)",
                         .italian: "italiano",
                         .kurdish_sorani: "کوردیی ناوەندی",
-                        .kurdish_sorani_arabic: "کوردی سۆرانی (عەرەبی)",
+                        .kurdish_sorani_arabic: "کوردیی ناوەندی (عێراق)",
                         .kurdish_sorani_pc: "کوردیی ناوەندی" + " (PC)",
                         .latvian: "latviešu",
                         .lithuanian: "lietuvių",
@@ -166,7 +166,7 @@ class KeyboardLocaleTests: QuickSpec {
                     ]
                 ))
             }
-        }*/
+        }
         
         describe("flag") {
             

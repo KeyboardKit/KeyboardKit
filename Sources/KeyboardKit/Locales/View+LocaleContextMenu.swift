@@ -19,9 +19,9 @@ public extension View {
      The function only has effects if there are at least two
      locales in the provided collection.
      */
-    @ViewBuilder
     func localeContextMenu(
-        for context: KeyboardContext) -> some View {
+        for context: KeyboardContext
+    ) -> some View {
         self.localeContextMenu(for: context) { locale in
             Text(locale.localizedName.capitalized)
         }
@@ -35,10 +35,10 @@ public extension View {
      The function only has effects if there are at least two
      locales in the provided collection.
      */
-    @ViewBuilder
     func localeContextMenu<ButtonView: View>(
         for context: KeyboardContext,
-        buttonContentBuilder: @escaping (Locale) -> ButtonView) -> some View {
+        buttonContentBuilder: @escaping (Locale) -> ButtonView
+    ) -> some View {
         self.localeContextMenu(locales: context.locales) { locale in
             Button(action: { context.locale = locale }, label: {
                 buttonContentBuilder(locale)
@@ -57,15 +57,18 @@ public extension View {
     @ViewBuilder
     func localeContextMenu<ButtonView: View>(
         locales: [Locale],
-        buttonViewBuilder: @escaping (Locale) -> ButtonView) -> some View {
+        buttonViewBuilder: @escaping (Locale) -> ButtonView
+    ) -> some View {
         if locales.count < 2 {
             self
         } else {
-            self.contextMenu(ContextMenu {
-                ForEach(Array(locales.enumerated()), id: \.offset) {
-                    buttonViewBuilder($0.element)
+            self.contextMenu(
+                ContextMenu {
+                    ForEach(locales, id: \.identifier) {
+                        buttonViewBuilder($0)
+                    }
                 }
-            })
+            )
         }
     }
 }
