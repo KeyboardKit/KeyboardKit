@@ -12,6 +12,10 @@ import SwiftUI
 /**
  This demo-specific appearance inherits the standard one and
  can be used to easily customize the demo keyboard.
+
+ This appearance is registered by ``KeyboardViewController``
+ to show you how to register a custom appearance then use it
+ to customize how the keyboard looks.
  */
 class DemoKeyboardAppearance: StandardKeyboardAppearance {
     

@@ -50,13 +50,13 @@
 		A929F71127B2563F00EB754F /* DemoKeyboardActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EAA6F327B165B600BC9376 /* DemoKeyboardActionHandler.swift */; };
 		A929F71227B2563F00EB754F /* DemoKeyboardAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EAA6F127B165B600BC9376 /* DemoKeyboardAppearance.swift */; };
 		A99AE5C127183561004AD0A3 /* EnabledListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99AE5C027183561004AD0A3 /* EnabledListItem.swift */; };
+		A9C2EB7F28F3ECD5009450D2 /* SwiftUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = A9C2EB7E28F3ECD5009450D2 /* SwiftUIKit */; };
 		A9D5F7F328C1D88700D003AF /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D5F7F228C1D88700D003AF /* KeyboardViewController.swift */; };
 		A9D5F7F728C1D88700D003AF /* KeyboardCustom.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A9D5F7F028C1D88700D003AF /* KeyboardCustom.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A9D5F7FC28C1D8B000D003AF /* DemoKeyboardAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EAA6F127B165B600BC9376 /* DemoKeyboardAppearance.swift */; };
 		A9D5F7FD28C1D8B000D003AF /* DemoKeyboardLayoutProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EAA6F227B165B600BC9376 /* DemoKeyboardLayoutProvider.swift */; };
 		A9D5F7FE28C1D8B000D003AF /* DemoKeyboardActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EAA6F327B165B600BC9376 /* DemoKeyboardActionHandler.swift */; };
 		A9D5F7FF28C1D8BF00D003AF /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921157525D5906A003510D9 /* KeyboardView.swift */; };
-		A9E491802748F22B0078F435 /* SwiftUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = A9E4917F2748F22B0078F435 /* SwiftUIKit */; };
 		A9EAA6C927B1526500BC9376 /* KeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = A9EAA6C827B1526500BC9376 /* KeyboardKit */; };
 		A9EAA6CB27B1527300BC9376 /* KeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = A9EAA6CA27B1527300BC9376 /* KeyboardKit */; };
 		A9EAA6CF27B1527A00BC9376 /* KeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = A9EAA6CE27B1527A00BC9376 /* KeyboardKit */; };
@@ -171,7 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9EAA6C927B1526500BC9376 /* KeyboardKit in Frameworks */,
-				A9E491802748F22B0078F435 /* SwiftUIKit in Frameworks */,
+				A9C2EB7F28F3ECD5009450D2 /* SwiftUIKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,9 +348,9 @@
 		A9EAA6EF27B165B600BC9376 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				A9EAA6F327B165B600BC9376 /* DemoKeyboardActionHandler.swift */,
 				A9EAA6F127B165B600BC9376 /* DemoKeyboardAppearance.swift */,
 				A9EAA6F227B165B600BC9376 /* DemoKeyboardLayoutProvider.swift */,
-				A9EAA6F327B165B600BC9376 /* DemoKeyboardActionHandler.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -386,8 +386,8 @@
 			);
 			name = Demo;
 			packageProductDependencies = (
-				A9E4917F2748F22B0078F435 /* SwiftUIKit */,
 				A9EAA6C827B1526500BC9376 /* KeyboardKit */,
+				A9C2EB7E28F3ECD5009450D2 /* SwiftUIKit */,
 			);
 			productName = Demo;
 			productReference = A921152225D58A94003510D9 /* Demo.app */;
@@ -487,7 +487,7 @@
 			);
 			mainGroup = A921151925D58A94003510D9;
 			packageReferences = (
-				A9E4917E2748F22B0078F435 /* XCRemoteSwiftPackageReference "SwiftUIKit" */,
+				A9C2EB7D28F3ECD5009450D2 /* XCRemoteSwiftPackageReference "SwiftUIKit" */,
 			);
 			productRefGroup = A921152325D58A94003510D9 /* Products */;
 			projectDirPath = "";
@@ -998,9 +998,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A9E4917E2748F22B0078F435 /* XCRemoteSwiftPackageReference "SwiftUIKit" */ = {
+		A9C2EB7D28F3ECD5009450D2 /* XCRemoteSwiftPackageReference "SwiftUIKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/danielsaidi/SwiftUIKit";
+			repositoryURL = "https://github.com/danielsaidi/SwiftUIKit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.9.3;
@@ -1013,9 +1013,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = KeyboardKit;
 		};
-		A9E4917F2748F22B0078F435 /* SwiftUIKit */ = {
+		A9C2EB7E28F3ECD5009450D2 /* SwiftUIKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A9E4917E2748F22B0078F435 /* XCRemoteSwiftPackageReference "SwiftUIKit" */;
+			package = A9C2EB7D28F3ECD5009450D2 /* XCRemoteSwiftPackageReference "SwiftUIKit" */;
 			productName = SwiftUIKit;
 		};
 		A9EAA6C827B1526500BC9376 /* KeyboardKit */ = {
