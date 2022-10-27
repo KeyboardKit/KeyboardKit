@@ -93,6 +93,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func lowerLeadingActions(for actions: KeyboardActionRows, context: KeyboardContext) -> KeyboardActions {
         guard isExpectedPhoneInputActions(actions) else { return [] }
+        if context.isAlphabetic(.hebrew) { return [leadingMarginAction(for: actions[2])] }
         guard let switcher = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         if context.isAlphabetic(.arabic) { return [] }
         if context.isAlphabetic(.kurdish_sorani_arabic) { return [] }
@@ -111,6 +112,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func lowerTrailingActions(for actions: KeyboardActionRows, context: KeyboardContext) -> KeyboardActions {
         guard isExpectedPhoneInputActions(actions) else { return [] }
+        if context.isAlphabetic(.hebrew) { return [trailingMarginAction(for: actions[2])] }
         if context.isAlphabetic(.arabic) { return [trailingMarginAction(for: actions[2]), .backspace] }
         if context.isAlphabetic(.kurdish_sorani_arabic) { return [.backspace] }
         if context.isAlphabetic(.kurdish_sorani_pc) { return [trailingMarginAction(for: actions[2]), .backspace] }
@@ -127,7 +129,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func middleLeadingActions(for actions: KeyboardActionRows, context: KeyboardContext) -> KeyboardActions {
         guard shouldAddMiddleMarginActions(for: actions, context: context) else { return [] }
-        return [leadingMarginAction(for: actions[1])]
+        return [leadingMarginAction(for: actions[2])]
     }
 
     /**
@@ -135,13 +137,14 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func middleTrailingActions(for actions: KeyboardActionRows, context: KeyboardContext) -> KeyboardActions {
         guard shouldAddMiddleMarginActions(for: actions, context: context) else { return [] }
-        return [trailingMarginAction(for: actions[1])]
+        return [trailingMarginAction(for: actions[2])]
     }
 
     /**
      Get leading actions to add to the upper inputs row.
      */
     open func upperLeadingActions(for actions: KeyboardActionRows, context: KeyboardContext) -> KeyboardActions {
+        if context.isAlphabetic(.hebrew) { return [leadingMarginAction(for: actions[0])] }
         guard shouldAddUpperMarginActions(for: actions, context: context) else { return [] }
         return [leadingMarginAction(for: actions[1])]
     }
@@ -150,6 +153,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      Get trailing actions to add to the upper inputs row.
      */
     open func upperTrailingActions(for actions: KeyboardActionRows, context: KeyboardContext) -> KeyboardActions {
+        if context.isAlphabetic(.hebrew) { return [trailingMarginAction(for: actions[0]), .backspace] }
         guard shouldAddUpperMarginActions(for: actions, context: context) else { return [] }
         return [trailingMarginAction(for: actions[1])]
     }
@@ -218,15 +222,6 @@ private extension iPhoneKeyboardLayoutProvider {
         let isSymbolic = context.keyboardType == .symbolic
         guard isNumeric || isSymbolic else { return false }
         return row == 2 // Index 2 is the "wide keys" row
-    }
-
-    /**
-     Whether or not to add margin actions to the lower row.
-     */
-    func shouldAddLowerMarginActions(for actions: KeyboardActionRows, context: KeyboardContext) -> Bool {
-        guard isExpectedPhoneInputActions(actions) else { return false }
-        if context.isAlphabetic(.greek) { return true }
-        return false
     }
 
     /**

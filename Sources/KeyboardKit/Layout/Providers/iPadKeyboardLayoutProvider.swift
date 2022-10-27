@@ -109,6 +109,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     open func lowerLeadingActions(for context: KeyboardContext) -> KeyboardActions {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         if context.isAlphabetic(.arabic) { return [] }
+        if context.isAlphabetic(.hebrew) { return [.none] }
         if context.isAlphabetic(.kurdish_sorani_arabic) { return [] }
         if context.isAlphabetic(.kurdish_sorani_pc) { return [] }
         if context.isAlphabetic(.persian) { return [] }
@@ -121,6 +122,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     open func lowerTrailingActions(for context: KeyboardContext) -> KeyboardActions {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         if context.isAlphabetic(.arabic) { return [keyboardReturnAction(for: context)] }
+        if context.isAlphabetic(.hebrew) { return [.newLine] }
         if context.isAlphabetic(.kurdish_sorani_arabic) { return [keyboardReturnAction(for: context)] }
         if context.isAlphabetic(.kurdish_sorani_pc) { return [keyboardReturnAction(for: context)] }
         if context.isAlphabetic(.persian) { return [] }
@@ -132,6 +134,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      Additional leading actions to apply to the middle row.
      */
     open func middleLeadingActions(for context: KeyboardContext) -> KeyboardActions {
+        if context.isAlphabetic(.hebrew) { return [] }
         if hasAlphabeticInputCount([12, 12, 10]) { return [] }  // e.g. Belarusian
         return [.none]
     }
@@ -141,6 +144,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func middleTrailingActions(for context: KeyboardContext) -> KeyboardActions {
         if context.isAlphabetic(.arabic) { return [] }
+        if context.isAlphabetic(.hebrew) { return [] }
         if context.isAlphabetic(.kurdish_sorani_arabic) { return [] }
         if context.isAlphabetic(.kurdish_sorani_pc) { return [] }
         if hasAlphabeticInputCount([12, 12, 10]) { return [] }  // e.g. Belarusian
