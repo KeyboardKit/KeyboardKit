@@ -237,6 +237,7 @@ KeyboardKit is available under the MIT license.
 
 - ``KeyboardLocale``
 - ``LocaleDictionary``
+- ``LocaleFlagProvider``
 - ``LocalizedService``
 
 ### Localization

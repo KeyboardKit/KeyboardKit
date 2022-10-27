@@ -29,9 +29,10 @@ There are some minor breaking changes in KeyboardKit Pro that should be straight
 
 ### ✨ New features
 
-* `KeyboardLocale` has a new `regionIdentifier` property.
-* `Locale` has a new `flag` property.
-* `Locale` has a new `regionIdentifier` property.
+* `KeyboardLocale` implements the new `LocaleProvider` and `LocaleFlagProvider` protocols.
+* `Locale` implements the new `LocaleProvider` and `LocaleFlagProvider` protocols.
+* `LocaleProvider` is a new protocol that defines how to resolve locales.
+* `LocaleFlagProvider` is a new protocol that defines how to resolve flags for a locale.
 
 
 

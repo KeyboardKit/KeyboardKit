@@ -28,11 +28,12 @@ import Foundation
  using the ``KeyboardContext/locales`` property, which makes
  it possible to navigate through the available locales using
  the ``KeyboardContext/selectNextLocale()`` function.
- 
- This website specifies a list of locale identifiers:
- https://gist.github.com/jacobbubu/1836273
  */
-public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
+public enum KeyboardLocale: String,
+                            CaseIterable,
+                            Codable,
+                            Identifiable,
+                            LocaleFlagProvider {
     
     case english = "en"
     
@@ -142,13 +143,6 @@ public extension KeyboardLocale {
      Whether or not the locale is a right-to-left one.
      */
     var isRightToLeft: Bool { !isLeftToRight }
-
-    /**
-     The region identifier of the nested locale.
-     */
-    var regionIdentifier: String? {
-        locale.regionIdentifier
-    }
 }
 
 public extension Collection where Element == KeyboardLocale {
