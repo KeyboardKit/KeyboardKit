@@ -1,18 +1,47 @@
 # Understanding Localization
 
-This article describes the KeyboardKit localization model and how to use it. 
+This article describes the KeyboardKit localization model and how to use it.
+
+
+## Supported locales
+
+KeyboardKit is localized in 50+ keyboard-specific locales:
+
+🇺🇸 🇦🇱 🇦🇪 🇧🇾 🇧🇬 🇦🇩 🇭🇷 🇨🇿 🇩🇰 🇳🇱 <br />
+
+🇧🇪 🇬🇧 🇪🇪 🇫🇴 🇵🇭 🇫🇮 🇫🇷 🇨🇭 🇬🇪 🇩🇪 <br />
+
+🇦🇹 🇬🇷 🇮🇱 🇭🇺 🇮🇸 🇮🇪 🇮🇹 🇹🇯 🇱🇻 🇱🇹 <br />
+
+🇲🇰 🇲🇹 🇲🇳 🇳🇴 🇮🇷 🇵🇱 🇵🇹 🇧🇷 🇷🇴 🇷🇺 <br />
+
+🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 🇹🇷 🇺🇦 🇺🇸 🇧🇪 <br />
+
+KeyboardKit provides a ``KeyboardLocale`` for each locale, as well as localized content, such as strings that can be translated with ``KKL10n``.
+
+KeyboardKit Pro unlocks an ``InputSetProvider`` and a ``CalloutActionProvider`` for each locale, which means that ``SystemKeyboard`` becomes fully localized for every ``KeyboardLocale``.
 
 
 
 ## Keyboard locale
 
-KeyboardKit has a ``KeyboardLocale`` enum that defines all keyboard-specific locales that are defined by the library.
+The ``KeyboardLocale`` enum defines all keyboard-specific locales that are supported by the library.
 
 Keyboard locales have more information than raw locales and can also have a set of related services. For instance, when a [KeyboardKit Pro][Pro] license is registered, it unlocks ways to get a ``CalloutActionProvider`` and an ``InputSetProvider`` for each locale.
 
 
 
-## How to translate localized strings
+## How to change the current locale 
+
+You can change the current locale for a keyboard extension by setting the ``KeyboardContext`` ``KeyboardContext/locale`` to a new `Locale` or use the more convenient ``KeyboardContext/setLocale(_:)``, which supports using a ``KeyboardLocale``.
+
+You can change the available locales of a keyboard extension by setting ``KeyboardContext`` ``KeyboardContext/locales`` to the locales you want to use. This makes it possible to loop through the available locales with ``KeyboardContext/selectNextLocale()``.
+
+The reason why ``KeyboardContext`` uses a regular `Locale` and not a ``KeyboardLocale`` is that it should be possible to use any locales without having to create a new ``KeyboardLocale``.
+
+
+
+## How to use localized content
 
 KeyboardKit defines localized strings for each locale in files that are kept under `Resources`. These localized strings can be accessed with the ``KKL10n`` enum.
 
@@ -22,27 +51,17 @@ For instance, to translate the numeric button key for the current locale, you ca
 let translation = KKL10n.keyboardTypeNumeric.text
 ```
 
-To translate the same text for a certain locale, you can use ``KKL10n/text(for:)-8r1rw``:
+To translate the same text for a certain locale, you can use ``KKL10n/text(for:)-8r1rw``, for instance:
 
 ```
 let translation = KKL10n.keyboardTypeNumeric.text(for: .spanish)
 ```
 
-``KKL10n`` has more properties and functions as well. You can use these strings even when you're not using a ``SystemKeyboard``. 
+Besides localized strings, KeyboardKit lets you get a flag for a locale or keyboard locale, using the ``LocaleFlagProvider/flag`` property. 
 
 
 
-## How to change the current locale 
-
-You can change the current locale for a keyboard extension by setting the ``KeyboardContext``'s ``KeyboardContext/locale`` to a new `Locale` or use the more convenient ``KeyboardContext/setLocale(_:)``, which supports using a ``KeyboardLocale``.
-
-The reason why ``KeyboardContext`` uses a regular `Locale` and not a ``KeyboardLocale`` is so it can use any locales without having to create a new ``KeyboardLocale``.
-
-You can change the available locales of a keyboard extension by setting ``KeyboardContext``'s ``KeyboardContext/locales`` property to the locales that you want to use. This makes it possible to loop through the available locales with ``KeyboardContext/selectNextLocale()``.
-
-
-
-## How to add a new locale to the lubrary
+## How to add a new locale to the library
 
 Since ``KeyboardLocale``s are hard-coded into the library, you can add more locales by either forking the library and adding what you need, or provide a new locale in a pull request and ask for it to get added to the main library.
 

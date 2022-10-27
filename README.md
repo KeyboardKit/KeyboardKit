@@ -71,15 +71,18 @@ Note that extensions to native types are not included in this documentation. Fut
 
 
 
-## ✨ Features
+## 🌐 Localization
 
 KeyboardKit is localized in 50+ keyboard-specific locales ([read more][Localization]):
 
 🇺🇸 🇦🇱 🇦🇪 🇧🇾 🇧🇬 🇦🇩 🇭🇷 🇨🇿 🇩🇰 🇳🇱 <br />
-🇧🇪 🇬🇧 🇺🇸 🇪🇪 🇫🇴 🇵🇭 🇫🇮 🇫🇷 🇨🇭 🇬🇪 <br />
-🇩🇪 🇦🇹 🇬🇷 🇭🇺 🇮🇸 🇮🇪 🇮🇹 🇹🇯 🇱🇻 🇱🇹 <br />
+🇧🇪 🇬🇧 🇪🇪 🇫🇴 🇵🇭 🇫🇮 🇫🇷 🇨🇭 🇬🇪 🇩🇪 <br />
+🇦🇹 🇬🇷 🇮🇱 🇭🇺 🇮🇸 🇮🇪 🇮🇹 🇹🇯 🇱🇻 🇱🇹 <br />
 🇲🇰 🇲🇹 🇲🇳 🇳🇴 🇮🇷 🇵🇱 🇵🇹 🇧🇷 🇷🇴 🇷🇺 <br />
 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 🇹🇷 🇺🇦 🇺🇸 🇧🇪 <br />
+
+
+## ✨ Features
 
 KeyboardKit comes packed features to help you build amazing and powerful keyboards:
  
@@ -185,6 +188,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Gumroad]: https://danielsaidi.gumroad.com
 
 [Documentation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/
+
 [Getting-Started]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/getting-started
 [Actions]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-actions
 [Appearances]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-appearances

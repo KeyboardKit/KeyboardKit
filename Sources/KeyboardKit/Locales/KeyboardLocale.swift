@@ -62,6 +62,7 @@ public enum KeyboardLocale: String,
     case german_switzerland = "de_CH"
     case greek = "el"
     case hawaiian = "haw"
+    case hebrew = "he_IL"
     case hungarian = "hu"
     case icelandic = "is"
     case irish = "ga_IE"

@@ -17,70 +17,81 @@ class KeyboardLocaleTests: QuickSpec {
     override func spec() {
         
         let locales = KeyboardLocale.allCases
+
+        describe("locale identifier") {
+
+            it("is valid for all cases") {
+                expect(KeyboardLocale.allCases.count).to(equal(55))
+            }
+        }
         
         describe("locale identifier") {
             
             it("is valid for all cases") {
                 let map = locales.map { ($0, $0.locale.identifier) }
                 let result = Dictionary(uniqueKeysWithValues: map)
-                expect(result).to(equal(
-                    [
-                        .albanian: "sq",
-                        .arabic: "ar",
-                        .belarusian: "be",
-                        .bulgarian: "bg",
-                        .catalan: "ca",
-                        .croatian: "hr",
-                        .czech: "cs",
-                        .danish: "da",
-                        .dutch: "nl",
-                        .dutch_belgium: "nl_BE",
-                        .english: "en",
-                        .english_gb: "en_GB",
-                        .english_us: "en_US",
-                        .estonian: "et",
-                        .faroese: "fo",
-                        .filipino: "fil",
-                        .finnish: "fi",
-                        .french: "fr",
-                        .french_belgium: "fr_BE",
-                        .french_switzerland: "fr_CH",
-                        .georgian: "ka",
-                        .german: "de",
-                        .german_austria: "de_AT",
-                        .german_switzerland: "de_CH",
-                        .greek: "el",
-                        .hawaiian: "haw",
-                        .hungarian: "hu",
-                        .icelandic: "is",
-                        .irish: "ga_IE",
-                        .italian: "it",
-                        .kurdish_sorani: "ckb",
-                        .kurdish_sorani_arabic: "ckb_IQ",
-                        .kurdish_sorani_pc: "ckb_PC",
-                        .latvian: "lv",
-                        .lithuanian: "lt",
-                        .macedonian: "mk",
-                        .maltese: "mt",
-                        .mongolian: "mn",
-                        .norwegian: "nb",
-                        .persian: "fa",
-                        .polish: "pl",
-                        .portuguese: "pt_PT",
-                        .portuguese_brazil: "pt_BR",
-                        .romanian: "ro",
-                        .russian: "ru",
-                        .serbian: "sr",
-                        .serbian_latin: "sr-Latn",
-                        .slovenian: "sl",
-                        .slovak: "sk",
-                        .spanish: "es",
-                        .swahili: "sw",
-                        .swedish: "sv",
-                        .turkish: "tr",
-                        .ukrainian: "uk"
-                    ]
-                ))
+                let expected: [KeyboardLocale: String] = [
+                    .albanian: "sq",
+                    .arabic: "ar",
+                    .belarusian: "be",
+                    .bulgarian: "bg",
+                    .catalan: "ca",
+                    .croatian: "hr",
+                    .czech: "cs",
+                    .danish: "da",
+                    .dutch: "nl",
+                    .dutch_belgium: "nl_BE",
+                    .english: "en",
+                    .english_gb: "en_GB",
+                    .english_us: "en_US",
+                    .estonian: "et",
+                    .faroese: "fo",
+                    .filipino: "fil",
+                    .finnish: "fi",
+                    .french: "fr",
+                    .french_belgium: "fr_BE",
+                    .french_switzerland: "fr_CH",
+                    .georgian: "ka",
+                    .german: "de",
+                    .german_austria: "de_AT",
+                    .german_switzerland: "de_CH",
+                    .greek: "el",
+                    .hawaiian: "haw",
+                    .hebrew: "he_IL",
+                    .hungarian: "hu",
+                    .icelandic: "is",
+                    .irish: "ga_IE",
+                    .italian: "it",
+                    .kurdish_sorani: "ckb",
+                    .kurdish_sorani_arabic: "ckb_IQ",
+                    .kurdish_sorani_pc: "ckb_PC",
+                    .latvian: "lv",
+                    .lithuanian: "lt",
+                    .macedonian: "mk",
+                    .maltese: "mt",
+                    .mongolian: "mn",
+                    .norwegian: "nb",
+                    .persian: "fa",
+                    .polish: "pl",
+                    .portuguese: "pt_PT",
+                    .portuguese_brazil: "pt_BR",
+                    .romanian: "ro",
+                    .russian: "ru",
+                    .serbian: "sr",
+                    .serbian_latin: "sr-Latn",
+                    .slovenian: "sl",
+                    .slovak: "sk",
+                    .spanish: "es",
+                    .swahili: "sw",
+                    .swedish: "sv",
+                    .turkish: "tr",
+                    .ukrainian: "uk"
+                ]
+
+                expect(result.keys).to(equal(expected.keys))
+                result.keys.forEach {
+                    expect(result[$0]).to(equal(expected[$0]))
+                }
             }
         }
         
@@ -107,65 +118,67 @@ class KeyboardLocaleTests: QuickSpec {
             it("is valid for all cases") {
                 let map = locales.map { ($0, $0.localizedName) }
                 let result = Dictionary(uniqueKeysWithValues: map)
-                
-                expect(result).to(equal(
-                    [
-                        .albanian: "shqip",
-                        .arabic: "العربية",
-                        .belarusian: "беларуская",
-                        .bulgarian: "български",
-                        .dutch_belgium: "Nederlands (België)",
-                        .catalan: "català",
-                        .croatian: "hrvatski",
-                        .czech: "čeština",
-                        .danish: "dansk",
-                        .dutch: "Nederlands",
-                        .english: "English",
-                        .english_gb: "English (United Kingdom)",
-                        .english_us: "English (United States)",
-                        .estonian: "eesti",
-                        .faroese: "føroyskt",
-                        .filipino: "Filipino",
-                        .finnish: "suomi",
-                        .french: "français",
-                        .french_belgium: "français (Belgique)",
-                        .french_switzerland: "français (Suisse)",
-                        .georgian: "ქართული",
-                        .german: "Deutsch",
-                        .german_austria: "Deutsch (Österreich)",
-                        .german_switzerland: "Deutsch (Schweiz)",
-                        .greek: "Ελληνικά",
-                        .hawaiian: "ʻŌlelo Hawaiʻi",
-                        .hungarian: "magyar",
-                        .icelandic: "íslenska",
-                        .irish: "Gaeilge (Éire)",
-                        .italian: "italiano",
-                        .kurdish_sorani: "کوردیی ناوەندی",
-                        .kurdish_sorani_arabic: "کوردیی ناوەندی (عێراق)",
-                        .kurdish_sorani_pc: "کوردیی ناوەندی" + " (PC)",
-                        .latvian: "latviešu",
-                        .lithuanian: "lietuvių",
-                        .macedonian: "македонски",
-                        .maltese: "Malti",
-                        .mongolian: "монгол",
-                        .norwegian: "norsk bokmål",
-                        .persian: "فارسی",
-                        .polish: "polski",
-                        .portuguese: "português (Portugal)",
-                        .portuguese_brazil: "português (Brasil)",
-                        .romanian: "română",
-                        .russian: "русский",
-                        .serbian: "српски",
-                        .serbian_latin: "srpski (latinica)",
-                        .slovenian: "slovenščina",
-                        .slovak: "slovenčina",
-                        .spanish: "español",
-                        .swahili: "Kiswahili",
-                        .swedish: "svenska",
-                        .turkish: "Türkçe",
-                        .ukrainian: "українська"
-                    ]
-                ))
+                let expected: [KeyboardLocale: String] = [
+                    .albanian: "shqip",
+                    .arabic: "العربية",
+                    .belarusian: "беларуская",
+                    .bulgarian: "български",
+                    .dutch_belgium: "Nederlands (België)",
+                    .catalan: "català",
+                    .croatian: "hrvatski",
+                    .czech: "čeština",
+                    .danish: "dansk",
+                    .dutch: "Nederlands",
+                    .english: "English",
+                    .english_gb: "English (United Kingdom)",
+                    .english_us: "English (United States)",
+                    .estonian: "eesti",
+                    .faroese: "føroyskt",
+                    .filipino: "Filipino",
+                    .finnish: "suomi",
+                    .french: "français",
+                    .french_belgium: "français (Belgique)",
+                    .french_switzerland: "français (Suisse)",
+                    .georgian: "ქართული",
+                    .german: "Deutsch",
+                    .german_austria: "Deutsch (Österreich)",
+                    .german_switzerland: "Deutsch (Schweiz)",
+                    .greek: "Ελληνικά",
+                    .hawaiian: "ʻŌlelo Hawaiʻi",
+                    .hebrew: "עברית (ישראל)",
+                    .hungarian: "magyar",
+                    .icelandic: "íslenska",
+                    .irish: "Gaeilge (Éire)",
+                    .italian: "italiano",
+                    .kurdish_sorani: "کوردیی ناوەندی",
+                    .kurdish_sorani_arabic: "کوردیی ناوەندی (عێراق)",
+                    .kurdish_sorani_pc: "کوردیی ناوەندی" + " (PC)",
+                    .latvian: "latviešu",
+                    .lithuanian: "lietuvių",
+                    .macedonian: "македонски",
+                    .maltese: "Malti",
+                    .mongolian: "монгол",
+                    .norwegian: "norsk bokmål",
+                    .persian: "فارسی",
+                    .polish: "polski",
+                    .portuguese: "português (Portugal)",
+                    .portuguese_brazil: "português (Brasil)",
+                    .romanian: "română",
+                    .russian: "русский",
+                    .serbian: "српски",
+                    .serbian_latin: "srpski (latinica)",
+                    .slovenian: "slovenščina",
+                    .slovak: "slovenčina",
+                    .spanish: "español",
+                    .swahili: "Kiswahili",
+                    .swedish: "svenska",
+                    .turkish: "Türkçe",
+                    .ukrainian: "українська"]
+
+                expect(result.keys).to(equal(expected.keys))
+                result.keys.forEach {
+                    expect(result[$0]).to(equal(expected[$0]))
+                }
             }
         }
         
@@ -174,7 +187,6 @@ class KeyboardLocaleTests: QuickSpec {
             it("is valid for all cases") {
                 let map = locales.map { ($0, $0.flag) }
                 let result = Dictionary(uniqueKeysWithValues: map)
-
                 let expected: [KeyboardLocale: String] = [
                     .albanian: "🇦🇱",
                     .arabic: "🇦🇪",
@@ -202,6 +214,7 @@ class KeyboardLocaleTests: QuickSpec {
                     .german_switzerland: "🇨🇭",
                     .greek: "🇬🇷",
                     .hawaiian: "🇺🇸",
+                    .hebrew: "🇮🇱",
                     .hungarian: "🇭🇺",
                     .icelandic: "🇮🇸",
                     .irish: "🇮🇪",
