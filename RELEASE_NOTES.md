@@ -22,7 +22,17 @@ There are some minor breaking changes in KeyboardKit Pro that should be straight
 * `License` contains new information and capabilities, to enable future license features.
 * `ProInputSetProvider` now nests all pro input set providers for a cleaer api.
 * `ProCalloutActionProvider` now nests all pro callout action providers for a cleaer api.
- 
+
+### 💡 Behavior changes
+
+* `KeyboardLocale` `flag` now uses the new `Locale` `flag` property, with some adjustments.
+
+### ✨ New features
+
+* `KeyboardLocale` has a new `regionIdentifier` property.
+* `Locale` has a new `flag` property.
+* `Locale` has a new `regionIdentifier` property.
+
 
 
 ## 6.4.4
