@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		012C5F0029113179003D044C /* InputViewEditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C5EFF29113179003D044C /* InputViewEditScreen.swift */; };
 		A912D9D128C1E44E0007FAC1 /* KeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = A912D9D028C1E44E0007FAC1 /* KeyboardKit */; };
 		A912D9D328C1E7F00007FAC1 /* DemoInputSetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912D9D228C1E7F00007FAC1 /* DemoInputSetProvider.swift */; };
 		A912D9D528C1F0480007FAC1 /* CustomKeyboardLayoutProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912D9D428C1F0480007FAC1 /* CustomKeyboardLayoutProvider.swift */; };
@@ -110,6 +111,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		012C5EFF29113179003D044C /* InputViewEditScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewEditScreen.swift; sourceTree = "<group>"; };
 		A912D9D228C1E7F00007FAC1 /* DemoInputSetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoInputSetProvider.swift; sourceTree = "<group>"; };
 		A912D9D428C1F0480007FAC1 /* CustomKeyboardLayoutProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomKeyboardLayoutProvider.swift; sourceTree = "<group>"; };
 		A921152225D58A94003510D9 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -243,6 +245,7 @@
 				A921166125D5BC2A003510D9 /* EditScreen.swift */,
 				A99AE5C027183561004AD0A3 /* EnabledListItem.swift */,
 				A921152725D58A94003510D9 /* HomeScreen.swift */,
+				012C5EFF29113179003D044C /* InputViewEditScreen.swift */,
 				A921166625D5BC4F003510D9 /* MultilineTextField.swift */,
 			);
 			path = Demo;
@@ -564,6 +567,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				012C5F0029113179003D044C /* InputViewEditScreen.swift in Sources */,
 				A921166225D5BC2A003510D9 /* EditScreen.swift in Sources */,
 				A99AE5C127183561004AD0A3 /* EnabledListItem.swift in Sources */,
 				A921152825D58A94003510D9 /* HomeScreen.swift in Sources */,

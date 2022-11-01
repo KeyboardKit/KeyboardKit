@@ -29,6 +29,9 @@ struct HomeScreen: View {
                     NavigationLink(destination: EditScreen(appearance: .dark)) {
                         Label("Type in a dark text field", image: .type)
                     }
+                    NavigationLink(destination: InputViewEditScreen(appearance: .default)) {
+                        Label("Type in a regular text field with keyboard as inputView", image: .type)
+                    }
                 }
                 Section(header: Text("Keyboard"), footer: footerText) {
                     EnabledListItem(
