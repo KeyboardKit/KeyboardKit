@@ -54,5 +54,6 @@ struct EditScreen_Previews: PreviewProvider {
 
     static var previews: some View {
         EditScreen(appearance: .default)
+            .environmentObject(KeyboardEnabledState(bundleId: Bundle.main.bundleIdentifier!))
     }
 }
