@@ -98,12 +98,19 @@ public class KeyboardContext: ObservableObject {
         }
     }
     
-    public enum EmojiIncludeMode {
+    /// Used to specify when the emoji locale will be included
+    public enum EmojiIncludeStrategy {
+        /// The emoji locale will never be included
         case notIncluded
+        /// The emoji locale will be included if present in the active keyboards
         case includedIfActive
+        /// The emoji locale will always be included
         case included
     }
-    public lazy var includeEmojiInKeyboardLocales: EmojiIncludeMode = Self.isAppExtension ? .notIncluded : .includedIfActive
+    /// Determines when the emoji locale will be included in the keyboard locales
+    public lazy var includeEmojiInKeyboardLocales: EmojiIncludeStrategy = Self.isAppExtension ? .notIncluded : .includedIfActive
+    
+    /// A locale used as a placeholder for the emoji keyboard type
     private static let emojiLocale = Locale(identifier: "emoji")
 
     /**
