@@ -23,10 +23,6 @@ There are some minor breaking changes in KeyboardKit Pro that should be straight
 * `ProInputSetProvider` now nests all pro input set providers for a cleaer api.
 * `ProCalloutActionProvider` now nests all pro callout action providers for a cleaer api.
 
-### 💡 Behavior changes
-
-* `KeyboardLocale` `flag` now uses the new `Locale` `flag` property, with some adjustments.
-
 ### ✨ New features
 
 * `KeyboardLocale` implements the new `LocaleProvider` and `LocaleFlagProvider` protocols.
