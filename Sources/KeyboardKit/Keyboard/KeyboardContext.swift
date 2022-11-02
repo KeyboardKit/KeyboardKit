@@ -26,6 +26,15 @@ import UIKit
  */
 public class KeyboardContext: ObservableObject {
     
+    /// Used to control how the `locales` property is initialised and maintained
+    public enum LocalesSet {
+        /// The default value of `locales` is the `locale` provided, and will not be updated automatically
+        case main
+        /// The value of `locales` will be a subset of the locales available in KeyboardKit, and the active iOS Keyboard locales. Useful when KeyboardKit is used as an inputView
+        case active
+        /// The default value of `locales` is all the locales available in KeyboardKit, and will not be updated
+        case all
+    }
     
     #if os(iOS) || os(tvOS)
     /**
@@ -48,6 +57,7 @@ public class KeyboardContext: ObservableObject {
         self.locales = [locale]
         self.screen = screen
         self.keyboardType = keyboardType
+        updateLocales()
         guard let controller = controller else { return }
         self.sync(with: controller)
     }
@@ -65,6 +75,7 @@ public class KeyboardContext: ObservableObject {
         self.locale = locale
         self.locales = [locale]
         self.keyboardType = keyboardType
+        updateLocales()
     }
     #endif
     
@@ -74,7 +85,26 @@ public class KeyboardContext: ObservableObject {
      removed whenever.
      */
     public static var tempIsPreviewMode: Bool = false
-
+    
+    /// Determine if running in an App Extension or main App
+    public static let isAppExtension = Bundle.main.bundlePath.hasSuffix(".appex")
+    
+    /// Determines how the `locales` property is initialised and maintained
+    public lazy var localesSet: LocalesSet = Self.isAppExtension ? .main : .active {
+        didSet {
+            // force update
+            Self.cachedActiveInputModes = []
+            updateLocales()
+        }
+    }
+    
+    public enum EmojiIncludeMode {
+        case notIncluded
+        case includedIfActive
+        case included
+    }
+    public lazy var includeEmojiInKeyboardLocales: EmojiIncludeMode = Self.isAppExtension ? .notIncluded : .includedIfActive
+    private static let emojiLocale = Locale(identifier: "emoji")
 
     /**
      The device type that is currently used.
@@ -110,7 +140,14 @@ public class KeyboardContext: ObservableObject {
      keyboards can use locales that are not in that enum.
      */
     @Published
-    public var locale: Locale
+    public var locale: Locale {
+        didSet {
+            if locale == Self.emojiLocale {
+                self.keyboardType = .emojis
+                self.selectNextLocale()
+            }
+        }
+    }
     
     /**
      The locales that are currently enabled for the keyboard.
@@ -120,6 +157,64 @@ public class KeyboardContext: ObservableObject {
      */
     @Published
     public var locales: [Locale]
+    
+    /// All locales available in KeyboardKit
+    private static let allLocales = KeyboardLocale.allCases.map({ $0.locale })
+    
+    /// A cached copy of the active locales available in KeyboardKit
+    private static var cachedActiveLocales: [Locale] = []
+    /// A cached copy of the active input modes
+    private static var cachedActiveInputModes: [UITextInputMode] = []
+    /// Indicates if the Emoji keyboard is active
+    private(set) public static var emojiActive = false
+    /// The currently active locales that are available in KeyboardKit
+    public static var activeLocales: [Locale] {
+        guard UITextInputMode.activeInputModes != cachedActiveInputModes else { return cachedActiveLocales }
+        let allKKLocales = allLocales
+        var seen = Set<Locale>()
+        emojiActive = false
+        let locales: [Locale] = UITextInputMode.activeInputModes.compactMap({ inputMode -> Locale? in
+            guard let localeIdentifier = inputMode.primaryLanguage?.replacingOccurrences(of: "-", with: "_") else {
+                return nil
+            }
+            guard localeIdentifier != "emoji" else {
+                emojiActive = true
+                return Self.emojiLocale
+            }
+            var found = allKKLocales.first(where: { $0.identifier == localeIdentifier })
+            if found == nil, let index = localeIdentifier.firstIndex(of: "_") {
+                let shortIdentifier = localeIdentifier.prefix(upTo: index)
+                found = allKKLocales.first(where: { $0.identifier == shortIdentifier })
+            }
+            // deduplicate while maintaining order
+            guard let found = found, seen.insert(found).inserted else { return nil }
+            return found
+        })
+        cachedActiveInputModes = UITextInputMode.activeInputModes
+        cachedActiveLocales = locales.count == 0 ? [KeyboardLocale.english.locale] : locales
+        return cachedActiveLocales
+    }
+    
+    /// Update the locales avaiable on this context
+    open func updateLocales() {
+        var locales: [Locale]
+        switch localesSet {
+        case .main: return
+        case .active:
+            locales = Self.activeLocales
+        case .all:
+            locales = Self.allLocales
+        }
+        let index = locales.firstIndex(of: Self.emojiLocale)
+        switch includeEmojiInKeyboardLocales {
+        case .notIncluded:
+            if let index = index { locales.remove(at: index) }
+        case .includedIfActive: break
+        case .included:
+            if index == nil { locales.append(Self.emojiLocale) }
+        }
+        self.locales = locales
+    }
     
     /**
      Whether or not the keyboard should (must) have a switch

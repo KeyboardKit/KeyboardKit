@@ -27,7 +27,7 @@ public extension View {
         actionHandler: KeyboardActionHandler,
         isPressed: Binding<Bool> = .constant(false)
     ) -> some View {
-        if action == .nextKeyboard {
+        if action == .nextKeyboard && KeyboardContext.isAppExtension {
             self
         } else {
             withKeyboardGestures(for: action, isPressed: isPressed, actionHandler: actionHandler)

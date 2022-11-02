@@ -23,7 +23,7 @@ public extension View {
         for context: KeyboardContext
     ) -> some View {
         self.localeContextMenu(for: context) { locale in
-            Text(locale.localizedName.capitalized)
+            Text(locale.localizedName)
         }
     }
     

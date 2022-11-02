@@ -78,8 +78,8 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         let needsInputSwitch = context.needsInputModeSwitchKey
         let needsDictation = context.needsInputModeSwitchKey
         if let action = keyboardSwitchActionForBottomRow(for: context) { result.append(action) }
-        if needsInputSwitch { result.append(.nextKeyboard) }
-        if !needsInputSwitch { result.append(.keyboardType(.emojis)) }
+        if needsInputSwitch || !KeyboardContext.isAppExtension { result.append(.nextKeyboard) }
+        else { result.append(.keyboardType(.emojis)) }
         if isPortrait(context), needsDictation, let action = dictationReplacement { result.append(action) }
         result.append(.space)
         if context.isAlphabetic(.persian) { result.append(.character(.zeroWidthSpace)) }

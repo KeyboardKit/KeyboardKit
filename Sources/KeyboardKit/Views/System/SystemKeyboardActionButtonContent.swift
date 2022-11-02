@@ -43,7 +43,11 @@ public struct SystemKeyboardActionButtonContent: View {
     public var body: some View {
         if action == .nextKeyboard {
             #if os(iOS) || os(tvOS)
-            NextKeyboardButton()
+            if KeyboardContext.isAppExtension {
+                NextKeyboardButton()
+            } else {
+                Image.keyboardGlobe
+            }
             #else
             Image.keyboardGlobe
             #endif

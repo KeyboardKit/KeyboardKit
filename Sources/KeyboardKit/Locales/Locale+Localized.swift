@@ -14,6 +14,9 @@ public extension Locale {
      The localized name of the locale's identifier.
      */
     var localizedName: String {
+        guard self.identifier != "emoji" else {
+            return "Emoji"
+        }
         let text = localizedString(forIdentifier: identifier) ?? "-"
         return text.capitalized
     }

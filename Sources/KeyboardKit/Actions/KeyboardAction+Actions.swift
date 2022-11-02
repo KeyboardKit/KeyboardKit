@@ -94,7 +94,7 @@ public extension KeyboardAction {
         if let action = standardTextDocumentProxyAction { return action }
         switch self {
         case .dismissKeyboard: return { $0?.dismissKeyboard() }
-        case .nextLocale: return { $0?.keyboardContext.selectNextLocale() }
+        case .nextKeyboard, .nextLocale: return { $0?.keyboardContext.selectNextLocale() }
         case .shift(let currentState): return {
             switch currentState {
             case .lowercased: $0?.keyboardContext.keyboardType = .alphabetic(.uppercased)
