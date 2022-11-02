@@ -18,7 +18,7 @@ import Foundation
 public protocol LocaleFlagProvider: LocaleProvider {
 
     /**
-     The flag symbol for the ``locale``.
+     The flag symbol for the ``LocaleProvider/locale``.
      */
     var flag: String { get }
 }
@@ -26,7 +26,7 @@ public protocol LocaleFlagProvider: LocaleProvider {
 public extension LocaleFlagProvider {
 
     /**
-     The standard flag symbol for the ``locale``.
+     The standard flag for the ``LocaleProvider/locale``.
      */
     var standardFlag: String {
         countryFlag(for: locale.regionIdentifier ?? "")
