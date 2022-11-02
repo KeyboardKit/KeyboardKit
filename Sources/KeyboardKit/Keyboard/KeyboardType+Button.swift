@@ -28,7 +28,7 @@ public extension KeyboardType {
     var standardButtonImage: Image? {
         switch self {
         case .email: return .keyboardEmail
-        case .emojis:return .keyboardEmoji
+        case .emojis: return .keyboardEmoji
         case .images: return .keyboardImages
         default: return nil
         }
