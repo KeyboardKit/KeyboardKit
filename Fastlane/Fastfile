@@ -4,54 +4,58 @@ default_platform :ios
 
 platform :ios do
 
+  library_name = "KeyboardKit"
+  pod_name = "KeyboardKit"
+  main_branch = "master"
+  build_folder_docs = ".build/docs"
 
-  # Documentation ==============
+
+    # Documentation ==============
 
   desc "Generate documentation"
   lane :documentation do
       docc_web
   end
 
-  
+
   # Lint =======================
-  
+
   desc "Run SwiftLint"
   lane :lint do
     swiftlint(strict: true)
   end
 
 
-  # Test =======================
-  
+  # Test ===================
+
   desc "Run unit tests"
   lane :test do
-    sh('cd .. && swift test')
+    sh("swift test")
   end
 
 
   # Validate ===================
-  
+
   desc "Ensure that the repo is valid for release"
   lane :ensure_release_ready do
     ensure_git_status_clean
-    ensure_git_branch(branch: 'master')
+    ensure_git_branch(branch: main_branch)
     lint
     test
   end
 
 
-  # Version ====================
+  # Version ================
 
   desc "Create a new version"
   lane :version do |options|
     ensure_release_ready
-    
     documentation
 
     bump_type = options[:type]
     version = version_bump_podspec(
-        path: "KeyboardKit.podspec",
-        bump_type: bump_type)
+      path: pod_name + '.podspec',
+      bump_type: bump_type)
 
     git_commit(path: "*", message: "Bump to #{version}")
     add_git_tag(tag: version)
@@ -65,7 +69,7 @@ platform :ios do
 
   desc "Build documentation for all platforms"
   lane :docc do
-    sh('cd .. && rm -rf Docs')
+    sh('cd .. && rm -rf ' + build_folder_docs)
     docc_platform(destination: 'iOS', name: 'ios')
     docc_platform(destination: 'OS X', name: 'osx')
     docc_platform(destination: 'tvOS', name: 'tvos')
@@ -74,23 +78,23 @@ platform :ios do
 
   desc "Build documentation for a single platform"
   lane :docc_platform do |values|
-    sh('cd .. && mkdir -p Docs')
-    docc_delete_derived_data
+    sh('cd .. && mkdir -p ' + build_folder_docs)
+    docc_delete_derived_data(lib: library_name)
     sh('cd .. && xcodebuild docbuild \
-      -scheme KeyboardKit \
+      -scheme ' + library_name + ' \
       -destination \'generic/platform=' + values[:destination] + '\'')
     sh('cd .. && \
       find ~/Library/Developer/Xcode/DerivedData \
-      -name "KeyboardKit.doccarchive" \
-      -exec cp -R {} Docs \;')
+      -name "' + library_name + '.doccarchive" \
+      -exec cp -R {} ' + build_folder_docs + ' \;')
     sh('cd .. && \
-      mv Docs/KeyboardKit.doccarchive Docs/KeyboardKit_' + values[:name] + '.doccarchive')
+      mv ' + build_folder_docs + '/' + library_name + '.doccarchive ' + build_folder_docs + '/' + library_name + '_' + values[:name] + '.doccarchive')
   end
 
   desc "Delete documentation derived data (may be historic duplicates)"
   lane :docc_delete_derived_data do
     sh('find ~/Library/Developer/Xcode/DerivedData \
-      -name "KeyboardKit.doccarchive" \
+      -name "' + library_name + '.doccarchive" \
       -exec rm -Rf {} \; || true')
   end
 
@@ -106,9 +110,9 @@ platform :ios do
   desc "Build static documentation website for a single platform"
   lane :docc_web_platform do |values|
     sh('cd .. && $(xcrun --find docc) process-archive \
-      transform-for-static-hosting Docs/KeyboardKit_' + values[:name] + '.doccarchive \
-      --output-path Docs/web_' + values[:name] + ' \
-      --hosting-base-path KeyboardKit')
+      transform-for-static-hosting ' + build_folder_docs + '/' + library_name + '_' + values[:name] + '.doccarchive \
+      --output-path  ' + build_folder_docs + '/web_' + values[:name] + ' \
+      --hosting-base-path ' + library_name + '')
   end
 
 end
