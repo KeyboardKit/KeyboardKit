@@ -10,7 +10,7 @@ platform :ios do
   build_folder_docs = ".build/docs"
 
 
-    # Documentation ==============
+  # Documentation ==============
 
   desc "Generate documentation"
   lane :documentation do
