@@ -365,6 +365,8 @@ public extension KeyboardContext {
      in the list, the first list locale is selected.
      */
     func selectNextLocale() {
+        // need to update locales here in case the active locales have changed (no way to get notified when they do)
+        updateLocales()
         let fallback = locales.first ?? locale
         guard let currentIndex = locales.firstIndex(of: locale) else { return locale = fallback }
         let nextIndex = currentIndex.advanced(by: 1)
