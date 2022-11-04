@@ -6,8 +6,6 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Quick
-import Nimble
 import KeyboardKit
 
 extension KeyboardAction {

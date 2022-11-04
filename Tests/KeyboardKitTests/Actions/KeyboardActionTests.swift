@@ -6,127 +6,102 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Quick
-import Nimble
 import KeyboardKit
+import XCTest
 
-class KeyboardActionTests: QuickSpec {
-    
-    override func spec() {
-        
-        let actions = KeyboardAction.testActions
-        
-        var expected: [KeyboardAction]! {
-            didSet {
-                unexpected = actions
-                expected.forEach { action in
-                    unexpected.removeAll { $0 == action }
-                }
+final class KeyboardActionTests: XCTestCase {
+
+    let actions = KeyboardAction.testActions
+
+    var expected: [KeyboardAction]! {
+        didSet { unexpected = actions.filter { !expected.contains($0) } }
+    }
+
+    var unexpected: [KeyboardAction]!
+
+    override func setUp() {
+        expected = []
+        unexpected = []
+    }
+
+    func testIsCharacterActionIsTrueForCharacterActions() {
+        actions.forEach { action in
+            let result = action.isCharacterAction
+            switch action {
+            case .character: XCTAssertTrue(result)
+            default: XCTAssertFalse(result)
             }
         }
-        
-        var unexpected: [KeyboardAction]!
-        
-        beforeEach {
-            expected = []
-            unexpected = []
-        }
-        
-        describe("is character action") {
-            
-            func result(for action: KeyboardAction) -> Bool {
-                action.isCharacterAction
-            }
-            
-            it("is only true for character actions") {
-                expected = [.character("")]
-                expected.forEach { expect($0.isCharacterAction).to(beTrue()) }
-                unexpected.forEach { expect($0.isCharacterAction).to(beFalse()) }
+    }
+
+    func testIsInputActionIsTrueForSomeActions() {
+        actions.forEach { action in
+            let result = action.isInputAction
+            switch action {
+            case .character: XCTAssertTrue(result)
+            case .characterMargin: XCTAssertTrue(result)
+            case .emoji: XCTAssertTrue(result)
+            case .image: XCTAssertTrue(result)
+            case .space: XCTAssertTrue(result)
+            case .systemImage: XCTAssertTrue(result)
+            default: XCTAssertFalse(result)
             }
         }
-        
-        describe("is input action") {
-            
-            it("is true for some actions") {
-                expected = [
-                    .character(""),
-                    .characterMargin(""),
-                    .emoji(Emoji("")),
-                    .image(description: "", keyboardImageName: "", imageName: ""),
-                    .space,
-                    .systemImage(description: "", keyboardImageName: "", imageName: "")]
-                expected.forEach { expect($0.isInputAction).to(beTrue()) }
-                unexpected.forEach { expect($0.isInputAction).to(beFalse()) }
+    }
+
+    func testIsPrimaryActionIsTrueForCharacterActions() {
+        actions.forEach { action in
+            let result = action.isPrimaryAction
+            switch action {
+            case .primary: XCTAssertTrue(result)
+            default: XCTAssertFalse(result)
             }
         }
-        
-        describe("is primary action") {
-            
-            it("is true for some actions") {
-                expected = [.primary(.done), .primary(.go), .primary(.newLine), .primary(.ok), .primary(.search)]
-                expected.forEach { expect($0.isPrimaryAction).to(beTrue()) }
-                unexpected.forEach { expect($0.isPrimaryAction).to(beFalse()) }
+    }
+
+    func testIsShiftActionIsTrueForCharacterActions() {
+        actions.forEach { action in
+            let result = action.isShiftAction
+            switch action {
+            case .shift: XCTAssertTrue(result)
+            default: XCTAssertFalse(result)
             }
         }
-        
-        describe("is shift") {
-            
-            it("is only true for all shift actions") {
-                expected = [
-                    .shift(currentState: .capsLocked),
-                    .shift(currentState: .lowercased),
-                    .shift(currentState: .uppercased)]
-                expected.forEach { expect($0.isShift).to(beTrue()) }
-                unexpected.forEach { expect($0.isShift).to(beFalse()) }
+    }
+
+    func testIsSystemActionIsTrueForCharacterActions() {
+        actions.forEach { action in
+            let result = action.isSystemAction
+            switch action {
+            case .backspace: XCTAssertTrue(result)
+            case .command: XCTAssertTrue(result)
+            case .control: XCTAssertTrue(result)
+            case .dictation: XCTAssertTrue(result)
+            case .dismissKeyboard: XCTAssertTrue(result)
+            case .emojiCategory: XCTAssertTrue(result)
+            case .escape: XCTAssertTrue(result)
+            case .function: XCTAssertTrue(result)
+            case .keyboardType: XCTAssertTrue(result)
+            case .moveCursorBackward: XCTAssertTrue(result)
+            case .moveCursorForward: XCTAssertTrue(result)
+            case .newLine: XCTAssertTrue(result)
+            case .nextLocale: XCTAssertTrue(result)
+            case .nextKeyboard: XCTAssertTrue(result)
+            case .option: XCTAssertTrue(result)
+            case .return: XCTAssertTrue(result)
+            case .shift: XCTAssertTrue(result)
+            case .tab: XCTAssertTrue(result)
+            default: XCTAssertFalse(result)
             }
         }
-        
-        describe("is system action") {
-            
-            it("is true for some actions") {
-                expected = [
-                    .backspace,
-                    .command,
-                    .control,
-                    .dictation,
-                    .dismissKeyboard,
-                    .emojiCategory(.smileys),
-                    .escape,
-                    .function,
-                    .keyboardType(.alphabetic(.lowercased)),
-                    .keyboardType(.alphabetic(.uppercased)),
-                    .keyboardType(.alphabetic(.capsLocked)),
-                    .keyboardType(.numeric),
-                    .keyboardType(.symbolic),
-                    .keyboardType(.email),
-                    .keyboardType(.emojis),
-                    .keyboardType(.images),
-                    .keyboardType(.custom(named: "")),
-                    .moveCursorBackward,
-                    .moveCursorForward,
-                    .newLine,
-                    .nextLocale,
-                    .nextKeyboard,
-                    .option,
-                    .return,
-                    .shift(currentState: .lowercased),
-                    .shift(currentState: .uppercased),
-                    .shift(currentState: .capsLocked),
-                    .tab
-                ]
-                expected.forEach { expect($0.isSystemAction).to(beTrue()) }
-                unexpected.forEach { expect($0.isSystemAction).to(beFalse()) }
-            }
-        }
-        
-        describe("is uppercase shift") {
-            
-            it("is only true for uppercase shift actions") {
-                expected = [
-                    .shift(currentState: .capsLocked),
-                    .shift(currentState: .uppercased)]
-                expected.forEach { expect($0.isUppercaseShift).to(beTrue()) }
-                unexpected.forEach { expect($0.isUppercaseShift).to(beFalse()) }
+    }
+
+    func testIsUppercasedShiftActionIsTrueForCharacterActions() {
+        actions.forEach { action in
+            let result = action.isUppercasedShiftAction
+            switch action {
+            case .shift(let state): XCTAssertEqual(result, state.isUppercased)
+            default: XCTAssertFalse(result)
             }
         }
     }

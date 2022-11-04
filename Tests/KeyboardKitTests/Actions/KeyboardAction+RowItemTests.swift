@@ -6,21 +6,14 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Quick
-import Nimble
 import KeyboardKit
+import XCTest
 
-class KeyboardAction_RowItemTests: QuickSpec {
-    
-    override func spec() {
-        
-        describe("row id") {
-            
-            it("uses itself as id") {
-                KeyboardAction.testActions.forEach {
-                    expect($0.rowId).to(equal($0))
-                }
-            }
+final class KeyboardAction_RowItemTests: XCTestCase {
+
+    func testRowIdUsesItselfAsId() {
+        KeyboardAction.testActions.forEach {
+            XCTAssertEqual($0.rowId, $0)
         }
     }
 }

@@ -7,193 +7,106 @@
 //
 
 #if os(iOS) || os(tvOS)
-import Quick
-import Nimble
 import KeyboardKit
+import XCTest
 
-class KeyboardAction_ActionsTests: QuickSpec {
-    
-    override func spec() {
-        
-        let actions = KeyboardAction.testActions
-        
-        var expected: [KeyboardAction]! {
-            didSet {
-                unexpected = actions
-                expected.forEach { action in
-                    unexpected.removeAll { $0 == action }
-                }
-            }
+final class KeyboardAction_ActionsTests: XCTestCase {
+
+    let actions = KeyboardAction.testActions
+
+    var expected: [KeyboardAction]! {
+        didSet { unexpected = actions.filter { !expected.contains($0) } }
+    }
+
+    var unexpected: [KeyboardAction]!
+
+    override func setUp() {
+        expected = []
+        unexpected = []
+    }
+
+    func testStandardGestureActionUsesStandardActionProperties() {
+
+        func result(for action: KeyboardAction, gesture: KeyboardGesture, expected: KeyboardAction.GestureAction?) -> Bool {
+            let result = action.standardAction(for: gesture)
+            let lhs = result == nil
+            let rhs = expected == nil
+            return lhs == rhs
         }
-        
-        var unexpected: [KeyboardAction]!
-        
-        beforeEach {
-            expected = []
-            unexpected = []
+
+        actions.forEach {
+            XCTAssertTrue(result(for: $0, gesture: .doubleTap, expected: $0.standardDoubleTapAction))
+            XCTAssertTrue(result(for: $0, gesture: .longPress, expected: $0.standardLongPressAction))
+            XCTAssertTrue(result(for: $0, gesture: .press, expected: $0.standardPressAction))
+            XCTAssertTrue(result(for: $0, gesture: .release, expected: $0.standardReleaseAction))
+            XCTAssertTrue(result(for: $0, gesture: .repeatPress, expected: $0.standardRepeatAction))
+            XCTAssertTrue(result(for: $0, gesture: .tap, expected: $0.standardTapAction))
         }
-        
-        describe("standard action for gesture") {
-            
-            func result(for action: KeyboardAction, gesture: KeyboardGesture, expected: KeyboardAction.GestureAction?) -> Bool {
-                let result = action.standardAction(for: gesture)
-                let lhs = result == nil
-                let rhs = expected == nil
-                return lhs == rhs
-            }
-            
-            func result(for action: KeyboardAction) -> Bool {
-                return
-                    result(for: action, gesture: .doubleTap, expected: action.standardDoubleTapAction) &&
-                    result(for: action, gesture: .longPress, expected: action.standardLongPressAction) &&
-                    result(for: action, gesture: .press, expected: action.standardPressAction) &&
-                    result(for: action, gesture: .release, expected: action.standardReleaseAction) &&
-                    result(for: action, gesture: .repeatPress, expected: action.standardRepeatAction) &&
-                    result(for: action, gesture: .tap, expected: action.standardTapAction)
-            }
-            
-            it("is not defined for any actions") {
-                KeyboardAction.testActions.forEach { expect(result(for: $0)).to(beTrue()) }
-            }
-        }
-        
-        describe("standard double tap action") {
-            
-            func result(for action: KeyboardAction) -> Any? {
-                action.standardDoubleTapAction
-            }
-            
-            it("is not defined for any actions") {
-                expected = []
-                expected.forEach { expect(result(for: $0)).toNot(beNil()) }
-                unexpected.forEach { expect(result(for: $0)).to(beNil()) }
-            }
-        }
-        
-        describe("standard long press action") {
-            
-            func result(for action: KeyboardAction) -> Any? {
-                action.standardLongPressAction
-            }
-            
-            it("is defined for some actions") {
-                expected = [.backspace, .space]
-                expected.forEach { expect(result(for: $0)).toNot(beNil()) }
-                unexpected.forEach { expect(result(for: $0)).to(beNil()) }
-            }
-        }
-        
-        describe("standard press action") {
-            
-            func result(for action: KeyboardAction) -> Any? {
-                action.standardPressAction
-            }
-            
-            it("is not defined for any actions") {
-                expected = [
-                    .keyboardType(.alphabetic(.lowercased)),
-                    .keyboardType(.alphabetic(.uppercased)),
-                    .keyboardType(.alphabetic(.capsLocked)),
-                    .keyboardType(.numeric),
-                    .keyboardType(.symbolic),
-                    .keyboardType(.email),
-                    .keyboardType(.emojis),
-                    .keyboardType(.images),
-                    .keyboardType(.custom(named: ""))
-                ]
-                expected.forEach { expect(result(for: $0)).toNot(beNil()) }
-                unexpected.forEach { expect(result(for: $0)).to(beNil()) }
-            }
-        }
-        
-        describe("standard release action") {
-            
-            func result(for action: KeyboardAction) -> Any? {
-                action.standardReleaseAction
-            }
-            
-            it("is not defined for any actions") {
-                expected = []
-                expected.forEach { expect(result(for: $0)).toNot(beNil()) }
-                unexpected.forEach { expect(result(for: $0)).to(beNil()) }
-            }
-        }
-        
-        describe("standard tap action") {
-            
-            func result(for action: KeyboardAction) -> Any? {
-                action.standardTapAction
-            }
-            
-            it("is defined for some actions") {
-                expected = [
-                    .backspace,
-                    .character(""),
-                    .characterMargin(""),
-                    .dismissKeyboard,
-                    .emoji(Emoji("")),
-                    .moveCursorBackward,
-                    .moveCursorForward,
-                    .newLine,
-                    .nextLocale,
-                    .primary(.done),
-                    .primary(.go),
-                    .primary(.newLine),
-                    .primary(.ok),
-                    .primary(.search),
-                    .return,
-                    .shift(currentState: .lowercased),
-                    .shift(currentState: .uppercased),
-                    .shift(currentState: .capsLocked),
-                    .space,
-                    .tab
-                ]
-                expected.forEach { expect(result(for: $0)).toNot(beNil()) }
-                unexpected.forEach { expect(result(for: $0)).to(beNil()) }
-            }
-        }
-        
-        describe("standard text document proxy action") {
-            
-            func result(for action: KeyboardAction) -> Any? {
-                action.standardTextDocumentProxyAction
-            }
-            
-            it("is defined for some actions") {
-                expected = [
-                    .backspace,
-                    .character(""),
-                    .characterMargin(""),
-                    .emoji(Emoji("")),
-                    .moveCursorBackward,
-                    .moveCursorForward,
-                    .newLine,
-                    .primary(.done),
-                    .primary(.go),
-                    .primary(.newLine),
-                    .primary(.ok),
-                    .primary(.search),
-                    .return,
-                    .space,
-                    .tab
-                ]
-                expected.forEach { expect(result(for: $0)).toNot(beNil()) }
-                unexpected.forEach { expect(result(for: $0)).to(beNil()) }
-            }
-        }
-        
-        describe("standard repeat action") {
-            
-            func result(for action: KeyboardAction) -> Any? {
-                action.standardRepeatAction
-            }
-            
-            it("is defined for some actions") {
-                expected = [.backspace]
-                expected.forEach { expect(result(for: $0)).toNot(beNil()) }
-                unexpected.forEach { expect(result(for: $0)).to(beNil()) }
-            }
-        }
+    }
+
+    func testStandardGestureActionPropertiesAreDefinedForSomeGestures() {
+        var action: (KeyboardAction) -> KeyboardAction.GestureAction?
+
+        action = { $0.standardDoubleTapAction }
+        expected = []
+        expected.forEach { XCTAssertNotNil(action($0)) }
+        unexpected.forEach { XCTAssertNil(action($0)) }
+
+        action = { $0.standardLongPressAction }
+        expected = [.backspace, .space]
+        expected.forEach { XCTAssertNotNil(action($0)) }
+        unexpected.forEach { XCTAssertNil(action($0)) }
+
+        action = { $0.standardPressAction }
+        expected = [
+            .keyboardType(.alphabetic(.lowercased)),
+            .keyboardType(.alphabetic(.uppercased)),
+            .keyboardType(.alphabetic(.capsLocked)),
+            .keyboardType(.numeric),
+            .keyboardType(.symbolic),
+            .keyboardType(.email),
+            .keyboardType(.emojis),
+            .keyboardType(.images),
+            .keyboardType(.custom(named: ""))
+        ]
+        expected.forEach { XCTAssertNotNil(action($0)) }
+        unexpected.forEach { XCTAssertNil(action($0)) }
+
+        action = { $0.standardReleaseAction }
+        expected = []
+        expected.forEach { XCTAssertNotNil(action($0)) }
+        unexpected.forEach { XCTAssertNil(action($0)) }
+
+        action = { $0.standardTapAction }
+        expected = [
+            .backspace,
+            .character(""),
+            .characterMargin(""),
+            .dismissKeyboard,
+            .emoji(Emoji("")),
+            .moveCursorBackward,
+            .moveCursorForward,
+            .newLine,
+            .nextLocale,
+            .primary(.done),
+            .primary(.go),
+            .primary(.newLine),
+            .primary(.ok),
+            .primary(.search),
+            .return,
+            .shift(currentState: .lowercased),
+            .shift(currentState: .uppercased),
+            .shift(currentState: .capsLocked),
+            .space,
+            .tab
+        ]
+        expected.forEach { XCTAssertNotNil(action($0)) }
+        unexpected.forEach { XCTAssertNil(action($0)) }
+
+        action = { $0.standardRepeatAction }
+        expected = [.backspace]
+        expected.forEach { XCTAssertNotNil(action($0)) }
+        unexpected.forEach { XCTAssertNil(action($0)) }
     }
 }
 #endif

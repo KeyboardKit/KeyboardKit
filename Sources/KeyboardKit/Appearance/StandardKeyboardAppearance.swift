@@ -228,7 +228,7 @@ extension KeyboardAction {
     
     func buttonBackgroundColorForIdleState(for context: KeyboardContext) -> Color {
         if isPrimaryAction { return .blue }
-        if isUppercaseShift { return .standardButtonBackground(for: context) }
+        if isUppercasedShiftAction { return .standardButtonBackground(for: context) }
         if isSystemAction { return .standardDarkButtonBackground(for: context) }
         return .standardButtonBackground(for: context)
     }
@@ -243,7 +243,7 @@ extension KeyboardAction {
     
     func buttonBackgroundColorForPressedState(for context: KeyboardContext) -> Color {
         if isPrimaryAction { return context.hasDarkColorScheme ? .standardDarkButtonBackground(for: context) : .white }
-        if isUppercaseShift { return .standardDarkButtonBackground(for: context) }
+        if isUppercasedShiftAction { return .standardDarkButtonBackground(for: context) }
         if isSystemAction { return context.hasDarkColorScheme ? .standardButtonBackground(for: context) : .white }
         return .standardDarkButtonBackground(for: context)
     }

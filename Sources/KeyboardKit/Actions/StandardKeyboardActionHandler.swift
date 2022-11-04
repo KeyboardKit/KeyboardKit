@@ -74,7 +74,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     public let keyboardFeedbackHandler: KeyboardFeedbackHandler
     public let spaceDragGestureHandler: DragGestureHandler
     
-    public let autocompleteAction: () -> Void
+    public internal(set) var autocompleteAction: () -> Void
     public let changeKeyboardTypeAction: (KeyboardType) -> Void
     
     

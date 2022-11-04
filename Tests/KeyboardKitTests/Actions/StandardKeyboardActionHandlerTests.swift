@@ -11,313 +11,215 @@ import Quick
 import Nimble
 import MockingKit
 import CoreGraphics
-import KeyboardKit
+import XCTest
 
-class StandardKeyboardActionHandlerTests: QuickSpec {
-    
-    var mock: Mock!
-    func autocompleteAction() { mock.call(autocompleteActionRef, args: ()) }
-    func changeKeyboardTypeAction(_ type: KeyboardType) { mock.call(changeKeyboardTypeActionRef, args: (type))  }
-    lazy var autocompleteActionRef = MockReference(autocompleteAction)
-    lazy var changeKeyboardTypeActionRef = MockReference(changeKeyboardTypeAction)
+@testable import KeyboardKit
 
-    override func spec() {
-        
-        var handler: TestClass!
-        var feedbackHandler: MockKeyboardFeedbackHandler!
-        var inputViewController: MockKeyboardInputViewController!
-        var proxy: MockTextDocumentProxy!
-        var spaceDragHandler: MockDragGestureHandler!
-        
-        beforeEach {
-            self.mock = Mock()
-            feedbackHandler = MockKeyboardFeedbackHandler()
-            inputViewController = MockKeyboardInputViewController()
-            proxy = MockTextDocumentProxy()
-            inputViewController.keyboardContext.textDocumentProxy = proxy
-            spaceDragHandler = MockDragGestureHandler()
-            handler = TestClass(
-                keyboardContext: inputViewController.keyboardContext,
-                keyboardBehavior: inputViewController.keyboardBehavior,
-                keyboardFeedbackHandler: feedbackHandler,
-                autocompleteContext: inputViewController.autocompleteContext,
-                autocompleteAction: self.autocompleteAction,
-                changeKeyboardTypeAction: self.changeKeyboardTypeAction,
-                spaceDragGestureHandler: spaceDragHandler)
+final class StandardKeyboardActionHandlerTests: XCTestCase {
+
+    private var handler: TestClass!
+    var emojiProvider: MockFrequentEmojiProvider!
+    var feedbackHandler: MockKeyboardFeedbackHandler!
+    var spaceDragHandler: MockDragGestureHandler!
+    var textDocumentProxy: MockTextDocumentProxy!
+
+    var originalEmojiProvider: FrequentEmojiProvider!
+
+    override func setUp() {
+        let controller = MockKeyboardInputViewController()
+        emojiProvider = MockFrequentEmojiProvider()
+        feedbackHandler = MockKeyboardFeedbackHandler()
+        spaceDragHandler = MockDragGestureHandler()
+        textDocumentProxy = MockTextDocumentProxy()
+
+        controller.keyboardContext.textDocumentProxy = textDocumentProxy
+        originalEmojiProvider = EmojiCategory.frequentEmojiProvider
+        EmojiCategory.frequentEmojiProvider = emojiProvider
+
+        handler = TestClass(
+            keyboardContext: controller.keyboardContext,
+            keyboardBehavior: controller.keyboardBehavior,
+            keyboardFeedbackHandler: feedbackHandler,
+            autocompleteContext: controller.autocompleteContext,
+            autocompleteAction: {},
+            changeKeyboardTypeAction: { _ in },
+            spaceDragGestureHandler: spaceDragHandler)
+    }
+
+    override func tearDown() {
+        EmojiCategory.frequentEmojiProvider = originalEmojiProvider
+    }
+
+
+    func testCanHandleGestureOnActionThatIsNotNil() {
+        XCTAssertTrue(handler.canHandle(.tap, on: .backspace))
+        XCTAssertFalse(handler.canHandle(.doubleTap, on: .backspace))
+    }
+
+    func testHandlingGestureOnActionTriggersManyOperations() {
+        handler.handle(.tap, on: .character("a"))
+        XCTAssertTrue(handler.hasCalled(handler.tryRemoveAutocompleteInsertedSpaceRef))
+        XCTAssertTrue(handler.hasCalled(handler.tryApplyAutocompleteSuggestionRef))
+        XCTAssertTrue(handler.hasCalled(handler.tryReinsertAutocompleteRemovedSpaceRef))
+        XCTAssertTrue(handler.hasCalled(handler.tryEndSentenceRef))
+        XCTAssertTrue(handler.hasCalled(handler.tryChangeKeyboardTypeRef))
+        XCTAssertTrue(handler.hasCalled(handler.tryRegisterEmojiRef))
+        XCTAssertTrue(handler.hasCalled(handler.autocompleteActionRef))
+    }
+
+    func testHandlingDragGestureOnActionUsesSpaceDragHandlerForSpace() {
+        handler.handleDrag(on: .space, from: .init(x: 1, y: 2), to: .init(x: 3, y: 4))
+        let calls = spaceDragHandler.calls(to: spaceDragHandler.handleDragGestureRef)
+        XCTAssertEqual(calls.count, 1)
+        XCTAssertEqual(calls[0].arguments.0, CGPoint.init(x: 1, y: 2))
+        XCTAssertEqual(calls[0].arguments.1, CGPoint.init(x: 3, y: 4))
+    }
+
+    func testHandlingDragGestureOnActionDoesNotDoAnythingOnNonSpaceActions() {
+        let actions = KeyboardAction.testActions.filter { $0 != .space }
+        actions.forEach {
+            handler.handleDrag(on: $0, from: .zero, to: .zero)
         }
+        XCTAssertFalse(spaceDragHandler.hasCalled(spaceDragHandler.handleDragGestureRef))
+    }
 
 
-        // MARK: - KeyboardActionHandler
-
-        describe("can handle gesture on action") {
-
-            it("can handle any action that isn't nil") {
-                expect(handler.canHandle(.tap, on: .backspace)).to(beTrue())
-                expect(handler.canHandle(.doubleTap, on: .backspace)).to(beFalse())
-            }
-        }
-        
-        describe("handling gesture on action") {
-            
-            it("tap triggers a bunch of actions") {
-                handler.handle(.tap, on: .character("a"))
-                expect(self.mock.hasCalled(self.autocompleteActionRef)).to(beTrue())
-                expect(handler.hasCalled(handler.tryChangeKeyboardTypeRef)).to(beTrue())
-                expect(handler.hasCalled(handler.tryEndSentenceRef)).to(beTrue())
-                expect(handler.hasCalled(handler.tryRegisterEmojiRef)).to(beTrue())
-            }
-        }
-        
-        describe("handling drag on action") {
-            
-            it("uses space drag handler for space") {
-                handler.handleDrag(on: .space, from: .init(x: 1, y: 2), to: .init(x: 3, y: 4))
-                let calls = spaceDragHandler.calls(to: spaceDragHandler.handleDragGestureRef)
-                expect(calls.count).to(equal(1))
-                expect(calls[0].arguments.0).to(equal(CGPoint.init(x: 1, y: 2)))
-                expect(calls[0].arguments.1).to(equal(CGPoint.init(x: 3, y: 4)))
-            }
-            
-            it("doesn't do anything for other actions") {
-                let actions = KeyboardAction.testActions.filter { $0 != .space }
-                actions.forEach {
-                    handler.handleDrag(on: $0, from: .zero, to: .zero)
-                }
-                expect(spaceDragHandler.hasCalled(spaceDragHandler.handleDragGestureRef)).to(beFalse())
-            }
-        }
-
-
-        // MARK: - Open Functions
-        
-        describe("action for gesture on action") {
-
-            it("is nil for all actions with standard action") {
-                KeyboardAction.testActions.forEach { action in
-                    KeyboardGesture.allCases.forEach { gesture in
-                        let res = handler.action(for: gesture, on: action)
-                        expect(res == nil).to(equal(action.standardAction(for: gesture) == nil))
-                    }
-                }
-            }
-        }
-        
-        describe("replacement action for gesture on action") {
-
-            it("is nil if gesture is not tap") {
-                let res = handler.replacementAction(for: .press, on: .character("”"))
-                expect(res).to(beNil())
-            }
-            
-            it("is nil if action is not char") {
-                let res = handler.replacementAction(for: .tap, on: .backspace)
-                expect(res).to(beNil())
-            }
-            
-            it("is nil if proxy has no preferred replacement") {
-                let res = handler.replacementAction(for: .tap, on: .character("A"))
-                expect(res).to(beNil())
-            }
-            
-            it("is preferred replacement for tap on a valid char action") {
-                // TODO: This test fails for simulator locales. Make it more robust.
-                // let res = handler.replacementAction(for: .tap, on: .character("‘"))
-                // expect(res).toNot(beNil())
-            }
-        }
-        
-        describe("should trigger feedback for gesture on action") {
-            
-            it("returns false for press if no action is performed for tap") {
-                let res = handler.shouldTriggerFeedback(for: .press, on: .control)
-                expect(res).to(beFalse())
-            }
-            
-            it("returns true for press if an action is performed for tap") {
-                let res = handler.shouldTriggerFeedback(for: .press, on: .character(""))
-                expect(res).to(beTrue())
-            }
-            
-            it("returns true for tap even if an action is performed for tap") {
-                let res = handler.shouldTriggerFeedback(for: .tap, on: .character(""))
-                expect(res).to(beFalse())
-            }
-            
-            it("returns false for not tap but no action is performed for the gesture") {
-                let res = handler.shouldTriggerFeedback(for: .release, on: .character(""))
-                expect(res).to(beFalse())
-            }
-            
-            it("returns true for not tap and an action is performed for the gesture") {
-                let res = handler.shouldTriggerFeedback(for: .longPress, on: .space)
-                expect(res).to(beTrue())
-            }
-        }
-        
-        describe("trigger feedback for gesture on action") {
-
-            it("calls injected feedback handler") {
-                handler.triggerFeedback(for: .press, on: .character(""))
-                let calls = feedbackHandler.calls(to: feedbackHandler.triggerFeedbackRef)
-                expect(calls.count).to(equal(1))
-                expect(calls[0].arguments.0).to(equal(.press))
-                expect(calls[0].arguments.1).to(equal(.character("")))
-            }
-        }
-        
-        describe("trying to apply autocomplete suggestion before gesture on action") {
-            
-            beforeEach {
-                let suggestion = StandardAutocompleteSuggestion("", isAutocomplete: true, isUnknown: false)
-                proxy.documentContextBeforeInput = "abc"
-                handler.autocompleteContext.suggestions = [suggestion]
-            }
-
-            it("aborts if gesture is not tap") {
-                handler.tryApplyAutocompleteSuggestion(before: .press, on: .space)
-                expect(proxy.hasCalled(proxy.adjustTextPositionRef)).to(beFalse())
-            }
-            
-            it("aborts if action should not apply autocomplete") {
-                handler.tryApplyAutocompleteSuggestion(before: .tap, on: .backspace)
-                expect(proxy.hasCalled(proxy.adjustTextPositionRef)).to(beFalse())
-            }
-            
-            it("aborts if autocomplete context has no valid suggestion") {
-                handler.autocompleteContext.suggestions = []
-                handler.tryApplyAutocompleteSuggestion(before: .tap, on: .space)
-                expect(proxy.hasCalled(proxy.adjustTextPositionRef)).to(beFalse())
-            }
-            
-            it("inserts autocomplete suggestion if everything is valid") {
-                handler.tryApplyAutocompleteSuggestion(before: .tap, on: .space)
-                let calls = proxy.calls(to: proxy.adjustTextPositionRef)
-                expect(calls.count).to(equal(1))
-            }
-        }
-        
-        describe("trying to end sentence after gesture on action") {
-
-            it("does not end sentence if behavior says no") {
-                proxy.documentContextBeforeInput = ""
-                handler.tryEndSentence(after: .tap, on: .character("a"))
-                expect(handler.hasCalled(handler.handleRef)).to(beFalse())
-            }
-
-            it("ends sentence with behavior action if behavior says yes") {
-                proxy.documentContextBeforeInput = "foo  "
-                handler.tryEndSentence(after: .tap, on: .space)
-                expect(proxy.hasCalled(proxy.deleteBackwardRef, numberOfTimes: 2)).to(beTrue())
-                expect(proxy.hasCalled(proxy.insertTextRef, numberOfTimes: 1)).to(beTrue())
-            }
-        }
-        
-        describe("try to handle replacement action before gesture on action") {
-
-            it("returns false if proxy has no preferred replacement") {
-                let res = handler.tryHandleReplacementAction(before: .tap, on: .character("A"))
-                expect(res).to(beFalse())
-            }
-            
-            it("returns true for tap on a valid char action") {
-                // TODO: This fails for some simulator locales. Make it more robust.
-                // let res = handler.tryHandleReplacementAction(before: .tap, on: .character("‘"))
-                // expect(res).to(beTrue())
-            }
-        }
-        
-        describe("trying to register emoji after gesture on action") {
-
-            var mockProvider: MockFrequentEmojiProvider!
-
-            beforeEach {
-                mockProvider = MockFrequentEmojiProvider()
-                EmojiCategory.frequentEmojiProvider = mockProvider
-            }
-
-            it("aborts if gesture is not tap") {
-                handler.tryRegisterEmoji(after: .doubleTap, on: .emoji(Emoji("a")))
-                expect(mockProvider.hasCalled(mockProvider.registerEmojiRef)).to(beFalse())
-            }
-
-            it("aborts if action is not emoji") {
-                handler.tryRegisterEmoji(after: .tap, on: .space)
-                expect(mockProvider.hasCalled(mockProvider.registerEmojiRef)).to(beFalse())
-            }
-
-            it("registers tapped emoji to emoji category provider") {
-                handler.tryRegisterEmoji(after: .tap, on: .emoji(Emoji("a")))
-                expect(mockProvider.hasCalled(mockProvider.registerEmojiRef)).to(beTrue())
-            }
-        }
-        
-        describe("trying to reinsert an autocomplete removed space after gesture on action") {
-            
-            beforeEach {
-                proxy.documentContextBeforeInput = "hi"
-                proxy.documentContextAfterInput = "you"
-                proxy.tryInsertSpaceAfterAutocomplete()
-                proxy.documentContextBeforeInput = "hi "
-                proxy.tryRemoveAutocompleteInsertedSpace()
-                proxy.resetCalls()
-            }
-
-            it("aborts if the gesture is not tap") {
-                handler.tryReinsertAutocompleteRemovedSpace(after: .press, on: .character(","))
-                expect(proxy.hasCalled(proxy.insertTextRef)).to(beFalse())
-            }
-            
-            it("aborts if the action should not reinsert") {
-                handler.tryReinsertAutocompleteRemovedSpace(after: .tap, on: .character("A"))
-                expect(proxy.hasCalled(proxy.insertTextRef)).to(beFalse())
-            }
-            
-            it("tells the proxy to reinsert auto-removed space if the gesture and action is valid") {
-                handler.tryReinsertAutocompleteRemovedSpace(after: .tap, on: .character(","))
-                expect(proxy.hasCalled(proxy.insertTextRef)).to(beTrue())
-            }
-        }
-        
-        describe("trying to remove an autocomplete inserted space before gesture on action") {
-            
-            beforeEach {
-                proxy.documentContextBeforeInput = "hi"
-                proxy.documentContextAfterInput = "you"
-                proxy.tryInsertSpaceAfterAutocomplete()
-                proxy.documentContextBeforeInput = "hi "
-            }
-
-            it("aborts if the gesture is not tap") {
-                handler.tryRemoveAutocompleteInsertedSpace(before: .press, on: .character(","))
-                expect(proxy.hasCalled(proxy.deleteBackwardRef)).to(beFalse())
-            }
-            
-            it("aborts if the action should not remove") {
-                handler.tryRemoveAutocompleteInsertedSpace(before: .tap, on: .character("A"))
-                expect(proxy.hasCalled(proxy.deleteBackwardRef)).to(beFalse())
-            }
-            
-            it("tells the proxy to remove auto-inserted space if the gesture and action is valid") {
-                handler.tryRemoveAutocompleteInsertedSpace(before: .tap, on: .character(","))
-                expect(proxy.hasCalled(proxy.deleteBackwardRef)).to(beTrue())
+    func testActionForGestureOnActionIsNotForAllActionsWithStandardAction() {
+        KeyboardAction.testActions.forEach { action in
+            KeyboardGesture.allCases.forEach { gesture in
+                let result = handler.action(for: gesture, on: action)
+                let resultIsNil = result == nil
+                let standardActionIsNil = action.standardAction(for: gesture) == nil
+                XCTAssertEqual(resultIsNil, standardActionIsNil)
             }
         }
     }
-}
 
+    func testReplacementActionIsOnlyDefinedForTapOnCharWithProxyReplacement() {
+        var result = handler.replacementAction(for: .press, on: .character("”"))
+        XCTAssertNil(result)
+        result = handler.replacementAction(for: .tap, on: .backspace)
+        XCTAssertNil(result)
+        result = handler.replacementAction(for: .tap, on: .character("A"))
+        XCTAssertNil(result)
+        result = handler.replacementAction(for: .tap, on: .character("‘"))
+        XCTAssertNotNil(result)
+    }
+
+    func testShouldTriggerFeedbackForGestureOnActionReturnsTrueInSomeCases() {
+        var result = handler.shouldTriggerFeedback(for: .press, on: .control)
+        XCTAssertFalse(result)
+        result = handler.shouldTriggerFeedback(for: .press, on: .character(""))
+        XCTAssertTrue(result)
+        result = handler.shouldTriggerFeedback(for: .tap, on: .character(""))
+        XCTAssertFalse(result)
+        result = handler.shouldTriggerFeedback(for: .release, on: .character(""))
+        XCTAssertFalse(result)
+        result = handler.shouldTriggerFeedback(for: .longPress, on: .space)
+        XCTAssertTrue(result)
+    }
+
+    func testTriggerFeedbackForGestureOnActionCallsInjectedHandler() {
+        handler.triggerFeedback(for: .press, on: .character(""))
+        let calls = feedbackHandler.calls(to: feedbackHandler.triggerFeedbackRef)
+        XCTAssertEqual(calls.count, 1)
+        XCTAssertEqual(calls[0].arguments.0, .press)
+        XCTAssertEqual(calls[0].arguments.1, .character(""))
+    }
+
+    func testTryApplyAutocompleteSuggestionOnlyProceedsForTapOnSomeActionsWhenSuggestionsExist() {
+        let ref = textDocumentProxy.adjustTextPositionRef
+        let autocompleteSuggestions = [StandardAutocompleteSuggestion("", isAutocomplete: true, isUnknown: false)]
+
+        textDocumentProxy.documentContextBeforeInput = "abc"
+        handler.autocompleteContext.suggestions = autocompleteSuggestions
+
+        handler.tryApplyAutocompleteSuggestion(before: .press, on: .space)
+        XCTAssertFalse(textDocumentProxy.hasCalled(ref))
+
+        handler.tryApplyAutocompleteSuggestion(before: .tap, on: .backspace)
+        XCTAssertFalse(textDocumentProxy.hasCalled(ref))
+
+        handler.autocompleteContext.suggestions = []
+        handler.tryApplyAutocompleteSuggestion(before: .tap, on: .space)
+        XCTAssertFalse(textDocumentProxy.hasCalled(ref))
+
+        handler.autocompleteContext.suggestions = autocompleteSuggestions
+        handler.tryApplyAutocompleteSuggestion(before: .tap, on: .space)
+        XCTAssertTrue(textDocumentProxy.hasCalled(ref))
+    }
+
+    func testTryingToEndSentenceAfterGestureOnActionIsOnlyCalledIfBehaviorSaysYes() {
+        textDocumentProxy.documentContextBeforeInput = ""
+        handler.tryEndSentence(after: .tap, on: .character("a"))
+        XCTAssertFalse(textDocumentProxy.hasCalled(textDocumentProxy.deleteBackwardRef))
+        XCTAssertFalse(textDocumentProxy.hasCalled(textDocumentProxy.insertTextRef))
+
+        textDocumentProxy.documentContextBeforeInput = "foo  "
+        handler.tryEndSentence(after: .tap, on: .space)
+        XCTAssertTrue(textDocumentProxy.hasCalled(textDocumentProxy.deleteBackwardRef, numberOfTimes: 2))
+        XCTAssertTrue(textDocumentProxy.hasCalled(textDocumentProxy.insertTextRef, numberOfTimes: 1))
+    }
+
+    func testTryToHandleReplacementActionBeforeGestureOnActionReturnsTrueForTapOnValidCharAction() {
+        var result = handler.tryHandleReplacementAction(before: .tap, on: .character("A"))
+        XCTAssertFalse(result)
+        result = handler.tryHandleReplacementAction(before: .doubleTap, on: .character("A"))
+        XCTAssertFalse(result)
+        result = handler.tryHandleReplacementAction(before: .tap, on: .character("‘"))
+        XCTAssertTrue(result)
+    }
+
+    func testTryToRegisterEmojiAfterGestureOnActionRegisterEmojiForTapsOnEmoji() {
+        handler.tryRegisterEmoji(after: .doubleTap, on: .emoji(Emoji("a")))
+        XCTAssertFalse(emojiProvider.hasCalled(emojiProvider.registerEmojiRef))
+        handler.tryRegisterEmoji(after: .tap, on: .space)
+        XCTAssertFalse(emojiProvider.hasCalled(emojiProvider.registerEmojiRef))
+        handler.tryRegisterEmoji(after: .tap, on: .emoji(Emoji("a")))
+        XCTAssertTrue(emojiProvider.hasCalled(emojiProvider.registerEmojiRef))
+    }
+
+    func testTryToReinsertAutocompleteRemovedSpaceAfterGestureOnActionProceedsForTapOnSomeActions() {
+        textDocumentProxy.documentContextBeforeInput = "hi"
+        textDocumentProxy.documentContextAfterInput = "you"
+        textDocumentProxy.tryInsertSpaceAfterAutocomplete()
+        textDocumentProxy.documentContextBeforeInput = "hi "
+        textDocumentProxy.tryRemoveAutocompleteInsertedSpace()
+        textDocumentProxy.resetCalls()
+
+        handler.tryReinsertAutocompleteRemovedSpace(after: .press, on: .character(","))
+        XCTAssertFalse(textDocumentProxy.hasCalled(textDocumentProxy.insertTextRef))
+        handler.tryReinsertAutocompleteRemovedSpace(after: .tap, on: .character("A"))
+        XCTAssertFalse(textDocumentProxy.hasCalled(textDocumentProxy.insertTextRef))
+        handler.tryReinsertAutocompleteRemovedSpace(after: .tap, on: .character(","))
+        XCTAssertTrue(textDocumentProxy.hasCalled(textDocumentProxy.insertTextRef))
+
+        textDocumentProxy.resetCalls()
+    }
+}
 
 private class TestClass: StandardKeyboardActionHandler, Mockable {
 
     var mock = Mock()
 
-    lazy var handleRef = MockReference(handle as (KeyboardGesture, KeyboardAction) -> Void)
+    lazy var autocompleteActionRef = MockReference(autocompleteAction)
+    lazy var handleGestureOnActionRef = MockReference(handle as (KeyboardGesture, KeyboardAction) -> Void)
+    lazy var tryApplyAutocompleteSuggestionRef = MockReference(tryApplyAutocompleteSuggestion)
     lazy var tryChangeKeyboardTypeRef = MockReference(tryChangeKeyboardType)
     lazy var tryEndSentenceRef = MockReference(tryEndSentence)
     lazy var tryRegisterEmojiRef = MockReference(tryRegisterEmoji)
+    lazy var tryReinsertAutocompleteRemovedSpaceRef = MockReference(tryReinsertAutocompleteRemovedSpace)
+    lazy var tryRemoveAutocompleteInsertedSpaceRef = MockReference(tryRemoveAutocompleteInsertedSpace)
 
     override func handle(_ gesture: KeyboardGesture, on action: KeyboardAction) {
+        autocompleteAction = { self.call(self.autocompleteActionRef, args: ()) }
         super.handle(gesture, on: action)
-        call(handleRef, args: (gesture, action))
+        call(handleGestureOnActionRef, args: (gesture, action))
+    }
+
+    override func tryApplyAutocompleteSuggestion(before gesture: KeyboardGesture, on action: KeyboardAction) {
+        super.tryApplyAutocompleteSuggestion(before: gesture, on: action)
+        call(tryApplyAutocompleteSuggestionRef, args: (gesture, action))
     }
     
     override func tryChangeKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) {
@@ -333,6 +235,16 @@ private class TestClass: StandardKeyboardActionHandler, Mockable {
     override func tryRegisterEmoji(after gesture: KeyboardGesture, on action: KeyboardAction) {
         super.tryRegisterEmoji(after: gesture, on: action)
         call(tryRegisterEmojiRef, args: (gesture, action))
+    }
+
+    override func tryReinsertAutocompleteRemovedSpace(after gesture: KeyboardGesture, on action: KeyboardAction) {
+        super.tryReinsertAutocompleteRemovedSpace(after: gesture, on: action)
+        call(tryReinsertAutocompleteRemovedSpaceRef, args: (gesture, action))
+    }
+
+    override func tryRemoveAutocompleteInsertedSpace(before gesture: KeyboardGesture, on action: KeyboardAction) {
+        super.tryRemoveAutocompleteInsertedSpace(before: gesture, on: action)
+        call(tryRemoveAutocompleteInsertedSpaceRef, args: (gesture, action))
     }
 }
 #endif

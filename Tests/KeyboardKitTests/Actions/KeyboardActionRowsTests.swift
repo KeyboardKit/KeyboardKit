@@ -6,26 +6,19 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Quick
-import Nimble
 import KeyboardKit
+import XCTest
 
-class KeyboardActionRowsTests: QuickSpec {
-    
-    override func spec() {
-        
-        describe("creating keyboard action rows from string arrays") {
-            
-            it("converts strings to char actions") {
-                let chars = [["a", "b"], ["c"]]
-                let rows = KeyboardActionRows(characters: chars)
-                expect(rows.count).to(equal(2))
-                expect(rows[0].count).to(equal(2))
-                expect(rows[1].count).to(equal(1))
-                expect(rows[0][0]).to(equal(.character("a")))
-                expect(rows[0][1]).to(equal(.character("b")))
-                expect(rows[1][0]).to(equal(.character("c")))
-            }
-        }
+final class KeyboardActionRowsTests: XCTestCase {
+
+    func testCanCreateActionRowsFromStringArrays() {
+        let chars = [["a", "b"], ["c"]]
+        let rows = KeyboardActionRows(characters: chars)
+        XCTAssertEqual(rows.count, 2)
+        XCTAssertEqual(rows[0].count, 2)
+        XCTAssertEqual(rows[1].count, 1)
+        XCTAssertEqual(rows[0][0], .character("a"))
+        XCTAssertEqual(rows[0][1], .character("b"))
+        XCTAssertEqual(rows[1][0], .character("c"))
     }
 }

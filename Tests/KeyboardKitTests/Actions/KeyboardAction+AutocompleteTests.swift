@@ -6,66 +6,51 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Quick
-import Nimble
 import KeyboardKit
+import XCTest
 
-class KeyboardAction_AutocompleteTests: QuickSpec {
-    
-    override func spec() {
-        
-        var actions: [KeyboardAction]!
-        var delimiterActions: [KeyboardAction]!
-        
-        beforeEach {
-            actions = KeyboardAction.testActions
-            delimiterActions = String.wordDelimiters.map { .character($0) }
-            delimiterActions.forEach { actions.append($0) }
+final class KeyboardAction_AutocompleteTests: XCTestCase {
+
+    let actions: [KeyboardAction] = {
+        var actions = KeyboardAction.testActions
+        var delimiters = String.wordDelimiters.map { KeyboardAction.character($0) }
+        delimiters.forEach {
+            actions.append($0)
         }
-        
-        describe("should apply autocomplete suggestion") {
-            
-            func result(for action: KeyboardAction) -> Bool {
-                action.shouldApplyAutocompleteSuggestion
+        return actions
+    }()
+
+    func testShouldApplyAutocompleteSuggestionsForSomeActions() {
+        actions.forEach {
+            var expected = false
+            switch $0 {
+            case .character(let char): expected = char.isWordDelimiter
+            case .newLine, .return, .space: expected = true
+            default: expected = false
             }
-            
-            it("is true for word delimiters and some other actions") {
-                var expected = delimiterActions!
-                expected.append(.newLine)
-                expected.append(.return)
-                expected.append(.space)
-                actions.forEach {
-                    expect(result(for: $0)).to(equal(expected.contains($0)))
-                }
-            }
+            XCTAssertEqual($0.shouldApplyAutocompleteSuggestion, expected)
         }
-        
-        describe("should reinsert autocomplete removed space") {
-            
-            func result(for action: KeyboardAction) -> Bool {
-                action.shouldReinsertAutocompleteInsertedSpace
+    }
+
+    func testShouldReinsertAutocompleteInsertedSpaceForWordDelimiters() {
+        actions.forEach {
+            var expected = false
+            switch $0 {
+            case .character(let char): expected = char.isWordDelimiter
+            default: expected = false
             }
-            
-            it("is true for word delimiters actions") {
-                actions.forEach {
-                    let expected = delimiterActions.contains($0) && $0 != .space
-                    expect(result(for: $0)).to(equal(expected))
-                }
-            }
+            XCTAssertEqual($0.shouldReinsertAutocompleteInsertedSpace, expected)
         }
-        
-        describe("should remove autocomplete inserted space") {
-            
-            func result(for action: KeyboardAction) -> Bool {
-                action.shouldRemoveAutocompleteInsertedSpace
+    }
+
+    func testShouldRemoveAutocompleteInsertedSpaceForWordDelimiters() {
+        actions.forEach {
+            var expected = false
+            switch $0 {
+            case .character(let char): expected = char.isWordDelimiter
+            default: expected = false
             }
-            
-            it("is true for word delimiters actions") {
-                actions.forEach {
-                    let expected = delimiterActions.contains($0) && $0 != .space
-                    expect(result(for: $0)).to(equal(expected))
-                }
-            }
+            XCTAssertEqual($0.shouldRemoveAutocompleteInsertedSpace, expected)
         }
     }
 }

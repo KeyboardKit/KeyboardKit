@@ -6,35 +6,28 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Quick
-import Nimble
 import KeyboardKit
+import XCTest
 
-class KeyboardAction_GridTests: QuickSpec {
-    
-    override func spec() {
-        
-        describe("even for grid size") {
-            
-            it("doesn't add actions if not needed") {
-                let array: [KeyboardAction] = [
-                    .backspace, .backspace, .backspace, .backspace,
-                    .backspace, .backspace, .backspace, .backspace
-                ]
-                let evened = array.evened(for: 4)
-                expect(evened.count).to(equal(array.count))
-            }
-            
-            it("adds none actions to the end of the array") {
-                let array: [KeyboardAction] = [
-                    .backspace, .backspace, .backspace, .backspace,
-                    .backspace, .backspace
-                ]
-                let evened = array.evened(for: 4)
-                expect(evened.count).to(equal(8))
-                expect(evened[6]).to(equal(KeyboardAction.none))
-                expect(evened[7]).to(equal(KeyboardAction.none))
-            }
-        }
+final class KeyboardAction_GridTests: XCTestCase {
+
+    func testEveningForSizeGridDoesntAddActionsIfNotNeeded() {
+        let array: [KeyboardAction] = [
+            .backspace, .backspace, .backspace, .backspace,
+            .backspace, .backspace, .backspace, .backspace
+        ]
+        let evened = array.evened(for: 4)
+        XCTAssertEqual(evened.count, array.count)
+    }
+
+    func testEveningForSizeGridAppendsNonActionsIfNeeded() {
+        let array: [KeyboardAction] = [
+            .backspace, .backspace, .backspace, .backspace,
+            .backspace, .backspace
+        ]
+        let evened = array.evened(for: 4)
+        XCTAssertEqual(evened.count, 8)
+        XCTAssertEqual(evened[6], KeyboardAction.none)
+        XCTAssertEqual(evened[7], KeyboardAction.none)
     }
 }

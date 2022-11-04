@@ -11,6 +11,19 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## 6.6
+
+This version replaces large parts of the Quick and Nimble tests, to use XCTest instead.
+
+This means that you will eventually (not now) have less external dependencies.
+
+### 🗑 Deprecations
+
+* `KeyboardAction` `.isShift` has been renamed to `isShiftAction`.
+* `KeyboardAction` `.isUppercaseShift` has been renamed to `isUppercasedShiftAction`.
+ 
+
+
 ## 6.5
 
 This version adjusts the KeyboardKit Pro license model. 
