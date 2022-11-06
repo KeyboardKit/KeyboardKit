@@ -126,7 +126,7 @@ public class KeyboardContext: ObservableObject {
      key for selecting the next keyboard.
      */
     @Published
-    public var needsInputModeSwitchKey: Bool = false
+    public var needsInputModeSwitchKey = false
     
     /**
      The primary language that is currently being used.
@@ -170,7 +170,7 @@ public class KeyboardContext: ObservableObject {
      The input controller's current trait collection.
      */
     @Published
-    public var traitCollection: UITraitCollection = UITraitCollection()
+    public var traitCollection = UITraitCollection()
     #endif
 
 
