@@ -17,6 +17,10 @@ This version replaces large parts of the Quick and Nimble tests, to use XCTest i
 
 This means that you will eventually (not now) have less external dependencies.
 
+### 💡 Behavior changes
+
+* `SystemKeyboardButtonRowItem` now avoids applying a negative width.
+
 ### 🗑 Deprecations
 
 * `KeyboardAction` `.isShift` has been renamed to `isShiftAction`.
