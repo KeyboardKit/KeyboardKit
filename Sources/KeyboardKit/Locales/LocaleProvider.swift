@@ -29,10 +29,14 @@ public extension LocaleProvider {
      The locale's region code/identifier.
      */
     var regionIdentifier: String? {
+        #if compiler(>=5.7)
         if #available(iOS 16, macOS 13, tvOS 16, watchOS 9, *) {
             return locale.region?.identifier
         } else {
             return locale.regionCode
         }
+        #else
+        return locale.regionCode
+        #endif
     }
 }
