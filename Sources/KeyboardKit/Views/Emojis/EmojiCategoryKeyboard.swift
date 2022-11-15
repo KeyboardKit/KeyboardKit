@@ -62,8 +62,11 @@ public struct EmojiCategoryKeyboard<KeyboardView: View, CategoryTitleView: View>
     private let categoryTitleView: CategoryTitleViewProvider
     private let categoryKeyboard: CategoryKeyboardProvider
     
-    @State private var isInitialized = false
-    @State private var selection = EmojiCategory.smileys
+    @State
+    private var isInitialized = false
+
+    @State
+    private var selection = EmojiCategory.smileys
     
     
     // MARK: - Typealiases

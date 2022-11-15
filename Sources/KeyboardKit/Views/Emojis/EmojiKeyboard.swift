@@ -55,6 +55,8 @@ public struct EmojiKeyboard<ButtonView: View>: View {
         LazyHGrid(rows: rows, spacing: style.horizontalItemSpacing) {
             ForEach(emojis) {
                 emojiButton($0, style)
+                    .accessibilityLabel($0.unicodeName ?? "")
+                    .accessibilityIdentifier($0.unicodeIdentifier ?? "")
             }
         }
         .padding(.horizontal)
