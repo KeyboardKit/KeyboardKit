@@ -17,6 +17,15 @@ This version replaces large parts of the Quick and Nimble tests, to use XCTest i
 
 This means that you will eventually (not now) have less external dependencies.
 
+### 👑 KeyboardKit Pro
+
+* `ProEmojiInfo` is a new protocol that is implemented by `Emoji`.  
+* `ProEmojiInfo` has `hasSkinToneVariants`, `neutralSkinToneVariant` and `skinToneVariants` properties.
+
+### ✨ New features
+
+* `Emoji` has new `unicodeIdentifier` and `unicodeName` properties.
+
 ### 💡 Behavior changes
 
 * `SystemKeyboardButtonRowItem` now avoids applying a negative width.

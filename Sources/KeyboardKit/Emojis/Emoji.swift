@@ -29,17 +29,40 @@ public struct Emoji: Equatable, Codable, Identifiable {
 }
 
 public extension Emoji {
-    
-    /**
-     The emoji's unique identifier.
-     */
-    var id: String { char }
-    
+
     /**
      Get all emojis from all categories.
      */
     static var all: [Emoji] {
         EmojiCategory.all.flatMap { $0.emojis }
+    }
+}
+
+public extension Emoji {
+    
+    /**
+     The emoji's unique identifier.
+     */
+    var id: String { char }
+
+    /**
+     The emoji's unique unicode identifier.
+     */
+    var unicodeIdentifier: String? {
+        char.applyingTransform(.toUnicodeName, reverse: false)
+    }
+
+    /**
+     The emoji's unicode name.
+     */
+    var unicodeName: String? {
+        unicodeIdentifier?
+            .replacingOccurrences(of: "\\N", with: "")
+            .replacingOccurrences(of: "{", with: "")
+            .split(by: ["}"])
+            .filter { !$0.isEmpty }
+            .first?
+            .capitalized()
     }
 }
 

@@ -193,6 +193,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Actions]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-actions
 [Appearances]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-appearances
 [Autocomplete]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-autocomplete
+[Emojis]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-emojis
 [Feedback]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-feedback
 [Layout]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-layout
 [Localization]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-localization
@@ -201,7 +202,6 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Text-Routing]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-text-routing.md
 
 [Callouts]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Callouts.md
-[Emojis]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Emojis.md
 [Extensions]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Extensions.md
 [External]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/External.md
 [Gestures]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Gestures.md

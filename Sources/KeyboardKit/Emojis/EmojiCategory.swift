@@ -49,8 +49,6 @@ public extension EmojiCategory {
     
     /**
      An ordered list with all emojis in the category.
-     
-     
      */
     var emojis: [Emoji] {
         emojisString
