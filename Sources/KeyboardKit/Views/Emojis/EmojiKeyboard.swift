@@ -25,7 +25,7 @@ public struct EmojiKeyboard<ButtonView: View>: View {
 
      - Parameters:
        - emojis: The emojis to include in the menu.
-       - style: The style to apply to the keyboard, by default `.standardPhonePortrait`.
+       - style: The style to apply to the keyboard, by default ``EmojiKeyboardStyle/standardPhonePortrait``.
        - emojiButton: A emoji keyboard button builder function.
      */
     public init(
@@ -91,8 +91,8 @@ public extension EmojiKeyboard where ButtonView == EmojiKeyboardButton {
 
      - Parameters:
        - emojis: The emojis to include in the menu.
-       - style: The style to apply to the keyboard, by default `.standardPhonePortrait`.
-       - emojiButtonAction: The action to perform when an emoji is tapped, by default ``standardEmojiAction(emoji:)``.
+       - style: The style to apply to the keyboard, by default ``EmojiKeyboardStyle/standardPhonePortrait``.
+       - emojiButtonAction: The action to perform when an emoji is tapped, by default ``EmojiKeyboard/standardEmojiAction(emoji:)``.
      */
     init(
         emojis: [Emoji],

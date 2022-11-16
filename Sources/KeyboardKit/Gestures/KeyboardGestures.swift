@@ -72,11 +72,13 @@ struct KeyboardGestures<Content: View>: View {
     private let repeatTimer: RepeatGestureTimer
     private let dragAction: KeyboardDragGestureAction?
     
-    @State private var isRepeatGestureActive = false {
+    @State
+    private var isRepeatGestureActive = false {
         didSet { isRepeatGestureActive ? startRepeatTimer() : stopRepeatTimer() }
     }
     
-    @State private var shouldApplyTapAction = true
+    @State
+    private var shouldApplyTapAction = true
     
     var body: some View {
         view.overlay(GeometryReader { geo in

@@ -29,7 +29,8 @@ public struct EmojiKeyboardButton: View {
     
     public var body: some View {
         Button(action: { action(emoji) }, label: {
-            Text(emoji.char).font(style.itemFont)
+            Text(emoji.char)
+                .font(style.itemFont)
         })
     }
 }
