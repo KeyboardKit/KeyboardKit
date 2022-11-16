@@ -127,6 +127,18 @@ public struct SystemKeyboard<ButtonView: View>: View {
     private var keyboardContext: KeyboardContext
 
     public var body: some View {
+        keyboardView
+            .actionCallout(
+                context: actionCalloutContext,
+                style: actionCalloutStyle)
+            .inputCallout(
+                context: inputCalloutContext,
+                keyboardContext: keyboardContext,
+                style: inputCalloutStyle)
+    }
+
+    @ViewBuilder
+    var keyboardView: some View {
         if #available(iOS 14.0, tvOS 14.0, *) {
             switch keyboardContext.keyboardType {
             case .emojis: emojiKeyboard
@@ -317,22 +329,14 @@ private extension SystemKeyboard {
         EmojiCategoryKeyboard(
             appearance: appearance,
             context: keyboardContext,
-            style: .standard(for: keyboardContext))
-            .padding(.top)
+            style: .standard(for: keyboardContext)
+        ).padding(.top)
     }
     
     var systemKeyboard: some View {
         VStack(spacing: 0) {
             itemRows(for: layout)
-        }
-        .actionCallout(
-            context: actionCalloutContext,
-            style: actionCalloutStyle)
-        .inputCallout(
-            context: inputCalloutContext,
-            keyboardContext: keyboardContext,
-            style: inputCalloutStyle)
-        .environment(\.layoutDirection, .leftToRight)
+        }.environment(\.layoutDirection, .leftToRight)
     }
 }
 
