@@ -29,6 +29,7 @@ This means that you will eventually (not now) have less external dependencies.
 ### 💡 Behavior changes
 
 * `SystemKeyboardButtonRowItem` now avoids applying a negative width.
+* `KeyboardGestures` now has private state to avoid press gesture problems when providing a constant binding.
 
 ### 🗑 Deprecations
 

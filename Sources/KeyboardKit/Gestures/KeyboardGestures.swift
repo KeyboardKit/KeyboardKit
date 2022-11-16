@@ -71,7 +71,12 @@ struct KeyboardGestures<Content: View>: View {
     private let repeatAction: KeyboardGestureAction?
     private let repeatTimer: RepeatGestureTimer
     private let dragAction: KeyboardDragGestureAction?
-    
+
+    @State
+    private var isPressGestureActive = false {
+        didSet { isPressed.wrappedValue = isPressGestureActive }
+    }
+
     @State
     private var isRepeatGestureActive = false {
         didSet { isRepeatGestureActive ? startRepeatTimer() : stopRepeatTimer() }
@@ -190,8 +195,8 @@ private extension KeyboardGestures {
     }
     
     func handlePress(in geo: GeometryProxy) {
-        if isPressed.wrappedValue { return }
-        isPressed.wrappedValue = true
+        if isPressGestureActive { return }
+        isPressGestureActive = true
         pressAction?()
         inputCalloutContext?.updateInput(for: action, in: geo)
     }
@@ -202,7 +207,7 @@ private extension KeyboardGestures {
             tapAction?()
         }
         shouldApplyTapAction = true
-        isPressed.wrappedValue = false
+        isPressGestureActive = false
         inputCalloutContext?.reset()
         stopRepeatTimer()
     }
