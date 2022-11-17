@@ -108,13 +108,6 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardAppearance``
 - ``StandardKeyboardAppearance``
 
-### Audio
-
-- ``SystemAudio``
-- ``SystemAudioPlayer``
-- ``StandardSystemAudioPlayer``
-- ``DisabledSystemAudioPlayer``
-
 ### Autocomplete
 
 - ``AutocompleteCompletion``
@@ -171,11 +164,19 @@ KeyboardKit is available under the MIT license.
 
 ### Feedback
 
+- ``SystemAudio``
+- ``SystemAudioPlayer``
 - ``AudioFeedbackConfiguration``
+- ``HapticFeedback``
 - ``HapticFeedbackConfiguration``
+- ``HapticFeedbackPlayer``
 - ``KeyboardFeedbackHandler``
 - ``KeyboardFeedbackSettings``
 - ``StandardKeyboardFeedbackHandler``
+- ``StandardHapticFeedbackPlayer``
+- ``StandardSystemAudioPlayer``
+- ``DisabledHapticFeedbackPlayer``
+- ``DisabledSystemAudioPlayer``
 
 ### Gestures
 
@@ -184,13 +185,6 @@ KeyboardKit is available under the MIT license.
 - ``RepeatGestureTimer``
 - ``SpaceCursorDragGestureHandler``
 - ``SpaceDragSensitivity``
-
-### Haptics
-
-- ``HapticFeedback``
-- ``HapticFeedbackPlayer``
-- ``StandardHapticFeedbackPlayer``
-- ``DisabledHapticFeedbackPlayer``
 
 ### Images
 
