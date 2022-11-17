@@ -12,7 +12,7 @@ public struct KeyboardImageButton: View {
         tapAction: @escaping () -> Void = {},
         longPressAction: @escaping () -> Void = {}
     ) {
-        self.image = action.image
+        self.image = action.image ?? Image("")
         self.tapAction = tapAction
         self.longPressAction = longPressAction
     }

@@ -272,28 +272,46 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardButtonBorderStyle``
 - ``KeyboardButtonShadowStyle``
 
-### Views
+### Views/Autocomplete
 
-- ``ActionCallout``
 - ``AutocompleteToolbar``
 - ``AutocompleteToolbarItem``
 - ``AutocompleteToolbarItemSubtitle``
 - ``AutocompleteToolbarItemTitle``
 - ``AutocompleteToolbarSeparator``
+
+### Views/Buttons
+
+- ``GestureButton``
+- ``NextKeyboardButton``
+
+### Views/Callouts
+
+- ``ActionCallout``
 - ``CalloutButtonArea``
 - ``CalloutCurve``
 - ``InputCallout``
+
+### Views/Emojis
+
 - ``EmojiCategoryKeyboard``
 - ``EmojiCategoryKeyboardMenu``
 - ``EmojiCategoryTitle``
 - ``EmojiKeyboard``
 - ``EmojiKeyboardButton``
-- ``KeyboardGrid``
-- ``KeyboardImageButton``
+
+### Views/Input
+
 - ``KeyboardInputTextComponent``
 - ``KeyboardTextField``
 - ``KeyboardTextView``
-- ``NextKeyboardButton``
+
+### Views/Layout
+
+- ``KeyboardGrid``
+
+### Views/System
+
 - ``SystemKeyboard``
 - ``SystemKeyboardActionButton``
 - ``SystemKeyboardActionButtonContent``
