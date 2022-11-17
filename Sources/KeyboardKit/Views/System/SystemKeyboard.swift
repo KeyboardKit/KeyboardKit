@@ -16,14 +16,11 @@ import SwiftUI
  There are several ways to create a system keyboard. Use the
  initializer without a view builder to use a standard button
  for each action. Use the `buttonContent` initializer to use
- custom views for each button's content, but with a standard
+ custom content for some or all buttons, but with a standard
  shape, color, shadows etc. Use the `buttonView` initializer
- to use entirely custom views for each button.
-
- You also have `controller`-based initializers that are more
- convenient to use than the regular initializers, since they
- don't require you to provide a layout, appearance, services,
- contexts etc. Instead, they fetch it from the controller.
+ to use entirely custom views for some or all button. If you
+ want to use standard content or views for some buttons, use
+ `standardButtonContent` and `standardButtonView`.
  
  Since the keyboard depends on the available width, you must
  provide a `width`. If you don't provide one, this view will

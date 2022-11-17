@@ -11,11 +11,24 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 
 
+## Planned changes for 7.0
+
+Some things that are planned for the 7.0 release:
+
+* Removing the keyboard action `tap` gesture and only use `press` and `release`.
+* Rewriting the system keyboard gestures to support swipe to type and predictive type.
+
+
+
 ## 6.6
 
 This version replaces large parts of the Quick and Nimble tests, to use XCTest instead.
 
 This means that you will eventually (not now) have less external dependencies.
+
+This version also adds new emoji capabilities, such as getting the ID and name of an emoji, as well as support for skin tone variants.
+
+There is also a new `GestureButton` which will be used instead of the current keyboard gestures. This should provide a better typing experience. 
 
 ### 👑 KeyboardKit Pro
 
@@ -32,6 +45,7 @@ This means that you will eventually (not now) have less external dependencies.
 ### 💡 Behavior changes
 
 * `SystemKeyboardButtonRowItem` now avoids applying a negative width.
+* `KeyboardAction.backspace` now triggers on `press` instead of `tap`.
 * `KeyboardGestures` now has private state to avoid press gesture problems when providing a constant binding.
 
 ### 🐛 Bug fixes
