@@ -1,16 +1,6 @@
-//
-//  KeyboardImageButton.swift
-//  KeyboardKit
-//
-//  Created by Daniel Saidi on 2020-03-11.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
-//
-
 import SwiftUI
 
-/**
- This button shows an image with a tap and long press action.
- */
+@available(*, deprecated, message: "This view is deprecated and will be removed in the next major version.")
 public struct KeyboardImageButton: View {
     
     /**
@@ -53,26 +43,5 @@ public struct KeyboardImageButton: View {
             .onTapGesture(perform: tapAction)
             .onLongPressGesture(perform: longPressAction)
             #endif
-    }
-}
-
-private extension KeyboardAction {
-    
-    var image: Image {
-        switch self {
-        case .image(_, let imageName, _): return Image(imageName, bundle: .keyboardKit)
-        case .systemImage(_, let imageName, _): return Image(systemName: imageName)
-        default: return Image("")
-        }
-    }
-}
-
-struct KeyboardImageButton_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        VStack {
-            KeyboardImageButton(action: .image(description: "", keyboardImageName: "iPhone12_sv_alphabetic_portrait_lowercase", imageName: ""))
-            KeyboardImageButton(action: .systemImage(description: "", keyboardImageName: "checkmark", imageName: ""))
-        }
     }
 }
