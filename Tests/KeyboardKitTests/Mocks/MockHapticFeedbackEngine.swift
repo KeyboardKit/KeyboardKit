@@ -1,5 +1,5 @@
 //
-//  MockHapticFeedbackPlayer.swift
+//  MockHapticFeedbackEngine.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-04-01.
@@ -9,16 +9,16 @@
 import KeyboardKit
 import MockingKit
 
-class MockHapticFeedbackPlayer: Mock, HapticFeedbackPlayer {
-    
-    lazy var playRef = MockReference(play)
+class MockHapticFeedbackEngine: Mock, HapticFeedbackEngine {
+
     lazy var prepareRef = MockReference(prepare)
-    
-    func play(_ feedback: HapticFeedback) {
-        call(playRef, args: (feedback))
-    }
+    lazy var triggerRef = MockReference(trigger)
     
     func prepare(_ feedback: HapticFeedback) {
         call(prepareRef, args: (feedback))
+    }
+
+    func trigger(_ feedback: HapticFeedback) {
+        call(triggerRef, args: (feedback))
     }
 }

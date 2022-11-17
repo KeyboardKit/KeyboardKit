@@ -52,22 +52,22 @@ public struct AudioFeedbackConfiguration: Codable, Equatable {
     }
     
     /**
-     The audio to play when a delete key is pressed.
+     The audio to trigger when a delete key is pressed.
      */
      public var delete: AudioFeedback
  
     /**
-     The audio to play when an input key is pressed.
+     The audio to trigger when an input key is pressed.
      */
     public var input: AudioFeedback
     
    /**
-    The audio to play when a system key is pressed.
+    The audio to trigger when a system key is pressed.
     */
     public var system: AudioFeedback
     
     /**
-     The audio to play when an action is triggered.
+     The audio to trigger when an action is triggered.
      */
      public var actions: [ActionFeedback]
 }

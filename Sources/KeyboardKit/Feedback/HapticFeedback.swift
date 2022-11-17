@@ -12,13 +12,13 @@ import Foundation
  This enum contains various haptic feedback types.
   
  You can call ``trigger()`` on any feedback value to trigger
- the desired feedback, using the ``player``. You can replace
- this player with any custom player if you need to.
+ it, using the static ``engine``. You can replace the engine
+ with any custom engine if you need to.
 
  Note that `macOS`, `tvOS` and `watchOS` resolves a disabled
- ``HapticFeedbackPlayer`` by default, since the platforms do
- not support haptic feedback. Feel free to replace it with a
- player that does something meaningful on each platform.
+ ``HapticFeedbackEngine`` by default, since the platforms do
+ not support system haptics. You can replace it with another
+ engine that does something meaningful on each platform.
 */
 public enum HapticFeedback: String, CaseIterable, Codable, Equatable, Identifiable {
     
@@ -63,27 +63,27 @@ public extension HapticFeedback {
     var id: String { rawValue }
 
     /**
-     The player that will be used to trigger haptic feedback.
+     The engine that will be used to trigger haptic feedback.
      */
-    static var player: HapticFeedbackPlayer = {
+    static var engine: HapticFeedbackEngine = {
         #if os(iOS)
-        StandardHapticFeedbackPlayer.shared
+        StandardHapticFeedbackEngine.shared
         #else
-        DisabledHapticFeedbackPlayer()
+        DisabledHapticFeedbackEngine()
         #endif
     }()
     
     /**
-     Prepare the haptic feedback, using the shared player.
+     Prepare the haptic feedback, using the shared engine.
      */
     func prepare() {
-        Self.player.prepare(self)
+        Self.engine.prepare(self)
     }
     
     /**
-     Trigger the feedback, using the shared player.
+     Trigger the feedback, using the shared feedback engine.
      */
     func trigger() {
-        Self.player.play(self)
+        Self.engine.trigger(self)
     }
 }

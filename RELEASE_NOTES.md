@@ -44,6 +44,7 @@ This means that you will eventually (not now) have less external dependencies.
 * `KeyboardImageButton` has been deprecated and will be removed in KeyboardKit 7.
 * `SystemAudio` types have been renamed to `AudioFeedback` to make the concept match haptic feedback types.
 * `SystemAudio` `play` has been renamed to `trigger` to make it match the haptic feedback trigger.
+* `SystemAudioPlayer` types have been renamed to `SystemAudioEngine` to make the concept match other feedback engines.
  
 
 

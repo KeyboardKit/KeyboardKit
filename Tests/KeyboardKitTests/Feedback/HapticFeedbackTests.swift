@@ -15,19 +15,19 @@ class HapticFeedbackTests: QuickSpec {
     
     override func spec() {
         
-        var player: MockHapticFeedbackPlayer!
+        var engine: MockHapticFeedbackEngine!
         
         beforeEach {
-            player = MockHapticFeedbackPlayer()
-            HapticFeedback.player = player
+            engine = MockHapticFeedbackEngine()
+            HapticFeedback.engine = engine
         }
         
         describe("preparing feedback") {
             
-            it("uses the shared audio player") {
+            it("uses the shared audio engine") {
                 HapticFeedback.success.prepare()
                 HapticFeedback.warning.prepare()
-                let calls = player.calls(to: player.prepareRef)
+                let calls = engine.calls(to: engine.prepareRef)
                 expect(calls.count).to(equal(2))
                 expect(calls[0].arguments).to(equal(.success))
                 expect(calls[1].arguments).to(equal(.warning))
@@ -36,10 +36,10 @@ class HapticFeedbackTests: QuickSpec {
         
         describe("triggering feedback") {
             
-            it("uses the shared audio player") {
+            it("uses the shared audio engine") {
                 HapticFeedback.success.trigger()
                 HapticFeedback.warning.trigger()
-                let calls = player.calls(to: player.playRef)
+                let calls = engine.calls(to: engine.triggerRef)
                 expect(calls.count).to(equal(2))
                 expect(calls[0].arguments).to(equal(.success))
                 expect(calls[1].arguments).to(equal(.warning))

@@ -15,11 +15,11 @@ class AudioFeedbackTests: QuickSpec {
     
     override func spec() {
         
-        var player: MockAudioFeedbackPlayer!
+        var engine: MockAudioFeedbackEngine!
         
         beforeEach {
-            player = MockAudioFeedbackPlayer()
-            AudioFeedback.player = player
+            engine = MockAudioFeedbackEngine()
+            AudioFeedback.engine = engine
         }
         
         describe("audio feedback") {
@@ -39,10 +39,10 @@ class AudioFeedbackTests: QuickSpec {
         
         describe("triggering feedback") {
             
-            it("uses the shared audio player") {
+            it("uses the shared audio engine") {
                 AudioFeedback.custom(id: 111).trigger()
                 AudioFeedback.custom(id: 124).trigger()
-                let calls = player.calls(to: player.playRef)
+                let calls = engine.calls(to: engine.triggerRef)
                 expect(calls.count).to(equal(2))
                 expect(calls[0].arguments.id).to(equal(111))
                 expect(calls[1].arguments.id).to(equal(124))

@@ -17,25 +17,25 @@ class StandardKeyboardFeedbackHandlerTests: QuickSpec {
         
         var handler: StandardKeyboardFeedbackHandler!
         
-        var audioPlayer: MockAudioFeedbackPlayer!
-        var hapticPlayer: MockHapticFeedbackPlayer!
+        var audioEngine: MockAudioFeedbackEngine!
+        var hapticEngine: MockHapticFeedbackEngine!
         
         beforeEach {
-            audioPlayer = MockAudioFeedbackPlayer()
-            hapticPlayer = MockHapticFeedbackPlayer()
+            audioEngine = MockAudioFeedbackEngine()
+            hapticEngine = MockHapticFeedbackEngine()
             
             handler = StandardKeyboardFeedbackHandler(settings: KeyboardFeedbackSettings())
             
-            AudioFeedback.player = audioPlayer
-            HapticFeedback.player = hapticPlayer
+            AudioFeedback.engine = audioEngine
+            HapticFeedback.engine = hapticEngine
         }
         
         describe("trigger feedback") {
             
             it("triggers audio and haptic feedback") {
                 handler.triggerFeedback(for: .press, on: .backspace)
-                expect(audioPlayer.hasCalled(audioPlayer.playRef)).to(beTrue())
-                expect(hapticPlayer.hasCalled(hapticPlayer.playRef)).to(beTrue())
+                expect(audioEngine.hasCalled(audioEngine.triggerRef)).to(beTrue())
+                expect(hapticEngine.hasCalled(hapticEngine.triggerRef)).to(beTrue())
             }
         }
         
@@ -43,8 +43,8 @@ class StandardKeyboardFeedbackHandlerTests: QuickSpec {
             
             it("triggers audio feedback only") {
                 handler.triggerAudioFeedback(for: .press, on: .backspace)
-                expect(audioPlayer.hasCalled(audioPlayer.playRef)).to(beTrue())
-                expect(hapticPlayer.hasCalled(hapticPlayer.playRef)).to(beFalse())
+                expect(audioEngine.hasCalled(audioEngine.triggerRef)).to(beTrue())
+                expect(hapticEngine.hasCalled(hapticEngine.triggerRef)).to(beFalse())
             }
         }
         
@@ -52,8 +52,8 @@ class StandardKeyboardFeedbackHandlerTests: QuickSpec {
             
             it("triggers haptic feedback only") {
                 handler.triggerHapticFeedback(for: .press, on: .backspace)
-                expect(audioPlayer.hasCalled(audioPlayer.playRef)).to(beFalse())
-                expect(hapticPlayer.hasCalled(hapticPlayer.playRef)).to(beTrue())
+                expect(audioEngine.hasCalled(audioEngine.triggerRef)).to(beFalse())
+                expect(hapticEngine.hasCalled(hapticEngine.triggerRef)).to(beTrue())
             }
         }
     }

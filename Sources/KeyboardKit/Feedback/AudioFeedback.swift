@@ -11,13 +11,13 @@ import Foundation
 /**
  This enum contains various audio feedback types.
   
- You can call ``play()`` on any value to trigger the desired
- feedback, using the static ``player``. You can replace this
- player with any custom player if you need to.
+ You can call ``trigger()`` on any feedback value to trigger
+ it, using the static ``engine``. You can replace the engine
+ with any custom engine if you need to.
 
- Note that `watchOS` creates a ``DisabledAudioFeedbackPlayer``
+ Note that `watchOS` creates a ``DisabledAudioFeedbackEngine``
  by default, since the platform doesn't support system audio.
- You can replace it with another player, that does something
+ You can replace it with another engine, that does something
  meaningful on that platform.
 */
 public enum AudioFeedback: Codable, Equatable, Identifiable {
@@ -46,7 +46,7 @@ public extension AudioFeedback {
      The unique feedback identifier.
 
      This identifier maps to a unique system sound, which is
-     used by the ``StandardAudioFeedbackPlayer``.
+     used by the ``StandardAudioFeedbackEngine``.
      */
     var id: UInt32 {
         switch self {
@@ -59,20 +59,20 @@ public extension AudioFeedback {
     }
 
     /**
-     The player that will be used to trigger audio feedback.
+     The engine that will be used to trigger audio feedback.
      */
-    static var player: AudioFeedbackPlayer = {
+    static var engine: AudioFeedbackEngine = {
         #if os(iOS) || os(macOS) || os(tvOS)
-        StandardAudioFeedbackPlayer.shared
+        StandardAudioFeedbackEngine.shared
         #else
-        DisabledAudioFeedbackPlayer()
+        DisabledAudioFeedbackEngine()
         #endif
     }()
     
     /**
-     Trigger the feedback, using the shared player.
+     Trigger the feedback, using the shared feedback engine.
      */
     func trigger() {
-        Self.player.play(self)
+        Self.engine.trigger(self)
     }
 }

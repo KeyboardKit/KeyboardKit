@@ -1,5 +1,5 @@
 //
-//  AudioFeedbackPlayer.swift
+//  AudioFeedbackEngine.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-10-15.
@@ -10,12 +10,12 @@ import Foundation
 
 /**
  This protocol can be implemented by any classes that can be
- used to play audio feedback.
+ used to trigger audio feedback.
  */
-public protocol AudioFeedbackPlayer {
+public protocol AudioFeedbackEngine {
     
     /**
-     Play a certain audio feedback type.
+     Trigger a certain audio feedback type.
      **/
-    func play(_ audio: AudioFeedback)
+    func trigger(_ audio: AudioFeedback)
 }

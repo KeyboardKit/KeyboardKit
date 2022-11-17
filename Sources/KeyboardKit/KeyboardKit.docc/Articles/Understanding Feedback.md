@@ -62,8 +62,8 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 You don't need to use a feedback handler to trigger audio and haptic feedback, although that is the most flexible approach for doing so. 
 
-To just trigger audio or haptic feedback, the ``AudioFeedback`` and ``HapticFeedback`` enums have a `trigger` function that will trigger the feedback using a shared player.
+To just trigger audio or haptic feedback, the ``AudioFeedback`` and ``HapticFeedback`` enums have a `trigger` function that will trigger the feedback using a static `engine`.
 
-You can replace ``AudioFeedback/player`` and ``HapticFeedback/player`` with custom instances to change the global behavior of these feedback types.
+You can replace ``AudioFeedback/engine`` and ``HapticFeedback/engine`` with custom engines to change the global behavior of how audio and haptic feedback is handled.
 
 Note that your keyboard extension needs full access to be able to trigger haptic feedback. Full access must be enabled by the user, under `System Settings > General > Keyboards > Your Keyboard`.
