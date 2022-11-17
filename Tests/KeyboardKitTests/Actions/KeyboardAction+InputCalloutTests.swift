@@ -12,9 +12,11 @@ import XCTest
 final class KeyboardAction_InputCalloutTests: XCTestCase {
 
     func testInputCalloutTextIsOnlySpecifiedForCharacterActions() {
-        let action = KeyboardAction.character("foo")
-        let others = KeyboardAction.testActions.filter { !$0.isCharacterAction }
-        XCTAssertEqual(action.inputCalloutText, "foo")
+        let char = KeyboardAction.character("foo")
+        let emoji = KeyboardAction.emoji(Emoji("😀"))
+        let others = KeyboardAction.testActions.filter { !$0.isCharacterAction && !$0.isEmojiAction }
+        XCTAssertEqual(char.inputCalloutText, "foo")
+        XCTAssertEqual(emoji.inputCalloutText, "😀")
         others.forEach {
             XCTAssertNil($0.inputCalloutText)
         }

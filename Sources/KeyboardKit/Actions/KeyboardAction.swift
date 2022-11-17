@@ -122,13 +122,24 @@ public extension KeyboardAction {
     
     /**
      Whether or not the action is a character action.
-     
-     Note that ``KeyboardAction/characterMargin(_:)`` is not
-     included, since it's only meant to be used in layouts.
+
+     This is only true for ``KeyboardAction/character(_:)``.
      */
     var isCharacterAction: Bool {
         switch self {
         case .character: return true
+        default: return false
+        }
+    }
+
+    /**
+     Whether or not the action is an emoji action.
+
+     This is only true for ``KeyboardAction/emoji(_:)``.
+     */
+    var isEmojiAction: Bool {
+        switch self {
+        case .emoji: return true
         default: return false
         }
     }

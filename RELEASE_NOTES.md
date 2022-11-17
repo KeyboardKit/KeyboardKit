@@ -27,6 +27,7 @@ This means that you will eventually (not now) have less external dependencies.
 * `Emoji` has new `unicodeIdentifier` and `unicodeName` properties.
 * `GestureButton` is a new view that lets you handle many different gestures with a single button.
 * `KeyboardAction` has a new `image` property.
+* `KeyboardAction` has a new `isEmojiAction` property.
 
 ### 💡 Behavior changes
 
