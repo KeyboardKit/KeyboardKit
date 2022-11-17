@@ -1,5 +1,5 @@
 //
-//  StandardSystemAudioPlayer.swift
+//  StandardAudioFeedbackPlayer.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-10-15.
@@ -10,9 +10,9 @@
 import AudioToolbox
 
 /**
- This player uses system features to play system audio. It's
- the default ``SystemAudio`` player on platforms where it is
- supported.
+ This player uses system features to play audio feedback. It
+ is the default ``AudioFeedback/player`` on all platforms on
+ which it's supported.
 
  You can use, modify and replace the ``shared`` player. This
  lets you customize the global audio feedback experience.
@@ -20,14 +20,14 @@ import AudioToolbox
  Note that the player is currently only supported on certain
  platforms.
  */
-open class StandardSystemAudioPlayer: SystemAudioPlayer {
+open class StandardAudioFeedbackPlayer: AudioFeedbackPlayer {
     
     public init() {}
     
     /**
-     Play a certain system audio sound.
+     Play a certain audio feedback type.
      **/
-    open func play(_ audio: SystemAudio) {
+    open func play(_ audio: AudioFeedback) {
         switch audio {
         case .none: return
         default: AudioServicesPlaySystemSound(audio.id)
@@ -35,11 +35,11 @@ open class StandardSystemAudioPlayer: SystemAudioPlayer {
     }
 }
 
-public extension StandardSystemAudioPlayer {
+public extension StandardAudioFeedbackPlayer {
     
     /**
-     The standard player that is used for audio feedback.
+     A shared instance that can be used from anywhere.
      */
-    static var shared = StandardSystemAudioPlayer()
+    static var shared = StandardAudioFeedbackPlayer()
 }
 #endif

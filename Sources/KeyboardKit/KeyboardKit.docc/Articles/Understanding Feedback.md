@@ -60,16 +60,10 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## How to trigger feedback without a handler
 
-You don't need to use a feedback handler to trigger audio and haptic feedback, although that is the most flexible approach for doing so. To just trigger audio or haptic feedback, KeyboardKit has more straightforward ways: 
+You don't need to use a feedback handler to trigger audio and haptic feedback, although that is the most flexible approach for doing so. 
 
-### System audio
+To just trigger audio or haptic feedback, the ``AudioFeedback`` and ``HapticFeedback`` enums have a `trigger` function that will trigger the feedback using a shared player.
 
-KeyboardKit has a ``SystemAudio`` enum that describes various system audio sounds, such as ``SystemAudio``. You can play any system audio sound with ``SystemAudio/play()``. You can also inject a new global ``SystemAudio/player`` to customize how system audio is played.
+You can replace ``AudioFeedback/player`` and ``HapticFeedback/player`` with custom instances to change the global behavior of these feedback types.
 
-### Haptic feedback
-
-KeyboardKit has a ``HapticFeedback`` enum that describes various haptic feedback types. You can trigger any haptic feedback with ``HapticFeedback/trigger()``. You can also inject a new global ``HapticFeedback/player`` to customize how haptic feedback is triggered.
-
-### Full access needed
-
-Note that your keyboard extension needs full access to be enabled to be able to play system audio and trigger haptic feedback. Full access must be enabled by the user, under `System Settings > General > Keyboards > Your Keyboard`.
+Note that your keyboard extension needs full access to be able to trigger haptic feedback. Full access must be enabled by the user, under `System Settings > General > Keyboards > Your Keyboard`.

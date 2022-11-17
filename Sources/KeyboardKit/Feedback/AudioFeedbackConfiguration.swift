@@ -23,9 +23,9 @@ public struct AudioFeedbackConfiguration: Codable, Equatable {
        - actions: A list of action-specific feedback.
      */
     public init(
-        input: SystemAudio = .input,
-        delete: SystemAudio = .delete,
-        system: SystemAudio = .system,
+        input: AudioFeedback = .input,
+        delete: AudioFeedback = .delete,
+        system: AudioFeedback = .system,
         actions: [ActionFeedback] = []
     ) {
         self.input = input
@@ -41,30 +41,30 @@ public struct AudioFeedbackConfiguration: Codable, Equatable {
         
         public init(
             action: KeyboardAction,
-            feedback: SystemAudio
+            feedback: AudioFeedback
         ) {
             self.action = action
             self.feedback = feedback
         }
         
         public let action: KeyboardAction
-        public let feedback: SystemAudio
+        public let feedback: AudioFeedback
     }
     
     /**
      The audio to play when a delete key is pressed.
      */
-     public var delete: SystemAudio
+     public var delete: AudioFeedback
  
     /**
      The audio to play when an input key is pressed.
      */
-    public var input: SystemAudio
+    public var input: AudioFeedback
     
    /**
     The audio to play when a system key is pressed.
     */
-    public var system: SystemAudio
+    public var system: AudioFeedback
     
     /**
      The audio to play when an action is triggered.

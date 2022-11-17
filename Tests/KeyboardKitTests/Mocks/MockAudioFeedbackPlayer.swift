@@ -1,5 +1,5 @@
 //
-//  MockSystemAudioPlayer.swift
+//  MockAudioFeedbackPlayer.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-04-01.
@@ -9,11 +9,11 @@
 import KeyboardKit
 import MockingKit
 
-class MockSystemAudioPlayer: Mock, SystemAudioPlayer {
+class MockAudioFeedbackPlayer: Mock, AudioFeedbackPlayer {
     
     lazy var playRef = MockReference(play)
     
-    func play(_ audio: SystemAudio) {
+    func play(_ audio: AudioFeedback) {
         call(playRef, args: (audio))
     }
 }

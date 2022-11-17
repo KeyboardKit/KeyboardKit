@@ -11,15 +11,14 @@ import UIKit
 
 /**
  This player uses system features to prepare and play haptic
- feedback. It's the default ``HapticFeedback`` player on all
+ feedback. It's the default ``HapticFeedback/player`` on all
  platforms where it's supported.
 
  You can use, modify and replace the ``shared`` player. This
  lets you customize the global haptic feedback experience.
  
  Note that the player is currently only supported on certain
- platforms and that haptic feedback requires full access. We
- can try to work around this by using system audio.
+ platforms and that haptic feedback requires full access.
  */
 open class StandardHapticFeedbackPlayer: HapticFeedbackPlayer {
     
@@ -65,7 +64,7 @@ open class StandardHapticFeedbackPlayer: HapticFeedbackPlayer {
 public extension StandardHapticFeedbackPlayer {
     
     /**
-     This shared instance is used on some platforms.
+     A shared instance that can be used from anywhere.
      */
     static var shared = StandardHapticFeedbackPlayer()
 }

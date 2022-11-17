@@ -67,11 +67,11 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
      */
     open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
         let custom = audioConfig.actions.first { $0.action == action }
-        if let custom = custom { return custom.feedback.play() }
+        if let custom = custom { return custom.feedback.trigger() }
         if action == .space && gesture == .longPress { return }
-        if action == .backspace { return audioConfig.delete.play() }
-        if action.isInputAction { return audioConfig.input.play() }
-        if action.isSystemAction { return audioConfig.system.play() }
+        if action == .backspace { return audioConfig.delete.trigger() }
+        if action.isInputAction { return audioConfig.input.trigger() }
+        if action.isSystemAction { return audioConfig.system.trigger() }
     }
     
     /**

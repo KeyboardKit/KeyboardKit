@@ -17,16 +17,16 @@ class StandardKeyboardFeedbackHandlerTests: QuickSpec {
         
         var handler: StandardKeyboardFeedbackHandler!
         
-        var audioPlayer: MockSystemAudioPlayer!
+        var audioPlayer: MockAudioFeedbackPlayer!
         var hapticPlayer: MockHapticFeedbackPlayer!
         
         beforeEach {
-            audioPlayer = MockSystemAudioPlayer()
+            audioPlayer = MockAudioFeedbackPlayer()
             hapticPlayer = MockHapticFeedbackPlayer()
             
             handler = StandardKeyboardFeedbackHandler(settings: KeyboardFeedbackSettings())
             
-            SystemAudio.player = audioPlayer
+            AudioFeedback.player = audioPlayer
             HapticFeedback.player = hapticPlayer
         }
         

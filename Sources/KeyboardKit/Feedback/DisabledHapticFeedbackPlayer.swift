@@ -18,14 +18,7 @@ public class DisabledHapticFeedbackPlayer: HapticFeedbackPlayer {
      Create a disabled player.
      */
     public init() {}
-    
-    /**
-     Play a certain haptic feedback type.
-     */
+
     public func play(_ feedback: HapticFeedback) {}
-    
-    /**
-     Prepare a certain haptic feedback type for being played.
-     */
     public func prepare(_ feedback: HapticFeedback) {}
 }

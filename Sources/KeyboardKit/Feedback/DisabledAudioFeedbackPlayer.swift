@@ -1,5 +1,5 @@
 //
-//  DisabledSystemAudioPlayer.swift
+//  DisabledAudioFeedbackPlayer.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2022-01-19.
@@ -12,10 +12,7 @@ import Foundation
  This disabled player doesn't do anything and can be used on
  platforms where system audio is not available.
  */
-public class DisabledSystemAudioPlayer: SystemAudioPlayer {
-    
-    /**
-     Play a certain system audio sound.
-     **/
-    public func play(_ audio: SystemAudio) {}
+public class DisabledAudioFeedbackPlayer: AudioFeedbackPlayer {
+
+    public func play(_ audio: AudioFeedback) {}
 }

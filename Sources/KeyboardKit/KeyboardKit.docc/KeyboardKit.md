@@ -164,9 +164,9 @@ KeyboardKit is available under the MIT license.
 
 ### Feedback
 
-- ``SystemAudio``
-- ``SystemAudioPlayer``
+- ``AudioFeedback``
 - ``AudioFeedbackConfiguration``
+- ``AudioFeedbackPlayer``
 - ``HapticFeedback``
 - ``HapticFeedbackConfiguration``
 - ``HapticFeedbackPlayer``
@@ -174,9 +174,9 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardFeedbackSettings``
 - ``StandardKeyboardFeedbackHandler``
 - ``StandardHapticFeedbackPlayer``
-- ``StandardSystemAudioPlayer``
+- ``StandardAudioFeedbackPlayer``
+- ``DisabledAudioFeedbackPlayer``
 - ``DisabledHapticFeedbackPlayer``
-- ``DisabledSystemAudioPlayer``
 
 ### Gestures
 
