@@ -25,16 +25,23 @@ This means that you will eventually (not now) have less external dependencies.
 ### ✨ New features
 
 * `Emoji` has new `unicodeIdentifier` and `unicodeName` properties.
+* `GestureButton` is a new view that lets you handle many different gestures with a single button.
+* `KeyboardAction` has a new `image` property.
 
 ### 💡 Behavior changes
 
 * `SystemKeyboardButtonRowItem` now avoids applying a negative width.
 * `KeyboardGestures` now has private state to avoid press gesture problems when providing a constant binding.
 
+### 🐛 Bug fixes
+
+* `KeyboardGestures` now use internal state to avoid problems when passing in a constant binding.
+
 ### 🗑 Deprecations
 
 * `KeyboardAction` `.isShift` has been renamed to `isShiftAction`.
 * `KeyboardAction` `.isUppercaseShift` has been renamed to `isUppercasedShiftAction`.
+* `KeyboardImageButton` has been deprecated and will be removed in KeyboardKit 7.
  
 
 
