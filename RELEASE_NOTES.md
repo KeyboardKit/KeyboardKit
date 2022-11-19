@@ -47,6 +47,7 @@ There is also a new `GestureButton` which will be used instead of the current ke
 * `SystemKeyboardButtonRowItem` now avoids applying a negative width.
 * `KeyboardAction.backspace` now triggers on `press` instead of `tap`.
 * `KeyboardGestures` now has private state to avoid press gesture problems when providing a constant binding.
+* `View+KeyboardGestures` now render a plain button that triggers the press, release and tap action on tvOS.
 
 ### 🐛 Bug fixes
 

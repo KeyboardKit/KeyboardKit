@@ -49,6 +49,7 @@ public extension View {
        - repeatAction: The action to trigger when the button is pressed and held.
        - dragAction: The action to trigger when the button is dragged.
      */
+    @ViewBuilder
     func keyboardGestures(
         action: KeyboardAction? = nil,
         isPressed: Binding<Bool> = .constant(false),
@@ -71,9 +72,16 @@ public extension View {
             pressAction: pressAction,
             releaseAction: releaseAction,
             repeatAction: repeatAction,
-            dragAction: dragAction)
+            dragAction: dragAction
+        )
         #else
-        self
+        Button {
+            pressAction?()
+            releaseAction?()
+            tapAction?()
+        } label: {
+            self
+        }
         #endif
     }
 }
