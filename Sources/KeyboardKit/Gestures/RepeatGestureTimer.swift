@@ -16,9 +16,7 @@ public class RepeatGestureTimer {
     
     deinit { stop() }
     
-    
     public static let shared = RepeatGestureTimer()
-    
     
     private var timer: Timer?
     

@@ -42,7 +42,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
 
     /**
      Create a system keyboard that uses a custom `buttonView`
-     to customize the entire view for each layout item.
+     builder to create the entire view for every layout item.
      */
     public init(
         layout: KeyboardLayout,
@@ -69,7 +69,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
     
     /**
      Create a system keyboard that uses a custom `buttonView`
-     to customize the entire view for each layout item.
+     builder to create the entire view for every layout item.
      */
     init(
         controller: KeyboardInputViewController? = nil,
@@ -150,8 +150,8 @@ public struct SystemKeyboard<ButtonView: View>: View {
 public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardActionButtonContent> {
     
     /**
-     Create a system keyboard view that uses standard button
-     views for all layout items.
+     Create a system keyboard view that uses a standard view
+     builder for every layout item.
      
      See ``SystemKeyboard/standardButtonView(item:appearance:actionHandler:keyboardContext:keyboardWidth:inputWidth:)`` for more info.
      */
@@ -185,8 +185,8 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
     }
     
     /**
-     Create a system keyboard view that uses standard button
-     views for all layout items.
+     Create a system keyboard view that uses a standard view
+     builder for every layout item.
      
      See ``SystemKeyboard/standardButtonView(item:appearance:actionHandler:keyboardContext:keyboardWidth:inputWidth:)`` for more info.
      */
@@ -209,8 +209,8 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
 public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<AnyView> {
     
     /**
-     Create a system keyboard view that uses `buttonContent`
-     to customize the content of each layout item.
+     Create a system keyboard view, that uses `buttonContent`
+     to customize the intrinsic content of every layout item.
      */
     init<ButtonContentView: View>(
         layout: KeyboardLayout,
@@ -245,8 +245,8 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
     }
     
     /**
-     Create a system keyboard view that uses `buttonContent`
-     to customize the content of each layout item.
+     Create a system keyboard view, that uses `buttonContent`
+     to customize the intrinsic content of every layout item.
      */
     init<ButtonContentView: View>(
         controller: KeyboardInputViewController? = nil,
@@ -269,7 +269,10 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
 public extension SystemKeyboard {
     
     /**
-     The standard view to use as button content.
+     The standard ``SystemKeyboardActionButtonContent`` view
+     that will be used as intrinsic content for every layout
+     item in the keyboard if you don't use a `buttonView` or
+     `buttonContent` initializer.
      */
     static func standardButtonContent(
         item: KeyboardLayoutItem,
@@ -283,7 +286,9 @@ public extension SystemKeyboard {
     }
     
     /**
-     The standard view to use as button view.
+     The standard ``SystemKeyboardButtonRowItem`` view, that
+     will be used as view for every layout item if you don't
+     use the `buttonView` initializer.
      */
     static func standardButtonView(
         item: KeyboardLayoutItem,

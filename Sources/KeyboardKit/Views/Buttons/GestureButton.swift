@@ -6,7 +6,7 @@
 //  Copyright © 2022 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS)
+#if os(iOS) || os(macOS) || os(watchOS)
 import SwiftUI
 
 /**
@@ -32,7 +32,7 @@ import SwiftUI
  taps and long presses. Therefore, only apply these gestures
  if you need them, otherwise leave them empty.
  */
-@available(iOS 14.0, *)
+@available(iOS 14.0, macOS 11.0, watchOS 8.0, *)
 public struct GestureButton<Label: View, StyledLabel: View>: View {
 
     /**
@@ -50,6 +50,7 @@ public struct GestureButton<Label: View, StyledLabel: View>: View {
        - longPressAction: The action to trigger when the button is long pressed, by default `nil`.
        - doubleTapTime: The max interval for two taps to count as a double tap, by default `0.5`.
        - doubleTapAction: The action to trigger when the button is double tapped, by default `nil`.
+       - repeatAction: The action to repeat while the button is being pressed, by default `nil`.
        - dragChangedAction: The action to trigger when a drag gesture changes.
        - dragEndedAction: The action to trigger when a drag gesture ends.
        - label: The button label.
@@ -64,6 +65,7 @@ public struct GestureButton<Label: View, StyledLabel: View>: View {
         longPressAction: Action? = nil,
         doubleTapTime: TimeInterval = 0.5,
         doubleTapAction: Action? = nil,
+        repeatAction: Action? = nil,
         dragChangedAction: DragAction? = nil,
         dragEndedAction: DragAction? = nil,
         label: @escaping LabelBuilder,
@@ -77,6 +79,7 @@ public struct GestureButton<Label: View, StyledLabel: View>: View {
             longPressAction: longPressAction ?? {},
             doubleTapTime: doubleTapTime,
             doubleTapAction: doubleTapAction ?? {},
+            repeatAction: repeatAction,
             labelStyle: labelStyle
         )
 
@@ -104,6 +107,7 @@ public struct GestureButton<Label: View, StyledLabel: View>: View {
        - longPressAction: The action to trigger when the button is long pressed, by default `nil`.
        - doubleTapTime: The max interval for two taps to count as a double tap, by default `0.5`.
        - doubleTapAction: The action to trigger when the button is double tapped, by default `nil`.
+       - repeatAction: The action to repeat while the button is being pressed, by default `nil`.
        - dragChangedAction: The action to trigger when a drag gesture changes.
        - dragEndedAction: The action to trigger when a drag gesture ends.
        - label: The button label.
@@ -117,6 +121,7 @@ public struct GestureButton<Label: View, StyledLabel: View>: View {
         longPressAction: Action? = nil,
         doubleTapTime: TimeInterval = 0.5,
         doubleTapAction: Action? = nil,
+        repeatAction: Action? = nil,
         dragChangedAction: DragAction? = nil,
         dragEndedAction: DragAction? = nil,
         label: @escaping LabelBuilder
@@ -130,6 +135,7 @@ public struct GestureButton<Label: View, StyledLabel: View>: View {
             longPressAction: longPressAction,
             doubleTapTime: doubleTapTime,
             doubleTapAction: doubleTapAction,
+            repeatAction: repeatAction,
             dragChangedAction: dragChangedAction,
             dragEndedAction: dragEndedAction,
             label: label,
@@ -195,19 +201,20 @@ private extension View {
     }
 }
 
-@available(iOS 14.0, *)
+@available(iOS 14.0, macOS 11.0, watchOS 8.0, *)
 public extension GestureButton {
 
     struct Style: ButtonStyle {
 
         init(
             isPressed: Binding<Bool>,
-            pressAction: @escaping () -> Void,
-            endAction: @escaping () -> Void,
+            pressAction: @escaping Action,
+            endAction: @escaping Action,
             longPressTime: TimeInterval,
-            longPressAction: @escaping () -> Void,
+            longPressAction: @escaping Action,
             doubleTapTime: TimeInterval,
-            doubleTapAction: @escaping () -> Void,
+            doubleTapAction: @escaping Action,
+            repeatAction: Action?,
             labelStyle: @escaping StyledLabelBuilder
         ) {
             self.isPressedValue = isPressed
@@ -217,17 +224,21 @@ public extension GestureButton {
             self.endAction = endAction
             self.longPressAction = longPressAction
             self.doubleTapAction = doubleTapAction
+            self.repeatAction = repeatAction
             self.labelStyle = labelStyle
         }
+
+        public typealias Action = () -> Void
 
         private var isPressedValue: Binding<Bool>
         private var doubleTapTime: TimeInterval
         private var longPressTime: TimeInterval
 
-        private var pressAction: () -> Void
-        private var endAction: () -> Void
-        private var longPressAction: () -> Void
-        private var doubleTapAction: () -> Void
+        private var pressAction: Action
+        private var endAction: Action
+        private var longPressAction: Action
+        private var doubleTapAction: Action
+        private var repeatAction: Action?
         private var labelStyle: StyledLabelBuilder
 
         @State
@@ -244,18 +255,30 @@ public extension GestureButton {
                         isPressedValue.wrappedValue = true
                         pressAction()
                         doubleTapDate = tryTriggerDoubleTap() ? .distantPast : Date()
+                        tryStartRepeatTimer()
                         tryTriggerLongPressAfterDelay(triggered: longPressDate)
                     } else {
                         isPressedValue.wrappedValue = false
                         endAction()
+                        tryStopRepeatTimer()
                     }
                 }
         }
     }
 }
 
-@available(iOS 14.0, *)
+@available(iOS 14.0, macOS 11.0, watchOS 8.0, *)
 private extension GestureButton.Style {
+
+    func tryStartRepeatTimer() {
+        guard let action = repeatAction else { return }
+        RepeatGestureTimer.shared.start(action: action)
+    }
+
+    func tryStopRepeatTimer() {
+        if repeatAction == nil { return }
+        RepeatGestureTimer.shared.stop()
+    }
 
     func tryTriggerDoubleTap() -> Bool {
         let interval = Date().timeIntervalSince(doubleTapDate)
@@ -272,7 +295,7 @@ private extension GestureButton.Style {
     }
 }
 
-@available(iOS 14.0, *)
+@available(iOS 14.0, macOS 11.0, watchOS 8.0, *)
 struct ContentView_Previews: PreviewProvider {
 
     struct Preview: View {
@@ -296,6 +319,9 @@ struct ContentView_Previews: PreviewProvider {
         private var doubleTapCount = 0
 
         @State
+        private var repeatCount = 0
+
+        @State
         private var dragChangedValue = CGPoint.zero
 
         @State
@@ -311,6 +337,7 @@ struct ContentView_Previews: PreviewProvider {
                     Text("\(endCount) ended gestures")
                     Text("\(longPressCount) long presses")
                     Text("\(doubleTapCount) double taps")
+                    Text("\(repeatCount) repeats")
                     Text("\(dragChangedValue.debugDescription) drag changed")
                         .lineLimit(1)
                     Text("\(dragEndedValue.debugDescription) drag ended")
@@ -328,6 +355,7 @@ struct ContentView_Previews: PreviewProvider {
                                 endAction: { endCount += 1 },
                                 longPressAction: { longPressCount += 1 },
                                 doubleTapAction: { doubleTapCount += 1 },
+                                repeatAction: { repeatCount += 1 },
                                 // dragChangedAction: { dragChangedValue = $0.location },
                                 // dragEndedAction: { dragEndedValue = $0.location },
                                 label: {
