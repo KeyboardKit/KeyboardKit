@@ -11,6 +11,9 @@ import SwiftUI
 /**
  This context can be used to handle callouts that show a big
  version of the currently typed character.
+
+ You can use the static ``shared`` context to share a single
+ instance in your code.
  
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
@@ -40,7 +43,7 @@ open class InputCalloutContext: ObservableObject {
      The shared context is resolved by returning the context
      of ``KeyboardInputViewController/shared``.
      */
-    static var shared: InputCalloutContext? {
+    public static var shared: InputCalloutContext? {
         #if os(iOS)
         KeyboardInputViewController.shared.inputCalloutContext
         #else
@@ -70,17 +73,20 @@ open class InputCalloutContext: ObservableObject {
      Whether or not the context is enabled, which means that
      it will show callouts as the user types.
      */
-    @Published public var isEnabled: Bool
+    @Published
+    public var isEnabled: Bool
     
     /**
      The action that is currently active for the context.
      */
-    @Published public private(set) var action: KeyboardAction?
+    @Published
+    public private(set) var action: KeyboardAction?
     
     /**
      The frame of the button that is active for the context.
      */
-    @Published public private(set) var buttonFrame: CGRect = .zero
+    @Published
+    public private(set) var buttonFrame: CGRect = .zero
     
     
     // MARK: - Functions

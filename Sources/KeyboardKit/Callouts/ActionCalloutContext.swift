@@ -10,10 +10,10 @@ import SwiftUI
 
 /**
  This context can be used to handle callouts that show a set
- of alternate actions for a certain keyboard action.
- 
- The context will automatically dismiss itself when the user
- ends the callout gesture or drags too far down.
+ of secondary actions for various keyboard actions.
+
+ You can use the static ``shared`` context to share a single
+ instance in your code.
   
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
@@ -54,7 +54,7 @@ open class ActionCalloutContext: ObservableObject {
      The shared context is resolved by returning the context
      of ``KeyboardInputViewController/shared``.
      */
-    static var shared: ActionCalloutContext? {
+    public static var shared: ActionCalloutContext? {
         #if os(iOS)
         KeyboardInputViewController.shared.actionCalloutContext
         #else
@@ -101,22 +101,26 @@ open class ActionCalloutContext: ObservableObject {
     /**
      The action that are currently active for the context.
      */
-    @Published public private(set) var actions: [KeyboardAction] = []
+    @Published
+    public private(set) var actions: [KeyboardAction] = []
     
     /**
      The callout bubble alignment.
      */
-    @Published public private(set) var alignment: HorizontalAlignment = .leading
+    @Published
+    public private(set) var alignment: HorizontalAlignment = .leading
     
     /**
      The frame of the currently pressed keyboard button.
      */
-    @Published public private(set) var buttonFrame: CGRect = .zero
+    @Published
+    public private(set) var buttonFrame: CGRect = .zero
     
     /**
      The currently selected action index.
      */
-    @Published public private(set) var selectedIndex: Int = -1
+    @Published
+    public private(set) var selectedIndex: Int = -1
 
 
     // MARK: - Functions

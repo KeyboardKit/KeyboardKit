@@ -26,7 +26,7 @@ This version adds new emoji capabilities, such as getting the id and name of an 
 
 This version also adds a brand new button gesture engine, which will hopefully make typing on the keyboard feel a lot nicer.
 
-These new capabilities are now used by the emoji keyboards, which can now show input callouts and skin tone variants (Pro feature) for emojis.   
+These new capabilities are now used by the emoji keyboards as well, which can now show input callouts and skin tone variants (Pro feature) for emojis.   
 
 
 ### How to enable the new button gesture engine
@@ -36,7 +36,7 @@ Since typing is such an important part of this library, the new button gesture e
 To toggle on new gestures, do the following:
 
 ```
-FeatureToggles.enable(.newGestureEngine)
+FeatureToggle.shared.enable(.newButtonGestureEngine)
 ```
 
 Note that the new gesture engine is only available in iOS 14+. Devices running iOS 13 will still get the current gesture engine, even if you toggle on this feature.
@@ -49,6 +49,7 @@ Note that the new gesture engine is only available in iOS 14+. Devices running i
 
 ### ✨ New features
 
+* `ActionCalloutContext.shared` is now public.
 * `Emoji` has new `unicodeIdentifier` and `unicodeName` properties.
 * `EmojiCategoryKeyboard` now uses standard keyboard gestures and callouts by default.
 * `EmojiKeyboard` now uses standard keyboard gestures and callouts by default.
@@ -56,6 +57,7 @@ Note that the new gesture engine is only available in iOS 14+. Devices running i
 * `EmojiKeyboard` has a new `standardKeyboardActionHandler` property.
 * `EmojiKeyboardItem` is a new view for rendering a keyboard item view.
 * `GestureButton` is a new view that lets you handle many different gestures with a single button.
+* `InputCalloutContext.shared` is now public.
 * `KeyboardAction` has a new `image` property.
 * `KeyboardAction` has a new `isEmojiAction` property.
 
