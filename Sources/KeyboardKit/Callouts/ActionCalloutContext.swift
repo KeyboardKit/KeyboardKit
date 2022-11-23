@@ -19,7 +19,8 @@ import SwiftUI
  and functions to customize the standard behavior.
  
  KeyboardKit automatically creates an instance of this class
- and binds it to the ``KeyboardInputViewController``.
+ and sets ``KeyboardInputViewController/actionCalloutContext``
+ to the instance when a keyboard extension is started.
  */
 open class ActionCalloutContext: ObservableObject {
     

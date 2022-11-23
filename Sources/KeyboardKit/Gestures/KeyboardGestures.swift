@@ -88,7 +88,7 @@ struct KeyboardGestures<Content: View>: View {
                         pressAction: { handlePress(in: geo) },
                         releaseInsideAction: { handleReleaseInside(in: geo) },
                         releaseOutsideAction: { handleReleaseOutside(in: geo) },
-                        endAction: { handleEnded(in: geo) },
+                        endAction: { handleGestureEnded(in: geo) },
                         longPressDelay: 0.5,
                         longPressAction: { handleLongPress(in: geo) },
                         doubleTapAction: { handleDoubleTap(in: geo) },
@@ -140,8 +140,9 @@ private extension KeyboardGestures {
         dragAction?(value.startLocation, value.location)
     }
 
-    func handleEnded(in geo: GeometryProxy) {
-        inputCalloutContext?.reset()
+    func handleGestureEnded(in geo: GeometryProxy) {
+        endActionCallout()
+        inputCalloutContext?.resetWithDelay()
         actionCalloutContext?.reset()
         shouldApplyReleaseAction = true
     }
@@ -158,18 +159,12 @@ private extension KeyboardGestures {
     }
 
     func handleReleaseInside(in geo: GeometryProxy) {
-        tryEndActionCallout()
         guard shouldApplyReleaseAction else { return }
         tapAction?()
         releaseAction?()
     }
 
-    func handleReleaseOutside(in geo: GeometryProxy) {
-        tryEndActionCallout()
-        guard shouldApplyReleaseAction else { return }
-        tapAction?()
-        releaseAction?()
-    }
+    func handleReleaseOutside(in geo: GeometryProxy) {}
 
     func handleRepeat(in geo: GeometryProxy) {
         repeatAction?()
@@ -182,7 +177,7 @@ private extension KeyboardGestures {
         inputCalloutContext?.reset()
     }
 
-    func tryEndActionCallout() {
+    func endActionCallout() {
         guard let context = actionCalloutContext else { return }
         shouldApplyReleaseAction = shouldApplyReleaseAction && !context.hasSelectedAction
         context.endDragGesture()
@@ -210,7 +205,7 @@ private extension KeyboardGestures {
     func dragGesture(for geo: GeometryProxy) -> some Gesture {
         DragGesture(minimumDistance: 0)
             .onChanged { _ in tryHandlePress(in: geo) }
-            .onEnded { handleRelease(in: geo, at: $0.location) }
+            .onEnded { handleLegacyRelease(in: geo, at: $0.location) }
     }
     
     /**
@@ -237,7 +232,7 @@ private extension KeyboardGestures {
                 case .second(_, let value): handleDelayedDrag(value, in: geo)
                 }
             }
-            .onEnded { _ in tryEndActionCallout() }
+            .onEnded { _ in endActionCallout() }
     }
 }
 
@@ -259,7 +254,7 @@ private extension KeyboardGestures {
         startRepeatTimer()
     }
     
-    func handleRelease(in geo: GeometryProxy, at location: CGPoint) {
+    func handleLegacyRelease(in geo: GeometryProxy, at location: CGPoint) {
         if geo.contains(location), shouldApplyReleaseAction {
             releaseAction?()
             tapAction?()

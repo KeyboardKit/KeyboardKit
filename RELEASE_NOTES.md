@@ -58,6 +58,7 @@ Note that the new gesture engine is only available in iOS 14+. Devices running i
 * `EmojiKeyboardItem` is a new view for rendering a keyboard item view.
 * `GestureButton` is a new view that lets you handle many different gestures with a single button.
 * `InputCalloutContext.shared` is now public.
+* `InputCalloutContext` has a new, configurable `minimumVisibleDuration` property that controls the minimum visibility of the input callout.
 * `KeyboardAction` has a new `image` property.
 * `KeyboardAction` has a new `isEmojiAction` property.
 

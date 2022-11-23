@@ -19,7 +19,8 @@ import SwiftUI
  and functions to customize the standard behavior.
  
  KeyboardKit automatically creates an instance of this class
- and binds it to the ``KeyboardInputViewController``.
+ then sets ``KeyboardInputViewController/inputCalloutContext``
+ to the instance when a keyboard extension is started.
  */
 open class InputCalloutContext: ObservableObject {
     
@@ -53,18 +54,17 @@ open class InputCalloutContext: ObservableObject {
     
     
     // MARK: - Properties
-    
+
+    /**
+     This coordinate space is used when presenting callouts.
+     */
     public static let coordinateSpace = "com.keyboardkit.coordinate.InputCallout"
-    
+
     /**
-     The optional input of any currently active action.
+     This value can be used to set the minimum duration of a
+     callout.
      */
-    public var input: String? { action?.inputCalloutText }
-    
-    /**
-     Whether or not the context is enabled and has an input.
-     */
-    public var isActive: Bool { input != nil && isEnabled }
+    public var minimumVisibleDuration: TimeInterval = 0.15
     
     
     // MARK: - Published Properties
@@ -99,11 +99,28 @@ open class InputCalloutContext: ObservableObject {
         action = nil
         buttonFrame = .zero
     }
-    
+
+    /**
+     Reset the context with a delay, which is useful when an
+     input callout should be displayed a little while.
+     */
+    open func resetWithDelay() {
+        let delay = minimumVisibleDuration
+        let date = Date()
+        lastActionDate = date
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            if self.lastActionDate > date { return }
+            self.reset()
+        }
+    }
+
+    public var lastActionDate = Date()
+
     /**
      Update the current input for a certain keyboard action.
      */
     open func updateInput(for action: KeyboardAction?, in geo: GeometryProxy) {
+        self.lastActionDate = Date()
         self.action = action
         self.buttonFrame = geo.frame(in: .named(Self.coordinateSpace))
     }
@@ -116,5 +133,23 @@ public extension InputCalloutContext {
      */
     static var disabled: InputCalloutContext {
         InputCalloutContext(isEnabled: false)
+    }
+}
+
+public extension InputCalloutContext {
+
+    /**
+     Get the optional input of any currently active action.
+     */
+    var input: String? {
+        action?.inputCalloutText
+    }
+
+    /**
+     Whether or not this context is active, which means that
+     it's enabled and has an input.
+     */
+    var isActive: Bool {
+        input != nil && isEnabled
     }
 }

@@ -105,21 +105,42 @@ public struct GestureButton<Label: View>: View {
     @State
     private var isPressed = false
 
+    @State
+    private var isPressedByGesture = false
+
+    @State
+    private var date = Date()
+
     public var body: some View {
-        Button(action: config.releaseInsideAction) {
+        Button(action: {
+            Test.values.append("Button")
+            config.releaseInsideAction()
+        }) {
             config.label(isPressed)
                 .withDragGestureActions(
                     for: self.config,
-                    isPressed: $isPressed
+                    isPressed: $isPressed,
+                    isPressedByGesture: $isPressedByGesture
                 )
         }
         .buttonStyle(
-            Style(isPressed: $isPressed, config: config)
+            Style(
+                isPressed: $isPressed,
+                isPressedByGesture: $isPressedByGesture,
+                config: config)
         )
         .onChange(of: isPressed) { newValue in
             isPressedBinding.wrappedValue = newValue
         }
+        .onChange(of: isPressedByGesture) { newValue in
+            isPressed = newValue
+        }
     }
+}
+
+class Test {
+
+    static var values = [String]()
 }
 
 /**
@@ -186,6 +207,7 @@ extension GestureButton {
 
     struct Style: ButtonStyle {
         var isPressed: Binding<Bool>
+        var isPressedByGesture: Binding<Bool>
         var config: GestureConfiguration
 
         @State
@@ -198,7 +220,7 @@ extension GestureButton {
                     if isPressed {
                         handleIsPressed()
                     } else {
-                        handleIsReleased()
+                        handleIsEnded()
                     }
                 }
         }
@@ -214,11 +236,10 @@ private extension GestureButton.Style {
         tryTriggerLongPressAfterDelay(triggered: longPressDate)
     }
 
-    func handleIsReleased() {
-        if isPressed.wrappedValue {
-            config.endAction()
-        }
+    func handleIsEnded() {
+        if isPressedByGesture.wrappedValue { return }
         isPressed.wrappedValue = false
+        config.endAction()
     }
 
     func tryTriggerLongPressAfterDelay(triggered date: Date) {
@@ -238,27 +259,29 @@ private extension View {
     @ViewBuilder
     func withDragGestureActions<Label: View>(
         for config: GestureButton<Label>.GestureConfiguration,
-        isPressed: Binding<Bool>
+        isPressed: Binding<Bool>,
+        isPressedByGesture: Binding<Bool>
     ) -> some View {
         self.overlay(
             GeometryReader { geo in
                 gesture(
                     TapGesture(count: 1).onEnded { _ in
-                        if !isPressed.wrappedValue {
-                            config.pressAction()
+                        let pressed = isPressed.wrappedValue
+                        if !pressed { config.pressAction() }
+                        isPressed.wrappedValue = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                            isPressed.wrappedValue = false
                         }
                         config.releaseInsideAction()
                         config.tryTriggerDoubleTap()
-                        if !isPressed.wrappedValue {
-                            config.endAction()
-                        }
+                        if !pressed { config.endAction() }
                     }
                 )
                 .gesture(
                     DragGesture(minimumDistance: 0)
                         .onChanged { value in
+                            isPressedByGesture.wrappedValue = true
                             config.dragChangedAction?(value)
-                            isPressed.wrappedValue = true
                             if config.longPressDelay > 0.6 && !config.repeatTimer.isActive {
                                 config.longPressAction()
                             }
@@ -266,7 +289,7 @@ private extension View {
                         }
                         .onEnded { value in
                             config.dragEndedAction?(value)
-                            isPressed.wrappedValue = false
+                            isPressedByGesture.wrappedValue = false
                             config.tryStopRepeatTimer()
                             if geo.contains(value.location) {
                                 config.releaseInsideAction()
@@ -347,7 +370,7 @@ struct ContentView_Previews: PreviewProvider {
                 .scaleEffect(isPressed ? 0.9 : 1)
                 .animation(.default, value: isPressed)
                 .padding()
-                // .background(Color.random())
+                .background(Color.random())
                 .cornerRadius(16)
         }
     }

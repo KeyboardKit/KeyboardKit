@@ -15,14 +15,11 @@ import UIKit
 
 /**
  This class provides keyboard extensions with contextual and
- observable information. It is a central part of KeyboardKit
- and to create adaptive keyboards.
- 
+ observable keyboard state.
+
  KeyboardKit automatically creates an instance of this class
- and adds it to the input view controller. It will also sync
- the context with the input controller whenever needed. This
- means that significant changes are synced to a `@Published`
- property that your extension can observe.
+ and sets ``KeyboardInputViewController/keyboardContext`` to
+ to the instance when a keyboard extension is started.
  */
 public class KeyboardContext: ObservableObject {
     
