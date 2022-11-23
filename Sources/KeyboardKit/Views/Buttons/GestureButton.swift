@@ -215,6 +215,9 @@ private extension GestureButton.Style {
     }
 
     func handleIsReleased() {
+        if isPressed.wrappedValue {
+            config.endAction()
+        }
         isPressed.wrappedValue = false
     }
 
@@ -246,7 +249,9 @@ private extension View {
                         }
                         config.releaseInsideAction()
                         config.tryTriggerDoubleTap()
-                        config.endAction()
+                        if !isPressed.wrappedValue {
+                            config.endAction()
+                        }
                     }
                 )
                 .gesture(
@@ -254,7 +259,7 @@ private extension View {
                         .onChanged { value in
                             config.dragChangedAction?(value)
                             isPressed.wrappedValue = true
-                            if config.longPressDelay > 0.6 {
+                            if config.longPressDelay > 0.6 && !config.repeatTimer.isActive {
                                 config.longPressAction()
                             }
                             config.tryStartRepeatTimer()
@@ -311,7 +316,7 @@ struct ContentView_Previews: PreviewProvider {
                         releaseInsideAction: { state.releaseInsideCount += 1 },
                         releaseOutsideAction: { state.releaseOutsideCount += 1 },
                         endAction: { state.endCount += 1 },
-                        longPressDelay: 0.1,
+                        longPressDelay: 0.8,
                         longPressAction: { state.longPressCount += 1 },
                         doubleTapAction: { state.doubleTapCount += 1 },
                         repeatAction: { state.repeatTapCount += 1 },

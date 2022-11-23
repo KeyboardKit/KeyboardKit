@@ -22,11 +22,11 @@ Some things that are planned for the 7.0 release:
 
 ## 6.6
 
-This version replaces large parts of the Quick and Nimble tests, to use XCTest instead.
-
-This means that you will eventually (not now) have less external dependencies.
+This version replaces large parts of the Quick and Nimble tests, to use XCTest instead. This means that you will eventually (not now) have less external dependencies.
 
 This version also adds new emoji capabilities, such as getting the ID and name of an emoji, as well as support for skin tone variants.
+
+These new capabilities are used by the emoji keyboards, which now show input and action callouts for emojis as well. 
 
 There is also a new `GestureButton` which will be used instead of the current keyboard gestures. This should provide a better typing experience. 
 
@@ -38,6 +38,10 @@ There is also a new `GestureButton` which will be used instead of the current ke
 ### ✨ New features
 
 * `Emoji` has new `unicodeIdentifier` and `unicodeName` properties.
+* `EmojiCategoryKeyboard` now uses standard keyboard gestures and callouts by default.
+* `EmojiKeyboard` now uses standard keyboard gestures and callouts by default.
+* `EmojiKeyboard` has a new `applyGestures` parameter, that you can set to true to apply standard keyboard gestures.
+* `EmojiKeyboard` has a new `standardKeyboardActionHandler` property.
 * `EmojiKeyboardItem` is a new view for rendering a keyboard item view.
 * `GestureButton` is a new view that lets you handle many different gestures with a single button.
 * `KeyboardAction` has a new `image` property.

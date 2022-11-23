@@ -164,7 +164,7 @@ private extension EmojiCategoryKeyboard {
 
 
 @available(iOS 14.0, tvOS 14.0, *)
-public extension EmojiCategoryKeyboard where KeyboardView == EmojiKeyboard<EmojiKeyboardButton> {
+public extension EmojiCategoryKeyboard where KeyboardView == EmojiKeyboard<EmojiKeyboardItem> {
     
     /**
      Create an emoji category keyboard, that uses a standard
@@ -206,7 +206,7 @@ public extension EmojiCategoryKeyboard where KeyboardView == EmojiKeyboard<Emoji
     static func standardCategoryKeyboard(
         category: EmojiCategory,
         style: EmojiKeyboardStyle
-    ) -> EmojiKeyboard<EmojiKeyboardButton> {
+    ) -> EmojiKeyboard<EmojiKeyboardItem> {
         EmojiKeyboard(
             emojis: category.emojis,
             style: style)
@@ -262,7 +262,7 @@ public extension EmojiCategoryKeyboard where CategoryTitleView == EmojiCategoryT
 }
 
 @available(iOS 14.0, tvOS 14.0, *)
-public extension EmojiCategoryKeyboard where KeyboardView == EmojiKeyboard<EmojiKeyboardButton>, CategoryTitleView == EmojiCategoryTitle {
+public extension EmojiCategoryKeyboard where KeyboardView == EmojiKeyboard<EmojiKeyboardItem>, CategoryTitleView == EmojiCategoryTitle {
     
     /**
      Create an emoji category keyboard, that uses a standard
