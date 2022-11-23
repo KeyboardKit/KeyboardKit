@@ -38,6 +38,7 @@ There is also a new `GestureButton` which will be used instead of the current ke
 ### ✨ New features
 
 * `Emoji` has new `unicodeIdentifier` and `unicodeName` properties.
+* `EmojiKeyboardItem` is a new view for rendering a keyboard item view.
 * `GestureButton` is a new view that lets you handle many different gestures with a single button.
 * `KeyboardAction` has a new `image` property.
 * `KeyboardAction` has a new `isEmojiAction` property.

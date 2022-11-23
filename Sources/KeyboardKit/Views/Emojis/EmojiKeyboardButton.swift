@@ -9,10 +9,23 @@
 import SwiftUI
 
 /**
- This view renders a standard button for an emoji.
+ This view can be used in an ``EmojiKeyboard`` to display an
+ emoji button based on a certain style.
+
+ Note that since the button only has a tap action, it should
+ not be used in emoji keyboards where a more complex gesture
+ set should be used.
  */
 public struct EmojiKeyboardButton: View {
-    
+
+    /**
+     Create an emoji keyboard button.
+
+     - Parameters:
+       - emoji: The emoji to present.
+       - style: The style to use.
+       - action: The action to trigger when the button is tapped.
+     */
     public init(
         emoji: Emoji,
         style: EmojiKeyboardStyle,
@@ -29,8 +42,7 @@ public struct EmojiKeyboardButton: View {
     
     public var body: some View {
         Button(action: { action(emoji) }, label: {
-            Text(emoji.char)
-                .font(style.itemFont)
+            EmojiKeyboardItem(emoji: emoji, style: style)
         })
     }
 }
