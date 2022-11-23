@@ -183,7 +183,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      */
     open func shouldTriggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
         if gesture == .press && self.action(for: .tap, on: action) != nil { return true }
-        if gesture != .tap && self.action(for: gesture, on: action) != nil { return true }
+        if gesture != .tap && gesture != .release && self.action(for: gesture, on: action) != nil { return true }
         return false
     }
     

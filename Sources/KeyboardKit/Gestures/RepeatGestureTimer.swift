@@ -35,6 +35,7 @@ public extension RepeatGestureTimer {
     var timeInterval: TimeInterval { 0.1 }
     
     func start(action: @escaping () -> Void) {
+        if isActive { return }
         stop()
         startDate = Date()
         timer = Timer.scheduledTimer(

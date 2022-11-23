@@ -30,9 +30,9 @@ struct KeyboardRootView<ViewType: View>: View {
     
     var bodyId: String {
         #if os(iOS)
-        "\(context.locale)\(context.colorScheme)\(context.screenOrientation.isLandscape)"
+        "\(context.locale)\(context.keyboardType)\(context.colorScheme)\(context.screenOrientation.isLandscape)"
         #elseif os(tvOS)
-        "\(context.locale)\(context.colorScheme)"
+        "\(context.locale)\(context.keyboardType)\(context.colorScheme)"
         #else
         "\(context.locale)"
         #endif
