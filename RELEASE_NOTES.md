@@ -22,14 +22,26 @@ Some things that are planned for the 7.0 release:
 
 ## 6.6
 
-This version replaces large parts of the Quick and Nimble tests, to use XCTest instead. This means that you will eventually (not now) have less external dependencies.
+This version adds new emoji capabilities, such as getting the id and name of an emoji, as well as support for skin tone variants (Pro feature).
 
-This version also adds new emoji capabilities, such as getting the ID and name of an emoji, as well as support for skin tone variants.
+This version also adds a brand new button gesture engine, which will hopefully make typing on the keyboard feel a lot nicer.
 
-These new capabilities are used by the emoji keyboards, which now show input and action callouts for emojis as well. 
+These new capabilities are now used by the emoji keyboards, which can now show input callouts and skin tone variants (Pro feature) for emojis.   
 
-There is also a new `GestureButton` which will be used instead of the current keyboard gestures. This should provide a better typing experience. 
 
+### How to enable the new button gesture engine
+
+Since typing is such an important part of this library, the new button gesture engine must be toggled on until it's been thoroughly tested. 
+
+To toggle on new gestures, do the following:
+
+```
+FeatureToggles.enable(.newGestureEngine)
+```
+
+Note that the new gesture engine is only available in iOS 14+. Devices running iOS 13 will still get the current gesture engine, even if you toggle on this feature.
+
+  
 ### 👑 KeyboardKit Pro
 
 * `ProEmojiInfo` is a new protocol that is implemented by `Emoji`.  
