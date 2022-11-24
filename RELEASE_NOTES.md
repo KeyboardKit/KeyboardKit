@@ -67,6 +67,7 @@ Note that the new gesture engine is only available in iOS 14+. Devices running i
 ### 💡 Behavior changes
 
 * `EmojiKeyboard` uses smaller emojis for standard iPad in portrait.
+* `InputCallout` no longer allows hit testing.
 * `KeyboardAction.backspace` now triggers on `press` instead of `tap`.
 * `KeyboardGestures` now has private state to avoid press gesture problems when providing a constant binding.
 * `SystemKeyboardButtonRowItem` now avoids applying a negative width.

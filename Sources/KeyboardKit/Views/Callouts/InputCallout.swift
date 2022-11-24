@@ -48,6 +48,7 @@ public struct InputCallout: View {
             .opacity(context.isActive ? 1 : 0)
             .calloutShadow(style: calloutStyle)
             .position(position)
+            .allowsHitTesting(false)
     }
 }
 
