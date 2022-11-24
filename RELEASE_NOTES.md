@@ -81,6 +81,7 @@ Note that the new gesture engine is only available in iOS 14+. Devices running i
 * `SystemAudio` types have been renamed to `AudioFeedback` to make the concept match haptic feedback types.
 * `SystemAudio` `play` has been renamed to `trigger` to make it match the haptic feedback trigger.
 * `SystemAudioPlayer` types have been renamed to `SystemAudioEngine` to make the concept match other feedback engines.
+* `View+KeyboardGestures` no longer need a keyboard context.
  
 
 

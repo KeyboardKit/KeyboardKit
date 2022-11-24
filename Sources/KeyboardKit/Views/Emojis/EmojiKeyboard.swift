@@ -62,7 +62,11 @@ public struct EmojiKeyboard<ButtonView: View>: View {
             ForEach(emojis) { emoji in
                 if applyGestures {
                     buttonView(for: emoji, style: style)
-                        .withKeyboardGestures(for: .emoji(emoji), actionHandler: Self.standardKeyboardActionHandler)
+                        .keyboardGestures(
+                            for: .emoji(emoji),
+                            actionHandler: Self.standardKeyboardActionHandler,
+                            isInScrollView: true
+                        )
                 } else {
                     buttonView(for: emoji, style: style)
                 }

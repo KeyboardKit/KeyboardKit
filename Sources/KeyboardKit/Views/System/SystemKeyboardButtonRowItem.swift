@@ -67,7 +67,6 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
             .background(Color.clearInteractable)
             .keyboardGestures(
                 for: item.action,
-                context: context,
                 actionHandler: actionHandler,
                 isPressed: $isPressed)
             .localeContextMenu(

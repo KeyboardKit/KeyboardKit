@@ -78,7 +78,6 @@ public struct EmojiCategoryKeyboardMenu: View {
         let image = appearance.buttonImage(for: action)
         return image.keyboardGestures(
             for: action,
-            context: context,
             actionHandler: actionHandler).scaledToFill()
     }
     
@@ -87,7 +86,6 @@ public struct EmojiCategoryKeyboardMenu: View {
         let text = appearance.buttonText(for: action) ?? "ABC"
         return Text(text).keyboardGestures(
             for: action,
-            context: context,
             actionHandler: actionHandler).scaledToFill()
     }
     

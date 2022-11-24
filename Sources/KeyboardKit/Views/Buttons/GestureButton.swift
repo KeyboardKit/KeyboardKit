@@ -1,8 +1,8 @@
 //
 //  GestureButton.swift
-//  KeyboardKit
+//  SwiftUIKit
 //
-//  Created by Daniel Saidi on 2022-11-16.
+//  Created by Daniel Saidi on 2022-11-24.
 //  Copyright © 2022 Daniel Saidi. All rights reserved.
 //
 
@@ -11,25 +11,19 @@ import SwiftUI
 import CoreGraphics
 
 /**
- This button can be used to apply a bunch of gestures to the
- provided label.
+ This button uses a single drag gesture to implement support
+ for a bunch of different gestures.
 
- This button can also be used within a `ScrollView` and will
- not block the scrolling in any way.
-
- Note that the view uses an underlying `ButtonStyle` to make
- the gestures work. It can therefore not apply another style
- over it. Instead, you can instead use the `isPressed` value
- that is passed to the `label` builder, to configure how the
- button looks when it's pressed.
-
- Also note that the release actions may not always be called,
- since the gesture can be cancelled. If you must know when a
- gesture ends, use the `endAction`, since it's always called.
+ This button can not be used within a `ScrollView`, since it
+ will block the scroll gestures. It's instead intended to be
+ used when touches must be immediately detected, which isn't
+ possible in a scroll view. A ``GestureButton`` is must more
+ versatile, and will for most the cases be enough, so use it
+ whenever it's good enough.
 
  > Important
  The view applies additional gestures on the label view when
- you specify a `dragChangedAction` or `dragEndedAction`. For
+ you specify a `dragAction` or `dragEndAction`. For
  instance, instead of just a `releaseAction` you can specify
  a `releaseInsideAction` and a `releaseOutsideAction`.
  */
@@ -37,10 +31,7 @@ import CoreGraphics
 public struct GestureButton<Label: View>: View {
 
     /**
-     Create a gesture button with drag gesture handling.
-
-     This initializer uses a custom button style that can be
-     used to customize the view when it's pressed.
+     Create a drag gesture button.
 
      - Parameters:
        - isPressed: A custom, optional binding to track pressed state, by default `nil`.
@@ -52,10 +43,12 @@ public struct GestureButton<Label: View>: View {
        - longPressAction: The action to trigger when the button is long pressed, by default `nil`.
        - doubleTapTimeout: The max time between two taps for them to count as a double tap, by default ``GestureButtonDefaults/doubleTapTimeout``.
        - doubleTapAction: The action to trigger when the button is double tapped, by default `nil`.
+       - repeatDelay: The time it takes for a press to count as a repeat trigger, by default ``GestureButtonDefaults/repeatDelay``.
        - repeatTimer: The repeat timer to use for the repeat action, by default ``RepeatGestureTimer/shared``.
        - repeatAction: The action to repeat while the button is being pressed, by default `nil`.
-       - dragChangedAction: The action to trigger when a drag gesture changes.
-       - dragEndedAction: The action to trigger when a drag gesture ends.
+       - dragStartAction: The action to trigger when a drag gesture starts.
+       - dragAction: The action to trigger when a drag gesture changes.
+       - dragEndAction: The action to trigger when a drag gesture ends.
        - label: The button label.
      */
     init(
@@ -68,29 +61,29 @@ public struct GestureButton<Label: View>: View {
         longPressAction: Action? = nil,
         doubleTapTimeout: TimeInterval = GestureButtonDefaults.doubleTapTimeout,
         doubleTapAction: Action? = nil,
+        repeatDelay: TimeInterval = GestureButtonDefaults.repeatDelay,
         repeatTimer: RepeatGestureTimer = .shared,
         repeatAction: Action? = nil,
-        dragChangedAction: DragAction? = nil,
-        dragEndedAction: DragAction? = nil,
+        dragStartAction: DragAction? = nil,
+        dragAction: DragAction? = nil,
+        dragEndAction: DragAction? = nil,
         label: @escaping LabelBuilder
     ) {
         self.isPressedBinding = isPressed ?? .constant(false)
-        self._config = State(wrappedValue: GestureConfiguration(
-            state: GestureState(),
-            pressAction: pressAction ?? {},
-            releaseInsideAction: releaseInsideAction ?? {},
-            releaseOutsideAction: releaseOutsideAction ?? {},
-            endAction: endAction ?? {},
-            longPressDelay: longPressDelay,
-            longPressAction: longPressAction ?? {},
-            doubleTapTimeout: doubleTapTimeout,
-            doubleTapAction: doubleTapAction ?? {},
-            repeatTimer: repeatTimer,
-            repeatAction: repeatAction,
-            dragChangedAction: dragChangedAction ?? { _ in },
-            dragEndedAction: dragEndedAction ?? { _ in },
-            label: label
-        ))
+        self.pressAction = pressAction
+        self.releaseInsideAction = releaseInsideAction
+        self.releaseOutsideAction = releaseOutsideAction
+        self.endAction = endAction
+        self.longPressDelay = longPressDelay
+        self.longPressAction = longPressAction
+        self.doubleTapTimeout = doubleTapTimeout
+        self.doubleTapAction = doubleTapAction
+        self.repeatTimer = repeatTimer
+        self.repeatAction = repeatAction
+        self.dragStartAction = dragStartAction
+        self.dragAction = dragAction
+        self.dragEndAction = dragEndAction
+        self.label = label
     }
 
     public typealias Action = () -> Void
@@ -99,208 +92,115 @@ public struct GestureButton<Label: View>: View {
 
     var isPressedBinding: Binding<Bool>
 
-    @State
-    var config: GestureConfiguration
+    let pressAction: Action?
+    let releaseInsideAction: Action?
+    let releaseOutsideAction: Action?
+    let endAction: Action?
+    let longPressDelay: TimeInterval
+    let longPressAction: Action?
+    let doubleTapTimeout: TimeInterval
+    let doubleTapAction: Action?
+    let repeatTimer: RepeatGestureTimer
+    let repeatAction: Action?
+    let dragStartAction: DragAction?
+    let dragAction: DragAction?
+    let dragEndAction: DragAction?
+    let label: LabelBuilder
 
     @State
     private var isPressed = false
 
     @State
-    private var isPressedByGesture = false
+    private var longPressDate = Date()
 
     @State
-    private var date = Date()
+    private var releaseDate = Date()
+
+    @State
+    private var repeatDate = Date()
 
     public var body: some View {
-        Button(action: {
-            Test.values.append("Button")
-            config.releaseInsideAction()
-        }) {
-            config.label(isPressed)
-                .withDragGestureActions(
-                    for: self.config,
-                    isPressed: $isPressed,
-                    isPressedByGesture: $isPressedByGesture
-                )
-        }
-        .buttonStyle(
-            Style(
-                isPressed: $isPressed,
-                isPressedByGesture: $isPressedByGesture,
-                config: config)
-        )
-        .onChange(of: isPressed) { newValue in
-            isPressedBinding.wrappedValue = newValue
-        }
-        .onChange(of: isPressedByGesture) { newValue in
-            isPressed = newValue
-        }
-    }
-}
-
-class Test {
-
-    static var values = [String]()
-}
-
-/**
- This struct can be used to configure the default values for
- the ``GestureButton``.
-
- Just set the static properties to change the default values
- when creating a gesture button instance.
- */
-@available(iOS 14.0, macOS 11.0, watchOS 8.0, *)
-public struct GestureButtonDefaults {
-
-    /// The max time between two taps for them to count as a double tap, by default `0.2`.
-    public static var doubleTapTimeout = 0.2
-
-    /// The time it takes for a press to count as a long press, by default `1.0`.
-    public static var longPressDelay = 1.0
-}
-
-@available(iOS 14.0, macOS 11.0, watchOS 8.0, *)
-extension GestureButton {
-
-    class GestureState: ObservableObject {
-
-        @Published
-        var doubleTapDate = Date()
-    }
-
-    struct GestureConfiguration {
-        let state: GestureState
-        let pressAction: Action
-        let releaseInsideAction: Action
-        let releaseOutsideAction: Action
-        let endAction: Action
-        let longPressDelay: TimeInterval
-        let longPressAction: Action
-        let doubleTapTimeout: TimeInterval
-        let doubleTapAction: Action
-        let repeatTimer: RepeatGestureTimer
-        let repeatAction: Action?
-        let dragChangedAction: DragAction?
-        let dragEndedAction: DragAction?
-        let label: LabelBuilder
-
-        func tryStartRepeatTimer() {
-            if repeatTimer.isActive { return }
-            guard let action = repeatAction else { return }
-            repeatTimer.start(action: action)
-        }
-
-        func tryStopRepeatTimer() {
-            guard repeatTimer.isActive else { return }
-            repeatTimer.stop()
-        }
-
-        func tryTriggerDoubleTap() {
-            let interval = Date().timeIntervalSince(state.doubleTapDate)
-            let trigger = interval < doubleTapTimeout
-            state.doubleTapDate = trigger ? .distantPast : Date()
-            guard trigger else { return }
-            doubleTapAction()
-        }
-    }
-
-    struct Style: ButtonStyle {
-        var isPressed: Binding<Bool>
-        var isPressedByGesture: Binding<Bool>
-        var config: GestureConfiguration
-
-        @State
-        var longPressDate = Date()
-
-        public func makeBody(configuration: Configuration) -> some View {
-            configuration.label
-                .onChange(of: configuration.isPressed) { isPressed in
-                    longPressDate = Date()
-                    if isPressed {
-                        handleIsPressed()
-                    } else {
-                        handleIsEnded()
-                    }
-                }
-        }
+        label(isPressed)
+            .overlay(gestureView)
+            .onChange(of: isPressed) { isPressedBinding.wrappedValue = $0 }
     }
 }
 
 @available(iOS 14.0, macOS 11.0, watchOS 8.0, *)
-private extension GestureButton.Style {
+private extension GestureButton {
 
-    func handleIsPressed() {
-        isPressed.wrappedValue = true
-        config.pressAction()
-        tryTriggerLongPressAfterDelay(triggered: longPressDate)
-    }
-
-    func handleIsEnded() {
-        if isPressedByGesture.wrappedValue { return }
-        isPressed.wrappedValue = false
-        config.endAction()
-    }
-
-    func tryTriggerLongPressAfterDelay(triggered date: Date) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + config.longPressDelay) {
-            guard date == longPressDate else { return }
-            config.longPressAction()
-        }
-    }
-}
-
-@available(iOS 14.0, macOS 11.0, watchOS 8.0, *)
-private extension View {
-
-    typealias Action = () -> Void
-    typealias DragAction = (DragGesture.Value) -> Void
-
-    @ViewBuilder
-    func withDragGestureActions<Label: View>(
-        for config: GestureButton<Label>.GestureConfiguration,
-        isPressed: Binding<Bool>,
-        isPressedByGesture: Binding<Bool>
-    ) -> some View {
-        self.overlay(
-            GeometryReader { geo in
-                gesture(
-                    TapGesture(count: 1).onEnded { _ in
-                        let pressed = isPressed.wrappedValue
-                        if !pressed { config.pressAction() }
-                        isPressed.wrappedValue = true
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-                            isPressed.wrappedValue = false
-                        }
-                        config.releaseInsideAction()
-                        config.tryTriggerDoubleTap()
-                        if !pressed { config.endAction() }
-                    }
-                )
+    var gestureView: some View {
+        GeometryReader { geo in
+            Color.white.opacity(0.001)
                 .gesture(
                     DragGesture(minimumDistance: 0)
                         .onChanged { value in
-                            isPressedByGesture.wrappedValue = true
-                            config.dragChangedAction?(value)
-                            if config.longPressDelay > 0.6 && !config.repeatTimer.isActive {
-                                config.longPressAction()
-                            }
-                            config.tryStartRepeatTimer()
+                            tryHandlePress(value)
+                            dragAction?(value)
                         }
                         .onEnded { value in
-                            config.dragEndedAction?(value)
-                            isPressedByGesture.wrappedValue = false
-                            config.tryStopRepeatTimer()
-                            if geo.contains(value.location) {
-                                config.releaseInsideAction()
-                            } else {
-                                config.releaseOutsideAction()
-                            }
-                            config.endAction()
+                            tryHandleRelease(value, in: geo)
                         }
                 )
-            }
-        )
+        }
+    }
+}
+
+@available(iOS 14.0, macOS 11.0, watchOS 8.0, *)
+private extension GestureButton {
+
+    func tryHandlePress(_ value: DragGesture.Value) {
+        if isPressed { return }
+        pressAction?()
+        dragStartAction?(value)
+        tryTriggerLongPressAfterDelay()
+        tryTriggerRepeatAfterDelay()
+        isPressed = true
+    }
+
+    func tryHandleRelease(_ value: DragGesture.Value, in geo: GeometryProxy) {
+        if !isPressed { return }
+        isPressed = false
+        longPressDate = Date()
+        releaseDate = tryTriggerDoubleTap() ? .distantPast : Date()
+        repeatDate = Date()
+        repeatTimer.stop()
+        dragEndAction?(value)
+        endAction?()
+        if geo.contains(value.location) {
+            releaseInsideAction?()
+        } else {
+            releaseOutsideAction?()
+        }
+    }
+
+    func tryTriggerLongPressAfterDelay() {
+        guard let action = longPressAction else { return }
+        let date = Date()
+        longPressDate = date
+        let delay = longPressDelay
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            guard self.longPressDate == date else { return }
+            action()
+        }
+    }
+
+    func tryTriggerRepeatAfterDelay() {
+        guard let action = repeatAction else { return }
+        let date = Date()
+        repeatDate = date
+        let delay = longPressDelay
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            guard self.repeatDate == date else { return }
+            repeatTimer.start(action: action)
+        }
+    }
+
+    func tryTriggerDoubleTap() -> Bool {
+        let interval = Date().timeIntervalSince(releaseDate)
+        let isDoubleTap = interval < doubleTapTimeout
+        if isDoubleTap { doubleTapAction?() }
+        return isDoubleTap
     }
 }
 
@@ -316,7 +216,7 @@ private extension GeometryProxy {
 }
 
 @available(iOS 14.0, macOS 11.0, watchOS 8.0, *)
-struct ContentView_Previews: PreviewProvider {
+struct GestureButton_Previews: PreviewProvider {
 
     struct Preview: View {
 
@@ -343,8 +243,9 @@ struct ContentView_Previews: PreviewProvider {
                         longPressAction: { state.longPressCount += 1 },
                         doubleTapAction: { state.doubleTapCount += 1 },
                         repeatAction: { state.repeatTapCount += 1 },
-                        dragChangedAction: { state.dragChangedValue = $0.location },
-                        dragEndedAction: { state.dragEndedValue = $0.location },
+                        dragStartAction: { state.dragStartedValue = $0.location },
+                        dragAction: { state.dragChangedValue = $0.location },
+                        dragEndAction: { state.dragEndedValue = $0.location },
                         label: { PreviewButton(color: .blue, isPressed: $0) }
                     )
                 }
@@ -410,9 +311,6 @@ struct ContentView_Previews: PreviewProvider {
         var releaseOutsideCount = 0
 
         @Published
-        var endedCount = 0
-
-        @Published
         var endCount = 0
 
         @Published
@@ -423,6 +321,9 @@ struct ContentView_Previews: PreviewProvider {
 
         @Published
         var repeatTapCount = 0
+
+        @Published
+        var dragStartedValue = CGPoint.zero
 
         @Published
         var dragChangedValue = CGPoint.zero
@@ -450,6 +351,7 @@ struct ContentView_Previews: PreviewProvider {
                     label("Repeats", state.repeatTapCount)
                 }
                 Group {
+                    label("Drag started", state.dragStartedValue)
                     label("Drag changed", state.dragChangedValue)
                     label("Drag ended", state.dragEndedValue)
                 }
