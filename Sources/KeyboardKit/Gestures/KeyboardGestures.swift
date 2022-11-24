@@ -79,7 +79,7 @@ struct KeyboardGestures<Content: View>: View {
     private var isPressGestureActive = false {
         didSet { isPressed.wrappedValue = isPressGestureActive }
     }
-    
+
     @State
     private var shouldApplyReleaseAction = true
     
@@ -189,6 +189,7 @@ private extension KeyboardGestures {
     }
 
     func handleReleaseInside(in geo: GeometryProxy) {
+        updateShouldApplyReleaseAction()
         guard shouldApplyReleaseAction else { return }
         tapAction?()
         releaseAction?()
@@ -208,9 +209,12 @@ private extension KeyboardGestures {
     }
 
     func endActionCallout() {
+        actionCalloutContext?.endDragGesture()
+    }
+
+    func updateShouldApplyReleaseAction() {
         guard let context = actionCalloutContext else { return }
         shouldApplyReleaseAction = shouldApplyReleaseAction && !context.hasSelectedAction
-        context.endDragGesture()
     }
 }
 

@@ -301,9 +301,6 @@ struct ScrollViewGestureButton_Previews: PreviewProvider {
         @StateObject
         var state = PreviewState()
 
-        @State
-        private var items = (1...100).map { PreviewItem(id: $0) }
-
         var body: some View {
             VStack(spacing: 20) {
 
@@ -329,11 +326,6 @@ struct ScrollViewGestureButton_Previews: PreviewProvider {
                 }
             }
         }
-    }
-
-    struct PreviewItem: Identifiable {
-
-        var id: Int
     }
 
     struct PreviewButton: View {

@@ -165,13 +165,13 @@ private extension GestureButton {
         releaseDate = tryTriggerDoubleTap() ? .distantPast : Date()
         repeatDate = Date()
         repeatTimer.stop()
-        dragEndAction?(value)
-        endAction?()
         if geo.contains(value.location) {
             releaseInsideAction?()
         } else {
             releaseOutsideAction?()
         }
+        dragEndAction?(value)
+        endAction?()
     }
 
     func tryTriggerLongPressAfterDelay() {
@@ -223,9 +223,6 @@ struct GestureButton_Previews: PreviewProvider {
         @StateObject
         var state = PreviewState()
 
-        @State
-        private var items = (1...100).map { PreviewItem(id: $0) }
-
         var body: some View {
             VStack(spacing: 20) {
 
@@ -251,11 +248,6 @@ struct GestureButton_Previews: PreviewProvider {
                 }
             }
         }
-    }
-
-    struct PreviewItem: Identifiable {
-
-        var id: Int
     }
 
     struct PreviewButton: View {
