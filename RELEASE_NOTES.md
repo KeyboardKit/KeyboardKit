@@ -45,6 +45,7 @@ Note that the new gesture engine is only available in iOS 14+. Devices running i
 ### 👑 KeyboardKit Pro
 
 * `Emoji` implements the new `ProEmojiInfo` protocol.
+* `ProCalloutActionProvider` now returns skin tone variant actions for emojis. 
 * `ProEmojiInfo` is a new protocol for Pro emoji information.  
 * `ProEmojiInfo` has `hasSkinToneVariants`, `neutralSkinToneVariant`, `skinToneVariants` and `skinToneVariantsActions` properties.
 
