@@ -54,7 +54,10 @@ class KeyboardViewController: KeyboardInputViewController {
      Pro license in `viewWillSetupKeyboard`.
      */
     override func viewDidLoad() {
-        
+
+        // Enable experimental features
+        // FeatureToggle.shared.toggleFeature(.newButtonGestureEngine, isOn: true)
+
         // This is how you would change the keyboard locale
         // 💡 This is overwritten as Pro is registered below
         keyboardContext.locale = KeyboardLocale.english.locale
