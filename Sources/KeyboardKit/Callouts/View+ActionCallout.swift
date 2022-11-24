@@ -16,15 +16,21 @@ public extension View {
      
      - Parameters:
        - context: The context to bind against.
-       - style: The style to apply to the view, by default `.standard`.
+       - style: The style to apply to the view, by default ``ActionCalloutStyle/standard``.
+       - emojiKeyboardStyle: The emoji keyboard style to use, by default ``EmojiKeyboardStyle/standardPhonePortrait``.
      */
     func actionCallout(
         context: ActionCalloutContext,
-        style: ActionCalloutStyle = .standard
+        style: ActionCalloutStyle = .standard,
+        emojiKeyboardStyle: EmojiKeyboardStyle = .standardPhonePortrait
     ) -> some View {
         return ZStack {
             self
-            ActionCallout(context: context, style: style)
+            ActionCallout(
+                context: context,
+                style: style,
+                emojiKeyboardStyle: emojiKeyboardStyle
+            )
         }.coordinateSpace(name: ActionCalloutContext.coordinateSpace)
     }
 }

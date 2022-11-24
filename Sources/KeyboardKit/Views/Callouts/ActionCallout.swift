@@ -21,21 +21,30 @@ public struct ActionCallout: View {
        - context: The context to bind against.
        - device: The device type to use, by default ``DeviceType/current``.
        - style: The style to apply to the view, by default ``ActionCalloutStyle/standard``.
+       - emojiKeyboardStyle: The emoji keyboard style to use, by default ``EmojiKeyboardStyle/standardPhonePortrait``.
      */
     public init(
         context: ActionCalloutContext,
         device: DeviceType = .current,
-        style: ActionCalloutStyle = .standard
+        style: ActionCalloutStyle = .standard,
+        emojiKeyboardStyle: EmojiKeyboardStyle = .standardPhonePortrait
     ) {
         self._context = ObservedObject(wrappedValue: context)
         self.device = device
         self.style = style
+        self.emojiKeyboardStyle = emojiKeyboardStyle
     }
     
-    @ObservedObject private var context: ActionCalloutContext
+    @ObservedObject
+    private var context: ActionCalloutContext
+
+    private var keyboardContext: KeyboardContext {
+        KeyboardInputViewController.shared.keyboardContext
+    }
     
     private let device: DeviceType
     private let style: ActionCalloutStyle
+    private let emojiKeyboardStyle: EmojiKeyboardStyle
     
     public var body: some View {
         VStack(alignment: context.alignment, spacing: 0) {
@@ -60,10 +69,12 @@ public struct ActionCallout: View {
 private extension ActionCallout {
     
     var backgroundColor: Color { calloutStyle.backgroundColor }
-    var buttonFrame: CGRect { context.buttonFrame.insetBy(dx: buttonInset.width, dy: buttonInset.height) }
+    var buttonFrame: CGRect { isEmojiCallout ? buttonFrameForEmojis : buttonFrameForCharacters }
+    var buttonFrameForCharacters: CGRect { context.buttonFrame.insetBy(dx: buttonInset.width, dy: buttonInset.height) }
+    var buttonFrameForEmojis: CGRect { context.buttonFrame }
     var buttonInset: CGSize { calloutStyle.buttonInset }
+    var calloutActions: [KeyboardAction] { context.actions }
     var calloutButtonSize: CGSize { buttonFrame.size.limited(to: style.maxButtonSize) }
-    var calloutInputs: [String] { context.actions.compactMap { $0.input } }
     var calloutStyle: CalloutStyle { style.callout }
     var cornerRadius: CGFloat { calloutStyle.cornerRadius }
     var curveSize: CGSize { calloutStyle.curveSize }
@@ -77,8 +88,8 @@ private extension ActionCallout {
     
     var callout: some View {
         HStack(spacing: 0) {
-            ForEach(Array(calloutInputs.enumerated()), id: \.offset) {
-                Text($0.element)
+            ForEach(Array(calloutActions.enumerated()), id: \.offset) {
+                calloutView(for: $0.element)
                     .frame(size: calloutButtonSize)
                     .background(isSelected($0.offset) ? style.selectedBackgroundColor : .clear)
                     .foregroundColor(isSelected($0.offset) ? style.selectedForegroundColor : style.callout.textColor)
@@ -98,14 +109,30 @@ private extension ActionCallout {
             bottomRight: !isPad && isTrailing ? 2 : cornerRadius)
             .foregroundColor(backgroundColor)
     }
-    
-    var offsetY: CGFloat {
-        isPad ? 20 : 0
+
+    @ViewBuilder
+    func calloutView(for action: KeyboardAction) -> some View {
+        switch action {
+        case .character(let char): calloutView(for: char)
+        case .emoji(let emoji): calloutView(for: emoji)
+        default: EmptyView()
+        }
+    }
+
+    func calloutView(for character: String) -> some View {
+        Text(character)
+    }
+
+    func calloutView(for emoji: Emoji) -> some View {
+        EmojiKeyboardItem(
+            emoji: emoji,
+            style: .standard(for: keyboardContext)
+        )
     }
     
     var positionX: CGFloat {
         let buttonWidth = calloutButtonSize.width
-        let adjustment = (CGFloat(calloutInputs.count) * buttonWidth)/2
+        let adjustment = (CGFloat(calloutActions.count) * buttonWidth)/2
         let signedAdjustment = isTrailing ? -adjustment + buttonWidth : adjustment
         return buttonFrame.origin.x + signedAdjustment
     }
@@ -121,7 +148,11 @@ private extension ActionCallout {
 private extension ActionCallout {
     
     var isPad: Bool { device == .pad }
-    
+
+    var isEmojiCallout: Bool {
+        calloutActions.first?.isEmojiAction ?? false
+    }
+
     func isSelected(_ offset: Int) -> Bool {
         context.selectedIndex == offset
     }
@@ -138,14 +169,20 @@ private extension KeyboardAction {
 }
 
 struct ActionCallout_Previews: PreviewProvider {
+
+    static let actionHandler = PreviewKeyboardActionHandler()
+
+    static let actionProvider = PreviewCalloutActionProvider()
+
+    static let keyboardContext = KeyboardContext.preview
     
     static let context1 = ActionCalloutContext(
-        actionHandler: .preview,
-        actionProvider: PreviewCalloutActionProvider())
+        actionHandler: actionHandler,
+        actionProvider: actionProvider)
     
     static let context2 = ActionCalloutContext(
-        actionHandler: .preview,
-        actionProvider: PreviewCalloutActionProvider())
+        actionHandler: actionHandler,
+        actionProvider: actionProvider)
     
     static var button: some View {
         Color.red.frame(width: 40, height: 50)
@@ -179,8 +216,10 @@ struct ActionCallout_Previews: PreviewProvider {
                 }
             ).actionCallout(
                 context: context1,
-                style: .standard)
-            
+                style: .standard,
+                emojiKeyboardStyle: .standard(for: keyboardContext)
+            )
+        
             
             // Row Item
             
@@ -196,7 +235,9 @@ struct ActionCallout_Previews: PreviewProvider {
                 }
             ).actionCallout(
                 context: context2,
-                style: rowItemStyle)
+                style: rowItemStyle,
+                emojiKeyboardStyle: .standard(for: keyboardContext)
+            )
         }
     }
 }

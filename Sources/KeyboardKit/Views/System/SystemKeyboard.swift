@@ -127,7 +127,9 @@ public struct SystemKeyboard<ButtonView: View>: View {
         keyboardView
             .actionCallout(
                 context: actionCalloutContext,
-                style: actionCalloutStyle)
+                style: actionCalloutStyle,
+                emojiKeyboardStyle: .standard(for: keyboardContext)
+            )
             .inputCallout(
                 context: inputCalloutContext,
                 keyboardContext: keyboardContext,
