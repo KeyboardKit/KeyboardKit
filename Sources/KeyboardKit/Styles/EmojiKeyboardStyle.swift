@@ -186,8 +186,8 @@ public extension EmojiKeyboardStyle {
      */
     static var standardPadPortrait = EmojiKeyboardStyle(
         rows: 3,
-        itemSize: 80,
-        itemFont: .system(size: 60),
+        itemSize: 60,
+        itemFont: .system(size: 45),
         horizontalItemSpacing: 15,
         verticalItemSpacing: 10,
         verticalCategoryStackSpacing: 5,
