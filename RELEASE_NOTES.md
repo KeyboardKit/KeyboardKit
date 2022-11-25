@@ -63,6 +63,7 @@ Note that the new gesture engine is only available in iOS 14+. Devices running i
 * `InputCalloutContext` has a new, configurable `minimumVisibleDuration` property that controls the minimum visibility of the input callout.
 * `KeyboardAction` has a new `image` property.
 * `KeyboardAction` has a new `isEmojiAction` property.
+* `SpaceCursorDragGestureHandler` is now open to inheritance.
 
 ### 💡 Behavior changes
 
@@ -76,6 +77,7 @@ Note that the new gesture engine is only available in iOS 14+. Devices running i
 ### 🐛 Bug fixes
 
 * `KeyboardGestures` now use internal state to avoid problems when passing in a constant binding.
+* Words with an autocompleting autocomplete suggestion will no longer autocomplete when ending a space cursor drag on them.
 
 ### 🗑 Deprecations
 

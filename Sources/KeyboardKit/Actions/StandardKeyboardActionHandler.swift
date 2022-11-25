@@ -12,19 +12,19 @@ import UIKit
 /**
  This standard keyboard action handler is used by default by
  KeyboardKit and provides a standard way of handling actions.
- 
+
  You can inherit this class and override any open properties
  and functions to customize the standard action behavior.
- 
+
  Note that this action handler is only available on keyboard
  supporting platforms. For unsupported platforms, a disabled
  action handler will be used by default.
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
-    
-    
+
+
     // MARK: - Initialization
-    
+
     public init(
         inputViewController ivc: KeyboardInputViewController,
         spaceDragGestureHandler: DragGestureHandler? = nil,
@@ -42,7 +42,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
             feedbackHandler: ivc.keyboardFeedbackHandler,
             sensitivity: spaceDragSensitivity)
     }
-    
+
     public init(
         keyboardContext: KeyboardContext,
         keyboardBehavior: KeyboardBehavior,
@@ -64,27 +64,27 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
             feedbackHandler: keyboardFeedbackHandler,
             sensitivity: spaceDragSensitivity)
     }
-    
-    
+
+
     // MARK: - Dependencies
-    
+
     public let autocompleteContext: AutocompleteContext
     public let keyboardBehavior: KeyboardBehavior
     public let keyboardContext: KeyboardContext
     public let keyboardFeedbackHandler: KeyboardFeedbackHandler
     public let spaceDragGestureHandler: DragGestureHandler
-    
+
     public internal(set) var autocompleteAction: () -> Void
     public let changeKeyboardTypeAction: (KeyboardType) -> Void
-    
-    
+
+
     // MARK: - Properties
-    
+
     public var textDocumentProxy: UITextDocumentProxy { keyboardContext.textDocumentProxy }
-        
-    
+
+
     // MARK: - KeyboardActionHandler
-    
+
     /**
      Whether or not the action handler can be used to handle
      a certain `gesture` on a certain `action`.
@@ -92,17 +92,17 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     open func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
         self.action(for: gesture, on: action) != nil
     }
-    
+
     /**
      Try to handling a certain `gesture` n a certain `action`.
      */
     open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction) {
         handle(gesture, on: action, replaced: false)
     }
-    
+
     /**
      Try handling a certain `gesture` on a certain `action`.
-     
+
      This function is used by the standard action handler to
      handle the cases where the action can be triggered as a
      result of another operation, e.g. autocomplete handling.
@@ -120,7 +120,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         tryRegisterEmoji(after: gesture, on: action)
         autocompleteAction()
     }
-    
+
     /**
      Handle a drag gesture on a certain action, from a start
      location to the drag gesture's current location.
@@ -131,25 +131,25 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         default: break
         }
     }
-    
-    
+
+
     // MARK: - Open Functions
-    
+
     /**
      This is the standard action that is used by the handler
      when a gesture is performed on a certain action.
-     
+
      You can override this function to customize how actions
      should behave. By default, the standard action is used.
      */
     open func action(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction.GestureAction? {
         action.standardAction(for: gesture)
     }
-    
+
     /**
      Try to resolve a replacement keyboard action before the
      `gesture` is performed on the provided `action`.
-     
+
      You can override this function to customize how actions
      should be replaced.
      */
@@ -169,15 +169,15 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
 
         return nil
     }
-    
+
     /**
      Whether or not a feedback should be given for a certain
      gesture on a certain action.
-     
+
      By default, the function will return `true` for a press
      on a gesture that has a tap action or if the gesture is
      not a tap and the action has an action for that gesture.
-     
+
      You can override this function to customize how actions
      trigger feedback.
      */
@@ -186,11 +186,11 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         if gesture != .tap && gesture != .release && self.action(for: gesture, on: action) != nil { return true }
         return false
     }
-    
+
     /**
      Trigger feedback for a certain `gesture` on an `action`,
      if ``shouldTriggerFeedback(for:on:)`` returns `true`.
-     
+
      You can override this function to customize how actions
      trigger feedback.
      */
@@ -198,18 +198,19 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         guard shouldTriggerFeedback(for: gesture, on: action) else { return }
         keyboardFeedbackHandler.triggerFeedback(for: gesture, on: action)
     }
-    
+
     /**
      Try to apply an `isAutocomplete` autocomplete suggesion
      before the `gesture` has been performed on the `action`.
      */
     open func tryApplyAutocompleteSuggestion(before gesture: KeyboardGesture, on action: KeyboardAction) {
+        if isSpaceCursorDrag(action) { return }
         guard gesture == .tap else { return }
         guard action.shouldApplyAutocompleteSuggestion else { return }
         guard let suggestion = (autocompleteContext.suggestions.first { $0.isAutocomplete }) else { return }
         textDocumentProxy.insertAutocompleteSuggestion(suggestion, tryInsertSpace: false)
     }
-    
+
     /**
      Try to change `keyboardType` after a `gesture` has been
      performed on the provided `action`.
@@ -219,7 +220,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         let newType = keyboardBehavior.preferredKeyboardType(after: gesture, on: action)
         changeKeyboardTypeAction(newType)
     }
-    
+
     /**
      Try to end the current sentence after the `gesture` has
      been performed on the provided `action`.
@@ -228,11 +229,11 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         guard keyboardBehavior.shouldEndSentence(after: gesture, on: action) else { return }
         textDocumentProxy.endSentence()
     }
-    
+
     /**
      Try to resolve and handle a replacement keyboard action
      before the `gesture` is performed on the `action`.
-     
+
      When this returns true, the caller should stop handling
      the provided action.
      */
@@ -241,7 +242,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         handle(.tap, on: action, replaced: true)
         return true
     }
-    
+
     /**
      Try to register a certain emoji after the `gesture` has
      been performed on the provided `action`.
@@ -253,7 +254,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         default: return
         }
     }
-    
+
     /**
      Try to reinsert an automatically removed space that was
      removed due to autocomplete after the provided `gesture`
@@ -264,7 +265,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         guard action.shouldReinsertAutocompleteInsertedSpace else { return }
         textDocumentProxy.tryReinsertAutocompleteRemovedSpace()
     }
-    
+
     /**
      Try to removed an autocomplete inserted space after the
      `gesture` has been performed on the provided `action`.
@@ -273,6 +274,15 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         guard gesture == .tap else { return }
         guard action.shouldRemoveAutocompleteInsertedSpace else { return }
         textDocumentProxy.tryRemoveAutocompleteInsertedSpace()
+    }
+}
+
+private extension StandardKeyboardActionHandler {
+
+    func isSpaceCursorDrag(_ action: KeyboardAction) -> Bool {
+        guard action == .space else { return false }
+        guard let handler = spaceDragGestureHandler as? SpaceCursorDragGestureHandler else { return false }
+        return handler.currentDragTextPositionOffset != 0
     }
 }
 #endif

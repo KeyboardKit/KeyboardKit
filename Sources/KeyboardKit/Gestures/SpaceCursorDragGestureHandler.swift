@@ -13,11 +13,11 @@ import CoreGraphics
  This drag gesture handler handles the space key cursor move
  drag gesture.
  */
-public class SpaceCursorDragGestureHandler: DragGestureHandler {
-    
+open class SpaceCursorDragGestureHandler: DragGestureHandler {
+
     /**
      Create a handler space cursor drag gesture handler.
-     
+
      - Parameters:
        - context: The keyboard context to use.
        - feedbackHandler: The feedback handler to use.
@@ -31,15 +31,15 @@ public class SpaceCursorDragGestureHandler: DragGestureHandler {
         self.feedbackHandler = feedbackHandler
         self.sensitivity = sensitivity
     }
-    
-    private let context: KeyboardContext
-    private let feedbackHandler: KeyboardFeedbackHandler
-    
+
+    public let context: KeyboardContext
+    public let feedbackHandler: KeyboardFeedbackHandler
+
     public let sensitivity: SpaceDragSensitivity
-    
-    private var currentDragStartLocation: CGPoint?
-    private var currentDragTextPositionOffset: Int = 0
-    
+
+    public var currentDragStartLocation: CGPoint?
+    public var currentDragTextPositionOffset: Int = 0
+
     /**
      Handle a drag gesture on space, which by default should
      move the cursor left and right after a long press.
@@ -56,7 +56,7 @@ public class SpaceCursorDragGestureHandler: DragGestureHandler {
 }
 
 private extension SpaceCursorDragGestureHandler {
-    
+
     func tryStartNewDragGesture(from startLocation: CGPoint, to currentLocation: CGPoint) {
         let isNewDrag = currentDragStartLocation != startLocation
         currentDragStartLocation = startLocation
