@@ -7,10 +7,7 @@
 //
 
 #if os(iOS) || os(tvOS)
-import Quick
-import Nimble
 import MockingKit
-import CoreGraphics
 import XCTest
 
 @testable import KeyboardKit

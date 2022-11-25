@@ -6,40 +6,30 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Quick
-import Nimble
 import KeyboardKit
+import XCTest
 
-class KeyboardCasingTests: QuickSpec {
-    
-    override func spec() {
-        
-        describe("is lowercased") {
-            
-            func result(for state: KeyboardCasing) -> Bool {
-                return state.isLowercased
-            }
-            
-            it("only applies to certain states") {
-                expect(result(for: .auto)).to(beFalse())
-                expect(result(for: .capsLocked)).to(beFalse())
-                expect(result(for: .lowercased)).to(beTrue())
-                expect(result(for: .uppercased)).to(beFalse())
-            }
-        }
-        
-        describe("is uppercased") {
-            
-            func result(for state: KeyboardCasing) -> Bool {
-                return state.isUppercased
-            }
-            
-            it("only applies to certain states") {
-                expect(result(for: .auto)).to(beFalse())
-                expect(result(for: .capsLocked)).to(beTrue())
-                expect(result(for: .lowercased)).to(beFalse())
-                expect(result(for: .uppercased)).to(beTrue())
-            }
-        }
+class KeyboardCasingTests: XCTestCase {
+
+    func isLowercased(for state: KeyboardCasing) -> Bool {
+        return state.isLowercased
+    }
+
+    func isUppercased(for state: KeyboardCasing) -> Bool {
+        return state.isUppercased
+    }
+
+    func testIsLowercasedOnlyAppliesToCertainStates() {
+        XCTAssertFalse(isLowercased(for: .auto))
+        XCTAssertFalse(isLowercased(for: .capsLocked))
+        XCTAssertTrue(isLowercased(for: .lowercased))
+        XCTAssertFalse(isLowercased(for: .uppercased))
+    }
+
+    func testIsUppercasedOnlyAppliesToCertainStates() {
+        XCTAssertFalse(isUppercased(for: .auto))
+        XCTAssertTrue(isUppercased(for: .capsLocked))
+        XCTAssertFalse(isUppercased(for: .lowercased))
+        XCTAssertTrue(isUppercased(for: .uppercased))
     }
 }

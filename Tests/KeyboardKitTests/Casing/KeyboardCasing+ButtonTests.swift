@@ -6,27 +6,20 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Quick
-import Nimble
 import KeyboardKit
 import SwiftUI
+import XCTest
 
-class KeyboardCasing_ButtonTests: QuickSpec {
+class KeyboardCasing_ButtonTests: XCTestCase {
 
-    override func spec() {
-        
-        describe("standard button image") {
-            
-            func result(for state: KeyboardCasing) -> Image {
-                state.standardButtonImage
-            }
-            
-            it("is defined for all states") {
-                expect(result(for: .auto)).to(equal(.keyboardShiftLowercased))
-                expect(result(for: .capsLocked)).to(equal(.keyboardShiftCapslocked))
-                expect(result(for: .lowercased)).to(equal(.keyboardShiftLowercased))
-                expect(result(for: .uppercased)).to(equal(.keyboardShiftUppercased))
-            }
-        }
+    func result(for state: KeyboardCasing) -> Image {
+        state.standardButtonImage
+    }
+
+    func testStandardButtonImageIsDefinedForAllStates() {
+        XCTAssertEqual(result(for: .auto), .keyboardShiftLowercased)
+        XCTAssertEqual(result(for: .capsLocked), .keyboardShiftCapslocked)
+        XCTAssertEqual(result(for: .lowercased), .keyboardShiftLowercased)
+        XCTAssertEqual(result(for: .uppercased), .keyboardShiftUppercased)
     }
 }

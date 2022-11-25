@@ -6,39 +6,32 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Quick
-import Nimble
 import KeyboardKit
+import XCTest
 
-class CaseAdjustableTests: QuickSpec {
-    
-    override func spec() {
+class CaseAdjustableTests: XCTestCase {
 
-        describe("case adjusted for text") {
+    func result(for string: String, text: String) -> String {
+        string.caseAdjusted(for: text)
+    }
 
-            func result(for string: String, text: String) -> String {
-                string.caseAdjusted(for: text)
-            }
+    func testCaseAdjustedForTextIsCapitalizedForSingleUppercasedChar() {
+        let result = result(for: "testing this", text: "T")
+        XCTAssertEqual(result, "Testing This")
+    }
 
-            it("is capitalized for single uppercased char") {
-                let result = result(for: "testing this", text: "T")
-                expect(result).to(equal("Testing This"))
-            }
+    func testCaseAdjustedForTextIsCapitalizedForCapitalizedText() {
+        let result = result(for: "testing this", text: "Test")
+        XCTAssertEqual(result, "Testing This")
+    }
 
-            it("is capitalized for capitalized text") {
-                let result = result(for: "testing this", text: "Test")
-                expect(result).to(equal("Testing This"))
-            }
+    func testCaseAdjustedForTextIsUppercasedForUppercasedText() {
+        let result = result(for: "testing this", text: "TEST")
+        XCTAssertEqual(result, "TESTING THIS")
+    }
 
-            it("is uppercased for uppercased text") {
-                let result = result(for: "testing this", text: "TEST")
-                expect(result).to(equal("TESTING THIS"))
-            }
-
-            it("is lowercased for lowercased text") {
-                let result = result(for: "TESTING THIS", text: "test")
-                expect(result).to(equal("testing this"))
-            }
-        }
+    func testCaseAdjustedForTextIsLowercasedForLowercasedText() {
+        let result = result(for: "TESTING THIS", text: "test")
+        XCTAssertEqual(result, "testing this")
     }
 }

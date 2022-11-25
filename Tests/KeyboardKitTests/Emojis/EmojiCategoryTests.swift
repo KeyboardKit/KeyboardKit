@@ -6,77 +6,69 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Quick
-import Nimble
 import KeyboardKit
 import MockingKit
+import XCTest
 
-class EmojiCategoryTests: QuickSpec {
+class EmojiCategoryTests: XCTestCase {
+
+    func fallbackEmoji(for category: EmojiCategory) -> String {
+        category.fallbackDisplayEmoji.char
+    }
+
+    func firstEmoji(for category: EmojiCategory) -> String {
+        category.emojis[0].char
+    }
+
+    func firstEmojiAction(for category: EmojiCategory) -> KeyboardAction {
+        category.emojiActions[0]
+    }
     
-    override func spec() {
-        
-        describe("emoji category") {
-            
-            func fallbackEmoji(for category: EmojiCategory) -> String {
-                category.fallbackDisplayEmoji.char
-            }
-            
-            func firstEmoji(for category: EmojiCategory) -> String {
-                category.emojis.first!.char
-            }
-            
-            func firstEmojiAction(for category: EmojiCategory) -> KeyboardAction {
-                category.emojiActions.first!
-            }
-            
-            it("has built-in sort order") {
-                let categories = EmojiCategory.all
-                expect(categories).to(equal([
-                    .frequent,
-                    .smileys,
-                    .animals,
-                    .foods,
-                    .activities,
-                    .travels,
-                    .objects,
-                    .symbols,
-                    .flags
-                ]))
-            }
-            
-            it("has a fallback display emoji") {
-                expect(fallbackEmoji(for: .frequent)).to(equal("🕓"))
-                expect(fallbackEmoji(for: .smileys)).to(equal("😀"))
-                expect(fallbackEmoji(for: .animals)).to(equal("🐻"))
-                expect(fallbackEmoji(for: .foods)).to(equal("🍔"))
-                expect(fallbackEmoji(for: .activities)).to(equal("⚽️"))
-                expect(fallbackEmoji(for: .travels)).to(equal("🚗"))
-                expect(fallbackEmoji(for: .objects)).to(equal("💡"))
-                expect(fallbackEmoji(for: .symbols)).to(equal("💱"))
-                expect(fallbackEmoji(for: .flags)).to(equal("🏳️"))
-            }
-            
-            it("contains the correct emojis") {
-                expect(firstEmoji(for: .activities)).to(equal("⚽️"))
-                expect(firstEmoji(for: .animals)).to(equal("🐶"))
-                expect(firstEmoji(for: .flags)).to(equal("🏳️"))
-                expect(firstEmoji(for: .foods)).to(equal("🍏"))
-                expect(firstEmoji(for: .objects)).to(equal("⌚️"))
-                expect(firstEmoji(for: .smileys)).to(equal("😀"))
-                expect(firstEmoji(for: .symbols)).to(equal("❤️"))
-                expect(firstEmoji(for: .travels)).to(equal("🚗"))
-            }
-            
-            it("contains the correct emoji set") {
-                expect(firstEmojiAction(for: .activities)).to(equal(.emoji(Emoji("⚽️"))))
-                expect(firstEmojiAction(for: .animals)).to(equal(.emoji(Emoji("🐶"))))
-                expect(firstEmojiAction(for: .flags)).to(equal(.emoji(Emoji("🏳️"))))
-                expect(firstEmojiAction(for: .foods)).to(equal(.emoji(Emoji("🍏"))))
-                expect(firstEmojiAction(for: .objects)).to(equal(.emoji(Emoji("⌚️"))))
-                expect(firstEmojiAction(for: .smileys)).to(equal(.emoji(Emoji("😀"))))
-                expect(firstEmojiAction(for: .symbols)).to(equal(.emoji(Emoji("❤️"))))
-                expect(firstEmojiAction(for: .travels)).to(equal(.emoji(Emoji("🚗"))))
-            }
-        }
+    func testEmojiCategoryHasDefaultSortOrder() {
+        XCTAssertEqual(EmojiCategory.all, [
+            .frequent,
+            .smileys,
+            .animals,
+            .foods,
+            .activities,
+            .travels,
+            .objects,
+            .symbols,
+            .flags
+        ])
+    }
+
+    func testEmojiCategoryHasFallbackDisplayEmoji() {
+        XCTAssertEqual(fallbackEmoji(for: .frequent), "🕓")
+        XCTAssertEqual(fallbackEmoji(for: .smileys), "😀")
+        XCTAssertEqual(fallbackEmoji(for: .animals), "🐻")
+        XCTAssertEqual(fallbackEmoji(for: .foods), "🍔")
+        XCTAssertEqual(fallbackEmoji(for: .activities), "⚽️")
+        XCTAssertEqual(fallbackEmoji(for: .travels), "🚗")
+        XCTAssertEqual(fallbackEmoji(for: .objects), "💡")
+        XCTAssertEqual(fallbackEmoji(for: .symbols), "💱")
+        XCTAssertEqual(fallbackEmoji(for: .flags), "🏳️")
+    }
+
+    func testEmojiCategoryContainsCorrectEmojis() {
+        XCTAssertEqual(firstEmoji(for: .activities), "⚽️")
+        XCTAssertEqual(firstEmoji(for: .animals), "🐶")
+        XCTAssertEqual(firstEmoji(for: .flags), "🏳️")
+        XCTAssertEqual(firstEmoji(for: .foods), "🍏")
+        XCTAssertEqual(firstEmoji(for: .objects), "⌚️")
+        XCTAssertEqual(firstEmoji(for: .smileys), "😀")
+        XCTAssertEqual(firstEmoji(for: .symbols), "❤️")
+        XCTAssertEqual(firstEmoji(for: .travels), "🚗")
+    }
+
+    func testEmojiCategoryContainsCorrectEmojiSet() {
+        XCTAssertEqual(firstEmojiAction(for: .activities), .emoji(Emoji("⚽️")))
+        XCTAssertEqual(firstEmojiAction(for: .animals), .emoji(Emoji("🐶")))
+        XCTAssertEqual(firstEmojiAction(for: .flags), .emoji(Emoji("🏳️")))
+        XCTAssertEqual(firstEmojiAction(for: .foods), .emoji(Emoji("🍏")))
+        XCTAssertEqual(firstEmojiAction(for: .objects), .emoji(Emoji("⌚️")))
+        XCTAssertEqual(firstEmojiAction(for: .smileys), .emoji(Emoji("😀")))
+        XCTAssertEqual(firstEmojiAction(for: .symbols), .emoji(Emoji("❤️")))
+        XCTAssertEqual(firstEmojiAction(for: .travels), .emoji(Emoji("🚗")))
     }
 }
