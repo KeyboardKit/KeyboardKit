@@ -23,11 +23,13 @@ final class FeatureToggleTests: XCTestCase {
     }
 
     func testCanToggleNewButtonGestureEngine() {
-        XCTAssertFalse(result(for: .newButtonGestureEngine))
-        toggle.toggleFeature(.newButtonGestureEngine, isOn: true)
         XCTAssertTrue(result(for: .newButtonGestureEngine))
-        toggle.toggleFeature(.newButtonGestureEngine, isOn: false)
+        toggle.toggleFeature(.newButtonGestureEngine, .off)
         XCTAssertFalse(result(for: .newButtonGestureEngine))
+        toggle.toggleFeature(.newButtonGestureEngine, .on)
+        XCTAssertTrue(result(for: .newButtonGestureEngine))
+        toggle.reset()
+        XCTAssertTrue(result(for: .newButtonGestureEngine))
     }
 }
 #endif

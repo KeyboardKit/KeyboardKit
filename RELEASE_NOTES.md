@@ -22,21 +22,21 @@ Some things that are planned for the 7.0 release:
 
 ## 6.6
 
-This version adds new emoji capabilities, such as getting the id and name of an emoji, as well as support for skin tone variants (Pro feature).
+This version adds a brand new gesture engine, which aims to make typing feel a lot more like in the native keyboards.
 
-This version also adds a brand new button gesture engine, which will hopefully make typing on the keyboard feel a lot nicer.
+This version also adds new emoji capabilities, such as a unicode id and name, as well as support for skin tone variants (Pro feature).
 
-These new capabilities are now used by the emoji keyboards as well, which can now show input callouts and skin tone variants (Pro feature) for emojis.   
+These new capabilities are used by the emoji keyboards, which can now show input callouts and skin tone variants (Pro feature) when you type on an emoji keyboard.   
 
 
-### How to enable the new button gesture engine
+### How to disable the new button gesture engine
 
-Since typing is such an important part of this library, the new button gesture engine must be toggled on until it's been thoroughly tested. 
+Since typing is such an important part of this library, the new button gesture engine can be toggled off if you find problems with it. 
 
-To toggle on new gestures, do the following:
+To toggle off new gestures, do the following:
 
 ```
-FeatureToggle.shared.enable(.newButtonGestureEngine)
+FeatureToggle.shared.toggleFeature(.newButtonGestureEngine, .off)
 ```
 
 Note that the new gesture engine is only available in iOS 14+. Devices running iOS 13 will still get the current gesture engine, even if you toggle on this feature.
@@ -53,8 +53,7 @@ Note that the new gesture engine is only available in iOS 14+. Devices running i
 
 * `ActionCalloutContext.shared` is now public.
 * `Emoji` has new `unicodeIdentifier` and `unicodeName` properties.
-* `EmojiCategoryKeyboard` now uses standard keyboard gestures and callouts by default.
-* `EmojiKeyboard` now uses standard keyboard gestures and callouts by default.
+* `EmojiKeyboard` and `EmojiCategoryKeyboard` now supports keyboard gestures and skin tone callouts.
 * `EmojiKeyboard` has a new `applyGestures` parameter, that you can set to true to apply standard keyboard gestures.
 * `EmojiKeyboard` has a new `standardKeyboardActionHandler` property.
 * `EmojiKeyboardItem` is a new view for rendering a keyboard item view.
@@ -77,6 +76,8 @@ Note that the new gesture engine is only available in iOS 14+. Devices running i
 ### 🐛 Bug fixes
 
 * `KeyboardGestures` now use internal state to avoid problems when passing in a constant binding.
+* `LocaleProvider` now wraps Swift 5.7 code in a compile version version check.
+* `SystemKeyboardButtonRowItem` now protects itself against getting a negative width.
 * Words with an autocompleting autocomplete suggestion will no longer autocomplete when ending a space cursor drag on them.
 
 ### 🗑 Deprecations

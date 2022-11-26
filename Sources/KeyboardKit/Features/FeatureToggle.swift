@@ -26,9 +26,21 @@ public final class FeatureToggle {
      Create a new feature toggle instance.
      */
     public init() {
-        defaultEnabledFeatures = []
+        defaultEnabledFeatures = [.newButtonGestureEngine]
         enabledFeatures = []
         reset()
+    }
+
+    /**
+     This enum defined the available toggle states.
+     */
+    public enum State: String {
+
+        /// The feature is enabled.
+        case on
+
+        /// The feature is disabled.
+        case off
     }
 
 
@@ -94,9 +106,10 @@ public extension FeatureToggle {
     /**
      Toggle a certain ``Feature`` on or off.
      */
-    func toggleFeature(_ feature: Feature, isOn: Bool) {
-        if isFeatureEnabled(feature) == isOn { return }
-        if isOn {
+    func toggleFeature(_ feature: Feature, _ state: State) {
+        let value = state == .on ? true : false
+        if isFeatureEnabled(feature) == value { return }
+        if value {
             enabledFeatures.append(feature)
         } else {
             enabledFeatures = enabledFeatures.filter { $0 != feature }
