@@ -15,10 +15,10 @@ import Foundation
  You can use the static ``shared`` context to share a single
  instance in your code.
 
- Use ``toggleFeature(_:isOn:)`` to toggle any feature on and
- off. Use ``isFeatureEnabled(_:)`` to check whether or not a
- certain feature is enabled. Use the ``Feature/allFeatures``
- property if you want a list with all the available features.
+ Use ``toggleFeature(_:_:)`` to toggle any feature on or off
+ and ``isFeatureEnabled(_:)`` to see if a feature is enabled
+ or not. ``enabledFeatures`` returns a list with all enabled
+ features and ``Feature/allFeatures`` all available features.
  */
 public final class FeatureToggle {
 

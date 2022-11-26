@@ -24,16 +24,12 @@ Some things that are planned for the 7.0 release:
 
 This version adds a brand new gesture engine, which aims to make typing feel a lot more like in the native keyboards.
 
-This version also adds new emoji capabilities, such as a unicode id and name, as well as support for skin tone variants (Pro feature).
-
-These new capabilities are used by the emoji keyboards, which can now show input callouts and skin tone variants (Pro feature) when you type on an emoji keyboard.   
+This version also adds new emoji capabilities, such as a unicode id and name, as well as support for skin tone variants (Pro feature). These new capabilities are used by the emoji keyboards, which can now show input callouts and skin tone variants when you type on an emoji keyboard.   
 
 
 ### How to disable the new button gesture engine
 
-Since typing is such an important part of this library, the new button gesture engine can be toggled off if you find problems with it. 
-
-To toggle off new gestures, do the following:
+Since typing is such an important part of this library, the new gesture engine can be toggled off if you find problems with it:
 
 ```
 FeatureToggle.shared.toggleFeature(.newButtonGestureEngine, .off)
