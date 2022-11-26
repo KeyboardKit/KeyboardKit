@@ -8,7 +8,6 @@
 
 #if os(iOS) || os(macOS) || os(watchOS)
 import SwiftUI
-import CoreGraphics
 
 /**
  This button uses a single drag gesture to implement support
@@ -38,7 +37,6 @@ public struct GestureButton<Label: View>: View {
        - pressAction: The action to trigger when the button is pressed, by default `nil`.
        - releaseInsideAction: The action to trigger when the button is released inside, by default `nil`.
        - releaseOutsideAction: The action to trigger when the button is released outside of its bounds, by default `nil`.
-       - endAction: The action to trigger when a button gesture ends, by default `nil`.
        - longPressDelay: The time it takes for a press to count as a long press, by default ``GestureButtonDefaults/longPressDelay``.
        - longPressAction: The action to trigger when the button is long pressed, by default `nil`.
        - doubleTapTimeout: The max time between two taps for them to count as a double tap, by default ``GestureButtonDefaults/doubleTapTimeout``.
@@ -49,6 +47,7 @@ public struct GestureButton<Label: View>: View {
        - dragStartAction: The action to trigger when a drag gesture starts.
        - dragAction: The action to trigger when a drag gesture changes.
        - dragEndAction: The action to trigger when a drag gesture ends.
+       - endAction: The action to trigger when a button gesture ends, by default `nil`.
        - label: The button label.
      */
     init(
@@ -56,7 +55,6 @@ public struct GestureButton<Label: View>: View {
         pressAction: Action? = nil,
         releaseInsideAction: Action? = nil,
         releaseOutsideAction: Action? = nil,
-        endAction: Action? = nil,
         longPressDelay: TimeInterval = GestureButtonDefaults.longPressDelay,
         longPressAction: Action? = nil,
         doubleTapTimeout: TimeInterval = GestureButtonDefaults.doubleTapTimeout,
@@ -67,22 +65,24 @@ public struct GestureButton<Label: View>: View {
         dragStartAction: DragAction? = nil,
         dragAction: DragAction? = nil,
         dragEndAction: DragAction? = nil,
+        endAction: Action? = nil,
         label: @escaping LabelBuilder
     ) {
         self.isPressedBinding = isPressed ?? .constant(false)
         self.pressAction = pressAction
         self.releaseInsideAction = releaseInsideAction
         self.releaseOutsideAction = releaseOutsideAction
-        self.endAction = endAction
         self.longPressDelay = longPressDelay
         self.longPressAction = longPressAction
         self.doubleTapTimeout = doubleTapTimeout
         self.doubleTapAction = doubleTapAction
+        self.repeatDelay = repeatDelay
         self.repeatTimer = repeatTimer
         self.repeatAction = repeatAction
         self.dragStartAction = dragStartAction
         self.dragAction = dragAction
         self.dragEndAction = dragEndAction
+        self.endAction = endAction
         self.label = label
     }
 
@@ -95,16 +95,17 @@ public struct GestureButton<Label: View>: View {
     let pressAction: Action?
     let releaseInsideAction: Action?
     let releaseOutsideAction: Action?
-    let endAction: Action?
     let longPressDelay: TimeInterval
     let longPressAction: Action?
     let doubleTapTimeout: TimeInterval
     let doubleTapAction: Action?
+    let repeatDelay: TimeInterval
     let repeatTimer: RepeatGestureTimer
     let repeatAction: Action?
     let dragStartAction: DragAction?
     let dragAction: DragAction?
     let dragEndAction: DragAction?
+    let endAction: Action?
     let label: LabelBuilder
 
     @State
@@ -123,6 +124,7 @@ public struct GestureButton<Label: View>: View {
         label(isPressed)
             .overlay(gestureView)
             .onChange(of: isPressed) { isPressedBinding.wrappedValue = $0 }
+            .accessibilityAddTraits(.isButton)
     }
 }
 
@@ -131,7 +133,8 @@ private extension GestureButton {
 
     var gestureView: some View {
         GeometryReader { geo in
-            Color.white.opacity(0.001)
+            Color.clear
+                .contentShape(Rectangle())
                 .gesture(
                     DragGesture(minimumDistance: 0)
                         .onChanged { value in
@@ -151,26 +154,26 @@ private extension GestureButton {
 
     func tryHandlePress(_ value: DragGesture.Value) {
         if isPressed { return }
+        isPressed = true
         pressAction?()
         dragStartAction?(value)
         tryTriggerLongPressAfterDelay()
         tryTriggerRepeatAfterDelay()
-        isPressed = true
     }
 
     func tryHandleRelease(_ value: DragGesture.Value, in geo: GeometryProxy) {
         if !isPressed { return }
         isPressed = false
         longPressDate = Date()
-        releaseDate = tryTriggerDoubleTap() ? .distantPast : Date()
         repeatDate = Date()
         repeatTimer.stop()
+        releaseDate = tryTriggerDoubleTap() ? .distantPast : Date()
+        dragEndAction?(value)
         if geo.contains(value.location) {
             releaseInsideAction?()
         } else {
             releaseOutsideAction?()
         }
-        dragEndAction?(value)
         endAction?()
     }
 
@@ -189,7 +192,7 @@ private extension GestureButton {
         guard let action = repeatAction else { return }
         let date = Date()
         repeatDate = date
-        let delay = longPressDelay
+        let delay = repeatDelay
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             guard self.repeatDate == date else { return }
             repeatTimer.start(action: action)
@@ -223,19 +226,21 @@ struct GestureButton_Previews: PreviewProvider {
         @StateObject
         var state = PreviewState()
 
+        @State
+        private var items = (1...3).map { PreviewItem(id: $0) }
+
         var body: some View {
             VStack(spacing: 20) {
 
                 PreviewHeader(state: state)
                     .padding(.horizontal)
 
-                PreviewScrollGroup(title: "Buttons") {
+                PreviewButtonGroup(title: "Buttons:") {
                     GestureButton(
                         isPressed: $state.isPressed,
                         pressAction: { state.pressCount += 1 },
                         releaseInsideAction: { state.releaseInsideCount += 1 },
                         releaseOutsideAction: { state.releaseOutsideCount += 1 },
-                        endAction: { state.endCount += 1 },
                         longPressDelay: 0.8,
                         longPressAction: { state.longPressCount += 1 },
                         doubleTapAction: { state.doubleTapCount += 1 },
@@ -243,11 +248,17 @@ struct GestureButton_Previews: PreviewProvider {
                         dragStartAction: { state.dragStartedValue = $0.location },
                         dragAction: { state.dragChangedValue = $0.location },
                         dragEndAction: { state.dragEndedValue = $0.location },
+                        endAction: { state.endCount += 1 },
                         label: { PreviewButton(color: .blue, isPressed: $0) }
                     )
                 }
             }
         }
+    }
+
+    struct PreviewItem: Identifiable {
+
+        var id: Int
     }
 
     struct PreviewButton: View {
@@ -258,7 +269,6 @@ struct GestureButton_Previews: PreviewProvider {
         var body: some View {
             color
                 .cornerRadius(10)
-                .frame(width: 100)
                 .opacity(isPressed ? 0.5 : 1)
                 .scaleEffect(isPressed ? 0.9 : 1)
                 .animation(.default, value: isPressed)
@@ -268,23 +278,20 @@ struct GestureButton_Previews: PreviewProvider {
         }
     }
 
-    struct PreviewScrollGroup<Content: View>: View {
+    struct PreviewButtonGroup<Content: View>: View {
 
         let title: String
         let button: () -> Content
 
         var body: some View {
-            VStack(alignment: .leading, spacing: 0) {
+            VStack(alignment: .leading, spacing: 5) {
                 Text(title)
-                    .padding(.horizontal)
-                ScrollView(.horizontal) {
-                    LazyHStack {
-                        ForEach(0...100, id: \.self) { _ in
-                            button()
-                        }
-                    }.padding(.horizontal)
-                }
-            }
+                HStack {
+                    ForEach(0...3, id: \.self) { _ in
+                        button()
+                    }
+                }.frame(maxWidth: .infinity)
+            }.padding(.horizontal)
         }
     }
 
@@ -361,7 +368,7 @@ struct GestureButton_Previews: PreviewProvider {
             label(title, "\(point.x.rounded()), \(point.y.rounded())")
         }
 
-        func label(_ title: String, _ value:String) -> some View {
+        func label(_ title: String, _ value: String) -> some View {
             HStack {
                 Text("\(title):")
                 Text(value).bold()

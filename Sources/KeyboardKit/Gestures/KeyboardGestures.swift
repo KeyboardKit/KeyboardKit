@@ -122,12 +122,12 @@ private extension KeyboardGestures {
                 pressAction: { handlePress(in: geo) },
                 releaseInsideAction: { handleReleaseInside(in: geo) },
                 releaseOutsideAction: { handleReleaseOutside(in: geo) },
-                endAction: { handleGestureEnded(in: geo) },
                 longPressDelay: 0.5,
                 longPressAction: { handleLongPress(in: geo) },
                 doubleTapAction: { handleDoubleTap(in: geo) },
                 repeatAction: { handleRepeat(in: geo) },
                 dragAction: { handleDrag(in: geo, value: $0) },
+                endAction: { handleGestureEnded(in: geo) },
                 label: { _ in Color.clearInteractable }
             )
         } else {
@@ -136,12 +136,12 @@ private extension KeyboardGestures {
                 pressAction: { handlePress(in: geo) },
                 releaseInsideAction: { handleReleaseInside(in: geo) },
                 releaseOutsideAction: { handleReleaseOutside(in: geo) },
-                endAction: { handleGestureEnded(in: geo) },
                 longPressDelay: 0.5,
                 longPressAction: { handleLongPress(in: geo) },
                 doubleTapAction: { handleDoubleTap(in: geo) },
                 repeatAction: { handleRepeat(in: geo) },
                 dragAction: { handleDrag(in: geo, value: $0) },
+                endAction: { handleGestureEnded(in: geo) },
                 label: { _ in Color.clearInteractable }
             )
         }

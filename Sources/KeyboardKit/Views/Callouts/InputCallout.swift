@@ -172,10 +172,10 @@ struct InputCallout_Previews: PreviewProvider {
 
         func button(for context: InputCalloutContext) -> some View {
             GeometryReader { geo in
-                Button(action: { showCallout(for: geo) }) {
-                    Color.red
-                        .cornerRadius(5)
-                }
+                Button(
+                    action: { showCallout(for: geo) },
+                    label: { Color.red.cornerRadius(5) }
+                )
             }
             .frame(width: 40, height: 45)
             .padding()

@@ -8,7 +8,6 @@
 
 #if os(iOS) || os(macOS) || os(watchOS)
 import SwiftUI
-import CoreGraphics
 
 /**
  This button can be used to apply a bunch of gestures to the
@@ -42,7 +41,6 @@ public struct ScrollViewGestureButton<Label: View>: View {
        - pressAction: The action to trigger when the button is pressed, by default `nil`.
        - releaseInsideAction: The action to trigger when the button is released inside, by default `nil`.
        - releaseOutsideAction: The action to trigger when the button is released outside of its bounds, by default `nil`.
-       - endAction: The action to trigger when a button gesture ends, by default `nil`.
        - longPressDelay: The time it takes for a press to count as a long press, by default ``GestureButtonDefaults/longPressDelay``.
        - longPressAction: The action to trigger when the button is long pressed, by default `nil`.
        - doubleTapTimeout: The max time between two taps for them to count as a double tap, by default ``GestureButtonDefaults/doubleTapTimeout``.
@@ -52,6 +50,7 @@ public struct ScrollViewGestureButton<Label: View>: View {
        - dragStartAction: The action to trigger when a drag gesture starts.
        - dragAction: The action to trigger when a drag gesture changes.
        - dragEndAction: The action to trigger when a drag gesture ends.
+       - endAction: The action to trigger when a button gesture ends, by default `nil`.
        - label: The button label.
      */
     init(
@@ -59,7 +58,6 @@ public struct ScrollViewGestureButton<Label: View>: View {
         pressAction: Action? = nil,
         releaseInsideAction: Action? = nil,
         releaseOutsideAction: Action? = nil,
-        endAction: Action? = nil,
         longPressDelay: TimeInterval = GestureButtonDefaults.longPressDelay,
         longPressAction: Action? = nil,
         doubleTapTimeout: TimeInterval = GestureButtonDefaults.doubleTapTimeout,
@@ -69,6 +67,7 @@ public struct ScrollViewGestureButton<Label: View>: View {
         dragStartAction: DragAction? = nil,
         dragAction: DragAction? = nil,
         dragEndAction: DragAction? = nil,
+        endAction: Action? = nil,
         label: @escaping LabelBuilder
     ) {
         self.isPressedBinding = isPressed ?? .constant(false)
@@ -77,7 +76,6 @@ public struct ScrollViewGestureButton<Label: View>: View {
             pressAction: pressAction ?? {},
             releaseInsideAction: releaseInsideAction ?? {},
             releaseOutsideAction: releaseOutsideAction ?? {},
-            endAction: endAction ?? {},
             longPressDelay: longPressDelay,
             longPressAction: longPressAction ?? {},
             doubleTapTimeout: doubleTapTimeout,
@@ -87,6 +85,7 @@ public struct ScrollViewGestureButton<Label: View>: View {
             dragStartAction: dragStartAction,
             dragAction: dragAction,
             dragEndAction: dragEndAction,
+            endAction: endAction ?? {},
             label: label
         ))
     }
@@ -144,7 +143,6 @@ extension ScrollViewGestureButton {
         let pressAction: Action
         let releaseInsideAction: Action
         let releaseOutsideAction: Action
-        let endAction: Action
         let longPressDelay: TimeInterval
         let longPressAction: Action
         let doubleTapTimeout: TimeInterval
@@ -154,6 +152,7 @@ extension ScrollViewGestureButton {
         let dragStartAction: DragAction?
         let dragAction: DragAction?
         let dragEndAction: DragAction?
+        let endAction: Action
         let label: LabelBuilder
 
         func tryStartRepeatTimer() {
@@ -301,6 +300,9 @@ struct ScrollViewGestureButton_Previews: PreviewProvider {
         @StateObject
         var state = PreviewState()
 
+        @State
+        private var items = (1...100).map { PreviewItem(id: $0) }
+
         var body: some View {
             VStack(spacing: 20) {
 
@@ -313,7 +315,6 @@ struct ScrollViewGestureButton_Previews: PreviewProvider {
                         pressAction: { state.pressCount += 1 },
                         releaseInsideAction: { state.releaseInsideCount += 1 },
                         releaseOutsideAction: { state.releaseOutsideCount += 1 },
-                        endAction: { state.endCount += 1 },
                         longPressDelay: 0.8,
                         longPressAction: { state.longPressCount += 1 },
                         doubleTapAction: { state.doubleTapCount += 1 },
@@ -321,11 +322,17 @@ struct ScrollViewGestureButton_Previews: PreviewProvider {
                         dragStartAction: { state.dragStartValue = $0.location },
                         dragAction: { state.dragChangeValue = $0.location },
                         dragEndAction: { state.dragEndValue = $0.location },
+                        endAction: { state.endCount += 1 },
                         label: { PreviewButton(color: .blue, isPressed: $0) }
                     )
                 }
             }
         }
+    }
+
+    struct PreviewItem: Identifiable {
+
+        var id: Int
     }
 
     struct PreviewButton: View {
@@ -439,7 +446,7 @@ struct ScrollViewGestureButton_Previews: PreviewProvider {
             label(title, "\(point.x.rounded()), \(point.y.rounded())")
         }
 
-        func label(_ title: String, _ value:String) -> some View {
+        func label(_ title: String, _ value: String) -> some View {
             HStack {
                 Text("\(title):")
                 Text(value).bold()
