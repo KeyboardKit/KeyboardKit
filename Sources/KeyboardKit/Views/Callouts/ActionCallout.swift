@@ -39,7 +39,11 @@ public struct ActionCallout: View {
     private var context: ActionCalloutContext
 
     private var keyboardContext: KeyboardContext {
+        #if os(iOS) || os(tvOS)
         KeyboardInputViewController.shared.keyboardContext
+        #else
+        return KeyboardContext()
+        #endif
     }
     
     private let device: DeviceType

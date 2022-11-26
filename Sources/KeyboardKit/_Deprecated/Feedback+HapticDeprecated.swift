@@ -3,8 +3,10 @@ import Foundation
 @available(*, deprecated, renamed: "HapticFeedbackEngine")
 public typealias HapticFeedbackPlayer = HapticFeedbackEngine
 
+#if os(iOS)
 @available(*, deprecated, renamed: "StandardHapticFeedbackEngine")
 public typealias StandardHapticFeedbackPlayer = StandardHapticFeedbackEngine
+#endif
 
 @available(*, deprecated, renamed: "DisabledHapticFeedbackEngine")
 public typealias DisabledHapticFeedbackPlayer = DisabledAudioFeedbackEngine

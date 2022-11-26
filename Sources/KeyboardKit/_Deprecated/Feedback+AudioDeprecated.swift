@@ -6,8 +6,10 @@ public typealias SystemAudio = AudioFeedback
 @available(*, deprecated, renamed: "AudioFeedbackEngine")
 public typealias SystemAudioPlayer = AudioFeedbackEngine
 
+#if os(iOS) || os(macOS) || os(tvOS)
 @available(*, deprecated, renamed: "StandardAudioFeedbackEngine")
 public typealias StandardSystemAudioPlayer = StandardAudioFeedbackEngine
+#endif
 
 @available(*, deprecated, renamed: "DisabledAudioFeedbackEngine")
 public typealias DisabledSystemAudioPlayer = DisabledAudioFeedbackEngine
