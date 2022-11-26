@@ -64,7 +64,7 @@ open class InputCalloutContext: ObservableObject {
      This value can be used to set the minimum duration of a
      callout.
      */
-    public var minimumVisibleDuration: TimeInterval = 0.15
+    public var minimumVisibleDuration: TimeInterval = 0.05
     
     
     // MARK: - Published Properties
