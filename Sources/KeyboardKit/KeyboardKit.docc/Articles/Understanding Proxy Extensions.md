@@ -2,18 +2,15 @@
 
 This article describes how KeyboardKit extends `UITextDocumentProxy` with a lot of additional functionality.
 
+Keyboard input view controllers have a `textDocumentProxy`, which is the way the keyboard is intended to work with the currently active app. 
 
-## Overview
+The text document proxy let's you insert and remove text, move the cursor forward and backward etc. However, its capabilities are very basic, and requires you to implement a bunch of functionality if you want your keyboard to do more things.
 
-iOS keyboard extensions provide their input view controller with a `textDocumentProxy`, which is the way the keyboard is intended to work with the current text document. It let's you insert text, move the cursor forward and backward, delete backwards etc.
+KeyboardKit therefore provides you with a lot of proxy extensions that make the proxy more capable. Some extensions have to work around the limitiations of what an iOS keyboard extension can do, but overall these extensions will make a lot of operations easier to implement. 
 
-However, this proxy's functionality is very basic, and requires you to implement a bunch of fundamental functionality from scratch if you want your keyboard to do things that you would expect a keyboard to be able to do.
+Since extensions are not included in the generated documentation, this article describes the extensions you get to by simply importing KeyboardKit. In fact, you could import KeyboardKit just to get access to these extensions and ignore all other parts of the library, and it would still bring a lot of value.
 
-KeyboardKit therefore provides you with a lot of extensions that make the proxy more capable. Some extensions have to work around the limitiations of the keyboard extension, but overall these extensions will make a lot of operations a lot easier to implement. 
-
-Since extensions are not included in the generated documentation, this article describes the extensions you get access to by simply importing KeyboardKit. You could even use these extensions by themselves and ignore all other parts of this library.
-
-[KeyboardKit Pro][Pro] unlocks even more extensions, such as the ability to fetch all the text instead of just the text closest to the input cursor.
+[KeyboardKit Pro][Pro] specific extensions are described at the end of this document.
 
 
 
@@ -39,13 +36,15 @@ KeyboardKit defines two content-specific extensions:
 - `trimmedDocumentContextAfterInput`
 - `trimmedDocumentContextBeforeInput`
 
-These extensions are used by the library, but you can probably find some use for them as well. 
+These properties return the trimmed text before and after the input cursor.
+
+Note that keyboard extensions don't have access to all text in the text document, which means that these properties will just give you the text closest to the input cursor. [KeyboardKit Pro][Pro] however adds ways to get all the text. 
 
 
 
 ## Delete
 
-By default, the proxy only lets you delete backwards a single time. KeyboardKit extends this functionality:
+KeyboardKit extends the text document proxy's by default limited functionality of only being able to delete backwards a single time:
 
 - `deleteBackward(times:)`
 - `deleteBackward(range:)`
@@ -61,7 +60,9 @@ KeyboardKit defines two functions for analyzing the current quotation state:
 - `isOpenAlternateQuotationBeforeInput(for:)`
 - `isOpenQuotationBeforeInput(for:)`
 
-These functions are used to know when the keyboard needs to close a currently open quotation. 
+These properties let you check if there are an unclosed quotation before the text input cursor.
+
+The quotation and alternate quotation characters differ between locales, which is why you need to provide a `Locale`. 
 
 
 
@@ -85,6 +86,7 @@ KeyboardKit defines a bunch of sentence-specific extensions:
 - `sentenceDelimiters`
 - `endSentence()`
 
+These properties and functions make it easier to work with sentences.
 
 
 ## Words
@@ -100,6 +102,57 @@ KeyboardKit defines a bunch of word-specific extensions:
 - `wordBeforeInput`
 - `wordDelimiters`
 - `replaceCurrentWord(with replacement: String)`
+
+These properties and functions make it easier to work with words.
+
+
+
+## 👑 Pro Features
+
+[KeyboardKit Pro][Pro] unlocks additional text document proxy capabilities.
+
+
+### Getting the full document context
+
+As you may have noticed, The `UITextDocumentProxy` `documentContextBeforeInput` and `documentContextAfterInput` properties don't return *all* content before and after the text input cursor,. Any line break may at any time stop the proxy from reading more content, which makes it hard to do more complex operations from a keyboard extension, such as proof-reading a document.
+
+KeyboardKit Pro therefore unlocks some `UITextDocumentProxy` extensions that let you access all text from the proxy:
+
+- `func fullDocumentContext() async throws -> FullDocumentContextResult`
+- `func fullDocumentContextBeforeInput() async throws -> String`
+- `func fullDocumentContextAfterInput() async throws -> String`
+
+`fullDocumentContext()` resolves all text before and after the input, while the others can be used if you just need the text before or after the input.
+
+Since these functions are `async`, you need to wrap them in a task when calling them from SwiftUI, for instance:
+
+```swift
+struct KeyboardView: View {
+
+    @EnvironmentObject
+    private var context: KeyboardContext
+
+    var body: some View {
+        VStack {
+            Button("Get the full document context") {
+                Task {
+                    let proxy = context.textDocumentProxy
+                    let result = try? await proxy.fullDocumentContext()
+                    await MainActor.run {
+                        print(result?.fullDocumentContext)
+                        print(result?.fullDocumentContextBeforeInput)
+                        print(result?.fullDocumentContextAfterInput)
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+Note that calling these functions will cause the keyboard extension to navigate through the entire text mass by moving the input cursor around in the text document, after which it will try to return the cursor to its original position.
+
+Since this feature is new and the way it works uses unreliable operations, please report any incorrect behavior so that it can be improved if needed.
 
 
 

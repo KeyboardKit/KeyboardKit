@@ -1,11 +1,13 @@
-# Understanding Actions
+# Understanding Emojis
 
-This article describes the KeyboardKit emoji model and how to use it. 
+This article describes the KeyboardKit emoji model and how to use it.
+
+[KeyboardKit Pro][Pro] specific features are described at the end of this document.
 
 
 ## Emojis
 
-KeyboardKit has an ``Emoji`` type that lets you handle emojis in a more structured way.
+KeyboardKit has an ``Emoji`` type that lets you handle emojis in a structured way.
 
 You can create an emoji like this:
 
@@ -19,17 +21,15 @@ and get all available emojis like this:
 let emojis = Emoji.all
 ```
 
-Using this way to handle emojis makes it easy to iterate over emojis in SwiftUI, since ``Emoji`` is `Identifiable`.
-
-You also get access to additional information, such as the emoji's unique unicode identifier and unicode-based name:
+You can also get access to additional information, such as the emoji's unique unicode identifier and unicode-based name:
 
 ```swift
 let emoji = Emoji("😀")
-let id = emoji.unicodeIdentifier // -> \\N{GRINNING FACE}
-let name = emoji.unicodeName // -> Grinning Face
+let emojiId = emoji.unicodeIdentifier // -> \\N{GRINNING FACE}
+let emojiName = emoji.unicodeName // -> Grinning Face
 ```
 
-KeyboardKit Pro also adds support for skin tone variants, which brings even more power to the emoji model.
+KeyboardKit Pro also adds support for skin tone variants. See more about this further down.
 
 
 
@@ -37,11 +37,11 @@ KeyboardKit Pro also adds support for skin tone variants, which brings even more
 
 KeyboardKit has an ``EmojiCategory`` enum that defines all available emoji categories, such as `.smileys`, `.animals`, `.foods` etc. 
 
-You can get all emoji in the category like this:
+You can get an emoji category like this:
 
 ```swift
 let category = EmojiCategory.animals
-let emojis = category.emojis
+let emojis = category.emojis    // 🐶🐱🐭🐹🐰🦊🐻🐼🐻‍❄️🐨 ...
 ```
 
 and get all available categories like this:
@@ -50,13 +50,48 @@ and get all available categories like this:
 let categories = EmojiCategory.all
 ```
 
+There is also a `.frequent` category that is handled with a ``FrequentEmojiProvider``. The ``MostRecentEmojiProvider`` implements this protocol by keeping track of the most recently tapped emojis, but you can implement a custom provider as well. 
+
+
 
 ## Emoji Views
 
-KeyboardKit has an ``EmojiKeyboard`` view that can be used to list emojis in a grid, as well as an ``EmojiCategoryKeyboard`` view that replicates the iOS stock emoji keyboard by listing the provided categories and their emojis.
+KeyboardKit has an ``EmojiKeyboard`` that can lists emojis in a grid, as well as an ``EmojiCategoryKeyboard`` that replicates the iOS stock emoji keyboard by listing the provided categories and their emojis. They can both be styled with an ``EmojiKeyboardStyle``.
+
+There are also an ``EmojiKeyboardItem`` and other views that are used by these views, but that can also be used as standalone views.
 
 
 
-## Frequent Emojis
+## 👑 Pro Features
 
-You can use the ``FrequentEmojiProvider`` protocol to resolve frequently used emojis. The ``MostRecentEmojiProvider`` implements this protocol by just keeping track of the most recently selected emojis, but you can implement your own provider as well.
+KeyboardKit Pro unlocks additional emoji capabilities.
+
+
+### Additional information
+
+[KeyboardKit Pro][Pro] unlocks a ``ProEmojiInfo`` protocol that is implemented by ``Emoji`` and provides additional emoji information.
+
+For instance, the protocol provides skin tone variant information, such as ``hasSkinToneVariants``, ``neutralSkinToneVariant`` and ``skinToneVariants``:
+
+```swift
+Emoji("👍").hasSkinToneVariants     // true
+Emoji("🚀").hasSkinToneVariants     // false
+
+Emoji("👍🏿").neutralSkinToneVariant  // 👍
+
+Emoji("👍").skinToneVariants        // 👍👍🏻👍🏼👍🏽👍🏾👍🏿
+Emoji("👍").skinToneVariantActions  // The above variants as keyboard actions
+```
+
+These properties make it possible to resolve all skin tone variants for an emoji that has it.
+
+
+### Additional action callout items
+
+Since KeyboardKit Pro unlocks skin tone variants, it will also unlock skin tone variant callout actions for all emojis that has skin tone variants.
+
+This means long pressing an emoji that has skin tone variants, will show those variants in a callout.
+
+
+
+[Pro]: https://github.com/KeyboardKit/KeyboardKitPro

@@ -188,8 +188,8 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Gumroad]: https://danielsaidi.gumroad.com
 
 [Documentation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/
-
 [Getting-Started]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/getting-started
+
 [Actions]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-actions
 [Appearances]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-appearances
 [Autocomplete]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-autocomplete

@@ -7,7 +7,7 @@ KeyboardKit helps you build custom keyboards with Swift and SwiftUI.
 
 ![KeyboardKit logo](Logo.png)
 
-KeyboardKit helps you build custom keyboards with Swift and SwiftUI. It extends Apple's native keyboard extension APIs and provides you with a lot more functionality than is otherwise available. 
+KeyboardKit helps you build custom keyboards with Swift and SwiftUI. It extends Apple's native keyboard extension APIs and provides you with more functionality than is otherwise available. 
 
 KeyboardKit also provides you with utilities that lets you mimic native iOS keyboards. You can use ``SystemKeyboard`` and style it a little (or a lot) or use completely custom views or designs.
 
@@ -77,6 +77,7 @@ KeyboardKit is available under the MIT license.
 - <doc:Understanding-Actions>
 - <doc:Understanding-Appearances>
 - <doc:Understanding-Autocomplete>
+- <doc:Understanding-Emojis>
 - <doc:Understanding-Feedback>
 - <doc:Understanding-Input-Sets>
 - <doc:Understanding-Layout>
@@ -154,6 +155,13 @@ KeyboardKit is available under the MIT license.
 
 - ``Emoji``
 - ``EmojiCategory``
+- ``EmojiCategoryKeyboard``
+- ``EmojiCategoryKeyboardMenu``
+- ``EmojiCategoryTitle``
+- ``EmojiKeyboard``
+- ``EmojiKeyboardButton``
+- ``EmojiKeyboardItem``
+- ``EmojiKeyboardStyle``
 - ``EmojiProvider``
 - ``FrequentEmojiProvider``
 - ``MostRecentEmojiProvider``
@@ -161,6 +169,10 @@ KeyboardKit is available under the MIT license.
 ### External
 
 - ``ExternalKeyboardContext``
+
+### Features
+
+- ``FeatureToggle``
 
 ### Feedback
 
@@ -181,8 +193,11 @@ KeyboardKit is available under the MIT license.
 ### Gestures
 
 - ``DragGestureHandler``
+- ``GestureButton``
+- ``GestureButtonDefaults``
 - ``KeyboardGesture``
 - ``RepeatGestureTimer``
+- ``ScrollViewGestureButton``
 - ``SpaceCursorDragGestureHandler``
 - ``SpaceDragSensitivity``
 
@@ -266,7 +281,7 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardButtonBorderStyle``
 - ``KeyboardButtonShadowStyle``
 
-### Views/Autocomplete
+### Views - Autocomplete
 
 - ``AutocompleteToolbar``
 - ``AutocompleteToolbarItem``
@@ -274,37 +289,28 @@ KeyboardKit is available under the MIT license.
 - ``AutocompleteToolbarItemTitle``
 - ``AutocompleteToolbarSeparator``
 
-### Views/Buttons
+### Views - Buttons
 
-- ``GestureButton``
 - ``NextKeyboardButton``
 
-### Views/Callouts
+### Views - Callouts
 
 - ``ActionCallout``
 - ``CalloutButtonArea``
 - ``CalloutCurve``
 - ``InputCallout``
 
-### Views/Emojis
-
-- ``EmojiCategoryKeyboard``
-- ``EmojiCategoryKeyboardMenu``
-- ``EmojiCategoryTitle``
-- ``EmojiKeyboard``
-- ``EmojiKeyboardButton``
-
-### Views/Input
+### Views - Input
 
 - ``KeyboardInputTextComponent``
 - ``KeyboardTextField``
 - ``KeyboardTextView``
 
-### Views/Layout
+### Views - Layout
 
 - ``KeyboardGrid``
 
-### Views/System
+### Views - System
 
 - ``SystemKeyboard``
 - ``SystemKeyboardActionButton``
