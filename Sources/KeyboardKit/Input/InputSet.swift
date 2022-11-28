@@ -40,8 +40,8 @@ public extension AlphabeticInputSet {
      A standard `QWERTY` input set.
      */
     static let qwerty = AlphabeticInputSet(rows: [
-        .init("qwertyuiop"),
-        .init("asdfghjkl"),
+        .init(chars: "qwertyuiop"),
+        .init(chars: "asdfghjkl"),
         .init(phone: "zxcvbnm", pad: "zxcvbnm,.")
     ])
 }
@@ -59,7 +59,7 @@ public extension NumericInputSet {
      */
     static func standard(currency: String) -> NumericInputSet {
         NumericInputSet(rows: [
-            .init("1234567890"),
+            .init(chars: "1234567890"),
             .init(phone: "-/:;()\(currency)&@”", pad: "@#\(currency)&*()’”"),
             .init(phone: ".,?!’", pad: "%-+=/;:!?")
         ])

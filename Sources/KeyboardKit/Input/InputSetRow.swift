@@ -19,16 +19,16 @@ public extension InputSetRow {
      Create an input row from a string, where each character
      is mapped to a ``InputSetItem``.
      */
-    init(_ chars: String) {
-        self.init(chars.chars)
+    init(chars: String) {
+        self.init(chars: chars.chars)
     }
     
     /**
      Create an input row from an array, where each character
      is mapped to a ``InputSetItem``.
      */
-    init(_ row: [String]) {
-        self = row.map { InputSetItem($0) }
+    init(chars: [String]) {
+        self = chars.map { InputSetItem($0) }
     }
 
     /**
@@ -65,16 +65,24 @@ public extension InputSetRow {
      Create an input row from phone and pad-specific strings,
      where each character is mapped to a ``InputSetItem``.
      */
-    init(phone: String, pad: String, deviceType: DeviceType = .current) {
-        self.init(deviceType == .pad ? pad.chars : phone.chars)
+    init(
+        phone: String,
+        pad: String,
+        deviceType: DeviceType = .current
+    ) {
+        self.init(chars: deviceType == .pad ? pad.chars : phone.chars)
     }
 
     /**
      Create an input row from phone and pad-specific strings,
      where each character is mapped to a ``InputSetItem``.
      */
-    init(phone: [String], pad: [String], deviceType: DeviceType = .current) {
-        self.init(deviceType == .pad ? pad : phone)
+    init(
+        phone: [String],
+        pad: [String],
+        deviceType: DeviceType = .current
+    ) {
+        self.init(chars: deviceType == .pad ? pad : phone)
     }
 
     /**

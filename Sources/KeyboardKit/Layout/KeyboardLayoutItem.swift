@@ -10,14 +10,14 @@ import CoreGraphics
 import SwiftUI
 
 /**
- A keyboard layout item provides a keyboard action, the item
- size and insets. It can then be converted to a button.
+ Keyboard layout items are used to define a ``KeyboardAction``,
+ a ``KeyboardLayoutItemSize`` and edge insets for an item in
+ a system keyboard layout.
  
- Note that the insets are the edge insets of each item. This
- must be applied within the button tap area, to avoid a dead
- tap area between each keyboard button.
+ Note that insets must be applied within the button tap area,
+ to avoid a dead tap areas between the keyboard buttons.
  */
-public struct KeyboardLayoutItem: Equatable {
+public struct KeyboardLayoutItem: Equatable, KeyboardRowItem {
     
     /**
      Create a new layout item.
@@ -51,4 +51,20 @@ public struct KeyboardLayoutItem: Equatable {
      The item insets that should be used for the item.
      */
     public var insets: EdgeInsets
+
+    /**
+     The row ID the is used to identify the item in a row.
+     */
+    public var rowId: KeyboardAction { action }
 }
+
+/**
+ This typealias represents a list of ``KeyboardLayoutItem``s.
+ */
+public typealias KeyboardLayoutItemRow = [KeyboardLayoutItem]
+
+/**
+ This typealias represents a list of ``KeyboardLayoutItemRow``
+ values that make up a keyboard's rows.
+ */
+public typealias KeyboardLayoutItemRows = [KeyboardLayoutItemRow]

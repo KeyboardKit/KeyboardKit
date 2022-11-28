@@ -6,32 +6,22 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Quick
-import Nimble
 import KeyboardKit
+import XCTest
 
-class String_CharsTests: QuickSpec {
+class String_CharsTests: XCTestCase {
     
-    override func spec() {
-        
-        describe("chars") {
-            
-            it("splits the string into individual characters") {
-                let string = "foo"
-                let result = string.chars
-                expect(result).to(equal(["f", "o", "o"]))
-            }
-        }
-        
-        describe("static character collection") {
-            
-            it("has valid values") {
-                expect(String.carriageReturn).to(equal("\r"))
-                expect(String.newline).to(equal("\n"))
-                expect(String.space).to(equal(" "))
-                expect(String.tab).to(equal("\t"))
-                expect(String.zeroWidthSpace).to(equal("\u{200B}"))
-            }
-        }
+    func charsSplitsStringIntoIndividualCharacters() {
+        let string = "foo"
+        let result = string.chars
+        XCTAssertEqual(result, ["f", "o", "o"])
+    }
+
+    func characterCollectionHasValidValues() {
+        XCTAssertEqual(String.carriageReturn, "\r")
+        XCTAssertEqual(String.newline, "\n")
+        XCTAssertEqual(String.space, " ")
+        XCTAssertEqual(String.tab, "\t")
+        XCTAssertEqual(String.zeroWidthSpace, "\u{200B}")
     }
 }

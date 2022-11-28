@@ -22,6 +22,15 @@ Some things that are planned for the 7.0 release:
 
 ## 6.6
 
+### ✨ New features
+
+* `EmojiCharacterAnalyzer` is a new protocol that is implemented by `Character`.
+* `EmojiStringAnalyzer` is a new protocol that is implemented by `String`.
+
+
+
+## 6.6
+
 This version adds a brand new gesture engine, which aims to make typing feel a lot more like in the native keyboards.
 
 This version also adds new emoji capabilities, such as a unicode id and name, as well as support for skin tone variants (Pro feature). These new capabilities are used by the emoji keyboards, which can now show input callouts and skin tone variants when you type on an emoji keyboard.   

@@ -6,39 +6,26 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Quick
-import Nimble
 import KeyboardKit
+import XCTest
 
-class String_CasingTests: QuickSpec {
-    
-    override func spec() {
+class String_CasingTests: XCTestCase {
 
-        describe("is capitalized") {
+    func isCapitalizedIsOnlyTrueForCapitalizedStrings() {
+        XCTAssertTrue("Foobar".isCapitalized)
+        XCTAssertTrue("Foo Bar".isCapitalized)
+        XCTAssertFalse("Foo bar".isCapitalized)
+    }
 
-            it("is only true for capitalized strings") {
-                expect("Foobar".isCapitalized).to(beTrue())
-                expect("Foo Bar".isCapitalized).to(beTrue())
-                expect("Foo bar".isCapitalized).to(beFalse())
-            }
-        }
+    func isLowercasedIsOnlyTrueForStringsThatCanBeAndAreLowercased() {
+        XCTAssertTrue("foobar".isLowercased)
+        XCTAssertFalse("fooBar".isLowercased)
+        XCTAssertFalse("123".isLowercased)
+    }
 
-        describe("is lowercased") {
-
-            it("is only true for strings that can be and are lowercased") {
-                expect("foobar".isLowercased).to(beTrue())
-                expect("fooBar".isLowercased).to(beFalse())
-                expect("123".isLowercased).to(beFalse())
-            }
-        }
-        
-        describe("is uppercased") {
-            
-            it("is only true for strings that can be and are uppercased") {
-                expect("FOOBAR".isUppercased).to(beTrue())
-                expect("fooBar".isUppercased).to(beFalse())
-                expect("123".isUppercased).to(beFalse())
-            }
-        }
+    func isUppercasedIsOnlyTrueForStringsThatCanBeAndAreUppercased() {
+        XCTAssertTrue("FOOBAR".isUppercased)
+        XCTAssertFalse("fooBar".isUppercased)
+        XCTAssertFalse("123".isUppercased)
     }
 }

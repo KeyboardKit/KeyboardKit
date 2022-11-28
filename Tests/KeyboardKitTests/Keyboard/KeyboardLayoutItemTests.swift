@@ -1,5 +1,5 @@
 //
-//  KeyboardLayoutItemRowTests.swift
+//  KeyboardLayoutItemTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-08.

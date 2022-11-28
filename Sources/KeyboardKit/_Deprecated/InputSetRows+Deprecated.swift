@@ -8,7 +8,7 @@ public extension InputSetRows {
      */
     @available(*, deprecated, message: "Use input set row initializers instead")
     init(_ rows: [[String]]) {
-        self = rows.map { InputSetRow($0) }
+        self = rows.map { InputSetRow(chars: $0) }
     }
 
     /**

@@ -158,11 +158,13 @@ KeyboardKit is available under the MIT license.
 - ``EmojiCategoryKeyboard``
 - ``EmojiCategoryKeyboardMenu``
 - ``EmojiCategoryTitle``
+- ``EmojiCharacterAnalyzer``
 - ``EmojiKeyboard``
 - ``EmojiKeyboardButton``
 - ``EmojiKeyboardItem``
 - ``EmojiKeyboardStyle``
 - ``EmojiProvider``
+- ``EmojiStringAnalyzer``
 - ``FrequentEmojiProvider``
 - ``MostRecentEmojiProvider``
 

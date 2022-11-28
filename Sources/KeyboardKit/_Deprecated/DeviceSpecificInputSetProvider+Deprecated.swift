@@ -28,8 +28,9 @@ public extension DeviceSpecificInputSetProvider {
     func row(
         phone: String,
         pad: String,
-        deviceType: DeviceType = .current) -> InputSetRow {
-        InputSetRow(deviceType == .pad ? pad.chars : phone.chars)
+        deviceType: DeviceType = .current
+    ) -> InputSetRow {
+        InputSetRow(chars: deviceType == .pad ? pad.chars : phone.chars)
     }
 
     /**
@@ -39,8 +40,9 @@ public extension DeviceSpecificInputSetProvider {
     func row(
         phone: [String],
         pad: [String],
-        deviceType: DeviceType = .current) -> InputSetRow {
-        InputSetRow(deviceType == .pad ? pad : phone)
+        deviceType: DeviceType = .current
+    ) -> InputSetRow {
+        InputSetRow(chars: deviceType == .pad ? pad : phone)
     }
 
     /**

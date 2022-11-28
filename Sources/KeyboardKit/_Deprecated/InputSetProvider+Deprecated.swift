@@ -5,7 +5,7 @@ public extension InputSetProvider {
      */
     @available(*, deprecated, message: "Use InputSet.init(chars:) instead")
     func row(_ chars: String) -> InputSetRow {
-        InputSetRow(chars.chars)
+        InputSetRow(chars: chars.chars)
     }
 
     /**
@@ -13,7 +13,7 @@ public extension InputSetProvider {
      */
     @available(*, deprecated, message: "Use InputSet.init(chars:) instead")
     func row(_ chars: [String]) -> InputSetRow {
-        InputSetRow(chars)
+        InputSetRow(chars: chars)
     }
     
     /**

@@ -6,36 +6,29 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Quick
-import Nimble
 import KeyboardKit
+import XCTest
 
-class String_DelimitersTests: QuickSpec {
+class String_DelimitersTests: XCTestCase {
     
-    override func spec() {
-        
-        describe("string") {
-            
-            it("can identify a sentence delimiter") {
-                let result = String.sentenceDelimiters.map { $0.isSentenceDelimiter }
-                expect(result.allSatisfy { $0 == true }).to(beTrue())
-                expect("a".isSentenceDelimiter).to(beFalse())
-            }
-            
-            it("can identify a word delimiter") {
-                let result = String.wordDelimiters.map { $0.isWordDelimiter }
-                expect(result.allSatisfy { $0 == true }).to(beTrue())
-                expect("a".isWordDelimiter).to(beFalse())
-            }
-            
-            it("provides sentence delimiters") {
-                expect(String.sentenceDelimiters).to(equal(["!", ".", "?"]))
-            }
-            
-            it("provides word delimiters") {
-                let expected = "!.?,;:()[]{}<>".chars + [" ", .newline]
-                expect(String.wordDelimiters).to(equal(expected))
-            }
-        }
+    func stringCanIdentifySentenceDelimiter() {
+        let result = String.sentenceDelimiters.map { $0.isSentenceDelimiter }
+        XCTAssertTrue(result.allSatisfy { $0 == true })
+        XCTAssertFalse("a".isSentenceDelimiter)
+    }
+
+    func stringCanIdentifyWordDelimiter() {
+        let result = String.wordDelimiters.map { $0.isWordDelimiter }
+        XCTAssertTrue(result.allSatisfy { $0 == true })
+        XCTAssertFalse("a".isWordDelimiter)
+    }
+
+    func stringProvidesSentenceDelimiters() {
+        XCTAssertEqual(String.sentenceDelimiters, ["!", ".", "?"])
+    }
+
+    func stringProvidesWordDelimiters() {
+        let expected = "!.?,;:()[]{}<>".chars + [" ", .newline]
+        XCTAssertEqual(String.wordDelimiters, expected)
     }
 }

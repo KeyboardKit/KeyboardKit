@@ -8,6 +8,7 @@
 
 import SwiftUI
 import XCTest
+
 @testable import KeyboardKit
 
 class StandardKeyboardAppearanceTests: XCTestCase {

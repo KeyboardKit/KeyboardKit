@@ -9,8 +9,8 @@
 import Foundation
 
 /**
- This protocol can be implemented by classes that can return
- a list of emojis.
+ This protocol can be implemented by any classes that can be
+ used to get a list of emojis.
 */
 public protocol EmojiProvider {
     
