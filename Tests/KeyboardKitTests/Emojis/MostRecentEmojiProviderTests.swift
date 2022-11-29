@@ -6,10 +6,9 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+import KeyboardKit
 import MockingKit
 import XCTest
-
-@testable import KeyboardKit
 
 class MostRecentEmojiProviderTests: XCTestCase {
 

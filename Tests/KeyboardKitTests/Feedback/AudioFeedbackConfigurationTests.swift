@@ -6,48 +6,32 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Quick
-import Nimble
 import KeyboardKit
+import XCTest
 
-class AudioFeedbackConfigurationTests: QuickSpec {
-    
-    override func spec() {
-        
-        describe("default initializer") {
-            
-            it("uses standard feedback") {
-                let config = AudioFeedbackConfiguration()
-                expect(config.input).to(equal(AudioFeedback.input))
-                expect(config.delete).to(equal(AudioFeedback.delete))
-                expect(config.system).to(equal(AudioFeedback.system))
-            }
-        }
-        
-        describe("enabled configuration") {
-            
-            it("uses standard feedback") {
-                let config = AudioFeedbackConfiguration.enabled
-                expect(config).to(equal(AudioFeedbackConfiguration()))
-            }
-        }
-        
-        describe("no feedback configuration") {
-            
-            it("disables all feedback") {
-                let config = AudioFeedbackConfiguration.noFeedback
-                expect(config.input).to(equal(AudioFeedback.none))
-                expect(config.delete).to(equal(AudioFeedback.none))
-                expect(config.system).to(equal(AudioFeedback.none))
-            }
-        }
-        
-        describe("standard configuration") {
-            
-            it("uses standard feedback") {
-                let config = AudioFeedbackConfiguration.standard
-                expect(config).to(equal(AudioFeedbackConfiguration()))
-            }
-        }
+class AudioFeedbackConfigurationTests: XCTestCase {
+
+    func testDefaultInitializerUsesStandardFeedback() {
+        let config = AudioFeedbackConfiguration()
+        XCTAssertEqual(config.input, AudioFeedback.input)
+        XCTAssertEqual(config.delete, AudioFeedback.delete)
+        XCTAssertEqual(config.system, AudioFeedback.system)
+    }
+
+    func testEnabledConfigurationUsesstandardFeedback() {
+        let config = AudioFeedbackConfiguration.enabled
+        XCTAssertEqual(config, AudioFeedbackConfiguration())
+    }
+
+    func testNoFeedbackConfigurationDisablesAllFeedback() {
+        let config = AudioFeedbackConfiguration.noFeedback
+        XCTAssertEqual(config.input, AudioFeedback.none)
+        XCTAssertEqual(config.delete, AudioFeedback.none)
+        XCTAssertEqual(config.system, AudioFeedback.none)
+    }
+
+    func testStandardConfigurationUsesStandardFeedback() {
+        let config = AudioFeedbackConfiguration.standard
+        XCTAssertEqual(config, AudioFeedbackConfiguration())
     }
 }

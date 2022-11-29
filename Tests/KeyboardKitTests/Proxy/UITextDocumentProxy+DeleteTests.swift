@@ -7,140 +7,96 @@
 //
 
 #if os(iOS) || os(tvOS)
-import Quick
-import Nimble
 import MockingKit
+import XCTest
 
 @testable import KeyboardKit
 
-class UITextDocumentProxy_DeleteTests: QuickSpec {
-    
-    override func spec() {
-        
-        var proxy: MockTextDocumentProxy!
-        
-        var delimiters: [String] { return proxy.wordDelimiters }
-        
-        beforeEach {
-            proxy = MockTextDocumentProxy()
-        }
-        
-        
-        describe("deleting backwards certain number of times") {
-            
-            it("calls delete backwards correct number of times") {
-                proxy.deleteBackward(times: 11)
-                let delete = proxy.calls(to: proxy.deleteBackwardRef)
-                expect(delete.count).to(equal(11))
-            }
-        }
-        
-        
-        describe("deleting backwards with range") {
-            
-            func result(for range: DeleteBackwardRange, _ expected: Int) -> Bool {
-                proxy.deleteBackward(range: range)
-                return proxy.hasCalled(proxy.deleteBackwardRef, numberOfTimes: expected)
-            }
-            
-            context("using char range") {
-                
-                it("deletes once if no text exists before input") {
-                    proxy.documentContextBeforeInput = nil
-                    expect(result(for: .char, 1)).to(beTrue())
-                }
-                
-                it("deletes last char") {
-                    proxy.documentContextBeforeInput = "abc 123 "
-                    expect(result(for: .char, 1)).to(beTrue())
-                }
-            }
-            
-            context("using word range") {
-                
-                it("deletes once if no text exists before input") {
-                    proxy.documentContextBeforeInput = nil
-                    expect(result(for: .word, 1)).to(beTrue())
-                }
-                
-                it("returns single word segment including trailing space") {
-                    proxy.documentContextBeforeInput = "abc "
-                    expect(result(for: .word, 4)).to(beTrue())
-                }
-                
-                it("returns last word segment including trailing space") {
-                    proxy.documentContextBeforeInput = "abc 123 "
-                    expect(result(for: .word, 4)).to(beTrue())
-                }
-            }
-            
-            context("using sentence range") {
-                
-                it("deletes once if no text exists before input") {
-                    proxy.documentContextBeforeInput = nil
-                    expect(result(for: .sentence, 1)).to(beTrue())
-                }
-                
-                it("returns single sentence segment including trailing space") {
-                    proxy.documentContextBeforeInput = "abc 123. "
-                    expect(result(for: .sentence, 9)).to(beTrue())
-                }
-                
-                it("returns last sentence segment including trailing space") {
-                    proxy.documentContextBeforeInput = "foo bar! abc 123. "
-                    expect(result(for: .sentence, 10)).to(beTrue())
-                }
-            }
-        }
-        
-        
-        describe("delete backwards text for range") {
-            
-            func result(for range: DeleteBackwardRange) -> String? {
-                proxy.deleteBackwardText(for: range)
-            }
-            
-            it("returns nil if no text exists before input") {
-                proxy.documentContextBeforeInput = nil
-                expect(result(for: .char)).to(beNil())
-                expect(result(for: .word)).to(beNil())
-                expect(result(for: .sentence)).to(beNil())
-            }
-            
-            context("char range") {
-                
-                it("returns last char") {
-                    proxy.documentContextBeforeInput = "abc 123 "
-                    expect(result(for: .char)).to(equal(" "))
-                }
-            }
-            
-            context("word range") {
-                
-                it("returns single word segment including trailing space") {
-                    proxy.documentContextBeforeInput = "abc "
-                    expect(result(for: .word)).to(equal("abc "))
-                }
-                
-                it("returns last word segment including trailing space") {
-                    proxy.documentContextBeforeInput = "abc 123 "
-                    expect(result(for: .word)).to(equal("123 "))
-                }
-            }
-            
-            context("sentence range") {
-                
-                it("returns single sentence segment including trailing space") {
-                    proxy.documentContextBeforeInput = "abc 123. "
-                    expect(result(for: .sentence)).to(equal("abc 123. "))
-                }
-                
-                it("returns last sentence segment including trailing space") {
-                    proxy.documentContextBeforeInput = "foo bar! abc 123. "
-                    expect(result(for: .sentence)).to(equal(" abc 123. "))
-                }
-            }
-        }
+class UITextDocumentProxy_DeleteTests: XCTestCase {
+
+    var proxy: MockTextDocumentProxy!
+
+    var delimiters: [String] { return proxy.wordDelimiters }
+
+    override func setUp() {
+        proxy = MockTextDocumentProxy()
+    }
+
+
+    func testDeletingBackwardsCertainNumberOfTimes() {
+        proxy.deleteBackward(times: 11)
+        let delete = proxy.calls(to: proxy.deleteBackwardRef)
+        XCTAssertEqual(delete.count, 11)
+    }
+
+
+    func deleteBackwardResult(for range: DeleteBackwardRange, _ expected: Int) -> Bool {
+        proxy.resetCalls()
+        proxy.deleteBackward(range: range)
+        return proxy.hasCalled(proxy.deleteBackwardRef, numberOfTimes: expected)
+    }
+
+    func testDeleteBackwardWithCharRange() {
+        proxy.documentContextBeforeInput = nil
+        XCTAssertTrue(deleteBackwardResult(for: .char, 1))
+
+        proxy.documentContextBeforeInput = "abc 123 "
+        XCTAssertTrue(deleteBackwardResult(for: .char, 1))
+    }
+
+    func testDeleteBackwardWithWordRange() {
+        proxy.documentContextBeforeInput = nil
+        XCTAssertTrue(deleteBackwardResult(for: .word, 1))
+
+        proxy.documentContextBeforeInput = "abc "
+        XCTAssertTrue(deleteBackwardResult(for: .word, 4))
+
+        proxy.documentContextBeforeInput = "abc 123 "
+        XCTAssertTrue(deleteBackwardResult(for: .word, 4))
+    }
+
+    func testDeleteBackwardWithSentenceRange() {
+        proxy.documentContextBeforeInput = nil
+        XCTAssertTrue(deleteBackwardResult(for: .sentence, 1))
+
+        proxy.documentContextBeforeInput = "abc 123. "
+        XCTAssertTrue(deleteBackwardResult(for: .sentence, 9))
+
+        proxy.documentContextBeforeInput = "foo bar! abc 123. "
+        XCTAssertTrue(deleteBackwardResult(for: .sentence, 10))
+    }
+
+
+    func deleteBackwardTextResult(for range: DeleteBackwardRange) -> String? {
+        proxy.deleteBackwardText(for: range)
+    }
+
+    func testDeleteBackwardTextReturnsNilIfNoTextExistsBeforeInput() {
+        proxy.documentContextBeforeInput = nil
+        XCTAssertNil(deleteBackwardTextResult(for: .char))
+        XCTAssertNil(deleteBackwardTextResult(for: .word))
+        XCTAssertNil(deleteBackwardTextResult(for: .sentence))
+    }
+
+    func testDeleteBackwardTextReturnsWithCharRange() {
+        proxy.documentContextBeforeInput = "abc 123 "
+        XCTAssertEqual(deleteBackwardTextResult(for: .char), " ")
+    }
+
+    func testDeleteBackwardTextReturnsWordRange() {
+        proxy.documentContextBeforeInput = "abc "
+        XCTAssertEqual(deleteBackwardTextResult(for: .word), "abc ")
+
+        proxy.documentContextBeforeInput = "abc 123 "
+        XCTAssertEqual(deleteBackwardTextResult(for: .word), "123 ")
+    }
+
+    func testDeleteBackwardTextReturnsSentenceRange() {
+        proxy.documentContextBeforeInput = "abc 123. "
+        XCTAssertEqual(deleteBackwardTextResult(for: .sentence), "abc 123. ")
+
+        proxy.documentContextBeforeInput = "foo bar! abc 123. "
+        XCTAssertEqual(deleteBackwardTextResult(for: .sentence), " abc 123. ")
     }
 }
 #endif

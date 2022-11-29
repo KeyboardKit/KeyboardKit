@@ -7,44 +7,34 @@
 //
 
 #if os(iOS)
-import Quick
-import Nimble
 import KeyboardKit
+import XCTest
 
-class HapticFeedbackTests: QuickSpec {
-    
-    override func spec() {
-        
-        var engine: MockHapticFeedbackEngine!
-        
-        beforeEach {
-            engine = MockHapticFeedbackEngine()
-            HapticFeedback.engine = engine
-        }
-        
-        describe("preparing feedback") {
-            
-            it("uses the shared audio engine") {
-                HapticFeedback.success.prepare()
-                HapticFeedback.warning.prepare()
-                let calls = engine.calls(to: engine.prepareRef)
-                expect(calls.count).to(equal(2))
-                expect(calls[0].arguments).to(equal(.success))
-                expect(calls[1].arguments).to(equal(.warning))
-            }
-        }
-        
-        describe("triggering feedback") {
-            
-            it("uses the shared audio engine") {
-                HapticFeedback.success.trigger()
-                HapticFeedback.warning.trigger()
-                let calls = engine.calls(to: engine.triggerRef)
-                expect(calls.count).to(equal(2))
-                expect(calls[0].arguments).to(equal(.success))
-                expect(calls[1].arguments).to(equal(.warning))
-            }
-        }
+class HapticFeedbackTests: XCTestCase {
+
+    var engine: MockHapticFeedbackEngine!
+
+    override func setUp() {
+        engine = MockHapticFeedbackEngine()
+        HapticFeedback.engine = engine
+    }
+
+    func testPreparingFeedbackUsesSharedAudioEngine() {
+        HapticFeedback.success.prepare()
+        HapticFeedback.warning.prepare()
+        let calls = engine.calls(to: engine.prepareRef)
+        XCTAssertEqual(calls.count, 2)
+        XCTAssertEqual(calls[0].arguments, .success)
+        XCTAssertEqual(calls[1].arguments, .warning)
+    }
+
+    func testTriggeringFeedbackUsesSharedAudioEngine() {
+        HapticFeedback.success.trigger()
+        HapticFeedback.warning.trigger()
+        let calls = engine.calls(to: engine.triggerRef)
+        XCTAssertEqual(calls.count, 2)
+        XCTAssertEqual(calls[0].arguments, .success)
+        XCTAssertEqual(calls[1].arguments, .warning)
     }
 }
 #endif

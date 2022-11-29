@@ -6,32 +6,25 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Quick
-import Nimble
 import KeyboardKit
+import XCTest
 
-class KeyboardTypeTests: QuickSpec {
+class KeyboardTypeTests: XCTestCase {
     
-    override func spec() {
-        
-        describe("is alphabetic") {
-            
-            func result(for type: KeyboardType) -> Bool {
-                type.isAlphabetic
-            }
-            
-            it("is only true for alphabetic types") {
-                expect(result(for: .alphabetic(.lowercased))).to(beTrue())
-                expect(result(for: .alphabetic(.uppercased))).to(beTrue())
-                expect(result(for: .alphabetic(.capsLocked))).to(beTrue())
-                expect(result(for: .numeric)).to(beFalse())
-                expect(result(for: .symbolic)).to(beFalse())
-                expect(result(for: .email)).to(beFalse())
-                expect(result(for: .emojis)).to(beFalse())
-                expect(result(for: .images)).to(beFalse())
-                expect(result(for: .images)).to(beFalse())
-                expect(result(for: .custom(named: ""))).to(beFalse())
-            }
-        }
+    func isAlphabeticResult(for type: KeyboardType) -> Bool {
+        type.isAlphabetic
+    }
+
+    func testIsAlphabeticIsOnlyTrueForAlphabeticTypes() {
+        XCTAssertTrue(isAlphabeticResult(for: .alphabetic(.lowercased)))
+        XCTAssertTrue(isAlphabeticResult(for: .alphabetic(.uppercased)))
+        XCTAssertTrue(isAlphabeticResult(for: .alphabetic(.capsLocked)))
+        XCTAssertFalse(isAlphabeticResult(for: .numeric))
+        XCTAssertFalse(isAlphabeticResult(for: .symbolic))
+        XCTAssertFalse(isAlphabeticResult(for: .email))
+        XCTAssertFalse(isAlphabeticResult(for: .emojis))
+        XCTAssertFalse(isAlphabeticResult(for: .images))
+        XCTAssertFalse(isAlphabeticResult(for: .images))
+        XCTAssertFalse(isAlphabeticResult(for: .custom(named: "")))
     }
 }

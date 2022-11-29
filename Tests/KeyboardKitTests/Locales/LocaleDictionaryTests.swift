@@ -6,78 +6,70 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Foundation
-import Quick
-import Nimble
 import KeyboardKit
+import XCTest
 
-class LocaleDictionaryTests: QuickSpec {
+class LocaleDictionaryTests: XCTestCase {
     
-    override func spec() {
-        
-        var typedDict: LocaleDictionary<String>!
-        var stringDict: LocaleDictionary<String>!
-        var intDict: LocaleDictionary<Int>!
-        
-        beforeEach {
-            typedDict = LocaleDictionary(
-                [
-                    .english: "English",
-                    .german: "German",
-                    .italian: "Italian",
-                    .swedish: "Swedish"
-                ]
-            )
-            
-            stringDict = LocaleDictionary(
-                [
-                    KeyboardLocale.english.id: "English",
-                    KeyboardLocale.german.id: "German",
-                    KeyboardLocale.italian.id: "Italian",
-                    KeyboardLocale.swedish.id: "Swedish"
-                ]
-            )
-            
-            intDict = LocaleDictionary(
-                [
-                    KeyboardLocale.english.id: 1,
-                    KeyboardLocale.german.id: 2,
-                    KeyboardLocale.italian.id: 3,
-                    KeyboardLocale.swedish.id: 4
-                ]
-            )
-        }
-        
-        describe("locale dictionary") {
-            
-            it("can be created with any item type") {
-                expect(typedDict.dictionary.keys.sorted()).to(equal(["de", "en", "it", "sv"]))
-                expect(typedDict).toNot(beNil())
-                expect(stringDict.dictionary.keys.sorted()).to(equal(["de", "en", "it", "sv"]))
-                expect(stringDict).toNot(beNil())
-                expect(intDict).toNot(beNil())
-            }
-            
-            it("can resolve existing values on locale") {
-                let locale = KeyboardLocale.swedish.locale
-                expect(typedDict.value(for: locale)).to(equal("Swedish"))
-                expect(stringDict.value(for: locale)).to(equal("Swedish"))
-                expect(intDict.value(for: locale)).to(equal(4))
-            }
-            
-            it("can resolve existing values on locale language code") {
-                let locale = Locale(identifier: "sv-SE")
-                expect(typedDict.value(for: locale)).to(equal("Swedish"))
-                expect(stringDict.value(for: locale)).to(equal("Swedish"))
-                expect(intDict.value(for: locale)).to(equal(4))
-            }
-            
-            it("returns nil for non-existing locale") {
-                let locale = Locale(identifier: "abc")
-                expect(typedDict.value(for: locale)).to(beNil())
-                expect(stringDict.value(for: locale)).to(beNil())
-                expect(intDict.value(for: locale)).to(beNil())
-            }
-        }
+    var typedDict: LocaleDictionary<String>!
+    var stringDict: LocaleDictionary<String>!
+    var intDict: LocaleDictionary<Int>!
+
+    override func setUp() {
+        typedDict = LocaleDictionary(
+            [
+                .english: "English",
+                .german: "German",
+                .italian: "Italian",
+                .swedish: "Swedish"
+            ]
+        )
+
+        stringDict = LocaleDictionary(
+            [
+                KeyboardLocale.english.id: "English",
+                KeyboardLocale.german.id: "German",
+                KeyboardLocale.italian.id: "Italian",
+                KeyboardLocale.swedish.id: "Swedish"
+            ]
+        )
+
+        intDict = LocaleDictionary(
+            [
+                KeyboardLocale.english.id: 1,
+                KeyboardLocale.german.id: 2,
+                KeyboardLocale.italian.id: 3,
+                KeyboardLocale.swedish.id: 4
+            ]
+        )
+    }
+
+    func testLocaleDictionaryCanBeCreatedWithAnyItemType() {
+        XCTAssertEqual(typedDict.dictionary.keys.sorted(), ["de", "en", "it", "sv"])
+        XCTAssertNotNil(typedDict)
+        XCTAssertEqual(stringDict.dictionary.keys.sorted(), ["de", "en", "it", "sv"])
+        XCTAssertNotNil(stringDict)
+        XCTAssertNotNil(intDict)
+    }
+
+    func testLocaleDictionaryCanResolveExistingValuesOnLocale() {
+        let locale = KeyboardLocale.swedish.locale
+        XCTAssertEqual(typedDict.value(for: locale), "Swedish")
+        XCTAssertEqual(stringDict.value(for: locale), "Swedish")
+        XCTAssertEqual(intDict.value(for: locale), 4)
+    }
+
+    func testLocaleDictionaryCanResolveExistingValuesOnLocaleLanguageCode() {
+        let locale = Locale(identifier: "sv-SE")
+        XCTAssertEqual(typedDict.value(for: locale), "Swedish")
+        XCTAssertEqual(stringDict.value(for: locale), "Swedish")
+        XCTAssertEqual(intDict.value(for: locale), 4)
+    }
+
+    func testLocaleDictionaryReturnsNilForNonExistingLocale() {
+        let locale = Locale(identifier: "abc")
+        XCTAssertNil(typedDict.value(for: locale))
+        XCTAssertNil(stringDict.value(for: locale))
+        XCTAssertNil(intDict.value(for: locale))
     }
 }

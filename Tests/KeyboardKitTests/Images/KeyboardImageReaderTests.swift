@@ -6,49 +6,44 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Quick
-import Nimble
 import KeyboardKit
 import SwiftUI
+import XCTest
 
-class KeyboardImageReaderTests: QuickSpec {
-    
-    override func spec() {
-        
-        describe("keyboard images") {
-            
-            func result(for image: Image) -> Image { image }
-            
-            it("are defined") {
-                expect(result(for: .keyboardBackspace)).to(equal(Image(systemName: "delete.left")))
-                expect(result(for: .keyboardBackspaceRtl)).to(equal(Image(systemName: "delete.right")))
-                expect(result(for: .keyboardCommand)).to(equal(Image(systemName: "command")))
-                expect(result(for: .keyboardControl)).to(equal(Image(systemName: "control")))
-                expect(result(for: .keyboardDictation)).to(equal(Image(systemName: "mic")))
-                expect(result(for: .keyboardEmail)).to(equal(Image(systemName: "envelope")))
-                expect(result(for: .keyboardGlobe)).to(equal(Image(systemName: "globe")))
-                expect(result(for: .keyboardImages)).to(equal(Image(systemName: "photo")))
-                expect(result(for: .keyboard)).to(equal(Image(systemName: "keyboard")))
-                expect(result(for: .keyboardDismiss)).to(equal(Image(systemName: "keyboard.chevron.compact.down")))
-                expect(result(for: .keyboardLeft)).to(equal(Image(systemName: "arrow.left")))
-                expect(result(for: .keyboardNewline)).to(equal(Image(systemName: "arrow.turn.down.left")))
-                expect(result(for: .keyboardNewlineRtl)).to(equal(Image(systemName: "arrow.turn.down.right")))
-                expect(result(for: .keyboardOption)).to(equal(Image(systemName: "option")))
-                expect(result(for: .keyboardRedo)).to(equal(Image(systemName: "arrow.uturn.right")))
-                expect(result(for: .keyboardRight)).to(equal(Image(systemName: "arrow.right")))
-                expect(result(for: .keyboardSettings)).to(equal(Image(systemName: "gearshape.fill")))
-                expect(result(for: .keyboardShiftCapslocked)).to(equal(Image(systemName: "capslock.fill")))
-                expect(result(for: .keyboardShiftLowercased)).to(equal(Image(systemName: "shift")))
-                expect(result(for: .keyboardShiftUppercased)).to(equal(Image(systemName: "shift.fill")))
-                expect(result(for: .keyboardTab)).to(equal(Image(systemName: "arrow.right.to.line")))
-                expect(result(for: .keyboardUndo)).to(equal(Image(systemName: "arrow.uturn.left")))
-            }
-            
-            it("are restricted to iOS 14 for some images") {
-                if #available(iOS 14, *) {
-                    expect(result(for: .keyboardEmoji)).to(equal(Image(systemName: "face.smiling")))
-                }
-            }
+class KeyboardImageReaderTests: XCTestCase {
+
+    func result(for image: Image) -> Image {
+        image
+    }
+
+    func testKeyboardImagesAreDefined() {
+        XCTAssertEqual(result(for: .keyboardBackspace), Image(systemName: "delete.left"))
+        XCTAssertEqual(result(for: .keyboardBackspaceRtl), Image(systemName: "delete.right"))
+        XCTAssertEqual(result(for: .keyboardCommand), Image(systemName: "command"))
+        XCTAssertEqual(result(for: .keyboardControl), Image(systemName: "control"))
+        XCTAssertEqual(result(for: .keyboardDictation), Image(systemName: "mic"))
+        XCTAssertEqual(result(for: .keyboardEmail), Image(systemName: "envelope"))
+        XCTAssertEqual(result(for: .keyboardGlobe), Image(systemName: "globe"))
+        XCTAssertEqual(result(for: .keyboardImages), Image(systemName: "photo"))
+        XCTAssertEqual(result(for: .keyboard), Image(systemName: "keyboard"))
+        XCTAssertEqual(result(for: .keyboardDismiss), Image(systemName: "keyboard.chevron.compact.down"))
+        XCTAssertEqual(result(for: .keyboardLeft), Image(systemName: "arrow.left"))
+        XCTAssertEqual(result(for: .keyboardNewline), Image(systemName: "arrow.turn.down.left"))
+        XCTAssertEqual(result(for: .keyboardNewlineRtl), Image(systemName: "arrow.turn.down.right"))
+        XCTAssertEqual(result(for: .keyboardOption), Image(systemName: "option"))
+        XCTAssertEqual(result(for: .keyboardRedo), Image(systemName: "arrow.uturn.right"))
+        XCTAssertEqual(result(for: .keyboardRight), Image(systemName: "arrow.right"))
+        XCTAssertEqual(result(for: .keyboardSettings), Image(systemName: "gearshape.fill"))
+        XCTAssertEqual(result(for: .keyboardShiftCapslocked), Image(systemName: "capslock.fill"))
+        XCTAssertEqual(result(for: .keyboardShiftLowercased), Image(systemName: "shift"))
+        XCTAssertEqual(result(for: .keyboardShiftUppercased), Image(systemName: "shift.fill"))
+        XCTAssertEqual(result(for: .keyboardTab), Image(systemName: "arrow.right.to.line"))
+        XCTAssertEqual(result(for: .keyboardUndo), Image(systemName: "arrow.uturn.left"))
+    }
+
+    func testSomeKeyboardImagesRequireIos14() {
+        if #available(iOS 14, *) {
+            XCTAssertEqual(result(for: .keyboardEmoji), Image(systemName: "face.smiling"))
         }
     }
 }

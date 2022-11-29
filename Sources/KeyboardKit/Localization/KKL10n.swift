@@ -55,14 +55,6 @@ public extension KKL10n {
     var text: String {
         NSLocalizedString(key, bundle: Self.bundle, comment: "")
     }
-
-    /**
-     Whether or not the KKL10n case has been localized for a
-     certain `locale`.
-     */
-    func hasText(for locale: KeyboardLocale) -> Bool {
-        text(for: locale.locale) != rawValue
-    }
     
     /**
      The item's localized text for a certain `context`.

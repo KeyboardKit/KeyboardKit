@@ -11,13 +11,13 @@ import XCTest
 
 class String_CharsTests: XCTestCase {
     
-    func charsSplitsStringIntoIndividualCharacters() {
+    func testCharsSplitsStringIntoIndividualCharacters() {
         let string = "foo"
         let result = string.chars
         XCTAssertEqual(result, ["f", "o", "o"])
     }
 
-    func characterCollectionHasValidValues() {
+    func testCharacterCollectionHasValidValues() {
         XCTAssertEqual(String.carriageReturn, "\r")
         XCTAssertEqual(String.newline, "\n")
         XCTAssertEqual(String.space, " ")

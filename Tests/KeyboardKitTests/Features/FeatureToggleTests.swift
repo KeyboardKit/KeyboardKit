@@ -6,7 +6,6 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
 import KeyboardKit
 import XCTest
 
@@ -32,4 +31,3 @@ final class FeatureToggleTests: XCTestCase {
         XCTAssertTrue(result(for: .newButtonGestureEngine))
     }
 }
-#endif

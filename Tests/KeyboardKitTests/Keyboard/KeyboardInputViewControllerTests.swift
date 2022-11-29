@@ -7,264 +7,237 @@
 //
 
 #if os(iOS) || os(tvOS)
-import Quick
-import Nimble
 import MockingKit
 import SwiftUI
 import UIKit
+import XCTest
+
 @testable import KeyboardKit
 
-class KeyboardInputViewControllerTests: QuickSpec {
+class KeyboardInputViewControllerTests: XCTestCase {
     
-    override func spec() {
-        
-        var vc: TestClass!
-        
-        func expectSyncedContext(for function: () -> Void) {
-            vc.hasFullAccessValue = true
-            function()
-            expect(vc.keyboardContext.hasFullAccess).toEventually(beTrue())
-            vc.hasFullAccessValue = false
-            function()
-            expect(vc.keyboardContext.hasFullAccess).toEventually(beFalse())
-            expect(vc.keyboardContext.textDocumentProxy).toEventually(be(vc.textDocumentProxy))
-        }
-        
-        beforeEach {
-            TestClass.shared = TestClass(nibName: nil, bundle: nil)
-            vc = TestClass(nibName: nil, bundle: nil)
-        }
-        
-        
-        // MARK: - View Controller Lifecycle
-        
-        describe("view did load") {
-            
-            it("sets vc as shared") {
-                expect(TestClass.shared).toNot(be(vc))
-                vc.viewDidLoad()
-                expect(TestClass.shared).to(be(vc))
-            }
-            
-            it("sets up context observations") {
-                vc.viewDidLoad()
-                expect(vc.cancellables.count).to(beGreaterThan(0))
-            }
-        }
-        
-        describe("view will appear") {
-            
-            it("updates context") {
-                expectSyncedContext { vc.viewWillAppear(false) }
-            }
-        }
-        
-        describe("view trait collection did change") {
-            
-            it("updates context") {
-                expectSyncedContext {
-                    vc.traitCollectionDidChange(.none)
-                }
-            }
-        }
-        
-        
-        // MARK: - Setup
-        
-        describe("setting up with view") {
-            
-            it("creates and adds a keyboard hosting controller") {
-                expect(vc.children.count).to(equal(0))
-                vc.setup(with: Text("HEJ"))
-                expect(vc.children.count).to(equal(1))
-                expect(vc.view.subviews.count).to(equal(1))
-            }
-        }
-        
-        
-        // MARK: - Properties
-        
-        describe("text document proxy") {
-            
-            it("returns the original text document proxy if no input proxy is defined") {
-                expect(vc.textDocumentProxy).to(be(vc.originalTextDocumentProxy))
-            }
-            
-            it("returns the input text document proxy if one is defined") {
-                let input = MockTextInput()
-                let proxy = TextInputProxy(input: input)
-                vc.textInputProxy = proxy
-                expect(vc.textDocumentProxy).to(be(proxy))
-            }
-        }
-        
-        describe("text input proxy") {
-            
-            it("makes vc sync with proxy when set") {
-                vc.mock.resetCalls()
-                let input = MockTextInput()
-                let proxy = TextInputProxy(input: input)
-                vc.textInputProxy = proxy
-                expect(vc.keyboardContext.textDocumentProxy).toEventually(be(proxy))
-            }
-        }
-        
-        
-        
-        // MARK: - Observables
-        
-        describe("observable properties") {
-            
-            it("has standard instances by default") {
-                expect(vc.actionCalloutContext.buttonFrame).toEventually(equal(.zero))
-                expect(vc.autocompleteContext.suggestions.isEmpty).toEventually(beTrue())
-                expect(vc.inputCalloutContext.buttonFrame).toEventually(equal(.zero))
-                expect(vc.keyboardContext.hasFullAccess).toEventually(beFalse())
-                expect(vc.keyboardContext.keyboardType).toEventually(equal(.alphabetic(.lowercased)))
-                expect(vc.keyboardContext.needsInputModeSwitchKey).toEventually(beFalse())
-                expect(vc.keyboardContext.textDocumentProxy).toEventually(be(vc.textDocumentProxy))
-                expect(vc.keyboardFeedbackSettings.audioConfiguration).toEventually(equal(.standard))
-                expect(vc.keyboardFeedbackSettings.hapticConfiguration).toEventually(equal(.standard))
-            }
-        }
-        
-        
-        // MARK: - Services
-        
-        describe("service properties") {
-            
-            it("has standard instances by default") {
-                expect(vc.autocompleteProvider as? DisabledAutocompleteProvider).toNot(beNil())
-                expect(vc.calloutActionProvider as? StandardCalloutActionProvider).toNot(beNil())
-                expect(vc.inputSetProvider as? StandardInputSetProvider).toNot(beNil())
-                expect(vc.keyboardActionHandler as? StandardKeyboardActionHandler).toNot(beNil())
-                expect(vc.keyboardAppearance as? StandardKeyboardAppearance).toNot(beNil())
-                expect(vc.keyboardBehavior as? StandardKeyboardBehavior).toNot(beNil())
-                expect(vc.keyboardFeedbackHandler as? StandardKeyboardFeedbackHandler).toNot(beNil())
-                expect(vc.keyboardLayoutProvider as? StandardKeyboardLayoutProvider).toNot(beNil())
-            }
-        }
-        
-        describe("refreshing properties when changing service properties") {
-            
-            func verifyRefresh() {
-                let actionContext = vc.actionCalloutContext
-                let layoutProvider = vc.keyboardLayoutProvider as? StandardKeyboardLayoutProvider
-                expect(layoutProvider?.inputSetProvider).to(be(vc.inputSetProvider))
-                expect(actionContext.actionProvider).to(be(vc.calloutActionProvider))
-                expect(actionContext.actionHandler).to(be(vc.keyboardActionHandler))
-            }
-            
-            it("is done for keyboard action handler") {
-                vc.keyboardActionHandler = MockKeyboardActionHandler()
-                verifyRefresh()
-            }
-            
-            it("is done for keyboard input set provider") {
-                vc.inputSetProvider = MockInputSetProvider()
-                verifyRefresh()
-            }
-            
-            it("is done for callout action provider") {
-                vc.calloutActionProvider = StandardCalloutActionProvider(context: .preview)
-                verifyRefresh()
-            }
-        }
-        
-        
-        // MARK: - Text And Selection Change
-        
-        describe("selectionWillChange") {
-            
-            it("triggers resetAutocomplete") {
-                expect(vc.hasCalled(vc.resetAutocompleteRef)).to(beFalse())
-                vc.selectionWillChange(nil)
-                expect(vc.hasCalled(vc.resetAutocompleteRef)).to(beTrue())
-            }
-        }
-        
-        describe("selectionDidChange") {
-            
-            it("triggers resetAutocomplete") {
-                expect(vc.hasCalled(vc.resetAutocompleteRef)).to(beFalse())
-                vc.selectionDidChange(nil)
-                expect(vc.hasCalled(vc.resetAutocompleteRef)).to(beTrue())
-            }
-        }
-        
-        describe("textWillChange") {
-            
-            it("triggers viewWillSyncWithTextDocumentProxy") {
-                vc.textWillChange(nil)
-                expect(vc.keyboardContext.textDocumentProxy).to(be(vc.textDocumentProxy))
-            }
-        }
-        
-        describe("textDidChange") {
-            
-            it("triggers performAutocomplete") {
-                expect(vc.hasCalled(vc.performAutocompleteRef)).to(beFalse())
-                vc.textDidChange(nil)
-                expect(vc.hasCalled(vc.performAutocompleteRef)).to(beTrue())
-            }
+    private var vc: TestClass!
 
-            it("tries to change keyboard type") {
-                vc.keyboardContext.keyboardType = .alphabetic(.lowercased)
-                vc.textDidChange(nil)
-                vc.keyboardContext.keyboardType = .alphabetic(.uppercased)
+    private let mockAutocompleteProvider = MockAutocompleteProvider()
+    private let mockTextDocumentProxy = MockTextDocumentProxy()
+
+    override func setUp() {
+        TestClass.shared = TestClass(nibName: nil, bundle: nil)
+        vc = TestClass(nibName: nil, bundle: nil)
+    }
+
+    func setupMocksForAutocomplete(for vc: KeyboardInputViewController) {
+        let vc = vc as? TestClass
+        vc?.autocompleteProvider = mockAutocompleteProvider
+        vc?.textDocumentProxyValue = mockTextDocumentProxy
+    }
+
+    func expectOperationSyncsContext(for function: @escaping (UIViewController) -> Void) {
+        let vc = TestClass(nibName: nil, bundle: nil)
+        XCTAssertFalse(vc.keyboardContext.hasFullAccess)
+        XCTAssertFalse(vc.keyboardContext.textDocumentProxy === vc.textDocumentProxy)
+        vc.hasFullAccessValue = true
+        eventually {
+            vc.keyboardContext.hasFullAccess = false
+            function(vc)
+            self.eventually {
+                XCTAssertTrue(vc.keyboardContext.hasFullAccess)
+                XCTAssertTrue(vc.keyboardContext.textDocumentProxy === vc.textDocumentProxy)
             }
         }
-        
-        
-        // MARK: - Observation
-        
-        describe("changing keyboard locale") {
-            
-            it("replaces locale of all locale-based dependencies") {
-                let locale = KeyboardLocale.swedish
-                vc.viewDidLoad()
-                vc.keyboardContext.locale = locale.locale
-                expect(vc.autocompleteProvider.locale).toEventually(equal(locale.locale))
-            }
+    }
+
+
+    // MARK: - View Controller Lifecycle
+
+    func testViewDidLoadSetsVcAsShared() {
+        XCTAssertFalse(TestClass.shared === vc)
+        vc.viewDidLoad()
+        XCTAssertTrue(TestClass.shared === vc)
+    }
+
+    func testViewDidLoadSetsUpContextObservations() {
+        vc.viewDidLoad()
+        XCTAssertTrue(vc.cancellables.count > 0)
+    }
+
+    func testViewWillAppearUpdatesContext() {
+        expectOperationSyncsContext {
+            $0.viewWillAppear(false)
         }
-        
-        
-        // MARK: - Autocomplete
-        
-        describe("performing autocomplete") {
-            
-            var provider: MockAutocompleteProvider!
-            var proxy: MockTextDocumentProxy!
-            
-            beforeEach {
-                provider = MockAutocompleteProvider()
-                proxy = MockTextDocumentProxy()
-                vc.autocompleteProvider = provider
-                vc.textDocumentProxyValue = proxy
-            }
-            
-            it("aborts if text proxy has no current word") {
-                provider.autocompleteSuggestionsResult = .success([StandardAutocompleteSuggestion("")])
-                vc.performAutocomplete()
-                expect(vc.autocompleteContext.suggestions.count).toEventually(equal(0))
-            }
-            
-            it("writes result to autocomplete context") {
-                provider.autocompleteSuggestionsResult = .success([StandardAutocompleteSuggestion("")])
-                proxy.documentContextBeforeInput = "foo bar"
-                vc.performAutocomplete()
-                expect(vc.autocompleteContext.suggestions.count).toEventually(equal(1))
-            }
+    }
+
+    func testTraitCollectionDidChangeUpdatesContext() {
+        expectOperationSyncsContext {
+            $0.traitCollectionDidChange(.none)
         }
-        
-        describe("resetting autocomplete") {
-            
-            it("writes result to autocomplete context") {
-                vc.autocompleteContext.suggestions = [StandardAutocompleteSuggestion("")]
-                vc.resetAutocomplete()
-                expect(vc.autocompleteContext.suggestions.count).to(equal(0))
-            }
+    }
+
+
+    // MARK: - Setup
+
+    func testSettingUpWithViewCreatesAndAddsKeyboardHostingController() {
+        XCTAssertEqual(vc.children.count, 0)
+        vc.setup(with: Text("HEJ"))
+        XCTAssertEqual(vc.children.count, 1)
+        XCTAssertEqual(vc.view.subviews.count, 1)
+    }
+
+
+    // MARK: - Properties
+
+    func testTextDocumentProxyReturnsTheOriginalProxyIfNoInputProxyIsDefined() {
+        XCTAssertTrue(vc.textDocumentProxy === vc.originalTextDocumentProxy)
+    }
+
+    func testTextDocumentProxyReturnsTheInputProxyIfOneIsSet() {
+        let input = MockTextInput()
+        let proxy = TextInputProxy(input: input)
+        vc.textInputProxy = proxy
+        XCTAssertTrue(vc.textDocumentProxy === proxy)
+    }
+
+    func testTextInputProxyMakesVcSyncWithProxy() {
+        let vc = TestClass()
+        vc.mock.resetCalls()
+        let input = MockTextInput()
+        let proxy = TextInputProxy(input: input)
+        vc.textInputProxy = proxy
+        eventually {
+            XCTAssertTrue(vc.keyboardContext.textDocumentProxy === proxy)
         }
+    }
+
+
+
+    // MARK: - Observables
+
+    func testObservablePropertiesHaveStandardValuesByDefault() {
+        let vc = TestClass()
+        eventually {
+            XCTAssertEqual(vc.actionCalloutContext.buttonFrame, .zero)
+            XCTAssertTrue(vc.autocompleteContext.suggestions.isEmpty)
+            XCTAssertEqual(vc.inputCalloutContext.buttonFrame, .zero)
+            XCTAssertFalse(vc.keyboardContext.hasFullAccess)
+            XCTAssertEqual(vc.keyboardContext.keyboardType, .alphabetic(.lowercased))
+            XCTAssertFalse(vc.keyboardContext.needsInputModeSwitchKey)
+            XCTAssertEqual(vc.keyboardFeedbackSettings.audioConfiguration, .standard)
+            XCTAssertEqual(vc.keyboardFeedbackSettings.hapticConfiguration, .standard)
+        }
+    }
+
+
+    // MARK: - Services
+
+    func servicesHaveStandardInstancesByDefault() {
+        XCTAssertNotNil(vc.autocompleteProvider as? DisabledAutocompleteProvider)
+        XCTAssertNotNil(vc.calloutActionProvider as? StandardCalloutActionProvider)
+        XCTAssertNotNil(vc.inputSetProvider as? StandardInputSetProvider)
+        XCTAssertNotNil(vc.keyboardActionHandler as? StandardKeyboardActionHandler)
+        XCTAssertNotNil(vc.keyboardAppearance as? StandardKeyboardAppearance)
+        XCTAssertNotNil(vc.keyboardBehavior as? StandardKeyboardBehavior)
+        XCTAssertNotNil(vc.keyboardFeedbackHandler as? StandardKeyboardFeedbackHandler)
+        XCTAssertNotNil(vc.keyboardLayoutProvider as? StandardKeyboardLayoutProvider)
+    }
+
+    func verifyRefresh(for vc: KeyboardInputViewController) {
+        let actionContext = vc.actionCalloutContext
+        let layoutProvider = vc.keyboardLayoutProvider as? StandardKeyboardLayoutProvider
+        XCTAssertTrue(layoutProvider?.inputSetProvider === vc.inputSetProvider)
+        XCTAssertTrue(actionContext.actionHandler === vc.keyboardActionHandler)
+    }
+
+    func testRefreshingPropertiesWhenChangingServicePropertiesIsDoneForKeyboardActionHandler() {
+        let vc = TestClass()
+        vc.keyboardActionHandler = MockKeyboardActionHandler()
+        verifyRefresh(for: vc)
+    }
+
+    func testRefreshingPropertiesWhenChangingServicePropertiesIsDoneForInputSetProvider() {
+        let vc = TestClass()
+        vc.inputSetProvider = MockInputSetProvider()
+        verifyRefresh(for: vc)
+    }
+
+    func testRefreshingPropertiesWhenChangingServicePropertiesIsForCalloutActionProvider() {
+        let vc = TestClass()
+        vc.calloutActionProvider = StandardCalloutActionProvider(context: .preview)
+        verifyRefresh(for: vc)
+    }
+
+
+    // MARK: - Text And Selection Change
+
+    func testSelectionWillChangeTriggersResetAutocomplete() {
+        XCTAssertFalse(vc.hasCalled(vc.resetAutocompleteRef))
+        vc.selectionWillChange(nil)
+        XCTAssertTrue(vc.hasCalled(vc.resetAutocompleteRef))
+    }
+
+    func testSelectionDidChangeTriggersResetAutocomplete() {
+        XCTAssertFalse(vc.hasCalled(vc.resetAutocompleteRef))
+        vc.selectionDidChange(nil)
+        XCTAssertTrue(vc.hasCalled(vc.resetAutocompleteRef))
+    }
+
+    func testTextWillChangeTriggersViewWillSyncWithTextDocumentProxy() {
+        vc.textWillChange(nil)
+        XCTAssertTrue(vc.keyboardContext.textDocumentProxy === vc.textDocumentProxy)
+    }
+
+    func testTextDidChangeTriggersPerformAutocomplete() {
+        XCTAssertFalse(vc.hasCalled(vc.performAutocompleteRef))
+        vc.textDidChange(nil)
+        XCTAssertTrue(vc.hasCalled(vc.performAutocompleteRef))
+    }
+
+    func testTextDidChangeTriesToChangeKeyboardType() {
+        vc.keyboardContext.keyboardType = .alphabetic(.lowercased)
+        vc.textDidChange(nil)
+        vc.keyboardContext.keyboardType = .alphabetic(.uppercased)
+    }
+
+
+    // MARK: - Observation
+
+    func testChangingKeyboardLocaleReplacesLocaleOfAllLocaleBasedDependencies() {
+        let vc = TestClass()
+        let locale = KeyboardLocale.swedish
+        vc.viewDidLoad()
+        vc.keyboardContext.locale = locale.locale
+        eventually {
+            XCTAssertEqual(vc.autocompleteProvider.locale, locale.locale)
+        }
+    }
+
+
+    // MARK: - Autocomplete
+
+    func testPerformingAutocompleteAbortsIfTextProxyHasNoCurrentWord() {
+        let vc = TestClass()
+        setupMocksForAutocomplete(for: vc)
+        mockAutocompleteProvider.autocompleteSuggestionsResult = .success([StandardAutocompleteSuggestion("")])
+        mockTextDocumentProxy.documentContextBeforeInput = "foo bar"
+        vc.performAutocomplete()
+        eventually {
+            XCTAssertEqual(vc.autocompleteContext.suggestions.count, 1)
+        }
+    }
+
+    func testPerformingAutocompleteWritesResultToAutocompleteContext() {
+        let vc = TestClass()
+        setupMocksForAutocomplete(for: vc)
+        mockAutocompleteProvider.autocompleteSuggestionsResult = .success([StandardAutocompleteSuggestion("")])
+        vc.performAutocomplete()
+        eventually {
+            XCTAssertEqual(vc.autocompleteContext.suggestions.count, 0)
+        }
+    }
+
+    func testResettingAutocompleteWritesResultToAutocompleteContext() {
+        vc.autocompleteContext.suggestions = [StandardAutocompleteSuggestion("")]
+        vc.resetAutocomplete()
+        XCTAssertEqual(vc.autocompleteContext.suggestions.count, 0)
     }
 }
 

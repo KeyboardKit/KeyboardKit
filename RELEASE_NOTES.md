@@ -20,12 +20,16 @@ Some things that are planned for the 7.0 release:
 
 
 
-## 6.6
+## 6.7
 
 ### ✨ New features
 
 * `EmojiCharacterAnalyzer` is a new protocol that is implemented by `Character`.
 * `EmojiStringAnalyzer` is a new protocol that is implemented by `String`.
+
+### 🗑 Deprecations
+
+* `KKL10n` `hasText` is deprecated, since it produces incorrect results.
 
 
 

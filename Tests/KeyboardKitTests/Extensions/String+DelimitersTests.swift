@@ -11,23 +11,23 @@ import XCTest
 
 class String_DelimitersTests: XCTestCase {
     
-    func stringCanIdentifySentenceDelimiter() {
+    func testStringCanIdentifySentenceDelimiter() {
         let result = String.sentenceDelimiters.map { $0.isSentenceDelimiter }
         XCTAssertTrue(result.allSatisfy { $0 == true })
         XCTAssertFalse("a".isSentenceDelimiter)
     }
 
-    func stringCanIdentifyWordDelimiter() {
+    func testStringCanIdentifyWordDelimiter() {
         let result = String.wordDelimiters.map { $0.isWordDelimiter }
         XCTAssertTrue(result.allSatisfy { $0 == true })
         XCTAssertFalse("a".isWordDelimiter)
     }
 
-    func stringProvidesSentenceDelimiters() {
+    func testStringProvidesSentenceDelimiters() {
         XCTAssertEqual(String.sentenceDelimiters, ["!", ".", "?"])
     }
 
-    func stringProvidesWordDelimiters() {
+    func testStringProvidesWordDelimiters() {
         let expected = "!.?,;:()[]{}<>".chars + [" ", .newline]
         XCTAssertEqual(String.wordDelimiters, expected)
     }

@@ -6,67 +6,56 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Quick
-import Nimble
 import KeyboardKit
 import SwiftUI
+import XCTest
 
-class KeyboardType_ButtonTests: QuickSpec {
+class KeyboardType_ButtonTests: XCTestCase {
 
-    override func spec() {
-        
-        describe("system keyboard button font size") {
-            
-            func result(for type: KeyboardType) -> CGFloat {
-                type.standardButtonFontSize(for: KeyboardContext.preview)
-            }
-            
-            it("is defined for all types") {
-                expect(result(for: .alphabetic(.lowercased))).to(equal(15))
-                expect(result(for: .numeric)).to(equal(16))
-                expect(result(for: .symbolic)).to(equal(14))
-                
-                expect(result(for: .email)).to(equal(14))
-                expect(result(for: .emojis)).to(equal(14))
-                expect(result(for: .custom(named: ""))).to(equal(14))
-                expect(result(for: .images)).to(equal(14))
-            }
-        }
-        
-        describe("system keyboard button image") {
-            
-            func result(for type: KeyboardType) -> Image? {
-                type.standardButtonImage
-            }
-            
-            it("is defined for some types") {
-                expect(result(for: .email)).to(equal(.keyboardEmail))
-                expect(result(for: .emojis)).to(equal(.keyboardEmoji))
-                expect(result(for: .images)).to(equal(.keyboardImages))
-                
-                expect(result(for: .alphabetic(.lowercased))).to(beNil())
-                expect(result(for: .custom(named: ""))).to(beNil())
-                expect(result(for: .numeric)).to(beNil())
-                expect(result(for: .symbolic)).to(beNil())
-            }
-        }
-        
-        describe("system keyboard button text") {
-            
-            func result(for type: KeyboardType) -> String? {
-                type.standardButtonText(for: .preview)
-            }
-            
-            it("is defined for some types") {
-                expect(result(for: .alphabetic(.lowercased))).to(equal("ABC"))
-                expect(result(for: .numeric)).to(equal("123"))
-                expect(result(for: .symbolic)).to(equal("#+="))
-                
-                expect(result(for: .email)).to(beNil())
-                expect(result(for: .emojis)).to(beNil())
-                expect(result(for: .custom(named: ""))).to(beNil())
-                expect(result(for: .images)).to(beNil())
-            }
-        }
+    func fontSize(for type: KeyboardType) -> CGFloat {
+        type.standardButtonFontSize(for: KeyboardContext.preview)
+    }
+
+    func buttonImage(for type: KeyboardType) -> Image? {
+        type.standardButtonImage
+    }
+
+    func buttonText(for type: KeyboardType) -> String? {
+        type.standardButtonText(for: .preview)
+    }
+
+
+    func testSystemKeyboardButtonFontSizeIsDefinedForAllTypes() {
+        XCTAssertEqual(fontSize(for: .alphabetic(.lowercased)), 15)
+        XCTAssertEqual(fontSize(for: .numeric), 16)
+        XCTAssertEqual(fontSize(for: .symbolic), 14)
+
+        XCTAssertEqual(fontSize(for: .email), 14)
+        XCTAssertEqual(fontSize(for: .emojis), 14)
+        XCTAssertEqual(fontSize(for: .custom(named: "")), 14)
+        XCTAssertEqual(fontSize(for: .images), 14)
+    }
+
+
+    func testSystemKeyboardButtonImageIsDefinedForSomeTypes() {
+        XCTAssertEqual(buttonImage(for: .email), .keyboardEmail)
+        XCTAssertEqual(buttonImage(for: .emojis), .keyboardEmoji)
+        XCTAssertEqual(buttonImage(for: .images), .keyboardImages)
+
+        XCTAssertNil(buttonImage(for: .alphabetic(.lowercased)))
+        XCTAssertNil(buttonImage(for: .custom(named: "")))
+        XCTAssertNil(buttonImage(for: .numeric))
+        XCTAssertNil(buttonImage(for: .symbolic))
+    }
+
+    func testSystemKeyboardButtonTextIsDefinedForSomeTypes() {
+        XCTAssertEqual(buttonText(for: .alphabetic(.lowercased)), "ABC")
+        XCTAssertEqual(buttonText(for: .numeric), "123")
+        XCTAssertEqual(buttonText(for: .symbolic), "#+=")
+
+        XCTAssertNil(buttonText(for: .email))
+        XCTAssertNil(buttonText(for: .emojis))
+        XCTAssertNil(buttonText(for: .custom(named: "")))
+        XCTAssertNil(buttonText(for: .images))
     }
 }

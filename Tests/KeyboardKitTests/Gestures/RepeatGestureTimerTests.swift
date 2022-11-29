@@ -6,68 +6,59 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Foundation
-import Quick
-import Nimble
+import XCTest
+
 @testable import KeyboardKit
 
-class RepeatGestureTimerTests: QuickSpec {
-    
-    override func spec() {
-    
-        let timer = RepeatGestureTimer.shared
-        
-        afterEach {
-            timer.stop()
-        }
-        
-        describe("time interval") {
-            
-            it("is short") {
-                expect(timer.timeInterval).to(equal(0.1))
-            }
-        }
-        
-        describe("duration") {
-            
-            it("is nil if the timer has not been started") {
-                expect(timer.duration).to(beNil())
-            }
-            
-            it("is not nil if the timer has been started but not stopped") {
-                timer.start {}
-                expect(timer.duration).toNot(beNil())
-            }
-            
-            it("is nil if the timer has been started then stopped") {
-                timer.start {}
-                timer.stop()
-                expect(timer.duration).to(beNil())
-            }
-            
-            it("is the time that has passed since the timer started") {
-                timer.start {}
-                timer.modifyStartDate(to: Date().addingTimeInterval(-5))
-                expect(timer.duration).to(beCloseTo(5, within: 0.1))
-            }
-        }
-        
-        describe("is active") {
-            
-            it("is false if the timer has not been started") {
-                expect(timer.isActive).to(beFalse())
-            }
-            
-            it("is true if the timer has been started but not stopped") {
-                timer.start {}
-                expect(timer.isActive).to(beTrue())
-            }
-            
-            it("is true if the timer has been started then stopped") {
-                timer.start {}
-                timer.stop()
-                expect(timer.isActive).to(beFalse())
-            }
-        }
+class RepeatGestureTimerTests: XCTestCase {
+
+    let timer = RepeatGestureTimer.shared
+
+    override func tearDown() {
+        timer.stop()
+    }
+
+
+    func testTimeIntervalIsShort() {
+        XCTAssertEqual(timer.timeInterval, 0.1)
+    }
+
+
+    func testDurationIsNilIfTimerHasNotBeenStarted() {
+        XCTAssertNil(timer.duration)
+    }
+
+    func testDurationIsNotNilIfTimerHasBeenStartedButNotStopped() {
+        timer.start {}
+        XCTAssertNotNil(timer.duration)
+    }
+
+    func testDurationIsNotNilIfTimerHasBeenStartedThenStopped() {
+        timer.start {}
+        timer.stop()
+        XCTAssertNil(timer.duration)
+    }
+
+    func testDurationIsTheTimeThatHasPassedSinceTheTimerWasLastStarted() {
+        timer.start {}
+        timer.modifyStartDate(to: Date().addingTimeInterval(-5))
+        guard let duration = timer.duration else { return XCTFail() }
+        XCTAssertTrue(duration < 5.1)
+    }
+
+
+    func testIsActiveIsFalseIfTimerHasNotBeenStarted() {
+        XCTAssertFalse(timer.isActive)
+    }
+
+    func testDurationIsTrueIfTimerHasBeenStartedButNotStopped() {
+        timer.start {}
+        XCTAssertTrue(timer.isActive)
+    }
+
+    func testDurationIsFalseIfTimerHasBeenStartedThenStopped() {
+        timer.start {}
+        timer.stop()
+        XCTAssertFalse(timer.isActive)
     }
 }

@@ -6,23 +6,16 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Quick
-import Nimble
 import KeyboardKit
+import XCTest
 
-class KeyboardInputTests: QuickSpec {
+class KeyboardInputTests: XCTestCase {
     
-    override func spec() {
-        
-        describe("character for casing") {
-            
-            it("returns the correct char") {
-                let input = InputSetItem(neutral: "n", uppercased: "u", lowercased: "l")
-                expect(input.character(for: .auto)).to(equal("l"))
-                expect(input.character(for: .lowercased)).to(equal("l"))
-                expect(input.character(for: .uppercased)).to(equal("u"))
-                expect(input.character(for: .capsLocked)).to(equal("u"))
-            }
-        }
+    func testCharacterForCasingReturnsCorrectChar() {
+        let input = InputSetItem(neutral: "n", uppercased: "u", lowercased: "l")
+        XCTAssertEqual(input.character(for: .auto), "l")
+        XCTAssertEqual(input.character(for: .lowercased), "l")
+        XCTAssertEqual(input.character(for: .uppercased), "u")
+        XCTAssertEqual(input.character(for: .capsLocked), "u")
     }
 }

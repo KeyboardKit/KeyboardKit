@@ -7,100 +7,93 @@
 //
 
 #if os(iOS) || os(tvOS)
-import Quick
-import Nimble
 import KeyboardKit
 import MockingKit
+import XCTest
 
-class UITextDocumentProxy_QuotationTests: QuickSpec {
+class UITextDocumentProxy_QuotationTests: XCTestCase {
     
-    override func spec() {
-        
-        var proxy: MockTextDocumentProxy!
-        
-        beforeEach {
-            proxy = MockTextDocumentProxy()
+    var proxy: MockTextDocumentProxy!
+
+    override func setUp() {
+        proxy = MockTextDocumentProxy()
+    }
+
+
+    func isOpenAlternateQuotationBeforeInputResult(for text: String?, locale: KeyboardLocale) -> Bool {
+        proxy.documentContextBeforeInput = text
+        return proxy.isOpenAlternateQuotationBeforeInput(for: locale.locale)
+    }
+
+    func testIsOpenAlternateQuotationBeforeInputIsFalseIfNoTextExistsBeforeCursor() {
+        KeyboardLocale.allCases.forEach {
+            XCTAssertFalse(isOpenAlternateQuotationBeforeInputResult(for: nil, locale: $0))
         }
-        
-        describe("is open alternate quotation before input") {
-            
-            func result(for text: String?, locale: KeyboardLocale) -> Bool {
-                proxy.documentContextBeforeInput = text
-                return proxy.isOpenAlternateQuotationBeforeInput(for: locale.locale)
-            }
-            
-            it("is false if no text exists before cursor") {
-                KeyboardLocale.allCases.forEach {
-                    expect(result(for: nil, locale: $0)).to(beFalse())
-                }
-            }
-            
-            it("is false if text before cursor does not contain a begin delimiter") {
-                KeyboardLocale.allCases.forEach {
-                    let text = "I love coding"
-                    expect(result(for: text, locale: $0)).to(beFalse())
-                }
-            }
-            
-            it("is false if text before cursor has an end delimiter after a begin delimiter") {
-                KeyboardLocale.allCases.forEach {
-                    let text = "I love coding\($0.locale.alternateQuotationBeginDelimiter ?? "")\($0.locale.alternateQuotationEndDelimiter ?? "")"
-                    expect(result(for: text, locale: $0)).to(beFalse())
-                }
-            }
-            
-            it("is true if text before cursor has a begin delimiter after an end delimiter") {
-                KeyboardLocale.allCases.forEach {
-                    let begin = $0.locale.alternateQuotationBeginDelimiter ?? ""
-                    let end = $0.locale.alternateQuotationEndDelimiter ?? ""
-                    let text = "I love coding\(end)\(begin)"
-                    expect(result(for: text, locale: $0)).to(equal(begin != end))
-                }
-            }
+    }
+
+    func testIsOpenAlternateQuotationBeforeInputIsFalseIfTextBeforeCursorDoesNotContainBeginDelimiter() {
+        KeyboardLocale.allCases.forEach {
+            let text = "I love coding"
+            XCTAssertFalse(isOpenAlternateQuotationBeforeInputResult(for: text, locale: $0))
         }
-        
-        describe("is open quotation before input") {
-            
-            func result(for text: String?, locale: KeyboardLocale) -> Bool {
-                proxy.documentContextBeforeInput = text
-                return proxy.isOpenQuotationBeforeInput(for: locale.locale)
-            }
-            
-            it("is false if no text exists before cursor") {
-                KeyboardLocale.allCases.forEach {
-                    expect(result(for: nil, locale: $0)).to(beFalse())
-                }
-            }
-            
-            it("is false if text before cursor does not contain a begin delimiter") {
-                KeyboardLocale.allCases.forEach {
-                    let text = "I love coding"
-                    expect(result(for: text, locale: $0)).to(beFalse())
-                }
-            }
-            
-            it("is false if text before cursor has an end delimiter after a begin delimiter") {
-                KeyboardLocale.allCases.forEach {
-                    let text = "I love coding\($0.locale.quotationBeginDelimiter ?? "")\($0.locale.quotationEndDelimiter ?? "")"
-                    expect(result(for: text, locale: $0)).to(beFalse())
-                }
-            }
-            
-            it("is true if text before cursor has a begin delimiter after an end delimiter") {
-                KeyboardLocale.allCases.forEach {
-                    let begin = $0.locale.quotationBeginDelimiter ?? ""
-                    let end = $0.locale.quotationEndDelimiter ?? ""
-                    let text = "I love coding\(end)\(begin)"
-                    expect(result(for: text, locale: $0)).to(equal(begin != end))
-                }
-            }
-            
-            it("honors specific locale scenarios") {
-                expect(result(for: "This ‘Is me", locale: .dutch)).to(beTrue())
-                expect(result(for: "This «Is me", locale: .italian)).to(beTrue())
-                expect(result(for: "This «Is me", locale: .norwegian)).to(beTrue())
-            }
+    }
+
+    func testIsOpenAlternateQuotationBeforeInputIsFalseIfTextBeforeCursorHasEndDelimiterAfterBeginDelimiter() {
+        KeyboardLocale.allCases.forEach {
+            let text = "I love coding\($0.locale.alternateQuotationBeginDelimiter ?? "")\($0.locale.alternateQuotationEndDelimiter ?? "")"
+            XCTAssertFalse(isOpenAlternateQuotationBeforeInputResult(for: text, locale: $0))
         }
+    }
+
+    func testIsOpenAlternateQuotationBeforeInputIsTrueIfTextBeforeCursorHasBeginDelimiterAfterEndDelimiter() {
+        KeyboardLocale.allCases.forEach {
+            let begin = $0.locale.alternateQuotationBeginDelimiter ?? ""
+            let end = $0.locale.alternateQuotationEndDelimiter ?? ""
+            let text = "I love coding\(end)\(begin)"
+            let result = isOpenAlternateQuotationBeforeInputResult(for: text, locale: $0)
+            XCTAssertEqual(result, begin != end)
+        }
+    }
+
+
+    func isOpenQuotationBeforeInputResult(for text: String?, locale: KeyboardLocale) -> Bool {
+        proxy.documentContextBeforeInput = text
+        return proxy.isOpenQuotationBeforeInput(for: locale.locale)
+    }
+
+    func testIsOpenQuotationBeforeInputIsFalseIfNoTextExistsBeforeCursor() {
+        KeyboardLocale.allCases.forEach {
+            XCTAssertFalse(isOpenQuotationBeforeInputResult(for: nil, locale: $0))
+        }
+    }
+
+    func testIsOpenQuotationBeforeInputIsFalseIfTextBeforeCursorDoesNotContainBeginDelimiter() {
+        KeyboardLocale.allCases.forEach {
+            let text = "I love coding"
+            XCTAssertFalse(isOpenQuotationBeforeInputResult(for: text, locale: $0))
+        }
+    }
+
+    func testIsOpenQuotationBeforeInputIsFalseIfTextBeforeCursorHasEndDelimiterAfterBeginDelimiter() {
+        KeyboardLocale.allCases.forEach {
+            let text = "I love coding\($0.locale.quotationBeginDelimiter ?? "")\($0.locale.quotationEndDelimiter ?? "")"
+            XCTAssertFalse(isOpenQuotationBeforeInputResult(for: text, locale: $0))
+        }
+    }
+
+    func testIsOpenQuotationBeforeInputIsTrueIfTextBeforeCursorHasBeginDelimiterAfterEndDelimiter() {
+        KeyboardLocale.allCases.forEach {
+            let begin = $0.locale.quotationBeginDelimiter ?? ""
+            let end = $0.locale.quotationEndDelimiter ?? ""
+            let text = "I love coding\(end)\(begin)"
+            XCTAssertEqual(isOpenQuotationBeforeInputResult(for: text, locale: $0), begin != end)
+        }
+    }
+
+    func testIsOpenQuotationBeforeInputIonorsSpecificLocaleScenarios() {
+        XCTAssertTrue(isOpenQuotationBeforeInputResult(for: "This ‘Is me", locale: .dutch))
+        XCTAssertTrue(isOpenQuotationBeforeInputResult(for: "This «Is me", locale: .italian))
+        XCTAssertTrue(isOpenQuotationBeforeInputResult(for: "This «Is me", locale: .norwegian))
     }
 }
 #endif

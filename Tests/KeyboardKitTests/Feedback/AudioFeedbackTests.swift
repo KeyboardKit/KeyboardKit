@@ -7,47 +7,37 @@
 //
 
 #if os(iOS) || os(macOS) || os(tvOS)
-import Quick
-import Nimble
 import KeyboardKit
+import XCTest
 
-class AudioFeedbackTests: QuickSpec {
+class AudioFeedbackTests: XCTestCase {
     
-    override func spec() {
-        
-        var engine: MockAudioFeedbackEngine!
-        
-        beforeEach {
-            engine = MockAudioFeedbackEngine()
-            AudioFeedback.engine = engine
-        }
-        
-        describe("audio feedback") {
-            
-            func value(for feedback: AudioFeedback) -> UInt32? {
-                feedback.id
-            }
-            
-            it("if has valid system id") {
-                expect(value(for: .input)).to(equal(1104))
-                expect(value(for: .system)).to(equal(1156))
-                expect(value(for: .delete)).to(equal(1155))
-                expect(value(for: .custom(id: 123))).to(equal(123))
-                expect(value(for: .none)).to(equal(0))
-            }
-        }
-        
-        describe("triggering feedback") {
-            
-            it("uses the shared audio engine") {
-                AudioFeedback.custom(id: 111).trigger()
-                AudioFeedback.custom(id: 124).trigger()
-                let calls = engine.calls(to: engine.triggerRef)
-                expect(calls.count).to(equal(2))
-                expect(calls[0].arguments.id).to(equal(111))
-                expect(calls[1].arguments.id).to(equal(124))
-            }
-        }
+    var engine: MockAudioFeedbackEngine!
+
+    override func setUp() {
+        engine = MockAudioFeedbackEngine()
+        AudioFeedback.engine = engine
+    }
+
+    func id(for feedback: AudioFeedback) -> UInt32? {
+        feedback.id
+    }
+
+    func testAudioFeedbackHasValidSystemId() {
+        XCTAssertEqual(id(for: .input), 1104)
+        XCTAssertEqual(id(for: .system), 1156)
+        XCTAssertEqual(id(for: .delete), 1155)
+        XCTAssertEqual(id(for: .custom(id: 123)), 123)
+        XCTAssertEqual(id(for: .none), 0)
+    }
+
+    func testTriggeringFeedbackUsesSharedAudioEngine() {
+        AudioFeedback.custom(id: 111).trigger()
+        AudioFeedback.custom(id: 124).trigger()
+        let calls = engine.calls(to: engine.triggerRef)
+        XCTAssertEqual(calls.count, 2)
+        XCTAssertEqual(calls[0].arguments.id, 111)
+        XCTAssertEqual(calls[1].arguments.id, 124)
     }
 }
 #endif

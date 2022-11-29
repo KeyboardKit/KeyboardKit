@@ -6,67 +6,55 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-import Quick
-import Nimble
-import Foundation
 import KeyboardKit
+import XCTest
 
-class StandardInputSetProviderTests: QuickSpec {
-    
-    override func spec() {
-        
-        var provider: StandardInputSetProvider!
-        var context: KeyboardContext!
-        
-        var english: InputSetProvider!
-        
-        beforeEach {
-            context = KeyboardContext()
-            provider = StandardInputSetProvider(context: context)
-            
-            english = EnglishInputSetProvider()
-        }
-        
-        describe("localized providers") {
-            
-            it("has standard locale-specific providers") {
-                let providers = provider.providerDictionary.dictionary
-                expect(providers.keys.count).to(equal(1))
-                expect(providers[KeyboardLocale.english.id] is EnglishInputSetProvider).to(beTrue())
-            }
-            
-            it("accepts custom providers") {
-                provider = StandardInputSetProvider(
-                    context: context,
-                    providers: [EnglishInputSetProvider()])
-                let providers = provider.providerDictionary.dictionary
-                expect(providers.keys.count).to(equal(1))
-                expect(providers[KeyboardLocale.english.id] is EnglishInputSetProvider).to(beTrue())
-            }
-        }
-        
-        describe("input sets") {
-            
-            it("supports English") {
-                context.locale = Locale(identifier: KeyboardLocale.english.id)
-                expect(provider.alphabeticInputSet).to(equal(english.alphabeticInputSet))
-                expect(provider.numericInputSet).to(equal(english.numericInputSet))
-                expect(provider.symbolicInputSet).to(equal(english.symbolicInputSet))
-            }
-            
-            it("has fallback support for specific locale") {
-                context.locale = Locale(identifier: "en-US")
-                expect(provider.alphabeticInputSet).to(equal(english.alphabeticInputSet))
-                expect(provider.numericInputSet).to(equal(english.numericInputSet))
-                expect(provider.symbolicInputSet).to(equal(english.symbolicInputSet))
-            }
-            
-            it("has fallback support for non-supported locale") {
-                context.locale = Locale(identifier: "es")
-                expect(provider.alphabeticInputSet).to(equal(english.alphabeticInputSet))
-                expect(provider.numericInputSet).to(equal(english.numericInputSet))
-                expect(provider.symbolicInputSet).to(equal(english.symbolicInputSet))
-            }
-        }
+class StandardInputSetProviderTests: XCTestCase {
+
+    var provider: StandardInputSetProvider!
+    var context: KeyboardContext!
+    var english: InputSetProvider!
+
+    override func setUp() {
+        context = KeyboardContext()
+        provider = StandardInputSetProvider(context: context)
+        english = EnglishInputSetProvider()
+    }
+
+    func testLocalizedProvidersHaveStandardLocaleSpecificProvider() {
+        let providers = provider.providerDictionary.dictionary
+        XCTAssertEqual(providers.keys.count, 1)
+        XCTAssertTrue(providers[KeyboardLocale.english.id] is EnglishInputSetProvider)
+    }
+
+    func testLocalizedProvidersAcceptCustomProviders() {
+        provider = StandardInputSetProvider(
+            context: context,
+            providers: [EnglishInputSetProvider()])
+        let providers = provider.providerDictionary.dictionary
+        XCTAssertEqual(providers.keys.count, 1)
+        XCTAssertTrue(providers[KeyboardLocale.english.id] is EnglishInputSetProvider)
+    }
+
+
+    func testInputSetsSupportEnglish() {
+        context.locale = Locale(identifier: KeyboardLocale.english.id)
+        XCTAssertEqual(provider.alphabeticInputSet, english.alphabeticInputSet)
+        XCTAssertEqual(provider.numericInputSet, english.numericInputSet)
+        XCTAssertEqual(provider.symbolicInputSet, english.symbolicInputSet)
+    }
+
+    func testInputSetsHasFallbackToSpecificLocale() {
+        context.locale = Locale(identifier: "en-US")
+        XCTAssertEqual(provider.alphabeticInputSet, english.alphabeticInputSet)
+        XCTAssertEqual(provider.numericInputSet, english.numericInputSet)
+        XCTAssertEqual(provider.symbolicInputSet, english.symbolicInputSet)
+    }
+
+    func testInputSetsHasFallbackSupportForNonSupportedLocale() {
+        context.locale = Locale(identifier: "es")
+        XCTAssertEqual(provider.alphabeticInputSet, english.alphabeticInputSet)
+        XCTAssertEqual(provider.numericInputSet, english.numericInputSet)
+        XCTAssertEqual(provider.symbolicInputSet, english.symbolicInputSet)
     }
 }

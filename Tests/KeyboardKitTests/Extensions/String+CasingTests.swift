@@ -11,19 +11,19 @@ import XCTest
 
 class String_CasingTests: XCTestCase {
 
-    func isCapitalizedIsOnlyTrueForCapitalizedStrings() {
+    func testIsCapitalizedIsOnlyTrueForCapitalizedStrings() {
         XCTAssertTrue("Foobar".isCapitalized)
         XCTAssertTrue("Foo Bar".isCapitalized)
         XCTAssertFalse("Foo bar".isCapitalized)
     }
 
-    func isLowercasedIsOnlyTrueForStringsThatCanBeAndAreLowercased() {
+    func testIsLowercasedIsOnlyTrueForStringsThatCanBeAndAreLowercased() {
         XCTAssertTrue("foobar".isLowercased)
         XCTAssertFalse("fooBar".isLowercased)
         XCTAssertFalse("123".isLowercased)
     }
 
-    func isUppercasedIsOnlyTrueForStringsThatCanBeAndAreUppercased() {
+    func testIsUppercasedIsOnlyTrueForStringsThatCanBeAndAreUppercased() {
         XCTAssertTrue("FOOBAR".isUppercased)
         XCTAssertFalse("fooBar".isUppercased)
         XCTAssertFalse("123".isUppercased)
