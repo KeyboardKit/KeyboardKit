@@ -117,8 +117,18 @@ KeyboardKit is available under the MIT license.
 - ``AutocompleteResult``
 - ``AutocompleteSpaceState``
 - ``AutocompleteSuggestion``
+- ``AutocompleteToolbar``
+- ``AutocompleteToolbarItem``
+- ``AutocompleteToolbarItemBackgroundStyle``
+- ``AutocompleteToolbarItemStyle``
+- ``AutocompleteToolbarItemSubtitle``
+- ``AutocompleteToolbarItemTitle``
+- ``AutocompleteToolbarSeparator``
+- ``AutocompleteToolbarSeparatorStyle``
+- ``AutocompleteToolbarStyle``
 - ``DisabledAutocompleteProvider``
 - ``StandardAutocompleteSuggestion``
+
 
 ### Behavior
 
@@ -128,9 +138,16 @@ KeyboardKit is available under the MIT license.
 
 ### Callouts
 
+- ``ActionCallout``
 - ``ActionCalloutContext``
+- ``ActionCalloutStyle``
 - ``CalloutActionProvider``
+- ``CalloutButtonArea``
+- ``CalloutCurve``
+- ``CalloutStyle``
+- ``InputCallout``
 - ``InputCalloutContext``
+- ``InputCalloutStyle``
 - ``StandardCalloutActionProvider``
 
 - ``BaseCalloutActionProvider``
@@ -269,50 +286,7 @@ KeyboardKit is available under the MIT license.
 
 - ``TextInputProxy``
 
-### Styles
-
-- ``ActionCalloutStyle``
-- ``AutocompleteToolbarStyle``
-- ``AutocompleteToolbarItemStyle``
-- ``AutocompleteToolbarItemBackgroundStyle``
-- ``AutocompleteToolbarSeparatorStyle``
-- ``CalloutStyle``
-- ``EmojiKeyboardStyle``
-- ``InputCalloutStyle``
-- ``KeyboardButtonStyle``
-- ``KeyboardButtonBorderStyle``
-- ``KeyboardButtonShadowStyle``
-
-### Views - Autocomplete
-
-- ``AutocompleteToolbar``
-- ``AutocompleteToolbarItem``
-- ``AutocompleteToolbarItemSubtitle``
-- ``AutocompleteToolbarItemTitle``
-- ``AutocompleteToolbarSeparator``
-
-### Views - Buttons
-
-- ``NextKeyboardButton``
-
-### Views - Callouts
-
-- ``ActionCallout``
-- ``CalloutButtonArea``
-- ``CalloutCurve``
-- ``InputCallout``
-
-### Views - Input
-
-- ``KeyboardInputTextComponent``
-- ``KeyboardTextField``
-- ``KeyboardTextView``
-
-### Views - Layout
-
-- ``KeyboardGrid``
-
-### Views - System
+### SystemKeyboard
 
 - ``SystemKeyboard``
 - ``SystemKeyboardActionButton``
@@ -326,3 +300,20 @@ KeyboardKit is available under the MIT license.
 - ``SystemKeyboardSpaceButtonContent``
 - ``StandardSystemKeyboardButtonContent``
 - ``StandardSystemKeyboardButtonView``
+
+### Views - Buttons
+
+- ``KeyboardButtonStyle``
+- ``KeyboardButtonBorderStyle``
+- ``KeyboardButtonShadowStyle``
+- ``NextKeyboardButton``
+
+### Views - Input
+
+- ``KeyboardInputTextComponent``
+- ``KeyboardTextField``
+- ``KeyboardTextView``
+
+### Views - Layout
+
+- ``KeyboardGrid``
