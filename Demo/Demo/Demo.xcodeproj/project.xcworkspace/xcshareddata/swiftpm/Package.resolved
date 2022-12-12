@@ -1,48 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "cwlcatchexception",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mattgallagher/CwlCatchException.git",
-      "state" : {
-        "revision" : "35f9e770f54ce62dd8526470f14c6e137cef3eea",
-        "version" : "2.1.1"
-      }
-    },
-    {
-      "identity" : "cwlpreconditiontesting",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mattgallagher/CwlPreconditionTesting.git",
-      "state" : {
-        "revision" : "c21f7bab5ca8eee0a9998bbd17ca1d0eb45d4688",
-        "version" : "2.1.0"
-      }
-    },
-    {
       "identity" : "mockingkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/danielsaidi/MockingKit.git",
       "state" : {
         "revision" : "9ac1637a2252b04232bde6d0da8a64b9c76e25ee",
         "version" : "1.2.0"
-      }
-    },
-    {
-      "identity" : "nimble",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/danielsaidi/Nimble.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "f76b83c051fb3e6c120a33ebac200efba883065a"
-      }
-    },
-    {
-      "identity" : "quick",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/danielsaidi/Quick.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "1efe9551db0ad6a6e979f33366969750123d14d9"
       }
     },
     {

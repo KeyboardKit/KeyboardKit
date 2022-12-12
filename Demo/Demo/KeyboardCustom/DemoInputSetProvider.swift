@@ -21,9 +21,9 @@ class DemoInputSetProvider: InputSetProvider {
 
     var alphabeticInputSet: AlphabeticInputSet {
         AlphabeticInputSet(rows: [
-            .init("KEYBOARD"),
-            .init("KIT"),
-            .init("YEAH!")
+            .init(chars: "KEYBOARD"),
+            .init(chars: "KIT"),
+            .init(chars: "YEAH!")
         ])
     }
 

@@ -24,8 +24,12 @@ Some things that are planned for the 7.0 release:
 
 ### ✨ New features
 
+* `CharacterProvider` is a new protocol that will let us design better character-based extensions over time.
 * `EmojiCharacterAnalyzer` is a new protocol that is implemented by `Character`.
 * `EmojiStringAnalyzer` is a new protocol that is implemented by `String`.
+* `KeyboardInputViewController` now only syncs proxy if it changes, which leads to fewer redraws.
+* `KeyboardRootView` no longer defines an explicit id.
+* `StringProvider` is a new protocol that will let us design better string-based extensions over time.
 
 ### 🗑 Deprecations
 
