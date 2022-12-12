@@ -50,7 +50,7 @@ private extension KeyboardView {
         AutocompleteToolbar(
             suggestions: autocompleteContext.suggestions,
             locale: keyboardContext.locale
-        ).frame(height: 50)
+        )
     }
 
     /// This text field can be added to the VStack above, to

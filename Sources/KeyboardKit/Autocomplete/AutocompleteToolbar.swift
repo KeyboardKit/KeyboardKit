@@ -98,7 +98,7 @@ public struct AutocompleteToolbar<ItemView: View, SeparatorView: View>: View {
                     separatorView(item.suggestion, style)
                 }
             }
-        }
+        }.frame(height: style.height)
     }
 }
 

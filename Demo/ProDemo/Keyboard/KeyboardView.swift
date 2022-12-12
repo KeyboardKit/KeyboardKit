@@ -42,6 +42,6 @@ private extension KeyboardView {
         AutocompleteToolbar(
             suggestions: autocompleteContext.suggestions,
             locale: keyboardContext.locale
-        ).frame(height: 50)
+        )
     }
 }
