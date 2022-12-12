@@ -71,7 +71,6 @@ Localizing emojis is a major undertaking and therefore a community effort. Pleas
 
 
 
-
 ## 6.6
 
 This version adds a brand new gesture engine, which aims to make typing feel a lot more like in the native keyboards.

@@ -80,9 +80,9 @@ KeyboardKit Pro unlocks additional emoji capabilities.
 
 ### Additional information
 
-[KeyboardKit Pro][Pro] unlocks a `ProEmojiInfo` protocol that is implemented by ``Emoji`` and provides additional emoji information.
+[KeyboardKit Pro][Pro] unlocks a ``ProEmojiInfo`` protocol that is implemented by ``Emoji`` and provides additional emoji information.
 
-For instance, the protocol provides skin tone variant information, such as `ProEmojiInfo/hasSkinToneVariants``, ``ProEmojiInfo/neutralSkinToneVariant` and `ProEmojiInfo/skinToneVariants`:
+For instance, the protocol provides skin tone variant information, such as ``ProEmojiInfo/hasSkinToneVariants``, ``ProEmojiInfo/neutralSkinToneVariant`` and ``ProEmojiInfo/skinToneVariants``:
 
 ```swift
 Emoji("👍").hasSkinToneVariants     // true
