@@ -25,16 +25,6 @@ struct KeyboardRootView<ViewType: View>: View {
     private var context: KeyboardContext
     
     var body: some View {
-        view.id(bodyId)
-    }
-    
-    var bodyId: String {
-        #if os(iOS)
-        "\(context.locale)\(context.keyboardType)\(context.colorScheme)\(context.screenOrientation.isLandscape)"
-        #elseif os(tvOS)
-        "\(context.locale)\(context.keyboardType)\(context.colorScheme)"
-        #else
-        "\(context.locale)"
-        #endif
+        view
     }
 }
