@@ -29,6 +29,7 @@ Some things that are planned for the 7.0 release:
 * `EmojiStringAnalyzer` is a new protocol that is implemented by `String`.
 * `KeyboardInputViewController` now only syncs proxy if it changes, which leads to fewer redraws.
 * `KeyboardRootView` no longer defines an explicit id.
+* `LocaleContextMenu` is a new view modifier for applying a locale context menu to any view.
 * `StringProvider` is a new protocol that will let us design better string-based extensions over time.
 
 ### 🗑 Deprecations
@@ -36,6 +37,7 @@ Some things that are planned for the 7.0 release:
 * `KKL10n` `hasText` is deprecated, since it produces incorrect results.
 * `InputSetProvider` row functions are deprecated.
 * `InputSetRow` initializers with implic names are deprecated.
+* `View+localeContextMenu` with locales parameter is deprecated.
 
 
 

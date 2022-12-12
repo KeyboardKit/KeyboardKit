@@ -133,7 +133,8 @@ public struct SystemKeyboard<ButtonView: View>: View {
             .inputCallout(
                 context: inputCalloutContext,
                 keyboardContext: keyboardContext,
-                style: inputCalloutStyle)
+                style: inputCalloutStyle
+            )
     }
 
     @ViewBuilder

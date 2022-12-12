@@ -15,4 +15,23 @@ extension View {
             actionHandler: actionHandler,
             isPressed: isPressed)
     }
+
+    @ViewBuilder
+    @available(*, deprecated, message: "Use KeyboardContext-based extension instead.")
+    func localeContextMenu<ButtonView: View>(
+        locales: [Locale],
+        buttonViewBuilder: @escaping (Locale) -> ButtonView
+    ) -> some View {
+        if locales.count < 2 {
+            self
+        } else {
+            self.contextMenu(
+                ContextMenu {
+                    ForEach(locales, id: \.identifier) {
+                        buttonViewBuilder($0)
+                    }
+                }
+            )
+        }
+    }
 }

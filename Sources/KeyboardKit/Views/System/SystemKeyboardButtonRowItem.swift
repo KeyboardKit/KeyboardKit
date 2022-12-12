@@ -10,15 +10,16 @@ import SwiftUI
 
 /**
  This view is meant to be used within a `SystemKeyboard` and
- will apply the frames and paddings to the view, to mitigate
- dead tap areas, as well the correct appearance, style, view
- gestures etc.
+ will apply frames and paddings to mitigate dead tap areas.
+
+ This view also applies the correct appearance, button style,
+ view gestures etc.
  */
 public struct SystemKeyboardButtonRowItem<Content: View>: View {
-    
+
     /**
      Create a system keyboard button row item.
-     
+
      - Parameters:
        - content: The content view to use within the item.
        - item: The layout item to use within the item.
@@ -39,24 +40,26 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
     ) {
         self.content = content
         self.item = item
-        self.context = context
+        self._context = ObservedObject(wrappedValue: context)
         self.keyboardWidth = keyboardWidth
         self.inputWidth = inputWidth
         self.appearance = appearance
         self.actionHandler = actionHandler
     }
-    
+
     private let content: Content
     private let item: KeyboardLayoutItem
-    private var context: KeyboardContext
     private let keyboardWidth: CGFloat
     private let inputWidth: CGFloat
     private let appearance: KeyboardAppearance
     private let actionHandler: KeyboardActionHandler
-    
+
+    @ObservedObject
+    private var context: KeyboardContext
+
     @State
     private var isPressed = false
-    
+
     public var body: some View {
         content
             .frame(maxWidth: .infinity)
@@ -76,14 +79,14 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
 }
 
 private extension SystemKeyboardButtonRowItem {
-    
+
     var buttonStyle: KeyboardButtonStyle {
         appearance.buttonStyle(for: item.action, isPressed: isPressed)
     }
 }
 
 public extension View {
-    
+
     /**
      Apply a locale context menu to the view if the provided
      action is `nextLocale`.
@@ -93,6 +96,7 @@ public extension View {
         #if os(iOS) || os(macOS) || os(watchOS)
         if action == .nextLocale {
             self.localeContextMenu(for: context)
+                .id(context.locale.identifier)  // TODO: Remove when SystemKeyboard no longer uses AnyView
         } else {
             self
         }
@@ -100,7 +104,7 @@ public extension View {
         self
         #endif
     }
-    
+
     /**
      Apply a certain layout width to the view, in a way that
      works with the rot item composition above.
@@ -130,7 +134,7 @@ private extension View {
 }
 
 struct SystemKeyboardButtonRowItem_Previews: PreviewProvider {
-    
+
     static func previewItem(_ text: String, width: KeyboardLayoutItemWidth) -> some View {
         SystemKeyboardButtonRowItem(
             content: Text(text),
@@ -146,7 +150,7 @@ struct SystemKeyboardButtonRowItem_Previews: PreviewProvider {
             appearance: .preview,
             actionHandler: PreviewKeyboardActionHandler())
     }
-    
+
     static var previews: some View {
         HStack {
             previewItem("1", width: .inputPercentage(0.5))
