@@ -14,11 +14,12 @@ public extension Emoji {
      Get the key that is to be added to `Localizable.strings`
      to localize the emoji.
      */
-    var localizedName: String {
-        let localized = NSLocalizedString(localizationKey, comment: "Emoji's localized name")
-        let hasLocalizedName = localized != localizationKey
-        let result = hasLocalizedName ? localized : (unicodeName ?? "")
-        return result.trimmed()
+    func localizedName(for locale: KeyboardLocale) -> String {
+        let key = localizationKey
+        let name = KKL10n.text(forKey: key, locale: locale)
+        let hasLocalizedName = name != key && name != ""
+        let result = hasLocalizedName ? name : unicodeName
+        return result?.trimmed() ?? ""
     }
 
     /**

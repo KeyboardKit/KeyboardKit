@@ -16,9 +16,9 @@ import XCTest
 
  To use the test case class as a tool, just do the following:
 
- 1. Set the `locale` to the locale you want to localize.
- 2. Run just this test case by tapping the diamond shape.
- 3. If any emoji is not translated, the tests will fail.
+ 1. Run just the `testLocalizedNameForAllEmojis` test.
+ 2. Set the `locale` to the locale you want to localize.
+ 3. If any emoji is not translated, the test will fail.
  4. If the tests fail, you get a print with the missing ones.
  5. Find the locale's `Localizable.strings` under `Resources`.
  6. Paste the string and add the correct localized names.
@@ -28,30 +28,38 @@ import XCTest
  */
 class Emoji_LocalizationTests: XCTestCase {
 
-    let locale = KeyboardLocale.english
 
-    func testLocalizationKey() {
-        let emoji = Emoji("😀")
-        let id = emoji.localizationKey
-        XCTAssertEqual(id, "Emoji.GrinningFace")
+    func testLocalizationKeyIsKeyIdPrefixedWithEmoji() {
+        let value = Emoji("😀").localizationKey
+        XCTAssertEqual(value, "Emoji.GrinningFace")
     }
 
-    func testLocalizationKeyId() {
-        let emoji = Emoji("😀")
-        let id = emoji.localizationKeyId
-        XCTAssertEqual(id, "GrinningFace")
+    func testLocalizationKeyIdIsUnicodeNameWithSpacesRemoved() {
+        let value = Emoji("😀").localizationKeyId
+        XCTAssertEqual(value, "GrinningFace")
     }
 
-    func testLocalizedNameForLocale() {
-        let emojis = EmojiCategory.all.flatMap { $0.emojis }
-        let untranslated = emojis.filter { $0.localizationKey != ($0.unicodeName ?? "") }
+    func testLocalizedName() {
+        let emoji = Emoji("😀")
+        XCTAssertEqual(emoji.localizedName(for: .english), "Grinning Face")
+        XCTAssertEqual(emoji.localizedName(for: .swedish), "Leende ansikte")
+        XCTAssertEqual(emoji.localizedName(for: .norwegian), "Grinning Face")
+    }
+
+    func testLocalizedNameForAllEmojis() {
+        let locale = KeyboardLocale.english
         let isEnglish = locale.rawValue.hasPrefix("en")
+        let emojis = EmojiCategory.all.flatMap { $0.emojis }
+        let untranslated = emojis.filter { $0.localizedName(for: locale) == ($0.unicodeName ?? "") }
         let success = isEnglish || untranslated.count == 0
         XCTAssertTrue(success)
         if !success {
-            print("\n COPY AND TRANSLATE THESE \n")
+            print("**************************")
+            print(" LOCALIZE THESE EMOJIS IN ")
+            print(" Resources/\(locale.locale.identifier).lproj/Localizable.strings")
+            print("**************************")
             untranslated.forEach {
-                print("/* \($0.char)] */ \"\($0.localizationKey)\" = \"\";")
+                print("/* [\($0.char)] */ \"\($0.localizationKey)\" = \"\";")
             }
         }
     }

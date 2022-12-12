@@ -31,6 +31,7 @@ Some things that are planned for the 7.0 release:
 * `EmojiStringAnalyzer` is a new protocol that is implemented by `String`.
 * `KeyboardInputViewController` now only syncs proxy if it changes, which leads to fewer redraws.
 * `KeyboardRootView` no longer defines an explicit id.
+* `KKL10n` can now be used to translate custom keys as well, using the same bundle resolve.
 * `LocaleContextMenu` is a new view modifier for applying a locale context menu to any view.
 * `PrefersAutocompleteResolver` is a new protocol that is implemented by `KeyboardType` and `UIKeyboardType`.
 * `StringProvider` is a new protocol that will let us design better string-based extensions over time.
