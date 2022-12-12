@@ -33,10 +33,13 @@ Localizing emojis is a major undertaking and therefore a community effort. Pleas
 * `Emoji` has new `localizationKey` properties that are used to translate emoji names.
 * `Emoji` has new `localizedName(for:)` functions that are used to translate emoji names.
 * `Emoji` has new `unicodeNameOverride` properties, to provide good names and localization keys for the various flags.
+* `Emoji` has new `matches` functions, that lets you match on emoji unicode and localized names.
+* `Emoji` collections have new `matching` functions, that lets you search for emojis that match a certain search query.
 * `EmojiCharacterAnalyzer` is a new protocol that is implemented by `Character`.
 * `EmojiStringAnalyzer` is a new protocol that is implemented by `String`.
 * `KeyboardInputViewController` now only syncs proxy if it changes, which leads to fewer redraws.
 * `KeyboardRootView` no longer defines an explicit id.
+* `KKL10n` has a new `searchEmoji` key that must be localized in all `Localizable.strings` files.
 * `KKL10n` can now be used to translate custom keys as well, using the same bundle resolve.
 * `LocaleContextMenu` is a new view modifier for applying a locale context menu to any view.
 * `PrefersAutocompleteResolver` is a new protocol that is implemented by `KeyboardType` and `UIKeyboardType`.
@@ -46,6 +49,7 @@ Localizing emojis is a major undertaking and therefore a community effort. Pleas
 
 * `AutocompleteToolbar` now applies the height from its style.
 * `Emoji` has better unicode names for all flag emojis.
+* `EmojiCategoryTitle` doesn't have a default padding anymore.
 * `KeyboardRootView` no longer applies an explicit id.
 * The demo keyboards use the autocomplete prefered info to adjust the toolbar's opacity.
 
@@ -60,6 +64,11 @@ Localizing emojis is a major undertaking and therefore a community effort. Pleas
 * `InputSetProvider` row functions are deprecated.
 * `InputSetRow` initializers with implic names are deprecated.
 * `View+localeContextMenu` with locales parameter is deprecated.
+
+### 💥 Breaking changes
+
+* `EmojiCategoryKeyboard` no longer allows customizing the keyboard view.
+
 
 
 

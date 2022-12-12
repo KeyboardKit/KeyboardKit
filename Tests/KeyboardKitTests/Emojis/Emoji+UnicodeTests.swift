@@ -23,8 +23,10 @@ final class Emoji_UnicodeTests: XCTestCase {
     }
 
     func testUnicodeNameIsCleanedUpIdentifier() {
-        let name = Emoji("😀").unicodeName
-        XCTAssertEqual(name, "Grinning Face")
+        let emoji = Emoji("😀")
+        XCTAssertEqual(emoji.unicodeName, "Grinning Face")
+        let ring = Emoji("💍")
+        XCTAssertEqual(ring.unicodeName, "Ring")
     }
 
     func testUnicodeNameIsOverrideIfAvailable() {

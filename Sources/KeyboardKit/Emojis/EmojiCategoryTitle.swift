@@ -33,7 +33,7 @@ public struct EmojiCategoryTitle: View {
                 .textCase(.uppercase)
                 .opacity(0.4)
             Spacer()
-        }.padding(.horizontal)
+        }
     }
 }
 

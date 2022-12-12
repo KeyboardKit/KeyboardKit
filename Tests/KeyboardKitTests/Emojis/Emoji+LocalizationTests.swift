@@ -7,7 +7,6 @@
 //
 
 import KeyboardKit
-import MockingKit
 import XCTest
 
 /**
@@ -38,11 +37,13 @@ class Emoji_LocalizationTests: XCTestCase {
         XCTAssertEqual(value, "GrinningFace")
     }
 
-    func testLocalizedName() {
+    func testLocalizedNameIsValidForManyLocales() {
         let emoji = Emoji("😀")
         XCTAssertEqual(emoji.localizedName(for: .english), "Grinning Face")
         XCTAssertEqual(emoji.localizedName(for: .swedish), "Leende ansikte")
         XCTAssertEqual(emoji.localizedName(for: .norwegian), "Grinning Face")
+        let ring = Emoji("💍")
+        XCTAssertEqual(ring.localizedName(for: .english), "Ring")
     }
 
     func testLocalizedNameForAllEmojis() {

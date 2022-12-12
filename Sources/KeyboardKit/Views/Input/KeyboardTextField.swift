@@ -25,19 +25,22 @@ public struct KeyboardTextField: UIViewRepresentable {
      Create a keyboard text field instance.
      
      - Parameters:
-       - placeholder: An optional placeholder text to show when the text field is empty.
+       - placeholder: An optional placeholder text to show when the text field is empty, by default `nil`.
        - text: A text binding that will be affected by the text field.
-       - resignOnReturn: Whether or not to resign first responder when return is pressed.
-       - config: A configuration block that can be used to configure the text field.
+       - hasFocus: A binding to communicate whether or not the text field has focus, by default `.constant(false)`.
+       - resignOnReturn: Whether or not to resign first responder when return is pressed, by default `true`.
+       - config: A configuration block that can be used to configure the text field, by default an empty configuration.
      */
     public init(
         _ placeholder: String? = nil,
         text: Binding<String>,
+        hasFocus: Binding<Bool> = .constant(false),
         resignOnReturn: Bool = true,
         config: @escaping ConfigAction = { _ in }
     ) {
         self.placeholder = placeholder
         self._text = text
+        self._hasFocus = hasFocus
         self.config = config
         self.resignOnReturn = resignOnReturn
     }
@@ -51,6 +54,9 @@ public struct KeyboardTextField: UIViewRepresentable {
     
     @Binding
     private var text: String
+
+    @Binding
+    private var hasFocus: Bool
     
     private let placeholder: String?
     private let config: ConfigAction
@@ -66,6 +72,7 @@ public struct KeyboardTextField: UIViewRepresentable {
         view.placeholder = placeholder
         view.addTarget(context.coordinator, action: #selector(context.coordinator.textFieldDidChange), for: .editingChanged)
         view.resignOnReturn = resignOnReturn
+        view.hasFocus = $hasFocus
         view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         config(view)
         return view
@@ -99,8 +106,10 @@ public extension KeyboardTextField {
 class KeyboardInputTextField: UITextField, KeyboardInputTextComponent {
     
     var resignOnReturn: Bool = true
+    var hasFocus: Binding<Bool> = .constant(false)
     
     override func becomeFirstResponder() -> Bool {
+        hasFocus.wrappedValue = true
         handleBecomeFirstResponder()
         return super.becomeFirstResponder()
     }
@@ -112,6 +121,7 @@ class KeyboardInputTextField: UITextField, KeyboardInputTextComponent {
     
     @discardableResult
     override func resignFirstResponder() -> Bool {
+        hasFocus.wrappedValue = false
         handleResignFirstResponder()
         return super.resignFirstResponder()
     }

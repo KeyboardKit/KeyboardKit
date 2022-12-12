@@ -19,6 +19,8 @@
 "keyboardTypeNumeric" = "123";
 "keyboardTypeSymbolic" = "#+=";
 
+"searchEmoji" = "Search Emoji";
+
 /* [😀] */ "Emoji.GrinningFace" = "";
 /* [😃] */ "Emoji.SmilingFaceWithOpenMouth" = "";
 /* [😄] */ "Emoji.SmilingFaceWithOpenMouthAndSmilingEyes" = "";
