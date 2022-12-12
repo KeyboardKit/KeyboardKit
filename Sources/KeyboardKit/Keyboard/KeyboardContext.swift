@@ -282,16 +282,36 @@ public extension KeyboardContext {
     func sync(with controller: KeyboardInputViewController) {
         if Self.tempIsPreviewMode { return }
         DispatchQueue.main.async {
-            self.hasDictationKey = controller.hasDictationKey
-            self.hasFullAccess = controller.hasFullAccess
-            self.needsInputModeSwitchKey = controller.needsInputModeSwitchKey
-            self.primaryLanguage = controller.primaryLanguage
-            #if os(iOS)
-            self.screenOrientation = controller.screenOrientation
-            #endif
-            self.textDocumentProxy = controller.textDocumentProxy
-            self.textInputMode = controller.textInputMode
-            self.traitCollection = controller.traitCollection
+            self.syncWithControllerAfterDelay(controller)
+        }
+    }
+
+    func syncWithControllerAfterDelay(_ controller: KeyboardInputViewController) {
+        if hasDictationKey != controller.hasDictationKey {
+            hasDictationKey = controller.hasDictationKey
+        }
+        if hasFullAccess != controller.hasFullAccess {
+            hasFullAccess = controller.hasFullAccess
+        }
+        if needsInputModeSwitchKey != controller.needsInputModeSwitchKey {
+            needsInputModeSwitchKey = controller.needsInputModeSwitchKey
+        }
+        if primaryLanguage != controller.primaryLanguage {
+            primaryLanguage = controller.primaryLanguage
+        }
+        #if os(iOS)
+        if screenOrientation != controller.screenOrientation {
+            screenOrientation = controller.screenOrientation
+        }
+        #endif
+        if textDocumentProxy === controller.textDocumentProxy {} else {
+            textDocumentProxy = controller.textDocumentProxy
+        }
+        if textInputMode != controller.textInputMode {
+            textInputMode = controller.textInputMode
+        }
+        if traitCollection != controller.traitCollection {
+            traitCollection = controller.traitCollection
         }
     }
     
