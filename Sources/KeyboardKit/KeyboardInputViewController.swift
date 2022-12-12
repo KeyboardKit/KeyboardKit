@@ -281,6 +281,7 @@ open class KeyboardInputViewController: UIInputViewController {
     
     open override func textWillChange(_ textInput: UITextInput?) {
         super.textWillChange(textInput)
+        if keyboardContext.textDocumentProxy === textDocumentProxy { return }
         keyboardContext.textDocumentProxy = textDocumentProxy
     }
     
