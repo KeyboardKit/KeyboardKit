@@ -14,16 +14,16 @@ import SwiftUI
 public enum KKL10n: String, CaseIterable, Identifiable {
 
     case
-        done,
-        go,
-        ok,
-        `return`,
-        search,
-        space,
+    done,
+    go,
+    ok,
+    `return`,
+    search,
+    space,
     
-        keyboardTypeAlphabetic,
-        keyboardTypeNumeric,
-        keyboardTypeSymbolic
+    keyboardTypeAlphabetic,
+    keyboardTypeNumeric,
+    keyboardTypeSymbolic
 }
 
 public extension KKL10n {
@@ -57,27 +57,38 @@ public extension KKL10n {
     }
     
     /**
-     The item's localized text for a certain `context`.
+     Get the localized text for a certain ``KeyboardContext``.
      */
     func text(for context: KeyboardContext) -> String {
         text(for: context.locale)
     }
     
     /**
-     The item's localized text for a certain `locale`.
+     Get the localized text for a certain ``KeyboardLocale``.
      */
     func text(for locale: KeyboardLocale) -> String {
         text(for: locale.locale)
     }
-    
+
     /**
-     The item's localized text for a certain `locale`.
+     Get the localized text for a certain `Locale`.
      */
     func text(for locale: Locale) -> String {
-        guard
-            let bundlePath = Self.bundle.bundlePath(for: locale),
-            let bundle = Bundle(path: bundlePath)
-        else { return "" }
+        Self.text(forKey: key, locale: locale)
+    }
+
+    /**
+     Get a localized text for a certain ``KeyboardLocale``.
+     */
+    static func text(forKey key: String, locale: KeyboardLocale) -> String {
+        text(forKey: key, locale: locale.locale)
+    }
+
+    /**
+     Get a localized text for a certain `Locale`.
+     */
+    static func text(forKey key: String, locale: Locale) -> String {
+        guard let bundle = Bundle.keyboardKit.bundle(for: locale) else { return "" }
         return NSLocalizedString(key, bundle: bundle, comment: "")
     }
 }

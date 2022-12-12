@@ -6,7 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-/*
+
 import XCTest
 
 @testable import KeyboardKit
@@ -26,6 +26,27 @@ class KKL10nTests: XCTestCase {
         XCTAssertFalse(key.text(for: locale).isEmpty)
     }
 
+    func testTextForContextReturnsCorrectText() {
+        let key = KKL10n.done
+        let context = KeyboardContext()
+        context.locale = KeyboardLocale.english.locale
+        XCTAssertEqual(key.text(for: context), "done")
+        context.locale = KeyboardLocale.swedish.locale
+        XCTAssertEqual(key.text(for: context), "klar")
+    }
+
+    func testTextForKeyboardLocaleReturnsCorrectText() {
+        let key = KKL10n.done
+        XCTAssertEqual(key.text(for: .english), "done")
+        XCTAssertEqual(key.text(for: .swedish), "klar")
+    }
+
+    func testTextForLocaleReturnsCorrectText() {
+        let key = KKL10n.done
+        XCTAssertEqual(key.text(for: KeyboardLocale.english.locale), "done")
+        XCTAssertEqual(key.text(for: KeyboardLocale.swedish.locale), "klar")
+    }
+
     func testTextForLocaleIsNotEmptyForAnyLocale() {
         KeyboardLocale.allCases.forEach {
             assertTextResult(for: $0, key: .done)
@@ -40,5 +61,18 @@ class KKL10nTests: XCTestCase {
             assertTextResult(for: $0, key: .keyboardTypeSymbolic)
         }
     }
+
+    func testTextForLocaleCorrectlyResolvesLocaleBundle() {
+        XCTAssertEqual(KKL10n.done.text(for: .english), "done")
+        XCTAssertEqual(KKL10n.done.text(for: .swedish), "klar")
+    }
+
+    func testTextForCustomKeyResolvesLocaleBundle() {
+        XCTAssertEqual(KKL10n.text(forKey: "done", locale: .english), "done")
+        XCTAssertEqual(KKL10n.text(forKey: "done", locale: .swedish), "klar")
+    }
+
+    func testTextForCustomKeyReturnsKeyIfLocalizationIsMissing() {
+        XCTAssertEqual(KKL10n.text(forKey: "abra.kadabra", locale: .english), "abra.kadabra")
+    }
 }
-*/
