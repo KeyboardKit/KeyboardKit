@@ -1,12 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "mockingkit",
+      "identity" : "keyboardkitpro",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/danielsaidi/MockingKit.git",
+      "location" : "https://github.com/KeyboardKit/KeyboardKitPro.git",
       "state" : {
-        "revision" : "02bd7911f153ad2f91d4e91f189fde5152ede6a7",
-        "version" : "1.3.0"
+        "revision" : "a80007402f2cb91a71b6f5d93f28ff1c8aaae45e",
+        "version" : "6.7.0"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/danielsaidi/SwiftUIKit",
       "state" : {
-        "revision" : "22ac256c38e6377ca30902adb9d2325274bbc43a",
-        "version" : "2.9.3"
+        "revision" : "b7a64b83c186e3a1b8f3cfface0b30a3c6a51e1c",
+        "version" : "3.1.0"
       }
     }
   ],

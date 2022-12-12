@@ -127,14 +127,19 @@ KeyboardKit is available under the MIT license.
 - ``AutocompleteToolbarSeparatorStyle``
 - ``AutocompleteToolbarStyle``
 - ``DisabledAutocompleteProvider``
+- ``PrefersAutocompleteResolver``
 - ``StandardAutocompleteSuggestion``
-
 
 ### Behavior
 
 - ``KeyboardBehavior``
 - ``StandardKeyboardBehavior``
 - ``StaticKeyboardBehavior``
+
+### Bridging
+
+- ``CharacterProvider``
+- ``StringProvider``
 
 ### Callouts
 
@@ -264,6 +269,7 @@ KeyboardKit is available under the MIT license.
 ### Locale
 
 - ``KeyboardLocale``
+- ``LocaleContextMenu``
 - ``LocaleDictionary``
 - ``LocaleFlagProvider``
 - ``LocaleProvider``
