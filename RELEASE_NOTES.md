@@ -26,6 +26,7 @@ Some things that are planned for the 7.0 release:
 
 * `AutocompleteToolbarStyle` has a new optional `height` parameter.
 * `CharacterProvider` is a new protocol that will let us design better character-based extensions over time.
+* `Emoji` has new unicode name override properties, to provide good flag names.
 * `EmojiCharacterAnalyzer` is a new protocol that is implemented by `Character`.
 * `EmojiStringAnalyzer` is a new protocol that is implemented by `String`.
 * `KeyboardInputViewController` now only syncs proxy if it changes, which leads to fewer redraws.
@@ -37,6 +38,8 @@ Some things that are planned for the 7.0 release:
 ### 💡 Behavior changes
 
 * `AutocompleteToolbar` now applies the height from its style.
+* `Emoji` has better unicode names for all flag emojis.
+* `KeyboardRootView` no longer applies an explicit id.
 * `KeyboardRootView` no longer applies an explicit id.
 * The demo keyboards use the autocomplete prefered info to adjust the toolbar's opacity.
 

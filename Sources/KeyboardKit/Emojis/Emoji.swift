@@ -44,26 +44,6 @@ public extension Emoji {
      The emoji's unique identifier.
      */
     var id: String { char }
-
-    /**
-     The emoji's unique unicode identifier.
-     */
-    var unicodeIdentifier: String? {
-        char.applyingTransform(.toUnicodeName, reverse: false)
-    }
-
-    /**
-     The emoji's unicode name.
-     */
-    var unicodeName: String? {
-        unicodeIdentifier?
-            .replacingOccurrences(of: "\\N", with: "")
-            .replacingOccurrences(of: "{", with: "")
-            .split(by: ["}"])
-            .filter { !$0.isEmpty }
-            .first?
-            .capitalized()
-    }
 }
 
 #if os(iOS)
