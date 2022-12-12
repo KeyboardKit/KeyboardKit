@@ -50,16 +50,6 @@ private extension KeyboardView {
         AutocompleteToolbar(
             suggestions: autocompleteContext.suggestions,
             locale: keyboardContext.locale
-        )
-    }
-
-    /// This text field can be added to the VStack above, to
-    /// test typing in a text field within the keyboard view.
-    var textField: some View {
-        KeyboardTextField(text: $text) {
-            $0.placeholder = "Try typing here, press return to stop."
-            $0.borderStyle = .roundedRect
-            $0.autocapitalizationType = .sentences
-        }.padding(3)
+        ).opacity(keyboardContext.prefersAutocomplete ? 1 : 0)  // Still allocate height
     }
 }

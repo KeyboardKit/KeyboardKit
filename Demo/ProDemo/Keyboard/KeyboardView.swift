@@ -42,6 +42,6 @@ private extension KeyboardView {
         AutocompleteToolbar(
             suggestions: autocompleteContext.suggestions,
             locale: keyboardContext.locale
-        )
+        ).opacity(keyboardContext.prefersAutocomplete ? 1 : 0)  // Still allocate height
     }
 }

@@ -31,12 +31,19 @@ Some things that are planned for the 7.0 release:
 * `KeyboardInputViewController` now only syncs proxy if it changes, which leads to fewer redraws.
 * `KeyboardRootView` no longer defines an explicit id.
 * `LocaleContextMenu` is a new view modifier for applying a locale context menu to any view.
+* `PrefersAutocompleteResolver` is a new protocol that is implemented by `KeyboardType` and `UIKeyboardType`.
 * `StringProvider` is a new protocol that will let us design better string-based extensions over time.
 
 ### 💡 Behavior changes
 
 * `AutocompleteToolbar` now applies the height from its style.
-* KeyboardKit no longer applies an explicit id to its content view.
+* `KeyboardRootView` no longer applies an explicit id.
+* The demo keyboards use the autocomplete prefered info to adjust the toolbar's opacity.
+
+### 🐛 Bug fixes
+
+* By no longer applying an explicit id to `KeyboardRootView`, the keyboard view no longer has to observe the `KeyboardContext`.
+* By no longer applying an explicit id to `KeyboardRootView`, the full document context correctly updates the view after the async operation completes. 
 
 ### 🗑 Deprecations
 

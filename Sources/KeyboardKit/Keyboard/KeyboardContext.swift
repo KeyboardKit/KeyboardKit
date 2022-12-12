@@ -124,7 +124,16 @@ public class KeyboardContext: ObservableObject {
      */
     @Published
     public var needsInputModeSwitchKey = false
-    
+
+    /**
+     Whether or not the context prefers autocomplete.
+
+     The property is set every time the proxy syncs with the
+     controller. You can ignore it if you want.
+     */
+    @Published
+    public var prefersAutocomplete = true
+
     /**
      The primary language that is currently being used.
      */
@@ -302,6 +311,14 @@ public extension KeyboardContext {
         #if os(iOS)
         if screenOrientation != controller.screenOrientation {
             screenOrientation = controller.screenOrientation
+        }
+        let newPrefersAutocomplete = keyboardType.prefersAutocomplete && (textDocumentProxy.keyboardType?.prefersAutocomplete ?? true)
+        if prefersAutocomplete != newPrefersAutocomplete {
+            prefersAutocomplete = newPrefersAutocomplete
+        }
+        #else
+        if prefersAutocomplete != keyboardType.prefersAutocomplete {
+            prefersAutocomplete = keyboardType.prefersAutocomplete
         }
         #endif
         if textDocumentProxy === controller.textDocumentProxy {} else {
