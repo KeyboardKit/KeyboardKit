@@ -107,7 +107,7 @@ These properties and functions make it easier to work with words.
 
 
 
-## 👑 Pro Features
+## 👑 Pro features
 
 [KeyboardKit Pro][Pro] unlocks additional text document proxy capabilities.
 

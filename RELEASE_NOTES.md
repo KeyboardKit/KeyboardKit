@@ -22,11 +22,17 @@ Some things that are planned for the 7.0 release:
 
 ## 6.7
 
+This version adds more emoji features, such as improved unicode names and localized names.
+
+Localizing emojis is a major undertaking and therefore a community effort. Please see the documentation for information on how to help with localizing emojis.
+
 ### ✨ New features
 
 * `AutocompleteToolbarStyle` has a new optional `height` parameter.
 * `CharacterProvider` is a new protocol that will let us design better character-based extensions over time.
-* `Emoji` has new unicode name override properties, to provide good flag names.
+* `Emoji` has new `localizationKey` properties that are used to translate emoji names.
+* `Emoji` has new `localizedName(for:)` functions that are used to translate emoji names.
+* `Emoji` has new `unicodeNameOverride` properties, to provide good names and localization keys for the various flags.
 * `EmojiCharacterAnalyzer` is a new protocol that is implemented by `Character`.
 * `EmojiStringAnalyzer` is a new protocol that is implemented by `String`.
 * `KeyboardInputViewController` now only syncs proxy if it changes, which leads to fewer redraws.
@@ -40,7 +46,6 @@ Some things that are planned for the 7.0 release:
 
 * `AutocompleteToolbar` now applies the height from its style.
 * `Emoji` has better unicode names for all flag emojis.
-* `KeyboardRootView` no longer applies an explicit id.
 * `KeyboardRootView` no longer applies an explicit id.
 * The demo keyboards use the autocomplete prefered info to adjust the toolbar's opacity.
 

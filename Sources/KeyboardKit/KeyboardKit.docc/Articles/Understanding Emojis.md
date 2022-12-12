@@ -21,19 +21,20 @@ and get all available emojis like this:
 let emojis = Emoji.all
 ```
 
-You can also get access to additional information, such as the emoji's unique unicode identifier and unicode-based name:
+You can also get access to additional information, such as the emoji's unique unicode-based identifier and name, as well as a custom localized name:
 
 ```swift
 let emoji = Emoji("😀")
-let emojiId = emoji.unicodeIdentifier // -> \\N{GRINNING FACE}
-let emojiName = emoji.unicodeName // -> Grinning Face
+emoji.unicodeIdentifier // -> \\N{GRINNING FACE}
+emoji.unicodeName // -> Grinning Face
+emoji.localizedName(for: .swedish) // -> Leende Ansikte
 ```
 
 KeyboardKit Pro also adds support for skin tone variants. See more about this further down.
 
 
 
-## Emoji Categories
+## Emoji categories
 
 KeyboardKit has an ``EmojiCategory`` enum that defines all available emoji categories, such as `.smileys`, `.animals`, `.foods` etc. 
 
@@ -54,7 +55,7 @@ There is also a `.frequent` category that is handled with a ``FrequentEmojiProvi
 
 
 
-## Emoji Views
+## Emoji views
 
 KeyboardKit has an ``EmojiKeyboard`` that can lists emojis in a grid, as well as an ``EmojiCategoryKeyboard`` that replicates the iOS stock emoji keyboard by listing the provided categories and their emojis. They can both be styled with an ``EmojiKeyboardStyle``.
 
@@ -62,7 +63,17 @@ There are also an ``EmojiKeyboardItem`` and other views that are used by these v
 
 
 
-## 👑 Pro Features
+## How to localize emoji names
+
+``Emoji/localizedName(for:)`` uses `Localizable.strings` files in `Sources/Resources` to translate the emoji names. Emojis that lack a localized name will use the ``Emoji/unicodeName`` property as default name.
+
+To localize emojis for a certain locale, simply add localized strungs for the varioys emojis in the correct `Localizable.strings` file, then create a PR and ask for your changes to be merged.
+
+Localizing emojis is a major undertaking and therefore a community effort. If you find that emojis have poor translations, or outright incorrect ones, please create a PR to fix this or create an issue to let us know.
+
+
+
+## 👑 Pro features
 
 KeyboardKit Pro unlocks additional emoji capabilities.
 

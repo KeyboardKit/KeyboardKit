@@ -12,7 +12,7 @@ import XCTest
 
 /**
  You can use this test case to get a list of all emojis that
- still are missing translations for a certain locale.
+ are missing translations for a certain keyboard locale.
 
  To use the test case class as a tool, just do the following:
 
@@ -27,7 +27,6 @@ import XCTest
  specified locale.
  */
 class Emoji_LocalizationTests: XCTestCase {
-
 
     func testLocalizationKeyIsKeyIdPrefixedWithEmoji() {
         let value = Emoji("😀").localizationKey

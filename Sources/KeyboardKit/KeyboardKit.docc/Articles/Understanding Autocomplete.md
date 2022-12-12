@@ -97,7 +97,7 @@ If you ever need to reset the current autocomplete state, you can call ``Keyboar
 
 
 
-## 👑 Pro Features
+## 👑 Pro features
 
 [KeyboardKit Pro][Pro] unlocks additional autocomplete capabilities.
 
