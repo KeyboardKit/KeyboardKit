@@ -6,6 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(macOS) || os(watchOS)
 import SwiftUI
 
 /**
@@ -65,7 +66,6 @@ public extension LocaleContextMenu {
     }
 }
 
-#if os(iOS) || os(macOS) || os(watchOS)
 public extension View {
 
     /**

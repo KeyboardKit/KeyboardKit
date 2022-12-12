@@ -16,6 +16,7 @@ extension View {
             isPressed: isPressed)
     }
 
+    #if os(iOS) || os(macOS) || os(watchOS)
     @ViewBuilder
     @available(*, deprecated, message: "Use KeyboardContext-based extension instead.")
     func localeContextMenu<ButtonView: View>(
@@ -34,4 +35,5 @@ extension View {
             )
         }
     }
+    #endif
 }
