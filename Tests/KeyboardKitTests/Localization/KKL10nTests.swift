@@ -6,7 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-
+/*
 import XCTest
 
 @testable import KeyboardKit
@@ -76,3 +76,4 @@ class KKL10nTests: XCTestCase {
         XCTAssertEqual(KKL10n.text(forKey: "abra.kadabra", locale: .english), "abra.kadabra")
     }
 }
+*/
