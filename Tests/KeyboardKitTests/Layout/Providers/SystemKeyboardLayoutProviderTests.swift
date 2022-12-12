@@ -20,9 +20,9 @@ class SystemKeyboardLayoutProviderTests: XCTestCase {
         context = KeyboardContext()
         layoutConfig = .standard(for: context)
         inputSetProvider = MockInputSetProvider()
-        inputSetProvider.alphabeticInputSetValue = AlphabeticInputSet(rows: [["a", "b", "c"]].map(InputSetRow.init))
-        inputSetProvider.numericInputSetValue = NumericInputSet(rows: [["1", "2", "3"]].map(InputSetRow.init))
-        inputSetProvider.symbolicInputSetValue = SymbolicInputSet(rows: [[",", ".", "-"]].map(InputSetRow.init))
+        inputSetProvider.alphabeticInputSetValue = AlphabeticInputSet(rows: [["a", "b", "c"]].map(InputSetRow.init(chars:)))
+        inputSetProvider.numericInputSetValue = NumericInputSet(rows: [["1", "2", "3"]].map(InputSetRow.init(chars:)))
+        inputSetProvider.symbolicInputSetValue = SymbolicInputSet(rows: [[",", ".", "-"]].map(InputSetRow.init(chars:)))
         provider = SystemKeyboardLayoutProvider(
             inputSetProvider: inputSetProvider,
             dictationReplacement: .primary(.go))
@@ -49,7 +49,7 @@ class SystemKeyboardLayoutProviderTests: XCTestCase {
 
     func testActionsForContextAndInputsAreCharacterActionsForTheProvidedInputs() {
         let chars = [["a", "b", "c"], ["d", "e", "f"]]
-        let inputs = chars.map(InputSetRow.init)
+        let inputs = chars.map(InputSetRow.init(chars:))
         let actions = provider.actions(for: inputs, context: context)
         let expected = KeyboardActionRows(characters: chars)
         XCTAssertEqual(actions, expected)
@@ -58,7 +58,7 @@ class SystemKeyboardLayoutProviderTests: XCTestCase {
     func testActionsForContextAndInputsCanResolveUppercasedAlphabeticInputSet() {
         context.keyboardType = .alphabetic(.uppercased)
         let chars = [["a", "b", "c"], ["d", "e", "f"]]
-        let inputs = chars.map(InputSetRow.init)
+        let inputs = chars.map(InputSetRow.init(chars:))
         let actions = provider.actions(for: inputs, context: context)
         let expectedChars = [["A", "B", "C"], ["D", "E", "F"]]
         let expected = KeyboardActionRows(characters: expectedChars)

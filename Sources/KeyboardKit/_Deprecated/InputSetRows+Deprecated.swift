@@ -27,3 +27,16 @@ public extension InputSetRows {
         }
     }
 }
+
+public extension InputSetRow {
+
+    @available(*, deprecated, message: "Use chars: initializer instead.")
+    init(_ chars: String) {
+        self.init(chars: chars.chars)
+    }
+
+    @available(*, deprecated, message: "Use chars: initializer instead.")
+    init(_ row: [String]) {
+        self.init(chars: row)
+    }
+}

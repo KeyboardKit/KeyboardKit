@@ -30,6 +30,8 @@ Some things that are planned for the 7.0 release:
 ### 🗑 Deprecations
 
 * `KKL10n` `hasText` is deprecated, since it produces incorrect results.
+* `InputSetProvider` row functions are deprecated.
+* `InputSetRow` initializers with implic names are deprecated.
 
 
 
