@@ -42,7 +42,7 @@ class RepeatGestureTimerTests: XCTestCase {
     func testDurationIsTheTimeThatHasPassedSinceTheTimerWasLastStarted() {
         timer.start {}
         timer.modifyStartDate(to: Date().addingTimeInterval(-5))
-        guard let duration = timer.duration else { return XCTFail() }
+        guard let duration = timer.duration else { return XCTFail("Timer duration is invalid") }
         XCTAssertTrue(duration < 5.1)
     }
 
