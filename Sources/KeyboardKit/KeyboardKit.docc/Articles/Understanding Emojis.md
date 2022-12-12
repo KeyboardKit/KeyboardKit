@@ -65,7 +65,7 @@ There are also an ``EmojiKeyboardItem`` and other views that are used by these v
 
 ## How to localize emoji names
 
-``Emoji/localizedName(for:)`` uses `Localizable.strings` files in `Sources/Resources` to translate the emoji names. Emojis that lack a localized name will use the ``Emoji/unicodeName`` property as default name.
+The `Emoji` `localizedName` functions use `Localizable.strings` files in `Sources/Resources` to translate the emoji names. Emojis that lack a localized name will use the ``Emoji/unicodeName`` property as default name.
 
 To localize emojis for a certain locale, simply add localized strungs for the varioys emojis in the correct `Localizable.strings` file, then create a PR and ask for your changes to be merged.
 
@@ -80,9 +80,9 @@ KeyboardKit Pro unlocks additional emoji capabilities.
 
 ### Additional information
 
-[KeyboardKit Pro][Pro] unlocks a ``ProEmojiInfo`` protocol that is implemented by ``Emoji`` and provides additional emoji information.
+[KeyboardKit Pro][Pro] unlocks a `ProEmojiInfo` protocol that is implemented by ``Emoji`` and provides additional emoji information.
 
-For instance, the protocol provides skin tone variant information, such as ``ProEmojiInfo/hasSkinToneVariants``, ``ProEmojiInfo/neutralSkinToneVariant`` and ``ProEmojiInfo/skinToneVariants``:
+For instance, the protocol provides skin tone variant information, such as `ProEmojiInfo/hasSkinToneVariants``, ``ProEmojiInfo/neutralSkinToneVariant` and `ProEmojiInfo/skinToneVariants`:
 
 ```swift
 Emoji("👍").hasSkinToneVariants     // true

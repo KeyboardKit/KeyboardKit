@@ -104,7 +104,7 @@ If you ever need to reset the current autocomplete state, you can call ``Keyboar
 
 ### Standard autocomplete provider
 
-KeyboardKit Pro unlocks a ``StandardAutocompleteProvider``, which performs autocomplete locally on device, and register it as the current ``KeyboardInputViewController/autocompleteProvider``.
+KeyboardKit Pro unlocks a `StandardAutocompleteProvider`, which performs autocomplete locally on device, and register it as the current ``KeyboardInputViewController/autocompleteProvider``.
 
 The standard autocomplete provider uses on-devices autocomple capabilities, which will generate basic suggestions that are not comparable in quality with the ones that native iOS keyboards present. It will however make your keyboard look and behave more like a native keyboard than if you don't have any autocomplete in place. 
 
@@ -113,13 +113,13 @@ You can inherit this class and customize it if you find that some of its predict
 
 ### Remote autocomplete provider
 
-KeyboardKit Pro also unlocks an ``ExternalAutocompleteProvider``, which can fetch autocomplete suggestions from any external api.
+KeyboardKit Pro also unlocks an `ExternalAutocompleteProvider`, which can fetch autocomplete suggestions from any external api.
 
 This provider can be customized to great extent, to modify the request url path and parameters if needed. You can try it out in the Pro demo app, by creating an instance that goes to an api that you have access to. 
 
 Since most autocomplete api:s require a secret api token or some form of authentication, the demo app doesn't include a provider from start. You must create and configure it yourself.
 
-If you need autocomplete capabilities that ``ExternalAutocompleteProvider`` currently lacks, don't hesistate to reach out and explain how it can be extended to cover your needs. 
+If you need autocomplete capabilities that `ExternalAutocompleteProvider` currently lacks, don't hesistate to reach out and explain how it can be extended to cover your needs. 
 
 
 
