@@ -25,6 +25,7 @@ public extension UITextDocumentProxy {
 private extension UITextDocumentProxy {
     
     func preferredAlternateQuotationReplacement(for text: String, locale: Locale) -> String? {
+        guard locale.prefersAlternateQuotationReplacement else { return nil }
         guard text == locale.alternateQuotationEndDelimiter || text == "‘"  else { return nil }
         let isOpen = isOpenAlternateQuotationBeforeInput(for: locale)
         let result = isOpen ? locale.alternateQuotationEndDelimiter : locale.alternateQuotationBeginDelimiter

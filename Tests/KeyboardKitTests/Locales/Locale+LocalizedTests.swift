@@ -20,4 +20,15 @@ class Locale_TextTests: XCTestCase {
         let locale = Locale(identifier: "en-US")
         XCTAssertEqual(locale.localizedLanguageName, "English")
     }
+
+    func testPrefersAlternateQuotationReplacementIsValid() {
+        let engligh = Locale(identifier: "en")
+        let englighGb = Locale(identifier: "en-GB")
+        let englighUs = Locale(identifier: "en-US")
+        let other = Locale(identifier: "sv-SE")
+        XCTAssertFalse(engligh.prefersAlternateQuotationReplacement)
+        XCTAssertFalse(englighGb.prefersAlternateQuotationReplacement)
+        XCTAssertFalse(englighUs.prefersAlternateQuotationReplacement)
+        XCTAssertTrue(other.prefersAlternateQuotationReplacement)
+    }
 }

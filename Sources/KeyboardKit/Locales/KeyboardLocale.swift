@@ -187,11 +187,19 @@ public extension KeyboardLocale {
      Whether or not the locale is a left-to-right one.
      */
     var isLeftToRight: Bool { locale.isLeftToRight }
-    
+
     /**
      Whether or not the locale is a right-to-left one.
      */
     var isRightToLeft: Bool { !isLeftToRight }
+
+    /**
+     Whether or not the locale prefers to replace any single
+     alternate ending quotation delimiters with begin ones.
+     */
+    var prefersAlternateQuotationReplacement: Bool {
+        locale.prefersAlternateQuotationReplacement
+    }
 }
 
 public extension Collection where Element == KeyboardLocale {

@@ -55,7 +55,7 @@ public extension KKL10n {
      The item's localized text.
      */
     var text: String {
-        NSLocalizedString(key, bundle: Self.bundle, comment: "")
+        NSLocalizedString(key, bundle: .keyboardKit, comment: "")
     }
     
     /**
@@ -95,17 +95,6 @@ public extension KKL10n {
     }
 }
 
-extension Bundle {
-    
-    func bundlePath(for locale: Locale) -> String? {
-        bundlePath(named: locale.identifier) ?? bundlePath(named: locale.languageCode)
-    }
-    
-    func bundlePath(named name: String?) -> String? {
-        path(forResource: name ?? "", ofType: "lproj")
-    }
-}
-
 #if os(iOS) || os(tvOS)
 struct KKL10n_Previews: PreviewProvider {
     
@@ -122,7 +111,9 @@ struct KKL10n_Previews: PreviewProvider {
                     VStack(alignment: .leading, spacing: 10) {
                         Text("\(item.key)")
                         VStack(alignment: .leading) {
-                            Text("Locale: \(item.text(for: context))")
+                            Text("default: \(item.text)")
+                            Text("context: \(item.text(for: context))")
+                            Divider()
                             ForEach(KeyboardLocale.allCases) {
                                 Text("\($0.id): \(item.text(for: $0))")
                             }

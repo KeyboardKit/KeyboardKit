@@ -78,7 +78,7 @@ class UITextDocumentProxy_ReplaceTests: XCTestCase {
         proxy.documentContextBeforeInput = "before"
         XCTAssertEqual(resultForAltEndDelimiter(for: .danish), altBeginDelimiter(for: .danish))
         XCTAssertEqual(resultForAltEndDelimiter(for: .dutch), altBeginDelimiter(for: .dutch))
-        XCTAssertEqual(resultForAltEndDelimiter(for: .english), altBeginDelimiter(for: .english))
+        XCTAssertEqual(resultForAltEndDelimiter(for: .english), nil)
         XCTAssertNil(resultForAltEndDelimiter(for: .finnish))
         XCTAssertEqual(resultForAltEndDelimiter(for: .german), altBeginDelimiter(for: .german))
         XCTAssertEqual(resultForAltEndDelimiter(for: .norwegian), altBeginDelimiter(for: .norwegian))

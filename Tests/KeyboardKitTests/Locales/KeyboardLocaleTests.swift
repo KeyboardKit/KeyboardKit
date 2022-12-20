@@ -227,15 +227,21 @@ class KeyboardLocaleTests: XCTestCase {
         }
     }
 
-    func testIsLtrIsDerivedFromResolvedLocaleForAllCases() {
+    func testIsLtrIsDerivedFromResolvedLocale() {
         locales.forEach {
             XCTAssertEqual($0.isLeftToRight, $0.locale.isLeftToRight)
         }
     }
 
-    func testIsRtlIsDerivedFromResolvedLocaleForAllCases() {
+    func testIsRtlIsDerivedFromResolvedLocale() {
         locales.forEach {
             XCTAssertEqual($0.isRightToLeft, $0.locale.isRightToLeft)
+        }
+    }
+
+    func testPrefersAlternateQuotationReplacementIsDerivedFromResolvedLocale() {
+        locales.forEach {
+            XCTAssertEqual($0.prefersAlternateQuotationReplacement, $0.locale.prefersAlternateQuotationReplacement)
         }
     }
 

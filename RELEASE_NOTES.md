@@ -20,6 +20,14 @@ Some things that are planned for the 7.0 release:
 
 
 
+## 6.7.1
+
+### 🐛 Bug fixes
+
+* English no longer replaces alternate ending quotation delimiters for English.
+
+
+
 ## 6.7
 
 This version adds more emoji features, such as improved unicode names and localized names.
