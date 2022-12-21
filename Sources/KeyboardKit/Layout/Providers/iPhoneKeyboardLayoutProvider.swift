@@ -93,7 +93,8 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func lowerLeadingActions(for actions: KeyboardActionRows, context: KeyboardContext) -> KeyboardActions {
         guard isExpectedPhoneInputActions(actions) else { return [] }
-        if context.isAlphabetic(.hebrew) { return [leadingMarginAction(for: actions[2])] }
+        let margin = leadingMarginAction(for: actions[2])
+        if context.isAlphabetic(.hebrew) { return [margin] }
         guard let switcher = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         if context.isAlphabetic(.arabic) { return [] }
         if context.isAlphabetic(.kurdish_sorani_arabic) { return [] }
@@ -104,7 +105,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         if isAlphabeticWithInputCount(context, [10, 10, 8]) { return [switcher] }   // e.g. Czech
         if isAlphabeticWithInputCount(context, [11, 11, 9]) { return [switcher] }   // e.g. Russian
         if isAlphabeticWithInputCount(context, [12, 12, 9]) { return [switcher] }   // e.g. Belarusian
-        return [switcher, leadingMarginAction(for: actions[2])]
+        return [switcher, margin]
     }
 
     /**
@@ -112,16 +113,17 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func lowerTrailingActions(for actions: KeyboardActionRows, context: KeyboardContext) -> KeyboardActions {
         guard isExpectedPhoneInputActions(actions) else { return [] }
-        if context.isAlphabetic(.hebrew) { return [trailingMarginAction(for: actions[2])] }
-        if context.isAlphabetic(.arabic) { return [trailingMarginAction(for: actions[2]), .backspace] }
+        let margin = trailingMarginAction(for: actions[2])
+        if context.isAlphabetic(.hebrew) { return [margin] }
+        if context.isAlphabetic(.arabic) { return [margin, .backspace] }
         if context.isAlphabetic(.kurdish_sorani_arabic) { return [.backspace] }
-        if context.isAlphabetic(.kurdish_sorani_pc) { return [trailingMarginAction(for: actions[2]), .backspace] }
+        if context.isAlphabetic(.kurdish_sorani_pc) { return [margin, .backspace] }
         if context.isAlphabetic(.persian) { return [.backspace] }
         if context.isAlphabetic(.ukrainian) { return [.backspace] }
         if isAlphabeticWithInputCount(context, [10, 10, 8]) { return [.backspace] } // e.g. Czech
         if isAlphabeticWithInputCount(context, [11, 11, 9]) { return [.backspace] } // e.g. Russian
         if isAlphabeticWithInputCount(context, [12, 12, 9]) { return [.backspace] } // e.g. Belarusian
-        return [trailingMarginAction(for: actions[2]), .backspace]
+        return [margin, .backspace]
     }
 
     /**
@@ -129,7 +131,8 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func middleLeadingActions(for actions: KeyboardActionRows, context: KeyboardContext) -> KeyboardActions {
         guard shouldAddMiddleMarginActions(for: actions, context: context) else { return [] }
-        return [leadingMarginAction(for: actions[2])]
+        let margin = leadingMarginAction(for: actions[1])
+        return [margin]
     }
 
     /**
@@ -137,25 +140,28 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func middleTrailingActions(for actions: KeyboardActionRows, context: KeyboardContext) -> KeyboardActions {
         guard shouldAddMiddleMarginActions(for: actions, context: context) else { return [] }
-        return [trailingMarginAction(for: actions[2])]
+        let margin = trailingMarginAction(for: actions[1])
+        return [margin]
     }
 
     /**
      Get leading actions to add to the upper inputs row.
      */
     open func upperLeadingActions(for actions: KeyboardActionRows, context: KeyboardContext) -> KeyboardActions {
-        if context.isAlphabetic(.hebrew) { return [leadingMarginAction(for: actions[0])] }
+        let margin = leadingMarginAction(for: actions[0])
+        if context.isAlphabetic(.hebrew) { return [margin] }
         guard shouldAddUpperMarginActions(for: actions, context: context) else { return [] }
-        return [leadingMarginAction(for: actions[1])]
+        return [margin]
     }
 
     /**
      Get trailing actions to add to the upper inputs row.
      */
     open func upperTrailingActions(for actions: KeyboardActionRows, context: KeyboardContext) -> KeyboardActions {
-        if context.isAlphabetic(.hebrew) { return [trailingMarginAction(for: actions[0]), .backspace] }
+        let margin = trailingMarginAction(for: actions[0])
+        if context.isAlphabetic(.hebrew) { return [margin, .backspace] }
         guard shouldAddUpperMarginActions(for: actions, context: context) else { return [] }
-        return [trailingMarginAction(for: actions[1])]
+        return [margin]
     }
 }
 

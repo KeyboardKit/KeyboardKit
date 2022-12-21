@@ -35,7 +35,8 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open override func actions(
         for inputs: InputSetRows,
-        context: KeyboardContext) -> KeyboardActionRows {
+        context: KeyboardContext
+    ) -> KeyboardActionRows {
         let actions = super.actions(for: inputs, context: context)
         guard actions.count == 3 else { return actions }
         var result = KeyboardActionRows()
@@ -53,7 +54,8 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         for action: KeyboardAction,
         row: Int,
         index: Int,
-        context: KeyboardContext) -> KeyboardLayoutItemWidth {
+        context: KeyboardContext
+    ) -> KeyboardLayoutItemWidth {
         if isMiddleLeadingSpacer(action, row: row, index: index) { return middleLeadingSpacerWidth(for: context) }
         if isLowerLeadingSwitcher(action, row: row, index: index) { return lowerLeadingSwitcherWidth(for: context) }
         if isLowerTrailingSwitcher(action, row: row, index: index) { return lowerTrailingSwitcherWidth(for: context) }

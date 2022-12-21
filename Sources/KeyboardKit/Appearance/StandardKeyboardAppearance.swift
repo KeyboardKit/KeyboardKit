@@ -220,7 +220,9 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
      */
     open func buttonShadowStyle(for action: KeyboardAction) -> KeyboardButtonShadowStyle {
         switch action {
-        case .characterMargin, .emoji, .emojiCategory, .none: return .noShadow
+        case .characterMargin: return .noShadow
+        case .emoji, .emojiCategory: return .noShadow
+        case .none: return .noShadow
         default: return .standard
         }
     }
