@@ -76,6 +76,22 @@ public struct KeyboardButtonStyle {
     public var shadow: KeyboardButtonShadowStyle
 }
 
+public extension KeyboardButtonStyle {
+
+    /**
+     A spacer button style means that the button will not be
+     visually detectable, but still rendered.
+     */
+    static let spacer = KeyboardButtonStyle(
+        backgroundColor: .clear,
+        foregroundColor: .clear,
+        font: .body,
+        cornerRadius: 0,
+        border: .noBorder,
+        shadow: .noShadow
+    )
+}
+
 extension KeyboardButtonStyle {
     
     /**
