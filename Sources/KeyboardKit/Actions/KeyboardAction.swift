@@ -190,7 +190,18 @@ public extension KeyboardAction {
         default: return false
         }
     }
-    
+
+    /**
+     Whether or not the action primary serves as a space and
+     should be rendered, although it may have to be tappable.
+     */
+    var isSpacer: Bool {
+        switch self {
+        case .characterMargin: return true
+        case .none: return true
+        default: return false
+        }
+    }
     
     /**
      Whether or not the action is a system action.
