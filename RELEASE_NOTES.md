@@ -27,6 +27,10 @@ Some things that are planned for the 7.0 release:
 * `KeyboardAction` has a new `isSpacer` property.
 * `KeyboardButtonStyle` has a new, static `spacer` style.
 
+### 💡 Behavior changes
+
+* `SystemKeyboardButtonRowItem` now always apply the new spacer button style to spacer actions.
+
 ### 🐛 Bug fixes
 
 * Standard English now also shows emoji skin tone variants when using KeyboardKit Pro.

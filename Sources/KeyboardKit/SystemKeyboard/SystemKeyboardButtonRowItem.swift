@@ -81,7 +81,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
 private extension SystemKeyboardButtonRowItem {
 
     var buttonStyle: KeyboardButtonStyle {
-        appearance.buttonStyle(for: item.action, isPressed: isPressed)
+        item.action.isSpacer ? .spacer : appearance.buttonStyle(for: item.action, isPressed: isPressed)
     }
 }
 

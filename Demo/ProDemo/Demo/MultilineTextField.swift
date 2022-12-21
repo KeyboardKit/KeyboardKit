@@ -18,7 +18,8 @@ public struct MultilineTextField: UIViewRepresentable {
     public init(
         text: Binding<String>,
         appearance: UIKeyboardAppearance = .default,
-        configuration: @escaping Configuration = { _ in }) {
+        configuration: @escaping Configuration = { _ in }
+    ) {
         self._text = text
         self.appearance = appearance
         self.configuration = configuration
