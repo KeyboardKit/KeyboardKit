@@ -14,7 +14,30 @@ import CoreGraphics
  look of a native system keyboard.
  
  You can inherit this class and override any open properties
- and functions to customize the standard behavior.
+ and functions to customize the standard behavior. Note that
+ if you only want to make small tweaks, then grab the `super`
+ result and modify if.
+
+ For instance, if you want to change the background color of
+ inpout keys only, you should do it like this:
+
+ ```swift
+ class MyAppearance: StandardKeyboardAppearance {
+
+     override func buttonStyle(
+         for action: KeyboardAction,
+         isPressed: Bool
+     ) -> KeyboardButtonStyle {
+         let style = super.buttonStyle(for: action, isPressed: isPressed)
+         if !action.isInputAction { return style }
+         style.backgroundColor = .red
+         return style
+     }
+ }
+ ```
+
+ All buttons will be affected if you only return a new style.
+ Sometimes that is what you want, but most often perhaps not.
  */
 open class StandardKeyboardAppearance: KeyboardAppearance {
     
@@ -159,7 +182,6 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         case .space: return 16
         default: break
         }
-        
         let text = buttonText(for: action) ?? ""
         if action.isInputAction && text.isLowercased { return 26 }
         if action.isSystemAction || action.isPrimaryAction { return 16 }
@@ -209,7 +231,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
 
 extension KeyboardAction {
     
-    func buttonBackgroundColorForAllStates() -> Color? {
+    var buttonBackgroundColorForAllStates: Color? {
         switch self {
         case .none: return .clear
         case .characterMargin: return .clearInteractable
@@ -220,7 +242,7 @@ extension KeyboardAction {
     }
     
     func buttonBackgroundColor(for context: KeyboardContext, isPressed: Bool = false) -> Color {
-        if let color = buttonBackgroundColorForAllStates() { return color }
+        if let color = buttonBackgroundColorForAllStates { return color }
         return isPressed ?
             buttonBackgroundColorForPressedState(for: context) :
             buttonBackgroundColorForIdleState(for: context)

@@ -44,7 +44,8 @@ class MyKeyboardAppearance: StandardKeyboardAppearance {
     
     override func buttonStyle(
         for action: KeyboardAction,
-        isPressed: Bool) -> KeyboardButtonStyle {
+        isPressed: Bool
+    ) -> KeyboardButtonStyle {
         let style = super.buttonStyle(for: action, isPressed: isPressed)
         if !action.isInputAction { return style }
         style.backgroundColor = .red
