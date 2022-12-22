@@ -71,7 +71,7 @@ final class KeyboardActionTests: XCTestCase {
 
     func testIsSpacerIsTrueForSomeActions() {
         actions.forEach { action in
-            let result = action.isInputAction
+            let result = action.isSpacer
             switch action {
             case .characterMargin(""): XCTAssertTrue(result)
             case .none: XCTAssertTrue(result)
