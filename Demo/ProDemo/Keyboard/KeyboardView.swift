@@ -25,6 +25,9 @@ struct KeyboardView: View {
 
     @EnvironmentObject
     private var keyboardContext: KeyboardContext
+
+    @AppStorage("com.keyboardkit.demo.pro.locale")
+    private var localeIdentifier = "en"
     
     var body: some View {
         VStack(spacing: 0) {
@@ -33,6 +36,20 @@ struct KeyboardView: View {
             }
             SystemKeyboard()
         }
+        .onAppear(perform: restoreLastLocale)
+        .onReceive(keyboardContext.$locale, perform: persistLocale)
+    }
+}
+
+private extension KeyboardView {
+
+    func restoreLastLocale() {
+        let locale = Locale(identifier: localeIdentifier)
+        keyboardContext.locale = locale
+    }
+
+    func persistLocale(_ locale: Locale) {
+        localeIdentifier = locale.identifier
     }
 }
 
