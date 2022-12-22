@@ -20,6 +20,16 @@ Some things that are planned for the 7.0 release:
 
 
 
+## 6.7.3
+
+### 👑 KeyboardKit Pro
+
+* `ProCalloutActionProvider` has a new `all()` function.
+* `ProInputSetProvider` has a new `all()` function.
+* `English` and `EnglishUS` now also shows emoji skin tone variants.
+
+
+
 ## 6.7.2
 
 ### ✨ New features
@@ -34,7 +44,6 @@ Some things that are planned for the 7.0 release:
 ### 🐛 Bug fixes
 
 * Some system keyboard character margin actions have been corrected.
-* Standard English now also shows emoji skin tone variants when using KeyboardKit Pro.
 
 
 
