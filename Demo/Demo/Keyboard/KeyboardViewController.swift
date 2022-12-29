@@ -40,6 +40,10 @@ class KeyboardViewController: KeyboardInputViewController {
         // Set a custom keyboard locale
         // 💡 Changing locale without KeyboardKit Pro or custom input sets will only change some button texts.
         keyboardContext.setLocale(.english)
+
+        // Set a custom dictation key replacement.
+        // 💡 This will replace the dictation button on keyboards that need it.
+        // keyboardContext.keyboardDictationReplacement = .keyboardType(.emojis)
         
         // Setup a fake, demo-specific autocomplete provider.
         // 💡 You can change this provider to see how the autocomplete changes.
@@ -62,8 +66,7 @@ class KeyboardViewController: KeyboardInputViewController {
         // 💡 You can change this provider to see how the keyboard layout changes.
         keyboardLayoutProvider = DemoKeyboardLayoutProvider(
             keyboardContext: keyboardContext,
-            inputSetProvider: inputSetProvider,
-            dictationReplacement: nil)
+            inputSetProvider: inputSetProvider)
         
         // Call super to perform the base initialization
         super.viewDidLoad()

@@ -32,26 +32,17 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
        - keyboardContext: The keyboard context to use.
        - inputSetProvider: The input set provider to use.
        - layoutProviders: The localized providers to use, by default only English.
-       - dictationReplacement: An optional dictation replacement action, by default `nil`.
      */
     public init(
         keyboardContext: KeyboardContext,
         inputSetProvider: InputSetProvider,
-        localizedProviders: [LocalizedKeyboardLayoutProvider] = [EnglishKeyboardLayoutProvider()],
-        dictationReplacement: KeyboardAction? = nil
+        localizedProviders: [LocalizedKeyboardLayoutProvider] = [EnglishKeyboardLayoutProvider()]
     ) {
         self.keyboardContext = keyboardContext
         self.inputSetProvider = inputSetProvider
         let dict = Dictionary(uniqueKeysWithValues: localizedProviders.map { ($0.localeKey, $0) })
         self.localizedProviders = LocaleDictionary(dict)
-        self.dictationReplacement = dictationReplacement
     }
-
-
-    /**
-     An optional dictation replacement action.
-     */
-    public let dictationReplacement: KeyboardAction?
 
     /**
      The input set provider to use.
@@ -82,8 +73,7 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
      > Important: This is deprecated and will be removed in KeyboardKit 7.0
      */
     open lazy var iPadProvider = iPadKeyboardLayoutProvider(
-        inputSetProvider: inputSetProvider,
-        dictationReplacement: dictationReplacement)
+        inputSetProvider: inputSetProvider)
 
     /**
      The keyboard layout provider to use for iPhone devices.
@@ -91,8 +81,7 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
      > Important: This is deprecated and will be removed in KeyboardKit 7.0
      */
     open lazy var iPhoneProvider = iPhoneKeyboardLayoutProvider(
-        inputSetProvider: inputSetProvider,
-        dictationReplacement: dictationReplacement)
+        inputSetProvider: inputSetProvider)
 
     /**
      The keyboard layout to use for a certain context.

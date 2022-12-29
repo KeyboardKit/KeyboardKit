@@ -17,7 +17,7 @@ class StandardInputSetProviderTests: XCTestCase {
 
     override func setUp() {
         context = KeyboardContext()
-        provider = StandardInputSetProvider(context: context)
+        provider = StandardInputSetProvider(keyboardContext: context)
         english = EnglishInputSetProvider()
     }
 
@@ -29,8 +29,8 @@ class StandardInputSetProviderTests: XCTestCase {
 
     func testLocalizedProvidersAcceptCustomProviders() {
         provider = StandardInputSetProvider(
-            context: context,
-            providers: [EnglishInputSetProvider()])
+            keyboardContext: context,
+            localizedProviders: [EnglishInputSetProvider()])
         let providers = provider.localizedProviders.dictionary
         XCTAssertEqual(providers.keys.count, 1)
         XCTAssertTrue(providers[KeyboardLocale.english.id] is EnglishInputSetProvider)

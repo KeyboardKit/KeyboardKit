@@ -41,20 +41,24 @@ Note that a bunch of `StandardKeyboardLayoutProvider` are deprecated in comments
 
 * `EnglishKeyboardLayoutProvider` is a new, open class that provides English keyboard layouts.
 * `InputSetProviderBased` is a new protocol that is used to keep track of types that rely on an input set provider.
+* `KeyboardContext` has a new `keyboardDictationReplacement` property.
 * `StandardInputSetProvider` `keyboardContext` is now public.
 * `StandardKeyboardLayoutProvider` can now take a collection of localized layout providers.
 
 ### 💡 Behavior changes
 
 * `StandardKeyboardActionHandler` now ignores autocomplete suggestions when the cursor is at the beginning of a word.
+* `SystemKeyboardLayoutProvider` now uses the `KeyboardContext` `keyboardDictationReplacement` instead of the injected value.
+* `SystemKeyboardLayoutProvider` will for now set the `KeyboardContext` `keyboardDictationReplacement`, if one is provided, to not cause any old code to break.
 
 ### 🗑 Deprecations
 
+* `KeyboardLayoutProvider` dictation replacement initializers and properties are deprecated.
 * `StandardCalloutActionProvider` `providerDictionary` has been renamed to `localizedProviders`.
 * `StandardInputSetProvider` `providerDictionary` has been renamed to `localizedProviders`.
-* `StandardKeyboardLayoutProvider` `inputSetProvider` is in-comment deprecated and will be removed in KeyboardKit 7.0.
-* `StandardKeyboardLayoutProvider` `iPhoneProvider` is in-comment deprecated and will be removed in KeyboardKit 7.0.
-* `StandardKeyboardLayoutProvider` `iPadProvider` is in-comment deprecated and will be removed in KeyboardKit 7.0.
+* `StandardKeyboardLayoutProvider` `inputSetProvider` is in-comment deprecated.
+* `StandardKeyboardLayoutProvider` `iPhoneProvider` is in-comment deprecated.
+* `StandardKeyboardLayoutProvider` `iPadProvider` is in-comment deprecated. 
 
 ### 💥 Breaking changes
 

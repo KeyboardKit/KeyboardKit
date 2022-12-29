@@ -63,7 +63,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         if isBottomTrailingSwitcher(action, row: row, index: index) { return bottomTrailingSwitcherWidth(for: context) }
 
         switch action {
-        case dictationReplacement: return .input
+        case context.keyboardDictationReplacement: return .input
         case .backspace: return backspaceWidth(for: context)
         case .dismissKeyboard: return .inputPercentage(1.45)
         case .keyboardType: return row == 2 ? .available : .input
@@ -97,7 +97,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         let needsDictation = context.needsInputModeSwitchKey
         if let action = keyboardSwitchActionForBottomRow(for: context) { result.append(action) }
         result.append(.nextKeyboard)
-        if needsDictation, let action = dictationReplacement { result.append(action) }
+        if needsDictation, let action = context.keyboardDictationReplacement { result.append(action) }
         result.append(.space)
         if context.isAlphabetic(.persian) { result.append(.character(.zeroWidthSpace)) }
         if let action = keyboardSwitchActionForBottomRow(for: context) { result.append(action) }

@@ -8,6 +8,45 @@ public extension PreviewKeyboardLayoutProvider {
     }
 }
 
+public extension SystemKeyboardLayoutProvider {
+
+    @available(*, deprecated, message: "Use dictation replacement-less initializer and set KeyboardContext's keyboardDictationReplacement instead")
+    convenience init(
+        inputSetProvider: InputSetProvider,
+        dictationReplacement: KeyboardAction? = nil
+    ) {
+        KeyboardInputViewController.shared.keyboardContext.keyboardDictationReplacement = dictationReplacement
+        self.init(inputSetProvider: inputSetProvider)
+    }
+
+    @available(*, deprecated, message: "Use KeyboardContext's keyboardDictationReplacement instead")
+    var dictationReplacement: KeyboardAction? {
+        KeyboardInputViewController.shared.keyboardContext.keyboardDictationReplacement
+    }
+}
+
+public extension StandardKeyboardLayoutProvider {
+
+    @available(*, deprecated, message: "Use dictation replacement-less initializer and set KeyboardContext's keyboardDictationReplacement instead")
+    convenience init(
+        keyboardContext: KeyboardContext,
+        inputSetProvider: InputSetProvider,
+        localizedProviders: [LocalizedKeyboardLayoutProvider] = [EnglishKeyboardLayoutProvider()],
+        dictationReplacement: KeyboardAction? = nil
+    ) {
+        KeyboardInputViewController.shared.keyboardContext.keyboardDictationReplacement = dictationReplacement
+        self.init(
+            keyboardContext: keyboardContext,
+            inputSetProvider: inputSetProvider,
+            localizedProviders: localizedProviders)
+    }
+
+    @available(*, deprecated, message: "Use KeyboardContext's keyboardDictationReplacement instead")
+    var dictationReplacement: KeyboardAction? {
+        KeyboardInputViewController.shared.keyboardContext.keyboardDictationReplacement
+    }
+}
+
 @available(*, deprecated, message: "Use hasAlphabeticInputCount(_) instead.")
 extension SystemKeyboardLayoutProvider {
 

@@ -32,21 +32,10 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
      
      - Parameters:
        - inputSetProvider: The input set provider to use.
-       - dictationReplacement: An optional dictation replacement action.
      */
-    public init(
-        inputSetProvider: InputSetProvider,
-        dictationReplacement: KeyboardAction? = nil
-    ) {
+    public init(inputSetProvider: InputSetProvider) {
         self.inputSetProvider = inputSetProvider
-        self.dictationReplacement = dictationReplacement
     }
-
-    
-    /**
-     An optional dictation replacement action.
-     */
-    public let dictationReplacement: KeyboardAction?
     
     /**
      The input set provider to use.

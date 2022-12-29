@@ -95,6 +95,13 @@ public class KeyboardContext: ObservableObject {
     public var hasFullAccess: Bool = false
 
     /**
+     An optional dictation replacement action, which will be
+     used by some ``KeyboardLayoutProvider`` implementations.
+     */
+    @Published
+    public var keyboardDictationReplacement: KeyboardAction?
+
+    /**
      The keyboard type that is currently used.
      */
     @Published

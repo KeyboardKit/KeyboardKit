@@ -15,20 +15,15 @@ import Foundation
 open class EnglishKeyboardLayoutProvider: SystemKeyboardLayoutProvider, DeviceKeyboardLayoutProvider, LocalizedService {
 
     /**
-     Create a system keyboard layout provider.
+     Create an English keyboard layout provider.
 
      - Parameters:
        - inputSetProvider: The input set provider to use, by default ``EnglishInputSetProvider``.
-       - dictationReplacement: An optional dictation replacement action.
      */
     public override init(
-        inputSetProvider: InputSetProvider = EnglishInputSetProvider(),
-        dictationReplacement: KeyboardAction? = nil
+        inputSetProvider: InputSetProvider = EnglishInputSetProvider()
     ) {
-        super.init(
-            inputSetProvider: inputSetProvider,
-            dictationReplacement: dictationReplacement
-        )
+        super.init(inputSetProvider: inputSetProvider)
     }
 
     /**
@@ -40,16 +35,14 @@ open class EnglishKeyboardLayoutProvider: SystemKeyboardLayoutProvider, DeviceKe
      The layout provider to use for iPad devices.
      */
     public lazy var iPadProvider = iPadKeyboardLayoutProvider(
-        inputSetProvider: inputSetProvider,
-        dictationReplacement: dictationReplacement
+        inputSetProvider: inputSetProvider
     )
 
     /**
      The layout provider to use for iPhone devices.
      */
     public lazy var iPhoneProvider = iPhoneKeyboardLayoutProvider(
-        inputSetProvider: inputSetProvider,
-        dictationReplacement: dictationReplacement
+        inputSetProvider: inputSetProvider
     )
 
     /**
