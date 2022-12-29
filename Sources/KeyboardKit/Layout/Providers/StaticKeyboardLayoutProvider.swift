@@ -37,10 +37,11 @@ public class StaticKeyboardLayoutProvider: KeyboardLayoutProvider {
     public func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         layout
     }
-    
+
     /**
-     Registering a new input set provider does nothing for a
-     static provider.
+     Register a new input set provider.
+
+     This does nothing for a static keyboard layout provider.
      */
     public func register(inputSetProvider: InputSetProvider) {}
 }

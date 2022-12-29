@@ -1,5 +1,5 @@
 //
-//  LocalizedCalloutActionProvider.swift
+//  LocalizedKeyboardLayoutProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-16.
@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- This typealias represents a ``CalloutActionProvider``, that
+ This typealias represents a ``KeyboardLayoutProvider`` that
  also implements the ``LocalizedService`` protocol.
  */
-public typealias LocalizedCalloutActionProvider = CalloutActionProvider & LocalizedService
+public typealias LocalizedKeyboardLayoutProvider = KeyboardLayoutProvider & LocalizedService

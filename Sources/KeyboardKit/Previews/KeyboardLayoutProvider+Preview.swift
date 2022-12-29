@@ -24,7 +24,9 @@ public class PreviewKeyboardLayoutProvider: KeyboardLayoutProvider {
     
     public init(context: KeyboardContext = .preview) {
         let inputProvider = StandardInputSetProvider(context: context)
-        provider = StandardKeyboardLayoutProvider(inputSetProvider: inputProvider)
+        provider = StandardKeyboardLayoutProvider(
+            keyboardContext: .preview,
+            inputSetProvider: inputProvider)
     }
     
     private let provider: KeyboardLayoutProvider

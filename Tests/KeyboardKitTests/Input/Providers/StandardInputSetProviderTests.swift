@@ -22,7 +22,7 @@ class StandardInputSetProviderTests: XCTestCase {
     }
 
     func testLocalizedProvidersHaveStandardLocaleSpecificProvider() {
-        let providers = provider.providerDictionary.dictionary
+        let providers = provider.localizedProviders.dictionary
         XCTAssertEqual(providers.keys.count, 1)
         XCTAssertTrue(providers[KeyboardLocale.english.id] is EnglishInputSetProvider)
     }
@@ -31,7 +31,7 @@ class StandardInputSetProviderTests: XCTestCase {
         provider = StandardInputSetProvider(
             context: context,
             providers: [EnglishInputSetProvider()])
-        let providers = provider.providerDictionary.dictionary
+        let providers = provider.localizedProviders.dictionary
         XCTAssertEqual(providers.keys.count, 1)
         XCTAssertTrue(providers[KeyboardLocale.english.id] is EnglishInputSetProvider)
     }

@@ -17,6 +17,38 @@ Some things that are planned for the 7.0 release:
 
 * Removing the keyboard action `tap` gesture and only use `press` and `release`.
 * Rewriting the system keyboard gestures to support swipe to type and predictive type.
+* `KeyboardLayoutProvider` should perhaps take a context and an input set as layout function parameters. This would remove the need to inject an input set provider.
+
+
+
+## 6.8
+
+This version starts to break up the layout engine in smaller parts, to make it easier to manage as the number of locales grow.
+
+The iPhone and iPad layout providers will be converted to base classes and inherited by locale-specific providers.
+
+### 🌐 New locales
+
+* 🇦🇲 Armenian
+
+### 👑 KeyboardKit Pro
+
+* `ProKeyboardLayoutProvider` is a new base class for pro layout providers.
+* `ProKeyboardLayoutProvider.Armenian` is the first, new layout provider that uses this new architecture.
+
+### ✨ New features
+
+* `InputSetProviderBased` is a new protocol that is used to keep track of types that rely on an input set provider.
+* `StandardInputSetProvider` `keyboardContext` is now public.
+* `StandardKeyboardLayoutProvider` can now take a collection of localized layout providers.
+
+### 🗑 Deprecations
+
+* `StandardInputSetProvider` `providerDictionary` has been renamed to `localizedProviders`.
+
+### 💥 Breaking changes
+
+* `StandardKeyboardLayoutProvider` now requires a keyboard context.
 
 
 
@@ -26,7 +58,7 @@ Some things that are planned for the 7.0 release:
 
 * `ProCalloutActionProvider` has a new `all()` function.
 * `ProInputSetProvider` has a new `all()` function.
-* `English` and `EnglishUS` now also shows emoji skin tone variants.
+* `English` and `US English` callout action providers now also show emoji skin tone variants.
 
 
 

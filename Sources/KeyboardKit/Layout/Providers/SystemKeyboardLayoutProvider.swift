@@ -64,10 +64,9 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         let items = self.items(for: actions, context: context)
         return KeyboardLayout(itemRows: items)
     }
-    
+
     /**
-     Register a new input set provider. This will affect the
-     keyboard layout that is provided by this class.
+     Register a new input set provider.
      */
     open func register(inputSetProvider: InputSetProvider) {
         self.inputSetProvider = inputSetProvider

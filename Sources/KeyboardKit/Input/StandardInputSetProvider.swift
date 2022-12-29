@@ -9,63 +9,74 @@
 import Foundation
 
 /**
- This input set provider is initialized with a collection of
- localized providers and will use the provider with the same
- locale as the context.
+ This provider is initialized with a collection of localized
+ providers, and will use the one with the same locale as the
+ provided ``KeyboardContext``.
  */
 open class StandardInputSetProvider: InputSetProvider {
     
     /**
      Create a standard provider.
      
-     Injecting a context and not a locale keeps the provider
-     dynamic when the context changes language.
-     
       - Parameters:
         - context: The keyboard context to use.
-        - providers: The action providers to use.
+        - providers: The localized providers to use, by default English.
      */
     public init(
         context: KeyboardContext,
         providers: [LocalizedInputSetProvider] = [EnglishInputSetProvider()]
     ) {
-        self.context = context
+        self.keyboardContext = context
         let dict = Dictionary(uniqueKeysWithValues: providers.map { ($0.localeKey, $0) })
-        providerDictionary = LocaleDictionary(dict)
+        self.localizedProviders = LocaleDictionary(dict)
     }
-    
-    private let context: KeyboardContext
-    
+
+
     /**
-     This is used to resolve the a provider for the context.
+     The keyboard context to use.
      */
-    public var providerDictionary: LocaleDictionary<InputSetProvider>
-    
+    public let keyboardContext: KeyboardContext
+
     /**
-     Get the provider to use, given the provided context.
+     A dictionary with ``InputSetProvider`` instances.
+     */
+    public let localizedProviders: LocaleDictionary<InputSetProvider>
+
+
+    /**
+     The provider to use for a certain keyboard context.
      */
     open func provider(for context: KeyboardContext) -> InputSetProvider {
-        providerDictionary.value(for: context.locale) ?? EnglishInputSetProvider()
+        localizedProviders.value(for: context.locale) ?? EnglishInputSetProvider()
     }
     
     /**
      The input set to use for alphabetic keyboards.
      */
     open var alphabeticInputSet: AlphabeticInputSet {
-        provider(for: context).alphabeticInputSet
+        provider(for: keyboardContext).alphabeticInputSet
     }
     
     /**
      The input set to use for numeric keyboards.
      */
     open var numericInputSet: NumericInputSet {
-        provider(for: context).numericInputSet
+        provider(for: keyboardContext).numericInputSet
     }
     
     /**
      The input set to use for symbolic keyboards.
      */
     open var symbolicInputSet: SymbolicInputSet {
-        provider(for: context).symbolicInputSet
+        provider(for: keyboardContext).symbolicInputSet
+    }
+
+
+
+    // MARK: - Deprecated
+
+    @available(*, deprecated, renamed: "providers")
+    open var providerDictionary: LocaleDictionary<InputSetProvider> {
+        localizedProviders
     }
 }

@@ -36,15 +36,10 @@ import Foundation
  is ready, just replace the controller service with your own
  implementation to make the library use it instead.
  */
-public protocol KeyboardLayoutProvider: AnyObject {
+public protocol KeyboardLayoutProvider: AnyObject, InputSetProviderBased {
     
     /**
-     Get a keyboard layout for the provided context.
+     The layout to use for a certain keyboard context.
      */
     func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout
-    
-    /**
-     Register a new input set provider.
-     */
-    func register(inputSetProvider: InputSetProvider)
 }

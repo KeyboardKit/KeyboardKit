@@ -263,6 +263,7 @@ open class KeyboardInputViewController: UIInputViewController {
      ``StandardKeyboardLayoutProvider`` is used by default.
      */
     public lazy var keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider(
+        keyboardContext: keyboardContext,
         inputSetProvider: inputSetProvider)
     
     

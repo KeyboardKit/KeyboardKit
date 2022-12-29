@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- This typealias represents an `InputSetProvider` that's also
- implementing the `LocalizedService` protocol.
+ This typealias represents an ``InputSetProvider`` that also
+ implements the ``LocalizedService`` protocol.
  */
 public typealias LocalizedInputSetProvider = InputSetProvider & LocalizedService
