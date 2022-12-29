@@ -61,6 +61,7 @@ class KeyboardViewController: KeyboardInputViewController {
         // Setup a demo-specific keyboard layout provider.
         // 💡 You can change this provider to see how the keyboard layout changes.
         keyboardLayoutProvider = DemoKeyboardLayoutProvider(
+            keyboardContext: keyboardContext,
             inputSetProvider: inputSetProvider,
             dictationReplacement: nil)
         
