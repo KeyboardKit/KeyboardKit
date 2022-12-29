@@ -31,7 +31,7 @@ open class StandardCalloutActionProvider: CalloutActionProvider {
     ) {
         self.context = context
         let dict = Dictionary(uniqueKeysWithValues: providers.map { ($0.localeKey, $0) })
-        providerDictionary = LocaleDictionary(dict)
+        localizedProviders = LocaleDictionary(dict)
     }
     
     /**
@@ -49,7 +49,7 @@ open class StandardCalloutActionProvider: CalloutActionProvider {
     /**
      This is used to resolve the a provider for the context.
      */
-    public var providerDictionary: LocaleDictionary<CalloutActionProvider>
+    public var localizedProviders: LocaleDictionary<CalloutActionProvider>
     
     /**
      Get the provider to use for the provided `context`.
@@ -62,7 +62,7 @@ open class StandardCalloutActionProvider: CalloutActionProvider {
      Get the provider to use for the provided `locale`.
      */
     open func provider(for locale: Locale) -> CalloutActionProvider {
-        providerDictionary.value(for: locale) ?? Self.standardProvider
+        localizedProviders.value(for: locale) ?? Self.standardProvider
     }
     
     /**
@@ -70,5 +70,13 @@ open class StandardCalloutActionProvider: CalloutActionProvider {
      */
     open func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {
         provider(for: context).calloutActions(for: action)
+    }
+
+
+    // MARK: - Deprecated
+
+    @available(*, deprecated, renamed: "localizedProviders")
+    open var providerDictionary: LocaleDictionary<CalloutActionProvider> {
+        localizedProviders
     }
 }

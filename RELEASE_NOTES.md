@@ -50,6 +50,7 @@ Note that a bunch of `StandardKeyboardLayoutProvider` are deprecated in comments
 
 ### 🗑 Deprecations
 
+* `StandardCalloutActionProvider` `providerDictionary` has been renamed to `localizedProviders`.
 * `StandardInputSetProvider` `providerDictionary` has been renamed to `localizedProviders`.
 * `StandardKeyboardLayoutProvider` `inputSetProvider` is in-comment deprecated and will be removed in KeyboardKit 7.0.
 * `StandardKeyboardLayoutProvider` `iPhoneProvider` is in-comment deprecated and will be removed in KeyboardKit 7.0.

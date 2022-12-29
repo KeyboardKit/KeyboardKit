@@ -20,7 +20,7 @@ class StandardCalloutActionProviderTests: XCTestCase {
     }
 
     func testLocalizedProvidersHaveStandardProviders() {
-        let providers = provider.providerDictionary.dictionary
+        let providers = provider.localizedProviders.dictionary
         XCTAssertEqual(providers.keys.count, 1)
         XCTAssertTrue(providers[KeyboardLocale.english.id] is EnglishCalloutActionProvider)
     }
@@ -29,7 +29,7 @@ class StandardCalloutActionProviderTests: XCTestCase {
         provider = StandardCalloutActionProvider(
             context: context,
             providers: [StandardCalloutActionProvider.standardProvider])
-        let providers = provider.providerDictionary.dictionary
+        let providers = provider.localizedProviders.dictionary
         XCTAssertEqual(providers.keys.count, 1)
         XCTAssertTrue(providers[KeyboardLocale.english.id] is EnglishCalloutActionProvider)
     }

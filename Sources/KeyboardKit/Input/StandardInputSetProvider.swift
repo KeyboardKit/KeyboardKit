@@ -72,10 +72,9 @@ open class StandardInputSetProvider: InputSetProvider {
     }
 
 
-
     // MARK: - Deprecated
 
-    @available(*, deprecated, renamed: "providers")
+    @available(*, deprecated, renamed: "localizedProviders")
     open var providerDictionary: LocaleDictionary<InputSetProvider> {
         localizedProviders
     }
