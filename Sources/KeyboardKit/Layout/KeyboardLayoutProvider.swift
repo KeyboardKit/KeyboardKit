@@ -39,7 +39,7 @@ import Foundation
 public protocol KeyboardLayoutProvider: AnyObject, InputSetProviderBased {
     
     /**
-     The layout to use for a certain keyboard context.
+     The layout keyboard to use for a given keyboard context.
      */
     func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout
 }

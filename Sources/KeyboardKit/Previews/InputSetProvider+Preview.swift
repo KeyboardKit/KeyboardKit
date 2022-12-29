@@ -27,12 +27,13 @@ public class PreviewInputSetProvider: InputSetProvider {
      - Parameters:
        - context: The context to use by the preview, by default `.preview`.
      */
-    public init(context: KeyboardContext = .preview) {
-        self.context = context
-        self.provider = StandardInputSetProvider(context: context)
+    public init(keyboardContext: KeyboardContext = .preview) {
+        self.keyboardContext = keyboardContext
+        self.provider = StandardInputSetProvider(
+            keyboardContext: keyboardContext)
     }
     
-    private let context: KeyboardContext
+    private let keyboardContext: KeyboardContext
     private let provider: InputSetProvider
     
     /**

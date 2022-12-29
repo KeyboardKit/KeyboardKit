@@ -10,9 +10,8 @@ import CoreGraphics
 import SwiftUI
 
 /**
- This class can be inherited by any keyboard layout provider
- that needs basic functionality for creating system keyboard
- layouts that depend on system-specific rules.
+ This is a base class for any keyboard layout providers that
+ need basic functionality for system keyboard layouts.
 
  The class is used by the ``iPadKeyboardLayoutProvider`` and
  and the ``iPhoneKeyboardLayoutProvider``, since they aim to

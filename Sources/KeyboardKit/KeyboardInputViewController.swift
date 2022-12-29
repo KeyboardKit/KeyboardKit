@@ -203,7 +203,8 @@ open class KeyboardInputViewController: UIInputViewController {
      ``StandardInputSetProvider`` is used by default.
      */
     public lazy var inputSetProvider: InputSetProvider = StandardInputSetProvider(
-        context: keyboardContext) {
+        keyboardContext: keyboardContext
+    ) {
         didSet { refreshProperties() }
     }
     

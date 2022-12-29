@@ -9,14 +9,14 @@
 import Foundation
 
 /**
- This input set provider provides English input sets.
+ This input set provider returns standard English input sets.
  
  Since currencies can vary between English keyboards, we can
  override the currency symbols that are shown in the numeric
  and symbolic keyboards.
  
  KeyboardKit Pro adds a provider for each ``KeyboardLocale``
- Check out the demo app to see them in action.
+ Check out the Pro demo app to see them in action.
  */
 public class EnglishInputSetProvider: InputSetProvider, LocalizedService {
     

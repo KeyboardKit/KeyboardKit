@@ -31,13 +31,13 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
      - Parameters:
        - keyboardContext: The keyboard context to use.
        - inputSetProvider: The input set provider to use.
-       - layoutProviders: The localized providers to use, by default none.
+       - layoutProviders: The localized providers to use, by default only English.
        - dictationReplacement: An optional dictation replacement action, by default `nil`.
      */
     public init(
         keyboardContext: KeyboardContext,
         inputSetProvider: InputSetProvider,
-        localizedProviders: [LocalizedKeyboardLayoutProvider] = [],
+        localizedProviders: [LocalizedKeyboardLayoutProvider] = [EnglishKeyboardLayoutProvider()],
         dictationReplacement: KeyboardAction? = nil
     ) {
         self.keyboardContext = keyboardContext
@@ -55,6 +55,8 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
 
     /**
      The input set provider to use.
+
+     > Important: This is deprecated and will be removed in KeyboardKit 7.0
      */
     public var inputSetProvider: InputSetProvider {
         didSet {
@@ -76,6 +78,8 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
 
     /**
      The keyboard layout provider to use for iPad devices.
+
+     > Important: This is deprecated and will be removed in KeyboardKit 7.0
      */
     open lazy var iPadProvider = iPadKeyboardLayoutProvider(
         inputSetProvider: inputSetProvider,
@@ -83,6 +87,8 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
 
     /**
      The keyboard layout provider to use for iPhone devices.
+
+     > Important: This is deprecated and will be removed in KeyboardKit 7.0
      */
     open lazy var iPhoneProvider = iPhoneKeyboardLayoutProvider(
         inputSetProvider: inputSetProvider,
@@ -100,9 +106,8 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
      The keyboard layout provider to use for a given context.
      */
     open func keyboardLayoutProvider(for context: KeyboardContext) -> KeyboardLayoutProvider {
-        if let provider = localizedProviders.value(for: context.locale) {
-            return provider
-        }
+        if let provider = localizedProviders.value(for: context.locale) { return provider }
+
         return context.deviceType == .pad ? iPadProvider : iPhoneProvider
     }
 

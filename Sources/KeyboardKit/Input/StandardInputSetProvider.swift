@@ -20,14 +20,14 @@ open class StandardInputSetProvider: InputSetProvider {
      
       - Parameters:
         - context: The keyboard context to use.
-        - providers: The localized providers to use, by default English.
+        - providers: The localized providers to use, by default only English.
      */
     public init(
-        context: KeyboardContext,
-        providers: [LocalizedInputSetProvider] = [EnglishInputSetProvider()]
+        keyboardContext: KeyboardContext,
+        localizedProviders: [LocalizedInputSetProvider] = [EnglishInputSetProvider()]
     ) {
-        self.keyboardContext = context
-        let dict = Dictionary(uniqueKeysWithValues: providers.map { ($0.localeKey, $0) })
+        self.keyboardContext = keyboardContext
+        let dict = Dictionary(uniqueKeysWithValues: localizedProviders.map { ($0.localeKey, $0) })
         self.localizedProviders = LocaleDictionary(dict)
     }
 

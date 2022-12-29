@@ -1,5 +1,13 @@
 import Foundation
 
+public extension PreviewKeyboardLayoutProvider {
+
+    @available(*, deprecated, message: "Use the keyboardContext initializer instead")
+    convenience init(context: KeyboardContext = .preview) {
+        self.init(keyboardContext: context)
+    }
+}
+
 @available(*, deprecated, message: "Use hasAlphabeticInputCount(_) instead.")
 extension SystemKeyboardLayoutProvider {
 

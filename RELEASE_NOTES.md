@@ -15,9 +15,8 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 Some things that are planned for the 7.0 release:
 
-* Removing the keyboard action `tap` gesture and only use `press` and `release`.
-* Rewriting the system keyboard gestures to support swipe to type and predictive type.
-* `KeyboardLayoutProvider` should perhaps take a context and an input set as layout function parameters. This would remove the need to inject an input set provider.
+* The keyboard action should only support `press` and `release` and not `tap`.
+* The system keyboard gestures should support swipe to type and predictive type.
 
 
 
@@ -26,6 +25,8 @@ Some things that are planned for the 7.0 release:
 This version starts to break up the layout engine in smaller parts, to make it easier to manage as the number of locales grow.
 
 The iPhone and iPad layout providers will be converted to base classes and inherited by locale-specific providers.
+
+Note that a bunch of `StandardKeyboardLayoutProvider` are deprecated in comments only, since the library still has to use them. These will be removed in the next major update.  
 
 ### 🌐 New locales
 
@@ -38,6 +39,7 @@ The iPhone and iPad layout providers will be converted to base classes and inher
 
 ### ✨ New features
 
+* `EnglishKeyboardLayoutProvider` is a new, open class that provides English keyboard layouts.
 * `InputSetProviderBased` is a new protocol that is used to keep track of types that rely on an input set provider.
 * `StandardInputSetProvider` `keyboardContext` is now public.
 * `StandardKeyboardLayoutProvider` can now take a collection of localized layout providers.
@@ -49,6 +51,9 @@ The iPhone and iPad layout providers will be converted to base classes and inher
 ### 🗑 Deprecations
 
 * `StandardInputSetProvider` `providerDictionary` has been renamed to `localizedProviders`.
+* `StandardKeyboardLayoutProvider` `inputSetProvider` is in-comment deprecated and will be removed in KeyboardKit 7.0.
+* `StandardKeyboardLayoutProvider` `iPhoneProvider` is in-comment deprecated and will be removed in KeyboardKit 7.0.
+* `StandardKeyboardLayoutProvider` `iPadProvider` is in-comment deprecated and will be removed in KeyboardKit 7.0.
 
 ### 💥 Breaking changes
 
