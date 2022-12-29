@@ -205,6 +205,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      */
     open func tryApplyAutocompleteSuggestion(before gesture: KeyboardGesture, on action: KeyboardAction) {
         if isSpaceCursorDrag(action) { return }
+        if textDocumentProxy.isCursorAtNewWord { return }
         guard gesture == .tap else { return }
         guard action.shouldApplyAutocompleteSuggestion else { return }
         guard let suggestion = (autocompleteContext.suggestions.first { $0.isAutocomplete }) else { return }

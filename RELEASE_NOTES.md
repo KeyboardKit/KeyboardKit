@@ -42,6 +42,10 @@ The iPhone and iPad layout providers will be converted to base classes and inher
 * `StandardInputSetProvider` `keyboardContext` is now public.
 * `StandardKeyboardLayoutProvider` can now take a collection of localized layout providers.
 
+### 💡 Behavior changes
+
+* `StandardKeyboardActionHandler` now ignores autocomplete suggestions when the cursor is at the beginning of a word.
+
 ### 🗑 Deprecations
 
 * `StandardInputSetProvider` `providerDictionary` has been renamed to `localizedProviders`.
