@@ -39,6 +39,7 @@ public enum KeyboardLocale: String,
     
     case albanian = "sq"
     case arabic = "ar"
+    case armenian = "hy"
     case belarusian = "be"
     case bulgarian = "bg"
     case catalan = "ca"
@@ -127,6 +128,7 @@ public extension KeyboardLocale {
         switch self {
         case .albanian: return "🇦🇱"
         case .arabic: return "🇦🇪"
+        case .armenian: return "🇦🇲"
         case .belarusian: return "🇧🇾"
         case .bulgarian: return "🇧🇬"
         case .catalan: return "🇦🇩"

@@ -14,13 +14,14 @@ class KeyboardLocaleTests: XCTestCase {
     let locales = KeyboardLocale.allCases
 
     func testLocaleIdentifierIsValidForAllCases() {
-        XCTAssertEqual(KeyboardLocale.allCases.count, 55)
+        XCTAssertEqual(KeyboardLocale.allCases.count, 56)
 
         let map = locales.map { ($0, $0.locale.identifier) }
         let result = Dictionary(uniqueKeysWithValues: map)
         let expected: [KeyboardLocale: String] = [
             .albanian: "sq",
             .arabic: "ar",
+            .armenian: "hy",
             .belarusian: "be",
             .bulgarian: "bg",
             .catalan: "ca",
@@ -100,6 +101,7 @@ class KeyboardLocaleTests: XCTestCase {
         let expected: [KeyboardLocale: String] = [
             .albanian: "shqip",
             .arabic: "العربية",
+            .armenian: "հայերեն",
             .belarusian: "беларуская",
             .bulgarian: "български",
             .dutch_belgium: "Nederlands (België)",
@@ -166,6 +168,7 @@ class KeyboardLocaleTests: XCTestCase {
         let expected: [KeyboardLocale: String] = [
             .albanian: "🇦🇱",
             .arabic: "🇦🇪",
+            .armenian: "🇦🇲",
             .belarusian: "🇧🇾",
             .bulgarian: "🇧🇬",
             .catalan: "🇦🇩",
