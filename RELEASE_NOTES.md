@@ -31,11 +31,13 @@ Note that a bunch of `StandardKeyboardLayoutProvider` are deprecated in comments
 ### 🌐 New locales
 
 * 🇦🇲 Armenian
+* 🇮🇩 Indonesian
 
 ### 👑 KeyboardKit Pro
 
 * `ProKeyboardLayoutProvider` is a new base class for pro layout providers.
 * `ProKeyboardLayoutProvider.Armenian` is the first, new layout provider that uses this new architecture.
+* `ProKeyboardLayoutProvider.German` and all German variants now correctly replaces `.return` with `.newLine`.
 
 ### ✨ New features
 
@@ -65,6 +67,7 @@ Note that a bunch of `StandardKeyboardLayoutProvider` are deprecated in comments
 ### 💥 Breaking changes
 
 * `StandardKeyboardLayoutProvider` now requires a keyboard context.
+* `KeyboardAction` no longer implements `KeyboardRowItem`.
 
 
 

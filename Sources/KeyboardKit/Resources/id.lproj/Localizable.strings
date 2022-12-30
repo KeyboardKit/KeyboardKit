@@ -6,16 +6,16 @@
  Copyright © 2021 Daniel Saidi. All rights reserved.
  */
 
-"locale" = "hy";
+"locale" = "id";
 
-"done" = "արված է";
-"go" = "գնալ";
-"ok" = "լավ";
-"return" = "վերադառնալ";
-"search" = "որոնում";
-"space" = "Բացատ";
+"done" = "Selesai";
+"go" = "Masuk";
+"ok" = "OK";
+"return" = "Kembali";
+"search" = "Cari";
+"space" = "Spasi";
 
-"keyboardTypeAlphabetic" = "ԱԲԳ";
+"keyboardTypeAlphabetic" = "ABC";
 "keyboardTypeNumeric" = "123";
 "keyboardTypeSymbolic" = "#+=";
 
