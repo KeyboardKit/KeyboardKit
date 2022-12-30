@@ -33,6 +33,7 @@ Note that a bunch of `StandardKeyboardLayoutProvider` are deprecated in comments
 * 🇦🇲 Armenian
 * 🇮🇩 Indonesian
 * 🇲🇾 Malay
+* 🇺🇿 Uzbek
 
 ### 👑 KeyboardKit Pro
 
