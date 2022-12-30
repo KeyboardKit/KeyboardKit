@@ -32,6 +32,7 @@ Note that a bunch of `StandardKeyboardLayoutProvider` are deprecated in comments
 
 * 🇦🇲 Armenian
 * 🇮🇩 Indonesian
+* 🇲🇾 Malay
 
 ### 👑 KeyboardKit Pro
 

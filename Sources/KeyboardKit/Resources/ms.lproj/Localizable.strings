@@ -1,19 +1,19 @@
 /*
  Localizable.strings
  KeyboardKit
-
+ 
  Created by Daniel Saidi on 2022-12-30.
  Copyright © 2022 Daniel Saidi. All rights reserved.
  */
 
-"locale" = "id";
+"locale" = "ms";
 
 "done" = "Selesai";
-"go" = "Masuk";
+"go" = "Pergi";
 "ok" = "OK";
-"return" = "Kembali";
+"return" = "⮐";
 "search" = "Cari";
-"space" = "Spasi";
+"space" = "Space";
 
 "keyboardTypeAlphabetic" = "ABC";
 "keyboardTypeNumeric" = "123";

@@ -13,12 +13,11 @@ import Foundation
  providing a set of utility functions.
  
  You can inherit this class and override any open properties
- and functions to customize the standard behavior.
- 
- It's easiest to just override ``calloutActionString(for:)``
- and return a string with all callout characters. The string
- is then split and mapped into keyboard actions and returned
- by the other functions.
+ and functions to customize the callout actions. The easiest
+ way is to override ``calloutActionString(for:)`` and return
+ a string with all callout characters. This string will then
+ be split by ``calloutActions(for:)`` and mapped to keyboard
+ actions, which are then returned up the call stack.
  
  ``EnglishCalloutActionProvider`` uses this logic to specify
  which actions to use for U.S. English.
@@ -55,9 +54,10 @@ open class BaseCalloutActionProvider: CalloutActionProvider {
     
     /**
      Get callout actions as a string for the provided `char`.
-     
-     Override this function if you want the `calloutActions`
-     functions to split this string into character actions.
+
+     You can override this function if you want to customize
+     the string that the ``calloutActions(for:)`` by default
+     will split into a list of character ``KeyboardAction``s.
      */
     open func calloutActionString(for char: String) -> String { "" }
 }
