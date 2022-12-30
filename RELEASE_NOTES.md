@@ -51,6 +51,7 @@ Note that a bunch of `StandardKeyboardLayoutProvider` are deprecated in comments
 
 ### 💡 Behavior changes
 
+* `SystemKeyboard` now applies locale as identifier to force update its rows.
 * `StandardKeyboardActionHandler` now ignores autocomplete suggestions when the cursor is at the beginning of a word.
 * `SystemKeyboardLayoutProvider` now uses the `KeyboardContext` `keyboardDictationReplacement` instead of the injected value.
 * `SystemKeyboardLayoutProvider` will for now set the `KeyboardContext` `keyboardDictationReplacement`, if one is provided, to not cause any old code to break.
