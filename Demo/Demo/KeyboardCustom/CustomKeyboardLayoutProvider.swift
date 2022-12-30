@@ -30,7 +30,7 @@ class CustomKeyboardLayoutProvider: DemoKeyboardLayoutProvider {
                 width: .inputPercentage(2),
                 height: layout.idealItemHeight),
             insets: layout.idealItemInsets)
-        layout.itemRows.replace(KeyboardAction.character("I"), with: widerItem)
+        layout.itemRows.replace(.character("I"), with: widerItem)
         return layout
     }
 }

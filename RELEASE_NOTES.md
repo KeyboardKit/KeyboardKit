@@ -41,6 +41,7 @@ Note that a bunch of `StandardKeyboardLayoutProvider` are deprecated in comments
 
 * `EnglishKeyboardLayoutProvider` is a new, open class that provides English keyboard layouts.
 * `InputSetProviderBased` is a new protocol that is used to keep track of types that rely on an input set provider.
+* `KeyboardActions` has new character margin actions properties.
 * `KeyboardContext` has a new `keyboardDictationReplacement` property.
 * `StandardInputSetProvider` `keyboardContext` is now public.
 * `StandardKeyboardLayoutProvider` can now take a collection of localized layout providers.
@@ -58,7 +59,8 @@ Note that a bunch of `StandardKeyboardLayoutProvider` are deprecated in comments
 * `StandardInputSetProvider` `providerDictionary` has been renamed to `localizedProviders`.
 * `StandardKeyboardLayoutProvider` `inputSetProvider` is in-comment deprecated.
 * `StandardKeyboardLayoutProvider` `iPhoneProvider` is in-comment deprecated.
-* `StandardKeyboardLayoutProvider` `iPadProvider` is in-comment deprecated. 
+* `StandardKeyboardLayoutProvider` `iPadProvider` is in-comment deprecated.
+* `StandardKeyboardLayoutProvider` leading and trailing margin action functions are deprecated. 
 
 ### 💥 Breaking changes
 

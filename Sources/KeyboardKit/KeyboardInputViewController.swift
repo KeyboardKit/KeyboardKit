@@ -57,17 +57,10 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      Setup KeyboardKit with a SwiftUI view.
 
-     Calling this function will remove all subviews from the
-     view controller and add the provided view in such a way
-     that the extension will resize to fit the provided view.
-     It also injects the input controller observable objects
-     as `@EnvironmentObject` into the view hierarchy, to let
-     any view in the view hieararchy access them easily.
-
-     For now views MUST add an `@EnvironmentObject` property
-     for the `KeyboardContext` to update correctly when this
-     context changes. This should not be needed, but for now
-     it is. Any help to figure out why would be amazing.
+     This function removes all views from the controller and
+     adds the provided view in a way that the extension will
+     resize to fit it. It also injects observable objects as
+     `@EnvironmentObject` into the view hierarchy.
      */
     open func setup<Content: View>(with view: Content) {
         self.view.subviews.forEach { $0.removeFromSuperview() }

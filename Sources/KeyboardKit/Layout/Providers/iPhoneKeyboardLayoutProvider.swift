@@ -101,7 +101,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         context: KeyboardContext
     ) -> KeyboardActions {
         guard isExpectedPhoneInputActions(actions) else { return [] }
-        let margin = leadingMarginAction(for: actions[2])
+        let margin = actions[2].leadingCharacterMarginAction
         if context.isAlphabetic(.hebrew) { return [margin] }
         guard let switcher = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         if context.isAlphabetic(.arabic) { return [] }
@@ -124,7 +124,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         context: KeyboardContext
     ) -> KeyboardActions {
         guard isExpectedPhoneInputActions(actions) else { return [] }
-        let margin = trailingMarginAction(for: actions[2])
+        let margin = actions[2].trailingCharacterMarginAction
         if context.isAlphabetic(.hebrew) { return [margin] }
         if context.isAlphabetic(.arabic) { return [margin, .backspace] }
         if context.isAlphabetic(.kurdish_sorani_arabic) { return [.backspace] }
@@ -145,8 +145,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         context: KeyboardContext
     ) -> KeyboardActions {
         guard shouldAddMiddleMarginActions(for: actions, context: context) else { return [] }
-        let margin = leadingMarginAction(for: actions[1])
-        return [margin]
+        return [actions[1].leadingCharacterMarginAction]
     }
 
     /**
@@ -157,8 +156,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         context: KeyboardContext
     ) -> KeyboardActions {
         guard shouldAddMiddleMarginActions(for: actions, context: context) else { return [] }
-        let margin = trailingMarginAction(for: actions[1])
-        return [margin]
+        return [actions[1].trailingCharacterMarginAction]
     }
 
     /**
@@ -168,7 +166,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         for actions: KeyboardActionRows,
         context: KeyboardContext
     ) -> KeyboardActions {
-        let margin = leadingMarginAction(for: actions[0])
+        let margin = actions[0].leadingCharacterMarginAction
         if context.isAlphabetic(.hebrew) { return [margin] }
         guard shouldAddUpperMarginActions(for: actions, context: context) else { return [] }
         return [margin]
@@ -181,7 +179,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         for actions: KeyboardActionRows,
         context: KeyboardContext
     ) -> KeyboardActions {
-        let margin = trailingMarginAction(for: actions[0])
+        let margin = actions[0].trailingCharacterMarginAction
         if context.isAlphabetic(.hebrew) { return [margin, .backspace] }
         guard shouldAddUpperMarginActions(for: actions, context: context) else { return [] }
         return [margin]

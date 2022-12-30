@@ -23,6 +23,25 @@ public extension SystemKeyboardLayoutProvider {
     var dictationReplacement: KeyboardAction? {
         KeyboardInputViewController.shared.keyboardContext.keyboardDictationReplacement
     }
+
+    @available(*, deprecated, message: "Use actions.leadingCharacterMarginAction instead")
+    func leadingMarginAction(for actions: KeyboardActions) -> KeyboardAction {
+        marginAction(for: actions.first { $0.isInputAction })
+    }
+
+    @available(*, deprecated, message: "Use actions.trailingCharacterMarginAction instead")
+    func trailingMarginAction(for actions: KeyboardActions) -> KeyboardAction {
+        marginAction(for: actions.last { $0.isInputAction })
+    }
+
+    @available(*, deprecated, message: "Use actions character margin action properties instead")
+    func marginAction(for action: KeyboardAction?) -> KeyboardAction {
+        guard let action = action else { return .none }
+        switch action {
+        case .character(let char): return .characterMargin(char)
+        default: return .none
+        }
+    }
 }
 
 public extension StandardKeyboardLayoutProvider {
