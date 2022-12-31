@@ -23,9 +23,7 @@ class SystemKeyboardLayoutProviderTests: XCTestCase {
         inputSetProvider.alphabeticInputSetValue = AlphabeticInputSet(rows: [["a", "b", "c"]].map(InputSetRow.init(chars:)))
         inputSetProvider.numericInputSetValue = NumericInputSet(rows: [["1", "2", "3"]].map(InputSetRow.init(chars:)))
         inputSetProvider.symbolicInputSetValue = SymbolicInputSet(rows: [[",", ".", "-"]].map(InputSetRow.init(chars:)))
-        provider = SystemKeyboardLayoutProvider(
-            inputSetProvider: inputSetProvider,
-            dictationReplacement: .primary(.go))
+        provider = SystemKeyboardLayoutProvider(inputSetProvider: inputSetProvider)
     }
 
 

@@ -23,8 +23,7 @@ class StandardKeyboardLayoutProviderTests: XCTestCase {
         inputSetProvider.symbolicInputSetValue = SymbolicInputSet(rows: [[",", ".", "-"], [",", ".", "-"], [",", ".", "-"]].map(InputSetRow.init(chars:)))
         provider = StandardKeyboardLayoutProvider(
             keyboardContext: keyboardContext,
-            inputSetProvider: inputSetProvider,
-            dictationReplacement: .primary(.go))
+            inputSetProvider: inputSetProvider)
     }
 
     func testKeyboardLayoutProviderForContextIsPhoneProviderIfContextDeviceIsPhone() {
