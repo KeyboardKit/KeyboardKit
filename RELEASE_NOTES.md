@@ -31,6 +31,7 @@ Note that a bunch of `StandardKeyboardLayoutProvider` are deprecated in comments
 ### 🌐 New locales
 
 * 🇦🇲 Armenian
+* 🏳️ Cherokee
 * 🇮🇩 Indonesian
 * 🇲🇾 Malay
 * 🇺🇿 Uzbek
