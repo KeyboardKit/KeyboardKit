@@ -22,9 +22,9 @@ Some things that are planned for the 7.0 release:
 
 ## 6.8
 
-This version starts to break up the layout engine in smaller parts, to make it easier to manage as the number of locales grow.
+This release adds 5 new locales, which brings the number of supported locales to 60!
 
-The iPhone and iPad layout providers will be converted to base classes and inherited by locale-specific providers.
+To get locales like Armenian to work, this version starts to break up the layout engine in smaller parts, to make it easier to manage as the number of locales grow. The iPhone and iPad layout providers will be converted to base classes and inherited by locale-specific providers.
 
 Note that a bunch of `StandardKeyboardLayoutProvider` are deprecated in comments only, since the library still has to use them. These will be removed in the next major update.  
 
