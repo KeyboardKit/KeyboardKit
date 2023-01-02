@@ -63,6 +63,7 @@ Note that a bunch of `StandardKeyboardLayoutProvider` are deprecated in comments
 * `KeyboardLayoutProvider` dictation replacement initializers and properties are deprecated.
 * `StandardCalloutActionProvider` `providerDictionary` has been renamed to `localizedProviders`.
 * `StandardInputSetProvider` `providerDictionary` has been renamed to `localizedProviders`.
+* `KeyboardInputTextComponent` has been renamed to `KeyboardInputComponent`.
 * `StandardKeyboardLayoutProvider` `inputSetProvider` is in-comment deprecated.
 * `StandardKeyboardLayoutProvider` `iPhoneProvider` is in-comment deprecated.
 * `StandardKeyboardLayoutProvider` `iPadProvider` is in-comment deprecated.

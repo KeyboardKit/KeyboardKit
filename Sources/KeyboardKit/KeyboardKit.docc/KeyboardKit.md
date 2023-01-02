@@ -319,7 +319,7 @@ KeyboardKit is available under the MIT license.
 ### Views
 
 - ``KeyboardGrid``
-- ``KeyboardInputTextComponent``
+- ``KeyboardInputComponent``
 - ``KeyboardTextField``
 - ``KeyboardTextView``
 - ``NextKeyboardButton``

@@ -1,5 +1,5 @@
 //
-//  KeyboardInputTextComponent.swift
+//  KeyboardInputComponent.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-07-21.
@@ -10,12 +10,15 @@
 import UIKit
 
 /**
- This protocol can be used to create text inputs that should
- be used within a keyboard extension, and therefore must set
- themselves as the current text document proxy while they're
- being edited.
+ This protocol can be used to create text inputs that can be
+ used within a keyboard extension.
+
+ A text input in a keyboard extension must set itself as the
+ current text document proxy while it's being edited. A view
+ that inherits this protocol can use its functions to easily
+ register and unregister itself as the proxy.
  */
-public protocol KeyboardInputTextComponent: UIResponder, UITextInput {
+public protocol KeyboardInputComponent: UIResponder, UITextInput {
     
     /**
      Whether or not the text input should resign itself when
@@ -28,7 +31,7 @@ public protocol KeyboardInputTextComponent: UIResponder, UITextInput {
     var resignOnReturn: Bool { get }
 }
 
-public extension KeyboardInputTextComponent {
+public extension KeyboardInputComponent {
     
     /**
      The currently active input view controller.

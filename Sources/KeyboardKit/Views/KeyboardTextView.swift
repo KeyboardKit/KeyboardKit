@@ -94,7 +94,7 @@ public extension KeyboardTextView {
     }
 }
 
-class KeyboardInputTextView: UITextView, KeyboardInputTextComponent {
+class KeyboardInputTextView: UITextView, KeyboardInputComponent {
     
     var resignOnReturn: Bool = true
     

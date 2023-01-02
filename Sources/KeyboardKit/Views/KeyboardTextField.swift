@@ -103,7 +103,7 @@ public extension KeyboardTextField {
     }
 }
 
-class KeyboardInputTextField: UITextField, KeyboardInputTextComponent {
+class KeyboardInputTextField: UITextField, KeyboardInputComponent {
     
     var resignOnReturn: Bool = true
     var hasFocus: Binding<Bool> = .constant(false)
