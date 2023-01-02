@@ -180,6 +180,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         default: break
         }
         let text = buttonText(for: action) ?? ""
+        // if context.deviceType == .phone && text.count > 7 { return 12 }
         if action.isInputAction && text.isLowercased { return 26 }
         if action.isSystemAction || action.isPrimaryAction { return 16 }
         return 23

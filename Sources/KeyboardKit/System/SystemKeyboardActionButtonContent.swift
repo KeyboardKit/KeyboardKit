@@ -79,7 +79,10 @@ private extension SystemKeyboardActionButtonContent {
     func textView(for text: String) -> some View {
         SystemKeyboardButtonText(
             text: text,
-            action: action)
+            action: action
+        )
+        .padding(3)
+        .minimumScaleFactor(0.5)
     }
 }
 

@@ -68,7 +68,8 @@ Note that a bunch of `StandardKeyboardLayoutProvider` are deprecated in comments
 * `StandardKeyboardLayoutProvider` `inputSetProvider` is in-comment deprecated.
 * `StandardKeyboardLayoutProvider` `iPhoneProvider` is in-comment deprecated.
 * `StandardKeyboardLayoutProvider` `iPadProvider` is in-comment deprecated.
-* `StandardKeyboardLayoutProvider` leading and trailing margin action functions are deprecated. 
+* `StandardKeyboardLayoutProvider` leading and trailing margin action functions are deprecated.
+* `SystemKeyboardActionButtonContent` now applies a padding and minimum scale factor to text views. 
 
 ### 💥 Breaking changes
 
