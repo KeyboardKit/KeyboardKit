@@ -12,7 +12,7 @@ import Foundation
  This keyboard layout provider implementation can be used to
  create standard English keyboard layouts.
  */
-open class EnglishKeyboardLayoutProvider: SystemKeyboardLayoutProvider, DeviceKeyboardLayoutProvider, LocalizedService {
+open class EnglishKeyboardLayoutProvider: SystemKeyboardLayoutProvider, KeyboardLayoutProviderProxy, LocalizedService {
 
     /**
      Create an English keyboard layout provider.

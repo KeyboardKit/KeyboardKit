@@ -234,6 +234,7 @@ KeyboardKit is available under the MIT license.
 - ``InputSet``
 - ``InputSetItem``
 - ``InputSetProvider``
+- ``InputSetProviderBased``
 - ``InputSetRow``
 - ``InputSetRows``
 - ``LocalizedInputSetProvider``
@@ -255,16 +256,18 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardLayoutItemRows``
 - ``KeyboardLayoutItemSize``
 - ``KeyboardLayoutItemWidth``
+- ``KeyboardLayoutProvider``
+- ``KeyboardLayoutProviderProxy``
 - ``KeyboardRowItem``
 
-### Layout Providers
-
-- ``KeyboardLayoutProvider``
 - ``StandardKeyboardLayoutProvider``
 - ``iPadKeyboardLayoutProvider``
 - ``iPhoneKeyboardLayoutProvider``
+- ``LocalizedKeyboardLayoutProvider``
 - ``StaticKeyboardLayoutProvider``
 - ``SystemKeyboardLayoutProvider``
+
+- ``EnglishKeyboardLayoutProvider``
 
 ### Locale
 
@@ -292,7 +295,13 @@ KeyboardKit is available under the MIT license.
 
 - ``TextInputProxy``
 
-### SystemKeyboard
+### Styles
+
+- ``KeyboardButtonStyle``
+- ``KeyboardButtonBorderStyle``
+- ``KeyboardButtonShadowStyle``
+
+### System Keyboard
 
 - ``SystemKeyboard``
 - ``SystemKeyboardActionButton``
@@ -307,19 +316,10 @@ KeyboardKit is available under the MIT license.
 - ``StandardSystemKeyboardButtonContent``
 - ``StandardSystemKeyboardButtonView``
 
-### Views - Buttons
+### Views
 
-- ``KeyboardButtonStyle``
-- ``KeyboardButtonBorderStyle``
-- ``KeyboardButtonShadowStyle``
-- ``NextKeyboardButton``
-
-### Views - Input
-
+- ``KeyboardGrid``
 - ``KeyboardInputTextComponent``
 - ``KeyboardTextField``
 - ``KeyboardTextView``
-
-### Views - Layout
-
-- ``KeyboardGrid``
+- ``NextKeyboardButton``

@@ -15,9 +15,8 @@ import Foundation
  You can inherit this class and override any open properties
  and functions to customize the callout actions. The easiest
  way is to override ``calloutActionString(for:)`` and return
- a string with all callout characters. This string will then
- be split by ``calloutActions(for:)`` and mapped to keyboard
- actions, which are then returned up the call stack.
+ a string, that is then split and mapped to keyboard actions
+ by `calloutActions(for:)`.
  
  ``EnglishCalloutActionProvider`` uses this logic to specify
  which actions to use for U.S. English.
@@ -56,8 +55,13 @@ open class BaseCalloutActionProvider: CalloutActionProvider {
      Get callout actions as a string for the provided `char`.
 
      You can override this function if you want to customize
-     the string that the ``calloutActions(for:)`` by default
-     will split into a list of character ``KeyboardAction``s.
+     the string that by default will be split into a list of
+     ``KeyboardAction``s by `calloutActions(for:)`.
+
+     Note that you must override `calloutActions(for:)` when
+     these actions must support multuple multiple characters,
+     e.g. for `kr` currencies, or when you want to use other
+     action types than just characters.
      */
     open func calloutActionString(for char: String) -> String { "" }
 }
