@@ -12,7 +12,10 @@ import SwiftUI
  This extension defines images for various keyboard actions.
  */
 public extension KeyboardAction {
-    
+
+    /**
+     The image to which the action refers, if any.
+     */
     var image: Image? {
         switch self {
         case .image(_, let imageName, _): return Image(imageName, bundle: .keyboardKit)

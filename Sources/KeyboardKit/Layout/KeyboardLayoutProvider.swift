@@ -13,25 +13,17 @@ import Foundation
  used to generate a ``KeyboardLayout`` for a certain context.
  
  KeyboardKit will create a ``StandardKeyboardLayoutProvider``
- when the keyboard extension is started and then apply it to
- ``KeyboardInputViewController/keyboardLayoutProvider`` then
- use this instance by default to generate keyboard layouts.
+ instance when the keyboard extension is started, then apply
+ it to ``KeyboardInputViewController/keyboardLayoutProvider``
+ and use it by default when generating keyboard layouts.
  
- KeyboardKit comes with a ``StandardKeyboardLayoutProvider``,
- which can be initialized with an ``InputSetProvider``, then
- uses separate layout providers for iPhone and iPad.
- 
- KeyboardKit Pro can be used to unlock an input set provider
- for each ``KeyboardLocale``. This means that you can create
- a completely localized ``SystemKeyboard`` for all available
- locales with just a single line of code.
- 
- If you don't have a KeyboardKit Pro license, you can create
- a custom layout provider.
+ KeyboardKit Pro can be used to unlock a unique provider for
+ every ``KeyboardLocale``, which means that you can create a
+ fully localized ``SystemKeyboard`` for all keyboard locales
+ with just a single line of code.
  
  You can create a custom implementation of this protocol, by
- either inheriting and customizing the standard class (which
- gives you a lot of functionality for free) or by creating a
+ inheriting and customizing the standard class or creating a
  new implementation from scratch. When you're implementation
  is ready, just replace the controller service with your own
  implementation to make the library use it instead.

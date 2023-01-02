@@ -12,14 +12,6 @@ import CoreGraphics
  This protocol can be implemented by classes that can handle
  ``KeyboardAction`` events.
  
- Many views in the library use actions and an action handler
- to give you a flexible setup, where you can provide actions
- without having to specify how they are to be handled.
- 
- You can trigger keyboard actions programatically by calling
- ``handle(_:on:)``. This is convenient when you must trigger
- actions from other parts of your keyboard.
- 
  KeyboardKit will create a ``StandardKeyboardActionHandler``
  instance when the keyboard extension is started, then apply
  it to ``KeyboardInputViewController/keyboardActionHandler``.
@@ -30,8 +22,7 @@ import CoreGraphics
  are handled, you can implement a custom action handler.
  
  You can create a custom implementation of this protocol, by
- either inheriting and customizing the standard class (which
- gives you a lot of functionality for free) or by creating a
+ inheriting and customizing the standard class or creating a
  new implementation from scratch. When you're implementation
  is ready, just replace the controller service with your own
  implementation to make the library use it instead.

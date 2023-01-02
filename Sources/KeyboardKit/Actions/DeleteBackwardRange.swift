@@ -15,6 +15,7 @@ import Foundation
 public enum DeleteBackwardRange {
 
     /// Delete a single char at a time.
+    /// TODO: Rename this to character in KeyboardKit 7.
     case char
 
     /// Delete an entire word at a time.

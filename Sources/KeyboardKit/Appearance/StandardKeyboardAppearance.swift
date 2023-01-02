@@ -14,12 +14,9 @@ import CoreGraphics
  look of a native system keyboard.
  
  You can inherit this class and override any open properties
- and functions to customize the standard behavior. Note that
- if you only want to make small tweaks, then grab the `super`
- result and modify if.
-
- For instance, if you want to change the background color of
- inpout keys only, you should do it like this:
+ and functions to customize the appearance. For instance, to
+ change the background color of inpout keys only, you can do
+ it like this:
 
  ```swift
  class MyAppearance: StandardKeyboardAppearance {

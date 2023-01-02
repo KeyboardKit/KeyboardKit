@@ -9,7 +9,7 @@
 import KeyboardKit
 import XCTest
 
-class Locale_TextTests: XCTestCase {
+class Locale_LocalizedTests: XCTestCase {
     
     func testLocalizedNameIsValid() {
         let locale = Locale(identifier: "en-US")

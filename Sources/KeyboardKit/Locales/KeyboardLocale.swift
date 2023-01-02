@@ -140,6 +140,7 @@ public extension KeyboardLocale {
         case .croatian: return "🇭🇷"
         case .czech: return "🇨🇿"
         case .danish: return "🇩🇰"
+
         case .dutch: return "🇳🇱"
         case .dutch_belgium: return "🇧🇪"
         case .english: return "🇺🇸"
@@ -150,6 +151,7 @@ public extension KeyboardLocale {
         case .filipino: return "🇵🇭"
         case .finnish: return "🇫🇮"
         case .french: return "🇫🇷"
+
         case .french_belgium: return "🇧🇪"
         case .french_switzerland: return "🇨🇭"
         case .georgian: return "🇬🇪"
@@ -160,6 +162,7 @@ public extension KeyboardLocale {
         case .hawaiian: return "🇺🇸"
         case .hebrew: return "🇮🇱"
         case .hungarian: return "🇭🇺"
+
         case .icelandic: return "🇮🇸"
         case .indonesian: return "🇮🇩"
         case .irish: return "🇮🇪"
@@ -170,6 +173,7 @@ public extension KeyboardLocale {
         case .latvian: return "🇱🇻"
         case .lithuanian: return "🇱🇹"
         case .macedonian: return "🇲🇰"
+
         case .malay: return "🇲🇾"
         case .maltese: return "🇲🇹"
         case .mongolian: return "🇲🇳"
@@ -180,6 +184,7 @@ public extension KeyboardLocale {
         case .portuguese_brazil: return "🇧🇷"
         case .romanian: return "🇷🇴"
         case .russian: return "🇷🇺"
+
         case .serbian: return "🇷🇸"
         case .serbian_latin: return "🇷🇸"
         case .slovenian: return "🇸🇮"

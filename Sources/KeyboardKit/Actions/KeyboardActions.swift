@@ -12,7 +12,7 @@ import Foundation
  This typealias represents a ``KeyboardAction`` array.
 
  The typealias makes it easier to create and handle keyboard
- action collections.
+ action rows and collections.
  */
 public typealias KeyboardActions = [KeyboardAction]
 
