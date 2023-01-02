@@ -48,6 +48,7 @@ Note that a bunch of `StandardKeyboardLayoutProvider` are deprecated in comments
 * `InputSetProviderBased` is a new protocol that is used to keep track of types that rely on an input set provider.
 * `KeyboardActions` has new character margin actions properties.
 * `KeyboardContext` has a new `keyboardDictationReplacement` property.
+* `KKL10n` has a new `join` case, although localiations are missing for most locales.
 * `StandardInputSetProvider` `keyboardContext` is now public.
 * `StandardKeyboardLayoutProvider` can now take a collection of localized layout providers.
 

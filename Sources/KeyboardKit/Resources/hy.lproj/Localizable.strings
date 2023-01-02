@@ -13,6 +13,7 @@
 
 "done" = "հաստատել"; // System keyboard uses "արված է"
 "go" = "գնալ";
+"join" = "join";
 "ok" = "լավ";
 "return" = "վերադառնալ";
 "search" = "որոնում";

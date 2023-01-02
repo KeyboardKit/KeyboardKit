@@ -10,6 +10,7 @@
 
 "done" = "valmis";
 "go" = "avaa";
+"join" = "join";
 "ok" = "OK";
 "return" = "rivinvaihto";
 "search" = "etsi";

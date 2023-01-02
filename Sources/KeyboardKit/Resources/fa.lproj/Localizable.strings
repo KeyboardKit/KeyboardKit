@@ -10,7 +10,8 @@
 
  "done" = "انجام شد";
  "go" = "برو";
- "ok" = "OK";
+ "join" = "join";
+"ok" = "OK";
  "return" = "↳";
  "search" = "جستجو";
  "space" = "فاصله";
