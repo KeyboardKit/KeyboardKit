@@ -9,7 +9,7 @@ KeyboardKit helps you build custom keyboards with Swift and SwiftUI.
 
 KeyboardKit helps you build custom keyboards with Swift and SwiftUI. It extends Apple's native keyboard extension APIs and provides you with more functionality than is otherwise available. 
 
-KeyboardKit also provides you with utilities that lets you mimic native iOS keyboards. You can use ``SystemKeyboard`` and style it a little (or a lot) or use completely custom views or designs.
+KeyboardKit also provides you with utilities that lets you mimic native iOS keyboards. You can use ``SystemKeyboard`` and style it as much as you want and customize it with completely custom views or designs.
 
 
 
