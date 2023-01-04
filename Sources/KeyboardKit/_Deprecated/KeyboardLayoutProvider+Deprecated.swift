@@ -8,6 +8,7 @@ public extension PreviewKeyboardLayoutProvider {
     }
 }
 
+#if os(iOS) || os(tvOS)
 public extension SystemKeyboardLayoutProvider {
 
     @available(*, deprecated, message: "Use dictation replacement-less initializer and set KeyboardContext's keyboardDictationReplacement instead")
@@ -65,6 +66,7 @@ public extension StandardKeyboardLayoutProvider {
         KeyboardInputViewController.shared.keyboardContext.keyboardDictationReplacement
     }
 }
+#endif
 
 @available(*, deprecated, message: "Use hasAlphabeticInputCount(_) instead.")
 extension SystemKeyboardLayoutProvider {
