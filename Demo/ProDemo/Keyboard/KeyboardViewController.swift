@@ -65,6 +65,10 @@ class KeyboardViewController: KeyboardInputViewController {
         // This is how you would change the keyboard locales
         // 💡 This is overwritten as Pro is registered below
         keyboardContext.locales = [KeyboardLocale.english.locale]
+
+        // Set a custom dictation key replacement
+        // 💡 This will replace the dictation button on keyboards that have one
+        keyboardContext.keyboardDictationReplacement = .keyboardType(.emojis)
         
         // Setup a demo-specific keyboard appearance
         // 💡 Play with this to change style of the keyboard
@@ -74,12 +78,6 @@ class KeyboardViewController: KeyboardInputViewController {
         // 💡 Play with this to change the keyboard behavior
         keyboardActionHandler = DemoKeyboardActionHandler(
             inputViewController: self)
-        
-        // Setup a demo-specific keyboard layout provider
-        // 💡 Play with this to change the keyboard's layout
-        keyboardLayoutProvider = DemoKeyboardLayoutProvider(
-            inputSetProvider: inputSetProvider,
-            dictationReplacement: .keyboardType(.emojis))
         
         // Call super to perform the base initialization
         super.viewDidLoad()
@@ -101,7 +99,15 @@ class KeyboardViewController: KeyboardInputViewController {
         // Setup KeyboardKit Pro, using a demo-specific view
         try? setupPro(
             withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098",
-            view: KeyboardView())
+            view: KeyboardView()
+        ) { license in
+            // Setup a demo-specific keyboard layout provider
+            // 💡 Play with this to change the keyboard's layout
+            self.keyboardLayoutProvider = DemoKeyboardLayoutProvider(
+                license: license,
+                keyboardContext: self.keyboardContext,
+                inputSetProvider: self.inputSetProvider)
+        }
         
         // Restore the last used locale, if any
         // 💡 This must be done after registering Pro
