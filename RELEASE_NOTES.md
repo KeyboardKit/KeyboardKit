@@ -21,6 +21,14 @@ Some things that are planned for the 7.0 release:
 
 
 
+## 6.8.1  
+
+### 🐛 Bug fixes
+
+* This release fixes an invalid localization for the English return key.
+
+
+
 ## 6.8
 
 This release adds 5 new locales, which brings the number of supported locales to 60!
