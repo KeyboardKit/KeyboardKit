@@ -17,6 +17,7 @@ Some things that are planned for the 7.0 release:
 
 * The keyboard action should only support `press` and `release` and not `tap`.
 * The system keyboard gestures should support swipe to type and predictive type.
+* All dependencies to the shared instances will be replaced with init parameters, even for the smallest view.  
 
 
 
@@ -38,9 +39,13 @@ Note that a bunch of `StandardKeyboardLayoutProvider` are deprecated in comments
 
 ### 👑 KeyboardKit Pro
 
+* `FullDocumentContextConfiguration` now uses a longer, default delay. 
+* `FullDocumentContextResult` now contains more information. 
 * `ProKeyboardLayoutProvider` is a new base class for pro layout providers.
 * `ProKeyboardLayoutProvider.Armenian` is the first, new layout provider that uses this new architecture.
 * `ProKeyboardLayoutProvider.German` and all German variants now correctly replaces `.return` with `.newLine`.
+* `UITextDocumentProxy` `fullDocumentContext` has been adjusted to behave better.
+* `UITextDocumentProxy` `fullDocumentContext` will now throw an error if it's called while a read operation is in progress.
 
 ### ✨ New features
 
