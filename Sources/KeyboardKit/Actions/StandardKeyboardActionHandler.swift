@@ -48,7 +48,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.keyboardContext = ivc.keyboardContext
         self.keyboardFeedbackHandler = ivc.keyboardFeedbackHandler
         self.spaceDragGestureHandler = spaceDragGestureHandler ?? SpaceCursorDragGestureHandler(
-            context: ivc.keyboardContext,
+            keyboardContext: ivc.keyboardContext,
             feedbackHandler: ivc.keyboardFeedbackHandler,
             sensitivity: spaceDragSensitivity
         )
@@ -84,7 +84,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.keyboardContext = keyboardContext
         self.keyboardFeedbackHandler = keyboardFeedbackHandler
         self.spaceDragGestureHandler = spaceDragGestureHandler ?? SpaceCursorDragGestureHandler(
-            context: keyboardContext,
+            keyboardContext: keyboardContext,
             feedbackHandler: keyboardFeedbackHandler,
             sensitivity: spaceDragSensitivity
         )

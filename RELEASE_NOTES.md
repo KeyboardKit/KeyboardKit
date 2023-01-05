@@ -64,6 +64,7 @@ This release starts preparing for the next major version, by deprecating a lot o
 * `KeyboardAction.standardTapAction` has been replaced by `KeyboardAction.standardReleaseAction`.
 * `KeyboardContext` has redesigned initializers that set fewer properties.
 * `KeyboardContext` `screenOrientation` has been replaced by `interfaceOrientation`.
+* `SpaceCursorDragGestureHandler` `context` has been renamed to `keyboardContext`.
 * `StandardAutocompleteSuggestion` has deprecated the initializer with an implicit text name.
 * `StandardCalloutActionProvider` `context` has been renamed to `keyboardContext`.
 * `StandardKeyboardActionHandler` `changeKeyboardTypeAction` has been in-comment deprecated.
