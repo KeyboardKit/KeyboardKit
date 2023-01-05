@@ -18,6 +18,9 @@ public extension KeyboardAction {
      */
     enum PrimaryType: CaseIterable, Codable, Equatable, Identifiable {
 
+        /// A return key that uses a return text and not an ⏎ icon.
+        case `return`
+
         /// A done key used in e.g. Calendar add location.
         case done
 
@@ -44,6 +47,7 @@ public extension KeyboardAction {
          */
         public var id: String {
             switch self {
+            case .return: return "return"
             case .done: return "done"
             case .go: return "go"
             case .join: return "join"
@@ -55,11 +59,11 @@ public extension KeyboardAction {
         }
 
         /**
-         All unique keyboard action types, but excluding the
-         ``KeyboardAction/custom(named:)`` type.
+         All unique primary keyboard action types, excluding
+         ``KeyboardAction/custom(named:)``.
          */
         public static var allCases: [KeyboardAction.PrimaryType] {
-            return [.done, .go, .join, .newLine, .ok, .search]
+            return [.return, .done, .go, .join, .newLine, .ok, .search]
         }
     }
 }
@@ -80,6 +84,7 @@ public extension KeyboardAction.PrimaryType {
         case .go: return KKL10n.go.text(for: locale)
         case .join: return KKL10n.join.text(for: locale)
         case .newLine: return nil
+        case .return: return KKL10n.return.text(for: locale)
         case .ok: return KKL10n.ok.text(for: locale)
         case .search: return KKL10n.search.text(for: locale)
         }
