@@ -82,4 +82,12 @@ public extension View {
         }
     }
     #endif
+
+    /**
+     Apply the size of a `CGSize` to the view.
+     */
+    @available(*, deprecated, message: "Use the native frame modifier instead")
+    func frame(size: CGSize) -> some View {
+        self.frame(width: size.width, height: size.height)
+    }
 }

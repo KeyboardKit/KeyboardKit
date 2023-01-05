@@ -108,6 +108,17 @@ private extension KeyboardGestures {
     }
 }
 
+private extension View {
+
+    @ViewBuilder
+    func optionalGesture<GestureType: Gesture>(_ gesture: GestureType?) -> some View {
+        if let gesture = gesture {
+            self.gesture(gesture)
+        } else {
+            self
+        }
+    }
+}
 
 // MARK: - Views
 

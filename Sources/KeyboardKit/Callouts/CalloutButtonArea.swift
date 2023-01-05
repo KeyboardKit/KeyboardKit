@@ -55,7 +55,7 @@ private extension CalloutButtonArea {
     var buttonBody: some View {
         CustomRoundedRectangle(bottomLeft: cornerRadius, bottomRight: cornerRadius)
             .foregroundColor(backgroundColor)
-            .frame(size: frame.size)
+            .frame(width: frame.size.width, height: frame.size.height)
     }
     
     var calloutCurve: some View {

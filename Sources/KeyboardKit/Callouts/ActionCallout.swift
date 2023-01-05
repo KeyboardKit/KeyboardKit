@@ -88,7 +88,7 @@ private extension ActionCallout {
         HStack(spacing: 0) {
             ForEach(Array(calloutActions.enumerated()), id: \.offset) {
                 calloutView(for: $0.element)
-                    .frame(size: calloutButtonSize)
+                    .frame(width: calloutButtonSize.width, height: calloutButtonSize.height)
                     .background(isSelected($0.offset) ? style.selectedBackgroundColor : .clear)
                     .foregroundColor(isSelected($0.offset) ? style.selectedForegroundColor : style.callout.textColor)
                     .cornerRadius(cornerRadius)

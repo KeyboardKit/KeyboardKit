@@ -15,6 +15,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 Some things that are planned for the 7.0 release:
 
+* Deployment targets will be bumped to iOS 14, macOS 11, tvOS 14 and watchOS 8.
 * All TODOS will be addressed.
 * All deprecated code will be removed.
 * All shared instances should be removed.
@@ -66,7 +67,8 @@ This release starts preparing for the next major version, by deprecating a lot o
 * `StandardKeyboardAppearance` `context` has been renamed to `keyboardContext`.
 * `StandardKeyboardBehavior` `context` has been renamed to `keyboardContext`.
 * `StaticKeyboardBehavior` `context` has been renamed to `keyboardContext`.
-* `UIScreen` device extensions have been deprecated. 
+* `UIScreen` device extensions have been deprecated.
+* `View+Frame` has been deprecated. 
 
 ### 💥 Breaking changes
 

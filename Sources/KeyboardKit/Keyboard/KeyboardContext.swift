@@ -344,6 +344,6 @@ public extension KeyboardContext {
 private extension UIInputViewController {
 
     var orientation: InterfaceOrientation {
-        windowScreen?.interfaceOrientation ?? .portrait
+        view.window?.screen.interfaceOrientation ?? .portrait
     }
 }
