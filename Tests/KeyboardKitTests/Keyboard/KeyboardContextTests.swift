@@ -45,6 +45,7 @@ class KeyboardContextTests: XCTestCase {
         XCTAssertEqual(context.hasFullAccess, controller.hasFullAccess)
         XCTAssertEqual(context.needsInputModeSwitchKey, controller.needsInputModeSwitchKey)
         XCTAssertEqual(context.primaryLanguage, controller.primaryLanguage)
+        XCTAssertEqual(context.screenSize, controller.view.window?.screen.bounds.size ?? .zero)
         XCTAssertEqual(context.textInputMode, controller.textInputMode)
         eventually {
             XCTAssertTrue(context.textDocumentProxy === controller.textDocumentProxy)
@@ -65,18 +66,10 @@ class KeyboardContextTests: XCTestCase {
         XCTAssertFalse(context.needsInputModeSwitchKey)
         XCTAssertTrue(context.prefersAutocomplete)
         XCTAssertNil(context.primaryLanguage)
+        XCTAssertEqual(context.screenSize, .zero)
         XCTAssertNotNil(context.textDocumentProxy)
         XCTAssertNil(context.textInputMode)
         XCTAssertNotNil(context.traitCollection)
-    }
-
-    func testInitializerCanSetLocale() {
-        let id = "sv-SE"
-        let locale = Locale(identifier: id)
-        context = KeyboardContext(locale: locale)
-
-        XCTAssertEqual(context.locale, locale)
-        XCTAssertEqual(context.locales, [locale])
     }
 
     #if os(iOS) || os(tvOS)

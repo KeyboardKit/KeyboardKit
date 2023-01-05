@@ -12,28 +12,12 @@ import XCTest
 
 class KeyboardType_ButtonTests: XCTestCase {
 
-    func fontSize(for type: KeyboardType) -> CGFloat {
-        type.standardButtonFontSize(for: KeyboardContext.preview)
-    }
-
     func buttonImage(for type: KeyboardType) -> Image? {
         type.standardButtonImage
     }
 
     func buttonText(for type: KeyboardType) -> String? {
         type.standardButtonText(for: .preview)
-    }
-
-
-    func testSystemKeyboardButtonFontSizeIsDefinedForAllTypes() {
-        XCTAssertEqual(fontSize(for: .alphabetic(.lowercased)), 15)
-        XCTAssertEqual(fontSize(for: .numeric), 16)
-        XCTAssertEqual(fontSize(for: .symbolic), 14)
-
-        XCTAssertEqual(fontSize(for: .email), 14)
-        XCTAssertEqual(fontSize(for: .emojis), 14)
-        XCTAssertEqual(fontSize(for: .custom(named: "")), 14)
-        XCTAssertEqual(fontSize(for: .images), 14)
     }
 
 

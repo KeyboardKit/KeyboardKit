@@ -35,8 +35,9 @@ public extension KeyboardEnabledStateInspector {
      
      - Parameter withBundleId: The bundle id of the keyboard extension.
      */
-    func isKeyboardCurrentlyActive(
-        withBundleId bundleId: String) -> Bool {
+    func isKeyboardActive(
+        withBundleId bundleId: String
+    ) -> Bool {
         let modes = UITextInputMode.activeInputModes
         let displayedModes = modes.filter { $0.value(forKey: "isDisplayed") as? Int == 1 }
         let id = displayedModes.map { $0.value(forKey: "identifier") as? String }
@@ -52,7 +53,8 @@ public extension KeyboardEnabledStateInspector {
      */
     func isKeyboardEnabled(
         withBundleId bundleId: String,
-        defaults: UserDefaults = .standard) -> Bool {
+        defaults: UserDefaults = .standard
+    ) -> Bool {
         let key = "AppleKeyboards"
         guard let settings = defaults.object(forKey: key) as? [String] else { return false }
         return settings.contains(bundleId)

@@ -55,7 +55,7 @@ public class KeyboardEnabledState: KeyboardEnabledStateInspector, ObservableObje
      ``bundleId`` is currently being used in a text field.
      */
     @Published
-    public var isKeyboardCurrentlyActive: Bool = false
+    public var isKeyboardActive: Bool = false
     
     /**
      Whether or not the keyboard extension with the specific
@@ -68,7 +68,7 @@ public class KeyboardEnabledState: KeyboardEnabledStateInspector, ObservableObje
      Refresh state for the currently used keyboard extension.
      */
     public func refresh() {
-        isKeyboardCurrentlyActive = isKeyboardCurrentlyActive(withBundleId: bundleId)
+        isKeyboardActive = isKeyboardActive(withBundleId: bundleId)
         isKeyboardEnabled = isKeyboardEnabled(withBundleId: bundleId)
     }
 }

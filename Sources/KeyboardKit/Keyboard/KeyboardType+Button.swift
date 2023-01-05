@@ -11,18 +11,6 @@ import SwiftUI
 public extension KeyboardType {
     
     /**
-     The keyboard type's standard button font size.
-     */
-    func standardButtonFontSize(for context: KeyboardContext) -> CGFloat {
-        switch self {
-        case .alphabetic: return 15
-        case .numeric: return 16
-        case .symbolic: return 14
-        default: return 14
-        }
-    }
-    
-    /**
      The keyboard type's standard button image.
      */
     var standardButtonImage: Image? {

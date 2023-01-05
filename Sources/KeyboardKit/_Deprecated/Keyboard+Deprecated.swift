@@ -46,6 +46,8 @@ public extension KeyboardContext {
     ) {
         self.init(controller: controller, locale: locale)
         self.keyboardType = keyboardType
+        self.locale = locale
+        self.locales = [locale]
     }
     #else
     @available(*, deprecated, message: "Use the initializer without keyboardType instead.")
@@ -57,4 +59,37 @@ public extension KeyboardContext {
         self.keyboardType = keyboardType
     }
     #endif
+}
+
+public extension KeyboardEnabledState {
+
+    @available(*, deprecated, renamed: "isKeyboardActive")
+    var isKeyboardCurrentlyActive: Bool {
+        get { isKeyboardActive }
+        set { isKeyboardActive = newValue }
+    }
+}
+
+public extension KeyboardEnabledStateInspector {
+
+    @available(*, deprecated, renamed: "isKeyboardActive")
+    func isKeyboardCurrentlyActive(withBundleId bundleId: String) -> Bool {
+        isKeyboardActive(withBundleId: bundleId)
+    }
+}
+
+public extension KeyboardType {
+    
+    /**
+     The keyboard type's standard button font size.
+     */
+    @available(*, deprecated, message: "This has been moved to StandardKeyboardAppearance")
+    func standardButtonFontSize(for context: KeyboardContext) -> CGFloat {
+        switch self {
+        case .alphabetic: return 15
+        case .numeric: return 16
+        case .symbolic: return 14
+        default: return 14
+        }
+    }
 }

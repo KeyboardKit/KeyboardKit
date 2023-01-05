@@ -62,8 +62,11 @@ This release starts preparing for the next major version, by deprecating a lot o
 * `KeyboardAction.newLine` has been replaced by `KeyboardAction.primary(.newLine)`.
 * `KeyboardAction.return` has been replaced by `KeyboardAction.primary(.return)`.
 * `KeyboardAction.standardTapAction` has been replaced by `KeyboardAction.standardReleaseAction`.
+* `KeyboardEnabledState` `isKeyboardCurrentlyActive` has been renamed to `isKeyboardActive`.
+* `KeyboardEnabledStateInspector` `isKeyboardCurrentlyActive` has been renamed to `isKeyboardActive`.
 * `KeyboardContext` has redesigned initializers that set fewer properties.
 * `KeyboardContext` `screenOrientation` has been replaced by `interfaceOrientation`.
+* `KeyboardType` font size is deprecated and moved to `StandardKeyboardAppearance`.
 * `SpaceCursorDragGestureHandler` `context` has been renamed to `keyboardContext`.
 * `StandardAutocompleteSuggestion` has deprecated the initializer with an implicit text name.
 * `StandardCalloutActionProvider` `context` has been renamed to `keyboardContext`.

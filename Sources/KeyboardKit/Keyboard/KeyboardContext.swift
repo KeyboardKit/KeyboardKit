@@ -25,14 +25,8 @@ public class KeyboardContext: ObservableObject {
 
     /**
      Create a context instance.
-
-     - Parameters:
-       - locale: The locale to use, by default `.current`.
      */
-    public init(locale: Locale = .current) {
-        self.locale = locale
-        self.locales = [locale]
-    }
+    public init() {}
 
     #if os(iOS) || os(tvOS)
     /**
@@ -42,13 +36,11 @@ public class KeyboardContext: ObservableObject {
 
      - Parameters:
        - controller: The controller with which the context should sync, if any.
-       - locale: The locale to use, by default `.current`.
      */
     convenience public init(
-        controller: KeyboardInputViewController,
-        locale: Locale = .current
+        controller: KeyboardInputViewController
     ) {
-        self.init(locale: locale)
+        self.init()
         self.sync(with: controller)
     }
     #endif
@@ -108,7 +100,7 @@ public class KeyboardContext: ObservableObject {
      keyboards can use locales that are not in that enum.
      */
     @Published
-    public var locale: Locale
+    public var locale = Locale.current
     
     /**
      The locales that are currently enabled for the keyboard.
@@ -117,7 +109,7 @@ public class KeyboardContext: ObservableObject {
      locale in this list.
      */
     @Published
-    public var locales: [Locale]
+    public var locales: [Locale] = [.current]
     
     /**
      Whether or not the keyboard should (must) have a switch
@@ -321,6 +313,9 @@ public extension KeyboardContext {
             prefersAutocomplete = keyboardType.prefersAutocomplete
         }
         #endif
+        if screenSize != controller.screenSize {
+            screenSize = controller.screenSize
+        }
         if textDocumentProxy === controller.textDocumentProxy {} else {
             textDocumentProxy = controller.textDocumentProxy
         }
@@ -345,5 +340,9 @@ private extension UIInputViewController {
 
     var orientation: InterfaceOrientation {
         view.window?.screen.interfaceOrientation ?? .portrait
+    }
+
+    var screenSize: CGSize {
+        view.window?.screen.bounds.size ?? .zero
     }
 }
