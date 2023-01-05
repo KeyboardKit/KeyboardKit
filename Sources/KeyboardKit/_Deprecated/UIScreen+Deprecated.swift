@@ -9,6 +9,7 @@
 #if os(iOS) || os(tvOS)
 import UIKit
 
+@available(*, deprecated, message: "Use the CGSize extensions instead")
 extension UIScreen {
     
     var isIpadProLargeScreen: Bool { hasSize(.iPadProLargeScreenPortrait) }

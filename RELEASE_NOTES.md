@@ -63,6 +63,7 @@ This release starts preparing for the next major version, by deprecating a lot o
 * `StandardKeyboardAppearance` `context` has been renamed to `keyboardContext`.
 * `StandardKeyboardBehavior` `context` has been renamed to `keyboardContext`.
 * `StaticKeyboardBehavior` `context` has been renamed to `keyboardContext`.
+* `UIScreen` device extensions have been deprecated. 
 
 ### 💥 Breaking changes
 
