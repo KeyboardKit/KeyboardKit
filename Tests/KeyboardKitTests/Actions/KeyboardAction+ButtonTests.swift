@@ -43,7 +43,6 @@ final class KeyboardAction_ImagesTests: XCTestCase {
             .keyboardType(.images),
             .moveCursorBackward,
             .moveCursorForward,
-            .newLine,
             .nextKeyboard,
             .option,
             .primary(.newLine),
@@ -78,12 +77,11 @@ final class KeyboardAction_ImagesTests: XCTestCase {
 
         XCTAssertTrue(result(for: .nextLocale)! > 0)
 
+        XCTAssertTrue(result(for: .primary(.return))! > 0)
         XCTAssertTrue(result(for: .primary(.done))! > 0)
         XCTAssertTrue(result(for: .primary(.go))! > 0)
         XCTAssertTrue(result(for: .primary(.ok))! > 0)
         XCTAssertTrue(result(for: .primary(.search))! > 0)
-
-        XCTAssertTrue(result(for: .return)! > 0)
 
         XCTAssertTrue(result(for: .space)! > 0)
 
@@ -100,7 +98,6 @@ final class KeyboardAction_ImagesTests: XCTestCase {
         XCTAssertNil(result(for: .keyboardType(.images)))
         XCTAssertNil(result(for: .moveCursorBackward))
         XCTAssertNil(result(for: .moveCursorForward))
-        XCTAssertNil(result(for: .newLine))
         XCTAssertNil(result(for: .nextKeyboard))
         XCTAssertNil(result(for: .option))
         XCTAssertNil(result(for: .primary(.newLine)))

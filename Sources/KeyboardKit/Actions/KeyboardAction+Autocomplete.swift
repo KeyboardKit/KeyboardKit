@@ -18,6 +18,7 @@ public extension KeyboardAction {
         switch self {
         case .character(let char): return char.isWordDelimiter
         case .newLine: return true
+        case .primary(let type): return type.isSystemAction
         case .return: return true
         case .space: return true
         default: return false

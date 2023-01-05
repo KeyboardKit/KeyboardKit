@@ -99,6 +99,8 @@ final class KeyboardActionTests: XCTestCase {
             case .nextLocale: XCTAssertTrue(result)
             case .nextKeyboard: XCTAssertTrue(result)
             case .option: XCTAssertTrue(result)
+            case .primary(.return): XCTAssertTrue(result)
+            case .primary(.newLine): XCTAssertTrue(result)
             case .return: XCTAssertTrue(result)
             case .shift: XCTAssertTrue(result)
             case .tab: XCTAssertTrue(result)

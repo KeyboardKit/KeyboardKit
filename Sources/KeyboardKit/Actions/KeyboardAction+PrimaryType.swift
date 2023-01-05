@@ -43,22 +43,6 @@ public extension KeyboardAction {
         case custom(title: String)
 
         /**
-         The type's unique identifier.
-         */
-        public var id: String {
-            switch self {
-            case .return: return "return"
-            case .done: return "done"
-            case .go: return "go"
-            case .join: return "join"
-            case .newLine: return "newLine"
-            case .ok: return "ok"
-            case .search: return "search"
-            case .custom(let title): return title
-            }
-        }
-
-        /**
          All unique primary keyboard action types, excluding
          ``KeyboardAction/custom(named:)``.
          */
@@ -70,6 +54,44 @@ public extension KeyboardAction {
 
 public extension KeyboardAction.PrimaryType {
 
+
+    /**
+     The type's unique identifier.
+     */
+    var id: String {
+        switch self {
+        case .return: return "return"
+        case .done: return "done"
+        case .go: return "go"
+        case .join: return "join"
+        case .newLine: return "newLine"
+        case .ok: return "ok"
+        case .search: return "search"
+        case .custom(let title): return title
+        }
+    }
+
+    /**
+     Whether or not the action is a system action.
+
+     A system action is by default rendered as a dark button.
+     */
+    var isSystemAction: Bool {
+        switch self {
+        case .return: return true
+        case .done: return false
+        case .go: return false
+        case .join: return false
+        case .newLine: return true
+        case .ok: return false
+        case .search: return false
+        case .custom: return false
+        }
+    }
+
+    /**
+     The standard button to image for a certain locale.
+     */
     func standardButtonImage(for locale: Locale) -> Image? {
         switch self {
         case .newLine: return .keyboardNewline(for: locale)
@@ -77,6 +99,9 @@ public extension KeyboardAction.PrimaryType {
         }
     }
 
+    /**
+     The standard button to text for a certain locale.
+     */
     func standardButtonText(for locale: Locale) -> String? {
         switch self {
         case .custom(let title): return title

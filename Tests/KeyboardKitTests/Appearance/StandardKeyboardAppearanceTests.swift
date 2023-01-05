@@ -110,7 +110,7 @@ class StandardKeyboardAppearanceTests: XCTestCase {
 
     func testButtonFontSizeIsExplicitlyDefinedForSomeActions() {
         XCTAssertEqual(buttonFontSize(for: .keyboardType(.numeric)), 16)
-        XCTAssertEqual(buttonFontSize(for: .return), 16)
+        XCTAssertEqual(buttonFontSize(for: .primary(.return)), 16)
         XCTAssertEqual(buttonFontSize(for: .space), 16)
     }
 
@@ -118,7 +118,7 @@ class StandardKeyboardAppearanceTests: XCTestCase {
         XCTAssertEqual(buttonFontSize(for: .character("a")), 26)
         XCTAssertEqual(buttonFontSize(for: .character("A")), 23)
         XCTAssertEqual(buttonFontSize(for: .character("!")), 23)
-        XCTAssertEqual(buttonFontSize(for: .return), 16)
+        XCTAssertEqual(buttonFontSize(for: .primary(.return)), 16)
         XCTAssertEqual(buttonFontSize(for: .space), 16)
     }
 

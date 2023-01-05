@@ -73,6 +73,7 @@ public enum KeyboardAction: Codable, Equatable {
     case moveCursorForward
     
     /// Represents a new line key that uses an `⏎` icon and not a return text.
+    @available(*, deprecated, message: "Use .primary(.newLine) instead")
     case newLine
     
     /// Represents a keyboard switcher (🌐) button and triggers the keyboard switch action when long pressed and released.
@@ -91,6 +92,7 @@ public enum KeyboardAction: Codable, Equatable {
     case primary(PrimaryType)
     
     /// Represents a return key that uses a return text and not an ⏎ icon.
+    @available(*, deprecated, message: "Use .primary(.return) instead")
     case `return`
     
     /// A custom action that can be used to e.g. show a settings screen.
@@ -159,11 +161,10 @@ public extension KeyboardAction {
     /**
      Whether or not the action is a primary action.
 
-     This is true for ``KeyboardAction/primary(_:)`` actions.
-     
-     Tapping a primary action has the same effect as tapping
-     ``KeyboardAction/return``, but it's rendered as a color
-     accented button instead of a dark button.
+     Primary actions always insert a new line into the proxy,
+     but can be rendered in various ways. For instance, most
+     primary actions will by default use a blue color, while
+     `.return` and `.newLine` are rendered as system buttons.
      */
     var isPrimaryAction: Bool {
         switch self {
@@ -219,6 +220,7 @@ public extension KeyboardAction {
         case .nextKeyboard: return true
         case .nextLocale: return true
         case .option: return true
+        case .primary(let type): return type.isSystemAction
         case .return: return true
         case .shift: return true
         case .settings: return true

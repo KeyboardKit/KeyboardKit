@@ -25,7 +25,10 @@ Some things that are planned for the 7.0 release:
 
 This release starts preparing for the next major version, by deprecating a lot of things that will change in that version.
 
-   
+### 🗑 Deprecations
+
+* `KeyboardAction.newLine` is replaced by `KeyboardAction.primary(.newLine)`.
+* `KeyboardAction.return` is replaced by `KeyboardAction.primary(.return)`.
 
 
 

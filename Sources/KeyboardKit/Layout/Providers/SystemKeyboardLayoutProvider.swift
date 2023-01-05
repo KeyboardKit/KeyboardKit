@@ -160,7 +160,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         case .done: return .primary(.done)
         case .go: return .primary(.go)
         case .search: return .primary(.search)
-        default: return .return
+        default: return .primary(.return)
         }
         #else
         return .return

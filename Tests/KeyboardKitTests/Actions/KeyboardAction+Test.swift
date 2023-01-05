@@ -39,7 +39,6 @@ extension KeyboardAction {
             
             .moveCursorBackward,
             .moveCursorForward,
-            .newLine,
             .nextKeyboard,
             .nextLocale,
             .option,
@@ -48,7 +47,7 @@ extension KeyboardAction {
             .primary(.newLine),
             .primary(.ok),
             .primary(.search),
-            .return,
+            .primary(.return),
             
             .shift(currentState: .lowercased),
             .shift(currentState: .uppercased),

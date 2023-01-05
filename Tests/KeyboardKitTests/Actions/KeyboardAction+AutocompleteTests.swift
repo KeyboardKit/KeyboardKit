@@ -26,6 +26,7 @@ final class KeyboardAction_AutocompleteTests: XCTestCase {
             switch $0 {
             case .character(let char): expected = char.isWordDelimiter
             case .newLine, .return, .space: expected = true
+            case .primary(.newLine), .primary(.return): expected = true
             default: expected = false
             }
             XCTAssertEqual($0.shouldApplyAutocompleteSuggestion, expected)
