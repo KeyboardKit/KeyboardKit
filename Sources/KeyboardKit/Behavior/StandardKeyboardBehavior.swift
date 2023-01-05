@@ -27,34 +27,55 @@ import Foundation
  why the code is the way it is.
  */
 open class StandardKeyboardBehavior: KeyboardBehavior {
-    
-    /**
-      Create a standard keybaord behavior instance.
-     
-      - Parameters:
-        - context: The keyboard context to use.
-        - doubleTapThreshold: The second threshold to detect a tap as a double tap.
-        - endSentenceThreshold: The second threshold during which a sentence can be auto-closed.
-        - repeatGestureTimer: A timer that is responsible for triggering a repeat gesture action.
-     */
+
+    @available(*, deprecated, message: "Use the keyboardContext initializer instead.")
     public init(
         context: KeyboardContext,
         doubleTapThreshold: TimeInterval = 0.5,
         endSentenceThreshold: TimeInterval = 3.0,
         repeatGestureTimer: RepeatGestureTimer = .shared
     ) {
-        self.context = context
+        self.keyboardContext = context
         self.doubleTapThreshold = doubleTapThreshold
         self.endSentenceThreshold = endSentenceThreshold
         self.repeatGestureTimer = repeatGestureTimer
     }
-    
-    
-    private let context: KeyboardContext
-    private let doubleTapThreshold: TimeInterval
-    private let endSentenceThreshold: TimeInterval
-    private let repeatGestureTimer: RepeatGestureTimer
-    
+
+    /**
+      Create a standard keyboard behavior instance.
+
+      - Parameters:
+        - keyboardContext: The keyboard context to use.
+        - doubleTapThreshold: The second threshold to detect a tap as a double tap, by default `0.5`.
+        - endSentenceThreshold: The second threshold during which a sentence can be auto-closed, by default `3.0`.
+        - repeatGestureTimer: A timer that is responsible for triggering a repeat gesture action, by default ``RepeatGestureTimer/shared``.
+     */
+    public init(
+        keyboardContext: KeyboardContext,
+        doubleTapThreshold: TimeInterval = 0.5,
+        endSentenceThreshold: TimeInterval = 3.0,
+        repeatGestureTimer: RepeatGestureTimer = .shared
+    ) {
+        self.keyboardContext = keyboardContext
+        self.doubleTapThreshold = doubleTapThreshold
+        self.endSentenceThreshold = endSentenceThreshold
+        self.repeatGestureTimer = repeatGestureTimer
+    }
+
+
+    /// The keyboard context to use.
+    public let keyboardContext: KeyboardContext
+
+    /// The second threshold to detect a tap as a double tap.
+    public let doubleTapThreshold: TimeInterval
+
+    /// The second threshold during which a sentence can be auto-closed.
+    public let endSentenceThreshold: TimeInterval
+
+    /// A timer that is responsible for triggering a repeat gesture action.
+    public let repeatGestureTimer: RepeatGestureTimer
+
+
     var lastShiftCheck = Date()
     var lastSpaceTap = Date()
     
@@ -77,11 +98,11 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
         on action: KeyboardAction
     ) -> KeyboardType {
         if shouldSwitchToCapsLock(after: gesture, on: action) { return .alphabetic(.capsLocked) }
-        if action.isAlternateQuotationDelimiter(for: context) { return .alphabetic(.lowercased) }
+        if action.isAlternateQuotationDelimiter(for: keyboardContext) { return .alphabetic(.lowercased) }
         let should = shouldSwitchToPreferredKeyboardType(after: gesture, on: action)
         switch action {
-        case .shift: return context.keyboardType
-        default: return should ? context.preferredKeyboardType : context.keyboardType
+        case .shift: return keyboardContext.keyboardType
+        default: return should ? keyboardContext.preferredKeyboardType : keyboardContext.keyboardType
         }
     }
     
@@ -94,7 +115,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
         on action: KeyboardAction
     ) -> Bool {
         guard gesture == .tap, action == .space else { return false }
-        let proxy = context.textDocumentProxy
+        let proxy = keyboardContext.textDocumentProxy
         let isNewWord = proxy.isCursorAtNewWord
         let isNewSentence = proxy.isCursorAtNewSentence
         let isClosable = (proxy.documentContextBeforeInput ?? "").hasSuffix("  ")
@@ -130,7 +151,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
         switch action {
         case .keyboardType(let type): return type.shouldSwitchToPreferredKeyboardType
         case .shift: return true
-        default: return gesture == .tap && context.keyboardType != context.preferredKeyboardType
+        default: return gesture == .tap && keyboardContext.keyboardType != keyboardContext.preferredKeyboardType
         }
     }
     
@@ -139,14 +160,14 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
      after the text document proxy text did change.
      */
     public func shouldSwitchToPreferredKeyboardTypeAfterTextDidChange() -> Bool {
-        context.keyboardType != context.preferredKeyboardType
+        keyboardContext.keyboardType != keyboardContext.preferredKeyboardType
     }
 }
 
 private extension StandardKeyboardBehavior {
     
     var isDoubleShiftTap: Bool {
-        guard context.keyboardType.isAlphabetic else { return false }
+        guard keyboardContext.keyboardType.isAlphabetic else { return false }
         let date = Date().timeIntervalSinceReferenceDate
         let lastDate = lastShiftCheck.timeIntervalSinceReferenceDate
         let isDoubleTap = (date - lastDate) < doubleTapThreshold
@@ -182,7 +203,6 @@ private extension KeyboardType {
         }
     }
 }
-
 
 private extension KeyboardCasing {
     

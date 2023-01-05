@@ -31,8 +31,9 @@ This release starts preparing for the next major version, by deprecating a lot o
 ### ✨ New features
 
 * `DisabledAutocompleteProvider` initializer is now public.
-* `StandardKeyboardAppearance` `keyboardContext` is now public.
-* `StandardKeyboardAppearance` `keyboardLayoutConfiguration` is now public.
+* `StandardKeyboardAppearance` `keyboardContext` and other properties are now public.
+* `StandardKeyboardBehavior` `keyboardContext` and other properties are now public.
+* `StaticKeyboardBehavior` is now open to let you customize it.
 
 ### 💡 Behavior changes
 
@@ -47,6 +48,8 @@ This release starts preparing for the next major version, by deprecating a lot o
 * `StandardAutocompleteSuggestion` has deprecated the initializer with an implicit text name.
 * `StandardKeyboardActionHandler` `changeKeyboardTypeAction` is in-comment deprecated.
 * `StandardKeyboardAppearance` `context` is renamed to `keyboardContext`.
+* `StandardKeyboardBehavior` `context` is renamed to `keyboardContext`.
+* `StaticKeyboardBehavior` `context` is renamed to `keyboardContext`.
 
 
 

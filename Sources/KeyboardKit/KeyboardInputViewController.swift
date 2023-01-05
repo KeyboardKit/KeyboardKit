@@ -231,7 +231,7 @@ open class KeyboardInputViewController: UIInputViewController {
      ``StandardKeyboardBehavior`` is used by default.
      */
     public lazy var keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior(
-        context: keyboardContext)
+        keyboardContext: keyboardContext)
     
     /**
      This feedback handler is used to setup audio and haptic

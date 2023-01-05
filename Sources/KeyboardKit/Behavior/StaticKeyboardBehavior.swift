@@ -15,39 +15,56 @@ import Foundation
  This behavior is used where ``StandardKeyboardBehavior`` is
  not available.
  */
-public class StaticKeyboardBehavior: KeyboardBehavior {
-    
-    
+open class StaticKeyboardBehavior: KeyboardBehavior {
+
+    /**
+      Create a static keyboard behavior instance.
+
+      - Parameters:
+        - keyboardContext: The keyboard context to use.
+     */
+    @available(*, deprecated, message: "Use the keyboardContext initializer instead.")
     public init(context: KeyboardContext) {
-        self.context = context
+        self.keyboardContext = context
     }
-    
-    
-    private let context: KeyboardContext
+
+    /**
+      Create a static keyboard behavior instance.
+
+      - Parameters:
+        - keyboardContext: The keyboard context to use.
+     */
+    public init(keyboardContext: KeyboardContext) {
+        self.keyboardContext = keyboardContext
+    }
+
+
+    /// The keyboard context to use.
+    private let keyboardContext: KeyboardContext
     
     
     /**
      The range that the backspace key should delete when the
      key is long pressed.
      */
-    public var backspaceRange: DeleteBackwardRange { .char }
+    open var backspaceRange: DeleteBackwardRange { .char }
     
     /**
      The preferred keyboard type that should be applied when
      a certain gesture has been performed on an action.
      */
-    public func preferredKeyboardType(
+    open func preferredKeyboardType(
         after gesture: KeyboardGesture,
         on action: KeyboardAction
     ) -> KeyboardType {
-        context.keyboardType
+        keyboardContext.keyboardType
     }
     
     /**
      Whether or not to end the currently typed sentence when
      a certain gesture has been performed on an action.
      */
-    public func shouldEndSentence(
+    open func shouldEndSentence(
         after gesture: KeyboardGesture,
         on action: KeyboardAction
     ) -> Bool {
@@ -58,7 +75,7 @@ public class StaticKeyboardBehavior: KeyboardBehavior {
      Whether or not to switch to capslock when a gesture has
      been performed on an action.
      */
-    public func shouldSwitchToCapsLock(
+    open func shouldSwitchToCapsLock(
         after gesture: KeyboardGesture,
         on action: KeyboardAction
     ) -> Bool {
@@ -69,7 +86,7 @@ public class StaticKeyboardBehavior: KeyboardBehavior {
      Whether or not to switch to the preferred keyboard type
      when a certain gesture has been performed on an action.
      */
-    public func shouldSwitchToPreferredKeyboardType(
+    open func shouldSwitchToPreferredKeyboardType(
         after gesture: KeyboardGesture,
         on action: KeyboardAction
     ) -> Bool {
@@ -80,7 +97,7 @@ public class StaticKeyboardBehavior: KeyboardBehavior {
      Whether or not to switch to the preferred keyboard type
      after the text document proxy text did change.
      */
-    public func shouldSwitchToPreferredKeyboardTypeAfterTextDidChange() -> Bool {
+    open func shouldSwitchToPreferredKeyboardTypeAfterTextDidChange() -> Bool {
         false
     }
 }

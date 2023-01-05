@@ -16,7 +16,7 @@ import XCTest
 class StandardKeyboardBehaviorTests: XCTestCase {
     
     var behavior: StandardKeyboardBehavior!
-    var context: KeyboardContext!
+    var keyboardContext: KeyboardContext!
     var proxy: MockTextDocumentProxy!
     var timer: RepeatGestureTimer!
 
@@ -24,9 +24,9 @@ class StandardKeyboardBehaviorTests: XCTestCase {
     override func setUp() {
         timer = RepeatGestureTimer.shared
         proxy = MockTextDocumentProxy()
-        context = KeyboardContext(controller: MockKeyboardInputViewController())
-        context.textDocumentProxy = proxy
-        behavior = StandardKeyboardBehavior(context: context)
+        keyboardContext = KeyboardContext(controller: MockKeyboardInputViewController())
+        keyboardContext.textDocumentProxy = proxy
+        behavior = StandardKeyboardBehavior(keyboardContext: keyboardContext)
     }
 
 
@@ -53,7 +53,7 @@ class StandardKeyboardBehaviorTests: XCTestCase {
     func testPreferredKeyboardTypeAfterGestureOnActionIsByDefaultContextPreferredType() {
         proxy.documentContextBeforeInput = "Hello!"
         proxy.autocapitalizationType = .allCharacters
-        context.keyboardType = .alphabetic(.lowercased)
+        keyboardContext.keyboardType = .alphabetic(.lowercased)
         let result = preferredKeyboardTypeResult(after: .tap, on: .character("i"))
         XCTAssertEqual(result, .alphabetic(.uppercased))
     }
@@ -61,32 +61,32 @@ class StandardKeyboardBehaviorTests: XCTestCase {
     func testPreferredKeyboardTypeAfterGestureOnActionIsByDefaultContextTypeForNonTap() {
         proxy.documentContextBeforeInput = "Hello!"
         proxy.autocapitalizationType = .allCharacters
-        context.keyboardType = .alphabetic(.lowercased)
+        keyboardContext.keyboardType = .alphabetic(.lowercased)
         let result = preferredKeyboardTypeResult(after: .press, on: .character("i"))
-        XCTAssertEqual(result, context.keyboardType)
+        XCTAssertEqual(result, keyboardContext.keyboardType)
     }
 
     func testPreferredKeyboardTypeAfterGestureOnActionIsContextPreferredTypeIfShiftIsDoubleTappedTooSlowly() {
-        context.keyboardType = .alphabetic(.uppercased)
+        keyboardContext.keyboardType = .alphabetic(.uppercased)
         behavior.lastShiftCheck = .distantPast
         let result = preferredKeyboardTypeResult(after: .tap, on: .shift(currentState: .uppercased))
-        XCTAssertEqual(result, context.keyboardType)
+        XCTAssertEqual(result, keyboardContext.keyboardType)
     }
 
     func testPreferredKeyboardTypeAfterGestureOnActionIsContextPreferredTypeIfNonShiftIsDoubleTapped() {
-        context.keyboardType = .alphabetic(.uppercased)
+        keyboardContext.keyboardType = .alphabetic(.uppercased)
         let result = preferredKeyboardTypeResult(after: .tap, on: .command)
         XCTAssertEqual(result, .alphabetic(.lowercased))
     }
 
     func testPreferredKeyboardTypeAfterGestureOnActionIsContextPreferredTypeIfCurrentTypeIsNotUpperCased() {
-        context.keyboardType = .alphabetic(.lowercased)
+        keyboardContext.keyboardType = .alphabetic(.lowercased)
         let result = preferredKeyboardTypeResult(after: .tap, on: .command)
         XCTAssertEqual(result, .alphabetic(.lowercased))
     }
 
     func testPreferredKeyboardTypeAfterGestureOnActionIsCapsLockedIfShiftIsDoubleTappedQuicklyEnough() {
-        context.keyboardType = .alphabetic(.uppercased)
+        keyboardContext.keyboardType = .alphabetic(.uppercased)
         let result = preferredKeyboardTypeResult(after: .tap, on: .shift(currentState: .uppercased))
         XCTAssertEqual(result, .alphabetic(.capsLocked))
     }
@@ -121,7 +121,7 @@ class StandardKeyboardBehaviorTests: XCTestCase {
     }
 
     func testShouldSwitchToCapsLockIsFalseIfKeyboardTypeIsNotAlphabeticWhenActionIsDoubleTapOnShift() {
-        context.keyboardType = .numeric
+        keyboardContext.keyboardType = .numeric
         XCTAssertFalse(shouldSwitchToCapsLockResult(after: .tap, on: .shift(currentState: .capsLocked)))
         XCTAssertFalse(shouldSwitchToCapsLockResult(after: .tap, on: .shift(currentState: .lowercased)))
         XCTAssertFalse(shouldSwitchToCapsLockResult(after: .tap, on: .shift(currentState: .lowercased)))
@@ -196,20 +196,20 @@ class StandardKeyboardBehaviorTests: XCTestCase {
     func testShouldSwitchToPreferredKeyboardTypeIsTrueIfCurrentKeyboardTypeDiffersFromPreferredOne() {
         proxy.documentContextBeforeInput = "Hello!"
         proxy.autocapitalizationType = .allCharacters
-        context.keyboardType = .alphabetic(.lowercased)
+        keyboardContext.keyboardType = .alphabetic(.lowercased)
         XCTAssertTrue(shouldSwitchToPreferredKeyboardTypeResult(after: .tap, on: .character("i")))
     }
 
     func testShouldSwitchToPreferredKeyboardTypeIsFalseIfCurrentKeyboardIsTheSameAsThePrefferredOneWithoutAutocap() {
         proxy.documentContextBeforeInput = "Hello!"
         proxy.autocapitalizationType = .none
-        context.keyboardType = .alphabetic(.lowercased)
+        keyboardContext.keyboardType = .alphabetic(.lowercased)
         XCTAssertFalse(shouldSwitchToPreferredKeyboardTypeResult(after: .tap, on: .character("i")))
     }
 
     func testShouldSwitchToPreferredKeyboardTypeIsFalseIfCurrentKeyboardIsTheSameAsThePrefferredOne() {
         proxy.documentContextBeforeInput = "Hello. "
-        context.keyboardType = .symbolic
+        keyboardContext.keyboardType = .symbolic
         XCTAssertFalse(shouldSwitchToPreferredKeyboardTypeResult(after: .tap, on: .keyboardType(.numeric)))
     }
 
@@ -227,7 +227,7 @@ class StandardKeyboardBehaviorTests: XCTestCase {
     func testShouldSwitchToPreferredKeyboardTypeAfterTextDidChangeIsFakseIfCurrentKeyboardTyopeIsPreferredOne() {
         proxy.autocapitalizationType = .sentences
         proxy.documentContextBeforeInput = "foo. "
-        context.keyboardType = .alphabetic(.uppercased)
+        keyboardContext.keyboardType = .alphabetic(.uppercased)
         XCTAssertFalse(shouldSwitchToPreferredKeyboardTypeAfterTextDidChangeResult())
     }
 }
