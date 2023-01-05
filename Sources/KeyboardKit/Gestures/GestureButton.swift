@@ -14,17 +14,8 @@ import SwiftUI
  for a bunch of different gestures.
 
  This button can not be used within a `ScrollView`, since it
- will block the scroll gestures. It's instead intended to be
- used when touches must be immediately detected, which isn't
- possible in a scroll view. A ``GestureButton`` is must more
- versatile, and will for most the cases be enough, so use it
- whenever it's good enough.
-
- > Important
- The view applies additional gestures on the label view when
- you specify a `dragAction` or `dragEndAction`. For
- instance, instead of just a `releaseAction` you can specify
- a `releaseInsideAction` and a `releaseOutsideAction`.
+ will block the scroll gestures. For these cases, you should
+ consider using a ``ScrollViewGestureButton`` instead.
  */
 @available(iOS 14.0, macOS 11.0, watchOS 8.0, *)
 public struct GestureButton<Label: View>: View {

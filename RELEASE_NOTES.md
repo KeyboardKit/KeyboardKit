@@ -16,8 +16,11 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 Some things that are planned for the 7.0 release:
 
 * The keyboard action should only support `press` and `release` and not `tap`.
-* The system keyboard gestures should support swipe to type and predictive type.
-* All dependencies to the shared instances will be replaced with init parameters, even for the smallest view.
+* The system keyboard gestures should support swipe to type and predictive type (but perhaps not yet implement it).
+* KeyboardAction.GestureAction should use a protocol instead of a view controller.
+* All dependencies to the shared instances should be replaced with init parameters, even for the smallest view.
+* All TODOS will be addressed.
+* All deprecated code will be removed.
 
 
 
@@ -29,6 +32,7 @@ This release starts preparing for the next major version, by deprecating a lot o
 
 * `KeyboardAction.newLine` is replaced by `KeyboardAction.primary(.newLine)`.
 * `KeyboardAction.return` is replaced by `KeyboardAction.primary(.return)`.
+* `KeyboardAction.standardTapAction` is replaced by `KeyboardAction.standardReleaseAction`.
 
 
 

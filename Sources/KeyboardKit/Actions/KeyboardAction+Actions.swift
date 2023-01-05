@@ -20,23 +20,27 @@ import Foundation
 public extension KeyboardAction {
     
     /**
-     This typealias represents a gesture action, which
+     This typealias represents a gesture action that affects
+     the provided view controller.
+
+     > Important: This will NOT use a view controller in 7.0,
+     but rather use a ``KeyboardActionTrigger`` protocol, so
+     it can be available to all platforms. (TODO)
      */
     typealias GestureAction = (KeyboardInputViewController?) -> Void
     
-    
     /**
      The action that by default should be triggered when the
-     action is interacted with using a certain `gesture`.
+     action is triggered with a certain ``KeyboardGesture``.
      */
     func standardAction(for gesture: KeyboardGesture) -> GestureAction? {
         switch gesture {
         case .doubleTap: return standardDoubleTapAction
         case .longPress: return standardLongPressAction
         case .press: return standardPressAction
-        case .release: return standardReleaseAction
+        case .release: return nil   // TODO: Return the standardReleaseAction in 7.9
         case .repeatPress: return standardRepeatAction
-        case .tap: return standardTapAction
+        case .tap: return standardReleaseAction
         }
     }
     
@@ -52,7 +56,7 @@ public extension KeyboardAction {
      */
     var standardLongPressAction: GestureAction? {
         switch self {
-        case .backspace: return standardTapAction
+        case .backspace: return standardReleaseAction
         case .space: return { _ in }
         default: return nil
         }
@@ -73,24 +77,7 @@ public extension KeyboardAction {
      The action that by default should be triggered when the
      action is released.
      */
-    var standardReleaseAction: GestureAction? { nil }
-    
-    /**
-     The action that by default should be triggered when the
-     action is pressed, and repeated until it is released.
-     */
-    var standardRepeatAction: GestureAction? {
-        switch self {
-        case .backspace: return standardTapAction
-        default: return nil
-        }
-    }
-    
-    /**
-     The action that by default should be triggered when the
-     action is tapped.
-     */
-    var standardTapAction: GestureAction? {
+    var standardReleaseAction: GestureAction? {
         if let action = standardTextDocumentProxyAction { return action }
         switch self {
         case .dismissKeyboard: return { $0?.dismissKeyboard() }
@@ -101,6 +88,17 @@ public extension KeyboardAction {
             case .auto, .capsLocked, .uppercased: $0?.keyboardContext.keyboardType = .alphabetic(.lowercased)
             }
         }
+        default: return nil
+        }
+    }
+    
+    /**
+     The action that by default should be triggered when the
+     action is pressed, and repeated until it is released.
+     */
+    var standardRepeatAction: GestureAction? {
+        switch self {
+        case .backspace: return standardReleaseAction
         default: return nil
         }
     }

@@ -12,11 +12,11 @@ public extension KeyboardAction {
 /**
  This extension makes this enum implement ``KeyboardRowItem``.
  */
-extension KeyboardAction {
+public extension KeyboardAction {
 
-    /**
-     The row-specific ID to use when the action is presented
-     in a keyboard row.
-     */
-    public var rowId: KeyboardAction { self }
+    @available(*, deprecated, message: "This will be removed in KK 7.0")
+    var rowId: KeyboardAction { self }
+
+    @available(*, deprecated, renamed: "standardReleaseAction")
+    var standardTapAction: GestureAction? { standardReleaseAction }
 }

@@ -38,9 +38,9 @@ final class KeyboardAction_ActionsTests: XCTestCase {
             XCTAssertTrue(result(for: $0, gesture: .doubleTap, expected: $0.standardDoubleTapAction))
             XCTAssertTrue(result(for: $0, gesture: .longPress, expected: $0.standardLongPressAction))
             XCTAssertTrue(result(for: $0, gesture: .press, expected: $0.standardPressAction))
-            XCTAssertTrue(result(for: $0, gesture: .release, expected: $0.standardReleaseAction))
+            XCTAssertTrue(result(for: $0, gesture: .release, expected: nil)) // $0.standardReleaseAction))
             XCTAssertTrue(result(for: $0, gesture: .repeatPress, expected: $0.standardRepeatAction))
-            XCTAssertTrue(result(for: $0, gesture: .tap, expected: $0.standardTapAction))
+            XCTAssertTrue(result(for: $0, gesture: .tap, expected: $0.standardReleaseAction))
         }
     }
 
@@ -73,11 +73,6 @@ final class KeyboardAction_ActionsTests: XCTestCase {
         unexpected.forEach { XCTAssertNil(action($0)) }
 
         action = { $0.standardReleaseAction }
-        expected = []
-        expected.forEach { XCTAssertNotNil(action($0)) }
-        unexpected.forEach { XCTAssertNil(action($0)) }
-
-        action = { $0.standardTapAction }
         expected = [
             .backspace,
             .character(""),
