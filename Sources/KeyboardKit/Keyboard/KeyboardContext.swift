@@ -22,46 +22,34 @@ import UIKit
  the instance when a keyboard extension is started.
  */
 public class KeyboardContext: ObservableObject {
-    
-    
-    #if os(iOS) || os(tvOS)
+
     /**
      Create a context instance.
 
      - Parameters:
+       - locale: The locale to use, by default `.current`.
+     */
+    public init(locale: Locale = .current) {
+        self.locale = locale
+        self.locales = [locale]
+    }
+
+    #if os(iOS) || os(tvOS)
+    /**
+     Create a context instance that is initially synced with
+     the provided `controller` and that sets `screenSize` to
+     the main screen size.
+
+     - Parameters:
        - controller: The controller with which the context should sync, if any.
        - locale: The locale to use, by default `.current`.
-       - device: The device to use, by default ``DeviceType/current``.
-       - screen: The screen to use, by default `.main`.
-       - keyboardType: The current keyboard tye, by default `.alphabetic(.lowercased)`
      */
-    public init(
-        controller: KeyboardInputViewController? = nil,
-        locale: Locale = .current,
-        screen: UIScreen = .main,
-        keyboardType: KeyboardType = .alphabetic(.lowercased)
+    convenience public init(
+        controller: KeyboardInputViewController,
+        locale: Locale = .current
     ) {
-        self.locale = locale
-        self.locales = [locale]
-        self.screen = screen
-        self.keyboardType = keyboardType
-        guard let controller = controller else { return }
+        self.init(locale: locale)
         self.sync(with: controller)
-    }
-    #else
-    /**
-     Create a context instance.
-     
-     - Parameters:
-       - locale: The locale to use, by default `.current`.
-       - keyboardType: The current keyboard tye, by default `.alphabetic(.lowercased)`
-     */
-    public init(
-        locale: Locale = .current,
-        keyboardType: KeyboardType = .alphabetic(.lowercased)) {
-        self.locale = locale
-        self.locales = [locale]
-        self.keyboardType = keyboardType
     }
     #endif
     
@@ -105,7 +93,7 @@ public class KeyboardContext: ObservableObject {
      The keyboard type that is currently used.
      */
     @Published
-    public var keyboardType: KeyboardType
+    public var keyboardType = KeyboardType.alphabetic(.lowercased)
     
     /**
      The locale that is currently being used.
@@ -153,9 +141,15 @@ public class KeyboardContext: ObservableObject {
      The screen in which the keyboard is presented.
      */
     @Published
-    public var screen: UIScreen
+    @available(*, deprecated, message: "Use screenSize instead")
+    public var screen = UIScreen.main
     #endif
-    
+
+    /**
+     The screen size, which is used by some library features.
+     */
+    @Published
+    public var screenSize = CGSize.zero
     
     #if os(iOS)
     /**

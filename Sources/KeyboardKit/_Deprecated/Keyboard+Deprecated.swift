@@ -19,8 +19,6 @@ public extension KeyboardContext {
 #endif
 
 #if os(iOS) || os(tvOS)
-import Foundation
-
 public extension KeyboardInputViewController {
 
     /**
@@ -36,3 +34,27 @@ public extension KeyboardInputViewController {
     }
 }
 #endif
+
+public extension KeyboardContext {
+
+    #if os(iOS) || os(tvOS)
+    @available(*, deprecated, message: "Use the initializer without keyboardType instead.")
+    convenience init(
+        controller: KeyboardInputViewController? = nil,
+        locale: Locale = .current,
+        keyboardType: KeyboardType
+    ) {
+        self.init(controller: controller, locale: locale)
+        self.keyboardType = keyboardType
+    }
+    #else
+    @available(*, deprecated, message: "Use the initializer without keyboardType instead.")
+    convenience init(
+        locale: Locale = .current,
+        keyboardType: KeyboardType
+    ) {
+        self.init(locale: locale)
+        self.keyboardType = keyboardType
+    }
+    #endif
+}

@@ -17,6 +17,8 @@ public extension KeyboardAction {
     @available(*, deprecated, message: "This will be removed in KK 7.0")
     var rowId: KeyboardAction { self }
 
+    #if os(iOS) || os(tvOS)
     @available(*, deprecated, renamed: "standardReleaseAction")
     var standardTapAction: GestureAction? { standardReleaseAction }
+    #endif
 }

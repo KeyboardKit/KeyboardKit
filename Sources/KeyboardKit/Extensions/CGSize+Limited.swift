@@ -16,6 +16,7 @@ extension CGSize {
     func limited(to size: CGSize) -> CGSize {
         CGSize(
             width: min(width, size.width),
-            height: min(height, size.height))
+            height: min(height, size.height)
+        )
     }
 }

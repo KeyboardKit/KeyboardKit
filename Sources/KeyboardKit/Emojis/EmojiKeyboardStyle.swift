@@ -225,7 +225,7 @@ public extension EmojiKeyboardStyle {
         if context.deviceType == .phone {
             return isPortrait ? .standardPhonePortrait : .standardPhoneLandscape
         }
-        if context.screen.isIpadProLargeScreen {
+        if context.screenSize.isScreenSize(.iPadProLargeScreenPortrait) {
             return isPortrait ? .standardLargePadPortrait : .standardLargePadLandscape
         }
         return isPortrait ? .standardPadPortrait : .standardPadLandscape

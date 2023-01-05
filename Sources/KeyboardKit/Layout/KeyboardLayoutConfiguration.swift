@@ -61,7 +61,7 @@ public extension KeyboardLayoutConfiguration {
         #if os(iOS)
         standard(
             forDevice: context.deviceType,
-            screenSize: context.screen.bounds.size,
+            screenSize: context.screenSize,
             orientation: context.screenOrientation)
         #else
         .standardPhoneLandscape

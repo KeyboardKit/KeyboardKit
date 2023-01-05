@@ -163,7 +163,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         default: return .primary(.return)
         }
         #else
-        return .return
+        return .primary(.return)
         #endif
     }
     

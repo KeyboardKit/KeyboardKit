@@ -37,7 +37,7 @@ public extension UIReturnKeyType {
         case .route: return .custom(title: "route")
         case .search: return .search
         case .send: return .custom(title: "send")
-        case .yahoo: return .custom(title: "Google")
+        case .yahoo: return .custom(title: "Yahoo")
         case .done: return .done
         case .emergencyCall: return .custom(title: "emergencyCall")
         case .continue: return .custom(title: "continue")

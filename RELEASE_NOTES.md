@@ -34,6 +34,7 @@ This release starts preparing for the next major version, by deprecating a lot o
 
 * `DisabledAutocompleteProvider` has been made public.
 * `DisabledCalloutActionProvider` has been made public.
+* `KeyboardContext` has a new `screenSize` parameter.
 * `StandardCalloutActionProvider` `keyboardContext` has been made public.
 * `StandardKeyboardAppearance` `keyboardContext` has been made public.
 * `StandardKeyboardBehavior` `keyboardContext` has been made public.
@@ -41,7 +42,8 @@ This release starts preparing for the next major version, by deprecating a lot o
 
 ### 💡 Behavior changes
 
-* `KeyboardAction.primary` now applies autocomplete suggestions if it's a system action.  
+* `KeyboardAction.primary` now applies autocomplete suggestions if it's a system action.
+* `KeyboardContext` controller-based initializer is marked as a convenience initializer.  
 
 ### 🗑 Deprecations
 
@@ -54,12 +56,17 @@ This release starts preparing for the next major version, by deprecating a lot o
 * `KeyboardAction.newLine` has been replaced by `KeyboardAction.primary(.newLine)`.
 * `KeyboardAction.return` has been replaced by `KeyboardAction.primary(.return)`.
 * `KeyboardAction.standardTapAction` has been replaced by `KeyboardAction.standardReleaseAction`.
+* `KeyboardContext` has redesigned initializers that set fewer properties.
 * `StandardAutocompleteSuggestion` has deprecated the initializer with an implicit text name.
 * `StandardCalloutActionProvider` `context` has been renamed to `keyboardContext`.
 * `StandardKeyboardActionHandler` `changeKeyboardTypeAction` has been in-comment deprecated.
 * `StandardKeyboardAppearance` `context` has been renamed to `keyboardContext`.
 * `StandardKeyboardBehavior` `context` has been renamed to `keyboardContext`.
 * `StaticKeyboardBehavior` `context` has been renamed to `keyboardContext`.
+
+### 💥 Breaking changes
+
+* `KeyboardContext` `screen` has been deprecated, so the initializer has no screen parameter anymore.
 
 
 
