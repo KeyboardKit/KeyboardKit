@@ -30,6 +30,7 @@ This release starts preparing for the next major version, by deprecating a lot o
 
 ### ✨ New features
 
+* `DisabledAutocompleteProvider` initializer is now public.
 * `StandardKeyboardAppearance` `keyboardContext` is now public.
 * `StandardKeyboardAppearance` `keyboardLayoutConfiguration` is now public.
 
@@ -43,6 +44,7 @@ This release starts preparing for the next major version, by deprecating a lot o
 * `KeyboardAction.newLine` is replaced by `KeyboardAction.primary(.newLine)`.
 * `KeyboardAction.return` is replaced by `KeyboardAction.primary(.return)`.
 * `KeyboardAction.standardTapAction` is replaced by `KeyboardAction.standardReleaseAction`.
+* `StandardAutocompleteSuggestion` has deprecated the initializer with an implicit text name.
 * `StandardKeyboardActionHandler` `changeKeyboardTypeAction` is in-comment deprecated.
 * `StandardKeyboardAppearance` `context` is renamed to `keyboardContext`.
 

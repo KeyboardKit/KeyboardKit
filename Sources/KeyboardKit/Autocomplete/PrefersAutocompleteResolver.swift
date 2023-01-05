@@ -12,7 +12,7 @@
 
  This protocol is implemented by ``KeyboardType`` as well as
  the native `UIKeyboardType`. These types are then synced to
- the ``KeyboardContext``, which also implements the protocol.
+ ``KeyboardContext``, which also implements the protocol.
  */
 public protocol PrefersAutocompleteResolver {
 

@@ -13,6 +13,8 @@ import Foundation
  provider, until a real provider is injected.
  */
 public class DisabledAutocompleteProvider: AutocompleteProvider {
+
+    public init() {}
     
     public var locale: Locale = .current
     

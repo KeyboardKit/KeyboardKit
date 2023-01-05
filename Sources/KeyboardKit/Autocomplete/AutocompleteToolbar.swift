@@ -29,10 +29,10 @@ public struct AutocompleteToolbar<ItemView: View, SeparatorView: View>: View {
      - Parameters:
        - suggestions: The list of suggestions to display.
        - locale: The locale to use in the toolbar.
-       - style: The style to use in the toolbar, by default `.standard`.
+       - style: The style to use in the toolbar, by default ``AutocompleteToolbarStyle/standard``.
        - itemView: The function to use to build a view for each suggestion.
        - separatorView: The function to use to build a view for each separator.
-       - action: The action to use when tapping a suggestion. By default, the static `standardReplacementAction` will be used.
+       - action: The action to use when tapping a suggestion, by default ``AutocompleteToolbar/standardAction(for:)``.
      */
     public init(
         suggestions: [AutocompleteSuggestion],
@@ -161,7 +161,8 @@ public extension AutocompleteToolbar where SeparatorView == AutocompleteToolbarS
         locale: Locale,
         style: AutocompleteToolbarStyle = .standard,
         itemView: @escaping ItemViewBuilder,
-        action: @escaping ReplacementAction = standardAction) {
+        action: @escaping ReplacementAction = standardAction
+    ) {
         self.items = suggestions.map { BarItem($0) }
         self.locale = locale
         self.style = style
@@ -197,7 +198,8 @@ public extension AutocompleteToolbar where ItemView == AutocompleteToolbarItem, 
         suggestions: [AutocompleteSuggestion],
         locale: Locale,
         style: AutocompleteToolbarStyle = .standard,
-        action: @escaping ReplacementAction = standardAction) {
+        action: @escaping ReplacementAction = standardAction
+    ) {
         self.items = suggestions.map { BarItem($0) }
         self.locale = locale
         self.style = style
@@ -214,7 +216,8 @@ public extension AutocompleteToolbar {
      a text replacement when a `suggestion` is tapped.
      */
     static func standardAction(
-        for suggestion: AutocompleteSuggestion) {
+        for suggestion: AutocompleteSuggestion
+    ) {
         let controller = KeyboardInputViewController.shared
         let proxy = controller.textDocumentProxy
         let actionHandler = controller.keyboardActionHandler
@@ -312,8 +315,8 @@ struct AutocompleteToolbar_Previews: PreviewProvider {
     }
     
     static let previewSuggestions: [AutocompleteSuggestion] = [
-        StandardAutocompleteSuggestion("Baz", isUnknown: true),
-        StandardAutocompleteSuggestion("Bar", isAutocomplete: true),
+        StandardAutocompleteSuggestion(text: "Baz", isUnknown: true),
+        StandardAutocompleteSuggestion(text: "Bar", isAutocomplete: true),
         StandardAutocompleteSuggestion(text: "", title: "Foo", subtitle: "Recommended")]
 }
 

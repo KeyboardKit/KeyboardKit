@@ -1,27 +1,15 @@
 public extension InputSetProvider {
 
-    /**
-     Create an input row from a string.
-     */
     @available(*, deprecated, message: "Use InputSetRow(chars:) instead")
     func row(_ chars: String) -> InputSetRow {
         InputSetRow(chars: chars.chars)
     }
 
-    /**
-     Create an input row from a char array.
-     */
     @available(*, deprecated, message: "Use InputSetRow(chars:) instead")
     func row(_ chars: [String]) -> InputSetRow {
         InputSetRow(chars: chars)
     }
     
-    /**
-     Create an input row from a lowercased and an uppercased
-     strings, which are mapped to `InputSetItem` arrays.
-
-     Both arrays must contain the same amount of characters.
-     */
     @available(*, deprecated, message: "Use InputSetRow(lowercased:uppercased:) instead")
     func row(
         lowercased: String,
@@ -33,12 +21,6 @@ public extension InputSetProvider {
         )
     }
 
-    /**
-     Create an input row from a lowercased and an uppercased
-     string array, which are mapped to `InputSetItem` arrays.
-
-     Both arrays must contain the same amount of characters.
-     */
     @available(*, deprecated, message: "Use InputSetRow(lowercased:uppercased:) instead")
     func row(
         lowercased: [String],
@@ -70,22 +52,12 @@ public extension PreviewInputSetProvider {
     }
 }
 
-/**
- This protocol extends `InputSetProvider` and can be used by
- any provider that bases its input set on the current device.
-
- For now, this provider will return the iPhone input set for
- any device that is not explicitly iPad.
- */
 @available(*, deprecated, message: "DeviceSpecificInputSetProvider is no longer needed")
 public protocol DeviceSpecificInputSetProvider: InputSetProvider {}
 
 @available(*, deprecated, message: "DeviceSpecificInputSetProvider is no longer needed")
 public extension DeviceSpecificInputSetProvider {
 
-    /**
-     Create an input row from phone and pad-specific strings.
-     */
     @available(*, deprecated, message: "Use InputSetRow initializer instead")
     func row(
         phone: String,
@@ -95,9 +67,6 @@ public extension DeviceSpecificInputSetProvider {
         InputSetRow(chars: deviceType == .pad ? pad.chars : phone.chars)
     }
 
-    /**
-     Create an input row from phone and pad-specific arrays.
-     */
     @available(*, deprecated, message: "Use InputSetRow initializer instead")
     func row(
         phone: [String],
@@ -107,9 +76,6 @@ public extension DeviceSpecificInputSetProvider {
         InputSetRow(chars: deviceType == .pad ? pad : phone)
     }
 
-    /**
-     Create an input row from phone and pad-specific strings.
-     */
     @available(*, deprecated, message: "Use InputSetRow initializer instead")
     func row(
         phoneLowercased: String,
@@ -122,9 +88,6 @@ public extension DeviceSpecificInputSetProvider {
             uppercased: deviceType == .pad ? padUppercased.chars : phoneUppercased.chars)
     }
 
-    /**
-     Create an input row from phone and pad-specific arrays.
-     */
     @available(*, deprecated, message: "Use InputSetRow initializer instead")
     func row(
         phoneLowercased: [String],
@@ -135,5 +98,36 @@ public extension DeviceSpecificInputSetProvider {
         InputSetRow(
             lowercased: deviceType == .pad ? padLowercased : phoneLowercased,
             uppercased: deviceType == .pad ? padUppercased : phoneUppercased)
+    }
+}
+
+public extension InputSetRows {
+
+    @available(*, deprecated, message: "Use input set row initializers instead")
+    init(_ rows: [[String]]) {
+        self = rows.map { InputSetRow(chars: $0) }
+    }
+
+    @available(*, deprecated, message: "Use input set row initializers instead")
+    init(lowercased: [[String]], uppercased: [[String]]) {
+        assert(lowercased.count == uppercased.count, "The lowercased and uppercased string arrays must contain the same amount of characters")
+        self = lowercased.enumerated().map {
+            InputSetRow(
+                lowercased: lowercased[$0.offset],
+                uppercased: uppercased[$0.offset])
+        }
+    }
+}
+
+public extension InputSetRow {
+
+    @available(*, deprecated, message: "Use chars: initializer instead.")
+    init(_ chars: String) {
+        self.init(chars: chars.chars)
+    }
+
+    @available(*, deprecated, message: "Use chars: initializer instead.")
+    init(_ row: [String]) {
+        self.init(chars: row)
     }
 }

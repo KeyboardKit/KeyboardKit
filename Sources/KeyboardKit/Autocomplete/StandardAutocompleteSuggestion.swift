@@ -15,23 +15,15 @@ import Foundation
 public struct StandardAutocompleteSuggestion: AutocompleteSuggestion {
     
     /**
-     Create a suggestion where `text` & `title` are the same.
-     */
-    public init(
-        _ text: String,
-        isAutocomplete: Bool = false,
-        isUnknown: Bool = false
-    ) {
-        self.text = text
-        self.title = text
-        self.isAutocomplete = isAutocomplete
-        self.isUnknown = isUnknown
-        self.subtitle = nil
-        self.additionalInfo = [:]
-    }
-    
-    /**
      Create a suggestion with completely custom properties.
+
+     - Parameters:
+       - text: The text to apply when the suggestion is used.
+       - title: The suggestion display title, by default `title`.
+       - isAutocomplete: Whether or not the suggestion is an autocompleting suggestion, by default `false`.
+       - isUnknown: Whether or not the suggestion is an unknown suggestion, by default `false`.
+       - subtitle: The suggestion subtitle, by default `nil`.
+       - additionalInfo: Any additional information, by default `empty`.
      */
     public init(
         text: String,

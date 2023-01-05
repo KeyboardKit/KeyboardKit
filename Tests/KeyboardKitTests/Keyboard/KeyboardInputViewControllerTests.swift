@@ -216,7 +216,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
     func testPerformingAutocompleteAbortsIfTextProxyHasNoCurrentWord() {
         let vc = TestClass()
         setupMocksForAutocomplete(for: vc)
-        mockAutocompleteProvider.autocompleteSuggestionsResult = .success([StandardAutocompleteSuggestion("")])
+        mockAutocompleteProvider.autocompleteSuggestionsResult = .success([StandardAutocompleteSuggestion(text: "")])
         mockTextDocumentProxy.documentContextBeforeInput = "foo bar"
         vc.performAutocomplete()
         eventually {
@@ -227,7 +227,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
     func testPerformingAutocompleteWritesResultToAutocompleteContext() {
         let vc = TestClass()
         setupMocksForAutocomplete(for: vc)
-        mockAutocompleteProvider.autocompleteSuggestionsResult = .success([StandardAutocompleteSuggestion("")])
+        mockAutocompleteProvider.autocompleteSuggestionsResult = .success([StandardAutocompleteSuggestion(text: "")])
         vc.performAutocomplete()
         eventually {
             XCTAssertEqual(vc.autocompleteContext.suggestions.count, 0)
@@ -235,7 +235,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
     }
 
     func testResettingAutocompleteWritesResultToAutocompleteContext() {
-        vc.autocompleteContext.suggestions = [StandardAutocompleteSuggestion("")]
+        vc.autocompleteContext.suggestions = [StandardAutocompleteSuggestion(text: "")]
         vc.resetAutocomplete()
         XCTAssertEqual(vc.autocompleteContext.suggestions.count, 0)
     }

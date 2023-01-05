@@ -38,16 +38,16 @@ public protocol AutocompleteSuggestion {
      Whether or not this suggestion is an autocompete result,
      which should be applied when a word delimiter is typed.
      
-     Autocomplete suggestions are typically shown in a white,
-     rounded square when presented in an iOS system keyboard.
+     These suggestions are typically shown in white, rounded
+     squares when presented in an iOS system keyboard.
      */
     var isAutocomplete: Bool { get }
     
     /**
      Whether or not this suggestion is unknown to the system.
      
-     Unknown suggestions are typically shown surrounded by a
-     quotation when presented in an iOS system keyboard.
+     These suggestions are typically surrounded by quotation
+     marks when presented in an iOS system keyboard.
      */
     var isUnknown: Bool { get }
     

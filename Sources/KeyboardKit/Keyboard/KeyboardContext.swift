@@ -19,7 +19,7 @@ import UIKit
 
  KeyboardKit automatically creates an instance of this class
  and sets ``KeyboardInputViewController/keyboardContext`` to
- to the instance when a keyboard extension is started.
+ the instance when a keyboard extension is started.
  */
 public class KeyboardContext: ObservableObject {
     

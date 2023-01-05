@@ -20,7 +20,7 @@ class UITextDocumentProxy_AutocompleteTests: XCTestCase {
 
     override func setUp() {
         proxy = MockTextDocumentProxy()
-        suggestion = StandardAutocompleteSuggestion(word)
+        suggestion = StandardAutocompleteSuggestion(text: word)
     }
 
     func setupProxy(_ before: String, _ after: String) {

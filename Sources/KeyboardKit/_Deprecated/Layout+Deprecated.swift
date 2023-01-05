@@ -102,7 +102,7 @@ extension SystemKeyboardLayoutProvider {
 
 @available(*, deprecated, message: "Use KeyboardContext extensions instead.")
 extension SystemKeyboardLayoutProvider {
-    
+
     func isAlphabetic(_ context: KeyboardContext) -> Bool {
         context.keyboardType.isAlphabetic
     }
@@ -147,3 +147,24 @@ extension SystemKeyboardLayoutProvider {
         isAlphabetic(context) && context.locale.identifier == KeyboardLocale.ukrainian.localeIdentifier
     }
 }
+
+#if os(iOS)
+import UIKit
+
+public extension KeyboardLayoutConfiguration {
+
+    /**
+     The standard config for the provided idiom and screen.
+     */
+    @available(*, deprecated, message: "Use standard(forDevice:screenSize:oriantation) instead")
+    static func standard(
+        forIdiom idiom: UIUserInterfaceIdiom,
+        screenSize size: CGSize,
+        orientation: UIInterfaceOrientation) -> KeyboardLayoutConfiguration {
+        switch idiom {
+        case .pad: return standardPad(forScreenSize: size, orientation: orientation)
+        default: return standardPhone(forScreenSize: size, orientation: orientation)
+        }
+    }
+}
+#endif

@@ -21,9 +21,9 @@ public struct AutocompleteToolbarStyle {
      
      - Parameters:
        - height: An optional toolbar height, by default `50`.
-       - item: The item style, by default `.standard`.
-       - separator: The separator style, by default `.standard`.
-       - autocompleteBackground: The background style to apply behind autocomplete items, by default `.standard`.
+       - item: The item style, by default ``AutocompleteToolbarItemStyle/standard``.
+       - separator: The separator style, by default ``AutocompleteToolbarSeparatorStyle/standard``.
+       - autocompleteBackground: The background style to apply behind autocomplete items, by default ``AutocompleteToolbarItemBackgroundStyle/standard``.
      */
     public init(
         height: CGFloat? = 50,
@@ -43,9 +43,7 @@ public struct AutocompleteToolbarStyle {
     public var autocompleteBackground: AutocompleteToolbarItemBackgroundStyle
 
     /**
-     An optional toolbar height.
-
-     Set it to nil to avoid applying a strict toolbar height.
+     An optional, fixed toolbar height.
      */
     public var height: CGFloat?
     

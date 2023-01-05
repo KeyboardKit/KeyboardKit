@@ -22,7 +22,7 @@ public struct AutocompleteToolbarItemTitle: View {
      
      - Parameters:
        - suggestions: The suggestion to display in the view.
-       - style: The style to apply to the text, by default `.standard`.
+       - style: The style to apply to the text, by default ``AutocompleteToolbarItemStyle/standard``.
        - locale: The locale to use to resolve quotation.
      */
     public init(
@@ -86,8 +86,8 @@ struct AutocompleteToolbarItemTitle_Previews: PreviewProvider {
     }
     
     static let previewSuggestions: [AutocompleteSuggestion] = [
-        StandardAutocompleteSuggestion("Foo", isUnknown: true),
-        StandardAutocompleteSuggestion("Bar", isAutocomplete: true),
+        StandardAutocompleteSuggestion(text: "Foo", isUnknown: true),
+        StandardAutocompleteSuggestion(text: "Bar", isAutocomplete: true),
         StandardAutocompleteSuggestion(text: "", title: "Baz", subtitle: "Recommended")]
 }
 
