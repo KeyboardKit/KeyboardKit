@@ -26,7 +26,7 @@ public final class FeatureToggle {
      Create a new feature toggle instance.
      */
     public init() {
-        defaultEnabledFeatures = [.newButtonGestureEngine]
+        defaultEnabledFeatures = []
         enabledFeatures = []
         reset()
     }
@@ -69,21 +69,12 @@ public extension FeatureToggle {
      This enum defines the currently available features that
      can be toggled on and off in the ``FeatureToggle``.
      */
-    enum Feature: String, CaseIterable {
+    enum Feature: String {
 
-        /**
-         This feature controls the new button gesture engine.
+        case placeholder
 
-         The new button gesture engine aims at making typing
-         better and more precise, and also unlocks many more
-         gestures and features in the emoji keyboards.
-
-         This feature is `disabled` by default.
-         */
+        @available(*, deprecated, message: "This feature is now always enabled when applicable.")
         case newButtonGestureEngine
-
-        /// Get all available feature toggle features
-        public static var allFeatures: [Feature] { allCases }
     }
 }
 

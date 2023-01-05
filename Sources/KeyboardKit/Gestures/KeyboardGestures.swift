@@ -86,7 +86,7 @@ struct KeyboardGestures<Content: View>: View {
     var body: some View {
         view.overlay(
             GeometryReader { geo in
-                if shouldApplyNewGestures, #available(iOS 14.0, macOS 11.0, watchOS 8.0, *) {
+                if #available(iOS 14.0, macOS 11.0, watchOS 8.0, *) {
                     gestureButton(for: geo)
                 } else {
                     Color.clearInteractable
@@ -97,14 +97,6 @@ struct KeyboardGestures<Content: View>: View {
                 }
             }
         )
-    }
-}
-
-private extension KeyboardGestures {
-
-    var shouldApplyNewGestures: Bool {
-        if action?.isEmojiAction == true { return true }
-        return isNewGestureEngineEnabled
     }
 }
 
@@ -167,12 +159,6 @@ private extension KeyboardGestures {
     var actionCalloutContext: ActionCalloutContext? { .shared }
 
     var inputCalloutContext: InputCalloutContext? { .shared }
-
-    var featureToggle: FeatureToggle { .shared }
-
-    var isNewGestureEngineEnabled: Bool {
-        featureToggle.isFeatureEnabled(.newButtonGestureEngine)
-    }
 }
 
 

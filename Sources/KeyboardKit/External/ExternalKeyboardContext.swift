@@ -26,7 +26,8 @@ public class ExternalKeyboardContext: ObservableObject {
         notificationCenter.addObserver(self, selector: sync, name: Notification.Name.GCKeyboardDidDisconnect, object: nil)
     }
     
-    @Published public private(set) var isExternalKeyboardConnected = false
+    @Published
+    public private(set) var isExternalKeyboardConnected = false
 }
 
 @available(iOS 14.0, *)

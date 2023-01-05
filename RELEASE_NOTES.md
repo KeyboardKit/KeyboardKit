@@ -55,6 +55,7 @@ This release starts preparing for the next major version, by deprecating a lot o
 * `EmojiKeyboard` `context` has been renamed to `keyboardContext`.
 * `EmojiCategoryKeyboard` `context` has been renamed to `keyboardContext`.
 * `EmojiCategoryKeyboardMenu` `context` has been renamed to `keyboardContext`.
+* `FeatureToggle.Feature.newButtonGestureEngine` has been deprecated.
 * `InputCallout` `context` has been renamed to `calloutContext`.
 * `KeyboardAction.newLine` has been replaced by `KeyboardAction.primary(.newLine)`.
 * `KeyboardAction.return` has been replaced by `KeyboardAction.primary(.return)`.
