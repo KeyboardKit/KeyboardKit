@@ -17,12 +17,12 @@ public struct HapticFeedbackConfiguration: Codable, Equatable {
      Create a feedback configuration.
      
      - Parameters:
-       - tap: The feedback to use for taps.
-       - doubleTap: The feedback to use for double taps.
-       - longPress: The feedback to use for long presses.
-       - longPressOnSpace: The feedback to use for long presses on space.
-       - repeat: The feedback to use for repeat.
-       - actions: A list of action/gesture-specific feedback.
+       - tap: The feedback to use for taps, by default `.none`.
+       - doubleTap: The feedback to use for double taps, by default `.none`.
+       - longPress: The feedback to use for long presses, by default `.none`.
+       - longPressOnSpace: The feedback to use for long presses on space, by default `.mediumImpact`.
+       - repeat: The feedback to use for repeat, by default `.none`.
+       - actions: A list of action/gesture-specific feedback, by default `empty`.
      */
     public init(
         tap: HapticFeedback = .none,

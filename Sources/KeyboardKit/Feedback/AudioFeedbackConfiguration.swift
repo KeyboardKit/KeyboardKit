@@ -17,10 +17,10 @@ public struct AudioFeedbackConfiguration: Codable, Equatable {
      Create a feedback configuration.
      
      - Parameters:
-       - input: The feedback to use for input keys.
-       - delete: The feedback to use for delete keys.
-       - system: The feedback to use for system keys.
-       - actions: A list of action-specific feedback.
+       - input: The feedback to use for input keys, by default `.input`.
+       - delete: The feedback to use for delete keys, by default `.delete`.
+       - system: The feedback to use for system keys, by default `.system`.
+       - actions: A list of action-specific feedback, by default `empty`.
      */
     public init(
         input: AudioFeedback = .input,

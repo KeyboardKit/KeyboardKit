@@ -38,6 +38,8 @@ This release starts preparing for the next major version, by deprecating a lot o
 * `InterfaceOrientation` is a new multi-platform version of `UIInterfaceOrientation`.
 * `KeyboardContext` has a new `screenSize` parameter.
 * `KeyboardContext` has a new `interfaceOrientation` parameter.
+* `RepeatGestureTimer` init is now public.
+* `RepeatGestureTimer` time interval is now mutable.
 * `StandardCalloutActionProvider` `keyboardContext` has been made public.
 * `StandardKeyboardAppearance` `keyboardContext` has been made public.
 * `StandardKeyboardBehavior` `keyboardContext` has been made public.

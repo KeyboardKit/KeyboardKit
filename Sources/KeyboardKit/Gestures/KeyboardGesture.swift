@@ -15,6 +15,7 @@ import Foundation
 public enum KeyboardGesture: String, CaseIterable, Codable, Equatable, Identifiable {
 
     /// Occurs when a button is pressed then released inside.
+    /// > Important: This will be removed in KeyboardKit 7 (TODO)
     case tap
     
     /// Occurs when a button is double tapped.
