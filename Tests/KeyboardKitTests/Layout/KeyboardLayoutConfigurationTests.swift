@@ -61,7 +61,8 @@ class KeyboardLayoutConfigurationTests: XCTestCase {
     func configuration(
         for device: DeviceType,
         size: CGSize,
-        orientation: UIInterfaceOrientation) -> KeyboardLayoutConfiguration {
+        orientation: InterfaceOrientation
+    ) -> KeyboardLayoutConfiguration {
         KeyboardLayoutConfiguration.standard(
             forDevice: device,
             screenSize: size,

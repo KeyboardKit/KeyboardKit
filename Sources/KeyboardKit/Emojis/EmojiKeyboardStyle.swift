@@ -221,7 +221,7 @@ public extension EmojiKeyboardStyle {
         for context: KeyboardContext
     ) -> EmojiKeyboardStyle {
         #if os(iOS)
-        let isPortrait = context.screenOrientation.isPortrait
+        let isPortrait = context.interfaceOrientation.isPortrait
         if context.deviceType == .phone {
             return isPortrait ? .standardPhonePortrait : .standardPhoneLandscape
         }

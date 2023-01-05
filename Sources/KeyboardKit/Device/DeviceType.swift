@@ -13,13 +13,12 @@ import UIKit
 #endif
 
 /**
- This enum can be used to specify the type of device without
- having to have access to the actual device type.
+ This enum can be used to specify a device type.
  
  The static ``current`` property will resolve to the current
  device type.
  */
-public enum DeviceType: Equatable {
+public enum DeviceType: String, CaseIterable, Equatable {
     
     case phone, pad, watch, mac, tv, other
 }

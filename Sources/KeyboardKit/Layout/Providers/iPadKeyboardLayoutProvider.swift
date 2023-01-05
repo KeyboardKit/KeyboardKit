@@ -223,14 +223,6 @@ private extension iPadKeyboardLayoutProvider {
         }
     }
 
-    func isPortrait(_ context: KeyboardContext) -> Bool {
-        #if os(iOS)
-        context.screenOrientation.isPortrait
-        #else
-        return false
-        #endif
-    }
-
     func isMiddleLeadingSpacer(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
         switch action {
         case .none: return row == 1 && index == 0

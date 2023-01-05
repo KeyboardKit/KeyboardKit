@@ -83,6 +83,12 @@ public class KeyboardContext: ObservableObject {
     public var hasFullAccess: Bool = false
 
     /**
+     The current interface orientation.
+     */
+    @Published
+    public var interfaceOrientation: InterfaceOrientation = .portrait
+
+    /**
      An optional dictation replacement action, which will be
      used by some ``KeyboardLayoutProvider`` implementations.
      */
@@ -135,29 +141,11 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var primaryLanguage: String?
 
-
-    #if os(iOS) || os(tvOS)
-    /**
-     The screen in which the keyboard is presented.
-     */
-    @Published
-    @available(*, deprecated, message: "Use screenSize instead")
-    public var screen = UIScreen.main
-    #endif
-
     /**
      The screen size, which is used by some library features.
      */
     @Published
     public var screenSize = CGSize.zero
-    
-    #if os(iOS)
-    /**
-     The current screen orientation.
-     */
-    @Published
-    public var screenOrientation: UIInterfaceOrientation = .portrait
-    #endif
     
     
     #if os(iOS) || os(tvOS)
@@ -202,12 +190,23 @@ public class KeyboardContext: ObservableObject {
     }
     #endif
 
-
-    // MARK: - Deprecated
-
     #if os(iOS) || os(tvOS)
     @available(*, deprecated, message: "Use deviceType instead.")
     public var device: UIDevice = .current
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    @Published
+    @available(*, deprecated, message: "Use screenSize instead")
+    public var screen = UIScreen.main
+    #endif
+
+    #if os(iOS)
+    @available(*, deprecated, renamed: "interfaceOrientation")
+    public var screenOrientation: InterfaceOrientation {
+        get { interfaceOrientation }
+        set { interfaceOrientation = newValue }
+    }
     #endif
 }
 
@@ -309,10 +308,10 @@ public extension KeyboardContext {
         if primaryLanguage != controller.primaryLanguage {
             primaryLanguage = controller.primaryLanguage
         }
-        #if os(iOS)
-        if screenOrientation != controller.screenOrientation {
-            screenOrientation = controller.screenOrientation
+        if interfaceOrientation != controller.orientation {
+            interfaceOrientation = controller.orientation
         }
+        #if os(iOS)
         let newPrefersAutocomplete = keyboardType.prefersAutocomplete && (textDocumentProxy.keyboardType?.prefersAutocomplete ?? true)
         if prefersAutocomplete != newPrefersAutocomplete {
             prefersAutocomplete = newPrefersAutocomplete
@@ -335,9 +334,16 @@ public extension KeyboardContext {
     
     func syncAfterLayout(with controller: KeyboardInputViewController) {
         #if os(iOS)
-        if controller.screenOrientation == screenOrientation { return }
+        if controller.orientation == interfaceOrientation { return }
         self.sync(with: controller)
         #endif
     }
     #endif
+}
+
+private extension UIInputViewController {
+
+    var orientation: InterfaceOrientation {
+        windowScreen?.interfaceOrientation ?? .portrait
+    }
 }

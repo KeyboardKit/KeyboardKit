@@ -34,7 +34,9 @@ This release starts preparing for the next major version, by deprecating a lot o
 
 * `DisabledAutocompleteProvider` has been made public.
 * `DisabledCalloutActionProvider` has been made public.
+* `InterfaceOrientation` is a new multi-platform version of `UIInterfaceOrientation`.
 * `KeyboardContext` has a new `screenSize` parameter.
+* `KeyboardContext` has a new `interfaceOrientation` parameter.
 * `StandardCalloutActionProvider` `keyboardContext` has been made public.
 * `StandardKeyboardAppearance` `keyboardContext` has been made public.
 * `StandardKeyboardBehavior` `keyboardContext` has been made public.
@@ -57,6 +59,7 @@ This release starts preparing for the next major version, by deprecating a lot o
 * `KeyboardAction.return` has been replaced by `KeyboardAction.primary(.return)`.
 * `KeyboardAction.standardTapAction` has been replaced by `KeyboardAction.standardReleaseAction`.
 * `KeyboardContext` has redesigned initializers that set fewer properties.
+* `KeyboardContext` `screenOrientation` has been replaced by `interfaceOrientation`.
 * `StandardAutocompleteSuggestion` has deprecated the initializer with an implicit text name.
 * `StandardCalloutActionProvider` `context` has been renamed to `keyboardContext`.
 * `StandardKeyboardActionHandler` `changeKeyboardTypeAction` has been in-comment deprecated.
