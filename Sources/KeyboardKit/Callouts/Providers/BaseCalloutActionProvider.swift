@@ -9,17 +9,17 @@
 import Foundation
 
 /**
- This class simplifies creating callout action providers, by
- providing a set of utility functions.
+ This base class provides functionality to simplify creating
+ a callout action provider.
  
  You can inherit this class and override any open properties
  and functions to customize the callout actions. The easiest
- way is to override ``calloutActionString(for:)`` and return
- a string, that is then split and mapped to keyboard actions
- by `calloutActions(for:)`.
+ way is to override `calloutActionString(for:)` and return a
+ string that is then split and mapped to keyboard actions by
+ `calloutActions(for:)`.
  
  ``EnglishCalloutActionProvider`` uses this logic to specify
- which actions to use for U.S. English.
+ which actions to use for basic English.
  */
 open class BaseCalloutActionProvider: CalloutActionProvider {
     

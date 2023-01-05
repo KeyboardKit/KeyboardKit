@@ -11,7 +11,11 @@ import Foundation
 /**
  This provider can be used to disable callout actions.
  */
-class DisabledCalloutActionProvider: CalloutActionProvider {
+public class DisabledCalloutActionProvider: CalloutActionProvider {
+
+    public init() {}
     
-    func calloutActions(for action: KeyboardAction) -> [KeyboardAction] { [] }
+    public func calloutActions(
+        for action: KeyboardAction
+    ) -> [KeyboardAction] { [] }
 }

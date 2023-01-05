@@ -45,7 +45,10 @@ open class ActionCalloutContext: ObservableObject {
     
     // MARK: - Dependencies
     
+    /// The action handler to use when tapping buttons.
     public let actionHandler: KeyboardActionHandler
+
+    /// The action provider to use for resolving callout actions.
     public let actionProvider: CalloutActionProvider
     
     

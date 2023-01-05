@@ -96,7 +96,6 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
      */
     open func keyboardLayoutProvider(for context: KeyboardContext) -> KeyboardLayoutProvider {
         if let provider = localizedProviders.value(for: context.locale) { return provider }
-
         return context.deviceType == .pad ? iPadProvider : iPhoneProvider
     }
 

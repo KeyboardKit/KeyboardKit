@@ -18,22 +18,22 @@ public struct InputCallout: View {
      Create an input callout.
      
      - Parameters:
-       - context: The context to bind against.
-       - keyboardContext: The keyboard context to use for contextual decisions.
+       - calloutContext: The callout context to use.
+       - keyboardContext: The keyboard context to use.
        - style: The style to apply to the view, by default `.standard`.
      */
     public init(
-        context: InputCalloutContext,
+        calloutContext: InputCalloutContext,
         keyboardContext: KeyboardContext,
         style: InputCalloutStyle = .standard
     ) {
-        self._context = ObservedObject(wrappedValue: context)
+        self._calloutContext = ObservedObject(wrappedValue: calloutContext)
         self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
         self.style = style
     }
 
     @ObservedObject
-    private var context: InputCalloutContext
+    private var calloutContext: InputCalloutContext
 
     @ObservedObject
     private var keyboardContext: KeyboardContext
@@ -45,7 +45,7 @@ public struct InputCallout: View {
     public var body: some View {
         callout
             .transition(.opacity)
-            .opacity(context.isActive ? 1 : 0)
+            .opacity(calloutContext.isActive ? 1 : 0)
             .calloutShadow(style: calloutStyle)
             .position(position)
             .allowsHitTesting(false)
@@ -63,7 +63,7 @@ private extension InputCallout {
     }
 
     var calloutBubble: some View {
-        Text(context.input ?? "")
+        Text(calloutContext.input ?? "")
             .font(style.font)
             .frame(minWidth: calloutSize.width, minHeight: calloutSize.height)
             .foregroundColor(calloutStyle.textColor)
@@ -84,7 +84,7 @@ private extension InputCallout {
 private extension InputCallout {
     
     var buttonFrame: CGRect {
-        context.buttonFrame.insetBy(
+        calloutContext.buttonFrame.insetBy(
             dx: buttonInset.width,
             dy: buttonInset.height)
     }
@@ -146,7 +146,7 @@ private extension InputCallout {
 
     var positionY: CGFloat {
         let base = buttonFrame.origin.y + buttonSize.height/2 - calloutSize.height/2
-        let isEmoji = context.action?.isEmojiAction == true
+        let isEmoji = calloutContext.action?.isEmojiAction == true
         if isEmoji { return base + 5 }
         return base
     }
@@ -199,7 +199,7 @@ struct InputCallout_Previews: PreviewProvider {
                 }
             }
             .inputCallout(
-                context: context,
+                calloutContext: context,
                 keyboardContext: .preview
             )
         }

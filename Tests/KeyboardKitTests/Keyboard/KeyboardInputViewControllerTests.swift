@@ -161,7 +161,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
 
     func testRefreshingPropertiesWhenChangingServicePropertiesIsForCalloutActionProvider() {
         let vc = TestClass()
-        vc.calloutActionProvider = StandardCalloutActionProvider(context: .preview)
+        vc.calloutActionProvider = StandardCalloutActionProvider(keyboardContext: .preview)
         verifyRefresh(for: vc)
     }
 

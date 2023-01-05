@@ -40,7 +40,8 @@ class KeyboardViewController: KeyboardInputViewController {
 
         // Setup a demo-specific keyboard appearance.
         // 💡 You can change this appearance to see how the keyboard style changes.
-        keyboardAppearance = DemoKeyboardAppearance(context: keyboardContext)
+        keyboardAppearance = DemoKeyboardAppearance(
+            keyboardContext: keyboardContext)
         
         // Call super to perform the base initialization
         super.viewDidLoad()

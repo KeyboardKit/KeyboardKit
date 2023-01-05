@@ -184,8 +184,8 @@ open class KeyboardInputViewController: UIInputViewController {
      ``StandardCalloutActionProvider`` is used by default.
      */
     public lazy var calloutActionProvider: CalloutActionProvider = StandardCalloutActionProvider(
-        context: keyboardContext) {
-        didSet { refreshProperties() }
+        keyboardContext: keyboardContext) {
+        didSet { refreshProperties() }  // TODO: Remove
     }
     
     /**

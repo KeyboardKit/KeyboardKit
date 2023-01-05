@@ -19,7 +19,7 @@ public struct CalloutButtonArea: View {
      
      - Parameters:
        - frame: The button area frame.
-       - style: The style to use, by default `.standard`.
+       - style: The style to use, by default ``CalloutStyle/standard``.
      */
     public init(
         frame: CGRect,

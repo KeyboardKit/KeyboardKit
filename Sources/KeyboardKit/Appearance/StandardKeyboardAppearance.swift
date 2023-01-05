@@ -39,7 +39,7 @@ import CoreGraphics
 open class StandardKeyboardAppearance: KeyboardAppearance {
 
     @available(*, deprecated, message: "Use the keyboardContext initializer instead")
-    init(context: KeyboardContext) {
+    public init(context: KeyboardContext) {
         self.keyboardContext = context
     }
     

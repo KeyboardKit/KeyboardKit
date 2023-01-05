@@ -9,25 +9,28 @@
 import SwiftUI
 
 public extension View {
-    
+
     /**
      This modifier can be applied to any view that should be
      able to present a ``ActionCallout``.
-     
+
      - Parameters:
-       - context: The context to bind against.
+       - calloutContext: The callout context to use.
+       - keyboardContext: The keyboard context to use.
        - style: The style to apply to the view, by default ``ActionCalloutStyle/standard``.
        - emojiKeyboardStyle: The emoji keyboard style to use, by default ``EmojiKeyboardStyle/standardPhonePortrait``.
      */
     func actionCallout(
-        context: ActionCalloutContext,
+        calloutContext: ActionCalloutContext,
+        keyboardContext: KeyboardContext,
         style: ActionCalloutStyle = .standard,
         emojiKeyboardStyle: EmojiKeyboardStyle = .standardPhonePortrait
     ) -> some View {
-        return ZStack {
+        ZStack {
             self
             ActionCallout(
-                context: context,
+                calloutContext: calloutContext,
+                keyboardContext: keyboardContext,
                 style: style,
                 emojiKeyboardStyle: emojiKeyboardStyle
             )

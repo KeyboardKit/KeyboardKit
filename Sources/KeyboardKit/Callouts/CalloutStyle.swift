@@ -30,15 +30,15 @@ public struct CalloutStyle: Equatable {
      use the default values for all other parameters.
      
      - Parameters:
-       - backgroundColor: The background color of the entire callout.
-       - borderColor: The border color of the entire callout.
-       - buttonCornerRadius: The corner radius of the callout edges.
-       - buttonInset: The inset to apply to the button overlay.
-       - cornerRadius: The corner radius of the callout edges.
-       - curveSize: The size of the curve that links the button overlay and
-       - shadowColor: The shadow of the entire callout.
-       - shadowRadius: The shadow radius of the entire callout.
-       - textColor: The text color to use in the callout.
+       - backgroundColor: The background color of the entire callout, by default `.standardButtonBackground`.
+       - borderColor: The border color of the entire callout, by default transparent `.black`.
+       - buttonCornerRadius: The corner radius of the callout edges, by default `4`.
+       - buttonInset: The inset to apply to the button overlay, by default transparent `.zero`.
+       - cornerRadius: The corner radius of the callout edges, by default transparent `10`.
+       - curveSize: The size of the curve that links the button overlay and callout, by default transparent `8x15`.
+       - shadowColor: The shadow of the entire callout, by default transparent transparent `.black`.
+       - shadowRadius: The shadow radius of the entire callout, by default transparent `5`.
+       - textColor: The text color to use in the callout, by default `.primary`.
      */
     public init(
         backgroundColor: Color = .standardButtonBackground,

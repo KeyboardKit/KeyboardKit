@@ -9,27 +9,34 @@
 import Foundation
 
 /**
- This standard callout action provider takes a collection of
- localized `providers` then uses a locale to determine which
- one to use.
+ This provider is initialized with a collection of localized
+ providers, and will use the one with the same locale as the
+ provided ``KeyboardContext``.
  */
 open class StandardCalloutActionProvider: CalloutActionProvider {
-    
-    /**
-     Create a standard provider.
-     
-     Injecting a context and not a locale keeps the provider
-     dynamic when the context changes language.
-     
-      - Parameters:
-        - context: The keyboard context to use.
-        - providers: The action providers to use.
-     */
+
+    @available(*, deprecated, message: "Use the keyboardContext initializer instead")
     public init(
         context: KeyboardContext,
         providers: [LocalizedCalloutActionProvider] = [standardProvider]
     ) {
-        self.context = context
+        self.keyboardContext = context
+        let dict = Dictionary(uniqueKeysWithValues: providers.map { ($0.localeKey, $0) })
+        localizedProviders = LocaleDictionary(dict)
+    }
+
+    /**
+     Create a standard callout action provider.
+
+      - Parameters:
+        - keyboardContext: The keyboard context to use.
+        - providers: The action providers to use.
+     */
+    public init(
+        keyboardContext: KeyboardContext,
+        providers: [LocalizedCalloutActionProvider] = [standardProvider]
+    ) {
+        self.keyboardContext = keyboardContext
         let dict = Dictionary(uniqueKeysWithValues: providers.map { ($0.localeKey, $0) })
         localizedProviders = LocaleDictionary(dict)
     }
@@ -43,14 +50,25 @@ open class StandardCalloutActionProvider: CalloutActionProvider {
         guard let provider = try? EnglishCalloutActionProvider() else { fatalError("EnglishCalloutActionProvider could not be created.") }
         return provider
     }
-    
-    private let context: KeyboardContext
+
+    /**
+     The keyboard context to use.
+     */
+    public let keyboardContext: KeyboardContext
     
     /**
      This is used to resolve the a provider for the context.
      */
     public var localizedProviders: LocaleDictionary<CalloutActionProvider>
-    
+
+
+    /**
+     Get callout actions for the provided `action`.
+     */
+    open func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {
+        provider(for: keyboardContext).calloutActions(for: action)
+    }
+
     /**
      Get the provider to use for the provided `context`.
      */
@@ -63,13 +81,6 @@ open class StandardCalloutActionProvider: CalloutActionProvider {
      */
     open func provider(for locale: Locale) -> CalloutActionProvider {
         localizedProviders.value(for: locale) ?? Self.standardProvider
-    }
-    
-    /**
-     Get callout actions for the provided `action`.
-     */
-    open func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {
-        provider(for: context).calloutActions(for: action)
     }
 
 

@@ -17,10 +17,12 @@ Some things that are planned for the 7.0 release:
 
 * All TODOS will be addressed.
 * All deprecated code will be removed.
+* All shared instances should be removed.
 * All dependencies to the shared instances should be replaced with init parameters, even for the smallest view.
 * KeyboardAction should only support `press` and `release` and not `tap`.
 * KeyboardAction.GestureAction should use a protocol instead of a view controller.
 * StandardKeyboardActionHandler changeKeyboardTypeAction will be removed.
+* The ActionCallout initializer will require a KeyboardContext
 
 
 
@@ -30,26 +32,31 @@ This release starts preparing for the next major version, by deprecating a lot o
 
 ### ✨ New features
 
-* `DisabledAutocompleteProvider` initializer is now public.
-* `StandardKeyboardAppearance` `keyboardContext` and other properties are now public.
-* `StandardKeyboardBehavior` `keyboardContext` and other properties are now public.
-* `StaticKeyboardBehavior` is now open to let you customize it.
+* `DisabledAutocompleteProvider` has been made public.
+* `DisabledCalloutActionProvider` has been made public.
+* `StandardCalloutActionProvider` `keyboardContext` has been made public.
+* `StandardKeyboardAppearance` `keyboardContext` has been made public.
+* `StandardKeyboardBehavior` `keyboardContext` has been made public.
+* `StaticKeyboardBehavior` has been made open to let you customize it.
 
 ### 💡 Behavior changes
 
-* `KeyboardAction.primary` now applies autocomplete suggestions if it's a system action.
-* `StandardKeyboardActionHandler` has marked the view controller-based initializer as a convenience initializer.  
+* `KeyboardAction.primary` now applies autocomplete suggestions if it's a system action.  
 
 ### 🗑 Deprecations
 
-* `KeyboardAction.newLine` is replaced by `KeyboardAction.primary(.newLine)`.
-* `KeyboardAction.return` is replaced by `KeyboardAction.primary(.return)`.
-* `KeyboardAction.standardTapAction` is replaced by `KeyboardAction.standardReleaseAction`.
+* `ActionCallout` now prefers a `keyboardContext` to be injected.
+* `ActionCallout` `context` has been renamed to `calloutContext`.
+* `InputCallout` `context` has been renamed to `calloutContext`.
+* `KeyboardAction.newLine` has been replaced by `KeyboardAction.primary(.newLine)`.
+* `KeyboardAction.return` has been replaced by `KeyboardAction.primary(.return)`.
+* `KeyboardAction.standardTapAction` has been replaced by `KeyboardAction.standardReleaseAction`.
 * `StandardAutocompleteSuggestion` has deprecated the initializer with an implicit text name.
-* `StandardKeyboardActionHandler` `changeKeyboardTypeAction` is in-comment deprecated.
-* `StandardKeyboardAppearance` `context` is renamed to `keyboardContext`.
-* `StandardKeyboardBehavior` `context` is renamed to `keyboardContext`.
-* `StaticKeyboardBehavior` `context` is renamed to `keyboardContext`.
+* `StandardCalloutActionProvider` `context` has been renamed to `keyboardContext`.
+* `StandardKeyboardActionHandler` `changeKeyboardTypeAction` has been in-comment deprecated.
+* `StandardKeyboardAppearance` `context` has been renamed to `keyboardContext`.
+* `StandardKeyboardBehavior` `context` has been renamed to `keyboardContext`.
+* `StaticKeyboardBehavior` `context` has been renamed to `keyboardContext`.
 
 
 

@@ -35,21 +35,22 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
        - spaceDragSensitivity: The space drag sensitivity to use, by default ``SpaceDragSensitivity/medium``.
        -
      */
-    convenience init(
+    public init(
         inputViewController ivc: KeyboardInputViewController,
         spaceDragGestureHandler: DragGestureHandler? = nil,
         spaceDragSensitivity: SpaceDragSensitivity = .medium
     ) {
         weak var input = ivc
-        self.init(
-            keyboardContext: ivc.keyboardContext,
-            keyboardBehavior: ivc.keyboardBehavior,
-            keyboardFeedbackHandler: ivc.keyboardFeedbackHandler,
-            autocompleteContext: ivc.autocompleteContext,
-            autocompleteAction: { input?.performAutocomplete() },
-            changeKeyboardTypeAction: { input?.keyboardContext.keyboardType = $0 },
-            spaceDragGestureHandler: spaceDragGestureHandler,
-            spaceDragSensitivity: spaceDragSensitivity
+        self.autocompleteAction = { input?.performAutocomplete() }
+        self.autocompleteContext = ivc.autocompleteContext
+        self.changeKeyboardTypeAction = { input?.keyboardContext.keyboardType = $0 }
+        self.keyboardBehavior = ivc.keyboardBehavior
+        self.keyboardContext = ivc.keyboardContext
+        self.keyboardFeedbackHandler = ivc.keyboardFeedbackHandler
+        self.spaceDragGestureHandler = spaceDragGestureHandler ?? SpaceCursorDragGestureHandler(
+            context: ivc.keyboardContext,
+            feedbackHandler: ivc.keyboardFeedbackHandler,
+            sensitivity: spaceDragSensitivity
         )
     }
 
