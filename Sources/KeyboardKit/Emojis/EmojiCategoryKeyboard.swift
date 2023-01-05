@@ -26,7 +26,7 @@ public struct EmojiCategoryKeyboard<CategoryTitleView: View>: View {
      - Parameters:
        - categories: The categories to show in the menu.
        - appearance: The appearance to apply to the menu.
-       - context: The context to use when rendering the view.
+       - keyboardContext: The context to use when rendering the view.
        - selection: The currently selected category.
        - style: The style to apply to the keyboard, by default `.standardPhonePortrait`.
        - categoryTitle: A category title provider, by default `.standardCategoryTitle`.
@@ -35,7 +35,7 @@ public struct EmojiCategoryKeyboard<CategoryTitleView: View>: View {
     public init(
         categories: [EmojiCategory] = EmojiCategory.all,
         appearance: KeyboardAppearance,
-        context: KeyboardContext,
+        keyboardContext: KeyboardContext,
         selection: EmojiCategory? = nil,
         style: EmojiKeyboardStyle = .standardPhonePortrait,
         categoryTitle: @escaping CategoryTitleProvider = standardCategoryTitle,
@@ -43,17 +43,17 @@ public struct EmojiCategoryKeyboard<CategoryTitleView: View>: View {
     ) {
         self.categories = categories.filter { $0.emojis.count > 0 }
         self.appearance = appearance
-        self.style = style
-        self.context = context
+        self.keyboardContext = keyboardContext
         self.initialSelection = selection
+        self.style = style
         self.categoryTitle = categoryTitle
         self.categoryTitleView = categoryTitleView
     }
     
-    private let initialSelection: EmojiCategory?
     private let categories: [EmojiCategory]
     private let appearance: KeyboardAppearance
-    private let context: KeyboardContext
+    private let keyboardContext: KeyboardContext
+    private let initialSelection: EmojiCategory?
     private let style: EmojiKeyboardStyle
     private let categoryTitle: CategoryTitleProvider
     private let categoryTitleView: CategoryTitleViewProvider
@@ -146,7 +146,7 @@ private extension EmojiCategoryKeyboard {
     var keyboard: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             EmojiKeyboard(
-                emojis: selection.emojis.matching(query, for: context.locale),
+                emojis: selection.emojis.matching(query, for: keyboardContext.locale),
                 style: style)
         }.id(selection)
     }
@@ -155,7 +155,7 @@ private extension EmojiCategoryKeyboard {
         EmojiCategoryKeyboardMenu(
             categories: categories,
             appearance: appearance,
-            context: context,
+            keyboardContext: keyboardContext,
             selection: $selection,
             style: style
         )
@@ -163,7 +163,7 @@ private extension EmojiCategoryKeyboard {
 
     var searchField: some View {
         KeyboardTextField(
-            KKL10n.searchEmoji.text(for: context.locale),
+            KKL10n.searchEmoji.text(for: keyboardContext.locale),
             text: $query,
             hasFocus: $isSearchFocused,
             resignOnReturn: true,
@@ -182,7 +182,7 @@ public extension EmojiCategoryKeyboard where CategoryTitleView == EmojiCategoryT
      - Parameters:
        - categories: The categories to show in the menu.
        - appearance: The appearance to apply to the menu.
-       - context: The context to use when rendering the view.
+       - keyboardContext: The context to use when rendering the view.
        - selection: The currently selected category.
        - style: The style to apply to the keyboard, by default `.standardPhonePortrait`.
        - categoryTitle: A category title provider, by default `.standardCategoryTitle`.
@@ -190,7 +190,7 @@ public extension EmojiCategoryKeyboard where CategoryTitleView == EmojiCategoryT
     init(
         categories: [EmojiCategory] = EmojiCategory.all,
         appearance: KeyboardAppearance,
-        context: KeyboardContext,
+        keyboardContext: KeyboardContext,
         selection: EmojiCategory? = nil,
         style: EmojiKeyboardStyle = .standardPhonePortrait,
         categoryTitle: @escaping CategoryTitleProvider = standardCategoryTitle
@@ -198,7 +198,7 @@ public extension EmojiCategoryKeyboard where CategoryTitleView == EmojiCategoryT
         self.init(
             categories: categories,
             appearance: appearance,
-            context: context,
+            keyboardContext: keyboardContext,
             selection: selection,
             style: style,
             categoryTitle: categoryTitle,
@@ -235,7 +235,7 @@ struct EmojiCategoryKeyboard_Previews: PreviewProvider {
     static var previews: some View {
         EmojiCategoryKeyboard(
             appearance: .preview,
-            context: .preview,
+            keyboardContext: .preview,
             selection: .smileys)
     }
 }

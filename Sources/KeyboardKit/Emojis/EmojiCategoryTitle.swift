@@ -17,7 +17,8 @@ public struct EmojiCategoryTitle: View {
     
     public init(
         title: String,
-        style: EmojiKeyboardStyle) {
+        style: EmojiKeyboardStyle
+    ) {
         self.title = title
         self.style = style
     }

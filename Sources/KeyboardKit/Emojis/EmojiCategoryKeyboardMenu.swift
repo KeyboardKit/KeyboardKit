@@ -28,7 +28,7 @@ public struct EmojiCategoryKeyboardMenu: View {
      - Parameters:
        - categories: The categories to include in the menu.
        - appearance: The appearance to apply to the menu.
-       - context: The context to bind the buttons to.
+       - keyboardContext: The context to bind the buttons to.
        - selection: The current selection.
        - style: The style to apply to the menu.
        - actionHandler: The action handler to use, by default the shared one.
@@ -36,14 +36,14 @@ public struct EmojiCategoryKeyboardMenu: View {
     public init(
         categories: [EmojiCategory] = EmojiCategory.all,
         appearance: KeyboardAppearance,
-        context: KeyboardContext,
+        keyboardContext: KeyboardContext,
         selection: Binding<EmojiCategory>,
         style: EmojiKeyboardStyle,
         actionHandler: KeyboardActionHandler = KeyboardInputViewController.shared.keyboardActionHandler
     ) {
         self.categories = categories.filter { $0.emojis.count > 0 }
         self.appearance = appearance
-        self.context = context
+        self.keyboardContext = keyboardContext
         self._selection = selection
         self.style = style
         self.actionHandler = actionHandler
@@ -51,7 +51,7 @@ public struct EmojiCategoryKeyboardMenu: View {
     
     private let categories: [EmojiCategory]
     private let appearance: KeyboardAppearance
-    private let context: KeyboardContext
+    private let keyboardContext: KeyboardContext
     private let style: EmojiKeyboardStyle
     private let actionHandler: KeyboardActionHandler
     
@@ -111,7 +111,7 @@ struct EmojiCategoryKeyboardMenu_Previews: PreviewProvider {
     static var previews: some View {
         EmojiCategoryKeyboardMenu(
             appearance: .preview,
-            context: .preview,
+            keyboardContext: .preview,
             selection: .constant(.activities),
             style: .standardPhonePortrait)
     }

@@ -14,8 +14,8 @@ import Foundation
 public enum KeyboardCasing: String, Codable, Identifiable {
     
     /**
-     `.auto` is a transient state, that means that it should
-     automatically be replaced by another case.
+     `.auto` is a transient state, that should automatically
+     be replaced by another more apropriate case when typing.
      */
     case auto
     

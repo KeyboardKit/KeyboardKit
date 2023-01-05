@@ -334,7 +334,7 @@ private extension SystemKeyboard {
     var emojiKeyboard: some View {
         EmojiCategoryKeyboard(
             appearance: appearance,
-            context: keyboardContext,
+            keyboardContext: keyboardContext,
             style: .standard(for: keyboardContext)
         ).padding(.top)
     }

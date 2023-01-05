@@ -47,6 +47,9 @@ This release starts preparing for the next major version, by deprecating a lot o
 
 * `ActionCallout` now prefers a `keyboardContext` to be injected.
 * `ActionCallout` `context` has been renamed to `calloutContext`.
+* `EmojiKeyboard` `context` has been renamed to `keyboardContext`.
+* `EmojiCategoryKeyboard` `context` has been renamed to `keyboardContext`.
+* `EmojiCategoryKeyboardMenu` `context` has been renamed to `keyboardContext`.
 * `InputCallout` `context` has been renamed to `calloutContext`.
 * `KeyboardAction.newLine` has been replaced by `KeyboardAction.primary(.newLine)`.
 * `KeyboardAction.return` has been replaced by `KeyboardAction.primary(.return)`.
