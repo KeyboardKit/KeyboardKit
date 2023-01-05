@@ -25,24 +25,48 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
 
     // MARK: - Initialization
 
-    public init(
+    /**
+     Create a standard keyboard action handler, using a view
+     controller to setup all dependencies.
+
+     - Parameters:
+       - inputViewController: The view controller to use.
+       - spaceDragGestureHandler: A custom space drag gesture handler, if any.
+       - spaceDragSensitivity: The space drag sensitivity to use, by default ``SpaceDragSensitivity/medium``.
+       -
+     */
+    convenience init(
         inputViewController ivc: KeyboardInputViewController,
         spaceDragGestureHandler: DragGestureHandler? = nil,
         spaceDragSensitivity: SpaceDragSensitivity = .medium
     ) {
         weak var input = ivc
-        self.autocompleteAction = { input?.performAutocomplete() }
-        self.autocompleteContext = ivc.autocompleteContext
-        self.changeKeyboardTypeAction = { input?.keyboardContext.keyboardType = $0 }
-        self.keyboardBehavior = ivc.keyboardBehavior
-        self.keyboardContext = ivc.keyboardContext
-        self.keyboardFeedbackHandler = ivc.keyboardFeedbackHandler
-        self.spaceDragGestureHandler = spaceDragGestureHandler ?? SpaceCursorDragGestureHandler(
-            context: ivc.keyboardContext,
-            feedbackHandler: ivc.keyboardFeedbackHandler,
-            sensitivity: spaceDragSensitivity)
+        self.init(
+            keyboardContext: ivc.keyboardContext,
+            keyboardBehavior: ivc.keyboardBehavior,
+            keyboardFeedbackHandler: ivc.keyboardFeedbackHandler,
+            autocompleteContext: ivc.autocompleteContext,
+            autocompleteAction: { input?.performAutocomplete() },
+            changeKeyboardTypeAction: { input?.keyboardContext.keyboardType = $0 },
+            spaceDragGestureHandler: spaceDragGestureHandler,
+            spaceDragSensitivity: spaceDragSensitivity
+        )
     }
 
+    /**
+     Create a standard keyboard action handler.
+
+     - Parameters:
+       - keyboardContext: The keyboard context to use.
+       - keyboardBehavior: The keyboard behavior to use.
+       - keyboardFeedbackHandler: The keyboard feedback handler to use.
+       - autocompleteContext: The autocomplete context to use.
+       - autocompleteAction: The autocomplete action to use.
+       - changeKeyboardTypeAction: The action to use to change keyboard type.
+       - spaceDragGestureHandler: A custom space drag gesture handler, if any.
+       - spaceDragSensitivity: The space drag sensitivity to use, by default ``SpaceDragSensitivity/medium``.
+       -
+     */
     public init(
         keyboardContext: KeyboardContext,
         keyboardBehavior: KeyboardBehavior,
@@ -62,7 +86,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.spaceDragGestureHandler = spaceDragGestureHandler ?? SpaceCursorDragGestureHandler(
             context: keyboardContext,
             feedbackHandler: keyboardFeedbackHandler,
-            sensitivity: spaceDragSensitivity)
+            sensitivity: spaceDragSensitivity
+        )
     }
 
 

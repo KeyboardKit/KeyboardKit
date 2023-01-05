@@ -33,18 +33,18 @@ public extension KeyboardActions {
 
      The optional keyboard image and localization key prefix
      and suffix parameters can be used to generate different
-     names for every image name in the provided `imageNames`
-     array. For instance, providing a `emoji-` string as the
-     `keyboardImageNamePrefix` will generate an image action
-     where the `keyboardName` is prefixed with `emoji`.
+     names for each image name in the image names array. For
+     instance, using `emoji-` as a `keyboardImageNamePrefix`
+     will generate an image action where `keyboardName` will
+     prefixed with `emoji-`.
 
-     The localization keys are optional, but will be used to
-     improve the overall accessibility of the keyboard image.
+     The localization keys parameters are optional, but will
+     be used to improve the overall image accessibility.
 
      `throwAssertionFailure` will cause your app to crash in
      debug if a translation can't be retrieved for a certain
      image. This helps you assert that all image actions are
-     accessible. It is `true` by default.
+     accessible. It's `true` by default.
      */
     init(
         imageNames: [String],

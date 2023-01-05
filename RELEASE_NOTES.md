@@ -28,6 +28,11 @@ Some things that are planned for the 7.0 release:
 
 This release starts preparing for the next major version, by deprecating a lot of things that will change in that version.
 
+### 💡 Behavior changes
+
+* `KeyboardAction.primary` now applies autocomplete suggestions if it's a system action.
+* `StandardKeyboardActionHandler` has marked the view controller-based initializer as a convenience initializer.  
+
 ### 🗑 Deprecations
 
 * `KeyboardAction.newLine` is replaced by `KeyboardAction.primary(.newLine)`.
