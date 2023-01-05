@@ -43,7 +43,7 @@ class KeyboardViewController: KeyboardInputViewController {
 
         // Set a custom dictation key replacement.
         // 💡 This will replace the dictation button on keyboards that need it.
-        // keyboardContext.keyboardDictationReplacement = .keyboardType(.emojis)
+        keyboardContext.keyboardDictationReplacement = .keyboardType(.emojis)
         
         // Setup a fake, demo-specific autocomplete provider.
         // 💡 You can change this provider to see how the autocomplete changes.
