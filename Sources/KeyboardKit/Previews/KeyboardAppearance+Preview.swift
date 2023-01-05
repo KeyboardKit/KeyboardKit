@@ -32,7 +32,7 @@ extension KeyboardAppearance where Self == PreviewKeyboardAppearance {
 public class PreviewKeyboardAppearance: StandardKeyboardAppearance {
     
     init() {
-        super.init(context: .preview)
+        super.init(keyboardContext: .preview)
     }
     
     public override func inputCalloutStyle() -> InputCalloutStyle {

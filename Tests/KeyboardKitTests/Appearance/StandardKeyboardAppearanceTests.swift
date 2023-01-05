@@ -21,7 +21,7 @@ class StandardKeyboardAppearanceTests: XCTestCase {
 
     override func setUp() {
         context = KeyboardContext()
-        appearance = StandardKeyboardAppearance(context: context)
+        appearance = StandardKeyboardAppearance(keyboardContext: context)
         styles = KeyboardAction.testActions.map {
             (action: $0, style: appearance.buttonStyle(for: $0, isPressed: false))
         }

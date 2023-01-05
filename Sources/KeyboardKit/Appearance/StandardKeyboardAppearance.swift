@@ -37,22 +37,33 @@ import CoreGraphics
  Sometimes that is what you want, but most often perhaps not.
  */
 open class StandardKeyboardAppearance: KeyboardAppearance {
+
+    @available(*, deprecated, message: "Use the keyboardContext initializer instead")
+    init(context: KeyboardContext) {
+        self.keyboardContext = context
+    }
     
     /**
      Create a standard keyboard appearance intance.
      
      - Parameters:
-       - context: The context to use for resolving styles.
+     - keyboardContext: The keyboard context to use.
      */
-    public init(context: KeyboardContext) {
-        self.context = context
+    public init(keyboardContext: KeyboardContext) {
+        self.keyboardContext = keyboardContext
     }
     
     
-    private let context: KeyboardContext
-    
-    private var layoutConfig: KeyboardLayoutConfiguration {
-        .standard(for: context)
+    /**
+     The keyboard context to use.
+     */
+    public let keyboardContext: KeyboardContext
+
+    /**
+     The keyboard layout configuration to use.
+     */
+    public var keyboardLayoutConfiguration: KeyboardLayoutConfiguration {
+        .standard(for: keyboardContext)
     }
     
     
@@ -75,7 +86,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
      button image that is used for an action.
      */
     open func buttonImage(for action: KeyboardAction) -> Image? {
-        action.standardButtonImage(for: context)
+        action.standardButtonImage(for: keyboardContext)
     }
     
     /**
@@ -101,7 +112,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
      button text that is used for an action.
      */
     open func buttonText(for action: KeyboardAction) -> String? {
-        action.standardButtonText(for: context)
+        action.standardButtonText(for: keyboardContext)
     }
     
     /**
@@ -126,8 +137,8 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
      button style property.
      */
     open func buttonBackgroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
-        let fullOpacity = context.hasDarkColorScheme || isPressed
-        return action.buttonBackgroundColor(for: context, isPressed: isPressed)
+        let fullOpacity = keyboardContext.hasDarkColorScheme || isPressed
+        return action.buttonBackgroundColor(for: keyboardContext, isPressed: isPressed)
             .opacity(fullOpacity ? 1 : 0.95)
     }
     
@@ -151,7 +162,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
      button style property.
      */
     open func buttonCornerRadius(for action: KeyboardAction) -> CGFloat {
-        layoutConfig.buttonCornerRadius
+        keyboardLayoutConfiguration.buttonCornerRadius
     }
     
     /**
@@ -175,12 +186,11 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     open func buttonFontSize(for action: KeyboardAction) -> CGFloat {
         if buttonImage(for: action) != nil { return 20 }
         switch action {
-        case .keyboardType(let type): return type.standardButtonFontSize(for: context)
+        case .keyboardType(let type): return type.standardButtonFontSize(for: keyboardContext)
         case .space: return 16
         default: break
         }
         let text = buttonText(for: action) ?? ""
-        // if context.deviceType == .phone && text.count > 7 { return 12 }
         if action.isInputAction && text.isLowercased { return 26 }
         if action.isSystemAction || action.isPrimaryAction { return 16 }
         return 23
@@ -207,7 +217,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
      button style property.
      */
     open func buttonForegroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
-        action.buttonForegroundColor(for: context, isPressed: isPressed)
+        action.buttonForegroundColor(for: keyboardContext, isPressed: isPressed)
     }
     
     /**

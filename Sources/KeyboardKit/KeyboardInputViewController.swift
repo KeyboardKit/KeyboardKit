@@ -221,7 +221,7 @@ open class KeyboardInputViewController: UIInputViewController {
      ``StandardKeyboardAppearance`` is used by default.
      */
     public lazy var keyboardAppearance: KeyboardAppearance = StandardKeyboardAppearance(
-        context: keyboardContext)
+        keyboardContext: keyboardContext)
 
     /**
      This behavior determines how the keyboard should behave

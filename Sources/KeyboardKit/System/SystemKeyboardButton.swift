@@ -51,7 +51,7 @@ public struct SystemKeyboardButton<Content: View>: View {
 struct SystemKeyboardButton_Previews: PreviewProvider {
     
     static let appearance = StandardKeyboardAppearance(
-        context: .preview)
+        keyboardContext: .preview)
     
     static func previewButton<Content: View>(for content: Content, style: KeyboardButtonStyle) -> some View {
         SystemKeyboardButton(

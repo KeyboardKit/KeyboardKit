@@ -23,9 +23,8 @@ public extension KeyboardAction {
      This typealias represents a gesture action that affects
      the provided view controller.
 
-     > Important: This will NOT use a view controller in 7.0,
-     but rather use a ``KeyboardActionTrigger`` protocol, so
-     it can be available to all platforms. (TODO)
+     > NOTE: This will NOT use a view controller in 7.0, but
+     rather use a protocol, to be available to all platforms.
      */
     typealias GestureAction = (KeyboardInputViewController?) -> Void
     

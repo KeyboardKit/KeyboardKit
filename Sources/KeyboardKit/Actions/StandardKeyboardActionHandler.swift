@@ -65,7 +65,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
        - changeKeyboardTypeAction: The action to use to change keyboard type.
        - spaceDragGestureHandler: A custom space drag gesture handler, if any.
        - spaceDragSensitivity: The space drag sensitivity to use, by default ``SpaceDragSensitivity/medium``.
-       -
      */
     public init(
         keyboardContext: KeyboardContext,
@@ -100,6 +99,13 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     public let spaceDragGestureHandler: DragGestureHandler
 
     public internal(set) var autocompleteAction: () -> Void
+
+    /**
+     The action to use to change keyboard type.
+
+     > Deprecated: This action is no longer needed, and will
+     be removed in KK 7.0. Just affect the proxy directly.
+     */
     public let changeKeyboardTypeAction: (KeyboardType) -> Void
 
 
