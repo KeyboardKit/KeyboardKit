@@ -26,8 +26,8 @@ public struct KeyboardButtonStyle {
        - foregroundColor: The border color to apply to the button.
        - font: The font to apply to the button.
        - cornerRadius: The corner radius to apply to the button.
-       - border: The border style to apply to the button, by default `.standard`.
-       - shadow: The shadow style to apply to the button, by default `.standard`.
+       - border: The border style to apply to the button, by default ``KeyboardButtonBorderStyle/standard``.
+       - shadow: The shadow style to apply to the button, by default ``KeyboardButtonShadowStyle/standard.
      */
     public init(
         backgroundColor: Color,

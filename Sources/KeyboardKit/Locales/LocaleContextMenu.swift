@@ -22,28 +22,28 @@ import SwiftUI
 public struct LocaleContextMenu<MenuItem: View>: ViewModifier {
 
     public init(
-        context: KeyboardContext
+        keyboardContext: KeyboardContext
     ) where MenuItem == Text {
-        self.init(context: context) {
+        self.init(keyboardContext: keyboardContext) {
             Text($0.localizedName.capitalized())
         }
     }
 
     public init(
-        context: KeyboardContext,
+        keyboardContext: KeyboardContext,
         menuItem: @escaping (Locale) -> MenuItem
     ) {
-        self._context = ObservedObject(wrappedValue: context)
+        self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
         self.menuItem = menuItem
     }
 
     @ObservedObject
-    private var context: KeyboardContext
+    private var keyboardContext: KeyboardContext
 
     private var menuItem: (Locale) -> MenuItem
 
     public func body(content: Content) -> some View {
-        if context.locales.count > 1 {
+        if keyboardContext.locales.count > 1 {
             content.contextMenu(
                 ContextMenu {
                     menu
@@ -58,8 +58,8 @@ public struct LocaleContextMenu<MenuItem: View>: ViewModifier {
 public extension LocaleContextMenu {
 
     var menu: some View {
-        ForEach(context.locales, id: \.identifier) { locale in
-            Button(action: { context.locale = locale }, label: {
+        ForEach(keyboardContext.locales, id: \.identifier) { locale in
+            Button(action: { keyboardContext.locale = locale }, label: {
                 menuItem(locale)
             })
         }
@@ -80,7 +80,7 @@ public extension View {
         for context: KeyboardContext
     ) -> some View {
         self.modifier(LocaleContextMenu(
-            context: context)
+            keyboardContext: context)
         )
     }
 
@@ -97,7 +97,7 @@ public extension View {
         buttonContentBuilder: @escaping (Locale) -> ButtonView
     ) -> some View {
         self.modifier(LocaleContextMenu(
-            context: context,
+            keyboardContext: context,
             menuItem: buttonContentBuilder)
         )
     }

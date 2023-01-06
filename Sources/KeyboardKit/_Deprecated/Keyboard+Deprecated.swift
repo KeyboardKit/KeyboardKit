@@ -44,7 +44,7 @@ public extension KeyboardContext {
         locale: Locale = .current,
         keyboardType: KeyboardType
     ) {
-        self.init(controller: controller, locale: locale)
+        self.init(controller: controller)
         self.keyboardType = keyboardType
         self.locale = locale
         self.locales = [locale]
@@ -55,12 +55,15 @@ public extension KeyboardContext {
         locale: Locale = .current,
         keyboardType: KeyboardType
     ) {
-        self.init(locale: locale)
+        self.init()
         self.keyboardType = keyboardType
+        self.locale = locale
+        self.locales = [locale]
     }
     #endif
 }
 
+#if os(iOS) || os(tvOS)
 public extension KeyboardEnabledState {
 
     @available(*, deprecated, renamed: "isKeyboardActive")
@@ -77,6 +80,7 @@ public extension KeyboardEnabledStateInspector {
         isKeyboardActive(withBundleId: bundleId)
     }
 }
+#endif
 
 public extension KeyboardType {
     

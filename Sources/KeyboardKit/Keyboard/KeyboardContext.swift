@@ -303,16 +303,10 @@ public extension KeyboardContext {
         if interfaceOrientation != controller.orientation {
             interfaceOrientation = controller.orientation
         }
-        #if os(iOS)
         let newPrefersAutocomplete = keyboardType.prefersAutocomplete && (textDocumentProxy.keyboardType?.prefersAutocomplete ?? true)
         if prefersAutocomplete != newPrefersAutocomplete {
             prefersAutocomplete = newPrefersAutocomplete
         }
-        #else
-        if prefersAutocomplete != keyboardType.prefersAutocomplete {
-            prefersAutocomplete = keyboardType.prefersAutocomplete
-        }
-        #endif
         if screenSize != controller.screenSize {
             screenSize = controller.screenSize
         }
@@ -336,6 +330,7 @@ public extension KeyboardContext {
     #endif
 }
 
+#if os(iOS) || os(tvOS)
 private extension UIInputViewController {
 
     var orientation: InterfaceOrientation {
@@ -346,3 +341,4 @@ private extension UIInputViewController {
         view.window?.screen.bounds.size ?? .zero
     }
 }
+#endif

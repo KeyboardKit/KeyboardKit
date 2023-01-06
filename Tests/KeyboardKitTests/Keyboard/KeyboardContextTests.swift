@@ -6,9 +6,10 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(tvOS)
 import MockingKit
-import UIKit
 import XCTest
+import UIKit
 
 @testable import KeyboardKit
 
@@ -152,3 +153,4 @@ class KeyboardContextTests: XCTestCase {
     }
     #endif
 }
+#endif

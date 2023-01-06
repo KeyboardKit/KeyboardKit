@@ -20,7 +20,9 @@ public class StaticKeyboardLayoutProvider: KeyboardLayoutProvider {
      - Parameters:
        - keyboardLayout: The keyboard layout to use.
      */
-    public init(keyboardLayout: KeyboardLayout) {
+    public init(
+        keyboardLayout: KeyboardLayout
+    ) {
         self.layout = keyboardLayout
     }
     
@@ -32,7 +34,7 @@ public class StaticKeyboardLayoutProvider: KeyboardLayoutProvider {
     
     
     /**
-     Get a keyboard layout for a certain keyboard `context`.
+     Get a keyboard layout for a certain keyboard context.
      */
     public func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         layout

@@ -21,8 +21,8 @@ public struct KeyboardButtonBorderStyle: Equatable {
      Create a system keyboard button border style.
      
      - Parameters:
-       - color: The color of the border.
-       - size: The size of the border.
+       - color: The color of the border, by default `.clear`.
+       - size: The size of the border, by default `0`.
      */
     public init(
         color: Color = .clear,

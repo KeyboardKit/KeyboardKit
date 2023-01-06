@@ -21,8 +21,10 @@ public extension CalloutActionProvider where Self == PreviewCalloutActionProvide
  */
 public class PreviewCalloutActionProvider: CalloutActionProvider {
     
-    public init(context: KeyboardContext = .preview) {
-        provider = StandardCalloutActionProvider(keyboardContext: context)
+    public init(keyboardContext: KeyboardContext = .preview) {
+        provider = StandardCalloutActionProvider(
+            keyboardContext: keyboardContext
+        )
     }
     
     private let provider: CalloutActionProvider

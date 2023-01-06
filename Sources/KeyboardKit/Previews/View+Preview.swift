@@ -14,8 +14,8 @@ public extension View {
      This modifier prepares the view with environment object
      instances that are required for some views.
      */
-    func keyboardPreview(context: KeyboardContext = .preview) -> some View {
-        self.environmentObject(context)
+    func keyboardPreview(keyboardContext: KeyboardContext = .preview) -> some View {
+        self.environmentObject(keyboardContext)
             .environmentObject(ActionCalloutContext.preview)
             .environmentObject(InputCalloutContext.preview)
     }

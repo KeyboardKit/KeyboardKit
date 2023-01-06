@@ -27,7 +27,7 @@ protocol InterfaceOrientationResolver {
 
 // MARK: - UIScreen
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
 extension UIScreen: InterfaceOrientationResolver {}
 
 extension UIScreen {

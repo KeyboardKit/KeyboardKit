@@ -22,7 +22,7 @@ public struct KeyboardButtonShadowStyle: Equatable {
      
      - Parameters:
        - color: The color of the shadow, by default `.standardButtonShadow`.
-       - size: The size of the shadow, by default 1.
+       - size: The size of the shadow, by default `1`.
      */
     public init(
         color: Color = .standardButtonShadow,
