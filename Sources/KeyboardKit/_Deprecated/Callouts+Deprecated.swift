@@ -41,7 +41,7 @@ public extension InputCallout {
 
 public extension View {
 
-    @available(*, deprecated, message: "Use calloutContext function instead")
+    @available(*, deprecated, renamed: "keyboardActionCallout")
     func actionCallout(
         context: ActionCalloutContext,
         style: ActionCalloutStyle = .standard,
@@ -57,19 +57,49 @@ public extension View {
         }.coordinateSpace(name: ActionCalloutContext.coordinateSpace)
     }
 
+    @available(*, deprecated, renamed: "keyboardActionCallout")
+    func actionCallout(
+        calloutContext: ActionCalloutContext,
+        keyboardContext: KeyboardContext,
+        style: ActionCalloutStyle = .standard,
+        emojiKeyboardStyle: EmojiKeyboardStyle = .standardPhonePortrait
+    ) -> some View {
+        keyboardActionCallout(
+            calloutContext: calloutContext,
+            keyboardContext: keyboardContext,
+            style: style,
+            emojiKeyboardStyle: emojiKeyboardStyle
+        )
+    }
 
-    @available(*, deprecated, message: "Use calloutContext function instead")
+    @available(*, deprecated, renamed: "keyboardCalloutShadow")
+    func calloutShadow(style: CalloutStyle) -> some View {
+        keyboardCalloutShadow(style: style)
+    }
+
+    @available(*, deprecated, renamed: "keyboardInputCallout")
     func inputCallout(
         context: InputCalloutContext,
         keyboardContext: KeyboardContext,
         style: InputCalloutStyle = .standard
     ) -> some View {
-        ZStack {
-            self
-            InputCallout(
-                context: context,
-                keyboardContext: keyboardContext,
-                style: style)
-        }.coordinateSpace(name: InputCallout.coordinateSpace)
+        keyboardInputCallout(
+            calloutContext: context,
+            keyboardContext: keyboardContext,
+            style: style
+        )
+    }
+
+    @available(*, deprecated, renamed: "keyboardInputCallout")
+    func inputCallout(
+        calloutContext: InputCalloutContext,
+        keyboardContext: KeyboardContext,
+        style: InputCalloutStyle = .standard
+    ) -> some View {
+        keyboardInputCallout(
+            calloutContext: calloutContext,
+            keyboardContext: keyboardContext,
+            style: style
+        )
     }
 }

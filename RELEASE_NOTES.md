@@ -101,7 +101,10 @@ Most of the changes only affect functionality that is mostly used internally, bu
 * `SystemKeyboardSpaceButtonContent` is renamed to `SystemKeyboardSpaceContent`.
 * `SystemKeyboardSpaceContent` init with a `spaceText` parameter is deprecated.
 * `UIScreen` device extensions are deprecated.
-* `View+Frame` is deprecated. 
+* `View+Frame` is deprecated.
+* `View.actionCallout` is renamed to `View.keyboardActionCallout`.
+* `View.calloutShadow` is renamed to `View.keyboardCalloutShadow`.
+* `View.inputCallout` is renamed to `View.keyboardInputCallout`. 
 
 ### 💥 Breaking changes
 

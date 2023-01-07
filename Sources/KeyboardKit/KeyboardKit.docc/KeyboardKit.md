@@ -47,7 +47,7 @@ Note that extensions to native types are not included in this documentation. Fut
 
 
 
-## 🇸🇪 Localization
+## Localization
 
 KeyboardKit is localized in 60 keyboard-specific locales:
 

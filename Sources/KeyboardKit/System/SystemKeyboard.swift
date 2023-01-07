@@ -237,13 +237,13 @@ public struct SystemKeyboard<ButtonView: View>: View {
 
     public var body: some View {
         keyboardView
-            .actionCallout(
+            .keyboardActionCallout(
                 calloutContext: actionCalloutContext,
                 keyboardContext: keyboardContext,
                 style: actionCalloutStyle,
                 emojiKeyboardStyle: .standard(for: keyboardContext)
             )
-            .inputCallout(
+            .keyboardInputCallout(
                 calloutContext: inputCalloutContext,
                 keyboardContext: keyboardContext,
                 style: inputCalloutStyle

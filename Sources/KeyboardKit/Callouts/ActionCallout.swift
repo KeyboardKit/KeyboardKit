@@ -52,7 +52,7 @@ public struct ActionCallout: View {
         .font(style.font)
         .compositingGroup()
         .opacity(calloutContext.isActive ? 1 : 0)
-        .calloutShadow(style: calloutStyle)
+        .keyboardCalloutShadow(style: calloutStyle)
         #if os(iOS) || os(macOS) || os(watchOS)
         .onTapGesture(perform: calloutContext.reset)    // TODO: Use a regular button with a button style?
         #endif
@@ -212,7 +212,7 @@ struct ActionCallout_Previews: PreviewProvider {
                         )
                     }
                 }
-            ).actionCallout(
+            ).keyboardActionCallout(
                 calloutContext: context1,
                 keyboardContext: keyboardContext,
                 style: .standard,
@@ -232,7 +232,7 @@ struct ActionCallout_Previews: PreviewProvider {
                         )
                     }
                 }
-            ).actionCallout(
+            ).keyboardActionCallout(
                 calloutContext: context2,
                 keyboardContext: keyboardContext,
                 style: rowItemStyle,

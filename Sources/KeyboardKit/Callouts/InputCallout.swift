@@ -46,7 +46,7 @@ public struct InputCallout: View {
         callout
             .transition(.opacity)
             .opacity(calloutContext.isActive ? 1 : 0)
-            .calloutShadow(style: calloutStyle)
+            .keyboardCalloutShadow(style: calloutStyle)
             .position(position)
             .allowsHitTesting(false)
     }
@@ -197,7 +197,7 @@ struct InputCallout_Previews: PreviewProvider {
                     context.reset()
                 }
             }
-            .inputCallout(
+            .keyboardInputCallout(
                 calloutContext: context,
                 keyboardContext: .preview
             )
