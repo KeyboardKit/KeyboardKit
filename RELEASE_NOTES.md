@@ -56,6 +56,7 @@ Most of the changes only affect functionality that is mostly used internally, bu
 
 * `KeyboardAction.primary` now applies autocomplete suggestions if it's a system action.
 * `KeyboardContext` controller-based initializer is marked as a convenience initializer.
+* `SystemKeyboard` no longer depends on `AnyView`.
 * `SystemKeyboardSpaceButtonContent` no longer depends on `AnyView`.  
 
 ### 🗑 Deprecations

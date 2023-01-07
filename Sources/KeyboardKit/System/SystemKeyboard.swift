@@ -14,7 +14,8 @@ import SwiftUI
  iOS keyboard as closely as possible.
 
  This view can be used for keyboard like standard alphabetic,
- numeric and symbolic keyboards, as well as emoji ones.
+ numeric and symbolic keyboards, as well as emoji ones if it
+ is used on iOS 14 and later.
 
  There are several ways to create a system keyboard. Use the
  initializer without a view builder to use a standard button
@@ -31,15 +32,11 @@ import SwiftUI
  the shared input view controller's view.
 
  The initializers may look strange, since the default values
- for `controller` and `width` are `nil` then resolved within
- the initializer. The reason for this is that there is a bug
- in Xcode, that makes the default parameters fail to compile
- when they're part of a binary framework. Instead, using nil
- and then resolving the values in the initializer body works.
-
- On iOS 14, the keyboard will automatically switch to use an
- ``EmojiCategoryKeyboard`` if ``KeyboardContext/keyboardType``
- changes to ``KeyboardType/emojis``.
+ for `controller` and `width` are `nil` then resolved in the
+ initializer. The is because there's an Xcode bug that makes
+ the default parameters fail to compile when they're part of
+ a binary framework. Instead, using `nil` and then resolving
+ the values in the initializer body works.
  */
 public struct SystemKeyboard<ButtonView: View>: View {
 
@@ -71,10 +68,99 @@ public struct SystemKeyboard<ButtonView: View>: View {
     }
 
     /**
+     Create a system keyboard view that uses a standard view
+     builder for every layout item.
+     */
+    public init(
+        layout: KeyboardLayout,
+        appearance: KeyboardAppearance,
+        actionHandler: KeyboardActionHandler,
+        keyboardContext: KeyboardContext,
+        actionCalloutContext: ActionCalloutContext?,
+        inputCalloutContext: InputCalloutContext?,
+        width: CGFloat? = nil
+    ) where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardActionButtonContent> {
+        self.init(
+            layout: layout,
+            appearance: appearance,
+            actionHandler: actionHandler,
+            keyboardContext: keyboardContext,
+            actionCalloutContext: actionCalloutContext,
+            inputCalloutContext: inputCalloutContext,
+            width: width,
+            buttonView: { item, keyboardWidth, inputWidth in
+                Self.standardButtonView(
+                    item: item,
+                    appearance: appearance,
+                    actionHandler: actionHandler,
+                    keyboardContext: keyboardContext,
+                    keyboardWidth: keyboardWidth,
+                    inputWidth: inputWidth)
+            }
+        )
+    }
+
+    /**
+     Create a system keyboard view, that uses `buttonContent`
+     to customize the intrinsic content of every layout item.
+     */
+    public init<ButtonContentView: View>(
+        layout: KeyboardLayout,
+        appearance: KeyboardAppearance,
+        actionHandler: KeyboardActionHandler,
+        keyboardContext: KeyboardContext,
+        actionCalloutContext: ActionCalloutContext?,
+        inputCalloutContext: InputCalloutContext?,
+        width: CGFloat? = nil,
+        @ViewBuilder buttonContent: @escaping (KeyboardLayoutItem) -> ButtonContentView
+    ) where ButtonView == SystemKeyboardButtonRowItem<ButtonContentView> {
+        self.init(
+            layout: layout,
+            appearance: appearance,
+            actionHandler: actionHandler,
+            keyboardContext: keyboardContext,
+            actionCalloutContext: actionCalloutContext,
+            inputCalloutContext: inputCalloutContext,
+            width: width,
+            buttonView: { item, keyboardWidth, inputWidth in
+                SystemKeyboardButtonRowItem(
+                    content: buttonContent(item),
+                    item: item,
+                    keyboardContext: keyboardContext,
+                    keyboardWidth: keyboardWidth,
+                    inputWidth: inputWidth,
+                    appearance: appearance,
+                    actionHandler: actionHandler
+                )
+            }
+        )
+    }
+
+    /**
+     Create a system keyboard view that uses a standard view
+     builder for every layout item.
+     */
+    public init(
+        controller: KeyboardInputViewController? = nil,
+        width: CGFloat? = nil
+    ) where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardActionButtonContent> {
+        let controller = controller ?? .shared
+        self.init(
+            layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
+            appearance: controller.keyboardAppearance,
+            actionHandler: controller.keyboardActionHandler,
+            keyboardContext: controller.keyboardContext,
+            actionCalloutContext: controller.actionCalloutContext,
+            inputCalloutContext: controller.inputCalloutContext,
+            width: width
+        )
+    }
+
+    /**
      Create a system keyboard that uses a custom `buttonView`
      builder to create the entire view for every layout item.
      */
-    init(
+    public init(
         controller: KeyboardInputViewController? = nil,
         width: CGFloat? = nil,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder
@@ -88,7 +174,30 @@ public struct SystemKeyboard<ButtonView: View>: View {
             actionCalloutContext: controller.actionCalloutContext,
             inputCalloutContext: controller.inputCalloutContext,
             width: width,
-            buttonView: buttonView)
+            buttonView: buttonView
+        )
+    }
+
+    /**
+     Create a system keyboard view, that uses `buttonContent`
+     to customize the intrinsic content of every layout item.
+     */
+    public init<ButtonContentView: View>(
+        controller: KeyboardInputViewController? = nil,
+        width: CGFloat? = nil,
+        @ViewBuilder buttonContent: @escaping (KeyboardLayoutItem) -> ButtonContentView
+    ) where ButtonView == SystemKeyboardButtonRowItem<ButtonContentView> {
+        let controller = controller ?? .shared
+        self.init(
+            layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
+            appearance: controller.keyboardAppearance,
+            actionHandler: controller.keyboardActionHandler,
+            keyboardContext: controller.keyboardContext,
+            actionCalloutContext: controller.actionCalloutContext,
+            inputCalloutContext: controller.inputCalloutContext,
+            width: width,
+            buttonContent: buttonContent
+        )
     }
 
     private let actionHandler: KeyboardActionHandler
@@ -151,125 +260,6 @@ public struct SystemKeyboard<ButtonView: View>: View {
         } else {
             systemKeyboard
         }
-    }
-}
-
-public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardActionButtonContent> {
-
-    /**
-     Create a system keyboard view that uses a standard view
-     builder for every layout item.
-
-     See ``SystemKeyboard/standardButtonView(item:appearance:actionHandler:keyboardContext:keyboardWidth:inputWidth:)`` for more info.
-     */
-    init(
-        layout: KeyboardLayout,
-        appearance: KeyboardAppearance,
-        actionHandler: KeyboardActionHandler,
-        keyboardContext: KeyboardContext,
-        actionCalloutContext: ActionCalloutContext?,
-        inputCalloutContext: InputCalloutContext?,
-        width: CGFloat? = nil
-    ) {
-        self.init(
-            layout: layout,
-            appearance: appearance,
-            actionHandler: actionHandler,
-            keyboardContext: keyboardContext,
-            actionCalloutContext: actionCalloutContext,
-            inputCalloutContext: inputCalloutContext,
-            width: width,
-            buttonView: { item, keyboardWidth, inputWidth in
-                Self.standardButtonView(
-                    item: item,
-                    appearance: appearance,
-                    actionHandler: actionHandler,
-                    keyboardContext: keyboardContext,
-                    keyboardWidth: keyboardWidth,
-                    inputWidth: inputWidth)
-            }
-        )
-    }
-
-    /**
-     Create a system keyboard view that uses a standard view
-     builder for every layout item.
-
-     See ``SystemKeyboard/standardButtonView(item:appearance:actionHandler:keyboardContext:keyboardWidth:inputWidth:)`` for more info.
-     */
-    init(
-        controller: KeyboardInputViewController? = nil,
-        width: CGFloat? = nil
-    ) {
-        let controller = controller ?? .shared
-        self.init(
-            layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
-            appearance: controller.keyboardAppearance,
-            actionHandler: controller.keyboardActionHandler,
-            keyboardContext: controller.keyboardContext,
-            actionCalloutContext: controller.actionCalloutContext,
-            inputCalloutContext: controller.inputCalloutContext,
-            width: width)
-    }
-}
-
-public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<AnyView> {
-
-    /**
-     Create a system keyboard view, that uses `buttonContent`
-     to customize the intrinsic content of every layout item.
-     */
-    init<ButtonContentView: View>(
-        layout: KeyboardLayout,
-        appearance: KeyboardAppearance,
-        actionHandler: KeyboardActionHandler,
-        keyboardContext: KeyboardContext,
-        actionCalloutContext: ActionCalloutContext?,
-        inputCalloutContext: InputCalloutContext?,
-        width: CGFloat? = nil,
-        @ViewBuilder buttonContent: @escaping (KeyboardLayoutItem) -> ButtonContentView
-    ) {
-        self.init(
-            layout: layout,
-            appearance: appearance,
-            actionHandler: actionHandler,
-            keyboardContext: keyboardContext,
-            actionCalloutContext: actionCalloutContext,
-            inputCalloutContext: inputCalloutContext,
-            width: width,
-            buttonView: { item, keyboardWidth, inputWidth in
-                SystemKeyboardButtonRowItem(
-                    content: AnyView(buttonContent(item)),
-                    item: item,
-                    keyboardContext: keyboardContext,
-                    keyboardWidth: keyboardWidth,
-                    inputWidth: inputWidth,
-                    appearance: appearance,
-                    actionHandler: actionHandler
-                )
-            }
-        )
-    }
-
-    /**
-     Create a system keyboard view, that uses `buttonContent`
-     to customize the intrinsic content of every layout item.
-     */
-    init<ButtonContentView: View>(
-        controller: KeyboardInputViewController? = nil,
-        width: CGFloat? = nil,
-        @ViewBuilder buttonContent: @escaping (KeyboardLayoutItem) -> ButtonContentView
-    ) {
-        let controller = controller ?? .shared
-        self.init(
-            layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
-            appearance: controller.keyboardAppearance,
-            actionHandler: controller.keyboardActionHandler,
-            keyboardContext: controller.keyboardContext,
-            actionCalloutContext: controller.actionCalloutContext,
-            inputCalloutContext: controller.inputCalloutContext,
-            width: width,
-            buttonContent: buttonContent)
     }
 }
 
@@ -376,7 +366,8 @@ struct SystemKeyboard_Previews: PreviewProvider {
     static func previewButton(
         item: KeyboardLayoutItem,
         keyboardWidth: CGFloat,
-        inputWidth: CGFloat) -> some View {
+        inputWidth: CGFloat
+    ) -> some View {
         switch item.action {
         case .space:
             Text("This is a space bar replacement")
@@ -396,10 +387,11 @@ struct SystemKeyboard_Previews: PreviewProvider {
 
     @ViewBuilder
     static func previewButtonContent(
-        item: KeyboardLayoutItem) -> some View {
+        item: KeyboardLayoutItem
+    ) -> some View {
         switch item.action {
         case .backspace:
-            Text("<-").foregroundColor(Color.red)
+            Image(systemName: "trash").foregroundColor(Color.red)
         default:
             SystemKeyboardActionButtonContent(
                 action: item.action,
