@@ -11,8 +11,7 @@ import SwiftUI
 public extension View {
     
     /**
-     Apply a system keyboard button style using the provided
-     `appearance` for the given `action`.
+     Apply a keyboard button style to the view.
      */
     func systemKeyboardButtonStyle(_ style: KeyboardButtonStyle) -> some View {
         self.background(SystemKeyboardButtonBody(style: style))
@@ -33,7 +32,7 @@ struct View_Button_Previews: PreviewProvider {
     }
     
     static var previews: some View {
-        VStack {
+        VStack(spacing: 20) {
             button(for: Text("a"), style: .preview1)
             button(for: Text("A"), style: .preview2)
             button(for: Image.keyboardGlobe, style: .preview1)

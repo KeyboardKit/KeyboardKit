@@ -9,8 +9,10 @@
 import SwiftUI
 
 /**
- This view represents the body of a standard system keyboard
- button, excluding the button text or image.
+ This view renders the body of a system keyboard button.
+
+ The body is the button "background", which means the entire
+ button shape, without its text or image.
  */
 public struct SystemKeyboardButtonBody: View {
     

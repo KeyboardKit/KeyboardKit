@@ -9,36 +9,40 @@
 import SwiftUI
 
 /**
- This view resolves the correct content for a certain action,
- which will result in either a text or image, or nothing. It
- also sets up line limits, vertical offsets etc.
- 
- This view will also setup a special spacebar that shows the
- locale name if the `context` has more than a one locale.
+ This view renders content for a system keyboard button that
+ is based on a certain ``KeyboardAction``.
+
+ This view will adapt its content to conform to the provided
+ `action` and `appearance` and applies keyboard gestures for
+ the provided `action`, `actionHandler` and `context`.
+
+ The view sets up gestures, line limits, vertical offset etc.
+ and aims to make the button mimic an iOS system keyboard as
+ closely as possible.
  */
 public struct SystemKeyboardActionButtonContent: View {
     
     /**
-     Create a system keyboard button content view.
+     Create a system keyboard action button content view.
      
      - Parameters:
-       - action: The action for which to generate content.
+       - action: The keyboard action to use.
        - appearance: The appearance to apply to the content.
-       - context: The context to use when resolving content.
+       - keyboardContext: The keyboard context to use.
      */
     public init(
         action: KeyboardAction,
         appearance: KeyboardAppearance,
-        context: KeyboardContext
+        keyboardContext: KeyboardContext
     ) {
         self.action = action
         self.appearance = appearance
-        self.context = context
+        self.keyboardContext = keyboardContext
     }
     
     private let action: KeyboardAction
     private let appearance: KeyboardAppearance
-    private let context: KeyboardContext
+    private let keyboardContext: KeyboardContext
     
     public var body: some View {
         if action == .nextKeyboard {
@@ -49,9 +53,9 @@ public struct SystemKeyboardActionButtonContent: View {
             #endif
         } else if action == .space {
             spaceView
-        } else if let image = buttonImage {
+        } else if let image = appearance.buttonImage(for: action) {
             image
-        } else if let text = buttonText {
+        } else if let text = appearance.buttonText(for: action) {
             textView(for: text)
         } else {
             Text("")
@@ -61,17 +65,9 @@ public struct SystemKeyboardActionButtonContent: View {
 
 private extension SystemKeyboardActionButtonContent {
     
-    var buttonImage: Image? {
-        appearance.buttonImage(for: action)
-    }
-    
-    var buttonText: String? {
-        appearance.buttonText(for: action)
-    }
-    
     var spaceView: some View {
-        SystemKeyboardSpaceButtonContent(
-            localeText: localeText,
+        SystemKeyboardSpaceContent(
+            localeText: shouldShowLocaleName ? localeName : spaceText,
             spaceText: spaceText
         )
     }
@@ -89,15 +85,11 @@ private extension SystemKeyboardActionButtonContent {
 private extension SystemKeyboardActionButtonContent {
     
     var localeName: String {
-        context.locale.localizedLanguageName ?? ""
-    }
-    
-    var localeText: String {
-        shouldShowLocaleName ? localeName : spaceText
+        keyboardContext.locale.localizedLanguageName ?? ""
     }
     
     var shouldShowLocaleName: Bool {
-        context.locales.count > 1
+        keyboardContext.locales.count > 1
     }
     
     var spaceText: String {
@@ -122,7 +114,7 @@ struct SystemKeyboardButtonContent_Previews: PreviewProvider {
         SystemKeyboardActionButtonContent(
             action: action,
             appearance: .preview,
-            context: multiLocale ? multiLocaleContext : .preview)
+            keyboardContext: multiLocale ? multiLocaleContext : .preview)
     }
     
     static var previews: some View {

@@ -55,7 +55,8 @@ Most of the changes only affect functionality that is mostly used internally, bu
 ### 💡 Behavior changes
 
 * `KeyboardAction.primary` now applies autocomplete suggestions if it's a system action.
-* `KeyboardContext` controller-based initializer is marked as a convenience initializer.  
+* `KeyboardContext` controller-based initializer is marked as a convenience initializer.
+* `SystemKeyboardSpaceButtonContent` no longer depends on `AnyView`.  
 
 ### 🗑 Deprecations
 
@@ -81,7 +82,15 @@ Most of the changes only affect functionality that is mostly used internally, bu
 * `StandardKeyboardActionHandler` `changeKeyboardTypeAction` is in-comment deprecated.
 * `StandardKeyboardAppearance` `context` is renamed to `keyboardContext`.
 * `StandardKeyboardBehavior` `context` is renamed to `keyboardContext`.
+* `StandardSystemKeyboardButtonContent` is deprecated.
 * `StaticKeyboardBehavior` `context` is renamed to `keyboardContext`.
+* `SystemKeyboardActionButton` `context` is renamed to `keyboardContext`.
+* `SystemKeyboardActionButtonContent` `context` is renamed to `keyboardContext`.
+* `SystemKeyboardButtonRowItem` `context` is renamed to `keyboardContext`.
+* `SystemKeyboardButtonText` legacy initializer is deprecated. 
+* `SystemKeyboardSpaceButton` is deprecated.
+* `SystemKeyboardSpaceButtonContent` is renamed to `SystemKeyboardSpaceContent`.
+* `SystemKeyboardSpaceContent` init with a `spaceText` parameter is deprecated.
 * `UIScreen` device extensions are deprecated.
 * `View+Frame` is deprecated. 
 

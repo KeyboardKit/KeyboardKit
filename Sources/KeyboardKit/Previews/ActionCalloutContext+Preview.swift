@@ -15,5 +15,5 @@ public extension ActionCalloutContext {
      */
     static var preview = ActionCalloutContext(
         actionHandler: .preview,
-        actionProvider: PreviewCalloutActionProvider())
+        actionProvider: .preview)
 }

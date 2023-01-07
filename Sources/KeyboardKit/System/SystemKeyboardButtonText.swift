@@ -9,10 +9,10 @@
 import SwiftUI
 
 /**
- This view mimics text in a system keyboard button.
+ This view renders text for a system keyboard button.
  
- This text is line limited to 1 and vertically offset if the
- button is an input button and the text is lowercased.
+ This text is line limited to 1 and has a vertical offset if
+ the button is an input button and the text is lowercased.
  */
 public struct SystemKeyboardButtonText: View {
     
@@ -29,20 +29,6 @@ public struct SystemKeyboardButtonText: View {
     ) {
         self.text = text
         self.isInputAction = action.isInputAction
-    }
-    
-    /**
-     Create a system keyboard button text view.
-     
-     - Parameters:
-       - text: The text to display.
-       - isInputAction: Whether or not the action bound to the button is an input action.
-     */
-    public init(
-        text: String,
-        isInputAction: Bool) {
-        self.text = text
-        self.isInputAction = isInputAction
     }
     
     private let text: String
@@ -69,7 +55,6 @@ struct SystemKeyboardButtonText_Previews: PreviewProvider {
             SystemKeyboardButtonText(text: "PasCal", action: .space)
             SystemKeyboardButtonText(text: "UPPER", action: .space)
             SystemKeyboardButtonText(text: "lower", action: .space)
-            SystemKeyboardButtonText(text: "lower", isInputAction: true)
             SystemKeyboardButtonText(text: "non-input", action: .backspace)
         }
     }

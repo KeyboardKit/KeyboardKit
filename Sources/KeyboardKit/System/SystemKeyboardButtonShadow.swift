@@ -9,20 +9,23 @@
 import SwiftUI
 
 /**
- This view represents the bottom shadow of a standard system
- keyboard button. Instead of being added as a shadow, it has
- to be added as an overlay, and will cut out the shadow that
- will be placed below the button shape.
- 
+ This view renders the shadow of a system keyboard button.
+
+ Instead of being added as a shadow, the view is added as an
+ overlay then places a cut out shadow below the button shape.
  This makes it possible to have an opaque shadow, even for a
- button that has a semi-transparent color. This is needed to
- render the shadow properly for the dark mode bug workaround
- colors, which are semi-transparent in dark mode.
+ button that has a semi-transparent color.
+
+ This is needed to render the shadow correctly, even for the
+ dark mode bug workaround colors, which are semi-transparent.
  */
 public struct SystemKeyboardButtonShadow: View {
     
     /**
      Create a system keyboard button shadow view.
+
+     This view uses a button style instead of a shadow style,
+     since it must apply the proper corner radius.
      
      - Parameters:
        - style: The button style to apply.

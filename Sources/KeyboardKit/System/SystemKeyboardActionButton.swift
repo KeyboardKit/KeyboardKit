@@ -10,46 +10,68 @@
 import SwiftUI
 
 /**
- This view mimics the buttons that are used in an iOS system
- keyboard. It wraps a `SystemKeyboardButton` view and uses a
- `SystemKeyboardActionButtonContent` to resolves its content.
- 
+ This view renders a system keyboard button that is based on
+ a certain ``KeyboardAction``.
+
  This view will adapt its content to conform to the provided
  `action` and `appearance` and applies keyboard gestures for
  the provided `action`, `actionHandler` and `context`.
 
- You can use the `contentConfig` to customize the content in
- the button to fit your needs.
- 
- If you want to create a basic button, `SystemKeyboardButton`
- will create a view that looks like a system keyboard button,
- but that doesn't have any functionality.
+ The view sets up gestures, line limits, vertical offset etc.
+ and aims to make the button mimic an iOS system keyboard as
+ closely as possible. You can however use the `contentConfig`
+ parameter to customize or replace the content view.
+
+ Use the ``SystemKeyboardButton`` if you just want to render
+ a view that looks like a system keyboard button, but has no
+ functionality.
  */
 public struct SystemKeyboardActionButton<Content: View>: View {
-    
+
     /**
-     Create a system keyboard button that adapts its content
-     to the provided action and appearance.
-     
+     Create a system keyboard button view.
+
      - Parameters:
        - action: The keyboard action to apply.
-       - actionHandler: The action handler to use when triggering actions.
-       - appearance: The keyboard appearance to use.
-       - context: The keyboard context to which the button should apply.
-       - contentConfig: A configuration block that can be used to modify the button content before applying a style and gestures to it.
+       - actionHandler: The action handler to use.
+       - appearance: The appearance to apply to the button.
+       - keyboardContext: The keyboard context to which the button should apply.
+       - contentConfig: A configuration block that can be used to customize or replace the standard button content.
      */
     public init(
         action: KeyboardAction,
         actionHandler: KeyboardActionHandler,
         appearance: KeyboardAppearance,
-        context: KeyboardContext,
+        keyboardContext: KeyboardContext,
         contentConfig: @escaping ContentConfig
     ) {
         self.action = action
         self.actionHandler = actionHandler
         self.appearance = appearance
-        self.context = context
+        self.context = keyboardContext
         self.contentConfig = contentConfig
+    }
+
+    /**
+     Create a system keyboard button view.
+
+     - Parameters:
+       - action: The keyboard action to apply.
+       - actionHandler: The action handler to use.
+       - appearance: The appearance to apply to the button.
+       - keyboardContext: The keyboard context to which the button should apply.
+     */
+    public init(
+        action: KeyboardAction,
+        actionHandler: KeyboardActionHandler,
+        appearance: KeyboardAppearance,
+        keyboardContext: KeyboardContext
+    ) where Content == SystemKeyboardActionButtonContent {
+        self.action = action
+        self.actionHandler = actionHandler
+        self.appearance = appearance
+        self.context = keyboardContext
+        self.contentConfig = { $0 }
     }
     
     private let action: KeyboardAction
@@ -59,72 +81,42 @@ public struct SystemKeyboardActionButton<Content: View>: View {
     private let contentConfig: ContentConfig
 
     @State
-    private var isPressed: Bool = false
+    private var isPressed = false
     
     /**
-     This typealias represents the configuration action that
-     is used to customize the content of the button.
+     This typealias represents an action that can be used to
+     customize (or replace) a standard button content view.
      */
-    public typealias ContentConfig = (SystemKeyboardActionButtonContent) -> Content
+    public typealias ContentConfig = (_ standardContent: SystemKeyboardActionButtonContent) -> Content
         
     public var body: some View {
-        button
-            .keyboardGestures(
-                for: action,
-                actionHandler: actionHandler,
-                isPressed: $isPressed)
-    }
-}
-
-public extension SystemKeyboardActionButton where Content == SystemKeyboardActionButtonContent {
-    
-    /**
-     Create a system keyboard button that does not adapt its
-     content, but uses the standard content for the provided
-     action and appearance.
-     
-     - Parameters:
-       - action: The keyboard action to apply.
-       - actionHandler: The action handler to use when triggering actions.
-       - appearance: The keyboard appearance to use.
-       - context: The keyboard context to which the button should apply.
-     */
-    init(
-        action: KeyboardAction,
-        actionHandler: KeyboardActionHandler,
-        appearance: KeyboardAppearance,
-        context: KeyboardContext
-    ) {
-        self.init(
-            action: action,
+        SystemKeyboardButton(
+            content: buttonContent,
+            style: buttonStyle
+        ).keyboardGestures(
+            for: action,
             actionHandler: actionHandler,
-            appearance: appearance,
-            context: context,
-            contentConfig: { $0 })
+            isPressed: $isPressed)
     }
 }
 
 private extension SystemKeyboardActionButton {
-    
-    var button: some View {
-        SystemKeyboardButton(
-            content: buttonContent,
-            style: buttonStyle)
-    }
     
     var buttonContent: some View {
         contentConfig(
             SystemKeyboardActionButtonContent(
                 action: action,
                 appearance: appearance,
-                context: context)
+                keyboardContext: context
+            )
         )
     }
     
     var buttonStyle: KeyboardButtonStyle {
         appearance.buttonStyle(
             for: action,
-            isPressed: isPressed)
+            isPressed: isPressed
+        )
     }
 }
 
@@ -134,8 +126,8 @@ struct SystemKeyboardActionButton_Previews: PreviewProvider {
         SystemKeyboardActionButton(
             action: action,
             actionHandler: .preview,
-            appearance: PreviewKeyboardAppearance(),
-            context: .preview) {
+            appearance: .preview,
+            keyboardContext: .preview) {
                 $0.frame(width: 80, height: 80)
             }
     }

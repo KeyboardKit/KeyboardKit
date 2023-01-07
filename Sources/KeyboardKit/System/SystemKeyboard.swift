@@ -10,8 +10,11 @@
 import SwiftUI
 
 /**
- This view mimics native iOS system keyboards, like standard
- alphabetic, numeric and symbolic system keyboards.
+ This view renders a system keyboard, which aims to mimic an
+ iOS keyboard as closely as possible.
+
+ This view can be used for keyboard like standard alphabetic,
+ numeric and symbolic keyboards, as well as emoji ones.
 
  There are several ways to create a system keyboard. Use the
  initializer without a view builder to use a standard button
@@ -238,7 +241,7 @@ public extension SystemKeyboard where ButtonView == SystemKeyboardButtonRowItem<
                 SystemKeyboardButtonRowItem(
                     content: AnyView(buttonContent(item)),
                     item: item,
-                    context: keyboardContext,
+                    keyboardContext: keyboardContext,
                     keyboardWidth: keyboardWidth,
                     inputWidth: inputWidth,
                     appearance: appearance,
@@ -286,7 +289,7 @@ public extension SystemKeyboard {
         SystemKeyboardActionButtonContent(
             action: item.action,
             appearance: appearance,
-            context: keyboardContext)
+            keyboardContext: keyboardContext)
     }
 
     /**
@@ -308,7 +311,7 @@ public extension SystemKeyboard {
                 appearance: appearance,
                 keyboardContext: keyboardContext),
             item: item,
-            context: keyboardContext,
+            keyboardContext: keyboardContext,
             keyboardWidth: keyboardWidth,
             inputWidth: inputWidth,
             appearance: appearance,
@@ -369,8 +372,6 @@ private extension SystemKeyboard {
  */
 struct SystemKeyboard_Previews: PreviewProvider {
 
-    static let actionHandler = PreviewKeyboardActionHandler()
-
     @ViewBuilder
     static func previewButton(
         item: KeyboardLayoutItem,
@@ -382,14 +383,14 @@ struct SystemKeyboard_Previews: PreviewProvider {
                 .frame(maxWidth: .infinity)
                 .multilineTextAlignment(.center)
         default:
-            StandardSystemKeyboardButtonView(
+            SystemKeyboardButtonRowItem(
                 content: previewButtonContent(item: item),
                 item: item,
-                context: .preview,
+                keyboardContext: .preview,
                 keyboardWidth: keyboardWidth,
                 inputWidth: inputWidth,
                 appearance: .preview,
-                actionHandler: actionHandler)
+                actionHandler: .preview)
         }
     }
 
@@ -400,10 +401,10 @@ struct SystemKeyboard_Previews: PreviewProvider {
         case .backspace:
             Text("<-").foregroundColor(Color.red)
         default:
-            StandardSystemKeyboardButtonContent(
+            SystemKeyboardActionButtonContent(
                 action: item.action,
-                appearance: PreviewKeyboardAppearance(),
-                context: .preview
+                appearance: .preview,
+                keyboardContext: .preview
             )
         }
     }
@@ -414,8 +415,8 @@ struct SystemKeyboard_Previews: PreviewProvider {
             // A standard system keyboard
             SystemKeyboard(
                 layout: .preview,
-                appearance: PreviewKeyboardAppearance(),
-                actionHandler: PreviewKeyboardActionHandler(),
+                appearance: .preview,
+                actionHandler: .preview,
                 keyboardContext: .preview,
                 actionCalloutContext: nil,
                 inputCalloutContext: nil,
@@ -425,8 +426,8 @@ struct SystemKeyboard_Previews: PreviewProvider {
             // A keyboard that replaces the button content
             SystemKeyboard(
                 layout: .preview,
-                appearance: PreviewKeyboardAppearance(),
-                actionHandler: PreviewKeyboardActionHandler(),
+                appearance: .preview,
+                actionHandler: .preview,
                 keyboardContext: .preview,
                 actionCalloutContext: nil,
                 inputCalloutContext: nil,
@@ -436,8 +437,8 @@ struct SystemKeyboard_Previews: PreviewProvider {
             // A keyboard that replaces entire button views
             SystemKeyboard(
                 layout: .preview,
-                appearance: PreviewKeyboardAppearance(),
-                actionHandler: PreviewKeyboardActionHandler(),
+                appearance: .preview,
+                actionHandler: .preview,
                 keyboardContext: .preview,
                 actionCalloutContext: nil,
                 inputCalloutContext: nil,

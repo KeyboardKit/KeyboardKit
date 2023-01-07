@@ -9,11 +9,11 @@
 import SwiftUI
 
 /**
- This view is meant to be used within a `SystemKeyboard` and
- will apply frames and paddings to mitigate dead tap areas.
+ This view renders a system keyboard button that is meant to
+ be used within a ``SystemKeyboard``.
 
- This view also applies the correct appearance, button style,
- view gestures etc.
+ This view applies a tappable padding around its content, to
+ mitigate any dead tap areas.
  */
 public struct SystemKeyboardButtonRowItem<Content: View>: View {
 
@@ -23,7 +23,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
      - Parameters:
        - content: The content view to use within the item.
        - item: The layout item to use within the item.
-       - context: The keyboard context to which the item should apply.
+       - keyboardContext: The keyboard context to which the item should apply.
        - keyboardWidth: The total width of the keyboard.
        - inputWidth: The input width within the keyboard.
        - appearance: The appearance to apply to the item.
@@ -32,7 +32,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
     public init(
         content: Content,
         item: KeyboardLayoutItem,
-        context: KeyboardContext,
+        keyboardContext: KeyboardContext,
         keyboardWidth: CGFloat,
         inputWidth: CGFloat,
         appearance: KeyboardAppearance,
@@ -40,7 +40,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
     ) {
         self.content = content
         self.item = item
-        self._context = ObservedObject(wrappedValue: context)
+        self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
         self.keyboardWidth = keyboardWidth
         self.inputWidth = inputWidth
         self.appearance = appearance
@@ -55,7 +55,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
     private let actionHandler: KeyboardActionHandler
 
     @ObservedObject
-    private var context: KeyboardContext
+    private var keyboardContext: KeyboardContext
 
     @State
     private var isPressed = false
@@ -74,7 +74,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
                 isPressed: $isPressed)
             .localeContextMenu(
                 for: item.action,
-                context: context)
+                context: keyboardContext)
     }
 }
 
@@ -144,11 +144,11 @@ struct SystemKeyboardButtonRowItem_Previews: PreviewProvider {
                     width: width,
                     height: 100),
                 insets: .horizontal(0, vertical: 0)),
-            context: .preview,
+            keyboardContext: .preview,
             keyboardWidth: 320,
             inputWidth: 30,
             appearance: .preview,
-            actionHandler: PreviewKeyboardActionHandler())
+            actionHandler: .preview)
     }
 
     static var previews: some View {
