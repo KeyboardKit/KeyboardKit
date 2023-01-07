@@ -88,6 +88,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         if isPortrait(context), needsDictation, let action = dictationReplacement { result.append(action) }
         result.append(.space)
         if context.isAlphabetic(.persian) { result.append(.character(.zeroWidthSpace)) }
+        if context.textDocumentProxy.returnKeyType == .go { result.append(.character(".")) }
         result.append(keyboardReturnAction(for: context))
         if !isPortrait(context), needsDictation, let action = dictationReplacement { result.append(action) }
         return result

@@ -54,6 +54,7 @@ Most of the changes only affect functionality that is mostly used internally, bu
 
 ### 💡 Behavior changes
 
+* `iPhoneKeyboardLayoutProvider` now adds a `.` to `Go` keyboards. 
 * `KeyboardAction.primary` now applies autocomplete suggestions if it's a system action.
 * `KeyboardContext` controller-based initializer is marked as a convenience initializer.
 * `SystemKeyboard` no longer depends on `AnyView`.
