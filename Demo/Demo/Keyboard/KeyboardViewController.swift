@@ -11,7 +11,7 @@ import SwiftUI
 
 /**
  This keyboard demonstrates how to create a keyboard that is
- using `SystemKeyboard` to mimic a native English keyboard.
+ using a `SystemKeyboard` to mimic a native English keyboard.
  
  The keyboard makes demo-specific configurations and sets up
  the keyboard with a ``KeyboardView``. You can change all of
@@ -19,12 +19,12 @@ import SwiftUI
  
  To use this keyboard, you must enable it in system settings
  ("Settings/General/Keyboards"). It needs full access to get
- access to features like haptic and audio feedback.
+ access to features like haptic feedback.
  
  Note that this demo adds KeyboardKit as a local package and
  not as a remote package, as you would normally add it. This
- is done to make it possible to change the package from this
- project and make it easier to quickly try out new things.
+ is done to make it possible to easily test and develop this
+ package while being in this project.
  */
 class KeyboardViewController: KeyboardInputViewController {
     
@@ -33,9 +33,6 @@ class KeyboardViewController: KeyboardInputViewController {
      used by the keyboard.
      */
     override func viewDidLoad() {
-
-        // Enable experimental features
-        // FeatureToggle.shared.toggleFeature(.newButtonGestureEngine, isOn: true)
 
         // Set a custom keyboard locale
         // 💡 Changing locale without KeyboardKit Pro or custom input sets will only change some button texts.

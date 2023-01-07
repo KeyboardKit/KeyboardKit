@@ -14,10 +14,11 @@ import SwiftUIKit
  This screen shows the status of the demo keyboard and links
  to another screen, where you can try out the demo keyboards.
  */
-struct HomeScreen: View {
+struct HomeScreen: View, UrlOpener {
     
     @StateObject
-    private var keyboardState = KeyboardEnabledState(bundleId: "com.keyboardkit.demo.keyboard")
+    private var keyboardState = KeyboardEnabledState(
+        bundleId: "com.keyboardkit.demo.keyboard")
     
     var body: some View {
         NavigationView {
@@ -32,21 +33,21 @@ struct HomeScreen: View {
                 }
                 Section(header: Text("Keyboard"), footer: footerText) {
                     EnabledListItem(
-                        isEnabled: isKeyboardEnabled,
+                        isEnabled: keyboardState.isKeyboardEnabled,
                         enabledText: "Keyboard is enabled",
                         disabledText: "Keyboard is disabled")
                     EnabledListItem(
-                        isEnabled: isFullAccessEnabled,
+                        isEnabled: keyboardState.isFullAccessEnabled,
                         enabledText: "Full Access is enabled",
                         disabledText: "Full Access is disabled")
-                    Button(action: openSettings) {
+                    Button(action: { tryOpen(.keyboardSettings) }) {
                         Label("System settings", image: .settings)
                     }
                 }
             }
             .buttonStyle(.list)
             .listStyle(.insetGrouped)
-            .navigationTitle("KeyboardKit Demo")
+            .navigationTitle("KeyboardKit Pro Demo")
         }
         .navigationViewStyle(.stack)
         .environmentObject(keyboardState)
@@ -56,23 +57,7 @@ struct HomeScreen: View {
 private extension HomeScreen {
     
     var footerText: some View {
-        Text("You must enable the KeyboardKit keyboard under system settings, then select it with 🌐 when typing.")
-    }
-}
-
-private extension HomeScreen {
-    
-    var isFullAccessEnabled: Bool {
-        keyboardState.isFullAccessEnabled
-    }
-    
-    var isKeyboardEnabled: Bool {
-        keyboardState.isKeyboardEnabled
-    }
-    
-    func openSettings() {
-        guard let url = URL.keyboardSettings else { return }
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        Text("You must enable the keyboard in System Settings, then select it with 🌐 when typing.")
     }
 }
 

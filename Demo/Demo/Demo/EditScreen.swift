@@ -11,10 +11,10 @@ import KeyboardKit
 
 /**
  This screen has a multi-line text field that can be used to
- try KeyboardKit with various keyboard appearance presets.
+ try KeyboardKit with various keyboard appearances.
  */
 struct EditScreen: View {
-    
+
     let appearance: UIKeyboardAppearance
     
     @State
@@ -33,9 +33,7 @@ struct EditScreen: View {
                     enabledText: "Demo keyboard is selected",
                     disabledText: "Demo keyboard is not selected")
             }
-        }
-        .listStyle(.insetGrouped)
-        .navigationTitle(title)
+        }.navigationTitle(title)
     }
 }
 

@@ -11,7 +11,7 @@ import KeyboardKitPro
 
 /**
  This screen has a multi-line text field that can be used to
- try KeyboardKit with various keyboard appearance presets.
+ try KeyboardKit with various keyboard appearances.
  */
 struct EditScreen: View {
     

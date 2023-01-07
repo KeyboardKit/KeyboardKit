@@ -11,25 +11,28 @@ import SwiftUI
 
 /**
  This keyboard demonstrates how to create a keyboard that is
- using `SystemKeyboard` to mimic a native iOS keyboard.
+ using a `SystemKeyboard` to mimic a native keyboard that is
+ using KeyboardKit Pro to unlock several localized keyboards.
  
- The demo makes demo-specific configurations in `viewDidLoad`
- and registers a custom view in `viewWillSetupKeyboard`.
+ The keyboard makes demo-specific configurations and sets up
+ the keyboard with a ``KeyboardView``. You can change all of
+ these configurations to see how the keyboard changes.
  
  The keyboard registers a Pro license to unlock all keyboard
  locales, then applies either LTR or RTL locales based on if
  you are using the `Keyboard` or `KeyboardRTL` keyboard. The
- keyboard lets you change locale with a separate button, and
- remembers the current locale.
+ keyboard lets you change locale with a separate button that
+ is inserted by the ``DemoKeyboardLayoutProvider``.
  
  To use this keyboard, you must enable it in system settings
  ("Settings/General/Keyboards"). It needs full access to get
- access to features like haptic and audio feedback.
+ access to features like haptic feedback.
  
- Note that this demo adds KeyboardKit as a local package and
- not a remote package, as you would normally do. It makes it
- possible to change things in the library directly from this
- project instead of having to push changes to GitHub.
+ Note how this demo adds KeyboardKit Pro to the main app and
+ not its keyboard extensions. This is how KeyboardKit Pro is
+ to be added, since it's a binary framework. KeyboardKit has
+ to be added to all targets that use it, but KeyboardKit Pro
+ only has to be added to the main app.
  */
 class KeyboardViewController: KeyboardInputViewController {
     
@@ -41,7 +44,7 @@ class KeyboardViewController: KeyboardInputViewController {
      it the next time the keyboard is opened.
      */
     deinit {
-        lastLocaleId = keyboardContext.locale.identifier
+        persistedLocaleId = keyboardContext.locale.identifier
     }
     
     /**
@@ -54,9 +57,6 @@ class KeyboardViewController: KeyboardInputViewController {
      Pro license in `viewWillSetupKeyboard`.
      */
     override func viewDidLoad() {
-
-        // Enable experimental features
-        // FeatureToggle.shared.toggleFeature(.newButtonGestureEngine, isOn: true)
 
         // This is how you would change the keyboard locale
         // 💡 This is overwritten as Pro is registered below
@@ -111,13 +111,11 @@ class KeyboardViewController: KeyboardInputViewController {
 
         // Restore the last used locale, if any
         // 💡 This must be done after registering Pro
-        keyboardContext.locale = lastLocale ?? defaultLocale.locale
+        keyboardContext.locale = persistedLocale ?? defaultLocale.locale
 
         // Apply the applicable locales, either LTR or RTL
         // 💡 This must be done after registering Pro
-        keyboardContext.locales = applicableLocales.map { $0.locale }
-
-        autocompleteProvider = try! TestProvider()
+        keyboardContext.locales = demoLocales.map { $0.locale }
 
         // Setup a demo-specific keyboard layout provider
         // 💡 Play with this to change the keyboard's layout
@@ -131,19 +129,19 @@ class KeyboardViewController: KeyboardInputViewController {
     // MARK: - Locale handling
     
     /**
-     This demo uses LRT or RTL locales based on the keyboard.
-     */
-    var applicableLocales: [KeyboardLocale] {
-        KeyboardLocale.allCases
-            .filter { $0.isRightToLeft == isRtlKeyboard }
-            .sorted(insertFirst: .english)
-    }
-    
-    /**
      The default locale depends on if the demo is LTR or RTL.
      */
     var defaultLocale: KeyboardLocale {
         isRtlKeyboard ? .arabic : .english
+    }
+
+    /**
+     This demo uses LRT or RTL locales based on the keyboard.
+     */
+    var demoLocales: [KeyboardLocale] {
+        KeyboardLocale.allCases
+            .filter { $0.isRightToLeft == isRtlKeyboard }
+            .sorted(insertFirst: .english)
     }
     
     /**
@@ -158,28 +156,21 @@ class KeyboardViewController: KeyboardInputViewController {
     
     var defaults: UserDefaults { .standard }
     
-    let defaultsLocaleKey = "last-locale"
+    let persistedLocaleKey = "com.keyboardkit.demo.locale"
     
     /**
      The last locale used by the keyboard, if any.
      */
-    var lastLocale: Locale? {
-        guard let id = lastLocaleId else { return nil }
+    var persistedLocale: Locale? {
+        guard let id = persistedLocaleId else { return nil }
         return Locale(identifier: id)
     }
     
     /**
      The last locale ID used by the keyboard, if any.
      */
-    var lastLocaleId: String? {
-        get { defaults.string(forKey: defaultsLocaleKey) }
-        set { defaults.set(newValue, forKey: defaultsLocaleKey) }
-    }
-}
-
-class TestProvider: StandardAutocompleteProvider {
-
-    override func autocompleteCompletions(for word: String) -> [String] {
-        return ["foo", "bar", "baz"]
+    var persistedLocaleId: String? {
+        get { defaults.string(forKey: persistedLocaleKey) }
+        set { defaults.set(newValue, forKey: persistedLocaleKey) }
     }
 }
