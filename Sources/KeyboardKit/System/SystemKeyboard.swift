@@ -336,8 +336,8 @@ private extension SystemKeyboard {
         VStack(spacing: 0) {
             itemRows(for: layout)
         }
+        .padding(appearance.keyboardEdgeInsets)
         .environment(\.layoutDirection, .leftToRight)
-        .padding(appearance.keyboardEdgeInsets())
     }
 }
 

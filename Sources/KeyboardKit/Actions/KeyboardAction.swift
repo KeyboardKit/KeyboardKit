@@ -115,6 +115,16 @@ public enum KeyboardAction: Codable, Equatable {
 // MARK: - Public Extensions
 
 public extension KeyboardAction {
+
+    /**
+     Whether or not the action is an alphabetic type.
+     */
+    var isAlphabeticKeyboardTypeAction: Bool {
+        switch self {
+        case .keyboardType(let type): return type.isAlphabetic
+        default: return false
+        }
+    }
     
     /**
      Whether or not the action is a character action.
@@ -238,6 +248,16 @@ public extension KeyboardAction {
     var isUppercasedShiftAction: Bool {
         switch self {
         case .shift(let state): return state.isUppercased
+        default: return false
+        }
+    }
+
+    /**
+     Whether or not the action is a keyboard type action.
+     */
+    func isKeyboardTypeAction(_ keyboardType: KeyboardType) -> Bool {
+        switch self {
+        case .keyboardType(let type): return type == keyboardType
         default: return false
         }
     }

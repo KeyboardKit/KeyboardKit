@@ -34,7 +34,9 @@ public struct NextKeyboardButton: View {
     private let button: NextKeyboardButtonOverlay
     
     public var body: some View {
-        image.overlay(button)
+        image
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .overlay(button)
     }
 }
 

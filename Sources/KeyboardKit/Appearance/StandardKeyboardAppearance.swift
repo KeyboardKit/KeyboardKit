@@ -65,6 +65,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     open var keyboardEdgeInsets: EdgeInsets {
         switch keyboardContext.deviceType {
         case .pad: return EdgeInsets(top: 0, leading: 0, bottom: 4, trailing: 0)
+        case .phone: return EdgeInsets(top: 0, leading: 0, bottom: -2, trailing: 0)
         default: return EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
         }
     }
@@ -85,12 +86,22 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         style.callout.buttonCornerRadius = button.cornerRadius
         return style
     }
-    
+
     /**
      The button image to use for a certain `action`, if any.
      */
     open func buttonImage(for action: KeyboardAction) -> Image? {
         action.standardButtonImage(for: keyboardContext)
+    }
+
+    /**
+     The scale factor to apply to the button content, if any.
+     */
+    open func buttonImageScaleFactor(for action: KeyboardAction) -> CGFloat {
+        switch keyboardContext.deviceType {
+        case .pad: return 1.2
+        default: return 1
+        }
     }
     
     /**
@@ -166,16 +177,38 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
      The button font size to use for a certain action.
      */
     open func buttonFontSize(for action: KeyboardAction) -> CGFloat {
+        if let override = buttonFontSizePadOverride(for: action) { return override }
         if buttonImage(for: action) != nil { return 20 }
+        if let override = buttonFontSizeActionOverride(for: action) { return override }
+        let text = buttonText(for: action) ?? ""
+        if action.isInputAction && text.isLowercased { return 26 }
+        if action.isSystemAction || action.isPrimaryAction { return 16 }
+        return 23
+    }
+
+    /**
+     The button font size to force override for some actions.
+     */
+    func buttonFontSizeActionOverride(for action: KeyboardAction) -> CGFloat? {
         switch action {
         case .keyboardType(let type): return buttonFontSize(for: type)
         case .space: return 16
-        default:
-            let text = buttonText(for: action) ?? ""
-            if action.isInputAction && text.isLowercased { return 26 }
-            if action.isSystemAction || action.isPrimaryAction { return 16 }
-            return 23
+        default: return nil
         }
+    }
+
+    /**
+     The button font size to force override for iPad devices.
+     */
+    func buttonFontSizePadOverride(for action: KeyboardAction) -> CGFloat? {
+        guard keyboardContext.deviceType == .pad else { return nil }
+        let isLandscape = keyboardContext.interfaceOrientation.isLandscape
+        if action == .nextKeyboard { return isLandscape ? 26 : 24 }
+        guard isLandscape else { return nil }
+        if action.isAlphabeticKeyboardTypeAction { return 22 }
+        if action.isKeyboardTypeAction(.numeric) { return 22 }
+        if action.isKeyboardTypeAction(.symbolic) { return 20 }
+        return nil
     }
 
     /**
@@ -265,20 +298,20 @@ extension KeyboardAction {
         if isUppercasedShiftAction { return .standardDarkButtonBackground(for: context) }
         return .standardDarkButtonBackground(for: context)
     }
-    
-    func buttonForegroundColor(for context: KeyboardContext, isPressed: Bool = false) -> Color {
-        if let color = buttonForegroundColorForAllStates() { return color }
-        return isPressed ?
-            buttonForegroundColorForPressedState(for: context) :
-            buttonForegroundColorForIdleState(for: context)
-    }
 
-    func buttonForegroundColorForAllStates() -> Color? {
+    var buttonForegroundColorForAllStates: Color? {
         switch self {
         case .none: return .clear
         case .characterMargin: return .clearInteractable
         default: return nil
         }
+    }
+    
+    func buttonForegroundColor(for context: KeyboardContext, isPressed: Bool = false) -> Color {
+        if let color = buttonForegroundColorForAllStates { return color }
+        return isPressed ?
+            buttonForegroundColorForPressedState(for: context) :
+            buttonForegroundColorForIdleState(for: context)
     }
     
     func buttonForegroundColorForIdleState(for context: KeyboardContext) -> Color {

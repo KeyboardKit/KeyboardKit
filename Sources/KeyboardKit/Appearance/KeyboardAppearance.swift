@@ -47,6 +47,11 @@ public protocol KeyboardAppearance: AnyObject {
      The button image to use for a certain `action`, if any.
      */
     func buttonImage(for action: KeyboardAction) -> Image?
+
+    /**
+     The scale factor to apply to a button image, if any.
+     */
+    func buttonImageScaleFactor(for action: KeyboardAction) -> CGFloat
     
     /**
      The button style to use for a certain `action`, given a
