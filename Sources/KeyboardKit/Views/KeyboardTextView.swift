@@ -29,30 +29,35 @@ public struct KeyboardTextView: UIViewRepresentable {
      
      - Parameters:
        - text: A text binding that will be affected by the text view.
-       - resignOnReturn: Whether or not to resign first responder when return is pressed.
-       - config: A configuration block that can be used to configure the text View.
+       - hasFocus: A binding to communicate whether or not the text field has focus, by default `.constant(false)`.       
+       - resignOnReturn: Whether or not to resign first responder when return is pressed, by default `true`.
+       - config: A configuration block that can be used to configure the text view, by default an empty configuration.
      */
     public init(
         text: Binding<String>,
+        hasFocus: Binding<Bool> = .constant(false),
         resignOnReturn: Bool = true,
-        config: @escaping ConfigAction = { _ in }
+        config: @escaping Configuration = { _ in }
     ) {
         self._text = text
-        self.config = config
+        self._hasFocus = hasFocus
         self.resignOnReturn = resignOnReturn
+        self.config = config
     }
     
     
     /**
-     This typealias represents the configuration action that
-     will be used to customize the embedded `UITextView`.
+     This typealias represents a `UITextView` configuration.
      */
-    public typealias ConfigAction = (UITextView) -> Void
+    public typealias Configuration = (UITextView) -> Void
     
+    @Binding
+    private var text: String
+
+    @Binding
+    private var hasFocus: Bool
     
-    @Binding private var text: String
-    
-    private let config: ConfigAction
+    private let config: Configuration
     private let resignOnReturn: Bool
     
     
@@ -63,6 +68,7 @@ public struct KeyboardTextView: UIViewRepresentable {
     public func makeUIView(context: Context) -> UITextView {
         let view = KeyboardInputTextView()
         view.delegate = context.coordinator
+        view.hasFocus = $hasFocus
         view.resignOnReturn = resignOnReturn
         view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         config(view)
@@ -86,7 +92,8 @@ public extension KeyboardTextView {
             _text = text
         }
         
-        @Binding private var text: String
+        @Binding
+        private var text: String
 
         public func textViewDidChange(_ textView: UITextView) {
             text = textView.text
@@ -97,6 +104,7 @@ public extension KeyboardTextView {
 class KeyboardInputTextView: UITextView, KeyboardInputComponent {
     
     var resignOnReturn: Bool = true
+    var hasFocus: Binding<Bool> = .constant(false)
     
     override func insertText(_ text: String) {
         guard handleInsertText(text) else { return }
@@ -104,12 +112,14 @@ class KeyboardInputTextView: UITextView, KeyboardInputComponent {
     }
     
     override func becomeFirstResponder() -> Bool {
+        hasFocus.wrappedValue = true
         handleBecomeFirstResponder()
         return super.becomeFirstResponder()
     }
     
     @discardableResult
     override func resignFirstResponder() -> Bool {
+        hasFocus.wrappedValue = false
         handleResignFirstResponder()
         return super.resignFirstResponder()
     }

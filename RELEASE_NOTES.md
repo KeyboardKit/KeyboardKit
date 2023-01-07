@@ -29,21 +29,28 @@ Some things that are planned for the 7.0 release:
 
 ## 6.9
 
-This release starts preparing for the next major version, by deprecating a lot of things that will change in that version.
+This release starts preparing for the next major version, by deprecating and renaming a lot of things that will change in that version.
+
+Most of the changes only affect functionality that is mostly used internally, but you may have to rename some init and function parameters. 
 
 ### ✨ New features
 
-* `DisabledAutocompleteProvider` has been made public.
-* `DisabledCalloutActionProvider` has been made public.
+* `DisabledAutocompleteProvider` is now `public`.
+* `DisabledCalloutActionProvider` is now `public`.
 * `InterfaceOrientation` is a new multi-platform version of `UIInterfaceOrientation`.
 * `KeyboardContext` has a new `screenSize` parameter.
 * `KeyboardContext` has a new `interfaceOrientation` parameter.
-* `RepeatGestureTimer` init is now public.
+* `KeyboardTextView` has a new `hasFocus` binding.
+* `RepeatGestureTimer` init is now `public`.
 * `RepeatGestureTimer` time interval is now mutable.
-* `StandardCalloutActionProvider` `keyboardContext` has been made public.
-* `StandardKeyboardAppearance` `keyboardContext` has been made public.
-* `StandardKeyboardBehavior` `keyboardContext` has been made public.
-* `StaticKeyboardBehavior` has been made open to let you customize it.
+* `StandardCalloutActionProvider` `keyboardContext` is now `public`.
+* `StandardKeyboardAppearance` `keyboardContext` is now `public`.
+* `StandardKeyboardBehavior` `keyboardContext` is now `public`.
+* `StaticKeyboardBehavior` is now `open`.
+
+### 👑 KeyboardKit Pro
+
+* `StandardAutocompleteProvider` `autocompleteSuggestions` is now `open`.
 
 ### 💡 Behavior changes
 
@@ -53,34 +60,34 @@ This release starts preparing for the next major version, by deprecating a lot o
 ### 🗑 Deprecations
 
 * `ActionCallout` now prefers a `keyboardContext` to be injected.
-* `ActionCallout` `context` has been renamed to `calloutContext`.
-* `EmojiKeyboard` `context` has been renamed to `keyboardContext`.
-* `EmojiCategoryKeyboard` `context` has been renamed to `keyboardContext`.
-* `EmojiCategoryKeyboardMenu` `context` has been renamed to `keyboardContext`.
-* `FeatureToggle.Feature.newButtonGestureEngine` has been deprecated.
-* `InputCallout` `context` has been renamed to `calloutContext`.
-* `LocaleContextMenu` `context` has been renamed to `keyboardContext`.
-* `KeyboardAction.newLine` has been replaced by `KeyboardAction.primary(.newLine)`.
-* `KeyboardAction.return` has been replaced by `KeyboardAction.primary(.return)`.
-* `KeyboardAction.standardTapAction` has been replaced by `KeyboardAction.standardReleaseAction`.
-* `KeyboardEnabledState` `isKeyboardCurrentlyActive` has been renamed to `isKeyboardActive`.
-* `KeyboardEnabledStateInspector` `isKeyboardCurrentlyActive` has been renamed to `isKeyboardActive`.
+* `ActionCallout` `context` is renamed to `calloutContext`.
+* `EmojiKeyboard` `context` is renamed to `keyboardContext`.
+* `EmojiCategoryKeyboard` `context` is renamed to `keyboardContext`.
+* `EmojiCategoryKeyboardMenu` `context` is renamed to `keyboardContext`.
+* `FeatureToggle.Feature.newButtonGestureEngine` is deprecated.
+* `InputCallout` `context` is renamed to `calloutContext`.
+* `LocaleContextMenu` `context` is renamed to `keyboardContext`.
+* `KeyboardAction.newLine` is replaced by `KeyboardAction.primary(.newLine)`.
+* `KeyboardAction.return` is replaced by `KeyboardAction.primary(.return)`.
+* `KeyboardAction.standardTapAction` is replaced by `KeyboardAction.standardReleaseAction`.
+* `KeyboardEnabledState` `isKeyboardCurrentlyActive` is renamed to `isKeyboardActive`.
+* `KeyboardEnabledStateInspector` `isKeyboardCurrentlyActive` is renamed to `isKeyboardActive`.
 * `KeyboardContext` has redesigned initializers that set fewer properties.
-* `KeyboardContext` `screenOrientation` has been replaced by `interfaceOrientation`.
+* `KeyboardContext` `screenOrientation` is replaced by `interfaceOrientation`.
 * `KeyboardType` font size is deprecated and moved to `StandardKeyboardAppearance`.
-* `SpaceCursorDragGestureHandler` `context` has been renamed to `keyboardContext`.
+* `SpaceCursorDragGestureHandler` `context` is renamed to `keyboardContext`.
 * `StandardAutocompleteSuggestion` has deprecated the initializer with an implicit text name.
-* `StandardCalloutActionProvider` `context` has been renamed to `keyboardContext`.
-* `StandardKeyboardActionHandler` `changeKeyboardTypeAction` has been in-comment deprecated.
-* `StandardKeyboardAppearance` `context` has been renamed to `keyboardContext`.
-* `StandardKeyboardBehavior` `context` has been renamed to `keyboardContext`.
-* `StaticKeyboardBehavior` `context` has been renamed to `keyboardContext`.
-* `UIScreen` device extensions have been deprecated.
-* `View+Frame` has been deprecated. 
+* `StandardCalloutActionProvider` `context` is renamed to `keyboardContext`.
+* `StandardKeyboardActionHandler` `changeKeyboardTypeAction` is in-comment deprecated.
+* `StandardKeyboardAppearance` `context` is renamed to `keyboardContext`.
+* `StandardKeyboardBehavior` `context` is renamed to `keyboardContext`.
+* `StaticKeyboardBehavior` `context` is renamed to `keyboardContext`.
+* `UIScreen` device extensions are deprecated.
+* `View+Frame` is deprecated. 
 
 ### 💥 Breaking changes
 
-* `KeyboardContext` `screen` has been deprecated, so the initializer has no screen parameter anymore.
+* `KeyboardContext` `screen` is deprecated.
 
 
 
