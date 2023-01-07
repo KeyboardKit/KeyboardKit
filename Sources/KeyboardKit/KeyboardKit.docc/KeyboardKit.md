@@ -160,6 +160,7 @@ KeyboardKit is available under the MIT license.
 - ``BaseCalloutActionProvider``
 - ``EnglishCalloutActionProvider``
 - ``LocalizedCalloutActionProvider``
+- ``DisabledCalloutActionProvider``
 
 ### Casing
 
@@ -174,6 +175,7 @@ KeyboardKit is available under the MIT license.
 ### Device
 
 - ``DeviceType``
+- ``InterfaceOrientation``
 
 ### Emojis
 
@@ -313,10 +315,7 @@ KeyboardKit is available under the MIT license.
 - ``SystemKeyboardButtonRowItem``
 - ``SystemKeyboardButtonShadow``
 - ``SystemKeyboardButtonText``
-- ``SystemKeyboardSpaceButton``
-- ``SystemKeyboardSpaceButtonContent``
-- ``StandardSystemKeyboardButtonContent``
-- ``StandardSystemKeyboardButtonView``
+- ``SystemKeyboardSpaceContent``
 
 ### Views
 
