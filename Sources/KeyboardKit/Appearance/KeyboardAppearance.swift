@@ -30,9 +30,16 @@ import SwiftUI
  implementation to make the library use it instead.
  */
 public protocol KeyboardAppearance: AnyObject {
+
+    /**
+     The edge insets to apply to the entire keyboard.
+     */
+    var keyboardEdgeInsets: EdgeInsets { get }
     
     /**
      The style to apply when presenting an ``ActionCallout``.
+
+     > Note: This will be turned to a property in KK7 (TODO)
      */
     func actionCalloutStyle() -> ActionCalloutStyle
     
@@ -54,6 +61,8 @@ public protocol KeyboardAppearance: AnyObject {
     
     /**
      The style to apply when presenting an ``InputCallout``.
+
+     > Note: This will be turned to a property in KK7 (TODO)
      */
     func inputCalloutStyle() -> InputCalloutStyle
 }

@@ -22,6 +22,7 @@ Some things that are planned for the 7.0 release:
 * All dependencies to the shared instances should be replaced with init parameters, even for the smallest view.
 * KeyboardAction should only support `press` and `release` and not `tap`.
 * KeyboardAction.GestureAction should use a protocol instead of a view controller.
+* KeyboardAppearance will convert parameterless functions to properties. 
 * StandardKeyboardActionHandler changeKeyboardTypeAction will be removed.
 * The ActionCallout initializer will require a KeyboardContext
 
@@ -38,6 +39,7 @@ Most of the changes only affect functionality that is mostly used internally, bu
 * `DisabledAutocompleteProvider` is now `public`.
 * `DisabledCalloutActionProvider` is now `public`.
 * `InterfaceOrientation` is a new multi-platform version of `UIInterfaceOrientation`.
+* `KeyboardAppearance` has a new `keyboardEdgeInsets` property.
 * `KeyboardContext` has a new `screenSize` parameter.
 * `KeyboardContext` has a new `interfaceOrientation` parameter.
 * `KeyboardTextView` has a new `hasFocus` binding.
@@ -45,6 +47,7 @@ Most of the changes only affect functionality that is mostly used internally, bu
 * `RepeatGestureTimer` time interval is now mutable.
 * `StandardCalloutActionProvider` `keyboardContext` is now `public`.
 * `StandardKeyboardAppearance` `keyboardContext` is now `public`.
+* `StandardKeyboardAppearance` `keyboardLayoutConfiguration` is now `open`.
 * `StandardKeyboardBehavior` `keyboardContext` is now `public`.
 * `StaticKeyboardBehavior` is now `open`.
 
@@ -58,6 +61,7 @@ Most of the changes only affect functionality that is mostly used internally, bu
 * `KeyboardAction.primary` now applies autocomplete suggestions if it's a system action.
 * `KeyboardContext` controller-based initializer is marked as a convenience initializer.
 * `SystemKeyboard` no longer depends on `AnyView`.
+* `StandardKeyboardAppearance` will apply a correct bottom padding to the system keyboard.
 * `SystemKeyboardSpaceButtonContent` no longer depends on `AnyView`.  
 
 ### 🗑 Deprecations

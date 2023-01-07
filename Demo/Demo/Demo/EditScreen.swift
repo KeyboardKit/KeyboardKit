@@ -42,7 +42,7 @@ struct EditScreen: View {
 private extension EditScreen {
     
     var isActive: Bool {
-        keyboardState.isKeyboardCurrentlyActive
+        keyboardState.isKeyboardActive
     }
     
     var title: String {

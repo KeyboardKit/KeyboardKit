@@ -335,7 +335,9 @@ private extension SystemKeyboard {
     var systemKeyboard: some View {
         VStack(spacing: 0) {
             itemRows(for: layout)
-        }.environment(\.layoutDirection, .leftToRight)
+        }
+        .environment(\.layoutDirection, .leftToRight)
+        .padding(appearance.keyboardEdgeInsets())
     }
 }
 

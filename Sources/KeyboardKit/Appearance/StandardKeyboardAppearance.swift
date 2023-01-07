@@ -60,13 +60,22 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     public let keyboardContext: KeyboardContext
 
     /**
+     The edge insets to apply to the entire keyboard.
+     */
+    open var keyboardEdgeInsets: EdgeInsets {
+        switch keyboardContext.deviceType {
+        case .pad: return EdgeInsets(top: 0, leading: 0, bottom: 4, trailing: 0)
+        default: return EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        }
+    }
+
+    /**
      The keyboard layout configuration to use.
      */
-    public var keyboardLayoutConfiguration: KeyboardLayoutConfiguration {
+    open var keyboardLayoutConfiguration: KeyboardLayoutConfiguration {
         .standard(for: keyboardContext)
     }
-    
-    
+
     /**
      The style to apply when presenting an ``ActionCallout``.
      */
