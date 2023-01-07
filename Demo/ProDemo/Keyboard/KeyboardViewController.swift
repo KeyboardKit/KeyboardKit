@@ -85,13 +85,13 @@ class KeyboardViewController: KeyboardInputViewController {
     
     /**
      This function is called whenever the keyboard should be
-     created or updated. Here, we call `setup` or `setupPro`,
-     based on if we want to use KeyboardKit Pro or not.
+     created or updated. Here, we call `setupPro`, since the
+     keyboard uses KeyboardKit Pro.
      
      `setupPro` will cause some configurations from above to
-     be overwritten by the license configuration. To use Pro
-     with custom locales, just change the locale and locales
-     after calling `setupPro`.
+     be overwritten, such as registering the license locales.
+     To customize the keyboard after registering the license,
+     you can use the `setupPro` license configuration block.
      */
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
@@ -99,23 +99,32 @@ class KeyboardViewController: KeyboardInputViewController {
         // Setup KeyboardKit Pro, using a demo-specific view
         try? setupPro(
             withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098",
-            view: KeyboardView()
-        ) { license in
-            // Setup a demo-specific keyboard layout provider
-            // 💡 Play with this to change the keyboard's layout
-            self.keyboardLayoutProvider = DemoKeyboardLayoutProvider(
-                license: license,
-                keyboardContext: self.keyboardContext,
-                inputSetProvider: self.inputSetProvider)
-        }
-        
+            view: KeyboardView(),
+            licenseConfiguration: setupKeyboardWithLicense)
+    }
+
+    /**
+     This function is used to configure the keyboard after a
+     license is registered, but before the view is created.
+     */
+    func setupKeyboardWithLicense(_ license: License) {
+
         // Restore the last used locale, if any
         // 💡 This must be done after registering Pro
         keyboardContext.locale = lastLocale ?? defaultLocale.locale
-        
+
         // Apply the applicable locales, either LTR or RTL
         // 💡 This must be done after registering Pro
         keyboardContext.locales = applicableLocales.map { $0.locale }
+
+        autocompleteProvider = try! TestProvider()
+
+        // Setup a demo-specific keyboard layout provider
+        // 💡 Play with this to change the keyboard's layout
+        keyboardLayoutProvider = DemoKeyboardLayoutProvider(
+            license: license,
+            keyboardContext: keyboardContext,
+            inputSetProvider: inputSetProvider)
     }
     
     
@@ -165,5 +174,12 @@ class KeyboardViewController: KeyboardInputViewController {
     var lastLocaleId: String? {
         get { defaults.string(forKey: defaultsLocaleKey) }
         set { defaults.set(newValue, forKey: defaultsLocaleKey) }
+    }
+}
+
+class TestProvider: StandardAutocompleteProvider {
+
+    override func autocompleteCompletions(for word: String) -> [String] {
+        return ["foo", "bar", "baz"]
     }
 }
