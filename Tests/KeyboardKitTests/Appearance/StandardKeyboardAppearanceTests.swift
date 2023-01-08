@@ -75,8 +75,10 @@ class StandardKeyboardAppearanceTests: XCTestCase {
     func testButtonStyleBackgroundColorIsStandardForAllExceptPrimaryAction() {
         styles.forEach {
             let result = $0.style.backgroundColor
-            let expected: Color = $0.action.isPrimaryAction ?
-                .blue : $0.action.buttonBackgroundColor(for: context)
+            let isPrimary = $0.action.isPrimaryAction
+            let isSystem = $0.action.isSystemAction
+            let expectedBlue = isPrimary && !isSystem
+            let expected: Color = expectedBlue ? .blue : $0.action.buttonBackgroundColor(for: context)
             let equalOpaque = result == expected.opacity(1.00)
             let equalTransparent = result == expected.opacity(0.95)
             XCTAssertTrue(equalOpaque || equalTransparent)
@@ -143,7 +145,10 @@ class StandardKeyboardAppearanceTests: XCTestCase {
     func testButtonStyleForegroundColorIsStandardForAllActionsExceptPrimaryActions() {
         styles.forEach {
             let result = $0.style.foregroundColor
-            let expected: Color = $0.action.isPrimaryAction ? .white : $0.action.buttonForegroundColor(for: context)
+            let isPrimary = $0.action.isPrimaryAction
+            let isSystem = $0.action.isSystemAction
+            let expectedWhite = isPrimary && !isSystem
+            let expected: Color = expectedWhite ? .white : $0.action.buttonForegroundColor(for: context)
             XCTAssertEqual(result, expected)
         }
     }
