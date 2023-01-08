@@ -19,7 +19,7 @@ struct EditScreen: View {
     
     @State
     private var text = ""
-    
+
     @EnvironmentObject
     private var keyboardState: KeyboardEnabledState
     
@@ -29,22 +29,11 @@ struct EditScreen: View {
                 MultilineTextField(text: $text, appearance: appearance)
                     .frame(height: 200)
                 EnabledListItem(
-                    isEnabled: isActive,
+                    isEnabled: keyboardState.isKeyboardActive,
                     enabledText: "Demo keyboard is selected",
                     disabledText: "Demo keyboard is not selected")
             }
-        }.navigationTitle(title)
-    }
-}
-
-private extension EditScreen {
-    
-    var isActive: Bool {
-        keyboardState.isKeyboardActive
-    }
-    
-    var title: String {
-        appearance == .dark ? "Dark text field" : "Regular text field"
+        }.navigationTitle(appearance.displayTitle)
     }
 }
 

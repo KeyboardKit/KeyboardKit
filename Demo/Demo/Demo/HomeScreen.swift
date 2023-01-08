@@ -24,12 +24,8 @@ struct HomeScreen: View, UrlOpener {
         NavigationView {
             List {
                 Section(header: Text("Type")) {
-                    NavigationLink(destination: EditScreen(appearance: .default)) {
-                        Label("Type in a regular text field", image: .type)
-                    }
-                    NavigationLink(destination: EditScreen(appearance: .dark)) {
-                        Label("Type in a dark text field", image: .type)
-                    }
+                    linkToEditScreen(.default)
+                    linkToEditScreen(.dark)
                 }
                 Section(header: Text("Keyboard"), footer: footerText) {
                     EnabledListItem(
@@ -54,10 +50,26 @@ struct HomeScreen: View, UrlOpener {
     }
 }
 
-private extension HomeScreen {
+extension HomeScreen {
     
     var footerText: some View {
         Text("You must enable the keyboard in System Settings, then select it with 🌐 when typing.")
+    }
+
+    func linkToEditScreen(_ appearance: UIKeyboardAppearance) -> some View {
+        NavigationLink(destination: EditScreen(appearance: appearance)) {
+            Label(appearance.displayTitle, image: .type)
+        }
+    }
+}
+
+extension UIKeyboardAppearance {
+
+    var displayTitle: String {
+        switch self {
+        case .dark: return "Dark text field"
+        default:  return "Regular text field"
+        }
     }
 }
 
