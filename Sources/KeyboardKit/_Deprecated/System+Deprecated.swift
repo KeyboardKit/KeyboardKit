@@ -24,6 +24,7 @@ public extension SystemKeyboardActionButtonContent {
     }
 }
 
+#if os(iOS) || os(macOS)
 public extension SystemKeyboardActionButton {
 
     @available(*, deprecated, message: "Use the keyboardContext initializer instead")
@@ -59,6 +60,7 @@ public extension SystemKeyboardActionButton {
         )
     }
 }
+#endif
 
 public extension SystemKeyboardButtonRowItem {
 
