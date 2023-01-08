@@ -12,12 +12,17 @@ import Combine
 import UIKit
 
 /**
- This state class implements `KeyboardEnabledStateInspector`
- by keeping a published `isKeyboardEnabled` in sync with the
- state of the associated keyboard.
- 
- This class will call `refresh` whenever the app or keyboard
- extension becomes active.
+ This class can be used to observe the enabled state of your
+ keyboard extension.
+
+ This class thus makes it possible to check if your keyboard
+ is enabled (enabled in System Settings) and if it is active
+ (currently being used).
+
+ This class implements ``KeyboardEnabledStateInspector`` and
+ syncs a ``isKeyboardEnabled`` and ``isKeyboardActive`` with
+ the state of a provided keyboard `bundleId`. The properties
+ are published and can automatically update any SwiftUI view.
  */
 public class KeyboardEnabledState: KeyboardEnabledStateInspector, ObservableObject {
     
@@ -33,7 +38,8 @@ public class KeyboardEnabledState: KeyboardEnabledStateInspector, ObservableObje
      */
     public init(
         bundleId: String,
-        notificationCenter: NotificationCenter = .default) {
+        notificationCenter: NotificationCenter = .default
+    ) {
         self.bundleId = bundleId
         self.notificationCenter = notificationCenter
         activePublisher.sink(receiveValue: { [weak self] _ in
@@ -76,15 +82,11 @@ public class KeyboardEnabledState: KeyboardEnabledStateInspector, ObservableObje
 private extension KeyboardEnabledState {
     
     var activePublisher: NotificationCenter.Publisher {
-        publisher(for: UIApplication.didBecomeActiveNotification)
+        notificationCenter.publisher(for: UIApplication.didBecomeActiveNotification)
     }
     
     var textPublisher: NotificationCenter.Publisher {
-        publisher(for: UITextInputMode.currentInputModeDidChangeNotification)
-    }
-    
-    func publisher(for notification: Notification.Name) -> NotificationCenter.Publisher {
-        notificationCenter.publisher(for: notification)
+        notificationCenter.publisher(for: UITextInputMode.currentInputModeDidChangeNotification)
     }
 }
 #endif
