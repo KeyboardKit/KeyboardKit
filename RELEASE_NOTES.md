@@ -23,6 +23,7 @@ Some things that are planned for the 7.0 release:
 * KeyboardAction should only support `press` and `release` and not `tap`.
 * KeyboardAction.GestureAction should use a protocol instead of a view controller.
 * KeyboardAppearance will convert parameterless functions to properties. 
+* KeyboardKit Pro active and enabled labels will use an observed object to update when the state changes.
 * StandardKeyboardActionHandler changeKeyboardTypeAction will be removed.
 * The ActionCallout initializer will require a KeyboardContext
 
@@ -56,6 +57,8 @@ Most of the changes only affect functionality that is mostly used internally, bu
 ### 👑 KeyboardKit Pro
 
 * `StandardAutocompleteProvider` `autocompleteSuggestions` is now `open`.
+* `KeyboardActiveLabel` now uses a style and observes changes.
+* `KeyboardEnabledLabel` now uses a style and observes changes.
 
 ### 💡 Behavior changes
 
@@ -109,6 +112,7 @@ Most of the changes only affect functionality that is mostly used internally, bu
 ### 💥 Breaking changes
 
 * `KeyboardContext` `screen` is deprecated.
+* KeyboardKit Pro labels now use a style instead of init parameters.
 
 
 

@@ -38,9 +38,10 @@ public class KeyboardContext: ObservableObject {
        - controller: The controller with which the context should sync, if any.
      */
     convenience public init(
-        controller: KeyboardInputViewController
+        controller: KeyboardInputViewController?
     ) {
         self.init()
+        guard let controller = controller else { return }
         self.sync(with: controller)
     }
     #endif

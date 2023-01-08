@@ -35,7 +35,7 @@ or with CocoaPods:
 pod KeyboardKit
 ```
 
-You can add the library to the main app, the keyboard extension and any other targets that need it.
+You can add the library to the main app, the keyboard extension and any targets that need it.
 
 
 
@@ -76,17 +76,17 @@ KeyboardKit is available under the MIT license.
 ### Articles
 
 - <doc:Getting-Started>
-- <doc:Understanding-Actions>
-- <doc:Understanding-Appearances>
-- <doc:Understanding-Autocomplete>
-- <doc:Understanding-Emojis>
-- <doc:Understanding-Feedback>
-- <doc:Understanding-Input-Sets>
-- <doc:Understanding-Layout>
-- <doc:Understanding-Localization>
-- <doc:Understanding-Previews>
-- <doc:Understanding-Proxy-Extensions>
-- <doc:Understanding-Text-Routing>
+- <doc:Actions>
+- <doc:Appearance>
+- <doc:Autocomplete>
+- <doc:Emojis>
+- <doc:Feedback>
+- <doc:Input>
+- <doc:Layout>
+- <doc:Localization>
+- <doc:Previews>
+- <doc:Proxy-Extensions>
+- <doc:Text-Routing>
 
 ### Keyboard
 

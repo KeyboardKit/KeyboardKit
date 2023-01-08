@@ -1,12 +1,12 @@
-# Understanding Proxy Extensions
+# Proxy Extensions
 
 This article describes how KeyboardKit extends `UITextDocumentProxy` with a lot of additional functionality.
 
-Keyboard input view controllers have a `textDocumentProxy`, which is the way the keyboard is intended to work with the currently active app. 
+Keyboard input view controllers have a `textDocumentProxy`, which is the way a keyboard integrates with the currently active app. It lets you insert and remove text, move the cursor forward and backward etc. 
 
-The text document proxy let's you insert and remove text, move the cursor forward and backward etc. However, its capabilities are very basic, and requires you to implement a bunch of functionality if you want your keyboard to do more things.
+However, its capabilities are very basic and requires you to implement a bunch of functionality if you want your keyboard to do more things.
 
-KeyboardKit therefore provides you with a lot of proxy extensions that make the proxy more capable. Some extensions have to work around the limitiations of what an iOS keyboard extension can do, but overall these extensions will make a lot of operations easier to implement. 
+KeyboardKit therefore provides you with a lot of `UITextDocumentProxy` extensions that make the proxy more capable. Some have to work around the limitiations of what an iOS keyboard extension can do, but overall they make a lot of operations easier to perform. 
 
 Since extensions are not included in the generated documentation, this article describes the extensions you get to by simply importing KeyboardKit. In fact, you could import KeyboardKit just to get access to these extensions and ignore all other parts of the library, and it would still bring a lot of value.
 
@@ -36,9 +36,7 @@ KeyboardKit defines two content-specific extensions:
 - `trimmedDocumentContextAfterInput`
 - `trimmedDocumentContextBeforeInput`
 
-These properties return the trimmed text before and after the input cursor.
-
-Note that keyboard extensions don't have access to all text in the text document, which means that these properties will just give you the text closest to the input cursor. [KeyboardKit Pro][Pro] however adds ways to get all the text. 
+Note that the proxy doesn't have access to all text in the text document, but will only give you the text closest to the input cursor. [KeyboardKit Pro][Pro] however adds ways to get all the text. 
 
 
 

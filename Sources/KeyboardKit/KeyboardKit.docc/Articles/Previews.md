@@ -1,4 +1,4 @@
-# Understanding Previews
+# Previews
 
 This article describes how KeyboardKit makes it easy to preview keyboard-specific views.
 
@@ -7,18 +7,19 @@ This article describes how KeyboardKit makes it easy to preview keyboard-specifi
 
 KeyboardKit has a collection of preview-specific state and services that you can use in your previews:
 
-* ActionCalloutContext.``ActionCalloutContext/preview``.
-* CalloutActionProvider.``CalloutActionProvider/preview``.
-* InputCalloutContext.``InputCalloutContext/preview``.
-* InputSetProvider.``InputSetProvider/preview``.
-* KeyboardActionHandler.``KeyboardActionHandler/preview``.
-* KeyboardAppearance.``KeyboardAppearance/preview``.
-* KeyboardContext.``KeyboardContext/preview``.
-* KeyboardInputViewController.``KeyboardInputViewController/preview``.
-* KeyboardLayout.``KeyboardLayout/preview``.
-* KeyboardLayoutProvider.``KeyboardLayoutProvider/preview``.
+* ``ActionCalloutContext``.``ActionCalloutContext/preview``.
+* ``CalloutActionProvider``.``CalloutActionProvider/preview``.
+* ``InputCalloutContext``.``InputCalloutContext/preview``.
+* ``InputSetProvider``.``InputSetProvider/preview``.
+* ``KeyboardActionHandler``.``KeyboardActionHandler/preview``.
+* ``KeyboardAppearance``.``KeyboardAppearance/preview``.
+* ``KeyboardContext``.``KeyboardContext/preview``.
+* ``KeyboardInputViewController``.``KeyboardInputViewController/preview``.
+* ``KeyboardLayout``.``KeyboardLayout/preview``.
+* ``KeyboardLayoutProvider``.``KeyboardLayoutProvider/preview``.
+* ``UITextDocumentContext``.`preview`.
 
-If the view you want to preview uses takes one of these types as an init parameter, you can just use `.preview`.
+If the view you want to preview uses one of these types, you can just use `.preview`.
 
 For instance, consider this view that takes an action handler as init parameter and looks for the keyboard context in the environment:
 

@@ -93,7 +93,7 @@ KeyboardKit is localized in 60 keyboard-specific locales ([read more][Localizati
 KeyboardKit comes packed features to help you build amazing and powerful keyboards:
  
 * 💥 [Actions][Actions] - KeyboardKit comes with keyboard actions like characters, emojis, actions, custom ones etc.
-* 🎨 [Appearances][Appearances] - KeyboardKit comes with an appearance engine that lets you easily style your keyboards.
+* 🎨 [Appearance][Appearance] - KeyboardKit comes with an appearance engine that lets you easily style your keyboards.
 * 💡 [Autocomplete][Autocomplete] - KeyboardKit can present autocomplete suggestions as the user types.
 * 🗯 [Callouts][Callouts] - KeyboardKit can show input callouts, as well as long press callouts with secondary actions.
 * 😊 [Emojis][Emojis] - KeyboardKit defines emojis and emoji categories that you can use in your own keyboards.
@@ -101,8 +101,8 @@ KeyboardKit comes packed features to help you build amazing and powerful keyboar
 * ⌨️ [External Keyboards][External] - KeyboardKit lets you detect whether or not an external keyboard is used.
 * 👋 [Feedback][Feedback] - KeyboardKit keyboards can give and haptic feedback feedback as the user types.
 * 👆 [Gestures][Gestures] - KeyboardKit comes with keyboard-specific gestures that you can use in your own keyboards.
-* 🔤 [Input Sets][Input-Sets] - KeyboardKit supports creating `alphabetic`, `numeric` and `symbolic` and custom input sets. 
-* ⌨️ [Keyboard Layouts][Keyboard-Layouts] - KeyboardKit supports creating keyboard layouts for various devices, locales etc.
+* 🔤 [Input][Input] - KeyboardKit supports creating `alphabetic`, `numeric` and `symbolic` and custom input sets. 
+* ⌨️ [Layout][Layout] - KeyboardKit supports creating keyboard layouts for various devices, locales etc.
 * 💱 [Keyboard Types][Keyboard-Types] - KeyboardKit supports keyboard types, like `alphabetic`, `numeric`, `symbolic` etc.
 * 🌐 [Locales][Localization]- KeyboardKit defines keyboard-specific locales with localized content and assets.
 * 👁 [Previews][Previews] - KeyboardKit defines a bunch of tools that simplify previewing keyboard views in SwiftUI.
@@ -196,22 +196,22 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Documentation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/
 [Getting-Started]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/getting-started
 
-[Actions]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-actions
-[Appearances]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-appearances
-[Autocomplete]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-autocomplete
-[Emojis]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-emojis
-[Feedback]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-feedback
-[Layout]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-layout
-[Localization]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-localization
-[Previews]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-previews.md
-[Proxy]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-proxy-extensions.md
-[Text-Routing]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-text-routing.md
+[Actions]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/actions
+[Appearance]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/appearance
+[Autocomplete]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/autocomplete
+[Emojis]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/emojis
+[Feedback]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/feedback
+[Input]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/input
+[Layout]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/layout
+[Localization]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/localization
+[Previews]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/previews
+[Proxy]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/proxy-extensions
+[Text-Routing]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/text-routing
 
 [Callouts]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Callouts.md
 [Extensions]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Extensions.md
 [External]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/External.md
 [Gestures]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Gestures.md
-[Input-Sets]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Input-Sets.md
 [Keyboard-Types]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Keyboard-Types.md
 [RTL]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/RTL.md
 [Styles]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Styles.md

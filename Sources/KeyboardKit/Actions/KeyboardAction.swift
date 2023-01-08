@@ -66,10 +66,10 @@ public enum KeyboardAction: Codable, Equatable {
     /// Changes the keyboard type when pressed.
     case keyboardType(KeyboardType)
     
-    /// Moves the cursor back one position when released.
+    /// Moves the input cursor back one step when released.
     case moveCursorBackward
     
-    /// Moves the cursor forward one position when released.
+    /// Moves the input cursor forward one step when released.
     case moveCursorForward
     
     /// Represents a new line key that uses an `⏎` icon and not a return text.
@@ -79,7 +79,7 @@ public enum KeyboardAction: Codable, Equatable {
     /// Represents a keyboard switcher (🌐) button and triggers the keyboard switch action when long pressed and released.
     case nextKeyboard
     
-    /// Triggers the locale switch action when long pressed and released.
+    /// Triggers the locale switcher action when long pressed and released.
     case nextLocale
     
     /// A placeholder action that does nothing and should not be rendered.
@@ -88,7 +88,7 @@ public enum KeyboardAction: Codable, Equatable {
     /// Represents an option (⌥) key.
     case option
     
-    /// Represents a primary return button, e.g. `go`, `search` etc.
+    /// Represents a primary button, e.g. `return`, `go`, `search` etc.
     case primary(PrimaryType)
     
     /// Represents a return key that uses a return text and not an ⏎ icon.
