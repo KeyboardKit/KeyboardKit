@@ -13,7 +13,7 @@ import KeyboardKit
  a custom input set that contains "KEYBOARD", "KIT", "YEAH!".
 
  ``KeyboardViewController`` registers it to show how you can
- register and use a custom input set provider. 
+ register and use a custom input set provider.
 
  This is just a very simple and silly way to demonstrate how
  to use a custom input set provider with a custom layout.

@@ -1,4 +1,4 @@
-# Text Routing
+# Routing
 
 This article describes how KeyboardKit adds ways for you to route text to other text fields within the keyboard.
 

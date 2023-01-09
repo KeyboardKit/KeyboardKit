@@ -2,9 +2,6 @@
 
 This article describes how KeyboardKit makes it easy to preview keyboard-specific views.
 
-
-## How to use preview-specific state and services
-
 KeyboardKit has a collection of preview-specific state and services that you can use in your previews:
 
 * ``ActionCalloutContext``.``ActionCalloutContext/preview``.
@@ -19,9 +16,12 @@ KeyboardKit has a collection of preview-specific state and services that you can
 * ``KeyboardLayoutProvider``.``KeyboardLayoutProvider/preview``.
 * ``UITextDocumentContext``.`preview`.
 
-If the view you want to preview uses one of these types, you can just use `.preview`.
+If the view you want to preview uses any of these types, you can just use `.preview`.
 
-For instance, consider this view that takes an action handler as init parameter and looks for the keyboard context in the environment:
+
+## How to use preview-specific state and services
+
+Consider this view that takes an action handler as init parameter and looks for the keyboard context in the environment:
 
 ```swift
 struct MyView {

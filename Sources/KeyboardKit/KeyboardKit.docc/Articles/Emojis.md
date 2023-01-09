@@ -2,14 +2,14 @@
 
 This article describes the KeyboardKit emoji model and how to use it.
 
-KeyboardKit provides you with emojis, emoji categories, an emoji localization engine etc., as well as various emoji keyboards.
+KeyboardKit provides you with an ``Emoji`` struct, an ``EmojiCategory`` enum, an emoji localization engine etc., as well as various emoji keyboard views like ``EmojiKeyboard`` and ``EmojiCategoryKeyboard``.
 
 [KeyboardKit Pro][Pro] specific features are described at the end of this document.
 
 
 ## Emojis
 
-KeyboardKit has an ``Emoji`` type that lets you handle emojis in a structured way.:
+KeyboardKit has an ``Emoji`` struct that lets you handle emojis in a structured way.:
 
 ```swift
 let emoji = Emoji("😀")
@@ -63,9 +63,7 @@ KeyboardKit has an ``EmojiKeyboard`` that can lists emojis in a grid, as well as
 
 The ``Emoji`` `localizedName(for:)` functions use `Localizable.strings` files in `Sources/Resources`. Emojis that lack a localized name will use the ``Emoji/unicodeName`` property as a fallback.
 
-To localize emojis for a certain locale, simply add localized strings for the various emojis in the correct `Localizable.strings` file, then create a PR and ask for your changes to be merged.
-
-Localizing emojis is a major undertaking and therefore a community effort. If you find emojis with poor or invalid translations, please create a PR to fix this or create an issue to let us know.
+To localize emojis for a certain locale, simply add localized strings for the various emojis in the correct `Localizable.strings` file. This is a major undertaking and therefore a community effort. Feel free to create PRs to help out.
 
 
 

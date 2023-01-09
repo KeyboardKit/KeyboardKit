@@ -2,9 +2,9 @@
 
 This article describes the KeyboardKit keyboard layout engine and how to use it. 
 
-In KeyboardKit, ``InputSet``s and ``KeyboardLayout``s are central concepts when creating a ``SystemKeyboard``. You can also use them to create custom keyboards, but you don't have to.
+In KeyboardKit, ``InputSet``s and ``KeyboardLayout``s are central concepts when creating a ``SystemKeyboard``. You can also use them to create custom keyboards, although you don't have to.
 
-An ``InputSet`` defines the input keys on a keyboard, while a ``KeyboardLayout`` defines the full set of actions on a keyboard, as well as their heights, sizes etc. This means that you can use many different input sets with a single keyboard layout.  
+An ``InputSet`` defines the input keys on a keyboard, while a ``KeyboardLayout`` defines the full set of actions on a keyboard, as well as their heights, sizes etc. This means that you can use many different input sets with a single keyboard layout. 
 
 A typical system keyboard layout has several rows, where center input buttons are surrounded by action buttons on one or both sides.
 
@@ -32,6 +32,7 @@ If you want to make minor customizations to the standard layout provider, there 
 * Create a new ``StandardKeyboardLayoutProvider`` instance and inject a custom ``StandardKeyboardLayoutProvider/iPhoneProvider``.
 
 You can also create a completely custom keyboard layout provider, see below.
+
 
 
 ## How to create a custom keyboard layout provider

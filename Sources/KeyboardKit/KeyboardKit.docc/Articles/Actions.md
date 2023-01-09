@@ -4,13 +4,14 @@ This article describes the KeyboardKit action engine and how to use it.
 
 In KeyboardKit, the ``KeyboardAction`` enum defines a set of keyboard-specific actions that can be bound to buttons and handled with a ``KeyboardActionHandler``.
 
+KeyboardKit will by default create a ``StandardKeyboardActionHandler`` and apply it to the input controller's ``KeyboardInputViewController/keyboardActionHandler``. You can replace it with a custom handler to customize how actions are handled.
 
 
-## Keyboard actions
+## Action types
 
-The action descriptions below are the standard action behaviors when using a ``StandardKeyboardActionHandler``.
+The ``KeyboardAction`` enum can be grouped into categories. The descriptions below are the standard behaviors when actions are handled with a ``StandardKeyboardActionHandler``.
 
-### Inputs
+#### Inputs
 
 * ``KeyboardAction/character(_:)`` - inserts a text character when released.
 * ``KeyboardAction/characterMargin(_:)`` - inserts a text character when released, rendered as empty space.
@@ -18,7 +19,7 @@ The action descriptions below are the standard action behaviors when using a ``S
 * ``KeyboardAction/space`` - inserts a space when released and moves the cursor when long pressed.
 * ``KeyboardAction/tab`` - inserts a tab when released.
 
-### Actions
+#### Actions
 
 * ``KeyboardAction/backspace`` - deletes backwards when pressed, and repeats that action until it's released.
 * ``KeyboardAction/dismissKeyboard`` - dismisses the keyboard when released.
@@ -30,7 +31,7 @@ The action descriptions below are the standard action behaviors when using a ``S
 * ``KeyboardAction/nextLocale`` - triggers the locale switcher action when long pressed and released.
 * ``KeyboardAction/shift(currentState:)`` - changes the alphabetic keyboard casing when released and double tapped.
 
-### System
+#### System
 
 * ``KeyboardAction/command`` - represents a command (⌘) key.
 * ``KeyboardAction/control`` - represents a control (⌃) key.
@@ -40,7 +41,7 @@ The action descriptions below are the standard action behaviors when using a ``S
 * ``KeyboardAction/option`` - represents an option (⌥) key.
 * ``KeyboardAction/primary(_:)`` - represents a primary button, e.g. `return`, `go`, `search` etc.
 
-### Custom
+#### Custom
 
 * ``KeyboardAction/custom(named:)`` - a custom action that you can handle in any way you want.
 * ``KeyboardAction/image(description:keyboardImageName:imageName:)`` - can be used to refer to an image asset.
@@ -72,8 +73,6 @@ class MyClass {
 ```
 
 Keyboard actions can also be triggered by keyboard-specific gestures that are applied to buttons. If you use a ``SystemKeyboard``, action gestures will be automatically applied to the various buttons.
-
-KeyboardKit will by default create a ``StandardKeyboardActionHandler`` and apply it to the input controller's ``KeyboardInputViewController/keyboardActionHandler``. You can replace it with a custom handler to customize how actions are handled.
 
 
 

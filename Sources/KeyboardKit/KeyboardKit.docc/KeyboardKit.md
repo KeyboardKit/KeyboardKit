@@ -89,7 +89,7 @@ KeyboardKit is available under the MIT license.
 - <doc:Localization>
 - <doc:Previews>
 - <doc:Proxy-Extensions>
-- <doc:Text-Routing>
+- <doc:Routing>
 
 ### Keyboard
 

@@ -2,18 +2,11 @@
 
 This article describes the KeyboardKit autocomplete engine and how to use it.
 
-Autocomplete is when a keyboard presents completions and corrections for a word that you are currently typing. iOS keyboards also have something called Predictive Text, which is when the keyboard presents predictive suggestions based on the last typed text.
-
-[KeyboardKit Pro][Pro] specific features are described at the end of this document.
-
-
-## Autocomplete provider
-
 In KeyboardKit, an ``AutocompleteProvider`` can be used to provide the keyboard with autocomplete suggestions as the user types.
 
-KeyboardKit doesn't have a standard autocomplete provider, as it has for most other services. ``StandardAutocompleteProvider`` is a [KeyboardKit Pro][Pro] feature, which means that you must have a Pro license to use it. 
+KeyboardKit doesn't have a standard autocomplete provider as it has for most other services, since it is a Pro feature. You can however create your own and integrate with any autocomplete engines, SDKs or services that you want.
 
-You can however create your own autocomplete provider that integrates with any external autocomplete engine or service you want.
+[KeyboardKit Pro][Pro] specific features are described at the end of this document.
 
 
 
@@ -110,7 +103,7 @@ KeyboardKit has a bunch of autocomplete-specific views.  For instance, the ``Aut
 
 ### Standard autocomplete provider
 
-KeyboardKit Pro unlocks a ``StandardAutocompleteProvider``, which performs autocomplete locally on device, and applies it to the input controller's ``KeyboardInputViewController/autocompleteProvider`` when a pro license is registered.
+KeyboardKit Pro unlocks a ``StandardAutocompleteProvider`` and applies it to the input controller's ``KeyboardInputViewController/autocompleteProvider`` when a pro license is registered.
 
 The standard provider uses on-devices autocomplete capabilities that generate suggestions that are not comparable in quality with the ones in native iOS keyboards. They will however make your keyboard look and behave more like a native keyboard than if you don't have any autocomplete in place. 
 
@@ -119,13 +112,9 @@ You can inherit this class and customize it if you find that some of its predict
 
 ### Remote autocomplete provider
 
-KeyboardKit Pro also unlocks an ``ExternalAutocompleteProvider``, which can fetch autocomplete suggestions from any external api or data source.
+KeyboardKit Pro also unlocks an ``ExternalAutocompleteProvider``, which can fetch autocomplete suggestions from any external api or data source. It can be customized to great extent, for instance to modify the request url path and parameters. 
 
-This provider can be customized to great extent, for instance to modify the request url path and parameters if needed. You can try it out in the Pro demo app, by creating an instance that communicates with an external api that you have access to. 
-
-Since most autocomplete api:s require a secret api token or some form of authentication, the demo app doesn't include a provider from start. You must create and configure it yourself.
-
-If you need autocomplete capabilities that ``ExternalAutocompleteProvider`` currently lacks, don't hesistate to reach out and explain how it can be extended to cover your needs. 
+Since most autocomplete api:s require a secret api token or some form of authentication, the demo app doesn't include a provider from start. You must create one yourself and manually register it in the Pro demo.
 
 
 

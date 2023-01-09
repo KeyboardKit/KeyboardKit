@@ -2,10 +2,7 @@
 
 This article describes the KeyboardKit appearance engine and how to use it. 
 
-In KeyboardKit, a ``KeyboardAppearance`` is a dynamic style that describes the style, texts, icons etc. of different parts of the keyboard. It can adapt to a ``KeyboardContext``, ``KeyboardAction`` etc., which means that they give you a lot of flexibility.
-
-
-## Keyboard appearances
+In KeyboardKit, a ``KeyboardAppearance`` defines the style, texts, icons etc. of different parts of the keyboard. It can adapt to a ``KeyboardContext``, ``KeyboardAction`` etc., which means that it gives you a lot of flexibility.
 
 KeyboardKit will by default create a ``StandardKeyboardAppearance`` and apply it to the input controller's ``KeyboardInputViewController/keyboardAppearance``. You can replace it with a custom appearance to customize how your keyboard looks.
 

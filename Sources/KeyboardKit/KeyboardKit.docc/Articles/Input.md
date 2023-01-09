@@ -1,8 +1,8 @@
 # Input
 
-This article describes the KeyboardKit input set model and how to use it.
+This article describes the KeyboardKit input set engine and how to use it.
 
-In KeyboardKit, ``InputSet``s and ``KeyboardLayout``s are central concepts when creating a ``SystemKeyboard``. You can also use them to create custom keyboards, but you don't have to.
+In KeyboardKit, ``InputSet``s and ``KeyboardLayout``s are central concepts when creating a ``SystemKeyboard``. You can also use them to create custom keyboards, although you don't have to.
 
 An ``InputSet`` defines the input keys on a keyboard, while a ``KeyboardLayout`` defines the full set of actions on a keyboard, as well as their heights, sizes etc. This means that you can use many different input sets with a single keyboard layout. 
 

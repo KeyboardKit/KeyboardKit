@@ -2,15 +2,7 @@
 
 This article describes the KeyboardKit feedback engine and how to use it to trigger audio and haptic feedback.
 
-In KeyboardKit, keyboard feedback is a way to trigger audio and haptic feedback as the user types and interacts with the keyboard. 
-
-Note that keyboard extensions need full access to be able to trigger haptic feedback. Full access must be enabled under `System Settings > General > Keyboards > Your Keyboard`.
-
-
-
-## Keyboard feedback
-
-Keyboard feedback can be handled with a ``KeyboardFeedbackHandler``, which is a protocol that can be implemented by any class that can be used to handle keyboard feedback.
+In KeyboardKit, keyboards can trigger audio and haptic feedback as the user interacts with the keyboard. This can be done with a ``KeyboardFeedbackHandler``, which is a protocol that can be implemented by any class that can handle keyboard feedback.
 
 KeyboardKit will by default create a ``StandardKeyboardFeedbackHandler`` and applies it to the input controller's ``KeyboardInputViewController/keyboardFeedbackHandler``. You can replace it with a custom handler to customize how feedback is handled.
 
@@ -18,17 +10,17 @@ KeyboardKit will by default create a ``StandardKeyboardFeedbackHandler`` and app
 
 ## Keyboard feedback settings
 
-KeyboardKit also has an observable ``KeyboardFeedbackSettings`` class that can be used to configure the the audio and haptic feedback to use for various actions.
+KeyboardKit has an observable ``KeyboardFeedbackSettings`` class that can be used to configure the feedback for various actions.
 
-KeyboardKit will by default create a settings instance and apply it to the input controller's ``KeyboardInputViewController/keyboardFeedbackSettings``. You can then configure this instance to change the audio and haptic feedback behavior without having to create a custom feedback handler.
+KeyboardKit will by default create a settings instance and apply it to the input controller's ``KeyboardInputViewController/keyboardFeedbackSettings``. You can configure this instance to change the feedback behavior without having to create a custom feedback handler.
 
 
 
 ## How to trigger feedback without a handler
 
-You don't need to use a feedback handler to trigger audio and haptic feedback, although that is the most flexible way. Instead, you can just use the ``AudioFeedback`` ``AudioFeedback/trigger()`` and the ``HapticFeedback``'s  ``HapticFeedback/trigger()`` functions directly.
+You don't need to use a feedback handler to trigger audio and haptic feedback, although that is the most flexible way. Instead, you can just use the ``AudioFeedback`` ``AudioFeedback/trigger()`` and the ``HapticFeedback``  ``HapticFeedback/trigger()`` functions directly.
 
-You can also replace the ``AudioFeedback``'s ``AudioFeedback/engine`` and the ``HapticFeedback``'s ``HapticFeedback/engine`` to change the global behavior of how audio and haptic feedback is handled.
+You can also replace the ``AudioFeedback`` ``AudioFeedback/engine`` and the ``HapticFeedback`` ``HapticFeedback/engine`` to change the global behavior of how audio and haptic feedback is handled.
 
 
 
