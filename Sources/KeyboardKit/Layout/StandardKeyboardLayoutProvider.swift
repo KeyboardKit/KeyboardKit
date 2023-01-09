@@ -9,19 +9,22 @@
 import Foundation
 
 /**
- This provider is initialized with a collection of localized
- providers, and will use the one with the same locale as the
- provided ``KeyboardContext``.
+ This layout provider is initialized with a keyboard context,
+ an input set provider and a list of localized providers.
 
- Since this locale-based approach is still being implemented,
- the provider still has a fallback that uses an `iPhone` and
- an `iPad` specific layout provider that handles the layouts
- for all non-implemented locales.
+ If the keyboard context locale matches a localized provider,
+ that provider will be used instead of the input set and the
+ standard iPhone and iPad providers that are created by this
+ class. This will cause the input set provider to be ignored,
+ since the matching provider will have its own input set.
+
+ Since English is the standard input set and keyboard layout
+ configuration, this provider has no English provider in its
+ list of localized providers, since it would cause the input
+ set provider to always be ignored.
  
  To modify the layout that is returned by this provider, you
- can inject a new, custom provider for a certain locale. You
- can also inherit the class and override any part of it that
- you want to customize.
+ can inject new providers for a more locales.
  */
 open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     
@@ -36,7 +39,7 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     public init(
         keyboardContext: KeyboardContext,
         inputSetProvider: InputSetProvider,
-        localizedProviders: [LocalizedKeyboardLayoutProvider] = [EnglishKeyboardLayoutProvider()]
+        localizedProviders: [LocalizedKeyboardLayoutProvider] = []
     ) {
         self.keyboardContext = keyboardContext
         self.inputSetProvider = inputSetProvider
