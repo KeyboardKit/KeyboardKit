@@ -73,9 +73,12 @@ KeyboardKit is available under the MIT license.
 
 ## Topics
 
-### Articles
+### Getting Started
 
 - <doc:Getting-Started>
+
+### Articles
+
 - <doc:Actions>
 - <doc:Appearance>
 - <doc:Autocomplete>
@@ -323,6 +326,7 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardEnabledLabel``
 - ``KeyboardGrid``
 - ``KeyboardInputComponent``
+- ``KeyboardSettingsLink``
 - ``KeyboardTextField``
 - ``KeyboardTextView``
 - ``NextKeyboardButton``

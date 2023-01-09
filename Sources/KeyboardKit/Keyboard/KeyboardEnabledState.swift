@@ -15,9 +15,9 @@ import UIKit
  This class can be used to observe the enabled state of your
  keyboard extension.
 
- This class thus makes it possible to check if your keyboard
- is enabled (enabled in System Settings) and if it is active
- (currently being used).
+ This type makes it easy to check if a keyboard extension is
+ enabled (in System Settings) and if it is active (currently
+ being used to type).
 
  This class implements ``KeyboardEnabledStateInspector`` and
  syncs a ``isKeyboardEnabled`` and ``isKeyboardActive`` with

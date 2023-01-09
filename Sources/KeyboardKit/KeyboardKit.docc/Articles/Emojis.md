@@ -61,7 +61,7 @@ KeyboardKit has an ``EmojiKeyboard`` that can lists emojis in a grid, as well as
 
 ## How to localize emoji names
 
-The ``Emoji`` ``Emoji/localizedName(for:)-7ro82`` functions use `Localizable.strings` files in `Sources/Resources`. Emojis that lack a localized name will use the ``Emoji/unicodeName`` property as default name.
+The ``Emoji`` `localizedName(for:)` functions use `Localizable.strings` files in `Sources/Resources`. Emojis that lack a localized name will use the ``Emoji/unicodeName`` property as a fallback.
 
 To localize emojis for a certain locale, simply add localized strings for the various emojis in the correct `Localizable.strings` file, then create a PR and ask for your changes to be merged.
 

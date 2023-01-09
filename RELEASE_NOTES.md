@@ -47,6 +47,8 @@ Most of the changes only affect functionality that is mostly used internally, bu
 * `KeyboardContext` has a new `screenSize` parameter.
 * `KeyboardContext` has a new `interfaceOrientation` parameter.
 * `KeyboardEnabledLabel` is a new view that can display keyboard states.
+* `KeyboardEnabledStateInspector` has a new `activeKeyboardBundleIds` property.
+* `KeyboardEnabledStateInspector` has a new `enabledKeyboardBundleIds` function.
 * `KeyboardSettingsLink` is a new view that can link to System Settings.
 * `KeyboardTextView` has a new `hasFocus` binding.
 * `RepeatGestureTimer` init is now `public`.
@@ -60,8 +62,8 @@ Most of the changes only affect functionality that is mostly used internally, bu
 ### 👑 KeyboardKit Pro
 
 * `StandardAutocompleteProvider` `autocompleteSuggestions` is now `open`.
-* `KeyboardActiveLabel` now uses a style and observes changes.
-* `KeyboardEnabledLabel` now uses a style and observes changes.
+* `FullDocumentContextConfiguration` now uses 0.03 as default sleep delay.
+* `FullDocumentContextReader` is a new protocol that can be used to read the full document context from any proxy.
 
 ### 💡 Behavior changes
 
@@ -113,12 +115,14 @@ Most of the changes only affect functionality that is mostly used internally, bu
 * `View+Frame` is deprecated.
 * `View.actionCallout` is renamed to `View.keyboardActionCallout`.
 * `View.calloutShadow` is renamed to `View.keyboardCalloutShadow`.
-* `View.inputCallout` is renamed to `View.keyboardInputCallout`. 
+* `View.inputCallout` is renamed to `View.keyboardInputCallout`.
+* KeyboardKit Pro `EnabledLabel` is deprecated - use the new `KeyboardEnabledLabel` instead. 
 
 ### 💥 Breaking changes
 
 * `KeyboardContext` `screen` is deprecated.
-* KeyboardKit Pro labels now use a style instead of init parameters.
+* KeyboardKit Pro `EnabledLabel` now uses a style.
+* KeyboardKit Pro keyboard labels are removed - use the new `KeyboardEnabledLabel` instead.
 
 
 
