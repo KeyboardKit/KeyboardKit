@@ -46,6 +46,8 @@ Most of the changes only affect functionality that is mostly used internally, bu
 * `KeyboardAction` has a new `isKeyboardTypeAction` function.
 * `KeyboardContext` has a new `screenSize` parameter.
 * `KeyboardContext` has a new `interfaceOrientation` parameter.
+* `KeyboardEnabledLabel` is a new view that can display keyboard states.
+* `KeyboardSettingsLink` is a new view that can link to System Settings.
 * `KeyboardTextView` has a new `hasFocus` binding.
 * `RepeatGestureTimer` init is now `public`.
 * `RepeatGestureTimer` time interval is now mutable.

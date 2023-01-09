@@ -78,7 +78,7 @@ private extension KeyboardImageReader {
     }
     
     static var settingsImageName: String {
-        isiOS14 ? "gearshape.fill" : "gear"
+        isiOS14 ? "gearshape" : "gear"
     }
 }
 
