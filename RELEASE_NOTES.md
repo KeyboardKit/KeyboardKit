@@ -41,6 +41,7 @@ Most of the changes only affect functionality that is mostly used internally, bu
 * `DisabledCalloutActionProvider` is now `public`.
 * `InterfaceOrientation` is a new multi-platform version of `UIInterfaceOrientation`.
 * `KeyboardAppearance` has a new `keyboardEdgeInsets` property.
+* `KeyboardAppearanceViewModifier` is a new modifier for setting light and dark keyboards.
 * `KeyboardAction` has a new `isAlphabeticKeyboardTypeAction` property.
 * `KeyboardAction` has a new `isKeyboardTypeAction` function.
 * `KeyboardContext` has a new `screenSize` parameter.
