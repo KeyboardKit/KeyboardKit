@@ -86,6 +86,7 @@ KeyboardKit is available under the MIT license.
 - <doc:External-Keyboards>
 - <doc:Feedback>
 - <doc:Input>
+- <doc:Keyboard>
 - <doc:Layout>
 - <doc:Localization>
 - <doc:Previews>
@@ -97,9 +98,11 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardInputViewController``
 - ``KeyboardContext``
 - ``KeyboardType``
+- ``KeyboardEnabledLabel``
 - ``KeyboardEnabledState``
 - ``KeyboardEnabledStateInspector``
 - ``KeyboardHostingController``
+- ``NextKeyboardButton``
 
 ### Actions
 
@@ -327,7 +330,5 @@ KeyboardKit is available under the MIT license.
 
 ### Views
 
-- ``KeyboardEnabledLabel``
 - ``KeyboardGrid``
 - ``KeyboardSettingsLink``
-- ``NextKeyboardButton``

@@ -101,8 +101,8 @@ KeyboardKit comes packed features to help you build amazing and powerful keyboar
 * 👋 [Feedback][Feedback] - KeyboardKit keyboards can give and haptic feedback feedback as the user types.
 * 👆 [Gestures][Gestures] - KeyboardKit comes with keyboard-specific gestures that you can use in your own keyboards.
 * 🔤 [Input][Input] - KeyboardKit supports creating `alphabetic`, `numeric` and `symbolic` and custom input sets. 
-* ⌨️ [Layout][Layout] - KeyboardKit supports creating keyboard layouts for various devices, locales etc.
-* 💱 [Keyboard Types][Keyboard-Types] - KeyboardKit supports keyboard types, like `alphabetic`, `numeric`, `symbolic` etc.
+* 💱 [Layout][Layout] - KeyboardKit supports creating keyboard layouts for various devices, locales etc.
+* ⌨️ [Keyboard][Keyboard] - KeyboardKit supports keyboard types like `alphabertic`, can inspect a keyboard's state etc.
 * 🌐 [Locales][Localization]- KeyboardKit defines keyboard-specific locales with localized content and assets.
 * 👁 [Previews][Previews] - KeyboardKit defines a bunch of tools that simplify previewing keyboard views in SwiftUI.
 * ➡️ [Proxy][Proxy] - KeyboardKit defines a bunch of extensions to `UITextDocumentProxy`.
@@ -202,6 +202,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [External]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/external-keyboards
 [Feedback]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/feedback
 [Input]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/input
+[Keyboard]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/keyboard
 [Layout]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/layout
 [Localization]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/localization
 [Previews]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/previews
@@ -210,7 +211,6 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 
 [Callouts]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Callouts.md
 [Gestures]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Gestures.md
-[Keyboard-Types]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Keyboard-Types.md
 [RTL]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/RTL.md
 [Styles]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Styles.md
 [Views]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Views.md
