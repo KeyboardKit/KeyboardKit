@@ -12,12 +12,15 @@ import Combine
 import UIKit
 
 /**
- This class can be used to observe the enabled state of your
+ This observable class can be used to observe the state of a
  keyboard extension.
 
- This type makes it easy to check if a keyboard extension is
- enabled (in System Settings) and if it is active (currently
- being used to type).
+ This type lets you check if a keyboard extension is enabled
+ (in System Settings), if it is active (currently being used
+ to type) and if it has been given full access.
+
+ Note that you can use bundle id wildcards, which means that
+ you can inspect multiple keyboards with a single id.
 
  This class implements ``KeyboardEnabledStateInspector`` and
  syncs a ``isKeyboardEnabled`` and ``isKeyboardActive`` with

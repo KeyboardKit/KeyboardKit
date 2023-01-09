@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-05-05.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2020 Daniel Saidi. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS)
@@ -11,15 +11,20 @@ import Foundation
 import UIKit
 
 /**
- This protocol can be implemented by any type that should be
- able to check the enabled state of keyboard extensions.
+ This protocol can be implemented by any type that can check
+ state state of keyboard extensions.
 
- This type makes it easy to check if a keyboard extension is
- enabled (in System Settings) and if it is active (currently
- being used to type).
+ This type lets you check if a keyboard extension is enabled
+ (in System Settings), if it is active (currently being used
+ to type) and if it has been given full access.
+
+ Note that you can use bundle id wildcards, which means that
+ you can inspect multiple keyboards with a single id.
  
- However, the easiest way to observe the state of a keyboard
- extension is to just use a ``KeyboardEnabledState``.
+ The easiest way to observe a keyboard extension state is to
+ use a ``KeyboardEnabledState`` which is an observable class
+ that implements the protocol with published properties that
+ let you easily observe any state changes.
  */
 public protocol KeyboardEnabledStateInspector {}
 
@@ -59,27 +64,62 @@ public extension KeyboardEnabledStateInspector {
     /**
      Whether or not a certain keyboard extension is active.
      
-     - Parameter withBundleId: The bundle id of the keyboard extension.
+     - Parameters:
+       - bundleId: The bundle id of the keyboard extension.
      */
     func isKeyboardActive(
         withBundleId bundleId: String
     ) -> Bool {
-        bundleId == activeKeyboardBundleIds.first
+        let ids = activeKeyboardBundleIds
+        return isKeyboardActive(withId: bundleId, in: ids)
     }
     
     /**
      Whether or not a certain keyboard extension is enabled.
 
      - Parameters:
-       - withBundleId: The bundle id of the keyboard extension.
+       - bundleId: The bundle id of the keyboard extension.
        - defaults: The user defaults instance to use, by default `.standard`.
      */
     func isKeyboardEnabled(
         withBundleId bundleId: String,
         defaults: UserDefaults = .standard
     ) -> Bool {
-        enabledKeyboardBundleIds(defaults: defaults)
-            .contains(bundleId)
+        let ids = enabledKeyboardBundleIds(defaults: defaults)
+        return isKeyboardEnabled(withId: bundleId, in: ids)
+    }
+}
+
+
+// MARK: - Internal Test Functions
+
+extension KeyboardEnabledStateInspector {
+
+    func isKeyboardActive(
+        withId bundleId: String,
+        in ids: [String]
+    ) -> Bool {
+        ids.first?.matches(bundleId) ?? false
+    }
+
+    func isKeyboardEnabled(
+        withId bundleId: String,
+        in ids: [String]
+    ) -> Bool {
+        ids.contains { $0.matches(bundleId) }
+    }
+}
+
+extension String {
+
+    var isWildcard: Bool {
+        hasSuffix("*")
+    }
+
+    func matches(_ bundleId: String) -> Bool {
+        if !bundleId.isWildcard { return self == bundleId }
+        let wildcard = bundleId.replacingOccurrences(of: "*", with: "")
+        return hasPrefix(wildcard)
     }
 }
 

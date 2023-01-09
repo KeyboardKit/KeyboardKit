@@ -47,6 +47,7 @@ Most of the changes only affect functionality that is mostly used internally, bu
 * `KeyboardContext` has a new `screenSize` parameter.
 * `KeyboardContext` has a new `interfaceOrientation` parameter.
 * `KeyboardEnabledLabel` is a new view that can display keyboard states.
+* `KeyboardEnabledStateInspector` now supports bundle ID wildcards.
 * `KeyboardEnabledStateInspector` has a new `activeKeyboardBundleIds` property.
 * `KeyboardEnabledStateInspector` has a new `enabledKeyboardBundleIds` function.
 * `KeyboardSettingsLink` is a new view that can link to System Settings.

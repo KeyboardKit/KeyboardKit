@@ -33,7 +33,7 @@ class KeyboardImageReaderTests: XCTestCase {
         XCTAssertEqual(result(for: .keyboardOption), Image(systemName: "option"))
         XCTAssertEqual(result(for: .keyboardRedo), Image(systemName: "arrow.uturn.right"))
         XCTAssertEqual(result(for: .keyboardRight), Image(systemName: "arrow.right"))
-        XCTAssertEqual(result(for: .keyboardSettings), Image(systemName: "gearshape.fill"))
+        XCTAssertEqual(result(for: .keyboardSettings), Image(systemName: "gearshape"))
         XCTAssertEqual(result(for: .keyboardShiftCapslocked), Image(systemName: "capslock.fill"))
         XCTAssertEqual(result(for: .keyboardShiftLowercased), Image(systemName: "shift"))
         XCTAssertEqual(result(for: .keyboardShiftUppercased), Image(systemName: "shift.fill"))
