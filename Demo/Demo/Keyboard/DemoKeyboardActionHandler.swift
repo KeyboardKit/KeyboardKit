@@ -13,35 +13,28 @@ import UIKit
  This demo-specific action handler adds demo-specific action
  handling, such as saving or copying images.
 
- This handler is registered by ``KeyboardViewController`` to
- show you how to register a custom action handler and use it
- to customize how actions are handled by KeyboardKit. 
+ ``KeyboardViewController`` registers it to show how you can
+ register and use a custom keyboard action handler.
 
  If you change the ``DemoKeyboardLayoutProvider`` to show an
- `.image` action, then the action handler will handle images
- by copying them on tap and saving them on long press.
+ `.image` action, this class will copy the images on tap and
+ save them on long press.
  */
 class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
-    
-    public init(inputViewController: KeyboardInputViewController) {
-        super.init(inputViewController: inputViewController)
-    }
-    
-    
+
+
     // MARK: - Overrides
     
-    override func action(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction.GestureAction? {
+    override func action(
+        for gesture: KeyboardGesture,
+        on action: KeyboardAction
+    ) -> KeyboardAction.GestureAction? {
         let standard = super.action(for: gesture, on: action)
         switch gesture {
         case .longPress: return longPressAction(for: action) ?? standard
         case .tap: return tapAction(for: action) ?? standard
         default: return standard
         }
-    }
-    
-    override func handle(_ gesture: KeyboardGesture, on action: KeyboardAction) {
-        // Customize the action handling if needed
-        super.handle(gesture, on: action)
     }
     
     
@@ -64,44 +57,32 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     
     // MARK: - Functions
     
-    /**
-     Override this function to implement a way to alert text
-     messages in the keyboard extension. You can't use logic
-     that you use in real apps, e.g. `UIAlertController`.
-     */
-    func alert(_ message: String) {}
+    func alert(_ message: String) {
+        print("Implement alert functionality if you want, or just place a breakpoint here.")
+    }
     
-    func copyImage(_ image: UIImage) {
+    func copyImage(named imageName: String) {
+        guard let image = UIImage(named: imageName) else { return }
         guard keyboardContext.hasFullAccess else { return alert("You must enable full access to copy images.") }
         guard image.copyToPasteboard() else { return alert("The image could not be copied.") }
         alert("Copied to pasteboard!")
     }
     
-    func copyImage(named imageName: String) {
+    func saveImage(named imageName: String) {
         guard let image = UIImage(named: imageName) else { return }
-        copyImage(image)
-    }
-    
-    func saveImage(_ image: UIImage) {
         guard keyboardContext.hasFullAccess else { return alert("You must enable full access to save images.") }
         image.saveToPhotos(completion: handleImageDidSave)
         alert("Saved to photos!")
-    }
-    
-    func saveImage(named imageName: String) {
-        guard let image = UIImage(named: imageName) else { return }
-        saveImage(image)
     }
 }
 
 private extension DemoKeyboardActionHandler {
     
-    func handleImageDidSave(WithError error: Error?) {
+    func handleImageDidSave(withError error: Error?) {
         if error == nil { alert("Saved!") }
         else { alert("Failed!") }
     }
 }
-
 
 private extension UIImage {
     
@@ -111,7 +92,6 @@ private extension UIImage {
         return true
     }
 }
-
 
 private extension UIImage {
     

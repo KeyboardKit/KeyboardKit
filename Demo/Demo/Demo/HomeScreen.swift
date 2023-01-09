@@ -8,43 +8,58 @@
 
 import KeyboardKit
 import SwiftUI
-import SwiftUIKit
 
-/**
- This screen shows the status of the demo keyboard and links
- to another screen, where you can try out the demo keyboards.
- */
 struct HomeScreen: View {
-    
+
+    @State
+    private var appearance = ColorScheme.light
+
+    @State
+    private var isAppearanceDark = false
+
+    @State
+    private var text = ""
+
     @StateObject
     private var keyboardState = KeyboardEnabledState(
         bundleId: "com.keyboardkit.demo.*")
-    
+
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Type")) {
-                    linkToEditScreen(.light)
-                    linkToEditScreen(.dark)
+                Section(header: Text("Text Field")) {
+                    TextEditor(text: $text)
+                        .frame(height: 100)
+                        .keyboardAppearance(appearance)
+                    Toggle(isOn: $isAppearanceDark) {
+                        Text("Dark appearance")
+                    }
                 }
-                Section(header: Text("Keyboard"), footer: footerText) {
+                Section(header: Text("Keyboard State"), footer: footerText) {
                     KeyboardEnabledLabel(
                         isEnabled: keyboardState.isKeyboardEnabled,
-                        enabledText: "Keyboard is enabled",
-                        disabledText: "Keyboard is disabled")
+                        enabledText: "Demo keyboard is enabled",
+                        disabledText: "Demo keyboard not enabled")
+                    KeyboardEnabledLabel(
+                        isEnabled: keyboardState.isKeyboardActive,
+                        enabledText: "Demo keyboard is active",
+                        disabledText: "Demo keyboard is not active")
                     KeyboardEnabledLabel(
                         isEnabled: keyboardState.isFullAccessEnabled,
                         enabledText: "Full Access is enabled",
                         disabledText: "Full Access is disabled")
+                }
+                Section(header: Text("Settings")) {
                     KeyboardSettingsLink()
                 }
             }
-            .buttonStyle(.list)
-            .listStyle(.insetGrouped)
-            .navigationTitle("KeyboardKit Demo")
+            .buttonStyle(.plain)
+            .navigationTitle("KeyboardKit")
+            .onChange(of: isAppearanceDark) { newValue in
+                appearance = isAppearanceDark ? .dark : .light
+            }
         }
         .navigationViewStyle(.stack)
-        .environmentObject(keyboardState)
     }
 }
 
@@ -52,22 +67,6 @@ extension HomeScreen {
     
     var footerText: some View {
         Text("You must enable the keyboard in System Settings, then select it with 🌐 when typing.")
-    }
-
-    func linkToEditScreen(_ appearance: ColorScheme) -> some View {
-        NavigationLink(destination: EditScreen(appearance: appearance)) {
-            Label(appearance.displayTitle, image: .type)
-        }
-    }
-}
-
-extension ColorScheme {
-
-    var displayTitle: String {
-        switch self {
-        case .dark: return "Dark text field"
-        default:  return "Regular text field"
-        }
     }
 }
 

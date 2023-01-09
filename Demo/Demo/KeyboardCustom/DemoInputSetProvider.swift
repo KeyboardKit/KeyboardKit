@@ -9,8 +9,11 @@
 import KeyboardKit
 
 /**
- This demo-specific `InputSetProvider` can be used to create
- a keyboard that has three button rows with custom keys.
+ This demo-specific input set provider can be used to create
+ a custom input set that contains "KEYBOARD", "KIT", "YEAH!".
+
+ ``KeyboardViewController`` registers it to show how you can
+ register and use a custom input set provider. 
 
  This is just a very simple and silly way to demonstrate how
  to use a custom input set provider with a custom layout.

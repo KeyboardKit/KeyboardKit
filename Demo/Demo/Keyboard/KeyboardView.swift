@@ -10,9 +10,13 @@ import KeyboardKit
 import SwiftUI
 
 /**
- This is the main view that is registered when the extension
- runs `setup(with:)` in ``KeyboardViewController``. The view
- is used by all `SystemKeyboard`-based keyboards.
+ This is the main demo keyboard view, which is registered by
+ ``KeyboardViewController`` in all `SystemKeyboard` demos.
+
+ This view will add an autocomplete toolbar above the system
+ keyboard, if the keyboard type isn't emojis. The toolbar is
+ hidden if the keyboard shouldn't have autocomplete, but the
+ height is still allocated, since the callouts need it.
  
  The view must observe a `KeyboardContext` as an environment
  object, or take a context instance as an init parameter and

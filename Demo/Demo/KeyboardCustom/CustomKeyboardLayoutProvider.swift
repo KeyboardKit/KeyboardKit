@@ -13,12 +13,8 @@ import KeyboardKit
  This class inherits ``DemoKeyboardLayoutProvider`` and adds
  a custom size to the "i" in the second row's "kit".
 
- Customizing a keyboard layout is currently quite cumbersome,
- since the `StandardKeyboardLayoutProvider` is made up of an
- iPhone- and an iPad-specific provider, which makes it quite
- hard to customize item sizes, replace buttons etc. The demo
- and its custom input set and layout will be used when these
- things will be made easier to achieve over time.
+ ``KeyboardViewController`` registers it to show how you can
+ register and use a custom keyboard layout provider. 
  */
 class CustomKeyboardLayoutProvider: DemoKeyboardLayoutProvider {
 

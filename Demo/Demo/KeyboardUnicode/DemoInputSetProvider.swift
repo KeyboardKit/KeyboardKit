@@ -9,13 +9,15 @@
 import KeyboardKit
 
 /**
- This demo-specific `InputSetProvider` can be used to create
+ This demo-specific input set provider can be used to create
  a custom, Unicode-based input set.
+
+ ``KeyboardViewController`` registers it to show how you can
+ register and use a custom input set provider. 
 
  Note that for some Unicode keyboards, it makes little sense
  to have a numeric and a symbolic keyboard. If so, you could
- create a custom `KeyboardLayoutProvider` that removes these
- keyboard switches.
+ create a custom layout that removes all these switcher keys.
  */
 class DemoInputSetProvider: InputSetProvider {
     
