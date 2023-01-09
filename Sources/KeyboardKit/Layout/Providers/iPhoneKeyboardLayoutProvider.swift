@@ -89,7 +89,13 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         result.append(.space)
         if context.isAlphabetic(.persian) { result.append(.character(.zeroWidthSpace)) }
         #if os(iOS) || os(tvOS)
-        if context.textDocumentProxy.returnKeyType == .go { result.append(.character(".")) }
+        if context.textDocumentProxy.keyboardType == .emailAddress {
+            result.append(.character("@"))
+            result.append(.character("."))
+        }
+        if context.textDocumentProxy.returnKeyType == .go {
+            result.append(.character("."))
+        }
         #endif
         result.append(keyboardReturnAction(for: context))
         if !isPortrait(context), needsDictation, let action = dictationReplacement { result.append(action) }
