@@ -62,10 +62,12 @@ Most of the changes only affect functionality that is mostly used internally, bu
 
 ### 💡 Behavior changes
 
+* `GestureButtonDefaults` long press delay is reduced to `0.5` seconds.
 * `iPhoneKeyboardLayoutProvider` now adds `.` to `Go` keyboards. 
 * `iPhoneKeyboardLayoutProvider` now adds `@` and `.` to e-mail keyboards. 
 * `KeyboardAction.primary` now applies autocomplete suggestions if it's a system action.
 * `KeyboardContext` controller-based initializer is marked as a convenience initializer.
+* `KeyboardGestures` now apply the `GestureButtonDefaults` long press delay.
 * `SystemKeyboard` no longer depends on `AnyView`.
 * `StandardKeyboardAppearance` now applies insets to system keyboards.
 * `StandardKeyboardAppearance` now applies larger font sizes to some system keyboards keys on iPad devices.

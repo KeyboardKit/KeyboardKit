@@ -1,6 +1,6 @@
 //
 //  MultilineTextField.swift
-//  SwiftUIKit
+//  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-06-08.
 //  Copyright © 2020 Daniel Saidi. All rights reserved.

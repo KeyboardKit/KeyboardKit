@@ -1,6 +1,6 @@
 //
 //  Color+Random.swift
-//  SwiftUIKit
+//  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-08-17.
 //  Copyright © 2020 Daniel Saidi. All rights reserved.

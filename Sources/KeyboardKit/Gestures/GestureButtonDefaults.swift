@@ -1,6 +1,6 @@
 //
 //  GestureButtonDefaults.swift
-//  SwiftUIKit
+//  KeyboardKit
 //
 //  Created by Daniel Saidi on 2022-11-24.
 //  Copyright © 2022 Daniel Saidi. All rights reserved.
@@ -18,8 +18,8 @@ public struct GestureButtonDefaults {
     /// The max time between two taps for them to count as a double tap, by default `0.2`.
     public static var doubleTapTimeout = 0.2
 
-    /// The time it takes for a press to count as a long press, by default `1.0`.
-    public static var longPressDelay = 1.0
+    /// The time it takes for a press to count as a long press, by default `0.5`.
+    public static var longPressDelay = 0.5
 
     /// The time it takes for a press to count as a repeat trigger, by default `1.0`.
     public static var repeatDelay = 1.0
