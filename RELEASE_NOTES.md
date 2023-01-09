@@ -96,6 +96,7 @@ Most of the changes only affect functionality that is mostly used internally, bu
 * `KeyboardEnabledStateInspector` `isKeyboardCurrentlyActive` is renamed to `isKeyboardActive`.
 * `KeyboardContext` has redesigned initializers that set fewer properties.
 * `KeyboardContext` `screenOrientation` is replaced by `interfaceOrientation`.
+* `KeyboardGrid` is deprecated.
 * `KeyboardType` font size is deprecated and moved to `StandardKeyboardAppearance`.
 * `SpaceCursorDragGestureHandler` `context` is renamed to `keyboardContext`.
 * `StandardAutocompleteSuggestion` has deprecated the initializer with an implicit text name.

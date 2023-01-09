@@ -8,19 +8,7 @@
 
 import SwiftUI
 
-/**
- A `KeyboardGrid` can be used to list actions in a grid with
- a certain number of `columns`.
- 
- The grid supports a custom item `spacing` and will fill the
- provided `actions` with enough `none` actions to evenly fit
- the grid, given the number of `columns`. `buttonBuilder` is
- then used to generate a button for each action.
- 
- The grid doesn't modify the buttons you provide it with. If
- you want your buttons to share the available width, you can
- apply `.frame(maxWidth: .infinity)` to each button.
- */
+@available(*, deprecated, message: "KeyboardGrid will be removed in 7.0.")
 public struct KeyboardGrid<Button: View>: View {
     
     /**
@@ -61,6 +49,7 @@ public struct KeyboardGrid<Button: View>: View {
     }
 }
 
+@available(*, deprecated, message: "KeyboardGrid will be removed in 7.0.")
 private extension KeyboardGrid {
 
     func gridRow(for row: KeyboardActions) -> some View {
@@ -68,28 +57,6 @@ private extension KeyboardGrid {
             ForEach(Array(row.enumerated()), id: \.offset) { item in
                 self.buttonBuilder(item.element)
             }
-        }
-    }
-}
-
-struct KeyboardGrid_Previews: PreviewProvider {
-    
-    static let image = KeyboardAction.image(description: "", keyboardImageName: "david", imageName: "david")
-    
-    static var actions: [KeyboardAction] = [
-        image, image, image, image, image, image,
-        image, image, image, image, image, image,
-        image, image, image, image, image, image,
-        image, image, image, image, image, image,
-        image, image, image, image, image, image,
-        image, image, image
-    ]
-
-    static var previews: some View {
-        KeyboardGrid(actions: actions, columns: 8) { _ in
-            Image(systemName: "sun.max.fill")
-                .resizable()
-                .scaledToFit()
         }
     }
 }
