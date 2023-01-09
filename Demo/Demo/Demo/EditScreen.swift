@@ -15,10 +15,13 @@ import KeyboardKit
  */
 struct EditScreen: View {
 
-    let appearance: UIKeyboardAppearance
+    let appearance: ColorScheme
     
     @State
     private var text = ""
+
+    @FocusState
+    private var isFocused: Bool
 
     @EnvironmentObject
     private var keyboardState: KeyboardEnabledState
@@ -26,20 +29,24 @@ struct EditScreen: View {
     var body: some View {
         List {
             Section {
-                MultilineTextField(text: $text, appearance: appearance)
+                TextEditor(text: $text)
                     .frame(height: 200)
-                EnabledListItem(
+                    .focused($isFocused)
+                    .keyboardAppearance(appearance)
+                KeyboardEnabledLabel(
                     isEnabled: keyboardState.isKeyboardActive,
                     enabledText: "Demo keyboard is selected",
                     disabledText: "Demo keyboard is not selected")
             }
-        }.navigationTitle(appearance.displayTitle)
+        }
+        .onAppear { isFocused = true }
+        .navigationTitle(appearance.displayTitle)
     }
 }
 
 struct EditScreen_Previews: PreviewProvider {
 
     static var previews: some View {
-        EditScreen(appearance: .default)
+        EditScreen(appearance: .light)
     }
 }

@@ -14,7 +14,7 @@ import SwiftUIKit
  This screen shows the status of the demo keyboard and links
  to another screen, where you can try out the demo keyboards.
  */
-struct HomeScreen: View, UrlOpener {
+struct HomeScreen: View {
     
     @StateObject
     private var keyboardState = KeyboardEnabledState(
@@ -24,21 +24,19 @@ struct HomeScreen: View, UrlOpener {
         NavigationView {
             List {
                 Section(header: Text("Type")) {
-                    linkToEditScreen(.default)
+                    linkToEditScreen(.light)
                     linkToEditScreen(.dark)
                 }
                 Section(header: Text("Keyboard"), footer: footerText) {
-                    EnabledListItem(
+                    KeyboardEnabledLabel(
                         isEnabled: keyboardState.isKeyboardEnabled,
                         enabledText: "Keyboard is enabled",
                         disabledText: "Keyboard is disabled")
-                    EnabledListItem(
+                    KeyboardEnabledLabel(
                         isEnabled: keyboardState.isFullAccessEnabled,
                         enabledText: "Full Access is enabled",
                         disabledText: "Full Access is disabled")
-                    Button(action: { tryOpen(.keyboardSettings) }) {
-                        Label("System settings", image: .settings)
-                    }
+                    KeyboardSettingsLink()
                 }
             }
             .buttonStyle(.list)
@@ -56,14 +54,14 @@ extension HomeScreen {
         Text("You must enable the keyboard in System Settings, then select it with 🌐 when typing.")
     }
 
-    func linkToEditScreen(_ appearance: UIKeyboardAppearance) -> some View {
+    func linkToEditScreen(_ appearance: ColorScheme) -> some View {
         NavigationLink(destination: EditScreen(appearance: appearance)) {
             Label(appearance.displayTitle, image: .type)
         }
     }
 }
 
-extension UIKeyboardAppearance {
+extension ColorScheme {
 
     var displayTitle: String {
         switch self {
