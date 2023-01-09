@@ -83,6 +83,7 @@ KeyboardKit is available under the MIT license.
 - <doc:Appearance>
 - <doc:Autocomplete>
 - <doc:Emojis>
+- <doc:External-Keyboards>
 - <doc:Feedback>
 - <doc:Input>
 - <doc:Layout>

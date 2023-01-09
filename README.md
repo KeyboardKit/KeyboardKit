@@ -199,6 +199,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Appearance]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/appearance
 [Autocomplete]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/autocomplete
 [Emojis]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/emojis
+[External]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/external-keyboards
 [Feedback]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/feedback
 [Input]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/input
 [Layout]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/layout
@@ -208,7 +209,6 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Routing]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/routing
 
 [Callouts]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Callouts.md
-[External]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/External.md
 [Gestures]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Gestures.md
 [Keyboard-Types]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Keyboard-Types.md
 [RTL]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/RTL.md
