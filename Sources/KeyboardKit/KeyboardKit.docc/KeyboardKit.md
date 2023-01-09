@@ -109,6 +109,7 @@ KeyboardKit is available under the MIT license.
 ### Appearance
 
 - ``KeyboardAppearance``
+- ``KeyboardAppearanceViewModifier``
 - ``StandardKeyboardAppearance``
 
 ### Autocomplete
@@ -319,6 +320,7 @@ KeyboardKit is available under the MIT license.
 
 ### Views
 
+- ``KeyboardEnabledLabel``
 - ``KeyboardGrid``
 - ``KeyboardInputComponent``
 - ``KeyboardTextField``

@@ -22,30 +22,30 @@ extension Image: KeyboardImageReader {}
 
 public extension KeyboardImageReader {
     
-    static var keyboard: Image { Image(systemName: "keyboard") }
-    static var keyboardBackspace: Image { Image(systemName: "delete.left") }
-    static var keyboardBackspaceRtl: Image { Image(systemName: "delete.right") }
-    static var keyboardCommand: Image { Image(systemName: "command") }
-    static var keyboardControl: Image { Image(systemName: "control") }
-    static var keyboardDictation: Image { Image(systemName: "mic") }
-    static var keyboardDismiss: Image { Image(systemName: "keyboard.chevron.compact.down") }
-    static var keyboardEmail: Image { Image(systemName: "envelope") }
-    static var keyboardEmoji: Image { Image(systemName: emojiImageName) }
-    static var keyboardGlobe: Image { Image(systemName: "globe") }
-    static var keyboardImages: Image { Image(systemName: "photo") }
-    static var keyboardLeft: Image { Image(systemName: "arrow.left") }
-    static var keyboardNewline: Image { Image(systemName: "arrow.turn.down.left") }
-    static var keyboardNewlineRtl: Image { Image(systemName: "arrow.turn.down.right") }
-    static var keyboardOption: Image { Image(systemName: "option") }
-    static var keyboardRedo: Image { Image(systemName: "arrow.uturn.right") }
-    static var keyboardRight: Image { Image(systemName: "arrow.right") }
-    static var keyboardSettings: Image { Image(systemName: settingsImageName) }
-    static var keyboardShiftCapslocked: Image { Image(systemName: "capslock.fill") }
-    static var keyboardShiftLowercased: Image { Image(systemName: "shift") }
-    static var keyboardShiftUppercased: Image { Image(systemName: "shift.fill") }
-    static var keyboardTab: Image { Image(systemName: "arrow.right.to.line") }
-    static var keyboardUndo: Image { Image(systemName: "arrow.uturn.left") }
-    static var keyboardZeroWidthSpace: Image { Image(systemName: "circle.dotted") }
+    static var keyboard: Image { .symbol("keyboard") }
+    static var keyboardBackspace: Image { .symbol("delete.left") }
+    static var keyboardBackspaceRtl: Image { .symbol("delete.right") }
+    static var keyboardCommand: Image { .symbol("command") }
+    static var keyboardControl: Image { .symbol("control") }
+    static var keyboardDictation: Image { .symbol("mic") }
+    static var keyboardDismiss: Image { .symbol("keyboard.chevron.compact.down") }
+    static var keyboardEmail: Image { .symbol("envelope") }
+    static var keyboardEmoji: Image { .symbol(emojiImageName) }
+    static var keyboardGlobe: Image { .symbol("globe") }
+    static var keyboardImages: Image { .symbol("photo") }
+    static var keyboardLeft: Image { .symbol("arrow.left") }
+    static var keyboardNewline: Image { .symbol("arrow.turn.down.left") }
+    static var keyboardNewlineRtl: Image { .symbol("arrow.turn.down.right") }
+    static var keyboardOption: Image { .symbol("option") }
+    static var keyboardRedo: Image { .symbol("arrow.uturn.right") }
+    static var keyboardRight: Image { .symbol("arrow.right") }
+    static var keyboardSettings: Image { .symbol(settingsImageName) }
+    static var keyboardShiftCapslocked: Image { .symbol("capslock.fill") }
+    static var keyboardShiftLowercased: Image { .symbol("shift") }
+    static var keyboardShiftUppercased: Image { .symbol("shift.fill") }
+    static var keyboardTab: Image { .symbol("arrow.right.to.line") }
+    static var keyboardUndo: Image { .symbol("arrow.uturn.left") }
+    static var keyboardZeroWidthSpace: Image { .symbol("circle.dotted") }
     
     static func keyboardBackspace(for locale: Locale) -> Image {
         locale.isLeftToRight ? .keyboardBackspace : .keyboardBackspaceRtl
@@ -53,6 +53,13 @@ public extension KeyboardImageReader {
     
     static func keyboardNewline(for locale: Locale) -> Image {
         locale.isLeftToRight ? .keyboardNewline : .keyboardNewlineRtl
+    }
+}
+
+extension Image {
+
+    static func symbol(_ name: String) -> Image {
+        Image(systemName: name)
     }
 }
 
