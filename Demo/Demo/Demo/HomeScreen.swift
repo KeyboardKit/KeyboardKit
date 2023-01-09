@@ -18,7 +18,7 @@ struct HomeScreen: View {
     
     @StateObject
     private var keyboardState = KeyboardEnabledState(
-        bundleId: "com.keyboardkit.demo.keyboard")
+        bundleId: "com.keyboardkit.demo.*")
     
     var body: some View {
         NavigationView {
