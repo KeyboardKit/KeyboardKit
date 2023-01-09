@@ -13,9 +13,8 @@
 import UIKit
 
 /**
- This class can be used to redirect a keyboard from the main
- app to another text input, which makes it possible to add a
- tex fields to the keyboard extension itself.
+ This class can be used to route text from an app to another
+ text field, for instance in keyboard extension itself.
 
  This class implements `UITextDocumentProxy`, which lets you
  customize proxy-related features. The class also implements

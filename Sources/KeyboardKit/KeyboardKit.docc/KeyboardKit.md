@@ -299,9 +299,12 @@ KeyboardKit is available under the MIT license.
 - ``PreviewKeyboardLayoutProvider``
 - ``PreviewTextDocumentProxy``
 
-### Proxy
+### Routing
 
 - ``TextInputProxy``
+- ``KeyboardInputComponent``
+- ``KeyboardTextField``
+- ``KeyboardTextView``
 
 ### Styles
 
@@ -325,8 +328,5 @@ KeyboardKit is available under the MIT license.
 
 - ``KeyboardEnabledLabel``
 - ``KeyboardGrid``
-- ``KeyboardInputComponent``
 - ``KeyboardSettingsLink``
-- ``KeyboardTextField``
-- ``KeyboardTextView``
 - ``NextKeyboardButton``
