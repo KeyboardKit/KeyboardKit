@@ -116,6 +116,7 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardActions``
 - ``KeyboardActionRows``
 - ``KeyboardActionHandler``
+- ``PrimaryKeyboardActionMappable``
 - ``StandardKeyboardActionHandler``
 
 ### Appearance

@@ -1,25 +1,45 @@
 //
-//  UIReturnKeyType+KeyboardAction.swift
+//  KeyboardReturnActionMappable.swift
 //  KeyboardKit
 //
-//  Created by Daniel Saidi on 2022-06-23.
-//  Copyright © 2022 Daniel Saidi. All rights reserved.
+//  Created by Daniel Saidi on 2023-01-10.
+//  Copyright © 2023 Daniel Saidi. All rights reserved.
 //
+
+import SwiftUI
+
+/**
+ This protocol can be implemented by types that can return a
+ ``KeyboardAction/PrimaryType``, which can then be mapped to
+ a ``KeyboardAction/primary(_:)`` value.
+
+ This protocol is implemented by `UIReturnKeyType` in `UIKit`.
+ */
+public protocol KeyboardReturnActionMappable {
+
+    /**
+     Get the return action type type to use.
+     */
+    var keyboardActionReturnType: KeyboardAction.PrimaryType { get }
+}
+
+public extension KeyboardReturnActionMappable {
+
+    /**
+     Get a primary keyboard action from the primary keyboard
+     action type.
+     */
+    var keyboardAction: KeyboardAction {
+        .primary(keyboardActionReturnType)
+    }
+}
 
 #if os(iOS) || os(tvOS)
 import UIKit
 
+extension UIReturnKeyType: KeyboardReturnActionMappable {}
+
 public extension UIReturnKeyType {
-
-    /**
-     The corresponding ``KeyboardAction``.
-
-     Return types that have no matching primary type will be
-     mapped to ``KeyboardAction/PrimaryType/custom(title:)``.
-     */
-    var keyboardAction: KeyboardAction {
-        .primary(primaryButtonType)
-    }
 
     /**
      The corresponding ``KeyboardAction/PrimaryType``.
@@ -27,7 +47,7 @@ public extension UIReturnKeyType {
      Return types that have no matching primary type will be
      mapped to ``KeyboardAction/PrimaryType/custom(title:)``.
      */
-    var primaryButtonType: KeyboardAction.PrimaryType {
+    var keyboardActionReturnType: KeyboardAction.PrimaryType {
         switch self {
         case .default: return .ok
         case .go: return .go

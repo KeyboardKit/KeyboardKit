@@ -22,6 +22,7 @@ Some things that are planned for the 7.0 release:
 * All dependencies to the shared instances should be replaced with init parameters, even for the smallest view.
 * KeyboardAction should only support `press` and `release` and not `tap`.
 * KeyboardAction.GestureAction should use a protocol instead of a view controller.
+* KeyboardAction.PrimaryType should be renamed to ReturnType and the action case `.return(type)`.
 * KeyboardAppearance will convert parameterless functions to properties. 
 * KeyboardKit Pro active and enabled labels will use an observed object to update when the state changes.
 * StandardKeyboardActionHandler changeKeyboardTypeAction will be removed.
@@ -54,6 +55,7 @@ Most of the changes only affect functionality that is mostly used internally, bu
 * `KeyboardSettingsLink` is a new view that can link to System Settings.
 * `KeyboardSettingsUrlProvider` is a new protocol that can link to System Settings.
 * `KeyboardTextView` has a new `hasFocus` binding.
+* `KeyboardReturnActionMappable` is a new protocol that can map to a primary action type (will be renamed to return in KK7) .
 * `RepeatGestureTimer` init is now `public`.
 * `RepeatGestureTimer` time interval is now mutable.
 * `StandardCalloutActionProvider` `keyboardContext` is now `public`.
@@ -115,6 +117,7 @@ Most of the changes only affect functionality that is mostly used internally, bu
 * `SystemKeyboardSpaceButton` is deprecated.
 * `SystemKeyboardSpaceButtonContent` is renamed to `SystemKeyboardSpaceContent`.
 * `SystemKeyboardSpaceContent` init with a `spaceText` parameter is deprecated.
+* `UIReturnKeyType` `primaryButtonType` is renamed to `keyboardActionReturnType`.
 * `UIScreen` device extensions are deprecated.
 * `View+Frame` is deprecated.
 * `View.actionCallout` is renamed to `View.keyboardActionCallout`.

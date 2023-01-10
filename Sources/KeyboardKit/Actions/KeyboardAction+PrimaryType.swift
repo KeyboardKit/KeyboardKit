@@ -11,10 +11,15 @@ import SwiftUI
 public extension KeyboardAction {
 
     /**
-     This enum can be used together with ``primary(_:)``.
+     This enum can be used together with ``primary(_:)`` and
+     represents a primary button on the keyboard.
 
-     Primary buttons are color accented buttons that trigger
-     a submit action in the keyboard, just like ``return``.
+     A primary button triggers a return, newline, submit etc.
+     Some look like system buttons, while others are tinted.
+
+     `UIReturnKeyType` has a `keyboardAction` extension that
+     uses its `primaryButtonType` mapping function to return
+     a ``KeyboardAction/primary(_:)`` with a proper type.
      */
     enum PrimaryType: CaseIterable, Codable, Equatable, Identifiable {
 
@@ -54,7 +59,6 @@ public extension KeyboardAction {
 
 public extension KeyboardAction.PrimaryType {
 
-
     /**
      The type's unique identifier.
      */
@@ -79,13 +83,8 @@ public extension KeyboardAction.PrimaryType {
     var isSystemAction: Bool {
         switch self {
         case .return: return true
-        case .done: return false
-        case .go: return false
-        case .join: return false
         case .newLine: return true
-        case .ok: return false
-        case .search: return false
-        case .custom: return false
+        default: return false
         }
     }
 

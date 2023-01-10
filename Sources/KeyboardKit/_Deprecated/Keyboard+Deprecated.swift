@@ -97,3 +97,15 @@ public extension KeyboardType {
         }
     }
 }
+
+#if os(iOS) || os(tvOS)
+import UIKit
+
+public extension UIReturnKeyType {
+
+    @available(*, deprecated, renamed: "keyboardActionReturnType")
+    var primaryButtonType: KeyboardAction.PrimaryType {
+        keyboardActionReturnType
+    }
+}
+#endif

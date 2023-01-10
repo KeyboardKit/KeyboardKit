@@ -110,15 +110,22 @@ struct KKL10n_Previews: PreviewProvider {
             List {
                 ForEach(KKL10n.allCases) { item in
                     VStack(alignment: .leading, spacing: 10) {
-                        Text("\(item.key)")
-                        VStack(alignment: .leading) {
-                            Text("default: \(item.text)")
-                            Text("context: \(item.text(for: context))")
-                            Divider()
-                            ForEach(KeyboardLocale.allCases) {
-                                Text("\($0.id): \(item.text(for: $0))")
-                            }
-                        }.font(.footnote)
+                        if #available(iOS 14.0, *) {
+                            DisclosureGroup {
+                                VStack(alignment: .leading) {
+                                    Text("default: \(item.text)")
+                                    Text("context: \(item.text(for: context))")
+                                    Divider()
+                                    ForEach(KeyboardLocale.allCases) {
+                                        Text("\($0.id): \(item.text(for: $0))")
+                                    }
+                                }.font(.footnote)
+                            } label: {
+                                Text("\(item.key)")
+                            }.font(.footnote)
+                        } else {
+                            // Fallback on earlier versions
+                        }
                     }.padding(.vertical, 4)
                 }
             }.navigationBarTitle("Translations")
