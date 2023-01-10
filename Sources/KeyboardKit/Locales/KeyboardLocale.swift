@@ -99,6 +99,20 @@ public enum KeyboardLocale: String,
 }
 
 public extension KeyboardLocale {
+
+    /**
+     Get all LTR locales.
+     */
+    static var allLtr: [KeyboardLocale] {
+        allCases.filter { $0.isLeftToRight }
+    }
+
+    /**
+     Get all RTL locales.
+     */
+    static var allRtl: [KeyboardLocale] {
+        allCases.filter { $0.isRightToLeft }
+    }
     
     /**
      The locale's unique identifier.
@@ -218,6 +232,20 @@ public extension KeyboardLocale {
 }
 
 public extension Collection where Element == KeyboardLocale {
+
+    /**
+     Get all LTR locales.
+     */
+    static var allLtr: [KeyboardLocale] {
+        KeyboardLocale.allLtr
+    }
+
+    /**
+     Get all RTL locales.
+     */
+    static var allRtl: [KeyboardLocale] {
+        KeyboardLocale.allRtl
+    }
     
     /**
      Sort the collection by the localized name of every item.
