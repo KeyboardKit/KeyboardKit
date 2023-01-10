@@ -99,25 +99,21 @@ extension KeyboardEnabledStateInspector {
         withId bundleId: String,
         in ids: [String]
     ) -> Bool {
-        ids.first?.matches(bundleId) ?? false
+        ids.first?.matchesBundleId(bundleId) ?? false
     }
 
     func isKeyboardEnabled(
         withId bundleId: String,
         in ids: [String]
     ) -> Bool {
-        ids.contains { $0.matches(bundleId) }
+        ids.contains { $0.matchesBundleId(bundleId) }
     }
 }
 
 extension String {
 
-    var isWildcard: Bool {
-        hasSuffix("*")
-    }
-
-    func matches(_ bundleId: String) -> Bool {
-        if !bundleId.isWildcard { return self == bundleId }
+    func matchesBundleId(_ bundleId: String) -> Bool {
+        if !bundleId.hasSuffix("*") { return self == bundleId }
         let wildcard = bundleId.replacingOccurrences(of: "*", with: "")
         return hasPrefix(wildcard)
     }
