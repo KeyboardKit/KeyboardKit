@@ -71,7 +71,7 @@ Note that extensions to native types are not included in this documentation. Fut
 
 
 
-## 🌐 Localization
+## Localization
 
 KeyboardKit is localized in 60 keyboard-specific locales ([read more][Localization]):
 
@@ -88,7 +88,7 @@ KeyboardKit is localized in 60 keyboard-specific locales ([read more][Localizati
 🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 🇹🇷 🇺🇦 🇺🇿 <br />
 
 
-## ✨ Features
+## Features
 
 KeyboardKit comes packed features to help you build amazing and powerful keyboards:
  
