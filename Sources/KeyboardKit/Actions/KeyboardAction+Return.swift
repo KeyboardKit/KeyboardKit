@@ -1,5 +1,5 @@
 //
-//  KeyboardAction+PrimaryType.swift
+//  KeyboardAction+Return.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2022-06-23.
@@ -21,7 +21,7 @@ public extension KeyboardAction {
      uses its `primaryButtonType` mapping function to return
      a ``KeyboardAction/primary(_:)`` with a proper type.
      */
-    enum PrimaryType: CaseIterable, Codable, Equatable, Identifiable {
+    enum ReturnType: CaseIterable, Codable, Equatable, Identifiable {
 
         /// A return key that uses a return text and not an ⏎ icon.
         case `return`
@@ -51,13 +51,13 @@ public extension KeyboardAction {
          All unique primary keyboard action types, excluding
          ``KeyboardAction/custom(named:)``.
          */
-        public static var allCases: [KeyboardAction.PrimaryType] {
+        public static var allCases: [KeyboardAction.ReturnType] {
             return [.return, .done, .go, .join, .newLine, .ok, .search]
         }
     }
 }
 
-public extension KeyboardAction.PrimaryType {
+public extension KeyboardAction.ReturnType {
 
     /**
      The type's unique identifier.

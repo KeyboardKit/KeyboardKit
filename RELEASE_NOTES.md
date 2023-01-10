@@ -22,7 +22,7 @@ Some things that are planned for the 7.0 release:
 * All dependencies to the shared instances should be replaced with init parameters, even for the smallest view.
 * KeyboardAction should only support `press` and `release` and not `tap`.
 * KeyboardAction.GestureAction should use a protocol instead of a view controller.
-* KeyboardAction.PrimaryType should be renamed to ReturnType and the action case `.return(type)`.
+* KeyboardAction.primary should be renamed `.return(type)` when the old return is removed.
 * KeyboardAppearance will convert parameterless functions to properties. 
 * KeyboardKit Pro active and enabled labels will use an observed object to update when the state changes.
 * StandardKeyboardActionHandler changeKeyboardTypeAction will be removed.
@@ -96,6 +96,7 @@ Most of the changes only affect functionality that is mostly used internally, bu
 * `KeyboardAction.newLine` is replaced by `KeyboardAction.primary(.newLine)`.
 * `KeyboardAction.return` is replaced by `KeyboardAction.primary(.return)`.
 * `KeyboardAction.standardTapAction` is replaced by `KeyboardAction.standardReleaseAction`.
+* `KeyboardAction.PrimaryType` is renamed to `KeyboardAction.ReturnType`.
 * `KeyboardEnabledState` `isKeyboardCurrentlyActive` is renamed to `isKeyboardActive`.
 * `KeyboardEnabledStateInspector` `isKeyboardCurrentlyActive` is renamed to `isKeyboardActive`.
 * `KeyboardContext` has redesigned initializers that set fewer properties.

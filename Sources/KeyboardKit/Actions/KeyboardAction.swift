@@ -88,8 +88,10 @@ public enum KeyboardAction: Codable, Equatable {
     /// Represents an option (⌥) key.
     case option
     
-    /// Represents a primary button, e.g. `return`, `go`, `search` etc.
-    case primary(PrimaryType)
+    /// Represents a primary return button, e.g. `return`, `go`, `search` etc.
+    ///
+    /// > Note: This will be renamed to `return` in KK7 (TODO)
+    case primary(ReturnType)
     
     /// Represents a return key that uses a return text and not an ⏎ icon.
     @available(*, deprecated, message: "Use .primary(.return) instead")

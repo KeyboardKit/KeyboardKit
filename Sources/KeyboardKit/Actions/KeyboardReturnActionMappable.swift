@@ -10,8 +10,8 @@ import SwiftUI
 
 /**
  This protocol can be implemented by types that can return a
- ``KeyboardAction/PrimaryType``, which can then be mapped to
- a ``KeyboardAction/primary(_:)`` value.
+ ``KeyboardAction/ReturnType``, which is then be mapped to a
+ ``KeyboardAction/primary(_:)`` action by ``keyboardAction``.
 
  This protocol is implemented by `UIReturnKeyType` in `UIKit`.
  */
@@ -20,7 +20,7 @@ public protocol KeyboardReturnActionMappable {
     /**
      Get the return action type type to use.
      */
-    var keyboardActionReturnType: KeyboardAction.PrimaryType { get }
+    var keyboardActionReturnType: KeyboardAction.ReturnType { get }
 }
 
 public extension KeyboardReturnActionMappable {
@@ -42,12 +42,12 @@ extension UIReturnKeyType: KeyboardReturnActionMappable {}
 public extension UIReturnKeyType {
 
     /**
-     The corresponding ``KeyboardAction/PrimaryType``.
+     The corresponding ``KeyboardAction/ReturnType``.
 
      Return types that have no matching primary type will be
-     mapped to ``KeyboardAction/PrimaryType/custom(title:)``.
+     mapped to ``KeyboardAction/ReturnType/custom(title:)``.
      */
-    var keyboardActionReturnType: KeyboardAction.PrimaryType {
+    var keyboardActionReturnType: KeyboardAction.ReturnType {
         switch self {
         case .default: return .ok
         case .go: return .go

@@ -1,5 +1,5 @@
 //
-//  KeyboardAction+PrimaryTypeTests.swift
+//  KeyboardAction+ReturnTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-01-05.
@@ -9,17 +9,17 @@
 import KeyboardKit
 import XCTest
 
-final class KeyboardAction_PrimaryTypeTests: XCTestCase {
+final class KeyboardAction_ReturnTests: XCTestCase {
 
-    func assertId(for type: KeyboardAction.PrimaryType, _ expected: String) {
+    func assertId(for type: KeyboardAction.ReturnType, _ expected: String) {
         XCTAssertEqual(type.id, expected)
     }
 
-    func assertStandardButtonImage(for type: KeyboardAction.PrimaryType, _ expected: Bool) {
+    func assertStandardButtonImage(for type: KeyboardAction.ReturnType, _ expected: Bool) {
         XCTAssertEqual(type.standardButtonImage(for: .current) != nil, expected)
     }
 
-    func assertStandardButtonText(for type: KeyboardAction.PrimaryType, _ expected: Bool) {
+    func assertStandardButtonText(for type: KeyboardAction.ReturnType, _ expected: Bool) {
         XCTAssertEqual(type.standardButtonText(for: .current) != nil, expected)
     }
 
@@ -35,7 +35,7 @@ final class KeyboardAction_PrimaryTypeTests: XCTestCase {
     }
 
     func testAllCasesReturnsAllTypesExceptCustom() {
-        let cases = KeyboardAction.PrimaryType.allCases
+        let cases = KeyboardAction.ReturnType.allCases
         XCTAssertEqual(cases, [.return, .done, .go, .join, .newLine, .ok, .search])
     }
 

@@ -1,5 +1,11 @@
 import Foundation
 
+public extension KeyboardAction {
+
+    @available(*, deprecated, renamed: "ReturnType")
+    typealias PrimaryType = ReturnType
+}
+
 #if os(iOS) || os(tvOS)
 public extension KeyboardContext {
 
