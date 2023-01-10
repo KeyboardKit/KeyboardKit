@@ -208,11 +208,11 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Previews]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/previews
 [Proxy]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/proxy-extensions
 [Routing]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/routing
+[RTL]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/rtl
 [Settings]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/settings
 
 [Callouts]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Callouts.md
 [Gestures]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Gestures.md
-[RTL]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/RTL.md
 [Styles]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Styles.md
 
 [License]: https://github.com/KeyboardKit/KeyboardKit/blob/master/LICENSE

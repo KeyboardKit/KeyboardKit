@@ -44,6 +44,7 @@ Most of the changes only affect functionality that is mostly used internally, bu
 * `KeyboardAppearanceViewModifier` is a new modifier for setting light and dark keyboards.
 * `KeyboardAction` has a new `isAlphabeticKeyboardTypeAction` property.
 * `KeyboardAction` has a new `isKeyboardTypeAction` function.
+* `KeyboardContext` has new `allLtr` and `allRtl` properties.
 * `KeyboardContext` has a new `screenSize` parameter.
 * `KeyboardContext` has a new `interfaceOrientation` parameter.
 * `KeyboardEnabledLabel` is a new view that can display keyboard states.
