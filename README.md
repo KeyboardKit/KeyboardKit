@@ -67,8 +67,6 @@ The [online documentation][Documentation] has articles, code examples etc. that 
 
 The online documentation is currently iOS-specific. To generate documentation for other platforms, open the package in Xcode, select a simulator then run `Product/Build Documentation`.
 
-Note that extensions to native types are not included in this documentation. Future versions of this library will refactor the extensions in a way that makes them appear in the documentation.
-
 
 
 ## Localization
@@ -123,20 +121,20 @@ KeyboardKit Pro requires a commercial license. Licenses can be purchased from th
 
 ## Demo Applications
 
-This project contains a `Demo` folder with two demo apps that lets you try out KeyboardKit.
+This project contains a `Demo` folder with three demo apps that lets you try out KeyboardKit.
 
 `Demo` uses KeyboardKit and lets you type in a light and dark text field. It has three keyboards:
 
-* `English` uses a `SystemKeyboard` to mimic a native English keyboard.
-* `Unicode` uses a `SystemKeyboard` and a custom, unicode-based input set.
-* `Custom` shows you how to easily customize input sets and layouts.
+* `English` has a `SystemKeyboard` with the standard, English locale.
+* `Unicode` has a `SystemKeyboard` with custom, unicode-based inputs.
+* `Custom` has a completely custom input sets and keyboard layout.
 
-`ProDemo` uses KeyboardKit Pro and supports 50+ locales, autocomplete etc. It has two keyboards:  
+`ProDemo` uses KeyboardKit Pro and supports all keyboard locales, LTR and RTL, autocomplete etc. It has two keyboards:  
 
-* `System LTR` uses a `SystemKeyboard` with all left-to-right locales.
-* `System RTL` uses a `SystemKeyboard` with all right-to-left locales.
+* `System LTR` has a `SystemKeyboard` with all left-to-right locales.
+* `System RTL` has a `SystemKeyboard` with all right-to-left locales.
 
-Just open and run any of these projects, then enable the keyboards you want to try under System Settings. 
+Just open and run any of these projects, then enable the keyboards you want to try under System Settings.
 
 Note that you need to enable full access to try some features, like audio and haptic feedback.
 
