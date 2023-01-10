@@ -23,7 +23,7 @@ import SwiftUI
  you are using the `Keyboard` or `KeyboardRTL` keyboard. The
  keyboard lets you change locale with a separate button that
  is inserted by the ``DemoKeyboardLayoutProvider``.
- 
+
  To use this keyboard, you must enable it in system settings
  ("Settings/General/Keyboards"). It needs full access to get
  access to features like haptic feedback.
@@ -72,7 +72,8 @@ class KeyboardViewController: KeyboardInputViewController {
         
         // Setup a demo-specific keyboard appearance
         // 💡 Play with this to change style of the keyboard
-        keyboardAppearance = DemoKeyboardAppearance(context: keyboardContext)
+        keyboardAppearance = DemoKeyboardAppearance(
+            keyboardContext: keyboardContext)
         
         // Setup a demo-specific keyboard action handler
         // 💡 Play with this to change the keyboard behavior

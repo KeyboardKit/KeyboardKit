@@ -10,13 +10,19 @@ import KeyboardKitPro
 import SwiftUI
 
 /**
- This is the main view that is registered when the extension
- calls `setup(with:)` in `KeyboardViewController`.
+ This is the main demo keyboard view, which is registered by
+ ``KeyboardViewController`` in all `SystemKeyboard` demos.
  
- The view must observe the KeyboardContext as an environment
- object or inject an instance and then set it to an observed
- object (commented out). Otherwise this view will not change
- when the context changes.
+ This view will add an autocomplete toolbar above the system
+ keyboard, if the keyboard type isn't emojis. The toolbar is
+ hidden if the keyboard shouldn't have autocomplete, but the
+ height is still allocated, since the callouts need it.
+
+ The view must observe a `KeyboardContext` as an environment
+ object, or take a context instance as an init parameter and
+ set it to an observed object. Otherwise, it will not change
+ when the context changes. This is not how it should be, but
+ I have not yet figured out why this is needed.
  */
 struct KeyboardView: View {
     

@@ -26,9 +26,6 @@ import SwiftUI
  */
 struct KeyboardView: View {
     
-    @State
-    private var text = "Text"
-    
     @EnvironmentObject
     private var autocompleteContext: AutocompleteContext
 
