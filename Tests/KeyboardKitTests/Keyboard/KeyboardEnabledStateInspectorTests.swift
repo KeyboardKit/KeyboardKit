@@ -6,6 +6,7 @@
 //  Copyright © 2023 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(tvOS)
 import XCTest
 
 @testable import KeyboardKit
@@ -50,3 +51,4 @@ class KeyboardEnabledStateInspectorTests: XCTestCase {
 }
 
 private class TestInspector: KeyboardEnabledStateInspector {}
+#endif

@@ -6,9 +6,11 @@
 //  Copyright © 2020 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
 import Foundation
+
+#if os(iOS) || os(tvOS)
 import UIKit
+#endif
 
 /**
  This protocol can be implemented by any type that should be
@@ -28,9 +30,12 @@ public extension KeyboardSettingsUrlProvider {
      open the main system settings screen.
      */
     static var keyboardSettings: URL? {
+        #if os(iOS) || os(tvOS)
         URL(string: UIApplication.openSettingsURLString)
+        #else
+        nil
+        #endif
     }
 }
 
 extension URL: KeyboardSettingsUrlProvider {}
-#endif

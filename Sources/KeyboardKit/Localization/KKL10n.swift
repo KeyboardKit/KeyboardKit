@@ -96,7 +96,7 @@ public extension KKL10n {
     }
 }
 
-#if os(iOS) || os(tvOS)
+#if os(iOS)
 struct KKL10n_Previews: PreviewProvider {
     
     static let context: KeyboardContext = {

@@ -154,6 +154,8 @@ private extension InputCallout {
 
 // MARK: - Previews
 
+#if os(iOS)
+
 @available(iOS 14.0, *)
 struct InputCallout_Previews: PreviewProvider {
 
@@ -209,3 +211,5 @@ struct InputCallout_Previews: PreviewProvider {
         Preview()
     }
 }
+
+#endif
