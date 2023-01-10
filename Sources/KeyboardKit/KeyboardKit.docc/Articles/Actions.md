@@ -76,7 +76,7 @@ Keyboard actions can also be triggered by keyboard-specific gestures that are ap
 
 
 
-## How to create a custom keyboard action handler
+## How to create a custom action handler
 
 You can create a custom ``KeyboardActionHandler`` to customize how keyboard actions are handled, or to handle actions that have no default behavior.
 

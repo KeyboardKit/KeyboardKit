@@ -24,7 +24,7 @@ You can also replace the ``AudioFeedback`` ``AudioFeedback/engine`` and the ``Ha
 
 
 
-## How to create a custom keyboard feedback handler
+## How to create a custom handler
 
 You can create a custom keyboard feedback handler to customize how feedback is handled, or to handle feedback types that have no default behavior.
 

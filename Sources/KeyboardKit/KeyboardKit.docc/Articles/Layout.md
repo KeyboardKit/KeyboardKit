@@ -22,12 +22,12 @@ KeyboardKit also has an ``EnglishKeyboardLayoutProvider`` that defines the layou
 
 
 
-## How to customize the standard layout provider
+## How to customize the standard provider
 
-If you want to make minor customizations to the standard layout provider, there are a couple of options:
+If you want to make minor customizations to the ``StandardKeyboardLayoutProvider``, there are a couple of options:
 
-* Subclass ``StandardKeyboardLayoutProvider`` and override ``StandardKeyboardLayoutProvider/keyboardLayout(for:)``.
 * Add more localized providers to the ``StandardKeyboardLayoutProvider`` instance. 
+* Subclass ``StandardKeyboardLayoutProvider`` and override ``StandardKeyboardLayoutProvider/keyboardLayout(for:)``.
 * Create a new ``StandardKeyboardLayoutProvider`` instance and inject a custom ``StandardKeyboardLayoutProvider/iPadProvider``.
 * Create a new ``StandardKeyboardLayoutProvider`` instance and inject a custom ``StandardKeyboardLayoutProvider/iPhoneProvider``.
 
@@ -35,7 +35,7 @@ You can also create a completely custom keyboard layout provider, see below.
 
 
 
-## How to create a custom keyboard layout provider
+## How to create a custom layout provider
 
 You can create a custom keyboard layout provider by either inheriting and customizing the ``StandardKeyboardLayoutProvider`` base class, which gives you a lot of functionality for free, or by implementing ``KeyboardLayoutProvider`` from scratch.
 

@@ -32,7 +32,7 @@ Keyboard appearances are dynamic, while styles are simple structs that carry sty
 
 
 
-## How to create a custom keyboard appearance
+## How to create a custom appearance
 
 You can create a custom ``KeyboardAppearance`` to customize the style of various buttons or callouts, as well as texts, images etc.
 

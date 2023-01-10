@@ -22,7 +22,18 @@ KeyboardKit also has an ``EnglishInputSetProvider`` that defines the alphabetic,
 
 
 
-## How to create a custom input set provider
+## How to customize the standard provider
+
+If you want to make minor customizations to the ``StandardInputSetProvider``, there are a couple of options:
+
+* Add more localized providers to the ``StandardInputSetProvider`` instance. 
+* Subclass ``StandardInputSetProvider`` and override its functions.
+
+You can also create a completely custom input set provider, see below.
+
+
+
+## How to create a custom provider
 
 You can create a custom input set provider by either inheriting and customizing the ``StandardInputSetProvider`` base class, which gives you a lot of functionality for free, or by implementing ``InputSetProvider`` from scratch.
 
