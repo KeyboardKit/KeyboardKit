@@ -110,7 +110,6 @@ KeyboardKit comes packed features to help you build amazing and powerful keyboar
 * ⬅️ [RTL][RTL] - KeyboardKit supports RTL (right-to-left) locales, such as Arabic, Persian, Kurdish etc.
 * ⚙️ [Settings][Settings] - KeyboardKit has tools for accessing and linking to an app's keyboard settings.
 * 🎨 [Styles][Styles] - KeyboardKit defines a bunch of styles that simplify customizing the look of various components.
-* 🖼 [Views][Views] - KeyboardKit comes with a bunch of keyboard-specific views, like keyboards, toobars, buttons etc.
 
 
 
@@ -215,6 +214,5 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Gestures]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Gestures.md
 [RTL]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/RTL.md
 [Styles]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Styles.md
-[Views]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Views.md
 
 [License]: https://github.com/KeyboardKit/KeyboardKit/blob/master/LICENSE
