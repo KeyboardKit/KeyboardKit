@@ -40,7 +40,9 @@ public struct KeyboardSettingsLink: View, UrlOpener {
     private let url: URL?
 
     public var body: some View {
-        Button(action: { tryOpen(url) }) {
+        Button {
+            tryOpen(url)
+        } label: {
             Label {
                 Text(title)
             } icon: {

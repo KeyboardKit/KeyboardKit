@@ -24,14 +24,14 @@ final class KeyboardAction_ReturnTests: XCTestCase {
     }
 
     func testIdIsValid() {
-        assertId(for: .return,  "return")
-        assertId(for: .done,  "done")
-        assertId(for: .go,  "go")
-        assertId(for: .join,  "join")
-        assertId(for: .newLine,  "newLine")
-        assertId(for: .ok,  "ok")
-        assertId(for: .search,  "search")
-        assertId(for: .custom(title: "foobar"),  "foobar")
+        assertId(for: .return, "return")
+        assertId(for: .done, "done")
+        assertId(for: .go, "go")
+        assertId(for: .join, "join")
+        assertId(for: .newLine, "newLine")
+        assertId(for: .ok, "ok")
+        assertId(for: .search, "search")
+        assertId(for: .custom(title: "foobar"), "foobar")
     }
 
     func testAllCasesReturnsAllTypesExceptCustom() {
