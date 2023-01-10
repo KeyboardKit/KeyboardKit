@@ -212,7 +212,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Routing]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/routing
 [RTL]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/rtl
 [Settings]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/settings
+[Styles]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/styles
 
-[Styles]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Styles.md
 
 [License]: https://github.com/KeyboardKit/KeyboardKit/blob/master/LICENSE

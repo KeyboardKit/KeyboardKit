@@ -96,6 +96,7 @@ KeyboardKit is available under the MIT license.
 - <doc:Routing>
 - <doc:RTL>
 - <doc:Settings>
+- <doc:Styles>
 
 ### Keyboard
 
