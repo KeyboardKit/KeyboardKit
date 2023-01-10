@@ -13,11 +13,19 @@ import Foundation
  able to analyze emoji information for a character.
 
  This protocol is implemented by `Character`, which means it
- gets all the ``EmojiCharacterAnalyzer
+ gets all ``EmojiStringAnalyzer`` functionality while
+ using itself as the string to analyze.
  */
-public protocol EmojiCharacterAnalyzer: CharacterProvider {}
+public protocol EmojiCharacterAnalyzer {
 
-extension Character: EmojiCharacterAnalyzer {}
+    /// The character to analyze.
+    var character: Character { get }
+}
+
+extension Character: EmojiCharacterAnalyzer {
+
+    public var character: Character { self }
+}
 
 public extension EmojiCharacterAnalyzer {
 

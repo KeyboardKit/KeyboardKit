@@ -12,13 +12,19 @@ import Foundation
  This protocol can be implemented by any type that should be
  able to analyze emoji information for a string.
 
- The protocol is implemented by `String`, which means that a
- string gets all ``EmojiStringAnalyzer`` functionality while
- using itself as the string to analyze.
+ This protocol is implemented by `String`, which uses itself
+ as the required string.
  */
-public protocol EmojiStringAnalyzer: StringProvider {}
+public protocol EmojiStringAnalyzer {
 
-extension String: EmojiStringAnalyzer {}
+    /// The string to analyze.
+    var string: String { get }
+}
+
+extension String: EmojiStringAnalyzer {
+
+    public var string: String { self }
+}
 
 public extension EmojiStringAnalyzer {
 
