@@ -51,6 +51,7 @@ Most of the changes only affect functionality that is mostly used internally, bu
 * `KeyboardEnabledStateInspector` has a new `activeKeyboardBundleIds` property.
 * `KeyboardEnabledStateInspector` has a new `enabledKeyboardBundleIds` function.
 * `KeyboardSettingsLink` is a new view that can link to System Settings.
+* `KeyboardSettingsUrlProvider` is a new protocol that can link to System Settings.
 * `KeyboardTextView` has a new `hasFocus` binding.
 * `RepeatGestureTimer` init is now `public`.
 * `RepeatGestureTimer` time interval is now mutable.

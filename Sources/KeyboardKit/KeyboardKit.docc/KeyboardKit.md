@@ -92,6 +92,7 @@ KeyboardKit is available under the MIT license.
 - <doc:Previews>
 - <doc:Proxy-Extensions>
 - <doc:Routing>
+- <doc:Settings>
 
 ### Keyboard
 
@@ -310,6 +311,11 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardTextField``
 - ``KeyboardTextView``
 
+### Settings
+
+- ``KeyboardSettingsLink``
+- ``KeyboardSettingsUrlProvider``
+
 ### Styles
 
 - ``KeyboardButtonStyle``
@@ -327,8 +333,3 @@ KeyboardKit is available under the MIT license.
 - ``SystemKeyboardButtonShadow``
 - ``SystemKeyboardButtonText``
 - ``SystemKeyboardSpaceContent``
-
-### Views
-
-- ``KeyboardGrid``
-- ``KeyboardSettingsLink``

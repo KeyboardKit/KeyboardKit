@@ -108,6 +108,7 @@ KeyboardKit comes packed features to help you build amazing and powerful keyboar
 * ➡️ [Proxy][Proxy] - KeyboardKit defines a bunch of extensions to `UITextDocumentProxy`.
 * 🚏 [Routing][Routing] - KeyboardKit lets you route text to other destinations than the main app.
 * ⬅️ [RTL][RTL] - KeyboardKit supports RTL (right-to-left) locales, such as Arabic, Persian, Kurdish etc.
+* ⚙️ [Settings][Settings] - KeyboardKit has tools for accessing and linking to an app's keyboard settings.
 * 🎨 [Styles][Styles] - KeyboardKit defines a bunch of styles that simplify customizing the look of various components.
 * 🖼 [Views][Views] - KeyboardKit comes with a bunch of keyboard-specific views, like keyboards, toobars, buttons etc.
 
@@ -208,6 +209,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Previews]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/previews
 [Proxy]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/proxy-extensions
 [Routing]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/routing
+[Settings]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/settings
 
 [Callouts]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Callouts.md
 [Gestures]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Gestures.md
