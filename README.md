@@ -202,6 +202,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Emojis]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/emojis
 [External]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/external-keyboards
 [Feedback]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/feedback
+[Gestures]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/gestures
 [Input]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/input
 [Keyboard]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/keyboard
 [Layout]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/layout
@@ -212,7 +213,6 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [RTL]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/rtl
 [Settings]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/settings
 
-[Gestures]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Gestures.md
 [Styles]: https://github.com/KeyboardKit/KeyboardKit/blob/master/Readmes/Styles.md
 
 [License]: https://github.com/KeyboardKit/KeyboardKit/blob/master/LICENSE

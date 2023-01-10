@@ -86,6 +86,7 @@ KeyboardKit is available under the MIT license.
 - <doc:Emojis>
 - <doc:External-Keyboards>
 - <doc:Feedback>
+- <doc:Gestures>
 - <doc:Input>
 - <doc:Keyboard>
 - <doc:Layout>
