@@ -1,5 +1,5 @@
 //
-//  KeyboardCasing+ButtonTests.swift
+//  KeyboardCase+ButtonTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-07-02.
@@ -10,9 +10,9 @@ import KeyboardKit
 import SwiftUI
 import XCTest
 
-class KeyboardCasing_ButtonTests: XCTestCase {
+class KeyboardCase_ButtonTests: XCTestCase {
 
-    func result(for state: KeyboardCasing) -> Image {
+    func result(for state: KeyboardCase) -> Image {
         state.standardButtonImage
     }
 

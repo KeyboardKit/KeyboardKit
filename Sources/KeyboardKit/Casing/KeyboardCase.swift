@@ -1,5 +1,5 @@
 //
-//  KeyboardCasing.swift
+//  KeyboardCase.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-07-04.
@@ -11,7 +11,7 @@ import Foundation
 /**
  This enum lists the various shift states a keyboard can use.
  */
-public enum KeyboardCasing: String, Codable, Identifiable {
+public enum KeyboardCase: String, Codable, Identifiable {
     
     /**
      `.auto` is a transient state, that should automatically
@@ -38,7 +38,7 @@ public enum KeyboardCasing: String, Codable, Identifiable {
     case uppercased
 }
 
-public extension KeyboardCasing {
+public extension KeyboardCase {
     
     /**
      The casing's unique identifier.

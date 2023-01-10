@@ -65,10 +65,10 @@ public struct InputSetItem: Equatable {
     public var lowercased: String
 
     /**
-     Resolve the character to use for a certain casing.
+     Resolve the character to use for a certain case.
      */
-    public func character(for casing: KeyboardCasing) -> String {
-        switch casing {
+    public func character(for case: KeyboardCase) -> String {
+        switch `case` {
         case .auto: return lowercased
         case .lowercased: return lowercased
         case .uppercased, .capsLocked: return uppercased

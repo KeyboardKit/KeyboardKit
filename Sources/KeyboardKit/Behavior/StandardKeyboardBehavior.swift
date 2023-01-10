@@ -204,7 +204,7 @@ private extension KeyboardType {
     }
 }
 
-private extension KeyboardCasing {
+private extension KeyboardCase {
     
     var shouldSwitchToPreferredKeyboardType: Bool {
         switch self {

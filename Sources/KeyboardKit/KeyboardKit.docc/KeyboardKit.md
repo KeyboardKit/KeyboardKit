@@ -178,8 +178,9 @@ KeyboardKit is available under the MIT license.
 
 ### Casing
 
-- ``CaseAdjustable``
-- ``KeyboardCasing``
+- ``KeyboardCase``
+- ``KeyboardCaseAdjustable``
+- ``StringCasingAnalyzer``
 
 ### Colors
 

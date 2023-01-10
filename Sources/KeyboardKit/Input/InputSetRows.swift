@@ -16,9 +16,9 @@ public typealias InputSetRows = [InputSetRow]
 public extension InputSetRows {
 
     /**
-     Get all input characters for a certain keyboard casing.
+     Get all input characters for a certain keyboard case.
      */
-    func characters(for casing: KeyboardCasing = .lowercased) -> [[String]] {
-        map { $0.characters(for: casing) }
+    func characters(for case: KeyboardCase = .lowercased) -> [[String]] {
+        map { $0.characters(for: `case`) }
     }
 }

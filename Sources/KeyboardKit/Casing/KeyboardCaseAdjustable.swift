@@ -1,5 +1,5 @@
 //
-//  CaseAdjustable.swift
+//  KeyboardCaseAdjustable.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2022-09-02.
@@ -10,11 +10,11 @@ import Foundation
 
 /**
  This protocol can be implemented by any type that can adapt
- to the casing of a certain text.
+ to the keyboard casing of a certain text.
 
  This protocol is implemented by `String`.
  */
-public protocol CaseAdjustable {
+public protocol KeyboardCaseAdjustable {
 
     /**
      Get the capitalized value.
@@ -37,7 +37,7 @@ public protocol CaseAdjustable {
     func uppercased() -> String
 }
 
-public extension CaseAdjustable {
+public extension KeyboardCaseAdjustable {
 
     /**
      Case-adjust the string for the provided `text`.
@@ -60,7 +60,7 @@ public extension CaseAdjustable {
     }
 }
 
-extension String: CaseAdjustable {
+extension String: KeyboardCaseAdjustable {
 
     public func capitalized() -> String {
         self.capitalized

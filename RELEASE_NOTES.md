@@ -22,6 +22,7 @@ Some things that are planned for the 7.0 release:
 * All dependencies to the shared instances should be replaced with init parameters, even for the smallest view.
 * KeyboardAction should only support `press` and `release` and not `tap`.
 * KeyboardAction.GestureAction should use a protocol instead of a view controller.
+* KeyboardAction.shift will have a `current` parameter instead of `currentState`.
 * KeyboardAction.primary should be renamed `.return(type)` when the old return is removed.
 * KeyboardAppearance will convert parameterless functions to properties. 
 * KeyboardKit Pro active and enabled labels will use an observed object to update when the state changes.
@@ -63,6 +64,7 @@ Most of the changes only affect functionality that is mostly used internally, bu
 * `StandardKeyboardAppearance` `keyboardLayoutConfiguration` is now `open`.
 * `StandardKeyboardBehavior` `keyboardContext` is now `public`.
 * `StaticKeyboardBehavior` is now `open`.
+* `StringCasingAnalyzer` is a new protocol that can be used to analyze string casing.
 
 ### 👑 KeyboardKit Pro
 
@@ -87,6 +89,8 @@ Most of the changes only affect functionality that is mostly used internally, bu
 
 * `ActionCallout` now prefers a `keyboardContext` to be injected.
 * `ActionCallout` `context` is renamed to `calloutContext`.
+* `CaseAdjustable` is renamed to `KeyboardCaseAdjustable`.
+* `CharacterProvider` is deprecated.
 * `EmojiKeyboard` `context` is renamed to `keyboardContext`.
 * `EmojiCategoryKeyboard` `context` is renamed to `keyboardContext`.
 * `EmojiCategoryKeyboardMenu` `context` is renamed to `keyboardContext`.
@@ -99,10 +103,13 @@ Most of the changes only affect functionality that is mostly used internally, bu
 * `KeyboardAction.PrimaryType` is renamed to `KeyboardAction.ReturnType`.
 * `KeyboardEnabledState` `isKeyboardCurrentlyActive` is renamed to `isKeyboardActive`.
 * `KeyboardEnabledStateInspector` `isKeyboardCurrentlyActive` is renamed to `isKeyboardActive`.
+* `KeyboardCasing` is renamed to `KeyboardCase`.
 * `KeyboardContext` has redesigned initializers that set fewer properties.
 * `KeyboardContext` `screenOrientation` is replaced by `interfaceOrientation`.
 * `KeyboardGrid` is deprecated.
 * `KeyboardType` font size is deprecated and moved to `StandardKeyboardAppearance`.
+* `Sequence+Batched` is deprecated since it was only used in `KeyboardGrid`.
+* `StringProvider` is deprecated.
 * `SpaceCursorDragGestureHandler` `context` is renamed to `keyboardContext`.
 * `StandardAutocompleteSuggestion` has deprecated the initializer with an implicit text name.
 * `StandardCalloutActionProvider` `context` is renamed to `keyboardContext`.

@@ -1,5 +1,5 @@
 //
-//  CaseAdjustableTests.swift
+//  KeyboardCaseAdjustableTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-07-05.
@@ -9,7 +9,7 @@
 import KeyboardKit
 import XCTest
 
-class CaseAdjustableTests: XCTestCase {
+class KeyboardCaseAdjustableTests: XCTestCase {
 
     func result(for string: String, text: String) -> String {
         string.caseAdjusted(for: text)

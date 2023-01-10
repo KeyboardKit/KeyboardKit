@@ -1,5 +1,5 @@
 //
-//  KeyboardCasing+Button.swift
+//  KeyboardCase+Button.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-07-01.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public extension KeyboardCasing {
+public extension KeyboardCase {
     
     /**
      The casing's standard button image.

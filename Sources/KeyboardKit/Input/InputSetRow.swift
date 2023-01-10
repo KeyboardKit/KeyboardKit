@@ -118,9 +118,9 @@ public extension InputSetRow {
     }
     
     /**
-     Get all input characters for a certain keyboard casing.
+     Get all input characters for a certain keyboard case.
      */
-    func characters(for casing: KeyboardCasing = .lowercased) -> [String] {
-        map { $0.character(for: casing) }
+    func characters(for case: KeyboardCase = .lowercased) -> [String] {
+        map { $0.character(for: `case`) }
     }
 }

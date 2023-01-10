@@ -1,5 +1,11 @@
 import Foundation
 
+@available(*, deprecated, renamed: "KeyboardCase")
+public typealias KeyboardCasing = KeyboardCase
+
+@available(*, deprecated, renamed: "KeyboardCaseAdjustable")
+public typealias CaseAdjustable = KeyboardCaseAdjustable
+
 @available(*, deprecated, message: "This will be removed in KeyboardKit 7")
 public extension Sequence where Iterator.Element == [String] {
 

@@ -1,15 +1,15 @@
 //
-//  String+CasingTests.swift
+//  StringCasingAnalyzerTests.swift
 //  KeyboardKit
 //
-//  Created by Daniel Saidi on 2019-07-05.
+//  Created by Daniel Saidi on 2021-07-05.
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
 import KeyboardKit
 import XCTest
 
-class String_CasingTests: XCTestCase {
+class StringCasingAnalyzerTests: XCTestCase {
 
     func testIsCapitalizedIsOnlyTrueForCapitalizedStrings() {
         XCTAssertTrue("Foobar".isCapitalized)

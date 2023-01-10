@@ -24,7 +24,7 @@ public enum KeyboardType: Codable, Equatable, Identifiable {
      This type can be created with a ``SystemKeyboard``, but
      you can create custom alphabetic keyboards as well.
      */
-    case alphabetic(KeyboardCasing)
+    case alphabetic(KeyboardCase)
     
     /**
      `.numeric` represents keyboards that have numeric input
@@ -110,9 +110,9 @@ public extension KeyboardType {
      Whether or not the keyboard type is alphabetic and with
      a certain shift state.
      */
-    func isAlphabetic(with casingType: KeyboardCasing) -> Bool {
+    func isAlphabetic(with case: KeyboardCase) -> Bool {
         switch self {
-        case .alphabetic(let casing): return casing == casingType
+        case .alphabetic(let current): return current == `case`
         default: return false
         }
     }
