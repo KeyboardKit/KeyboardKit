@@ -84,8 +84,12 @@ open class KeyboardInputViewController: UIInputViewController {
     // MARK: - Properties
     
     /**
-     This internal property always returns the original text
-     document proxy, regardless of if another proxy is set.
+     The original text document proxy that was used to start
+     the keyboard extension.
+
+     This stays the same even if a ``textInputProxy`` is set,
+     which makes ``textDocumentProxy`` return the custom one
+     instead of the original one.
      */
     var originalTextDocumentProxy: UITextDocumentProxy {
         super.textDocumentProxy
@@ -107,11 +111,10 @@ open class KeyboardInputViewController: UIInputViewController {
     }
     
     /**
-     A custom text input proxy to which text input should be
-     redirected instead of the `textDocumentProxy`.
-     
-     If you want to modify this proxy, you can override this
-     property and apply another `didSet`.
+     A custom text input proxy to which text can be routed.
+
+     Setting the property makes ``textDocumentProxy`` return
+     the custom proxy instead of the original one.
      */
     public var textInputProxy: TextInputProxy? {
         didSet { keyboardContext.sync(with: self) }

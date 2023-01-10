@@ -154,8 +154,9 @@ private extension InputCallout {
 
 // MARK: - Previews
 
+@available(iOS 14.0, *)
 struct InputCallout_Previews: PreviewProvider {
-    
+
     struct Preview: View {
 
         var style: InputCalloutStyle {
@@ -171,9 +172,10 @@ struct InputCallout_Previews: PreviewProvider {
 
         func button(for context: InputCalloutContext) -> some View {
             GeometryReader { geo in
-                Button(
-                    action: { showCallout(for: geo) },
-                    label: { Color.red.cornerRadius(5) }
+                GestureButton(
+                    pressAction: { showCallout(for: geo) },
+                    endAction: context.resetWithDelay,
+                    label: { _ in Color.red.cornerRadius(5) }
                 )
             }
             .frame(width: 40, height: 45)
@@ -183,7 +185,6 @@ struct InputCallout_Previews: PreviewProvider {
 
         func showCallout(for geo: GeometryProxy) {
             context.updateInput(for: .character("a"), in: geo)
-            context.resetWithDelay()
         }
 
         var body: some View {

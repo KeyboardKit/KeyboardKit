@@ -173,12 +173,12 @@ struct ActionCallout_Previews: PreviewProvider {
     static let actionProvider = PreviewCalloutActionProvider()
 
     static let keyboardContext = KeyboardContext.preview
-    
-    static let context1 = ActionCalloutContext(
+
+    static let actionContext1 = ActionCalloutContext(
         actionHandler: actionHandler,
         actionProvider: actionProvider)
-    
-    static let context2 = ActionCalloutContext(
+
+    static let actionContext2 = ActionCalloutContext(
         actionHandler: actionHandler,
         actionProvider: actionProvider)
     
@@ -187,8 +187,8 @@ struct ActionCallout_Previews: PreviewProvider {
     }
     
     static var rowItem: some View {
-        Color.yellow.frame(width: 46, height: 56)
-            .overlay(button)
+        Color.yellow.frame(width: 40, height: 50)
+
     }
     
     static var rowItemStyle: ActionCalloutStyle {
@@ -196,48 +196,39 @@ struct ActionCallout_Previews: PreviewProvider {
         style.callout.buttonInset = CGSize(width: 3, height: 3)
         return style
     }
+
+    static func previewGroup<ButtonView: View>(
+        view: ButtonView,
+        actionContext: ActionCalloutContext,
+        alignment: HorizontalAlignment
+    ) -> some View {
+        view.overlay(
+            GeometryReader { geo in
+                Color.clear.onAppear {
+                    actionContext.updateInputs(
+                        for: .character("S"),
+                        in: geo,
+                        alignment: alignment
+                    )
+                }
+            }
+        ).keyboardActionCallout(
+            calloutContext: actionContext,
+            keyboardContext: keyboardContext,
+            style: .standard,
+            emojiKeyboardStyle: .standard(for: keyboardContext))
+    }
     
     static var previews: some View {
         VStack {
-            
-            // Button
-            
-            button.overlay(
-                GeometryReader { geo in
-                    Color.clear.onAppear {
-                        context1.updateInputs(
-                            for: .character("S"),
-                            in: geo,
-                            alignment: .leading
-                        )
-                    }
-                }
-            ).keyboardActionCallout(
-                calloutContext: context1,
-                keyboardContext: keyboardContext,
-                style: .standard,
-                emojiKeyboardStyle: .standard(for: keyboardContext)
-            )
-        
-            
-            // Row Item
-            
-            rowItem.overlay(
-                GeometryReader { geo in
-                    Color.clear.onAppear {
-                        context2.updateInputs(
-                            for: .character("S"),
-                            in: geo,
-                            alignment: .trailing
-                        )
-                    }
-                }
-            ).keyboardActionCallout(
-                calloutContext: context2,
-                keyboardContext: keyboardContext,
-                style: rowItemStyle,
-                emojiKeyboardStyle: .standard(for: keyboardContext)
-            )
+            previewGroup(
+                view: button,
+                actionContext: actionContext1,
+                alignment: .leading)
+            previewGroup(
+                view: rowItem,
+                actionContext: actionContext2,
+                alignment: .trailing)
         }
     }
 }
