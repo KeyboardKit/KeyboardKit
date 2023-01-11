@@ -17,38 +17,103 @@ class TestState {
 
 class KeyboardViewController: KeyboardInputViewController {
 
+    var id = UUID()
+
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
         try? setupPro(
             withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098",
-            view: KeyboardView()
+            view: KeyboardView(id: id)
         )
     }
 }
 
 struct KeyboardView: View {
 
+    var id: UUID
+
     @EnvironmentObject
     private var context: KeyboardContext
+
+    @FocusState
+    private var isTextFieldFocused: Bool
+
+    @State
+    private var isTextFieldVisible = true
 
     @State
     private var text = "\(Date())"
 
     var body: some View {
         VStack {
-            Button("Read full document text", action: readText)
+            HStack {
+                textField
+                    .padding()
+                    .focused($isTextFieldFocused)
+                Spacer()
+                textFieldToggle
+            }
+            HStack {
+                readButton
+                resignButton
+                typeButton
+                returnButton
+            }
+
             ScrollView(.vertical) {
-                textView
+                resultTextView
             }.frame(height: 250)
-        }.background(Color.random())
+            Divider()
+            Text(id.uuidString)
+                .font(.footnote)
+        }
+        .buttonStyle(.borderedProminent)
+        .background(Color.random())
     }
 }
 
 extension KeyboardView {
 
-    var textView: some View {
+    var readButton: some View {
+        Button("Read", action: readText)
+    }
+
+    var resignButton: some View {
+        Button("Resign", action: resign)
+    }
+
+    var returnButton: some View {
+        Button("Return") {
+            KeyboardInputViewController.shared.keyboardActionHandler.handle(.tap, on: .primary(.return))
+        }
+    }
+
+    var typeButton: some View {
+        Button("Type") {
+            KeyboardInputViewController.shared.keyboardActionHandler.handle(.tap, on: .character("B"))
+        }
+    }
+
+    var resultTextView: some View {
         Text(text)
             .frame(maxWidth: .infinity)
+    }
+
+    @ViewBuilder
+    var textField: some View {
+        if isTextFieldVisible {
+            KeyboardTextField(
+                text: $text
+            )
+            .padding()
+            .background(Color.white)
+            .cornerRadius(10)
+        }
+    }
+
+    var textFieldToggle: some View {
+        Toggle("", isOn: $isTextFieldVisible)
+            .labelsHidden()
     }
 }
 
@@ -61,6 +126,10 @@ extension KeyboardView {
                 .fullDocumentContext()
             handleResult(result)
         }
+    }
+
+    func resign() {
+        isTextFieldFocused = false
     }
 
     @MainActor

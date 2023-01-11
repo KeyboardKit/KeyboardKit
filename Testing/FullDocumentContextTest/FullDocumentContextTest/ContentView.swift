@@ -36,10 +36,18 @@ Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
 
     var body: some View {
         NavigationView {
-            TextEditor(text: $text)
-                .padding()
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationTitle("Full Document Context")
+            List {
+                Section {
+                    TextEditor(text: $text)
+                        .frame(height: 200)
+                }
+                Section {
+                    TextEditor(text: $text)
+                        .frame(height: 200)
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("Full Document Context")
         }.navigationViewStyle(.stack)
     }
 }
