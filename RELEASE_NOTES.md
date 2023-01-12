@@ -31,6 +31,14 @@ Some things that are planned for the 7.0 release:
 
 
 
+## 6.9.1
+
+### 👑 KeyboardKit Pro
+
+* The `UITextDocumentContext` full document context has been tweaked to behave better with keyboard text input components in keyboard extensions.
+
+
+
 ## 6.9
 
 This release starts preparing for the next major version, by deprecating and renaming a lot of things that will change in that version.
