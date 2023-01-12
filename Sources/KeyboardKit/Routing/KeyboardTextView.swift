@@ -18,9 +18,30 @@ import UIKit
  The view will automatically register itself as an alternate
  proxy when it becomes first responder and unregister itself
  when it resigns as the first responder.
- 
- `NOTE` that you must give this view a specific `height` for
- it to show up, otherwise it will collapse to zero height.
+
+ > Note: You can't use `resignFirstResponder` to end editing.
+ Instead, bind a standard SwiftUI `FocusedState` to the view
+ and set it to false to end editing.
+
+ ```
+ struct MyView: View {
+
+     @State
+     private var text = ""
+
+     @FocusState
+     private var isEditing: Bool
+
+     var body: some View {
+         KeyboardTextView(text: $text)
+             .isFocused(isEditing)
+     }
+
+     func endEditing() {
+         isEditing = false
+     }
+ }
+ ```
  */
 public struct KeyboardTextView: UIViewRepresentable {
     
