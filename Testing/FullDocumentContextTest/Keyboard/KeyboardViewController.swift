@@ -8,22 +8,24 @@
 import KeyboardKitPro
 import SwiftUI
 
-class TestState {
-
-    static let shared = TestState()
-
-    var result = ""
-}
-
 class KeyboardViewController: KeyboardInputViewController {
 
+    /// This is used to show if the keyboard crashes
     var id = UUID()
+
+    override func performAutocomplete() {
+        if textDocumentProxy.isFullDocumentContextReadOperationInProgress { return }
+        super.performAutocomplete()
+    }
 
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
         try? setupPro(
             withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098",
-            view: KeyboardView(id: id)
+            view: KeyboardView(
+                id: id,
+                actionHandler: keyboardActionHandler
+            )
         )
     }
 }
@@ -32,8 +34,13 @@ struct KeyboardView: View {
 
     var id: UUID
 
+    var actionHandler: KeyboardActionHandler
+
     @EnvironmentObject
-    private var context: KeyboardContext
+    private var autocompleteContext: AutocompleteContext
+
+    @EnvironmentObject
+    private var keyboardContext: KeyboardContext
 
     @FocusState
     private var isTextFieldFocused: Bool
@@ -54,10 +61,13 @@ struct KeyboardView: View {
                 textFieldToggle
             }
             HStack {
-                readButton
-                resignButton
-                typeButton
-                returnButton
+                Button("Read", action: readText)
+                Button("Read before", action: readTextBefore)
+                Button("Read after", action: readTextAfter)
+                Button("Resign", action: resign)
+                Button("Type") {
+                    actionHandler.handle(.tap, on: .character("B"))
+                }
             }
 
             ScrollView(.vertical) {
@@ -73,26 +83,6 @@ struct KeyboardView: View {
 }
 
 extension KeyboardView {
-
-    var readButton: some View {
-        Button("Read", action: readText)
-    }
-
-    var resignButton: some View {
-        Button("Resign", action: resign)
-    }
-
-    var returnButton: some View {
-        Button("Return") {
-            KeyboardInputViewController.shared.keyboardActionHandler.handle(.tap, on: .primary(.return))
-        }
-    }
-
-    var typeButton: some View {
-        Button("Type") {
-            KeyboardInputViewController.shared.keyboardActionHandler.handle(.tap, on: .character("B"))
-        }
-    }
 
     var resultTextView: some View {
         Text(text)
@@ -121,15 +111,38 @@ extension KeyboardView {
 
     func readText() {
         Task {
-            let result = try await context
+            let result = try await keyboardContext
                 .textDocumentProxy
                 .fullDocumentContext()
             handleResult(result)
         }
     }
 
+    func readTextBefore() {
+        Task {
+            let result = try await keyboardContext
+                .textDocumentProxy
+                .fullDocumentContextBeforeInput()
+            handleResult(result)
+        }
+    }
+
+    func readTextAfter() {
+        Task {
+            let result = try await keyboardContext
+                .textDocumentProxy
+                .fullDocumentContextAfterInput()
+            handleResult(result)
+        }
+    }
+
     func resign() {
         isTextFieldFocused = false
+    }
+
+    @MainActor
+    func handleResult(_ result: String) {
+        text = result
     }
 
     @MainActor
