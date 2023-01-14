@@ -12,12 +12,6 @@ class KeyboardViewController: KeyboardInputViewController {
 
     /// This is used to show if the keyboard crashes
     var id = UUID()
-
-    override func performAutocomplete() {
-        if textDocumentProxy.isFullDocumentContextReadOperationInProgress { return }
-        super.performAutocomplete()
-    }
-
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
         try? setupPro(

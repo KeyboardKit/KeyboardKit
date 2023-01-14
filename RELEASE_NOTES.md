@@ -37,11 +37,12 @@ This version improves the full document context behavior for older devices and f
 
 ### ✨ New features
 
+* `KeyboardInputViewController` has a new, open `isAutocompleteEnabled` property.
 * `UITextDocumentProxy` `isReadingFullDocumentContext` has been moved from KeyboardKit Pro to the main library.
 
 ### 💡 Behavior changes
 
-* `KeyboardInputViewController` will now by default disable autocomplete during full document context read operations.   
+* `KeyboardInputViewController` will now by default disable autocomplete while a full document context read operation is active.   
 
 ### 👑 KeyboardKit Pro
 

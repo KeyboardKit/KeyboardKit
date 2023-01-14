@@ -213,14 +213,46 @@ class KeyboardInputViewControllerTests: XCTestCase {
 
     // MARK: - Autocomplete
 
+    func testAutocompleteTextIsCurrentWordInProxy() {
+        let vc = TestClass()
+        setupMocksForAutocomplete(for: vc)
+        mockTextDocumentProxy.documentContextBeforeInput = "foo"
+        mockTextDocumentProxy.documentContextAfterInput = "bar"
+        XCTAssertEqual(vc.autocompleteText, "foobar")
+    }
+
+    func testIsAutocompleteEnabledIsTrueIfProxyIsNotReadingFullDocumentContext() {
+        let vc = TestClass()
+        setupMocksForAutocomplete(for: vc)
+        XCTAssertTrue(vc.isAutocompleteEnabled)
+        mockTextDocumentProxy.isReadingFullDocumentContext = true
+        XCTAssertFalse(vc.isAutocompleteEnabled)
+        mockTextDocumentProxy.isReadingFullDocumentContext = false
+        XCTAssertTrue(vc.isAutocompleteEnabled)
+    }
+
+    func testPerformingAutocompleteAbortsIfProxyIsReadingFullDocumentContext() {
+        let vc = TestClass()
+        setupMocksForAutocomplete(for: vc)
+        vc.autocompleteContext.suggestions = [StandardAutocompleteSuggestion(text: "")]
+        mockTextDocumentProxy.isReadingFullDocumentContext = true
+        vc.performAutocomplete()
+        mockTextDocumentProxy.isReadingFullDocumentContext = false
+        eventually {
+            XCTAssertEqual(vc.autocompleteContext.suggestions.count, 1)
+        }
+    }
+
     func testPerformingAutocompleteAbortsIfTextProxyHasNoCurrentWord() {
         let vc = TestClass()
         setupMocksForAutocomplete(for: vc)
-        mockAutocompleteProvider.autocompleteSuggestionsResult = .success([StandardAutocompleteSuggestion(text: "")])
-        mockTextDocumentProxy.documentContextBeforeInput = "foo bar"
+        vc.autocompleteContext.suggestions = [StandardAutocompleteSuggestion(text: "")]
+        mockTextDocumentProxy.documentContextBeforeInput = nil
+        mockTextDocumentProxy.documentContextAfterInput = nil
+        XCTAssertNil(vc.autocompleteText)
         vc.performAutocomplete()
         eventually {
-            XCTAssertEqual(vc.autocompleteContext.suggestions.count, 1)
+            XCTAssertEqual(vc.autocompleteContext.suggestions.count, 0)
         }
     }
 
