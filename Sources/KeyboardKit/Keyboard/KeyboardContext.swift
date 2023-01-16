@@ -149,6 +149,12 @@ public class KeyboardContext: ObservableObject {
     public var textDocumentProxy: UITextDocumentProxy = PreviewTextDocumentProxy()
     
     /**
+     The text document proxy that is currently active.
+     */
+    @Published
+    public var originalTextDocumentProxy: UITextDocumentProxy = PreviewTextDocumentProxy()
+    
+    /**
      The text input mode of the input controller.
      */
     @Published
@@ -313,6 +319,9 @@ public extension KeyboardContext {
         }
         if textDocumentProxy === controller.textDocumentProxy {} else {
             textDocumentProxy = controller.textDocumentProxy
+        }
+        if originalTextDocumentProxy === controller.originalTextDocumentProxy {} else {
+            originalTextDocumentProxy = controller.originalTextDocumentProxy
         }
         if textInputMode != controller.textInputMode {
             textInputMode = controller.textInputMode
