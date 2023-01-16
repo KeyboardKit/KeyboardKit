@@ -91,7 +91,7 @@ open class KeyboardInputViewController: UIInputViewController {
      which makes ``textDocumentProxy`` return the custom one
      instead of the original one.
      */
-    open var originalTextDocumentProxy: UITextDocumentProxy {
+    public var originalTextDocumentProxy: UITextDocumentProxy {
         super.textDocumentProxy
     }
     
