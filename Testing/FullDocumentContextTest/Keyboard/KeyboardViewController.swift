@@ -55,24 +55,30 @@ struct KeyboardView: View {
                 textFieldToggle
             }
             HStack {
-                Button("Read", action: readText)
-                Button("Read before", action: readTextBefore)
-                Button("Read after", action: readTextAfter)
+                Button("Full", action: readText)
+                Button("Before", action: readTextBefore)
+                Button("After", action: readTextAfter)
+            }
+            HStack {
                 Button("Resign", action: resign)
                 Button("Type") {
                     actionHandler.handle(.tap, on: .character("B"))
+                }
+                Button("Next") {
+                    KeyboardInputViewController.shared.advanceToNextInputMode()
                 }
             }
 
             ScrollView(.vertical) {
                 resultTextView
-            }.frame(height: 250)
+            }
             Divider()
             Text(id.uuidString)
                 .font(.footnote)
         }
         .buttonStyle(.borderedProminent)
         .background(Color.random())
+        .frame(height: 450)
     }
 }
 

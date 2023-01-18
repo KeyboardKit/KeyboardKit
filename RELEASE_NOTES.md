@@ -28,6 +28,20 @@ Some things that are planned for the 7.0 release:
 * KeyboardKit Pro active and enabled labels will use an observed object to update when the state changes.
 * StandardKeyboardActionHandler changeKeyboardTypeAction will be removed.
 * The ActionCallout initializer will require a KeyboardContext
+* KeyboardInputViewController `textInputProxy` will be renamed to `keyboardInputProxy`.
+* KeyboardInputViewController `originalTextDocumentProxy` will be renamed to `mainTextDocumentProxy`.
+
+
+
+## 6.9.2
+
+### ✨ New features
+
+* `KeyboardContext` has a new `originalTextDocumentProxy` property.
+
+### 💡 Behavior changes
+
+* `KeyboardInputViewController` will now sync its original proxy with its context.   
 
 
 

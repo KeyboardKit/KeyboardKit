@@ -19,8 +19,8 @@ open class StandardInputSetProvider: InputSetProvider {
      Create a standard provider.
      
       - Parameters:
-        - context: The keyboard context to use.
-        - providers: The localized providers to use, by default only English.
+        - keyboardContext: The keyboard context to use.
+        - localizedProviders: The localized providers to use, by default only `English`.
      */
     public init(
         keyboardContext: KeyboardContext,

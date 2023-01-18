@@ -89,6 +89,8 @@ open class KeyboardInputViewController: UIInputViewController {
      This stays the same even if a ``textInputProxy`` is set,
      which makes ``textDocumentProxy`` return the custom one
      instead of the original one.
+
+     TODO: Rename this to `mainTextDocumentProxy`.
      */
     open var originalTextDocumentProxy: UITextDocumentProxy {
         super.textDocumentProxy
@@ -114,6 +116,8 @@ open class KeyboardInputViewController: UIInputViewController {
 
      Setting the property makes ``textDocumentProxy`` return
      the custom proxy instead of the original one.
+
+     TODO: Rename this to `keyboardInputProxy`.
      */
     public var textInputProxy: TextInputProxy? {
         didSet { keyboardContext.sync(with: self) }

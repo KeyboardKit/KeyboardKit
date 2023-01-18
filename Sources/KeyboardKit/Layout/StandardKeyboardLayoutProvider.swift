@@ -18,13 +18,14 @@ import Foundation
  class. This will cause the input set provider to be ignored,
  since the matching provider will have its own input set.
 
- Since English is the standard input set and keyboard layout
- configuration, this provider has no English provider in its
- list of localized providers, since it would cause the input
- set provider to always be ignored.
- 
  To modify the layout that is returned by this provider, you
  can inject new providers for a more locales.
+
+ > Important: Since English is the standard language that is
+ used to define input set and keyboard layout, this provider
+ has no `English` provider in its standard list of localized
+ providers, since that would cause the input set provider to
+ always be ignored.
  */
 open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     
@@ -34,7 +35,7 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
      - Parameters:
        - keyboardContext: The keyboard context to use.
        - inputSetProvider: The input set provider to use.
-       - layoutProviders: The localized providers to use, by default only English.
+       - localizedProviders: The localized providers to use, by default empty.
      */
     public init(
         keyboardContext: KeyboardContext,
