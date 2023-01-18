@@ -33,7 +33,7 @@ Some things that are planned for the 7.0 release:
 
 
 
-## 6.9.2
+## 6.9.3
 
 ### ✨ New features
 
