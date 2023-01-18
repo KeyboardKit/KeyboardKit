@@ -17,7 +17,6 @@ import UIKit
  */
 open class KeyboardInputViewController: UIInputViewController {
     
-    
     // MARK: - View Controller Lifecycle
     
     open override func viewDidLoad() {
@@ -91,7 +90,7 @@ open class KeyboardInputViewController: UIInputViewController {
      which makes ``textDocumentProxy`` return the custom one
      instead of the original one.
      */
-    var originalTextDocumentProxy: UITextDocumentProxy {
+    open var originalTextDocumentProxy: UITextDocumentProxy {
         super.textDocumentProxy
     }
     
