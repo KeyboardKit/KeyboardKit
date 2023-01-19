@@ -10,8 +10,9 @@ import SwiftUI
 
 class KeyboardViewController: KeyboardInputViewController {
 
-    /// This is used to show if the keyboard crashes
+    /// This ID is used to indicate if the keyboard crashes
     var id = UUID()
+
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
         try? setupPro(
@@ -45,15 +46,30 @@ struct KeyboardView: View {
     @State
     private var text = "\(Date())"
 
+    @State
+    private var textBefore = ""
+
+    @State
+    private var textAfter = ""
+
     var body: some View {
         VStack {
-            HStack {
-                textField
-                    .padding()
-                    .focused($isTextFieldFocused)
-                Spacer()
-                textFieldToggle
-            }
+            textFieldSection
+            buttons
+            resultSection
+            Divider()
+            Text(id.uuidString).font(.footnote)
+        }
+        .frame(height: 500)
+        .buttonStyle(.borderedProminent)
+        .background(Color.random().edgesIgnoringSafeArea(.all))
+    }
+}
+
+extension KeyboardView {
+
+    var buttons: some View {
+        VStack {
             HStack {
                 Button("Full", action: readText)
                 Button("Before", action: readTextBefore)
@@ -61,32 +77,28 @@ struct KeyboardView: View {
             }
             HStack {
                 Button("Resign", action: resign)
-                Button("Type") {
-                    actionHandler.handle(.tap, on: .character("B"))
+                Button("Return") {
+                    actionHandler.handle(.tap, on: .primary(.return))
+                }
+                Button(".") {
+                    actionHandler.handle(.tap, on: .character("."))
                 }
                 Button("Next") {
                     KeyboardInputViewController.shared.advanceToNextInputMode()
                 }
             }
-
-            ScrollView(.vertical) {
-                resultTextView
-            }
-            Divider()
-            Text(id.uuidString)
-                .font(.footnote)
         }
-        .buttonStyle(.borderedProminent)
-        .background(Color.random())
-        .frame(height: 450)
     }
-}
 
-extension KeyboardView {
-
-    var resultTextView: some View {
-        Text(text)
-            .frame(maxWidth: .infinity)
+    var resultSection: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("Result (\(text.count) chars...should be \(textBefore.count + textAfter.count)):").font(.footnote)
+            TextEditor(text: $text).padding(.bottom)
+            Text("Before (\(textBefore.count) chars):").font(.footnote)
+            Text(textBefore.replacingOccurrences(of: "\n", with: "\\n")).lineLimit(3).padding(.bottom)
+            Text("After (\(textAfter.count) chars):").font(.footnote)
+            Text(textAfter.replacingOccurrences(of: "\n", with: "\\n")).lineLimit(3).padding(.bottom)
+        }.padding()
     }
 
     @ViewBuilder
@@ -95,15 +107,22 @@ extension KeyboardView {
             KeyboardTextField(
                 text: $text
             )
-            .padding()
             .background(Color.white)
             .cornerRadius(10)
+            .frame(height: 35)
         }
     }
 
-    var textFieldToggle: some View {
-        Toggle("", isOn: $isTextFieldVisible)
-            .labelsHidden()
+    var textFieldSection: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("You can type here too:").font(.footnote)
+            HStack {
+                textField.focused($isTextFieldFocused)
+                Spacer()
+                Toggle("", isOn: $isTextFieldVisible)
+                    .labelsHidden()
+            }
+        }.padding()
     }
 }
 
@@ -149,15 +168,6 @@ extension KeyboardView {
     func handleResult(_ result: FullDocumentContextResult) {
         UIPasteboard.general.string = """
 ---
-original context before:
-\(result.originalDocumentContextBeforeInput ?? "-")
----
-original context after:
-\(result.originalDocumentContextAfterInput ?? "-")
----
-original context:
-\(result.originalDocumentContext)
----
 full context before:
 \(result.fullDocumentContextBeforeInput)
 ---
@@ -168,6 +178,8 @@ full context: \(result.fullDocumentContext)
 ---
 """
         text = result.fullDocumentContext
+        textBefore = result.fullDocumentContextBeforeInput
+        textAfter = result.fullDocumentContextAfterInput
     }
 }
 
