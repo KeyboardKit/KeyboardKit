@@ -33,6 +33,18 @@ Some things that are planned for the 7.0 release:
 
 
 
+## 6.9.4
+
+### ✨ New features
+
+* `KeyboardInputViewController` has a new `viewWillSyncWithContext` function.
+
+### 👑 KeyboardKit Pro
+
+* The `UITextDocumentContext` full document context functionality behaves better when there is leading and trailing newlines in the document.   
+
+
+
 ## 6.9.3
 
 ### ✨ New features
@@ -63,7 +75,7 @@ This version improves the full document context behavior for older devices and f
 * `FullDocumentContextConfiguration` `sleepSeconds` is renamed to `sleepInteval`. 
 * `FullDocumentContextConfiguration` has adjusted the standard `sleepInteval` to 0.04 to behave better on old devices.
 * `FullDocumentContextReader` `isFullDocumentContextReadOperationInProgress` is renamed to `isReadingFullDocumentContext`.
-* `UITexstDocumentProxy` `isFullDocumentContextReadOperationInProgress` is renamed to `isReadingFullDocumentContext`.
+* `UITextDocumentProxy` `isFullDocumentContextReadOperationInProgress` is renamed to `isReadingFullDocumentContext`.
 
 
 

@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2018-03-13.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2018-2023 Daniel Saidi. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS)
@@ -29,7 +29,7 @@ open class KeyboardInputViewController: UIInputViewController {
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        keyboardContext.sync(with: self)
+        viewWillSyncWithContext()
     }
     
     open override func viewDidLayoutSubviews() {
@@ -38,15 +38,28 @@ open class KeyboardInputViewController: UIInputViewController {
     }
 
     /**
-     This function is called whenever the keyboard should be
-     created or updated.
+     This function is called whenever the keyboard view must
+     be created or updated.
+
+     You can override this function if you want to implement
+     your own keyboard setup logic.
      */
-    open func viewWillSetupKeyboard() {
-        // Override and implement your keyboard setup logic.
-    }
-    
-    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    open func viewWillSetupKeyboard() {}
+
+    /**
+     This function is called whenever the controller must be
+     synced with its ``keyboardContext``.
+
+     You can override this function if you want to implement
+     your own context sync logic or sync the controller with
+     other observable properties.
+     */
+    open func viewWillSyncWithContext() {
         keyboardContext.sync(with: self)
+    }
+
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        viewWillSyncWithContext()
         super.traitCollectionDidChange(previousTraitCollection)
     }
     
@@ -120,7 +133,7 @@ open class KeyboardInputViewController: UIInputViewController {
      TODO: Rename this to `keyboardInputProxy`.
      */
     public var textInputProxy: TextInputProxy? {
-        didSet { keyboardContext.sync(with: self) }
+        didSet { viewWillSyncWithContext() }
     }
     
     
