@@ -15,11 +15,11 @@ import UIKit
 
 /**
  This class provides keyboard extensions with contextual and
- observable keyboard state.
+ observable information about the keyboard extension itself.
 
  KeyboardKit automatically creates an instance of this class
- and sets ``KeyboardInputViewController/keyboardContext`` to
- the instance when a keyboard extension is started.
+ and binds the created instance to the keyboard controller's
+ ``KeyboardInputViewController/keyboardContext``.
  */
 public class KeyboardContext: ObservableObject {
 
@@ -290,11 +290,27 @@ public extension KeyboardContext {
     func sync(with controller: KeyboardInputViewController) {
         if Self.tempIsPreviewMode { return }
         DispatchQueue.main.async {
-            self.syncWithControllerAfterDelay(controller)
+            self.syncAfterAsync(with: controller)
         }
     }
+    
+    func syncAfterLayout(with controller: KeyboardInputViewController) {
+        #if os(iOS)
+        if controller.orientation == interfaceOrientation { return }
+        self.sync(with: controller)
+        #endif
+    }
+    #endif
+}
 
-    func syncWithControllerAfterDelay(_ controller: KeyboardInputViewController) {
+#if os(iOS) || os(tvOS)
+extension KeyboardContext {
+
+    /**
+     Perform this after an async delay, to make sure that we
+     have the latest information.
+     */
+    func syncAfterAsync(with controller: KeyboardInputViewController) {
         if hasDictationKey != controller.hasDictationKey {
             hasDictationKey = controller.hasDictationKey
         }
@@ -310,14 +326,15 @@ public extension KeyboardContext {
         if interfaceOrientation != controller.orientation {
             interfaceOrientation = controller.orientation
         }
+
         let newPrefersAutocomplete = keyboardType.prefersAutocomplete && (textDocumentProxy.keyboardType?.prefersAutocomplete ?? true)
         if prefersAutocomplete != newPrefersAutocomplete {
             prefersAutocomplete = newPrefersAutocomplete
         }
+
         if screenSize != controller.screenSize {
             screenSize = controller.screenSize
         }
-
         if originalTextDocumentProxy === controller.originalTextDocumentProxy {} else {
             originalTextDocumentProxy = controller.originalTextDocumentProxy
         }
@@ -331,17 +348,8 @@ public extension KeyboardContext {
             traitCollection = controller.traitCollection
         }
     }
-    
-    func syncAfterLayout(with controller: KeyboardInputViewController) {
-        #if os(iOS)
-        if controller.orientation == interfaceOrientation { return }
-        self.sync(with: controller)
-        #endif
-    }
-    #endif
 }
 
-#if os(iOS) || os(tvOS)
 private extension UIInputViewController {
 
     var orientation: InterfaceOrientation {

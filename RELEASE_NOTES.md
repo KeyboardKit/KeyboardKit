@@ -41,10 +41,11 @@ Some things that are planned for the 7.0 release:
 * `KeyboardInputViewController` has a new `keyboardTextContext` property.
 * `KeyboardInputViewController` injects its `keyboardTextContext` into the environment.
 * `KeyboardTextContext` is a new observable class that lets you observe the document text.
+* `UITextDocumentProxy` has a new `documentContext` property.
 
 ### 👑 KeyboardKit Pro
 
-* The `UITextDocumentContext` full document context functionality behaves better when there is leading and trailing newlines in the document.   
+* The `UITextDocumentProxy` full document context functionality behaves better when there is leading and trailing newlines in the document.   
 
 
 
