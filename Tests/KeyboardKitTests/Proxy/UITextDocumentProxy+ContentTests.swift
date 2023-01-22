@@ -161,18 +161,6 @@ class UITextDocumentProxy_ContentTests: XCTestCase {
     }
 
 
-    func testTrimmedDocumentContextAfterInputRemovesWhitespace() {
-        proxy.documentContextAfterInput = " foo "
-        XCTAssertEqual(proxy.trimmedDocumentContextAfterInput, "foo")
-    }
-
-
-    func testTrimmedDocumentContextBeforeInputRemovesWhitespace() {
-        proxy.documentContextBeforeInput = " bar "
-        XCTAssertEqual(proxy.trimmedDocumentContextBeforeInput, "bar")
-    }
-
-
     func testWordDelimiterListReturnsStaticStringProperty() {
        XCTAssertEqual(proxy.wordDelimiters, String.wordDelimiters)
     }

@@ -16,7 +16,8 @@ public extension UITextDocumentProxy {
      immediate beginning of a new sentence.
      */
     var isCursorAtNewSentence: Bool {
-        guard let pre = trimmedDocumentContextBeforeInput?.replacingOccurrences(of: "\n", with: "") else { return true }
+        let content = documentContextBeforeInput?.trimmed()
+        guard let pre = content?.replacingOccurrences(of: "\n", with: "") else { return true }
         if pre.isEmpty { return true }
         let lastCharacter = String(pre.suffix(1))
         return lastCharacter.isSentenceDelimiter

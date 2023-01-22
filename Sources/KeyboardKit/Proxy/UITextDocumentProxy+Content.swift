@@ -25,19 +25,5 @@ public extension UITextDocumentProxy {
         let after = documentContextAfterInput ?? ""
         return before + after
     }
-
-    /**
-     Trimmed textual content after the text cursor.
-     */
-    var trimmedDocumentContextAfterInput: String? {
-        documentContextAfterInput?.trimmed()
-    }
-    
-    /**
-     Trimmed textual content before the text cursor.
-     */
-    var trimmedDocumentContextBeforeInput: String? {
-        documentContextBeforeInput?.trimmed()
-    }
 }
 #endif

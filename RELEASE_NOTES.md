@@ -45,7 +45,12 @@ Some things that are planned for the 7.0 release:
 
 ### 👑 KeyboardKit Pro
 
-* The `UITextDocumentProxy` full document context functionality behaves better when there is leading and trailing newlines in the document.   
+* The `UITextDocumentProxy` full document context functionality behaves better when there is leading and trailing newlines in the document.
+
+### 🗑 Deprecations
+
+* `UITextDocumentProxy` `trimmedDocumentContextBeforeInput` is deprecated.
+* `UITextDocumentProxy` `trimmedDocumentContextAfterInput` is deprecated.
 
 
 
