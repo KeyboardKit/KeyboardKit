@@ -315,6 +315,7 @@ open class KeyboardInputViewController: UIInputViewController {
         super.textDidChange(textInput)
         performAutocomplete()
         tryChangeToPreferredKeyboardTypeAfterTextDidChange()
+        keyboardTextContext.sync(with: self)
     }
     
     
