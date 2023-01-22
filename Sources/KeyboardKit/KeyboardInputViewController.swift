@@ -62,6 +62,7 @@ open class KeyboardInputViewController: UIInputViewController {
      other observable properties.
      */
     open func viewWillSyncWithContext() {
+        guard isContextSyncEnabled else { return }
         keyboardContext.sync(with: self)
         keyboardTextContext.sync(with: self)
     }
@@ -315,7 +316,7 @@ open class KeyboardInputViewController: UIInputViewController {
         super.textDidChange(textInput)
         performAutocomplete()
         tryChangeToPreferredKeyboardTypeAfterTextDidChange()
-        keyboardTextContext.sync(with: self)
+        trySyncTextContext()
     }
     
     
@@ -336,11 +337,20 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      Whether or not autocomple is enabled.
 
-     By default, autocomplete will be enabled as long as the
-     text document proxy isn't reading full document context.
-     You can override this function to make it more granular.
+     By default, autocomplete is enabled as long as the text
+     document proxy isn't reading full document context.
      */
     open var isAutocompleteEnabled: Bool {
+        !textDocumentProxy.isReadingFullDocumentContext
+    }
+
+    /**
+     Whether or not context syncing is enabled.
+
+     By default, context sync is enabled as long as the text
+     text document proxy isn't reading full document context.
+     */
+    open var isContextSyncEnabled: Bool {
         !textDocumentProxy.isReadingFullDocumentContext
     }
     
@@ -419,6 +429,11 @@ private extension KeyboardInputViewController {
         let shouldSwitch = keyboardBehavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange()
         guard shouldSwitch else { return }
         keyboardContext.keyboardType = context.preferredKeyboardType
+    }
+
+    func trySyncTextContext() {
+        guard isContextSyncEnabled else { return }
+        keyboardTextContext.sync(with: self)
     }
 
     /**

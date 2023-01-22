@@ -31,6 +31,8 @@ struct KeyboardView: View {
 
     @EnvironmentObject
     private var keyboardContext: KeyboardContext
+    @EnvironmentObject
+    private var keyboardTextContext: KeyboardTextContext
     
     var body: some View {
         VStack(spacing: 0) {

@@ -37,8 +37,9 @@ Some things that are planned for the 7.0 release:
 
 ### ✨ New features
 
-* `KeyboardInputViewController` has a new `viewWillSyncWithContext` function.
+* `KeyboardInputViewController` has a new `isContextSyncEnabled` property.
 * `KeyboardInputViewController` has a new `keyboardTextContext` property.
+* `KeyboardInputViewController` has a new `viewWillSyncWithContext` function.
 * `KeyboardInputViewController` injects its `keyboardTextContext` into the environment.
 * `KeyboardTextContext` is a new observable class that lets you observe the document text.
 * `UITextDocumentProxy` has a new `documentContext` property.
