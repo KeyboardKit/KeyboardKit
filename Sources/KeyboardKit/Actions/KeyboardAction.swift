@@ -245,7 +245,7 @@ public extension KeyboardAction {
      Whether or not the action is an uppercase shift action.
 
      This is true for ``KeyboardAction/shift(currentState:)``
-     where the state is ``KeyboardCasing/isUppercased``.
+     where the state is uppercased.
      */
     var isUppercasedShiftAction: Bool {
         switch self {

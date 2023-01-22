@@ -14,7 +14,7 @@ KeyboardKit has a collection of preview-specific state and services that you can
 * ``KeyboardInputViewController``.``KeyboardInputViewController/preview``.
 * ``KeyboardLayout``.``KeyboardLayout/preview``.
 * ``KeyboardLayoutProvider``.``KeyboardLayoutProvider/preview``.
-* ``UITextDocumentContext``.`preview`.
+* `UITextDocumentContext`.`preview`.
 
 If the view you want to preview uses any of these types, you can just use `.preview`.
 

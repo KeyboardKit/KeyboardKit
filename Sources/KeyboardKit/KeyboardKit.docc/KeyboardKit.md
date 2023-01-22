@@ -107,6 +107,7 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardEnabledState``
 - ``KeyboardEnabledStateInspector``
 - ``KeyboardHostingController``
+- ``KeyboardTextContext``
 - ``NextKeyboardButton``
 
 ### Actions
