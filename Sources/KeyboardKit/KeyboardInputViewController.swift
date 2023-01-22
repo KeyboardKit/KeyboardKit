@@ -37,6 +37,13 @@ open class KeyboardInputViewController: UIInputViewController {
         keyboardContext.syncAfterLayout(with: self)
     }
 
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        viewWillSyncWithContext()
+        super.traitCollectionDidChange(previousTraitCollection)
+    }
+
+    // MARK: - Keyboard View Controller Lifecycle
+
     /**
      This function is called whenever the keyboard view must
      be created or updated.
@@ -56,11 +63,7 @@ open class KeyboardInputViewController: UIInputViewController {
      */
     open func viewWillSyncWithContext() {
         keyboardContext.sync(with: self)
-    }
-
-    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        viewWillSyncWithContext()
-        super.traitCollectionDidChange(previousTraitCollection)
+        keyboardTextContext.sync(with: self)
     }
     
     
@@ -82,6 +85,7 @@ open class KeyboardInputViewController: UIInputViewController {
             .environmentObject(inputCalloutContext)
             .environmentObject(keyboardContext)
             .environmentObject(keyboardFeedbackSettings)
+            .environmentObject(keyboardTextContext)
         let host = KeyboardHostingController(rootView: view)
         host.add(to: self)
     }
@@ -181,6 +185,14 @@ open class KeyboardInputViewController: UIInputViewController {
      keyboard's feedback, e.g. audio and haptic feedback.
      */
     public lazy var keyboardFeedbackSettings = KeyboardFeedbackSettings()
+
+    /**
+     The default, observable keyboard text context.
+
+     This is used as global state to let you observe text in
+     the ``textDocumentProxy``.
+     */
+    public lazy var keyboardTextContext = KeyboardTextContext()
     
     
     
