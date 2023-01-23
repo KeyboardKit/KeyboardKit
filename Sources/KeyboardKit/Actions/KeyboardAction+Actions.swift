@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-07-01.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2020-2023 Daniel Saidi. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS)
@@ -11,20 +11,13 @@ import Foundation
 
 /**
  This extension defines standard gesture actions for various
- keyboard actions.
- 
- You can trigger these actions directly, but a more flexible
- approach is to use a ``KeyboardActionHandler``. The library
- also uses these actions by default.
+ keyboard actions and ``KeyboardInputViewController``s.
  */
 public extension KeyboardAction {
     
     /**
      This typealias represents a gesture action that affects
-     the provided view controller.
-
-     > NOTE: This will NOT use a view controller in 7.0, but
-     rather use a protocol, to be available to all platforms.
+     the provided ``KeyboardInputViewController``.
      */
     typealias GestureAction = (KeyboardInputViewController?) -> Void
     
