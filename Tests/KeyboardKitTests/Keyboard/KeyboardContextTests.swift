@@ -44,11 +44,11 @@ class KeyboardContextTests: XCTestCase {
     func assert(_ context: KeyboardContext, isSyncedWith controller: KeyboardInputViewController) {
         XCTAssertEqual(context.hasDictationKey, controller.hasDictationKey)
         XCTAssertEqual(context.hasFullAccess, controller.hasFullAccess)
-        XCTAssertEqual(context.needsInputModeSwitchKey, controller.needsInputModeSwitchKey)
         XCTAssertEqual(context.primaryLanguage, controller.primaryLanguage)
         XCTAssertEqual(context.screenSize, controller.view.window?.screen.bounds.size ?? .zero)
         XCTAssertEqual(context.textInputMode, controller.textInputMode)
         eventually {
+            XCTAssertEqual(context.needsInputModeSwitchKey, controller.needsInputModeSwitchKey)
             XCTAssertTrue(context.textDocumentProxy === controller.textDocumentProxy)
             XCTAssertEqual(context.traitCollection, controller.traitCollection)
         }

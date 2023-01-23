@@ -15,6 +15,7 @@ import XCTest
 final class StandardKeyboardActionHandlerTests: XCTestCase {
 
     private var handler: TestClass!
+    var controller: MockKeyboardInputViewController!
     var emojiProvider: MockFrequentEmojiProvider!
     var feedbackHandler: MockKeyboardFeedbackHandler!
     var spaceDragHandler: MockDragGestureHandler!
@@ -23,12 +24,13 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
     var originalEmojiProvider: FrequentEmojiProvider!
 
     override func setUp() {
-        let controller = MockKeyboardInputViewController()
+        controller = MockKeyboardInputViewController()
         emojiProvider = MockFrequentEmojiProvider()
         feedbackHandler = MockKeyboardFeedbackHandler()
         spaceDragHandler = MockDragGestureHandler()
         textDocumentProxy = MockTextDocumentProxy()
 
+        controller.keyboardContext.locale = KeyboardLocale.swedish.locale
         controller.keyboardContext.textDocumentProxy = textDocumentProxy
         originalEmojiProvider = EmojiCategory.frequentEmojiProvider
         EmojiCategory.frequentEmojiProvider = emojiProvider
@@ -99,8 +101,12 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         XCTAssertNil(result)
         result = handler.replacementAction(for: .release, on: .character("A"))
         XCTAssertNil(result)
+        controller.keyboardContext.locale = KeyboardLocale.swedish.locale
         result = handler.replacementAction(for: .release, on: .character("‘"))
         XCTAssertNotNil(result)
+        controller.keyboardContext.locale = KeyboardLocale.english.locale
+        result = handler.replacementAction(for: .release, on: .character("‘"))
+        XCTAssertNil(result)
     }
 
     func testShouldTriggerFeedbackForGestureOnActionReturnsTrueInSomeCases() {
@@ -163,8 +169,12 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         XCTAssertFalse(result)
         result = handler.tryHandleReplacementAction(before: .doubleTap, on: .character("A"))
         XCTAssertFalse(result)
+        controller.keyboardContext.locale = KeyboardLocale.swedish.locale
         result = handler.tryHandleReplacementAction(before: .release, on: .character("‘"))
         XCTAssertTrue(result)
+        controller.keyboardContext.locale = KeyboardLocale.english.locale
+        result = handler.tryHandleReplacementAction(before: .release, on: .character("‘"))
+        XCTAssertFalse(result)
     }
 
     func testTryToRegisterEmojiAfterGestureOnActionRegisterEmojiForTapsOnEmoji() {
