@@ -53,6 +53,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `EmojiCategoryKeyboardMenu` init parameters have been reordered.
 * `KeyboardAction` `.return` and `.newLine` are now `primary` variants.
 * `KeyboardGesture` `.tap` has been removed, use `.release` instead.
+* `KeyboardReturnActionMappable` has been refactored to `KeyboardActionMappable`.
 
 
 
@@ -145,7 +146,7 @@ Most of the changes only affect functionality that is mostly used internally, bu
 * `KeyboardSettingsLink` is a new view that can link to System Settings.
 * `KeyboardSettingsUrlProvider` is a new protocol that can link to System Settings.
 * `KeyboardTextView` has a new `hasFocus` binding.
-* `KeyboardReturnActionMappable` is a new protocol that can map to a primary action type (will be renamed to return in KK7) .
+* `KeyboardReturnActionMappable` is a new protocol that can map to a primary action type.
 * `RepeatGestureTimer` init is now `public`.
 * `RepeatGestureTimer` time interval is now mutable.
 * `StandardCalloutActionProvider` `keyboardContext` is now `public`.

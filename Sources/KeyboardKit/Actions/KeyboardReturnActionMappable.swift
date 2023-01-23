@@ -1,5 +1,5 @@
 //
-//  KeyboardReturnActionMappable.swift
+//  KeyboardActionMappable.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-01-10.
@@ -15,31 +15,27 @@ import SwiftUI
 
  This protocol is implemented by `UIReturnKeyType` in `UIKit`.
  */
-public protocol KeyboardReturnActionMappable {
+public protocol KeyboardActionMappable {
 
     /**
-     Get the return action type type to use.
+     The keyboard action that this type maps to.
      */
-    var keyboardActionReturnType: KeyboardAction.ReturnType { get }
-}
-
-public extension KeyboardReturnActionMappable {
-
-    /**
-     Get a primary keyboard action from the primary keyboard
-     action type.
-     */
-    var keyboardAction: KeyboardAction {
-        .primary(keyboardActionReturnType)
-    }
+    var keyboardAction: KeyboardAction { get }
 }
 
 #if os(iOS) || os(tvOS)
 import UIKit
 
-extension UIReturnKeyType: KeyboardReturnActionMappable {}
+extension UIReturnKeyType: KeyboardActionMappable {}
 
 public extension UIReturnKeyType {
+
+    /**
+     The keyboard action that this return key type maps to.
+     */
+    var keyboardAction: KeyboardAction {
+        .primary(keyboardActionReturnType)
+    }
 
     /**
      The corresponding ``KeyboardAction/ReturnType``.
