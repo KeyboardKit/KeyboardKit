@@ -37,9 +37,8 @@ public extension KeyboardAction {
         case .doubleTap: return standardDoubleTapAction
         case .longPress: return standardLongPressAction
         case .press: return standardPressAction
-        case .release: return nil   // TODO: Return the standardReleaseAction in 7.9
+        case .release: return standardReleaseAction
         case .repeatPress: return standardRepeatAction
-        case .tap: return standardReleaseAction
         }
     }
     
@@ -55,7 +54,7 @@ public extension KeyboardAction {
      */
     var standardLongPressAction: GestureAction? {
         switch self {
-        case .backspace: return standardReleaseAction
+        case .backspace: return standardPressAction
         case .space: return { _ in }
         default: return nil
         }

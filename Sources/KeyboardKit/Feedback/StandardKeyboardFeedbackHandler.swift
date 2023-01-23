@@ -91,7 +91,6 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
         case .press: hapticConfig.tap.trigger()
         case .release: hapticConfig.tap.trigger()
         case .repeatPress: hapticConfig.repeat.trigger()
-        case .tap: hapticConfig.tap.trigger()
         }
     }
 }

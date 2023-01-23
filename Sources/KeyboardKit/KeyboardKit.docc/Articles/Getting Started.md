@@ -167,7 +167,7 @@ struct MyView: View {
     private let actionHandler: KeyboardActionHandler
 
     var body: some View {
-        Button(action: { actionHandler.handle(.tap, on: .space) }) {
+        Button(action: { actionHandler.handle(.release, on: .space) }) {
             Text("Custom space bar")
                 .padding()
                 .background(Color.green)

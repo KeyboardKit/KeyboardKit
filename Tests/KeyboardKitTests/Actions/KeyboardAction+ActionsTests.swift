@@ -38,9 +38,8 @@ final class KeyboardAction_ActionsTests: XCTestCase {
             XCTAssertTrue(result(for: $0, gesture: .doubleTap, expected: $0.standardDoubleTapAction))
             XCTAssertTrue(result(for: $0, gesture: .longPress, expected: $0.standardLongPressAction))
             XCTAssertTrue(result(for: $0, gesture: .press, expected: $0.standardPressAction))
-            XCTAssertTrue(result(for: $0, gesture: .release, expected: nil)) // $0.standardReleaseAction))
+            XCTAssertTrue(result(for: $0, gesture: .release, expected: $0.standardReleaseAction))
             XCTAssertTrue(result(for: $0, gesture: .repeatPress, expected: $0.standardRepeatAction))
-            XCTAssertTrue(result(for: $0, gesture: .tap, expected: $0.standardReleaseAction))
         }
     }
 
@@ -59,6 +58,7 @@ final class KeyboardAction_ActionsTests: XCTestCase {
 
         action = { $0.standardPressAction }
         expected = [
+            .backspace,
             .keyboardType(.alphabetic(.lowercased)),
             .keyboardType(.alphabetic(.uppercased)),
             .keyboardType(.alphabetic(.capsLocked)),
@@ -74,7 +74,6 @@ final class KeyboardAction_ActionsTests: XCTestCase {
 
         action = { $0.standardReleaseAction }
         expected = [
-            .backspace,
             .character(""),
             .characterMargin(""),
             .dismissKeyboard,

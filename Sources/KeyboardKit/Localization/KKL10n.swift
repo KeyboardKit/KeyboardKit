@@ -96,7 +96,6 @@ public extension KKL10n {
     }
 }
 
-#if os(iOS)
 struct KKL10n_Previews: PreviewProvider {
     
     static let context: KeyboardContext = {
@@ -111,25 +110,20 @@ struct KKL10n_Previews: PreviewProvider {
                 ForEach(KKL10n.allCases) { item in
                     VStack(alignment: .leading, spacing: 10) {
                         if #available(iOS 14.0, *) {
-                            DisclosureGroup {
-                                VStack(alignment: .leading) {
-                                    Text("default: \(item.text)")
-                                    Text("context: \(item.text(for: context))")
-                                    Divider()
-                                    ForEach(KeyboardLocale.allCases) {
-                                        Text("\($0.id): \(item.text(for: $0))")
-                                    }
-                                }.font(.footnote)
-                            } label: {
-                                Text("\(item.key)")
+                            VStack(alignment: .leading) {
+                                Text("default: \(item.text)")
+                                Text("context: \(item.text(for: context))")
+                                Divider()
+                                ForEach(KeyboardLocale.allCases) {
+                                    Text("\($0.id): \(item.text(for: $0))")
+                                }
                             }.font(.footnote)
                         } else {
                             // Fallback on earlier versions
                         }
                     }.padding(.vertical, 4)
                 }
-            }.navigationBarTitle("Translations")
+            }.navigationTitle("Translations")
         }
     }
 }
-#endif

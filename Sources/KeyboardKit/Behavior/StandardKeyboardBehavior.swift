@@ -6,7 +6,6 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
 import Foundation
 
 /**
@@ -101,7 +100,8 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
         after gesture: KeyboardGesture,
         on action: KeyboardAction
     ) -> Bool {
-        guard gesture == .tap, action == .space else { return false }
+        #if os(iOS) || os(tvOS)
+        guard gesture == .release, action == .space else { return false }
         let proxy = keyboardContext.textDocumentProxy
         let isNewWord = proxy.isCursorAtNewWord
         let isNewSentence = proxy.isCursorAtNewSentence
@@ -110,6 +110,9 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
         let shouldClose = isEndingTap && isNewWord && !isNewSentence && isClosable
         lastSpaceTap = Date()
         return shouldClose
+        #else
+        return false
+        #endif
     }
     
     /**
@@ -138,7 +141,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
         switch action {
         case .keyboardType(let type): return type.shouldSwitchToPreferredKeyboardType
         case .shift: return true
-        default: return gesture == .tap && keyboardContext.keyboardType != keyboardContext.preferredKeyboardType
+        default: return gesture == .release && keyboardContext.keyboardType != keyboardContext.preferredKeyboardType
         }
     }
     
@@ -200,4 +203,3 @@ private extension KeyboardCase {
         }
     }
 }
-#endif

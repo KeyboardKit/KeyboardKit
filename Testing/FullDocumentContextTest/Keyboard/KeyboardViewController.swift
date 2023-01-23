@@ -78,10 +78,10 @@ extension KeyboardView {
             HStack {
                 Button("Resign", action: resign)
                 Button("Return") {
-                    actionHandler.handle(.tap, on: .primary(.return))
+                    actionHandler.handle(.release, on: .primary(.return))
                 }
                 Button(".") {
-                    actionHandler.handle(.tap, on: .character("."))
+                    actionHandler.handle(.release, on: .character("."))
                 }
                 Button("Next") {
                     KeyboardInputViewController.shared.advanceToNextInputMode()

@@ -38,7 +38,7 @@ struct MyView {
     var body: some View {
         VStack {
             Button("Trigger backspace") {
-                actionHandler.handle(.tap, on: .backspace)
+                actionHandler.handle(.release, on: .backspace)
             }
             Button("Delete text in the proxu") {
                 context.textDocumentProxy.deleteBackwards()

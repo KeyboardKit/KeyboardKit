@@ -98,7 +98,7 @@ class MyActionHandler: StandardKeyboardActionHandler {
         let standard = super.action(for: gesture, on: action)
         switch gesture {
         case .longPress: return longPressAction(for: action) ?? standard
-        case .tap: return tapAction(for: action) ?? standard
+        case .release: return releaseAction(for: action) ?? standard
         default: return standard
         }
     }
@@ -110,7 +110,7 @@ class MyActionHandler: StandardKeyboardActionHandler {
         }
     }
     
-    func tapAction(for action: KeyboardAction) -> KeyboardAction.GestureAction? {
+    func releaseAction(for action: KeyboardAction) -> KeyboardAction.GestureAction? {
         switch action {
         case .image(_, _, let imageName): return { [weak self] _ in self?.copyImage(named: imageName) }
         default: return nil

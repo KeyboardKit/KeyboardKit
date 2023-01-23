@@ -49,12 +49,12 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
 
 
     func testCanHandleGestureOnActionThatIsNotNil() {
-        XCTAssertTrue(handler.canHandle(.tap, on: .backspace))
+        XCTAssertTrue(handler.canHandle(.press, on: .backspace))
         XCTAssertFalse(handler.canHandle(.doubleTap, on: .backspace))
     }
 
     func testHandlingGestureOnActionTriggersManyOperations() {
-        handler.handle(.tap, on: .character("a"))
+        handler.handle(.release, on: .character("a"))
         XCTAssertTrue(handler.hasCalled(handler.tryRemoveAutocompleteInsertedSpaceRef))
         XCTAssertTrue(handler.hasCalled(handler.tryApplyAutocompleteSuggestionRef))
         XCTAssertTrue(handler.hasCalled(handler.tryReinsertAutocompleteRemovedSpaceRef))
@@ -95,11 +95,11 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
     func testReplacementActionIsOnlyDefinedForTapOnCharWithProxyReplacement() {
         var result = handler.replacementAction(for: .press, on: .character("”"))
         XCTAssertNil(result)
-        result = handler.replacementAction(for: .tap, on: .backspace)
+        result = handler.replacementAction(for: .release, on: .backspace)
         XCTAssertNil(result)
-        result = handler.replacementAction(for: .tap, on: .character("A"))
+        result = handler.replacementAction(for: .release, on: .character("A"))
         XCTAssertNil(result)
-        result = handler.replacementAction(for: .tap, on: .character("‘"))
+        result = handler.replacementAction(for: .release, on: .character("‘"))
         XCTAssertNotNil(result)
     }
 
@@ -108,7 +108,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         XCTAssertFalse(result)
         result = handler.shouldTriggerFeedback(for: .press, on: .character(""))
         XCTAssertTrue(result)
-        result = handler.shouldTriggerFeedback(for: .tap, on: .character(""))
+        result = handler.shouldTriggerFeedback(for: .release, on: .character(""))
         XCTAssertFalse(result)
         result = handler.shouldTriggerFeedback(for: .release, on: .character(""))
         XCTAssertFalse(result)
@@ -134,45 +134,45 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         handler.tryApplyAutocompleteSuggestion(before: .press, on: .space)
         XCTAssertFalse(textDocumentProxy.hasCalled(ref))
 
-        handler.tryApplyAutocompleteSuggestion(before: .tap, on: .backspace)
+        handler.tryApplyAutocompleteSuggestion(before: .release, on: .backspace)
         XCTAssertFalse(textDocumentProxy.hasCalled(ref))
 
         handler.autocompleteContext.suggestions = []
-        handler.tryApplyAutocompleteSuggestion(before: .tap, on: .space)
+        handler.tryApplyAutocompleteSuggestion(before: .release, on: .space)
         XCTAssertFalse(textDocumentProxy.hasCalled(ref))
 
         handler.autocompleteContext.suggestions = autocompleteSuggestions
-        handler.tryApplyAutocompleteSuggestion(before: .tap, on: .space)
+        handler.tryApplyAutocompleteSuggestion(before: .release, on: .space)
         XCTAssertTrue(textDocumentProxy.hasCalled(ref))
     }
 
     func testTryingToEndSentenceAfterGestureOnActionIsOnlyCalledIfBehaviorSaysYes() {
         textDocumentProxy.documentContextBeforeInput = ""
-        handler.tryEndSentence(after: .tap, on: .character("a"))
+        handler.tryEndSentence(after: .release, on: .character("a"))
         XCTAssertFalse(textDocumentProxy.hasCalled(textDocumentProxy.deleteBackwardRef))
         XCTAssertFalse(textDocumentProxy.hasCalled(textDocumentProxy.insertTextRef))
 
         textDocumentProxy.documentContextBeforeInput = "foo  "
-        handler.tryEndSentence(after: .tap, on: .space)
+        handler.tryEndSentence(after: .release, on: .space)
         XCTAssertTrue(textDocumentProxy.hasCalled(textDocumentProxy.deleteBackwardRef, numberOfTimes: 2))
         XCTAssertTrue(textDocumentProxy.hasCalled(textDocumentProxy.insertTextRef, numberOfTimes: 1))
     }
 
     func testTryToHandleReplacementActionBeforeGestureOnActionReturnsTrueForTapOnValidCharAction() {
-        var result = handler.tryHandleReplacementAction(before: .tap, on: .character("A"))
+        var result = handler.tryHandleReplacementAction(before: .release, on: .character("A"))
         XCTAssertFalse(result)
         result = handler.tryHandleReplacementAction(before: .doubleTap, on: .character("A"))
         XCTAssertFalse(result)
-        result = handler.tryHandleReplacementAction(before: .tap, on: .character("‘"))
+        result = handler.tryHandleReplacementAction(before: .release, on: .character("‘"))
         XCTAssertTrue(result)
     }
 
     func testTryToRegisterEmojiAfterGestureOnActionRegisterEmojiForTapsOnEmoji() {
         handler.tryRegisterEmoji(after: .doubleTap, on: .emoji(Emoji("a")))
         XCTAssertFalse(emojiProvider.hasCalled(emojiProvider.registerEmojiRef))
-        handler.tryRegisterEmoji(after: .tap, on: .space)
+        handler.tryRegisterEmoji(after: .release, on: .space)
         XCTAssertFalse(emojiProvider.hasCalled(emojiProvider.registerEmojiRef))
-        handler.tryRegisterEmoji(after: .tap, on: .emoji(Emoji("a")))
+        handler.tryRegisterEmoji(after: .release, on: .emoji(Emoji("a")))
         XCTAssertTrue(emojiProvider.hasCalled(emojiProvider.registerEmojiRef))
     }
 
@@ -186,9 +186,9 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
 
         handler.tryReinsertAutocompleteRemovedSpace(after: .press, on: .character(","))
         XCTAssertFalse(textDocumentProxy.hasCalled(textDocumentProxy.insertTextRef))
-        handler.tryReinsertAutocompleteRemovedSpace(after: .tap, on: .character("A"))
+        handler.tryReinsertAutocompleteRemovedSpace(after: .release, on: .character("A"))
         XCTAssertFalse(textDocumentProxy.hasCalled(textDocumentProxy.insertTextRef))
-        handler.tryReinsertAutocompleteRemovedSpace(after: .tap, on: .character(","))
+        handler.tryReinsertAutocompleteRemovedSpace(after: .release, on: .character(","))
         XCTAssertTrue(textDocumentProxy.hasCalled(textDocumentProxy.insertTextRef))
 
         textDocumentProxy.resetCalls()

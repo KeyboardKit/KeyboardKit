@@ -26,7 +26,6 @@ struct KeyboardGestures<Content: View>: View {
        - action: The keyboard action to trigger.
        - isInScrollView: Whether or not the gestures are used in a scroll view.
        - isPressed: An optional binding that can be used to observe the button pressed state.
-       - tapAction: The action to trigger when the button is released within its bounds.
        - doubleTapAction: The action to trigger when the button is double tapped.
        - longPressAction: The action to trigger when the button is long pressed.
        - pressAction: The action to trigger when the button is pressed.
@@ -39,7 +38,6 @@ struct KeyboardGestures<Content: View>: View {
         action: KeyboardAction?,
         isInScrollView: Bool = false,
         isPressed: Binding<Bool>,
-        tapAction: KeyboardGestureAction?,
         doubleTapAction: KeyboardGestureAction?,
         longPressAction: KeyboardGestureAction?,
         pressAction: KeyboardGestureAction?,
@@ -52,7 +50,6 @@ struct KeyboardGestures<Content: View>: View {
         self.action = action
         self.isInScrollView = isInScrollView
         self.isPressed = isPressed
-        self.tapAction = tapAction
         self.doubleTapAction = doubleTapAction
         self.longPressAction = longPressAction
         self.pressAction = pressAction
@@ -66,7 +63,6 @@ struct KeyboardGestures<Content: View>: View {
     private let action: KeyboardAction?
     private let isInScrollView: Bool
     private let isPressed: Binding<Bool>
-    private let tapAction: KeyboardGestureAction?
     private let doubleTapAction: KeyboardGestureAction?
     private let longPressAction: KeyboardGestureAction?
     private let pressAction: KeyboardGestureAction?
@@ -193,7 +189,6 @@ private extension KeyboardGestures {
     func handleReleaseInside(in geo: GeometryProxy) {
         updateShouldApplyReleaseAction()
         guard shouldApplyReleaseAction else { return }
-        tapAction?()
         releaseAction?()
     }
 
@@ -293,7 +288,6 @@ private extension KeyboardGestures {
     func handleLegacyRelease(in geo: GeometryProxy, at location: CGPoint) {
         if geo.contains(location), shouldApplyReleaseAction {
             releaseAction?()
-            tapAction?()
         }
         shouldApplyReleaseAction = true
         isPressGestureActive = false

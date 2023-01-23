@@ -103,7 +103,7 @@ public extension EmojiKeyboard {
      The standard action to use when tapping an emoji button.
      */
     static func standardEmojiAction(emoji: Emoji) {
-        standardKeyboardActionHandler.handle(.tap, on: .emoji(emoji))
+        standardKeyboardActionHandler.handle(.release, on: .emoji(emoji))
     }
 
     /**

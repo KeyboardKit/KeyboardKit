@@ -186,7 +186,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      should be replaced.
      */
     open func replacementAction(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction? {
-        guard gesture == .tap else { return nil }
+        guard gesture == .release else { return nil }
 
         // Apply proxy-based replacements, if any
         if case let .character(char) = action,
@@ -214,8 +214,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      trigger feedback.
      */
     open func shouldTriggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
-        if gesture == .press && self.action(for: .tap, on: action) != nil { return true }
-        if gesture != .tap && gesture != .release && self.action(for: gesture, on: action) != nil { return true }
+        if gesture == .press && self.action(for: .release, on: action) != nil { return true }
+        if gesture != .release && self.action(for: gesture, on: action) != nil { return true }
         return false
     }
 
@@ -238,7 +238,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     open func tryApplyAutocompleteSuggestion(before gesture: KeyboardGesture, on action: KeyboardAction) {
         if isSpaceCursorDrag(action) { return }
         if textDocumentProxy.isCursorAtNewWord { return }
-        guard gesture == .tap else { return }
+        guard gesture == .release else { return }
         guard action.shouldApplyAutocompleteSuggestion else { return }
         guard let suggestion = (autocompleteContext.suggestions.first { $0.isAutocomplete }) else { return }
         textDocumentProxy.insertAutocompleteSuggestion(suggestion, tryInsertSpace: false)
@@ -272,7 +272,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      */
     open func tryHandleReplacementAction(before gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
         guard let action = replacementAction(for: gesture, on: action) else { return false }
-        handle(.tap, on: action, replaced: true)
+        handle(.release, on: action, replaced: true)
         return true
     }
 
@@ -281,7 +281,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      been performed on the provided `action`.
      */
     open func tryRegisterEmoji(after gesture: KeyboardGesture, on action: KeyboardAction) {
-        guard gesture == .tap else { return }
+        guard gesture == .release else { return }
         switch action {
         case .emoji(let emoji): return EmojiCategory.frequentEmojiProvider.registerEmoji(emoji)
         default: return
@@ -294,7 +294,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      has been performed on the provided `action`.
      */
     open func tryReinsertAutocompleteRemovedSpace(after gesture: KeyboardGesture, on action: KeyboardAction) {
-        guard gesture == .tap else { return }
+        guard gesture == .release else { return }
         guard action.shouldReinsertAutocompleteInsertedSpace else { return }
         textDocumentProxy.tryReinsertAutocompleteRemovedSpace()
     }
@@ -304,7 +304,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      `gesture` has been performed on the provided `action`.
      */
     open func tryRemoveAutocompleteInsertedSpace(before gesture: KeyboardGesture, on action: KeyboardAction) {
-        guard gesture == .tap else { return }
+        guard gesture == .release else { return }
         guard action.shouldRemoveAutocompleteInsertedSpace else { return }
         textDocumentProxy.tryRemoveAutocompleteInsertedSpace()
     }

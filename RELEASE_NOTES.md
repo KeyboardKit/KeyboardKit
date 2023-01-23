@@ -18,7 +18,6 @@ Some things that are planned for the 7.0 release:
 * All TODOS will be addressed.
 * All shared instances should be removed.
 * All dependencies to the shared instances should be replaced with init parameters, even for the smallest view.
-* KeyboardAction should only support `press` and `release` and not `tap`.
 * KeyboardAction.GestureAction should use a protocol instead of a view controller.
 * KeyboardAction.shift will have a `current` parameter instead of `currentState`.
 * KeyboardAction.primary should be renamed `.return(type)` when the old return is removed.
@@ -52,7 +51,8 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * All deprecated code has been removed.
 * The library now targets iOS 14, macOS 11, tvOS 14 and watchOS 7.
 * `EmojiCategoryKeyboardMenu` init parameters have been reordered.
-* `KeyboardAction` `return` and `newLine` are now `primary` variants.
+* `KeyboardAction` `.return` and `.newLine` are now `primary` variants.
+* `KeyboardGesture` `.tap` has been removed, use `.release` instead.
 
 
 
