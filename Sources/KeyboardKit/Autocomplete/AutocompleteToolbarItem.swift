@@ -23,21 +23,21 @@ public struct AutocompleteToolbarItem: View {
      
      - Parameters:
        - suggestion: The suggestion to display in the view.
-       - style: The style to apply to the item, by default ``AutocompleteToolbarItemStyle/standard``.
        - locale: The locale to use to resolve quotation.
+       - style: The style to apply to the item, by default ``AutocompleteToolbarItemStyle/standard``.
      */
     public init(
         suggestion: AutocompleteSuggestion,
-        style: AutocompleteToolbarItemStyle = .standard,
-        locale: Locale
+        locale: Locale,
+        style: AutocompleteToolbarItemStyle = .standard
     ) {
         self.suggestion = suggestion
-        self.style = style
         self.locale = locale
+        self.style = style
     }
     
-    private let locale: Locale
     private let suggestion: AutocompleteSuggestion
+    private let locale: Locale
     private let style: AutocompleteToolbarItemStyle
         
     public var body: some View {
@@ -55,18 +55,19 @@ private extension AutocompleteToolbarItem {
     var text: some View {
         AutocompleteToolbarItemTitle(
             suggestion: suggestion,
-            style: style,
-            locale: locale)
+            locale: locale,
+            style: style
+        )
     }
     
     func subtitle(for text: String) -> some View {
         AutocompleteToolbarItemSubtitle(
             text: text,
-            style: style)
+            style: style
+        )
     }
 }
 
-#if os(iOS) || os(tvOS)
 struct AutocompleteToolbarItem_Previews: PreviewProvider {
     
     static var previews: some View {
@@ -85,9 +86,9 @@ struct AutocompleteToolbarItem_Previews: PreviewProvider {
             AutocompleteToolbar(
                 suggestions: previewSuggestions,
                 locale: locale,
-                style: .standard)
-                // style: .preview1)
-            .previewBar()
+                style: .standard,
+                action: { _ in}
+            ).previewBar()
         }
     }
     
@@ -96,7 +97,6 @@ struct AutocompleteToolbarItem_Previews: PreviewProvider {
         StandardAutocompleteSuggestion(text: "Bar", isAutocomplete: true),
         StandardAutocompleteSuggestion(text: "", title: "Baz", subtitle: "Recommended")]
 }
-#endif
 
 private extension View {
     

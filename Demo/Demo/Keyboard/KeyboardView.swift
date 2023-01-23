@@ -31,9 +31,7 @@ struct KeyboardView: View {
 
     @EnvironmentObject
     private var keyboardContext: KeyboardContext
-    @EnvironmentObject
-    private var keyboardTextContext: KeyboardTextContext
-    
+
     var body: some View {
         VStack(spacing: 0) {
             if keyboardContext.keyboardType != .emojis {
@@ -52,7 +50,8 @@ private extension KeyboardView {
     var autocompleteToolbar: some View {
         AutocompleteToolbar(
             suggestions: autocompleteContext.suggestions,
-            locale: keyboardContext.locale
+            locale: keyboardContext.locale,
+            action: { KeyboardInputViewController.shared.insertAutocompleteSuggestion($0) }
         ).opacity(keyboardContext.prefersAutocomplete ? 1 : 0)  // Still allocate height
     }
 }

@@ -22,22 +22,22 @@ public struct AutocompleteToolbarItemTitle: View {
      
      - Parameters:
        - suggestions: The suggestion to display in the view.
-       - style: The style to apply to the text, by default ``AutocompleteToolbarItemStyle/standard``.
        - locale: The locale to use to resolve quotation.
+       - style: The style to apply to the text, by default ``AutocompleteToolbarItemStyle/standard``.
      */
     public init(
         suggestion: AutocompleteSuggestion,
-        style: AutocompleteToolbarItemStyle = .standard,
-        locale: Locale
+        locale: Locale,
+        style: AutocompleteToolbarItemStyle = .standard
     ) {
         self.suggestion = suggestion
         self.style = style
         self.locale = locale
     }
-    
+
+    private let suggestion: AutocompleteSuggestion
     private let locale: Locale
     private let style: AutocompleteToolbarItemStyle
-    private let suggestion: AutocompleteSuggestion
         
     public var body: some View {
         Text(displayTitle)
@@ -77,9 +77,9 @@ struct AutocompleteToolbarItemTitle_Previews: PreviewProvider {
                 ForEach(Array(previewSuggestions.enumerated()), id: \.offset) {
                     AutocompleteToolbarItemTitle(
                         suggestion: $0.element,
-                        style: .standard,
-                        // style: .preview2,
-                        locale: locale.locale)
+                        locale: locale.locale,
+                        style: .standard
+                    )
                 }
             }.previewBar()
         }
