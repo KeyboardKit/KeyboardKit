@@ -86,7 +86,7 @@ struct KeyboardGestures<Content: View>: View {
     var body: some View {
         view.overlay(
             GeometryReader { geo in
-                if #available(iOS 14.0, macOS 11.0, watchOS 8.0, *) {
+                if #available(iOS 14.0, macOS 11.0, watchOS 7.0, *) {
                     gestureButton(for: geo)
                 } else {
                     Color.clearInteractable
@@ -117,7 +117,7 @@ private extension View {
 private extension KeyboardGestures {
 
     @ViewBuilder
-    @available(iOS 14.0, macOS 11.0, watchOS 8.0, *)
+    @available(iOS 14.0, macOS 11.0, watchOS 7.0, *)
     func gestureButton(for geo: GeometryProxy) -> some View {
         if isInScrollView {
             ScrollViewGestureButton(

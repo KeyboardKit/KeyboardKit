@@ -34,6 +34,12 @@ Some things that are planned for the 7.0 release:
 
 ## 7.0
 
+
+### ✨ New features
+
+* `GestureButton` is now available on watchOS 7.
+* `ScrollViewGestureButton` is now available on watchOS 7.
+
 ### 💥 Breaking changes
 
 * All deprecated code has been removed.

@@ -12,7 +12,7 @@ import Foundation
  This struct can be used to configure default values for the
  ``GestureButton`` and ``ScrollViewGestureButton`` views.
  */
-@available(iOS 14.0, macOS 11.0, watchOS 8.0, *)
+@available(iOS 14.0, macOS 11.0, watchOS 7.0, *)
 public struct GestureButtonDefaults {
 
     /// The max time between two taps for them to count as a double tap, by default `0.2`.
