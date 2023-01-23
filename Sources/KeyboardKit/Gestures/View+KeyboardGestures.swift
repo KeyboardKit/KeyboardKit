@@ -94,7 +94,6 @@ public extension View {
         Button {
             pressAction?()
             releaseAction?()
-            tapAction?()
         } label: {
             self
         }

@@ -17,8 +17,9 @@ import Foundation
  instead of ``KeyboardInputViewController`` since that class
  is only available on some platforms.
 
- ``KeyboardInputViewController`` implements this protocol by
- calling itself, its document proxy, or its keyboard context.
+ The protocol is implemented by `KeyboardInputViewController`
+ in `UIKit` by calling itself, or its document proxy, or its
+ keyboard context.
  */
 public protocol KeyboardActionTrigger {
 
