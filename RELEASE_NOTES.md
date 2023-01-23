@@ -54,6 +54,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 ### 💡 Behavior changes
 
 * `KeyboardAction.backspace` now triggers on `.press` instead of `.release`.
+* `KeyboardLayoutConfiguration` now behaves the same on all platforms.
 
 ### 💥 Breaking changes
 

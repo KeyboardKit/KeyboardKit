@@ -6,9 +6,6 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS)
-import UIKit
-#endif
 import XCTest
 
 @testable import KeyboardKit
@@ -57,7 +54,7 @@ class KeyboardLayoutConfigurationTests: XCTestCase {
         XCTAssertEqual(config.rowHeight, 56)
     }
 
-    #if os(iOS)
+
     func configuration(
         for device: DeviceType,
         size: CGSize,
@@ -121,5 +118,4 @@ class KeyboardLayoutConfigurationTests: XCTestCase {
         XCTAssertEqual(config.buttonInsets, .horizontal(3, vertical: 6))
         XCTAssertEqual(config.rowHeight, 56)
     }
-    #endif
 }
