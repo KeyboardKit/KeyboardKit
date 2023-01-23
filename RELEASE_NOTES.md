@@ -43,10 +43,15 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `EmojiCategoryTitle` is now available on all platforms.
 * `EmojiCategoryKeyboardMenu` is now available on all platforms.
 * `ExternalKeyboardContext` is now available on macOS and tvOS as well.
+* `KeyboardAction` gestures actions now use a `KeyboardActionTrigger` instead of a `KeyboardInputViewController`.  
 * `KeyboardActionTrigger` is a new protocol that lets us decouple actions from the input view controller.
 * `KeyboardInputViewController` implements `KeyboardActionTrigger` which gives it a bunch of new functions.
 * `GestureButton` is now available on watchOS 7.
 * `ScrollViewGestureButton` is now available on watchOS 7.
+
+### 💡 Behavior changes
+
+* `KeyboardAction.backspace` now triggers on `.press` instead of `.release`.
 
 ### 💥 Breaking changes
 
@@ -54,6 +59,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * The library now targets iOS 14, macOS 11, tvOS 14 and watchOS 7.
 * `EmojiCategoryKeyboardMenu` init parameters have been reordered.
 * `KeyboardAction` `.return` and `.newLine` are now `primary` variants.
+* `KeyboardAction` `standardTextDocumentProxyAction` has been removed.
 * `KeyboardGesture` `.tap` has been removed, use `.release` instead.
 * `KeyboardReturnActionMappable` has been refactored to `KeyboardActionMappable`.
 

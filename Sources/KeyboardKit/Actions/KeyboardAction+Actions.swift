@@ -17,9 +17,9 @@ public extension KeyboardAction {
     
     /**
      This typealias represents a gesture action that affects
-     the provided ``KeyboardInputViewController``.
+     the provided ``KeyboardActionTrigger``.
      */
-    typealias GestureAction = (KeyboardInputViewController?) -> Void
+    typealias GestureAction = (KeyboardActionTrigger) -> Void
     
     /**
      The action that by default should be triggered when the
@@ -59,7 +59,8 @@ public extension KeyboardAction {
      */
     var standardPressAction: GestureAction? {
         switch self {
-        case .keyboardType(let type): return { $0?.keyboardContext.keyboardType = type }
+        case .backspace: return { $0.deleteBackward() }
+        case .keyboardType(let type): return { $0.setKeyboardType(type) }
         default: return nil
         }
     }
@@ -69,16 +70,23 @@ public extension KeyboardAction {
      action is released.
      */
     var standardReleaseAction: GestureAction? {
-        if let action = standardTextDocumentProxyAction { return action }
         switch self {
-        case .dismissKeyboard: return { $0?.dismissKeyboard() }
-        case .nextLocale: return { $0?.keyboardContext.selectNextLocale() }
+        case .character(let char): return { $0.insertText(char) }
+        case .characterMargin(let char): return { $0.insertText(char) }
+        case .dismissKeyboard: return { $0.dismissKeyboard() }
+        case .emoji(let emoji): return { $0.insertText(emoji.char) }
+        case .moveCursorBackward: return { $0.adjustTextPosition(byCharacterOffset: -1) }
+        case .moveCursorForward: return { $0.adjustTextPosition(byCharacterOffset: 1) }
+        case .nextLocale: return { $0.selectNextLocale() }
+        case .primary: return { $0.insertText(.newline) }
         case .shift(let currentState): return {
             switch currentState {
-            case .lowercased: $0?.keyboardContext.keyboardType = .alphabetic(.uppercased)
-            case .auto, .capsLocked, .uppercased: $0?.keyboardContext.keyboardType = .alphabetic(.lowercased)
+            case .lowercased: $0.setKeyboardType(.alphabetic(.uppercased))
+            case .auto, .capsLocked, .uppercased: $0.setKeyboardType(.alphabetic(.lowercased))
             }
         }
+        case .space: return { $0.insertText(.space) }
+        case .tab: return { $0.insertText(.tab) }
         default: return nil
         }
     }
@@ -89,25 +97,7 @@ public extension KeyboardAction {
      */
     var standardRepeatAction: GestureAction? {
         switch self {
-        case .backspace: return standardReleaseAction
-        default: return nil
-        }
-    }
-    
-    /**
-     The standard text document proxy action, if any.
-     */
-    var standardTextDocumentProxyAction: GestureAction? {
-        switch self {
-        case .backspace: return { $0?.textDocumentProxy.deleteBackward(range: $0?.keyboardBehavior.backspaceRange ?? .char) }
-        case .character(let char): return { $0?.textDocumentProxy.insertText(char) }
-        case .characterMargin(let char): return { $0?.textDocumentProxy.insertText(char) }
-        case .emoji(let emoji): return { $0?.textDocumentProxy.insertText(emoji.char) }
-        case .moveCursorBackward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: -1) }
-        case .moveCursorForward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: 1) }
-        case .primary: return { $0?.textDocumentProxy.insertText(.newline) }
-        case .space: return { $0?.textDocumentProxy.insertText(.space) }
-        case .tab: return { $0?.textDocumentProxy.insertText(.tab) }
+        case .backspace: return standardPressAction
         default: return nil
         }
     }
