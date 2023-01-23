@@ -62,21 +62,21 @@ private extension FakeAutocompleteProvider {
     
     func fakeSuggestions(for text: String) -> [AutocompleteSuggestion] {
         [
-            StandardAutocompleteSuggestion(text: text + "-1"),
-            StandardAutocompleteSuggestion(text: text + "-2", subtitle: "Subtitle"),
-            StandardAutocompleteSuggestion(text: text + "-3")
+            AutocompleteSuggestion(text: text + "-1"),
+            AutocompleteSuggestion(text: text + "-2", subtitle: "Subtitle"),
+            AutocompleteSuggestion(text: text + "-3")
         ]
     }
     
     func fakeSuggestion(_ text: String, _ subtitle: String? = nil) -> AutocompleteSuggestion {
-        StandardAutocompleteSuggestion(text: text, subtitle: subtitle)
+        AutocompleteSuggestion(text: text, subtitle: subtitle)
     }
 
     func matchSuggestions() -> [AutocompleteSuggestion] {
         [
-            StandardAutocompleteSuggestion(text: match, isUnknown: true),
-            StandardAutocompleteSuggestion(text: match, isAutocomplete: true),
-            StandardAutocompleteSuggestion(text: match),
+            AutocompleteSuggestion(text: match, isUnknown: true),
+            AutocompleteSuggestion(text: match, isAutocomplete: true),
+            AutocompleteSuggestion(text: match),
         ]
     }
 }

@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-03-18.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI
@@ -77,7 +77,7 @@ struct AutocompleteToolbarItemSubtitle_Previews: PreviewProvider {
     }
     
     static let previewSuggestions: [AutocompleteSuggestion] = [
-        StandardAutocompleteSuggestion(text: "", title: "Baz", subtitle: "Recommended")]
+        AutocompleteSuggestion(text: "", title: "Baz", subtitle: "Recommended")]
 }
 
 private extension View {

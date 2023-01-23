@@ -1,63 +1,79 @@
 //
-//  AutocompleteSuggestions.swift
+//  AutocompleteSuggestion.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-09-12.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2020-2023 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
 
 /**
- This protocol describes result data that can be returned by
- an autocomplete suggestion provider.
- 
- You can implement your own autocomplete suggestion types or
- use the standard `StandardAutocompleteSuggestion`.
+ This struct is a standard suggestion that can be used by an
+ autocomplete suggestion provider.
  */
-public protocol AutocompleteSuggestion {
+public struct AutocompleteSuggestion {
     
     /**
-     The text that should be sent to the text document proxy
-     and replace the current word.
-     
-     The `text` can differ from the `title`, for instance if
-     the title should be more detailed ("Did you mean <X>").
-     */
-    var text: String { get }
+     Create a suggestion with completely custom properties.
 
+     - Parameters:
+       - text: The text that should be sent to the text document proxy.
+       - title: The text that should be presented to the user, by default `text`.
+       - isAutocomplete: Whether or not this is an autocompleting suggestion, by default `false`.
+       - isUnknown: Whether or not this is an unknown suggestion, by default `false`.
+       - subtitle: An optional subtitle that can complete the `title`, by default `nil`.
+       - additionalInfo: An optional dictionary that can contain additional info, by default `empty`.
+     */
+    public init(
+        text: String,
+        title: String? = nil,
+        isAutocomplete: Bool = false,
+        isUnknown: Bool = false,
+        subtitle: String? = nil,
+        additionalInfo: [String: Any] = [:]
+    ) {
+        self.text = text
+        self.title = title ?? text
+        self.isAutocomplete = isAutocomplete
+        self.isUnknown = isUnknown
+        self.subtitle = subtitle
+        self.additionalInfo = additionalInfo
+    }
+    
+    /**
+     The text that should be sent to the text document proxy.
+     */
+    public var text: String
+    
     /**
      The text that should be presented to the user.
-     
-     The `text` can differ from the `title`, for instance if
-     the title should be more detailed ("Did you mean <X>").
      */
-    var title: String { get }
+    public var title: String
     
     /**
-     Whether or not this suggestion is an autocompete result,
-     which should be applied when a word delimiter is typed.
-     
+     Whether or not this is an autocompleting suggestion.
+
      These suggestions are typically shown in white, rounded
      squares when presented in an iOS system keyboard.
      */
-    var isAutocomplete: Bool { get }
+    public var isAutocomplete: Bool
     
     /**
-     Whether or not this suggestion is unknown to the system.
-     
+     Whether or not this is an unknown suggestion.
+
      These suggestions are typically surrounded by quotation
      marks when presented in an iOS system keyboard.
      */
-    var isUnknown: Bool { get }
+    public var isUnknown: Bool
     
     /**
      An optional subtitle that can complete the `title`.
      */
-    var subtitle: String? { get }
+    public var subtitle: String?
     
     /**
      An optional dictionary that can contain additional info.
      */
-    var additionalInfo: [String: Any] { get }
+    public var additionalInfo: [String: Any]
 }

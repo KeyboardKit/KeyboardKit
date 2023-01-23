@@ -146,7 +146,6 @@ KeyboardKit is available under the MIT license.
 - ``AutocompleteToolbarStyle``
 - ``DisabledAutocompleteProvider``
 - ``PrefersAutocompleteResolver``
-- ``StandardAutocompleteSuggestion``
 
 ### Behavior
 

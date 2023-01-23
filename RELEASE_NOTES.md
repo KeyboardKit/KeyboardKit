@@ -59,6 +59,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 
 * All deprecated code has been removed.
 * The library now targets iOS 14, macOS 11, tvOS 14 and watchOS 7.
+* `AutocompleteSuggestions` is now a struct instead of a protocol.
 * `AutocompleteToolbar` has no standard action anymore.
 * `AutocompleteToolbar` `ReplacementAction` is renamed to `Action`.
 * `AutocompleteToolbarItem` init parameters have been reordered.
@@ -68,6 +69,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `KeyboardAction` `standardTextDocumentProxyAction` has been removed.
 * `KeyboardGesture` `.tap` has been removed, use `.release` instead.
 * `KeyboardReturnActionMappable` has been refactored to `KeyboardActionMappable`.
+* `StandardAutocompleteSuggestions` is renamed to `AutocompleteSuggestions`.
 
 
 

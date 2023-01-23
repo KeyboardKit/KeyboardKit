@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-09-13.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2020-2023 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI
@@ -245,7 +245,7 @@ private extension AutocompleteToolbar {
 struct AutocompleteToolbar_Previews: PreviewProvider {
     
     static let additional = [
-        StandardAutocompleteSuggestion(text: "", title: "Foo", subtitle: "Recommended")
+        AutocompleteSuggestion(text: "", title: "Foo", subtitle: "Recommended")
     ]
     
     static var previews: some View {
@@ -298,9 +298,9 @@ struct AutocompleteToolbar_Previews: PreviewProvider {
     }
     
     static let previewSuggestions: [AutocompleteSuggestion] = [
-        StandardAutocompleteSuggestion(text: "Baz", isUnknown: true),
-        StandardAutocompleteSuggestion(text: "Bar", isAutocomplete: true),
-        StandardAutocompleteSuggestion(text: "", title: "Foo", subtitle: "Recommended")]
+        AutocompleteSuggestion(text: "Baz", isUnknown: true),
+        AutocompleteSuggestion(text: "Bar", isAutocomplete: true),
+        AutocompleteSuggestion(text: "", title: "Foo", subtitle: "Recommended")]
 }
 
 private extension View {
