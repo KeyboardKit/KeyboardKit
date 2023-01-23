@@ -46,8 +46,6 @@ public extension Emoji {
     var id: String { char }
 }
 
-#if os(iOS)
-@available(iOS 14.0, *)
 struct Emoji_Previews: PreviewProvider {
     
     static var previews: some View {
@@ -60,4 +58,3 @@ struct Emoji_Previews: PreviewProvider {
         }
     }
 }
-#endif

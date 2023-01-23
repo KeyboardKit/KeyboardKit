@@ -17,7 +17,6 @@ import SwiftUI
  will block the scroll gestures. For these cases, you should
  consider using a ``ScrollViewGestureButton`` instead.
  */
-@available(iOS 14.0, macOS 11.0, watchOS 7.0, *)
 public struct GestureButton<Label: View>: View {
 
     /**
@@ -119,7 +118,6 @@ public struct GestureButton<Label: View>: View {
     }
 }
 
-@available(iOS 14.0, macOS 11.0, watchOS 7.0, *)
 private extension GestureButton {
 
     var gestureView: some View {
@@ -140,7 +138,6 @@ private extension GestureButton {
     }
 }
 
-@available(iOS 14.0, macOS 11.0, watchOS 7.0, *)
 private extension GestureButton {
 
     func tryHandlePress(_ value: DragGesture.Value) {
@@ -209,7 +206,6 @@ private extension GeometryProxy {
     }
 }
 
-@available(iOS 14.0, macOS 11.0, watchOS 7.0, *)
 struct GestureButton_Previews: PreviewProvider {
 
     struct Preview: View {

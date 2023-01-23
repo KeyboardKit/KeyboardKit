@@ -19,7 +19,6 @@ import SwiftUI
  without a view builder, you will get a standard button with
  the standard keyboard gestures for every emoji.
  */
-@available(iOS 14.0, tvOS 14.0, *)
 public struct EmojiKeyboard<ButtonView: View>: View {
 
     /**
@@ -77,7 +76,6 @@ public struct EmojiKeyboard<ButtonView: View>: View {
     }
 }
 
-@available(iOS 14.0, tvOS 14.0, *)
 private extension EmojiKeyboard {
 
     func buttonView(for emoji: Emoji, style: EmojiKeyboardStyle) -> some View {
@@ -87,7 +85,6 @@ private extension EmojiKeyboard {
     }
 }
 
-@available(iOS 14.0, tvOS 14.0, *)
 public extension EmojiKeyboard {
     
     /**
@@ -120,7 +117,6 @@ public extension EmojiKeyboard {
     }
 }
 
-@available(iOS 14.0, tvOS 14.0, *)
 public extension EmojiKeyboard {
 
     /**
@@ -170,7 +166,6 @@ public extension EmojiKeyboard {
     }
 }
 
-@available(iOS 14.0, tvOS 14.0, *)
 struct EmojiKeyboard_Previews: PreviewProvider {
     
     static var previews: some View {

@@ -14,7 +14,6 @@ import SwiftUI
  The link behavior is a bit inconsistent, where iOS can link
  to either application settings, or the System Settings root.
  */
-@available(iOS 14.0, tvOS 14.0, macOS 11.0, watchOS 7.0, *)
 public struct KeyboardSettingsLink: View, UrlOpener {
 
     /**

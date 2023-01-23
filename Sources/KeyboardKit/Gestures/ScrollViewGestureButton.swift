@@ -29,7 +29,6 @@ import SwiftUI
  can use the `isPressed` value that is passed to the `label`
  builder, to configure the button view for the pressed state.
  */
-@available(iOS 14.0, macOS 11.0, watchOS 7.0, *)
 public struct ScrollViewGestureButton<Label: View>: View {
 
     /**
@@ -128,7 +127,6 @@ public struct ScrollViewGestureButton<Label: View>: View {
     }
 }
 
-@available(iOS 14.0, macOS 11.0, watchOS 7.0, *)
 extension ScrollViewGestureButton {
 
     class GestureState: ObservableObject {
@@ -196,7 +194,6 @@ extension ScrollViewGestureButton {
     }
 }
 
-@available(iOS 14.0, macOS 11.0, watchOS 7.0, *)
 private extension ScrollViewGestureButton.Style {
 
     func handleIsPressed() {
@@ -219,7 +216,6 @@ private extension ScrollViewGestureButton.Style {
     }
 }
 
-@available(iOS 14.0, macOS 11.0, watchOS 7.0, *)
 private extension View {
 
     typealias Action = () -> Void
@@ -291,7 +287,6 @@ private extension GeometryProxy {
     }
 }
 
-@available(iOS 14.0, macOS 11.0, watchOS 7.0, *)
 struct ScrollViewGestureButton_Previews: PreviewProvider {
 
     struct Preview: View {

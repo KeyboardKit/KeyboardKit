@@ -117,7 +117,6 @@ private extension View {
 private extension KeyboardGestures {
 
     @ViewBuilder
-    @available(iOS 14.0, macOS 11.0, watchOS 7.0, *)
     func gestureButton(for geo: GeometryProxy) -> some View {
         if isInScrollView {
             ScrollViewGestureButton(

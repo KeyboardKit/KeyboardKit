@@ -6,10 +6,10 @@ let package = Package(
     name: "KeyboardKit",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v13),
+        .iOS(.v14),
         .macOS(.v11),
-        .tvOS(.v13),
-        .watchOS(.v6)
+        .tvOS(.v14),
+        .watchOS(.v7)
     ],
     products: [
         .library(

@@ -36,16 +36,28 @@ public enum EmojiCategory: String, CaseIterable, Codable, EmojiProvider, Identif
 }
 
 public extension EmojiCategory {
+
+    /**
+     An ordered list of all available categories.
+     */
+    static var all: [EmojiCategory] { allCases }
+}
+
+public extension Collection where Element == EmojiCategory {
+
+    /**
+     An ordered list of all available categories.
+     */
+    static var all: [EmojiCategory] { EmojiCategory.allCases }
+
+}
+
+public extension EmojiCategory {
     
     /**
      The category's unique identifier.
      */
     var id: String { rawValue }
-    
-    /**
-     An ordered list of all available categories.
-     */
-    static var all: [EmojiCategory] { allCases }
     
     /**
      An ordered list with all emojis in the category.

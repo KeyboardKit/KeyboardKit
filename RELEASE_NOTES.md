@@ -15,7 +15,6 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 Some things that are planned for the 7.0 release:
 
-* Deployment targets will be bumped to iOS 14, macOS 11, tvOS 14 and watchOS 8.
 * All TODOS will be addressed.
 * All shared instances should be removed.
 * All dependencies to the shared instances should be replaced with init parameters, even for the smallest view.
@@ -34,15 +33,25 @@ Some things that are planned for the 7.0 release:
 
 ## 7.0
 
+This release bumps the platform deployment targets and makes more types available to more platforms. The deployment target bump also lets us remove all `@available` annotations, which makes the code cleaner.
+
+This release also removes all deprecated code and addresses all todos in the code.
+
+If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a lot of deprecations in place to provide guidance. You may still experience breaking changes after that, but they will be fewer. 
 
 ### ✨ New features
 
+* `EmojiCategoryTitle` is now available on all platforms.
+* `EmojiCategoryKeyboardMenu` is now available on all platforms.
+* `ExternalKeyboardContext` is now available on macOS and tvOS as well.
 * `GestureButton` is now available on watchOS 7.
 * `ScrollViewGestureButton` is now available on watchOS 7.
 
 ### 💥 Breaking changes
 
 * All deprecated code has been removed.
+* The library now targets iOS 14, macOS 11, tvOS 14 and watchOS 7.
+* `EmojiCategoryKeyboardMenu` init parameters have been reordered.
 * `KeyboardAction` `return` and `newLine` are now `primary` variants.
 
 

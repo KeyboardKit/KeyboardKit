@@ -6,7 +6,7 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS)
+#if os(iOS) || os(macOS) || os(tvOS)
 import GameKit
 
 /**
@@ -16,7 +16,6 @@ import GameKit
  Note that Apple's Smart Keyboard Folio is connected when it
  is snapped on to a device, even if it's not open and active.
  */
-@available(iOS 14.0, *)
 public class ExternalKeyboardContext: ObservableObject {
     
     public init(notificationCenter: NotificationCenter = .default) {
@@ -30,8 +29,8 @@ public class ExternalKeyboardContext: ObservableObject {
     public private(set) var isExternalKeyboardConnected = false
 }
 
-@available(iOS 14.0, *)
-@objc private extension ExternalKeyboardContext {
+@objc
+private extension ExternalKeyboardContext {
     
     func performSync() {
         isExternalKeyboardConnected = GCKeyboard.coalesced != nil

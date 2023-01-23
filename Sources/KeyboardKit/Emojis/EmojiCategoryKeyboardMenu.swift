@@ -6,7 +6,6 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
 import SwiftUI
 
 /**
@@ -19,44 +18,46 @@ import SwiftUI
  As long as the view requires iOS 14, the extensions must be
  kept in the main struct body for the previews to compile.
  */
-@available(iOS 14.0, *)
 public struct EmojiCategoryKeyboardMenu: View {
     
     /**
      Create an emoji category keyboard menu.
      
      - Parameters:
-       - categories: The categories to include in the menu.
-       - appearance: The appearance to apply to the menu.
-       - keyboardContext: The context to bind the buttons to.
        - selection: The current selection.
-       - style: The style to apply to the menu.
+       - categories: The categories to include in the menu.
+       - keyboardContext: The context to bind the buttons to.
        - actionHandler: The action handler to use, by default the shared one.
+       - appearance: The appearance to apply to the menu.
+       - style: The style to apply to the menu.
      */
     public init(
-        categories: [EmojiCategory] = EmojiCategory.all,
-        appearance: KeyboardAppearance,
-        keyboardContext: KeyboardContext,
         selection: Binding<EmojiCategory>,
-        style: EmojiKeyboardStyle,
-        actionHandler: KeyboardActionHandler = KeyboardInputViewController.shared.keyboardActionHandler
+        categories: [EmojiCategory] = EmojiCategory.all,
+        keyboardContext: KeyboardContext,
+        actionHandler: KeyboardActionHandler,
+        appearance: KeyboardAppearance,
+        style: EmojiKeyboardStyle
     ) {
         self.categories = categories.filter { $0.emojis.count > 0 }
-        self.appearance = appearance
         self.keyboardContext = keyboardContext
+        self.actionHandler = actionHandler
+        self.appearance = appearance
         self._selection = selection
         self.style = style
-        self.actionHandler = actionHandler
     }
+
+    @Binding
+    private var selection: EmojiCategory
     
     private let categories: [EmojiCategory]
-    private let appearance: KeyboardAppearance
     private let keyboardContext: KeyboardContext
-    private let style: EmojiKeyboardStyle
     private let actionHandler: KeyboardActionHandler
+    private let appearance: KeyboardAppearance
+    private let style: EmojiKeyboardStyle
     
-    @State private var isInitialized = false
-    @Binding private var selection: EmojiCategory
+    @State
+    private var isInitialized = false
         
     public var body: some View {
         HStack(spacing: 0) {
@@ -105,15 +106,16 @@ public struct EmojiCategoryKeyboardMenu: View {
     }
 }
 
-@available(iOS 14.0, *)
 struct EmojiCategoryKeyboardMenu_Previews: PreviewProvider {
     
     static var previews: some View {
         EmojiCategoryKeyboardMenu(
-            appearance: .preview,
-            keyboardContext: .preview,
             selection: .constant(.activities),
-            style: .standardPhonePortrait)
+            categories: .all,
+            keyboardContext: .preview,
+            actionHandler: .preview,
+            appearance: .preview,
+            style: .standardPhonePortrait
+        )
     }
 }
-#endif

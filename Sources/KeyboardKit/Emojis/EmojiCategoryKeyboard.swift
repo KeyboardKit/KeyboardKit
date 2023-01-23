@@ -17,7 +17,6 @@ import SwiftUI
  As long as the view requires iOS 14, the extensions must be
  kept in the main struct body for the previews to compile.
  */
-@available(iOS 14.0, tvOS 14.0, *)
 public struct EmojiCategoryKeyboard<CategoryTitleView: View>: View {
     
     /**
@@ -135,7 +134,6 @@ public struct EmojiCategoryKeyboard<CategoryTitleView: View>: View {
 
 // MARK: - Private View Extensions
 
-@available(iOS 14.0, tvOS 14.0, *)
 private extension EmojiCategoryKeyboard {
 
     var title: some View {
@@ -153,10 +151,11 @@ private extension EmojiCategoryKeyboard {
     
     var menu: some View {
         EmojiCategoryKeyboardMenu(
-            categories: categories,
-            appearance: appearance,
-            keyboardContext: keyboardContext,
             selection: $selection,
+            categories: categories,
+            keyboardContext: keyboardContext,
+            actionHandler: standardKeyboardActionHandler,
+            appearance: appearance,
             style: style
         )
     }
@@ -172,7 +171,6 @@ private extension EmojiCategoryKeyboard {
     }
 }
 
-@available(iOS 14.0, tvOS 14.0, *)
 public extension EmojiCategoryKeyboard where CategoryTitleView == EmojiCategoryTitle {
     
     /**
@@ -218,7 +216,6 @@ public extension EmojiCategoryKeyboard where CategoryTitleView == EmojiCategoryT
     }
 }
 
-@available(iOS 14.0, tvOS 14.0, *)
 private extension EmojiCategoryKeyboard {
 
     /**
@@ -229,7 +226,6 @@ private extension EmojiCategoryKeyboard {
     }
 }
 
-@available(iOS 14.0, tvOS 14.0, *)
 struct EmojiCategoryKeyboard_Previews: PreviewProvider {
     
     static var previews: some View {

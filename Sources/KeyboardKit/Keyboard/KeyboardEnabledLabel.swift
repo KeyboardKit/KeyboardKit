@@ -16,7 +16,6 @@ import SwiftUI
  to present whether or not a keyboard is enabled, active etc.
  using an observed ``KeyboardEnabledState`` value.
  */
-@available(iOS 14.0, tvOS 14.0, macOS 11.0, watchOS 7.0, *)
 public struct KeyboardEnabledLabel: View {
 
     /**
@@ -54,7 +53,6 @@ public struct KeyboardEnabledLabel: View {
     }
 }
 
-@available(iOS 14.0, tvOS 14.0, macOS 11.0, watchOS 7.0, *)
 public extension KeyboardEnabledLabel {
 
     /**
@@ -97,7 +95,6 @@ public extension KeyboardEnabledLabel {
     }
 }
 
-@available(iOS 14.0, tvOS 14.0, macOS 11.0, watchOS 7.0, *)
 public extension KeyboardEnabledLabel.Style {
 
     /**
@@ -110,19 +107,18 @@ public extension KeyboardEnabledLabel.Style {
 }
 
 
-@available(iOS 14.0, tvOS 14.0, macOS 11.0, watchOS 7.0, *)
 struct KeyboardEnabledLabel_Previews: PreviewProvider {
 
     static var previews: some View {
         List {
             KeyboardEnabledLabel(
                 isEnabled: true,
-                enabledText: "Is enabled",
-                disabledText: "Is disabled")
+                enabledText: "Enabled",
+                disabledText: "Disabled")
             KeyboardEnabledLabel(
                 isEnabled: false,
-                enabledText: "Is enabled",
-                disabledText: "Is disabled")
+                enabledText: "Enabled",
+                disabledText: "Disabled")
         }
     }
 }

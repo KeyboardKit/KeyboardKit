@@ -323,7 +323,6 @@ public extension SystemKeyboard {
 
 private extension SystemKeyboard {
 
-    @available(iOS 14.0, tvOS 14.0, *)
     var emojiKeyboard: some View {
         EmojiCategoryKeyboard(
             appearance: appearance,
