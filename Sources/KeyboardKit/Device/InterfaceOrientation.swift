@@ -20,7 +20,7 @@ import UIKit
  */
 public enum InterfaceOrientation: String, CaseIterable, Equatable {
 
-    case portrait, portraitUpsideDown, landscapeLeft, landscapeRight, unknown
+    case portrait, portraitUpsideDown, landscape, landscapeLeft, landscapeRight, unknown
 }
 
 public extension InterfaceOrientation {
@@ -29,10 +29,12 @@ public extension InterfaceOrientation {
      Get the current interface orientation.
      */
     static var current: InterfaceOrientation {
-        #if os(iOS)
+        #if os(iOS) || os(tvOS)
         UIScreen.main.interfaceOrientation
+        #elseif os(macOS)
+        .landscape
         #else
-        .portrait
+        .unknown
         #endif
     }
 
@@ -40,13 +42,21 @@ public extension InterfaceOrientation {
      Whether or not the orientation is a portrait one.
      */
     var isLandscape: Bool {
-        self == .landscapeLeft || self == .landscapeRight
+        switch self {
+        case .portrait, .portraitUpsideDown: return false
+        case .landscape, .landscapeLeft, .landscapeRight: return true
+        case .unknown: return false
+        }
     }
 
     /**
      Whether or not the orientation is a portrait one.
      */
     var isPortrait: Bool {
-        self == .portrait || self == .portraitUpsideDown
+        switch self {
+        case .portrait, .portraitUpsideDown: return true
+        case .landscape, .landscapeLeft, .landscapeRight: return false
+        case .unknown: return false
+        }
     }
 }
