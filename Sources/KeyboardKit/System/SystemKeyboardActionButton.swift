@@ -6,7 +6,6 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(macOS)
 import SwiftUI
 
 /**
@@ -146,17 +145,3 @@ struct SystemKeyboardActionButton_Previews: PreviewProvider {
         .environment(\.sizeCategory, .extraExtraLarge)
     }
 }
-
-private extension View {
-    
-    func onPressGesture(
-        onPressed: @escaping () -> Void,
-        onReleased: @escaping () -> Void) -> some View {
-        self.gesture(
-            DragGesture(minimumDistance: 0)
-                .onChanged { _ in onPressed() }
-                .onEnded { _ in onReleased() }
-        )
-    }
-}
-#endif

@@ -50,6 +50,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `KeyboardInputViewController` implements `KeyboardActionTrigger` which gives it a bunch of new functions.
 * `GestureButton` is now available on watchOS 7.
 * `ScrollViewGestureButton` is now available on watchOS 7.
+* `SystemKeyboardActionButton` is now available on all platforms. 
 
 ### 💡 Behavior changes
 
