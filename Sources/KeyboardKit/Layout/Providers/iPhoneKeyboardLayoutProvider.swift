@@ -61,9 +61,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
             return isLastNumericInputRow(row, for: context) ? lastSymbolicInputWidth(for: context) : .input
         case .backspace: return lowerSystemButtonWidth(for: context)
         case .keyboardType: return bottomSystemButtonWidth(for: context)
-        case .newLine: return bottomPrimaryButtonWidth(for: context)
         case .nextKeyboard: return bottomSystemButtonWidth(for: context)
-        case .return: return bottomPrimaryButtonWidth(for: context)
         case .shift: return lowerSystemButtonWidth(for: context)
         default: return .available
         }

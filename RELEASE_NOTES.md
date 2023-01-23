@@ -17,7 +17,6 @@ Some things that are planned for the 7.0 release:
 
 * Deployment targets will be bumped to iOS 14, macOS 11, tvOS 14 and watchOS 8.
 * All TODOS will be addressed.
-* All deprecated code will be removed.
 * All shared instances should be removed.
 * All dependencies to the shared instances should be replaced with init parameters, even for the smallest view.
 * KeyboardAction should only support `press` and `release` and not `tap`.
@@ -30,6 +29,15 @@ Some things that are planned for the 7.0 release:
 * The ActionCallout initializer will require a KeyboardContext
 * KeyboardInputViewController `textInputProxy` will be renamed to `keyboardInputProxy`.
 * KeyboardInputViewController `originalTextDocumentProxy` will be renamed to `mainTextDocumentProxy`.
+
+
+
+## 7.0
+
+### 💥 Breaking changes
+
+* All deprecated code has been removed.
+* `KeyboardAction` `return` and `newLine` are now `primary` variants.
 
 
 

@@ -72,10 +72,6 @@ public enum KeyboardAction: Codable, Equatable {
     /// Moves the input cursor forward one step when released.
     case moveCursorForward
     
-    /// Represents a new line key that uses an `⏎` icon and not a return text.
-    @available(*, deprecated, message: "Use .primary(.newLine) instead")
-    case newLine
-    
     /// Represents a keyboard switcher (🌐) button and triggers the keyboard switch action when long pressed and released.
     case nextKeyboard
     
@@ -92,10 +88,6 @@ public enum KeyboardAction: Codable, Equatable {
     ///
     /// > Note: This will be renamed to `return` in KK7 (TODO)
     case primary(ReturnType)
-    
-    /// Represents a return key that uses a return text and not an ⏎ icon.
-    @available(*, deprecated, message: "Use .primary(.return) instead")
-    case `return`
     
     /// A custom action that can be used to e.g. show a settings screen.
     case settings
@@ -228,12 +220,10 @@ public extension KeyboardAction {
         case .keyboardType: return true
         case .moveCursorBackward: return true
         case .moveCursorForward: return true
-        case .newLine: return true
         case .nextKeyboard: return true
         case .nextLocale: return true
         case .option: return true
         case .primary(let type): return type.isSystemAction
-        case .return: return true
         case .shift: return true
         case .settings: return true
         case .tab: return true

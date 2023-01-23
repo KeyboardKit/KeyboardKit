@@ -25,8 +25,8 @@ final class KeyboardAction_AutocompleteTests: XCTestCase {
             var expected = false
             switch $0 {
             case .character(let char): expected = char.isWordDelimiter
-            case .newLine, .return, .space: expected = true
-            case .primary(.newLine), .primary(.return): expected = true
+            case .primary: expected = $0.isSystemAction
+            case .space: expected = true
             default: expected = false
             }
             XCTAssertEqual($0.shouldApplyAutocompleteSuggestion, expected)

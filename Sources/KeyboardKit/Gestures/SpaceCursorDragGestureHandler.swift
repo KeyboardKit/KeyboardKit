@@ -15,17 +15,6 @@ import CoreGraphics
  */
 open class SpaceCursorDragGestureHandler: DragGestureHandler {
 
-    @available(*, deprecated, message: "Use the keyboardContext initializer instead.")
-    public init(
-        context: KeyboardContext,
-        feedbackHandler: KeyboardFeedbackHandler,
-        sensitivity: SpaceDragSensitivity = .medium
-    ) {
-        self.keyboardContext = context
-        self.feedbackHandler = feedbackHandler
-        self.sensitivity = sensitivity
-    }
-
     /**
      Create a handler space cursor drag gesture handler.
 

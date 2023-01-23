@@ -113,9 +113,7 @@ public extension KeyboardAction {
         case .emoji(let emoji): return { $0?.textDocumentProxy.insertText(emoji.char) }
         case .moveCursorBackward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: -1) }
         case .moveCursorForward: return { $0?.textDocumentProxy.adjustTextPosition(byCharacterOffset: 1) }
-        case .newLine: return { $0?.textDocumentProxy.insertText(.newline) }
         case .primary: return { $0?.textDocumentProxy.insertText(.newline) }
-        case .return: return { $0?.textDocumentProxy.insertText(.newline) }
         case .space: return { $0?.textDocumentProxy.insertText(.space) }
         case .tab: return { $0?.textDocumentProxy.insertText(.tab) }
         default: return nil

@@ -39,10 +39,6 @@ public class EnglishInputSetProvider: InputSetProvider, LocalizedService {
         self.alphabeticInputSet = alphabetic
         self.numericInputSet = .english(currency: numericCurrency)
         self.symbolicInputSet = .english(currency: symbolicCurrency)
-
-        // Deprecated
-        self._numericCurrency = numericCurrency
-        self._symbolicCurrency = symbolicCurrency
     }
     
     /**
@@ -64,24 +60,6 @@ public class EnglishInputSetProvider: InputSetProvider, LocalizedService {
      The input set to use for symbolic keyboards.
      */
     public let symbolicInputSet: SymbolicInputSet
-
-
-    // MARK: - Deprecated
-
-    private let _numericCurrency: String
-    private let _symbolicCurrency: String
-
-    /**
-     The currency to use for the numeric input set.
-     */
-    @available(*, deprecated, message: "This is no longer used.")
-    public var numericCurrency: String { _numericCurrency }
-
-    /**
-     The currency to use for the symbolic input set.
-     */
-    @available(*, deprecated, message: "This is no longer used.")
-    public var symbolicCurrency: String { _symbolicCurrency }
 }
 
 public extension AlphabeticInputSet {

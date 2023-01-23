@@ -166,47 +166,6 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var traitCollection = UITraitCollection()
     #endif
-
-
-    // MARK: - Deprecated
-
-    #if os(iOS) || os(tvOS)
-    @available(*, deprecated, message: "Use initializer without device instead.")
-    public init(
-        controller: KeyboardInputViewController? = nil,
-        locale: Locale = .current,
-        device: UIDevice = .current,
-        screen: UIScreen = .main,
-        keyboardType: KeyboardType = .alphabetic(.lowercased)
-    ) {
-        self.locale = locale
-        self.locales = [locale]
-        self.device = device
-        self.screen = screen
-        self.keyboardType = keyboardType
-        guard let controller = controller else { return }
-        self.sync(with: controller)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    @available(*, deprecated, message: "Use deviceType instead.")
-    public var device: UIDevice = .current
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    @Published
-    @available(*, deprecated, message: "Use screenSize instead")
-    public var screen = UIScreen.main
-    #endif
-
-    #if os(iOS)
-    @available(*, deprecated, renamed: "interfaceOrientation")
-    public var screenOrientation: InterfaceOrientation {
-        get { interfaceOrientation }
-        set { interfaceOrientation = newValue }
-    }
-    #endif
 }
 
 

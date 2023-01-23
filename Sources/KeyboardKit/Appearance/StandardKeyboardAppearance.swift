@@ -37,11 +37,6 @@ import CoreGraphics
  Sometimes that is what you want, but most often perhaps not.
  */
 open class StandardKeyboardAppearance: KeyboardAppearance {
-
-    @available(*, deprecated, message: "Use the keyboardContext initializer instead")
-    public init(context: KeyboardContext) {
-        self.keyboardContext = context
-    }
     
     /**
      Create a standard keyboard appearance intance.

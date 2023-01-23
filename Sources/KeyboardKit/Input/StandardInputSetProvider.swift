@@ -70,12 +70,4 @@ open class StandardInputSetProvider: InputSetProvider {
     open var symbolicInputSet: SymbolicInputSet {
         provider(for: keyboardContext).symbolicInputSet
     }
-
-
-    // MARK: - Deprecated
-
-    @available(*, deprecated, renamed: "localizedProviders")
-    open var providerDictionary: LocaleDictionary<InputSetProvider> {
-        localizedProviders
-    }
 }

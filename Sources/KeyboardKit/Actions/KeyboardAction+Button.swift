@@ -27,7 +27,6 @@ public extension KeyboardAction {
         case .keyboardType(let type): return type.standardButtonImage
         case .moveCursorBackward: return .keyboardLeft
         case .moveCursorForward: return .keyboardRight
-        case .newLine: return .keyboardNewline(for: context.locale)
         case .nextKeyboard: return .keyboardGlobe
         case .option: return .keyboardOption
         case .primary(let type): return type.standardButtonImage(for: context.locale)
@@ -50,7 +49,6 @@ public extension KeyboardAction {
         case .keyboardType(let type): return type.standardButtonText(for: context)
         case .nextLocale: return context.locale.languageCode?.uppercased()
         case .primary(let type): return type.standardButtonText(for: context.locale)
-        case .return: return KKL10n.return.text(for: context)
         case .space: return KKL10n.space.text(for: context)
         default: return nil
         }

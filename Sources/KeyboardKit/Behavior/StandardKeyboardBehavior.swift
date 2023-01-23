@@ -28,19 +28,6 @@ import Foundation
  */
 open class StandardKeyboardBehavior: KeyboardBehavior {
 
-    @available(*, deprecated, message: "Use the keyboardContext initializer instead.")
-    public init(
-        context: KeyboardContext,
-        doubleTapThreshold: TimeInterval = 0.5,
-        endSentenceThreshold: TimeInterval = 3.0,
-        repeatGestureTimer: RepeatGestureTimer = .shared
-    ) {
-        self.keyboardContext = context
-        self.doubleTapThreshold = doubleTapThreshold
-        self.endSentenceThreshold = endSentenceThreshold
-        self.repeatGestureTimer = repeatGestureTimer
-    }
-
     /**
       Create a standard keyboard behavior instance.
 

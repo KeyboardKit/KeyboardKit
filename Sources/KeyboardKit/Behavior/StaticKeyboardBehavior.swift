@@ -23,17 +23,6 @@ open class StaticKeyboardBehavior: KeyboardBehavior {
       - Parameters:
         - keyboardContext: The keyboard context to use.
      */
-    @available(*, deprecated, message: "Use the keyboardContext initializer instead.")
-    public init(context: KeyboardContext) {
-        self.keyboardContext = context
-    }
-
-    /**
-      Create a static keyboard behavior instance.
-
-      - Parameters:
-        - keyboardContext: The keyboard context to use.
-     */
     public init(keyboardContext: KeyboardContext) {
         self.keyboardContext = keyboardContext
     }

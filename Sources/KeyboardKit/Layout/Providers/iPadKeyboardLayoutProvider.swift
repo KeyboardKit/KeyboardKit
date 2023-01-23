@@ -68,7 +68,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         case .dismissKeyboard: return .inputPercentage(1.45)
         case .keyboardType: return row == 2 ? .available : .input
         case .nextKeyboard: return .input
-        case .newLine: if hasAlphabeticInputCount([12, 12, 10]) { return .available }   // e.g. Belarusian
+        case .primary: if hasAlphabeticInputCount([12, 12, 10]) { return .available }   // e.g. Belarusian
         default: break
         }
 

@@ -67,9 +67,6 @@ public extension FeatureToggle {
     enum Feature: String {
 
         case placeholder
-
-        @available(*, deprecated, message: "This feature is now always enabled when applicable.")
-        case newButtonGestureEngine
     }
 }
 

@@ -12,14 +12,13 @@ import Foundation
  This layout provider is initialized with a keyboard context,
  an input set provider and a list of localized providers.
 
- If the keyboard context locale matches a localized provider,
- that provider will be used instead of the input set and the
- standard iPhone and iPad providers that are created by this
- class. This will cause the input set provider to be ignored,
- since the matching provider will have its own input set.
-
- To modify the layout that is returned by this provider, you
- can inject new providers for a more locales.
+ If the ``keyboardContext`` locale matches the locale of any
+ of the provided ``localizedProviders`` instances, then that
+ provider will be used instead of the input set provider and
+ the nested ``iPhoneProvider`` and ``iPadProvider`` keyboard
+ layout providers. To modify the keyboard layout of a nested,
+ localized keyboard layout provider, simply inject a new one
+ for that locale.
 
  > Important: Since English is the standard language that is
  used to define input set and keyboard layout, this provider
@@ -108,18 +107,5 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
      */
     open func register(inputSetProvider: InputSetProvider) {
         self.inputSetProvider = inputSetProvider
-    }
-
-
-
-    // MARK: - Deprecated
-
-    @available(*, deprecated, message: "This is no longer used and will be removed in KeyboardKit 7.")
-    open lazy var fallbackProvider = StaticKeyboardLayoutProvider(
-        keyboardLayout: KeyboardLayout(itemRows: []))
-
-    @available(*, deprecated, renamed: "keyboardLayoutProvider(for:)")
-    open func layoutProvider(for context: KeyboardContext) -> KeyboardLayoutProvider {
-        keyboardLayoutProvider(for: context)
     }
 }

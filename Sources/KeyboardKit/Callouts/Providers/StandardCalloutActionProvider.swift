@@ -15,16 +15,6 @@ import Foundation
  */
 open class StandardCalloutActionProvider: CalloutActionProvider {
 
-    @available(*, deprecated, message: "Use the keyboardContext initializer instead")
-    public init(
-        context: KeyboardContext,
-        providers: [LocalizedCalloutActionProvider] = [standardProvider]
-    ) {
-        self.keyboardContext = context
-        let dict = Dictionary(uniqueKeysWithValues: providers.map { ($0.localeKey, $0) })
-        localizedProviders = LocaleDictionary(dict)
-    }
-
     /**
      Create a standard callout action provider.
 
@@ -81,13 +71,5 @@ open class StandardCalloutActionProvider: CalloutActionProvider {
      */
     open func provider(for locale: Locale) -> CalloutActionProvider {
         localizedProviders.value(for: locale) ?? Self.standardProvider
-    }
-
-
-    // MARK: - Deprecated
-
-    @available(*, deprecated, renamed: "localizedProviders")
-    open var providerDictionary: LocaleDictionary<CalloutActionProvider> {
-        localizedProviders
     }
 }
