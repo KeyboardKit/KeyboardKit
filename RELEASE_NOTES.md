@@ -55,9 +55,11 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 
 ### 💡 Behavior changes
 
+* `ActionCallout` is no longer greedy.
+* `InterfaceOrientation` `.current` now returns correct rotations on all platforms.
+* `InputCallout` is no longer greedy.
 * `KeyboardAction.backspace` now triggers on `.press` instead of `.release`.
 * `KeyboardLayoutConfiguration` now behaves the same on all platforms.
-* `InterfaceOrientation` `.current` now returns correct rotations on all platforms.
 
 ### 💥 Breaking changes
 

@@ -25,15 +25,14 @@ public extension View {
         style: ActionCalloutStyle = .standard,
         emojiKeyboardStyle: EmojiKeyboardStyle = .standardPhonePortrait
     ) -> some View {
-        ZStack {
-            self
+        self.overlay(
             ActionCallout(
                 calloutContext: calloutContext,
                 keyboardContext: keyboardContext,
                 style: style,
                 emojiKeyboardStyle: emojiKeyboardStyle
             )
-        }.coordinateSpace(name: ActionCalloutContext.coordinateSpace)
+        ).coordinateSpace(name: ActionCalloutContext.coordinateSpace)
     }
 
     /**
@@ -62,12 +61,12 @@ public extension View {
         keyboardContext: KeyboardContext,
         style: InputCalloutStyle = .standard
     ) -> some View {
-        ZStack {
-            self
+        self.overlay(
             InputCallout(
                 calloutContext: calloutContext,
                 keyboardContext: keyboardContext,
-                style: style)
-        }.coordinateSpace(name: InputCallout.coordinateSpace)
+                style: style
+            )
+        ).coordinateSpace(name: InputCallout.coordinateSpace)
     }
 }

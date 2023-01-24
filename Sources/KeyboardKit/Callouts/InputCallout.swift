@@ -46,7 +46,7 @@ public struct InputCallout: View {
         callout
             .transition(.opacity)
             .opacity(calloutContext.isActive ? 1 : 0)
-            .keyboardCalloutShadow(style: calloutStyle)
+            .keyboardCalloutShadow(style: style.callout)
             .position(position)
             .allowsHitTesting(false)
     }
@@ -66,15 +66,16 @@ private extension InputCallout {
         Text(calloutContext.input ?? "")
             .font(style.font)
             .frame(minWidth: calloutSize.width, minHeight: calloutSize.height)
-            .foregroundColor(calloutStyle.textColor)
-            .background(calloutStyle.backgroundColor)
+            .foregroundColor(style.callout.textColor)
+            .background(style.callout.backgroundColor)
             .cornerRadius(cornerRadius)
     }
     
     var calloutButton: some View {
         CalloutButtonArea(
             frame: buttonFrame,
-            style: calloutStyle)
+            style: style.callout
+        )
     }
 }
 
@@ -90,7 +91,7 @@ private extension InputCallout {
     }
     
     var buttonInset: CGSize {
-        calloutStyle.buttonInset
+        style.callout.buttonInset
     }
     
     var buttonSize: CGSize {
@@ -100,7 +101,8 @@ private extension InputCallout {
     var calloutSize: CGSize {
         CGSize(
             width: calloutSizeWidth,
-            height: calloutSizeHeight)
+            height: calloutSizeHeight
+        )
     }
     
     var calloutSizeHeight: CGFloat {
@@ -113,10 +115,8 @@ private extension InputCallout {
         return max(style.calloutSize.width, minSize)
     }
     
-    var calloutStyle: CalloutStyle { style.callout }
-    
     var cornerRadius: CGFloat {
-        shouldEnforceSmallSize ? calloutStyle.buttonCornerRadius : calloutStyle.cornerRadius
+        shouldEnforceSmallSize ? style.callout.buttonCornerRadius : style.callout.cornerRadius
     }
 }
 
@@ -178,7 +178,7 @@ struct InputCallout_Previews: PreviewProvider {
                     label: { _ in Color.red.cornerRadius(5) }
                 )
             }
-            .frame(width: 40, height: 45)
+            .frame(width: 15, height: 15)
             .padding()
             .background(Color.yellow.cornerRadius(6))
         }
@@ -187,13 +187,18 @@ struct InputCallout_Previews: PreviewProvider {
             context.updateInput(for: .character("a"), in: geo)
         }
 
+        var buttonStack: some View {
+            HStack {
+                button(for: context)
+                button(for: context)
+                button(for: context)
+            }
+        }
+
         var body: some View {
             VStack {
-                HStack {
-                    button(for: context)
-                    button(for: context)
-                    button(for: context)
-                }
+                buttonStack
+                buttonStack
                 Button("Reset") {
                     context.reset()
                 }

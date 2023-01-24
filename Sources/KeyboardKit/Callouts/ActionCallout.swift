@@ -45,19 +45,26 @@ public struct ActionCallout: View {
     private let emojiKeyboardStyle: EmojiKeyboardStyle
     
     public var body: some View {
-        VStack(alignment: calloutContext.alignment, spacing: 0) {
-            callout
-            buttonArea
+        Button(action: calloutContext.reset) {
+            VStack(alignment: calloutContext.alignment, spacing: 0) {
+                callout
+                buttonArea
+            }
         }
+        .buttonStyle(ActionCalloutButtonStyle())
         .font(style.font)
         .compositingGroup()
         .opacity(calloutContext.isActive ? 1 : 0)
         .keyboardCalloutShadow(style: calloutStyle)
-        #if os(iOS) || os(macOS) || os(watchOS)
-        .onTapGesture(perform: calloutContext.reset)    // TODO: Use a regular button with a button style?
-        #endif
         .position(x: positionX, y: positionY)
         .offset(y: style.verticalOffset)
+    }
+}
+
+private struct ActionCalloutButtonStyle: ButtonStyle {
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
     }
 }
 
@@ -181,21 +188,6 @@ struct ActionCallout_Previews: PreviewProvider {
     static let actionContext2 = ActionCalloutContext(
         actionHandler: actionHandler,
         actionProvider: actionProvider)
-    
-    static var button: some View {
-        Color.red.frame(width: 40, height: 50)
-    }
-    
-    static var rowItem: some View {
-        Color.yellow.frame(width: 40, height: 50)
-
-    }
-    
-    static var rowItemStyle: ActionCalloutStyle {
-        var style = ActionCalloutStyle.standard
-        style.callout.buttonInset = CGSize(width: 3, height: 3)
-        return style
-    }
 
     static func previewGroup<ButtonView: View>(
         view: ButtonView,
@@ -212,7 +204,8 @@ struct ActionCallout_Previews: PreviewProvider {
                     )
                 }
             }
-        ).keyboardActionCallout(
+        )
+        .keyboardActionCallout(
             calloutContext: actionContext,
             keyboardContext: keyboardContext,
             style: .standard,
@@ -222,11 +215,11 @@ struct ActionCallout_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             previewGroup(
-                view: button,
+                view: Color.red.frame(width: 40, height: 50),
                 actionContext: actionContext1,
                 alignment: .leading)
             previewGroup(
-                view: rowItem,
+                view: Color.yellow.frame(width: 40, height: 50),
                 actionContext: actionContext2,
                 alignment: .trailing)
         }
