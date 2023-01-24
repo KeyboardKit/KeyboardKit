@@ -102,7 +102,7 @@ public struct EmojiCategoryKeyboardMenu: View {
                 .padding(3)
                 .background(selection == category ? style.selectedCategoryColor : Color.clear)
                 .clipShape(Circle())
-        })
+        }).buttonStyle(.plain)
     }
 }
 

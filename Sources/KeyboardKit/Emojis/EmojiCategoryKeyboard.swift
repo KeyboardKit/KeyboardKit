@@ -6,7 +6,6 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
 import SwiftUI
 
 /**
@@ -17,45 +16,45 @@ import SwiftUI
  As long as the view requires iOS 14, the extensions must be
  kept in the main struct body for the previews to compile.
  */
-public struct EmojiCategoryKeyboard<CategoryTitleView: View>: View {
+public struct EmojiCategoryKeyboard: View {
     
     /**
      Create an emoji category keyboard.
      
      - Parameters:
-       - categories: The categories to show in the menu.
-       - appearance: The appearance to apply to the menu.
-       - keyboardContext: The context to use when rendering the view.
        - selection: The currently selected category.
+       - categories: The categories to show in the menu.
+       - keyboardContext: The context to use when rendering the view.
+       - actionHandler: The action handler to use.
+       - appearance: The appearance to apply to the menu.
        - style: The style to apply to the keyboard, by default `.standardPhonePortrait`.
-       - categoryTitle: A category title provider, by default `.standardCategoryTitle`.
-       - categoryTitleView: An emoji category title view builder.
+       - categoryTitle: A category title provider, by default category title.
      */
     public init(
-        categories: [EmojiCategory] = EmojiCategory.all,
-        appearance: KeyboardAppearance,
-        keyboardContext: KeyboardContext,
         selection: EmojiCategory? = nil,
+        categories: [EmojiCategory] = EmojiCategory.all,
+        keyboardContext: KeyboardContext,
+        actionHandler: KeyboardActionHandler,
+        appearance: KeyboardAppearance,
         style: EmojiKeyboardStyle = .standardPhonePortrait,
-        categoryTitle: @escaping CategoryTitleProvider = standardCategoryTitle,
-        categoryTitleView: @escaping CategoryTitleViewProvider
+        categoryTitle: @escaping CategoryTitleProvider = { $0.title }
     ) {
-        self.categories = categories.filter { $0.emojis.count > 0 }
-        self.appearance = appearance
-        self.keyboardContext = keyboardContext
         self.initialSelection = selection
+        self.categories = categories.filter { $0.emojis.count > 0 }
+        self.keyboardContext = keyboardContext
+        self.actionHandler = actionHandler
+        self.appearance = appearance
         self.style = style
         self.categoryTitle = categoryTitle
-        self.categoryTitleView = categoryTitleView
     }
     
-    private let categories: [EmojiCategory]
-    private let appearance: KeyboardAppearance
-    private let keyboardContext: KeyboardContext
     private let initialSelection: EmojiCategory?
+    private let categories: [EmojiCategory]
+    private let keyboardContext: KeyboardContext
+    private let actionHandler: KeyboardActionHandler
+    private let appearance: KeyboardAppearance
     private let style: EmojiKeyboardStyle
     private let categoryTitle: CategoryTitleProvider
-    private let categoryTitleView: CategoryTitleViewProvider
     
     @State
     private var isInitialized = false
@@ -77,12 +76,6 @@ public struct EmojiCategoryKeyboard<CategoryTitleView: View>: View {
      providing a title for an emoji category.
      */
     public typealias CategoryTitleProvider = (EmojiCategory) -> String
-    
-    /**
-     This is a typealias for a function that can be used for
-     providing a title view for an emoji category.
-     */
-    public typealias CategoryTitleViewProvider = (EmojiCategory, String, EmojiKeyboardStyle) -> CategoryTitleView
 
     
     // MARK: - Public Static Builders
@@ -137,15 +130,17 @@ public struct EmojiCategoryKeyboard<CategoryTitleView: View>: View {
 private extension EmojiCategoryKeyboard {
 
     var title: some View {
-        categoryTitleView(selection, categoryTitle(selection), style)
-            .padding(.horizontal)
+        EmojiCategoryTitle(
+            title: selection.title,
+            style: style
+        ).padding(.horizontal)
     }
 
     var keyboard: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             EmojiKeyboard(
                 emojis: selection.emojis.matching(query, for: keyboardContext.locale),
-                actionHandler: standardKeyboardActionHandler,
+                actionHandler: actionHandler,
                 style: style)
         }.id(selection)
     }
@@ -155,75 +150,10 @@ private extension EmojiCategoryKeyboard {
             selection: $selection,
             categories: categories,
             keyboardContext: keyboardContext,
-            actionHandler: standardKeyboardActionHandler,
+            actionHandler: actionHandler,
             appearance: appearance,
             style: style
         )
-    }
-
-    var searchField: some View {
-        KeyboardTextField(
-            KKL10n.searchEmoji.text(for: keyboardContext.locale),
-            text: $query,
-            hasFocus: $isSearchFocused,
-            resignOnReturn: true,
-            config: { $0.borderStyle = .roundedRect }
-        ).padding([.horizontal, .bottom])
-    }
-}
-
-public extension EmojiCategoryKeyboard where CategoryTitleView == EmojiCategoryTitle {
-    
-    /**
-     Create an emoji category keyboard, that uses a standard
-     view for category titles.
-     
-     - Parameters:
-       - categories: The categories to show in the menu.
-       - appearance: The appearance to apply to the menu.
-       - keyboardContext: The context to use when rendering the view.
-       - selection: The currently selected category.
-       - style: The style to apply to the keyboard, by default `.standardPhonePortrait`.
-       - categoryTitle: A category title provider, by default `.standardCategoryTitle`.
-     */
-    init(
-        categories: [EmojiCategory] = EmojiCategory.all,
-        appearance: KeyboardAppearance,
-        keyboardContext: KeyboardContext,
-        selection: EmojiCategory? = nil,
-        style: EmojiKeyboardStyle = .standardPhonePortrait,
-        categoryTitle: @escaping CategoryTitleProvider = standardCategoryTitle
-    ) {
-        self.init(
-            categories: categories,
-            appearance: appearance,
-            keyboardContext: keyboardContext,
-            selection: selection,
-            style: style,
-            categoryTitle: categoryTitle,
-            categoryTitleView: Self.standardCategoryTitleView)
-    }
-    
-    /**
-     The standard function to use to build an emoji category
-     title view.
-     */
-    static func standardCategoryTitleView(
-        category: EmojiCategory,
-        title: String,
-        style: EmojiKeyboardStyle
-    ) -> EmojiCategoryTitle {
-        EmojiCategoryTitle(title: title, style: style)
-    }
-}
-
-private extension EmojiCategoryKeyboard {
-
-    /**
-     The standard action handler to use to handle the emojis.
-     */
-    var standardKeyboardActionHandler: KeyboardActionHandler {
-        KeyboardInputViewController.shared.keyboardActionHandler
     }
 }
 
@@ -231,9 +161,9 @@ struct EmojiCategoryKeyboard_Previews: PreviewProvider {
     
     static var previews: some View {
         EmojiCategoryKeyboard(
-            appearance: .preview,
+            selection: .smileys,
             keyboardContext: .preview,
-            selection: .smileys)
+            actionHandler: .preview,
+            appearance: .preview)
     }
 }
-#endif
