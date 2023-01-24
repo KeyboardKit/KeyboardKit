@@ -76,6 +76,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `KeyboardGesture` `.tap` has been removed, use `.release` instead.
 * `KeyboardReturnActionMappable` has been refactored to `KeyboardActionMappable`.
 * `StandardAutocompleteSuggestions` is renamed to `AutocompleteSuggestions`.
+* `StandardKeyboardActionHandler` controller-based initializer is now a convenience initializer.
 
 
 
