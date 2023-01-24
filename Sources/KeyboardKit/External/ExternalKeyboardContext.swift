@@ -6,8 +6,11 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
+import Foundation
+
 #if os(iOS) || os(macOS) || os(tvOS)
 import GameKit
+#endif
 
 /**
  This class can be used to detect whether or not an external
@@ -21,8 +24,10 @@ public class ExternalKeyboardContext: ObservableObject {
     public init(notificationCenter: NotificationCenter = .default) {
         performSync()
         let sync = #selector(performSync)
+        #if os(iOS) || os(macOS) || os(tvOS)
         notificationCenter.addObserver(self, selector: sync, name: Notification.Name.GCKeyboardDidConnect, object: nil)
         notificationCenter.addObserver(self, selector: sync, name: Notification.Name.GCKeyboardDidDisconnect, object: nil)
+        #endif
     }
     
     @Published
@@ -33,7 +38,8 @@ public class ExternalKeyboardContext: ObservableObject {
 private extension ExternalKeyboardContext {
     
     func performSync() {
+        #if os(iOS) || os(macOS) || os(tvOS)
         isExternalKeyboardConnected = GCKeyboard.coalesced != nil
+        #endif
     }
 }
-#endif

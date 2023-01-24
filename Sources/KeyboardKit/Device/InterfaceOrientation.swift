@@ -33,6 +33,8 @@ public extension InterfaceOrientation {
         UIScreen.main.interfaceOrientation
         #elseif os(macOS)
         .landscape
+        #elseif os(watchOS)
+        .portrait
         #else
         .unknown
         #endif

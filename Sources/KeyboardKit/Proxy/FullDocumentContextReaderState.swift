@@ -6,9 +6,7 @@
 //  Copyright © 2022 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
 import Foundation
-import UIKit
 
 /**
  This static class is used as `UITextDocumentProxy` state in
@@ -25,4 +23,3 @@ final class FullDocumentContextReaderState {
 
     static var isReadingFullDocumentContext = false
 }
-#endif

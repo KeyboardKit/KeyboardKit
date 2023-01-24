@@ -254,10 +254,8 @@ public extension KeyboardContext {
     }
     
     func syncAfterLayout(with controller: KeyboardInputViewController) {
-        #if os(iOS)
         if controller.orientation == interfaceOrientation { return }
         self.sync(with: controller)
-        #endif
     }
     #endif
 }

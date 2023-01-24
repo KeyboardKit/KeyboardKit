@@ -46,7 +46,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `EmojiCategoryTitle` is now available on all platforms.
 * `EmojiKeyboard` is now available on all platforms.
 * `EmojiKeyboardStyle` has new context-based standard functions.
-* `ExternalKeyboardContext` is now available on macOS and tvOS as well.
+* `ExternalKeyboardContext` is now available on all platforms.
 * `KeyboardAction` gesture actions are now available on all platforms.  
 * `KeyboardAction` gesture actions now use a `KeyboardController` instead of a `KeyboardInputViewController`.  
 * `KeyboardAppearance` will now apply to `.nextKeyboard` as well. 
