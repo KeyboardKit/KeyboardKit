@@ -210,7 +210,7 @@ public extension EmojiKeyboardStyle {
      of all emoji keyboards in this configuration.
      */
     static var standardPhonePortrait = EmojiKeyboardStyle()
-    
+
     /**
      Get the standard style to use for a certain context.
 
@@ -220,17 +220,43 @@ public extension EmojiKeyboardStyle {
     static func standard(
         for context: KeyboardContext
     ) -> EmojiKeyboardStyle {
-        #if os(iOS)
-        let isPortrait = context.interfaceOrientation.isPortrait
-        if context.deviceType == .phone {
-            return isPortrait ? .standardPhonePortrait : .standardPhoneLandscape
+        switch context.deviceType {
+        case .mac: return .standardPhonePortrait
+        case .phone: return standardPhone(for: context)
+        case .pad: return standardPad(for: context)
+        case .tv: return .standardPhonePortrait
+        case .watch: return .standardPhonePortrait
+        case .other: return .standardPhonePortrait
         }
-        if context.screenSize.isScreenSize(.iPadProLargeScreenPortrait) {
+    }
+
+    /**
+     Get the standard style to use for a certain context.
+
+     - Parameters:
+       - context: The context to base the style on.
+     */
+    static func standardPad(
+        for context: KeyboardContext
+    ) -> EmojiKeyboardStyle {
+        let isPortrait = context.interfaceOrientation.isPortrait
+        let isLargePad = context.screenSize.isScreenSize(.iPadProLargeScreenPortrait)
+        if isLargePad {
             return isPortrait ? .standardLargePadPortrait : .standardLargePadLandscape
         }
         return isPortrait ? .standardPadPortrait : .standardPadLandscape
-        #else
-        return .standardPhonePortrait
-        #endif
+    }
+
+    /**
+     Get the standard style to use for a certain context.
+
+     - Parameters:
+       - context: The context to base the style on.
+     */
+    static func standardPhone(
+        for context: KeyboardContext
+    ) -> EmojiKeyboardStyle {
+        let isPortrait = context.interfaceOrientation.isPortrait
+        return isPortrait ? .standardPhonePortrait : .standardPhoneLandscape
     }
 }
