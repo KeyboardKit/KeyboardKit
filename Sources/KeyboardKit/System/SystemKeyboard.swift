@@ -404,7 +404,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
     }
 
     static var previews: some View {
-        VStack {
+        VStack(spacing: 30) {
 
             // A standard system keyboard
             SystemKeyboard(

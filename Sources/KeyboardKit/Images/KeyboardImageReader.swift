@@ -30,7 +30,8 @@ public extension KeyboardImageReader {
     static var keyboardDictation: Image { .symbol("mic") }
     static var keyboardDismiss: Image { .symbol("keyboard.chevron.compact.down") }
     static var keyboardEmail: Image { .symbol("envelope") }
-    static var keyboardEmoji: Image { .symbol(emojiImageName) }
+    static var keyboardEmoji: Image { .asset("keyboardEmoji") }
+    static var keyboardEmojiSymbol: Image { .symbol("face.smiling") }
     static var keyboardGlobe: Image { .symbol("globe") }
     static var keyboardImages: Image { .symbol("photo") }
     static var keyboardLeft: Image { .symbol("arrow.left") }
@@ -39,7 +40,7 @@ public extension KeyboardImageReader {
     static var keyboardOption: Image { .symbol("option") }
     static var keyboardRedo: Image { .symbol("arrow.uturn.right") }
     static var keyboardRight: Image { .symbol("arrow.right") }
-    static var keyboardSettings: Image { .symbol(settingsImageName) }
+    static var keyboardSettings: Image { .symbol("gearshape") }
     static var keyboardShiftCapslocked: Image { .symbol("capslock.fill") }
     static var keyboardShiftLowercased: Image { .symbol("shift") }
     static var keyboardShiftUppercased: Image { .symbol("shift.fill") }
@@ -58,27 +59,12 @@ public extension KeyboardImageReader {
 
 extension Image {
 
+    static func asset(_ name: String) -> Image {
+        Image("keyboardEmoji", bundle: .keyboardKit)
+    }
+
     static func symbol(_ name: String) -> Image {
         Image(systemName: name)
-    }
-}
-
-private extension KeyboardImageReader {
-    
-    static var isiOS14: Bool {
-        if #available(iOS 14, *) {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    static var emojiImageName: String {
-        isiOS14 ? "face.smiling" : "person.crop.circle"
-    }
-    
-    static var settingsImageName: String {
-        isiOS14 ? "gearshape" : "gear"
     }
 }
 
@@ -94,6 +80,7 @@ struct KeyboardImageReader_Previews: PreviewProvider {
         .keyboardDismiss,
         .keyboardEmail,
         .keyboardEmoji,
+        .keyboardEmojiSymbol,
         .keyboardGlobe,
         .keyboardImages,
         .keyboardLeft,
@@ -118,7 +105,7 @@ struct KeyboardImageReader_Previews: PreviewProvider {
     
     static var previews: some View {
         let images = Self.images.map { (UUID(), $0)}
-        Group {
+        VStack {
             ForEach(images, id: \.0) { img in
                 HStack {
                     listItem(for: img.1)

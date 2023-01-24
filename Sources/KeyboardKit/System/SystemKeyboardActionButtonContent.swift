@@ -131,6 +131,7 @@ struct SystemKeyboardButtonContent_Previews: PreviewProvider {
             preview(for: .backspace)
             preview(for: .nextKeyboard)
             preview(for: .nextLocale)
+            preview(for: .keyboardType(.emojis))
             preview(for: .space, multiLocale: false)
             preview(for: .space, multiLocale: true)
             preview(for: .character("PascalCased"))
