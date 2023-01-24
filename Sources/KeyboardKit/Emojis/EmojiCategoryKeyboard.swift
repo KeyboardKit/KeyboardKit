@@ -24,8 +24,10 @@ public struct EmojiCategoryKeyboard: View {
      - Parameters:
        - selection: The currently selected category.
        - categories: The categories to show in the menu.
-       - keyboardContext: The context to use when rendering the view.
        - actionHandler: The action handler to use.
+       - keyboardContext: The context to use when rendering the view.
+       - actionCalloutContext: The action callout context to affect, if any.
+       - inputCalloutContext: The input callout context to affect, if any.
        - appearance: The appearance to apply to the menu.
        - style: The style to apply to the keyboard, by default `.standardPhonePortrait`.
        - categoryTitle: A category title provider, by default category title.
@@ -33,16 +35,20 @@ public struct EmojiCategoryKeyboard: View {
     public init(
         selection: EmojiCategory? = nil,
         categories: [EmojiCategory] = EmojiCategory.all,
-        keyboardContext: KeyboardContext,
         actionHandler: KeyboardActionHandler,
+        keyboardContext: KeyboardContext,
+        actionCalloutContext: ActionCalloutContext?,
+        inputCalloutContext: InputCalloutContext?,
         appearance: KeyboardAppearance,
         style: EmojiKeyboardStyle = .standardPhonePortrait,
         categoryTitle: @escaping CategoryTitleProvider = { $0.title }
     ) {
         self.initialSelection = selection
         self.categories = categories.filter { $0.emojis.count > 0 }
-        self.keyboardContext = keyboardContext
         self.actionHandler = actionHandler
+        self.keyboardContext = keyboardContext
+        self.actionCalloutContext = actionCalloutContext
+        self.inputCalloutContext = inputCalloutContext
         self.appearance = appearance
         self.style = style
         self.categoryTitle = categoryTitle
@@ -50,8 +56,10 @@ public struct EmojiCategoryKeyboard: View {
     
     private let initialSelection: EmojiCategory?
     private let categories: [EmojiCategory]
-    private let keyboardContext: KeyboardContext
     private let actionHandler: KeyboardActionHandler
+    private let keyboardContext: KeyboardContext
+    private let actionCalloutContext: ActionCalloutContext?
+    private let inputCalloutContext: InputCalloutContext?
     private let appearance: KeyboardAppearance
     private let style: EmojiKeyboardStyle
     private let categoryTitle: CategoryTitleProvider
@@ -141,6 +149,8 @@ private extension EmojiCategoryKeyboard {
             EmojiKeyboard(
                 emojis: selection.emojis.matching(query, for: keyboardContext.locale),
                 actionHandler: actionHandler,
+                actionCalloutContext: actionCalloutContext,
+                inputCalloutContext: inputCalloutContext,
                 style: style)
         }.id(selection)
     }
@@ -162,8 +172,11 @@ struct EmojiCategoryKeyboard_Previews: PreviewProvider {
     static var previews: some View {
         EmojiCategoryKeyboard(
             selection: .smileys,
-            keyboardContext: .preview,
             actionHandler: .preview,
-            appearance: .preview)
+            keyboardContext: .preview,
+            actionCalloutContext: .preview,
+            inputCalloutContext: .preview,
+            appearance: .preview
+        )
     }
 }

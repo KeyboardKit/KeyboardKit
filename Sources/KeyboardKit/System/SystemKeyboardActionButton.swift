@@ -33,6 +33,8 @@ public struct SystemKeyboardActionButton<Content: View>: View {
      - Parameters:
        - action: The keyboard action to apply.
        - actionHandler: The action handler to use.
+       - actionCalloutContext: The action callout context to affect, by deafult `nil`.
+       - inputCalloutContext: The input callout context to affect, by deafult `nil`.
        - appearance: The appearance to apply to the button.
        - keyboardContext: The keyboard context to which the button should apply.
        - contentConfig: A configuration block that can be used to customize or replace the standard button content.
@@ -40,6 +42,8 @@ public struct SystemKeyboardActionButton<Content: View>: View {
     public init(
         action: KeyboardAction,
         actionHandler: KeyboardActionHandler,
+        actionCalloutContext: ActionCalloutContext?,
+        inputCalloutContext: InputCalloutContext?,
         appearance: KeyboardAppearance,
         keyboardContext: KeyboardContext,
         contentConfig: @escaping ContentConfig
@@ -47,7 +51,9 @@ public struct SystemKeyboardActionButton<Content: View>: View {
         self.action = action
         self.actionHandler = actionHandler
         self.appearance = appearance
-        self.context = keyboardContext
+        self.keyboardContext = keyboardContext
+        self.actionCalloutContext = actionCalloutContext
+        self.inputCalloutContext = inputCalloutContext
         self.contentConfig = contentConfig
     }
 
@@ -59,24 +65,34 @@ public struct SystemKeyboardActionButton<Content: View>: View {
        - actionHandler: The action handler to use.
        - appearance: The appearance to apply to the button.
        - keyboardContext: The keyboard context to which the button should apply.
+       - actionCalloutContext: The action callout context to affect, by deafult `nil`.
+       - inputCalloutContext: The input callout context to affect, by deafult `nil`.
      */
     public init(
         action: KeyboardAction,
         actionHandler: KeyboardActionHandler,
         appearance: KeyboardAppearance,
-        keyboardContext: KeyboardContext
+        keyboardContext: KeyboardContext,
+        actionCalloutContext: ActionCalloutContext? = nil,
+        inputCalloutContext: InputCalloutContext? = nil
     ) where Content == SystemKeyboardActionButtonContent {
-        self.action = action
-        self.actionHandler = actionHandler
-        self.appearance = appearance
-        self.context = keyboardContext
-        self.contentConfig = { $0 }
+        self.init(
+            action: action,
+            actionHandler: actionHandler,
+            actionCalloutContext: actionCalloutContext,
+            inputCalloutContext: inputCalloutContext,
+            appearance: appearance,
+            keyboardContext: keyboardContext,
+            contentConfig: { $0 }
+        )
     }
     
     private let action: KeyboardAction
     private let actionHandler: KeyboardActionHandler
     private let appearance: KeyboardAppearance
-    private let context: KeyboardContext
+    private let keyboardContext: KeyboardContext
+    private let actionCalloutContext: ActionCalloutContext?
+    private let inputCalloutContext: InputCalloutContext?
     private let contentConfig: ContentConfig
 
     @State
@@ -95,7 +111,10 @@ public struct SystemKeyboardActionButton<Content: View>: View {
         ).keyboardGestures(
             for: action,
             actionHandler: actionHandler,
-            isPressed: $isPressed)
+            actionCalloutContext: actionCalloutContext,
+            inputCalloutContext: inputCalloutContext,
+            isPressed: $isPressed
+        )
     }
 }
 
@@ -106,7 +125,7 @@ private extension SystemKeyboardActionButton {
             SystemKeyboardActionButtonContent(
                 action: action,
                 appearance: appearance,
-                keyboardContext: context
+                keyboardContext: keyboardContext
             )
         )
     }
@@ -125,10 +144,13 @@ struct SystemKeyboardActionButton_Previews: PreviewProvider {
         SystemKeyboardActionButton(
             action: action,
             actionHandler: .preview,
+            actionCalloutContext: .preview,
+            inputCalloutContext: .preview,
             appearance: .preview,
-            keyboardContext: .preview) {
-                $0.frame(width: 80, height: 80)
-            }
+            keyboardContext: .preview
+        ) {
+            $0.frame(width: 80, height: 80)
+        }
     }
     
     static var previews: some View {

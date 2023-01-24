@@ -94,8 +94,11 @@ public struct SystemKeyboard<ButtonView: View>: View {
                     appearance: appearance,
                     actionHandler: actionHandler,
                     keyboardContext: keyboardContext,
+                    actionCalloutContext: actionCalloutContext,
+                    inputCalloutContext: inputCalloutContext,
                     keyboardWidth: keyboardWidth,
-                    inputWidth: inputWidth)
+                    inputWidth: inputWidth
+                )
             }
         )
     }
@@ -126,11 +129,13 @@ public struct SystemKeyboard<ButtonView: View>: View {
                 SystemKeyboardButtonRowItem(
                     content: buttonContent(item),
                     item: item,
+                    actionHandler: actionHandler,
                     keyboardContext: keyboardContext,
+                    actionCalloutContext: actionCalloutContext,
+                    inputCalloutContext: inputCalloutContext,
                     keyboardWidth: keyboardWidth,
                     inputWidth: inputWidth,
-                    appearance: appearance,
-                    actionHandler: actionHandler
+                    appearance: appearance
                 )
             }
         )
@@ -292,6 +297,8 @@ public extension SystemKeyboard {
         appearance: KeyboardAppearance,
         actionHandler: KeyboardActionHandler,
         keyboardContext: KeyboardContext,
+        actionCalloutContext: ActionCalloutContext?,
+        inputCalloutContext: InputCalloutContext?,
         keyboardWidth: KeyboardWidth,
         inputWidth: KeyboardItemWidth
     ) -> SystemKeyboardButtonRowItem<SystemKeyboardActionButtonContent> {
@@ -301,11 +308,13 @@ public extension SystemKeyboard {
                 appearance: appearance,
                 keyboardContext: keyboardContext),
             item: item,
+            actionHandler: actionHandler,
             keyboardContext: keyboardContext,
+            actionCalloutContext: actionCalloutContext,
+            inputCalloutContext: inputCalloutContext,
             keyboardWidth: keyboardWidth,
             inputWidth: inputWidth,
-            appearance: appearance,
-            actionHandler: actionHandler
+            appearance: appearance
         )
     }
 }
@@ -325,8 +334,10 @@ private extension SystemKeyboard {
 
     var emojiKeyboard: some View {
         EmojiCategoryKeyboard(
-            keyboardContext: keyboardContext,
             actionHandler: actionHandler,
+            keyboardContext: keyboardContext,
+            actionCalloutContext: actionCalloutContext,
+            inputCalloutContext: inputCalloutContext,
             appearance: appearance,
             style: .standard(for: keyboardContext)
         ).padding(.top)
@@ -379,11 +390,13 @@ struct SystemKeyboard_Previews: PreviewProvider {
             SystemKeyboardButtonRowItem(
                 content: previewButtonContent(item: item),
                 item: item,
+                actionHandler: .preview,
                 keyboardContext: .preview,
+                actionCalloutContext: .preview,
+                inputCalloutContext: .preview,
                 keyboardWidth: keyboardWidth,
                 inputWidth: inputWidth,
-                appearance: .preview,
-                actionHandler: .preview)
+                appearance: .preview)
         }
     }
 

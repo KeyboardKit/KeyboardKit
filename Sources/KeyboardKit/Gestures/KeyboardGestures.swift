@@ -24,6 +24,8 @@ struct KeyboardGestures<Content: View>: View {
      - Parameters:
        - view: The view to apply the gestures to.
        - action: The keyboard action to trigger.
+       - actionCalloutContext: The action callout context to affect, if any.
+       - inputCalloutContext: The input callout context to affect, if any.
        - isInScrollView: Whether or not the gestures are used in a scroll view.
        - isPressed: An optional binding that can be used to observe the button pressed state.
        - doubleTapAction: The action to trigger when the button is double tapped.
@@ -36,6 +38,8 @@ struct KeyboardGestures<Content: View>: View {
     init(
         view: Content,
         action: KeyboardAction?,
+        actionCalloutContext: ActionCalloutContext?,
+        inputCalloutContext: InputCalloutContext?,
         isInScrollView: Bool = false,
         isPressed: Binding<Bool>,
         doubleTapAction: KeyboardGestureAction?,
@@ -48,6 +52,8 @@ struct KeyboardGestures<Content: View>: View {
     ) {
         self.view = view
         self.action = action
+        self.actionCalloutContext = actionCalloutContext
+        self.inputCalloutContext = inputCalloutContext
         self.isInScrollView = isInScrollView
         self.isPressed = isPressed
         self.doubleTapAction = doubleTapAction
@@ -61,6 +67,8 @@ struct KeyboardGestures<Content: View>: View {
     
     private let view: Content
     private let action: KeyboardAction?
+    private let actionCalloutContext: ActionCalloutContext?
+    private let inputCalloutContext: InputCalloutContext?
     private let isInScrollView: Bool
     private let isPressed: Binding<Bool>
     private let doubleTapAction: KeyboardGestureAction?
@@ -142,16 +150,6 @@ private extension KeyboardGestures {
             )
         }
     }
-}
-
-
-// MARK: - Contexts
-
-private extension KeyboardGestures {
-
-    var actionCalloutContext: ActionCalloutContext? { .shared }
-
-    var inputCalloutContext: InputCalloutContext? { .shared }
 }
 
 

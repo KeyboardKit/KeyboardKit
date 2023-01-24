@@ -11,9 +11,6 @@ import SwiftUI
 /**
  This context can be used to handle callouts that show a set
  of secondary actions for various keyboard actions.
-
- You can use the static ``shared`` context to share a single
- instance in your code.
   
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
@@ -50,21 +47,6 @@ open class ActionCalloutContext: ObservableObject {
 
     /// The action provider to use for resolving callout actions.
     public let actionProvider: CalloutActionProvider
-    
-    
-    // MARK: - Shared
-    
-    /**
-     The shared context is resolved by returning the context
-     of ``KeyboardInputViewController/shared``.
-     */
-    public static var shared: ActionCalloutContext? {
-        #if os(iOS)
-        KeyboardInputViewController.shared.actionCalloutContext
-        #else
-        nil
-        #endif
-    }
     
     
     // MARK: - Properties

@@ -65,30 +65,35 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `ActionCallout` is no longer greedy.
 * `InterfaceOrientation` `.current` now returns correct rotations on all platforms.
 * `InputCallout` is no longer greedy.
-* `Image.keyboardEmoji` is looks closer to the native icon. Use `.keyboardEmojiSymbol` to use the old SF Symbols variant.
-* `KeyboardAction.backspace` now triggers on `.press` instead of `.release`.
+* `Image` `.keyboardEmoji` is looks closer to the native icon. Use `.keyboardEmojiSymbol` to use the old SF Symbols variant.
+* `KeyboardAction` `.backspace` now triggers on `.press` instead of `.release`.
 * `KeyboardLayoutConfiguration` now behaves the same on all platforms.
 
 ### 💥 Breaking changes
 
 * All deprecated code has been removed.
 * The library now targets iOS 14, macOS 11, tvOS 14 and watchOS 7.
+* `ActionCalloutContext` `.shared` has been replaced with init parameters.
 * `AutocompleteSuggestions` is now a struct instead of a protocol.
 * `AutocompleteToolbar` has no standard action anymore.
 * `AutocompleteToolbar` `ReplacementAction` is renamed to `Action`.
 * `AutocompleteToolbarItem` init parameters have been reordered.
 * `AutocompleteToolbarItemTitle` init parameters have been reordered.
-* `EmojiCategoryKeyboard` now requires an `actionHandler`.
-* `EmojiCategoryKeyboard` init parameters have been reordered and renamed.
-* `EmojiKeyboard` now requires an `actionHandler`.
+* `EmojiCategoryKeyboard` now requires an action handler and callout contexts.
+* `EmojiCategoryKeyboard` init parameters have been refactored.
+* `EmojiKeyboard` now requires an action handler and callout contexts.
 * `EmojiKeyboard` init parameters have been reordered and renamed. 
 * `EmojiCategoryKeyboardMenu` init parameters have been reordered.
+* `InputCalloutContext` `.shared` has been replaced with init parameters.
 * `KeyboardAction` `.return` and `.newLine` are now `primary` variants.
 * `KeyboardAction` `standardTextDocumentProxyAction` has been removed.
 * `KeyboardGesture` `.tap` has been removed, use `.release` instead.
 * `KeyboardReturnActionMappable` has been refactored to `KeyboardActionMappable`.
 * `StandardAutocompleteSuggestions` is renamed to `AutocompleteSuggestions`.
 * `StandardKeyboardActionHandler` controller-based initializer is now a convenience initializer.
+* `SystemKeyboardActionButton` now requires callout contexts.
+* `SystemKeyboardButtonRowItem` now requires callout contexts.
+* `View` `.keyboardGestures` now requires callout contexts.
 
 
 

@@ -28,12 +28,16 @@ public struct EmojiKeyboard<ButtonView: View>: View {
      - Parameters:
        - emojis: The emojis to include in the menu.
        - actionHandler: The action handler to use.
+       - actionCalloutContext: The action callout context to affect, if any.
+       - inputCalloutContext: The input callout context to affect, if any.
        - style: The style to apply to the keyboard, by default ``EmojiKeyboardStyle/standardPhonePortrait``.
        - button: A emoji keyboard button builder function.
      */
     public init(
         emojis: [Emoji],
         actionHandler: KeyboardActionHandler,
+        actionCalloutContext: ActionCalloutContext? = nil,
+        inputCalloutContext: InputCalloutContext? = nil,
         style: EmojiKeyboardStyle = .standardPhonePortrait,
         button: @escaping ButtonBuilder<ButtonView>
     ) {
@@ -41,6 +45,8 @@ public struct EmojiKeyboard<ButtonView: View>: View {
         self.emojis = emojis
         self.rows = Array(repeating: gridItem, count: style.rows)
         self.actionHandler = actionHandler
+        self.actionCalloutContext = actionCalloutContext
+        self.inputCalloutContext = inputCalloutContext
         self.style = style
         self.buttonBuilder = button
     }
@@ -52,16 +58,22 @@ public struct EmojiKeyboard<ButtonView: View>: View {
      - Parameters:
        - emojis: The emojis to include in the menu.
        - actionHandler: The action handler to use.
+       - actionCalloutContext: The action callout context to affect, if any.
+       - inputCalloutContext: The input callout context to affect, if any.
        - style: The style to apply to the keyboard, by default ``EmojiKeyboardStyle/standardPhonePortrait``.
      */
     init(
         emojis: [Emoji],
         actionHandler: KeyboardActionHandler,
+        actionCalloutContext: ActionCalloutContext? = nil,
+        inputCalloutContext: InputCalloutContext? = nil,
         style: EmojiKeyboardStyle = .standardPhonePortrait
     ) where ButtonView == EmojiKeyboardItem {
         self.init(
             emojis: emojis,
             actionHandler: actionHandler,
+            actionCalloutContext: actionCalloutContext,
+            inputCalloutContext: inputCalloutContext,
             style: style,
             button: { EmojiKeyboardItem(emoji: $0, style: $1) }
         )
@@ -70,6 +82,8 @@ public struct EmojiKeyboard<ButtonView: View>: View {
     private let emojis: [Emoji]
     private let rows: [GridItem]
     private let actionHandler: KeyboardActionHandler
+    private let actionCalloutContext: ActionCalloutContext?
+    private let inputCalloutContext: InputCalloutContext?
     private let style: EmojiKeyboardStyle
     private let buttonBuilder: ButtonBuilder<ButtonView>
     
@@ -88,6 +102,8 @@ public struct EmojiKeyboard<ButtonView: View>: View {
                 ).keyboardGestures(
                     for: .emoji(emoji),
                     actionHandler: actionHandler,
+                    actionCalloutContext: actionCalloutContext,
+                    inputCalloutContext: inputCalloutContext,
                     isInScrollView: true
                 )
             }
@@ -130,7 +146,9 @@ struct EmojiKeyboard_Previews: PreviewProvider {
         ScrollView(.horizontal) {
             EmojiKeyboard(
                 emojis: Array(Emoji.all.prefix(50)),
-                actionHandler: .preview
+                actionHandler: .preview,
+                actionCalloutContext: .preview,
+                inputCalloutContext: .preview
             )
         }
     }
