@@ -102,6 +102,7 @@ KeyboardKit is available under the MIT license.
 
 - ``KeyboardInputViewController``
 - ``KeyboardContext``
+- ``KeyboardController``
 - ``KeyboardType``
 - ``KeyboardEnabledLabel``
 - ``KeyboardEnabledState``
@@ -118,7 +119,6 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardActionRows``
 - ``KeyboardActionHandler``
 - ``KeyboardActionMappable``
-- ``KeyboardActionTrigger``
 - ``StandardKeyboardActionHandler``
 
 ### Appearance

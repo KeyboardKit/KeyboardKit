@@ -18,7 +18,7 @@ public extension KeyboardAction {
      This typealias represents a gesture action that affects
      the provided ``KeyboardActionTrigger``.
      */
-    typealias GestureAction = (KeyboardActionTrigger) -> Void
+    typealias GestureAction = (KeyboardController) -> Void
     
     /**
      The action that by default should be triggered when the
@@ -77,6 +77,7 @@ public extension KeyboardAction {
         case .moveCursorBackward: return { $0.adjustTextPosition(byCharacterOffset: -1) }
         case .moveCursorForward: return { $0.adjustTextPosition(byCharacterOffset: 1) }
         case .nextLocale: return { $0.selectNextLocale() }
+        case .nextKeyboard: return { $0.selectNextKeyboard() }
         case .primary: return { $0.insertText(.newline) }
         case .shift(let currentState): return {
             switch currentState {

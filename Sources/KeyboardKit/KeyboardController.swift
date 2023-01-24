@@ -9,19 +9,23 @@
 import Foundation
 
 /**
- This protocol can be implemented by any types that could be
- used to trigger various keyboard actions.
+ This protocol is meant to abstract using the keyboard input
+ view controller within the library.
 
- This protocol defines what's currently required to make the
- `KeyboardAction+Actions` extensions depend on this protocol
- instead of ``KeyboardInputViewController`` since that class
- is only available on some platforms.
+ The protocol currently defines what's currently required to
+ make the `KeyboardAction+Actions` extensions depend on this
+ protocol instead of ``KeyboardInputViewController``, but it
+ may come to add functionality over time.
 
- The protocol is implemented by `KeyboardInputViewController`
- in `UIKit` by calling itself, or its document proxy, or its
- keyboard context.
+ The controller could, but perhaps shouldn't, add all of the
+ functionality that it can derive from its proxy and context.
+ Instead, let's keep the protocol focused instead of risking
+ to misuse it.
+
+ ``KeyboardInputViewController`` implements this protocol by
+ calling itself, its document proxy, or its keyboard context.
  */
-public protocol KeyboardActionTrigger {
+public protocol KeyboardController: AnyObject {
 
     /**
      Adjust the text input cursor position.
@@ -32,6 +36,11 @@ public protocol KeyboardActionTrigger {
      Delete backwards.
      */
     func deleteBackward()
+
+    /**
+     Delete backwards a certain number of times.
+     */
+    func deleteBackward(times: Int)
 
     /**
      Dismiss the keyboard.
@@ -49,6 +58,11 @@ public protocol KeyboardActionTrigger {
     func insertText(_ text: String)
 
     /**
+     Select the next keyboard, if any.
+     */
+    func selectNextKeyboard()
+
+    /**
      Select the next locale, if any.
      */
     func selectNextLocale()
@@ -61,7 +75,7 @@ public protocol KeyboardActionTrigger {
 
 
 #if os(iOS) || os(tvOS)
-extension KeyboardInputViewController: KeyboardActionTrigger {}
+extension KeyboardInputViewController: KeyboardController {}
 
 public extension KeyboardInputViewController {
 
@@ -73,6 +87,10 @@ public extension KeyboardInputViewController {
         textDocumentProxy.deleteBackward(range: keyboardBehavior.backspaceRange)
     }
 
+    func deleteBackward(times: Int) {
+        textDocumentProxy.deleteBackward(times: times)
+    }
+
     func insertAutocompleteSuggestion(_ suggestion: AutocompleteSuggestion) {
         textDocumentProxy.insertAutocompleteSuggestion(suggestion)
         keyboardActionHandler.handle(.release, on: .character(""))
@@ -80,6 +98,10 @@ public extension KeyboardInputViewController {
 
     func insertText(_ text: String) {
         textDocumentProxy.insertText(text)
+    }
+
+    func selectNextKeyboard() {
+        keyboardContext.selectNextLocale()
     }
 
     func selectNextLocale() {
