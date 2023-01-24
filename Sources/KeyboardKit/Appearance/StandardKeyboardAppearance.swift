@@ -198,7 +198,6 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     func buttonFontSizePadOverride(for action: KeyboardAction) -> CGFloat? {
         guard keyboardContext.deviceType == .pad else { return nil }
         let isLandscape = keyboardContext.interfaceOrientation.isLandscape
-        if action == .nextKeyboard { return isLandscape ? 26 : 24 }
         guard isLandscape else { return nil }
         if action.isAlphabeticKeyboardTypeAction { return 22 }
         if action.isKeyboardTypeAction(.numeric) { return 22 }

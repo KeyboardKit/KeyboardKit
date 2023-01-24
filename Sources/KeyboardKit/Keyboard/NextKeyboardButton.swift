@@ -3,51 +3,57 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-03-11.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2020-2023 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
 import SwiftUI
 
 /**
- This button switches to the next keyboard when it is tapped
- and opens a keyboard switcher menu when it is pressed.
+ This button makes any view behave as a next keyboard button,
+ which switches to the next keyboard when tapped and opens a
+ keyboard switcher menu when pressed.
+
+ Note that this modifier only has effect on `iOS` and `tvOS`,
+ since it requires an input view controller.
  */
-public struct NextKeyboardButton: View {
-    
-    /**
-     Create a new next keyboard button.
-     
-     - Parameters:
-       - image: The image to use, default `.globe`.
-       - controller: The controller to which the button should apply.
-     */
+public struct NextKeyboardButton<Content: View>: View {
+
     public init(
-        image: Image = .keyboardGlobe,
-        controller: KeyboardInputViewController = .shared
+        @ViewBuilder content: @escaping () -> Content
     ) {
-        self.image = image
-        self.button = NextKeyboardButtonOverlay(controller: controller)
+        self.content = content
     }
-    
-    private let image: Image
-    private let button: NextKeyboardButtonOverlay
-    
+
+    private let content: () -> Content
+
     public var body: some View {
-        image
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .overlay(button)
+        content().overlay(nextKeyboardButtonOverlay)
     }
 }
 
 struct NextKeyboardButton_Previews: PreviewProvider {
     
     static var previews: some View {
-        NextKeyboardButton()
-            .font(.title)
+        NextKeyboardButton {
+            Image.keyboardGlobe.font(.title)
+        }
     }
 }
 
+private extension View {
+
+    @ViewBuilder
+    var nextKeyboardButtonOverlay: some View {
+        #if os(iOS) || os(tvOS)
+        NextKeyboardButtonOverlay()
+        #else
+        EmptyView()
+        #endif
+    }
+}
+
+#if os(iOS) || os(tvOS)
+import UIKit
 
 /**
  This overlay sets up a `next keyboard` controller action on
@@ -55,8 +61,8 @@ struct NextKeyboardButton_Previews: PreviewProvider {
  without public changes.
  */
 private struct NextKeyboardButtonOverlay: UIViewRepresentable {
-    
-    init(controller: KeyboardInputViewController) {
+
+    init(controller: KeyboardInputViewController = .shared) {
         button = UIButton()
         controller.setupNextKeyboardButton(button)
     }

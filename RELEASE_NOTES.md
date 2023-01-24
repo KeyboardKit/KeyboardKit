@@ -47,15 +47,18 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `KeyboardAction` gesture actions are now available on all platforms.  
 * `KeyboardAction` gesture actions now use a `KeyboardActionTrigger` instead of a `KeyboardInputViewController`.  
 * `KeyboardActionTrigger` is a new protocol that lets us decouple actions from the input view controller.
+* `KeyboardAppearance` will now apply to `.nextKeyboard` as well. 
 * `KeyboardInputViewController` implements `KeyboardActionTrigger` which gives it a bunch of new functions.
+* `NextKeyboardButton` now takes any custom content and only applies the behavior on iOS and tvOS.
 * `GestureButton` is now available on watchOS 7.
 * `InterfaceOrientation` has a new `landscape` case.
 * `ScrollViewGestureButton` is now available on watchOS 7.
 * `SpaceCursorDragGestureHandler` is now available on all platforms. 
-* `SystemKeyboardActionButton` is now available on all platforms. 
+* `SystemKeyboardActionButton` is now available on all platforms.
 
 ### 💡 Behavior changes
 
+* A lot of `os()` checks have been removed.
 * `ActionCallout` is no longer greedy.
 * `InterfaceOrientation` `.current` now returns correct rotations on all platforms.
 * `InputCallout` is no longer greedy.

@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI
@@ -14,7 +14,7 @@ import SwiftUI
 
  This view will adapt its content to conform to the provided
  `action` and `appearance` and applies keyboard gestures for
- the provided `action`, `actionHandler` and `context`.
+ the provided `action`, `actionHandler` and `keyboardContext`.
 
  The view sets up gestures, line limits, vertical offset etc.
  and aims to make the button mimic an iOS system keyboard as
@@ -45,13 +45,26 @@ public struct SystemKeyboardActionButtonContent: View {
     private let keyboardContext: KeyboardContext
     
     public var body: some View {
+        bodyContent
+            .padding(3)
+            .contentShape(Rectangle())
+    }
+}
+
+private extension SystemKeyboardActionButtonContent {
+
+    @ViewBuilder
+    var bodyContent: some View {
         if action == .nextKeyboard {
-            #if os(iOS) || os(tvOS)
-            NextKeyboardButton()
-            #else
-            Image.keyboardGlobe
-            #endif
-        } else if action == .space {
+            NextKeyboardButton { bodyView }
+        } else {
+            bodyView
+        }
+    }
+
+    @ViewBuilder
+    var bodyView: some View {
+        if action == .space {
             spaceView
         } else if let image = appearance.buttonImage(for: action) {
             image.scaleEffect(appearance.buttonImageScaleFactor(for: action))
@@ -61,9 +74,6 @@ public struct SystemKeyboardActionButtonContent: View {
             Text("")
         }
     }
-}
-
-private extension SystemKeyboardActionButtonContent {
     
     var spaceView: some View {
         SystemKeyboardSpaceContent(
@@ -76,9 +86,7 @@ private extension SystemKeyboardActionButtonContent {
         SystemKeyboardButtonText(
             text: text,
             action: action
-        )
-        .padding(3)
-        .minimumScaleFactor(0.5)
+        ).minimumScaleFactor(0.5)
     }
 }
 
@@ -97,11 +105,10 @@ private extension SystemKeyboardActionButtonContent {
     }
 }
 
-#if os(iOS) || os(tvOS)
 struct SystemKeyboardButtonContent_Previews: PreviewProvider {
     
     static let multiLocaleContext: KeyboardContext = {
-        var context = KeyboardContext(controller: .shared)
+        var context = KeyboardContext.preview
         context.locales = [
             KeyboardLocale.english.locale,
             KeyboardLocale.swedish.locale]
@@ -110,16 +117,20 @@ struct SystemKeyboardButtonContent_Previews: PreviewProvider {
     
     static func preview(
         for action: KeyboardAction,
-        multiLocale: Bool = false) -> some View {
+        multiLocale: Bool = false
+    ) -> some View {
         SystemKeyboardActionButtonContent(
             action: action,
             appearance: .preview,
-            keyboardContext: multiLocale ? multiLocaleContext : .preview)
+            keyboardContext: multiLocale ? multiLocaleContext : .preview
+        ).background(Color.red)
     }
     
     static var previews: some View {
-        HStack {
+        VStack {
             preview(for: .backspace)
+            preview(for: .nextKeyboard)
+            preview(for: .nextLocale)
             preview(for: .space, multiLocale: false)
             preview(for: .space, multiLocale: true)
             preview(for: .character("PascalCased"))
@@ -127,4 +138,3 @@ struct SystemKeyboardButtonContent_Previews: PreviewProvider {
         }
     }
 }
-#endif
