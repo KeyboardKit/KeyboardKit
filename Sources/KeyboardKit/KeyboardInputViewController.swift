@@ -82,8 +82,7 @@ open class KeyboardInputViewController: UIInputViewController {
         self.view.subviews.forEach { $0.removeFromSuperview() }
         let view = KeyboardRootView(view)
             .environmentObject(autocompleteContext)
-            .environmentObject(actionCalloutContext)
-            .environmentObject(inputCalloutContext)
+            .environmentObject(calloutContext)
             .environmentObject(keyboardContext)
             .environmentObject(keyboardFeedbackSettings)
             .environmentObject(keyboardTextContext)
@@ -145,16 +144,6 @@ open class KeyboardInputViewController: UIInputViewController {
     // MARK: - Observables
     
     /**
-     The default, observable action callout context.
-     
-     This is used as global state for the callouts that show
-     alternate actions for a long-pressed input key.
-     */
-    public lazy var actionCalloutContext = ActionCalloutContext(
-        actionHandler: keyboardActionHandler,
-        actionProvider: calloutActionProvider)
-    
-    /**
      The default, observable autocomplete context.
      
      This context is used as global state for the keyboard's
@@ -163,13 +152,18 @@ open class KeyboardInputViewController: UIInputViewController {
     public lazy var autocompleteContext = AutocompleteContext()
     
     /**
-     The default, observable input callout context.
+     The default, observable callout context.
      
      This is used as global state for the callouts that show
      the currently typed character.
      */
-    public lazy var inputCalloutContext = InputCalloutContext(
-        isEnabled: UIDevice.current.userInterfaceIdiom == .phone)
+    public lazy var calloutContext = KeyboardCalloutContext(
+        action: ActionCalloutContext(
+            actionHandler: keyboardActionHandler,
+            actionProvider: calloutActionProvider),
+        input: InputCalloutContext(
+            isEnabled: UIDevice.current.userInterfaceIdiom == .phone)
+    )
     
     /**
      The default, observable keyboard context.
@@ -388,9 +382,10 @@ open class KeyboardInputViewController: UIInputViewController {
 private extension KeyboardInputViewController {
 
     func refreshCalloutActionContext() {
-        actionCalloutContext = ActionCalloutContext(
+        calloutContext.action = ActionCalloutContext(
             actionHandler: keyboardActionHandler,
-            actionProvider: calloutActionProvider)
+            actionProvider: calloutActionProvider
+        )
     }
     
     func refreshProperties() {
@@ -400,7 +395,8 @@ private extension KeyboardInputViewController {
     
     func refreshLayoutProvider() {
         keyboardLayoutProvider.register(
-            inputSetProvider: inputSetProvider)
+            inputSetProvider: inputSetProvider
+        )
     }
     
     /**

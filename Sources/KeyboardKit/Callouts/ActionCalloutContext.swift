@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI
@@ -14,10 +14,6 @@ import SwiftUI
   
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
- 
- KeyboardKit automatically creates an instance of this class
- and sets ``KeyboardInputViewController/actionCalloutContext``
- to the instance when a keyboard extension is started.
  */
 open class ActionCalloutContext: ObservableObject {
     
@@ -25,7 +21,7 @@ open class ActionCalloutContext: ObservableObject {
     // MARK: - Initialization
     
     /**
-     Create a new context instance,
+     Create a new action callout context instance.
      
      - Parameters:
        - actionHandler: The action handler to use when tapping buttons.

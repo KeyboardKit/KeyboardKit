@@ -25,8 +25,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
        - item: The layout item to use within the item.
        - actionHandler: The button style to apply.
        - keyboardContext: The keyboard context to which the item should apply.,
-       - actionCalloutContext: The action callout context to affect, if any.
-       - inputCalloutContext: The input callout context to affect, if any.
+       - calloutContext: The callout context to affect, if any.
        - keyboardWidth: The total width of the keyboard.
        - inputWidth: The input width within the keyboard.
        - appearance: The appearance to apply to the item.
@@ -36,8 +35,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
         item: KeyboardLayoutItem,
         actionHandler: KeyboardActionHandler,
         keyboardContext: KeyboardContext,
-        actionCalloutContext: ActionCalloutContext?,
-        inputCalloutContext: InputCalloutContext?,
+        calloutContext: KeyboardCalloutContext?,
         keyboardWidth: CGFloat,
         inputWidth: CGFloat,
         appearance: KeyboardAppearance
@@ -46,8 +44,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
         self.item = item
         self.actionHandler = actionHandler
         self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
-        self.actionCalloutContext = actionCalloutContext
-        self.inputCalloutContext = inputCalloutContext
+        self.calloutContext = calloutContext
         self.keyboardWidth = keyboardWidth
         self.inputWidth = inputWidth
         self.appearance = appearance
@@ -56,8 +53,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
     private let content: Content
     private let item: KeyboardLayoutItem
     private let actionHandler: KeyboardActionHandler
-    private let actionCalloutContext: ActionCalloutContext?
-    private let inputCalloutContext: InputCalloutContext?
+    private let calloutContext: KeyboardCalloutContext?
     private let keyboardWidth: CGFloat
     private let inputWidth: CGFloat
     private let appearance: KeyboardAppearance
@@ -79,8 +75,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
             .keyboardGestures(
                 for: item.action,
                 actionHandler: actionHandler,
-                actionCalloutContext: actionCalloutContext,
-                inputCalloutContext: inputCalloutContext,
+                calloutContext: calloutContext,
                 isPressed: $isPressed)
             .localeContextMenu(
                 for: item.action,
@@ -152,8 +147,7 @@ struct SystemKeyboardButtonRowItem_Previews: PreviewProvider {
                 insets: .horizontal(0, vertical: 0)),
             actionHandler: .preview,
             keyboardContext: .preview,
-            actionCalloutContext: .preview,
-            inputCalloutContext: .preview,
+            calloutContext: .preview,
             keyboardWidth: 320,
             inputWidth: 30,
             appearance: .preview

@@ -23,8 +23,7 @@ public extension View {
      - Parameters:
        - action: The keyboard action to trigger.
        - actionHandler: The keyboard action handler to use.
-       - actionCalloutContext: The action callout context to affect, if any.
-       - inputCalloutContext: The input callout context to affect, if any.
+       - calloutContext: The callout context to affect, if any.
        - isInScrollView: Whether or not the gestures are used in a scroll view, by default `false`.
        - isPressed: An optional binding that can be used to observe the button pressed state.
      */
@@ -32,8 +31,7 @@ public extension View {
     func keyboardGestures(
         for action: KeyboardAction,
         actionHandler: KeyboardActionHandler,
-        actionCalloutContext: ActionCalloutContext?,
-        inputCalloutContext: InputCalloutContext?,
+        calloutContext: KeyboardCalloutContext?,
         isInScrollView: Bool = false,
         isPressed: Binding<Bool> = .constant(false)
     ) -> some View {
@@ -42,8 +40,7 @@ public extension View {
         } else {
             self.keyboardGestures(
                 action: action,
-                actionCalloutContext: actionCalloutContext,
-                inputCalloutContext: inputCalloutContext,
+                calloutContext: calloutContext,
                 isInScrollView: isInScrollView,
                 isPressed: isPressed,
                 doubleTapAction: { actionHandler.handle(.doubleTap, on: action) },
@@ -62,8 +59,7 @@ public extension View {
      
      - Parameters:
        - action: The keyboard action to trigger, by deafult `nil`.
-       - actionCalloutContext: The action callout context to affect, if any.
-       - inputCalloutContext: The input callout context to affect, if any.
+       - calloutContext: The callout context to affect, if any.
        - isInScrollView: Whether or not the gestures are used in a scroll view, by default `false`, by deafult `false`.
        - isPressed: An optional binding that can be used to observe the button pressed state, by deafult `false`.
        - tapAction: The action to trigger when the button is released within its bounds, by deafult `nil`.
@@ -77,8 +73,7 @@ public extension View {
     @ViewBuilder
     func keyboardGestures(
         action: KeyboardAction? = nil,
-        actionCalloutContext: ActionCalloutContext?,
-        inputCalloutContext: InputCalloutContext?,
+        calloutContext: KeyboardCalloutContext?,
         isInScrollView: Bool = false,
         isPressed: Binding<Bool> = .constant(false),
         doubleTapAction: KeyboardGestureAction? = nil,
@@ -92,8 +87,7 @@ public extension View {
         KeyboardGestures(
             view: self,
             action: action,
-            actionCalloutContext: actionCalloutContext,
-            inputCalloutContext: inputCalloutContext,
+            calloutContext: calloutContext,
             isInScrollView: isInScrollView,
             isPressed: isPressed,
             doubleTapAction: doubleTapAction,

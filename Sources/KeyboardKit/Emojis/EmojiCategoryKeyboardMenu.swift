@@ -80,8 +80,7 @@ public struct EmojiCategoryKeyboardMenu: View {
         return image.keyboardGestures(
             for: action,
             actionHandler: actionHandler,
-            actionCalloutContext: nil,
-            inputCalloutContext: nil
+            calloutContext: nil
         ).scaledToFill()
     }
     
@@ -91,8 +90,7 @@ public struct EmojiCategoryKeyboardMenu: View {
         return Text(text).keyboardGestures(
             for: action,
             actionHandler: actionHandler,
-            actionCalloutContext: nil,
-            inputCalloutContext: nil
+            calloutContext: nil
         ).scaledToFill()
     }
     

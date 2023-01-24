@@ -17,6 +17,7 @@ class KeyboardImageReaderTests: XCTestCase {
     }
 
     func testKeyboardImagesAreDefined() {
+        XCTAssertEqual(result(for: .keyboard), Image(systemName: "keyboard"))
         XCTAssertEqual(result(for: .keyboardBackspace), Image(systemName: "delete.left"))
         XCTAssertEqual(result(for: .keyboardBackspaceRtl), Image(systemName: "delete.right"))
         XCTAssertEqual(result(for: .keyboardCommand), Image(systemName: "command"))
@@ -25,8 +26,8 @@ class KeyboardImageReaderTests: XCTestCase {
         XCTAssertEqual(result(for: .keyboardEmail), Image(systemName: "envelope"))
         XCTAssertEqual(result(for: .keyboardGlobe), Image(systemName: "globe"))
         XCTAssertEqual(result(for: .keyboardImages), Image(systemName: "photo"))
-        XCTAssertEqual(result(for: .keyboard), Image(systemName: "keyboard"))
         XCTAssertEqual(result(for: .keyboardDismiss), Image(systemName: "keyboard.chevron.compact.down"))
+        XCTAssertEqual(result(for: .keyboardEmojiSymbol), Image(systemName: "face.smiling"))
         XCTAssertEqual(result(for: .keyboardLeft), Image(systemName: "arrow.left"))
         XCTAssertEqual(result(for: .keyboardNewline), Image(systemName: "arrow.turn.down.left"))
         XCTAssertEqual(result(for: .keyboardNewlineRtl), Image(systemName: "arrow.turn.down.right"))
@@ -39,11 +40,5 @@ class KeyboardImageReaderTests: XCTestCase {
         XCTAssertEqual(result(for: .keyboardShiftUppercased), Image(systemName: "shift.fill"))
         XCTAssertEqual(result(for: .keyboardTab), Image(systemName: "arrow.right.to.line"))
         XCTAssertEqual(result(for: .keyboardUndo), Image(systemName: "arrow.uturn.left"))
-    }
-
-    func testSomeKeyboardImagesRequireIos14() {
-        if #available(iOS 14, *) {
-            XCTAssertEqual(result(for: .keyboardEmoji), Image(systemName: "face.smiling"))
-        }
     }
 }

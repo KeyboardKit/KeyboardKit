@@ -49,8 +49,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
         appearance: KeyboardAppearance,
         actionHandler: KeyboardActionHandler,
         keyboardContext: KeyboardContext,
-        actionCalloutContext: ActionCalloutContext?,
-        inputCalloutContext: InputCalloutContext?,
+        calloutContext: KeyboardCalloutContext?,
         width: CGFloat? = nil,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder
     ) {
@@ -63,8 +62,9 @@ public struct SystemKeyboard<ButtonView: View>: View {
         self.buttonView = buttonView
         self.inputWidth = layout.inputWidth(for: width)
         _keyboardContext = ObservedObject(wrappedValue: keyboardContext)
-        _actionCalloutContext = ObservedObject(wrappedValue: actionCalloutContext ?? .disabled)
-        _inputCalloutContext = ObservedObject(wrappedValue: inputCalloutContext ?? .disabled)
+        _calloutContext = ObservedObject(wrappedValue: calloutContext ?? .disabled)
+        _actionCalloutContext = ObservedObject(wrappedValue: calloutContext?.action ?? .disabled)
+        _inputCalloutContext = ObservedObject(wrappedValue: calloutContext?.input ?? .disabled)
     }
 
     /**
@@ -76,8 +76,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
         appearance: KeyboardAppearance,
         actionHandler: KeyboardActionHandler,
         keyboardContext: KeyboardContext,
-        actionCalloutContext: ActionCalloutContext?,
-        inputCalloutContext: InputCalloutContext?,
+        calloutContext: KeyboardCalloutContext?,
         width: CGFloat? = nil
     ) where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardActionButtonContent> {
         self.init(
@@ -85,8 +84,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
             appearance: appearance,
             actionHandler: actionHandler,
             keyboardContext: keyboardContext,
-            actionCalloutContext: actionCalloutContext,
-            inputCalloutContext: inputCalloutContext,
+            calloutContext: calloutContext,
             width: width,
             buttonView: { item, keyboardWidth, inputWidth in
                 Self.standardButtonView(
@@ -94,8 +92,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
                     appearance: appearance,
                     actionHandler: actionHandler,
                     keyboardContext: keyboardContext,
-                    actionCalloutContext: actionCalloutContext,
-                    inputCalloutContext: inputCalloutContext,
+                    calloutContext: calloutContext,
                     keyboardWidth: keyboardWidth,
                     inputWidth: inputWidth
                 )
@@ -112,8 +109,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
         appearance: KeyboardAppearance,
         actionHandler: KeyboardActionHandler,
         keyboardContext: KeyboardContext,
-        actionCalloutContext: ActionCalloutContext?,
-        inputCalloutContext: InputCalloutContext?,
+        calloutContext: KeyboardCalloutContext?,
         width: CGFloat? = nil,
         @ViewBuilder buttonContent: @escaping (KeyboardLayoutItem) -> ButtonContentView
     ) where ButtonView == SystemKeyboardButtonRowItem<ButtonContentView> {
@@ -122,8 +118,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
             appearance: appearance,
             actionHandler: actionHandler,
             keyboardContext: keyboardContext,
-            actionCalloutContext: actionCalloutContext,
-            inputCalloutContext: inputCalloutContext,
+            calloutContext: calloutContext,
             width: width,
             buttonView: { item, keyboardWidth, inputWidth in
                 SystemKeyboardButtonRowItem(
@@ -131,8 +126,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
                     item: item,
                     actionHandler: actionHandler,
                     keyboardContext: keyboardContext,
-                    actionCalloutContext: actionCalloutContext,
-                    inputCalloutContext: inputCalloutContext,
+                    calloutContext: calloutContext,
                     keyboardWidth: keyboardWidth,
                     inputWidth: inputWidth,
                     appearance: appearance
@@ -155,8 +149,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
             appearance: controller.keyboardAppearance,
             actionHandler: controller.keyboardActionHandler,
             keyboardContext: controller.keyboardContext,
-            actionCalloutContext: controller.actionCalloutContext,
-            inputCalloutContext: controller.inputCalloutContext,
+            calloutContext: controller.calloutContext,
             width: width
         )
     }
@@ -176,8 +169,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
             appearance: controller.keyboardAppearance,
             actionHandler: controller.keyboardActionHandler,
             keyboardContext: controller.keyboardContext,
-            actionCalloutContext: controller.actionCalloutContext,
-            inputCalloutContext: controller.inputCalloutContext,
+            calloutContext: controller.calloutContext,
             width: width,
             buttonView: buttonView
         )
@@ -198,8 +190,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
             appearance: controller.keyboardAppearance,
             actionHandler: controller.keyboardActionHandler,
             keyboardContext: controller.keyboardContext,
-            actionCalloutContext: controller.actionCalloutContext,
-            inputCalloutContext: controller.inputCalloutContext,
+            calloutContext: controller.calloutContext,
             width: width,
             buttonContent: buttonContent
         )
@@ -233,6 +224,9 @@ public struct SystemKeyboard<ButtonView: View>: View {
 
     @ObservedObject
     private var actionCalloutContext: ActionCalloutContext
+
+    @ObservedObject
+    private var calloutContext: KeyboardCalloutContext
 
     @ObservedObject
     private var inputCalloutContext: InputCalloutContext
@@ -297,8 +291,7 @@ public extension SystemKeyboard {
         appearance: KeyboardAppearance,
         actionHandler: KeyboardActionHandler,
         keyboardContext: KeyboardContext,
-        actionCalloutContext: ActionCalloutContext?,
-        inputCalloutContext: InputCalloutContext?,
+        calloutContext: KeyboardCalloutContext?,
         keyboardWidth: KeyboardWidth,
         inputWidth: KeyboardItemWidth
     ) -> SystemKeyboardButtonRowItem<SystemKeyboardActionButtonContent> {
@@ -310,8 +303,7 @@ public extension SystemKeyboard {
             item: item,
             actionHandler: actionHandler,
             keyboardContext: keyboardContext,
-            actionCalloutContext: actionCalloutContext,
-            inputCalloutContext: inputCalloutContext,
+            calloutContext: calloutContext,
             keyboardWidth: keyboardWidth,
             inputWidth: inputWidth,
             appearance: appearance
@@ -336,8 +328,7 @@ private extension SystemKeyboard {
         EmojiCategoryKeyboard(
             actionHandler: actionHandler,
             keyboardContext: keyboardContext,
-            actionCalloutContext: actionCalloutContext,
-            inputCalloutContext: inputCalloutContext,
+            calloutContext: calloutContext,
             appearance: appearance,
             style: .standard(for: keyboardContext)
         ).padding(.top)
@@ -392,8 +383,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
                 item: item,
                 actionHandler: .preview,
                 keyboardContext: .preview,
-                actionCalloutContext: .preview,
-                inputCalloutContext: .preview,
+                calloutContext: .preview,
                 keyboardWidth: keyboardWidth,
                 inputWidth: inputWidth,
                 appearance: .preview)
@@ -425,8 +415,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
                 appearance: .preview,
                 actionHandler: .preview,
                 keyboardContext: .preview,
-                actionCalloutContext: nil,
-                inputCalloutContext: nil,
+                calloutContext: nil,
                 width: UIScreen.main.bounds.width)
 
 
@@ -436,8 +425,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
                 appearance: .preview,
                 actionHandler: .preview,
                 keyboardContext: .preview,
-                actionCalloutContext: nil,
-                inputCalloutContext: nil,
+                calloutContext: nil,
                 width: UIScreen.main.bounds.width,
                 buttonContent: previewButtonContent)
 
@@ -447,8 +435,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
                 appearance: .preview,
                 actionHandler: .preview,
                 keyboardContext: .preview,
-                actionCalloutContext: nil,
-                inputCalloutContext: nil,
+                calloutContext: nil,
                 width: UIScreen.main.bounds.width,
                 buttonView: previewButton)
         }.background(Color.yellow)
