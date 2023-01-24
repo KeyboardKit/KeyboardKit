@@ -251,13 +251,9 @@ public struct SystemKeyboard<ButtonView: View>: View {
 
     @ViewBuilder
     var keyboardView: some View {
-        if #available(iOS 14.0, tvOS 14.0, *) {
-            switch keyboardContext.keyboardType {
-            case .emojis: emojiKeyboard
-            default: systemKeyboard
-            }
-        } else {
-            systemKeyboard
+        switch keyboardContext.keyboardType {
+        case .emojis: emojiKeyboard
+        default: systemKeyboard
         }
     }
 }

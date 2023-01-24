@@ -18,13 +18,10 @@ Some things that are planned for the 7.0 release:
 * All TODOS will be addressed.
 * All shared instances should be removed.
 * All dependencies to the shared instances should be replaced with init parameters, even for the smallest view.
-* KeyboardAction.GestureAction should use a protocol instead of a view controller.
-* KeyboardAction.shift will have a `current` parameter instead of `currentState`.
-* KeyboardAction.primary should be renamed `.return(type)` when the old return is removed.
+* KeyboardAction.shift should maybe have a `current` parameter instead of `currentState`.
 * KeyboardAppearance will convert parameterless functions to properties. 
 * KeyboardKit Pro active and enabled labels will use an observed object to update when the state changes.
-* StandardKeyboardActionHandler changeKeyboardTypeAction will be removed.
-* The ActionCallout initializer will require a KeyboardContext
+* StandardKeyboardActionHandler changeKeyboardTypeAction should be removed.
 * KeyboardInputViewController `textInputProxy` will be renamed to `keyboardInputProxy`.
 * KeyboardInputViewController `originalTextDocumentProxy` will be renamed to `mainTextDocumentProxy`.
 

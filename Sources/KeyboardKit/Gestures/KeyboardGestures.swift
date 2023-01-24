@@ -86,15 +86,7 @@ struct KeyboardGestures<Content: View>: View {
     var body: some View {
         view.overlay(
             GeometryReader { geo in
-                if #available(iOS 14.0, macOS 11.0, watchOS 7.0, *) {
-                    gestureButton(for: geo)
-                } else {
-                    Color.clearInteractable
-                        .gesture(dragGesture(for: geo))
-                        .optionalGesture(doubleTapGesture)
-                        .simultaneousGesture(longPressGesture)
-                        .simultaneousGesture(longPressDragGesture(for: geo))
-                }
+                gestureButton(for: geo)
             }
         )
     }
@@ -206,117 +198,6 @@ private extension KeyboardGestures {
     func updateShouldApplyReleaseAction() {
         guard let context = calloutContext?.action else { return }
         shouldApplyReleaseAction = shouldApplyReleaseAction && !context.hasSelectedAction
-    }
-}
-
-
-// MARK: - Legacy Gestures
-
-private extension KeyboardGestures {
-    
-    /**
-     This is a plain double-tap gesure.
-     */
-    var doubleTapGesture: _EndedGesture<TapGesture>? {
-        guard let action = doubleTapAction else { return nil }
-        return TapGesture(count: 2)
-            .onEnded { action() }
-    }
-
-    /**
-     This drag gesture is the most central gesture and takes
-     care of press, release, tap and drag action handling.
-     */
-    func dragGesture(for geo: GeometryProxy) -> some Gesture {
-        DragGesture(minimumDistance: 0)
-            .onChanged { _ in tryHandlePress(in: geo) }
-            .onEnded { handleLegacyRelease(in: geo, at: $0.location) }
-    }
-    
-    /**
-     This is a plain long press gesure.
-     */
-    var longPressGesture: some Gesture {
-        LongPressGesture()
-            .onEnded { _ in handleLegacyLongPressGesture() }
-    }
-    
-    /**
-     This is a drag gesture that starts after a long press.
-
-     This gesture is used to present and dismiss the callout
-     that presents secondary actions.
-     */
-    func longPressDragGesture(for geo: GeometryProxy) -> some Gesture {
-        LongPressGesture(minimumDuration: 0.4, maximumDistance: 50)
-            .onEnded { _ in tryBeginActionCallout(in: geo) }
-            .sequenced(before: DragGesture(minimumDistance: 0))
-            .onChanged {
-                switch $0 {
-                case .first: break
-                case .second(_, let value): handleDelayedDrag(value, in: geo)
-                }
-            }
-            .onEnded { _ in endActionCallout() }
-    }
-}
-
-
-// MARK: - Legacy Functions
-
-private extension KeyboardGestures {
-    
-    func handleDelayedDrag(_ value: DragGesture.Value?, in geo: GeometryProxy) {
-        shouldApplyReleaseAction = shouldApplyReleaseAction && action != .space
-        calloutContext?.action.updateSelection(with: value?.translation)
-        guard let value = value else { return }
-        handleDrag(in: geo, value: value)
-        dragAction?(value.startLocation, value.location)
-    }
-
-    func handleLegacyLongPressGesture() {
-        longPressAction?()
-        startRepeatTimer()
-    }
-    
-    func handleLegacyRelease(in geo: GeometryProxy, at location: CGPoint) {
-        if geo.contains(location), shouldApplyReleaseAction {
-            releaseAction?()
-        }
-        shouldApplyReleaseAction = true
-        isPressGestureActive = false
-        calloutContext?.input.reset()
-        stopRepeatTimer()
-    }
-    
-    func startRepeatTimer() {
-        guard let action = repeatAction else { return repeatTimer.stop() }
-        repeatTimer.start(action: action)
-    }
-    
-    func stopRepeatTimer() {
-        repeatTimer.stop()
-    }
-
-    func tryHandlePress(in geo: GeometryProxy) {
-        if isPressGestureActive { return }
-        isPressGestureActive = true
-        pressAction?()
-        calloutContext?.input.updateInput(for: action, in: geo)
-    }
-}
-
-
-// MARK: - GeometryProxy Extension
-
-private extension GeometryProxy {
-    
-    func contains(_ dragEndLocation: CGPoint) -> Bool {
-        let x = dragEndLocation.x
-        let y = dragEndLocation.y
-        guard x > 0, y > 0 else { return false }
-        guard x < size.width, y < size.height else { return false }
-        return true
     }
 }
 #endif

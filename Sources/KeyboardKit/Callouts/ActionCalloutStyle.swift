@@ -104,11 +104,5 @@ public extension ActionCalloutStyle {
      otherwise you will also have to change the style, since
      it will hold a reference to the old font.
      */
-    static var standardFont: Font = {
-        if #available(iOS 14.0, tvOS 14.0, watchOS 7.0, *) {
-            return .title3
-        } else {
-            return .body
-        }
-    }()
+    static var standardFont: Font = .title3
 }
