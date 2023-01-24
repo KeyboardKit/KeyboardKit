@@ -6,7 +6,6 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
 import CoreGraphics
 
 /**
@@ -22,20 +21,24 @@ open class SpaceCursorDragGestureHandler: DragGestureHandler {
        - keyboardContext: The keyboard context to use.
        - feedbackHandler: The feedback handler to use.
        - sensitivity: The drag sensitivity, by default ``SpaceDragSensitivity/medium``.
+       - action: The action to perform for the drag offset.
      */
     public init(
         keyboardContext: KeyboardContext,
         feedbackHandler: KeyboardFeedbackHandler,
-        sensitivity: SpaceDragSensitivity = .medium
+        sensitivity: SpaceDragSensitivity = .medium,
+        action: @escaping (Int) -> Void
     ) {
         self.keyboardContext = keyboardContext
         self.feedbackHandler = feedbackHandler
         self.sensitivity = sensitivity
+        self.action = action
     }
 
     public let keyboardContext: KeyboardContext
     public let feedbackHandler: KeyboardFeedbackHandler
     public let sensitivity: SpaceDragSensitivity
+    public let action: (Int) -> Void
 
     public var currentDragStartLocation: CGPoint?
     public var currentDragTextPositionOffset: Int = 0
@@ -53,7 +56,7 @@ open class SpaceCursorDragGestureHandler: DragGestureHandler {
         let textPositionOffset = Int(dragDelta / CGFloat(sensitivity.points))
         guard textPositionOffset != currentDragTextPositionOffset else { return }
         let offsetDelta = textPositionOffset - currentDragTextPositionOffset
-        keyboardContext.textDocumentProxy.adjustTextPosition(byCharacterOffset: -offsetDelta)
+        action(-offsetDelta)
         currentDragTextPositionOffset = textPositionOffset
     }
 }
@@ -70,4 +73,3 @@ private extension SpaceCursorDragGestureHandler {
         currentDragTextPositionOffset = 0
     }
 }
-#endif

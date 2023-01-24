@@ -51,6 +51,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `GestureButton` is now available on watchOS 7.
 * `InterfaceOrientation` has a new `landscape` case.
 * `ScrollViewGestureButton` is now available on watchOS 7.
+* `SpaceCursorDragGestureHandler` is now available on all platforms. 
 * `SystemKeyboardActionButton` is now available on all platforms. 
 
 ### 💡 Behavior changes

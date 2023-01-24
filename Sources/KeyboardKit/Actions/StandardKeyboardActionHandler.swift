@@ -76,6 +76,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         spaceDragGestureHandler: DragGestureHandler? = nil,
         spaceDragSensitivity: SpaceDragSensitivity = .medium
     ) {
+        weak var context = keyboardContext
         self.autocompleteAction = autocompleteAction
         self.autocompleteContext = autocompleteContext
         self.changeKeyboardTypeAction = changeKeyboardTypeAction
@@ -85,7 +86,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.spaceDragGestureHandler = spaceDragGestureHandler ?? SpaceCursorDragGestureHandler(
             keyboardContext: keyboardContext,
             feedbackHandler: keyboardFeedbackHandler,
-            sensitivity: spaceDragSensitivity
+            sensitivity: spaceDragSensitivity,
+            action: { context?.textDocumentProxy.adjustTextPosition(byCharacterOffset: $0) }
         )
     }
 
