@@ -126,13 +126,7 @@ private extension InputCallout {
 private extension InputCallout {
 
     var shouldEnforceSmallSize: Bool {
-        #if os(iOS)
-        keyboardContext.interfaceOrientation.isLandscape && keyboardContext.deviceType == .phone
-        #elseif os(watchOS)
-        return true
-        #else
-        return false
-        #endif
+        keyboardContext.deviceType == .phone && keyboardContext.interfaceOrientation.isLandscape
     }
 
     var position: CGPoint {

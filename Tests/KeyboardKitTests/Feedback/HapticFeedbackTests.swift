@@ -3,10 +3,9 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-04-01.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS)
 import KeyboardKit
 import XCTest
 
@@ -37,4 +36,3 @@ class HapticFeedbackTests: XCTestCase {
         XCTAssertEqual(calls[1].arguments, .warning)
     }
 }
-#endif

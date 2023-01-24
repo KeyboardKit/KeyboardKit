@@ -3,10 +3,9 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-07-04.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2019-2023 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS)
 import KeyboardKit
 import XCTest
 
@@ -45,4 +44,3 @@ class StandardKeyboardFeedbackHandlerTests: XCTestCase {
         XCTAssertTrue(hapticEngine.hasCalled(hapticEngine.triggerRef))
     }
 }
-#endif

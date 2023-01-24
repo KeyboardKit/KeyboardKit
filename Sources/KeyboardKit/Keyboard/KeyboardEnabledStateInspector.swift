@@ -25,6 +25,9 @@ import UIKit
  use a ``KeyboardEnabledState`` which is an observable class
  that implements the protocol with published properties that
  let you easily observe any state changes.
+
+ This protocol is implemented by the `UIInputViewController`
+ base class in `UIKit`.
  */
 public protocol KeyboardEnabledStateInspector {}
 

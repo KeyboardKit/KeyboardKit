@@ -178,18 +178,16 @@ open class ActionCalloutContext: ObservableObject {
         guard isActive else { return }
         triggerHapticFeedbackForSelectionChange()
     }
-    
-    
-    #if os(iOS) || os(macOS) || os(watchOS)
+
     /**
      Update the selected input action when a drag gesture is
      changed by a drag gesture.
      */
-    open func updateSelection(with dragValue: DragGesture.Value?) {
-        guard let value = dragValue, buttonFrame != .zero else { return }
+    open func updateSelection(with dragTranslation: CGSize?) {
+        guard let value = dragTranslation, buttonFrame != .zero else { return }
         if shouldReset(for: value) { return reset() }
-        guard shouldUpdateSelection(with: value) else { return }
-        let translation = value.translation.width
+        guard shouldUpdateSelection(for: value) else { return }
+        let translation = value.width
         let standardStyle = ActionCalloutStyle.standard
         let maxButtonSize = standardStyle.maxButtonSize
         let buttonSize = buttonFrame.size.limited(to: maxButtonSize)
@@ -201,7 +199,6 @@ open class ActionCalloutContext: ObservableObject {
         if currentIndex != newIndex { triggerHapticFeedbackForSelectionChange() }
         self.selectedIndex = newIndex
     }
-    #endif
 }
 
 
@@ -238,16 +235,14 @@ private extension ActionCalloutContext {
         return .leading
         #endif
     }
-    
-    #if os(iOS) || os(macOS) || os(watchOS)
-    func shouldReset(for dragValue: DragGesture.Value) -> Bool {
-        dragValue.translation.height > buttonFrame.height
+
+    func shouldReset(for dragTranslation: CGSize) -> Bool {
+        dragTranslation.height > buttonFrame.height
     }
     
-    func shouldUpdateSelection(with dragValue: DragGesture.Value) -> Bool {
-        let translation = dragValue.translation.width
+    func shouldUpdateSelection(for dragTranslation: CGSize) -> Bool {
+        let translation = dragTranslation.width
         if translation == 0 { return true }
         return isLeading ? translation > 0 : translation < 0
     }
-    #endif
 }

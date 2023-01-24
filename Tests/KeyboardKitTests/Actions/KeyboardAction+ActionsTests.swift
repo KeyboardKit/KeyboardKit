@@ -6,7 +6,6 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
 import KeyboardKit
 import XCTest
 
@@ -102,4 +101,3 @@ final class KeyboardAction_ActionsTests: XCTestCase {
         unexpected.forEach { XCTAssertNil(action($0)) }
     }
 }
-#endif

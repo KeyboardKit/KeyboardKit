@@ -85,7 +85,7 @@ private extension SystemKeyboardButtonRowItem {
     }
 }
 
-public extension View {
+private extension View {
 
     /**
      Apply a locale context menu to the view if the provided
@@ -93,16 +93,12 @@ public extension View {
      */
     @ViewBuilder
     func localeContextMenu(for action: KeyboardAction, context: KeyboardContext) -> some View {
-        #if os(iOS) || os(macOS) || os(watchOS)
         if action == .nextLocale {
             self.localeContextMenu(for: context)
                 .id(context.locale.identifier)  // TODO: Remove when SystemKeyboard no longer uses AnyView
         } else {
             self
         }
-        #else
-        self
-        #endif
     }
 
     /**

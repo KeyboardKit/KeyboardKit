@@ -3,28 +3,31 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-06-22.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2020-2023 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
 import MockingKit
 import XCTest
-import UIKit
 
 @testable import KeyboardKit
 
 class KeyboardContextTests: XCTestCase {
 
     var context: KeyboardContext!
+
+    #if os(iOS) || os(tvOS)
     var proxy: MockTextDocumentProxy!
     var traits: MockTraitCollection!
+    #endif
 
     override func setUp() {
+        context = KeyboardContext()
+        #if os(iOS) || os(tvOS)
         proxy = MockTextDocumentProxy()
         traits = MockTraitCollection()
-        context = KeyboardContext()
         context.traitCollection = traits
         context.textDocumentProxy = proxy
+        #endif
     }
 
     
@@ -68,9 +71,11 @@ class KeyboardContextTests: XCTestCase {
         XCTAssertTrue(context.prefersAutocomplete)
         XCTAssertNil(context.primaryLanguage)
         XCTAssertEqual(context.screenSize, .zero)
+        #if os(iOS) || os(tvOS)
         XCTAssertNotNil(context.textDocumentProxy)
         XCTAssertNil(context.textInputMode)
         XCTAssertNotNil(context.traitCollection)
+        #endif
     }
 
     #if os(iOS) || os(tvOS)
@@ -79,7 +84,6 @@ class KeyboardContextTests: XCTestCase {
         context = KeyboardContext(controller: controller)
         assert(context, isSyncedWith: controller)
     }
-    #endif
 
     func testColorSchemeIsDerivedFromTraitCollection() {
         traits.userInterfaceStyleValue = .light
@@ -94,6 +98,7 @@ class KeyboardContextTests: XCTestCase {
         proxy.keyboardAppearance = .dark
         XCTAssertEqual(context.keyboardAppearance, .dark)
     }
+    #endif
 
     func testHasKeyboardLocaleReturnsTrueForMatchingType() {
         context.setLocale(.swedish)
@@ -153,4 +158,3 @@ class KeyboardContextTests: XCTestCase {
     }
     #endif
 }
-#endif

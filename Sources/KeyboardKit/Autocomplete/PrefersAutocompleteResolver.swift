@@ -11,8 +11,7 @@
  if autocomplete is preferred.
 
  This protocol is implemented by ``KeyboardType`` as well as
- the native `UIKeyboardType`. These types are then synced to
- ``KeyboardContext``, which also implements the protocol.
+ the `UIKeyboardType` in `UIKit`.
  */
 public protocol PrefersAutocompleteResolver {
 

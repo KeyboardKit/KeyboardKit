@@ -3,10 +3,9 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-10-15.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2019-2023 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(macOS) || os(tvOS)
 import KeyboardKit
 import XCTest
 
@@ -40,4 +39,3 @@ class AudioFeedbackTests: XCTestCase {
         XCTAssertEqual(calls[1].arguments.id, 124)
     }
 }
-#endif

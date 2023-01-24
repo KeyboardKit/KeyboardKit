@@ -164,7 +164,7 @@ private extension KeyboardGestures {
     }
 
     func handleDrag(in geo: GeometryProxy, value: DragGesture.Value) {
-        actionCalloutContext?.updateSelection(with: value)
+        actionCalloutContext?.updateSelection(with: value.translation)
         dragAction?(value.startLocation, value.location)
     }
 
@@ -274,7 +274,7 @@ private extension KeyboardGestures {
     
     func handleDelayedDrag(_ value: DragGesture.Value?, in geo: GeometryProxy) {
         shouldApplyReleaseAction = shouldApplyReleaseAction && action != .space
-        actionCalloutContext?.updateSelection(with: value)
+        actionCalloutContext?.updateSelection(with: value?.translation)
         guard let value = value else { return }
         handleDrag(in: geo, value: value)
         dragAction?(value.startLocation, value.location)

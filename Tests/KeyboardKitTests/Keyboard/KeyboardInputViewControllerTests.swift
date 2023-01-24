@@ -9,7 +9,6 @@
 #if os(iOS) || os(tvOS)
 import MockingKit
 import SwiftUI
-import UIKit
 import XCTest
 
 @testable import KeyboardKit

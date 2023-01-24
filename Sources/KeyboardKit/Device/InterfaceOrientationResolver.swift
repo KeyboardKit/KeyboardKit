@@ -15,6 +15,8 @@ import UIKit
 /**
  This protocol can be implemented by any types that can find
  out the current interface orientation.
+
+ This protocol is implemented by `UIScreen` in `UIKit`.
  */
 protocol InterfaceOrientationResolver {
 

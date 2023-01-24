@@ -6,7 +6,6 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(macOS) || os(watchOS)
 import SwiftUI
 
 /**
@@ -16,8 +15,8 @@ import SwiftUI
  The easiest way to apply this view modifier is by using the
  `.localeContextMenu(for:)` view extension.
 
- Note that the modifier will not apply a context menu if the
- context only has a single locale.
+ Note that this view will only apply the context menu if the
+ platform supports it and the context has multiple locales.
  */
 public struct LocaleContextMenu<MenuItem: View>: ViewModifier {
 
@@ -44,14 +43,23 @@ public struct LocaleContextMenu<MenuItem: View>: ViewModifier {
 
     public func body(content: Content) -> some View {
         if keyboardContext.locales.count > 1 {
-            content.contextMenu(
-                ContextMenu {
-                    menu
-                }
-            )
+            content.withContextMenu(menu)
         } else {
             content
         }
+    }
+}
+
+private extension View {
+
+    func withContextMenu<MenuView: View>(_ menu: MenuView) -> some View {
+        #if os(iOS) || os(macOS)
+        self.contextMenu(
+            ContextMenu { menu }
+        )
+        #else
+        self
+        #endif
     }
 }
 
@@ -102,4 +110,22 @@ public extension View {
         )
     }
 }
-#endif
+
+struct LocaleContextMenu_Previews: PreviewProvider {
+
+    static let context: KeyboardContext = {
+        let context = KeyboardContext.preview
+        context.locales = [
+            KeyboardLocale.swedish.locale,
+            KeyboardLocale.finnish.locale,
+            KeyboardLocale.norwegian.locale,
+            KeyboardLocale.danish.locale
+        ]
+        return context
+    }()
+
+    static var previews: some View {
+        Text("Hello, world!")
+            .localeContextMenu(for: context)
+    }
+}
