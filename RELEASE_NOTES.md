@@ -43,6 +43,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `AutocompleteToolbar` is now available on all platforms. 
 * `EmojiCategoryTitle` is now available on all platforms.
 * `EmojiCategoryKeyboardMenu` is now available on all platforms.
+* `EmojiKeyboard` is now available on all platforms.
 * `ExternalKeyboardContext` is now available on macOS and tvOS as well.
 * `KeyboardAction` gesture actions are now available on all platforms.  
 * `KeyboardAction` gesture actions now use a `KeyboardActionTrigger` instead of a `KeyboardInputViewController`.  
@@ -73,7 +74,9 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `AutocompleteToolbar` has no standard action anymore.
 * `AutocompleteToolbar` `ReplacementAction` is renamed to `Action`.
 * `AutocompleteToolbarItem` init parameters have been reordered.
-* `AutocompleteToolbarItemTitle` init parameters have been reordered. 
+* `AutocompleteToolbarItemTitle` init parameters have been reordered.
+* `EmojiKeyboard` now uses an `actionHandler` instead of custom actions.
+* `EmojiKeyboard` init parameters have been reordered and renamed. 
 * `EmojiCategoryKeyboardMenu` init parameters have been reordered.
 * `KeyboardAction` `.return` and `.newLine` are now `primary` variants.
 * `KeyboardAction` `standardTextDocumentProxyAction` has been removed.

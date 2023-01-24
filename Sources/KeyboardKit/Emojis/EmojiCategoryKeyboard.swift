@@ -145,6 +145,7 @@ private extension EmojiCategoryKeyboard {
         ScrollView(.horizontal, showsIndicators: false) {
             EmojiKeyboard(
                 emojis: selection.emojis.matching(query, for: keyboardContext.locale),
+                actionHandler: standardKeyboardActionHandler,
                 style: style)
         }.id(selection)
     }

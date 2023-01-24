@@ -6,18 +6,19 @@
 //  Copyright © 2021 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
 import SwiftUI
 
 /**
- This view can be used to list an emoji collection using the
- provided configuration.
- 
+ This view can be used as an emoji keyboard and will list an
+ emoji collection using the provided configuration.
+
  You can customize the emoji views in the keyboard, by using
- the `emojiButton` initializer, which lets you customize the
- keyboard button for every emoji. If you use the initializer
- without a view builder, you will get a standard button with
- the standard keyboard gestures for every emoji.
+ the `button` initializer. The initializer without a `button`
+ parameter will use an ``EmojiKeyboardItem`` for every emoji.
+
+ Note that this keyboard only lists the provided emojis. Use
+ an ``EmojiCategoryKeyboard`` if you want surrounding titles
+ and actions as in the iOS emoji keyboard.
  */
 public struct EmojiKeyboard<ButtonView: View>: View {
 
@@ -26,49 +27,69 @@ public struct EmojiKeyboard<ButtonView: View>: View {
 
      - Parameters:
        - emojis: The emojis to include in the menu.
+       - actionHandler: The action handler to use.
        - style: The style to apply to the keyboard, by default ``EmojiKeyboardStyle/standardPhonePortrait``.
-       - applyGestures: Whether or not to apply standard keyboard gestures to each button, by default `false`.
-       - emojiButton: A emoji keyboard button builder function.
+       - button: A emoji keyboard button builder function.
      */
     public init(
         emojis: [Emoji],
+        actionHandler: KeyboardActionHandler,
         style: EmojiKeyboardStyle = .standardPhonePortrait,
-        applyGestures: Bool = false,
-        emojiButton: @escaping EmojiButtonBuilder<ButtonView>
+        button: @escaping ButtonBuilder<ButtonView>
     ) {
         let gridItem = GridItem(.fixed(style.itemSize), spacing: style.verticalItemSpacing - 9)
         self.emojis = emojis
-        self.style = style
         self.rows = Array(repeating: gridItem, count: style.rows)
-        self.applyGestures = applyGestures
-        self.emojiButton = emojiButton
+        self.actionHandler = actionHandler
+        self.style = style
+        self.buttonBuilder = button
+    }
+
+    /**
+     Create an emoji keyboard that applies a standard button
+     for every emoji in the provided collection.
+
+     - Parameters:
+       - emojis: The emojis to include in the menu.
+       - actionHandler: The action handler to use.
+       - style: The style to apply to the keyboard, by default ``EmojiKeyboardStyle/standardPhonePortrait``.
+     */
+    init(
+        emojis: [Emoji],
+        actionHandler: KeyboardActionHandler,
+        style: EmojiKeyboardStyle = .standardPhonePortrait
+    ) where ButtonView == EmojiKeyboardItem {
+        self.init(
+            emojis: emojis,
+            actionHandler: actionHandler,
+            style: style,
+            button: { EmojiKeyboardItem(emoji: $0, style: $1) }
+        )
     }
     
     private let emojis: [Emoji]
     private let rows: [GridItem]
+    private let actionHandler: KeyboardActionHandler
     private let style: EmojiKeyboardStyle
-    private let applyGestures: Bool
-    private let emojiButton: EmojiButtonBuilder<ButtonView>
+    private let buttonBuilder: ButtonBuilder<ButtonView>
     
     /**
      This typealias represents functions that can be used to
      create an emoji button.
      */
-    public typealias EmojiButtonBuilder<EmojiButton: View> = (Emoji, EmojiKeyboardStyle) -> EmojiButton
+    public typealias ButtonBuilder<EmojiButton: View> = (Emoji, EmojiKeyboardStyle) -> EmojiButton
 
     public var body: some View {
         LazyHGrid(rows: rows, spacing: style.horizontalItemSpacing) {
             ForEach(emojis) { emoji in
-                if applyGestures {
-                    buttonView(for: emoji, style: style)
-                        .keyboardGestures(
-                            for: .emoji(emoji),
-                            actionHandler: Self.standardKeyboardActionHandler,
-                            isInScrollView: true
-                        )
-                } else {
-                    buttonView(for: emoji, style: style)
-                }
+                buttonView(
+                    for: emoji,
+                    style: style
+                ).keyboardGestures(
+                    for: .emoji(emoji),
+                    actionHandler: actionHandler,
+                    isInScrollView: true
+                )
             }
         }
         .padding(.horizontal)
@@ -79,7 +100,7 @@ public struct EmojiKeyboard<ButtonView: View>: View {
 private extension EmojiKeyboard {
 
     func buttonView(for emoji: Emoji, style: EmojiKeyboardStyle) -> some View {
-        emojiButton(emoji, style)
+        buttonBuilder(emoji, style)
             .accessibilityLabel(emoji.unicodeName ?? "")
             .accessibilityIdentifier(emoji.unicodeIdentifier ?? "")
     }
@@ -93,20 +114,6 @@ public extension EmojiKeyboard {
     typealias EmojiAction = (Emoji) -> Void
 
     /**
-     The standard action handler to use to handle the emojis.
-     */
-    static var standardKeyboardActionHandler: KeyboardActionHandler {
-        KeyboardInputViewController.shared.keyboardActionHandler
-    }
-
-    /**
-     The standard action to use when tapping an emoji button.
-     */
-    static func standardEmojiAction(emoji: Emoji) {
-        standardKeyboardActionHandler.handle(.release, on: .emoji(emoji))
-    }
-
-    /**
      The standard action to use when tapping an emoji button.
      */
     static func standardEmojiView(
@@ -117,61 +124,14 @@ public extension EmojiKeyboard {
     }
 }
 
-public extension EmojiKeyboard {
-
-    /**
-     Create an emoji keyboard that uses standard buttons for
-     each emoji in the provided collection.
-
-     - Parameters:
-       - emojis: The emojis to include in the menu.
-       - style: The style to apply to the keyboard, by default ``EmojiKeyboardStyle/standardPhonePortrait``.
-       - emojiButtonAction: The action to perform when an emoji is tapped, by default ``EmojiKeyboard/standardEmojiAction(emoji:)``.
-     */
-    init(
-        emojis: [Emoji],
-        style: EmojiKeyboardStyle = .standardPhonePortrait,
-        emojiButtonAction: @escaping EmojiAction
-    ) where ButtonView == EmojiKeyboardButton {
-        self.init(
-            emojis: emojis,
-            style: style,
-            emojiButton: {
-                EmojiKeyboardButton(
-                    emoji: $0,
-                    style: $1,
-                    action: emojiButtonAction)
-            }
-        )
-    }
-
-    /**
-     Create an emoji keyboard that uses standard buttons for
-     each emoji in the provided collection.
-
-     - Parameters:
-       - emojis: The emojis to include in the menu.
-       - style: The style to apply to the keyboard, by default ``EmojiKeyboardStyle/standardPhonePortrait``.
-     */
-    init(
-        emojis: [Emoji],
-        style: EmojiKeyboardStyle = .standardPhonePortrait
-    ) where ButtonView == EmojiKeyboardItem {
-        self.init(
-            emojis: emojis,
-            style: style,
-            applyGestures: true,
-            emojiButton: { EmojiKeyboardItem(emoji: $0, style: $1) }
-        )
-    }
-}
-
 struct EmojiKeyboard_Previews: PreviewProvider {
     
     static var previews: some View {
         ScrollView(.horizontal) {
-            EmojiKeyboard(emojis: Array(Emoji.all.prefix(50)))
+            EmojiKeyboard(
+                emojis: Array(Emoji.all.prefix(50)),
+                actionHandler: .preview
+            )
         }
     }
 }
-#endif
