@@ -18,10 +18,9 @@ Some things that are planned for the 7.0 release:
 * All TODOS will be addressed.
 * All shared instances should be removed.
 * All dependencies to the shared instances should be replaced with init parameters, even for the smallest view.
-* KeyboardAction.shift should maybe have a `current` parameter instead of `currentState`.
+* KeyboardAction.shift will have a `current` parameter instead of `currentState`.
 * KeyboardAppearance will convert parameterless functions to properties. 
 * KeyboardKit Pro active and enabled labels will use an observed object to update when the state changes.
-* StandardKeyboardActionHandler changeKeyboardTypeAction should be removed.
 * KeyboardInputViewController `textInputProxy` will be renamed to `keyboardInputProxy`.
 * KeyboardInputViewController `originalTextDocumentProxy` will be renamed to `mainTextDocumentProxy`.
 
@@ -43,12 +42,13 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `EmojiCategoryTitle` is now available on all platforms.
 * `EmojiKeyboard` is now available on all platforms.
 * `EmojiKeyboardStyle` has new context-based standard functions.
-* `ExternalKeyboardContext` is now available on all platforms.
+* `ExternalKeyboardContext` is now available on macOS and tvOS as well.
 * `KeyboardAction` gesture actions are now available on all platforms.  
 * `KeyboardAction` gesture actions now use a `KeyboardController` instead of a `KeyboardInputViewController`.  
 * `KeyboardAppearance` will now apply to `.nextKeyboard` as well. 
 * `KeyboardCalloutContext` is a new context that lets lets us pass around a single context for input and action callouts.
 * `KeyboardController` is a new protocol that lets us decouple actions from the input view controller.
+* `KeyboardContext` has a new `keyboardLocale` and new functions for setting locale and keyboard type.
 * `KeyboardInputViewController` has a new `calloutContext`.  
 * `KeyboardInputViewController` implements `KeyboardController` which gives it a bunch of new functions.
 * `NextKeyboardButton` now takes any custom content and only applies the behavior on iOS and tvOS.
@@ -90,7 +90,8 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `KeyboardInputViewController` replaces `actionCalloutContext` and `inputCalloutContext` with a single `calloutContext`.
 * `KeyboardReturnActionMappable` has been refactored to `KeyboardActionMappable`.
 * `StandardAutocompleteSuggestions` is renamed to `AutocompleteSuggestions`.
-* `StandardKeyboardActionHandler` controller-based initializer is now a convenience initializer.
+* `StandardKeyboardActionHandler` `controller` based initializer is now a convenience initializer.
+* `StandardKeyboardActionHandler` `changeKeyboardTypeAction` has been removed.
 * `SystemKeyboardActionButton` now requires a callout context.
 * `SystemKeyboardButtonRowItem` now requires a callout context.
 * `View` `.keyboardGestures` now requires a callout context.

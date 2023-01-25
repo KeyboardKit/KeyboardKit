@@ -41,7 +41,6 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
             keyboardFeedbackHandler: feedbackHandler,
             autocompleteContext: controller.autocompleteContext,
             autocompleteAction: {},
-            changeKeyboardTypeAction: { _ in },
             spaceDragGestureHandler: spaceDragHandler)
     }
 

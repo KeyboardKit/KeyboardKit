@@ -33,7 +33,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
        - inputViewController: The view controller to use.
        - spaceDragGestureHandler: A custom space drag gesture handler, if any.
        - spaceDragSensitivity: The space drag sensitivity to use, by default ``SpaceDragSensitivity/medium``.
-       -
      */
     public convenience init(
         inputViewController ivc: KeyboardInputViewController,
@@ -47,7 +46,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
             keyboardFeedbackHandler: ivc.keyboardFeedbackHandler,
             autocompleteContext: ivc.autocompleteContext,
             autocompleteAction: { input?.performAutocomplete() },
-            changeKeyboardTypeAction: { input?.keyboardContext.keyboardType = $0 },
             spaceDragGestureHandler: spaceDragGestureHandler,
             spaceDragSensitivity: spaceDragSensitivity
         )
@@ -62,7 +60,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
        - keyboardFeedbackHandler: The keyboard feedback handler to use.
        - autocompleteContext: The autocomplete context to use.
        - autocompleteAction: The autocomplete action to use.
-       - changeKeyboardTypeAction: The action to use to change keyboard type.
        - spaceDragGestureHandler: A custom space drag gesture handler, if any.
        - spaceDragSensitivity: The space drag sensitivity to use, by default ``SpaceDragSensitivity/medium``.
      */
@@ -72,14 +69,12 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         keyboardFeedbackHandler: KeyboardFeedbackHandler,
         autocompleteContext: AutocompleteContext,
         autocompleteAction: @escaping () -> Void,
-        changeKeyboardTypeAction: @escaping (KeyboardType) -> Void,
         spaceDragGestureHandler: DragGestureHandler? = nil,
         spaceDragSensitivity: SpaceDragSensitivity = .medium
     ) {
         weak var context = keyboardContext
         self.autocompleteAction = autocompleteAction
         self.autocompleteContext = autocompleteContext
-        self.changeKeyboardTypeAction = changeKeyboardTypeAction
         self.keyboardBehavior = keyboardBehavior
         self.keyboardContext = keyboardContext
         self.keyboardFeedbackHandler = keyboardFeedbackHandler
@@ -101,14 +96,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     public let spaceDragGestureHandler: DragGestureHandler
 
     public internal(set) var autocompleteAction: () -> Void
-
-    /**
-     The action to use to change keyboard type.
-
-     > Deprecated: This action is no longer needed, and will
-     be removed in KK 7.0. Just affect the proxy directly.
-     */
-    public let changeKeyboardTypeAction: (KeyboardType) -> Void
 
 
     // MARK: - Properties
@@ -252,7 +239,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     open func tryChangeKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) {
         guard keyboardBehavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action) else { return }
         let newType = keyboardBehavior.preferredKeyboardType(after: gesture, on: action)
-        changeKeyboardTypeAction(newType)
+        keyboardContext.keyboardType = newType
     }
 
     /**
