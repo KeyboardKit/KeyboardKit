@@ -21,7 +21,6 @@ open class KeyboardInputViewController: UIInputViewController {
     
     open override func viewDidLoad() {
         super.viewDidLoad()
-        Self.shared = self
         setupInitialWidth()
         setupLocaleObservation()
         setupNextKeyboardBehavior()
@@ -113,12 +112,6 @@ open class KeyboardInputViewController: UIInputViewController {
     open var originalTextDocumentProxy: UITextDocumentProxy {
         super.textDocumentProxy
     }
-    
-    /**
-     The shared input view controller. This is registered as
-     the keyboard extension is started.
-     */
-    public static var shared = KeyboardInputViewController()
 
     /**
      The text document proxy to use, which can either be the

@@ -21,7 +21,6 @@ class KeyboardInputViewControllerTests: XCTestCase {
     private let mockTextDocumentProxy = MockTextDocumentProxy()
 
     override func setUp() {
-        TestClass.shared = TestClass(nibName: nil, bundle: nil)
         vc = TestClass(nibName: nil, bundle: nil)
     }
 
@@ -48,12 +47,6 @@ class KeyboardInputViewControllerTests: XCTestCase {
 
 
     // MARK: - View Controller Lifecycle
-
-    func testViewDidLoadSetsVcAsShared() {
-        XCTAssertFalse(TestClass.shared === vc)
-        vc.viewDidLoad()
-        XCTAssertTrue(TestClass.shared === vc)
-    }
 
     func testViewDidLoadSetsUpContextObservations() {
         vc.viewDidLoad()
