@@ -303,8 +303,8 @@ open class KeyboardInputViewController: UIInputViewController {
     open override func textDidChange(_ textInput: UITextInput?) {
         super.textDidChange(textInput)
         performAutocomplete()
+        performTextContextSync()
         tryChangeToPreferredKeyboardTypeAfterTextDidChange()
-        trySyncTextContext()
     }
     
     
@@ -341,10 +341,10 @@ open class KeyboardInputViewController: UIInputViewController {
     open var isContextSyncEnabled: Bool {
         !textDocumentProxy.isReadingFullDocumentContext
     }
-    
+
     /**
      Perform an autocomplete operation.
-     
+
      You can override this function to extend or replace the
      default logic. By default, it uses the `currentWord` of
      the ``textDocumentProxy`` to perform autocomplete using
@@ -356,6 +356,18 @@ open class KeyboardInputViewController: UIInputViewController {
         autocompleteProvider.autocompleteSuggestions(for: text) { [weak self] result in
             self?.updateAutocompleteContext(with: result)
         }
+    }
+
+    /**
+     Perform a text context sync.
+
+     This is performed anytime the text is changed to ensure
+     that ``keyboardTextContext`` is synced with the current
+     text document context content.
+     */
+    open func performTextContextSync() {
+        guard isContextSyncEnabled else { return }
+        keyboardTextContext.sync(with: self)
     }
     
     /**
@@ -423,11 +435,6 @@ private extension KeyboardInputViewController {
         let shouldSwitch = keyboardBehavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange()
         guard shouldSwitch else { return }
         keyboardContext.keyboardType = context.preferredKeyboardType
-    }
-
-    func trySyncTextContext() {
-        guard isContextSyncEnabled else { return }
-        keyboardTextContext.sync(with: self)
     }
 
     /**

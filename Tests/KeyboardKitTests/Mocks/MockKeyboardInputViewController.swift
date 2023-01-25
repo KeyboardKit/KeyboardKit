@@ -15,6 +15,7 @@ class MockKeyboardInputViewController: KeyboardInputViewController, Mockable {
     
     lazy var dismissKeyboardRef = MockReference(dismissKeyboard)
     lazy var performAutocompleteRef = MockReference(performAutocomplete)
+    lazy var performTextContextSyncRef = MockReference(performTextContextSync)
     
     let mock = Mock()
     
@@ -28,6 +29,10 @@ class MockKeyboardInputViewController: KeyboardInputViewController, Mockable {
     
     override func performAutocomplete() {
         call(performAutocompleteRef, args: ())
+    }
+
+    override func performTextContextSync() {
+        call(performTextContextSyncRef, args: ())
     }
 }
 #endif

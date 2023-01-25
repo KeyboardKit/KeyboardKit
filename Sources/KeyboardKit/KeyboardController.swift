@@ -58,6 +58,16 @@ public protocol KeyboardController: AnyObject {
     func insertText(_ text: String)
 
     /**
+     Perform an autocomplete operation.
+     */
+    func performAutocomplete()
+
+    /**
+     Perform a text context sync.
+     */
+    func performTextContextSync()
+
+    /**
      Select the next keyboard, if any.
      */
     func selectNextKeyboard()
