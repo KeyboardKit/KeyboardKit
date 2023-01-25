@@ -6,28 +6,39 @@
 //  Copyright © 2020-2023 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(tvOS)
 import SwiftUI
+import UIKit
 
 /**
  This button makes any view behave as a next keyboard button,
  which switches to the next keyboard when tapped and opens a
  keyboard switcher menu when pressed.
 
- Note that this modifier only has effect on `iOS` and `tvOS`,
- since it requires an input view controller.
+ Note that you must either provide a ``UIInputViewController``
+ or set the ``NextKeyboardController/shared`` instance to be
+ able to create an instance of this view.
+
+ The KeyboardKit-specific ``KeyboardInputViewController`` is
+ automatically setting itself to the shared instance when it
+ is loaded in `viewDidLoad`, which means that you don't have
+ to provide a controller in KeyboardKit.
  */
 public struct NextKeyboardButton<Content: View>: View {
 
     public init(
+        controller: UIInputViewController? = NextKeyboardController.shared,
         @ViewBuilder content: @escaping () -> Content
     ) {
+        self.overlay = NextKeyboardButtonOverlay(controller: controller)
         self.content = content
     }
 
     private let content: () -> Content
+    private let overlay: NextKeyboardButtonOverlay
 
     public var body: some View {
-        content().overlay(nextKeyboardButtonOverlay)
+        content().overlay(overlay)
     }
 }
 
@@ -40,21 +51,6 @@ struct NextKeyboardButton_Previews: PreviewProvider {
     }
 }
 
-private extension View {
-
-    @ViewBuilder
-    var nextKeyboardButtonOverlay: some View {
-        #if os(iOS) || os(tvOS)
-        NextKeyboardButtonOverlay()
-        #else
-        EmptyView()
-        #endif
-    }
-}
-
-#if os(iOS) || os(tvOS)
-import UIKit
-
 /**
  This overlay sets up a `next keyboard` controller action on
  a blank `UIKit` button. This can hopefully be removed later,
@@ -62,9 +58,10 @@ import UIKit
  */
 private struct NextKeyboardButtonOverlay: UIViewRepresentable {
 
-    init(controller: KeyboardInputViewController = .shared) {
+    init(controller: UIInputViewController?) {
         button = UIButton()
-        controller.setupNextKeyboardButton(button)
+        if controller == nil { assertionFailure("Input view controller is nil") }
+        controller?.setupNextKeyboardButton(button)
     }
     
     let button: UIButton
@@ -75,10 +72,7 @@ private struct NextKeyboardButtonOverlay: UIViewRepresentable {
 }
 
 private extension UIInputViewController {
-    
-    /**
-     Setup any `UIButton` as a "next keyboard" system button.
-     */
+
     func setupNextKeyboardButton(_ button: UIButton) {
         let action = #selector(handleInputModeList(from:with:))
         button.addTarget(self, action: action, for: .allTouchEvents)

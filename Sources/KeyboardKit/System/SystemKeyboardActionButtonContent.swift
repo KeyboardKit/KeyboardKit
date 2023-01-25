@@ -55,11 +55,15 @@ private extension SystemKeyboardActionButtonContent {
 
     @ViewBuilder
     var bodyContent: some View {
+        #if os(iOS) || os(tvOS)
         if action == .nextKeyboard {
             NextKeyboardButton { bodyView }
         } else {
             bodyView
         }
+        #else
+        bodyView
+        #endif
     }
 
     @ViewBuilder

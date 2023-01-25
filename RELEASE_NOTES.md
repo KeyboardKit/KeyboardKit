@@ -51,7 +51,8 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `KeyboardContext` has a new `keyboardLocale` and new functions for setting locale and keyboard type.
 * `KeyboardInputViewController` has a new `calloutContext`.  
 * `KeyboardInputViewController` implements `KeyboardController` which gives it a bunch of new functions.
-* `NextKeyboardButton` now takes any custom content and only applies the behavior on iOS and tvOS.
+* `NextKeyboardButton` now supports using any custom content.
+* `NextKeyboardController` is used instead of the shared controller.
 * `GestureButton` is now available on watchOS 7.
 * `InterfaceOrientation` has a new `landscape` case.
 * `ScrollViewGestureButton` is now available on watchOS 7.

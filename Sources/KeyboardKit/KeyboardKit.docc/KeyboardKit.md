@@ -110,6 +110,7 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardHostingController``
 - ``KeyboardTextContext``
 - ``NextKeyboardButton``
+- ``NextKeyboardController``
 
 ### Actions
 

@@ -24,6 +24,7 @@ open class KeyboardInputViewController: UIInputViewController {
         Self.shared = self
         setupInitialWidth()
         setupLocaleObservation()
+        setupNextKeyboardBehavior()
         viewWillSetupKeyboard()
     }
     
@@ -400,17 +401,14 @@ private extension KeyboardInputViewController {
     }
     
     /**
-     Make sure that the controller view is setup to at least
-     have a standard width that isn't non-zero, to avoid bad
-     view layout in SwiftUI.
+     Set up an initial width to avoid broken SwiftUI layouts.
      */
     func setupInitialWidth() {
         view.frame.size.width = UIScreen.main.bounds.width
     }
     
     /**
-     Observe any changes to the context locale, which should
-     trigger some locale-specific changes..
+     Setup locale observation to handle locale-based changes.
      */
     func setupLocaleObservation() {
         keyboardContext.$locale.sink { [weak self] in
@@ -418,6 +416,13 @@ private extension KeyboardInputViewController {
             let locale = $0
             self.autocompleteProvider.locale = locale
         }.store(in: &cancellables)
+    }
+
+    /**
+     Set up the standard next keyboard button behavior.
+     */
+    func setupNextKeyboardBehavior() {
+        NextKeyboardController.shared = self
     }
     
     func tryChangeToPreferredKeyboardTypeAfterTextDidChange() {
