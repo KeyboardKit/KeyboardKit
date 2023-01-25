@@ -39,14 +39,12 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         spaceDragGestureHandler: DragGestureHandler? = nil,
         spaceDragSensitivity: SpaceDragSensitivity = .medium
     ) {
-        weak var input = ivc
         self.init(
             keyboardController: ivc,
             keyboardContext: ivc.keyboardContext,
             keyboardBehavior: ivc.keyboardBehavior,
             keyboardFeedbackHandler: ivc.keyboardFeedbackHandler,
             autocompleteContext: ivc.autocompleteContext,
-            autocompleteAction: { input?.performAutocomplete() },
             spaceDragGestureHandler: spaceDragGestureHandler,
             spaceDragSensitivity: spaceDragSensitivity
         )
@@ -61,7 +59,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
        - keyboardBehavior: The keyboard behavior to use.
        - keyboardFeedbackHandler: The keyboard feedback handler to use.
        - autocompleteContext: The autocomplete context to use.
-       - autocompleteAction: The autocomplete action to use.
        - spaceDragGestureHandler: A custom space drag gesture handler, if any.
        - spaceDragSensitivity: The space drag sensitivity to use, by default ``SpaceDragSensitivity/medium``.
      */
@@ -71,13 +68,11 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         keyboardBehavior: KeyboardBehavior,
         keyboardFeedbackHandler: KeyboardFeedbackHandler,
         autocompleteContext: AutocompleteContext,
-        autocompleteAction: @escaping () -> Void,
         spaceDragGestureHandler: DragGestureHandler? = nil,
         spaceDragSensitivity: SpaceDragSensitivity = .medium
     ) {
         weak var keyboardController = keyboardController
         self.keyboardController = keyboardController
-        self.autocompleteAction = autocompleteAction
         self.autocompleteContext = autocompleteContext
         self.keyboardBehavior = keyboardBehavior
         self.keyboardContext = keyboardContext
@@ -100,8 +95,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     public let keyboardContext: KeyboardContext
     public let keyboardFeedbackHandler: KeyboardFeedbackHandler
     public let spaceDragGestureHandler: DragGestureHandler
-
-    public internal(set) var autocompleteAction: () -> Void
 
 
     // MARK: - Properties
@@ -144,7 +137,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         tryEndSentence(after: gesture, on: action)
         tryChangeKeyboardType(after: gesture, on: action)
         tryRegisterEmoji(after: gesture, on: action)
-        autocompleteAction()
+        keyboardController?.performAutocomplete()
+        keyboardController?.performTextContextSync()
     }
 
     /**
