@@ -25,6 +25,8 @@ import SwiftUI
  I have not yet figured out why this is needed.
  */
 struct KeyboardView: View {
+
+    var controller: KeyboardController
     
     @EnvironmentObject
     private var autocompleteContext: AutocompleteContext
@@ -51,7 +53,7 @@ private extension KeyboardView {
         AutocompleteToolbar(
             suggestions: autocompleteContext.suggestions,
             locale: keyboardContext.locale,
-            action: { KeyboardInputViewController.shared.insertAutocompleteSuggestion($0) }
+            action: { controller.insertAutocompleteSuggestion($0) }
         ).opacity(keyboardContext.prefersAutocomplete ? 1 : 0)  // Still allocate height
     }
 }

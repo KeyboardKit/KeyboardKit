@@ -16,9 +16,9 @@ import UIKit
  You can inherit this class and override any open properties
  and functions to customize the standard action behavior.
 
- Note that this action handler is only available on keyboard
- supporting platforms. For unsupported platforms, a disabled
- action handler will be used by default.
+ Note that the ``keyboardController`` reference is `weak` to
+ avoid a retain cycle when the ``KeyboardInputViewController``
+ uses itself to setup its action handler.
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
 
@@ -41,6 +41,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     ) {
         weak var input = ivc
         self.init(
+            keyboardController: ivc,
             keyboardContext: ivc.keyboardContext,
             keyboardBehavior: ivc.keyboardBehavior,
             keyboardFeedbackHandler: ivc.keyboardFeedbackHandler,
@@ -55,6 +56,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      Create a standard keyboard action handler.
 
      - Parameters:
+       - keyboardController: The keyboard controller to use.
        - keyboardContext: The keyboard context to use.
        - keyboardBehavior: The keyboard behavior to use.
        - keyboardFeedbackHandler: The keyboard feedback handler to use.
@@ -64,6 +66,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
        - spaceDragSensitivity: The space drag sensitivity to use, by default ``SpaceDragSensitivity/medium``.
      */
     public init(
+        keyboardController: KeyboardController,
         keyboardContext: KeyboardContext,
         keyboardBehavior: KeyboardBehavior,
         keyboardFeedbackHandler: KeyboardFeedbackHandler,
@@ -72,7 +75,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         spaceDragGestureHandler: DragGestureHandler? = nil,
         spaceDragSensitivity: SpaceDragSensitivity = .medium
     ) {
-        weak var context = keyboardContext
+        weak var keyboardController = keyboardController
+        self.keyboardController = keyboardController
         self.autocompleteAction = autocompleteAction
         self.autocompleteContext = autocompleteContext
         self.keyboardBehavior = keyboardBehavior
@@ -82,12 +86,14 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
             keyboardContext: keyboardContext,
             feedbackHandler: keyboardFeedbackHandler,
             sensitivity: spaceDragSensitivity,
-            action: { context?.textDocumentProxy.adjustTextPosition(byCharacterOffset: $0) }
+            action: { keyboardController?.adjustTextPosition(byCharacterOffset: $0) }
         )
     }
 
 
     // MARK: - Dependencies
+
+    public weak var keyboardController: KeyboardController?
 
     public let autocompleteContext: AutocompleteContext
     public let keyboardBehavior: KeyboardBehavior
@@ -133,7 +139,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         guard let gestureAction = self.action(for: gesture, on: action) else { return }
         tryRemoveAutocompleteInsertedSpace(before: gesture, on: action)
         tryApplyAutocompleteSuggestion(before: gesture, on: action)
-        gestureAction(KeyboardInputViewController.shared)
+        gestureAction(keyboardController)
         tryReinsertAutocompleteRemovedSpace(after: gesture, on: action)
         tryEndSentence(after: gesture, on: action)
         tryChangeKeyboardType(after: gesture, on: action)

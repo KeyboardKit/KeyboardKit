@@ -36,6 +36,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         EmojiCategory.frequentEmojiProvider = emojiProvider
 
         handler = TestClass(
+            keyboardController: controller,
             keyboardContext: controller.keyboardContext,
             keyboardBehavior: controller.keyboardBehavior,
             keyboardFeedbackHandler: feedbackHandler,

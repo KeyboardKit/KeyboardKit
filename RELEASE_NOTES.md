@@ -90,7 +90,8 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `KeyboardInputViewController` replaces `actionCalloutContext` and `inputCalloutContext` with a single `calloutContext`.
 * `KeyboardReturnActionMappable` has been refactored to `KeyboardActionMappable`.
 * `StandardAutocompleteSuggestions` is renamed to `AutocompleteSuggestions`.
-* `StandardKeyboardActionHandler` `controller` based initializer is now a convenience initializer.
+* `StandardKeyboardActionHandler` now requires a `KeyboardController`.
+* `StandardKeyboardActionHandler` `inputViewController` initializer is now a convenience initializer.
 * `StandardKeyboardActionHandler` `changeKeyboardTypeAction` has been removed.
 * `SystemKeyboardActionButton` now requires a callout context.
 * `SystemKeyboardButtonRowItem` now requires a callout context.
