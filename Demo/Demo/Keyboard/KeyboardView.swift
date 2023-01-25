@@ -39,7 +39,7 @@ struct KeyboardView: View {
             if keyboardContext.keyboardType != .emojis {
                 autocompleteToolbar
             }
-            SystemKeyboard()
+            SystemKeyboard(controller: controller)
         }
     }
 }

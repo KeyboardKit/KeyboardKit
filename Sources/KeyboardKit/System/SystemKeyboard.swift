@@ -50,10 +50,9 @@ public struct SystemKeyboard<ButtonView: View>: View {
         actionHandler: KeyboardActionHandler,
         keyboardContext: KeyboardContext,
         calloutContext: KeyboardCalloutContext?,
-        width: CGFloat? = nil,
+        width: CGFloat,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder
     ) {
-        let width = width ?? Self.standardKeyboardWidth
         self.layout = layout
         self.layoutConfig = .standard(for: keyboardContext)
         self.actionHandler = actionHandler
@@ -77,7 +76,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
         actionHandler: KeyboardActionHandler,
         keyboardContext: KeyboardContext,
         calloutContext: KeyboardCalloutContext?,
-        width: CGFloat? = nil
+        width: CGFloat
     ) where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardActionButtonContent> {
         self.init(
             layout: layout,
@@ -110,7 +109,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
         actionHandler: KeyboardActionHandler,
         keyboardContext: KeyboardContext,
         calloutContext: KeyboardCalloutContext?,
-        width: CGFloat? = nil,
+        width: CGFloat,
         @ViewBuilder buttonContent: @escaping (KeyboardLayoutItem) -> ButtonContentView
     ) where ButtonView == SystemKeyboardButtonRowItem<ButtonContentView> {
         self.init(
@@ -140,17 +139,15 @@ public struct SystemKeyboard<ButtonView: View>: View {
      builder for every layout item.
      */
     public init(
-        controller: KeyboardInputViewController? = nil,
-        width: CGFloat? = nil
+        controller: KeyboardInputViewController
     ) where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardActionButtonContent> {
-        let controller = controller ?? .shared
         self.init(
             layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
             appearance: controller.keyboardAppearance,
             actionHandler: controller.keyboardActionHandler,
             keyboardContext: controller.keyboardContext,
             calloutContext: controller.calloutContext,
-            width: width
+            width: controller.view.frame.width
         )
     }
 
@@ -159,18 +156,16 @@ public struct SystemKeyboard<ButtonView: View>: View {
      builder to create the entire view for every layout item.
      */
     public init(
-        controller: KeyboardInputViewController? = nil,
-        width: CGFloat? = nil,
+        controller: KeyboardInputViewController,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder
     ) {
-        let controller = controller ?? .shared
         self.init(
             layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
             appearance: controller.keyboardAppearance,
             actionHandler: controller.keyboardActionHandler,
             keyboardContext: controller.keyboardContext,
             calloutContext: controller.calloutContext,
-            width: width,
+            width: controller.view.frame.width,
             buttonView: buttonView
         )
     }
@@ -180,18 +175,16 @@ public struct SystemKeyboard<ButtonView: View>: View {
      to customize the intrinsic content of every layout item.
      */
     public init<ButtonContentView: View>(
-        controller: KeyboardInputViewController? = nil,
-        width: CGFloat? = nil,
+        controller: KeyboardInputViewController,
         @ViewBuilder buttonContent: @escaping (KeyboardLayoutItem) -> ButtonContentView
     ) where ButtonView == SystemKeyboardButtonRowItem<ButtonContentView> {
-        let controller = controller ?? .shared
         self.init(
             layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
             appearance: controller.keyboardAppearance,
             actionHandler: controller.keyboardActionHandler,
             keyboardContext: controller.keyboardContext,
             calloutContext: controller.calloutContext,
-            width: width,
+            width: controller.view.frame.width,
             buttonContent: buttonContent
         )
     }
@@ -304,17 +297,6 @@ public extension SystemKeyboard {
             inputWidth: inputWidth,
             appearance: appearance
         )
-    }
-}
-
-public extension SystemKeyboard {
-
-    /**
-     This is the standard keyboard width, which is retrieved
-     from ``KeyboardInputViewController/shared``.
-     */
-    static var standardKeyboardWidth: CGFloat {
-        KeyboardInputViewController.shared.view.frame.width
     }
 }
 
