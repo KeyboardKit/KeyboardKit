@@ -11,6 +11,10 @@ import Foundation
 /**
  This extension defines standard gesture actions for various
  keyboard actions and ``KeyboardInputViewController``s.
+
+ The ``KeyboardAction/GestureAction`` typealias signature is
+ using an optional ``KeyboardController`` since some classes
+ will use this with a weak controller reference.
  */
 public extension KeyboardAction {
     
@@ -18,7 +22,7 @@ public extension KeyboardAction {
      This typealias represents a gesture action that affects
      the provided ``KeyboardActionTrigger``.
      */
-    typealias GestureAction = (KeyboardController) -> Void
+    typealias GestureAction = (KeyboardController?) -> Void
     
     /**
      The action that by default should be triggered when the
@@ -58,8 +62,8 @@ public extension KeyboardAction {
      */
     var standardPressAction: GestureAction? {
         switch self {
-        case .backspace: return { $0.deleteBackward() }
-        case .keyboardType(let type): return { $0.setKeyboardType(type) }
+        case .backspace: return { $0?.deleteBackward() }
+        case .keyboardType(let type): return { $0?.setKeyboardType(type) }
         default: return nil
         }
     }
@@ -70,23 +74,23 @@ public extension KeyboardAction {
      */
     var standardReleaseAction: GestureAction? {
         switch self {
-        case .character(let char): return { $0.insertText(char) }
-        case .characterMargin(let char): return { $0.insertText(char) }
-        case .dismissKeyboard: return { $0.dismissKeyboard() }
-        case .emoji(let emoji): return { $0.insertText(emoji.char) }
-        case .moveCursorBackward: return { $0.adjustTextPosition(byCharacterOffset: -1) }
-        case .moveCursorForward: return { $0.adjustTextPosition(byCharacterOffset: 1) }
-        case .nextLocale: return { $0.selectNextLocale() }
-        case .nextKeyboard: return { $0.selectNextKeyboard() }
-        case .primary: return { $0.insertText(.newline) }
+        case .character(let char): return { $0?.insertText(char) }
+        case .characterMargin(let char): return { $0?.insertText(char) }
+        case .dismissKeyboard: return { $0?.dismissKeyboard() }
+        case .emoji(let emoji): return { $0?.insertText(emoji.char) }
+        case .moveCursorBackward: return { $0?.adjustTextPosition(byCharacterOffset: -1) }
+        case .moveCursorForward: return { $0?.adjustTextPosition(byCharacterOffset: 1) }
+        case .nextLocale: return { $0?.selectNextLocale() }
+        case .nextKeyboard: return { $0?.selectNextKeyboard() }
+        case .primary: return { $0?.insertText(.newline) }
         case .shift(let currentState): return {
             switch currentState {
-            case .lowercased: $0.setKeyboardType(.alphabetic(.uppercased))
-            case .auto, .capsLocked, .uppercased: $0.setKeyboardType(.alphabetic(.lowercased))
+            case .lowercased: $0?.setKeyboardType(.alphabetic(.uppercased))
+            case .auto, .capsLocked, .uppercased: $0?.setKeyboardType(.alphabetic(.lowercased))
             }
         }
-        case .space: return { $0.insertText(.space) }
-        case .tab: return { $0.insertText(.tab) }
+        case .space: return { $0?.insertText(.space) }
+        case .tab: return { $0?.insertText(.tab) }
         default: return nil
         }
     }
