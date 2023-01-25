@@ -194,7 +194,7 @@ public extension KeyboardContext {
 // MARK: - Public Functions
 
 public extension KeyboardContext {
-    
+
     /**
      Whether or not the context specifies that we should use
      a dark color scheme.
@@ -205,6 +205,13 @@ public extension KeyboardContext {
         #else
         false
         #endif
+    }
+
+    /**
+     Try to map the current ``locale`` to a keyboard locale.
+     */
+    var keyboardLocale: KeyboardLocale? {
+        KeyboardLocale.allCases.first { $0.localeIdentifier == locale.identifier }
     }
 
     /**
@@ -237,8 +244,22 @@ public extension KeyboardContext {
     /**
      Set ``locale`` to the provided keyboard locale's locale.
      */
-    func setLocale(_ locale: KeyboardLocale) {
-        self.locale = locale.locale
+    func setLocale(_ keyboardLocale: KeyboardLocale) {
+        locale = keyboardLocale.locale
+    }
+
+    /**
+     Set ``locale`` to the provided locale.
+     */
+    func setLocale(_ newLocale: Locale) {
+        locale = newLocale
+    }
+
+    /**
+     Set ``keyboardType`` to the provided type.
+     */
+    func setKeyboardType(_ type: KeyboardType) {
+        keyboardType = type
     }
     
     #if os(iOS) || os(tvOS)
