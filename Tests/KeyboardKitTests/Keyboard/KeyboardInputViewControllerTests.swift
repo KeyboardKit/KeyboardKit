@@ -161,15 +161,15 @@ class KeyboardInputViewControllerTests: XCTestCase {
     // MARK: - Text And Selection Change
 
     func testSelectionWillChangeTriggersResetAutocomplete() {
-        XCTAssertFalse(vc.hasCalled(vc.resetAutocompleteRef))
+        XCTAssertFalse(vc.hasCalled(\.resetAutocompleteRef))
         vc.selectionWillChange(nil)
-        XCTAssertTrue(vc.hasCalled(vc.resetAutocompleteRef))
+        XCTAssertTrue(vc.hasCalled(\.resetAutocompleteRef))
     }
 
     func testSelectionDidChangeTriggersResetAutocomplete() {
-        XCTAssertFalse(vc.hasCalled(vc.resetAutocompleteRef))
+        XCTAssertFalse(vc.hasCalled(\.resetAutocompleteRef))
         vc.selectionDidChange(nil)
-        XCTAssertTrue(vc.hasCalled(vc.resetAutocompleteRef))
+        XCTAssertTrue(vc.hasCalled(\.resetAutocompleteRef))
     }
 
     func testTextWillChangeTriggersViewWillSyncWithTextDocumentProxy() {
@@ -178,9 +178,9 @@ class KeyboardInputViewControllerTests: XCTestCase {
     }
 
     func testTextDidChangeTriggersPerformAutocomplete() {
-        XCTAssertFalse(vc.hasCalled(vc.performAutocompleteRef))
+        XCTAssertFalse(vc.hasCalled(\.performAutocompleteRef))
         vc.textDidChange(nil)
-        XCTAssertTrue(vc.hasCalled(vc.performAutocompleteRef))
+        XCTAssertTrue(vc.hasCalled(\.performAutocompleteRef))
     }
 
     func testTextDidChangeTriesToChangeKeyboardType() {

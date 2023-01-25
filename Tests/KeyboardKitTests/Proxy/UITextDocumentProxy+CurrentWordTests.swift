@@ -143,9 +143,9 @@ class UITextDocumentProxy_CurrentWordTests: XCTestCase {
 
     func testReplacingCurrentWordAbortsIfCurrentWordIsMissing() {
         proxy.replaceCurrentWord(with: "another text")
-        let adjust = proxy.calls(to: proxy.adjustTextPositionRef)
-        let delete = proxy.calls(to: proxy.deleteBackwardRef)
-        let insert = proxy.calls(to: proxy.insertTextRef)
+        let adjust = proxy.calls(to: \.adjustTextPositionRef)
+        let delete = proxy.calls(to: \.deleteBackwardRef)
+        let insert = proxy.calls(to: \.insertTextRef)
         XCTAssertEqual(adjust.count, 0)
         XCTAssertEqual(delete.count, 0)
         XCTAssertEqual(insert.count, 0)
@@ -159,20 +159,20 @@ class UITextDocumentProxy_CurrentWordTests: XCTestCase {
 
     func testReplacingCurrentWordWithNoPostCustorPartDoesNotAdjustTextPosition() {
         prepareNoPostCursorPart()
-        let calls = proxy.calls(to: proxy.adjustTextPositionRef)
+        let calls = proxy.calls(to: \.adjustTextPositionRef)
         XCTAssertEqual(calls.count, 1)
         XCTAssertEqual(calls[0].arguments, 0)
     }
 
     func testReplacingCurrentWordWithNoPostCustorPartDeletesBackwardsCurrentWordCountTimes() {
         prepareNoPostCursorPart()
-        let calls = proxy.calls(to: proxy.deleteBackwardRef)
+        let calls = proxy.calls(to: \.deleteBackwardRef)
         XCTAssertEqual(calls.count, 4)
     }
 
     func testReplacingCurrentWordWithNoPostCustorPartInsertsReplacementText() {
         prepareNoPostCursorPart()
-        let calls = proxy.calls(to: proxy.insertTextRef)
+        let calls = proxy.calls(to: \.insertTextRef)
         XCTAssertEqual(calls.count, 1)
         XCTAssertEqual(calls[0].arguments, "replacement")
     }
@@ -185,20 +185,20 @@ class UITextDocumentProxy_CurrentWordTests: XCTestCase {
 
     func testReplacingCurrentWordWithNoPrePardAdjustsTextPositionPostCursorCountTimes() {
         prepareNoPreCursorPart()
-        let calls = proxy.calls(to: proxy.adjustTextPositionRef)
+        let calls = proxy.calls(to: \.adjustTextPositionRef)
         XCTAssertEqual(calls.count, 1)
         XCTAssertEqual(calls[0].arguments, 11)
     }
 
     func testReplacingCurrentWordWithNoPrePardDeletesBackwardsCurrentWordCountTimes() {
         prepareNoPreCursorPart()
-        let calls = proxy.calls(to: proxy.deleteBackwardRef)
+        let calls = proxy.calls(to: \.deleteBackwardRef)
         XCTAssertEqual(calls.count, 11)
     }
 
     func testReplacingCurrentWordWithNoPrePardInsertsReplacementText() {
         prepareNoPreCursorPart()
-        let calls = proxy.calls(to: proxy.insertTextRef)
+        let calls = proxy.calls(to: \.insertTextRef)
         XCTAssertEqual(calls.count, 1)
         XCTAssertEqual(calls[0].arguments, "Swift")
     }
@@ -212,20 +212,20 @@ class UITextDocumentProxy_CurrentWordTests: XCTestCase {
 
     func testReplacingCurrentWordWithPreAndPostPartAdjustsTextPositionPostCursorCountTimes() {
         preparePreAndPostCursorPart()
-        let calls = proxy.calls(to: proxy.adjustTextPositionRef)
+        let calls = proxy.calls(to: \.adjustTextPositionRef)
         XCTAssertEqual(calls.count, 1)
         XCTAssertEqual(calls[0].arguments, 8)
     }
 
     func testReplacingCurrentWordWithPreAndPostPartDeletesBackwardsCurrentWordCountTimes() {
         preparePreAndPostCursorPart()
-        let calls = proxy.calls(to: proxy.deleteBackwardRef)
+        let calls = proxy.calls(to: \.deleteBackwardRef)
         XCTAssertEqual(calls.count, 11)
     }
 
     func testReplacingCurrentWordWithPreAndPostPartInsertsReplacementText() {
         preparePreAndPostCursorPart()
-        let calls = proxy.calls(to: proxy.insertTextRef)
+        let calls = proxy.calls(to: \.insertTextRef)
         XCTAssertEqual(calls.count, 1)
         XCTAssertEqual(calls[0].arguments, "Swift")
     }

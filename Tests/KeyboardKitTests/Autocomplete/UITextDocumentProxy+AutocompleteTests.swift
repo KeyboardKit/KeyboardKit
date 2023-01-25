@@ -30,7 +30,7 @@ class UITextDocumentProxy_AutocompleteTests: XCTestCase {
 
     func insertAutocompleteSuggestionWithMockAdjustments() {
         proxy.insertAutocompleteSuggestion(suggestion)
-        if proxy.hasCalled(proxy.insertTextRef, numberOfTimes: 2) {
+        if proxy.hasCalled(\.insertTextRef, numberOfTimes: 2) {
             proxy.documentContextBeforeInput = " "
         }
     }
@@ -39,8 +39,8 @@ class UITextDocumentProxy_AutocompleteTests: XCTestCase {
     func testInsertAutocompleteSuggestionInsertsWordAndSpaceInEmptyProxy() {
         proxy.documentContextBeforeInput = ""
         insertAutocompleteSuggestionWithMockAdjustments()
-        let delete = proxy.calls(to: proxy.deleteBackwardRef)
-        let insert = proxy.calls(to: proxy.insertTextRef)
+        let delete = proxy.calls(to: \.deleteBackwardRef)
+        let insert = proxy.calls(to: \.insertTextRef)
         XCTAssertTrue(proxy.hasAutocompleteInsertedSpace)
         XCTAssertEqual(delete.count, 0)
         XCTAssertEqual(insert.count, 2)
@@ -51,8 +51,8 @@ class UITextDocumentProxy_AutocompleteTests: XCTestCase {
     func testInsertAutocompleteSuggestionInsertsWordAndSpaceWhenInputIsWithinCurrentWord() {
         setupProxy("foo", "bar")
         insertAutocompleteSuggestionWithMockAdjustments()
-        let delete = proxy.calls(to: proxy.deleteBackwardRef)
-        let insert = proxy.calls(to: proxy.insertTextRef)
+        let delete = proxy.calls(to: \.deleteBackwardRef)
+        let insert = proxy.calls(to: \.insertTextRef)
         XCTAssertTrue(proxy.hasAutocompleteInsertedSpace)
         XCTAssertEqual(delete.count, 6)
         XCTAssertEqual(insert.count, 2)
@@ -63,8 +63,8 @@ class UITextDocumentProxy_AutocompleteTests: XCTestCase {
     func testInsertAutocompleteSuggestionInsertsWordAndSpaceWhenInputHasLeadingSpace() {
         setupProxy("foo ", "bar")
         insertAutocompleteSuggestionWithMockAdjustments()
-        let delete = proxy.calls(to: proxy.deleteBackwardRef)
-        let insert = proxy.calls(to: proxy.insertTextRef)
+        let delete = proxy.calls(to: \.deleteBackwardRef)
+        let insert = proxy.calls(to: \.insertTextRef)
         XCTAssertTrue(proxy.hasAutocompleteInsertedSpace)
         XCTAssertEqual(delete.count, 3)
         XCTAssertEqual(insert.count, 2)
@@ -75,8 +75,8 @@ class UITextDocumentProxy_AutocompleteTests: XCTestCase {
     func testInsertAutocompleteSuggestionInsertsOnlyWordWhenInputHasTrailingSpace() {
         setupProxy("foo", " bar")
         insertAutocompleteSuggestionWithMockAdjustments()
-        let delete = proxy.calls(to: proxy.deleteBackwardRef)
-        let insert = proxy.calls(to: proxy.insertTextRef)
+        let delete = proxy.calls(to: \.deleteBackwardRef)
+        let insert = proxy.calls(to: \.insertTextRef)
         XCTAssertFalse(proxy.hasAutocompleteInsertedSpace)
         XCTAssertEqual(delete.count, 3)
         XCTAssertEqual(insert.count, 1)
@@ -86,8 +86,8 @@ class UITextDocumentProxy_AutocompleteTests: XCTestCase {
     func testInsertAutocompleteSuggestionInsertsOnlyWordIfInsertSpaceIsExplicitlyDisabled() {
         setupProxy("foo ", "bar")
         proxy.insertAutocompleteSuggestion(suggestion, tryInsertSpace: false)
-        let delete = proxy.calls(to: proxy.deleteBackwardRef)
-        let insert = proxy.calls(to: proxy.insertTextRef)
+        let delete = proxy.calls(to: \.deleteBackwardRef)
+        let insert = proxy.calls(to: \.insertTextRef)
         XCTAssertEqual(delete.count, 3)
         XCTAssertEqual(insert.count, 1)
         XCTAssertEqual(insert[0].arguments, word)
@@ -99,7 +99,7 @@ class UITextDocumentProxy_AutocompleteTests: XCTestCase {
         proxy.insertAutocompleteSuggestion(suggestion, tryInsertSpace: false)
         proxy.resetCalls()
         proxy.tryRemoveAutocompleteInsertedSpace()
-        let delete = proxy.calls(to: proxy.deleteBackwardRef)
+        let delete = proxy.calls(to: \.deleteBackwardRef)
         XCTAssertEqual(delete.count, 0)
     }
 
@@ -108,7 +108,7 @@ class UITextDocumentProxy_AutocompleteTests: XCTestCase {
         insertAutocompleteSuggestionWithMockAdjustments()
         proxy.resetCalls()
         proxy.tryRemoveAutocompleteInsertedSpace()
-        let delete = proxy.calls(to: proxy.deleteBackwardRef)
+        let delete = proxy.calls(to: \.deleteBackwardRef)
         XCTAssertEqual(delete.count, 1)
     }
 
@@ -118,7 +118,7 @@ class UITextDocumentProxy_AutocompleteTests: XCTestCase {
         insertAutocompleteSuggestionWithMockAdjustments()
         proxy.resetCalls()
         proxy.tryReinsertAutocompleteRemovedSpace()
-        let insert = proxy.calls(to: proxy.insertTextRef)
+        let insert = proxy.calls(to: \.insertTextRef)
         XCTAssertEqual(insert.count, 0)
     }
 
@@ -128,7 +128,7 @@ class UITextDocumentProxy_AutocompleteTests: XCTestCase {
         proxy.tryRemoveAutocompleteInsertedSpace()
         proxy.resetCalls()
         proxy.tryReinsertAutocompleteRemovedSpace()
-        let insert = proxy.calls(to: proxy.insertTextRef)
+        let insert = proxy.calls(to: \.insertTextRef)
         XCTAssertEqual(insert.count, 1)
     }
 }

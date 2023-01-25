@@ -28,19 +28,19 @@ class StandardKeyboardFeedbackHandlerTests: XCTestCase {
     
     func testTriggerFeedbackTriggersAudioAndHapticFeedback() {
         handler.triggerFeedback(for: .press, on: .backspace)
-        XCTAssertTrue(audioEngine.hasCalled(audioEngine.triggerRef))
-        XCTAssertTrue(hapticEngine.hasCalled(hapticEngine.triggerRef))
+        XCTAssertTrue(audioEngine.hasCalled(\.triggerRef))
+        XCTAssertTrue(hapticEngine.hasCalled(\.triggerRef))
     }
 
     func testTriggerAudioFeedbackTriggersAudioFeedbackOnly() {
         handler.triggerAudioFeedback(for: .press, on: .backspace)
-        XCTAssertTrue(audioEngine.hasCalled(audioEngine.triggerRef))
-        XCTAssertFalse(hapticEngine.hasCalled(hapticEngine.triggerRef))
+        XCTAssertTrue(audioEngine.hasCalled(\.triggerRef))
+        XCTAssertFalse(hapticEngine.hasCalled(\.triggerRef))
     }
 
     func testTriggerHapticFeedbackTriggersHapticFeedbackOnly() {
         handler.triggerHapticFeedback(for: .press, on: .backspace)
-        XCTAssertFalse(audioEngine.hasCalled(audioEngine.triggerRef))
-        XCTAssertTrue(hapticEngine.hasCalled(hapticEngine.triggerRef))
+        XCTAssertFalse(audioEngine.hasCalled(\.triggerRef))
+        XCTAssertTrue(hapticEngine.hasCalled(\.triggerRef))
     }
 }

@@ -21,7 +21,7 @@ class HapticFeedbackTests: XCTestCase {
     func testPreparingFeedbackUsesSharedAudioEngine() {
         HapticFeedback.success.prepare()
         HapticFeedback.warning.prepare()
-        let calls = engine.calls(to: engine.prepareRef)
+        let calls = engine.calls(to: \.prepareRef)
         XCTAssertEqual(calls.count, 2)
         XCTAssertEqual(calls[0].arguments, .success)
         XCTAssertEqual(calls[1].arguments, .warning)
@@ -30,7 +30,7 @@ class HapticFeedbackTests: XCTestCase {
     func testTriggeringFeedbackUsesSharedAudioEngine() {
         HapticFeedback.success.trigger()
         HapticFeedback.warning.trigger()
-        let calls = engine.calls(to: engine.triggerRef)
+        let calls = engine.calls(to: \.triggerRef)
         XCTAssertEqual(calls.count, 2)
         XCTAssertEqual(calls[0].arguments, .success)
         XCTAssertEqual(calls[1].arguments, .warning)

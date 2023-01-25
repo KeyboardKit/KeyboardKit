@@ -33,7 +33,7 @@ class AudioFeedbackTests: XCTestCase {
     func testTriggeringFeedbackUsesSharedAudioEngine() {
         AudioFeedback.custom(id: 111).trigger()
         AudioFeedback.custom(id: 124).trigger()
-        let calls = engine.calls(to: engine.triggerRef)
+        let calls = engine.calls(to: \.triggerRef)
         XCTAssertEqual(calls.count, 2)
         XCTAssertEqual(calls[0].arguments.id, 111)
         XCTAssertEqual(calls[1].arguments.id, 124)

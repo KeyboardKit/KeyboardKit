@@ -25,7 +25,7 @@ class UITextDocumentProxy_DeleteTests: XCTestCase {
 
     func testDeletingBackwardsCertainNumberOfTimes() {
         proxy.deleteBackward(times: 11)
-        let delete = proxy.calls(to: proxy.deleteBackwardRef)
+        let delete = proxy.calls(to: \.deleteBackwardRef)
         XCTAssertEqual(delete.count, 11)
     }
 
@@ -33,7 +33,7 @@ class UITextDocumentProxy_DeleteTests: XCTestCase {
     func deleteBackwardResult(for range: DeleteBackwardRange, _ expected: Int) -> Bool {
         proxy.resetCalls()
         proxy.deleteBackward(range: range)
-        return proxy.hasCalled(proxy.deleteBackwardRef, numberOfTimes: expected)
+        return proxy.hasCalled(\.deleteBackwardRef, numberOfTimes: expected)
     }
 
     func testDeleteBackwardWithCharRange() {

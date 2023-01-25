@@ -41,7 +41,6 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
             keyboardBehavior: controller.keyboardBehavior,
             keyboardFeedbackHandler: feedbackHandler,
             autocompleteContext: controller.autocompleteContext,
-            autocompleteAction: {},
             spaceDragGestureHandler: spaceDragHandler)
     }
 
@@ -57,18 +56,19 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
 
     func testHandlingGestureOnActionTriggersManyOperations() {
         handler.handle(.release, on: .character("a"))
-        XCTAssertTrue(handler.hasCalled(handler.tryRemoveAutocompleteInsertedSpaceRef))
-        XCTAssertTrue(handler.hasCalled(handler.tryApplyAutocompleteSuggestionRef))
-        XCTAssertTrue(handler.hasCalled(handler.tryReinsertAutocompleteRemovedSpaceRef))
-        XCTAssertTrue(handler.hasCalled(handler.tryEndSentenceRef))
-        XCTAssertTrue(handler.hasCalled(handler.tryChangeKeyboardTypeRef))
-        XCTAssertTrue(handler.hasCalled(handler.tryRegisterEmojiRef))
-        XCTAssertTrue(handler.hasCalled(handler.autocompleteActionRef))
+        XCTAssertTrue(handler.hasCalled(\.tryRemoveAutocompleteInsertedSpaceRef))
+        XCTAssertTrue(handler.hasCalled(\.tryApplyAutocompleteSuggestionRef))
+        XCTAssertTrue(handler.hasCalled(\.tryReinsertAutocompleteRemovedSpaceRef))
+        XCTAssertTrue(handler.hasCalled(\.tryEndSentenceRef))
+        XCTAssertTrue(handler.hasCalled(\.tryChangeKeyboardTypeRef))
+        XCTAssertTrue(handler.hasCalled(\.tryRegisterEmojiRef))
+        XCTAssertTrue(controller.hasCalled(\.performAutocompleteRef))
+        XCTAssertTrue(controller.hasCalled(\.performTextContextSyncRef))
     }
 
     func testHandlingDragGestureOnActionUsesSpaceDragHandlerForSpace() {
         handler.handleDrag(on: .space, from: .init(x: 1, y: 2), to: .init(x: 3, y: 4))
-        let calls = spaceDragHandler.calls(to: spaceDragHandler.handleDragGestureRef)
+        let calls = spaceDragHandler.calls(to: \.handleDragGestureRef)
         XCTAssertEqual(calls.count, 1)
         XCTAssertEqual(calls[0].arguments.0, CGPoint.init(x: 1, y: 2))
         XCTAssertEqual(calls[0].arguments.1, CGPoint.init(x: 3, y: 4))
@@ -79,7 +79,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         actions.forEach {
             handler.handleDrag(on: $0, from: .zero, to: .zero)
         }
-        XCTAssertFalse(spaceDragHandler.hasCalled(spaceDragHandler.handleDragGestureRef))
+        XCTAssertFalse(spaceDragHandler.hasCalled(\.handleDragGestureRef))
     }
 
 
@@ -124,7 +124,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
 
     func testTriggerFeedbackForGestureOnActionCallsInjectedHandler() {
         handler.triggerFeedback(for: .press, on: .character(""))
-        let calls = feedbackHandler.calls(to: feedbackHandler.triggerFeedbackRef)
+        let calls = feedbackHandler.calls(to: \.triggerFeedbackRef)
         XCTAssertEqual(calls.count, 1)
         XCTAssertEqual(calls[0].arguments.0, .press)
         XCTAssertEqual(calls[0].arguments.1, .character(""))
@@ -155,13 +155,13 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
     func testTryingToEndSentenceAfterGestureOnActionIsOnlyCalledIfBehaviorSaysYes() {
         textDocumentProxy.documentContextBeforeInput = ""
         handler.tryEndSentence(after: .release, on: .character("a"))
-        XCTAssertFalse(textDocumentProxy.hasCalled(textDocumentProxy.deleteBackwardRef))
-        XCTAssertFalse(textDocumentProxy.hasCalled(textDocumentProxy.insertTextRef))
+        XCTAssertFalse(textDocumentProxy.hasCalled(\.deleteBackwardRef))
+        XCTAssertFalse(textDocumentProxy.hasCalled(\.insertTextRef))
 
         textDocumentProxy.documentContextBeforeInput = "foo  "
         handler.tryEndSentence(after: .release, on: .space)
-        XCTAssertTrue(textDocumentProxy.hasCalled(textDocumentProxy.deleteBackwardRef, numberOfTimes: 2))
-        XCTAssertTrue(textDocumentProxy.hasCalled(textDocumentProxy.insertTextRef, numberOfTimes: 1))
+        XCTAssertTrue(textDocumentProxy.hasCalled(\.deleteBackwardRef, numberOfTimes: 2))
+        XCTAssertTrue(textDocumentProxy.hasCalled(\.insertTextRef, numberOfTimes: 1))
     }
 
     func testTryToHandleReplacementActionBeforeGestureOnActionReturnsTrueForTapOnValidCharAction() {
@@ -179,11 +179,11 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
 
     func testTryToRegisterEmojiAfterGestureOnActionRegisterEmojiForTapsOnEmoji() {
         handler.tryRegisterEmoji(after: .doubleTap, on: .emoji(Emoji("a")))
-        XCTAssertFalse(emojiProvider.hasCalled(emojiProvider.registerEmojiRef))
+        XCTAssertFalse(emojiProvider.hasCalled(\.registerEmojiRef))
         handler.tryRegisterEmoji(after: .release, on: .space)
-        XCTAssertFalse(emojiProvider.hasCalled(emojiProvider.registerEmojiRef))
+        XCTAssertFalse(emojiProvider.hasCalled(\.registerEmojiRef))
         handler.tryRegisterEmoji(after: .release, on: .emoji(Emoji("a")))
-        XCTAssertTrue(emojiProvider.hasCalled(emojiProvider.registerEmojiRef))
+        XCTAssertTrue(emojiProvider.hasCalled(\.registerEmojiRef))
     }
 
     func testTryToReinsertAutocompleteRemovedSpaceAfterGestureOnActionProceedsForTapOnSomeActions() {
@@ -195,11 +195,11 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         textDocumentProxy.resetCalls()
 
         handler.tryReinsertAutocompleteRemovedSpace(after: .press, on: .character(","))
-        XCTAssertFalse(textDocumentProxy.hasCalled(textDocumentProxy.insertTextRef))
+        XCTAssertFalse(textDocumentProxy.hasCalled(\.insertTextRef))
         handler.tryReinsertAutocompleteRemovedSpace(after: .release, on: .character("A"))
-        XCTAssertFalse(textDocumentProxy.hasCalled(textDocumentProxy.insertTextRef))
+        XCTAssertFalse(textDocumentProxy.hasCalled(\.insertTextRef))
         handler.tryReinsertAutocompleteRemovedSpace(after: .release, on: .character(","))
-        XCTAssertTrue(textDocumentProxy.hasCalled(textDocumentProxy.insertTextRef))
+        XCTAssertTrue(textDocumentProxy.hasCalled(\.insertTextRef))
 
         textDocumentProxy.resetCalls()
     }
@@ -209,7 +209,6 @@ private class TestClass: StandardKeyboardActionHandler, Mockable {
 
     var mock = Mock()
 
-    lazy var autocompleteActionRef = MockReference(autocompleteAction)
     lazy var handleGestureOnActionRef = MockReference(handle as (KeyboardGesture, KeyboardAction) -> Void)
     lazy var tryApplyAutocompleteSuggestionRef = MockReference(tryApplyAutocompleteSuggestion)
     lazy var tryChangeKeyboardTypeRef = MockReference(tryChangeKeyboardType)
@@ -219,7 +218,6 @@ private class TestClass: StandardKeyboardActionHandler, Mockable {
     lazy var tryRemoveAutocompleteInsertedSpaceRef = MockReference(tryRemoveAutocompleteInsertedSpace)
 
     override func handle(_ gesture: KeyboardGesture, on action: KeyboardAction) {
-        autocompleteAction = { self.call(self.autocompleteActionRef, args: ()) }
         super.handle(gesture, on: action)
         call(handleGestureOnActionRef, args: (gesture, action))
     }

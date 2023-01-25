@@ -36,8 +36,8 @@ class MostRecentEmojiProviderTests: XCTestCase {
         let list = ["a", "b", "c"]
         defaults.registerResult(for: defaults.stringArrayRef) { _ in list }
         provider.registerEmoji(Emoji("c"))
-        let read = defaults.calls(to: defaults.stringArrayRef)
-        let write = defaults.calls(to: defaults.setValueRef)
+        let read = defaults.calls(to: \.stringArrayRef)
+        let write = defaults.calls(to: \.setValueRef)
         XCTAssertEqual(read.count, 1)
         XCTAssertEqual(write.count, 1)
         XCTAssertEqual(write[0].arguments.0 as? [String], ["c", "a", "b"])
@@ -48,7 +48,7 @@ class MostRecentEmojiProviderTests: XCTestCase {
         let list = Array(repeating: "a", count: 100)
         defaults.registerResult(for: defaults.stringArrayRef) { _ in list }
         provider.registerEmoji(Emoji("c"))
-        let calls = defaults.calls(to: defaults.setValueRef)
+        let calls = defaults.calls(to: \.setValueRef)
         let written = calls[0].arguments.0 as? [String]
         XCTAssertEqual(written?.count, 30)
     }
