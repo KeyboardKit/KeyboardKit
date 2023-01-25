@@ -50,6 +50,7 @@ public struct KeyboardTextField: UIViewRepresentable {
      - Parameters:
        - placeholder: An optional placeholder text to show when the text field is empty, by default `nil`.
        - text: A text binding that will be affected by the text field.
+       - controller: The keyboard input view controller to affect.
        - hasFocus: A binding to communicate whether or not the text field has focus, by default `.constant(false)`.
        - resignOnReturn: Whether or not to resign first responder when return is pressed, by default `true`.
        - config: A configuration block that can be used to configure the text field, by default an empty configuration.
@@ -57,12 +58,14 @@ public struct KeyboardTextField: UIViewRepresentable {
     public init(
         _ placeholder: String? = nil,
         text: Binding<String>,
+        controller: KeyboardInputViewController,
         hasFocus: Binding<Bool> = .constant(false),
         resignOnReturn: Bool = true,
         config: @escaping Configuration = { _ in }
     ) {
         self.placeholder = placeholder
         self._text = text
+        self.controller = controller
         self._hasFocus = hasFocus
         self.resignOnReturn = resignOnReturn
         self.config = config
@@ -73,7 +76,10 @@ public struct KeyboardTextField: UIViewRepresentable {
      This typealias represents a `UITextField` configuration.
      */
     public typealias Configuration = (UITextField) -> Void
-    
+
+
+    private weak var controller: KeyboardInputViewController?
+
     @Binding
     private var text: String
 
@@ -81,7 +87,9 @@ public struct KeyboardTextField: UIViewRepresentable {
     private var hasFocus: Bool
     
     private let placeholder: String?
+
     private let config: Configuration
+
     private let resignOnReturn: Bool
     
     
@@ -91,6 +99,7 @@ public struct KeyboardTextField: UIViewRepresentable {
     
     public func makeUIView(context: Context) -> UITextField {
         let view = KeyboardInputTextField()
+        view.controller = controller
         view.placeholder = placeholder
         view.addTarget(context.coordinator, action: #selector(context.coordinator.textFieldDidChange), for: .editingChanged)
         view.hasFocus = $hasFocus
@@ -127,6 +136,8 @@ public extension KeyboardTextField {
 }
 
 class KeyboardInputTextField: UITextField, KeyboardInputComponent {
+
+    weak var controller: KeyboardInputViewController?
     
     var resignOnReturn: Bool = true
     var hasFocus: Binding<Bool> = .constant(false)

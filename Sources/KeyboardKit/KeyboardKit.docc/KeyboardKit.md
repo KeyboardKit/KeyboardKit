@@ -154,11 +154,6 @@ KeyboardKit is available under the MIT license.
 - ``StandardKeyboardBehavior``
 - ``StaticKeyboardBehavior``
 
-### Bridging
-
-- ``CharacterProvider``
-- ``StringProvider``
-
 ### Callouts
 
 - ``ActionCallout``
@@ -171,6 +166,7 @@ KeyboardKit is available under the MIT license.
 - ``InputCallout``
 - ``InputCalloutContext``
 - ``InputCalloutStyle``
+- ``KeyboardCalloutContext``
 - ``StandardCalloutActionProvider``
 
 - ``BaseCalloutActionProvider``

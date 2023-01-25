@@ -26,7 +26,7 @@ import SwiftUI
  */
 struct KeyboardView: View {
 
-    var controller: KeyboardController
+    var controller: KeyboardInputViewController
     
     @EnvironmentObject
     private var autocompleteContext: AutocompleteContext

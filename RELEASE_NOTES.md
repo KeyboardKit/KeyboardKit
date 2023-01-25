@@ -90,6 +90,8 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `KeyboardGesture` `.tap` has been removed, use `.release` instead.
 * `KeyboardInputViewController` replaces `actionCalloutContext` and `inputCalloutContext` with a single `calloutContext`.
 * `KeyboardReturnActionMappable` has been refactored to `KeyboardActionMappable`.
+* `KeyboardTextField` now requires an keyboard input view controller.
+* `KeyboardTextView` now requires an keyboard input view controller.
 * `StandardAutocompleteSuggestions` is renamed to `AutocompleteSuggestions`.
 * `StandardKeyboardActionHandler` now requires a `KeyboardController`.
 * `StandardKeyboardActionHandler` `inputViewController` initializer is now a convenience initializer.

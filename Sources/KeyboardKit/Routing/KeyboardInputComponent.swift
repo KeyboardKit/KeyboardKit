@@ -22,7 +22,7 @@ import UIKit
  have focus, and reset it when the focus is lost.
  */
 public protocol KeyboardInputComponent: UIResponder, UITextInput {
-    
+
     /**
      Whether or not the text input should resign itself when
      the user taps return.
@@ -32,16 +32,15 @@ public protocol KeyboardInputComponent: UIResponder, UITextInput {
      which is done with `viewController.textInputProxy = nil`.
      */
     var resignOnReturn: Bool { get }
+
+    /**
+     The text input proxy to affect when this component gets
+     and loses focus.
+     */
+    var controller: KeyboardInputViewController? { get set }
 }
 
 public extension KeyboardInputComponent {
-    
-    /**
-     The currently active input view controller.
-     */
-    var viewController: KeyboardInputViewController {
-        KeyboardInputViewController.shared
-    }
     
     /**
      Call this when the input becomes the first responder.
@@ -49,7 +48,7 @@ public extension KeyboardInputComponent {
      This will register the input as the current input proxy.
      */
     func handleBecomeFirstResponder() {
-        viewController.textInputProxy = TextInputProxy(input: self)
+        controller?.textInputProxy = TextInputProxy(input: self)
     }
     
     /**
@@ -71,7 +70,8 @@ public extension KeyboardInputComponent {
      This will remove the input from the current input proxy.
      */
     func handleResignFirstResponder() {
-        viewController.textInputProxy = nil
+        guard controller?.textInputProxy === self else { return }
+        controller?.textInputProxy = nil
     }
 }
 #endif
