@@ -17,7 +17,7 @@ let package = Package(
             targets: ["KeyboardKit"])
     ],
     dependencies: [
-        .package(url: "https://github.com/danielsaidi/MockingKit.git", .upToNextMajor(from: "1.0.0"))
+        .package(url: "https://github.com/danielsaidi/MockingKit.git", .upToNextMajor(from: "1.3.0"))
     ],
     targets: [
         .target(
