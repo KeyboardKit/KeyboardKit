@@ -2,9 +2,9 @@
 
 This article describes the KeyboardKit autocomplete engine and how to use it.
 
-In KeyboardKit, an ``AutocompleteProvider`` can be used to provide the keyboard with autocomplete suggestions as the user types.
+In KeyboardKit, an ``AutocompleteProvider`` can be used to provide the keyboard with autocomplete suggestions as the user types, triggers actions and moves the input cursor around.
 
-KeyboardKit doesn't have a standard autocomplete provider as it has for most other services, since it is a Pro feature. You can however create your own and integrate with any autocomplete engines, SDKs or services that you want.
+KeyboardKit doesn't have a standard autocomplete provider as it has for most other services. You can unlock one with [KeyboardKit Pro][Pro] or create a custom provider that integrates with any 3rd party autocomplete engine, SDK, api or service.
 
 [KeyboardKit Pro][Pro] specific features are described at the end of this document.
 
@@ -12,24 +12,25 @@ KeyboardKit doesn't have a standard autocomplete provider as it has for most oth
 
 ## How to perform autocomplete
 
-Autocomplete is performed automatically, since ``KeyboardInputViewController`` calls ``KeyboardInputViewController/performAutocomplete()`` when its text changes. You can also call this function at any time to perform an autocomplete operation whenever you want. 
+KeyboardKit wil automatically perform autocomplete as the user types, triggers actions and moves the input cursor around. This is done by calling ``KeyboardController/performAutocomplete()``, which is defined by ``KeyboardController`` and implemented by ``KeyboardInputViewController``, whenever autocomplete should be performed. You can also call this function at any time, whenever needed. 
 
-A successful autocomplete operation will update the controller's ``KeyboardInputViewController/autocompleteContext``, after which its ``AutocompleteContext/suggestions`` can be used, for instance by passing them into an ``AutocompleteToolbar``.
-
-The input controller has a ``KeyboardInputViewController/autocompleteText`` property that it uses when performing autocomplete. It uses the ``KeyboardInputViewController/textDocumentProxy`` text before the input cursor by default, but you can override the function to customize this behavior. 
-
-You can also override ``KeyboardInputViewController/performAutocomplete()`` and ``KeyboardInputViewController/resetAutocomplete()`` to customize the default autocomplete behavior. 
-
-If you ever need to reset the current autocomplete state, you can call ``KeyboardInputViewController/resetAutocomplete()`` to reset any existing suggestions.
+A successful autocomplete operation will update the observable ``KeyboardInputViewController/autocompleteContext``, after which the context's ``AutocompleteContext/suggestions`` can be used, for instance by passing them into an ``AutocompleteToolbar``. If you ever need to reset the current autocomplete state, you can call the controller's ``KeyboardController/resetAutocomplete()`` or the context's ``AutocompleteContext/reset()`` functions.
 
 
 
-## How to create a custom provider
+## How to customize the autocomplete behavior
 
-You can create a custom ``AutocompleteProvider`` to integrate with an embedded framework, external api etc.
+The most profound way to customize the autocomplete behavior is to replace the ``KeyboardInputViewController/autocompleteProvider``, which determines how autocomplete is performed. You can however also tweak the behavior regardless of which engine is used. 
+
+For instance, the input controller has an ``KeyboardInputViewController/autocompleteText`` property that it uses when performing autocomplete. It uses the ``KeyboardInputViewController/textDocumentProxy``'s text before the input cursor by default, but you can override the function to customize this behavior. You can also override ``KeyboardInputViewController/performAutocomplete()`` and ``KeyboardInputViewController/resetAutocomplete()`` to customize the default autocomplete behavior. 
+
+
+
+## How to create a custom autocomplete provider
+
+You can create a custom ``AutocompleteProvider`` to integrate with any 3rd party autocomplete engine, SDK, api or service.
 
 For instance, here's a custom provider that just adds a suffix to the provided text's current word:
-
 
 ```swift
 class MyAutocompleteProvider: AutocompleteProvider {
@@ -74,7 +75,7 @@ private extension MyAutocompleteProvider {
 }
 ```
 
-To use this provider instead of the standard one, just set the input controller's ``KeyboardInputViewController/autocompleteProvider`` to the new provider:
+To use this provider instead of the standard one, just set the input controller's ``KeyboardInputViewController/autocompleteProvider`` to your custom provider:
 
 ```swift
 class MyKeyboardViewController: KeyboardInputViewController {
@@ -92,29 +93,62 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## Views
 
-KeyboardKit has a bunch of autocomplete-specific views.  For instance, the ``AutocompleteToolbar`` toolbar can be added above a keyboard, to mimic the iOS keyboard autocomplete toolbar.
+KeyboardKit has a bunch of autocomplete-related views. For instance, the ``AutocompleteToolbar`` can be added above a keyboard to mimic a native iOS autocomplete toolbar:
+
+```swift
+struct KeyboardView: View {
+
+    var controller: KeyboardInputViewController
+    
+    @EnvironmentObject
+    private var autocompleteContext: AutocompleteContext
+
+    @EnvironmentObject
+    private var keyboardContext: KeyboardContext
+
+    var body: some View {
+        VStack(spacing: 0) {
+            autocompleteToolbar
+            SystemKeyboard(controller: controller)
+        }
+    }
+}
+
+private extension KeyboardView {
+
+    var autocompleteToolbar: some View {
+        AutocompleteToolbar(
+            suggestions: autocompleteContext.suggestions,
+            locale: keyboardContext.locale,
+            action: controller.insertAutocompleteSuggestion
+        ).opacity(keyboardContext.prefersAutocomplete ? 1 : 0)  // Still allocate height
+    }
+}
+```
+
+Note that you should always add a toolbar (or any other view with a height of at least 50 points) above a keyboard that uses input and action callouts, since callouts can't render outside the keyboard extension frame. This is why just hide the view instead of removing it.  
 
 
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks additional autocomplete capabilities.
+[KeyboardKit Pro][Pro] unlocks additional autocomplete providers and utilities.
 
 
 ### Standard autocomplete provider
 
-KeyboardKit Pro unlocks a ``StandardAutocompleteProvider`` and applies it to the input controller's ``KeyboardInputViewController/autocompleteProvider`` when a pro license is registered.
+KeyboardKit Pro unlocks a ``StandardAutocompleteProvider`` and applies it to the input controller's ``KeyboardInputViewController/autocompleteProvider`` when you setup KeyboardKit with a Pro license. You can inherit and customize this class to modify its behavior.
 
-The standard provider uses on-devices autocomplete capabilities that generate suggestions that are not comparable in quality with the ones in native iOS keyboards. They will however make your keyboard look and behave more like a native keyboard than if you don't have any autocomplete in place. 
+The standard provider uses on-devices capabilities to generate suggestions. It doesn't require full access, works offline and integrates with other system components, like the on-device lexicon.
 
-You can inherit this class and customize it if you find that some of its predictions are not what you want.
+Note that these standard autocomplete suggestions are not comparable in quality with the ones in a native iOS keyboard. For instance, there's no next word prediction and limited autocorrect. These suggestions will however make your keyboard look and behave more like a native keyboard than if you don't have any autocomplete at all. 
 
 
 ### Remote autocomplete provider
 
-KeyboardKit Pro also unlocks an ``ExternalAutocompleteProvider``, which can fetch autocomplete suggestions from any external api or data source. It can be customized to great extent, for instance to modify the request url path and parameters. 
+KeyboardKit Pro also unlocks an ``ExternalAutocompleteProvider`` that can fetch autocomplete suggestions from external APIs and data sources. It can be customized to great extent, for instance to modify the request url, parameters and headers. 
 
-Since most autocomplete api:s require a secret api token or some form of authentication, the demo app doesn't include a provider from start. You must create one yourself and manually register it in the Pro demo.
+Since most autocomplete APIs require a secret api token or some form of authentication, the demo app doesn't include a provider demo. You must create one yourself and manually register it in the Pro demo.
 
 
 

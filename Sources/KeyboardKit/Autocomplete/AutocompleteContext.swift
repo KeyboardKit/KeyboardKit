@@ -37,4 +37,14 @@ public class AutocompleteContext: ObservableObject {
      */
     @Published
     public var suggestions: [AutocompleteSuggestion] = []
+
+
+    /**
+     Reset the autocomplete contexts.
+     */
+    public func reset() {
+        isLoading = false
+        lastError = nil
+        suggestions = []
+    }
 }

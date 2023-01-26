@@ -378,7 +378,7 @@ open class KeyboardInputViewController: UIInputViewController {
      the ``autocompleteContext``.
      */
     open func resetAutocomplete() {
-        autocompleteContext.suggestions = []
+        autocompleteContext.reset()
     }
 }
 

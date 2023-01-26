@@ -36,6 +36,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 
 ### ✨ New features
 
+* `AutocompleteContext` has a new `reset` function.
 * `AutocompleteToolbar` is now available on all platforms. 
 * `EmojiCategoryKeyboard` is now available on all platforms.
 * `EmojiCategoryKeyboardMenu` is now available on all platforms.
