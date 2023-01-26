@@ -16,7 +16,7 @@ public extension UITextDocumentProxy {
      immediate beginning of a new sentence.
      */
     var isCursorAtNewSentence: Bool {
-        let content = documentContextBeforeInput?.trimmed()
+        let content = documentContextBeforeInput?.trimming(.whitespaces)
         guard let pre = content?.replacingOccurrences(of: "\n", with: "") else { return true }
         if pre.isEmpty { return true }
         let lastCharacter = String(pre.suffix(1))
@@ -30,7 +30,7 @@ public extension UITextDocumentProxy {
      */
     var isCursorAtNewSentenceWithSpace: Bool {
         guard let pre = documentContextBeforeInput else { return true }
-        let trimmed = pre.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmed = pre.trimming(.whitespacesAndNewlines)
         if pre.isEmpty || trimmed.isEmpty { return true }
         let lastTrimmed = String(trimmed.suffix(1))
         let isLastSpace = pre.last?.isWhitespace == true
@@ -46,7 +46,8 @@ public extension UITextDocumentProxy {
         guard isCursorAtNewSentence else { return nil }
         guard let context = documentContextBeforeInput else { return nil }
         let components = context.split(by: sentenceDelimiters).filter { !$0.isEmpty }
-        let ignoreLast = components.last?.trimmed().count == 0
+        let trimmed = components.last?.trimming(.whitespaces)
+        let ignoreLast = trimmed?.count == 0
         return ignoreLast ? nil : components.last
     }
 

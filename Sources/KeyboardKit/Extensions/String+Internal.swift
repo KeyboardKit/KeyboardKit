@@ -10,16 +10,12 @@ import Foundation
 
 extension String {
 
-    var hasTrimmedContent: Bool {
-        !trimmed().isEmpty
-    }
-
     func split(by separators: [String]) -> [String] {
         let separators = CharacterSet(charactersIn: separators.joined())
         return components(separatedBy: separators)
     }
 
-    func trimmed() -> String {
-        trimmingCharacters(in: .whitespaces)
+    func trimming(_ set: CharacterSet) -> String {
+        trimmingCharacters(in: set)
     }
 }
