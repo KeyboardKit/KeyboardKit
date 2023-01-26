@@ -340,5 +340,7 @@ KeyboardKit is available under the MIT license.
 
 ### Text
 
+- ``KeyboardCharacters``
+- ``KeyboardCharacterProvider``
 - ``TextDelimiters``
 - ``TextDelimiterProvider``

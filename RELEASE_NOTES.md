@@ -48,6 +48,8 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `KeyboardAction` gesture actions now use a `KeyboardController` instead of a `KeyboardInputViewController`.  
 * `KeyboardAppearance` will now apply to `.nextKeyboard` as well. 
 * `KeyboardCalloutContext` is a new context that lets lets us pass around a single context for input and action callouts.
+* `KeyboardCharacters` is a new class that provides keyboard-specific characters.
+* `KeyboardCharacterProvider` is a new protocol that provides keyboard-specific characters.
 * `KeyboardController` is a new protocol that lets us decouple actions from the input view controller.
 * `KeyboardContext` has a new `keyboardLocale` and new functions for setting locale and keyboard type.
 * `KeyboardInputViewController` has a new `calloutContext`.  

@@ -13,7 +13,7 @@ import Foundation
  able to retrieve word and sentence delimiter.
 
  This protocol uses the delimiters in ``TextDelimiters`` and
- provides static and non-static properties to its types.
+ provides similar properties to its implementing types.
 
  This protocol is implemented by `String` and other types in
  this library. `UITextDocumentProxy` also has the non-static

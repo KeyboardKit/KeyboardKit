@@ -14,13 +14,13 @@ class TextDelimiterProviderTests: XCTestCase {
     let sentenceDelimiters = TextDelimiters.sentenceDelimiters
     let wordDelimiters = TextDelimiters.wordDelimiters
 
-    func testTextDelimiterProvidersCanAccessSentenceDelimiters() {
+    func testProvidersCanAccessSentenceDelimiters() {
         let expected = sentenceDelimiters
         XCTAssertEqual(String.sentenceDelimiters, expected)
         XCTAssertEqual("".sentenceDelimiters, expected)
     }
 
-    func testTextDelimiterProvidersCanAccessWordDelimiters() {
+    func testProvidersCanAccessWordDelimiters() {
         let expected = wordDelimiters
         XCTAssertEqual(String.wordDelimiters, expected)
         XCTAssertEqual("".wordDelimiters, expected)
@@ -34,13 +34,13 @@ class TextDelimiterProviderTests: XCTestCase {
     }
     #endif
     
-    func testStringCanIdentifySentenceDelimiter() {
+    func testStringCanIdentifyAsSentenceDelimiter() {
         let result = String.sentenceDelimiters.map { $0.isSentenceDelimiter }
         XCTAssertTrue(result.allSatisfy { $0 == true })
         XCTAssertFalse("a".isSentenceDelimiter)
     }
 
-    func testStringCanIdentifyWordDelimiter() {
+    func testStringCanIdentifyAsWordDelimiter() {
         let result = String.wordDelimiters.map { $0.isWordDelimiter }
         XCTAssertTrue(result.allSatisfy { $0 == true })
         XCTAssertFalse("a".isWordDelimiter)
