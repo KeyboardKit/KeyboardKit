@@ -59,6 +59,9 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `ScrollViewGestureButton` is now available on watchOS 7.
 * `SpaceCursorDragGestureHandler` is now available on all platforms. 
 * `SystemKeyboardActionButton` is now available on all platforms.
+* `Text` is a new namespace for text analysis.
+* `TextDelimiters` is a new class that provides various delimiters.
+* `TextDelimiterProvider` is a new protocol that provides text delimiter functionality.
 
 ### 💡 Behavior changes
 

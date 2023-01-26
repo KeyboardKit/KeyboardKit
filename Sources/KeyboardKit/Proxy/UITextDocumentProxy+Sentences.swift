@@ -51,11 +51,6 @@ public extension UITextDocumentProxy {
     }
 
     /**
-     A list of western sentence delimiters.
-     */
-    var sentenceDelimiters: [String] { String.sentenceDelimiters }
-
-    /**
      End the current sentence by removing all trailing space
      characters, then injecting a dot and a space.
      */

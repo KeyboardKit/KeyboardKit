@@ -89,11 +89,6 @@ public extension UITextDocumentProxy {
         guard let result = context.split(by: wordDelimiters).dropLast().last?.trimmed() else { return nil }
         return result.isEmpty ? nil : result
     }
-
-    /**
-     A list of western word delimiters.
-     */
-    var wordDelimiters: [String] { String.wordDelimiters }
     
     /**
      Replace the current word with a replacement text.

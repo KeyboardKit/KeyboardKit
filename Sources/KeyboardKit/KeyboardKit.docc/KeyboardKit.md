@@ -337,3 +337,8 @@ KeyboardKit is available under the MIT license.
 - ``SystemKeyboardButtonShadow``
 - ``SystemKeyboardButtonText``
 - ``SystemKeyboardSpaceContent``
+
+### Text
+
+- ``TextDelimiters``
+- ``TextDelimiterProvider``
