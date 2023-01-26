@@ -87,9 +87,11 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `AutocompleteToolbarItemTitle` init parameters have been reordered.
 * `EmojiCategoryKeyboard` now requires an action handler and a callout contexts.
 * `EmojiCategoryKeyboard` init parameters have been refactored.
+* `EmojiCategoryKeyboardMenu` init parameters have been reordered.
+* `EmojiCharacterAnalyzer` replaces properties with functions.
 * `EmojiKeyboard` now requires an action handler and a callout contexts.
 * `EmojiKeyboard` init parameters have been reordered and renamed. 
-* `EmojiCategoryKeyboardMenu` init parameters have been reordered.
+* `EmojiStringAnalyzer` replaces properties with functions.
 * `InputCalloutContext` `.shared` has been replaced with init parameters.
 * `KeyboardAction` `.return` and `.newLine` are now `primary` variants.
 * `KeyboardAction` `standardTextDocumentProxyAction` has been removed.

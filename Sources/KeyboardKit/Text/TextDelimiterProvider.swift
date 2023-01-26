@@ -18,7 +18,7 @@ import Foundation
  This protocol is implemented by `String` and other types in
  this library. `UITextDocumentProxy` also has the non-static
  properties, but it doesn't implement the protocol. `String`
- adds more functionality on top of this information.
+ adds more functionality on top of this functionality.
  */
 public protocol TextDelimiterProvider {}
 

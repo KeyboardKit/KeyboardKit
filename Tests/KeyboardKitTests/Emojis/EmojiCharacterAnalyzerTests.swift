@@ -11,21 +11,35 @@ import XCTest
 
 class EmojiCharacterAnalyzerTests: XCTestCase {
 
+    class Analyzer: EmojiCharacterAnalyzer {}
+
+    let analyzer = Analyzer()
+    let combined = "☺️".char
+    let nonCombined = "😀".char
+    let simple = "😀".char
+    let nonSimple = "⌚️".char
+
     func testIsEmojiReturnsTrueForAllEmojis() {
         let allEmojis = EmojiCategory.all.flatMap { $0.emojis }
         allEmojis.forEach {
-            XCTAssertTrue($0.char.char.isEmoji)
+            let char = $0.char.char
+            XCTAssertTrue(char.isEmoji)
+            XCTAssertTrue(analyzer.isEmoji(char))
         }
     }
 
     func testIsCombinedEmojiReturnsTrueForSimpleAndCombinedEmojis() {
-        XCTAssertFalse("😀".char.isCombinedEmoji)
-        XCTAssertTrue("☺️".char.isCombinedEmoji)
+        XCTAssertTrue(combined.isCombinedEmoji)
+        XCTAssertTrue(analyzer.isCombinedEmoji(combined))
+        XCTAssertFalse(nonCombined.isCombinedEmoji)
+        XCTAssertFalse(analyzer.isCombinedEmoji(nonCombined))
     }
 
     func testIsSimpleEmojiReturnsTrueForSimpleAndCombinedEmojis() {
-        XCTAssertTrue("😀".char.isSimpleEmoji)
-        XCTAssertFalse("⌚️".char.isSimpleEmoji)
+        XCTAssertTrue(simple.isSimpleEmoji)
+        XCTAssertTrue(analyzer.isSimpleEmoji(simple))
+        XCTAssertFalse(nonSimple.isSimpleEmoji)
+        XCTAssertFalse(analyzer.isSimpleEmoji(nonSimple))
     }
 }
 

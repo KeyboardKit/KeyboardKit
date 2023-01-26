@@ -20,7 +20,7 @@ public protocol StringCasingAnalyzer {
 
 extension String: StringCasingAnalyzer {
 
-    // var string: String { self } - Implemented elsewhere
+    public var string: String { self }
 }
 
 public extension StringCasingAnalyzer {
