@@ -9,21 +9,16 @@
 import Foundation
 
 /**
- This protocol is meant to abstract using the keyboard input
- view controller within the library.
-
- The protocol currently defines what's currently required to
- make the `KeyboardAction+Actions` extensions depend on this
- protocol instead of ``KeyboardInputViewController``, but it
- may come to add functionality over time.
-
- The controller could, but perhaps shouldn't, add all of the
- functionality that it can derive from its proxy and context.
- Instead, let's keep the protocol focused instead of risking
- to misuse it.
+ This protocol is used to make using the keyboard input view
+ controller more abstract and available to more platforms.
 
  ``KeyboardInputViewController`` implements this protocol by
  calling itself, its document proxy, or its keyboard context.
+
+ The protocol currently defines what's currently required to
+ trigger controller-specific actions within the library, but
+ it may add functionality over time. Note that this protocol
+ should only specify operations and not state.
  */
 public protocol KeyboardController: AnyObject {
 
@@ -66,6 +61,11 @@ public protocol KeyboardController: AnyObject {
      Perform a text context sync.
      */
     func performTextContextSync()
+    
+    /**
+     Reset the current autocomplete state.
+     */
+    func resetAutocomplete()
 
     /**
      Select the next keyboard, if any.

@@ -72,6 +72,6 @@ class DemoKeyboardViewController: KeyboardInputViewController {
         super.viewWillSetupKeyboard()
 
         // Setup the demo with demo-specific keyboard view.
-        setup(with: KeyboardView(controller: self))
+        setup(with: DemoKeyboardView(controller: self))
     }
 }
