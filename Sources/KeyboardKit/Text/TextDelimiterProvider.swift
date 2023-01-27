@@ -54,19 +54,3 @@ public extension String {
         TextDelimiters.wordDelimiters.contains(self)
     }
 }
-
-
-// MARK: - UITextDocumentProxy
-
-#if os(iOS) || os(tvOS)
-import UIKit
-
-public extension UITextDocumentProxy {
-
-    /// A list of western sentence delimiters.
-    var sentenceDelimiters: [String] { TextDelimiters.sentenceDelimiters }
-
-    /// A list of western word delimiters.
-    var wordDelimiters: [String] { TextDelimiters.wordDelimiters }
-}
-#endif

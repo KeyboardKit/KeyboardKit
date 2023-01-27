@@ -10,7 +10,7 @@ import Foundation
 
 /**
  This protocol can be implemented by any type that should be
- able to analyze quotation information.
+ able to analyze quotation information for strings.
 
  Implementing the protocol will extend the implementing type
  with functionality that builds on these `String` extensions:

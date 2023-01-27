@@ -178,7 +178,6 @@ KeyboardKit is available under the MIT license.
 
 - ``KeyboardCase``
 - ``KeyboardCaseAdjustable``
-- ``StringCasingAnalyzer``
 
 ### Colors
 
@@ -340,8 +339,10 @@ KeyboardKit is available under the MIT license.
 
 ### Text
 
+- ``CasingAnalyzer``
 - ``KeyboardCharacters``
 - ``KeyboardCharacterProvider``
-- ``StringQuotationAnalyzer``
+- ``QuotationAnalyzer``
+- ``SentenceAnalyzer``
 - ``TextDelimiters``
 - ``TextDelimiterProvider``

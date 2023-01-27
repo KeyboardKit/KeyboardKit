@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-28.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2020-2023 Daniel Saidi. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS)
@@ -12,43 +12,37 @@ import UIKit
 public extension UITextDocumentProxy {
 
     /**
-     Whether or not the text document proxy cursor is at the
-     immediate beginning of a new sentence.
+     Check if the text input cursor is at the start of a new
+     sentence, with or without trailing whitespace.
      */
     var isCursorAtNewSentence: Bool {
-        let content = documentContextBeforeInput?.trimming(.whitespaces)
-        guard let pre = content?.replacingOccurrences(of: "\n", with: "") else { return true }
-        if pre.isEmpty { return true }
-        let lastCharacter = String(pre.suffix(1))
-        return lastCharacter.isSentenceDelimiter
+        documentContextBeforeInput?.isLastSentenceEnded ?? true
     }
 
     /**
-     Whether or not the text document proxy cursor is at the
-     beginning of a new sentence, with trailing spaces after
-     the last sentence delimiter.
+     Check if the text input cursor is at the start of a new
+     sentence, with trailing whitespace.
      */
-    var isCursorAtNewSentenceWithSpace: Bool {
-        guard let pre = documentContextBeforeInput else { return true }
-        let trimmed = pre.trimming(.whitespacesAndNewlines)
-        if pre.isEmpty || trimmed.isEmpty { return true }
-        let lastTrimmed = String(trimmed.suffix(1))
-        let isLastSpace = pre.last?.isWhitespace == true
-        let isLastNewline = pre.last?.isNewline == true
-        let isLastValid = isLastSpace || isLastNewline
-        return lastTrimmed.isSentenceDelimiter && isLastValid
+    var isCursorAtNewSentenceWithTrailingWhitespace: Bool {
+        documentContextBeforeInput?.isLastSentenceEndedWithTrailingWhitespace ?? true
     }
 
     /**
      The last ended sentence right before the cursor, if any.
      */
     var sentenceBeforeInput: String? {
-        guard isCursorAtNewSentence else { return nil }
-        guard let context = documentContextBeforeInput else { return nil }
-        let components = context.split(by: sentenceDelimiters).filter { !$0.isEmpty }
-        let trimmed = components.last?.trimming(.whitespaces)
-        let ignoreLast = trimmed?.count == 0
-        return ignoreLast ? nil : components.last
+        documentContextBeforeInput?.lastSentence
+    }
+
+    /**
+     A list of western sentence delimiters.
+
+     This returns ``TextDelimiters/sentenceDelimiters``. See
+     the ``TextDelimiters`` documentation for information on
+     how to modify this delimiter collection.
+     */
+    var sentenceDelimiters: [String] {
+        TextDelimiters.sentenceDelimiters
     }
 
     /**

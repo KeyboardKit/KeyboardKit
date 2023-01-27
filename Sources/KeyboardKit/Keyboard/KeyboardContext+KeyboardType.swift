@@ -34,7 +34,7 @@ private extension KeyboardContext {
         if locale.isRightToLeft { return lowercased }
         switch autoType {
         case .allCharacters: return uppercased
-        case .sentences: return textDocumentProxy.isCursorAtNewSentenceWithSpace ? uppercased : lowercased
+        case .sentences: return textDocumentProxy.isCursorAtNewSentenceWithTrailingWhitespace ? uppercased : lowercased
         case .words: return textDocumentProxy.isCursorAtNewWord ? uppercased : lowercased
         default: return lowercased
         }

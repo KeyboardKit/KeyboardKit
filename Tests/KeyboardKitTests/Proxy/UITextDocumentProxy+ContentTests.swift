@@ -25,82 +25,6 @@ class UITextDocumentProxy_ContentTests: XCTestCase {
     }
 
 
-    func isCursorAtNewSentence(for preCursorPart: String) -> Bool {
-        prepareProxy(with: preCursorPart)
-        return proxy.isCursorAtNewSentence
-    }
-
-    func testIsCursorAtNewSentenceReturnsTrueIfPreCursorPartIsMissing() {
-        XCTAssertTrue(proxy.isCursorAtNewSentence)
-    }
-
-    func testIsCursorAtNewSentenceReturnsFalseIfPreCursorPartEndsWithNonSentenceDelimiter() {
-        XCTAssertFalse(isCursorAtNewSentence(for: "foo"))
-        XCTAssertFalse(isCursorAtNewSentence(for: "foo "))
-    }
-
-    func testIsCursorAtNewSentenceReturnsTrueIfPreCursorIsEmptyOrEndsWithSentenceDelimiter() {
-        XCTAssertTrue(isCursorAtNewSentence(for: ""))
-        XCTAssertTrue(isCursorAtNewSentence(for: "foo."))
-        XCTAssertTrue(isCursorAtNewSentence(for: "foo! "))
-    }
-
-    func testIsCursorAtNewSentenceReturnsFalseIfPreCursorHasUnclosedSentenceAndNewline() {
-        XCTAssertFalse(isCursorAtNewSentence(for: "foo\n"))
-    }
-
-    func testIsCursorAtNewSentenceReturnsFalseIfPreCursorHasClosedSentenceAndNewline() {
-        XCTAssertTrue(isCursorAtNewSentence(for: "foo!\n"))
-    }
-
-
-    func isCursorAtNewSentenceWithSpaceResult(for preCursorPart: String) -> Bool {
-        prepareProxy(with: preCursorPart)
-        return proxy.isCursorAtNewSentenceWithSpace
-    }
-
-    func testIsCursorAtNewSentenceWithSpaceReturnsTrueIfPreCursorPartIsMissing() {
-        XCTAssertTrue(proxy.isCursorAtNewSentence)
-    }
-
-    func testIsCursorAtNewSentenceWithSpaceReturnsTrueIfPreCursorIsEmpty() {
-        XCTAssertTrue(isCursorAtNewSentenceWithSpaceResult(for: ""))
-    }
-
-    func testIsCursorAtNewSentenceWithSpaceReturnsTrueIfPreCursorIsSpace() {
-        XCTAssertTrue(isCursorAtNewSentenceWithSpaceResult(for: " "))
-    }
-
-    func testIsCursorAtNewSentenceWithSpaceReturnsTrueIfPreCursorIsSentenceDelimiter() {
-        XCTAssertTrue(isCursorAtNewSentenceWithSpaceResult(for: "\n"))
-    }
-
-    func testIsCursorAtNewSentenceWithSpaceReturnsFalseIfPreCursorPartEndsWithNonSentenceDelimiter() {
-        XCTAssertFalse(isCursorAtNewSentenceWithSpaceResult(for: "foo"))
-    }
-
-    func testIsCursorAtNewSentenceWithSpaceReturnsFalseIfPreCursorEndsWithSentenceDelimiter() {
-        XCTAssertFalse(isCursorAtNewSentenceWithSpaceResult(for: "foo."))
-    }
-
-    func testIsCursorAtNewSentenceWithSpaceReturnsFalseIfPreCursorHasUnclosedSentenceAndNewline() {
-        XCTAssertFalse(isCursorAtNewSentenceWithSpaceResult(for: "foo\n"))
-    }
-
-    func testIsCursorAtNewSentenceWithSpaceReturnsTrueIfPreCursorHasClosedSentenceAndNewline() {
-        XCTAssertTrue(isCursorAtNewSentenceWithSpaceResult(for: "foo!\n"))
-    }
-
-    func testIsCursorAtNewSentenceWithSpaceReturnsTrueIfPreCursorHasClosedSentenceAndMultipleNewlines() {
-        XCTAssertTrue(isCursorAtNewSentenceWithSpaceResult(for: "foo!\n\n"))
-    }
-
-    func testIsCursorAtNewSentenceWithSpaceReturnsFalseIfPreCursorEndsWithSentenceDelimiterFollowedBySpaces() {
-        XCTAssertTrue(isCursorAtNewSentenceWithSpaceResult(for: "foo. "))
-        XCTAssertTrue(isCursorAtNewSentenceWithSpaceResult(for: "foo.   "))
-    }
-
-
     func isCursorAtNewWordResult(for preCursorPart: String) -> Bool {
         prepareProxy(with: preCursorPart)
         return proxy.isCursorAtNewWord
@@ -119,23 +43,6 @@ class UITextDocumentProxy_ContentTests: XCTestCase {
         XCTAssertTrue(isCursorAtNewWordResult(for: ""))
         XCTAssertTrue(isCursorAtNewWordResult(for: "foo."))
         XCTAssertTrue(isCursorAtNewWordResult(for: "foo! "))
-    }
-
-
-    func sentenceBeforeInputResult(for preCursorPart: String, _ postCursorPart: String) -> String? {
-        prepareProxy(with: preCursorPart, postCursorPart)
-        return proxy.sentenceBeforeInput
-    }
-
-    func testSentenceBeforeInputResultReturnsLastEndedSentenceIfAny() {
-        XCTAssertNil(sentenceBeforeInputResult(for: "", ""))
-        XCTAssertNil(sentenceBeforeInputResult(for: "sentence", ""))
-        XCTAssertEqual(sentenceBeforeInputResult(for: "sentence.", ""), "sentence")
-        XCTAssertEqual(sentenceBeforeInputResult(for: "sentence!", ""), "sentence")
-        XCTAssertEqual(sentenceBeforeInputResult(for: "sentence .", ""), "sentence ")
-        XCTAssertNil(sentenceBeforeInputResult(for: "sentence. ", ""))
-        XCTAssertNil(sentenceBeforeInputResult(for: "sentence. a", ""))
-        XCTAssertNil(sentenceBeforeInputResult(for: "sentence.a", ""))
     }
 
 

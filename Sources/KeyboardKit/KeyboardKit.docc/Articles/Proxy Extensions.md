@@ -17,8 +17,6 @@ Since extensions are not included in the generated documentation, this article d
 
 ### Autocomplete
 
-KeyboardKey defines a couple of autocomplete-specific extensions that are used by the library.
-
 - `hasAutocompleteInsertedSpace`
 - `hasAutocompleteRemovedSpace`
 - `insertAutocompleteSuggestion(:tryInsertSpace)`
@@ -26,54 +24,25 @@ KeyboardKey defines a couple of autocomplete-specific extensions that are used b
 - `tryReinsertAutocompleteRemovedSpace()`
 - `tryRemoveAutocompleteInsertedSpace`
 
-You will probably not have to use these extensions, but they are there for you if you ever need them.
-
-
 ### Content
 
-KeyboardKit defines two content-specific extensions:
-
-- `trimmedDocumentContextAfterInput`
-- `trimmedDocumentContextBeforeInput`
-
-Note that the proxy doesn't have access to all text in the text document, but will only give you the text closest to the input cursor. [KeyboardKit Pro][Pro] however adds ways to get all the text. 
-
+- `documentContext`
 
 ### Delete
-
-KeyboardKit extends the text document proxy's by default limited functionality of only being able to delete backwards a single time:
 
 - `deleteBackward(times:)`
 - `deleteBackward(range:)`
 
-This makes it easier to e.g. delete an entire word or sentence. 
-
-
 ### Quotation
 
-KeyboardKit defines two functions for analyzing the current quotation state:
-
-- `isOpenAlternateQuotationBeforeInput(for:)`
-- `isOpenQuotationBeforeInput(for:)`
-
-These functions let you check if there are an unclosed quotation before the text input cursor. The behavior differs between locales, which is why you need to provide a `Locale`. 
-
-
-### Replacements
-
-KeyboardKit defines a function for getting preferred text replacements:
-
-- `preferredReplacement(for:locale:)`
-
-This function is for instance used to replace an opening quotation if the text actually needs a closing quotation.
-
+- `hasUnclosedQuotationBeforeInput(for:)`
+- `hasUnclosedAlternateQuotationBeforeInput(for:)`
+- `preferredQuotationReplacement(whenInserting:for:)`
 
 ### Sentences
 
-KeyboardKit defines a bunch of sentence-specific extensions:
-
 - `isCursorAtNewSentence`
-- `isCursorAtNewSentenceWithSpace`
+- `isCursorAtNewSentenceWithTrailingWhitespace`
 - `sentenceBeforeInput`
 - `sentenceDelimiters`
 - `endSentence()`

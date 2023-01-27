@@ -114,8 +114,9 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `SystemKeyboard` `standardKeyboardWidth` has been removed.
 * `SystemKeyboardActionButton` now requires a callout context.
 * `SystemKeyboardButtonRowItem` now requires a callout context.
-* `UITextDocumentProxy` `isOpenAlternateQuotationBeforeInput` is renamed to `hasUnclosedAlternateQuotationBeforeInput`.
 * `UITextDocumentProxy` `isOpenQuotationBeforeInput` is renamed to `hasUnclosedQuotationBeforeInput`.
+* `UITextDocumentProxy` `isOpenAlternateQuotationBeforeInput` is renamed to `hasUnclosedAlternateQuotationBeforeInput`.
+* `UITextDocumentProxy` `isCursorAtNewSentenceWithSpace` is renamed to `isCursorAtNewSentenceWithTrailingWhite`
 * `UITextDocumentProxy` `preferredReplacement` is renamed to `preferredQuotationReplacement`.
 * `View` `.keyboardGestures` now requires a callout context.
 

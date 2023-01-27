@@ -28,10 +28,10 @@ class QuotationAnalyzerTests: XCTestCase {
 
     func hasUnclosedAlternateQuotation(_ text: String?, locale: KeyboardLocale) -> Bool {
         proxy.documentContextBeforeInput = text
-        let staticCheck = analyzer.hasUnclosedAlternateQuotation(in: text ?? "", for: locale.locale)
+        let analyzerCheck = analyzer.hasUnclosedAlternateQuotation(in: text ?? "", for: locale.locale)
         let instanceCheck = text?.hasUnclosedAlternateQuotation(for: locale.locale) ?? false
         let proxyCheck = proxy.hasUnclosedAlternateQuotationBeforeInput(for: locale.locale)
-        return staticCheck && instanceCheck && proxyCheck
+        return analyzerCheck && instanceCheck && proxyCheck
     }
 
     func testHasUnclosedAlternateQuotationIsFalseIfNoTextExists() {
@@ -63,10 +63,10 @@ class QuotationAnalyzerTests: XCTestCase {
 
     func hasUnclosedQuotation(_ text: String?, locale: KeyboardLocale) -> Bool {
         proxy.documentContextBeforeInput = text
-        let staticCheck = analyzer.hasUnclosedQuotation(in: text ?? "", for: locale.locale)
+        let analyzerCheck = analyzer.hasUnclosedQuotation(in: text ?? "", for: locale.locale)
         let instanceCheck = text?.hasUnclosedQuotation(for: locale.locale) ?? false
         let proxyCheck = proxy.hasUnclosedQuotationBeforeInput(for: locale.locale)
-        return staticCheck && instanceCheck && proxyCheck
+        return analyzerCheck && instanceCheck && proxyCheck
     }
 
     func testHasUnclosedQuotationIsFalseIfNoTextExists() {

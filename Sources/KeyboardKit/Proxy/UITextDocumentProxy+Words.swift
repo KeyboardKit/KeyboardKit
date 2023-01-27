@@ -94,6 +94,17 @@ public extension UITextDocumentProxy {
         else { return nil }
         return result.isEmpty ? nil : result
     }
+
+    /**
+     A list of western word delimiters.
+
+     This returns ``TextDelimiters/wordDelimiters``. See the
+     ``TextDelimiters`` documentation for information on how
+     to modify this delimiter collection.
+     */
+    var wordDelimiters: [String] {
+        TextDelimiters.wordDelimiters
+    }
     
     /**
      Replace the current word with a replacement text.
