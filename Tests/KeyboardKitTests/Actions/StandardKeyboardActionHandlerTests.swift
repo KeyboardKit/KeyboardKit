@@ -29,6 +29,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         feedbackHandler = MockKeyboardFeedbackHandler()
         spaceDragHandler = MockDragGestureHandler()
         textDocumentProxy = MockTextDocumentProxy()
+        textDocumentProxy.documentContextBeforeInput = ""
 
         controller.keyboardContext.locale = KeyboardLocale.swedish.locale
         controller.keyboardContext.textDocumentProxy = textDocumentProxy
@@ -94,7 +95,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         }
     }
 
-    func testReplacementActionIsOnlyDefinedForTapOnCharWithProxyReplacement() {
+    func testReplacementActionIsOnlyDefinedForReleaseOnCharWithProxyReplacement() {
         var result = handler.replacementAction(for: .press, on: .character("”"))
         XCTAssertNil(result)
         result = handler.replacementAction(for: .release, on: .backspace)
@@ -130,7 +131,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         XCTAssertEqual(calls[0].arguments.1, .character(""))
     }
 
-    func testTryApplyAutocompleteSuggestionOnlyProceedsForTapOnSomeActionsWhenSuggestionsExist() {
+    func testTryApplyAutocompleteSuggestionOnlyProceedsForReleaseOnSomeActionsWhenSuggestionsExist() {
         let ref = textDocumentProxy.adjustTextPositionRef
         let autocompleteSuggestions = [AutocompleteSuggestion(text: "", isAutocomplete: true, isUnknown: false)]
 
@@ -164,7 +165,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         XCTAssertTrue(textDocumentProxy.hasCalled(\.insertTextRef, numberOfTimes: 1))
     }
 
-    func testTryToHandleReplacementActionBeforeGestureOnActionReturnsTrueForTapOnValidCharAction() {
+    func testTryToHandleReplacementActionBeforeGestureOnActionReturnsTrueForReleaseOnValidCharAction() {
         var result = handler.tryHandleReplacementAction(before: .release, on: .character("A"))
         XCTAssertFalse(result)
         result = handler.tryHandleReplacementAction(before: .doubleTap, on: .character("A"))
@@ -177,7 +178,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         XCTAssertFalse(result)
     }
 
-    func testTryToRegisterEmojiAfterGestureOnActionRegisterEmojiForTapsOnEmoji() {
+    func testTryToRegisterEmojiAfterGestureOnActionRegisterEmojiForReleasesOnEmoji() {
         handler.tryRegisterEmoji(after: .doubleTap, on: .emoji(Emoji("a")))
         XCTAssertFalse(emojiProvider.hasCalled(\.registerEmojiRef))
         handler.tryRegisterEmoji(after: .release, on: .space)
@@ -186,7 +187,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         XCTAssertTrue(emojiProvider.hasCalled(\.registerEmojiRef))
     }
 
-    func testTryToReinsertAutocompleteRemovedSpaceAfterGestureOnActionProceedsForTapOnSomeActions() {
+    func testTryToReinsertAutocompleteRemovedSpaceAfterGestureOnActionProceedsForReleaseOnSomeActions() {
         textDocumentProxy.documentContextBeforeInput = "hi"
         textDocumentProxy.documentContextAfterInput = "you"
         textDocumentProxy.tryInsertSpaceAfterAutocomplete()

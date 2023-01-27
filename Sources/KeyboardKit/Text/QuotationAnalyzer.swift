@@ -20,6 +20,7 @@ import Foundation
  let locale = Locale(identifier: "en-US")
  string.hasUnclosedAlternateQuotation(for: locale)
  string.hasUnclosedQuotation(for: locale)
+ string.preferredQuotationReplacement(whenAppending: "", for: locale)
  ```
 
  `UITextDocumentProxy` uses the extensions to implement this:
@@ -28,6 +29,7 @@ import Foundation
  let locale = Locale(identifier: "en-US")
  proxy.hasUnclosedQuotationBeforeInput(for: locale)
  proxy.hasUnclosedAlternateQuotationBeforeInput(for: locale)
+ proxy.preferredQuotationReplacement(whenInserting: "", for: locale)
  ```
 
  Although you can just use the type extensions and basically
@@ -72,6 +74,18 @@ public extension QuotationAnalyzer {
     ) -> Bool {
         string.hasUnclosedQuotation(beginDelimiter: begin, endDelimiter: end)
     }
+
+    /**
+     Check if a certain text that is about to be appended to
+     the string should be replaced with something else.
+     */
+    func preferredQuotationReplacement(
+        for string: String,
+        whenAppending text: String,
+        for locale: Locale
+    ) -> String? {
+        string.preferredQuotationReplacement(whenAppending: text, for: locale)
+    }
 }
 
 
@@ -111,5 +125,36 @@ public extension String {
         guard let beginIndex = (string.firstIndex { String($0) == begin }) else { return false }
         guard let endIndex = (string.firstIndex { String($0) == end }) else { return true }
         return beginIndex < endIndex
+    }
+
+    /**
+     Check if a certain text that is about to be appended to
+     the string should be replaced with something else.
+     */
+    func preferredQuotationReplacement(
+        whenAppending text: String,
+        for locale: Locale
+    ) -> String? {
+        if let replacement = preferredQuotationReplacement(for: text, locale: locale) { return replacement }
+        if let replacement = preferredAlternateQuotationReplacement(for: text, locale: locale) { return replacement }
+        return nil
+    }
+}
+
+private extension String {
+
+    func preferredQuotationReplacement(for text: String, locale: Locale) -> String? {
+        guard text == locale.quotationEndDelimiter || (text == "”" && text != locale.alternateQuotationEndDelimiter)  else { return nil }
+        let isOpen = hasUnclosedQuotation(for: locale)
+        let result = isOpen ? locale.quotationEndDelimiter : locale.quotationBeginDelimiter
+        return result == text ? nil : result
+    }
+
+    func preferredAlternateQuotationReplacement(for text: String, locale: Locale) -> String? {
+        guard locale.prefersAlternateQuotationReplacement else { return nil }
+        guard text == locale.alternateQuotationEndDelimiter || text == "‘"  else { return nil }
+        let isOpen = hasUnclosedAlternateQuotation(for: locale)
+        let result = isOpen ? locale.alternateQuotationEndDelimiter : locale.alternateQuotationBeginDelimiter
+        return result == text ? nil : result
     }
 }

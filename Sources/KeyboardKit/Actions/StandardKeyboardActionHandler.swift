@@ -178,7 +178,9 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
 
         // Apply proxy-based replacements, if any
         if case let .character(char) = action,
-           let replacement = textDocumentProxy.preferredReplacement(for: char, locale: keyboardContext.locale) {
+           let replacement = textDocumentProxy.preferredQuotationReplacement(
+            whenInserting: char,
+            for: keyboardContext.locale) {
             return .character(replacement)
         }
 

@@ -29,5 +29,13 @@ public extension UITextDocumentProxy {
     func hasUnclosedQuotationBeforeInput(for locale: Locale) -> Bool {
         documentContextBeforeInput?.hasUnclosedQuotation(for: locale) ?? false
     }
+
+    /**
+     Check if a certain text that is about to be inserted to
+     the proxy should be replaced with something else.
+     */
+    func preferredQuotationReplacement(whenInserting text: String, for locale: Locale) -> String? {
+        documentContextBeforeInput?.preferredQuotationReplacement(whenAppending: text, for: locale)
+    }
 }
 #endif
