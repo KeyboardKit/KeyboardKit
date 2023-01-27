@@ -28,9 +28,9 @@ Keyboard locales have more information than raw locales and can also have a set 
 
 
 
-## How to change the current locale 
+## How to change the current keyboard locale 
 
-You can change the current locale for a keyboard extension by setting the ``KeyboardContext``'s ``KeyboardContext/locale`` to a new `Locale` or use the more convenient ``KeyboardContext/setLocale(_:)``, which supports using a ``KeyboardLocale``.
+You can change the current keyboard locale by setting the ``KeyboardInputViewController/keyboardContext``'s ``KeyboardContext/locale`` to a new `Locale` or use the more convenient setter functions.
 
 You can change the available locales of a keyboard extension by setting the ``KeyboardContext``'s ``KeyboardContext/locales`` to the ones you want to use. This makes it possible to loop through the available locales with ``KeyboardContext/selectNextLocale()``.
 

@@ -11,7 +11,7 @@ import XCTest
 
 class KeyboardCharacterProviderTests: XCTestCase {
 
-    class Provider: KeyboardCharacterProvider {}
+    class Provider: KeyboardCharacterProvider {}
 
     let provider = Provider()
 

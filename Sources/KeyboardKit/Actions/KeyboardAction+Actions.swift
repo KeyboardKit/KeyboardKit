@@ -20,7 +20,7 @@ public extension KeyboardAction {
     
     /**
      This typealias represents a gesture action that affects
-     the provided ``KeyboardActionTrigger``.
+     the provided ``KeyboardController``.
      */
     typealias GestureAction = (KeyboardController?) -> Void
     

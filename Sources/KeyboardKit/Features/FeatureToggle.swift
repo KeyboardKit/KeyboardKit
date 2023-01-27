@@ -42,8 +42,7 @@ public final class FeatureToggle {
     // MARK: - Shared
 
     /**
-     The shared instance is resolved by returning the context
-     of ``KeyboardInputViewController/shared``.
+     This shared instance can be used for convenience.
      */
     public static var shared = FeatureToggle()
 

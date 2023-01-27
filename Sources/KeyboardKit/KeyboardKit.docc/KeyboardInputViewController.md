@@ -29,11 +29,11 @@ the ``autocompleteContext``.
 This class provides you with many observable properties for
 observing the keyboard's global state:
 
-* ``actionCalloutContext`` provides action callout information
 * ``autocompleteContext`` provides autocomplete information
-* ``inputCalloutContext`` provides input callout information
-* ``keyboardContext`` provides keybard information
+* ``calloutContext`` provides callout state and information
+* ``keyboardContext`` provides keyboard-specific information
 * ``keyboardFeedbackSettings`` provides feedback settings
+* ``keyboardTextContext`` provides keyboard text information
 
 These contexts are injected as environment objects into the
 root view and can be accessed anywhere in the hierarchy.

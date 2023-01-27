@@ -13,19 +13,10 @@ import Foundation
  able to analyze casing information for strings.
 
  Implementing the protocol will extend the implementing type
- with functionality that builds on these `String` extensions:
-
- ```swift
- let string = "..."
- string.isCapitalized
- string.isLowercased
- string.isUppercased
- ```
-
- Although you can just use the type extensions and basically
- ignore the protocol, the protocol plays together with other
- protocols and makes the functionality appear in the library
- docs, which by default omit native type extensions.
+ with functions that use public `String` extensions with the
+ same name as these extensions. You can use these extensions
+ directly and ignore this protocol, but the protocol exposes
+ this functionality to the library documentation.
  */
 public protocol CasingAnalyzer {}
 

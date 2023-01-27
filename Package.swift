@@ -23,7 +23,8 @@ let package = Package(
         .target(
             name: "KeyboardKit",
             dependencies: [],
-            resources: [.process("Resources")]),
+            resources: [.process("Resources")]
+        ),
         .testTarget(
             name: "KeyboardKitTests",
             dependencies: ["KeyboardKit", "MockingKit"])

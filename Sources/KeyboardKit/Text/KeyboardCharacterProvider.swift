@@ -13,26 +13,10 @@ import Foundation
  able to retrieve special keyboard characters.
 
  Implementing the protocol will extend the implementing type
- with functionality that builds on these `String` extensions:
-
- ```swift
- .carriageReturn
- .newline
- .space
- .tab
- .zeroWidthSpace
-
- .sentenceDelimiters
- .wordDelimiters
- ```
-
- The protocol uses the values in ``KeyboardCharacters``. You
- can change some of these properties.
-
- Although you can just use the type extensions and basically
- ignore the protocol, the protocol plays together with other
- protocols and makes the functionality appear in the library
- docs, which by default omit native type extensions.
+ with functions that use public `String` extensions with the
+ same name as these extensions. You can use these extensions
+ directly and ignore this protocol, but the protocol exposes
+ this functionality to the library documentation.
  */
 public protocol KeyboardCharacterProvider {}
 
