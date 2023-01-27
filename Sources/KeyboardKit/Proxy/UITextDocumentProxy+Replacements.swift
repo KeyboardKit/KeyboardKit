@@ -27,14 +27,14 @@ private extension UITextDocumentProxy {
     func preferredAlternateQuotationReplacement(for text: String, locale: Locale) -> String? {
         guard locale.prefersAlternateQuotationReplacement else { return nil }
         guard text == locale.alternateQuotationEndDelimiter || text == "‘"  else { return nil }
-        let isOpen = isOpenAlternateQuotationBeforeInput(for: locale)
+        let isOpen = hasUnclosedAlternateQuotationBeforeInput(for: locale)
         let result = isOpen ? locale.alternateQuotationEndDelimiter : locale.alternateQuotationBeginDelimiter
         return result == text ? nil : result
     }
     
     func preferredQuotationReplacement(for text: String, locale: Locale) -> String? {
         guard text == locale.quotationEndDelimiter || (text == "”" && text != locale.alternateQuotationEndDelimiter)  else { return nil }
-        let isOpen = isOpenQuotationBeforeInput(for: locale)
+        let isOpen = hasUnclosedQuotationBeforeInput(for: locale)
         let result = isOpen ? locale.quotationEndDelimiter : locale.quotationBeginDelimiter
         return result == text ? nil : result
     }

@@ -3,55 +3,31 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-03-17.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS)
-import Foundation
+
+// MARK: - UITextDocumentProxy
+
 import UIKit
 
 public extension UITextDocumentProxy {
-    
-    /**
-     Whether or not the input cursor is placed at a position
-     where the closest single quotation before the cursor is
-     a single quotation delimiter for the provided locale.
-     */
-    func isOpenAlternateQuotationBeforeInput(for locale: Locale) -> Bool {
-        isOpenQuotationBeforeInput(
-            beginDelimiter: locale.alternateQuotationBeginDelimiter,
-            endDelimiter: locale.alternateQuotationEndDelimiter)
-    }
-    
-    /**
-     Whether or not the input cursor is placed at a position
-     where the closest double quotation before the cursor is
-     a double quotation delimiter for the provided locale.
-     */
-    func isOpenQuotationBeforeInput(for locale: Locale) -> Bool {
-        isOpenQuotationBeforeInput(
-            beginDelimiter: locale.quotationBeginDelimiter,
-            endDelimiter: locale.quotationEndDelimiter)
-    }
-}
 
-private extension UITextDocumentProxy {
-    
-    func isOpenQuotationBeforeInput(beginDelimiter: String?, endDelimiter: String?) -> Bool {
-        guard
-            let beginDelimiter = beginDelimiter,
-            let endDelimiter = endDelimiter,
-            let text = documentContextBeforeInput?.reversed().toString(),
-            let beginIndex = (text.firstIndex { String($0) == beginDelimiter })
-        else { return false }
-        guard
-            let endIndex = (text.firstIndex { String($0) == endDelimiter }) else { return true }
-        return beginIndex < endIndex
+    /**
+     Check whether or not the last trailing quotation before
+     the input cursor is an alt. quotation begin delimiter.
+     */
+    func hasUnclosedAlternateQuotationBeforeInput(for locale: Locale) -> Bool {
+        documentContextBeforeInput?.hasUnclosedAlternateQuotation(for: locale) ?? false
     }
-}
 
-private extension Array where Element == Character {
-    
-    func toString() -> String { String(self) }
+    /**
+     Check whether or not the last trailing quotation before
+     the input cursor is a quotation begin delimiter.
+     */
+    func hasUnclosedQuotationBeforeInput(for locale: Locale) -> Bool {
+        documentContextBeforeInput?.hasUnclosedQuotation(for: locale) ?? false
+    }
 }
 #endif

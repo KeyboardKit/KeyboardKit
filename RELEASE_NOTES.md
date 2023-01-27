@@ -44,6 +44,8 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `EmojiKeyboard` is now available on all platforms.
 * `EmojiKeyboardStyle` has new context-based standard functions.
 * `ExternalKeyboardContext` is now available on macOS and tvOS as well.
+* `GestureButton` is now available on watchOS 7.
+* `InterfaceOrientation` has a new `landscape` case.
 * `KeyboardAction` gesture actions are now available on all platforms.  
 * `KeyboardAction` gesture actions now use a `KeyboardController` instead of a `KeyboardInputViewController`.  
 * `KeyboardAppearance` will now apply to `.nextKeyboard` as well. 
@@ -56,14 +58,16 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `KeyboardInputViewController` implements `KeyboardController` which gives it a bunch of new functions.
 * `NextKeyboardButton` now supports using any custom content.
 * `NextKeyboardController` is used instead of the shared controller.
-* `GestureButton` is now available on watchOS 7.
-* `InterfaceOrientation` has a new `landscape` case.
+* `QuotationAnalyzer` is a new protocol for analyzing quotations in strings.
 * `ScrollViewGestureButton` is now available on watchOS 7.
-* `SpaceCursorDragGestureHandler` is now available on all platforms. 
+* `SpaceCursorDragGestureHandler` is now available on all platforms.
+* `String` has new casing extensions.
+* `String` has new quotation extensions.
 * `SystemKeyboardActionButton` is now available on all platforms.
 * `Text` is a new namespace for text analysis.
 * `TextDelimiters` is a new class that provides various delimiters.
 * `TextDelimiterProvider` is a new protocol that provides text delimiter functionality.
+* `UITextDocumentProxy` quotation utilities is now available as `StringQuotationAnalyzer`.
 
 ### 💡 Behavior changes
 
@@ -105,11 +109,13 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `StandardKeyboardActionHandler` now requires a `KeyboardController`.
 * `StandardKeyboardActionHandler` `inputViewController` initializer is now a convenience initializer.
 * `StandardKeyboardActionHandler` `changeKeyboardTypeAction` has been removed.
-* `StringCasingAnalyzer` replaces properties with functions. 
+* `StringCasingAnalyzer` is renamed to `CasingAnalyzer` and replaces properties with functions. 
 * `SystemKeyboard` init parameters have been refactored.
 * `SystemKeyboard` `standardKeyboardWidth` has been removed.
 * `SystemKeyboardActionButton` now requires a callout context.
 * `SystemKeyboardButtonRowItem` now requires a callout context.
+* `UITextDocumentProxy` `isOpenAlternateQuotationBeforeInput` extension is renamed to `hasUnclosedAlternateQuotationBeforeInput`.
+* `UITextDocumentProxy` `isOpenQuotationBeforeInput` extension is renamed to `hasUnclosedQuotationBeforeInput`.
 * `View` `.keyboardGestures` now requires a callout context.
 
 

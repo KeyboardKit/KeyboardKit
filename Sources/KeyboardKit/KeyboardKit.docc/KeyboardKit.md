@@ -342,5 +342,6 @@ KeyboardKit is available under the MIT license.
 
 - ``KeyboardCharacters``
 - ``KeyboardCharacterProvider``
+- ``StringQuotationAnalyzer``
 - ``TextDelimiters``
 - ``TextDelimiterProvider``
