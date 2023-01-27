@@ -105,6 +105,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `StandardKeyboardActionHandler` now requires a `KeyboardController`.
 * `StandardKeyboardActionHandler` `inputViewController` initializer is now a convenience initializer.
 * `StandardKeyboardActionHandler` `changeKeyboardTypeAction` has been removed.
+* `StringCasingAnalyzer` replaces properties with functions. 
 * `SystemKeyboard` init parameters have been refactored.
 * `SystemKeyboard` `standardKeyboardWidth` has been removed.
 * `SystemKeyboardActionButton` now requires a callout context.
