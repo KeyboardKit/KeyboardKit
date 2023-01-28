@@ -95,7 +95,7 @@ public extension String {
      */
     var lastSentence: String? {
         guard isLastSentenceEnded else { return nil }
-        let components = split(by: sentenceDelimiters).filter { !$0.isEmpty }
+        let components = split(by: Self.sentenceDelimiters).filter { !$0.isEmpty }
         let trimmed = components.last?.trimming(.whitespaces)
         let ignoreLast = trimmed?.count == 0
         return ignoreLast ? nil : components.last

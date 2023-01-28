@@ -12,46 +12,101 @@ import Foundation
  This protocol can be implemented by any type that should be
  able to retrieve special keyboard characters.
 
- This protocol uses the values in ``KeyboardCharacters`` and
- provides similar properties to its implementing types.
+ Implementing the protocol will extend the implementing type
+ with functionality that builds on these `String` extensions:
 
- This protocol is implemented by `String` and other types in
- this library.
+ ```swift
+ .carriageReturn
+ .newline
+ .space
+ .tab
+ .zeroWidthSpace
+
+ .sentenceDelimiters
+ .wordDelimiters
+ ```
+
+ The protocol uses the values in ``KeyboardCharacters``. You
+ can change some of these properties.
+
+ Although you can just use the type extensions and basically
+ ignore the protocol, the protocol plays together with other
+ protocols and makes the functionality appear in the library
+ docs, which by default omit native type extensions.
  */
 public protocol KeyboardCharacterProvider {}
 
 public extension KeyboardCharacterProvider {
 
-    /**
-     A carriage return character.
-     */
-    static var carriageReturn: String { KeyboardCharacters.carriageReturn }
+    /// A carriage return character.
+    var carriageReturn: String { .carriageReturn }
 
-    /**
-     A new line character.
-     */
-    static var newline: String { KeyboardCharacters.newline }
+    /// A new line character.
+    var newline: String { .newline }
 
-    /**
-     A space character.
-     */
-    static var space: String { KeyboardCharacters.space }
+    /// A space character.
+    var space: String { .space }
 
-    /**
-     A tab character.
-     */
-    static var tab: String { KeyboardCharacters.tab }
+    /// A tab character.
+    var tab: String { .tab }
 
-    /**
-     A zero width space character.
+    /// A zero width space character used in some RTL languages.
+    var zeroWidthSpace: String { .zeroWidthSpace }
 
-     This character is used in some RTL languages, to add an
-     extra invisible space.
-     */
-    static var zeroWidthSpace: String { KeyboardCharacters.zeroWidthSpace }
+
+    /// A list of western sentence delimiters.
+    var sentenceDelimiters: [String] { .sentenceDelimiters }
+
+    /// A list of western word delimiters.
+    var wordDelimiters: [String] { .wordDelimiters }
 }
 
 
-// MARK: - Implementations
+// MARK: - String
 
-extension String: KeyboardCharacterProvider {}
+public extension String {
+
+    /// A carriage return character.
+    static let carriageReturn = "\r"
+
+    /// A new line character.
+    static let newline = "\n"
+
+    /// A space character.
+    static let space = " "
+
+    /// A tab character.
+    static let tab = "\t"
+
+    /// A zero width space character used in some RTL languages.
+    static let zeroWidthSpace = "\u{200B}"
+
+
+    /// A list of mutable western sentence delimiters.
+    static var sentenceDelimiters = ["!", ".", "?"]
+
+    /// A list of mutable western word delimiters.
+    static var wordDelimiters = "!.?,;:()[]{}<>".chars + [" ", .newline]
+}
+
+public extension String {
+
+    /// Whether or not this is a western sentence delimiter.
+    var isSentenceDelimiter: Bool {
+        Self.sentenceDelimiters.contains(self)
+    }
+
+    /// Whether or not this is a western word delimiter.
+    var isWordDelimiter: Bool {
+        Self.wordDelimiters.contains(self)
+    }
+}
+
+public extension Collection where Element == String {
+
+    /// A list of mutable western sentence delimiters.
+    static var sentenceDelimiters: [String] { String.sentenceDelimiters }
+
+    /// A list of mutable western word delimiters.
+    static var wordDelimiters: [String] { String.wordDelimiters }
+}

@@ -340,9 +340,7 @@ KeyboardKit is available under the MIT license.
 ### Text
 
 - ``CasingAnalyzer``
-- ``KeyboardCharacters``
 - ``KeyboardCharacterProvider``
 - ``QuotationAnalyzer``
 - ``SentenceAnalyzer``
-- ``TextDelimiters``
-- ``TextDelimiterProvider``
+- ``WordAnalyzer``

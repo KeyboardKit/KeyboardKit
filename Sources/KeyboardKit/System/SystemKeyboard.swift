@@ -27,9 +27,7 @@ import SwiftUI
  `standardButtonContent` and `standardButtonView`.
 
  Since the keyboard depends on the available width, you must
- provide a `width`. If you don't provide one, this view will
- use the ``standardKeyboardWidth`` which uses the width from
- the shared input view controller's view.
+ provide a `width`.
 
  The initializers may look strange, since the default values
  for `controller` and `width` are `nil` then resolved in the

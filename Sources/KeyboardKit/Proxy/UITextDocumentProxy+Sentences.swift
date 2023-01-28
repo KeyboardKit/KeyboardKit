@@ -37,12 +37,11 @@ public extension UITextDocumentProxy {
     /**
      A list of western sentence delimiters.
 
-     This returns ``TextDelimiters/sentenceDelimiters``. See
-     the ``TextDelimiters`` documentation for information on
-     how to modify this delimiter collection.
+     See the ``KeyboardCharacterProvider`` documentation for
+     information on how to modify this delimiter collection.
      */
     var sentenceDelimiters: [String] {
-        TextDelimiters.sentenceDelimiters
+        String.sentenceDelimiters
     }
 
     /**

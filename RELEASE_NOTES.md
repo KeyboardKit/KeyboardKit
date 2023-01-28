@@ -45,12 +45,12 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `EmojiKeyboardStyle` has new context-based standard functions.
 * `ExternalKeyboardContext` is now available on macOS and tvOS as well.
 * `GestureButton` is now available on watchOS 7.
+* `Image` `.keyboardEmojiSymbol` provides the old emoji keyboard button icon.
 * `InterfaceOrientation` has a new `landscape` case.
 * `KeyboardAction` gesture actions are now available on all platforms.  
 * `KeyboardAction` gesture actions now use a `KeyboardController` instead of a `KeyboardInputViewController`.  
 * `KeyboardAppearance` will now apply to `.nextKeyboard` as well. 
 * `KeyboardCalloutContext` is a new context that lets lets us pass around a single context for input and action callouts.
-* `KeyboardCharacters` is a new class that provides keyboard-specific characters.
 * `KeyboardCharacterProvider` is a new protocol that provides keyboard-specific characters.
 * `KeyboardController` is a new protocol that lets us decouple actions from the input view controller.
 * `KeyboardContext` has a new `keyboardLocale` and new functions for setting locale and keyboard type.
@@ -61,20 +61,17 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `QuotationAnalyzer` is a new protocol for analyzing quotations in strings.
 * `ScrollViewGestureButton` is now available on watchOS 7.
 * `SpaceCursorDragGestureHandler` is now available on all platforms.
-* `String` has new casing, quotation, word and sentence extensions.
+* `String` has new casing, keyboard character, quotation, word and sentence extensions.
 * `SystemKeyboardActionButton` is now available on all platforms.
 * `Text` is a new namespace for text analysis.
-* `TextDelimiters` is a new class that provides various delimiters.
-* `TextDelimiterProvider` is a new protocol that provides text delimiter functionality.
 * `UITextDocumentProxy` quotation utilities is now available as `StringQuotationAnalyzer`.
 
 ### 💡 Behavior changes
 
-* A lot of `os()` checks have been removed.
 * `ActionCallout` is no longer greedy.
-* `InterfaceOrientation` `.current` now returns correct rotations on all platforms.
 * `InputCallout` is no longer greedy.
-* `Image` `.keyboardEmoji` is looks closer to the native icon. Use `.keyboardEmojiSymbol` to use the old SF Symbols variant.
+* `InterfaceOrientation` `.current` now returns correct rotations on all platforms.
+* `Image` `.keyboardEmoji` is looks closer to the native icon.
 * `KeyboardAction` `.backspace` now triggers on `.press` instead of `.release`.
 * `KeyboardLayoutConfiguration` now behaves the same on all platforms.
 
@@ -82,40 +79,38 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 
 * All deprecated code has been removed.
 * The library now targets iOS 14, macOS 11, tvOS 14 and watchOS 7.
-* `ActionCalloutContext` `.shared` has been replaced with init parameters.
+* `ActionCalloutContext` `.shared` has been removed.
 * `AutocompleteSuggestions` is now a struct instead of a protocol.
-* `AutocompleteToolbar` has no standard action anymore.
-* `AutocompleteToolbar` `ReplacementAction` is renamed to `Action`.
+* `AutocompleteToolbar` standard actions have been removed.
+* `AutocompleteToolbar` `ReplacementAction` has been renamed to `Action`.
 * `AutocompleteToolbarItem` init parameters have been reordered.
 * `AutocompleteToolbarItemTitle` init parameters have been reordered.
-* `EmojiCategoryKeyboard` now requires an action handler and a callout context.
 * `EmojiCategoryKeyboard` init parameters have been refactored.
 * `EmojiCategoryKeyboardMenu` init parameters have been reordered.
-* `EmojiCharacterAnalyzer` replaces properties with functions.
-* `EmojiKeyboard` now requires an action handler and a callout contexts.
-* `EmojiKeyboard` init parameters have been reordered and renamed. 
-* `EmojiStringAnalyzer` replaces properties with functions.
-* `InputCalloutContext` `.shared` has been replaced with init parameters.
-* `KeyboardAction` `.return` and `.newLine` are now `primary` variants.
+* `EmojiCharacterAnalyzer` has replaced properties with functions.
+* `EmojiKeyboard` init parameters have been refactored. 
+* `EmojiStringAnalyzer` has replaced properties with functions.
+* `InputCalloutContext` `.shared` has been removed.
+* `KeyboardAction` `.return` and `.newLine` have been replaced by `primary` variants.
 * `KeyboardAction` `standardTextDocumentProxyAction` has been removed.
-* `KeyboardGesture` `.tap` has been removed, use `.release` instead.
-* `KeyboardInputViewController` replaces `actionCalloutContext` and `inputCalloutContext` with a single `calloutContext`.
+* `KeyboardGesture` `.tap` has been replaced by `.release`.
+* `KeyboardInputViewController` has replaced `actionCalloutContext` and `inputCalloutContext` with a single `calloutContext`.
 * `KeyboardInputViewController` `.shared` has been removed.
 * `KeyboardReturnActionMappable` has been refactored to `KeyboardActionMappable`.
 * `KeyboardTextField` now requires an keyboard input view controller.
 * `KeyboardTextView` now requires an keyboard input view controller.
-* `StandardAutocompleteSuggestions` is renamed to `AutocompleteSuggestions`.
+* `StandardAutocompleteSuggestions` has been renamed to `AutocompleteSuggestions`.
 * `StandardKeyboardActionHandler` now requires a `KeyboardController`.
 * `StandardKeyboardActionHandler` `inputViewController` initializer is now a convenience initializer.
 * `StandardKeyboardActionHandler` `changeKeyboardTypeAction` has been removed.
-* `StringCasingAnalyzer` is renamed to `CasingAnalyzer` and replaces properties with functions. 
+* `StringCasingAnalyzer` has been renamed to `CasingAnalyzer`.
+* `StringCasingAnalyzer` has replaced properties with functions. 
 * `SystemKeyboard` init parameters have been refactored.
 * `SystemKeyboard` `standardKeyboardWidth` has been removed.
 * `SystemKeyboardActionButton` now requires a callout context.
 * `SystemKeyboardButtonRowItem` now requires a callout context.
-* `UITextDocumentProxy` `isOpenQuotationBeforeInput` is renamed to `hasUnclosedQuotationBeforeInput`.
-* `UITextDocumentProxy` `isOpenAlternateQuotationBeforeInput` is renamed to `hasUnclosedAlternateQuotationBeforeInput`.
-* `UITextDocumentProxy` `isCursorAtNewSentenceWithSpace` is renamed to `isCursorAtNewSentenceWithTrailingWhite`
+* `UITextDocumentProxy` `isOpenQuotationBeforeInput` has been renamed to `hasUnclosedQuotationBeforeInput`.
+* `UITextDocumentProxy` `isOpenAlternateQuotationBeforeInput`has been renamed to `hasUnclosedAlternateQuotationBeforeInput`.
 * `UITextDocumentProxy` `preferredReplacement` is renamed to `preferredQuotationReplacement`.
 * `View` `.keyboardGestures` now requires a callout context.
 

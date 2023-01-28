@@ -85,12 +85,11 @@ public extension UITextDocumentProxy {
     /**
      A list of western word delimiters.
 
-     This returns ``TextDelimiters/wordDelimiters``. See the
-     ``TextDelimiters`` documentation for information on how
-     to modify this delimiter collection.
+     See the ``KeyboardCharacterProvider`` documentation for
+     information on how to modify this delimiter collection.
      */
     var wordDelimiters: [String] {
-        TextDelimiters.wordDelimiters
+        String.wordDelimiters
     }
     
     /**
