@@ -1,5 +1,5 @@
 //
-//  UITextDocumentProxy+Content.swift
+//  UITextDocumentProxy+Sentences.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-28.

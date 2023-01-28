@@ -61,8 +61,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `QuotationAnalyzer` is a new protocol for analyzing quotations in strings.
 * `ScrollViewGestureButton` is now available on watchOS 7.
 * `SpaceCursorDragGestureHandler` is now available on all platforms.
-* `String` has new casing extensions.
-* `String` has new quotation extensions.
+* `String` has new casing, quotation, word and sentence extensions.
 * `SystemKeyboardActionButton` is now available on all platforms.
 * `Text` is a new namespace for text analysis.
 * `TextDelimiters` is a new class that provides various delimiters.
@@ -89,7 +88,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `AutocompleteToolbar` `ReplacementAction` is renamed to `Action`.
 * `AutocompleteToolbarItem` init parameters have been reordered.
 * `AutocompleteToolbarItemTitle` init parameters have been reordered.
-* `EmojiCategoryKeyboard` now requires an action handler and a callout contexts.
+* `EmojiCategoryKeyboard` now requires an action handler and a callout context.
 * `EmojiCategoryKeyboard` init parameters have been refactored.
 * `EmojiCategoryKeyboardMenu` init parameters have been reordered.
 * `EmojiCharacterAnalyzer` replaces properties with functions.

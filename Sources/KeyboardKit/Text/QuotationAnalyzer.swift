@@ -23,14 +23,8 @@ import Foundation
  string.preferredQuotationReplacement(whenAppending: "", for: locale)
  ```
 
- `UITextDocumentProxy` uses the extensions to implement this:
-
- ```swift
- let locale = Locale(identifier: "en-US")
- proxy.hasUnclosedQuotationBeforeInput(for: locale)
- proxy.hasUnclosedAlternateQuotationBeforeInput(for: locale)
- proxy.preferredQuotationReplacement(whenInserting: "", for: locale)
- ```
+ `UITextDocumentProxy` uses this extensions to implement its
+ quotation-specific extensions.
 
  Although you can just use the type extensions and basically
  ignore the protocol, the protocol plays together with other

@@ -1,9 +1,9 @@
 //
-//  UITextDocumentProxy+CurrentWord.swift
+//  UITextDocumentProxy+Words.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-07-02.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2019-2023 Daniel Saidi. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS)
@@ -25,27 +25,14 @@ public extension UITextDocumentProxy {
      The part of the current word that is before the cursor.
      */
     var currentWordPreCursorPart: String? {
-        guard var string = documentContextBeforeInput else { return nil }
-        var result = ""
-        while let char = string.popLast() {
-            guard shouldIncludeCharacterInCurrentWord(char) else { return result }
-            result.insert(char, at: result.startIndex)
-        }
-        return result
+        documentContextBeforeInput?.wordFragmentAtEnd
     }
     
     /**
      The part of the current word that is after the cursor.
      */
     var currentWordPostCursorPart: String? {
-        guard let string = documentContextAfterInput else { return nil }
-        var reversed = String(string.reversed())
-        var result = ""
-        while let char = reversed.popLast() {
-            guard shouldIncludeCharacterInCurrentWord(char) else { return result }
-            result.append(char)
-        }
-        return result
+        documentContextAfterInput?.wordFragmentAtStart
     }
     
     /**

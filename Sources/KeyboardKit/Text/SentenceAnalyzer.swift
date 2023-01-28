@@ -22,13 +22,8 @@ import Foundation
  string.lastSentence                                // You are the best.
  ```
 
- `UITextDocumentProxy` uses the extensions to implement this:
-
- ```swift
- proxy.isCursorAtNewSentence
- proxy.isLastSentenceEndedWithTrailingWhitespace
- proxy.sentenceBeforeInput
- ```
+ `UITextDocumentProxy` uses this extensions to implement its
+ sentence-specific extensions.
 
  Although you can just use the type extensions and basically
  ignore the protocol, the protocol plays together with other
