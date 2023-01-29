@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-06-15.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2020-2023 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
@@ -143,10 +143,10 @@ public class KeyboardContext: ObservableObject {
     
     #if os(iOS) || os(tvOS)
     /**
-     The text document proxy that is currently active.
+     The main text document proxy.
      */
     @Published
-    public var originalTextDocumentProxy: UITextDocumentProxy = PreviewTextDocumentProxy()
+    public var mainTextDocumentProxy: UITextDocumentProxy = PreviewTextDocumentProxy()
 
     /**
      The text document proxy that is currently active.
@@ -313,8 +313,8 @@ extension KeyboardContext {
         if screenSize != controller.screenSize {
             screenSize = controller.screenSize
         }
-        if originalTextDocumentProxy === controller.originalTextDocumentProxy {} else {
-            originalTextDocumentProxy = controller.originalTextDocumentProxy
+        if mainTextDocumentProxy === controller.mainTextDocumentProxy {} else {
+            mainTextDocumentProxy = controller.mainTextDocumentProxy
         }
         if textDocumentProxy === controller.textDocumentProxy {} else {
             textDocumentProxy = controller.textDocumentProxy

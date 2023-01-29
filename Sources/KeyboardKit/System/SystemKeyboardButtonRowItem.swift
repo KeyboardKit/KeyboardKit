@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-02.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2020-2023 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI
@@ -100,7 +100,7 @@ private extension View {
     func localeContextMenu(for action: KeyboardAction, context: KeyboardContext) -> some View {
         if action == .nextLocale {
             self.localeContextMenu(for: context)
-                .id(context.locale.identifier)  // TODO: Remove when SystemKeyboard no longer uses AnyView
+                .id(context.locale.identifier)
         } else {
             self
         }

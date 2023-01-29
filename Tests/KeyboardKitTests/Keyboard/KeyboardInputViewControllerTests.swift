@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-28.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS)
@@ -79,7 +79,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
     // MARK: - Properties
 
     func testTextDocumentProxyReturnsTheOriginalProxyIfNoInputProxyIsDefined() {
-        XCTAssertTrue(vc.textDocumentProxy === vc.originalTextDocumentProxy)
+        XCTAssertTrue(vc.textDocumentProxy === vc.mainTextDocumentProxy)
     }
 
     func testTextDocumentProxyReturnsTheInputProxyIfOneIsSet() {
