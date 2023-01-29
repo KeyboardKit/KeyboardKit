@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-05-06.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
@@ -15,8 +15,7 @@ import Foundation
 public enum DeleteBackwardRange {
 
     /// Delete a single char at a time.
-    /// TODO: Rename this to character in KeyboardKit 7.
-    case char
+    case character
 
     /// Delete an entire word at a time.
     case word

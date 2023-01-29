@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-07-04.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS)
@@ -36,12 +36,12 @@ class UITextDocumentProxy_DeleteTests: XCTestCase {
         return proxy.hasCalled(\.deleteBackwardRef, numberOfTimes: expected)
     }
 
-    func testDeleteBackwardWithCharRange() {
+    func testDeleteBackwardWithCharacterRange() {
         proxy.documentContextBeforeInput = nil
-        XCTAssertTrue(deleteBackwardResult(for: .char, 1))
+        XCTAssertTrue(deleteBackwardResult(for: .character, 1))
 
         proxy.documentContextBeforeInput = "abc 123 "
-        XCTAssertTrue(deleteBackwardResult(for: .char, 1))
+        XCTAssertTrue(deleteBackwardResult(for: .character, 1))
     }
 
     func testDeleteBackwardWithWordRange() {
@@ -73,14 +73,14 @@ class UITextDocumentProxy_DeleteTests: XCTestCase {
 
     func testDeleteBackwardTextReturnsNilIfNoTextExistsBeforeInput() {
         proxy.documentContextBeforeInput = nil
-        XCTAssertNil(deleteBackwardTextResult(for: .char))
+        XCTAssertNil(deleteBackwardTextResult(for: .character))
         XCTAssertNil(deleteBackwardTextResult(for: .word))
         XCTAssertNil(deleteBackwardTextResult(for: .sentence))
     }
 
-    func testDeleteBackwardTextReturnsWithCharRange() {
+    func testDeleteBackwardTextReturnsCharacterRange() {
         proxy.documentContextBeforeInput = "abc 123 "
-        XCTAssertEqual(deleteBackwardTextResult(for: .char), " ")
+        XCTAssertEqual(deleteBackwardTextResult(for: .character), " ")
     }
 
     func testDeleteBackwardTextReturnsWordRange() {

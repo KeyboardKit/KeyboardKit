@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2022-01-19.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2022-2023 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
@@ -36,7 +36,7 @@ open class StaticKeyboardBehavior: KeyboardBehavior {
      The range that the backspace key should delete when the
      key is long pressed.
      */
-    open var backspaceRange: DeleteBackwardRange { .char }
+    open var backspaceRange: DeleteBackwardRange { .character }
     
     /**
      The preferred keyboard type that should be applied when

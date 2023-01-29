@@ -72,7 +72,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     */
     public var backspaceRange: DeleteBackwardRange {
         let duration = repeatGestureTimer.duration ?? 0
-        return duration > 3 ? .word : .char
+        return duration > 3 ? .word : .character
     }
     
     /**

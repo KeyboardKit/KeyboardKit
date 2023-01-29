@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-06.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS)
@@ -37,8 +37,8 @@ class StandardKeyboardBehaviorTests: XCTestCase {
     }
 
     func testBackspaceRangeIsCharBeforeThreeSecondsThenWords() {
-        XCTAssertEqual(backspaceRangeResult(after: 0), .char)
-        XCTAssertEqual(backspaceRangeResult(after: 2.9), .char)
+        XCTAssertEqual(backspaceRangeResult(after: 0), .character)
+        XCTAssertEqual(backspaceRangeResult(after: 2.9), .character)
         XCTAssertEqual(backspaceRangeResult(after: 3.1), .word)
     }
 

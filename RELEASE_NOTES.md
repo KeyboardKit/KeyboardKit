@@ -86,6 +86,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `AutocompleteToolbar` `ReplacementAction` has been renamed to `Action`.
 * `AutocompleteToolbarItem` init parameters have been reordered.
 * `AutocompleteToolbarItemTitle` init parameters have been reordered.
+* `DeleteBackwardRange` `char` has been renamed to `character`.
 * `EmojiCategoryKeyboard` init parameters have been refactored.
 * `EmojiCategoryKeyboardMenu` init parameters have been reordered.
 * `EmojiCharacterAnalyzer` and `EmojiStringAnalyzer` have been merged into `EmojiAnalyzer`.
