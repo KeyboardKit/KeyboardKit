@@ -15,14 +15,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 Some things that are planned for the 7.0 release:
 
-* All TODOS will be addressed.
-* All shared instances should be removed.
-* All dependencies to the shared instances should be replaced with init parameters, even for the smallest view.
-* KeyboardAction.shift will have a `current` parameter instead of `currentState`.
-* KeyboardAppearance will convert parameterless functions to properties. 
 * KeyboardKit Pro active and enabled labels will use an observed object to update when the state changes.
-* KeyboardInputViewController `textInputProxy` will be renamed to `keyboardInputProxy`.
-* KeyboardInputViewController `originalTextDocumentProxy` will be renamed to `mainTextDocumentProxy`.
 
 
 
@@ -118,6 +111,12 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `UITextDocumentProxy` `isOpenAlternateQuotationBeforeInput`has been renamed to `hasUnclosedAlternateQuotationBeforeInput`.
 * `UITextDocumentProxy` `preferredReplacement` is renamed to `preferredQuotationReplacement`.
 * `View` `.keyboardGestures` now requires a callout context.
+
+
+
+## 6.9.5
+
+This version adjusts licenses in KeyboardKit Pro, otherwise it's identical to `6.9.4`. 
 
 
 

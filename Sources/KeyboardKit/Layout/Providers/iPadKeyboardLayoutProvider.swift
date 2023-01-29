@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-02.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI
@@ -19,8 +19,8 @@ import SwiftUI
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
 
- `TODO` This provider is currently used for iPad Air and Pro
- devices as well, although they should use different layouts.
+ Note that this provider is used on iPad Air and Pro devices
+ as well, although they should use different layouts.
  */
 open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
 

@@ -201,7 +201,7 @@ open class KeyboardInputViewController: UIInputViewController {
      */
     public lazy var calloutActionProvider: CalloutActionProvider = StandardCalloutActionProvider(
         keyboardContext: keyboardContext) {
-        didSet { refreshProperties() }  // TODO: Remove
+        didSet { refreshProperties() }
     }
     
     /**
@@ -383,16 +383,16 @@ open class KeyboardInputViewController: UIInputViewController {
 
 private extension KeyboardInputViewController {
 
+    func refreshProperties() {
+        refreshLayoutProvider()
+        refreshCalloutActionContext()
+    }
+
     func refreshCalloutActionContext() {
         calloutContext.action = ActionCalloutContext(
             actionHandler: keyboardActionHandler,
             actionProvider: calloutActionProvider
         )
-    }
-    
-    func refreshProperties() {
-        refreshLayoutProvider()
-        refreshCalloutActionContext()
     }
     
     func refreshLayoutProvider() {

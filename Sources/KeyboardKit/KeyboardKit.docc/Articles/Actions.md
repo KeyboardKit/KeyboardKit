@@ -29,7 +29,7 @@ The ``KeyboardAction`` enum can be grouped into categories. The descriptions bel
 * ``KeyboardAction/moveCursorForward`` - moves the input cursor forward one step when released.
 * ``KeyboardAction/nextKeyboard`` - triggers the keyboard switcher action when tapped and long pressed.
 * ``KeyboardAction/nextLocale`` - triggers the locale switcher action when long pressed and released.
-* ``KeyboardAction/shift(currentState:)`` - changes the alphabetic keyboard casing when released and double tapped.
+* ``KeyboardAction/shift(currentCasing:)`` - changes the alphabetic keyboard casing when released and double tapped.
 
 #### System
 
