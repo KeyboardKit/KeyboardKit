@@ -11,7 +11,41 @@ import XCTest
 
 class EmojiStringAnalyzerTests: XCTestCase {
 
-    class Analyzer: EmojiStringAnalyzer {}
+    class Analyzer: EmojiAnalyzer {}
+
+
+    // MARK: - Character
+
+    let combined = "☺️".char
+    let nonCombined = "😀".char
+    let simple = "😀".char
+    let nonSimple = "⌚️".char
+
+    func testIsEmojiReturnsTrueForAllEmojis() {
+        let allEmojis = EmojiCategory.all.flatMap { $0.emojis }
+        allEmojis.forEach {
+            let char = $0.char.char
+            XCTAssertTrue(char.isEmoji)
+            XCTAssertTrue(analyzer.isEmoji(char))
+        }
+    }
+
+    func testIsCombinedEmojiReturnsTrueForSimpleAndCombinedEmojis() {
+        XCTAssertTrue(combined.isCombinedEmoji)
+        XCTAssertTrue(analyzer.isCombinedEmoji(combined))
+        XCTAssertFalse(nonCombined.isCombinedEmoji)
+        XCTAssertFalse(analyzer.isCombinedEmoji(nonCombined))
+    }
+
+    func testIsSimpleEmojiReturnsTrueForSimpleAndCombinedEmojis() {
+        XCTAssertTrue(simple.isSimpleEmoji)
+        XCTAssertTrue(analyzer.isSimpleEmoji(simple))
+        XCTAssertFalse(nonSimple.isSimpleEmoji)
+        XCTAssertFalse(analyzer.isSimpleEmoji(nonSimple))
+    }
+
+
+    // MARK: - String
 
     let analyzer = Analyzer()
     let noEmoji = "abc"
@@ -97,4 +131,9 @@ class EmojiStringAnalyzerTests: XCTestCase {
         XCTAssertFalse(analyzer.isSingleEmoji(centerEmoji))
         XCTAssertFalse(analyzer.isSingleEmoji(inlineEmojis))
     }
+}
+
+private extension String {
+
+    var char: Character { Array(self)[0] }
 }

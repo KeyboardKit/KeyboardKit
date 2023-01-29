@@ -37,7 +37,8 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 ### ✨ New features
 
 * `AutocompleteContext` has a new `reset` function.
-* `AutocompleteToolbar` is now available on all platforms. 
+* `AutocompleteToolbar` is now available on all platforms.
+* `EmojiAnalyzer` is a new protocol that merges `EmojiCharacterAnalyzer` and `EmojiStringAnalyzer`. 
 * `EmojiCategoryKeyboard` is now available on all platforms.
 * `EmojiCategoryKeyboardMenu` is now available on all platforms.
 * `EmojiCategoryTitle` is now available on all platforms.
@@ -87,9 +88,8 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `AutocompleteToolbarItemTitle` init parameters have been reordered.
 * `EmojiCategoryKeyboard` init parameters have been refactored.
 * `EmojiCategoryKeyboardMenu` init parameters have been reordered.
-* `EmojiCharacterAnalyzer` has replaced properties with functions.
+* `EmojiCharacterAnalyzer` and `EmojiStringAnalyzer` have been merged into `EmojiAnalyzer`.
 * `EmojiKeyboard` init parameters have been refactored. 
-* `EmojiStringAnalyzer` has replaced properties with functions.
 * `InputCalloutContext` `.shared` has been removed.
 * `KeyboardAction` `.return` and `.newLine` have been replaced by `primary` variants.
 * `KeyboardAction` `standardTextDocumentProxyAction` has been removed.
