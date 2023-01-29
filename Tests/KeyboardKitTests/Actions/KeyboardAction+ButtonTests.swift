@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-11.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2019-2023 Daniel Saidi. All rights reserved.
 //
 
 import KeyboardKit
@@ -47,9 +47,9 @@ final class KeyboardAction_ImagesTests: XCTestCase {
             .option,
             .primary(.newLine),
             .settings,
-            .shift(currentState: .lowercased),
-            .shift(currentState: .uppercased),
-            .shift(currentState: .capsLocked),
+            .shift(currentCasing: .lowercased),
+            .shift(currentCasing: .uppercased),
+            .shift(currentCasing: .capsLocked),
             .systemImage(description: "", keyboardImageName: "", imageName: ""),
             .tab
         ]
@@ -101,9 +101,9 @@ final class KeyboardAction_ImagesTests: XCTestCase {
         XCTAssertNil(result(for: .nextKeyboard))
         XCTAssertNil(result(for: .option))
         XCTAssertNil(result(for: .primary(.newLine)))
-        XCTAssertNil(result(for: .shift(currentState: .lowercased)))
-        XCTAssertNil(result(for: .shift(currentState: .uppercased)))
-        XCTAssertNil(result(for: .shift(currentState: .capsLocked)))
+        XCTAssertNil(result(for: .shift(currentCasing: .lowercased)))
+        XCTAssertNil(result(for: .shift(currentCasing: .uppercased)))
+        XCTAssertNil(result(for: .shift(currentCasing: .capsLocked)))
         XCTAssertNil(result(for: .tab))
     }
 }

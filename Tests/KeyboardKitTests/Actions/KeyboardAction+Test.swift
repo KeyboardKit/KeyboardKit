@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-11.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2019-2023 Daniel Saidi. All rights reserved.
 //
 
 import KeyboardKit
@@ -49,9 +49,9 @@ extension KeyboardAction {
             .primary(.search),
             .primary(.return),
             
-            .shift(currentState: .lowercased),
-            .shift(currentState: .uppercased),
-            .shift(currentState: .capsLocked),
+            .shift(currentCasing: .lowercased),
+            .shift(currentCasing: .uppercased),
+            .shift(currentCasing: .capsLocked),
             
             .space,
             .systemImage(description: "", keyboardImageName: "", imageName: ""),

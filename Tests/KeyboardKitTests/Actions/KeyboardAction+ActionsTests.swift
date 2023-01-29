@@ -87,9 +87,9 @@ final class KeyboardAction_ActionsTests: XCTestCase {
             .primary(.ok),
             .primary(.search),
             .primary(.return),
-            .shift(currentState: .lowercased),
-            .shift(currentState: .uppercased),
-            .shift(currentState: .capsLocked),
+            .shift(currentCasing: .lowercased),
+            .shift(currentCasing: .uppercased),
+            .shift(currentCasing: .capsLocked),
             .space,
             .tab
         ]

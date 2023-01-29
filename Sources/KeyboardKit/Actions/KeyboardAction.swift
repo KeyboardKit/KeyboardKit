@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2018-02-02.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2018-2023 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
@@ -24,13 +24,13 @@ import Foundation
  */
 public enum KeyboardAction: Codable, Equatable {
 
-    /// Deletes backwards when pressed, and repeats that action until it's released.
+    /// Deletes backwards when pressed, and repeats until released.
     case backspace
     
     /// Inserts a text character when released.
     case character(String)
     
-    /// Inserts a text character when released, but should be rendered as empty space.
+    /// Inserts a text character when released, but is rendered as empty space.
     case characterMargin(String)
     
     /// Represents a command (⌘) key.
@@ -85,15 +85,13 @@ public enum KeyboardAction: Codable, Equatable {
     case option
     
     /// Represents a primary return button, e.g. `return`, `go`, `search` etc.
-    ///
-    /// > Note: This will be renamed to `return` in KK7 (TODO)
     case primary(ReturnType)
     
     /// A custom action that can be used to e.g. show a settings screen.
     case settings
     
     /// Changes the keyboard type to `.alphabetic(.uppercased)` when released and `.capslocked` when double tapped.
-    case shift(currentState: KeyboardCase)  // TODO: Rename currentState to current
+    case shift(currentCasing: KeyboardCase)
     
     /// Inserts a space when released and moves the cursor when long pressed.
     case space
@@ -122,8 +120,6 @@ public extension KeyboardAction {
     
     /**
      Whether or not the action is a character action.
-
-     This is only true for ``KeyboardAction/character(_:)``.
      */
     var isCharacterAction: Bool {
         switch self {
@@ -134,8 +130,6 @@ public extension KeyboardAction {
 
     /**
      Whether or not the action is an emoji action.
-
-     This is only true for ``KeyboardAction/emoji(_:)``.
      */
     var isEmojiAction: Bool {
         switch self {
@@ -178,10 +172,7 @@ public extension KeyboardAction {
     }
     
     /**
-     Whether or not the action is a shift aftion.
-
-     This is true for ``KeyboardAction/shift(currentState:)``
-     actions..
+     Whether or not the action is a shift action.
      */
     var isShiftAction: Bool {
         switch self {
@@ -203,9 +194,8 @@ public extension KeyboardAction {
     }
     
     /**
-     Whether or not the action is a system action.
-
-     A system action is by default rendered as a dark button.
+     Whether or not the action is a system action, which the
+     library by default renders as darker buttons.
      */
     var isSystemAction: Bool {
         switch self {
@@ -233,9 +223,6 @@ public extension KeyboardAction {
     
     /**
      Whether or not the action is an uppercase shift action.
-
-     This is true for ``KeyboardAction/shift(currentState:)``
-     where the state is uppercased.
      */
     var isUppercasedShiftAction: Bool {
         switch self {

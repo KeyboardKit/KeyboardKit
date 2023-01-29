@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-08.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
 //
 
 import KeyboardKit
@@ -107,13 +107,13 @@ class SystemKeyboardLayoutProviderTests: XCTestCase {
     func testKeyboardSwitcherActionForBottomInputRowIsShiftForLowercasedAlphabetic() {
         context.keyboardType = .alphabetic(.lowercased)
         let result = provider.keyboardSwitchActionForBottomInputRow(for: context)
-        XCTAssertEqual(result, KeyboardAction.shift(currentState: .lowercased))
+        XCTAssertEqual(result, KeyboardAction.shift(currentCasing: .lowercased))
     }
 
     func testKeyboardSwitcherActionForBottomInputRowIsShiftForUppercasedAlphabetic() {
         context.keyboardType = .alphabetic(.uppercased)
         let result = provider.keyboardSwitchActionForBottomInputRow(for: context)
-        XCTAssertEqual(result, KeyboardAction.shift(currentState: .uppercased))
+        XCTAssertEqual(result, KeyboardAction.shift(currentCasing: .uppercased))
     }
 
     func testKeyboardSwitcherActionForBottomInputRowIsShiftForNumeric() {

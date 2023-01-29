@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-08.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI
@@ -106,7 +106,7 @@ class StandardKeyboardAppearanceTests: XCTestCase {
     func testButtonFontSizeIsDefinedForActionsWithImage() {
         XCTAssertEqual(buttonFontSize(for: .keyboardType(.email)), 20)
         XCTAssertEqual(buttonFontSize(for: .keyboardType(.emojis)), 20)
-        XCTAssertEqual(buttonFontSize(for: .shift(currentState: .lowercased)), 20)
+        XCTAssertEqual(buttonFontSize(for: .shift(currentCasing: .lowercased)), 20)
         XCTAssertEqual(buttonFontSize(for: .backspace), 20)
     }
 

@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-07-01.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2020-2023 Daniel Saidi. All rights reserved.
 //
 
 import CoreGraphics
@@ -31,7 +31,7 @@ public extension KeyboardAction {
         case .option: return .keyboardOption
         case .primary(let type): return type.standardButtonImage(for: context.locale)
         case .settings: return .keyboardSettings
-        case .shift(let currentState): return currentState.standardButtonImage
+        case .shift(let currentCasing): return currentCasing.standardButtonImage
         case .systemImage(_, let imageName, _): return Image(systemName: imageName)
         case .tab: return .keyboardTab
         default: return nil

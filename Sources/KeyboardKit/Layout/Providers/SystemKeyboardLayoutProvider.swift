@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-02.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
 //
 
 import CoreGraphics
@@ -167,7 +167,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
      */
     open func keyboardSwitchActionForBottomInputRow(for context: KeyboardContext) -> KeyboardAction? {
         switch context.keyboardType {
-        case .alphabetic(let state): return .shift(currentState: state)
+        case .alphabetic(let casing): return .shift(currentCasing: casing)
         case .numeric: return .keyboardType(.symbolic)
         case .symbolic: return .keyboardType(.numeric)
         default: return nil
