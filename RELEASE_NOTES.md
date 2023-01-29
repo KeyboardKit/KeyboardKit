@@ -95,6 +95,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `KeyboardAction` `.return` and `.newLine` have been replaced by `primary` variants.
 * `KeyboardAction` `.shift` `currentState` is renamed to `currentCasing`.
 * `KeyboardAction` `standardTextDocumentProxyAction` has been removed.
+* `KeyboardAppearance` callout styles have been converted to properties.
 * `KeyboardGesture` `.tap` has been replaced by `.release`.
 * `KeyboardInputViewController` has replaced `actionCalloutContext` and `inputCalloutContext` with a single `calloutContext`.
 * `KeyboardInputViewController` `.shared` has been removed.

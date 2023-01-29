@@ -200,14 +200,14 @@ public struct SystemKeyboard<ButtonView: View>: View {
     public typealias KeyboardItemWidth = CGFloat
 
     private var actionCalloutStyle: ActionCalloutStyle {
-        var style = appearance.actionCalloutStyle()
+        var style = appearance.actionCalloutStyle
         let insets = layoutConfig.buttonInsets
         style.callout.buttonInset = CGSize(width: insets.leading, height: insets.top)
         return style
     }
 
     private var inputCalloutStyle: InputCalloutStyle {
-        var style = appearance.inputCalloutStyle()
+        var style = appearance.inputCalloutStyle
         let insets = layoutConfig.buttonInsets
         style.callout.buttonInset = CGSize(width: insets.leading, height: insets.top)
         return style

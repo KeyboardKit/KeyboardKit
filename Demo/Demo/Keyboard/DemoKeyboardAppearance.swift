@@ -21,12 +21,6 @@ import SwiftUI
  */
 class DemoKeyboardAppearance: StandardKeyboardAppearance {
     
-    // override func actionCalloutStyle() -> ActionCalloutStyle {
-    //     var style = super.actionCalloutStyle()
-    //     style.callout.backgroundColor = .red
-    //     return style
-    // }
-
     // override func buttonImage(for action: KeyboardAction) -> Image? {
     //     if action == .keyboardType(.emojis) { return nil }
     //     return super.buttonImage(for: action)
@@ -50,7 +44,13 @@ class DemoKeyboardAppearance: StandardKeyboardAppearance {
     //     return super.buttonText(for: action)
     // }
 
-    // override func inputCalloutStyle() -> InputCalloutStyle {
+    // override var actionCalloutStyle: ActionCalloutStyle {
+    //     var style = super.actionCalloutStyle()
+    //     style.callout.backgroundColor = .red
+    //     return style
+    // }
+
+    // override var inputCalloutStyle: InputCalloutStyle {
     //     var style = super.inputCalloutStyle()
     //     style.callout.backgroundColor = .blue
     //     style.callout.textColor = .yellow

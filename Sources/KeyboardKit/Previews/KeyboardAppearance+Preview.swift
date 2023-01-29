@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-03-25.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI
@@ -35,14 +35,14 @@ public class PreviewKeyboardAppearance: StandardKeyboardAppearance {
         super.init(keyboardContext: .preview)
     }
     
-    public override func inputCalloutStyle() -> InputCalloutStyle {
+    public override var inputCalloutStyle: InputCalloutStyle {
         InputCalloutStyle(
             callout: .preview1,
             calloutSize: CGSize(width: 0, height: 40),
             font: .body)
     }
     
-    public override func actionCalloutStyle() -> ActionCalloutStyle {
+    public override var actionCalloutStyle: ActionCalloutStyle {
         ActionCalloutStyle(
             callout: .preview1,
             font: .headline,

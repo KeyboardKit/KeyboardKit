@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
 //
 
 import CoreGraphics
@@ -35,13 +35,9 @@ public protocol KeyboardAppearance: AnyObject {
      The edge insets to apply to the entire keyboard.
      */
     var keyboardEdgeInsets: EdgeInsets { get }
-    
-    /**
-     The style to apply when presenting an ``ActionCallout``.
 
-     > Note: This will be turned to a property in KK7 (TODO)
-     */
-    func actionCalloutStyle() -> ActionCalloutStyle
+
+    // MARK: - Buttons
     
     /**
      The button image to use for a certain `action`, if any.
@@ -63,11 +59,17 @@ public protocol KeyboardAppearance: AnyObject {
      The button text to use for a certain `action`, if any.
      */
     func buttonText(for action: KeyboardAction) -> String?
+
+
+    // MARK: - Callouts
+
+    /**
+     The style to apply when presenting an ``ActionCallout``.
+     */
+    var actionCalloutStyle: ActionCalloutStyle { get }
     
     /**
      The style to apply when presenting an ``InputCallout``.
-
-     > Note: This will be turned to a property in KK7 (TODO)
      */
-    func inputCalloutStyle() -> InputCalloutStyle
+    var inputCalloutStyle: InputCalloutStyle { get }
 }

@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI
@@ -42,7 +42,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
      Create a standard keyboard appearance intance.
      
      - Parameters:
-     - keyboardContext: The keyboard context to use.
+       - keyboardContext: The keyboard context to use.
      */
     public init(keyboardContext: KeyboardContext) {
         self.keyboardContext = keyboardContext
@@ -53,6 +53,9 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
      The keyboard context to use.
      */
     public let keyboardContext: KeyboardContext
+
+
+    // MARK: - Keyboard
 
     /**
      The edge insets to apply to the entire keyboard.
@@ -72,15 +75,8 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         .standard(for: keyboardContext)
     }
 
-    /**
-     The style to apply when presenting an ``ActionCallout``.
-     */
-    open func actionCalloutStyle() -> ActionCalloutStyle {
-        var style = ActionCalloutStyle.standard
-        let button = buttonStyle(for: .character(""), isPressed: false)
-        style.callout.buttonCornerRadius = button.cornerRadius
-        return style
-    }
+
+    // MARK: - Buttons
 
     /**
      The button image to use for a certain `action`, if any.
@@ -119,14 +115,35 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     open func buttonText(for action: KeyboardAction) -> String? {
         action.standardButtonText(for: keyboardContext)
     }
-    
+
+
+    // MARK: - Callouts
+
+    /**
+     The callout style to apply to action and input callouts.
+     */
+    open var calloutStyle: CalloutStyle {
+        var style = CalloutStyle.standard
+        let button = buttonStyle(for: .character(""), isPressed: false)
+        style.buttonCornerRadius = button.cornerRadius
+        return style
+    }
+
+    /**
+     The style to apply when presenting an ``ActionCallout``.
+     */
+    open var actionCalloutStyle: ActionCalloutStyle {
+        var style = ActionCalloutStyle.standard
+        style.callout = calloutStyle
+        return style
+    }
+
     /**
      The style to apply when presenting an ``InputCallout``.
      */
-    open func inputCalloutStyle() -> InputCalloutStyle {
+    open var inputCalloutStyle: InputCalloutStyle {
         var style = InputCalloutStyle.standard
-        let button = buttonStyle(for: .character(""), isPressed: false)
-        style.callout.buttonCornerRadius = button.cornerRadius
+        style.callout = calloutStyle
         return style
     }
     

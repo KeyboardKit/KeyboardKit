@@ -38,7 +38,7 @@ class StandardKeyboardAppearanceTests: XCTestCase {
 
 
     func testActionCalloutStyleIsStandard() {
-        let result = appearance.actionCalloutStyle()
+        let result = appearance.actionCalloutStyle
         let standard = ActionCalloutStyle.standard
         XCTAssertEqual(result.callout, standard.callout)
         XCTAssertEqual(result.font, standard.font)
@@ -64,7 +64,7 @@ class StandardKeyboardAppearanceTests: XCTestCase {
     }
 
     func testInputCalloutStyleIsStandard() {
-        let result = appearance.inputCalloutStyle()
+        let result = appearance.inputCalloutStyle
         let standard = InputCalloutStyle.standard
         XCTAssertEqual(result.callout, standard.callout)
         XCTAssertEqual(result.calloutSize, standard.calloutSize)
