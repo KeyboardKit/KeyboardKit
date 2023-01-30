@@ -27,7 +27,8 @@ import SwiftUI
  `standardButtonContent` and `standardButtonView`.
 
  Since the keyboard depends on the available width, you must
- provide a `width`.
+ provide a `width` unless when you use the `controller` init,
+ where specifying a width is optional.
 
  The initializers may look strange, since the default values
  for `controller` and `width` are `nil` then resolved in the
@@ -137,7 +138,8 @@ public struct SystemKeyboard<ButtonView: View>: View {
      builder for every layout item.
      */
     public init(
-        controller: KeyboardInputViewController
+        controller: KeyboardInputViewController,
+        width: CGFloat? = nil
     ) where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardActionButtonContent> {
         self.init(
             layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
@@ -145,7 +147,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
             actionHandler: controller.keyboardActionHandler,
             keyboardContext: controller.keyboardContext,
             calloutContext: controller.calloutContext,
-            width: controller.view.frame.width
+            width: width ?? controller.view.frame.width
         )
     }
 
@@ -155,6 +157,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
      */
     public init(
         controller: KeyboardInputViewController,
+        width: CGFloat? = nil,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder
     ) {
         self.init(
@@ -163,7 +166,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
             actionHandler: controller.keyboardActionHandler,
             keyboardContext: controller.keyboardContext,
             calloutContext: controller.calloutContext,
-            width: controller.view.frame.width,
+            width: width ?? controller.view.frame.width,
             buttonView: buttonView
         )
     }
@@ -174,6 +177,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
      */
     public init<ButtonContentView: View>(
         controller: KeyboardInputViewController,
+        width: CGFloat? = nil,
         @ViewBuilder buttonContent: @escaping (KeyboardLayoutItem) -> ButtonContentView
     ) where ButtonView == SystemKeyboardButtonRowItem<ButtonContentView> {
         self.init(
@@ -182,7 +186,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
             actionHandler: controller.keyboardActionHandler,
             keyboardContext: controller.keyboardContext,
             calloutContext: controller.calloutContext,
-            width: controller.view.frame.width,
+            width: width ?? controller.view.frame.width,
             buttonContent: buttonContent
         )
     }
@@ -362,7 +366,8 @@ struct SystemKeyboard_Previews: PreviewProvider {
                 calloutContext: .preview,
                 keyboardWidth: keyboardWidth,
                 inputWidth: inputWidth,
-                appearance: .preview)
+                appearance: .preview
+            )
         }
     }
 
