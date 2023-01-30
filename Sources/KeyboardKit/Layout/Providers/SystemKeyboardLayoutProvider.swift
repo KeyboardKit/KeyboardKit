@@ -120,7 +120,10 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
      */
     open func itemInsets(for action: KeyboardAction, row: Int, index: Int, context: KeyboardContext) -> EdgeInsets {
         let config = KeyboardLayoutConfiguration.standard(for: context)
-        return config.buttonInsets
+        switch action {
+        case .characterMargin, .none: return EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        default: return config.buttonInsets
+        }
     }
     
     /**

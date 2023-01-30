@@ -60,6 +60,12 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `Text` is a new namespace for text analysis.
 * `UITextDocumentProxy` quotation utilities is now available as `StringQuotationAnalyzer`.
 
+### 👑 Pro changes
+
+* `FeedbackToggle` is a new button to toggle audio and haptic feedback.
+* `AudioFeedbackToggleButton` has been replaced with `FeedbackToggle`.
+* `HapticFeedbackToggleButton` has been replaced with `FeedbackToggle`.
+
 ### 💡 Behavior changes
 
 * `ActionCallout` is no longer greedy.
