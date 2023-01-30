@@ -120,6 +120,12 @@ This version adjusts licenses in KeyboardKit Pro, otherwise it's identical to `6
 
 
 
+## 6.9.5
+
+This version adjusts licenses in KeyboardKit Pro, otherwise it's identical to `6.9.4`. 
+
+
+
 ## 6.9.4
 
 ### ✨ New features
