@@ -9,8 +9,8 @@
 import SwiftUI
 
 /**
- This class provides a keyboard layout that correspond to an
- iPhone with either a home button or notch.
+ This class provides a keyboard layout that corresponds to a
+ standard English layout for an iPhone device.
 
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
@@ -21,24 +21,21 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     // MARK: - Overrides
 
     /**
-     Get keyboard actions for the `inputs` and `context`.
+     Get the keyboard actions for the `inputs` and `context`.
 
-     Note that `inputs` is an input set and does not contain
-     the bottommost space key row, which we therefore append.
+     Note that `inputs` is an input set that doesn't contain
+     the bottommost row. We therefore append it here.
      */
     open override func actions(
         for inputs: InputSetRows,
         context: KeyboardContext
     ) -> KeyboardActionRows {
         let actions = super.actions(for: inputs, context: context)
-        guard isExpectedPhoneInputActions(actions) else { return actions }
-        let upper = actions[0]
-        let middle = actions[1]
-        let lower = actions[2]
+        guard isExpectedActionSet(actions) else { return actions }
         var result = KeyboardActionRows()
-        result.append(upperLeadingActions(for: actions, context: context) + upper + upperTrailingActions(for: actions, context: context))
-        result.append(middleLeadingActions(for: actions, context: context) + middle + middleTrailingActions(for: actions, context: context))
-        result.append(lowerLeadingActions(for: actions, context: context) + lower + lowerTrailingActions(for: actions, context: context))
+        result.append(topLeadingActions(for: actions, context: context) + actions[0] + topTrailingActions(for: actions, context: context))
+        result.append(middleLeadingActions(for: actions, context: context) + actions[1] + middleTrailingActions(for: actions, context: context))
+        result.append(lowerLeadingActions(for: actions, context: context) + actions[2] + lowerTrailingActions(for: actions, context: context))
         result.append(bottomActions(for: context))
         return result
     }
@@ -53,15 +50,13 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         index: Int,
         context: KeyboardContext
     ) -> KeyboardLayoutItemWidth {
-        if action.isPrimaryAction { return bottomPrimaryButtonWidth(for: context) }
         switch action {
         case context.keyboardDictationReplacement: return bottomSystemButtonWidth(for: context)
-        case .character:
-            if context.isAlphabetic(.greek) { return .percentage(0.1) }
-            return isLastNumericInputRow(row, for: context) ? lastSymbolicInputWidth(for: context) : .input
+        case .character: return isLastNumericInputRow(row, for: context) ? lastSymbolicInputWidth(for: context) : .input
         case .backspace: return lowerSystemButtonWidth(for: context)
         case .keyboardType: return bottomSystemButtonWidth(for: context)
         case .nextKeyboard: return bottomSystemButtonWidth(for: context)
+        case .primary: return .percentage(isPortrait(context) ? 0.25 : 0.195)
         case .shift: return lowerSystemButtonWidth(for: context)
         default: return .available
         }
@@ -71,7 +66,85 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     // MARK: - iPhone Specific
 
     /**
-     Get the actions of the bottommost space key row.
+     Additional leading actions to apply to the top row.
+     */
+    open func topLeadingActions(
+        for actions: KeyboardActionRows,
+        context: KeyboardContext
+    ) -> KeyboardActions {
+        guard shouldAddUpperMarginActions(for: actions, context: context) else { return [] }
+        return [actions[0].leadingCharacterMarginAction]
+    }
+
+    /**
+     Additional trailing actions to apply to the top row.
+     */
+    open func topTrailingActions(
+        for actions: KeyboardActionRows,
+        context: KeyboardContext
+    ) -> KeyboardActions {
+        guard shouldAddUpperMarginActions(for: actions, context: context) else { return [] }
+        return [actions[0].trailingCharacterMarginAction]
+    }
+
+    /**
+     Additional leading actions to apply to the middle row.
+     */
+    open func middleLeadingActions(
+        for actions: KeyboardActionRows,
+        context: KeyboardContext
+    ) -> KeyboardActions {
+        guard shouldAddMiddleMarginActions(for: actions, context: context) else { return [] }
+        return [actions[1].leadingCharacterMarginAction]
+    }
+
+    /**
+     Additional trailing actions to apply to the middle row.
+     */
+    open func middleTrailingActions(
+        for actions: KeyboardActionRows,
+        context: KeyboardContext
+    ) -> KeyboardActions {
+        guard shouldAddMiddleMarginActions(for: actions, context: context) else { return [] }
+        return [actions[1].trailingCharacterMarginAction]
+    }
+
+    /**
+     Additional leading actions to apply to the lower row.
+     */
+    open func lowerLeadingActions(
+        for actions: KeyboardActionRows,
+        context: KeyboardContext
+    ) -> KeyboardActions {
+        guard isExpectedActionSet(actions) else { return [] }
+        let margin = actions[2].leadingCharacterMarginAction
+        guard let switcher = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
+        return [switcher, margin]
+    }
+
+    /**
+     Additional trailing actions to apply to the lower row.
+     */
+    open func lowerTrailingActions(
+        for actions: KeyboardActionRows,
+        context: KeyboardContext
+    ) -> KeyboardActions {
+        guard isExpectedActionSet(actions) else { return [] }
+        let margin = actions[2].trailingCharacterMarginAction
+        return [margin, .backspace]
+    }
+
+    /**
+     The system buttons that are shown to the left and right
+     of the third row's input buttons on a regular keyboard.
+     */
+    open func lowerSystemButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
+        if context.isAlphabetic(.ukrainian) { return .input }
+        return .percentage(0.13)
+    }
+
+    /**
+     The actions to add to the bottommost row.
      */
     open func bottomActions(
         for context: KeyboardContext
@@ -85,7 +158,6 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         let dictationReplacement = context.keyboardDictationReplacement
         if isPortrait(context), needsDictation, let action = dictationReplacement { result.append(action) }
         result.append(.space)
-        if context.isAlphabetic(.persian) { result.append(.character(.zeroWidthSpace)) }
         #if os(iOS) || os(tvOS)
         if context.textDocumentProxy.keyboardType == .emailAddress {
             result.append(.character("@"))
@@ -101,99 +173,31 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     }
 
     /**
-     Get leading actions to add to the lower inputs row.
+     The width of bottom-right system buttons.
      */
-    open func lowerLeadingActions(
-        for actions: KeyboardActionRows,
-        context: KeyboardContext
-    ) -> KeyboardActions {
-        guard isExpectedPhoneInputActions(actions) else { return [] }
-        let margin = actions[2].leadingCharacterMarginAction
-        if context.isAlphabetic(.hebrew) { return [margin] }
-        guard let switcher = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
-        if context.isAlphabetic(.kurdish_sorani_arabic) { return [] }
-        if context.isAlphabetic(.kurdish_sorani_pc) { return [] }
-        if context.isAlphabetic(.persian) { return [] }
-        if context.isAlphabetic(.russian) { return [switcher] }
-        if context.isAlphabetic(.ukrainian) { return [switcher] }
-        if isAlphabeticWithInputCount(context, [10, 10, 8]) { return [switcher] }   // e.g. Czech
-        if isAlphabeticWithInputCount(context, [11, 11, 9]) { return [switcher] }   // e.g. Russian
-        // if isAlphabeticWithInputCount(context, [12, 12, 9]) { return [switcher] }   // e.g. Belarusian
-        return [switcher, margin]
+    open func bottomSystemButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
+        .percentage(isPortrait(context) ? 0.123 : 0.095)
     }
 
     /**
-     Get trailing actions to add to the lower inputs row.
+     Whether or not to add margin actions to the middle row.
      */
-    open func lowerTrailingActions(
-        for actions: KeyboardActionRows,
-        context: KeyboardContext
-    ) -> KeyboardActions {
-        guard isExpectedPhoneInputActions(actions) else { return [] }
-        let margin = actions[2].trailingCharacterMarginAction
-        if context.isAlphabetic(.hebrew) { return [margin] }
-        if context.isAlphabetic(.kurdish_sorani_arabic) { return [.backspace] }
-        if context.isAlphabetic(.kurdish_sorani_pc) { return [margin, .backspace] }
-        if context.isAlphabetic(.persian) { return [.backspace] }
-        if context.isAlphabetic(.ukrainian) { return [.backspace] }
-        if isAlphabeticWithInputCount(context, [10, 10, 8]) { return [.backspace] } // e.g. Czech
-        if isAlphabeticWithInputCount(context, [11, 11, 9]) { return [.backspace] } // e.g. Russian
-        // if isAlphabeticWithInputCount(context, [12, 12, 9]) { return [.backspace] } // e.g. Belarusian
-        return [margin, .backspace]
+    open func shouldAddMiddleMarginActions(for actions: KeyboardActionRows, context: KeyboardContext) -> Bool {
+        guard isExpectedActionSet(actions) else { return false }
+        return actions[0].count > actions[1].count
     }
 
     /**
-     Get leading actions to add to the middle inputs row.
+     Whether or not to add margin actions to the upper row.
      */
-    open func middleLeadingActions(
-        for actions: KeyboardActionRows,
-        context: KeyboardContext
-    ) -> KeyboardActions {
-        guard shouldAddMiddleMarginActions(for: actions, context: context) else { return [] }
-        return [actions[1].leadingCharacterMarginAction]
-    }
-
-    /**
-     Get trailing actions to add to the middle inputs row.
-     */
-    open func middleTrailingActions(
-        for actions: KeyboardActionRows,
-        context: KeyboardContext
-    ) -> KeyboardActions {
-        guard shouldAddMiddleMarginActions(for: actions, context: context) else { return [] }
-        return [actions[1].trailingCharacterMarginAction]
-    }
-
-    /**
-     Get leading actions to add to the upper inputs row.
-     */
-    open func upperLeadingActions(
-        for actions: KeyboardActionRows,
-        context: KeyboardContext
-    ) -> KeyboardActions {
-        let margin = actions[0].leadingCharacterMarginAction
-        if context.isAlphabetic(.hebrew) { return [margin] }
-        guard shouldAddUpperMarginActions(for: actions, context: context) else { return [] }
-        return [margin]
-    }
-
-    /**
-     Get trailing actions to add to the upper inputs row.
-     */
-    open func upperTrailingActions(
-        for actions: KeyboardActionRows,
-        context: KeyboardContext
-    ) -> KeyboardActions {
-        let margin = actions[0].trailingCharacterMarginAction
-        if context.isAlphabetic(.hebrew) { return [margin, .backspace] }
-        guard shouldAddUpperMarginActions(for: actions, context: context) else { return [] }
-        return [margin]
+    open func shouldAddUpperMarginActions(for actions: KeyboardActionRows, context: KeyboardContext) -> Bool {
+        false
     }
 }
 
 private extension iPhoneKeyboardLayoutProvider {
 
-    func isExpectedPhoneInputActions(_ actions: KeyboardActionRows) -> Bool {
+    func isExpectedActionSet(_ actions: KeyboardActionRows) -> Bool {
         actions.count == 3
     }
 
@@ -209,37 +213,6 @@ private extension iPhoneKeyboardLayoutProvider {
     }
 
     /**
-     The width of the bottom-right primary (return) button.
-     */
-    func bottomPrimaryButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
-        .percentage(isPortrait(context) ? 0.25 : 0.195)
-    }
-
-    /**
-     The width of the bottom-right primary (return) button.
-     */
-    func bottomSystemButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
-        .percentage(isPortrait(context) ? 0.123 : 0.095)
-    }
-
-    /**
-     The system buttons that are shown to the left and right
-     of the third row's input buttons.
-     */
-    func lowerSystemButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
-        let bottomWidth = bottomSystemButtonWidth(for: context)
-        if context.is(.kurdish_sorani_arabic) { return .input }
-        if context.isAlphabetic(.kurdish_sorani_pc) { return isPortrait(context) ? bottomWidth : .percentage(0.14) }
-        if context.isAlphabetic(.persian) { return .input }
-        if context.isAlphabetic(.ukrainian) { return .input }
-        if hasAlphabeticInputCount([12, 11, 9]) { return .percentage(0.11) }        // e.g. Turkish
-        if isAlphabeticWithInputCount(context, [11, 11, 9]) { return .input }       // e.g. Russian
-        if isAlphabeticWithInputCount(context, [10, 10, 8]) { return .input }       // e.g. Czech
-        // if isAlphabeticWithInputCount(context, [12, 12, 9]) { return .available }   // e.g. Belarusian
-        return isPortrait(context) ? .percentage(0.13) : .percentage(0.13)
-    }
-
-    /**
      Whether or not a certain row is the last input row in a
      numeric or symbolic keyboard.
      */
@@ -248,24 +221,6 @@ private extension iPhoneKeyboardLayoutProvider {
         let isSymbolic = context.keyboardType == .symbolic
         guard isNumeric || isSymbolic else { return false }
         return row == 2 // Index 2 is the "wide keys" row
-    }
-
-    /**
-     Whether or not to add margin actions to the middle row.
-     */
-    func shouldAddMiddleMarginActions(for actions: KeyboardActionRows, context: KeyboardContext) -> Bool {
-        guard isExpectedPhoneInputActions(actions) else { return false }
-        if context.isAlphabetic(.greek) { return true }
-        return actions[0].count > actions[1].count
-    }
-
-    /**
-     Whether or not to add margin actions to the upper row.
-     */
-    func shouldAddUpperMarginActions(for actions: KeyboardActionRows, context: KeyboardContext) -> Bool {
-        guard isExpectedPhoneInputActions(actions) else { return false }
-        if context.isAlphabetic(.greek) { return true }
-        return false
     }
 }
 
