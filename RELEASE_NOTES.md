@@ -128,7 +128,7 @@ This version adjusts licenses in KeyboardKit Pro, otherwise it's identical to `6
 
 
 
-## 6.9.5, 6.9.6
+## 6.9.5, 6.9.6, 6.9.7
 
 This version adjusts licenses in KeyboardKit Pro, otherwise it's identical to `6.9.4`. 
 
