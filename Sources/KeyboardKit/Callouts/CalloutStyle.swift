@@ -43,7 +43,7 @@ public struct CalloutStyle: Equatable {
     public init(
         backgroundColor: Color = .standardButtonBackground,
         borderColor: Color = Color.black.opacity(0.5),
-        buttonCornerRadius: CGFloat = 4,
+        buttonCornerRadius: CGFloat = 5,
         buttonInset: CGSize = CGSize.zero,
         cornerRadius: CGFloat = 10,
         curveSize: CGSize = CGSize(width: 8, height: 15),

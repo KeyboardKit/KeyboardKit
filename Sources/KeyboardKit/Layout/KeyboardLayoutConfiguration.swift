@@ -88,11 +88,9 @@ public extension KeyboardLayoutConfiguration {
     ) -> KeyboardLayoutConfiguration {
         let isPortrait = orientation.isPortrait
         if size.isScreenSize(.iPadProLargeScreenPortrait) {
-            return isPortrait ? .standardPadLargeProPortrait : .standardPadLargeProLandscape
-        } else if size.isScreenSize(.iPadProSmallScreenPortrait) {
-            return isPortrait ? .standardPadPortrait : .standardPadLandscape
+            return isPortrait ? .standardPadProLarge : .standardPadLargeProLandscape
         }
-        return isPortrait ? .standardPadPortrait : .standardPadLandscape
+        return isPortrait ? .standardPad : .standardPadLandscape
     }
     
     /**
@@ -104,26 +102,34 @@ public extension KeyboardLayoutConfiguration {
     ) -> KeyboardLayoutConfiguration {
         let isPortrait = orientation.isPortrait
         if size.isScreenSize(.iPhoneProMaxScreenPortrait) {
-            return isPortrait ? .standardPhoneProMaxPortrait : .standardPhoneProMaxLandscape
+            return isPortrait ? .standardPhoneProMax : .standardPhoneProMaxLandscape
         }
-        return isPortrait ? .standardPhonePortrait : .standardPhoneLandscape
+        return isPortrait ? .standardPhone : .standardPhoneLandscape
     }
-    
+
+    /**
+     The standard config for an iPad in portait.
+     */
+    static let standardPad = KeyboardLayoutConfiguration(
+        buttonCornerRadius: 5,
+        buttonInsets: .horizontal(6, vertical: 4),
+        rowHeight: 64)
+
     /**
      The standard config for an iPad in landscape.
      */
     static let standardPadLandscape = KeyboardLayoutConfiguration(
-        buttonCornerRadius: 8,
+        buttonCornerRadius: 7,
         buttonInsets: .horizontal(7, vertical: 6),
         rowHeight: 86)
-    
+
     /**
-     The standard config for an iPad in portait.
+     The standard config for a large iPad Pro in portrait.
      */
-    static let standardPadPortrait = KeyboardLayoutConfiguration(
+    static let standardPadProLarge = KeyboardLayoutConfiguration(
         buttonCornerRadius: 6,
-        buttonInsets: .horizontal(6, vertical: 4),
-        rowHeight: 64)
+        buttonInsets: .horizontal(4, vertical: 4),
+        rowHeight: 69)
     
     /**
      The standard config for a large iPad Pro in landscape.
@@ -132,42 +138,34 @@ public extension KeyboardLayoutConfiguration {
         buttonCornerRadius: 8,
         buttonInsets: .horizontal(7, vertical: 5),
         rowHeight: 88)
-    
+
     /**
-     The standard config for a large iPad Pro in portrait.
+     The standard config for an iPhone in portrait.
      */
-    static let standardPadLargeProPortrait = KeyboardLayoutConfiguration(
-        buttonCornerRadius: 6,
-        buttonInsets: .horizontal(4, vertical: 4),
-        rowHeight: 69)
+    static let standardPhone = KeyboardLayoutConfiguration(
+        buttonCornerRadius: 5,
+        buttonInsets: .horizontal(3, vertical: 6),
+        rowHeight: 54)
     
     /**
      The standard config for an iPhone in landscape.
      */
     static let standardPhoneLandscape = KeyboardLayoutConfiguration(
-        buttonCornerRadius: 4,
+        buttonCornerRadius: 5,
         buttonInsets: .horizontal(3, vertical: 4),
         rowHeight: 40)
-    
+
     /**
-     The standard config for an iPhone in portrait.
+     The standard config for an iPhone Pro Max in portrait.
      */
-    static let standardPhonePortrait = KeyboardLayoutConfiguration(
-        buttonCornerRadius: 4,
+    static let standardPhoneProMax = KeyboardLayoutConfiguration(
+        buttonCornerRadius: 5,
         buttonInsets: .horizontal(3, vertical: 6),
-        rowHeight: 54)
+        rowHeight: 56)
     
     /**
      The standard config for an iPhone Pro Max in landscape.
      */
     static let standardPhoneProMaxLandscape = KeyboardLayoutConfiguration
         .standardPhoneLandscape
-    
-    /**
-     The standard config for an iPhone Pro Max in portrait.
-     */
-    static let standardPhoneProMaxPortrait = KeyboardLayoutConfiguration(
-        buttonCornerRadius: 4,
-        buttonInsets: .horizontal(3, vertical: 6),
-        rowHeight: 56)
 }

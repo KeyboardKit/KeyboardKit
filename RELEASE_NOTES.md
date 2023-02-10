@@ -50,6 +50,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `KeyboardContext` has a new `keyboardLocale` and new functions for setting locale and keyboard type.
 * `KeyboardInputViewController` has a new `calloutContext`.  
 * `KeyboardInputViewController` implements `KeyboardController` which gives it a bunch of new functions.
+* `KeyboardLayoutConfiguration` has adjusted the standard corner radius for iPhone buttons.
 * `NextKeyboardButton` now supports using any custom content.
 * `NextKeyboardController` is used instead of the shared controller.
 * `QuotationAnalyzer` is a new protocol for analyzing quotations in strings.
@@ -69,6 +70,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 ### 💡 Behavior changes
 
 * `ActionCallout` is no longer greedy.
+* `CalloutStyle` has a new standard corner radius.
 * `InputCallout` is no longer greedy.
 * `InterfaceOrientation` `.current` now returns correct rotations on all platforms.
 * `iPadKeyboardLayoutProvider` has been greatly simplified.
@@ -102,6 +104,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `KeyboardInputViewController` has replaced `actionCalloutContext` and `inputCalloutContext` with a single `calloutContext`.
 * `KeyboardInputViewController` `.shared` has been removed.
 * `KeyboardInputViewController` `originalTextDocumentProxy` has been renamed to `mainTextDocumentProxy`.
+* `KeyboardLayoutConfiguration` portrait configurations have been renamed.
 * `KeyboardReturnActionMappable` has been refactored to `KeyboardActionMappable`.
 * `KeyboardTextField` now requires an keyboard input view controller.
 * `KeyboardTextView` now requires an keyboard input view controller.
