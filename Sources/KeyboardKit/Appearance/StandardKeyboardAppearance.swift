@@ -12,7 +12,7 @@ import CoreGraphics
 /**
  This standard appearance returns styles that replicates the
  look of a native system keyboard.
- 
+
  You can inherit this class and override any open properties
  and functions to customize the appearance. For instance, to
  change the background color of inpout keys only, you can do
@@ -37,18 +37,18 @@ import CoreGraphics
  Sometimes that is what you want, but most often perhaps not.
  */
 open class StandardKeyboardAppearance: KeyboardAppearance {
-    
+
     /**
      Create a standard keyboard appearance intance.
-     
+
      - Parameters:
        - keyboardContext: The keyboard context to use.
      */
     public init(keyboardContext: KeyboardContext) {
         self.keyboardContext = keyboardContext
     }
-    
-    
+
+
     /**
      The keyboard context to use.
      */
@@ -94,7 +94,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         default: return 1
         }
     }
-    
+
     /**
      The button style to use for a certain `action`, given a
      certain `isPressed` state.
@@ -108,7 +108,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
             border: buttonBorderStyle(for: action),
             shadow: buttonShadowStyle(for: action))
     }
-    
+
     /**
      The button text to use for a certain `action`, if any.
      */
@@ -146,10 +146,10 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         style.callout = calloutStyle
         return style
     }
-    
-    
+
+
     // MARK: - Overridable Button Style Components
-    
+
     /**
      The button background color to use for a certain action.
      */
@@ -158,7 +158,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         return action.buttonBackgroundColor(for: keyboardContext, isPressed: isPressed)
             .opacity(fullOpacity ? 1 : 0.95)
     }
-    
+
     /**
      The button border style to use for a certain action.
      */
@@ -168,14 +168,14 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         default: return .standard
         }
     }
-    
+
     /**
      The button corner radius to use for a certain action.
      */
     open func buttonCornerRadius(for action: KeyboardAction) -> CGFloat {
         keyboardLayoutConfiguration.buttonCornerRadius
     }
-    
+
     /**
      The button font to use for a certain action.
      */
@@ -184,7 +184,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         guard let weight = buttonFontWeight(for: action) else { return rawFont }
         return rawFont.weight(weight)
     }
-    
+
     /**
      The button font size to use for a certain action.
      */
@@ -233,10 +233,10 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         default: return 14
         }
     }
-    
+
     /**
      The button font weight to use for a certain action.
-     
+
      You can override this function to customize this single
      button style property.
      */
@@ -247,20 +247,20 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         default: return nil
         }
     }
-    
+
     /**
      The button foreground color to use for a certain action.
-     
+
      You can override this function to customize this single
      button style property.
      */
     open func buttonForegroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
         action.buttonForegroundColor(for: keyboardContext, isPressed: isPressed)
     }
-    
+
     /**
      The button shadow style to use for a certain action.
-     
+
      You can override this function to customize this single
      button style property.
      */
@@ -278,7 +278,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
 // MARK: - Internal, Testable Extensions
 
 extension KeyboardAction {
-    
+
     var buttonBackgroundColorForAllStates: Color? {
         switch self {
         case .none: return .clear
@@ -288,21 +288,22 @@ extension KeyboardAction {
         default: return nil
         }
     }
-    
+
     func buttonBackgroundColor(for context: KeyboardContext, isPressed: Bool = false) -> Color {
         if let color = buttonBackgroundColorForAllStates { return color }
         return isPressed ?
             buttonBackgroundColorForPressedState(for: context) :
             buttonBackgroundColorForIdleState(for: context)
     }
-    
+
     func buttonBackgroundColorForIdleState(for context: KeyboardContext) -> Color {
+        if isUppercasedShiftAction { return buttonBackgroundColorForPressedState(for: context) }
         if isSystemAction { return .standardDarkButtonBackground(for: context) }
         if isPrimaryAction { return .blue }
         if isUppercasedShiftAction { return .standardButtonBackground(for: context) }
         return .standardButtonBackground(for: context)
     }
-    
+
     func buttonBackgroundColorForPressedState(for context: KeyboardContext) -> Color {
         if isSystemAction { return context.hasDarkColorScheme ? .standardButtonBackground(for: context) : .white }
         if isPrimaryAction { return context.hasDarkColorScheme ? .standardDarkButtonBackground(for: context) : .white }
@@ -317,21 +318,21 @@ extension KeyboardAction {
         default: return nil
         }
     }
-    
+
     func buttonForegroundColor(for context: KeyboardContext, isPressed: Bool = false) -> Color {
         if let color = buttonForegroundColorForAllStates { return color }
         return isPressed ?
             buttonForegroundColorForPressedState(for: context) :
             buttonForegroundColorForIdleState(for: context)
     }
-    
+
     func buttonForegroundColorForIdleState(for context: KeyboardContext) -> Color {
         let standard = Color.standardButtonForeground(for: context)
         if isSystemAction { return standard }
         if isPrimaryAction { return .white }
         return standard
     }
-    
+
     func buttonForegroundColorForPressedState(for context: KeyboardContext) -> Color {
         let standard = Color.standardButtonForeground(for: context)
         if isSystemAction { return standard }
