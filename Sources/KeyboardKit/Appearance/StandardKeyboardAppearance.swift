@@ -241,10 +241,10 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
      button style property.
      */
     open func buttonFontWeight(for action: KeyboardAction) -> Font.Weight? {
-        if buttonImage(for: action) != nil { return .light }
         switch action {
+        case .backspace: return .regular
         case .character(let char): return char.isLowercased ? .light : nil
-        default: return nil
+        default: return buttonImage(for: action) != nil ? .light : nil
         }
     }
 
