@@ -4,11 +4,10 @@
 
 <p align="center">
     <img src="https://img.shields.io/github/v/release/KeyboardKit/KeyboardKit?color=%2300550&sort=semver" alt="Version" />
-    <img src="https://img.shields.io/badge/Swift-5.6-orange.svg" alt="Swift 5.6" />
+    <img src="https://img.shields.io/badge/swift-5.6-orange.svg" alt="Swift 5.6" />
     <img src="https://img.shields.io/github/license/KeyboardKit/KeyboardKit" alt="MIT License" />
-    <a href="https://twitter.com/getkeyboardkit">
-        <img src="https://img.shields.io/badge/contact-@getkeyboardkit-blue.svg?style=flat" alt="Twitter: @getkeyboardkit" />
-    </a>
+    <img src="https://img.shields.io/twitter/url?label=Twitter&style=social&url=https%3A%2F%2Ftwitter.com%2Fgetkeyboardkit" alt="Twitter: @@getkeyboardkit" title="Twitter: @getkeyboardkit" />
+    <img src="https://img.shields.io/mastodon/follow/109340839247880048?domain=https%3A%2F%2Ftechhub.social&style=social" alt="Mastodon: @keyboardkit@techhub.social" title="Mastodon: @danielsaidi@mastodon.social" />
 </p>
 
 
@@ -171,9 +170,10 @@ KeyboardKit is open-source and completely free, but you can sponsor this project
 
 Feel free to reach out if you have questions or if you want to contribute in any way:
 
-* E-mail: [info@getkeyboardkit.com][Email]
-* Twitter: [@getkeyboardkit][Twitter]
 * Website: [getkeyboardkit.com][Website]
+* Mastodon: [@keyboardkit@techhub.social][Mastodon]
+* Twitter: [@getkeyboardkit][Twitter]
+* E-mail: [info@getkeyboardkit.com][Email]
 
 
 
@@ -184,9 +184,11 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 
 
 [Email]: mailto:info@getkeyboardkit.com
-[Twitter]: https://twitter.com/getkeyboardkit
 [Website]: https://getkeyboardkit.com
+[Twitter]: http://www.twitter.com/getkeyboardkit
+[Mastodon]: https://techhub.social/@keyboardkit
 [Sponsors]: https://github.com/sponsors/danielsaidi
+
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 [Gumroad]: https://danielsaidi.gumroad.com
 
