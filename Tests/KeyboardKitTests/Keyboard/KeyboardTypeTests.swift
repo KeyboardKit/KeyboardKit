@@ -10,21 +10,41 @@ import KeyboardKit
 import XCTest
 
 class KeyboardTypeTests: XCTestCase {
-    
-    func isAlphabeticResult(for type: KeyboardType) -> Bool {
+
+    func isAlphabetic(_ type: KeyboardType) -> Bool {
         type.isAlphabetic
     }
 
+    func isAlphabeticUppercased(_ type: KeyboardType) -> Bool {
+        type.isAlphabeticUppercased
+    }
+
+    func isAlphabetic(_ type: KeyboardType, _ keyboardCase: KeyboardCase) -> Bool {
+        type.isAlphabetic(keyboardCase)
+    }
+
     func testIsAlphabeticIsOnlyTrueForAlphabeticTypes() {
-        XCTAssertTrue(isAlphabeticResult(for: .alphabetic(.lowercased)))
-        XCTAssertTrue(isAlphabeticResult(for: .alphabetic(.uppercased)))
-        XCTAssertTrue(isAlphabeticResult(for: .alphabetic(.capsLocked)))
-        XCTAssertFalse(isAlphabeticResult(for: .numeric))
-        XCTAssertFalse(isAlphabeticResult(for: .symbolic))
-        XCTAssertFalse(isAlphabeticResult(for: .email))
-        XCTAssertFalse(isAlphabeticResult(for: .emojis))
-        XCTAssertFalse(isAlphabeticResult(for: .images))
-        XCTAssertFalse(isAlphabeticResult(for: .images))
-        XCTAssertFalse(isAlphabeticResult(for: .custom(named: "")))
+        XCTAssertTrue(isAlphabetic(.alphabetic(.lowercased)))
+        XCTAssertTrue(isAlphabetic(.alphabetic(.uppercased)))
+        XCTAssertTrue(isAlphabetic(.alphabetic(.capsLocked)))
+        XCTAssertFalse(isAlphabetic(.numeric))
+        XCTAssertFalse(isAlphabetic(.symbolic))
+        XCTAssertFalse(isAlphabetic(.email))
+        XCTAssertFalse(isAlphabetic(.emojis))
+        XCTAssertFalse(isAlphabetic(.images))
+        XCTAssertFalse(isAlphabetic(.images))
+        XCTAssertFalse(isAlphabetic(.custom(named: "")))
+    }
+
+    func testIsAlphabeticUppercasedIsTrueForUppercaseOrCapslock() {
+        XCTAssertFalse(isAlphabeticUppercased(.alphabetic(.lowercased)))
+        XCTAssertTrue(isAlphabeticUppercased(.alphabetic(.uppercased)))
+        XCTAssertTrue(isAlphabeticUppercased(.alphabetic(.capsLocked)))
+    }
+
+    func testIsAlphabeticWithCaseIsTrueForMatchingTypes() {
+        XCTAssertFalse(isAlphabetic(.alphabetic(.lowercased), .uppercased))
+        XCTAssertTrue(isAlphabetic(.alphabetic(.uppercased), .uppercased))
+        XCTAssertTrue(isAlphabetic(.alphabetic(.capsLocked) ,.capsLocked))
     }
 }

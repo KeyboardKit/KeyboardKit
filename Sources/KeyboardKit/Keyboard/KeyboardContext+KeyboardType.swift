@@ -16,7 +16,7 @@ public extension KeyboardContext {
      autocapitalization type.
      */
     var preferredKeyboardType: KeyboardType {
-        if keyboardType.isAlphabetic(with: .capsLocked) { return keyboardType }
+        if keyboardType.isAlphabetic(.capsLocked) { return keyboardType }
         if let type = preferredAutocapitalizedKeyboardType { return type }
         if let type = preferredKeyboardTypeAfterNonAlphaSpace { return type }
         return keyboardType
