@@ -33,9 +33,9 @@ Some things that are planned for the 7.0 release:
 
 
 
-## 6.9.5, 6.9.6, 6.9.7
+## 6.9.5 - 6.9.8
 
-This version adjusts licenses in KeyboardKit Pro, otherwise it's identical to `6.9.4`. 
+These versions adjust KeyboardKit Pro licenses, but are otherwise identical to `6.9.4`. 
 
 
 
