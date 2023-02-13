@@ -10,15 +10,15 @@ import KeyboardKit
 import UIKit
 
 /**
- This demo-specific action handler adds demo-specific action
- handling, such as saving or copying images.
+ This demo-specific action handler inherits the standard one
+ and adds demo-specific logic to it.
 
- ``KeyboardViewController`` registers it to show how you can
- register and use a custom keyboard action handler.
+ ``DemoKeyboardViewController`` registers it to show how you
+ can register and use a custom keyboard action handler.
 
- If you change the ``DemoKeyboardLayoutProvider`` to show an
- `.image` action, this class will copy the images on tap and
- save them on long press.
+ Just add `image` actions to the keyboard to have this class
+ copy a tapped image to the pasteboard and save it to Photos
+ when it's long presed.
  */
 class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
 

@@ -10,21 +10,19 @@ import Foundation
 import KeyboardKit
 
 /**
- This autocomplete provider can be used in the non-pro demos,
- where KeyboardKit Pro standard autocomplete isn't available.
+ This autocomplete provider is used in the non-pro demos, to
+ show fake suggestions since KeyboardKit Pro autocomplete is
+ not available.
 
  ``KeyboardViewController`` registers it to show how you can
  register and use a custom autocomplete provider.
 
  This provider always returns three autocomplete suggestions,
- with the current word suffixed with "-1", "-2" and "-3". It
- also adds a static subtitle to the middle suggestion.
+ with the current word suffixed with "-1", "-2" and "-3".
 
- If the currently typed word is "match" (this can be changed
- in the init) the provider returns another result, where the
- left suggestion is an "unknown" suggestion, the center is a
- highlighted autocomplete suggestion and the right is just a
- regular suggestion without any special look or behavior.
+ If the current word is `match` (this can be changed in init)
+ the leading suggestion will be an "unknown" suggestion, the
+ center one highlighted and the trailing one regular.
  */
 class FakeAutocompleteProvider: AutocompleteProvider {
 

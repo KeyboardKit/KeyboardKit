@@ -11,17 +11,12 @@ import SwiftUI
 
 /**
  This keyboard view is used by all `SystemKeyboard`-specific
- demo keyboards that use KeyboardKit and not KeyboardKit Pro.
+ demo keyboards.
 
  The view adds an autocomplete toolbar over the keyboard and
  automatically hides it if the keyboard state doesn't prefer
  autocomplete to be performed. Note that the height is still
  allocated, since keyboard input and action callouts need it.
- 
- Note that the view must also observe a `KeyboardContext` in
- order to redraw whenever the context changes. If it doesn't,
- it will not redraw when it should. This shouldn't be needed,
- but currently is.
  */
 struct DemoKeyboardView: View {
 

@@ -10,14 +10,12 @@ import KeyboardKit
 import SwiftUI
 
 /**
- This base keyboard view controller is inherited by all demo
- ``KeyboardViewController`` classes in this project.
+ This keyboard input view controller is inherited by all the
+ demo ``KeyboardViewController`` classes in this project.
 
- The class sets up a foundation for a KeyboardKit-based demo
- keyboard, with demo-specific configurations, then sets up a
- ``KeyboardView`` that has a `SystemKeyboard`-based keyboard.
- You can change all these configurations at any time, to see
- how the keyboard changes.
+ The controller sets up demo-specific functionality and then
+ registers ``DemoKeyboardView`` as its primary keyboard view.
+ You can change all these configurations at any time.
  */
 class DemoKeyboardViewController: KeyboardInputViewController {
 

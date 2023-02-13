@@ -10,8 +10,9 @@ import KeyboardKit
 import SwiftUI
 
 /**
- This keyboard demonstrates how to create a keyboard that is
- using a `SystemKeyboard` to mimic a native English keyboard.
+ This controller inherits ``DemoKeyboardViewController`` and
+ uses the standard demo configuration to generate a keyboard
+ where ``DemoKeyboardView`` mimics a native English keyboard.
 
  Since the ``DemoKeyboardViewController`` sets up a standard
  configuration, this class doesn't have to override anything.

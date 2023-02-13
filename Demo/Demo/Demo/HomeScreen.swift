@@ -9,6 +9,12 @@
 import KeyboardKit
 import SwiftUI
 
+/**
+ This is the main demo app screen.
+
+ This screen has a text input field and list items that show
+
+ */
 struct HomeScreen: View {
 
     @State
