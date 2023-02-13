@@ -13,8 +13,11 @@ import KeyboardKit
  This demo-specific appearance inherits the standard one and
  replaces its input rows with completely custom actions.
 
- ``KeyboardViewController`` registers it to show how you can
- register and use a custom keyboard layout provider. 
+ ``KeyboardViewController`` registers this class to show you
+ how you can set up a custom layout provider.
+
+ The layout basically just makes a single key wider than the
+ rest of the keys.
  */
 class DemoLayoutProvider: StandardKeyboardLayoutProvider {
 

@@ -12,8 +12,8 @@ import KeyboardKit
  This demo-specific input set provider is used to generate a
  custom, Unicode-based demo keyboard.
 
- ``KeyboardViewController`` registers it to show how you can
- register and use a custom input set provider.
+ ``KeyboardViewController`` registers this class to show you
+ how you can set up a custom input set provider.
  */
 class DemoInputSetProvider: InputSetProvider {
     

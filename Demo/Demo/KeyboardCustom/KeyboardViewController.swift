@@ -37,6 +37,11 @@ class KeyboardViewController: KeyboardInputViewController {
             inputSetProvider: inputSetProvider
         )
 
+        // setup a demo-specific keyboard appearance.
+        keyboardAppearance = DemoKeyboardAppearance(
+            keyboardContext: keyboardContext
+        )
+
         // Call super to perform the base initialization
         super.viewDidLoad()
     }
