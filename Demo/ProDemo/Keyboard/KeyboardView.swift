@@ -25,6 +25,8 @@ import SwiftUI
  I have not yet figured out why this is needed.
  */
 struct KeyboardView: View {
+
+    var controller: KeyboardInputViewController
     
     @EnvironmentObject
     private var autocompleteContext: AutocompleteContext
@@ -40,7 +42,7 @@ struct KeyboardView: View {
             if keyboardContext.keyboardType != .emojis {
                 autocompleteToolbar
             }
-            SystemKeyboard()
+            SystemKeyboard(controller: controller)
         }
         .onAppear(perform: restoreLastLocale)
         .onReceive(keyboardContext.$locale, perform: persistLocale)
@@ -64,7 +66,8 @@ private extension KeyboardView {
     var autocompleteToolbar: some View {
         AutocompleteToolbar(
             suggestions: autocompleteContext.suggestions,
-            locale: keyboardContext.locale
+            locale: keyboardContext.locale,
+            action: controller.insertAutocompleteSuggestion
         ).opacity(keyboardContext.prefersAutocomplete ? 1 : 0)  // Still allocate height
     }
 }

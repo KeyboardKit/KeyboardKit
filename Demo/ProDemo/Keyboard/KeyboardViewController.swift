@@ -100,7 +100,7 @@ class KeyboardViewController: KeyboardInputViewController {
         // Setup KeyboardKit Pro, using a demo-specific view
         try? setupPro(
             withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098",
-            view: KeyboardView(),
+            view: KeyboardView(controller: self),
             licenseConfiguration: setupKeyboardWithLicense)
     }
 
