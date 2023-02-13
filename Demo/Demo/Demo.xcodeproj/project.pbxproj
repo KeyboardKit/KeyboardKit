@@ -16,12 +16,12 @@
 		A921152825D58A94003510D9 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921152725D58A94003510D9 /* HomeScreen.swift */; };
 		A921152A25D58A96003510D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A921152925D58A96003510D9 /* Assets.xcassets */; };
 		A921153C25D58AC7003510D9 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921153B25D58AC7003510D9 /* KeyboardViewController.swift */; };
-		A921154025D58AC7003510D9 /* Keyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A921153925D58AC7003510D9 /* Keyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A921154025D58AC7003510D9 /* Keyboard.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A921153925D58AC7003510D9 /* Keyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A921156F25D5902F003510D9 /* FakeAutocompleteProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921156D25D5902F003510D9 /* FakeAutocompleteProvider.swift */; };
 		A93342D0299A855F008FAA95 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93342CF299A855F008FAA95 /* KeyboardViewController.swift */; };
-		A93342D4299A855F008FAA95 /* KeyboardPro.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A93342CD299A855F008FAA95 /* KeyboardPro.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A93342D4299A855F008FAA95 /* KeyboardPro.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A93342CD299A855F008FAA95 /* KeyboardPro.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A93342DF299A8570008FAA95 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93342DE299A8570008FAA95 /* KeyboardViewController.swift */; };
-		A93342E3299A8570008FAA95 /* KeyboardProRtl.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A93342DC299A8570008FAA95 /* KeyboardProRtl.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A93342E3299A8570008FAA95 /* KeyboardProRtl.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A93342DC299A8570008FAA95 /* KeyboardProRtl.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A93342F1299A85AA008FAA95 /* FakeAutocompleteProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921156D25D5902F003510D9 /* FakeAutocompleteProvider.swift */; };
 		A93342F2299A85AA008FAA95 /* FakeAutocompleteProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921156D25D5902F003510D9 /* FakeAutocompleteProvider.swift */; };
 		A93342F8299A85D1008FAA95 /* KeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = A93342F7299A85D1008FAA95 /* KeyboardKit */; };
@@ -42,7 +42,7 @@
 		A9AD5DA8299AEF9C00EF1A8D /* ProDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AD5DA7299AEF9C00EF1A8D /* ProDemoViewController.swift */; };
 		A9AD5DA9299AF0E200EF1A8D /* ProDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AD5DA7299AEF9C00EF1A8D /* ProDemoViewController.swift */; };
 		A9D5F7F328C1D88700D003AF /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D5F7F228C1D88700D003AF /* KeyboardViewController.swift */; };
-		A9D5F7F728C1D88700D003AF /* KeyboardCustom.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A9D5F7F028C1D88700D003AF /* KeyboardCustom.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A9D5F7F728C1D88700D003AF /* KeyboardCustom.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A9D5F7F028C1D88700D003AF /* KeyboardCustom.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A9EAA6C927B1526500BC9376 /* KeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = A9EAA6C827B1526500BC9376 /* KeyboardKit */; };
 		A9EAA6CB27B1527300BC9376 /* KeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = A9EAA6CA27B1527300BC9376 /* KeyboardKit */; };
 		A9EAA6CF27B1527A00BC9376 /* KeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = A9EAA6CE27B1527A00BC9376 /* KeyboardKit */; };
@@ -50,7 +50,7 @@
 		A9EAA6F627B165B600BC9376 /* DemoKeyboardLayoutProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EAA6F227B165B600BC9376 /* DemoKeyboardLayoutProvider.swift */; };
 		A9EAA6F727B165B600BC9376 /* DemoKeyboardActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EAA6F327B165B600BC9376 /* DemoKeyboardActionHandler.swift */; };
 		A9EC229327AD3D3500933DF1 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC229227AD3D3500933DF1 /* KeyboardViewController.swift */; };
-		A9EC229727AD3D3500933DF1 /* KeyboardUnicode.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A9EC229027AD3D3500933DF1 /* KeyboardUnicode.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A9EC229727AD3D3500933DF1 /* KeyboardUnicode.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A9EC229027AD3D3500933DF1 /* KeyboardUnicode.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A9EC229E27AD3E1000933DF1 /* DemoInputSetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC229D27AD3E1000933DF1 /* DemoInputSetProvider.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,19 +93,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A921154425D58AC7003510D9 /* Embed App Extensions */ = {
+		A921154425D58AC7003510D9 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				A93342E3299A8570008FAA95 /* KeyboardProRtl.appex in Embed App Extensions */,
-				A9EC229727AD3D3500933DF1 /* KeyboardUnicode.appex in Embed App Extensions */,
-				A921154025D58AC7003510D9 /* Keyboard.appex in Embed App Extensions */,
-				A9D5F7F728C1D88700D003AF /* KeyboardCustom.appex in Embed App Extensions */,
-				A93342D4299A855F008FAA95 /* KeyboardPro.appex in Embed App Extensions */,
+				A93342E3299A8570008FAA95 /* KeyboardProRtl.appex in Embed Foundation Extensions */,
+				A9EC229727AD3D3500933DF1 /* KeyboardUnicode.appex in Embed Foundation Extensions */,
+				A921154025D58AC7003510D9 /* Keyboard.appex in Embed Foundation Extensions */,
+				A9D5F7F728C1D88700D003AF /* KeyboardCustom.appex in Embed Foundation Extensions */,
+				A93342D4299A855F008FAA95 /* KeyboardPro.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -335,7 +335,7 @@
 				A921151E25D58A94003510D9 /* Sources */,
 				A921151F25D58A94003510D9 /* Frameworks */,
 				A921152025D58A94003510D9 /* Resources */,
-				A921154425D58AC7003510D9 /* Embed App Extensions */,
+				A921154425D58AC7003510D9 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -461,7 +461,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1420;
 				ORGANIZATIONNAME = "Daniel Saidi";
 				TargetAttributes = {
 					A921152125D58A94003510D9 = {
