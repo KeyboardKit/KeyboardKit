@@ -6,6 +6,6 @@
 //  Copyright © 2023 Daniel Saidi. All rights reserved.
 //
 
-import UIKit
+import KeyboardKit
 
-class KeyboardViewController: DemoKeyboardViewController {}
+class KeyboardViewController: KeyboardInputViewController {}

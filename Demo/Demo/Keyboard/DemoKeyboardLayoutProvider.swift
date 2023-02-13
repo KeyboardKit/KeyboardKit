@@ -12,10 +12,10 @@ import KeyboardKit
  This demo-specific appearance inherits the standard one and
  adds a locale button next to space.
 
- ``DemoKeyboardViewController`` registers it to show how you
- can register and use a custom layout provider.
+ ``KeyboardViewController`` registers this class to show you
+ how you can set up a custom layout provider.
 
- The button is only be added if the keyboard has two or more
+ The locale button is only be added if the keyboard has many
  locales. The KeyboardKit Pro demo automatically sets up the
  keyboard with all locales that are available in the license.
  */

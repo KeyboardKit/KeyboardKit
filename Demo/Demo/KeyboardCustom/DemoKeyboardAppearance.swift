@@ -14,11 +14,10 @@ import SwiftUI
  can be used to customize the demo keyboard.
 
  ``KeyboardViewController`` registers this class to show you
- how you can set up a custom appearance.
+ how you can set up a custom keyboard appearance.
 
  This appearance basically just performs a couple of changes
- to demonstrate how easy it is to customize the look of your
- keyboard.
+ to show how easy it is to customize the style of a keyboard.
  */
 class DemoKeyboardAppearance: StandardKeyboardAppearance {
     

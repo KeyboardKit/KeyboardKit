@@ -10,13 +10,12 @@ import KeyboardKit
 import SwiftUI
 
 /**
- This keyboard view is used by all `SystemKeyboard`-specific
- demo keyboards.
+ This view sets up a `SystemKeyboard` as a keyboard view and
+ adds an `AutocompleteToolbar` above it.
 
- The view adds an autocomplete toolbar over the keyboard and
- automatically hides it if the keyboard state doesn't prefer
- autocomplete to be performed. Note that the height is still
- allocated, since keyboard input and action callouts need it.
+ This view automatically hides the autocomplete toolbar when
+ the keyboard doesn't prefer autocomplete, but the height is
+ still allocated, since it's needed by the keyboard callouts.
  */
 struct DemoKeyboardView: View {
 
@@ -37,9 +36,6 @@ struct DemoKeyboardView: View {
         }
     }
 }
-
-
-// MARK: - Private Views
 
 private extension DemoKeyboardView {
 
