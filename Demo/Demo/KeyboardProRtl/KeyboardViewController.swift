@@ -8,4 +8,4 @@
 
 import KeyboardKit
 
-class KeyboardViewController: KeyboardInputViewController {}
+class KeyboardViewController: ProDemoViewController {}

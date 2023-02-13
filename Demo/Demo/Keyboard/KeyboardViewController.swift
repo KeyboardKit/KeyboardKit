@@ -3,19 +3,15 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-11.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
 //
 
 import KeyboardKit
 import SwiftUI
 
 /**
- This controller inherits ``DemoKeyboardViewController`` and
- uses the standard demo configuration to generate a keyboard
- where ``DemoKeyboardView`` mimics a native English keyboard.
-
- Since the ``DemoKeyboardViewController`` sets up a standard
- configuration, this class doesn't have to override anything.
+ This keyboard demonstrates how to create a keyboard that is
+ using a `SystemKeyboard` to mimic a native English keyboard.
 
  To use this keyboard, you must enable it in system settings
  ("Settings/General/Keyboards"). It needs full access to get

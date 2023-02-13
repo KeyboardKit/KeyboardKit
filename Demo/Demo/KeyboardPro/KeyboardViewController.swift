@@ -8,4 +8,13 @@
 
 import KeyboardKit
 
-class KeyboardViewController: KeyboardInputViewController {}
+/**
+ This keyboard controller inherits ``ProDemoViewController``,
+ which registers a KeyboardKit Pro license to unlock a bunch
+ of Pro features, like multiple locales, autocomplete etc.
+
+ To use this keyboard, you must enable it in system settings
+ ("Settings/General/Keyboards"). It needs full access to get
+ access to features like haptic feedback.
+ */
+class KeyboardViewController: ProDemoViewController {}

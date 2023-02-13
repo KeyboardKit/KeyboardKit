@@ -2,8 +2,8 @@
 //  FakeAutocompleteProvider.swift
 //  KeyboardKit
 //
-//  Created by Daniel Saidi on 2019-07-05.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Created by Daniel Saidi on 2022-02-07.
+//  Copyright © 2022-2023 Daniel Saidi. All rights reserved.
 //
 
 import Foundation

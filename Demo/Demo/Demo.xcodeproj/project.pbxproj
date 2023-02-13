@@ -39,6 +39,8 @@
 		A933432C299AE60A008FAA95 /* DemoKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A933432B299AE60A008FAA95 /* DemoKeyboardView.swift */; };
 		A933432E299AE6B1008FAA95 /* DemoKeyboardAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A933432D299AE6B1008FAA95 /* DemoKeyboardAppearance.swift */; };
 		A93CFA2029827D7500A5A9BF /* DemoKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93CFA1F29827D7500A5A9BF /* DemoKeyboardView.swift */; };
+		A9AD5DA8299AEF9C00EF1A8D /* ProDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AD5DA7299AEF9C00EF1A8D /* ProDemoViewController.swift */; };
+		A9AD5DA9299AF0E200EF1A8D /* ProDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AD5DA7299AEF9C00EF1A8D /* ProDemoViewController.swift */; };
 		A9D5F7F328C1D88700D003AF /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D5F7F228C1D88700D003AF /* KeyboardViewController.swift */; };
 		A9D5F7F728C1D88700D003AF /* KeyboardCustom.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A9D5F7F028C1D88700D003AF /* KeyboardCustom.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A9EAA6C927B1526500BC9376 /* KeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = A9EAA6C827B1526500BC9376 /* KeyboardKit */; };
@@ -130,6 +132,7 @@
 		A933432B299AE60A008FAA95 /* DemoKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboardView.swift; sourceTree = "<group>"; };
 		A933432D299AE6B1008FAA95 /* DemoKeyboardAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboardAppearance.swift; sourceTree = "<group>"; };
 		A93CFA1F29827D7500A5A9BF /* DemoKeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoKeyboardView.swift; sourceTree = "<group>"; };
+		A9AD5DA7299AEF9C00EF1A8D /* ProDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProDemoViewController.swift; sourceTree = "<group>"; };
 		A9D5F7F028C1D88700D003AF /* KeyboardCustom.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KeyboardCustom.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9D5F7F228C1D88700D003AF /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		A9D5F7F428C1D88700D003AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -283,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				A93342CF299A855F008FAA95 /* KeyboardViewController.swift */,
+				A9AD5DA7299AEF9C00EF1A8D /* ProDemoViewController.swift */,
 				A93342D1299A855F008FAA95 /* Info.plist */,
 			);
 			path = KeyboardPro;
@@ -581,6 +585,7 @@
 				A9334322299AE2CF008FAA95 /* DemoKeyboardActionHandler.swift in Sources */,
 				A9334323299AE2CF008FAA95 /* DemoKeyboardAppearance.swift in Sources */,
 				A93342F1299A85AA008FAA95 /* FakeAutocompleteProvider.swift in Sources */,
+				A9AD5DA8299AEF9C00EF1A8D /* ProDemoViewController.swift in Sources */,
 				A9334325299AE2CF008FAA95 /* DemoKeyboardView.swift in Sources */,
 				A9334324299AE2CF008FAA95 /* DemoKeyboardLayoutProvider.swift in Sources */,
 				A93342D0299A855F008FAA95 /* KeyboardViewController.swift in Sources */,
@@ -594,6 +599,7 @@
 				A9334327299AE2D0008FAA95 /* DemoKeyboardActionHandler.swift in Sources */,
 				A9334328299AE2D0008FAA95 /* DemoKeyboardAppearance.swift in Sources */,
 				A93342F2299A85AA008FAA95 /* FakeAutocompleteProvider.swift in Sources */,
+				A9AD5DA9299AF0E200EF1A8D /* ProDemoViewController.swift in Sources */,
 				A933432A299AE2D0008FAA95 /* DemoKeyboardView.swift in Sources */,
 				A9334329299AE2D0008FAA95 /* DemoKeyboardLayoutProvider.swift in Sources */,
 				A93342DF299A8570008FAA95 /* KeyboardViewController.swift in Sources */,
