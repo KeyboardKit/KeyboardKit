@@ -1,5 +1,5 @@
 //
-//  CustomKeyboardLayoutProvider.swift
+//  DemoLayoutProvider.swift
 //  KeyboardCustom
 //
 //  Created by Daniel Saidi on 2022-09-02.
@@ -10,13 +10,13 @@ import Foundation
 import KeyboardKit
 
 /**
- This class inherits ``DemoKeyboardLayoutProvider`` and adds
- a custom size to the "i" in the second row's "kit".
+ This demo-specific appearance inherits the standard one and
+ replaces its input rows with completely custom actions.
 
  ``KeyboardViewController`` registers it to show how you can
  register and use a custom keyboard layout provider. 
  */
-class CustomKeyboardLayoutProvider: DemoKeyboardLayoutProvider {
+class DemoLayoutProvider: StandardKeyboardLayoutProvider {
 
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         let layout = super.keyboardLayout(for: context)
