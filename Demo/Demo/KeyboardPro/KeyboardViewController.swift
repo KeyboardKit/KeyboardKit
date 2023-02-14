@@ -6,7 +6,7 @@
 //  Copyright © 2023 Daniel Saidi. All rights reserved.
 //
 
-import KeyboardKit
+import Foundation
 
 /**
  This keyboard controller inherits ``ProDemoViewController``,

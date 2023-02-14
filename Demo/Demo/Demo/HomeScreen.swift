@@ -66,6 +66,7 @@ struct HomeScreen: View {
             }
         }
         .navigationViewStyle(.stack)
+        .environment(\.layoutDirection, isRtl ? .rightToLeft : .leftToRight)
     }
 }
 
@@ -73,6 +74,11 @@ extension HomeScreen {
     
     var footerText: some View {
         Text("You must enable the keyboard in System Settings, then select it with 🌐 when typing.")
+    }
+
+    var isRtl: Bool {
+        let keyboardId = keyboardState.activeKeyboardBundleIds.first
+        return keyboardId?.hasSuffix("rtl") ?? false
     }
 }
 

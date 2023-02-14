@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "keyboardkitpro",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/KeyboardKit/KeyboardKitPro.git",
+      "state" : {
+        "revision" : "add008d753867f972a5e674c5694aeb706723973",
+        "version" : "6.9.8"
+      }
+    },
+    {
       "identity" : "mockingkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/danielsaidi/MockingKit.git",
