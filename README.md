@@ -99,7 +99,7 @@ KeyboardKit comes packed features to help you build amazing and powerful keyboar
 * 👆 [Gestures][Gestures] - KeyboardKit comes with keyboard-specific gestures that you can use in your own keyboards.
 * 🔤 [Input][Input] - KeyboardKit supports creating `alphabetic`, `numeric` and `symbolic` and custom input sets. 
 * 💱 [Layout][Layout] - KeyboardKit supports creating keyboard layouts for various devices, locales etc.
-* ⌨️ [Keyboard][Keyboard] - KeyboardKit supports keyboard types like `alphabertic`, can inspect a keyboard's state etc.
+* ⌨️ [Keyboard][Keyboard] - KeyboardKit supports different keyboard types, can inspect a keyboard's state etc.
 * 🌐 [Locales][Localization]- KeyboardKit defines keyboard-specific locales with localized content and assets.
 * 👁 [Previews][Previews] - KeyboardKit defines a bunch of tools that simplify previewing keyboard views in SwiftUI.
 * ➡️ [Proxy][Proxy] - KeyboardKit defines a bunch of extensions to `UITextDocumentProxy`.
@@ -120,22 +120,17 @@ KeyboardKit Pro requires a commercial license. Licenses can be purchased from th
 
 ## Demo Applications
 
-This project contains a `Demo` folder with three demo apps that lets you try out KeyboardKit.
+This project contains a `Demo` folder with a demo apps that lets you try out different KeyboardKit features.
 
-`Demo` uses KeyboardKit and lets you type in a light and dark text field. It has three keyboards:
+The demo app has 5 keyboard extensions:
 
 * `English` has a `SystemKeyboard` with the standard, English locale.
-* `Unicode` has a `SystemKeyboard` with custom, unicode-based inputs.
-* `Custom` has a completely custom input sets and keyboard layout.
+* `Unicode` has a `SystemKeyboard` with unicode-based input keys.
+* `Custom` has a `SystemKeyboard` with custom keys, layout and appearance.
+* `Pro` uses KeyboardKit Pro and has a `SystemKeyboard` with all LRT locales.
+* `ProRtl` uses KeyboardKit Pro and has a `SystemKeyboard` with all RTL locales.
 
-`ProDemo` uses KeyboardKit Pro and supports all keyboard locales, LTR and RTL, autocomplete etc. It has two keyboards:  
-
-* `System LTR` has a `SystemKeyboard` with all left-to-right locales.
-* `System RTL` has a `SystemKeyboard` with all right-to-left locales.
-
-Just open and run any of these projects, then enable the keyboards you want to try under System Settings.
-
-Note that you need to enable full access to try some features, like audio and haptic feedback.
+Just open and run the demo app, then enable the keyboards you want to try under System Settings. Note that you need to enable full access to try some features, like audio and haptic feedback.
 
 
 
