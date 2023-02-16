@@ -33,6 +33,14 @@ Some things that are planned for the 7.0 release:
 
 
 
+## 6.9.9  
+
+### ✨ New features
+
+* This release makes KeyboardKit Pro's standard autocomplete work with more locales.
+
+
+
 ## 6.9.5 - 6.9.8
 
 These versions adjust KeyboardKit Pro licenses, but are otherwise identical to `6.9.4`. 
