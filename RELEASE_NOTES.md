@@ -133,6 +133,14 @@ This version adjusts licenses in KeyboardKit Pro, otherwise it's identical to `6
 
 
 
+## 6.9.9  
+
+### ✨ New features
+
+* This release makes KeyboardKit Pro's standard autocomplete work with more locales.
+
+
+
 ## 6.9.5 - 6.9.8
 
 These versions adjust KeyboardKit Pro licenses, but are otherwise identical to `6.9.4`. 
