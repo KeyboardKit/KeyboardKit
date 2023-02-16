@@ -121,7 +121,7 @@ public extension Character {
 }
 
 
-// MARK: -  String
+// MARK: - String
 
 public extension String {
 

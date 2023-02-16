@@ -45,6 +45,6 @@ class KeyboardTypeTests: XCTestCase {
     func testIsAlphabeticWithCaseIsTrueForMatchingTypes() {
         XCTAssertFalse(isAlphabetic(.alphabetic(.lowercased), .uppercased))
         XCTAssertTrue(isAlphabetic(.alphabetic(.uppercased), .uppercased))
-        XCTAssertTrue(isAlphabetic(.alphabetic(.capsLocked) ,.capsLocked))
+        XCTAssertTrue(isAlphabetic(.alphabetic(.capsLocked), .capsLocked))
     }
 }

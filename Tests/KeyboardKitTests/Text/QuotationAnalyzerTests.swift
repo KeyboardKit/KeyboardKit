@@ -135,7 +135,7 @@ class QuotationAnalyzerTests: XCTestCase {
         testPreferredQuotationReplacementWhenInsertingEndDelimiterWithoutUnclosedBeginDelimiter(for: .dutch, expected: beginDelimiter(for: .dutch))
         testPreferredQuotationReplacementWhenInsertingEndDelimiterWithoutUnclosedBeginDelimiter(for: .english, expected: beginDelimiter(for: .english))
         testPreferredQuotationReplacementWhenInsertingEndDelimiterWithoutUnclosedBeginDelimiter(for: .finnish, expected: nil)
-        testPreferredQuotationReplacementWhenInsertingEndDelimiterWithoutUnclosedBeginDelimiter(for: .german, delimiter:  "”", expected: beginDelimiter(for: .german))
+        testPreferredQuotationReplacementWhenInsertingEndDelimiterWithoutUnclosedBeginDelimiter(for: .german, delimiter: "”", expected: beginDelimiter(for: .german))
         testPreferredQuotationReplacementWhenInsertingEndDelimiterWithoutUnclosedBeginDelimiter(for: .german, expected: beginDelimiter(for: .german))
         testPreferredQuotationReplacementWhenInsertingEndDelimiterWithoutUnclosedBeginDelimiter(for: .norwegian, expected: beginDelimiter(for: .norwegian))
         testPreferredQuotationReplacementWhenInsertingEndDelimiterWithoutUnclosedBeginDelimiter(for: .swedish, expected: nil)
