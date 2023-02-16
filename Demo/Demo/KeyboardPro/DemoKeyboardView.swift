@@ -43,7 +43,7 @@ private extension DemoKeyboardView {
         AutocompleteToolbar(
             suggestions: autocompleteContext.suggestions,
             locale: keyboardContext.locale,
-            action: { _ in print("TODO: Implement after releasing PRO") }
+            suggestionAction: controller.insertAutocompleteSuggestion
         ).opacity(keyboardContext.prefersAutocomplete ? 1 : 0)  // Still allocate height
     }
 }
