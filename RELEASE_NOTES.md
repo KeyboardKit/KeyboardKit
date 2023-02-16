@@ -16,14 +16,6 @@ Older versions have their release notes listed in the `Release_Notes` folder.
 
 
 
-## Planned changes for 7.0
-
-Some things that are planned for the 7.0 release:
-
-* KeyboardKit Pro active and enabled labels will use an observed object to update when the state changes.
-
-
-
 ## 7.0
 
 KeyboardKit 7.0 involves a major rewrite of many parts of the library, to get more consistency in how things are named and structured. It aims to streamline the library and to make future development easier.
