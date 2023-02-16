@@ -196,10 +196,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      Whether or not a feedback should be given for a certain
      gesture on a certain action.
 
-     By default, the function will return `true` for a press
-     on a gesture that has a tap action or if the gesture is
-     not a tap and the action has an action for that gesture.
-
      You can override this function to customize how actions
      trigger feedback.
      */

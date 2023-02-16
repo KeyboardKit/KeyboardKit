@@ -87,7 +87,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `ActionCalloutContext` `.shared` has been removed.
 * `AutocompleteSuggestions` is now a struct instead of a protocol.
 * `AutocompleteToolbar` standard actions have been removed.
-* `AutocompleteToolbar` `ReplacementAction` has been renamed to `Action`.
+* `AutocompleteToolbar` `ReplacementAction` has been renamed to `SuggestionAction`.
 * `AutocompleteToolbarItem` init parameters have been reordered.
 * `AutocompleteToolbarItemTitle` init parameters have been reordered.
 * `DeleteBackwardRange` `char` has been renamed to `character`.

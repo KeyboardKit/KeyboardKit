@@ -62,7 +62,6 @@ public extension View {
        - calloutContext: The callout context to affect, if any.
        - isInScrollView: Whether or not the gestures are used in a scroll view, by default `false`, by deafult `false`.
        - isPressed: An optional binding that can be used to observe the button pressed state, by deafult `false`.
-       - tapAction: The action to trigger when the button is released within its bounds, by deafult `nil`.
        - doubleTapAction: The action to trigger when the button is double tapped, by deafult `nil`.
        - longPressAction: The action to trigger when the button is long pressed, by deafult `nil`.
        - pressAction: The action to trigger when the button is pressed, by deafult `nil`.

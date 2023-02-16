@@ -182,8 +182,7 @@ public extension KeyboardAction {
     }
 
     /**
-     Whether or not the action primary serves as a space and
-     should be rendered, although it may have to be tappable.
+     Whether or not the action primary serves as a spacer.
      */
     var isSpacer: Bool {
         switch self {
