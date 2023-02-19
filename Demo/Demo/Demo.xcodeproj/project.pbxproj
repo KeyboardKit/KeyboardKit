@@ -25,6 +25,8 @@
 		A933432C299AE60A008FAA95 /* DemoKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A933432B299AE60A008FAA95 /* DemoKeyboardView.swift */; };
 		A933432E299AE6B1008FAA95 /* DemoKeyboardAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A933432D299AE6B1008FAA95 /* DemoKeyboardAppearance.swift */; };
 		A93CFA2029827D7500A5A9BF /* DemoKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93CFA1F29827D7500A5A9BF /* DemoKeyboardView.swift */; };
+		A966F7EB299EEC2D004D85CE /* KeyboardLocale+Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A966F7EA299EEC2D004D85CE /* KeyboardLocale+Demo.swift */; };
+		A966F7EC299EF007004D85CE /* KeyboardLocale+Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A966F7EA299EEC2D004D85CE /* KeyboardLocale+Demo.swift */; };
 		A9A7E01E299B6D3F00713F2A /* KeyboardKitPro in Frameworks */ = {isa = PBXBuildFile; productRef = A9A7E01D299B6D3F00713F2A /* KeyboardKitPro */; };
 		A9A7E077299B721B00713F2A /* DemoKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A7E076299B721600713F2A /* DemoKeyboardView.swift */; };
 		A9A7E078299B721B00713F2A /* DemoKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A7E076299B721600713F2A /* DemoKeyboardView.swift */; };
@@ -123,6 +125,7 @@
 		A933432B299AE60A008FAA95 /* DemoKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboardView.swift; sourceTree = "<group>"; };
 		A933432D299AE6B1008FAA95 /* DemoKeyboardAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboardAppearance.swift; sourceTree = "<group>"; };
 		A93CFA1F29827D7500A5A9BF /* DemoKeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoKeyboardView.swift; sourceTree = "<group>"; };
+		A966F7EA299EEC2D004D85CE /* KeyboardLocale+Demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardLocale+Demo.swift"; sourceTree = "<group>"; };
 		A9A7E01B299B6CD800713F2A /* KeyboardKitPro */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = KeyboardKitPro; path = "/Users/danielsaidi/Library/Developer/Xcode/DerivedData/Demo-cuccbkfkotoujlbkuaswjdgjknfd/SourcePackages/checkouts/KeyboardKitPro"; sourceTree = "<absolute>"; };
 		A9A7E076299B721600713F2A /* DemoKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboardView.swift; sourceTree = "<group>"; };
 		A9A7E079299B72BC00713F2A /* DemoKeyboardLayoutProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboardLayoutProvider.swift; sourceTree = "<group>"; };
@@ -282,6 +285,7 @@
 				A9A7E079299B72BC00713F2A /* DemoKeyboardLayoutProvider.swift */,
 				A9A7E076299B721600713F2A /* DemoKeyboardView.swift */,
 				A93342CF299A855F008FAA95 /* KeyboardViewController.swift */,
+				A966F7EA299EEC2D004D85CE /* KeyboardLocale+Demo.swift */,
 				A9AD5DA7299AEF9C00EF1A8D /* ProDemoViewController.swift */,
 				A93342D1299A855F008FAA95 /* Info.plist */,
 			);
@@ -582,6 +586,7 @@
 				A9AD5DA8299AEF9C00EF1A8D /* ProDemoViewController.swift in Sources */,
 				A93342D0299A855F008FAA95 /* KeyboardViewController.swift in Sources */,
 				A9A7E077299B721B00713F2A /* DemoKeyboardView.swift in Sources */,
+				A966F7EB299EEC2D004D85CE /* KeyboardLocale+Demo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,6 +598,7 @@
 				A9AD5DA9299AF0E200EF1A8D /* ProDemoViewController.swift in Sources */,
 				A93342DF299A8570008FAA95 /* KeyboardViewController.swift in Sources */,
 				A9A7E078299B721B00713F2A /* DemoKeyboardView.swift in Sources */,
+				A966F7EC299EF007004D85CE /* KeyboardLocale+Demo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1147,7 +1153,7 @@
 			repositoryURL = "https://github.com/KeyboardKit/KeyboardKitPro.git";
 			requirement = {
 				kind = revision;
-				revision = 7b105f0a7c8f4926b0cda3fac78b6b4fd2ccf9e6;
+				revision = 329f28b883513990cecac6772e5c5c165c8aa3f5;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

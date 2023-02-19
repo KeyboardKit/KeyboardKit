@@ -15,19 +15,20 @@ import SwiftUI
 
  The keyboard registers a Pro license to unlock all keyboard
  locales, then applies either LTR or RTL locales based on if
- you are using `KeyboardPro` or `KeyboardProRTL`. If the RTL
- locale set is applied, we also flip the interface direction
- in the demo app, so that the entire app becomes RTL.
+ you are using `KeyboardPro` or `KeyboardProRTL`. A keyboard
+ can also tell the app to use RTL. This can be configured in
+ the keyboard extension's `Info.plist` file, by toggling the
+ `PrefersRightToLeft` extension attribute to `YES`.
 
  To use this keyboard, you must enable it in system settings
  ("Settings/General/Keyboards"). It needs full access to get
  access to features like haptic feedback.
 
- IMPORTANT: You may notice how the demo adds KeyboardKit Pro
- to the app target instead of the keyboard extensions, while
- the regular KeyboardKit is added to each keyboard extension.
- This is how KeyboardKit Pro must be linked, since this is a
- binary framework.
+ `IMPORTANT!` You may have noticed how the demo project only
+ links KeyboardKit Pro to the app target, while it links the
+ KeyboardKit base library to every target that uses it. This
+ is because KeyboardKit Pro is a binary framework, which has
+ to be linked in this way.
  */
 class ProDemoViewController: KeyboardInputViewController {
 
@@ -78,11 +79,11 @@ class ProDemoViewController: KeyboardInputViewController {
 
         // Restore the last used locale, if any
         // 💡 This must be done after registering Pro
-        keyboardContext.locale = persistedLocale ?? defaultLocale.locale
+        keyboardContext.locale = persistedLocale ?? KeyboardLocale.defaultDemoLocale.locale
 
         // Apply the applicable locales, either LTR or RTL
         // 💡 This must be done after registering Pro
-        keyboardContext.locales = demoLocales.map { $0.locale }
+        keyboardContext.locales = KeyboardLocale.demoLocales.map { $0.locale }
 
         // Setup a demo-specific keyboard layout provider
         // 💡 Play with this to change the keyboard's layout
@@ -90,32 +91,6 @@ class ProDemoViewController: KeyboardInputViewController {
             license: license,
             keyboardContext: keyboardContext,
             inputSetProvider: inputSetProvider)
-    }
-
-
-    // MARK: - Locales
-
-    /**
-     The default locale depends on if the demo is LTR or RTL.
-     */
-    var defaultLocale: KeyboardLocale {
-        isRtlKeyboard ? .arabic : .english
-    }
-
-    /**
-     This demo uses LRT or RTL locales based on the keyboard.
-     */
-    var demoLocales: [KeyboardLocale] {
-        KeyboardLocale.allCases
-            .filter { $0.isRightToLeft == isRtlKeyboard }
-            .sorted(insertFirst: .english)
-    }
-
-    /**
-     Whether or not the demo is an RTL keyboard.
-     */
-    var isRtlKeyboard: Bool {
-        Bundle.main.bundleIdentifier?.contains("rtl") == true
     }
 
 
