@@ -45,7 +45,6 @@ struct KeyboardGestures<Content: View>: View {
         pressAction: KeyboardGestureAction?,
         releaseAction: KeyboardGestureAction?,
         repeatAction: KeyboardGestureAction?,
-        repeatTimer: RepeatGestureTimer = .shared,
         dragAction: KeyboardDragGestureAction?
     ) {
         self.view = view
@@ -58,7 +57,6 @@ struct KeyboardGestures<Content: View>: View {
         self.pressAction = pressAction
         self.releaseAction = releaseAction
         self.repeatAction = repeatAction
-        self.repeatTimer = repeatTimer
         self.dragAction = dragAction
     }
     
@@ -72,7 +70,6 @@ struct KeyboardGestures<Content: View>: View {
     private let pressAction: KeyboardGestureAction?
     private let releaseAction: KeyboardGestureAction?
     private let repeatAction: KeyboardGestureAction?
-    private let repeatTimer: RepeatGestureTimer
     private let dragAction: KeyboardDragGestureAction?
 
     @State
