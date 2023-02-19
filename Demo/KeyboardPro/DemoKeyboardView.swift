@@ -19,7 +19,7 @@ import SwiftUI
  */
 struct DemoKeyboardView: View {
 
-    var controller: KeyboardInputViewController
+    weak var controller: KeyboardInputViewController?
     
     @EnvironmentObject
     private var autocompleteContext: AutocompleteContext
@@ -28,11 +28,13 @@ struct DemoKeyboardView: View {
     private var keyboardContext: KeyboardContext
 
     var body: some View {
-        VStack(spacing: 0) {
-            if keyboardContext.prefersAutocomplete {
-                autocompleteToolbar
+        if let controller = controller {
+            VStack(spacing: 0) {
+                if keyboardContext.prefersAutocomplete {
+                    autocompleteToolbar
+                }
+                SystemKeyboard(controller: controller)
             }
-            SystemKeyboard(controller: controller)
         }
     }
 }
@@ -43,7 +45,9 @@ private extension DemoKeyboardView {
         AutocompleteToolbar(
             suggestions: autocompleteContext.suggestions,
             locale: keyboardContext.locale,
-            suggestionAction: controller.insertAutocompleteSuggestion
+            suggestionAction: { [weak controller] suggestion in
+                controller?.insertAutocompleteSuggestion(suggestion)
+            }
         ).opacity(keyboardContext.prefersAutocomplete ? 1 : 0)  // Still allocate height
     }
 }

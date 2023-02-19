@@ -22,6 +22,12 @@ KeyboardKit 7.0 involves a major rewrite of many parts of the library, to get mo
 
 This version bumps the platform deployment targets to make more types available to more platforms. This bump also lets us remove all `@available` annotations, which makes the code a lot cleaner. The release also removes all previously deprecated code and todos.
 
+### Important
+
+To make the `SystemKeyboard` even easier to use, it will now add an autocomplete toolbar by default. This will make sure that the keyboard by default has enough space to show the callouts, and will reduce the risk of introducting memory leaks by injecting a strong controller reference.
+
+If your keyboard already has a custom autocomplete toolbar, you must pass in `autocompleteToolbar: none` in the system keyboard initializer. 
+
 ### Migrating from KeyboardKit 6
 
 Although this release aims to make as few breaking changes as possible, there are some surface level APIs that change and will require you to adjust your code. One such change is the removal of many shared instances, to reduce coupling within the library.
@@ -59,6 +65,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `ScrollViewGestureButton` is now available on watchOS 7.
 * `SpaceCursorDragGestureHandler` is now available on all platforms.
 * `String` has new casing, keyboard character, quotation, word and sentence extensions.
+* `SystemKeyboard` will now add an autocomplete toolbar by default.
 * `SystemKeyboardActionButton` is now available on all platforms.
 * `Text` is a new namespace for text analysis.
 * `UITextDocumentProxy` quotation utilities is now available as `StringQuotationAnalyzer`.
