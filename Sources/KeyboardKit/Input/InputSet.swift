@@ -16,23 +16,28 @@ import Foundation
  The most flexible way to generate an input set is to use an
  ``InputSetProvider``.
  */
-public class InputSet: Equatable {
+public protocol InputSet: Equatable {
     
-    public init(rows: InputSetRows) {
-        self.rows = rows
-    }
-    
-    public var rows: InputSetRows
-    
-    public static func == (lhs: InputSet, rhs: InputSet) -> Bool {
-        lhs.rows == rhs.rows
-    }
+    var rows: InputSetRows { get }
 }
 
 /**
  This input set can be used in alphabetic keyboards.
  */
-public class AlphabeticInputSet: InputSet {}
+public struct AlphabeticInputSet: InputSet {
+
+    /**
+     Create an alphabetic input set.
+     */
+    public init(rows: InputSetRows) {
+        self.rows = rows
+    }
+
+    /**
+     The rows in the input set.
+     */
+    public var rows: InputSetRows
+}
 
 public extension AlphabeticInputSet {
 
@@ -49,7 +54,14 @@ public extension AlphabeticInputSet {
 /**
  This input set can used in numeric keyboards.
  */
-public class NumericInputSet: InputSet {}
+public struct NumericInputSet: InputSet {
+
+    public init(rows: InputSetRows) {
+        self.rows = rows
+    }
+
+    public var rows: InputSetRows
+}
 
 public extension NumericInputSet {
 
@@ -69,7 +81,14 @@ public extension NumericInputSet {
 /**
  This input set can be used in symbolic keyboards.
  */
-public class SymbolicInputSet: InputSet {}
+public struct SymbolicInputSet: InputSet {
+
+    public init(rows: InputSetRows) {
+        self.rows = rows
+    }
+
+    public var rows: InputSetRows
+}
 
 public extension SymbolicInputSet {
 

@@ -97,6 +97,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `EmojiCharacterAnalyzer` and `EmojiStringAnalyzer` have been merged into `EmojiAnalyzer`.
 * `EmojiKeyboard` init parameters have been refactored. 
 * `InputCalloutContext` `.shared` has been removed.
+* `InputSet` has been converted to a `protocol` and all input set types converted from `class` to `struct`.
 * `KeyboardAction` `.return` and `.newLine` have been replaced by `primary` variants.
 * `KeyboardAction` `.shift` `currentState` is renamed to `currentCasing`.
 * `KeyboardAction` `standardTextDocumentProxyAction` has been removed.
