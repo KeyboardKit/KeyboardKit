@@ -9,8 +9,9 @@
 import SwiftUI
 
 /**
- This view renders a system keyboard button that is meant to
- be used within a ``SystemKeyboard``.
+ This view is used within a ``SystemKeyboard`` and renders a
+ keyboard button that adapts based on a ``KeyboardLayoutItem``
+ and aims .
 
  This view applies a tappable padding around its content, to
  mitigate any dead tap areas.
