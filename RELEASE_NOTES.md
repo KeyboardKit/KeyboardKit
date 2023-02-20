@@ -57,6 +57,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `KeyboardContext` has a new `keyboardLocale` and new functions for setting locale and keyboard type.
 * `KeyboardInputViewController` has a new `calloutContext`.  
 * `KeyboardInputViewController` implements `KeyboardController` which gives it a bunch of new functions.
+* `KeyboardLocale` implements `LocaleFlagProvider`.
 * `KeyboardType` has new properties.
 * `KeyboardLayoutConfiguration` has adjusted the standard corner radius for iPhone buttons.
 * `NextKeyboardButton` now supports using any custom content.
@@ -119,6 +120,9 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `KeyboardTextField` now requires an keyboard input view controller.
 * `KeyboardTextView` now requires an keyboard input view controller.
 * `KeyboardType` has made the `isAlphabetic(with:)` parameter implicit.
+* `Locale` `regionIdentifier` has been removed.
+* `LocaleProvider` has been removed.
+* `LocaleFlagProvider` is now only implemented by `Locale` on iOS 16.
 * `StandardAutocompleteSuggestions` has been renamed to `AutocompleteSuggestions`.
 * `StandardKeyboardActionHandler` now requires a `KeyboardController`.
 * `StandardKeyboardActionHandler` `inputViewController` initializer is now a convenience initializer.

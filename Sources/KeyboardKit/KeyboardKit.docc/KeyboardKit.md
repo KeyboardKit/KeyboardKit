@@ -293,7 +293,6 @@ KeyboardKit is available under the MIT license.
 - ``LocaleContextMenu``
 - ``LocaleDictionary``
 - ``LocaleFlagProvider``
-- ``LocaleProvider``
 - ``LocalizedService``
 
 ### Localization
