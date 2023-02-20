@@ -57,7 +57,7 @@ private struct NextKeyboardButtonOverlay: UIViewRepresentable {
 
     init(controller: UIInputViewController?) {
         button = UIButton()
-        if controller == nil { assertionFailure("Input view controller is nil") }
+        if controller == nil && !ProcessInfo.isSwiftUIPreview { assertionFailure("Input view controller is nil") }
         controller?.setupNextKeyboardButton(button)
     }
     
@@ -73,6 +73,17 @@ private extension UIInputViewController {
     func setupNextKeyboardButton(_ button: UIButton) {
         let action = #selector(handleInputModeList(from:with:))
         button.addTarget(self, action: action, for: .allTouchEvents)
+    }
+}
+
+private extension ProcessInfo {
+
+    var isSwiftUIPreview: Bool {
+        environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+    }
+
+    static var isSwiftUIPreview: Bool {
+        processInfo.isSwiftUIPreview
     }
 }
 #endif
