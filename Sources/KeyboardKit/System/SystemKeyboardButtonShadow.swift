@@ -30,7 +30,9 @@ public struct SystemKeyboardButtonShadow: View {
      - Parameters:
        - style: The button style to apply.
      */
-    public init(style: KeyboardButtonStyle) {
+    public init(
+        style: KeyboardButtonStyle
+    ) {
         self.style = style
     }
     
