@@ -1,5 +1,5 @@
 //
-//  SystemKeyboardActionButtonContent.swift
+//  SystemKeyboardButtonContent.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
@@ -9,18 +9,15 @@
 import SwiftUI
 
 /**
- This view renders content for a system keyboard button that
- is based on a certain ``KeyboardAction``.
+ This view generates the content of a system keyboard button
+ that should trigger a certain ``KeyboardAction``.
 
  This view will adapt its content to conform to the provided
- `action` and `appearance` and applies keyboard gestures for
- the provided `action`, `actionHandler` and `keyboardContext`.
-
- The view sets up gestures, line limits, vertical offset etc.
- and aims to make the button mimic an iOS system keyboard as
- closely as possible.
+ `action` and `appearance`. It sets up gestures, line limits,
+ vertical offset etc. and aims to mimic an iOS system button
+ as closely as possible.
  */
-public struct SystemKeyboardActionButtonContent: View {
+public struct SystemKeyboardButtonContent: View {
     
     /**
      Create a system keyboard action button content view.
@@ -51,7 +48,7 @@ public struct SystemKeyboardActionButtonContent: View {
     }
 }
 
-private extension SystemKeyboardActionButtonContent {
+private extension SystemKeyboardButtonContent {
 
     @ViewBuilder
     var bodyContent: some View {
@@ -94,7 +91,7 @@ private extension SystemKeyboardActionButtonContent {
     }
 }
 
-private extension SystemKeyboardActionButtonContent {
+private extension SystemKeyboardButtonContent {
     
     var localeName: String {
         keyboardContext.locale.localizedLanguageName ?? ""
@@ -123,7 +120,7 @@ struct SystemKeyboardButtonContent_Previews: PreviewProvider {
         for action: KeyboardAction,
         multiLocale: Bool = false
     ) -> some View {
-        SystemKeyboardActionButtonContent(
+        SystemKeyboardButtonContent(
             action: action,
             appearance: .preview,
             keyboardContext: multiLocale ? multiLocaleContext : .preview

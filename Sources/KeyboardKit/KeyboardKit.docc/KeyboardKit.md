@@ -328,9 +328,9 @@ KeyboardKit is available under the MIT license.
 
 - ``SystemKeyboard``
 - ``SystemKeyboardActionButton``
-- ``SystemKeyboardActionButtonContent``
 - ``SystemKeyboardButton``
 - ``SystemKeyboardButtonBody``
+- ``SystemKeyboardButtonContent``
 - ``SystemKeyboardButtonRowItem``
 - ``SystemKeyboardButtonShadow``
 - ``SystemKeyboardButtonText``

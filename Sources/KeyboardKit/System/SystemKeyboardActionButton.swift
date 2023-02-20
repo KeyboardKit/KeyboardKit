@@ -70,7 +70,7 @@ public struct SystemKeyboardActionButton<Content: View>: View {
         keyboardContext: KeyboardContext,
         calloutContext: KeyboardCalloutContext?,
         appearance: KeyboardAppearance
-    ) where Content == SystemKeyboardActionButtonContent {
+    ) where Content == SystemKeyboardButtonContent {
         self.init(
             action: action,
             actionHandler: actionHandler,
@@ -95,7 +95,7 @@ public struct SystemKeyboardActionButton<Content: View>: View {
      This typealias represents an action that can be used to
      customize (or replace) a standard button content view.
      */
-    public typealias ContentConfig = (_ standardContent: SystemKeyboardActionButtonContent) -> Content
+    public typealias ContentConfig = (_ standardContent: SystemKeyboardButtonContent) -> Content
         
     public var body: some View {
         SystemKeyboardButton(
@@ -114,7 +114,7 @@ private extension SystemKeyboardActionButton {
     
     var buttonContent: some View {
         contentConfig(
-            SystemKeyboardActionButtonContent(
+            SystemKeyboardButtonContent(
                 action: action,
                 appearance: appearance,
                 keyboardContext: keyboardContext

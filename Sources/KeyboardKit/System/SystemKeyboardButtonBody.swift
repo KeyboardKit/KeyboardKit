@@ -11,8 +11,8 @@ import SwiftUI
 /**
  This view renders the body of a system keyboard button.
 
- The body is the button "background", which means the entire
- button shape, without its text or image.
+ The body is the button "background", which means the button
+ shape, corner radius, shadow etc. without the content.
  */
 public struct SystemKeyboardButtonBody: View {
     

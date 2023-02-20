@@ -11,24 +11,24 @@ import SwiftUI
 
 /**
  This keyboard can be used to create alphabetic, numeric and
- symbolic keyboards that mimic the native iOS keyboards.
+ symbolic keyboards that mimic the native iOS keyboard.
 
  The keyboard will by default place an ``AutocompleteToolbar``
- above the keyboard, unless you tell it not to by setting it
- to ``AutocompleteToolbarMode/none``. The keyboard will also
- replace itself with an ``EmojiCategoryKeyboard`` if needed.
+ above the keyboard, unless you tell it not to. It will also
+ replace the keyboard with an ``EmojiCategoryKeyboard`` when
+ ``KeyboardContext/keyboardType`` is ``KeyboardType/emojis``.
 
  There are several ways to create a system keyboard. Use the
- initializer without a view builder to use a standard button
- view that aims to mimic the native iOS keyboard buttons for
- each layout item. Use the `buttonView` initializer when you
- want to customize the entire view for each layout item. Use
- the `buttonContent` initializer to customize the content of
- each layout item, while keeping the button shape and style.
+ initializers without view builders to use a standard button
+ view for each layout item, the `buttonView` initializers to
+ customize the full layout item view, and the `buttonContent`
+ initializers to customize the button content of each layout
+ item, while keeping the standard button shape and style.
 
- The view uses ``SystemKeyboardButtonRowItem`` as a standard
- button view builder and ``SystemKeyboardActionButtonContent``
- as a standard button content builder.
+ To use the standard button and content views for some items
+ when using any of these custom button view builders, simply
+ use the ``SystemKeyboardButtonRowItem`` view as button view
+ and ``SystemKeyboardButtonContent`` as button content.
 
  Since the keyboard layout depends on the available keyboard
  width, you must provide this view with a width if you don't
@@ -63,7 +63,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
         keyboardContext: KeyboardContext,
         calloutContext: KeyboardCalloutContext?,
         width: CGFloat
-    ) where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardActionButtonContent> {
+    ) where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardButtonContent> {
         self.init(
             layout: layout,
             appearance: appearance,
@@ -208,7 +208,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
         autocompleteToolbarAction: AutocompleteToolbarAction? = nil,
         autocompleteToolbar: AutocompleteToolbarMode = .automatic,
         width: CGFloat? = nil
-    ) where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardActionButtonContent> {
+    ) where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardButtonContent> {
         self.init(
             layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
             appearance: controller.keyboardAppearance,
@@ -406,26 +406,24 @@ private extension SystemKeyboard {
 public extension SystemKeyboard {
 
     /**
-     The standard ``SystemKeyboardActionButtonContent`` view
-     that will be used as intrinsic content for every layout
-     item in the keyboard if you don't use a `buttonView` or
-     `buttonContent` initializer.
+     The standard ``SystemKeyboardButtonContent`` view, that
+     will be used as button content for every layout item.
      */
     static func standardButtonContent(
         item: KeyboardLayoutItem,
         appearance: KeyboardAppearance,
         keyboardContext: KeyboardContext
-    ) -> SystemKeyboardActionButtonContent {
-        SystemKeyboardActionButtonContent(
+    ) -> SystemKeyboardButtonContent {
+        SystemKeyboardButtonContent(
             action: item.action,
             appearance: appearance,
-            keyboardContext: keyboardContext)
+            keyboardContext: keyboardContext
+        )
     }
 
     /**
      The standard ``SystemKeyboardButtonRowItem`` view, that
-     will be used as view for every layout item if you don't
-     use the `buttonView` initializer.
+     will be used as button view for every layout item.
      */
     static func standardButtonView(
         item: KeyboardLayoutItem,
@@ -435,7 +433,7 @@ public extension SystemKeyboard {
         calloutContext: KeyboardCalloutContext?,
         keyboardWidth: KeyboardWidth,
         inputWidth: KeyboardItemWidth
-    ) -> SystemKeyboardButtonRowItem<SystemKeyboardActionButtonContent> {
+    ) -> SystemKeyboardButtonRowItem<SystemKeyboardButtonContent> {
         SystemKeyboardButtonRowItem(
             content: standardButtonContent(
                 item: item,
@@ -529,7 +527,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
         case .backspace:
             Image(systemName: "trash").foregroundColor(Color.red)
         default:
-            SystemKeyboardActionButtonContent(
+            SystemKeyboardButtonContent(
                 action: item.action,
                 appearance: .preview,
                 keyboardContext: .preview
