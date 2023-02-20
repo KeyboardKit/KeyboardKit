@@ -1145,7 +1145,7 @@
 			repositoryURL = "https://github.com/KeyboardKit/KeyboardKitPro.git";
 			requirement = {
 				kind = revision;
-				revision = 329f28b883513990cecac6772e5c5c165c8aa3f5;
+				revision = fad782ace83be3065925402cd75949463a964aa5;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
