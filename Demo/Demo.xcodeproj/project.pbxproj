@@ -244,13 +244,13 @@
 		A921153A25D58AC7003510D9 /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
-				A921155A25D58E4A003510D9 /* Supporting Files */,
+				A921153D25D58AC7003510D9 /* Info.plist */,
+				A921153B25D58AC7003510D9 /* KeyboardViewController.swift */,
 				A9EAA6F327B165B600BC9376 /* DemoKeyboardActionHandler.swift */,
 				A9EAA6F127B165B600BC9376 /* DemoKeyboardAppearance.swift */,
 				A9EAA6F227B165B600BC9376 /* DemoKeyboardLayoutProvider.swift */,
 				A93CFA1F29827D7500A5A9BF /* DemoKeyboardView.swift */,
 				A921156D25D5902F003510D9 /* FakeAutocompleteProvider.swift */,
-				A921153B25D58AC7003510D9 /* KeyboardViewController.swift */,
 			);
 			path = Keyboard;
 			sourceTree = "<group>";
@@ -271,23 +271,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A921155A25D58E4A003510D9 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A921153D25D58AC7003510D9 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		A93342CE299A855F008FAA95 /* KeyboardPro */ = {
 			isa = PBXGroup;
 			children = (
-				A9A7E079299B72BC00713F2A /* DemoKeyboardLayoutProvider.swift */,
-				A9A7E076299B721600713F2A /* DemoKeyboardView.swift */,
+				A93342D1299A855F008FAA95 /* Info.plist */,
 				A93342CF299A855F008FAA95 /* KeyboardViewController.swift */,
 				A966F7EA299EEC2D004D85CE /* KeyboardLocale+Demo.swift */,
+				A9A7E079299B72BC00713F2A /* DemoKeyboardLayoutProvider.swift */,
+				A9A7E076299B721600713F2A /* DemoKeyboardView.swift */,
 				A9AD5DA7299AEF9C00EF1A8D /* ProDemoViewController.swift */,
-				A93342D1299A855F008FAA95 /* Info.plist */,
 			);
 			path = KeyboardPro;
 			sourceTree = "<group>";
@@ -295,8 +287,8 @@
 		A93342DD299A8570008FAA95 /* KeyboardProRtl */ = {
 			isa = PBXGroup;
 			children = (
-				A93342DE299A8570008FAA95 /* KeyboardViewController.swift */,
 				A93342E0299A8570008FAA95 /* Info.plist */,
+				A93342DE299A8570008FAA95 /* KeyboardViewController.swift */,
 			);
 			path = KeyboardProRtl;
 			sourceTree = "<group>";
@@ -318,9 +310,9 @@
 			isa = PBXGroup;
 			children = (
 				A9EC229427AD3D3500933DF1 /* Info.plist */,
+				A9EC229227AD3D3500933DF1 /* KeyboardViewController.swift */,
 				A9EC229D27AD3E1000933DF1 /* DemoInputSetProvider.swift */,
 				A9334315299AE2A5008FAA95 /* DemoKeyboardView.swift */,
-				A9EC229227AD3D3500933DF1 /* KeyboardViewController.swift */,
 			);
 			path = KeyboardUnicode;
 			sourceTree = "<group>";

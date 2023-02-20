@@ -12,8 +12,22 @@ import SwiftUI
 /**
  This is the main demo app screen.
 
- This screen has a text input field and list items that show
+ This screen has a text field, an appearance toggle and list
+ items that show various keyboard-specific states.
 
+ The app has several keyboards, where the standard one shows
+ you how to setup a standard English keyboard, with services
+ already prepared to let you easily customize the appearance,
+ the keyboard layout etc. The unicode keyboard uses an input
+ set with unicode characters, while the custom keyboard uses
+ a custom input set and a custom layout.
+
+ The pro demo keyboards use KeyboardKit Pro instead of using
+ the standard library, so you can take a look at them to see
+ how they set up KeyboardKit Pro. These keyboards demo every
+ available keyboard locale, so run the standard Pro keyboard
+ to test all LTR locales and the ProRtl keyboard to test all
+ RTL locales.
  */
 struct HomeScreen: View {
 
