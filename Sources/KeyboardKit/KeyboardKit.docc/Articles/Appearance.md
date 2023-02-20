@@ -8,12 +8,6 @@ KeyboardKit will by default create a ``StandardKeyboardAppearance`` and apply it
 
 
 
-## Appearances vs styles
-
-Keyboard appearances are dynamic, while styles are simple structs that carry styling information for specific views. Some views, such as the ``SystemKeyboard``, need the dynamic capabilities of an appearance, while other views only need a style.    
-
-
-
 ## Resources & Assets
 
 KeyboardKit comes with colors and images assets that make it easy to create native-looking keyboards.
@@ -29,6 +23,21 @@ let text = KeyboardAction.space.standardButtonText(for: context)     // Localize
 ```
 
 Have a look at the `Sources/Resources` and `Sources/Appearance` folders for more information.
+
+
+## Styles
+
+The `Appearance` namespace defines general styles, such as ``KeyboardButtonStyle``, while other namespaces define more contextual-bound styles, such as how the `Emojis` namespace defines an ``EmojiKeyboardStyle``.
+
+Styles are mutable structs, so any style can be modified as long as it's a  `var`. For instance, here we adjust the standard ``CalloutStyle`` to use a red background:
+
+```swift
+var style = CalloutStyle.standard
+style.backgroundColor = .red
+CalloutStyle.standard = style
+```
+
+Almost all styles have a `.standard` style that you can replace with a custom style to change the global style of that component. 
 
 
 

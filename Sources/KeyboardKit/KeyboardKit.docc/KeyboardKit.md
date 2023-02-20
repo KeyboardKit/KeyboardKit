@@ -126,6 +126,9 @@ KeyboardKit is available under the MIT license.
 
 - ``KeyboardAppearance``
 - ``KeyboardAppearanceViewModifier``
+- ``KeyboardButtonStyle``
+- ``KeyboardButtonBorderStyle``
+- ``KeyboardButtonShadowStyle``
 - ``StandardKeyboardAppearance``
 
 ### Autocomplete
@@ -317,12 +320,6 @@ KeyboardKit is available under the MIT license.
 
 - ``KeyboardSettingsLink``
 - ``KeyboardSettingsUrlProvider``
-
-### Styles
-
-- ``KeyboardButtonStyle``
-- ``KeyboardButtonBorderStyle``
-- ``KeyboardButtonShadowStyle``
 
 ### System Keyboard
 

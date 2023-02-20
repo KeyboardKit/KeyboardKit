@@ -98,7 +98,7 @@ KeyboardKit comes packed features to help you build amazing and powerful keyboar
 * 👋 [Feedback][Feedback] - KeyboardKit keyboards can give and haptic feedback feedback as the user types.
 * 👆 [Gestures][Gestures] - KeyboardKit comes with keyboard-specific gestures that you can use in your own keyboards.
 * 🔤 [Input][Input] - KeyboardKit supports creating `alphabetic`, `numeric` and `symbolic` and custom input sets. 
-* 💱 [Layout][Layout] - KeyboardKit supports creating keyboard layouts for various devices, locales etc.
+* 🔣 [Layout][Layout] - KeyboardKit supports creating keyboard layouts for various devices, locales etc.
 * ⌨️ [Keyboard][Keyboard] - KeyboardKit supports different keyboard types, can inspect a keyboard's state etc.
 * 🌐 [Locales][Localization]- KeyboardKit defines keyboard-specific locales with localized content and assets.
 * 👁 [Previews][Previews] - KeyboardKit defines a bunch of tools that simplify previewing keyboard views in SwiftUI.
@@ -106,7 +106,6 @@ KeyboardKit comes packed features to help you build amazing and powerful keyboar
 * 🚏 [Routing][Routing] - KeyboardKit lets you route text to other destinations than the main app.
 * ⬅️ [RTL][RTL] - KeyboardKit supports RTL (right-to-left) locales, such as Arabic, Persian, Kurdish etc.
 * ⚙️ [Settings][Settings] - KeyboardKit has tools for accessing and linking to an app's keyboard settings.
-* 🎨 [Styles][Styles] - KeyboardKit defines a bunch of styles that simplify customizing the look of various components.
 
 
 
@@ -207,7 +206,6 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Routing]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/routing
 [RTL]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/rtl
 [Settings]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/settings
-[Styles]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/styles
 
 
 [License]: https://github.com/KeyboardKit/KeyboardKit/blob/master/LICENSE
