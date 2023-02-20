@@ -327,7 +327,6 @@ KeyboardKit is available under the MIT license.
 ### System Keyboard
 
 - ``SystemKeyboard``
-- ``SystemKeyboardActionButton``
 - ``SystemKeyboardButton``
 - ``SystemKeyboardButtonBody``
 - ``SystemKeyboardButtonContent``

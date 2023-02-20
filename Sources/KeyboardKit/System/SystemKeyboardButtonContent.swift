@@ -124,7 +124,7 @@ struct SystemKeyboardButtonContent_Previews: PreviewProvider {
             action: action,
             appearance: .preview,
             keyboardContext: multiLocale ? multiLocaleContext : .preview
-        ).background(Color.red)
+        ).background(Color.gray)
     }
     
     static var previews: some View {

@@ -66,7 +66,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `SpaceCursorDragGestureHandler` is now available on all platforms.
 * `String` has new casing, keyboard character, quotation, word and sentence extensions.
 * `SystemKeyboard` will now add an autocomplete toolbar by default.
-* `SystemKeyboardActionButton` is now available on all platforms.
+* `SystemKeyboardButton` is now available on all platforms.
 * `Text` is a new namespace for text analysis.
 * `UITextDocumentProxy` quotation utilities is now available as `StringQuotationAnalyzer`.
 
@@ -127,8 +127,9 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `StringCasingAnalyzer` has replaced properties with functions. 
 * `SystemKeyboard` init parameters have been refactored.
 * `SystemKeyboard` `standardKeyboardWidth` has been removed.
-* `SystemKeyboardActionButton` now requires a callout context.
+* `SystemKeyboardActionButton` has been renamed to ``SystemKeyboardButton`` and requires a callout context.
 * `SystemKeyboardActionButtonContent` has been renamed to `SystemKeyboardButtonContent`.
+* `SystemKeyboardButton` has been replaced by the renamed action button.
 * `SystemKeyboardButtonRowItem` now requires a callout context.
 * `UITextDocumentProxy` `isOpenQuotationBeforeInput` has been renamed to `hasUnclosedQuotationBeforeInput`.
 * `UITextDocumentProxy` `isOpenAlternateQuotationBeforeInput`has been renamed to `hasUnclosedAlternateQuotationBeforeInput`.
