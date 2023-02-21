@@ -10,25 +10,85 @@ import KeyboardKit
 import XCTest
 
 class Locale_LocalizedTests: XCTestCase {
-    
+
+    func localizedName(of localeId: String) -> String? {
+        let locale = Locale(identifier: localeId)
+        return locale.localizedName
+    }
+
     func testLocalizedNameIsValid() {
-        let locale = Locale(identifier: "en-US")
-        XCTAssertEqual(locale.localizedName, "English (United States)")
+        XCTAssertEqual(localizedName(of: "en"), "English")
+        XCTAssertEqual(localizedName(of: "en-GB"), "English (United Kingdom)")
+        XCTAssertEqual(localizedName(of: "en-US"), "English (United States)")
+        XCTAssertEqual(localizedName(of: "sv"), "Svenska")
+    }
+
+
+    func swedishName(of localeId: String) -> String? {
+        let locale = Locale(identifier: localeId)
+        let swedish = Locale(identifier: "sv-SE")
+        return swedish.localizedName(of: locale)
+    }
+
+    func testLocalizedNameOfLocaleIsValid() {
+        XCTAssertEqual(swedishName(of: "en"), "Engelska")
+        XCTAssertEqual(swedishName(of: "en-GB"), "Engelska (Storbritannien)")
+        XCTAssertEqual(swedishName(of: "en-US"), "Engelska (Usa)")
+        XCTAssertEqual(swedishName(of: "sv-SE"), "Svenska (Sverige)")
+    }
+
+
+    func nameOfSwedish(in localeId: String) -> String? {
+        let locale = Locale(identifier: localeId)
+        let swedish = Locale(identifier: "sv-SE")
+        return swedish.localizedName(in: locale)
+    }
+
+    func testLocalizedNameInLocaleIsValid() {
+        XCTAssertEqual(nameOfSwedish(in: "en"), "Swedish (Sweden)")
+        XCTAssertEqual(nameOfSwedish(in: "fi"), "Ruotsi (Ruotsi)")
+        XCTAssertEqual(nameOfSwedish(in: "no"), "Svensk (Sverige)")
+        XCTAssertEqual(nameOfSwedish(in: "sv"), "Svenska (Sverige)")
+    }
+
+
+    func localizedLanguageName(of localeId: String) -> String? {
+        let locale = Locale(identifier: localeId)
+        return locale.localizedLanguageName
     }
 
     func testLocalizedLanguageNameIsValid() {
-        let locale = Locale(identifier: "en-US")
-        XCTAssertEqual(locale.localizedLanguageName, "English")
+        XCTAssertEqual(localizedLanguageName(of: "en"), "English")
+        XCTAssertEqual(localizedLanguageName(of: "en-GB"), "English")
+        XCTAssertEqual(localizedLanguageName(of: "en-US"), "English")
+        XCTAssertEqual(localizedLanguageName(of: "sv"), "Svenska")
     }
 
-    func testPrefersAlternateQuotationReplacementIsValid() {
-        let engligh = Locale(identifier: "en")
-        let englighGb = Locale(identifier: "en-GB")
-        let englighUs = Locale(identifier: "en-US")
-        let other = Locale(identifier: "sv-SE")
-        XCTAssertFalse(engligh.prefersAlternateQuotationReplacement)
-        XCTAssertFalse(englighGb.prefersAlternateQuotationReplacement)
-        XCTAssertFalse(englighUs.prefersAlternateQuotationReplacement)
-        XCTAssertTrue(other.prefersAlternateQuotationReplacement)
+
+    func swedishName(ofLanguage localeId: String) -> String? {
+        let locale = Locale(identifier: localeId)
+        let swedish = Locale(identifier: "sv-SE")
+        return swedish.localizedLanguageName(of: locale)
+    }
+
+    func testLocalizedLanguageNameOfLocaleIsValid() {
+        XCTAssertEqual(swedishName(ofLanguage: "en"), "Engelska")
+        XCTAssertEqual(swedishName(ofLanguage: "en-GB"), "Engelska")
+        XCTAssertEqual(swedishName(ofLanguage: "en-US"), "Engelska")
+        XCTAssertEqual(swedishName(ofLanguage: "sv-SE"), "Svenska")
+    }
+
+
+    func nameOfSwedishLanguage(in localeId: String) -> String? {
+        let locale = Locale(identifier: localeId)
+        let swedish = Locale(identifier: "sv-SE")
+        return swedish.localizedLanguageName(in: locale)
+    }
+
+    func testLocalizedLanguageNameInLocaleIsValid() {
+        XCTAssertEqual(nameOfSwedishLanguage(in: "en"), "Swedish")
+        XCTAssertEqual(nameOfSwedishLanguage(in: "fi"), "Ruotsi")
+        XCTAssertEqual(nameOfSwedishLanguage(in: "no"), "Svensk")
+        XCTAssertEqual(nameOfSwedishLanguage(in: "sv"), "Svenska")
     }
 }

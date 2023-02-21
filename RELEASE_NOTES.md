@@ -60,6 +60,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `KeyboardLocale` implements `LocaleFlagProvider`.
 * `KeyboardType` has new properties.
 * `KeyboardLayoutConfiguration` has adjusted the standard corner radius for iPhone buttons.
+* `Locale` has more localized name extensions.
 * `NextKeyboardButton` now supports using any custom content.
 * `NextKeyboardController` is used instead of the shared controller.
 * `QuotationAnalyzer` is a new protocol for analyzing quotations in strings.

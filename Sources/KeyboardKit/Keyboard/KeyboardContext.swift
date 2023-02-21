@@ -105,9 +105,6 @@ public class KeyboardContext: ObservableObject {
     
     /**
      The locales that are currently enabled for the keyboard.
-
-     ``selectNextLocale()`` can be called to select the next
-     locale in this list.
      */
     @Published
     public var locales: [Locale] = [.current]
