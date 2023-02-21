@@ -88,6 +88,7 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `Image` `.keyboardEmoji` is looks closer to the native icon.
 * `KeyboardAction` `.backspace` now triggers on `.press` instead of `.release`.
 * `KeyboardLayoutConfiguration` now behaves the same on all platforms.
+* `KeyboardSettingsLink` has ben rewritten to only use plain SwiftUI code that works with extensions as well.
 
 ### 💥 Breaking changes
 
