@@ -48,6 +48,10 @@ class ProDemoViewController: KeyboardInputViewController {
      */
     override func viewDidLoad() {
 
+        // Setup a demo-specific keyboard appearance.
+        // 💡 You can change this appearance to see how the keyboard style changes.
+        keyboardAppearance = DemoKeyboardAppearance(keyboardContext: keyboardContext)
+
         // Setup a custom dictation key replacement.
         // 💡 This will replace the dictation button on keyboards that need it.
         keyboardContext.keyboardDictationReplacement = .keyboardType(.emojis)

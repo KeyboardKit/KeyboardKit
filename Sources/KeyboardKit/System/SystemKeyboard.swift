@@ -543,7 +543,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
     }
 
     static var previews: some View {
-        VStack(spacing: 30) {
+        VStack(spacing: 10) {
 
             // A standard system keyboard
             SystemKeyboard(
@@ -564,7 +564,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
                 appearance: .preview,
                 actionHandler: .preview,
                 autocompleteContext: .init(),
-                autocompleteToolbar: .automatic,
+                autocompleteToolbar: .none,
                 autocompleteToolbarAction: { _ in },
                 keyboardContext: context,
                 calloutContext: nil,
@@ -577,7 +577,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
                 appearance: .preview,
                 actionHandler: .preview,
                 autocompleteContext: .init(),
-                autocompleteToolbar: .automatic,
+                autocompleteToolbar: .none,
                 autocompleteToolbarAction: { _ in },
                 keyboardContext: context,
                 calloutContext: nil,

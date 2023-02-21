@@ -241,6 +241,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
      button style property.
      */
     open func buttonFontWeight(for action: KeyboardAction) -> Font.Weight? {
+        if isGregorianAlpha { return .regular }
         switch action {
         case .backspace: return .regular
         case .character(let char): return char.isLowercased ? .light : nil
@@ -276,6 +277,13 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
 
 
 // MARK: - Internal, Testable Extensions
+
+extension StandardKeyboardAppearance {
+
+    var isGregorianAlpha: Bool {
+        keyboardContext.keyboardType.isAlphabetic && keyboardContext.locale == KeyboardLocale.georgian.locale
+    }
+}
 
 extension KeyboardAction {
 

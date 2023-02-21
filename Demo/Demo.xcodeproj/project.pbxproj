@@ -28,6 +28,8 @@
 		A9521CF329A3941400C62ECE /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9521CF229A3941400C62ECE /* Settings.bundle */; };
 		A966F7EB299EEC2D004D85CE /* KeyboardLocale+Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A966F7EA299EEC2D004D85CE /* KeyboardLocale+Demo.swift */; };
 		A966F7EC299EF007004D85CE /* KeyboardLocale+Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A966F7EA299EEC2D004D85CE /* KeyboardLocale+Demo.swift */; };
+		A9A76CA329A5855600F1B3F3 /* DemoKeyboardAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A76CA229A5855100F1B3F3 /* DemoKeyboardAppearance.swift */; };
+		A9A76CA429A5855600F1B3F3 /* DemoKeyboardAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A76CA229A5855100F1B3F3 /* DemoKeyboardAppearance.swift */; };
 		A9A7E01E299B6D3F00713F2A /* KeyboardKitPro in Frameworks */ = {isa = PBXBuildFile; productRef = A9A7E01D299B6D3F00713F2A /* KeyboardKitPro */; };
 		A9A7E077299B721B00713F2A /* DemoKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A7E076299B721600713F2A /* DemoKeyboardView.swift */; };
 		A9A7E078299B721B00713F2A /* DemoKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A7E076299B721600713F2A /* DemoKeyboardView.swift */; };
@@ -128,6 +130,7 @@
 		A93CFA1F29827D7500A5A9BF /* DemoKeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoKeyboardView.swift; sourceTree = "<group>"; };
 		A9521CF229A3941400C62ECE /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		A966F7EA299EEC2D004D85CE /* KeyboardLocale+Demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardLocale+Demo.swift"; sourceTree = "<group>"; };
+		A9A76CA229A5855100F1B3F3 /* DemoKeyboardAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboardAppearance.swift; sourceTree = "<group>"; };
 		A9A7E01B299B6CD800713F2A /* KeyboardKitPro */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = KeyboardKitPro; path = "/Users/danielsaidi/Library/Developer/Xcode/DerivedData/Demo-cuccbkfkotoujlbkuaswjdgjknfd/SourcePackages/checkouts/KeyboardKitPro"; sourceTree = "<absolute>"; };
 		A9A7E076299B721600713F2A /* DemoKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboardView.swift; sourceTree = "<group>"; };
 		A9A7E079299B72BC00713F2A /* DemoKeyboardLayoutProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboardLayoutProvider.swift; sourceTree = "<group>"; };
@@ -280,6 +283,7 @@
 				A93342D1299A855F008FAA95 /* Info.plist */,
 				A93342CF299A855F008FAA95 /* KeyboardViewController.swift */,
 				A966F7EA299EEC2D004D85CE /* KeyboardLocale+Demo.swift */,
+				A9A76CA229A5855100F1B3F3 /* DemoKeyboardAppearance.swift */,
 				A9A7E079299B72BC00713F2A /* DemoKeyboardLayoutProvider.swift */,
 				A9A7E076299B721600713F2A /* DemoKeyboardView.swift */,
 				A9AD5DA7299AEF9C00EF1A8D /* ProDemoViewController.swift */,
@@ -579,6 +583,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9A7E07A299B72BF00713F2A /* DemoKeyboardLayoutProvider.swift in Sources */,
+				A9A76CA429A5855600F1B3F3 /* DemoKeyboardAppearance.swift in Sources */,
 				A9AD5DA8299AEF9C00EF1A8D /* ProDemoViewController.swift in Sources */,
 				A93342D0299A855F008FAA95 /* KeyboardViewController.swift in Sources */,
 				A9A7E077299B721B00713F2A /* DemoKeyboardView.swift in Sources */,
@@ -591,6 +596,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9A7E07B299B72C000713F2A /* DemoKeyboardLayoutProvider.swift in Sources */,
+				A9A76CA329A5855600F1B3F3 /* DemoKeyboardAppearance.swift in Sources */,
 				A9AD5DA9299AF0E200EF1A8D /* ProDemoViewController.swift in Sources */,
 				A93342DF299A8570008FAA95 /* KeyboardViewController.swift in Sources */,
 				A9A7E078299B721B00713F2A /* DemoKeyboardView.swift in Sources */,

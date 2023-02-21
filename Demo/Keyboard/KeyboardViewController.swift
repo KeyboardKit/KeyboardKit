@@ -40,10 +40,6 @@ class KeyboardViewController: KeyboardInputViewController {
         // 💡 You can change this provider to see how the autocomplete changes.
         autocompleteProvider = FakeAutocompleteProvider()
 
-        // Setup an custom input set provider.
-        // 💡 Have a look at the other demo projects, where this is done.
-        // inputSetProvider = ...
-
         // Setup a demo-specific keyboard appearance.
         // 💡 You can change this appearance to see how the keyboard style changes.
         keyboardAppearance = DemoKeyboardAppearance(
