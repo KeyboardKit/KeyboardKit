@@ -229,6 +229,23 @@ public extension KeyboardLocale {
     var prefersAlternateQuotationReplacement: Bool {
         locale.prefersAlternateQuotationReplacement
     }
+
+    /**
+     Whether or not the locale matches a certain locale.
+     */
+    func matches(_ locale: Locale) -> Bool {
+        self.locale == locale
+    }
+}
+
+public extension Locale {
+
+    /**
+     Whether or not the locale matches a keyboard locale.
+     */
+    func matches(_ locale: KeyboardLocale) -> Bool {
+        self == locale.locale
+    }
 }
 
 public extension Collection where Element == KeyboardLocale {

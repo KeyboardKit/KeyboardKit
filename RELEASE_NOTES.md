@@ -59,9 +59,11 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `KeyboardInputViewController` has a new `calloutContext`.  
 * `KeyboardInputViewController` implements `KeyboardController` which gives it a bunch of new functions.
 * `KeyboardLocale` implements `LocaleFlagProvider`.
+* `KeyboardLocale` has new `Locale` matching extensions.
 * `KeyboardType` has new properties.
 * `KeyboardLayoutConfiguration` has adjusted the standard corner radius for iPhone buttons.
-* `Locale` has more localized name extensions.
+* `Locale` has new localized name extensions.
+* `Locale` has new `KeyboardLocale` matching extensions.
 * `LocaleContextMenu` now lets you customize the presentaiton locale.
 * `NextKeyboardButton` now supports using any custom content.
 * `NextKeyboardController` is used instead of the shared controller.

@@ -281,7 +281,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
 extension StandardKeyboardAppearance {
 
     var isGregorianAlpha: Bool {
-        keyboardContext.keyboardType.isAlphabetic && keyboardContext.locale == KeyboardLocale.georgian.locale
+        keyboardContext.keyboardType.isAlphabetic && keyboardContext.locale.matches(.georgian)
     }
 }
 
