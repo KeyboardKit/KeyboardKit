@@ -52,6 +52,10 @@ class ProDemoViewController: KeyboardInputViewController {
         // 💡 This will replace the dictation button on keyboards that need it.
         keyboardContext.keyboardDictationReplacement = .keyboardType(.emojis)
 
+        // Change the space button behavior to context menu.
+        // 💡 This will show a locale context menu instead of moving the input cursor.
+        // keyboardContext.keyboardDictationReplacement = .keyboardType(.emojis)
+
         // Call super to perform the base initialization
         super.viewDidLoad()
     }

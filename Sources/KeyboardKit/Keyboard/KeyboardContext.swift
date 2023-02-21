@@ -89,6 +89,12 @@ public class KeyboardContext: ObservableObject {
     public var keyboardDictationReplacement: KeyboardAction?
 
     /**
+     The keyboard space long press behavior to use.
+     */
+    @Published
+    public var keyboardSpaceLongPressBehavior = KeyboardSpaceLongPressBehavior.enableInputCursorMovement
+
+    /**
      The keyboard type that is currently used.
      */
     @Published

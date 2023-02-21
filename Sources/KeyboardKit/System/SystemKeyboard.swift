@@ -494,6 +494,13 @@ private extension SystemKeyboard {
  */
 struct SystemKeyboard_Previews: PreviewProvider {
 
+    static var context: KeyboardContext = {
+        let context = KeyboardContext()
+        context.locales = KeyboardLocale.allCases.map { $0.locale }
+        context.keyboardSpaceLongPressBehavior = .openLocaleContextMenu(in: .swedish)
+        return context
+    }()
+
     @ViewBuilder
     static func previewButton(
         item: KeyboardLayoutItem,
@@ -510,7 +517,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
                 content: previewButtonContent(item: item),
                 item: item,
                 actionHandler: .preview,
-                keyboardContext: .preview,
+                keyboardContext: context,
                 calloutContext: .preview,
                 keyboardWidth: keyboardWidth,
                 inputWidth: inputWidth,
@@ -530,7 +537,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
             SystemKeyboardButtonContent(
                 action: item.action,
                 appearance: .preview,
-                keyboardContext: .preview
+                keyboardContext: context
             )
         }
     }
@@ -546,7 +553,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
                 autocompleteContext: .init(),
                 autocompleteToolbar: .automatic,
                 autocompleteToolbarAction: { _ in },
-                keyboardContext: .preview,
+                keyboardContext: context,
                 calloutContext: nil,
                 width: UIScreen.main.bounds.width)
 
@@ -559,7 +566,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
                 autocompleteContext: .init(),
                 autocompleteToolbar: .automatic,
                 autocompleteToolbarAction: { _ in },
-                keyboardContext: .preview,
+                keyboardContext: context,
                 calloutContext: nil,
                 width: UIScreen.main.bounds.width,
                 buttonContent: previewButtonContent)
@@ -572,7 +579,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
                 autocompleteContext: .init(),
                 autocompleteToolbar: .automatic,
                 autocompleteToolbarAction: { _ in },
-                keyboardContext: .preview,
+                keyboardContext: context,
                 calloutContext: nil,
                 width: UIScreen.main.bounds.width,
                 buttonView: previewButton)

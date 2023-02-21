@@ -55,11 +55,13 @@ If you have problems upgrading to `7.0`, first try upgrading to `6.9`. It has a 
 * `KeyboardCharacterProvider` is a new protocol that provides keyboard-specific characters.
 * `KeyboardController` is a new protocol that lets us decouple actions from the input view controller.
 * `KeyboardContext` has a new `keyboardLocale` and new functions for setting locale and keyboard type.
+* `KeyboardContext` has a new `keyboardSpaceLongPressBehavior` property to control the space button's behavior.
 * `KeyboardInputViewController` has a new `calloutContext`.  
 * `KeyboardInputViewController` implements `KeyboardController` which gives it a bunch of new functions.
 * `KeyboardLocale` implements `LocaleFlagProvider`.
 * `KeyboardType` has new properties.
 * `KeyboardLayoutConfiguration` has adjusted the standard corner radius for iPhone buttons.
+* `KeyboardSpaceLongPressBehavior` is a new enum that defined the available space long press behaviors.
 * `Locale` has more localized name extensions.
 * `LocaleContextMenu` now lets you customize the presentaiton locale.
 * `NextKeyboardButton` now supports using any custom content.

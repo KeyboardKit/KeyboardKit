@@ -10,8 +10,7 @@ import SwiftUI
 
 /**
  This view is used within a ``SystemKeyboard`` and renders a
- keyboard button that adapts based on a ``KeyboardLayoutItem``
- and aims .
+ button that bases its content on a ``KeyboardLayoutItem``.
 
  This view applies a tappable padding around its content, to
  mitigate any dead tap areas.
@@ -99,7 +98,7 @@ private extension View {
      */
     @ViewBuilder
     func localeContextMenu(for action: KeyboardAction, context: KeyboardContext) -> some View {
-        if action == .nextLocale {
+        if shouldApplyLocaleContextMenu(for: action, context: context) {
             self.localeContextMenu(for: context)
                 .id(context.locale.identifier)
         } else {
@@ -117,6 +116,27 @@ private extension View {
             self.frame(width: width)
         } else {
             self.frame(maxWidth: .infinity)
+        }
+    }
+
+    func shouldApplyLocaleContextMenu(
+        for action: KeyboardAction,
+        context: KeyboardContext
+    ) -> Bool {
+        switch action {
+        case .nextLocale: return true
+        case .space: return context.locales.count > 1 && context.keyboardSpaceLongPressBehavior.shouldApplyLocaleContextMenu
+        default: return false
+        }
+    }
+}
+
+private extension KeyboardSpaceLongPressBehavior {
+
+    var shouldApplyLocaleContextMenu: Bool {
+        switch self {
+        case .enableInputCursorMovement: return false
+        case .openLocaleContextMenu: return true
         }
     }
 }
@@ -137,17 +157,30 @@ private extension View {
 
 struct SystemKeyboardButtonRowItem_Previews: PreviewProvider {
 
-    static func previewItem(_ text: String, width: KeyboardLayoutItemWidth) -> some View {
+    static let context: KeyboardContext = {
+        let context = KeyboardContext()
+        context.locales = KeyboardLocale.allCases.map { $0.locale }
+        context.keyboardSpaceLongPressBehavior = .openLocaleContextMenu(in: .swedish)
+        return context
+    }()
+
+    static func previewItem(
+        _ action: KeyboardAction,
+        width: KeyboardLayoutItemWidth
+    ) -> some View {
         SystemKeyboardButtonRowItem(
-            content: Text(text),
+            content: SystemKeyboardButtonContent(
+                action: action,
+                appearance: .preview,
+                keyboardContext: context),
             item: KeyboardLayoutItem(
-                action: .backspace,
+                action: action,
                 size: KeyboardLayoutItemSize(
                     width: width,
                     height: 100),
                 insets: .horizontal(0, vertical: 0)),
             actionHandler: .preview,
-            keyboardContext: .preview,
+            keyboardContext: context,
             calloutContext: .preview,
             keyboardWidth: 320,
             inputWidth: 30,
@@ -157,11 +190,11 @@ struct SystemKeyboardButtonRowItem_Previews: PreviewProvider {
 
     static var previews: some View {
         HStack {
-            previewItem("1", width: .inputPercentage(0.5))
-            previewItem("2", width: .input)
-            previewItem("3", width: .available)
-            previewItem("4", width: .percentage(0.1))
-            previewItem("5", width: .points(10))
+            previewItem(.character("1"), width: .inputPercentage(0.5))
+            previewItem(.nextKeyboard, width: .input)
+            previewItem(.nextLocale, width: .available)
+            previewItem(.space, width: .percentage(0.1))
+            previewItem(.character("5"), width: .points(20))
         }
     }
 }
