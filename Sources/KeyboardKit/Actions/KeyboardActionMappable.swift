@@ -46,7 +46,6 @@ public extension UIReturnKeyType {
      */
     var keyboardActionReturnType: KeyboardAction.ReturnType {
         switch self {
-        case .default: return .ok
         case .go: return .go
         case .google: return .custom(title: "Google")
         case .join: return .join
@@ -58,6 +57,7 @@ public extension UIReturnKeyType {
         case .done: return .done
         case .emergencyCall: return .custom(title: "emergencyCall")
         case .continue: return .custom(title: "continue")
+        case .default: return .return
         @unknown default: return .custom(title: "unknown")
         }
     }
