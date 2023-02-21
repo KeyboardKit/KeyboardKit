@@ -125,13 +125,13 @@ private extension View {
     ) -> Bool {
         switch action {
         case .nextLocale: return true
-        case .space: return context.locales.count > 1 && context.keyboardSpaceLongPressBehavior.shouldApplyLocaleContextMenu
+        case .space: return context.locales.count > 1 && context.spaceLongPressBehavior.shouldApplyLocaleContextMenu
         default: return false
         }
     }
 }
 
-private extension KeyboardSpaceLongPressBehavior {
+private extension SpaceLongPressBehavior {
 
     var shouldApplyLocaleContextMenu: Bool {
         switch self {
@@ -160,7 +160,7 @@ struct SystemKeyboardButtonRowItem_Previews: PreviewProvider {
     static let context: KeyboardContext = {
         let context = KeyboardContext()
         context.locales = KeyboardLocale.allCases.map { $0.locale }
-        context.keyboardSpaceLongPressBehavior = .openLocaleContextMenu(in: .swedish)
+        context.spaceLongPressBehavior = .openLocaleContextMenu(in: .swedish)
         return context
     }()
 

@@ -1,5 +1,5 @@
 //
-//  KeyboardSpaceLongPressBehavior.swift
+//  SpaceLongPressBehavior.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-02-21.
@@ -12,7 +12,7 @@ import Foundation
  This enum describes the behavior of a keyboard space button
  when it's long pressed.
  */
-public enum KeyboardSpaceLongPressBehavior: Codable {
+public enum SpaceLongPressBehavior: Codable {
 
     /// The space key will start moving the input cursor.
     case enableInputCursorMovement
@@ -21,10 +21,10 @@ public enum KeyboardSpaceLongPressBehavior: Codable {
     case openLocaleContextMenu(in: Locale)
 }
 
-public extension KeyboardSpaceLongPressBehavior {
+public extension SpaceLongPressBehavior {
 
     /// The space key will open a locale context menu.
-    static func openLocaleContextMenu(in locale: KeyboardLocale) -> KeyboardSpaceLongPressBehavior {
+    static func openLocaleContextMenu(in locale: KeyboardLocale) -> SpaceLongPressBehavior {
         .openLocaleContextMenu(in: locale.locale)
     }
 }

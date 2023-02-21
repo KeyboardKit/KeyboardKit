@@ -240,6 +240,7 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardGesture``
 - ``RepeatGestureTimer``
 - ``ScrollViewGestureButton``
+- ``SpaceLongPressBehavior``
 - ``SpaceCursorDragGestureHandler``
 - ``SpaceDragSensitivity``
 

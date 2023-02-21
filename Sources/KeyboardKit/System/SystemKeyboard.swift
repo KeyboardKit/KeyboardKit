@@ -497,7 +497,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
     static var context: KeyboardContext = {
         let context = KeyboardContext()
         context.locales = KeyboardLocale.allCases.map { $0.locale }
-        context.keyboardSpaceLongPressBehavior = .openLocaleContextMenu(in: .swedish)
+        context.spaceLongPressBehavior = .openLocaleContextMenu(in: .swedish)
         return context
     }()
 

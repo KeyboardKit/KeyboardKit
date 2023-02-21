@@ -89,12 +89,6 @@ public class KeyboardContext: ObservableObject {
     public var keyboardDictationReplacement: KeyboardAction?
 
     /**
-     The keyboard space long press behavior to use.
-     */
-    @Published
-    public var keyboardSpaceLongPressBehavior = KeyboardSpaceLongPressBehavior.enableInputCursorMovement
-
-    /**
      The keyboard type that is currently used.
      */
     @Published
@@ -142,6 +136,12 @@ public class KeyboardContext: ObservableObject {
      */
     @Published
     public var screenSize = CGSize.zero
+
+    /**
+     The space long press behavior to use.
+     */
+    @Published
+    public var spaceLongPressBehavior = SpaceLongPressBehavior.enableInputCursorMovement
     
     
     #if os(iOS) || os(tvOS)
