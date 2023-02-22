@@ -37,7 +37,7 @@ Some things that are planned for the 7.0 release:
 
 ### 💡 Behavior changes
 
-* `KeyboardSettingsLink` use native SwiftUI instead of wrappign native technologies. This makes the code build when the library is pulled in with CocoaPods.
+* `KeyboardSettingsLink` now use native SwiftUI instead of wrapping native technologies. This makes the code build when the library is pulled in with CocoaPods.
 
 
 
