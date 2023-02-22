@@ -33,11 +33,19 @@ Some things that are planned for the 7.0 release:
 
 
 
+## 6.9.10
+
+### 💡 Behavior changes
+
+* `KeyboardSettingsLink` use native SwiftUI instead of wrappign native technologies. This makes the code build when the library is pulled in with CocoaPods.
+
+
+
 ## 6.9.9  
 
 ### ✨ New features
 
-* This release makes KeyboardKit Pro's standard autocomplete work with more locales.
+* `StandardAutocompleteProvider` in KeyboardKit Pro now works with more locales.
 
 
 
