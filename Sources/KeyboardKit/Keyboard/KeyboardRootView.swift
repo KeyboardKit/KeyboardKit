@@ -20,6 +20,15 @@ struct KeyboardRootView<ViewType: View>: View {
     }
     
     var view: ViewType
+
+    @EnvironmentObject
+    private var autocompleteContext: AutocompleteContext
+
+    @EnvironmentObject
+    private var calloutContext: KeyboardCalloutContext
+
+    @EnvironmentObject
+    private var keyboardContext: KeyboardContext
     
     var body: some View {
         view

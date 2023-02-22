@@ -13,9 +13,13 @@ import SwiftUI
  This view sets up a `SystemKeyboard` as a keyboard view and
  adds an `AutocompleteToolbar` above it.
 
- This view automatically hides the autocomplete toolbar when
- the keyboard doesn't prefer autocomplete, but the height is
- still allocated, since it's needed by the keyboard callouts.
+ The keyboard will look and behave as is defined by services
+ and configurations in the ``ProDemoViewController``.
+
+ While the `SystemKeyboard` is very flexible, it can also be
+ easily created by just providing it with a controller, like
+ we do here. The standard configuration adds an autocomplete
+ toolbar topmost and uses an emoji keyboard whenever needed.
  */
 struct DemoKeyboardView: View {
 

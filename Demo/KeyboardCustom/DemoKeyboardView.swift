@@ -18,6 +18,9 @@ import SwiftUI
  we do here. This configuration adds an autocomplete toolbar
  above the keyboard and replaces the system keyboard with an
  emoji keyboard whenever needed.
+
+ This view adds some extra views around the keyboard to show
+ how easy it is to use native SwiftUI with KeyboardKit.
  */
 struct DemoKeyboardView: View {
 
@@ -27,6 +30,18 @@ struct DemoKeyboardView: View {
     private var keyboardContext: KeyboardContext
 
     var body: some View {
-        SystemKeyboard(controller: controller)
+        VStack {
+            Text("Locale: \(keyboardContext.locale.identifier)")
+                .frame(maxWidth: .infinity)
+                .background(Color.primary.colorInvert())
+                .cornerRadius(5)
+                .padding()
+                .background(Color.red)
+            SystemKeyboard(
+                controller: controller,
+                autocompleteToolbar: .none
+            )
+            Color.red
+        }
     }
 }
