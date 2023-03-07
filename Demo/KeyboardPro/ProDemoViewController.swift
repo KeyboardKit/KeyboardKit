@@ -11,18 +11,13 @@ import SwiftUI
 
 /**
  This controller is shared between the two Pro-specific demo
- keyboards and registers a Pro license with multiple locales.
+ keyboards and will register a Pro license with many locales.
 
  The keyboard registers a Pro license to unlock all keyboard
  locales, then applies either LTR or RTL locales based on if
  you are using `KeyboardPro` or `KeyboardProRTL`. A keyboard
- can also tell the app to use RTL. This can be configured in
- the keyboard extension's `Info.plist` file, by toggling the
- `PrefersRightToLeft` extension attribute to `YES`.
-
- To use this keyboard, you must enable it in system settings
- ("Settings/General/Keyboards"). It needs full access to get
- access to features like haptic feedback.
+ can also register RTL in its `Info.plist` file, by toggling
+ the `PrefersRightToLeft` extension attribute to `YES`.
 
  `IMPORTANT!` You may have noticed how the demo project only
  links KeyboardKit Pro to the app target, while it links the
@@ -35,39 +30,49 @@ class ProDemoViewController: KeyboardInputViewController {
     // MARK: - View Controller Lifecycle
 
     /**
-     The demo persists the current locale so that it can use
-     it the next time the keyboard is opened.
+     The demo persists the current locale when its destroyed.
      */
     deinit {
         persistedLocaleId = keyboardContext.locale.identifier
     }
 
     /**
-     Here, we register demo-specific services which are then
-     used by the keyboard.
+     This function is called when the controller loads. Here,
+     we make demo-specific service configurations.
      */
     override func viewDidLoad() {
 
-        // Setup a demo-specific keyboard appearance.
-        // 💡 You can change this appearance to see how the keyboard style changes.
-        keyboardAppearance = DemoKeyboardAppearance(keyboardContext: keyboardContext)
-
-        // Setup a custom dictation key replacement.
-        // 💡 This will replace the dictation button on keyboards that need it.
+        /// 💡 Setup a custom dictation key replacement.
+        ///
+        /// Since dictation is not available by default, you
+        /// can use this to replace the dictation key if you
+        /// want to. If you don't do this, the key will just
+        /// be removed.
         keyboardContext.keyboardDictationReplacement = .keyboardType(.emojis)
 
-        // Change the space button behavior to context menu.
-        // 💡 This will show a locale context menu instead of moving the input cursor.
-        // keyboardContext.keyboardDictationReplacement = .keyboardType(.emojis)
+        /// 💡 Change the space button long press behavior.
+        ///
+        /// Long pressing the space key can either start the
+        /// input cursor movement or show a context menu for
+        /// switching locale.
+        /// keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu(in: .english)
 
-        // Call super to perform the base initialization
+        /// 💡 Setup a demo-specific keyboard appearance.
+        ///
+        /// You can change this appearance implementation to
+        /// see how the keyboard style changes.
+        keyboardAppearance = DemoKeyboardAppearance(
+            keyboardContext: keyboardContext)
+
+        /// 💡 Call super to perform the base initialization.
         super.viewDidLoad()
     }
 
     /**
      This function is called whenever the keyboard should be
      created or updated. Here, we call `setupPro` with a Pro
-     license key, since this keyboard uses KeyboardKit Pro.
+     license key, and use a ``DemoKeyboardView`` as the main
+     keyboard view.
      */
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
