@@ -16,6 +16,21 @@ Older versions have their release notes listed in the `Release_Notes` folder.
 
 
 
+## 7.0.1
+
+KeyboardKit 7.0.1 makes it even easier to setup a keyboard extension, since it will setup a `SystemKeyboard` by default.
+
+### ✨ New features
+
+* `KeyboardInputViewController` has a new `setup` function that provides the controller as an unowned reference.
+
+### 💡 Behavior changes
+
+* `KeyboardInputViewController` `setup` uses a view builder instead of a static view.
+* `KeyboardRootView` uses a view builder instead of a static view.
+
+
+
 ## 7.0
 
 KeyboardKit 7.0 involves a major rewrite that aims to bring more consistency in naming and structure and to streamline the library to make future development easier. It bumps the platform deployment targets to iOS 14, macOS 11, tvOS 14 and watchOS 7 and removes all previously deprecated code and todos.

@@ -14,8 +14,18 @@ import UIKit
 /**
  This class extends `UIInputViewController` with KeyboardKit
  specific functionality.
+
+ This controller will setup a ``SystemKeyboard`` as the main
+ keyboard view by default, but you can replace the view with
+ a custom view by overriding ``viewWillSetupKeyboard()`` and
+ call any `setup(with:)` function with any custom view. Just
+ make sure to use the controller-based setup function if the
+ view must refer to the controller, since it uses an unowned
+ reference to avoid memory leaks that easily happen when the
+ view has a strong reference to the controller.
  */
 open class KeyboardInputViewController: UIInputViewController {
+
     
     // MARK: - View Controller Lifecycle
     
@@ -42,24 +52,27 @@ open class KeyboardInputViewController: UIInputViewController {
         super.traitCollectionDidChange(previousTraitCollection)
     }
 
+
     // MARK: - Keyboard View Controller Lifecycle
 
     /**
      This function is called whenever the keyboard view must
      be created or updated.
 
-     You can override this function if you want to implement
-     your own keyboard setup logic.
+     This function will by default set up a ``SystemKeyboard``
+     as the main view, but you can override this function to
+     setup any custom view as the main keyboard view.
      */
-    open func viewWillSetupKeyboard() {}
+    open func viewWillSetupKeyboard() {
+        setup { SystemKeyboard(controller: $0) }
+    }
 
     /**
      This function is called whenever the controller must be
      synced with its ``keyboardContext``.
 
      You can override this function if you want to implement
-     your own context sync logic or sync the controller with
-     other observable properties.
+     your own context sync or sync with more contexts.
      */
     open func viewWillSyncWithContext() {
         guard isContextSyncEnabled else { return }
@@ -73,14 +86,36 @@ open class KeyboardInputViewController: UIInputViewController {
     /**
      Setup KeyboardKit with a SwiftUI view.
 
-     This function removes all views from the controller and
-     adds the provided view in a way that the extension will
-     resize to fit it. It also injects observable objects as
-     `@EnvironmentObject` into the view hierarchy.
+     Only use this setup function when the view doesn't need
+     to refer to this controller, otherwise make sure to use
+     the controller-based setup function instead.
      */
-    open func setup<Content: View>(with view: Content) {
+    open func setup<Content: View>(
+        with view: @escaping @autoclosure () -> Content
+    ) {
+        setup(withRootView: KeyboardRootView(view))
+    }
+
+    /**
+     Setup KeyboardKit with a SwiftUI view.
+
+     Use this setup function when the view needs to refer to
+     this controller, otherwise it's easy to create a memory
+     leak when injecting the controller into the view.
+     */
+    open func setup<Content: View>(
+        @ViewBuilder with view: @escaping (_ controller: KeyboardInputViewController) -> Content
+    ) {
+        setup(withRootView: KeyboardRootView { [unowned self] in view(self) })
+    }
+
+    /**
+     This function is shared by all setup functions.
+     */
+    func setup<Content: View>(withRootView view: Content) {
+        self.children.forEach { $0.removeFromParent() }
         self.view.subviews.forEach { $0.removeFromSuperview() }
-        let view = KeyboardRootView(view)
+        let view = view
             .environmentObject(autocompleteContext)
             .environmentObject(calloutContext)
             .environmentObject(keyboardContext)

@@ -15,11 +15,11 @@ import SwiftUI
  */
 struct KeyboardRootView<ViewType: View>: View {
     
-    init(_ view: ViewType) {
+    init(@ViewBuilder _ view: @escaping () -> ViewType) {
         self.view = view
     }
     
-    var view: ViewType
+    var view: () -> ViewType
 
     @EnvironmentObject
     private var autocompleteContext: AutocompleteContext
@@ -31,6 +31,6 @@ struct KeyboardRootView<ViewType: View>: View {
     private var keyboardContext: KeyboardContext
     
     var body: some View {
-        view
+        view()
     }
 }
