@@ -34,11 +34,11 @@ open class KeyboardInputViewController: UIInputViewController {
         setupInitialWidth()
         setupLocaleObservation()
         setupNextKeyboardBehavior()
-        viewWillSetupKeyboard()
     }
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewWillSetupKeyboard()
         viewWillSyncWithContext()
     }
     

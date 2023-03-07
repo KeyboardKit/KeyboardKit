@@ -27,7 +27,12 @@ KeyboardKit 7.0.1 makes it even easier to setup a keyboard extension, since it w
 ### 💡 Behavior changes
 
 * `KeyboardInputViewController` `setup` uses a view builder instead of a static view.
+* `KeyboardInputViewController` now calls `viewWillSetupKeyboard` in `viewWillAppear` instead of `viewDidLoad`.
 * `KeyboardRootView` uses a view builder instead of a static view.
+
+### 🐛 Bug fixes
+
+* `KeyboardInputViewController` now creates the keyboard view later, which makes it respect the safe areas better in landscape.
 
 
 
