@@ -100,6 +100,29 @@ class QuotationAnalyzerTests: XCTestCase {
     }
 
 
+    // MARK: - String quotation
+
+    func quote(_ text: String, for locale: KeyboardLocale) -> String {
+        analyzer.quote(text, for: locale.locale)
+    }
+
+    func alternateQuote(_ text: String, for locale: KeyboardLocale) -> String {
+        analyzer.alternateQuote(text, for: locale.locale)
+    }
+
+    func testQuoteStringForLocale() {
+        XCTAssertEqual(quote("Hello", for: .dutch), "‘Hello’")
+        XCTAssertEqual(quote("Hello", for: .italian), "«Hello»")
+        XCTAssertEqual(quote("Hello", for: .swedish), "”Hello”")
+    }
+
+    func testAlternateQuoteStringForLocale() {
+        XCTAssertEqual(alternateQuote("Hello", for: .dutch), "“Hello”")
+        XCTAssertEqual(alternateQuote("Hello", for: .italian), "“Hello”")
+        XCTAssertEqual(alternateQuote("Hello", for: .swedish), "’Hello’")
+    }
+
+
     // MARK: - Preferred quotation replacement
 
     func beginDelimiter(for locale: KeyboardLocale) -> String {

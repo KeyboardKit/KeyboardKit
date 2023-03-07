@@ -70,6 +70,28 @@ public extension QuotationAnalyzer {
     ) -> String? {
         string.preferredQuotationReplacement(whenAppending: text, for: locale)
     }
+
+
+    /**
+     Wrap a `string` in quotation delimiters for a `locale`.
+     */
+    func quote(
+        _ string: String,
+        for locale: Locale
+    ) -> String {
+        string.quoted(for: locale)
+    }
+
+    /**
+     Wrap a `string` in alternate quotation delimiters for a
+     `locale`.
+     */
+    func alternateQuote(
+        _ string: String,
+        for locale: Locale
+    ) -> String {
+        string.alternateQuoted(for: locale)
+    }
 }
 
 
@@ -122,6 +144,25 @@ public extension String {
         if let replacement = preferredQuotationReplacement(for: text, locale: locale) { return replacement }
         if let replacement = preferredAlternateQuotationReplacement(for: text, locale: locale) { return replacement }
         return nil
+    }
+
+    /**
+     Wrap the string in quotation delimiters for a `locale`.
+     */
+    func quoted(for locale: Locale) -> String {
+        guard let begin = locale.quotationBeginDelimiter else { return self }
+        guard let end = locale.quotationEndDelimiter else { return self }
+        return "\(begin)\(self)\(end)"
+    }
+
+    /**
+     Wrap the string in alternate quotation delimiters for a
+     `locale`.
+     */
+    func alternateQuoted(for locale: Locale) -> String {
+        guard let begin = locale.alternateQuotationBeginDelimiter else { return self }
+        guard let end = locale.alternateQuotationEndDelimiter else { return self }
+        return "\(begin)\(self)\(end)"
     }
 }
 

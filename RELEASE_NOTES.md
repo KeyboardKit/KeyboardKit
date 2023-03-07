@@ -25,6 +25,8 @@ KeyboardKit Pro also has a new experimental autocomplete provider that you can t
 ### ✨ New features
 
 * `KeyboardInputViewController` has a new `setup` function that provides the controller as an unowned reference.
+* `QuotationAnalyzer` has more functions.
+* `String` has new quotation functions.
 
 ### 👑 Pro changes
 
