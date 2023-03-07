@@ -20,10 +20,11 @@ Older versions have their release notes listed in the `Release_Notes` folder.
 
 KeyboardKit 7.0.1 makes it even easier to setup a keyboard extension, since it will setup a `SystemKeyboard` by default.
 
-KeyboardKit Pro also has a new experimental autocomplete provider that you can toggle on with the `FeatureToggle`.
+KeyboardKit Pro also has a new experimental autocomplete provider that you can toggle on with the `FeatureToggle`. To enable it, just enable the `.newAutocompleteEngine` feature.
 
 ### ✨ New features
 
+* `FeatureToggle` has a new `.newAutocompleteEngine` feature.
 * `KeyboardInputViewController` has a new `setup` function that provides the controller as an unowned reference.
 * `QuotationAnalyzer` has more functions.
 * `String` has new quotation functions.

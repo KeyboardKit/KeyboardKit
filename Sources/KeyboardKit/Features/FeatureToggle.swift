@@ -65,7 +65,11 @@ public extension FeatureToggle {
      */
     enum Feature: String {
 
+        /// This is a placeholder feature without effect.
         case placeholder
+
+        /// The new KeyboardKit Pro autocomplete engine.
+        case newAutocompleteEngine
     }
 }
 
