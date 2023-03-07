@@ -25,6 +25,13 @@ class KeyboardViewController: KeyboardInputViewController {
      */
     override func viewDidLoad() {
 
+        /// 💡 Setup a custom keyboard locale.
+        ///
+        /// Changing locale without using KeyboardKit Pro or
+        /// a custom input set and/or layout will only cause
+        /// some localized texts to change.
+        keyboardContext.setLocale(.english)
+
         /// 💡 Setup a demo-specific input set provider.
         ///
         /// This will affect the input keys for the keyboard.
@@ -62,6 +69,6 @@ class KeyboardViewController: KeyboardInputViewController {
         /// custom view. Note that we use a controller-based
         /// `setup` function to avoid potential memory leaks
         /// that can be caused by injecting `self`.
-        setup(with: DemoKeyboardView(controller: self))
+        setup { DemoKeyboardView(controller: $0) }
     }
 }

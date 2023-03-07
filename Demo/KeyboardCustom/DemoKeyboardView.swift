@@ -30,17 +30,21 @@ struct DemoKeyboardView: View {
     private var keyboardContext: KeyboardContext
 
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             Text("Locale: \(keyboardContext.locale.identifier)")
                 .frame(maxWidth: .infinity)
+                .padding(5)
                 .background(Color.primary.colorInvert())
                 .cornerRadius(5)
                 .padding()
                 .background(Color.red)
+
             SystemKeyboard(
                 controller: controller,
                 autocompleteToolbar: .none
             )
+            .background(Color.white)
+
             Color.red
         }
     }

@@ -80,17 +80,20 @@ class KeyboardViewController: KeyboardInputViewController {
 
     /**
      This function is called whenever the keyboard should be
-     created or updated. Here, we setup a ``DemoKeyboardView``
-     as the main keyboard view.
+     created or updated. Here, we setup a system keyboard as
+     the main keyboard view.
      */
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
 
-        /// 💡 Make the demo use a ``DemoKeyboardView``.
+        /// 💡 Make the demo use a ``SystemKeyboard``.
         ///
-        /// This is actually not needed. KeyboardKit will by
-        /// default use a `SystemKeyboard`, so you only have
-        /// to do this if you want to use a custom view.
-        setup(with: DemoKeyboardView(controller: self))
+        /// This is actually not needed. The controller will
+        /// by default setup a `SystemKeyboard`, so you only
+        /// have to override this function to setup a custom
+        /// view, which we do in `KeyboardCustom`.
+        setup {
+            SystemKeyboard(controller: $0)
+        }
     }
 }
