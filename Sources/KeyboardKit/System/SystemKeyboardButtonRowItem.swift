@@ -79,7 +79,9 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
                 isPressed: $isPressed)
             .localeContextMenu(
                 for: item.action,
-                context: keyboardContext)
+                context: keyboardContext,
+                actionHandler: actionHandler
+            )
     }
 }
 
@@ -97,11 +99,15 @@ private extension View {
      action is `nextLocale`.
      */
     @ViewBuilder
-    func localeContextMenu(for action: KeyboardAction, context: KeyboardContext) -> some View {
+    func localeContextMenu(
+        for action: KeyboardAction,
+        context: KeyboardContext,
+        actionHandler: KeyboardActionHandler
+    ) -> some View {
         if shouldApplyLocaleContextMenu(for: action, context: context) {
-            self.localeContextMenu(
-                for: context, presentationLocale: context.localePresentationLocale)
-                .id(context.locale.identifier)
+            self.localeContextMenu(for: context) {
+                actionHandler.handle(.release, on: action)
+            }.id(context.locale.identifier)
         } else {
             self
         }

@@ -42,11 +42,7 @@ class KeyboardViewController: KeyboardInputViewController {
         /// a locale switcher next to space and how pressing
         /// space opens up a locale menu if you also comment
         /// out that code below.
-        // keyboardContext.locales = [
-        //     KeyboardLocale.swedish.locale,
-        //     KeyboardLocale.portuguese.locale,
-        //     KeyboardLocale.spanish.locale
-        // ]
+        // keyboardContext.locales = KeyboardLocale.allCases.map { $0.locale }
 
         /// 💡 Setup a custom dictation key replacement.
         ///
@@ -61,7 +57,7 @@ class KeyboardViewController: KeyboardInputViewController {
         /// You can enable this to see how the keyboard will
         /// change from moving the cursor and instead open a
         /// locale menu when space is long pressed.
-        // keyboardContext.spaceLongPressBehavior = .openLocaleMenu
+        // keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu
 
         /// 💡 Setup a fake autocomplete provider.
         ///

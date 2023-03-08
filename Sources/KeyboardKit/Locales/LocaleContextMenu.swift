@@ -28,16 +28,18 @@ public struct LocaleContextMenu<MenuItem: View>: ViewModifier {
      Create a context menu that lists all the locales in the
      context as a `Text` view with the full localized name.
 
-     If no `presentationLocale` is provided, the locale text
-     for each locale is localized with the locale itself.
-
      - Parameters:
        - keyboardContext: The keyboard context to use.
+       - tapAction: The action to trigger when the view is tapped.
      */
     public init(
-        keyboardContext: KeyboardContext
+        keyboardContext: KeyboardContext,
+        tapAction: @escaping () -> Void
     ) where MenuItem == Text {
-        self.init(keyboardContext: keyboardContext) { locale in
+        self.init(
+            keyboardContext: keyboardContext,
+            tapAction: tapAction
+        ) { locale in
             Text(locale.localizedName(in: keyboardContext.localePresentationLocale ?? locale) ?? "-")
         }
     }
@@ -48,24 +50,33 @@ public struct LocaleContextMenu<MenuItem: View>: ViewModifier {
 
      - Parameters:
        - keyboardContext: The keyboard context to use.
+       - tapAction: The action to trigger when the view is tapped.
        - menuItem: A menu item view builder.
      */
     public init(
         keyboardContext: KeyboardContext,
+        tapAction: @escaping () -> Void,
         @ViewBuilder menuItem: @escaping (Locale) -> MenuItem
     ) {
         self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
+        self.tapAction = tapAction
         self.menuItem = menuItem
     }
 
     @ObservedObject
     private var keyboardContext: KeyboardContext
 
+    private var tapAction: () -> Void
+
     private var menuItem: (Locale) -> MenuItem
 
     public func body(content: Content) -> some View {
         if keyboardContext.locales.count > 1 {
-            content.withContextMenu(menu)
+            content.withContextMenu(
+                menu,
+                keyboardContext: keyboardContext,
+                tapAction: tapAction
+            )
         } else {
             content
         }
@@ -74,14 +85,27 @@ public struct LocaleContextMenu<MenuItem: View>: ViewModifier {
 
 private extension View {
 
-    func withContextMenu<MenuView: View>(_ menu: MenuView) -> some View {
-        #if os(iOS) || os(macOS)
-        self.contextMenu(
-            ContextMenu { menu }
-        )
-        #else
-        self
-        #endif
+    @ViewBuilder
+    func withContextMenu<MenuView: View>(
+        _ menu: MenuView,
+        keyboardContext: KeyboardContext,
+        tapAction: @escaping () -> Void
+    ) -> some View {
+#if os(iOS) || os(macOS)
+        if #available(iOS 15.0, macOS 12.0, *) {
+            Menu(content: {
+                menu
+            }, label: {
+                self
+            }, primaryAction: tapAction)
+        } else {
+            Button(action: tapAction) {
+                self
+            }.contextMenu(ContextMenu { menu })
+        }
+#else
+            self
+#endif
     }
 }
 
@@ -119,18 +143,19 @@ public extension View {
      Apply a menu that lists all the locales in the keyboard
      context as a `Text` view with the full localized name.
 
-     If no `presentationLocale` is provided, the locale text
-     for each locale is localized with the locale itself.
-
      - Parameters:
        - keyboardContext: The keyboard context to use.
+       - tapAction: The action to trigger when the view is tapped.
      */
     func localeContextMenu(
         for context: KeyboardContext,
-        presentationLocale: Locale? = nil
+        tapAction: @escaping () -> Void
     ) -> some View {
         self.modifier(
-            LocaleContextMenu(keyboardContext: context)
+            LocaleContextMenu(
+                keyboardContext: context,
+                tapAction: tapAction
+            )
         )
     }
 
@@ -140,15 +165,18 @@ public extension View {
 
      - Parameters:
        - keyboardContext: The keyboard context to use.
+       - tapAction: The action to trigger when the view is tapped.
        - menuItem: A menu item view builder.
      */
     func localeContextMenu<ButtonView: View>(
         for context: KeyboardContext,
+        tapAction: @escaping () -> Void,
         menuItem: @escaping (Locale) -> ButtonView
     ) -> some View {
         self.modifier(
             LocaleContextMenu(
                 keyboardContext: context,
+                tapAction: tapAction,
                 menuItem: menuItem
             )
         )
@@ -166,7 +194,10 @@ struct LocaleContextMenu_Previews: PreviewProvider {
 
     static var previews: some View {
         VStack(spacing: 20) {
-            Text("🌐").localeContextMenu(for: context)
+            Text("🌐").localeContextMenu(
+                for: context,
+                tapAction: {}
+            )
         }
     }
 }
