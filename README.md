@@ -56,7 +56,7 @@ You can add the library to the main app, the keyboard extension and any other ta
 
 ## Getting started
 
-The online documentation has a [getting-started guide][Getting-Started] that will help you get started with the library.
+The online documentation has a [getting-started guide][Getting-Started] that will help you get started with the library. 
 
 
 

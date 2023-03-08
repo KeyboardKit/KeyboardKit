@@ -1,8 +1,8 @@
 # ``KeyboardKit/KeyboardInputViewController``
 
 With KeyboardKit, inherit this class instead of the regular
-`UIInputViewController` class to extend the controller with
-a lot of additional features that a regular extension lacks.
+`UIInputViewController` to extend the controller with a lot
+of additional features, properties, services etc.
 
 
 ## View Controller Lifecycle
@@ -13,8 +13,7 @@ to assure that the keyboard is kept in sync:
 
 * ``viewWillSetupKeyboard()`` is called when the controller
 needs to setup or recreate the keyboard view. Override this
-and call ``setup(with:)`` or any other setup logic to setup
-your main keyboard view.
+and call `setup(with:)` to setup your main keyboard view.
 * ``performAutocomplete()`` is called when a text change is
 used to trigger an autocomplete operation. By default, this
 makes the controller call the ``autocompleteProvider`` with
@@ -22,6 +21,10 @@ the ``textDocumentProxy``s `currentWord`, if any.
 * ``resetAutocomplete()`` is called when the text selection
 changes, e.g. when moving the cursor. By default, it resets
 the ``autocompleteContext``.
+
+The controller will by default use a ``SystemKeyboard``, so
+you don't have to override ``viewWillSetupKeyboard()`` when
+you just want to use the standard keyboard.
 
 
 ## Observable properties

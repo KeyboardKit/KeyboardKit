@@ -41,9 +41,15 @@ You can add the library to the main app, the keyboard extension and any other ta
 
 In your keyboard extension, `import KeyboardKit` then make `KeyboardViewController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`. 
 
-Inheriting ``KeyboardInputViewController`` gives your controller access to a lot of additional functionality, such as new lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboard()``, observable properties like ``KeyboardInputViewController/keyboardContext``, keyboard services like ``KeyboardInputViewController/keyboardActionHandler`` and much more.
+This gives your controller access to a lot of additional functionality, such as new lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboard()``, observable properties like ``KeyboardInputViewController/keyboardContext``, keyboard services like ``KeyboardInputViewController/keyboardActionHandler`` and much more.
 
-Your controller will call ``KeyboardInputViewController/viewWillSetupKeyboard()`` when the keyboard should be created. You can then use ``KeyboardInputViewController/setup(with:)`` to make the keyboard extension use any `SwiftUI` view, for instance:
+The default ``KeyboardInputViewController`` behavior is to setup a ``SystemKeyboard`` with the standard configuration, which means that this is all you need to create a keyboard extension with a standard, English keyboard:
+
+```swift
+class KeyboardViewController: KeyboardInputViewController {}
+```
+
+The controller will however call ``KeyboardInputViewController/viewWillSetupKeyboard()`` when the keyboard should be created. You can override this function and use `setup(with:)` to use any `SwiftUI` view, for instance:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -55,39 +61,27 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-This will make the view you use the main view of the keyboard extension, which makes the extension size to fit its content. It also injects all observable properties as environment objects into the view hierarchy, to ensure that the view updates whenever they change. 
-
-If you want to create a standard keyboard that imitates the iOS stock keyboard, you can use a ``SystemKeyboard``;
+You can also customize the ``SystemKeyboard`` in the same way, for instance to replace the standard autocomplete toolbar with something else:
 
 ```swift
-struct MyKeyboardView: View {
-    
-    @State
-    private var text = "Text"
-    
-    @EnvironmentObject
-    private var autocompleteContext: AutocompleteContext
+class KeyboardViewController: KeyboardInputViewController {
 
-    @EnvironmentObject
-    private var keyboardContext: KeyboardContext
-    
-    var body: some View {
-        VStack(spacing: 0) {
-            if keyboardContext.keyboardType != .emojis {
-                AutocompleteToolbar(
-                    suggestions: autocompleteContext.suggestions,
-                    locale: keyboardContext.locale
+    func viewWillSetupKeyboard() {
+        super.viewWillSetupKeyboard()
+        setup { controller in
+            VStack(spacer: 0) {
+                Color.red.frame(height: 50)
+                SystemKeyboard(
+                    controller: controller,
+                    autocompleteToolbar: .none
                 )
             }
-            SystemKeyboard()
         }
     }
 }
 ```
 
-The view above creates a system keyboard with an autocomplete toolbar that only shows when the system keyboard doesn't display an emojis keyboard. The view will automatically update when things change, such as the ``KeyboardContext/keyboardType``.
-
-It's important that the view observes the global ``KeyboardInputViewController/keyboardContext``, either by using the injected environment object or by setting it up as an observed object, otherwise it will be unresponsive to context changes. If your view doesn't react when you change keyboard type, this is most probably the cause.
+Note that we here use another `setup` function that provides you with a weak controller reference to help you avoid memory leaks when your keyboard view depends on the controller. 
 
 
 
@@ -104,17 +98,17 @@ struct MyButton: View {
     private var context: KeyboardContext
 
     var body: some View {
-        Button("Insert banana!") {
-            context.textDocumentProxy.insertText("Banana!")
+        Button("Print locale!") {
+            print(context.locale.identifier)
         }.disabled(context.keyboardType == .emojis)
     }
 }
 ```
 
-All services will be configured with standard implementations when KeyboardKit is started. For instance, ``KeyboardInputViewController/keyboardActionHandler`` is initialized with a ``StandardKeyboardActionHandler``. All services can be replaced with your own custom implementations.
+All services are configured with standard implementations when KeyboardKit is started. For instance, ``KeyboardInputViewController/keyboardActionHandler`` is initialized with a ``StandardKeyboardActionHandler``. All services can be replaced with your own custom implementations.
 
 
-## How to observe changes
+## How to observe state
 
 To access observable objects that are injected into the view hierarchy, you can use `@EnvironmentObject`, for instance:
 
@@ -147,9 +141,9 @@ struct MyView: View {
 }
 ```
 
-You can use any of these options as you see fit. Environment objects are convenient, but KeyboardKit itself uses init injection, since it makes dependencies more explicit.
+You can use any of these options as you see fit. Environment objects are convenient, but KeyboardKit itself uses init injection to make dependencies more explicit.
 
-There are a bunch of KeyboardKit-specific environment objects that can provide you with important information, such as ``KeyboardContext``, ``AutocompleteContext``, ``InputCalloutContext`` etc.
+There are a bunch of KeyboardKit-specific environment objects that can provide you with important information, such as ``KeyboardContext``, ``KeyboardCalloutContext``, ``KeyboardTextContext``, ``AutocompleteContext``, etc.
 
 
 
