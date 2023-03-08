@@ -44,6 +44,7 @@ The locale context menu didn't use the provided presentation locale. This versio
 
 ### 🐛 Bug fixes
 
+* `iPadKeyboardLayoutProvider` had an incorrect width for its primary button.
 * `KeyboardInputViewController` now creates the keyboard view later, which makes it respect the safe areas better in landscape.
 * `LocaleContextMenu` now uses the `KeyboardContext` to localize and sort locales. 
 

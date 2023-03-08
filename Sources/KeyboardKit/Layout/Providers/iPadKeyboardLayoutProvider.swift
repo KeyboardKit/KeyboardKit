@@ -57,8 +57,8 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         if isLowerTrailingSwitcher(action, row: row, index: index) { return .available }
         switch action {
         case context.keyboardDictationReplacement: return .input
-        case .none: return .inputPercentage(0.4)
-        case .backspace: return .input
+        case .none: return .inputPercentage(0.3)
+        case .primary: return .available
         default: break
         }
         if action.isSystemAction { return systemButtonWidth(for: context) }
