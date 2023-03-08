@@ -102,12 +102,20 @@ public class KeyboardContext: ObservableObject {
      */
     @Published
     public var locale = Locale.current
-    
+
     /**
      The locales that are currently enabled for the keyboard.
      */
     @Published
     public var locales: [Locale] = [.current]
+
+    /**
+     An custom locale to use when displaying other locales.
+
+     If no locale is specified, the ``locale`` will be used.
+     */
+    @Published
+    public var localePresentationLocale: Locale?
     
     /**
      Whether or not the keyboard should (must) have a switch
@@ -141,7 +149,7 @@ public class KeyboardContext: ObservableObject {
      The space long press behavior to use.
      */
     @Published
-    public var spaceLongPressBehavior = SpaceLongPressBehavior.enableInputCursorMovement
+    public var spaceLongPressBehavior = SpaceLongPressBehavior.moveInputCursor
     
     
     #if os(iOS) || os(tvOS)

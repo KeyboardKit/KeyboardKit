@@ -9,22 +9,13 @@
 import Foundation
 
 /**
- This enum describes the behavior of a keyboard space button
- when it's long pressed.
+ This enum defines various space key long press actions.
  */
 public enum SpaceLongPressBehavior: Codable {
 
-    /// The space key will start moving the input cursor.
-    case enableInputCursorMovement
+    /// Long pressing space starts moving the input cursor.
+    case moveInputCursor
 
-    /// The space key will open a locale context menu.
-    case openLocaleContextMenu(in: Locale)
-}
-
-public extension SpaceLongPressBehavior {
-
-    /// The space key will open a locale context menu.
-    static func openLocaleContextMenu(in locale: KeyboardLocale) -> SpaceLongPressBehavior {
-        .openLocaleContextMenu(in: locale.locale)
-    }
+    /// Long pressing space opens a locale context menu.
+    case openLocaleContextMenu
 }

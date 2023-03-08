@@ -99,7 +99,8 @@ private extension View {
     @ViewBuilder
     func localeContextMenu(for action: KeyboardAction, context: KeyboardContext) -> some View {
         if shouldApplyLocaleContextMenu(for: action, context: context) {
-            self.localeContextMenu(for: context)
+            self.localeContextMenu(
+                for: context, presentationLocale: context.localePresentationLocale)
                 .id(context.locale.identifier)
         } else {
             self
@@ -125,18 +126,8 @@ private extension View {
     ) -> Bool {
         switch action {
         case .nextLocale: return true
-        case .space: return context.locales.count > 1 && context.spaceLongPressBehavior.shouldApplyLocaleContextMenu
+        case .space: return context.spaceLongPressBehavior == .openLocaleContextMenu
         default: return false
-        }
-    }
-}
-
-private extension SpaceLongPressBehavior {
-
-    var shouldApplyLocaleContextMenu: Bool {
-        switch self {
-        case .enableInputCursorMovement: return false
-        case .openLocaleContextMenu: return true
         }
     }
 }
@@ -160,7 +151,8 @@ struct SystemKeyboardButtonRowItem_Previews: PreviewProvider {
     static let context: KeyboardContext = {
         let context = KeyboardContext()
         context.locales = KeyboardLocale.allCases.map { $0.locale }
-        context.spaceLongPressBehavior = .openLocaleContextMenu(in: .swedish)
+        context.localePresentationLocale = KeyboardLocale.swedish.locale
+        context.spaceLongPressBehavior = .openLocaleContextMenu
         return context
     }()
 
