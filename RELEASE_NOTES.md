@@ -16,35 +16,42 @@ Older versions have their release notes listed in the `Release_Notes` folder.
 
 
 
-## 7.0.1
+## 7.1
 
-KeyboardKit 7.0.1 makes it even easier to setup a keyboard extension, since it will setup a `SystemKeyboard` by default.
+KeyboardKit 7.1 fixes some bugs and makes it even easier to setup KeyboardKit.
 
-KeyboardKit Pro also has a new experimental and much better autocomplete provider that you can toggle on with the `FeatureToggle`.
+KeyboardKit Pro also has a new experimental and much better autocomplete provider that you can toggle on with the `FeatureToggle`:
 
-The locale context menu didn't use the provided presentation locale. This version rewrites it to work better, but it required a few breaking changes that hopefully will affect few people.
+```swift
+FeatureToggle.shared.toggleFeature(.newAutocompleteEngine, .on)
+```
+
+Once this has been verified to work better than the current provider, it will replace it and this feature toggle flag will be removed.
+
+Furthermore, the locale context menu has been refactored to work and look a lot better on iOS 16 and macOS 12. This unfortunately required a few breaking api changes, that hopefully will not affect anyone.
 
 ### ✨ New features
 
 * `FeatureToggle` has a new `.newAutocompleteEngine` feature.
 * `KeyboardContext` has a new `localePresentationLocale` property.
-* `KeyboardInputViewController` has a new `setup` function that provides the controller as an unowned reference.
+* `KeyboardInputViewController` has new `setup` functions that provide a view builder with an unowned controller reference.
 * `QuotationAnalyzer` has more functions.
 * `String` has new quotation functions.
 
 ### 👑 Pro changes
 
-* There is a new autocomplete provider that you can toggle on by enabling the feature with `FeatureToggle.shared.toggleFeature(.newAutocompleteEngine, .on)`.
+* KeyboardKit Pro has a new experimental autocomplete provider that can be toggled on to replace the standard one.
+* Many iPad layouts have been tweaked to look even closer to the native layouts.
 
 ### 💡 Behavior changes
 
 * `KeyboardInputViewController` `setup` uses a view builder instead of a static view.
 * `KeyboardInputViewController` now calls `viewWillSetupKeyboard` in `viewWillAppear` instead of `viewDidLoad`.
-* `KeyboardRootView` uses a view builder instead of a static view.  
+* `KeyboardRootView` uses a view builder instead of a static view. 
 
 ### 🐛 Bug fixes
 
-* `iPadKeyboardLayoutProvider` had an incorrect width for its primary button.
+* `iPadKeyboardLayoutProvider` had a line accidentally removed, which caused English layouts to render incorrect. This has been fixed.
 * `KeyboardInputViewController` now creates the keyboard view later, which makes it respect the safe areas better in landscape.
 * `LocaleContextMenu` now uses the `KeyboardContext` to localize and sort locales. 
 
