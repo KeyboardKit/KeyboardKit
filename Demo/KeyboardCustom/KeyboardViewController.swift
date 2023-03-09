@@ -65,10 +65,9 @@ class KeyboardViewController: KeyboardInputViewController {
 
         /// 💡 Make the demo use a ``DemoKeyboardView``.
         ///
-        /// This is KeyboardKit can be configured to use any
-        /// custom view. Note that we use a controller-based
-        /// `setup` function to avoid potential memory leaks
-        /// that can be caused by injecting `self`.
+        /// Note that we use a view builder-based `setup` to
+        /// get an `unowned` controller reference that helps
+        /// us avoid memory leaks caused by injecting `self`.
         setup { DemoKeyboardView(controller: $0) }
     }
 }

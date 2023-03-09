@@ -1,6 +1,6 @@
 //
 //  FakeAutocompleteProvider.swift
-//  KeyboardKit
+//  Keyboard
 //
 //  Created by Daniel Saidi on 2022-02-07.
 //  Copyright © 2022-2023 Daniel Saidi. All rights reserved.

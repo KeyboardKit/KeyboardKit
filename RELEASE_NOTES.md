@@ -20,6 +20,8 @@ Older versions have their release notes listed in the `Release_Notes` folder.
 
 This version fixes some bugs in `KeyboardTextField` and `KeyboardTextView` and tweaks their behavior a bit.
 
+The demo app has a new `KeyboardTextInput` demo keyboard that shows `KeyboardTextField` and `KeyboardTextView` in action. 
+
 ### ✨ New features
 
 * `KeyboardInputView` is a new protocol that lets you apply a `focused` binding together with a custom done button.

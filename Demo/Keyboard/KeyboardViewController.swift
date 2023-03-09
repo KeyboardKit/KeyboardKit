@@ -1,6 +1,6 @@
 //
 //  KeyboardViewController.swift
-//  KeyboardKit
+//  Keyboard
 //
 //  Created by Daniel Saidi on 2021-02-11.
 //  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
@@ -107,8 +107,6 @@ class KeyboardViewController: KeyboardInputViewController {
         /// by default setup a `SystemKeyboard`, so you only
         /// have to override this function to setup a custom
         /// view, which we do in `KeyboardCustom`.
-        setup {
-            SystemKeyboard(controller: $0)
-        }
+        setup { SystemKeyboard(controller: $0) }
     }
 }
