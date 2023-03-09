@@ -53,7 +53,7 @@ import UIKit
  return focus to the main app. If you set it to `false`, you
  will have to provide manually handle the focus state.
  */
-public struct KeyboardTextField: UIViewRepresentable {
+public struct KeyboardTextField: UIViewRepresentable, KeyboardInputView {
     
     /**
      Create a keyboard text field instance.
@@ -120,7 +120,9 @@ public struct KeyboardTextField: UIViewRepresentable {
     }
 
     public func configureUIView(_ view: UITextField) {
+        #if os(iOS) || os(macOS) || os(watchOS)
         view.backgroundColor = .systemBackground
+        #endif
         view.borderStyle = .roundedRect
         config(view)
     }

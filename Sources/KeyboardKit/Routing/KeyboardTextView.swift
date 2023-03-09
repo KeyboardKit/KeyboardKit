@@ -46,7 +46,7 @@ import UIKit
  }
  ```
  */
-public struct KeyboardTextView: UIViewRepresentable {
+public struct KeyboardTextView: UIViewRepresentable, KeyboardInputView {
     
     /**
      Create a keyboard text view instance.
@@ -108,7 +108,9 @@ public struct KeyboardTextView: UIViewRepresentable {
     }
 
     public func configureUIView(_ view: UITextView) {
+        #if os(iOS) || os(macOS) || os(watchOS)
         view.backgroundColor = .systemBackground
+        #endif
         view.font = UITextField().font
         view.layer.cornerRadius = 5
         config(view)

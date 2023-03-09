@@ -20,12 +20,19 @@ Older versions have their release notes listed in the `Release_Notes` folder.
 
 This version fixes some bugs in `KeyboardTextField` and `KeyboardTextView` and tweaks their behavior a bit.
 
+### ✨ New features
+
+* `KeyboardInputView` is a new protocol that lets you apply a `focused` binding together with a custom done button.
+
 ### 💡 Behavior changes
 
+* `KeyboardTextField` and `KeyboardTextView` now implement the new `KeyboardInputView` protocol.
 * `KeyboardTextField` and `KeyboardTextView` now apply a basic style before applying any custom configuration.
 * `KeyboardTextField` and `KeyboardTextView` now animates together with the focused state.
 * `KeyboardTextField` now applies a background color and border style.
 * `KeyboardTextView` now applies a background color, corner radius and font.
+* `KeyboardTextView` now uses the same font as `KeyboardTextField` by default.
+
 
 ### 🐛 Bug fixes
 
