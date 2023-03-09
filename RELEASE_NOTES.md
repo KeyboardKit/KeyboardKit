@@ -27,6 +27,10 @@ This version fixes some bugs in `KeyboardTextField` and `KeyboardTextView` and t
 * `KeyboardTextField` now applies a background color and border style.
 * `KeyboardTextView` now applies a background color, corner radius and font.
 
+### 🐛 Bug fixes
+
+* `KeyboardTextField` and `KeyboardTextView` now correctly resigns as first responder when they lose focus.
+
 
 
 ## 7.1

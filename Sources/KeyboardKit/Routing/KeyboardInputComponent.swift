@@ -48,7 +48,9 @@ public extension KeyboardInputComponent {
      This will register the input as the current input proxy.
      */
     func handleBecomeFirstResponder() {
-        controller?.textInputProxy = TextInputProxy(input: self)
+        DispatchQueue.main.async {
+            self.controller?.textInputProxy = TextInputProxy(input: self)
+        }
     }
     
     /**
@@ -70,7 +72,6 @@ public extension KeyboardInputComponent {
      This will remove the input from the current input proxy.
      */
     func handleResignFirstResponder() {
-        guard controller?.textInputProxy === self else { return }
         controller?.textInputProxy = nil
     }
 }
