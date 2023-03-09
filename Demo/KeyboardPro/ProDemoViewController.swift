@@ -42,6 +42,14 @@ class ProDemoViewController: KeyboardInputViewController {
      */
     override func viewDidLoad() {
 
+        /// 💡 Enable the new autocomplete provider.
+        ///
+        /// This feature is experimental and must be enabled
+        /// with the shared `FeatureToggle`. If the provider
+        /// works great, the next minor version will replace
+        /// the old provider with this new one.
+        FeatureToggle.shared.toggleFeature(.newAutocompleteEngine, .on)
+
         /// 💡 Setup a custom dictation key replacement.
         ///
         /// Since dictation is not available by default, you
@@ -55,7 +63,15 @@ class ProDemoViewController: KeyboardInputViewController {
         /// Long pressing the space key can either start the
         /// input cursor movement or show a context menu for
         /// switching locale.
-        /// keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu(in: .english)
+        keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu
+
+        /// 💡 Make locales use their English names when the
+        /// locale context menu is presented.
+        ///
+        /// The locale context menu is shown by pressing the
+        /// locale switcher in this demo, or space when it's
+        /// configured with `.openLocaleContextMenu` above.
+        keyboardContext.localePresentationLocale = KeyboardLocale.english_us.locale
 
         /// 💡 Setup a demo-specific keyboard appearance.
         ///
@@ -80,7 +96,7 @@ class ProDemoViewController: KeyboardInputViewController {
         // Setup KeyboardKit Pro, using a demo-specific view
         try? setupPro(
             withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098",
-            view: DemoKeyboardView(controller: self),
+            view: { controller in SystemKeyboard(controller: controller) },
             licenseConfiguration: setupKeyboardWithLicense)
     }
 
