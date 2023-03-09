@@ -11,17 +11,17 @@ import SwiftUI
 import UIKit
 
 /**
- This view can be used when you want to have a text field in
- a keyboard extension, and the text field should receive the
- text that is typed on the keyboard.
- 
- The view will automatically register itself as an alternate
- proxy when it becomes first responder and unregister itself
- when it resigns as the first responder.
+ This text field can be used within a keyboard extension.
 
- > Note: You can't use `resignFirstResponder` to end editing.
- Instead, bind a standard SwiftUI `FocusedState` to the view
- and set it to false to end editing.
+ The text field will automatically register itself to become
+ ``KeyboardInputViewController/textInputProxy`` when it gets
+ focus and will also automatically unregister itself when it
+ loses focus.
+
+ You can provide a custom `config` function to customize the
+ underlying `UITextField`.
+
+ Note that you must use `FocusedState` to handle focus state:
 
  ```
  struct MyView: View {
@@ -33,14 +33,25 @@ import UIKit
      private var isEditing: Bool
 
      var body: some View {
-         KeyboardTextField(text: $text)
-             .isFocused(isEditing)
+         HStack(spacing: 0) {
+             KeyboardTextField(text: $text)
+                 .focused($isEditing)
+             Button("x", action: endEditing)
+         }
      }
 
      func endEditing() {
-         isEditing = false
+         withAnimation {
+             isEditing = false
+         }
      }
  }
+ ```
+
+ If you set `resignOnReturn` to `true`, this text field will
+ resign as first responder when return is tapped, which will
+ return focus to the main app. If you set it to `false`, you
+ will have to provide manually handle the focus state.
  */
 public struct KeyboardTextField: UIViewRepresentable {
     
@@ -70,7 +81,7 @@ public struct KeyboardTextField: UIViewRepresentable {
         self.resignOnReturn = resignOnReturn
         self.config = config
     }
-    
+
     
     /**
      This typealias represents a `UITextField` configuration.
@@ -91,8 +102,7 @@ public struct KeyboardTextField: UIViewRepresentable {
     private let config: Configuration
 
     private let resignOnReturn: Bool
-    
-    
+
     public func makeCoordinator() -> Coordinator {
         Coordinator(text: $text)
     }
@@ -105,8 +115,14 @@ public struct KeyboardTextField: UIViewRepresentable {
         view.hasFocus = $hasFocus
         view.resignOnReturn = resignOnReturn
         view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        config(view)
+        configureUIView(view)
         return view
+    }
+
+    public func configureUIView(_ view: UITextField) {
+        view.backgroundColor = .systemBackground
+        view.borderStyle = .roundedRect
+        config(view)
     }
     
     public func updateUIView(_ view: UITextField, context: Context) {
@@ -148,14 +164,18 @@ class KeyboardInputTextField: UITextField, KeyboardInputComponent {
     }
 
     override func becomeFirstResponder() -> Bool {
-        hasFocus.wrappedValue = true
+        withAnimation {
+            hasFocus.wrappedValue = true
+        }
         handleBecomeFirstResponder()
         return super.becomeFirstResponder()
     }
 
     @discardableResult
     override func resignFirstResponder() -> Bool {
-        hasFocus.wrappedValue = false
+        withAnimation {
+            hasFocus.wrappedValue = false
+        }
         handleResignFirstResponder()
         return super.resignFirstResponder()
     }

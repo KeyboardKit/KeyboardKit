@@ -16,9 +16,22 @@ Older versions have their release notes listed in the `Release_Notes` folder.
 
 
 
+## 7.1.1
+
+This version fixes some bugs in `KeyboardTextField` and `KeyboardTextView` and tweaks their behavior a bit.
+
+### 💡 Behavior changes
+
+* `KeyboardTextField` and `KeyboardTextView` now apply a basic style before applying any custom configuration.
+* `KeyboardTextField` and `KeyboardTextView` now animates together with the focused state.
+* `KeyboardTextField` now applies a background color and border style.
+* `KeyboardTextView` now applies a background color, corner radius and font.
+
+
+
 ## 7.1
 
-KeyboardKit 7.1 fixes some bugs and makes it even easier to setup KeyboardKit.
+This version fixes some bugs and makes it even easier to setup KeyboardKit.
 
 KeyboardKit Pro also has a new experimental and much better autocomplete provider that you can toggle on with the `FeatureToggle`:
 

@@ -119,7 +119,7 @@ KeyboardKit Pro requires a commercial license. Licenses can be purchased from th
 
 ## Demo Applications
 
-This project contains a `Demo` folder with a demo apps that lets you try out different KeyboardKit features.
+This project has a `Demo` folder with a demo apps that lets you try out different KeyboardKit features.
 
 The demo app has 5 keyboard extensions:
 

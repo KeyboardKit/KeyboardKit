@@ -11,17 +11,17 @@ import SwiftUI
 import UIKit
 
 /**
- This view can be used when you want to have multi-line text
- input in a keyboard extension, and the input should receive
- the text that is typed on the keyboard.
- 
- The view will automatically register itself as an alternate
- proxy when it becomes first responder and unregister itself
- when it resigns as the first responder.
+ This text view can be used within a keyboard extension.
 
- > Note: You can't use `resignFirstResponder` to end editing.
- Instead, bind a standard SwiftUI `FocusedState` to the view
- and set it to false to end editing.
+ This text view will automatically register itself to become
+ ``KeyboardInputViewController/textInputProxy`` when it gets
+ focus and will also automatically unregister itself when it
+ loses focus.
+
+ You can provide a custom `config` function to customize the
+ underlying `UITextView`.
+
+ Note that you must use `FocusedState` to handle focus state: 
 
  ```
  struct MyView: View {
@@ -33,8 +33,11 @@ import UIKit
      private var isEditing: Bool
 
      var body: some View {
-         KeyboardTextView(text: $text)
-             .isFocused(isEditing)
+         HStack(spacing: 0) {
+             KeyboardTextView(text: $text)
+                 .focused($isEditing)
+             Button("x", action: endEditing)
+         }
      }
 
      func endEditing() {
@@ -100,8 +103,15 @@ public struct KeyboardTextView: UIViewRepresentable {
         view.hasFocus = $hasFocus
         view.resignOnReturn = resignOnReturn
         view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        config(view)
+        configureUIView(view)
         return view
+    }
+
+    public func configureUIView(_ view: UITextView) {
+        view.backgroundColor = .systemBackground
+        view.font = UITextField().font
+        view.layer.cornerRadius = 5
+        config(view)
     }
     
     public func updateUIView(_ view: UITextView, context: Context) {
