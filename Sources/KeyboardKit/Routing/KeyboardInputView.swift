@@ -10,10 +10,10 @@ import SwiftUI
 
 /**
  This protocol can be implemented by input views that should
- be able to add a done button that makes them lose focus.
+ be used to insert text within a keyboard extension.
 
  You can add a custom done button to any `KeyboardInputView`
- by using the custom `focused` modifier, that takes a custom
+ by using its custom `focused` modifier, that takes a custom
  view builder, like this:
 
  ```swift
@@ -23,7 +23,12 @@ import SwiftUI
      }
  ```
 
- Note that you must add this custom `focused` modifier first.
+ This will cause the text input view to slide in this button
+ whenever the view gets focus. Tapping the button will cause
+ the view to lose focus and resign as the first responder.
+
+ Note that you must add this custom `focused` modifier first
+ in the chain of modifiers.
  */
 public protocol KeyboardInputView: View {}
 

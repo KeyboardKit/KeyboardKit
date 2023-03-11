@@ -14,12 +14,13 @@ import UIKit
  used within a keyboard extension.
 
  A view that inherits this protocol can use its functions to
- easily register and unregister itself as the proxy.
+ easily register and unregister itself as the keyboard proxy
+ when it receives and loses focus.
 
- ``KeyboardTextField`` and ``KeyboardTextView`` implement it
- to let you edit text within a keyboard extension. They both
- set themselves as the current text document proxy when they
- have focus, and reset it when the focus is lost.
+ ``KeyboardTextField`` and ``KeyboardTextView`` wraps native
+ `UIKit` views that implement this protocol, which makes the
+ views automatically become the text destination when a user
+ taps them to start inserting text.
  */
 public protocol KeyboardInputComponent: UIResponder, UITextInput {
 

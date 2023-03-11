@@ -312,6 +312,7 @@ KeyboardKit is available under the MIT license.
 
 - ``TextInputProxy``
 - ``KeyboardInputComponent``
+- ``KeyboardInputView``
 - ``KeyboardTextField``
 - ``KeyboardTextView``
 
