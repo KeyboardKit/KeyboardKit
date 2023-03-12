@@ -1,6 +1,6 @@
 # Getting Started
 
-This article discusses how get started using KeyboardKit in your app.
+This article discusses how get started with KeyboardKit.
 
 You can use KeyboardKit in many different ways:
 

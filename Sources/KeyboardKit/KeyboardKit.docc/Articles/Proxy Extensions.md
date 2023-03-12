@@ -47,12 +47,7 @@ Since extensions are not included in the generated documentation, this article d
 - `sentenceDelimiters`
 - `endSentence()`
 
-These properties and functions make it easier to work with sentences.
-
-
 ### Words
-
-KeyboardKit defines a bunch of word-specific extensions:
 
 - `currentWord`
 - `currentWordPreCursorPart`
@@ -64,8 +59,6 @@ KeyboardKit defines a bunch of word-specific extensions:
 - `wordDelimiters`
 - `replaceCurrentWord(with replacement: String)`
 
-These properties and functions make it easier to work with words.
-
 
 
 ## 👑 Pro features
@@ -75,15 +68,15 @@ These properties and functions make it easier to work with words.
 
 ### Getting the full document context
 
-As you may have noticed, `documentContextBeforeInput` and `documentContextAfterInput` don't return *all* text before and after the input cursor. Any line breaks may at any time stop the proxy from reading more content, which makes it hard to do more complex operations from a keyboard extension, such as proof-reading a document.
+As you may have noticed, `documentContextBeforeInput` and `documentContextAfterInput` don't return *all* text before and after the input cursor. Any line breaks may at any time stop the proxy from reading more content, which makes it hard to do more complex operations from a keyboard extension, such as proof-reading a document, provide AI-based functionality etc.
 
-KeyboardKit Pro therefore unlocks some `UITextDocumentProxy` extensions that let you access all text from the proxy:
+KeyboardKit Pro therefore unlocks some `UITextDocumentProxy` extensions that let you read all text from the proxy:
 
 - `func fullDocumentContext() async throws -> FullDocumentContextResult`
 - `func fullDocumentContextBeforeInput() async throws -> String`
 - `func fullDocumentContextAfterInput() async throws -> String`
 
-`fullDocumentContext()` reads all text before and after the input, while the others just read the text before or after the input. They all read the text by moving the input cursor around to get access to more text.
+They all read the text by moving the input cursor around to get access to more text.
 
 Since these functions are `async`, you need to wrap them in a task when calling them from SwiftUI, for instance:
 

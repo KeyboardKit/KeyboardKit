@@ -63,7 +63,7 @@ public extension UIKeyboardType {
         case .numberPad: return false
         case .numbersAndPunctuation: return false
         case .phonePad: return false
-        case .twitter: return false
+        case .twitter: return true
         case .URL: return false
         case .webSearch: return false
         @unknown default: return true

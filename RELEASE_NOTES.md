@@ -16,6 +16,14 @@ Older versions have their release notes listed in the `Release_Notes` folder.
 
 
 
+## 7.1.2
+
+### 🐛 Bug fixes
+
+* Twitter- and Mastodon-configured keyboards will now show autocomplete.
+
+
+
 ## 7.1.1
 
 This version fixes some bugs in `KeyboardTextField` and `KeyboardTextView` and tweaks their behavior a bit.
@@ -34,7 +42,6 @@ The demo app has a new `KeyboardTextInput` demo keyboard that shows `KeyboardTex
 * `KeyboardTextField` now applies a background color and border style.
 * `KeyboardTextView` now applies a background color, corner radius and font.
 * `KeyboardTextView` now uses the same font as `KeyboardTextField` by default.
-
 
 ### 🐛 Bug fixes
 
