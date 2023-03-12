@@ -76,4 +76,37 @@ public extension CGSize {
     func isScreenSize(_ size: CGSize) -> Bool {
         self == size || self == size.flipped()
     }
+
+    /**
+     Whether or not the size matches another screen size, in
+     any orientation.
+     */
+    func isScreenSize(
+        _ size: CGSize,
+        withTolerance points: CGFloat
+    ) -> Bool {
+        self.isEqual(to: size, withTolerance: points) ||
+        self.isEqual(to: size.flipped(), withTolerance: points)
+    }
+}
+
+extension CGSize {
+
+    func isEqual(
+        to size: CGSize,
+        withTolerance points: CGFloat
+    ) -> Bool {
+        width.isEqual(to: size.width, withTolerance: points) &&
+        height.isEqual(to: size.height, withTolerance: points)
+    }
+}
+
+extension CGFloat {
+
+    func isEqual(
+        to value: CGFloat,
+        withTolerance points: CGFloat
+    ) -> Bool {
+        self > value - points && self < value + points
+    }
 }

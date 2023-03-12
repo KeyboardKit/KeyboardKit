@@ -20,6 +20,7 @@ Older versions have their release notes listed in the `Release_Notes` folder.
 
 ### 🐛 Bug fixes
 
+* iPhone 14 Pro Max will now get the larger button height.
 * Twitter- and Mastodon-configured keyboards will now show autocomplete.
 
 

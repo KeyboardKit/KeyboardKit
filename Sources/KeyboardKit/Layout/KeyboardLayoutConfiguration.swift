@@ -101,7 +101,7 @@ public extension KeyboardLayoutConfiguration {
         orientation: InterfaceOrientation
     ) -> KeyboardLayoutConfiguration {
         let isPortrait = orientation.isPortrait
-        if size.isScreenSize(.iPhoneProMaxScreenPortrait) {
+        if size.isEqual(to: .iPhoneProMaxScreenPortrait, withTolerance: 10) {
             return isPortrait ? .standardPhoneProMax : .standardPhoneProMaxLandscape
         }
         return isPortrait ? .standardPhone : .standardPhoneLandscape
@@ -161,7 +161,7 @@ public extension KeyboardLayoutConfiguration {
     static let standardPhoneProMax = KeyboardLayoutConfiguration(
         buttonCornerRadius: 5,
         buttonInsets: .horizontal(3, vertical: 6),
-        rowHeight: 56)
+        rowHeight: 58)
     
     /**
      The standard config for an iPhone Pro Max in landscape.
