@@ -63,6 +63,11 @@ class ProDemoViewController: KeyboardInputViewController {
         /// Long pressing the space key can either start the
         /// input cursor movement or show a context menu for
         /// switching locale.
+        ///
+        /// IMPORTANT! Only change this if you think that it
+        /// really makes sense. Long pressing space to start
+        /// moving the input cursor is the standard behavior
+        /// and will probably be expected by your users.
         keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu
 
         /// 💡 Make locales use their English names when the
