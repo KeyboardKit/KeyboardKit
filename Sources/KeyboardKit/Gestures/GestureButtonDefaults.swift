@@ -20,6 +20,6 @@ public struct GestureButtonDefaults {
     /// The time it takes for a press to count as a long press, by default `0.5`.
     public static var longPressDelay = 0.5
 
-    /// The time it takes for a press to count as a repeat trigger, by default `1.0`.
-    public static var repeatDelay = 1.0
+    /// The time it takes for a press to count as a repeat trigger, by default `0.5`.
+    public static var repeatDelay = 0.5
 }

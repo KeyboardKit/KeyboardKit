@@ -60,9 +60,11 @@ public extension RepeatGestureTimer {
         if isActive { return }
         stop()
         startDate = Date()
-        timer = Timer.scheduledTimer(
+        let timer = Timer.scheduledTimer(
             withTimeInterval: timeInterval,
             repeats: true) { _ in action() }
+        self.timer = timer
+        RunLoop.current.add(timer, forMode: .common)
     }
 
     /**

@@ -50,7 +50,6 @@ public extension KeyboardAction {
      */
     var standardLongPressAction: GestureAction? {
         switch self {
-        case .backspace: return standardPressAction
         case .space: return { _ in }
         default: return nil
         }

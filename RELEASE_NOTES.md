@@ -18,10 +18,15 @@ Older versions have their release notes listed in the `Release_Notes` folder.
 
 ## 7.1.2
 
+### 💡 Behavior changes
+
+* `GestureButtonDefaults` have adjusted `repeatDelay` to `0.5`.
+
 ### 🐛 Bug fixes
 
-* iPhone 14 Pro Max will now get the larger button height.
-* Twitter- and Mastodon-configured keyboards will now show autocomplete.
+* `KeyboardLayoutConfiguration` now applies Pro Max configuration to iPhone 14 Pro Max.
+* `SystemKeyboard` will now show autocomplete in Twitter and Mastodon.
+* `View+KeyboardGestures` will now trigger repeating actions like backspace more like the native keyboards.
 
 
 
