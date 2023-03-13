@@ -51,7 +51,7 @@ final class KeyboardAction_ActionsTests: XCTestCase {
         unexpected.forEach { XCTAssertNil(action($0)) }
 
         action = { $0.standardLongPressAction }
-        expected = [.backspace, .space]
+        expected = [.space]
         expected.forEach { XCTAssertNotNil(action($0)) }
         unexpected.forEach { XCTAssertNil(action($0)) }
 

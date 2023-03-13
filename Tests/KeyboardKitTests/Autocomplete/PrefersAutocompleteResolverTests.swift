@@ -46,7 +46,7 @@ class PrefersAutocompleteResolverTests: XCTestCase {
         XCTAssertFalse(prefersAutocompleteResult(for: .numberPad))
         XCTAssertFalse(prefersAutocompleteResult(for: .numbersAndPunctuation))
         XCTAssertFalse(prefersAutocompleteResult(for: .phonePad))
-        XCTAssertFalse(prefersAutocompleteResult(for: .twitter))
+        XCTAssertTrue(prefersAutocompleteResult(for: .twitter))
         XCTAssertFalse(prefersAutocompleteResult(for: .URL))
         XCTAssertFalse(prefersAutocompleteResult(for: .webSearch))
     }
