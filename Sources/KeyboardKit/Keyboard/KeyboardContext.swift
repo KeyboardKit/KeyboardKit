@@ -82,6 +82,12 @@ public class KeyboardContext: ObservableObject {
     public var interfaceOrientation: InterfaceOrientation = .portrait
 
     /**
+     Whether or not the keyboard is in floating mode.
+     */
+    @Published
+    public var isKeyboardFloating = false
+
+    /**
      An optional dictation replacement action, which will be
      used by some ``KeyboardLayoutProvider`` implementations.
      */
@@ -286,8 +292,9 @@ public extension KeyboardContext {
     }
     
     func syncAfterLayout(with controller: KeyboardInputViewController) {
+        syncIsFloating(with: controller)
         if controller.orientation == interfaceOrientation { return }
-        self.sync(with: controller)
+        sync(with: controller)
     }
     #endif
 }
@@ -336,6 +343,15 @@ extension KeyboardContext {
         if traitCollection != controller.traitCollection {
             traitCollection = controller.traitCollection
         }
+    }
+
+    /**
+     Perform a sync to check if the keyboard is floating.
+     */
+    func syncIsFloating(with controller: KeyboardInputViewController) {
+        let isFloating = controller.view.frame.width < screenSize.width/2
+        if isKeyboardFloating == isFloating { return }
+        isKeyboardFloating = isFloating
     }
 }
 

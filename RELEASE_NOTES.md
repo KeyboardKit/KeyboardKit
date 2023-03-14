@@ -16,6 +16,16 @@ Older versions have their release notes listed in the `Release_Notes` folder.
 
 
 
+## 7.1.3
+
+This version adds an `isKeyboardFloating` property to the keyboard context. It's currently not used to change the visual representation of floating keyboards, but please verify that it works as expected.
+
+### ✨ New features
+
+* `KeyboardContext` has a new `isKeyboardFloating` property that can be used to determine if the keyboard is floating.
+
+
+
 ## 7.1.2
 
 ### 💡 Behavior changes
