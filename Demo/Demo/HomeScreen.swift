@@ -47,28 +47,9 @@ struct HomeScreen: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Text Field")) {
-                    TextEditor(text: $text)
-                        .frame(height: 100)
-                        .keyboardAppearance(appearance)
-                    Toggle(isOn: $isAppearanceDark) {
-                        Text("Dark appearance")
-                    }
-                }
-                Section(header: Text("Keyboard State"), footer: footerText) {
-                    KeyboardEnabledLabel(
-                        isEnabled: keyboardState.isKeyboardEnabled,
-                        enabledText: "Demo keyboard is enabled",
-                        disabledText: "Demo keyboard not enabled")
-                    KeyboardEnabledLabel(
-                        isEnabled: keyboardState.isKeyboardActive,
-                        enabledText: "Demo keyboard is active",
-                        disabledText: "Demo keyboard is not active")
-                    KeyboardEnabledLabel(
-                        isEnabled: keyboardState.isFullAccessEnabled,
-                        enabledText: "Full Access is enabled",
-                        disabledText: "Full Access is disabled")
-                }
+                textFieldSection
+                editorLinkSection
+                stateSection
                 Section(header: Text("Settings")) {
                     KeyboardSettingsLink()
                 }
@@ -85,6 +66,50 @@ struct HomeScreen: View {
 }
 
 extension HomeScreen {
+
+    var textFieldSection: some View {
+        Section(header: Text("Text Field")) {
+            TextEditor(text: $text)
+                .frame(height: 100)
+                .keyboardAppearance(appearance)
+            Toggle(isOn: $isAppearanceDark) {
+                Text("Dark appearance")
+            }
+        }
+    }
+
+    var editorLinkSection: some View {
+        Section(header: Text("Editor")) {
+            NavigationLink {
+                TextEditor(text: $text)
+                    .padding(.horizontal)
+                    .navigationTitle("Editor")
+            } label: {
+                Label {
+                    Text("Full screen editor")
+                } icon: {
+                    Image(systemName: "doc.text")
+                }
+            }
+        }
+    }
+
+    var stateSection: some View {
+        Section(header: Text("Keyboard State"), footer: footerText) {
+            KeyboardEnabledLabel(
+                isEnabled: keyboardState.isKeyboardEnabled,
+                enabledText: "Demo keyboard is enabled",
+                disabledText: "Demo keyboard not enabled")
+            KeyboardEnabledLabel(
+                isEnabled: keyboardState.isKeyboardActive,
+                enabledText: "Demo keyboard is active",
+                disabledText: "Demo keyboard is not active")
+            KeyboardEnabledLabel(
+                isEnabled: keyboardState.isFullAccessEnabled,
+                enabledText: "Full Access is enabled",
+                disabledText: "Full Access is disabled")
+        }
+    }
     
     var footerText: some View {
         Text("You must enable the keyboard in System Settings, then select it with 🌐 when typing.")

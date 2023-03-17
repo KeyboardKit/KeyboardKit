@@ -101,7 +101,7 @@ class ProDemoViewController: KeyboardInputViewController {
         // Setup KeyboardKit Pro, using a demo-specific view
         try? setupPro(
             withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098",
-            view: { controller in SystemKeyboard(controller: controller) },
+            view: { controller in DemoKeyboardView(controller: controller) },
             licenseConfiguration: setupKeyboardWithLicense)
     }
 
@@ -113,7 +113,7 @@ class ProDemoViewController: KeyboardInputViewController {
 
         // Restore the last used locale, if any
         // 💡 This must be done after registering Pro
-        keyboardContext.locale = persistedLocale ?? KeyboardLocale.defaultDemoLocale.locale
+        keyboardContext.locale = KeyboardLocale.defaultDemoLocale.locale
 
         // Apply the applicable locales, either LTR or RTL
         // 💡 This must be done after registering Pro

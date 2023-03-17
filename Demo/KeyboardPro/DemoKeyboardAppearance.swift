@@ -9,6 +9,18 @@
 import KeyboardKitPro
 import SwiftUI
 
+extension Color {
+
+    static func custom(r: Int, g: Int, b: Int) -> Color {
+        Color(red: Double(r)/255.0, green: Double(g)/255.0, blue: Double(b)/255.0)
+    }
+
+    static var cottonBackground = Color.custom(r: 254, g: 219, b: 214)
+    static var cottonPink = Color.custom(r: 238, g: 202, b: 254)
+    static var cottonBlue = Color.custom(r: 201, g: 240, b: 255)
+    static var cottonRed = Color.custom(r: 189, g: 61, b: 104)
+}
+
 /**
  This demo-specific appearance inherits the standard one and
  customizes the look of the keyboard.
@@ -21,17 +33,22 @@ import SwiftUI
  */
 class DemoKeyboardAppearance: StandardKeyboardAppearance {
 
-    /**
-     This font adjustment is actually not needed anymore. It
-     has already been added to the main library. However, it
-     is still here to show how you can adjust the appearance.
-     */
-    override func buttonFont(for action: KeyboardAction) -> Font {
-        let base = super.buttonFont(for: action)
-        guard
-            keyboardContext.keyboardType.isAlphabetic,
-            keyboardContext.locale == KeyboardLocale.georgian.locale
-        else { return base }
-        return base.weight(.regular)
-    }
+//    override func buttonText(for action: KeyboardAction) -> String? {
+//        switch action {
+//        case .primary: return "🍭"
+//        default: return super.buttonText(for: action)
+//        }
+//    }
+//
+//    override func buttonStyle(
+//        for action: KeyboardAction,
+//        isPressed: Bool
+//    ) -> KeyboardButtonStyle {
+//        var style = super.buttonStyle(for: action, isPressed: isPressed)
+//        style.cornerRadius = 10
+//        style.border = .init(color: .white, size: 2)
+//        style.backgroundColor = action.isSystemAction ? .cottonPink : .cottonBlue
+//        style.foregroundColor = .cottonRed
+//        return style
+//    }
 }

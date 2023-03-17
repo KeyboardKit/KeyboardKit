@@ -10,16 +10,8 @@ import KeyboardKitPro
 import SwiftUI
 
 /**
- This view sets up a `SystemKeyboard` as a keyboard view and
- adds an `AutocompleteToolbar` above it.
-
- The keyboard will look and behave as is defined by services
- and configurations in the ``ProDemoViewController``.
-
- While the `SystemKeyboard` is very flexible, it can also be
- easily created by just providing it with a controller, like
- we do here. The standard configuration adds an autocomplete
- toolbar topmost and uses an emoji keyboard whenever needed.
+ This view sets up a `SystemKeyboard` as a keyboard view. It
+ is just to show you how you can use custom views.
  */
 struct DemoKeyboardView: View {
 
