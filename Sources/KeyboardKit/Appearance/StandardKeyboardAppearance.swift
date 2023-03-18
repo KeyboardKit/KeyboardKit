@@ -58,6 +58,11 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     // MARK: - Keyboard
 
     /**
+     The background color to apply to the keyboard.
+     */
+    public var keyboardBackgroundColor: Color { .clear }
+
+    /**
      The edge insets to apply to the entire keyboard.
      */
     open var keyboardEdgeInsets: EdgeInsets {

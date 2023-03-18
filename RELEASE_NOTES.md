@@ -20,6 +20,10 @@ Older versions have their release notes listed in the `Release_Notes` folder.
 
 Due to a bug found in the new autocomplete provider, the old `StandardAutocompleteProvider` will be replaced in the next minor version.
 
+### ✨ New features
+
+* `KeyboardAppearance` has a new `keyboardBackgroundColor` color.
+
 ### 👑 Pro changes
 
 * The new `LocalAutocompleteProvider` has been made public.

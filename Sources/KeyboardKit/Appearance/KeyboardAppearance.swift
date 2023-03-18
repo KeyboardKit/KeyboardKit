@@ -32,13 +32,18 @@ import SwiftUI
 public protocol KeyboardAppearance: AnyObject {
 
     /**
+     The background color to apply to the keyboard.
+     */
+    var keyboardBackgroundColor: Color { get }
+
+    /**
      The edge insets to apply to the entire keyboard.
      */
     var keyboardEdgeInsets: EdgeInsets { get }
 
 
     // MARK: - Buttons
-    
+
     /**
      The button image to use for a certain `action`, if any.
      */
