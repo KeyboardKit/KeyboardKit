@@ -30,6 +30,10 @@ Due to a bug found in the new autocomplete provider, the old `StandardAutocomple
 * The new `LocalAutocompleteProvider` now ignores empty text.
 * The incorrect Brazilian callout actions have been corrected.
 
+### 💡 Behavior changes
+
+* `SystemKeyboard` uses the new appearance background color.
+
 
 
 ## 7.1.3
