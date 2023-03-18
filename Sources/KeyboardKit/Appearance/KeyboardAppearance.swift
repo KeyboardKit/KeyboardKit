@@ -32,9 +32,9 @@ import SwiftUI
 public protocol KeyboardAppearance: AnyObject {
 
     /**
-     The background color to apply to the keyboard.
+     The keyboard background style to apply to the keyboard.
      */
-    var keyboardBackgroundColor: Color { get }
+    var backgroundStyle: KeyboardBackgroundStyle { get }
 
     /**
      The edge insets to apply to the entire keyboard.

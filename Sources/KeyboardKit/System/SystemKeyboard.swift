@@ -354,7 +354,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
         VStack(spacing: 0) {
             autocompleteToolbar
             keyboardView
-        }.background(appearance.keyboardBackgroundColor)
+        }.background(appearance.backgroundStyle.backgroundView)
     }
 }
 

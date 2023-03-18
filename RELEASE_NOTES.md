@@ -22,7 +22,8 @@ Due to a bug found in the new autocomplete provider, the old `StandardAutocomple
 
 ### ✨ New features
 
-* `KeyboardAppearance` has a new `keyboardBackgroundColor` color.
+* `KeyboardAppearance` has a new `keyboardBackground` property.
+* `KeyboardBackgroundStyle` is a new style that can be used to the background of a keyboard.
 
 ### 👑 Pro changes
 

@@ -60,7 +60,9 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     /**
      The background color to apply to the keyboard.
      */
-    public var keyboardBackgroundColor: Color { .clear }
+    public var backgroundStyle: KeyboardBackgroundStyle {
+        .standard
+    }
 
     /**
      The edge insets to apply to the entire keyboard.

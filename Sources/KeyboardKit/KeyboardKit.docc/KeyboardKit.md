@@ -125,6 +125,7 @@ KeyboardKit is available under the MIT license.
 
 - ``KeyboardAppearance``
 - ``KeyboardAppearanceViewModifier``
+- ``KeyboardBackgroundStyle``
 - ``KeyboardButtonStyle``
 - ``KeyboardButtonBorderStyle``
 - ``KeyboardButtonShadowStyle``
