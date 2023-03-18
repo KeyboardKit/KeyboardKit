@@ -34,6 +34,12 @@ Due to a bug found in the new autocomplete provider, the old `StandardAutocomple
 
 * `SystemKeyboard` uses the new appearance background color.
 
+### 🗑️ Deprecations
+
+* `CalloutStyle` has been renamed to `KeyboardCalloutStyle`.
+* `ActionCalloutStyle` has been renamed to `KeyboardActionCalloutStyle`.
+* `InputCalloutStyle` has been renamed to `KeyboardInputCalloutStyle`.
+
 
 
 ## 7.1.3

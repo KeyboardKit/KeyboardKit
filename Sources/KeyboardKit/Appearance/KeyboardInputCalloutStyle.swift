@@ -1,5 +1,5 @@
 //
-//  InputCalloutStyle.swift
+//  KeyboardInputCalloutStyle.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -24,19 +24,19 @@ import SwiftUI
  phone displays a callout in landscape, since callouts can't
  expand beyond the edges of a keyboard extension.
  */
-public struct InputCalloutStyle {
+public struct KeyboardInputCalloutStyle {
     
     /**
      Create an input callout style.
      
      - Parameters:
-       - callout: The callout style to use, by default `.standard`.
+       - callout: The callout style to use, by default ``KeyboardCalloutStyle/standard``.
        - calloutPadding: The padding to apply to the callout content.
        - calloutSize: The minimum size of the callout bubble.
        - font: The font to use in the callout.
      */
     public init(
-        callout: CalloutStyle = .standard,
+        callout: KeyboardCalloutStyle = .standard,
         calloutPadding: EdgeInsets = EdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2),
         calloutSize: CGSize = CGSize(width: 0, height: 55),
         font: Font = Font.largeTitle.weight(.light)
@@ -50,7 +50,7 @@ public struct InputCalloutStyle {
     /**
      The callout style to use.
      */
-    public var callout: CalloutStyle
+    public var callout: KeyboardCalloutStyle
     
     /**
      The padding to apply to the callout content.
@@ -74,12 +74,12 @@ public struct InputCalloutStyle {
 
 // MARK: - Standard Style
 
-public extension InputCalloutStyle {
+public extension KeyboardInputCalloutStyle {
     
     /**
      This standard style aims to mimic the native iOS style.
 
      This can be set to change the standard value everywhere.
      */
-    static var standard = InputCalloutStyle()
+    static var standard = KeyboardInputCalloutStyle()
 }

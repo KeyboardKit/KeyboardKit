@@ -16,13 +16,13 @@ public extension View {
      - Parameters:
        - calloutContext: The callout context to use.
        - keyboardContext: The keyboard context to use.
-       - style: The style to apply to the view, by default ``ActionCalloutStyle/standard``.
+       - style: The style to apply to the view, by default ``KeyboardActionCalloutStyle/standard``.
        - emojiKeyboardStyle: The emoji keyboard style to use, by default ``EmojiKeyboardStyle/standardPhonePortrait``.
      */
     func keyboardActionCallout(
         calloutContext: ActionCalloutContext,
         keyboardContext: KeyboardContext,
-        style: ActionCalloutStyle = .standard,
+        style: KeyboardActionCalloutStyle = .standard,
         emojiKeyboardStyle: EmojiKeyboardStyle = .standardPhonePortrait
     ) -> some View {
         self.overlay(
@@ -42,7 +42,7 @@ public extension View {
        - style: The style apply to the view.
      */
     func keyboardCalloutShadow(
-        style: CalloutStyle
+        style: KeyboardCalloutStyle
     ) -> some View {
         self.shadow(color: style.borderColor, radius: 0.4)
             .shadow(color: style.shadowColor, radius: style.shadowRadius)
@@ -54,12 +54,12 @@ public extension View {
      - Parameters:
        - calloutContext: The callout context to use.
        - keyboardContext: The keyboard context to use.
-       - style: The style to apply, by default ``InputCalloutStyle/standard``.
+       - style: The style to apply, by default ``KeyboardInputCalloutStyle/standard``.
      */
     func keyboardInputCallout(
         calloutContext: InputCalloutContext,
         keyboardContext: KeyboardContext,
-        style: InputCalloutStyle = .standard
+        style: KeyboardInputCalloutStyle = .standard
     ) -> some View {
         self.overlay(
             InputCallout(

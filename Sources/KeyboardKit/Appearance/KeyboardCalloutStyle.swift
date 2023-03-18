@@ -1,5 +1,5 @@
 //
-//  CalloutStyle.swift
+//  KeyboardCalloutStyle.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-07.
@@ -16,7 +16,7 @@ import SwiftUI
  You can modify the ``standard`` style to change the default,
  global style of all callout views.
  */
-public struct CalloutStyle: Equatable {
+public struct KeyboardCalloutStyle: Equatable {
     
     /**
      Create a callout style.
@@ -114,37 +114,39 @@ public struct CalloutStyle: Equatable {
     public var textColor: Color
 }
 
-public extension CalloutStyle {
+public extension KeyboardCalloutStyle {
     
     /**
      This standard style aims to mimic the native iOS style.
 
      This can be set to change the standard value everywhere.
      */
-    static var standard = CalloutStyle()
+    static var standard = KeyboardCalloutStyle()
 }
 
-extension CalloutStyle {
+extension KeyboardCalloutStyle {
     
     /**
      This internal style is only used in previews.
      */
-    static var preview1 = CalloutStyle(
+    static var preview1 = KeyboardCalloutStyle(
         backgroundColor: .red,
         borderColor: .white,
         buttonCornerRadius: 10,
         shadowColor: .green,
         shadowRadius: 3,
-        textColor: .black)
+        textColor: .black
+    )
     
     /**
      This internal style is only used in previews.
      */
-    static var preview2 = CalloutStyle(
+    static var preview2 = KeyboardCalloutStyle(
         backgroundColor: .green,
         borderColor: .white,
         buttonCornerRadius: 20,
         shadowColor: .black,
         shadowRadius: 10,
-        textColor: .red)
+        textColor: .red
+    )
 }

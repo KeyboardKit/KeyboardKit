@@ -128,6 +128,9 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardButtonStyle``
 - ``KeyboardButtonBorderStyle``
 - ``KeyboardButtonShadowStyle``
+- ``KeyboardCalloutStyle``
+- ``KeyboardActionCalloutStyle``
+- ``KeyboardInputCalloutStyle``
 - ``StandardKeyboardAppearance``
 
 ### Autocomplete
@@ -160,14 +163,11 @@ KeyboardKit is available under the MIT license.
 
 - ``ActionCallout``
 - ``ActionCalloutContext``
-- ``ActionCalloutStyle``
 - ``CalloutActionProvider``
 - ``CalloutButtonArea``
 - ``CalloutCurve``
-- ``CalloutStyle``
 - ``InputCallout``
 - ``InputCalloutContext``
-- ``InputCalloutStyle``
 - ``KeyboardCalloutContext``
 - ``StandardCalloutActionProvider``
 

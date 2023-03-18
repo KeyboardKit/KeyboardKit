@@ -71,10 +71,10 @@ public protocol KeyboardAppearance: AnyObject {
     /**
      The style to apply when presenting an ``ActionCallout``.
      */
-    var actionCalloutStyle: ActionCalloutStyle { get }
+    var actionCalloutStyle: KeyboardActionCalloutStyle { get }
     
     /**
      The style to apply when presenting an ``InputCallout``.
      */
-    var inputCalloutStyle: InputCalloutStyle { get }
+    var inputCalloutStyle: KeyboardInputCalloutStyle { get }
 }

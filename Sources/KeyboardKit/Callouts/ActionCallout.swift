@@ -20,13 +20,13 @@ public struct ActionCallout: View {
      - Parameters:
        - calloutContext: The callout context to use.
        - keyboardContext: The keyboard context to use.
-       - style: The style to apply to the view, by default ``ActionCalloutStyle/standard``.
+       - style: The style to apply to the view, by default ``KeyboardActionCalloutStyle/standard``.
        - emojiKeyboardStyle: The emoji keyboard style to use, by default ``EmojiKeyboardStyle/standardPhonePortrait``.
      */
     public init(
         calloutContext: ActionCalloutContext,
         keyboardContext: KeyboardContext,
-        style: ActionCalloutStyle = .standard,
+        style: KeyboardActionCalloutStyle = .standard,
         emojiKeyboardStyle: EmojiKeyboardStyle = .standardPhonePortrait
     ) {
         self._calloutContext = ObservedObject(wrappedValue: calloutContext)
@@ -41,7 +41,7 @@ public struct ActionCallout: View {
     @ObservedObject
     private var keyboardContext: KeyboardContext
     
-    private let style: ActionCalloutStyle
+    private let style: KeyboardActionCalloutStyle
     private let emojiKeyboardStyle: EmojiKeyboardStyle
     
     public var body: some View {
@@ -80,7 +80,7 @@ private extension ActionCallout {
     var buttonInset: CGSize { calloutStyle.buttonInset }
     var calloutActions: [KeyboardAction] { calloutContext.actions }
     var calloutButtonSize: CGSize { buttonFrame.size.limited(to: style.maxButtonSize) }
-    var calloutStyle: CalloutStyle { style.callout }
+    var calloutStyle: KeyboardCalloutStyle { style.callout }
     var cornerRadius: CGFloat { calloutStyle.cornerRadius }
     var curveSize: CGSize { calloutStyle.curveSize }
     var isLeading: Bool { calloutContext.isLeading }

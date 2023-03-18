@@ -127,8 +127,8 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     /**
      The callout style to apply to action and input callouts.
      */
-    open var calloutStyle: CalloutStyle {
-        var style = CalloutStyle.standard
+    open var calloutStyle: KeyboardCalloutStyle {
+        var style = KeyboardCalloutStyle.standard
         let button = buttonStyle(for: .character(""), isPressed: false)
         style.buttonCornerRadius = button.cornerRadius
         return style
@@ -137,8 +137,8 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     /**
      The style to apply when presenting an ``ActionCallout``.
      */
-    open var actionCalloutStyle: ActionCalloutStyle {
-        var style = ActionCalloutStyle.standard
+    open var actionCalloutStyle: KeyboardActionCalloutStyle {
+        var style = KeyboardActionCalloutStyle.standard
         style.callout = calloutStyle
         return style
     }
@@ -146,8 +146,8 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     /**
      The style to apply when presenting an ``InputCallout``.
      */
-    open var inputCalloutStyle: InputCalloutStyle {
-        var style = InputCalloutStyle.standard
+    open var inputCalloutStyle: KeyboardInputCalloutStyle {
+        var style = KeyboardInputCalloutStyle.standard
         style.callout = calloutStyle
         return style
     }

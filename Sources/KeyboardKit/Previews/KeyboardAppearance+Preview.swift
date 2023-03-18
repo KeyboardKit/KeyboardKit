@@ -35,20 +35,22 @@ public class PreviewKeyboardAppearance: StandardKeyboardAppearance {
         super.init(keyboardContext: .preview)
     }
     
-    public override var inputCalloutStyle: InputCalloutStyle {
-        InputCalloutStyle(
+    public override var inputCalloutStyle: KeyboardInputCalloutStyle {
+        .init(
             callout: .preview1,
             calloutSize: CGSize(width: 0, height: 40),
-            font: .body)
+            font: .body
+        )
     }
     
-    public override var actionCalloutStyle: ActionCalloutStyle {
-        ActionCalloutStyle(
+    public override var actionCalloutStyle: KeyboardActionCalloutStyle {
+        .init(
             callout: .preview1,
             font: .headline,
             selectedBackgroundColor: .yellow,
             selectedForegroundColor: .black,
-            verticalTextPadding: 10)
+            verticalTextPadding: 10
+        )
     }
 }
 

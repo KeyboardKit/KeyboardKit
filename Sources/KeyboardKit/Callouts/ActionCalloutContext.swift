@@ -166,7 +166,7 @@ open class ActionCalloutContext: ObservableObject {
         if shouldReset(for: value) { return reset() }
         guard shouldUpdateSelection(for: value) else { return }
         let translation = value.width
-        let standardStyle = ActionCalloutStyle.standard
+        let standardStyle = KeyboardActionCalloutStyle.standard
         let maxButtonSize = standardStyle.maxButtonSize
         let buttonSize = buttonFrame.size.limited(to: maxButtonSize)
         let indexWidth = 0.9 * buttonSize.width

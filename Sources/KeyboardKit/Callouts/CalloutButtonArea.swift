@@ -19,18 +19,18 @@ public struct CalloutButtonArea: View {
      
      - Parameters:
        - frame: The button area frame.
-       - style: The style to use, by default ``CalloutStyle/standard``.
+       - style: The style to use, by default ``KeyboardCalloutStyle/standard``.
      */
     public init(
         frame: CGRect,
-        style: CalloutStyle = .standard
+        style: KeyboardCalloutStyle = .standard
     ) {
         self.frame = frame
         self.style = style
     }
     
     private let frame: CGRect
-    private let style: CalloutStyle
+    private let style: KeyboardCalloutStyle
     
     public var body: some View {
         HStack(alignment: .top, spacing: 0) {

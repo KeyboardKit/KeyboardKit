@@ -1,5 +1,5 @@
 //
-//  ActionCalloutStyle.swift
+//  KeyboardActionCalloutStyle.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -15,13 +15,13 @@ import SwiftUI
  You can modify the ``standard`` style to change the default,
  global style of all ``ActionCallout`` views that use it.
  */
-public struct ActionCalloutStyle {
+public struct KeyboardActionCalloutStyle {
     
     /**
      Create an action callout style.
      
      - Parameters:
-       - callout: The callout style to use, by default ``CalloutStyle/standard``.
+       - callout: The callout style to use, by default ``KeyboardCalloutStyle/standard``.
        - font: The font to use in the callout, by default `.standardFont`.
        - maxButtonSize: The max button size, by default a `50` point square.
        - selectedBackgroundColor: The background color of the selected item, by default `.blue`.
@@ -30,7 +30,7 @@ public struct ActionCalloutStyle {
        - verticalTextPadding: The vertical padding to apply to text in the callout, by default `6`.
      */
     public init(
-        callout: CalloutStyle = .standard,
+        callout: KeyboardCalloutStyle = .standard,
         font: Font = Self.standardFont,
         maxButtonSize: CGSize = CGSize(width: 50, height: 50),
         selectedBackgroundColor: Color = .blue,
@@ -51,7 +51,7 @@ public struct ActionCalloutStyle {
     /**
      The callout style to use.
      */
-    public var callout: CalloutStyle
+    public var callout: KeyboardCalloutStyle
     
     /**
      The font to use in the callout.
@@ -87,14 +87,14 @@ public struct ActionCalloutStyle {
 
 // MARK: - Standard Style
 
-public extension ActionCalloutStyle {
+public extension KeyboardActionCalloutStyle {
     
     /**
      This standard style aims to mimic the native iOS style.
 
      This can be set to change the standard value everywhere.
      */
-    static var standard = ActionCalloutStyle()
+    static var standard = KeyboardActionCalloutStyle()
     
     /**
      This is the standard font that will be used by default.
