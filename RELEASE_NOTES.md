@@ -16,6 +16,18 @@ Older versions have their release notes listed in the `Release_Notes` folder.
 
 
 
+## 7.2
+
+Due to a bug found in the new autocomplete provider, the old `StandardAutocompleteProvider` will be replaced in the next minor version.
+
+### 👑 Pro changes
+
+* The new `LocalAutocompleteProvider` has been made public.
+* The new `LocalAutocompleteProvider` now ignores empty text.
+* The incorrect Brazilian callout actions have been corrected.
+
+
+
 ## 7.1.3
 
 This version adds an `isKeyboardFloating` property to the keyboard context. It's currently not used to change the visual representation of floating keyboards, but please verify that it works as expected.
