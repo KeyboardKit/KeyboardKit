@@ -11,6 +11,10 @@ import Foundation
 /**
  This class is by default used as a placeholder autocomplete
  provider, until a real provider is injected.
+
+ You can register an instance of this type of provider after
+ registering a KeyboardKit Pro license, if you don't want to
+ use autocomplete.
  */
 public class DisabledAutocompleteProvider: AutocompleteProvider {
 

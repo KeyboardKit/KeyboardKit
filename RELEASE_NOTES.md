@@ -28,6 +28,7 @@ Due to a bug found in the new autocomplete provider, the old `StandardAutocomple
 
 ### ✨ New features
 
+* `AutocompleteContext` has a new `isEnabled` property that can be used to disable autocomplete.
 * `KeyboardAppearance` has a new `autocompleteToolbarStyle` property.
 * `KeyboardAppearance` has a new `keyboardBackground` property.
 * `KeyboardBackgroundStyle` is a new style that can be used to the background of a keyboard.
@@ -38,6 +39,7 @@ Due to a bug found in the new autocomplete provider, the old `StandardAutocomple
 
 ### 👑 Pro changes
 
+* `KeyboardInputViewController` will use the new autocomplete context property to disable autocomplete if needed.
 * `KeyboardTheme` is a new type that can be used to define keyboard themes.
 * `KeyboardThemeAppearance` is a new appearance that can be used with `KeyboardTheme`.
 * The new `LocalAutocompleteProvider` that was introduced in 7.1 has been made public.

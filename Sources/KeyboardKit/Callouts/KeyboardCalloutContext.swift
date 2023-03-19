@@ -16,8 +16,8 @@ import SwiftUI
  so that we only have to pass around a single instance.
 
  KeyboardKit automatically creates an instance of this class
- then sets ``KeyboardInputViewController/calloutContext`` to
- the created instance when a keyboard extension is started.
+ and binds the created instance to the keyboard controller's
+ ``KeyboardInputViewController/calloutContext``.
  */
 open class KeyboardCalloutContext: ObservableObject {
 

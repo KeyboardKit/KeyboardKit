@@ -4,7 +4,7 @@ This article describes the KeyboardKit autocomplete engine and how to use it.
 
 In KeyboardKit, an ``AutocompleteProvider`` can be used to provide the keyboard with autocomplete suggestions as the user types, triggers actions and moves the input cursor around.
 
-KeyboardKit doesn't have a standard autocomplete provider as it has for most other services. You can unlock one with [KeyboardKit Pro][Pro] or create a custom provider that integrates with any 3rd party autocomplete engine, SDK, api or service.
+KeyboardKit doesn't have a standard autocomplete provider as it has for most other services. You can unlock one with [KeyboardKit Pro][Pro] or create a custom provider that integrates with any 3rd party engine, SDK, api or service.
 
 [KeyboardKit Pro][Pro] specific features are described at the end of this document.
 
@@ -20,9 +20,21 @@ A successful autocomplete operation will update the observable ``KeyboardInputVi
 
 ## How to customize the autocomplete behavior
 
-The most profound way to customize the autocomplete behavior is to replace the ``KeyboardInputViewController/autocompleteProvider``, which determines how autocomplete is performed. You can however also tweak the behavior regardless of which engine is used. 
+The most profound way to customize the autocomplete behavior is to replace the ``KeyboardInputViewController/autocompleteProvider``, which is the service that performs autocomplete. 
 
-For instance, the input controller has an ``KeyboardInputViewController/autocompleteText`` property that it uses when performing autocomplete. It uses the ``KeyboardInputViewController/textDocumentProxy``'s text before the input cursor by default, but you can override the function to customize this behavior. You can also override ``KeyboardInputViewController/performAutocomplete()`` and ``KeyboardInputViewController/resetAutocomplete()`` to customize the default autocomplete behavior. 
+You can however also tweak the behavior regardless of which engine is used. 
+
+For instance, ``KeyboardInputViewController`` has an ``KeyboardInputViewController/autocompleteText`` property that it uses to determine which text to pass into the provider. It uses the ``KeyboardInputViewController/textDocumentProxy`` text before the input cursor by default, but you can override the property to customize this behavior.
+
+``KeyboardInputViewController`` also has two ``KeyboardInputViewController/performAutocomplete()`` and ``KeyboardInputViewController/resetAutocomplete()`` functions that can be called at any time, and overridden if you want to customize the default autocomplete behavior.
+
+
+
+## How to disable autocomplete
+
+If you want to temporarily or permanently disable autocomplete, you can set ``AutocompleteContext/isEnabled`` to `false`.
+
+You can also replace the current ``KeyboardInputViewController/autocompleteProvider`` with a ``DisabledAutocompleteProvider`` to permanently disable autocomplete.
 
 
 
@@ -93,7 +105,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## Views
 
-KeyboardKit has a bunch of autocomplete-related views. For instance, the ``AutocompleteToolbar`` can be added above a keyboard to mimic a native iOS autocomplete toolbar:
+KeyboardKit has a bunch of autocomplete-related views. For instance, the ``AutocompleteToolbar`` can be used to mimic a native iOS autocomplete toolbar:
 
 ```swift
 struct KeyboardView: View {
@@ -121,12 +133,12 @@ private extension KeyboardView {
             suggestions: autocompleteContext.suggestions,
             locale: keyboardContext.locale,
             action: controller.insertAutocompleteSuggestion
-        ).opacity(keyboardContext.prefersAutocomplete ? 1 : 0)  // Still allocate height
+        ).opacity(keyboardContext.prefersAutocomplete ? 1 : 0)  // Still allocate height to make room for callouts
     }
 }
 ```
 
-Note that you should always add a toolbar (or any other view with a height of at least 50 points) above a keyboard that uses input and action callouts, since callouts can't render outside the keyboard extension frame. This is why just hide the view instead of removing it.  
+The ``SystemKeyboard`` will however by default add an autocomplete toolbar above itself unless you explicitly tell it not to.    
 
 
 

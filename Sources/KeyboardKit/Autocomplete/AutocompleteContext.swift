@@ -11,14 +11,20 @@ import Combine
 /**
  This is an observab le class that can be used to store a set
  of autocomplete suggestions.
- 
+
  KeyboardKit automatically creates an instance of this class
- and sets ``KeyboardInputViewController/autocompleteContext``
- to the instance when a keyboard extension is started.
+ and binds the created instance to the keyboard controller's
+ ``KeyboardInputViewController/autocompleteContext``.
  */
 public class AutocompleteContext: ObservableObject {
     
     public init() {}
+
+    /**
+     Whether or not autocomplete is enabled.
+     */
+    @Published
+    public var isEnabled = true
 
     /**
      Whether or not suggestions are currently being fetched.
