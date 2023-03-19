@@ -22,10 +22,10 @@ public struct KeyboardButtonStyle {
      Create a system keyboard button style.
      
      - Parameters:
-       - backgroundColor: The background color to apply to the button.
-       - foregroundColor: The border color to apply to the button.
-       - font: The font to apply to the button.
-       - cornerRadius: The corner radius to apply to the button.
+       - backgroundColor: The background color to apply to the button, by default `nil`.
+       - foregroundColor: The border color to apply to the button, by default `nil`.
+       - font: The font to apply to the button, by default `nil`.
+       - cornerRadius: The corner radius to apply to the button, by default `nil`.
        - border: The border style to apply to the button, by default ``KeyboardButtonBorderStyle/standard``.
        - shadow: The shadow style to apply to the button, by default ``KeyboardButtonShadowStyle/standard.
      */
@@ -77,6 +77,21 @@ public struct KeyboardButtonStyle {
 }
 
 public extension KeyboardButtonStyle {
+
+    /**
+     Override this style with another style. This will apply
+     all non-optional properties from the provided style.
+     */
+    func extended(with style: KeyboardButtonStyle) -> KeyboardButtonStyle {
+        var result = self
+        result.backgroundColor = style.backgroundColor ?? backgroundColor
+        result.foregroundColor = style.foregroundColor ?? foregroundColor
+        result.font = style.font ?? font
+        result.cornerRadius = style.cornerRadius ?? cornerRadius
+        result.border = style.border ?? border
+        result.shadow = style.shadow ?? shadow
+        return result
+    }
 
     /**
      A spacer button style means that the button will not be

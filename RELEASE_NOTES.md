@@ -25,6 +25,7 @@ Due to a bug found in the new autocomplete provider, the old `StandardAutocomple
 * `KeyboardAppearance` has a new `keyboardBackground` property.
 * `KeyboardBackgroundStyle` is a new style that can be used to the background of a keyboard.
 * `KeyboardButtonStyle` properties are now optional to allow for overrides.
+* `KeyboardButtonStyle` has a new `extended(with:)` function to let you extend a style with another style.
 
 ### 👑 Pro changes
 
