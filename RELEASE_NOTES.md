@@ -18,11 +18,11 @@ Older versions have their release notes listed in the `Release_Notes` folder.
 
 ## 7.2
 
-This version adds a theme engine to KeyboardKit Pro, which makes it a lot easier to style `SystemKeyboard`.
+This version focuses on making it easier to style keyboards.
 
-The new `KeyboardTheme` can be used with the new `KeyboardThemeAppearance` to use themes to customize keyboard design.
+This version adds a theme engine to the KeyboardKit Pro Gold and Enterprise tier. The new `KeyboardThemeAppearance` can be used with the new `KeyboardTheme` customize keyboard design with themes, which is a lot easier than defining custom appearances.
 
-This version comes with two theme - `.cottonCandy` and `.tron` - that you can use in your  own keyboads. More are coming soon. 
+This version comes with three themes - `.cottonCandy`, `.neonNights` and `.tron`. You can use them in your own keyboads, or tweak them to create your own visual styles. More themes are coming in future versions. 
 
 Due to a bug found in the new autocomplete provider, the old `StandardAutocompleteProvider` will be replaced in the next minor version.
 
@@ -44,6 +44,7 @@ Due to a bug found in the new autocomplete provider, the old `StandardAutocomple
 * `KeyboardThemeAppearance` is a new appearance that can be used with `KeyboardTheme`.
 * The new `LocalAutocompleteProvider` that was introduced in 7.1 has been made public.
 * The new `LocalAutocompleteProvider` now ignores empty strings when wrapping in quotes.
+* The new `LocalAutocompleteProvider` now replaces hyphens with space when suggesting splitting up the word.
 * The incorrect Brazilian callout actions have been corrected.
 
 ### 🎨 New keyboard themes
