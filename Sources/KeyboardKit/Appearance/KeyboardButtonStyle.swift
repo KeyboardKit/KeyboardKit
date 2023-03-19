@@ -26,16 +26,16 @@ public struct KeyboardButtonStyle {
        - foregroundColor: The border color to apply to the button, by default `nil`.
        - font: The font to apply to the button, by default `nil`.
        - cornerRadius: The corner radius to apply to the button, by default `nil`.
-       - border: The border style to apply to the button, by default ``KeyboardButtonBorderStyle/standard``.
-       - shadow: The shadow style to apply to the button, by default ``KeyboardButtonShadowStyle/standard.
+       - border: The border style to apply to the button, by default `nil`.
+       - shadow: The shadow style to apply to the button, by default `nil`.
      */
     public init(
-        backgroundColor: Color?,
-        foregroundColor: Color?,
-        font: Font?,
-        cornerRadius: CGFloat?,
-        border: KeyboardButtonBorderStyle = .standard,
-        shadow: KeyboardButtonShadowStyle = .standard
+        backgroundColor: Color? = nil,
+        foregroundColor: Color? = nil,
+        font: Font? = nil,
+        cornerRadius: CGFloat? = nil,
+        border: KeyboardButtonBorderStyle? = nil,
+        shadow: KeyboardButtonShadowStyle? = nil
     ) {
         self.backgroundColor = backgroundColor
         self.foregroundColor = foregroundColor
