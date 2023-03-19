@@ -42,7 +42,7 @@ class DemoKeyboardAppearance: StandardKeyboardAppearance {
         return super.buttonText(for: action)
     }
     
-    override var actionCalloutStyle: ActionCalloutStyle {
+    override var actionCalloutStyle: KeyboardActionCalloutStyle {
         var style = super.actionCalloutStyle
         style.callout.backgroundColor = .blue
         style.callout.textColor = .yellow
@@ -50,7 +50,7 @@ class DemoKeyboardAppearance: StandardKeyboardAppearance {
         return style
     }
     
-    override var inputCalloutStyle: InputCalloutStyle {
+    override var inputCalloutStyle: KeyboardInputCalloutStyle {
         var style = super.inputCalloutStyle
         style.callout.backgroundColor = .blue
         style.callout.textColor = .yellow

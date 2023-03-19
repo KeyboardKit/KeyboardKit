@@ -9,18 +9,6 @@
 import KeyboardKitPro
 import SwiftUI
 
-extension Color {
-
-    static func custom(r: Int, g: Int, b: Int) -> Color {
-        Color(red: Double(r)/255.0, green: Double(g)/255.0, blue: Double(b)/255.0)
-    }
-
-    static var cottonBackground = Color.custom(r: 254, g: 219, b: 214)
-    static var cottonPink = Color.custom(r: 238, g: 202, b: 254)
-    static var cottonBlue = Color.custom(r: 201, g: 240, b: 255)
-    static var cottonRed = Color.custom(r: 189, g: 61, b: 104)
-}
-
 /**
  This demo-specific appearance inherits the standard one and
  customizes the look of the keyboard.

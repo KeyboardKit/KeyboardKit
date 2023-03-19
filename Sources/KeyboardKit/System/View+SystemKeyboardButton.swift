@@ -12,9 +12,17 @@ public extension View {
     
     /**
      Apply a keyboard button style to the view.
+
+     - Parameters:
+       - style: The style to apply.
+       - isPressed: Whether or not the button is pressed, by default `false`.
      */
-    func systemKeyboardButtonStyle(_ style: KeyboardButtonStyle) -> some View {
+    func systemKeyboardButtonStyle(
+        _ style: KeyboardButtonStyle,
+        isPressed: Bool = false
+    ) -> some View {
         self.background(SystemKeyboardButtonBody(style: style))
+            .overlay(isPressed ? style.pressedOverlayColor : Color.clear)
             .foregroundColor(style.foregroundColor)
             .font(style.font)
     }
@@ -28,7 +36,7 @@ struct View_Button_Previews: PreviewProvider {
     ) -> some View {
         content
             .padding()
-            .systemKeyboardButtonStyle(style)
+            .systemKeyboardButtonStyle(style, isPressed: false)
     }
     
     static var previews: some View {

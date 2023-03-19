@@ -28,6 +28,7 @@ public struct KeyboardButtonStyle {
        - cornerRadius: The corner radius to apply to the button, by default `nil`.
        - border: The border style to apply to the button, by default `nil`.
        - shadow: The shadow style to apply to the button, by default `nil`.
+       - pressedOverlayColor: The color to overlay the background color when pressed, by default `nil`.
      */
     public init(
         backgroundColor: Color? = nil,
@@ -35,7 +36,8 @@ public struct KeyboardButtonStyle {
         font: Font? = nil,
         cornerRadius: CGFloat? = nil,
         border: KeyboardButtonBorderStyle? = nil,
-        shadow: KeyboardButtonShadowStyle? = nil
+        shadow: KeyboardButtonShadowStyle? = nil,
+        pressedOverlayColor: Color? = nil
     ) {
         self.backgroundColor = backgroundColor
         self.foregroundColor = foregroundColor
@@ -43,6 +45,7 @@ public struct KeyboardButtonStyle {
         self.cornerRadius = cornerRadius
         self.border = border
         self.shadow = shadow
+        self.pressedOverlayColor = pressedOverlayColor
     }
 
     /**
@@ -74,6 +77,11 @@ public struct KeyboardButtonStyle {
      The shadow style to apply to the button.
      */
     public var shadow: KeyboardButtonShadowStyle?
+
+    /**
+     The color to overlay the background color when pressed.
+     */
+    public var pressedOverlayColor: Color?
 }
 
 public extension KeyboardButtonStyle {
