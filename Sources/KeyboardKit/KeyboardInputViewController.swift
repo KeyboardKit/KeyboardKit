@@ -337,9 +337,33 @@ open class KeyboardInputViewController: UIInputViewController {
         performTextContextSync()
         tryChangeToPreferredKeyboardTypeAfterTextDidChange()
     }
-    
-    
-    
+
+
+    // MARK: - Syncing
+
+    /**
+     Whether or not context syncing is enabled.
+
+     By default, context sync is enabled as long as the text
+     text document proxy isn't reading full document context.
+     */
+    open var isContextSyncEnabled: Bool {
+        !textDocumentProxy.isReadingFullDocumentContext
+    }
+
+    /**
+     Perform a text context sync.
+
+     This is performed anytime the text is changed to ensure
+     that ``keyboardTextContext`` is synced with the current
+     text document context content.
+     */
+    open func performTextContextSync() {
+        guard isContextSyncEnabled else { return }
+        keyboardTextContext.sync(with: self)
+    }
+
+
     // MARK: - Autocomplete
 
     /**
@@ -364,16 +388,6 @@ open class KeyboardInputViewController: UIInputViewController {
     }
 
     /**
-     Whether or not context syncing is enabled.
-
-     By default, context sync is enabled as long as the text
-     text document proxy isn't reading full document context.
-     */
-    open var isContextSyncEnabled: Bool {
-        !textDocumentProxy.isReadingFullDocumentContext
-    }
-
-    /**
      Perform an autocomplete operation.
 
      You can override this function to extend or replace the
@@ -387,18 +401,6 @@ open class KeyboardInputViewController: UIInputViewController {
         autocompleteProvider.autocompleteSuggestions(for: text) { [weak self] result in
             self?.updateAutocompleteContext(with: result)
         }
-    }
-
-    /**
-     Perform a text context sync.
-
-     This is performed anytime the text is changed to ensure
-     that ``keyboardTextContext`` is synced with the current
-     text document context content.
-     */
-    open func performTextContextSync() {
-        guard isContextSyncEnabled else { return }
-        keyboardTextContext.sync(with: self)
     }
     
     /**
