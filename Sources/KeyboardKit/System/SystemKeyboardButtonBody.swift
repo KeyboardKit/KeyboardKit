@@ -29,12 +29,23 @@ public struct SystemKeyboardButtonBody: View {
     private let style: KeyboardButtonStyle
     
     public var body: some View {
-        RoundedRectangle(cornerRadius: style.cornerRadius)
-            .strokeBorder(style.border.color, lineWidth: style.border.size)
-            .background(style.backgroundColor)
-            .cornerRadius(style.cornerRadius)
+        RoundedRectangle(cornerRadius: cornerRadius)
+            .strokeBorder(borderColor, lineWidth: borderLineWidth)
+            .background(backgroundColor)
+            .cornerRadius(cornerRadius)
             .overlay(SystemKeyboardButtonShadow(style: style))
     }
+}
+
+public extension SystemKeyboardButtonBody {
+
+    var backgroundColor: Color { style.backgroundColor ?? .clear }
+
+    var borderColor: Color { style.border?.color ?? .clear }
+
+    var borderLineWidth: CGFloat { style.border?.size ?? 0 }
+
+    var cornerRadius: CGFloat { style.cornerRadius ?? 0 }
 }
 
 struct SystemKeyboardButtonBody_Previews: PreviewProvider {

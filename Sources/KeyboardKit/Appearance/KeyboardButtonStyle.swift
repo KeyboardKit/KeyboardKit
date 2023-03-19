@@ -15,9 +15,6 @@ import SwiftUI
  depends on so many factors, like button type, layout config
  etc. Instead, use a ``KeyboardAppearance``to resolve styles
  for certain actions.
-
- To avoid breaking changes, the style's corner radius is not
- optional, although it should be.
  */
 public struct KeyboardButtonStyle {
     
@@ -33,10 +30,10 @@ public struct KeyboardButtonStyle {
        - shadow: The shadow style to apply to the button, by default ``KeyboardButtonShadowStyle/standard.
      */
     public init(
-        backgroundColor: Color,
-        foregroundColor: Color,
-        font: Font,
-        cornerRadius: CGFloat,
+        backgroundColor: Color?,
+        foregroundColor: Color?,
+        font: Font?,
+        cornerRadius: CGFloat?,
         border: KeyboardButtonBorderStyle = .standard,
         shadow: KeyboardButtonShadowStyle = .standard
     ) {
@@ -51,32 +48,32 @@ public struct KeyboardButtonStyle {
     /**
      The background color to apply to the button.
      */
-    public var backgroundColor: Color
+    public var backgroundColor: Color?
     
     /**
      The border color to apply to the button.
      */
-    public var foregroundColor: Color
+    public var foregroundColor: Color?
     
     /**
      The font to apply to the button.
      */
-    public var font: Font
+    public var font: Font?
     
     /**
      The corner radius to apply to the button.
      */
-    public var cornerRadius: CGFloat
+    public var cornerRadius: CGFloat?
     
     /**
      The border style to apply to the button.
      */
-    public var border: KeyboardButtonBorderStyle
+    public var border: KeyboardButtonBorderStyle?
     
     /**
      The shadow style to apply to the button.
      */
-    public var shadow: KeyboardButtonShadowStyle
+    public var shadow: KeyboardButtonShadowStyle?
 }
 
 public extension KeyboardButtonStyle {

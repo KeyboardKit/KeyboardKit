@@ -40,9 +40,24 @@ public struct SystemKeyboardButtonShadow: View {
     
     public var body: some View {
         buttonShape
-            .foregroundColor(style.shadow.color)
-            .offset(y: style.shadow.size)
+            .foregroundColor(shadowColor)
+            .offset(y: shadowSize)
             .mask(buttonMask)
+    }
+}
+
+public extension SystemKeyboardButtonShadow {
+
+    var shadowColor: Color {
+        style.shadow?.color ?? .clear
+    }
+
+    var shadowCornerRadius: CGFloat {
+        style.cornerRadius ?? 0
+    }
+
+    var shadowSize: CGFloat {
+        style.shadow?.size ?? 0
     }
 }
 
@@ -53,7 +68,7 @@ private extension SystemKeyboardButtonShadow {
             let frame = CGRect(origin: .zero, size: $0.size)
             let path: Path = {
                 var path = Rectangle()
-                    .inset(by: -style.shadow.size)
+                    .inset(by: -shadowSize)
                     .path(in: frame)
                 path.addPath(buttonShape.path(in: frame))
                 return path
@@ -63,6 +78,6 @@ private extension SystemKeyboardButtonShadow {
     }
     
     var buttonShape: RoundedRectangle {
-        RoundedRectangle(cornerRadius: style.cornerRadius)
+        RoundedRectangle(cornerRadius: shadowCornerRadius)
     }
 }

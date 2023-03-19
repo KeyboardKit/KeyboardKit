@@ -132,7 +132,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     open var calloutStyle: KeyboardCalloutStyle {
         var style = KeyboardCalloutStyle.standard
         let button = buttonStyle(for: .character(""), isPressed: false)
-        style.buttonCornerRadius = button.cornerRadius
+        style.buttonCornerRadius = button.cornerRadius ?? 5
         return style
     }
 
