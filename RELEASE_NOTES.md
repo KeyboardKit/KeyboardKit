@@ -22,6 +22,7 @@ Due to a bug found in the new autocomplete provider, the old `StandardAutocomple
 
 ### ✨ New features
 
+* `KeyboardAppearance` has a new `autocompleteToolbarStyle` property.
 * `KeyboardAppearance` has a new `keyboardBackground` property.
 * `KeyboardBackgroundStyle` is a new style that can be used to the background of a keyboard.
 * `KeyboardButtonStyle` properties are now optional to allow for overrides.
@@ -37,7 +38,7 @@ Due to a bug found in the new autocomplete provider, the old `StandardAutocomple
 
 ### 💡 Behavior changes
 
-* `SystemKeyboard` uses the new appearance background color.
+* `SystemKeyboard` uses the new appearance background and autocomplete toolbar styles.
 
 ### 🗑️ Deprecations
 

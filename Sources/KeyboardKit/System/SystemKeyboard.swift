@@ -366,6 +366,7 @@ private extension SystemKeyboard {
             AutocompleteToolbar(
                 suggestions: autocompleteContext.suggestions,
                 locale: keyboardContext.locale,
+                style: appearance.autocompleteToolbarStyle,
                 suggestionAction: autocompleteToolbarAction
             ).opacity(keyboardContext.prefersAutocomplete ? 1 : 0)  // Always allocate height
         }

@@ -17,12 +17,12 @@ public struct KeyboardBackgroundStyle {
      Create a keyboard background style.
 
      - Parameters:
-       - backgroundType: The background type to use, by default ``BackgroundType/color(_:)`` with a clear color.
+       - type: The background type to use, by default ``BackgroundType/color(_:)`` with a clear color.
      */
     public init(
-        backgroundType: BackgroundType = .color(.clear)
+        type: BackgroundType = .color(.clear)
     ) {
-        self.backgroundType = backgroundType
+        self.backgroundType = type
     }
 
     /**

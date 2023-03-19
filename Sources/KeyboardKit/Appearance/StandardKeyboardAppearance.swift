@@ -155,6 +155,13 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     }
 
 
+    // MARK: - Autocomplete
+
+    public var autocompleteToolbarStyle: AutocompleteToolbarStyle {
+        return .standard
+    }
+
+
     // MARK: - Overridable Button Style Components
 
     /**

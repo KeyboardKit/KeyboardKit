@@ -69,12 +69,20 @@ public protocol KeyboardAppearance: AnyObject {
     // MARK: - Callouts
 
     /**
-     The style to apply when presenting an ``ActionCallout``.
+     The style to use for ``ActionCallout`` views.
      */
     var actionCalloutStyle: KeyboardActionCalloutStyle { get }
     
     /**
-     The style to apply when presenting an ``InputCallout``.
+     The style to use for ``InputCallout`` views.
      */
     var inputCalloutStyle: KeyboardInputCalloutStyle { get }
+
+
+    // MARK: - Callouts
+
+    /**
+     The style to use for ``AutocompleteToolbar`` views.
+     */
+    var autocompleteToolbarStyle: AutocompleteToolbarStyle { get }
 }
