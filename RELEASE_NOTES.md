@@ -16,11 +16,19 @@ Older versions have their release notes listed in the `Release_Notes` folder.
 
 
 
+## 7.3
+
+### 👑 Pro changes
+
+* `LicenseTier` has removed the `kk` name prefix and the `com.keyboardkit.` ID prefix.
+
+
+
 ## 7.2
 
 This version focuses on making it easier to style keyboards.
 
-This version adds a theme engine to the KeyboardKit Pro Gold and Enterprise tier. The new `KeyboardThemeAppearance` can be used with the new `KeyboardTheme` customize keyboard design with themes, which is a lot easier than defining custom appearances.
+This version adds a theme engine to KeyboardKit Pro. The new `KeyboardThemeAppearance` can be used with the new `KeyboardTheme` to style keyboards with themes, which is a lot easier than defining custom appearances.
 
 This version comes with three themes - `.cottonCandy`, `.neonNights` and `.tron`. You can use them in your own keyboads, or tweak them to create your own visual styles. More themes are coming in future versions. 
 

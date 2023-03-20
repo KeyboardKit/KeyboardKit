@@ -78,13 +78,6 @@ class ProDemoViewController: KeyboardInputViewController {
         /// configured with `.openLocaleContextMenu` above.
         keyboardContext.localePresentationLocale = KeyboardLocale.english_us.locale
 
-        /// 💡 Setup a demo-specific keyboard appearance.
-        ///
-        /// You can change this appearance implementation to
-        /// see how the keyboard style changes.
-        keyboardAppearance = DemoKeyboardAppearance(
-            keyboardContext: keyboardContext)
-
         /// 💡 Call super to perform the base initialization.
         super.viewDidLoad()
     }
@@ -118,6 +111,14 @@ class ProDemoViewController: KeyboardInputViewController {
         // Apply the applicable locales, either LTR or RTL
         // 💡 This must be done after registering Pro
         keyboardContext.locales = KeyboardLocale.demoLocales.map { $0.locale }
+
+        // Setup a theme-based appearance
+        // 💡 You can use built-in themes or create your own
+        // keyboardAppearance = (try? KeyboardThemeAppearance(
+        //     theme: .cottonCandy,
+        //     // theme: .neonNights,
+        //     // theme: .tron,
+        //     keyboardContext: keyboardContext)) ?? keyboardAppearance
 
         // Setup a demo-specific keyboard layout provider
         // 💡 Play with this to change the keyboard's layout

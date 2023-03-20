@@ -139,7 +139,8 @@ public extension AutocompleteToolbar where ItemView == AutocompleteToolbarItem {
         AutocompleteToolbarItem(
             suggestion: suggestion,
             locale: locale,
-            style: style.item)
+            style: style.item
+        )
     }
 }
 

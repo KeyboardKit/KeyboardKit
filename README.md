@@ -30,7 +30,7 @@ You can also use entirely custom views with the rich features of KeyboardKit, to
 
 ## Supported Platforms
 
-KeyboardKit supports `iOS 13`, `macOS 11`, `tvOS 13` and `watchOS 6`.
+KeyboardKit supports `iOS 14`, `macOS 11`, `tvOS 14` and `watchOS 7`.
 
 Although KeyboardKit builds on all platform, some features are unavailable on some platforms.
 
