@@ -17,7 +17,7 @@ public struct KeyboardBackgroundStyle {
      Create a keyboard background style.
 
      - Parameters:
-       - type: The background type to use, by default ``BackgroundType/color(_:)`` with a clear color.
+       - type: The background type to use, by default `.color(_:)` with a clear color.
      */
     public init(
         type: BackgroundType = .color(.clear)

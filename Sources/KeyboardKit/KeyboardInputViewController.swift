@@ -382,7 +382,7 @@ open class KeyboardInputViewController: UIInputViewController {
 
      By default, autocomplete is enabled as long as the text
      document proxy isn't reading full document context, and
-     ``KeyboardContext/isAutocompleteEnabled`` isn't `false`.
+     ``AutocompleteContext/isEnabled`` is `true`.
      */
     open var isAutocompleteEnabled: Bool {
         autocompleteContext.isEnabled && !textDocumentProxy.isReadingFullDocumentContext
