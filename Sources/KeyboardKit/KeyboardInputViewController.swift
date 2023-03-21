@@ -189,6 +189,14 @@ open class KeyboardInputViewController: UIInputViewController {
         input: InputCalloutContext(
             isEnabled: UIDevice.current.userInterfaceIdiom == .phone)
     )
+
+    /**
+     The default, observable dictation context.
+
+     This is used as global dictation state and will be used
+     to communicate between an app and its keyboard.
+     */
+    public lazy var dictationContext = DictationContext()
     
     /**
      The default, observable keyboard context.
@@ -219,32 +227,38 @@ open class KeyboardInputViewController: UIInputViewController {
     // MARK: - Services
     
     /**
-     This provider is used to provide the keyboard extension
+     The autocomplete provider that is used to provide users
      with autocomplete suggestions.
-     
-     You can replace this instance with a custom instance. A
-     disabled provider is used by default.
+
+     You can replace this with a custom implementation.
      */
     public lazy var autocompleteProvider: AutocompleteProvider = DisabledAutocompleteProvider()
     
     /**
-     This provider is used to get a callout actions when the
-     user long presses an input key.
-     
-     You can replace this instance with a custom instance. A
-     ``StandardCalloutActionProvider`` is used by default.
+     The callout action provider that is used to provide the
+     keyboard with secondary callout actions.
+
+     You can replace this with a custom implementation.
      */
     public lazy var calloutActionProvider: CalloutActionProvider = StandardCalloutActionProvider(
-        keyboardContext: keyboardContext) {
+        keyboardContext: keyboardContext
+    ) {
         didSet { refreshProperties() }
     }
+
+    /**
+     The dictation service that is used to perform dictation
+     operation between the keyboard and the main app.
+
+     You can replace this with a custom implementation.
+     */
+    public lazy var dictationService: KeyboardDictationService = DisabledKeyboardDictationService()
     
     /**
-     This provider is used to get an input set, that is used
-     to generate a complete keyboard layout.
-     
-     You can replace this instance with a custom instance. A
-     ``StandardInputSetProvider`` is used by default.
+     The input set provider that is used to define the input
+     keys of the keyboard.
+
+     You can replace this with a custom implementation.
      */
     public lazy var inputSetProvider: InputSetProvider = StandardInputSetProvider(
         keyboardContext: keyboardContext
@@ -253,59 +267,49 @@ open class KeyboardInputViewController: UIInputViewController {
     }
     
     /**
-     This action handler is used to handle actions that will
-     be triggered when the keyboard is being.
-     
-     You can replace this instance with a custom instance. A
-     ``StandardKeyboardActionHandler`` is used by default.
+     The action handler that will be used by the keyboard to
+     handle keyboard actions.
+
+     You can replace this with a custom implementation.
      */
     public lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(
-        inputViewController: self) {
+        inputViewController: self
+    ) {
         didSet { refreshProperties() }
     }
 
     /**
-     This appearance can be used to customize the keyboard's
+     The appearance that is used to customize the keyboard's
      design, such as its colors, fonts etc.
-     
-     You can replace this instance with a custom instance. A
-     ``StandardKeyboardAppearance`` is used by default.
+
+     You can replace this with a custom implementation.
      */
     public lazy var keyboardAppearance: KeyboardAppearance = StandardKeyboardAppearance(
         keyboardContext: keyboardContext)
 
     /**
-     This behavior determines how the keyboard should behave
-     when when the keyboard is being used.
-     
-     You can replace this instance with a custom instance. A
-     ``StandardKeyboardBehavior`` is used by default.
+     The behavior that is used to determine how the keyboard
+     should behave when certain things happen.
+
+     You can replace this with a custom implementation.
      */
     public lazy var keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior(
         keyboardContext: keyboardContext)
     
     /**
-     This feedback handler is used to setup audio and haptic
-     feedback when the keyboard is being used.
-     
-     You can replace this instance with a custom instance. A
-     ``StandardKeyboardFeedbackHandler`` is used by default.
-     
-     If you replace this instance with a custom instance, it
-     is very important to update the ``keyboardActionHandler``
-     as well, or to setup the custom instance before you use
-     the action handler for the first time.
+     The feedback handler that is used to trigger haptic and
+     audio feedback.
+
+     You can replace this with a custom implementation.
      */
     public lazy var keyboardFeedbackHandler: KeyboardFeedbackHandler = StandardKeyboardFeedbackHandler(
         settings: keyboardFeedbackSettings)
                     
     /**
-     This provider is used to get a complete keyboard layout
-     for the current ``keyboardContext``. This layout is the
-     complete set of keys in a keyboard.
-     
-     You can replace this instance with a custom instance. A
-     ``StandardKeyboardLayoutProvider`` is used by default.
+     This keyboard layout provider that is used to setup the
+     complete set of keys and their layout.
+
+     You can replace this with a custom implementation.
      */
     public lazy var keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider(
         keyboardContext: keyboardContext,

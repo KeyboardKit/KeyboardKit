@@ -192,6 +192,16 @@ KeyboardKit is available under the MIT license.
 - ``DeviceType``
 - ``InterfaceOrientation``
 
+### Dictation
+
+- ``DictationAuthorizationStatus``
+- ``DictationContext``
+- ``DictationService``
+- ``DictationServiceError``
+- ``DisabledDictationService``
+- ``DisabledKeyboardDictationService``
+- ``KeyboardDictationService``
+
 ### Emojis
 
 - ``Emoji``
