@@ -24,7 +24,7 @@ import UIKit
  reference to avoid memory leaks that easily happen when the
  view has a strong reference to the controller.
  */
-open class KeyboardInputViewController: UIInputViewController {
+open class KeyboardInputViewController: UIInputViewController, KeyboardController {
 
     
     // MARK: - View Controller Lifecycle
@@ -343,6 +343,37 @@ open class KeyboardInputViewController: UIInputViewController {
     }
 
 
+    // MARK: - KeyboardController
+
+    open func adjustTextPosition(byCharacterOffset offset: Int) {
+        textDocumentProxy.adjustTextPosition(byCharacterOffset: offset)
+    }
+
+    open func deleteBackward() {
+        textDocumentProxy.deleteBackward(range: keyboardBehavior.backspaceRange)
+    }
+
+    open func deleteBackward(times: Int) {
+        textDocumentProxy.deleteBackward(times: times)
+    }
+
+    open func insertText(_ text: String) {
+        textDocumentProxy.insertText(text)
+    }
+
+    open func selectNextKeyboard() {
+        keyboardContext.selectNextLocale()
+    }
+
+    open func selectNextLocale() {
+        keyboardContext.selectNextLocale()
+    }
+
+    open func setKeyboardType(_ type: KeyboardType) {
+        keyboardContext.keyboardType = type
+    }
+
+
     // MARK: - Syncing
 
     /**
@@ -379,6 +410,18 @@ open class KeyboardInputViewController: UIInputViewController {
      */
     open var autocompleteText: String? {
         textDocumentProxy.currentWord
+    }
+
+    /**
+     Insert an autocomplete suggestion into the document.
+
+     By default, this call the `insertAutocompleteSuggestion`
+     in the text document proxy, and then triggers a release
+     in the keyboard action handler.
+     */
+    open func insertAutocompleteSuggestion(_ suggestion: AutocompleteSuggestion) {
+        textDocumentProxy.insertAutocompleteSuggestion(suggestion)
+        keyboardActionHandler.handle(.release, on: .character(""))
     }
 
     /**

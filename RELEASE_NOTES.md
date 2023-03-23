@@ -18,6 +18,12 @@ Older versions have their release notes listed in the `Release_Notes` folder.
 
 ## 7.3
 
+### ✨ New features
+
+* `KeyboardInputViewController` has marked all `KeyboardController` functions as `open`.
+* `KeyboardInputViewController` has marked its `insertAutocompleteSuggestion` as `open`.
+
+
 ### 👑 Pro changes
 
 * `LicenseTier` has removed the `kk` name prefix and the `com.keyboardkit.` ID prefix.
