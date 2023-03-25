@@ -22,7 +22,7 @@ import SwiftUI
  a ``KeyboardDictationService`` to handle dictations between
  keyboard extensions and their main app.
  */
-public protocol DictationService: AnyObject {
+protocol DictationService: AnyObject {
 
     /// The current authorization status.
     var authorizationStatus: DictationAuthorizationStatus { get }

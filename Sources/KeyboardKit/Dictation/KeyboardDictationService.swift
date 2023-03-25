@@ -24,4 +24,4 @@ import Foundation
  KeyboardKit Pro registers a standard service when a license
  is registered.
  */
-public protocol KeyboardDictationService: DictationService {}
+protocol KeyboardDictationService: DictationService {}

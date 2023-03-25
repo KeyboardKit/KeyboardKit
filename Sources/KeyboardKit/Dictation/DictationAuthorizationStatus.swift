@@ -11,7 +11,7 @@
  mapped from underlying frameworks that are not available on
  all supported platforms.
  */
-public enum DictationAuthorizationStatus: Int {
+enum DictationAuthorizationStatus: Int {
 
     case disabledService = -1
     case notDetermined = 0

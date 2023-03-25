@@ -15,9 +15,9 @@ import SwiftUI
  The service will not perform any dictation and throw errors
  whenever you try.
  */
-public class DisabledDictationService: DictationService {}
+class DisabledDictationService: DictationService {}
 
-public extension DisabledDictationService {
+extension DisabledDictationService {
 
     /// The current authorization status.
     var authorizationStatus: DictationAuthorizationStatus { .disabledService }

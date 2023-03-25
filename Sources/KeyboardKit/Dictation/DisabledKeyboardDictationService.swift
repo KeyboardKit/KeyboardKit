@@ -15,4 +15,4 @@ import SwiftUI
  The service will not perform any dictation and throw errors
  whenever you try.
  */
-public class DisabledKeyboardDictationService: DisabledDictationService, KeyboardDictationService {}
+class DisabledKeyboardDictationService: DisabledDictationService, KeyboardDictationService {}

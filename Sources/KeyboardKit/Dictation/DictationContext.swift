@@ -29,12 +29,12 @@ import SwiftUI
  and binds the created instance to the keyboard controller's
  ``KeyboardInputViewController/dictationContext``.
  */
-public class DictationContext: ObservableObject {
+class DictationContext: ObservableObject {
 
     /**
      Create a context instance.
      */
-    public init() {
+    init() {
         transcribedText = persistedText ?? ""
     }
 
@@ -47,7 +47,7 @@ public class DictationContext: ObservableObject {
      The ID of an App Group that should be used to share the
      dictation result between the main app and other targets.
      */
-    public var appGroupId: String = "com.keyboardkit.com" {
+    var appGroupId: String = "com.keyboardkit.com" {
         didSet {
             let newDefaults = UserDefaults(suiteName: appGroupId)
             if newDefaults == nil { print("DictationContext: Failed to create a UserDefaults for \(appGroupId)")}
@@ -60,13 +60,13 @@ public class DictationContext: ObservableObject {
      Whether or not dictation is in progress.
      */
     @Published
-    public var isDictating = false
+    var isDictating = false
 
     /**
      The last transcribed text.
      */
     @Published
-    public var transcribedText = "" {
+    var transcribedText = "" {
         didSet { persistedText = transcribedText }
     }
 }
