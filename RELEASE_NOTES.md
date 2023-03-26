@@ -16,6 +16,22 @@ Older versions have their release notes listed in the `Release_Notes` folder.
 
 
 
+## 7.3
+
+This version adds dictation support.
+
+### ✨ New features
+
+* `Dictation` is a new namespace with types that defines how to perform keyboard dictation.
+* `KeyboardInputViewController` has re-added the old `hostBundleId` property, which can be used to get the ID of the parent app.
+
+### 👑 Pro changes
+
+* `PreviousAppNavigator` is a new protocol that can be implemented by any type that should be able to navigate back to the previous app.
+* `StandardDictationService` is a new `DictationService` that can be used to perform dictation within an app target.
+* `StandardKeyboardDictationService` is a new `KeyboardDictationService` that can be used to start a dictation operation from a keyboard extension. 
+
+
 ## 7.2.1
 
 ### ✨ New features
