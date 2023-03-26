@@ -59,7 +59,7 @@ public class KeyboardContext: ObservableObject {
      information provided by ``autocapitalizationType``.
      */
     @Published
-    public var autocapitalizationTypeOverride: KeyboardAutocapitalizationType? = nil
+    public var autocapitalizationTypeOverride: KeyboardAutocapitalizationType?
 
     /**
      The device type that is currently used.

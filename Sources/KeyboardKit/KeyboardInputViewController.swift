@@ -190,11 +190,13 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
             isEnabled: UIDevice.current.userInterfaceIdiom == .phone)
     )
 
+    /*
     /**
      The default, observable dictation context.
 
      This is used as global dictation state and will be used
      to communicate between an app and its keyboard.
+     */
      */
     // public lazy var dictationContext = DictationContext()
     
@@ -246,6 +248,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         didSet { refreshProperties() }
     }
 
+    /*
     /**
      The dictation service that is used to perform dictation
      operation between the keyboard and the main app.
@@ -253,6 +256,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      You can replace this with a custom implementation.
      */
     // public lazy var dictationService: KeyboardDictationService = DisabledKeyboardDictationService()
+     */
     
     /**
      The input set provider that is used to define the input
