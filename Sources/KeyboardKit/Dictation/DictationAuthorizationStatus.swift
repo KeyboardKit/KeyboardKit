@@ -20,7 +20,7 @@ enum DictationAuthorizationStatus: Int {
     case authorized = 3
 }
 
-#if os(iOS) || os(tvOS) || os(tvOS)
+#if os(iOS)
 import Speech
 
 extension SFSpeechRecognizerAuthorizationStatus {
