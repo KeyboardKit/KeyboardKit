@@ -55,6 +55,13 @@ public class KeyboardContext: ObservableObject {
 
 
     /**
+     The property can be set to override auto-capitalization
+     information provided by ``autocapitalizationType``.
+     */
+    @Published
+    public var autocapitalizationTypeOverride: KeyboardAutocapitalizationType? = nil
+
+    /**
      The device type that is currently used.
 
      By default, this is ``DeviceType/current``, but you can
@@ -217,9 +224,26 @@ public extension KeyboardContext {
 #endif
 
 
-// MARK: - Public Functions
+// MARK: - Public Properties
 
 public extension KeyboardContext {
+
+    /**
+     The standard auto-capitalization type that will be used
+     by the keyboard.
+
+     This is by default fetched from the text document proxy
+     for iOS and tvOS and is `.none` for all other platforms.
+     You can set ``autocapitalizationTypeOverride`` to set a
+     custom value that overrides the default one.
+     */
+    var autocapitalizationType: KeyboardAutocapitalizationType? {
+        #if os(iOS) || os(tvOS)
+        autocapitalizationTypeOverride ?? textDocumentProxy.autocapitalizationType?.keyboardType
+        #else
+        autocapitalizationTypeOverride ?? nil
+        #endif
+    }
 
     /**
      Whether or not the context specifies that we should use
@@ -239,6 +263,12 @@ public extension KeyboardContext {
     var keyboardLocale: KeyboardLocale? {
         KeyboardLocale.allCases.first { $0.localeIdentifier == locale.identifier }
     }
+}
+
+
+// MARK: - Public Functions
+
+public extension KeyboardContext {
 
     /**
      Whether or not the context has a certain locale.
@@ -287,8 +317,13 @@ public extension KeyboardContext {
     func setKeyboardType(_ type: KeyboardType) {
         keyboardType = type
     }
-    
-    #if os(iOS) || os(tvOS)
+}
+
+// MARK: - iOS/tvOS syncing
+
+#if os(iOS) || os(tvOS)
+extension KeyboardContext {
+
     /**
      Sync the context with the current state of the keyboard
      input view controller.
@@ -299,17 +334,6 @@ public extension KeyboardContext {
             self.syncAfterAsync(with: controller)
         }
     }
-    
-    func syncAfterLayout(with controller: KeyboardInputViewController) {
-        syncIsFloating(with: controller)
-        if controller.orientation == interfaceOrientation { return }
-        sync(with: controller)
-    }
-    #endif
-}
-
-#if os(iOS) || os(tvOS)
-extension KeyboardContext {
 
     /**
      Perform this after an async delay, to make sure that we
@@ -352,6 +376,12 @@ extension KeyboardContext {
         if traitCollection != controller.traitCollection {
             traitCollection = controller.traitCollection
         }
+    }
+
+    func syncAfterLayout(with controller: KeyboardInputViewController) {
+        syncIsFloating(with: controller)
+        if controller.orientation == interfaceOrientation { return }
+        sync(with: controller)
     }
 
     /**

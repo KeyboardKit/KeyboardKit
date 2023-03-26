@@ -28,7 +28,7 @@ private extension KeyboardContext {
     var preferredAutocapitalizedKeyboardType: KeyboardType? {
         #if os(iOS) || os(tvOS)
         guard isAutoCapitalizationEnabled else { return nil }
-        guard let proxyType = textDocumentProxy.autocapitalizationType else { return nil }
+        guard let proxyType = autocapitalizationType else { return nil }
         guard keyboardType.isAlphabetic else { return nil }
         let uppercased = KeyboardType.alphabetic(.uppercased)
         let lowercased = KeyboardType.alphabetic(.lowercased)
