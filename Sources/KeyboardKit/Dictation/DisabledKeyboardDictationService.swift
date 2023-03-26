@@ -12,7 +12,15 @@ import SwiftUI
  This disabled service can be used as a placeholder when you
  don't have access to a real dictation service.
 
- The service will not perform any dictation and throw errors
- whenever you try.
+ KeyboardKit Pro unlocks a ``StandardDictationService`` plus
+ a ``StandardKeyboardDictationService`` when a valid license
+ is registered.
  */
-class DisabledKeyboardDictationService: DisabledDictationService, KeyboardDictationService {}
+public class DisabledKeyboardDictationService: KeyboardDictationService {
+
+    public func startDictationFromKeyboard() throws {}
+
+    public func performDictationInApp() throws {}
+
+    public func completeDictationInKeyboard() throws {}
+}

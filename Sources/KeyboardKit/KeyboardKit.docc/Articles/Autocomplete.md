@@ -4,7 +4,9 @@ This article describes the KeyboardKit autocomplete engine and how to use it.
 
 In KeyboardKit, an ``AutocompleteProvider`` can be used to provide the keyboard with autocomplete suggestions as the user types, triggers actions and moves the input cursor around.
 
-KeyboardKit doesn't have a standard autocomplete provider as it has for most other services. You can unlock one with [KeyboardKit Pro][Pro] or create a custom provider that integrates with any 3rd party engine, SDK, api or service.
+KeyboardKit doesn't have a standard autocomplete provider as it has for most other services. Instead, it will use a disabled provider until you register a real one.
+
+You can unlock a ``LocalAutocompleteProvider`` and an ``ExternalAutocompleteProvider`` with [KeyboardKit Pro][Pro] or create a custom implementation that uses custom logic.
 
 [KeyboardKit Pro][Pro] specific features are described at the end of this document.
 
@@ -12,7 +14,7 @@ KeyboardKit doesn't have a standard autocomplete provider as it has for most oth
 
 ## How to perform autocomplete
 
-KeyboardKit wil automatically perform autocomplete as the user types, triggers actions and moves the input cursor around. This is done by calling ``KeyboardController/performAutocomplete()``, which is defined by ``KeyboardController`` and implemented by ``KeyboardInputViewController``, whenever autocomplete should be performed. You can also call this function at any time, whenever needed. 
+KeyboardKit will automatically perform autocomplete as the user types, triggers actions and moves the input cursor around. This is done by calling ``KeyboardController/performAutocomplete()``, which is defined by ``KeyboardController`` and implemented by ``KeyboardInputViewController``, whenever autocomplete should be performed. You can also call this function at any time, whenever needed. 
 
 A successful autocomplete operation will update the observable ``KeyboardInputViewController/autocompleteContext``, after which the context's ``AutocompleteContext/suggestions`` can be used, for instance by passing them into an ``AutocompleteToolbar``. If you ever need to reset the current autocomplete state, you can call the controller's ``KeyboardController/resetAutocomplete()`` or the context's ``AutocompleteContext/reset()`` functions.
 

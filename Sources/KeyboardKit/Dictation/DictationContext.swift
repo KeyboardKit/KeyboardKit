@@ -9,72 +9,133 @@
 import SwiftUI
 
 /**
- This class can be used to keep track of dictation state for
- an app, for instance when using a dictation service.
+ This context can be used to handle dictation state for apps
+ and keyboard extensions.
 
- Since keyboard extensions can't access the microphone, your
- keyboard extension must open the main app, then let the app
- start dictation, then write the result to ``transcribedText``
- when dictation stops, then navigate back to the keyboard in
- which the transcribed text can be handled.
-
- For this to work, ``transcribedText`` must be stored within
- an App Group that is shared between an app and its keyboard,
- so the two can exchange data. Just set ``appGroupId`` to an
- ID that you are using in your app, to make the context sync
- ``transcribedText`` accordingly. This is automatically done
- when you are using the standard keyboard dictation service.
-
- KeyboardKit automatically creates an instance of this class
- and binds the created instance to the keyboard controller's
- ``KeyboardInputViewController/dictationContext``.
+ A ``DictationService`` can use the ``dictatedText`` to sync
+ updates. A ``KeyboardDictationService`` can use the context
+ to sync data between a keyboard extension and its app.
  */
-class DictationContext: ObservableObject {
+public class DictationContext: ObservableObject {
 
     /**
      Create a context instance.
      */
-    init() {
-        transcribedText = persistedText ?? ""
+    public init() {}
+
+    private var userDefaults: UserDefaults?
+
+    fileprivate enum PersistedKey: String {
+        case localeId = "com.keyboardkit.dictation.localeId"
+        case text = "com.keyboardkit.dictation.text"
     }
-
-    private var userDefaults = UserDefaults()
-
-    private var userDefaultsKey = "com.keyboardkit.dictation.text"
-
 
     /**
-     The ID of an App Group that should be used to share the
-     dictation result between the main app and other targets.
+     The ID of the App Group that should be used to sync any
+     dictation values between your main app and its keyboard.
+
+     Setting this will setup a shared `UserDefaults` that is
+     then used to sync changes between your app and keyboard.
      */
-    var appGroupId: String = "com.keyboardkit.com" {
+    public var appGroupId: String? {
         didSet {
-            let newDefaults = UserDefaults(suiteName: appGroupId)
-            if newDefaults == nil { print("DictationContext: Failed to create a UserDefaults for \(appGroupId)")}
-            userDefaults = newDefaults ?? userDefaults
-            transcribedText = persistedText ?? ""
+            if let groupId = appGroupId {
+                userDefaults = UserDefaults(suiteName: groupId)
+                dictatedText = persistedDictatedText ?? dictatedText
+                localeId = persistedLocaleId ?? localeId
+            } else {
+                userDefaults = nil
+            }
         }
     }
+
+    /**
+     The deep link that should be used to launch the app and
+     make it start dictation.
+     */
+    public var appDeepLink: String?
 
     /**
      Whether or not dictation is in progress.
      */
     @Published
-    var isDictating = false
+    public var isDictating = false
 
     /**
-     The last transcribed text.
+     The last dictated text.
+
+     Set ``appGroupId`` to sync the value between a keyboard
+     and its app.
      */
     @Published
-    var transcribedText = "" {
-        didSet { persistedText = transcribedText }
+    public var dictatedText = "" {
+        didSet { persistedDictatedText = dictatedText }
+    }
+
+    /**
+     The locale identifier that is currently used to dictate.
+
+     Set ``appGroupId`` to sync the value between a keyboard
+     and its app.
+     */
+    @Published
+    public var localeId = Locale.current.identifier {
+        didSet {
+            dictatedText = ""
+            persistedLocaleId = localeId
+        }
+    }
+
+    /**
+     This property is used to keep a strong reference to the
+     service that is used to perform dictation within an app.
+     */
+    var dictationService: DictationService?
+}
+
+public extension DictationContext {
+
+    /**
+     Reset the context.
+     */
+    func reset() {
+        isDictating = false
+        dictatedText = ""
+    }
+
+    /**
+     Setup the context to be used by a keyboard extension.
+
+     - Parameters:
+       - appGroupId: The ID of the shared App Group.
+       - appDeepLink: The deep link that should open the app.
+     */
+    func setupForKeyboard(
+        appGroupId: String,
+        appDeepLink: String
+    ) {
+        self.appGroupId = appGroupId
+        self.appDeepLink = appDeepLink
     }
 }
 
-extension DictationContext {
+private extension DictationContext {
 
-    var persistedText: String? {
-        get { userDefaults.string(forKey: userDefaultsKey) }
-        set { userDefaults.set(newValue, forKey: userDefaultsKey) }
+    func string(for key: PersistedKey) -> String? {
+        userDefaults?.string(forKey: key.rawValue)
+    }
+
+    func setString(_ string: String?, for key: PersistedKey) {
+        userDefaults?.set(string, forKey: key.rawValue)
+    }
+
+    var persistedDictatedText: String? {
+        get { string(for: .text) }
+        set { setString(newValue, for: .text) }
+    }
+
+    var persistedLocaleId: String? {
+        get { string(for: .localeId) }
+        set { setString(newValue, for: .localeId) }
     }
 }

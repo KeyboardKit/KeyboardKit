@@ -48,8 +48,7 @@ public class KeyboardContext: ObservableObject {
     
     /**
      This property can be set to `false` to stop the context
-     from syncing with the vc. It is experimental and can be
-     removed whenever.
+     from syncing with the vc.
      */
     public static var tempIsPreviewMode: Bool = false
 

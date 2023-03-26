@@ -9,48 +9,61 @@
 import SwiftUI
 
 /**
- This protocol can be implemented by classes that can handle
- dictation operations.
+ This protocol can be implemented by any classes that can be
+ used to perform dictation, e.g. using the device microphone.
+
+ This protocol will not work in keyboard extensions, since a
+ keyboard extension must perform different operations due to
+ the lack of microphone access. For these cases, you can use
+ a ``KeyboardDictationService`` instead.
+
+ Simply call ``startDictating(with:)`` to start dictating in
+ a way specified by the service, then call ``stopDictating()``
+ to stop the operation. Since dictation may stop at any time,
+ for instance by a period of silence, services must describe
+ how to access the result when dictation ends by the service.
+
+ Services should call ``requestDictationAuthorization()`` to
+ request the required permissions before stating a dictation
+ operation, but you can call it beforehand as well, to avoid
+ interrupting the first dictation attempt.
 
  KeyboardKit does not have a standard service as it does for
  other services. It has a ``DisabledDictationService`` which
- can be used as a placeholder.
+ you can use as a placeholder until you have a real one.
 
- KeyboardKit Pro unlocks a ``StandardDictationService`` that
- is then used by a ``StandardKeyboardDictationService`` that
- is also unlocked by KeyboardKit Pro. Make sure that you use
- a ``KeyboardDictationService`` to handle dictations between
- keyboard extensions and their main app.
+ KeyboardKit Pro unlocks a ``StandardDictationService`` when
+ a valid license is registered.
  */
-protocol DictationService: AnyObject {
+public protocol DictationService: AnyObject {
 
-    /// The current authorization status.
+    /**
+     The current authorization status.
+     */
     var authorizationStatus: DictationAuthorizationStatus { get }
 
-    /// Whether or not the service is dictating.
+    /**
+     Whether or not the service is currently dictating.
+     */
     var isDictating: Bool { get }
 
     /**
-     Ask the user to authorize the app for dictation.
-
-     This must only be called from the main app and not from
-     the keyboard, since a keyboard extensions cannot access
-     the microphone.
+     Request dictation authorization.
      */
-    func authorizeDictation() async -> DictationAuthorizationStatus
+    func requestDictationAuthorization() async -> DictationAuthorizationStatus
 
     /**
-     Start dictating.
+     Reset any previously set dictation result.
      */
-    func startDictating() throws
+    func resetDictationResult() async throws
+
+    /**
+     Start dictating with the provided configuration.
+     */
+    func startDictating(with config: DictationConfiguration) async throws
 
     /**
      Stop dictating.
      */
-    func stopDictating() throws
-
-    /**
-     Toggle dictation on and off.
-     */
-    func toggleDictation() throws
+    func stopDictating() async throws
 }

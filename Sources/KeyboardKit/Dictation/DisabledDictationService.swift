@@ -12,48 +12,29 @@ import SwiftUI
  This disabled service can be used as a placeholder when you
  don't have access to a real dictation service.
 
- The service will not perform any dictation and throw errors
- whenever you try.
+ KeyboardKit Pro unlocks a ``StandardDictationService`` when
+ a valid license is registered.
  */
-class DisabledDictationService: DictationService {}
+public class DisabledDictationService: DictationService {}
 
-extension DisabledDictationService {
+public extension DisabledDictationService {
 
-    /// The current authorization status.
     var authorizationStatus: DictationAuthorizationStatus { .disabledService }
 
-    /// Whether or not the service is dictating.
     var isDictating: Bool { false }
 
-    /**
-     Ask the user to authorize the app for dictation.
 
-     This must only be called from the main app and not from
-     the keyboard, since a keyboard extensions cannot access
-     the microphone.
-     */
-    func authorizeDictation() async -> DictationAuthorizationStatus {
-        .disabledService
+    func requestDictationAuthorization() async -> DictationAuthorizationStatus {
+        return authorizationStatus
     }
 
-    /**
-     Start dictating.
-     */
-    func startDictating() throws {
+    func resetDictationResult() async throws {}
+
+    func startDictating(with config: DictationConfiguration) async throws {
         throw DictationServiceError.disabledService
     }
 
-    /**
-     Stop dictating.
-     */
-    func stopDictating() throws {
-        throw DictationServiceError.disabledService
-    }
-
-    /**
-     Toggle dictation on and off.
-     */
-    func toggleDictation() throws {
+    func stopDictating() async throws {
         throw DictationServiceError.disabledService
     }
 }

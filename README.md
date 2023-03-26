@@ -91,8 +91,9 @@ KeyboardKit comes packed features to help you build amazing and powerful keyboar
  
 * 💥 [Actions][Actions] - KeyboardKit comes with keyboard actions like characters, emojis, actions, custom ones etc.
 * 🎨 [Appearance][Appearance] - KeyboardKit comes with an appearance engine that lets you easily style your keyboards.
-* 💡 [Autocomplete][Autocomplete] - KeyboardKit can present autocomplete suggestions as the user types.
+* 💡 [Autocomplete][Autocomplete] - KeyboardKit can perform autocomplete and present suggestions as the user types.
 * 🗯 [Callouts][Callouts] - KeyboardKit can show input callouts, as well as long press callouts with secondary actions.
+* 🎤 [Dictation][Dictation] - (PREVIEW) KeyboardKit can trigger dictation from the keyboard extension.
 * 😊 [Emojis][Emojis] - KeyboardKit defines emojis and emoji categories that you can use in your own keyboards.
 * ⌨️ [External Keyboards][External] - KeyboardKit lets you detect whether or not an external keyboard is used.
 * 👋 [Feedback][Feedback] - KeyboardKit keyboards can give and haptic feedback feedback as the user types.
@@ -193,6 +194,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Appearance]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/appearance
 [Autocomplete]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/autocomplete
 [Callouts]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/callouts
+[Callouts]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/dictation
 [Emojis]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/emojis
 [External]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/external-keyboards
 [Feedback]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/feedback

@@ -10,15 +10,24 @@ import Foundation
 
 /**
  This enum defines various errors that can be throw when you
- are using a ``DictationService``.
+ use a ``DictationService`` or ``KeyboardDictationService``.
  */
-enum DictationServiceError: Error {
+public enum DictationServiceError: Error {
 
     /// The dictation service is disabled.
     case disabledService
 
+    /// The service has been configured with an invalid deep link.
+    case invalidAppDeepLink(String)
+
     /// The service is not authorized to perform dictation.
     case invalidDictationAuthorizationStatus(DictationAuthorizationStatus)
+
+    /// The service has not been configured with a deep link.
+    case missingAppDeepLink
+
+    /// The service has not been configured with an App Group ID.
+    case missingAppGroupId
 
     /// The service failed to setup a speech recognizer.
     case missingSpeechRecognizer

@@ -83,6 +83,7 @@ KeyboardKit is available under the MIT license.
 - <doc:Appearance>
 - <doc:Autocomplete>
 - <doc:Callouts>
+- <doc:Dictation>
 - <doc:Emojis>
 - <doc:External-Keyboards>
 - <doc:Feedback>
@@ -101,6 +102,7 @@ KeyboardKit is available under the MIT license.
 
 - ``KeyboardInputViewController``
 
+- ``KeyboardAutocapitalizationType``
 - ``KeyboardBehavior``
 - ``KeyboardContext``
 - ``KeyboardController``
@@ -189,17 +191,18 @@ KeyboardKit is available under the MIT license.
 
 - ``DeviceType``
 - ``InterfaceOrientation``
-<!--
+
 ### Dictation
 
 - ``DictationAuthorizationStatus``
+- ``DictationConfiguration``
 - ``DictationContext``
 - ``DictationService``
 - ``DictationServiceError``
 - ``DisabledDictationService``
 - ``DisabledKeyboardDictationService``
 - ``KeyboardDictationService``
--->
+
 ### Emojis
 
 - ``Emoji``

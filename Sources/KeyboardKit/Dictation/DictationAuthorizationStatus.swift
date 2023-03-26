@@ -11,7 +11,7 @@
  mapped from underlying frameworks that are not available on
  all supported platforms.
  */
-enum DictationAuthorizationStatus: Int {
+public enum DictationAuthorizationStatus: Int {
 
     case disabledService = -1
     case notDetermined = 0
@@ -23,10 +23,10 @@ enum DictationAuthorizationStatus: Int {
 #if os(iOS)
 import Speech
 
-extension SFSpeechRecognizerAuthorizationStatus {
+public extension SFSpeechRecognizerAuthorizationStatus {
 
     /// Get a dictation-mapped status.
-    var dictationStatus: DictationAuthorizationStatus {
+    var keyboardDictationStatus: DictationAuthorizationStatus {
         switch self {
         case .notDetermined: return .notDetermined
         case .denied: return .denied
