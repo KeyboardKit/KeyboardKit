@@ -41,6 +41,16 @@ class KeyboardContext_KeyboardTypeTests: XCTestCase {
     }
 
 
+    func testPreferredKeyboardTypeIgnoresAutoCapitalizationIfOverrideIsSet() {
+        context.isAutoCapitalizationEnabled = false
+        let current = KeyboardType.alphabetic(.lowercased)
+        let type = UITextAutocapitalizationType.allCharacters
+        XCTAssertEqual(result(for: current, preCursorPart: "", type: type), current)
+        XCTAssertEqual(result(for: current, preCursorPart: "foo", type: type), current)
+        XCTAssertEqual(result(for: current, preCursorPart: "foo!", type: type), current)
+        XCTAssertEqual(result(for: current, preCursorPart: "foo! ", type: type), current)
+    }
+
     func testPreferredKeyboardTypeWithAutoCapitalizationReturnsCorrectResultForAllCharactersCapitalizaton() {
         let current = KeyboardType.alphabetic(.lowercased)
         let type = UITextAutocapitalizationType.allCharacters

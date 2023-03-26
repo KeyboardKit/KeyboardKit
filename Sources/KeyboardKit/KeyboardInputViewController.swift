@@ -515,7 +515,7 @@ private extension KeyboardInputViewController {
         let context = keyboardContext
         let shouldSwitch = keyboardBehavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange()
         guard shouldSwitch else { return }
-        keyboardContext.keyboardType = context.preferredKeyboardType
+        setKeyboardType(context.preferredKeyboardType)
     }
 
     /**

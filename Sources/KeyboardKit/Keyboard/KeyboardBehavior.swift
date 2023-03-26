@@ -32,7 +32,8 @@ public protocol KeyboardBehavior {
      */
     func preferredKeyboardType(
         after gesture: KeyboardGesture,
-        on action: KeyboardAction) -> KeyboardType
+        on action: KeyboardAction
+    ) -> KeyboardType
     
     /**
      Whether or not to end the currently typed sentence when
@@ -40,7 +41,8 @@ public protocol KeyboardBehavior {
      */
     func shouldEndSentence(
         after gesture: KeyboardGesture,
-        on action: KeyboardAction) -> Bool
+        on action: KeyboardAction
+    ) -> Bool
     
     /**
      Whether or not to switch to capslock when a gesture has
@@ -48,7 +50,8 @@ public protocol KeyboardBehavior {
      */
     func shouldSwitchToCapsLock(
         after gesture: KeyboardGesture,
-        on action: KeyboardAction) -> Bool
+        on action: KeyboardAction
+    ) -> Bool
     
     /**
      Whether or not to switch to the preferred keyboard type
@@ -56,7 +59,8 @@ public protocol KeyboardBehavior {
      */
     func shouldSwitchToPreferredKeyboardType(
         after gesture: KeyboardGesture,
-        on action: KeyboardAction) -> Bool
+        on action: KeyboardAction
+    ) -> Bool
 
     /**
      Whether or not to switch to the preferred keyboard type

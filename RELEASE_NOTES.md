@@ -20,6 +20,8 @@ Older versions have their release notes listed in the `Release_Notes` folder.
 
 ### ✨ New features
 
+* `KeyboardAutocapitalizationType` is a new enum that mirrors `UITextAutocapitalizationType`.
+* `KeyboardContext` has a new `isAutoCapitalizationEnabled` that can disable any auto-capitaliation defined by the text document proxy.
 * `KeyboardInputViewController` has marked all `KeyboardController` functions as `open`.
 
 ### 👑 Pro changes

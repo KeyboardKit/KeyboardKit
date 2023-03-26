@@ -82,6 +82,15 @@ public class KeyboardContext: ObservableObject {
     public var interfaceOrientation: InterfaceOrientation = .portrait
 
     /**
+     Whether or not auto-capitalization is enabled.
+
+     You can set this to `false` to override the behavior of
+     the text document proxy.
+     */
+    @Published
+    public var isAutoCapitalizationEnabled = true
+
+    /**
      Whether or not the keyboard is in floating mode.
      */
     @Published
@@ -186,7 +195,7 @@ public class KeyboardContext: ObservableObject {
 }
 
 
-// MARK: - Public Properties
+// MARK: - Public iOS/tvOS Properties
 
 #if os(iOS) || os(tvOS)
 public extension KeyboardContext {

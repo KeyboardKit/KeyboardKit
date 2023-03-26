@@ -27,33 +27,32 @@ private extension KeyboardContext {
     
     var preferredAutocapitalizedKeyboardType: KeyboardType? {
         #if os(iOS) || os(tvOS)
-        guard let autoType = textDocumentProxy.autocapitalizationType else { return nil }
+        guard isAutoCapitalizationEnabled else { return nil }
+        guard let proxyType = textDocumentProxy.autocapitalizationType else { return nil }
         guard keyboardType.isAlphabetic else { return nil }
         let uppercased = KeyboardType.alphabetic(.uppercased)
         let lowercased = KeyboardType.alphabetic(.lowercased)
         if locale.isRightToLeft { return lowercased }
-        switch autoType {
+        switch proxyType {
         case .allCharacters: return uppercased
         case .sentences: return textDocumentProxy.isCursorAtNewSentenceWithTrailingWhitespace ? uppercased : lowercased
         case .words: return textDocumentProxy.isCursorAtNewWord ? uppercased : lowercased
         default: return lowercased
         }
         #else
-        keyboardType
+        nil
         #endif
     }
     
     var preferredKeyboardTypeAfterNonAlphaSpace: KeyboardType? {
         #if os(iOS) || os(tvOS)
-        guard
-            keyboardType == .numeric || keyboardType == .symbolic,
-            let before = textDocumentProxy.documentContextBeforeInput,
-            before.hasSuffix(" ") && !before.hasSuffix("  ")
-        else { return nil }
+        guard keyboardType == .numeric || keyboardType == .symbolic else { return nil }
+        guard let before = textDocumentProxy.documentContextBeforeInput else { return nil }
+        guard before.hasSuffix(" ") && !before.hasSuffix("  ") else { return nil }
         keyboardType = .alphabetic(.lowercased)
         return preferredAutocapitalizedKeyboardType
         #else
-        keyboardType
+        nil
         #endif
     }
 }
