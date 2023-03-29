@@ -15,23 +15,30 @@ import SwiftUI
  shape, corner radius, shadow etc. without the content.
  */
 public struct SystemKeyboardButtonBody: View {
-    
+
     /**
      Create a system keyboard button body view.
-     
+
      - Parameters:
        - style: The button style to apply.
+       - isPressed: Whether or not the button is pressed, by default `false`.
      */
-    public init(style: KeyboardButtonStyle) {
+    public init(
+        style: KeyboardButtonStyle,
+        isPressed: Bool = false
+    ) {
         self.style = style
+        self.isPressed = isPressed
     }
-    
+
     private let style: KeyboardButtonStyle
-    
+    private let isPressed: Bool
+
     public var body: some View {
         RoundedRectangle(cornerRadius: cornerRadius)
             .strokeBorder(borderColor, lineWidth: borderLineWidth)
             .background(backgroundColor)
+            .overlay(isPressed ? style.pressedOverlayColor : .clear)
             .cornerRadius(cornerRadius)
             .overlay(SystemKeyboardButtonShadow(style: style))
     }
@@ -49,7 +56,7 @@ public extension SystemKeyboardButtonBody {
 }
 
 struct SystemKeyboardButtonBody_Previews: PreviewProvider {
-    
+
     static var previews: some View {
         VStack {
             SystemKeyboardButtonBody(style: .preview1)

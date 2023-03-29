@@ -9,7 +9,7 @@
 import SwiftUI
 
 public extension View {
-    
+
     /**
      Apply a keyboard button style to the view.
 
@@ -22,14 +22,13 @@ public extension View {
         isPressed: Bool = false
     ) -> some View {
         self.background(SystemKeyboardButtonBody(style: style))
-            .overlay(isPressed ? style.pressedOverlayColor : Color.clear)
             .foregroundColor(style.foregroundColor)
             .font(style.font)
     }
 }
 
 struct View_Button_Previews: PreviewProvider {
-    
+
     static func button<Content: View>(
         for content: Content,
         style: KeyboardButtonStyle
@@ -38,7 +37,7 @@ struct View_Button_Previews: PreviewProvider {
             .padding()
             .systemKeyboardButtonStyle(style, isPressed: false)
     }
-    
+
     static var previews: some View {
         VStack(spacing: 20) {
             button(for: Text("a"), style: .preview1)
