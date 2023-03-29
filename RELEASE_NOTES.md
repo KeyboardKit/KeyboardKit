@@ -20,14 +20,19 @@ Older versions are kept in the `Release_Notes` folder.
 
 This version adds a first PREVIEW of dictation support. It's a very early version that is not fully tested, but your feedback is very important so please try it out if you feel like it.
 
-This version also adds style variations to some of the pre-defined themes, which means that you can create theme families that let you control a subset of the available styles. 
+This version also adds style variations to some of the pre-defined themes, which means that you can create theme families that let you control a subset of the available styles.
+
+In order to make `Theme` `Codable` so that it can be encoded and decoded, there are some breaking changes that you may have to consider. 
 
 ### ✨ New features
 
 * `Dictation` is a new namespace with types that defines how to perform keyboard dictation.
 * `KeyboardBackgroundStyle` has a new convenience initializer.
-* `KeyboardBackgroundStyle.BackgroundType` has a new `.clear` type.
-* `KeyboardBackgroundStyle.BackgroundType` has a new `.verticalGradient` type.
+* `KeyboardBackgroundStyle` now implements `Codable`.
+* `KeyboardBackgroundType` has been extracted from `KeyboardBackgroundStyle.BackgroundType`.
+* `KeyboardBackgroundType` now implements `Codable`.
+* `KeyboardBackgroundType` has a new `.clear` type.
+* `KeyboardBackgroundType` has a new `.verticalGradient` type.
 * `KeyboardInputViewController` has a `dictationContext` that can be used to manage and observe dictation state.
 * `KeyboardInputViewController` has a `dictationService` that can be used to start dictation from your keyboard.
 * `KeyboardInputViewController` has re-added the old `hostBundleId` property, which can be used to get the ID of the parent app.
@@ -35,9 +40,7 @@ This version also adds style variations to some of the pre-defined themes, which
 ### 👑 Pro changes
 
 * `KeyboardTheme` has a new `styleName` property.
-* `KeyboardTheme` has a new `.candy` theme with different style variations.
-* `KeyboardTheme` has a new `.minimal` theme with different style variations.
-* `KeyboardTheme` has a new `.swifty` theme with different style variations.
+* `KeyboardTheme` has many new themes with style variations.
 * `KeyboardTheme.cottonCandy` has a new builder that lets you specify color variations.
 * `KeyboardTheme.neonNights` has a new builder that lets you specify color variations.
 * `KeyboardTheme.tron` has a new builder that lets you specify color variations.
@@ -52,9 +55,12 @@ This version also adds style variations to some of the pre-defined themes, which
 ### 🗑️ Deprecations
 
 * `KeyboardTheme.cottonCandy` has been renamed to `KeyboardTheme.candy(.cottonCandy)`.  
+* `KeyboardTheme.neonNights` has been renamed to `KeyboardTheme.neon(.night)`.  
 
 ### 💥 Breaking changes 
 
+* `KeyboardBackgroundType` no longer has a `.linearGradient` type.
+* `KeyboardBackgroundType` now requires `Data` for `.image` instead of a SwiftUI `Image`. 
 * `KeyboardTheme` no longer defines insets, but will instead make the bottom shadow fit the screen.
 
 
