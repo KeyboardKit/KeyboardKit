@@ -16,7 +16,7 @@ import SwiftUI
  You can modify the ``standard`` style to change the default,
  global style of all callout views.
  */
-public struct KeyboardCalloutStyle: Equatable {
+public struct KeyboardCalloutStyle: Codable, Equatable {
     
     /**
      Create a callout style.

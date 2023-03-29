@@ -64,7 +64,7 @@ private extension InputCallout {
 
     var calloutBubble: some View {
         Text(calloutContext.input ?? "")
-            .font(style.font)
+            .font(style.font.font)
             .frame(minWidth: calloutSize.width, minHeight: calloutSize.height)
             .foregroundColor(style.callout.textColor)
             .background(style.callout.backgroundColor)

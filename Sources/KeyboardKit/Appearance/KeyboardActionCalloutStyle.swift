@@ -15,7 +15,7 @@ import SwiftUI
  You can modify the ``standard`` style to change the default,
  global style of all ``ActionCallout`` views that use it.
  */
-public struct KeyboardActionCalloutStyle {
+public struct KeyboardActionCalloutStyle: Codable, Equatable {
     
     /**
      Create an action callout style.
@@ -31,7 +31,7 @@ public struct KeyboardActionCalloutStyle {
      */
     public init(
         callout: KeyboardCalloutStyle = .standard,
-        font: Font = Self.standardFont,
+        font: KeyboardFont = .init(.title3),
         maxButtonSize: CGSize = CGSize(width: 50, height: 50),
         selectedBackgroundColor: Color = .blue,
         selectedForegroundColor: Color = .white,
@@ -56,7 +56,7 @@ public struct KeyboardActionCalloutStyle {
     /**
      The font to use in the callout.
      */
-    public var font: Font
+    public var font: KeyboardFont
     
     /**
      The max size of the callout buttons.
@@ -95,14 +95,4 @@ public extension KeyboardActionCalloutStyle {
      This can be set to change the standard value everywhere.
      */
     static var standard = KeyboardActionCalloutStyle()
-    
-    /**
-     This is the standard font that will be used by default.
-
-     This can be set to change the standard value everywhere.
-     You must change it before using the .``standard`` style,
-     otherwise you will also have to change the style, since
-     it will hold a reference to the old font.
-     */
-    static var standardFont: Font = .title3
 }

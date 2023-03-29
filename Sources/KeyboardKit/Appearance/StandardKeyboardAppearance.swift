@@ -193,10 +193,11 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     /**
      The button font to use for a certain action.
      */
-    open func buttonFont(for action: KeyboardAction) -> Font {
-        let rawFont = Font.system(size: buttonFontSize(for: action))
-        guard let weight = buttonFontWeight(for: action) else { return rawFont }
-        return rawFont.weight(weight)
+    open func buttonFont(for action: KeyboardAction) -> KeyboardFont {
+        let size = buttonFontSize(for: action)
+        let font = KeyboardFont.system(size: size)
+        guard let weight = buttonFontWeight(for: action) else { return font }
+        return font.weight(weight)
     }
 
     /**
@@ -254,7 +255,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
      You can override this function to customize this single
      button style property.
      */
-    open func buttonFontWeight(for action: KeyboardAction) -> Font.Weight? {
+    open func buttonFontWeight(for action: KeyboardAction) -> KeyboardFontWeight? {
         if isGregorianAlpha { return .regular }
         switch action {
         case .backspace: return .regular

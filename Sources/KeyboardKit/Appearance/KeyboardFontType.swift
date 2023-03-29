@@ -13,7 +13,7 @@ import SwiftUI
 
  This type makes it possible to use fonts in `Codable` types.
  */
-public enum KeyboardFontType: Codable {
+public enum KeyboardFontType: Codable, Equatable {
 
     case body
     case callout

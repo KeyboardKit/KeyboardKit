@@ -37,7 +37,7 @@ public struct AutocompleteToolbarItemSubtitle: View {
     public var body: some View {
         Text(text)
             .lineLimit(1)
-            .font(style.subtitleFont)
+            .font(style.subtitleFont.font)
             .foregroundColor(style.subtitleColor)
     }
 }

@@ -39,14 +39,14 @@ public class PreviewKeyboardAppearance: StandardKeyboardAppearance {
         .init(
             callout: .preview1,
             calloutSize: CGSize(width: 0, height: 40),
-            font: .body
+            font: .init(.body, .regular)
         )
     }
     
     public override var actionCalloutStyle: KeyboardActionCalloutStyle {
         .init(
             callout: .preview1,
-            font: .headline,
+            font: .init(.headline),
             selectedBackgroundColor: .yellow,
             selectedForegroundColor: .black,
             verticalTextPadding: 10

@@ -22,11 +22,17 @@ This version adds a first PREVIEW of dictation support. It's a very early versio
 
 This version adds a bunch of new themes with new style variations, which means that you can easily tweak a theme-specific set of parameters for the various themes.
 
-This version also introduces some breaking changes with reference to "Breaking changes can still occur in minor versions and patches...". In this case, the benefits are massive, since it will make a large number types `Codable` and make it possible to make `Theme` codable as well.
+### 🚨 Important information
 
-This is a huge improvement that will allow us to save and share themes and thereby be able to let developers and app users share themes with each other of the theme engine. 
+This version introduces breaking changes with reference to "Breaking changes can still occur in minor versions and patches...". 
 
-This however requires that these types can't contain non-codable types, such as `Image` or `Font`, which requires some breaking changes to the current setup.
+In this case, the benefits are massive, since it lets us make many more types `Codable` and `Equatable`, which unlocks more capabilities.
+
+This requires that the types can't contain non-codable types, such as `Image` or `Font`, which requires breaking changes to the current setup.
+
+Types that have `Image` properties will instead use raw `Data`, while types that have `Font` properties will use a new `KeyboardFont` property.
+
+`KeyboardFont` can be created in the same way as `Font` but if you want to use it with a SwiftUI view modifier, you have to use `.font(font.font)`.
 
 Just reach out if these breaking changes cause problems. 
 
@@ -34,18 +40,31 @@ Just reach out if these breaking changes cause problems.
 
 * `Dictation` is a new namespace with PREVIEW types that defines how to perform keyboard dictation.
 * `KeyboardBackgroundStyle` has a new convenience initializer.
-* `KeyboardBackgroundStyle` now implements `Codable`.
 * `KeyboardBackgroundType` has been extracted from `KeyboardBackgroundStyle.BackgroundType`.
-* `KeyboardBackgroundType` now implements `Codable`.
 * `KeyboardBackgroundType` has a new `.clear` type.
 * `KeyboardBackgroundType` has a new `.verticalGradient` type.
-* `KeyboardCalloutStyle` now implements `Codable`.
-* `KeyboardFont` is a new `Codable` type.
-* `KeyboardFontType` is a new `Codable` type.
-* `KeyboardFontWeight` is a new `Codable` type.
+* `KeyboardFont` is a new `Codable` type that is used to make the various styles codable.
+* `KeyboardFontType` is a new `Codable` type that is used to make the various styles codable.
+* `KeyboardFontWeight` is a new `Codable` type that is used to make the various styles codable.
 * `KeyboardInputViewController` has a `dictationContext` that can be used to manage and observe dictation state.
 * `KeyboardInputViewController` has a `dictationService` that can be used to start dictation from your keyboard.
 * `KeyboardInputViewController` has re-added the old `hostBundleId` property, which can be used to get the ID of the parent app.
+
+### 💡 New Codable & Equatable types
+
+* `AutocompleteToolbarStyle`
+* `AutocompleteToolbarItemStyle`
+* `AutocompleteToolbarItemBackgroundStyle`
+* `AutocompleteToolbarStyle`
+* `KeyboardActionCalloutStyle`
+* `KeyboardInputCalloutStyle`
+* `KeyboardBackgroundStyle`
+* `KeyboardBackgroundType`
+* `KeyboardButtonStyle`
+* `KeyboardButtonShadowStyle`
+* `KeyboardCalloutStyle`
+* `KeyboardInputCalloutStyle`
+* `KeyboardTheme`
 
 ### 👑 Pro changes
 
@@ -66,9 +85,12 @@ Just reach out if these breaking changes cause problems.
 
 ### 💥 Breaking changes 
 
+* `AutocompleteToolbarItemStyle` fonts are now of type `KeyboardFontStyle`.
 * `KeyboardBackgroundType` no longer has a `.linearGradient` type.
 * `KeyboardBackgroundType` now requires `Data` for `.image` instead of a SwiftUI `Image`.
-* `KeyboardButtonStyle` `font` is now a `KeyboardFontStyle`. 
+* `KeyboardActionCalloutStyle` `font` is now of type `KeyboardFontStyle`.
+* `KeyboardInputCalloutStyle` `calloutPadding` is now of type  `CGFloat`.
+* `KeyboardInputCalloutStyle` `font` is now of type  `KeyboardFontStyle`.  
 * `KeyboardTheme` no longer defines insets, but will instead make the bottom shadow fit the screen.
 * `LicenseTier` has removed the `kk` name prefix and the `com.keyboardkit.` ID prefix.
 

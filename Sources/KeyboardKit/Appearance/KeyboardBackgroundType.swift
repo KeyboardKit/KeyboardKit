@@ -11,7 +11,7 @@ import SwiftUI
 /**
  This enum defines supported keyboard background types.
  */
-public enum KeyboardBackgroundType: Codable {
+public enum KeyboardBackgroundType: Codable, Equatable {
 
     /// A plain color background.
     case clear

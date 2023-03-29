@@ -15,7 +15,7 @@ import SwiftUI
  You can modify the ``standard`` style to change the default,
  global style of all ``AutocompleteToolbarSeparator``s.
  */
-public struct AutocompleteToolbarSeparatorStyle {
+public struct AutocompleteToolbarSeparatorStyle: Codable, Equatable {
     
     /**
      Create an autocomplete toolbar separator style.

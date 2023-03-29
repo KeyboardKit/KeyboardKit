@@ -15,7 +15,7 @@ import SwiftUI
  You can modify the ``standard`` style to change the default,
  global style of all system keyboard buttons.
  */
-public struct KeyboardButtonShadowStyle: Equatable {
+public struct KeyboardButtonShadowStyle: Codable, Equatable {
     
     /**
      Create a system keyboard button shadow style.

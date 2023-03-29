@@ -42,7 +42,7 @@ public struct AutocompleteToolbarItemTitle: View {
     public var body: some View {
         Text(displayTitle)
             .lineLimit(1)
-            .font(style.titleFont)
+            .font(style.titleFont.font)
             .foregroundColor(style.titleColor)
             .frame(maxWidth: .infinity)
     }

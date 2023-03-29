@@ -139,6 +139,9 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardCalloutStyle``
 - ``KeyboardActionCalloutStyle``
 - ``KeyboardInputCalloutStyle``
+- ``KeyboardFont``
+- ``KeyboardFontType``
+- ``KeyboardFontWeight``
 - ``StandardKeyboardAppearance``
 
 ### Autocomplete

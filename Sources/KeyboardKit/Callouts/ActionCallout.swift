@@ -52,7 +52,7 @@ public struct ActionCallout: View {
             }
         }
         .buttonStyle(ActionCalloutButtonStyle())
-        .font(style.font)
+        .font(style.font.font)
         .compositingGroup()
         .opacity(calloutContext.isActive ? 1 : 0)
         .keyboardCalloutShadow(style: calloutStyle)

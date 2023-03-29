@@ -15,7 +15,7 @@ import SwiftUI
  You can modify the ``standard`` style to change the default,
  global style of all highlighted autocomplete items.
  */
-public struct AutocompleteToolbarItemBackgroundStyle {
+public struct AutocompleteToolbarItemBackgroundStyle: Codable, Equatable {
     
     /**
      Create an autocomplete toolbar item style.

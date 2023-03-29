@@ -13,7 +13,7 @@ import SwiftUI
 
  This type makes it possible to use fonts in `Codable` types.
  */
-public enum KeyboardFontWeight: Codable {
+public enum KeyboardFontWeight: Codable, Equatable {
 
     case black
     case bold

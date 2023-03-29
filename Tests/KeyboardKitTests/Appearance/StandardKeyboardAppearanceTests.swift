@@ -32,7 +32,7 @@ class StandardKeyboardAppearanceTests: XCTestCase {
         appearance.buttonFontSize(for: action)
     }
 
-    func buttonFontWeight(for action: KeyboardAction) -> Font.Weight? {
+    func buttonFontWeight(for action: KeyboardAction) -> KeyboardFontWeight? {
         appearance.buttonFontWeight(for: action)
     }
 

@@ -16,7 +16,7 @@ import SwiftUI
  etc. Instead, use a ``KeyboardAppearance``to resolve styles
  for certain actions.
  */
-public struct KeyboardButtonStyle {
+public struct KeyboardButtonStyle: Codable, Equatable {
     
     /**
      Create a system keyboard button style.
@@ -33,7 +33,7 @@ public struct KeyboardButtonStyle {
     public init(
         backgroundColor: Color? = nil,
         foregroundColor: Color? = nil,
-        font: Font? = nil,
+        font: KeyboardFont? = nil,
         cornerRadius: CGFloat? = nil,
         border: KeyboardButtonBorderStyle? = nil,
         shadow: KeyboardButtonShadowStyle? = nil,
@@ -61,7 +61,7 @@ public struct KeyboardButtonStyle {
     /**
      The font to apply to the button.
      */
-    public var font: Font?
+    public var font: KeyboardFont?
     
     /**
      The corner radius to apply to the button.

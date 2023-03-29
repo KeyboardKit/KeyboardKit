@@ -14,7 +14,7 @@ import SwiftUI
  You can modify the ``standard`` style to change the default,
  global background style.
  */
-public struct KeyboardBackgroundStyle: Codable {
+public struct KeyboardBackgroundStyle: Codable, Equatable {
 
     /**
      Create a keyboard background style.

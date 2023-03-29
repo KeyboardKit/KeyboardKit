@@ -24,22 +24,22 @@ import SwiftUI
  phone displays a callout in landscape, since callouts can't
  expand beyond the edges of a keyboard extension.
  */
-public struct KeyboardInputCalloutStyle {
+public struct KeyboardInputCalloutStyle: Codable, Equatable {
     
     /**
      Create an input callout style.
      
      - Parameters:
        - callout: The callout style to use, by default ``KeyboardCalloutStyle/standard``.
-       - calloutPadding: The padding to apply to the callout content.
-       - calloutSize: The minimum size of the callout bubble.
+       - calloutPadding: The padding to apply to the callout content, by default `2`.
+       - calloutSize: The minimum size of the callout bubble, by default `.largeTitle .light`.
        - font: The font to use in the callout.
      */
     public init(
         callout: KeyboardCalloutStyle = .standard,
-        calloutPadding: EdgeInsets = EdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2),
+        calloutPadding: CGFloat = 2,
         calloutSize: CGSize = CGSize(width: 0, height: 55),
-        font: Font = Font.largeTitle.weight(.light)
+        font: KeyboardFont = .init(.largeTitle, .light)
     ) {
         self.callout = callout
         self.calloutPadding = calloutPadding
@@ -55,7 +55,7 @@ public struct KeyboardInputCalloutStyle {
     /**
      The padding to apply to the callout content.
      */
-    public var calloutPadding: EdgeInsets
+    public var calloutPadding: CGFloat
     
     /**
      The minimum size of the callout above the button area.
@@ -68,7 +68,7 @@ public struct KeyboardInputCalloutStyle {
     /**
      The font to use in the callout.
      */
-    public var font: Font
+    public var font: KeyboardFont
 }
 
 

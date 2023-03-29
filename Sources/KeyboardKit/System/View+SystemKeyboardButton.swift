@@ -23,7 +23,7 @@ public extension View {
     ) -> some View {
         self.background(SystemKeyboardButtonBody(style: style))
             .foregroundColor(style.foregroundColor)
-            .font(style.font)
+            .font(style.font?.font)
     }
 }
 

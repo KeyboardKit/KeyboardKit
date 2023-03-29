@@ -14,7 +14,7 @@ import SwiftUI
  You can modify the ``standard`` style to change the default,
  global style of all ``AutocompleteToolbarItem``s.
  */
-public struct AutocompleteToolbarItemStyle {
+public struct AutocompleteToolbarItemStyle: Codable, Equatable {
     
     /**
      Create an autocomplete toolbar item style.
@@ -26,9 +26,9 @@ public struct AutocompleteToolbarItemStyle {
        - subtitleColor: The color to use for the subtitle text, by default `.primary`.
      */
     public init(
-        titleFont: Font = .body,
+        titleFont: KeyboardFont = .body,
         titleColor: Color = .primary,
-        subtitleFont: Font = .footnote,
+        subtitleFont: KeyboardFont = .footnote,
         subtitleColor: Color = .primary
     ) {
         self.titleFont = titleFont
@@ -40,7 +40,7 @@ public struct AutocompleteToolbarItemStyle {
     /**
      The font to use for the title text.
      */
-    public var titleFont: Font
+    public var titleFont: KeyboardFont
     
     /**
      The color to use for the title text.
@@ -50,7 +50,7 @@ public struct AutocompleteToolbarItemStyle {
     /**
      The font to use for the subtitle text.
      */
-    public var subtitleFont: Font
+    public var subtitleFont: KeyboardFont
     
     /**
      The color to use for the subtitle text.
