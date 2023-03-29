@@ -18,21 +18,31 @@ Older versions are kept in the `Release_Notes` folder.
 
 ## 7.3
 
-This version adds a first PREVIEW of dictation support. It's a very early version that is not fully tested, but your feedback is very important so please try it out if you feel like it.
+This version adds a first PREVIEW of dictation support. It's a very early version that is not yet tested, but your feedback is very important if you try it out.
 
-This version also adds style variations to some of the pre-defined themes, which means that you can create theme families that let you control a subset of the available styles.
+This version adds a bunch of new themes with new style variations, which means that you can easily tweak a theme-specific set of parameters for the various themes.
 
-In order to make `Theme` `Codable` so that it can be encoded and decoded, there are some breaking changes that you may have to consider. 
+This version also introduces some breaking changes with reference to "Breaking changes can still occur in minor versions and patches...". In this case, the benefits are massive, since it will make a large number types `Codable` and make it possible to make `Theme` codable as well.
+
+This is a huge improvement that will allow us to save and share themes and thereby be able to let developers and app users share themes with each other of the theme engine. 
+
+This however requires that these types can't contain non-codable types, such as `Image` or `Font`, which requires some breaking changes to the current setup.
+
+Just reach out if these breaking changes cause problems. 
 
 ### ✨ New features
 
-* `Dictation` is a new namespace with types that defines how to perform keyboard dictation.
+* `Dictation` is a new namespace with PREVIEW types that defines how to perform keyboard dictation.
 * `KeyboardBackgroundStyle` has a new convenience initializer.
 * `KeyboardBackgroundStyle` now implements `Codable`.
 * `KeyboardBackgroundType` has been extracted from `KeyboardBackgroundStyle.BackgroundType`.
 * `KeyboardBackgroundType` now implements `Codable`.
 * `KeyboardBackgroundType` has a new `.clear` type.
 * `KeyboardBackgroundType` has a new `.verticalGradient` type.
+* `KeyboardCalloutStyle` now implements `Codable`.
+* `KeyboardFont` is a new `Codable` type.
+* `KeyboardFontType` is a new `Codable` type.
+* `KeyboardFontWeight` is a new `Codable` type.
 * `KeyboardInputViewController` has a `dictationContext` that can be used to manage and observe dictation state.
 * `KeyboardInputViewController` has a `dictationService` that can be used to start dictation from your keyboard.
 * `KeyboardInputViewController` has re-added the old `hostBundleId` property, which can be used to get the ID of the parent app.
@@ -41,9 +51,6 @@ In order to make `Theme` `Codable` so that it can be encoded and decoded, there 
 
 * `KeyboardTheme` has a new `styleName` property.
 * `KeyboardTheme` has many new themes with style variations.
-* `KeyboardTheme.cottonCandy` has a new builder that lets you specify color variations.
-* `KeyboardTheme.neonNights` has a new builder that lets you specify color variations.
-* `KeyboardTheme.tron` has a new builder that lets you specify color variations.
 * `PreviousAppNavigator` is a new protocol that can be implemented by any type that should be able to navigate back to the previous app.
 * `StandardDictationService` is a new service that can be used to perform dictation within an app target.
 * `StandardKeyboardDictationService` is a new service that can be used to start dictation from a keyboard extension. 
@@ -60,22 +67,9 @@ In order to make `Theme` `Codable` so that it can be encoded and decoded, there 
 ### 💥 Breaking changes 
 
 * `KeyboardBackgroundType` no longer has a `.linearGradient` type.
-* `KeyboardBackgroundType` now requires `Data` for `.image` instead of a SwiftUI `Image`. 
+* `KeyboardBackgroundType` now requires `Data` for `.image` instead of a SwiftUI `Image`.
+* `KeyboardButtonStyle` `font` is now a `KeyboardFontStyle`. 
 * `KeyboardTheme` no longer defines insets, but will instead make the bottom shadow fit the screen.
-
-
-## 7.2.1
-
-### ✨ New features
-
-* `KeyboardAutocapitalizationType` is a new enum that mirrors `UITextAutocapitalizationType`.
-* `KeyboardContext` has a new, computed `autocapitalizationType` property.
-* `KeyboardContext` has a new `autocapitalizationTypeOverride` property, that can be set to override the value returned by `autocapitalizationType`.
-* `KeyboardContext` has a new `isAutoCapitalizationEnabled` that can disable any auto-capitaliation defined by the text document proxy.
-* `KeyboardInputViewController` has marked all `KeyboardController` functions as `open`.
-
-### 👑 Pro changes
-
 * `LicenseTier` has removed the `kk` name prefix and the `com.keyboardkit.` ID prefix.
 
 ### 🐛 Bug fixes
