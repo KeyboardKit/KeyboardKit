@@ -20,6 +20,8 @@ Older versions are kept in the `Release_Notes` folder.
 
 This version adds a first PREVIEW of dictation support. It's a very early version that is not fully tested, but your feedback is very important so please try it out if you feel like it.
 
+This version also adds style variations to some of the pre-defined themes, which means that you can create theme families that let you control a subset of the available styles. 
+
 ### ✨ New features
 
 * `Dictation` is a new namespace with types that defines how to perform keyboard dictation.
@@ -32,6 +34,10 @@ This version adds a first PREVIEW of dictation support. It's a very early versio
 
 ### 👑 Pro changes
 
+* `KeyboardTheme` has a new `styleName` property.
+* `KeyboardTheme` has a new `.candy` theme with different style variations.
+* `KeyboardTheme` has a new `.minimal` theme with different style variations.
+* `KeyboardTheme` has a new `.swifty` theme with different style variations.
 * `KeyboardTheme.cottonCandy` has a new builder that lets you specify color variations.
 * `KeyboardTheme.neonNights` has a new builder that lets you specify color variations.
 * `KeyboardTheme.tron` has a new builder that lets you specify color variations.
@@ -39,10 +45,17 @@ This version adds a first PREVIEW of dictation support. It's a very early versio
 * `StandardDictationService` is a new service that can be used to perform dictation within an app target.
 * `StandardKeyboardDictationService` is a new service that can be used to start dictation from a keyboard extension. 
 
+### 🐛 Bug fixes
+
+* The pressed system keyboard button color overlay is now clipped to the button corner radius.
+
+### 🗑️ Deprecations
+
+* `KeyboardTheme.cottonCandy` has been renamed to `KeyboardTheme.candy(.cottonCandy)`.  
+
 ### 💥 Breaking changes 
 
 * `KeyboardTheme` no longer defines insets, but will instead make the bottom shadow fit the screen.
-
 
 
 ## 7.2.1
