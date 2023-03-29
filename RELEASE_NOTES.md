@@ -12,7 +12,7 @@ Breaking changes can still occur in minor versions and patches, though, if the a
 
 ## Older release notes
 
-Older versions have their release notes listed in the `Release_Notes` folder.
+Older versions are kept in the `Release_Notes` folder.
 
 
 
@@ -23,15 +23,26 @@ This version adds a first PREVIEW of dictation support. It's a very early versio
 ### ✨ New features
 
 * `Dictation` is a new namespace with types that defines how to perform keyboard dictation.
+* `KeyboardBackgroundStyle` has a new convenience initializer.
+* `KeyboardBackgroundStyle.BackgroundType` has a new `.clear` type.
+* `KeyboardBackgroundStyle.BackgroundType` has a new `.verticalGradient` type.
 * `KeyboardInputViewController` has a `dictationContext` that can be used to manage and observe dictation state.
 * `KeyboardInputViewController` has a `dictationService` that can be used to start dictation from your keyboard.
 * `KeyboardInputViewController` has re-added the old `hostBundleId` property, which can be used to get the ID of the parent app.
 
 ### 👑 Pro changes
 
+* `KeyboardTheme.cottonCandy` has a new builder that lets you specify color variations.
+* `KeyboardTheme.neonNights` has a new builder that lets you specify color variations.
+* `KeyboardTheme.tron` has a new builder that lets you specify color variations.
 * `PreviousAppNavigator` is a new protocol that can be implemented by any type that should be able to navigate back to the previous app.
 * `StandardDictationService` is a new service that can be used to perform dictation within an app target.
 * `StandardKeyboardDictationService` is a new service that can be used to start dictation from a keyboard extension. 
+
+### 💥 Breaking changes 
+
+* `KeyboardTheme` no longer defines insets, but will instead make the bottom shadow fit the screen.
+
 
 
 ## 7.2.1
@@ -51,7 +62,6 @@ This version adds a first PREVIEW of dictation support. It's a very early versio
 ### 🐛 Bug fixes
 
 * The new, experimental autocomplete provider fixes a localization sync bug.
-
 
 
 ## 7.2

@@ -99,21 +99,45 @@ This will make KeyboardKit use your custom appearance instead of ``StandardKeybo
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks a theme engine that makes it a LOT easier to define styles for a keyboard.
+[KeyboardKit Pro][Pro] unlocks a theme engine that makes it a LOT easier to define styles for a keyboard. It comes with several predefined themes and lets you define your own themes.
 
 
-### Themes
+### How to use themes
 
-The ``KeyboardTheme`` struct defines a bunch of styles, such as button and background styles. It comes with a bunch of pre-defined themes, which you can use as is or use as templates to create custom themes. 
+The ``KeyboardTheme`` struct defines a bunch of styles, such as button and background styles.
 
-The ``KeyboardThemeAppearance`` appearance inherits ``StandardKeyboardAppearance`` and can be created with any theme, for instance:
+For instance, this theme just changes the tint color of the primary button:
+
+```swift
+var myCustomTheme: KeyboardTheme {
+    get throws {
+        var theme = try? KeyboardTheme(
+            primaryBackgroundColor: .green
+        )
+    }
+}
+```
+
+You can use another theme as a template and tweak any parts of it:
+
+```swift
+var anotherTheme: KeyboardTheme {
+    get throws {
+        var theme = try KeyboardTheme.cottonCandy
+        theme.buttonStyles[.primary]?.backgroundColor = .green
+        return theme
+    }
+}
+```
+
+Once you have a theme that you want to use, you can use a ``KeyboardThemeAppearance`` to apply it:
 
 ```swift
 override func viewWillSetupKeyboard() {
     super.viewWillSetupKeyboard()
 
-    // Setup KeyboardKit Pro, using a demo-specific view
-    try? setupPro(withLicenseKey: "KEY") { _ in
+    // Setup KeyboardKit Pro with a license
+    try? setupPro(withLicenseKey: "LICENSE_KEY_HERE") { _ in
         keyboardAppearance = KeyboardThemeAppearance(
             theme: .cottonCandy,
             keyboardContext: keyboardContext)
@@ -135,7 +159,9 @@ KeyboardKit Pro comes with a set of pre-defined themes, which you can access wit
 | `.tron`          | ![Tron](tron-500.png)                    |
 
 
+### License Requirements
 
+The KeyboardKit Pro theme engine requires a `Gold` license.
 
 
 

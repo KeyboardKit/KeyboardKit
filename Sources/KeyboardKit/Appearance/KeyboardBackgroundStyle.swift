@@ -10,6 +10,9 @@ import SwiftUI
 
 /**
  This style defines the background of a keyboard.
+
+ You can modify the ``standard`` style to change the default,
+ global background style.
  */
 public struct KeyboardBackgroundStyle {
 
@@ -17,11 +20,22 @@ public struct KeyboardBackgroundStyle {
      Create a keyboard background style.
 
      - Parameters:
-       - type: The background type to use, by default `.color(_:)` with a clear color.
+        - type: The background type to use, by default `.clear`.
      */
     public init(
-        type: BackgroundType = .color(.clear)
+        _ type: BackgroundType = .clear
     ) {
+        self.backgroundType = type
+    }
+
+    /**
+     Create a keyboard background style.
+
+     - Parameters:
+       - type: The background type to use, by default `.clear`.
+     */
+    @available(*, deprecated, message: "You no longer have to specify the type parameter name")
+    public init(type: BackgroundType) {
         self.backgroundType = type
     }
 
@@ -36,6 +50,9 @@ public struct KeyboardBackgroundStyle {
     public enum BackgroundType {
 
         /// A plain color background.
+        case clear
+
+        /// A plain color background.
         case color(Color)
 
         /// An image background.
@@ -43,9 +60,11 @@ public struct KeyboardBackgroundStyle {
 
         /// A linear gradient color background.
         case linearGradient(LinearGradient)
+
+        /// A vertical gradient with top-to-bottom colors.
+        case verticalGradient([Color])
     }
 }
-
 
 public extension KeyboardBackgroundStyle {
 
@@ -62,9 +81,11 @@ public extension KeyboardBackgroundStyle {
     @ViewBuilder
     var backgroundView: some View {
         switch backgroundType {
+        case .clear: Color.clear
         case .color(let color): color
-        case .linearGradient(let gradient): gradient
         case .image(let image): image
+        case .linearGradient(let gradient): gradient
+        case .verticalGradient(let colors): LinearGradient(colors: colors, startPoint: .top, endPoint: .bottom)
         }
     }
 }
