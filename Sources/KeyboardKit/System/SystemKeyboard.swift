@@ -227,8 +227,8 @@ public struct SystemKeyboard<ButtonView: View>: View {
     /**
      Create a system keyboard with custom button views.
 
-     The provided `buttonView` builder will be used to build
-     the full button view for every layout item.
+     The `buttonView` builder will be used to build the full
+     button view for every layout item.
 
      - Parameters:
        - controller: The controller to use to resolve required properties.

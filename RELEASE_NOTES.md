@@ -69,7 +69,10 @@ Just reach out if these breaking changes cause problems.
 ### 👑 Pro changes
 
 * `KeyboardTheme` has a new `styleName` property.
+* `KeyboardTheme` can now support style variations.
 * `KeyboardTheme` has many new themes with style variations.
+* `KeyboardTheme` has a new `grouped` function that groups themes into named collections.
+* `KeyboardThemeCollection` is a new type that can be used to group themes into named collections.
 * `PreviousAppNavigator` is a new protocol that can be implemented by any type that should be able to navigate back to the previous app.
 * `StandardDictationService` is a new service that can be used to perform dictation within an app target.
 * `StandardKeyboardDictationService` is a new service that can be used to start dictation from a keyboard extension. 

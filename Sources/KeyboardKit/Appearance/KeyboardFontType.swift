@@ -19,14 +19,16 @@ public enum KeyboardFontType: Codable, Equatable {
     case callout
     case caption
     case caption2
+    case custom(_ name: String, size: CGFloat)
+    case customFixed(_ name: String, size: CGFloat)
+    case footnote
+    case headline
     case largeTitle
+    case subheadline
+    case system(size: CGFloat)
     case title
     case title2
     case title3
-    case headline
-    case subheadline
-    case system(size: CGFloat)
-    case footnote
 }
 
 public extension KeyboardFontType {
@@ -38,35 +40,16 @@ public extension KeyboardFontType {
         case .callout: return .callout
         case .caption: return .caption
         case .caption2: return .caption2
-        case .largeTitle: return .largeTitle
-        case .title: return .title
-        case .title2: return .title2
-        case .title3: return .title3
+        case .custom(let name, let size): return .custom(name, size: size)
+        case .customFixed(let name, let size): return .custom(name, fixedSize: size)
+        case .footnote: return .footnote
         case .headline: return .headline
+        case .largeTitle: return .largeTitle
         case .subheadline: return .subheadline
         case .system(let size): return .system(size: size)
-        case .footnote: return .footnote
-        }
-    }
-}
-
-public extension Font {
-
-    /// Get the keyboard font type for the font.
-    var keyboardFont: Font {
-        switch self {
-        case .body: return .body
-        case .callout: return .callout
-        case .caption: return .caption
-        case .caption2: return .caption2
-        case .largeTitle: return .largeTitle
         case .title: return .title
         case .title2: return .title2
         case .title3: return .title3
-        case .headline: return .headline
-        case .subheadline: return .subheadline
-        case .footnote: return .footnote
-        default: return .body
         }
     }
 }
