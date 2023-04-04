@@ -23,9 +23,6 @@ public enum DictationServiceError: Error {
     /// The service is not authorized to perform dictation.
     case invalidDictationAuthorizationStatus(DictationAuthorizationStatus)
 
-    /// The service has not been configured with a deep link.
-    case missingAppDeepLink
-
     /// The service has not been configured with an App Group ID.
     case missingAppGroupId
 

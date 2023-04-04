@@ -25,7 +25,7 @@ Before you can perform dictation, you must first add these keys to your app's `I
 <string>Describe why you need speech recognition.</string>
 ```
 
-You can then start dictating by calling ``DictationService/startDictating(with:)`` and stop the operation with ``DictationService/stopDictating()``. Since dictation may stop at any time, the service doesnät return anything in ``stopDictating()``. Instead, each service implementation should describe how it provides the dictation result.
+You can then start dictating by calling ``DictationService/startDictation(with:)`` and stop the operation with ``DictationService/stopDictation()``. Since dictation may stop at any time, the service doesnät return anything in ``stopDictation()``. Instead, each service implementation should describe how it provides the dictation result.
 
 For instance, the ``StandardDictationService`` will continously update the observable ``DictationContext``, which means that you can easily display the current dictation state in your app.
 

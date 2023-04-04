@@ -19,22 +19,22 @@ public class DisabledDictationService: DictationService {}
 
 public extension DisabledDictationService {
 
-    var authorizationStatus: DictationAuthorizationStatus { .disabledService }
+    var authorizationStatus: DictationAuthorizationStatus {
+        .disabledService
+    }
 
-    var isDictating: Bool { false }
 
-
-    func requestDictationAuthorization() async -> DictationAuthorizationStatus {
-        return authorizationStatus
+    func requestDictationAuthorization() async throws -> DictationAuthorizationStatus {
+        authorizationStatus
     }
 
     func resetDictationResult() async throws {}
 
-    func startDictating(with config: DictationConfiguration) async throws {
+    func startDictation(with config: DictationConfiguration) async throws {
         throw DictationServiceError.disabledService
     }
 
-    func stopDictating() async throws {
+    func stopDictation() async throws {
         throw DictationServiceError.disabledService
     }
 }

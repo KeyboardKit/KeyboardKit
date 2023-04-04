@@ -205,6 +205,7 @@ KeyboardKit is available under the MIT license.
 - ``DictationServiceError``
 - ``DisabledDictationService``
 - ``DisabledKeyboardDictationService``
+- ``KeyboardDictationConfiguration``
 - ``KeyboardDictationService``
 
 ### Emojis

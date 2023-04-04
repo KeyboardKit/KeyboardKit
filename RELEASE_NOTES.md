@@ -20,6 +20,8 @@ Older versions are kept in the `Release_Notes` folder.
 
 This version adds a first PREVIEW of dictation support. It's a very early version that is not yet tested, but your feedback is very important if you try it out.
 
+This version keeps the experimental flag for the recently introduced autocomplete provider, until the next minor version. Make sure to test and provide feedback.
+
 This version adds a bunch of new themes with new style variations, which means that you can easily tweak a theme-specific set of parameters for the various themes.
 
 ### 🚨 Important information

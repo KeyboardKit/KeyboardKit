@@ -9,7 +9,10 @@
 import Foundation
 
 /**
- This struct can be used to configure a dictation operation.
+ This config can be used with a ``DictationService``.
+
+ This configuration defines all parameters needed to perform
+ a standard dictation operation.
  */
 public struct DictationConfiguration: Codable, Equatable {
 

@@ -18,6 +18,14 @@ import Foundation
  to your keyboard to handle the result. This protocol can be
  implemented by classes that supports this type of operation.
 
+ Simply call ``startDictationFromKeyboard(with:)`` from your
+ keyboard extension to start a dictation operation. When the
+ app opens, just add a `.keyboardDictation(...)` to the root
+ view of your app to have it perform the dictation operation
+ by calling ``performDictationInApp(with:)``, after which it
+ will return to the keyboard, where the controller will call
+ ``stopDictationInKeyboard(with:)`` to handle the result.
+
  KeyboardKit does not have a standard service as it does for
  other services. It has a ``DisabledKeyboardDictationService``
  set up as a placeholder until a custom one is registered.
@@ -30,20 +38,47 @@ import Foundation
 public protocol KeyboardDictationService: AnyObject {
 
     /**
+     The current dictation authorization status.
+     */
+    var authorizationStatus: DictationAuthorizationStatus { get }
+
+    /**
+     Request dictation authorization.
+     */
+    func requestDictationAuthorization() async throws -> DictationAuthorizationStatus
+
+    /**
      Call this function to start dictation from the keyboard,
      where microphone access is unavailable.
      */
-    func startDictationFromKeyboard() throws
+    func startDictationFromKeyboard(
+        with config: KeyboardDictationConfiguration
+    ) async throws
 
     /**
      Call this function to perform dictation in the main app,
      where microphone access is available.
      */
-    func performDictationInApp() throws
+    func performDictationInApp(
+        with config: KeyboardDictationConfiguration
+    ) async throws
 
     /**
-     Call this function to complete dictation, after popping
-     back to the keyboard extension from the main app.
+     Call this function to abort any ongoing dictation, then
+     return to the keyboard extension.
      */
-    func completeDictationInKeyboard() throws
+    func abortDictationInApp() async throws
+
+    /**
+     Call this function to complete dictation when returning
+     to the keyboard extension from the app.
+     */
+    func stopDictationInKeyboard(
+        with config: KeyboardDictationConfiguration
+    ) async throws
+
+    /**
+     Undo the last performed dictation operation, if any.
+     */
+    func undoLastDictation()
 }

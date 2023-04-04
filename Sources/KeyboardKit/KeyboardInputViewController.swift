@@ -253,7 +253,9 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
      You can replace this with a custom implementation.
      */
-    public lazy var dictationService: KeyboardDictationService = DisabledKeyboardDictationService()
+    public lazy var dictationService: KeyboardDictationService = DisabledKeyboardDictationService(
+        context: dictationContext
+    )
     
     /**
      The input set provider that is used to define the input

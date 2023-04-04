@@ -18,9 +18,53 @@ import SwiftUI
  */
 public class DisabledKeyboardDictationService: KeyboardDictationService {
 
-    public func startDictationFromKeyboard() throws {}
+    public init(context: DictationContext) {
+        self.context = context
+    }
 
-    public func performDictationInApp() throws {}
+    private let context: DictationContext
+}
 
-    public func completeDictationInKeyboard() throws {}
+public extension DisabledKeyboardDictationService {
+
+    var authorizationStatus: DictationAuthorizationStatus {
+        .disabledService
+    }
+
+    func requestDictationAuthorization() async throws -> DictationAuthorizationStatus {
+        authorizationStatus
+    }
+
+    func startDictationFromKeyboard(
+        with config: KeyboardDictationConfiguration
+    ) async throws {
+        resetContext()
+    }
+
+    func performDictationInApp(
+        with config: KeyboardDictationConfiguration
+    ) async throws {
+        resetContext()
+    }
+
+    func abortDictationInApp() async throws {
+        resetContext()
+    }
+
+    func stopDictationInKeyboard(
+        with config: KeyboardDictationConfiguration
+    ) async throws {
+        resetContext()
+    }
+
+    func undoLastDictation() {}
+}
+
+private extension DisabledKeyboardDictationService {
+
+    func resetContext() {
+        withAnimation {
+            context.reset()
+        }
+    }
 }

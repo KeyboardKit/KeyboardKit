@@ -50,12 +50,6 @@ public class DictationContext: ObservableObject {
     }
 
     /**
-     The deep link that should be used to launch the app and
-     make it start dictation.
-     */
-    public var appDeepLink: String?
-
-    /**
      Whether or not dictation is in progress.
      */
     @Published
@@ -73,6 +67,15 @@ public class DictationContext: ObservableObject {
     }
 
     /**
+     The last inserted dictated text.
+
+     This can be used to undo the last inserted dictation if
+     the dictated text turned out bad.
+     */
+    @Published
+    public var lastInsertedText: String?
+
+    /**
      The locale identifier that is currently used to dictate.
 
      Set ``appGroupId`` to sync the value between a keyboard
@@ -88,9 +91,10 @@ public class DictationContext: ObservableObject {
 
     /**
      This property is used to keep a strong reference to the
-     service that is used to perform dictation within an app.
+     dictation service in the app.
      */
-    var dictationService: DictationService?
+    @Published
+    public var service: KeyboardDictationService?
 }
 
 public extension DictationContext {
@@ -104,18 +108,12 @@ public extension DictationContext {
     }
 
     /**
-     Setup the context to be used by a keyboard extension.
-
-     - Parameters:
-       - appGroupId: The ID of the shared App Group.
-       - appDeepLink: The deep link that should open the app.
+     Set ``isDictating`` with an animation.
      */
-    func setupForKeyboard(
-        appGroupId: String,
-        appDeepLink: String
-    ) {
-        self.appGroupId = appGroupId
-        self.appDeepLink = appDeepLink
+    func setIsDictating(_ value: Bool) {
+        withAnimation {
+            isDictating = value
+        }
     }
 }
 
