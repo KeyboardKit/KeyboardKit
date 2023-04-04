@@ -25,6 +25,14 @@ public protocol WordAnalyzer {}
 
 public extension WordAnalyzer {
 
+    /**
+     Check whether or not the last character in the provided
+     string is a word delimiter.
+     */
+    func hasWordDelimiterSuffix(in string: String) -> Bool {
+        string.hasWordDelimiterSuffix
+    }
+
     /// Get the word or fragment at the start of the string.
     func wordFragmentAtStart(in string: String) -> String {
         string.wordFragmentAtStart
@@ -55,6 +63,14 @@ public extension WordAnalyzer {
 // MARK: - String
 
 public extension String {
+
+    /**
+     Check whether or not the last character within a string
+     is a word delimiter.
+     */
+    var hasWordDelimiterSuffix: Bool {
+        String(last ?? Character("")).isWordDelimiter
+    }
 
     /// Get the word or fragment at the start of the string.
     var wordFragmentAtStart: String {

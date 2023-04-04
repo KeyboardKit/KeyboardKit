@@ -26,6 +26,14 @@ public protocol SentenceAnalyzer {}
 public extension SentenceAnalyzer {
 
     /**
+     Check whether or not the last character in the provided
+     string is a sentence delimiter.
+     */
+    func hasSentenceDelimiterSuffix(in string: String) -> Bool {
+        string.hasSentenceDelimiterSuffix
+    }
+
+    /**
      Check whether or not the last sentence in the string is
      ended, with or without trailing whitespace.
      */
@@ -54,6 +62,14 @@ public extension SentenceAnalyzer {
 // MARK: - String
 
 public extension String {
+
+    /**
+     Check whether or not the last character within a string
+     is a sentence delimiter.
+     */
+    var hasSentenceDelimiterSuffix: Bool {
+        String(last ?? Character("")).isSentenceDelimiter
+    }
 
     /**
      Check whether or not the last sentence in the string is
