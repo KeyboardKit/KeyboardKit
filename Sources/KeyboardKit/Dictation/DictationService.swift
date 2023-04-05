@@ -21,12 +21,13 @@ import SwiftUI
  a way specified by the service, then call ``stopDictation()``
  to stop the operation. Since dictation may stop at any time,
  for instance by a period of silence, services must describe
- how to access the result when dictation ends by the service.
+ how to access the result when the operation is stopped by a
+ service or another part of the system.
 
  Services should call ``requestDictationAuthorization()`` to
  request the required permissions before stating a dictation
  operation, but you can call it beforehand as well, to avoid
- interrupting the first dictation attempt.
+ interrupting the first dictation operation.
 
  KeyboardKit does not have a standard service as it does for
  other services. It has a ``DisabledDictationService`` which
