@@ -24,7 +24,7 @@ import Foundation
  view of your app to have it perform the dictation operation
  by calling ``performDictationInApp(with:)``, after which it
  will return to the keyboard, where the controller will call
- ``stopDictationInKeyboard(with:)`` to handle the result.
+ ``stopDictationInKeyboard()`` to handle the result.
 
  KeyboardKit does not have a standard service as it does for
  other services. It has a ``DisabledKeyboardDictationService``
@@ -58,6 +58,8 @@ public protocol KeyboardDictationService: AnyObject {
     /**
      Call this function to perform dictation in the main app,
      where microphone access is available.
+
+     This can be 
      */
     func performDictationInApp(
         with config: KeyboardDictationConfiguration
@@ -72,10 +74,13 @@ public protocol KeyboardDictationService: AnyObject {
     /**
      Call this function to complete dictation when returning
      to the keyboard extension from the app.
+
+     Since this should be automatically called from an input
+     view controller, it doesn't take a configuration. It is
+     instead intended to restore itself based on information
+     persisted in the keyboard extension.
      */
-    func stopDictationInKeyboard(
-        with config: KeyboardDictationConfiguration
-    ) async throws
+    func stopDictationInKeyboard() async throws
 
     /**
      Undo the last performed dictation operation, if any.

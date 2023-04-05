@@ -21,7 +21,10 @@ public class DictationContext: ObservableObject {
     /**
      Create a context instance.
      */
-    public init() {}
+    public init() {
+        appGroupId = lastAppGroupId
+        setupAppGroupSharing()
+    }
 
     private var userDefaults: UserDefaults?
 
@@ -38,15 +41,7 @@ public class DictationContext: ObservableObject {
      then used to sync changes between your app and keyboard.
      */
     public var appGroupId: String? {
-        didSet {
-            if let groupId = appGroupId {
-                userDefaults = UserDefaults(suiteName: groupId)
-                dictatedText = persistedDictatedText ?? dictatedText
-                localeId = persistedLocaleId ?? localeId
-            } else {
-                userDefaults = nil
-            }
-        }
+        didSet { setupAppGroupSharing() }
     }
 
     /**
@@ -67,6 +62,26 @@ public class DictationContext: ObservableObject {
     }
 
     /**
+     The last applied App Group ID.
+
+     This is persisted within the current keyboard or app to
+     make it possible to continue an ongoing operation, such
+     as when returning to the keyboard. This ID isn't shared
+     between the keyboard and the main app.
+     */
+    @AppStorage("com.keyboardkit.dictation.appGroupId")
+    public var lastAppGroupId: String?
+
+    /**
+     The last applied dictation error.
+
+     This can be written by any dictation that isn't handled
+     manually, to expose errors that need to be handled.
+     */
+    @Published
+    public var lastError: Error?
+
+    /**
      The last inserted dictated text.
 
      This can be used to undo the last inserted dictation if
@@ -83,10 +98,7 @@ public class DictationContext: ObservableObject {
      */
     @Published
     public var localeId = Locale.current.identifier {
-        didSet {
-            dictatedText = ""
-            persistedLocaleId = localeId
-        }
+        didSet { persistedLocaleId = localeId }
     }
 
     /**
@@ -118,6 +130,14 @@ public extension DictationContext {
 }
 
 private extension DictationContext {
+
+    func setupAppGroupSharing() {
+        guard let id = appGroupId else { return userDefaults = nil }
+        lastAppGroupId = id
+        userDefaults = UserDefaults(suiteName: id)
+        localeId = persistedLocaleId ?? localeId
+        dictatedText = persistedDictatedText ?? dictatedText
+    }
 
     func string(for key: PersistedKey) -> String? {
         userDefaults?.string(forKey: key.rawValue)
