@@ -81,6 +81,7 @@ Just reach out if these breaking changes cause problems.
 
 ### 🐛 Bug fixes
 
+* This version fixes a bug where setting `isAutoCapitalizationEnabled` also disabled downshifting when typing.
 * The pressed system keyboard button color overlay is now clipped to the button corner radius.
 
 ### 🗑️ Deprecations
