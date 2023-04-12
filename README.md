@@ -195,6 +195,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Autocomplete]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/autocomplete
 [Callouts]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/callouts
 [Callouts]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/dictation
+[Dictation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/dictation
 [Emojis]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/emojis
 [External]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/external-keyboards
 [Feedback]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/feedback
