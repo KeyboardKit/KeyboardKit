@@ -1,5 +1,5 @@
 //
-//  Locale+LocalizedTests.swift
+//  LocaleNameProviderTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-03-17.
@@ -20,7 +20,7 @@ class Locale_LocalizedTests: XCTestCase {
         XCTAssertEqual(localizedName(of: "en"), "English")
         XCTAssertEqual(localizedName(of: "en-GB"), "English (United Kingdom)")
         XCTAssertEqual(localizedName(of: "en-US"), "English (United States)")
-        XCTAssertEqual(localizedName(of: "sv"), "Svenska")
+        XCTAssertEqual(localizedName(of: "sv"), "svenska")
     }
 
 
@@ -32,9 +32,9 @@ class Locale_LocalizedTests: XCTestCase {
 
     func testLocalizedNameInLocaleIsValid() {
         XCTAssertEqual(nameOfSwedish(in: "en"), "Swedish (Sweden)")
-        XCTAssertEqual(nameOfSwedish(in: "fi"), "Ruotsi (Ruotsi)")
-        XCTAssertEqual(nameOfSwedish(in: "no"), "Svensk (Sverige)")
-        XCTAssertEqual(nameOfSwedish(in: "sv"), "Svenska (Sverige)")
+        XCTAssertEqual(nameOfSwedish(in: "fi"), "ruotsi (Ruotsi)")
+        XCTAssertEqual(nameOfSwedish(in: "no"), "svensk (Sverige)")
+        XCTAssertEqual(nameOfSwedish(in: "sv"), "svenska (Sverige)")
     }
 
 
@@ -47,7 +47,7 @@ class Locale_LocalizedTests: XCTestCase {
         XCTAssertEqual(localizedLanguageName(of: "en"), "English")
         XCTAssertEqual(localizedLanguageName(of: "en-GB"), "English")
         XCTAssertEqual(localizedLanguageName(of: "en-US"), "English")
-        XCTAssertEqual(localizedLanguageName(of: "sv"), "Svenska")
+        XCTAssertEqual(localizedLanguageName(of: "sv"), "svenska")
     }
 
 
@@ -59,8 +59,8 @@ class Locale_LocalizedTests: XCTestCase {
 
     func testLocalizedLanguageNameInLocaleIsValid() {
         XCTAssertEqual(nameOfSwedishLanguage(in: "en"), "Swedish")
-        XCTAssertEqual(nameOfSwedishLanguage(in: "fi"), "Ruotsi")
-        XCTAssertEqual(nameOfSwedishLanguage(in: "no"), "Svensk")
-        XCTAssertEqual(nameOfSwedishLanguage(in: "sv"), "Svenska")
+        XCTAssertEqual(nameOfSwedishLanguage(in: "fi"), "ruotsi")
+        XCTAssertEqual(nameOfSwedishLanguage(in: "no"), "svensk")
+        XCTAssertEqual(nameOfSwedishLanguage(in: "sv"), "svenska")
     }
 }

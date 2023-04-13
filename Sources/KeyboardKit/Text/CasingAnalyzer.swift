@@ -14,9 +14,8 @@ import Foundation
 
  Implementing the protocol will extend the implementing type
  with functions that use public `String` extensions with the
- same name as these extensions. You can use these extensions
- directly and ignore this protocol, but the protocol exposes
- this functionality to the library documentation.
+ same names. While you can use the protocol, the main reason
+ for having it is to expose these extensions to DocC.
  */
 public protocol CasingAnalyzer {}
 

@@ -14,9 +14,8 @@ import Foundation
 
  Implementing the protocol will extend the implementing type
  with functions that use public `Locale` extensions with the
- same name as these extensions. This protocol aims to expose
- these `Locale` extensions, which are otherwise not included
- in the generated documentation.
+ same names. While you can use the protocol, the main reason
+ for having it is to expose these extensions to DocC.
  */
 public protocol LocaleNameProvider {}
 
@@ -59,30 +58,28 @@ public extension Locale {
     /**
      The full name of this locale in its own words.
      */
-    var localizedName: String? {
-        localizedString(forIdentifier: identifier)?.capitalized
+    var localizedName: String {
+        localizedString(forIdentifier: identifier) ?? ""
     }
 
     /**
      The full name of this locale in the provided locale.
      */
-    func localizedName(in locale: Locale) -> String? {
-        locale.localizedString(forIdentifier: identifier)?.capitalized
+    func localizedName(in locale: Locale) -> String {
+        locale.localizedString(forIdentifier: identifier) ?? ""
     }
 
     /**
      The language name of this locale in its own words.
      */
-    var localizedLanguageName: String? {
-        guard let code = languageCode else { return nil }
-        return localizedString(forLanguageCode: code)?.capitalized
+    var localizedLanguageName: String {
+        localizedString(forLanguageCode: languageCode ?? "") ?? ""
     }
 
     /**
      The language name of this locale in the provided locale.
      */
-    func localizedLanguageName(in locale: Locale) -> String? {
-        guard let code = languageCode else { return nil }
-        return locale.localizedString(forLanguageCode: code)?.capitalized
+    func localizedLanguageName(in locale: Locale) -> String {
+        locale.localizedString(forLanguageCode: languageCode ?? "") ?? ""
     }
 }

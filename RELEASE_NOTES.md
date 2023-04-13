@@ -22,21 +22,15 @@ Older versions are kept in the `Release_Notes` folder.
 
 * `LocaleNameProvider` is a new protocol that exposes `Locale` extensions to the DocC documentation. 
 
+### 💡 Behavior changes
+
+* `Locale` no longer capitalizes `localizedName` or `localizedLanguageName`.
+* `Locale` `localizedName` and `localizedLanguageName` are no longer optional.
+
 ### 🗑️ Deprecations
 
 * Some `Locale` localization extensions were redundant and have been deprecated. 
 
-
-
-## 7.3
-
-### ✨ New features
-
-* `Locale` has new properties. 
-
-### 🗑️ Deprecations
-
-* `KeyboardLocale` properties that directly access `locale` have been deprecated.
 
 
 ## 7.3
