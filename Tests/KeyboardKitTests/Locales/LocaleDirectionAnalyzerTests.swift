@@ -81,4 +81,79 @@ class LocaleAnalyzerProviderTests: XCTestCase {
         XCTAssertEqual(isRightToLeft("fa"), true)
         XCTAssertEqual(isRightToLeft("zh_Hant_TW"), false)
     }
+
+
+
+    func testTextDirectionIsValidForAllKeyboardLocales() {
+        let map = KeyboardLocale.allCases.map { ($0, ($0.locale.isLeftToRight, $0.locale.isRightToLeft)) }
+        let result = Dictionary(uniqueKeysWithValues: map)
+        let expected: [KeyboardLocale: (Bool, Bool)] = [
+            .albanian: (true, false),
+            .arabic: (false, true),
+            .armenian: (true, false),
+            .belarusian: (true, false),
+            .bulgarian: (true, false),
+            .dutch_belgium: (true, false),
+            .catalan: (true, false),
+            .cherokee: (true, false),
+            .croatian: (true, false),
+            .czech: (true, false),
+            .danish: (true, false),
+            .dutch: (true, false),
+            .english: (true, false),
+            .english_gb: (true, false),
+            .english_us: (true, false),
+            .estonian: (true, false),
+            .faroese: (true, false),
+            .filipino: (true, false),
+            .finnish: (true, false),
+            .french: (true, false),
+            .french_belgium: (true, false),
+            .french_switzerland: (true, false),
+            .georgian: (true, false),
+            .german: (true, false),
+            .german_austria: (true, false),
+            .german_switzerland: (true, false),
+            .greek: (true, false),
+            .hawaiian: (true, false),
+            .hebrew: (false, true),
+            .hungarian: (true, false),
+            .icelandic: (true, false),
+            .indonesian: (true, false),
+            .irish: (true, false),
+            .italian: (true, false),
+            .kurdish_sorani: (false, true),
+            .kurdish_sorani_arabic: (false, true),
+            .kurdish_sorani_pc: (false, true),
+            .latvian: (true, false),
+            .lithuanian: (true, false),
+            .macedonian: (true, false),
+            .malay: (true, false),
+            .maltese: (true, false),
+            .mongolian: (true, false),
+            .norwegian: (true, false),
+            .persian: (false, true),
+            .polish: (true, false),
+            .portuguese: (true, false),
+            .portuguese_brazil: (true, false),
+            .romanian: (true, false),
+            .russian: (true, false),
+            .serbian: (true, false),
+            .serbian_latin: (true, false),
+            .slovenian: (true, false),
+            .slovak: (true, false),
+            .spanish: (true, false),
+            .swahili: (true, false),
+            .swedish: (true, false),
+            .turkish: (true, false),
+            .ukrainian: (true, false),
+            .uzbek: (true, false)
+        ]
+
+        XCTAssertEqual(result.keys, expected.keys)
+        result.keys.forEach {
+            XCTAssertEqual(result[$0]?.0, expected[$0]?.0)
+            XCTAssertEqual(result[$0]?.1, expected[$0]?.1)
+        }
+    }
 }

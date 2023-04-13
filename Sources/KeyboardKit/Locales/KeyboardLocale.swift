@@ -11,9 +11,9 @@ import Foundation
 /**
  This enum defines KeyboardKit-supported locales.
  
- Keyboard locales have more information than raw locales and
- can have related services. They also have localized content
- that can be accessed with the ``KKL10n`` enum.
+ Each keyboard locale refers to a native ``locale`` that can
+ provide locale-specific information. A keyboard locale also
+ has localized assets that can be translated with ``KKL10n``.
  */
 public enum KeyboardLocale: String,
                             CaseIterable,
@@ -90,14 +90,14 @@ public extension KeyboardLocale {
      Get all LTR locales.
      */
     static var allLtr: [KeyboardLocale] {
-        allCases.filter { $0.isLeftToRight }
+        allCases.filter { $0.locale.isLeftToRight }
     }
 
     /**
      Get all RTL locales.
      */
     static var allRtl: [KeyboardLocale] {
-        allCases.filter { $0.isRightToLeft }
+        allCases.filter { $0.locale.isRightToLeft }
     }
     
     /**
@@ -192,16 +192,6 @@ public extension KeyboardLocale {
         }
     }
     
-    /**
-     Whether or not the locale is a left-to-right one.
-     */
-    var isLeftToRight: Bool { locale.isLeftToRight }
-
-    /**
-     Whether or not the locale is a right-to-left one.
-     */
-    var isRightToLeft: Bool { !isLeftToRight }
-
     /**
      Whether or not the locale prefers to replace any single
      alternate ending quotation delimiters with begin ones.

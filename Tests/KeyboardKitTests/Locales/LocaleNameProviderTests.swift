@@ -23,6 +23,78 @@ class Locale_LocalizedTests: XCTestCase {
         XCTAssertEqual(localizedName(of: "sv"), "svenska")
     }
 
+    
+    func testLocalizedNameIsValidForAllKeyboardLocales() {
+        let map = KeyboardLocale.allCases.map { ($0, $0.locale.localizedName) }
+        let result = Dictionary(uniqueKeysWithValues: map)
+        let expected: [KeyboardLocale: String] = [
+            .albanian: "shqip",
+            .arabic: "العربية",
+            .armenian: "հայերեն",
+            .belarusian: "беларуская",
+            .bulgarian: "български",
+            .dutch_belgium: "Nederlands (België)",
+            .catalan: "català",
+            .cherokee: "ᏣᎳᎩ",
+            .croatian: "hrvatski",
+            .czech: "čeština",
+            .danish: "dansk",
+            .dutch: "Nederlands",
+            .english: "English",
+            .english_gb: "English (United Kingdom)",
+            .english_us: "English (United States)",
+            .estonian: "eesti",
+            .faroese: "føroyskt",
+            .filipino: "Filipino",
+            .finnish: "suomi",
+            .french: "français",
+            .french_belgium: "français (Belgique)",
+            .french_switzerland: "français (Suisse)",
+            .georgian: "ქართული",
+            .german: "Deutsch",
+            .german_austria: "Deutsch (Österreich)",
+            .german_switzerland: "Deutsch (Schweiz)",
+            .greek: "Ελληνικά",
+            .hawaiian: "ʻŌlelo Hawaiʻi",
+            .hebrew: "עברית (ישראל)",
+            .hungarian: "magyar",
+            .icelandic: "íslenska",
+            .indonesian: "Indonesia",
+            .irish: "Gaeilge (Éire)",
+            .italian: "italiano",
+            .kurdish_sorani: "کوردیی ناوەندی",
+            .kurdish_sorani_arabic: "کوردیی ناوەندی (عێراق)",
+            .kurdish_sorani_pc: "کوردیی ناوەندی" + " (PC)",
+            .latvian: "latviešu",
+            .lithuanian: "lietuvių",
+            .macedonian: "македонски",
+            .malay: "Bahasa Melayu",
+            .maltese: "Malti",
+            .mongolian: "монгол",
+            .norwegian: "norsk bokmål",
+            .persian: "فارسی",
+            .polish: "polski",
+            .portuguese: "português (Portugal)",
+            .portuguese_brazil: "português (Brasil)",
+            .romanian: "română",
+            .russian: "русский",
+            .serbian: "српски",
+            .serbian_latin: "srpski (latinica)",
+            .slovenian: "slovenščina",
+            .slovak: "slovenčina",
+            .spanish: "español",
+            .swahili: "Kiswahili",
+            .swedish: "svenska",
+            .turkish: "Türkçe",
+            .ukrainian: "українська",
+            .uzbek: "o‘zbek"]
+
+        XCTAssertEqual(result.keys, expected.keys)
+        result.keys.forEach {
+            XCTAssertEqual(result[$0], expected[$0])
+        }
+    }
+
 
     func nameOfSwedish(in localeId: String) -> String? {
         let locale = Locale(identifier: localeId)

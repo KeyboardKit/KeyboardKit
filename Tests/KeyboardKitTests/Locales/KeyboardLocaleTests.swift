@@ -99,77 +99,6 @@ class KeyboardLocaleTests: XCTestCase {
         XCTAssertTrue(result.allSatisfy { $0.value == true })
     }
 
-    func testLocalizedNameIsValidForAllCases() {
-        let map = locales.map { ($0, $0.localizedName) }
-        let result = Dictionary(uniqueKeysWithValues: map)
-        let expected: [KeyboardLocale: String] = [
-            .albanian: "shqip",
-            .arabic: "العربية",
-            .armenian: "հայերեն",
-            .belarusian: "беларуская",
-            .bulgarian: "български",
-            .dutch_belgium: "Nederlands (België)",
-            .catalan: "català",
-            .cherokee: "ᏣᎳᎩ",
-            .croatian: "hrvatski",
-            .czech: "čeština",
-            .danish: "dansk",
-            .dutch: "Nederlands",
-            .english: "English",
-            .english_gb: "English (United Kingdom)",
-            .english_us: "English (United States)",
-            .estonian: "eesti",
-            .faroese: "føroyskt",
-            .filipino: "Filipino",
-            .finnish: "suomi",
-            .french: "français",
-            .french_belgium: "français (Belgique)",
-            .french_switzerland: "français (Suisse)",
-            .georgian: "ქართული",
-            .german: "Deutsch",
-            .german_austria: "Deutsch (Österreich)",
-            .german_switzerland: "Deutsch (Schweiz)",
-            .greek: "Ελληνικά",
-            .hawaiian: "ʻŌlelo Hawaiʻi",
-            .hebrew: "עברית (ישראל)",
-            .hungarian: "magyar",
-            .icelandic: "íslenska",
-            .indonesian: "Indonesia",
-            .irish: "Gaeilge (Éire)",
-            .italian: "italiano",
-            .kurdish_sorani: "کوردیی ناوەندی",
-            .kurdish_sorani_arabic: "کوردیی ناوەندی (عێراق)",
-            .kurdish_sorani_pc: "کوردیی ناوەندی" + " (PC)",
-            .latvian: "latviešu",
-            .lithuanian: "lietuvių",
-            .macedonian: "македонски",
-            .malay: "Bahasa Melayu",
-            .maltese: "Malti",
-            .mongolian: "монгол",
-            .norwegian: "norsk bokmål",
-            .persian: "فارسی",
-            .polish: "polski",
-            .portuguese: "português (Portugal)",
-            .portuguese_brazil: "português (Brasil)",
-            .romanian: "română",
-            .russian: "русский",
-            .serbian: "српски",
-            .serbian_latin: "srpski (latinica)",
-            .slovenian: "slovenščina",
-            .slovak: "slovenčina",
-            .spanish: "español",
-            .swahili: "Kiswahili",
-            .swedish: "svenska",
-            .turkish: "Türkçe",
-            .ukrainian: "українська",
-            .uzbek: "o‘zbek"]
-
-        XCTAssertEqual(result.keys, expected.keys)
-        result.keys.forEach {
-            XCTAssertEqual(result[$0], expected[$0])
-        }
-    }
-
     func testFlagIsValidForAllCases() {
         let map = locales.map { ($0, $0.flag) }
         let result = Dictionary(uniqueKeysWithValues: map)
@@ -242,18 +171,6 @@ class KeyboardLocaleTests: XCTestCase {
         }
     }
 
-    func testIsLtrIsDerivedFromResolvedLocale() {
-        locales.forEach {
-            XCTAssertEqual($0.isLeftToRight, $0.locale.isLeftToRight)
-        }
-    }
-
-    func testIsRtlIsDerivedFromResolvedLocale() {
-        locales.forEach {
-            XCTAssertEqual($0.isRightToLeft, $0.locale.isRightToLeft)
-        }
-    }
-
     func testPrefersAlternateQuotationReplacementIsDerivedFromResolvedLocale() {
         locales.forEach {
             XCTAssertEqual($0.prefersAlternateQuotationReplacement, $0.locale.prefersAlternateQuotationReplacement)
@@ -262,7 +179,7 @@ class KeyboardLocaleTests: XCTestCase {
 
     func testSortedIsSortedByLocalizedName() {
         let locales = KeyboardLocale.allCases.sorted()
-        let names = locales.map { $0.localizedName.capitalized }
+        let names = locales.map { $0.locale.localizedName.capitalized }
         XCTAssertTrue(names.contains("Dansk"))
         XCTAssertTrue(names.contains("Svenska"))
         XCTAssertNotEqual(names[0], "English")
@@ -270,7 +187,7 @@ class KeyboardLocaleTests: XCTestCase {
 
     func testSortedCanInsertEistingLocaleFirstmost() {
         let locales = KeyboardLocale.allCases.sorted(insertFirst: .english)
-        let names = locales.map { $0.localizedName.capitalized }
+        let names = locales.map { $0.locale.localizedName.capitalized }
         XCTAssertTrue(names.contains("Dansk"))
         XCTAssertTrue(names.contains("Svenska"))
         XCTAssertEqual(names[0], "English")

@@ -105,13 +105,13 @@ struct SystemKeyboardSpaceContent_Previews: PreviewProvider {
     
     static var spaceText: some View {
         SystemKeyboardSpaceContent(
-            localeText: KeyboardLocale.english.localizedName,
+            localeText: KeyboardLocale.english.locale.localizedName,
             spaceText: KKL10n.space.text(for: .english))
     }
     
     static var spaceView: some View {
         SystemKeyboardSpaceContent(
-            localeText: KeyboardLocale.spanish.localizedName,
+            localeText: KeyboardLocale.spanish.locale.localizedName,
             spaceView: Image.keyboardGlobe)
     }
     
