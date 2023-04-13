@@ -39,8 +39,8 @@ public struct LocaleContextMenu<MenuItem: View>: ViewModifier {
         self.init(
             keyboardContext: keyboardContext,
             tapAction: tapAction
-        ) { locale in
-            Text(locale.localizedName(in: keyboardContext.localePresentationLocale ?? locale) ?? "-")
+        ) {
+            Text($0.localizedName(in: keyboardContext.localePresentationLocale ?? $0))
         }
     }
 
@@ -133,7 +133,7 @@ private extension LocaleContextMenu {
     }
 
     func title(for locale: Locale) -> String {
-        locale.localizedName(in: keyboardContext.localePresentationLocale ?? locale) ?? locale.identifier
+        locale.localizedName(in: keyboardContext.localePresentationLocale ?? locale)
     }
 }
 

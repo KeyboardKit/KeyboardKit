@@ -30,6 +30,7 @@ Older versions are kept in the `Release_Notes` folder.
 
 ### 🗑️ Deprecations
 
+* Some `KeyboardLocale` extensions that used the native locale have been deprecated.
 * Some `Locale` localization extensions were redundant and have been deprecated. 
 
 

@@ -114,13 +114,7 @@ public extension KeyboardLocale {
      The identifier that is used to identify the raw locale.
      */
     var localeIdentifier: String { id }
-    
-    /**
-     The localized name of the locale.
-     */
-    var localizedName: String {
-        locale.localizedName ?? ""
-    }
+
 
     /**
      The corresponding flag emoji for the locale.
@@ -254,7 +248,7 @@ public extension Collection where Element == KeyboardLocale {
      Sort the collection by the localized name of every item.
      */
     func sorted() -> [Element] {
-        sorted { $0.localizedName.lowercased() < $1.localizedName.lowercased() }
+        sorted { $0.locale.localizedName.lowercased() < $1.locale.localizedName.lowercased() }
     }
     
     /**
