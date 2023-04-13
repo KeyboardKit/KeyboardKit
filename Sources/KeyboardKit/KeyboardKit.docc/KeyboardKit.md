@@ -304,19 +304,16 @@ KeyboardKit is available under the MIT license.
 
 - ``EnglishKeyboardLayoutProvider``
 
-### Locale
+### Localization
 
 - ``KeyboardLocale``
+- ``KKL10n``
 - ``LocaleContextMenu``
 - ``LocaleDictionary``
 - ``LocaleDirectionProvider``
 - ``LocaleFlagProvider``
 - ``LocaleNameProvider``
 - ``LocalizedService``
-
-### Localization
-
-- ``KKL10n``
 
 ### Previews
 
