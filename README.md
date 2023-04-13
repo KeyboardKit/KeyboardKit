@@ -101,7 +101,7 @@ KeyboardKit comes packed features to help you build amazing and powerful keyboar
 * 🔤 [Input][Input] - KeyboardKit supports creating `alphabetic`, `numeric` and `symbolic` and custom input sets. 
 * 🔣 [Layout][Layout] - KeyboardKit supports creating keyboard layouts for various devices, locales etc.
 * ⌨️ [Keyboard][Keyboard] - KeyboardKit supports different keyboard types, can inspect a keyboard's state etc.
-* 🌐 [Locales][Localization]- KeyboardKit defines keyboard-specific locales with localized content and assets.
+* 🌐 [Localization][Localization]- KeyboardKit defines keyboard-specific locales with localized content and assets.
 * 👁 [Previews][Previews] - KeyboardKit defines a bunch of tools that simplify previewing keyboard views in SwiftUI.
 * ➡️ [Proxy][Proxy] - KeyboardKit defines a bunch of extensions to `UITextDocumentProxy`.
 * 🚏 [Routing][Routing] - KeyboardKit lets you route text to other destinations than the main app.
