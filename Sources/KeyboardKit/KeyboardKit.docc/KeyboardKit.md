@@ -309,6 +309,7 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardLocale``
 - ``LocaleContextMenu``
 - ``LocaleDictionary``
+- ``LocaleDirectionProvider``
 - ``LocaleFlagProvider``
 - ``LocaleNameProvider``
 - ``LocalizedService``

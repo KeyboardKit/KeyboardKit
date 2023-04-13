@@ -20,6 +20,7 @@ Older versions are kept in the `Release_Notes` folder.
 
 ### ✨ New features
 
+* `LocaleDirectionProvider` is a new protocol that exposes `Locale` extensions to the DocC documentation. 
 * `LocaleNameProvider` is a new protocol that exposes `Locale` extensions to the DocC documentation. 
 
 ### 💡 Behavior changes
