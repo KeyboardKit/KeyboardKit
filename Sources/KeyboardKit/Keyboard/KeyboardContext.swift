@@ -18,6 +18,12 @@ import UIKit
  This class provides keyboard extensions with contextual and
  observable information about the keyboard extension itself.
 
+ You can use ``locale`` to get and set the raw locale of the
+ keyboard or use the various `setLocale(...)` functions that
+ support using both `Locale` and ``KeyboardLocale``. You can
+ use ``locales`` to set all the available locales, then call
+ ``selectNextLocale()`` to select the next available locale.
+
  KeyboardKit automatically creates an instance of this class
  and binds the created instance to the keyboard controller's
  ``KeyboardInputViewController/keyboardContext``.

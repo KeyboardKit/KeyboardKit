@@ -310,6 +310,7 @@ KeyboardKit is available under the MIT license.
 - ``LocaleContextMenu``
 - ``LocaleDictionary``
 - ``LocaleFlagProvider``
+- ``LocaleNameProvider``
 - ``LocalizedService``
 
 ### Localization

@@ -9,25 +9,11 @@
 import Foundation
 
 /**
- This enum contains KeyboardKit-supported locales.
+ This enum defines KeyboardKit-supported locales.
  
  Keyboard locales have more information than raw locales and
- can also have a set of related services. For instance, when
- a KeyboardKit Pro license is registered, it will unlock new
- properties for resolving a ``CalloutActionProvider`` and an
- ``InputSetProvider`` for each keyboard locale.
- 
- Each keyboard locale also has localized content that can be
- accessed with the ``KKL10n`` translation enum.
- 
- You can change the locale of a keyboard extension using the
- ``KeyboardContext/locale`` property, which will cause parts
- of the keyboard that needs it to automatically update.
- 
- You can change the available locales of keyboard extensions
- using the ``KeyboardContext/locales`` property, which makes
- it possible to navigate through the available locales using
- the ``KeyboardContext/selectNextLocale()`` function.
+ can have related services. They also have localized content
+ that can be accessed with the ``KKL10n`` enum.
  */
 public enum KeyboardLocale: String,
                             CaseIterable,
@@ -122,7 +108,7 @@ public extension KeyboardLocale {
     /**
      The raw locale that is connected to the keyboard locale.
      */
-    var locale: Locale { Locale(identifier: localeIdentifier) }
+    var locale: Locale { .init(identifier: localeIdentifier) }
     
     /**
      The identifier that is used to identify the raw locale.
@@ -133,7 +119,7 @@ public extension KeyboardLocale {
      The localized name of the locale.
      */
     var localizedName: String {
-        locale.localizedString(forIdentifier: id) ?? ""
+        locale.localizedName ?? ""
     }
 
     /**

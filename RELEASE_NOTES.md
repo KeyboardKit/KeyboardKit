@@ -16,6 +16,29 @@ Older versions are kept in the `Release_Notes` folder.
 
 
 
+## 7.3.1
+
+### ✨ New features
+
+* `LocaleNameProvider` is a new protocol that exposes `Locale` extensions to the DocC documentation. 
+
+### 🗑️ Deprecations
+
+* Some `Locale` localization extensions were redundant and have been deprecated. 
+
+
+
+## 7.3
+
+### ✨ New features
+
+* `Locale` has new properties. 
+
+### 🗑️ Deprecations
+
+* `KeyboardLocale` properties that directly access `locale` have been deprecated.
+
+
 ## 7.3
 
 This version adds a first PREVIEW of dictation support. It's a very early version that is not yet tested, but your feedback is very important.

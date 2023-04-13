@@ -24,20 +24,6 @@ class Locale_LocalizedTests: XCTestCase {
     }
 
 
-    func swedishName(of localeId: String) -> String? {
-        let locale = Locale(identifier: localeId)
-        let swedish = Locale(identifier: "sv-SE")
-        return swedish.localizedName(of: locale)
-    }
-
-    func testLocalizedNameOfLocaleIsValid() {
-        XCTAssertEqual(swedishName(of: "en"), "Engelska")
-        XCTAssertEqual(swedishName(of: "en-GB"), "Engelska (Storbritannien)")
-        XCTAssertEqual(swedishName(of: "en-US"), "Engelska (Usa)")
-        XCTAssertEqual(swedishName(of: "sv-SE"), "Svenska (Sverige)")
-    }
-
-
     func nameOfSwedish(in localeId: String) -> String? {
         let locale = Locale(identifier: localeId)
         let swedish = Locale(identifier: "sv-SE")
@@ -62,20 +48,6 @@ class Locale_LocalizedTests: XCTestCase {
         XCTAssertEqual(localizedLanguageName(of: "en-GB"), "English")
         XCTAssertEqual(localizedLanguageName(of: "en-US"), "English")
         XCTAssertEqual(localizedLanguageName(of: "sv"), "Svenska")
-    }
-
-
-    func swedishName(ofLanguage localeId: String) -> String? {
-        let locale = Locale(identifier: localeId)
-        let swedish = Locale(identifier: "sv-SE")
-        return swedish.localizedLanguageName(of: locale)
-    }
-
-    func testLocalizedLanguageNameOfLocaleIsValid() {
-        XCTAssertEqual(swedishName(ofLanguage: "en"), "Engelska")
-        XCTAssertEqual(swedishName(ofLanguage: "en-GB"), "Engelska")
-        XCTAssertEqual(swedishName(ofLanguage: "en-US"), "Engelska")
-        XCTAssertEqual(swedishName(ofLanguage: "sv-SE"), "Svenska")
     }
 
 
