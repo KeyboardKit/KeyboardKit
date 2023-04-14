@@ -104,13 +104,17 @@ class ProDemoViewController: KeyboardInputViewController {
      */
     func setupKeyboardWithLicense(_ license: License) {
 
+        // The locale to use, either persisted or default
+        let locale = persistedLocale ?? .defaultDemoLocale
+
         // Restore the last used locale, if any
         // 💡 This must be done after registering Pro
-        keyboardContext.locale = KeyboardLocale.defaultDemoLocale.locale
+        keyboardContext.locale = locale
 
         // Apply the applicable locales, either LTR or RTL
         // 💡 This must be done after registering Pro
-        keyboardContext.locales = KeyboardLocale.demoLocales.map { $0.locale }
+        keyboardContext.locales = .demoLocales
+            .sorted(in: locale, insertFirst: locale)
 
         // Setup a theme-based appearance
         // 💡 You can use built-in themes or create your own
@@ -125,7 +129,8 @@ class ProDemoViewController: KeyboardInputViewController {
         keyboardLayoutProvider = DemoKeyboardLayoutProvider(
             license: license,
             keyboardContext: keyboardContext,
-            inputSetProvider: inputSetProvider)
+            inputSetProvider: inputSetProvider
+        )
     }
 
 
