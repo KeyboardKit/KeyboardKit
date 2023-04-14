@@ -114,7 +114,6 @@ private extension LocaleContextMenu {
     var locales: [Locale] {
         let locale = keyboardContext.locale
         var locales = keyboardContext.locales
-            .sorted { title(for: $0) < title(for: $1) }
             .filter { $0.identifier != locale.identifier }
         locales.insert(locale, at: 0)
         return locales

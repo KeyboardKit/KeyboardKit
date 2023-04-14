@@ -29,7 +29,7 @@ Older versions are kept in the `Release_Notes` folder.
 
 * `Locale` no longer capitalizes `localizedName` or `localizedLanguageName`.
 * `Locale` `localizedName` and `localizedLanguageName` are no longer optional.
-* The `Locale` namespace has been merged with `Localization`.
+* `LocaleContextMenu` no logner sorts the keyboard context locales collection.
 
 ### 🗑️ Deprecations
 
