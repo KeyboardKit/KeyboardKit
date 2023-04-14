@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'KeyboardKit'
-  s.version          = '7.3.0'
+  s.version          = '7.3.1'
   s.swift_versions   = ['5.6']
   s.summary          = 'KeyboardKit helps you create custom keyboard for iOS and iPadOS.'
 
