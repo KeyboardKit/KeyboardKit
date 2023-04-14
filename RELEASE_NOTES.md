@@ -20,8 +20,9 @@ Older versions are kept in the `Release_Notes` folder.
 
 ### ✨ New features
 
-* `KeyboardLocale` has new `sorted` functions.
-* `Locale` has new `localizedName` and `sorted` functions.
+* `KeyboardContext` has new locale setter functions.
+* `KeyboardLocale` has new `sorted` by name functions.
+* `Locale` has new `localizedName` and `sorted` by name functions.
 * `LocaleDirectionProvider` is a new protocol that exposes `Locale` extensions to DocC. 
 * `LocaleNameProvider` is a new protocol that exposes `Locale` name extensions to DocC. 
 

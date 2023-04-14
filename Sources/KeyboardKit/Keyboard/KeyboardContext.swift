@@ -304,24 +304,38 @@ public extension KeyboardContext {
     }
 
     /**
-     Set ``locale`` to the provided keyboard locale's locale.
+     Set ``keyboardType`` to the provided type.
      */
-    func setLocale(_ keyboardLocale: KeyboardLocale) {
-        locale = keyboardLocale.locale
+    func setKeyboardType(_ type: KeyboardType) {
+        keyboardType = type
     }
 
     /**
      Set ``locale`` to the provided locale.
      */
-    func setLocale(_ newLocale: Locale) {
-        locale = newLocale
+    func setLocale(_ locale: Locale) {
+        self.locale = locale
     }
 
     /**
-     Set ``keyboardType`` to the provided type.
+     Set ``locale`` to the provided keyboard locale's locale.
      */
-    func setKeyboardType(_ type: KeyboardType) {
-        keyboardType = type
+    func setLocale(_ locale: KeyboardLocale) {
+        self.locale = locale.locale
+    }
+
+    /**
+     Set ``locales`` to the provided locale.
+     */
+    func setLocales(_ locales: [Locale]) {
+        self.locales = locales
+    }
+
+    /**
+     Set ``locales`` to the provided keyboard locale locales.
+     */
+    func setLocales(_ locales: [KeyboardLocale]) {
+        self.locales = locales.map { $0.locale }
     }
 }
 
