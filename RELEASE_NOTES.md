@@ -18,6 +18,8 @@ Older versions are kept in the `Release_Notes` folder.
 
 ## 7.3.1
 
+This release adds more name and sorting capabilities to the locale types.
+
 ### ✨ New features
 
 * `KeyboardContext` has new locale setter functions.
