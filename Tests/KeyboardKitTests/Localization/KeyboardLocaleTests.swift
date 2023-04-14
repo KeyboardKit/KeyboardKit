@@ -13,6 +13,8 @@ class KeyboardLocaleTests: XCTestCase {
     
     let locales = KeyboardLocale.allCases
 
+    func locale(_ locale: KeyboardLocale) -> KeyboardLocale { locale }
+
     func testLocaleIdentifierIsValidForAllCases() {
         XCTAssertEqual(KeyboardLocale.allCases.count, 60)
 
@@ -177,19 +179,49 @@ class KeyboardLocaleTests: XCTestCase {
         }
     }
 
-    func testSortedIsSortedByLocalizedName() {
-        let locales = KeyboardLocale.allCases.sorted()
-        let names = locales.map { $0.locale.localizedName.capitalized }
-        XCTAssertTrue(names.contains("Dansk"))
-        XCTAssertTrue(names.contains("Svenska"))
-        XCTAssertNotEqual(names[0], "English")
+
+    func testSortedUsesTheStandardLocalizedNameByDefault() {
+        let locales = [
+            locale(.finnish),   // fi, soumi  (last)
+            locale(.hungarian)  // hu, magyar (first)
+        ]
+        let result = locales.sorted()
+        let ids = result.map { $0.id }
+        XCTAssertEqual(ids, ["hu", "fi"])
     }
 
-    func testSortedCanInsertEistingLocaleFirstmost() {
-        let locales = KeyboardLocale.allCases.sorted(insertFirst: .english)
-        let names = locales.map { $0.locale.localizedName.capitalized }
-        XCTAssertTrue(names.contains("Dansk"))
-        XCTAssertTrue(names.contains("Svenska"))
-        XCTAssertEqual(names[0], "English")
+    func testSortedCanPlaceLocaleFirst() {
+        let locales = [
+            locale(.finnish),   // fi, soumi  (last)
+            locale(.hungarian)  // hu, magyar (first)
+        ]
+        let result = locales.sorted(
+            insertFirst: locale(.swedish)
+        )
+        let ids = result.map { $0.id }
+        XCTAssertEqual(ids, ["sv", "hu", "fi"])
+    }
+
+    func testSortedInLocaleUsesTheLocaleLocalizedName() {
+        let locales = [
+            locale(.finnish),   // fi, Finnish (first)
+            locale(.hungarian)  // hu, Hungarian (last)
+        ]
+        let result = locales.sorted(in: locale(.english).locale)
+        let ids = result.map { $0.id }
+        XCTAssertEqual(ids, ["fi", "hu"])
+    }
+
+    func testSortedInLocaleCanPlaceLocaleFirst() {
+        let locales = [
+            locale(.finnish),   // fi, Finnish (first)
+            locale(.hungarian)  // hu, Hungarian (last)
+        ]
+        let result = locales.sorted(
+            in: locale(.english).locale,
+            insertFirst: locale(.swedish)
+        )
+        let ids = result.map { $0.id }
+        XCTAssertEqual(ids, ["sv", "fi", "hu"])
     }
 }

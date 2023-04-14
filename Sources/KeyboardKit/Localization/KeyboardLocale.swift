@@ -233,21 +233,61 @@ public extension Collection where Element == KeyboardLocale {
     static var allRtl: [KeyboardLocale] {
         KeyboardLocale.allRtl
     }
-    
+}
+
+public extension Collection where Element == KeyboardLocale {
+
     /**
-     Sort the collection by the localized name of every item.
+     Sort the collection by the localized name of every item
+     then optionally place a locale first in the result.
+
+     - Parameters:
+       - insertFirst: The locale to place first, by default `nil`.
      */
-    func sorted() -> [Element] {
-        sorted { $0.locale.localizedName.lowercased() < $1.locale.localizedName.lowercased() }
+    func sorted(
+        insertFirst first: Element? = nil
+    ) -> [Element] {
+        sorted(
+            by: { $0.locale.localizedName.lowercased() < $1.locale.localizedName.lowercased() },
+            insertFirst: first
+        )
     }
-    
+
     /**
-     Sort the collection by the localized name of every item,
-     then insert a certain locale firstmost.
+     Sort the collection by the localized name of every item
+     in the provided `locale` then optionally place a locale
+     first in the result.
+
+     - Parameters:
+       - locale: The locale to use to get the localized name.
+       - insertFirst: The locale to place first, by default `nil`.
      */
-    func sorted(insertFirst locale: Element) -> [Element] {
-        var res = sorted().filter { $0 != locale }
-        res.insert(locale, at: 0)
-        return res
+    func sorted(
+        in locale: Locale,
+        insertFirst first: Element? = nil
+    ) -> [Element] {
+        sorted(
+            by: { $0.locale.localizedName(in: locale).lowercased() < $1.locale.localizedName(in: locale).lowercased() },
+            insertFirst: first
+        )
+    }
+
+    /**
+     Sort the collection by the provided sort comparator and
+     then optionally place a locale first in the result.
+
+     - Parameters:
+       - comparator: The sort comparator to use.
+       - insertFirst: The locale to place first, by default `nil`.
+     */
+    func sorted(
+        by comparator: (KeyboardLocale, KeyboardLocale) -> Bool,
+        insertFirst first: Element?
+    ) -> [Element] {
+        let sorted = self.sorted(by: comparator)
+        guard let first = first else { return sorted }
+        var filtered = sorted.filter { $0 != first }
+        filtered.insert(first, at: 0)
+        return filtered
     }
 }
