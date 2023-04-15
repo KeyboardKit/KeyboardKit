@@ -9,25 +9,11 @@
 import Foundation
 
 /**
- This enum contains KeyboardKit-supported locales.
+ This enum defines KeyboardKit-supported locales.
  
- Keyboard locales have more information than raw locales and
- can also have a set of related services. For instance, when
- a KeyboardKit Pro license is registered, it will unlock new
- properties for resolving a ``CalloutActionProvider`` and an
- ``InputSetProvider`` for each keyboard locale.
- 
- Each keyboard locale also has localized content that can be
- accessed with the ``KKL10n`` translation enum.
- 
- You can change the locale of a keyboard extension using the
- ``KeyboardContext/locale`` property, which will cause parts
- of the keyboard that needs it to automatically update.
- 
- You can change the available locales of keyboard extensions
- using the ``KeyboardContext/locales`` property, which makes
- it possible to navigate through the available locales using
- the ``KeyboardContext/selectNextLocale()`` function.
+ Each keyboard locale refers to a native ``locale`` that can
+ provide locale-specific information. A keyboard locale also
+ has localized assets that can be translated with ``KKL10n``.
  */
 public enum KeyboardLocale: String,
                             CaseIterable,
@@ -105,14 +91,14 @@ public extension KeyboardLocale {
      Get all LTR locales.
      */
     static var allLtr: [KeyboardLocale] {
-        allCases.filter { $0.isLeftToRight }
+        allCases.filter { $0.locale.isLeftToRight }
     }
 
     /**
      Get all RTL locales.
      */
     static var allRtl: [KeyboardLocale] {
-        allCases.filter { $0.isRightToLeft }
+        allCases.filter { $0.locale.isRightToLeft }
     }
     
     /**
@@ -123,19 +109,13 @@ public extension KeyboardLocale {
     /**
      The raw locale that is connected to the keyboard locale.
      */
-    var locale: Locale { Locale(identifier: localeIdentifier) }
+    var locale: Locale { .init(identifier: localeIdentifier) }
     
     /**
      The identifier that is used to identify the raw locale.
      */
     var localeIdentifier: String { id }
-    
-    /**
-     The localized name of the locale.
-     */
-    var localizedName: String {
-        locale.localizedString(forIdentifier: id) ?? ""
-    }
+
 
     /**
      The corresponding flag emoji for the locale.
@@ -215,16 +195,6 @@ public extension KeyboardLocale {
     }
     
     /**
-     Whether or not the locale is a left-to-right one.
-     */
-    var isLeftToRight: Bool { locale.isLeftToRight }
-
-    /**
-     Whether or not the locale is a right-to-left one.
-     */
-    var isRightToLeft: Bool { !isLeftToRight }
-
-    /**
      Whether or not the locale prefers to replace any single
      alternate ending quotation delimiters with begin ones.
      */
@@ -265,21 +235,61 @@ public extension Collection where Element == KeyboardLocale {
     static var allRtl: [KeyboardLocale] {
         KeyboardLocale.allRtl
     }
-    
+}
+
+public extension Collection where Element == KeyboardLocale {
+
     /**
-     Sort the collection by the localized name of every item.
+     Sort the collection by the localized name of every item
+     then optionally place a locale first in the result.
+
+     - Parameters:
+       - insertFirst: The locale to place first, by default `nil`.
      */
-    func sorted() -> [Element] {
-        sorted { $0.localizedName.lowercased() < $1.localizedName.lowercased() }
+    func sorted(
+        insertFirst first: Element? = nil
+    ) -> [Element] {
+        sorted(
+            by: { $0.locale.localizedName.lowercased() < $1.locale.localizedName.lowercased() },
+            insertFirst: first
+        )
     }
-    
+
     /**
-     Sort the collection by the localized name of every item,
-     then insert a certain locale firstmost.
+     Sort the collection by the localized name of every item
+     in the provided `locale` then optionally place a locale
+     first in the result.
+
+     - Parameters:
+       - locale: The locale to use to get the localized name.
+       - insertFirst: The locale to place first, by default `nil`.
      */
-    func sorted(insertFirst locale: Element) -> [Element] {
-        var res = sorted().filter { $0 != locale }
-        res.insert(locale, at: 0)
-        return res
+    func sorted(
+        in locale: Locale,
+        insertFirst first: Element? = nil
+    ) -> [Element] {
+        sorted(
+            by: { $0.locale.localizedName(in: locale).lowercased() < $1.locale.localizedName(in: locale).lowercased() },
+            insertFirst: first
+        )
+    }
+
+    /**
+     Sort the collection by the provided sort comparator and
+     then optionally place a locale first in the result.
+
+     - Parameters:
+       - comparator: The sort comparator to use.
+       - insertFirst: The locale to place first, by default `nil`.
+     */
+    func sorted(
+        by comparator: (KeyboardLocale, KeyboardLocale) -> Bool,
+        insertFirst first: Element?
+    ) -> [Element] {
+        let sorted = self.sorted(by: comparator)
+        guard let first = first else { return sorted }
+        var filtered = sorted.filter { $0 != first }
+        filtered.insert(first, at: 0)
+        return filtered
     }
 }

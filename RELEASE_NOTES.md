@@ -16,6 +16,31 @@ Older versions are kept in the `Release_Notes` folder.
 
 
 
+## 7.3.1
+
+This release adds more name and sorting capabilities to the locale types.
+
+### ✨ New features
+
+* `KeyboardContext` has new locale setter functions.
+* `KeyboardLocale` has new `sorted` by name functions.
+* `Locale` has new `localizedName` and `sorted` by name functions.
+* `LocaleDirectionProvider` is a new protocol that exposes `Locale` extensions to DocC. 
+* `LocaleNameProvider` is a new protocol that exposes `Locale` name extensions to DocC. 
+
+### 💡 Behavior changes
+
+* `Locale` no longer capitalizes `localizedName` or `localizedLanguageName`.
+* `Locale` `localizedName` and `localizedLanguageName` are no longer optional.
+* `LocaleContextMenu` no logner sorts the keyboard context locales collection.
+
+### 🗑️ Deprecations
+
+* Some `KeyboardLocale` extensions that used the native locale have been deprecated.
+* Some `Locale` localization extensions were redundant and have been deprecated. 
+
+
+
 ## 7.3
 
 This version adds a first PREVIEW of dictation support. It's a very early version that is not yet tested, but your feedback is very important.

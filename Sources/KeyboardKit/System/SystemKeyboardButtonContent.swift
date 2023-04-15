@@ -94,7 +94,7 @@ private extension SystemKeyboardButtonContent {
 private extension SystemKeyboardButtonContent {
     
     var localeName: String {
-        keyboardContext.locale.localizedLanguageName ?? ""
+        keyboardContext.locale.localizedLanguageName
     }
     
     var shouldShowLocaleName: Bool {

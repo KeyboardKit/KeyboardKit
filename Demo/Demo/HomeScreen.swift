@@ -61,7 +61,6 @@ struct HomeScreen: View {
             }
         }
         .navigationViewStyle(.stack)
-        .environment(\.layoutDirection, isRtl ? .rightToLeft : .leftToRight)
     }
 }
 
@@ -72,6 +71,7 @@ extension HomeScreen {
             TextEditor(text: $text)
                 .frame(height: 100)
                 .keyboardAppearance(appearance)
+                .environment(\.layoutDirection, isRtl ? .rightToLeft : .leftToRight)
             Toggle(isOn: $isAppearanceDark) {
                 Text("Dark appearance")
             }

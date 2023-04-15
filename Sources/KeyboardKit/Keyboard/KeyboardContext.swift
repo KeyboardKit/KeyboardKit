@@ -18,6 +18,12 @@ import UIKit
  This class provides keyboard extensions with contextual and
  observable information about the keyboard extension itself.
 
+ You can use ``locale`` to get and set the raw locale of the
+ keyboard or use the various `setLocale(...)` functions that
+ support using both `Locale` and ``KeyboardLocale``. You can
+ use ``locales`` to set all the available locales, then call
+ ``selectNextLocale()`` to select the next available locale.
+
  KeyboardKit automatically creates an instance of this class
  and binds the created instance to the keyboard controller's
  ``KeyboardInputViewController/keyboardContext``.
@@ -298,24 +304,38 @@ public extension KeyboardContext {
     }
 
     /**
-     Set ``locale`` to the provided keyboard locale's locale.
+     Set ``keyboardType`` to the provided type.
      */
-    func setLocale(_ keyboardLocale: KeyboardLocale) {
-        locale = keyboardLocale.locale
+    func setKeyboardType(_ type: KeyboardType) {
+        keyboardType = type
     }
 
     /**
      Set ``locale`` to the provided locale.
      */
-    func setLocale(_ newLocale: Locale) {
-        locale = newLocale
+    func setLocale(_ locale: Locale) {
+        self.locale = locale
     }
 
     /**
-     Set ``keyboardType`` to the provided type.
+     Set ``locale`` to the provided keyboard locale's locale.
      */
-    func setKeyboardType(_ type: KeyboardType) {
-        keyboardType = type
+    func setLocale(_ locale: KeyboardLocale) {
+        self.locale = locale.locale
+    }
+
+    /**
+     Set ``locales`` to the provided locale.
+     */
+    func setLocales(_ locales: [Locale]) {
+        self.locales = locales
+    }
+
+    /**
+     Set ``locales`` to the provided keyboard locale locales.
+     */
+    func setLocales(_ locales: [KeyboardLocale]) {
+        self.locales = locales.map { $0.locale }
     }
 }
 

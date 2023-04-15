@@ -12,21 +12,39 @@ import KeyboardKitPro
 extension KeyboardLocale {
 
     /**
-     The default keyboard locale depends on if the demo uses
-     left-to-right or right-to-left locales.
+     The default locale depends on if the demo is LTR or RTL.
      */
     static var defaultDemoLocale: KeyboardLocale {
-        isRtlKeyboard ? .arabic : .english
+        isRtlDemo ? .arabic : .english
     }
 
     /**
-     This demo can either use left-to-right or right-to-left
-     locales, based on the keyboard configuration.
+     The demo locales depend on if the demo is LTR or RTL.
      */
     static var demoLocales: [KeyboardLocale] {
         KeyboardLocale.allCases
-            .filter { $0.isRightToLeft == isRtlKeyboard }
-            .sorted(insertFirst: .english)
+            .filter { $0.locale.isRightToLeft == isRtlDemo }
+            .sorted(insertFirst: defaultDemoLocale)
+    }
+}
+
+extension Locale {
+
+    /**
+     The default locale depends on if the demo is LTR or RTL.
+     */
+    static var defaultDemoLocale: Locale {
+        KeyboardLocale.defaultDemoLocale.locale
+    }
+}
+
+extension Collection where Element == Locale {
+
+    /**
+     The demo locales depend on if the demo is LTR or RTL.
+     */
+    static var demoLocales: [Locale] {
+        KeyboardLocale.demoLocales.map { $0.locale }
     }
 }
 
@@ -35,7 +53,7 @@ private extension KeyboardLocale {
     /**
      Determine whether or not the demo is an RTL keyboard.
      */
-    static var isRtlKeyboard: Bool {
+    static var isRtlDemo: Bool {
         Bundle.main.bundleIdentifier?.contains("rtl") == true
     }
 }
