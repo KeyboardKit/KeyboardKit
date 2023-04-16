@@ -13,10 +13,10 @@
 
 "done" = "հաստատել"; // System keyboard uses "արված է"
 "go" = "գնալ";
-"join" = "join";
+"join" = "միանալ";
 "ok" = "լավ";
 "return" = "վերադառնալ";
-"search" = "որոնում";
+"search" = "որոնել";
 "space" = "բացատ";
 
 "keyboardTypeAlphabetic" = "ԱԲԳ";
