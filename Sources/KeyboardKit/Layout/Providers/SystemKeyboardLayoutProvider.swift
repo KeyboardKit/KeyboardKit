@@ -158,10 +158,11 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
      */
     open func keyboardReturnAction(for context: KeyboardContext) -> KeyboardAction {
         #if os(iOS) || os(tvOS)
-        return context.textDocumentProxy.returnKeyType?.keyboardAction ?? .primary(.return)
-        #else
-        return .primary(.return)
+        let proxy = context.textDocumentProxy
+        let returnType = proxy.returnKeyType?.keyboardReturnKeyType
+        if let returnType { return .primary(returnType) }
         #endif
+        return .primary(.return)
     }
     
     /**

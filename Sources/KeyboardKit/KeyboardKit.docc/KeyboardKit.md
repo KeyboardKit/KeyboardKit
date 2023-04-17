@@ -111,6 +111,7 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardEnabledState``
 - ``KeyboardEnabledStateInspector``
 - ``KeyboardHostingController``
+- ``KeyboardReturnKeyType``
 - ``KeyboardTextContext``
 - ``NextKeyboardButton``
 - ``NextKeyboardController``
@@ -124,7 +125,6 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardActions``
 - ``KeyboardActionRows``
 - ``KeyboardActionHandler``
-- ``KeyboardActionMappable``
 - ``StandardKeyboardActionHandler``
 
 ### Appearance
@@ -310,7 +310,7 @@ KeyboardKit is available under the MIT license.
 - ``KKL10n``
 - ``LocaleContextMenu``
 - ``LocaleDictionary``
-- ``LocaleDirectionProvider``
+- ``LocaleDirectionAnalyzer``
 - ``LocaleFlagProvider``
 - ``LocaleNameProvider``
 - ``LocalizedService``

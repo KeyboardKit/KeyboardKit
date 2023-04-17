@@ -8,31 +8,21 @@
 
 import SwiftUI
 
-/**
- This protocol can be implemented by types that can return a
- ``KeyboardAction``.
-
- This protocol is implemented by `UIReturnKeyType` in `UIKit`.
- */
+@available(*, deprecated, message: "This protocol is deprecated.")
 public protocol KeyboardActionMappable {
 
-    /**
-     The keyboard action that this type maps to.
-     */
     var keyboardAction: KeyboardAction { get }
 }
-
 
 #if os(iOS) || os(tvOS)
 import UIKit
 
+@available(*, deprecated, message: "This extension is deprecated.")
 extension UIReturnKeyType: KeyboardActionMappable {}
 
 public extension UIReturnKeyType {
 
-    /**
-     The keyboard action that this return key type maps to.
-     */
+    @available(*, deprecated, message: "This extension is deprecated.")
     var keyboardAction: KeyboardAction {
         .primary(keyboardReturnKeyType)
     }

@@ -29,7 +29,8 @@ This release adds more locale features.
 
 ### 🗑️ Deprecations
 
-* `KeyboardAction.ReturnType` has been renamed to `KeyboardReturnKeyType`.
+* `KeyboardAction.ReturnType` is renamed to `KeyboardReturnKeyType`.
+* `KeyboardActionMappable` is deprecated.
 
 
 
