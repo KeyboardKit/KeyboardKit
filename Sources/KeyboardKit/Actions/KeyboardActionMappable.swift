@@ -10,8 +10,7 @@ import SwiftUI
 
 /**
  This protocol can be implemented by types that can return a
- ``KeyboardAction/ReturnType``, which is then be mapped to a
- ``KeyboardAction/primary(_:)`` action by ``keyboardAction``.
+ ``KeyboardAction``.
 
  This protocol is implemented by `UIReturnKeyType` in `UIKit`.
  */

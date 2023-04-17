@@ -14,6 +14,7 @@
 "ok" = "OK";
 "return" = "intro";
 "search" = "buscar";
+"send" = "send";
 "space" = "espacio";
 
 "keyboardTypeAlphabetic" = "ABC";

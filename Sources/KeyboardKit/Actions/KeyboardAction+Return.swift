@@ -41,8 +41,11 @@ public extension KeyboardAction {
         /// An ok key, which isn't actually used in native.
         case ok
 
-        /// A "search" key used in e.g. web search.
+        /// A search key used in e.g. web search.
         case search
+
+        /// A send key used in e.g. messaging apps.
+        case send
 
         /// A custom key with a custom title.
         case custom(title: String)
@@ -52,7 +55,7 @@ public extension KeyboardAction {
          ``KeyboardAction/custom(named:)``.
          */
         public static var allCases: [KeyboardAction.ReturnType] {
-            return [.return, .done, .go, .join, .newLine, .ok, .search]
+            [.return, .done, .go, .join, .newLine, .ok, .search, .send]
         }
     }
 }
@@ -71,6 +74,7 @@ public extension KeyboardAction.ReturnType {
         case .newLine: return "newLine"
         case .ok: return "ok"
         case .search: return "search"
+        case .send: return "send"
         case .custom(let title): return title
         }
     }
@@ -111,6 +115,7 @@ public extension KeyboardAction.ReturnType {
         case .return: return KKL10n.return.text(for: locale)
         case .ok: return KKL10n.ok.text(for: locale)
         case .search: return KKL10n.search.text(for: locale)
+        case .send: return KKL10n.send.text(for: locale)
         }
     }
 }

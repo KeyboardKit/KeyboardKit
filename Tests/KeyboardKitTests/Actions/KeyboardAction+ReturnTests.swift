@@ -31,12 +31,13 @@ final class KeyboardAction_ReturnTests: XCTestCase {
         assertId(for: .newLine, "newLine")
         assertId(for: .ok, "ok")
         assertId(for: .search, "search")
+        assertId(for: .send, "send")
         assertId(for: .custom(title: "foobar"), "foobar")
     }
 
     func testAllCasesReturnsAllTypesExceptCustom() {
         let cases = KeyboardAction.ReturnType.allCases
-        XCTAssertEqual(cases, [.return, .done, .go, .join, .newLine, .ok, .search])
+        XCTAssertEqual(cases, [.return, .done, .go, .join, .newLine, .ok, .search, .send])
     }
 
     func testStandardButtonImageIsValid() {
@@ -47,6 +48,7 @@ final class KeyboardAction_ReturnTests: XCTestCase {
         assertStandardButtonImage(for: .newLine, true)
         assertStandardButtonImage(for: .ok, false)
         assertStandardButtonImage(for: .search, false)
+        assertStandardButtonImage(for: .send, false)
         assertStandardButtonImage(for: .custom(title: "foobar"), false)
     }
 
@@ -58,6 +60,7 @@ final class KeyboardAction_ReturnTests: XCTestCase {
         assertStandardButtonText(for: .newLine, false)
         assertStandardButtonText(for: .ok, true)
         assertStandardButtonText(for: .search, true)
+        assertStandardButtonText(for: .send, true)
         assertStandardButtonText(for: .custom(title: "foobar"), true)
     }
 }

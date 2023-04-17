@@ -16,6 +16,17 @@ Older versions are kept in the `Release_Notes` folder.
 
 
 
+## 7.4
+
+This release adds more locale features.
+
+### ✨ New features
+
+* `KKL10n` has a new `send` key.
+* `KeyboardAction.ReturnType` has a new `send` case.
+
+
+
 ## 7.3.1
 
 This release adds more name and sorting capabilities to the locale types.
