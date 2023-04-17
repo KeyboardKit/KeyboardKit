@@ -22,7 +22,9 @@ This release adds more locale features.
 
 ### ✨ New features
 
+* `KKL10n` has a new `next` key.
 * `KKL10n` has a new `send` key.
+* `KeyboardAction.ReturnType` has a new `next` case.
 * `KeyboardAction.ReturnType` has a new `send` case.
 
 

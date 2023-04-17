@@ -11,7 +11,8 @@
 "done" = "Готово";
 "go" = "Перейти";
 "join" = "join";
-"ok" = "Ok";
+"next" = "next";
+"ok" = "OK";
 "return" = "Ввод";
 "search" = "Найти";
 "send" = "send";

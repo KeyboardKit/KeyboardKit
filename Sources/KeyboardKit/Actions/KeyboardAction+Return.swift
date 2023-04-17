@@ -26,25 +26,28 @@ public extension KeyboardAction {
         /// A return key that uses a return text and not an ⏎ icon.
         case `return`
 
-        /// A done key used in e.g. Calendar add location.
+        /// A done key used in e.g. Calendar, when adding a location.
         case done
 
-        /// A go key used in e.g. the Safari address bar.
+        /// A go key used in e.g. Mobile Safari, when entering a url.
         case go
 
-        /// A join key used when e.g. joining a wifi network.
+        /// A join key used in e.g. System Settings, when joining a wifi network with password.
         case join
 
-        /// A new line key used to force using a line arrow.
+        /// A return key that by default uses a ⏎ icon instead of return text.
         case newLine
+
+        /// A next key used in e.g. System Settings, when joining an enterprise wifi network with username and password.
+        case next
 
         /// An ok key, which isn't actually used in native.
         case ok
 
-        /// A search key used in e.g. web search.
+        /// A search key used in e.g. Mobile Safari, when typing in the google.com search field.
         case search
 
-        /// A send key used in e.g. messaging apps.
+        /// A send key used in e.g. some messaging apps (WeChat, QQ etc.) when typing in a chat text field.
         case send
 
         /// A custom key with a custom title.
@@ -55,7 +58,7 @@ public extension KeyboardAction {
          ``KeyboardAction/custom(named:)``.
          */
         public static var allCases: [KeyboardAction.ReturnType] {
-            [.return, .done, .go, .join, .newLine, .ok, .search, .send]
+            [.return, .done, .go, .join, .newLine, .next, .ok, .search, .send]
         }
     }
 }
@@ -72,6 +75,7 @@ public extension KeyboardAction.ReturnType {
         case .go: return "go"
         case .join: return "join"
         case .newLine: return "newLine"
+        case .next: return "next"
         case .ok: return "ok"
         case .search: return "search"
         case .send: return "send"
@@ -112,6 +116,7 @@ public extension KeyboardAction.ReturnType {
         case .go: return KKL10n.go.text(for: locale)
         case .join: return KKL10n.join.text(for: locale)
         case .newLine: return nil
+        case .next: return KKL10n.next.text(for: locale)
         case .return: return KKL10n.return.text(for: locale)
         case .ok: return KKL10n.ok.text(for: locale)
         case .search: return KKL10n.search.text(for: locale)

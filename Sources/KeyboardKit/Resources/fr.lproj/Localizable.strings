@@ -3,6 +3,7 @@
  KeyboardKit
 
  Created by Habaieb Abderahmane on 2021-05-02.
+ Copyright © 2021 Daniel Saidi. All rights reserved.
  */
 
 "locale" = "fr";
@@ -10,6 +11,7 @@
 "done" = "terminé";
 "go" = "accéder";
 "join" = "join";
+"next" = "next";
 "ok" = "OK";
 "return" = "retour";
 "search" = "rechercher";

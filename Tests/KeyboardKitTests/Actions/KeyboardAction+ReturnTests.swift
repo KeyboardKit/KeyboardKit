@@ -37,7 +37,7 @@ final class KeyboardAction_ReturnTests: XCTestCase {
 
     func testAllCasesReturnsAllTypesExceptCustom() {
         let cases = KeyboardAction.ReturnType.allCases
-        XCTAssertEqual(cases, [.return, .done, .go, .join, .newLine, .ok, .search, .send])
+        XCTAssertEqual(cases, [.return, .done, .go, .join, .newLine, .next, .ok, .search, .send])
     }
 
     func testStandardButtonImageIsValid() {

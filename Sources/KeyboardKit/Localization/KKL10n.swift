@@ -17,6 +17,7 @@ public enum KKL10n: String, CaseIterable, Identifiable {
     done,
     go,
     join,
+    next,
     ok,
     `return`,
     search,

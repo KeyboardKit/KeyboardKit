@@ -4,16 +4,14 @@
 
  Created by Daniel Saidi on 2022-12-30.
  Copyright © 2022 Daniel Saidi. All rights reserved.
-
- Discussion:
- https://github.com/KeyboardKit/KeyboardKit/commit/67495cb6164d7d0abf4d46cdd7eeb11ccc9e3ee0#r94667580
  */
 
 "locale" = "hy";
 
-"done" = "հաստատել"; // System keyboard uses "արված է"
+"done" = "հաստատել";
 "go" = "գնալ";
 "join" = "join";
+"next" = "next";
 "ok" = "լավ";
 "return" = "վերադառնալ";
 "search" = "որոնում";

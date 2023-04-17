@@ -11,6 +11,7 @@
 "done" = "done";
 "go" = "go";
 "join" = "join";
+"next" = "next";
 "ok" = "OK";
 "return" = "return";
 "search" = "search";
