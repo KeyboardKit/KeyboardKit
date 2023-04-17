@@ -11,9 +11,11 @@
 "done" = "valmis";
 "go" = "avaa";
 "join" = "join";
+"next" = "next";
 "ok" = "OK";
 "return" = "rivinvaihto";
 "search" = "etsi";
+"send" = "send";
 "space" = "väli";
 
 "keyboardTypeAlphabetic" = "ABC";

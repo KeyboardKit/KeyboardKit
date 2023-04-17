@@ -11,9 +11,11 @@
 "done" = "↵";
 "go" = "mur";
 "join" = "join";
+"next" = "next";
 "ok" = "OK";
 "return" = "↵";
 "search" = "tiftix";
+"send" = "send";
 "space" = "spazju";
 
 "keyboardTypeAlphabetic" = "ABC";

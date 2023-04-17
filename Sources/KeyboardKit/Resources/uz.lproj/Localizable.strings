@@ -11,9 +11,11 @@
 "done" = "Bajarildi";
 "go" = "Olg‘a";
 "join" = "join";
+"next" = "next";
 "ok" = "OK";
 "return" = "⮐";
 "search" = "Qidirmoq";
+"send" = "send";
 "space" = "bo‘shliq";
 
 "keyboardTypeAlphabetic" = "ABC";

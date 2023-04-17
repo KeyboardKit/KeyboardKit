@@ -11,9 +11,11 @@
 "done" = "déanta";
 "go" = "téigh";
 "join" = "join";
+"next" = "next";
 "ok" = "OK";
 "return" = "ar ais";
 "search" = "cuardaigh";
+"send" = "send";
 "space" = "spás";
 
 "keyboardTypeAlphabetic" = "ABC";

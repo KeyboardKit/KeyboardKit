@@ -11,9 +11,11 @@
 "done" = "Done";
 "go" = "Áfram";
 "join" = "join";
+"next" = "next";
 "ok" = "OK";
 "return" = "Venda";
 "search" = "Leita";
+"send" = "send";
 "space" = "Bil";
 
 "keyboardTypeAlphabetic" = "ABC";

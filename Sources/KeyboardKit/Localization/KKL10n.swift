@@ -17,9 +17,11 @@ public enum KKL10n: String, CaseIterable, Identifiable {
     done,
     go,
     join,
+    next,
     ok,
     `return`,
     search,
+    send,
     space,
     
     keyboardTypeAlphabetic,
@@ -100,7 +102,7 @@ struct KKL10n_Previews: PreviewProvider {
     
     static let context: KeyboardContext = {
         let context = KeyboardContext.preview
-        context.locale = KeyboardLocale.swedish.locale
+        context.locale = KeyboardLocale.norwegian.locale
         return context
     }()
     
@@ -112,10 +114,6 @@ struct KKL10n_Previews: PreviewProvider {
                         VStack(alignment: .leading) {
                             Text("default: \(item.text)")
                             Text("context: \(item.text(for: context))")
-                            Divider()
-                            ForEach(KeyboardLocale.allCases) {
-                                Text("\($0.id): \(item.text(for: $0))")
-                            }
                         }.font(.footnote)
                     }.padding(.vertical, 4)
                 }

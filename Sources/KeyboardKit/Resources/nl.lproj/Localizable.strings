@@ -11,9 +11,11 @@
 "done" = "gereed";
 "go" = "ga";
 "join" = "join";
+"next" = "next";
 "ok" = "OK";
 "return" = "return";
 "search" = "zoek";
+"send" = "send";
 "space" = "spatie";
 
 "keyboardTypeAlphabetic" = "ABC";

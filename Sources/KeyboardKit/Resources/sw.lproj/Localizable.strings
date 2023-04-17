@@ -11,9 +11,11 @@
 "done" = "kumaliza";
 "go" = "kwenda";
 "join" = "join";
+"next" = "next";
 "ok" = "OK";
 "return" = "kurudi";
 "search" = "kupata";
+"send" = "send";
 "space" = "nafasi";
 
 "keyboardTypeAlphabetic" = "ABC";

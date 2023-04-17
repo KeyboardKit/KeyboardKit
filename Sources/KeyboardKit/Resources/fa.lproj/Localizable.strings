@@ -6,19 +6,21 @@
   Copyright © 2021 Ardavan Kalhori. All rights reserved.
   */
 
- "locale" = "fa";
+"locale" = "fa";
 
- "done" = "انجام شد";
- "go" = "برو";
- "join" = "join";
+"done" = "انجام شد";
+"go" = "برو";
+"join" = "join";
+"next" = "next";
 "ok" = "OK";
- "return" = "↳";
- "search" = "جستجو";
- "space" = "فاصله";
+"return" = "↳";
+"search" = "جستجو";
+"send" = "send";
+"space" = "فاصله";
 
- "keyboardTypeAlphabetic" = "ا‌ب‌ج";
- "keyboardTypeNumeric" = "۱۲۳";
- "keyboardTypeSymbolic" = "#+=";
+"keyboardTypeAlphabetic" = "ا‌ب‌ج";
+"keyboardTypeNumeric" = "۱۲۳";
+"keyboardTypeSymbolic" = "#+=";
 
 "searchEmoji" = "";
 

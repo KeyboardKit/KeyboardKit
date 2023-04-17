@@ -11,9 +11,11 @@
 "done" = "done";
 "go" = "Μετάβαση";
 "join" = "join";
+"next" = "next";
 "ok" = "OK";
 "return" = "↵";
 "search" = "Εύρεση";
+"send" = "send";
 "space" = "διάστημα";
 
 "keyboardTypeAlphabetic" = "ABΓ";

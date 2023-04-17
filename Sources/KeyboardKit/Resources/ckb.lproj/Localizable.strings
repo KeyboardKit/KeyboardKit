@@ -11,9 +11,11 @@
 "done" = "تەواو";
 "go" = "بڕؤ";
 "join" = "join";
+"next" = "next";
 "ok" = "OK";
 "return" = "↳";
 "search" = "گەڕان";
+"send" = "send";
 "space" = "بۆشایی";
 
 "keyboardTypeAlphabetic" = "ا‌ب‌ج";

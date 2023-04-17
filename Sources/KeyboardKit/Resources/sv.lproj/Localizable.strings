@@ -11,9 +11,11 @@
 "done" = "klar";
 "go" = "OK";
 "join" = "anslut";
+"next" = "nästa";
 "ok" = "OK";
 "return" = "retur";
 "search" = "sök";
+"send" = "skicka";
 "space" = "mellanslag";
 
 "keyboardTypeAlphabetic" = "ABC";

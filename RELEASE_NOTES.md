@@ -16,6 +16,24 @@ Older versions are kept in the `Release_Notes` folder.
 
 
 
+## 7.4
+
+This release adds more locale features.
+
+### ✨ New features
+
+* `KKL10n` has a new `next` key.
+* `KKL10n` has a new `send` key.
+* `KeyboardReturnKeyType` has a new `next` case.
+* `KeyboardReturnKeyType` has a new `send` case.
+
+### 🗑️ Deprecations
+
+* `KeyboardAction.ReturnType` is renamed to `KeyboardReturnKeyType`.
+* `KeyboardActionMappable` is deprecated.
+
+
+
 ## 7.3.1
 
 This release adds more name and sorting capabilities to the locale types.

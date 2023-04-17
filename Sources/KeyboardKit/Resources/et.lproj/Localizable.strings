@@ -11,9 +11,11 @@
 "done" = "Valmis";
 "go" = "Mine";
 "join" = "join";
+"next" = "next";
 "ok" = "OK";
 "return" = "Sisestus";
 "search" = "Otsi";
+"send" = "send";
 "space" = "Tühik";
 
 "keyboardTypeAlphabetic" = "ABC";

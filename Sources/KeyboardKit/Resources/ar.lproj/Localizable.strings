@@ -11,9 +11,11 @@
 "done" = "تم";
 "go" = "اذهـب";
 "join" = "join";
+"next" = "next";
 "ok" = "OK";
 "return" = "↳";
 "search" = "بحث";
+"join" = "send";
 "space" = "مسافة";
 
 "keyboardTypeAlphabetic" = "ا‌ب‌ج";

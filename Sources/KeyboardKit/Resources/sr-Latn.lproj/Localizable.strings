@@ -11,9 +11,11 @@
 "done" = "urađeno";
 "go" = "kreni";
 "join" = "join";
+"next" = "next";
 "ok" = "OK";
 "return" = "↵";
 "search" = "pretraži";
+"send" = "send";
 "space" = "razmak";
 
 "keyboardTypeAlphabetic" = "ABC";

@@ -11,9 +11,11 @@
 "done" = "Hotovo";
 "go" = "Otevřít";
 "join" = "join";
+"next" = "next";
 "ok" = "OK";
 "return" = "Enter";
 "search" = "Hledat";
+"send" = "send";
 "space" = "Mezerník";
 
 "keyboardTypeAlphabetic" = "ABC";

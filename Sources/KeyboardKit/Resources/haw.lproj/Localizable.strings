@@ -11,9 +11,11 @@
 "done" = "Pau";
 "go" = "Hele";
 "join" = "join";
+"next" = "next";
 "ok" = "OK";
 "return" = "Kāhoʻi";
 "search" = "Huli iā";
+"send" = "send";
 "space" = "Kaʻahua";
 
 "keyboardTypeAlphabetic" = "ABC";

@@ -11,16 +11,18 @@
 "done" = "Готово";
 "go" = "Перейти";
 "join" = "Подкл.";
-"ok" = "Ок";
+"next" = "Далее";
+"ok" = "ОК";
 "return" = "Ввод";
 "search" = "Найти";
+"send" = "Отправить";
 "space" = "Пробел";
 
 "keyboardTypeAlphabetic" = "АБВ";
 "keyboardTypeNumeric" = "123";
 "keyboardTypeSymbolic" = "#+=";
 
-"searchEmoji" = "";
+"searchEmoji" = "Найти эмодзи";
 
 /* [😀] */ "Emoji.GrinningFace" = "";
 /* [😃] */ "Emoji.SmilingFaceWithOpenMouth" = "";

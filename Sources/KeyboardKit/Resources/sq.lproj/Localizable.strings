@@ -11,9 +11,11 @@
 "done" = "I kryer";
 "go" = "Shkoj";
 "join" = "join";
+"next" = "next";
 "ok" = "OK";
 "return" = "↵";
 "search" = "Kërkimi";
+"send" = "send";
 "space" = "hapësirë";
 
 "keyboardTypeAlphabetic" = "ABC";

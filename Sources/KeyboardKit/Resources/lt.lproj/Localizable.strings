@@ -11,9 +11,11 @@
 "done" = "Done";
 "go" = "Pirmyn";
 "join" = "join";
+"next" = "next";
 "ok" = "OK";
 "return" = "Vykdyti";
 "search" = "Paieška";
+"send" = "send";
 "space" = "Tarpas";
 
 "keyboardTypeAlphabetic" = "ABC";

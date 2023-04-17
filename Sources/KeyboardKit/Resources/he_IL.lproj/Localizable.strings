@@ -11,9 +11,11 @@
 "done" = "סיים";
 "go" = "המשך";
 "join" = "join";
+"next" = "next";
 "ok" = "OK";
 "return" = "חזור";
 "search" = "חפש";
+"send" = "send";
 "space" = "רווח";
 
 "keyboardTypeAlphabetic" = "אבג";

@@ -11,9 +11,11 @@
 "done" = "Selesai";
 "go" = "Pergi";
 "join" = "join";
+"next" = "next";
 "ok" = "OK";
 "return" = "⮐";
 "search" = "Cari";
+"send" = "send";
 "space" = "Space";
 
 "keyboardTypeAlphabetic" = "ABC";

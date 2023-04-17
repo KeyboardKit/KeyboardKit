@@ -1,5 +1,5 @@
 //
-//  KeyboardAction+ReturnTests.swift
+//  KeyboardReturnKeyTypeTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-01-05.
@@ -9,17 +9,17 @@
 import KeyboardKit
 import XCTest
 
-final class KeyboardAction_ReturnTests: XCTestCase {
+final class KeyboardReturnKeyTypeTests: XCTestCase {
 
-    func assertId(for type: KeyboardAction.ReturnType, _ expected: String) {
+    func assertId(for type: KeyboardReturnKeyType, _ expected: String) {
         XCTAssertEqual(type.id, expected)
     }
 
-    func assertStandardButtonImage(for type: KeyboardAction.ReturnType, _ expected: Bool) {
+    func assertStandardButtonImage(for type: KeyboardReturnKeyType, _ expected: Bool) {
         XCTAssertEqual(type.standardButtonImage(for: .current) != nil, expected)
     }
 
-    func assertStandardButtonText(for type: KeyboardAction.ReturnType, _ expected: Bool) {
+    func assertStandardButtonText(for type: KeyboardReturnKeyType, _ expected: Bool) {
         XCTAssertEqual(type.standardButtonText(for: .current) != nil, expected)
     }
 
@@ -31,12 +31,13 @@ final class KeyboardAction_ReturnTests: XCTestCase {
         assertId(for: .newLine, "newLine")
         assertId(for: .ok, "ok")
         assertId(for: .search, "search")
+        assertId(for: .send, "send")
         assertId(for: .custom(title: "foobar"), "foobar")
     }
 
     func testAllCasesReturnsAllTypesExceptCustom() {
-        let cases = KeyboardAction.ReturnType.allCases
-        XCTAssertEqual(cases, [.return, .done, .go, .join, .newLine, .ok, .search])
+        let cases = KeyboardReturnKeyType.allCases
+        XCTAssertEqual(cases, [.return, .done, .go, .join, .newLine, .next, .ok, .search, .send])
     }
 
     func testStandardButtonImageIsValid() {
@@ -47,6 +48,7 @@ final class KeyboardAction_ReturnTests: XCTestCase {
         assertStandardButtonImage(for: .newLine, true)
         assertStandardButtonImage(for: .ok, false)
         assertStandardButtonImage(for: .search, false)
+        assertStandardButtonImage(for: .send, false)
         assertStandardButtonImage(for: .custom(title: "foobar"), false)
     }
 
@@ -58,6 +60,26 @@ final class KeyboardAction_ReturnTests: XCTestCase {
         assertStandardButtonText(for: .newLine, false)
         assertStandardButtonText(for: .ok, true)
         assertStandardButtonText(for: .search, true)
+        assertStandardButtonText(for: .send, true)
         assertStandardButtonText(for: .custom(title: "foobar"), true)
     }
+
+    #if os(iOS) || os(tvOS)
+    func assertNativeMapping(
+        for type: UIReturnKeyType,
+        _ expected: KeyboardReturnKeyType
+    ) {
+        XCTAssertEqual(type.keyboardReturnKeyType, expected)
+    }
+
+    func testCanMapNativeReturnKeyType() {
+        assertNativeMapping(for: .default, .return)
+        assertNativeMapping(for: .done, .done)
+        assertNativeMapping(for: .go, .go)
+        assertNativeMapping(for: .join, .join)
+        assertNativeMapping(for: .next, .next)
+        assertNativeMapping(for: .search, .search)
+        assertNativeMapping(for: .send, .send)
+    }
+    #endif
 }

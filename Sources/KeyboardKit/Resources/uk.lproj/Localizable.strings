@@ -11,9 +11,11 @@
 "done" = "Готово";
 "go" = "Перейти";
 "join" = "join";
+"next" = "next";
 "ok" = "в порядку";
 "return" = "↵";
 "search" = "Пошук";
+"send" = "send";
 "space" = "Пробiл";
 
 "keyboardTypeAlphabetic" = "АБВ";
