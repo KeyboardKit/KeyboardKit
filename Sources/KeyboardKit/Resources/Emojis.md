@@ -1408,7 +1408,7 @@
 /* [🚹] */ "Emoji.MensSymbol" = "";
 /* [🚺] */ "Emoji.WomensSymbol" = "";
 /* [🚼] */ "Emoji.BabySymbol" = "";
-/* [⚧] */ "Emoji.MaleWithStrokeAndMaleAndFemaleSign" = "";
+/* [⚧️] */ "Emoji.MaleWithStrokeAndMaleAndFemaleSign" = "";
 /* [🚻] */ "Emoji.Restroom" = "";
 /* [🚮] */ "Emoji.PutLitterInItsPlaceSymbol" = "";
 /* [🎦] */ "Emoji.Cinema" = "";
@@ -1441,12 +1441,12 @@
 /* [*️⃣] */ "Emoji.*VariationSelector-16" = "";
 /* [⏏️] */ "Emoji.EjectSymbol" = "";
 /* [▶️] */ "Emoji.BlackRight-PointingTriangle" = "";
-/* [⏸] */ "Emoji.DoubleVerticalBar" = "";
-/* [⏯] */ "Emoji.BlackRight-PointingTriangleWithDoubleVerticalBar" = "";
-/* [⏹] */ "Emoji.BlackSquareForStop" = "";
-/* [⏺] */ "Emoji.BlackCircleForRecord" = "";
-/* [⏭] */ "Emoji.BlackRight-PointingDoubleTriangleWithVerticalBar" = "";
-/* [⏮] */ "Emoji.BlackLeft-PointingDoubleTriangleWithVerticalBar" = "";
+/* [⏸️] */ "Emoji.DoubleVerticalBar" = "";
+/* [⏯️] */ "Emoji.BlackRight-PointingTriangleWithDoubleVerticalBar" = "";
+/* [⏹️] */ "Emoji.BlackSquareForStop" = "";
+/* [⏺️] */ "Emoji.BlackCircleForRecord" = "";
+/* [⏭️] */ "Emoji.BlackRight-PointingDoubleTriangleWithVerticalBar" = "";
+/* [⏮️] */ "Emoji.BlackLeft-PointingDoubleTriangleWithVerticalBar" = "";
 /* [⏩] */ "Emoji.BlackRight-PointingDoubleTriangle" = "";
 /* [⏪] */ "Emoji.BlackLeft-PointingDoubleTriangle" = "";
 /* [⏫] */ "Emoji.BlackUp-PointingDoubleTriangle" = "";

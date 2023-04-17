@@ -22,19 +22,24 @@ This release adds more locale features.
 
 ### ✨ New features
 
+* `EmojiCategory` has new emojis for iOS 16.4, macOS 13.3, tvOS 16.4 and watchOS 9.4.
 * `KKL10n` has new `next` and `send` keys.
 * `KeyboardLocale.english` adds localizations for all emojis.
 * `KeyboardReturnKeyType` has new `next` and `send` cases.
 
 ### 👑 Pro changes
 
-* `KeyboardVersionInfo` is a new type that contains information about when certain emojis were introduced.
+* `Emoji` collections have a new `allAvailableInSystemVersion` that can filter out unavailable emojis.
+* `EmojiVersionInfo` is a new type that contains information about when certain emojis were introduced.
 
 ### 🗑️ Deprecations
 
 * `KeyboardAction.ReturnType` is renamed to `KeyboardReturnKeyType`.
 * `KeyboardActionMappable` is deprecated.
 
+### 🐛 Bug fixes
+
+* Some incorrect blue square emojis have been fixed.
 
 
 ## 7.3.1

@@ -97,7 +97,8 @@ public extension Character {
      Whether or not the character is a an emoji.
      */
     var isEmoji: Bool {
-        isCombinedEmoji || isSimpleEmoji
+        let iOS_16_4 = "🫨🫸🫷🪿🫎🪼🫏🪽🪻🫛🫚🪇🪈🪮🪭🩷🩵🩶🪯🛜"
+        return isCombinedEmoji || isSimpleEmoji || iOS_16_4.contains(self)
     }
 
     /**

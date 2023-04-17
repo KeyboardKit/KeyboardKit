@@ -56,7 +56,7 @@ final class EmojiCategoryTests: XCTestCase {
         XCTAssertEqual(firstEmoji(for: .foods), "🍏")
         XCTAssertEqual(firstEmoji(for: .objects), "⌚️")
         XCTAssertEqual(firstEmoji(for: .smileys), "😀")
-        XCTAssertEqual(firstEmoji(for: .symbols), "❤️")
+        XCTAssertEqual(firstEmoji(for: .symbols), "🩷")
         XCTAssertEqual(firstEmoji(for: .travels), "🚗")
     }
 
@@ -67,7 +67,7 @@ final class EmojiCategoryTests: XCTestCase {
         XCTAssertEqual(firstEmojiAction(for: .foods), .emoji(Emoji("🍏")))
         XCTAssertEqual(firstEmojiAction(for: .objects), .emoji(Emoji("⌚️")))
         XCTAssertEqual(firstEmojiAction(for: .smileys), .emoji(Emoji("😀")))
-        XCTAssertEqual(firstEmojiAction(for: .symbols), .emoji(Emoji("❤️")))
+        XCTAssertEqual(firstEmojiAction(for: .symbols), .emoji(Emoji("🩷")))
         XCTAssertEqual(firstEmojiAction(for: .travels), .emoji(Emoji("🚗")))
     }
 }
