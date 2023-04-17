@@ -24,6 +24,8 @@
 
 "searchEmoji" = "";
 
+/* [😀] */ "Emoji.GrinningFace" = "Leende ansikte";
+
 /**
  For emojis localization, copy the text in `Emojis.md`, then
  replace this comment with it and translate the keys.

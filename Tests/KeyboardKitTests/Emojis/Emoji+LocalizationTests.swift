@@ -25,7 +25,7 @@ import XCTest
  When the test case passes, all emojis are localized for the
  specified locale.
  */
-class Emoji_LocalizationTests: XCTestCase {
+final class Emoji_LocalizationTests: XCTestCase {
 
     func testLocalizationKeyIsKeyIdPrefixedWithEmoji() {
         let value = Emoji("😀").localizationKey

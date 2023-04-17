@@ -9,7 +9,7 @@
 import KeyboardKit
 import XCTest
 
-class EmojiKeyboardStyleTests: XCTestCase {
+final class EmojiKeyboardStyleTests: XCTestCase {
 
     func testStandardConfigurations() {
 

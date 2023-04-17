@@ -9,7 +9,7 @@
 import KeyboardKit
 import XCTest
 
-class EmojiStringAnalyzerTests: XCTestCase {
+final class EmojiStringAnalyzerTests: XCTestCase {
 
     class Analyzer: EmojiAnalyzer {}
 

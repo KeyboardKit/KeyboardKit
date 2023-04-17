@@ -9,7 +9,7 @@
 import KeyboardKit
 import XCTest
 
-class Emoji_SearchTests: XCTestCase {
+final class Emoji_SearchTests: XCTestCase {
 
     func testMatchesQueryMatchesOnCaseInsensitiveUnicodeName() {
         let emoji = Emoji("😀")

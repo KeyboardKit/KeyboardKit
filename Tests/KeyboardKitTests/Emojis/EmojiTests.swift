@@ -1,5 +1,5 @@
 //
-//  EmojiCategoryTests.swift
+//  EmojiTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-05-05.

@@ -26,6 +26,10 @@ This release adds more locale features.
 * `KeyboardLocale.english` adds localizations for all emojis.
 * `KeyboardReturnKeyType` has new `next` and `send` cases.
 
+### 👑 Pro changes
+
+* `KeyboardVersionInfo` is a new type that contains information about when certain emojis were introduced.
+
 ### 🗑️ Deprecations
 
 * `KeyboardAction.ReturnType` is renamed to `KeyboardReturnKeyType`.
@@ -87,6 +91,17 @@ Just reach out if these breaking changes cause problems.
 * `KeyboardInputViewController` has a `dictationService` that can be used to start dictation from your keyboard.
 * `KeyboardInputViewController` has re-added the old `hostBundleId` property, which can be used to get the ID of the parent app.
 
+### 👑 Pro changes
+
+* `KeyboardTheme` has a new `styleName` property.
+* `KeyboardTheme` can now support style variations.
+* `KeyboardTheme` has many new themes with style variations.
+* `KeyboardTheme` has a new `grouped` function that groups themes into named collections.
+* `KeyboardThemeCollection` is a new type that can be used to group themes into named collections.
+* `PreviousAppNavigator` is a new protocol that can be used to navigate back to the recently open app.
+* `StandardDictationService` is a new service that can be used to perform dictation within an app target.
+* `StandardKeyboardDictationService` is a new service that can be used to start dictation from a keyboard extension. 
+
 ### 💡 Behavior changes
 
 The following types are now `Codable` and `Equatable`:
@@ -103,17 +118,6 @@ The following types are now `Codable` and `Equatable`:
 * `KeyboardCalloutStyle`
 * `KeyboardInputCalloutStyle`
 * `KeyboardTheme`
-
-### 👑 Pro changes
-
-* `KeyboardTheme` has a new `styleName` property.
-* `KeyboardTheme` can now support style variations.
-* `KeyboardTheme` has many new themes with style variations.
-* `KeyboardTheme` has a new `grouped` function that groups themes into named collections.
-* `KeyboardThemeCollection` is a new type that can be used to group themes into named collections.
-* `PreviousAppNavigator` is a new protocol that can be used to navigate back to the recently open app.
-* `StandardDictationService` is a new service that can be used to perform dictation within an app target.
-* `StandardKeyboardDictationService` is a new service that can be used to start dictation from a keyboard extension. 
 
 ### 🗑️ Deprecations
 
