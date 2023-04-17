@@ -10,7 +10,7 @@ import KeyboardKit
 import MockingKit
 import XCTest
 
-class MostRecentEmojiProviderTests: XCTestCase {
+final class MostRecentEmojiProviderTests: XCTestCase {
 
     var defaults: MockUserDefaults!
     var provider: MostRecentEmojiProvider!

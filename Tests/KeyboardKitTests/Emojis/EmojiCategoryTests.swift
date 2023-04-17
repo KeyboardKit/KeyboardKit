@@ -9,7 +9,7 @@
 import KeyboardKit
 import XCTest
 
-class EmojiCategoryTests: XCTestCase {
+final class EmojiCategoryTests: XCTestCase {
 
     func fallbackEmoji(for category: EmojiCategory) -> String {
         category.fallbackDisplayEmoji.char
