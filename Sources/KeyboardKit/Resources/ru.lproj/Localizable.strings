@@ -10,19 +10,19 @@
 
 "done" = "Готово";
 "go" = "Перейти";
-"join" = "join";
-"next" = "next";
-"ok" = "OK";
+"join" = "Подкл.";
+"next" = "Далее";
+"ok" = "ОК";
 "return" = "Ввод";
 "search" = "Найти";
-"send" = "send";
+"send" = "Отправить";
 "space" = "Пробел";
 
 "keyboardTypeAlphabetic" = "АБВ";
 "keyboardTypeNumeric" = "123";
 "keyboardTypeSymbolic" = "#+=";
 
-"searchEmoji" = "";
+"searchEmoji" = "Найти эмодзи";
 
 /**
  For emojis localization, copy the text in `Emojis.md`, then

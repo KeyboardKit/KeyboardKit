@@ -10,19 +10,19 @@
 
 "done" = "հաստատել";
 "go" = "գնալ";
-"join" = "join";
-"next" = "next";
+"join" = "միանալ";
+"next" = "հաջորդը";
 "ok" = "լավ";
 "return" = "վերադառնալ";
-"search" = "որոնում";
-"send" = "send";
+"search" = "որոնել";
+"send" = "ուղարկել";
 "space" = "բացատ";
 
 "keyboardTypeAlphabetic" = "ԱԲԳ";
 "keyboardTypeNumeric" = "123";
 "keyboardTypeSymbolic" = "#+=";
 
-"searchEmoji" = "";
+"searchEmoji" = "Որոնել էմոձի";
 
 /**
  For emojis localization, copy the text in `Emojis.md`, then
