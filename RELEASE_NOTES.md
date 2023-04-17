@@ -23,9 +23,14 @@ This release adds more locale features.
 ### ✨ New features
 
 * `EmojiCategory` has new emojis for iOS 16.4, macOS 13.3, tvOS 16.4 and watchOS 9.4.
-* `KKL10n` has new `next` and `send` keys.
-* `KeyboardLocale.english` adds localizations for all emojis.
 * `KeyboardReturnKeyType` has new `next` and `send` cases.
+
+### 🌐 Localization
+
+* `KKL10n` has new `next` and `send` keys.
+* `KeyboardLocale.armenian` localizes more texts.
+* `KeyboardLocale.english` adds localizations for all emojis.
+* `KeyboardLocale.russian` localizes more texts.
 
 ### 👑 Pro changes
 
