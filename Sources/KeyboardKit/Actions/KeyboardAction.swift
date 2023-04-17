@@ -85,7 +85,7 @@ public enum KeyboardAction: Codable, Equatable {
     case option
     
     /// Represents a primary return button, e.g. `return`, `go`, `search` etc.
-    case primary(ReturnType)
+    case primary(KeyboardReturnKeyType)
     
     /// A custom action that can be used to e.g. show a settings screen.
     case settings

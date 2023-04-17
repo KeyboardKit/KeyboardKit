@@ -24,8 +24,12 @@ This release adds more locale features.
 
 * `KKL10n` has a new `next` key.
 * `KKL10n` has a new `send` key.
-* `KeyboardAction.ReturnType` has a new `next` case.
-* `KeyboardAction.ReturnType` has a new `send` case.
+* `KeyboardReturnKeyType` has a new `next` case.
+* `KeyboardReturnKeyType` has a new `send` case.
+
+### 🗑️ Deprecations
+
+* `KeyboardAction.ReturnType` has been renamed to `KeyboardReturnKeyType`.
 
 
 
