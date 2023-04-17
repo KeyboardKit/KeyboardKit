@@ -18,19 +18,23 @@ Older versions are kept in the `Release_Notes` folder.
 
 ## 7.4
 
-This release adds more locale features.
+This release adds support for 🇰🇿 Kazakh and more locale and emoji features.
 
 ### ✨ New features
 
 * `EmojiCategory` has new emojis for iOS 16.4, macOS 13.3, tvOS 16.4 and watchOS 9.4.
 * `KeyboardReturnKeyType` has new `next` and `send` cases.
 
+### 🌐 New Locales
+
+* 🇰🇿 Kazakh (thanks to @mirasaujan)
+
 ### 🌐 Localization
 
 * `KKL10n` has new `next` and `send` keys.
-* `KeyboardLocale.armenian` localizes more texts.
+* `KeyboardLocale.armenian` localizes more texts (thanks to @f-person).
 * `KeyboardLocale.english` adds localizations for all emojis.
-* `KeyboardLocale.russian` localizes more texts.
+* `KeyboardLocale.russian` localizes more texts (thanks to @f-person).
 
 ### 👑 Pro changes
 
@@ -45,6 +49,7 @@ This release adds more locale features.
 ### 🐛 Bug fixes
 
 * Some incorrect blue square emojis have been fixed.
+
 
 
 ## 7.3.1
