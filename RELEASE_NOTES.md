@@ -22,10 +22,9 @@ This release adds more locale features.
 
 ### ✨ New features
 
-* `KKL10n` has a new `next` key.
-* `KKL10n` has a new `send` key.
-* `KeyboardReturnKeyType` has a new `next` case.
-* `KeyboardReturnKeyType` has a new `send` case.
+* `KKL10n` has new `next` and `send` keys.
+* `KeyboardLocale.english` adds localizations for all emojis.
+* `KeyboardReturnKeyType` has new `next` and `send` cases.
 
 ### 🗑️ Deprecations
 
