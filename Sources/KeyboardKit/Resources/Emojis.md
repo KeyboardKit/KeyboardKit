@@ -76,6 +76,7 @@
 /* [😐] */ "Emoji.NeutralFace" = "";
 /* [🫤] */ "Emoji.FaceWithDiagonalMouth" = "";
 /* [😑] */ "Emoji.ExpressionlessFace" = "";
+/* [🫨] */ "Emoji.ShakingFace" = "";
 /* [😬] */ "Emoji.GrimacingFace" = "";
 /* [🙄] */ "Emoji.FaceWithRollingEyes" = "";
 /* [😯] */ "Emoji.HushedFace" = "";
@@ -134,6 +135,8 @@
 /* [✊] */ "Emoji.RaisedFist" = "";
 /* [🤛] */ "Emoji.Left-FacingFist" = "";
 /* [🤜] */ "Emoji.Right-FacingFist" = "";
+/* [🫷] */ "Emoji.LeftwardsPushingHand" = "";
+/* [🫸] */ "Emoji.RightwardsPushingHand" = "";
 /* [🤞] */ "Emoji.HandWithIndexAndMiddleFingersCrossed" = "";
 /* [✌️] */ "Emoji.VictoryHand" = "";
 /* [🫰] */ "Emoji.HandWithIndexFingerAndThumbCrossed" = "";
@@ -478,6 +481,7 @@
 /* [🕶] */ "Emoji.DarkSunglasses" = "";
 /* [🥽] */ "Emoji.Goggles" = "";
 /* [🌂] */ "Emoji.ClosedUmbrella" = "";
+
 /* [🐶] */ "Emoji.DogFace" = "";
 /* [🐱] */ "Emoji.CatFace" = "";
 /* [🐭] */ "Emoji.MouseFace" = "";
@@ -504,6 +508,7 @@
 /* [🐦] */ "Emoji.Bird" = "";
 /* [🐤] */ "Emoji.BabyChick" = "";
 /* [🐣] */ "Emoji.HatchingChick" = "";
+/* [🪿] */ "Emoji.Goose" = "";
 /* [🐥] */ "Emoji.Front-FacingBabyChick" = "";
 /* [🦆] */ "Emoji.Duck" = "";
 /* [🦅] */ "Emoji.Eagle" = "";
@@ -513,6 +518,7 @@
 /* [🐗] */ "Emoji.Boar" = "";
 /* [🐴] */ "Emoji.HorseFace" = "";
 /* [🦄] */ "Emoji.UnicornFace" = "";
+/* [🫎] */ "Emoji.Moose" = "";
 /* [🐝] */ "Emoji.Honeybee" = "";
 /* [🪱] */ "Emoji.Worm" = "";
 /* [🐛] */ "Emoji.Bug" = "";
@@ -535,6 +541,7 @@
 /* [🦕] */ "Emoji.Sauropod" = "";
 /* [🐙] */ "Emoji.Octopus" = "";
 /* [🦑] */ "Emoji.Squid" = "";
+/* [🪼] */ "Emoji.Jellyfish" = "";
 /* [🦐] */ "Emoji.Shrimp" = "";
 /* [🦞] */ "Emoji.Lobster" = "";
 /* [🦀] */ "Emoji.Crab" = "";
@@ -563,6 +570,7 @@
 /* [🦬] */ "Emoji.Bison" = "";
 /* [🐃] */ "Emoji.WaterBuffalo" = "";
 /* [🐂] */ "Emoji.Ox" = "";
+/* [🫏] */ "Emoji.Donkey" = "";
 /* [🐄] */ "Emoji.Cow" = "";
 /* [🐎] */ "Emoji.Horse" = "";
 /* [🐖] */ "Emoji.Pig" = "";
@@ -578,6 +586,7 @@
 /* [🐈] */ "Emoji.Cat" = "";
 /* [🐈‍⬛] */ "Emoji.Cat" = "";
 /* [🪶] */ "Emoji.Feather" = "";
+/* [🪽] */ "Emoji.Wing" = "";
 /* [🐓] */ "Emoji.Rooster" = "";
 /* [🦃] */ "Emoji.Turkey" = "";
 /* [🦤] */ "Emoji.Dodo" = "";
@@ -627,6 +636,7 @@
 /* [🌷] */ "Emoji.Tulip" = "";
 /* [🌹] */ "Emoji.Rose" = "";
 /* [🥀] */ "Emoji.WiltedFlower" = "";
+/* [🪻] */ "Emoji.Hyacinth" = "";
 /* [🪷] */ "Emoji.Lotus" = "";
 /* [🌺] */ "Emoji.Hibiscus" = "";
 /* [🌸] */ "Emoji.CherryBlossom" = "";
@@ -682,6 +692,7 @@
 /* [☂️] */ "Emoji.Umbrella" = "";
 /* [🌊] */ "Emoji.WaterWave" = "";
 /* [🌫] */ "Emoji.Fog" = "";
+
 /* [🍏] */ "Emoji.GreenApple" = "";
 /* [🍎] */ "Emoji.RedApple" = "";
 /* [🍐] */ "Emoji.Pear" = "";
@@ -702,6 +713,7 @@
 /* [🍅] */ "Emoji.Tomato" = "";
 /* [🍆] */ "Emoji.Aubergine" = "";
 /* [🥑] */ "Emoji.Avocado" = "";
+/* [🫛] */ "Emoji.PeaPod" = "";
 /* [🥦] */ "Emoji.Broccoli" = "";
 /* [🥬] */ "Emoji.LeafyGreen" = "";
 /* [🥒] */ "Emoji.Cucumber" = "";
@@ -714,6 +726,7 @@
 /* [🧅] */ "Emoji.Onion" = "";
 /* [🥔] */ "Emoji.Potato" = "";
 /* [🍠] */ "Emoji.RoastedSweetPotato" = "";
+/* [🫚] */ "Emoji.GingerRoot" = "";
 /* [🥐] */ "Emoji.Croissant" = "";
 /* [🥯] */ "Emoji.Bagel" = "";
 /* [🍞] */ "Emoji.Bread" = "";
@@ -808,6 +821,7 @@
 /* [🥡] */ "Emoji.TakeoutBox" = "";
 /* [🥢] */ "Emoji.Chopsticks" = "";
 /* [🧂] */ "Emoji.SaltShaker" = "";
+
 /* [⚽️] */ "Emoji.SoccerBall" = "";
 /* [🏀] */ "Emoji.BasketballAndHoop" = "";
 /* [🏈] */ "Emoji.AmericanFootball" = "";
@@ -911,6 +925,7 @@
 /* [🎧] */ "Emoji.Headphone" = "";
 /* [🎼] */ "Emoji.MusicalScore" = "";
 /* [🎹] */ "Emoji.MusicalKeyboard" = "";
+/* [🪇] */ "Emoji.Maracas" = "";
 /* [🥁] */ "Emoji.DrumWithDrumsticks" = "";
 /* [🪘] */ "Emoji.LongDrum" = "";
 /* [🎷] */ "Emoji.Saxophone" = "";
@@ -919,6 +934,7 @@
 /* [🎸] */ "Emoji.Guitar" = "";
 /* [🪕] */ "Emoji.Banjo" = "";
 /* [🎻] */ "Emoji.Violin" = "";
+/* [🪈] */ "Emoji.Flute" = "";
 /* [🎲] */ "Emoji.GameDie" = "";
 /* [♟] */ "Emoji.BlackChessPawn" = "";
 /* [🎯] */ "Emoji.DirectHit" = "";
@@ -926,6 +942,7 @@
 /* [🎮] */ "Emoji.VideoGame" = "";
 /* [🎰] */ "Emoji.SlotMachine" = "";
 /* [🧩] */ "Emoji.JigsawPuzzlePiece" = "";
+
 /* [🚗] */ "Emoji.Automobile" = "";
 /* [🚕] */ "Emoji.Taxi" = "";
 /* [🚙] */ "Emoji.RecreationalVehicle" = "";
@@ -1057,6 +1074,7 @@
 /* [🌌] */ "Emoji.MilkyWay" = "";
 /* [🌉] */ "Emoji.BridgeAtNight" = "";
 /* [🌁] */ "Emoji.Foggy" = "";
+
 /* [⌚️] */ "Emoji.Watch" = "";
 /* [📱] */ "Emoji.MobilePhone" = "";
 /* [📲] */ "Emoji.MobilePhoneWithRightwardsArrowAtLeft" = "";
@@ -1177,6 +1195,7 @@
 /* [🪥] */ "Emoji.Toothbrush" = "";
 /* [🪒] */ "Emoji.Razor" = "";
 /* [🧽] */ "Emoji.Sponge" = "";
+/* [🪮] */ "Emoji.HairPick" = "";
 /* [🪣] */ "Emoji.Bucket" = "";
 /* [🧴] */ "Emoji.LotionBottle" = "";
 /* [🛎] */ "Emoji.BellhopBell" = "";
@@ -1203,6 +1222,7 @@
 /* [🎊] */ "Emoji.ConfettiBall" = "";
 /* [🎉] */ "Emoji.PartyPopper" = "";
 /* [🎎] */ "Emoji.JapaneseDolls" = "";
+/* [🪭] */ "Emoji.FoldingHandFan" = "";
 /* [🏮] */ "Emoji.IzakayaLantern" = "";
 /* [🎐] */ "Emoji.WindChime" = "";
 /* [🪩] */ "Emoji.MirrorBall" = "";
@@ -1279,13 +1299,17 @@
 /* [🔐] */ "Emoji.ClosedLockWithKey" = "";
 /* [🔒] */ "Emoji.Lock" = "";
 /* [🔓] */ "Emoji.OpenLock" = "";
+
+/* [🩷] */ "Emoji.PinkHeart" = "";
 /* [❤️] */ "Emoji.HeavyBlackHeart" = "";
 /* [🧡] */ "Emoji.OrangeHeart" = "";
 /* [💛] */ "Emoji.YellowHeart" = "";
 /* [💚] */ "Emoji.GreenHeart" = "";
+/* [🩵] */ "Emoji.LightBlueHeart" = "";
 /* [💙] */ "Emoji.BlueHeart" = "";
 /* [💜] */ "Emoji.PurpleHeart" = "";
 /* [🖤] */ "Emoji.BlackHeart" = "";
+/* [🩶] */ "Emoji.GreyHeart" = "";
 /* [🤍] */ "Emoji.WhiteHeart" = "";
 /* [🤎] */ "Emoji.BrownHeart" = "";
 /* [💔] */ "Emoji.BrokenHeart" = "";
@@ -1305,6 +1329,7 @@
 /* [☪️] */ "Emoji.StarAndCrescent" = "";
 /* [🕉] */ "Emoji.OmSymbol" = "";
 /* [☸️] */ "Emoji.WheelOfDharma" = "";
+/* [🪯] */ "Emoji.Khanda" = "";
 /* [✡️] */ "Emoji.StarOfDavid" = "";
 /* [🔯] */ "Emoji.SixPointedStarWithMiddleDot" = "";
 /* [🕎] */ "Emoji.MenorahWithNineBranches" = "";
@@ -1405,6 +1430,7 @@
 /* [🛃] */ "Emoji.Customs" = "";
 /* [🛄] */ "Emoji.BaggageClaim" = "";
 /* [🛅] */ "Emoji.LeftLuggage" = "";
+/* [🛜] */ "Emoji.Wireless" = "";
 /* [🚹] */ "Emoji.MensSymbol" = "";
 /* [🚺] */ "Emoji.WomensSymbol" = "";
 /* [🚼] */ "Emoji.BabySymbol" = "";
@@ -1572,6 +1598,7 @@
 /* [🕥] */ "Emoji.ClockFaceTen-Thirty" = "";
 /* [🕦] */ "Emoji.ClockFaceEleven-Thirty" = "";
 /* [🕧] */ "Emoji.ClockFaceTwelve-Thirty" = "";
+
 /* [🏳️] */ "Emoji.WhiteFlag" = "";
 /* [🏴] */ "Emoji.BlackFlag" = "";
 /* [🏴‍☠️] */ "Emoji.PirateFlag" = "";
