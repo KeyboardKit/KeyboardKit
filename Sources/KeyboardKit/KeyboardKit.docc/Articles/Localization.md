@@ -10,7 +10,7 @@ In KeyboardKit, the ``KeyboardLocale`` enum defines keyboard-specific locales. E
 
 ## Supported locales
 
-KeyboardKit supports 60 keyboard-specific locales:
+KeyboardKit supports 61 keyboard-specific locales:
 
 🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🇭🇷 🇨🇿 🇩🇰 <br />
 
@@ -18,11 +18,13 @@ KeyboardKit supports 60 keyboard-specific locales:
 
 🇧🇪 🇨🇭 🇬🇪 🇩🇪 🇦🇹 🇨🇭 🇬🇷 🇺🇸 🇮🇱 🇭🇺 <br />
 
-🇮🇸 🇮🇩 🇮🇪 🇮🇹 🇹🇯 🇹🇯 🇹🇯 🇱🇻 🇱🇹 🇲🇰 <br />
+🇮🇸 🇮🇩 🇮🇪 🇮🇹 🇰🇿 🇹🇯 🇹🇯 🇹🇯 🇱🇻 🇱🇹 <br />
 
-🇲🇾 🇲🇹 🇲🇳 🇳🇴 🇮🇷 🇵🇱 🇵🇹 🇧🇷 🇷🇴 🇷🇺 <br />
+🇲🇰 🇲🇾 🇲🇹 🇲🇳 🇳🇴 🇮🇷 🇵🇱 🇵🇹 🇧🇷 🇷🇴 <br />
 
-🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 🇹🇷 🇺🇦 🇺🇿 <br />
+🇷🇺 🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 🇹🇷 🇺🇦 <br />
+
+🇺🇿 <br />
 
 Each keyboard locale refers to a native `Locale`s and have additional flag information as well as localized strings that can be translated using the ``KKL10n`` enum. All other locale-specific information can be retrieved from the native ``KeyboardLocale/locale``, such as the localized name, text and line direction etc.
 

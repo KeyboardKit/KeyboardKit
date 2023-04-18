@@ -69,6 +69,7 @@ class Locale_LocalizedTests: XCTestCase {
             .indonesian: "Indonesia",
             .irish: "Gaeilge (Éire)",
             .italian: "italiano",
+            .kazakh: "қазақ тілі",
             .kurdish_sorani: "کوردیی ناوەندی",
             .kurdish_sorani_arabic: "کوردیی ناوەندی (عێراق)",
             .kurdish_sorani_pc: "کوردیی ناوەندی" + " (PC)",

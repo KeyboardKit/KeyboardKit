@@ -76,7 +76,7 @@ This will make KeyboardKit use your custom implementation everywhere instead of 
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks additional keyboard layouts and keyboard layout providers for the 60 locales it supports. 
+[KeyboardKit Pro][Pro] unlocks additional keyboard layouts and keyboard layout providers for all keyboard locales. 
 
 This lets you create a fully localized ``SystemKeyboard`` for all available locales with a single line of code.
 

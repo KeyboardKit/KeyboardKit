@@ -87,7 +87,7 @@ Have a look at ``SystemKeyboard`` and the demo apps for examples on how this can
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks additional callout actions for the 60 locales it supports. 
+[KeyboardKit Pro][Pro] unlocks additional callout actions for all keyboard locales it supports. 
 
 This lets you create a fully localized ``SystemKeyboard`` for all available locales with a single line of code.
 

@@ -82,8 +82,6 @@ class LocaleAnalyzerProviderTests: XCTestCase {
         XCTAssertEqual(isRightToLeft("zh_Hant_TW"), false)
     }
 
-
-
     func testTextDirectionIsValidForAllKeyboardLocales() {
         let map = KeyboardLocale.allCases.map { ($0, ($0.locale.isLeftToRight, $0.locale.isRightToLeft)) }
         let result = Dictionary(uniqueKeysWithValues: map)
@@ -122,6 +120,7 @@ class LocaleAnalyzerProviderTests: XCTestCase {
             .indonesian: (true, false),
             .irish: (true, false),
             .italian: (true, false),
+            .kazakh: (true, false),
             .kurdish_sorani: (false, true),
             .kurdish_sorani_arabic: (false, true),
             .kurdish_sorani_pc: (false, true),
