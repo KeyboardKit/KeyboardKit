@@ -79,6 +79,10 @@ KeyboardKit is available under the MIT license.
 
 - <doc:Getting-Started>
 
+### Essentials
+
+- <doc:Keyboard>
+
 ### Articles
 
 - <doc:Actions>
@@ -91,7 +95,6 @@ KeyboardKit is available under the MIT license.
 - <doc:Feedback>
 - <doc:Gestures>
 - <doc:Input>
-- <doc:Keyboard>
 - <doc:Layout>
 - <doc:Localization>
 - <doc:Previews>
