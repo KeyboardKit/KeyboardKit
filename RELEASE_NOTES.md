@@ -40,7 +40,11 @@ This release adds support for 🇰🇿 Kazakh and more locale and emoji features
 
 * `Emoji` collections have a new `allAvailableInSystemVersion` that can filter out unavailable emojis.
 * `EmojiVersionInfo` is a new type that contains information about when certain emojis were introduced.
-* `ProEmojiInfo` is deprecated in favor of just using the already defined `Emoji` extensions. 
+* `ProEmojiInfo` is deprecated in favor of just using the already defined `Emoji` extensions.
+* `KeyboardTheme` `.candy` is renamed to `.candyShop`.
+* `KeyboardTheme` `.candyShop(.cuppyCake)` is a new green and blue theme.
+* `KeyboardTheme.CandyStyle` is renamed to `CandyShopStyle`.  
+
 
 ### 🗑️ Deprecations
 

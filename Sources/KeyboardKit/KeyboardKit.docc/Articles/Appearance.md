@@ -107,7 +107,7 @@ A ``KeyboardTheme`` can be used to define a bunch of styles, such as button and 
 KeyboardTheme.standard
 KeyboardTheme.swifty
 KeyboardTheme.minimal
-KeyboardTheme.candy
+KeyboardTheme.candyShop
 KeyboardTheme.neon
 KeyboardTheme.tron
 ```
@@ -118,7 +118,7 @@ All pre-defined themes also come with style variations that allow you to tweak t
 KeyboardTheme.standard(.pink)
 KeyboardTheme.swifty(.blue)
 KeyboardTheme.minimal(.midnight)
-KeyboardTheme.candy(.cottonCandy)
+KeyboardTheme.candyShop(.cottonCandy)
 KeyboardTheme.neon(.night)
 KeyboardTheme.tron(.sark)
 ```
