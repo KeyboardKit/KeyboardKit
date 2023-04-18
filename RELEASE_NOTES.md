@@ -40,6 +40,7 @@ This release adds support for 🇰🇿 Kazakh and more locale and emoji features
 
 * `Emoji` collections have a new `allAvailableInSystemVersion` that can filter out unavailable emojis.
 * `EmojiVersionInfo` is a new type that contains information about when certain emojis were introduced.
+* `ProEmojiInfo` is deprecated in favor of just using the already defined `Emoji` extensions. 
 
 ### 🗑️ Deprecations
 

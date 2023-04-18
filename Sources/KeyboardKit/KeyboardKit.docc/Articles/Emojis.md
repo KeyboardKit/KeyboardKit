@@ -9,7 +9,7 @@ KeyboardKit provides you with an ``Emoji`` struct, an ``EmojiCategory`` enum, an
 
 ## Emojis
 
-KeyboardKit has an ``Emoji`` struct that lets you handle emojis in a structured way.:
+KeyboardKit has an ``Emoji`` struct that lets you handle emojis in a structured way:
 
 ```swift
 let emoji = Emoji("😀")
@@ -30,7 +30,7 @@ emoji.unicodeName // -> Grinning Face
 emoji.localizedName(for: .swedish) // -> Leende Ansikte
 ```
 
-[KeyboardKit Pro][Pro] also adds support for skin tone variants. See more about this further down.
+Each emoji can also be localized with the localized files found in the `Sources/Resources` folder. Take a look at `en.lproj/Localizable.strings` for examples.
 
 
 
@@ -43,7 +43,7 @@ let category = EmojiCategory.animals
 let emojis = category.emojis    // 🐶🐱🐭🐹🐰🦊🐻🐼🐻‍❄️🐨 ...
 ```
 
-You can get all available categories like this:
+You can get a list of all available categories like this:
 
 ```swift
 let categories = EmojiCategory.all
@@ -55,7 +55,7 @@ There is also a `.frequent` category that is handled with a ``FrequentEmojiProvi
 
 ## Views
 
-KeyboardKit has an ``EmojiKeyboard`` that can lists emojis in a grid, as well as an ``EmojiCategoryKeyboard`` that replicates the iOS emoji keyboard by listing the provided categories and their emojis. They can both be styled with an ``EmojiKeyboardStyle``.
+KeyboardKit has an ``EmojiKeyboard`` that lists emojis in a grid, as well as an ``EmojiCategoryKeyboard`` that replicates the iOS emoji keyboard by listing the provided categories and their emojis. They can both be styled with an ``EmojiKeyboardStyle``.
 
 
 
@@ -72,9 +72,45 @@ To localize emojis for a certain locale, simply add localized strings for the va
 [KeyboardKit Pro][Pro] unlocks additional emoji capabilities.
 
 
-### Additional information
+### Emoji Version
 
-KeyboardKit Pro unlocks a ``ProEmojiInfo`` protocol that is implemented by ``Emoji`` and provides additional emoji information, such as skin tone variant information:
+KeyboardKit Pro unlocks an ``EmojiVersion`` type that defines Emoji versions, platform availability and included emojis.
+
+For instance, you can get explicit versions, for instance:
+
+```swift
+let version = EmojiVersion.v15
+version.version  // 15.0
+version.iOS      // 16.4
+version.macOS    // 13.3
+version.tvOS     // 16.4
+version.watchOS  // 9.4
+```
+
+You can also get the Emoji version included in a certain platform version, for instance:
+
+```swift
+let version = EmojiVersion(iOS: 15.4)
+version.version  // 14.0
+```
+
+An ``EmojiVersion`` can specify the emojis introduced in that version, as well as later and older versions and unavailable emojis that are introduced in later versions:
+
+```swift
+let version = EmojiVersion.v14
+version.emojis         // 🫠🫢🫣🫡🫥🫤🥹...
+version.laterVersions  // [.v15]
+version.olderVersions  // []
+version.unavailableEmojis  // 🫨🫸🫷🪿🫎🪼🫏🪽...
+```
+
+This information can be used to filter out unavailable emojis from the various ``EmojiCategory`` and ``EmojiCategoryKeyboard``.
+
+
+
+### Skin tones
+
+KeyboardKit Pro unlocks additional ``Emoji`` extensions to get skin tone information:
 
 ```swift
 Emoji("👍").hasSkinToneVariants     // true
@@ -86,12 +122,14 @@ Emoji("👍").skinToneVariants        // 👍👍🏻👍🏼👍🏽👍🏾�
 Emoji("👍").skinToneVariantActions  // The above variants as keyboard actions
 ```
 
-These properties make it possible to resolve all skin tone variants for an emoji that has it.
+These extensions make it possible to resolve all skin tone variants for emojis that have variations.
 
 
-### Additional emoji callouts
+### Secondary callouts
 
-Since KeyboardKit Pro unlocks skin tone variants, it will also unlock skin tone variant callout actions for all emojis that has skin tone variants. This means long pressing an emoji that has skin tone variants, will show those variants in a callout.
+Since KeyboardKit Pro unlocks skin tone variants, it will also unlock secondary action callouts for all emojis that have skin tone variants. 
+
+This means that long pressing any emoji that has skin tone variants will show the variants in a callout.
 
 
 
