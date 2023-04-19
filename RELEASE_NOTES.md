@@ -61,7 +61,8 @@ This release adds support for 🇰🇿 Kazakh and more locale and emoji features
 
 ### 🐛 Bug fixes
 
-* Some incorrect blue square emojis have been fixed.
+* `ActionCallout` now handles single actions.
+* Some incorrect blue square emojis have been corrected.
 
 
 

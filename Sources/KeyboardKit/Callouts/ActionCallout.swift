@@ -75,11 +75,17 @@ private extension ActionCallout {
     
     var backgroundColor: Color { calloutStyle.backgroundColor }
     var buttonFrame: CGRect { isEmojiCallout ? buttonFrameForEmojis : buttonFrameForCharacters }
+    var buttonFrameSize: CGSize { buttonFrame.size }
     var buttonFrameForCharacters: CGRect { calloutContext.buttonFrame.insetBy(dx: buttonInset.width, dy: buttonInset.height) }
     var buttonFrameForEmojis: CGRect { calloutContext.buttonFrame }
     var buttonInset: CGSize { calloutStyle.buttonInset }
     var calloutActions: [KeyboardAction] { calloutContext.actions }
-    var calloutButtonSize: CGSize { buttonFrame.size.limited(to: style.maxButtonSize) }
+    var calloutButtonSize: CGSize {
+        let frameSize = buttonFrame.size
+        let widthScale = (calloutActions.count == 1) ? 1.2 : 1
+        let buttonSize = CGSize(width: frameSize.width * widthScale, height: frameSize.height)
+        return buttonSize.limited(to: style.maxButtonSize)
+    }
     var calloutStyle: KeyboardCalloutStyle { style.callout }
     var cornerRadius: CGFloat { calloutStyle.cornerRadius }
     var curveSize: CGSize { calloutStyle.curveSize }
@@ -111,8 +117,9 @@ private extension ActionCallout {
             topLeft: cornerRadius,
             topRight: cornerRadius,
             bottomLeft: !isPad && isLeading ? 2 : cornerRadius,
-            bottomRight: !isPad && isTrailing ? 2 : cornerRadius)
-            .foregroundColor(backgroundColor)
+            bottomRight: !isPad && isTrailing ? 2 : cornerRadius
+        )
+        .foregroundColor(backgroundColor)
     }
 
     @ViewBuilder
@@ -138,7 +145,8 @@ private extension ActionCallout {
     var positionX: CGFloat {
         let buttonWidth = calloutButtonSize.width
         let adjustment = (CGFloat(calloutActions.count) * buttonWidth)/2
-        let signedAdjustment = isTrailing ? -adjustment + buttonWidth : adjustment
+        let widthDiff = buttonWidth - buttonFrameSize.width
+        let signedAdjustment = isTrailing ? -adjustment + buttonWidth - widthDiff : adjustment
         return buttonFrame.origin.x + signedAdjustment
     }
     
@@ -198,7 +206,7 @@ struct ActionCallout_Previews: PreviewProvider {
             GeometryReader { geo in
                 Color.clear.onAppear {
                     actionContext.updateInputs(
-                        for: .character("S"),
+                        for: .character("l"),
                         in: geo,
                         alignment: alignment
                     )

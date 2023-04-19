@@ -495,13 +495,7 @@ private extension SystemKeyboard {
  */
 struct SystemKeyboard_Previews: PreviewProvider {
 
-    static var context: KeyboardContext = {
-        let context = KeyboardContext()
-        context.locales = KeyboardLocale.allCases.map { $0.locale }
-        context.localePresentationLocale = KeyboardLocale.swedish.locale
-        context.spaceLongPressBehavior = .openLocaleContextMenu
-        return context
-    }()
+    static var controller = KeyboardInputViewController.preview
 
     @ViewBuilder
     static func previewButton(
@@ -519,11 +513,11 @@ struct SystemKeyboard_Previews: PreviewProvider {
                 content: previewButtonContent(item: item),
                 item: item,
                 actionHandler: .preview,
-                keyboardContext: context,
-                calloutContext: .preview,
+                keyboardContext: controller.keyboardContext,
+                calloutContext: controller.calloutContext,
                 keyboardWidth: keyboardWidth,
                 inputWidth: inputWidth,
-                appearance: .preview
+                appearance: controller.keyboardAppearance
             )
         }
     }
@@ -539,7 +533,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
             SystemKeyboardButtonContent(
                 action: item.action,
                 appearance: .preview,
-                keyboardContext: context
+                keyboardContext: controller.keyboardContext
             )
         }
     }
@@ -549,40 +543,19 @@ struct SystemKeyboard_Previews: PreviewProvider {
 
             // A standard system keyboard
             SystemKeyboard(
-                layout: .preview,
-                appearance: .preview,
-                actionHandler: .preview,
-                autocompleteContext: .init(),
-                autocompleteToolbar: .automatic,
-                autocompleteToolbarAction: { _ in },
-                keyboardContext: context,
-                calloutContext: nil,
+                controller: controller,
                 width: UIScreen.main.bounds.width)
 
 
             // A keyboard that replaces the button content
             SystemKeyboard(
-                layout: .preview,
-                appearance: .preview,
-                actionHandler: .preview,
-                autocompleteContext: .init(),
-                autocompleteToolbar: .none,
-                autocompleteToolbarAction: { _ in },
-                keyboardContext: context,
-                calloutContext: nil,
+                controller: controller,
                 width: UIScreen.main.bounds.width,
                 buttonContent: previewButtonContent)
 
             // A keyboard that replaces entire button views
             SystemKeyboard(
-                layout: .preview,
-                appearance: .preview,
-                actionHandler: .preview,
-                autocompleteContext: .init(),
-                autocompleteToolbar: .none,
-                autocompleteToolbarAction: { _ in },
-                keyboardContext: context,
-                calloutContext: nil,
+                controller: controller,
                 width: UIScreen.main.bounds.width,
                 buttonView: previewButton)
         }.background(Color.yellow)
