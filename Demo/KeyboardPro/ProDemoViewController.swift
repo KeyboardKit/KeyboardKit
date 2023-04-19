@@ -115,6 +115,7 @@ class ProDemoViewController: KeyboardInputViewController {
         // 💡 This must be done after registering Pro
         keyboardContext.locales = .demoLocales
             .sorted(in: locale, insertFirst: locale)
+            .filter { license.locales.map { $0.locale }.contains($0) }
 
         // Setup a theme-based appearance
         // 💡 You can use built-in themes or create your own
