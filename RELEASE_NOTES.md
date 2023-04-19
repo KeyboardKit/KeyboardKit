@@ -25,9 +25,16 @@ This release adds support for 🇰🇿 Kazakh and more locale and emoji features
 * `EmojiCategory` has new emojis for iOS 16.4, macOS 13.3, tvOS 16.4 and watchOS 9.4.
 * `KeyboardReturnKeyType` has new `next` and `send` cases.
 
-### 🌐 New Locales
+### 🇸🇪 New Locales
 
 * 🇰🇿 Kazakh (thanks to @mirasaujan)
+
+### 🎨 New Themes
+
+* `KeyboardTheme.candyShop` has a new `.cuppyCake` style.
+* `KeyboardTheme.standard` has new `.green`, `.purple` and `.yellow` styles.
+* `KeyboardTheme.minimal` can use all available `StandardStyle` style variations.
+* `KeyboardTheme.swifty` can use all available `StandardStyle` style variations.
 
 ### 🌐 Localization
 
@@ -42,8 +49,9 @@ This release adds support for 🇰🇿 Kazakh and more locale and emoji features
 * `EmojiVersionInfo` is a new type that contains information about when certain emojis were introduced.
 * `ProEmojiInfo` is deprecated in favor of just using the already defined `Emoji` extensions.
 * `KeyboardTheme` `.candy` is renamed to `.candyShop`.
-* `KeyboardTheme` `.candyShop(.cuppyCake)` is a new green and blue theme.
-* `KeyboardTheme.CandyStyle` is renamed to `CandyShopStyle`.  
+* `KeyboardTheme` `.standard` and `.swifty` now applies a standard shadow.
+* `KeyboardTheme` `CandyStyle` is renamed to `CandyShopStyle`. 
+* `KeyboardTheme` `SwiftyStyle` deprecated in favor of reusing `StandardStyle`. 
 
 
 ### 🗑️ Deprecations
