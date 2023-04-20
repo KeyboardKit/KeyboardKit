@@ -54,47 +54,18 @@ KeyboardKit supports `iOS 14`, `macOS 11`, `tvOS 14` and `watchOS 7`.
 
 
 
-## Getting started
+## Supported Locales
 
-The online documentation has a [getting-started guide][Getting-Started] that will help you get started with the library.
-
-To make your custom keyboard extension use KeyboardKit, just install and import KeyboardKit, then  make it inherit `KeyboardInputViewController` instead of `UIInputController`:
-
-```swift
-import KeyboardKit
-
-class KeyboardController: KeyboardInputViewController {}
-```
-
-This will by default set up a fully working U.S. English keyboard. You can then override any controller functions to customize how it sets up the keyboard, read and write to its observable states, inject your own services, etc.
-
-For more information, please see the [online documentation][Documentation] and [getting-started guide][Getting-Started].
-
-
-
-## Documentation
-
-The [online documentation][Documentation] has articles, code examples etc. that let you overview the various parts of the library and understand how they all connect to each other.
-
-The online documentation is currently iOS-specific. To generate documentation for the other platforms, open the package in Xcode, select a simulator then run `Product/Build Documentation`.
-
-
-
-## Localization
-
-KeyboardKit is localized in 60 keyboard-specific locales ([read more][Localization]):
+KeyboardKit is localized in 61 keyboard-specific locales ([read more][Localization]):
 
 🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🇭🇷 🇨🇿 🇩🇰 <br />
-
 🇳🇱 🇧🇪 🇺🇸 🇬🇧 🇺🇸 🇪🇪 🇫🇴 🇵🇭 🇫🇮 🇫🇷 <br />
-
 🇧🇪 🇨🇭 🇬🇪 🇩🇪 🇦🇹 🇨🇭 🇬🇷 🇺🇸 🇮🇱 🇭🇺 <br />
+🇮🇸 🇮🇩 🇮🇪 🇮🇹 🇰🇿 🇹🇯 🇹🇯 🇹🇯 🇱🇻 🇱🇹 <br />
+🇲🇰 🇲🇾 🇲🇹 🇲🇳 🇳🇴 🇮🇷 🇵🇱 🇵🇹 🇧🇷 🇷🇴 <br />
+🇷🇺 🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 🇹🇷 🇺🇦 <br />
+🇺🇿 <br />
 
-🇮🇸 🇮🇩 🇮🇪 🇮🇹 🇹🇯 🇹🇯 🇹🇯 🇱🇻 🇱🇹 🇲🇰 <br />
-
-🇲🇾 🇲🇹 🇲🇳 🇳🇴 🇮🇷 🇵🇱 🇵🇹 🇧🇷 🇷🇴 🇷🇺 <br />
-
-🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 🇹🇷 🇺🇦 🇺🇿 <br />
 
 
 ## Features
@@ -119,6 +90,39 @@ KeyboardKit comes packed features to help you build amazing and powerful keyboar
 * 🚏 [Routing][Routing] - KeyboardKit lets you route text to other destinations than the main app.
 * ⬅️ [RTL][RTL] - KeyboardKit supports RTL (right-to-left) locales, such as Arabic, Persian, Kurdish Sorani etc.
 * ⚙️ [Settings][Settings] - KeyboardKit has tools for accessing and linking to an app's keyboard settings.
+
+
+
+## Getting Started
+
+The online documentation has a [getting-started guide][Getting-Started] that will help you get started with the library.
+
+To make your custom keyboard extension use KeyboardKit, just install and import KeyboardKit, then  make it inherit `KeyboardInputViewController` instead of `UIInputController`:
+
+```swift
+import KeyboardKit
+
+class KeyboardController: KeyboardInputViewController {}
+```
+
+This will by default set up a fully working U.S. English keyboard. You can then override any functions to customize how it sets up the keyboard, inject your own services, for instance:
+
+```
+override viewWillSetupKeyboard() {
+    super.viewWillSetupKeyboard()
+    setup(with: MyKeyboardView())
+}
+```
+
+For more information, please see the [online documentation][Documentation] and [getting-started guide][Getting-Started].
+
+
+
+## Documentation
+
+The [online documentation][Documentation] has articles, code examples etc. that let you overview the various parts of the library and understand how they all connect to each other.
+
+The online documentation is currently iOS-specific. To generate documentation for the other platforms, open the package in Xcode, select a simulator then run `Product/Build Documentation`.
 
 
 

@@ -43,33 +43,18 @@ You can add the library to the main app, the keyboard extension and any targets 
 
 The online documentation is currently iOS-specific. To generate documentation for other platforms, open the package in Xcode, select a simulator then run `Product/Build Documentation`.
 
-Note that extensions to native types are not included in this documentation. Future versions of this library will aim at adding protocols for these extensions, to make them appear in the documentation.
-
-
-
-## Localization
-
-KeyboardKit is localized in 61 keyboard-specific locales:
-
-🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🇭🇷 🇨🇿 🇩🇰 <br />
-
-🇳🇱 🇧🇪 🇺🇸 🇬🇧 🇺🇸 🇪🇪 🇫🇴 🇵🇭 🇫🇮 🇫🇷 <br />
-
-🇧🇪 🇨🇭 🇬🇪 🇩🇪 🇦🇹 🇨🇭 🇬🇷 🇺🇸 🇮🇱 🇭🇺 <br />
-
-🇮🇸 🇮🇩 🇮🇪 🇮🇹 🇰🇿 🇹🇯 🇹🇯 🇹🇯 🇱🇻 🇱🇹 <br />
-
-🇲🇰 🇲🇾 🇲🇹 🇲🇳 🇳🇴 🇮🇷 🇵🇱 🇵🇹 🇧🇷 🇷🇴 <br />
-
-🇷🇺 🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 🇹🇷 🇺🇦 <br />
-
-🇺🇿 <br />
+Note that extensions to native types are not included in this documentation. This means that extensions to e.g. `UITextDocumentProxy`, `String` etc. are not included in the documentation. KeyboardKit adds custom protocols to help exposing these parts of the library to the documentation engine, but there are many parts that are still omitted.
 
 
 
 ## License
 
 KeyboardKit is available under the MIT license.
+
+
+
+[KeyboardKit]: https://github.com/KeyboardKit/KeyboardKit
+[KeyboardKitPro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 
 

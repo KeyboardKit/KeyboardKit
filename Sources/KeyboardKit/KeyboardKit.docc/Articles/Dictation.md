@@ -1,22 +1,18 @@
-# Dictation (PREVIEW)
+# Dictation (BETA)
 
 This article describes the KeyboardKit dictation engine and how to use it.
 
-In KeyboardKit, a ``DictationService`` can be used to perform dictation where microphone access is available, such as in an app.
-
-KeyboardKit also has a ``KeyboardDictationService``, that can be used to perform dictation from a keyboard extension, where microphone access is *not* available.
+In KeyboardKit, a ``DictationService`` can be used to perform dictation where microphone access is available, like an app, while a ``KeyboardDictationService`` can be used from a keyboard extension, where microphone access is *not* available.
 
 KeyboardKit will use the ``KeyboardInputViewController`` ``KeyboardInputViewController/dictationService`` as the standard dictation service, which may use the ``KeyboardInputViewController/dictationContext`` to manage shared data. 
 
 KeyboardKit doesn't have any standard dictations services as it has for most other services. Instead, it will use disabled services until you register real ones.
 
-You can unlock a ``StandardDictationService`` and a ``StandardKeyboardDictationService`` with [KeyboardKit Pro][Pro] or create custom ones that use custom logic.
-
-[KeyboardKit Pro][Pro] specific features are described at the end of this document.
+[KeyboardKit Pro][Pro] unlocks a ``StandardDictationService`` and a ``StandardKeyboardDictationService``. These features are described at the end of this document.
 
 
 
-## How to perform basic dictation
+## How to perform dictation
 
 You can use a ``DictationService`` to perform dictation where microphone access is available, such as in an app.
 
@@ -31,9 +27,9 @@ Before you can perform dictation, you must add these keys to your `Info.plist`, 
 
 You can then start dictating with ``DictationService/startDictation(with:)`` and stop it with ``DictationService/stopDictation()``. Since dictation may stop at any time, for instance by silence, services must describe how to access the result when the operation completes.
 
-For instance, the ``StandardDictationService`` will continously update the observable ``DictationContext`` to let you observe and display the current dictation state in your app.
+For instance, the ``StandardDictationService`` will continously update the observable ``DictationContext`` to let you observe and display the current dictation state.
 
-A dictation service should call ``DictationService/requestDictationAuthorization()`` to ask the user for the required permissions before starting a dictation operation. You can call this function manually as well, to avoid interrupting the first dictation operation with alerts.
+A dictation service should call ``DictationService/requestDictationAuthorization()`` to ask the user for the required permissions before starting a dictation operation. You can call this function manually as well, to avoid interrupting the first dictation operation.
 
 
 
@@ -41,7 +37,7 @@ A dictation service should call ``DictationService/requestDictationAuthorization
 
 You can use a ``KeyboardDictationService`` to dictate from a keyboard extension, where microphone access is *not* available. The service should open the app and perform dictation, write the text to shared storage then return to the keyboard extension and wrap up.
 
-This can be tricky to set up, but KeyboardKit Pro's ``StandardKeyboardDictationService`` lets you do it in a few simple steps.
+This can be tricky to set up, but KeyboardKit Pro lets you do it in a few simple steps.
 
 
 ## 👑 Pro features
@@ -60,7 +56,7 @@ Before you can perform dictation in the app, you must add these keys to your `In
 <string>Describe why you need speech recognition.</string>
 ```
 
-This does not need to be added to the keyboard extension.
+This does not need to be added to the keyboard extension, since dictation will be performed in the app.
 
 
 ### 2. Set up an App Group to share data
@@ -71,7 +67,7 @@ To share data between the app and the keyboard, you must create an app group and
 
 ![Set up an App Group for the keyboard](dictation-appgroup-keyboard.jpg)
 
-The app and keyboard will now be able to exchange data.
+The app and keyboard will now be able to exchange data, for instance with a `UserDefaults(suiteName:)` instance. 
 
 
 ### 3. Set up a deep link for the app
@@ -90,7 +86,7 @@ To be able to perform dictation, you must create a ``KeyboardDictationConfigurat
 ```swift
 extension KeyboardDictationConfiguration {
 
-    static let appConfig = .init(
+    static let app = .init(
         appGroupId: "group.com.my-app"    
         appDeepLink: "YOUR-URL-SCHEME://dictation"
     )
@@ -105,7 +101,7 @@ Make sure to make this configuration available to both the app and the keyboard.
 KeyboardKit Pro will automatically register a dictation service when you register a valid license, otherwise you have to register a custom service to handle dictation. You can then trigger dictation with the service:
 
 ```swift
-dictationService.startDictationFromKeyboard(with: .appConfig)
+dictationService.startDictationFromKeyboard(with: .app)
 ```
 
 If you have set everything up correctly, the keyboard will now open the app. Future versions will make this even easier, but now you must call this function yourself.
@@ -113,7 +109,7 @@ If you have set everything up correctly, the keyboard will now open the app. Fut
 
 ### 6. Perform dictation in the app
 
-You can automatically let your app perform dictation by registering your license in the app and adding the `.keyboardDictation` view modifier to the root view:. This will automatically show a configurable overlay when the dictation starts, for instance:
+You can automatically let your app perform dictation by registering your license in the app and adding the `.keyboardDictation` view modifier to the root view. This will automatically show a configurable overlay when the dictation starts, for instance:
 
 ```swift
 import SwiftUI
@@ -140,7 +136,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack(path: $path) {
             ...
-        }.keyboardDictation(context: context, config: .appConfig) {
+        }.keyboardDictation(context: context, config: .app) {
             DictationOverlay(
                 dictationContext: context,
                 titleView: { EmptyView() },
