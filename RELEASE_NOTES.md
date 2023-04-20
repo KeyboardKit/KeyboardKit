@@ -9,6 +9,8 @@ KeyboardKit tries to honor semantic versioning:
 
 Breaking changes can still occur in minor versions and patches, though, if the alternative is to not be able to release new critical features or fixes.
 
+Non-functional releases, such as KeyboardKit Pro license releases, are not listed here. 
+
 
 ## Older release notes
 
