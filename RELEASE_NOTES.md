@@ -22,8 +22,12 @@ Older versions are kept in the `Release_Notes` folder.
 
 ### ✨ New features
 
+- `KeyboardEnabledLabel` now supports more styling.
 - `KeyboardSettingsLink` now supports custom labels.
 
+### 💡 Behavior changes
+
+* `KeyboardEnabledLabel` no longer colors text by default.
 
 
 
