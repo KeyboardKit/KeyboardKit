@@ -21,23 +21,27 @@ public struct KeyboardSettingsLink<Content: View>: View {
 
      - Parameters:
        - url: The url to navigate to, by default `.keyboardSettings`.
+       - addNavigationArrow: Whether or not to add a trailing navigation disclosure arrow, by default `false`.
        - label: The link label.
      */
     public init(
         url: URL? = .keyboardSettings,
+        addNavigationArrow: Bool = false,
         @ViewBuilder label: @escaping () -> Content
     ) {
         self.url = url
+        self.addNavigationArrow = addNavigationArrow
         self.label = label
     }
 
     private let url: URL?
+    private let addNavigationArrow: Bool
     private let label: () -> Content
 
     public var body: some View {
         if let url = url {
             Link(destination: url) {
-                label()
+                bodyContent.contentShape(Rectangle())
             }
         }
     }
@@ -64,6 +68,22 @@ public extension KeyboardSettingsLink where Content == Label<Text, Image> {
             } icon: {
                 icon
             }
+        }
+    }
+}
+
+private extension KeyboardSettingsLink {
+
+    @ViewBuilder
+    var bodyContent: some View {
+        if addNavigationArrow {
+            HStack {
+                label()
+                Spacer()
+                NavigationLinkArrow()
+            }
+        } else {
+            label()
         }
     }
 }
