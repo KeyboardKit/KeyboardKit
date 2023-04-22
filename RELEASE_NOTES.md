@@ -18,6 +18,15 @@ Older versions are kept in the `Release_Notes` folder.
 
 
 
+## 7.4.1
+
+### ✨ New features
+
+- `KeyboardSettingsLink` now supports custom labels.
+
+
+
+
 ## 7.4
 
 This release adds support for 🇰🇿 Kazakh and more locale and emoji features.
