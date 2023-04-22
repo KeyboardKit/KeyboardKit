@@ -134,7 +134,7 @@ private extension KeyboardView {
         AutocompleteToolbar(
             suggestions: autocompleteContext.suggestions,
             locale: keyboardContext.locale,
-            action: controller.insertAutocompleteSuggestion
+            suggestionAction: controller.insertAutocompleteSuggestion
         ).opacity(keyboardContext.prefersAutocomplete ? 1 : 0)  // Still allocate height to make room for callouts
     }
 }
