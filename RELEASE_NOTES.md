@@ -18,7 +18,7 @@ Older versions are kept in the `Release_Notes` folder.
 
 
 
-## 7.4.1
+## 7.5
 
 ### ✨ New features
 
@@ -28,6 +28,10 @@ Older versions are kept in the `Release_Notes` folder.
 ### 💡 Behavior changes
 
 * `KeyboardEnabledLabel` no longer colors text by default.
+
+### 🗑️ Deprecations
+
+* `KeyboardContext.tempIsPreviewMode` is no longer used.
 
 
 
@@ -67,7 +71,6 @@ This release adds support for 🇰🇿 Kazakh and more locale and emoji features
 * `KeyboardTheme` `.standard` and `.swifty` now applies a standard shadow.
 * `KeyboardTheme` `CandyStyle` is renamed to `CandyShopStyle`. 
 * `KeyboardTheme` `SwiftyStyle` deprecated in favor of reusing `StandardStyle`. 
-
 
 ### 🗑️ Deprecations
 

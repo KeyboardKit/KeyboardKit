@@ -52,12 +52,6 @@ public class KeyboardContext: ObservableObject {
         self.sync(with: controller)
     }
     #endif
-    
-    /**
-     This property can be set to `false` to stop the context
-     from syncing with the vc.
-     */
-    public static var tempIsPreviewMode: Bool = false
 
 
     /**
@@ -349,7 +343,6 @@ extension KeyboardContext {
      input view controller.
      */
     func sync(with controller: KeyboardInputViewController) {
-        if Self.tempIsPreviewMode { return }
         DispatchQueue.main.async {
             self.syncAfterAsync(with: controller)
         }
