@@ -20,6 +20,14 @@ Older versions are kept in the `Release_Notes` folder.
 
 ## 7.5
 
+### 🚨 Important information
+
+This version adds a mandatory `id` to `KeyboardTheme`, which will make it possible to implement features like marking a theme as a favorite, persist references instead of values etc.
+
+While it's not mandatory to specify an `id` when creating a theme, it *is* a mandatory property, which means that any previously encoded data will fail to decode.
+
+If you have persisted `KeyboardTheme` values in your app, please reach out via `info@getkeyboardkit.com` and decode failure handling will be added to the library to handle any lacking IDs.  
+
 ### ✨ New features
 
 - `KeyboardEnabledLabel` now supports more styling.
@@ -29,15 +37,35 @@ Older versions are kept in the `Release_Notes` folder.
 
 * `KeyboardEnabledLabel` no longer colors text by default.
 * `KeyboardInputViewController` now changes `primaryLanguage` when the context locale changes.
+* `KeyboardLocale` has new collection extension.
+
+### 👑 Pro changes
+
+* `KeyboardTheme` and all styles now have static IDs.
+* `KeyboardTheme` and all styles have a new `copy` function.
+* `KeyboardTheme.allPredefined` is now stored instead of computed. 
+* `KeyboardTheme.standard` is no longer throwing.
+* `KeyboardThemeButtonPreview` is a new preview.
+* `KeyboardThemeCopyable` is a new protocol that specifies theme copy behavior.
+* `KeyboardThemeStyleVariation` is a new protocol that can be used by theme styles.
 
 ### 🗑️ Deprecations
 
 * `KeyboardContext.tempIsPreviewMode` is no longer used.
+* `KeyboardLocale` sort with insert first parameter is replaced by atomic operations.
 
 ### 🐛 Bug fixes
 
 * Thanks to `@gonzalonunez` the `KeyboardTextField` and `KeyboardTextView` now disables `captureTextFromCamera`.
  
+### 📄 Documentation
+
+* Thanks to `@f-person` some documentation errors have been fixed.
+
+### 💥 Breaking changes 
+
+* `KeyboardTheme.allPredefined` is no longer throwing.
+
 
 
 ## 7.4

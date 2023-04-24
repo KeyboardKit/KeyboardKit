@@ -240,56 +240,52 @@ public extension Collection where Element == KeyboardLocale {
 public extension Collection where Element == KeyboardLocale {
 
     /**
-     Sort the collection by the localized name of every item
-     then optionally place a locale first in the result.
-
-     - Parameters:
-       - insertFirst: The locale to place first, by default `nil`.
+     This condition is used by various extensions.
      */
-    func sorted(
-        insertFirst first: Element? = nil
-    ) -> [Element] {
-        sorted(
-            by: { $0.locale.localizedName.lowercased() < $1.locale.localizedName.lowercased() },
-            insertFirst: first
-        )
+    typealias KeyboardLocaleCondition = (Element) -> Bool
+
+    /**
+     Insert a certain a locale first in the collection.
+
+     This will remove any other instances of the same locale.
+     */
+    func insertingFirst(_ locale: Element) -> [Element] {
+        [locale] + removing(locale)
+    }
+
+    /**
+     Remove a certain a locale from the collection.
+     */
+    func removing(_ locale: Element) -> [Element] {
+        filter { $0 != locale }
+    }
+
+    /**
+     Sort the collection by the localized name of every item.
+     */
+    func sorted() -> [Element] {
+        sorted { $0.sortName < $1.sortName }
     }
 
     /**
      Sort the collection by the localized name of every item
-     in the provided `locale` then optionally place a locale
-     first in the result.
+     in the provided `locale`.
 
      - Parameters:
        - locale: The locale to use to get the localized name.
-       - insertFirst: The locale to place first, by default `nil`.
      */
-    func sorted(
-        in locale: Locale,
-        insertFirst first: Element? = nil
-    ) -> [Element] {
-        sorted(
-            by: { $0.locale.localizedName(in: locale).lowercased() < $1.locale.localizedName(in: locale).lowercased() },
-            insertFirst: first
-        )
+    func sorted(in locale: Locale) -> [Element] {
+        sorted { $0.sortName(in: locale) < $1.sortName(in: locale) }
+    }
+}
+
+private extension KeyboardLocale {
+
+    var sortName: String {
+        locale.localizedName.lowercased()
     }
 
-    /**
-     Sort the collection by the provided sort comparator and
-     then optionally place a locale first in the result.
-
-     - Parameters:
-       - comparator: The sort comparator to use.
-       - insertFirst: The locale to place first, by default `nil`.
-     */
-    func sorted(
-        by comparator: (KeyboardLocale, KeyboardLocale) -> Bool,
-        insertFirst first: Element?
-    ) -> [Element] {
-        let sorted = self.sorted(by: comparator)
-        guard let first = first else { return sorted }
-        var filtered = sorted.filter { $0 != first }
-        filtered.insert(first, at: 0)
-        return filtered
+    func sortName(in locale: Locale) -> String {
+        locale.localizedName(in: locale).lowercased()
     }
 }

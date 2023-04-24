@@ -182,6 +182,32 @@ class KeyboardLocaleTests: XCTestCase {
     }
 
 
+    func testInsertingFirstReturnsValidArray() {
+        let locales: [KeyboardLocale] = [.finnish, .hungarian]
+        let result = locales.insertingFirst(.swedish)
+        XCTAssertEqual(result, [.swedish, .finnish, .hungarian])
+    }
+
+    func testInsertingFirstRemovesDuplicates() {
+        let locales: [KeyboardLocale] = [.finnish, .hungarian]
+        let result = locales.insertingFirst(.hungarian)
+        XCTAssertEqual(result, [.hungarian, .finnish])
+    }
+
+
+    func testRemovingReturnsValidArray() {
+        let locales: [KeyboardLocale] = [.finnish, .hungarian]
+        let result = locales.removing(.hungarian)
+        XCTAssertEqual(result, [.finnish])
+    }
+
+    func testRemovingDoesNothingIfLocaleIsMissing() {
+        let locales: [KeyboardLocale] = [.finnish, .hungarian]
+        let result = locales.removing(.swedish)
+        XCTAssertEqual(result, [.finnish, .hungarian])
+    }
+
+
     func testSortedUsesTheStandardLocalizedNameByDefault() {
         let locales = [
             locale(.finnish),   // fi, soumi  (last)
@@ -192,18 +218,6 @@ class KeyboardLocaleTests: XCTestCase {
         XCTAssertEqual(ids, ["hu", "fi"])
     }
 
-    func testSortedCanPlaceLocaleFirst() {
-        let locales = [
-            locale(.finnish),   // fi, soumi  (last)
-            locale(.hungarian)  // hu, magyar (first)
-        ]
-        let result = locales.sorted(
-            insertFirst: locale(.swedish)
-        )
-        let ids = result.map { $0.id }
-        XCTAssertEqual(ids, ["sv", "hu", "fi"])
-    }
-
     func testSortedInLocaleUsesTheLocaleLocalizedName() {
         let locales = [
             locale(.finnish),   // fi, Finnish (first)
@@ -212,18 +226,5 @@ class KeyboardLocaleTests: XCTestCase {
         let result = locales.sorted(in: locale(.english).locale)
         let ids = result.map { $0.id }
         XCTAssertEqual(ids, ["fi", "hu"])
-    }
-
-    func testSortedInLocaleCanPlaceLocaleFirst() {
-        let locales = [
-            locale(.finnish),   // fi, Finnish (first)
-            locale(.hungarian)  // hu, Hungarian (last)
-        ]
-        let result = locales.sorted(
-            in: locale(.english).locale,
-            insertFirst: locale(.swedish)
-        )
-        let ids = result.map { $0.id }
-        XCTAssertEqual(ids, ["sv", "fi", "hu"])
     }
 }
