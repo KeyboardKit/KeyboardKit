@@ -581,6 +581,7 @@ private extension KeyboardInputViewController {
         keyboardContext.$locale.sink { [weak self] in
             guard let self = self else { return }
             let locale = $0
+            self.primaryLanguage = locale.identifier
             self.autocompleteProvider.locale = locale
         }.store(in: &cancellables)
     }

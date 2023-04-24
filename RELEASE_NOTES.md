@@ -28,6 +28,7 @@ Older versions are kept in the `Release_Notes` folder.
 ### 💡 Behavior changes
 
 * `KeyboardEnabledLabel` no longer colors text by default.
+* `KeyboardInputViewController` now changes `primaryLanguage` when the context locale changes.
 
 ### 🗑️ Deprecations
 
