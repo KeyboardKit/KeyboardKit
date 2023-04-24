@@ -38,6 +38,10 @@ Older versions are kept in the `Release_Notes` folder.
 
 * Thanks to `@gonzalonunez` the `KeyboardTextField` and `KeyboardTextView` now disables `captureTextFromCamera`.
  
+### 📄 Documentation
+
+* Thanks to `@f-person` some documentation errors have been fixed.
+
 
 
 ## 7.4
