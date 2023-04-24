@@ -34,6 +34,10 @@ Older versions are kept in the `Release_Notes` folder.
 
 * `KeyboardContext.tempIsPreviewMode` is no longer used.
 
+### 🐛 Bug fixes
+
+* Thanks to `@gonzalonunez` the `KeyboardTextField` and `KeyboardTextView` now disables `captureTextFromCamera`.
+ 
 
 
 ## 7.4

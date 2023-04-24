@@ -166,5 +166,24 @@ class KeyboardInputTextView: UITextView, KeyboardInputComponent {
         handleResignFirstResponder()
         return super.resignFirstResponder()
     }
+
+    /**
+     Requests a receiving responder to enable or disable the
+     specified command in the user interface.
+
+     We've overridden this to disable `captureTextFromCamera`
+     as a workaround for a `NSInternalInconsistencyException`:
+
+     ```
+     Keyboard Camera is being used without remote keyboards enabled.
+     ```
+     */
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        if #available(iOS 15.0, *) {
+            return action == #selector(captureTextFromCamera) ? false : super.canPerformAction(action, withSender: sender)
+        } else {
+            return super.canPerformAction(action, withSender: sender)
+        }
+    }
 }
 #endif
