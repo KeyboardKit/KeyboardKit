@@ -123,6 +123,12 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         action.standardButtonText(for: keyboardContext)
     }
 
+    /**
+     The `ProgressViewStyle` to use for a certain `action`, if any.
+     */
+    open func buttonProgressViewTintColor(for action: KeyboardAction) -> Color? {
+        nil
+    }
 
     // MARK: - Callouts
 

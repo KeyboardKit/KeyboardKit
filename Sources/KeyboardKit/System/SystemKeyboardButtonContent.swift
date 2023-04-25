@@ -71,6 +71,9 @@ private extension SystemKeyboardButtonContent {
             image.scaleEffect(appearance.buttonImageScaleFactor(for: action))
         } else if let text = appearance.buttonText(for: action) {
             textView(for: text)
+        } else if let progressViewTintColor = appearance.buttonProgressViewTintColor(for: action) {
+            ProgressView()
+              .progressViewStyle(CircularProgressViewStyle(tint: progressViewTintColor))
         } else {
             Text("")
         }

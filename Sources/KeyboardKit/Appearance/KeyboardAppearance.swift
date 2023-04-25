@@ -65,6 +65,10 @@ public protocol KeyboardAppearance: AnyObject {
      */
     func buttonText(for action: KeyboardAction) -> String?
 
+    /**
+     The `tintColor` for the button's `ProgressView`, if any.
+     */
+    func buttonProgressViewTintColor(for action: KeyboardAction) -> Color?
 
     // MARK: - Callouts
 
