@@ -13,10 +13,11 @@ import SwiftUI
  a provided enabled/active state.
 
  You can use the label with any bool value, but the intended
- usaber is to present whether or not a keyboard extension is
- enabled, active etc.
+ use is to easily present if a keyboard extension is enabled,
+ active etc. It supports styling, but if you want a distinct
+ look and feel, use a plain `Label`.
  */
-public struct KeyboardEnabledLabel: View {
+public struct KeyboardEnabledLabel<EnabledIcon: View, DisabledIcon: View>: View {
 
     /**
      Create an enabled label.
@@ -24,25 +25,33 @@ public struct KeyboardEnabledLabel: View {
      - Parameters:
        - isEnabled: Whether or not the state is enabled.
        - enabledText: The text to show when the state is enabled.
+       - enabledIcon: The icon to show when the state is enabled, by default `checkmark`.
        - disabledText: The text to show when the state is disabled.
+       - disabledIcon: The icon to show when the state is disabled, by default `exclamationmark.triangle`.
        - style: The style to use, by default ``KeyboardEnabledLabel/Style/standard``.
      */
     public init(
         isEnabled: Bool,
+        enabledIcon: EnabledIcon,
         enabledText: String,
+        disabledIcon: DisabledIcon,
         disabledText: String,
-        style: KeyboardEnabledLabel.Style = .standard
+        style: KeyboardEnabledLabelStyle = .standard
     ) {
         self.isEnabled = isEnabled
         self.enabledText = enabledText
+        self.enabledIcon = enabledIcon
         self.disabledText = disabledText
+        self.disabledIcon = disabledIcon
         self.style = style
     }
 
     private let isEnabled: Bool
     private let enabledText: String
+    private let enabledIcon: EnabledIcon
     private let disabledText: String
-    private let style: Style
+    private let disabledIcon: DisabledIcon
+    private let style: KeyboardEnabledLabelStyle
 
     public var body: some View {
         Label {
@@ -53,18 +62,53 @@ public struct KeyboardEnabledLabel: View {
     }
 }
 
+public extension KeyboardEnabledLabel where EnabledIcon == Image, DisabledIcon == Image {
+
+    /**
+     Create an enabled label.
+
+     - Parameters:
+       - isEnabled: Whether or not the state is enabled.
+       - enabledText: The text to show when the state is enabled.
+       - enabledIcon: The icon to show when the state is enabled, by default `checkmark`.
+       - disabledText: The text to show when the state is disabled.
+       - disabledIcon: The icon to show when the state is disabled, by default `exclamationmark.triangle`.
+       - style: The style to use, by default ``KeyboardEnabledLabel/Style/standard``.
+     */
+    init(
+        isEnabled: Bool,
+        enabledIcon: Image = Image(systemName: "checkmark"),
+        enabledText: String,
+        disabledIcon: Image = Image(systemName: "exclamationmark.triangle"),
+        disabledText: String,
+        style: KeyboardEnabledLabelStyle = .standard
+    ) {
+        self.isEnabled = isEnabled
+        self.enabledText = enabledText
+        self.enabledIcon = enabledIcon
+        self.disabledText = disabledText
+        self.disabledIcon = disabledIcon
+        self.style = style
+    }
+}
+
 private extension KeyboardEnabledLabel {
 
+    @ViewBuilder
     var icon: some View {
-        value(style.enabledIcon, style.disabledIcon)
+        if isEnabled {
+            enabledIcon
+        } else {
+            disabledIcon
+        }
     }
 
     var iconColor: Color? {
-        value(style.enabledIconStyle.color, style.disabledIconStyle.color)
+        value(style.enabledIcon.color, style.disabledIcon.color)
     }
 
     var iconFont: Font? {
-        value(style.enabledIconStyle.font, style.disabledIconStyle.font)
+        value(style.enabledIcon.font, style.disabledIcon.font)
     }
 
     var text: Text {
@@ -72,11 +116,11 @@ private extension KeyboardEnabledLabel {
     }
 
     var textColor: Color? {
-        value(style.enabledTextStyle.color, style.disabledTextStyle.color)
+        value(style.enabledText.color, style.disabledText.color)
     }
 
     var textFont: Font? {
-        value(style.enabledTextStyle.font, style.disabledTextStyle.font)
+        value(style.enabledText.font, style.disabledText.font)
     }
 
     func value<T>(_ enabled: T, _ disabled: T) -> T {
@@ -84,12 +128,15 @@ private extension KeyboardEnabledLabel {
     }
 }
 
-public extension KeyboardEnabledLabel {
+/**
+ This style can be used with a ``KeyboardEnabledLabel``.
+ */
+public struct KeyboardEnabledLabelStyle: Equatable {
 
     /**
      This style can be used with a ``KeyboardEnabledLabel``.
      */
-    struct ComponentStyle: Equatable {
+    public struct ComponentStyle: Equatable {
 
         public init(color: Color?, font: Font?) {
             self.color = color
@@ -101,58 +148,40 @@ public extension KeyboardEnabledLabel {
     }
 
     /**
-     This style can be used with a ``KeyboardEnabledLabel``.
+     Create an enabled label style.
+
+     - Parameters:
+       - enabledIcon: The icon style to use when the state is enabled.
+       - enabledText: The text style to use when the state is enabled.
+       - disabledIcon: The icon style to use when the state is disabled.
+       - disabledText: The text style to use when the state is disabled.
      */
-    struct Style: Equatable {
-
-        /**
-         Create an enabled label style.
-
-         - Parameters:
-           - enabledIcon: The icon to use when the state is enabled, by default a `checkmark`.
-           - enabledIconStyle: The icon style to use when the state is enabled.
-           - enabledTextStyle: The text style to use when the state is enabled.
-           - disabledIcon: The icon to use when the state is disabled, by default a `exclamationmark.triangle`.
-           - disabledIconStyle: The icon style to use when the state is disabled.
-           - disabledTextStyle: The text style to use when the state is disabled.
-         */
-        public init(
-            enabledIcon: Image? = nil,
-            enabledIconStyle: ComponentStyle = .init(color: .green, font: nil),
-            enabledTextStyle: ComponentStyle = .init(color: nil, font: nil),
-            disabledIcon: Image? = nil,
-            disabledIconStyle: ComponentStyle = .init(color: .orange, font: nil),
-            disabledTextStyle: ComponentStyle = .init(color: nil, font: nil)
-        ) {
-            self.enabledIcon = enabledIcon ?? .symbol("checkmark")
-            self.enabledIconStyle = enabledIconStyle
-            self.enabledTextStyle = enabledTextStyle
-            self.disabledIcon = disabledIcon ?? .symbol("exclamationmark.triangle")
-            self.disabledIconStyle = disabledIconStyle
-            self.disabledTextStyle = disabledTextStyle
-        }
-
-        /// The icon to use when the state is enabled/active.
-        public var enabledIcon: Image
-
-        /// The icon style to use when the state is enabled/active.
-        public var enabledIconStyle: ComponentStyle
-
-        /// The text style to use when the state is enabled/active.
-        public var enabledTextStyle: ComponentStyle
-
-        /// The icon to use when the state is disabled/inactive.
-        public var disabledIcon: Image
-
-        /// The icon style to use when the state is disabled/inactive.
-        public var disabledIconStyle: ComponentStyle
-
-        /// The text style to use when the state is disabled/inactive.
-        public var disabledTextStyle: ComponentStyle
+    public init(
+        enabledIcon: ComponentStyle = .init(color: .green, font: nil),
+        enabledText: ComponentStyle = .init(color: nil, font: nil),
+        disabledIcon: ComponentStyle = .init(color: .orange, font: nil),
+        disabledText: ComponentStyle = .init(color: nil, font: nil)
+    ) {
+        self.enabledIcon = enabledIcon
+        self.enabledText = enabledText
+        self.disabledIcon = disabledIcon
+        self.disabledText = disabledText
     }
+
+    /// The icon style to use when the state is enabled/active.
+    public var enabledIcon: ComponentStyle
+
+    /// The text style to use when the state is enabled/active.
+    public var enabledText: ComponentStyle
+
+    /// The icon style to use when the state is disabled/inactive.
+    public var disabledIcon: ComponentStyle
+
+    /// The text style to use when the state is disabled/inactive.
+    public var disabledText: ComponentStyle
 }
 
-public extension KeyboardEnabledLabel.Style {
+public extension KeyboardEnabledLabelStyle {
 
     /**
      This is the standard ``KeyboardEnabledLabel`` style. It
@@ -161,7 +190,7 @@ public extension KeyboardEnabledLabel.Style {
      You can modify this style to globally affect every view
      that is created with the standard style.
      */
-    static var standard = KeyboardEnabledLabel.Style()
+    static var standard = KeyboardEnabledLabelStyle()
 }
 
 
