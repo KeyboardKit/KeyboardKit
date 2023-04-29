@@ -79,9 +79,9 @@ import UIKit
  */
 open class KeyboardInputViewController: UIInputViewController, KeyboardController {
 
-    
+
     // MARK: - View Controller Lifecycle
-    
+
     open override func viewDidLoad() {
         super.viewDidLoad()
         setupInitialWidth()
@@ -94,12 +94,12 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         viewWillSetupKeyboard()
         viewWillSyncWithContext()
     }
-    
+
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewWillPerformDictation()
     }
-    
+
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         keyboardContext.syncAfterLayout(with: self)
@@ -157,8 +157,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         keyboardContext.sync(with: self)
         keyboardTextContext.sync(with: self)
     }
-    
-    
+
+
     // MARK: - Setup
 
     /**
@@ -203,16 +203,16 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         let host = KeyboardHostingController(rootView: view)
         host.add(to: self)
     }
-    
-    
+
+
     // MARK: - Combine
-    
+
     var cancellables = Set<AnyCancellable>()
-    
-    
-    
+
+
+
     // MARK: - Properties
-    
+
     /**
      The original text document proxy that was used to start
      the keyboard extension.
@@ -233,7 +233,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open override var textDocumentProxy: UITextDocumentProxy {
         textInputProxy ?? mainTextDocumentProxy
     }
-    
+
     /**
      A custom text input proxy to which text can be routed.
 
@@ -243,21 +243,21 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     public var textInputProxy: TextInputProxy? {
         didSet { viewWillSyncWithContext() }
     }
-    
-    
+
+
     // MARK: - Observables
-    
+
     /**
      The default, observable autocomplete context.
-     
+
      This context is used as global state for the keyboard's
      autocomplete, e.g. the current suggestions.
      */
     public lazy var autocompleteContext = AutocompleteContext()
-    
+
     /**
      The default, observable callout context.
-     
+
      This is used as global state for the callouts that show
      the currently typed character.
      */
@@ -276,18 +276,18 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      to communicate between an app and its keyboard.
      */
     public lazy var dictationContext = DictationContext()
-    
+
     /**
      The default, observable keyboard context.
-     
+
      This is used as global state for the keyboard's overall
      state and configuration like locale, device, screen etc.
      */
     public lazy var keyboardContext = KeyboardContext(controller: self)
-    
+
     /**
      The default, observable feedback settings.
-     
+
      This property is used as a global configuration for the
      keyboard's feedback, e.g. audio and haptic feedback.
      */
@@ -300,11 +300,11 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      the ``textDocumentProxy``.
      */
     public lazy var keyboardTextContext = KeyboardTextContext()
-    
-    
-    
+
+
+
     // MARK: - Services
-    
+
     /**
      The autocomplete provider that is used to provide users
      with autocomplete suggestions.
@@ -312,7 +312,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      You can replace this with a custom implementation.
      */
     public lazy var autocompleteProvider: AutocompleteProvider = DisabledAutocompleteProvider()
-    
+
     /**
      The callout action provider that is used to provide the
      keyboard with secondary callout actions.
@@ -334,7 +334,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     public lazy var dictationService: KeyboardDictationService = DisabledKeyboardDictationService(
         context: dictationContext
     )
-    
+
     /**
      The input set provider that is used to define the input
      keys of the keyboard.
@@ -346,7 +346,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     ) {
         didSet { refreshProperties() }
     }
-    
+
     /**
      The action handler that will be used by the keyboard to
      handle keyboard actions.
@@ -376,7 +376,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      */
     public lazy var keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior(
         keyboardContext: keyboardContext)
-    
+
     /**
      The feedback handler that is used to trigger haptic and
      audio feedback.
@@ -385,7 +385,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      */
     public lazy var keyboardFeedbackHandler: KeyboardFeedbackHandler = StandardKeyboardFeedbackHandler(
         settings: keyboardFeedbackSettings)
-                    
+
     /**
      This keyboard layout provider that is used to setup the
      complete set of keys and their layout.
@@ -395,27 +395,27 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     public lazy var keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider(
         keyboardContext: keyboardContext,
         inputSetProvider: inputSetProvider)
-    
-    
-    
+
+
+
     // MARK: - Text And Selection Change
-    
+
     open override func selectionWillChange(_ textInput: UITextInput?) {
         super.selectionWillChange(textInput)
         resetAutocomplete()
     }
-    
+
     open override func selectionDidChange(_ textInput: UITextInput?) {
         super.selectionDidChange(textInput)
         resetAutocomplete()
     }
-    
+
     open override func textWillChange(_ textInput: UITextInput?) {
         super.textWillChange(textInput)
         if keyboardContext.textDocumentProxy === textDocumentProxy { return }
         keyboardContext.textDocumentProxy = textDocumentProxy
     }
-    
+
     open override func textDidChange(_ textInput: UITextInput?) {
         super.textDidChange(textInput)
         performAutocomplete()
@@ -531,16 +531,51 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
             self?.updateAutocompleteContext(with: result)
         }
     }
-    
+
     /**
      Reset the current autocomplete state.
-     
+
      You can override this function to extend or replace the
      default logic. By default, it resets the suggestions in
      the ``autocompleteContext``.
      */
     open func resetAutocomplete() {
         autocompleteContext.reset()
+    }
+
+
+    // MARK: - Dictation
+
+    /**
+     The configuration to use when performing dictation from
+     the keyboard extension.
+
+     By default, this uses the `appGroupId` and `appDeepLink`
+     properties from ``dictationContext``, so make sure that
+     you call ``DictationContext/setup(with:)`` before using
+     the dictation features in your keyboard extension.
+     */
+    public var dictationConfig: KeyboardDictationConfiguration {
+        .init(
+            appGroupId: dictationContext.appGroupId ?? "",
+            appDeepLink: dictationContext.appDeepLink ?? ""
+        )
+    }
+
+    /**
+     Perform a keyboard-initiated dictation operation.
+
+     > Important: ``DictationContext/appDeepLink`` must have
+     been set before this is called, otherwise this function
+     will not behave correctly. The deep link must open your
+     app and start dictation. See the docs for more info.
+     */
+    public func performDictation() {
+        let config = dictationConfig
+        if config.appDeepLink.isEmpty { print("Invalid app deep link") }
+        Task {
+            try await dictationService.startDictationFromKeyboard(with: config)
+        }
     }
 }
 
@@ -560,20 +595,20 @@ private extension KeyboardInputViewController {
             actionProvider: calloutActionProvider
         )
     }
-    
+
     func refreshLayoutProvider() {
         keyboardLayoutProvider.register(
             inputSetProvider: inputSetProvider
         )
     }
-    
+
     /**
      Set up an initial width to avoid broken SwiftUI layouts.
      */
     func setupInitialWidth() {
         view.frame.size.width = UIScreen.main.bounds.width
     }
-    
+
     /**
      Setup locale observation to handle locale-based changes.
      */
@@ -592,7 +627,7 @@ private extension KeyboardInputViewController {
     func setupNextKeyboardBehavior() {
         NextKeyboardController.shared = self
     }
-    
+
     func tryChangeToPreferredKeyboardTypeAfterTextDidChange() {
         let context = keyboardContext
         let shouldSwitch = keyboardBehavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange()

@@ -30,6 +30,11 @@ If you have persisted `KeyboardTheme` values in your app, please reach out via `
 
 ### ✨ New features
 
+- `DictationContext` has a new `appDeepLink` property.
+- `DictationContext` has a new `setup(with:)` function.
+- `KeyboardController` has a new `performDictation` function.
+- `KeyboardInputViewController` has a new `dictationConfig` property.
+- `KeyboardInputViewController` has a new `performDictation` function.
 - `KeyboardEnabledLabel` now supports more styling.
 - `KeyboardSettingsLink` now supports custom labels.
 
@@ -64,6 +69,7 @@ If you have persisted `KeyboardTheme` values in your app, please reach out via `
 
 ### 💥 Breaking changes 
 
+* `DictationContext.lastAppGroupId` has been removed.
 * `KeyboardTheme.allPredefined` is no longer throwing.
 
 

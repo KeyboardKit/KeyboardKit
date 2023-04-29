@@ -24,7 +24,6 @@ public class DictationContext: ObservableObject {
      Create a context instance.
      */
     public init() {
-        appGroupId = lastAppGroupId
         setupAppGroupSharing()
     }
 
@@ -41,10 +40,19 @@ public class DictationContext: ObservableObject {
 
      Setting this will setup a shared `UserDefaults` that is
      then used to sync changes between your app and keyboard.
+     The value is persisted to be available to your keyboard
+     when it returns, before your setup code has been called.
      */
+    @AppStorage("com.keyboardkit.dictation.appGroupId")
     public var appGroupId: String? {
         didSet { setupAppGroupSharing() }
     }
+
+    /**
+     The deep link to use to open the app, when initializing
+     a dictation operation from a keyboard extension.
+     */
+    public var appDeepLink: String?
 
     /**
      Whether or not dictation is in progress.
@@ -62,17 +70,6 @@ public class DictationContext: ObservableObject {
     public var dictatedText = "" {
         didSet { persistedDictatedText = dictatedText }
     }
-
-    /**
-     The last applied App Group ID.
-
-     This is persisted within the current keyboard or app to
-     make it possible to continue an ongoing operation, such
-     as when returning to the keyboard. This ID isn't shared
-     between the keyboard and the main app.
-     */
-    @AppStorage("com.keyboardkit.dictation.appGroupId")
-    public var lastAppGroupId: String?
 
     /**
      The last applied dictation error.
@@ -129,13 +126,20 @@ public extension DictationContext {
             isDictating = value
         }
     }
+
+    /**
+     Set up the context with the configuration.
+     */
+    func setup(with config: KeyboardDictationConfiguration) {
+        appDeepLink = config.appDeepLink
+        appGroupId = config.appGroupId
+    }
 }
 
 private extension DictationContext {
 
     func setupAppGroupSharing() {
         guard let id = appGroupId else { return userDefaults = nil }
-        lastAppGroupId = id
         userDefaults = UserDefaults(suiteName: id)
         localeId = persistedLocaleId ?? localeId
         dictatedText = persistedDictatedText ?? dictatedText

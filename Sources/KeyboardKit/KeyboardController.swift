@@ -58,10 +58,15 @@ public protocol KeyboardController: AnyObject {
     func performAutocomplete()
 
     /**
+     Perform a keyboard-initiated dictation operation.
+     */
+    func performDictation()
+
+    /**
      Perform a text context sync.
      */
     func performTextContextSync()
-    
+
     /**
      Reset the current autocomplete state.
      */
