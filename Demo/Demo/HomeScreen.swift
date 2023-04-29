@@ -15,19 +15,24 @@ import SwiftUI
  This screen has a text field, an appearance toggle and list
  items that show various keyboard-specific states.
 
- The app has several keyboards, where the standard one shows
- you how to setup a standard English keyboard, with services
- already prepared to let you easily customize the appearance,
- the keyboard layout etc. The unicode keyboard uses an input
- set with unicode characters, while the custom keyboard uses
- a custom input set and a custom layout.
+ This app has many keyboards, where `Keyboard` shows you how
+ to setup a standard, English keyboard with some adjustments.
 
- The pro demo keyboards use KeyboardKit Pro instead of using
- the standard library, so you can take a look at them to see
- how they set up KeyboardKit Pro. These keyboards demo every
- available keyboard locale, so run the standard Pro keyboard
- to test all LTR locales and the ProRtl keyboard to test all
- RTL locales.
+ `KeyboardCustom` has a custom input set and keyboard layout,
+ as well as a custom appearance.
+
+ `KeyboardTextInput` shows how to setup a keyboard with text
+ fields and text views, to enable text input in the keyboard.
+
+ `KeyboardUnicode` shows how to setup a keyboard that uses a
+ unicode-based input set for its input keys.
+
+ `KeyboardPro` is a KeyboardKit Pro-powered keyboard that is
+ using KeyboardKit Pro instead of KeyboardKit. It will setup
+ all supported locales, dictation etc., as well as dictation,
+ (although that feature is not fully working, since it needs
+ a properly signed app). Take a look at this pro keyboard to
+ see how to set up KeyboardKit Pro.
  */
 struct HomeScreen: View {
 
@@ -39,6 +44,9 @@ struct HomeScreen: View {
 
     @State
     private var text = ""
+
+    @StateObject
+    private var dictationContext = DictationContext()
 
     @StateObject
     private var keyboardState = KeyboardEnabledState(
@@ -61,6 +69,17 @@ struct HomeScreen: View {
             }
         }
         .navigationViewStyle(.stack)
+        .onOpenURL { _ in print("WARNING: Keyboard dictation requires KeyboardKit Pro and a signed app group") }
+        /**
+         This view modifier is available in KeyboardKit Pro.
+         .keyboardDictation(context: dictationContext, config: .app) {
+             DictationOverlay(
+                 dictationContext: dictationContext,
+                 titleView: { EmptyView() },
+                 indicator: { DictationIndicator(isDictating: $0) }
+             )
+         }
+         */
     }
 }
 

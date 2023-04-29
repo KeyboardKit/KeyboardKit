@@ -23,6 +23,7 @@ class DemoKeyboardLayoutProvider: StandardKeyboardLayoutProvider {
 
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         let layout = super.keyboardLayout(for: context)
+        // layout.tryInsertDictationButton()
         guard context.locales.count > 1 else { return layout }
         layout.tryInsertLocaleSwitcher()
         return layout
@@ -35,13 +36,19 @@ private extension KeyboardLayout {
         itemRows.count - 1
     }
 
-    var localeSwitcherTemplate: KeyboardLayoutItem? {
+    var systemButtonTemplate: KeyboardLayoutItem? {
         itemRows[bottomRowIndex].first { $0.action.isSystemAction }
     }
 
+    func tryInsertDictationButton() {
+        guard let template = systemButtonTemplate else { return }
+        let item = KeyboardLayoutItem(action: .dictation, size: template.size, insets: template.insets)
+        itemRows.insert(item, after: .space, atRow: bottomRowIndex)
+    }
+
     func tryInsertLocaleSwitcher() {
-        guard let template = localeSwitcherTemplate else { return }
-        let switcher = KeyboardLayoutItem(action: .nextLocale, size: template.size, insets: template.insets)
-        itemRows.insert(switcher, after: .space, atRow: bottomRowIndex)
+        guard let template = systemButtonTemplate else { return }
+        let item = KeyboardLayoutItem(action: .nextLocale, size: template.size, insets: template.insets)
+        itemRows.insert(item, after: .space, atRow: bottomRowIndex)
     }
 }

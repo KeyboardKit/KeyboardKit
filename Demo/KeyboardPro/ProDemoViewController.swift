@@ -42,14 +42,6 @@ class ProDemoViewController: KeyboardInputViewController {
      */
     override func viewDidLoad() {
 
-        /// 💡 Enable the new autocomplete provider.
-        ///
-        /// This feature is experimental and must be enabled
-        /// with the shared `FeatureToggle`. If the provider
-        /// works great, the next minor version will replace
-        /// the old provider with this new one.
-        FeatureToggle.shared.toggleFeature(.newAutocompleteEngine, .on)
-
         /// 💡 Setup a custom dictation key replacement.
         ///
         /// Since dictation is not available by default, you
@@ -95,43 +87,61 @@ class ProDemoViewController: KeyboardInputViewController {
         try? setupPro(
             withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098",
             view: { controller in DemoKeyboardView(controller: controller) },
-            licenseConfiguration: setupKeyboardWithLicense)
+            licenseConfiguration: setup
+        )
     }
 
     /**
      This function is used to configure the keyboard after a
      license is registered, but before the view is created.
      */
-    func setupKeyboardWithLicense(_ license: License) {
+    func setup(with license: License) {
+        setupDictation(with: license)
+        setupLayout(with: license)
+        setupLocale(with: license)
+        setupTheme(with: license)
+    }
 
-        // The locale to use, either persisted or default
-        let locale = persistedLocale ?? .defaultDemoLocale
+    /**
+     Setup dictation for the keyboard extension.
 
-        // Restore the last used locale, if any
-        // 💡 This must be done after registering Pro
-        keyboardContext.locale = locale
+     > Important: Dictation doesn't fully work for this demo,
+     since the main app requires a code signed app group for
+     the dictated text to be available to the keyboard.
+     */
+    func setupDictation(with license: License) {
+        dictationContext.setup(with: .app)
+    }
 
-        // Apply the applicable locales, either LTR or RTL
-        // 💡 This must be done after registering Pro
-        keyboardContext.locales = .demoLocales
-            .sorted(in: locale, insertFirst: locale)
-            .filter { license.locales.map { $0.locale }.contains($0) }
-
-        // Setup a theme-based appearance
-        // 💡 You can use built-in themes or create your own
-        // keyboardAppearance = (try? KeyboardThemeAppearance(
-        //     theme: .cottonCandy,
-        //     // theme: .neonNights,
-        //     // theme: .tron,
-        //     keyboardContext: keyboardContext)) ?? keyboardAppearance
-
-        // Setup a demo-specific keyboard layout provider
-        // 💡 Play with this to change the keyboard's layout
+    /**
+     This function sets up an demo-specific keyboard layout.
+     */
+    func setupLayout(with license: License) {
         keyboardLayoutProvider = DemoKeyboardLayoutProvider(
             license: license,
             keyboardContext: keyboardContext,
             inputSetProvider: inputSetProvider
         )
+    }
+
+    /**
+     This function restores the last persisted locale.
+     */
+    func setupLocale(with license: License) {
+        let locale = persistedLocale ?? KeyboardLocale.english.locale
+        keyboardContext.locale = locale
+    }
+
+    /**
+     Setup a theme from the KeyboardKit Pro theme engine.
+     */
+    func setupTheme(with license: License) {
+        keyboardAppearance = (try? KeyboardThemeAppearance(
+            theme: .standard,
+            //theme: .cottonCandy,
+            //theme: .neonNights,
+            //theme: .tron,
+        keyboardContext: keyboardContext)) ?? keyboardAppearance
     }
 
 
