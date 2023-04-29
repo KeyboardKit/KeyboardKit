@@ -68,7 +68,7 @@ public extension FeatureToggle {
         /// This is a placeholder feature without effect.
         case placeholder
 
-        /// The new KeyboardKit Pro autocomplete engine.
+        @available(*, deprecated, message: "This feature is no longer used")
         case newAutocompleteEngine
     }
 }

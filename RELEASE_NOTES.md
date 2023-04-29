@@ -61,6 +61,8 @@ If you have persisted `KeyboardTheme` values in your app, please reach out via `
 ### 🗑️ Deprecations
 
 * `ExternalAutocompleteProvider` is renamed to `RemoteAutocompleteProvider`.
+* `ExternalAutocompleteResult` is renamed to `RemoteAutocompleteResult`.
+* `FeatureToggle.Feature.newAutocompleteEngine` is no longer used.
 * `KeyboardContext.tempIsPreviewMode` is no longer used.
 * `KeyboardLocale` sort with insert first parameter is replaced by atomic operations.
 * `StandardAutocompleteProvider` is renamed to `LocalAutocompleteProvider`.
