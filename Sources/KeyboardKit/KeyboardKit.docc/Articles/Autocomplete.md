@@ -6,9 +6,7 @@ In KeyboardKit, an ``AutocompleteProvider`` can be used to provide the keyboard 
 
 KeyboardKit doesn't have any standard autocomplete providers as it has for most other services. Instead, it will use a disabled provider until you register a real one.
 
-You can unlock a ``StandardAutocompleteProvider`` and an ``ExternalAutocompleteProvider`` with [KeyboardKit Pro][Pro] or create custom ones that use custom logic.
-
-[KeyboardKit Pro][Pro] specific features are described at the end of this document.
+[KeyboardKit Pro][Pro] unlocks a local and a remote autocomplete providers when you register a valid license. Information about these providers can be found at the end of this document.
 
 
 
@@ -81,10 +79,11 @@ private extension MyAutocompleteProvider {
     }
     
     func suggestion(_ word: String, _ subtitle: String? = nil) -> AutocompleteSuggestion {
-        StandardAutocompleteSuggestion(
+        AutocompleteSuggestion(
             text: word, 
             title: word, 
-            subtitle: subtitle)
+            subtitle: subtitle
+        )
     }
 }
 ```
@@ -149,20 +148,20 @@ The ``SystemKeyboard`` will however by default add an autocomplete toolbar above
 [KeyboardKit Pro][Pro] unlocks additional autocomplete providers and utilities.
 
 
-### Standard autocomplete provider
+### Local autocomplete provider
 
-KeyboardKit Pro unlocks a ``StandardAutocompleteProvider`` and applies it to the input controller's ``KeyboardInputViewController/autocompleteProvider`` when you setup KeyboardKit with a Pro license. You can inherit and customize this class to modify its behavior.
+KeyboardKit Pro unlocks a ``LocalAutocompleteProvider`` and applies it to the input controller's ``KeyboardInputViewController/autocompleteProvider`` when you setup KeyboardKit Pro with a  valid license. You can inherit and customize this class to modify its behavior.
 
-The standard provider uses on-devices capabilities to generate suggestions. It doesn't require full access, works offline and integrates with other system components, like the on-device lexicon.
+The local autocomplete provider uses on-devices capabilities to generate suggestions. It works offline, doesn't require full access and integrates with other system components, like the on-device lexicon.
 
-Note that these standard autocomplete suggestions are not comparable in quality with the ones in a native iOS keyboard. For instance, there's no next word prediction and limited autocorrect. These suggestions will however make your keyboard look and behave more like a native keyboard than if you don't have any autocomplete at all. 
+Note that this provider doesn't provide next word prediction, which means that no suggestion will be given when you end a word or sentence. 
 
 
 ### Remote autocomplete provider
 
-KeyboardKit Pro also unlocks an ``ExternalAutocompleteProvider`` that can fetch autocomplete suggestions from external APIs and data sources. It can be customized to great extent, for instance to modify the request url, parameters and headers. 
+KeyboardKit Pro also unlocks an ``RemoteAutocompleteProvider`` that can be configured to communicate with any APIs or web service. It can be customized to great extent, for instance to modify the request url, parameters and headers. 
 
-Since most autocomplete APIs require a secret api token or some form of authentication, the demo app doesn't include a provider demo. You must create one yourself and manually register it in the Pro demo.
+Since most autocomplete APIs require a secret api token or some form of authentication, the demo app doesn't include a remote provider demo. You must create one yourself and manually register it in the Pro demo after registering a valid license.
 
 
 
