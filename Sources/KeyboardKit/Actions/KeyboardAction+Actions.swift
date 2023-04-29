@@ -75,6 +75,7 @@ public extension KeyboardAction {
         switch self {
         case .character(let char): return { $0?.insertText(char) }
         case .characterMargin(let char): return { $0?.insertText(char) }
+        case .dictation: return { $0?.performDictation() }
         case .dismissKeyboard: return { $0?.dismissKeyboard() }
         case .emoji(let emoji): return { $0?.insertText(emoji.char) }
         case .moveCursorBackward: return { $0?.adjustTextPosition(byCharacterOffset: -1) }
