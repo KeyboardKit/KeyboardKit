@@ -20,6 +20,10 @@ Older versions are kept in the `Release_Notes` folder.
 
 ## 7.5
 
+This version improves the theme and dictation engines to make them easier to use.
+
+This version also deprecates the feature toggle for the new autocomplete engine and makes it the standard engine. It also renames the external engine.  
+
 ### 🚨 Important information
 
 This version adds a mandatory `id` to `KeyboardTheme`, which will make it possible to implement features like marking a theme as a favorite, persist references instead of values etc.
