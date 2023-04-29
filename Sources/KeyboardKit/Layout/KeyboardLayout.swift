@@ -12,20 +12,20 @@ import SwiftUI
 /**
  A keyboard layout defines all available keyboard actions on
  a keyboard, as well as their size.
- 
+
  A keyboard layout most often consists of several input rows
  where the input buttons are surrounded by system buttons on
  either or both sides, as well as a bottom row, with a large
  space button and several system buttons.
- 
+
  The most flexible way to generate a keyboard layout is with
  a ``KeyboardLayoutProvider``.
  */
 public class KeyboardLayout {
-    
+
     /**
      Create a new layout with the provided `items`.
-     
+
      - Parameters:
        - itemRows: The layout item rows to show in the keyboard.
        - idealItemHeight: An optional, ideal item height, otherwise picked from the first item.
@@ -40,7 +40,7 @@ public class KeyboardLayout {
         self.idealItemHeight = height ?? Self.resolveIdealItemHeight(for: rows)
         self.idealItemInsets = insets ?? Self.resolveIdealItemInsets(for: rows)
     }
-    
+
     /**
      The layout item rows to show in the keyboard.
      */
@@ -57,32 +57,67 @@ public class KeyboardLayout {
      quickly add new items to the layout.
      */
     public var idealItemInsets: EdgeInsets
-    
+
     /**
      This `CGFloat` typealias makes it easier to see where a
      total width is expected.
      */
     public typealias TotalWidth = CGFloat
-    
+
     /**
      This cache is used to avoid having to recalculate width
      information over and over.
      */
     var widthCache = [TotalWidth: CGFloat]()
+}
+
+public extension KeyboardLayout {
+
+    /**
+     Get the bottom row index.
+     */
+    var bottomRowIndex: Int {
+        itemRows.count - 1
+    }
+
+    /**
+     Get the system action items at the layout's bottom row.
+
+     This collection can be used as a template when creating
+     new system buttons for custom layouts.
+     */
+    var bottomRowSystemItems: [KeyboardLayoutItem] {
+        itemRows[bottomRowIndex].filter { $0.action.isSystemAction }
+    }
 
     /**
      Calculate the width of an input key given a `totalWidth`.
-     
+
      This will find the smallest required input width in all
      rows, which can then be applied to all input keys. This
      value will then be cached for the `totalWidth`, so that
      it doesn't have to be calculated again.
      */
-    public func inputWidth(for totalWidth: TotalWidth) -> CGFloat {
+    func inputWidth(
+        for totalWidth: TotalWidth
+    ) -> CGFloat {
         if let result = widthCache[totalWidth] { return result }
         let result = itemRows.compactMap { $0.inputWidth(for: totalWidth) }.min() ?? 0
         widthCache[totalWidth] = result
         return result
+    }
+
+    /**
+     Get the bottom row system items.
+
+     This function will use the first ``bottomRowSystemItems``
+     as item template if you don't provide a template. If no
+     template is found, the function will return `nil` since
+     it lacks information to create a valid item.
+     */
+    func tryCreateBottomRowItem(for action: KeyboardAction) -> KeyboardLayoutItem? {
+        guard let template = bottomRowSystemItems.first else { return nil }
+        return KeyboardLayoutItem(action: action, size: template.size, insets: template.insets)
     }
 }
 
@@ -100,11 +135,11 @@ private extension KeyboardLayout {
 }
 
 private extension KeyboardLayoutItemRow {
-    
+
     var hasInputWidth: Bool {
         contains { $0.size.width == .input }
     }
-    
+
     func inputWidth(for totalWidth: CGFloat) -> CGFloat? {
         guard hasInputWidth else { return nil }
         let taken = reduce(0) { $0 + $1.allocatedWidth(for: totalWidth) }
@@ -115,7 +150,7 @@ private extension KeyboardLayoutItemRow {
 }
 
 private extension KeyboardLayoutItem {
-    
+
     func allocatedWidth(for totalWidth: CGFloat) -> CGFloat {
         switch size.width {
         case .available: return 0
@@ -125,7 +160,7 @@ private extension KeyboardLayoutItem {
         case .points(let points): return points
         }
     }
-    
+
     var inputPercentageFactor: CGFloat {
         switch size.width {
         case .available: return 0

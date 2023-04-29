@@ -37,6 +37,9 @@ If you have persisted `KeyboardTheme` values in your app, please reach out via `
 - `KeyboardEnabledLabel` now supports more styling.
 - `KeyboardInputViewController` has a new `dictationConfig` property.
 - `KeyboardInputViewController` has a new `performDictation` function.
+- `KeyboardLayout` has a new `bottomRowIndex` property.
+- `KeyboardLayout` has a new `bottomRowSystemItems` property.
+- `KeyboardLayout` has a new `tryCreateBottomRowItem(for:)` function.
 - `KeyboardSettingsLink` now supports custom labels.
 
 ### 💡 Behavior changes
