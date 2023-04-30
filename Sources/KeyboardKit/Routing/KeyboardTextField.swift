@@ -194,11 +194,15 @@ class KeyboardInputTextField: UITextField, KeyboardInputComponent {
      ```
      */
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        #if os(iOS)
         if #available(iOS 15.0, *) {
             return action == #selector(captureTextFromCamera) ? false : super.canPerformAction(action, withSender: sender)
         } else {
             return super.canPerformAction(action, withSender: sender)
         }
+        #else
+        super.canPerformAction(action, withSender: sender)
+        #endif
     }
 }
 #endif
