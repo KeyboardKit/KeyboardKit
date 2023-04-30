@@ -32,23 +32,13 @@ class DemoKeyboardLayoutProvider: StandardKeyboardLayoutProvider {
 
 private extension KeyboardLayout {
 
-    var bottomRowIndex: Int {
-        itemRows.count - 1
-    }
-
-    var systemButtonTemplate: KeyboardLayoutItem? {
-        itemRows[bottomRowIndex].first { $0.action.isSystemAction }
-    }
-
     func tryInsertDictationButton() {
-        guard let template = systemButtonTemplate else { return }
-        let item = KeyboardLayoutItem(action: .dictation, size: template.size, insets: template.insets)
+        guard let item = tryCreateBottomRowItem(for: .dictation) else { return }
         itemRows.insert(item, after: .space, atRow: bottomRowIndex)
     }
 
     func tryInsertLocaleSwitcher() {
-        guard let template = systemButtonTemplate else { return }
-        let item = KeyboardLayoutItem(action: .nextLocale, size: template.size, insets: template.insets)
+        guard let item = tryCreateBottomRowItem(for: .nextLocale) else { return }
         itemRows.insert(item, after: .space, atRow: bottomRowIndex)
     }
 }
