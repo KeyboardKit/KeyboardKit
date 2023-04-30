@@ -75,6 +75,7 @@ final class KeyboardAction_ActionsTests: XCTestCase {
         expected = [
             .character(""),
             .characterMargin(""),
+            .dictation,
             .dismissKeyboard,
             .emoji(Emoji("")),
             .moveCursorBackward,
