@@ -22,15 +22,13 @@ Older versions are kept in the `Release_Notes` folder.
 
 This version improves the theme and dictation engines to make them easier to use.
 
-This version also deprecates the feature toggle for the new autocomplete engine and makes it the standard engine. It also renames the external engine.  
+This version also deprecates the feature toggle for the new autocomplete provider and makes it the standard engine. It also renames the external provider to remote to better reflect what it does.  
 
 ### 🚨 Important information
 
-This version adds a mandatory `id` to `KeyboardTheme`, which will make it possible to implement features like marking a theme as a favorite, persist references instead of values etc.
+This version adds a mandatory `id` to `KeyboardTheme`, which will make it possible to implement features like marking a theme as a favorite, persist references instead of values etc. While it's not mandatory to specify an `id` when creating a theme, it *is* a mandatory property, which means that any previously encoded data will fail to decode.
 
-While it's not mandatory to specify an `id` when creating a theme, it *is* a mandatory property, which means that any previously encoded data will fail to decode.
-
-If you have persisted `KeyboardTheme` values in your app, please reach out via `info@getkeyboardkit.com` and decode failure handling will be added to the library to handle any lacking IDs.  
+If you have persisted `KeyboardTheme` values in your app, please reach out via `info@getkeyboardkit.com` and decode failure handling will be added to the library to handle any lacking IDs.
 
 ### ✨ New features
 
