@@ -87,7 +87,10 @@ public extension KeyboardLayout {
      new system buttons for custom layouts.
      */
     var bottomRowSystemItems: [KeyboardLayoutItem] {
-        itemRows[bottomRowIndex].filter { $0.action.isSystemAction }
+        if bottomRowIndex < 0 { return [] }
+        return itemRows[bottomRowIndex].filter {
+            $0.action.isSystemAction
+        }
     }
 
     /**

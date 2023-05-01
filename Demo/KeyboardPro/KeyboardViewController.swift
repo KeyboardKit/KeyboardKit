@@ -126,8 +126,10 @@ class KeyboardViewController: KeyboardInputViewController {
      This function restores the last persisted locale.
      */
     func setupLocale(with license: License) {
-        let locale = persistedLocale ?? KeyboardLocale.english.locale
+        let english = KeyboardLocale.english.locale
+        let locale = persistedLocale ?? english
         keyboardContext.locale = locale
+        keyboardContext.localePresentationLocale = keyboardContext.locales.first ?? english
     }
 
     /**
