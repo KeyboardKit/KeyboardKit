@@ -18,6 +18,16 @@ Older versions are kept in the `Release_Notes` folder.
 
 
 
+## 7.5.1
+
+This version adds more emoji versions.
+
+### 👑 Pro changes
+
+* `EmojiVersion` now includes 13.1, 13.0, 12.1, 12.0 and 11.0.
+
+
+
 ## 7.5
 
 This version improves the theme and dictation engines to make them easier to use.
