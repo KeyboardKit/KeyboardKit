@@ -84,25 +84,31 @@ public extension View {
         dragAction: KeyboardDragGestureAction? = nil
     ) -> some View {
         #if os(iOS) || os(macOS) || os(watchOS)
+        let gestures = KeyboardGestures(
+            view: self,
+            action: action,
+            calloutContext: calloutContext,
+            isInScrollView: isInScrollView,
+            isPressed: isPressed,
+            doubleTapAction: doubleTapAction,
+            longPressAction: longPressAction,
+            pressAction: pressAction,
+            releaseAction: releaseAction,
+            repeatAction: repeatAction,
+            dragAction: dragAction
+        )
+        #endif
+
+        #if os(iOS)
         if action == .nextKeyboard {
             NextKeyboardButton {
                 self
             }
         } else {
-            KeyboardGestures(
-                view: self,
-                action: action,
-                calloutContext: calloutContext,
-                isInScrollView: isInScrollView,
-                isPressed: isPressed,
-                doubleTapAction: doubleTapAction,
-                longPressAction: longPressAction,
-                pressAction: pressAction,
-                releaseAction: releaseAction,
-                repeatAction: repeatAction,
-                dragAction: dragAction
-            )
+            gestures
         }
+        #elseif os(macOS) || os(watchOS)
+        gestures
         #else
         Button {
             pressAction?()

@@ -34,7 +34,6 @@ This release also fixes a problem, where `StandardKeyboardActionHandler` marking
 
 
 
-
 ## 7.5.1
 
 This version adds more emoji versions.
