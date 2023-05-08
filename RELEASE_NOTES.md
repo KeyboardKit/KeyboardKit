@@ -18,6 +18,20 @@ Older versions are kept in the `Release_Notes` folder.
 
 
 
+## 7.5.2
+
+This version adjusts how the next keyboard button behaves.
+
+The next keyboard gestures is now moved from the system keyboard button content view to the gesture modifier, which means that it will always apply to views that are modified with gestures for that action.
+
+### 💡 Behavior changes
+
+* `SystemKeyboardButtonContent` no longer applies a `NextKeyboardButton` for `.nextKeyboard`.
+* `View+KeyboardGestures` now applies a `NextKeyboardButton` for `.nextKeyboard`.
+
+
+
+
 ## 7.5.1
 
 This version adds more emoji versions.

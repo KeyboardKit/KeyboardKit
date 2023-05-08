@@ -16,9 +16,10 @@ public extension View {
     /**
      Apply keyboard-specific gestures to the view, using the
      provided `action`, `context` and `actionHandler`.
-     
-     If you provide an optional `KeyboardContext` the action
-     can be provided with even more contextual actions.
+
+     The ``KeyboardAction/nextKeyboard`` action will not use
+     the provided gesture actions, but will instead wrap the
+     view in a ``NextKeyboardButton``.
 
      - Parameters:
        - action: The keyboard action to trigger.
@@ -35,27 +36,27 @@ public extension View {
         isInScrollView: Bool = false,
         isPressed: Binding<Bool> = .constant(false)
     ) -> some View {
-        if action == .nextKeyboard {
-            self
-        } else {
-            self.keyboardGestures(
-                action: action,
-                calloutContext: calloutContext,
-                isInScrollView: isInScrollView,
-                isPressed: isPressed,
-                doubleTapAction: { actionHandler.handle(.doubleTap, on: action) },
-                longPressAction: { actionHandler.handle(.longPress, on: action) },
-                pressAction: { actionHandler.handle(.press, on: action) },
-                releaseAction: { actionHandler.handle(.release, on: action) },
-                repeatAction: { actionHandler.handle(.repeatPress, on: action) },
-                dragAction: { start, current in actionHandler.handleDrag(on: action, from: start, to: current) }
-            )
-        }
+        self.keyboardGestures(
+            action: action,
+            calloutContext: calloutContext,
+            isInScrollView: isInScrollView,
+            isPressed: isPressed,
+            doubleTapAction: { actionHandler.handle(.doubleTap, on: action) },
+            longPressAction: { actionHandler.handle(.longPress, on: action) },
+            pressAction: { actionHandler.handle(.press, on: action) },
+            releaseAction: { actionHandler.handle(.release, on: action) },
+            repeatAction: { actionHandler.handle(.repeatPress, on: action) },
+            dragAction: { start, current in actionHandler.handleDrag(on: action, from: start, to: current) }
+        )
     }
     
     /**
      Apply keyboard-specific gestures to the view, using the
      provided action blocks.
+
+     The ``KeyboardAction/nextKeyboard`` action will not use
+     the provided gesture actions, but will instead wrap the
+     view in a ``NextKeyboardButton``.
      
      - Parameters:
        - action: The keyboard action to trigger, by deafult `nil`.
@@ -83,19 +84,25 @@ public extension View {
         dragAction: KeyboardDragGestureAction? = nil
     ) -> some View {
         #if os(iOS) || os(macOS) || os(watchOS)
-        KeyboardGestures(
-            view: self,
-            action: action,
-            calloutContext: calloutContext,
-            isInScrollView: isInScrollView,
-            isPressed: isPressed,
-            doubleTapAction: doubleTapAction,
-            longPressAction: longPressAction,
-            pressAction: pressAction,
-            releaseAction: releaseAction,
-            repeatAction: repeatAction,
-            dragAction: dragAction
-        )
+        if action == .nextKeyboard {
+            NextKeyboardButton {
+                self
+            }
+        } else {
+            KeyboardGestures(
+                view: self,
+                action: action,
+                calloutContext: calloutContext,
+                isInScrollView: isInScrollView,
+                isPressed: isPressed,
+                doubleTapAction: doubleTapAction,
+                longPressAction: longPressAction,
+                pressAction: pressAction,
+                releaseAction: releaseAction,
+                repeatAction: repeatAction,
+                dragAction: dragAction
+            )
+        }
         #else
         Button {
             pressAction?()

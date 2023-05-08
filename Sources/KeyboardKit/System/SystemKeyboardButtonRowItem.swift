@@ -74,7 +74,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
                 isPressed: isPressed
             )
             .padding(item.insets)
-            .background(Color.clearInteractable)
+            .contentShape(Rectangle())
             .keyboardGestures(
                 for: item.action,
                 actionHandler: actionHandler,
@@ -85,6 +85,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
                 context: keyboardContext,
                 actionHandler: actionHandler
             )
+            // .background(Color.random())
     }
 }
 

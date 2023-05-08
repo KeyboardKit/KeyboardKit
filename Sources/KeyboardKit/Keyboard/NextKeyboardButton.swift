@@ -18,8 +18,8 @@ import UIKit
  Note that you must provide a `UIInputViewController` in the
  initializer or set ``NextKeyboardController/shared`` before
  you create an instance of this view. When using KeyboardKit,
- ``KeyboardInputViewController`` is automatically set to the
- shared instance in `viewDidLoad`.
+ ``KeyboardInputViewController`` becomes the shared instance
+ in its `viewDidLoad`.
  */
 public struct NextKeyboardButton<Content: View>: View {
 

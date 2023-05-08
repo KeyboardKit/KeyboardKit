@@ -10,7 +10,7 @@ import SwiftUI
 
 /**
  This view generates the content of a system keyboard button
- that should trigger a certain ``KeyboardAction``.
+ that should trigger the provided ``KeyboardAction``.
 
  This view will adapt its content to conform to the provided
  `action` and `appearance`. It sets up gestures, line limits,
@@ -52,19 +52,6 @@ private extension SystemKeyboardButtonContent {
 
     @ViewBuilder
     var bodyContent: some View {
-        #if os(iOS) || os(tvOS)
-        if action == .nextKeyboard {
-            NextKeyboardButton { bodyView }
-        } else {
-            bodyView
-        }
-        #else
-        bodyView
-        #endif
-    }
-
-    @ViewBuilder
-    var bodyView: some View {
         if action == .space {
             spaceView
         } else if let image = appearance.buttonImage(for: action) {
