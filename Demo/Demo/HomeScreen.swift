@@ -58,9 +58,6 @@ struct HomeScreen: View {
                 textFieldSection
                 editorLinkSection
                 stateSection
-                Section(header: Text("Settings")) {
-                    KeyboardSettingsLink()
-                }
             }
             .buttonStyle(.plain)
             .navigationTitle("KeyboardKit")
@@ -114,19 +111,26 @@ extension HomeScreen {
     }
 
     var stateSection: some View {
-        Section(header: Text("Keyboard State"), footer: footerText) {
-            KeyboardEnabledLabel(
-                isEnabled: keyboardState.isKeyboardEnabled,
-                enabledText: "Demo keyboard is enabled",
-                disabledText: "Demo keyboard not enabled")
+        Section(header: Text("Keyboard"), footer: footerText) {
             KeyboardEnabledLabel(
                 isEnabled: keyboardState.isKeyboardActive,
                 enabledText: "Demo keyboard is active",
-                disabledText: "Demo keyboard is not active")
-            KeyboardEnabledLabel(
-                isEnabled: keyboardState.isFullAccessEnabled,
-                enabledText: "Full Access is enabled",
-                disabledText: "Full Access is disabled")
+                disabledText: "Demo keyboard is not active"
+            )
+            KeyboardSettingsLink(addNavigationArrow: true) {
+                KeyboardEnabledLabel(
+                    isEnabled: keyboardState.isKeyboardEnabled,
+                    enabledText: "Demo keyboard is enabled",
+                    disabledText: "Demo keyboard not enabled"
+                )
+            }
+            KeyboardSettingsLink(addNavigationArrow: true) {
+                KeyboardEnabledLabel(
+                    isEnabled: keyboardState.isFullAccessEnabled,
+                    enabledText: "Full Access is enabled",
+                    disabledText: "Full Access is disabled"
+                )
+            }
         }
     }
     
