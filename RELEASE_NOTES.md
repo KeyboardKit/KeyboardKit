@@ -24,9 +24,12 @@ This version adjusts how the next keyboard button behaves.
 
 The next keyboard gestures is now moved from the system keyboard button content view to the gesture modifier, which means that it will always apply to views that are modified with gestures for that action.
 
+This release also fixes a problem, where `StandardKeyboardActionHandler` marking one initializer as convenience caused problems when inheriting it.
+
 ### 💡 Behavior changes
 
 * `SystemKeyboardButtonContent` no longer applies a `NextKeyboardButton` for `.nextKeyboard`.
+* `StandardKeyboardActionHandler` no longer marks the `inputViewController` initializer as convenience.
 * `View+KeyboardGestures` now applies a `NextKeyboardButton` for `.nextKeyboard`.
 
 

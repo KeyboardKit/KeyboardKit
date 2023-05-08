@@ -31,21 +31,24 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
 
      - Parameters:
        - inputViewController: The view controller to use.
-       - spaceDragGestureHandler: A custom space drag gesture handler, if any.
+       - spaceDragGestureHandler: A custom space drag gesture handler to use, if any.
        - spaceDragSensitivity: The space drag sensitivity to use, by default ``SpaceDragSensitivity/medium``.
      */
-    public convenience init(
+    public init(
         inputViewController ivc: KeyboardInputViewController,
         spaceDragGestureHandler: DragGestureHandler? = nil,
         spaceDragSensitivity: SpaceDragSensitivity = .medium
     ) {
-        self.init(
+        weak var controller = ivc
+        self.keyboardController = controller
+        self.autocompleteContext = ivc.autocompleteContext
+        self.keyboardBehavior = ivc.keyboardBehavior
+        self.keyboardContext = ivc.keyboardContext
+        self.keyboardFeedbackHandler = ivc.keyboardFeedbackHandler
+        self.spaceDragGestureHandler = spaceDragGestureHandler ?? Self.dragGestureHandler(
             keyboardController: ivc,
             keyboardContext: ivc.keyboardContext,
-            keyboardBehavior: ivc.keyboardBehavior,
             keyboardFeedbackHandler: ivc.keyboardFeedbackHandler,
-            autocompleteContext: ivc.autocompleteContext,
-            spaceDragGestureHandler: spaceDragGestureHandler,
             spaceDragSensitivity: spaceDragSensitivity
         )
     }
@@ -71,17 +74,32 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         spaceDragGestureHandler: DragGestureHandler? = nil,
         spaceDragSensitivity: SpaceDragSensitivity = .medium
     ) {
-        weak var keyboardController = keyboardController
-        self.keyboardController = keyboardController
+        weak var controller = keyboardController
+        self.keyboardController = controller
         self.autocompleteContext = autocompleteContext
         self.keyboardBehavior = keyboardBehavior
         self.keyboardContext = keyboardContext
         self.keyboardFeedbackHandler = keyboardFeedbackHandler
-        self.spaceDragGestureHandler = spaceDragGestureHandler ?? SpaceCursorDragGestureHandler(
+        self.spaceDragGestureHandler = spaceDragGestureHandler ?? Self.dragGestureHandler(
+            keyboardController: keyboardController,
+            keyboardContext: keyboardContext,
+            keyboardFeedbackHandler: keyboardFeedbackHandler,
+            spaceDragSensitivity: spaceDragSensitivity
+        )
+    }
+
+    public static func dragGestureHandler(
+        keyboardController: KeyboardController,
+        keyboardContext: KeyboardContext,
+        keyboardFeedbackHandler: KeyboardFeedbackHandler,
+        spaceDragSensitivity: SpaceDragSensitivity
+    ) -> SpaceCursorDragGestureHandler {
+        weak var controller = keyboardController
+        return .init(
             keyboardContext: keyboardContext,
             feedbackHandler: keyboardFeedbackHandler,
             sensitivity: spaceDragSensitivity,
-            action: { keyboardController?.adjustTextPosition(byCharacterOffset: $0) }
+            action: { controller?.adjustTextPosition(byCharacterOffset: $0) }
         )
     }
 
