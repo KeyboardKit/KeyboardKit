@@ -9,7 +9,7 @@
 import Combine
 
 /**
- This is an observab le class that can be used to store a set
+ This is an observable class that can be used to store a set
  of autocomplete suggestions.
 
  KeyboardKit automatically creates an instance of this class

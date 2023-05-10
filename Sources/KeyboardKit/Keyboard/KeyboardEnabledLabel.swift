@@ -73,7 +73,7 @@ public extension KeyboardEnabledLabel where EnabledIcon == Image, DisabledIcon =
        - enabledIcon: The icon to show when the state is enabled, by default `checkmark`.
        - disabledText: The text to show when the state is disabled.
        - disabledIcon: The icon to show when the state is disabled, by default `exclamationmark.triangle`.
-       - style: The style to use, by default ``KeyboardEnabledLabel/Style/standard``.
+       - style: The style to use, by default ``KeyboardEnabledLabelStyle/standard``.
      */
     init(
         isEnabled: Bool,

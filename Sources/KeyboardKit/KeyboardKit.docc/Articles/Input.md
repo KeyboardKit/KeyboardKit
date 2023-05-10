@@ -68,7 +68,7 @@ This will make KeyboardKit use your custom implementation everywhere instead of 
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks additional input sets and input set providers for all keyboard locales, as well as input set variations like ``AlphabeticInputSet.azerty`` and ``AlphabeticInputSet.qwertz``. 
+[KeyboardKit Pro][Pro] unlocks additional input sets and input set providers for all keyboard locales, as well as input set variations like ``AlphabeticInputSet/azerty`` and ``AlphabeticInputSet/qwertz``. 
 
 This lets you create a fully localized ``SystemKeyboard`` for all available locales with a single line of code.
 

@@ -106,6 +106,11 @@ public class KeyboardContext: ObservableObject {
     /**
      An optional dictation replacement action, which will be
      used by some ``KeyboardLayoutProvider`` implementations.
+
+     > Warning: This will be deprecated and not used anymore
+     in KeyboardKit 7.9.9, then eventually removed in 8.0. A
+     replacement is to use a custom ``KeyboardLayoutProvider``
+     instead, which allows greater configuration options.
      */
     @Published
     public var keyboardDictationReplacement: KeyboardAction?
