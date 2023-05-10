@@ -102,7 +102,7 @@ public class DictationContext: ObservableObject {
 
     /**
      This property is used to keep a strong reference to the
-     dictation service in the app.
+     dictation service, while dictation is ongoing.
      */
     @Published
     public var service: KeyboardDictationService?

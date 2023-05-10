@@ -44,3 +44,13 @@ public struct KeyboardDictationConfiguration: Codable, Equatable {
      */
     public let appDeepLink: String
 }
+
+public extension KeyboardDictationConfiguration {
+
+    /**
+     Whether or not ``appDeepLink`` matches the provided url.
+     */
+    func matchesDeepLink(_ url: URL) -> Bool {
+        url.absoluteString == appDeepLink
+    }
+}

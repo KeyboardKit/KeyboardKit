@@ -13,27 +13,33 @@ import Foundation
  dictations between a keyboard extension and its parent app.
 
  Since keyboard extensions can't access the microphone, your
- keyboard extension must open your app, let your app perform
- dictation and write the text to shared state, then pop back
- to your keyboard to handle the result. This protocol can be
- implemented by classes that supports this type of operation.
+ keyboard must open your app, start dictation, write text to
+ shared state, then return to the keyboard and handle it.
 
- Simply call ``startDictationFromKeyboard(with:)`` from your
- keyboard extension to start a dictation operation. When the
- app opens, just add a `.keyboardDictation(...)` to the root
- view of your app to have it perform the dictation operation
- by calling ``performDictationInApp(with:)``, after which it
- will return to the keyboard, where the controller will call
- ``stopDictationInKeyboard()`` to handle the result.
+ To start dictation from a keyboard extension, just call the
+ ``startDictationFromKeyboard(with:)`` function using an app
+ specific configuration. You can also setup dictation before
+ using ``DictationContext/setup(with:)`` then simply trigger
+ the ``KeyboardAction/dictation`` to let your action handler
+ call the start function.
+
+ To start dictation from the main app, just use the same app
+ specific configuration and add the `.keyboardDictation(...)`
+ view modifier to the app root view. This will make your app
+ automatically handle dictation when it's opened with a deep
+ link that corresponds to the configuration.
+
+ The rest of the process will be automated and uses standard
+ ways to handle the result when returnung to the keyboard.
 
  KeyboardKit does not have a standard service as it does for
  other services. It has a ``DisabledKeyboardDictationService``
- set up as a placeholder until a custom one is registered.
+ that you can use a placeholder.
 
  KeyboardKit Pro unlocks a ``StandardDictationService`` plus
  a ``StandardKeyboardDictationService`` when a valid license
- is registered and sets up the keyboard dictation service as
- the main ``KeyboardInputViewController/dictationService``.
+ is registered and sets up the standard dictation service as
+ the ``KeyboardInputViewController/dictationService``.
  */
 public protocol KeyboardDictationService: AnyObject {
 
@@ -58,8 +64,6 @@ public protocol KeyboardDictationService: AnyObject {
     /**
      Call this function to perform dictation in the main app,
      where microphone access is available.
-
-     This can be 
      */
     func performDictationInApp(
         with config: KeyboardDictationConfiguration
@@ -74,11 +78,6 @@ public protocol KeyboardDictationService: AnyObject {
     /**
      Call this function to complete dictation when returning
      to the keyboard extension from the app.
-
-     Since this should be automatically called from an input
-     view controller, it doesn't take a configuration. It is
-     instead intended to restore itself based on information
-     persisted in the keyboard extension.
      */
     func stopDictationInKeyboard() async throws
 
