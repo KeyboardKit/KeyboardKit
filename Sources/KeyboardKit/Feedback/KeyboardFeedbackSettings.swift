@@ -44,12 +44,14 @@ public class KeyboardFeedbackSettings: ObservableObject {
     /**
      The configuration to use for audio feedback.
      */
-    @Published public var audioConfiguration: AudioFeedbackConfiguration
+    @Published
+    public var audioConfiguration: AudioFeedbackConfiguration
     
     /**
      The configuration to use for haptic feedback.
      */
-    @Published public var hapticConfiguration: HapticFeedbackConfiguration
+    @Published
+    public var hapticConfiguration: HapticFeedbackConfiguration
 }
 
 public extension KeyboardFeedbackSettings {

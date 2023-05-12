@@ -114,8 +114,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     // MARK: - Keyboard View Controller Lifecycle
 
     /**
-     This function is called whenever the controller returns
-     from the main app, to handle any dictation result.
+     This function is called to handle any dictation results
+     when returning from the main app.
      */
     open func viewWillHandleDictationResult() {
         Task {

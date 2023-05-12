@@ -63,11 +63,16 @@ public class DictationContext: ObservableObject {
         setup(with: config)
     }
 
+
     private var userDefaults: UserDefaults?
 
+
     fileprivate enum PersistedKey: String {
-        case localeId = "com.keyboardkit.dictation.localeId"
-        case text = "com.keyboardkit.dictation.text"
+        case appGroupId
+        case localeId
+        case text
+
+        var key: String { "com.keyboardkit.dictation.\(rawValue)" }
     }
 
     /**
@@ -77,7 +82,7 @@ public class DictationContext: ObservableObject {
      The value is persisted to be available to your keyboard
      when it returns, before your setup code has been called.
      */
-    @AppStorage("com.keyboardkit.dictation.appGroupId")
+    @AppStorage(PersistedKey.appGroupId.key)
     public var appGroupId: String? {
         didSet { setupAppGroupSharing() }
     }
@@ -110,6 +115,7 @@ public class DictationContext: ObservableObject {
      */
     @Published
     public var isDictationStartedByKeyboard = false
+
 
     /**
      The last applied dictation error.
@@ -181,18 +187,19 @@ public extension DictationContext {
 private extension DictationContext {
 
     func setupAppGroupSharing() {
-        guard let id = appGroupId else { return userDefaults = nil }
-        userDefaults = UserDefaults(suiteName: id)
+        guard let id = appGroupId else { return }
+        guard let store = UserDefaults(suiteName: id) else { return }
+        userDefaults = store
         localeId = persistedLocaleId ?? localeId
         dictatedText = persistedDictatedText ?? dictatedText
     }
 
     func string(for key: PersistedKey) -> String? {
-        userDefaults?.string(forKey: key.rawValue)
+        userDefaults?.string(forKey: key.key)
     }
 
     func setString(_ string: String?, for key: PersistedKey) {
-        userDefaults?.set(string, forKey: key.rawValue)
+        userDefaults?.set(string, forKey: key.key)
     }
 
     var persistedDictatedText: String? {
