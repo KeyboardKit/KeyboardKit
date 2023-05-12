@@ -97,7 +97,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        viewWillPerformDictation()
+        viewWillHandleDictationResult()
     }
 
     open override func viewDidLayoutSubviews() {
@@ -114,25 +114,10 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     // MARK: - Keyboard View Controller Lifecycle
 
     /**
-     This function is called whenever the keyboard view must
-     be created or updated.
-
-     This will by default set up a ``SystemKeyboard`` as the
-     main view, but you can override it to use a custom view.
+     This function is called whenever the controller returns
+     from the main app, to handle any dictation result.
      */
-    open func viewWillSetupKeyboard() {
-        setup { SystemKeyboard(controller: $0) }
-    }
-
-    /**
-     This function is called whenever this controller should
-     try to stop dictation after returning from the main app.
-
-     This will by default make the ``dictationService`` stop
-     dictation, but you can override it to customize what it
-     does or to handle the dictation result in other ways.
-     */
-    open func viewWillPerformDictation() {
+    open func viewWillHandleDictationResult() {
         Task {
             do {
                 try await dictationService.stopDictationInKeyboard()
@@ -142,6 +127,17 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
                 }
             }
         }
+    }
+
+    /**
+     This function is called whenever the keyboard view must
+     be created or updated.
+
+     This will by default set up a ``SystemKeyboard`` as the
+     main view, but you can override it to use a custom view.
+     */
+    open func viewWillSetupKeyboard() {
+        setup { SystemKeyboard(controller: $0) }
     }
 
     /**
@@ -572,7 +568,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      */
     public func performDictation() {
         let config = dictationConfig
-        if config.appDeepLink.isEmpty { print("Invalid app deep link") }
+        if config.appGroupId.isEmpty { return print("DICTATION: Missing app group") }
+        if config.appDeepLink.isEmpty { return print("DICTATION: Missing app deep link") }
         Task {
             try await dictationService.startDictationFromKeyboard(with: config)
         }

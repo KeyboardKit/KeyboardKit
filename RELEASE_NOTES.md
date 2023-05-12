@@ -23,6 +23,8 @@ As a result, you must now provide a `SpeechRecognizer` when using Pro dictation.
 
 ### ✨ New Features
 
+* `DictationContext` has new initializers for specific usage.
+* `DictationContext` has a new `isDictationStartedByKeyboard` property.
 * `KeyboardDictationConfiguration` has a new `matchesDeepLink`.
 
 ### 👑 Pro changes
@@ -31,12 +33,12 @@ As a result, you must now provide a `SpeechRecognizer` when using Pro dictation.
 * `DictationOverlay` now uses a style instead of many parameters.
 * `DictationOverlay` now renders many thinner lines by default.
 * `SpeechRecognizer` is a new specialized protocol used by the pro dictation services and view modifiers.
-* `.keyboardDictationOverlay(...)` is a new view extension.
-* `.onKeyboardDictationDeepLink(...)` is a new view extension.
+* `View.keyboardDictation(...)` now requires a speech recognizer.
+* `View.keyboardDictationOnAppear(...)` is a new view modifier that can be used in DocumentGroup-based apps.
 
 ### 💥 Breaking changes 
 
-* The `.keyboardDictation(...)` view modifier requires a speech recognizer.
+* `KeyboardInputViewController` `viewWillPerformDictation` has been renamed to `viewWillHandleDictationResult`.
 
 
 
