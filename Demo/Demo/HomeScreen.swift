@@ -46,7 +46,7 @@ struct HomeScreen: View {
     private var text = ""
 
     @StateObject
-    private var dictationContext = DictationContext()
+    private var dictationContext = DictationContext(config: .app)
 
     @StateObject
     private var keyboardState = KeyboardEnabledState(

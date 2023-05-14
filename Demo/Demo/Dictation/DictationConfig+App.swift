@@ -29,8 +29,3 @@ extension KeyboardDictationConfiguration {
         appGroupId: "com.keyboardkit.demo",
         appDeepLink: "kkdemo://dictation")
 }
-
-extension DictationConfiguration {
-
-    static var app = DictationConfiguration()
-}
