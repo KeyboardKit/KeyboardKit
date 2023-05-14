@@ -43,9 +43,11 @@ As a result, you must now provide a `SpeechRecognizer` when using Pro dictation.
 
 ### 🐛 Bug fixes
 
-* A duplicate object category emoji has been removed.
-* Many incorrect `Emoji.skinToneVariant` values have been adjusted.
-* Many incorrect `Emoji.neutralSkinToneVariant` values have been adjusted. 
+* A duplicate emoji has been removed.
+* Incorrect Pro themes have been adjusted.
+* Incorrect `Emoji.skinToneVariant` values have been adjusted.
+* Incorrect `Emoji.neutralSkinToneVariant` values have been adjusted.
+* `GestureButton` no longer triggers timed events if it's removed before it's released. 
 
 ### 💥 Breaking changes 
 

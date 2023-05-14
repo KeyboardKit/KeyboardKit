@@ -102,6 +102,9 @@ public struct GestureButton<Label: View>: View {
     private var isPressed = false
 
     @State
+    private var isRemoved = false
+
+    @State
     private var longPressDate = Date()
 
     @State
@@ -114,6 +117,7 @@ public struct GestureButton<Label: View>: View {
         label(isPressed)
             .overlay(gestureView)
             .onChange(of: isPressed) { isPressedBinding.wrappedValue = $0 }
+            .onDisappear { isRemoved = true }
             .accessibilityAddTraits(.isButton)
     }
 }
@@ -171,6 +175,7 @@ private extension GestureButton {
         longPressDate = date
         let delay = longPressDelay
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            if isRemoved { return }
             guard self.longPressDate == date else { return }
             action()
         }
@@ -182,6 +187,7 @@ private extension GestureButton {
         repeatDate = date
         let delay = repeatDelay
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            if isRemoved { return }
             guard self.repeatDate == date else { return }
             repeatTimer.start(action: action)
         }
