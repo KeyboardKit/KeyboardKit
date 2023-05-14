@@ -27,6 +27,10 @@ As a result, you must now provide a `SpeechRecognizer` when using Pro dictation.
 * `DictationContext` has a new `isDictationStartedByKeyboard` property.
 * `KeyboardDictationConfiguration` has a new `matchesDeepLink`.
 
+### 💡 Behavior changes
+
+* More dictation logic now updates the `DictationContext` `lastError`.
+
 ### 👑 Pro changes
 
 * `DictationIndicator` has been renamed to `DictationEqualizer`.
@@ -35,6 +39,13 @@ As a result, you must now provide a `SpeechRecognizer` when using Pro dictation.
 * `SpeechRecognizer` is a new specialized protocol used by the pro dictation services and view modifiers.
 * `View.keyboardDictation(...)` now requires a speech recognizer.
 * `View.keyboardDictationOnAppear(...)` is a new view modifier that can be used in DocumentGroup-based apps.
+* `View.keyboardDictationOnDeepLink(...)` is a new view modifier that can be used to start dictation without presenting an overlay.
+
+### 🐛 Bug fixes
+
+* A duplicate object category emoji has been removed.
+* Many incorrect `Emoji.skinToneVariant` values have been adjusted.
+* Many incorrect `Emoji.neutralSkinToneVariant` values have been adjusted. 
 
 ### 💥 Breaking changes 
 
