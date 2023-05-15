@@ -120,7 +120,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open func viewWillHandleDictationResult() {
         Task {
             do {
-                try await dictationService.stopDictationInKeyboard()
+                try await dictationService.handleDictationResultInKeyboard()
             } catch {
                 await MainActor.run {
                     dictationContext.lastError = error

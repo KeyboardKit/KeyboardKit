@@ -55,7 +55,7 @@ public protocol KeyboardDictationService: AnyObject {
 
     /**
      Call this function to start dictation from the keyboard,
-     where microphone access is unavailable.
+     where no microphone access is available.
      */
     func startDictationFromKeyboard(
         with config: KeyboardDictationConfiguration
@@ -70,16 +70,22 @@ public protocol KeyboardDictationService: AnyObject {
     ) async throws
 
     /**
-     Call this function to abort any ongoing dictation, then
-     return to the keyboard extension.
+     Call this function to abort an ongoing dictation in the
+     main app, then return to the keyboard.
      */
     func abortDictationInApp() async throws
 
     /**
-     Call this function to complete dictation when returning
-     to the keyboard extension from the app.
+     Call this function to finish an active dictation in the
+     main app, then return to the keyboard.
      */
-    func stopDictationInKeyboard() async throws
+    func finishDictationInApp() async throws
+
+    /**
+     Call this function to handle any dictation result, when
+     returning to the keyboard from the main app.
+     */
+    func handleDictationResultInKeyboard() async throws
 
     /**
      Undo the last performed dictation operation, if any.

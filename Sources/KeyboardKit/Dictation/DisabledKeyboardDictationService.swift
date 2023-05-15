@@ -51,7 +51,11 @@ public extension DisabledKeyboardDictationService {
         resetContext()
     }
 
-    func stopDictationInKeyboard() async throws {
+    func finishDictationInApp() async throws {
+        resetContext()
+    }
+
+    func handleDictationResultInKeyboard() async throws {
         resetContext()
     }
 

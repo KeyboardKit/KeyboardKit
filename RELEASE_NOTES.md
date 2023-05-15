@@ -34,8 +34,9 @@ As a result, you must now provide a `SpeechRecognizer` when using Pro dictation.
 ### 👑 Pro changes
 
 * `DictationIndicator` has been renamed to `DictationEqualizer`.
-* `DictationOverlay` now uses a style instead of many parameters.
-* `DictationOverlay` now renders many thinner lines by default.
+* `DictationOverlay` now supports adding a done button.
+* `DictationOverlay` renders many thinner lines by default.
+* `DictationOverlay` supports a style instead of using many parameters.
 * `SpeechRecognizer` is a new specialized protocol used by the pro dictation services and view modifiers.
 * `View.keyboardDictation(...)` now requires a speech recognizer.
 * `View.keyboardDictationOnAppear(...)` is a new view modifier that can be used in DocumentGroup-based apps.
@@ -51,6 +52,7 @@ As a result, you must now provide a `SpeechRecognizer` when using Pro dictation.
 
 ### 💥 Breaking changes 
 
+* `KeyboardDictationService` `stopDictationInKeyboard` has been renamed to `handleDictationResultInKeyboard`.
 * `KeyboardInputViewController` `viewWillPerformDictation` has been renamed to `viewWillHandleDictationResult`.
 
 
