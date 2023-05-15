@@ -13,5 +13,5 @@ public extension String {
     /**
      Split the string into a list of individual characters.
      */
-    var chars: [String] { map { String($0) } }
+    var chars: [String] { map(String.init) }
 }

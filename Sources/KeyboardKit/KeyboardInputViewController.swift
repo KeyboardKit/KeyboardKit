@@ -562,16 +562,18 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      Perform a keyboard-initiated dictation operation.
 
      > Important: ``DictationContext/appDeepLink`` must have
-     been set before this is called, otherwise this function
-     will not behave correctly. The deep link must open your
+     been set before this is called. The link must open your
      app and start dictation. See the docs for more info.
      */
     public func performDictation() {
-        let config = dictationConfig
-        if config.appGroupId.isEmpty { return print("DICTATION: Missing app group") }
-        if config.appDeepLink.isEmpty { return print("DICTATION: Missing app deep link") }
         Task {
-            try await dictationService.startDictationFromKeyboard(with: config)
+            do {
+                try await dictationService.startDictationFromKeyboard(with: dictationConfig)
+            } catch {
+                await MainActor.run {
+                    dictationContext.lastError = error
+                }
+            }
         }
     }
 }

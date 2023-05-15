@@ -33,16 +33,16 @@ public struct KeyboardActionCalloutStyle: Codable, Equatable {
         callout: KeyboardCalloutStyle = .standard,
         font: KeyboardFont = .init(.title3),
         maxButtonSize: CGSize = CGSize(width: 50, height: 50),
-        selectedBackgroundColor: Color = .blue,
-        selectedForegroundColor: Color = .white,
+        selectedBackgroundColor: Color? = nil,
+        selectedForegroundColor: Color? = nil,
         verticalOffset: CGFloat? = nil,
         verticalTextPadding: CGFloat = 6
     ) {
         self.callout = callout
         self.font = font
         self.maxButtonSize = maxButtonSize
-        self.selectedBackgroundColor = selectedBackgroundColor
-        self.selectedForegroundColor = selectedForegroundColor
+        self.selectedBackgroundColor = selectedBackgroundColor ?? .blue
+        self.selectedForegroundColor = selectedForegroundColor ?? .white
         let standardVerticalOffset: CGFloat = DeviceType.current == .pad ? 20 : 0
         self.verticalOffset = verticalOffset ?? standardVerticalOffset
         self.verticalTextPadding = verticalTextPadding
