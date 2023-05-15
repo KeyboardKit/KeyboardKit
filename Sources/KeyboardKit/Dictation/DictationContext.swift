@@ -27,6 +27,9 @@ import SwiftUI
  context instance, without any app-specific information. You
  must then call ``setup(with:)`` to configure the context to
  use an app-specific ``KeyboardDictationConfiguration``.
+
+ This class does not use `AppStorage` to persist keys, since
+ the store must change whenever an app group is specified.
  */
 public class DictationContext: ObservableObject {
 
@@ -69,6 +72,7 @@ public class DictationContext: ObservableObject {
 
     fileprivate enum PersistedKey: String {
         case appGroupId
+        case isDictationStartedByKeyboard
         case localeId
         case text
 
@@ -114,8 +118,9 @@ public class DictationContext: ObservableObject {
      Whether or not dictation has been started by a keyboard.
      */
     @Published
-    public var isDictationStartedByKeyboard = false
-
+    public var isDictationStartedByKeyboard = false {
+        didSet { persistedIsDictationStartedByKeyboard = isDictationStartedByKeyboard }
+    }
 
     /**
      The last applied dictation error.
@@ -192,10 +197,19 @@ private extension DictationContext {
         userDefaults = store
         localeId = persistedLocaleId ?? localeId
         dictatedText = persistedDictatedText ?? dictatedText
+        isDictationStartedByKeyboard = persistedIsDictationStartedByKeyboard ?? isDictationStartedByKeyboard
+    }
+
+    func bool(for key: PersistedKey) -> Bool? {
+        userDefaults?.bool(forKey: key.key)
     }
 
     func string(for key: PersistedKey) -> String? {
         userDefaults?.string(forKey: key.key)
+    }
+
+    func setBool(_ bool: Bool?, for key: PersistedKey) {
+        userDefaults?.set(bool, forKey: key.key)
     }
 
     func setString(_ string: String?, for key: PersistedKey) {
@@ -205,6 +219,11 @@ private extension DictationContext {
     var persistedDictatedText: String? {
         get { string(for: .text) }
         set { setString(newValue, for: .text) }
+    }
+
+    var persistedIsDictationStartedByKeyboard: Bool? {
+        get { bool(for: .isDictationStartedByKeyboard) }
+        set { setBool(newValue, for: .isDictationStartedByKeyboard) }
     }
 
     var persistedLocaleId: String? {
