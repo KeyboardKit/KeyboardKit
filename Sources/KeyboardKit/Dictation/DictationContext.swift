@@ -74,6 +74,7 @@ public class DictationContext: ObservableObject {
         case appGroupId
         case isDictationStartedByKeyboard
         case localeId
+        case silenceLimit
         case text
 
         var key: String { "com.keyboardkit.dictation.\(rawValue)" }
@@ -157,6 +158,20 @@ public class DictationContext: ObservableObject {
      */
     @Published
     public var service: KeyboardDictationService?
+
+    /**
+     The time in seconds after which a dictation should stop,
+     to let users finish without having to tap a button.
+
+     This is by default set to `30` seconds, since a shorter
+     time limit may be unexpected. If you decide to go use a
+     long time limit, make sure to also add a done button to
+     give users a chance to manually finish dictation.
+     */
+    @Published
+    public var silenceLimit: TimeInterval = 30 {
+        didSet { persistedSilenceLimit = silenceLimit }
+    }
 }
 
 public extension DictationContext {
@@ -198,36 +213,69 @@ private extension DictationContext {
         localeId = persistedLocaleId ?? localeId
         dictatedText = persistedDictatedText ?? dictatedText
         isDictationStartedByKeyboard = persistedIsDictationStartedByKeyboard ?? isDictationStartedByKeyboard
+        silenceLimit = persistedSilenceLimit
     }
+
 
     func bool(for key: PersistedKey) -> Bool? {
         userDefaults?.bool(forKey: key.key)
+    }
+
+    func double(for key: PersistedKey) -> Double? {
+        hasValue(for: key) ? userDefaults?.double(forKey: key.key) : nil
+    }
+
+    func hasValue(for key: PersistedKey) -> Bool {
+        userDefaults?.object(forKey: key.key) != nil
+    }
+
+    func integer(for key: PersistedKey) -> Int? {
+        userDefaults?.integer(forKey: key.key)
     }
 
     func string(for key: PersistedKey) -> String? {
         userDefaults?.string(forKey: key.key)
     }
 
-    func setBool(_ bool: Bool?, for key: PersistedKey) {
-        userDefaults?.set(bool, forKey: key.key)
+
+    func set(_ value: Bool?, for key: PersistedKey) {
+        userDefaults?.set(value, forKey: key.key)
     }
 
-    func setString(_ string: String?, for key: PersistedKey) {
-        userDefaults?.set(string, forKey: key.key)
+    func set(_ value: Double?, for key: PersistedKey) {
+        userDefaults?.set(value, forKey: key.key)
     }
+
+    func set(_ value: Int?, for key: PersistedKey) {
+        userDefaults?.set(value, forKey: key.key)
+    }
+
+    func set(_ value: String?, for key: PersistedKey) {
+        userDefaults?.set(value, forKey: key.key)
+    }
+
 
     var persistedDictatedText: String? {
         get { string(for: .text) }
-        set { setString(newValue, for: .text) }
+        set { set(newValue, for: .text) }
     }
 
     var persistedIsDictationStartedByKeyboard: Bool? {
         get { bool(for: .isDictationStartedByKeyboard) }
-        set { setBool(newValue, for: .isDictationStartedByKeyboard) }
+        set { set(newValue, for: .isDictationStartedByKeyboard) }
     }
 
     var persistedLocaleId: String? {
         get { string(for: .localeId) }
-        set { setString(newValue, for: .localeId) }
+        set { set(newValue, for: .localeId) }
+    }
+
+    var persistedSilenceLimit: TimeInterval {
+        get {
+            let value = double(for: .silenceLimit) ?? 0
+            let hasValue = value > 0
+            return hasValue ? value : 30
+        }
+        set { set(newValue, for: .silenceLimit) }
     }
 }
