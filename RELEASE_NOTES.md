@@ -13,24 +13,28 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 
 ## 7.6
 
-This version updates the new dictionary beta feature.
+This version updates the new dictation beta feature, adjusts a lot of emoji skin tones and fixes some bugs.
+
+The version also adds tools that make it possible to start keyboard dictation from DocumentGroup-based apps.
 
 ### 🚨 Important information
 
 After receiving reports that the new dictation features required all apps to add dictation permissions to their `Info.plist`, a lot of work has been put into separating speech recognition from dictation.
 
-As a result, you must now provide a `SpeechRecognizer` when using the built-in dictation features, which fixes this problem. An already implemented recognizer can be copied from the `SpeechRecognizer` docs.    
+As a result, you must now provide a `SpeechRecognizer` when using the built-in dictation features. An already implemented recognizer can be copied from the `SpeechRecognizer` docs. 
+
+Removing the speech recognizer parts from the library makes the feature a little harder to use, but removes the need for all apps to specify the permission keys they really don't need.
 
 ### ✨ New Features
 
-* `DictationContext` has new initializers for specific usage.
-* `DictationContext` has a new `silenceLimit` property.
-* `DictationContext` has a new `isDictationStartedByKeyboard` property.
-* `KeyboardDictationConfiguration` has a new `matchesDeepLink`.
+* `DictationContext` has new initializers for specific usages.
+* `DictationContext` has a new `silenceLimit` that can be used to define after how many seconds of silence dictation should finish.
+* `DictationContext` has a new `isDictationStartedByKeyboard` that can be used when a deep link can't be used to start dictation.
+* `KeyboardDictationConfiguration` has a new `matchesDeepLink` that simplifies checking if a specific deep link should start dictation.
 
 ### 💡 Behavior changes
 
-* More dictation logic now updates the `DictationContext` `lastError`.
+* More parts of the dictation implementations now update the `DictationContext` `lastError`.
 
 ### 👑 Pro changes
 
@@ -38,17 +42,19 @@ As a result, you must now provide a `SpeechRecognizer` when using the built-in d
 * `DictationOverlay` has been renamed to `DictationScreen`.
 * `DictationScreen` now supports adding a done button.
 * `DictationScreen` supports a style instead of using many parameters.
-* `SpeechRecognizer` is a new specialized protocol used by the pro dictation services and view modifiers.
+* `SpeechRecognizer` is a new protocol that is used to separate speech recognition from dictation.
+* `StandardDictationService` now requires a speech recognizer.
+* `StandardKeyboardDictationService` now requires a speech recognizer.
 * `View.keyboardDictation(...)` now requires a speech recognizer.
 * `View.keyboardDictationOnAppear(...)` is a new view modifier that can be used in DocumentGroup-based apps.
-* `View.keyboardDictationOnDeepLink(...)` is a new view modifier that can be used to start dictation without presenting an overlay.
+* `View.keyboardDictationOnDeepLink(...)` is a new view modifier that can be used to start dictation without an overlay.
 
 ### 🐛 Bug fixes
 
 * A duplicate emoji has been removed.
 * Incorrect Pro themes have been adjusted.
-* Incorrect `Emoji.skinToneVariant` values have been adjusted.
-* Incorrect `Emoji.neutralSkinToneVariant` values have been adjusted.
+* Incorrect `Emoji` skin tone variants have been adjusted.
+* Incorrect `Emoji` neutral skin tone variants have been adjusted.
 * `GestureButton` no longer triggers timed events if it's removed before it's released. 
 
 ### 💥 Breaking changes 
