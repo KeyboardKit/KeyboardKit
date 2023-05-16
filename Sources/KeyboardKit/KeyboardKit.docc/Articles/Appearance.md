@@ -194,14 +194,14 @@ You can inherit ``KeyboardThemeAppearance`` to customize the appearance even fur
 
 You can access all pre-defined themes with `KeyboardTheme.{ID}`, for instance `KeyboardKit.standard` or `KeyboardKit.minimal(.pink)`. Here are all pre-defined themes with some style variations:
 
-| Theme        | Preview                       | Style variations examples              |                                |
-| ------------ | ----------------------------- | -------------------------------------- | ------------------------------ | 
-| `.standard`  | ![Standard](standard.jpg)     | ![Standard](standard-blue.jpg)         | ![Standard](standard-pink.jpg) | 
-| `.swifty`    | ![Swifty](swifty.jpg)         | ![Swifty](swifty-blue.jpg)             | ![Swifty](swifty-pink.jpg)     | 
-| `.minimal`   | ![Minimal](minimal.jpg)       | ![Midnight](minimal-midnight.jpg)      | ![Sunset](minimal-sunset.jpg)  | 
-| `.candyShop` | ![Candy Shop](candyshop.jpg)  | ![Cuppy Cake](candyshop-cuppycake.jpg) |                                | 
-| `.neon`      | ![Neon](neon.jpg)             |                                        |                                | 
-| `.tron`      | ![Tron](tron.jpg)             | ![fCon](tron-fcon.jpg)                 | ![virus](tron-virus.jpg)       |
+| Theme        |                               |                                        |                                |                                 |
+| ------------ | ----------------------------- | -------------------------------------- | ------------------------------ | ------------------------------- | 
+| `.standard`  | ![Standard](standard.jpg)     | ![Standard](standard-blue.jpg)         | ![Standard](standard-pink.jpg) | ![Standard](standard-green.jpg) | 
+| `.swifty`    | ![Swifty](swifty.jpg)         | ![Swifty](swifty-blue.jpg)             | ![Swifty](swifty-pink.jpg)     | ![Swifty](swifty-green.jpg)     | 
+| `.minimal`   | ![Minimal](minimal.jpg)       | ![Midnight](minimal-blue.jpg)          | ![Sunset](minimal-sunset.jpg)  | ![Sunset](minimal-midnight.jpg) | 
+| `.candyShop` | ![Candy Shop](candyshop.jpg)  | ![Cuppy Cake](candyshop-cuppycake.jpg) |                                |                                 |
+| `.neon`      | ![Neon](neon.jpg)             |                                        |                                |                                 | 
+| `.tron`      | ![Tron](tron.jpg)             | ![fCon](tron-fcon.jpg)                 | ![virus](tron-virus.jpg)       | ![virus](tron-sark.jpg)         |
 
 You can get all pre-defined themes with `KeyboardTheme.allPredefined`. Theme-specific styles also have an `allPredefined` with all style variations for a certain theme, e.g. `KeyboardTheme.SwiftyStyle.allPredefined`.
 

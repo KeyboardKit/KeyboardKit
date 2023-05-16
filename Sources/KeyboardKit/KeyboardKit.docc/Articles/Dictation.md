@@ -152,7 +152,7 @@ struct ContentView: View {
     }
 
     func overlay() -> some View {
-        DictationOverlay(
+        DictationScreen(
             dictationContext: context,
             titleView: { EmptyView() },
             indicator: { DictationBarVisualizer(isAnimating: $0) }

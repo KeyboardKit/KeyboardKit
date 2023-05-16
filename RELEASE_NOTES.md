@@ -11,6 +11,26 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 
 
 
+## 7.7
+
+### ✨ New Features
+
+* `KeyboardLayout` has a new `hasEmojiKeyboardSwitcher` .
+
+### 👑 Pro changes
+
+* `KeyboardTheme` has new `author` and `collectionName` properties.
+* `License` has a new `localizedInputSetProviders` property.
+* `License` has a new `localizedKeyboardLayoutProviders` property.
+* The license-based `StandardInputSetProvider` convenience initializer has been deprecated.
+* The license-based `StandardKeyboardLayoutProvider` convenience initializer has been deprecated.
+
+### 💥 Breaking changes 
+
+* `KeyboardTheme` no longer has a `styleName` property.
+  
+
+
 ## 7.6
 
 This version updates the new dictation beta feature, adjusts a lot of emoji skin tones and fixes some bugs.

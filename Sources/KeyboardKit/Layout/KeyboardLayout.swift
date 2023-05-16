@@ -74,23 +74,28 @@ public class KeyboardLayout {
 public extension KeyboardLayout {
 
     /**
-     Get the bottom row index.
+     Get the bottom item row index.
      */
     var bottomRowIndex: Int {
         itemRows.count - 1
     }
 
     /**
-     Get the system action items at the layout's bottom row.
-
-     This collection can be used as a template when creating
-     new system buttons for custom layouts.
+     Get the system action items at the bottom row.
      */
     var bottomRowSystemItems: [KeyboardLayoutItem] {
         if bottomRowIndex < 0 { return [] }
         return itemRows[bottomRowIndex].filter {
             $0.action.isSystemAction
         }
+    }
+
+    /**
+     Whether or not the bottom row has a keyboard switcher.
+     */
+    func hasKeyboardSwitcher(for type: KeyboardType) -> Bool {
+        guard let row = itemRows.last else { return false }
+        return row.contains { $0.action.isKeyboardTypeAction(.emojis) }
     }
 
     /**
@@ -118,9 +123,15 @@ public extension KeyboardLayout {
      template is found, the function will return `nil` since
      it lacks information to create a valid item.
      */
-    func tryCreateBottomRowItem(for action: KeyboardAction) -> KeyboardLayoutItem? {
+    func tryCreateBottomRowItem(
+        for action: KeyboardAction
+    ) -> KeyboardLayoutItem? {
         guard let template = bottomRowSystemItems.first else { return nil }
-        return KeyboardLayoutItem(action: action, size: template.size, insets: template.insets)
+        return KeyboardLayoutItem(
+            action: action,
+            size: template.size,
+            insets: template.insets
+        )
     }
 }
 
