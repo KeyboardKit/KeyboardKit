@@ -70,10 +70,10 @@ struct HomeScreen: View {
         /**
          This view modifier is available in KeyboardKit Pro.
          .keyboardDictation(context: dictationContext, config: .app) {
-             DictationOverlay(
+             DictationScreen(
                  dictationContext: dictationContext,
                  titleView: { EmptyView() },
-                 indicator: { DictationIndicator(isDictating: $0) }
+                 indicator: { DictationBarVisualizer(isDictating: $0) }
              )
          }
          */

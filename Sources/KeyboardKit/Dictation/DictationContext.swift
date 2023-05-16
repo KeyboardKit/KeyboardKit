@@ -11,56 +11,53 @@ import Foundation
 import SwiftUI
 
 /**
- This context can be used to handle dictation state for both
- the app and its keyboard extension.
+ This context can be used to handle regular in-app dictation
+ and keyboard extension-based dictation.
 
- This single context is used by both the ``DictationService``
- as well as the ``KeyboardDictationService``. Make sure that
- you are using the correct initializer for your use-case.
+ The context is used by both ``DictationService`` as well as
+ ``KeyboardDictationService``. Use the initializer that uses
+ a configuration that matches your use-case.
 
- For an app, you must manually create an instance, using the
- initializer that suits your use-case. For an app to be able
- to sync data with a keyboard extension, make sure to use an
- app-specific ``KeyboardDictationConfiguration``.
+ For an app to support keyboard-based dictation, you have to
+ use an app-specific ``KeyboardDictationConfiguration`` that
+ specifies a deep link that will open your app as well as an
+ app group that is correctly registered for both the app and
+ the keyboard. You must manually create a context in the app
+ and call ``setup(with:)`` in the keyboard.
 
- For a keyboard extension, KeyboardKit will setup a standard
- context instance, without any app-specific information. You
- must then call ``setup(with:)`` to configure the context to
- use an app-specific ``KeyboardDictationConfiguration``.
-
- This class does not use `AppStorage` to persist keys, since
- the store must change whenever an app group is specified.
+ The context doesn't use `AppStorage` to persist data, since
+ the store must change when an app group is specified. If it
+ behaves strange and data syncs incorrectly, you can use the
+ ``PersistedKey`` and a manual `UserDefaults(suiteName:)` to
+ handle data manually until the problem has been solved.
  */
 public class DictationContext: ObservableObject {
 
     /**
-     Create a context to be used in a keyboard extension.
+     Create a context instance for a keyboard extension.
 
-     This initializer will be used by KeyboardKit, to create
-     a keyboard-specific context that restores the App Group
-     info when returning after dictating in the main app.
+     This is automatically used to create a context instance
+     for a KeyboardKit-based extension.
      */
     internal init() {
-        setupAppGroupSharing()
+        setupAppGroup()
     }
 
     /**
-     Create a context to be used for plain app dictation.
+     Create a context instance for basic in-app dictation.
 
-     This initializer will setup the initial locale, but you
-     can always change this later.
+     This initializer will just setup the initial locale. It
+     can always be changed later.
      */
     public init(config: DictationConfiguration) {
         localeId = config.localeId
     }
 
     /**
-     Create a context to be used for keyboard dictation.
+     Create a context instance for keyboard-based dictation.
 
-     This initializer will setup this context with app group
-     capabilities, which will make it restore any previously
-     persisted data. This makes it possible to detect if the
-     keyboard has started a dictation that is yet to be done.
+     This initializer will set up the required app group and
+     deep link required to perform keyboard-based dictation.
      */
     public init(config: KeyboardDictationConfiguration) {
         setup(with: config)
@@ -70,7 +67,11 @@ public class DictationContext: ObservableObject {
     private var userDefaults: UserDefaults?
 
 
-    fileprivate enum PersistedKey: String {
+    /**
+     This enum defines the persistency keys that are used to
+     persist data for the context.
+     */
+    public enum PersistedKey: String {
         case appGroupId
         case isDictationStartedByKeyboard
         case localeId
@@ -89,7 +90,7 @@ public class DictationContext: ObservableObject {
      */
     @AppStorage(PersistedKey.appGroupId.key)
     public var appGroupId: String? {
-        didSet { setupAppGroupSharing() }
+        didSet { setupAppGroup() }
     }
 
     /**
@@ -195,18 +196,21 @@ public extension DictationContext {
     }
 
     /**
-     Set up the context with the configuration.
+     Set up the context with an app-specific configuration.
+
+     This function must be called by a keyboard extension to
+     make it able to start a keyboard dictation operation.
      */
     func setup(with config: KeyboardDictationConfiguration) {
         appDeepLink = config.appDeepLink
         appGroupId = config.appGroupId
-        setupAppGroupSharing()
+        setupAppGroup()
     }
 }
 
 private extension DictationContext {
 
-    func setupAppGroupSharing() {
+    func setupAppGroup() {
         guard let id = appGroupId else { return }
         guard let store = UserDefaults(suiteName: id) else { return }
         userDefaults = store
@@ -223,10 +227,6 @@ private extension DictationContext {
 
     func double(for key: PersistedKey) -> Double? {
         hasValue(for: key) ? userDefaults?.double(forKey: key.key) : nil
-    }
-
-    func hasValue(for key: PersistedKey) -> Bool {
-        userDefaults?.object(forKey: key.key) != nil
     }
 
     func integer(for key: PersistedKey) -> Int? {
@@ -254,6 +254,11 @@ private extension DictationContext {
         userDefaults?.set(value, forKey: key.key)
     }
 
+
+    func hasValue(for key: PersistedKey) -> Bool {
+        userDefaults?.object(forKey: key.key) != nil
+    }
+    
 
     var persistedDictatedText: String? {
         get { string(for: .text) }

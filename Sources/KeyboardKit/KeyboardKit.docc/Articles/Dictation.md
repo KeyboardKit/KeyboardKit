@@ -155,7 +155,7 @@ struct ContentView: View {
         DictationOverlay(
             dictationContext: context,
             titleView: { EmptyView() },
-            indicator: { DictationEqualizer(isAnimating: $0) }
+            indicator: { DictationBarVisualizer(isAnimating: $0) }
         )
     } 
 }
@@ -163,7 +163,7 @@ struct ContentView: View {
 
 The `.keyboardDictation` modifier will then automatically trigger the dictation if the app is opened with the deep link that is specified in the provided configuration. Once the app stops dictating, the service will return the user to the keyboard.
 
-You can customize the standard ``DictationOverlay`` with a custom style or use a completely custom overlay.
+You can customize the standard ``DictationScreen`` with a custom style or use a completely custom overlay.
 
 > Important: If you are using a DocumentGroup-based app, you may have noticed that the `.keyboardDictation` view modifier only works if a document is open. To make dictation always work in a DocumentGroup-based, you can instead check if the context's `isDictationStartedByKeyboard` is `true` when the app starts, and if so present a sheet or a modal and add `keyboardDictationOnAppear` on its root view. Native support for opening a sheet or modal from a document group is not yet included in KeyboardKit Pro, but will hopefully be added in a future version.  
 
