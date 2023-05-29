@@ -51,6 +51,7 @@ final class KeyboardAction_ImagesTests: XCTestCase {
             .shift(currentCasing: .uppercased),
             .shift(currentCasing: .capsLocked),
             .systemImage(description: "", keyboardImageName: "", imageName: ""),
+            .systemSettings,
             .tab
         ]
 

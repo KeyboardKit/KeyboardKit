@@ -15,8 +15,10 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 
 ### ✨ New Features
 
-* `KeyboardLayout` has a new `hasEmojiKeyboardSwitcher` .
+* `KeyboardAction` has new `systemSettings` and `url` actions.
+* `KeyboardAction` has a new `standardAction` property.
 * `KeyboardController` has a new `openUrl` function.
+* `KeyboardLayout` has a new `hasEmojiKeyboardSwitcher`.
 
 ### 👑 Pro changes
 

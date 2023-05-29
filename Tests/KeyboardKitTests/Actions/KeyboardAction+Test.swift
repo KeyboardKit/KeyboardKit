@@ -6,6 +6,7 @@
 //  Copyright © 2019-2023 Daniel Saidi. All rights reserved.
 //
 
+import Foundation
 import KeyboardKit
 
 extension KeyboardAction {
@@ -55,7 +56,9 @@ extension KeyboardAction {
             
             .space,
             .systemImage(description: "", keyboardImageName: "", imageName: ""),
-            .tab
+            .systemSettings,
+            .tab,
+            .url(URL(string: ""))
         ]
     }
 }

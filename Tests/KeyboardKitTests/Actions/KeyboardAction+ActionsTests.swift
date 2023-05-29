@@ -24,7 +24,21 @@ final class KeyboardAction_ActionsTests: XCTestCase {
         unexpected = []
     }
 
-    func testStandardGestureActionUsesStandardActionProperties() {
+    func testStandardActionIsDefinedForActionsWithPressOrReleaseAction() {
+
+        func result(for action: KeyboardAction) -> Bool {
+            let hasResult = (action.standardAction != nil)
+            let hasPress = (action.standardPressAction != nil)
+            let hasRelease = (action.standardReleaseAction != nil)
+            return hasResult == (hasPress || hasRelease)
+        }
+
+        actions.forEach {
+            XCTAssertTrue(result(for: $0))
+        }
+    }
+
+    func testStandardActionUsesStandardActionProperties() {
 
         func result(for action: KeyboardAction, gesture: KeyboardGesture, expected: KeyboardAction.GestureAction?) -> Bool {
             let result = action.standardAction(for: gesture)
@@ -42,7 +56,7 @@ final class KeyboardAction_ActionsTests: XCTestCase {
         }
     }
 
-    func testStandardGestureActionPropertiesAreDefinedForSomeGestures() {
+    func testStandardActionPropertiesAreDefinedForSomeGestures() {
         var action: (KeyboardAction) -> KeyboardAction.GestureAction?
 
         action = { $0.standardDoubleTapAction }
@@ -92,7 +106,9 @@ final class KeyboardAction_ActionsTests: XCTestCase {
             .shift(currentCasing: .uppercased),
             .shift(currentCasing: .capsLocked),
             .space,
-            .tab
+            .systemSettings,
+            .tab,
+            .url(URL(string: ""))
         ]
         expected.forEach { XCTAssertNotNil(action($0)) }
         unexpected.forEach { XCTAssertNil(action($0)) }

@@ -98,9 +98,15 @@ public enum KeyboardAction: Codable, Equatable {
     
     /// Can be used to refer to a system image (SF Symbol).
     case systemImage(description: String, keyboardImageName: String, imageName: String)
+
+    /// Open system settings for the app when released.
+    case systemSettings
     
     /// Inserts a tab when released.
     case tab
+
+    /// Open an url when released, using a custom id for identification.
+    case url(_ url: URL?, id: String? = nil)
 }
 
 

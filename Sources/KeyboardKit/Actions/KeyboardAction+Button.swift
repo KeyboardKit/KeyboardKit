@@ -33,6 +33,7 @@ public extension KeyboardAction {
         case .settings: return .keyboardSettings
         case .shift(let currentCasing): return currentCasing.standardButtonImage
         case .systemImage(_, let imageName, _): return Image(systemName: imageName)
+        case .systemSettings: return .keyboardSettings
         case .tab: return .keyboardTab
         default: return nil
         }

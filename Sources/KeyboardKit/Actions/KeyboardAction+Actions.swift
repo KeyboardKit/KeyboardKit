@@ -23,6 +23,14 @@ public extension KeyboardAction {
      the provided ``KeyboardController``.
      */
     typealias GestureAction = (KeyboardController?) -> Void
+
+    /**
+     The action that by default should be triggered when the
+     action is triggered without a certain ``KeyboardGesture``.
+     */
+    var standardAction: GestureAction? {
+        standardReleaseAction ?? standardPressAction
+    }
     
     /**
      The action that by default should be triggered when the
@@ -90,7 +98,9 @@ public extension KeyboardAction {
             }
         }
         case .space: return { $0?.insertText(.space) }
+        case .systemSettings: return { $0?.openUrl(.keyboardSettings) }
         case .tab: return { $0?.insertText(.tab) }
+        case .url(let url, _): return { $0?.openUrl(url) }
         default: return nil
         }
     }
