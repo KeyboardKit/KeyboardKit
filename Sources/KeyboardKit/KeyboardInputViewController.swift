@@ -87,6 +87,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         setupInitialWidth()
         setupLocaleObservation()
         setupNextKeyboardBehavior()
+        KeyboardUrlOpener.shared.controller = self
     }
 
     open override func viewWillAppear(_ animated: Bool) {

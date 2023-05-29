@@ -19,6 +19,7 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 * `KeyboardAction` has a new `standardAction` property.
 * `KeyboardController` has a new `openUrl` function.
 * `KeyboardLayout` has a new `hasEmojiKeyboardSwitcher`.
+* `KeyboardUrlOpener` is a new class for opening URLs.
 
 ### 👑 Pro changes
 

@@ -306,6 +306,10 @@ KeyboardKit is available under the MIT license.
 - ``LocaleNameProvider``
 - ``LocalizedService``
 
+### Navigation
+
+- ``KeyboardUrlOpener``
+
 ### Previews
 
 - ``PreviewCalloutActionProvider``
