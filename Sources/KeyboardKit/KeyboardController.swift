@@ -86,4 +86,9 @@ public protocol KeyboardController: AnyObject {
      Set a certain keyboard type.
      */
     func setKeyboardType(_ type: KeyboardType)
+
+    /**
+     Open a certain URL
+     */
+    func openUrl(_ url: URL?)
 }
