@@ -78,7 +78,7 @@ public class DictationContext: ObservableObject {
         case silenceLimit
         case text
 
-        var key: String { "com.keyboardkit.dictation.\(rawValue)" }
+        public var key: String { "com.keyboardkit.dictation.\(rawValue)" }
     }
 
     /**
