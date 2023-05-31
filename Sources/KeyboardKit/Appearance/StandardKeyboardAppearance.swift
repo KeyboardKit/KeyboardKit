@@ -70,7 +70,12 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     open var keyboardEdgeInsets: EdgeInsets {
         switch keyboardContext.deviceType {
         case .pad: return EdgeInsets(top: 0, leading: 0, bottom: 4, trailing: 0)
-        case .phone: return EdgeInsets(top: 0, leading: 0, bottom: -2, trailing: 0)
+        case .phone:
+            if keyboardContext.screenSize.isEqual(to: .iPhoneProMaxScreenPortrait, withTolerance: 10) {
+                return EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+            } else {
+                return EdgeInsets(top: 0, leading: 0, bottom: -2, trailing: 0)
+            }
         default: return EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
         }
     }
