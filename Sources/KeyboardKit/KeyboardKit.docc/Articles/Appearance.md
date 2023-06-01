@@ -208,7 +208,7 @@ You can get all pre-defined themes with `KeyboardTheme.allPredefined`. Theme-spe
 
 ### Views
 
-KeyboardKit Pro has a ``KeyboardThemePreview`` that you can use to preview themes in Xcode or display themes to the user. It will render a system keyboard with full interation, which means that it's quite heavy to render. You can use the more lightweight ``KeyboardThemeButtonPreview`` to preview many themes at the same time.
+KeyboardKit Pro has a ``KeyboardThemeLivePreview`` that you can use to preview themes in Xcode or display themes to the user. It will render a system keyboard with full interation, which means that it's quite heavy to render. You can use the more lightweight ``KeyboardThemeButtonPreview`` to preview many themes at the same time.
 
 
 ### License Requirements

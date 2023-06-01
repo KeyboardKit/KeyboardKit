@@ -21,6 +21,10 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 * `KeyboardLayout` has a new `hasEmojiKeyboardSwitcher`.
 * `KeyboardUrlOpener` is a new class for opening URLs.
 
+### 💡 Adjustments
+
+* Thanks to [krizhanovskii](https://github.com/krizhanovskii) the Pro Max layout configuration has been improved.
+
 ### 👑 Pro changes
 
 * `KeyboardTheme` has new `author` and `collectionName` properties.
@@ -28,6 +32,10 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 * `License` has a new `localizedKeyboardLayoutProviders` property.
 * The license-based `StandardInputSetProvider` convenience initializer has been deprecated.
 * The license-based `StandardKeyboardLayoutProvider` convenience initializer has been deprecated.
+
+### 🗑️ Deprecations
+
+* `KeyboardThemePreview` has been renamed to `KeyboardThemeLivePreview`.
 
 ### 💥 Breaking changes 
 
