@@ -37,6 +37,11 @@ public protocol KeyboardAppearance: AnyObject {
     var backgroundStyle: KeyboardBackgroundStyle { get }
 
     /**
+     The foreground color to apply to the keyboard, if any.
+     */
+    var foregroundColor: Color? { get }
+
+    /**
      The edge insets to apply to the entire keyboard.
      */
     var keyboardEdgeInsets: EdgeInsets { get }

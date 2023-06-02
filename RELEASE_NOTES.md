@@ -17,6 +17,7 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 
 * `KeyboardAction` has new `systemSettings` and `url` actions.
 * `KeyboardAction` has a new `standardAction` property.
+* `KeyboardAppearance` has new, optional `foregroundColor` property.
 * `KeyboardController` has a new `openUrl` function.
 * `KeyboardLayout` has a new `hasEmojiKeyboardSwitcher`.
 * `KeyboardUrlOpener` is a new class for opening URLs.
@@ -27,11 +28,19 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 
 ### 👑 Pro changes
 
-* `KeyboardTheme` has new `author` and `collectionName` properties.
+* `KeyboardTheme` has new `author`, `collectionName` and `foregroundColor` properties.
+* `KeyboardThemeLivePreview` now renders light mode only as default.
 * `License` has a new `localizedInputSetProviders` property.
 * `License` has a new `localizedKeyboardLayoutProviders` property.
+* Some themes define a foreground color to make the emoji keyboard look good.
 * The license-based `StandardInputSetProvider` convenience initializer has been deprecated.
 * The license-based `StandardKeyboardLayoutProvider` convenience initializer has been deprecated.
+
+### 🐛 Bug fixes
+
+* `KeyboardTheme` didn't set the identifier when it was created with a `MinimalStyle`. 
+* `View+SystemKeyboardButton` didn't send the pressed state to the system keyboard button body.
+
 
 ### 🗑️ Deprecations
 

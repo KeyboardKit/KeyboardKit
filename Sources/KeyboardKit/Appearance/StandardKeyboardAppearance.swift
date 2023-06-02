@@ -58,10 +58,17 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     // MARK: - Keyboard
 
     /**
-     The background color to apply to the keyboard.
+     The keyboard background style to apply to the keyboard.
      */
     public var backgroundStyle: KeyboardBackgroundStyle {
         .standard
+    }
+
+    /**
+     The foreground color to apply to the keyboard, if any.
+     */
+    public var foregroundColor: Color? {
+        nil
     }
 
     /**
