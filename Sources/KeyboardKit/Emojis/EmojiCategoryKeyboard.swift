@@ -137,7 +137,9 @@ private extension EmojiCategoryKeyboard {
         EmojiCategoryTitle(
             title: selection.title,
             style: style
-        ).padding(.horizontal)
+        )
+        .padding(.horizontal)
+        .padding(style.categoryTitlePadding)
     }
 
     var keyboard: some View {
@@ -146,8 +148,10 @@ private extension EmojiCategoryKeyboard {
                 emojis: selection.emojis.matching(query, for: keyboardContext.locale),
                 actionHandler: actionHandler,
                 calloutContext: calloutContext,
-                style: style)
+                style: style
+            )
         }.id(selection)
+
     }
     
     var menu: some View {
@@ -162,15 +166,25 @@ private extension EmojiCategoryKeyboard {
     }
 }
 
+@available(iOS 15.0, *)
 struct EmojiCategoryKeyboard_Previews: PreviewProvider {
-    
+
+    struct Preview: View {
+
+        var body: some View {
+            EmojiCategoryKeyboard(
+                selection: .smileys,
+                actionHandler: .preview,
+                keyboardContext: .preview,
+                calloutContext: .preview,
+                appearance: .preview,
+                style: .standardPhonePortrait
+            ).background(Color.standardKeyboardBackground)
+        }
+    }
+
     static var previews: some View {
-        EmojiCategoryKeyboard(
-            selection: .smileys,
-            actionHandler: .preview,
-            keyboardContext: .preview,
-            calloutContext: .preview,
-            appearance: .preview
-        )
+        Preview()
+            //.previewInterfaceOrientation(.landscapeLeft)
     }
 }

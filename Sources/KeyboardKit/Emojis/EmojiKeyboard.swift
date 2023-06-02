@@ -39,7 +39,7 @@ public struct EmojiKeyboard<ButtonView: View>: View {
         style: EmojiKeyboardStyle = .standardPhonePortrait,
         button: @escaping ButtonBuilder<ButtonView>
     ) {
-        let gridItem = GridItem(.fixed(style.itemSize), spacing: style.verticalItemSpacing - 9)
+        let gridItem = GridItem(.fixed(style.itemSize), spacing: style.verticalItemSpacing - 8)
         self.emojis = emojis
         self.rows = Array(repeating: gridItem, count: style.rows)
         self.actionHandler = actionHandler
@@ -101,7 +101,7 @@ public struct EmojiKeyboard<ButtonView: View>: View {
             }
         }
         .padding(.horizontal)
-        .frame(height: style.totalHeight)
+        .frame(height: style.totalHeight - 8)
     }
 }
 

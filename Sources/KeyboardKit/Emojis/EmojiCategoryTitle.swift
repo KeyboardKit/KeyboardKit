@@ -27,7 +27,7 @@ public struct EmojiCategoryTitle: View {
     public var body: some View {
         HStack {
             Text(title)
-                .font(style.categoryFont)
+                .font(style.categoryTitleFont)
                 .bold()
                 .textCase(.uppercase)
                 .opacity(0.4)

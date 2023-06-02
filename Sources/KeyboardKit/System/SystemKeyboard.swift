@@ -497,70 +497,83 @@ private extension SystemKeyboard {
  */
 struct SystemKeyboard_Previews: PreviewProvider {
 
-    static var controller = KeyboardInputViewController.preview
+    struct Preview: View {
 
-    @ViewBuilder
-    static func previewButton(
-        item: KeyboardLayoutItem,
-        keyboardWidth: CGFloat,
-        inputWidth: CGFloat
-    ) -> some View {
-        switch item.action {
-        case .space:
-            Text("This is a space bar replacement")
-                .frame(maxWidth: .infinity)
-                .multilineTextAlignment(.center)
-        default:
-            SystemKeyboardButtonRowItem(
-                content: previewButtonContent(item: item),
-                item: item,
-                actionHandler: .preview,
-                keyboardContext: controller.keyboardContext,
-                calloutContext: controller.calloutContext,
-                keyboardWidth: keyboardWidth,
-                inputWidth: inputWidth,
-                appearance: controller.keyboardAppearance
-            )
+        var controller: KeyboardInputViewController = {
+            let controller = KeyboardInputViewController.preview
+            controller.keyboardContext.keyboardType = .emojis
+            return controller
+        }()
+
+        @ViewBuilder
+        func previewButton(
+            item: KeyboardLayoutItem,
+            keyboardWidth: CGFloat,
+            inputWidth: CGFloat
+        ) -> some View {
+            switch item.action {
+            case .space:
+                Text("This is a space bar replacement")
+                    .frame(maxWidth: .infinity)
+                    .multilineTextAlignment(.center)
+            default:
+                SystemKeyboardButtonRowItem(
+                    content: previewButtonContent(item: item),
+                    item: item,
+                    actionHandler: .preview,
+                    keyboardContext: controller.keyboardContext,
+                    calloutContext: controller.calloutContext,
+                    keyboardWidth: keyboardWidth,
+                    inputWidth: inputWidth,
+                    appearance: controller.keyboardAppearance
+                )
+            }
+        }
+
+        @ViewBuilder
+        func previewButtonContent(
+            item: KeyboardLayoutItem
+        ) -> some View {
+            switch item.action {
+            case .backspace:
+                Image(systemName: "trash").foregroundColor(Color.red)
+            default:
+                SystemKeyboardButtonContent(
+                    action: item.action,
+                    appearance: .preview,
+                    keyboardContext: controller.keyboardContext
+                )
+            }
+        }
+
+        var body: some View {
+            VStack(spacing: 10) {
+                Group {
+                    // A standard system keyboard
+                    SystemKeyboard(
+                        controller: controller,
+                        width: UIScreen.main.bounds.width)
+
+
+                    // A keyboard that replaces the button content
+                    SystemKeyboard(
+                        controller: controller,
+                        width: UIScreen.main.bounds.width,
+                        buttonContent: previewButtonContent)
+
+                    // A keyboard that replaces entire button views
+                    SystemKeyboard(
+                        controller: controller,
+                        width: UIScreen.main.bounds.width,
+                        buttonView: previewButton)
+                }.background(Color.standardKeyboardBackground)
+            }
         }
     }
 
-    @ViewBuilder
-    static func previewButtonContent(
-        item: KeyboardLayoutItem
-    ) -> some View {
-        switch item.action {
-        case .backspace:
-            Image(systemName: "trash").foregroundColor(Color.red)
-        default:
-            SystemKeyboardButtonContent(
-                action: item.action,
-                appearance: .preview,
-                keyboardContext: controller.keyboardContext
-            )
-        }
-    }
 
     static var previews: some View {
-        VStack(spacing: 10) {
-
-            // A standard system keyboard
-            SystemKeyboard(
-                controller: controller,
-                width: UIScreen.main.bounds.width)
-
-
-            // A keyboard that replaces the button content
-            SystemKeyboard(
-                controller: controller,
-                width: UIScreen.main.bounds.width,
-                buttonContent: previewButtonContent)
-
-            // A keyboard that replaces entire button views
-            SystemKeyboard(
-                controller: controller,
-                width: UIScreen.main.bounds.width,
-                buttonView: previewButton)
-        }.background(Color.yellow)
+        Preview()
     }
 }
 #endif

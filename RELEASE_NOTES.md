@@ -25,6 +25,7 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 ### 💡 Adjustments
 
 * Thanks to [krizhanovskii](https://github.com/krizhanovskii) the Pro Max layout configuration has been improved.
+* `KeyboardEmojiKeyboard` `KeyboardEmojiCategoryKeyboard` are tweaked to look closer to the system keyboards.
 
 ### 👑 Pro changes
 

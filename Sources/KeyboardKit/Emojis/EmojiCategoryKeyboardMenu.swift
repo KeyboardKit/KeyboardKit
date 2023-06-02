@@ -62,11 +62,11 @@ public struct EmojiCategoryKeyboardMenu: View {
     public var body: some View {
         HStack(spacing: 0) {
             Spacer()
-            keyboardSwitchButton.font(style.systemFont)
+            keyboardSwitchButton.font(style.abcFont)
             Spacer()
-            buttonList.font(style.categoryFont)
+            buttonList.font(style.categoryEmojiFont)
             Spacer()
-            backspaceButton.font(style.systemFont)
+            backspaceButton.font(style.backspaceFont)
             Spacer()
         }
     }
@@ -103,9 +103,10 @@ public struct EmojiCategoryKeyboardMenu: View {
     private func buttonListItem(for category: EmojiCategory) -> some View {
         Button(action: { selection = category }, label: {
             Text(category.fallbackDisplayEmoji.char)
-                .padding(3)
+                .padding(6)
                 .background(selection == category ? style.selectedCategoryColor : Color.clear)
                 .clipShape(Circle())
+                .padding(.vertical, 5)
         }).buttonStyle(.plain)
     }
 }
@@ -120,6 +121,6 @@ struct EmojiCategoryKeyboardMenu_Previews: PreviewProvider {
             actionHandler: .preview,
             appearance: .preview,
             style: .standardPhonePortrait
-        )
+        ).background(Color.gray)
     }
 }
