@@ -17,6 +17,8 @@ This version aims to reduce the amount of lost keystrokes by adding a release ou
 
 Since the best tolerance amount is still unclear, the `keyboardButtonGestures` view extension now lets you specify a tolerance, which is a percentage of the button width.
 
+This version also adds a vertical threshold when moving the input cursor with the space button, since dragging the finger too much up and down can result in unexpected movement. 
+
 This version also tweaks the emoji keyboards to look better and closer to the native ones.
 
 There are also new keyboard actions, new url opening utilities, and a bunch of theme adjustments.   

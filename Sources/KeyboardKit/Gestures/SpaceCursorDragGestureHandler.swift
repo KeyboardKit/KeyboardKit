@@ -17,27 +17,38 @@ open class SpaceCursorDragGestureHandler: DragGestureHandler {
     /**
      Create a handler space cursor drag gesture handler.
 
+     You can provide a `sensitivity` to set how much a space
+     drag gesture will move the input cursor.
+
+     You can provide a `verticalThreshold` to set how much a
+     drag gesture can move up and down before the text input
+     cursor stops moving when the gesture changes.
+
      - Parameters:
        - keyboardContext: The keyboard context to use.
        - feedbackHandler: The feedback handler to use.
        - sensitivity: The drag sensitivity, by default ``SpaceDragSensitivity/medium``.
+       - verticalThreshold: The vertical tolerance in points, by default `50`.
        - action: The action to perform for the drag offset.
      */
     public init(
         keyboardContext: KeyboardContext,
         feedbackHandler: KeyboardFeedbackHandler,
         sensitivity: SpaceDragSensitivity = .medium,
+        verticalThreshold: Double = 50,
         action: @escaping (Int) -> Void
     ) {
         self.keyboardContext = keyboardContext
         self.feedbackHandler = feedbackHandler
         self.sensitivity = sensitivity
+        self.verticalThreshold = verticalThreshold
         self.action = action
     }
 
     public let keyboardContext: KeyboardContext
     public let feedbackHandler: KeyboardFeedbackHandler
     public let sensitivity: SpaceDragSensitivity
+    public let verticalThreshold: Double
     public let action: (Int) -> Void
 
     public var currentDragStartLocation: CGPoint?
@@ -56,8 +67,10 @@ open class SpaceCursorDragGestureHandler: DragGestureHandler {
         let textPositionOffset = Int(dragDelta / CGFloat(sensitivity.points))
         guard textPositionOffset != currentDragTextPositionOffset else { return }
         let offsetDelta = textPositionOffset - currentDragTextPositionOffset
-        action(-offsetDelta)
         currentDragTextPositionOffset = textPositionOffset
+        let verticalDistance = abs(startLocation.y - currentLocation.y)
+        guard verticalDistance < verticalThreshold else { return }
+        action(-offsetDelta)
     }
 }
 

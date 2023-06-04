@@ -213,7 +213,7 @@ private extension KeyboardButtonGestures {
 
     func shouldApplyReleaseOutsize(for geo: GeometryProxy) -> Bool {
         guard let dragValue = lastDragValue else { return false }
-        let rect = CGRect.releaseOutsideArea(for: geo, tolerance: releaseOutsideTolerance)
+        let rect = CGRect.releaseOutsideToleranceArea(for: geo, tolerance: releaseOutsideTolerance)
         let isInsideRect = rect.contains(dragValue.location)
         return isInsideRect
     }
@@ -228,7 +228,7 @@ extension CGRect {
 
     /// This function returns a rect with padding in which a
     /// release outside should be applied.
-    static func releaseOutsideArea(
+    static func releaseOutsideToleranceArea(
         for geo: GeometryProxy,
         tolerance: Double
     ) -> CGRect {
