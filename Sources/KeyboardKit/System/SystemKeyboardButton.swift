@@ -99,7 +99,7 @@ public struct SystemKeyboardButton<Content: View>: View {
                 buttonStyle,
                 isPressed: isPressed
             )
-            .keyboardGestures(
+            .keyboardButtonGestures(
                 for: action,
                 actionHandler: actionHandler,
                 calloutContext: calloutContext,

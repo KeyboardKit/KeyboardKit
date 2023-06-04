@@ -14,12 +14,11 @@ public extension View {
     typealias KeyboardDragGestureAction = (_ startLocation: CGPoint, _ location: CGPoint) -> Void
 
     /**
-     Apply keyboard-specific gestures to the view, using the
-     provided `action`, `context` and `actionHandler`.
+     Apply keyboard button gestures to the view, that should
+     send the gesture events to the provided `actionHandler`.
 
-     The ``KeyboardAction/nextKeyboard`` action will not use
-     the provided gesture actions, but will instead wrap the
-     view in a ``NextKeyboardButton``.
+     The ``KeyboardAction/nextKeyboard`` action will trigger
+     keyboard switching events instead of the action handler.
 
      - Parameters:
        - action: The keyboard action to trigger.
@@ -29,14 +28,14 @@ public extension View {
        - isPressed: An optional binding that can be used to observe the button pressed state.
      */
     @ViewBuilder
-    func keyboardGestures(
+    func keyboardButtonGestures(
         for action: KeyboardAction,
         actionHandler: KeyboardActionHandler,
         calloutContext: KeyboardCalloutContext?,
         isInScrollView: Bool = false,
         isPressed: Binding<Bool> = .constant(false)
     ) -> some View {
-        self.keyboardGestures(
+        self.keyboardButtonGestures(
             action: action,
             calloutContext: calloutContext,
             isInScrollView: isInScrollView,
@@ -51,12 +50,11 @@ public extension View {
     }
     
     /**
-     Apply keyboard-specific gestures to the view, using the
-     provided action blocks.
+     Apply keyboard button gestures to the view, that should
+     trigger the provided gestures action.
 
-     The ``KeyboardAction/nextKeyboard`` action will not use
-     the provided gesture actions, but will instead wrap the
-     view in a ``NextKeyboardButton``.
+     The ``KeyboardAction/nextKeyboard`` action will trigger
+     keyboard switching instead of the provided actions.
      
      - Parameters:
        - action: The keyboard action to trigger, by deafult `nil`.
@@ -71,7 +69,7 @@ public extension View {
        - dragAction: The action to trigger when the button is dragged, by deafult `nil`.
      */
     @ViewBuilder
-    func keyboardGestures(
+    func keyboardButtonGestures(
         action: KeyboardAction? = nil,
         calloutContext: KeyboardCalloutContext?,
         isInScrollView: Bool = false,
@@ -84,7 +82,7 @@ public extension View {
         dragAction: KeyboardDragGestureAction? = nil
     ) -> some View {
         #if os(iOS) || os(macOS) || os(watchOS)
-        let gestures = KeyboardGestures(
+        let gestures = KeyboardButtonGestures(
             view: self,
             action: action,
             calloutContext: calloutContext,

@@ -77,7 +77,7 @@ public struct EmojiCategoryKeyboardMenu: View {
     private var backspaceButton: some View {
         let action = KeyboardAction.backspace
         let image = appearance.buttonImage(for: action)
-        return image.keyboardGestures(
+        return image.keyboardButtonGestures(
             for: action,
             actionHandler: actionHandler,
             calloutContext: nil
@@ -87,7 +87,7 @@ public struct EmojiCategoryKeyboardMenu: View {
     private var keyboardSwitchButton: some View {
         let action = KeyboardAction.keyboardType(.alphabetic(.lowercased))
         let text = appearance.buttonText(for: action) ?? "ABC"
-        return Text(text).keyboardGestures(
+        return Text(text).keyboardButtonGestures(
             for: action,
             actionHandler: actionHandler,
             calloutContext: nil

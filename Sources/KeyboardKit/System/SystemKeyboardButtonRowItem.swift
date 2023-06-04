@@ -75,7 +75,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
             )
             .padding(item.insets)
             .contentShape(Rectangle())
-            .keyboardGestures(
+            .keyboardButtonGestures(
                 for: item.action,
                 actionHandler: actionHandler,
                 calloutContext: calloutContext,

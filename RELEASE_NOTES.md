@@ -13,6 +13,14 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 
 ## 7.7
 
+This version aims to reduce the amount of lost keystrokes by adding a release outside tolerance, to let a button trigger a release event even if the release is a bit outside of the button bounds. The lack of such a tolerance may have caused lost keystrokes before, since it's easy to slide with your finger while typing and ending up with your finger outside the button bounds.
+
+Since the best tolerance amount is still unclear, the `keyboardButtonGestures` view extension now lets you specify a tolerance, which is a percentage of the button width.
+
+This version also tweaks the emoji keyboards to look better and closer to the native ones.
+
+There are also new keyboard actions, new url opening utilities, and a bunch of theme adjustments.   
+
 ### ✨ New Features
 
 * `KeyboardAction` has new `systemSettings` and `url` actions.
@@ -43,10 +51,10 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 * `KeyboardTheme` didn't set the identifier when it was created with a `MinimalStyle`. 
 * `View+SystemKeyboardButton` didn't send the pressed state to the system keyboard button body.
 
-
 ### 🗑️ Deprecations
 
 * `KeyboardThemePreview` has been renamed to `KeyboardThemeLivePreview`.
+* The `keyboardGestures` view extensions have been renamed to  `keyboardButtonGestures`.
 
 ### 💥 Breaking changes 
 

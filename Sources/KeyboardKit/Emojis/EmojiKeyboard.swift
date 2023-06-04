@@ -92,7 +92,7 @@ public struct EmojiKeyboard<ButtonView: View>: View {
                 buttonView(
                     for: emoji,
                     style: style
-                ).keyboardGestures(
+                ).keyboardButtonGestures(
                     for: .emoji(emoji),
                     actionHandler: actionHandler,
                     calloutContext: calloutContext,

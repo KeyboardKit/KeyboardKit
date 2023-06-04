@@ -1,5 +1,5 @@
 //
-//  KeyboardGestures.swift
+//  KeyboardButtonGestures.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
@@ -15,7 +15,7 @@ import SwiftUI
  
  This view is internal. Apply it with `View+keyboardGestures`.
  */
-struct KeyboardGestures<Content: View>: View {
+struct KeyboardButtonGestures<Content: View>: View {
     
     /**
      Apply a set of optional gesture actions to the provided
@@ -101,7 +101,7 @@ private extension View {
 
 // MARK: - Views
 
-private extension KeyboardGestures {
+private extension KeyboardButtonGestures {
 
     @ViewBuilder
     func button(for geo: GeometryProxy) -> some View {
@@ -146,7 +146,7 @@ private extension KeyboardGestures {
 
 // MARK: - Actions
 
-private extension KeyboardGestures {
+private extension KeyboardButtonGestures {
 
     func handleDoubleTap(in geo: GeometryProxy) {
         doubleTapAction?()
@@ -227,7 +227,7 @@ extension CGRect {
     static func releaseOutsideArea(for geo: GeometryProxy) -> CGRect {
         let size = geo.size
         let rect = CGRect(origin: .zero, size: geo.size)
-            .insetBy(dx: -size.width/2, dy: -size.height/2)
+            .insetBy(dx: -size.width, dy: -size.height)
         return rect
     }
 }
