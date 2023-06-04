@@ -10,8 +10,8 @@
 import SwiftUI
 
 /**
- This view wraps any view and applies a ``GestureButton`` to
- it, to handle all actions for the provided keyboard action.
+ This view wraps a button and applies a gesture button to it,
+ to handle all actions for the provided keyboard action.
  
  This view is internal. Apply it with `View+keyboardGestures`.
  */
@@ -73,9 +73,7 @@ struct KeyboardGestures<Content: View>: View {
     private let dragAction: KeyboardDragGestureAction?
 
     @State
-    private var isPressGestureActive = false {
-        didSet { isPressed.wrappedValue = isPressGestureActive }
-    }
+    private var lastDragValue: DragGesture.Value?
 
     @State
     private var shouldApplyReleaseAction = true
@@ -83,7 +81,7 @@ struct KeyboardGestures<Content: View>: View {
     var body: some View {
         view.overlay(
             GeometryReader { geo in
-                gestureButton(for: geo)
+                button(for: geo)
             }
         )
     }
@@ -106,34 +104,42 @@ private extension View {
 private extension KeyboardGestures {
 
     @ViewBuilder
-    func gestureButton(for geo: GeometryProxy) -> some View {
+    func button(for geo: GeometryProxy) -> some View {
         if isInScrollView {
-            ScrollViewGestureButton(
-                isPressed: isPressed,
-                pressAction: { handlePress(in: geo) },
-                releaseInsideAction: { handleReleaseInside(in: geo) },
-                releaseOutsideAction: { handleReleaseOutside(in: geo) },
-                longPressAction: { handleLongPress(in: geo) },
-                doubleTapAction: { handleDoubleTap(in: geo) },
-                repeatAction: { handleRepeat(in: geo) },
-                dragAction: { handleDrag(in: geo, value: $0) },
-                endAction: { handleGestureEnded(in: geo) },
-                label: { _ in Color.clearInteractable }
-            )
+            scrollButton(for: geo)
         } else {
-            GestureButton(
-                isPressed: isPressed,
-                pressAction: { handlePress(in: geo) },
-                releaseInsideAction: { handleReleaseInside(in: geo) },
-                releaseOutsideAction: { handleReleaseOutside(in: geo) },
-                longPressAction: { handleLongPress(in: geo) },
-                doubleTapAction: { handleDoubleTap(in: geo) },
-                repeatAction: { handleRepeat(in: geo) },
-                dragAction: { handleDrag(in: geo, value: $0) },
-                endAction: { handleGestureEnded(in: geo) },
-                label: { _ in Color.clearInteractable }
-            )
+            gestureButton(for: geo)
         }
+    }
+
+    func gestureButton(for geo: GeometryProxy) -> some View {
+        GestureButton(
+            isPressed: isPressed,
+            pressAction: { handlePress(in: geo) },
+            releaseInsideAction: { handleReleaseInside(in: geo) },
+            releaseOutsideAction: { handleReleaseOutside(in: geo) },
+            longPressAction: { handleLongPress(in: geo) },
+            doubleTapAction: { handleDoubleTap(in: geo) },
+            repeatAction: { handleRepeat(in: geo) },
+            dragAction: { handleDrag(in: geo, value: $0) },
+            endAction: { handleGestureEnded(in: geo) },
+            label: { _ in Color.clearInteractable }
+        )
+    }
+
+    func scrollButton(for geo: GeometryProxy) -> some View {
+        ScrollViewGestureButton(
+            isPressed: isPressed,
+            pressAction: { handlePress(in: geo) },
+            releaseInsideAction: { handleReleaseInside(in: geo) },
+            releaseOutsideAction: { handleReleaseOutside(in: geo) },
+            longPressAction: { handleLongPress(in: geo) },
+            doubleTapAction: { handleDoubleTap(in: geo) },
+            repeatAction: { handleRepeat(in: geo) },
+            dragAction: { handleDrag(in: geo, value: $0) },
+            endAction: { handleGestureEnded(in: geo) },
+            label: { _ in Color.clearInteractable }
+        )
     }
 }
 
@@ -147,6 +153,7 @@ private extension KeyboardGestures {
     }
 
     func handleDrag(in geo: GeometryProxy, value: DragGesture.Value) {
+        lastDragValue = value
         calloutContext?.action.updateSelection(with: value.translation)
         dragAction?(value.startLocation, value.location)
     }
@@ -155,7 +162,7 @@ private extension KeyboardGestures {
         endActionCallout()
         calloutContext?.input.resetWithDelay()
         calloutContext?.action.reset()
-        shouldApplyReleaseAction = true
+        resetGestureState()
     }
 
     func handleLongPress(in geo: GeometryProxy) {
@@ -175,7 +182,10 @@ private extension KeyboardGestures {
         releaseAction?()
     }
 
-    func handleReleaseOutside(in geo: GeometryProxy) {}
+    func handleReleaseOutside(in geo: GeometryProxy) {
+        guard shouldApplyReleaseOutsize(for: geo) else { return }
+        handleReleaseInside(in: geo)
+    }
 
     func handleRepeat(in geo: GeometryProxy) {
         repeatAction?()
@@ -192,9 +202,33 @@ private extension KeyboardGestures {
         calloutContext?.action.endDragGesture()
     }
 
+    func resetGestureState() {
+        lastDragValue = nil
+        shouldApplyReleaseAction = true
+    }
+
+    func shouldApplyReleaseOutsize(for geo: GeometryProxy) -> Bool {
+        guard let dragValue = lastDragValue else { return false }
+        let rect = CGRect.releaseOutsideArea(for: geo)
+        let isInsideRect = rect.contains(dragValue.location)
+        return isInsideRect
+    }
+
     func updateShouldApplyReleaseAction() {
         guard let context = calloutContext?.action else { return }
         shouldApplyReleaseAction = shouldApplyReleaseAction && !context.hasSelectedAction
+    }
+}
+
+extension CGRect {
+
+    /// This function returns a rect with padding in which a
+    /// release outside should be applied.
+    static func releaseOutsideArea(for geo: GeometryProxy) -> CGRect {
+        let size = geo.size
+        let rect = CGRect(origin: .zero, size: geo.size)
+            .insetBy(dx: -size.width/2, dy: -size.height/2)
+        return rect
     }
 }
 #endif

@@ -19,8 +19,8 @@ public enum KeyboardGesture: String, CaseIterable, Codable, Equatable, Identifia
     
     /// Occurs when a button is pressed down.
     case press
-    
-    /// Occurs when a button is released, inside or outside.
+
+    /// Occurs when a button is released.
     case release
     
     /// Occurs when a button is long pressed.

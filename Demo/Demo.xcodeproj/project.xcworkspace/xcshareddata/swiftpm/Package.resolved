@@ -8,6 +8,15 @@
         "revision" : "847101491212af9c0fddb0b67278f46fc36ca619",
         "version" : "7.5.2"
       }
+    },
+    {
+      "identity" : "mockingkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/danielsaidi/MockingKit.git",
+      "state" : {
+        "revision" : "02bd7911f153ad2f91d4e91f189fde5152ede6a7",
+        "version" : "1.3.0"
+      }
     }
   ],
   "version" : 2

@@ -26,6 +26,7 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 
 * Thanks to [krizhanovskii](https://github.com/krizhanovskii) the Pro Max layout configuration has been improved.
 * `KeyboardEmojiKeyboard` `KeyboardEmojiCategoryKeyboard` are tweaked to look closer to the system keyboards.
+* `KeyboardGestures` now handles a release outside as a release inside, if the release happens within a tolerance area.
 
 ### 👑 Pro changes
 
