@@ -25,8 +25,9 @@ struct KeyboardButtonGestures<Content: View>: View {
        - view: The view to apply the gestures to.
        - action: The keyboard action to trigger.
        - calloutContext: The callout context to affect, if any.
-       - isInScrollView: Whether or not the gestures are used in a scroll view.
        - isPressed: An optional binding that can be used to observe the button pressed state.
+       - isInScrollView: Whether or not the gestures are used in a scroll view.
+       - releaseOutsideTolerance: The percentage of the button size that should span outside the button bounds and still count as a release, by default `0.75`.
        - doubleTapAction: The action to trigger when the button is double tapped.
        - longPressAction: The action to trigger when the button is long pressed.
        - pressAction: The action to trigger when the button is pressed.
@@ -38,8 +39,9 @@ struct KeyboardButtonGestures<Content: View>: View {
         view: Content,
         action: KeyboardAction?,
         calloutContext: KeyboardCalloutContext?,
-        isInScrollView: Bool = false,
         isPressed: Binding<Bool>,
+        isInScrollView: Bool,
+        releaseOutsideTolerance: Double,
         doubleTapAction: KeyboardGestureAction?,
         longPressAction: KeyboardGestureAction?,
         pressAction: KeyboardGestureAction?,
@@ -50,8 +52,9 @@ struct KeyboardButtonGestures<Content: View>: View {
         self.view = view
         self.action = action
         self.calloutContext = calloutContext
-        self.isInScrollView = isInScrollView
         self.isPressed = isPressed
+        self.isInScrollView = isInScrollView
+        self.releaseOutsideTolerance = releaseOutsideTolerance
         self.doubleTapAction = doubleTapAction
         self.longPressAction = longPressAction
         self.pressAction = pressAction
@@ -63,8 +66,9 @@ struct KeyboardButtonGestures<Content: View>: View {
     private let view: Content
     private let action: KeyboardAction?
     private let calloutContext: KeyboardCalloutContext?
-    private let isInScrollView: Bool
     private let isPressed: Binding<Bool>
+    private let isInScrollView: Bool
+    private let releaseOutsideTolerance: Double
     private let doubleTapAction: KeyboardGestureAction?
     private let longPressAction: KeyboardGestureAction?
     private let pressAction: KeyboardGestureAction?
@@ -209,7 +213,7 @@ private extension KeyboardButtonGestures {
 
     func shouldApplyReleaseOutsize(for geo: GeometryProxy) -> Bool {
         guard let dragValue = lastDragValue else { return false }
-        let rect = CGRect.releaseOutsideArea(for: geo)
+        let rect = CGRect.releaseOutsideArea(for: geo, tolerance: releaseOutsideTolerance)
         let isInsideRect = rect.contains(dragValue.location)
         return isInsideRect
     }
@@ -224,10 +228,13 @@ extension CGRect {
 
     /// This function returns a rect with padding in which a
     /// release outside should be applied.
-    static func releaseOutsideArea(for geo: GeometryProxy) -> CGRect {
+    static func releaseOutsideArea(
+        for geo: GeometryProxy,
+        tolerance: Double
+    ) -> CGRect {
         let size = geo.size
         let rect = CGRect(origin: .zero, size: geo.size)
-            .insetBy(dx: -size.width, dy: -size.height)
+            .insetBy(dx: -size.width * tolerance, dy: -size.height * tolerance)
         return rect
     }
 }

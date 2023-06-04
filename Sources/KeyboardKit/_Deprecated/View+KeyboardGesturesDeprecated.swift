@@ -15,8 +15,8 @@ public extension View {
             for: action,
             actionHandler: actionHandler,
             calloutContext: calloutContext,
-            isInScrollView: isInScrollView,
-            isPressed: isPressed
+            isPressed: isPressed,
+            isInScrollView: isInScrollView
         )
     }
 
@@ -37,8 +37,8 @@ public extension View {
         self.keyboardButtonGestures(
             action: action,
             calloutContext: calloutContext,
-            isInScrollView: isInScrollView,
             isPressed: isPressed,
+            isInScrollView: isInScrollView,
             doubleTapAction: doubleTapAction,
             longPressAction: longPressAction,
             pressAction: pressAction,
