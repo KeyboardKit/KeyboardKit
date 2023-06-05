@@ -131,6 +131,13 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
 
     /**
+     Handle a certain action using its standard action.
+     */
+    public func handle(_ action: KeyboardAction) {
+        action.standardAction?(keyboardController)
+    }
+
+    /**
      Handle a certain gesture on a certain action.
      */
     open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction) {
@@ -159,7 +166,9 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         keyboardController?.performTextContextSync()
     }
 
-    /// Handle a drag gesture on a certain action.
+    /**
+     Handle a drag gesture on a certain action.
+     */
     open func handleDrag(on action: KeyboardAction, from startLocation: CGPoint, to currentLocation: CGPoint) {
         tryHandleSpaceDrag(on: action, from: startLocation, to: currentLocation)
     }

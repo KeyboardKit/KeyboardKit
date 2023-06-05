@@ -30,19 +30,23 @@ import CoreGraphics
 public protocol KeyboardActionHandler: AnyObject {
     
     /**
-     Whether or not this action handler can handle a certain
-     `gesture` on a certain `action`.
+     Whether or not the handler can handle a certain gesture
+     on a certain action.
      */
     func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction) -> Bool
     
     /**
-     Handle a certain `gesture` on a certain `action`.
+     Handle a certain action using its standard action.
+     */
+    func handle(_ action: KeyboardAction)
+
+    /**
+     Handle a certain gesture on a certain action.
      */
     func handle(_ gesture: KeyboardGesture, on action: KeyboardAction)
     
     /**
-     Handle a drag gesture on a certain action, from a start
-     location to the drag gesture's current location.
+     Handle a drag gesture on a certain action.
      */
     func handleDrag(on action: KeyboardAction, from startLocation: CGPoint, to currentLocation: CGPoint)
 }

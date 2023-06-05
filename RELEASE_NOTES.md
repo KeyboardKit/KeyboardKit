@@ -15,6 +15,7 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 
 ### ✨ New Features
 
+* `KeyboardActionHandler` has a new `handle` function.
 * `KeyboardBackgroundStyle` has many new properties.
 * `NextKeyboardButton` no longer throws assert failures by default.
 * `PreviewAutocompleteProvider` is a new preview service.
@@ -22,7 +23,8 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 
 ### 👑 Pro changes
 
-* `KeyboardThemeAppearance` is not open for inheritance.
+* `KeyboardThemeAppearance` is now open for inheritance.
+* `KeyboardThemeFormModel` is a new observable type.
 * `KeyboardThemeLivePreview` has new initializers.
 * `KeyboardThemeLivePreviewHeader` is a new header preview.
 
