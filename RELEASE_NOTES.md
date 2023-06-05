@@ -42,8 +42,7 @@ There are also new keyboard actions, new url opening utilities, and a bunch of t
 
 * `KeyboardTheme` has new `author`, `collectionName` and `foregroundColor` properties.
 * `KeyboardThemeLivePreview` now renders light mode only as default.
-* `License` has a new `localizedInputSetProviders` property.
-* `License` has a new `localizedKeyboardLayoutProviders` property.
+* `License` has new `localizedCalloutActionProviders`, `localizedInputSetProviders` and `localizedKeyboardLayoutProviders` properties.
 * Some themes define a foreground color to make the emoji keyboard look good.
 * The license-based `StandardInputSetProvider` convenience initializer has been deprecated.
 * The license-based `StandardKeyboardLayoutProvider` convenience initializer has been deprecated.

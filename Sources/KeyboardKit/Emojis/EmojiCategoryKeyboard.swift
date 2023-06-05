@@ -185,6 +185,6 @@ struct EmojiCategoryKeyboard_Previews: PreviewProvider {
 
     static var previews: some View {
         Preview()
-            //.previewInterfaceOrientation(.landscapeLeft)
+            // .previewInterfaceOrientation(.landscapeLeft)
     }
 }

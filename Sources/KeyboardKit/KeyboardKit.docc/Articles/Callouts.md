@@ -91,6 +91,53 @@ Have a look at ``SystemKeyboard`` and the demo apps for examples on how this can
 
 This lets you create a fully localized ``SystemKeyboard`` for all available locales with a single line of code.
 
+You can also access the underlying, locale-specific providers like this:
+
+```swift
+let provider = ProCalloutActionProvider.Swedish()
+```
+
+You can access all providers that your license unlocks like this:
+
+```swift
+let providers = license.localizedCalloutActionProviders
+```
+
+If you want to use a custom provider with KeyboardKit Pro, make sure to register your custom instance *after* registering your license key, otherwise it will be overwritten by the license registration process.
+
+You can still inherit `StandardCalloutActionProvider` with KeyboardKit Pro to get the standard behavior, combined with the additional functionality that your Pro license unlocks:
+
+```swift
+class CustomCalloutActionProvider: StandardCalloutActionProvider {
+
+    override func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {
+        let baseActions = super.calloutActions(for: action)
+        let customActions = // Your custom logic here
+        return customActions
+    }
+}
+```
+
+You can then create a custom provider instance with your license, like this:
+
+```swift
+open func setupKeyboardKit() {
+    try? setupPro(withLicenseKey: key, view: keyboardView) { license in
+        self.setupCustomServices(with: license)
+    }
+}
+
+func setupCustomServices(with license: License) {
+    calloutActionProvider = CustomCalloutActionProvider(
+        keyboardContext: keyboardContext,
+        inputSetProvider: inputSetProvider,
+        localizedProviders: license.localizedCalloutActionProviders
+    )
+}
+```
+
+You can of course add a custom initializer to your custom provider if you need additional things in it, then just call `super.init` to setup the rest. 
+
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
