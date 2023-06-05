@@ -43,8 +43,8 @@ class KeyboardLayoutConfigurationTests: XCTestCase {
     func testStandardConfigurationIsCorrectForiPhoneProMaxInPortrait() {
         let config = KeyboardLayoutConfiguration.standardPhoneProMax
         XCTAssertEqual(config.buttonCornerRadius, 5)
-        XCTAssertEqual(config.buttonInsets, .horizontal(3, vertical: 6))
-        XCTAssertEqual(config.rowHeight, 58)
+        XCTAssertEqual(config.buttonInsets, .horizontal(3, vertical: 5.5))
+        XCTAssertEqual(config.rowHeight, 56)
     }
 
     func testStandardConfigurationIsCorrectForiPhoneProMaxInLandscape() {

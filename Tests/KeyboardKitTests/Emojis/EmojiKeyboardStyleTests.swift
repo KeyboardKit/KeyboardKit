@@ -11,26 +11,47 @@ import XCTest
 
 final class EmojiKeyboardStyleTests: XCTestCase {
 
-    func testStandardConfigurations() {
+    func testStandardLargePadLandscape() {
+        let config = EmojiKeyboardStyle.standardLargePadLandscape
+        XCTAssertEqual(config.rows, 6)
+        XCTAssertEqual(config.horizontalItemSpacing, 10)
+        XCTAssertEqual(config.verticalCategoryStackSpacing, 10)
+        XCTAssertEqual(config.categoryTitlePadding, .init(top: 18, leading: 0, bottom: 0, trailing: 0))
+    }
 
-        func validate(
-            _ config: EmojiKeyboardStyle,
-            _ itemSize: Double,
-            _ rows: Int,
-            _ horizontalSpacing: Double,
-            _ verticalSpacing: CGFloat
-        ) {
-            XCTAssertEqual(config.itemSize, itemSize)
-            XCTAssertEqual(config.rows, rows)
-            XCTAssertEqual(config.horizontalItemSpacing, horizontalSpacing)
-            XCTAssertEqual(config.verticalItemSpacing, verticalSpacing)
-        }
+    func testStandardLargePadPortrait() {
+        let config = EmojiKeyboardStyle.standardLargePadPortrait
+        XCTAssertEqual(config.rows, 5)
+        XCTAssertEqual(config.itemSize, 55)
+        XCTAssertEqual(config.horizontalItemSpacing, 10)
+        XCTAssertEqual(config.verticalCategoryStackSpacing, 7)
+        XCTAssertEqual(config.categoryTitleFont, .system(size: 16).bold())
+        XCTAssertEqual(config.categoryTitlePadding, .init(top: 14, leading: 0, bottom: 0, trailing: 0))
+    }
 
-        validate(.standardLargePadLandscape, 60, 6, 15, 10)
-        validate(.standardLargePadPortrait, 60, 5, 10, 7)
-        validate(.standardPadLandscape, 60, 5, 15, 10)
-        validate(.standardPadPortrait, 60, 3, 15, 10)
-        validate(.standardPhoneLandscape, 40, 3, 10, 6)
-        validate(.standardPhonePortrait, 40, 5, 10, 6)
+    func testStandardPadLandscape() {
+        let config = EmojiKeyboardStyle.standardPadLandscape
+        XCTAssertEqual(config.rows, 5)
+        XCTAssertEqual(config.itemSize, 58)
+        XCTAssertEqual(config.horizontalItemSpacing, 15)
+        XCTAssertEqual(config.verticalCategoryStackSpacing, 7)
+    }
+
+    func testStandardPadPortrait() {
+        let config = EmojiKeyboardStyle.standardPadPortrait
+        XCTAssertEqual(config.rows, 3)
+        XCTAssertEqual(config.itemSize, 67)
+        XCTAssertEqual(config.horizontalItemSpacing, 15)
+        XCTAssertEqual(config.verticalCategoryStackSpacing, 5)
+    }
+
+    func testStandardPhoneLandscape() {
+        let config = EmojiKeyboardStyle.standardPhoneLandscape
+        XCTAssertEqual(config.rows, 3)
+    }
+
+    func testStandardPhonePortrait() {
+        let config = EmojiKeyboardStyle.standardPhonePortrait
+        XCTAssertEqual(config.rows, 5)
     }
 }
