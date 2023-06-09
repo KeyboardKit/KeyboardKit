@@ -15,8 +15,15 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 
 ### ✨ New Features
 
+* `NextKeyboardButton` no longer throws assert failures by default.
 * `PreviewAutocompleteProvider` is a new preview service.
 * `SystemKeyboard` has a new `renderBackground` property.
+
+### 👑 Pro changes
+
+* `KeyboardThemeAppearance` is not open for inheritance.
+* `KeyboardThemeLivePreview` has new initializers.
+* `KeyboardThemeLivePreviewHeader` is a new header preview.
 
 
 

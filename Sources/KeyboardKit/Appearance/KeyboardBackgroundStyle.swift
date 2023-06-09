@@ -11,6 +11,10 @@ import SwiftUI
 /**
  This style defines the background of a keyboard.
 
+ Although the style only has a ``backgroundType``, these two
+ types should be separated, since the style will be extended
+ with more properties in the future, while the type will not.
+
  You can modify the ``standard`` style to change the default,
  global background style.
  */

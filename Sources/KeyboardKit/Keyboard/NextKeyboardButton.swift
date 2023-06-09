@@ -25,14 +25,20 @@ public struct NextKeyboardButton<Content: View>: View {
 
     public init(
         controller: UIInputViewController? = NextKeyboardController.shared,
+        throwAssertionForMissingController: Bool = false,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        self.overlay = NextKeyboardButtonOverlay(controller: controller)
+        self.overlay = NextKeyboardButtonOverlay(
+            controller: controller,
+            throwAssertionForMissingController: throwAssertionForMissingController
+        )
         self.content = content
+        self.throwAssertionForMissingController = throwAssertionForMissingController
     }
 
     private let content: () -> Content
     private let overlay: NextKeyboardButtonOverlay
+    private let throwAssertionForMissingController: Bool
 
     public var body: some View {
         content().overlay(overlay)
@@ -40,7 +46,7 @@ public struct NextKeyboardButton<Content: View>: View {
 }
 
 struct NextKeyboardButton_Previews: PreviewProvider {
-    
+
     static var previews: some View {
         NextKeyboardButton {
             Image.keyboardGlobe.font(.title)
@@ -55,14 +61,17 @@ struct NextKeyboardButton_Previews: PreviewProvider {
  */
 private struct NextKeyboardButtonOverlay: UIViewRepresentable {
 
-    init(controller: UIInputViewController?) {
+    init(
+        controller: UIInputViewController?,
+        throwAssertionForMissingController: Bool
+    ) {
         button = UIButton()
-        if controller == nil && !ProcessInfo.isSwiftUIPreview { assertionFailure("Input view controller is nil") }
+        if controller == nil && throwAssertionForMissingController && !ProcessInfo.isSwiftUIPreview { assertionFailure("Input view controller is nil") }
         controller?.setupNextKeyboardButton(button)
     }
-    
+
     let button: UIButton
-    
+
     func makeUIView(context: Context) -> UIButton { button }
 
     func updateUIView(_ uiView: UIButton, context: Context) {}
