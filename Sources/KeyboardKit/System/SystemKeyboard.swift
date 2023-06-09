@@ -52,6 +52,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
        - keyboardContext: The keyboard context to use.
        - calloutContext: The callout context to use.
        - width: The keyboard width.
+       - renderBackground: Whether or not to render the background, by default `true`.
      */
     public init(
         layout: KeyboardLayout,
@@ -62,7 +63,8 @@ public struct SystemKeyboard<ButtonView: View>: View {
         autocompleteToolbarAction: @escaping AutocompleteToolbarAction,
         keyboardContext: KeyboardContext,
         calloutContext: KeyboardCalloutContext?,
-        width: CGFloat
+        width: CGFloat,
+        renderBackground: Bool = true
     ) where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardButtonContent> {
         self.init(
             layout: layout,
@@ -74,6 +76,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
             keyboardContext: keyboardContext,
             calloutContext: calloutContext,
             width: width,
+            renderBackground: renderBackground,
             buttonView: { item, keyboardWidth, inputWidth in
                 Self.standardButtonView(
                     item: item,
@@ -103,7 +106,9 @@ public struct SystemKeyboard<ButtonView: View>: View {
        - autocompleteToolbarAction: The action to trigger when tapping an autocomplete suggestion.
        - keyboardContext: The keyboard context to use.
        - calloutContext: The callout context to use.
+       - renderBackground: Whether or not to render the background, by default `true`.
        - width: The keyboard width.
+       - renderBackground: Whether or not to render the background, by default `true`.
        - buttonView: The keyboard button view builder.
      */
     public init(
@@ -116,6 +121,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
         keyboardContext: KeyboardContext,
         calloutContext: KeyboardCalloutContext?,
         width: CGFloat,
+        renderBackground: Bool = true,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder
     ) {
         self.layout = layout
@@ -127,6 +133,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
         self.keyboardWidth = width
         self.inputWidth = layout.inputWidth(for: width)
         self.buttonView = buttonView
+        self.renderBackground = renderBackground
         _autocompleteContext = ObservedObject(wrappedValue: autocompleteContext)
         _keyboardContext = ObservedObject(wrappedValue: keyboardContext)
         _calloutContext = ObservedObject(wrappedValue: calloutContext ?? .disabled)
@@ -150,8 +157,9 @@ public struct SystemKeyboard<ButtonView: View>: View {
        - autocompleteToolbarAction: The action to trigger when tapping an autocomplete suggestion.
        - keyboardContext: The keyboard context to use.
        - calloutContext: The callout context to use.
+       - renderBackground: Whether or not to render the background, by default `true`.
        - width: The keyboard width.
-       - autocompleteToolbarMode: The display mode of the autocomplete toolbar, by default ``AutocompleteToolbarMode/automatic``.
+       - renderBackground: Whether or not to render the background, by default `true`.
        - buttonContent: The keyboard button content builder.
      */
     public init<ButtonContentView: View>(
@@ -164,6 +172,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
         keyboardContext: KeyboardContext,
         calloutContext: KeyboardCalloutContext?,
         width: CGFloat,
+        renderBackground: Bool = true,
         @ViewBuilder buttonContent: @escaping (KeyboardLayoutItem) -> ButtonContentView
     ) where ButtonView == SystemKeyboardButtonRowItem<ButtonContentView> {
         self.init(
@@ -176,6 +185,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
             keyboardContext: keyboardContext,
             calloutContext: calloutContext,
             width: width,
+            renderBackground: renderBackground,
             buttonView: { item, keyboardWidth, inputWidth in
                 SystemKeyboardButtonRowItem(
                     content: buttonContent(item),
@@ -199,15 +209,17 @@ public struct SystemKeyboard<ButtonView: View>: View {
 
      - Parameters:
        - controller: The controller to use to resolve required properties.
-       - autocompleteToolbarMode: The display mode of the autocomplete toolbar, by default ``AutocompleteToolbarMode/automatic``.
+       - autocompleteToolbar: The autocomplete toolbar mode, by default ``AutocompleteToolbarMode/automatic``.
        - autocompleteToolbarAction: The action to trigger when tapping an autocomplete suggestion, by default ``KeyboardInputViewController/insertAutocompleteSuggestion(_:)``.
        - width: The keyboard width, by default the width of the controller's view.
+       - renderBackground: Whether or not to render the background, by default `true`.
      */
     public init(
         controller: KeyboardInputViewController,
-        autocompleteToolbarAction: AutocompleteToolbarAction? = nil,
         autocompleteToolbar: AutocompleteToolbarMode = .automatic,
-        width: CGFloat? = nil
+        autocompleteToolbarAction: AutocompleteToolbarAction? = nil,
+        width: CGFloat? = nil,
+        renderBackground: Bool = true
     ) where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardButtonContent> {
         self.init(
             layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
@@ -220,7 +232,8 @@ public struct SystemKeyboard<ButtonView: View>: View {
             },
             keyboardContext: controller.keyboardContext,
             calloutContext: controller.calloutContext,
-            width: width ?? controller.view.frame.width
+            width: width ?? controller.view.frame.width,
+            renderBackground: renderBackground
         )
     }
 
@@ -232,9 +245,10 @@ public struct SystemKeyboard<ButtonView: View>: View {
 
      - Parameters:
        - controller: The controller to use to resolve required properties.
-       - autocompleteToolbar: The display mode of the autocomplete toolbar, by default ``AutocompleteToolbarMode/automatic``.
+       - autocompleteToolbar: The autocomplete toolbar mode, by default ``AutocompleteToolbarMode/automatic``.
        - autocompleteToolbarAction: The action to trigger when tapping an autocomplete suggestion, by default ``KeyboardInputViewController/insertAutocompleteSuggestion(_:)``.
        - width: The keyboard width, by default the width of the controller's view.
+       - renderBackground: Whether or not to render the background, by default `true`.
        - buttonView: The keyboard button view builder.
      */
     public init(
@@ -242,6 +256,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
         autocompleteToolbarMode: AutocompleteToolbarMode = .automatic,
         autocompleteToolbarAction: AutocompleteToolbarAction? = nil,
         width: CGFloat? = nil,
+        renderBackground: Bool = true,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder
     ) {
         self.init(
@@ -256,6 +271,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
             keyboardContext: controller.keyboardContext,
             calloutContext: controller.calloutContext,
             width: width ?? controller.view.frame.width,
+            renderBackground: renderBackground,
             buttonView: buttonView
         )
     }
@@ -269,9 +285,10 @@ public struct SystemKeyboard<ButtonView: View>: View {
 
      - Parameters:
        - controller: The controller to use to resolve required properties.
-       - autocompleteToolbar: The display mode of the autocomplete toolbar, by default ``AutocompleteToolbarMode/automatic``.
+       - autocompleteToolbar: The autocomplete toolbar mode, by default ``AutocompleteToolbarMode/automatic``.
        - autocompleteToolbarAction: The action to trigger when tapping an autocomplete suggestion, by default ``KeyboardInputViewController/insertAutocompleteSuggestion(_:)``.
        - width: The keyboard width, by default the width of the controller's view.
+       - renderBackground: Whether or not to render the background, by default `true`.
        - buttonContent: The keyboard button content builder.
      */
     public init<ButtonContentView: View>(
@@ -279,6 +296,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
         autocompleteToolbarMode: AutocompleteToolbarMode = .automatic,
         autocompleteToolbarAction: AutocompleteToolbarAction? = nil,
         width: CGFloat? = nil,
+        renderBackground: Bool = true,
         @ViewBuilder buttonContent: @escaping (KeyboardLayoutItem) -> ButtonContentView
     ) where ButtonView == SystemKeyboardButtonRowItem<ButtonContentView> {
         self.init(
@@ -293,6 +311,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
             keyboardContext: controller.keyboardContext,
             calloutContext: controller.calloutContext,
             width: width ?? controller.view.frame.width,
+            renderBackground: renderBackground,
             buttonContent: buttonContent
         )
     }
@@ -304,6 +323,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
     private let buttonView: ButtonViewBuilder
     private let keyboardWidth: CGFloat
     private let inputWidth: CGFloat
+    private let renderBackground: Bool
     private let layout: KeyboardLayout
     private let layoutConfig: KeyboardLayoutConfiguration
 
@@ -356,7 +376,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
             keyboardView
         }
         .foregroundColor(appearance.foregroundColor)
-        .background(appearance.backgroundStyle.backgroundView)
+        .background(renderBackground ? appearance.backgroundStyle.backgroundView : nil)
     }
 }
 

@@ -11,6 +11,15 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 
 
 
+## 7.8
+
+### ✨ New Features
+
+* `SystemKeyboard` has a new `renderBackground` property.
+
+
+
+
 ## 7.7.1
 
 ### 💡 Adjustments
