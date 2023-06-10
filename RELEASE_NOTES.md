@@ -15,6 +15,7 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 
 ### ✨ New Features
 
+* `KeyboardBackgroundStyle` has many new properties.
 * `NextKeyboardButton` no longer throws assert failures by default.
 * `PreviewAutocompleteProvider` is a new preview service.
 * `SystemKeyboard` has a new `renderBackground` property.
@@ -24,6 +25,11 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 * `KeyboardThemeAppearance` is not open for inheritance.
 * `KeyboardThemeLivePreview` has new initializers.
 * `KeyboardThemeLivePreviewHeader` is a new header preview.
+
+### 🗑️ Deprecations
+
+* `KeyboardBackgroundStyle` has deprecated the type-based initializer and its property.
+* `KeyboardBackgroundType` has been deprecated.
 
 
 

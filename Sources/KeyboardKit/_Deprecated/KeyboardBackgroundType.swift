@@ -9,32 +9,43 @@
 import SwiftUI
 
 /**
- This enum defines supported keyboard background types.
+ [DEPRECATED] This enum defines various keyboard backgrounds.
+
+ The type isn't marked with a real deprecation warning since
+ it's still being used internally.
  */
 public enum KeyboardBackgroundType: Codable, Equatable {
 
-    /// A plain color background.
+    /// DEPRECATED
+    case none
+
+    /// DEPRECATED
     case clear
 
-    /// A plain color background.
+    /// DEPRECATED
     case color(Color)
 
-    /// An image background.
+    /// DEPRECATED
     case image(Data)
 
-    /// A vertical gradient with top-to-bottom colors.
+    /// DEPRECATED
     case verticalGradient([Color])
 }
 
 public extension KeyboardBackgroundType {
 
-    /**
-     The view to use for the background type.
-     */
-    @ViewBuilder
+    @available(*, deprecated, message: "Use a KeyboardBackgroundStyle instead.")
     var view: some View {
+        internalView
+    }
+}
+
+extension KeyboardBackgroundType {
+
+    @ViewBuilder
+    var internalView: some View {
         switch self {
-        case .clear: Color.clear
+        case .clear, .none: Color.clear
         case .color(let color): color
         case .image(let data): image(from: data)
         case .verticalGradient(let colors): LinearGradient(colors: colors, startPoint: .top, endPoint: .bottom)
