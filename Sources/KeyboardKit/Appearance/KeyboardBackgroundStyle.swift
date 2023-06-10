@@ -83,6 +83,27 @@ public extension KeyboardBackgroundStyle {
     static var standard = KeyboardBackgroundStyle()
 
     /**
+     Create a background style with a single color.
+     */
+    static func color(_ color: Color) -> KeyboardBackgroundStyle {
+        .init(backgroundColor: color)
+    }
+
+    /**
+     Create a background style with a single image.
+     */
+    static func image(_ data: Data) -> KeyboardBackgroundStyle {
+        .init(imageData: data)
+    }
+
+    /**
+     Create a background style with a vertical gradient.
+     */
+    static func verticalGradient(_ colors: [Color]) -> KeyboardBackgroundStyle {
+        .init(backgroundGradient: colors)
+    }
+
+    /**
      Create a background view that uses all style properties.
      */
     @ViewBuilder
@@ -95,7 +116,9 @@ public extension KeyboardBackgroundStyle {
                 if let backgroundGradient {
                     LinearGradient(colors: backgroundGradient, startPoint: .top, endPoint: .bottom)
                 }
-                image(from: imageData)
+                image(from: imageData)?
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
                 if let overlayGradient {
                     LinearGradient(colors: overlayGradient, startPoint: .top, endPoint: .bottom)
                 }
