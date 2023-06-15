@@ -14,19 +14,19 @@ import Foundation
  */
 public enum KeyboardGesture: String, CaseIterable, Codable, Equatable, Identifiable {
 
-    /// Occurs when a button is double tapped.
+    /// Triggers when a button is double tapped.
     case doubleTap
     
-    /// Occurs when a button is pressed down.
+    /// Triggers when a button is pressed down.
     case press
 
-    /// Occurs when a button is released.
+    /// Triggers when a button is released.
     case release
     
-    /// Occurs when a button is long pressed.
+    /// Triggers when a button is long pressed.
     case longPress
-    
-    /// Occurs repeatedly when a button is pressed and held.
+
+    /// Triggers repeatedly when a button is pressed & held.
     case repeatPress
 }
 

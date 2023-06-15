@@ -18,6 +18,10 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 * `StandardKeyboardAppearance` `backgroundStyle` is now `open`.
 * `StandardKeyboardAppearance` `foregroundColor` is now `open`.
 
+### 🐛 Bug fixes
+
+* `StandardKeyboardActionHandler` once again activates the space drag gesture on long press instead of on press. 
+
 
 
 ## 7.7
