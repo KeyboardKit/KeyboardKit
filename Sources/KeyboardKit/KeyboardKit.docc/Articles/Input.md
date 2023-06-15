@@ -41,12 +41,9 @@ For instance, here is a custom provider that inherits ``EnglishInputSetProvider`
 
 ```swift
 class MyInputSetProvider: EnglishInputSetProvider {
-    
-    override var numericInputSet: NumericInputSet {
-        
-        public init() {
-            super.init(numericCurrency: "₽", symbolicCurrency: "$")
-        }
+
+    public init() {
+        super.init(numericCurrency: "₽", symbolicCurrency: "$")
     }
 }
 ```

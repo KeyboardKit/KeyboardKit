@@ -29,7 +29,7 @@ open class EnglishKeyboardLayoutProvider: SystemKeyboardLayoutProvider, Keyboard
     /**
      The locale identifier.
      */
-    public let localeKey: String = KeyboardLocale.english.id
+    public var localeKey = KeyboardLocale.english.id
 
     /**
      The layout provider to use for iPad devices.

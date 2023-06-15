@@ -18,7 +18,7 @@ import Foundation
  KeyboardKit Pro adds a provider for each ``KeyboardLocale``
  Check out the Pro demo app to see them in action.
  */
-public class EnglishInputSetProvider: InputSetProvider, LocalizedService {
+open class EnglishInputSetProvider: InputSetProvider, LocalizedService {
     
     /**
      Create an English input set provider.
@@ -44,22 +44,22 @@ public class EnglishInputSetProvider: InputSetProvider, LocalizedService {
     /**
      The locale identifier.
      */
-    public let localeKey: String = KeyboardLocale.english.id
+    public var localeKey = KeyboardLocale.english.id
     
     /**
      The input set to use for alphabetic keyboards.
      */
-    public let alphabeticInputSet: AlphabeticInputSet
+    public var alphabeticInputSet: AlphabeticInputSet
     
     /**
      The input set to use for numeric keyboards.
      */
-    public let numericInputSet: NumericInputSet
+    public var numericInputSet: NumericInputSet
     
     /**
      The input set to use for symbolic keyboards.
      */
-    public let symbolicInputSet: SymbolicInputSet
+    public var symbolicInputSet: SymbolicInputSet
 }
 
 public extension AlphabeticInputSet {

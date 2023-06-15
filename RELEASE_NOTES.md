@@ -15,6 +15,10 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 
 ### 💡 Adjustments
 
+* `EnglishCalloutActionProvider` `localeKey` is now mutable.
+* `EnglishInputSetProvider` is now open to inheritance.
+* `EnglishInputSetProvider` `localeKey` is now mutable.
+* `EnglishKeyboardLayoutProvider` `localeKey` is now mutable.
 * `StandardKeyboardAppearance` `backgroundStyle` is now `open`.
 * `StandardKeyboardAppearance` `foregroundColor` is now `open`.
 

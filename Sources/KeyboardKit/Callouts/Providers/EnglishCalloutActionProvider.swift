@@ -22,7 +22,7 @@ open class EnglishCalloutActionProvider: BaseCalloutActionProvider, LocalizedSer
     /**
      The locale key that the provider is bound to.
      */
-    public let localeKey = KeyboardLocale.english.id
+    public var localeKey = KeyboardLocale.english.id
     
     /**
      Get callout actions as a string for the provided `char`.
