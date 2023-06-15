@@ -49,31 +49,23 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     }
 
 
-    /**
-     The keyboard context to use.
-     */
+    /// The keyboard context to use.
     public let keyboardContext: KeyboardContext
 
 
     // MARK: - Keyboard
 
-    /**
-     The keyboard background style to apply to the keyboard.
-     */
-    public var backgroundStyle: KeyboardBackgroundStyle {
+    /// The background style to apply to the entire keyboard.
+    open var backgroundStyle: KeyboardBackgroundStyle {
         .standard
     }
 
-    /**
-     The foreground color to apply to the keyboard, if any.
-     */
-    public var foregroundColor: Color? {
+    /// The foreground color to apply to the entire keyboard.
+    open var foregroundColor: Color? {
         nil
     }
 
-    /**
-     The edge insets to apply to the entire keyboard.
-     */
+    /// The edge insets to apply to the entire keyboard.
     open var keyboardEdgeInsets: EdgeInsets {
         switch keyboardContext.deviceType {
         case .pad: return EdgeInsets(top: 0, leading: 0, bottom: 4, trailing: 0)
@@ -87,9 +79,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         }
     }
 
-    /**
-     The keyboard layout configuration to use.
-     */
+    /// The keyboard layout configuration to use.
     open var keyboardLayoutConfiguration: KeyboardLayoutConfiguration {
         .standard(for: keyboardContext)
     }
@@ -97,16 +87,12 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
 
     // MARK: - Buttons
 
-    /**
-     The button image to use for a certain `action`, if any.
-     */
+    /// The button image to use for a certain action, if any.
     open func buttonImage(for action: KeyboardAction) -> Image? {
         action.standardButtonImage(for: keyboardContext)
     }
 
-    /**
-     The scale factor to apply to the button content, if any.
-     */
+    /// The content scale factor to use for a certain action.
     open func buttonImageScaleFactor(for action: KeyboardAction) -> CGFloat {
         switch keyboardContext.deviceType {
         case .pad: return 1.2
@@ -114,10 +100,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         }
     }
 
-    /**
-     The button style to use for a certain `action`, given a
-     certain `isPressed` state.
-     */
+    /// The button style to use for a certain action.
     open func buttonStyle(for action: KeyboardAction, isPressed: Bool) -> KeyboardButtonStyle {
         KeyboardButtonStyle(
             backgroundColor: buttonBackgroundColor(for: action, isPressed: isPressed),
@@ -128,9 +111,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
             shadow: buttonShadowStyle(for: action))
     }
 
-    /**
-     The button text to use for a certain `action`, if any.
-     */
+    /// The button text to use for a certain action, if any.
     open func buttonText(for action: KeyboardAction) -> String? {
         action.standardButtonText(for: keyboardContext)
     }
@@ -148,18 +129,14 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         return style
     }
 
-    /**
-     The style to apply when presenting an ``ActionCallout``.
-     */
+    /// The style to apply to ``ActionCallout`` views.
     open var actionCalloutStyle: KeyboardActionCalloutStyle {
         var style = KeyboardActionCalloutStyle.standard
         style.callout = calloutStyle
         return style
     }
 
-    /**
-     The style to apply when presenting an ``InputCallout``.
-     */
+    /// The style to apply to ``InputCallout`` views.
     open var inputCalloutStyle: KeyboardInputCalloutStyle {
         var style = KeyboardInputCalloutStyle.standard
         style.callout = calloutStyle
@@ -169,6 +146,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
 
     // MARK: - Autocomplete
 
+    /// The style to apply to ``AutocompleteToolbar`` views.
     public var autocompleteToolbarStyle: AutocompleteToolbarStyle {
         return .standard
     }
@@ -176,18 +154,14 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
 
     // MARK: - Overridable Button Style Components
 
-    /**
-     The button background color to use for a certain action.
-     */
+    /// The background color to use for a certain action.
     open func buttonBackgroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
         let fullOpacity = keyboardContext.hasDarkColorScheme || isPressed
         return action.buttonBackgroundColor(for: keyboardContext, isPressed: isPressed)
             .opacity(fullOpacity ? 1 : 0.95)
     }
 
-    /**
-     The button border style to use for a certain action.
-     */
+    /// The border style to use for a certain action.
     open func buttonBorderStyle(for action: KeyboardAction) -> KeyboardButtonBorderStyle {
         switch action {
         case .emoji, .emojiCategory, .none: return .noBorder
@@ -195,16 +169,12 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         }
     }
 
-    /**
-     The button corner radius to use for a certain action.
-     */
+    /// The corner radius to use for a certain action.
     open func buttonCornerRadius(for action: KeyboardAction) -> CGFloat {
         keyboardLayoutConfiguration.buttonCornerRadius
     }
 
-    /**
-     The button font to use for a certain action.
-     */
+    /// The font to use for a certain action.
     open func buttonFont(for action: KeyboardAction) -> KeyboardFont {
         let size = buttonFontSize(for: action)
         let font = KeyboardFont.system(size: size)
@@ -212,9 +182,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         return font.weight(weight)
     }
 
-    /**
-     The button font size to use for a certain action.
-     */
+    /// The font size to use for a certain action.
     open func buttonFontSize(for action: KeyboardAction) -> CGFloat {
         if let override = buttonFontSizePadOverride(for: action) { return override }
         if buttonImage(for: action) != nil { return 20 }
@@ -225,9 +193,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         return 23
     }
 
-    /**
-     The button font size to force override for some actions.
-     */
+    /// The font size to override for a certain action.
     func buttonFontSizeActionOverride(for action: KeyboardAction) -> CGFloat? {
         switch action {
         case .keyboardType(let type): return buttonFontSize(for: type)
@@ -236,9 +202,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         }
     }
 
-    /**
-     The button font size to force override for iPad devices.
-     */
+    /// The font size to override for a certain iPad action.
     func buttonFontSizePadOverride(for action: KeyboardAction) -> CGFloat? {
         guard keyboardContext.deviceType == .pad else { return nil }
         let isLandscape = keyboardContext.interfaceOrientation.isLandscape
@@ -249,9 +213,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         return nil
     }
 
-    /**
-     The button font size to use for a certain keyboard type.
-     */
+    /// The font size to use for a certain keyboard type.
     open func buttonFontSize(for keyboardType: KeyboardType) -> CGFloat {
         switch keyboardType {
         case .alphabetic: return 15
@@ -261,12 +223,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         }
     }
 
-    /**
-     The button font weight to use for a certain action.
-
-     You can override this function to customize this single
-     button style property.
-     */
+    /// The font weight to use for a certain action.
     open func buttonFontWeight(for action: KeyboardAction) -> KeyboardFontWeight? {
         if isGregorianAlpha { return .regular }
         switch action {
@@ -276,22 +233,12 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
         }
     }
 
-    /**
-     The button foreground color to use for a certain action.
-
-     You can override this function to customize this single
-     button style property.
-     */
+    /// The foreground color to use for a certain action.
     open func buttonForegroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
         action.buttonForegroundColor(for: keyboardContext, isPressed: isPressed)
     }
 
-    /**
-     The button shadow style to use for a certain action.
-
-     You can override this function to customize this single
-     button style property.
-     */
+    /// The shadow style to use for a certain action.
     open func buttonShadowStyle(for action: KeyboardAction) -> KeyboardButtonShadowStyle {
         switch action {
         case .characterMargin: return .noShadow

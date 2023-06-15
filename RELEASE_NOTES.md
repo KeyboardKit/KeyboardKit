@@ -11,6 +11,15 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 
 
 
+## 7.7.1
+
+### 💡 Adjustments
+
+* `StandardKeyboardAppearance` `backgroundStyle` is now `open`.
+* `StandardKeyboardAppearance` `foregroundColor` is now `open`.
+
+
+
 ## 7.7
 
 This version aims to reduce the amount of lost keystrokes by adding a release outside tolerance, to let a button trigger a release event even if the release is a bit outside of the button bounds. The lack of such a tolerance may have caused lost keystrokes before, since it's easy to slide with your finger while typing and ending up with your finger outside the button bounds.
