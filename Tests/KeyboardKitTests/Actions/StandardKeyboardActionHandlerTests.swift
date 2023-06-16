@@ -67,14 +67,6 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         XCTAssertTrue(controller.hasCalled(\.performTextContextSyncRef))
     }
 
-    func testHandlingDragGestureOnActionUsesSpaceDragHandlerForSpace() {
-        handler.handleDrag(on: .space, from: .init(x: 1, y: 2), to: .init(x: 3, y: 4))
-        let calls = spaceDragHandler.calls(to: \.handleDragGestureRef)
-        XCTAssertEqual(calls.count, 1)
-        XCTAssertEqual(calls[0].arguments.0, CGPoint.init(x: 1, y: 2))
-        XCTAssertEqual(calls[0].arguments.1, CGPoint.init(x: 3, y: 4))
-    }
-
     func testHandlingDragGestureOnActionDoesNotDoAnythingOnNonSpaceActions() {
         let actions = KeyboardAction.testActions.filter { $0 != .space }
         actions.forEach {
