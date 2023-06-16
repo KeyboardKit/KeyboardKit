@@ -76,7 +76,8 @@ extension AutocompleteToolbarStyle {
     static var preview1 = AutocompleteToolbarStyle(
         item: .preview1,
         separator: .preview1,
-        autocompleteBackground: .preview1)
+        autocompleteBackground: .preview1
+    )
     
     /**
      This internal style is only used in previews.
@@ -84,5 +85,6 @@ extension AutocompleteToolbarStyle {
     static var preview2 = AutocompleteToolbarStyle(
         item: .preview2,
         separator: .preview2,
-        autocompleteBackground: .preview2)
+        autocompleteBackground: .preview2
+    )
 }

@@ -21,6 +21,7 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 * `NextKeyboardButton` no longer throws assert failures by default.
 * `PreviewAutocompleteProvider` is a new preview service.
 * `SystemKeyboard` has a new `renderBackground` property.
+* `ToggleToolbar` is a new toolbar that can be used to toggle between two toolbars.
 
 ### 👑 Pro changes
 
@@ -30,11 +31,13 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 * `KeyboardThemeFormModel` is a new observable type.
 * `KeyboardThemeLivePreview` has new initializers.
 * `KeyboardThemeLivePreviewHeader` is a new header preview.
+* `ToggleToolbar` is now part of the main library, and is no longer throwing.
 
 ### 🗑️ Deprecations
 
 * `KeyboardBackgroundStyle` has deprecated the type-based initializer and its property.
 * `KeyboardBackgroundType` has been deprecated.
+* `ToggleToolbar` throwing initializers have been deprecated.
 
 
 

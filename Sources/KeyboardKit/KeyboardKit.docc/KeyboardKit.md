@@ -350,3 +350,7 @@ KeyboardKit is available under the MIT license.
 - ``QuotationAnalyzer``
 - ``SentenceAnalyzer``
 - ``WordAnalyzer``
+
+### Toolbar
+
+- ``ToggleToolbar``
