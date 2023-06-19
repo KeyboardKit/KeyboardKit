@@ -21,39 +21,29 @@ KeyboardKit can be installed with the Swift Package Manager:
 https://github.com/KeyboardKit/KeyboardKit.git
 ```
 
-or with CocoaPods:
-
-```
-pod KeyboardKit
-```
-
 You can add the library to the main app, the keyboard extension and any other targets that need it. 
 
 
 
 ## How to setup KeyboardKit
 
-In your keyboard extension, just `import KeyboardKit` then make `KeyboardViewController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`. This gives your controller access to a lot of additional functionality, such as new lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboard()``, observable properties like ``KeyboardInputViewController/keyboardContext``, keyboard services like ``KeyboardInputViewController/keyboardActionHandler`` and much more.
+After installing KeyboardKit, just `import KeyboardKit` and make your `KeyboardViewController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`. 
 
-The default ``KeyboardInputViewController`` behavior is to setup a ``SystemKeyboard`` with the standard configuration, which means that this is all you need to create a keyboard extension with a standard, English keyboard:
+This gives your controller access to additional functionality, such as new lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboard()``, observable properties like ``KeyboardInputViewController/keyboardContext``, keyboard services like ``KeyboardInputViewController/keyboardActionHandler`` and much more.
+
+The default ``KeyboardInputViewController`` behavior is to setup an English ``SystemKeyboard`` keyboard. This is all the code that is required to achieve that:
 
 ```swift
+import KeyboardKit
+
 class KeyboardViewController: KeyboardInputViewController {}
 ```
 
-The controller will call ``KeyboardInputViewController/viewWillSetupKeyboard()`` whenever the keyboard should be created or updated. You can override this function to use any custom view in your keyboard extension:
+The controller will then call ``KeyboardInputViewController/viewWillSetupKeyboard()`` when the keyboard view should be created or updated. You can override this function and call ``KeyboardInputViewController/setup(with:)`` to customize the default view or set up a completely custom one.
 
-```swift
-class KeyboardViewController: KeyboardInputViewController {
+Since KeyboardKit uses plain SwiftUI, you can use any custom SwiftUI view hierarchy as your keyboard view. 
 
-    func viewWillSetupKeyboard() {
-        super.viewWillSetupKeyboard()
-        setup(with: MyKeyboardView())
-    }
-}
-```
-
-You can also use this approach to customize the ``SystemKeyboard``, for instance to hide the autocomplete toolbar:
+For instance, here we replace the standard autocomplete toolbar with a custom toolbar:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -61,16 +51,48 @@ class KeyboardViewController: KeyboardInputViewController {
     func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
         setup { controller in
-            SystemKeyboard(
-                controller: controller,
-                autocompleteToolbar: .none
+            VStack(spacing: 0) {
+                MyCustomToolbar()
+                SystemKeyboard(
+                    controller: controller,
+                    autocompleteToolbar: .none
+                )
+            }
+        }
+    }
+}
+```
+
+and here we use a completely custom view that requires the app-specific controller type:
+
+```swift
+class KeyboardViewController: KeyboardInputViewController {
+
+    func viewWillSetupKeyboard() {
+        super.viewWillSetupKeyboard()
+        setup { [unowned self] in
+MyKeyboardView(
+                controller: self
             )
         }
     }
 }
 ```
 
-Note that we here use another `setup` function that provides you with a weak controller reference to help you avoid memory leaks when you setup a view that depends on the controller. 
+When you use a custom view it's *very important* that it has an `unowned` controller reference:
+
+```swift
+struct MyKeyboardView: View {
+
+    @unowned var controller: KeyboardViewController 
+
+    var body: some View {
+        ... 
+    }
+}
+```
+
+> Important: When you set up a custom view, it's *very* important to use `[unowned self] in`, otherwise the strong `self` reference will cause a memory leak, as well as an `unowned var` within the view! Failing to do so will cause a memory leak. 
 
 
 

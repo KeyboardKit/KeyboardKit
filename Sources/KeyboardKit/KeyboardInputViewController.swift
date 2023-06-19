@@ -15,67 +15,32 @@ import UIKit
  This class extends `UIInputViewController` with KeyboardKit
  specific functionality.
 
- With KeyboardKit, inherit this class instead of the regular
- `UIInputViewController` to extend the controller with a lot
- of additional view lifecycle functions, properties etc.
+ When you use KeyboardKit, simply inherit this class instead
+ of `UIInputViewController` to extend your controller with a
+ set of additional lifecycle functions, properties, services
+ etc. such as ``viewWillSetupKeyboard()``, ``keyboardContext``
+ and ``keyboardActionHandler``.
 
+ Your controller can then override any functions and replace
+ any services to customize the behavior of the keyboard. You
+ can also access any observable state as environment objects,
+ since the controller injects them into the view hierarchy.
 
- ## View Controller Lifecycle
+ For instance, you can access ``keyboardContext`` like this:
 
- This controller has new view controller lifecycle functions
- that you can override. These can be overridden to customize
- the keyboard:
+ ```swift
+ struct MyView: View {
 
- * ``viewWillSetupKeyboard()`` is called when the controller
- needs to setup or recreate the keyboard view.
- * ``performAutocomplete()`` is called when a text change is
- used to trigger an autocomplete operation.
- * ``resetAutocomplete()`` is called when the text selection
- changes, e.g. when moving the cursor. By default, it resets
- the ``autocompleteContext``.
+     @EnvironmentObject
+     private var keyboardContext: KeyboardContext
 
- This controller will setup a ``SystemKeyboard`` as the main
- keyboard view by default, but you can replace the view with
- a custom view by overriding ``viewWillSetupKeyboard()`` and
- call `setup(with:)` with any custom view. Just make sure to
- use the controller-based function when your view must refer
- the controller, since it uses an unowned reference to avoid
- memory leaks that can otherwise easily happen.
+     ...
+ }
+ ```
 
-
- ## Observable properties
-
- This class provides you with many observable properties for
- observing the keyboard's global state, for instance:
-
- * ``autocompleteContext`` provides autocomplete information
- * ``calloutContext`` provides callout state and information
- * ``dictationContext`` provides dictation state and information
- * ``keyboardContext`` provides keyboard-specific information
- * ``keyboardFeedbackSettings`` provides feedback settings
- * ``keyboardTextContext`` provides keyboard text information
-
- These contexts are injected as environment objects into the
- root view and can be accessed anywhere in the hierarchy.
-
-
- ## Services
-
- This class also provides you with services that you can use
- to build more powerful keyboards, for instance:
-
- * ``autocompleteProvider`` is used to get autocomplete suggestions
- * ``calloutActionProvider`` is used to get callout actions
- * ``dictationService`` is used to get callout actions
- * ``inputSetProvider`` is used to get input characters for the keyboard layout
- * ``keyboardActionHandler`` is used to handle keyboard actions
- * ``keyboardAppearance`` is used to determine the keyboard design
- * ``keyboardBehavior`` is used to determine the keyboard behavior
- * ``keyboardFeedbackHandler`` is used to handle autio & haptic feedback
- * ``keyboardLayoutProvider`` is used to get a keyboard layout
-
- You can replace any of these to customize how your keyboard
- extension behaves.
+ You may notice that KeyboardKit's own views use initializer
+ parameters instead of environment objects. It's intentional,
+ to better communicate the dependencies of each view.
  */
 open class KeyboardInputViewController: UIInputViewController, KeyboardController {
 
@@ -166,7 +131,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      the controller-based setup function instead.
      */
     open func setup<Content: View>(
-        with view: @escaping @autoclosure () -> Content
+        with view: @escaping () -> Content
     ) {
         setup(withRootView: KeyboardRootView(view))
     }
@@ -179,9 +144,11 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      leak when injecting the controller into the view.
      */
     open func setup<Content: View>(
-        @ViewBuilder with view: @escaping (_ controller: KeyboardInputViewController) -> Content
+        with view: @escaping (_ controller: KeyboardInputViewController) -> Content
     ) {
-        setup(withRootView: KeyboardRootView { [unowned self] in view(self) })
+        setup(withRootView: KeyboardRootView { [unowned self] in
+            view(self)
+        })
     }
 
     /**

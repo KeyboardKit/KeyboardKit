@@ -18,7 +18,7 @@
 
 ## About KeyboardKit
 
-KeyboardKit helps you build custom keyboard extensions for iOS and iPadOS, using Swift and SwiftUI. It extends the native keyboard APIs and provides you with a lot more functionality than is otherwise available.
+KeyboardKit helps you build custom keyboard extensions for iOS and iPadOS, using Swift and SwiftUI. It extends the native keyboard APIs and provides you with more functionality than is otherwise available.
 
 KeyboardKit lets you create keyboards that mimic the native iOS keyboards in a few lines of code. These keyboards can be customized to great extent to change input keys, keyboard layout, design, behavior etc.
 
@@ -26,7 +26,9 @@ KeyboardKit lets you create keyboards that mimic the native iOS keyboards in a f
     <img src ="Resources/Demo.gif" width="300" />
 </p>
 
-You can also use entirely custom views together with the rich features of KeyboardKit, to create completely custom keyboards. Most of the library can be used on all major Apple platforms.
+KeyboardKit also lets you use completely custom views together with the features that the library provides. Most of the library can be used on all major Apple platforms.
+
+KeyboardKit supports `iOS 14`, `macOS 11`, `tvOS 14` and `watchOS 7`, although some features are unavailable on some platforms.
 
 
 
@@ -38,19 +40,7 @@ KeyboardKit can be installed with the Swift Package Manager:
 https://github.com/KeyboardKit/KeyboardKit.git
 ```
 
-or with CocoaPods:
-
-```
-pod KeyboardKit
-```
-
 You can add the library to the main app, the keyboard extension and any other targets that need it. If you prefer to not have external dependencies, you can also just copy the source code into your app.
-
-
-
-## Supported Platforms
-
-KeyboardKit supports `iOS 14`, `macOS 11`, `tvOS 14` and `watchOS 7`.
 
 
 
@@ -72,15 +62,15 @@ KeyboardKit is localized in 61 keyboard-specific locales ([read more][Localizati
 
 KeyboardKit comes packed features to help you build amazing and powerful keyboards:
  
-* 💥 [Actions][Actions] - KeyboardKit comes with keyboard actions like characters, emojis, actions, custom ones etc.
-* 🎨 [Appearance][Appearance] - KeyboardKit comes with an appearance engine that lets you style your keyboards.
+* 💥 [Actions][Actions] - KeyboardKit has keyboard actions like characters, emojis, actions, custom ones etc. and ways to handle them.
+* 🎨 [Appearance][Appearance] - KeyboardKit has an appearance engine that lets you style your keyboards to great extent.
 * 💡 [Autocomplete][Autocomplete] - KeyboardKit can perform autocomplete and present suggestions as the user types.
 * 🗯 [Callouts][Callouts] - KeyboardKit can show input callouts as the user types, as well as callouts with secondary actions.
 * 🎤 [Dictation][Dictation] - (BETA) KeyboardKit can perform dictation from the keyboard extension.
 * 😊 [Emojis][Emojis] - KeyboardKit defines emojis and emoji categories, as well as emoji keyboards.
 * ⌨️ [External Keyboards][External] - KeyboardKit lets you detect whether or not an external keyboard is connected.
 * 👋 [Feedback][Feedback] - KeyboardKit keyboards can give and haptic feedback feedback as the user types.
-* 👆 [Gestures][Gestures] - KeyboardKit comes with keyboard-specific gestures that you can use in your own keyboards.
+* 👆 [Gestures][Gestures] - KeyboardKit has keyboard-specific gestures that you can use in your own keyboards.
 * 🔤 [Input][Input] - KeyboardKit supports `alphabetic`, `numeric`, `symbolic` and completely custom input sets. 
 * ⌨️ [Keyboard][Keyboard] - KeyboardKit supports different keyboard types, provides observable keyboard state, etc.
 * 🔣 [Layout][Layout] - KeyboardKit supports creating keyboard layouts for various devices, locales etc.
@@ -97,7 +87,11 @@ KeyboardKit comes packed features to help you build amazing and powerful keyboar
 
 The online documentation has a [getting-started guide][Getting-Started] that will help you get started with the library.
 
-To make your custom keyboard extension use KeyboardKit, just install and import KeyboardKit, then  make it inherit `KeyboardInputViewController` instead of `UIInputController`:
+After installing KeyboardKit, just `import KeyboardKit` and make your `KeyboardViewController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`.
+
+This gives your controller access to additional functionality, such as new lifecycle functions, observable properties, keyboard services and much more.
+
+The default ``KeyboardInputViewController`` behavior is to setup an English ``SystemKeyboard`` keyboard. This is all the code that is required to achieve that:
 
 ```swift
 import KeyboardKit
@@ -105,14 +99,60 @@ import KeyboardKit
 class KeyboardController: KeyboardInputViewController {}
 ```
 
-This will by default set up a fully working U.S. English keyboard. You can then override any functions to customize how it sets up the keyboard, inject your own services, for instance:
+The controller will then call `viewWillSetupKeyboard()` when the keyboard view should be created or updated. You can override this function and call `setup(with:)` to customize the default view or set up a completely custom one.
 
-```
-override viewWillSetupKeyboard() {
-    super.viewWillSetupKeyboard()
-    setup(with: MyKeyboardView())
+Since KeyboardKit uses plain SwiftUI, you can use any custom SwiftUI view hierarchy as your keyboard view. 
+
+For instance, here we replace the standard autocomplete toolbar with a custom toolbar:
+
+```swift
+class KeyboardViewController: KeyboardInputViewController {
+
+    func viewWillSetupKeyboard() {
+        super.viewWillSetupKeyboard()
+        setup { controller in
+            VStack(spacing: 0) {
+                MyCustomToolbar()
+                SystemKeyboard(
+                    controller: controller,
+                    autocompleteToolbar: .none
+                )
+            }
+        }
+    }
 }
 ```
+
+and here we use a completely custom view that requires the app-specific controller type:
+
+```swift
+class KeyboardViewController: KeyboardInputViewController {
+
+    func viewWillSetupKeyboard() {
+        super.viewWillSetupKeyboard()
+        setup { [unowned self] in
+            MyCustomKeyboard(
+                controller: self
+            )
+        }
+    }
+}
+```
+
+When you use a custom view it's *very important* that it has an `unowned` controller reference:
+
+```swift
+struct MyCustomKeyboard: View {
+
+    @unowned var controller: KeyboardViewController 
+
+    var body: some View {
+        ... 
+    }
+}
+```
+
+**IMPORTANT** When you set up a custom view, it's *very* important to use `[unowned self] in`, otherwise the strong `self` reference will cause a memory leak, as well as an `unowned var` within the view! Failing to do so will cause a memory leak.
 
 For more information, please see the [online documentation][Documentation] and [getting-started guide][Getting-Started].
 

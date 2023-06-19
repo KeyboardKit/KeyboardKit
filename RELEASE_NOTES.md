@@ -37,8 +37,8 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 
 * `KeyboardBackgroundStyle` has deprecated the type-based initializer and its property.
 * `KeyboardBackgroundType` has been deprecated.
+* `KeyboardInputViewController` pro setup functions have been redesigned.
 * `ToggleToolbar` throwing initializers have been deprecated.
-
 
 
 
