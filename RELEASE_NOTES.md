@@ -39,7 +39,8 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 
 ### 🐛 Bug fixes
 
-* `StandardKeyboardActionHandler` adjusts the offset when space dragging over a combined emoji. 
+* `StandardKeyboardActionHandler` now sets a correct initial space drag offset position.
+* `StandardKeyboardActionHandler` now adjusts the space drag offset to handle combined emojis. 
 
 ### 🗑️ Deprecations
 

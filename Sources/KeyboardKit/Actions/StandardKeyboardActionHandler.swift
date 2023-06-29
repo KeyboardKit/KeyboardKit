@@ -331,16 +331,14 @@ private extension StandardKeyboardActionHandler {
 
     func tryHandleSpaceDrag(on action: KeyboardAction, from startLocation: CGPoint, to currentLocation: CGPoint) {
         guard action == .space else { return }
-        guard isSpaceDragGestureActive else {
-            return spaceDragActivationLocation = spaceDragActivationLocation ?? currentLocation
-        }
-        let activationLocation = spaceDragActivationLocation ?? .zero
         guard keyboardContext.spaceLongPressBehavior == .moveInputCursor else { return }
-        let location = CGPoint(
-            x: currentLocation.x + activationLocation.x,
-            y: currentLocation.y + activationLocation.y
+        guard isSpaceDragGestureActive else { return }
+        let activationLocation = spaceDragActivationLocation ?? currentLocation
+        spaceDragActivationLocation = activationLocation
+        spaceDragGestureHandler.handleDragGesture(
+            from: activationLocation,
+            to: currentLocation
         )
-        spaceDragGestureHandler.handleDragGesture(from: startLocation, to: location)
     }
 
     func tryUpdateSpaceDragState(for gesture: KeyboardGesture, on action: KeyboardAction) {
