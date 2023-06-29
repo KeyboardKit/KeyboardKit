@@ -19,6 +19,8 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 * `KeyboardBackgroundStyle` has many new properties and builder functions.
 * `KeyboardButtonStyle` now has separate border and shadow properties.
 * `KeyboardContext` has a new `hasMultipleLocales` property.
+* `KeyboardLayoutConfiguration` now has mutable standard values.
+* `KeyboardLayoutConfiguration` has new standard row height properties.
 * `NextKeyboardButton` no longer throws assert failures by default.
 * `PreviewAutocompleteProvider` is a new preview service.
 * `SystemKeyboard` has a new `renderBackground` property.

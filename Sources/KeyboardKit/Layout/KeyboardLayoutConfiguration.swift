@@ -10,17 +10,17 @@ import Foundation
 import SwiftUI
 
 /**
- This struct can be used to specify a keyboard configuration
- for e.g. a certain device.
- 
- This struct makes it easy to specify how standard keyboards
- are structured in various devices.
+ This type defines layout configurations for various devices,
+ given the current screen size and orientation.
+
+ The standard, parameterless configuration can be changed to
+ affect the global defaults.
  */
 public struct KeyboardLayoutConfiguration: Equatable {
-    
+
     /**
      Create a new layout configuration.
-     
+
      - Parameters:
        - buttonCornerRadius: The corner radius of a keyboard button in the keyboard.
        - buttonInsets: The edge insets of a keyboard button in the keyboard.
@@ -35,17 +35,17 @@ public struct KeyboardLayoutConfiguration: Equatable {
         self.buttonInsets = buttonInsets
         self.rowHeight = rowHeight
     }
-    
+
     /**
      The corner radius of a keyboard button in the keyboard.
      */
     public var buttonCornerRadius: CGFloat
-    
+
     /**
      The edge insets of a keyboard button in the keyboard.
      */
     public var buttonInsets: EdgeInsets
-    
+
     /**
      The total height incl. insets, of a row in the keyboard.
      */
@@ -53,11 +53,13 @@ public struct KeyboardLayoutConfiguration: Equatable {
 }
 
 public extension KeyboardLayoutConfiguration {
-    
+
     /**
      The standard config for the provided `context`.
      */
-    static func standard(for context: KeyboardContext) -> KeyboardLayoutConfiguration {
+    static func standard(
+        for context: KeyboardContext
+    ) -> KeyboardLayoutConfiguration {
         standard(
             forDevice: context.deviceType,
             screenSize: context.screenSize,
@@ -88,11 +90,11 @@ public extension KeyboardLayoutConfiguration {
     ) -> KeyboardLayoutConfiguration {
         let isPortrait = orientation.isPortrait
         if size.isScreenSize(.iPadProLargeScreenPortrait) {
-            return isPortrait ? .standardPadProLarge : .standardPadLargeProLandscape
+            return isPortrait ? .standardPadProLarge : .standardPadProLargeLandscape
         }
         return isPortrait ? .standardPad : .standardPadLandscape
     }
-    
+
     /**
      The standard phone config for the provided `screen`.
      */
@@ -109,63 +111,121 @@ public extension KeyboardLayoutConfiguration {
 
     /**
      The standard config for an iPad in portait.
+
+     You can change this value to affect the global default.
      */
-    static let standardPad = KeyboardLayoutConfiguration(
+    static var standardPad = KeyboardLayoutConfiguration(
         buttonCornerRadius: 5,
         buttonInsets: .horizontal(6, vertical: 4),
-        rowHeight: 64)
+        rowHeight: standardPadRowHeight)
+
+    /**
+     The standard iPad portait row height.
+     */
+    static let standardPadRowHeight = 64.0
 
     /**
      The standard config for an iPad in landscape.
+
+     You can change this value to affect the global default.
      */
-    static let standardPadLandscape = KeyboardLayoutConfiguration(
+    static var standardPadLandscape = KeyboardLayoutConfiguration(
         buttonCornerRadius: 7,
         buttonInsets: .horizontal(7, vertical: 6),
-        rowHeight: 86)
+        rowHeight: standardPadLandscapeRowHeight)
+
+    /**
+     The standard iPad landscape row height.
+     */
+    static let standardPadLandscapeRowHeight = 86.0
 
     /**
      The standard config for a large iPad Pro in portrait.
+
+     You can change this value to affect the global default.
      */
-    static let standardPadProLarge = KeyboardLayoutConfiguration(
+    static var standardPadProLarge = KeyboardLayoutConfiguration(
         buttonCornerRadius: 6,
         buttonInsets: .horizontal(4, vertical: 4),
-        rowHeight: 69)
-    
+        rowHeight: standardPadProLargeRowHeight)
+
+    /**
+     The standard large iPad Pro portait row height.
+     */
+    static let standardPadProLargeRowHeight = 69.0
+
     /**
      The standard config for a large iPad Pro in landscape.
+
+     You can change this value to affect the global default.
      */
-    static let standardPadLargeProLandscape = KeyboardLayoutConfiguration(
+    static var standardPadProLargeLandscape = KeyboardLayoutConfiguration(
         buttonCornerRadius: 8,
         buttonInsets: .horizontal(7, vertical: 5),
-        rowHeight: 88)
+        rowHeight: standardPadProLargeLandscapeRowHeight)
+
+    /**
+     The standard large iPad Pro landscape row height.
+     */
+    static let standardPadProLargeLandscapeRowHeight = 88.0
 
     /**
      The standard config for an iPhone in portrait.
+
+     You can change this value to affect the global default.
      */
-    static let standardPhone = KeyboardLayoutConfiguration(
+    static var standardPhone = KeyboardLayoutConfiguration(
         buttonCornerRadius: 5,
         buttonInsets: .horizontal(3, vertical: 6),
-        rowHeight: 54)
-    
+        rowHeight: standardPhoneRowHeight)
+
+    /**
+     The standard iPhone portrait row height.
+     */
+    static var standardPhoneRowHeight = 54.0
+
     /**
      The standard config for an iPhone in landscape.
+
+     You can change this value to affect the global default.
      */
-    static let standardPhoneLandscape = KeyboardLayoutConfiguration(
+    static var standardPhoneLandscape = KeyboardLayoutConfiguration(
         buttonCornerRadius: 5,
         buttonInsets: .horizontal(3, vertical: 4),
-        rowHeight: 40)
+        rowHeight: standardPhoneLandscapeRowHeight)
+
+    /**
+     The standard iPhone portrait row height.
+     */
+    static var standardPhoneLandscapeRowHeight = 40.0
 
     /**
      The standard config for an iPhone Pro Max in portrait.
+
+     You can change this value to affect the global default.
      */
-    static let standardPhoneProMax = KeyboardLayoutConfiguration(
+    static var standardPhoneProMax = KeyboardLayoutConfiguration(
         buttonCornerRadius: 5,
         buttonInsets: .horizontal(3, vertical: 5.5),
-        rowHeight: 56)
-    
+        rowHeight: standardPhoneProMaxRowHeight)
+
+    /**
+     The standard iPhone Pro Max portrait row height.
+     */
+    static var standardPhoneProMaxRowHeight = 56.0
+
     /**
      The standard config for an iPhone Pro Max in landscape.
+
+     You can change this value to affect the global default.
      */
-    static let standardPhoneProMaxLandscape = KeyboardLayoutConfiguration
-        .standardPhoneLandscape
+    static var standardPhoneProMaxLandscape = KeyboardLayoutConfiguration(
+        buttonCornerRadius: 5,
+        buttonInsets: .horizontal(3, vertical: 4),
+        rowHeight: standardPhoneProMaxLandscapeRowHeight)
+
+    /**
+     The standard iPhone Pro Max portrait row height.
+     */
+    static var standardPhoneProMaxLandscapeRowHeight = 40.0
 }
