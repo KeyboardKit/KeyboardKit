@@ -31,6 +31,7 @@ open class SpaceCursorDragGestureHandler: DragGestureHandler {
        - verticalThreshold: The vertical tolerance in points, by default `50`.
        - action: The action to perform for the drag offset.
      */
+    @available(*, deprecated, message: "Use the initializer without keyboardContext instead.")
     public init(
         keyboardContext: KeyboardContext,
         feedbackHandler: KeyboardFeedbackHandler,
@@ -38,14 +39,40 @@ open class SpaceCursorDragGestureHandler: DragGestureHandler {
         verticalThreshold: Double = 50,
         action: @escaping (Int) -> Void
     ) {
-        self.keyboardContext = keyboardContext
         self.feedbackHandler = feedbackHandler
         self.sensitivity = sensitivity
         self.verticalThreshold = verticalThreshold
         self.action = action
     }
 
-    public let keyboardContext: KeyboardContext
+    /**
+     Create a handler space cursor drag gesture handler.
+
+     You can provide a `sensitivity` to set how much a space
+     drag gesture will move the input cursor.
+
+     You can provide a `verticalThreshold` to set how much a
+     drag gesture can move up and down before the text input
+     cursor stops moving when the gesture changes.
+
+     - Parameters:
+       - feedbackHandler: The feedback handler to use.
+       - sensitivity: The drag sensitivity, by default ``SpaceDragSensitivity/medium``.
+       - verticalThreshold: The vertical tolerance in points, by default `50`.
+       - action: The action to perform for the drag offset.
+     */
+    public init(
+        feedbackHandler: KeyboardFeedbackHandler,
+        sensitivity: SpaceDragSensitivity = .medium,
+        verticalThreshold: Double = 50,
+        action: @escaping (Int) -> Void
+    ) {
+        self.feedbackHandler = feedbackHandler
+        self.sensitivity = sensitivity
+        self.verticalThreshold = verticalThreshold
+        self.action = action
+    }
+
     public let feedbackHandler: KeyboardFeedbackHandler
     public let sensitivity: SpaceDragSensitivity
     public let verticalThreshold: Double

@@ -38,6 +38,8 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 * `KeyboardBackgroundStyle` has deprecated the type-based initializer and its property.
 * `KeyboardBackgroundType` has been deprecated.
 * `KeyboardInputViewController` pro setup functions have been redesigned.
+* `SpaceCursorDragGestureHandler` no longer requires a context.
+* `StandardKeyboardActionHandler.dragGestureHandler` no longer requires a context.
 * `ToggleToolbar` throwing initializers have been deprecated.
 
 

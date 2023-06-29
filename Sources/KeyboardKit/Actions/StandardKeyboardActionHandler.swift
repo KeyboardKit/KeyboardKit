@@ -47,7 +47,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.keyboardFeedbackHandler = ivc.keyboardFeedbackHandler
         self.spaceDragGestureHandler = spaceDragGestureHandler ?? Self.dragGestureHandler(
             keyboardController: ivc,
-            keyboardContext: ivc.keyboardContext,
             keyboardFeedbackHandler: ivc.keyboardFeedbackHandler,
             spaceDragSensitivity: spaceDragSensitivity
         )
@@ -82,7 +81,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.keyboardFeedbackHandler = keyboardFeedbackHandler
         self.spaceDragGestureHandler = spaceDragGestureHandler ?? Self.dragGestureHandler(
             keyboardController: keyboardController,
-            keyboardContext: keyboardContext,
             keyboardFeedbackHandler: keyboardFeedbackHandler,
             spaceDragSensitivity: spaceDragSensitivity
         )
@@ -90,13 +88,11 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
 
     public static func dragGestureHandler(
         keyboardController: KeyboardController,
-        keyboardContext: KeyboardContext,
         keyboardFeedbackHandler: KeyboardFeedbackHandler,
         spaceDragSensitivity: SpaceDragSensitivity
     ) -> SpaceCursorDragGestureHandler {
         weak var controller = keyboardController
         return .init(
-            keyboardContext: keyboardContext,
             feedbackHandler: keyboardFeedbackHandler,
             sensitivity: spaceDragSensitivity,
             action: { controller?.adjustTextPosition(byCharacterOffset: $0) }
