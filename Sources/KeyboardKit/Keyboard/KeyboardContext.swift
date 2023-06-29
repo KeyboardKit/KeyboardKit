@@ -69,13 +69,13 @@ public class KeyboardContext: ObservableObject {
      */
     @Published
     public var deviceType: DeviceType = .current
-    
+
     /**
      Whether or not the input controller has a dictation key.
      */
     @Published
     public var hasDictationKey: Bool = false
-    
+
     /**
      Whether or not the extension has been given full access.
      */
@@ -120,10 +120,10 @@ public class KeyboardContext: ObservableObject {
      */
     @Published
     public var keyboardType = KeyboardType.alphabetic(.lowercased)
-    
+
     /**
      The locale that is currently being used.
-     
+
      This uses `Locale` instead of ``KeyboardLocale``, since
      keyboards can use locales that are not in that enum.
      */
@@ -143,7 +143,7 @@ public class KeyboardContext: ObservableObject {
      */
     @Published
     public var localePresentationLocale: Locale?
-    
+
     /**
      Whether or not the keyboard should (must) have a switch
      key for selecting the next keyboard.
@@ -177,8 +177,8 @@ public class KeyboardContext: ObservableObject {
      */
     @Published
     public var spaceLongPressBehavior = SpaceLongPressBehavior.moveInputCursor
-    
-    
+
+
     #if os(iOS) || os(tvOS)
     /**
      The main text document proxy.
@@ -191,13 +191,13 @@ public class KeyboardContext: ObservableObject {
      */
     @Published
     public var textDocumentProxy: UITextDocumentProxy = PreviewTextDocumentProxy()
-    
+
     /**
      The text input mode of the input controller.
      */
     @Published
     public var textInputMode: UITextInputMode?
-    
+
     /**
      The input controller's current trait collection.
      */
@@ -211,14 +211,14 @@ public class KeyboardContext: ObservableObject {
 
 #if os(iOS) || os(tvOS)
 public extension KeyboardContext {
-    
+
     /**
      The current trait collection's color scheme.
      */
     var colorScheme: ColorScheme {
         traitCollection.userInterfaceStyle == .dark ? .dark : .light
     }
-    
+
     /**
      The current keyboard appearance, with `.light` fallback.
      */
@@ -276,6 +276,13 @@ public extension KeyboardContext {
 public extension KeyboardContext {
 
     /**
+     Whether or not the context has multiple locales.
+     */
+    var hasMultipleLocales: Bool {
+        locales.count > 1
+    }
+
+    /**
      Whether or not the context has a certain locale.
      */
     func hasKeyboardLocale(_ locale: KeyboardLocale) -> Bool {
@@ -288,7 +295,7 @@ public extension KeyboardContext {
     func hasKeyboardType(_ type: KeyboardType) -> Bool {
         keyboardType == type
     }
-    
+
     /**
      Select the next locale in ``locales``, depending on the
      ``locale``. If ``locale`` is last in ``locales`` or not
