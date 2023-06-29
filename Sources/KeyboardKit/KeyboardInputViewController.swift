@@ -131,6 +131,19 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      the controller-based setup function instead.
      */
     open func setup<Content: View>(
+        with view: @autoclosure @escaping () -> Content
+    ) {
+        setup(withRootView: KeyboardRootView(view))
+    }
+
+    /**
+     Setup KeyboardKit with a SwiftUI view.
+
+     Only use this setup function when the view doesn't need
+     to refer to this controller, otherwise make sure to use
+     the controller-based setup function instead.
+     */
+    open func setup<Content: View>(
         with view: @escaping () -> Content
     ) {
         setup(withRootView: KeyboardRootView(view))
