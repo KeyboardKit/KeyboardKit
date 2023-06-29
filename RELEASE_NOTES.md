@@ -50,6 +50,10 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 * `SpaceCursorDragGestureHandler` no longer requires a context.
 * `ToggleToolbar` throwing initializers have been deprecated.
 
+### 💥 Breaking changes 
+
+* `KeyboardTheme.Author` now uses `String` instead of `URL` for its url.
+
 
 
 ## 7.7.1
