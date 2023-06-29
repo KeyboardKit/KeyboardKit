@@ -37,13 +37,16 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 * `KeyboardThemeLivePreviewHeader` is a new header preview.
 * `ToggleToolbar` is now part of the main library, and is no longer throwing.
 
+### 🐛 Bug fixes
+
+* `StandardKeyboardActionHandler` adjusts the offset when space dragging over a combined emoji. 
+
 ### 🗑️ Deprecations
 
 * `KeyboardBackgroundStyle` has deprecated the type-based initializer and its property.
 * `KeyboardBackgroundType` has been deprecated.
 * `KeyboardInputViewController` pro setup functions have been redesigned.
 * `SpaceCursorDragGestureHandler` no longer requires a context.
-* `StandardKeyboardActionHandler.dragGestureHandler` no longer requires a context.
 * `ToggleToolbar` throwing initializers have been deprecated.
 
 

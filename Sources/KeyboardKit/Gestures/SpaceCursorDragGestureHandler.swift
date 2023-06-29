@@ -101,6 +101,53 @@ open class SpaceCursorDragGestureHandler: DragGestureHandler {
     }
 }
 
+#if os(iOS) || os(tvOS)
+import UIKit
+
+extension UITextDocumentProxy {
+
+    /**
+     This hopefully temporary multiplier offset is used when
+     a drag gesture moves over a combined emoji.
+     */
+    func spaceDragOffset(for rawOffset: Int) -> Int? {
+        let multiplier = spaceDragOffsetMultiplier(for: rawOffset)
+        return rawOffset * (multiplier ?? 1)
+    }
+
+    /**
+     This hopefully temporary multiplier is used when a drag
+     gesture moves over a combined emoji.
+     */
+    func spaceDragOffsetMultiplier(for offset: Int) -> Int? {
+        let char = spaceDragOffsetMultiplierCharacter(for: offset)
+        return char?.spaceDragOffsetMultiplier
+    }
+
+    /**
+     This hopefully temporary character is used when a space
+     drag gesture moves over a combined emoji.
+     */
+    func spaceDragOffsetMultiplierCharacter(for offset: Int) -> String.Element? {
+        if offset == 1 { return documentContextAfterInput?.first }
+        if offset == -1 { return documentContextBeforeInput?.last }
+        return nil
+    }
+}
+#endif
+
+extension String.Element {
+
+    /**
+     This hopefully temporary multiplier is used when a drag
+     gesture moves over a combined emoji.
+     */
+    var spaceDragOffsetMultiplier: Int {
+        guard isEmoji else { return 1 }
+        return Int(floor(Double(utf8.count)/2))
+    }
+}
+
 private extension SpaceCursorDragGestureHandler {
 
     func tryStartNewDragGesture(
