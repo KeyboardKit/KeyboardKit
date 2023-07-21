@@ -20,7 +20,7 @@
 
 KeyboardKit helps you create custom keyboards for iOS and iPadOS, using technologies like Swift and SwiftUI. It extends Apple's native keyboard APIs and provides you with more functionality than what is otherwise available.
 
-KeyboardKit lets you create keyboards that mimic the native iOS keyboards in a few lines of code. These keyboards can be customized to great extent to change input keys, keyboard layout, design, behavior etc.
+KeyboardKit lets you create keyboards that mimic the native iOS keyboards in a few lines of code. These keyboards can be customized to great extent to change input keys, layout, design, behavior etc.
 
 <p align="center">
     <img src ="Resources/Demo.gif" width="300" />
@@ -46,7 +46,7 @@ You can add the library to the main app, the keyboard extension and any other ta
 
 ## Supported Locales
 
-KeyboardKit is localized in 61 keyboard-specific locales ([read more][Localization]):
+KeyboardKit is localized in **60+** keyboard-specific locales ([read more][Localization]):
 
 🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🇭🇷 🇨🇿 🇩🇰 <br />
 🇳🇱 🇧🇪 🇺🇸 🇬🇧 🇺🇸 🇪🇪 🇫🇴 🇵🇭 🇫🇮 🇫🇷 <br />
@@ -87,9 +87,7 @@ KeyboardKit comes packed features to help you build amazing and powerful keyboar
 
 The online documentation has a [getting-started guide][Getting-Started] that will help you get started with the library.
 
-After installing KeyboardKit, just `import KeyboardKit` and make your `KeyboardViewController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`.
-
-This gives your controller access to additional functionality, such as new lifecycle functions, observable properties, keyboard services and much more.
+After installing KeyboardKit, just `import KeyboardKit` and make your `KeyboardViewController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController` to give your controller access to additional functionality, such as new lifecycle functions, observable properties, keyboard services and much more.
 
 The default ``KeyboardInputViewController`` behavior is to setup an English ``SystemKeyboard`` keyboard. This is all the code that is required to achieve that:
 
@@ -99,9 +97,7 @@ import KeyboardKit
 class KeyboardController: KeyboardInputViewController {}
 ```
 
-The controller will then call `viewWillSetupKeyboard()` when the keyboard view should be created or updated. You can override this function and call `setup(with:)` to customize the default view or set up a completely custom one.
-
-Since KeyboardKit uses plain SwiftUI, you can use any custom SwiftUI view hierarchy as your keyboard view. 
+The controller will then call `viewWillSetupKeyboard()` when the keyboard view should be created or updated. You can override this function and call `setup(with:)` to customize the default view or use a custom view.
 
 For instance, here we replace the standard autocomplete toolbar with a custom toolbar:
 
@@ -137,14 +133,11 @@ class KeyboardViewController: KeyboardInputViewController {
         }
     }
 }
-```
 
-When you use a custom view it's *very important* that it has an `unowned` controller reference:
-
-```swift
 struct MyCustomKeyboard: View {
 
-    @unowned var controller: KeyboardViewController 
+    @unowned 
+    var controller: KeyboardViewController 
 
     var body: some View {
         ... 
@@ -152,7 +145,7 @@ struct MyCustomKeyboard: View {
 }
 ```
 
-**IMPORTANT** When you set up a custom view, it's *very* important to use `[unowned self] in`, otherwise the strong `self` reference will cause a memory leak, as well as an `unowned var` within the view! Failing to do so will cause a memory leak.
+**IMPORTANT** When you use a custom view, it's *very important* to use `[unowned self] in` in the view builder and that any `controller` reference in the custom view is `unowned`, otherwise the strong `self` reference will cause a memory leak.
 
 For more information, please see the [online documentation][Documentation] and [getting-started guide][Getting-Started].
 
@@ -172,9 +165,19 @@ The online documentation is currently iOS-specific. To generate documentation fo
 
 
 
+## App Store Application
+
+If you want to try out KeyboardKit without having to write any code, there is a [KeyboardKit app][app-store] in the App Store, that lets you try out KeyboardKit and many of its features.
+
+The App Store app uses [KeyboardKit Pro][Pro] to provide support for 60+ locales, autocomplete, dictation, emoji skintones etc. 
+
+
+
 ## Demo Application
 
-This project has a `Demo` folder with a demo app that lets you try out KeyboardKit and KeyboardKit Pro. The app has an input text field and shows you how to display the state of a keyboard extension, link to system settings etc.
+This project has a demo app that lets you try out KeyboardKit and KeyboardKit Pro. 
+
+The main app shows you how to display the state of a keyboard extension, link to system settings etc. and has a text field to let you try out the keyboard.
 
 The demo app has 5 keyboard extensions:
 
@@ -184,7 +187,7 @@ The demo app has 5 keyboard extensions:
 * `Pro` uses KeyboardKit Pro and has a `SystemKeyboard` with all LRT locales, autocomplete etc.
 * `ProRtl` uses KeyboardKit Pro and has a `SystemKeyboard` with all RTL locales, autocomplete etc.
 
-Just open and run the demo app, then enable the keyboards you want to try under System Settings. Note that you need to enable full access to try some features, like audio and haptic feedback.
+Just open and run the demo app in the `Demo` folder, then enable the keyboards you want to try under System Settings. Note that you need to enable full access to try some features, like audio and haptic feedback.
 
 
 
