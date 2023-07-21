@@ -116,9 +116,9 @@ class KeyboardViewController: KeyboardInputViewController {
      */
     func setupLayout(with license: License) {
         keyboardLayoutProvider = DemoKeyboardLayoutProvider(
-            license: license,
             keyboardContext: keyboardContext,
-            inputSetProvider: inputSetProvider
+            inputSetProvider: inputSetProvider,
+            localizedProviders: license.localizedKeyboardLayoutProviders
         )
     }
 

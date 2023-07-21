@@ -181,11 +181,10 @@ The main app shows you how to display the state of a keyboard extension, link to
 
 The demo app has 5 keyboard extensions:
 
-* `English` uses KeyboardKit and has a `SystemKeyboard` with the standard, English locale.
-* `Unicode` uses KeyboardKit and has a `SystemKeyboard` with unicode-based input keys.
-* `Custom` uses KeyboardKit and has a `SystemKeyboard` with custom keys, layout and appearance.
-* `Pro` uses KeyboardKit Pro and has a `SystemKeyboard` with all LRT locales, autocomplete etc.
-* `ProRtl` uses KeyboardKit Pro and has a `SystemKeyboard` with all RTL locales, autocomplete etc.
+* `English` uses KeyboardKit and a `SystemKeyboard` with a standard, English locale.
+* `Unicode` uses KeyboardKit and a `SystemKeyboard` with unicode-based input keys.
+* `Custom` uses KeyboardKit and a `SystemKeyboard` with custom keys, layout and appearance.
+* `Pro` uses KeyboardKit Pro and a `SystemKeyboard` with all LRT locales, autocomplete etc.
 
 Just open and run the demo app in the `Demo` folder, then enable the keyboards you want to try under System Settings. Note that you need to enable full access to try some features, like audio and haptic feedback.
 
