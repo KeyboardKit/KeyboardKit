@@ -24,7 +24,6 @@ import AppKit
 /**
  This extension extends `Color` with `Codable` functionality.
  */
-@available(iOS 14, macOS 11, tvOS 14, watchOS 7, *)
 extension Color: Codable {
     
     enum CodingKeys: String, CodingKey {
@@ -61,7 +60,6 @@ extension Color: Codable {
     }
 }
 
-@available(iOS 14, macOS 11, tvOS 14, watchOS 7, *)
 private extension Color {
     
     #if os(macOS)
