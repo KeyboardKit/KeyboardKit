@@ -8,12 +8,15 @@
 
 "locale" = "cs";
 
+"continue" = "continue";
 "done" = "Hotovo";
+"emergencyCall" = "Emergency Call";
 "go" = "Otevřít";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "Enter";
+"route" = "route";
 "search" = "Hledat";
 "send" = "send";
 "space" = "Mezerník";

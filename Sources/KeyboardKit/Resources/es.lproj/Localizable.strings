@@ -8,12 +8,15 @@
 
 "locale" = "es";
 
+"continue" = "continue";
 "done" = "aceptar";
+"emergencyCall" = "Emergency Call";
 "go" = "ir";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "intro";
+"route" = "route";
 "search" = "buscar";
 "send" = "send";
 "space" = "espacio";

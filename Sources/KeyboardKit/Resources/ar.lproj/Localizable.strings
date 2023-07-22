@@ -8,12 +8,15 @@
 
 "locale" = "ar";
 
+"continue" = "continue";
 "done" = "تم";
+"emergencyCall" = "Emergency Call";
 "go" = "اذهـب";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "↳";
+"route" = "route";
 "search" = "بحث";
 "join" = "send";
 "space" = "مسافة";

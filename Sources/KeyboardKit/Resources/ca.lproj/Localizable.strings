@@ -8,12 +8,15 @@
 
 "locale" = "ca";
 
+"continue" = "continue";
 "done" = "fet";
+"emergencyCall" = "Emergency Call";
 "go" = "anar";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "retorn";
+"route" = "route";
 "search" = "buscar";
 "send" = "send";
 "space" = "espai";

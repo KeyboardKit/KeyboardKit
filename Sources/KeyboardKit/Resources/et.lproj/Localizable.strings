@@ -8,12 +8,15 @@
 
 "locale" = "et";
 
+"continue" = "continue";
 "done" = "Valmis";
+"emergencyCall" = "Emergency Call";
 "go" = "Mine";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "Sisestus";
+"route" = "route";
 "search" = "Otsi";
 "send" = "send";
 "space" = "Tühik";

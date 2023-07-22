@@ -8,12 +8,15 @@
 
 "locale" = "id";
 
+"continue" = "continue";
 "done" = "Selesai";
+"emergencyCall" = "Emergency Call";
 "go" = "Masuk";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "Kembali";
+"route" = "route";
 "search" = "Cari";
 "send" = "Send";
 "space" = "Spasi";

@@ -8,12 +8,15 @@
 
 "locale" = "be";
 
+"continue" = "continue";
 "done" = "Гатова";
+"emergencyCall" = "Emergency Call";
 "go" = "Перайсці";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "↵";
+"route" = "route";
 "search" = "Пошук";
 "send" = "send";
 "space" = "прабел";

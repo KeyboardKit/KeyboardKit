@@ -8,12 +8,15 @@
 
 "locale" = "sw";
 
+"continue" = "continue";
 "done" = "kumaliza";
+"emergencyCall" = "Emergency Call";
 "go" = "kwenda";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "kurudi";
+"route" = "route";
 "search" = "kupata";
 "send" = "send";
 "space" = "nafasi";

@@ -8,12 +8,15 @@
 
 "locale" = "fi";
 
+"continue" = "continue";
 "done" = "valmis";
+"emergencyCall" = "Emergency Call";
 "go" = "avaa";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "rivinvaihto";
+"route" = "route";
 "search" = "etsi";
 "send" = "send";
 "space" = "väli";

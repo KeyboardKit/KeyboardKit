@@ -8,12 +8,15 @@
 
 "locale" = "hu";
 
+"continue" = "continue";
 "done" = "Kész";
+"emergencyCall" = "Emergency Call";
 "go" = "Ugrás";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "Return";
+"route" = "route";
 "search" = "Keresés";
 "send" = "send";
 "space" = "Szóköz";

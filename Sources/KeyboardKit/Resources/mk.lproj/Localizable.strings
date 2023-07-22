@@ -8,12 +8,15 @@
 
 "locale" = "mk";
 
+"continue" = "continue";
 "done" = "Сторено";
+"emergencyCall" = "Emergency Call";
 "go" = "Оди";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "↵";
+"route" = "route";
 "search" = "Пребарај";
 "send" = "send";
 "space" = "Празно место";

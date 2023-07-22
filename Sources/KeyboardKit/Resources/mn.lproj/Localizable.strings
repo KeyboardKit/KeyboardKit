@@ -8,12 +8,15 @@
 
 "locale" = "mn";
 
+"continue" = "continue";
 "done" = "Дууслаа";
+"emergencyCall" = "Emergency Call";
 "go" = "Очих";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "↵";
+"route" = "route";
 "search" = "Хайлт";
 "send" = "send";
 "space" = "зай";

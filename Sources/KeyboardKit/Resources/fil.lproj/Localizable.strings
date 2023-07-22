@@ -8,12 +8,15 @@
 
 "locale" = "fil";
 
+"continue" = "continue";
 "done" = "tapos na";
+"emergencyCall" = "Emergency Call";
 "go" = "pumunta";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "susunod";
+"route" = "route";
 "search" = "hanapin";
 "send" = "send";
 "space" = "space";

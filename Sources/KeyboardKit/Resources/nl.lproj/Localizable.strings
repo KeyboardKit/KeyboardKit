@@ -8,12 +8,15 @@
 
 "locale" = "nl";
 
+"continue" = "continue";
 "done" = "gereed";
+"emergencyCall" = "Emergency Call";
 "go" = "ga";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "return";
+"route" = "route";
 "search" = "zoek";
 "send" = "send";
 "space" = "spatie";

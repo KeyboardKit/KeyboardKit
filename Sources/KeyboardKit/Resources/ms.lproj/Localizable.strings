@@ -8,12 +8,15 @@
 
 "locale" = "ms";
 
+"continue" = "continue";
 "done" = "Selesai";
+"emergencyCall" = "Emergency Call";
 "go" = "Pergi";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "⮐";
+"route" = "route";
 "search" = "Cari";
 "send" = "send";
 "space" = "Space";

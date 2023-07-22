@@ -8,12 +8,15 @@
 
 "locale" = "ru";
 
+"continue" = "continue";
 "done" = "Готово";
+"emergencyCall" = "Emergency Call";
 "go" = "Перейти";
 "join" = "Подкл.";
 "next" = "Далее";
 "ok" = "ОК";
 "return" = "Ввод";
+"route" = "route";
 "search" = "Найти";
 "send" = "Отправить";
 "space" = "Пробел";

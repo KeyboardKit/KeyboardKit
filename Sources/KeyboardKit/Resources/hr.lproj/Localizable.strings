@@ -8,12 +8,15 @@
 
 "locale" = "hr";
 
+"continue" = "continue";
 "done" = "OK";
+"emergencyCall" = "Emergency Call";
 "go" = "Idi";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "↵";
+"route" = "route";
 "search" = "Traži";
 "send" = "send";
 "space" = "Razmaknica";

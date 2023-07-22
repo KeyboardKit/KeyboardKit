@@ -8,12 +8,15 @@
 
 "locale" = "chr";
 
+"continue" = "continue";
 "done" = "ᎠᏍᏆᏛ";
+"emergencyCall" = "Emergency Call";
 "go" = "ᏪᎾ";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "ᎥᎦᎷᎩ";
+"route" = "route";
 "search" = "ᎠᏯᏍᏗ";
 "send" = "send";
 "space" = "ᎦᎳᏅᏓᏗᏍᎩ";

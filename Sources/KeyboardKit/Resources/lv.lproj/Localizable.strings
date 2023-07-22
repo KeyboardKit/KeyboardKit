@@ -8,12 +8,15 @@
 
 "locale" = "lv";
 
+"continue" = "continue";
 "done" = "Done";
+"emergencyCall" = "Emergency Call";
 "go" = "Aiziet";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "levadīt";
+"route" = "route";
 "search" = "Meklēt";
 "send" = "send";
 "space" = "Atstarpe";

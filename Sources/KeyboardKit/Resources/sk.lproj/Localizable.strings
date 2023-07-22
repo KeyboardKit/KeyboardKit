@@ -8,12 +8,15 @@
 
 "locale" = "sk";
 
+"continue" = "continue";
 "done" = "Hotovo";
+"emergencyCall" = "Emergency Call";
 "go" = "Otvoriť";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "Enter";
+"route" = "route";
 "search" = "Hľadať";
 "send" = "send";
 "space" = "Medzerník";

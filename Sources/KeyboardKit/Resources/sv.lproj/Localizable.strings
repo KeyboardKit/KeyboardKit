@@ -8,12 +8,15 @@
 
 "locale" = "sv";
 
+"continue" = "continue";
 "done" = "klar";
+"emergencyCall" = "Emergency Call";
 "go" = "OK";
 "join" = "anslut";
 "next" = "nästa";
 "ok" = "OK";
 "return" = "retur";
+"route" = "route";
 "search" = "sök";
 "send" = "skicka";
 "space" = "mellanslag";

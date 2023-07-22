@@ -8,12 +8,15 @@
 
 "locale" = "el";
 
+"continue" = "continue";
 "done" = "done";
+"emergencyCall" = "Emergency Call";
 "go" = "Μετάβαση";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "↵";
+"route" = "route";
 "search" = "Εύρεση";
 "send" = "send";
 "space" = "διάστημα";

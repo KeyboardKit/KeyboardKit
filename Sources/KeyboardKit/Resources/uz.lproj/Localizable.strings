@@ -8,12 +8,15 @@
 
 "locale" = "uz";
 
+"continue" = "continue";
 "done" = "Bajarildi";
+"emergencyCall" = "Emergency Call";
 "go" = "Olg‘a";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "⮐";
+"route" = "route";
 "search" = "Qidirmoq";
 "send" = "send";
 "space" = "bo‘shliq";

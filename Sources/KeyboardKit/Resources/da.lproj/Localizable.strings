@@ -8,12 +8,15 @@
 
 "locale" = "da";
 
+"continue" = "continue";
 "done" = "OK";
+"emergencyCall" = "Emergency Call";
 "go" = "Gå";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "Retur";
+"route" = "route";
 "search" = "Søg";
 "send" = "send";
 "space" = "Mellemrum";

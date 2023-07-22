@@ -14,12 +14,15 @@ import SwiftUI
 public enum KKL10n: String, CaseIterable, Identifiable {
 
     case
+    `continue`,
     done,
+    emergencyCall,
     go,
     join,
     next,
     ok,
     `return`,
+    route,
     search,
     send,
     space,

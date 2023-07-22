@@ -8,12 +8,15 @@
 
 "locale" = "fo";
 
+"continue" = "continue";
 "done" = "OK";
+"emergencyCall" = "Emergency Call";
 "go" = "far";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "reglubrot";
+"route" = "route";
 "search" = "leita";
 "send" = "send";
 "space" = "millumrúm";

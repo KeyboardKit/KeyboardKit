@@ -12,22 +12,28 @@ import SwiftUI
  This enum defines various keyboard return button types that
  can be used as ``KeyboardAction/primary(_:)`` actions.
 
- Return buttons should insert a new line, which will then be
- handled differently depending on the keyboard context. Some
- places will insert the new line, while other places use the
- new line to perform a primary action.
-
  This is a multi-platform version of `UIReturnKeyType` which
- has a `keyboardReturnKeyType` extension for mapping.
+ has a `keyboardReturnKeyType` property, that can be used to
+ map it to a ``KeyboardReturnKeyType``.
+ 
+ Note that the native use of some keys are currently unknown.
+ Please fill in any missing information if you happen to see
+ these keys being used by the system.
  */
 public enum KeyboardReturnKeyType: CaseIterable, Codable, Equatable, Identifiable {
 
     /// A return key that uses a return text and not an ⏎ icon.
     case `return`
+    
+    /// An continue key, which native use is currently unknown.
+    case `continue`
 
     /// A done key used in e.g. Calendar, when adding a location.
     case done
-
+    
+    /// An emergency call key, which native use is currently unknown.
+    case emergencyCall
+    
     /// A go key used in e.g. Mobile Safari, when entering a url.
     case go
 
@@ -42,6 +48,9 @@ public enum KeyboardReturnKeyType: CaseIterable, Codable, Equatable, Identifiabl
 
     /// An ok key, which isn't actually used in native.
     case ok
+    
+    /// A route key, which native use is currently unknown.
+    case route
 
     /// A search key used in e.g. Mobile Safari, when typing in the google.com search field.
     case search
@@ -68,13 +77,16 @@ public extension KeyboardReturnKeyType {
      */
     var id: String {
         switch self {
-        case .return: return "return"
         case .done: return "done"
+        case .emergencyCall: return "emergencyCall"
+        case .continue: return "continue"
         case .go: return "go"
         case .join: return "join"
         case .newLine: return "newLine"
         case .next: return "next"
         case .ok: return "ok"
+        case .return: return "return"
+        case .route: return "route"
         case .search: return "search"
         case .send: return "send"
         case .custom(let title): return title
@@ -82,20 +94,19 @@ public extension KeyboardReturnKeyType {
     }
 
     /**
-     Whether or not the action is a system action.
-
-     A system action is by default rendered as a dark button.
+     Whether or not this action is a system action, which by
+     default is rendered as a dark button.
      */
     var isSystemAction: Bool {
         switch self {
-        case .return: return true
         case .newLine: return true
+        case .return: return true
         default: return false
         }
     }
 
     /**
-     The standard button to image for a certain locale.
+     The standard button image for a certain locale, if any.
      */
     func standardButtonImage(for locale: Locale) -> Image? {
         switch self {
@@ -110,12 +121,15 @@ public extension KeyboardReturnKeyType {
     func standardButtonText(for locale: Locale) -> String? {
         switch self {
         case .custom(let title): return title
+        case .continue: return KKL10n.continue.text(for: locale)
         case .done: return KKL10n.done.text(for: locale)
+        case .emergencyCall: return KKL10n.emergencyCall.text(for: locale)
         case .go: return KKL10n.go.text(for: locale)
         case .join: return KKL10n.join.text(for: locale)
         case .newLine: return nil
         case .next: return KKL10n.next.text(for: locale)
         case .return: return KKL10n.return.text(for: locale)
+        case .route: return KKL10n.route.text(for: locale)
         case .ok: return KKL10n.ok.text(for: locale)
         case .search: return KKL10n.search.text(for: locale)
         case .send: return KKL10n.send.text(for: locale)
@@ -144,12 +158,12 @@ public extension UIReturnKeyType {
         case .google: return .custom(title: "Google")
         case .join: return .join
         case .next: return .next
-        case .route: return .custom(title: "route")
+        case .route: return .route
         case .search: return .search
         case .send: return .send
         case .yahoo: return .custom(title: "Yahoo")
-        case .emergencyCall: return .custom(title: "emergencyCall")
-        case .continue: return .custom(title: "continue")
+        case .emergencyCall: return .emergencyCall
+        case .continue: return .continue
         @unknown default: return .custom(title: "unknown")
         }
     }

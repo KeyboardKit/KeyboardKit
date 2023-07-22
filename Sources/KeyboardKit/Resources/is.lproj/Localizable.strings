@@ -8,12 +8,15 @@
 
 "locale" = "is";
 
+"continue" = "continue";
 "done" = "Done";
+"emergencyCall" = "Emergency Call";
 "go" = "Áfram";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "Venda";
+"route" = "route";
 "search" = "Leita";
 "send" = "send";
 "space" = "Bil";

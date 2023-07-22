@@ -8,12 +8,15 @@
 
 "locale" = "sr-Latn";
 
+"continue" = "continue";
 "done" = "urađeno";
+"emergencyCall" = "Emergency Call";
 "go" = "kreni";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "↵";
+"route" = "route";
 "search" = "pretraži";
 "send" = "send";
 "space" = "razmak";

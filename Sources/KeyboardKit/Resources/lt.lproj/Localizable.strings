@@ -8,12 +8,15 @@
 
 "locale" = "lt";
 
+"continue" = "continue";
 "done" = "Done";
+"emergencyCall" = "Emergency Call";
 "go" = "Pirmyn";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "Vykdyti";
+"route" = "route";
 "search" = "Paieška";
 "send" = "send";
 "space" = "Tarpas";

@@ -8,12 +8,15 @@
 
 "locale" = "bg";
 
+"continue" = "continue";
 "done" = "готово";
+"emergencyCall" = "Emergency Call";
 "go" = "напред";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "нов ред";
+"route" = "route";
 "search" = "търси";
 "send" = "send";
 "space" = "интервал";

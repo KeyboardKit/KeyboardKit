@@ -8,12 +8,15 @@
 
 "locale" = "hy";
 
+"continue" = "continue";
 "done" = "հաստատել";
+"emergencyCall" = "Emergency Call";
 "go" = "գնալ";
 "join" = "միանալ";
 "next" = "հաջորդը";
 "ok" = "լավ";
 "return" = "վերադառնալ";
+"route" = "route";
 "search" = "որոնել";
 "send" = "ուղարկել";
 "space" = "բացատ";

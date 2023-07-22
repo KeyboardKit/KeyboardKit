@@ -8,12 +8,15 @@
 
 "locale" = "tr";
 
+"continue" = "continue";
 "done" = "Bitti";
+"emergencyCall" = "Emergency Call";
 "go" = "Git";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "Geç";
+"route" = "route";
 "search" = "Ara";
 "send" = "send";
 "space" = "Boşluk";

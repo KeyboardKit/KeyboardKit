@@ -8,12 +8,15 @@
 
 "locale" = "uk";
 
+"continue" = "continue";
 "done" = "Готово";
+"emergencyCall" = "Emergency Call";
 "go" = "Перейти";
 "join" = "join";
 "next" = "next";
 "ok" = "в порядку";
 "return" = "↵";
+"route" = "route";
 "search" = "Пошук";
 "send" = "send";
 "space" = "Пробiл";

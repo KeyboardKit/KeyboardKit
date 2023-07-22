@@ -8,12 +8,15 @@
 
 "locale" = "sr";
 
+"continue" = "continue";
 "done" = "урађено";
+"emergencyCall" = "Emergency Call";
 "go" = "крени";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "↵";
+"route" = "route";
 "search" = "претражи";
 "send" = "send";
 "space" = "размак";

@@ -8,12 +8,15 @@
 
 "locale" = "nb";
 
+"continue" = "continue";
 "done" = "klar";
+"emergencyCall" = "Emergency Call";
 "go" = "gå";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "retur";
+"route" = "route";
 "search" = "søk";
 "send" = "send";
 "space" = "mellomrom";

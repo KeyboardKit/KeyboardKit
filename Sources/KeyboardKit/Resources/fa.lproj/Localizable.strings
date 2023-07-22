@@ -8,12 +8,15 @@
 
 "locale" = "fa";
 
+"continue" = "continue";
 "done" = "انجام شد";
+"emergencyCall" = "Emergency Call";
 "go" = "برو";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "↳";
+"route" = "route";
 "search" = "جستجو";
 "send" = "send";
 "space" = "فاصله";

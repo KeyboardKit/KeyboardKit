@@ -8,12 +8,15 @@
 
 "locale" = "mt";
 
+"continue" = "continue";
 "done" = "↵";
+"emergencyCall" = "Emergency Call";
 "go" = "mur";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "↵";
+"route" = "route";
 "search" = "tiftix";
 "send" = "send";
 "space" = "spazju";

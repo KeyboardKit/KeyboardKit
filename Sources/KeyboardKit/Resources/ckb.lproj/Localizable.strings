@@ -8,12 +8,15 @@
 
 "locale" = "ckb";
 
+"continue" = "continue";
 "done" = "تەواو";
+"emergencyCall" = "Emergency Call";
 "go" = "بڕؤ";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "↳";
+"route" = "route";
 "search" = "گەڕان";
 "send" = "send";
 "space" = "بۆشایی";

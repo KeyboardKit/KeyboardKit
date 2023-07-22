@@ -8,12 +8,15 @@
 
 "locale" = "haw";
 
+"continue" = "continue";
 "done" = "Pau";
+"emergencyCall" = "Emergency Call";
 "go" = "Hele";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "Kāhoʻi";
+"route" = "route";
 "search" = "Huli iā";
 "send" = "send";
 "space" = "Kaʻahua";

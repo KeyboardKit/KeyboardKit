@@ -11,6 +11,14 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 
 
 
+## 7.9
+
+### ✨ New Features
+
+* `KeyboardReturnKeyType` has new `continue`, `emergencyCall` and `route` types.
+
+
+
 ## 7.8
 
 ### ✨ New Features

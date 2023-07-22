@@ -8,12 +8,15 @@
 
 "locale" = "sl";
 
+"continue" = "continue";
 "done" = "Končano";
+"emergencyCall" = "Emergency Call";
 "go" = "Pojdi";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "↵";
+"route" = "route";
 "search" = "Išči";
 "send" = "send";
 "space" = "Preslednica";

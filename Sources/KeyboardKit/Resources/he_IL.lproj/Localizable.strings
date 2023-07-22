@@ -8,12 +8,15 @@
 
 "locale" = "he_IL";
 
+"continue" = "continue";
 "done" = "סיים";
+"emergencyCall" = "Emergency Call";
 "go" = "המשך";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "חזור";
+"route" = "route";
 "search" = "חפש";
 "send" = "send";
 "space" = "רווח";

@@ -8,12 +8,15 @@
 
 "locale" = "ka";
 
+"continue" = "continue";
 "done" = "მზადაა";
+"emergencyCall" = "Emergency Call";
 "go" = "გადასვლა";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "შეყვანა";
+"route" = "route";
 "search" = "ძიება";
 "send" = "send";
 "space" = "ჰარი";

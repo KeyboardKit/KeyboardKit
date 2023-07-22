@@ -8,12 +8,15 @@
 
 "locale" = "ga_IE";
 
+"continue" = "continue";
 "done" = "déanta";
+"emergencyCall" = "Emergency Call";
 "go" = "téigh";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "ar ais";
+"route" = "route";
 "search" = "cuardaigh";
 "send" = "send";
 "space" = "spás";

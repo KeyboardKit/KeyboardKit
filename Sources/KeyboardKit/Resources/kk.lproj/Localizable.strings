@@ -8,11 +8,14 @@
 
 "locale" = "kk";
 
+"continue" = "continue";
 "done" = "Болды";
+"emergencyCall" = "Emergency Call";
 "go" = "Алға";
 "join" = "join";
 "ok" = "OK";
 "return" = "⮐";
+"route" = "route";
 "search" = "Іздеу";
 "space" = "бос орын";
 

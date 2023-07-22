@@ -8,12 +8,15 @@
 
 "locale" = "sq";
 
+"continue" = "continue";
 "done" = "I kryer";
+"emergencyCall" = "Emergency Call";
 "go" = "Shkoj";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "↵";
+"route" = "route";
 "search" = "Kërkimi";
 "send" = "send";
 "space" = "hapësirë";

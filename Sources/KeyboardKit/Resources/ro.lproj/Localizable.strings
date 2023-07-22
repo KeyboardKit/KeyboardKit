@@ -8,12 +8,15 @@
 
 "locale" = "ro";
 
+"continue" = "continue";
 "done" = "OK";
+"emergencyCall" = "Emergency Call";
 "go" = "Acces";
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
 "return" = "↵";
+"route" = "route";
 "search" = "Căutare";
 "send" = "send";
 "space" = "Spațiu";
