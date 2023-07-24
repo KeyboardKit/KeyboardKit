@@ -13,7 +13,11 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 
 ## 7.9
 
-This release prepares the library for the upcoming major version bump. 
+This release prepares the library for the upcoming major version bump.
+
+This release prepares the various input set utilities for the future removal of the input set provider concept and for converting `InputSet` to a struct. 
+
+`v8.0` will be added to the docs, everywhere structural or architectural changes will be made. THe aim is to clean up and simplify the library, which today has too many types and concepts. 
 
 ### ✨ New Features
 
@@ -21,7 +25,12 @@ This release prepares the library for the upcoming major version bump.
 
 ### 🗑️ Deprecations
 
-* `SystemKeyboardLayoutProvider` util extensions have been deprecated.
+* `NumericInputSet.english` has been renamed to `englishNumeric`.
+* `NumericInputSet.standard` has been renamed to `standardNumeric`.
+* `StaticInputSetProvider` has been deprecated.
+* `SymbolicInputSet.english` has been renamed to `englishSymbolic`.
+* `SymbolicInputSet.standard` has been renamed to `standardSymbolic`.
+* `SystemKeyboardLayoutProvider` utility extensions have been deprecated.
 
 
 

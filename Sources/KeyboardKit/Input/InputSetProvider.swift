@@ -27,6 +27,10 @@ import Foundation
  new implementation from scratch. When you're implementation
  is ready, just replace the controller service with your own
  implementation to make the library use it instead.
+ 
+ `v8.0` - This protocol and all implementation types will be
+ replaced by just providing a couple of `InputSet` values to
+ the layout provider.
  */
 public protocol InputSetProvider: AnyObject {
     

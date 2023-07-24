@@ -15,8 +15,8 @@ import Foundation
  override the currency symbols that are shown in the numeric
  and symbolic keyboards.
  
- KeyboardKit Pro adds a provider for each ``KeyboardLocale``
- Check out the Pro demo app to see them in action.
+ `v8.0` - This type will be replaced by just providing a set
+ of `InputSet` values to the layout provider.
  */
 open class EnglishInputSetProvider: InputSetProvider, LocalizedService {
     
@@ -37,8 +37,8 @@ open class EnglishInputSetProvider: InputSetProvider, LocalizedService {
         symbolicCurrency: String = "£"
     ) {
         self.alphabeticInputSet = alphabetic
-        self.numericInputSet = .english(currency: numericCurrency)
-        self.symbolicInputSet = .english(currency: symbolicCurrency)
+        self.numericInputSet = .englishNumeric(currency: numericCurrency)
+        self.symbolicInputSet = .englishSymbolic(currency: symbolicCurrency)
     }
     
     /**
@@ -62,30 +62,18 @@ open class EnglishInputSetProvider: InputSetProvider, LocalizedService {
     public var symbolicInputSet: SymbolicInputSet
 }
 
-public extension AlphabeticInputSet {
-
-    /**
-     A standard, English input set.
-     */
-    static let english = AlphabeticInputSet.qwerty
-}
-
-public extension NumericInputSet {
-
-    /**
-     A standard, English input set.
-     */
-    static func english(currency: String) -> NumericInputSet {
-        .standard(currency: currency)
+public extension InputSet {
+    
+    /// A standard, English alphabetic input set.
+    static var english: AlphabeticInputSet { .qwerty }
+    
+    /// A standard, English numeric input set.
+    static func englishNumeric(currency: String) -> NumericInputSet {
+        .standardNumeric(currency: currency)
     }
-}
-
-public extension SymbolicInputSet {
-
-    /**
-     A standard, English input set.
-     */
-    static func english(currency: String) -> SymbolicInputSet {
-        .standard(currencies: "€\(currency)¥".chars)
+    
+    /// A standard, English symbolic input set.
+    static func englishSymbolic(currency: String) -> SymbolicInputSet {
+        .standardSymbolic(currencies: "€\(currency)¥".chars)
     }
 }
