@@ -44,8 +44,4 @@ public class PreviewKeyboardLayoutProvider: KeyboardLayoutProvider {
     public func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         provider.keyboardLayout(for: context)
     }
-
-    public func register(inputSetProvider: InputSetProvider) {
-        provider.register(inputSetProvider: inputSetProvider)
-    }
 }

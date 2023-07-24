@@ -248,7 +248,6 @@ KeyboardKit is available under the MIT license.
 - ``InputSet``
 - ``InputSetItem``
 - ``InputSetProvider``
-- ``InputSetProviderBased``
 - ``InputSetRow``
 - ``InputSetRows``
 - ``LocalizedInputSetProvider``

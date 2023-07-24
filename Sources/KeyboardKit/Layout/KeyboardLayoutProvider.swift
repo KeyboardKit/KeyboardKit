@@ -28,7 +28,7 @@ import Foundation
  is ready, just replace the controller service with your own
  implementation to make the library use it instead.
  */
-public protocol KeyboardLayoutProvider: AnyObject, InputSetProviderBased {
+public protocol KeyboardLayoutProvider: AnyObject {
     
     /**
      The layout keyboard to use for a given keyboard context.

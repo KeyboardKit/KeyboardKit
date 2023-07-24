@@ -55,6 +55,9 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
 
     /**
      Register a new input set provider.
+     
+     `v8.0` - This function will be removed, since this type
+     will no longer be depending on an input set provider.
      */
     open func register(inputSetProvider: InputSetProvider) {
         self.inputSetProvider = inputSetProvider

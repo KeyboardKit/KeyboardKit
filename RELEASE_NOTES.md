@@ -25,6 +25,7 @@ This release prepares the various input set utilities for the future removal of 
 
 ### 🗑️ Deprecations
 
+* `InputSetProviderBased` has been deprecated.
 * `NumericInputSet.english` has been renamed to `englishNumeric`.
 * `NumericInputSet.standard` has been renamed to `standardNumeric`.
 * `StaticInputSetProvider` has been deprecated.
