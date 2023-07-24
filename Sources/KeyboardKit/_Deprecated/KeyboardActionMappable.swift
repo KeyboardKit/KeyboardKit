@@ -1,11 +1,3 @@
-//
-//  KeyboardActionMappable.swift
-//  KeyboardKit
-//
-//  Created by Daniel Saidi on 2023-01-10.
-//  Copyright © 2023 Daniel Saidi. All rights reserved.
-//
-
 import SwiftUI
 
 @available(*, deprecated, message: "This protocol is deprecated.")

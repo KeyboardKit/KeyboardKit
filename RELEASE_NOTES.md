@@ -13,9 +13,15 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 
 ## 7.9
 
+This release prepares the library for the upcoming major version bump. 
+
 ### ✨ New Features
 
 * `KeyboardReturnKeyType` has new `continue`, `emergencyCall` and `route` types.
+
+### 🗑️ Deprecations
+
+* `SystemKeyboardLayoutProvider` util extensions have been deprecated.
 
 
 

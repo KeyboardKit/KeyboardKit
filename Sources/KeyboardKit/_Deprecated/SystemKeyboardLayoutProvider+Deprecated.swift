@@ -1,24 +1,6 @@
-//
-//  SystemKeyboardLayoutProvider.swift
-//  KeyboardKit
-//
-//  Created by Daniel Saidi on 2022-01-15.
-//  Copyright © 2022-2023 Daniel Saidi. All rights reserved.
-//
-
 import Foundation
 
-/**
- These extensions are utils for the iPhone and iPad keyboard
- layout providers. They are temporary and should not be used
- when you subclass these classes, since I may remove them if
- they are no longer used, as I look for a better approach to
- dynamic layouts. These will be made internal in 6.0.
-
- Note that these properties just describe the input set, NOT
- the layout. For instance, Arabic uses 11-11-9, but does NOT
- share the same layout as LTR 11-11-9 keyboards.
- */
+@available(*, deprecated, message: "These extensions are no longer used and will be removed in KK 8.0")
 public extension SystemKeyboardLayoutProvider {
 
     /**
@@ -44,9 +26,6 @@ public extension SystemKeyboardLayoutProvider {
         context.isAlphabetic && hasAlphabeticInputCount(rows)
     }
 }
-
-
-// MARK: - KeyboardContext Extension
 
 private extension KeyboardContext {
 
