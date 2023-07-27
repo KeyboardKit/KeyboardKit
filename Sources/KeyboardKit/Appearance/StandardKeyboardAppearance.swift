@@ -108,7 +108,8 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
             font: buttonFont(for: action),
             cornerRadius: buttonCornerRadius(for: action),
             border: buttonBorderStyle(for: action),
-            shadow: buttonShadowStyle(for: action))
+            shadow: buttonShadowStyle(for: action)
+        )
     }
 
     /// The button text to use for a certain action, if any.

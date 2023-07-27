@@ -1,5 +1,5 @@
 //
-//  Color+Keyboard.swift
+//  Color+KeyboardKit.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-20.
@@ -17,15 +17,13 @@ import SwiftUI
  get the standard button background.
 
  The context-based color functions may look strange, but the
- reason for having them this way is that iOS gets an invalid
- color scheme when editing a text field with dark appearance.
- This causes iOS to set the extension's color scheme to dark
- even if the system color scheme is light.
-
- To work around this, some colors have a temporary color set
- with a `ForColorSchemeBug` suffix that are semi-transparent
- white with an opacity that makes them look ok in both light
- and dark mode.
+ reason for having them is because iOS keyboards get invalid
+ color schemes when used with a dark appearance. This causes
+ the extension to get a dark color scheme even if the system
+ color scheme is light. To work around this, some colors use
+ a color set with a `ForColorSchemeBug` suffix that are semi
+ transparent white with an opacity that aims to look good in
+ both light and dark mode.
 
  Issue report (also reported to Apple in Feedback Assistant):
  https://github.com/danielsaidi/KeyboardKit/issues/305

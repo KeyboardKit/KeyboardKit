@@ -188,7 +188,8 @@ public extension ActionCalloutContext {
     static var disabled: ActionCalloutContext {
         ActionCalloutContext(
             actionHandler: PreviewKeyboardActionHandler(),
-            actionProvider: DisabledCalloutActionProvider())
+            actionProvider: DisabledCalloutActionProvider()
+        )
     }
 }
 

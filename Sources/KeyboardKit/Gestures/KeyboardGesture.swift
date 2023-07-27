@@ -32,8 +32,6 @@ public enum KeyboardGesture: String, CaseIterable, Codable, Equatable, Identifia
 
 public extension KeyboardGesture {
     
-    /**
-     The gesture's unique identifier.
-     */
+    /// The gesture's unique identifier.
     var id: String { rawValue }
 }

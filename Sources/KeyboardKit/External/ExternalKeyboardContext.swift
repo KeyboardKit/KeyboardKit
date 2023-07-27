@@ -41,7 +41,6 @@ private extension ExternalKeyboardContext {
     
     func performSync() {
         isExternalKeyboardConnected = GCKeyboard.coalesced != nil
-        
     }
 }
 #endif

@@ -59,7 +59,7 @@ public extension UITextDocumentProxy {
      */
     var isCursorAtTheEndOfTheCurrentWord: Bool {
         if currentWord == nil { return false }
-        let postCount = currentWordPostCursorPart?.trimming(.whitespaces).count ?? 0
+        let postCount = currentWordPostCursorPart?.trimmingCharacters(in: .whitespaces).count ?? 0
         if postCount > 0 { return false }
         guard let pre = currentWordPreCursorPart else { return false }
         let lastCharacter = String(pre.suffix(1))
@@ -77,7 +77,7 @@ public extension UITextDocumentProxy {
             .split(by: wordDelimiters)
             .dropLast()
             .last?
-            .trimming(.whitespaces)
+            .trimmingCharacters(in: .whitespaces)
         else { return nil }
         return result.isEmpty ? nil : result
     }

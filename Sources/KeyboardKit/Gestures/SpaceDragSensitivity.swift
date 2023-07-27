@@ -9,13 +9,10 @@
 import Foundation
 
 /**
- This enum can be used to change the drag sensitivity of the
- spacebar.
+ This enum can be used to set the space key drag sensitivity.
  
  `NOTE` The sensitivity value corresponds to how many points
- a spacebar must be dragged for the input cursor to move one
- step. This means that the sensitivity is `inverted`. Higher
- values mean that the cursor moves less.
+ space must be dragged for the input cursor to move one step.
  */
 public enum SpaceDragSensitivity: Codable, Identifiable {
     

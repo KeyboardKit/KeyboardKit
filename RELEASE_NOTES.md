@@ -29,6 +29,7 @@ This release converts feedback engines from protocols to singletons to simplify 
 * `Image.keyboardShift` is a new image.
 * `InputSet` has new `English` builders.
 * `KeyboardActionHandler` has new feedback functions.
+* `KeyboardLayoutProviderProxy` has new standard functionality.
 * `KeyboardReturnKeyType` has new `continue`, `emergencyCall` and `route` types.
 * `StandardKeyboardActionHandler` has new feedback functions.
 * `StandardKeyboardFeedbackHandler` has new feedback functions.
@@ -57,7 +58,7 @@ This release converts feedback engines from protocols to singletons to simplify 
 * `KeyboardActions` image initializer has been deprecated.
 * `KeyboardActionRows` has been renamed to `KeyboardAction.Rows`.
 * `KeyboardLayoutItemRow` has been renamed to `KeyboardLayoutItem.Row`.
-* `KeyboardLayoutItemRows` has been renamed to `KeyboardLayoutItem.Rows`.
+* `KeyboardLayoutItemRows` has been renamed to `KeyboardLayoutItem.Rows`. 
 * `KeyboardFeedbackHandler` has been deprecated.
 * `StandardAudioFeedbackEngine` has been deprecated.
 * `StandardHapticFeedbackEngine` has been deprecated.
@@ -70,6 +71,7 @@ This release converts feedback engines from protocols to singletons to simplify 
 
 ### 💥 Breaking changes 
 
+* `EnglishKeyboardLayoutProvider` no longer has an open layout provider function.
 * `StandardKeyboardActionHandler` no longer uses a feedback handler.
 
 

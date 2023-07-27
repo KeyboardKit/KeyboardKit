@@ -226,8 +226,7 @@ private extension KeyboardButtonGestures {
 
 extension CGRect {
 
-    /// This function returns a rect with padding in which a
-    /// release outside should be applied.
+    /// Return a rect with release outside tolerance padding.
     static func releaseOutsideToleranceArea(
         for geo: GeometryProxy,
         tolerance: Double

@@ -17,9 +17,22 @@ import Foundation
  nested providers and select one depending on the context.
  */
 public protocol KeyboardLayoutProviderProxy: KeyboardLayoutProvider {
+    
+    /// The layout provider to use for iPad devices.
+    var iPadProvider: KeyboardLayoutProvider { get }
 
-    /**
-     The keyboard layout provider to use for a given context.
-     */
-    func keyboardLayoutProvider(for context: KeyboardContext) -> KeyboardLayoutProvider
+    /// The layout provider to use for iPad devices.
+    var iPhoneProvider: KeyboardLayoutProvider { get }
+}
+
+public extension KeyboardLayoutProviderProxy {
+    
+    /// The keyboard layout provider to use for the context.
+    func keyboardLayoutProvider(for context: KeyboardContext) -> KeyboardLayoutProvider {
+        switch context.deviceType {
+        case .phone: return iPhoneProvider
+        case .pad: return iPadProvider
+        default: return iPhoneProvider
+        }
+    }
 }

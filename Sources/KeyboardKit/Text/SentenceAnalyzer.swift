@@ -72,7 +72,7 @@ public extension String {
      ended, with or without trailing whitespace.
      */
     var isLastSentenceEnded: Bool {
-        let content = trimming(.whitespaces).replacingOccurrences(of: "\n", with: "")
+        let content = trimmingCharacters(in: .whitespaces).replacingOccurrences(of: "\n", with: "")
         if content.isEmpty { return true }
         let lastCharacter = String(content.suffix(1))
         return lastCharacter.isSentenceDelimiter
@@ -83,7 +83,7 @@ public extension String {
      ended with trailing whitespace.
      */
     var isLastSentenceEndedWithTrailingWhitespace: Bool {
-        let trimmed = trimming(.whitespacesAndNewlines)
+        let trimmed = trimmingCharacters(in: .whitespacesAndNewlines)
         if isEmpty || trimmed.isEmpty { return true }
         let lastTrimmed = String(trimmed.suffix(1))
         let isLastSpace = last?.isWhitespace == true
@@ -99,7 +99,7 @@ public extension String {
     var lastSentence: String? {
         guard isLastSentenceEnded else { return nil }
         let components = split(by: Self.sentenceDelimiters).filter { !$0.isEmpty }
-        let trimmed = components.last?.trimming(.whitespaces)
+        let trimmed = components.last?.trimmingCharacters(in: .whitespaces)
         let ignoreLast = trimmed?.count == 0
         return ignoreLast ? nil : components.last
     }

@@ -32,7 +32,7 @@ import UIKit
 public extension UITextAutocapitalizationType {
 
     /**
-     Get the KeyboardKit-specific auto-capitalization type.
+     Map this type to a ``KeyboardAutocapitalizationType``.
      */
     var keyboardType: KeyboardAutocapitalizationType {
         switch self {

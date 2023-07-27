@@ -29,7 +29,7 @@ public extension Emoji {
      find all emojis in the collection that matches a query.
      */
     func matches(_ query: String, for locale: Locale) -> Bool {
-        let query = query.trimming(.whitespacesAndNewlines).lowercased()
+        let query = query.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         if query.isEmpty { return true }
         if unicodeName?.lowercased().contains(query) == true { return true }
         if localizedName(for: locale).lowercased().contains(query) { return true }

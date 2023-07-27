@@ -10,8 +10,6 @@ import Foundation
 
 public extension String {
     
-    /**
-     Split the string into a list of individual characters.
-     */
+    /// Split the string into a list of characters.
     var chars: [String] { map(String.init) }
 }

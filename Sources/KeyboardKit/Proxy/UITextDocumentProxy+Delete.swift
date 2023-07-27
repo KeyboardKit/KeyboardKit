@@ -56,7 +56,7 @@ private extension String {
     
     func lastSegment(isSegmentDelimiter: (String) -> Bool) -> String {
         var result = last { $0.isWhitespace }.map { String($0) } ?? ""
-        var text = self.trimming(.whitespaces)
+        var text = self.trimmingCharacters(in: .whitespaces)
         var foundNonDelimiter = false
         while let char = text.popLast() {
             let char = String(char)

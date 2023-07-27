@@ -10,8 +10,7 @@ import Foundation
 import SwiftUI
 
 /**
- This type defines layout configurations for various devices,
- given the current screen size and orientation.
+ This type defines layout configurations for various devices.
 
  The standard, parameterless configuration can be changed to
  affect the global defaults.

@@ -14,8 +14,4 @@ extension String {
         let separators = CharacterSet(charactersIn: separators.joined())
         return components(separatedBy: separators)
     }
-
-    func trimming(_ set: CharacterSet) -> String {
-        trimmingCharacters(in: set)
-    }
 }

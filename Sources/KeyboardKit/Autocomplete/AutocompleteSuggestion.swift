@@ -52,18 +52,14 @@ public struct AutocompleteSuggestion {
     public var title: String
     
     /**
-     Whether or not this is an autocompleting suggestion.
-
-     These suggestions are typically shown in white, rounded
-     squares when presented in an iOS system keyboard.
+     Whether or not this is an autocomplet suggestion, which
+     are typically presented with a white rounded background.
      */
     public var isAutocomplete: Bool
     
     /**
-     Whether or not this is an unknown suggestion.
-
-     These suggestions are typically surrounded by quotation
-     marks when presented in an iOS system keyboard.
+     Whether or not this is an unknown suggestion, which are
+     typically surrounded by quotation marks.
      */
     public var isUnknown: Bool
     

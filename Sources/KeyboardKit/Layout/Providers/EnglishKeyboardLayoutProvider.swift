@@ -42,7 +42,7 @@ open class EnglishKeyboardLayoutProvider: SystemKeyboardLayoutProvider, Keyboard
     /**
      The layout provider to use for iPad devices.
      */
-    public lazy var iPadProvider = iPadKeyboardLayoutProvider(
+    public lazy var iPadProvider: KeyboardLayoutProvider = iPadKeyboardLayoutProvider(
         alphabeticInputSet: alphabeticInputSet,
         numericInputSet: numericInputSet,
         symbolicInputSet: symbolicInputSet
@@ -51,7 +51,7 @@ open class EnglishKeyboardLayoutProvider: SystemKeyboardLayoutProvider, Keyboard
     /**
      The layout provider to use for iPhone devices.
      */
-    public lazy var iPhoneProvider = iPhoneKeyboardLayoutProvider(
+    public lazy var iPhoneProvider: KeyboardLayoutProvider = iPhoneKeyboardLayoutProvider(
         alphabeticInputSet: alphabeticInputSet,
         numericInputSet: numericInputSet,
         symbolicInputSet: symbolicInputSet
@@ -63,16 +63,5 @@ open class EnglishKeyboardLayoutProvider: SystemKeyboardLayoutProvider, Keyboard
     open override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         keyboardLayoutProvider(for: context)
             .keyboardLayout(for: context)
-    }
-
-    /**
-     The keyboard layout provider to use for a given context.
-     */
-    open func keyboardLayoutProvider(for context: KeyboardContext) -> KeyboardLayoutProvider {
-        switch context.deviceType {
-        case .phone: return iPhoneProvider
-        case .pad: return iPadProvider
-        default: return iPhoneProvider
-        }
     }
 }

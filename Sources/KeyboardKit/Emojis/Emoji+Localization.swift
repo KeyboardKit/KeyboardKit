@@ -40,7 +40,7 @@ public extension Emoji {
         let name = KKL10n.text(forKey: key, locale: locale)
         let hasLocalizedName = name != key && name != ""
         let result = hasLocalizedName ? name : unicodeName
-        return result?.trimming(.whitespaces) ?? ""
+        return result?.trimmingCharacters(in: .whitespaces) ?? ""
     }
 
     /**

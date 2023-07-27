@@ -27,15 +27,11 @@ public class StaticKeyboardLayoutProvider: KeyboardLayoutProvider {
     }
     
     
-    /**
-     The keyboard layout to use.
-     */
+    /// The keyboard layout to use.
     private let layout: KeyboardLayout
     
     
-    /**
-     Get a keyboard layout for a certain keyboard context.
-     */
+    /// Get a keyboard layout for a certain keyboard context.
     public func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         layout
     }
