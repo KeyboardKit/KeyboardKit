@@ -32,7 +32,7 @@ public class KeyboardLayout {
        - idealItemInsets: An optional, ideal item inset value, otherwise picked from the first item.
     */
     public init(
-        itemRows rows: KeyboardLayoutItemRows,
+        itemRows rows: KeyboardLayoutItem.Rows,
         idealItemHeight height: Double? = nil,
         idealItemInsets insets: EdgeInsets? = nil
     ) {
@@ -44,7 +44,7 @@ public class KeyboardLayout {
     /**
      The layout item rows to show in the keyboard.
      */
-    public var itemRows: KeyboardLayoutItemRows
+    public var itemRows: KeyboardLayoutItem.Rows
 
     /**
      The ideal item height, which can be used if you want to
@@ -137,18 +137,18 @@ public extension KeyboardLayout {
 
 private extension KeyboardLayout {
 
-    static func resolveIdealItemHeight(for rows: KeyboardLayoutItemRows) -> Double {
+    static func resolveIdealItemHeight(for rows: KeyboardLayoutItem.Rows) -> Double {
         let item = rows.flatMap { $0 }.first
         return Double(item?.size.height ?? .zero)
     }
 
-    static func resolveIdealItemInsets(for rows: KeyboardLayoutItemRows) -> EdgeInsets {
+    static func resolveIdealItemInsets(for rows: KeyboardLayoutItem.Rows) -> EdgeInsets {
         let item = rows.flatMap { $0 }.first
         return item?.insets ?? EdgeInsets()
     }
 }
 
-private extension KeyboardLayoutItemRow {
+private extension KeyboardLayoutItem.Row {
 
     var hasInputWidth: Bool {
         contains { $0.size.width == .input }

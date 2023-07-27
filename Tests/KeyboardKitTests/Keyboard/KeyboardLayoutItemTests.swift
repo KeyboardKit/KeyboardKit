@@ -14,8 +14,8 @@ import XCTest
 class KeyboardLayoutItemRowTests: XCTestCase {
     
     var item: KeyboardLayoutItem!
-    var row: KeyboardLayoutItemRow!
-    var rows: KeyboardLayoutItemRows!
+    var row: KeyboardLayoutItem.Row!
+    var rows: KeyboardLayoutItem.Rows!
 
     let size = KeyboardLayoutItemSize(width: .available, height: 100)
     let insets = EdgeInsets()

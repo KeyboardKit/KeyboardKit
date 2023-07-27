@@ -58,17 +58,11 @@ public struct KeyboardLayoutItem: Equatable, KeyboardRowItem {
     public var rowId: KeyboardAction { action }
 }
 
-/**
- This typealias represents a list of ``KeyboardLayoutItem``s.
- 
- `v8.0` - This will be nested in `KeyboardLayoutItem`.
- */
-public typealias KeyboardLayoutItemRow = [KeyboardLayoutItem]
+public extension KeyboardLayoutItem {
+    
+    /// This is a typealias for a layout item array.
+    typealias Row = [KeyboardLayoutItem]
 
-/**
- This typealias represents a list of ``KeyboardLayoutItemRow``
- values that make up a keyboard's rows.
- 
- `v8.0` - This will be nested in `KeyboardLayoutItem`.
- */
-public typealias KeyboardLayoutItemRows = [KeyboardLayoutItemRow]
+    /// This is a typealias for a layout item row array.
+    typealias Rows = [KeyboardLayoutItem.Row]
+}

@@ -9,11 +9,11 @@
 import Foundation
 
 public extension KeyboardAction {
-    
-    /// This is an alias for a ``KeyboardAction`` array.
+
+    /// This is a typealias for a keyboard action array.
     typealias Row = [KeyboardAction]
     
-    /// This is an alias for a ``KeyboardAction.Row`` array.
+    /// This is a typealias for a keyboard action row array.
     typealias Rows = [KeyboardAction.Row]
 }
 

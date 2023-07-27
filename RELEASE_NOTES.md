@@ -56,6 +56,8 @@ This release converts feedback engines from protocols to singletons to simplify 
 * `KeyboardActions` has been renamed to `KeyboardAction.Row`.
 * `KeyboardActions` image initializer has been deprecated.
 * `KeyboardActionRows` has been renamed to `KeyboardAction.Rows`.
+* `KeyboardLayoutItemRow` has been renamed to `KeyboardLayoutItem.Row`.
+* `KeyboardLayoutItemRows` has been renamed to `KeyboardLayoutItem.Rows`.
 * `KeyboardFeedbackHandler` has been deprecated.
 * `StandardAudioFeedbackEngine` has been deprecated.
 * `StandardHapticFeedbackEngine` has been deprecated.

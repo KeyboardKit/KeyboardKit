@@ -132,7 +132,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     open func items(
         for actions: KeyboardAction.Rows,
         context: KeyboardContext
-    ) -> KeyboardLayoutItemRows {
+    ) -> KeyboardLayoutItem.Rows {
         actions.enumerated().map { row in
             row.element.enumerated().map { action in
                 item(for: action.element, row: row.offset, index: action.offset, context: context)

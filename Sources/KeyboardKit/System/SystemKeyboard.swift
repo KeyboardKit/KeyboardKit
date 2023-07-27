@@ -502,7 +502,7 @@ private extension SystemKeyboard {
         }
     }
 
-    func items(for layout: KeyboardLayout, itemRow: KeyboardLayoutItemRow) -> some View {
+    func items(for layout: KeyboardLayout, itemRow: KeyboardLayoutItem.Row) -> some View {
         HStack(spacing: 0) {
             ForEach(Array(itemRow.enumerated()), id: \.offset) {
                 buttonView($0.element, keyboardWidth, inputWidth)
