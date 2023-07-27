@@ -23,9 +23,9 @@ import GameKit
 public class ExternalKeyboardContext: ObservableObject {
     
     public init(notificationCenter: NotificationCenter = .default) {
+        #if os(iOS) || os(macOS) || os(tvOS)
         performSync()
         let sync = #selector(performSync)
-        #if os(iOS) || os(macOS) || os(tvOS)
         notificationCenter.addObserver(self, selector: sync, name: Notification.Name.GCKeyboardDidConnect, object: nil)
         notificationCenter.addObserver(self, selector: sync, name: Notification.Name.GCKeyboardDidDisconnect, object: nil)
         #endif
@@ -35,12 +35,13 @@ public class ExternalKeyboardContext: ObservableObject {
     public private(set) var isExternalKeyboardConnected = false
 }
 
+#if os(iOS) || os(macOS) || os(tvOS)
 @objc
 private extension ExternalKeyboardContext {
     
     func performSync() {
-        #if os(iOS) || os(macOS) || os(tvOS)
         isExternalKeyboardConnected = GCKeyboard.coalesced != nil
-        #endif
+        
     }
 }
+#endif
