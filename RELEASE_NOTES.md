@@ -27,6 +27,7 @@ This release prepares the various input set utilities for the future removal of 
 
 ### 💡 Adjustments
 
+* `KeyboardActionHandler` has a new `triggerFeedback(for:on:)` function. 
 * `StandardKeyboardLayoutProvider` no longer requires an input set provider.
 
 ### 🗑️ Deprecations

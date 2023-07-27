@@ -27,4 +27,5 @@ public class PreviewKeyboardActionHandler: KeyboardActionHandler {
     public func handle(_ action: KeyboardAction) {}
     public func handle(_ gesture: KeyboardGesture, on action: KeyboardAction) {}
     public func handleDrag(on action: KeyboardAction, from startLocation: CGPoint, to currentLocation: CGPoint) {}
+    public func triggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {}
 }

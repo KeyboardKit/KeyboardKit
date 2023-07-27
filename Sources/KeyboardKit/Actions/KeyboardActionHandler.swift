@@ -33,20 +33,40 @@ public protocol KeyboardActionHandler: AnyObject {
      Whether or not the handler can handle a certain gesture
      on a certain action.
      */
-    func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction) -> Bool
+    func canHandle(
+        _ gesture: KeyboardGesture,
+        on action: KeyboardAction
+    ) -> Bool
     
     /**
-     Handle a certain action using its standard action.
+     Handle a keyboard action using its standard action.
      */
-    func handle(_ action: KeyboardAction)
+    func handle(
+        _ action: KeyboardAction
+    )
 
     /**
-     Handle a certain gesture on a certain action.
+     Handle a certain keyboard action gesture.
      */
-    func handle(_ gesture: KeyboardGesture, on action: KeyboardAction)
+    func handle(
+        _ gesture: KeyboardGesture,
+        on action: KeyboardAction
+    )
     
     /**
-     Handle a drag gesture on a certain action.
+     Handle a drag gesture on a certain keyboard action.
      */
-    func handleDrag(on action: KeyboardAction, from startLocation: CGPoint, to currentLocation: CGPoint)
+    func handleDrag(
+        on action: KeyboardAction,
+        from startLocation: CGPoint,
+        to currentLocation: CGPoint
+    )
+    
+    /**
+     Trigger feedback for a certain keyboard action gesture.
+     */
+    func triggerFeedback(
+        for gesture: KeyboardGesture,
+        on action: KeyboardAction
+    )
 }

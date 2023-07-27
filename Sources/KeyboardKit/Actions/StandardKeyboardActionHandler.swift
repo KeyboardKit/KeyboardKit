@@ -11,14 +11,14 @@ import UIKit
 
 /**
  This standard keyboard action handler is used by default by
- KeyboardKit and provides a standard way of handling actions.
+ KeyboardKit and provides a standard way of handling actions
+ and trigger action feedback.
 
  You can inherit this class and override any open properties
  and functions to customize the standard action behavior.
 
  Note that the ``keyboardController`` reference is `weak` to
- avoid a retain cycle when the ``KeyboardInputViewController``
- uses itself to setup its action handler.
+ avoid a retain cycle.
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
 
@@ -129,31 +129,43 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      Whether or not the handler can handle a certain gesture
      on a certain action.
      */
-    open func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
+    open func canHandle(
+        _ gesture: KeyboardGesture,
+        on action: KeyboardAction
+    ) -> Bool {
         self.action(for: gesture, on: action) != nil
     }
 
     /**
-     Handle a certain action using its standard action.
+     Handle a keyboard action using its standard action.
      */
-    public func handle(_ action: KeyboardAction) {
+    public func handle(
+        _ action: KeyboardAction
+    ) {
         action.standardAction?(keyboardController)
     }
 
     /**
-     Handle a certain gesture on a certain action.
+     Handle a certain keyboard action gesture.
      */
-    open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction) {
+    open func handle(
+        _ gesture: KeyboardGesture,
+        on action: KeyboardAction
+    ) {
         handle(gesture, on: action, replaced: false)
     }
 
     /**
-     Handle a certain gesture on a certain action.
+     Handle a certain keyboard action gesture.
 
      This function is used to handle a case where the action
      can be triggered as a replacement of another operation.
      */
-    open func handle(_ gesture: KeyboardGesture, on action: KeyboardAction, replaced: Bool) {
+    open func handle(
+        _ gesture: KeyboardGesture,
+        on action: KeyboardAction,
+        replaced: Bool
+    ) {
         if !replaced && tryHandleReplacementAction(before: gesture, on: action) { return }
         triggerFeedback(for: gesture, on: action)
         tryUpdateSpaceDragState(for: gesture, on: action)
@@ -170,10 +182,29 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
 
     /**
-     Handle a drag gesture on a certain action.
+     Handle a drag gesture on a certain keyboard action.
      */
-    open func handleDrag(on action: KeyboardAction, from startLocation: CGPoint, to currentLocation: CGPoint) {
-        tryHandleSpaceDrag(on: action, from: startLocation, to: currentLocation)
+    open func handleDrag(
+        on action: KeyboardAction,
+        from startLocation: CGPoint,
+        to currentLocation: CGPoint
+    ) {
+        tryHandleSpaceDrag(
+            on: action,
+            from: startLocation,
+            to: currentLocation
+        )
+    }
+    
+    /**
+     Trigger feedback for a certain keyboard action gesture.
+     */
+    open func triggerFeedback(
+        for gesture: KeyboardGesture,
+        on action: KeyboardAction
+    ) {
+        guard shouldTriggerFeedback(for: gesture, on: action) else { return }
+        keyboardFeedbackHandler.triggerFeedback(for: gesture, on: action)
     }
 
 
@@ -183,11 +214,11 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     /**
      This is the standard action that is used by the handler
      when a gesture is performed on a certain action.
-
-     You can override this function to customize how actions
-     should behave. By default, the standard action is used.
      */
-    open func action(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction.GestureAction? {
+    open func action(
+        for gesture: KeyboardGesture,
+        on action: KeyboardAction
+    ) -> KeyboardAction.GestureAction? {
         action.standardAction(for: gesture)
     }
 
@@ -228,18 +259,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         if gesture == .press && self.action(for: .release, on: action) != nil { return true }
         if gesture != .release && self.action(for: gesture, on: action) != nil { return true }
         return false
-    }
-
-    /**
-     Trigger feedback for a certain `gesture` on an `action`,
-     if ``shouldTriggerFeedback(for:on:)`` returns `true`.
-
-     You can override this function to customize how actions
-     trigger feedback.
-     */
-    open func triggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
-        guard shouldTriggerFeedback(for: gesture, on: action) else { return }
-        keyboardFeedbackHandler.triggerFeedback(for: gesture, on: action)
     }
 
     /**
@@ -329,7 +348,11 @@ private extension StandardKeyboardActionHandler {
         return handler.currentDragTextPositionOffset != 0
     }
 
-    func tryHandleSpaceDrag(on action: KeyboardAction, from startLocation: CGPoint, to currentLocation: CGPoint) {
+    func tryHandleSpaceDrag(
+        on action: KeyboardAction,
+        from startLocation: CGPoint,
+        to currentLocation: CGPoint
+    ) {
         guard action == .space else { return }
         guard keyboardContext.spaceLongPressBehavior == .moveInputCursor else { return }
         guard isSpaceDragGestureActive else { return }
@@ -341,7 +364,10 @@ private extension StandardKeyboardActionHandler {
         )
     }
 
-    func tryUpdateSpaceDragState(for gesture: KeyboardGesture, on action: KeyboardAction) {
+    func tryUpdateSpaceDragState(
+        for gesture: KeyboardGesture,
+        on action: KeyboardAction
+    ) {
         guard action == .space else { return }
         switch gesture {
         case .press:
