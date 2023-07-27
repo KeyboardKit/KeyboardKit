@@ -23,7 +23,10 @@ This release converts feedback engines from protocols to singletons to simplify 
 
 ### ✨ New Features
 
+* `HapticFeedbackConfiguration` has new `press` and `release` configurations.
+* `KeyboardActionHandler` has new feedback functions.
 * `KeyboardReturnKeyType` has new `continue`, `emergencyCall` and `route` types.
+* `StandardKeyboardActionHandler` has new feedback functions.
 * `StandardKeyboardFeedbackHandler` has new feedback functions.
 * `StandardKeyboardLayoutProvider` has a new default initializer.
 
@@ -41,11 +44,16 @@ This release converts feedback engines from protocols to singletons to simplify 
 * `NumericInputSet.standard` has been renamed to `standardNumeric`.
 * `StandardAudioFeedbackEngine` has been deprecated.
 * `DisabledAudioFeedbackEngine` has been deprecated.
+* `HapticFeedbackConfiguration.tap` has been replaced by `press` and `release`. 
 * `StandardKeyboardFeedbackHandler` config properties have been deprecated.
 * `StaticInputSetProvider` has been deprecated.
 * `SymbolicInputSet.english` has been renamed to `englishSymbolic`.
 * `SymbolicInputSet.standard` has been renamed to `standardSymbolic`.
 * `SystemKeyboardLayoutProvider` utility extensions have been deprecated.
+
+### 💥 Breaking changes 
+
+* `StandardKeyboardActionHandler` no longer uses a feedback handler.
 
 
 

@@ -44,7 +44,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.autocompleteContext = ivc.autocompleteContext
         self.keyboardBehavior = ivc.keyboardBehavior
         self.keyboardContext = ivc.keyboardContext
-        self.keyboardFeedbackHandler = ivc.keyboardFeedbackHandler
+        self.keyboardFeedbackSettings = ivc.keyboardFeedbackSettings
         self.spaceDragGestureHandler = spaceDragGestureHandler ?? Self.dragGestureHandler(
             keyboardController: ivc,
             keyboardContext: ivc.keyboardContext,
@@ -59,7 +59,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
        - keyboardController: The keyboard controller to use.
        - keyboardContext: The keyboard context to use.
        - keyboardBehavior: The keyboard behavior to use.
-       - keyboardFeedbackHandler: The keyboard feedback handler to use.
+       - keyboardFeedbackSettings: The keyboard feedback settings to use.
        - autocompleteContext: The autocomplete context to use.
        - spaceDragGestureHandler: A custom space drag gesture handler, if any.
        - spaceDragSensitivity: The space drag sensitivity to use, by default ``SpaceDragSensitivity/medium``.
@@ -68,7 +68,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         keyboardController: KeyboardController,
         keyboardContext: KeyboardContext,
         keyboardBehavior: KeyboardBehavior,
-        keyboardFeedbackHandler: KeyboardFeedbackHandler,
+        keyboardFeedbackSettings: KeyboardFeedbackSettings,
         autocompleteContext: AutocompleteContext,
         spaceDragGestureHandler: DragGestureHandler? = nil,
         spaceDragSensitivity: SpaceDragSensitivity = .medium
@@ -78,7 +78,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.autocompleteContext = autocompleteContext
         self.keyboardBehavior = keyboardBehavior
         self.keyboardContext = keyboardContext
-        self.keyboardFeedbackHandler = keyboardFeedbackHandler
+        self.keyboardFeedbackSettings = keyboardFeedbackSettings
         self.spaceDragGestureHandler = spaceDragGestureHandler ?? Self.dragGestureHandler(
             keyboardController: keyboardController,
             keyboardContext: keyboardContext,
@@ -110,7 +110,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     public let autocompleteContext: AutocompleteContext
     public let keyboardBehavior: KeyboardBehavior
     public let keyboardContext: KeyboardContext
-    public let keyboardFeedbackHandler: KeyboardFeedbackHandler
+    public let keyboardFeedbackSettings: KeyboardFeedbackSettings
     public let spaceDragGestureHandler: DragGestureHandler
 
     public var textDocumentProxy: UITextDocumentProxy { keyboardContext.textDocumentProxy }
@@ -200,10 +200,67 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         on action: KeyboardAction
     ) {
         guard shouldTriggerFeedback(for: gesture, on: action) else { return }
-        keyboardFeedbackHandler.triggerFeedback(for: gesture, on: action)
+        triggerAudioFeedback(for: gesture, on: action)
+        triggerHapticFeedback(for: gesture, on: action)
     }
+    
+    
+    
+    // MARK: - Feedback
 
-
+    /**
+     The audio feedback to use for a certain action gesture.
+     */
+    open func audioFeedback(
+        for gesture: KeyboardGesture,
+        on action: KeyboardAction
+    ) -> AudioFeedback? {
+        let config = keyboardFeedbackSettings.audioConfiguration
+        let custom = config.actions.first { $0.action == action }
+        if let custom = custom { return custom.feedback }
+        if action == .space && gesture == .longPress { return nil }
+        if action == .backspace { return config.delete }
+        if action.isInputAction { return config.input }
+        if action.isSystemAction { return config.system }
+        return nil
+    }
+    
+    /**
+     The haptic feedback to use for a certain action gesture.
+     */
+    open func hapticFeedback(
+        for gesture: KeyboardGesture,
+        on action: KeyboardAction
+    ) -> HapticFeedback? {
+        let config = keyboardFeedbackSettings.hapticConfiguration
+        let custom = config.actions.first { $0.action == action && $0.gesture == gesture }
+        if let custom = custom { return custom.feedback }
+        if action == .space && gesture == .longPress { return config.longPressOnSpace }
+        switch gesture {
+        case .doubleTap: return config.doubleTap
+        case .longPress: return config.longPress
+        case .press: return config.press
+        case .release: return config.release
+        case .repeatPress: return config.repeat
+        }
+    }
+    
+    /**
+     Trigger feedback for a certain keyboard action gesture.
+     */
+    open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
+        let feedback = audioFeedback(for: gesture, on: action)
+        feedback?.trigger()
+    }
+    
+    /**
+     Trigger feedback for a certain keyboard action gesture.
+     */
+    open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
+        let feedback = hapticFeedback(for: gesture, on: action)
+        feedback?.trigger()
+    }
+    
 
     // MARK: - Open Functions
 

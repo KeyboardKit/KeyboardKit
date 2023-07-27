@@ -21,7 +21,11 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
     var spaceDragHandler: MockDragGestureHandler!
     var textDocumentProxy: MockTextDocumentProxy!
 
+    var audioEngine: MockAudioFeedbackEngine!
+    var hapticEngine: MockHapticFeedbackEngine!
+    
     var originalEmojiProvider: FrequentEmojiProvider!
+    
 
     override func setUp() {
         controller = MockKeyboardInputViewController()
@@ -40,9 +44,14 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
             keyboardController: controller,
             keyboardContext: controller.keyboardContext,
             keyboardBehavior: controller.keyboardBehavior,
-            keyboardFeedbackHandler: feedbackHandler,
+            keyboardFeedbackSettings: controller.keyboardFeedbackSettings,
             autocompleteContext: controller.autocompleteContext,
             spaceDragGestureHandler: spaceDragHandler)
+        
+        audioEngine = MockAudioFeedbackEngine()
+        hapticEngine = MockHapticFeedbackEngine()
+        AudioFeedbackEngine.shared = audioEngine
+        HapticFeedbackEngine.shared = hapticEngine
     }
 
     override func tearDown() {
@@ -114,13 +123,51 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         result = handler.shouldTriggerFeedback(for: .longPress, on: .space)
         XCTAssertTrue(result)
     }
-
+    
     func testTriggerFeedbackForGestureOnActionCallsInjectedHandler() {
         handler.triggerFeedback(for: .press, on: .character(""))
-        let calls = feedbackHandler.calls(to: \.triggerFeedbackRef)
-        XCTAssertEqual(calls.count, 1)
-        XCTAssertEqual(calls[0].arguments.0, .press)
-        XCTAssertEqual(calls[0].arguments.1, .character(""))
+        let audioCalls = audioEngine.calls(to: \.triggerRef)
+        let hapticCalls = hapticEngine.calls(to: \.triggerRef)
+        XCTAssertEqual(audioCalls.count, 1)
+        XCTAssertEqual(hapticCalls.count, 1)
+    }
+    
+    func validateAudioFeedback(
+        for gesture: KeyboardGesture,
+        on action: KeyboardAction,
+        expected: AudioFeedback?
+    ) {
+        let result = handler.audioFeedback(for: gesture, on: action)
+        XCTAssertEqual(result, expected)
+    }
+    
+    func testAudioFeedbackForGestureOnActionReturnsCorrectValue() {
+        let config = handler.keyboardFeedbackSettings.audioConfiguration
+        validateAudioFeedback(for: .longPress, on: .space, expected: nil)
+        validateAudioFeedback(for: .press, on: .backspace, expected: config.delete)
+        validateAudioFeedback(for: .press, on: .character("a"), expected: config.input)
+        validateAudioFeedback(for: .press, on: .shift(currentCasing: .auto), expected: config.system)
+    }
+    
+    func validateHapticFeedback(
+        for gesture: KeyboardGesture,
+        on action: KeyboardAction,
+        expected: HapticFeedback?
+    ) {
+        let result = handler.hapticFeedback(for: gesture, on: action)
+        XCTAssertEqual(result, expected)
+    }
+    
+    func testHapticFeedbackForGestureOnActionReturnsCorrectValue() {
+        let config = handler.keyboardFeedbackSettings.hapticConfiguration
+        let char = KeyboardAction.character("a")
+        validateHapticFeedback(for: .longPress, on: .space, expected: config.longPressOnSpace)
+        validateHapticFeedback(for: .doubleTap, on: char, expected: config.doubleTap)
+        validateHapticFeedback(for: .longPress, on: char, expected: config.longPress)
+        validateHapticFeedback(for: .press, on: char, expected: config.press)
+        validateHapticFeedback(for: .release, on: char, expected: config.release)
+        validateHapticFeedback(for: .repeatPress, on: char, expected: config.repeat)
+        
     }
 
     func testTryApplyAutocompleteSuggestionOnlyProceedsForReleaseOnSomeActionsWhenSuggestionsExist() {

@@ -69,8 +69,8 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
         switch gesture {
         case .doubleTap: return config.doubleTap
         case .longPress: return config.longPress
-        case .press: return config.tap
-        case .release: return config.tap
+        case .press: return config.press
+        case .release: return config.release
         case .repeatPress: return config.repeat
         }
     }

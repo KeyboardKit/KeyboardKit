@@ -19,11 +19,11 @@ class StandardKeyboardFeedbackHandlerTests: XCTestCase {
     override func setUp() {
         audioEngine = MockAudioFeedbackEngine()
         hapticEngine = MockHapticFeedbackEngine()
-
-        handler = StandardKeyboardFeedbackHandler(settings: KeyboardFeedbackSettings())
-
         AudioFeedbackEngine.shared = audioEngine
         HapticFeedbackEngine.shared = hapticEngine
+        handler = StandardKeyboardFeedbackHandler(
+            settings: KeyboardFeedbackSettings()
+        )
     }
     
     func testTriggerFeedbackTriggersAudioAndHapticFeedback() {

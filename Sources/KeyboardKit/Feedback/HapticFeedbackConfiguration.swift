@@ -20,7 +20,8 @@ public struct HapticFeedbackConfiguration: Codable, Equatable {
      Create a feedback configuration.
      
      - Parameters:
-       - tap: The feedback to use for taps, by default `.none`.
+       - press: The feedback to use for presses, by default `.none`.
+       - release: The feedback to use for releases, by default `.none`.
        - doubleTap: The feedback to use for double taps, by default `.none`.
        - longPress: The feedback to use for long presses, by default `.none`.
        - longPressOnSpace: The feedback to use for long presses on space, by default `.mediumImpact`.
@@ -28,7 +29,26 @@ public struct HapticFeedbackConfiguration: Codable, Equatable {
        - actions: A list of action/gesture-specific feedback, by default `empty`.
      */
     public init(
-        tap: HapticFeedback = .none,
+        press: HapticFeedback = .none,
+        release: HapticFeedback = .none,
+        doubleTap: HapticFeedback = .none,
+        longPress: HapticFeedback = .none,
+        longPressOnSpace: HapticFeedback = .mediumImpact,
+        repeat: HapticFeedback = .none,
+        actions: [ActionFeedback] = []
+    ) {
+        self.press = press
+        self.release = release
+        self.doubleTap = doubleTap
+        self.longPress = longPress
+        self.longPressOnSpace = longPressOnSpace
+        self.repeat = `repeat`
+        self.actions = actions
+    }
+    
+    @available(*, deprecated, message: "Use the press and release initializer instead")
+    public init(
+        tap: HapticFeedback,
         doubleTap: HapticFeedback = .none,
         longPress: HapticFeedback = .none,
         longPressOnSpace: HapticFeedback = .mediumImpact,
@@ -36,6 +56,8 @@ public struct HapticFeedbackConfiguration: Codable, Equatable {
         actions: [ActionFeedback] = []
     ) {
         self.tap = tap
+        self.press = tap
+        self.release = tap
         self.doubleTap = doubleTap
         self.longPress = longPress
         self.longPressOnSpace = longPressOnSpace
@@ -62,11 +84,19 @@ public struct HapticFeedbackConfiguration: Codable, Equatable {
         public let gesture: KeyboardGesture
         public let feedback: HapticFeedback
     }
- 
+    
     /**
-     The feedback to use for taps.
+     The feedback to use for presses.
      */
-    public var tap: HapticFeedback
+    public var press: HapticFeedback
+    
+    /**
+     The feedback to use for releases.
+     */
+    public var release: HapticFeedback
+    
+    @available(*, deprecated, message: "Use press and release instead")
+    public var tap: HapticFeedback = .none
     
     /**
      The feedback to use for double taps.
@@ -101,7 +131,8 @@ public extension HapticFeedbackConfiguration {
      where all feedback types generate some kind of feedback.
     */
     static let enabled = HapticFeedbackConfiguration(
-        tap: .lightImpact,
+        press: .lightImpact,
+        release: .lightImpact,
         doubleTap: .lightImpact,
         longPress: .mediumImpact,
         longPressOnSpace: .mediumImpact,
@@ -112,7 +143,8 @@ public extension HapticFeedbackConfiguration {
      This configuration disables all haptic feedback.
      */
     static let noFeedback = HapticFeedbackConfiguration(
-        tap: .none,
+        press: .none,
+        release: .none,
         doubleTap: .none,
         longPress: .none,
         longPressOnSpace: .none,

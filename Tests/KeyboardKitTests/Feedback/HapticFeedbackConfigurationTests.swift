@@ -13,7 +13,8 @@ class HapticFeedbackConfigurationTests: XCTestCase {
     
     func testDefaultInitilizerUsesStandardFeedback() {
         let config = HapticFeedbackConfiguration()
-        XCTAssertEqual(config.tap, HapticFeedback.none)
+        XCTAssertEqual(config.press, HapticFeedback.none)
+        XCTAssertEqual(config.release, HapticFeedback.none)
         XCTAssertEqual(config.doubleTap, HapticFeedback.none)
         XCTAssertEqual(config.longPress, HapticFeedback.none)
         XCTAssertEqual(config.longPressOnSpace, .mediumImpact)
@@ -22,7 +23,8 @@ class HapticFeedbackConfigurationTests: XCTestCase {
 
     func testEnabledConfigurationEnabledAllFeedback() {
         let config = HapticFeedbackConfiguration.enabled
-        XCTAssertEqual(config.tap, .lightImpact)
+        XCTAssertEqual(config.press, HapticFeedback.lightImpact)
+        XCTAssertEqual(config.release, HapticFeedback.lightImpact)
         XCTAssertEqual(config.doubleTap, .lightImpact)
         XCTAssertEqual(config.longPress, .mediumImpact)
         XCTAssertEqual(config.longPressOnSpace, .mediumImpact)
@@ -31,7 +33,8 @@ class HapticFeedbackConfigurationTests: XCTestCase {
 
     func testNoFeedbackConfigurationDisablesAllFeedback() {
         let config = HapticFeedbackConfiguration.noFeedback
-        XCTAssertEqual(config.tap, HapticFeedback.none)
+        XCTAssertEqual(config.press, HapticFeedback.none)
+        XCTAssertEqual(config.release, HapticFeedback.none)
         XCTAssertEqual(config.doubleTap, HapticFeedback.none)
         XCTAssertEqual(config.longPress, HapticFeedback.none)
         XCTAssertEqual(config.longPressOnSpace, HapticFeedback.none)
