@@ -17,7 +17,6 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
     private var handler: TestClass!
     var controller: MockKeyboardInputViewController!
     var emojiProvider: MockFrequentEmojiProvider!
-    var feedbackHandler: MockKeyboardFeedbackHandler!
     var spaceDragHandler: MockDragGestureHandler!
     var textDocumentProxy: MockTextDocumentProxy!
 
@@ -30,7 +29,6 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
     override func setUp() {
         controller = MockKeyboardInputViewController()
         emojiProvider = MockFrequentEmojiProvider()
-        feedbackHandler = MockKeyboardFeedbackHandler()
         spaceDragHandler = MockDragGestureHandler()
         textDocumentProxy = MockTextDocumentProxy()
         textDocumentProxy.documentContextBeforeInput = ""

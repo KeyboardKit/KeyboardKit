@@ -353,12 +353,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     public lazy var keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior(
         keyboardContext: keyboardContext)
 
-    /**
-     The feedback handler that is used to trigger haptic and
-     audio feedback.
-
-     You can replace this value with a custom implementation.
-     */
+    @available(*, deprecated, message: "This is replaced by keyboardActionHandler")
     public lazy var keyboardFeedbackHandler: KeyboardFeedbackHandler = StandardKeyboardFeedbackHandler(
         settings: keyboardFeedbackSettings)
 

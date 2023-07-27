@@ -128,7 +128,6 @@ class KeyboardInputViewControllerTests: XCTestCase {
         XCTAssertNotNil(vc.keyboardActionHandler as? StandardKeyboardActionHandler)
         XCTAssertNotNil(vc.keyboardAppearance as? StandardKeyboardAppearance)
         XCTAssertNotNil(vc.keyboardBehavior as? StandardKeyboardBehavior)
-        XCTAssertNotNil(vc.keyboardFeedbackHandler as? StandardKeyboardFeedbackHandler)
         XCTAssertNotNil(vc.keyboardLayoutProvider as? StandardKeyboardLayoutProvider)
     }
     

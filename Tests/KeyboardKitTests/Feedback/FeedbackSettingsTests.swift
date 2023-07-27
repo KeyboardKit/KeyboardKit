@@ -19,7 +19,7 @@ class FeedbackSettingsTests: XCTestCase {
 
     func testFeedbackSettingsCanUseCustomConfigurations() {
         let audio = AudioFeedbackConfiguration(input: .delete, delete: .input, system: .system)
-        let haptic = HapticFeedbackConfiguration(tap: .error, doubleTap: .warning, longPress: .success, longPressOnSpace: .lightImpact, repeat: .error)
+        let haptic = HapticFeedbackConfiguration(press: .error, release: .error, doubleTap: .warning, longPress: .success, longPressOnSpace: .lightImpact, repeat: .error)
         let settings = KeyboardFeedbackSettings(audioConfiguration: audio, hapticConfiguration: haptic)
         XCTAssertNotEqual(settings.audioConfiguration, .standard)
         XCTAssertNotEqual(settings.hapticConfiguration, .standard)

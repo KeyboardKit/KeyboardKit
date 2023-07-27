@@ -8,19 +8,7 @@
 
 import Foundation
 
-/**
- This feedback handler is used by default by KeyboardKit and
- can trigger audio and haptic feeeback.
- 
- You can inherit this class and override any open properties
- and functions to customize the standard behavior.
- 
- The provided `settings` instance is used to determine which
- kind of feedback that will be triggered. This means you can
- change feedback behavior at any time.
- 
- `v8.0` - This type will be merged with the action handler.
- */
+@available(*, deprecated, message: "This class is replaced by StandardKeyboardActionHandler")
 open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
     
     /**

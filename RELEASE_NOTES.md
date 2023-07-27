@@ -42,10 +42,13 @@ This release converts feedback engines from protocols to singletons to simplify 
 * `InputSetProviderBased` has been deprecated.
 * `NumericInputSet.english` has been renamed to `englishNumeric`.
 * `NumericInputSet.standard` has been renamed to `standardNumeric`.
-* `StandardAudioFeedbackEngine` has been deprecated.
 * `DisabledAudioFeedbackEngine` has been deprecated.
-* `HapticFeedbackConfiguration.tap` has been replaced by `press` and `release`. 
-* `StandardKeyboardFeedbackHandler` config properties have been deprecated.
+* `DisabledHapticFeedbackEngine` has been deprecated.
+* `HapticFeedbackConfiguration.tap` has been replaced by `press` and `release`.
+* `KeyboardFeedbackHandler` has been deprecated.
+* `StandardAudioFeedbackEngine` has been deprecated.
+* `StandardHapticFeedbackEngine` has been deprecated.
+* `StandardKeyboardFeedbackHandler` has been deprecated.
 * `StaticInputSetProvider` has been deprecated.
 * `SymbolicInputSet.english` has been renamed to `englishSymbolic`.
 * `SymbolicInputSet.standard` has been renamed to `standardSymbolic`.

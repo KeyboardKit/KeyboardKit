@@ -219,9 +219,7 @@ KeyboardKit is available under the MIT license.
 - ``HapticFeedback``
 - ``HapticFeedbackConfiguration``
 - ``HapticFeedbackEngine``
-- ``KeyboardFeedbackHandler``
 - ``KeyboardFeedbackSettings``
-- ``StandardKeyboardFeedbackHandler``
 
 ### Gestures
 
