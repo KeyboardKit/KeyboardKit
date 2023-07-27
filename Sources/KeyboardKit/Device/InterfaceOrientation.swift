@@ -20,7 +20,12 @@ import UIKit
  */
 public enum InterfaceOrientation: String, CaseIterable, Equatable {
 
-    case portrait, portraitUpsideDown, landscape, landscapeLeft, landscapeRight, unknown
+    case portrait
+    case portraitUpsideDown
+    case landscape
+    case landscapeLeft
+    case landscapeRight
+    case unknown
 }
 
 public extension InterfaceOrientation {
@@ -62,3 +67,25 @@ public extension InterfaceOrientation {
         }
     }
 }
+
+#if os(iOS) || os(tvOS)
+extension UIScreen {
+
+    /**
+     Get the current interface orientation.
+
+     This is required since keyboard extensions cannot check
+     the status bar style of the application.
+     */
+    var interfaceOrientation: InterfaceOrientation {
+        let point = coordinateSpace.convert(CGPoint.zero, to: fixedCoordinateSpace)
+        switch (point.x, point.y) {
+        case (0, 0): return .portrait
+        case let (x, y) where x != 0 && y != 0: return .portraitUpsideDown
+        case let (0, y) where y != 0: return .landscapeLeft
+        case let (x, 0) where x != 0: return .landscapeRight
+        default: return .unknown
+        }
+    }
+}
+#endif

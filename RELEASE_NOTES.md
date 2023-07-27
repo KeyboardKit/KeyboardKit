@@ -26,6 +26,7 @@ This release converts feedback engines from protocols to singletons to simplify 
 ### ✨ New Features
 
 * `HapticFeedbackConfiguration` has new `press` and `release` configurations.
+* `Image.keyboardShift` is a new image.
 * `InputSet` has new `English` builders.
 * `KeyboardActionHandler` has new feedback functions.
 * `KeyboardReturnKeyType` has new `continue`, `emergencyCall` and `route` types.
@@ -45,6 +46,8 @@ This release converts feedback engines from protocols to singletons to simplify 
 * `EnglishInputSetProvider` has been deprecated.
 * `InputSetProvider` has been deprecated.
 * `InputSetProviderBased` has been deprecated.
+* `InterfaceOrientationResolver` has been deprecated.
+* `KeyboardCase.standardButtonImage` has been deprecated.
 * `NumericInputSet.english` has been renamed to `englishNumeric`.
 * `NumericInputSet.standard` has been renamed to `standardNumeric`.
 * `DisabledAudioFeedbackEngine` has been deprecated.

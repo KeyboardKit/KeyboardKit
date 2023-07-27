@@ -82,6 +82,8 @@ KeyboardKit is available under the MIT license.
 
 - ``KeyboardAutocapitalizationType``
 - ``KeyboardBehavior``
+- ``KeyboardCase``
+- ``KeyboardCaseAdjustable``
 - ``KeyboardContext``
 - ``KeyboardController``
 - ``KeyboardType``
@@ -158,11 +160,6 @@ KeyboardKit is available under the MIT license.
 - ``EnglishCalloutActionProvider``
 - ``LocalizedCalloutActionProvider``
 - ``DisabledCalloutActionProvider``
-
-### Casing
-
-- ``KeyboardCase``
-- ``KeyboardCaseAdjustable``
 
 ### Colors
 
