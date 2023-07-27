@@ -5,11 +5,13 @@ This article describes the KeyboardKit external keyboard engine and how to use i
 KeyboardKit lets you detect whether or not an external keyboard is used, including snap-on Smart Folio iPad keyboards, the Magic Keyboard, Bluetooth keyboards etc.
 
 
+
 ## How to detect an external keyboard
 
 KeyboardKit has an ``ExternalKeyboardContext`` that lets you detect whether or not an external keyboard is connected to the device. To use it, just set it up as an observed object in your keyboard controller. 
 
 Since this context requires iOS 14, this is not setup by the ``KeyboardInputViewController``.
+
 
 
 ## Primary language and key mapping

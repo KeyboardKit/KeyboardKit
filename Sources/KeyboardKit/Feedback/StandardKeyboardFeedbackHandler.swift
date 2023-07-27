@@ -36,15 +36,6 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
      */
     public let settings: KeyboardFeedbackSettings
     
-    /**
-     The audio configuration to use, derived from ``settings``.
-     */
-    public var audioConfig: AudioFeedbackConfiguration { settings.audioConfiguration }
-    
-    /**
-     The haptic configuration to use, derived from ``settings``.
-     */
-    public var hapticConfig: HapticFeedbackConfiguration { settings.hapticConfiguration }
     
     /**
      Trigger feedback for when a `gesture` is performed on a
@@ -66,12 +57,13 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
      audio feedback behavior.
      */
     open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
-        let custom = audioConfig.actions.first { $0.action == action }
+        let config = settings.audioConfiguration
+        let custom = config.actions.first { $0.action == action }
         if let custom = custom { return custom.feedback.trigger() }
         if action == .space && gesture == .longPress { return }
-        if action == .backspace { return audioConfig.delete.trigger() }
-        if action.isInputAction { return audioConfig.input.trigger() }
-        if action.isSystemAction { return audioConfig.system.trigger() }
+        if action == .backspace { return config.delete.trigger() }
+        if action.isInputAction { return config.input.trigger() }
+        if action.isSystemAction { return config.system.trigger() }
     }
     
     /**
@@ -82,15 +74,16 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
      haptic feedback behavior.
      */
     open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
-        let custom = hapticConfig.actions.first { $0.action == action && $0.gesture == gesture }
+        let config = settings.hapticConfiguration
+        let custom = config.actions.first { $0.action == action && $0.gesture == gesture }
         if let custom = custom { return custom.feedback.trigger() }
-        if action == .space && gesture == .longPress { return hapticConfig.longPressOnSpace.trigger() }
+        if action == .space && gesture == .longPress { return config.longPressOnSpace.trigger() }
         switch gesture {
-        case .doubleTap: hapticConfig.doubleTap.trigger()
-        case .longPress: hapticConfig.longPress.trigger()
-        case .press: hapticConfig.tap.trigger()
-        case .release: hapticConfig.tap.trigger()
-        case .repeatPress: hapticConfig.repeat.trigger()
+        case .doubleTap: config.doubleTap.trigger()
+        case .longPress: config.longPress.trigger()
+        case .press: config.tap.trigger()
+        case .release: config.tap.trigger()
+        case .repeatPress: config.repeat.trigger()
         }
     }
 }

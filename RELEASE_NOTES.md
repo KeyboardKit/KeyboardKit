@@ -33,6 +33,7 @@ This release prepares the various input set utilities for the future removal of 
 * `InputSetProviderBased` has been deprecated.
 * `NumericInputSet.english` has been renamed to `englishNumeric`.
 * `NumericInputSet.standard` has been renamed to `standardNumeric`.
+* `StandardKeyboardFeedbackHandler` config properties have been deprecated.
 * `StaticInputSetProvider` has been deprecated.
 * `SymbolicInputSet.english` has been renamed to `englishSymbolic`.
 * `SymbolicInputSet.standard` has been renamed to `standardSymbolic`.

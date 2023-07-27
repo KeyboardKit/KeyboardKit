@@ -312,6 +312,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      keys of the keyboard.
 
      You can replace this value with a custom implementation.
+     
+     `v8.0` - This property will be removed in KeyboardKit 8.
      */
     public lazy var inputSetProvider: InputSetProvider = StandardInputSetProvider(
         keyboardContext: keyboardContext
@@ -345,6 +347,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      should behave when certain things happen.
 
      You can replace this value with a custom implementation.
+     
+     `v8.0` - This property will be removed in KeyboardKit 8.
      */
     public lazy var keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior(
         keyboardContext: keyboardContext)
