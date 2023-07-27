@@ -41,7 +41,7 @@ public extension AudioFeedback {
      The unique feedback identifier.
 
      This identifier maps to a unique system sound, which is
-     used by the ``StandardAudioFeedbackEngine``.
+     used by the ``AudioFeedbackEngine``.
      */
     var id: UInt32 {
         switch self {

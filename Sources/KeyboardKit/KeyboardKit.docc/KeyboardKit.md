@@ -222,10 +222,6 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardFeedbackHandler``
 - ``KeyboardFeedbackSettings``
 - ``StandardKeyboardFeedbackHandler``
-- ``StandardHapticFeedbackEngine``
-- ``StandardAudioFeedbackEngine``
-- ``DisabledAudioFeedbackEngine``
-- ``DisabledHapticFeedbackEngine``
 
 ### Gestures
 
@@ -252,7 +248,6 @@ KeyboardKit is available under the MIT license.
 - ``InputSetRows``
 - ``LocalizedInputSetProvider``
 - ``StandardInputSetProvider``
-- ``StaticInputSetProvider``
 
 - ``AlphabeticInputSet``
 - ``NumericInputSet``
@@ -341,3 +336,4 @@ KeyboardKit is available under the MIT license.
 ### Toolbar
 
 - ``ToggleToolbar``
+- ``ToggleToolbarAnimation``
