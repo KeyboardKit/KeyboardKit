@@ -18,6 +18,8 @@ import Foundation
  The provided `settings` instance is used to determine which
  kind of feedback that will be triggered. This means you can
  change feedback behavior at any time.
+ 
+ `v8.0` - This type will be merged with the action handler.
  */
 open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
     
@@ -36,13 +38,45 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
      */
     public let settings: KeyboardFeedbackSettings
     
+    /**
+     The audio feedback to use for a certain action gesture.
+     */
+    open func audioFeedback(
+        for gesture: KeyboardGesture,
+        on action: KeyboardAction
+    ) -> AudioFeedback? {
+        let config = settings.audioConfiguration
+        let custom = config.actions.first { $0.action == action }
+        if let custom = custom { return custom.feedback }
+        if action == .space && gesture == .longPress { return nil }
+        if action == .backspace { return config.delete }
+        if action.isInputAction { return config.input }
+        if action.isSystemAction { return config.system }
+        return nil
+    }
     
     /**
-     Trigger feedback for when a `gesture` is performed on a
-     certain `action`.
-     
-     You can override this function to customize the default
-     feedback behavior.
+     The haptic feedback to use for a certain action gesture.
+     */
+    open func hapticFeedback(
+        for gesture: KeyboardGesture,
+        on action: KeyboardAction
+    ) -> HapticFeedback? {
+        let config = settings.hapticConfiguration
+        let custom = config.actions.first { $0.action == action && $0.gesture == gesture }
+        if let custom = custom { return custom.feedback }
+        if action == .space && gesture == .longPress { return config.longPressOnSpace }
+        switch gesture {
+        case .doubleTap: return config.doubleTap
+        case .longPress: return config.longPress
+        case .press: return config.tap
+        case .release: return config.tap
+        case .repeatPress: return config.repeat
+        }
+    }
+    
+    /**
+     Trigger feedback for a certain keyboard action gesture.
      */
     open func triggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
         triggerAudioFeedback(for: gesture, on: action)
@@ -50,40 +84,18 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
     }
     
     /**
-     Trigger feedback for when a `gesture` is performed on a
-     certain `action`.
-     
-     You can override this function to customize the default
-     audio feedback behavior.
+     Trigger feedback for a certain keyboard action gesture.
      */
     open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
-        let config = settings.audioConfiguration
-        let custom = config.actions.first { $0.action == action }
-        if let custom = custom { return custom.feedback.trigger() }
-        if action == .space && gesture == .longPress { return }
-        if action == .backspace { return config.delete.trigger() }
-        if action.isInputAction { return config.input.trigger() }
-        if action.isSystemAction { return config.system.trigger() }
+        let feedback = audioFeedback(for: gesture, on: action)
+        feedback?.trigger()
     }
     
     /**
-     Trigger feedback for when a `gesture` is performed on a
-     certain `action`.
-     
-     You can override this function to customize the default
-     haptic feedback behavior.
+     Trigger feedback for a certain keyboard action gesture.
      */
     open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
-        let config = settings.hapticConfiguration
-        let custom = config.actions.first { $0.action == action && $0.gesture == gesture }
-        if let custom = custom { return custom.feedback.trigger() }
-        if action == .space && gesture == .longPress { return config.longPressOnSpace.trigger() }
-        switch gesture {
-        case .doubleTap: config.doubleTap.trigger()
-        case .longPress: config.longPress.trigger()
-        case .press: config.tap.trigger()
-        case .release: config.tap.trigger()
-        case .repeatPress: config.repeat.trigger()
-        }
+        let feedback = hapticFeedback(for: gesture, on: action)
+        feedback?.trigger()
     }
 }

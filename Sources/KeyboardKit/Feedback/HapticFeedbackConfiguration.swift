@@ -102,7 +102,8 @@ public extension HapticFeedbackConfiguration {
         doubleTap: .lightImpact,
         longPress: .mediumImpact,
         longPressOnSpace: .mediumImpact,
-        repeat: .selectionChanged)
+        repeat: .selectionChanged
+    )
     
     /**
      This configuration disables all haptic feedback.

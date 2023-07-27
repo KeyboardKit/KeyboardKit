@@ -26,24 +26,32 @@ import Foundation
  new implementation from scratch. When you're implementation
  is ready, just replace the controller service with your own
  implementation to make the library use it instead.
+ 
+ `v8.0` - This type will be merged with the action handler.
  */
 public protocol KeyboardFeedbackHandler {
     
     /**
-     Trigger feedback for when a `gesture` is performed on a
-     certain `action`.
+     Trigger feedback for a certain keyboard action gesture.
      */
-    func triggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction)
+    func triggerFeedback(
+        for gesture: KeyboardGesture,
+        on action: KeyboardAction
+    )
  
     /**
-     Trigger feedback for when a `gesture` is performed on a
-     certain `action`.
+     Trigger feedback for a certain keyboard action gesture.
      */
-    func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction)
+    func triggerAudioFeedback(
+        for gesture: KeyboardGesture,
+        on action: KeyboardAction
+    )
     
     /**
-     Trigger feedback for when a `gesture` is performed on a
-     certain `action`.
+     Trigger feedback for a certain keyboard action gesture.
      */
-    func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction)
+    func triggerHapticFeedback(
+        for gesture: KeyboardGesture,
+        on action: KeyboardAction
+    )
 }

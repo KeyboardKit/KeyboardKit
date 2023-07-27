@@ -86,7 +86,8 @@ public extension AudioFeedbackConfiguration {
     static let noFeedback = AudioFeedbackConfiguration(
         input: .none,
         delete: .none,
-        system: .none)
+        system: .none
+    )
     
     /**
      This configuration uses standard audio feedbacks, which

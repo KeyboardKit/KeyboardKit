@@ -22,6 +22,7 @@ This release prepares the various input set utilities for the future removal of 
 ### ✨ New Features
 
 * `KeyboardReturnKeyType` has new `continue`, `emergencyCall` and `route` types.
+* `StandardKeyboardFeedbackHandler` has new feedback functions.
 * `StandardKeyboardLayoutProvider` has a new default initializer.
 
 ### 💡 Adjustments
