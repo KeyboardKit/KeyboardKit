@@ -9,7 +9,10 @@
 import Foundation
 
 /**
- This struct specifies audio feedback for a custom keyboard.
+ This struct can be used to configure audio feedback.
+ 
+ You can create a custom configuration or use the predefined,
+ static values like ``AudioFeedbackConfiguration/enabled``.
  */
 public struct AudioFeedbackConfiguration: Codable, Equatable {
     

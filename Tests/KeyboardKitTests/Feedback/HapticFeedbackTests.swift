@@ -15,7 +15,7 @@ class HapticFeedbackTests: XCTestCase {
 
     override func setUp() {
         engine = MockHapticFeedbackEngine()
-        HapticFeedback.engine = engine
+        HapticFeedbackEngine.shared = engine
     }
 
     func testPreparingFeedbackUsesSharedAudioEngine() {

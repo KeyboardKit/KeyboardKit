@@ -9,16 +9,11 @@
 import Foundation
 
 /**
- This enum contains various haptic feedback types.
+ This enum contains haptic feedback types that maps to names
+ that are then mapped to system haptic feedback types.
   
  You can call ``trigger()`` on any feedback value to trigger
- it, using the static ``engine``. You can replace the engine
- with any custom engine if you need to.
-
- Note that `macOS`, `tvOS` and `watchOS` resolves a disabled
- ``HapticFeedbackEngine`` by default, since the platforms do
- not support system haptics. You can replace it with another
- engine that does something meaningful on each platform.
+ it using ``HapticFeedbackEngine/shared``.
 */
 public enum HapticFeedback: String, CaseIterable, Codable, Equatable, Identifiable {
     
@@ -62,28 +57,13 @@ public extension HapticFeedback {
      */
     var id: String { rawValue }
 
-    /**
-     The engine that will be used to trigger haptic feedback.
-     */
-    static var engine: HapticFeedbackEngine = {
-        #if os(iOS)
-        StandardHapticFeedbackEngine.shared
-        #else
-        DisabledHapticFeedbackEngine()
-        #endif
-    }()
-    
-    /**
-     Prepare the haptic feedback, using the shared engine.
-     */
+    /// Prepare the feedback with the shared feedback engine.
     func prepare() {
-        Self.engine.prepare(self)
+        HapticFeedbackEngine.shared.prepare(self)
     }
     
-    /**
-     Trigger the feedback, using the shared feedback engine.
-     */
+    /// Trigger the feedback with the shared feedback engine.
     func trigger() {
-        Self.engine.trigger(self)
+        HapticFeedbackEngine.shared.trigger(self)
     }
 }

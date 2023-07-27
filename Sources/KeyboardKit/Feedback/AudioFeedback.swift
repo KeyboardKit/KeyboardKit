@@ -9,8 +9,9 @@
 import Foundation
 
 /**
- This enum contains various audio feedback types.
-  
+ This enum contains audio feedback types that maps to system
+ audio feedback values.
+ 
  You can call ``trigger()`` on any feedback value to trigger
  it using ``AudioFeedbackEngine/shared``.
 */
@@ -52,9 +53,7 @@ public extension AudioFeedback {
         }
     }
     
-    /**
-     Trigger the feedback, using the shared feedback engine.
-     */
+    /// Trigger the feedback with the shared feedback engine.
     func trigger() {
         AudioFeedbackEngine.shared.trigger(self)
     }

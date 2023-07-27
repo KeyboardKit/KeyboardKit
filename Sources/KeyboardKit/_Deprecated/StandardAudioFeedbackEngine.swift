@@ -9,18 +9,6 @@
 #if os(iOS) || os(macOS) || os(tvOS)
 import AudioToolbox
 
-/**
- This engine uses system features to trigger audio feedbacks.
- 
- It is the default ``AudioFeedback/engine`` on all platforms
- where it's supported.
-
- You can use, modify and replace the ``shared`` engine. This
- lets you customize the global audio feedback experience.
-
- Note that the engine is currently only supported on certain
- platforms.
- */
 @available(*, deprecated, renamed: "AudioFeedbackEngine")
 open class StandardAudioFeedbackEngine: AudioFeedbackEngine {}
 #endif

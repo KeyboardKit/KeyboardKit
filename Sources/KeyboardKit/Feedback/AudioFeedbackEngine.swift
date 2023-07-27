@@ -11,18 +11,17 @@ import AudioToolbox
 #endif
 
 /**
- This engine uses system features to trigger audio feedback.
+ This engine can be used to trigger audio feedback.
+ 
+ This engine uses the `AudioToolbox` framework, which is not
+ available on watchOS. Therefore, it does nothing on watchOS.
  */
 open class AudioFeedbackEngine {
     
-    /**
-     Create an audio feedback instance.
-     */
+    /// Create an audio feedback engine instance.
     public init() {}
     
-    /**
-     Trigger a certain audio feedback type.
-     **/
+    /// Trigger a certain audio feedback type.
     open func trigger(_ audio: AudioFeedback) {
         switch audio {
         case .none: return
@@ -33,9 +32,7 @@ open class AudioFeedbackEngine {
 
 public extension AudioFeedbackEngine {
     
-    /**
-     A shared instance that can be used from anywhere.
-     */
+    /// This shared instance can be used from anywhere.
     static var shared = AudioFeedbackEngine()
 }
 

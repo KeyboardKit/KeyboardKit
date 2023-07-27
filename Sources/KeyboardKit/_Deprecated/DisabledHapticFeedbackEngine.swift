@@ -12,13 +12,9 @@ import Foundation
  This disabled engine doesn't do anything and can be used on
  platforms where system haptics are not available.
  */
+@available(*, deprecated, message: "This engine is no longer used.")
 public class DisabledHapticFeedbackEngine: HapticFeedbackEngine {
     
-    /**
-     Create a disabled engine.
-     */
-    public init() {}
-
-    public func prepare(_ feedback: HapticFeedback) {}
-    public func trigger(_ feedback: HapticFeedback) {}
+    public override func prepare(_ feedback: HapticFeedback) {}
+    public override func trigger(_ feedback: HapticFeedback) {}
 }

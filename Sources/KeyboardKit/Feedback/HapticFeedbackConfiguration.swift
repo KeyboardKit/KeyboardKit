@@ -9,7 +9,10 @@
 import Foundation
 
 /**
- This struct specifies haptic feedback for a custom keyboard.
+ This struct can be used to configure haptic feedback.
+ 
+ You can create a custom configuration or use the predefined,
+ static values like ``HapticFeedbackConfiguration/enabled``.
  */
 public struct HapticFeedbackConfiguration: Codable, Equatable {
     

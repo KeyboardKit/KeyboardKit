@@ -23,7 +23,7 @@ class StandardKeyboardFeedbackHandlerTests: XCTestCase {
         handler = StandardKeyboardFeedbackHandler(settings: KeyboardFeedbackSettings())
 
         AudioFeedbackEngine.shared = audioEngine
-        HapticFeedback.engine = hapticEngine
+        HapticFeedbackEngine.shared = hapticEngine
     }
     
     func testTriggerFeedbackTriggersAudioAndHapticFeedback() {
