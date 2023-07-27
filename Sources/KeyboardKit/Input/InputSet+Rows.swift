@@ -15,6 +15,13 @@ import Foundation
  thus become `InputSet.Row`.
  */
 public typealias InputSetRow = [InputSetItem]
+/**
+ This typealias represents a list of input set rows.
+ 
+ `v8.0` - This type will be moved nested in ``InputSet`` and
+ thus become `InputSet.Rows`.
+ */
+public typealias InputSetRows = [InputSetRow]
 
 public extension InputSetRow {
     
@@ -125,5 +132,15 @@ public extension InputSetRow {
      */
     func characters(for case: KeyboardCase = .lowercased) -> [String] {
         map { $0.character(for: `case`) }
+    }
+}
+
+public extension InputSetRows {
+
+    /**
+     Get all input characters for a certain keyboard case.
+     */
+    func characters(for case: KeyboardCase = .lowercased) -> [[String]] {
+        map { $0.characters(for: `case`) }
     }
 }
