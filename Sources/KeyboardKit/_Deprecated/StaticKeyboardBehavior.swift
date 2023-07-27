@@ -8,13 +8,7 @@
 
 import Foundation
 
-/**
- This behavior can be used to define a behavior that doesn't
- cause any changes to the keyboard when typing.
- 
- This behavior is used where ``StandardKeyboardBehavior`` is
- not available.
- */
+@available(*, deprecated, message: "This is no longer used.")
 open class StaticKeyboardBehavior: KeyboardBehavior {
 
     /**

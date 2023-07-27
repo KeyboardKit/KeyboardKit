@@ -24,7 +24,7 @@ import UIKit
  Your controller can then override any functions and replace
  any services to customize the behavior of the keyboard. You
  can also access any observable state as environment objects,
- since the controller injects them into the view hierarchy.
+ since they are injected into the view hiearchy.
 
  For instance, you can access ``keyboardContext`` like this:
 
@@ -38,9 +38,9 @@ import UIKit
  }
  ```
 
- You may notice that KeyboardKit's own views use initializer
- parameters instead of environment objects. It's intentional,
- to better communicate the dependencies of each view.
+ You may notice that KeyboardKit uses initializer parameters
+ instead of environment objects. It's intentional, to better
+ communicate the dependencies of each view.
  */
 open class KeyboardInputViewController: UIInputViewController, KeyboardController {
 
@@ -347,8 +347,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      should behave when certain things happen.
 
      You can replace this value with a custom implementation.
-     
-     `v8.0` - This property will be removed in KeyboardKit 8.
      */
     public lazy var keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior(
         keyboardContext: keyboardContext)
@@ -614,10 +612,9 @@ private extension KeyboardInputViewController {
     }
 
     func tryChangeToPreferredKeyboardTypeAfterTextDidChange() {
-        let context = keyboardContext
         let shouldSwitch = keyboardBehavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange()
         guard shouldSwitch else { return }
-        setKeyboardType(context.preferredKeyboardType)
+        setKeyboardType(keyboardContext.preferredKeyboardType)
     }
 
     /**

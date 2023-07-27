@@ -22,7 +22,7 @@ import Foundation
  must handle double taps to switch to caps lock. Due to this,
  it must not switch to the preferred keyboard, but must also
  always try to do so. This behavior is tested to ensure that
- is is behaving as it should, although it may be hard to see
+ it is behaving as it should, although it may be hard to see
  why the code is the way it is.
  */
 open class StandardKeyboardBehavior: KeyboardBehavior {

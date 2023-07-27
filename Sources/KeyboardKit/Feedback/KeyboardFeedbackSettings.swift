@@ -23,8 +23,6 @@ import Foundation
  which means that you can change the basic feedback behavior
  without having to create a custom feedback handler. However,
  more complex changes require a custom feedback handler.
- 
- `v8.0` - This type will be merged with the keyboard context.
  */
 public class KeyboardFeedbackSettings: ObservableObject {
     

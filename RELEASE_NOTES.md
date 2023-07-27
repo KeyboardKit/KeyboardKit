@@ -19,7 +19,7 @@ This release prepares the various input set utilities for the future removal of 
 
 This release converts feedback engines from protocols to singletons to simplify the setup and minimize the risk for memory leaks. 
 
-`v8.0` will be added to the docs, everywhere structural or architectural changes will be made. The aim is to clean up and simplify the library, which today has too many types and concepts. 
+`v8.0` will be added to the docs, where structural or architectural changes will be made, but currently can't be made since it would cause breaking changes. The aim is to clean up and simplify the library, which today has too many types and concepts. 
 
 ### ✨ New Features
 
@@ -50,6 +50,7 @@ This release converts feedback engines from protocols to singletons to simplify 
 * `StandardHapticFeedbackEngine` has been deprecated.
 * `StandardKeyboardFeedbackHandler` has been deprecated.
 * `StaticInputSetProvider` has been deprecated.
+* `StaticKeyboardBehavior` has been deprecated.
 * `SymbolicInputSet.english` has been renamed to `englishSymbolic`.
 * `SymbolicInputSet.standard` has been renamed to `standardSymbolic`.
 * `SystemKeyboardLayoutProvider` utility extensions have been deprecated.
