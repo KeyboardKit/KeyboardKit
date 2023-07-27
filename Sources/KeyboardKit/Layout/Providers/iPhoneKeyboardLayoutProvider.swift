@@ -29,10 +29,10 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     open override func actions(
         for inputs: InputSetRows,
         context: KeyboardContext
-    ) -> KeyboardActionRows {
+    ) -> KeyboardAction.Rows {
         let actions = super.actions(for: inputs, context: context)
         guard isExpectedActionSet(actions) else { return actions }
-        var result = KeyboardActionRows()
+        var result = KeyboardAction.Rows()
         result.append(topLeadingActions(for: actions, context: context) + actions[0] + topTrailingActions(for: actions, context: context))
         result.append(middleLeadingActions(for: actions, context: context) + actions[1] + middleTrailingActions(for: actions, context: context))
         result.append(lowerLeadingActions(for: actions, context: context) + actions[2] + lowerTrailingActions(for: actions, context: context))
@@ -69,9 +69,9 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      Additional leading actions to apply to the top row.
      */
     open func topLeadingActions(
-        for actions: KeyboardActionRows,
+        for actions: KeyboardAction.Rows,
         context: KeyboardContext
-    ) -> KeyboardActions {
+    ) -> KeyboardAction.Row {
         guard shouldAddUpperMarginActions(for: actions, context: context) else { return [] }
         return [actions[0].leadingCharacterMarginAction]
     }
@@ -80,9 +80,9 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      Additional trailing actions to apply to the top row.
      */
     open func topTrailingActions(
-        for actions: KeyboardActionRows,
+        for actions: KeyboardAction.Rows,
         context: KeyboardContext
-    ) -> KeyboardActions {
+    ) -> KeyboardAction.Row {
         guard shouldAddUpperMarginActions(for: actions, context: context) else { return [] }
         return [actions[0].trailingCharacterMarginAction]
     }
@@ -91,9 +91,9 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      Additional leading actions to apply to the middle row.
      */
     open func middleLeadingActions(
-        for actions: KeyboardActionRows,
+        for actions: KeyboardAction.Rows,
         context: KeyboardContext
-    ) -> KeyboardActions {
+    ) -> KeyboardAction.Row {
         guard shouldAddMiddleMarginActions(for: actions, context: context) else { return [] }
         return [actions[1].leadingCharacterMarginAction]
     }
@@ -102,9 +102,9 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      Additional trailing actions to apply to the middle row.
      */
     open func middleTrailingActions(
-        for actions: KeyboardActionRows,
+        for actions: KeyboardAction.Rows,
         context: KeyboardContext
-    ) -> KeyboardActions {
+    ) -> KeyboardAction.Row {
         guard shouldAddMiddleMarginActions(for: actions, context: context) else { return [] }
         return [actions[1].trailingCharacterMarginAction]
     }
@@ -113,9 +113,9 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      Additional leading actions to apply to the lower row.
      */
     open func lowerLeadingActions(
-        for actions: KeyboardActionRows,
+        for actions: KeyboardAction.Rows,
         context: KeyboardContext
-    ) -> KeyboardActions {
+    ) -> KeyboardAction.Row {
         guard isExpectedActionSet(actions) else { return [] }
         let margin = actions[2].leadingCharacterMarginAction
         guard let switcher = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
@@ -126,9 +126,9 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      Additional trailing actions to apply to the lower row.
      */
     open func lowerTrailingActions(
-        for actions: KeyboardActionRows,
+        for actions: KeyboardAction.Rows,
         context: KeyboardContext
-    ) -> KeyboardActions {
+    ) -> KeyboardAction.Row {
         guard isExpectedActionSet(actions) else { return [] }
         let margin = actions[2].trailingCharacterMarginAction
         return [margin, .backspace]
@@ -148,8 +148,8 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func bottomActions(
         for context: KeyboardContext
-    ) -> KeyboardActions {
-        var result = KeyboardActions()
+    ) -> KeyboardAction.Row {
+        var result = KeyboardAction.Row()
         let needsInputSwitch = context.needsInputModeSwitchKey
         let needsDictation = context.needsInputModeSwitchKey
         if let action = keyboardSwitchActionForBottomRow(for: context) { result.append(action) }
@@ -182,7 +182,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     /**
      Whether or not to add margin actions to the middle row.
      */
-    open func shouldAddMiddleMarginActions(for actions: KeyboardActionRows, context: KeyboardContext) -> Bool {
+    open func shouldAddMiddleMarginActions(for actions: KeyboardAction.Rows, context: KeyboardContext) -> Bool {
         guard isExpectedActionSet(actions) else { return false }
         return actions[0].count > actions[1].count
     }
@@ -190,14 +190,14 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     /**
      Whether or not to add margin actions to the upper row.
      */
-    open func shouldAddUpperMarginActions(for actions: KeyboardActionRows, context: KeyboardContext) -> Bool {
+    open func shouldAddUpperMarginActions(for actions: KeyboardAction.Rows, context: KeyboardContext) -> Bool {
         false
     }
 }
 
 private extension iPhoneKeyboardLayoutProvider {
 
-    func isExpectedActionSet(_ actions: KeyboardActionRows) -> Bool {
+    func isExpectedActionSet(_ actions: KeyboardAction.Rows) -> Bool {
         actions.count == 3
     }
 

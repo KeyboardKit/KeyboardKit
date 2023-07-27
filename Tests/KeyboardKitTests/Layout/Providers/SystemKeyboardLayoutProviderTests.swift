@@ -40,7 +40,7 @@ class SystemKeyboardLayoutProviderTests: XCTestCase {
         let chars = [["a", "b", "c"], ["d", "e", "f"]]
         let inputs = chars.map(InputSetRow.init(chars:))
         let actions = provider.actions(for: inputs, context: context)
-        let expected = KeyboardActionRows(characters: chars)
+        let expected = KeyboardAction.Rows(characters: chars)
         XCTAssertEqual(actions, expected)
     }
 
@@ -50,7 +50,7 @@ class SystemKeyboardLayoutProviderTests: XCTestCase {
         let inputs = chars.map(InputSetRow.init(chars:))
         let actions = provider.actions(for: inputs, context: context)
         let expectedChars = [["A", "B", "C"], ["D", "E", "F"]]
-        let expected = KeyboardActionRows(characters: expectedChars)
+        let expected = KeyboardAction.Rows(characters: expectedChars)
         XCTAssertEqual(actions, expected)
     }
 
@@ -81,7 +81,7 @@ class SystemKeyboardLayoutProviderTests: XCTestCase {
 
 
     func testItemsForContextAndActionsAreCharacterActionsForTheProvidedInputs() {
-        let actions: KeyboardActionRows = [[.character("")], [.backspace]]
+        let actions: KeyboardAction.Rows = [[.character("")], [.backspace]]
         let result = provider.items(for: actions, context: context)
         XCTAssertEqual(result.count, 2)
         XCTAssertEqual(result[0][0].action, .character(""))

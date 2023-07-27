@@ -53,6 +53,9 @@ This release converts feedback engines from protocols to singletons to simplify 
 * `DisabledAudioFeedbackEngine` has been deprecated.
 * `DisabledHapticFeedbackEngine` has been deprecated.
 * `HapticFeedbackConfiguration.tap` has been replaced by `press` and `release`.
+* `KeyboardActions` has been renamed to `KeyboardAction.Row`.
+* `KeyboardActions` image initializer has been deprecated.
+* `KeyboardActionRows` has been renamed to `KeyboardAction.Rows`.
 * `KeyboardFeedbackHandler` has been deprecated.
 * `StandardAudioFeedbackEngine` has been deprecated.
 * `StandardHapticFeedbackEngine` has been deprecated.

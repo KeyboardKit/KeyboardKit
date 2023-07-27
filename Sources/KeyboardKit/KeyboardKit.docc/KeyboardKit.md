@@ -102,8 +102,6 @@ KeyboardKit is available under the MIT license.
 
 - ``DeleteBackwardRange``
 - ``KeyboardAction``
-- ``KeyboardActions``
-- ``KeyboardActionRows``
 - ``KeyboardActionHandler``
 - ``StandardKeyboardActionHandler``
 

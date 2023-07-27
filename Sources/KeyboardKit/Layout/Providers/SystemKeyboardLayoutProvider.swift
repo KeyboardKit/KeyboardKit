@@ -91,15 +91,21 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     /**
      Get keyboard actions for the `inputs` and `context`.
      */
-    open func actions(for rows: InputSetRows, context: KeyboardContext) -> KeyboardActionRows {
+    open func actions(
+        for rows: InputSetRows,
+        context: KeyboardContext
+    ) -> KeyboardAction.Rows {
         let characters = actionCharacters(for: rows, context: context)
-        return KeyboardActionRows(characters: characters)
+        return .init(characters: characters)
     }
     
     /**
      Get actions characters for the `inputs` and `context`.
      */
-    open func actionCharacters(for rows: InputSetRows, context: KeyboardContext) -> [[String]] {
+    open func actionCharacters(
+        for rows: InputSetRows,
+        context: KeyboardContext
+    ) -> [[String]] {
         switch context.keyboardType {
         case .alphabetic(let casing): return rows.characters(for: casing)
         case .numeric: return rows.characters()
@@ -123,7 +129,10 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     /**
      Get layout item rows for the `actions` and `context`.
      */
-    open func items(for actions: KeyboardActionRows, context: KeyboardContext) -> KeyboardLayoutItemRows {
+    open func items(
+        for actions: KeyboardAction.Rows,
+        context: KeyboardContext
+    ) -> KeyboardLayoutItemRows {
         actions.enumerated().map { row in
             row.element.enumerated().map { action in
                 item(for: action.element, row: row.offset, index: action.offset, context: context)

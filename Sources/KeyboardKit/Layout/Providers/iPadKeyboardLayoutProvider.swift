@@ -33,10 +33,10 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     open override func actions(
         for inputs: InputSetRows,
         context: KeyboardContext
-    ) -> KeyboardActionRows {
+    ) -> KeyboardAction.Rows {
         let actions = super.actions(for: inputs, context: context)
         guard actions.count == 3 else { return actions }
-        var result = KeyboardActionRows()
+        var result = KeyboardAction.Rows()
         result.append(topLeadingActions(for: context) + actions[0] + topTrailingActions(for: context))
         result.append(middleLeadingActions(for: context) + actions[1] + middleTrailingActions(for: context))
         result.append(lowerLeadingActions(for: context) + actions[2] + lowerTrailingActions(for: context))
@@ -88,35 +88,35 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     /**
      Additional leading actions to apply to the top row.
      */
-    open func topLeadingActions(for context: KeyboardContext) -> KeyboardActions {
+    open func topLeadingActions(for context: KeyboardContext) -> KeyboardAction.Row {
         return []
     }
 
     /**
      Additional trailing actions to apply to the top row.
      */
-    open func topTrailingActions(for context: KeyboardContext) -> KeyboardActions {
+    open func topTrailingActions(for context: KeyboardContext) -> KeyboardAction.Row {
         return [.backspace]
     }
 
     /**
      Additional leading actions to apply to the middle row.
      */
-    open func middleLeadingActions(for context: KeyboardContext) -> KeyboardActions {
+    open func middleLeadingActions(for context: KeyboardContext) -> KeyboardAction.Row {
         return [.none]
     }
 
     /**
      Additional trailing actions to apply to the middle row.
      */
-    open func middleTrailingActions(for context: KeyboardContext) -> KeyboardActions {
+    open func middleTrailingActions(for context: KeyboardContext) -> KeyboardAction.Row {
         return [keyboardReturnAction(for: context)]
     }
 
     /**
      Additional leading actions to apply to the lower row.
      */
-    open func lowerLeadingActions(for context: KeyboardContext) -> KeyboardActions {
+    open func lowerLeadingActions(for context: KeyboardContext) -> KeyboardAction.Row {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         return [action]
     }
@@ -124,7 +124,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     /**
      Additional trailing actions to apply to the lower row.
      */
-    open func lowerTrailingActions(for context: KeyboardContext) -> KeyboardActions {
+    open func lowerTrailingActions(for context: KeyboardContext) -> KeyboardAction.Row {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         return [action]
     }
@@ -132,8 +132,8 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     /**
      The actions to add to the bottommost row.
      */
-    open func bottomActions(for context: KeyboardContext) -> KeyboardActions {
-        var result = KeyboardActions()
+    open func bottomActions(for context: KeyboardContext) -> KeyboardAction.Row {
+        var result = KeyboardAction.Row()
         let needsDictation = context.needsInputModeSwitchKey
         if let action = keyboardSwitchActionForBottomRow(for: context) { result.append(action) }
         result.append(.nextKeyboard)

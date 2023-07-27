@@ -29,11 +29,11 @@ class KeyboardLayoutItemRowTests: XCTestCase {
         rows = [row, row, row]
     }
 
-    var rowActions: KeyboardActions {
+    var rowActions: KeyboardAction.Row {
         row.map { $0.action }
     }
 
-    var rowsActions: KeyboardActionRows {
+    var rowsActions: KeyboardAction.Rows {
         rows.map { $0.map { $0.action } }
     }
 

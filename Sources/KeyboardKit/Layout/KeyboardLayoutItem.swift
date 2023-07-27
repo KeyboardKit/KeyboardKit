@@ -60,11 +60,15 @@ public struct KeyboardLayoutItem: Equatable, KeyboardRowItem {
 
 /**
  This typealias represents a list of ``KeyboardLayoutItem``s.
+ 
+ `v8.0` - This will be nested in `KeyboardLayoutItem`.
  */
 public typealias KeyboardLayoutItemRow = [KeyboardLayoutItem]
 
 /**
  This typealias represents a list of ``KeyboardLayoutItemRow``
  values that make up a keyboard's rows.
+ 
+ `v8.0` - This will be nested in `KeyboardLayoutItem`.
  */
 public typealias KeyboardLayoutItemRows = [KeyboardLayoutItemRow]
