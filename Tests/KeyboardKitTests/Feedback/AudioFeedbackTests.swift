@@ -15,7 +15,7 @@ class AudioFeedbackTests: XCTestCase {
 
     override func setUp() {
         engine = MockAudioFeedbackEngine()
-        AudioFeedback.engine = engine
+        AudioFeedbackEngine.shared = engine
     }
 
     func id(for feedback: AudioFeedback) -> UInt32? {

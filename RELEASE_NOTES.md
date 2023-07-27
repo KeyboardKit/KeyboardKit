@@ -15,7 +15,9 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 
 This release prepares the library for the upcoming major version bump.
 
-This release prepares the various input set utilities for the future removal of the input set provider concept and for converting `InputSet` to a struct. 
+This release prepares the various input set utilities for the future removal of the input set provider concept and for converting `InputSet` to a struct.
+
+This release converts feedback engines from protocols to singletons to simplify the setup and minimize the risk for memory leaks. 
 
 `v8.0` will be added to the docs, everywhere structural or architectural changes will be made. The aim is to clean up and simplify the library, which today has too many types and concepts. 
 
@@ -27,6 +29,7 @@ This release prepares the various input set utilities for the future removal of 
 
 ### 💡 Adjustments
 
+* `AudioFeedbackEngine` has been converted from a protocol to an open class.
 * `KeyboardActionHandler` has a new `triggerFeedback(for:on:)` function. 
 * `StandardKeyboardLayoutProvider` no longer requires an input set provider.
 
@@ -35,6 +38,8 @@ This release prepares the various input set utilities for the future removal of 
 * `InputSetProviderBased` has been deprecated.
 * `NumericInputSet.english` has been renamed to `englishNumeric`.
 * `NumericInputSet.standard` has been renamed to `standardNumeric`.
+* `StandardAudioFeedbackEngine` has been deprecated.
+* `DisabledAudioFeedbackEngine` has been deprecated.
 * `StandardKeyboardFeedbackHandler` config properties have been deprecated.
 * `StaticInputSetProvider` has been deprecated.
 * `SymbolicInputSet.english` has been renamed to `englishSymbolic`.

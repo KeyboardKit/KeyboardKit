@@ -9,11 +9,13 @@
 import KeyboardKit
 import MockingKit
 
-class MockAudioFeedbackEngine: Mock, AudioFeedbackEngine {
+class MockAudioFeedbackEngine: AudioFeedbackEngine, Mockable {
+    
+    var mock = Mock()
     
     lazy var triggerRef = MockReference(trigger)
     
-    func trigger(_ audio: AudioFeedback) {
+    override func trigger(_ audio: AudioFeedback) {
         call(triggerRef, args: (audio))
     }
 }

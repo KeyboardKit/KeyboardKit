@@ -12,13 +12,7 @@ import Foundation
  This enum contains various audio feedback types.
   
  You can call ``trigger()`` on any feedback value to trigger
- it, using the static ``engine``. You can replace the engine
- with any custom engine if you need to.
-
- Note that `watchOS` creates a ``DisabledAudioFeedbackEngine``
- by default, since the platform doesn't support system audio.
- You can replace it with another engine, that does something
- meaningful on that platform.
+ it using ``AudioFeedbackEngine/shared``.
 */
 public enum AudioFeedback: Codable, Equatable, Identifiable {
     
@@ -57,22 +51,11 @@ public extension AudioFeedback {
         case .none: return 0
         }
     }
-
-    /**
-     The engine that will be used to trigger audio feedback.
-     */
-    static var engine: AudioFeedbackEngine = {
-        #if os(iOS) || os(macOS) || os(tvOS)
-        StandardAudioFeedbackEngine.shared
-        #else
-        DisabledAudioFeedbackEngine()
-        #endif
-    }()
     
     /**
      Trigger the feedback, using the shared feedback engine.
      */
     func trigger() {
-        Self.engine.trigger(self)
+        AudioFeedbackEngine.shared.trigger(self)
     }
 }

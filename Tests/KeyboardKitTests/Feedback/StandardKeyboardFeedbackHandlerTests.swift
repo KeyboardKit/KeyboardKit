@@ -22,7 +22,7 @@ class StandardKeyboardFeedbackHandlerTests: XCTestCase {
 
         handler = StandardKeyboardFeedbackHandler(settings: KeyboardFeedbackSettings())
 
-        AudioFeedback.engine = audioEngine
+        AudioFeedbackEngine.shared = audioEngine
         HapticFeedback.engine = hapticEngine
     }
     

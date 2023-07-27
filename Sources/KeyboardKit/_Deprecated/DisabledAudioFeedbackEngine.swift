@@ -12,12 +12,8 @@ import Foundation
  This disabled engine doesn't do anything and can be used on
  platforms where system audio is not available.
  */
+@available(*, deprecated, message: "This engine is no longer used.")
 public class DisabledAudioFeedbackEngine: AudioFeedbackEngine {
 
-    /**
-     Create a disabled engine.
-     */
-    public init() {}
-    
-    public func trigger(_ audio: AudioFeedback) {}
+    public override func trigger(_ audio: AudioFeedback) {}
 }

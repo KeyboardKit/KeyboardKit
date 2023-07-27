@@ -11,6 +11,7 @@ import AudioToolbox
 
 /**
  This engine uses system features to trigger audio feedbacks.
+ 
  It is the default ``AudioFeedback/engine`` on all platforms
  where it's supported.
 
@@ -20,26 +21,6 @@ import AudioToolbox
  Note that the engine is currently only supported on certain
  platforms.
  */
-open class StandardAudioFeedbackEngine: AudioFeedbackEngine {
-    
-    public init() {}
-    
-    /**
-     Trigger a certain audio feedback type.
-     **/
-    open func trigger(_ audio: AudioFeedback) {
-        switch audio {
-        case .none: return
-        default: AudioServicesPlaySystemSound(audio.id)
-        }
-    }
-}
-
-public extension StandardAudioFeedbackEngine {
-    
-    /**
-     A shared instance that can be used from anywhere.
-     */
-    static var shared = StandardAudioFeedbackEngine()
-}
+@available(*, deprecated, renamed: "AudioFeedbackEngine")
+open class StandardAudioFeedbackEngine: AudioFeedbackEngine {}
 #endif
