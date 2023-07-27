@@ -9,22 +9,17 @@
 import Foundation
 
 /**
- This layout provider is initialized with a keyboard context,
- an input set provider and a list of localized providers.
-
- If the ``keyboardContext`` locale matches the locale of any
- of the provided ``localizedProviders`` instances, then that
- provider will be used instead of the input set provider and
- the nested ``iPhoneProvider`` and ``iPadProvider`` keyboard
- layout providers. To modify the keyboard layout of a nested,
- localized keyboard layout provider, simply inject a new one
- for that locale.
-
- > Important: Since English is the standard language that is
- used to define input set and keyboard layout, this provider
- has no `English` provider in its standard list of localized
- providers, since that would cause the input set provider to
- always be ignored.
+ This standard keyboard layout provider uses a collection of
+ localized providers as well as a base one, to resolve which
+ provider use for a certain keyboard context.
+ 
+ If the localized providers doesn't contain a provider for a
+ certain locale, then the base provider will be used.
+ 
+ The default configuration is to use a standard English base
+ provider and no localized providers. To modify the keyboard
+ layout for a certain locale, just provide a layout provider
+ for that specific locale.
  */
 open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     
@@ -32,59 +27,43 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
      Create a standard keyboard layout provider.
      
      - Parameters:
-       - keyboardContext: The keyboard context to use.
-       - inputSetProvider: The input set provider to use.
-       - localizedProviders: The localized providers to use, by default empty.
+       - baseProvider: The provider to use when no localized provider matches the context, by default ``EnglishKeyboardLayoutProvider``.
+       - localizedProviders: A dictionary with localized layout providers, by default `empty`.
      */
+    public init(
+        baseProvider: KeyboardLayoutProvider = EnglishKeyboardLayoutProvider(),
+        localizedProviders: [LocalizedKeyboardLayoutProvider] = []
+    ) {
+        self.baseProvider = baseProvider
+        let dict = Dictionary(uniqueKeysWithValues: localizedProviders.map { ($0.localeKey, $0) })
+        self.localizedProviders = LocaleDictionary(dict)
+    }
+    
+    @available(*, deprecated, message: "Use the base provider initializer instead.")
     public init(
         keyboardContext: KeyboardContext,
         inputSetProvider: InputSetProvider,
         localizedProviders: [LocalizedKeyboardLayoutProvider] = []
     ) {
+        self.baseProvider = EnglishKeyboardLayoutProvider(inputSetProvider: inputSetProvider)
         self.keyboardContext = keyboardContext
         self.inputSetProvider = inputSetProvider
         let dict = Dictionary(uniqueKeysWithValues: localizedProviders.map { ($0.localeKey, $0) })
         self.localizedProviders = LocaleDictionary(dict)
     }
 
+    
     /**
-     The input set provider to use.
-
-     > Important: This is deprecated and will be removed in KeyboardKit 7.0
+     The provider to use when ``localizedProviders`` doesn't
+     contain a provider that matches the provided context.
      */
-    public var inputSetProvider: InputSetProvider {
-        didSet {
-            iPadProvider.register(inputSetProvider: inputSetProvider)
-            iPhoneProvider.register(inputSetProvider: inputSetProvider)
-        }
-    }
+    public private(set) var baseProvider: KeyboardLayoutProvider
 
     /**
-     The keyboard context to use.
-     */
-    public let keyboardContext: KeyboardContext
-
-    /**
-     A dictionary with ``KeyboardLayoutProvider`` instances.
+     A dictionary with localized layout providers.
      */
     public let localizedProviders: LocaleDictionary<KeyboardLayoutProvider>
 
-
-    /**
-     The keyboard layout provider to use for iPad devices.
-
-     > Important: This is deprecated and will be removed in KeyboardKit 7.0
-     */
-    open lazy var iPadProvider = iPadKeyboardLayoutProvider(
-        inputSetProvider: inputSetProvider)
-
-    /**
-     The keyboard layout provider to use for iPhone devices.
-
-     > Important: This is deprecated and will be removed in KeyboardKit 7.0
-     */
-    open lazy var iPhoneProvider = iPhoneKeyboardLayoutProvider(
-        inputSetProvider: inputSetProvider)
 
     /**
      The keyboard layout to use for a certain context.
@@ -98,13 +77,33 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
      The keyboard layout provider to use for a given context.
      */
     open func keyboardLayoutProvider(for context: KeyboardContext) -> KeyboardLayoutProvider {
-        if let provider = localizedProviders.value(for: context.locale) { return provider }
-        return context.deviceType == .pad ? iPadProvider : iPhoneProvider
+        let localized = localizedProviders.value(for: context.locale)
+        return localized ?? baseProvider
     }
 
-    /**
-     Register a new input set provider.
-     */
+    
+    
+    @available(*, deprecated, message: "This will be removed in KeyboardKit 8.0")
+    public var keyboardContext: KeyboardContext = .preview
+    
+    @available(*, deprecated, message: "This will be removed in KeyboardKit 8.0")
+    public var inputSetProvider: InputSetProvider = .preview {
+        didSet {
+            iPadProvider.register(inputSetProvider: inputSetProvider)
+            iPhoneProvider.register(inputSetProvider: inputSetProvider)
+            baseProvider = EnglishKeyboardLayoutProvider(inputSetProvider: inputSetProvider)
+        }
+    }
+    
+    @available(*, deprecated, message: "This will be removed in KeyboardKit 8.0")
+    open lazy var iPadProvider = iPadKeyboardLayoutProvider(
+        inputSetProvider: inputSetProvider)
+
+    @available(*, deprecated, message: "This will be removed in KeyboardKit 8.0")
+    open lazy var iPhoneProvider = iPhoneKeyboardLayoutProvider(
+        inputSetProvider: inputSetProvider)
+    
+    @available(*, deprecated, message: "This will be removed in KeyboardKit 8.0")
     open func register(inputSetProvider: InputSetProvider) {
         self.inputSetProvider = inputSetProvider
     }

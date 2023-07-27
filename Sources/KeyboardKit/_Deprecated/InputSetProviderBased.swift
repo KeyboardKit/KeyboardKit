@@ -18,7 +18,6 @@ import Foundation
  replaced by just providing a couple of `InputSet` values to
  the layout provider.
  */
-@available(*, deprecated, message: "This protocol will be removed in KeyboardKit 8.0")
 public protocol InputSetProviderBased {
 
     /**

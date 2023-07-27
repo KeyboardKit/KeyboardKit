@@ -12,59 +12,58 @@ import XCTest
 class StandardKeyboardLayoutProviderTests: XCTestCase {
     
     var inputSetProvider: MockInputSetProvider!
-    var keyboardContext: KeyboardContext!
+    var context: KeyboardContext!
     var provider: StandardKeyboardLayoutProvider!
 
     override func setUp() {
-        keyboardContext = KeyboardContext()
-        inputSetProvider = MockInputSetProvider()
-        inputSetProvider.alphabeticInputSetValue = AlphabeticInputSet(rows: [["a", "b", "c"], ["a", "b", "c"], ["a", "b", "c"]].map(InputSetRow.init(chars:)))
-        inputSetProvider.numericInputSetValue = NumericInputSet(rows: [["1", "2", "3"], ["1", "2", "3"], ["1", "2", "3"]].map(InputSetRow.init(chars:)))
-        inputSetProvider.symbolicInputSetValue = SymbolicInputSet(rows: [[",", ".", "-"], [",", ".", "-"], [",", ".", "-"]].map(InputSetRow.init(chars:)))
+        context = KeyboardContext()
         provider = StandardKeyboardLayoutProvider(
-            keyboardContext: keyboardContext,
-            inputSetProvider: inputSetProvider)
+            baseProvider: EnglishKeyboardLayoutProvider(),
+            localizedProviders: [TestKeyboardLayoutProvider()]
+        )
     }
 
-    func testKeyboardLayoutProviderForContextIsPhoneProviderIfContextDeviceIsPhone() {
-        keyboardContext.deviceType = .phone
-        let result = provider.keyboardLayoutProvider(for: keyboardContext)
-        XCTAssertTrue(result === provider.iPhoneProvider)
+    func testUsesLocalizedProviderIfOneMatchesContext() {
+        context.locale = .init(identifier: "sv-SE")
+        let layout = provider.keyboardLayout(for: context)
+        let firstItem = layout.itemRows[0].first
+        let result = provider.keyboardLayoutProvider(for: context)
+        XCTAssertTrue(result is TestKeyboardLayoutProvider)
+        XCTAssertEqual(firstItem?.action, .character("a"))
     }
-
-    func testKeyboardLayoutProviderForContextIsPhoneProviderIfContextDeviceIsPad() {
-        keyboardContext.deviceType = .pad
-        let result = provider.keyboardLayoutProvider(for: keyboardContext)
-        XCTAssertTrue(result === provider.iPadProvider)
+    
+    func testUsesBaseProviderIfNoLocalizedMatchesContext() {
+        context.locale = .init(identifier: "da-DK")
+        let layout = provider.keyboardLayout(for: context)
+        let firstItem = layout.itemRows[0].first
+        let result = provider.keyboardLayoutProvider(for: context)
+        XCTAssertTrue(result is EnglishKeyboardLayoutProvider)
+        XCTAssertEqual(firstItem?.action, .character("q"))
     }
-
-
-    func testKeyboardLayoutForContextIsPhoneLayoutIfContentDeviceIsPhone() {
-        keyboardContext.deviceType = .phone
-        let layout = provider.keyboardLayout(for: keyboardContext)
-        let phoneLayout = provider.iPhoneProvider.keyboardLayout(for: keyboardContext)
-        let padLayout = provider.iPadProvider.keyboardLayout(for: keyboardContext)
-        XCTAssertEqual(layout.itemRows, phoneLayout.itemRows)
-        XCTAssertNotEqual(layout.itemRows, padLayout.itemRows)
+    
+    @available(*, deprecated, message: "This will be removed in KeyboardKit 8.0")
+    func testDeprecatedInputSetProviderStillWorks() {
+        provider.register(inputSetProvider: EnglishInputSetProvider(
+            alphabetic: .init(rows: [.init(chars: "1234567890")])
+        ))
+        context.locale = .init(identifier: "da-DK")
+        let layout = provider.keyboardLayout(for: context)
+        let firstItem = layout.itemRows[0].first
+        let result = provider.keyboardLayoutProvider(for: context)
+        XCTAssertTrue(result is EnglishKeyboardLayoutProvider)
+        XCTAssertEqual(firstItem?.action, .character("1"))
     }
+}
 
-    func testKeyboardLayoutForContextIsPadLayoutIfContentDeviceIsPad() {
-        keyboardContext.deviceType = .pad
-        let layout = provider.keyboardLayout(for: keyboardContext)
-        let phoneLayout = provider.iPhoneProvider.keyboardLayout(for: keyboardContext)
-        let padLayout = provider.iPadProvider.keyboardLayout(for: keyboardContext)
-        XCTAssertNotEqual(layout.itemRows, phoneLayout.itemRows)
-        XCTAssertEqual(layout.itemRows, padLayout.itemRows)
-    }
-
-
-    func testRegisteringInputSetProviderChangesInstanceForAllProviders() {
-        let newProvider = MockInputSetProvider()
-        keyboardContext.deviceType = .phone
-        provider.register(inputSetProvider: newProvider)
-        XCTAssertFalse(provider.inputSetProvider === inputSetProvider)
-        XCTAssertTrue(provider.inputSetProvider === newProvider)
-        XCTAssertTrue(provider.iPhoneProvider.inputSetProvider === newProvider)
-        XCTAssertTrue(provider.iPadProvider.inputSetProvider === newProvider)
+private class TestKeyboardLayoutProvider: SystemKeyboardLayoutProvider, LocalizedService {
+    
+    let localeKey = "sv-SE"
+    
+    init() {
+        super.init(
+            inputSetProvider: EnglishInputSetProvider(
+                alphabetic: .init(rows: [.init(chars: "abcdefghij")])
+            )
+        )
     }
 }

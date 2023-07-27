@@ -40,10 +40,6 @@ public class StaticKeyboardLayoutProvider: KeyboardLayoutProvider {
         layout
     }
 
-    /**
-     Register a new input set provider.
-
-     This does nothing for a static keyboard layout provider.
-     */
+    /// Deprecated
     public func register(inputSetProvider: InputSetProvider) {}
 }

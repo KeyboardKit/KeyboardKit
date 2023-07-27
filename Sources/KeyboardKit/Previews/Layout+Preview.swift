@@ -33,10 +33,7 @@ public extension KeyboardLayoutProvider where Self == PreviewKeyboardLayoutProvi
 public class PreviewKeyboardLayoutProvider: KeyboardLayoutProvider {
 
     public init(keyboardContext: KeyboardContext = .preview) {
-        let inputProvider = StandardInputSetProvider(keyboardContext: keyboardContext)
-        provider = StandardKeyboardLayoutProvider(
-            keyboardContext: .preview,
-            inputSetProvider: inputProvider)
+        provider = StandardKeyboardLayoutProvider()
     }
 
     private let provider: KeyboardLayoutProvider
@@ -44,4 +41,7 @@ public class PreviewKeyboardLayoutProvider: KeyboardLayoutProvider {
     public func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         provider.keyboardLayout(for: context)
     }
+    
+    /// Deprecated
+    public func register(inputSetProvider: InputSetProvider) {}
 }

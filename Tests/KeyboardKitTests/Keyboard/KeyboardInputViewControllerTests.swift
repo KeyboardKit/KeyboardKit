@@ -131,30 +131,27 @@ class KeyboardInputViewControllerTests: XCTestCase {
         XCTAssertNotNil(vc.keyboardFeedbackHandler as? StandardKeyboardFeedbackHandler)
         XCTAssertNotNil(vc.keyboardLayoutProvider as? StandardKeyboardLayoutProvider)
     }
-
-    func verifyRefresh(for vc: KeyboardInputViewController) {
-        let actionContext = vc.calloutContext.action
-        let layoutProvider = vc.keyboardLayoutProvider as? StandardKeyboardLayoutProvider
-        XCTAssertTrue(layoutProvider?.inputSetProvider === vc.inputSetProvider)
-        XCTAssertTrue(actionContext.actionHandler === vc.keyboardActionHandler)
-    }
-
+    
     func testRefreshingPropertiesWhenChangingServicePropertiesIsDoneForKeyboardActionHandler() {
         let vc = TestClass()
         vc.keyboardActionHandler = PreviewKeyboardActionHandler()
-        verifyRefresh(for: vc)
+        let actionContext = vc.calloutContext.action
+        XCTAssertTrue(actionContext.actionHandler === vc.keyboardActionHandler)
     }
 
+    @available(*, deprecated, message: "This will be removed in KeyboardKit 8.0")
     func testRefreshingPropertiesWhenChangingServicePropertiesIsDoneForInputSetProvider() {
         let vc = TestClass()
         vc.inputSetProvider = MockInputSetProvider()
-        verifyRefresh(for: vc)
+        let layoutProvider = vc.keyboardLayoutProvider as? StandardKeyboardLayoutProvider
+        XCTAssertTrue(layoutProvider?.inputSetProvider === vc.inputSetProvider)
     }
 
     func testRefreshingPropertiesWhenChangingServicePropertiesIsForCalloutActionProvider() {
         let vc = TestClass()
         vc.calloutActionProvider = StandardCalloutActionProvider(keyboardContext: .preview)
-        verifyRefresh(for: vc)
+        let actionContext = vc.calloutContext.action
+        XCTAssertTrue(actionContext.actionHandler === vc.keyboardActionHandler)
     }
 
 

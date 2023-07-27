@@ -111,8 +111,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      synced with its ``keyboardContext``.
 
      This will by default sync with keyboard contexts if the
-     ``isContextSyncEnabled`` is `true`. You can override it
-     to customize syncing or sync with more contexts.
+     ``isContextSyncEnabled`` property is set to `true`.
      */
     open func viewWillSyncWithContext() {
         guard isContextSyncEnabled else { return }
@@ -124,11 +123,10 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     // MARK: - Setup
 
     /**
-     Setup KeyboardKit with a SwiftUI view.
+     Setup KeyboardKit with a custom SwiftUI view.
 
-     Only use this setup function when the view doesn't need
-     to refer to this controller, otherwise make sure to use
-     the controller-based setup function instead.
+     Make sure to use the controller-based setup function if
+     your view needs to refer to the controller.
      */
     open func setup<Content: View>(
         with view: @autoclosure @escaping () -> Content
@@ -137,11 +135,10 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     }
 
     /**
-     Setup KeyboardKit with a SwiftUI view.
+     Setup KeyboardKit with a custom SwiftUI view.
 
-     Only use this setup function when the view doesn't need
-     to refer to this controller, otherwise make sure to use
-     the controller-based setup function instead.
+     Make sure to use the controller-based setup function if
+     your view needs to refer to the controller.
      */
     open func setup<Content: View>(
         with view: @escaping () -> Content
@@ -150,11 +147,10 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     }
 
     /**
-     Setup KeyboardKit with a SwiftUI view.
-
-     Use this setup function when the view needs to refer to
-     this controller, otherwise it's easy to create a memory
-     leak when injecting the controller into the view.
+     Setup KeyboardKit with a controller-based SwiftUI view.
+     
+     This function uses an `unowned` controller reference to
+     avoid memory leaks when referring to the controller.
      */
     open func setup<Content: View>(
         with view: @escaping (_ controller: KeyboardInputViewController) -> Content
@@ -165,7 +161,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     }
 
     /**
-     This function is shared by all setup functions.
+     This internal function is shared by all setup functions.
      */
     func setup<Content: View>(withRootView view: Content) {
         self.children.forEach { $0.removeFromParent() }
@@ -191,31 +187,30 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     // MARK: - Properties
 
     /**
-     The original text document proxy that was used to start
-     the keyboard extension.
+     The original text document proxy.
 
-     This stays the same even if a ``textInputProxy`` is set,
-     which makes ``textDocumentProxy`` return the custom one
-     instead of the original one.
+     This stays the same even when ``textInputProxy`` is set
+     to make ``textDocumentProxy`` return a custom instance.
      */
     open var mainTextDocumentProxy: UITextDocumentProxy {
         super.textDocumentProxy
     }
 
     /**
-     The text document proxy to use, which can either be the
-     original text input proxy or the ``textInputProxy``, if
-     it is set to a custom value.
+     The text document proxy to use.
+     
+     This either returns the ``textInputProxy`` if set, else
+     the ``mainTextDocumentProxy``.
      */
     open override var textDocumentProxy: UITextDocumentProxy {
         textInputProxy ?? mainTextDocumentProxy
     }
 
     /**
-     A custom text input proxy to which text can be routed.
+     A custom text input proxy, to which text can be routed.
 
-     Setting the property makes ``textDocumentProxy`` return
-     the custom proxy instead of the original one.
+     Setting this property make ``textDocumentProxy`` return
+     this proxy instead of the ``mainTextDocumentProxy`` one.
      */
     public var textInputProxy: TextInputProxy? {
         didSet { viewWillSyncWithContext() }
@@ -227,16 +222,16 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /**
      The default, observable autocomplete context.
 
-     This context is used as global state for the keyboard's
-     autocomplete, e.g. the current suggestions.
+     This context is used as global autocomplete state, e.g.
+     for the currently displayed suggestions.
      */
     public lazy var autocompleteContext = AutocompleteContext()
 
     /**
      The default, observable callout context.
 
-     This is used as global state for the callouts that show
-     the currently typed character.
+     This is used as global callout state, e.g. for callouts
+     that show the currently typed character.
      */
     public lazy var calloutContext = KeyboardCalloutContext(
         action: ActionCalloutContext(
@@ -286,7 +281,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      The autocomplete provider that is used to provide users
      with autocomplete suggestions.
 
-     You can replace this with a custom implementation.
+     You can replace this value with a custom implementation.
      */
     public lazy var autocompleteProvider: AutocompleteProvider = DisabledAutocompleteProvider()
 
@@ -294,7 +289,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      The callout action provider that is used to provide the
      keyboard with secondary callout actions.
 
-     You can replace this with a custom implementation.
+     You can replace this value with a custom implementation.
      */
     public lazy var calloutActionProvider: CalloutActionProvider = StandardCalloutActionProvider(
         keyboardContext: keyboardContext
@@ -306,7 +301,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      The dictation service that is used to perform dictation
      operation between the keyboard and the main app.
 
-     You can replace this with a custom implementation.
+     You can replace this value with a custom implementation.
      */
     public lazy var dictationService: KeyboardDictationService = DisabledKeyboardDictationService(
         context: dictationContext
@@ -316,7 +311,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      The input set provider that is used to define the input
      keys of the keyboard.
 
-     You can replace this with a custom implementation.
+     You can replace this value with a custom implementation.
      */
     public lazy var inputSetProvider: InputSetProvider = StandardInputSetProvider(
         keyboardContext: keyboardContext
@@ -328,7 +323,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      The action handler that will be used by the keyboard to
      handle keyboard actions.
 
-     You can replace this with a custom implementation.
+     You can replace this value with a custom implementation.
      */
     public lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(
         inputViewController: self
@@ -340,7 +335,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      The appearance that is used to customize the keyboard's
      design, such as its colors, fonts etc.
 
-     You can replace this with a custom implementation.
+     You can replace this value with a custom implementation.
      */
     public lazy var keyboardAppearance: KeyboardAppearance = StandardKeyboardAppearance(
         keyboardContext: keyboardContext)
@@ -349,7 +344,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      The behavior that is used to determine how the keyboard
      should behave when certain things happen.
 
-     You can replace this with a custom implementation.
+     You can replace this value with a custom implementation.
      */
     public lazy var keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior(
         keyboardContext: keyboardContext)
@@ -358,7 +353,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      The feedback handler that is used to trigger haptic and
      audio feedback.
 
-     You can replace this with a custom implementation.
+     You can replace this value with a custom implementation.
      */
     public lazy var keyboardFeedbackHandler: KeyboardFeedbackHandler = StandardKeyboardFeedbackHandler(
         settings: keyboardFeedbackSettings)
@@ -367,11 +362,13 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      This keyboard layout provider that is used to setup the
      complete set of keys and their layout.
 
-     You can replace this with a custom implementation.
+     You can replace this value with a custom implementation.
      */
     public lazy var keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider(
-        keyboardContext: keyboardContext,
-        inputSetProvider: inputSetProvider)
+        baseProvider: EnglishKeyboardLayoutProvider(
+            inputSetProvider: inputSetProvider
+        )
+    )
 
 
 
