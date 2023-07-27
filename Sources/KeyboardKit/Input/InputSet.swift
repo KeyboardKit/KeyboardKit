@@ -11,11 +11,20 @@ import Foundation
 /**
  An input set defines the input keys on a keyboard.
  
- The input keys can then be used to create a keyboard layout,
- which defines the full set of keys of a keyboard, including
- the surrounding action keys.
+ Input sets can be used to create a ``KeyboardLayout`` which
+ define the full set of keys, including the system keys that
+ surround the input rows, a button action row , the size and
+ properties of each key, etc.
  
- `v8.0` - This protocol will be converted to a struct, which
+ KeyboardKit has a couple of static input sets and input set
+ builders, such as ``qwerty``, ``english``, ``englishNumeric``,
+ ``englishSymbolic``, ``standardNumeric(currency:)``, etc.
+ 
+ KeyboardKit Pro unlocks additional input sets like `qwertz`,
+ `azerty`, as well as alphabetic, numeric and symbolic input
+ sets for all ``KeyboardLocale``s that your license includes.
+ 
+ > v8.0: This protocol will be converted to a `struct`, that
  will replace the various input set types with a single type.
  */
 public protocol InputSet: Equatable {
@@ -25,34 +34,28 @@ public protocol InputSet: Equatable {
 
 public extension InputSet {
     
-    /// A standard, English alphabetic input set.
     static var english: AlphabeticInputSet { .qwerty }
     
-    /// A standard, English numeric input set.
     static var englishNumeric: NumericInputSet {
         .englishNumeric()
     }
     
-    /// A standard, English numeric input set.
     static func englishNumeric(
         currency: String = "$"
     ) -> NumericInputSet {
         .standardNumeric(currency: currency)
     }
     
-    /// A standard, English symbolic input set.
     static var englishSymbolic: SymbolicInputSet {
         .englishSymbolic()
     }
     
-    /// A standard, English symbolic input set.
     static func englishSymbolic(
         currency: String = "£"
     ) -> SymbolicInputSet {
         .standardSymbolic(currencies: "€\(currency)¥".chars)
     }
     
-    /// A standard `QWERTY` alphabetic input set.
     static var qwerty: AlphabeticInputSet {
         .init(rows: [
             .init(chars: "qwertyuiop"),
@@ -61,7 +64,6 @@ public extension InputSet {
         ])
     }
     
-    /// A standard numeric input set with a custom currency.
     static func standardNumeric(currency: String) -> NumericInputSet {
         NumericInputSet(rows: [
             .init(chars: "1234567890"),
@@ -70,7 +72,6 @@ public extension InputSet {
         ])
     }
     
-    /// A standard symbolic input set with custom currencies.
     static func standardSymbolic(currencies: [String]) -> SymbolicInputSet {
         SymbolicInputSet(rows: [
             .init(phone: "[]{}#%^*+=", pad: "1234567890"),
@@ -85,7 +86,7 @@ public extension InputSet {
 /**
  This input set can be used in alphabetic keyboards.
  
- `v8.0` - This will be replaced by the upcoming `InputSet`.
+ > v8.0: This will be replaced by the upcoming `InputSet`.
  */
 public struct AlphabeticInputSet: InputSet {
 
@@ -105,7 +106,7 @@ public struct AlphabeticInputSet: InputSet {
 /**
  This input set can used in numeric keyboards.
  
- `v8.0` - This will be replaced by the upcoming `InputSet`.
+ > v8.0: This will be replaced by the upcoming `InputSet`.
  */
 public struct NumericInputSet: InputSet {
 
@@ -119,7 +120,7 @@ public struct NumericInputSet: InputSet {
 /**
  This input set can be used in symbolic keyboards.
  
- `v8.0` - This will be replaced by the upcoming `InputSet`.
+ > v8.0: This will be replaced by the upcoming `InputSet`.
  */
 public struct SymbolicInputSet: InputSet {
 

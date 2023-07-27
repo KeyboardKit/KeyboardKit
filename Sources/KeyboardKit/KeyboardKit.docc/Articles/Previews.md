@@ -7,7 +7,6 @@ KeyboardKit has a collection of preview-specific state and services that you can
 * ``ActionCalloutContext``.``ActionCalloutContext/preview``.
 * ``CalloutActionProvider``.``CalloutActionProvider/preview``.
 * ``InputCalloutContext``.``InputCalloutContext/preview``.
-* ``InputSetProvider``.``InputSetProvider/preview``.
 * ``KeyboardActionHandler``.``KeyboardActionHandler/preview``.
 * ``KeyboardAppearance``.``KeyboardAppearance/preview``.
 * ``KeyboardContext``.``KeyboardContext/preview``.

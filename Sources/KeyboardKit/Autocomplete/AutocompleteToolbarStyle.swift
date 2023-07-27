@@ -11,8 +11,8 @@ import SwiftUI
 /**
  This style can be applied to ``AutocompleteToolbar`` views.
  
- You can modify the ``standard`` style to change the default,
- global style of all ``AutocompleteToolbar``s.
+ The ``standard`` style value can be used to get and set the
+ standard style of all ``AutocompleteToolbar``s.
  */
 public struct AutocompleteToolbarStyle: Codable, Equatable {
     

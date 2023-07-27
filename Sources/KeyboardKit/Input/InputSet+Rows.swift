@@ -11,15 +11,15 @@ import Foundation
 /**
  This typealias represents a row of input set items.
  
- `v8.0` - This type will be moved nested in ``InputSet`` and
- thus become `InputSet.Row`.
+ > v8.0: This type will be moved into ``InputSet`` when it's
+ converted to a struct.
  */
 public typealias InputSetRow = [InputSetItem]
 /**
  This typealias represents a list of input set rows.
  
- `v8.0` - This type will be moved nested in ``InputSet`` and
- thus become `InputSet.Rows`.
+ > v8.0: This type will be moved into ``InputSet`` when it's
+ converted to a struct.
  */
 public typealias InputSetRows = [InputSetRow]
 

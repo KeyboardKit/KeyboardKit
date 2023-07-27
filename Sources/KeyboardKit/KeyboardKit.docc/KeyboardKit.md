@@ -9,9 +9,9 @@ KeyboardKit helps you build custom keyboards with Swift and SwiftUI.
 
 KeyboardKit helps you build custom keyboard extensions for iOS and iPadOS, using Swift and SwiftUI. It extends the native keyboard APIs and provides you with more functionality than is otherwise available. 
 
-KeyboardKit lets you create keyboards that mimic the native iOS keyboards in a few lines of code. These keyboards can be customized to great extent to change input keys, keyboard layout, design, behavior etc.
+KeyboardKit lets you create keyboards that mimic the native iOS keyboards in just a few lines of code. These keyboards can be customized to great extent to change keyboard layout, design, callouts, behavior etc.
 
-KeyboardKit also lets you use completely custom views together with the features that the library provides. Most of the library can be used on all major Apple platforms.
+KeyboardKit lets you use completely custom views together with the features that the library provides. Most of the library can be used on all major Apple platforms.
 
 KeyboardKit supports `iOS 14`, `macOS 11`, `tvOS 14` and `watchOS 7`, although some features are unavailable on some platforms.
 
@@ -235,25 +235,18 @@ KeyboardKit is available under the MIT license.
 
 - ``InputSet``
 - ``InputSetItem``
-- ``InputSetProvider``
 - ``InputSetRow``
 - ``InputSetRows``
-- ``LocalizedInputSetProvider``
-- ``StandardInputSetProvider``
 
 - ``AlphabeticInputSet``
 - ``NumericInputSet``
 - ``SymbolicInputSet``
-
-- ``EnglishInputSetProvider``
 
 ### Layout
 
 - ``KeyboardLayout``
 - ``KeyboardLayoutConfiguration``
 - ``KeyboardLayoutItem``
-- ``KeyboardLayoutItemRow``
-- ``KeyboardLayoutItemRows``
 - ``KeyboardLayoutItemSize``
 - ``KeyboardLayoutItemWidth``
 - ``KeyboardLayoutProvider``
@@ -287,7 +280,6 @@ KeyboardKit is available under the MIT license.
 ### Previews
 
 - ``PreviewCalloutActionProvider``
-- ``PreviewInputSetProvider``
 - ``PreviewKeyboardActionHandler``
 - ``PreviewKeyboardAppearance``
 - ``PreviewKeyboardLayoutProvider``

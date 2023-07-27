@@ -13,14 +13,12 @@ import UIKit
  This protocol can be used to create text inputs that can be
  used within a keyboard extension.
 
- A view that inherits this protocol can use its functions to
- easily register and unregister itself as the keyboard proxy
- when it receives and loses focus.
+ Views that inherits this protocol can use its functionality
+ to register and unregister as the current text input proxy.
 
- ``KeyboardTextField`` and ``KeyboardTextView`` wraps native
- `UIKit` views that implement this protocol, which makes the
- views automatically become the text destination when a user
- taps them to start inserting text.
+ ``KeyboardTextField`` and ``KeyboardTextView`` wraps `UIKit`
+ views that implement this protocol, to automatically become
+ the text destination when they receive focus.
  */
 public protocol KeyboardInputComponent: UIResponder, UITextInput {
 

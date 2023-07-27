@@ -22,11 +22,11 @@ import Foundation
  fully localized ``SystemKeyboard`` for all keyboard locales
  with just a single line of code.
  
- You can create a custom implementation of this protocol, by
- inheriting and customizing the standard class or creating a
- new implementation from scratch. When you're implementation
- is ready, just replace the controller service with your own
- implementation to make the library use it instead.
+ To create a custom implementation of this protocol, you can
+ implement it from scratch or inherit the standard class and
+ override the parts that you want to change. When the custom
+ implementation is done, you can just replace the controller
+ service to make KeyboardKit use the custom service globally.
  */
 public protocol KeyboardLayoutProvider: AnyObject {
     

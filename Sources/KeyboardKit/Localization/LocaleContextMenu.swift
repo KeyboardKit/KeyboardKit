@@ -91,7 +91,7 @@ private extension View {
         keyboardContext: KeyboardContext,
         tapAction: @escaping () -> Void
     ) -> some View {
-#if os(iOS) || os(macOS)
+        #if os(iOS) || os(macOS)
         if #available(iOS 15.0, macOS 12.0, *) {
             Menu(content: {
                 menu
@@ -103,9 +103,9 @@ private extension View {
                 self
             }.contextMenu(ContextMenu { menu })
         }
-#else
-            self
-#endif
+        #else
+        self
+        #endif
     }
 }
 

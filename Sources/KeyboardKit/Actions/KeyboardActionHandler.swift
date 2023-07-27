@@ -10,22 +10,21 @@ import CoreGraphics
 
 /**
  This protocol can be implemented by classes that can handle
- ``KeyboardAction`` events.
+ ``KeyboardAction`` gestures and events.
  
  KeyboardKit will create a ``StandardKeyboardActionHandler``
  instance when the keyboard extension is started, then apply
  it to ``KeyboardInputViewController/keyboardActionHandler``.
  It will then use this instance by default to handle actions.
  
- Many keyboard actions have standard behaviors, while others
- don't and require custom handling. To customize how actions
- are handled, you can implement a custom action handler.
+ Many actions have standard behaviors while others don't and
+ therefore require a custom action handler to have an effect.
  
- You can create a custom implementation of this protocol, by
- inheriting and customizing the standard class or creating a
- new implementation from scratch. When you're implementation
- is ready, just replace the controller service with your own
- implementation to make the library use it instead.
+ To create a custom implementation of this protocol, you can
+ implement it from scratch or inherit the standard class and
+ override the parts that you want to change. When the custom
+ implementation is done, you can just replace the controller
+ service to make KeyboardKit use the custom service globally.
  */
 public protocol KeyboardActionHandler: AnyObject {
     

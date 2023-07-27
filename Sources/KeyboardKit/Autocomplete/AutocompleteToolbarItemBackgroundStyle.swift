@@ -12,8 +12,8 @@ import SwiftUI
  This style can be applied to customize the appearance of an
  ``AutocompleteToolbarItem``s background.
  
- You can modify the ``standard`` style to change the default,
- global style of all highlighted autocomplete items.
+ The ``standard`` style value can be used to get and set the
+ standard style of all highlighted autocomplete items.
  */
 public struct AutocompleteToolbarItemBackgroundStyle: Codable, Equatable {
     

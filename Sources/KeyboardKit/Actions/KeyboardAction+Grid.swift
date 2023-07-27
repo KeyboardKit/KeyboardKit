@@ -12,11 +12,11 @@ public extension Array where Element == KeyboardAction {
     
     /**
      Fill the array with enough `none` actions to evenly fit
-     a grid with `gridSize` number of columns or page size.
+     a grid with a certain number of columns.
      */
-    func evened(for gridSize: Int) -> [KeyboardAction] {
+    func evened(for columns: Int) -> [KeyboardAction] {
         var actions = self
-        while actions.count % gridSize > 0 {
+        while actions.count % columns > 0 {
             actions.append(.none)
         }
         return actions

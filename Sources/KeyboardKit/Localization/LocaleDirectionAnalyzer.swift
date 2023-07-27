@@ -12,10 +12,11 @@ import Foundation
  This protocol can be implemented by any type that should be
  able to analyze the typing directions of locales.
 
- Implementing the protocol will extend the implementing type
- with functions that use public `Locale` extensions with the
- same names. While you can use the protocol, the main reason
- for having it is to expose these extensions to DocC.
+ Implementing the protocol extends types with functions that
+ use public `Locale` extensions with the same names.
+ 
+ While you can use this protocol, the main reason to have it
+ is to expose these extensions to DocC.
  */
 public protocol LocaleDirectionAnalyzer {}
 
@@ -73,44 +74,32 @@ public extension LocaleDirectionAnalyzer {
 
 public extension Locale {
 
-    /**
-     Get the character direction of the locale.
-     */
+    /// Get the locale character direction.
     var characterDirection: LanguageDirection {
         Locale.characterDirection(forLanguage: languageCode ?? "")
     }
 
-    /**
-     Whether or not the line direction is `.bottomToTop`.
-     */
+    /// Whether or not the line direction is `.bottomToTop`.
     var isBottomToTop: Bool {
         lineDirection == .bottomToTop
     }
 
-    /**
-     Whether or not the line direction is `.topToBottom`.
-     */
+    /// Whether or not the line direction is `.topToBottom`.
     var isTopToBottom: Bool {
         lineDirection == .topToBottom
     }
 
-    /**
-     Whether or not the character direction is `.leftToRight`.
-     */
+    /// Whether or not the char direction is `.leftToRight`.
     var isLeftToRight: Bool {
         characterDirection == .leftToRight
     }
 
-    /**
-     Whether or not the character direction is `.rightToLeft`.
-     */
+    /// Whether or not the char direction is ``.rightToLeft`.
     var isRightToLeft: Bool {
         characterDirection == .rightToLeft
     }
 
-    /**
-     Get the line direction of the locale.
-     */
+    /// Get the locale line direction.
     var lineDirection: LanguageDirection {
         Locale.lineDirection(forLanguage: languageCode ?? "")
     }

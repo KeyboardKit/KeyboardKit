@@ -12,9 +12,6 @@ import SwiftUI
  This style can be applied to ``InputCallout``s to customize
  things like the callout style, padding, font etc.
  
- You can modify the ``standard`` style to change the default,
- global style of all ``InputCallout`` views that use it.
- 
  The ``calloutSize`` specifies a **minimum** size to use for
  the callout. If other factors, like button size, curve size,
  padding etc. requires the callout to be larger, the size is
@@ -23,6 +20,9 @@ import SwiftUI
  Note that the ``calloutSize`` height will be ignored when a
  phone displays a callout in landscape, since callouts can't
  expand beyond the edges of a keyboard extension.
+ 
+ The ``standard`` style value can be used to get and set the
+ standard style of all ``InputCallout``s.
  */
 public struct KeyboardInputCalloutStyle: Codable, Equatable {
     

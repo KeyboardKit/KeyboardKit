@@ -13,8 +13,8 @@ import SwiftUI
  type of view that is presented above a keyboard button, e.g.
  when a user types or long presses a key to get more actions.
  
- You can modify the ``standard`` style to change the default,
- global style of all callout views.
+ The ``standard`` style value can be used to get and set the
+ global, standard all callout views.
  */
 public struct KeyboardCalloutStyle: Codable, Equatable {
     

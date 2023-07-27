@@ -11,8 +11,8 @@ import SwiftUI
 /**
  This style can be applied to ``AutocompleteToolbarItem``s.
  
- You can modify the ``standard`` style to change the default,
- global style of all ``AutocompleteToolbarItem``s.
+ The ``standard`` style value can be used to get and set the
+ standard style of all ``AutocompleteToolbarItem``s.
  */
 public struct AutocompleteToolbarItemStyle: Codable, Equatable {
     

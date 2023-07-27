@@ -1,119 +1,42 @@
 # Input
 
-This article describes the KeyboardKit input set engine and how to use it.
+This article describes the KeyboardKit input sets and how to use them.
 
-In KeyboardKit, ``InputSet``s and ``KeyboardLayout``s are central concepts when creating a ``SystemKeyboard``. You can also use them to create custom keyboards, although you don't have to.
+In KeyboardKit, the ``InputSet`` and ``KeyboardLayout`` types are used to describe the keys of a keyboard.
 
-An ``InputSet`` defines the input keys on a keyboard, while a ``KeyboardLayout`` defines the full set of actions on a keyboard, as well as their heights, sizes etc. This means that you can use many different input sets with a single keyboard layout. 
+An ``InputSet`` defines the input keys on a keyboard, while a ``KeyboardLayout`` defines the full set of keys, as well as their heights, sizes etc. This means that you can use different input sets with a single keyboard layout. 
 
-A typical system keyboard layout has several rows, where center input buttons are surrounded by action buttons on one or both sides.
+A typical ``SystemKeyboard`` layout has several rows, where the input buttons are surrounded by action buttons on one or both sides.
 
 [KeyboardKit Pro][Pro] specific features are described at the end of this document.
 
 
 
-## Input set providers
+## Input Sets
 
-KeyboardKit provides you with a few localized input sets, such as ``AlphabeticInputSet/english``, ``NumericInputSet/english(currency:)`` and ``SymbolicInputSet/english(currency:)``, which can be used to create English keyboards. You can easily create your own custom input sets as well. However, instead of creating and using input sets directly, the most flexible way is to use an ``InputSetProvider``. 
+In KeyboardKit, there are three different ``InputSet`` implementations: ``AlphabeticInputSet``, ``NumericInputSet`` and ``SymbolicInputSet``.
 
-KeyboardKit will by default create a ``StandardInputSetProvider`` and apply it to the input controller's ``KeyboardInputViewController/inputSetProvider``. You can replace it with a custom provider to customize the standard input sets.
+> Note: These types will be merged into a single `InputSet` struct in KeyboardKit 8.0.
 
-KeyboardKit also has an ``EnglishInputSetProvider`` that defines the alphabetic, numeric and symbolic inputs for U.S. English. This provider is used by the standard provider, which supports injecting multiple locale-specific providers.
-
-
-
-## How to customize the standard provider
-
-If you want to make minor customizations to the ``StandardInputSetProvider``, there are a couple of options:
-
-* Add more localized providers to the ``StandardInputSetProvider`` instance. 
-* Subclass ``StandardInputSetProvider`` and override its functions.
-
-You can also create a completely custom input set provider, see below.
+KeyboardKit provides you with a few localized input sets, such as ``AlphabeticInputSet/english``, ``NumericInputSet/englishNumeric(currency:)`` and ``SymbolicInputSet/englishSymbolic(currency:)``, which are used to create English keyboards. 
 
 
 
-## How to create a custom provider
+## Input Set Providers (DEPRECATED)
 
-You can create a custom input set provider by either inheriting and customizing the ``StandardInputSetProvider`` base class, which gives you a lot of functionality for free, or by implementing ``InputSetProvider`` from scratch.
+KeyboardKit has a concept called ``InputSetProvider``, which is a protocol that can be implemented by any type that can return an alphabetic, a numeric and a symbolic input set.
 
-For instance, here is a custom provider that inherits ``EnglishInputSetProvider`` and replaces the dollar sign with a Yen sign (¥):
+The ``InputSetProvider`` concept has however been deprecated and will be completely removed in KeyboardKit 8.0.
 
-```swift
-class MyInputSetProvider: EnglishInputSetProvider {
+Instead of an input set provider, from now on use input sets directly.
 
-    public init() {
-        super.init(numericCurrency: "₽", symbolicCurrency: "$")
-    }
-}
-```
-
-To use this implementation instead of the standard one, just replace the standard instance like this:
-
-```swift
-class MyKeyboardViewController: KeyboardInputViewController {
-
-    override func viewDidLoad() {
-        inputSetProvider = MyInputSetProvider()
-        super.viewDidLoad()
-    }
-}
-```
-
-This will make KeyboardKit use your custom implementation everywhere instead of the standard one.
 
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks additional input sets and input set providers for all keyboard locales, as well as input set variations like ``AlphabeticInputSet/azerty`` and ``AlphabeticInputSet/qwertz``. 
+[KeyboardKit Pro][Pro] unlocks additional input sets for all keyboard locales, as well as variations like ``AlphabeticInputSet/azerty`` and ``AlphabeticInputSet/qwertz`` which can be used by all layouts that have the same set of keys as an English keyboard. 
 
-This lets you create a fully localized ``SystemKeyboard`` for all available locales with a single line of code.
-
-You can also access the underlying, locale-specific providers like this:
-
-```swift
-let provider = ProInputSetProvider.Swedish()
-```
-
-You can access all providers that your license unlocks like this:
-
-```swift
-let providers = license.localizedInputSetProviders
-```
-
-If you want to use a custom provider with KeyboardKit Pro, make sure to register your custom instance *after* registering your license key, otherwise it will be overwritten by the license registration process.
-
-You can still inherit `StandardInputSetProvider` with KeyboardKit Pro to get the standard behavior, combined with the additional functionality that your Pro license unlocks:
-
-```swift
-class CustomInputSetProvider: StandardInputSetProvider {
-
-    override var alphabeticInputSet: AlphabeticInputSet {
-        let baseSet = super.alphabeticInputSet
-        let customSet = // Your custom logic here
-        return customSet
-    }
-}
-```
-
-You can then create a custom provider instance with your license, like this:
-
-```swift
-open func setupKeyboardKit() {
-    try? setupPro(withLicenseKey: key, view: keyboardView) { license in
-        self.setupCustomServices(with: license)
-    }
-}
-
-func setupCustomServices(with license: License) {
-    inputSetProvider = CustomInputSetProvider(
-        keyboardContext: keyboardContext,
-        localizedProviders: license.localizedInputSetProviders
-    )
-}
-```
-
-You can of course add a custom initializer to your custom provider if you need additional things in it, then just call `super.init` to setup the rest. 
+These input sets let you create a fully localized ``SystemKeyboard`` with a single line of code. 
 
 
 

@@ -16,9 +16,9 @@ A typical ``SystemKeyboard`` layout has several rows, where the top 3 rows gener
 
 This is however not true for all locales, where some (like Armenian) have 4 input rows, some (like Arabic) may remove the shift key, etc.
 
-However, regardless of the locale-specifics, a localized layout is typically implemented with a locale-specific ``InputSetProvider`` that describes the input keys, and a locale-specific ``KeyboardLayoutProvider`` that describes the iPhone and iPad layout. 
+Regardless of the locale-specifics, a localized keyboard layout is typically implemented with locale-specific ``InputSet`` values for the alphabetic, numeric and symbolic keyboards, and a locale-specific ``KeyboardLayoutProvider`` that uses these input sets to provide iPhone and iPad-specific layouts. 
 
-[KeyboardKit Pro][Pro] implements localized input sets and layouts for all supported keyboard locales.
+[KeyboardKit Pro][Pro] provides localized input sets and layouts for all supported keyboard locales.
 
 
 
@@ -48,7 +48,7 @@ You can create a custom keyboard layout provider by either inheriting and custom
 For instance, here's a custom provider that extends ``StandardKeyboardLayoutProvider`` and injects a tab key to the top-leading part of the keyboard:
 
 ```swift
-class MyKeyboardLayoutProvider: StandardKeyboardLayoutProvider {
+class CustomKeyboardLayoutProvider: StandardKeyboardLayoutProvider {
     
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         let layout = super.keyboardLayout(for: context)
@@ -71,7 +71,7 @@ To use this implementation instead of the standard one, just replace the standar
 class MyKeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
-        keyboardLayoutProvider = MyKeyboardLayoutProvider()
+        keyboardLayoutProvider = CustomKeyboardLayoutProvider()
         super.viewDidLoad()
     }
 }
@@ -83,11 +83,9 @@ This will make KeyboardKit use your custom implementation everywhere instead of 
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks additional keyboard layouts and keyboard layout providers for all keyboard locales.
+[KeyboardKit Pro][Pro] unlocks additional keyboard layouts providers for all keyboard locales.
 
-This lets you create a fully localized ``SystemKeyboard`` for all available locales with a single line of code.
-
-You can also access the underlying, locale-specific providers like this:
+You can access the underlying, locale-specific keyboard layout providers like this:
 
 ```swift
 let provider = ProKeyboardLayoutProvider.Swedish()
@@ -99,22 +97,9 @@ You can access all providers that your license unlocks like this:
 let providers = license.localizedKeyboardLayoutProviders
 ```
 
-If you want to use a custom provider with KeyboardKit Pro, make sure to register your custom instance *after* registering your license key, otherwise it will be overwritten by the license registration process.
+If you want to use a custom provider with KeyboardKit Pro, make sure to register it *after* registering your license key, otherwise it will be overwritten by the license registration process.
 
-You can still inherit `StandardKeyboardLayoutProvider` with KeyboardKit Pro to get the standard behavior, combined with the additional functionality that your Pro license unlocks:
-
-```swift
-class CustomKeyboardLayoutProvider: StandardKeyboardLayoutProvider {
-
-    override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
-        let baseLayout = super.keyboardLayout(for: context)
-        let customLayout = // Your custom logic here
-        return customLayout
-    }
-}
-```
-
-You can then create a custom provider instance with your license, like this:
+For instance, this is how you would register the custom provider that we created earlier, using the localized providers that the license unlocks:
 
 ```swift
 open func setupKeyboardKit() {
@@ -126,13 +111,12 @@ open func setupKeyboardKit() {
 func setupCustomServices(with license: License) {
     keyboardLayoutProvider = CustomKeyboardLayoutProvider(
         keyboardContext: keyboardContext,
-        inputSetProvider: inputSetProvider,
         localizedProviders: license.localizedKeyboardLayoutProviders
     )
 }
 ```
 
-You can of course add a custom initializer to your custom provider if you need additional things in it, then just call `super.init` to setup the rest.
+You can add a custom initializer to your custom provider if you need additional setup, then just call `super.init` to setup the rest.
 
 
 

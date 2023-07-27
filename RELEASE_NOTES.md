@@ -26,11 +26,13 @@ This release prepares the library for the upcoming major version bump, which wil
 
 One big change is that the `InputSetProvider` concept is replaced by just using raw `InputSet` values when creating layout providers.
 
+As a result of this change, the `Input` and `Layout` namespaces will be combined into a single `Layout` namespace in KeyboardKit 8.0.
+
 Another big change is that the `KeyboardFeedbackHandler` concept is merged into the `KeyboardActionHandler` to just have a single type.
 
 This release converts feedback engines from protocols to singletons to simplify the setup and minimize the risk for memory leaks. 
 
-`v8.0` will be added to the docs, where structural or architectural changes will be made, but currently can't be made since it would cause breaking changes. The aim is to clean up and simplify the library, which today has too many types and concepts. 
+A `> v8.0: Comment` block will be added to the docs, where structural or architectural changes will be made, but currently can't be made since it would cause breaking changes. The aim is to clean up and simplify the library, which today has too many types and concepts. 
 
 ### ✨ New Features
 
@@ -50,6 +52,13 @@ This release converts feedback engines from protocols to singletons to simplify 
 * `KeyboardActionHandler` has a new `triggerFeedback(for:on:)` function. 
 * `SpaceCursorDragGestureHandler` no longer needs a feedback handler.
 * `StandardKeyboardLayoutProvider` no longer requires an input set provider.
+
+### 👑 Pro Adjustments
+
+* `InputSet` has new input sets for some locales.
+* `InputSet` has new throwing properties for the localized input sets.
+* `ProInputSetProvider` and all its locale-specific types have been deprecated. 
+* `ProKeyboardLayoutProvider` and all its locale-specific types use input sets instead of providers.
 
 ### 🗑️ Deprecations
 

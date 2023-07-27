@@ -12,10 +12,11 @@ import Foundation
  This protocol can be implemented by any type that should be
  able to provide localized names for locales.
 
- Implementing the protocol will extend the implementing type
- with functions that use public `Locale` extensions with the
- same names. While you can use the protocol, the main reason
- for having it is to expose these extensions to DocC.
+ Implementing the protocol extends types with functions that
+ use public `Locale` extensions with the same names.
+ 
+ While you can use this protocol, the main reason to have it
+ is to expose these extensions to DocC.
  */
 public protocol LocaleNameProvider {}
 

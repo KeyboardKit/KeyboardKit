@@ -12,8 +12,8 @@ import SwiftUI
  This style can be applied to ``ActionCallout`` to customize
  things like the callout style, padding, font etc.
  
- You can modify the ``standard`` style to change the default,
- global style of all ``ActionCallout`` views that use it.
+ The ``standard`` style value can be used to get and set the
+ standard style of all ``ActionCallout`` views.
  */
 public struct KeyboardActionCalloutStyle: Codable, Equatable {
     

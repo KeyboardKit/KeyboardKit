@@ -2,7 +2,7 @@
 
 This article describes the KeyboardKit callout engine and how to use it.
 
-In KeyboardKit, input callouts and action callouts are important parts of the typing experience. While input callouts highlight the key that is being pressed, action callouts can be used to show secondary actions when a key is long pressed.
+In KeyboardKit, input callouts and action callouts are important parts of the typing experience. Input callouts highlight the key that is being pressed, while action callouts show secondary actions when a key is long pressed.
 
 [KeyboardKit Pro][Pro] specific features are described at the end of this document.
 
@@ -37,13 +37,14 @@ You can also create a completely custom callout action provider, see below.
 
 ## How to create a custom callout action provider
 
-You can create a custom callout action provider by either inheriting and customizing the ``StandardCalloutActionProvider`` base class, which gives you a lot of functionality for free, or by implementing ``CalloutActionProvider`` from scratch.
+You can create a custom callout action provider by either inheriting and customizing the ``StandardCalloutActionProvider`` base class, which gives you a lot of functionality, or by implementing the ``CalloutActionProvider`` protocol from scratch.
 
-For instance, here's a custom provider that inherits ``StandardCalloutActionProvider`` and customizes the $ key callout actions:
+For instance, here's a custom provider that inherits ``StandardCalloutActionProvider`` and customizes the secondary actions for the `$` key:
 
 ```swift
-class MyCalloutActionProvider: StandardCalloutActionProvider {
+class CustomCalloutActionProvider: StandardCalloutActionProvider {
     
+    // This function is the most convenient to override
     override func calloutActionString(for char: String) -> String {
         switch char {
         case "$": return "$₽¥€¢£₩"
@@ -59,7 +60,7 @@ To use this implementation instead of the standard one, just replace the standar
 class MyKeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
-        calloutActionProvider = MyCalloutActionProvider()
+        calloutActionProvider = CustomCalloutActionProvider()
         super.viewDidLoad()
     }
 }
@@ -71,15 +72,17 @@ This will make KeyboardKit use your custom implementation everywhere instead of 
 
 ## How to bind callouts to views
 
-To bind an input callout to a custom view, follow these steps:
+The ``SystemKeyboard`` view automatically sets up input and action callouts, but custom views require you to manually apply these callouts.  
 
-* Add `.inputCallout(context:keyboardContext:style:)` to the keyboard view (see ``SystemKeyboard``).
-* Update the ``InputCalloutContext`` with the character you want to show (see the internal `KeyboardGestures`). 
+To bind an input callout to a custom view, do this:
 
-To bind an action callout to a custom view, follow these steps:
+* Add `.inputCallout(context:keyboardContext:style:)` to the keyboard view.
+* Update the ``InputCalloutContext`` with the character you want to show. 
 
-* Add `.actionCallout(context:style:)` to the keyboard view (see ``SystemKeyboard``).
-* Update the ``ActionCalloutContext`` with the actions you want to show (see the internal `KeyboardGestures`).
+To bind an action callout to a custom view, do this:
+
+* Add `.actionCallout(context:style:)` to the keyboard view.
+* Update the ``ActionCalloutContext`` with the actions you want to show.
 
 Have a look at ``SystemKeyboard`` and the demo apps for examples on how this can be done.
 
@@ -87,11 +90,9 @@ Have a look at ``SystemKeyboard`` and the demo apps for examples on how this can
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks additional callout actions for all keyboard locales it supports. 
+[KeyboardKit Pro][Pro] unlocks additional callout actions for all keyboard locales.
 
-This lets you create a fully localized ``SystemKeyboard`` for all available locales with a single line of code.
-
-You can also access the underlying, locale-specific providers like this:
+You can access the underlying, locale-specific callout action providers like this:
 
 ```swift
 let provider = ProCalloutActionProvider.Swedish()
@@ -103,22 +104,9 @@ You can access all providers that your license unlocks like this:
 let providers = license.localizedCalloutActionProviders
 ```
 
-If you want to use a custom provider with KeyboardKit Pro, make sure to register your custom instance *after* registering your license key, otherwise it will be overwritten by the license registration process.
+If you want to use a custom provider with KeyboardKit Pro, make sure to register it *after* registering your license key, otherwise it will be overwritten by the license registration process.
 
-You can still inherit `StandardCalloutActionProvider` with KeyboardKit Pro to get the standard behavior, combined with the additional functionality that your Pro license unlocks:
-
-```swift
-class CustomCalloutActionProvider: StandardCalloutActionProvider {
-
-    override func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {
-        let baseActions = super.calloutActions(for: action)
-        let customActions = // Your custom logic here
-        return customActions
-    }
-}
-```
-
-You can then create a custom provider instance with your license, like this:
+For instance, this is how you would register the custom provider that we created earlier, using the localized providers that the license unlocks:
 
 ```swift
 open func setupKeyboardKit() {
@@ -130,13 +118,12 @@ open func setupKeyboardKit() {
 func setupCustomServices(with license: License) {
     calloutActionProvider = CustomCalloutActionProvider(
         keyboardContext: keyboardContext,
-        inputSetProvider: inputSetProvider,
         localizedProviders: license.localizedCalloutActionProviders
     )
 }
 ```
 
-You can of course add a custom initializer to your custom provider if you need additional things in it, then just call `super.init` to setup the rest. 
+You can add a custom initializer to your custom provider if you need additional setup, then just call `super.init` to setup the rest. 
 
 
 

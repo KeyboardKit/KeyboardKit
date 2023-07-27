@@ -156,7 +156,7 @@ Usage of the various keys can be found in the following places:
 * `send` - Some chat apps (WeChat, QQ), when typing in a chat text field.
 * `space` - The text that is displayed on the space bar.
 
-Once the locale is merged into the main repo, [KeyboardKit Pro][Pro] will add a ``CalloutActionProvider``, ``InputSetProvider`` and ``KeyboardLayoutProvider`` for the locale.   
+Once the locale is merged into the main repo, [KeyboardKit Pro][Pro] will add ``CalloutActionProvider``, ``InputSet`` and ``KeyboardLayoutProvider`` types for the locale.   
 
 
 
@@ -164,7 +164,7 @@ Once the locale is merged into the main repo, [KeyboardKit Pro][Pro] will add a 
 
 [KeyboardKit Pro][Pro] unlocks additional localization capabilities.
 
-KeyboardKit Pro unlocks an ``InputSetProvider``, ``KeyboardLayoutProvider`` and ``CalloutActionProvider`` for each ``KeyboardLocale``, which means that you can create a fully localized ``SystemKeyboard`` with a single line of code.
+KeyboardKit Pro unlocks a ``InputSet`` values, a ``KeyboardLayoutProvider`` and a ``CalloutActionProvider`` for each ``KeyboardLocale``, which means that you can create a fully localized ``SystemKeyboard`` with a single line of code.
 
 
 

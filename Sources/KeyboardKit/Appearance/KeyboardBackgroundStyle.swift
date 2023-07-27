@@ -9,18 +9,21 @@
 import SwiftUI
 
 /**
- This style defines the background of a keyboard.
+ This style defines the background of a keyboard or keyboard
+ component, such as a toolbar or a button.
 
- This style has many components that can be used to create a
- background view that can then be added as a background to a
- keyboard view. The ``backgroundView`` property returns such
- a view, which applies all properties in a `ZStack`.
+ This style has many layers, which will be applied bottom up,
+ starting with the background color then applying each layer
+ until the overlay gradient.
+ 
+ You can use the ``backgroundView`` to get all view with all
+ the layers of the background.
 
- You can modify the ``standard`` style to change the default,
- global background style.
+ The ``standard`` style value can be used to get and set the
+ standard background style.
  */
 public struct KeyboardBackgroundStyle: Codable, Equatable {
-
+    
     /**
      Create a background style with optional components.
 
@@ -132,14 +135,14 @@ private extension KeyboardBackgroundStyle {
 
     func image(from data: Data?) -> Image? {
         guard let data else { return nil }
-    #if canImport(UIKit)
+        #if canImport(UIKit)
         let image: UIImage = UIImage(data: data) ?? UIImage()
         return Image(uiImage: image)
-    #elseif canImport(AppKit)
+        #elseif canImport(AppKit)
         let image: NSImage = NSImage(data: data) ?? NSImage()
         return Image(nsImage: image)
-    #else
+        #else
         return Image(systemImage: "exclamationmark.triangle")
-    #endif
+        #endif
     }
 }

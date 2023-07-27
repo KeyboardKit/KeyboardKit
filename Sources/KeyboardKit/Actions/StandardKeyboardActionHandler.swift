@@ -11,11 +11,11 @@ import UIKit
 
 /**
  This standard keyboard action handler is used by default by
- KeyboardKit and provides a standard way of handling actions
- and trigger action feedback.
+ KeyboardKit and provides a standard way of handling actions.
 
  You can inherit this class and override any open properties
- and functions to customize the standard action behavior.
+ and functions to customize the standard behavior. It uses a
+ ``KeyboardBehavior`` for some behavioral decisions.
 
  Note that the ``keyboardController`` reference is `weak` to
  avoid a retain cycle.

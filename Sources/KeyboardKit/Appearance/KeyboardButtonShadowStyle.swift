@@ -12,8 +12,8 @@ import SwiftUI
 /**
  This style defines the shadow of a system keyboard button.
  
- You can modify the ``standard`` style to change the default,
- global style of all system keyboard buttons.
+ The ``standard`` style value can be used to get and set the
+ standard shadow style of all system keyboard buttons.
  */
 public struct KeyboardButtonShadowStyle: Codable, Equatable {
     
