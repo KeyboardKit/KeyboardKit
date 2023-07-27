@@ -14,26 +14,25 @@ import Foundation
 public enum KeyboardCase: String, Codable, Identifiable {
     
     /**
-     `.auto` is a transient state, that should automatically
-     be replaced by another more apropriate case when typing.
+     A transient state that should automatically be replaced
+     by another more appropriate case when typing.
      */
     case auto
     
     /**
-     `.capsLocked` is an uppercased state that should not be
-     automatically adjusted when typing.
+     An uppercased state that shouldn't adjust automatically.
      */
     case capsLocked
     
     /**
-     `.lowercased` should follow the `autocapitalization` of
-     the text document proxy.
+     A shift state that should automatically shift depending
+     on the text document proxy's `autocapitalization` setup.
      */
     case lowercased
     
     /**
-     `.uppercased` should follow the `autocapitalization` of
-     the text document proxy.
+     A shift state that should automatically shift depending
+     on the text document proxy's `autocapitalization` setup.
      */
     case uppercased
 }

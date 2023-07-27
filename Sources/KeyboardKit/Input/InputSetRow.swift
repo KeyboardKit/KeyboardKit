@@ -10,6 +10,9 @@ import Foundation
 
 /**
  This typealias represents a row of input set items.
+ 
+ `v8.0` - This type will be moved nested in ``InputSet`` and
+ thus become `InputSet.Row`.
  */
 public typealias InputSetRow = [InputSetItem]
 

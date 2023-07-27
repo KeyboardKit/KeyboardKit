@@ -16,13 +16,21 @@ open class EnglishKeyboardLayoutProvider: SystemKeyboardLayoutProvider, Keyboard
 
     /**
      Create an English keyboard layout provider.
-
-     - Parameters:
-       - inputSetProvider: The input set provider to use, by default ``EnglishInputSetProvider``.
      */
     public override init(
-        inputSetProvider: InputSetProvider = EnglishInputSetProvider()
+        alphabeticInputSet: AlphabeticInputSet = .english,
+        numericInputSet: NumericInputSet = .englishNumeric,
+        symbolicInputSet: SymbolicInputSet = .englishSymbolic
     ) {
+        super.init(
+            alphabeticInputSet: alphabeticInputSet,
+            numericInputSet: numericInputSet,
+            symbolicInputSet: symbolicInputSet
+        )
+    }
+    
+    @available(*, deprecated, message: "Use the input set-based initializer instead.")
+    public override init(inputSetProvider: InputSetProvider) {
         super.init(inputSetProvider: inputSetProvider)
     }
 
@@ -35,14 +43,18 @@ open class EnglishKeyboardLayoutProvider: SystemKeyboardLayoutProvider, Keyboard
      The layout provider to use for iPad devices.
      */
     public lazy var iPadProvider = iPadKeyboardLayoutProvider(
-        inputSetProvider: inputSetProvider
+        alphabeticInputSet: alphabeticInputSet,
+        numericInputSet: numericInputSet,
+        symbolicInputSet: symbolicInputSet
     )
 
     /**
      The layout provider to use for iPhone devices.
      */
     public lazy var iPhoneProvider = iPhoneKeyboardLayoutProvider(
-        inputSetProvider: inputSetProvider
+        alphabeticInputSet: alphabeticInputSet,
+        numericInputSet: numericInputSet,
+        symbolicInputSet: symbolicInputSet
     )
 
     /**

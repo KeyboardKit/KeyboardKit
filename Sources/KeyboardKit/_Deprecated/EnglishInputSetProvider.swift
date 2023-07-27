@@ -14,10 +14,8 @@ import Foundation
  Since currencies can vary between English keyboards, we can
  override the currency symbols that are shown in the numeric
  and symbolic keyboards.
- 
- `v8.0` - This type will be replaced by just providing a set
- of `InputSet` values to the layout provider.
  */
+@available(*, deprecated, message: "Use input sets directly instead.")
 open class EnglishInputSetProvider: InputSetProvider, LocalizedService {
     
     /**
@@ -60,20 +58,4 @@ open class EnglishInputSetProvider: InputSetProvider, LocalizedService {
      The input set to use for symbolic keyboards.
      */
     public var symbolicInputSet: SymbolicInputSet
-}
-
-public extension InputSet {
-    
-    /// A standard, English alphabetic input set.
-    static var english: AlphabeticInputSet { .qwerty }
-    
-    /// A standard, English numeric input set.
-    static func englishNumeric(currency: String) -> NumericInputSet {
-        .standardNumeric(currency: currency)
-    }
-    
-    /// A standard, English symbolic input set.
-    static func englishSymbolic(currency: String) -> SymbolicInputSet {
-        .standardSymbolic(currencies: "€\(currency)¥".chars)
-    }
 }

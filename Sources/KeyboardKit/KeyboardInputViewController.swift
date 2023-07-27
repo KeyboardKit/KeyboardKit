@@ -280,16 +280,12 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /**
      The autocomplete provider that is used to provide users
      with autocomplete suggestions.
-
-     You can replace this value with a custom implementation.
      */
     public lazy var autocompleteProvider: AutocompleteProvider = DisabledAutocompleteProvider()
 
     /**
      The callout action provider that is used to provide the
      keyboard with secondary callout actions.
-
-     You can replace this value with a custom implementation.
      */
     public lazy var calloutActionProvider: CalloutActionProvider = StandardCalloutActionProvider(
         keyboardContext: keyboardContext
@@ -300,8 +296,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /**
      The dictation service that is used to perform dictation
      operation between the keyboard and the main app.
-
-     You can replace this value with a custom implementation.
      */
     public lazy var dictationService: KeyboardDictationService = DisabledKeyboardDictationService(
         context: dictationContext
@@ -310,22 +304,17 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /**
      The input set provider that is used to define the input
      keys of the keyboard.
-
-     You can replace this value with a custom implementation.
-     
-     `v8.0` - This property will be removed in KeyboardKit 8.
      */
+    @available(*, deprecated, message: "Use input sets directly instead.")
     public lazy var inputSetProvider: InputSetProvider = StandardInputSetProvider(
         keyboardContext: keyboardContext
     ) {
-        didSet { refreshProperties() }
+        didSet { refreshLayoutProvider() }
     }
 
     /**
      The action handler that will be used by the keyboard to
      handle keyboard actions.
-
-     You can replace this value with a custom implementation.
      */
     public lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(
         inputViewController: self
@@ -336,8 +325,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /**
      The appearance that is used to customize the keyboard's
      design, such as its colors, fonts etc.
-
-     You can replace this value with a custom implementation.
      */
     public lazy var keyboardAppearance: KeyboardAppearance = StandardKeyboardAppearance(
         keyboardContext: keyboardContext)
@@ -345,8 +332,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /**
      The behavior that is used to determine how the keyboard
      should behave when certain things happen.
-
-     You can replace this value with a custom implementation.
      */
     public lazy var keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior(
         keyboardContext: keyboardContext)
@@ -358,14 +343,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /**
      This keyboard layout provider that is used to setup the
      complete set of keys and their layout.
-
-     You can replace this value with a custom implementation.
      */
-    public lazy var keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider(
-        baseProvider: EnglishKeyboardLayoutProvider(
-            inputSetProvider: inputSetProvider
-        )
-    )
+    public lazy var keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider()
 
 
 
@@ -568,7 +547,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 private extension KeyboardInputViewController {
 
     func refreshProperties() {
-        refreshLayoutProvider()
         refreshCalloutActionContext()
     }
 
@@ -579,6 +557,7 @@ private extension KeyboardInputViewController {
         )
     }
 
+    @available(*, deprecated, message: "Use input sets directly instead.")
     func refreshLayoutProvider() {
         keyboardLayoutProvider.register(
             inputSetProvider: inputSetProvider

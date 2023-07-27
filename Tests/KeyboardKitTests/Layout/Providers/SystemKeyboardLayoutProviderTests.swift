@@ -12,18 +12,17 @@ import XCTest
 class SystemKeyboardLayoutProviderTests: XCTestCase {
 
     var provider: SystemKeyboardLayoutProvider!
-    var inputSetProvider: MockInputSetProvider!
     var context: KeyboardContext!
     var layoutConfig: KeyboardLayoutConfiguration!
 
     override func setUp() {
         context = KeyboardContext()
         layoutConfig = .standard(for: context)
-        inputSetProvider = MockInputSetProvider()
-        inputSetProvider.alphabeticInputSetValue = AlphabeticInputSet(rows: [["a", "b", "c"]].map(InputSetRow.init(chars:)))
-        inputSetProvider.numericInputSetValue = NumericInputSet(rows: [["1", "2", "3"]].map(InputSetRow.init(chars:)))
-        inputSetProvider.symbolicInputSetValue = SymbolicInputSet(rows: [[",", ".", "-"]].map(InputSetRow.init(chars:)))
-        provider = SystemKeyboardLayoutProvider(inputSetProvider: inputSetProvider)
+        provider = SystemKeyboardLayoutProvider(
+            alphabeticInputSet: AlphabeticInputSet(rows: [["a", "b", "c"]].map(InputSetRow.init(chars:))),
+            numericInputSet: NumericInputSet(rows: [["1", "2", "3"]].map(InputSetRow.init(chars:))),
+            symbolicInputSet: SymbolicInputSet(rows: [[",", ".", "-"]].map(InputSetRow.init(chars:)))
+        )
     }
 
 
@@ -34,14 +33,6 @@ class SystemKeyboardLayoutProviderTests: XCTestCase {
         let layout = provider.keyboardLayout(for: context)
         let expected = KeyboardLayout(itemRows: items)
         XCTAssertEqual(layout.itemRows.count, expected.itemRows.count)
-    }
-
-
-    func testRegisteringInputSetProviderChangesTheProvider() {
-        let newProvider = MockInputSetProvider()
-        provider.register(inputSetProvider: newProvider)
-        XCTAssertFalse(provider.inputSetProvider === inputSetProvider)
-        XCTAssertTrue(provider.inputSetProvider === newProvider)
     }
 
 

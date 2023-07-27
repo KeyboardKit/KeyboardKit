@@ -31,16 +31,40 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
      Create a system keyboard layout provider.
      
      - Parameters:
-       - inputSetProvider: The input set provider to use.
+       - alphabeticInputSet: The alphabetic input set to use.
+       - numericInputSet: The numeric input set to use.
+       - symbolicInputSet: The symbolic input set to use.
      */
-    public init(inputSetProvider: InputSetProvider) {
-        self.inputSetProvider = inputSetProvider
+    public init(
+        alphabeticInputSet: AlphabeticInputSet,
+        numericInputSet: NumericInputSet,
+        symbolicInputSet: SymbolicInputSet
+    ) {
+        self.alphabeticInputSet = alphabeticInputSet
+        self.numericInputSet = numericInputSet
+        self.symbolicInputSet = symbolicInputSet
     }
     
-    /**
-     The input set provider to use.
-     */
-    public var inputSetProvider: InputSetProvider
+    @available(*, deprecated, message: "Use the input set-based initializer instead")
+    public init(inputSetProvider: InputSetProvider) {
+        self.inputSetProvider = inputSetProvider
+        self.alphabeticInputSet = inputSetProvider.alphabeticInputSet
+        self.numericInputSet = inputSetProvider.numericInputSet
+        self.symbolicInputSet = inputSetProvider.symbolicInputSet
+    }
+    
+    
+    /// The alphabetic input set to use.
+    public private(set) var alphabeticInputSet: AlphabeticInputSet
+    
+    /// The numeric input set to use.
+    public private(set) var numericInputSet: NumericInputSet
+    
+    /// The symbolic input set to use.
+    public private(set) var symbolicInputSet: SymbolicInputSet
+    
+    @available(*, deprecated, message: "Use the input set properties instead")
+    public var inputSetProvider: InputSetProvider = EnglishInputSetProvider()
     
     
     /**
@@ -53,14 +77,12 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         return KeyboardLayout(itemRows: items)
     }
 
-    /**
-     Register a new input set provider.
-     
-     `v8.0` - This function will be removed, since this type
-     will no longer be depending on an input set provider.
-     */
+    @available(*, deprecated, message: "Use input sets directly instead.")
     open func register(inputSetProvider: InputSetProvider) {
         self.inputSetProvider = inputSetProvider
+        self.alphabeticInputSet = inputSetProvider.alphabeticInputSet
+        self.numericInputSet = inputSetProvider.numericInputSet
+        self.symbolicInputSet = inputSetProvider.symbolicInputSet
     }
     
     
@@ -91,9 +113,9 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
      */
     open func inputRows(for context: KeyboardContext) -> InputSetRows {
         switch context.keyboardType {
-        case .alphabetic: return inputSetProvider.alphabeticInputSet.rows
-        case .numeric: return inputSetProvider.numericInputSet.rows
-        case .symbolic: return inputSetProvider.symbolicInputSet.rows
+        case .alphabetic: return alphabeticInputSet.rows
+        case .numeric: return numericInputSet.rows
+        case .symbolic: return symbolicInputSet.rows
         default: return []
         }
     }

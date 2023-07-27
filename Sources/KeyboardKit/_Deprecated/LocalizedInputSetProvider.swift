@@ -11,8 +11,6 @@ import Foundation
 /**
  This typealias represents an ``InputSetProvider`` that also
  implements the ``LocalizedService`` protocol.
-
- `v8.0` - This type will be replaced by just providing a set
- of `InputSet` values to the layout provider.
  */
+@available(*, deprecated, message: "Use input sets directly instead.")
 public typealias LocalizedInputSetProvider = InputSetProvider & LocalizedService

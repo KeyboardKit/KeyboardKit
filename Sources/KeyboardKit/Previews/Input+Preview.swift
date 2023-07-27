@@ -8,17 +8,13 @@
 
 import Foundation
 
+@available(*, deprecated, message: "Use input sets directly instead.")
 public extension InputSetProvider where Self == PreviewInputSetProvider {
     
-    /**
-     This preview provider can be used in SwiftUI previews.
-     */
     static var preview: InputSetProvider { PreviewInputSetProvider() }
 }
 
-/**
- This input set provider can be used in SwiftUI previews.
- */
+@available(*, deprecated, message: "Use input sets directly instead.")
 public class PreviewInputSetProvider: InputSetProvider {
     
     /**

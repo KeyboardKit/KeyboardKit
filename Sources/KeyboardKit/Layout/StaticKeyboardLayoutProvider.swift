@@ -40,6 +40,6 @@ public class StaticKeyboardLayoutProvider: KeyboardLayoutProvider {
         layout
     }
 
-    /// Deprecated
+    @available(*, deprecated, message: "Use input sets directly instead.")
     public func register(inputSetProvider: InputSetProvider) {}
 }

@@ -9,19 +9,8 @@
 
 import Foundation
 
-/**
- This protocol is implemented by services that may depend on
- an ``InputSetProvider`` and must be reconfigured when a new
- input set provider is being used.
-
- `v8.0` - This protocol and all implementation types will be
- replaced by just providing a couple of `InputSet` values to
- the layout provider.
- */
+@available(*, deprecated, message: "Use input sets directly instead.")
 public protocol InputSetProviderBased {
 
-    /**
-     Register a new input set provider.
-     */
     func register(inputSetProvider: InputSetProvider)
 }

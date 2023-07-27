@@ -13,9 +13,11 @@ Breaking changes can still occur in minor versions, patches and BETA features, i
 
 ## 7.9
 
-This release prepares the library for the upcoming major version bump.
+This release prepares the library for the upcoming major version bump, which will clean up the library and remove a lot of types to make the library easier to use.
 
-This release prepares the various input set utilities for the future removal of the input set provider concept and for converting `InputSet` to a struct.
+One big change is that the `InputSetProvider` concept is replaced by just using raw `InputSet` values when creating layout providers.
+
+Another big change is that the `KeyboardFeedbackHandler` concept is merged into the `KeyboardActionHandler` to just have a single type.
 
 This release converts feedback engines from protocols to singletons to simplify the setup and minimize the risk for memory leaks. 
 
@@ -24,6 +26,7 @@ This release converts feedback engines from protocols to singletons to simplify 
 ### ✨ New Features
 
 * `HapticFeedbackConfiguration` has new `press` and `release` configurations.
+* `InputSet` has new `English` builders.
 * `KeyboardActionHandler` has new feedback functions.
 * `KeyboardReturnKeyType` has new `continue`, `emergencyCall` and `route` types.
 * `StandardKeyboardActionHandler` has new feedback functions.
@@ -39,6 +42,8 @@ This release converts feedback engines from protocols to singletons to simplify 
 
 ### 🗑️ Deprecations
 
+* `EnglishInputSetProvider` has been deprecated.
+* `InputSetProvider` has been deprecated.
 * `InputSetProviderBased` has been deprecated.
 * `NumericInputSet.english` has been renamed to `englishNumeric`.
 * `NumericInputSet.standard` has been renamed to `standardNumeric`.

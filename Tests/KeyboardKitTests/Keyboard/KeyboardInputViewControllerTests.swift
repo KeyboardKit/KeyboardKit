@@ -124,7 +124,6 @@ class KeyboardInputViewControllerTests: XCTestCase {
     func servicesHaveStandardInstancesByDefault() {
         XCTAssertNotNil(vc.autocompleteProvider as? DisabledAutocompleteProvider)
         XCTAssertNotNil(vc.calloutActionProvider as? StandardCalloutActionProvider)
-        XCTAssertNotNil(vc.inputSetProvider as? StandardInputSetProvider)
         XCTAssertNotNil(vc.keyboardActionHandler as? StandardKeyboardActionHandler)
         XCTAssertNotNil(vc.keyboardAppearance as? StandardKeyboardAppearance)
         XCTAssertNotNil(vc.keyboardBehavior as? StandardKeyboardBehavior)
@@ -136,14 +135,6 @@ class KeyboardInputViewControllerTests: XCTestCase {
         vc.keyboardActionHandler = PreviewKeyboardActionHandler()
         let actionContext = vc.calloutContext.action
         XCTAssertTrue(actionContext.actionHandler === vc.keyboardActionHandler)
-    }
-
-    @available(*, deprecated, message: "This will be removed in KeyboardKit 8.0")
-    func testRefreshingPropertiesWhenChangingServicePropertiesIsDoneForInputSetProvider() {
-        let vc = TestClass()
-        vc.inputSetProvider = MockInputSetProvider()
-        let layoutProvider = vc.keyboardLayoutProvider as? StandardKeyboardLayoutProvider
-        XCTAssertTrue(layoutProvider?.inputSetProvider === vc.inputSetProvider)
     }
 
     func testRefreshingPropertiesWhenChangingServicePropertiesIsForCalloutActionProvider() {

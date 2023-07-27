@@ -12,9 +12,7 @@ import SwiftUI
  This style defines the style of a system keyboard button.
 
  This type has no `standard` style, since the standard style
- depends on so many factors, like button type, layout config
- etc. Instead, use a ``KeyboardAppearance``to resolve styles
- for certain actions.
+ depends on so many factors, like button type, layout etc.
  */
 public struct KeyboardButtonStyle: Codable, Equatable {
 

@@ -12,7 +12,7 @@ import Foundation
  This input set provider just returns the input sets that it
  was initialized with.
  */
-@available(*, deprecated, message: "The input set provider concept will be removed in KeyboardKit 8.0")
+@available(*, deprecated, message: "Use input sets directly instead.")
 public class StaticInputSetProvider: InputSetProvider {
     
     /**

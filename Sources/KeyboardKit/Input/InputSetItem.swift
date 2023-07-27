@@ -16,6 +16,9 @@ import Foundation
  is the regular way of working with input sets. However, the
  struct also supports specific casings, which means that you
  can use it to create unicode keyboards etc.
+ 
+ `v8.0` - This type will be moved nested within ``InputSet``
+ and thus become `InputSet.Item`.
  */
 public struct InputSetItem: Equatable {
 

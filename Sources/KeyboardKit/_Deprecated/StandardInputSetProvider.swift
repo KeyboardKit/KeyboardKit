@@ -8,14 +8,7 @@
 
 import Foundation
 
-/**
- This provider is initialized with a collection of localized
- providers, and will use the one with the same locale as the
- provided ``KeyboardContext``.
- 
- `v8.0` - This type will be replaced by just providing a set
- of `InputSet` values to the layout provider.
- */
+@available(*, deprecated, message: "Use input sets directly instead.")
 open class StandardInputSetProvider: InputSetProvider {
     
     /**

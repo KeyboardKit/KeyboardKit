@@ -42,6 +42,6 @@ public class PreviewKeyboardLayoutProvider: KeyboardLayoutProvider {
         provider.keyboardLayout(for: context)
     }
     
-    /// Deprecated
+    @available(*, deprecated, message: "Use input sets directly instead.")
     public func register(inputSetProvider: InputSetProvider) {}
 }

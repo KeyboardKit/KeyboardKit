@@ -25,9 +25,34 @@ public protocol InputSet: Equatable {
 
 public extension InputSet {
     
-    /**
-     A standard `QWERTY` alphabetic input set.
-     */
+    /// A standard, English alphabetic input set.
+    static var english: AlphabeticInputSet { .qwerty }
+    
+    /// A standard, English numeric input set.
+    static var englishNumeric: NumericInputSet {
+        .englishNumeric()
+    }
+    
+    /// A standard, English numeric input set.
+    static func englishNumeric(
+        currency: String = "$"
+    ) -> NumericInputSet {
+        .standardNumeric(currency: currency)
+    }
+    
+    /// A standard, English symbolic input set.
+    static var englishSymbolic: SymbolicInputSet {
+        .englishSymbolic()
+    }
+    
+    /// A standard, English symbolic input set.
+    static func englishSymbolic(
+        currency: String = "£"
+    ) -> SymbolicInputSet {
+        .standardSymbolic(currencies: "€\(currency)¥".chars)
+    }
+    
+    /// A standard `QWERTY` alphabetic input set.
     static var qwerty: AlphabeticInputSet {
         .init(rows: [
             .init(chars: "qwertyuiop"),
@@ -36,9 +61,7 @@ public extension InputSet {
         ])
     }
     
-    /**
-     A standard, numeric input set with a custom currency.
-     */
+    /// A standard numeric input set with a custom currency.
     static func standardNumeric(currency: String) -> NumericInputSet {
         NumericInputSet(rows: [
             .init(chars: "1234567890"),
@@ -47,9 +70,7 @@ public extension InputSet {
         ])
     }
     
-    /**
-     A standard, symbolci input set with custom currencies.
-     */
+    /// A standard symbolic input set with custom currencies.
     static func standardSymbolic(currencies: [String]) -> SymbolicInputSet {
         SymbolicInputSet(rows: [
             .init(phone: "[]{}#%^*+=", pad: "1234567890"),

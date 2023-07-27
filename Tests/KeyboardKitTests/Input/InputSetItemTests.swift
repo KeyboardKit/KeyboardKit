@@ -1,5 +1,5 @@
 //
-//  KeyboardInputTests.swift
+//  InputSetItemTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-07-03.
@@ -9,7 +9,7 @@
 import KeyboardKit
 import XCTest
 
-class KeyboardInputTests: XCTestCase {
+class InputSetItemTests: XCTestCase {
     
     func testCharacterForCasingReturnsCorrectChar() {
         let input = InputSetItem(neutral: "n", uppercased: "u", lowercased: "l")

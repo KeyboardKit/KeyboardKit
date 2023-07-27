@@ -11,7 +11,6 @@ import XCTest
 
 class StandardKeyboardLayoutProviderTests: XCTestCase {
     
-    var inputSetProvider: MockInputSetProvider!
     var context: KeyboardContext!
     var provider: StandardKeyboardLayoutProvider!
 
@@ -61,9 +60,9 @@ private class TestKeyboardLayoutProvider: SystemKeyboardLayoutProvider, Localize
     
     init() {
         super.init(
-            inputSetProvider: EnglishInputSetProvider(
-                alphabetic: .init(rows: [.init(chars: "abcdefghij")])
-            )
+            alphabeticInputSet: .init(rows: [.init(chars: "abcdefghij")]),
+            numericInputSet: .englishNumeric,
+            symbolicInputSet: .englishSymbolic
         )
     }
 }
