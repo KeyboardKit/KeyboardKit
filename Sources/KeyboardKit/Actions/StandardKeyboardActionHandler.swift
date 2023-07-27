@@ -48,7 +48,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.spaceDragGestureHandler = spaceDragGestureHandler ?? Self.dragGestureHandler(
             keyboardController: ivc,
             keyboardContext: ivc.keyboardContext,
-            keyboardFeedbackHandler: ivc.keyboardFeedbackHandler,
             spaceDragSensitivity: spaceDragSensitivity
         )
     }
@@ -83,7 +82,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.spaceDragGestureHandler = spaceDragGestureHandler ?? Self.dragGestureHandler(
             keyboardController: keyboardController,
             keyboardContext: keyboardContext,
-            keyboardFeedbackHandler: keyboardFeedbackHandler,
             spaceDragSensitivity: spaceDragSensitivity
         )
     }
@@ -91,13 +89,11 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     static func dragGestureHandler(
         keyboardController: KeyboardController,
         keyboardContext: KeyboardContext,
-        keyboardFeedbackHandler: KeyboardFeedbackHandler,
         spaceDragSensitivity: SpaceDragSensitivity
     ) -> SpaceCursorDragGestureHandler {
         weak var controller = keyboardController
         weak var context = keyboardContext
         return .init(
-            feedbackHandler: keyboardFeedbackHandler,
             sensitivity: spaceDragSensitivity,
             action: {
                 let offset = context?.textDocumentProxy.spaceDragOffset(for: $0)
@@ -223,11 +219,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
 
     /**
-     Try to resolve a replacement keyboard action before the
-     `gesture` is performed on the provided `action`.
-
-     You can override this function to customize how actions
-     should be replaced.
+     Try to resolve a replacement action before a gesture is
+     performed on the provided action.
      */
     open func replacementAction(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction? {
         guard gesture == .release else { return nil }
@@ -251,9 +244,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     /**
      Whether or not a feedback should be given for a certain
      gesture on a certain action.
-
-     You can override this function to customize how actions
-     trigger feedback.
      */
     open func shouldTriggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
         if gesture == .press && self.action(for: .release, on: action) != nil { return true }

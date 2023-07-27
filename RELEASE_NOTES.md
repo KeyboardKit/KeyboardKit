@@ -31,6 +31,7 @@ This release converts feedback engines from protocols to singletons to simplify 
 
 * `AudioFeedbackEngine` has been converted from a protocol to an open class.
 * `KeyboardActionHandler` has a new `triggerFeedback(for:on:)` function. 
+* `SpaceCursorDragGestureHandler` no longer needs a feedback handler.
 * `StandardKeyboardLayoutProvider` no longer requires an input set provider.
 
 ### 🗑️ Deprecations
