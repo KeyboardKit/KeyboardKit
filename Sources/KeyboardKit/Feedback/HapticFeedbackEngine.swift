@@ -66,9 +66,11 @@ public extension HapticFeedbackEngine {
     static var shared = HapticFeedbackEngine()
 }
 
+#if os(iOS)
 private extension HapticFeedbackEngine {
     
     func triggerNotification(_ notification: UINotificationFeedbackGenerator.FeedbackType) {
         notificationGenerator.notificationOccurred(notification)
     }
 }
+#endif

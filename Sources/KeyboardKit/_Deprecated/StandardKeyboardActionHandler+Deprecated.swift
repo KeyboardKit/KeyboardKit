@@ -1,5 +1,6 @@
 import Foundation
 
+#if os(iOS) || os(tvOS)
 public extension StandardKeyboardActionHandler {
 
     @available(*, deprecated, message: "Use the function without a feedback handler")
@@ -21,3 +22,4 @@ public extension StandardKeyboardActionHandler {
         )
     }
 }
+#endif
