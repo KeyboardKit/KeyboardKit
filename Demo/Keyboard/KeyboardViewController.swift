@@ -31,40 +31,35 @@ class KeyboardViewController: KeyboardInputViewController {
 
         /// 💡 Setup a custom keyboard locale.
         ///
-        /// Changing locale without using KeyboardKit Pro or
-        /// a custom input set and/or layout will only cause
-        /// some localized texts to change.
+        /// Since the demo doesn't use KeyboardKit Pro, this
+        /// will only affect button texts and not the layout.
         keyboardContext.setLocale(.english)
 
-        /// 💡 Add more locales to the keyboard context.
+        /// 💡 Add more locales to the keyboard.
         ///
-        /// You can enable this to see how the keyboard adds
-        /// a locale switcher next to space and how pressing
-        /// space opens up a locale menu if you also comment
-        /// out that code below.
+        /// You can add a locale switch key using the custom
+        /// layout provider in this demo, or just enable the
+        /// space long press behavior below.
         // keyboardContext.locales = KeyboardLocale.allCases.map { $0.locale }
+        
+        /// 💡 Change the space long press behavior.
+        ///
+        /// The locale context menu will only open up if the
+        /// keyboard has multiple locales.
+        // keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu
 
         /// 💡 Setup a custom dictation key replacement.
         ///
-        /// Since dictation is not available by default, you
-        /// can use this to replace the dictation key if you
-        /// want to. If you don't do this, the key will just
-        /// be removed.
+        /// Since dictation is not available by default, the
+        /// dictation button is removed by default, if we do
+        /// not set this replacement.
         keyboardContext.keyboardDictationReplacement = .keyboardType(.emojis)
-
-        /// 💡 Make long pressing space open a locale menu.
-        ///
-        /// You can enable this to see how the keyboard will
-        /// change from moving the cursor and instead open a
-        /// locale menu when space is long pressed.
-        // keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu
 
         /// 💡 Setup a fake autocomplete provider.
         ///
-        /// You can change this provider's implementation to
-        /// see how the autocomplete changes. Have a look at
-        /// the KeyboardPro demos to see how a real provider
-        /// behaves as you type or move the cursor.
+        /// Change the provider implementation to see how it
+        /// affects the autocomplete suggestion. Try the Pro
+        /// demo to see how the pro provider behaves.
         autocompleteProvider = FakeAutocompleteProvider()
 
         /// 💡 Setup a demo-specific keyboard appearance.
@@ -85,9 +80,7 @@ class KeyboardViewController: KeyboardInputViewController {
         ///
         /// You can change this provider's implementation to
         /// see how the layout changes.
-        keyboardLayoutProvider = DemoKeyboardLayoutProvider(
-            keyboardContext: keyboardContext,
-            inputSetProvider: inputSetProvider)
+        keyboardLayoutProvider = DemoKeyboardLayoutProvider()
 
         /// 💡 Call super to perform the base initialization.
         super.viewDidLoad()

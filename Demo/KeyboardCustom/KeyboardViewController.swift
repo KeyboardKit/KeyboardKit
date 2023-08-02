@@ -27,22 +27,15 @@ class KeyboardViewController: KeyboardInputViewController {
 
         /// 💡 Setup a custom keyboard locale.
         ///
-        /// Changing locale without using KeyboardKit Pro or
-        /// a custom input set and/or layout will only cause
-        /// some localized texts to change.
+        /// Since the demo uses a custom layout provider, it
+        /// will only affect button texts and not the layout.
         keyboardContext.setLocale(.english)
-
-        /// 💡 Setup a demo-specific input set provider.
-        ///
-        /// This will affect the input keys for the keyboard.
-        inputSetProvider = DemoInputSetProvider()
 
         /// 💡 Setup a demo-specific layout provider.
         ///
-        /// This will affect the keyboard layout, sizes etc.
-        keyboardLayoutProvider = DemoLayoutProvider(
-            keyboardContext: keyboardContext,
-            inputSetProvider: inputSetProvider)
+        /// You can change this provider's implementation to
+        /// see how the layout changes.
+        keyboardLayoutProvider = DemoLayoutProvider()
 
         /// 💡 Setup a demo-specific keyboard appearance.
         ///

@@ -84,9 +84,10 @@ class KeyboardViewController: KeyboardInputViewController {
         // Setup KeyboardKit Pro, using a demo-specific view
         try? setupPro(
             withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098",
-            view: { controller in DemoKeyboardView(controller: controller) },
             licenseConfiguration: setup
-        )
+        ) { controller in
+            DemoKeyboardView(controller: controller)
+        }
     }
 
     /**

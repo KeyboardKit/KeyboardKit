@@ -13,9 +13,9 @@ import SwiftUI
  This keyboard demonstrates how to create a keyboard using a
  unicode-based input set.
 
- The keyboard doesn't override `viewWillSetupKeyboard` which
- makes it setup a `SystemKeyboard` which then uses the input
- set that is provided by the ``DemoInputSetProvider``.
+ This keyboard does not override `viewWillSetupKeyboard` and
+ therefore uses a standard `SystemKeyboard`. It however uses
+ ``DemoLayoutProvider`` to get a custom keyboard layout.
 
  To use this keyboard, you must enable it in system settings
  ("Settings/General/Keyboards"). It needs full access to get
@@ -28,12 +28,12 @@ class KeyboardViewController: KeyboardInputViewController {
      we setup a custom ``DemoInputSetProvider``.
      */
     override func viewDidLoad() {
-
-        /// 💡 Setup a demo-specific input set provider.
+        
+        /// 💡 Setup a demo-specific layout provider.
         ///
         /// You can change this provider's implementation to
-        /// see how the input keys change.
-        inputSetProvider = DemoInputSetProvider()
+        /// see how the layout changes.
+        keyboardLayoutProvider = DemoLayoutProvider()
 
         /// 💡 Call super to perform the base initialization.
         super.viewDidLoad()

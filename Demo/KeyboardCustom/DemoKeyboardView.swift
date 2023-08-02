@@ -11,12 +11,10 @@ import SwiftUI
 
 /**
  This view adds a `SystemKeyboard` with some more views to a
- `VStack`, then configures the keyboard slightly.
+ `VStack` and configures the keyboard slightly.
 
- The system keyboard will then adapt its appearance based on
- the ``DemoKeyboardAppearance``, its input keys based on the
- ``DemoInputSetProvider`` and its full keyboard layout based
- on the ``DemoLayoutProvider``.
+ This system keyboard bases its layout and appearance on the
+ ``DemoKeyboardAppearance`` and ``DemoLayoutProvider``.
  */
 struct DemoKeyboardView: View {
 
