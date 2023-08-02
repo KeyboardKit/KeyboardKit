@@ -13,8 +13,7 @@ import UIKit
 public extension KeyboardInputViewController {
 
     /**
-     Get the bundle ID of the host app, which is the current
-     app that is using the keyboard.
+     Get the bundle ID of the app that is using the keyboard.
 
      Note that this implementation makes use of technologies
      that may stop working in any future iOS version. Do not
@@ -22,10 +21,22 @@ public extension KeyboardInputViewController {
      be able to function even if this suddenly stops working.
 
      Also note that the ID that is returned can differ based
-     on the iOS version being used to fetch it.
+     on the iOS version that is being used to parse it.
      */
     var hostBundleId: String? {
-        if let bundleId = hostBundleIdValue { return bundleId }
+        if let id = hostBundleIdValueBefore16 { return id }
+        return hostBundleIdValueFor16
+    }
+}
+
+private extension KeyboardInputViewController {
+    
+    var hostBundleIdValueBefore16: String? {
+        let value = parent?.value(forKey: "_hostBundleID") as? String
+        return value != "<null>" ? value: nil
+    }
+    
+    var hostBundleIdValueFor16: String? {
         guard let pid = parent?.value(forKey: "_hostPID") else { return nil }
         let selector = NSSelectorFromString("defaultService")
         guard let anyClass: AnyObject = NSClassFromString("PKService"),
@@ -47,14 +58,6 @@ public extension KeyboardInputViewController {
         let response = cFunc(xpcCon)
         let hostBundleId = NSString(utf8String: response)
         return hostBundleId as String?
-    }
-}
-
-private extension KeyboardInputViewController {
-
-    var hostBundleIdValue: String? {
-        let value = parent?.value(forKey: "_hostBundleID") as? String
-        return value != "<null>" ? value: nil
     }
 }
 #endif
