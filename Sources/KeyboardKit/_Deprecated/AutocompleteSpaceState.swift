@@ -12,6 +12,7 @@ import Foundation
  This enum represents the state a text document proxy can be
  in, when inserting and removing spaces during autocomplete.
  */
+@available(*, deprecated, message: "This will be removed in KeyboardKit 8.0.")
 public enum AutocompleteSpaceState {
     
     /// This means that the proxy is not in a certain state.

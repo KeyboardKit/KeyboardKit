@@ -19,14 +19,12 @@ import Foundation
  other services. It sets up a ``DisabledAutocompleteProvider``
  that serves as a placeholder until a real one is registered.
 
- KeyboardKit Pro will unlock two providers when you register
- a license. ``LocalAutocompleteProvider`` is locale-specific
- and runs on device, while ``RemoteAutocompleteProvider`` is
- a base class that can be configured to communicate with any
- remote APIs or web services.
-
- KeyboardKit Pro registers a standard provider instance when
- you register a pro license.
+ KeyboardKit Pro unlocks two autocomplete providers when you
+ register your license key. `LocalAutocompleteProvider` runs
+ locally on the device and supports most ``KeyboardLocale``s,
+ while `RemoteAutocompleteProvider` can be configured to use
+ any remote API KeyboardKit Pro registers the local provider
+ when you register your license key.
  
  > v8.0: This protocol will be made async in KeyboardKit 8.0.
  */

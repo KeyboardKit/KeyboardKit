@@ -16,7 +16,7 @@ public extension UITextDocumentProxy {
      input, that has been inserted by autocomplete.
      */
     var hasAutocompleteInsertedSpace: Bool {
-        ProxyState.state == .autoInserted && documentContextBeforeInput?.hasSuffix(" ") == true
+        ProxyState.spaceState == .autoInserted && documentContextBeforeInput?.hasSuffix(" ") == true
     }
     
     /**
@@ -24,7 +24,7 @@ public extension UITextDocumentProxy {
      current input, that has been inserted by autocomplete.
      */
     var hasAutocompleteRemovedSpace: Bool {
-        ProxyState.state == .autoRemoved
+        ProxyState.spaceState == .autoRemoved
     }
     
     /**
@@ -34,7 +34,10 @@ public extension UITextDocumentProxy {
      If a space is automatically inserted, the proxy will be
      set to an `autoInserted` state.
      */
-    func insertAutocompleteSuggestion(_ suggestion: AutocompleteSuggestion, tryInsertSpace: Bool = true) {
+    func insertAutocompleteSuggestion(
+        _ suggestion: AutocompleteSuggestion,
+        tryInsertSpace: Bool = true
+    ) {
         replaceCurrentWord(with: suggestion.text)
         guard tryInsertSpace else { return }
         tryInsertSpaceAfterAutocomplete()
@@ -85,8 +88,8 @@ private extension UITextDocumentProxy {
         setState(.none)
     }
     
-    func setState(_ state: AutocompleteSpaceState) {
-        ProxyState.state = state
+    func setState(_ state: ProxyAutocompleteSpaceState) {
+        ProxyState.spaceState = state
     }
 }
 
@@ -101,6 +104,18 @@ private final class ProxyState {
      This flag is used to keep track of if a space character
      has been inserted by `insertAutocompleteSuggestion`.
      */
-    static var state = AutocompleteSpaceState.none
+    static var spaceState = ProxyAutocompleteSpaceState.none
+}
+
+enum ProxyAutocompleteSpaceState {
+    
+    /// The proxy is not in any certain state.
+    case none
+    
+    /// The proxy has an auto-inserted space.
+    case autoInserted
+    
+    /// The proxy has an auto-removed space.
+    case autoRemoved
 }
 #endif
