@@ -10,12 +10,14 @@
 import SwiftUI
 
 /**
+ This button can be used to apply a bunch of gestures to the
+ provided label.
+ 
  This button uses a single drag gesture to implement support
- for a bunch of different gestures.
-
- This button can not be used within a `ScrollView`, since it
- will block the scroll gestures. For these cases, you should
- consider using a ``ScrollViewGestureButton`` instead.
+ for a bunch of different gestures, in a way that blocks the
+ scroll gesture of a `ScrollView`.
+ 
+ Use a ``ScrollViewGestureButton`` when using a `ScrollView`.
  */
 public struct GestureButton<Label: View>: View {
 

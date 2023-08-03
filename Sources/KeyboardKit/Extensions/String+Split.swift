@@ -1,5 +1,5 @@
 //
-//  String+Internal.swift
+//  String+Split.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2022-10-08.

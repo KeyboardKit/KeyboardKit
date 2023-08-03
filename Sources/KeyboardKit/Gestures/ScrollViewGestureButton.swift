@@ -11,23 +11,19 @@ import SwiftUI
 
 /**
  This button can be used to apply a bunch of gestures to the
- provided label, in a way that works within a `ScrollView`.
+ provided label, in a way that works in a `ScrollView`.
+ 
+ This button uses different gestures and states to implement
+ support for a bunch of different gestures, in a way that is
+ not blocking the scroll gesture of a `ScrollView`. The code
+ is complicated and is the result of trial and (many) errors.
+ 
+ Use a ``GestureButton`` when you're not using a `ScrollView`.
 
- This button can be used within a `ScrollView` since it will
- not block the scroll view's scrolling, despite all gestures
- that is applied to it. The code is complicated, since it is
- the result of trial and many errors, where every change has
- been tested to not affect the scrolling or any gestures.
-
- If you don't need to use a scroll view, you should consider
- using a ``GestureButton`` instead. It's way more responsive,
- since it uses a single drag gesture to trigger actions with
- no delay, which however doesn't workin within a scroll view.
-
- Note that the view uses an underlying `ButtonStyle` to make
- gestures work. It can thus not apply another style, but you
- can use the `isPressed` value that is passed to the `label`
- builder, to configure the button view for the pressed state.
+ > Note: This view uses a `ButtonStyle` to make the gestures
+ work and therefore doesn't support other button styles. You
+ can however use the `isPressed` value that is passed to the
+ `label` builder, to configure the label.
  */
 public struct ScrollViewGestureButton<Label: View>: View {
 
