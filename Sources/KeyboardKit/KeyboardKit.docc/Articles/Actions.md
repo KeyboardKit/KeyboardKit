@@ -85,7 +85,7 @@ You can create a custom action handler by inheriting the ``StandardKeyboardActio
 For instance, here is a custom action handler that inherits ``StandardKeyboardActionHandler`` and extends it with the capabilities to copy and save images:
 
 ```swift
-class MyActionHandler: StandardKeyboardActionHandler {
+class CustomActionHandler: StandardKeyboardActionHandler {
     
     public init(inputViewController: KeyboardInputViewController) {
         super.init(inputViewController: inputViewController)
@@ -122,10 +122,10 @@ class MyActionHandler: StandardKeyboardActionHandler {
 To use this action handler instead of the standard one, just set the input controller's ``KeyboardInputViewController/keyboardActionHandler`` to the new handler:
 
 ```swift
-class MyKeyboardViewController: KeyboardInputViewController {
+class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
-        keyboardActionHandler = MyActionHandler(inputViewController: self)
+        keyboardActionHandler = CustomActionHandler(inputViewController: self)
         super.viewDidLoad()
     }
 }

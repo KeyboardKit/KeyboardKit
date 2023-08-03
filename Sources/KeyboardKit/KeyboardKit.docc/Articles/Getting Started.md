@@ -204,7 +204,7 @@ class MyActionHandler: StandardActionHandler {
 You can now use this action handler instead of the standard one, by setting ``KeyboardInputViewController/keyboardActionHandler`` to that new type:
 
 ```swift
-class MyKeyboardViewController: KeyboardInputViewController {
+class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
         keyboardActionHandler = MyActionHandler(inputViewController: self)

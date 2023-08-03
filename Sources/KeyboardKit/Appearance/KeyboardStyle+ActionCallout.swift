@@ -93,5 +93,5 @@ public extension KeyboardStyle.ActionCallout {
 
      This can be changed to affect the global, default style.
     */
-    static var standard = KeyboardStyle.ActionCallout()
+    static var standard = Self()
 }

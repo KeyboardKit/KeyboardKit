@@ -24,14 +24,16 @@ public struct SystemKeyboardButtonBody: View {
        - isPressed: Whether or not the button is pressed, by default `false`.
      */
     public init(
-        style: KeyboardButtonStyle,
+        style: Style,
         isPressed: Bool = false
     ) {
         self.style = style
         self.isPressed = isPressed
     }
+    
+    public typealias Style = KeyboardStyle.Button
 
-    private let style: KeyboardButtonStyle
+    private let style: Style
     private let isPressed: Bool
 
     public var body: some View {

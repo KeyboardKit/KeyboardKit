@@ -82,5 +82,5 @@ public extension KeyboardStyle.InputCallout {
 
      This can be changed to affect the global, default style.
      */
-    static var standard = KeyboardStyle.InputCallout()
+    static var standard = Self()
 }

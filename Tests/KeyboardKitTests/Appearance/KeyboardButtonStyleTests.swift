@@ -12,8 +12,8 @@ import XCTest
 class KeyboardButtonStyleTests: XCTestCase {
 
     func testOverrideAppliesAllAvailableProperties() {
-        let style1 = KeyboardButtonStyle.preview1
-        let style2 = KeyboardButtonStyle.preview2
+        let style1 = KeyboardStyle.Button.preview1
+        let style2 = KeyboardStyle.Button.preview2
         let result = style1.extended(with: style2)
         XCTAssertEqual(result.backgroundColor, style2.backgroundColor)
         XCTAssertEqual(result.foregroundColor, style2.foregroundColor)
@@ -24,8 +24,8 @@ class KeyboardButtonStyleTests: XCTestCase {
     }
 
     func testOverrideIgnoresAllUndefinedProperties() {
-        let style1 = KeyboardButtonStyle.preview1
-        var style2 = KeyboardButtonStyle.preview2
+        let style1 = KeyboardStyle.Button.preview1
+        var style2 = KeyboardStyle.Button.preview2
         style2.cornerRadius = nil
         let result = style1.extended(with: style2)
         XCTAssertEqual(result.backgroundColor, style2.backgroundColor)

@@ -29,7 +29,7 @@ class DemoKeyboardAppearance: StandardKeyboardAppearance {
     // override func buttonStyle(
     //     for action: KeyboardAction,
     //     isPressed: Bool
-    // ) -> KeyboardButtonStyle {
+    // ) -> KeyboardStyle.Button {
     //     var style = super.buttonStyle(for: action, isPressed: isPressed)
     //     style.cornerRadius = 10
     //     style.backgroundColor = .blue

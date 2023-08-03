@@ -68,7 +68,7 @@ class CustomKeyboardLayoutProvider: StandardKeyboardLayoutProvider {
 To use this implementation instead of the standard one, just replace the standard instance like this:
 
 ```swift
-class MyKeyboardViewController: KeyboardInputViewController {
+class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
         keyboardLayoutProvider = CustomKeyboardLayoutProvider()

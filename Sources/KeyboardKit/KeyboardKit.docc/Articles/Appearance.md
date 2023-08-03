@@ -18,7 +18,7 @@ A ``KeyboardAppearance`` is a *dynamic* style provider that returns various styl
 
 A ``KeyboardTheme`` is a *static* style provider that can be used to define, reuse and share styles. It can be used with a ``KeyboardThemeAppearance`` to add a dynamic capabilities on top of the static theme. These utilities are only available in KeyboardKit Pro.
 
-A `Style` provides properties that can be used to style various parts of the keyboard. One such example is ``KeyboardButtonStyle``. Styles can be customized and used as templates to create other styles.   
+A `Style` provides properties that can be used to style various parts of the keyboard. One such example is ``KeyboardStyle/Button``. Styles can be customized and used as templates to create other styles.   
 
 You can mix and match appearances, themes and styles as you see fit.
 
@@ -44,7 +44,7 @@ Have a look at the `Sources/Resources` and `Sources/Appearance` folders for more
 
 ## Styles
 
-The `Appearance` namespace defines a bunch of general styles, such as ``KeyboardButtonStyle``, while other namespaces define more contextual styles, such as how the `Emojis` namespace defines an ``EmojiKeyboardStyle``.
+The `Appearance` namespace defines a bunch of general styles, such as ``KeyboardStyle/Button``, while other namespaces define more contextual styles, such as how the `Emojis` namespace defines an ``EmojiKeyboardStyle``.
 
 Any style can be modified, as long as it's a `var`. For instance, here we adjust the standard ``CalloutStyle`` to use a red background:
 
@@ -65,12 +65,12 @@ You can create a custom ``KeyboardAppearance`` to customize the style of various
 For instance, here's a custom appearance that inherits ``StandardKeyboardAppearance`` and makes all input buttons red:
 
 ```swift
-class MyKeyboardAppearance: StandardKeyboardAppearance {
+class CustomKeyboardAppearance: StandardKeyboardAppearance {
     
     override func buttonStyle(
         for action: KeyboardAction,
         isPressed: Bool
-    ) -> KeyboardButtonStyle {
+    ) -> KeyboardStyle.Button {
         let style = super.buttonStyle(for: action, isPressed: isPressed)
         if !action.isInputAction { return style }
         style.backgroundColor = .red
@@ -82,16 +82,16 @@ class MyKeyboardAppearance: StandardKeyboardAppearance {
 To use this appearance instead of the standard one, just set the input controller's ``KeyboardInputViewController/keyboardAppearance`` to the new appearance:
 
 ```swift
-class MyKeyboardViewController: KeyboardInputViewController {
+class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
-        keyboardAppearance = MyKeyboardAppearance()
+        keyboardAppearance = CustomKeyboardAppearance()
         super.viewDidLoad()
     }
 }
 ```
 
-This will make KeyboardKit use your custom appearance instead of ``StandardKeyboardAppearance``.
+This will make KeyboardKit use your custom implementation instead of the standard one.
 
 
 

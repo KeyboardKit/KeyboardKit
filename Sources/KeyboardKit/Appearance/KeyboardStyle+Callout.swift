@@ -126,7 +126,7 @@ public extension KeyboardStyle.Callout {
 
      This can be changed to affect the global, default style.
      */
-    static var standard = KeyboardStyle.Callout()
+    static var standard = Self()
 }
 
 extension KeyboardStyle.Callout {
@@ -134,7 +134,7 @@ extension KeyboardStyle.Callout {
     /**
      This internal style is only used in previews.
      */
-    static var preview1 = KeyboardStyle.Callout(
+    static var preview1 = Self(
         backgroundColor: .red,
         borderColor: .white,
         buttonCornerRadius: 10,
@@ -146,7 +146,7 @@ extension KeyboardStyle.Callout {
     /**
      This internal style is only used in previews.
      */
-    static var preview2 = KeyboardStyle.Callout(
+    static var preview2 = Self(
         backgroundColor: .green,
         borderColor: .white,
         buttonCornerRadius: 20,

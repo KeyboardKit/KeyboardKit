@@ -91,7 +91,7 @@ private extension MyAutocompleteProvider {
 To use this provider instead of the standard one, just set the input controller's ``KeyboardInputViewController/autocompleteProvider`` to your custom provider:
 
 ```swift
-class MyKeyboardViewController: KeyboardInputViewController {
+class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
         autocompleteProvider = MyAutocompleteProvider()

@@ -110,11 +110,8 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardAppearance``
 - ``KeyboardAppearanceViewModifier``
 - ``KeyboardBackgroundStyle``
-- ``KeyboardBackgroundType``
-- ``KeyboardButtonStyle``
-- ``KeyboardButtonBorderStyle``
-- ``KeyboardButtonShadowStyle``
 - ``KeyboardFont``
+- ``KeyboardStyle``
 - ``StandardKeyboardAppearance``
 
 ### Autocomplete

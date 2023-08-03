@@ -59,7 +59,10 @@ public class PreviewKeyboardAppearance: StandardKeyboardAppearance {
  */
 class CrazyPreviewKeyboardAppearance: PreviewKeyboardAppearance {
     
-    public override func buttonStyle(for action: KeyboardAction, isPressed: Bool) -> KeyboardButtonStyle {
+    public override func buttonStyle(
+        for action: KeyboardAction,
+        isPressed: Bool
+    ) -> KeyboardStyle.Button {
         isPressed ? .preview2 : .preview1
     }
 }

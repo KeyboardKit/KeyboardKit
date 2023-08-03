@@ -1,10 +1,12 @@
 import SwiftUI
 
 /**
- [DEPRECATED] This enum defines various keyboard backgrounds.
+ [DEPRECATED]
+ 
+ This enum defines various keyboard backgrounds.
 
- The type isn't marked with a real deprecation warning since
- it's still being used internally.
+ This type isn't properly deprecated since it is still being
+ used internally, for backwards compatibility.
  */
 public enum KeyboardBackgroundType: Codable, Equatable {
 

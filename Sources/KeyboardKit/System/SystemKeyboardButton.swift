@@ -120,7 +120,7 @@ private extension SystemKeyboardButton {
         )
     }
     
-    var buttonStyle: KeyboardButtonStyle {
+    var buttonStyle: KeyboardStyle.Button {
         appearance.buttonStyle(
             for: action,
             isPressed: isPressed

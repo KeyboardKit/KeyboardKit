@@ -18,7 +18,7 @@ public extension View {
        - isPressed: Whether or not the button is pressed, by default `false`.
      */
     func systemKeyboardButtonStyle(
-        _ style: KeyboardButtonStyle,
+        _ style: KeyboardStyle.Button,
         isPressed: Bool = false
     ) -> some View {
         self.background(SystemKeyboardButtonBody(style: style))
@@ -31,7 +31,7 @@ struct View_Button_Previews: PreviewProvider {
 
     static func button<Content: View>(
         for content: Content,
-        style: KeyboardButtonStyle
+        style: KeyboardStyle.Button
     ) -> some View {
         content
             .padding()

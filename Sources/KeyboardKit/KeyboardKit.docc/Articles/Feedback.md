@@ -70,7 +70,7 @@ class MyKeyboardFeedbackHandler: StandardKeyboardFeedbackHandler {
 To use this handler instead of the standard one, just set the input controller's ``KeyboardInputViewController/keyboardFeedbackHandler`` to the new handler:
 
 ```swift
-class MyKeyboardViewController: KeyboardInputViewController {
+class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
         keyboardFeedbackHandler = MyKeyboardFeedbackHandler()
