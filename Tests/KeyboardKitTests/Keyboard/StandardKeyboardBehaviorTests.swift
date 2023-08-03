@@ -30,7 +30,7 @@ class StandardKeyboardBehaviorTests: XCTestCase {
     }
 
 
-    func backspaceRangeResult(after seconds: TimeInterval) -> BackspaceRange {
+    func backspaceRangeResult(after seconds: TimeInterval) -> KeyboardBackspaceRange {
         timer.start {}
         timer.modifyStartDate(to: Date().addingTimeInterval(-seconds))
         return behavior.backspaceRange

@@ -30,7 +30,7 @@ open class StaticKeyboardBehavior: KeyboardBehavior {
      The range that the backspace key should delete when the
      key is long pressed.
      */
-    open var backspaceRange: BackspaceRange { .character }
+    open var backspaceRange: KeyboardBackspaceRange { .character }
     
     /**
      The preferred keyboard type that should be applied when

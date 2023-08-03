@@ -81,6 +81,7 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardInputViewController``
 
 - ``KeyboardAutocapitalizationType``
+- ``KeyboardBackspaceRange``
 - ``KeyboardBehavior``
 - ``KeyboardCase``
 - ``KeyboardContext``
@@ -99,7 +100,6 @@ KeyboardKit is available under the MIT license.
 
 ### Actions
 
-- ``BackspaceRange``
 - ``KeyboardAction``
 - ``KeyboardActionHandler``
 - ``StandardKeyboardActionHandler``

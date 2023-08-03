@@ -70,7 +70,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     The range that the backspace key should delete when the
     key is long pressed.
     */
-    public var backspaceRange: BackspaceRange {
+    public var backspaceRange: KeyboardBackspaceRange {
         let duration = repeatGestureTimer.duration ?? 0
         return duration > 3 ? .word : .character
     }

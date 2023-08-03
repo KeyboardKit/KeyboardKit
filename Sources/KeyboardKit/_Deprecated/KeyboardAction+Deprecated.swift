@@ -1,7 +1,7 @@
 import SwiftUI
 
-@available(*, deprecated, renamed: "BackspaceRange")
-public typealias DeleteBackwardRange = BackspaceRange
+@available(*, deprecated, renamed: "KeyboardBackspaceRange")
+public typealias DeleteBackwardRange = KeyboardBackspaceRange
 
 public extension KeyboardAction {
 
