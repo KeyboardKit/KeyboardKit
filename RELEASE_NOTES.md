@@ -53,6 +53,7 @@ This release converts feedback engines from protocols to singletons to simplify 
 
 ### 🗑️ Deprecations
 
+* `AutocompleteSuggestion.isAutocomplete` has been renamed to `isAutocorrect`.
 * `EnglishInputSetProvider` has been deprecated.
 * `InputSetProvider` has been deprecated.
 * `InputSetProviderBased` has been deprecated.

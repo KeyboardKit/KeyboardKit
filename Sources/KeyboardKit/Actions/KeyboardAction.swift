@@ -42,7 +42,7 @@ public enum KeyboardAction: Codable, Equatable {
     /// A custom action that you can handle in any way you want.
     case custom(named: String)
     
-    /// Represents a dictation key.
+    /// Represents a dictation key, which are not included by the standard layouts.
     case dictation
     
     /// Dismisses the keyboard when released.

@@ -94,7 +94,7 @@ struct AutocompleteToolbarItem_Previews: PreviewProvider {
     
     static let previewSuggestions: [AutocompleteSuggestion] = [
         AutocompleteSuggestion(text: "Foo", isUnknown: true),
-        AutocompleteSuggestion(text: "Bar", isAutocomplete: true),
+        AutocompleteSuggestion(text: "Bar", isAutocorrect: true),
         AutocompleteSuggestion(text: "", title: "Baz", subtitle: "Recommended")]
 }
 

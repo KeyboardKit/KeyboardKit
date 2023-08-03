@@ -316,8 +316,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         if isSpaceCursorDrag(action) { return }
         if textDocumentProxy.isCursorAtNewWord { return }
         guard gesture == .release else { return }
-        guard action.shouldApplyAutocompleteSuggestion else { return }
-        guard let suggestion = (autocompleteContext.suggestions.first { $0.isAutocomplete }) else { return }
+        guard action.shouldApplyAutocorrectSuggestion else { return }
+        guard let suggestion = (autocompleteContext.suggestions.first { $0.isAutocorrect }) else { return }
         textDocumentProxy.insertAutocompleteSuggestion(suggestion, tryInsertSpace: false)
     }
 

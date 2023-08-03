@@ -11,10 +11,10 @@ import Foundation
 public extension KeyboardAction {
     
     /**
-     Whether or not the action should apply currently active
-     autocomplete suggestions where `isAutocomplete` is true.
+     Whether or not the action should apply any autocomplete
+     suggestions where `isAutocorrect`  is true.
      */
-    var shouldApplyAutocompleteSuggestion: Bool {
+    var shouldApplyAutocorrectSuggestion: Bool {
         switch self {
         case .character(let char): return char.isWordDelimiter
         case .primary(let type): return type.isSystemAction

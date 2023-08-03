@@ -216,7 +216,7 @@ private extension AutocompleteToolbar {
             itemView(suggestion, style, locale)
                 .padding(.horizontal, 4)
                 .padding(.vertical, 10)
-                .background(suggestion.isAutocomplete ? style.autocompleteBackground.color : Color.clearInteractable)
+                .background(suggestion.isAutocorrect ? style.autocompleteBackground.color : Color.clearInteractable)
                 .cornerRadius(style.autocompleteBackground.cornerRadius)
         }).buttonStyle(.plain)
     }
@@ -232,11 +232,11 @@ private extension AutocompleteToolbar {
         guard let index = (items.firstIndex { $0.id == item.id }) else { return false }
         let nextIndex = items.index(after: index)
         guard nextIndex < items.count else { return false }
-        return items[nextIndex].suggestion.isAutocomplete
+        return items[nextIndex].suggestion.isAutocorrect
     }
     
     func useSeparator(for item: BarItem) -> Bool {
-        if item.suggestion.isAutocomplete { return false }
+        if item.suggestion.isAutocorrect { return false }
         if isLast(item) { return false }
         return !isNextItemAutocomplete(for: item)
     }
@@ -299,7 +299,7 @@ struct AutocompleteToolbar_Previews: PreviewProvider {
     
     static let previewSuggestions: [AutocompleteSuggestion] = [
         AutocompleteSuggestion(text: "Baz", isUnknown: true),
-        AutocompleteSuggestion(text: "Bar", isAutocomplete: true),
+        AutocompleteSuggestion(text: "Bar", isAutocorrect: true),
         AutocompleteSuggestion(text: "", title: "Foo", subtitle: "Recommended")]
 }
 

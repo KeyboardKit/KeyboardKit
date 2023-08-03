@@ -20,7 +20,7 @@ public struct AutocompleteSuggestion {
      - Parameters:
        - text: The text that should be sent to the text document proxy.
        - title: The text that should be presented to the user, by default `text`.
-       - isAutocomplete: Whether or not this is an autocompleting suggestion, by default `false`.
+       - isAutocorrect: Whether or not this is an autocorrect suggestion, by default `false`.
        - isUnknown: Whether or not this is an unknown suggestion, by default `false`.
        - subtitle: An optional subtitle that can complete the `title`, by default `nil`.
        - additionalInfo: An optional dictionary that can contain additional info, by default `empty`.
@@ -28,14 +28,14 @@ public struct AutocompleteSuggestion {
     public init(
         text: String,
         title: String? = nil,
-        isAutocomplete: Bool = false,
+        isAutocorrect: Bool = false,
         isUnknown: Bool = false,
         subtitle: String? = nil,
         additionalInfo: [String: Any] = [:]
     ) {
         self.text = text
         self.title = title ?? text
-        self.isAutocomplete = isAutocomplete
+        self.isAutocorrect = isAutocorrect
         self.isUnknown = isUnknown
         self.subtitle = subtitle
         self.additionalInfo = additionalInfo
@@ -52,10 +52,10 @@ public struct AutocompleteSuggestion {
     public var title: String
     
     /**
-     Whether or not this is an autocomplet suggestion, which
+     Whether or not this is an autocorrect suggestion, which
      are typically presented with a white rounded background.
      */
-    public var isAutocomplete: Bool
+    public var isAutocorrect: Bool
     
     /**
      Whether or not this is an unknown suggestion, which are

@@ -29,7 +29,7 @@ final class KeyboardAction_AutocompleteTests: XCTestCase {
             case .space: expected = true
             default: expected = false
             }
-            XCTAssertEqual($0.shouldApplyAutocompleteSuggestion, expected)
+            XCTAssertEqual($0.shouldApplyAutocorrectSuggestion, expected)
         }
     }
 

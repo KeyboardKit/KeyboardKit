@@ -4,6 +4,11 @@ public extension KeyboardAction {
 
     @available(*, deprecated, renamed: "KeyboardReturnKeyType")
     typealias ReturnType = KeyboardReturnKeyType
+    
+    @available(*, deprecated, renamed: "shouldApplyAutocorrectSuggestion")
+    var shouldApplyAutocompleteSuggestion: Bool {
+        shouldApplyAutocorrectSuggestion
+    }
 }
 
 @available(*, deprecated, renamed: "KeyboardAction.Rows")
