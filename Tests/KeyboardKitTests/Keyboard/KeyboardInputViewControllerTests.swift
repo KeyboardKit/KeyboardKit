@@ -113,8 +113,8 @@ class KeyboardInputViewControllerTests: XCTestCase {
             XCTAssertFalse(vc.keyboardContext.hasFullAccess)
             XCTAssertEqual(vc.keyboardContext.keyboardType, .alphabetic(.lowercased))
             XCTAssertFalse(vc.keyboardContext.needsInputModeSwitchKey)
-            XCTAssertEqual(vc.keyboardFeedbackSettings.audioConfiguration, .standard)
-            XCTAssertEqual(vc.keyboardFeedbackSettings.hapticConfiguration, .standard)
+            XCTAssertEqual(vc.keyboardFeedbackSettings.audioConfiguration, .enabled)
+            XCTAssertEqual(vc.keyboardFeedbackSettings.hapticConfiguration, .minimal)
         }
     }
 

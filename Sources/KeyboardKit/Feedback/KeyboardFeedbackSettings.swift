@@ -21,26 +21,55 @@ import Foundation
  
  This instance is used by ``StandardKeyboardFeedbackHandler``,
  which means that you can change the basic feedback behavior
- without having to create a custom feedback handler. However,
- more complex changes require a custom feedback handler.
+ without having to create a custom feedback handler.
+ 
+ You may notice that the enabled and disabled configurations
+ look a bit odd, where the disabled defaults are `.standard`.
+ This is since 
  */
 public class KeyboardFeedbackSettings: ObservableObject {
     
     /**
-     Create a settings instance.
+     Create a keyboard feedback settings instance.
      
      - Parameters:
-       - audioConfiguration: The configuration to use for audio feedback.
-       - hapticConfiguration: The configuration to use for haptic feedback.
+       - audioConfiguration: The configuration to use for audio feedback, by deafult `.enabled`.
+       - hapticConfiguration: The configuration to use for haptic feedback, by deafult `.minimal`.
+       - enabledAudioConfiguration: The configuration to use to enable audio feedback, by default `.enabled`.
+       - enabledHapticConfiguration: The configuration to use to enable haptic feedback, by default `.enabled`.
+       - disabledAudioConfiguration: The configuration to use to disable audio feedback, by default `.standard`.
+       - disabledHapticConfiguration: The configuration to use to disable haptic feedback, by default `.minimal`.
      */
     public init(
-        audioConfiguration: AudioFeedbackConfiguration = .standard,
-        hapticConfiguration: HapticFeedbackConfiguration = .standard
+        audioConfiguration: AudioFeedbackConfiguration = .enabled,
+        hapticConfiguration: HapticFeedbackConfiguration = .minimal,
+        enabledAudioConfiguration: AudioFeedbackConfiguration = .enabled,
+        enabledHapticConfiguration: HapticFeedbackConfiguration = .enabled,
+        disabledAudioConfiguration: AudioFeedbackConfiguration = .enabled,
+        disabledHapticConfiguration: HapticFeedbackConfiguration = .minimal
     ) {
         self.audioConfiguration = audioConfiguration
         self.hapticConfiguration = hapticConfiguration
+        self.enabledAudioConfiguration = enabledAudioConfiguration
+        self.enabledHapticConfiguration = enabledHapticConfiguration
+        self.disabledAudioConfiguration = disabledAudioConfiguration
+        self.disabledHapticConfiguration = disabledHapticConfiguration
     }
     
+    
+    /// The configuration to use to enable audio feedback.
+    public var enabledAudioConfiguration: AudioFeedbackConfiguration
+    
+    /// The configuration to use to enable haptic feedback.
+    public var enabledHapticConfiguration: HapticFeedbackConfiguration
+    
+    /// The configuration to use to disable audio feedback.
+    public var disabledAudioConfiguration: AudioFeedbackConfiguration
+    
+    /// The configuration to use to disable haptic feedback.
+    public var disabledHapticConfiguration: HapticFeedbackConfiguration
+    
+
     /**
      The configuration to use for audio feedback.
      */
@@ -65,59 +94,47 @@ public extension KeyboardFeedbackSettings {
 public extension KeyboardFeedbackSettings {
 
     /**
-     Whether or not the ``audioConfiguration`` is enabled.
-
-     The configuration is enabled if it has any other config
-     than ``AudioFeedbackConfiguration/noFeedback``.
+     Get or set whether or not audio feedback is enabled.
      */
     var isAudioFeedbackEnabled: Bool {
-        audioConfiguration != .noFeedback
+        get { audioConfiguration != .disabled }
+        set { audioConfiguration = newValue ? enabledAudioConfiguration : disabledAudioConfiguration }
     }
 
     /**
-     Whether or not the ``hapticConfiguration`` is enabled.
-
-     The configuration is enabled if it has any other config
-     than ``HapticFeedbackConfiguration/noFeedback``.
+     Get or set whether or not haptic feedback is enabled.
      */
     var isHapticFeedbackEnabled: Bool {
-        hapticConfiguration != .noFeedback
+        get { hapticConfiguration != .disabled }
+        set { hapticConfiguration = newValue ? enabledHapticConfiguration : disabledHapticConfiguration }
     }
 
     /**
-     Disable audio feedback.
-
-     This applies ``AudioFeedbackConfiguration/noFeedback``.
+     Disable audio feedback by applying the disabled config.
      */
     func disableAudioFeedback() {
-        audioConfiguration = .noFeedback
+        isAudioFeedbackEnabled = false
     }
 
     /**
-     Disable haptic feedback.
-
-     This applies ``HapticFeedbackConfiguration/noFeedback``.
+     Disable haptic feedback by applying the disabled config.
      */
     func disableHapticFeedback() {
-        hapticConfiguration = .noFeedback
+        isHapticFeedbackEnabled = false
     }
 
     /**
-     Enable audio feedback.
-
-     This applies ``AudioFeedbackConfiguration/standard``.
+     Enable audio feedback by applying the disabled config.
      */
     func enableAudioFeedback() {
-        audioConfiguration = .standard
+        isAudioFeedbackEnabled = true
     }
 
     /**
-     Enable haptic feedback.
-
-     This applies ``HapticFeedbackConfiguration/standard``.
+     Enable haptic feedback by applying the disabled config.
      */
     func enableHapticFeedback() {
-        hapticConfiguration = .standard
+        isHapticFeedbackEnabled = true
     }
 
     /**

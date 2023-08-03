@@ -37,6 +37,7 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `InputSet` has new `English` builders.
 * `KeyboardActionHandler` has new feedback functions.
 * `KeyboardDictationService.disabled` is a new alias for `DisabledKeyboardDictationService`.
+* `KeyboardFeedbackSettings` has new enabled and disabled configurations.
 * `KeyboardLayoutProviderProxy` has new standard functionality.
 * `KeyboardReturnKeyType` has new `continue`, `emergencyCall` and `route` types.
 * `KeyboardStyle` is a new style namespace that contains most style types.
@@ -60,6 +61,8 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 
 ### 🗑️ Deprecations
 
+* `AudioFeedbackConfiguration.noFeedback` has a been renamed to `.disabled`.
+* `AudioFeedbackConfiguration.standard` is replaced by `.enabled`.
 * `ActionCalloutContext` has been renamed to `KeyboardCalloutContext.ActionContext`.
 * `AutocompleteCompletion` has been deprecated.
 * `AutocompleteResult` has been deprecated.
@@ -75,6 +78,8 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `EmojiCategoryKeyboardMenu` has been deprecated.
 * `EmojiCategoryTitle` has been deprecated.
 * `EnglishInputSetProvider` has been deprecated.
+* `HapticFeedbackConfiguration.noFeedback` has a been renamed to `.disabled`.
+* `AudioFeedbackConfiguration.standard` is replaced by `.minimal`.
 * `InputCalloutContext` has been renamed to `KeyboardCalloutContext.InputContext`.
 * `InputSetProvider` has been deprecated.
 * `InputSetProviderBased` has been deprecated.

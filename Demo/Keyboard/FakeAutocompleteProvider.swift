@@ -46,7 +46,10 @@ class FakeAutocompleteProvider: AutocompleteProvider {
     func removeIgnoredWord(_ word: String) {}
     func unlearnWord(_ word: String) {}
     
-    func autocompleteSuggestions(for text: String, completion: AutocompleteCompletion) {
+    func autocompleteSuggestions(
+        for text: String,
+        completion: AutocompleteProvider.Completion
+    ) {
         guard text.count > 0 else { return completion(.success([])) }
         if text == match {
             completion(.success(matchSuggestions()))

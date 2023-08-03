@@ -395,7 +395,8 @@ private extension SystemKeyboard {
     }
 
     var keyboardView: some View {
-        keyboardViewContent
+        systemKeyboard
+            .overlay(emojiKeyboardView)
             .keyboardActionCallout(
                 calloutContext: actionCalloutContext,
                 keyboardContext: keyboardContext,
@@ -408,13 +409,10 @@ private extension SystemKeyboard {
                 style: inputCalloutStyle
             )
     }
-
-    @ViewBuilder
-    var keyboardViewContent: some View {
-        switch keyboardContext.keyboardType {
-        case .emojis: emojiKeyboard
-        default: systemKeyboard
-        }
+    
+    var emojiKeyboardView: some View {
+        let isEmoji = keyboardContext.keyboardType == .emojis
+        return emojiKeyboard.opacity(isEmoji ? 1 : 0)
     }
 
     var shouldAddAutocompleteToolbar: Bool {

@@ -53,6 +53,7 @@ struct EmojiKeyboardButton_Previews: PreviewProvider {
         EmojiKeyboardButton(
             emoji: Emoji("😜"),
             style: .standardPhonePortrait,
-            action: { _ in })
+            action: { _ in }
+        )
     }
 }

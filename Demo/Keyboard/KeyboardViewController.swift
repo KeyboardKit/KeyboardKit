@@ -50,10 +50,15 @@ class KeyboardViewController: KeyboardInputViewController {
         /// 💡 Setup a custom dictation key replacement.
         ///
         /// Since dictation is not available by default, the
-        /// dictation button is removed by default, if we do
-        /// not set this replacement.
+        /// dictation button is removed if we don't set this.
         keyboardContext.keyboardDictationReplacement = .keyboardType(.emojis)
-
+        
+        /// 💡 Enable haptic feedback.
+        ///
+        /// The default haptic feedback is `.minimal`, which
+        /// only has haptic feedback for long press on space.
+        keyboardFeedbackSettings.enableHapticFeedback()
+        
         /// 💡 Setup a fake autocomplete provider.
         ///
         /// Change the provider implementation to see how it

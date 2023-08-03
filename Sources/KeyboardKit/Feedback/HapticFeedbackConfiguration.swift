@@ -85,51 +85,34 @@ public struct HapticFeedbackConfiguration: Codable, Equatable {
         public let feedback: HapticFeedback
     }
     
-    /**
-     The feedback to use for presses.
-     */
+    /// The feedback to use for presses.
     public var press: HapticFeedback
     
-    /**
-     The feedback to use for releases.
-     */
+    /// The feedback to use for releases.
     public var release: HapticFeedback
     
     @available(*, deprecated, message: "Use press and release instead")
     public var tap: HapticFeedback = .none
     
-    /**
-     The feedback to use for double taps.
-     */
+    /// The feedback to use for double taps.
     public var doubleTap: HapticFeedback
     
-    /**
-     The feedback to use for long presses.
-     */
+    /// The feedback to use for long presses.
     public var longPress: HapticFeedback
     
-    /**
-     The feedback to use for long presses on space.
-     */
+    /// The feedback to use for long presses on space.
     public var longPressOnSpace: HapticFeedback
     
-    /**
-     The feedback to use for repeat.
-     */
+    /// The feedback to use for repeat.
     public var `repeat`: HapticFeedback
     
-    /**
-     A list of action/gesture-specific feedback.
-     */
+    /// A list of action/gesture-specific feedback.
     public var actions: [ActionFeedback]
 }
 
 public extension HapticFeedbackConfiguration {
     
-    /**
-     This specifies an enabled haptic feedback configuration,
-     where all feedback types generate some kind of feedback.
-    */
+    /// This configuration enables all audio feedback.
     static let enabled = HapticFeedbackConfiguration(
         press: .lightImpact,
         release: .lightImpact,
@@ -139,10 +122,8 @@ public extension HapticFeedbackConfiguration {
         repeat: .selectionChanged
     )
     
-    /**
-     This configuration disables all haptic feedback.
-     */
-    static let noFeedback = HapticFeedbackConfiguration(
+    /// This configuration disables all audio feedback.
+    static let disabled = HapticFeedbackConfiguration(
         press: .none,
         release: .none,
         doubleTap: .none,
@@ -151,9 +132,13 @@ public extension HapticFeedbackConfiguration {
         repeat: .none
     )
     
-    /**
-     This specifies a standard haptic feedback configuration,
-     where only `longPressOnSpace` triggers feedback.
-    */
-    static let standard = HapticFeedbackConfiguration()
+    /// This configuration only enables long press on space.
+    static let minimal = HapticFeedbackConfiguration(
+        press: .none,
+        release: .none,
+        doubleTap: .none,
+        longPress: .none,
+        longPressOnSpace: .mediumImpact,
+        repeat: .none
+    )
 }

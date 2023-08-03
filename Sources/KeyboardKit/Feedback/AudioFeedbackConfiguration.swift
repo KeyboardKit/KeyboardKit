@@ -54,47 +54,46 @@ public struct AudioFeedbackConfiguration: Codable, Equatable {
         public let feedback: AudioFeedback
     }
     
-    /**
-     The audio to trigger when a delete key is pressed.
-     */
-     public var delete: AudioFeedback
- 
-    /**
-     The audio to trigger when an input key is pressed.
-     */
+    /// The audio to trigger when a delete key is pressed.
+    public var delete: AudioFeedback
+    
+    /// The audio to trigger when an input key is pressed.
     public var input: AudioFeedback
     
-   /**
-    The audio to trigger when a system key is pressed.
-    */
+    /// The audio to trigger when a system key is pressed.
     public var system: AudioFeedback
     
-    /**
-     The audio to trigger when an action is triggered.
-     */
-     public var actions: [ActionFeedback]
+    /// The audio to trigger when an action is triggered.
+    public var actions: [ActionFeedback]
 }
 
 public extension AudioFeedbackConfiguration {
     
-    /**
-     This specifies an `enabled` audio feedback config where
-     all feedback types generate some kind of feedback.
-    */
-    static let enabled: AudioFeedbackConfiguration = .standard
+    /// This configuration enables all audio feedback.
+    static let enabled = Self()
     
-    /**
-     This configuration disables all audio feedback.
-     */
-    static let noFeedback = AudioFeedbackConfiguration(
+    /// This configuration disables all audio feedback.
+    static let disabled = Self(
         input: .none,
         delete: .none,
         system: .none
     )
+}
+
+public extension AudioFeedbackConfiguration {
     
-    /**
-     This configuration uses standard audio feedbacks, which
-     tries to replicate the standard system behavior.
-    */
-    static let standard = AudioFeedbackConfiguration()
+    @available(*, deprecated, renamed: "disabled")
+    static let noFeedback = Self.disabled
+    
+    @available(*, deprecated, renamed: "enabled")
+    static let standard = Self()
+}
+
+public extension HapticFeedbackConfiguration {
+    
+    @available(*, deprecated, renamed: "disabled")
+    static let noFeedback = Self.disabled
+    
+    @available(*, deprecated, renamed: "minimal")
+    static let standard = Self()
 }
