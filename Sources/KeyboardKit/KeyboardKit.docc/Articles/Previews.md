@@ -1,6 +1,6 @@
 # Previews
 
-This article describes how KeyboardKit makes it easy to preview keyboard-specific views.
+This article describes the KeyboardKit preview engine.
 
 KeyboardKit has `.preview` aliases for various state and service types, for instance ``KeyboardContext``.``KeyboardContext/preview`` and ``KeyboardActionHandler``.``KeyboardActionHandler/preview``.
 

@@ -1,6 +1,6 @@
 # Feedback
 
-This article describes the KeyboardKit feedback engine and how to use it to trigger audio and haptic feedback.
+This article describes the KeyboardKit feedback engine.
 
 In KeyboardKit, keyboards can trigger audio and haptic feedback as the user interacts with the keyboard. This can be done with a ``KeyboardFeedbackHandler``, which is a protocol that can be implemented by any class that can handle keyboard feedback.
 

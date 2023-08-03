@@ -1,6 +1,6 @@
 # Actions
 
-This article describes the KeyboardKit action engine and how to use it.
+This article describes the KeyboardKit action engine.
 
 In KeyboardKit, the ``KeyboardAction`` enum defines a set of keyboard-specific actions that can be bound to buttons and handled with a ``KeyboardActionHandler``.
 

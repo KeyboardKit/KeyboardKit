@@ -1,6 +1,6 @@
 # Localization
 
-This article describes the KeyboardKit localization model and how to use it.
+This article describes the KeyboardKit localization engine.
 
 In KeyboardKit, the ``KeyboardLocale`` enum defines keyboard-specific locales. Each keyboard locale has localized content and assets and specifies a native `Locale` that provides locale-specific information.
 

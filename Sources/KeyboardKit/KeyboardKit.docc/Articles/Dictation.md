@@ -1,6 +1,6 @@
 # Dictation (BETA)
 
-This article describes the KeyboardKit dictation engine and how to use it.
+This article describes the KeyboardKit dictation engine.
 
 In KeyboardKit, a ``DictationService`` can be used to perform dictation where microphone access is available, like an app, while a ``KeyboardDictationService`` can be used to perform dictation where microphone access is *not* available, such as in a keyboard extension.
 

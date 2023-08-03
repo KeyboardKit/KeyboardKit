@@ -1,6 +1,6 @@
 # Gestures
 
-This article describes the KeyboardKit gesture engine and how to use it.
+This article describes the KeyboardKit gesture engine.
 
 If you consider a native iOS keyboard, it actually applies a bunch of gestures to its keys. Input keys can be pressed and released, while some actions trigger on press. The space bar can by default be long pressed to enter a cursor drag state, while the backspace can be long pressed to repeat the delete backwards operation. Input keys can also be long pressed to show a callout with secondary actions.   
  

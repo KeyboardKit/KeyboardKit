@@ -1,6 +1,6 @@
 # Emojis
 
-This article describes the KeyboardKit emoji model and how to use it.
+This article describes the KeyboardKit emoji engine.
 
 KeyboardKit provides you with an ``Emoji`` struct, an ``EmojiCategory`` enum, an emoji localization engine etc., as well as various emoji keyboard views like ``EmojiKeyboard`` and ``EmojiCategoryKeyboard``.
 

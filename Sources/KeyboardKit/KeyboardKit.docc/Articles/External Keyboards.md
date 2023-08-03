@@ -1,6 +1,6 @@
 # External Keyboards
 
-This article describes the KeyboardKit external keyboard engine and how to use it.
+This article describes the KeyboardKit external keyboard engine.
 
 KeyboardKit lets you detect whether or not an external keyboard is used, including snap-on Smart Folio iPad keyboards, the Magic Keyboard, Bluetooth keyboards etc.
 

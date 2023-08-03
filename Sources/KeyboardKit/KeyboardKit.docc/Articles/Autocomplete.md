@@ -1,6 +1,6 @@
 # Autocomplete
 
-This article describes the KeyboardKit autocomplete engine and how to use it.
+This article describes the KeyboardKit autocomplete engine.
 
 In KeyboardKit, an ``AutocompleteProvider`` can be used to provide the keyboard with autocomplete suggestions as the user types, triggers actions and moves the input cursor around.
 

@@ -1,6 +1,6 @@
 # Styling
 
-This article describes the KeyboardKit styling engine and how to use it.
+This article describes the KeyboardKit styling engine.
 
 KeyboardKit uses ``KeyboardStyle`` types to style various views. For instance, a ``KeyboardStyle/InputCallout`` style can be used to style ``InputCallout`` views. 
 

@@ -1,6 +1,6 @@
 # Proxy Extensions
 
-This article describes how KeyboardKit extends `UITextDocumentProxy` with a lot of additional functionality.
+This article describes the KeyboardKit `UITextDocumentProxy` extension engine.
 
 Keyboard input view controllers have a `textDocumentProxy`, which is the way a keyboard integrates with the currently active app. It lets you insert and remove text, move the cursor forward and backward etc. 
 

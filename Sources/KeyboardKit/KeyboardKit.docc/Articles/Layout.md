@@ -1,6 +1,6 @@
 # Layout
 
-This article describes the KeyboardKit keyboard layout engine and how to use it. 
+This article describes the KeyboardKit layout engine. 
 
 In KeyboardKit, ``InputSet``s and ``KeyboardLayout``s are central concepts when creating a ``SystemKeyboard``, where the ``InputSet`` defines the input keys of a keyboard, while a ``KeyboardLayout`` defines the full set of keys, as well as their sizes and properties. 
 

@@ -1,6 +1,6 @@
 # Callouts
 
-This article describes the KeyboardKit callout engine and how to use it.
+This article describes the KeyboardKit callout engine.
 
 In KeyboardKit, input callouts and action callouts are important parts of the typing experience. Input callouts highlight the key that is being pressed, while action callouts show secondary actions when a key is long pressed.
 
