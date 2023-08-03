@@ -27,6 +27,8 @@ import Foundation
 
  KeyboardKit Pro registers a standard provider instance when
  you register a pro license.
+ 
+ > v8.0: This protocol will be made async in KeyboardKit 8.0.
  */
 public protocol AutocompleteProvider: AnyObject {
 
@@ -38,11 +40,20 @@ public protocol AutocompleteProvider: AnyObject {
 
     /**
      Get autocomplete suggestions for the provided `text`.
+     
+     > v8.0: This will be made async in KeyboardKit 8.0.
      */
     func autocompleteSuggestions(
         for text: String,
-        completion: @escaping AutocompleteCompletion
+        completion: @escaping Completion
     )
+
+    
+    /// > v8.0: This will be removed in KeyboardKit 8.0.
+    typealias Completion = (CompletionResult) -> Void
+
+    /// > v8.0: This will be removed in KeyboardKit 8.0.
+    typealias CompletionResult = Result<[AutocompleteSuggestion], Error>
 
 
     /**
@@ -96,7 +107,3 @@ public protocol AutocompleteProvider: AnyObject {
      */
     func unlearnWord(_ word: String)
 }
-
-public typealias AutocompleteCompletion = (AutocompleteResult) -> Void
-
-public typealias AutocompleteResult = Result<[AutocompleteSuggestion], Error>

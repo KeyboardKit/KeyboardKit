@@ -13,9 +13,9 @@ class MockAutocompleteProvider: AutocompleteProvider {
     
     var locale: Locale = .current
     
-    var autocompleteSuggestionsResult = AutocompleteResult.success([])
+    var autocompleteSuggestionsResult = CompletionResult.success([])
     
-    func autocompleteSuggestions(for text: String, completion: (AutocompleteResult) -> Void) {
+    func autocompleteSuggestions(for text: String, completion: Completion) {
         completion(autocompleteSuggestionsResult)
     }
     

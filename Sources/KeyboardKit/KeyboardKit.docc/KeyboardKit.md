@@ -106,10 +106,8 @@ KeyboardKit is available under the MIT license.
 
 ### Autocomplete
 
-- ``AutocompleteCompletion``
 - ``AutocompleteContext``
 - ``AutocompleteProvider``
-- ``AutocompleteResult``
 - ``AutocompleteSpaceState``
 - ``AutocompleteSuggestion``
 - ``AutocompleteToolbar``

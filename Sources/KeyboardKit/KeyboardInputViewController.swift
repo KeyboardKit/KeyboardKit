@@ -602,7 +602,7 @@ private extension KeyboardInputViewController {
      This is performed async to avoid that any network-based
      operations update the context from a background thread.
      */
-    func updateAutocompleteContext(with result: AutocompleteResult) {
+    func updateAutocompleteContext(with result: AutocompleteProvider.CompletionResult) {
         DispatchQueue.main.async { [weak self] in
             guard let context = self?.autocompleteContext else { return }
             switch result {

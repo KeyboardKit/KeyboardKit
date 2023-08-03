@@ -46,7 +46,7 @@ public class PreviewAutocompleteProvider: DisabledAutocompleteProvider {
 
     public override func autocompleteSuggestions(
         for text: String,
-        completion: (AutocompleteResult) -> Void
+        completion: Completion
     ) {
         completion(.success(suggestions))
     }

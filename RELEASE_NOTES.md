@@ -56,6 +56,8 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 
 ### 🗑️ Deprecations
 
+* `AutocompleteCompletion` has been deprecated.
+* `AutocompleteResult` has been deprecated.
 * `AutocompleteSuggestion.isAutocomplete` has been renamed to `isAutocorrect`.
 * `EnglishInputSetProvider` has been deprecated.
 * `InputSetProvider` has been deprecated.

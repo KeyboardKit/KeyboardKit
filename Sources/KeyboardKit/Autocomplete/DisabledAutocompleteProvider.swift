@@ -22,7 +22,7 @@ public class DisabledAutocompleteProvider: AutocompleteProvider {
     
     public var locale: Locale = .current
     
-    public func autocompleteSuggestions(for text: String, completion: (AutocompleteResult) -> Void) {
+    public func autocompleteSuggestions(for text: String, completion: Completion) {
         completion(.success([]))
     }
     
