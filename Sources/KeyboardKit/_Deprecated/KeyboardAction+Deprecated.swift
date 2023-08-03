@@ -1,5 +1,8 @@
 import SwiftUI
 
+@available(*, deprecated, renamed: "BackspaceRange")
+public typealias DeleteBackwardRange = BackspaceRange
+
 public extension KeyboardAction {
 
     @available(*, deprecated, renamed: "KeyboardReturnKeyType")

@@ -1,5 +1,5 @@
 //
-//  DeleteBackwardRange.swift
+//  BackspaceRange.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-05-06.
@@ -12,7 +12,7 @@ import Foundation
  This enum can be used to control how much the backspace key
  will delete when it repeats its action.
  */
-public enum DeleteBackwardRange {
+public enum BackspaceRange {
 
     /// Delete a single char at a time.
     case character

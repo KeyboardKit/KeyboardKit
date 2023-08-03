@@ -225,7 +225,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     }
 
     /// The font weight to use for a certain action.
-    open func buttonFontWeight(for action: KeyboardAction) -> KeyboardFontWeight? {
+    open func buttonFontWeight(for action: KeyboardAction) -> KeyboardFont.FontWeight? {
         if isGregorianAlpha { return .regular }
         switch action {
         case .backspace: return .regular

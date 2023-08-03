@@ -1,22 +1,13 @@
 # Release notes
 
-
-## How are KeyboardKit versioned?
-
 KeyboardKit tries to honor semantic versioning:
 
 * Deprecations can happen at any time.
 * Deprecated code will only be removed in `major` versions.
 * Breaking changes should not happen in `minor` and `patch` versions.
+* Breaking changes can still occur in minor versions and BETA features, if the alternative is to not be able to release new critical features or fixes.
 
-Breaking changes can however still occur in minor versions and BETA features, if the alternative is to not be able to release new critical features or fixes.
-
-
-## What about older releases?
-
-These release notes will only contain the current and last version.
-
-After that, you have to check out older versions to get access to the older release notes. 
+These release notes will only contain the current version. Just check out an older branch or version tag to access older release notes. 
 
 
 

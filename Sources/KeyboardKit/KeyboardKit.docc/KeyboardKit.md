@@ -100,7 +100,7 @@ KeyboardKit is available under the MIT license.
 
 ### Actions
 
-- ``DeleteBackwardRange``
+- ``BackspaceRange``
 - ``KeyboardAction``
 - ``KeyboardActionHandler``
 - ``StandardKeyboardActionHandler``

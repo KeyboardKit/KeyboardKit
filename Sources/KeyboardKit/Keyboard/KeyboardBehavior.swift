@@ -24,7 +24,7 @@ public protocol KeyboardBehavior {
      The range that the backspace key should delete when the
      key is long pressed.
      */
-    var backspaceRange: DeleteBackwardRange { get }
+    var backspaceRange: BackspaceRange { get }
     
     /**
      The preferred keyboard type that should be applied when
