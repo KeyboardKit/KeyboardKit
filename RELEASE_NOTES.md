@@ -60,6 +60,7 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `InputSetProviderBased` has been deprecated.
 * `InterfaceOrientationResolver` has been deprecated.
 * `KeyboardActionCalloutStyle` has been renamed to `KeyboardStyle.ActionCallout`.
+* `KeyboardBackgroundStyle` has been renamed to `KeyboardStyle.Background`.
 * `KeyboardButtonStyle` has been renamed to `KeyboardStyle.Button`.
 * `KeyboardButtonBorderStyle` has been renamed to `KeyboardStyle.ButtonBorder`.
 * `KeyboardButtonShadowStyle` has been renamed to `KeyboardStyle.ButtonShadow`.

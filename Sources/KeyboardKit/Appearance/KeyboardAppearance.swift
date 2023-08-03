@@ -34,7 +34,7 @@ public protocol KeyboardAppearance: AnyObject {
     /**
      The keyboard background style to apply to the keyboard.
      */
-    var backgroundStyle: KeyboardBackgroundStyle { get }
+    var backgroundStyle: KeyboardStyle.Background { get }
 
     /**
      The foreground color to apply to the keyboard, if any.

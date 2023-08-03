@@ -109,7 +109,6 @@ KeyboardKit is available under the MIT license.
 
 - ``KeyboardAppearance``
 - ``KeyboardAppearanceViewModifier``
-- ``KeyboardBackgroundStyle``
 - ``KeyboardFont``
 - ``KeyboardStyle``
 - ``StandardKeyboardAppearance``

@@ -14,12 +14,13 @@ import CoreGraphics
  look of a native system keyboard.
 
  You can inherit this class and override any open properties
- and functions to customize the appearance. For instance, to
- change the background color of inpout keys only, you can do
- it like this:
+ and functions to customize the appearance.
+ 
+ For instance, to change the background color of every input
+ key, you can do this:
 
  ```swift
- class MyAppearance: StandardKeyboardAppearance {
+ class CustomAppearance: StandardKeyboardAppearance {
 
      override func buttonStyle(
          for action: KeyboardAction,
@@ -56,7 +57,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     // MARK: - Keyboard
 
     /// The background style to apply to the entire keyboard.
-    open var backgroundStyle: KeyboardBackgroundStyle {
+    open var backgroundStyle: KeyboardStyle.Background {
         .standard
     }
 
