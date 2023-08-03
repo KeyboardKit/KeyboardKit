@@ -9,11 +9,13 @@
 import SwiftUI
 
 /**
- This view replicates the standard autocomplete toolbar item
- title text that is used in native iOS keyboards.
+ [DEPRECATED] This view replicates the standard autocomplete
+ toolbar item title that is used in native iOS keyboards.
  
  The view will enforce a single line limit and resize itself
  to share the available horizontal space with other views.
+ 
+ > v8.0: This will be converted to an internal type in 8.0.
  */
 public struct AutocompleteToolbarItemTitle: View {
     

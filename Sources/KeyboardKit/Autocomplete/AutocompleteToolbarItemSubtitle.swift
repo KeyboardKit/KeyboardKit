@@ -9,10 +9,12 @@
 import SwiftUI
 
 /**
- This view replicates the standard autocomplete toolbar item
- subtitle text that is used in native iOS keyboards.
+ [DEPRECATED] This view replicates the standard autocomplete
+ toolbar item subtitle that is used in native iOS keyboards.
  
  The view will enforce a single line limit and footnote font.
+ 
+ > v8.0: This will be converted to an internal type in 8.0.
  */
 public struct AutocompleteToolbarItemSubtitle: View {
     
