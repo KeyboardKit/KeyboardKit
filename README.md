@@ -70,7 +70,6 @@ KeyboardKit comes packed features to help you build amazing and powerful keyboar
 * ⌨️ [External Keyboards][External] - KeyboardKit lets you detect whether or not an external keyboard is connected.
 * 👋 [Feedback][Feedback] - KeyboardKit keyboards can give and haptic feedback feedback as the user types.
 * 👆 [Gestures][Gestures] - KeyboardKit has keyboard-specific gestures that you can use in your own keyboards.
-* 🔤 [Input][Input] - KeyboardKit supports `alphabetic`, `numeric`, `symbolic` and completely custom input sets. 
 * ⌨️ [Keyboard][Keyboard] - KeyboardKit supports different keyboard types, provides observable keyboard state, etc.
 * 🔣 [Layout][Layout] - KeyboardKit supports creating keyboard layouts for various devices, locales etc.
 * 🌐 [Localization][Localization]- KeyboardKit defines keyboard-specific locales with localized content and assets.
@@ -79,7 +78,7 @@ KeyboardKit comes packed features to help you build amazing and powerful keyboar
 * 🚏 [Routing][Routing] - KeyboardKit lets you route text to other destinations than the main app.
 * ⬅️ [RTL][RTL] - KeyboardKit supports RTL (right-to-left) locales, such as Arabic, Persian, Kurdish Sorani etc.
 * ⚙️ [Settings][Settings] - KeyboardKit has tools for accessing and linking to an app's keyboard settings.
-* 🎨 [Styling][Styling] - KeyboardKit has an styling engine that lets you style your keyboards to great extent.
+* 🎨 [Styling][Styling] - KeyboardKit has a style engine that lets you style your keyboards to great extent.
 
 
 
@@ -254,7 +253,6 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [External]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/external-keyboards
 [Feedback]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/feedback
 [Gestures]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/gestures
-[Input]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/input
 [Keyboard]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/keyboard
 [Layout]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/layout
 [Localization]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/localization

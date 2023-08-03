@@ -15,6 +15,7 @@ import Foundation
  converted to a struct.
  */
 public typealias InputSetRow = [InputSetItem]
+
 /**
  This typealias represents a list of input set rows.
  

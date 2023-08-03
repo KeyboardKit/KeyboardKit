@@ -66,7 +66,6 @@ KeyboardKit is available under the MIT license.
 - <doc:External-Keyboards>
 - <doc:Feedback>
 - <doc:Gestures>
-- <doc:Input>
 - <doc:Layout>
 - <doc:Localization>
 - <doc:Previews>
@@ -200,7 +199,7 @@ KeyboardKit is available under the MIT license.
 
 - ``KeyboardImageReader``
 
-### Input
+### Layout
 
 - ``InputSet``
 - ``InputSetItem``
@@ -210,8 +209,6 @@ KeyboardKit is available under the MIT license.
 - ``AlphabeticInputSet``
 - ``NumericInputSet``
 - ``SymbolicInputSet``
-
-### Layout
 
 - ``KeyboardLayout``
 - ``KeyboardLayoutConfiguration``

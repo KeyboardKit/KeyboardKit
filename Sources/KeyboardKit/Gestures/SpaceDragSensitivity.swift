@@ -11,8 +11,8 @@ import Foundation
 /**
  This enum can be used to set the space key drag sensitivity.
  
- `NOTE` The sensitivity value corresponds to how many points
- space must be dragged for the input cursor to move one step.
+ > Note: This sensitivity corresponds to how many points the
+ space key must be dragged for the cursor to move a step.
  */
 public enum SpaceDragSensitivity: Codable, Identifiable {
     
