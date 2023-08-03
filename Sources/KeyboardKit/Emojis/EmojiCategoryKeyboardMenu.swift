@@ -9,6 +9,8 @@
 import SwiftUI
 
 /**
+ [DEPRECATED]
+ 
  This menu can be used to list a set of emoji categories and
  let each category button toggle a category selection.
  
@@ -17,6 +19,8 @@ import SwiftUI
  
  As long as the view requires iOS 14, the extensions must be
  kept in the main struct body for the previews to compile.
+ 
+ > v8.0: This will be converted to an internal type in 8.0.
  */
 public struct EmojiCategoryKeyboardMenu: View {
     

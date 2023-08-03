@@ -9,7 +9,11 @@
 import SwiftUI
 
 /**
+ [DEPRECATED]
+ 
  This view renders a standard title for an emoji category.
+ 
+ > v8.0: This will be converted to an internal type in 8.0.
  */
 public struct EmojiCategoryTitle: View {
     

@@ -71,6 +71,9 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `AutocompleteToolbarItemSubtitle` has been soft deprecated.
 * `AutocompleteToolbarItemTitle` has been soft deprecated.
 * `AutocompleteToolbarSeparatorStyle` has been renamed to `KeyboardStyle.AutocompleteSeparator`.
+* `EmojiAnalyzer` has been deprecated.
+* `EmojiCategoryKeyboardMenu` has been deprecated.
+* `EmojiCategoryTitle` has been deprecated.
 * `EnglishInputSetProvider` has been deprecated.
 * `InputCalloutContext` has been renamed to `KeyboardCalloutContext.InputContext`.
 * `InputSetProvider` has been deprecated.

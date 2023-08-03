@@ -76,79 +76,49 @@ public struct EmojiKeyboardStyle {
         self.backspaceIcon = backspaceIcon
     }
 
-    /**
-     The text to use for the ABC button.
-     */
+    /// The text to use for the ABC button.
     public var abcText: String
     
-    /**
-     The icon to use for the backspace button.
-     */
+    /// The icon to use for the backspace button.
     public var backspaceIcon: Image
 
-    /**
-     The font to apply to the category title label.
-     */
+    /// The font to apply to the category title label.
     public var categoryTitleFont: Font
 
-    /**
-     The padding to apply to the category title label.
-     */
+    /// The padding to apply to the category title label.
     public var categoryTitlePadding: EdgeInsets
 
-    /**
-     The font to apply to the category emoji labels.
-     */
+    /// The font to apply to the category emoji labels.
     public var categoryEmojiFont: Font
     
-    /**
-     The horizontal spacing to use.
-     */
+    /// The horizontal spacing to use.
     public var horizontalItemSpacing: Double
     
-    /**
-     Double font to apply to the emojis.
-     */
+    /// Double font to apply to the emojis.
     public var itemFont: Font
     
-    /**
-     The item size to use.
-     */
+    /// The item size to use.
     public var itemSize: Double
     
-    /**
-     Double number of rows to use in the keyboard.
-     */
+    /// Double number of rows to use in the keyboard.
     public var rows: Int
     
-    /**
-     The color to apply to the selected badge.
-     */
+    /// The color to apply to the selected badge.
     public var selectedCategoryColor: Color
     
-    /**
-     The font to apply to the ABC button.
-     */
+    /// The font to apply to the ABC button.
     public var abcFont: Font
 
-    /**
-     The font to apply to the backspace button.
-     */
+    /// The font to apply to the backspace button.
     public var backspaceFont: Font
 
-    /**
-     The total keyboard height.
-     */
+    /// The total keyboard height.
     public var totalHeight: Double { Double(rows) * itemSize }
     
-    /**
-     The vertical spacing to apply to the vertical category keyboard stack.
-     */
+    /// The vertical spacing to apply to the vertical category keyboard stack.
     public var verticalCategoryStackSpacing: CGFloat
     
-    /**
-     The vertical spacing to use.
-     */
+    /// The vertical spacing to use.
     public var verticalItemSpacing: CGFloat
 }
 

@@ -12,6 +12,9 @@ import SwiftUI
  This struct is just a wrapper around a single character. It
  can be used to get a little bit of type safety, and to work
  more structured with emojis.
+ 
+ `String` and `Character` have many emoji-related extensions
+ as well, which don't show up in the generated documentation.
  */
 public struct Emoji: Equatable, Codable, Identifiable {
     
