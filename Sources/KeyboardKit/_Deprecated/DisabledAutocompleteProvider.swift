@@ -8,16 +8,8 @@
 
 import Foundation
 
-/**
- This class is by default used as a placeholder autocomplete
- provider, until a real provider is injected.
-
- You can register an instance of this type of provider after
- registering a KeyboardKit Pro license, if you don't want to
- use autocomplete.
- */
-public class DisabledAutocompleteProvider: AutocompleteProvider {
-
+public class DeprecatedAutocompleteProvider: AutocompleteProvider {
+    
     public init() {}
     
     public var locale: Locale = .current
@@ -38,3 +30,6 @@ public class DisabledAutocompleteProvider: AutocompleteProvider {
     public func removeIgnoredWord(_ word: String) {}
     public func unlearnWord(_ word: String) {}
 }
+
+@available(*, deprecated, message: "The controller's autocompleteProvider will become optional in 8.0, at which this will be removed.")
+public class DisabledAutocompleteProvider: DeprecatedAutocompleteProvider {}

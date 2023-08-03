@@ -16,15 +16,14 @@ import Foundation
  get autocomplete suggestions based on the provided text.
 
  KeyboardKit doesn't have a standard provider as it does for
- other services. It sets up a ``DisabledAutocompleteProvider``
- that serves as a placeholder until a real one is registered.
-
+ other services. You must either implement a custom provider
+ or use KeyboardKit Pro.
+ 
  KeyboardKit Pro unlocks two autocomplete providers when you
  register your license key. `LocalAutocompleteProvider` runs
  locally on the device and supports most ``KeyboardLocale``s,
  while `RemoteAutocompleteProvider` can be configured to use
- any remote API KeyboardKit Pro registers the local provider
- when you register your license key.
+ any remote autocomplete API.
  
  > v8.0: This protocol will be made async in KeyboardKit 8.0.
  */

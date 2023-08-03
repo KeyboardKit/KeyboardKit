@@ -30,7 +30,7 @@ public extension AutocompleteProvider where Self == PreviewAutocompleteProvider 
 /**
  This autocomplete provider can be used in SwiftUI previews.
  */
-public class PreviewAutocompleteProvider: DisabledAutocompleteProvider {
+public class PreviewAutocompleteProvider: AutocompleteProvider {
 
     /**
      Create a preview provider with a set of suggestions.
@@ -39,15 +39,27 @@ public class PreviewAutocompleteProvider: DisabledAutocompleteProvider {
         suggestions: [AutocompleteSuggestion]
     ) {
         self.suggestions = suggestions
-        super.init()
     }
-
+    
+    public var locale: Locale = .current
     public let suggestions: [AutocompleteSuggestion]
 
-    public override func autocompleteSuggestions(
+    public func autocompleteSuggestions(
         for text: String,
         completion: Completion
     ) {
         completion(.success(suggestions))
     }
+    
+    public var canIgnoreWords: Bool { false }
+    public var canLearnWords: Bool { false }
+    public var ignoredWords: [String] = []
+    public var learnedWords: [String] = []
+    
+    public func hasIgnoredWord(_ word: String) -> Bool { false }
+    public func hasLearnedWord(_ word: String) -> Bool { false }
+    public func ignoreWord(_ word: String) {}
+    public func learnWord(_ word: String) {}
+    public func removeIgnoredWord(_ word: String) {}
+    public func unlearnWord(_ word: String) {}
 }

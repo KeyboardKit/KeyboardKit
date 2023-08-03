@@ -112,7 +112,6 @@ KeyboardKit is available under the MIT license.
 - ``AutocompleteToolbar``
 - ``AutocompleteToolbarItem``
 - ``AutocompleteToolbarSeparator``
-- ``DisabledAutocompleteProvider``
 - ``PrefersAutocompleteResolver``
 
 ### Callouts

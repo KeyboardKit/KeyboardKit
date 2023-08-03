@@ -86,6 +86,7 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `NumericInputSet.english` has been renamed to `englishNumeric`.
 * `NumericInputSet.standard` has been renamed to `standardNumeric`.
 * `DisabledAudioFeedbackEngine` has been deprecated.
+* `DisabledAutocompleteProvider` has been deprecated.
 * `DisabledHapticFeedbackEngine` has been deprecated.
 * `HapticFeedbackConfiguration.tap` has been replaced by `press` and `release`.
 * `KeyboardActions` has been renamed to `KeyboardAction.Row`.

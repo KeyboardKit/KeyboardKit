@@ -34,8 +34,6 @@ For instance, ``KeyboardInputViewController`` has an ``KeyboardInputViewControll
 
 If you want to temporarily or permanently disable autocomplete, you can set ``AutocompleteContext/isEnabled`` to `false`.
 
-You can also replace the current ``KeyboardInputViewController/autocompleteProvider`` with a ``DisabledAutocompleteProvider`` to permanently disable autocomplete.
-
 
 
 ## How to create a custom autocomplete provider

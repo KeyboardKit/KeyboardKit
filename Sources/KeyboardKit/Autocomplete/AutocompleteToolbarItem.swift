@@ -9,8 +9,8 @@
 import SwiftUI
 
 /**
- This view replicates the standard autocomplete toolbar item
- that is used in native iOS keyboards.
+ This view mimics the autocomplete toolbar item that is used
+ in native iOS keyboards.
  
  The item uses an `AutocompleteToolbarItemText` for the text
  view and `AutocompleteToolbarItemBackground` for background.

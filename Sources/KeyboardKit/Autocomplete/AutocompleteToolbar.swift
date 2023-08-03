@@ -9,12 +9,12 @@
 import SwiftUI
 
 /**
- This view is a horizontal row with autocomplete buttons and
+ This toolbar can be used to present autocomplete items with
  separator lines between the buttons.
  
  You can customize the item and separator views by providing
  custom `itemView` and/or `separatorView` functions. You can
- also customize the tap `suggestionAction` of a suggestion.
+ also customize the `suggestionAction`.
  
  Note that the views that are returned by `itemView` will be
  nested in a button that triggers the `action`. Therefore, a
@@ -28,7 +28,7 @@ public struct AutocompleteToolbar<ItemView: View, SeparatorView: View>: View {
      - Parameters:
        - suggestions: The list of suggestions to display.
        - locale: The locale to use in the toolbar.
-       - style: The style to use in the toolbar, by default ``AutocompleteToolbarStyle/standard``.
+       - style: The style to use in the toolbar, by default `.standard`.
        - itemView: The function to use to build a view for each suggestion.
        - separatorView: The function to use to build a view for each separator.
        - suggestionAction: The action to use when tapping a suggestion.

@@ -9,8 +9,8 @@
 import SwiftUI
 
 /**
- This view replicates the standard autocomplete toolbar item
- separator that is used in native iOS keyboards.
+ This view mimics the autocomplete toolbar separator that is
+ used in native iOS keyboards.
  */
 public struct AutocompleteToolbarSeparator: View {
     
