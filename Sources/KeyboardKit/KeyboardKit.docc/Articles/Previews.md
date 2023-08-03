@@ -2,21 +2,9 @@
 
 This article describes how KeyboardKit makes it easy to preview keyboard-specific views.
 
-KeyboardKit has a collection of preview-specific state and services that you can use in your previews:
+KeyboardKit has `.preview` aliases for various state and service types, for instance ``KeyboardContext``.``KeyboardContext/preview`` and ``KeyboardActionHandler``.``KeyboardActionHandler/preview``.
 
-* ``CalloutActionProvider``.``CalloutActionProvider/preview``.
-* ``KeyboardActionHandler``.``KeyboardActionHandler/preview``.
-* ``CalloutContext``.``CalloutContext/preview``.
-* ``CalloutContext``.``ActionContext``.``CalloutContext/ActionContext/preview``.
-* ``CalloutContext``.``InputContext``.``CalloutContext/InputContext/preview``.
-* ``KeyboardContext``.``KeyboardContext/preview``.
-* ``KeyboardInputViewController``.``KeyboardInputViewController/preview``.
-* ``KeyboardLayout``.``KeyboardLayout/preview``.
-* ``KeyboardLayoutProvider``.``KeyboardLayoutProvider/preview``.
-* ``KeyboardStyleProvider``.``KeyboardStyleProvider/preview``.
-* `UITextDocumentContext`.`preview`.
-
-If the view you want to preview uses any of these types, you can just use `.preview`.
+If a view you want to preview use a type that has such a `.preview` alias, you can just use `.preview` instead of having to type the entire type name.
 
 
 ## How to use preview-specific state and services

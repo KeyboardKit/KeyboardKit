@@ -74,7 +74,7 @@ To localize emojis for a certain locale, simply add localized strings for the va
 
 ### Emoji Version
 
-KeyboardKit Pro unlocks an ``EmojiVersion`` type that defines Emoji versions, platform availability and included emojis.
+KeyboardKit Pro unlocks an `EmojiVersion` type that defines Emoji versions, platform availability and included emojis.
 
 For instance, you can get explicit versions, for instance:
 
@@ -94,7 +94,7 @@ let version = EmojiVersion(iOS: 15.4)
 version.version  // 14.0
 ```
 
-An ``EmojiVersion`` can specify the emojis introduced in that version, as well as later and older versions and unavailable emojis that are introduced in later versions:
+An `EmojiVersion` can specify the emojis introduced in that version, as well as later and older versions and unavailable emojis that are introduced in later versions:
 
 ```swift
 let version = EmojiVersion.v14

@@ -26,9 +26,9 @@ public extension KeyboardStyle {
          
          - Parameters:
            - height: An optional toolbar height, by default `50`.
-           - item: The item style, by default ``AutocompleteToolbarItemStyle/standard``.
-           - separator: The separator style, by default ``AutocompleteToolbarSeparatorStyle/standard``.
-           - autocorrectBackground: The background to apply to autocorrect items, by default ``AutocompleteToolbarItemBackgroundStyle/standard``.
+           - item: The item style, by default `.standard`.
+           - separator: The separator style, by default `.standard`.
+           - autocorrectBackground: The background to apply to autocorrect items, by default `.standard`.
          */
         public init(
             height: CGFloat? = 50,

@@ -8,7 +8,7 @@ KeyboardKit will use the ``KeyboardInputViewController`` ``KeyboardInputViewCont
 
 KeyboardKit doesn't have any standard dictations services as it has for most other services. Instead, it will use disabled services until you register real ones.
 
-[KeyboardKit Pro][Pro] unlocks a ``StandardDictationService`` and a ``StandardKeyboardDictationService``. These features are described at the end of this document.
+[KeyboardKit Pro][Pro] unlocks a `StandardDictationService` and a `StandardKeyboardDictationService`. These features are described at the end of this document.
 
 
 
@@ -20,7 +20,7 @@ You can start dictating with ``DictationService/startDictation(with:)`` and stop
 
 Since dictation may stop at any time, for instance by silence, a dictation service must describe how to access the result when the operation completes.
 
-For instance, the ``StandardDictationService`` will continously update a ``DictationContext`` to let you observe and display the current dictation state.
+For instance, the `StandardDictationService` will continously update a ``DictationContext`` to let you observe and display the current dictation state.
 
 A dictation service can call ``DictationService/requestDictationAuthorization()`` to ask the user for the required permissions before starting a dictation operation. You can call this function manually as well, to avoid interrupting the first dictation operation with alerts.
 
@@ -38,9 +38,9 @@ This can be tricky to set up, but KeyboardKit Pro lets you do it in a few simple
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks a ``StandardDictationService`` and a ``StandardKeyboardDictationService`` when you register a valid license. 
+[KeyboardKit Pro][Pro] unlocks a `StandardDictationService` and a `StandardKeyboardDictationService` when you register a valid license. 
 
-The ``StandardDictationService`` can be used to perform in-app dictation, while the ``StandardKeyboardDictationService`` can be used to perform dictation from a keyboard, as described above.
+The `StandardDictationService` can be used to perform in-app dictation, while the `StandardKeyboardDictationService` can be used to perform dictation from a keyboard, as described above.
 
 KeyboardKit Pro also unlocks additional tools that make keyboard dictation effortless.
 
@@ -163,14 +163,14 @@ struct ContentView: View {
 
 The `.keyboardDictation` modifier will then automatically trigger the dictation if the app is opened with the deep link that is specified in the provided configuration. Once the app stops dictating, the service will return the user to the keyboard.
 
-You can customize the standard ``DictationScreen`` with a custom style or use a completely custom overlay.
+You can customize the standard `DictationScreen` with a custom style or use a completely custom overlay.
 
 > Important: If you are using a DocumentGroup-based app, you may have noticed that the `.keyboardDictation` view modifier only works if a document is open. To make dictation always work in a DocumentGroup-based, you can instead check if the context's `isDictationStartedByKeyboard` is `true` when the app starts, and if so present a sheet or a modal and add `keyboardDictationOnAppear` on its root view. Native support for opening a sheet or modal from a document group is not yet included in KeyboardKit Pro, but will hopefully be added in a future version.  
 
 
 ### 7. Create a speech recognizer
 
-KeyboardKit Pro doesn't contain a ``SpeechRecognizer``, since the `Speech` framework would then force all apps to specify dictation permissions, even if they aren't using dictation.
+KeyboardKit Pro doesn't contain a `SpeechRecognizer`, since the `Speech` framework would then force all apps to specify dictation permissions, even if they aren't using dictation.
 
 As such, you can just copy this code and add it to your app, then pass in `StandardSpeechRecognizer()` into the modifier:
 

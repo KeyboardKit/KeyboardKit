@@ -39,7 +39,7 @@ import KeyboardKit
 class KeyboardViewController: KeyboardInputViewController {}
 ```
 
-The controller will then call ``KeyboardInputViewController/viewWillSetupKeyboard()`` when the keyboard view should be created or updated. You can override this function and call ``KeyboardInputViewController/setup(with:)`` to customize the default view or set up a completely custom one.
+The controller will then call ``KeyboardInputViewController/viewWillSetupKeyboard()`` when the keyboard view should be created or updated. You can override this function and call `.setup(with:)` to customize the default view or set up a completely custom one.
 
 Since KeyboardKit uses plain SwiftUI, you can use any custom SwiftUI view hierarchy as your keyboard view. 
 

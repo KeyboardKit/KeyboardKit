@@ -16,7 +16,7 @@ import Foundation
  and functions to customize its behavior. The easiest way is
  to override ``calloutActionString(for:)`` and let it return
  a string that can then be mapped to keyboard actions by the
- ``calloutActions(for:)`` function.
+ `calloutActions(for:)` function.
  */
 open class BaseCalloutActionProvider: CalloutActionProvider {
     

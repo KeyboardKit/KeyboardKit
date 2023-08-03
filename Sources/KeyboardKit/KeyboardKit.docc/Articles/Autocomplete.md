@@ -148,7 +148,7 @@ The ``SystemKeyboard`` will however by default add an autocomplete toolbar above
 
 ### Local autocomplete provider
 
-KeyboardKit Pro unlocks a ``LocalAutocompleteProvider`` and applies it to the input controller's ``KeyboardInputViewController/autocompleteProvider`` when you setup KeyboardKit Pro with a  valid license. You can inherit and customize this class to modify its behavior.
+KeyboardKit Pro unlocks a `LocalAutocompleteProvider` and applies it to the input controller's ``KeyboardInputViewController/autocompleteProvider`` when you setup KeyboardKit Pro with a  valid license. You can inherit and customize this class to modify its behavior.
 
 The local autocomplete provider uses on-devices capabilities to generate suggestions. It works offline, doesn't require full access and integrates with other system components, like the on-device lexicon.
 
@@ -157,7 +157,7 @@ Note that this provider doesn't provide next word prediction, which means that n
 
 ### Remote autocomplete provider
 
-KeyboardKit Pro also unlocks an ``RemoteAutocompleteProvider`` that can be configured to communicate with any APIs or web service. It can be customized to great extent, for instance to modify the request url, parameters and headers. 
+KeyboardKit Pro also unlocks an `RemoteAutocompleteProvider` that can be configured to communicate with any APIs or web service. It can be customized to great extent, for instance to modify the request url, parameters and headers. 
 
 Since most autocomplete APIs require a secret api token or some form of authentication, the demo app doesn't include a remote provider demo. You must create one yourself and manually register it in the Pro demo after registering a valid license.
 

@@ -34,7 +34,7 @@ Instead of an input set provider, from now on use input sets directly.
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks additional input sets for all keyboard locales, as well as variations like ``AlphabeticInputSet/azerty`` and ``AlphabeticInputSet/qwertz`` which can be used by all layouts that have the same set of keys as an English keyboard. 
+[KeyboardKit Pro][Pro] unlocks additional input sets for all keyboard locales, as well as variations like `.azerty` and `.qwertz`, which can be used by all layouts that have the same set of keys as an English keyboard. 
 
 These input sets let you create a fully localized ``SystemKeyboard`` with a single line of code. 
 
