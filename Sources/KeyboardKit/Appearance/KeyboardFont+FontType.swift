@@ -1,5 +1,5 @@
 //
-//  KeyboardFontType.swift
+//  KeyboardFont+FontType.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-03-30.
@@ -8,30 +8,32 @@
 
 import SwiftUI
 
-/**
- This enum defines supported keyboard fonts.
-
- This type makes it possible to use fonts in `Codable` types.
- */
-public enum KeyboardFontType: Codable, Equatable {
-
-    case body
-    case callout
-    case caption
-    case caption2
-    case custom(_ name: String, size: CGFloat)
-    case customFixed(_ name: String, size: CGFloat)
-    case footnote
-    case headline
-    case largeTitle
-    case subheadline
-    case system(size: CGFloat)
-    case title
-    case title2
-    case title3
+public extension KeyboardFont {
+    
+    /**
+     This enum defines various keyboard font types and makes
+     it possible to use fonts in `Codable` types.
+     */
+    enum FontType: Codable, Equatable {
+        
+        case body
+        case callout
+        case caption
+        case caption2
+        case custom(_ name: String, size: CGFloat)
+        case customFixed(_ name: String, size: CGFloat)
+        case footnote
+        case headline
+        case largeTitle
+        case subheadline
+        case system(size: CGFloat)
+        case title
+        case title2
+        case title3
+    }
 }
 
-public extension KeyboardFontType {
+public extension KeyboardFont.FontType {
 
     /// Get the native font for the font type.
     var font: Font {

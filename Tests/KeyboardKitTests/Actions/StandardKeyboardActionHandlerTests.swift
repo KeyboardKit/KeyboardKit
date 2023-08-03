@@ -170,7 +170,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
 
     func testTryApplyAutocompleteSuggestionOnlyProceedsForReleaseOnSomeActionsWhenSuggestionsExist() {
         let ref = textDocumentProxy.adjustTextPositionRef
-        let autocompleteSuggestions = [AutocompleteSuggestion(text: "", isAutocomplete: true, isUnknown: false)]
+        let autocompleteSuggestions = [AutocompleteSuggestion(text: "", isAutocorrect: true, isUnknown: false)]
 
         textDocumentProxy.documentContextBeforeInput = "abc"
         handler.autocompleteContext.suggestions = autocompleteSuggestions

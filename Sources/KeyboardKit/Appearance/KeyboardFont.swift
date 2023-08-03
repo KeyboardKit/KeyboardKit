@@ -9,9 +9,8 @@
 import SwiftUI
 
 /**
- This struct represents a font to be used in the keyboard.
-
- This type makes it possible to use fonts in `Codable` types.
+ This codable struct represents a font and is used to define
+ fonts in `Codable` types.
  */
 public struct KeyboardFont: Codable, Equatable {
 
@@ -28,9 +27,6 @@ public struct KeyboardFont: Codable, Equatable {
 }
 
 public extension KeyboardFont {
-
-    typealias FontType = KeyboardFontType
-    typealias FontWeight = KeyboardFontWeight
 
     static var body: Self { .init(.body) }
     static var callout: Self { .init(.callout) }

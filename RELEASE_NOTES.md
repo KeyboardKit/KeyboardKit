@@ -68,6 +68,8 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `InputSetProviderBased` has been deprecated.
 * `InterfaceOrientationResolver` has been deprecated.
 * `KeyboardCase.standardButtonImage` has been deprecated.
+* `KeyboardFontType` has been renamed to `KeyboardFont.FontType`.
+* `KeyboardFontWeight` has been renamed to `KeyboardFont.FontWeight`.
 * `NumericInputSet.english` has been renamed to `englishNumeric`.
 * `NumericInputSet.standard` has been renamed to `standardNumeric`.
 * `DisabledAudioFeedbackEngine` has been deprecated.

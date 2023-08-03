@@ -8,25 +8,27 @@
 
 import SwiftUI
 
-/**
- This enum defines supported keyboard font weights.
+public extension KeyboardFont {
+    
+    /**
+     This enum defines various keyboard font weights, and is
+     used to specify fonts in `Codable` types.
+     */
+    enum FontWeight: Codable, Equatable {
 
- This type makes it possible to use fonts in `Codable` types.
- */
-public enum KeyboardFontWeight: Codable, Equatable {
-
-    case black
-    case bold
-    case heavy
-    case light
-    case medium
-    case regular
-    case semibold
-    case thin
-    case ultraLight
+        case black
+        case bold
+        case heavy
+        case light
+        case medium
+        case regular
+        case semibold
+        case thin
+        case ultraLight
+    }
 }
 
-public extension KeyboardFontWeight {
+public extension KeyboardFont.FontWeight {
 
     /// Get the native font weight for the weight.
     var fontWeight: Font.Weight {
@@ -47,7 +49,7 @@ public extension KeyboardFontWeight {
 public extension Font.Weight {
 
     /// Get the keyboard font weight for the weight.
-    var keyboardWeight: KeyboardFontWeight {
+    var keyboardWeight: KeyboardFont.FontWeight {
         switch self {
         case .black: return .black
         case .bold: return .bold

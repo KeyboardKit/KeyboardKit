@@ -118,8 +118,6 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardActionCalloutStyle``
 - ``KeyboardInputCalloutStyle``
 - ``KeyboardFont``
-- ``KeyboardFontType``
-- ``KeyboardFontWeight``
 - ``StandardKeyboardAppearance``
 
 ### Autocomplete
