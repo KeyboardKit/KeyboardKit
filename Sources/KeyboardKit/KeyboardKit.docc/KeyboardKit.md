@@ -83,7 +83,6 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardAutocapitalizationType``
 - ``KeyboardBehavior``
 - ``KeyboardCase``
-- ``KeyboardCaseAdjustable``
 - ``KeyboardContext``
 - ``KeyboardController``
 - ``KeyboardType``

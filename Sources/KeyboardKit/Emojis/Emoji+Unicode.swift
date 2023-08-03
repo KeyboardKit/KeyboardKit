@@ -27,7 +27,7 @@ public extension Emoji {
             .split(by: ["}"])
             .filter { !$0.isEmpty }
             .first?
-            .capitalized()
+            .capitalized
     }
 
     /**

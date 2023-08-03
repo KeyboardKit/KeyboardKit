@@ -8,12 +8,7 @@
 
 import Foundation
 
-/**
- This protocol can be implemented by any type that can adapt
- to the keyboard casing of a certain text.
-
- This protocol is implemented by `String`.
- */
+@available(*, deprecated, message: "This will be removed in KeyboardKit 8.0")
 public protocol KeyboardCaseAdjustable {
 
     /**
@@ -37,6 +32,7 @@ public protocol KeyboardCaseAdjustable {
     func uppercased() -> String
 }
 
+@available(*, deprecated, message: "This will be removed in KeyboardKit 8.0")
 public extension KeyboardCaseAdjustable {
 
     /**
@@ -60,6 +56,7 @@ public extension KeyboardCaseAdjustable {
     }
 }
 
+@available(*, deprecated, message: "This will be removed in KeyboardKit 8.0")
 extension String: KeyboardCaseAdjustable {
 
     public func capitalized() -> String {

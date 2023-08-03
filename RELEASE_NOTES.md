@@ -73,6 +73,7 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `KeyboardFontWeight` has been renamed to `KeyboardFont.FontWeight`.
 * `KeyboardInputCalloutStyle` has been renamed to `KeyboardStyle.InputCallout`.
 * `KeyboardInputViewController` `keyboardAppearance` has been renamed to `keyboardStyleProvider`.
+* `KeyboardCaseAdjustable` has been deprecated.
 * `NumericInputSet.english` has been renamed to `englishNumeric`.
 * `NumericInputSet.standard` has been renamed to `standardNumeric`.
 * `DisabledAudioFeedbackEngine` has been deprecated.

@@ -81,8 +81,6 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
         return localized ?? baseProvider
     }
 
-    
-    
     @available(*, deprecated, message: "This will be removed in KeyboardKit 8.0")
     public var keyboardContext: KeyboardContext = .preview
     
