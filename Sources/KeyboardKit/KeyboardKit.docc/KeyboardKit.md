@@ -90,7 +90,6 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardEnabledLabel``
 - ``KeyboardEnabledLabelStyle``
 - ``KeyboardEnabledStateInspector``
-- ``KeyboardHostingController``
 - ``KeyboardReturnKeyType``
 - ``KeyboardTextContext``
 - ``NextKeyboardButton``

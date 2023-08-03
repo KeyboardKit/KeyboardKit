@@ -31,15 +31,14 @@ import UIKit
 public class KeyboardContext: ObservableObject {
 
     /**
-     Create a context instance.
+     Create a standard context instance.
      */
     public init() {}
 
     #if os(iOS) || os(tvOS)
     /**
      Create a context instance that is initially synced with
-     the provided `controller` and that sets `screenSize` to
-     the main screen size.
+     the provided `controller`.
 
      - Parameters:
        - controller: The controller with which the context should sync, if any.
@@ -55,17 +54,14 @@ public class KeyboardContext: ObservableObject {
 
 
     /**
-     The property can be set to override auto-capitalization
-     information provided by ``autocapitalizationType``.
+     A manually set autocapitalization type, which overrides
+     the ``autocapitalizationType`` value when it's set.
      */
     @Published
     public var autocapitalizationTypeOverride: KeyboardAutocapitalizationType?
 
     /**
-     The device type that is currently used.
-
-     By default, this is ``DeviceType/current``, but you can
-     change it to anything you like.
+     The current device type.
      */
     @Published
     public var deviceType: DeviceType = .current
@@ -89,7 +85,7 @@ public class KeyboardContext: ObservableObject {
     public var interfaceOrientation: InterfaceOrientation = .portrait
 
     /**
-     Whether or not auto-capitalization is enabled.
+     Whether or not autocapitalization is enabled.
 
      You can set this to `false` to override the behavior of
      the text document proxy.
@@ -107,10 +103,7 @@ public class KeyboardContext: ObservableObject {
      An optional dictation replacement action, which will be
      used by some ``KeyboardLayoutProvider`` implementations.
 
-     > Warning: This will be deprecated and not used anymore
-     in KeyboardKit 7.9.9, then eventually removed in 8.0. A
-     replacement is to use a custom ``KeyboardLayoutProvider``
-     instead, which allows greater configuration options.
+     > Warning: This will be removed in 8.0.
      */
     @Published
     public var keyboardDictationReplacement: KeyboardAction?
@@ -234,13 +227,11 @@ public extension KeyboardContext {
 public extension KeyboardContext {
 
     /**
-     The standard auto-capitalization type that will be used
-     by the keyboard.
+     The autocapitalization type to use.
 
-     This is by default fetched from the text document proxy
-     for iOS and tvOS and is `.none` for all other platforms.
-     You can set ``autocapitalizationTypeOverride`` to set a
-     custom value that overrides the default one.
+     This is by default fetched from the text document proxy.
+     You can use ``autocapitalizationTypeOverride`` to apply
+     a custom value that overrides the default one.
      */
     var autocapitalizationType: KeyboardAutocapitalizationType? {
         #if os(iOS) || os(tvOS)

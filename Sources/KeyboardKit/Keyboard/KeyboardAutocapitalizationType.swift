@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- This enum defines all supported auto-capitalization types.
+ This enum defines all supported autocapitalization types.
  */
 public enum KeyboardAutocapitalizationType: String, CaseIterable {
 

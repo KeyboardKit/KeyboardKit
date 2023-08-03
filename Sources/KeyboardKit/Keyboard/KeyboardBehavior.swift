@@ -12,11 +12,6 @@ import Foundation
  This protocol can be used to specify behavior rules for the
  keyboard. It aims to separate behavior from action handling
  to make the code cleaner and more understandable.
- 
- `IMPORTANT` Whenever you replace the standard behavior with
- your own custom behavior, make sure to do so before calling
- any other services that depend on the behavior, or recreate
- the services that do depend on it.
  */
 public protocol KeyboardBehavior {
     

@@ -96,6 +96,7 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `KeyboardCalloutStyle` has been renamed to `KeyboardStyle.Callout`.
 * `KeyboardCase.standardButtonImage` has been deprecated.
 * `KeyboardEnabledState` has been renamed to `KeyboardEnabledContext`.
+* `KeyboardHostingController` has been soft deprecated.
 * `KeyboardFontType` has been renamed to `KeyboardFont.FontType`.
 * `KeyboardFontWeight` has been renamed to `KeyboardFont.FontWeight`.
 * `KeyboardInputCalloutStyle` has been renamed to `KeyboardStyle.InputCallout`.

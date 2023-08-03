@@ -332,13 +332,14 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /**
      The behavior that is used to determine how the keyboard
      should behave when certain things happen.
+     
+     > Important: Whenever you replace the standard behavior
+     with a custom one, do so before using any services that
+     depend on it, or recreate those services if they should
+     use the new behavior.
      */
     public lazy var keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior(
         keyboardContext: keyboardContext)
-
-    @available(*, deprecated, message: "This is replaced by keyboardActionHandler")
-    public lazy var keyboardFeedbackHandler: KeyboardFeedbackHandler = StandardKeyboardFeedbackHandler(
-        settings: keyboardFeedbackSettings)
 
     /**
      This keyboard layout provider that is used to setup the
@@ -539,6 +540,13 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
             }
         }
     }
+    
+    
+    // MARK: - Deprecated
+    
+    @available(*, deprecated, message: "This is replaced by keyboardActionHandler")
+    public lazy var keyboardFeedbackHandler: KeyboardFeedbackHandler = StandardKeyboardFeedbackHandler(
+        settings: keyboardFeedbackSettings)
 }
 
 

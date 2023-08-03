@@ -10,6 +10,8 @@
 import SwiftUI
 
 /**
+ DEPRECATED
+ 
  This controller can be used to add any `SwiftUI`-based view
  to a `KeyboardInputViewController`.
  
@@ -17,13 +19,14 @@ import SwiftUI
  `rootView` then add it to your `KeyboardInputViewController`
  with `add(to:)` or use the input controller's `setup(with:)`
  with a `SwiftUI` `View`, which does of all this for you.
+ 
+ > v8.0: This will be converted to an internal type in 8.0.
  */
 public class KeyboardHostingController<Content: View>: UIHostingController<Content> {
     
     /**
-     Add the hosting controller to a keyboard extension view
-     controller and setup constraints to resize the keyboard
-     extension as the hosting content size changes.
+     Add the hosting controller to a keyboard extension then
+     add constraints to resize extension as the size changes.
      */
     public func add(to controller: KeyboardInputViewController) {
         controller.addChild(self)
