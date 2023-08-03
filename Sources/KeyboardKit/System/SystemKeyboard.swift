@@ -62,7 +62,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
         autocompleteToolbar: AutocompleteToolbarMode,
         autocompleteToolbarAction: @escaping AutocompleteToolbarAction,
         keyboardContext: KeyboardContext,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         width: CGFloat,
         renderBackground: Bool = true
     ) where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardButtonContent> {
@@ -119,7 +119,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
         autocompleteToolbar: AutocompleteToolbarMode,
         autocompleteToolbarAction: @escaping AutocompleteToolbarAction,
         keyboardContext: KeyboardContext,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         width: CGFloat,
         renderBackground: Bool = true,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder
@@ -137,8 +137,8 @@ public struct SystemKeyboard<ButtonView: View>: View {
         _autocompleteContext = ObservedObject(wrappedValue: autocompleteContext)
         _keyboardContext = ObservedObject(wrappedValue: keyboardContext)
         _calloutContext = ObservedObject(wrappedValue: calloutContext ?? .disabled)
-        _actionCalloutContext = ObservedObject(wrappedValue: calloutContext?.action ?? .disabled)
-        _inputCalloutContext = ObservedObject(wrappedValue: calloutContext?.input ?? .disabled)
+        _actionCalloutContext = ObservedObject(wrappedValue: calloutContext?.actionContext ?? .disabled)
+        _inputCalloutContext = ObservedObject(wrappedValue: calloutContext?.inputContext ?? .disabled)
     }
 
     /**
@@ -170,7 +170,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
         autocompleteToolbar: AutocompleteToolbarMode,
         autocompleteToolbarAction: @escaping AutocompleteToolbarAction,
         keyboardContext: KeyboardContext,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         width: CGFloat,
         renderBackground: Bool = true,
         @ViewBuilder buttonContent: @escaping (KeyboardLayoutItem) -> ButtonContentView
@@ -356,16 +356,16 @@ public struct SystemKeyboard<ButtonView: View>: View {
     }
 
     @ObservedObject
-    private var actionCalloutContext: KeyboardCalloutContext.ActionContext
+    private var actionCalloutContext: CalloutContext.ActionContext
 
     @ObservedObject
     private var autocompleteContext: AutocompleteContext
 
     @ObservedObject
-    private var calloutContext: KeyboardCalloutContext
+    private var calloutContext: CalloutContext
 
     @ObservedObject
-    private var inputCalloutContext: KeyboardCalloutContext.InputContext
+    private var inputCalloutContext: CalloutContext.InputContext
 
     @ObservedObject
     private var keyboardContext: KeyboardContext
@@ -453,7 +453,7 @@ public extension SystemKeyboard {
         actionHandler: KeyboardActionHandler,
         styleProvider: KeyboardStyleProvider,
         keyboardContext: KeyboardContext,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         keyboardWidth: KeyboardWidth,
         inputWidth: KeyboardItemWidth
     ) -> SystemKeyboardButtonRowItem<SystemKeyboardButtonContent> {

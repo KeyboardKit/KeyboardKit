@@ -7,7 +7,7 @@ public extension View {
     func keyboardGestures(
         for action: KeyboardAction,
         actionHandler: KeyboardActionHandler,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         isInScrollView: Bool = false,
         isPressed: Binding<Bool> = .constant(false)
     ) -> some View {
@@ -24,7 +24,7 @@ public extension View {
     @available(*, deprecated, renamed: "keyboardButtonGestures")
     func keyboardGestures(
         action: KeyboardAction? = nil,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         isInScrollView: Bool = false,
         isPressed: Binding<Bool> = .constant(false),
         doubleTapAction: KeyboardGestureAction? = nil,

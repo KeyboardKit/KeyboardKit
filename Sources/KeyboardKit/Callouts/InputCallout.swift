@@ -32,7 +32,7 @@ public struct InputCallout: View {
         self.style = style
     }
     
-    public typealias Context = KeyboardCalloutContext.InputContext
+    public typealias Context = CalloutContext.InputContext
     public typealias Style = KeyboardStyle.InputCallout
     
     static let coordinateSpace = Context.coordinateSpace

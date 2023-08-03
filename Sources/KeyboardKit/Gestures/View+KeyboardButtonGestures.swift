@@ -32,7 +32,7 @@ public extension View {
     func keyboardButtonGestures(
         for action: KeyboardAction,
         actionHandler: KeyboardActionHandler,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         isPressed: Binding<Bool> = .constant(false),
         isInScrollView: Bool = false,
         releaseOutsideTolerance: Double = 1
@@ -75,7 +75,7 @@ public extension View {
     @ViewBuilder
     func keyboardButtonGestures(
         action: KeyboardAction? = nil,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         isPressed: Binding<Bool> = .constant(false),
         isInScrollView: Bool = false,
         releaseOutsideTolerance: Double = 1,

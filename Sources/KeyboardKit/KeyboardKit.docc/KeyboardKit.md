@@ -121,7 +121,6 @@ KeyboardKit is available under the MIT license.
 - ``CalloutButtonArea``
 - ``CalloutCurve``
 - ``InputCallout``
-- ``KeyboardCalloutContext``
 - ``StandardCalloutActionProvider``
 
 - ``BaseCalloutActionProvider``

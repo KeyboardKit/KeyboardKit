@@ -233,11 +233,11 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      This is used as global callout state, e.g. for callouts
      that show the currently typed character.
      */
-    public lazy var calloutContext = KeyboardCalloutContext(
-        action: .init(
+    public lazy var calloutContext = CalloutContext(
+        actionContext: .init(
             actionHandler: keyboardActionHandler,
             actionProvider: calloutActionProvider),
-        input: .init(
+        inputContext: .init(
             isEnabled: UIDevice.current.userInterfaceIdiom == .phone)
     )
 
@@ -554,7 +554,7 @@ private extension KeyboardInputViewController {
     }
 
     func refreshCalloutActionContext() {
-        calloutContext.action = .init(
+        calloutContext.actionContext = .init(
             actionHandler: keyboardActionHandler,
             actionProvider: calloutActionProvider
         )

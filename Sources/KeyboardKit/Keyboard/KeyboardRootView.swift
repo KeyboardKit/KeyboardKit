@@ -25,7 +25,7 @@ struct KeyboardRootView<ViewType: View>: View {
     private var autocompleteContext: AutocompleteContext
 
     @EnvironmentObject
-    private var calloutContext: KeyboardCalloutContext
+    private var calloutContext: CalloutContext
 
     @EnvironmentObject
     private var keyboardContext: KeyboardContext

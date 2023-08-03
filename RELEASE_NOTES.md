@@ -29,6 +29,7 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 
 ### ✨ New Features
 
+* `CalloutActionProvider.disabled` is a new `DisabledCalloutActionProvider` alias.
 * `HapticFeedbackConfiguration` has new `press` and `release` configurations.
 * `Image.keyboardShift` is a new image.
 * `InputSet` has new `English` builders.
@@ -78,6 +79,9 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `KeyboardButtonStyle` has been renamed to `KeyboardStyle.Button`.
 * `KeyboardButtonBorderStyle` has been renamed to `KeyboardStyle.ButtonBorder`.
 * `KeyboardButtonShadowStyle` has been renamed to `KeyboardStyle.ButtonShadow`.
+* `KeyboardCalloutContext` has been renamed to `CalloutContext`.
+* `KeyboardCalloutContext.action` has been renamed to `actionContext`.
+* `KeyboardCalloutContext.input` has been renamed to `inputContext`.
 * `KeyboardCalloutStyle` has been renamed to `KeyboardStyle.Callout`.
 * `KeyboardCase.standardButtonImage` has been deprecated.
 * `KeyboardFontType` has been renamed to `KeyboardFont.FontType`.

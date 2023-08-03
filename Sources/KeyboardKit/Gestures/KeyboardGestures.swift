@@ -38,7 +38,7 @@ struct KeyboardButtonGestures<Content: View>: View {
     init(
         view: Content,
         action: KeyboardAction?,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         isPressed: Binding<Bool>,
         isInScrollView: Bool,
         releaseOutsideTolerance: Double,
@@ -65,7 +65,7 @@ struct KeyboardButtonGestures<Content: View>: View {
     
     private let view: Content
     private let action: KeyboardAction?
-    private let calloutContext: KeyboardCalloutContext?
+    private let calloutContext: CalloutContext?
     private let isPressed: Binding<Bool>
     private let isInScrollView: Bool
     private let releaseOutsideTolerance: Double
@@ -158,14 +158,14 @@ private extension KeyboardButtonGestures {
 
     func handleDrag(in geo: GeometryProxy, value: DragGesture.Value) {
         lastDragValue = value
-        calloutContext?.action.updateSelection(with: value.translation)
+        calloutContext?.actionContext.updateSelection(with: value.translation)
         dragAction?(value.startLocation, value.location)
     }
 
     func handleGestureEnded(in geo: GeometryProxy) {
         endActionCallout()
-        calloutContext?.input.resetWithDelay()
-        calloutContext?.action.reset()
+        calloutContext?.inputContext.resetWithDelay()
+        calloutContext?.actionContext.reset()
         resetGestureState()
     }
 
@@ -177,7 +177,7 @@ private extension KeyboardButtonGestures {
 
     func handlePress(in geo: GeometryProxy) {
         pressAction?()
-        calloutContext?.input.updateInput(for: action, in: geo)
+        calloutContext?.inputContext.updateInput(for: action, in: geo)
     }
 
     func handleReleaseInside(in geo: GeometryProxy) {
@@ -196,14 +196,14 @@ private extension KeyboardButtonGestures {
     }
 
     func tryBeginActionCallout(in geo: GeometryProxy) {
-        guard let context = calloutContext?.action else { return }
+        guard let context = calloutContext?.actionContext else { return }
         context.updateInputs(for: action, in: geo)
         guard context.isActive else { return }
-        calloutContext?.input.reset()
+        calloutContext?.inputContext.reset()
     }
 
     func endActionCallout() {
-        calloutContext?.action.endDragGesture()
+        calloutContext?.actionContext.endDragGesture()
     }
 
     func resetGestureState() {
@@ -219,7 +219,7 @@ private extension KeyboardButtonGestures {
     }
 
     func updateShouldApplyReleaseAction() {
-        guard let context = calloutContext?.action else { return }
+        guard let context = calloutContext?.actionContext else { return }
         shouldApplyReleaseAction = shouldApplyReleaseAction && !context.hasSelectedAction
     }
 }

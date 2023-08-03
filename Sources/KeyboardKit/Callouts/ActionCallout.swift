@@ -35,7 +35,7 @@ public struct ActionCallout: View {
         self.emojiKeyboardStyle = emojiKeyboardStyle
     }
     
-    public typealias Context = KeyboardCalloutContext.ActionContext
+    public typealias Context = CalloutContext.ActionContext
     public typealias Style = KeyboardStyle.ActionCallout
     
     static let coordinateSpace = Context.coordinateSpace

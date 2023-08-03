@@ -36,7 +36,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
         actionHandler: KeyboardActionHandler,
         styleProvider: KeyboardStyleProvider,
         keyboardContext: KeyboardContext,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         keyboardWidth: CGFloat,
         inputWidth: CGFloat
     ) {
@@ -54,7 +54,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
     private let item: KeyboardLayoutItem
     private let actionHandler: KeyboardActionHandler
     private let styleProvider: KeyboardStyleProvider
-    private let calloutContext: KeyboardCalloutContext?
+    private let calloutContext: CalloutContext?
     private let keyboardWidth: CGFloat
     private let inputWidth: CGFloat
 

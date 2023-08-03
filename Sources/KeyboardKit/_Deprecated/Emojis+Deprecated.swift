@@ -9,7 +9,7 @@ public extension EmojiCategoryKeyboard {
         categories: [EmojiCategory] = EmojiCategory.all,
         actionHandler: KeyboardActionHandler,
         keyboardContext: KeyboardContext,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         appearance: KeyboardAppearance,
         style: EmojiKeyboardStyle = .standardPhonePortrait,
         categoryTitle: @escaping CategoryTitleProvider = { $0.title }

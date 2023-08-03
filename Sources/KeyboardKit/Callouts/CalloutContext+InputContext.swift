@@ -1,5 +1,5 @@
 //
-//  KeyboardCalloutContext+InputContext.swift
+//  CalloutContext+InputContext.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -10,7 +10,7 @@ import Combine
 import Foundation
 import SwiftUI
 
-public extension KeyboardCalloutContext {
+public extension CalloutContext {
     
     /**
      This context can be used to handle callouts that show a
@@ -106,15 +106,15 @@ public extension KeyboardCalloutContext {
     }
 }
 
-public extension KeyboardCalloutContext.InputContext {
+public extension CalloutContext.InputContext {
     
     /// This context can be used to disable input callouts.
-    static var disabled: KeyboardCalloutContext.InputContext {
+    static var disabled: CalloutContext.InputContext {
         .init(isEnabled: false)
     }
 }
 
-public extension KeyboardCalloutContext.InputContext {
+public extension CalloutContext.InputContext {
 
     /**
      Get the optional input of any currently active action.

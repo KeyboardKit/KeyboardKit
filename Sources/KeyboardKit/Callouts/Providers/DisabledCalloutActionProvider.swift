@@ -19,3 +19,11 @@ public class DisabledCalloutActionProvider: CalloutActionProvider {
         for action: KeyboardAction
     ) -> [KeyboardAction] { [] }
 }
+
+public extension CalloutActionProvider where Self == DisabledCalloutActionProvider {
+    
+    /// This provider can be used to disable callout actions.
+    static var disabled: CalloutActionProvider {
+        DisabledCalloutActionProvider()
+    }
+}

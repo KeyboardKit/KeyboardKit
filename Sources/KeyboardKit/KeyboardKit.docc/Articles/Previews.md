@@ -4,12 +4,11 @@ This article describes how KeyboardKit makes it easy to preview keyboard-specifi
 
 KeyboardKit has a collection of preview-specific state and services that you can use in your previews:
 
-* ``ActionCalloutContext``.``ActionCalloutContext/preview``.
 * ``CalloutActionProvider``.``CalloutActionProvider/preview``.
 * ``KeyboardActionHandler``.``KeyboardActionHandler/preview``.
-* ``KeyboardCalloutContext``.``KeyboardCalloutContext/preview``.
-* ``KeyboardCalloutContext``.``ActionContext``.``KeyboardCalloutContext/ActionContext/preview``.
-* ``KeyboardCalloutContext``.``InputContext``.``KeyboardCalloutContext/InputContext/preview``.
+* ``CalloutContext``.``CalloutContext/preview``.
+* ``CalloutContext``.``ActionContext``.``CalloutContext/ActionContext/preview``.
+* ``CalloutContext``.``InputContext``.``CalloutContext/InputContext/preview``.
 * ``KeyboardContext``.``KeyboardContext/preview``.
 * ``KeyboardInputViewController``.``KeyboardInputViewController/preview``.
 * ``KeyboardLayout``.``KeyboardLayout/preview``.

@@ -36,7 +36,7 @@ public struct EmojiCategoryKeyboard: View {
         categories: [EmojiCategory] = EmojiCategory.all,
         actionHandler: KeyboardActionHandler,
         keyboardContext: KeyboardContext,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         style: EmojiKeyboardStyle = .standardPhonePortrait,
         styleProvider: KeyboardStyleProvider,
         categoryTitle: @escaping CategoryTitleProvider = { $0.title }
@@ -55,7 +55,7 @@ public struct EmojiCategoryKeyboard: View {
     private let categories: [EmojiCategory]
     private let actionHandler: KeyboardActionHandler
     private let keyboardContext: KeyboardContext
-    private let calloutContext: KeyboardCalloutContext?
+    private let calloutContext: CalloutContext?
     private let style: EmojiKeyboardStyle
     private let styleProvider: KeyboardStyleProvider
     private let categoryTitle: CategoryTitleProvider

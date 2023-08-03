@@ -1,5 +1,5 @@
 //
-//  KeyboardCalloutContext+ActionContext.swift
+//  CalloutContext+ActionContext.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -9,7 +9,7 @@
 import Combine
 import SwiftUI
 
-public extension KeyboardCalloutContext {
+public extension CalloutContext {
     
     /**
      This context can be used to handle callouts that show a
@@ -184,13 +184,13 @@ public extension KeyboardCalloutContext {
 
 // MARK: - Public functionality
 
-public extension KeyboardCalloutContext.ActionContext {
+public extension CalloutContext.ActionContext {
     
     /// This context can be used to disable action callouts.
-    static var disabled: KeyboardCalloutContext.ActionContext {
+    static var disabled: CalloutContext.ActionContext {
         .init(
-            actionHandler: PreviewKeyboardActionHandler(),
-            actionProvider: DisabledCalloutActionProvider()
+            actionHandler: .preview,
+            actionProvider: .disabled
         )
     }
 }
@@ -198,7 +198,7 @@ public extension KeyboardCalloutContext.ActionContext {
 
 // MARK: - Private functionality
 
-private extension KeyboardCalloutContext.ActionContext {
+private extension CalloutContext.ActionContext {
     
     var startIndex: Int {
         isLeading ? 0 : actions.count - 1

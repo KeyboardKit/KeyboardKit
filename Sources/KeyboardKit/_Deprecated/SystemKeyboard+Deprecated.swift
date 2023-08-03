@@ -12,7 +12,7 @@ public extension SystemKeyboard {
         autocompleteToolbar: AutocompleteToolbarMode,
         autocompleteToolbarAction: @escaping AutocompleteToolbarAction,
         keyboardContext: KeyboardContext,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         width: CGFloat,
         renderBackground: Bool = true
     ) where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardButtonContent> {
@@ -38,7 +38,7 @@ public extension SystemKeyboard {
         autocompleteToolbar: AutocompleteToolbarMode,
         autocompleteToolbarAction: @escaping AutocompleteToolbarAction,
         keyboardContext: KeyboardContext,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         width: CGFloat,
         renderBackground: Bool = true,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder
@@ -66,7 +66,7 @@ public extension SystemKeyboard {
         autocompleteToolbar: AutocompleteToolbarMode,
         autocompleteToolbarAction: @escaping AutocompleteToolbarAction,
         keyboardContext: KeyboardContext,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         width: CGFloat,
         renderBackground: Bool = true,
         @ViewBuilder buttonContent: @escaping (KeyboardLayoutItem) -> ButtonContentView
@@ -108,7 +108,7 @@ public extension SystemKeyboard {
         appearance: KeyboardAppearance,
         actionHandler: KeyboardActionHandler,
         keyboardContext: KeyboardContext,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         keyboardWidth: KeyboardWidth,
         inputWidth: KeyboardItemWidth
     ) -> SystemKeyboardButtonRowItem<SystemKeyboardButtonContent> {
@@ -131,7 +131,7 @@ public extension SystemKeyboardButton {
         action: KeyboardAction,
         actionHandler: KeyboardActionHandler,
         keyboardContext: KeyboardContext,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         appearance: KeyboardAppearance,
         contentConfig: @escaping ContentConfig
     ) {
@@ -149,7 +149,7 @@ public extension SystemKeyboardButton {
         action: KeyboardAction,
         actionHandler: KeyboardActionHandler,
         keyboardContext: KeyboardContext,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         appearance: KeyboardAppearance
     ) where Content == SystemKeyboardButtonContent {
         self.init(
@@ -186,7 +186,7 @@ public extension SystemKeyboardButtonRowItem {
         item: KeyboardLayoutItem,
         actionHandler: KeyboardActionHandler,
         keyboardContext: KeyboardContext,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         keyboardWidth: CGFloat,
         inputWidth: CGFloat,
         appearance: KeyboardAppearance

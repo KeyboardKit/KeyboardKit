@@ -38,7 +38,7 @@ public struct SystemKeyboardButton<Content: View>: View {
         actionHandler: KeyboardActionHandler,
         styleProvider: KeyboardStyleProvider,
         keyboardContext: KeyboardContext,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         contentConfig: @escaping ContentConfig
     ) {
         self.action = action
@@ -64,7 +64,7 @@ public struct SystemKeyboardButton<Content: View>: View {
         actionHandler: KeyboardActionHandler,
         styleProvider: KeyboardStyleProvider,
         keyboardContext: KeyboardContext,
-        calloutContext: KeyboardCalloutContext?
+        calloutContext: CalloutContext?
     ) where Content == SystemKeyboardButtonContent {
         self.init(
             action: action,
@@ -80,7 +80,7 @@ public struct SystemKeyboardButton<Content: View>: View {
     private let actionHandler: KeyboardActionHandler
     private let styleProvider: KeyboardStyleProvider
     private let keyboardContext: KeyboardContext
-    private let calloutContext: KeyboardCalloutContext?
+    private let calloutContext: CalloutContext?
     private let contentConfig: ContentConfig
 
     @State

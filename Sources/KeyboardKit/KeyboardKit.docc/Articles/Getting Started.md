@@ -154,7 +154,7 @@ struct MyView: View {
 
 Environment objects are convenient, but KeyboardKit itself uses init injection to make dependencies more explicit.
 
-There are a bunch of KeyboardKit-specific objects that can provide you with important information, such as ``KeyboardContext``, ``KeyboardCalloutContext``, ``KeyboardTextContext``, ``AutocompleteContext``, etc.
+There are a bunch of KeyboardKit-specific objects that can provide you with important information, such as ``KeyboardContext``, ``CalloutContext``, ``AutocompleteContext``, etc.
 
 
 

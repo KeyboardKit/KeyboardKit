@@ -35,7 +35,7 @@ public struct EmojiKeyboard<ButtonView: View>: View {
     public init(
         emojis: [Emoji],
         actionHandler: KeyboardActionHandler,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         style: EmojiKeyboardStyle = .standardPhonePortrait,
         button: @escaping ButtonBuilder<ButtonView>
     ) {
@@ -61,7 +61,7 @@ public struct EmojiKeyboard<ButtonView: View>: View {
     init(
         emojis: [Emoji],
         actionHandler: KeyboardActionHandler,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         style: EmojiKeyboardStyle = .standardPhonePortrait
     ) where ButtonView == EmojiKeyboardItem {
         self.init(
@@ -76,7 +76,7 @@ public struct EmojiKeyboard<ButtonView: View>: View {
     private let emojis: [Emoji]
     private let rows: [GridItem]
     private let actionHandler: KeyboardActionHandler
-    private let calloutContext: KeyboardCalloutContext?
+    private let calloutContext: CalloutContext?
     private let style: EmojiKeyboardStyle
     private let buttonBuilder: ButtonBuilder<ButtonView>
     

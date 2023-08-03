@@ -1,5 +1,5 @@
 //
-//  CalloutActionProvider+Preview.swift
+//  CalloutContext+Preview.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-01.
@@ -8,28 +8,28 @@
 
 import Foundation
 
-public extension KeyboardCalloutContext {
+public extension CalloutContext {
 
     /// This context can be used in SwiftUI previews.
-    static var preview = KeyboardCalloutContext(
-        action: .preview,
-        input: .preview
+    static var preview = CalloutContext(
+        actionContext: .preview,
+        inputContext: .preview
     )
 }
 
-public extension KeyboardCalloutContext.ActionContext {
+public extension CalloutContext.ActionContext {
 
     /// This context can be used in SwiftUI previews.
-    static var preview = KeyboardCalloutContext.ActionContext(
+    static var preview = CalloutContext.ActionContext(
         actionHandler: .preview,
         actionProvider: .preview
     )
 }
 
-public extension KeyboardCalloutContext.InputContext {
+public extension CalloutContext.InputContext {
     
     /// This context can be used in SwiftUI previews.
-    static var preview = KeyboardCalloutContext.InputContext(
+    static var preview = CalloutContext.InputContext(
         isEnabled: true
     )
 }

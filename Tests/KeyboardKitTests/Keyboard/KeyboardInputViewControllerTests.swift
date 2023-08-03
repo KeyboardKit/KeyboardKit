@@ -107,9 +107,9 @@ class KeyboardInputViewControllerTests: XCTestCase {
     func testObservablePropertiesHaveStandardValuesByDefault() {
         let vc = TestClass()
         eventually {
-            XCTAssertEqual(vc.calloutContext.action.buttonFrame, .zero)
+            XCTAssertEqual(vc.calloutContext.actionContext.buttonFrame, .zero)
             XCTAssertTrue(vc.autocompleteContext.suggestions.isEmpty)
-            XCTAssertEqual(vc.calloutContext.input.buttonFrame, .zero)
+            XCTAssertEqual(vc.calloutContext.inputContext.buttonFrame, .zero)
             XCTAssertFalse(vc.keyboardContext.hasFullAccess)
             XCTAssertEqual(vc.keyboardContext.keyboardType, .alphabetic(.lowercased))
             XCTAssertFalse(vc.keyboardContext.needsInputModeSwitchKey)
@@ -133,14 +133,14 @@ class KeyboardInputViewControllerTests: XCTestCase {
     func testRefreshingPropertiesWhenChangingServicePropertiesIsDoneForKeyboardActionHandler() {
         let vc = TestClass()
         vc.keyboardActionHandler = PreviewKeyboardActionHandler()
-        let actionContext = vc.calloutContext.action
+        let actionContext = vc.calloutContext.actionContext
         XCTAssertTrue(actionContext.actionHandler === vc.keyboardActionHandler)
     }
 
     func testRefreshingPropertiesWhenChangingServicePropertiesIsForCalloutActionProvider() {
         let vc = TestClass()
         vc.calloutActionProvider = StandardCalloutActionProvider(keyboardContext: .preview)
-        let actionContext = vc.calloutContext.action
+        let actionContext = vc.calloutContext.actionContext
         XCTAssertTrue(actionContext.actionHandler === vc.keyboardActionHandler)
     }
 
