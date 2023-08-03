@@ -356,7 +356,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
     }
 
     @ObservedObject
-    private var actionCalloutContext: ActionCalloutContext
+    private var actionCalloutContext: KeyboardCalloutContext.ActionContext
 
     @ObservedObject
     private var autocompleteContext: AutocompleteContext
@@ -365,7 +365,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
     private var calloutContext: KeyboardCalloutContext
 
     @ObservedObject
-    private var inputCalloutContext: InputCalloutContext
+    private var inputCalloutContext: KeyboardCalloutContext.InputContext
 
     @ObservedObject
     private var keyboardContext: KeyboardContext

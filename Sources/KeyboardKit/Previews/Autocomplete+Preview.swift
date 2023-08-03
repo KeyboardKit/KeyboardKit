@@ -10,16 +10,12 @@ import Foundation
 
 public extension AutocompleteProvider where Self == PreviewAutocompleteProvider {
 
-    /**
-     This preview provider can be used in SwiftUI previews.
-     */
+    /// This provider can be used in SwiftUI previews.
     static var preview: AutocompleteProvider {
         preview(suggestions: [])
     }
 
-    /**
-     This preview provider can be used in SwiftUI previews.
-     */
+    /// This provider can be used in SwiftUI previews.
     static func preview(
         suggestions: [AutocompleteSuggestion]
     ) -> AutocompleteProvider {
@@ -27,14 +23,9 @@ public extension AutocompleteProvider where Self == PreviewAutocompleteProvider 
     }
 }
 
-/**
- This autocomplete provider can be used in SwiftUI previews.
- */
+/// This provider can be used in SwiftUI previews.
 public class PreviewAutocompleteProvider: AutocompleteProvider {
 
-    /**
-     Create a preview provider with a set of suggestions.
-     */
     public init(
         suggestions: [AutocompleteSuggestion]
     ) {

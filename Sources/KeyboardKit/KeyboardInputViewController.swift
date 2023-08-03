@@ -234,10 +234,10 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      that show the currently typed character.
      */
     public lazy var calloutContext = KeyboardCalloutContext(
-        action: ActionCalloutContext(
+        action: .init(
             actionHandler: keyboardActionHandler,
             actionProvider: calloutActionProvider),
-        input: InputCalloutContext(
+        input: .init(
             isEnabled: UIDevice.current.userInterfaceIdiom == .phone)
     )
 
@@ -554,7 +554,7 @@ private extension KeyboardInputViewController {
     }
 
     func refreshCalloutActionContext() {
-        calloutContext.action = ActionCalloutContext(
+        calloutContext.action = .init(
             actionHandler: keyboardActionHandler,
             actionProvider: calloutActionProvider
         )

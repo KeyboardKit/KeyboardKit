@@ -10,26 +10,20 @@ import Foundation
 
 public extension KeyboardLayout {
 
-    /**
-     This preview layout can be used in SwiftUI previews.
-     */
+    /// This layout can be used in SwiftUI previews.
     static var preview: KeyboardLayout {
-        PreviewKeyboardLayoutProvider().keyboardLayout(for: .preview)
+        PreviewKeyboardLayoutProvider()
+            .keyboardLayout(for: .preview)
     }
 }
 
 public extension KeyboardLayoutProvider where Self == PreviewKeyboardLayoutProvider {
 
-    /**
-     This preview provider can be used in SwiftUI previews.
-     */
+    /// This provider can be used in SwiftUI previews.
     static var preview: KeyboardLayoutProvider { PreviewKeyboardLayoutProvider() }
 }
 
-
-/**
- This layout provider can be used in SwiftUI previews.
- */
+/// This provider can be used in SwiftUI previews.
 public class PreviewKeyboardLayoutProvider: KeyboardLayoutProvider {
 
     public init(keyboardContext: KeyboardContext = .preview) {

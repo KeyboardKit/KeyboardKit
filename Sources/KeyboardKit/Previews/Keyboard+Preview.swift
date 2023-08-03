@@ -12,9 +12,7 @@ import SwiftUI
 #if os(iOS) || os(tvOS)
 public extension KeyboardInputViewController {
 
-    /**
-     This preview controller can be used in SwiftUI previews.
-     */
+    /// This controller can be used in SwiftUI previews.
     static var preview: KeyboardInputViewController {
         KeyboardInputViewController()
     }
@@ -23,9 +21,7 @@ public extension KeyboardInputViewController {
 
 public extension KeyboardContext {
     
-    /**
-     This preview context can be used in SwiftUI previews.
-     */
+    /// This context can be used in SwiftUI previews.
     static var preview: KeyboardContext {
         #if os(iOS) || os(tvOS)
         KeyboardContext(controller: KeyboardInputViewController.preview)
@@ -43,7 +39,7 @@ public extension View {
      */
     func keyboardPreview(keyboardContext: KeyboardContext = .preview) -> some View {
         self.environmentObject(keyboardContext)
-            .environmentObject(ActionCalloutContext.preview)
-            .environmentObject(InputCalloutContext.preview)
+            .environmentObject(KeyboardCalloutContext.ActionContext.preview)
+            .environmentObject(KeyboardCalloutContext.InputContext.preview)
     }
 }

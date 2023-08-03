@@ -10,25 +10,19 @@ import SwiftUI
 
 public extension KeyboardStyleProvider where Self == PreviewKeyboardStyleProvider {
     
-    /**
-     This style provider can be used in SwiftUI previews.
-     */
+    /// This provider can be used in SwiftUI previews.
     static var preview: KeyboardStyleProvider { PreviewKeyboardStyleProvider() }
 }
 
 
 extension KeyboardStyleProvider where Self == PreviewKeyboardStyleProvider {
     
-    /**
-     This style provider can be used in SwiftUI previews.
-     */
+    /// This provider can be used in SwiftUI previews.
     static var crazy: KeyboardStyleProvider { CrazyPreviewKeyboardStyleProvider() }
 }
 
 
-/**
- This style provider can be used in SwiftUI previews.
- */
+/// This provider can be used in SwiftUI previews.
 public class PreviewKeyboardStyleProvider: StandardKeyboardStyleProvider {
     
     init() {
@@ -54,9 +48,7 @@ public class PreviewKeyboardStyleProvider: StandardKeyboardStyleProvider {
     }
 }
 
-/**
- This style provider can be used in SwiftUI previews.
- */
+/// This style provider can be used in SwiftUI previews.
 class CrazyPreviewKeyboardStyleProvider: PreviewKeyboardStyleProvider {
     
     public override func buttonStyle(

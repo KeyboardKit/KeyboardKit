@@ -11,15 +11,11 @@ import UIKit
 
 public extension UITextDocumentProxy where Self == PreviewTextDocumentProxy {
     
-    /**
-     This preview proxy can be used in SwiftUI previews.
-     */
+    /// This proxy can be used in SwiftUI previews.
     static var preview: UITextDocumentProxy { PreviewTextDocumentProxy() }
 }
 
-/**
- This document proxy can be used in SwiftUI previews.
- */
+/// This document proxy can be used in SwiftUI previews.
 public class PreviewTextDocumentProxy: NSObject, UITextDocumentProxy {
     
     public override init() {

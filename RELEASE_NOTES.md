@@ -56,6 +56,7 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 
 ### 🗑️ Deprecations
 
+* `ActionCalloutContext` has been renamed to `KeyboardCalloutContext.ActionContext`.
 * `AutocompleteCompletion` has been deprecated.
 * `AutocompleteResult` has been deprecated.
 * `AutocompleteSpaceState` has been deprecated.
@@ -67,6 +68,7 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `AutocompleteToolbarItemTitle` has been soft deprecated.
 * `AutocompleteToolbarSeparatorStyle` has been renamed to `KeyboardStyle.AutocompleteSeparator`.
 * `EnglishInputSetProvider` has been deprecated.
+* `InputCalloutContext` has been renamed to `KeyboardCalloutContext.InputContext`.
 * `InputSetProvider` has been deprecated.
 * `InputSetProviderBased` has been deprecated.
 * `InterfaceOrientationResolver` has been deprecated.

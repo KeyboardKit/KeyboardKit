@@ -24,7 +24,7 @@ public struct ActionCallout: View {
        - emojiKeyboardStyle: The emoji keyboard style to use, by default ``EmojiKeyboardStyle/standardPhonePortrait``.
      */
     public init(
-        calloutContext: ActionCalloutContext,
+        calloutContext: Context,
         keyboardContext: KeyboardContext,
         style: Style = .standard,
         emojiKeyboardStyle: EmojiKeyboardStyle = .standardPhonePortrait
@@ -35,10 +35,13 @@ public struct ActionCallout: View {
         self.emojiKeyboardStyle = emojiKeyboardStyle
     }
     
+    public typealias Context = KeyboardCalloutContext.ActionContext
     public typealias Style = KeyboardStyle.ActionCallout
     
+    static let coordinateSpace = Context.coordinateSpace
+    
     @ObservedObject
-    private var calloutContext: ActionCalloutContext
+    private var calloutContext: Context
 
     @ObservedObject
     private var keyboardContext: KeyboardContext
@@ -191,17 +194,17 @@ struct ActionCallout_Previews: PreviewProvider {
 
     static let keyboardContext = KeyboardContext.preview
 
-    static let actionContext1 = ActionCalloutContext(
+    static let actionContext1 = ActionCallout.Context(
         actionHandler: actionHandler,
         actionProvider: actionProvider)
 
-    static let actionContext2 = ActionCalloutContext(
+    static let actionContext2 = ActionCallout.Context(
         actionHandler: actionHandler,
         actionProvider: actionProvider)
 
     static func previewGroup<ButtonView: View>(
         view: ButtonView,
-        actionContext: ActionCalloutContext,
+        actionContext: ActionCallout.Context,
         alignment: HorizontalAlignment
     ) -> some View {
         view.overlay(

@@ -20,7 +20,7 @@ public extension View {
        - emojiKeyboardStyle: The emoji keyboard style to use, by default ``EmojiKeyboardStyle/standardPhonePortrait``.
      */
     func keyboardActionCallout(
-        calloutContext: ActionCalloutContext,
+        calloutContext: ActionCallout.Context,
         keyboardContext: KeyboardContext,
         style: KeyboardStyle.ActionCallout = .standard,
         emojiKeyboardStyle: EmojiKeyboardStyle = .standardPhonePortrait
@@ -32,7 +32,7 @@ public extension View {
                 style: style,
                 emojiKeyboardStyle: emojiKeyboardStyle
             )
-        ).coordinateSpace(name: ActionCalloutContext.coordinateSpace)
+        ).coordinateSpace(name: ActionCallout.coordinateSpace)
     }
 
     /**
@@ -57,7 +57,7 @@ public extension View {
        - style: The style to apply, by default `.standard`.
      */
     func keyboardInputCallout(
-        calloutContext: InputCalloutContext,
+        calloutContext: InputCallout.Context,
         keyboardContext: KeyboardContext,
         style: KeyboardStyle.InputCallout = .standard
     ) -> some View {

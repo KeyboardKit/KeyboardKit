@@ -8,49 +8,39 @@
 
 import Foundation
 
-public extension ActionCalloutContext {
-
-    /**
-     This preview context can be used in SwiftUI previews.
-     */
-    static var preview = ActionCalloutContext(
-        actionHandler: .preview,
-        actionProvider: .preview
-    )
-}
-
-public extension CalloutActionProvider where Self == PreviewCalloutActionProvider {
-    
-    /**
-     This preview provider can be used in SwiftUI previews.
-     */
-    static var preview: CalloutActionProvider { PreviewCalloutActionProvider() }
-}
-
-public extension InputCalloutContext {
-
-    /**
-     This preview context can be used in SwiftUI previews.
-     */
-    static var preview: InputCalloutContext {
-        InputCalloutContext(isEnabled: true)
-    }
-}
-
 public extension KeyboardCalloutContext {
 
-    /**
-     This preview context can be used in SwiftUI previews.
-     */
+    /// This context can be used in SwiftUI previews.
     static var preview = KeyboardCalloutContext(
         action: .preview,
         input: .preview
     )
 }
 
-/**
- This action provider can be used in SwiftUI previews.
- */
+public extension KeyboardCalloutContext.ActionContext {
+
+    /// This context can be used in SwiftUI previews.
+    static var preview = KeyboardCalloutContext.ActionContext(
+        actionHandler: .preview,
+        actionProvider: .preview
+    )
+}
+
+public extension KeyboardCalloutContext.InputContext {
+    
+    /// This context can be used in SwiftUI previews.
+    static var preview = KeyboardCalloutContext.InputContext(
+        isEnabled: true
+    )
+}
+
+public extension CalloutActionProvider where Self == PreviewCalloutActionProvider {
+    
+    /// This provider can be used in SwiftUI previews.
+    static var preview: CalloutActionProvider { PreviewCalloutActionProvider() }
+}
+
+/// This provider can be used in SwiftUI previews.
 public class PreviewCalloutActionProvider: CalloutActionProvider {
     
     public init(keyboardContext: KeyboardContext = .preview) {

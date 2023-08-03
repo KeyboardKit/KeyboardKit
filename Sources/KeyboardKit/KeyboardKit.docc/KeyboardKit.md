@@ -117,12 +117,10 @@ KeyboardKit is available under the MIT license.
 ### Callouts
 
 - ``ActionCallout``
-- ``ActionCalloutContext``
 - ``CalloutActionProvider``
 - ``CalloutButtonArea``
 - ``CalloutCurve``
 - ``InputCallout``
-- ``InputCalloutContext``
 - ``KeyboardCalloutContext``
 - ``StandardCalloutActionProvider``
 

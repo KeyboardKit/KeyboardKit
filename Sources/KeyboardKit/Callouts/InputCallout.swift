@@ -23,7 +23,7 @@ public struct InputCallout: View {
        - style: The style to apply to the view, by default `.standard`.
      */
     public init(
-        calloutContext: InputCalloutContext,
+        calloutContext: Context,
         keyboardContext: KeyboardContext,
         style: Style = .standard
     ) {
@@ -32,17 +32,18 @@ public struct InputCallout: View {
         self.style = style
     }
     
+    public typealias Context = KeyboardCalloutContext.InputContext
     public typealias Style = KeyboardStyle.InputCallout
+    
+    static let coordinateSpace = Context.coordinateSpace
 
     @ObservedObject
-    private var calloutContext: InputCalloutContext
+    private var calloutContext: Context
 
     @ObservedObject
     private var keyboardContext: KeyboardContext
 
     private let style: Style
-
-    static let coordinateSpace = InputCalloutContext.coordinateSpace
     
     public var body: some View {
         callout
@@ -164,9 +165,9 @@ struct InputCallout_Previews: PreviewProvider {
         }
 
         @StateObject
-        var context = InputCalloutContext(isEnabled: true)
+        var context = InputCallout.Context(isEnabled: true)
 
-        func button(for context: InputCalloutContext) -> some View {
+        func button(for context: InputCallout.Context) -> some View {
             GeometryReader { geo in
                 GestureButton(
                     pressAction: { showCallout(for: geo) },

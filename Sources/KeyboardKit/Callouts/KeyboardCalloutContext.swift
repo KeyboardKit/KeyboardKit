@@ -20,7 +20,7 @@ import SwiftUI
  and binds the created instance to the keyboard controller's
  ``KeyboardInputViewController/calloutContext``.
  */
-open class KeyboardCalloutContext: ObservableObject {
+public class KeyboardCalloutContext: ObservableObject {
 
     /**
      Create a new callout context instance,
@@ -30,22 +30,22 @@ open class KeyboardCalloutContext: ObservableObject {
        - input: The input callout context to use.
      */
     public init(
-        action: ActionCalloutContext,
-        input: InputCalloutContext
+        action: ActionContext,
+        input: InputContext
     ) {
         self.action = action
         self.input = input
     }
 
     /**
-     The action callout context that is bound to the context.
+     The action context that is bound to the context.
      */
-    public var action: ActionCalloutContext
+    public var action: ActionContext
 
     /**
-     The input callout context that is bound to the context.
+     The input context that is bound to the context.
      */
-    public var input: InputCalloutContext
+    public var input: InputContext
 }
 
 public extension KeyboardCalloutContext {
