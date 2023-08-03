@@ -123,23 +123,27 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
     /**
      The callout style to apply to action and input callouts.
      */
-    open var calloutStyle: KeyboardCalloutStyle {
-        var style = KeyboardCalloutStyle.standard
+    open var calloutStyle: KeyboardStyle.Callout {
+        var style = KeyboardStyle.Callout.standard
         let button = buttonStyle(for: .character(""), isPressed: false)
         style.buttonCornerRadius = button.cornerRadius ?? 5
         return style
     }
 
-    /// The style to apply to ``ActionCallout`` views.
-    open var actionCalloutStyle: KeyboardActionCalloutStyle {
-        var style = KeyboardActionCalloutStyle.standard
+    /**
+     The style to apply to ``ActionCallout`` views.
+     */
+    open var actionCalloutStyle: KeyboardStyle.ActionCallout {
+        var style = KeyboardStyle.ActionCallout.standard
         style.callout = calloutStyle
         return style
     }
 
-    /// The style to apply to ``InputCallout`` views.
-    open var inputCalloutStyle: KeyboardInputCalloutStyle {
-        var style = KeyboardInputCalloutStyle.standard
+    /**
+     The style to apply to ``InputCallout`` views.
+     */
+    open var inputCalloutStyle: KeyboardStyle.InputCallout {
+        var style = KeyboardStyle.InputCallout.standard
         style.callout = calloutStyle
         return style
     }

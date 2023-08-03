@@ -17,7 +17,7 @@ This release prepares the library for the upcoming major version bump, which wil
 
 One big change is that the `InputSetProvider` concept is replaced by just using raw `InputSet` values when creating layout providers.
 
-As a result of this change, the `Input` and `Layout` namespaces will be combined into a single `Layout` namespace in KeyboardKit 8.0.
+Another big change is that most style types are nested within a new `KeyboardStyle` type, to reduce the clutter in the library and group these styles in one place. 
 
 Another big change is that the `KeyboardFeedbackHandler` concept is merged into the `KeyboardActionHandler` to just have a single type.
 
@@ -33,6 +33,7 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `KeyboardActionHandler` has new feedback functions.
 * `KeyboardLayoutProviderProxy` has new standard functionality.
 * `KeyboardReturnKeyType` has new `continue`, `emergencyCall` and `route` types.
+* `KeyboardStyle` is a new style namespace that contains most style types.
 * `StandardKeyboardActionHandler` has new feedback functions.
 * `StandardKeyboardFeedbackHandler` has new feedback functions.
 * `StandardKeyboardLayoutProvider` has a new default initializer.
@@ -58,9 +59,12 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `InputSetProvider` has been deprecated.
 * `InputSetProviderBased` has been deprecated.
 * `InterfaceOrientationResolver` has been deprecated.
+* `KeyboardActionCalloutStyle` has been renamed to `KeyboardStyle.ActionCallout`.
+* `KeyboardCalloutStyle` has been renamed to `KeyboardStyle.Callout`.
 * `KeyboardCase.standardButtonImage` has been deprecated.
 * `KeyboardFontType` has been renamed to `KeyboardFont.FontType`.
 * `KeyboardFontWeight` has been renamed to `KeyboardFont.FontWeight`.
+* `KeyboardInputCalloutStyle` has been renamed to `KeyboardStyle.InputCallout`.
 * `NumericInputSet.english` has been renamed to `englishNumeric`.
 * `NumericInputSet.standard` has been renamed to `standardNumeric`.
 * `DisabledAudioFeedbackEngine` has been deprecated.

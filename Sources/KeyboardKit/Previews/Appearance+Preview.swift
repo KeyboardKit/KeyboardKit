@@ -35,7 +35,7 @@ public class PreviewKeyboardAppearance: StandardKeyboardAppearance {
         super.init(keyboardContext: .preview)
     }
     
-    public override var inputCalloutStyle: KeyboardInputCalloutStyle {
+    public override var inputCalloutStyle: KeyboardStyle.InputCallout {
         .init(
             callout: .preview1,
             calloutSize: CGSize(width: 0, height: 40),
@@ -43,7 +43,7 @@ public class PreviewKeyboardAppearance: StandardKeyboardAppearance {
         )
     }
     
-    public override var actionCalloutStyle: KeyboardActionCalloutStyle {
+    public override var actionCalloutStyle: KeyboardStyle.ActionCallout {
         .init(
             callout: .preview1,
             font: .init(.headline),

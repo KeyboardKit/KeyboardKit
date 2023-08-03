@@ -114,9 +114,6 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardButtonStyle``
 - ``KeyboardButtonBorderStyle``
 - ``KeyboardButtonShadowStyle``
-- ``KeyboardCalloutStyle``
-- ``KeyboardActionCalloutStyle``
-- ``KeyboardInputCalloutStyle``
 - ``KeyboardFont``
 - ``StandardKeyboardAppearance``
 

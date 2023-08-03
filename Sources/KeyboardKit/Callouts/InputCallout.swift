@@ -20,17 +20,19 @@ public struct InputCallout: View {
      - Parameters:
        - calloutContext: The callout context to use.
        - keyboardContext: The keyboard context to use.
-       - style: The style to apply to the view, by default ``KeyboardInputCalloutStyle/standard``.
+       - style: The style to apply to the view, by default `.standard`.
      */
     public init(
         calloutContext: InputCalloutContext,
         keyboardContext: KeyboardContext,
-        style: KeyboardInputCalloutStyle = .standard
+        style: Style = .standard
     ) {
         self._calloutContext = ObservedObject(wrappedValue: calloutContext)
         self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
         self.style = style
     }
+    
+    public typealias Style = KeyboardStyle.InputCallout
 
     @ObservedObject
     private var calloutContext: InputCalloutContext
@@ -38,7 +40,7 @@ public struct InputCallout: View {
     @ObservedObject
     private var keyboardContext: KeyboardContext
 
-    private let style: KeyboardInputCalloutStyle
+    private let style: Style
 
     static let coordinateSpace = InputCalloutContext.coordinateSpace
     
@@ -153,8 +155,8 @@ struct InputCallout_Previews: PreviewProvider {
 
     struct Preview: View {
 
-        var style: KeyboardInputCalloutStyle {
-            var style = KeyboardInputCalloutStyle.standard
+        var style: KeyboardStyle.InputCallout {
+            var style = KeyboardStyle.InputCallout.standard
             style.callout.backgroundColor = .blue
             style.callout.textColor = .white
             style.callout.buttonInset = CGSize(width: 3, height: 3)

@@ -1,5 +1,5 @@
 //
-//  View+InputCallout.swift
+//  View+Callouts.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -16,13 +16,13 @@ public extension View {
      - Parameters:
        - calloutContext: The callout context to use.
        - keyboardContext: The keyboard context to use.
-       - style: The style to apply to the view, by default ``KeyboardActionCalloutStyle/standard``.
+       - style: The style to apply to the view, by default `.standard`.
        - emojiKeyboardStyle: The emoji keyboard style to use, by default ``EmojiKeyboardStyle/standardPhonePortrait``.
      */
     func keyboardActionCallout(
         calloutContext: ActionCalloutContext,
         keyboardContext: KeyboardContext,
-        style: KeyboardActionCalloutStyle = .standard,
+        style: KeyboardStyle.ActionCallout = .standard,
         emojiKeyboardStyle: EmojiKeyboardStyle = .standardPhonePortrait
     ) -> some View {
         self.overlay(
@@ -39,10 +39,10 @@ public extension View {
      Apply a keyboard callout shadow to the view.
 
      - Parameters:
-       - style: The style apply to the view.
+       - style: The style apply, by default `.standard`.
      */
     func keyboardCalloutShadow(
-        style: KeyboardCalloutStyle
+        style: KeyboardStyle.Callout = .standard
     ) -> some View {
         self.shadow(color: style.borderColor, radius: 0.4)
             .shadow(color: style.shadowColor, radius: style.shadowRadius)
@@ -54,12 +54,12 @@ public extension View {
      - Parameters:
        - calloutContext: The callout context to use.
        - keyboardContext: The keyboard context to use.
-       - style: The style to apply, by default ``KeyboardInputCalloutStyle/standard``.
+       - style: The style to apply, by default `.standard`.
      */
     func keyboardInputCallout(
         calloutContext: InputCalloutContext,
         keyboardContext: KeyboardContext,
-        style: KeyboardInputCalloutStyle = .standard
+        style: KeyboardStyle.InputCallout = .standard
     ) -> some View {
         self.overlay(
             InputCallout(

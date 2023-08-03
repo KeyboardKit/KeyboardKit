@@ -74,14 +74,14 @@ public protocol KeyboardAppearance: AnyObject {
     // MARK: - Callouts
 
     /**
-     The style to use for ``ActionCallout`` views.
+     The style to apply to ``ActionCallout`` views.
      */
-    var actionCalloutStyle: KeyboardActionCalloutStyle { get }
+    var actionCalloutStyle: KeyboardStyle.ActionCallout { get }
     
     /**
-     The style to use for ``InputCallout`` views.
+     The style to apply to ``InputCallout`` views.
      */
-    var inputCalloutStyle: KeyboardInputCalloutStyle { get }
+    var inputCalloutStyle: KeyboardStyle.InputCallout { get }
 
 
     // MARK: - Callouts
