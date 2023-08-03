@@ -13,7 +13,7 @@ public extension KeyboardContext {
     /**
      The preferred keyboard type for the context is based on
      the current keyboard type and the text document proxy's
-     autocapitalization type.
+     `autocapitalization` configuration.
      */
     var preferredKeyboardType: KeyboardType {
         if keyboardType.isAlphabetic(.capsLocked) { return keyboardType }

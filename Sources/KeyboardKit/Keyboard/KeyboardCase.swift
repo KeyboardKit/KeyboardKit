@@ -13,40 +13,18 @@ import Foundation
  */
 public enum KeyboardCase: String, Codable, Identifiable {
     
-    /**
-     A transient state that should automatically be replaced
-     by another more appropriate case when typing.
-     */
     case auto
-    
-    /**
-     An uppercased state that shouldn't adjust automatically.
-     */
     case capsLocked
-    
-    /**
-     A shift state that should automatically shift depending
-     on the text document proxy's `autocapitalization` setup.
-     */
     case lowercased
-    
-    /**
-     A shift state that should automatically shift depending
-     on the text document proxy's `autocapitalization` setup.
-     */
     case uppercased
 }
 
 public extension KeyboardCase {
     
-    /**
-     The casing's unique identifier.
-     */
+    /// The case's unique identifier.
     var id: String { rawValue }
     
-    /**
-     Whether or not the casing represents a lowercased case.
-     */
+    /// Whether or not the case is lowercased.
     var isLowercased: Bool {
         switch self {
         case .auto: return false
@@ -56,9 +34,7 @@ public extension KeyboardCase {
         }
     }
     
-    /**
-     Whether or not the casing represents an uppercased case.
-     */
+    /// Whether or not the case is uppercased.
     var isUppercased: Bool {
         switch self {
         case .auto: return false

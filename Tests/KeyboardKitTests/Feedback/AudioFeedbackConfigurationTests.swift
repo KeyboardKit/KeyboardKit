@@ -18,20 +18,15 @@ class AudioFeedbackConfigurationTests: XCTestCase {
         XCTAssertEqual(config.system, AudioFeedback.system)
     }
 
-    func testEnabledConfigurationUsesstandardFeedback() {
+    func testEnabledConfigurationUsesEnabledFeedback() {
         let config = AudioFeedbackConfiguration.enabled
         XCTAssertEqual(config, AudioFeedbackConfiguration())
     }
 
-    func testNoFeedbackConfigurationDisablesAllFeedback() {
-        let config = AudioFeedbackConfiguration.noFeedback
+    func testDisabledConfigurationUsesDisabledFeedback() {
+        let config = AudioFeedbackConfiguration.disabled
         XCTAssertEqual(config.input, AudioFeedback.none)
         XCTAssertEqual(config.delete, AudioFeedback.none)
         XCTAssertEqual(config.system, AudioFeedback.none)
-    }
-
-    func testStandardConfigurationUsesStandardFeedback() {
-        let config = AudioFeedbackConfiguration.standard
-        XCTAssertEqual(config, AudioFeedbackConfiguration())
     }
 }

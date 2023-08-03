@@ -17,8 +17,13 @@ import GameKit
  This class can be used to detect whether or not an external
  keyboard is connected to the device.
  
- Note that Apple's Smart Keyboard Folio is connected when it
- is snapped on to a device, even if it's not open and active.
+ This context is not added to your keyboard input controller
+ by default. To listen for external keyboards, simply create
+ and add a context instance to your controller.
+ 
+ Note that an Apple Smart Keyboard Folio is considered to be
+ connected when it is snapped on to a device, even when it's
+ not actively used.
  */
 public class ExternalKeyboardContext: ObservableObject {
     

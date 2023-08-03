@@ -17,9 +17,9 @@ KeyboardKit will by default create a context instance and apply it to the input 
 
 KeyboardKit has a few types that can be used to inspect the enabled and active state of a keyboard:
 
-- ``KeyboardEnabledStateInspector`` is a protocol that can be implemented by any type that should be able to inspect the state of a keyboard extension, such as if it's enabled in System Settings, if it is being used, if Full Access is enabled etc.
-- ``KeyboardEnabledState`` is an observable class that keeps itself in sync when the keyboard state changes. It has published properties that you can use to keep your UI in sync.
+- ``KeyboardEnabledContext`` is an observable class that keeps itself in sync when the keyboard state changes.
 - ``KeyboardEnabledLabel`` is a basic view that can display all these states in the same way.
+- ``KeyboardEnabledStateInspector`` is a protocol that can be implemented by any type that should be able to inspect the state of a keyboard extension, such as if it's enabled in System Settings, if it is being used, if Full Access is enabled etc.
 
 
 

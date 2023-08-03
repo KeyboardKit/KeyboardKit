@@ -48,7 +48,7 @@ struct HomeScreen: View {
     private var dictationContext = DictationContext(config: .app)
 
     @StateObject
-    private var keyboardState = KeyboardEnabledState(
+    private var keyboardState = KeyboardEnabledContext(
         bundleId: "com.keyboardkit.demo.*")
 
     var body: some View {

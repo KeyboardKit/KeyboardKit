@@ -86,9 +86,9 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardContext``
 - ``KeyboardController``
 - ``KeyboardType``
+- ``KeyboardEnabledContext``
 - ``KeyboardEnabledLabel``
 - ``KeyboardEnabledLabelStyle``
-- ``KeyboardEnabledState``
 - ``KeyboardEnabledStateInspector``
 - ``KeyboardHostingController``
 - ``KeyboardReturnKeyType``

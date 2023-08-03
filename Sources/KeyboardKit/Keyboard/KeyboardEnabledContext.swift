@@ -1,5 +1,5 @@
 //
-//  KeyboardEnabledState.swift
+//  KeyboardEnabledContext.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-18.
@@ -12,25 +12,25 @@ import Combine
 import UIKit
 
 /**
- This observable class can be used to observe the state of a
+ This class can be used to observe the enabled state of your
  keyboard extension.
 
  This type lets you check if a keyboard extension is enabled
- in System Settings, if it's active (currently being used to
- type) and if it has been given full access.
+ in System Settings, if it's currently active and if the app
+ has been given full access.
 
- Note that you can use bundle id wildcards, which means that
- you can inspect multiple keyboards, using a single instance:
+ This type supports bundle id wildcards, which means that it
+ can inspect the state of multiple keyboard extensions:
 
  ```
- let state = KeyboardEnabledState(bundleId: "com.myapp.*")
+ let state = KeyboardEnabledContext(bundleId: "com.myapp.*")
  ```
 
- This class implements ``KeyboardEnabledStateInspector`` and
- uses the protocol extensions to sync the keyboard state for
- the provided `bundleId` to its published prooperties.
+ This context is not added to your keyboard input controller,
+ since its intended to be used in the main app, where it can
+ be used to display the keyboard extension state.
  */
-public class KeyboardEnabledState: KeyboardEnabledStateInspector, ObservableObject {
+public class KeyboardEnabledContext: KeyboardEnabledStateInspector, ObservableObject {
 
     /**
      Create an instance of this observable state class.
@@ -86,7 +86,7 @@ public class KeyboardEnabledState: KeyboardEnabledStateInspector, ObservableObje
     }
 }
 
-private extension KeyboardEnabledState {
+private extension KeyboardEnabledContext {
 
     var activePublisher: NotificationCenter.Publisher {
         notificationCenter.publisher(for: UIApplication.didBecomeActiveNotification)

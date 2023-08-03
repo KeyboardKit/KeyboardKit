@@ -10,12 +10,11 @@ import SwiftUI
 
 /**
  This label can be used to show different views depending on
- a provided enabled/active state.
+ a provided state.
 
- You can use the label with any bool value, but the intended
- use is to easily present if a keyboard extension is enabled,
- active etc. It supports styling, but if you want a distinct
- look and feel, use a plain `Label`.
+ While you can use this label with any boolean, the intended
+ use is to show if the keyboard extension is enabled, if the
+ app has full access etc.
  */
 public struct KeyboardEnabledLabel<EnabledIcon: View, DisabledIcon: View>: View {
 
