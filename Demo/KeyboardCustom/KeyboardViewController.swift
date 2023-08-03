@@ -30,6 +30,12 @@ class KeyboardViewController: KeyboardInputViewController {
         /// Since the demo uses a custom layout provider, it
         /// will only affect button texts and not the layout.
         keyboardContext.setLocale(.english)
+        
+        /// 💡 Enable haptic feedback.
+        ///
+        /// The default haptic feedback is `.minimal`, which
+        /// only has haptic feedback for long press on space.
+        keyboardFeedbackSettings.enableHapticFeedback()
 
         /// 💡 Setup a demo-specific layout provider.
         ///

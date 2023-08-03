@@ -34,6 +34,12 @@ class KeyboardViewController: KeyboardInputViewController {
         /// You can change this provider's implementation to
         /// see how the layout changes.
         keyboardLayoutProvider = DemoLayoutProvider()
+        
+        /// 💡 Enable haptic feedback.
+        ///
+        /// The default haptic feedback is `.minimal`, which
+        /// only has haptic feedback for long press on space.
+        keyboardFeedbackSettings.enableHapticFeedback()
 
         /// 💡 Call super to perform the base initialization.
         super.viewDidLoad()

@@ -42,31 +42,28 @@ class KeyboardViewController: KeyboardInputViewController {
 
         /// 💡 Setup a custom dictation key replacement.
         ///
-        /// Since dictation is not available by default, you
-        /// can use this to replace the dictation key if you
-        /// want to. If you don't do this, the key will just
-        /// be removed.
+        /// Since dictation is not available by default, the
+        /// dictation button is removed if we don't set this.
         keyboardContext.keyboardDictationReplacement = .keyboardType(.emojis)
 
         /// 💡 Change the space button long press behavior.
         ///
-        /// Long pressing the space key can either start the
-        /// input cursor movement or show a context menu for
-        /// switching locale.
-        ///
-        /// IMPORTANT! Only change this if you think that it
-        /// really makes sense. Long pressing space to start
-        /// moving the input cursor is the standard behavior
-        /// and will probably be expected by your users.
-        keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu
+        /// Long pressing space will either start moving the
+        /// input cursor (default), or show a locale context
+        /// menu. Only change it if you think it makes sense.
+        // keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu
 
-        /// 💡 Make locales use their English names when the
-        /// locale context menu is presented.
+        /// 💡 Set the locale to use when displaying locales.
         ///
-        /// The locale context menu is shown by pressing the
-        /// locale switcher in this demo, or space when it's
-        /// configured with `.openLocaleContextMenu` above.
+        /// This will for instance be used within the locale
+        /// context menu.
         keyboardContext.localePresentationLocale = KeyboardLocale.english_us.locale
+        
+        /// 💡 Enable haptic feedback.
+        ///
+        /// The default haptic feedback is `.minimal`, which
+        /// only has haptic feedback for long press on space.
+        keyboardFeedbackSettings.enableHapticFeedback()
 
         /// 💡 Call super to perform the base initialization.
         super.viewDidLoad()
