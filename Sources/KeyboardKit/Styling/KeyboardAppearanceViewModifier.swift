@@ -9,13 +9,9 @@
 import SwiftUI
 
 /**
- This modifier can be used to set a keyboard appearance of a
- view to control if it will use a light or dark color scheme.
-
- Although this type is named like ``KeyboardAppearance``, it
- has nothing to do with keyboard styling, but rather aims to
- use the same namings as the `keyboardAppearance` properties
- of `UITextView` and `UITextField`.
+ This view modifier can be used to set a keyboard appearance
+ of a text input view, to control if it uses a light or dark
+ keyboard color scheme.
 
  You can apply the modifier with `.keyboardAppearance(.dark)`
  to apply a dark keyboard appearance.

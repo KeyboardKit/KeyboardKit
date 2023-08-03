@@ -24,7 +24,14 @@ An ``InputCallout`` shows the currently pressed key in a large callout bubble. I
 
 
 
-## How to customize the standard callout action provider
+## Callout action providers
+
+KeyboardKit will by default create a ``StandardCalloutActionProvider`` and apply it to the input controller's ``KeyboardInputViewController/calloutActionProvider``. You can replace this provider with a custom one, or inject locale-specific providers to customize the layout for a certain locale.
+
+KeyboardKit will by default inject an ``EnglishCalloutActionProvider`` into the standard provider. This provider defines the standard callout actions of a U.S. English keyboard.
+
+
+### How to customize the standard action provider
 
 If you want to make minor customizations to the ``StandardCalloutActionProvider``, there are a couple of options:
 
@@ -34,10 +41,9 @@ If you want to make minor customizations to the ``StandardCalloutActionProvider`
 You can also create a completely custom callout action provider, see below.
 
 
+### How to create a custom action provider
 
-## How to create a custom callout action provider
-
-You can create a custom callout action provider by either inheriting and customizing the ``StandardCalloutActionProvider`` base class, which gives you a lot of functionality, or by implementing the ``CalloutActionProvider`` protocol from scratch.
+You can create a custom ``CalloutActionProvider`` by either inheriting the ``StandardCalloutActionProvider`` base class and customize the parts you want, or implement the ``CalloutActionProvider`` protocol from scratch.
 
 For instance, here's a custom provider that inherits ``StandardCalloutActionProvider`` and customizes the secondary actions for the `$` key:
 
@@ -54,7 +60,7 @@ class CustomCalloutActionProvider: StandardCalloutActionProvider {
 }
 ```
 
-To use this implementation instead of the standard one, just replace the standard instance like this:
+To use this provider instead of the standard one, just set the input controller's ``KeyboardInputViewController/calloutActionProvider`` to your custom provider, like this:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -66,7 +72,7 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-This will make KeyboardKit use your custom implementation everywhere instead of the standard one.
+This will make KeyboardKit use your custom implementation instead of the standard one.
 
 
 

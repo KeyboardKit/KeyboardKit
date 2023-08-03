@@ -1,15 +1,16 @@
 //
-//  KeyboardButtonStyleTests.swift
+//  KeyboardStyle+ButtonTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-03-19.
+//  Copyright ©  Daniel Saidi. All rights reserved.
 //
 
 import XCTest
 
 @testable import KeyboardKit
 
-class KeyboardButtonStyleTests: XCTestCase {
+class KeyboardStyle_ButtonTests: XCTestCase {
 
     func testOverrideAppliesAllAvailableProperties() {
         let style1 = KeyboardStyle.Button.preview1

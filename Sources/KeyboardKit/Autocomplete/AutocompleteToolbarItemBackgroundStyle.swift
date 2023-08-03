@@ -9,8 +9,7 @@
 import SwiftUI
 
 /**
- This style can be applied to customize the appearance of an
- ``AutocompleteToolbarItem``s background.
+ This style can be applied to an ``AutocompleteToolbarItem``.
  
  The ``standard`` style value can be used to get and set the
  standard style of all highlighted autocomplete items.

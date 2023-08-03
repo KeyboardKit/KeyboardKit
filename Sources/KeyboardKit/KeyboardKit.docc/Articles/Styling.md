@@ -1,26 +1,26 @@
-# Appearance
+# Styling
 
-This article describes the KeyboardKit appearance engine and how to use it. 
+This article describes the KeyboardKit styling engine and how to use it.
 
-In KeyboardKit, a ``KeyboardAppearance`` defines the styles, texts, icons etc. for different parts of the keyboard. It can adapt styles depending on ``KeyboardContext``, ``KeyboardAction`` etc., which gives you a lot of flexibility.
+KeyboardKit uses ``KeyboardStyle`` types to style various views. For instance, a ``KeyboardStyle/InputCallout`` style can be used to style ``InputCallout`` views. 
 
-KeyboardKit will by default create a ``StandardKeyboardAppearance`` and apply it to the input controller ``KeyboardInputViewController/keyboardAppearance``. You can replace it with a custom appearance to customize how your keyboard looks.
+In KeyboardKit, a ``KeyboardStyleProvider`` can be used to defines the styles, texts, icons etc. for different parts of the keyboard. It can adapt styles depending on ``KeyboardContext``, ``KeyboardAction`` etc., which gives you a lot of flexibility.
 
-[KeyboardKit Pro][Pro] specific features, such as the very convenient theme engine, are described at the end of this document.
+KeyboardKit will by default create a ``StandardKeyboardStyleProvider`` and apply it to the input controller's ``KeyboardInputViewController/keyboardStyleProvider``. You can replace it with a custom provider to customize how your keyboard looks.
+
+[KeyboardKit Pro][Pro] specific features, such as the convenient theme engine, are described at the end of this document.
 
 
 
-## Appearance vs. styles vs. themes
+## Styles vs. themes
 
-You may find yourself confused by the appearance terminology. Let's clarify what appearances, styles and themes are, and how they are meant to be used. 
+You may find yourself confused by the style and theme terminology. Let's clarify what they are and how they are meant to be used. 
 
-A ``KeyboardAppearance`` is a *dynamic* style provider that returns various styles (and more) for various parts of the keyboard. It can return different styles for different actions, if dark mode is enabled etc. so you have full control over every part of your keyboard.
+* A ``KeyboardStyle`` type is a *static* style that can be applied to one or many different kind of views.
+* A ``KeyboardStyleProvider`` is a *dynamic* style provider that can return styles (and more) for various parts of the keyboard.
+* A ``KeyboardTheme`` (Pro) is a *static* style provider that can be used to define, reuse and share styles. It can be used with a ``ThemeBasedKeyboardStyleProvider`` to add a dynamic capabilities on top of the static theme. These utilities are only available in KeyboardKit Pro.
 
-A ``KeyboardTheme`` is a *static* style provider that can be used to define, reuse and share styles. It can be used with a ``KeyboardThemeAppearance`` to add a dynamic capabilities on top of the static theme. These utilities are only available in KeyboardKit Pro.
-
-A `Style` provides properties that can be used to style various parts of the keyboard. One such example is ``KeyboardStyle/Button``. Styles can be customized and used as templates to create other styles.   
-
-You can mix and match appearances, themes and styles as you see fit.
+You can mix and match these different concepts as you see fit.
 
 
 
@@ -38,13 +38,13 @@ let image = KeyboardAction.command.standardButtonImage(for: context) // Command 
 let text = KeyboardAction.space.standardButtonText(for: context)     // Localized "space"
 ```
 
-Have a look at the `Sources/Resources` and `Sources/Appearance` folders for more information.
+Have a look at the `Sources/Resources` and `Sources/Styling` folders for more information.
 
 
 
-## Styles
+## How to customize styles
 
-The `Appearance` namespace defines a bunch of general styles, such as ``KeyboardStyle/Button``, while other namespaces define more contextual styles, such as how the `Emojis` namespace defines an ``EmojiKeyboardStyle``.
+The ``KeyboardStyle`` namespace defines a bunch of styles, such as ``KeyboardStyle/Button``, while other namespaces define more contextual styles. For instance, the `Emojis` namespace defines an ``EmojiKeyboardStyle``.
 
 Any style can be modified, as long as it's a `var`. For instance, here we adjust the standard ``CalloutStyle`` to use a red background:
 
@@ -54,18 +54,18 @@ style.backgroundColor = .red
 CalloutStyle.standard = style
 ```
 
-Most styles have a `.standard` style that you can use as a template. The standard styles can also be overwritten with a custom style to change the global style of that component. 
+Most styles have a `.standard` style that you can use as a template. The standard styles can also be overwritten with a custom style to change the global style of that component.
 
 
 
-## How to create a custom appearance
+## How to create a custom style provider
 
-You can create a custom ``KeyboardAppearance`` to customize the style of various buttons or callouts, as well as texts, images etc. You can either inherit ``StandardKeyboardAppearance`` to get a lot of functionality for free and customize the parts you want, or implement the ``KeyboardAppearance`` protocol from scratch.
+You can create a custom ``KeyboardStyleProvider`` by either inheriting the ``StandardKeyboardStyleProvider`` base class and customize the parts you want, or implement the ``KeyboardStyleProvider`` protocol from scratch.
 
-For instance, here's a custom appearance that inherits ``StandardKeyboardAppearance`` and makes all input buttons red:
+For instance, here's a custom provider that inherits ``StandardKeyboardStyleProvider`` and makes all input buttons red:
 
 ```swift
-class CustomKeyboardAppearance: StandardKeyboardAppearance {
+class CustomKeyboardStyleProvider: StandardKeyboardStyleProvider {
     
     override func buttonStyle(
         for action: KeyboardAction,
@@ -79,13 +79,13 @@ class CustomKeyboardAppearance: StandardKeyboardAppearance {
 }
 ```
 
-To use this appearance instead of the standard one, just set the input controller's ``KeyboardInputViewController/keyboardAppearance`` to the new appearance:
+To use this provider instead of the standard one, just set the input controller's ``KeyboardInputViewController/keyboardStyleProvider`` to your custom provider, like this:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
-        keyboardAppearance = CustomKeyboardAppearance()
+        keyboardStyleProvider = CustomKeyboardStyleProvider()
         super.viewDidLoad()
     }
 }
@@ -165,9 +165,9 @@ extension KeyboardTheme {
 You can then access your themese with `KeyboardTheme.myCustomTheme` or just `.myCustomTheme` when a theme is expected.
 
 
-### Theme-based appearance
+### Theme-based styling
 
-Once you have a theme that you want to use, you can use a ``KeyboardThemeAppearance`` to apply any theme to KeyboardKit:
+Once you have a theme that you want to use, you can use the ``ThemeBasedKeyboardStyleProvider`` to apply any theme to your keyboard:
 
 ```swift
 override func viewWillSetupKeyboard() {
@@ -175,7 +175,7 @@ override func viewWillSetupKeyboard() {
 
     // Setup KeyboardKit Pro with a license
     try? setupPro(withLicenseKey: "LICENSE_KEY_HERE") { _ in
-        keyboardAppearance = KeyboardThemeAppearance(
+        keyboardStyleProvider = ThemeBasedKeyboardStyleProvider(
             theme: .cottonCandy,
             keyboardContext: keyboardContext
         )
@@ -183,11 +183,11 @@ override func viewWillSetupKeyboard() {
 }
 ```
 
-This will make any view that uses the appearance (like the `SystemKeyboard`) use the theme. You can change the theme at any time. 
+This will make any view that uses the style provider (like ``SystemKeyboard``) use this theme. You can change the theme at any time. 
 
 Since this requires KeyboardKit Pro, you must register it *after* setting up your license. 
 
-You can inherit ``KeyboardThemeAppearance`` to customize the appearance even further, which lets you mix the benefits of themes and appearances in any way that fits your needs.
+You can inherit ``ThemeBasedKeyboardStyleProvider`` to customize this theme-based provider even further, which lets you mix the benefits of themes and styles in any way that fits your needs.
 
 
 ### Pre-defined themes

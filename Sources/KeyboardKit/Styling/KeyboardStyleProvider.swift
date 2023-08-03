@@ -1,5 +1,5 @@
 //
-//  KeyboardAppearance.swift
+//  KeyboardStyleProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
@@ -11,17 +11,16 @@ import SwiftUI
 
 /**
  This protocol can be implemented by classes that can define
- styles and appearances for different parts of a keyboard.
+ styles for different parts of a keyboard.
  
- KeyboardKit will create a ``StandardKeyboardAppearance`` as
- the keyboard extension is started, then apply this instance
- to ``KeyboardInputViewController/keyboardAppearance``. This
- instance will then be used by default to determine how your
- appearance-based views will look.
+ KeyboardKit will create a ``StandardKeyboardStyleProvider``
+ instance when the keyboard extension is started, then apply
+ it to ``KeyboardInputViewController/keyboardStyleProvider``.
+ This instance is then used by default to determine how your
+ keyboard looks if you use a standard ``SystemKeyboard``.
  
- If you want to change the style of some buttons or callouts
- or change the the text or image to use for buttons, you can
- implement a custom keyboard appearance.
+ To change the style of some parts of your keyboard, you can
+ implement a custom keyboard style provider.
 
  To create a custom implementation of this protocol, you can
  implement it from scratch or inherit the standard class and
@@ -29,7 +28,7 @@ import SwiftUI
  implementation is done, you can just replace the controller
  service to make KeyboardKit use the custom service globally.
  */
-public protocol KeyboardAppearance: AnyObject {
+public protocol KeyboardStyleProvider: AnyObject {
 
     /**
      The keyboard background style to apply to the keyboard.

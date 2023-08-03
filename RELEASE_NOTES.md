@@ -17,7 +17,9 @@ This release prepares the library for the upcoming major version bump, which wil
 
 One big change is that the `InputSetProvider` concept is replaced by just using raw `InputSet` values when creating layout providers.
 
-Another big change is that most style types are nested within a new `KeyboardStyle` type, to reduce the clutter in the library and group these styles in one place. 
+Another big change is that most style types are nested within a new `KeyboardStyle` type, to reduce the clutter in the library and group these styles in one place.
+
+As a result of this the `KeyboardAppearance` concept is renamed to `KeyboardStyleProvider` and the `Appearance` namespace is renamed to `Styling`.
 
 Another big change is that the `KeyboardFeedbackHandler` concept is merged into the `KeyboardActionHandler` to just have a single type.
 
@@ -60,6 +62,7 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `InputSetProviderBased` has been deprecated.
 * `InterfaceOrientationResolver` has been deprecated.
 * `KeyboardActionCalloutStyle` has been renamed to `KeyboardStyle.ActionCallout`.
+* `KeyboardAppearance` has been renamed to `KeyboardStyleProvider`.
 * `KeyboardBackgroundStyle` has been renamed to `KeyboardStyle.Background`.
 * `KeyboardButtonStyle` has been renamed to `KeyboardStyle.Button`.
 * `KeyboardButtonBorderStyle` has been renamed to `KeyboardStyle.ButtonBorder`.
@@ -69,6 +72,7 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `KeyboardFontType` has been renamed to `KeyboardFont.FontType`.
 * `KeyboardFontWeight` has been renamed to `KeyboardFont.FontWeight`.
 * `KeyboardInputCalloutStyle` has been renamed to `KeyboardStyle.InputCallout`.
+* `KeyboardInputViewController` `keyboardAppearance` has been renamed to `keyboardStyleProvider`.
 * `NumericInputSet.english` has been renamed to `englishNumeric`.
 * `NumericInputSet.standard` has been renamed to `standardNumeric`.
 * `DisabledAudioFeedbackEngine` has been deprecated.
@@ -80,8 +84,10 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `KeyboardLayoutItemRow` has been renamed to `KeyboardLayoutItem.Row`.
 * `KeyboardLayoutItemRows` has been renamed to `KeyboardLayoutItem.Rows`. 
 * `KeyboardFeedbackHandler` has been deprecated.
+* `PreviewKeyboardAppearance` has been renamed to `PreviewKeyboardStyleProvider`.
 * `StandardAudioFeedbackEngine` has been deprecated.
 * `StandardHapticFeedbackEngine` has been deprecated.
+* `StandardKeyboardAppearance` has been renamed to `StandardKeyboardStyleProvider`.
 * `StandardKeyboardFeedbackHandler` has been deprecated.
 * `StaticInputSetProvider` has been deprecated.
 * `StaticKeyboardBehavior` has been deprecated.

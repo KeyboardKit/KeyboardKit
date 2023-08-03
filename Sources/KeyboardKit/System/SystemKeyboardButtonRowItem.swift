@@ -24,39 +24,39 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
        - content: The content view to use within the item.
        - item: The layout item to use within the item.
        - actionHandler: The button style to apply.
+       - styleProvider: The style provider to use.
        - keyboardContext: The keyboard context to which the item should apply.,
        - calloutContext: The callout context to affect, if any.
        - keyboardWidth: The total width of the keyboard.
        - inputWidth: The input width within the keyboard.
-       - appearance: The appearance to apply to the item.
      */
     public init(
         content: Content,
         item: KeyboardLayoutItem,
         actionHandler: KeyboardActionHandler,
+        styleProvider: KeyboardStyleProvider,
         keyboardContext: KeyboardContext,
         calloutContext: KeyboardCalloutContext?,
         keyboardWidth: CGFloat,
-        inputWidth: CGFloat,
-        appearance: KeyboardAppearance
+        inputWidth: CGFloat
     ) {
         self.content = content
         self.item = item
         self.actionHandler = actionHandler
+        self.styleProvider = styleProvider
         self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
         self.calloutContext = calloutContext
         self.keyboardWidth = keyboardWidth
         self.inputWidth = inputWidth
-        self.appearance = appearance
     }
 
     private let content: Content
     private let item: KeyboardLayoutItem
     private let actionHandler: KeyboardActionHandler
+    private let styleProvider: KeyboardStyleProvider
     private let calloutContext: KeyboardCalloutContext?
     private let keyboardWidth: CGFloat
     private let inputWidth: CGFloat
-    private let appearance: KeyboardAppearance
 
     @ObservedObject
     private var keyboardContext: KeyboardContext
@@ -92,7 +92,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
 private extension SystemKeyboardButtonRowItem {
 
     var buttonStyle: KeyboardStyle.Button {
-        item.action.isSpacer ? .spacer : appearance.buttonStyle(for: item.action, isPressed: isPressed)
+        item.action.isSpacer ? .spacer : styleProvider.buttonStyle(for: item.action, isPressed: isPressed)
     }
 }
 
@@ -173,7 +173,7 @@ struct SystemKeyboardButtonRowItem_Previews: PreviewProvider {
         SystemKeyboardButtonRowItem(
             content: SystemKeyboardButtonContent(
                 action: action,
-                appearance: .preview,
+                styleProvider: .preview,
                 keyboardContext: context),
             item: KeyboardLayoutItem(
                 action: action,
@@ -182,11 +182,11 @@ struct SystemKeyboardButtonRowItem_Previews: PreviewProvider {
                     height: 100),
                 insets: .horizontal(0, vertical: 0)),
             actionHandler: .preview,
+            styleProvider: .preview,
             keyboardContext: context,
             calloutContext: .preview,
             keyboardWidth: 320,
-            inputWidth: 30,
-            appearance: .preview
+            inputWidth: 30
         )
     }
 

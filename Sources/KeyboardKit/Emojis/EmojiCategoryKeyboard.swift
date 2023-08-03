@@ -27,8 +27,8 @@ public struct EmojiCategoryKeyboard: View {
        - actionHandler: The action handler to use.
        - keyboardContext: The context to use when rendering the view.
        - calloutContext: The callout context to affect, if any.
-       - appearance: The appearance to apply to the menu.
        - style: The style to apply to the keyboard, by default `.standardPhonePortrait`.
+       - styleProvider: The style provider to apply to the menu.
        - categoryTitle: A category title provider, by default category title.
      */
     public init(
@@ -37,8 +37,8 @@ public struct EmojiCategoryKeyboard: View {
         actionHandler: KeyboardActionHandler,
         keyboardContext: KeyboardContext,
         calloutContext: KeyboardCalloutContext?,
-        appearance: KeyboardAppearance,
         style: EmojiKeyboardStyle = .standardPhonePortrait,
+        styleProvider: KeyboardStyleProvider,
         categoryTitle: @escaping CategoryTitleProvider = { $0.title }
     ) {
         self.initialSelection = selection
@@ -46,7 +46,7 @@ public struct EmojiCategoryKeyboard: View {
         self.actionHandler = actionHandler
         self.keyboardContext = keyboardContext
         self.calloutContext = calloutContext
-        self.appearance = appearance
+        self.styleProvider = styleProvider
         self.style = style
         self.categoryTitle = categoryTitle
     }
@@ -56,8 +56,8 @@ public struct EmojiCategoryKeyboard: View {
     private let actionHandler: KeyboardActionHandler
     private let keyboardContext: KeyboardContext
     private let calloutContext: KeyboardCalloutContext?
-    private let appearance: KeyboardAppearance
     private let style: EmojiKeyboardStyle
+    private let styleProvider: KeyboardStyleProvider
     private let categoryTitle: CategoryTitleProvider
     
     @State
@@ -160,8 +160,8 @@ private extension EmojiCategoryKeyboard {
             categories: categories,
             keyboardContext: keyboardContext,
             actionHandler: actionHandler,
-            appearance: appearance,
-            style: style
+            style: style,
+            styleProvider: styleProvider
         )
     }
 }
@@ -177,8 +177,8 @@ struct EmojiCategoryKeyboard_Previews: PreviewProvider {
                 actionHandler: .preview,
                 keyboardContext: .preview,
                 calloutContext: .preview,
-                appearance: .preview,
-                style: .standardPhonePortrait
+                style: .standardPhonePortrait,
+                styleProvider: .preview
             ).background(Color.standardKeyboardBackground)
         }
     }

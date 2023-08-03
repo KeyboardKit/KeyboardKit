@@ -63,7 +63,6 @@ KeyboardKit is localized in **60+** keyboard-specific locales ([read more][Local
 KeyboardKit comes packed features to help you build amazing and powerful keyboards:
  
 * 💥 [Actions][Actions] - KeyboardKit has keyboard actions like characters, emojis, actions, custom ones etc. and ways to handle them.
-* 🎨 [Appearance][Appearance] - KeyboardKit has an appearance engine that lets you style your keyboards to great extent.
 * 💡 [Autocomplete][Autocomplete] - KeyboardKit can perform autocomplete and present suggestions as the user types.
 * 🗯 [Callouts][Callouts] - KeyboardKit can show input callouts as the user types, as well as callouts with secondary actions.
 * 🎤 [Dictation][Dictation] - (BETA) KeyboardKit can perform dictation from the keyboard extension.
@@ -80,6 +79,7 @@ KeyboardKit comes packed features to help you build amazing and powerful keyboar
 * 🚏 [Routing][Routing] - KeyboardKit lets you route text to other destinations than the main app.
 * ⬅️ [RTL][RTL] - KeyboardKit supports RTL (right-to-left) locales, such as Arabic, Persian, Kurdish Sorani etc.
 * ⚙️ [Settings][Settings] - KeyboardKit has tools for accessing and linking to an app's keyboard settings.
+* 🎨 [Styling][Styling] - KeyboardKit has an styling engine that lets you style your keyboards to great extent.
 
 
 
@@ -183,7 +183,7 @@ The demo app has 5 keyboard extensions:
 
 * `English` uses KeyboardKit and a `SystemKeyboard` with a standard, English locale.
 * `Unicode` uses KeyboardKit and a `SystemKeyboard` with unicode-based input keys.
-* `Custom` uses KeyboardKit and a `SystemKeyboard` with custom keys, layout and appearance.
+* `Custom` uses KeyboardKit and a `SystemKeyboard` with custom keys, layouts and styles.
 * `Pro` uses KeyboardKit Pro and a `SystemKeyboard` with all LRT locales, autocomplete etc.
 
 Just open and run the demo app in the `Demo` folder, then enable the keyboards you want to try under System Settings. Note that you need to enable full access to try some features, like audio and haptic feedback.
@@ -247,7 +247,6 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Getting-Started]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/getting-started
 
 [Actions]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/actions
-[Appearance]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/appearance
 [Autocomplete]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/autocomplete
 [Callouts]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/callouts
 [Dictation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/dictation
@@ -264,6 +263,6 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Routing]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/routing
 [RTL]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/rtl
 [Settings]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/settings
-
+[Styling]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/styling
 
 [License]: https://github.com/KeyboardKit/KeyboardKit/blob/master/LICENSE

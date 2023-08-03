@@ -14,8 +14,7 @@ import SwiftUI
  using a `SystemKeyboard` to mimic a native English keyboard.
 
  This keyboard also uses a couple of custom services to show
- you how you can change locale, appearance, autocomplete etc.
- Have a look at the other keyboards for more examples.
+ you how you can change locale, style, autocomplete, etc.
 
  To use this keyboard, you must enable it in system settings
  ("Settings/General/Keyboards"). It needs full access to get
@@ -62,25 +61,25 @@ class KeyboardViewController: KeyboardInputViewController {
         /// demo to see how the pro provider behaves.
         autocompleteProvider = FakeAutocompleteProvider()
 
-        /// 💡 Setup a demo-specific keyboard appearance.
-        ///
-        /// You can change this appearance implementation to
-        /// see how the keyboard style changes.
-        keyboardAppearance = DemoKeyboardAppearance(
-            keyboardContext: keyboardContext)
-
         /// 💡 Setup a demo-specific keyboard action handler.
         ///
         /// You can change the handler implementation to see
         /// how the keyboard behavior changes as you type.
-        keyboardActionHandler = DemoKeyboardActionHandler(
+        keyboardActionHandler = DemoActionHandler(
             inputViewController: self)
 
         /// 💡 Setup a demo-specific layout provider.
         ///
         /// You can change this provider's implementation to
         /// see how the layout changes.
-        keyboardLayoutProvider = DemoKeyboardLayoutProvider()
+        keyboardLayoutProvider = DemoLayoutProvider()
+        
+        /// 💡 Setup a demo-specific style provider.
+        ///
+        /// You can change this provider's implementation to
+        /// see how the keyboard style changes.
+        keyboardStyleProvider = DemoStyleProvider(
+            keyboardContext: keyboardContext)
 
         /// 💡 Call super to perform the base initialization.
         super.viewDidLoad()

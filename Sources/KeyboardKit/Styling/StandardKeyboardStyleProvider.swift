@@ -1,5 +1,5 @@
 //
-//  StandardKeyboardAppearance.swift
+//  StandardKeyboardStyleProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
@@ -10,17 +10,17 @@ import SwiftUI
 import CoreGraphics
 
 /**
- This standard appearance returns styles that replicates the
- look of a native system keyboard.
+ This standard style provider returns styles that by default
+ mimic the look of a native iOS keyboard.
 
  You can inherit this class and override any open properties
- and functions to customize the appearance.
+ and functions to customize the various styles.
  
  For instance, to change the background color of every input
  key, you can do this:
 
  ```swift
- class CustomAppearance: StandardKeyboardAppearance {
+ class CustomKeyboardStyleProvider: StandardKeyboardStyleProvider {
 
      override func buttonStyle(
          for action: KeyboardAction,
@@ -37,10 +37,10 @@ import CoreGraphics
  All buttons will be affected if you only return a new style.
  Sometimes that is what you want, but most often perhaps not.
  */
-open class StandardKeyboardAppearance: KeyboardAppearance {
+open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
 
     /**
-     Create a standard keyboard appearance intance.
+     Create a standard keyboard style provider instance.
 
      - Parameters:
        - keyboardContext: The keyboard context to use.
@@ -258,7 +258,7 @@ open class StandardKeyboardAppearance: KeyboardAppearance {
 
 // MARK: - Internal, Testable Extensions
 
-extension StandardKeyboardAppearance {
+extension StandardKeyboardStyleProvider {
 
     var isGregorianAlpha: Bool {
         keyboardContext.keyboardType.isAlphabetic && keyboardContext.locale.matches(.georgian)

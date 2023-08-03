@@ -323,10 +323,10 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     }
 
     /**
-     The appearance that is used to customize the keyboard's
-     design, such as its colors, fonts etc.
+     The style provider that is used to customize the design
+     of the keyboard, such as its colors, fonts etc.
      */
-    public lazy var keyboardAppearance: KeyboardAppearance = StandardKeyboardAppearance(
+    public lazy var keyboardStyleProvider: KeyboardStyleProvider = StandardKeyboardStyleProvider(
         keyboardContext: keyboardContext)
 
     /**

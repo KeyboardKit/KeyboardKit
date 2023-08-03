@@ -51,12 +51,12 @@ func setupFeedback() {
 
 ## How to create a custom handler
 
-You can create a custom keyboard feedback handler to customize how feedback is handled, or to handle feedback types that have no default behavior. You can inherit ``StandardKeyboardFeedbackHandler`` to get a lot of functionality for free, or implement ``KeyboardFeedbackHandler`` from scratch.
+You can create a custom ``KeyboardFeedbackHandler`` by either inheriting the ``StandardKeyboardFeedbackHandler`` base class and customize the parts you want, or implement the ``KeyboardFeedbackHandler`` protocol from scratch.
 
-For instance, here is a custom handler that inherits the base class and triggers haptic feedback when the return button is long pressed:
+For instance, here is a custom feedback handler that inherits the base class and triggers haptic feedback when the return button is long pressed:
 
 ```swift
-class MyKeyboardFeedbackHandler: StandardKeyboardFeedbackHandler {
+class CustomKeyboardFeedbackHandler: StandardKeyboardFeedbackHandler {
     
     override func triggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
         if gesture == .longPress && action == .return {
@@ -67,13 +67,13 @@ class MyKeyboardFeedbackHandler: StandardKeyboardFeedbackHandler {
 }
 ```
 
-To use this handler instead of the standard one, just set the input controller's ``KeyboardInputViewController/keyboardFeedbackHandler`` to the new handler:
+To use this handler instead of the standard one, just set the input controller's ``KeyboardInputViewController/keyboardFeedbackHandler`` to your custom handler, like this:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
-        keyboardFeedbackHandler = MyKeyboardFeedbackHandler()
+        keyboardFeedbackHandler = CustomKeyboardFeedbackHandler()
         super.viewDidLoad()
     }
 }

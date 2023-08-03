@@ -1,5 +1,5 @@
 //
-//  DemoKeyboardLayoutProvider.swift
+//  DemoLayoutProvider.swift
 //  KeyboardPro
 //
 //  Created by Daniel Saidi on 2022-12-21.
@@ -9,17 +9,17 @@
 import KeyboardKitPro
 
 /**
- This demo-specific appearance inherits the standard one and
+ This demo-specific provider inherits the standard one, then
  adds a locale button next to space.
 
  ``KeyboardViewController`` registers this class to show you
  how you can set up a custom layout provider.
 
  The locale button is only be added if the keyboard has many
- locales. The KeyboardKit Pro demo automatically sets up the
- keyboard with all locales that are available in the license.
+ locales. By default, KeyboardKit Pro automatically adds all
+ locales that are available in the license.
  */
-class DemoKeyboardLayoutProvider: StandardKeyboardLayoutProvider {
+class DemoLayoutProvider: StandardKeyboardLayoutProvider {
 
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         let layout = super.keyboardLayout(for: context)

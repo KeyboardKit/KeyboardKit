@@ -28,23 +28,23 @@ public struct EmojiCategoryKeyboardMenu: View {
        - categories: The categories to include in the menu.
        - keyboardContext: The context to bind the buttons to.
        - actionHandler: The action handler to use, by default the shared one.
-       - appearance: The appearance to apply to the menu.
        - style: The style to apply to the menu.
+       - styleProvider: The style provider to apply to the menu.
      */
     public init(
         selection: Binding<EmojiCategory>,
         categories: [EmojiCategory] = EmojiCategory.all,
         keyboardContext: KeyboardContext,
         actionHandler: KeyboardActionHandler,
-        appearance: KeyboardAppearance,
-        style: EmojiKeyboardStyle
+        style: EmojiKeyboardStyle,
+        styleProvider: KeyboardStyleProvider
     ) {
         self.categories = categories.filter { $0.emojis.count > 0 }
         self.keyboardContext = keyboardContext
         self.actionHandler = actionHandler
-        self.appearance = appearance
         self._selection = selection
         self.style = style
+        self.styleProvider = styleProvider
     }
 
     @Binding
@@ -53,8 +53,8 @@ public struct EmojiCategoryKeyboardMenu: View {
     private let categories: [EmojiCategory]
     private let keyboardContext: KeyboardContext
     private let actionHandler: KeyboardActionHandler
-    private let appearance: KeyboardAppearance
     private let style: EmojiKeyboardStyle
+    private let styleProvider: KeyboardStyleProvider
     
     @State
     private var isInitialized = false
@@ -76,7 +76,7 @@ public struct EmojiCategoryKeyboardMenu: View {
     
     private var backspaceButton: some View {
         let action = KeyboardAction.backspace
-        let image = appearance.buttonImage(for: action)
+        let image = styleProvider.buttonImage(for: action)
         return image.keyboardButtonGestures(
             for: action,
             actionHandler: actionHandler,
@@ -86,7 +86,7 @@ public struct EmojiCategoryKeyboardMenu: View {
     
     private var keyboardSwitchButton: some View {
         let action = KeyboardAction.keyboardType(.alphabetic(.lowercased))
-        let text = appearance.buttonText(for: action) ?? "ABC"
+        let text = styleProvider.buttonText(for: action) ?? "ABC"
         return Text(text).keyboardButtonGestures(
             for: action,
             actionHandler: actionHandler,
@@ -119,8 +119,8 @@ struct EmojiCategoryKeyboardMenu_Previews: PreviewProvider {
             categories: .all,
             keyboardContext: .preview,
             actionHandler: .preview,
-            appearance: .preview,
-            style: .standardPhonePortrait
+            style: .standardPhonePortrait,
+            styleProvider: .preview
         ).background(Color.gray)
     }
 }

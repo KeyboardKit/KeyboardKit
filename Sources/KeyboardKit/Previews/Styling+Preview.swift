@@ -8,28 +8,28 @@
 
 import SwiftUI
 
-public extension KeyboardAppearance where Self == PreviewKeyboardAppearance {
+public extension KeyboardStyleProvider where Self == PreviewKeyboardStyleProvider {
     
     /**
-     This preview appearance can be used in SwiftUI previews.
+     This style provider can be used in SwiftUI previews.
      */
-    static var preview: KeyboardAppearance { PreviewKeyboardAppearance() }
+    static var preview: KeyboardStyleProvider { PreviewKeyboardStyleProvider() }
 }
 
 
-extension KeyboardAppearance where Self == PreviewKeyboardAppearance {
+extension KeyboardStyleProvider where Self == PreviewKeyboardStyleProvider {
     
     /**
-     This preview appearance can be used in SwiftUI previews.
+     This style provider can be used in SwiftUI previews.
      */
-    static var crazy: KeyboardAppearance { CrazyPreviewKeyboardAppearance() }
+    static var crazy: KeyboardStyleProvider { CrazyPreviewKeyboardStyleProvider() }
 }
 
 
 /**
- This appearance can be used in SwiftUI previews.
+ This style provider can be used in SwiftUI previews.
  */
-public class PreviewKeyboardAppearance: StandardKeyboardAppearance {
+public class PreviewKeyboardStyleProvider: StandardKeyboardStyleProvider {
     
     init() {
         super.init(keyboardContext: .preview)
@@ -55,9 +55,9 @@ public class PreviewKeyboardAppearance: StandardKeyboardAppearance {
 }
 
 /**
- This internal appearance can be used in SwiftUI previews.
+ This style provider can be used in SwiftUI previews.
  */
-class CrazyPreviewKeyboardAppearance: PreviewKeyboardAppearance {
+class CrazyPreviewKeyboardStyleProvider: PreviewKeyboardStyleProvider {
     
     public override func buttonStyle(
         for action: KeyboardAction,

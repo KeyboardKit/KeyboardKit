@@ -1,5 +1,5 @@
 //
-//  DemoKeyboardLayoutProvider.swift
+//  DemoLayoutProvider.swift
 //  Keyboard
 //
 //  Created by Daniel Saidi on 2022-12-21.
@@ -9,13 +9,13 @@
 import KeyboardKit
 
 /**
- This demo provider inherits the standard provider and makes
- it add a rocket button next to space.
+ This demo-specific provider inherits the standard one, then
+ adds a rocket button next to the space key.
 
  ``KeyboardViewController`` registers this class to show you
  how you can set up a custom layout provider.
  */
-class DemoKeyboardLayoutProvider: StandardKeyboardLayoutProvider {
+class DemoLayoutProvider: StandardKeyboardLayoutProvider {
 
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         let layout = super.keyboardLayout(for: context)

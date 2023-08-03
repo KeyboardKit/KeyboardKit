@@ -44,8 +44,8 @@ public struct SystemKeyboard<ButtonView: View>: View {
 
      - Parameters:
        - layout: The keyboard layout to use.
-       - appearance: The keyboard appearance to use.
        - actionHandler: The action handler to use.
+       - styleProvider: The style provider to use.
        - autocompleteContext: The autocomplete context to use.
        - autocompleteToolbar: The autocomplete toolbar mode to use.
        - autocompleteToolbarAction: The action to trigger when tapping an autocomplete suggestion.
@@ -56,8 +56,8 @@ public struct SystemKeyboard<ButtonView: View>: View {
      */
     public init(
         layout: KeyboardLayout,
-        appearance: KeyboardAppearance,
         actionHandler: KeyboardActionHandler,
+        styleProvider: KeyboardStyleProvider,
         autocompleteContext: AutocompleteContext,
         autocompleteToolbar: AutocompleteToolbarMode,
         autocompleteToolbarAction: @escaping AutocompleteToolbarAction,
@@ -68,8 +68,8 @@ public struct SystemKeyboard<ButtonView: View>: View {
     ) where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardButtonContent> {
         self.init(
             layout: layout,
-            appearance: appearance,
             actionHandler: actionHandler,
+            styleProvider: styleProvider,
             autocompleteContext: autocompleteContext,
             autocompleteToolbar: autocompleteToolbar,
             autocompleteToolbarAction: autocompleteToolbarAction,
@@ -80,8 +80,8 @@ public struct SystemKeyboard<ButtonView: View>: View {
             buttonView: { item, keyboardWidth, inputWidth in
                 Self.standardButtonView(
                     item: item,
-                    appearance: appearance,
                     actionHandler: actionHandler,
+                    styleProvider: styleProvider,
                     keyboardContext: keyboardContext,
                     calloutContext: calloutContext,
                     keyboardWidth: keyboardWidth,
@@ -99,8 +99,8 @@ public struct SystemKeyboard<ButtonView: View>: View {
 
      - Parameters:
        - layout: The keyboard layout to use.
-       - appearance: The keyboard appearance to use.
        - actionHandler: The action handler to use.
+       - styleProvider: The style provider to use.
        - autocompleteContext: The autocomplete context to use.
        - autocompleteToolbar: The autocomplete toolbar mode to use.
        - autocompleteToolbarAction: The action to trigger when tapping an autocomplete suggestion.
@@ -113,8 +113,8 @@ public struct SystemKeyboard<ButtonView: View>: View {
      */
     public init(
         layout: KeyboardLayout,
-        appearance: KeyboardAppearance,
         actionHandler: KeyboardActionHandler,
+        styleProvider: KeyboardStyleProvider,
         autocompleteContext: AutocompleteContext,
         autocompleteToolbar: AutocompleteToolbarMode,
         autocompleteToolbarAction: @escaping AutocompleteToolbarAction,
@@ -127,7 +127,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
         self.layout = layout
         self.layoutConfig = .standard(for: keyboardContext)
         self.actionHandler = actionHandler
-        self.appearance = appearance
+        self.styleProvider = styleProvider
         self.autocompleteToolbarMode = autocompleteToolbar
         self.autocompleteToolbarAction = autocompleteToolbarAction
         self.keyboardWidth = width
@@ -150,8 +150,8 @@ public struct SystemKeyboard<ButtonView: View>: View {
 
      - Parameters:
        - layout: The keyboard layout to use.
-       - appearance: The keyboard appearance to use.
        - actionHandler: The action handler to use.
+       - styleProvider: The style provider to use.
        - autocompleteContext: The autocomplete context to use.
        - autocompleteToolbar: The autocomplete toolbar mode to use.
        - autocompleteToolbarAction: The action to trigger when tapping an autocomplete suggestion.
@@ -164,8 +164,8 @@ public struct SystemKeyboard<ButtonView: View>: View {
      */
     public init<ButtonContentView: View>(
         layout: KeyboardLayout,
-        appearance: KeyboardAppearance,
         actionHandler: KeyboardActionHandler,
+        styleProvider: KeyboardStyleProvider,
         autocompleteContext: AutocompleteContext,
         autocompleteToolbar: AutocompleteToolbarMode,
         autocompleteToolbarAction: @escaping AutocompleteToolbarAction,
@@ -177,8 +177,8 @@ public struct SystemKeyboard<ButtonView: View>: View {
     ) where ButtonView == SystemKeyboardButtonRowItem<ButtonContentView> {
         self.init(
             layout: layout,
-            appearance: appearance,
             actionHandler: actionHandler,
+            styleProvider: styleProvider,
             autocompleteContext: autocompleteContext,
             autocompleteToolbar: autocompleteToolbar,
             autocompleteToolbarAction: autocompleteToolbarAction,
@@ -191,11 +191,11 @@ public struct SystemKeyboard<ButtonView: View>: View {
                     content: buttonContent(item),
                     item: item,
                     actionHandler: actionHandler,
+                    styleProvider: styleProvider,
                     keyboardContext: keyboardContext,
                     calloutContext: calloutContext,
                     keyboardWidth: keyboardWidth,
-                    inputWidth: inputWidth,
-                    appearance: appearance
+                    inputWidth: inputWidth
                 )
             }
         )
@@ -223,8 +223,8 @@ public struct SystemKeyboard<ButtonView: View>: View {
     ) where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardButtonContent> {
         self.init(
             layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
-            appearance: controller.keyboardAppearance,
             actionHandler: controller.keyboardActionHandler,
+            styleProvider: controller.keyboardStyleProvider,
             autocompleteContext: controller.autocompleteContext,
             autocompleteToolbar: autocompleteToolbar,
             autocompleteToolbarAction: autocompleteToolbarAction ?? { [weak controller] suggestion in
@@ -261,8 +261,8 @@ public struct SystemKeyboard<ButtonView: View>: View {
     ) {
         self.init(
             layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
-            appearance: controller.keyboardAppearance,
             actionHandler: controller.keyboardActionHandler,
+            styleProvider: controller.keyboardStyleProvider,
             autocompleteContext: controller.autocompleteContext,
             autocompleteToolbar: autocompleteToolbarMode,
             autocompleteToolbarAction: autocompleteToolbarAction ?? { [weak controller] suggestion in
@@ -301,8 +301,8 @@ public struct SystemKeyboard<ButtonView: View>: View {
     ) where ButtonView == SystemKeyboardButtonRowItem<ButtonContentView> {
         self.init(
             layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
-            appearance: controller.keyboardAppearance,
             actionHandler: controller.keyboardActionHandler,
+            styleProvider: controller.keyboardStyleProvider,
             autocompleteContext: controller.autocompleteContext,
             autocompleteToolbar: autocompleteToolbarMode,
             autocompleteToolbarAction: autocompleteToolbarAction ?? { [weak controller] suggestion in
@@ -317,7 +317,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
     }
 
     private let actionHandler: KeyboardActionHandler
-    private let appearance: KeyboardAppearance
+    private let styleProvider: KeyboardStyleProvider
     private let autocompleteToolbarMode: AutocompleteToolbarMode
     private let autocompleteToolbarAction: AutocompleteToolbarAction
     private let buttonView: ButtonViewBuilder
@@ -342,14 +342,14 @@ public struct SystemKeyboard<ButtonView: View>: View {
     public typealias KeyboardItemWidth = CGFloat
 
     private var actionCalloutStyle: KeyboardStyle.ActionCallout {
-        var style = appearance.actionCalloutStyle
+        var style = styleProvider.actionCalloutStyle
         let insets = layoutConfig.buttonInsets
         style.callout.buttonInset = CGSize(width: insets.leading, height: insets.top)
         return style
     }
 
     private var inputCalloutStyle: KeyboardStyle.InputCallout {
-        var style = appearance.inputCalloutStyle
+        var style = styleProvider.inputCalloutStyle
         let insets = layoutConfig.buttonInsets
         style.callout.buttonInset = CGSize(width: insets.leading, height: insets.top)
         return style
@@ -375,8 +375,8 @@ public struct SystemKeyboard<ButtonView: View>: View {
             autocompleteToolbar
             keyboardView
         }
-        .foregroundColor(appearance.foregroundColor)
-        .background(renderBackground ? appearance.backgroundStyle.backgroundView : nil)
+        .foregroundColor(styleProvider.foregroundColor)
+        .background(renderBackground ? styleProvider.backgroundStyle.backgroundView : nil)
     }
 }
 
@@ -388,7 +388,7 @@ private extension SystemKeyboard {
             AutocompleteToolbar(
                 suggestions: autocompleteContext.suggestions,
                 locale: keyboardContext.locale,
-                style: appearance.autocompleteToolbarStyle,
+                style: styleProvider.autocompleteToolbarStyle,
                 suggestionAction: autocompleteToolbarAction
             ).opacity(keyboardContext.prefersAutocomplete ? 1 : 0)  // Always allocate height
         }
@@ -434,12 +434,12 @@ public extension SystemKeyboard {
      */
     static func standardButtonContent(
         item: KeyboardLayoutItem,
-        appearance: KeyboardAppearance,
+        styleProvider: KeyboardStyleProvider,
         keyboardContext: KeyboardContext
     ) -> SystemKeyboardButtonContent {
         SystemKeyboardButtonContent(
             action: item.action,
-            appearance: appearance,
+            styleProvider: styleProvider,
             keyboardContext: keyboardContext
         )
     }
@@ -450,8 +450,8 @@ public extension SystemKeyboard {
      */
     static func standardButtonView(
         item: KeyboardLayoutItem,
-        appearance: KeyboardAppearance,
         actionHandler: KeyboardActionHandler,
+        styleProvider: KeyboardStyleProvider,
         keyboardContext: KeyboardContext,
         calloutContext: KeyboardCalloutContext?,
         keyboardWidth: KeyboardWidth,
@@ -460,15 +460,15 @@ public extension SystemKeyboard {
         SystemKeyboardButtonRowItem(
             content: standardButtonContent(
                 item: item,
-                appearance: appearance,
+                styleProvider: styleProvider,
                 keyboardContext: keyboardContext),
             item: item,
             actionHandler: actionHandler,
+            styleProvider: styleProvider,
             keyboardContext: keyboardContext,
             calloutContext: calloutContext,
             keyboardWidth: keyboardWidth,
-            inputWidth: inputWidth,
-            appearance: appearance
+            inputWidth: inputWidth
         )
     }
 }
@@ -480,8 +480,8 @@ private extension SystemKeyboard {
             actionHandler: actionHandler,
             keyboardContext: keyboardContext,
             calloutContext: calloutContext,
-            appearance: appearance,
-            style: .standard(for: keyboardContext)
+            style: .standard(for: keyboardContext),
+            styleProvider: styleProvider
         ).padding(.top)
     }
 
@@ -489,7 +489,7 @@ private extension SystemKeyboard {
         VStack(spacing: 0) {
             itemRows(for: layout)
         }
-        .padding(appearance.keyboardEdgeInsets)
+        .padding(styleProvider.keyboardEdgeInsets)
         .environment(\.layoutDirection, .leftToRight)
     }
 }
@@ -541,11 +541,11 @@ struct SystemKeyboard_Previews: PreviewProvider {
                     content: previewButtonContent(item: item),
                     item: item,
                     actionHandler: .preview,
+                    styleProvider: controller.keyboardStyleProvider,
                     keyboardContext: controller.keyboardContext,
                     calloutContext: controller.calloutContext,
                     keyboardWidth: keyboardWidth,
-                    inputWidth: inputWidth,
-                    appearance: controller.keyboardAppearance
+                    inputWidth: inputWidth
                 )
             }
         }
@@ -560,7 +560,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
             default:
                 SystemKeyboardButtonContent(
                     action: item.action,
-                    appearance: .preview,
+                    styleProvider: .preview,
                     keyboardContext: controller.keyboardContext
                 )
             }

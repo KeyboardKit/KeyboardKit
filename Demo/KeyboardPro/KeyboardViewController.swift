@@ -116,7 +116,7 @@ class KeyboardViewController: KeyboardInputViewController {
      This function sets up an demo-specific keyboard layout.
      */
     func setupLayout(with license: License) {
-        keyboardLayoutProvider = DemoKeyboardLayoutProvider(
+        keyboardLayoutProvider = DemoLayoutProvider(
             keyboardContext: keyboardContext,
             inputSetProvider: inputSetProvider,
             localizedProviders: license.localizedKeyboardLayoutProviders

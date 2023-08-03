@@ -40,7 +40,7 @@ public protocol KeyboardCaseAdjustable {
 public extension KeyboardCaseAdjustable {
 
     /**
-     Case-adjust the string for the provided `text`.
+     Get a case-adjusted value that matches the `text`.
 
      This will match capitalization, uppercase and lowercase
      states in that order, meaning that a single, uppercased

@@ -3,6 +3,9 @@ import Foundation
 @available(*, deprecated, renamed: "KeyboardStyle.ActionCallout")
 public typealias KeyboardActionCalloutStyle = KeyboardStyle.ActionCallout
 
+@available(*, deprecated, renamed: "KeyboardStyleProvider")
+public typealias KeyboardAppearance = KeyboardStyleProvider
+
 @available(*, deprecated, renamed: "KeyboardStyle.Background")
 public typealias KeyboardBackgroundStyle = KeyboardStyle.Background
 
@@ -33,3 +36,9 @@ public typealias KeyboardCalloutStyle = KeyboardStyle.Callout
 
 @available(*, deprecated, renamed: "KeyboardStyle.InputCallout")
 public typealias KeyboardInputCalloutStyle = KeyboardStyle.InputCallout
+
+@available(*, deprecated, renamed: "PreviewKeyboardStyleProvider")
+public typealias PreviewKeyboardAppearance = PreviewKeyboardStyleProvider
+
+@available(*, deprecated, renamed: "StandardKeyboardStyleProvider")
+public typealias StandardKeyboardAppearance = StandardKeyboardStyleProvider

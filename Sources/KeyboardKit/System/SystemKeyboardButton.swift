@@ -13,13 +13,12 @@ import SwiftUI
  a certain ``KeyboardAction``.
 
  This view will adapt its content to conform to the provided
- `action` and `appearance` and applies keyboard gestures for
- the provided `action`, `actionHandler` and `context`.
+ `action`, `actionHandler` and `keyboardContext`.
 
  The view sets up gestures, line limits, vertical offset etc.
- and aims to make the button mimic an iOS system keyboard as
- closely as possible. You can however use the `contentConfig`
- parameter to customize or replace the content view.
+ and styles the button according to the `styleProvider`. You
+ can use the `contentConfig` to further customize or replace
+ the content view.
  */
 public struct SystemKeyboardButton<Content: View>: View {
 
@@ -29,24 +28,24 @@ public struct SystemKeyboardButton<Content: View>: View {
      - Parameters:
        - action: The keyboard action to apply.
        - actionHandler: The action handler to use.
+       - styleProvider: The style provider to use.
        - keyboardContext: The keyboard context to which the button should apply.
        - calloutContext: The callout context to affect, if any.
-       - appearance: The appearance to apply to the button.
        - contentConfig: A configuration block that can be used to customize or replace the standard button content.
      */
     public init(
         action: KeyboardAction,
         actionHandler: KeyboardActionHandler,
+        styleProvider: KeyboardStyleProvider,
         keyboardContext: KeyboardContext,
         calloutContext: KeyboardCalloutContext?,
-        appearance: KeyboardAppearance,
         contentConfig: @escaping ContentConfig
     ) {
         self.action = action
         self.actionHandler = actionHandler
+        self.styleProvider = styleProvider
         self.keyboardContext = keyboardContext
         self.calloutContext = calloutContext
-        self.appearance = appearance
         self.contentConfig = contentConfig
     }
 
@@ -56,32 +55,32 @@ public struct SystemKeyboardButton<Content: View>: View {
      - Parameters:
        - action: The keyboard action to apply.
        - actionHandler: The action handler to use.
+       - styleProvider: The style provider to use.
        - keyboardContext: The keyboard context to which the button should apply.
        - calloutContext: The callout context to affect, if any.
-       - appearance: The appearance to apply to the button.
      */
     public init(
         action: KeyboardAction,
         actionHandler: KeyboardActionHandler,
+        styleProvider: KeyboardStyleProvider,
         keyboardContext: KeyboardContext,
-        calloutContext: KeyboardCalloutContext?,
-        appearance: KeyboardAppearance
+        calloutContext: KeyboardCalloutContext?
     ) where Content == SystemKeyboardButtonContent {
         self.init(
             action: action,
             actionHandler: actionHandler,
+            styleProvider: styleProvider,
             keyboardContext: keyboardContext,
             calloutContext: calloutContext,
-            appearance: appearance,
             contentConfig: { $0 }
         )
     }
     
     private let action: KeyboardAction
     private let actionHandler: KeyboardActionHandler
+    private let styleProvider: KeyboardStyleProvider
     private let keyboardContext: KeyboardContext
     private let calloutContext: KeyboardCalloutContext?
-    private let appearance: KeyboardAppearance
     private let contentConfig: ContentConfig
 
     @State
@@ -114,14 +113,14 @@ private extension SystemKeyboardButton {
         contentConfig(
             SystemKeyboardButtonContent(
                 action: action,
-                appearance: appearance,
+                styleProvider: styleProvider,
                 keyboardContext: keyboardContext
             )
         )
     }
     
     var buttonStyle: KeyboardStyle.Button {
-        appearance.buttonStyle(
+        styleProvider.buttonStyle(
             for: action,
             isPressed: isPressed
         )
@@ -134,9 +133,9 @@ struct SystemKeyboardButton_Previews: PreviewProvider {
         SystemKeyboardButton(
             action: action,
             actionHandler: .preview,
+            styleProvider: .preview,
             keyboardContext: .preview,
-            calloutContext: .preview,
-            appearance: .preview
+            calloutContext: .preview
         ) {
             $0.frame(width: 80, height: 80)
         }

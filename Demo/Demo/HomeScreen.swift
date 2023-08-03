@@ -18,8 +18,7 @@ import SwiftUI
  This app has many keyboards, where `Keyboard` shows you how
  to setup a standard, English keyboard with some adjustments.
 
- `KeyboardCustom` has a custom input set and keyboard layout,
- as well as a custom appearance.
+ `KeyboardCustom` uses a custom input set, layout, and style.
 
  `KeyboardTextInput` shows how to setup a keyboard with text
  fields and text views, to enable text input in the keyboard.

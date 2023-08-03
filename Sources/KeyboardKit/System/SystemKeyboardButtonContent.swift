@@ -13,9 +13,12 @@ import SwiftUI
  that should trigger the provided ``KeyboardAction``.
 
  This view will adapt its content to conform to the provided
- `action` and `appearance`. It sets up gestures, line limits,
- vertical offset etc. and aims to mimic an iOS system button
- as closely as possible.
+ `action`, `actionHandler` and `keyboardContext`.
+
+ The view sets up gestures, line limits, vertical offset etc.
+ and styles the button according to the `styleProvider`. You
+ can use the `contentConfig` to further customize or replace
+ the content view.
  */
 public struct SystemKeyboardButtonContent: View {
     
@@ -24,21 +27,21 @@ public struct SystemKeyboardButtonContent: View {
      
      - Parameters:
        - action: The keyboard action to use.
-       - appearance: The appearance to apply to the content.
+       - styleProvider: The style provider to use.
        - keyboardContext: The keyboard context to use.
      */
     public init(
         action: KeyboardAction,
-        appearance: KeyboardAppearance,
+        styleProvider: KeyboardStyleProvider,
         keyboardContext: KeyboardContext
     ) {
         self.action = action
-        self.appearance = appearance
+        self.styleProvider = styleProvider
         self.keyboardContext = keyboardContext
     }
     
     private let action: KeyboardAction
-    private let appearance: KeyboardAppearance
+    private let styleProvider: KeyboardStyleProvider
     private let keyboardContext: KeyboardContext
     
     public var body: some View {
@@ -54,9 +57,9 @@ private extension SystemKeyboardButtonContent {
     var bodyContent: some View {
         if action == .space {
             spaceView
-        } else if let image = appearance.buttonImage(for: action) {
-            image.scaleEffect(appearance.buttonImageScaleFactor(for: action))
-        } else if let text = appearance.buttonText(for: action) {
+        } else if let image = styleProvider.buttonImage(for: action) {
+            image.scaleEffect(styleProvider.buttonImageScaleFactor(for: action))
+        } else if let text = styleProvider.buttonText(for: action) {
             textView(for: text)
         } else {
             Text("")
@@ -89,7 +92,7 @@ private extension SystemKeyboardButtonContent {
     }
     
     var spaceText: String {
-        appearance.buttonText(for: action) ?? ""
+        styleProvider.buttonText(for: action) ?? ""
     }
 }
 
@@ -109,7 +112,7 @@ struct SystemKeyboardButtonContent_Previews: PreviewProvider {
     ) -> some View {
         SystemKeyboardButtonContent(
             action: action,
-            appearance: .preview,
+            styleProvider: .preview,
             keyboardContext: multiLocale ? multiLocaleContext : .preview
         ).background(Color.gray)
     }

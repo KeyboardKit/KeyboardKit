@@ -26,7 +26,7 @@ Regardless of the locale-specifics, a localized keyboard layout is typically imp
 
 KeyboardKit will by default create a ``StandardKeyboardLayoutProvider`` and apply it to the input controller's ``KeyboardInputViewController/keyboardLayoutProvider``. You can replace this provider with a custom one, or inject locale-specific providers to customize the layout for a certain locale. 
 
-KeyboardKit will by default inject an ``EnglishKeyboardLayoutProvider`` into the standard layout provider. This provider defines the layout of a U.S. English keyboard, for both iPad and iPhone.
+KeyboardKit will by default inject an ``EnglishKeyboardLayoutProvider`` into the standard provider. This provider defines the layout of a U.S. English keyboard, for both iPad and iPhone.
 
 
 ### How to customize the standard layout provider
@@ -43,9 +43,9 @@ You can also create a completely custom keyboard layout provider, see below.
 
 ### How to create a custom layout provider
 
-You can create a custom keyboard layout provider by either inheriting and customizing the ``StandardKeyboardLayoutProvider`` base class, which gives you a lot of functionality for free, or by implementing ``KeyboardLayoutProvider`` from scratch.
+You can create a custom ``KeyboardLayoutProvider`` by either inheriting the ``StandardKeyboardLayoutProvider`` base class and customize the parts you want, or implementing the ``KeyboardLayoutProvider`` protocol from scratch.
 
-For instance, here's a custom provider that extends ``StandardKeyboardLayoutProvider`` and injects a tab key to the top-leading part of the keyboard:
+For instance, here's a custom provider that inherits ``StandardKeyboardLayoutProvider`` and injects a tab key to the top-leading part of the keyboard:
 
 ```swift
 class CustomKeyboardLayoutProvider: StandardKeyboardLayoutProvider {
@@ -65,7 +65,7 @@ class CustomKeyboardLayoutProvider: StandardKeyboardLayoutProvider {
 }
 ```
 
-To use this implementation instead of the standard one, just replace the standard instance like this:
+To use this provider instead of the standard one, just set the input controller's ``KeyboardInputViewController/keyboardLayoutProvider`` to your custom provider, like this:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -77,7 +77,7 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-This will make KeyboardKit use your custom implementation everywhere instead of the standard one.
+This will make KeyboardKit use your custom implementation instead of the standard one.
 
 
 

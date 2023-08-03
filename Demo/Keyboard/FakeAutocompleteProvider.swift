@@ -73,7 +73,7 @@ private extension FakeAutocompleteProvider {
     func matchSuggestions() -> [AutocompleteSuggestion] {
         [
             AutocompleteSuggestion(text: match, isUnknown: true),
-            AutocompleteSuggestion(text: match, isAutocomplete: true),
+            AutocompleteSuggestion(text: match, isAutocorrect: true),
             AutocompleteSuggestion(text: match),
         ]
     }

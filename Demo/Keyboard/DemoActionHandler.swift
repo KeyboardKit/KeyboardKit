@@ -1,5 +1,5 @@
 //
-//  DemoKeyboardActionHandler.swift
+//  DemoActionHandler.swift
 //  Keyboard
 //
 //  Created by Daniel Saidi on 2021-02-11.
@@ -20,7 +20,7 @@ import UIKit
  copy any tapped image to the pasteboard and save it to your
  photo album when it's long presed.
  */
-class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
+class DemoActionHandler: StandardKeyboardActionHandler {
 
 
     // MARK: - Overrides
@@ -76,7 +76,7 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     }
 }
 
-private extension DemoKeyboardActionHandler {
+private extension DemoActionHandler {
     
     func handleImageDidSave(withError error: Error?) {
         if error == nil { alert("Saved!") }

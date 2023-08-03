@@ -59,7 +59,6 @@ KeyboardKit is available under the MIT license.
 ### Articles
 
 - <doc:Actions>
-- <doc:Appearance>
 - <doc:Autocomplete>
 - <doc:Callouts>
 - <doc:Dictation>
@@ -75,6 +74,7 @@ KeyboardKit is available under the MIT license.
 - <doc:Routing>
 - <doc:RTL>
 - <doc:Settings>
+- <doc:Styling>
 
 ### Keyboard
 
@@ -104,14 +104,6 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardAction``
 - ``KeyboardActionHandler``
 - ``StandardKeyboardActionHandler``
-
-### Appearance
-
-- ``KeyboardAppearance``
-- ``KeyboardAppearanceViewModifier``
-- ``KeyboardFont``
-- ``KeyboardStyle``
-- ``StandardKeyboardAppearance``
 
 ### Autocomplete
 
@@ -272,8 +264,8 @@ KeyboardKit is available under the MIT license.
 
 - ``PreviewCalloutActionProvider``
 - ``PreviewKeyboardActionHandler``
-- ``PreviewKeyboardAppearance``
 - ``PreviewKeyboardLayoutProvider``
+- ``PreviewKeyboardStyleProvider``
 - ``PreviewTextDocumentProxy``
 
 ### Routing
@@ -288,6 +280,14 @@ KeyboardKit is available under the MIT license.
 
 - ``KeyboardSettingsLink``
 - ``KeyboardSettingsUrlProvider``
+
+### Styling
+
+- ``KeyboardAppearanceViewModifier``
+- ``KeyboardFont``
+- ``KeyboardStyle``
+- ``KeyboardStyleProvider``
+- ``StandardKeyboardStyleProvider``
 
 ### System Keyboard
 

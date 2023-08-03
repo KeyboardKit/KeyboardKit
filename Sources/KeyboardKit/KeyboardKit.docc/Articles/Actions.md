@@ -78,9 +78,7 @@ Keyboard actions can also be triggered by keyboard-specific gestures that are ap
 
 ## How to create a custom action handler
 
-You can create a custom ``KeyboardActionHandler`` to customize how keyboard actions are handled, or to handle actions that have no default behavior.
-
-You can create a custom action handler by inheriting the ``StandardKeyboardActionHandler`` base class, which gives you a lot of functionality for free, or by implementing ``KeyboardActionHandler`` from scratch. 
+You can create a custom ``KeyboardActionHandler`` by either inheriting the ``StandardKeyboardActionHandler`` base class and customize the parts you want, or implement the ``KeyboardActionHandler`` protocol from scratch. 
 
 For instance, here is a custom action handler that inherits ``StandardKeyboardActionHandler`` and extends it with the capabilities to copy and save images:
 
@@ -119,7 +117,7 @@ class CustomActionHandler: StandardKeyboardActionHandler {
 }
 ```
 
-To use this action handler instead of the standard one, just set the input controller's ``KeyboardInputViewController/keyboardActionHandler`` to the new handler:
+To use this action handler instead of the standard one, just set the input controller's ``KeyboardInputViewController/keyboardActionHandler`` to the new handler, like this:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {

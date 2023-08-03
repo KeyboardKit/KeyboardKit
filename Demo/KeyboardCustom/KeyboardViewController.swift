@@ -37,11 +37,11 @@ class KeyboardViewController: KeyboardInputViewController {
         /// see how the layout changes.
         keyboardLayoutProvider = DemoLayoutProvider()
 
-        /// 💡 Setup a demo-specific keyboard appearance.
+        /// 💡 Setup a demo-specific style provider.
         ///
-        /// You can change this appearance implementation to
+        /// You can change this provider's implementation to
         /// see how the keyboard style changes.
-        keyboardAppearance = DemoKeyboardAppearance(
+        keyboardStyleProvider = DemoStyleProvider(
             keyboardContext: keyboardContext)
 
         /// 💡 Call super to perform the base initialization.

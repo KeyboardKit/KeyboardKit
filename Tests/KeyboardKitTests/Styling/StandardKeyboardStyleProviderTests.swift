@@ -1,5 +1,5 @@
 //
-//  StandardKeyboardAppearanceTests.swift
+//  StandardKeyboardStyleProviderTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-08.
@@ -11,9 +11,9 @@ import XCTest
 
 @testable import KeyboardKit
 
-class StandardKeyboardAppearanceTests: XCTestCase {
+class StandardKeyboardStyleProviderTests: XCTestCase {
 
-    var appearance: StandardKeyboardAppearance!
+    var provider: StandardKeyboardStyleProvider!
     var context: KeyboardContext!
 
     var styles: [(action: KeyboardAction, style: KeyboardStyle.Button)]!
@@ -21,24 +21,24 @@ class StandardKeyboardAppearanceTests: XCTestCase {
 
     override func setUp() {
         context = KeyboardContext()
-        appearance = StandardKeyboardAppearance(keyboardContext: context)
+        provider = StandardKeyboardStyleProvider(keyboardContext: context)
         styles = KeyboardAction.testActions.map {
-            (action: $0, style: appearance.buttonStyle(for: $0, isPressed: false))
+            (action: $0, style: provider.buttonStyle(for: $0, isPressed: false))
         }
     }
 
 
     func buttonFontSize(for action: KeyboardAction) -> CGFloat {
-        appearance.buttonFontSize(for: action)
+        provider.buttonFontSize(for: action)
     }
 
     func buttonFontWeight(for action: KeyboardAction) -> KeyboardFont.FontWeight? {
-        appearance.buttonFontWeight(for: action)
+        provider.buttonFontWeight(for: action)
     }
 
 
     func testActionCalloutStyleIsStandard() {
-        let result = appearance.actionCalloutStyle
+        let result = provider.actionCalloutStyle
         let standard = KeyboardStyle.ActionCallout.standard
         XCTAssertEqual(result.callout, standard.callout)
         XCTAssertEqual(result.font, standard.font)
@@ -49,7 +49,7 @@ class StandardKeyboardAppearanceTests: XCTestCase {
 
     func testButtonImageIsStandardForAllActions() {
         KeyboardAction.testActions.forEach {
-            let result = appearance.buttonImage(for: $0)
+            let result = provider.buttonImage(for: $0)
             let standard = $0.standardButtonImage(for: context)
             result.expectEqual(to: standard)
         }
@@ -57,14 +57,14 @@ class StandardKeyboardAppearanceTests: XCTestCase {
 
     func testButtonTextIsStandardForAllActions() {
         KeyboardAction.testActions.forEach {
-            let result = appearance.buttonText(for: $0)
+            let result = provider.buttonText(for: $0)
             let standard = $0.standardButtonText(for: context)
             result.expectEqual(to: standard)
         }
     }
 
     func testInputCalloutStyleIsStandard() {
-        let result = appearance.inputCalloutStyle
+        let result = provider.inputCalloutStyle
         let standard = KeyboardStyle.InputCallout.standard
         XCTAssertEqual(result.callout, standard.callout)
         XCTAssertEqual(result.calloutSize, standard.calloutSize)
@@ -131,8 +131,8 @@ class StandardKeyboardAppearanceTests: XCTestCase {
     }
 
     func testButtonStyleIsLightweightIfActionHasImage() {
-        let backspace = appearance.buttonStyle(for: .backspace, isPressed: false).font
-        let character = appearance.buttonStyle(for: .character(""), isPressed: false).font
+        let backspace = provider.buttonStyle(for: .backspace, isPressed: false).font
+        let character = provider.buttonStyle(for: .character(""), isPressed: false).font
         XCTAssertNotEqual(backspace, character)
     }
 

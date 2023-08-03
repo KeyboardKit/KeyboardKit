@@ -1,5 +1,5 @@
 //
-//  DemoKeyboardAppearance.swift
+//  DemoStyleProvider.swift
 //  Keyboard
 //
 //  Created by Daniel Saidi on 2022-12-21.
@@ -10,16 +10,16 @@ import KeyboardKit
 import SwiftUI
 
 /**
- This demo-specific appearance inherits the standard one and
- customizes the look of the keyboard.
+ This demo-specific style provider inherits the standard one
+ and can be used to customize the demo keyboard style.
 
  ``KeyboardViewController`` registers this class to show you
- how you can set up a custom keyboard appearance.
+ how to set up a custom keyboard style provider.
 
  Just comment out any of the functions below to override any
- part of the standard appearance.
+ part of the standard styling.
  */
-class DemoKeyboardAppearance: StandardKeyboardAppearance {
+class DemoStyleProvider: StandardKeyboardStyleProvider {
     
     // override func buttonImage(for action: KeyboardAction) -> Image? {
     //     if action == .keyboardType(.emojis) { return nil }
