@@ -373,10 +373,33 @@ public struct SystemKeyboard<ButtonView: View>: View {
     public var body: some View {
         VStack(spacing: 0) {
             autocompleteToolbar
-            keyboardView
+            systemKeyboard
         }
+        .opacity(shouldShowEmojiKeyboard ? 0 : 1)
+        .overlay(emojiKeyboard, alignment: .bottom)
         .foregroundColor(styleProvider.foregroundColor)
         .background(renderBackground ? styleProvider.backgroundStyle.backgroundView : nil)
+        .keyboardActionCallout(
+            calloutContext: actionCalloutContext,
+            keyboardContext: keyboardContext,
+            style: actionCalloutStyle,
+            emojiKeyboardStyle: .standard(for: keyboardContext)
+        )
+        .keyboardInputCallout(
+            calloutContext: inputCalloutContext,
+            keyboardContext: keyboardContext,
+            style: inputCalloutStyle
+        )
+    }
+}
+
+private extension SystemKeyboard {
+    
+    var shouldShowEmojiKeyboard: Bool {
+        switch keyboardContext.keyboardType {
+        case .emojis: return true
+        default: return false
+        }
     }
 }
 
@@ -393,30 +416,31 @@ private extension SystemKeyboard {
             ).opacity(keyboardContext.prefersAutocomplete ? 1 : 0)  // Always allocate height
         }
     }
-
-    var keyboardView: some View {
-        systemKeyboard
-            .overlay(emojiKeyboardView)
-            .keyboardActionCallout(
-                calloutContext: actionCalloutContext,
-                keyboardContext: keyboardContext,
-                style: actionCalloutStyle,
-                emojiKeyboardStyle: .standard(for: keyboardContext)
-            )
-            .keyboardInputCallout(
-                calloutContext: inputCalloutContext,
-                keyboardContext: keyboardContext,
-                style: inputCalloutStyle
-            )
-    }
     
-    var emojiKeyboardView: some View {
-        let isEmoji = keyboardContext.keyboardType == .emojis
-        return emojiKeyboard.opacity(isEmoji ? 1 : 0)
+    var emojiKeyboard: some View {
+        EmojiCategoryKeyboard(
+            actionHandler: actionHandler,
+            keyboardContext: keyboardContext,
+            calloutContext: calloutContext,
+            style: .standard(for: keyboardContext),
+            styleProvider: styleProvider
+        )
+        .padding(.top)
+        .opacity(shouldShowEmojiKeyboard ? 1 : 0)
+    }
+
+    var systemKeyboard: some View {
+        VStack(spacing: 0) {
+            ForEach(Array(layout.itemRows.enumerated()), id: \.offset) {
+                items(for: layout, itemRow: $0.element)
+            }
+        }
+        .padding(styleProvider.keyboardEdgeInsets)
+        .environment(\.layoutDirection, .leftToRight)
     }
 
     var shouldAddAutocompleteToolbar: Bool {
-        if keyboardContext.keyboardType == .emojis { return false }
+        if shouldShowEmojiKeyboard { return true }
         switch autocompleteToolbarMode {
         case .automatic: return true
         case .none: return false
@@ -472,33 +496,6 @@ public extension SystemKeyboard {
 }
 
 private extension SystemKeyboard {
-
-    var emojiKeyboard: some View {
-        EmojiCategoryKeyboard(
-            actionHandler: actionHandler,
-            keyboardContext: keyboardContext,
-            calloutContext: calloutContext,
-            style: .standard(for: keyboardContext),
-            styleProvider: styleProvider
-        ).padding(.top)
-    }
-
-    var systemKeyboard: some View {
-        VStack(spacing: 0) {
-            itemRows(for: layout)
-        }
-        .padding(styleProvider.keyboardEdgeInsets)
-        .environment(\.layoutDirection, .leftToRight)
-    }
-}
-
-private extension SystemKeyboard {
-
-    func itemRows(for layout: KeyboardLayout) -> some View {
-        ForEach(Array(layout.itemRows.enumerated()), id: \.offset) {
-            items(for: layout, itemRow: $0.element)
-        }
-    }
 
     func items(for layout: KeyboardLayout, itemRow: KeyboardLayoutItem.Row) -> some View {
         HStack(spacing: 0) {

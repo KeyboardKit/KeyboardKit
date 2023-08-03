@@ -108,9 +108,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     ) -> [[String]] {
         switch context.keyboardType {
         case .alphabetic(let casing): return rows.characters(for: casing)
-        case .numeric: return rows.characters()
-        case .symbolic: return rows.characters()
-        default: return []
+        default: return rows.characters()
         }
     }
     
@@ -119,10 +117,9 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
      */
     open func inputRows(for context: KeyboardContext) -> InputSetRows {
         switch context.keyboardType {
-        case .alphabetic: return alphabeticInputSet.rows
         case .numeric: return numericInputSet.rows
         case .symbolic: return symbolicInputSet.rows
-        default: return []
+        default: return alphabeticInputSet.rows
         }
     }
     
