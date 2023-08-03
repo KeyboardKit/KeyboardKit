@@ -29,11 +29,14 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 
 ### ✨ New Features
 
-* `CalloutActionProvider.disabled` is a new `DisabledCalloutActionProvider` alias.
+* `AutocompleteActionProvider.disabled` is a new alias for `DisabledAutocompleteProvider`.
+* `CalloutActionProvider.disabled` is a new alias for `DisabledCalloutActionProvider`.
+* `DictationService.disabled` is a new alias for `DisabledDictationService`.
 * `HapticFeedbackConfiguration` has new `press` and `release` configurations.
 * `Image.keyboardShift` is a new image.
 * `InputSet` has new `English` builders.
 * `KeyboardActionHandler` has new feedback functions.
+* `KeyboardDictationService.disabled` is a new alias for `DisabledKeyboardDictationService`.
 * `KeyboardLayoutProviderProxy` has new standard functionality.
 * `KeyboardReturnKeyType` has new `continue`, `emergencyCall` and `route` types.
 * `KeyboardStyle` is a new style namespace that contains most style types.

@@ -9,8 +9,7 @@
 import SwiftUI
 
 /**
- This disabled service can be used as a placeholder when you
- don't have access to a real dictation service.
+ This service can be used to disable dictation.
  */
 public class DisabledDictationService: DictationService {
 
@@ -35,5 +34,15 @@ public extension DisabledDictationService {
 
     func stopDictation() async throws {
         throw DictationServiceError.disabledService
+    }
+}
+
+public extension DictationService where Self == DisabledDictationService {
+    
+    /// This service can be used to disable dictation.
+    static func disabled(
+        context: DictationContext
+    ) -> DictationService {
+        DisabledDictationService()
     }
 }

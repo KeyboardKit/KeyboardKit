@@ -280,11 +280,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /**
      The autocomplete provider that is used to provide users
      with autocomplete suggestions.
-     
-     > v8.0: This property will be made optional, which will
-     let us remove the `DisabledAutocompleteProvider`.
      */
-    public lazy var autocompleteProvider: AutocompleteProvider = DeprecatedAutocompleteProvider()
+    public lazy var autocompleteProvider: AutocompleteProvider = .disabled
 
     /**
      The callout action provider that is used to provide the
@@ -300,7 +297,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      The dictation service that is used to perform dictation
      operation between the keyboard and the main app.
      */
-    public lazy var dictationService: KeyboardDictationService = DisabledKeyboardDictationService(
+    public lazy var dictationService: KeyboardDictationService = .disabled(
         context: dictationContext
     )
 

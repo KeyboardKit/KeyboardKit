@@ -8,7 +8,10 @@
 
 import Foundation
 
-public class DeprecatedAutocompleteProvider: AutocompleteProvider {
+/**
+ This provider can be used to disable autocomplete.
+ */
+public class DisabledAutocompleteProvider: AutocompleteProvider {
     
     public init() {}
     
@@ -31,5 +34,10 @@ public class DeprecatedAutocompleteProvider: AutocompleteProvider {
     public func unlearnWord(_ word: String) {}
 }
 
-@available(*, deprecated, message: "The controller's autocompleteProvider will become optional in 8.0, at which this will be removed.")
-public class DisabledAutocompleteProvider: DeprecatedAutocompleteProvider {}
+public extension AutocompleteProvider where Self == DisabledAutocompleteProvider {
+    
+    /// This provider can be used to disable autocomplete.
+    static var disabled: AutocompleteProvider {
+        DisabledAutocompleteProvider()
+    }
+}

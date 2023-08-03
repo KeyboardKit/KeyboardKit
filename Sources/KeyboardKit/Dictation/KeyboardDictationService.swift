@@ -32,13 +32,10 @@ import Foundation
  The rest of the process will be automated and uses standard
  ways to handle the result when returnung to the keyboard.
 
- KeyboardKit doesn't have a standard dictation service as it
- has for other services. Instead, it uses a disabled service
- that is uses a placeholder until you register a working one.
- KeyboardKit Pro unlocks a ``StandardDictationService`` plus
- a ``StandardKeyboardDictationService`` when a valid license
- is registered and sets up the standard dictation service as
- the ``KeyboardInputViewController/dictationService``.
+ KeyboardKit doesn't have a standard service, as it does for
+ other services. You must either implement a service, or use
+ KeyboardKit Pro, which will automatically unlock a standard
+ service when a Gold license key is registered.
  */
 public protocol KeyboardDictationService: AnyObject {
 

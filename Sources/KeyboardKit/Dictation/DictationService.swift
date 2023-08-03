@@ -25,13 +25,11 @@ import SwiftUI
 
  Services should call ``requestDictationAuthorization()`` to
  request the required permissions before stating a dictation.
-
- KeyboardKit does not have a standard service as it does for
- other services, but has a ``DisabledDictationService`` that
- you can use as a placeholder.
-
- KeyboardKit Pro unlocks a ``StandardDictationService`` when
- a valid license is registered.
+ 
+ KeyboardKit doesn't have a standard service, as it does for
+ other services. You must either implement a service, or use
+ KeyboardKit Pro, which will automatically unlock a standard
+ service when a Gold license key is registered.
  */
 public protocol DictationService: AnyObject {
 

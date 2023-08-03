@@ -114,6 +114,8 @@ KeyboardKit is available under the MIT license.
 - ``AutocompleteToolbarSeparator``
 - ``PrefersAutocompleteResolver``
 
+- ``DisabledCalloutActionProvider``
+
 ### Callouts
 
 - ``ActionCallout``
@@ -145,10 +147,11 @@ KeyboardKit is available under the MIT license.
 - ``DictationContext``
 - ``DictationService``
 - ``DictationServiceError``
-- ``DisabledDictationService``
-- ``DisabledKeyboardDictationService``
 - ``KeyboardDictationConfiguration``
 - ``KeyboardDictationService``
+
+- ``DisabledDictationService``
+- ``DisabledKeyboardDictationService``
 
 ### Emojis
 
