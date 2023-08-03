@@ -2,11 +2,14 @@
 //  KeyboardStyle+Button.swift
 //  KeyboardKit
 //
-//  Created by Daniel Saidi on 2021-09-02.
-//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
+//  Created by Daniel Saidi on 2023-08-03.
+//  Copyright © 2023 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI
+
+
+// MARK: - Styles
 
 public extension KeyboardStyle {
     
@@ -53,29 +56,19 @@ public extension KeyboardStyle {
         public typealias BorderStyle = KeyboardStyle.ButtonBorder
         public typealias ShadowStyle = KeyboardStyle.ButtonShadow
         
-        /**
-         The background color to apply to the button.
-         */
+        /// The background color to apply to the button.
         public var backgroundColor: Color?
         
-        /**
-         The border color to apply to the button.
-         */
+        /// The border color to apply to the button.
         public var foregroundColor: Color?
         
-        /**
-         The font to apply to the button.
-         */
+        /// The font to apply to the button.
         public var font: KeyboardFont?
         
-        /**
-         The corner radius to apply to the button.
-         */
+        /// The corner radius to apply to the button.
         public var cornerRadius: CGFloat?
         
-        /**
-         The border color to apply to the button.
-         */
+        /// The border color to apply to the button.
         public var borderColor: Color? {
             didSet {
                 guard borderColor != nil, borderSize == nil else { return }
@@ -83,9 +76,7 @@ public extension KeyboardStyle {
             }
         }
         
-        /**
-         The border style to apply to the button.
-         */
+        /// The border style to apply to the button.
         public var border: BorderStyle? {
             get {
                 guard let borderSize, let borderColor else { return nil }
@@ -96,9 +87,7 @@ public extension KeyboardStyle {
             }
         }
         
-        /**
-         The border size to apply to the button.
-         */
+        /// The border size to apply to the button.
         public var borderSize: CGFloat? {
             didSet {
                 guard borderSize != nil, borderColor == nil else { return }
@@ -106,9 +95,7 @@ public extension KeyboardStyle {
             }
         }
         
-        /**
-         The shadow color to apply to the button.
-         */
+        /// The shadow color to apply to the button.
         public var shadowColor: Color? {
             didSet {
                 guard shadowColor != nil, shadowSize == nil else { return }
@@ -116,9 +103,7 @@ public extension KeyboardStyle {
             }
         }
         
-        /**
-         The shadow size to apply to the button.
-         */
+        /// The shadow size to apply to the button.
         public var shadowSize: CGFloat? {
             didSet {
                 guard shadowSize != nil, shadowColor == nil else { return }
@@ -126,9 +111,7 @@ public extension KeyboardStyle {
             }
         }
         
-        /**
-         The shadow style to apply to the button.
-         */
+        /// The shadow style to apply to the button.
         public var shadow: ShadowStyle? {
             get {
                 guard let shadowSize, let shadowColor else { return nil }
@@ -139,10 +122,68 @@ public extension KeyboardStyle {
             }
         }
         
-        /**
-         The color to overlay the background color when pressed.
-         */
+        /// The color to apply when the button is pressed.
         public var pressedOverlayColor: Color?
+    }
+    
+    /**
+     This style defines the border of a keyboard button.
+     
+     The ``standard`` style value can be used to get and set
+     the global default style.
+     */
+    struct ButtonBorder: Codable, Equatable {
+        
+        /**
+         Create a system keyboard button border style.
+         
+         - Parameters:
+           - color: The color of the border, by default `.clear`.
+           - size: The size of the border, by default `0`.
+         */
+        public init(
+            color: Color = .clear,
+            size: CGFloat = 0
+        ) {
+            self.color = color
+            self.size = size
+        }
+        
+        /// The color of the border.
+        public var color: Color
+        
+        /// The size of the border.
+        public var size: CGFloat
+    }
+    
+    /**
+     This style defines the shadow of a keyboard button.
+     
+     The ``standard`` style value can be used to get and set
+     the global default style.
+     */
+    struct ButtonShadow: Codable, Equatable {
+        
+        /**
+         Create a system keyboard button shadow style.
+         
+         - Parameters:
+           - color: The color of the shadow, by default `.standardButtonShadow`.
+           - size: The size of the shadow, by default `1`.
+         */
+        public init(
+            color: Color = .standardButtonShadow,
+            size: CGFloat = 1
+        ) {
+            self.color = color
+            self.size = size
+        }
+        
+        /// The color of the shadow.
+        public var color: Color
+        
+        /// The size of the shadow.
+        public var size: CGFloat
     }
 }
 
@@ -177,11 +218,44 @@ public extension KeyboardStyle.Button {
     )
 }
 
+
+// MARK: - Standard Styles
+
+public extension KeyboardStyle.ButtonBorder {
+    
+    /**
+     This style applies no border.
+     */
+    static var noBorder = Self()
+    
+    /**
+     The standard button border style.
+
+     This can be changed to affect the global, default style.
+     */
+    static var standard = Self()
+}
+
+public extension KeyboardStyle.ButtonShadow {
+    
+    /**
+     This style applies no shadow.
+     */
+    static var noShadow = Self(color: .clear)
+    
+    /**
+     The standard button shadow style.
+
+     This can be changed to affect the global, default style.
+     */
+    static var standard = Self()
+}
+
+
+// MARK: - Preview Styles
+
 extension KeyboardStyle.Button {
 
-    /**
-     This internal style is only used in previews.
-     */
     static let preview1 = Self(
         backgroundColor: .yellow,
         foregroundColor: .white,
@@ -191,9 +265,6 @@ extension KeyboardStyle.Button {
         shadow: .previewStyle1
     )
 
-    /**
-     This internal style is only used in previews.
-     */
     static let preview2 = Self(
         backgroundColor: .purple,
         foregroundColor: .yellow,
@@ -201,5 +272,31 @@ extension KeyboardStyle.Button {
         cornerRadius: 10,
         border: .previewStyle2,
         shadow: .previewStyle2
+    )
+}
+
+extension KeyboardStyle.ButtonBorder {
+    
+    static let previewStyle1 = Self(
+        color: .red,
+        size: 3
+    )
+    
+    static let previewStyle2 = Self(
+        color: .blue,
+        size: 5
+    )
+}
+
+extension KeyboardStyle.ButtonShadow {
+    
+    static let previewStyle1 = Self(
+        color: .blue,
+        size: 4
+    )
+    
+    static let previewStyle2 = Self(
+        color: .green,
+        size: 8
     )
 }

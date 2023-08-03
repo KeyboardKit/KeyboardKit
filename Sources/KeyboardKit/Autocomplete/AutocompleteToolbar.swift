@@ -36,7 +36,7 @@ public struct AutocompleteToolbar<ItemView: View, SeparatorView: View>: View {
     public init(
         suggestions: [AutocompleteSuggestion],
         locale: Locale,
-        style: AutocompleteToolbarStyle = .standard,
+        style: Style = .standard,
         itemView: @escaping ItemViewBuilder,
         separatorView: @escaping SeparatorViewBuilder,
         suggestionAction: @escaping SuggestionAction
@@ -49,9 +49,11 @@ public struct AutocompleteToolbar<ItemView: View, SeparatorView: View>: View {
         self.suggestionAction = suggestionAction
     }
     
+    public typealias Style = KeyboardStyle.AutocompleteToolbar
+    
     private let items: [BarItem]
     private let locale: Locale
-    private let style: AutocompleteToolbarStyle
+    private let style: Style
     private let suggestionAction: SuggestionAction
     private let itemView: ItemViewBuilder
     private let separatorView: SeparatorViewBuilder
@@ -67,13 +69,13 @@ public struct AutocompleteToolbar<ItemView: View, SeparatorView: View>: View {
      This typealias represents the action block that is used
      to create autocomplete item views.
      */
-    public typealias ItemViewBuilder = (AutocompleteSuggestion, AutocompleteToolbarStyle, Locale) -> ItemView
+    public typealias ItemViewBuilder = (AutocompleteSuggestion, Style, Locale) -> ItemView
     
     /**
      This typealias represents the action block that is used
      to create autocomplete item separator views.
      */
-    public typealias SeparatorViewBuilder = (AutocompleteSuggestion, AutocompleteToolbarStyle) -> SeparatorView
+    public typealias SeparatorViewBuilder = (AutocompleteSuggestion, Style) -> SeparatorView
     
     
     /**
@@ -116,7 +118,7 @@ public extension AutocompleteToolbar where ItemView == AutocompleteToolbarItem {
     init(
         suggestions: [AutocompleteSuggestion],
         locale: Locale,
-        style: AutocompleteToolbarStyle = .standard,
+        style: Style = .standard,
         separatorView: @escaping SeparatorViewBuilder,
         suggestionAction: @escaping SuggestionAction
     ) {
@@ -133,7 +135,7 @@ public extension AutocompleteToolbar where ItemView == AutocompleteToolbarItem {
      */
     static func standardItemView(
         suggestion: AutocompleteSuggestion,
-        style: AutocompleteToolbarStyle,
+        style: Style,
         locale: Locale
     ) -> AutocompleteToolbarItem {
         AutocompleteToolbarItem(
@@ -159,7 +161,7 @@ public extension AutocompleteToolbar where SeparatorView == AutocompleteToolbarS
     init(
         suggestions: [AutocompleteSuggestion],
         locale: Locale,
-        style: AutocompleteToolbarStyle = .standard,
+        style: Style = .standard,
         itemView: @escaping ItemViewBuilder,
         suggestionAction: @escaping SuggestionAction
     ) {
@@ -176,7 +178,7 @@ public extension AutocompleteToolbar where SeparatorView == AutocompleteToolbarS
      */
     static func standardSeparatorView(
         suggestion: AutocompleteSuggestion,
-        style: AutocompleteToolbarStyle
+        style: Style
     ) -> AutocompleteToolbarSeparator {
         AutocompleteToolbarSeparator(style: style.separator)
     }
@@ -197,7 +199,7 @@ public extension AutocompleteToolbar where ItemView == AutocompleteToolbarItem, 
     init(
         suggestions: [AutocompleteSuggestion],
         locale: Locale,
-        style: AutocompleteToolbarStyle = .standard,
+        style: Style = .standard,
         suggestionAction: @escaping SuggestionAction
     ) {
         self.items = suggestions.map { BarItem($0) }
@@ -216,8 +218,8 @@ private extension AutocompleteToolbar {
             itemView(suggestion, style, locale)
                 .padding(.horizontal, 4)
                 .padding(.vertical, 10)
-                .background(suggestion.isAutocorrect ? style.autocompleteBackground.color : Color.clearInteractable)
-                .cornerRadius(style.autocompleteBackground.cornerRadius)
+                .background(suggestion.isAutocorrect ? style.autocorrectBackground.color : Color.clearInteractable)
+                .cornerRadius(style.autocorrectBackground.cornerRadius)
         }).buttonStyle(.plain)
     }
 }
@@ -280,7 +282,7 @@ struct AutocompleteToolbar_Previews: PreviewProvider {
         .padding()
     }
     
-    static func previewItem(for suggestion: AutocompleteSuggestion, style: AutocompleteToolbarStyle, locale: Locale) -> some View {
+    static func previewItem(for suggestion: AutocompleteSuggestion, style: KeyboardStyle.AutocompleteToolbar, locale: Locale) -> some View {
         HStack {
             Spacer()
             VStack(spacing: 4) {

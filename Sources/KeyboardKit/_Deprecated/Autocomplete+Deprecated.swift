@@ -28,3 +28,39 @@ public extension AutocompleteSuggestion {
     @available(*, deprecated, renamed: "isAutocorrect")
     var isAutocomplete: Bool { isAutocorrect }
 }
+
+@available(*, deprecated, renamed: "KeyboardStyle.AutocompleteToolbar")
+public typealias AutocompleteToolbarStyle = KeyboardStyle.AutocompleteToolbar
+
+public extension KeyboardStyle.AutocompleteToolbar {
+    
+    @available(*, deprecated, message: "autocompleteBackground has been renamed to autocorrectBackground.")
+    init(
+        height: CGFloat? = 50,
+        item: KeyboardStyle.AutocompleteToolbarItem = .standard,
+        separator: KeyboardStyle.AutocompleteToolbarSeparator = .standard,
+        autocompleteBackground: KeyboardStyle.AutocompleteToolbarItemBackground
+    ) {
+        self.init(
+            height: height,
+            item: item,
+            separator: separator,
+            autocorrectBackground: autocompleteBackground
+        )
+    }
+
+    @available(*, deprecated, renamed: "autocorrectBackground")
+    var autocompleteBackground: KeyboardStyle.AutocompleteToolbarItemBackground {
+        get { autocorrectBackground }
+        set { autocorrectBackground = newValue }
+    }
+}
+
+@available(*, deprecated, renamed: "KeyboardStyle.AutocompleteToolbarItem")
+public typealias AutocompleteToolbarItemStyle = KeyboardStyle.AutocompleteToolbarItem
+
+@available(*, deprecated, renamed: "KeyboardStyle.AutocompleteToolbarItemBackground")
+public typealias AutocompleteToolbarItemBackgroundStyle = KeyboardStyle.AutocompleteToolbarItemBackground
+
+@available(*, deprecated, renamed: "KeyboardStyle.AutocompleteToolbarSeparator")
+public typealias AutocompleteToolbarSeparatorStyle = KeyboardStyle.AutocompleteToolbarSeparator

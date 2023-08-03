@@ -23,12 +23,12 @@ public struct AutocompleteToolbarItemTitle: View {
      - Parameters:
        - suggestions: The suggestion to display in the view.
        - locale: The locale to use to resolve quotation.
-       - style: The style to apply to the text, by default ``AutocompleteToolbarItemStyle/standard``.
+       - style: The style to apply to the text, by default `.standard`.
      */
     public init(
         suggestion: AutocompleteSuggestion,
         locale: Locale,
-        style: AutocompleteToolbarItemStyle = .standard
+        style: KeyboardStyle.AutocompleteToolbarItem = .standard
     ) {
         self.suggestion = suggestion
         self.style = style
@@ -37,7 +37,7 @@ public struct AutocompleteToolbarItemTitle: View {
 
     private let suggestion: AutocompleteSuggestion
     private let locale: Locale
-    private let style: AutocompleteToolbarItemStyle
+    private let style: KeyboardStyle.AutocompleteToolbarItem
         
     public var body: some View {
         Text(displayTitle)

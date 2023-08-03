@@ -112,13 +112,9 @@ KeyboardKit is available under the MIT license.
 - ``AutocompleteSuggestion``
 - ``AutocompleteToolbar``
 - ``AutocompleteToolbarItem``
-- ``AutocompleteToolbarItemBackgroundStyle``
-- ``AutocompleteToolbarItemStyle``
 - ``AutocompleteToolbarItemSubtitle``
 - ``AutocompleteToolbarItemTitle``
 - ``AutocompleteToolbarSeparator``
-- ``AutocompleteToolbarSeparatorStyle``
-- ``AutocompleteToolbarStyle``
 - ``DisabledAutocompleteProvider``
 - ``PrefersAutocompleteResolver``
 

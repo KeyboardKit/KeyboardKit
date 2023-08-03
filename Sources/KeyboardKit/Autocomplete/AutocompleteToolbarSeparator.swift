@@ -18,13 +18,15 @@ public struct AutocompleteToolbarSeparator: View {
      Create an autocomplete toolbar item separator.
      
      - Parameters:
-       - style: The style to apply to the separator line, by default ``AutocompleteToolbarSeparatorStyle/standard``.
+       - style: The style to apply to the separator line, by default `.standard`.
      */
-    public init(style: AutocompleteToolbarSeparatorStyle = .standard) {
+    public init(style: Style = .standard) {
         self.style = style
     }
     
-    private let style: AutocompleteToolbarSeparatorStyle
+    public typealias Style = KeyboardStyle.AutocompleteToolbarSeparator
+    
+    private let style: Style
     
     public var body: some View {
         style.color

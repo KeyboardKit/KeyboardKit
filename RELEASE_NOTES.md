@@ -59,6 +59,10 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `AutocompleteCompletion` has been deprecated.
 * `AutocompleteResult` has been deprecated.
 * `AutocompleteSuggestion.isAutocomplete` has been renamed to `isAutocorrect`.
+* `AutocompleteToolbarStyle` has been renamed to `KeyboardStyle.AutocompleteToolbarItem`.
+* `AutocompleteToolbarItemStyle` has been renamed to `KeyboardStyle.AutocompleteToolbarItem`.
+* `AutocompleteToolbarItemBackgroundStyle` has been renamed to `KeyboardStyle.AutocompleteToolbarItemBackground`.
+* `AutocompleteToolbarSeparatorStyle` has been renamed to `KeyboardStyle.AutocompleteSeparator`.
 * `EnglishInputSetProvider` has been deprecated.
 * `InputSetProvider` has been deprecated.
 * `InputSetProviderBased` has been deprecated.

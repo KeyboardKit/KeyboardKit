@@ -24,21 +24,23 @@ public struct AutocompleteToolbarItem: View {
      - Parameters:
        - suggestion: The suggestion to display in the view.
        - locale: The locale to use to resolve quotation.
-       - style: The style to apply to the item, by default ``AutocompleteToolbarItemStyle/standard``.
+       - style: The style to apply to the item, by default `.standard`.
      */
     public init(
         suggestion: AutocompleteSuggestion,
         locale: Locale,
-        style: AutocompleteToolbarItemStyle = .standard
+        style: Style = .standard
     ) {
         self.suggestion = suggestion
         self.locale = locale
         self.style = style
     }
     
+    public typealias Style = KeyboardStyle.AutocompleteToolbarItem
+    
     private let suggestion: AutocompleteSuggestion
     private let locale: Locale
-    private let style: AutocompleteToolbarItemStyle
+    private let style: Style
         
     public var body: some View {
         VStack(spacing: 0) {

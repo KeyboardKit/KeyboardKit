@@ -21,18 +21,20 @@ public struct AutocompleteToolbarItemSubtitle: View {
      
      - Parameters:
        - text: The text to display in the view.
-       - style: The style to apply to the text, by default ``AutocompleteToolbarItemStyle/standard``.
+       - style: The style to apply to the text, by default `.standard`.
      */
     public init(
         text: String,
-        style: AutocompleteToolbarItemStyle = .standard
+        style: Style = .standard
     ) {
         self.text = text
         self.style = style
     }
     
+    public typealias Style = KeyboardStyle.AutocompleteToolbarItem
+    
     private let text: String
-    private let style: AutocompleteToolbarItemStyle
+    private let style: Style
         
     public var body: some View {
         Text(text)
@@ -69,7 +71,8 @@ struct AutocompleteToolbarItemSubtitle_Previews: PreviewProvider {
     
     static func previewSubtitle(
         for suggestion: AutocompleteSuggestion,
-        style: AutocompleteToolbarItemStyle) -> some View {
+        style: KeyboardStyle.AutocompleteToolbarItem
+    ) -> some View {
         AutocompleteToolbarItemSubtitle(
             text: suggestion.subtitle ?? "",
             style: style

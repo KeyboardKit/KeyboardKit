@@ -153,7 +153,7 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     // MARK: - Autocomplete
 
     /// The style to apply to ``AutocompleteToolbar`` views.
-    public var autocompleteToolbarStyle: AutocompleteToolbarStyle {
+    public var autocompleteToolbarStyle: KeyboardStyle.AutocompleteToolbar {
         return .standard
     }
 

@@ -88,5 +88,5 @@ public protocol KeyboardStyleProvider: AnyObject {
     /**
      The style to use for ``AutocompleteToolbar`` views.
      */
-    var autocompleteToolbarStyle: AutocompleteToolbarStyle { get }
+    var autocompleteToolbarStyle: KeyboardStyle.AutocompleteToolbar { get }
 }
