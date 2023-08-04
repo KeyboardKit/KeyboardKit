@@ -205,7 +205,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         case .alphabetic(let casing): return .shift(currentCasing: casing)
         case .numeric: return .keyboardType(.symbolic)
         case .symbolic: return .keyboardType(.numeric)
-        default: return nil
+        default: return .shift(currentCasing: .lowercased)
         }
     }
     
@@ -218,7 +218,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         case .alphabetic: return .keyboardType(.numeric)
         case .numeric: return .keyboardType(.alphabetic(.auto))
         case .symbolic: return .keyboardType(.alphabetic(.auto))
-        default: return nil
+        default: return .keyboardType(.numeric)
         }
     }
 }

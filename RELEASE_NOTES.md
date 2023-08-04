@@ -52,6 +52,7 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `KeyboardActionHandler` has a new `triggerFeedback(for:on:)` function. 
 * `SpaceCursorDragGestureHandler` no longer needs a feedback handler.
 * `StandardKeyboardLayoutProvider` no longer requires an input set provider.
+* `SystemKeyboardLayoutProvider` now returns switcher actions for all keyboard types. 
 
 ### 👑 Pro Adjustments
 
@@ -59,6 +60,11 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `InputSet` has new throwing properties for the localized input sets.
 * `ProInputSetProvider` and all its locale-specific types have been deprecated. 
 * `ProKeyboardLayoutProvider` and all its locale-specific types use input sets instead of providers.
+
+### 🐛 Bug fixes
+
+* `EmojiCategoryKeyboard` no longer requires two gestures when it's presented by the `SystemKeyboard`. This was strangely enough fixed by the `SystemKeyboardLayoutProvider` adjustment.
+
 
 ### 🗑️ Deprecations
 
