@@ -9,12 +9,18 @@
 import Foundation
 import SwiftUI
 
+/// This controller can be used in SwiftUI previews.
+class PreviewKeyboardInputViewController: KeyboardInputViewController {
+    
+    override func viewWillRegisterSharedController() {}
+}
+
 #if os(iOS) || os(tvOS)
 public extension KeyboardInputViewController {
 
     /// This controller can be used in SwiftUI previews.
     static var preview: KeyboardInputViewController {
-        KeyboardInputViewController()
+        PreviewKeyboardInputViewController()
     }
 }
 #endif

@@ -10,19 +10,10 @@ import SwiftUI
  */
 public enum KeyboardBackgroundType: Codable, Equatable {
 
-    /// DEPRECATED
     case none
-
-    /// DEPRECATED
     case clear
-
-    /// DEPRECATED
     case color(Color)
-
-    /// DEPRECATED
     case image(Data)
-
-    /// DEPRECATED
     case verticalGradient([Color])
 }
 

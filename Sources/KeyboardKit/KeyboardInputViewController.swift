@@ -51,8 +51,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         super.viewDidLoad()
         setupInitialWidth()
         setupLocaleObservation()
-        setupNextKeyboardBehavior()
-        KeyboardUrlOpener.shared.controller = self
+        viewWillRegisterSharedController()
     }
 
     open override func viewWillAppear(_ animated: Bool) {
@@ -93,6 +92,15 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
                 }
             }
         }
+    }
+    
+    /**
+     This function is called when the controller is about to
+     register itself as the shared controller.
+     */
+    open func viewWillRegisterSharedController() {
+        NextKeyboardController.shared = self
+        KeyboardUrlOpener.shared.controller = self
     }
 
     /**
@@ -589,13 +597,6 @@ private extension KeyboardInputViewController {
             self.primaryLanguage = locale.identifier
             self.autocompleteProvider.locale = locale
         }.store(in: &cancellables)
-    }
-
-    /**
-     Set up the standard next keyboard button behavior.
-     */
-    func setupNextKeyboardBehavior() {
-        NextKeyboardController.shared = self
     }
 
     func tryChangeToPreferredKeyboardTypeAfterTextDidChange() {

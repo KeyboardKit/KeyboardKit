@@ -22,8 +22,7 @@ import Foundation
  must handle double taps to switch to caps lock. Due to this,
  it must not switch to the preferred keyboard, but must also
  always try to do so. This behavior is tested to ensure that
- it is behaving as it should, although it may be hard to see
- why the code is the way it is.
+ it is behaving as it should.
  */
 open class StandardKeyboardBehavior: KeyboardBehavior {
 
@@ -62,14 +61,17 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     public let repeatGestureTimer: RepeatGestureTimer
 
 
+    /// An internal state to keep track of shift checks.
     var lastShiftCheck = Date()
+    
+    /// An internal state to keep track of the last space tap.
     var lastSpaceTap = Date()
     
     
     /**
-    The range that the backspace key should delete when the
-    key is long pressed.
-    */
+     The range that the backspace key should delete when the
+     key is long pressed.
+     */
     public var backspaceRange: KeyboardBackspaceRange {
         let duration = repeatGestureTimer.duration ?? 0
         return duration > 3 ? .word : .character

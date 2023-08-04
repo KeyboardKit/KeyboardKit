@@ -38,6 +38,7 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `KeyboardActionHandler` has new feedback functions.
 * `KeyboardDictationService.disabled` is a new alias for `DisabledKeyboardDictationService`.
 * `KeyboardFeedbackSettings` has new enabled and disabled configurations.
+* `KeyboardInputViewController` has new view lifecycle functions for registering and unregistering as the shared controller. 
 * `KeyboardLayoutProviderProxy` has new standard functionality.
 * `KeyboardReturnKeyType` has new `continue`, `emergencyCall` and `route` types.
 * `KeyboardStyle` is a new style namespace that contains most style types.
