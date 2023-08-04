@@ -103,6 +103,7 @@ public struct EmojiKeyboard<ButtonView: View>: View {
         }
         .padding(.horizontal)
         .frame(height: style.totalHeight - 8)
+        .background(Color.clearInteractable)
     }
 }
 

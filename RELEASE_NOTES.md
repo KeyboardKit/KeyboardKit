@@ -64,7 +64,7 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 ### 🐛 Bug fixes
 
 * `EmojiCategoryKeyboard` no longer requires two gestures when it's presented by the `SystemKeyboard`. This was strangely enough fixed by the `SystemKeyboardLayoutProvider` adjustment.
-
+* `EmojiCategoryKeyboard` now applies an interactable background to the grid, to make scrolling work even where there are no emojis.
 
 ### 🗑️ Deprecations
 
