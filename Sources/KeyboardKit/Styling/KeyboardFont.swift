@@ -11,6 +11,9 @@ import SwiftUI
 /**
  This codable struct represents a font and is used to define
  fonts in `Codable` types.
+ 
+ > 8.0: This type will be replaced by the `FontType` in v8.0,
+ since the font will no longer be used to apply a weight.
  */
 public struct KeyboardFont: Codable, Equatable {
 

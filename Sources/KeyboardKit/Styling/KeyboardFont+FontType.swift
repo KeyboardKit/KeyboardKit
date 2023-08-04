@@ -13,6 +13,9 @@ public extension KeyboardFont {
     /**
      This enum defines various keyboard font types and makes
      it possible to use fonts in `Codable` types.
+     
+     > 8.0: This type will replace the `KeyboardFont` struct,
+     since the font will no longer be used to apply a weight.
      */
     enum FontType: Codable, Equatable {
         
