@@ -19,7 +19,7 @@ public extension KeyboardContext {
         if keyboardType.isAlphabetic(.capsLocked) { return keyboardType }
         if let type = preferredAutocapitalizedKeyboardType { return type }
         if let type = preferredKeyboardTypeAfterAlphaTyping { return type }
-        if let type = preferredKeyboardTypeAfterNonAlphaSpace { return type }
+        if let type = preferredKeyboardTypeAfterNumericOrSymbolicSpaceOrReturn { return type }
         return keyboardType
     }
 }
@@ -27,10 +27,16 @@ public extension KeyboardContext {
 private extension KeyboardContext {
     
     var preferredAutocapitalizedKeyboardType: KeyboardType? {
+        preferredAutocapitalizedKeyboardType(requiresAlphabetic: true)
+    }
+    
+    func preferredAutocapitalizedKeyboardType(
+        requiresAlphabetic: Bool
+    ) -> KeyboardType? {
         #if os(iOS) || os(tvOS)
         guard isAutoCapitalizationEnabled else { return nil }
         guard let proxyType = autocapitalizationType else { return nil }
-        guard keyboardType.isAlphabetic else { return nil }
+        if requiresAlphabetic && !keyboardType.isAlphabetic { return nil }
         let uppercased = KeyboardType.alphabetic(.uppercased)
         let lowercased = KeyboardType.alphabetic(.lowercased)
         if locale.isRightToLeft { return lowercased }
@@ -54,13 +60,14 @@ private extension KeyboardContext {
         #endif
     }
     
-    var preferredKeyboardTypeAfterNonAlphaSpace: KeyboardType? {
+    var preferredKeyboardTypeAfterNumericOrSymbolicSpaceOrReturn: KeyboardType? {
         #if os(iOS) || os(tvOS)
         guard keyboardType == .numeric || keyboardType == .symbolic else { return nil }
         guard let before = textDocumentProxy.documentContextBeforeInput else { return nil }
-        guard before.hasSuffix(" ") && !before.hasSuffix("  ") else { return nil }
-        keyboardType = .alphabetic(.lowercased)
-        return preferredAutocapitalizedKeyboardType
+        let preferred = preferredAutocapitalizedKeyboardType(requiresAlphabetic: false)
+        if before.hasSuffix(" ") && !before.hasSuffix("  ") { return preferred }
+        if before.hasSuffix("\n") && before.isLastSentenceEnded { return preferred }
+        return nil
         #else
         nil
         #endif

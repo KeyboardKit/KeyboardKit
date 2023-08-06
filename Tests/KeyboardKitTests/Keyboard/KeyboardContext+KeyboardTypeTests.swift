@@ -112,6 +112,8 @@ class KeyboardContext_KeyboardTypeTests: XCTestCase {
         XCTAssertEqual(result(for: .symbolic, preCursorPart: "foo, ", type: .sentences), .alphabetic(.lowercased))
         XCTAssertEqual(result(for: .symbolic, preCursorPart: "foo. ", type: .sentences), .alphabetic(.uppercased))
         XCTAssertEqual(result(for: .numeric, preCursorPart: "#€% ", type: .sentences), .alphabetic(.lowercased))
+        XCTAssertEqual(result(for: .numeric, preCursorPart: ".\n", type: .sentences), .alphabetic(.uppercased))
+        XCTAssertEqual(result(for: .numeric, preCursorPart: "!\n", type: .sentences), .alphabetic(.uppercased))
     }
 }
 #endif

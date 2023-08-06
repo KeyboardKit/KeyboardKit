@@ -73,10 +73,10 @@ class SystemKeyboardLayoutProviderTests: XCTestCase {
         XCTAssertEqual(rows.characters(), [[",", ".", "-"]])
     }
 
-    func testInputsForContextReturnsEmptyRowsForUnsupportedKeybardType() {
+    func testInputsForContextReturnsAlphabeticInputSetForUnsupportedKeybardType() {
         context.keyboardType = .emojis
         let rows = provider.inputRows(for: context)
-        XCTAssertEqual(rows.characters(), [])
+        XCTAssertEqual(rows.characters(), [["a", "b", "c"]])
     }
 
 
@@ -98,13 +98,13 @@ class SystemKeyboardLayoutProviderTests: XCTestCase {
     func testKeyboardSwitcherActionForBottomInputRowIsShiftForLowercasedAlphabetic() {
         context.keyboardType = .alphabetic(.lowercased)
         let result = provider.keyboardSwitchActionForBottomInputRow(for: context)
-        XCTAssertEqual(result, KeyboardAction.shift(currentCasing: .lowercased))
+        XCTAssertEqual(result, .shift(currentCasing: .lowercased))
     }
 
     func testKeyboardSwitcherActionForBottomInputRowIsShiftForUppercasedAlphabetic() {
         context.keyboardType = .alphabetic(.uppercased)
         let result = provider.keyboardSwitchActionForBottomInputRow(for: context)
-        XCTAssertEqual(result, KeyboardAction.shift(currentCasing: .uppercased))
+        XCTAssertEqual(result, .shift(currentCasing: .uppercased))
     }
 
     func testKeyboardSwitcherActionForBottomInputRowIsShiftForNumeric() {
@@ -119,40 +119,40 @@ class SystemKeyboardLayoutProviderTests: XCTestCase {
         XCTAssertEqual(result, .keyboardType(.numeric))
     }
 
-    func testKeyboardSwitcherActionForBottomInputRowIsNilForUnsupportedKeybardType() {
+    func testKeyboardSwitcherActionForBottomInputRowIsShiftForUnsupportedKeybardType() {
         context.keyboardType = .emojis
-        let rows = provider.inputRows(for: context)
-        XCTAssertEqual(rows.characters(), [])
+        let result = provider.keyboardSwitchActionForBottomInputRow(for: context)
+        XCTAssertEqual(result, .shift(currentCasing: .lowercased))
     }
 
 
-    func testKeyboardSwitcherActionForBottomRowIsShiftForForLowercasedAlphabetic() {
+    func testKeyboardSwitcherActionForBottomRowIsShiftForLowercasedAlphabetic() {
         context.keyboardType = .alphabetic(.lowercased)
         let result = provider.keyboardSwitchActionForBottomRow(for: context)
         XCTAssertEqual(result, .keyboardType(.numeric))
     }
 
-    func testKeyboardSwitcherActionForBottomRowIsShiftForForUppercasedAlphabetic() {
+    func testKeyboardSwitcherActionForBottomRowIsShiftForUppercasedAlphabetic() {
         context.keyboardType = .alphabetic(.uppercased)
         let result = provider.keyboardSwitchActionForBottomRow(for: context)
         XCTAssertEqual(result, .keyboardType(.numeric))
     }
 
-    func testKeyboardSwitcherActionForBottomRowIsShiftForForNumeric() {
+    func testKeyboardSwitcherActionForBottomRowIsShiftForNumeric() {
         context.keyboardType = .numeric
         let result = provider.keyboardSwitchActionForBottomRow(for: context)
         XCTAssertEqual(result, .keyboardType(.alphabetic(.auto)))
     }
 
-    func testKeyboardSwitcherActionForBottomRowIsShiftForForSymbolic() {
+    func testKeyboardSwitcherActionForBottomRowIsShiftForSymbolic() {
         context.keyboardType = .symbolic
         let result = provider.keyboardSwitchActionForBottomRow(for: context)
         XCTAssertEqual(result, .keyboardType(.alphabetic(.auto)))
     }
 
-    func testKeyboardSwitcherActionForBottomRowIsNilForUnsupportedKeybardType() {
+    func testKeyboardSwitcherActionForBottomRowIsShiftForUnsupportedKeybardType() {
         context.keyboardType = .emojis
-        let rows = provider.inputRows(for: context)
-        XCTAssertEqual(rows.characters(), [])
+        let result = provider.keyboardSwitchActionForBottomRow(for: context)
+        XCTAssertEqual(result, .keyboardType(.numeric))
     }
 }
