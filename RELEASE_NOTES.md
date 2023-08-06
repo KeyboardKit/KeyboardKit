@@ -59,7 +59,9 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `InputSet` has new input sets for some locales.
 * `InputSet` has new throwing properties for the localized input sets.
 * `ProInputSetProvider` and all its locale-specific types have been deprecated. 
-* `ProKeyboardLayoutProvider` and all its locale-specific types use input sets instead of providers.
+* `ProKeyboardLayoutProvider` and all localized subclasses use input sets instead of providers.
+* `ProKeyboardLayoutProvider` and all localized subclasses can now be provided with custom input sets.
+* `KeyboardThemeAppearance` has a been renamed to `ThemeBasedKeyboardStyleProvider`.
 
 ### 🐛 Bug fixes
 
@@ -71,8 +73,6 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `AudioFeedbackConfiguration.noFeedback` has a been renamed to `.disabled`.
 * `AudioFeedbackConfiguration.standard` is replaced by `.enabled`.
 * `ActionCalloutContext` has been renamed to `KeyboardCalloutContext.ActionContext`.
-* `AutocompleteCompletion` has been deprecated.
-* `AutocompleteResult` has been deprecated.
 * `AutocompleteSpaceState` has been deprecated.
 * `AutocompleteSuggestion.isAutocomplete` has been renamed to `isAutocorrect`.
 * `AutocompleteToolbarStyle` has been renamed to `KeyboardStyle.AutocompleteToolbarItem`.

@@ -1,11 +1,5 @@
 import Foundation
 
-@available(*, deprecated, message: "This will be removed in KeyboardKit 8.0. Until then, use AutocompleteProvider.CompletionResult.")
-public typealias AutocompleteCompletion = (AutocompleteResult) -> Void
-
-@available(*, deprecated, message: "This will be removed in KeyboardKit 8.0. Until then, use AutocompleteProvider.Completion.")
-public typealias AutocompleteResult = Result<[AutocompleteSuggestion], Error>
-
 public extension AutocompleteSuggestion {
     
     @available(*, deprecated, message: "isAutocomplete has been renamed to isAutocorrect")

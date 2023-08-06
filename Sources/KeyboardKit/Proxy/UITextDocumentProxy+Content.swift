@@ -16,9 +16,10 @@ public extension UITextDocumentProxy {
 
      Note that for longer texts, this will most often not be
      the full content, since keyboard extensions get limited
-     text back from the proxy. KeyboardKit Pro unlocks a way
-     to read the full document context, so have a look at it
-     if you need this functionality.
+     text back from the proxy.
+     
+     KeyboardKit Pro unlocks a way to read the full document
+     context, so have a look at it if you need this.
      */
     var documentContext: String? {
         let before = documentContextBeforeInput ?? ""

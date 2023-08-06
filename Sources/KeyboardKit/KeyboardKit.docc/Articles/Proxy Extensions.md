@@ -2,9 +2,11 @@
 
 This article describes the KeyboardKit `UITextDocumentProxy` extension engine.
 
-Keyboard input view controllers have a `textDocumentProxy`, which is the way a keyboard integrates with the currently active app. It lets you insert and remove text, move the cursor forward and backward etc. 
+A ``KeyboardInputViewController`` has a `textDocumentProxy`, which is the way the keyboard extension is expected to integrate with the active app. 
 
-However, the proxy is very basic and require you to implement a lot of functionality if you want to do more advanced things. KeyboardKit therefore provides you with a bunch of extensions that make the proxy more capable. Some have to work around the limitiations of what an iOS keyboard extension can do, but overall they make a lot of operations easier to perform. 
+The proxy lets you insert and remove text, move the cursor, etc. The native APIs are however very basic and require you to implement a lot of functionality to do more advanced things. 
+
+KeyboardKit therefore adds a bunch of extensions that make the proxy more capable. Some have to work around various system limitiations, but overall they unlock many new capabilities. 
 
 [KeyboardKit Pro][Pro] specific extensions are described at the end of this document.
 
@@ -12,7 +14,7 @@ However, the proxy is very basic and require you to implement a lot of functiona
 
 ## Extensions
 
-Since extensions are not included in the generated documentation, this article describes the extensions you get to by simply importing KeyboardKit. In fact, you could use KeyboardKit just to get access to these extensions and ignore all other parts of the library.
+Since extensions are not included in the generated documentation, this article describes the extensions you get to by simply importing KeyboardKit.
 
 
 ### Autocomplete
@@ -30,8 +32,8 @@ Since extensions are not included in the generated documentation, this article d
 
 ### Delete
 
-- `deleteBackward(times:)`
 - `deleteBackward(range:)`
+- `deleteBackward(times:)`
 
 ### Quotation
 

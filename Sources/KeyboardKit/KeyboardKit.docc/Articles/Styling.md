@@ -4,21 +4,17 @@ This article describes the KeyboardKit styling engine.
 
 KeyboardKit uses ``KeyboardStyle`` types to style various views. For instance, a ``KeyboardStyle/InputCallout`` style can be used to style ``InputCallout`` views. 
 
-In KeyboardKit, a ``KeyboardStyleProvider`` can be used to defines the styles, texts, icons etc. for different parts of the keyboard. It can adapt styles depending on ``KeyboardContext``, ``KeyboardAction`` etc., which gives you a lot of flexibility.
-
-KeyboardKit will by default create a ``StandardKeyboardStyleProvider`` and apply it to the input controller's ``KeyboardInputViewController/keyboardStyleProvider``. You can replace it with a custom provider to customize how your keyboard looks.
-
 [KeyboardKit Pro][Pro] specific features, such as the convenient theme engine, are described at the end of this document.
 
 
 
-## Styles vs. themes
+## Terminology
 
-You may find yourself confused by the style and theme terminology. Let's clarify what they are and how they are meant to be used. 
+KeyboardKit uses different names for different parts of the styling engine. Let's clarify what they are and how they are meant to be used. 
 
-* A ``KeyboardStyle`` type is a *static* style that can be applied to one or many different kind of views.
-* A ``KeyboardStyleProvider`` is a *dynamic* style provider that can return styles (and more) for various parts of the keyboard.
-* The KeyboardKit Pro `KeyboardTheme` is a *static* style provider that can be used to define, reuse and share styles. It can be used with a `ThemeBasedKeyboardStyleProvider` to add a dynamic capabilities on top of the static theme. These utilities are only available in KeyboardKit Pro.
+* A ``KeyboardStyle`` type is a *static* style that can be applied to certain views.
+* A ``KeyboardStyleProvider`` is a *dynamic* style provider for condition-based styles.
+* A `KeyboardTheme` (Pro) is a *static* style provider that can define, reuse and share styles.
 
 You can mix and match these different concepts as you see fit.
 
@@ -26,10 +22,10 @@ You can mix and match these different concepts as you see fit.
 
 ## Resources & Assets
 
-KeyboardKit comes with colors and images that make it easy to create native-looking keyboards.
+KeyboardKit comes with colors and assets that can be used to create native-looking keyboards.
 
-* `Image` has a bunch of static, keyboard-specific images, e.g. `.keyboardBackspace`.
-* `Color` has a bunch of static, keyboard-specific colors, e.g. `.standardButtonBackgroundColor(for:)`.
+* `Image` has a bunch of keyboard-specific images, e.g. `.keyboardBackspace`.
+* `Color` has a bunch of keyboard-specific colors, e.g. `.standardButtonBackground`.
 * ``KeyboardAction`` and other types have standard images, texts and colors, for instance:
 
 ```swift
@@ -38,15 +34,15 @@ let image = KeyboardAction.command.standardButtonImage(for: context) // Command 
 let text = KeyboardAction.space.standardButtonText(for: context)     // Localized "space"
 ```
 
-Have a look at the `Sources/Resources` and `Sources/Styling` folders for more information.
+Have a look at the `Sources/Resources` and `Sources/Styling` folders for more info.
 
 
 
-## How to customize styles
+## Styles
 
-The ``KeyboardStyle`` namespace defines a bunch of styles, such as ``KeyboardStyle/Button``, while other namespaces define more contextual styles. For instance, the `Emojis` namespace defines an ``EmojiKeyboardStyle``.
+The ``KeyboardStyle`` namespace defines many styles, like ``KeyboardStyle/Button``, while other namespaces define contextual styles, like ``EmojiKeyboardStyle``.
 
-Any style can be modified, as long as it's a `var`. For instance, here we adjust the standard ``CalloutStyle`` to use a red background:
+All styles can be modified. For instance, here we add a red background to a ``CalloutStyle``:
 
 ```swift
 var style = CalloutStyle.standard
@@ -58,9 +54,15 @@ Most styles have a `.standard` style that you can use as a template. The standar
 
 
 
-## How to create a custom style provider
+## Style providers
 
-You can create a custom ``KeyboardStyleProvider`` by either inheriting the ``StandardKeyboardStyleProvider`` base class and customize the parts you want, or implement the ``KeyboardStyleProvider`` protocol from scratch.
+A ``KeyboardStyleProvider`` can return dynamic styles for different parts of the keyboard. 
+
+Unlike static styles, style providers can vary styles depending on the ``KeyboardContext``, ``KeyboardAction`` etc. This makes them very flexible.
+
+KeyboardKit will by default create a ``StandardKeyboardStyleProvider`` and apply it to the input controller's ``KeyboardInputViewController/keyboardStyleProvider``. You can replace this with a custom one.
+
+You can create a custom provider by inheriting the ``StandardKeyboardStyleProvider`` and customize the parts you want, or implement the ``KeyboardStyleProvider`` protocol from scratch.
 
 For instance, here's a custom provider that inherits ``StandardKeyboardStyleProvider`` and makes all input buttons red:
 
@@ -99,9 +101,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ### Themes
 
-[KeyboardKit Pro][Pro] unlocks a theme engine that makes it a lot easier to define styles for a keyboard. 
-
-`KeyboardTheme` can be used to define a bunch of styles, such as button and background styles. 
+[KeyboardKit Pro][Pro] unlocks a theme engine that makes it a lot easier to define styles for a keyboard, using themes to define a bunch of styles, such as button and background styles. 
 
 KeyboardKit comes with many pre-defined themes, like `.standard`, `.minimal`, `.swifty` and more playful ones like `.candyShop`, `.neon` and `.tron`:
 
@@ -114,7 +114,7 @@ KeyboardTheme.neon
 KeyboardTheme.tron
 ```
 
-All pre-defined themes come with style variations that allow you to tweak the overall style of a theme:
+All pre-defined themes come with style variations that allow you to tweak the style of a theme:
 
 ```swift
 KeyboardTheme.standard(.pink)
@@ -131,12 +131,12 @@ You can also define a custom style variation directly in the theme initializer:
 KeyboardTheme.standard(.init(tint: .black))
 ```
 
-Style variations make it easy to play within the overall style of a theme, and only modify the parts that are allowed to change by the theme.
+Style variations make it easy to play within the overall style of a theme, and only modify the parts that are meant to be changed by the theme.
 
 
 ### Custom themes
 
-You can create completely custom themes, like this one that just changes the color of the primary button:
+You can create completely custom themes, like this one that changes the primary button color:
 
 ```swift
 extension KeyboardTheme {
@@ -169,7 +169,7 @@ You can then access your themese with `KeyboardTheme.myCustomTheme` or just `.my
 
 ### Theme-based styling
 
-Once you have a theme that you want to use, you can use the `ThemeBasedKeyboardStyleProvider` to apply any theme to your keyboard:
+Once you have a theme that you want to use, you can use the `ThemeBasedKeyboardStyleProvider` with any theme:
 
 ```swift
 override func viewWillSetupKeyboard() {
@@ -189,12 +189,14 @@ This will make any view that uses the style provider (like ``SystemKeyboard``) u
 
 Since this requires KeyboardKit Pro, you must register it *after* setting up your license. 
 
-You can inherit `ThemeBasedKeyboardStyleProvider` to customize this theme-based provider even further, which lets you mix the benefits of themes and styles in any way that fits your needs.
+You can inherit `ThemeBasedKeyboardStyleProvider` to customize this theme-based provider even further, which lets you mix the benefits of themes and styles in even more ways.
 
 
 ### Pre-defined themes
 
-You can access all pre-defined themes with `KeyboardTheme.{ID}`, for instance `KeyboardKit.standard` or `KeyboardKit.minimal(.pink)`. Here are all pre-defined themes with some style variations:
+You can access all pre-defined themes with `KeyboardTheme.{ID}`, for instance `KeyboardKit.standard` or `KeyboardKit.minimal(.pink)`. 
+
+Here is a list of all pre-defined themes with some style variations:
 
 | Theme        |                               |                                        |                                |                                 |
 | ------------ | ----------------------------- | -------------------------------------- | ------------------------------ | ------------------------------- | 
@@ -205,7 +207,9 @@ You can access all pre-defined themes with `KeyboardTheme.{ID}`, for instance `K
 | `.neon`      | ![Neon](neon.jpg)             |                                        |                                |                                 | 
 | `.tron`      | ![Tron](tron.jpg)             | ![fCon](tron-fcon.jpg)                 | ![virus](tron-virus.jpg)       | ![virus](tron-sark.jpg)         |
 
-You can get all pre-defined themes with `KeyboardTheme.allPredefined`. Theme-specific styles also have an `allPredefined` with all style variations for a certain theme, e.g. `KeyboardTheme.SwiftyStyle.allPredefined`.
+You can access all pre-defined themes with `KeyboardTheme.allPredefined`. 
+
+Theme-specific styles also have an `allPredefined` with all style variations for a certain theme, e.g. `KeyboardTheme.SwiftyStyle.allPredefined`.
 
 
 ### Views
@@ -214,7 +218,7 @@ KeyboardKit Pro has a `KeyboardThemeLivePreview` that you can use to preview the
 
 The live preview is quite heavy to render, so you should probably only have at most a single one displayed at any given time.
 
-You can also use the more lightweight `KeyboardThemeButtonPreview` to preview many themes at the same time. This preview will only render one or several buttons with the theme's background.
+You can also use the more lightweight `KeyboardThemeButtonPreview` to preview many themes at the same time. This preview will only render one or several buttons for the theme.
 
 
 ### License Requirements

@@ -8,6 +8,18 @@
 
 import Foundation
 
+/// [DEPRECATED]
+///
+/// > v8.0: This type will be removed in KeyboardKit 8.0 but
+/// is still used while the service is asynchronous.
+public typealias AutocompleteCompletion = (AutocompleteResult) -> Void
+
+/// [DEPRECATED]
+///
+/// > v8.0: This type will be removed in KeyboardKit 8.0 but
+/// is still used while the service is asynchronous.
+public typealias AutocompleteResult = Result<[AutocompleteSuggestion], Error>
+
 /**
  This protocol can be implemented by any classes that can be
  used to give autocomplete suggestions as the user types.
@@ -47,10 +59,10 @@ public protocol AutocompleteProvider: AnyObject {
 
     
     /// > v8.0: This will be removed in KeyboardKit 8.0.
-    typealias Completion = (CompletionResult) -> Void
+    typealias Completion = AutocompleteCompletion
 
     /// > v8.0: This will be removed in KeyboardKit 8.0.
-    typealias CompletionResult = Result<[AutocompleteSuggestion], Error>
+    typealias CompletionResult = AutocompleteResult
 
 
     /**

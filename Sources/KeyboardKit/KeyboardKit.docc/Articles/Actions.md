@@ -4,7 +4,8 @@ This article describes the KeyboardKit action engine.
 
 In KeyboardKit, the ``KeyboardAction`` enum defines a set of keyboard-specific actions that can be bound to buttons and handled with a ``KeyboardActionHandler``.
 
-KeyboardKit will by default create a ``StandardKeyboardActionHandler`` and apply it to the input controller's ``KeyboardInputViewController/keyboardActionHandler``. You can replace it with a custom handler to customize how actions are handled.
+KeyboardKit will by default create a ``StandardKeyboardActionHandler`` and apply it to the input controller's ``KeyboardInputViewController/keyboardActionHandler``. You can replace it with a custom handler.
+
 
 
 ## Action types
@@ -22,6 +23,7 @@ The ``KeyboardAction`` enum can be grouped into categories. The descriptions bel
 #### Actions
 
 * ``KeyboardAction/backspace`` - deletes backwards when pressed, and repeats that action until it's released.
+* ``KeyboardAction/dictation`` - when configured, opens the main app to perform dictation.
 * ``KeyboardAction/dismissKeyboard`` - dismisses the keyboard when released.
 * ``KeyboardAction/emojiCategory(_:)`` - can be used to show a specific emoji category.
 * ``KeyboardAction/keyboardType(_:)`` - changes the keyboard type when pressed.
@@ -29,33 +31,37 @@ The ``KeyboardAction`` enum can be grouped into categories. The descriptions bel
 * ``KeyboardAction/moveCursorForward`` - moves the input cursor forward one step when released.
 * ``KeyboardAction/nextKeyboard`` - triggers the keyboard switcher action when tapped and long pressed.
 * ``KeyboardAction/nextLocale`` - triggers the locale switcher action when long pressed and released.
+* ``KeyboardAction/settings`` - can be used to e.g. show a settings screen.
 * ``KeyboardAction/shift(currentCasing:)`` - changes the alphabetic keyboard casing when released and double tapped.
+* ``KeyboardAction/systemSettings`` - navigates to System Settings.
+* ``KeyboardAction/url(_:id:)`` - navigates to any custom URL.
 
 #### System
 
 * ``KeyboardAction/command`` - represents a command (⌘) key.
 * ``KeyboardAction/control`` - represents a control (⌃) key.
-* ``KeyboardAction/dictation`` - represents a dictation key.
 * ``KeyboardAction/escape`` - represents an escape (esc) key.
 * ``KeyboardAction/function`` - represents a function (fn) key.
 * ``KeyboardAction/option`` - represents an option (⌥) key.
 * ``KeyboardAction/primary(_:)`` - represents a primary button, e.g. `return`, `go`, `search` etc.
 
-#### Custom
+#### Images
+
+* ``KeyboardAction/image(description:keyboardImageName:imageName:)`` - can be used to refer to an image asset.
+* ``KeyboardAction/systemImage(description:keyboardImageName:imageName:)`` - can be used to refer to a system image (SF Symbol).
+
+#### Other
 
 * ``KeyboardAction/custom(named:)`` - a custom action that you can handle in any way you want.
-* ``KeyboardAction/image(description:keyboardImageName:imageName:)`` - can be used to refer to an image asset.
 * ``KeyboardAction/none``- a "no action" placeholder action.
-* ``KeyboardAction/settings`` - a custom action that can be used to e.g. show a settings screen.
-* ``KeyboardAction/systemImage(description:keyboardImageName:imageName:)`` - can be used to refer to a system image (SF Symbol).
 
 
 
 ## How to handle keyboard actions
 
-Keyboard actions can be handled with a ``KeyboardActionHandler``, which is a protocol that can be implemented by any class that can be used to handle keyboard actions. 
+Keyboard actions can be handled with a ``KeyboardActionHandler``, which is a protocol that can be implemented by any class that handle keyboard actions. 
 
-You can trigger actions programmatically by calling ``KeyboardActionHandler/handle(_:on:)`` with a ``KeyboardGesture`` and a ``KeyboardAction``:
+You can trigger actions programmatically by calling ``KeyboardActionHandler/handle(_:)`` or call ``KeyboardActionHandler/handle(_:on:)`` to handle a certain ``KeyboardGesture``, such as ``KeyboardGesture/release``:
 
 ```swift
 class MyClass {
@@ -72,7 +78,7 @@ class MyClass {
 }
 ```
 
-Keyboard actions can also be triggered by keyboard-specific gestures that are applied to buttons. If you use a ``SystemKeyboard``, action gestures will be automatically applied to the various buttons.
+Keyboard actions can also be triggered by action-specific gestures, which can be applied with the `keyboardGestures(...)` view modifier. ``SystemKeyboard`` automatically applies this modifier to all buttons.
 
 
 

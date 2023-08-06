@@ -4,12 +4,10 @@ This article describes the KeyboardKit preview engine.
 
 KeyboardKit has `.preview` aliases for various state and service types, for instance ``KeyboardContext``.``KeyboardContext/preview`` and ``KeyboardActionHandler``.``KeyboardActionHandler/preview``.
 
-If a view you want to preview use a type that has such a `.preview` alias, you can just use `.preview` instead of having to type the entire type name.
-
 
 ## How to use preview-specific state and services
 
-Consider this view that takes an action handler as init parameter and looks for the keyboard context in the environment:
+Consider this view that takes a ``KeyboardActionHandler`` as init parameter and looks for a ``KeyboardContext`` in the environment:
 
 ```swift
 struct MyView {
@@ -18,7 +16,7 @@ struct MyView {
         self.actionHandler = actionHandler
     }
 
-    actionHandler: KeyboardActionHandler
+    var actionHandler: KeyboardActionHandler
 
     @EnvironmentObject
     private var context: KeyboardContext
@@ -36,7 +34,7 @@ struct MyView {
 }
 ```
 
-In your preview, you can just inject ``KeyboardActionHandler/preview`` in the initializer and ``KeyboardContext/preview`` as an environment object:
+In your preview, you can just inject a ``KeyboardActionHandler/preview`` action handledr in the initializer and a ``KeyboardContext/preview`` keyboard context as an environment object:
 
 ```swift
 struct MyView_Previews: PreviewProvider {
@@ -47,5 +45,3 @@ struct MyView_Previews: PreviewProvider {
     }
 }
 ```
-
-Although using environment objects is convenient, KeyboardKit doesn't use environment objects since they make for hard to discover dependencies. As such, you will never have to inject environment objects to preview views in KeyboardKit.

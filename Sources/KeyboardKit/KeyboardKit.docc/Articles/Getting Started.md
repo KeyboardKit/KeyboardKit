@@ -21,29 +21,25 @@ KeyboardKit can be installed with the Swift Package Manager:
 https://github.com/KeyboardKit/KeyboardKit.git
 ```
 
-You can add the library to the main app, the keyboard extension and any other targets that need it. 
+You can add KeyboardKit to the main app, the keyboard extension and any targets that need it. 
 
 
 
 ## How to setup KeyboardKit
 
-After installing KeyboardKit, just `import KeyboardKit` and make your `KeyboardViewController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`. 
-
-This gives your controller access to additional functionality, such as new lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboard()``, observable properties like ``KeyboardInputViewController/keyboardContext``, keyboard services like ``KeyboardInputViewController/keyboardActionHandler`` and much more.
-
-The default ``KeyboardInputViewController`` behavior is to setup an English ``SystemKeyboard`` keyboard. This is all the code that is required to achieve that:
+After installing KeyboardKit, just `import KeyboardKit` and make your `KeyboardViewController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
 
 ```swift
 import KeyboardKit
 
-class KeyboardViewController: KeyboardInputViewController {}
+class KeyboardController: KeyboardInputViewController {}
 ```
 
-The controller will then call ``KeyboardInputViewController/viewWillSetupKeyboard()`` when the keyboard view should be created or updated. You can override this function and call `.setup(with:)` to customize the default view or set up a completely custom one.
+This gives your controller access to additional functionality, such as new lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboard()``, observable state like ``KeyboardInputViewController/keyboardContext``, services like ``KeyboardInputViewController/keyboardActionHandler`` and much more.
 
-Since KeyboardKit uses plain SwiftUI, you can use any custom SwiftUI view hierarchy as your keyboard view. 
+The default ``KeyboardInputViewController`` behavior is to setup an English ``SystemKeyboard``. It will then call ``KeyboardInputViewController/viewWillSetupKeyboard()`` when the keyboard view should be created or updated. 
 
-For instance, here we replace the standard autocomplete toolbar with a custom toolbar:
+To set up KeyboardKit with a custom view, you can override ``KeyboardInputViewController/viewWillSetupKeyboard()`` and call `.setup(with:)` to customize the `SystemKeyboard` or use a custom view:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -63,167 +59,117 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-and here we use a completely custom view that requires the app-specific controller type:
+Here, we use a completely custom view that requires a controller reference:
 
 ```swift
-class KeyboardViewController: KeyboardInputViewController {
+struct CustomKeyboard: View {
 
-    func viewWillSetupKeyboard() {
-        super.viewWillSetupKeyboard()
-        setup { [unowned self] in
-MyKeyboardView(
-                controller: self
-            )
-        }
-    }
-}
-```
-
-When you use a custom view it's *very important* that it has an `unowned` controller reference:
-
-```swift
-struct MyKeyboardView: View {
-
-    @unowned var controller: KeyboardViewController 
+    unowned var controller: KeyboardViewController 
 
     var body: some View {
         ... 
     }
 }
-```
 
-> Important: When you set up a custom view, it's *very* important to use `[unowned self] in`, otherwise the strong `self` reference will cause a memory leak, as well as an `unowned var` within the view! Failing to do so will cause a memory leak. 
+class KeyboardViewController: KeyboardInputViewController {
 
-
-
-## How to use the standard keyboard configuration
-
-``KeyboardInputViewController`` will by default be configured with a bunch of observable properties and services. 
-
-The controller will inject all observable properties into the view hierarchy when you setup KeyboardKit with a view, which means that you can use environment objects to observe the state of these properties.
-
-```swift
-struct MyButton: View {
-
-    @EnvironmentObject
-    private var context: KeyboardContext
-
-    var body: some View {
-        Button("Print locale!") {
-            print(context.locale.identifier)
-        }.disabled(context.keyboardType == .emojis)
-    }
-}
-```
-
-All services are configured with standard implementations when KeyboardKit is started. For instance, ``KeyboardInputViewController/keyboardActionHandler`` is initialized with a ``StandardKeyboardActionHandler``. All services can be replaced with your own custom implementations.
-
-
-## How to observe keyboard state
-
-You can use `@EnvironmentObject` to access any observable objects that are injected into the view hierarchy, for instance:
-
-```swift
-struct MyView: View {
-
-    @EnvironmentObject
-    private var context: KeyboardContext
-
-    var body: some View {
-        ...
-    }
-}
-```
-
-You can also inject an observable object into an initializer and setup an `@ObservedObject` like this:
-
-```swift
-struct MyView: View {
-    
-    init(context: KeyboardContext) {
-       _context = ObservedObject(wrappedValue: context)
-    }
-    
-    @ObservedObject private var context: KeyboardContext
-    
-    var body: some View {
-        ...
-    }
-}
-```
-
-Environment objects are convenient, but KeyboardKit itself uses init injection to make dependencies more explicit.
-
-There are a bunch of KeyboardKit-specific objects that can provide you with important information, such as ``KeyboardContext``, ``CalloutContext``, ``AutocompleteContext``, etc.
-
-
-
-## How to use keyboard services
-
-Unlike contexts, services can't be injected into the view hierarchy and resolved using environment objects. You must instead inject any service you want to use into your types, for instance via the initializer:
-
-```swift
-struct MyView: View {
-
-    init(actionHandler: KeyboardActionHandler) {
-        self.actionHandler = actionHandler
-    }
-
-    private let actionHandler: KeyboardActionHandler
-
-    var body: some View {
-        Button(action: { actionHandler.handle(.release, on: .space) }) {
-            Text("Custom space bar")
-                .padding()
-                .background(Color.green)
-                .cornerRadius(10)
+    func viewWillSetupKeyboard() {
+        super.viewWillSetupKeyboard()
+        setup { controller in
+            CustomKeyboard(controller: controller)
         }
     }
 }
 ```
 
-In the example above, the view uses an injected action handler to trigger a "tap on space" action.
+The view builder provides an unowned controller reference to avoid reference cycles and memory leaks.
+
+> Important: It's important to never use `controller: self` and to mark `controller` properties as `unowned`, otherwise the strong controller reference will cause a memory leak. 
+
+
+
+## How to use the standard keyboard configuration
+
+``KeyboardInputViewController`` will by default be configured with a bunch of service instances and observable state.
+
+For instance, ``KeyboardInputViewController/keyboardActionHandler`` is set to a ``StandardKeyboardActionHandler``, ``KeyboardInputViewController/calloutActionProvider`` to a ``StandardCalloutActionProvider``, etc. 
+
+The controller also has many observable state properties, such as ``KeyboardInputViewController/keyboardContext``, ``KeyboardInputViewController/autocompleteContext``, ``KeyboardInputViewController/calloutContext``, etc.
+
+The various services can then be passed into any views that need them, and any observable state accessed as environment objects:
+
+```swift
+struct CustomKeyboard: View {
+
+    let actionHandler: KeyboardActionHandler
+
+    @EnvironmentObject
+    private var context: KeyboardContext
+
+    var body: some View {
+        VStack {
+            Text("Space only keyboard")
+            Button {
+                actionHandler.handle(.space)
+            } label: {
+                Text("My cool space only keyboard")
+            }
+        }
+    }
+}
+```
+
+Note some state types are set up by the controller. For instance, the ``ExternalKeyboardContext`` state must be manually added:
+
+```swift
+struct CustomKeyboard: View {
+
+    @StateObject
+    private var externalContext = ExternalKeyboardContext()
+
+    var body: some View {
+        Text("My custom view")
+            .environmentObject(externalContext)
+    }
+}
+```
+
+Environment objects are convenient, but the views in the library use init parameters to clearly communicate their dependencies.
 
 
 
 ## How to customize the standard configuration
 
-You can easily customize the standard configuration by replacing the standard services with your own custom implementations. 
+You can easily customize the standard configuration by replacing any of the standard services with a custom implementations. 
 
-For instance, say that you have a custom keyboard action handler:
+For instance, here we replace the default keyboard action handler with a custom one:
 
 ```swift
-class MyActionHandler: StandardActionHandler {
+class CustomActionHandler: StandardActionHandler {
 
     open override func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
         false   // Wow, what a useless action handler! 
     }
 }
-```
 
-You can now use this action handler instead of the standard one, by setting ``KeyboardInputViewController/keyboardActionHandler`` to that new type:
-
-```swift
 class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
-        keyboardActionHandler = MyActionHandler(inputViewController: self)
+        keyboardActionHandler = CustomActionHandler(inputViewController: self)
         super.viewDidLoad()
     }
 }
 ```
 
-You should customize your services in ``KeyboardInputViewController/viewDidLoad()`` before any services have been resolved. This way, any inter-dependencies between the services will be properly resolved. 
-
-If you want to configure KeyboardKit at a later state, make sure that the service that you replace isn't used in another service. If so, you must re-create that service as well, to avoid having the old service instance still hanging around.
+Since service instances are lazy, you should customize them as early as possible to make sure that all parts of the keyboard use the correct service type. 
 
 
 
 ## Going further
 
-If you followed the example above, you should now have a basic understanding of how to setup KeyboardKit with a custom view, as well as how to use the various keyboard services and observable state and how to customize the standard configuration.
+You should now have a basic understanding of how to set up KeyboardKit, how to use the various services and state types and how to customize the standard configuration.
 
-For more information and examples, take a look at the demo apps, which replace many services with demo-specific implementations.  
+For more information and examples, see the various articles and take a look at the demo apps, which replace many services with demo-specific implementations.  
 
 
 [Guide]: https://shyngys.com/ios-custom-keyboard-guide

@@ -2,31 +2,29 @@
 
 This article describes the KeyboardKit layout engine. 
 
-In KeyboardKit, ``InputSet``s and ``KeyboardLayout``s are central concepts when creating a ``SystemKeyboard``, where the ``InputSet`` defines the input keys of a keyboard, while a ``KeyboardLayout`` defines the full set of keys, as well as their sizes and properties. 
+In KeyboardKit, ``InputSet``s and ``KeyboardLayout``s are important concepts, where input sets describe the input keys of a keyboard and layouts describe the full set of keys. 
 
-This means that you can use many different input sets with a single keyboard layout. 
-
-[KeyboardKit Pro][Pro] specific features are described at the end of this document.
+[KeyboardKit Pro][Pro] features are described at the end of this document.
 
 
 
 ## Input Sets
 
-In KeyboardKit, there are three different ``InputSet`` implementations: ``AlphabeticInputSet``, ``NumericInputSet`` and ``SymbolicInputSet``.
+An ``InputSet`` set describes the input keys of a keyboard.
 
-> Note: These types will be merged into a single `InputSet` struct in KeyboardKit 8.0.
+KeyboardKit has some standard input sets, like ``InputSet/qwerty`` and a few localized input sets, such as ``InputSet/english``, ``InputSet/englishNumeric(currency:)`` and ``InputSet/englishSymbolic(currency:)``. You can also create your own custom input sets.
 
-KeyboardKit provides you with a few localized input sets, such as ``AlphabeticInputSet/english``, ``NumericInputSet/englishNumeric(currency:)`` and ``SymbolicInputSet/englishSymbolic(currency:)``, which are used to create English keyboards. 
+> Note: These types will be merged into a single `InputSet` struct in KeyboardKit 8.0. 
 
 
 
 ## Keyboard layouts
 
-A typical ``SystemKeyboard`` layout has several rows, where the top 3 generally consist of input keys surrounded by action keys on one, both or no sides. Furthermore, the bottom row has a space key that is surrounded by other action keys. 
+A ``KeyboardLayout`` describes the full set of keys of a keyboard. Layouts can vary greatly for different device types, locales, screen orientations, etc. 
 
-This is however not true for all locales, where some (like Armenian) have 4 input rows, some (like Arabic) may remove the shift key, etc. The difference between some languages are actually way larger than one may think at first.
+For instance, iOS keyboards often have 3 input rows, where the input keys are surrounded by actions on either side, as well as a bottom row with a space key and action buttons. 
 
-A localized keyboard layout is typically implemented with locale-specific ``InputSet`` values for the alphabetic, numeric and symbolic keyboards, and a locale-specific ``KeyboardLayoutProvider`` that uses the input sets to provide iPhone and iPad-specific layouts. 
+This is however not true for all locales. For instance, Armenian has 4 input rows, Arabic removes the shift key, etc. The difference between different locales can be very large. 
 
 
 
@@ -34,26 +32,26 @@ A localized keyboard layout is typically implemented with locale-specific ``Inpu
 
 In KeyboardKit, a ``KeyboardLayoutProvider`` can be used to create a dynamic layout based on many different factors, such as the current device type, orientation, locale, etc. 
 
-KeyboardKit will by default create a ``StandardKeyboardLayoutProvider`` and apply it to the input controller's ``KeyboardInputViewController/keyboardLayoutProvider``. It will by default use an ``EnglishKeyboardLayoutProvider`` to return U.S. English keyboard layouts, for both iPad and iPhone.
+KeyboardKit will by default create a ``StandardKeyboardLayoutProvider`` and apply it to the input controller's ``KeyboardInputViewController/keyboardLayoutProvider``. You can replace this provider with a custom one, or inject locale-specific providers to customize the layout for a certain locale. 
 
-You can replace this provider with a custom one, or inject locale-specific providers to customize the layout for a certain locale.
+KeyboardKit will by default inject an ``EnglishKeyboardLayoutProvider`` into the standard provider. It defines the standard layout of a U.S. English keyboard for both iPhone and iPad.
 
 
-### How to customize the standard layout provider
+### How to customize the standard provider
 
-If you want to make minor customizations to the ``StandardKeyboardLayoutProvider``, there are a couple of options:
+To customize the ``StandardKeyboardLayoutProvider``, you can:
 
-* Add more localized providers to the ``StandardKeyboardLayoutProvider`` instance. 
-* Subclass ``StandardKeyboardLayoutProvider`` and override ``StandardKeyboardLayoutProvider/keyboardLayout(for:)``.
+* Add more localized providers to the provider instance. 
+* Inherit ``StandardKeyboardLayoutProvider`` and override ``StandardKeyboardLayoutProvider/keyboardLayout(for:)``.
 * Create a new ``StandardKeyboardLayoutProvider`` instance and inject a custom ``StandardKeyboardLayoutProvider/iPadProvider``.
 * Create a new ``StandardKeyboardLayoutProvider`` instance and inject a custom ``StandardKeyboardLayoutProvider/iPhoneProvider``.
 
-You can also create a completely custom keyboard layout provider, see below.
+You can also create a completely custom ``KeyboardLayoutProvider`` implementation.
 
 
-### How to create a custom layout provider
+### How to create a custom provider
 
-You can create a custom ``KeyboardLayoutProvider`` by either inheriting the ``StandardKeyboardLayoutProvider`` base class and customize the parts you want, or implementing the ``KeyboardLayoutProvider`` protocol from scratch.
+You can create a custom ``KeyboardLayoutProvider`` by inheriting ``StandardKeyboardLayoutProvider`` and customize the parts you want, or implement the ``KeyboardLayoutProvider`` protocol from scratch.
 
 For instance, here's a custom provider that inherits ``StandardKeyboardLayoutProvider`` and injects a tab key to the top-leading part of the keyboard:
 
@@ -93,29 +91,22 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks additional input set variations like `.azerty` and `.qwertz`, as well as localized input sets and keyboard layout providers for all keyboard locales.
+[KeyboardKit Pro][Pro] unlocks additional input sets like `.azerty` and `.qwertz`. It also unlocks localized input sets and keyboard layout providers for all ``KeyboardLocale``s  in your license and automatically injects them into the ``StandardKeyboardLayoutProvider``.
 
-You can access the locale-specific input sets like this:
-
-```swift
-let swedish = try? InputSet.swedish
-let numeric = try? InputSet.swedishNumeric
-let symbolic = try? InputSet.swedishSymbolic
-```
-
-and the locale-specific layout providers like this:
+You can access the locale-specific input sets and layout providers like this:
 
 ```swift
-let provider = try? ProKeyboardLayoutProvider.Swedish()
+let swedish = try InputSet.swedish
+let numeric = try InputSet.swedishNumeric
+let symbolic = try InputSet.swedishSymbolic
+let provider = try ProKeyboardLayoutProvider.Swedish()
 ```
 
-You can also access all providers that your license unlocks like this:
+You can access all providers that your license unlocks like this:
 
 ```swift
 let providers = license.localizedKeyboardLayoutProviders
 ```
-
-Note that the input sets and layout providers are throwing, and will only return a value if you have registered a license key.
 
 If you want to use a custom provider with KeyboardKit Pro, make sure to register it *after* registering your license key, otherwise it will be overwritten by the license registration process.
 

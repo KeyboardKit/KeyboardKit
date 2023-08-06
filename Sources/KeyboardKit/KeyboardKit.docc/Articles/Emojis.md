@@ -2,9 +2,10 @@
 
 This article describes the KeyboardKit emoji engine.
 
-KeyboardKit provides you with an ``Emoji`` struct, an ``EmojiCategory`` enum, an emoji localization engine etc., as well as various emoji keyboard views like ``EmojiKeyboard`` and ``EmojiCategoryKeyboard``.
+KeyboardKit provides you with ``Emoji`` types, an emoji localization engine, as well as various keyboard views like ``EmojiKeyboard`` and ``EmojiCategoryKeyboard``.
 
-[KeyboardKit Pro][Pro] specific features are described at the end of this document.
+[KeyboardKit Pro][Pro] features are described at the end of this document.
+
 
 
 ## Emojis
@@ -30,13 +31,13 @@ emoji.unicodeName // -> Grinning Face
 emoji.localizedName(for: .swedish) // -> Leende Ansikte
 ```
 
-Each emoji can also be localized with the localized files found in the `Sources/Resources` folder. Take a look at `en.lproj/Localizable.strings` for examples.
+Emojis can be localized with the localized files found in the `Sources/Resources` folder.
 
 
 
 ## Emoji categories
 
-KeyboardKit has an ``EmojiCategory`` enum that defines all available emoji categories, such as `.smileys`, `.animals`, `.foods` etc.:
+The ``EmojiCategory`` enum defines all available emoji categories, such as ``EmojiCategory/emojis``:
 
 ```swift
 let category = EmojiCategory.animals
@@ -49,21 +50,21 @@ You can get a list of all available categories like this:
 let categories = EmojiCategory.all
 ```
 
-There is also a `.frequent` category that is handled with a ``FrequentEmojiProvider``. The ``MostRecentEmojiProvider`` implements this protocol by keeping track of the most recently tapped emojis. You can also implement a custom provider. 
+There is also a ``EmojiCategory/frequent`` category that is handled with a ``FrequentEmojiProvider``, such as the default ``MostRecentEmojiProvider``. 
 
 
 
 ## Views
 
-KeyboardKit has an ``EmojiKeyboard`` that lists emojis in a grid, as well as an ``EmojiCategoryKeyboard`` that replicates the iOS emoji keyboard by listing the provided categories and their emojis. They can both be styled with an ``EmojiKeyboardStyle``.
+The ``EmojiKeyboard`` just lists emojis in a grid, while the ``EmojiCategoryKeyboard`` mimics the iOS emoji keyboard by listing the provided categories and their emojis.
 
 
 
 ## How to localize emoji names
 
-The ``Emoji`` `localizedName(for:)` functions use `Localizable.strings` files in `Sources/Resources`. Emojis that lack a localized name will use the ``Emoji/unicodeName`` property as a fallback.
+The `localizedName(for:)` function uses the string files in the `Sources/Resources` folder. Emojis that lack a localized name will use ``Emoji/unicodeName`` as a fallback.
 
-To localize emojis for a certain locale, simply add localized strings for the various emojis in the correct `Localizable.strings` file. This is a major undertaking and therefore a community effort. Feel free to create PRs to help out.
+To localize emojis for a certain locale, just add localized strings to the correct `Localizable.strings` file. This is a major undertaking and therefore a community effort.
 
 
 
@@ -74,9 +75,7 @@ To localize emojis for a certain locale, simply add localized strings for the va
 
 ### Emoji Version
 
-KeyboardKit Pro unlocks an `EmojiVersion` type that defines Emoji versions, platform availability and included emojis.
-
-For instance, you can get explicit versions, for instance:
+KeyboardKit Pro unlocks an `EmojiVersion` type that defines Emoji versions, platform availability and included emojis, for instance:
 
 ```swift
 let version = EmojiVersion.v15
@@ -122,14 +121,12 @@ Emoji("👍").skinToneVariants        // 👍👍🏻👍🏼👍🏽👍🏾�
 Emoji("👍").skinToneVariantActions  // The above variants as keyboard actions
 ```
 
-These extensions make it possible to resolve all skin tone variants for emojis that have variations.
+This makes it possible to get all skin tone variants for emojis that have any. Note that emojis with two skin tone components are currently not supported, such as two persons kissing.
 
 
 ### Secondary callouts
 
-Since KeyboardKit Pro unlocks skin tone variants, it will also unlock secondary action callouts for all emojis that have skin tone variants. 
-
-This means that long pressing any emoji that has skin tone variants will show the variants in a callout.
+KeyboardKit Pro unlocks secondary callout actions for all emojis that have skin tone variants.
 
 
 
