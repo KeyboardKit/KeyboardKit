@@ -60,7 +60,7 @@ private extension SystemKeyboardButtonContent {
         } else if let image = styleProvider.buttonImage(for: action) {
             image.scaleEffect(styleProvider.buttonImageScaleFactor(for: action))
         } else if let text = styleProvider.buttonText(for: action) {
-            textView(for: text)
+            textView(for: action, text: text)
         } else {
             Text("")
         }
@@ -73,11 +73,13 @@ private extension SystemKeyboardButtonContent {
         )
     }
     
-    func textView(for text: String) -> some View {
+    func textView(for action: KeyboardAction, text: String) -> some View {
         SystemKeyboardButtonText(
             text: text,
             action: action
-        ).minimumScaleFactor(0.5)
+        )
+        .minimumScaleFactor(0.5)
+        .padding(.bottom, styleProvider.buttonContentBottomMargin(for: action))
     }
 }
 

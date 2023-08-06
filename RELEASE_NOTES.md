@@ -42,6 +42,7 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `KeyboardLayoutProviderProxy` has new standard functionality.
 * `KeyboardReturnKeyType` has new `continue`, `emergencyCall` and `route` types.
 * `KeyboardStyle` is a new style namespace that contains most style types.
+* `KeyboardStyleProvider` has a new function for the button content bottom margin.
 * `StandardKeyboardActionHandler` has new feedback functions.
 * `StandardKeyboardFeedbackHandler` has new feedback functions.
 * `StandardKeyboardLayoutProvider` has a new default initializer.
@@ -52,6 +53,7 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `KeyboardActionHandler` has a new `triggerFeedback(for:on:)` function. 
 * `SpaceCursorDragGestureHandler` no longer needs a feedback handler.
 * `StandardKeyboardLayoutProvider` no longer requires an input set provider.
+* `StandardKeyboardStyleProvider` adjusts the bottom padding for some keys.
 * `SystemKeyboardLayoutProvider` now returns switcher actions for all keyboard types. 
 
 ### 👑 Pro Adjustments

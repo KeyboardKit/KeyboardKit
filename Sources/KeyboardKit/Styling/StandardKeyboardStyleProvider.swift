@@ -62,21 +62,19 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     }
 
     /// The foreground color to apply to the entire keyboard.
-    open var foregroundColor: Color? {
-        nil
-    }
+    open var foregroundColor: Color? { nil }
 
     /// The edge insets to apply to the entire keyboard.
     open var keyboardEdgeInsets: EdgeInsets {
         switch keyboardContext.deviceType {
-        case .pad: return EdgeInsets(top: 0, leading: 0, bottom: 4, trailing: 0)
+        case .pad: return .init(top: 0, leading: 0, bottom: 4, trailing: 0)
         case .phone:
             if keyboardContext.screenSize.isEqual(to: .iPhoneProMaxScreenPortrait, withTolerance: 10) {
-                return EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+                return .init(top: 0, leading: 0, bottom: 0, trailing: 0)
             } else {
-                return EdgeInsets(top: 0, leading: 0, bottom: -2, trailing: 0)
+                return .init(top: 0, leading: 0, bottom: -2, trailing: 0)
             }
-        default: return EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        default: return .init(top: 0, leading: 0, bottom: 0, trailing: 0)
         }
     }
 
@@ -87,8 +85,25 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
 
 
     // MARK: - Buttons
+    
+    /// The button content bottom margin for an action.
+    open func buttonContentBottomMargin(for action: KeyboardAction) -> CGFloat {
+        switch action {
+        case .character(let char): return buttonContentBottomMargin(for: char)
+        default: return 0
+        }
+    }
+    
+    /// The button content bottom margin for a character.
+    open func buttonContentBottomMargin(for char: String) -> CGFloat {
+        switch char {
+        case "-", "/", ":", ";", "@": return 3
+        case "(", ")": return 4
+        default: return 0
+        }
+    }
 
-    /// The button image to use for a certain action, if any.
+    /// The button image to use for a certain action.
     open func buttonImage(for action: KeyboardAction) -> Image? {
         action.standardButtonImage(for: keyboardContext)
     }
@@ -243,7 +258,7 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     open func buttonForegroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
         action.buttonForegroundColor(for: keyboardContext, isPressed: isPressed)
     }
-
+    
     /// The shadow style to use for a certain action.
     open func buttonShadowStyle(for action: KeyboardAction) -> KeyboardStyle.ButtonShadow {
         switch action {

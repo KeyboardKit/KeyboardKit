@@ -30,43 +30,31 @@ import SwiftUI
  */
 public protocol KeyboardStyleProvider: AnyObject {
 
-    /**
-     The keyboard background style to apply to the keyboard.
-     */
+    /// The background style to apply to the entire keyboard.
     var backgroundStyle: KeyboardStyle.Background { get }
 
-    /**
-     The foreground color to apply to the keyboard, if any.
-     */
+    /// The foreground color to apply to the entire keyboard.
     var foregroundColor: Color? { get }
 
-    /**
-     The edge insets to apply to the entire keyboard.
-     */
+    /// The edge insets to apply to the entire keyboard.
     var keyboardEdgeInsets: EdgeInsets { get }
 
 
     // MARK: - Buttons
+    
+    /// The button content bottom margin for an action.
+    func buttonContentBottomMargin(for action: KeyboardAction) -> CGFloat
 
-    /**
-     The button image to use for a certain `action`, if any.
-     */
+    /// The button image to use for a certain action.
     func buttonImage(for action: KeyboardAction) -> Image?
 
-    /**
-     The scale factor to apply to a button image, if any.
-     */
+    /// The scale factor to apply to a button image.
     func buttonImageScaleFactor(for action: KeyboardAction) -> CGFloat
     
-    /**
-     The button style to use for a certain `action`, given a
-     certain `isPressed` state.
-     */
+    /// The button style to use for a certain action.
     func buttonStyle(for action: KeyboardAction, isPressed: Bool) -> KeyboardStyle.Button
     
-    /**
-     The button text to use for a certain `action`, if any.
-     */
+    /// The button text to use for a certain action.
     func buttonText(for action: KeyboardAction) -> String?
 
 
