@@ -49,7 +49,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         row: Int,
         index: Int,
         context: KeyboardContext
-    ) -> KeyboardLayoutItemWidth {
+    ) -> KeyboardLayoutItem.Width {
         switch action {
         case context.keyboardDictationReplacement: return bottomSystemButtonWidth(for: context)
         case .character: return isLastNumericInputRow(row, for: context) ? lastSymbolicInputWidth(for: context) : .input
@@ -138,7 +138,9 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      The system buttons that are shown to the left and right
      of the third row's input buttons on a regular keyboard.
      */
-    open func lowerSystemButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
+    open func lowerSystemButtonWidth(
+        for context: KeyboardContext
+    ) -> KeyboardLayoutItem.Width {
         if context.isAlphabetic(.ukrainian) { return .input }
         return .percentage(0.13)
     }
@@ -175,14 +177,19 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     /**
      The width of bottom-right system buttons.
      */
-    open func bottomSystemButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
+    open func bottomSystemButtonWidth(
+        for context: KeyboardContext
+    ) -> KeyboardLayoutItem.Width {
         .percentage(isPortrait(context) ? 0.123 : 0.095)
     }
 
     /**
      Whether or not to add margin actions to the middle row.
      */
-    open func shouldAddMiddleMarginActions(for actions: KeyboardAction.Rows, context: KeyboardContext) -> Bool {
+    open func shouldAddMiddleMarginActions(
+        for actions: KeyboardAction.Rows,
+        context: KeyboardContext
+    ) -> Bool {
         guard isExpectedActionSet(actions) else { return false }
         return actions[0].count > actions[1].count
     }
@@ -190,7 +197,10 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     /**
      Whether or not to add margin actions to the upper row.
      */
-    open func shouldAddUpperMarginActions(for actions: KeyboardAction.Rows, context: KeyboardContext) -> Bool {
+    open func shouldAddUpperMarginActions(
+        for actions: KeyboardAction.Rows,
+        context: KeyboardContext
+    ) -> Bool {
         false
     }
 }
@@ -208,7 +218,9 @@ private extension iPhoneKeyboardLayoutProvider {
     /**
      The width of the last numeric/symbolic row input button.
      */
-    func lastSymbolicInputWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
+    func lastSymbolicInputWidth(
+        for context: KeyboardContext
+    ) -> KeyboardLayoutItem.Width {
         .percentage(0.14)
     }
 

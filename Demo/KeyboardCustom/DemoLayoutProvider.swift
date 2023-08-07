@@ -34,7 +34,7 @@ class DemoLayoutProvider: StandardKeyboardLayoutProvider {
         let layout = super.keyboardLayout(for: context)
         let widerItem = KeyboardLayoutItem(
             action: .character("I"),
-            size: KeyboardLayoutItemSize(
+            size: KeyboardLayoutItem.Size(
                 width: .inputPercentage(2),
                 height: layout.idealItemHeight),
             insets: layout.idealItemInsets)

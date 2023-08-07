@@ -216,8 +216,6 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardLayout``
 - ``KeyboardLayoutConfiguration``
 - ``KeyboardLayoutItem``
-- ``KeyboardLayoutItemSize``
-- ``KeyboardLayoutItemWidth``
 - ``KeyboardLayoutProvider``
 - ``KeyboardLayoutProviderProxy``
 - ``KeyboardRowItem``

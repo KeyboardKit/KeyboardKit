@@ -168,7 +168,7 @@ struct SystemKeyboardButtonRowItem_Previews: PreviewProvider {
 
     static func previewItem(
         _ action: KeyboardAction,
-        width: KeyboardLayoutItemWidth
+        width: KeyboardLayoutItem.Width
     ) -> some View {
         SystemKeyboardButtonRowItem(
             content: SystemKeyboardButtonContent(
@@ -177,7 +177,7 @@ struct SystemKeyboardButtonRowItem_Previews: PreviewProvider {
                 keyboardContext: context),
             item: KeyboardLayoutItem(
                 action: action,
-                size: KeyboardLayoutItemSize(
+                size: KeyboardLayoutItem.Size(
                     width: width,
                     height: 100),
                 insets: .horizontal(0, vertical: 0)),

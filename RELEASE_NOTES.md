@@ -122,7 +122,9 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `KeyboardActions` image initializer has been deprecated.
 * `KeyboardActionRows` has been renamed to `KeyboardAction.Rows`.
 * `KeyboardLayoutItemRow` has been renamed to `KeyboardLayoutItem.Row`.
-* `KeyboardLayoutItemRows` has been renamed to `KeyboardLayoutItem.Rows`. 
+* `KeyboardLayoutItemRows` has been renamed to `KeyboardLayoutItem.Rows`.
+* `KeyboardLayoutItemSize` has been renamed to `KeyboardLayoutItem.Size`.
+* `KeyboardLayoutItemWidth` has been renamed to `KeyboardLayoutItem.Width`.
 * `KeyboardFeedbackHandler` has been deprecated.
 * `PreviewKeyboardAppearance` has been renamed to `PreviewKeyboardStyleProvider`.
 * `StandardAudioFeedbackEngine` has been deprecated.

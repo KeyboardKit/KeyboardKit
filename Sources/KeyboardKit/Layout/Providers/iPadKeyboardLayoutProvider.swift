@@ -53,7 +53,7 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         row: Int,
         index: Int,
         context: KeyboardContext
-    ) -> KeyboardLayoutItemWidth {
+    ) -> KeyboardLayoutItem.Width {
         if isLowerTrailingSwitcher(action, row: row, index: index) { return .available }
         switch action {
         case context.keyboardDictationReplacement: return .input
@@ -78,7 +78,9 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
     /**
      The standard system button width.
      */
-    open func systemButtonWidth(for context: KeyboardContext) -> KeyboardLayoutItemWidth {
+    open func systemButtonWidth(
+        for context: KeyboardContext
+    ) -> KeyboardLayoutItem.Width {
         return .input
     }
 

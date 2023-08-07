@@ -160,16 +160,26 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     /**
      Get a layout item size for the provided parameters.
      */
-    open func itemSize(for action: KeyboardAction, row: Int, index: Int, context: KeyboardContext) -> KeyboardLayoutItemSize {
+    open func itemSize(
+        for action: KeyboardAction,
+        row: Int,
+        index: Int,
+        context: KeyboardContext
+    ) -> KeyboardLayoutItem.Size {
         let width = itemSizeWidth(for: action, row: row, index: index, context: context)
         let height = itemSizeHeight(for: action, row: row, index: index, context: context)
-        return KeyboardLayoutItemSize(width: width, height: height)
+        return KeyboardLayoutItem.Size(width: width, height: height)
     }
     
     /**
      Get a layout item height for the provided parameters.
      */
-    open func itemSizeHeight(for action: KeyboardAction, row: Int, index: Int, context: KeyboardContext) -> CGFloat {
+    open func itemSizeHeight(
+        for action: KeyboardAction,
+        row: Int,
+        index: Int,
+        context: KeyboardContext
+    ) -> CGFloat {
         let config = KeyboardLayoutConfiguration.standard(for: context)
         return config.rowHeight
     }
@@ -177,7 +187,12 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     /**
      Get a layout item width for the provided parameters.
      */
-    open func itemSizeWidth(for action: KeyboardAction, row: Int, index: Int, context: KeyboardContext) -> KeyboardLayoutItemWidth {
+    open func itemSizeWidth(
+        for action: KeyboardAction,
+        row: Int,
+        index: Int,
+        context: KeyboardContext
+    ) -> KeyboardLayoutItem.Width {
         switch action {
         case .character: return .input
         default: return .available
