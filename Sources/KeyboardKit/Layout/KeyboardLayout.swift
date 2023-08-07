@@ -93,7 +93,7 @@ public extension KeyboardLayout {
     /**
      Whether or not the bottom row has a keyboard switcher.
      */
-    func hasKeyboardSwitcher(for type: KeyboardType) -> Bool {
+    func hasKeyboardSwitcher(for type: Keyboard.KeyboardType) -> Bool {
         guard let row = itemRows.last else { return false }
         return row.contains { $0.action.isKeyboardTypeAction(.emojis) }
     }

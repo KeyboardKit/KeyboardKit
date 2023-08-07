@@ -14,7 +14,7 @@ public extension UITextDocumentProxy {
     /**
      Delete backwards a certain range.
      */
-    func deleteBackward(range: KeyboardBackspaceRange) {
+    func deleteBackward(range: Keyboard.BackspaceRange) {
         guard let text = deleteBackwardText(for: range) else { return deleteBackward() }
         deleteBackward(times: text.count)
     }
@@ -29,7 +29,7 @@ public extension UITextDocumentProxy {
 
 extension UITextDocumentProxy {
     
-    func deleteBackwardText(for range: KeyboardBackspaceRange) -> String? {
+    func deleteBackwardText(for range: Keyboard.BackspaceRange) -> String? {
         guard let text = documentContextBeforeInput else { return nil }
         switch range {
         case .character: return text.lastCharacter

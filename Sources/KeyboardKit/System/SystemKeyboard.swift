@@ -15,7 +15,7 @@ import SwiftUI
  The keyboard will by default place an ``AutocompleteToolbar``
  above the keyboard, unless you tell it not to. It will also
  replace the keyboard with an ``EmojiCategoryKeyboard`` when
- ``KeyboardContext/keyboardType`` is ``KeyboardType/emojis``.
+ an ``Keyboard/KeyboardType/emojis`` keyboard is selected.
 
  There are several ways to create a system keyboard. Use the
  initializers without view builders to use a standard button

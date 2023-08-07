@@ -409,7 +409,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         keyboardContext.selectNextLocale()
     }
 
-    open func setKeyboardType(_ type: KeyboardType) {
+    open func setKeyboardType(_ type: Keyboard.KeyboardType) {
         keyboardContext.keyboardType = type
     }
 

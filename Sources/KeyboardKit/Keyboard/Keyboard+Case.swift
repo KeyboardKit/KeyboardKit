@@ -1,5 +1,5 @@
 //
-//  KeyboardCase.swift
+//  Keyboard+Case.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-07-04.
@@ -8,18 +8,19 @@
 
 import Foundation
 
-/**
- This enum lists the various shift states a keyboard can use.
- */
-public enum KeyboardCase: String, Codable, Identifiable {
+public extension Keyboard {
     
-    case auto
-    case capsLocked
-    case lowercased
-    case uppercased
+    /// This enum defines various keyboard shift states.
+    enum Case: String, Codable, Identifiable {
+        
+        case auto
+        case capsLocked
+        case lowercased
+        case uppercased
+    }
 }
 
-public extension KeyboardCase {
+public extension Keyboard.Case {
     
     /// The case's unique identifier.
     var id: String { rawValue }

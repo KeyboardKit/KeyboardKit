@@ -64,7 +64,7 @@ public enum KeyboardAction: Codable, Equatable {
     case image(description: String, keyboardImageName: String, imageName: String)
     
     /// Changes the keyboard type when pressed.
-    case keyboardType(KeyboardType)
+    case keyboardType(Keyboard.KeyboardType)
     
     /// Moves the input cursor back one step when released.
     case moveCursorBackward
@@ -85,13 +85,13 @@ public enum KeyboardAction: Codable, Equatable {
     case option
     
     /// Represents a primary return button, e.g. `return`, `go`, `search` etc.
-    case primary(KeyboardReturnKeyType)
+    case primary(Keyboard.ReturnKeyType)
     
     /// A custom action that can be used to e.g. show a settings screen.
     case settings
     
     /// Changes the keyboard type to `.alphabetic(.uppercased)` when released and `.capslocked` when double tapped.
-    case shift(currentCasing: KeyboardCase)
+    case shift(currentCasing: Keyboard.Case)
     
     /// Inserts a space when released and moves the cursor when long pressed.
     case space
@@ -239,7 +239,7 @@ public extension KeyboardAction {
     /**
      Whether or not the action is a keyboard type action.
      */
-    func isKeyboardTypeAction(_ keyboardType: KeyboardType) -> Bool {
+    func isKeyboardTypeAction(_ keyboardType: Keyboard.KeyboardType) -> Bool {
         switch self {
         case .keyboardType(let type): return type == keyboardType
         default: return false

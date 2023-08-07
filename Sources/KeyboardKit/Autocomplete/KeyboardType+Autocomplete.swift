@@ -6,7 +6,7 @@
 //  Copyright © 2022-2023 Daniel Saidi. All rights reserved.
 //
 
-public extension KeyboardType {
+public extension Keyboard.KeyboardType {
 
     /**
      Whether or not this keyboard type prefers auto complete.

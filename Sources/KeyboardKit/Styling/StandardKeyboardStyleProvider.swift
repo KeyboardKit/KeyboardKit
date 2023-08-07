@@ -235,7 +235,7 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     }
 
     /// The font size to use for a certain keyboard type.
-    open func buttonFontSize(for keyboardType: KeyboardType) -> CGFloat {
+    open func buttonFontSize(for keyboardType: Keyboard.KeyboardType) -> CGFloat {
         switch keyboardType {
         case .alphabetic: return 15
         case .numeric: return 16

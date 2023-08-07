@@ -204,7 +204,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [External]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/external-keyboards
 [Feedback]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/feedback
 [Gestures]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/gestures
-[Keyboard]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/keyboard
+[Keyboard]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/essentials
 [Layout]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/layout
 [Localization]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/localization
 [Previews]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/previews

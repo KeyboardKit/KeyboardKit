@@ -56,7 +56,7 @@ public extension KeyboardImageReader {
         locale.isLeftToRight ? .keyboardNewline : .keyboardNewlineRtl
     }
     
-    static func keyboardShift(_ casing: KeyboardCase) -> Image {
+    static func keyboardShift(_ casing: Keyboard.Case) -> Image {
         switch casing {
         case .auto: return .keyboardShiftLowercased
         case .capsLocked: return .keyboardShiftCapslocked

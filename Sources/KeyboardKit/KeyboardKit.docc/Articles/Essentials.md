@@ -29,17 +29,17 @@ The ``KeyboardEnabledStateInspector`` protocol can be implemented by any type th
 
 ## Keyboard types
 
-KeyboardKit has a ``KeyboardType`` enum that defines many different keyboard types, such as:
+KeyboardKit has a ``Keyboard/KeyboardType`` enum that defines many different keyboard types, such as:
 
-- ``KeyboardType/alphabetic(_:)`` - represents an alphabetic keyboard.
-- ``KeyboardType/numeric`` - represents a numeric keyboard.
-- ``KeyboardType/symbolic`` - represents a symbolic keyboard.
+- ``Keyboard/KeyboardType/alphabetic(_:)`` - represents an alphabetic keyboard.
+- ``Keyboard/KeyboardType/numeric`` - represents a numeric keyboard.
+- ``Keyboard/KeyboardType/symbolic`` - represents a symbolic keyboard.
 
-- ``KeyboardType/email`` - represents an e-mail keyboard.
-- ``KeyboardType/emojis`` - represents an emoji keyboard.
-- ``KeyboardType/images`` - represents an image keyboard.
+- ``Keyboard/KeyboardType/email`` - represents an e-mail keyboard.
+- ``Keyboard/KeyboardType/emojis`` - represents an emoji keyboard.
+- ``Keyboard/KeyboardType/images`` - represents an image keyboard.
 
-- ``KeyboardType/custom(named:)`` - a custom type if no other types fit your needs
+- ``Keyboard/KeyboardType/custom(named:)`` - a custom type if no other types fit your needs
 
 To change keyboard type, just set the context's ``KeyboardContext/keyboardType`` to the type you want to use. ``SystemKeyboard`` supports alphabetic, numeric, symbolic and emoji keyboards. 
 

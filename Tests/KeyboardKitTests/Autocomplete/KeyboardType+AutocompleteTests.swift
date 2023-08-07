@@ -15,7 +15,7 @@ import UIKit
 
 class KeyboardType_AutocompleteTests: XCTestCase {
 
-    func prefersAutocompleteResult(for type: KeyboardType) -> Bool {
+    func prefersAutocompleteResult(for type: Keyboard.KeyboardType) -> Bool {
         type.prefersAutocomplete
     }
 

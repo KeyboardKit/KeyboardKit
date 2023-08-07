@@ -72,7 +72,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
      The range that the backspace key should delete when the
      key is long pressed.
      */
-    public var backspaceRange: KeyboardBackspaceRange {
+    public var backspaceRange: Keyboard.BackspaceRange {
         let duration = repeatGestureTimer.duration ?? 0
         return duration > 3 ? .word : .character
     }
@@ -84,7 +84,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     public func preferredKeyboardType(
         after gesture: KeyboardGesture,
         on action: KeyboardAction
-    ) -> KeyboardType {
+    ) -> Keyboard.KeyboardType {
         if shouldSwitchToCapsLock(after: gesture, on: action) { return .alphabetic(.capsLocked) }
         if action.isAlternateQuotationDelimiter(for: keyboardContext) { return .alphabetic(.lowercased) }
         let should = shouldSwitchToPreferredKeyboardType(after: gesture, on: action)
@@ -186,7 +186,7 @@ private extension String {
     }
 }
 
-private extension KeyboardType {
+private extension Keyboard.KeyboardType {
     
     var shouldSwitchToPreferredKeyboardType: Bool {
         switch self {
@@ -196,7 +196,7 @@ private extension KeyboardType {
     }
 }
 
-private extension KeyboardCase {
+private extension Keyboard.Case {
     
     var shouldSwitchToPreferredKeyboardType: Bool {
         switch self {

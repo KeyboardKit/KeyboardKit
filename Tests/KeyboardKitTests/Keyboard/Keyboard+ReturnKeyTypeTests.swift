@@ -1,5 +1,5 @@
 //
-//  KeyboardReturnKeyTypeTests.swift
+//  Keyboard+ReturnKeyTypeTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-01-05.
@@ -9,17 +9,17 @@
 import KeyboardKit
 import XCTest
 
-final class KeyboardReturnKeyTypeTests: XCTestCase {
+final class Keyboard_ReturnKeyTypeTests: XCTestCase {
 
-    func assertId(for type: KeyboardReturnKeyType, _ expected: String) {
+    func assertId(for type: Keyboard.ReturnKeyType, _ expected: String) {
         XCTAssertEqual(type.id, expected)
     }
 
-    func assertStandardButtonImage(for type: KeyboardReturnKeyType, _ expected: Bool) {
+    func assertStandardButtonImage(for type: Keyboard.ReturnKeyType, _ expected: Bool) {
         XCTAssertEqual(type.standardButtonImage(for: .current) != nil, expected)
     }
 
-    func assertStandardButtonText(for type: KeyboardReturnKeyType, _ expected: Bool) {
+    func assertStandardButtonText(for type: Keyboard.ReturnKeyType, _ expected: Bool) {
         XCTAssertEqual(type.standardButtonText(for: .current) != nil, expected)
     }
 
@@ -36,7 +36,7 @@ final class KeyboardReturnKeyTypeTests: XCTestCase {
     }
 
     func testAllCasesReturnsAllTypesExceptCustom() {
-        let cases = KeyboardReturnKeyType.allCases
+        let cases = Keyboard.ReturnKeyType.allCases
         XCTAssertEqual(cases, [.return, .done, .go, .join, .newLine, .next, .ok, .search, .send])
     }
 
@@ -67,7 +67,7 @@ final class KeyboardReturnKeyTypeTests: XCTestCase {
     #if os(iOS) || os(tvOS)
     func assertNativeMapping(
         for type: UIReturnKeyType,
-        _ expected: KeyboardReturnKeyType
+        _ expected: Keyboard.ReturnKeyType
     ) {
         XCTAssertEqual(type.keyboardReturnKeyType, expected)
     }

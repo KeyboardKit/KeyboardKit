@@ -15,7 +15,7 @@ public extension KeyboardContext {
      the current keyboard type and the text document proxy's
      `autocapitalization` configuration.
      */
-    var preferredKeyboardType: KeyboardType {
+    var preferredKeyboardType: Keyboard.KeyboardType {
         if keyboardType.isAlphabetic(.capsLocked) { return keyboardType }
         if let type = preferredAutocapitalizedKeyboardType { return type }
         if let type = preferredKeyboardTypeAfterAlphaTyping { return type }
@@ -26,19 +26,19 @@ public extension KeyboardContext {
 
 private extension KeyboardContext {
     
-    var preferredAutocapitalizedKeyboardType: KeyboardType? {
+    var preferredAutocapitalizedKeyboardType: Keyboard.KeyboardType? {
         preferredAutocapitalizedKeyboardType(requiresAlphabetic: true)
     }
     
     func preferredAutocapitalizedKeyboardType(
         requiresAlphabetic: Bool
-    ) -> KeyboardType? {
+    ) -> Keyboard.KeyboardType? {
         #if os(iOS) || os(tvOS)
         guard isAutoCapitalizationEnabled else { return nil }
         guard let proxyType = autocapitalizationType else { return nil }
         if requiresAlphabetic && !keyboardType.isAlphabetic { return nil }
-        let uppercased = KeyboardType.alphabetic(.uppercased)
-        let lowercased = KeyboardType.alphabetic(.lowercased)
+        let uppercased = Keyboard.KeyboardType.alphabetic(.uppercased)
+        let lowercased = Keyboard.KeyboardType.alphabetic(.lowercased)
         if locale.isRightToLeft { return lowercased }
         switch proxyType {
         case .allCharacters: return uppercased
@@ -51,7 +51,7 @@ private extension KeyboardContext {
         #endif
     }
 
-    var preferredKeyboardTypeAfterAlphaTyping: KeyboardType? {
+    var preferredKeyboardTypeAfterAlphaTyping: Keyboard.KeyboardType? {
         #if os(iOS) || os(tvOS)
         guard keyboardType.isAlphabetic else { return nil }
         return .alphabetic(.lowercased)
@@ -60,7 +60,7 @@ private extension KeyboardContext {
         #endif
     }
     
-    var preferredKeyboardTypeAfterNumericOrSymbolicSpaceOrReturn: KeyboardType? {
+    var preferredKeyboardTypeAfterNumericOrSymbolicSpaceOrReturn: Keyboard.KeyboardType? {
         #if os(iOS) || os(tvOS)
         guard keyboardType == .numeric || keyboardType == .symbolic else { return nil }
         guard let before = textDocumentProxy.documentContextBeforeInput else { return nil }

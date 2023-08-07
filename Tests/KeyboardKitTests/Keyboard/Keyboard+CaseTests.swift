@@ -1,5 +1,5 @@
 //
-//  KeyboardCaseTests.swift
+//  Keyboard+CaseTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-07-04.
@@ -9,13 +9,13 @@
 import KeyboardKit
 import XCTest
 
-class KeyboardCaseTests: XCTestCase {
+class Keyboard_CaseTests: XCTestCase {
 
-    func isLowercased(for case: KeyboardCase) -> Bool {
+    func isLowercased(for case: Keyboard.Case) -> Bool {
         return `case`.isLowercased
     }
 
-    func isUppercased(for case: KeyboardCase) -> Bool {
+    func isUppercased(for case: Keyboard.Case) -> Bool {
         return `case`.isUppercased
     }
 

@@ -19,7 +19,7 @@ public protocol KeyboardBehavior {
      The range that the backspace key should delete when the
      key is long pressed.
      */
-    var backspaceRange: KeyboardBackspaceRange { get }
+    var backspaceRange: Keyboard.BackspaceRange { get }
     
     /**
      The preferred keyboard type that should be applied when
@@ -28,7 +28,7 @@ public protocol KeyboardBehavior {
     func preferredKeyboardType(
         after gesture: KeyboardGesture,
         on action: KeyboardAction
-    ) -> KeyboardType
+    ) -> Keyboard.KeyboardType
     
     /**
      Whether or not to end the currently typed sentence when

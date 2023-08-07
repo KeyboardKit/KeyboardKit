@@ -8,7 +8,5 @@
 
 import Foundation
 
-/**
- This is a namespace for various keyboard styles.
- */
+/// This is a namespace for various keyboard styles.
 public struct KeyboardStyle {}

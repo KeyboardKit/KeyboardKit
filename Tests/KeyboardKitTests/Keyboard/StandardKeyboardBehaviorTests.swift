@@ -30,7 +30,7 @@ class StandardKeyboardBehaviorTests: XCTestCase {
     }
 
 
-    func backspaceRangeResult(after seconds: TimeInterval) -> KeyboardBackspaceRange {
+    func backspaceRangeResult(after seconds: TimeInterval) -> Keyboard.BackspaceRange {
         timer.start {}
         timer.modifyStartDate(to: Date().addingTimeInterval(-seconds))
         return behavior.backspaceRange
@@ -46,7 +46,7 @@ class StandardKeyboardBehaviorTests: XCTestCase {
     func preferredKeyboardTypeResult(
         after gesture: KeyboardGesture,
         on action: KeyboardAction
-    ) -> KeyboardType {
+    ) -> Keyboard.KeyboardType {
         behavior.preferredKeyboardType(after: gesture, on: action)
     }
 
@@ -152,7 +152,7 @@ class StandardKeyboardBehaviorTests: XCTestCase {
     }
 
     func testShouldSwitchToPreferredKeyboardTypeIsFalseForMostKeyboardTypes() {
-        let types: [KeyboardType] = [
+        let types: [Keyboard.KeyboardType] = [
             .custom(named: "foo"),
             .email,
             .emojis,
@@ -165,9 +165,9 @@ class StandardKeyboardBehaviorTests: XCTestCase {
     }
 
     func testShouldSwitchToPreferredKeyboardTypeIsOnlyTrueForAlphabeticAutoCasedKeyboardType() {
-        let expectedTrue: [KeyboardType] = [
+        let expectedTrue: [Keyboard.KeyboardType] = [
             .alphabetic(.auto)]
-        let expectedFalse: [KeyboardType] = [
+        let expectedFalse: [Keyboard.KeyboardType] = [
             .alphabetic(.capsLocked),
             .alphabetic(.lowercased),
             .alphabetic(.uppercased)]
@@ -180,7 +180,7 @@ class StandardKeyboardBehaviorTests: XCTestCase {
     }
 
     func testShouldSwitchToPreferredKeyboardTypeIsFalseIfActionIsKeyboardType() {
-        let types: [KeyboardType] = [
+        let types: [Keyboard.KeyboardType] = [
             .alphabetic(.lowercased),
             .custom(named: "foo"),
             .email,

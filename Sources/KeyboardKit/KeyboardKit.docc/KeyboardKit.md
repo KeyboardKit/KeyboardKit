@@ -68,7 +68,7 @@ KeyboardKit is available under the MIT license.
 
 ### Essentials
 
-- <doc:Keyboard>
+- <doc:Essentials>
 
 ### Articles
 
@@ -88,22 +88,17 @@ KeyboardKit is available under the MIT license.
 - <doc:Settings>
 - <doc:Styling>
 
-### Keyboard
+### Essentials
 
-- ``KeyboardInputViewController``
-
-- ``KeyboardAutocapitalizationType``
-- ``KeyboardBackspaceRange``
+- ``Keyboard``
 - ``KeyboardBehavior``
-- ``KeyboardCase``
 - ``KeyboardContext``
 - ``KeyboardController``
-- ``KeyboardType``
 - ``KeyboardEnabledContext``
 - ``KeyboardEnabledLabel``
 - ``KeyboardEnabledLabelStyle``
 - ``KeyboardEnabledStateInspector``
-- ``KeyboardReturnKeyType``
+- ``KeyboardInputViewController``
 - ``KeyboardTextContext``
 - ``NextKeyboardButton``
 - ``StandardKeyboardBehavior``

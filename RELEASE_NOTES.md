@@ -13,15 +13,17 @@ These release notes will only contain the current version. Just check out an old
 
 ## 7.9
 
-This release prepares the library for the upcoming major version bump, which will clean up the library and remove a lot of types.
+This release prepares the library for the upcoming major version bump, which will clean up the library and remove a lot of types by either deprecating them or moving them into other types.
 
-Many types in the library are deprecated with proper `@available` annotations, but the ones that can't be deprecated like that have a new soft deprecation comment that begins with `[DEPRECATED]`. Some examples are types that will be made internal in the next major version. A `> v8.0: Comment` block will be added to the docs, where structural or architectural changes will be made, but currently can't be made since it would cause breaking changes.
+Many types have been deprecated with `@available` annotations, but those that can't be deprecated have a new soft deprecation comment that begins with `[DEPRECATED]`. A `> v8.0: Comment` block will be added where structural or architectural changes will be made, but currently can't be made since it would cause breaking changes.
 
-One big change is that the `InputSetProvider` concept is replaced by just using `InputSet`s when creating layout providers. This removes a lot of complexity and makes it easier to create custom layouts and use various input sets together.
+One big change is that many keyboard types are moved into a new `Keyboard` namespace, and that many styles are moved into a new `KeyboardStyle` namespace. 
 
-Another big change is that most styles are now nested within a new `KeyboardStyle` type, to reduce the clutter. As a result of this, `KeyboardAppearance` is renamed to `KeyboardStyleProvider` and the `Appearance` namespace is renamed to `Styling`.
+Another big change is that the `InputSetProvider` concept is replaced by just using `InputSet`s. This removes a lot of complexity and makes it easier to create custom layouts and use various input sets together.
 
-Another big change is that the `KeyboardFeedbackHandler` concept is merged into the `KeyboardActionHandler` to just have a single type. This means that the feedback handler concept is deprecated and will be removed in the next major version. 
+Another big change is that the `KeyboardAppearance` is renamed to `KeyboardStyleProvider` and the `Appearance` namespace is renamed to `Styling`.
+
+Another big change is that the `KeyboardFeedbackHandler` concept is merged into the `KeyboardActionHandler` to just have a single type. The feedback handler will be removed in the next major version. 
 
 ### ✨ New Features
 
@@ -31,6 +33,7 @@ Another big change is that the `KeyboardFeedbackHandler` concept is merged into 
 * `HapticFeedbackConfiguration` has new `press` and `release` configurations.
 * `Image.keyboardShift` is a new image.
 * `InputSet` has new `English` builders.
+* `Keyboard` is a new namespace type for some keyboard-specific types.
 * `KeyboardActionHandler` has new feedback functions.
 * `KeyboardDictationService.disabled` is a new alias for `DisabledKeyboardDictationService`.
 * `KeyboardFeedbackSettings` has new enabled and disabled configurations.
@@ -93,7 +96,9 @@ Another big change is that the `KeyboardFeedbackHandler` concept is merged into 
 * `InterfaceOrientationResolver` has been deprecated.
 * `KeyboardActionCalloutStyle` has been renamed to `KeyboardStyle.ActionCallout`.
 * `KeyboardAppearance` has been renamed to `KeyboardStyleProvider`.
+* `KeyboardAutocapitalizationType` has been renamed to `Keyboard.AutocapitalizationType`.
 * `KeyboardBackgroundStyle` has been renamed to `KeyboardStyle.Background`.
+* `KeyboardBackspaceRange` has been renamed to `Keyboard.BackspaceRange`.
 * `KeyboardButtonStyle` has been renamed to `KeyboardStyle.Button`.
 * `KeyboardButtonBorderStyle` has been renamed to `KeyboardStyle.ButtonBorder`.
 * `KeyboardButtonShadowStyle` has been renamed to `KeyboardStyle.ButtonShadow`.
@@ -101,14 +106,17 @@ Another big change is that the `KeyboardFeedbackHandler` concept is merged into 
 * `KeyboardCalloutContext.action` has been renamed to `actionContext`.
 * `KeyboardCalloutContext.input` has been renamed to `inputContext`.
 * `KeyboardCalloutStyle` has been renamed to `KeyboardStyle.Callout`.
+* `KeyboardCase` has been renamed to `Keyboard.Case`.
 * `KeyboardCase.standardButtonImage` has been deprecated.
+* `KeyboardCaseAdjustable` has been deprecated.
 * `KeyboardEnabledState` has been renamed to `KeyboardEnabledContext`.
 * `KeyboardHostingController` has been soft deprecated.
 * `KeyboardFontType` has been renamed to `KeyboardFont.FontType`.
 * `KeyboardFontWeight` has been renamed to `KeyboardFont.FontWeight`.
 * `KeyboardInputCalloutStyle` has been renamed to `KeyboardStyle.InputCallout`.
 * `KeyboardInputViewController` `keyboardAppearance` has been renamed to `keyboardStyleProvider`.
-* `KeyboardCaseAdjustable` has been deprecated.
+* `KeyboardReturnKeyType` has been renamed to `Keyboard.ReturnKeyType`.
+* `KeyboardType` has been renamed to `Keyboard.KeyboardType`.
 * `NumericInputSet.english` has been renamed to `englishNumeric`.
 * `NumericInputSet.standard` has been renamed to `standardNumeric`.
 * `DisabledAudioFeedbackEngine` has been deprecated.

@@ -70,7 +70,7 @@ public struct InputSetItem: Equatable {
     /**
      Resolve the character to use for a certain case.
      */
-    public func character(for case: KeyboardCase) -> String {
+    public func character(for case: Keyboard.Case) -> String {
         switch `case` {
         case .auto: return lowercased
         case .lowercased: return lowercased

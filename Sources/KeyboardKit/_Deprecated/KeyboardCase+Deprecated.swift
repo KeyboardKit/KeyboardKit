@@ -1,6 +1,6 @@
 import SwiftUI
 
-public extension KeyboardCase {
+public extension Keyboard.Case {
     
     @available(*, deprecated, message: "Use Image.keyboardShift(:) instead")
     var standardButtonImage: Image {

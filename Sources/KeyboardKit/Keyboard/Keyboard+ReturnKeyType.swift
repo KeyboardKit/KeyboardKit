@@ -1,5 +1,5 @@
 //
-//  KeyboardReturnKeyType.swift
+//  Keyboard+ReturnKeyType.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-04-17.
@@ -8,69 +8,76 @@
 
 import SwiftUI
 
-/**
- This enum defines various keyboard return button types that
- can be used as ``KeyboardAction/primary(_:)`` actions.
-
- This is a multi-platform version of `UIReturnKeyType` which
- has a `keyboardReturnKeyType` property, that can be used to
- map it to a ``KeyboardReturnKeyType``.
- 
- Note that the native use of some keys are currently unknown.
- Please fill in any missing information if you happen to see
- these keys being used by the system.
- */
-public enum KeyboardReturnKeyType: CaseIterable, Codable, Equatable, Identifiable {
-
-    /// A return key that uses a return text and not an ⏎ icon.
-    case `return`
+public extension Keyboard {
     
-    /// An continue key, which native use is currently unknown.
-    case `continue`
-
-    /// A done key used in e.g. Calendar, when adding a location.
-    case done
-    
-    /// An emergency call key, which native use is currently unknown.
-    case emergencyCall
-    
-    /// A go key used in e.g. Mobile Safari, when entering a url.
-    case go
-
-    /// A join key used in e.g. System Settings, when joining a wifi network with password.
-    case join
-
-    /// A return key that by default uses a ⏎ icon instead of return text.
-    case newLine
-
-    /// A next key used in e.g. System Settings, when joining an enterprise wifi network with username and password.
-    case next
-
-    /// An ok key, which isn't actually used in native.
-    case ok
-    
-    /// A route key, which native use is currently unknown.
-    case route
-
-    /// A search key used in e.g. Mobile Safari, when typing in the google.com search field.
-    case search
-
-    /// A send key used in e.g. some messaging apps (WeChat, QQ etc.) when typing in a chat text field.
-    case send
-
-    /// A custom key with a custom title.
-    case custom(title: String)
-
     /**
-     All unique primary keyboard action types, excluding
-     ``KeyboardAction/custom(named:)``.
+     This enum defines various keyboard return key types.
+     
+     Return keys can be used as ``KeyboardAction/primary(_:)``
+     actions and will insert a new line or perform a primary
+     action when they are tapped.
+     
+     This is a multi-platform version of the UIKit exclusive
+     `UIReturnKeyType` class, which has been extended with a
+     `keyboardReturnKeyType` that maps it to this enum.
+     
+     Note that the use of some of the defined keys are still
+     unknown, which means they aren't localized. Please fill
+     out any of the missing information if you happen to see
+     these keys being used by the system.
      */
-    public static var allCases: [KeyboardReturnKeyType] {
-        [.return, .done, .go, .join, .newLine, .next, .ok, .search, .send]
+    enum ReturnKeyType: CaseIterable, Codable, Equatable, Identifiable {
+        
+        /// A return key that uses a return text and not a ⏎.
+        case `return`
+        
+        /// An continue key (native use unknown).
+        case `continue`
+        
+        /// A done key (used when adding a Calendar location).
+        case done
+        
+        /// An emergency call key (native use unknown).
+        case emergencyCall
+        
+        /// A go key (used when entering a URL in Safari).
+        case go
+        
+        /// A join key (used when joining wifi with password).
+        case join
+        
+        /// A return key that uses a ⏎ and not a return text.
+        case newLine
+        
+        /// A next key (used when joining wifi with uid/pwd).
+        case next
+        
+        /// An ok key, which isn't actually used in native.
+        case ok
+        
+        /// A route key (native use unknown).
+        case route
+        
+        /// A search key (used for Google search in Safari).
+        case search
+        
+        /// A send key (used when typing in WeChat, QQ, etc.).
+        case send
+        
+        /// A custom key with a custom title.
+        case custom(title: String)
+        
+        /**
+         All unique primary keyboard action types, excluding
+         ``KeyboardAction/custom(named:)``.
+         */
+        public static var allCases: [Self] {
+            [.return, .done, .go, .join, .newLine, .next, .ok, .search, .send]
+        }
     }
 }
 
-public extension KeyboardReturnKeyType {
+public extension Keyboard.ReturnKeyType {
 
     /**
      The type's unique identifier.
@@ -150,7 +157,7 @@ public extension UIReturnKeyType {
      Return types that have no matching primary type will be
      mapped to ``KeyboardReturnKeyType/custom(title:)``.
      */
-    var keyboardReturnKeyType: KeyboardReturnKeyType {
+    var keyboardReturnKeyType: Keyboard.ReturnKeyType {
         switch self {
         case .default: return .return
         case .done: return .done

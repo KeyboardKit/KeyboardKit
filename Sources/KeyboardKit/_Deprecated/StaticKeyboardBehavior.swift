@@ -30,7 +30,7 @@ open class StaticKeyboardBehavior: KeyboardBehavior {
      The range that the backspace key should delete when the
      key is long pressed.
      */
-    open var backspaceRange: KeyboardBackspaceRange { .character }
+    open var backspaceRange: Keyboard.BackspaceRange { .character }
     
     /**
      The preferred keyboard type that should be applied when
@@ -39,7 +39,7 @@ open class StaticKeyboardBehavior: KeyboardBehavior {
     open func preferredKeyboardType(
         after gesture: KeyboardGesture,
         on action: KeyboardAction
-    ) -> KeyboardType {
+    ) -> Keyboard.KeyboardType {
         keyboardContext.keyboardType
     }
     

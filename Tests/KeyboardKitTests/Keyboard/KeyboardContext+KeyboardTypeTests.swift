@@ -24,7 +24,7 @@ class KeyboardContext_KeyboardTypeTests: XCTestCase {
     }
 
 
-    func result(for current: KeyboardType, preCursorPart: String, type: UITextAutocapitalizationType) -> KeyboardType {
+    func result(for current: Keyboard.KeyboardType, preCursorPart: String, type: UITextAutocapitalizationType) -> Keyboard.KeyboardType {
         context.keyboardType = current
         proxy.documentContextBeforeInput = preCursorPart
         proxy.autocapitalizationType = type
@@ -43,7 +43,7 @@ class KeyboardContext_KeyboardTypeTests: XCTestCase {
 
     func testPreferredKeyboardTypeIgnoresAutoCapitalizationIfOverrideIsSet() {
         context.isAutoCapitalizationEnabled = false
-        let current = KeyboardType.alphabetic(.lowercased)
+        let current = Keyboard.KeyboardType.alphabetic(.lowercased)
         let type = UITextAutocapitalizationType.allCharacters
         XCTAssertEqual(result(for: current, preCursorPart: "", type: type), current)
         XCTAssertEqual(result(for: current, preCursorPart: "foo", type: type), current)
@@ -52,9 +52,9 @@ class KeyboardContext_KeyboardTypeTests: XCTestCase {
     }
 
     func testPreferredKeyboardTypeWithAutoCapitalizationReturnsCorrectResultForAllCharactersCapitalizaton() {
-        let current = KeyboardType.alphabetic(.lowercased)
+        let current = Keyboard.KeyboardType.alphabetic(.lowercased)
         let type = UITextAutocapitalizationType.allCharacters
-        let expected = KeyboardType.alphabetic(.uppercased)
+        let expected = Keyboard.KeyboardType.alphabetic(.uppercased)
         XCTAssertEqual(result(for: current, preCursorPart: "", type: type), expected)
         XCTAssertEqual(result(for: current, preCursorPart: "foo", type: type), expected)
         XCTAssertEqual(result(for: current, preCursorPart: "foo!", type: type), expected)
@@ -62,7 +62,7 @@ class KeyboardContext_KeyboardTypeTests: XCTestCase {
     }
 
     func testPreferredKeyboardTypeWithAutoCapitalizationAlwaysReturnsCapsLockedForCapsLocked() {
-        let current = KeyboardType.alphabetic(.capsLocked)
+        let current = Keyboard.KeyboardType.alphabetic(.capsLocked)
         let type = UITextAutocapitalizationType.sentences
         XCTAssertEqual(result(for: current, preCursorPart: "", type: type), current)
         XCTAssertEqual(result(for: current, preCursorPart: "foo", type: type), current)
@@ -72,9 +72,9 @@ class KeyboardContext_KeyboardTypeTests: XCTestCase {
     }
 
     func testPreferredKeyboardTypeWithAutoCapitalizationReturnsCorrectResultForSentenceCapitalizatons() {
-        let current = KeyboardType.alphabetic(.lowercased)
+        let current = Keyboard.KeyboardType.alphabetic(.lowercased)
         let type = UITextAutocapitalizationType.sentences
-        let expected = KeyboardType.alphabetic(.uppercased)
+        let expected = Keyboard.KeyboardType.alphabetic(.uppercased)
         XCTAssertEqual(result(for: current, preCursorPart: "", type: type), expected)
         XCTAssertEqual(result(for: current, preCursorPart: "foo", type: type), current)
         XCTAssertEqual(result(for: current, preCursorPart: "foo ", type: type), current)
@@ -84,9 +84,9 @@ class KeyboardContext_KeyboardTypeTests: XCTestCase {
     }
 
     func testPreferredKeyboardTypeWithAutoCapitalizationReturnsCorrectResultForWordsCcapitalizaton() {
-        let current = KeyboardType.alphabetic(.lowercased)
+        let current = Keyboard.KeyboardType.alphabetic(.lowercased)
         let type = UITextAutocapitalizationType.words
-        let expected = KeyboardType.alphabetic(.uppercased)
+        let expected = Keyboard.KeyboardType.alphabetic(.uppercased)
         XCTAssertEqual(result(for: current, preCursorPart: "", type: type), expected)
         XCTAssertEqual(result(for: current, preCursorPart: "foo", type: type), current)
         XCTAssertEqual(result(for: current, preCursorPart: "foo ", type: type), expected)
@@ -95,9 +95,9 @@ class KeyboardContext_KeyboardTypeTests: XCTestCase {
     }
 
     func testPreferredKeyboardTypeWithAutoCapitalizationReturnsCorrectResultForNoneCapitalizaton() {
-        let current = KeyboardType.alphabetic(.lowercased)
+        let current = Keyboard.KeyboardType.alphabetic(.lowercased)
         let type = UITextAutocapitalizationType.none
-        let expected = KeyboardType.alphabetic(.lowercased)
+        let expected = Keyboard.KeyboardType.alphabetic(.lowercased)
         XCTAssertEqual(result(for: current, preCursorPart: "", type: type), expected)
         XCTAssertEqual(result(for: current, preCursorPart: "foo", type: type), expected)
         XCTAssertEqual(result(for: current, preCursorPart: "foo!", type: type), expected)

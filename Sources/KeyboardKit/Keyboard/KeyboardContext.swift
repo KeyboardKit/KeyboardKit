@@ -58,7 +58,7 @@ public class KeyboardContext: ObservableObject {
      the ``autocapitalizationType`` value when it's set.
      */
     @Published
-    public var autocapitalizationTypeOverride: KeyboardAutocapitalizationType?
+    public var autocapitalizationTypeOverride: Keyboard.AutocapitalizationType?
 
     /**
      The current device type.
@@ -112,7 +112,7 @@ public class KeyboardContext: ObservableObject {
      The keyboard type that is currently used.
      */
     @Published
-    public var keyboardType = KeyboardType.alphabetic(.lowercased)
+    public var keyboardType = Keyboard.KeyboardType.alphabetic(.lowercased)
 
     /**
      The locale that is currently being used.
@@ -233,7 +233,7 @@ public extension KeyboardContext {
      You can use ``autocapitalizationTypeOverride`` to apply
      a custom value that overrides the default one.
      */
-    var autocapitalizationType: KeyboardAutocapitalizationType? {
+    var autocapitalizationType: Keyboard.AutocapitalizationType? {
         #if os(iOS) || os(tvOS)
         autocapitalizationTypeOverride ?? textDocumentProxy.autocapitalizationType?.keyboardType
         #else
@@ -283,7 +283,7 @@ public extension KeyboardContext {
     /**
      Whether or not the context has a certain keyboard type.
      */
-    func hasKeyboardType(_ type: KeyboardType) -> Bool {
+    func hasKeyboardType(_ type: Keyboard.KeyboardType) -> Bool {
         keyboardType == type
     }
 
@@ -303,7 +303,7 @@ public extension KeyboardContext {
     /**
      Set ``keyboardType`` to the provided `type`.
      */
-    func setKeyboardType(_ type: KeyboardType) {
+    func setKeyboardType(_ type: Keyboard.KeyboardType) {
         keyboardType = type
     }
 

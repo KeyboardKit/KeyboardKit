@@ -30,7 +30,7 @@ class UITextDocumentProxy_DeleteTests: XCTestCase {
     }
 
 
-    func deleteBackwardResult(for range: KeyboardBackspaceRange, _ expected: Int) -> Bool {
+    func deleteBackwardResult(for range: Keyboard.BackspaceRange, _ expected: Int) -> Bool {
         proxy.resetCalls()
         proxy.deleteBackward(range: range)
         return proxy.hasCalled(\.deleteBackwardRef, numberOfTimes: expected)
@@ -67,7 +67,7 @@ class UITextDocumentProxy_DeleteTests: XCTestCase {
     }
 
 
-    func deleteBackwardTextResult(for range: KeyboardBackspaceRange) -> String? {
+    func deleteBackwardTextResult(for range: Keyboard.BackspaceRange) -> String? {
         proxy.deleteBackwardText(for: range)
     }
 
