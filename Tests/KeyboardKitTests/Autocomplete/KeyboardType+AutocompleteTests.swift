@@ -1,5 +1,5 @@
 //
-//  PrefersAutocompleteResolverTests.swift
+//  KeyboardType+AutocompleteTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-03-18.
@@ -13,7 +13,7 @@ import XCTest
 import UIKit
 #endif
 
-class PrefersAutocompleteResolverTests: XCTestCase {
+class KeyboardType_AutocompleteTests: XCTestCase {
 
     func prefersAutocompleteResult(for type: KeyboardType) -> Bool {
         type.prefersAutocomplete

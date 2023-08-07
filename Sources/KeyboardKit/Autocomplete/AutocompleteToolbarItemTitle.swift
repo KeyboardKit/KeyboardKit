@@ -9,15 +9,13 @@
 import SwiftUI
 
 /**
- [DEPRECATED]
+ [DEPRECATED] This will be made internal in KeyboardKit 8.0.
  
  This view mimics the title of the autocomplete toolbar item
  that is used in native iOS keyboards.
  
  The view will enforce a single line limit and resize itself
  to share the available horizontal space with other views.
- 
- > v8.0: This will be converted to an internal type in 8.0.
  */
 public struct AutocompleteToolbarItemTitle: View {
     

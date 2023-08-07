@@ -6,23 +6,6 @@
 //  Copyright © 2022-2023 Daniel Saidi. All rights reserved.
 //
 
-/**
- This protocol can be implemented by any type that can check
- if autocomplete is preferred.
-
- This protocol is implemented by ``KeyboardType`` as well as
- the `UIKeyboardType` in `UIKit`.
- */
-public protocol PrefersAutocompleteResolver {
-
-    /**
-     Whether or not this provider prefers auto complete.
-     */
-    var prefersAutocomplete: Bool { get }
-}
-
-extension KeyboardType: PrefersAutocompleteResolver {}
-
 public extension KeyboardType {
 
     /**
@@ -43,8 +26,6 @@ public extension KeyboardType {
 
 #if os(iOS) || os(tvOS)
 import UIKit
-
-extension UIKeyboardType: PrefersAutocompleteResolver {}
 
 public extension UIKeyboardType {
 

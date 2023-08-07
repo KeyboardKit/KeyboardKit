@@ -123,7 +123,6 @@ KeyboardKit is available under the MIT license.
 - ``AutocompleteToolbar``
 - ``AutocompleteToolbarItem``
 - ``AutocompleteToolbarSeparator``
-- ``PrefersAutocompleteResolver``
 
 - ``DisabledAutocompleteProvider``
 
@@ -131,8 +130,6 @@ KeyboardKit is available under the MIT license.
 
 - ``ActionCallout``
 - ``CalloutActionProvider``
-- ``CalloutButtonArea``
-- ``CalloutCurve``
 - ``InputCallout``
 - ``StandardCalloutActionProvider``
 
@@ -207,7 +204,6 @@ KeyboardKit is available under the MIT license.
 - ``InputSetItem``
 - ``InputSetRow``
 - ``InputSetRows``
-
 - ``AlphabeticInputSet``
 - ``NumericInputSet``
 - ``SymbolicInputSet``

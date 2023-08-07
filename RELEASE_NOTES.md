@@ -13,19 +13,15 @@ These release notes will only contain the current version. Just check out an old
 
 ## 7.9
 
-This release prepares the library for the upcoming major version bump, which will clean up the library and remove a lot of types to make the library easier to use.
+This release prepares the library for the upcoming major version bump, which will clean up the library and remove a lot of types.
 
-One big change is that the `InputSetProvider` concept is replaced by just using raw `InputSet` values when creating layout providers.
+Many types in the library are deprecated with proper `@available` annotations, but the ones that can't be deprecated like that have a new soft deprecation comment that begins with `[DEPRECATED]`. Some examples are types that will be made internal in the next major version. A `> v8.0: Comment` block will be added to the docs, where structural or architectural changes will be made, but currently can't be made since it would cause breaking changes.
 
-Another big change is that most style types are nested within a new `KeyboardStyle` type, to reduce the clutter in the library and group these styles in one place.
+One big change is that the `InputSetProvider` concept is replaced by just using `InputSet`s when creating layout providers. This removes a lot of complexity and makes it easier to create custom layouts and use various input sets together.
 
-As a result of this the `KeyboardAppearance` concept is renamed to `KeyboardStyleProvider` and the `Appearance` namespace is renamed to `Styling`.
+Another big change is that most styles are now nested within a new `KeyboardStyle` type, to reduce the clutter. As a result of this, `KeyboardAppearance` is renamed to `KeyboardStyleProvider` and the `Appearance` namespace is renamed to `Styling`.
 
-Another big change is that the `KeyboardFeedbackHandler` concept is merged into the `KeyboardActionHandler` to just have a single type.
-
-This release converts feedback engines from protocols to singletons to simplify the setup and minimize the risk for memory leaks. 
-
-A `> v8.0: Comment` block will be added to the docs, where structural or architectural changes will be made, but currently can't be made since it would cause breaking changes. The aim is to clean up and simplify the library, which today has too many types and concepts. 
+Another big change is that the `KeyboardFeedbackHandler` concept is merged into the `KeyboardActionHandler` to just have a single type. This means that the feedback handler concept is deprecated and will be removed in the next major version. 
 
 ### ✨ New Features
 
@@ -81,18 +77,18 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `AutocompleteToolbarStyle` has been renamed to `KeyboardStyle.AutocompleteToolbarItem`.
 * `AutocompleteToolbarItemBackgroundStyle` has been renamed to `KeyboardStyle.AutocompleteToolbarItemBackground`.
 * `AutocompleteToolbarItemStyle` has been renamed to `KeyboardStyle.AutocompleteToolbarItem`.
-* `AutocompleteToolbarItemSubtitle` has been soft deprecated.
-* `AutocompleteToolbarItemTitle` has been soft deprecated.
+* `AutocompleteToolbarItemSubtitle` has been soft deprecated and will be made internal in KeyboardKit 8.0.
+* `AutocompleteToolbarItemTitle` has been soft deprecated and will be made internal in KeyboardKit 8.0.
 * `AutocompleteToolbarSeparatorStyle` has been renamed to `KeyboardStyle.AutocompleteSeparator`.
+* `Callout` views have been soft deprecated and will be made internal in 8.0.
 * `EmojiAnalyzer` has been deprecated.
-* `EmojiCategoryKeyboardMenu` has been deprecated.
-* `EmojiCategoryTitle` has been deprecated.
+* `EmojiCategoryKeyboardMenu` has been soft deprecated and will be made internal in 8.0.
+* `EmojiCategoryTitle` has been soft deprecated and will be made internal in 8.0.
 * `EnglishInputSetProvider` has been deprecated.
 * `HapticFeedbackConfiguration.noFeedback` has a been renamed to `.disabled`.
 * `AudioFeedbackConfiguration.standard` is replaced by `.minimal`.
 * `InputCalloutContext` has been renamed to `KeyboardCalloutContext.InputContext`.
-* `InputSetProvider` and all implementing types have been deprecated.
-* `InputSetProviderBased` has been deprecated.
+* `InputSetProvider` and all related types have been deprecated.
 * `InterfaceOrientationResolver` has been deprecated.
 * `KeyboardActionCalloutStyle` has been renamed to `KeyboardStyle.ActionCallout`.
 * `KeyboardAppearance` has been renamed to `KeyboardStyleProvider`.
@@ -115,7 +111,6 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `NumericInputSet.english` has been renamed to `englishNumeric`.
 * `NumericInputSet.standard` has been renamed to `standardNumeric`.
 * `DisabledAudioFeedbackEngine` has been deprecated.
-* `DisabledAutocompleteProvider` has been deprecated.
 * `DisabledHapticFeedbackEngine` has been deprecated.
 * `HapticFeedbackConfiguration.tap` has been replaced by `press` and `release`.
 * `KeyboardActions` has been renamed to `KeyboardAction.Row`.
@@ -128,12 +123,12 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `KeyboardFeedbackHandler` has been deprecated.
 * `LocalizedCalloutActionProvider` has been deprecated.
 * `LocalizedKeyboardLayoutProvider` has been deprecated.
+* `PrefersAutocompleteResolver` has been deprecated.
 * `PreviewKeyboardAppearance` has been renamed to `PreviewKeyboardStyleProvider`.
 * `StandardAudioFeedbackEngine` has been deprecated.
 * `StandardHapticFeedbackEngine` has been deprecated.
 * `StandardKeyboardAppearance` has been renamed to `StandardKeyboardStyleProvider`.
 * `StandardKeyboardFeedbackHandler` has been deprecated.
-* `StaticInputSetProvider` has been deprecated.
 * `StaticKeyboardBehavior` has been deprecated.
 * `SymbolicInputSet.english` has been renamed to `englishSymbolic`.
 * `SymbolicInputSet.standard` has been renamed to `standardSymbolic`.

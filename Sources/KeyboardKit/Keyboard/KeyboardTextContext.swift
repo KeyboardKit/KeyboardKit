@@ -17,10 +17,8 @@ import Foundation
  and binds the created instance to the keyboard controller's
  ``KeyboardInputViewController/keyboardTextContext``.
 
- You can get this information directly from the proxy, using
- either the controller or the ``KeyboardContext`` to get the
- proxy instance, but the controller will continously sync it
- from the proxy to the context to let you observe it as well.
+ You can get this information directly from the proxy or the
+ keyboard context, but this class makes that text observable.
  */
 public class KeyboardTextContext: ObservableObject {
 
@@ -35,8 +33,7 @@ public class KeyboardTextContext: ObservableObject {
      Note that for longer texts, this will most often not be
      the full content, since keyboard extensions get limited
      text back from the proxy. KeyboardKit Pro unlocks a way
-     to read the full document context, so have a look at it
-     if you need this functionality.
+     to read the full document context.
      */
     @Published
     public var documentContextBeforeInput: String?
@@ -47,8 +44,7 @@ public class KeyboardTextContext: ObservableObject {
      Note that for longer texts, this will most often not be
      the full content, since keyboard extensions get limited
      text back from the proxy. KeyboardKit Pro unlocks a way
-     to read the full document context, so have a look at it
-     if you need this functionality.
+     to read the full document context.
      */
     @Published
     public var documentContextAfterInput: String?
@@ -72,8 +68,7 @@ public extension KeyboardTextContext {
      Note that for longer texts, this will most often not be
      the full content, since keyboard extensions get limited
      text back from the proxy. KeyboardKit Pro unlocks a way
-     to read the full document context, so have a look at it
-     if you need this functionality.
+     to read the full document context.
      */
     var documentContext: String? {
         let before = documentContextBeforeInput ?? ""

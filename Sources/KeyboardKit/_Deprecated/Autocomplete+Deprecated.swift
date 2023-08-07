@@ -1,5 +1,12 @@
 import Foundation
 
+@available(*, deprecated, message: "This will be removed in KeyboardKit 8.0")
+public enum AutocompleteSpaceState {
+    case none
+    case autoInserted
+    case autoRemoved
+}
+
 public extension AutocompleteSuggestion {
     
     @available(*, deprecated, message: "isAutocomplete has been renamed to isAutocorrect")
@@ -58,3 +65,9 @@ public typealias AutocompleteToolbarItemBackgroundStyle = KeyboardStyle.Autocomp
 
 @available(*, deprecated, renamed: "KeyboardStyle.AutocompleteToolbarSeparator")
 public typealias AutocompleteToolbarSeparatorStyle = KeyboardStyle.AutocompleteToolbarSeparator
+
+@available(*, deprecated, message: "This will be removed in KeyboardKit 8.0")
+public protocol PrefersAutocompleteResolver {
+
+    var prefersAutocomplete: Bool { get }
+}

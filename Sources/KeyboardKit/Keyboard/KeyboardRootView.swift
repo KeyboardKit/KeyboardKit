@@ -10,8 +10,7 @@ import SwiftUI
 
 /**
  This view is used as a wrapper view, to be able to bind the
- keyboard view to properties that affect your layout without
- triggering a view update.
+ keyboard view to properties that affect your layout.
  */
 struct KeyboardRootView<ViewType: View>: View {
     

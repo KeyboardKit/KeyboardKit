@@ -56,10 +56,10 @@ public extension KeyboardColorReader {
     }
     
     /**
+     [DEPRECATED] This will become internal in KeyboardKit 8.
+     
      The standard background color of light keyboard buttons
      when accounting for the iOS dark mode bug.
-     
-     > v8.0: This will be made internal in KeyboardKit 8.0.
      */
     static var standardButtonBackgroundForColorSchemeBug: Color {
         color(for: .standardButtonBackgroundForColorSchemeBug)
@@ -103,10 +103,10 @@ public extension KeyboardColorReader {
     }
     
     /**
+     [DEPRECATED] This will become internal in KeyboardKit 8.
+     
      The standard background color of a dark keyboard button
      when accounting for the iOS dark mode bug.
-     
-     > v8.0: This will be made internal in KeyboardKit 8.0.
      */
     static var standardDarkButtonBackgroundForColorSchemeBug: Color {
         color(for: .standardDarkButtonBackgroundForColorSchemeBug)

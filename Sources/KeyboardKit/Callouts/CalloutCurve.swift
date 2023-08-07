@@ -10,6 +10,8 @@ import CoreGraphics
 import SwiftUI
 
 /**
+ [DEPRECATED] This will be made internal in KeyboardKit 8.0.
+ 
  This curve can be used to smoothen the part where a callout
  bubble meets the button area.
  */
