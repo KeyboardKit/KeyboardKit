@@ -24,12 +24,12 @@ import UIKit
 public struct NextKeyboardButton<Content: View>: View {
 
     public init(
-        controller: UIInputViewController? = NextKeyboardController.shared,
+        controller: UIInputViewController? = nil,
         throwAssertionForMissingController: Bool = false,
         @ViewBuilder content: @escaping () -> Content
     ) {
         self.overlay = NextKeyboardButtonOverlay(
-            controller: controller,
+            controller: controller ?? NextKeyboardController.shared,
             throwAssertionForMissingController: throwAssertionForMissingController
         )
         self.content = content

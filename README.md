@@ -64,9 +64,9 @@ KeyboardKit comes with localized input sets, layouts and callouts for U.S. Engli
 
 KeyboardKit comes packed features to help you build amazing and powerful keyboards:
  
-* 💥 [Actions][Actions] - KeyboardKit has keyboard actions like characters, emojis, actions, custom ones etc. and ways to handle them.
+* 💥 [Actions][Actions] - KeyboardKit has keyboard actions like characters, emojis, actions, etc.
 * 💡 [Autocomplete][Autocomplete] - KeyboardKit can perform autocomplete and present suggestions as the user types.
-* 🗯 [Callouts][Callouts] - KeyboardKit can show input callouts as the user types, as well as callouts with secondary actions.
+* 🗯 [Callouts][Callouts] - KeyboardKit can show input and secondary action callouts.
 * 🎤 [Dictation][Dictation] - (BETA) KeyboardKit can perform dictation from the keyboard extension.
 * 😊 [Emojis][Emojis] - KeyboardKit defines emojis and emoji categories, as well as emoji keyboards.
 * ⌨️ [External Keyboards][External] - KeyboardKit lets you detect whether or not an external keyboard is connected.

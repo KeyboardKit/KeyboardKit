@@ -20,7 +20,7 @@ import SwiftUI
  with `add(to:)` or use the input controller's `setup(with:)`
  with a `SwiftUI` `View`, which does of all this for you.
  
- > v8.0: This will be converted to an internal type in 8.0.
+ > v8.0: This will be made internal in KeyboardKit 8.0.
  */
 public class KeyboardHostingController<Content: View>: UIHostingController<Content> {
     

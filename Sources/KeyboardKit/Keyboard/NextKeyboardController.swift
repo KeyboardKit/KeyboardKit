@@ -10,6 +10,8 @@
 import UIKit
 
 /**
+ [DEPRECATED] - This will become internal in KeyboardKit 8.0.
+ 
  This class is used as global state for next keyboard button
  views, since they need an input view controller to function.
 

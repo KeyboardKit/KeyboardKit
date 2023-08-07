@@ -107,7 +107,6 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardReturnKeyType``
 - ``KeyboardTextContext``
 - ``NextKeyboardButton``
-- ``NextKeyboardController``
 - ``StandardKeyboardBehavior``
 
 ### Actions
@@ -141,11 +140,6 @@ KeyboardKit is available under the MIT license.
 - ``EnglishCalloutActionProvider``
 - ``LocalizedCalloutActionProvider``
 - ``DisabledCalloutActionProvider``
-
-### Colors
-
-- ``KeyboardColor``
-- ``KeyboardColorReader``
 
 ### Device
 
@@ -207,10 +201,6 @@ KeyboardKit is available under the MIT license.
 - ``SpaceLongPressBehavior``
 - ``SpaceCursorDragGestureHandler``
 - ``SpaceDragSensitivity``
-
-### Images
-
-- ``KeyboardImageReader``
 
 ### Layout
 
@@ -280,7 +270,9 @@ KeyboardKit is available under the MIT license.
 ### Styling
 
 - ``KeyboardAppearanceViewModifier``
+- ``KeyboardColorReader``
 - ``KeyboardFont``
+- ``KeyboardImageReader``
 - ``KeyboardStyle``
 - ``KeyboardStyleProvider``
 - ``StandardKeyboardStyleProvider``

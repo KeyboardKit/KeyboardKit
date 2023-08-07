@@ -9,6 +9,8 @@
 import SwiftUI
 
 /**
+ [DEPRECATED] - This will become internal in KeyboardKit 8.0.
+ 
  This enum defines raw, keyboard-specific asset-based colors.
 
  Although you can use this type directly, you should instead
