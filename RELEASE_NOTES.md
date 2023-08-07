@@ -91,7 +91,7 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `HapticFeedbackConfiguration.noFeedback` has a been renamed to `.disabled`.
 * `AudioFeedbackConfiguration.standard` is replaced by `.minimal`.
 * `InputCalloutContext` has been renamed to `KeyboardCalloutContext.InputContext`.
-* `InputSetProvider` has been deprecated.
+* `InputSetProvider` and all implementing types have been deprecated.
 * `InputSetProviderBased` has been deprecated.
 * `InterfaceOrientationResolver` has been deprecated.
 * `KeyboardActionCalloutStyle` has been renamed to `KeyboardStyle.ActionCallout`.
@@ -126,6 +126,8 @@ A `> v8.0: Comment` block will be added to the docs, where structural or archite
 * `KeyboardLayoutItemSize` has been renamed to `KeyboardLayoutItem.Size`.
 * `KeyboardLayoutItemWidth` has been renamed to `KeyboardLayoutItem.Width`.
 * `KeyboardFeedbackHandler` has been deprecated.
+* `LocalizedCalloutActionProvider` has been deprecated.
+* `LocalizedKeyboardLayoutProvider` has been deprecated.
 * `PreviewKeyboardAppearance` has been renamed to `PreviewKeyboardStyleProvider`.
 * `StandardAudioFeedbackEngine` has been deprecated.
 * `StandardHapticFeedbackEngine` has been deprecated.

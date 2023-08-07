@@ -125,7 +125,7 @@ KeyboardKit is available under the MIT license.
 - ``AutocompleteToolbarSeparator``
 - ``PrefersAutocompleteResolver``
 
-- ``DisabledCalloutActionProvider``
+- ``DisabledAutocompleteProvider``
 
 ### Callouts
 
@@ -138,7 +138,6 @@ KeyboardKit is available under the MIT license.
 
 - ``BaseCalloutActionProvider``
 - ``EnglishCalloutActionProvider``
-- ``LocalizedCalloutActionProvider``
 - ``DisabledCalloutActionProvider``
 
 ### Device
@@ -223,7 +222,6 @@ KeyboardKit is available under the MIT license.
 - ``StandardKeyboardLayoutProvider``
 - ``iPadKeyboardLayoutProvider``
 - ``iPhoneKeyboardLayoutProvider``
-- ``LocalizedKeyboardLayoutProvider``
 - ``StaticKeyboardLayoutProvider``
 - ``SystemKeyboardLayoutProvider``
 

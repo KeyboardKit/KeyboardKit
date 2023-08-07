@@ -32,7 +32,7 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
      */
     public init(
         baseProvider: KeyboardLayoutProvider = EnglishKeyboardLayoutProvider(),
-        localizedProviders: [LocalizedKeyboardLayoutProvider] = []
+        localizedProviders: [KeyboardLayoutProvider & LocalizedService] = []
     ) {
         self.baseProvider = baseProvider
         let dict = Dictionary(uniqueKeysWithValues: localizedProviders.map { ($0.localeKey, $0) })
@@ -43,7 +43,7 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     public init(
         keyboardContext: KeyboardContext,
         inputSetProvider: InputSetProvider,
-        localizedProviders: [LocalizedKeyboardLayoutProvider] = []
+        localizedProviders: [KeyboardLayoutProvider & LocalizedService] = []
     ) {
         self.baseProvider = EnglishKeyboardLayoutProvider(inputSetProvider: inputSetProvider)
         self.keyboardContext = keyboardContext

@@ -30,7 +30,7 @@ class StandardCalloutActionProviderTests: XCTestCase {
     func testLocalizedProvidersAcceptCustomProviders() {
         provider = StandardCalloutActionProvider(
             keyboardContext: context,
-            providers: [StandardCalloutActionProvider.standardProvider])
+            localizedProviders: [StandardCalloutActionProvider.standardProvider])
         let providers = provider.localizedProviders.dictionary
         XCTAssertEqual(providers.keys.count, 1)
         XCTAssertTrue(providers[KeyboardLocale.english.id] is EnglishCalloutActionProvider)

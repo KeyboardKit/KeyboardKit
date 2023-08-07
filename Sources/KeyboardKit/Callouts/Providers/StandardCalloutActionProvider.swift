@@ -24,7 +24,17 @@ open class StandardCalloutActionProvider: CalloutActionProvider {
      */
     public init(
         keyboardContext: KeyboardContext,
-        providers: [LocalizedCalloutActionProvider] = [standardProvider]
+        localizedProviders: [CalloutActionProvider & LocalizedService] = [standardProvider]
+    ) {
+        self.keyboardContext = keyboardContext
+        let dict = Dictionary(uniqueKeysWithValues: localizedProviders.map { ($0.localeKey, $0) })
+        self.localizedProviders = LocaleDictionary(dict)
+    }
+    
+    @available(*, deprecated, message: "Use the localizedProviders initializer instead.")
+    public init(
+        keyboardContext: KeyboardContext,
+        providers: [CalloutActionProvider & LocalizedService]
     ) {
         self.keyboardContext = keyboardContext
         let dict = Dictionary(uniqueKeysWithValues: providers.map { ($0.localeKey, $0) })
@@ -36,7 +46,7 @@ open class StandardCalloutActionProvider: CalloutActionProvider {
 
      This can be set to change the standard value everywhere.
      */
-    public static var standardProvider: LocalizedCalloutActionProvider {
+    public static var standardProvider: CalloutActionProvider & LocalizedService {
         guard let provider = try? EnglishCalloutActionProvider() else { fatalError("EnglishCalloutActionProvider could not be created.") }
         return provider
     }
