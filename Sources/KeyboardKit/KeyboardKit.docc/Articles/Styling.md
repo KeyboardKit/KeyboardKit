@@ -110,6 +110,7 @@ KeyboardTheme.standard
 KeyboardTheme.swifty
 KeyboardTheme.minimal
 KeyboardTheme.candyShop
+KeyboardTheme.colorful
 KeyboardTheme.neon
 KeyboardTheme.tron
 ```
@@ -121,6 +122,7 @@ KeyboardTheme.standard(.pink)
 KeyboardTheme.swifty(.blue)
 KeyboardTheme.minimal(.midnight)
 KeyboardTheme.candyShop(.cottonCandy)
+KeyboardTheme.colorful(.purple)
 KeyboardTheme.neon(.night)
 KeyboardTheme.tron(.sark)
 ```
@@ -128,7 +130,9 @@ KeyboardTheme.tron(.sark)
 You can also define a custom style variation directly in the theme initializer:
 
 ```swift
-KeyboardTheme.standard(.init(tint: .black))
+KeyboardTheme.standard(
+    .init(tint: .black)
+)
 ```
 
 Style variations make it easy to play within the overall style of a theme, and only modify the parts that are meant to be changed by the theme.
@@ -198,14 +202,15 @@ You can access all pre-defined themes with `KeyboardTheme.{ID}`, for instance `K
 
 Here is a list of all pre-defined themes with some style variations:
 
-| Theme        |                               |                                        |                                |                                 |
-| ------------ | ----------------------------- | -------------------------------------- | ------------------------------ | ------------------------------- | 
-| `.standard`  | ![Standard](standard.jpg)     | ![Standard](standard-blue.jpg)         | ![Standard](standard-pink.jpg) | ![Standard](standard-green.jpg) | 
-| `.swifty`    | ![Swifty](swifty.jpg)         | ![Swifty](swifty-blue.jpg)             | ![Swifty](swifty-pink.jpg)     | ![Swifty](swifty-green.jpg)     | 
-| `.minimal`   | ![Minimal](minimal.jpg)       | ![Midnight](minimal-blue.jpg)          | ![Sunset](minimal-sunset.jpg)  | ![Sunset](minimal-midnight.jpg) | 
-| `.candyShop` | ![Candy Shop](candyshop.jpg)  | ![Cuppy Cake](candyshop-cuppycake.jpg) |                                |                                 |
-| `.neon`      | ![Neon](neon.jpg)             |                                        |                                |                                 | 
-| `.tron`      | ![Tron](tron.jpg)             | ![fCon](tron-fcon.jpg)                 | ![virus](tron-virus.jpg)       | ![virus](tron-sark.jpg)         |
+| Theme        |                                     |                                        |                                       |                                         |
+| ------------ | ----------------------------------- | -------------------------------------- | ------------------------------------- | --------------------------------------- | 
+| `.standard`  | ![Standard](standard.jpg)           | ![Standard Blue](standard-blue.jpg)    | ![Standard Pink](standard-pink.jpg)   | ![Standard Green](standard-green.jpg)   | 
+| `.swifty`    | ![Swifty](swifty.jpg)               | ![Swifty Blue](swifty-blue.jpg)        | ![Swifty Pink](swifty-pink.jpg)       | ![Swifty Green](swifty-green.jpg)       | 
+| `.minimal`   | ![Minimal](minimal.jpg)             | ![Minimal Blue](minimal-blue.jpg)      | ![Minimal Sunset](minimal-sunset.jpg) | ![Sunset Green](minimal-midnight.jpg)   | 
+| `.candyShop` | ![Candy Shop](candyshop.jpg)        | ![Cuppy Cake](candyshop-cuppycake.jpg) |                                       |                                         | 
+| `.colorful`  | ![Colorful Blue](colorful-blue.jpg) | ![Colorful Green](colorful-green.jpg)  | ![Colorful Red](colorful-red.jpg)     | ![Colorful Purple](colorful-purple.jpg) |
+| `.neon`      | ![Neon](neon.jpg)                   |                                        |                                       |                                         | 
+| `.tron`      | ![Tron](tron.jpg)                   | ![fCon](tron-fcon.jpg)                 | ![virus](tron-virus.jpg)              | ![virus](tron-sark.jpg)                 |
 
 You can access all pre-defined themes with `KeyboardTheme.allPredefined`. 
 
