@@ -6,7 +6,6 @@
 //  Copyright © 2020-2023 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
 import SwiftUI
 
 /**
@@ -201,6 +200,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
         )
     }
 
+    #if os(iOS) || os(tvOS)
     /**
      Create a system keyboard with standard button views.
 
@@ -315,6 +315,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
             buttonContent: buttonContent
         )
     }
+    #endif
 
     private let actionHandler: KeyboardActionHandler
     private let styleProvider: KeyboardStyleProvider
@@ -506,6 +507,7 @@ private extension SystemKeyboard {
     }
 }
 
+#if os(iOS) || os(tvOS)
 /**
  `IMPORTANT` In previews, you must provide a custom width to
  get buttons to show up, since there is no shared controller.

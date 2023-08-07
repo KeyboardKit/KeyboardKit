@@ -1,5 +1,6 @@
 import Foundation
 
+#if os(iOS) || os(tvOS)
 public extension KeyboardInputViewController {
     
     @available(*, deprecated, renamed: "keyboardStyleProvider")
@@ -8,3 +9,4 @@ public extension KeyboardInputViewController {
         set { keyboardStyleProvider = newValue }
     }
 }
+#endif

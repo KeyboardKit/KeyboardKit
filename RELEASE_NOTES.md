@@ -42,6 +42,7 @@ Another big change is that the `KeyboardFeedbackHandler` concept is merged into 
 * `StandardKeyboardActionHandler` has new feedback functions.
 * `StandardKeyboardFeedbackHandler` has new feedback functions.
 * `StandardKeyboardLayoutProvider` has a new default initializer.
+* `SystemKeyboard` is now available on all platforms.
 
 ### 💡 Adjustments
 
