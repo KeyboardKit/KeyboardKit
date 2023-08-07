@@ -74,11 +74,10 @@ KeyboardKit comes packed features to help you build amazing and powerful keyboar
 * 👆 [Gestures][Gestures] - KeyboardKit has keyboard-specific gestures that you can use in your own keyboards.
 * ⌨️ [Keyboard][Keyboard] - KeyboardKit supports different keyboard types, provides observable keyboard state, etc.
 * 🔣 [Layout][Layout] - KeyboardKit supports creating keyboard layouts for various devices, locales etc.
-* 🌐 [Localization][Localization]- KeyboardKit defines keyboard-specific locales with localized content and assets.
+* 🌐 [Localization][Localization]- KeyboardKit supports LTR and RTL locales with localized content and assets.
 * 👁 [Previews][Previews] - KeyboardKit has utilites that help previewing keyboard views and components in SwiftUI.
 * ➡️ [Proxy Extensions][Proxy] - KeyboardKit extends `UITextDocumentProxy` and makes it do a lot more.
 * 🚏 [Routing][Routing] - KeyboardKit lets you route text to other destinations than the main app.
-* ⬅️ [RTL][RTL] - KeyboardKit supports RTL (right-to-left) locales, such as Arabic, Persian, Kurdish Sorani etc.
 * ⚙️ [Settings][Settings] - KeyboardKit has tools for accessing and linking to an app's keyboard settings.
 * 🎨 [Styling][Styling] - KeyboardKit has a style engine that lets you style your keyboards to great extent.
 
@@ -211,7 +210,6 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Previews]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/previews
 [Proxy]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/proxy-extensions
 [Routing]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/routing
-[RTL]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/rtl
 [Settings]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/settings
 [Styling]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/styling
 

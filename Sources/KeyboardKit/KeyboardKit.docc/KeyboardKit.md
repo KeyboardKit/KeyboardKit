@@ -85,7 +85,6 @@ KeyboardKit is available under the MIT license.
 - <doc:Previews>
 - <doc:Proxy-Extensions>
 - <doc:Routing>
-- <doc:RTL>
 - <doc:Settings>
 - <doc:Styling>
 

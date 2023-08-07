@@ -42,6 +42,25 @@ The reason why ``KeyboardContext`` uses a regular `Locale` and not a ``KeyboardL
 
 
 
+## How to use LTR and RTL locales
+
+KeyboardKit supports LTR (Left-To-Right) and RTL (Right-To-Left) locales.
+
+You don't need to configure your keyboard extension to support RTL. Just change the keyboard locale as explained above, and KeyboardKit will automatically adjust the text direction.
+
+``KeyboardLocale`` has ``KeyboardLocale/isLeftToRight`` and ``KeyboardLocale/isRightToLeft`` properties that tells you if a locale is left-to-right or right-to-left.
+
+``KeyboardLocale`` also has handy ``KeyboardLocale/allLtr`` and ``KeyboardLocale/allRtl`` collections and collection filters.
+
+However, if you want to use one single RTL locale, you can however adjust the keyboard extension's `Info.plist`:
+
+* Set `PrefersRightToLeft` to `1`.
+* Set `PrimaryLanguage` to the language code of your primary RTL language, e.g. `fa` for Perian (Farsi).
+
+Just be aware that setting the primary language like this may affect external keyboard key mappings.
+
+
+
 ## How to translate localized content
 
 Each ``KeyboardLocale`` has a localized strings file in `Resources/<id>.lproj`. 
@@ -77,7 +96,7 @@ You can add new keyboard locales by following these steps:
 In the PR, please provide any additional information that is needed to correctly support the locale.
 
 
-## Primary button types
+### Primary button types
 
 To properly translate the various primary button types, you can find them in the following places:
 
@@ -92,7 +111,7 @@ To properly translate the various primary button types, you can find them in the
 * `space` - The text that is displayed on the space bar.   
 
 
-## Emojis
+### Emojis
 
 Emojis can be localized as well, but that is a massive undertaking. Have a look at the English localization file for an example.
 
