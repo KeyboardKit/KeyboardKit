@@ -174,13 +174,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     func setup<Content: View>(withRootView view: Content) {
         self.children.forEach { $0.removeFromParent() }
         self.view.subviews.forEach { $0.removeFromSuperview() }
-        let view = view
-            .environmentObject(autocompleteContext)
-            .environmentObject(calloutContext)
-            .environmentObject(dictationContext)
-            .environmentObject(keyboardContext)
-            .environmentObject(keyboardFeedbackSettings)
-            .environmentObject(keyboardTextContext)
+        let view = view.withEnvironment(from: self)
         let host = KeyboardHostingController(rootView: view)
         host.add(to: self)
     }
@@ -619,6 +613,18 @@ private extension KeyboardInputViewController {
             case .success(let result): context.suggestions = result
             }
         }
+    }
+}
+
+public extension View {
+    
+    func withEnvironment(from controller: KeyboardInputViewController) -> some View {
+        self.environmentObject(controller.autocompleteContext)
+            .environmentObject(controller.calloutContext)
+            .environmentObject(controller.dictationContext)
+            .environmentObject(controller.keyboardContext)
+            .environmentObject(controller.keyboardFeedbackSettings)
+            .environmentObject(controller.keyboardTextContext)
     }
 }
 #endif

@@ -42,10 +42,12 @@ Another big change is that the `KeyboardFeedbackHandler` concept is merged into 
 * `KeyboardReturnKeyType` has new `continue`, `emergencyCall` and `route` types.
 * `KeyboardStyle` is a new style namespace that contains most style types.
 * `KeyboardStyleProvider` has a new function for the button content bottom margin.
+* `PreviewKeyboardInputViewController` is a new preview type.
 * `StandardKeyboardActionHandler` has new feedback functions.
 * `StandardKeyboardFeedbackHandler` has new feedback functions.
 * `StandardKeyboardLayoutProvider` has a new default initializer.
 * `SystemKeyboard` is now available on all platforms.
+* `View` has a new `withEnvironment(from:)` extension.
 
 ### 💡 Adjustments
 
