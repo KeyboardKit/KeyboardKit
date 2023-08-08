@@ -11,9 +11,9 @@ import SwiftUI
 
 #if os(iOS) || os(tvOS)
 /// This controller can be used in SwiftUI previews.
-class PreviewKeyboardInputViewController: KeyboardInputViewController {
+open class PreviewKeyboardInputViewController: KeyboardInputViewController {
     
-    override func viewWillRegisterSharedController() {}
+    open override func viewWillRegisterSharedController() {}
 }
 
 public extension KeyboardInputViewController {

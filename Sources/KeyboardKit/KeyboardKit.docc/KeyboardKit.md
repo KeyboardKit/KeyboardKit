@@ -236,6 +236,7 @@ KeyboardKit is available under the MIT license.
 
 - ``PreviewCalloutActionProvider``
 - ``PreviewKeyboardActionHandler``
+- ``PreviewKeyboardInputViewController``
 - ``PreviewKeyboardLayoutProvider``
 - ``PreviewKeyboardStyleProvider``
 - ``PreviewTextDocumentProxy``
