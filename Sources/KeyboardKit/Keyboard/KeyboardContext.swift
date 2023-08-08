@@ -177,13 +177,13 @@ public class KeyboardContext: ObservableObject {
      The main text document proxy.
      */
     @Published
-    public var mainTextDocumentProxy: UITextDocumentProxy = PreviewTextDocumentProxy()
+    public var mainTextDocumentProxy: UITextDocumentProxy = KeyboardPreviews.TextDocumentProxy()
 
     /**
      The text document proxy that is currently active.
      */
     @Published
-    public var textDocumentProxy: UITextDocumentProxy = PreviewTextDocumentProxy()
+    public var textDocumentProxy: UITextDocumentProxy = KeyboardPreviews.TextDocumentProxy()
 
     /**
      The text input mode of the input controller.

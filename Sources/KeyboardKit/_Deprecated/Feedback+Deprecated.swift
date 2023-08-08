@@ -1,12 +1,77 @@
-//
-//  StandardKeyboardFeedbackHandler.swift
-//  KeyboardKit
-//
-//  Created by Daniel Saidi on 2021-04-01.
-//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
-//
-
 import Foundation
+
+#if os(iOS)
+import UIKit
+#endif
+
+#if os(iOS) || os(macOS) || os(tvOS)
+import AudioToolbox
+#endif
+
+public extension AudioFeedback {
+    
+    @available(*, deprecated, message: "This property is no longer used")
+    static var engine: AudioFeedbackEngine = {
+        #if os(iOS) || os(macOS) || os(tvOS)
+        StandardAudioFeedbackEngine.shared
+        #else
+        DisabledAudioFeedbackEngine()
+        #endif
+    }()
+}
+
+@available(*, deprecated, message: "This engine is no longer used.")
+public class DisabledAudioFeedbackEngine: AudioFeedbackEngine {
+
+    public override func trigger(_ audio: AudioFeedback) {}
+}
+
+@available(*, deprecated, message: "This engine is no longer used.")
+public class DisabledHapticFeedbackEngine: HapticFeedbackEngine {
+    
+    public override func prepare(_ feedback: HapticFeedback) {}
+    public override func trigger(_ feedback: HapticFeedback) {}
+}
+
+public extension HapticFeedback {
+    
+    @available(*, deprecated, message: "This property is no longer used")
+    static var engine: HapticFeedbackEngine = {
+        #if os(iOS)
+        StandardHapticFeedbackEngine.shared
+        #else
+        DisabledHapticFeedbackEngine()
+        #endif
+    }()
+}
+
+#if os(iOS) || os(macOS) || os(tvOS)
+@available(*, deprecated, renamed: "AudioFeedbackEngine")
+open class StandardAudioFeedbackEngine: AudioFeedbackEngine {}
+#endif
+
+
+// MARK: - KeyboardFeedbackHandler
+
+@available(*, deprecated, message: "This protocol is replaced by KeyboardActionHandler")
+public protocol KeyboardFeedbackHandler {
+    
+    func triggerFeedback(
+        for gesture: KeyboardGesture,
+        on action: KeyboardAction
+    )
+ 
+    func triggerAudioFeedback(
+        for gesture: KeyboardGesture,
+        on action: KeyboardAction
+    )
+    
+    func triggerHapticFeedback(
+        for gesture: KeyboardGesture,
+        on action: KeyboardAction
+    )
+}
+
 
 @available(*, deprecated, message: "This class is replaced by StandardKeyboardActionHandler")
 open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
@@ -25,6 +90,10 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
      The feedback settings to use.
      */
     public let settings: KeyboardFeedbackSettings
+    
+    public var audioConfig: AudioFeedbackConfiguration { settings.audioConfiguration }
+    
+    public var hapticConfig: HapticFeedbackConfiguration { settings.hapticConfiguration }
     
     /**
      The audio feedback to use for a certain action gesture.
@@ -87,3 +156,9 @@ open class StandardKeyboardFeedbackHandler: KeyboardFeedbackHandler {
         feedback?.trigger()
     }
 }
+
+
+#if os(iOS)
+@available(*, deprecated, renamed: "HapticFeedbackEngine")
+open class StandardHapticFeedbackEngine: HapticFeedbackEngine {}
+#endif

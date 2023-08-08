@@ -10,17 +10,20 @@ import Foundation
 import SwiftUI
 
 #if os(iOS) || os(tvOS)
-/// This controller can be used in SwiftUI previews.
-open class PreviewKeyboardInputViewController: KeyboardInputViewController {
-    
-    open override func viewWillRegisterSharedController() {}
-}
-
 public extension KeyboardInputViewController {
 
     /// This controller can be used in SwiftUI previews.
     static var preview: KeyboardInputViewController {
-        PreviewKeyboardInputViewController()
+        KeyboardPreviews.InputViewController()
+    }
+}
+
+public extension KeyboardPreviews {
+    
+    /// This controller can be used in SwiftUI previews.
+    class InputViewController: KeyboardInputViewController {
+        
+        open override func viewWillRegisterSharedController() {}
     }
 }
 #endif
@@ -39,10 +42,7 @@ public extension KeyboardContext {
 
 public extension View {
 
-    /**
-     This modifier prepares the view with environment object
-     instances that are required for some views.
-     */
+    /// Prepare the view with preview environments.
     func keyboardPreview(keyboardContext: KeyboardContext = .preview) -> some View {
         self.environmentObject(keyboardContext)
             .environmentObject(CalloutContext.ActionContext.preview)

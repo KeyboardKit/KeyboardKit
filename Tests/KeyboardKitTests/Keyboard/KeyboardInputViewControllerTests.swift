@@ -133,7 +133,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
     
     func testRefreshingPropertiesWhenChangingServicePropertiesIsDoneForKeyboardActionHandler() {
         let vc = TestClass()
-        vc.keyboardActionHandler = PreviewKeyboardActionHandler()
+        vc.keyboardActionHandler = .preview
         let actionContext = vc.calloutContext.actionContext
         XCTAssertTrue(actionContext.actionHandler === vc.keyboardActionHandler)
     }

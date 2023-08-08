@@ -62,10 +62,13 @@ Another big change is that the `KeyboardFeedbackHandler` concept is merged into 
 
 * `InputSet` has new input sets for some locales.
 * `InputSet` has new throwing properties for the localized input sets.
+* `KeyboardThemeAppearance` has a been renamed to `ThemeBasedKeyboardStyleProvider`.
 * `ProInputSetProvider` and all its locale-specific types have been deprecated. 
 * `ProKeyboardLayoutProvider` and all localized subclasses use input sets instead of providers.
 * `ProKeyboardLayoutProvider` and all localized subclasses can now be provided with custom input sets.
-* `KeyboardThemeAppearance` has a been renamed to `ThemeBasedKeyboardStyleProvider`.
+* `SystemKeyboardLivePreview` is a new preview component.
+* `KeyboardThemeLivePreview` has been renamed to `SystemKeyboardThemePreview`.
+* `KeyboardThemeLivePreviewHeader` has been renamed to `SystemKeyboardThemePreviewHeader`.
 
 ### 🐛 Bug fixes
 
@@ -135,7 +138,12 @@ Another big change is that the `KeyboardFeedbackHandler` concept is merged into 
 * `LocalizedCalloutActionProvider` has been deprecated.
 * `LocalizedKeyboardLayoutProvider` has been deprecated.
 * `PrefersAutocompleteResolver` has been deprecated.
-* `PreviewKeyboardAppearance` has been renamed to `PreviewKeyboardStyleProvider`.
+* `PreviewKeyboardActionHandler` has been renamed to `KeyboardPreviews.ActionHandler`
+* `PreviewKeyboardAppearance` has been renamed to `KeyboardPreviews.StyleProvider`.
+* `PreviewKeyboardInputViewController` has been renamed to `KeyboardPreviews.InputViewController`
+* `PreviewKeyboardLayoutProvider` has been renamed to `KeyboardPreviews.LayoutProvider`
+* `PreviewKeyboardStyleProvider` has been renamed to `KeyboardPreviews.StyleProvider`
+* `PreviewTextDocumentProxy` has been renamed to `KeyboardPreviews.TextDocumentProxy`
 * `StandardAudioFeedbackEngine` has been deprecated.
 * `StandardHapticFeedbackEngine` has been deprecated.
 * `StandardKeyboardAppearance` has been renamed to `StandardKeyboardStyleProvider`.
