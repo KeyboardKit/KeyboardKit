@@ -17,8 +17,12 @@ import SwiftUI
  also customize the `suggestionAction`.
  
  Note that the views that are returned by `itemView` will be
- nested in a button that triggers the `action`. Therefore, a
- custom `itemView` should only return views, not buttons.
+ nested in a button that triggers the provided `action`. The
+ `itemView` should therefore only return a view, not buttons.
+ 
+ > v8.0: This will be converted to a namespace, with all the
+ toolbar types nested within it. The view will be renamed to
+ `AutocompleteToolbar.Toolbar`.
  */
 public struct AutocompleteToolbar<ItemView: View, SeparatorView: View>: View {
     
@@ -27,15 +31,15 @@ public struct AutocompleteToolbar<ItemView: View, SeparatorView: View>: View {
 
      - Parameters:
        - suggestions: The list of suggestions to display.
-       - locale: The locale to use in the toolbar.
-       - style: The style to use in the toolbar, by default `.standard`.
+       - locale: The locale to use, by default `.current`.
+       - style: The style to apply, by default `.standard`.
        - itemView: The function to use to build a view for each suggestion.
        - separatorView: The function to use to build a view for each separator.
        - suggestionAction: The action to use when tapping a suggestion.
      */
     public init(
         suggestions: [AutocompleteSuggestion],
-        locale: Locale,
+        locale: Locale = .current,
         style: Style = .standard,
         itemView: @escaping ItemViewBuilder,
         separatorView: @escaping SeparatorViewBuilder,
@@ -59,28 +63,16 @@ public struct AutocompleteToolbar<ItemView: View, SeparatorView: View>: View {
     private let separatorView: SeparatorViewBuilder
 
 
-    /**
-     This typealias represents the action block that is used
-     to trigger a text replacement when tapping a suggestion.
-     */
+    /// A typealias for an action to trigger for suggestions.
     public typealias SuggestionAction = (AutocompleteSuggestion) -> Void
-
-    /**
-     This typealias represents the action block that is used
-     to create autocomplete item views.
-     */
+    
+    /// This view builder is used to build toolbar items.
     public typealias ItemViewBuilder = (AutocompleteSuggestion, Style, Locale) -> ItemView
     
-    /**
-     This typealias represents the action block that is used
-     to create autocomplete item separator views.
-     */
+    /// This view builder is used to build item separators.
     public typealias SeparatorViewBuilder = (AutocompleteSuggestion, Style) -> SeparatorView
     
-    
-    /**
-     This internal struct is used to encapsulate item data.
-     */
+    /// This internal struct is used to wrap item data.
     struct BarItem: Identifiable {
         
         init(_ suggestion: AutocompleteSuggestion) {
@@ -90,6 +82,7 @@ public struct AutocompleteToolbar<ItemView: View, SeparatorView: View>: View {
         public let id = UUID()
         public let suggestion: AutocompleteSuggestion
     }
+    
 
     public var body: some View {
         HStack {
@@ -110,14 +103,14 @@ public extension AutocompleteToolbar where ItemView == AutocompleteToolbarItem {
 
      - Parameters:
        - suggestions: The list of suggestions to display.
-       - locale: The locale to use in the toolbar.
-       - style: The style to use in the toolbar, by default `.standard`.
+       - locale: The locale to use, by default `.current`.
+       - style: The style to apply, by default `.standard`.
        - separatorView: The function to use to build a view for each separator.
        - suggestionAction: The action to use when tapping a suggestion.
      */
     init(
         suggestions: [AutocompleteSuggestion],
-        locale: Locale,
+        locale: Locale = .current,
         style: Style = .standard,
         separatorView: @escaping SeparatorViewBuilder,
         suggestionAction: @escaping SuggestionAction
@@ -153,14 +146,14 @@ public extension AutocompleteToolbar where SeparatorView == AutocompleteToolbarS
 
      - Parameters:
        - suggestions: The list of suggestions to display.
-       - locale: The locale to use in the toolbar.
-       - style: The style to use in the toolbar, by default `.standard`.
+       - locale: The locale to use, by default `.current`.
+       - style: The style to apply, by default `.standard`.
        - itemView: The function to use to build a view for each suggestion.
        - suggestionAction: The action to use when tapping a suggestion. By default, the static `standardReplacementAction` will be used.
      */
     init(
         suggestions: [AutocompleteSuggestion],
-        locale: Locale,
+        locale: Locale = .current,
         style: Style = .standard,
         itemView: @escaping ItemViewBuilder,
         suggestionAction: @escaping SuggestionAction
@@ -192,13 +185,14 @@ public extension AutocompleteToolbar where ItemView == AutocompleteToolbarItem, 
 
      - Parameters:
        - suggestions: The list of suggestions to display.
-       - locale: The locale to use in the toolbar.
+       - locale: The locale to use, by default `.current`.
+       - style: The style to apply, by default `.standard`.
        - style: The style to use in the toolbar, by default `.standard`.
        - action: The action to use when tapping a suggestion.
      */
     init(
         suggestions: [AutocompleteSuggestion],
-        locale: Locale,
+        locale: Locale = .current,
         style: Style = .standard,
         suggestionAction: @escaping SuggestionAction
     ) {

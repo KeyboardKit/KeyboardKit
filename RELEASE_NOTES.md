@@ -52,6 +52,7 @@ Another big change is that the `KeyboardFeedbackHandler` concept is merged into 
 ### 💡 Adjustments
 
 * `AudioFeedbackEngine` has been converted from a protocol to an open class.
+* `AutocompleteToolbar` items now use `.current` as default locale.
 * `KeyboardActionHandler` has a new `triggerFeedback(for:on:)` function. 
 * `SpaceCursorDragGestureHandler` no longer needs a feedback handler.
 * `StandardKeyboardLayoutProvider` no longer requires an input set provider.
@@ -60,15 +61,17 @@ Another big change is that the `KeyboardFeedbackHandler` concept is merged into 
 
 ### 👑 Pro Adjustments
 
+* `AutocompleteToolbarPreview` is a new preview component.
 * `InputSet` has new input sets for some locales.
 * `InputSet` has new throwing properties for the localized input sets.
 * `KeyboardThemeAppearance` has a been renamed to `ThemeBasedKeyboardStyleProvider`.
 * `ProInputSetProvider` and all its locale-specific types have been deprecated. 
 * `ProKeyboardLayoutProvider` and all localized subclasses use input sets instead of providers.
 * `ProKeyboardLayoutProvider` and all localized subclasses can now be provided with custom input sets.
-* `SystemKeyboardLivePreview` is a new preview component.
+* `SystemKeyboardPreview` is a new preview component.
 * `KeyboardThemeLivePreview` has been renamed to `SystemKeyboardThemePreview`.
 * `KeyboardThemeLivePreviewHeader` has been renamed to `SystemKeyboardThemePreviewHeader`.
+* `SystemKeyboardThemePreview` now works on all platforms.
 
 ### 🐛 Bug fixes
 
@@ -86,8 +89,6 @@ Another big change is that the `KeyboardFeedbackHandler` concept is merged into 
 * `AutocompleteToolbarStyle` has been renamed to `KeyboardStyle.AutocompleteToolbarItem`.
 * `AutocompleteToolbarItemBackgroundStyle` has been renamed to `KeyboardStyle.AutocompleteToolbarItemBackground`.
 * `AutocompleteToolbarItemStyle` has been renamed to `KeyboardStyle.AutocompleteToolbarItem`.
-* `AutocompleteToolbarItemSubtitle` has been soft deprecated and will be made internal in KeyboardKit 8.0.
-* `AutocompleteToolbarItemTitle` has been soft deprecated and will be made internal in KeyboardKit 8.0.
 * `AutocompleteToolbarSeparatorStyle` has been renamed to `KeyboardStyle.AutocompleteSeparator`.
 * `Callout` views have been soft deprecated and will be made internal in 8.0.
 * `EmojiAnalyzer` has been deprecated.

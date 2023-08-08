@@ -11,6 +11,9 @@ import SwiftUI
 /**
  This view mimics the autocomplete toolbar separator that is
  used in native iOS keyboards.
+ 
+ > v8.0: This will be wrapped in a new `AutocompleteToolbar`
+ namespace and renamed to `AutocompleteToolbar.ItemSeparator`.
  */
 public struct AutocompleteToolbarSeparator: View {
     
@@ -18,9 +21,11 @@ public struct AutocompleteToolbarSeparator: View {
      Create an autocomplete toolbar item separator.
      
      - Parameters:
-       - style: The style to apply to the separator line, by default `.standard`.
+       - style: The style to apply, by default `.standard`.
      */
-    public init(style: Style = .standard) {
+    public init(
+        style: Style = .standard
+    ) {
         self.style = style
     }
     

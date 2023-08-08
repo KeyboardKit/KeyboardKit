@@ -9,12 +9,13 @@
 import SwiftUI
 
 /**
- [DEPRECATED] This will be made internal in KeyboardKit 8.0.
- 
  This view mimics the subtitle of autocomplete toolbar items
  that are used in native iOS keyboards.
  
  The view will enforce a single line limit and footnote font.
+ 
+ > v8.0: This will be wrapped in a new `AutocompleteToolbar`
+ namespace and renamed to `AutocompleteToolbar.ItemSubtitle`.
  */
 public struct AutocompleteToolbarItemSubtitle: View {
     
@@ -23,7 +24,7 @@ public struct AutocompleteToolbarItemSubtitle: View {
      
      - Parameters:
        - text: The text to display in the view.
-       - style: The style to apply to the text, by default `.standard`.
+       - style: The style to apply, by default `.standard`.
      */
     public init(
         text: String,

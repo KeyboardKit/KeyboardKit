@@ -9,13 +9,14 @@
 import SwiftUI
 
 /**
- [DEPRECATED] This will be made internal in KeyboardKit 8.0.
- 
  This view mimics the title of the autocomplete toolbar item
  that is used in native iOS keyboards.
  
  The view will enforce a single line limit and resize itself
  to share the available horizontal space with other views.
+ 
+ > v8.0: This will be wrapped in a new `AutocompleteToolbar`
+ namespace and renamed to `AutocompleteToolbar.ItemTitle`.
  */
 public struct AutocompleteToolbarItemTitle: View {
     
@@ -24,12 +25,12 @@ public struct AutocompleteToolbarItemTitle: View {
      
      - Parameters:
        - suggestions: The suggestion to display in the view.
-       - locale: The locale to use to resolve quotation.
-       - style: The style to apply to the text, by default `.standard`.
+       - locale: The locale to use, by default `.current`.
+       - style: The style to apply, by default `.standard`.
      */
     public init(
         suggestion: AutocompleteSuggestion,
-        locale: Locale,
+        locale: Locale = .current,
         style: KeyboardStyle.AutocompleteToolbarItem = .standard
     ) {
         self.suggestion = suggestion

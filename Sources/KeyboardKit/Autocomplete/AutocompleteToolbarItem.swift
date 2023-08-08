@@ -15,6 +15,9 @@ import SwiftUI
  The item uses an `AutocompleteToolbarItemText` for the text
  view and `AutocompleteToolbarItemBackground` for background.
  These views can be used individually to create custom items.
+ 
+ > v8.0: This will be wrapped in a new `AutocompleteToolbar`
+ namespace, and renamed to `AutocompleteToolbar.Item`.
  */
 public struct AutocompleteToolbarItem: View {
     
@@ -23,12 +26,12 @@ public struct AutocompleteToolbarItem: View {
      
      - Parameters:
        - suggestion: The suggestion to display in the view.
-       - locale: The locale to use to resolve quotation.
-       - style: The style to apply to the item, by default `.standard`.
+       - locale: The locale to use, by default `.current`.
+       - style: The style to apply, by default `.standard`.
      */
     public init(
         suggestion: AutocompleteSuggestion,
-        locale: Locale,
+        locale: Locale = .current,
         style: Style = .standard
     ) {
         self.suggestion = suggestion
