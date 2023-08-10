@@ -8,16 +8,26 @@
 
 import Foundation
 
+public extension AutocompleteContext {
+
+    /// This context can be used in SwiftUI previews.
+    static var preview: AutocompleteContext = {
+        let context = AutocompleteContext()
+        context.suggestions = .preview
+        return context
+    }()
+}
+
 public extension AutocompleteProvider where Self == PreviewAutocompleteProvider {
 
     /// This provider can be used in SwiftUI previews.
     static var preview: AutocompleteProvider {
-        preview(suggestions: [])
+        preview()
     }
 
     /// This provider can be used in SwiftUI previews.
     static func preview(
-        suggestions: [AutocompleteSuggestion]
+        suggestions: [AutocompleteSuggestion] = .preview
     ) -> AutocompleteProvider {
         PreviewAutocompleteProvider(suggestions: suggestions)
     }
@@ -53,4 +63,16 @@ public class PreviewAutocompleteProvider: AutocompleteProvider {
     public func learnWord(_ word: String) {}
     public func removeIgnoredWord(_ word: String) {}
     public func unlearnWord(_ word: String) {}
+}
+
+public extension Collection where Element == AutocompleteSuggestion {
+    
+    /// These suggestions can be used in SwiftUI previews.
+    static var preview: [AutocompleteSuggestion] {
+        [
+            .init(text: "One", isUnknown: true),
+            .init(text: "Two", isAutocorrect: true),
+            .init(text: "Three")
+        ]
+    }
 }

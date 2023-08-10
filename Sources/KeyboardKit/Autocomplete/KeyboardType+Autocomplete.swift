@@ -9,7 +9,7 @@
 public extension Keyboard.KeyboardType {
 
     /**
-     Whether or not this keyboard type prefers auto complete.
+     Whether or not this keyboard type prefers autocomplete.
      */
     var prefersAutocomplete: Bool {
         switch self {
@@ -30,7 +30,7 @@ import UIKit
 public extension UIKeyboardType {
 
     /**
-     Whether or not this keyboard type prefers auto complete.
+     Whether or not this keyboard type prefers autocomplete.
      */
     var prefersAutocomplete: Bool {
         switch self {

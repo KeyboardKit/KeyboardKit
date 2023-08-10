@@ -34,12 +34,13 @@ Another big change is that the `KeyboardFeedbackHandler` concept is merged into 
 * `Image.keyboardShift` is a new image.
 * `InputSet` has new `English` builders.
 * `Keyboard` is a new namespace type for some keyboard-specific types.
+* `Keyboard.ReturnKeyType` has new `continue`, `emergencyCall` and `route` types.
+* `Keyboard.ReturnKeyType` has a new `prefersAutocomplete` property.
 * `KeyboardActionHandler` has new feedback functions.
 * `KeyboardDictationService.disabled` is a new alias for `DisabledKeyboardDictationService`.
 * `KeyboardFeedbackSettings` has new enabled and disabled configurations.
 * `KeyboardInputViewController` has new view lifecycle functions for registering and unregistering as the shared controller. 
 * `KeyboardLayoutProviderProxy` has new standard functionality.
-* `KeyboardReturnKeyType` has new `continue`, `emergencyCall` and `route` types.
 * `KeyboardStyle` is a new style namespace that contains most style types.
 * `KeyboardStyleProvider` has a new function for the button content bottom margin.
 * `PreviewKeyboardInputViewController` is a new preview type.

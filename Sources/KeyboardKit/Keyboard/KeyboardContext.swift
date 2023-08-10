@@ -56,6 +56,11 @@ public class KeyboardContext: ObservableObject {
     /**
      A manually set autocapitalization type, which overrides
      the ``autocapitalizationType`` value when it's set.
+     
+     This context is currently not that clear about which of
+     its properties that are synced with the proxy each time
+     the text changes. If it's not needed, because the proxy
+     properties stay the same, we could remove this.
      */
     @Published
     public var autocapitalizationTypeOverride: Keyboard.AutocapitalizationType?
@@ -86,9 +91,9 @@ public class KeyboardContext: ObservableObject {
 
     /**
      Whether or not autocapitalization is enabled.
-
-     You can set this to `false` to override the behavior of
-     the text document proxy.
+     
+     This property can be used to disable autocapitalization
+     without affecting the ``autocapitalizationType``.
      */
     @Published
     public var isAutoCapitalizationEnabled = true
@@ -372,7 +377,9 @@ extension KeyboardContext {
             interfaceOrientation = controller.orientation
         }
 
-        let newPrefersAutocomplete = keyboardType.prefersAutocomplete && (textDocumentProxy.keyboardType?.prefersAutocomplete ?? true)
+        let keyboardPrefersAutocomplete = textDocumentProxy.keyboardType?.prefersAutocomplete ?? true
+        let returnKeyPrefersAutocomplete = textDocumentProxy.returnKeyType?.prefersAutocomplete ?? true
+        let newPrefersAutocomplete = keyboardType.prefersAutocomplete && keyboardPrefersAutocomplete && returnKeyPrefersAutocomplete
         if prefersAutocomplete != newPrefersAutocomplete {
             prefersAutocomplete = newPrefersAutocomplete
         }
