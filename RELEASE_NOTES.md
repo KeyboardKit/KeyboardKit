@@ -13,17 +13,15 @@ These release notes will only contain the current version. Just check out an old
 
 ## 7.9
 
-This release prepares the library for the upcoming major version bump, which will clean up the library and remove a lot of types by either deprecating them or moving them into other types.
+This release prepares the library for the upcoming major version bump, which will clean up the library and make it easier to use.
 
-Many types have been deprecated with `@available` annotations, but those that can't be deprecated have a new soft deprecation comment that begins with `[DEPRECATED]`. A `> v8.0: Comment` block will be added where structural or architectural changes will be made, but currently can't be made since it would cause breaking changes.
+Many types have been deprecated with proper `@available` annotations, but those that can't be deprecated yet are soft deprecated with a `[DEPRECATED]` comment. `> v8.0: ` comments are added where structural or architectural changes will, but currently can't be made.
 
-One big change is that many keyboard types are moved into a new `Keyboard` namespace, and that many styles are moved into a new `KeyboardStyle` namespace. 
+Many keyboard types are moved into a new `Keyboard` namespace, and that many styles are moved into a new `KeyboardStyle` namespace. This introduction of namespace types will make it easier to overview the library and find types within it.
 
 Another big change is that the `InputSetProvider` concept is replaced by just using `InputSet`s. This removes a lot of complexity and makes it easier to create custom layouts and use various input sets together.
 
-Another big change is that the `KeyboardAppearance` is renamed to `KeyboardStyleProvider` and the `Appearance` namespace is renamed to `Styling`.
-
-Another big change is that the `KeyboardFeedbackHandler` concept is merged into the `KeyboardActionHandler` to just have a single type. The feedback handler will be removed in the next major version. 
+Other big changes are that the `KeyboardAppearance` is renamed to `KeyboardStyleProvider`, the `Appearance` namespace to `Styling` and that the `KeyboardFeedbackHandler` is merged into the `KeyboardActionHandler` to just have a single type.
 
 ### ✨ New Features
 
