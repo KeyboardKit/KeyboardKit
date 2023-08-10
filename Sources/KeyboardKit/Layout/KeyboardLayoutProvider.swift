@@ -41,5 +41,3 @@ public protocol KeyboardLayoutProvider: AnyObject {
     @available(*, deprecated, message: "Use input sets directly instead.")
     func register(inputSetProvider: InputSetProvider)
 }
-
-

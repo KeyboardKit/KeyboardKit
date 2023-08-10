@@ -6,6 +6,7 @@ disabled_rules:
   - identifier_name
   - large_tuple
   - line_length
+  - nesting
   - statement_position
   - todo
   - trailing_whitespace
