@@ -1,4 +1,3 @@
-#if os(iOS) || os(tvOS)
 import Foundation
 
 @available(*, deprecated, renamed: "Keyboard.AutocapitalizationType")
@@ -16,6 +15,7 @@ public typealias KeyboardReturnKeyType = Keyboard.ReturnKeyType
 @available(*, deprecated, renamed: "Keyboard.KeyboardType")
 public typealias KeyboardType = Keyboard.KeyboardType
 
+#if os(iOS) || os(tvOS)
 @available(*, deprecated, renamed: "KeyboardEnabledContext")
 public typealias KeyboardEnabledState = KeyboardEnabledContext
 #endif
