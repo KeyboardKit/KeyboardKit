@@ -28,7 +28,6 @@ public extension View {
        - isInScrollView: Whether or not the gestures are used in a scroll view, by default `false`.
        - releaseOutsideTolerance: The percentage of the button size that should span outside the button bounds and still count as a release, by default `0.75`.
      */
-    @ViewBuilder
     func keyboardButtonGestures(
         for action: KeyboardAction,
         actionHandler: KeyboardActionHandler,

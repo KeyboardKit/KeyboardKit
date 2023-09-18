@@ -14,6 +14,9 @@ import SwiftUI
  This view adapts its content to the provided action, states
  and services. You can use a `contentConfig` to customize or
  replace the content view.
+ 
+ You can turn any view into a keyboard button like this view,
+ by using the `.keyboardButton(...)` view modifier.
  */
 public struct KeyboardButton<Content: View>: View {
 
@@ -85,12 +88,9 @@ public struct KeyboardButton<Content: View>: View {
         
     public var body: some View {
         buttonContent
-            .systemKeyboardButtonStyle(
-                buttonStyle,
-                isPressed: isPressed
-            )
-            .keyboardButtonGestures(
+            .keyboardButton(
                 for: action,
+                style: style,
                 actionHandler: actionHandler,
                 calloutContext: calloutContext,
                 isPressed: $isPressed
@@ -110,7 +110,7 @@ private extension KeyboardButton {
         )
     }
     
-    var buttonStyle: KeyboardStyle.Button {
+    var style: KeyboardStyle.Button {
         styleProvider.buttonStyle(
             for: action,
             isPressed: isPressed

@@ -13,14 +13,15 @@ import Foundation
  to actions that can be found on various keyboards.
  
  Keyboard actions can be bound to buttons and triggered with
- a ``KeyboardActionHandler``. Keyboard actions are also used
- to define keyboard layouts and provide a declarative way to
- express a keyboard layout without having to specify exactly
- how your actions will be executed.
+ a ``KeyboardActionHandler``. They are also used by keyboard
+ layouts and other parts of the library, as declarative ways
+ to describe various parts of the keyboard without having to
+ specify how the actions will be executed.
 
  The documentation for each action type describes the type's
  standard behavior, if any. Types that don't have a standard
- behavior require a custom ``KeyboardActionHandler``.
+ behavior require a custom ``KeyboardActionHandler`` to have
+ any effect when the user interacts with them.
  */
 public enum KeyboardAction: Codable, Equatable {
 

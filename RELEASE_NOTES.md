@@ -13,6 +13,10 @@ These release notes will only contain the current version. Just check out an old
 
 ## 8.0
 
+### ✨ New Features
+
+* `View.keyboardButton` is a new view extension that applies both a style and gestures.
+
 ### 💡 Adjustments
 
 * `AutocompleteProvider` is now async instead of using completions.
@@ -24,9 +28,12 @@ These release notes will only contain the current version. Just check out an old
 ### 💥 Breaking changes 
 
 * All deprecated code has been removed or addressed.
+
 * `DisabledCalloutActionProvider` has been removed.
 * `EnglishCalloutActionProvider` has been removed.
 * `StandardCalloutActionProvider` no longer has a fallback provider.
 * `StandardCalloutActionProvider.standardProvider` has been removed.
 * `SystemKeyboardButton` has been renamed to `KeyboardButton`.
 * `SystemKeyboardButtonBody` has been renamed to `KeyboardButtonBody`.
+* `SystemKeyboardButtonContent` has been renamed to `KeyboardButtonContent`.
+* `View.systemKeyboardButtonStyle(...)` has been renamed to `.keyboardButtonStyle(...)`.

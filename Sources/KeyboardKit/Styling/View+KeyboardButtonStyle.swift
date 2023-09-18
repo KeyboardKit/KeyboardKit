@@ -1,5 +1,5 @@
 //
-//  View+SystemKeyboardButton.swift
+//  View+KeyboardButtonStyle.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-06-24.
@@ -17,7 +17,7 @@ public extension View {
        - style: The style to apply.
        - isPressed: Whether or not the button is pressed, by default `false`.
      */
-    func systemKeyboardButtonStyle(
+    func keyboardButtonStyle(
         _ style: KeyboardStyle.Button,
         isPressed: Bool = false
     ) -> some View {
@@ -35,7 +35,7 @@ struct View_Button_Previews: PreviewProvider {
     ) -> some View {
         content
             .padding()
-            .systemKeyboardButtonStyle(style, isPressed: false)
+            .keyboardButtonStyle(style, isPressed: false)
     }
 
     static var previews: some View {
