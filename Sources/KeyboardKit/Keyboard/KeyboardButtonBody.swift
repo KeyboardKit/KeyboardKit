@@ -1,5 +1,5 @@
 //
-//  SystemKeyboardButtonBody.swift
+//  KeyboardButtonBody.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-09-02.
@@ -14,7 +14,7 @@ import SwiftUI
  The body is the button "background", which means the button
  shape, corner radius, shadow etc. without the content.
  */
-public struct SystemKeyboardButtonBody: View {
+public struct KeyboardButtonBody: View {
 
     /**
      Create a system keyboard button body view.
@@ -46,7 +46,7 @@ public struct SystemKeyboardButtonBody: View {
     }
 }
 
-public extension SystemKeyboardButtonBody {
+public extension KeyboardButtonBody {
 
     var backgroundColor: Color { style.backgroundColor ?? .clear }
 
@@ -57,12 +57,12 @@ public extension SystemKeyboardButtonBody {
     var cornerRadius: CGFloat { style.cornerRadius ?? 0 }
 }
 
-struct SystemKeyboardButtonBody_Previews: PreviewProvider {
+struct KeyboardButtonBody_Previews: PreviewProvider {
 
     static var previews: some View {
         VStack {
-            SystemKeyboardButtonBody(style: .preview1)
-            SystemKeyboardButtonBody(style: .preview2)
+            KeyboardButtonBody(style: .preview1)
+            KeyboardButtonBody(style: .preview2)
         }
         .padding()
         .background(Color.gray)

@@ -29,3 +29,4 @@ These release notes will only contain the current version. Just check out an old
 * `StandardCalloutActionProvider` no longer has a fallback provider.
 * `StandardCalloutActionProvider.standardProvider` has been removed.
 * `SystemKeyboardButton` has been renamed to `KeyboardButton`.
+* `SystemKeyboardButtonBody` has been renamed to `KeyboardButtonBody`.

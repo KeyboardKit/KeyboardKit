@@ -21,7 +21,7 @@ public extension View {
         _ style: KeyboardStyle.Button,
         isPressed: Bool = false
     ) -> some View {
-        self.background(SystemKeyboardButtonBody(style: style))
+        self.background(KeyboardButtonBody(style: style))
             .foregroundColor(style.foregroundColor)
             .font(style.font?.font)
     }
