@@ -41,12 +41,13 @@ public struct SystemKeyboardSpaceContent<SpaceView: View>: View {
     init(
         localeText: String,
         spaceText: String
-    ) where SpaceView == SystemKeyboardButtonText {
+    ) where SpaceView == KeyboardButtonText {
         self.init(
             localeText: localeText,
-            spaceView: SystemKeyboardButtonText(
+            spaceView: KeyboardButtonText(
                 text: spaceText,
-                action: .space)
+                action: .space
+            )
         )
     }
     
@@ -73,10 +74,11 @@ private struct SystemKeyboardSpaceContentState {
 
 private extension SystemKeyboardSpaceContent {
     
-    var localeView: SystemKeyboardButtonText {
-        SystemKeyboardButtonText(
+    var localeView: KeyboardButtonText {
+        KeyboardButtonText(
             text: localeText,
-            action: .space)
+            action: .space
+        )
     }
     
     @ViewBuilder

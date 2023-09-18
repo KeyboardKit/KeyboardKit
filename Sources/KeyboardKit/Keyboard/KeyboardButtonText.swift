@@ -1,5 +1,5 @@
 //
-//  SystemKeyboardButtonText.swift
+//  KeyboardButtonText.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-10-04.
@@ -9,12 +9,12 @@
 import SwiftUI
 
 /**
- This view renders text for a system keyboard button.
+ This view renders keyboard button text content.
  
  This text is line limited to 1 and has a vertical offset if
  the button is an input button and the text is lowercased.
  */
-public struct SystemKeyboardButtonText: View {
+public struct KeyboardButtonText: View {
     
     /**
      Create a system keyboard button text view.
@@ -41,21 +41,21 @@ public struct SystemKeyboardButtonText: View {
     }
 }
 
-private extension SystemKeyboardButtonText {
+private extension KeyboardButtonText {
     
     var useNegativeOffset: Bool {
         isInputAction && text.isLowercased
     }
 }
 
-struct SystemKeyboardButtonText_Previews: PreviewProvider {
+struct KeyboardButtonText_Previews: PreviewProvider {
     
     static var previews: some View {
         HStack {
-            SystemKeyboardButtonText(text: "PasCal", action: .space)
-            SystemKeyboardButtonText(text: "UPPER", action: .space)
-            SystemKeyboardButtonText(text: "lower", action: .space)
-            SystemKeyboardButtonText(text: "non-input", action: .backspace)
+            KeyboardButtonText(text: "PasCal", action: .space)
+            KeyboardButtonText(text: "UPPER", action: .space)
+            KeyboardButtonText(text: "lower", action: .space)
+            KeyboardButtonText(text: "non-input", action: .backspace)
         }
     }
 }

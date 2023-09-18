@@ -95,6 +95,7 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardButton``
 - ``KeyboardButtonBody``
 - ``KeyboardButtonContent``
+- ``KeyboardButtonText``
 - ``KeyboardContext``
 - ``KeyboardController``
 - ``KeyboardEnabledContext``
@@ -279,7 +280,6 @@ KeyboardKit is available under the MIT license.
 
 - ``SystemKeyboard``
 - ``SystemKeyboardButtonRowItem``
-- ``SystemKeyboardButtonText``
 - ``SystemKeyboardSpaceContent``
 
 ### Text

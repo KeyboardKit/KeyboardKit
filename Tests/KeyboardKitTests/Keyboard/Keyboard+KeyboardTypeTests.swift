@@ -60,7 +60,7 @@ class Keyboard_KeyboardTypeTests: XCTestCase {
     }
 
 
-    func testSystemKeyboardButtonImageIsDefinedForSomeTypes() {
+    func testButtonImageIsDefinedForSomeTypes() {
         XCTAssertEqual(buttonImage(for: .email), .keyboardEmail)
         XCTAssertEqual(buttonImage(for: .emojis), .keyboardEmoji)
         XCTAssertEqual(buttonImage(for: .images), .keyboardImages)
@@ -71,7 +71,7 @@ class Keyboard_KeyboardTypeTests: XCTestCase {
         XCTAssertNil(buttonImage(for: .symbolic))
     }
 
-    func testSystemKeyboardButtonTextIsDefinedForSomeTypes() {
+    func testButtonTextIsDefinedForSomeTypes() {
         XCTAssertEqual(buttonText(for: .alphabetic(.lowercased)), "ABC")
         XCTAssertEqual(buttonText(for: .numeric), "123")
         XCTAssertEqual(buttonText(for: .symbolic), "#+=")

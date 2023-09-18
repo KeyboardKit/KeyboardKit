@@ -73,7 +73,7 @@ private extension KeyboardButtonContent {
     }
     
     func textView(for action: KeyboardAction, text: String) -> some View {
-        SystemKeyboardButtonText(
+        KeyboardButtonText(
             text: text,
             action: action
         )
