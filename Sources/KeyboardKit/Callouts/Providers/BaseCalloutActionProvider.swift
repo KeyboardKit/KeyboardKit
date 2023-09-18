@@ -14,9 +14,8 @@ import Foundation
  
  You can inherit this class and override any open properties
  and functions to customize its behavior. The easiest way is
- to override ``calloutActionString(for:)`` and let it return
- a string that can then be mapped to keyboard actions by the
- `calloutActions(for:)` function.
+ to override ``calloutActionString(for:)`` to return strings
+ that are then mapped to actions with `calloutActions(for:)`.
  */
 open class BaseCalloutActionProvider: CalloutActionProvider {
     

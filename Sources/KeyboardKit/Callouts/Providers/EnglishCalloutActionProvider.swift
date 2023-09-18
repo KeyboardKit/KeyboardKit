@@ -9,24 +9,18 @@
 import Foundation
 
 /**
- This class provides U.S. English callout actions.
+ [DEPRECATED]
  
- You can use the class as a template when you want to create
- your own callout action provider.
+ This class will be removed in KeyboardKit 8.0.
  
- KeyboardKit Pro adds a provider for each ``KeyboardLocale``
- Check out the demo app to see them in action.
+ This type isn't properly deprecated since it is still used.
  */
 open class EnglishCalloutActionProvider: BaseCalloutActionProvider, LocalizedService {
 
-    /**
-     The locale key that the provider is bound to.
-     */
+    /// The locale key that the provider is bound to.
     public var localeKey = KeyboardLocale.english.id
     
-    /**
-     Get callout actions as a string for the provided `char`.
-     */
+    /// Get callout actions as a string for the provided `char`.
     open override func calloutActionString(for char: String) -> String {
         switch char {
         case "0": return "0°"

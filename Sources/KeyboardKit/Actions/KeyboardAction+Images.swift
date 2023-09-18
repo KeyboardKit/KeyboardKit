@@ -13,9 +13,7 @@ import SwiftUI
  */
 public extension KeyboardAction {
 
-    /**
-     The image to which the action refers, if any.
-     */
+    /// The image to which the action refers, if any.
     var image: Image? {
         switch self {
         case .image(_, let imageName, _): return Image(imageName, bundle: .keyboardKit)

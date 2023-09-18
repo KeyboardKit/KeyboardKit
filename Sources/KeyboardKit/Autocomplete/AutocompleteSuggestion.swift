@@ -11,6 +11,10 @@ import Foundation
 /**
  This struct is a standard suggestion that can be used by an
  autocomplete suggestion provider.
+ 
+ Regarding terminology, autocorrect suggestions are rendered
+ with a white background in a native keyboard, while unknown
+ suggestions are wrapped in locale-specific quotation marks.
  */
 public struct AutocompleteSuggestion {
     
@@ -18,7 +22,7 @@ public struct AutocompleteSuggestion {
      Create a suggestion with completely custom properties.
 
      - Parameters:
-       - text: The text that should be sent to the text document proxy.
+       - text: The text that should be sent to the proxy.
        - title: The text that should be presented to the user, by default `text`.
        - isAutocorrect: Whether or not this is an autocorrect suggestion, by default `false`.
        - isUnknown: Whether or not this is an unknown suggestion, by default `false`.
@@ -41,35 +45,21 @@ public struct AutocompleteSuggestion {
         self.additionalInfo = additionalInfo
     }
     
-    /**
-     The text that should be sent to the text document proxy.
-     */
+    /// The text that should be sent to the proxy.
     public var text: String
     
-    /**
-     The text that should be presented to the user.
-     */
+    /// The text that should be presented to the user.
     public var title: String
     
-    /**
-     Whether or not this is an autocorrect suggestion, which
-     are typically presented with a white rounded background.
-     */
+    /// Whether or not this is an autocorrect suggestion.
     public var isAutocorrect: Bool
     
-    /**
-     Whether or not this is an unknown suggestion, which are
-     typically surrounded by quotation marks.
-     */
+    /// Whether or not this is an unknown suggestion.
     public var isUnknown: Bool
     
-    /**
-     An optional subtitle that can complete the `title`.
-     */
+    /// An optional subtitle that can complete the `title`.
     public var subtitle: String?
     
-    /**
-     An optional dictionary that can contain additional info.
-     */
+    /// An optional dictionary with additional info.
     public var additionalInfo: [String: Any]
 }

@@ -114,9 +114,7 @@ public enum KeyboardAction: Codable, Equatable {
 
 public extension KeyboardAction {
 
-    /**
-     Whether or not the action is an alphabetic type.
-     */
+    /// Whether or not the action is an alphabetic type.
     var isAlphabeticKeyboardTypeAction: Bool {
         switch self {
         case .keyboardType(let type): return type.isAlphabetic
@@ -124,9 +122,7 @@ public extension KeyboardAction {
         }
     }
     
-    /**
-     Whether or not the action is a character action.
-     */
+    /// Whether or not the action is a character action.
     var isCharacterAction: Bool {
         switch self {
         case .character: return true
@@ -134,9 +130,7 @@ public extension KeyboardAction {
         }
     }
 
-    /**
-     Whether or not the action is an emoji action.
-     */
+    /// Whether or not the action is an emoji action.
     var isEmojiAction: Bool {
         switch self {
         case .emoji: return true
@@ -165,10 +159,8 @@ public extension KeyboardAction {
     /**
      Whether or not the action is a primary action.
 
-     Primary actions always insert a new line into the proxy,
-     but can be rendered in various ways. For instance, most
-     primary actions will by default use a blue color, while
-     `.return` and `.newLine` are rendered as system buttons.
+     A primary action inserts a new line into the proxy, but
+     the button can rendered differently to express intent.
      */
     var isPrimaryAction: Bool {
         switch self {
@@ -177,9 +169,7 @@ public extension KeyboardAction {
         }
     }
     
-    /**
-     Whether or not the action is a shift action.
-     */
+    /// Whether or not the action is a shift action.
     var isShiftAction: Bool {
         switch self {
         case .shift: return true
@@ -187,9 +177,7 @@ public extension KeyboardAction {
         }
     }
 
-    /**
-     Whether or not the action primary serves as a spacer.
-     */
+    /// Whether or not the action primary serves as a spacer.
     var isSpacer: Bool {
         switch self {
         case .characterMargin: return true
@@ -198,10 +186,7 @@ public extension KeyboardAction {
         }
     }
     
-    /**
-     Whether or not the action is a system action, which the
-     library by default renders as darker buttons.
-     */
+    /// Whether or not the action is a dark system action.
     var isSystemAction: Bool {
         switch self {
         case .backspace: return true
@@ -226,9 +211,7 @@ public extension KeyboardAction {
         }
     }
     
-    /**
-     Whether or not the action is an uppercase shift action.
-     */
+    /// Whether or not the action is uppercase shift.
     var isUppercasedShiftAction: Bool {
         switch self {
         case .shift(let state): return state.isUppercased
@@ -236,9 +219,7 @@ public extension KeyboardAction {
         }
     }
 
-    /**
-     Whether or not the action is a keyboard type action.
-     */
+    /// Whether or not the action is a keyboard type action.
     func isKeyboardTypeAction(_ keyboardType: Keyboard.KeyboardType) -> Bool {
         switch self {
         case .keyboardType(let type): return type == keyboardType

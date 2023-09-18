@@ -20,34 +20,24 @@ public class AutocompleteContext: ObservableObject {
     
     public init() {}
 
-    /**
-     Whether or not autocomplete is enabled.
-     */
+    /// Whether or not autocomplete is enabled.
     @Published
     public var isEnabled = true
 
-    /**
-     Whether or not suggestions are currently being fetched.
-     */
+    /// Whether or not suggestions are being fetched.
     @Published
     public var isLoading = false
 
-    /**
-     The last received autocomplete error.
-     */
+    /// The last received autocomplete error.
     @Published
     public var lastError: Error?
     
-    /**
-     The last received autocomplete suggestions.
-     */
+    /// The last received autocomplete suggestions.
     @Published
     public var suggestions: [AutocompleteSuggestion] = []
 
 
-    /**
-     Reset the autocomplete contexts.
-     */
+    /// Reset the autocomplete contexts.
     public func reset() {
         isLoading = false
         lastError = nil

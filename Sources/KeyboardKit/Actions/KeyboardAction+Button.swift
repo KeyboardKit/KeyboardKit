@@ -11,9 +11,7 @@ import SwiftUI
 
 public extension KeyboardAction {
     
-    /**
-     The action's standard button image.
-     */
+    /// The action's standard button image.
     func standardButtonImage(for context: KeyboardContext) -> Image? {
         if let image = standardButtonTextImageReplacement(for: context) { return image }
         
@@ -39,9 +37,7 @@ public extension KeyboardAction {
         }
     }
     
-    /**
-     The action's standard button text.
-     */
+    /// The action's standard button text.
     func standardButtonText(for context: KeyboardContext) -> String? {
         switch self {
         case .character(let char): return standardButtonText(for: char)
@@ -55,10 +51,7 @@ public extension KeyboardAction {
         }
     }
     
-    /**
-     The action's standard button text image replacement, if
-     the text represents an image asset.
-     */
+    /// The action's standard button text image replacement.
     func standardButtonTextImageReplacement(for context: KeyboardContext) -> Image? {
         switch standardButtonText(for: context) {
         case "↵", "↳": return .keyboardNewline(for: context.locale)

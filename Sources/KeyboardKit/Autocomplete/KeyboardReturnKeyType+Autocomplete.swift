@@ -8,9 +8,7 @@
 
 public extension Keyboard.ReturnKeyType {
 
-    /**
-     Whether or not this key type prefers autocomplete.
-     */
+    /// Whether or not this type prefers autocomplete.
     var prefersAutocomplete: Bool {
         switch self {
         case .return: return true
@@ -35,9 +33,7 @@ import UIKit
 
 public extension UIReturnKeyType {
 
-    /**
-     Whether or not this key type prefers autocomplete.
-     */
+    /// Whether or not this type prefers autocomplete.
     var prefersAutocomplete: Bool {
         keyboardReturnKeyType.prefersAutocomplete
     }

@@ -13,7 +13,7 @@ import SwiftUI
  used in native iOS keyboards.
  
  > v8.0: This will be wrapped in a new `AutocompleteToolbar`
- namespace and renamed to `AutocompleteToolbar.ItemSeparator`.
+ namespace and renamed to `AutocompleteToolbar.Separator`.
  */
 public struct AutocompleteToolbarSeparator: View {
     

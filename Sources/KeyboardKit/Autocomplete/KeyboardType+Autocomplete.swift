@@ -8,9 +8,7 @@
 
 public extension Keyboard.KeyboardType {
 
-    /**
-     Whether or not this keyboard type prefers autocomplete.
-     */
+    /// Whether or not this type prefers autocomplete.
     var prefersAutocomplete: Bool {
         switch self {
         case .alphabetic: return true
@@ -29,9 +27,7 @@ import UIKit
 
 public extension UIKeyboardType {
 
-    /**
-     Whether or not this keyboard type prefers autocomplete.
-     */
+    /// Whether or not this type prefers autocomplete.
     var prefersAutocomplete: Bool {
         switch self {
         case .default: return true

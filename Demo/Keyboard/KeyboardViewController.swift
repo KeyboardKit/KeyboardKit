@@ -27,6 +27,8 @@ class KeyboardViewController: KeyboardInputViewController {
      we make demo-specific service configurations.
      */
     override func viewDidLoad() {
+        
+        keyboardFeedbackSettings.audioConfiguration.input = .custom(id: 1329)   
 
         /// 💡 Setup a custom keyboard locale.
         ///

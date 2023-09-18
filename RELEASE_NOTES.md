@@ -11,6 +11,18 @@ These release notes will only contain the current version. Just check out an old
 
 
 
+## 7.9.3
+
+### 👑 Pro Adjustments
+
+* `SystemKeyboardPreview.Configuration` no longer applies a color scheme by default.
+
+### 🗑️ Deprecations
+
+* `EnglishCalloutActionProvider` has been soft deprecated.
+
+
+
 ## 7.9
 
 This release prepares the library for the upcoming major version bump, which will clean up the library and make it easier to use.

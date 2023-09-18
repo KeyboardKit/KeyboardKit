@@ -130,7 +130,6 @@ KeyboardKit is available under the MIT license.
 - ``StandardCalloutActionProvider``
 
 - ``BaseCalloutActionProvider``
-- ``EnglishCalloutActionProvider``
 - ``DisabledCalloutActionProvider``
 
 ### Device

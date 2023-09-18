@@ -41,17 +41,13 @@ public typealias AutocompleteResult = Result<[AutocompleteSuggestion], Error>
  */
 public protocol AutocompleteProvider: AnyObject {
 
-    /**
-     The currently applied locale.
-     */
+    /// The currently applied locale.
     var locale: Locale { get set }
 
 
-    /**
-     Get autocomplete suggestions for the provided `text`.
-     
-     > v8.0: This will be made async in KeyboardKit 8.0.
-     */
+    /// Get autocomplete suggestions for the provided `text`.
+    ///
+    /// > v8.0: This will be made async in KeyboardKit 8.0.
     func autocompleteSuggestions(
         for text: String,
         completion: @escaping Completion
@@ -65,54 +61,34 @@ public protocol AutocompleteProvider: AnyObject {
     typealias CompletionResult = AutocompleteResult
 
 
-    /**
-     Whether or not the provider can ignore words.
-     */
+    /// Whether or not the provider can ignore words.
     var canIgnoreWords: Bool { get }
 
-    /**
-     Whether or not the provider can lean words.
-     */
+    /// Whether or not the provider can lean words.
     var canLearnWords: Bool { get }
 
-    /**
-     The provider's currently ignored words.
-     */
+    /// The provider's currently ignored words.
     var ignoredWords: [String] { get }
 
-    /**
-     The provider's currently learned words.
-     */
+    /// The provider's currently learned words.
     var learnedWords: [String] { get }
 
 
-    /**
-     Whether or not the provider has ignored a certain word.
-     */
+    /// Whether or not the provider has ignored a certain word.
     func hasIgnoredWord(_ word: String) -> Bool
 
-    /**
-     Whether or not the provider has learned a certain word.
-     */
+    /// Whether or not the provider has learned a certain word.
     func hasLearnedWord(_ word: String) -> Bool
 
-    /**
-     Make the provider ignore a certain word.
-     */
+    /// Make the provider ignore a certain word.
     func ignoreWord(_ word: String)
 
-    /**
-     Make the provider learn a certain word.
-     */
+    /// Make the provider learn a certain word.
     func learnWord(_ word: String)
 
-    /**
-     Remove a certain ignored word from the provider.
-     */
+    /// Remove a certain ignored word from the provider.
     func removeIgnoredWord(_ word: String)
 
-    /**
-     Make the provider unlearn a certain word.
-     */
+    /// Make the provider unlearn a certain word.
     func unlearnWord(_ word: String)
 }
