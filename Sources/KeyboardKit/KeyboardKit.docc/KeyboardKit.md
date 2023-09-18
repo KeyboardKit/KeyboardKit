@@ -279,7 +279,6 @@ KeyboardKit is available under the MIT license.
 
 - ``SystemKeyboard``
 - ``SystemKeyboardButtonRowItem``
-- ``SystemKeyboardButtonShadow``
 - ``SystemKeyboardButtonText``
 - ``SystemKeyboardSpaceContent``
 
