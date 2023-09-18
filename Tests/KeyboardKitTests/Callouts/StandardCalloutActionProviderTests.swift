@@ -10,54 +10,77 @@ import KeyboardKit
 import XCTest
 
 class StandardCalloutActionProviderTests: XCTestCase {
-
+    
     var provider: StandardCalloutActionProvider!
     var context: KeyboardContext!
-
+    
     override func setUp() {
         context = KeyboardContext()
         provider = StandardCalloutActionProvider(
             keyboardContext: context
         )
     }
-
-    func testLocalizedProvidersHaveStandardProviders() {
+    
+    func testLocalizedProvidersHaveNoDefaultProviders() {
         let providers = provider.localizedProviders.dictionary
-        XCTAssertEqual(providers.keys.count, 1)
-        XCTAssertTrue(providers[KeyboardLocale.english.id] is EnglishCalloutActionProvider)
+        XCTAssertEqual(providers.keys.count, 0)
     }
-
+    
     func testLocalizedProvidersAcceptCustomProviders() {
         provider = StandardCalloutActionProvider(
             keyboardContext: context,
-            localizedProviders: [StandardCalloutActionProvider.standardProvider])
+            localizedProviders: [
+                TestProvider(localeKey: "en"),
+                TestProvider(localeKey: "sv")
+            ]
+        )
         let providers = provider.localizedProviders.dictionary
-        XCTAssertEqual(providers.keys.count, 1)
-        XCTAssertTrue(providers[KeyboardLocale.english.id] is EnglishCalloutActionProvider)
+        XCTAssertEqual(providers.keys.count, 2)
+        XCTAssertTrue(providers["en"] is TestProvider)
+        XCTAssertTrue(providers["sv"] is TestProvider)
     }
-
-
-    func testCalloutActionsSupportEnglish() {
+    
+    
+    func testCalloutActionsMapsContextLocaleToProvider() {
         context.locale = Locale(identifier: KeyboardLocale.english.id)
+        provider = StandardCalloutActionProvider(
+            keyboardContext: context,
+            localizedProviders: [TestProvider(localeKey: "en")]
+        )
         let action = KeyboardAction.character("a")
         let actions = provider.calloutActions(for: action)
-        let expected = "aàáâäæãåā".map { KeyboardAction.character(String($0)) }
+        let expected = "en".map { KeyboardAction.character(String($0)) }
         XCTAssertEqual(actions, expected)
     }
-
-    func testCalloutActionsHaveFallbackForSpecificLocale() {
-        context.locale = Locale(identifier: "en-US")
+    
+    func testCalloutActionsReturnsEmptyResultForMissingLocale() {
+        context.locale = Locale(identifier: KeyboardLocale.swedish.id)
+        provider = StandardCalloutActionProvider(
+            keyboardContext: context,
+            localizedProviders: [TestProvider(localeKey: "en")]
+        )
         let action = KeyboardAction.character("a")
         let actions = provider.calloutActions(for: action)
-        let expected = "aàáâäæãåā".map { KeyboardAction.character(String($0)) }
-        XCTAssertEqual(actions, expected)
+        XCTAssertEqual(actions, [])
     }
+}
 
-    func testCalloutActionsHaveFallbackForNonSupportedLocale() {
-        context.locale = Locale(identifier: KeyboardLocale.german.id)
-        let action = KeyboardAction.character("a")
-        let actions = provider.calloutActions(for: action)
-        let expected = "aàáâäæãåā".map { KeyboardAction.character(String($0)) }
-        XCTAssertEqual(actions, expected)
+class TestProvider: CalloutActionProvider, LocalizedService {
+    
+    init(localeKey: String) {
+        self.localeKey = localeKey
+    }
+    
+    let localeKey: String
+    
+    func calloutActions(
+        for action: KeyboardAction
+    ) -> [KeyboardAction] {
+        switch action {
+        case .character(let char):
+            guard char == "a" else { return [] }
+            return localeKey.chars.map { .character($0) }
+        default: return []
+        }
     }
 }
