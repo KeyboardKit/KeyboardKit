@@ -24,5 +24,7 @@ These release notes will only contain the current version. Just check out an old
 ### 💥 Breaking changes 
 
 * All deprecated code has been removed or addressed.
+* `DisabledCalloutActionProvider` has been removed.
 * `EnglishCalloutActionProvider` has been removed.
+* `StandardCalloutActionProvider` no longer has a fallback provider.
 * `StandardCalloutActionProvider.standardProvider` has been removed.

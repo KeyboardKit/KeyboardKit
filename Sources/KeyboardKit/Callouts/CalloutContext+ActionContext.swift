@@ -17,19 +17,16 @@ public extension CalloutContext {
      */
     class ActionContext: ObservableObject {
         
-        
-        // MARK: - Initialization
-        
         /**
          Create a new action callout context instance.
          
          - Parameters:
-         - actionHandler: The action handler to use.
-         - actionProvider: The action provider to use.
+           - actionHandler: The action handler to use.
+           - actionProvider: The action provider to use, if any.
          */
         public init(
             actionHandler: KeyboardActionHandler,
-            actionProvider: CalloutActionProvider
+            actionProvider: CalloutActionProvider?
         ) {
             self.actionHandler = actionHandler
             self.actionProvider = actionProvider
@@ -42,7 +39,7 @@ public extension CalloutContext {
         public let actionHandler: KeyboardActionHandler
         
         /// The action provider to use for resolving actions.
-        public let actionProvider: CalloutActionProvider
+        public let actionProvider: CalloutActionProvider?
         
         
         // MARK: - Properties
@@ -121,7 +118,7 @@ public extension CalloutContext.ActionContext {
     /// Update the input actions for a certain action.
     func updateInputs(for action: KeyboardAction?, in geo: GeometryProxy, alignment: HorizontalAlignment? = nil) {
         guard let action = action else { return reset() }
-        let actions = actionProvider.calloutActions(for: action)
+        guard let actions = actionProvider?.calloutActions(for: action) else { return }
         self.buttonFrame = geo.frame(in: .named(Self.coordinateSpace))
         self.alignment = alignment ?? getAlignment(for: geo)
         self.actions = isLeading ? actions : actions.reversed()
@@ -158,7 +155,7 @@ public extension CalloutContext.ActionContext {
     static var disabled: CalloutContext.ActionContext {
         .init(
             actionHandler: .preview,
-            actionProvider: .disabled
+            actionProvider: nil
         )
     }
 }

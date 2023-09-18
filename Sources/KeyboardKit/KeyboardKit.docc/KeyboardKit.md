@@ -120,17 +120,20 @@ KeyboardKit is available under the MIT license.
 - ``AutocompleteToolbarItemTitle``
 - ``AutocompleteToolbarSeparator``
 
+### Autocomplete Providers
+
 - ``DisabledAutocompleteProvider``
 
 ### Callouts
 
 - ``ActionCallout``
-- ``CalloutActionProvider``
 - ``InputCallout``
-- ``StandardCalloutActionProvider``
+- ``CalloutActionProvider``
+
+### Callout Action Providers
 
 - ``BaseCalloutActionProvider``
-- ``DisabledCalloutActionProvider``
+- ``StandardCalloutActionProvider``
 
 ### Device
 
@@ -147,6 +150,8 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardDictationConfiguration``
 - ``KeyboardDictationService``
 
+### Dictation Services
+
 - ``DisabledDictationService``
 - ``DisabledKeyboardDictationService``
 
@@ -159,6 +164,9 @@ KeyboardKit is available under the MIT license.
 - ``EmojiKeyboardItem``
 - ``EmojiKeyboardStyle``
 - ``EmojiProvider``
+
+### Emoji Providers
+
 - ``FrequentEmojiProvider``
 - ``MostRecentEmojiProvider``
 
@@ -209,6 +217,8 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardLayoutProviderProxy``
 - ``KeyboardRowItem``
 
+### Layout Providers
+
 - ``StandardKeyboardLayoutProvider``
 - ``iPadKeyboardLayoutProvider``
 - ``iPhoneKeyboardLayoutProvider``
@@ -257,6 +267,9 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardImageReader``
 - ``KeyboardStyle``
 - ``KeyboardStyleProvider``
+
+### Style Providers
+
 - ``StandardKeyboardStyleProvider``
 
 ### System Keyboard

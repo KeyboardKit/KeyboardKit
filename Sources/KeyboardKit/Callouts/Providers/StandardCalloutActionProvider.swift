@@ -40,17 +40,17 @@ open class StandardCalloutActionProvider: CalloutActionProvider {
     /// Get callout actions for the provided action.
     open func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {
         let provider = provider(for: keyboardContext)
-        let actions = provider.calloutActions(for: action)
-        return actions
+        let actions = provider?.calloutActions(for: action)
+        return actions ?? []
     }
 
     /// Get the provider to use for the provided context.
-    open func provider(for context: KeyboardContext) -> CalloutActionProvider {
+    open func provider(for context: KeyboardContext) -> CalloutActionProvider? {
         provider(for: context.locale)
     }
     
     /// Get the provider to use for the provided locale.
-    open func provider(for locale: Locale) -> CalloutActionProvider {
-        localizedProviders.value(for: locale) ?? .disabled
+    open func provider(for locale: Locale) -> CalloutActionProvider? {
+        localizedProviders.value(for: locale)
     }
 }
