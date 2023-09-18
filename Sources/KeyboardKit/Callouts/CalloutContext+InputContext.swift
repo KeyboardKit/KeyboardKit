@@ -25,7 +25,7 @@ public extension CalloutContext {
          Create a new context instance,
          
          - Parameters:
-         - isEnabled: Whether or not the context is enabled.
+           - isEnabled: Whether or not callouts are enabled.
          */
         public init(isEnabled: Bool) {
             self.isEnabled = isEnabled
@@ -34,100 +34,83 @@ public extension CalloutContext {
         
         // MARK: - Properties
         
-        /**
-         This coordinate space is used when presenting callouts.
-         */
+        /// The coordinate space to use for callout.
         public static let coordinateSpace = "com.keyboardkit.coordinate.InputCallout"
         
-        /**
-         This value can be used to set the minimum duration of a
-         callout.
-         */
+        /// The last time an action became active.
+        public var lastActionDate = Date()
+        
+        /// The minimum callout duration.
         public var minimumVisibleDuration: TimeInterval = 0.05
         
         
         // MARK: - Published Properties
         
-        /**
-         Whether or not the context is enabled, which means that
-         it will show callouts as the user types.
-         */
+        /// Whether or not input callouts are enabled.
         @Published
         public var isEnabled: Bool
         
-        /**
-         The action that is currently active for the context.
-         */
+        /// The currently active action, if any.
         @Published
         public private(set) var action: KeyboardAction?
         
-        /**
-         The frame of the button that is active for the context.
-         */
+        /// The frame of the currently active button.
         @Published
         public private(set) var buttonFrame: CGRect = .zero
-        
-        
-        // MARK: - Functions
-        
-        /**
-         Reset the context. This will cause any current callouts
-         to be dismissed.
-         */
-        public func reset() {
-            action = nil
-            buttonFrame = .zero
-        }
-        
-        /**
-         Reset the context with a delay, which is useful when an
-         input callout should be displayed a little while.
-         */
-        public func resetWithDelay() {
-            let delay = minimumVisibleDuration
-            let date = Date()
-            lastActionDate = date
-            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                if self.lastActionDate > date { return }
-                self.reset()
-            }
-        }
-        
-        public var lastActionDate = Date()
-        
-        /**
-         Update the current input for a certain keyboard action.
-         */
-        public func updateInput(for action: KeyboardAction?, in geo: GeometryProxy) {
-            self.lastActionDate = Date()
-            self.action = action
-            self.buttonFrame = geo.frame(in: .named(Self.coordinateSpace))
-        }
     }
 }
+
+
+// MARK: - Public Functionality
+
+public extension CalloutContext.InputContext {
+    
+    /// Whether or not the context currently has an input.
+    var hasInput: Bool {
+        input != nil
+    }
+    
+    /// Get an optional input of the currently active action.
+    var input: String? {
+        action?.inputCalloutText
+    }
+
+    /// Whether or not the context has input and is enabled.
+    var isActive: Bool {
+        hasInput && isEnabled
+    }
+    
+    /// Reset the context. This will dismiss the callout.
+    func reset() {
+        action = nil
+        buttonFrame = .zero
+    }
+    
+    /// Reset the context with a slight delay.
+    func resetWithDelay() {
+        let delay = minimumVisibleDuration
+        let date = Date()
+        lastActionDate = date
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            if self.lastActionDate > date { return }
+            self.reset()
+        }
+    }
+    
+    /// Update the current input for a certain action.
+    func updateInput(for action: KeyboardAction?, in geo: GeometryProxy) {
+        self.lastActionDate = Date()
+        self.action = action
+        self.buttonFrame = geo.frame(in: .named(Self.coordinateSpace))
+    }
+}
+
+// MARK: - Context Builders
 
 public extension CalloutContext.InputContext {
     
     /// This context can be used to disable input callouts.
     static var disabled: CalloutContext.InputContext {
         .init(isEnabled: false)
-    }
-}
-
-public extension CalloutContext.InputContext {
-
-    /**
-     Get the optional input of any currently active action.
-     */
-    var input: String? {
-        action?.inputCalloutText
-    }
-
-    /**
-     Whether or not this context is active, which means that
-     it's enabled and has an input.
-     */
-    var isActive: Bool {
-        input != nil && isEnabled
     }
 }
