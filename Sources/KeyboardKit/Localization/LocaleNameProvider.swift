@@ -22,30 +22,22 @@ public protocol LocaleNameProvider {}
 
 public extension LocaleNameProvider {
 
-    /**
-     The full name of a locale in its own language.
-     */
+    /// The full name of a locale in its own language.
     func localizedName(of locale: Locale) -> String? {
         locale.localizedName
     }
 
-    /**
-     The full name of a locale in another locale's language.
-     */
+    /// The full name of a locale in another locale.
     func localizedName(of locale: Locale, in other: Locale) -> String? {
         locale.localizedName(in: other)
     }
 
-    /**
-     The language name of a locale in its own language.
-     */
+    /// The language name of a locale in its own language.
     func localizedLanguageName(of locale: Locale) -> String? {
         locale.localizedLanguageName
     }
 
-    /**
-     The language name of a locale in this locale.
-     */
+    /// The language name of a locale in this locale.
     func localizedLanguageName(of locale: Locale, in other: Locale) -> String? {
         locale.localizedLanguageName(in: other)
     }
@@ -88,30 +80,22 @@ public extension LocaleNameProvider {
 
 public extension Locale {
 
-    /**
-     The full name of this locale in its own words.
-     */
+    /// The full name of this locale in its own language.
     var localizedName: String {
         localizedString(forIdentifier: identifier) ?? ""
     }
 
-    /**
-     The full name of this locale in the provided locale.
-     */
+    /// The full name of this locale in another locale.
     func localizedName(in locale: Locale) -> String {
         locale.localizedString(forIdentifier: identifier) ?? ""
     }
 
-    /**
-     The language name of this locale in its own words.
-     */
+    /// The language name of this locale in its own language.
     var localizedLanguageName: String {
         localizedString(forLanguageCode: languageCode ?? "") ?? ""
     }
 
-    /**
-     The language name of this locale in the provided locale.
-     */
+    /// The language name of this locale in another locale.
     func localizedLanguageName(in locale: Locale) -> String {
         locale.localizedString(forLanguageCode: languageCode ?? "") ?? ""
     }

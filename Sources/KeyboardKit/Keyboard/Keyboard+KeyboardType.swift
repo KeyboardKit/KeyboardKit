@@ -52,9 +52,7 @@ public extension Keyboard {
 
 public extension Keyboard.KeyboardType {
 
-    /**
-     The type's unique identifier.
-     */
+    /// The type's unique identifier.
     var id: String {
         switch self {
         case .alphabetic(let casing): return casing.id
@@ -67,9 +65,7 @@ public extension Keyboard.KeyboardType {
         }
     }
 
-    /**
-     Whether or not the keyboard type is alphabetic.
-     */
+    /// Whether or not the type is alphabetic.
     var isAlphabetic: Bool {
         switch self {
         case .alphabetic: return true
@@ -77,10 +73,7 @@ public extension Keyboard.KeyboardType {
         }
     }
 
-    /**
-     Whether or not this keyboard type is alphabetic and has
-     an uppercased or capslocked shift state.
-     */
+    /// Whether or not the type is uppercased alphabetic.
     var isAlphabeticUppercased: Bool {
         switch self {
         case .alphabetic(let current): return current.isUppercased
@@ -88,10 +81,7 @@ public extension Keyboard.KeyboardType {
         }
     }
 
-    /**
-     Whether or not this keyboard type is alphabetic and has
-     a certain shift state.
-     */
+    /// Whether or not the type is an alphabetic state type.
     func isAlphabetic(_ case: Keyboard.Case) -> Bool {
         switch self {
         case .alphabetic(let current): return current == `case`
@@ -102,9 +92,7 @@ public extension Keyboard.KeyboardType {
 
 public extension Keyboard.KeyboardType {
     
-    /**
-     The keyboard type's standard button image.
-     */
+    /// The keyboard type's standard button image.
     var standardButtonImage: Image? {
         switch self {
         case .email: return .keyboardEmail
@@ -114,9 +102,7 @@ public extension Keyboard.KeyboardType {
         }
     }
     
-    /**
-     The keyboard type's standard button text.
-     */
+    /// The keyboard type's standard button text.
     func standardButtonText(for context: KeyboardContext) -> String? {
         switch self {
         case .alphabetic: return KKL10n.keyboardTypeAlphabetic.text(for: context)

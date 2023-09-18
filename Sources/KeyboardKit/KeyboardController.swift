@@ -22,73 +22,45 @@ import Foundation
  */
 public protocol KeyboardController: AnyObject {
 
-    /**
-     Adjust the text input cursor position.
-     */
+    /// Adjust the text input cursor position.
     func adjustTextPosition(byCharacterOffset: Int)
 
-    /**
-     Delete backwards.
-     */
+    /// Delete backwards.
     func deleteBackward()
 
-    /**
-     Delete backwards a certain number of times.
-     */
+    /// Delete backwards a certain number of times.
     func deleteBackward(times: Int)
 
-    /**
-     Dismiss the keyboard.
-     */
+    /// Dismiss the keyboard.
     func dismissKeyboard()
 
-    /**
-     Insert the provided autocomplete suggestion.
-     */
+    /// Insert the provided autocomplete suggestion.
     func insertAutocompleteSuggestion(_ suggestion: AutocompleteSuggestion)
 
-    /**
-     Insert the provided text.
-     */
+    /// Insert the provided text.
     func insertText(_ text: String)
 
-    /**
-     Perform an autocomplete operation.
-     */
+    /// Perform an autocomplete operation.
     func performAutocomplete()
 
-    /**
-     Perform a keyboard-initiated dictation operation.
-     */
+    /// Perform a keyboard-initiated dictation operation.
     func performDictation()
 
-    /**
-     Perform a text context sync.
-     */
+    /// Perform a text context sync.
     func performTextContextSync()
 
-    /**
-     Reset the current autocomplete state.
-     */
+    /// Reset the current autocomplete state.
     func resetAutocomplete()
 
-    /**
-     Select the next keyboard, if any.
-     */
+    /// Select the next keyboard, if any.
     func selectNextKeyboard()
 
-    /**
-     Select the next locale, if any.
-     */
+    /// Select the next locale, if any.
     func selectNextLocale()
 
-    /**
-     Set a certain keyboard type.
-     */
+    /// Set a certain keyboard type.
     func setKeyboardType(_ type: Keyboard.KeyboardType)
 
-    /**
-     Open a certain URL
-     */
+    /// Open a certain URL
     func openUrl(_ url: URL?)
 }

@@ -52,24 +52,16 @@ public struct InputSetItem: Equatable {
         self.lowercased = lowercased
     }
 
-    /**
-     The neutral char value.
-     */
+    /// The neutral char value.
     public var neutral: String
 
-    /**
-     The uppercased char value.
-     */
+    /// The uppercased char value.
     public var uppercased: String
 
-    /**
-     The lowercased char value.
-     */
+    /// The lowercased char value.
     public var lowercased: String
 
-    /**
-     Resolve the character to use for a certain case.
-     */
+    /// Resolve the character to use for a certain case.
     public func character(for case: Keyboard.Case) -> String {
         switch `case` {
         case .auto: return lowercased
@@ -81,9 +73,6 @@ public struct InputSetItem: Equatable {
 
 extension InputSetItem: KeyboardRowItem {
 
-    /**
-     The row-specific ID to use when the action is presented
-     in a keyboard row.
-     */
+    /// The row-specific ID to use for the action.
     public var rowId: InputSetItem { self }
 }

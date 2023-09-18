@@ -21,18 +21,14 @@ import WatchKit
 import AppKit
 #endif
 
-/**
- This extension extends `Color` with `Codable` functionality.
- */
+/// This extension extends `Color` with codable capabilities.
 extension Color: Codable {
     
     enum CodingKeys: String, CodingKey {
         case red, green, blue, alpha
     }
 
-    /**
-     Initialize a color value from a decoder.
-     */
+    /// Initialize a color value from a decoder.
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let r = try container.decode(Double.self, forKey: .red)

@@ -65,9 +65,7 @@ public struct HapticFeedbackConfiguration: Codable, Equatable {
         self.actions = actions
     }
     
-    /**
-     This struct is used for action-specific audio feedback.
-     */
+    /// This struct is used for action-specific feedback.
     public struct ActionFeedback: Codable, Equatable {
         
         public init(

@@ -17,18 +17,14 @@ import Foundation
  */
 public final class FeatureToggle {
 
-    /**
-     Create a new feature toggle instance.
-     */
+    /// Create a new feature toggle instance.
     public init() {
         defaultEnabledFeatures = []
         enabledFeatures = []
         reset()
     }
 
-    /**
-     This enum defined the available toggle states.
-     */
+    /// This enum defined the available toggle states.
     public enum State: String {
 
         /// The feature is enabled.
@@ -41,28 +37,19 @@ public final class FeatureToggle {
 
     // MARK: - Shared
 
-    /**
-     This shared instance can be used for convenience.
-     */
+    /// This shared instance can be used for convenience.
     public static var shared = FeatureToggle()
 
-    /**
-     The features that are enabled by default.
-     */
+    /// The features that are enabled by default.
     public private(set) var defaultEnabledFeatures: [Feature]
 
-    /**
-     The currently enabled features.
-     */
+    /// The currently enabled features.
     public private(set) var enabledFeatures: [Feature]
 }
 
 public extension FeatureToggle {
 
-    /**
-     This enum defines the currently available features that
-     can be toggled on and off in the ``FeatureToggle``.
-     */
+    /// This enum defines features that can be toggled.
     enum Feature: String {
 
         /// This is a placeholder feature without effect.
@@ -75,23 +62,17 @@ public extension FeatureToggle {
 
 public extension FeatureToggle {
 
-    /**
-     Toggle a certain ``Feature`` on or off.
-     */
+    /// Toggle a certain ``Feature`` on or off.
     func isFeatureEnabled(_ feature: Feature) -> Bool {
         enabledFeatures.contains(feature)
     }
 
-    /**
-     Reset the feature toggle state.
-     */
+    /// Reset the feature toggle state.
     func reset() {
         enabledFeatures = defaultEnabledFeatures
     }
 
-    /**
-     Toggle a certain ``Feature`` on or off.
-     */
+    /// Toggle a certain ``Feature`` on or off.
     func toggleFeature(_ feature: Feature, _ state: State) {
         let value = state == .on ? true : false
         if isFeatureEnabled(feature) == value { return }

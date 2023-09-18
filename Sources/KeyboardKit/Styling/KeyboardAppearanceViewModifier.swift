@@ -21,18 +21,13 @@ import SwiftUI
  */
 public struct KeyboardAppearanceViewModifier: ViewModifier {
 
-    /**
-     The appearance to apply.
-     */
     public init(appearance: ColorScheme) {
         self.appearance = appearance
     }
 
-    /// The original color scheme
     @Environment(\.colorScheme)
     private var colorScheme
 
-    /// The appearance to apply
     private let appearance: ColorScheme
 
     public func body(content: Content) -> some View {

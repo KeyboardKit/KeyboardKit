@@ -17,9 +17,7 @@ import Foundation
  */
 public protocol LocaleFlagProvider {
 
-    /**
-     Get the locale flag symbol.
-     */
+    /// Get the locale flag symbol.
     var flag: String { get }
 }
 

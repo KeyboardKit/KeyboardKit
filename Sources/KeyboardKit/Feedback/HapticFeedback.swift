@@ -52,9 +52,7 @@ public enum HapticFeedback: String, CaseIterable, Codable, Equatable, Identifiab
 
 public extension HapticFeedback {
     
-    /**
-     The unique feedback identifier.
-     */
+    /// The unique feedback identifier.
     var id: String { rawValue }
 
     /// Prepare the feedback with the shared feedback engine.

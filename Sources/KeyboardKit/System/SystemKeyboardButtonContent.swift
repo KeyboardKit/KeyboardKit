@@ -17,8 +17,7 @@ import SwiftUI
 
  The view sets up gestures, line limits, vertical offset etc.
  and styles the button according to the `styleProvider`. You
- can use the `contentConfig` to further customize or replace
- the content view.
+ can use the `contentConfig` to further customize it.
  */
 public struct SystemKeyboardButtonContent: View {
     

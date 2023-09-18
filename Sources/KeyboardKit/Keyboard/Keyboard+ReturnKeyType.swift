@@ -79,9 +79,7 @@ public extension Keyboard {
 
 public extension Keyboard.ReturnKeyType {
 
-    /**
-     The type's unique identifier.
-     */
+    /// The type's unique identifier.
     var id: String {
         switch self {
         case .done: return "done"
@@ -100,10 +98,7 @@ public extension Keyboard.ReturnKeyType {
         }
     }
 
-    /**
-     Whether or not this action is a system action, which by
-     default is rendered as a dark button.
-     */
+    /// Whether or not this type is a system action.
     var isSystemAction: Bool {
         switch self {
         case .newLine: return true
@@ -112,9 +107,7 @@ public extension Keyboard.ReturnKeyType {
         }
     }
 
-    /**
-     The standard button image for a certain locale, if any.
-     */
+    /// The standard button image for a certain locale.
     func standardButtonImage(for locale: Locale) -> Image? {
         switch self {
         case .newLine: return .keyboardNewline(for: locale)
@@ -122,9 +115,7 @@ public extension Keyboard.ReturnKeyType {
         }
     }
 
-    /**
-     The standard button to text for a certain locale.
-     */
+    /// The standard button to text for a certain locale.
     func standardButtonText(for locale: Locale) -> String? {
         switch self {
         case .custom(let title): return title

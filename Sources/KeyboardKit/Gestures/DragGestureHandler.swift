@@ -14,8 +14,9 @@ import CoreGraphics
  */
 public protocol DragGestureHandler {
     
-    /**
-     Handle drag gestures from a start to a current location.
-     */
-    func handleDragGesture(from startLocation: CGPoint, to currentLocation: CGPoint)
+    /// Handle a drag gesture from start to current location.
+    func handleDragGesture(
+        from startLocation: CGPoint,
+        to currentLocation: CGPoint
+    )
 }

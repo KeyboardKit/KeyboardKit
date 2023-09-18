@@ -22,48 +22,36 @@ public protocol LocaleDirectionAnalyzer {}
 
 public extension LocaleDirectionAnalyzer {
 
-    /**
-     Get the character direction of the locale.
-     */
+    /// Get the character direction of the locale.
     func characterDirection(
         of locale: Locale
     ) -> Locale.LanguageDirection {
         locale.characterDirection
     }
 
-    /**
-     Get the line direction of the locale.
-     */
+    /// Get the line direction of the locale.
     func lineDirection(
         of locale: Locale
     ) -> Locale.LanguageDirection {
         locale.lineDirection
     }
 
-    /**
-     Whether or not the locale line direction is `.bottomToTop`.
-     */
+    /// Whether or not the line direction is `.bottomToTop`.
     func isBottomToTop(_ locale: Locale) -> Bool {
         locale.isBottomToTop
     }
 
-    /**
-     Whether or not the line direction is `.topToBottom`.
-     */
+    /// Whether or not the line direction is `.topToBottom`.
     func isTopToBottom(_ locale: Locale) -> Bool {
         locale.isTopToBottom
     }
 
-    /**
-     Whether or not the character direction is `.leftToRight`.
-     */
+    /// Whether or not the char direction is `.leftToRight`.
     func isLeftToRight(_ locale: Locale) -> Bool {
         locale.isLeftToRight
     }
 
-    /**
-     Whether or not the character direction is `.rightToLeft`.
-     */
+    /// Whether or not the char direction is `.rightToLeft`.
     func isRightToLeft(_ locale: Locale) -> Bool {
         locale.isRightToLeft
     }
@@ -94,7 +82,7 @@ public extension Locale {
         characterDirection == .leftToRight
     }
 
-    /// Whether or not the char direction is ``.rightToLeft`.
+    /// Whether or not the char direction is `.rightToLeft`.
     var isRightToLeft: Bool {
         characterDirection == .rightToLeft
     }

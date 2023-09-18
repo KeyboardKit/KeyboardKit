@@ -95,7 +95,7 @@ public extension KeyboardLayoutItem {
     enum Width: Equatable {
         
         /**
-         Share the remaining width with other keys that also
+         Share the available width with other keys that also
          use `.available` on the same row.
          */
         case available

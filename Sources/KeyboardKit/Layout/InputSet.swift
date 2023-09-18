@@ -90,16 +90,12 @@ public extension InputSet {
  */
 public struct AlphabeticInputSet: InputSet {
 
-    /**
-     Create an alphabetic input set.
-     */
+    /// Create an alphabetic input set.
     public init(rows: InputSetRows) {
         self.rows = rows
     }
 
-    /**
-     The rows in the input set.
-     */
+    /// The rows in the input set.
     public var rows: InputSetRows
 }
 

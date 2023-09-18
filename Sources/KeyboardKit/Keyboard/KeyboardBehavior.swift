@@ -10,8 +10,7 @@ import Foundation
 
 /**
  This protocol can be used to specify behavior rules for the
- keyboard. It aims to separate behavior from action handling
- to make the code cleaner and more understandable.
+ keyboard. It aims to separate behavior from action handling.
  */
 public protocol KeyboardBehavior {
     

@@ -14,8 +14,7 @@ import Foundation
 
  This class is defined in the core library to make the input
  controller able to check if a proxy is currently performing
- a read operation, although the functionality is implemented
- in KeyboardKit Pro.
+ a read operation, while it's implemented in KeyboardKit Pro.
  */
 final class FullDocumentContextReaderState {
 

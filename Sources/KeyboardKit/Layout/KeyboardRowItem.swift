@@ -25,10 +25,7 @@ public protocol KeyboardRowItem {
     
     associatedtype ID: Equatable
     
-    /**
-     An ID that identifies the item in a row. Note that this
-     is not necessarily unique.
-     */
+    /// The row-specific item identifier.
     var rowId: ID { get }
 }
 

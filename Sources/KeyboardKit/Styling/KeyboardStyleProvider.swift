@@ -60,21 +60,15 @@ public protocol KeyboardStyleProvider: AnyObject {
 
     // MARK: - Callouts
 
-    /**
-     The style to apply to ``ActionCallout`` views.
-     */
+    /// The style to apply to ``ActionCallout`` views.
     var actionCalloutStyle: KeyboardStyle.ActionCallout { get }
     
-    /**
-     The style to apply to ``InputCallout`` views.
-     */
+    /// The style to apply to ``InputCallout`` views.
     var inputCalloutStyle: KeyboardStyle.InputCallout { get }
 
 
     // MARK: - Callouts
 
-    /**
-     The style to use for ``AutocompleteToolbar`` views.
-     */
+    /// The style to use for ``AutocompleteToolbar`` views.
     var autocompleteToolbarStyle: KeyboardStyle.AutocompleteToolbar { get }
 }

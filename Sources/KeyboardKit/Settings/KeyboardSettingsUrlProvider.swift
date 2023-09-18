@@ -14,8 +14,7 @@ import UIKit
 
 /**
  This protocol can be implemented by any type that should be
- able to resolve a URL to an app's keyboard settings page in
- System Settings.
+ able to resolve a URL to an app's System Settings section.
 
  This protocol is implemented by `URL`.
  */

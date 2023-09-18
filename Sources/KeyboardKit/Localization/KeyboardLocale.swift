@@ -87,42 +87,27 @@ public enum KeyboardLocale: String,
 
 public extension KeyboardLocale {
 
-    /**
-     Get all LTR locales.
-     */
+    /// Get all LTR locales.
     static var allLtr: [KeyboardLocale] {
         allCases.filter { $0.locale.isLeftToRight }
     }
 
-    /**
-     Get all RTL locales.
-     */
+    /// Get all RTL locales.
     static var allRtl: [KeyboardLocale] {
         allCases.filter { $0.locale.isRightToLeft }
     }
     
-    /**
-     The locale's unique identifier.
-     */
+    /// The locale's unique identifier.
     var id: String { rawValue }
     
-    /**
-     The raw locale that is connected to the keyboard locale.
-     */
+    /// The raw locale that is used by the keyboard locale.
     var locale: Locale { .init(identifier: localeIdentifier) }
     
-    /**
-     The identifier that is used to identify the raw locale.
-     */
+    /// The raw locale identifier.
     var localeIdentifier: String { id }
 
 
-    /**
-     The corresponding flag emoji for the locale.
-
-     Note that this property adjusts some locales, where the
-     flag should not use the standard result.
-     */
+    /// The corresponding flag emoji for the locale.
     var flag: String {
         switch self {
         case .albanian: return "🇦🇱"
@@ -202,9 +187,7 @@ public extension KeyboardLocale {
         locale.prefersAlternateQuotationReplacement
     }
 
-    /**
-     Whether or not the locale matches a certain locale.
-     */
+    /// Whether or not the locale matches a certain locale.
     func matches(_ locale: Locale) -> Bool {
         self.locale == locale
     }
@@ -212,9 +195,7 @@ public extension KeyboardLocale {
 
 public extension Locale {
 
-    /**
-     Whether or not the locale matches a keyboard locale.
-     */
+    /// Whether or not the locale matches a keyboard locale.
     func matches(_ locale: KeyboardLocale) -> Bool {
         self == locale.locale
     }
@@ -222,16 +203,12 @@ public extension Locale {
 
 public extension Collection where Element == KeyboardLocale {
 
-    /**
-     Get all LTR locales.
-     */
+    /// Get all LTR locales.
     static var allLtr: [KeyboardLocale] {
         KeyboardLocale.allLtr
     }
 
-    /**
-     Get all RTL locales.
-     */
+    /// Get all RTL locales.
     static var allRtl: [KeyboardLocale] {
         KeyboardLocale.allRtl
     }
@@ -239,41 +216,22 @@ public extension Collection where Element == KeyboardLocale {
 
 public extension Collection where Element == KeyboardLocale {
 
-    /**
-     This condition is used by various extensions.
-     */
-    typealias KeyboardLocaleCondition = (Element) -> Bool
-
-    /**
-     Insert a certain a locale first in the collection.
-
-     This will remove any other instances of the same locale.
-     */
+    /// Insert a certain a locale first in the collection.
     func insertingFirst(_ locale: Element) -> [Element] {
         [locale] + removing(locale)
     }
 
-    /**
-     Remove a certain a locale from the collection.
-     */
+    /// Remove a certain a locale from the collection.
     func removing(_ locale: Element) -> [Element] {
         filter { $0 != locale }
     }
 
-    /**
-     Sort the collection by the localized name of every item.
-     */
+    /// Sort the collection by the items's localized names.
     func sorted() -> [Element] {
         sorted { $0.sortName < $1.sortName }
     }
 
-    /**
-     Sort the collection by the localized name of every item
-     in the provided `locale`.
-
-     - Parameters:
-       - locale: The locale to use to get the localized name.
-     */
+    /// Sort the collection by the locale's localized names.
     func sorted(in locale: Locale) -> [Element] {
         sorted { $0.sortName(in: locale) < $1.sortName(in: locale) }
     }

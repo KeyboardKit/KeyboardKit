@@ -36,65 +36,44 @@ public enum KKL10n: String, CaseIterable, Identifiable {
 
 public extension KKL10n {
 
-    /**
-     The bundle to use to retrieve localized strings.
-
-     You should only override this value when the entire set
-     of localized texts should be loaded from another bundle.
-     */
+    /// The bundle to use to retrieve localized strings.
     static var bundle: Bundle = .keyboardKit
 }
 
 public extension KKL10n {
     
-    /**
-     The item's unique identifier.
-     */
+    /// The item's unique identifier.
     var id: String { rawValue }
     
-    /**
-     The item's localization key.
-     */
+    /// The item's localization key.
     var key: String { rawValue }
     
-    /**
-     The item's localized text.
-     */
+    /// The item's localized text.
     var text: String {
         NSLocalizedString(key, bundle: .keyboardKit, comment: "")
     }
     
-    /**
-     Get the localized text for a certain ``KeyboardContext``.
-     */
+    /// Get the localized text for a certain context.
     func text(for context: KeyboardContext) -> String {
         text(for: context.locale)
     }
     
-    /**
-     Get the localized text for a certain ``KeyboardLocale``.
-     */
+    /// Get the localized text for a certain locale.
     func text(for locale: KeyboardLocale) -> String {
         text(for: locale.locale)
     }
 
-    /**
-     Get the localized text for a certain `Locale`.
-     */
+    /// Get the localized text for a certain `Locale`.
     func text(for locale: Locale) -> String {
         Self.text(forKey: key, locale: locale)
     }
 
-    /**
-     Get a localized text for a certain ``KeyboardLocale``.
-     */
+    /// Get a localized text for a certain locale.
     static func text(forKey key: String, locale: KeyboardLocale) -> String {
         text(forKey: key, locale: locale.locale)
     }
 
-    /**
-     Get a localized text for a certain `Locale`.
-     */
+    /// Get a localized text for a certain locale.
     static func text(forKey key: String, locale: Locale) -> String {
         guard let bundle = Bundle.keyboardKit.bundle(for: locale) else { return "" }
         return NSLocalizedString(key, bundle: bundle, comment: "")

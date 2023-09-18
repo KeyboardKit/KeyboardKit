@@ -23,39 +23,28 @@ public class RepeatGestureTimer {
     
     private var startDate: Date?
 
-    /**
-     The timer tick interval.
-     */
+    /// The timer tick interval.
     public var timeInterval: TimeInterval = 0.1
 }
 
 public extension RepeatGestureTimer {
 
-    /**
-     This shared timer can be used if you only need to track
-     a single thing.
-     */
+    /// This is a shared timer instance.
     static let shared = RepeatGestureTimer()
 }
 
 public extension RepeatGestureTimer {
 
-    /**
-     The time for how long the timer has been active.
-     */
+    /// The time for how long the timer has been active.
     var duration: TimeInterval? {
         guard let date = startDate else { return nil }
         return Date().timeIntervalSince(date)
     }
 
-    /**
-     Whether or not the timer is active.
-     */
+    /// Whether or not the timer is active.
     var isActive: Bool { timer != nil }
 
-    /**
-     Start the timer.
-     */
+    /// Start the timer.
     func start(action: @escaping () -> Void) {
         if isActive { return }
         stop()
@@ -67,9 +56,7 @@ public extension RepeatGestureTimer {
         RunLoop.current.add(timer, forMode: .common)
     }
 
-    /**
-     Stop the timer.
-     */
+    /// Stop the timer.
     func stop() {
         timer?.invalidate()
         timer = nil

@@ -41,48 +41,30 @@ public class KeyboardLayout {
         self.idealItemInsets = insets ?? Self.resolveIdealItemInsets(for: rows)
     }
 
-    /**
-     The layout item rows to show in the keyboard.
-     */
+    /// The layout item rows to show in the keyboard.
     public var itemRows: KeyboardLayoutItem.Rows
 
-    /**
-     The ideal item height, which can be used if you want to
-     quickly add new items to the layout.
-     */
+    /// The ideal item height.
     public var idealItemHeight: Double
 
-    /**
-     The ideal item inserts. This can be used if you want to
-     quickly add new items to the layout.
-     */
+    /// The ideal item inserts.
     public var idealItemInsets: EdgeInsets
 
-    /**
-     This `CGFloat` typealias makes it easier to see where a
-     total width is expected.
-     */
+    /// A `CGFloat` typealias for the total keyboard width.
     public typealias TotalWidth = CGFloat
 
-    /**
-     This cache is used to avoid having to recalculate width
-     information over and over.
-     */
+    /// A cache used to avoid having to recalculate widths.
     var widthCache = [TotalWidth: CGFloat]()
 }
 
 public extension KeyboardLayout {
 
-    /**
-     Get the bottom item row index.
-     */
+    /// Get the bottom item row index.
     var bottomRowIndex: Int {
         itemRows.count - 1
     }
 
-    /**
-     Get the system action items at the bottom row.
-     */
+    /// Get the system action items at the bottom row.
     var bottomRowSystemItems: [KeyboardLayoutItem] {
         if bottomRowIndex < 0 { return [] }
         return itemRows[bottomRowIndex].filter {
@@ -90,9 +72,7 @@ public extension KeyboardLayout {
         }
     }
 
-    /**
-     Whether or not the bottom row has a keyboard switcher.
-     */
+    /// Whether or not the bottom row has a keyboard switch.
     func hasKeyboardSwitcher(for type: Keyboard.KeyboardType) -> Bool {
         guard let row = itemRows.last else { return false }
         return row.contains { $0.action.isKeyboardTypeAction(.emojis) }

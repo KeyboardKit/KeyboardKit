@@ -46,21 +46,15 @@ public extension KeyboardColor {
 
 public extension KeyboardColor {
     
-    /**
-     The color's unique identifier.
-     */
+    /// The color's unique identifier.
     var id: String { rawValue }
     
-    /**
-     The color value.
-     */
+    /// The color value.
     var color: Color {
         Color(resourceName, bundle: Self.bundle)
     }
 
-    /**
-     The color asset name in the bundle asset catalog.
-     */
+    /// The color asset name in the bundle asset catalog.
     var resourceName: String { rawValue }
 }
 

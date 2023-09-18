@@ -62,7 +62,6 @@ public extension KeyboardStyle {
         @available(*, deprecated, message: "Use the component properties instead.")
         public var backgroundType: KeyboardBackgroundType = .none
         
-        
         /// A background color to apply.
         public var backgroundColor: Color?
         
@@ -89,30 +88,22 @@ public extension KeyboardStyle.Background {
      */
     static var standard = Self()
 
-    /**
-     Create a background style with a single color.
-     */
+    /// Create a background style with a single color.
     static func color(_ color: Color) -> Self {
         .init(backgroundColor: color)
     }
 
-    /**
-     Create a background style with a single image.
-     */
+    /// Create a background style with a single image.
     static func image(_ data: Data) -> Self {
         .init(imageData: data)
     }
 
-    /**
-     Create a background style with a vertical gradient.
-     */
+    /// Create a background style with a vertical gradient.
     static func verticalGradient(_ colors: [Color]) -> Self {
         .init(backgroundGradient: colors)
     }
 
-    /**
-     Create a background view that uses all style properties.
-     */
+    /// Create a background view with all style properties.
     @ViewBuilder
     var backgroundView: some View {
         if legacyBackgroundType != .none {
