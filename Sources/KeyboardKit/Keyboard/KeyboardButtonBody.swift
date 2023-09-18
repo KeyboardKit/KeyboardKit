@@ -17,7 +17,7 @@ import SwiftUI
 public struct KeyboardButtonBody: View {
 
     /**
-     Create a system keyboard button body view.
+     Create a keyboard button body view.
 
      - Parameters:
        - style: The button style to apply.

@@ -18,7 +18,7 @@ import SwiftUI
 public struct KeyboardButton<Content: View>: View {
 
     /**
-     Create a system keyboard button view.
+     Create a keyboard button view.
 
      - Parameters:
        - action: The keyboard action to apply.
@@ -45,7 +45,7 @@ public struct KeyboardButton<Content: View>: View {
     }
 
     /**
-     Create a system keyboard button view.
+     Create a keyboard button view.
 
      - Parameters:
        - action: The keyboard action to apply.
@@ -60,7 +60,7 @@ public struct KeyboardButton<Content: View>: View {
         styleProvider: KeyboardStyleProvider,
         keyboardContext: KeyboardContext,
         calloutContext: CalloutContext?
-    ) where Content == SystemKeyboardButtonContent {
+    ) where Content == KeyboardButtonContent {
         self.init(
             action: action,
             actionHandler: actionHandler,
@@ -81,7 +81,7 @@ public struct KeyboardButton<Content: View>: View {
     @State
     private var isPressed = false
     
-    public typealias ContentConfig = (_ standardContent: SystemKeyboardButtonContent) -> Content
+    public typealias ContentConfig = (_ standardContent: KeyboardButtonContent) -> Content
         
     public var body: some View {
         buttonContent
@@ -102,7 +102,7 @@ private extension KeyboardButton {
     
     var buttonContent: some View {
         contentConfig(
-            SystemKeyboardButtonContent(
+            KeyboardButtonContent(
                 action: action,
                 styleProvider: styleProvider,
                 keyboardContext: keyboardContext

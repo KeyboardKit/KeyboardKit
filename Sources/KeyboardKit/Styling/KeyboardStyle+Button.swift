@@ -135,7 +135,7 @@ public extension KeyboardStyle {
     struct ButtonBorder: Codable, Equatable {
         
         /**
-         Create a system keyboard button border style.
+         Create akeyboard button border style.
          
          - Parameters:
            - color: The color of the border, by default `.clear`.
@@ -165,7 +165,7 @@ public extension KeyboardStyle {
     struct ButtonShadow: Codable, Equatable {
         
         /**
-         Create a system keyboard button shadow style.
+         Create a keyboard button shadow style.
          
          - Parameters:
            - color: The color of the shadow, by default `.standardButtonShadow`.

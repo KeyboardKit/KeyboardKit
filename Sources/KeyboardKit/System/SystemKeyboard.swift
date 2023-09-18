@@ -27,7 +27,7 @@ import SwiftUI
  To use the standard button and content views for some items
  when using any of these custom button view builders, simply
  use the ``SystemKeyboardButtonRowItem`` view as button view
- and ``SystemKeyboardButtonContent`` as button content.
+ and ``KeyboardButtonContent`` as button content.
 
  Since the keyboard layout depends on the available keyboard
  width, you must provide this view with a width if you don't
@@ -64,7 +64,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
         calloutContext: CalloutContext?,
         width: CGFloat,
         renderBackground: Bool = true
-    ) where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardButtonContent> {
+    ) where ButtonView == SystemKeyboardButtonRowItem<KeyboardButtonContent> {
         self.init(
             layout: layout,
             actionHandler: actionHandler,
@@ -220,7 +220,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
         autocompleteToolbarAction: AutocompleteToolbarAction? = nil,
         width: CGFloat? = nil,
         renderBackground: Bool = true
-    ) where ButtonView == SystemKeyboardButtonRowItem<SystemKeyboardButtonContent> {
+    ) where ButtonView == SystemKeyboardButtonRowItem<KeyboardButtonContent> {
         self.init(
             layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
             actionHandler: controller.keyboardActionHandler,
@@ -452,15 +452,15 @@ private extension SystemKeyboard {
 public extension SystemKeyboard {
 
     /**
-     The standard ``SystemKeyboardButtonContent`` view, that
+     The standard ``KeyboardButtonContent`` view, that
      will be used as button content for every layout item.
      */
     static func standardButtonContent(
         item: KeyboardLayoutItem,
         styleProvider: KeyboardStyleProvider,
         keyboardContext: KeyboardContext
-    ) -> SystemKeyboardButtonContent {
-        SystemKeyboardButtonContent(
+    ) -> KeyboardButtonContent {
+        KeyboardButtonContent(
             action: item.action,
             styleProvider: styleProvider,
             keyboardContext: keyboardContext
@@ -479,7 +479,7 @@ public extension SystemKeyboard {
         calloutContext: CalloutContext?,
         keyboardWidth: KeyboardWidth,
         inputWidth: KeyboardItemWidth
-    ) -> SystemKeyboardButtonRowItem<SystemKeyboardButtonContent> {
+    ) -> SystemKeyboardButtonRowItem<KeyboardButtonContent> {
         SystemKeyboardButtonRowItem(
             content: standardButtonContent(
                 item: item,
@@ -555,7 +555,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
             case .backspace:
                 Image(systemName: "trash").foregroundColor(Color.red)
             default:
-                SystemKeyboardButtonContent(
+                KeyboardButtonContent(
                     action: item.action,
                     styleProvider: .preview,
                     keyboardContext: controller.keyboardContext

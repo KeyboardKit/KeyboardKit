@@ -1,5 +1,5 @@
 //
-//  SystemKeyboardButtonContent.swift
+//  KeyboardButtonContent.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
@@ -19,7 +19,7 @@ import SwiftUI
  and styles the button according to the `styleProvider`. You
  can use the `contentConfig` to further customize it.
  */
-public struct SystemKeyboardButtonContent: View {
+public struct KeyboardButtonContent: View {
     
     /**
      Create a system keyboard action button content view.
@@ -50,7 +50,7 @@ public struct SystemKeyboardButtonContent: View {
     }
 }
 
-private extension SystemKeyboardButtonContent {
+private extension KeyboardButtonContent {
 
     @ViewBuilder
     var bodyContent: some View {
@@ -82,7 +82,7 @@ private extension SystemKeyboardButtonContent {
     }
 }
 
-private extension SystemKeyboardButtonContent {
+private extension KeyboardButtonContent {
     
     var localeName: String {
         keyboardContext.locale.localizedLanguageName
@@ -97,7 +97,7 @@ private extension SystemKeyboardButtonContent {
     }
 }
 
-struct SystemKeyboardButtonContent_Previews: PreviewProvider {
+struct KeyboardButtonContent_Previews: PreviewProvider {
     
     static let multiLocaleContext: KeyboardContext = {
         var context = KeyboardContext.preview
@@ -111,7 +111,7 @@ struct SystemKeyboardButtonContent_Previews: PreviewProvider {
         for action: KeyboardAction,
         multiLocale: Bool = false
     ) -> some View {
-        SystemKeyboardButtonContent(
+        KeyboardButtonContent(
             action: action,
             styleProvider: .preview,
             keyboardContext: multiLocale ? multiLocaleContext : .preview

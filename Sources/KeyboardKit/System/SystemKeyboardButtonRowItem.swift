@@ -171,7 +171,7 @@ struct SystemKeyboardButtonRowItem_Previews: PreviewProvider {
         width: KeyboardLayoutItem.Width
     ) -> some View {
         SystemKeyboardButtonRowItem(
-            content: SystemKeyboardButtonContent(
+            content: KeyboardButtonContent(
                 action: action,
                 styleProvider: .preview,
                 keyboardContext: context),
