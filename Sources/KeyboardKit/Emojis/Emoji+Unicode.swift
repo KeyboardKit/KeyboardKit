@@ -10,16 +10,12 @@ import Foundation
 
 public extension Emoji {
 
-    /**
-     The emoji's unique unicode identifier.
-     */
+    /// The emoji's unique unicode identifier.
     var unicodeIdentifier: String? {
         char.applyingTransform(.toUnicodeName, reverse: false)
     }
 
-    /**
-     The emoji's unicode name.
-     */
+    /// The emoji's unicode name.
     var unicodeName: String? {
         unicodeNameOverride ?? unicodeIdentifier?
             .replacingOccurrences(of: "\\N", with: "")
@@ -30,22 +26,12 @@ public extension Emoji {
             .capitalized
     }
 
-    /**
-     The emoji's unicode name override, if any.
-
-     This is needed when the unicode id is more complex than
-     what can be handled by the standard name parsing.
-     */
+    /// The emoji's unicode name override, if any.
     var unicodeNameOverride: String? {
         Self.unicodeNameOverrides[char]
     }
 
-    /**
-     Emoji unicode name overrides.
-
-     These are needed when unicode ids are more complex than
-     what can be handled by the standard name parsing.
-     */
+    /// Emoji unicode name overrides.
     static var unicodeNameOverrides: [String: String] {
         [
         "🏁": "Chequered Flag",

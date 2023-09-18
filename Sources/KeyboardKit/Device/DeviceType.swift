@@ -25,9 +25,7 @@ public enum DeviceType: String, CaseIterable, Equatable {
 
 public extension DeviceType {
     
-    /**
-     Get the current device type.
-     */
+    /// Get the current device type.
     static var current: DeviceType {
         #if os(iOS)
         UIDevice.current.userInterfaceIdiom == .pad ? .pad : .phone

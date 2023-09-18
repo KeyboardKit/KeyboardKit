@@ -10,7 +10,7 @@ import SwiftUI
 
 /**
  This view can be used as an emoji keyboard and will list an
- emoji collection using the provided configuration.
+ emoji collection in a grid using the provided configuration.
 
  You can customize the emoji views in the keyboard, by using
  the `button` initializer. The initializer without a `button`

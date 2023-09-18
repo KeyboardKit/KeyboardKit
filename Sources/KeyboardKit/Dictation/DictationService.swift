@@ -33,29 +33,19 @@ import SwiftUI
  */
 public protocol DictationService: AnyObject {
 
-    /**
-     The current dictation authorization status.
-     */
+    /// The current dictation authorization status.
     var authorizationStatus: DictationAuthorizationStatus { get }
 
 
-    /**
-     Request dictation authorization.
-     */
+    /// Request dictation authorization.
     func requestDictationAuthorization() async throws -> DictationAuthorizationStatus
 
-    /**
-     Reset any previously set dictation result.
-     */
+    /// Reset any previously set dictation result.
     func resetDictationResult() async throws
 
-    /**
-     Start dictating with the provided configuration.
-     */
+    /// Start dictating with the provided configuration.
     func startDictation(with config: DictationConfiguration) async throws
 
-    /**
-     Stop dictating.
-     */
+    /// Stop dictating.
     func stopDictation() async throws
 }

@@ -37,24 +37,17 @@ public class MostRecentEmojiProvider: FrequentEmojiProvider {
     private let maxCount: Int
     private let key = "com.keyboardkit.MostRecentEmojiProvider.emojis"
     
-    /**
-     The persisted emoji characters mapped to `Emoji` values.
-     */
+    /// The persisted emoji characters, mapped to `Emoji`s.
     public var emojis: [Emoji] {
         emojiChars.map { Emoji($0) }
     }
     
-    /**
-     The persisted emoji characters.
-     */
+    /// The persisted emoji characters.
     public var emojiChars: [String] {
         defaults.stringArray(forKey: key) ?? []
     }
     
-    /**
-     Register that an emoji has been used. This will be used
-     to prepare the emojis that will be returned by `emojis`.
-     */
+    /// Register that an emoji has been used.
     public func registerEmoji(_ emoji: Emoji) {
         var emojis = self.emojis.filter { $0.char != emoji.char }
         emojis.insert(emoji, at: 0)

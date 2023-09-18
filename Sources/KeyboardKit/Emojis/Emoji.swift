@@ -18,24 +18,18 @@ import SwiftUI
  */
 public struct Emoji: Equatable, Codable, Identifiable {
     
-    /**
-     Create an emoji instance, using a certain emoji `char`.
-     */
+    /// Create an emoji from a certain character.
     public init(_ char: String) {
         self.char = char
     }
    
-    /**
-     The character that can be used to display the emoji.
-     */
+    /// The emoji character.
     public let char: String
 }
 
 public extension Emoji {
 
-    /**
-     Get all emojis from all categories.
-     */
+    /// Get all emojis from all categories.
     static var all: [Emoji] {
         EmojiCategory.all.flatMap { $0.emojis }
     }
@@ -43,9 +37,7 @@ public extension Emoji {
 
 public extension Emoji {
     
-    /**
-     The emoji's unique identifier.
-     */
+    /// The emoji's unique identifier.
     var id: String { char }
 }
 

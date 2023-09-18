@@ -156,7 +156,6 @@ KeyboardKit is available under the MIT license.
 - ``EmojiCategory``
 - ``EmojiCategoryKeyboard``
 - ``EmojiKeyboard``
-- ``EmojiKeyboardButton``
 - ``EmojiKeyboardItem``
 - ``EmojiKeyboardStyle``
 - ``EmojiProvider``

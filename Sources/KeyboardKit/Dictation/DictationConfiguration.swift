@@ -28,15 +28,13 @@ public struct DictationConfiguration: Codable, Equatable {
         self.localeId = localeId
     }
 
-    // The locale to use for dictation.
+    /// The locale to use for dictation.
     public let localeId: String
 }
 
 public extension DictationConfiguration {
 
-    /**
-     Get a standard configuration for the current locale.
-     */
+    /// Get a standard configuration for the current locale.
     static var standard: DictationConfiguration {
         DictationConfiguration()
     }

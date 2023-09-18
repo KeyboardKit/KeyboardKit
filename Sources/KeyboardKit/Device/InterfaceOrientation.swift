@@ -30,9 +30,7 @@ public enum InterfaceOrientation: String, CaseIterable, Equatable {
 
 public extension InterfaceOrientation {
 
-    /**
-     Get the current interface orientation.
-     */
+    /// Get the current interface orientation.
     static var current: InterfaceOrientation {
         #if os(iOS) || os(tvOS)
         UIScreen.main.interfaceOrientation
@@ -45,9 +43,7 @@ public extension InterfaceOrientation {
         #endif
     }
 
-    /**
-     Whether or not the orientation is a portrait one.
-     */
+    /// Whether or not the orientation is landscape.
     var isLandscape: Bool {
         switch self {
         case .portrait, .portraitUpsideDown: return false
@@ -56,9 +52,7 @@ public extension InterfaceOrientation {
         }
     }
 
-    /**
-     Whether or not the orientation is a portrait one.
-     */
+    /// Whether or not the orientation is portrait.
     var isPortrait: Bool {
         switch self {
         case .portrait, .portraitUpsideDown: return true
@@ -71,12 +65,7 @@ public extension InterfaceOrientation {
 #if os(iOS) || os(tvOS)
 extension UIScreen {
 
-    /**
-     Get the current interface orientation.
-
-     This is required since keyboard extensions cannot check
-     the status bar style of the application.
-     */
+    /// Get the current interface orientation.
     var interfaceOrientation: InterfaceOrientation {
         let point = coordinateSpace.convert(CGPoint.zero, to: fixedCoordinateSpace)
         switch (point.x, point.y) {

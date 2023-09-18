@@ -15,10 +15,12 @@ These release notes will only contain the current version. Just check out an old
 
 ### 👑 Pro Adjustments
 
+* `EmojiVersion` adjusts iOS and tvOS versions for emoji v15.
 * `SystemKeyboardPreview.Configuration` no longer applies a color scheme by default.
 
 ### 🗑️ Deprecations
 
+* `EmojiKeyboardButton` has been deprecated.
 * `EnglishCalloutActionProvider` has been soft deprecated.
 
 

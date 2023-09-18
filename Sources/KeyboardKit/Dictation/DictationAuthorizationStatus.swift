@@ -8,8 +8,7 @@
 
 /**
  This enum defines dictation authorization statuses that are
- mapped from underlying frameworks that are not available on
- all supported platforms.
+ mapped from platform-specific frameworks.
  */
 public enum DictationAuthorizationStatus: Int {
 

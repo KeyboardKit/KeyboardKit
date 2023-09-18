@@ -37,40 +37,30 @@ public enum EmojiCategory: String, CaseIterable, Codable, EmojiProvider, Identif
 
 public extension EmojiCategory {
 
-    /**
-     An ordered list of all available categories.
-     */
+    /// An ordered list of all available categories.
     static var all: [EmojiCategory] { allCases }
 }
 
 public extension Collection where Element == EmojiCategory {
 
-    /**
-     An ordered list of all available categories.
-     */
+    /// An ordered list of all available categories.
     static var all: [EmojiCategory] { EmojiCategory.allCases }
 
 }
 
 public extension EmojiCategory {
 
-    /**
-     The category's unique identifier.
-     */
+    /// The category's unique identifier.
     var id: String { rawValue }
 
-    /**
-     An ordered list with all emojis in the category.
-     */
+    /// An ordered list with all emojis in the category.
     var emojis: [Emoji] {
         emojisString
             .replacingOccurrences(of: "\n", with: "")
             .compactMap { Emoji(String($0)) }
     }
 
-    /**
-     An ordered string with all emojis in the category.
-     */
+    /// An ordered string with all emojis in the category.
     var emojisString: String {
         switch self {
         case .frequent:
@@ -285,9 +275,7 @@ public extension EmojiCategory {
         }
     }
 
-    /**
-     An ordered list with all emoji actions in the category.
-     */
+    /// An ordered list of all emoji actions in the category.
     var emojiActions: [KeyboardAction] {
         emojis.map { .emoji($0) }
     }
