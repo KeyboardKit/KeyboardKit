@@ -1,5 +1,5 @@
 //
-//  SystemKeyboardButton.swift
+//  KeyboardButton.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-07-02.
@@ -9,18 +9,13 @@
 import SwiftUI
 
 /**
- This view renders a system keyboard button that is based on
- a certain ``KeyboardAction``.
+ This view mimics a native keyboard button.
 
- This view will adapt its content to conform to the provided
- `action`, `actionHandler` and `keyboardContext`.
-
- The view sets up gestures, line limits, vertical offset etc.
- and styles the button according to the `styleProvider`. You
- can use the `contentConfig` to further customize or replace
- the content view.
+ This view adapts its content to the provided action, states
+ and services. You can use a `contentConfig` to customize or
+ replace the content view.
  */
-public struct SystemKeyboardButton<Content: View>: View {
+public struct KeyboardButton<Content: View>: View {
 
     /**
      Create a system keyboard button view.
@@ -86,10 +81,6 @@ public struct SystemKeyboardButton<Content: View>: View {
     @State
     private var isPressed = false
     
-    /**
-     This typealias represents an action that can be used to
-     customize (or replace) a standard button content view.
-     */
     public typealias ContentConfig = (_ standardContent: SystemKeyboardButtonContent) -> Content
         
     public var body: some View {
@@ -107,7 +98,7 @@ public struct SystemKeyboardButton<Content: View>: View {
     }
 }
 
-private extension SystemKeyboardButton {
+private extension KeyboardButton {
     
     var buttonContent: some View {
         contentConfig(
@@ -127,10 +118,10 @@ private extension SystemKeyboardButton {
     }
 }
 
-struct SystemKeyboardButton_Previews: PreviewProvider {
+struct KeyboardButton_Previews: PreviewProvider {
     
     static func button(for action: KeyboardAction) -> some View {
-        SystemKeyboardButton(
+        KeyboardButton(
             action: action,
             actionHandler: .preview,
             styleProvider: .preview,
