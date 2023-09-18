@@ -239,7 +239,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
     func testPerformingAutocompleteWritesResultToAutocompleteContext() {
         let vc = TestClass()
         setupMocksForAutocomplete(for: vc)
-        mockAutocompleteProvider.autocompleteSuggestionsResult = .success([AutocompleteSuggestion(text: "")])
+        mockAutocompleteProvider.autocompleteSuggestions = [AutocompleteSuggestion(text: "")]
         vc.performAutocomplete()
         eventually {
             XCTAssertEqual(vc.autocompleteContext.suggestions.count, 0)

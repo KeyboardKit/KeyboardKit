@@ -13,10 +13,12 @@ class MockAutocompleteProvider: AutocompleteProvider {
     
     var locale: Locale = .current
     
-    var autocompleteSuggestionsResult = CompletionResult.success([])
+    var autocompleteSuggestions = [AutocompleteSuggestion]()
     
-    func autocompleteSuggestions(for text: String, completion: Completion) {
-        completion(autocompleteSuggestionsResult)
+    func autocompleteSuggestions(
+        for text: String
+    ) async throws -> [AutocompleteSuggestion] {
+        autocompleteSuggestions
     }
     
     var canIgnoreWords: Bool { false }

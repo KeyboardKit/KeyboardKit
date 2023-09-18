@@ -46,10 +46,9 @@ public class PreviewAutocompleteProvider: AutocompleteProvider {
     public let suggestions: [AutocompleteSuggestion]
 
     public func autocompleteSuggestions(
-        for text: String,
-        completion: Completion
-    ) {
-        completion(.success(suggestions))
+        for text: String
+    ) async throws -> [AutocompleteSuggestion] {
+        suggestions
     }
     
     public var canIgnoreWords: Bool { false }

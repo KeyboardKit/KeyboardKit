@@ -13,6 +13,10 @@ These release notes will only contain the current version. Just check out an old
 
 ## 8.0
 
+### 💡 Adjustments
+
+* `AutocompleteProvider` is now async instead of using completions.
+
 ### 💥 Breaking changes 
 
 * All deprecated code has been removed.

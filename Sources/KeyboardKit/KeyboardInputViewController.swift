@@ -478,8 +478,13 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open func performAutocomplete() {
         guard isAutocompleteEnabled else { return }
         guard let text = autocompleteText else { return resetAutocomplete() }
-        autocompleteProvider.autocompleteSuggestions(for: text) { [weak self] result in
-            self?.updateAutocompleteContext(with: result)
+        Task {
+            do {
+                let suggestions = try await autocompleteProvider.autocompleteSuggestions(for: text)
+                updateAutocompleteContext(with: suggestions)
+            } catch {
+                updateAutocompleteContext(with: error)
+            }
         }
     }
 
@@ -574,19 +579,17 @@ private extension KeyboardInputViewController {
         setKeyboardType(keyboardContext.preferredKeyboardType)
     }
 
-    /**
-     Update the autocomplete context with a certain result.
-
-     This is performed async to avoid that any network-based
-     operations update the context from a background thread.
-     */
-    func updateAutocompleteContext(with result: AutocompleteProvider.CompletionResult) {
+    /// Update the autocomplete context with an error.
+    func updateAutocompleteContext(with error: Error) {
         DispatchQueue.main.async { [weak self] in
-            guard let context = self?.autocompleteContext else { return }
-            switch result {
-            case .failure(let error): context.lastError = error
-            case .success(let result): context.suggestions = result
-            }
+            self?.autocompleteContext.lastError = error
+        }
+    }
+    
+    /// Update the autocomplete context with new suggestions.
+    func updateAutocompleteContext(with result: [AutocompleteSuggestion]) {
+        DispatchQueue.main.async { [weak self] in
+            self?.autocompleteContext.suggestions = result
         }
     }
 }

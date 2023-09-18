@@ -16,12 +16,8 @@ import Foundation
  KeyboardKit will create an observable setting instance when
  the keyboard extension is started, then apply this instance
  to ``KeyboardInputViewController/keyboardFeedbackSettings``.
- It will then use this instance by default to determine what
- feedback that should be given for a certain action.
- 
- This instance is used by ``StandardKeyboardFeedbackHandler``,
- which means that you can change the basic feedback behavior
- without having to create a custom feedback handler.
+ This instance will then be used by default to determine how
+ audio and haptic feedback behaves for the keyboard.
  
  You may notice that the enabled and disabled configurations
  look a bit odd, where the disabled defaults are `.standard`.

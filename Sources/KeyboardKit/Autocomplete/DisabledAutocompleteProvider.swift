@@ -17,8 +17,10 @@ public class DisabledAutocompleteProvider: AutocompleteProvider {
     
     public var locale: Locale = .current
     
-    public func autocompleteSuggestions(for text: String, completion: Completion) {
-        completion(.success([]))
+    public func autocompleteSuggestions(
+        for text: String
+    ) async throws -> [AutocompleteSuggestion] {
+        []
     }
     
     public var canIgnoreWords: Bool { false }
