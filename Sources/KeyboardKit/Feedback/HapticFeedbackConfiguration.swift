@@ -46,25 +46,6 @@ public struct HapticFeedbackConfiguration: Codable, Equatable {
         self.actions = actions
     }
     
-    @available(*, deprecated, message: "Use the press and release initializer instead")
-    public init(
-        tap: HapticFeedback,
-        doubleTap: HapticFeedback = .none,
-        longPress: HapticFeedback = .none,
-        longPressOnSpace: HapticFeedback = .mediumImpact,
-        repeat: HapticFeedback = .none,
-        actions: [ActionFeedback] = []
-    ) {
-        self.tap = tap
-        self.press = tap
-        self.release = tap
-        self.doubleTap = doubleTap
-        self.longPress = longPress
-        self.longPressOnSpace = longPressOnSpace
-        self.repeat = `repeat`
-        self.actions = actions
-    }
-    
     /// This struct is used for action-specific feedback.
     public struct ActionFeedback: Codable, Equatable {
         
@@ -88,9 +69,6 @@ public struct HapticFeedbackConfiguration: Codable, Equatable {
     
     /// The feedback to use for releases.
     public var release: HapticFeedback
-    
-    @available(*, deprecated, message: "Use press and release instead")
-    public var tap: HapticFeedback = .none
     
     /// The feedback to use for double taps.
     public var doubleTap: HapticFeedback

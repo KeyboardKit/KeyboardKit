@@ -11,6 +11,14 @@ These release notes will only contain the current version. Just check out an old
 
 
 
+## 8.0
+
+### 💥 Breaking changes 
+
+* All deprecated code has been removed.
+
+
+
 ## 7.9.3
 
 ### 👑 Pro Adjustments

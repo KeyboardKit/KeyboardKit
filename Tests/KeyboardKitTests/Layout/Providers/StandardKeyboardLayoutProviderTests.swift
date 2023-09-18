@@ -39,19 +39,6 @@ class StandardKeyboardLayoutProviderTests: XCTestCase {
         XCTAssertTrue(result is EnglishKeyboardLayoutProvider)
         XCTAssertEqual(firstItem?.action, .character("q"))
     }
-    
-    @available(*, deprecated, message: "This will be removed in KeyboardKit 8.0")
-    func testDeprecatedInputSetProviderStillWorks() {
-        provider.register(inputSetProvider: EnglishInputSetProvider(
-            alphabetic: .init(rows: [.init(chars: "1234567890")])
-        ))
-        context.locale = .init(identifier: "da-DK")
-        let layout = provider.keyboardLayout(for: context)
-        let firstItem = layout.itemRows[0].first
-        let result = provider.keyboardLayoutProvider(for: context)
-        XCTAssertTrue(result is EnglishKeyboardLayoutProvider)
-        XCTAssertEqual(firstItem?.action, .character("1"))
-    }
 }
 
 private class TestKeyboardLayoutProvider: SystemKeyboardLayoutProvider, LocalizedService {

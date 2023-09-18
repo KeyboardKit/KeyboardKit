@@ -26,16 +26,11 @@ public class StaticKeyboardLayoutProvider: KeyboardLayoutProvider {
         self.layout = keyboardLayout
     }
     
-    
     /// The keyboard layout to use.
     private let layout: KeyboardLayout
     
-    
-    /// Get a keyboard layout for a certain keyboard context.
+    /// Get a keyboard layout for the provided context.
     public func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         layout
     }
-
-    @available(*, deprecated, message: "Use input sets directly instead.")
-    public func register(inputSetProvider: InputSetProvider) {}
 }

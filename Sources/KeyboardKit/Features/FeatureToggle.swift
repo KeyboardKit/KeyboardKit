@@ -54,9 +54,6 @@ public extension FeatureToggle {
 
         /// This is a placeholder feature without effect.
         case placeholder
-
-        @available(*, deprecated, message: "This feature is no longer used")
-        case newAutocompleteEngine
     }
 }
 

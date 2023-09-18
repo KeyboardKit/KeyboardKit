@@ -13,31 +13,6 @@ import CoreGraphics
  drag gesture.
  */
 open class SpaceCursorDragGestureHandler: DragGestureHandler {
-
-    @available(*, deprecated, message: "Use the initializer without keyboardContext.")
-    public init(
-        keyboardContext: KeyboardContext,
-        feedbackHandler: KeyboardFeedbackHandler,
-        sensitivity: SpaceDragSensitivity = .medium,
-        verticalThreshold: Double = 50,
-        action: @escaping (Int) -> Void
-    ) {
-        self.sensitivity = sensitivity
-        self.verticalThreshold = verticalThreshold
-        self.action = action
-    }
-
-    @available(*, deprecated, message: "Use the initializer without feedbackHandler.")
-    public init(
-        feedbackHandler: KeyboardFeedbackHandler,
-        sensitivity: SpaceDragSensitivity = .medium,
-        verticalThreshold: Double = 50,
-        action: @escaping (Int) -> Void
-    ) {
-        self.sensitivity = sensitivity
-        self.verticalThreshold = verticalThreshold
-        self.action = action
-    }
     
     public init(
         sensitivity: SpaceDragSensitivity = .medium,

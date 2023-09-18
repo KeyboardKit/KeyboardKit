@@ -28,11 +28,6 @@ open class EnglishKeyboardLayoutProvider: SystemKeyboardLayoutProvider, Keyboard
             symbolicInputSet: symbolicInputSet
         )
     }
-    
-    @available(*, deprecated, message: "Use the input set-based initializer instead.")
-    public override init(inputSetProvider: InputSetProvider) {
-        super.init(inputSetProvider: inputSetProvider)
-    }
 
     /**
      The locale identifier.

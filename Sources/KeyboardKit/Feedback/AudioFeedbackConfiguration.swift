@@ -77,21 +77,3 @@ public extension AudioFeedbackConfiguration {
         system: .none
     )
 }
-
-public extension AudioFeedbackConfiguration {
-    
-    @available(*, deprecated, renamed: "disabled")
-    static let noFeedback = Self.disabled
-    
-    @available(*, deprecated, renamed: "enabled")
-    static let standard = Self()
-}
-
-public extension HapticFeedbackConfiguration {
-    
-    @available(*, deprecated, renamed: "disabled")
-    static let noFeedback = Self.disabled
-    
-    @available(*, deprecated, renamed: "minimal")
-    static let standard = Self()
-}

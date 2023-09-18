@@ -38,19 +38,6 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
         let dict = Dictionary(uniqueKeysWithValues: localizedProviders.map { ($0.localeKey, $0) })
         self.localizedProviders = LocaleDictionary(dict)
     }
-    
-    @available(*, deprecated, message: "Use the base provider initializer instead.")
-    public init(
-        keyboardContext: KeyboardContext,
-        inputSetProvider: InputSetProvider,
-        localizedProviders: [KeyboardLayoutProvider & LocalizedService] = []
-    ) {
-        self.baseProvider = EnglishKeyboardLayoutProvider(inputSetProvider: inputSetProvider)
-        self.keyboardContext = keyboardContext
-        self.inputSetProvider = inputSetProvider
-        let dict = Dictionary(uniqueKeysWithValues: localizedProviders.map { ($0.localeKey, $0) })
-        self.localizedProviders = LocaleDictionary(dict)
-    }
 
     
     /// The base provider to use.
@@ -70,30 +57,5 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     open func keyboardLayoutProvider(for context: KeyboardContext) -> KeyboardLayoutProvider {
         let localized = localizedProviders.value(for: context.locale)
         return localized ?? baseProvider
-    }
-
-    @available(*, deprecated, message: "This will be removed in KeyboardKit 8.0")
-    public var keyboardContext: KeyboardContext = .preview
-    
-    @available(*, deprecated, message: "This will be removed in KeyboardKit 8.0")
-    public var inputSetProvider: InputSetProvider = .preview {
-        didSet {
-            iPadProvider.register(inputSetProvider: inputSetProvider)
-            iPhoneProvider.register(inputSetProvider: inputSetProvider)
-            baseProvider = EnglishKeyboardLayoutProvider(inputSetProvider: inputSetProvider)
-        }
-    }
-    
-    @available(*, deprecated, message: "This will be removed in KeyboardKit 8.0")
-    open lazy var iPadProvider = iPadKeyboardLayoutProvider(
-        inputSetProvider: inputSetProvider)
-
-    @available(*, deprecated, message: "This will be removed in KeyboardKit 8.0")
-    open lazy var iPhoneProvider = iPhoneKeyboardLayoutProvider(
-        inputSetProvider: inputSetProvider)
-    
-    @available(*, deprecated, message: "This will be removed in KeyboardKit 8.0")
-    open func register(inputSetProvider: InputSetProvider) {
-        self.inputSetProvider = inputSetProvider
     }
 }

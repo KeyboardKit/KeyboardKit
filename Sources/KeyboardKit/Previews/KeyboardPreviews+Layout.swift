@@ -37,8 +37,5 @@ public extension KeyboardPreviews {
         public func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
             provider.keyboardLayout(for: context)
         }
-        
-        @available(*, deprecated, message: "Use input sets directly instead.")
-        public func register(inputSetProvider: InputSetProvider) {}
     }
 }

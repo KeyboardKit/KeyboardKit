@@ -304,17 +304,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     )
 
     /**
-     The input set provider that is used to define the input
-     keys of the keyboard.
-     */
-    @available(*, deprecated, message: "Use input sets directly instead.")
-    public lazy var inputSetProvider: InputSetProvider = StandardInputSetProvider(
-        keyboardContext: keyboardContext
-    ) {
-        didSet { refreshLayoutProvider() }
-    }
-
-    /**
      The action handler that will be used by the keyboard to
      handle keyboard actions.
      */
@@ -542,13 +531,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
             }
         }
     }
-    
-    
-    // MARK: - Deprecated
-    
-    @available(*, deprecated, message: "This is replaced by keyboardActionHandler")
-    public lazy var keyboardFeedbackHandler: KeyboardFeedbackHandler = StandardKeyboardFeedbackHandler(
-        settings: keyboardFeedbackSettings)
 }
 
 
@@ -564,13 +546,6 @@ private extension KeyboardInputViewController {
         calloutContext.actionContext = .init(
             actionHandler: keyboardActionHandler,
             actionProvider: calloutActionProvider
-        )
-    }
-
-    @available(*, deprecated, message: "Use input sets directly instead.")
-    func refreshLayoutProvider() {
-        keyboardLayoutProvider.register(
-            inputSetProvider: inputSetProvider
         )
     }
 

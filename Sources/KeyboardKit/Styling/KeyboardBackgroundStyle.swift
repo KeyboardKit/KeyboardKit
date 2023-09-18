@@ -51,17 +51,6 @@ public extension KeyboardStyle {
             self.overlayGradient = overlayGradient
         }
         
-        @available(*, deprecated, message: "Use the component initializer instead.")
-        public init(_ type: KeyboardBackgroundType) {
-            self.backgroundType = type
-            self.legacyBackgroundType = type
-        }
-        
-        private var legacyBackgroundType: KeyboardBackgroundType = .none
-        
-        @available(*, deprecated, message: "Use the component properties instead.")
-        public var backgroundType: KeyboardBackgroundType = .none
-        
         /// A background color to apply.
         public var backgroundColor: Color?
         
@@ -106,22 +95,18 @@ public extension KeyboardStyle.Background {
     /// Create a background view with all style properties.
     @ViewBuilder
     var backgroundView: some View {
-        if legacyBackgroundType != .none {
-            legacyBackgroundType.internalView
-        } else {
-            ZStack {
-                backgroundColor
-                if let backgroundGradient {
-                    LinearGradient(colors: backgroundGradient, startPoint: .top, endPoint: .bottom)
-                }
-                image(from: imageData)?
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                if let overlayGradient {
-                    LinearGradient(colors: overlayGradient, startPoint: .top, endPoint: .bottom)
-                }
-                overlayColor
+        ZStack {
+            backgroundColor
+            if let backgroundGradient {
+                LinearGradient(colors: backgroundGradient, startPoint: .top, endPoint: .bottom)
             }
+            image(from: imageData)?
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+            if let overlayGradient {
+                LinearGradient(colors: overlayGradient, startPoint: .top, endPoint: .bottom)
+            }
+            overlayColor
         }
     }
 }

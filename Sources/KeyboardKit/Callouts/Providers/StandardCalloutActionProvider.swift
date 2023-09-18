@@ -31,16 +31,6 @@ open class StandardCalloutActionProvider: CalloutActionProvider {
         self.localizedProviders = LocaleDictionary(dict)
     }
     
-    @available(*, deprecated, message: "Use the localizedProviders initializer instead.")
-    public init(
-        keyboardContext: KeyboardContext,
-        providers: [CalloutActionProvider & LocalizedService]
-    ) {
-        self.keyboardContext = keyboardContext
-        let dict = Dictionary(uniqueKeysWithValues: providers.map { ($0.localeKey, $0) })
-        localizedProviders = LocaleDictionary(dict)
-    }
-    
     /**
      Get the standard callout action provider.
 

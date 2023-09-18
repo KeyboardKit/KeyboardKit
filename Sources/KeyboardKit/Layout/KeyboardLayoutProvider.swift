@@ -33,11 +33,6 @@ import Foundation
  */
 public protocol KeyboardLayoutProvider: AnyObject {
     
-    /**
-     The layout keyboard to use for a given keyboard context.
-     */
+    /// Get a keyboard layout for the provided context.
     func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout
-    
-    @available(*, deprecated, message: "Use input sets directly instead.")
-    func register(inputSetProvider: InputSetProvider)
 }

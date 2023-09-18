@@ -45,14 +45,6 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         self.symbolicInputSet = symbolicInputSet
     }
     
-    @available(*, deprecated, message: "Use the input set-based initializer instead")
-    public init(inputSetProvider: InputSetProvider) {
-        self.inputSetProvider = inputSetProvider
-        self.alphabeticInputSet = inputSetProvider.alphabeticInputSet
-        self.numericInputSet = inputSetProvider.numericInputSet
-        self.symbolicInputSet = inputSetProvider.symbolicInputSet
-    }
-    
     
     /// The alphabetic input set to use.
     public private(set) var alphabeticInputSet: AlphabeticInputSet
@@ -63,9 +55,6 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     /// The symbolic input set to use.
     public private(set) var symbolicInputSet: SymbolicInputSet
     
-    @available(*, deprecated, message: "Use the input set properties instead")
-    public var inputSetProvider: InputSetProvider = EnglishInputSetProvider()
-    
     
     /**
      Get a keyboard layout for a certain keyboard `context`.
@@ -75,14 +64,6 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         let actions = self.actions(for: inputs, context: context)
         let items = self.items(for: actions, context: context)
         return KeyboardLayout(itemRows: items)
-    }
-
-    @available(*, deprecated, message: "Use input sets directly instead.")
-    open func register(inputSetProvider: InputSetProvider) {
-        self.inputSetProvider = inputSetProvider
-        self.alphabeticInputSet = inputSetProvider.alphabeticInputSet
-        self.numericInputSet = inputSetProvider.numericInputSet
-        self.symbolicInputSet = inputSetProvider.symbolicInputSet
     }
     
     
