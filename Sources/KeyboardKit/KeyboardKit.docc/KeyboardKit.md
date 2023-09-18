@@ -92,11 +92,6 @@ KeyboardKit is available under the MIT license.
 
 - ``Keyboard``
 - ``KeyboardBehavior``
-- ``KeyboardButton``
-- ``KeyboardButtonBody``
-- ``KeyboardButtonContent``
-- ``KeyboardButtonSpaceContent``
-- ``KeyboardButtonText``
 - ``KeyboardContext``
 - ``KeyboardController``
 - ``KeyboardEnabledContext``
@@ -105,7 +100,6 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardEnabledStateInspector``
 - ``KeyboardInputViewController``
 - ``KeyboardTextContext``
-- ``NextKeyboardButton``
 - ``StandardKeyboardBehavior``
 
 ### Actions
@@ -128,6 +122,15 @@ KeyboardKit is available under the MIT license.
 ### Autocomplete Providers
 
 - ``DisabledAutocompleteProvider``
+
+### Buttons
+
+- ``KeyboardButton``
+- ``KeyboardButtonBody``
+- ``KeyboardButtonContent``
+- ``KeyboardButtonSpaceContent``
+- ``KeyboardButtonText``
+- ``NextKeyboardButton``
 
 ### Callouts
 

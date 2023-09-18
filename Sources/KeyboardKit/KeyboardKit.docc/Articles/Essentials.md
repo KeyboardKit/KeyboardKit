@@ -41,10 +41,4 @@ KeyboardKit has a ``Keyboard/KeyboardType`` enum that defines many different key
 
 - ``Keyboard/KeyboardType/custom(named:)`` - a custom type if no other types fit your needs
 
-To change keyboard type, just set the context's ``KeyboardContext/keyboardType`` to the type you want to use. ``SystemKeyboard`` supports alphabetic, numeric, symbolic and emoji keyboards. 
-
-
-
-## Next keyboard
-
-KeyboardKit has a ``NextKeyboardButton`` that can be used to switch to the next keyboard, which corresponds to tapping the 🌐 button.
+To change keyboard type, just set the context's ``KeyboardContext/keyboardType`` to the type you want to use. ``SystemKeyboard`` supports alphabetic, numeric, symbolic and emoji keyboards.
