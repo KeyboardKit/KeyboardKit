@@ -60,9 +60,14 @@ A ``KeyboardStyleProvider`` can return dynamic styles for different parts of the
 
 Unlike static styles, style providers can vary styles depending on the ``KeyboardContext``, ``KeyboardAction`` etc. This makes them very flexible.
 
-KeyboardKit will by default create a ``StandardKeyboardStyleProvider`` and apply it to the input controller's ``KeyboardInputViewController/keyboardStyleProvider``. You can replace this with a custom one.
+KeyboardKit will by default create a ``StandardKeyboardStyleProvider`` and bind it to the input controller's ``KeyboardInputViewController/keyboardStyleProvider``. 
 
-You can create a custom provider by inheriting the ``StandardKeyboardStyleProvider`` and customize the parts you want, or implement the ``KeyboardStyleProvider`` protocol from scratch.
+You can replace this style provider with a custom one, to change how the keyboard is styled.
+
+
+### How to create a custom style provider
+
+You can create a custom style provider by inheriting the ``StandardKeyboardStyleProvider`` and customize the parts you want, or implement the ``KeyboardStyleProvider`` protocol from scratch.
 
 For instance, here's a custom provider that inherits ``StandardKeyboardStyleProvider`` and makes all input buttons red:
 

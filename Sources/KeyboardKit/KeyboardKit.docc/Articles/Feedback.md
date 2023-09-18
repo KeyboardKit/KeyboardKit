@@ -12,7 +12,9 @@ Feedback can be triggered with a ``KeyboardActionHandler``, or by triggering the
 
 KeyboardKit has an observable ``KeyboardFeedbackSettings`` class that can be used to configure the feedback for various actions.
 
-KeyboardKit will by default create a settings instance and apply it to the input controller's ``KeyboardInputViewController/keyboardFeedbackSettings``. You can use it to customize the feedback configuration:
+KeyboardKit will by default create a settings instance and bind it to the input controller's ``KeyboardInputViewController/keyboardFeedbackSettings``. 
+
+You can use this settings instance to customize the feedback configuration:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {

@@ -2,7 +2,9 @@
 
 This article describes the KeyboardKit callout engine.
 
-In KeyboardKit, input and action callouts are important parts of the typing experience, and are used to highlight the currently pressed key and present secondary keyboard actions.
+In KeyboardKit, input and action callouts are important parts of the typing experience.
+
+Input callouts highlight the currently pressed key while action callouts present secondary keyboard actions.
 
 [KeyboardKit Pro][Pro] features are described at the end of this document.
 
@@ -20,7 +22,7 @@ This is automatically enabled if you use a ``SystemKeyboard``.
 
 ## Action callouts
 
-An ``ActionCallout`` shows alternate actions in a callout bubble for a long pressed key.
+An ``ActionCallout`` shows secondary actions in a callout bubble when long pressing a key.
 
 To bind an action callout to a custom view, apply an `.actionCallout(...)` modifier to the view, then update the callout context with the actions you want to show.
 
@@ -30,11 +32,11 @@ This is automatically enabled if you use a ``SystemKeyboard``.
 
 ## Callout action providers
 
-A ``CalloutActionProvider`` can be used to provide actions to ``ActionCallout``s.
+A ``CalloutActionProvider`` can be used to provide actions to an ``ActionCallout``.
 
-KeyboardKit will by default create a ``StandardCalloutActionProvider`` and apply it to the input controller's ``KeyboardInputViewController/calloutActionProvider``. You can replace this provider with a custom one, or inject locale-specific providers to customize the layout for a certain locale.
+KeyboardKit will by default create a ``StandardCalloutActionProvider`` and bind it to the input controller's ``KeyboardInputViewController/calloutActionProvider``. 
 
-KeyboardKit will by default inject an ``EnglishCalloutActionProvider`` into the standard provider. It defines the standard callout actions of a U.S. English keyboard.
+You can replace this provider with a custom one, or inject locale-specific providers to customize the layout for a certain locale.
 
 
 ### How to customize the standard provider

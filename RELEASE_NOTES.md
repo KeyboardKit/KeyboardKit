@@ -17,9 +17,14 @@ These release notes will only contain the current version. Just check out an old
 
 * `AutocompleteProvider` is now async instead of using completions.
 
+### 👑 Pro Adjustments
+
+* `RemoteAutocompleteProvider.AutocompleteError.noData` has been removed.
+    
 ### 💥 Breaking changes 
 
 * All deprecated code has been removed or addressed.
+* `EnglishCalloutActionProvider` has been removed.
 * `StandardCalloutActionProvider.standardProvider` has been removed.
 
 

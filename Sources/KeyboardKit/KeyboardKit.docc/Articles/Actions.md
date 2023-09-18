@@ -4,7 +4,9 @@ This article describes the KeyboardKit action engine.
 
 In KeyboardKit, the ``KeyboardAction`` enum defines a set of keyboard-specific actions that can be bound to buttons and handled with a ``KeyboardActionHandler``.
 
-KeyboardKit will by default create a ``StandardKeyboardActionHandler`` and apply it to the input controller's ``KeyboardInputViewController/keyboardActionHandler``. You can replace it with a custom handler.
+KeyboardKit will by default create a ``StandardKeyboardActionHandler`` and bind it to the input controller's ``KeyboardInputViewController/keyboardActionHandler``. 
+
+You can replace this action handler with a custom handler to change how actions are handled.
 
 
 

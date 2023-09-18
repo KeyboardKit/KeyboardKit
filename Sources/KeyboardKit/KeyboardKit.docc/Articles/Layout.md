@@ -32,9 +32,9 @@ This is however not true for all locales. For instance, Armenian has 4 input row
 
 In KeyboardKit, a ``KeyboardLayoutProvider`` can be used to create a dynamic layout based on many different factors, such as the current device type, orientation, locale, etc. 
 
-KeyboardKit will by default create a ``StandardKeyboardLayoutProvider`` and apply it to the input controller's ``KeyboardInputViewController/keyboardLayoutProvider``. You can replace this provider with a custom one, or inject locale-specific providers to customize the layout for a certain locale. 
+KeyboardKit will by default create a ``StandardKeyboardLayoutProvider`` and bind it to the input controller's ``KeyboardInputViewController/keyboardLayoutProvider``. 
 
-KeyboardKit will by default inject an ``EnglishKeyboardLayoutProvider`` into the standard provider. It defines the standard layout of a U.S. English keyboard for both iPhone and iPad.
+You can replace this provider with a custom one, or inject locale-specific providers to customize the layout for a certain locale.
 
 
 ### How to customize the standard provider
