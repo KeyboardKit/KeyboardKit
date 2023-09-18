@@ -9,12 +9,10 @@
 import SwiftUI
 
 /**
- [DEPRECATED] This will be made internal in KeyboardKit 8.0.
- 
  This view is the part of the callout that covers the button
  that was tapped or pressed to trigger the callout.
  */
-public struct CalloutButtonArea: View {
+struct CalloutButtonArea: View {
     
     /**
      Create an autocomplete toolbar item style.

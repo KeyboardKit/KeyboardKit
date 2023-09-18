@@ -19,7 +19,7 @@ These release notes will only contain the current version. Just check out an old
 
 ### 💥 Breaking changes 
 
-* All deprecated code has been removed.
+* All deprecated code has been removed or addressed.
 
 
 
