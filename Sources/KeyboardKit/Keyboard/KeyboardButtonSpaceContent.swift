@@ -1,5 +1,5 @@
 //
-//  SystemKeyboardSpaceContent.swift
+//  KeyboardButtonSpaceContent.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
@@ -14,7 +14,7 @@ import SwiftUI
  The view starts with displaying the `localeText` then fades
  to the provided `spaceText` or `spaceView`.
  */
-public struct SystemKeyboardSpaceContent<SpaceView: View>: View {
+public struct KeyboardButtonSpaceContent<SpaceView: View>: View {
 
     /**
      Create a system keyboard space button content view.
@@ -67,12 +67,12 @@ public struct SystemKeyboardSpaceContent<SpaceView: View>: View {
     }
 }
 
-private struct SystemKeyboardSpaceContentState {
+private struct KeyboardButtonSpaceContentState {
     
     static var lastLocaleText: String?
 }
 
-private extension SystemKeyboardSpaceContent {
+private extension KeyboardButtonSpaceContent {
     
     var localeView: KeyboardButtonText {
         KeyboardButtonText(
@@ -87,32 +87,32 @@ private extension SystemKeyboardSpaceContent {
     }
 }
 
-private extension SystemKeyboardSpaceContent {
+private extension KeyboardButtonSpaceContent {
     
     var isNewLocale: Bool {
-        localeText != SystemKeyboardSpaceContentState.lastLocaleText
+        localeText != KeyboardButtonSpaceContentState.lastLocaleText
     }
     
     func performAnimation() {
         showLocale = isNewLocale
         guard isNewLocale else { return }
-        SystemKeyboardSpaceContentState.lastLocaleText = localeText
+        KeyboardButtonSpaceContentState.lastLocaleText = localeText
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             withAnimation { showLocale = false }
         }
     }
 }
 
-struct SystemKeyboardSpaceContent_Previews: PreviewProvider {
+struct KeyboardButtonSpaceContent_Previews: PreviewProvider {
     
     static var spaceText: some View {
-        SystemKeyboardSpaceContent(
+        KeyboardButtonSpaceContent(
             localeText: KeyboardLocale.english.locale.localizedName,
             spaceText: KKL10n.space.text(for: .english))
     }
     
     static var spaceView: some View {
-        SystemKeyboardSpaceContent(
+        KeyboardButtonSpaceContent(
             localeText: KeyboardLocale.spanish.locale.localizedName,
             spaceView: Image.keyboardGlobe)
     }

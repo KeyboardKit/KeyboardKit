@@ -38,4 +38,5 @@ These release notes will only contain the current version. Just check out an old
 * `SystemKeyboardButtonContent` has been renamed to `KeyboardButtonContent`.
 * `SystemKeyboardButtonShadow` has been moved into `KeyboardButtonBody`.
 * `SystemKeyboardButtonText` has been renamed to `KeyboardButtonText`.
+* `SystemKeyboardSpaceContent` has been renamed to `KeyboardButtonSpaceContent`.
 * `View.systemKeyboardButtonStyle(...)` has been renamed to `.keyboardButtonStyle(...)`.

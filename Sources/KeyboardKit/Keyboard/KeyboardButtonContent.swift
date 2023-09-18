@@ -66,7 +66,7 @@ private extension KeyboardButtonContent {
     }
     
     var spaceView: some View {
-        SystemKeyboardSpaceContent(
+        KeyboardButtonSpaceContent(
             localeText: shouldShowLocaleName ? localeName : spaceText,
             spaceText: spaceText
         )
