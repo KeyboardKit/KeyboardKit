@@ -68,21 +68,22 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
         content
             .frame(maxWidth: .infinity)
             .frame(height: item.size.height - item.insets.top - item.insets.bottom)
-            .rowItemWidth(for: item, totalWidth: keyboardWidth, referenceWidth: inputWidth)
-            .keyboardButtonStyle(buttonStyle)
-            .padding(item.insets)
-            .contentShape(Rectangle())
-            .keyboardButtonGestures(
+            .rowItemWidth(
+                for: item,
+                rowWidth: keyboardWidth,
+                inputWidth: inputWidth)
+            .keyboardButton(
                 for: item.action,
+                style: buttonStyle,
                 actionHandler: actionHandler,
                 calloutContext: calloutContext,
+                edgeInsets: item.insets,
                 isPressed: $isPressed)
             .localeContextMenu(
                 for: item.action,
                 context: keyboardContext,
                 actionHandler: actionHandler
             )
-            // .background(Color.random())
     }
 }
 
@@ -119,8 +120,12 @@ private extension View {
      works with the rot item composition above.
      */
     @ViewBuilder
-    func rowItemWidth(for item: KeyboardLayoutItem, totalWidth: CGFloat, referenceWidth: CGFloat) -> some View {
-        if let width = rowItemWidthValue(for: item, totalWidth: totalWidth, referenceWidth: referenceWidth), width > 0 {
+    func rowItemWidth(
+        for item: KeyboardLayoutItem,
+        rowWidth: CGFloat,
+        inputWidth: CGFloat
+    ) -> some View {
+        if let width = rowItemWidthValue(for: item, rowWidth: rowWidth, inputWidth: inputWidth), width > 0 {
             self.frame(width: width)
         } else {
             self.frame(maxWidth: .infinity)
@@ -143,15 +148,15 @@ private extension View {
 
     func rowItemWidthValue(
         for item: KeyboardLayoutItem,
-        totalWidth: Double,
-        referenceWidth: Double
+        rowWidth: Double,
+        inputWidth: Double
     ) -> Double? {
         let insets = item.insets.leading + item.insets.trailing
         switch item.size.width {
         case .available: return nil
-        case .input: return referenceWidth - insets
-        case .inputPercentage(let percent): return percent * referenceWidth - insets
-        case .percentage(let percent): return percent * totalWidth - insets
+        case .input: return inputWidth - insets
+        case .inputPercentage(let percent): return percent * inputWidth - insets
+        case .percentage(let percent): return percent * rowWidth - insets
         case .points(let points): return points - insets
         }
     }
