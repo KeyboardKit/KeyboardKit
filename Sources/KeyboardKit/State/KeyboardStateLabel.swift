@@ -1,5 +1,5 @@
 //
-//  KeyboardEnabledLabel.swift
+//  KeyboardStateLabel.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-01-09.
@@ -16,7 +16,7 @@ import SwiftUI
  use is to show if the keyboard extension is enabled, if the
  app has full access etc.
  */
-public struct KeyboardEnabledLabel<EnabledIcon: View, DisabledIcon: View>: View {
+public struct KeyboardStateLabel<EnabledIcon: View, DisabledIcon: View>: View {
 
     /**
      Create an enabled label.
@@ -27,7 +27,7 @@ public struct KeyboardEnabledLabel<EnabledIcon: View, DisabledIcon: View>: View 
        - enabledIcon: The icon to show when the state is enabled, by default `checkmark`.
        - disabledText: The text to show when the state is disabled.
        - disabledIcon: The icon to show when the state is disabled, by default `exclamationmark.triangle`.
-       - style: The style to use, by default ``KeyboardEnabledLabelStyle/standard``.
+       - style: The style to use, by default ``KeyboardStateLabelStyle/standard``.
      */
     public init(
         isEnabled: Bool,
@@ -35,7 +35,7 @@ public struct KeyboardEnabledLabel<EnabledIcon: View, DisabledIcon: View>: View 
         enabledText: String,
         disabledIcon: DisabledIcon,
         disabledText: String,
-        style: KeyboardEnabledLabelStyle = .standard
+        style: KeyboardStateLabelStyle = .standard
     ) {
         self.isEnabled = isEnabled
         self.enabledText = enabledText
@@ -50,7 +50,7 @@ public struct KeyboardEnabledLabel<EnabledIcon: View, DisabledIcon: View>: View 
     private let enabledIcon: EnabledIcon
     private let disabledText: String
     private let disabledIcon: DisabledIcon
-    private let style: KeyboardEnabledLabelStyle
+    private let style: KeyboardStateLabelStyle
 
     public var body: some View {
         Label {
@@ -61,7 +61,7 @@ public struct KeyboardEnabledLabel<EnabledIcon: View, DisabledIcon: View>: View 
     }
 }
 
-public extension KeyboardEnabledLabel where EnabledIcon == Image, DisabledIcon == Image {
+public extension KeyboardStateLabel where EnabledIcon == Image, DisabledIcon == Image {
 
     /**
      Create an enabled label.
@@ -72,15 +72,15 @@ public extension KeyboardEnabledLabel where EnabledIcon == Image, DisabledIcon =
        - enabledIcon: The icon to show when the state is enabled, by default `checkmark`.
        - disabledText: The text to show when the state is disabled.
        - disabledIcon: The icon to show when the state is disabled, by default `exclamationmark.triangle`.
-       - style: The style to use, by default ``KeyboardEnabledLabelStyle/standard``.
+       - style: The style to use, by default ``KeyboardStateLabelStyle/standard``.
      */
     init(
         isEnabled: Bool,
-        enabledIcon: Image = Image(systemName: "checkmark"),
+        enabledIcon: Image = .init(systemName: "checkmark"),
         enabledText: String,
-        disabledIcon: Image = Image(systemName: "exclamationmark.triangle"),
+        disabledIcon: Image = .init(systemName: "exclamationmark.triangle"),
         disabledText: String,
-        style: KeyboardEnabledLabelStyle = .standard
+        style: KeyboardStateLabelStyle = .standard
     ) {
         self.isEnabled = isEnabled
         self.enabledText = enabledText
@@ -91,7 +91,7 @@ public extension KeyboardEnabledLabel where EnabledIcon == Image, DisabledIcon =
     }
 }
 
-private extension KeyboardEnabledLabel {
+private extension KeyboardStateLabel {
 
     @ViewBuilder
     var icon: some View {
@@ -128,12 +128,12 @@ private extension KeyboardEnabledLabel {
 }
 
 /**
- This style can be used with a ``KeyboardEnabledLabel``.
+ This style can be used with ``KeyboardStateLabel`` views.
  */
-public struct KeyboardEnabledLabelStyle: Equatable {
+public struct KeyboardStateLabelStyle: Equatable {
 
     /**
-     This style can be used with a ``KeyboardEnabledLabel``.
+     This style can be used with a ``KeyboardStateLabel``.
      */
     public struct ComponentStyle: Equatable {
 
@@ -180,29 +180,29 @@ public struct KeyboardEnabledLabelStyle: Equatable {
     public var disabledText: ComponentStyle
 }
 
-public extension KeyboardEnabledLabelStyle {
+public extension KeyboardStateLabelStyle {
 
     /**
-     This is the standard ``KeyboardEnabledLabel`` style. It
+     This is the standard ``KeyboardStateLabel`` style. It
 
 
      You can modify this style to globally affect every view
      that is created with the standard style.
      */
-    static var standard = KeyboardEnabledLabelStyle()
+    static var standard = KeyboardStateLabelStyle()
 }
 
 
-struct KeyboardEnabledLabel_Previews: PreviewProvider {
+struct KeyboardStateLabel_Previews: PreviewProvider {
 
     static var previews: some View {
         List {
-            KeyboardEnabledLabel(
+            KeyboardStateLabel(
                 isEnabled: true,
                 enabledText: "Enabled",
                 disabledText: "Disabled"
             )
-            KeyboardEnabledLabel(
+            KeyboardStateLabel(
                 isEnabled: false,
                 enabledText: "Enabled",
                 disabledText: "Disabled"

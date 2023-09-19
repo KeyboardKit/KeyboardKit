@@ -1,5 +1,5 @@
 //
-//  KeyboardEnabledStateInspectorTests.swift
+//  KeyboardStateInspectorTests.swift
 //  KeyboardKitTests
 //
 //  Created by Daniel Saidi on 2023-01-09.
@@ -11,7 +11,7 @@ import XCTest
 
 @testable import KeyboardKit
 
-class KeyboardEnabledStateInspectorTests: XCTestCase {
+class KeyboardStateInspectorTests: XCTestCase {
 
     private var inspector: TestInspector!
 
@@ -50,5 +50,5 @@ class KeyboardEnabledStateInspectorTests: XCTestCase {
     }
 }
 
-private class TestInspector: KeyboardEnabledStateInspector {}
+private class TestInspector: KeyboardStateInspector {}
 #endif

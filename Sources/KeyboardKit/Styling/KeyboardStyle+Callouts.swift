@@ -96,9 +96,7 @@ public extension KeyboardStyle {
     }
     
     /**
-     This style can be used to style ``ActionCallout`` views,
-     which are presented when long pressing a key that has a
-     list of secondary actions.
+     This style can be used with ``ActionCallout`` views.
      
      The ``standard`` style value can be used to get and set
      the global default style.
@@ -159,8 +157,7 @@ public extension KeyboardStyle {
     }
     
     /**
-     This style can be used to style ``InputCallout`` views,
-     which are presented when typing on a ``SystemKeyboard``.
+     This style can be used with ``InputCallout`` views.
      
      The ``calloutSize`` specifies a **minimum** size to use.
      If other factors, like button size, curve size, padding,

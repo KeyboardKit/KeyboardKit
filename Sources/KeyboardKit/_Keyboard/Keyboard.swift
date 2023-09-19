@@ -8,5 +8,5 @@
 
 import Foundation
 
-/// This is a namespace for various keyboard-related types.
+/// This namespace contains various keyboard-related types.
 public struct Keyboard {}

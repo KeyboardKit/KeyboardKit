@@ -1,5 +1,5 @@
 //
-//  KeyboardEnabledStateInspector.swift
+//  KeyboardStateInspector.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-05-05.
@@ -12,25 +12,20 @@ import UIKit
 
 /**
  This protocol can be implemented by any type that can check
- state state of keyboard extensions.
+ state of any keyboard extension.
 
- This type lets you check if a keyboard extension is enabled
- (in System Settings), if it is active (currently being used
- to type) and if it has been given full access.
+ This lets us check if a keyboard has been enabled in System
+ Settings, if Full Access is granted, and if it's being used.
 
- Note that you can use bundle id wildcards, which means that
- you can inspect multiple keyboards with a single id.
+ This type supports bundle id wildcards, which means that it
+ can be used to inspect multiple keyboards, with a single id.
  
  The easiest way to observe a keyboard's enabled state is to
- use ``KeyboardEnabledContext``. It has published
- that let you easily observe any state changes.
-
- This protocol is implemented by the `UIInputViewController`
- base class in `UIKit`.
+ use the observable ``KeyboardStateContext`` class.
  */
-public protocol KeyboardEnabledStateInspector {}
+public protocol KeyboardStateInspector {}
 
-public extension KeyboardEnabledStateInspector {
+public extension KeyboardStateInspector {
 
     /**
      Get a list of all active keyboard bundle identifiers.
@@ -95,7 +90,7 @@ public extension KeyboardEnabledStateInspector {
 
 // MARK: - Internal Test Functions
 
-extension KeyboardEnabledStateInspector {
+extension KeyboardStateInspector {
 
     func isKeyboardActive(
         withId bundleId: String,

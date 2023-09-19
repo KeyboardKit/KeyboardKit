@@ -52,6 +52,9 @@ You must either implement the English services yourself, or get them from the Pr
 * `Autocomplete.ToolbarItemSubtitle` is now initialized with a suggestion.
 * `DisabledCalloutActionProvider` has been removed.
 * `EnglishCalloutActionProvider` has been removed.
+* `KeyboardEnabledContext` has been renamed to `KeyboardStateContext`.
+* `KeyboardEnabledLabel` has been renamed to `KeyboardStateLabel`.
+* `KeyboardEnabledStateInspector` has been renamed to `KeyboardStateInspector`.
 * `KeyboardLayoutItem` `insets` has been renamed to `edgeInsets`.
 * `StandardCalloutActionProvider.standardProvider` has been removed.
 * `SystemKeyboard` no longer has a `buttonContent` initializer.

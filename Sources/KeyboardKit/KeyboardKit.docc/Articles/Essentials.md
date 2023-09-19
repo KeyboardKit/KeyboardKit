@@ -1,10 +1,10 @@
 # Keyboard
 
-This article describes the KeyboardKit keyboard types.
+This article describes the essential KeyboardKit types.
 
 KeyboardKit separate its parts into namespaces, where the `Keyboard` namespace contains the essential foundation types.
 
-
+[TODO] Cover more types!
 
 ## Keyboard context
 
@@ -13,17 +13,6 @@ KeyboardKit has an observable ``KeyboardContext`` class that provides informatio
 KeyboardKit will by default create a context instance and apply it to the controller's ``KeyboardInputViewController/keyboardContext``, then sync it with the controller whenever needed.
 
 You can use the context to affect the keyboard. For instance, setting the ``KeyboardContext/locale`` will cause a ``SystemKeyboard`` to render in that locale, provided that it's supported by the keyboard.
-
-
-
-## Keyboard enabled state
-
-KeyboardKit has a few types that can be used to inspect the state of a keyboard, e.g. if it's enabled in System Settings, if Full Access is enabled, etc.:
-
-- ``KeyboardEnabledContext`` is an observable class that reads the state of a keyboard.
-- ``KeyboardEnabledLabel`` is a view that can display the state of a keyboard.
-
-The ``KeyboardEnabledStateInspector`` protocol can be implemented by any type that should be able to inspect the state of a keyboard extension.
 
 
 

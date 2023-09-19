@@ -93,10 +93,6 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardBehavior``
 - ``KeyboardContext``
 - ``KeyboardController``
-- ``KeyboardEnabledContext``
-- ``KeyboardEnabledLabel``
-- ``KeyboardEnabledLabelStyle``
-- ``KeyboardEnabledStateInspector``
 - ``KeyboardInputViewController``
 - ``KeyboardTextContext``
 - ``StandardKeyboardBehavior``
@@ -253,6 +249,14 @@ KeyboardKit is available under the MIT license.
 
 - ``KeyboardSettingsLink``
 - ``KeyboardSettingsUrlProvider``
+
+### State
+
+- <doc:Understanding-State>
+- ``KeyboardStateContext``
+- ``KeyboardStateInspector``
+- ``KeyboardStateLabel``
+- ``KeyboardStateLabelStyle``
 
 ### Styling
 
