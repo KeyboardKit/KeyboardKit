@@ -11,14 +11,16 @@ import SwiftUI
 public extension View {
 
     /**
-     Apply keyboard button style and gestures to the view.
+     Apply a keyboard button style and gestures to the view.
      
-     The optional `edgeInsets` parameter can be used to add 
+     The `edgeInsets` parameter can be used to add intrinsic
+     edge insets within the interactable button area.
 
      - Parameters:
        - action: The keyboard action to trigger.
        - style: The keyboard style to apply.
        - actionHandler: The keyboard action handler to use.
+       - keyboardContext: The keyboard context to use.
        - calloutContext: The callout context to affect, if any.
        - edgeInsets: The edge insets to apply to the interactable area, if any.
        - isPressed: An optional binding that can be used to observe the button pressed state.
@@ -29,6 +31,7 @@ public extension View {
         for action: KeyboardAction,
         style: KeyboardStyle.Button,
         actionHandler: KeyboardActionHandler,
+        keyboardContext: KeyboardContext,
         calloutContext: CalloutContext?,
         edgeInsets: EdgeInsets = .init(),
         isPressed: Binding<Bool> = .constant(false),
@@ -47,6 +50,40 @@ public extension View {
                 isInScrollView: isInScrollView,
                 releaseOutsideTolerance: releaseOutsideTolerance
             )
+            .localeContextMenu(
+                for: action,
+                context: keyboardContext,
+                actionHandler: actionHandler
+            )
+    }
+}
+
+private extension View {
+    
+    @ViewBuilder
+    func localeContextMenu(
+        for action: KeyboardAction,
+        context: KeyboardContext,
+        actionHandler: KeyboardActionHandler
+    ) -> some View {
+        if shouldApplyLocaleContextMenu(for: action, context: context) {
+            self.localeContextMenu(for: context) {
+                actionHandler.handle(.release, on: action)
+            }.id(context.locale.identifier)
+        } else {
+            self
+        }
+    }
+    
+    func shouldApplyLocaleContextMenu(
+        for action: KeyboardAction,
+        context: KeyboardContext
+    ) -> Bool {
+        switch action {
+        case .nextLocale: return true
+        case .space: return context.spaceLongPressBehavior == .openLocaleContextMenu
+        default: return false
+        }
     }
 }
 
@@ -57,6 +94,15 @@ struct View_KeyboardButton_Previews: PreviewProvider {
         @State
         var isPressed = false
         
+        @State
+        var context: KeyboardContext = {
+            let context = KeyboardContext()
+            context.locales = KeyboardLocale.allCases.map { $0.locale }
+            context.localePresentationLocale = KeyboardLocale.swedish.locale
+            context.spaceLongPressBehavior = .openLocaleContextMenu
+            return context
+        }()
+        
         var body: some View {
             VStack {
                 VStack(spacing: 20) {
@@ -65,6 +111,11 @@ struct View_KeyboardButton_Previews: PreviewProvider {
                         for: Text("A"),
                         style: .preview2,
                         insets: .init(top: 5, leading: 10, bottom: 15, trailing: 20)
+                    )
+                    button(
+                        for: Text(context.locale.identifier),
+                        action: .nextLocale,
+                        style: .preview1
                     )
                     button(for: Image.keyboardGlobe, style: .preview1)
                 }
@@ -78,15 +129,17 @@ struct View_KeyboardButton_Previews: PreviewProvider {
         
         func button<Content: View>(
             for content: Content,
+            action: KeyboardAction = .backspace,
             style: KeyboardStyle.Button,
             insets: EdgeInsets = .init()
         ) -> some View {
             content
                 .padding()
                 .keyboardButton(
-                    for: .backspace,
+                    for: action,
                     style: style,
                     actionHandler: .preview,
+                    keyboardContext: context,
                     calloutContext: .preview,
                     edgeInsets: insets,
                     isPressed: $isPressed

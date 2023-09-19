@@ -66,9 +66,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
 
     public var body: some View {
         content
-            .frame(maxWidth: .infinity)
-            .frame(height: item.size.height - item.edgeInsets.top - item.edgeInsets.bottom)
-            .rowItemWidth(
+            .keyboardLayoutItemSize(
                 for: item,
                 rowWidth: keyboardWidth,
                 inputWidth: inputWidth)
@@ -76,13 +74,10 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
                 for: item.action,
                 style: buttonStyle,
                 actionHandler: actionHandler,
+                keyboardContext: keyboardContext,
                 calloutContext: calloutContext,
                 edgeInsets: item.edgeInsets,
-                isPressed: $isPressed)
-            .localeContextMenu(
-                for: item.action,
-                context: keyboardContext,
-                actionHandler: actionHandler
+                isPressed: $isPressed
             )
     }
 }
@@ -91,57 +86,6 @@ private extension SystemKeyboardButtonRowItem {
 
     var buttonStyle: KeyboardStyle.Button {
         item.action.isSpacer ? .spacer : styleProvider.buttonStyle(for: item.action, isPressed: isPressed)
-    }
-}
-
-private extension View {
-
-    /**
-     Apply a locale context menu to the view if the provided
-     action is `nextLocale`.
-     */
-    @ViewBuilder
-    func localeContextMenu(
-        for action: KeyboardAction,
-        context: KeyboardContext,
-        actionHandler: KeyboardActionHandler
-    ) -> some View {
-        if shouldApplyLocaleContextMenu(for: action, context: context) {
-            self.localeContextMenu(for: context) {
-                actionHandler.handle(.release, on: action)
-            }.id(context.locale.identifier)
-        } else {
-            self
-        }
-    }
-
-    /**
-     Apply a certain layout width to the view, in a way that
-     works with the rot item composition above.
-     */
-    @ViewBuilder
-    func rowItemWidth(
-        for item: KeyboardLayoutItem,
-        rowWidth: CGFloat,
-        inputWidth: CGFloat
-    ) -> some View {
-        let width = item.width(forRowWidth: rowWidth, inputWidth: inputWidth)
-        if let width, width > 0 {
-            self.frame(width: width)
-        } else {
-            self.frame(maxWidth: .infinity)
-        }
-    }
-
-    func shouldApplyLocaleContextMenu(
-        for action: KeyboardAction,
-        context: KeyboardContext
-    ) -> Bool {
-        switch action {
-        case .nextLocale: return true
-        case .space: return context.spaceLongPressBehavior == .openLocaleContextMenu
-        default: return false
-        }
     }
 }
 

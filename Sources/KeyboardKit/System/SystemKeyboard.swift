@@ -36,7 +36,7 @@ import SwiftUI
 public struct SystemKeyboard<ButtonView: View>: View {
 
     /**
-     Create a system keyboard with standard button views.
+     Create a system keyboard with standard buttons.
 
      This initializer will use a standard button builder for
      every layout item.
@@ -518,7 +518,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
 
         var controller: KeyboardInputViewController = {
             let controller = KeyboardInputViewController.preview
-            controller.keyboardContext.keyboardType = .emojis
+            // controller.keyboardContext.keyboardType = .emojis
             return controller
         }()
 

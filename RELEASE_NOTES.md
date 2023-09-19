@@ -17,20 +17,22 @@ This version removes all previously deprecated functions and makes the library c
 
 The library no longer sets up English services by default, so make sure that you are aware of that before upgrading.
 
-The English callout action and keyboard layout providers are no longer part of the base library.
+You must either implement the English services yourself, or get them from the Pro library.
 
 ### ✨ New Features
 
+* `KeyboardButton` now supports providing interactable `edgeInsets`.
+* `KeyboardButton` now supports providing an external `isPressed` state.
 * `KeyboardLayoutItem` has a new `width(forRowWidth:inputWidth:)` function.
 * `View.keyboardButton` is a new view extension that applies both a style and gestures.
+* `View.keyboardLayoutItemSize` is a new view extension that applies a layout-specific size and insets to the view. 
 
 ### 💡 Adjustments
 
 * `AutocompleteProvider` is now async instead of using completions.
 * `BaseCalloutActionProvider` initializer is no longer throwing.
-* `KeyboardButton` now supports providing interactable `edgeInsets`.
-* `KeyboardButton` now supports providing an external `isPressed` state.
-* `View+KeyboardButton` now has inset support.
+* `View+KeyboardButton` now applies a locale context menu to `nextLocale` buttons.
+* `View+KeyboardButton` now has support for custom edge insets.
 
 ### 👑 Pro Adjustments
 
@@ -48,6 +50,7 @@ The English callout action and keyboard layout providers are no longer part of t
 * `EnglishCalloutActionProvider` has been removed.
 * `KeyboardLayoutItem` `insets` has been renamed to `edgeInsets`.
 * `StandardCalloutActionProvider.standardProvider` has been removed.
+* `SystemKeyboard` no longer has a `buttonContent` initializer.
 * `SystemKeyboardButton` has been renamed to `KeyboardButton`.
 * `SystemKeyboardButtonBody` has been renamed to `KeyboardButtonBody`.
 * `SystemKeyboardButtonContent` has been renamed to `KeyboardButtonContent`.

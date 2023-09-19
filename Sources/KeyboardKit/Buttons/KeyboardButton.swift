@@ -41,7 +41,7 @@ public struct KeyboardButton<Content: View>: View {
         calloutContext: CalloutContext?,
         edgeInsets: EdgeInsets = .init(),
         isPressed: Binding<Bool>? = nil,
-        contentConfig: @escaping ContentConfig
+        @ViewBuilder contentConfig: @escaping ContentConfig
     ) {
         self.action = action
         self.actionHandler = actionHandler
@@ -106,6 +106,7 @@ public struct KeyboardButton<Content: View>: View {
                 for: action,
                 style: style,
                 actionHandler: actionHandler,
+                keyboardContext: keyboardContext,
                 calloutContext: calloutContext,
                 edgeInsets: edgeInsets,
                 isPressed: isPressed ?? $isPressedInternal
