@@ -167,7 +167,7 @@ public struct SystemKeyboard<ButtonContent: View, ButtonView: View>: View {
         case none
     }
 
-    public typealias ButtonContentBuilder = (KeyboardLayoutItem, _ standard: KeyboardButtonContent) -> ButtonContent
+    public typealias ButtonContentBuilder = (KeyboardLayoutItem, _ standard: KeyboardButton.Content) -> ButtonContent
     public typealias ButtonViewBuilder = (KeyboardLayoutItem, _ standard: SystemKeyboardItem<ButtonContent>) -> ButtonView
     
     public typealias AutocompleteToolbarAction = (Autocomplete.Suggestion) -> Void
@@ -277,7 +277,7 @@ private extension SystemKeyboard {
     ) -> ButtonContent {
         buttonContent(
             item,
-            KeyboardButtonContent(
+            KeyboardButton.Content(
                 action: item.action,
                 styleProvider: styleProvider,
                 keyboardContext: keyboardContext

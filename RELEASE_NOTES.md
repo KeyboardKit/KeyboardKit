@@ -48,6 +48,7 @@ You must either implement the English services yourself, or get them from the Pr
 
 * All deprecated code has been removed or addressed.
 * Many types have been moved into a new `Autocomplete` namespace.
+* Many types have been moved into a new `KeyboardButton` namespace.
 
 * `Autocomplete.ToolbarItemSubtitle` is now initialized with a suggestion.
 * `DisabledCalloutActionProvider` has been removed.
@@ -58,14 +59,14 @@ You must either implement the English services yourself, or get them from the Pr
 * `KeyboardLayoutItem` `insets` has been renamed to `edgeInsets`.
 * `StandardCalloutActionProvider.standardProvider` has been removed.
 * `SystemKeyboard` no longer has a `buttonContent` initializer.
-* `SystemKeyboardButton` has been renamed to `KeyboardButton`.
-* `SystemKeyboardButtonBody` has been renamed to `KeyboardButtonBody`.
-* `SystemKeyboardButtonContent` has been renamed to `KeyboardButtonContent`.
-* `SystemKeyboardButtonShadow` has been moved into `KeyboardButtonBody`.
-* `SystemKeyboardButtonText` has been renamed to `KeyboardButtonText`.
+* `SystemKeyboardButton` has been renamed to `KeyboardButton.Button`.
+* `SystemKeyboardButtonBody` has been renamed to `KeyboardButton.Body`.
+* `SystemKeyboardButtonContent` has been renamed to `KeyboardButton.Content`.
+* `SystemKeyboardButtonShadow` has been renamed to `KeyboardButton.Shadow`.
+* `SystemKeyboardButtonText` has been renamed to `KeyboardButton.Title`.
 * `SystemKeyboardButtonRowItem` has been renamed to `SystemKeyboardItem`.
 * `SystemKeyboardItem` can no longer be initialized outside the library.
-* `SystemKeyboardSpaceContent` has been renamed to `KeyboardButtonSpaceContent`.
+* `SystemKeyboardSpaceContent` has been renamed to `KeyboardButton.SpaceContent`.
 * `View.actionCallout(...)` has been renamed to `View.actionCalloutContainer(...)`.
 * `View.inputCallout(...)` has been renamed to `View.inputCalloutContainer(...)`.
 * `View.keyboardButtonStyle(...)` no longer has an `isPressed` parameter.

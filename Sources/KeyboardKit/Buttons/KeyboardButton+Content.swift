@@ -1,5 +1,5 @@
 //
-//  KeyboardButtonContent.swift
+//  KeyboardButton+Content.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
@@ -8,49 +8,51 @@
 
 import SwiftUI
 
-/**
- This view generates the content of a system keyboard button
- that should trigger the provided ``KeyboardAction``.
-
- This view will adapt its content to conform to the provided
- `action`, `actionHandler` and `keyboardContext`.
-
- The view sets up gestures, line limits, vertical offset etc.
- and styles the button according to the `styleProvider`. You
- can use the `contentConfig` to further customize it.
- */
-public struct KeyboardButtonContent: View {
+public extension KeyboardButton {
     
     /**
-     Create a system keyboard action button content view.
+     This view renders the content of a keyboard button, for
+     the provided ``KeyboardAction``.
      
-     - Parameters:
-       - action: The keyboard action to use.
-       - styleProvider: The style provider to use.
-       - keyboardContext: The keyboard context to use.
+     This view will adapt its content to the provided action,
+     style provider and keyboard context.
+     
+     The view sets up gestures, line limits, vertical offset,
+     and styles the view according to the `styleProvider`.
      */
-    public init(
-        action: KeyboardAction,
-        styleProvider: KeyboardStyleProvider,
-        keyboardContext: KeyboardContext
-    ) {
-        self.action = action
-        self.styleProvider = styleProvider
-        self.keyboardContext = keyboardContext
-    }
-    
-    private let action: KeyboardAction
-    private let styleProvider: KeyboardStyleProvider
-    private let keyboardContext: KeyboardContext
-    
-    public var body: some View {
-        bodyContent
-            .padding(3)
-            .contentShape(Rectangle())
+    struct Content: View {
+        
+        /**
+         Create a system keyboard action button content view.
+         
+         - Parameters:
+           - action: The keyboard action to use.
+           - styleProvider: The style provider to use.
+           - keyboardContext: The keyboard context to use.
+         */
+        public init(
+            action: KeyboardAction,
+            styleProvider: KeyboardStyleProvider,
+            keyboardContext: KeyboardContext
+        ) {
+            self.action = action
+            self.styleProvider = styleProvider
+            self.keyboardContext = keyboardContext
+        }
+        
+        private let action: KeyboardAction
+        private let styleProvider: KeyboardStyleProvider
+        private let keyboardContext: KeyboardContext
+        
+        public var body: some View {
+            bodyContent
+                .padding(3)
+                .contentShape(Rectangle())
+        }
     }
 }
 
-private extension KeyboardButtonContent {
+private extension KeyboardButton.Content {
 
     @ViewBuilder
     var bodyContent: some View {
@@ -66,14 +68,14 @@ private extension KeyboardButtonContent {
     }
     
     var spaceView: some View {
-        KeyboardButtonSpaceContent(
+        KeyboardButton.SpaceContent(
             localeText: shouldShowLocaleName ? localeName : spaceText,
             spaceText: spaceText
         )
     }
     
     func textView(for action: KeyboardAction, text: String) -> some View {
-        KeyboardButtonText(
+        KeyboardButton.Title(
             text: text,
             action: action
         )
@@ -82,7 +84,7 @@ private extension KeyboardButtonContent {
     }
 }
 
-private extension KeyboardButtonContent {
+private extension KeyboardButton.Content {
     
     var localeName: String {
         keyboardContext.locale.localizedLanguageName
@@ -97,7 +99,7 @@ private extension KeyboardButtonContent {
     }
 }
 
-struct KeyboardButtonContent_Previews: PreviewProvider {
+struct KeyboardButton_Content_Previews: PreviewProvider {
     
     static let multiLocaleContext: KeyboardContext = {
         var context = KeyboardContext.preview
@@ -111,7 +113,7 @@ struct KeyboardButtonContent_Previews: PreviewProvider {
         for action: KeyboardAction,
         multiLocale: Bool = false
     ) -> some View {
-        KeyboardButtonContent(
+        KeyboardButton.Content(
             action: action,
             styleProvider: .preview,
             keyboardContext: multiLocale ? multiLocaleContext : .preview

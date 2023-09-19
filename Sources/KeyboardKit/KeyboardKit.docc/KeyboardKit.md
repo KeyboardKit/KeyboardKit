@@ -72,7 +72,6 @@ KeyboardKit is available under the MIT license.
 
 ### Articles
 
-- <doc:Buttons>
 - <doc:Callouts>
 - <doc:Dictation>
 - <doc:Emojis>
@@ -114,11 +113,8 @@ KeyboardKit is available under the MIT license.
 
 ### Buttons
 
+- <doc:Understanding-Buttons>
 - ``KeyboardButton``
-- ``KeyboardButtonBody``
-- ``KeyboardButtonContent``
-- ``KeyboardButtonSpaceContent``
-- ``KeyboardButtonText``
 - ``NextKeyboardButton``
 
 ### Callouts

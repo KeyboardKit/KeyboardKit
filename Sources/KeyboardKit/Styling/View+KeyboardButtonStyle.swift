@@ -17,7 +17,7 @@ public extension View {
        - style: The style to apply.
      */
     func keyboardButtonStyle(_ style: KeyboardStyle.Button) -> some View {
-        self.background(KeyboardButtonBody(style: style))
+        self.background(KeyboardButton.Body(style: style))
             .foregroundColor(style.foregroundColor)
             .font(style.font?.font)
     }
