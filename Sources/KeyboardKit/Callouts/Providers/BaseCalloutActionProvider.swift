@@ -19,7 +19,7 @@ import Foundation
  */
 open class BaseCalloutActionProvider: CalloutActionProvider {
     
-    public init() throws {}
+    public init() {}
     
     /**
      Get callout actions for the provided `action`.

@@ -20,6 +20,7 @@ These release notes will only contain the current version. Just check out an old
 ### 💡 Adjustments
 
 * `AutocompleteProvider` is now async instead of using completions.
+* `BaseCalloutActionProvider` initializer is no longer throwing.
 * `KeyboardButton` now supports providing interactable `edgeInsets`.
 * `KeyboardButton` now supports providing an external `isPressed` state.
 * `View+KeyboardButton` now has inset support.
