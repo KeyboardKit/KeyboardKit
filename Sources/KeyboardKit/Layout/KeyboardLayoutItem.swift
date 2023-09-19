@@ -11,10 +11,10 @@ import SwiftUI
 
 /**
  A keyboard layout item is used to specify an action, a size
- and edge insets for an key.
+ and edge insets for a key on a layout-based keyboard.
  
- Note that insets must be applied within the button tap area,
- to avoid a dead tap areas between the keyboard buttons.
+ Note that the edge insets must be applied within the button
+ tap area, to avoid a dead tap areas between buttons.
  */
 public struct KeyboardLayoutItem: Equatable, KeyboardRowItem {
     
@@ -22,28 +22,28 @@ public struct KeyboardLayoutItem: Equatable, KeyboardRowItem {
      Create a new layout item.
      
      - Parameters:
-       - action: The keyboard action that should be used for the item.
-       - size: The layout size that should be used for the item.
-       - insets: The item insets that should be used for the item.
+       - action: The keyboard action to use.
+       - size: The layout size to use.
+       - edgeInsets: The edge insets to apply, by default none.
      */
     public init(
         action: KeyboardAction,
         size: Size,
-        insets: EdgeInsets
+        edgeInsets: EdgeInsets = .init()
     ) {
         self.action = action
         self.size = size
-        self.insets = insets
+        self.edgeInsets = edgeInsets
     }
     
-    /// The keyboard action that should be used for the item.
+    /// The keyboard action to use.
     public var action: KeyboardAction
     
-    /// The layout size that should be used for the item.
+    /// The layout size to use.
     public var size: Size
     
-    /// The item insets that should be used for the item.
-    public var insets: EdgeInsets
+    /// The edge insets to apply.
+    public var edgeInsets: EdgeInsets
 
     /// The row ID the is used to identify the item in a row.
     public var rowId: KeyboardAction { action }
@@ -62,17 +62,11 @@ public extension KeyboardLayoutItem {
     
     /**
      This struct provides the size of a keyboard layout item.
-     It has a regular height, but a declarative width.
+     It has a point-based height, but declarative width.
      */
     struct Size: Equatable {
         
-        /**
-         Create a new layout item size.
-         
-         - Parameters:
-           - width: The declarative width of the item.
-           - height: The fixed height of the item.
-         */
+        /// Create a new layout item size.
         public init(
             width: Width,
             height: CGFloat
@@ -89,36 +83,23 @@ public extension KeyboardLayoutItem {
     }
     
     /**
-     This enum specifies the width of a keyboard layout item,
-     which is declarative and resolved at runtime.
+     This enum specifies the width of a keyboard layout item.
      */
     enum Width: Equatable {
         
-        /**
-         Share the available width with other keys that also
-         use `.available` on the same row.
-         */
+        /// A width that will share the available row space.
         case available
         
-        /**
-         Use this width type on the input keys, to later use
-         it to calculate how much space other keys get.
-         */
+        /// A width that should be applied to all input keys.
         case input
         
-        /**
-         Use a percentual width of the available input width.
-         */
+        /// A percentual width of the available input width.
         case inputPercentage(_ percent: CGFloat)
         
-        /**
-         Use a percentual width of the total available width.
-         */
+        /// A percentual width of the total available width.
         case percentage(_ percent: CGFloat)
         
-        /**
-         Use a fixed width in points.
-         */
+        /// A fixed width in points.
         case points(_ points: CGFloat)
     }
 }

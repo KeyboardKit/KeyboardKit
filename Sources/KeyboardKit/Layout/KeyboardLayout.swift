@@ -110,7 +110,7 @@ public extension KeyboardLayout {
         return KeyboardLayoutItem(
             action: action,
             size: template.size,
-            insets: template.insets
+            edgeInsets: template.edgeInsets
         )
     }
 }
@@ -124,7 +124,7 @@ private extension KeyboardLayout {
 
     static func resolveIdealItemInsets(for rows: KeyboardLayoutItem.Rows) -> EdgeInsets {
         let item = rows.flatMap { $0 }.first
-        return item?.insets ?? EdgeInsets()
+        return item?.edgeInsets ?? EdgeInsets()
     }
 }
 

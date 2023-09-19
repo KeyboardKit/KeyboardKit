@@ -122,9 +122,11 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
      Get a layout item for the provided parameters.
      */
     open func item(for action: KeyboardAction, row: Int, index: Int, context: KeyboardContext) -> KeyboardLayoutItem {
-        let size = itemSize(for: action, row: row, index: index, context: context)
-        let insets = itemInsets(for: action, row: row, index: index, context: context)
-        return KeyboardLayoutItem(action: action, size: size, insets: insets)
+        KeyboardLayoutItem(
+            action: action,
+            size: itemSize(for: action, row: row, index: index, context: context),
+            edgeInsets: itemInsets(for: action, row: row, index: index, context: context)
+        )
     }
     
     /**

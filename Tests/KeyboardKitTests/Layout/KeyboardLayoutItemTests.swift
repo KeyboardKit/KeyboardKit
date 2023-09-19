@@ -18,13 +18,12 @@ class KeyboardLayoutItemRowTests: XCTestCase {
     var rows: KeyboardLayoutItem.Rows!
 
     let size = KeyboardLayoutItem.Size(width: .available, height: 100)
-    let insets = EdgeInsets()
 
     override func setUp() {
-        item = KeyboardLayoutItem(action: .primary(.done), size: size, insets: insets)
-        let item1 = KeyboardLayoutItem(action: .command, size: size, insets: insets)
-        let item2 = KeyboardLayoutItem(action: .space, size: size, insets: insets)
-        let item3 = KeyboardLayoutItem(action: .backspace, size: size, insets: insets)
+        item = KeyboardLayoutItem(action: .primary(.done), size: size)
+        let item1 = KeyboardLayoutItem(action: .command, size: size)
+        let item2 = KeyboardLayoutItem(action: .space, size: size)
+        let item3 = KeyboardLayoutItem(action: .backspace, size: size)
         row = [item1, item2, item3]
         rows = [row, row, row]
     }
@@ -76,7 +75,7 @@ class KeyboardLayoutItemRowTests: XCTestCase {
     }
 
     func removingActionFromRowRemovesMatchingItem() {
-        let item = KeyboardLayoutItem(action: .backspace, size: size, insets: insets)
+        let item = KeyboardLayoutItem(action: .backspace, size: size)
         row.insert(item, before: .command)
         XCTAssertEqual(rowActions, [.backspace, .command, .space, .backspace])
         row.remove(.backspace)
@@ -177,7 +176,7 @@ class KeyboardLayoutItemRowTests: XCTestCase {
     }
 
     func testRemovingItemFromCertainRowRemovesItemIfItExists() {
-        let item = KeyboardLayoutItem(action: .backspace, size: size, insets: insets)
+        let item = KeyboardLayoutItem(action: .backspace, size: size)
         rows.insert(item, before: .command, atRow: 2)
         XCTAssertEqual(rowsActions[2], [.backspace, .command, .space, .backspace])
         rows.remove(.backspace, atRow: 2)

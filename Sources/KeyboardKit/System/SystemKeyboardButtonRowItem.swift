@@ -67,7 +67,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
     public var body: some View {
         content
             .frame(maxWidth: .infinity)
-            .frame(height: item.size.height - item.insets.top - item.insets.bottom)
+            .frame(height: item.size.height - item.edgeInsets.top - item.edgeInsets.bottom)
             .rowItemWidth(
                 for: item,
                 rowWidth: keyboardWidth,
@@ -77,7 +77,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
                 style: buttonStyle,
                 actionHandler: actionHandler,
                 calloutContext: calloutContext,
-                edgeInsets: item.insets,
+                edgeInsets: item.edgeInsets,
                 isPressed: $isPressed)
             .localeContextMenu(
                 for: item.action,
@@ -151,7 +151,7 @@ private extension View {
         rowWidth: Double,
         inputWidth: Double
     ) -> Double? {
-        let insets = item.insets.leading + item.insets.trailing
+        let insets = item.edgeInsets.leading + item.edgeInsets.trailing
         switch item.size.width {
         case .available: return nil
         case .input: return inputWidth - insets
@@ -186,7 +186,7 @@ struct SystemKeyboardButtonRowItem_Previews: PreviewProvider {
                 size: KeyboardLayoutItem.Size(
                     width: width,
                     height: 100),
-                insets: .init(horizontal: 0, vertical: 0)),
+                edgeInsets: .init()),
             actionHandler: .preview,
             styleProvider: .preview,
             keyboardContext: context,

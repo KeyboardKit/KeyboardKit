@@ -34,6 +34,7 @@ These release notes will only contain the current version. Just check out an old
 
 * `DisabledCalloutActionProvider` has been removed.
 * `EnglishCalloutActionProvider` has been removed.
+* `KeyboardLayoutItem` `insets` has been renamed to `edgeInsets`.
 * `StandardCalloutActionProvider` no longer has a fallback provider.
 * `StandardCalloutActionProvider.standardProvider` has been removed.
 * `SystemKeyboardButton` has been renamed to `KeyboardButton`.

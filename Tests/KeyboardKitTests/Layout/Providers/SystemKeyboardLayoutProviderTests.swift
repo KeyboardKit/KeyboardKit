@@ -85,11 +85,11 @@ class SystemKeyboardLayoutProviderTests: XCTestCase {
         let result = provider.items(for: actions, context: context)
         XCTAssertEqual(result.count, 2)
         XCTAssertEqual(result[0][0].action, .character(""))
-        XCTAssertEqual(result[0][0].insets, layoutConfig.buttonInsets)
+        XCTAssertEqual(result[0][0].edgeInsets, layoutConfig.buttonInsets)
         XCTAssertEqual(result[0][0].size.height, layoutConfig.rowHeight)
         XCTAssertEqual(result[0][0].size.width, .input)
         XCTAssertEqual(result[1][0].action, .backspace)
-        XCTAssertEqual(result[1][0].insets, layoutConfig.buttonInsets)
+        XCTAssertEqual(result[1][0].edgeInsets, layoutConfig.buttonInsets)
         XCTAssertEqual(result[1][0].size.height, layoutConfig.rowHeight)
         XCTAssertEqual(result[1][0].size.width, .available)
     }

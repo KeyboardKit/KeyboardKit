@@ -14,7 +14,7 @@ class KeyboardLayoutTests: XCTestCase {
 
     func item(_ width: KeyboardLayoutItem.Width) -> KeyboardLayoutItem {
         let size = KeyboardLayoutItem.Size(width: width, height: 0)
-        let item = KeyboardLayoutItem(action: .none, size: size, insets: .init())
+        let item = KeyboardLayoutItem(action: .none, size: size)
         return item
     }
     
