@@ -51,6 +51,27 @@ public struct KeyboardLayoutItem: Equatable, KeyboardRowItem {
 
 public extension KeyboardLayoutItem {
     
+    /**
+     Get the item's width in points, given a total row width
+     (most often the width of the screen) and an input width.
+     */
+    func width(
+        forRowWidth rowWidth: Double,
+        inputWidth: Double
+    ) -> Double? {
+        let insets = edgeInsets.leading + edgeInsets.trailing
+        switch size.width {
+        case .available: return nil
+        case .input: return inputWidth - insets
+        case .inputPercentage(let percent): return percent * inputWidth - insets
+        case .percentage(let percent): return percent * rowWidth - insets
+        case .points(let points): return points - insets
+        }
+    }
+}
+
+public extension KeyboardLayoutItem {
+    
     /// This is a typealias for a layout item array.
     typealias Row = [KeyboardLayoutItem]
 

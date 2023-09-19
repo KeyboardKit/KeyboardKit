@@ -125,7 +125,8 @@ private extension View {
         rowWidth: CGFloat,
         inputWidth: CGFloat
     ) -> some View {
-        if let width = rowItemWidthValue(for: item, rowWidth: rowWidth, inputWidth: inputWidth), width > 0 {
+        let width = item.width(forRowWidth: rowWidth, inputWidth: inputWidth)
+        if let width, width > 0 {
             self.frame(width: width)
         } else {
             self.frame(maxWidth: .infinity)
@@ -140,24 +141,6 @@ private extension View {
         case .nextLocale: return true
         case .space: return context.spaceLongPressBehavior == .openLocaleContextMenu
         default: return false
-        }
-    }
-}
-
-private extension View {
-
-    func rowItemWidthValue(
-        for item: KeyboardLayoutItem,
-        rowWidth: Double,
-        inputWidth: Double
-    ) -> Double? {
-        let insets = item.edgeInsets.leading + item.edgeInsets.trailing
-        switch item.size.width {
-        case .available: return nil
-        case .input: return inputWidth - insets
-        case .inputPercentage(let percent): return percent * inputWidth - insets
-        case .percentage(let percent): return percent * rowWidth - insets
-        case .points(let points): return points - insets
         }
     }
 }

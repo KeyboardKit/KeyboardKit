@@ -13,8 +13,15 @@ These release notes will only contain the current version. Just check out an old
 
 ## 8.0
 
+This version removes all previously deprecated functions and makes the library cleaner.
+
+The library no longer sets up English services by default, so make sure that you are aware of that before upgrading.
+
+The English callout action and keyboard layout providers are no longer part of the base library.
+
 ### ✨ New Features
 
+* `KeyboardLayoutItem` has a new `width(forRowWidth:inputWidth:)` function.
 * `View.keyboardButton` is a new view extension that applies both a style and gestures.
 
 ### 💡 Adjustments
@@ -28,6 +35,10 @@ These release notes will only contain the current version. Just check out an old
 ### 👑 Pro Adjustments
 
 * `RemoteAutocompleteProvider.AutocompleteError.noData` has been removed.
+
+### 🚨 Important changes
+
+* `StandardCalloutActionProvider` provides no actions by default anymore.
     
 ### 💥 Breaking changes 
 
@@ -36,7 +47,6 @@ These release notes will only contain the current version. Just check out an old
 * `DisabledCalloutActionProvider` has been removed.
 * `EnglishCalloutActionProvider` has been removed.
 * `KeyboardLayoutItem` `insets` has been renamed to `edgeInsets`.
-* `StandardCalloutActionProvider` no longer has a fallback provider.
 * `StandardCalloutActionProvider.standardProvider` has been removed.
 * `SystemKeyboardButton` has been renamed to `KeyboardButton`.
 * `SystemKeyboardButtonBody` has been renamed to `KeyboardButtonBody`.
