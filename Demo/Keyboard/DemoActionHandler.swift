@@ -11,14 +11,7 @@ import UIKit
 
 /**
  This demo-specific action handler inherits the standard one
- and adds demo-specific logic to it.
-
- ``KeyboardViewController`` registers this class to show you
- how you can set up a custom keyboard action handler.
-
- If you add `image` actions to the keyboard, this class will
- copy any tapped image to the pasteboard and save it to your
- photo album when it's long presed.
+ and adds demo-specific image logic to it.
  */
 class DemoActionHandler: StandardKeyboardActionHandler {
 

@@ -37,7 +37,7 @@ class DemoLayoutProvider: StandardKeyboardLayoutProvider {
             size: KeyboardLayoutItem.Size(
                 width: .inputPercentage(2),
                 height: layout.idealItemHeight),
-            insets: layout.idealItemInsets)
+            edgeInsets: layout.idealItemInsets)
         layout.itemRows.replace(.character("I"), with: widerItem)
         return layout
     }

@@ -12,12 +12,6 @@ import SwiftUI
 /**
  This demo-specific style provider inherits the standard one
  and can be used to customize the demo keyboard style.
-
- ``KeyboardViewController`` registers this class to show you
- how to set up a custom keyboard style provider.
-
- Just comment out any of the functions below to override any
- part of the standard styling.
  */
 class DemoStyleProvider: StandardKeyboardStyleProvider {
     

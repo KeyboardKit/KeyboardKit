@@ -27,21 +27,51 @@ class KeyboardViewController: KeyboardInputViewController {
      we make demo-specific service configurations.
      */
     override func viewDidLoad() {
-        
-        keyboardFeedbackSettings.audioConfiguration.input = .custom(id: 1329)   
 
         /// 💡 Setup a custom keyboard locale.
         ///
-        /// Since the demo doesn't use KeyboardKit Pro, this
-        /// will only affect button texts and not the layout.
+        /// Without KeyboardKit Pro, changing locale will by
+        /// default only affects localized texts.
         keyboardContext.setLocale(.english)
 
         /// 💡 Add more locales to the keyboard.
         ///
-        /// You can add a locale switch key using the custom
-        /// layout provider in this demo, or just enable the
-        /// space long press behavior below.
+        /// The demo layout provider will add a "next locale"
+        /// menu button if you have more than one locale.
+        keyboardContext.localePresentationLocale = .current
         // keyboardContext.locales = KeyboardLocale.allCases.map { $0.locale }
+        
+        /// 💡 Setup a demo-specific action handler.
+        ///
+        /// The demo action handler has code for tapping and
+        /// long pressing image actions.
+        keyboardActionHandler = DemoActionHandler(
+            inputViewController: self)
+        
+        /// 💡 Setup a demo-specific layout provider.
+        ///
+        /// The demo layout provider will add a "next locale"
+        /// menu button if needed, and a rocket emoji button.
+        keyboardLayoutProvider = DemoLayoutProvider()
+        
+        /// 💡 Setup a fake autocomplete provider.
+        ///
+        /// This fake provider will provide fake suggestions.
+        /// Try the Pro demo for real suggestions.
+        autocompleteProvider = FakeAutocompleteProvider()
+        
+        /// 💡 Setup a demo-specific callout action provider.
+        ///
+        /// This demo provider returns callout actions for a
+        /// few keys (a, c and e).
+        calloutActionProvider = DemoCalloutActionProvider()
+        
+        /// 💡 Setup a demo-specific style provider.
+        ///
+        /// The demo provider has some commented out changes
+        /// that you can enable to see the effect.
+        keyboardStyleProvider = DemoStyleProvider(
+            keyboardContext: keyboardContext)
         
         /// 💡 Change the space long press behavior.
         ///
@@ -60,52 +90,23 @@ class KeyboardViewController: KeyboardInputViewController {
         /// The default haptic feedback is `.minimal`, which
         /// only has haptic feedback for long press on space.
         keyboardFeedbackSettings.enableHapticFeedback()
+        // keyboardFeedbackSettings.audioConfiguration.input = .custom(id: 1329)
         
-        /// 💡 Setup a fake autocomplete provider.
-        ///
-        /// Change the provider implementation to see how it
-        /// affects the autocomplete suggestion. Try the Pro
-        /// demo to see how the pro provider behaves.
-        autocompleteProvider = FakeAutocompleteProvider()
-
-        /// 💡 Setup a demo-specific keyboard action handler.
-        ///
-        /// You can change the handler implementation to see
-        /// how the keyboard behavior changes as you type.
-        keyboardActionHandler = DemoActionHandler(
-            inputViewController: self)
-
-        /// 💡 Setup a demo-specific layout provider.
-        ///
-        /// You can change this provider's implementation to
-        /// see how the layout changes.
-        keyboardLayoutProvider = DemoLayoutProvider()
-        
-        /// 💡 Setup a demo-specific style provider.
-        ///
-        /// You can change this provider's implementation to
-        /// see how the keyboard style changes.
-        keyboardStyleProvider = DemoStyleProvider(
-            keyboardContext: keyboardContext)
-
         /// 💡 Call super to perform the base initialization.
         super.viewDidLoad()
     }
 
     /**
      This function is called whenever the keyboard should be
-     created or updated. Here, we setup a system keyboard as
-     the main keyboard view.
+     created or updated. Here, we setup a system keyboard.
      */
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
 
         /// 💡 Make the demo use a ``SystemKeyboard``.
         ///
-        /// This is actually not needed. The controller will
-        /// by default setup a `SystemKeyboard`, so you only
-        /// have to override this function to setup a custom
-        /// view, which we do in `KeyboardCustom`.
+        /// KeyboardKit will use `SystemKeyboard` by default,
+        /// so you actually only need this for custom views.
         setup { SystemKeyboard(controller: $0) }
     }
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A912D9D128C1E44E0007FAC1 /* KeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = A912D9D028C1E44E0007FAC1 /* KeyboardKit */; };
 		A912D9D528C1F0480007FAC1 /* DemoLayoutProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912D9D428C1F0480007FAC1 /* DemoLayoutProvider.swift */; };
+		A91322652AB9C5BE00780625 /* DemoCalloutActionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91322642AB9C5BE00780625 /* DemoCalloutActionProvider.swift */; };
 		A921152625D58A94003510D9 /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921152525D58A94003510D9 /* DemoApp.swift */; };
 		A921152825D58A94003510D9 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921152725D58A94003510D9 /* HomeScreen.swift */; };
 		A921152A25D58A96003510D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A921152925D58A96003510D9 /* Assets.xcassets */; };
@@ -102,6 +103,7 @@
 
 /* Begin PBXFileReference section */
 		A912D9D428C1F0480007FAC1 /* DemoLayoutProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoLayoutProvider.swift; sourceTree = "<group>"; };
+		A91322642AB9C5BE00780625 /* DemoCalloutActionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoCalloutActionProvider.swift; sourceTree = "<group>"; };
 		A921152225D58A94003510D9 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A921152525D58A94003510D9 /* DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoApp.swift; sourceTree = "<group>"; };
 		A921152725D58A94003510D9 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				A921153D25D58AC7003510D9 /* Info.plist */,
 				A921153B25D58AC7003510D9 /* KeyboardViewController.swift */,
 				A9EAA6F327B165B600BC9376 /* DemoActionHandler.swift */,
+				A91322642AB9C5BE00780625 /* DemoCalloutActionProvider.swift */,
 				A9EAA6F227B165B600BC9376 /* DemoLayoutProvider.swift */,
 				A9C672642A7BCE37004A5721 /* DemoStyleProvider.swift */,
 				A921156D25D5902F003510D9 /* FakeAutocompleteProvider.swift */,
@@ -580,6 +583,7 @@
 			files = (
 				A921153C25D58AC7003510D9 /* KeyboardViewController.swift in Sources */,
 				A9C672652A7BCE37004A5721 /* DemoStyleProvider.swift in Sources */,
+				A91322652AB9C5BE00780625 /* DemoCalloutActionProvider.swift in Sources */,
 				A9EAA6F627B165B600BC9376 /* DemoLayoutProvider.swift in Sources */,
 				A9EAA6F727B165B600BC9376 /* DemoActionHandler.swift in Sources */,
 				A921156F25D5902F003510D9 /* FakeAutocompleteProvider.swift in Sources */,

@@ -10,19 +10,8 @@ import Foundation
 import KeyboardKit
 
 /**
- This autocomplete provider is used in the non-pro demos, to
- show fake suggestions since KeyboardKit Pro autocomplete is
- not available.
-
- ``KeyboardViewController`` registers it to show how you can
- register and use a custom autocomplete provider.
-
- This provider always returns three autocomplete suggestions,
- with the current word suffixed with "-1", "-2" and "-3".
-
- If the current word is `match` (this can be changed in init)
- the leading suggestion will be an "unknown" suggestion, the
- center one highlighted and the trailing one regular.
+ This fake autocomplete provider is used in the non-pro demo,
+ to show fake suggestions while typing.
  */
 class FakeAutocompleteProvider: AutocompleteProvider {
 
@@ -47,14 +36,13 @@ class FakeAutocompleteProvider: AutocompleteProvider {
     func unlearnWord(_ word: String) {}
     
     func autocompleteSuggestions(
-        for text: String,
-        completion: AutocompleteProvider.Completion
-    ) {
-        guard text.count > 0 else { return completion(.success([])) }
+        for text: String
+    ) async throws -> [AutocompleteSuggestion] {
+        guard text.count > 0 else { return [] }
         if text == match {
-            completion(.success(matchSuggestions()))
+            return matchSuggestions()
         } else {
-            completion(.success(fakeSuggestions(for: text)))
+            return fakeSuggestions(for: text)
         }
     }
 }
