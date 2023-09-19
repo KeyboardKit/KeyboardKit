@@ -24,6 +24,7 @@ You must either implement the English services yourself, or get them from the Pr
 * `KeyboardButton` now supports providing interactable `edgeInsets`.
 * `KeyboardButton` now supports providing an external `isPressed` state.
 * `KeyboardLayoutItem` has a new `width(forRowWidth:inputWidth:)` function.
+* `SystemKeyboard` has new initializers that make it much easier to customize the content and view of its keys.
 * `View.keyboardButton` is a new view extension that applies both a style and gestures.
 * `View.keyboardLayoutItemSize` is a new view extension that applies a layout-specific size and insets to the view. 
 
@@ -56,6 +57,8 @@ You must either implement the English services yourself, or get them from the Pr
 * `SystemKeyboardButtonContent` has been renamed to `KeyboardButtonContent`.
 * `SystemKeyboardButtonShadow` has been moved into `KeyboardButtonBody`.
 * `SystemKeyboardButtonText` has been renamed to `KeyboardButtonText`.
+* `SystemKeyboardButtonRowItem` has been renamed to `SystemKeyboardItem`.
+* `SystemKeyboardItem` can no longer be initialized outside the library.
 * `SystemKeyboardSpaceContent` has been renamed to `KeyboardButtonSpaceContent`.
 * `View.keyboardButtonStyle(...)` no longer has an `isPressed` parameter.
 * `View.systemKeyboardButtonStyle(...)` has been renamed to `.keyboardButtonStyle(...)`.

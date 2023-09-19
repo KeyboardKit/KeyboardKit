@@ -274,7 +274,7 @@ KeyboardKit is available under the MIT license.
 ### System Keyboard
 
 - ``SystemKeyboard``
-- ``SystemKeyboardButtonRowItem``
+- ``SystemKeyboardItem``
 
 ### Text
 

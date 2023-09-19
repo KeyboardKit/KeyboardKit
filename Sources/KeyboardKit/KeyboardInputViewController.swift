@@ -111,7 +111,13 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      main view, but you can override it to use a custom view.
      */
     open func viewWillSetupKeyboard() {
-        setup { SystemKeyboard(controller: $0) }
+        setup {
+            SystemKeyboard(
+                controller: $0,
+                buttonContent: { $1 },
+                buttonView: { $1 }
+            )
+        }
     }
 
     /**

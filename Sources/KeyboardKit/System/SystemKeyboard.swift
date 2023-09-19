@@ -11,91 +11,53 @@ import SwiftUI
 /**
  This keyboard can be used to create alphabetic, numeric and
  symbolic keyboards that mimic the native iOS keyboard.
-
+ 
+ The `buttonContent` and `buttonView` parameters can be used
+ to customize the content or the entire view of any keyboard
+ button. These functions are called for each layout item and
+ its default view, at which you can just return the standard
+ view with `{ item, view in view }` or `{ $1 }` or customize
+ it like this:
+ 
+ ```swift
+ SystemKeyboard(
+     controller: controller,
+     buttonContent: { item, view in
+         switch item.action {
+         case .backspace: Image(systemName: "trash")
+         default: view
+         }
+     },
+     buttonView: { item, view in
+         switch item.action {
+         case .space: Text("This is true, empty space")
+             .opacity(0)
+             .frame(maxWidth: .infinity)
+         default: view
+         }
+     }
+ )
+ ```
+ 
+ In the code above, the backspace content is replaced with a
+ trashbin and the entire spacebar is replaced by transparent
+ text that takes up as much space as needed.
+ 
  The keyboard will by default place an ``AutocompleteToolbar``
- above the keyboard, unless you tell it not to. It will also
- replace the keyboard with an ``EmojiCategoryKeyboard`` when
- an ``Keyboard/KeyboardType/emojis`` keyboard is selected.
-
- There are several ways to create a system keyboard. Use the
- initializers without view builders to use a standard button
- view for each layout item, the `buttonView` initializers to
- customize the full layout item view, and the `buttonContent`
- initializers to customize the button content of each layout
- item, while keeping the standard button shape and style.
-
- To use the standard button and content views for some items
- when using any of these custom button view builders, simply
- use the ``SystemKeyboardButtonRowItem`` view as button view
- and ``KeyboardButtonContent`` as button content.
+ topmost, unless you tell it not to. It will also overlay an
+ ``EmojiCategoryKeyboard`` over the entire keyboard view, if
+ ``KeyboardContext/keyboardType`` is currently set to use an
+ ``Keyboard/KeyboardType/emojis`` keyboard.
 
  Since the keyboard layout depends on the available keyboard
- width, you must provide this view with a width if you don't
- use the `controller`-based initializers.
+ width, you must pass in a `width`, if you don't want to use
+ the current controller's width.
  */
-public struct SystemKeyboard<ButtonView: View>: View {
-
-    /**
-     Create a system keyboard with standard buttons.
-
-     This initializer will use a standard button builder for
-     every layout item.
-
-     - Parameters:
-       - layout: The keyboard layout to use.
-       - actionHandler: The action handler to use.
-       - styleProvider: The style provider to use.
-       - autocompleteContext: The autocomplete context to use.
-       - autocompleteToolbar: The autocomplete toolbar mode to use.
-       - autocompleteToolbarAction: The action to trigger when tapping an autocomplete suggestion.
-       - keyboardContext: The keyboard context to use.
-       - calloutContext: The callout context to use.
-       - width: The keyboard width.
-       - renderBackground: Whether or not to render the background, by default `true`.
-     */
-    public init(
-        layout: KeyboardLayout,
-        actionHandler: KeyboardActionHandler,
-        styleProvider: KeyboardStyleProvider,
-        autocompleteContext: AutocompleteContext,
-        autocompleteToolbar: AutocompleteToolbarMode,
-        autocompleteToolbarAction: @escaping AutocompleteToolbarAction,
-        keyboardContext: KeyboardContext,
-        calloutContext: CalloutContext?,
-        width: CGFloat,
-        renderBackground: Bool = true
-    ) where ButtonView == SystemKeyboardButtonRowItem<KeyboardButtonContent> {
-        self.init(
-            layout: layout,
-            actionHandler: actionHandler,
-            styleProvider: styleProvider,
-            autocompleteContext: autocompleteContext,
-            autocompleteToolbar: autocompleteToolbar,
-            autocompleteToolbarAction: autocompleteToolbarAction,
-            keyboardContext: keyboardContext,
-            calloutContext: calloutContext,
-            width: width,
-            renderBackground: renderBackground,
-            buttonView: { item, keyboardWidth, inputWidth in
-                Self.standardButtonView(
-                    item: item,
-                    actionHandler: actionHandler,
-                    styleProvider: styleProvider,
-                    keyboardContext: keyboardContext,
-                    calloutContext: calloutContext,
-                    keyboardWidth: keyboardWidth,
-                    inputWidth: inputWidth
-                )
-            }
-        )
-    }
+public struct SystemKeyboard<ButtonContent: View, ButtonView: View>: View {
 
     /**
      Create a system keyboard with custom button views.
 
-     The provided `buttonView` builder will be used to build
-     the full button view for every layout item.
-
      - Parameters:
        - layout: The keyboard layout to use.
        - actionHandler: The action handler to use.
@@ -108,6 +70,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
        - renderBackground: Whether or not to render the background, by default `true`.
        - width: The keyboard width.
        - renderBackground: Whether or not to render the background, by default `true`.
+       - buttonContent: The keyboard button content view builder.
        - buttonView: The keyboard button view builder.
      */
     public init(
@@ -119,8 +82,9 @@ public struct SystemKeyboard<ButtonView: View>: View {
         autocompleteToolbarAction: @escaping AutocompleteToolbarAction,
         keyboardContext: KeyboardContext,
         calloutContext: CalloutContext?,
-        width: CGFloat,
+        width: KeyboardWidth,
         renderBackground: Bool = true,
+        @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder
     ) {
         self.layout = layout
@@ -131,6 +95,7 @@ public struct SystemKeyboard<ButtonView: View>: View {
         self.autocompleteToolbarAction = autocompleteToolbarAction
         self.keyboardWidth = width
         self.inputWidth = layout.inputWidth(for: width)
+        self.buttonContent = buttonContent
         self.buttonView = buttonView
         self.renderBackground = renderBackground
         _autocompleteContext = ObservedObject(wrappedValue: autocompleteContext)
@@ -139,74 +104,14 @@ public struct SystemKeyboard<ButtonView: View>: View {
         _actionCalloutContext = ObservedObject(wrappedValue: calloutContext?.actionContext ?? .disabled)
         _inputCalloutContext = ObservedObject(wrappedValue: calloutContext?.inputContext ?? .disabled)
     }
-
-    /**
-     Create a system keyboard with custom button content.
-
-     The provided `buttonContent` will be used to create the
-     button content for every layout item, while keeping the
-     overall shape and style.
-
-     - Parameters:
-       - layout: The keyboard layout to use.
-       - actionHandler: The action handler to use.
-       - styleProvider: The style provider to use.
-       - autocompleteContext: The autocomplete context to use.
-       - autocompleteToolbar: The autocomplete toolbar mode to use.
-       - autocompleteToolbarAction: The action to trigger when tapping an autocomplete suggestion.
-       - keyboardContext: The keyboard context to use.
-       - calloutContext: The callout context to use.
-       - renderBackground: Whether or not to render the background, by default `true`.
-       - width: The keyboard width.
-       - renderBackground: Whether or not to render the background, by default `true`.
-       - buttonContent: The keyboard button content builder.
-     */
-    public init<ButtonContentView: View>(
-        layout: KeyboardLayout,
-        actionHandler: KeyboardActionHandler,
-        styleProvider: KeyboardStyleProvider,
-        autocompleteContext: AutocompleteContext,
-        autocompleteToolbar: AutocompleteToolbarMode,
-        autocompleteToolbarAction: @escaping AutocompleteToolbarAction,
-        keyboardContext: KeyboardContext,
-        calloutContext: CalloutContext?,
-        width: CGFloat,
-        renderBackground: Bool = true,
-        @ViewBuilder buttonContent: @escaping (KeyboardLayoutItem) -> ButtonContentView
-    ) where ButtonView == SystemKeyboardButtonRowItem<ButtonContentView> {
-        self.init(
-            layout: layout,
-            actionHandler: actionHandler,
-            styleProvider: styleProvider,
-            autocompleteContext: autocompleteContext,
-            autocompleteToolbar: autocompleteToolbar,
-            autocompleteToolbarAction: autocompleteToolbarAction,
-            keyboardContext: keyboardContext,
-            calloutContext: calloutContext,
-            width: width,
-            renderBackground: renderBackground,
-            buttonView: { item, keyboardWidth, inputWidth in
-                SystemKeyboardButtonRowItem(
-                    content: buttonContent(item),
-                    item: item,
-                    actionHandler: actionHandler,
-                    styleProvider: styleProvider,
-                    keyboardContext: keyboardContext,
-                    calloutContext: calloutContext,
-                    keyboardWidth: keyboardWidth,
-                    inputWidth: inputWidth
-                )
-            }
-        )
-    }
-
+    
     #if os(iOS) || os(tvOS)
     /**
      Create a system keyboard with standard button views.
-
+     
      This initializer will use a standard button builder for
      every layout item.
-
+     
      - Parameters:
        - controller: The controller to use to resolve required properties.
        - autocompleteToolbar: The autocomplete toolbar mode, by default ``AutocompleteToolbarMode/automatic``.
@@ -219,8 +124,10 @@ public struct SystemKeyboard<ButtonView: View>: View {
         autocompleteToolbar: AutocompleteToolbarMode = .automatic,
         autocompleteToolbarAction: AutocompleteToolbarAction? = nil,
         width: CGFloat? = nil,
-        renderBackground: Bool = true
-    ) where ButtonView == SystemKeyboardButtonRowItem<KeyboardButtonContent> {
+        renderBackground: Bool = true,
+        @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
+        @ViewBuilder buttonView: @escaping ButtonViewBuilder
+    ) {
         self.init(
             layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
             actionHandler: controller.keyboardActionHandler,
@@ -233,86 +140,9 @@ public struct SystemKeyboard<ButtonView: View>: View {
             keyboardContext: controller.keyboardContext,
             calloutContext: controller.calloutContext,
             width: width ?? controller.view.frame.width,
-            renderBackground: renderBackground
-        )
-    }
-
-    /**
-     Create a system keyboard with custom button views.
-
-     The `buttonView` builder will be used to build the full
-     button view for every layout item.
-
-     - Parameters:
-       - controller: The controller to use to resolve required properties.
-       - autocompleteToolbar: The autocomplete toolbar mode, by default ``AutocompleteToolbarMode/automatic``.
-       - autocompleteToolbarAction: The action to trigger when tapping an autocomplete suggestion, by default ``KeyboardInputViewController/insertAutocompleteSuggestion(_:)``.
-       - width: The keyboard width, by default the width of the controller's view.
-       - renderBackground: Whether or not to render the background, by default `true`.
-       - buttonView: The keyboard button view builder.
-     */
-    public init(
-        controller: KeyboardInputViewController,
-        autocompleteToolbarMode: AutocompleteToolbarMode = .automatic,
-        autocompleteToolbarAction: AutocompleteToolbarAction? = nil,
-        width: CGFloat? = nil,
-        renderBackground: Bool = true,
-        @ViewBuilder buttonView: @escaping ButtonViewBuilder
-    ) {
-        self.init(
-            layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
-            actionHandler: controller.keyboardActionHandler,
-            styleProvider: controller.keyboardStyleProvider,
-            autocompleteContext: controller.autocompleteContext,
-            autocompleteToolbar: autocompleteToolbarMode,
-            autocompleteToolbarAction: autocompleteToolbarAction ?? { [weak controller] suggestion in
-                controller?.insertAutocompleteSuggestion(suggestion)
-            },
-            keyboardContext: controller.keyboardContext,
-            calloutContext: controller.calloutContext,
-            width: width ?? controller.view.frame.width,
             renderBackground: renderBackground,
+            buttonContent: buttonContent,
             buttonView: buttonView
-        )
-    }
-
-    /**
-     Create a system keyboard with custom button content.
-
-     The provided `buttonContent` will be used to create the
-     button content for every layout item, while keeping the
-     overall shape and style.
-
-     - Parameters:
-       - controller: The controller to use to resolve required properties.
-       - autocompleteToolbar: The autocomplete toolbar mode, by default ``AutocompleteToolbarMode/automatic``.
-       - autocompleteToolbarAction: The action to trigger when tapping an autocomplete suggestion, by default ``KeyboardInputViewController/insertAutocompleteSuggestion(_:)``.
-       - width: The keyboard width, by default the width of the controller's view.
-       - renderBackground: Whether or not to render the background, by default `true`.
-       - buttonContent: The keyboard button content builder.
-     */
-    public init<ButtonContentView: View>(
-        controller: KeyboardInputViewController,
-        autocompleteToolbarMode: AutocompleteToolbarMode = .automatic,
-        autocompleteToolbarAction: AutocompleteToolbarAction? = nil,
-        width: CGFloat? = nil,
-        renderBackground: Bool = true,
-        @ViewBuilder buttonContent: @escaping (KeyboardLayoutItem) -> ButtonContentView
-    ) where ButtonView == SystemKeyboardButtonRowItem<ButtonContentView> {
-        self.init(
-            layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
-            actionHandler: controller.keyboardActionHandler,
-            styleProvider: controller.keyboardStyleProvider,
-            autocompleteContext: controller.autocompleteContext,
-            autocompleteToolbar: autocompleteToolbarMode,
-            autocompleteToolbarAction: autocompleteToolbarAction ?? { [weak controller] suggestion in
-                controller?.insertAutocompleteSuggestion(suggestion)
-            },
-            keyboardContext: controller.keyboardContext,
-            calloutContext: controller.calloutContext,
-            width: width ?? controller.view.frame.width,
-            renderBackground: renderBackground,
-            buttonContent: buttonContent
         )
     }
     #endif
@@ -321,13 +151,15 @@ public struct SystemKeyboard<ButtonView: View>: View {
     private let styleProvider: KeyboardStyleProvider
     private let autocompleteToolbarMode: AutocompleteToolbarMode
     private let autocompleteToolbarAction: AutocompleteToolbarAction
-    private let buttonView: ButtonViewBuilder
     private let keyboardWidth: CGFloat
     private let inputWidth: CGFloat
     private let renderBackground: Bool
     private let layout: KeyboardLayout
     private let layoutConfig: KeyboardLayoutConfiguration
-
+    
+    private let buttonContent: ButtonContentBuilder
+    private let buttonView: ButtonViewBuilder
+    
     public enum AutocompleteToolbarMode {
 
         /// Show the autocomplete toolbar if the keyboard context prefers it.
@@ -337,8 +169,10 @@ public struct SystemKeyboard<ButtonView: View>: View {
         case none
     }
 
+    public typealias ButtonContentBuilder = (KeyboardLayoutItem, _ standard: KeyboardButtonContent) -> ButtonContent
+    public typealias ButtonViewBuilder = (KeyboardLayoutItem, _ standard: SystemKeyboardItem<ButtonContent>) -> ButtonView
+    
     public typealias AutocompleteToolbarAction = (AutocompleteSuggestion) -> Void
-    public typealias ButtonViewBuilder = (KeyboardLayoutItem, KeyboardWidth, KeyboardItemWidth) -> ButtonView
     public typealias KeyboardWidth = CGFloat
     public typealias KeyboardItemWidth = CGFloat
 
@@ -449,49 +283,40 @@ private extension SystemKeyboard {
     }
 }
 
-public extension SystemKeyboard {
-
-    /**
-     The standard ``KeyboardButtonContent`` view, that
-     will be used as button content for every layout item.
-     */
-    static func standardButtonContent(
-        item: KeyboardLayoutItem,
-        styleProvider: KeyboardStyleProvider,
-        keyboardContext: KeyboardContext
-    ) -> KeyboardButtonContent {
-        KeyboardButtonContent(
-            action: item.action,
-            styleProvider: styleProvider,
-            keyboardContext: keyboardContext
+private extension SystemKeyboard {
+    
+    func buttonContent(
+        for item: KeyboardLayoutItem
+    ) -> ButtonContent {
+        buttonContent(
+            item,
+            KeyboardButtonContent(
+                action: item.action,
+                styleProvider: styleProvider,
+                keyboardContext: keyboardContext
+            )
         )
     }
 
     /**
-     The standard ``SystemKeyboardButtonRowItem`` view, that
+     The standard ``SystemKeyboardItem`` view, that
      will be used as button view for every layout item.
      */
-    static func standardButtonView(
-        item: KeyboardLayoutItem,
-        actionHandler: KeyboardActionHandler,
-        styleProvider: KeyboardStyleProvider,
-        keyboardContext: KeyboardContext,
-        calloutContext: CalloutContext?,
-        keyboardWidth: KeyboardWidth,
-        inputWidth: KeyboardItemWidth
-    ) -> SystemKeyboardButtonRowItem<KeyboardButtonContent> {
-        SystemKeyboardButtonRowItem(
-            content: standardButtonContent(
+    func buttonView(
+        for item: KeyboardLayoutItem
+    ) -> ButtonView {
+        buttonView(
+            item,
+            SystemKeyboardItem(
                 item: item,
+                actionHandler: actionHandler,
                 styleProvider: styleProvider,
-                keyboardContext: keyboardContext),
-            item: item,
-            actionHandler: actionHandler,
-            styleProvider: styleProvider,
-            keyboardContext: keyboardContext,
-            calloutContext: calloutContext,
-            keyboardWidth: keyboardWidth,
-            inputWidth: inputWidth
+                keyboardContext: keyboardContext,
+                calloutContext: calloutContext,
+                keyboardWidth: keyboardWidth,
+                inputWidth: inputWidth,
+                content: buttonContent(for: item)
+            )
         )
     }
 }
@@ -501,7 +326,7 @@ private extension SystemKeyboard {
     func items(for layout: KeyboardLayout, itemRow: KeyboardLayoutItem.Row) -> some View {
         HStack(spacing: 0) {
             ForEach(Array(itemRow.enumerated()), id: \.offset) {
-                buttonView($0.element, keyboardWidth, inputWidth)
+                buttonView(for: $0.element)
             }.id(keyboardContext.locale.identifier)
         }
     }
@@ -522,72 +347,38 @@ struct SystemKeyboard_Previews: PreviewProvider {
             return controller
         }()
 
-        @ViewBuilder
-        func previewButton(
-            item: KeyboardLayoutItem,
-            keyboardWidth: CGFloat,
-            inputWidth: CGFloat
-        ) -> some View {
-            switch item.action {
-            case .space:
-                Text("This is a space bar replacement")
-                    .frame(maxWidth: .infinity)
-                    .multilineTextAlignment(.center)
-            default:
-                SystemKeyboardButtonRowItem(
-                    content: previewButtonContent(item: item),
-                    item: item,
-                    actionHandler: .preview,
-                    styleProvider: controller.keyboardStyleProvider,
-                    keyboardContext: controller.keyboardContext,
-                    calloutContext: controller.calloutContext,
-                    keyboardWidth: keyboardWidth,
-                    inputWidth: inputWidth
-                )
-            }
-        }
-
-        @ViewBuilder
-        func previewButtonContent(
-            item: KeyboardLayoutItem
-        ) -> some View {
-            switch item.action {
-            case .backspace:
-                Image(systemName: "trash").foregroundColor(Color.red)
-            default:
-                KeyboardButtonContent(
-                    action: item.action,
-                    styleProvider: .preview,
-                    keyboardContext: controller.keyboardContext
-                )
-            }
-        }
-
         var body: some View {
             VStack(spacing: 10) {
                 Group {
-                    // A standard system keyboard
                     SystemKeyboard(
                         controller: controller,
-                        width: UIScreen.main.bounds.width)
-
-
-                    // A keyboard that replaces the button content
+                        buttonContent: { $1 },
+                        buttonView: { $1 }
+                    )
+                    
                     SystemKeyboard(
                         controller: controller,
-                        width: UIScreen.main.bounds.width,
-                        buttonContent: previewButtonContent)
-
-                    // A keyboard that replaces entire button views
-                    SystemKeyboard(
-                        controller: controller,
-                        width: UIScreen.main.bounds.width,
-                        buttonView: previewButton)
+                        buttonContent: {
+                            switch $0.action {
+                            case .backspace:
+                                Image(systemName: "trash").foregroundColor(Color.red)
+                            default: $1
+                            }
+                        },
+                        buttonView: {
+                            switch $0.action {
+                            case .space:
+                                Text("This is a space bar replacement")
+                                    .frame(maxWidth: .infinity)
+                                    .multilineTextAlignment(.center)
+                            default: $1
+                            }
+                        }
+                    )
                 }.background(Color.standardKeyboardBackground)
             }
         }
     }
-
 
     static var previews: some View {
         Preview()
