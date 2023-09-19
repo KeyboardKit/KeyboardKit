@@ -13,11 +13,11 @@ class MockAutocompleteProvider: AutocompleteProvider {
     
     var locale: Locale = .current
     
-    var autocompleteSuggestions = [AutocompleteSuggestion]()
+    var autocompleteSuggestions = [Autocomplete.Suggestion]()
     
     func autocompleteSuggestions(
         for text: String
-    ) async throws -> [AutocompleteSuggestion] {
+    ) async throws -> [Autocomplete.Suggestion] {
         autocompleteSuggestions
     }
     

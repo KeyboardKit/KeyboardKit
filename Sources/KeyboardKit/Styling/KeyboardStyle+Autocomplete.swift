@@ -14,7 +14,7 @@ import SwiftUI
 public extension KeyboardStyle {
     
     /**
-     This style can style ``AutocompleteToolbar`` views.
+     This style can style ``Autocomplete/Toolbar`` views.
      
      The ``standard`` style value can be used to get and set
      the global default style.
@@ -56,7 +56,7 @@ public extension KeyboardStyle {
     }
     
     /**
-     This style can style ``AutocompleteToolbarItem`` views.
+     This style can style ``Autocomplete/ToolbarItem`` views.
      
      The ``standard`` style value can be used to get and set
      the global default style.
@@ -98,7 +98,7 @@ public extension KeyboardStyle {
     }
     
     /**
-     This style can style ``AutocompleteToolbarItem`` views.
+     This style can style ``Autocomplete/ToolbarItem`` views.
      
      The ``standard`` style value can be used to get and set
      the global default style.
@@ -128,8 +128,7 @@ public extension KeyboardStyle {
     }
     
     /**
-     This style can be used to style the color and size when
-     rendering a ``AutocompleteToolbarSeparator`` views.
+     This style can style ``Autocomplete/ToolbarSeparator``s.
      
      The ``standard`` style value can be used to get and set
      the global default style.

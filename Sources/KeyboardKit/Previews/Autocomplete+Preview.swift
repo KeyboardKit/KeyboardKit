@@ -27,7 +27,7 @@ public extension AutocompleteProvider where Self == PreviewAutocompleteProvider 
 
     /// This provider can be used in SwiftUI previews.
     static func preview(
-        suggestions: [AutocompleteSuggestion] = .preview
+        suggestions: [Autocomplete.Suggestion] = .preview
     ) -> AutocompleteProvider {
         PreviewAutocompleteProvider(suggestions: suggestions)
     }
@@ -37,17 +37,17 @@ public extension AutocompleteProvider where Self == PreviewAutocompleteProvider 
 public class PreviewAutocompleteProvider: AutocompleteProvider {
 
     public init(
-        suggestions: [AutocompleteSuggestion]
+        suggestions: [Autocomplete.Suggestion]
     ) {
         self.suggestions = suggestions
     }
     
     public var locale: Locale = .current
-    public let suggestions: [AutocompleteSuggestion]
+    public let suggestions: [Autocomplete.Suggestion]
 
     public func autocompleteSuggestions(
         for text: String
-    ) async throws -> [AutocompleteSuggestion] {
+    ) async throws -> [Autocomplete.Suggestion] {
         suggestions
     }
     
@@ -64,10 +64,10 @@ public class PreviewAutocompleteProvider: AutocompleteProvider {
     public func unlearnWord(_ word: String) {}
 }
 
-public extension Collection where Element == AutocompleteSuggestion {
+public extension Collection where Element == Autocomplete.Suggestion {
     
     /// These suggestions can be used in SwiftUI previews.
-    static var preview: [AutocompleteSuggestion] {
+    static var preview: [Autocomplete.Suggestion] {
         [
             .init(text: "One", isUnknown: true),
             .init(text: "Two", isAutocorrect: true),

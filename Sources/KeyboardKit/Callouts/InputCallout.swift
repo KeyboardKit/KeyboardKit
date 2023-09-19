@@ -20,7 +20,7 @@ public struct InputCallout: View {
      - Parameters:
        - calloutContext: The callout context to use.
        - keyboardContext: The keyboard context to use.
-       - style: The style to apply to the view, by default `.standard`.
+       - style: The style to apply to the view, by default ``KeyboardStyle/InputCallout/standard``.
      */
     public init(
         calloutContext: Context,
@@ -200,7 +200,7 @@ struct InputCallout_Previews: PreviewProvider {
                     context.reset()
                 }
             }
-            .keyboardInputCallout(
+            .keyboardInputCalloutContainer(
                 calloutContext: context,
                 keyboardContext: .preview
             )

@@ -9,6 +9,34 @@
 import SwiftUI
 
 public extension View {
+    
+    /**
+     Apply a keyboard action and input callout to the view.
+
+     - Parameters:
+       - calloutContext: The callout context to use.
+       - keyboardContext: The keyboard context to use.
+       - actionCalloutStyle: The action callout style to apply, by default ``KeyboardStyle/ActionCallout/standard``.
+       - inputCalloutStyle: The action callout style to apply, by default ``KeyboardStyle/ActionCallout/standard``.
+     */
+    func keyboardCalloutContainer(
+        calloutContext: CalloutContext,
+        keyboardContext: KeyboardContext,
+        actionCalloutStyle: KeyboardStyle.ActionCallout = .standard,
+        inputCalloutStyle: KeyboardStyle.InputCallout = .standard
+    ) -> some View {
+        self
+            .keyboardActionCalloutContainer(
+                calloutContext: calloutContext.actionContext,
+                keyboardContext: keyboardContext,
+                style: actionCalloutStyle
+            )
+            .keyboardInputCalloutContainer(
+                calloutContext: calloutContext.inputContext,
+                keyboardContext: keyboardContext,
+                style: inputCalloutStyle
+            )
+    }
 
     /**
      Apply a keyboard action callout to the view.
@@ -16,21 +44,18 @@ public extension View {
      - Parameters:
        - calloutContext: The callout context to use.
        - keyboardContext: The keyboard context to use.
-       - style: The style to apply to the view, by default `.standard`.
-       - emojiKeyboardStyle: The emoji keyboard style to use, by default ``EmojiKeyboardStyle/standardPhonePortrait``.
+       - style: The style to apply, by default ``KeyboardStyle/ActionCallout/standard``.
      */
-    func keyboardActionCallout(
+    func keyboardActionCalloutContainer(
         calloutContext: ActionCallout.Context,
         keyboardContext: KeyboardContext,
-        style: KeyboardStyle.ActionCallout = .standard,
-        emojiKeyboardStyle: EmojiKeyboardStyle = .standardPhonePortrait
+        style: KeyboardStyle.ActionCallout = .standard
     ) -> some View {
         self.overlay(
             ActionCallout(
                 calloutContext: calloutContext,
                 keyboardContext: keyboardContext,
-                style: style,
-                emojiKeyboardStyle: emojiKeyboardStyle
+                style: style
             )
         ).coordinateSpace(name: ActionCallout.coordinateSpace)
     }
@@ -54,9 +79,9 @@ public extension View {
      - Parameters:
        - calloutContext: The callout context to use.
        - keyboardContext: The keyboard context to use.
-       - style: The style to apply, by default `.standard`.
+       - style: The style to apply, by default ``KeyboardStyle/InputCallout/standard``.
      */
-    func keyboardInputCallout(
+    func keyboardInputCalloutContainer(
         calloutContext: InputCallout.Context,
         keyboardContext: KeyboardContext,
         style: KeyboardStyle.InputCallout = .standard

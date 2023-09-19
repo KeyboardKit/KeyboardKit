@@ -34,7 +34,7 @@ public class AutocompleteContext: ObservableObject {
     
     /// The last received autocomplete suggestions.
     @Published
-    public var suggestions: [AutocompleteSuggestion] = []
+    public var suggestions: [Autocomplete.Suggestion] = []
 
 
     /// Reset the autocomplete contexts.

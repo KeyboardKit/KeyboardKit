@@ -1,5 +1,5 @@
 //
-//  View+KeyboardButton.swift
+//  View+Buttons.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-06-24.

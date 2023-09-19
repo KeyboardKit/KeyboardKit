@@ -12,20 +12,17 @@ import Foundation
  This protocol can be implemented by any classes that can be
  used to give autocomplete suggestions as the user types.
 
- Simply call ``autocompleteSuggestions(for:completion:)`` to
- get autocomplete suggestions based on the provided text.
+ Simply call ``autocompleteSuggestions(for:)`` to perform an
+ autocomplete operation that returns suggestions for a text.
 
  KeyboardKit doesn't have a standard provider as it does for
- other services. You must either implement a custom provider
- or use KeyboardKit Pro.
+ other services. Instead, the ``DisabledAutocompleteProvider``
+ will be used until you register a real one.
  
- KeyboardKit Pro unlocks two autocomplete providers when you
- register your license key. `LocalAutocompleteProvider` runs
- locally on the device and supports most ``KeyboardLocale``s,
- while `RemoteAutocompleteProvider` can be configured to use
- any remote autocomplete API.
- 
- > v8.0: This protocol will be made async in KeyboardKit 8.0.
+ KeyboardKit Pro will unlock two providers when you register
+ a valid license key. LocalAutocompleteProvider runs locally
+ on device, while RemoteAutocompleteProvider can communicate
+ with remote, REST-based APIs.
  */
 public protocol AutocompleteProvider: AnyObject {
 
@@ -36,7 +33,7 @@ public protocol AutocompleteProvider: AnyObject {
     /// Get autocomplete suggestions for the provided `text`.
     func autocompleteSuggestions(
         for text: String
-    ) async throws -> [AutocompleteSuggestion]
+    ) async throws -> [Autocomplete.Suggestion]
 
 
     /// Whether or not the provider can ignore words.

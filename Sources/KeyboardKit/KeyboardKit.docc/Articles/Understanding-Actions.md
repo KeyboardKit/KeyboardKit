@@ -1,4 +1,4 @@
-# Actions
+# Understanding Actions
 
 This article describes the KeyboardKit action engine.
 

@@ -37,7 +37,7 @@ class FakeAutocompleteProvider: AutocompleteProvider {
     
     func autocompleteSuggestions(
         for text: String
-    ) async throws -> [AutocompleteSuggestion] {
+    ) async throws -> [Autocomplete.Suggestion] {
         guard text.count > 0 else { return [] }
         if text == match {
             return matchSuggestions()
@@ -49,23 +49,23 @@ class FakeAutocompleteProvider: AutocompleteProvider {
 
 private extension FakeAutocompleteProvider {
     
-    func fakeSuggestions(for text: String) -> [AutocompleteSuggestion] {
+    func fakeSuggestions(for text: String) -> [Autocomplete.Suggestion] {
         [
-            AutocompleteSuggestion(text: text + "-1"),
-            AutocompleteSuggestion(text: text + "-2", subtitle: "Subtitle"),
-            AutocompleteSuggestion(text: text + "-3")
+            .init(text: text + "-1"),
+            .init(text: text + "-2", subtitle: "Subtitle"),
+            .init(text: text + "-3")
         ]
     }
     
-    func fakeSuggestion(_ text: String, _ subtitle: String? = nil) -> AutocompleteSuggestion {
-        AutocompleteSuggestion(text: text, subtitle: subtitle)
+    func fakeSuggestion(_ text: String, _ subtitle: String? = nil) -> Autocomplete.Suggestion {
+        .init(text: text, subtitle: subtitle)
     }
 
-    func matchSuggestions() -> [AutocompleteSuggestion] {
+    func matchSuggestions() -> [Autocomplete.Suggestion] {
         [
-            AutocompleteSuggestion(text: match, isUnknown: true),
-            AutocompleteSuggestion(text: match, isAutocorrect: true),
-            AutocompleteSuggestion(text: match),
+            .init(text: match, isUnknown: true),
+            .init(text: match, isAutocorrect: true),
+            .init(text: match),
         ]
     }
 }

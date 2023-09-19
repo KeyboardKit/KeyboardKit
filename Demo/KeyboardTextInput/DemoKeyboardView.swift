@@ -47,7 +47,9 @@ struct DemoKeyboardView: View {
 
             SystemKeyboard(
                 controller: controller,
-                autocompleteToolbar: .none
+                autocompleteToolbar: .none,
+                buttonContent: { $1 },
+                buttonView: { $1 }
             )
         }.buttonStyle(.plain)
     }

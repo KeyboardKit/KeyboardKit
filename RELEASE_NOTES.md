@@ -26,6 +26,7 @@ You must either implement the English services yourself, or get them from the Pr
 * `KeyboardLayoutItem` has a new `width(forRowWidth:inputWidth:)` function.
 * `SystemKeyboard` has new initializers that make it much easier to customize the content and view of its keys.
 * `View.keyboardButton` is a new view extension that applies both a style and gestures.
+* `View.keyboardCalloutContainer` is a new view extension that applies both input and action callout container modifiers to the view. 
 * `View.keyboardLayoutItemSize` is a new view extension that applies a layout-specific size and insets to the view. 
 
 ### 💡 Adjustments
@@ -46,7 +47,9 @@ You must either implement the English services yourself, or get them from the Pr
 ### 💥 Breaking changes 
 
 * All deprecated code has been removed or addressed.
+* Many types have been moved into a new `Autocomplete` namespace.
 
+* `Autocomplete.ToolbarItemSubtitle` is now initialized with a suggestion.
 * `DisabledCalloutActionProvider` has been removed.
 * `EnglishCalloutActionProvider` has been removed.
 * `KeyboardLayoutItem` `insets` has been renamed to `edgeInsets`.
@@ -60,5 +63,7 @@ You must either implement the English services yourself, or get them from the Pr
 * `SystemKeyboardButtonRowItem` has been renamed to `SystemKeyboardItem`.
 * `SystemKeyboardItem` can no longer be initialized outside the library.
 * `SystemKeyboardSpaceContent` has been renamed to `KeyboardButtonSpaceContent`.
+* `View.actionCallout(...)` has been renamed to `View.actionCalloutContainer(...)`.
+* `View.inputCallout(...)` has been renamed to `View.inputCalloutContainer(...)`.
 * `View.keyboardButtonStyle(...)` no longer has an `isPressed` parameter.
 * `View.systemKeyboardButtonStyle(...)` has been renamed to `.keyboardButtonStyle(...)`.

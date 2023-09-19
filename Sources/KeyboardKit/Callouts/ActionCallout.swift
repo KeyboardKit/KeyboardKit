@@ -20,19 +20,16 @@ public struct ActionCallout: View {
      - Parameters:
        - calloutContext: The callout context to use.
        - keyboardContext: The keyboard context to use.
-       - style: The style to apply to the view, by default `.standard`.
-       - emojiKeyboardStyle: The emoji keyboard style to use, by default ``EmojiKeyboardStyle/standardPhonePortrait``.
+       - style: The style to apply to the view, by default ``KeyboardStyle/ActionCallout/standard``.
      */
     public init(
         calloutContext: Context,
         keyboardContext: KeyboardContext,
-        style: Style = .standard,
-        emojiKeyboardStyle: EmojiKeyboardStyle = .standardPhonePortrait
+        style: Style = .standard
     ) {
         self._calloutContext = ObservedObject(wrappedValue: calloutContext)
         self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
         self.style = style
-        self.emojiKeyboardStyle = emojiKeyboardStyle
     }
     
     public typealias Context = CalloutContext.ActionContext
@@ -47,7 +44,6 @@ public struct ActionCallout: View {
     private var keyboardContext: KeyboardContext
     
     private let style: Style
-    private let emojiKeyboardStyle: EmojiKeyboardStyle
     
     public var body: some View {
         Button(action: calloutContext.reset) {
@@ -218,11 +214,11 @@ struct ActionCallout_Previews: PreviewProvider {
                 }
             }
         )
-        .keyboardActionCallout(
+        .keyboardActionCalloutContainer(
             calloutContext: actionContext,
             keyboardContext: keyboardContext,
-            style: .standard,
-            emojiKeyboardStyle: .standard(for: keyboardContext))
+            style: .standard
+        )
     }
     
     static var previews: some View {

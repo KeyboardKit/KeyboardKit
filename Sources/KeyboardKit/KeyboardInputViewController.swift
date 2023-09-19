@@ -457,7 +457,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      in the text document proxy, and then triggers a release
      in the keyboard action handler.
      */
-    open func insertAutocompleteSuggestion(_ suggestion: AutocompleteSuggestion) {
+    open func insertAutocompleteSuggestion(_ suggestion: Autocomplete.Suggestion) {
         textDocumentProxy.insertAutocompleteSuggestion(suggestion)
         keyboardActionHandler.handle(.release, on: .character(""))
     }
@@ -593,7 +593,7 @@ private extension KeyboardInputViewController {
     }
     
     /// Update the autocomplete context with new suggestions.
-    func updateAutocompleteContext(with result: [AutocompleteSuggestion]) {
+    func updateAutocompleteContext(with result: [Autocomplete.Suggestion]) {
         DispatchQueue.main.async { [weak self] in
             self?.autocompleteContext.suggestions = result
         }

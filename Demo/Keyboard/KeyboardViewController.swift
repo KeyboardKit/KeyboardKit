@@ -107,6 +107,12 @@ class KeyboardViewController: KeyboardInputViewController {
         ///
         /// KeyboardKit will use `SystemKeyboard` by default,
         /// so you actually only need this for custom views.
-        setup { SystemKeyboard(controller: $0) }
+        setup {
+            SystemKeyboard(
+                controller: $0,
+                buttonContent: { $1 },
+                buttonView: { $1 }
+            )
+        }
     }
 }

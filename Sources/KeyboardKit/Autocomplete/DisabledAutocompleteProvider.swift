@@ -19,7 +19,7 @@ public class DisabledAutocompleteProvider: AutocompleteProvider {
     
     public func autocompleteSuggestions(
         for text: String
-    ) async throws -> [AutocompleteSuggestion] {
+    ) async throws -> [Autocomplete.Suggestion] {
         []
     }
     

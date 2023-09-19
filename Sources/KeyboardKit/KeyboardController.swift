@@ -35,7 +35,7 @@ public protocol KeyboardController: AnyObject {
     func dismissKeyboard()
 
     /// Insert the provided autocomplete suggestion.
-    func insertAutocompleteSuggestion(_ suggestion: AutocompleteSuggestion)
+    func insertAutocompleteSuggestion(_ suggestion: Autocomplete.Suggestion)
 
     /// Insert the provided text.
     func insertText(_ text: String)

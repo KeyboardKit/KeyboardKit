@@ -16,11 +16,11 @@ class UITextDocumentProxy_AutocompleteTests: XCTestCase {
     var proxy: MockTextDocumentProxy!
 
     let word = "REPLACE"
-    var suggestion: AutocompleteSuggestion!
+    var suggestion: Autocomplete.Suggestion!
 
     override func setUp() {
         proxy = MockTextDocumentProxy()
-        suggestion = AutocompleteSuggestion(text: word)
+        suggestion = .init(text: word)
     }
 
     func setupProxy(_ before: String, _ after: String) {

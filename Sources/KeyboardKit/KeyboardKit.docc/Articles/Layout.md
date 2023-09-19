@@ -41,10 +41,8 @@ You can replace this provider with a custom one, or inject locale-specific provi
 
 To customize the ``StandardKeyboardLayoutProvider``, you can:
 
-* Add more localized providers to the provider instance. 
-* Inherit ``StandardKeyboardLayoutProvider`` and override ``StandardKeyboardLayoutProvider/keyboardLayout(for:)``.
-* Create a new ``StandardKeyboardLayoutProvider`` instance and inject a custom ``StandardKeyboardLayoutProvider/iPadProvider``.
-* Create a new ``StandardKeyboardLayoutProvider`` instance and inject a custom ``StandardKeyboardLayoutProvider/iPhoneProvider``.
+* Add more localized providers to a ``StandardKeyboardLayoutProvider`` instance. 
+* Inherit ``StandardKeyboardLayoutProvider`` and override its various functions.
 
 You can also create a completely custom ``KeyboardLayoutProvider`` implementation.
 

@@ -43,7 +43,7 @@ You can replace this provider with a custom one, or inject locale-specific provi
 
 To customize the ``StandardCalloutActionProvider``, you can:
 
-* Add more localized providers to the provider instance. 
+* Add more localized providers to a ``StandardCalloutActionProvider`` instance. 
 * Inherit ``StandardCalloutActionProvider`` and override its various functions.
 
 You can also create a completely custom ``CalloutActionProvider`` implementation.

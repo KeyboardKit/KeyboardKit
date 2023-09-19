@@ -21,10 +21,9 @@ import UIKit
  Note that you can use bundle id wildcards, which means that
  you can inspect multiple keyboards with a single id.
  
- The easiest way to observe a keyboard extension state is to
- use a ``KeyboardEnabledState`` which is an observable class
- that implements the protocol with published properties that
- let you easily observe any state changes.
+ The easiest way to observe a keyboard's enabled state is to
+ use ``KeyboardEnabledContext``. It has published
+ that let you easily observe any state changes.
 
  This protocol is implemented by the `UIInputViewController`
  base class in `UIKit`.

@@ -1,5 +1,5 @@
 //
-//  AutocompleteToolbar.swift
+//  Autocomplete+Toolbar.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-09-13.
@@ -8,95 +8,90 @@
 
 import SwiftUI
 
-/**
- This toolbar can be used to present autocomplete items with
- separator lines between the buttons.
- 
- You can customize the item and separator views by providing
- custom `itemView` and/or `separatorView` functions. You can
- also customize the `suggestionAction`.
- 
- Note that the views that are returned by `itemView` will be
- nested in a button that triggers the provided `action`. The
- `itemView` should therefore only return a view, not buttons.
- 
- > v8.0: This will be converted to a namespace, with all the
- toolbar types nested within it. The view will be renamed to
- `AutocompleteToolbar.Toolbar`.
- */
-public struct AutocompleteToolbar<ItemView: View, SeparatorView: View>: View {
+public extension Autocomplete {
     
     /**
-     Create an autocomplete toolbar.
-
-     - Parameters:
-       - suggestions: The list of suggestions to display.
-       - locale: The locale to use, by default `.current`.
-       - style: The style to apply, by default `.standard`.
-       - itemView: The function to use to build a view for each suggestion.
-       - separatorView: The function to use to build a view for each separator.
-       - suggestionAction: The action to use when tapping a suggestion.
+     This toolbar presents autocomplete suggestions as items,
+     with separators between the items.
+     
+     You can customize the item and separator views with the
+     `itemView` and/or `separatorView` view builders.
      */
-    public init(
-        suggestions: [AutocompleteSuggestion],
-        locale: Locale = .current,
-        style: Style = .standard,
-        itemView: @escaping ItemViewBuilder,
-        separatorView: @escaping SeparatorViewBuilder,
-        suggestionAction: @escaping SuggestionAction
-    ) {
-        self.items = suggestions.map { BarItem($0) }
-        self.itemView = itemView
-        self.locale = locale
-        self.style = style
-        self.separatorView = separatorView
-        self.suggestionAction = suggestionAction
-    }
-    
-    public typealias Style = KeyboardStyle.AutocompleteToolbar
-    
-    private let items: [BarItem]
-    private let locale: Locale
-    private let style: Style
-    private let suggestionAction: SuggestionAction
-    private let itemView: ItemViewBuilder
-    private let separatorView: SeparatorViewBuilder
-
-
-    /// A typealias for an action to trigger for suggestions.
-    public typealias SuggestionAction = (AutocompleteSuggestion) -> Void
-    
-    /// This view builder is used to build toolbar items.
-    public typealias ItemViewBuilder = (AutocompleteSuggestion, Style, Locale) -> ItemView
-    
-    /// This view builder is used to build item separators.
-    public typealias SeparatorViewBuilder = (AutocompleteSuggestion, Style) -> SeparatorView
-    
-    /// This internal struct is used to wrap item data.
-    struct BarItem: Identifiable {
+    struct Toolbar<ItemView: View, SeparatorView: View>: View {
         
-        init(_ suggestion: AutocompleteSuggestion) {
-            self.suggestion = suggestion
+        /**
+         Create an autocomplete toolbar.
+         
+         - Parameters:
+           - suggestions: The list of suggestions to display.
+           - locale: The locale to use, by default `.current`.
+           - style: The style to apply, by default `.standard`.
+           - itemView: The function to use to build a view for each suggestion.
+           - separatorView: The function to use to build a view for each separator.
+           - suggestionAction: The action to use when tapping a suggestion.
+         */
+        public init(
+            suggestions: [Autocomplete.Suggestion],
+            locale: Locale = .current,
+            style: Style = .standard,
+            itemView: @escaping ItemViewBuilder,
+            separatorView: @escaping SeparatorViewBuilder,
+            suggestionAction: @escaping SuggestionAction
+        ) {
+            self.items = suggestions.map { BarItem($0) }
+            self.itemView = itemView
+            self.locale = locale
+            self.style = style
+            self.separatorView = separatorView
+            self.suggestionAction = suggestionAction
         }
         
-        public let id = UUID()
-        public let suggestion: AutocompleteSuggestion
-    }
-    
-
-    public var body: some View {
-        HStack {
-            ForEach(items) { item in
-                itemButton(for: item.suggestion)
-                if useSeparator(for: item) {
-                    separatorView(item.suggestion, style)
-                }
+        public typealias Item = Autocomplete.ToolbarItem
+        public typealias Separator = Autocomplete.ToolbarSeparator
+        public typealias Style = KeyboardStyle.AutocompleteToolbar
+        public typealias Suggestion = Autocomplete.Suggestion
+        
+        private let items: [BarItem]
+        private let locale: Locale
+        private let style: Style
+        private let suggestionAction: SuggestionAction
+        private let itemView: ItemViewBuilder
+        private let separatorView: SeparatorViewBuilder
+        
+        /// This is a typealias for a suggestion tap action.
+        public typealias SuggestionAction = (Suggestion) -> Void
+        
+        /// This view builder is used to build toolbar items.
+        public typealias ItemViewBuilder = (Suggestion, Style, Locale) -> ItemView
+        
+        /// This view builder is used to build item separators.
+        public typealias SeparatorViewBuilder = (Suggestion, Style) -> SeparatorView
+        
+        /// This internal struct is used to wrap item data.
+        struct BarItem: Identifiable {
+            
+            init(_ suggestion: Suggestion) {
+                self.suggestion = suggestion
             }
-        }.frame(height: style.height)
+            
+            public let id = UUID()
+            public let suggestion: Suggestion
+        }
+        
+        public var body: some View {
+            HStack {
+                ForEach(items) { item in
+                    itemButton(for: item.suggestion)
+                    if useSeparator(for: item) {
+                        separatorView(item.suggestion, style)
+                    }
+                }
+            }.frame(height: style.height)
+        }
     }
 }
 
-public extension AutocompleteToolbar where ItemView == AutocompleteToolbarItem {
+public extension Autocomplete.Toolbar where ItemView == Item {
     
     /**
      Create an autocomplete toolbar with standard item views.
@@ -109,7 +104,7 @@ public extension AutocompleteToolbar where ItemView == AutocompleteToolbarItem {
        - suggestionAction: The action to use when tapping a suggestion.
      */
     init(
-        suggestions: [AutocompleteSuggestion],
+        suggestions: [Suggestion],
         locale: Locale = .current,
         style: Style = .standard,
         separatorView: @escaping SeparatorViewBuilder,
@@ -127,11 +122,11 @@ public extension AutocompleteToolbar where ItemView == AutocompleteToolbarItem {
      The standard function to use to build suggestion items.
      */
     static func standardItemView(
-        suggestion: AutocompleteSuggestion,
+        suggestion: Suggestion,
         style: Style,
         locale: Locale
-    ) -> AutocompleteToolbarItem {
-        AutocompleteToolbarItem(
+    ) -> Autocomplete.ToolbarItem {
+        .init(
             suggestion: suggestion,
             locale: locale,
             style: style.item
@@ -139,7 +134,7 @@ public extension AutocompleteToolbar where ItemView == AutocompleteToolbarItem {
     }
 }
 
-public extension AutocompleteToolbar where SeparatorView == AutocompleteToolbarSeparator {
+public extension Autocomplete.Toolbar where SeparatorView == Separator {
     
     /**
      Create an autocomplete toolbar with standard separators.
@@ -152,7 +147,7 @@ public extension AutocompleteToolbar where SeparatorView == AutocompleteToolbarS
        - suggestionAction: The action to use when tapping a suggestion. By default, the static `standardReplacementAction` will be used.
      */
     init(
-        suggestions: [AutocompleteSuggestion],
+        suggestions: [Suggestion],
         locale: Locale = .current,
         style: Style = .standard,
         itemView: @escaping ItemViewBuilder,
@@ -170,14 +165,14 @@ public extension AutocompleteToolbar where SeparatorView == AutocompleteToolbarS
      The standard function to use to build separator views.
      */
     static func standardSeparatorView(
-        suggestion: AutocompleteSuggestion,
+        suggestion: Suggestion,
         style: Style
-    ) -> AutocompleteToolbarSeparator {
-        AutocompleteToolbarSeparator(style: style.separator)
+    ) -> Separator {
+        .init(style: style.separator)
     }
 }
 
-public extension AutocompleteToolbar where ItemView == AutocompleteToolbarItem, SeparatorView == AutocompleteToolbarSeparator {
+public extension Autocomplete.Toolbar where ItemView == Item, SeparatorView == Separator {
     
     /**
      Create an autocomplete toolbar with standard item views
@@ -191,7 +186,7 @@ public extension AutocompleteToolbar where ItemView == AutocompleteToolbarItem, 
        - action: The action to use when tapping a suggestion.
      */
     init(
-        suggestions: [AutocompleteSuggestion],
+        suggestions: [Suggestion],
         locale: Locale = .current,
         style: Style = .standard,
         suggestionAction: @escaping SuggestionAction
@@ -205,9 +200,9 @@ public extension AutocompleteToolbar where ItemView == AutocompleteToolbarItem, 
     }
 }
 
-private extension AutocompleteToolbar {
+private extension Autocomplete.Toolbar {
     
-    func itemButton(for suggestion: AutocompleteSuggestion) -> some View {
+    func itemButton(for suggestion: Suggestion) -> some View {
         Button(action: { suggestionAction(suggestion) }, label: {
             itemView(suggestion, style, locale)
                 .padding(.horizontal, 4)
@@ -218,7 +213,7 @@ private extension AutocompleteToolbar {
     }
 }
 
-private extension AutocompleteToolbar {
+private extension Autocomplete.Toolbar {
     
     func isLast(_ item: BarItem) -> Bool {
         item.id == items.last?.id
@@ -238,35 +233,35 @@ private extension AutocompleteToolbar {
     }
 }
 
-struct AutocompleteToolbar_Previews: PreviewProvider {
+struct Autocomplete_Toolbar_Previews: PreviewProvider {
     
     static let additional = [
-        AutocompleteSuggestion(text: "", title: "Foo", subtitle: "Recommended")
+        Autocomplete.Suggestion(text: "", title: "Foo", subtitle: "Recommended")
     ]
     
     static var previews: some View {
         return VStack {
-            AutocompleteToolbar(
+            Autocomplete.Toolbar(
                 suggestions: previewSuggestions,
                 locale: KeyboardLocale.english.locale,
                 style: .standard,
                 suggestionAction: { _ in }).previewBar()
-            AutocompleteToolbar(
+            Autocomplete.Toolbar(
                 suggestions: previewSuggestions + additional,
                 locale: KeyboardLocale.spanish.locale,
                 style: .standard,
                 suggestionAction: { _ in }).previewBar()
-            AutocompleteToolbar(
+            Autocomplete.Toolbar(
                 suggestions: previewSuggestions + additional,
                 locale: KeyboardLocale.spanish.locale,
                 style: .preview1,
                 suggestionAction: { _ in }).previewBar()
-            AutocompleteToolbar(
+            Autocomplete.Toolbar(
                 suggestions: previewSuggestions + additional,
                 locale: KeyboardLocale.spanish.locale,
                 style: .preview2,
                 suggestionAction: { _ in }).previewBar()
-            AutocompleteToolbar(
+            Autocomplete.Toolbar(
                 suggestions: previewSuggestions,
                 locale: KeyboardLocale.swedish.locale,
                 style: .standard,
@@ -276,15 +271,15 @@ struct AutocompleteToolbar_Previews: PreviewProvider {
         .padding()
     }
     
-    static func previewItem(for suggestion: AutocompleteSuggestion, style: KeyboardStyle.AutocompleteToolbar, locale: Locale) -> some View {
+    static func previewItem(for suggestion: Autocomplete.Suggestion, style: KeyboardStyle.AutocompleteToolbar, locale: Locale) -> some View {
         HStack {
             Spacer()
             VStack(spacing: 4) {
-                AutocompleteToolbarItemTitle(
+                Autocomplete.ToolbarItemTitle(
                     suggestion: suggestion,
                     locale: KeyboardLocale.swedish.locale,
                     style: style.item
-                ).font(.body.bold())
+                )
                 if let subtitle = suggestion.subtitle {
                     Text(subtitle).font(.footnote)
                 }
@@ -293,10 +288,10 @@ struct AutocompleteToolbar_Previews: PreviewProvider {
         }
     }
     
-    static let previewSuggestions: [AutocompleteSuggestion] = [
-        AutocompleteSuggestion(text: "Baz", isUnknown: true),
-        AutocompleteSuggestion(text: "Bar", isAutocorrect: true),
-        AutocompleteSuggestion(text: "", title: "Foo", subtitle: "Recommended")]
+    static let previewSuggestions: [Autocomplete.Suggestion] = [
+        .init(text: "Baz", isUnknown: true),
+        .init(text: "Bar", isAutocorrect: true),
+        .init(text: "", title: "Foo", subtitle: "Recommended")]
 }
 
 private extension View {

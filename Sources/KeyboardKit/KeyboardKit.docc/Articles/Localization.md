@@ -48,7 +48,7 @@ KeyboardKit supports LTR (Left-To-Right) and RTL (Right-To-Left) locales.
 
 You don't need to configure your keyboard extension to support RTL. Just change the keyboard locale as explained above, and KeyboardKit will automatically adjust the text direction.
 
-``KeyboardLocale`` has ``KeyboardLocale/isLeftToRight`` and ``KeyboardLocale/isRightToLeft`` properties that tells you if a locale is left-to-right or right-to-left.
+`Locale` has `isLeftToRight` and `isRightToLeft` properties that tells you if a locale is left-to-right or right-to-left.
 
 ``KeyboardLocale`` also has handy ``KeyboardLocale/allLtr`` and ``KeyboardLocale/allRtl`` collections and collection filters.
 

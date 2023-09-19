@@ -72,8 +72,6 @@ KeyboardKit is available under the MIT license.
 
 ### Articles
 
-- <doc:Actions>
-- <doc:Autocomplete>
 - <doc:Buttons>
 - <doc:Callouts>
 - <doc:Dictation>
@@ -111,15 +109,10 @@ KeyboardKit is available under the MIT license.
 
 ### Autocomplete
 
+- <doc:Understanding-Autocomplete>
+- ``Autocomplete``
 - ``AutocompleteContext``
 - ``AutocompleteProvider``
-- ``AutocompleteSuggestion``
-- ``AutocompleteToolbar``
-- ``AutocompleteToolbarItem``
-- ``AutocompleteToolbarItemSubtitle``
-- ``AutocompleteToolbarItemTitle``
-- ``AutocompleteToolbarSeparator``
-
 - ``DisabledAutocompleteProvider``
 
 ### Buttons

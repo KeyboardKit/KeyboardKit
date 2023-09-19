@@ -43,11 +43,11 @@ import SwiftUI
  trashbin and the entire spacebar is replaced by transparent
  text that takes up as much space as needed.
  
- The keyboard will by default place an ``AutocompleteToolbar``
- topmost, unless you tell it not to. It will also overlay an
- ``EmojiCategoryKeyboard`` over the entire keyboard view, if
- ``KeyboardContext/keyboardType`` is currently set to use an
- ``Keyboard/KeyboardType/emojis`` keyboard.
+ This view will by place an ``Autocomplete/Toolbar`` topmost,
+ unless we explicitly tell it not to. It will also overlay a
+ full ``EmojiCategoryKeyboard`` over the entire view, if the
+ context's ``KeyboardContext/keyboardType`` is currently set
+ to ``Keyboard/KeyboardType/emojis``.
 
  Since the keyboard layout depends on the available keyboard
  width, you must pass in a `width`, if you don't want to use
@@ -99,10 +99,8 @@ public struct SystemKeyboard<ButtonContent: View, ButtonView: View>: View {
         self.buttonView = buttonView
         self.renderBackground = renderBackground
         _autocompleteContext = ObservedObject(wrappedValue: autocompleteContext)
-        _keyboardContext = ObservedObject(wrappedValue: keyboardContext)
         _calloutContext = ObservedObject(wrappedValue: calloutContext ?? .disabled)
-        _actionCalloutContext = ObservedObject(wrappedValue: calloutContext?.actionContext ?? .disabled)
-        _inputCalloutContext = ObservedObject(wrappedValue: calloutContext?.inputContext ?? .disabled)
+        _keyboardContext = ObservedObject(wrappedValue: keyboardContext)
     }
     
     #if os(iOS) || os(tvOS)
@@ -172,7 +170,7 @@ public struct SystemKeyboard<ButtonContent: View, ButtonView: View>: View {
     public typealias ButtonContentBuilder = (KeyboardLayoutItem, _ standard: KeyboardButtonContent) -> ButtonContent
     public typealias ButtonViewBuilder = (KeyboardLayoutItem, _ standard: SystemKeyboardItem<ButtonContent>) -> ButtonView
     
-    public typealias AutocompleteToolbarAction = (AutocompleteSuggestion) -> Void
+    public typealias AutocompleteToolbarAction = (Autocomplete.Suggestion) -> Void
     public typealias KeyboardWidth = CGFloat
     public typealias KeyboardItemWidth = CGFloat
 
@@ -191,16 +189,10 @@ public struct SystemKeyboard<ButtonContent: View, ButtonView: View>: View {
     }
 
     @ObservedObject
-    private var actionCalloutContext: CalloutContext.ActionContext
-
-    @ObservedObject
     private var autocompleteContext: AutocompleteContext
 
     @ObservedObject
     private var calloutContext: CalloutContext
-
-    @ObservedObject
-    private var inputCalloutContext: CalloutContext.InputContext
 
     @ObservedObject
     private var keyboardContext: KeyboardContext
@@ -214,16 +206,11 @@ public struct SystemKeyboard<ButtonContent: View, ButtonView: View>: View {
         .overlay(emojiKeyboard, alignment: .bottom)
         .foregroundColor(styleProvider.foregroundColor)
         .background(renderBackground ? styleProvider.backgroundStyle.backgroundView : nil)
-        .keyboardActionCallout(
-            calloutContext: actionCalloutContext,
+        .keyboardCalloutContainer(
+            calloutContext: calloutContext,
             keyboardContext: keyboardContext,
-            style: actionCalloutStyle,
-            emojiKeyboardStyle: .standard(for: keyboardContext)
-        )
-        .keyboardInputCallout(
-            calloutContext: inputCalloutContext,
-            keyboardContext: keyboardContext,
-            style: inputCalloutStyle
+            actionCalloutStyle: actionCalloutStyle,
+            inputCalloutStyle: inputCalloutStyle
         )
     }
 }
@@ -243,7 +230,7 @@ private extension SystemKeyboard {
     @ViewBuilder
     var autocompleteToolbar: some View {
         if shouldAddAutocompleteToolbar {
-            AutocompleteToolbar(
+            Autocomplete.Toolbar(
                 suggestions: autocompleteContext.suggestions,
                 locale: keyboardContext.locale,
                 style: styleProvider.autocompleteToolbarStyle,

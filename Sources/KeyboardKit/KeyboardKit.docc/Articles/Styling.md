@@ -42,7 +42,7 @@ Have a look at the `Sources/Resources` and `Sources/Styling` folders for more in
 
 The ``KeyboardStyle`` namespace defines many styles, like ``KeyboardStyle/Button``, while other namespaces define contextual styles, like ``EmojiKeyboardStyle``.
 
-All styles can be modified. For instance, here we add a red background to a ``CalloutStyle``:
+All styles can be modified. For instance, here we add a red background to a ``KeyboardStyle/Callout`` value:
 
 ```swift
 var style = CalloutStyle.standard
