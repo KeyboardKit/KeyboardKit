@@ -69,10 +69,7 @@ public struct SystemKeyboardButtonRowItem<Content: View>: View {
             .frame(maxWidth: .infinity)
             .frame(height: item.size.height - item.insets.top - item.insets.bottom)
             .rowItemWidth(for: item, totalWidth: keyboardWidth, referenceWidth: inputWidth)
-            .keyboardButtonStyle(
-                buttonStyle,
-                isPressed: isPressed
-            )
+            .keyboardButtonStyle(buttonStyle)
             .padding(item.insets)
             .contentShape(Rectangle())
             .keyboardButtonGestures(
@@ -144,7 +141,11 @@ private extension View {
 
 private extension View {
 
-    func rowItemWidthValue(for item: KeyboardLayoutItem, totalWidth: Double, referenceWidth: Double) -> Double? {
+    func rowItemWidthValue(
+        for item: KeyboardLayoutItem,
+        totalWidth: Double,
+        referenceWidth: Double
+    ) -> Double? {
         let insets = item.insets.leading + item.insets.trailing
         switch item.size.width {
         case .available: return nil
@@ -180,7 +181,7 @@ struct SystemKeyboardButtonRowItem_Previews: PreviewProvider {
                 size: KeyboardLayoutItem.Size(
                     width: width,
                     height: 100),
-                insets: .horizontal(0, vertical: 0)),
+                insets: .init(horizontal: 0, vertical: 0)),
             actionHandler: .preview,
             styleProvider: .preview,
             keyboardContext: context,

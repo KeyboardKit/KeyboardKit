@@ -133,7 +133,7 @@ public extension KeyboardLayoutConfiguration {
      */
     static var standardPad = KeyboardLayoutConfiguration(
         buttonCornerRadius: 5,
-        buttonInsets: .horizontal(6, vertical: 4),
+        buttonInsets: .init(horizontal: 6, vertical: 4),
         rowHeight: standardPadRowHeight)
 
     /**
@@ -143,7 +143,7 @@ public extension KeyboardLayoutConfiguration {
      */
     static var standardPadLandscape = KeyboardLayoutConfiguration(
         buttonCornerRadius: 7,
-        buttonInsets: .horizontal(7, vertical: 6),
+        buttonInsets: .init(horizontal: 7, vertical: 6),
         rowHeight: standardPadLandscapeRowHeight)
 
     /**
@@ -153,7 +153,7 @@ public extension KeyboardLayoutConfiguration {
      */
     static var standardPadProLarge = KeyboardLayoutConfiguration(
         buttonCornerRadius: 6,
-        buttonInsets: .horizontal(4, vertical: 4),
+        buttonInsets: .init(horizontal: 4, vertical: 4),
         rowHeight: standardPadProLargeRowHeight)
 
     /**
@@ -163,7 +163,7 @@ public extension KeyboardLayoutConfiguration {
      */
     static var standardPadProLargeLandscape = KeyboardLayoutConfiguration(
         buttonCornerRadius: 8,
-        buttonInsets: .horizontal(7, vertical: 5),
+        buttonInsets: .init(horizontal: 7, vertical: 5),
         rowHeight: standardPadProLargeLandscapeRowHeight)
 
     /**
@@ -173,7 +173,7 @@ public extension KeyboardLayoutConfiguration {
      */
     static var standardPhone = KeyboardLayoutConfiguration(
         buttonCornerRadius: 5,
-        buttonInsets: .horizontal(3, vertical: 6),
+        buttonInsets: .init(horizontal: 3, vertical: 6),
         rowHeight: standardPhoneRowHeight)
 
     /**
@@ -183,7 +183,7 @@ public extension KeyboardLayoutConfiguration {
      */
     static var standardPhoneLandscape = KeyboardLayoutConfiguration(
         buttonCornerRadius: 5,
-        buttonInsets: .horizontal(3, vertical: 4),
+        buttonInsets: .init(horizontal: 3, vertical: 4),
         rowHeight: standardPhoneLandscapeRowHeight)
 
     /**
@@ -193,7 +193,7 @@ public extension KeyboardLayoutConfiguration {
      */
     static var standardPhoneProMax = KeyboardLayoutConfiguration(
         buttonCornerRadius: 5,
-        buttonInsets: .horizontal(3, vertical: 5.5),
+        buttonInsets: .init(horizontal: 3, vertical: 5.5),
         rowHeight: standardPhoneProMaxRowHeight)
 
     /**
@@ -203,6 +203,6 @@ public extension KeyboardLayoutConfiguration {
      */
     static var standardPhoneProMaxLandscape = KeyboardLayoutConfiguration(
         buttonCornerRadius: 5,
-        buttonInsets: .horizontal(3, vertical: 4),
+        buttonInsets: .init(horizontal: 3, vertical: 4),
         rowHeight: standardPhoneProMaxLandscapeRowHeight)
 }

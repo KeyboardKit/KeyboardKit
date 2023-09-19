@@ -74,6 +74,7 @@ KeyboardKit is available under the MIT license.
 
 - <doc:Actions>
 - <doc:Autocomplete>
+- <doc:Buttons>
 - <doc:Callouts>
 - <doc:Dictation>
 - <doc:Emojis>
@@ -119,8 +120,6 @@ KeyboardKit is available under the MIT license.
 - ``AutocompleteToolbarItemTitle``
 - ``AutocompleteToolbarSeparator``
 
-### Autocomplete Providers
-
 - ``DisabledAutocompleteProvider``
 
 ### Buttons
@@ -137,8 +136,6 @@ KeyboardKit is available under the MIT license.
 - ``ActionCallout``
 - ``InputCallout``
 - ``CalloutActionProvider``
-
-### Callout Action Providers
 
 - ``BaseCalloutActionProvider``
 - ``StandardCalloutActionProvider``
@@ -157,8 +154,6 @@ KeyboardKit is available under the MIT license.
 - ``DictationServiceError``
 - ``KeyboardDictationConfiguration``
 - ``KeyboardDictationService``
-
-### Dictation Services
 
 - ``DisabledDictationService``
 - ``DisabledKeyboardDictationService``
@@ -225,8 +220,6 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardLayoutProviderProxy``
 - ``KeyboardRowItem``
 
-### Layout Providers
-
 - ``StandardKeyboardLayoutProvider``
 - ``iPadKeyboardLayoutProvider``
 - ``iPhoneKeyboardLayoutProvider``
@@ -275,8 +268,6 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardImageReader``
 - ``KeyboardStyle``
 - ``KeyboardStyleProvider``
-
-### Style Providers
 
 - ``StandardKeyboardStyleProvider``
 

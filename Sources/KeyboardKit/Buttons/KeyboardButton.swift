@@ -12,8 +12,8 @@ import SwiftUI
  This view mimics a native keyboard button.
 
  This view adapts its content to the provided action, states
- and services. You can use a `contentConfig` to customize or
- replace the content view.
+ and services. You can use an optional `contentConfig` param
+ to customize the content view.
  
  You can turn any view into a keyboard button like this view,
  by using the `.keyboardButton(...)` view modifier.
@@ -21,7 +21,7 @@ import SwiftUI
 public struct KeyboardButton<Content: View>: View {
 
     /**
-     Create a keyboard button view.
+     Create a keyboard button.
 
      - Parameters:
        - action: The keyboard action to apply.
@@ -29,7 +29,9 @@ public struct KeyboardButton<Content: View>: View {
        - styleProvider: The style provider to use.
        - keyboardContext: The keyboard context to which the button should apply.
        - calloutContext: The callout context to affect, if any.
-       - contentConfig: A configuration block that can be used to customize or replace the standard button content.
+       - edgeInsets: The edge insets to apply to the interactable area, if any.
+       - isPressed: An external boolean binding for the pressed state, if any.
+       - contentConfig: An optional view configuration that can be used to customize or replace the standard button content.
      */
     public init(
         action: KeyboardAction,
@@ -37,6 +39,8 @@ public struct KeyboardButton<Content: View>: View {
         styleProvider: KeyboardStyleProvider,
         keyboardContext: KeyboardContext,
         calloutContext: CalloutContext?,
+        edgeInsets: EdgeInsets = .init(),
+        isPressed: Binding<Bool>? = nil,
         contentConfig: @escaping ContentConfig
     ) {
         self.action = action
@@ -44,11 +48,13 @@ public struct KeyboardButton<Content: View>: View {
         self.styleProvider = styleProvider
         self.keyboardContext = keyboardContext
         self.calloutContext = calloutContext
+        self.edgeInsets = edgeInsets
+        self.isPressed = isPressed
         self.contentConfig = contentConfig
     }
 
     /**
-     Create a keyboard button view.
+     Create a keyboard button.
 
      - Parameters:
        - action: The keyboard action to apply.
@@ -56,13 +62,17 @@ public struct KeyboardButton<Content: View>: View {
        - styleProvider: The style provider to use.
        - keyboardContext: The keyboard context to which the button should apply.
        - calloutContext: The callout context to affect, if any.
+       - edgeInsets: The edge insets to apply to the interactable area, if any.
+       - isPressed: An external boolean binding for the pressed state, if any.
      */
     public init(
         action: KeyboardAction,
         actionHandler: KeyboardActionHandler,
         styleProvider: KeyboardStyleProvider,
         keyboardContext: KeyboardContext,
-        calloutContext: CalloutContext?
+        calloutContext: CalloutContext?,
+        edgeInsets: EdgeInsets = .init(),
+        isPressed: Binding<Bool>? = nil
     ) where Content == KeyboardButtonContent {
         self.init(
             action: action,
@@ -70,6 +80,8 @@ public struct KeyboardButton<Content: View>: View {
             styleProvider: styleProvider,
             keyboardContext: keyboardContext,
             calloutContext: calloutContext,
+            edgeInsets: edgeInsets,
+            isPressed: isPressed,
             contentConfig: { $0 }
         )
     }
@@ -79,10 +91,12 @@ public struct KeyboardButton<Content: View>: View {
     private let styleProvider: KeyboardStyleProvider
     private let keyboardContext: KeyboardContext
     private let calloutContext: CalloutContext?
+    private let edgeInsets: EdgeInsets
+    private var isPressed: Binding<Bool>?
     private let contentConfig: ContentConfig
-
+    
     @State
-    private var isPressed = false
+    private var isPressedInternal = false
     
     public typealias ContentConfig = (_ standardContent: KeyboardButtonContent) -> Content
         
@@ -93,7 +107,8 @@ public struct KeyboardButton<Content: View>: View {
                 style: style,
                 actionHandler: actionHandler,
                 calloutContext: calloutContext,
-                isPressed: $isPressed
+                edgeInsets: edgeInsets,
+                isPressed: isPressed ?? $isPressedInternal
             )
     }
 }
@@ -113,36 +128,57 @@ private extension KeyboardButton {
     var style: KeyboardStyle.Button {
         styleProvider.buttonStyle(
             for: action,
-            isPressed: isPressed
+            isPressed: isPressed?.wrappedValue ?? isPressedInternal
         )
     }
 }
 
 struct KeyboardButton_Previews: PreviewProvider {
     
-    static func button(for action: KeyboardAction) -> some View {
-        KeyboardButton(
-            action: action,
-            actionHandler: .preview,
-            styleProvider: .preview,
-            keyboardContext: .preview,
-            calloutContext: .preview
-        ) {
-            $0.frame(width: 80, height: 80)
+    struct Preview: View {
+        
+        @State
+        private var isPressed = false
+        
+        func button(for action: KeyboardAction) -> some View {
+            KeyboardButton(
+                action: action,
+                actionHandler: .preview,
+                styleProvider: .preview,
+                keyboardContext: .preview,
+                calloutContext: .preview
+            ) {
+                $0.frame(width: 80, height: 80)
+            }
+        }
+        
+        var body: some View {
+            
+            VStack {
+                button(for: .backspace)
+                button(for: .space)
+                button(for: .nextKeyboard)
+                button(for: .character("a"))
+                button(for: .character("A"))
+                KeyboardButton(
+                    action: .emoji(.init("😀")),
+                    actionHandler: .preview,
+                    styleProvider: .preview,
+                    keyboardContext: .preview,
+                    calloutContext: .preview,
+                    edgeInsets: .init(top: 10, leading: 20, bottom: 30, trailing: 0),
+                    isPressed: $isPressed
+                )
+                .background(isPressed ? Color.white : Color.clear)
+            }
+            .padding()
+            .background(Color.gray)
+            .cornerRadius(10)
+            .environment(\.sizeCategory, .extraExtraLarge)
         }
     }
     
     static var previews: some View {
-        VStack {
-            button(for: .backspace)
-            button(for: .space)
-            button(for: .nextKeyboard)
-            button(for: .character("a"))
-            button(for: .character("A"))
-        }
-        .padding()
-        .background(Color.gray)
-        .cornerRadius(10)
-        .environment(\.sizeCategory, .extraExtraLarge)
+        Preview()
     }
 }

@@ -15,12 +15,8 @@ public extension View {
 
      - Parameters:
        - style: The style to apply.
-       - isPressed: Whether or not the button is pressed, by default `false`.
      */
-    func keyboardButtonStyle(
-        _ style: KeyboardStyle.Button,
-        isPressed: Bool = false
-    ) -> some View {
+    func keyboardButtonStyle(_ style: KeyboardStyle.Button) -> some View {
         self.background(KeyboardButtonBody(style: style))
             .foregroundColor(style.foregroundColor)
             .font(style.font?.font)
@@ -28,15 +24,6 @@ public extension View {
 }
 
 struct View_Button_Previews: PreviewProvider {
-
-    static func button<Content: View>(
-        for content: Content,
-        style: KeyboardStyle.Button
-    ) -> some View {
-        content
-            .padding()
-            .keyboardButtonStyle(style, isPressed: false)
-    }
 
     static var previews: some View {
         VStack(spacing: 20) {
@@ -48,5 +35,14 @@ struct View_Button_Previews: PreviewProvider {
         .background(Color.gray)
         .cornerRadius(10)
         .environment(\.sizeCategory, .extraExtraLarge)
+    }
+    
+    static func button<Content: View>(
+        for content: Content,
+        style: KeyboardStyle.Button
+    ) -> some View {
+        content
+            .padding()
+            .keyboardButtonStyle(style)
     }
 }

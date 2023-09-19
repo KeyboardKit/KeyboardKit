@@ -20,6 +20,9 @@ These release notes will only contain the current version. Just check out an old
 ### 💡 Adjustments
 
 * `AutocompleteProvider` is now async instead of using completions.
+* `KeyboardButton` now supports providing interactable `edgeInsets`.
+* `KeyboardButton` now supports providing an external `isPressed` state.
+* `View+KeyboardButton` now has inset support.
 
 ### 👑 Pro Adjustments
 
@@ -39,4 +42,5 @@ These release notes will only contain the current version. Just check out an old
 * `SystemKeyboardButtonShadow` has been moved into `KeyboardButtonBody`.
 * `SystemKeyboardButtonText` has been renamed to `KeyboardButtonText`.
 * `SystemKeyboardSpaceContent` has been renamed to `KeyboardButtonSpaceContent`.
+* `View.keyboardButtonStyle(...)` no longer has an `isPressed` parameter.
 * `View.systemKeyboardButtonStyle(...)` has been renamed to `.keyboardButtonStyle(...)`.
