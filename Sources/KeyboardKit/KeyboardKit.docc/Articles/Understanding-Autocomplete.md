@@ -95,7 +95,7 @@ private extension FakeAutocompleteProvider {
 }
 ```
 
-To use this provider instead of the standard one, just set ``KeyboardInputViewController/autocompleteProvider`` to your custom provider:
+To use this provider instead of the standard one, just set ``KeyboardInputViewController/autocompleteProvider`` to this custom provider:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {

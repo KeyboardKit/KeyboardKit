@@ -4,9 +4,7 @@ This article describes the KeyboardKit action engine.
 
 In KeyboardKit, the ``KeyboardAction`` enum defines a set of keyboard-specific actions that can be bound to buttons and handled with a ``KeyboardActionHandler``.
 
-KeyboardKit will by default create a ``StandardKeyboardActionHandler`` and bind it to the input controller's ``KeyboardInputViewController/keyboardActionHandler``. 
-
-You can replace this action handler with a custom handler to change how actions are handled.
+A ``KeyboardActionHandler`` can be used to handle actions, trigger feedback, etc. KeyboardKit will by default create a ``StandardKeyboardActionHandler`` and bind it to ``KeyboardInputViewController/keyboardActionHandler`` when the keyboard is loaded.
 
 
 
@@ -63,24 +61,18 @@ The ``KeyboardAction`` enum can be grouped into categories. The descriptions bel
 
 Keyboard actions can be handled with a ``KeyboardActionHandler``, which is a protocol that can be implemented by any class that handle keyboard actions. 
 
-You can trigger actions programmatically by calling ``KeyboardActionHandler/handle(_:)`` or call ``KeyboardActionHandler/handle(_:on:)`` to handle a certain ``KeyboardGesture``, such as ``KeyboardGesture/release``:
+You can trigger actions programmatically by calling ``KeyboardActionHandler/handle(_:)`` or call ``KeyboardActionHandler/handle(_:on:)`` to handle a certain ``KeyboardGesture``, such as ``KeyboardGesture/release`` on a certain ``KeyboardAction``:
 
 ```swift
-class MyClass {
-
-    init(actionHandler: KeyboardActionHandler) {
-        self.actionHandler = actionHandler
-    }
-
-    private let actionHandler: KeyboardActionHandler
-
-    func stopEditingText() {
-        actionHandler.handle(.release, on: .dismissKeyboard)
-    } 
-}
+let actionHandler: KeyboardActionHandler
+actionHandler.handle(.backspace)
+actionHandler.handle(.press, on: .character("a")
+actionHandler.handle(.release, on: .dismissKeyboard)
 ```
 
-Keyboard actions can also be triggered by action-specific gestures, which can be applied with the `keyboardGestures(...)` view modifier. ``SystemKeyboard`` automatically applies this modifier to all buttons.
+Keyboard actions can also be triggered by action-specific gestures, e.g. by using a ``KeyboardButton`` view or applying a `keyboardButton` view modifier to any view.
+
+``SystemKeyboard`` automatically applies this modifier to all buttons.
 
 
 
@@ -88,12 +80,12 @@ Keyboard actions can also be triggered by action-specific gestures, which can be
 
 You can create a custom ``KeyboardActionHandler`` by either inheriting the ``StandardKeyboardActionHandler`` base class and customize the parts you want, or implement the ``KeyboardActionHandler`` protocol from scratch. 
 
-For instance, here is a custom action handler that inherits ``StandardKeyboardActionHandler`` and extends it with the capabilities to copy and save images:
+For instance, here is a custom handler that inherits ``StandardKeyboardActionHandler`` and extends it with the image capabilities:
 
 ```swift
 class CustomActionHandler: StandardKeyboardActionHandler {
     
-    public init(inputViewController: KeyboardInputViewController) {
+    init(inputViewController: KeyboardInputViewController) {
         super.init(inputViewController: inputViewController)
     }
     
@@ -125,7 +117,7 @@ class CustomActionHandler: StandardKeyboardActionHandler {
 }
 ```
 
-To use this action handler instead of the standard one, just set the input controller's ``KeyboardInputViewController/keyboardActionHandler`` to the new handler, like this:
+To use this handler instead of the standard one, just set ``KeyboardInputViewController/keyboardActionHandler`` to this custom handler:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {

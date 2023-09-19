@@ -103,6 +103,7 @@ KeyboardKit is available under the MIT license.
 
 ### Actions
 
+- <doc:Understanding-Actions>
 - ``KeyboardAction``
 - ``KeyboardActionHandler``
 - ``StandardKeyboardActionHandler``
