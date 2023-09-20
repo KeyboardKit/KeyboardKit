@@ -41,14 +41,17 @@ public extension CalloutActionProvider where Self == PreviewCalloutActionProvide
 }
 
 /// This provider can be used in SwiftUI previews.
-public class PreviewCalloutActionProvider: BaseCalloutActionProvider {
+public class PreviewCalloutActionProvider: CalloutActionProvider {
     
-    public override func calloutActionString(
-        for char: String
-    ) -> String {
-        switch char {
-        case "a": return "aåä"
-        default: return ""
+    public func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {
+        switch action {
+        case .character(let char):
+            switch char {
+            case "a": return "aàáâäæãåā".chars.map { KeyboardAction.character($0) }
+            default: return []
+            }
+        default: break
         }
+        return []
     }
 }

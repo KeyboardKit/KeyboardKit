@@ -32,7 +32,6 @@ You must either implement the English services yourself, or get them from the Pr
 ### 💡 Adjustments
 
 * `AutocompleteProvider` is now async instead of using completions.
-* `BaseCalloutActionProvider` initializer is no longer throwing.
 * `View+KeyboardButton` now applies a locale context menu to `nextLocale` buttons.
 * `View+KeyboardButton` now has support for custom edge insets.
 
@@ -53,6 +52,7 @@ You must either implement the English services yourself, or get them from the Pr
 
 * `ActionCallout` has been renamed to `Callouts.ActionCallout`.
 * `Autocomplete.ToolbarItemSubtitle` is now initialized with a suggestion.
+* `BaseCalloutActionProvider` has been removed.
 * `CalloutButtonArea` has been renamed to `Callouts.ButtonArea`.
 * `CalloutContext.ActionCallout` has been renamed to `CalloutActionContext`.
 * `CalloutContext.InputCallout` has been renamed to `CalloutInputContext`.
