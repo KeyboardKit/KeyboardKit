@@ -60,7 +60,7 @@ You must either implement the English services yourself, or get them from the Pr
 * `StandardCalloutActionProvider.standardProvider` has been removed.
 * `SystemKeyboard` no longer has a `buttonContent` initializer.
 * `SystemKeyboardButton` has been renamed to `KeyboardButton.Button`.
-* `SystemKeyboardButtonBody` has been renamed to `KeyboardButton.Body`.
+* `SystemKeyboardButtonBody` has been renamed to `KeyboardButton.Key`.
 * `SystemKeyboardButtonContent` has been renamed to `KeyboardButton.Content`.
 * `SystemKeyboardButtonShadow` has been renamed to `KeyboardButton.Shadow`.
 * `SystemKeyboardButtonText` has been renamed to `KeyboardButton.Title`.

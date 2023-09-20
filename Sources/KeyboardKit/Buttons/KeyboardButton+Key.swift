@@ -1,5 +1,5 @@
 //
-//  KeyboardButton+Body.swift
+//  KeyboardButton+Key.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-09-02.
@@ -11,11 +11,11 @@ import SwiftUI
 public extension KeyboardButton {
     
     /**
-     This view renders the body of a system keyboard button.
+     This view renders the key shape of a keyboard button.
      
      It applies the button shape, corner radius, shadow, etc.
      */
-    struct Body: View {
+    struct Key: View {
         
         /**
          Create a keyboard button body view.
@@ -48,7 +48,7 @@ public extension KeyboardButton {
     }
 }
 
-public extension KeyboardButton.Body {
+public extension KeyboardButton.Key {
 
     var backgroundColor: Color { style.backgroundColor ?? .clear }
 
@@ -63,8 +63,8 @@ struct KeyboardButton_Body_Previews: PreviewProvider {
 
     static var previews: some View {
         VStack {
-            KeyboardButton.Body(style: .preview1)
-            KeyboardButton.Body(style: .preview2)
+            KeyboardButton.Key(style: .preview1)
+            KeyboardButton.Key(style: .preview2)
         }
         .padding()
         .background(Color.gray)

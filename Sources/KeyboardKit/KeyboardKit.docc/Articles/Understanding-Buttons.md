@@ -9,12 +9,12 @@ KeyboardKit doesn't require you to use the views and buttons in the library, but
 
 The ``KeyboardButton`` namespace defines a couple of button types that help you mimic native keyboard buttons:
 
-- ``KeyboardButton/Button`` turns any custom content into a keyboard button.
-- ``KeyboardButton/Body`` renders the keyboard button shape.
-- ``KeyboardButton/Content`` renders keyboard button the content.
-- ``KeyboardButton/Shadow`` renders the keyboard button bottom shadow.
-- ``KeyboardButton/SpaceContent`` renders keyboard button space content.
-- ``KeyboardButton/Title`` renders the keyboard button title.
+- ``KeyboardButton/Button`` renders actions and custom view as a keyboard button.
+- ``KeyboardButton/Content`` renders the keyboard button content for an action.
+- ``KeyboardButton/Key`` renders a keyboard button key shape.
+- ``KeyboardButton/Shadow`` renders a keyboard button bottom shadow.
+- ``KeyboardButton/SpaceContent`` renders space-specific keyboard button content.
+- ``KeyboardButton/Title`` renders a keyboard button title.
 
 You can also use the `.keyboardButton` view modifier to convert any view to a keyboard button.
 

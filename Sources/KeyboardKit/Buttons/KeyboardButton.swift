@@ -9,6 +9,6 @@
 import Foundation
 
 /**
- This namespace contains various plain keyboard button types.
+ This namespace contains various keyboard button types.
  */
 public struct KeyboardButton {}
