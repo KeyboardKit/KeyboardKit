@@ -134,6 +134,7 @@ KeyboardKit is available under the MIT license.
 
 ### Device
 
+- <doc:Understanding-Device-Utils>
 - ``DeviceType``
 - ``InterfaceOrientation``
 
