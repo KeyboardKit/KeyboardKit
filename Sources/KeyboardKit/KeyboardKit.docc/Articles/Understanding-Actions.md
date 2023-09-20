@@ -2,77 +2,60 @@
 
 This article describes the KeyboardKit action engine.
 
-In KeyboardKit, the ``KeyboardAction`` enum defines a set of keyboard-specific actions that can be bound to buttons and handled with a ``KeyboardActionHandler``.
+In KeyboardKit, the ``KeyboardAction`` enum defines a set of keyboard-specific actions that can be bound to buttons and handled with a ``KeyboardActionHandler``, which can be used to handle actions, trigger feedback, etc.
 
-A ``KeyboardActionHandler`` can be used to handle actions, trigger feedback, etc. KeyboardKit will by default create a ``StandardKeyboardActionHandler`` and bind it to ``KeyboardInputViewController/keyboardActionHandler`` when the keyboard is loaded.
+KeyboardKit will bind a ``StandardKeyboardActionHandler`` to ``KeyboardInputViewController/keyboardActionHandler`` when the keyboard is loaded. You can replace it with a custom implementation at any time.
 
 
+## Keyboard actions
 
-## Action types
+The ``KeyboardAction`` enum contains a bunch of actions, for instance:
 
-The ``KeyboardAction`` enum can be grouped into categories. The descriptions below are the standard behaviors when actions are handled with a ``StandardKeyboardActionHandler``.
+* ``KeyboardAction/character(_:)`` - inserts a text character.
+* ``KeyboardAction/backspace`` - deletes backwards.
+* ``KeyboardAction/dismissKeyboard`` - dismisses the keyboard.
+* ``KeyboardAction/emoji(_:)`` - inserts an emoji.
+* ``KeyboardAction/keyboardType(_:)`` - changes the keyboard type.
+* ``KeyboardAction/moveCursorBackward`` - moves the input cursor back.
+* ``KeyboardAction/moveCursorForward`` - moves the input cursor forward.
+* ``KeyboardAction/nextKeyboard`` - triggers the system keyboard switcher.
+* ``KeyboardAction/nextLocale`` - triggers the locale switcher action.
+* ``KeyboardAction/primary(_:)`` - represents a primary button, e.g. `return`, `go`, `search`, etc.
+* ``KeyboardAction/shift(currentCasing:)`` - changes the shift casing.
+* ``KeyboardAction/space`` - inserts a space.
 
-#### Inputs
-
-* ``KeyboardAction/character(_:)`` - inserts a text character when released.
-* ``KeyboardAction/characterMargin(_:)`` - inserts a text character when released, rendered as empty space.
-* ``KeyboardAction/emoji(_:)`` - inserts an emoji when released.
-* ``KeyboardAction/space`` - inserts a space when released and moves the cursor when long pressed.
-* ``KeyboardAction/tab`` - inserts a tab when released.
-
-#### Actions
-
-* ``KeyboardAction/backspace`` - deletes backwards when pressed, and repeats that action until it's released.
-* ``KeyboardAction/dictation`` - when configured, opens the main app to perform dictation.
-* ``KeyboardAction/dismissKeyboard`` - dismisses the keyboard when released.
-* ``KeyboardAction/emojiCategory(_:)`` - can be used to show a specific emoji category.
-* ``KeyboardAction/keyboardType(_:)`` - changes the keyboard type when pressed.
-* ``KeyboardAction/moveCursorBackward`` - moves the input cursor back one step when released.
-* ``KeyboardAction/moveCursorForward`` - moves the input cursor forward one step when released.
-* ``KeyboardAction/nextKeyboard`` - triggers the keyboard switcher action when tapped and long pressed.
-* ``KeyboardAction/nextLocale`` - triggers the locale switcher action when long pressed and released.
-* ``KeyboardAction/settings`` - can be used to e.g. show a settings screen.
-* ``KeyboardAction/shift(currentCasing:)`` - changes the alphabetic keyboard casing when released and double tapped.
-* ``KeyboardAction/systemSettings`` - navigates to System Settings.
-* ``KeyboardAction/url(_:id:)`` - navigates to any custom URL.
-
-#### System
-
-* ``KeyboardAction/command`` - represents a command (⌘) key.
-* ``KeyboardAction/control`` - represents a control (⌃) key.
-* ``KeyboardAction/escape`` - represents an escape (esc) key.
-* ``KeyboardAction/function`` - represents a function (fn) key.
-* ``KeyboardAction/option`` - represents an option (⌥) key.
-* ``KeyboardAction/primary(_:)`` - represents a primary button, e.g. `return`, `go`, `search` etc.
-
-#### Images
-
-* ``KeyboardAction/image(description:keyboardImageName:imageName:)`` - can be used to refer to an image asset.
-* ``KeyboardAction/systemImage(description:keyboardImageName:imageName:)`` - can be used to refer to a system image (SF Symbol).
-
-#### Other
-
-* ``KeyboardAction/custom(named:)`` - a custom action that you can handle in any way you want.
-* ``KeyboardAction/none``- a "no action" placeholder action.
+The descriptions below are the standard behaviors when actions are handled with a StandardKeyboardActionHandler.
 
 
 
 ## How to handle keyboard actions
 
-Keyboard actions can be handled with a ``KeyboardActionHandler``, which is a protocol that can be implemented by any class that handle keyboard actions. 
+Keyboard actions can be handled with a ``KeyboardActionHandler``, which is a protocol that can be implemented by any class that can handle keyboard actions. 
 
 You can trigger actions programmatically by calling ``KeyboardActionHandler/handle(_:)`` or call ``KeyboardActionHandler/handle(_:on:)`` to handle a certain ``KeyboardGesture``, such as ``KeyboardGesture/release`` on a certain ``KeyboardAction``:
 
 ```swift
-let actionHandler: KeyboardActionHandler
-actionHandler.handle(.backspace)
-actionHandler.handle(.press, on: .character("a")
-actionHandler.handle(.release, on: .dismissKeyboard)
+func doStuff(with actionHandler: ActionHandler) {
+    actionHandler.handle(.backspace)
+    actionHandler.handle(.press, on: .character("a")
+    actionHandler.handle(.release, on: .dismissKeyboard)
+}
 ```
 
-Keyboard actions can also be triggered by action-specific gestures, e.g. by using a ``KeyboardButton`` view or applying a `keyboardButton` view modifier to any view.
+Keyboard actions can also be triggered by action-specific gestures, e.g. by using a ``KeyboardButton/Button`` view or by applying a `keyboardButton` view modifier to any view:
+
+```swift
+Text("Button")
+    .keyboardButton(...)
+```
 
 ``SystemKeyboard`` automatically applies this modifier to all buttons.
+
+
+
+## How to customize the action behavior
+
+You can customize the action behavior by replacing ``KeyboardInputViewController/keyboardActionHandler`` with a custom ``KeyboardActionHandler``. This is needed for actions that don't have a default system behavior, like ``KeyboardAction/image``.
 
 
 

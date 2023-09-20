@@ -1,5 +1,5 @@
 //
-//  InputCallout.swift
+//  Callouts+InputCallout.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -8,54 +8,56 @@
 
 import SwiftUI
 
-/**
- This callout can be used to show the currently typed action
- above the pressed keyboard button.
- */
-public struct InputCallout: View {
-    
+public extension Callouts {
     /**
-     Create an input callout.
-     
-     - Parameters:
-       - calloutContext: The callout context to use.
-       - keyboardContext: The keyboard context to use.
-       - style: The style to apply to the view, by default ``KeyboardStyle/InputCallout/standard``.
+     This callout can be used to show the currently typed action
+     above the pressed keyboard button.
      */
-    public init(
-        calloutContext: Context,
-        keyboardContext: KeyboardContext,
-        style: Style = .standard
-    ) {
-        self._calloutContext = ObservedObject(wrappedValue: calloutContext)
-        self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
-        self.style = style
-    }
-    
-    public typealias Context = CalloutContext.InputContext
-    public typealias Style = KeyboardStyle.InputCallout
-    
-    static let coordinateSpace = Context.coordinateSpace
-
-    @ObservedObject
-    private var calloutContext: Context
-
-    @ObservedObject
-    private var keyboardContext: KeyboardContext
-
-    private let style: Style
-    
-    public var body: some View {
-        callout
-            .transition(.opacity)
-            .opacity(calloutContext.isActive ? 1 : 0)
-            .keyboardCalloutShadow(style: style.callout)
-            .position(position)
-            .allowsHitTesting(false)
+    struct InputCallout: View {
+        
+        /**
+         Create an input callout.
+         
+         - Parameters:
+           - calloutContext: The callout context to use.
+           - keyboardContext: The keyboard context to use.
+           - style: The style to apply to the view, by default ``KeyboardStyle/InputCallout/standard``.
+         */
+        public init(
+            calloutContext: Context,
+            keyboardContext: KeyboardContext,
+            style: Style = .standard
+        ) {
+            self._calloutContext = ObservedObject(wrappedValue: calloutContext)
+            self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
+            self.style = style
+        }
+        
+        public typealias Context = CalloutInputContext
+        public typealias Style = KeyboardStyle.InputCallout
+        
+        static let coordinateSpace = Context.coordinateSpace
+        
+        @ObservedObject
+        private var calloutContext: Context
+        
+        @ObservedObject
+        private var keyboardContext: KeyboardContext
+        
+        private let style: Style
+        
+        public var body: some View {
+            callout
+                .transition(.opacity)
+                .opacity(calloutContext.isActive ? 1 : 0)
+                .keyboardCalloutShadow(style: style.callout)
+                .position(position)
+                .allowsHitTesting(false)
+        }
     }
 }
 
-private extension InputCallout {
+private extension Callouts.InputCallout {
 
     var callout: some View {
         VStack(spacing: 0) {
@@ -75,17 +77,14 @@ private extension InputCallout {
     }
     
     var calloutButton: some View {
-        CalloutButtonArea(
+        Callouts.ButtonArea(
             frame: buttonFrame,
             style: style.callout
         )
     }
 }
 
-
-// MARK: - Private View Properties
-
-private extension InputCallout {
+private extension Callouts.InputCallout {
     
     var buttonFrame: CGRect {
         calloutContext.buttonFrame.insetBy(
@@ -123,10 +122,7 @@ private extension InputCallout {
     }
 }
 
-
-// MARK: - Private Functionality
-
-private extension InputCallout {
+private extension Callouts.InputCallout {
 
     var shouldEnforceSmallSize: Bool {
         keyboardContext.deviceType == .phone && keyboardContext.interfaceOrientation.isLandscape
@@ -152,7 +148,7 @@ private extension InputCallout {
 // MARK: - Previews
 
 #if os(iOS) || os(macOS) || os(watchOS)
-struct InputCallout_Previews: PreviewProvider {
+struct Callouts_InputCallout_Previews: PreviewProvider {
 
     struct Preview: View {
 
@@ -165,9 +161,9 @@ struct InputCallout_Previews: PreviewProvider {
         }
 
         @StateObject
-        var context = InputCallout.Context(isEnabled: true)
+        var context = CalloutInputContext(isEnabled: true)
 
-        func button(for context: InputCallout.Context) -> some View {
+        func button(for context: CalloutInputContext) -> some View {
             GeometryReader { geo in
                 GestureButton(
                     pressAction: { showCallout(for: geo) },

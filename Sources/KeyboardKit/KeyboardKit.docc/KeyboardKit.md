@@ -72,7 +72,6 @@ KeyboardKit is available under the MIT license.
 
 ### Articles
 
-- <doc:Callouts>
 - <doc:Dictation>
 - <doc:Emojis>
 - <doc:External-Keyboards>
@@ -119,10 +118,12 @@ KeyboardKit is available under the MIT license.
 
 ### Callouts
 
-- ``ActionCallout``
-- ``InputCallout``
+- <doc:Understanding-Callouts>
+- ``Callouts``
+- ``CalloutContext``
+- ``CalloutActionContext``
 - ``CalloutActionProvider``
-
+- ``CalloutInputContext``
 - ``BaseCalloutActionProvider``
 - ``StandardCalloutActionProvider``
 

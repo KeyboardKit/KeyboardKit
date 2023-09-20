@@ -17,19 +17,19 @@ public extension CalloutContext {
     )
 }
 
-public extension CalloutContext.ActionContext {
+public extension CalloutActionContext {
 
     /// This context can be used in SwiftUI previews.
-    static var preview = CalloutContext.ActionContext(
+    static var preview = CalloutActionContext(
         actionHandler: .preview,
         actionProvider: .preview
     )
 }
 
-public extension CalloutContext.InputContext {
+public extension CalloutInputContext {
     
     /// This context can be used in SwiftUI previews.
-    static var preview = CalloutContext.InputContext(
+    static var preview = CalloutInputContext(
         isEnabled: true
     )
 }
@@ -41,17 +41,14 @@ public extension CalloutActionProvider where Self == PreviewCalloutActionProvide
 }
 
 /// This provider can be used in SwiftUI previews.
-public class PreviewCalloutActionProvider: CalloutActionProvider {
+public class PreviewCalloutActionProvider: BaseCalloutActionProvider {
     
-    public init(keyboardContext: KeyboardContext = .preview) {
-        provider = StandardCalloutActionProvider(
-            keyboardContext: keyboardContext
-        )
-    }
-    
-    private let provider: CalloutActionProvider
-    
-    public func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {
-        provider.calloutActions(for: action)
+    public override func calloutActionString(
+        for char: String
+    ) -> String {
+        switch char {
+        case "a": return "aåä"
+        default: return ""
+        }
     }
 }

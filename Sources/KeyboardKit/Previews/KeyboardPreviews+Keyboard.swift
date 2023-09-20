@@ -45,7 +45,7 @@ public extension View {
     /// Prepare the view with preview environments.
     func keyboardPreview(keyboardContext: KeyboardContext = .preview) -> some View {
         self.environmentObject(keyboardContext)
-            .environmentObject(CalloutContext.ActionContext.preview)
-            .environmentObject(CalloutContext.InputContext.preview)
+            .environmentObject(CalloutActionContext.preview)
+            .environmentObject(CalloutInputContext.preview)
     }
 }

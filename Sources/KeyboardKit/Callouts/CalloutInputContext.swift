@@ -10,60 +10,50 @@ import Combine
 import Foundation
 import SwiftUI
 
-public extension CalloutContext {
+/**
+ This type can be used as input callout state.
+ */
+public class CalloutInputContext: ObservableObject {
     
     /**
-     This context can be used to handle callouts that show a
-     big version of the currently typed character.
+     Create a new input callout context instance.
+     
+     - Parameters:
+       - isEnabled: Whether or not callouts are enabled.
      */
-    class InputContext: ObservableObject {
-        
-        
-        // MARK: - Initialization
-        
-        /**
-         Create a new context instance,
-         
-         - Parameters:
-           - isEnabled: Whether or not callouts are enabled.
-         */
-        public init(isEnabled: Bool) {
-            self.isEnabled = isEnabled
-        }
-        
-        
-        // MARK: - Properties
-        
-        /// The coordinate space to use for callout.
-        public static let coordinateSpace = "com.keyboardkit.coordinate.InputCallout"
-        
-        /// The last time an action became active.
-        public var lastActionDate = Date()
-        
-        /// The minimum callout duration.
-        public var minimumVisibleDuration: TimeInterval = 0.05
-        
-        
-        // MARK: - Published Properties
-        
-        /// Whether or not input callouts are enabled.
-        @Published
-        public var isEnabled: Bool
-        
-        /// The currently active action, if any.
-        @Published
-        public private(set) var action: KeyboardAction?
-        
-        /// The frame of the currently active button.
-        @Published
-        public private(set) var buttonFrame: CGRect = .zero
+    public init(isEnabled: Bool) {
+        self.isEnabled = isEnabled
     }
+    
+    
+    /// The coordinate space to use for callout.
+    public static let coordinateSpace = "com.keyboardkit.coordinate.InputCallout"
+    
+    
+    /// The last time an action became active.
+    public var lastActionDate = Date()
+    
+    /// The minimum callout duration.
+    public var minimumVisibleDuration: TimeInterval = 0.05
+    
+    
+    /// Whether or not input callouts are enabled.
+    @Published
+    public var isEnabled: Bool
+    
+    /// The currently active action, if any.
+    @Published
+    public private(set) var action: KeyboardAction?
+    
+    /// The frame of the currently active button.
+    @Published
+    public private(set) var buttonFrame: CGRect = .zero
 }
 
 
 // MARK: - Public Functionality
 
-public extension CalloutContext.InputContext {
+public extension CalloutInputContext {
     
     /// Whether or not the context currently has an input.
     var hasInput: Bool {
@@ -107,10 +97,10 @@ public extension CalloutContext.InputContext {
 
 // MARK: - Context Builders
 
-public extension CalloutContext.InputContext {
+public extension CalloutInputContext {
     
     /// This context can be used to disable input callouts.
-    static var disabled: CalloutContext.InputContext {
+    static var disabled: CalloutInputContext {
         .init(isEnabled: false)
     }
 }

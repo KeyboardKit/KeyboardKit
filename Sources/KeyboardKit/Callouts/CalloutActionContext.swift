@@ -9,69 +9,59 @@
 import Combine
 import SwiftUI
 
-public extension CalloutContext {
+/**
+ This type can be used as action callout state.
+ */
+public class CalloutActionContext: ObservableObject {
     
     /**
-     This context can be used to handle callouts that show a
-     secondary actions for various keyboard actions.
+     Create a new action callout context instance.
+     
+     - Parameters:
+       - actionHandler: The action handler to use.
+       - actionProvider: The action provider to use, if any.
      */
-    class ActionContext: ObservableObject {
-        
-        /**
-         Create a new action callout context instance.
-         
-         - Parameters:
-           - actionHandler: The action handler to use.
-           - actionProvider: The action provider to use, if any.
-         */
-        public init(
-            actionHandler: KeyboardActionHandler,
-            actionProvider: CalloutActionProvider?
-        ) {
-            self.actionHandler = actionHandler
-            self.actionProvider = actionProvider
-        }
-        
-        
-        // MARK: - Dependencies
-        
-        /// The action handler to use when tapping buttons.
-        public let actionHandler: KeyboardActionHandler
-        
-        /// The action provider to use for resolving actions.
-        public let actionProvider: CalloutActionProvider?
-        
-        
-        // MARK: - Properties
-        
-        /// The coordinate space to use for callout.
-        public static let coordinateSpace = "com.keyboardkit.coordinate.ActionCallout"
-        
-        
-        // MARK: - Published Properties
-        
-        /// The currently active actions.
-        @Published
-        public private(set) var actions: [KeyboardAction] = []
-        
-        /// The callout bubble alignment.
-        @Published
-        public private(set) var alignment: HorizontalAlignment = .leading
-        
-        /// The frame of the currently pressed button.
-        @Published
-        public private(set) var buttonFrame: CGRect = .zero
-        
-        /// The currently selected action index.
-        @Published
-        public private(set) var selectedIndex: Int = -1
+    public init(
+        actionHandler: KeyboardActionHandler,
+        actionProvider: CalloutActionProvider?
+    ) {
+        self.actionHandler = actionHandler
+        self.actionProvider = actionProvider
     }
+    
+    
+    /// The coordinate space to use for callout.
+    public static let coordinateSpace = "com.keyboardkit.coordinate.ActionCallout"
+    
+    
+    /// The action handler to use when tapping buttons.
+    public let actionHandler: KeyboardActionHandler
+    
+    /// The action provider to use for resolving actions.
+    public let actionProvider: CalloutActionProvider?
+    
+    
+    /// The currently active actions.
+    @Published
+    public private(set) var actions: [KeyboardAction] = []
+    
+    /// The callout bubble alignment.
+    @Published
+    public private(set) var alignment: HorizontalAlignment = .leading
+    
+    /// The frame of the currently pressed button.
+    @Published
+    public private(set) var buttonFrame: CGRect = .zero
+    
+    /// The currently selected action index.
+    @Published
+    public private(set) var selectedIndex: Int = -1
 }
 
 
 // MARK: - Public functionality
 
-public extension CalloutContext.ActionContext {
+public extension CalloutActionContext {
     
     /// Whether or not the context has a selected action.
     var hasSelectedAction: Bool { selectedAction != nil }
@@ -149,10 +139,10 @@ public extension CalloutContext.ActionContext {
 
 // MARK: - Context builders
 
-public extension CalloutContext.ActionContext {
+public extension CalloutActionContext {
     
     /// This context can be used to disable action callouts.
-    static var disabled: CalloutContext.ActionContext {
+    static var disabled: CalloutActionContext {
         .init(
             actionHandler: .preview,
             actionProvider: nil
@@ -163,7 +153,7 @@ public extension CalloutContext.ActionContext {
 
 // MARK: - Private functionality
 
-private extension CalloutContext.ActionContext {
+private extension CalloutActionContext {
     
     var startIndex: Int {
         isLeading ? 0 : actions.count - 1

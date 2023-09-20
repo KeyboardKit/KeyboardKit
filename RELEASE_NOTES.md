@@ -48,11 +48,17 @@ You must either implement the English services yourself, or get them from the Pr
 
 * All deprecated code has been removed or addressed.
 * Many types have been moved into a new `Autocomplete` namespace.
+* Many types have been moved into a new `Callouts` namespace.
 * Many types have been moved into a new `KeyboardButton` namespace.
 
+* `ActionCallout` has been renamed to `Callouts.ActionCallout`.
 * `Autocomplete.ToolbarItemSubtitle` is now initialized with a suggestion.
+* `CalloutButtonArea` has been renamed to `Callouts.ButtonArea`.
+* `CalloutContext.ActionCallout` has been renamed to `CalloutActionContext`.
+* `CalloutContext.InputCallout` has been renamed to `CalloutInputContext`.
 * `DisabledCalloutActionProvider` has been removed.
 * `EnglishCalloutActionProvider` has been removed.
+* `InputCallout` has been renamed to `Callouts.InputCallout`.
 * `KeyboardEnabledContext` has been renamed to `KeyboardStateContext`.
 * `KeyboardEnabledLabel` has been renamed to `KeyboardStateLabel`.
 * `KeyboardEnabledStateInspector` has been renamed to `KeyboardStateInspector`.

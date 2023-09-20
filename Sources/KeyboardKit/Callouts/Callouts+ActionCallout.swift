@@ -1,5 +1,5 @@
 //
-//  ActionCallout.swift
+//  Callouts+ActionCallout.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -8,71 +8,70 @@
 
 import SwiftUI
 
-/**
- This action callout view can be used to present a secondary
- action collection for a keyboard action.
- */
-public struct ActionCallout: View {
+public extension Callouts {
     
     /**
-     Create an action callout.
+     This callout can be used to present a secondary actions
+     callout above a keyboard button.
      
-     - Parameters:
-       - calloutContext: The callout context to use.
-       - keyboardContext: The keyboard context to use.
-       - style: The style to apply to the view, by default ``KeyboardStyle/ActionCallout/standard``.
+     In native iOS keyboards, an action callout is presented
+     when a button with secondary actions is long pressed.
      */
-    public init(
-        calloutContext: Context,
-        keyboardContext: KeyboardContext,
-        style: Style = .standard
-    ) {
-        self._calloutContext = ObservedObject(wrappedValue: calloutContext)
-        self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
-        self.style = style
-    }
-    
-    public typealias Context = CalloutContext.ActionContext
-    public typealias Style = KeyboardStyle.ActionCallout
-    
-    static let coordinateSpace = Context.coordinateSpace
-    
-    @ObservedObject
-    private var calloutContext: Context
-
-    @ObservedObject
-    private var keyboardContext: KeyboardContext
-    
-    private let style: Style
-    
-    public var body: some View {
-        Button(action: calloutContext.reset) {
-            VStack(alignment: calloutContext.alignment, spacing: 0) {
-                callout
-                buttonArea
-            }
+    struct ActionCallout: View {
+        
+        /**
+         Create an action callout.
+         
+         - Parameters:
+           - calloutContext: The callout context to use.
+           - keyboardContext: The keyboard context to use.
+           - style: The style to apply to the view, by default ``KeyboardStyle/ActionCallout/standard``.
+         */
+        public init(
+            calloutContext: CalloutActionContext,
+            keyboardContext: KeyboardContext,
+            style: Style = .standard
+        ) {
+            self._calloutContext = ObservedObject(wrappedValue: calloutContext)
+            self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
+            self.style = style
         }
-        .buttonStyle(ActionCalloutButtonStyle())
-        .font(style.font.font)
-        .compositingGroup()
-        .opacity(calloutContext.isActive ? 1 : 0)
-        .keyboardCalloutShadow(style: calloutStyle)
-        .position(x: positionX, y: positionY)
-        .offset(y: style.verticalOffset)
-    }
-}
-
-private struct ActionCalloutButtonStyle: ButtonStyle {
-
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
+        
+        public typealias Context = CalloutActionContext
+        public typealias Style = KeyboardStyle.ActionCallout
+        
+        static let coordinateSpace = Context.coordinateSpace
+        
+        @ObservedObject
+        private var calloutContext: Context
+        
+        @ObservedObject
+        private var keyboardContext: KeyboardContext
+        
+        private let style: Style
+        
+        public var body: some View {
+            Button(action: calloutContext.reset) {
+                VStack(alignment: calloutContext.alignment, spacing: 0) {
+                    callout
+                    buttonArea
+                }
+            }
+            .buttonStyle(.plain)
+            .font(style.font.font)
+            .compositingGroup()
+            .opacity(calloutContext.isActive ? 1 : 0)
+            .keyboardCalloutShadow(style: calloutStyle)
+            .position(x: positionX, y: positionY)
+            .offset(y: style.verticalOffset)
+        }
     }
 }
 
 
 // MARK: - Private Properties
 
-private extension ActionCallout {
+private extension Callouts.ActionCallout {
     
     var backgroundColor: Color { calloutStyle.backgroundColor }
     var buttonFrame: CGRect { isEmojiCallout ? buttonFrameForEmojis : buttonFrameForCharacters }
@@ -94,7 +93,7 @@ private extension ActionCallout {
     var isTrailing: Bool { calloutContext.isTrailing }
     
     var buttonArea: some View {
-        CalloutButtonArea(frame: buttonFrame, style: calloutStyle)
+        Callouts.ButtonArea(frame: buttonFrame, style: calloutStyle)
             .opacity(isPad ? 0 : 1)
     }
     
@@ -159,7 +158,7 @@ private extension ActionCallout {
 
 // MARK: - Private Functions
 
-private extension ActionCallout {
+private extension Callouts.ActionCallout {
     
     var isPad: Bool { keyboardContext.deviceType == .pad }
 
@@ -182,7 +181,7 @@ private extension KeyboardAction {
     }
 }
 
-struct ActionCallout_Previews: PreviewProvider {
+struct Callouts_ActionCallout_Previews: PreviewProvider {
 
     static let actionHandler = KeyboardPreviews.ActionHandler()
 
@@ -190,24 +189,24 @@ struct ActionCallout_Previews: PreviewProvider {
 
     static let keyboardContext = KeyboardContext.preview
 
-    static let actionContext1 = ActionCallout.Context(
+    static let actionContext1 = Callouts.ActionCallout.Context(
         actionHandler: actionHandler,
         actionProvider: actionProvider)
 
-    static let actionContext2 = ActionCallout.Context(
+    static let actionContext2 = Callouts.ActionCallout.Context(
         actionHandler: actionHandler,
         actionProvider: actionProvider)
 
     static func previewGroup<ButtonView: View>(
         view: ButtonView,
-        actionContext: ActionCallout.Context,
+        actionContext: CalloutActionContext,
         alignment: HorizontalAlignment
     ) -> some View {
         view.overlay(
             GeometryReader { geo in
                 Color.clear.onAppear {
                     actionContext.updateInputs(
-                        for: .character("l"),
+                        for: .character("a"),
                         in: geo,
                         alignment: alignment
                     )

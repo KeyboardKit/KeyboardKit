@@ -47,17 +47,17 @@ public extension View {
        - style: The style to apply, by default ``KeyboardStyle/ActionCallout/standard``.
      */
     func keyboardActionCalloutContainer(
-        calloutContext: ActionCallout.Context,
+        calloutContext: CalloutActionContext,
         keyboardContext: KeyboardContext,
         style: KeyboardStyle.ActionCallout = .standard
     ) -> some View {
         self.overlay(
-            ActionCallout(
+            Callouts.ActionCallout(
                 calloutContext: calloutContext,
                 keyboardContext: keyboardContext,
                 style: style
             )
-        ).coordinateSpace(name: ActionCallout.coordinateSpace)
+        ).coordinateSpace(name: CalloutActionContext.coordinateSpace)
     }
 
     /**
@@ -82,16 +82,16 @@ public extension View {
        - style: The style to apply, by default ``KeyboardStyle/InputCallout/standard``.
      */
     func keyboardInputCalloutContainer(
-        calloutContext: InputCallout.Context,
+        calloutContext: CalloutInputContext,
         keyboardContext: KeyboardContext,
         style: KeyboardStyle.InputCallout = .standard
     ) -> some View {
         self.overlay(
-            InputCallout(
+            Callouts.InputCallout(
                 calloutContext: calloutContext,
                 keyboardContext: keyboardContext,
                 style: style
             )
-        ).coordinateSpace(name: InputCallout.coordinateSpace)
+        ).coordinateSpace(name: CalloutInputContext.coordinateSpace)
     }
 }
