@@ -5,7 +5,6 @@ This article describes the KeyboardKit state engine.
 KeyboardKit has ways to check if a keyboard is enabled in System Settings, if Full Access is granted and if the keyboard is currently being used. This can be used to make the main app help users setup their keyboard properly. 
 
 
-
 ## Keyboard state
 
 The observable ``KeyboardStateContext`` class can be used to observe the state of any keyboard:

@@ -1,5 +1,5 @@
 //
-//  Appearance+Preview.swift
+//  KeyboardPreviews+Styling.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-03-25.

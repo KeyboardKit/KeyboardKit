@@ -144,14 +144,14 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
         return style
     }
 
-    /// The style to apply to ``ActionCallout`` views.
+    /// The style to use on ``Callouts/ActionCallout`` views.
     open var actionCalloutStyle: KeyboardStyle.ActionCallout {
         var style = KeyboardStyle.ActionCallout.standard
         style.callout = calloutStyle
         return style
     }
 
-    /// The style to apply to ``InputCallout`` views.
+    /// The style to use on ``Callouts/InputCallout`` views.
     open var inputCalloutStyle: KeyboardStyle.InputCallout {
         var style = KeyboardStyle.InputCallout.standard
         style.callout = calloutStyle

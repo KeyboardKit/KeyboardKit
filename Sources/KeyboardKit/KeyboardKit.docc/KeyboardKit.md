@@ -127,6 +127,11 @@ KeyboardKit is available under the MIT license.
 - ``BaseCalloutActionProvider``
 - ``StandardCalloutActionProvider``
 
+### Colors
+
+- <doc:Understanding-Colors>
+- ``Callouts``
+
 ### Device
 
 - ``DeviceType``

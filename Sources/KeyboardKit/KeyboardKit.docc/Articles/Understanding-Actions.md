@@ -27,7 +27,6 @@ The ``KeyboardAction`` enum contains a bunch of actions, for instance:
 The descriptions below are the standard behaviors when actions are handled with a StandardKeyboardActionHandler.
 
 
-
 ## How to handle keyboard actions
 
 Keyboard actions can be handled with a ``KeyboardActionHandler``, which is a protocol that can be implemented by any class that can handle keyboard actions. 
@@ -52,11 +51,9 @@ Text("Button")
 ``SystemKeyboard`` automatically applies this modifier to all buttons.
 
 
-
 ## How to customize the action behavior
 
 You can customize the action behavior by replacing ``KeyboardInputViewController/keyboardActionHandler`` with a custom ``KeyboardActionHandler``. This is needed for actions that don't have a default system behavior, like ``KeyboardAction/image``.
-
 
 
 ## How to create a custom action handler

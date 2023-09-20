@@ -60,10 +60,10 @@ public protocol KeyboardStyleProvider: AnyObject {
 
     // MARK: - Callouts
 
-    /// The style to apply to ``ActionCallout`` views.
+    /// The style to use on ``Callouts/ActionCallout`` views.
     var actionCalloutStyle: KeyboardStyle.ActionCallout { get }
     
-    /// The style to apply to ``InputCallout`` views.
+    /// The style to use on ``Callouts/InputCallout`` views.
     var inputCalloutStyle: KeyboardStyle.InputCallout { get }
 
 

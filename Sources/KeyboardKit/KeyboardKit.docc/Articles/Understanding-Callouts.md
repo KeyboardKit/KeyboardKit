@@ -11,13 +11,11 @@ KeyboardKit will bind a ``StandardCalloutActionProvider`` to ``KeyboardInputView
 [KeyboardKit Pro][Pro] unlocks localized action providers for all keyboard locales when you register a valid license. Information about Pro features can be found at the end of this article.
 
 
-
 ## Callout namespace
 
 KeyboardKit has a ``Callouts`` namespace that contains callout-specic types and views, except protocols and contexts.
 
 For instance, a ``Callouts/InputCallout`` shows the currently pressed key while a ``Callouts/ActionCallout`` shows secondary actions when long pressing a key. These callouts are automatically used if you use a ``SystemKeyboard``.
-
 
 
 ## How to show input and action callouts
@@ -36,11 +34,9 @@ This view extension will bind a ``CalloutActionContext`` and a ``CalloutInputCon
 The ``SystemKeyboard`` and ``KeyboardButton/Button`` will automatically update these contexts as you interact with a button.
 
 
-
 ## How to customize callout actions
 
 You can customize the callout actions by adding localized providers to the default ``StandardCalloutActionProvider``, or by replacing ``KeyboardInputViewController/calloutActionProvider`` with a custom ``CalloutActionProvider``.
-
 
 
 ## How to create a custom callout action provider
@@ -77,7 +73,6 @@ class KeyboardViewController: KeyboardInputViewController {
 ```
 
 This will make KeyboardKit use your custom implementation instead of the standard one.
-
 
 
 ## 👑 Pro features

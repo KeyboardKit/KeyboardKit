@@ -2,7 +2,7 @@
 
 This article describes the KeyboardKit styling engine.
 
-KeyboardKit uses ``KeyboardStyle`` types to style various views. For instance, a ``KeyboardStyle/InputCallout`` style can be used to style ``InputCallout`` views. 
+KeyboardKit uses ``KeyboardStyle`` types to style various views. For instance, a ``KeyboardStyle/InputCallout`` style can be used to style ``Callouts/InputCallout`` views. 
 
 [KeyboardKit Pro][Pro] specific features, such as the convenient theme engine, are described at the end of this document.
 

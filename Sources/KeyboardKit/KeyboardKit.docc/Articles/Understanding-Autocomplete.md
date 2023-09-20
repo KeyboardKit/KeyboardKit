@@ -11,13 +11,11 @@ KeyboardKit doesn't have a standard provider as it has for other services. Inste
 [KeyboardKit Pro][Pro] unlocks and registers a local autocomplete provider when you register a valid license. Information about Pro features can be found at the end of this article.
 
 
-
 ## Autocomplete namespace
 
 KeyboardKit has an ``Autocomplete`` namespace that contains autocomplete-specic types and views, except protocols and contexts.
 
 For instance, an ``Autocomplete/Toolbar`` can be used to show suggestions. The ``SystemKeyboard`` will add an autocomplete toolbar by default, unless you explicitly tell it not to.
-
 
 
 ## How to perform autocomplete
@@ -27,7 +25,6 @@ KeyboardKit will automatically call ``KeyboardController/performAutocomplete()``
 If you need to reset autocomplete state, you can call the controller's ``KeyboardController/resetAutocomplete()`` or the context's ``AutocompleteContext/reset()`` functions.
 
 
-
 ## How to customize the autocomplete behavior
 
 You can customize the autocomplete behavior by replacing ``KeyboardInputViewController/autocompleteProvider`` with a custom ``AutocompleteProvider`` or by overriding the various ``KeyboardInputViewController`` functions.  
@@ -35,7 +32,6 @@ You can customize the autocomplete behavior by replacing ``KeyboardInputViewCont
 For instance, ``KeyboardInputViewController/autocompleteText`` determines which text to pass into the provider. It uses ``KeyboardInputViewController/textDocumentProxy`` by default, but you can override it to customize which text to use.
 
 If you want to temporarily or permanently disable autocomplete, set the ``KeyboardInputViewController/autocompleteContext`` ``AutocompleteContext/isEnabled`` property to `false`.
-
 
 
 ## How to create a custom autocomplete provider
@@ -118,18 +114,15 @@ class KeyboardViewController: KeyboardInputViewController {
 This will make KeyboardKit use your custom implementation instead of the standard one.   
 
 
-
 ## 👑 Pro features
 
 [KeyboardKit Pro][Pro] unlocks additional autocomplete providers and utilities.
-
 
 ### Local autocomplete provider
 
 KeyboardKit Pro unlocks and sets up a LocalAutocompleteProvider when you register a valid license. You can inherit and customize it to modify its default behavior.
 
 This provider uses on-device capabilities to perform autocomplete. It works offline, doesn't require full access and integrates with other system components, like the on-device lexicon. It currently doesn't provide next word prediction. 
-
 
 ### Remote autocomplete provider
 
