@@ -9,18 +9,15 @@
 import Foundation
 
 /**
- This protocol can be implemented by classes that can return
- a list of frequently used emojis.
+ This protocol specializes ``EmojiProvider`` and can be used
+ to provide a list of frequently used emojis.
  
- When using this protocol, you should trigger `registerEmoji`
- whenever a user selects an emoji, then use the registration
- to populate a frequent list that is returned by `emojis`.
+ You should trigger `registerEmoji` whenever a user performs
+ an action on an emoji, e.g. taps it in a emoji keyboard. It
+ should cause the implementation to update its frequent info.
 */
 public protocol FrequentEmojiProvider: EmojiProvider {
     
-    /**
-     Register that an emoji has been used. This will be used
-     to prepare the emojis that will be returned by `emojis`.
-     */
+    /// Register that an emoji has been used.
     func registerEmoji(_ emoji: Emoji)
 }

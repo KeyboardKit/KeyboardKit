@@ -5,7 +5,18 @@ This article describes the KeyboardKit device utilities.
 These utilities aim to help you use multi-platform device information to customize your keyboards.
 
 
-## Device screen sizes
+
+## Device type
+
+KeyboardKit has a ``DeviceType`` enum, with platform-agnostic device types.
+
+You can use ``DeviceType/current`` to get the current device type.
+
+Just like with screen size, you should be careful with using the device information, but keyboards sometime need it. 
+
+
+
+## Screen sizes
 
 KeyboardKit has `CGSize` utilities to help detecting which kind of hardware you're on, for instance:
 
@@ -17,14 +28,6 @@ func isLargePad(_ size: CGSize) -> Bool {
 
 Although you should be careful with using the screen size, since apps can run in split screen and keyboards can be floating, keyboards sometime need to be able to detect the exact kind of device you're on.
 
-
-## Device type
-
-KeyboardKit has a ``DeviceType`` enum, with platform-agnostic device types.
-
-You can use ``DeviceType/current`` to get the current device type.
-
-Just like with screen size, you should be careful with using the device information, but keyboards sometime need it. 
 
 
 ## Interface orientation

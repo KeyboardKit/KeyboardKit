@@ -67,7 +67,6 @@ final class KeyboardAction_ImagesTests: XCTestCase {
 
         XCTAssertTrue(result(for: .character("A"))! > 0)
         XCTAssertTrue(result(for: .emoji(Emoji("🛸")))! > 0)
-        XCTAssertTrue(result(for: .emojiCategory(.animals))! > 0)
 
         XCTAssertTrue(result(for: .keyboardType(.alphabetic(.capsLocked)))! > 0)
         XCTAssertTrue(result(for: .keyboardType(.alphabetic(.lowercased)))! > 0)

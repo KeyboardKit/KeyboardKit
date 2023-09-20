@@ -23,7 +23,6 @@ extension KeyboardAction {
             .dictation,
             .dismissKeyboard,
             .emoji(Emoji("")),
-            .emojiCategory(.smileys),
             .escape,
             .function,
             .image(description: "", keyboardImageName: "", imageName: ""),

@@ -88,7 +88,7 @@ class StandardKeyboardStyleProviderTests: XCTestCase {
     func testButtonStyleBorderIsNoStyleForSomeActions() {
         styles.forEach {
             switch $0.action {
-            case .none, .emoji, .emojiCategory:
+            case .none, .emoji:
                 XCTAssertEqual($0.style.border, .noBorder)
             default: XCTAssertEqual($0.style.border, .standard)
             }
@@ -156,7 +156,7 @@ class StandardKeyboardStyleProviderTests: XCTestCase {
     func testButtonStyleShadowStyleIsNoStyleForSomeActions() {
         styles.forEach {
             switch $0.action {
-            case .none, .characterMargin(""), .emoji, .emojiCategory:
+            case .none, .characterMargin(""), .emoji:
                 XCTAssertEqual($0.style.shadow, .noShadow)
             default: XCTAssertEqual($0.style.shadow, .standard)
             }

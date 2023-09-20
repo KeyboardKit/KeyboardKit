@@ -7,6 +7,7 @@ KeyboardKit has a few general buttons that can be used to mimic native keyboard 
 KeyboardKit doesn't require you to use the views and buttons in the library, but it can help speed up development.
 
 
+
 ## Keyboard Button
 
 The ``KeyboardButton`` namespace defines a couple of button types that help you mimic native keyboard buttons:
@@ -19,6 +20,7 @@ The ``KeyboardButton`` namespace defines a couple of button types that help you 
 - ``KeyboardButton/Title`` renders a keyboard button title.
 
 You can also use the `.keyboardButton` view modifier to convert any view to a keyboard button.
+
 
 
 ## Next Keyboard Button

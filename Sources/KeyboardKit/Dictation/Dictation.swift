@@ -11,6 +11,6 @@ import Foundation
 /**
  This namespace contains dictation-related types.
  
- The namespace doesn't contain services or observable types.
+ This namespace doesn't contain services or observable types.
  */
 public struct Dictation {}

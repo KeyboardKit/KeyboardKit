@@ -25,6 +25,7 @@ import SwiftUI
  */
 class KeyboardViewController: KeyboardInputViewController {
 
+    
     // MARK: - View Controller Lifecycle
 
     /**
@@ -114,8 +115,6 @@ class KeyboardViewController: KeyboardInputViewController {
      */
     func setupLayout(with license: License) {
         keyboardLayoutProvider = DemoLayoutProvider(
-            keyboardContext: keyboardContext,
-            inputSetProvider: inputSetProvider,
             localizedProviders: license.localizedKeyboardLayoutProviders
         )
     }
@@ -134,12 +133,9 @@ class KeyboardViewController: KeyboardInputViewController {
      Setup a theme from the KeyboardKit Pro theme engine.
      */
     func setupTheme(with license: License) {
-        keyboardAppearance = (try? KeyboardThemeAppearance(
+        keyboardStyleProvider = (try? ThemeBasedKeyboardStyleProvider(
             theme: .standard,
-            //theme: .cottonCandy,
-            //theme: .neonNights,
-            //theme: .tron,
-        keyboardContext: keyboardContext)) ?? keyboardAppearance
+            keyboardContext: keyboardContext)) ?? keyboardStyleProvider
     }
 
 

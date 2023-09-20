@@ -16,14 +16,6 @@ final class Emoji_CharacterTests: XCTestCase {
     let simple = "😀".char
     let nonSimple = "⌚️".char
 
-    func testIsEmojiReturnsTrueForAllEmojis() {
-        let allEmojis = EmojiCategory.all.flatMap { $0.emojis }
-        allEmojis.forEach {
-            let char = $0.char.char
-            XCTAssertTrue(char.isEmoji)
-        }
-    }
-
     func testIsCombinedEmojiReturnsTrueForSimpleAndCombinedEmojis() {
         XCTAssertTrue(combined.isCombinedEmoji)
         XCTAssertFalse(nonCombined.isCombinedEmoji)

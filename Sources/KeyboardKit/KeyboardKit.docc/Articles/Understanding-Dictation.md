@@ -11,11 +11,13 @@ KeyboardKit doesn't have a standard service as it has for other services. Instea
 [KeyboardKit Pro][Pro] unlocks and registers a standard dictation service when you register a valid license key. Information about Pro features can be found at the end of this article.
 
 
+
 ## Dictation namespace
 
-KeyboardKit has an ``Dictation`` namespace that contains dictation-specic types and views, except protocols and contexts.
+KeyboardKit has a ``Dictation`` namespace that contains dictation-related types and views, except protocols and contexts.
 
-For instance, a ``Dictation/KeyboardConfiguration`` can be used to configure a ``KeyboardDictationService`` for both the keyboard and its main app.
+For instance, a ``Dictation/KeyboardConfiguration`` can be used to configure a ``KeyboardDictationService`` for both a keyboard and its main app. There are also various status and error enums.
+
 
 
 ## How to perform dictation in an app.
@@ -27,6 +29,7 @@ Since dictation may stop at any time, for instance by silence, the service must 
 A dictation service can call ``DictationService/requestDictationAuthorization()`` to ask the user for the required permissions before starting a dictation operation. You can call this function manually as well, to avoid interrupting the first dictation operation with alerts.
 
 
+
 ## How to perform dictation from a keyboard extension
 
 You can use a ``KeyboardDictationService`` to perform dictation where microphone access is *not* available, such as in a keyboard. 
@@ -34,6 +37,7 @@ You can use a ``KeyboardDictationService`` to perform dictation where microphone
 Keyboard dictation should open the app and make it start dictation, write the dictated text to shared storage and return to the keyboard to let it process the result. This can be tricky to set up, but KeyboardKit Pro lets you configure this in a few simple steps.
 
 > Important: The navigation back to the keyboard stopped working in iOS 17. This also affected other keyboard engines, so hopefully someone will come up with another way soon. 
+
 
 
 ## 👑 Pro features

@@ -12,9 +12,8 @@ import Foundation
  This emoji provider can be used to return the most recently
  used emojis.
  
- This class implements `FrequentEmojiProvider` but is simple
- compared to a real "frequent" provider, which should keep a
- list of recent and still relevant emojis, remember taps etc.
+ This class implements ``FrequentEmojiProvider`` but is much
+ simpler compared to the iOS frequent emoji algorithm.
 */
 public class MostRecentEmojiProvider: FrequentEmojiProvider {
     
@@ -37,7 +36,7 @@ public class MostRecentEmojiProvider: FrequentEmojiProvider {
     private let maxCount: Int
     private let key = "com.keyboardkit.MostRecentEmojiProvider.emojis"
     
-    /// The persisted emoji characters, mapped to `Emoji`s.
+    /// The persisted emoji characters, mapped to ``Emoji``s.
     public var emojis: [Emoji] {
         emojiChars.map { Emoji($0) }
     }

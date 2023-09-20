@@ -20,7 +20,7 @@ class DemoCalloutActionProvider: CalloutActionProvider {
     func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {
         switch action {
         case .character(let char):
-            return calloutActionString(for: char).map { KeyboardAction.character($0) }
+            return calloutActionString(for: char).map { KeyboardAction.character("\($0)") }
         default: return []
         }
     }

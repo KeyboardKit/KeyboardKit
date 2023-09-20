@@ -52,9 +52,6 @@ public enum KeyboardAction: Codable, Equatable {
     /// Inserts an emoji when released.
     case emoji(Emoji)
     
-    /// Can be used to show a specific emoji category.
-    case emojiCategory(EmojiCategory)
-    
     /// Represents an escape (esc) key.
     case escape
     
@@ -108,6 +105,14 @@ public enum KeyboardAction: Codable, Equatable {
 
     /// Open an url when released, using a custom id for identification.
     case url(_ url: URL?, id: String? = nil)
+}
+
+public extension KeyboardAction {
+    
+    /// Inserts an emoji when released.
+    static func emoji(_ char: String) -> KeyboardAction {
+        .emoji(.init(char))
+    }
 }
 
 
@@ -195,7 +200,6 @@ public extension KeyboardAction {
         case .control: return true
         case .dictation: return true
         case .dismissKeyboard: return true
-        case .emojiCategory: return true
         case .escape: return true
         case .function: return true
         case .keyboardType: return true

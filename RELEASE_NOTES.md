@@ -29,30 +29,32 @@ You must either implement these services yourself, or get them by upgrading to K
 
 ### ✨ New Features
 
+* `KeyboardAction.emoji` can now be created with a string as well.
 * `KeyboardButton` now supports providing interactable `edgeInsets`.
 * `KeyboardButton` now supports providing an external `isPressed` state.
 * `KeyboardLayoutItem` has a new `width(forRowWidth:inputWidth:)` function.
 * `SystemKeyboard` has new initializers that make it much easier to customize the content and view of its keys.
 * `View.keyboardButton` is a new view extension that applies both a style and gestures.
 * `View.keyboardCalloutContainer` is a new view extension that applies both input and action callout container modifiers to the view. 
-* `View.keyboardLayoutItemSize` is a new view extension that applies a layout-specific size and insets to the view. 
+* `View.keyboardLayoutItemSize` is a new view extension that applies a layout-specific size and insets to the view.
 
 ### 💡 Adjustments
 
 * `AutocompleteProvider` is now async instead of using completions.
+* `View+KeyboardButton` now has support for custom, intrinsic edge insets.
 * `View+KeyboardButton` now applies a locale context menu to `nextLocale` buttons.
-* `View+KeyboardButton` now has support for custom edge insets.
 
 ### 👑 Pro Adjustments
 
+* `Emojis` has many types that were previously in the base library.
+* `ProKeyboardActionHandler` is a new handler that does pro things.
 * `RemoteAutocompleteProvider.AutocompleteError.noData` has been removed.
     
 ### 💥 Breaking changes 
 
 * All deprecated code has been removed or addressed.
-* Many types have been moved into a new `Autocomplete` namespace.
-* Many types have been moved into a new `Callouts` namespace.
-* Many types have been moved into a new `KeyboardButton` namespace.
+* Many types have been moved into new namespace types.
+* Many emoji types have been moved to KeyboardKit Pro.
 
 * `ActionCallout` has been renamed to `Callouts.ActionCallout`.
 * `Autocomplete.ToolbarItemSubtitle` is now initialized with a suggestion.
@@ -63,8 +65,16 @@ You must either implement these services yourself, or get them by upgrading to K
 * `DictationAuthorizationStatus` has been renamed to `Dictation.AuthorizationStatus`.
 * `Dictation.Configuration` has been renamed to `Dictation.Configuration`.
 * `DisabledCalloutActionProvider` has been removed.
+* `EmojiCategory` has been renamed to `Emojis.Category`.
+* `EmojiCategoryKeyboard` has been renamed to `Emojis.Keyboard`.
+* `EmojiCategoryKeyboardMenu` has been renamed to `Emojis.KeyboardMenu`.
+* `EmojiCategoryTitle` has been renamed to `Emojis.KeyboardCategoryTitle`.
+* `EmojiKeyboard` has been renamed to `Emojis.Grid`.
+* `EmojiKeyboardItem` has been removed.
+* `EmojiKeyboardStyle` has been renamed to `Emojis.KeyboardStyle`.
 * `EnglishCalloutActionProvider` has been removed.
 * `InputCallout` has been renamed to `Callouts.InputCallout`.
+* `KeyboardAction.emojiCategory` has been removed.
 * `KeyboardEnabledContext` has been renamed to `KeyboardStateContext`.
 * `KeyboardEnabledLabel` has been renamed to `KeyboardStateLabel`.
 * `KeyboardEnabledStateInspector` has been renamed to `KeyboardStateInspector`.

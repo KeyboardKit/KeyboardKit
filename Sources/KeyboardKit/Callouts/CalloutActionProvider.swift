@@ -9,8 +9,8 @@
 import Foundation
 
 /**
- This protocol can be implemented by any classes that can be
- used to get callout actions for a keyboard action.
+ This protocol can be implemented by things that can provide
+ callout actions for a keyboard action.
  
  KeyboardKit will create a ``StandardCalloutActionProvider``
  instance when the keyboard extension is started, then apply

@@ -8,7 +8,7 @@
 
 import KeyboardKitPro
 
-extension KeyboardDictationConfiguration {
+extension Dictation.KeyboardConfiguration {
 
     /**
      This config is used to show how dictation can be set up

@@ -45,22 +45,4 @@ final class Emoji_LocalizationTests: XCTestCase {
         let ring = Emoji("💍")
         XCTAssertEqual(ring.localizedName(for: .english), "Ring")
     }
-
-    func testLocalizedNameForAllEmojis() {
-        let locale = KeyboardLocale.english
-        let isEnglish = locale.rawValue.hasPrefix("en")
-        let emojis = EmojiCategory.all.flatMap { $0.emojis }
-        let untranslated = emojis.filter { $0.localizedName(for: locale) == ($0.unicodeName ?? "") }
-        let success = isEnglish || untranslated.count == 0
-        XCTAssertTrue(success)
-        if !success {
-            print("**************************")
-            print(" LOCALIZE THESE EMOJIS IN ")
-            print(" Resources/\(locale.locale.identifier).lproj/Localizable.strings")
-            print("**************************")
-            untranslated.forEach {
-                print("/* [\($0.char)] */ \"\($0.localizationKey)\" = \"\";")
-            }
-        }
-    }
 }

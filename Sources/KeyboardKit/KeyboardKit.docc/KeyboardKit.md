@@ -72,7 +72,6 @@ KeyboardKit is available under the MIT license.
 
 ### Articles
 
-- <doc:Emojis>
 - <doc:External-Keyboards>
 - <doc:Feedback>
 - <doc:Gestures>
@@ -148,16 +147,10 @@ KeyboardKit is available under the MIT license.
 
 ### Emojis
 
+- <doc:Understanding-Emojis>
 - ``Emoji``
-- ``EmojiCategory``
-- ``EmojiCategoryKeyboard``
-- ``EmojiKeyboard``
-- ``EmojiKeyboardItem``
-- ``EmojiKeyboardStyle``
+- ``Emojis``
 - ``EmojiProvider``
-
-### Emoji Providers
-
 - ``FrequentEmojiProvider``
 - ``MostRecentEmojiProvider``
 

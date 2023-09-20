@@ -89,7 +89,6 @@ final class KeyboardActionTests: XCTestCase {
             case .control: XCTAssertTrue(result)
             case .dictation: XCTAssertTrue(result)
             case .dismissKeyboard: XCTAssertTrue(result)
-            case .emojiCategory: XCTAssertTrue(result)
             case .escape: XCTAssertTrue(result)
             case .function: XCTAssertTrue(result)
             case .keyboardType: XCTAssertTrue(result)

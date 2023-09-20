@@ -42,7 +42,6 @@ public extension KeyboardAction {
         switch self {
         case .character(let char): return standardButtonText(for: char)
         case .emoji(let emoji): return emoji.char
-        case .emojiCategory(let cat): return cat.fallbackDisplayEmoji.char
         case .keyboardType(let type): return type.standardButtonText(for: context)
         case .nextLocale: return context.locale.languageCode?.uppercased()
         case .primary(let type): return type.standardButtonText(for: context.locale)

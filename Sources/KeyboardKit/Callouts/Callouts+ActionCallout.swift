@@ -35,6 +35,7 @@ public extension Callouts {
             self._calloutContext = ObservedObject(wrappedValue: calloutContext)
             self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
             self.style = style
+            // TODO self.emojiStyle = Emojis.KeyboardStyle.standard(for: keyboardContext)
         }
         
         public typealias Context = CalloutActionContext
@@ -49,6 +50,7 @@ public extension Callouts {
         private var keyboardContext: KeyboardContext
         
         private let style: Style
+        // TODO private let emojiStyle: Emojis.KeyboardStyle
         
         public var body: some View {
             Button(action: calloutContext.reset) {
@@ -136,10 +138,8 @@ private extension Callouts.ActionCallout {
     }
 
     func calloutView(for emoji: Emoji) -> some View {
-        EmojiKeyboardItem(
-            emoji: emoji,
-            style: .standard(for: keyboardContext)
-        )
+        Text(emoji.char)
+            // TODO .font(emojiStyle.itemFont)
     }
     
     var positionX: CGFloat {

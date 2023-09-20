@@ -12,7 +12,8 @@ import XCTest
 final class EmojiTests: XCTestCase {
 
     func testEmojiUsesCharAsUniqueIdentifier() {
-        Emoji.all.forEach {
+        let emojis = "🕓😀🐻🍔⚽️🚗💡💱🏳️".chars.map { Emoji($0) }
+        emojis.forEach {
             XCTAssertEqual($0.id, $0.char)
         }
     }

@@ -172,7 +172,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         tryReinsertAutocompleteRemovedSpace(after: gesture, on: action)
         tryEndSentence(after: gesture, on: action)
         tryChangeKeyboardType(after: gesture, on: action)
-        tryRegisterEmoji(after: gesture, on: action)
         keyboardController?.performAutocomplete()
         keyboardController?.performTextContextSync()
     }
@@ -351,18 +350,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         guard let action = replacementAction(for: gesture, on: action) else { return false }
         handle(.release, on: action, replaced: true)
         return true
-    }
-
-    /**
-     Try to register a certain emoji after the `gesture` has
-     been performed on the provided `action`.
-     */
-    open func tryRegisterEmoji(after gesture: KeyboardGesture, on action: KeyboardAction) {
-        guard gesture == .release else { return }
-        switch action {
-        case .emoji(let emoji): return EmojiCategory.frequentEmojiProvider.registerEmoji(emoji)
-        default: return
-        }
     }
 
     /**

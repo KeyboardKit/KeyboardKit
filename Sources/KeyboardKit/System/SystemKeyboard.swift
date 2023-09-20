@@ -239,16 +239,18 @@ private extension SystemKeyboard {
         }
     }
     
+    // TODO: Turn into an init parameter
     var emojiKeyboard: some View {
-        EmojiCategoryKeyboard(
-            actionHandler: actionHandler,
-            keyboardContext: keyboardContext,
-            calloutContext: calloutContext,
-            style: .standard(for: keyboardContext),
-            styleProvider: styleProvider
-        )
-        .padding(.top)
-        .opacity(shouldShowEmojiKeyboard ? 1 : 0)
+        EmptyView()
+        // Emojis.Keyboard(
+        //     actionHandler: actionHandler,
+        //     keyboardContext: keyboardContext,
+        //     calloutContext: calloutContext,
+        //     style: .standard(for: keyboardContext),
+        //     styleProvider: styleProvider
+        // )
+        // .padding(.top)
+        // .opacity(shouldShowEmojiKeyboard ? 1 : 0)
     }
 
     var systemKeyboard: some View {

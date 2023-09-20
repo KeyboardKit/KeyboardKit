@@ -16,7 +16,6 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
 
     private var handler: TestClass!
     var controller: MockKeyboardInputViewController!
-    var emojiProvider: MockFrequentEmojiProvider!
     var spaceDragHandler: MockDragGestureHandler!
     var textDocumentProxy: MockTextDocumentProxy!
 
@@ -28,16 +27,13 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
 
     override func setUp() {
         controller = MockKeyboardInputViewController()
-        emojiProvider = MockFrequentEmojiProvider()
         spaceDragHandler = MockDragGestureHandler()
         textDocumentProxy = MockTextDocumentProxy()
         textDocumentProxy.documentContextBeforeInput = ""
 
         controller.keyboardContext.locale = KeyboardLocale.swedish.locale
         controller.keyboardContext.textDocumentProxy = textDocumentProxy
-        originalEmojiProvider = EmojiCategory.frequentEmojiProvider
-        EmojiCategory.frequentEmojiProvider = emojiProvider
-
+        
         handler = TestClass(
             keyboardController: controller,
             keyboardContext: controller.keyboardContext,
@@ -50,10 +46,6 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         hapticEngine = MockHapticFeedbackEngine()
         AudioFeedbackEngine.shared = audioEngine
         HapticFeedbackEngine.shared = hapticEngine
-    }
-
-    override func tearDown() {
-        EmojiCategory.frequentEmojiProvider = originalEmojiProvider
     }
 
 
@@ -69,7 +61,6 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         XCTAssertTrue(handler.hasCalled(\.tryReinsertAutocompleteRemovedSpaceRef))
         XCTAssertTrue(handler.hasCalled(\.tryEndSentenceRef))
         XCTAssertTrue(handler.hasCalled(\.tryChangeKeyboardTypeRef))
-        XCTAssertTrue(handler.hasCalled(\.tryRegisterEmojiRef))
         XCTAssertTrue(controller.hasCalled(\.performAutocompleteRef))
         XCTAssertTrue(controller.hasCalled(\.performTextContextSyncRef))
     }
@@ -215,15 +206,6 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         XCTAssertFalse(result)
     }
 
-    func testTryToRegisterEmojiAfterGestureOnActionRegisterEmojiForReleasesOnEmoji() {
-        handler.tryRegisterEmoji(after: .doubleTap, on: .emoji(Emoji("a")))
-        XCTAssertFalse(emojiProvider.hasCalled(\.registerEmojiRef))
-        handler.tryRegisterEmoji(after: .release, on: .space)
-        XCTAssertFalse(emojiProvider.hasCalled(\.registerEmojiRef))
-        handler.tryRegisterEmoji(after: .release, on: .emoji(Emoji("a")))
-        XCTAssertTrue(emojiProvider.hasCalled(\.registerEmojiRef))
-    }
-
     func testTryToReinsertAutocompleteRemovedSpaceAfterGestureOnActionProceedsForReleaseOnSomeActions() {
         textDocumentProxy.documentContextBeforeInput = "hi"
         textDocumentProxy.documentContextAfterInput = "you"
@@ -251,7 +233,6 @@ private class TestClass: StandardKeyboardActionHandler, Mockable {
     lazy var tryApplyAutocompleteSuggestionRef = MockReference(tryApplyAutocompleteSuggestion)
     lazy var tryChangeKeyboardTypeRef = MockReference(tryChangeKeyboardType)
     lazy var tryEndSentenceRef = MockReference(tryEndSentence)
-    lazy var tryRegisterEmojiRef = MockReference(tryRegisterEmoji)
     lazy var tryReinsertAutocompleteRemovedSpaceRef = MockReference(tryReinsertAutocompleteRemovedSpace)
     lazy var tryRemoveAutocompleteInsertedSpaceRef = MockReference(tryRemoveAutocompleteInsertedSpace)
 
@@ -273,11 +254,6 @@ private class TestClass: StandardKeyboardActionHandler, Mockable {
     override func tryEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction) {
         super.tryEndSentence(after: gesture, on: action)
         call(tryEndSentenceRef, args: (gesture, action))
-    }
-
-    override func tryRegisterEmoji(after gesture: KeyboardGesture, on action: KeyboardAction) {
-        super.tryRegisterEmoji(after: gesture, on: action)
-        call(tryRegisterEmojiRef, args: (gesture, action))
     }
 
     override func tryReinsertAutocompleteRemovedSpace(after gesture: KeyboardGesture, on action: KeyboardAction) {

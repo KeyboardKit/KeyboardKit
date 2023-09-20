@@ -21,6 +21,10 @@ struct DemoKeyboardView: View {
     private var keyboardContext: KeyboardContext
 
     var body: some View {
-        SystemKeyboard(controller: controller)
+        SystemKeyboard(
+            controller: controller,
+            buttonContent: { $1 },
+            buttonView: { $1 }
+        )
     }
 }

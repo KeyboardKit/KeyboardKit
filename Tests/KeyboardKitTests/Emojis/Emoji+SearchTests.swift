@@ -23,12 +23,6 @@ final class Emoji_SearchTests: XCTestCase {
         XCTAssertTrue(emoji.matches("lEende", for: .swedish))
     }
 
-    func testCollectionItemsMatchingQueryMatchesOnCaseInsensitiveUnicodeName() {
-        let emojis = Emoji.all.matching("GrIn", for: .english)
-        let mapped = emojis.map { $0.char }
-        XCTAssertEqual(mapped, ["😀", "😁", "🤪", "🤩", "😸"])
-    }
-
     func testCollectionItemsMatchingQueryMatchesOnCaseInsensitiveLocalizedName() {
         let emoji = Emoji("😀")
         XCTAssertTrue(emoji.matches("GrIn", for: .english))

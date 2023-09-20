@@ -1,5 +1,5 @@
 //
-//  EmojiCategoryTests.swift
+//  Emoji+UnicodeTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2022-12-12.
@@ -10,16 +10,10 @@ import KeyboardKit
 import XCTest
 
 final class Emoji_UnicodeTests: XCTestCase {
-
+    
     func testUnicodeIdentifierIsRawValue() {
         let id = Emoji("😀").unicodeIdentifier
         XCTAssertEqual(id, "\\N{GRINNING FACE}")
-    }
-
-    func testUnicodeIdentifierIsDefinedForAllEmojis() {
-        Emoji.all.forEach {
-            XCTAssertNotNil($0.unicodeIdentifier)
-        }
     }
 
     func testUnicodeNameIsCleanedUpIdentifier() {
@@ -34,19 +28,8 @@ final class Emoji_UnicodeTests: XCTestCase {
         XCTAssertEqual(name, "Flag - Kenya")
     }
 
-    func testUnicodeNameIsDefinedForAllEmojis() {
-        Emoji.all.forEach {
-            XCTAssertNotNil($0.unicodeName)
-        }
-    }
-
     func testUnicodeNameOverrideIsOnlyDefinedForFlags() {
         XCTAssertNil(Emoji("😀").unicodeNameOverride)
         XCTAssertNotNil(Emoji("🇳🇴").unicodeNameOverride)
-        Emoji.all.forEach {
-            if let name = $0.unicodeNameOverride {
-                XCTAssertTrue(name.contains("Flag"))
-            }
-        }
     }
 }

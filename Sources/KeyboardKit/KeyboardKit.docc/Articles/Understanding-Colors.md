@@ -7,6 +7,7 @@ KeyboardKit provides a bunch of keyboard-specific colors.
 Some of these colors come with some caveats to help work around system limitations, so make sure to read this article carefully.
 
 
+
 ## Raw colors
 
 KeyboardKit has a ``KeyboardColor`` enum with raw keyboard colors, such as:
@@ -18,6 +19,7 @@ KeyboardColor.standardKeyboardBackground
 ```
 
 These colors aim to match the iOS system design as closely as possibly.
+
 
 
 ## Contextual colors
@@ -33,6 +35,7 @@ let color = Color.standardButtonBackground(for: keyboardContext)
 These contextual colors will return different colors based on the system color scheme, and sometimes even device type. This means that you don't have to pick which raw color to use.
 
 The reason for having the reader protocol is basically just to expose this extended `Color` functionality to the documentation.
+
 
 
 ## Why having contextual colors?

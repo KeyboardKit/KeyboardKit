@@ -179,7 +179,7 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     /// The border style to use for a certain action.
     open func buttonBorderStyle(for action: KeyboardAction) -> KeyboardStyle.ButtonBorder {
         switch action {
-        case .emoji, .emojiCategory, .none: return .noBorder
+        case .emoji, .none: return .noBorder
         default: return .standard
         }
     }
@@ -257,7 +257,7 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     open func buttonShadowStyle(for action: KeyboardAction) -> KeyboardStyle.ButtonShadow {
         switch action {
         case .characterMargin: return .noShadow
-        case .emoji, .emojiCategory: return .noShadow
+        case .emoji: return .noShadow
         case .none: return .noShadow
         default: return .standard
         }
@@ -281,7 +281,6 @@ extension KeyboardAction {
         case .none: return .clear
         case .characterMargin: return .clearInteractable
         case .emoji: return .clearInteractable
-        case .emojiCategory: return .clearInteractable
         default: return nil
         }
     }
