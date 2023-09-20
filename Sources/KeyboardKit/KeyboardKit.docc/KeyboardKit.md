@@ -72,7 +72,6 @@ KeyboardKit is available under the MIT license.
 
 ### Articles
 
-- <doc:Dictation>
 - <doc:Emojis>
 - <doc:External-Keyboards>
 - <doc:Feedback>
@@ -139,14 +138,11 @@ KeyboardKit is available under the MIT license.
 
 ### Dictation
 
-- ``DictationAuthorizationStatus``
-- ``DictationConfiguration``
+- <doc:Understanding-Dictation>
+- ``Dictation``
 - ``DictationContext``
 - ``DictationService``
-- ``DictationServiceError``
-- ``KeyboardDictationConfiguration``
 - ``KeyboardDictationService``
-
 - ``DisabledDictationService``
 - ``DisabledKeyboardDictationService``
 

@@ -9,6 +9,8 @@
 import Foundation
 
 /**
- This namespace contains various autocomplete types.
+ This namespace contains autocomplete-related types.
+ 
+ The namespace doesn't contain services or observable types.
  */
 public struct Autocomplete {}

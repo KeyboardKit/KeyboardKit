@@ -13,24 +13,23 @@ extension KeyboardDictationConfiguration {
     /**
      This config is used to show how dictation can be set up
      for an app and its keyboard.
-
-     > Note: Your app will most likely be able to share this
-     config between the app and the keyboard. This demo must
-     however use two configs, since the app uses KeyboardKit
-     and the keyboard uses KeyboardKit Pro.
+     
+     > Note: Your app and keyboard should be able to share a.
+     This demo must however use separate ones, since the app
+     uses KeyboardKit and the keyboard uses KeyboardKit Pro.
 
      > Important: This is only for instruction purposes. The
-     required app group is NOT configured for the demo since
-     it must be signed. You will still be able to initialize
-     dictation from the demo keyboard, but the keyboard will
-     not be able to read the dictated text.
+     app isn't configured for dictation, since that requires
+     it to be signed. You can open the app from the keyboard
+     and start dictation, but the keyboard isn't able to get
+     the dictated text, since the data isn't shared.
      */
-    static let app = KeyboardDictationConfiguration(
+    static let app = Dictation.KeyboardConfiguration(
         appGroupId: "com.keyboardkit.demo",
         appDeepLink: "kkdemo://dictation")
 }
 
-extension DictationConfiguration {
+extension Dictation.Configuration {
 
-    static var app = DictationConfiguration()
+    static var app = Dictation.Configuration()
 }

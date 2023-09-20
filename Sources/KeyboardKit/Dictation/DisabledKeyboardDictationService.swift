@@ -22,22 +22,22 @@ public class DisabledKeyboardDictationService: KeyboardDictationService {
 
 public extension DisabledKeyboardDictationService {
 
-    var authorizationStatus: DictationAuthorizationStatus {
+    var authorizationStatus: Dictation.AuthorizationStatus {
         .disabledService
     }
 
-    func requestDictationAuthorization() async throws -> DictationAuthorizationStatus {
+    func requestDictationAuthorization() async throws -> Dictation.AuthorizationStatus {
         authorizationStatus
     }
 
     func startDictationFromKeyboard(
-        with config: KeyboardDictationConfiguration
+        with config: Dictation.KeyboardConfiguration
     ) async throws {
         resetContext()
     }
 
     func performDictationInApp(
-        with config: KeyboardDictationConfiguration
+        with config: Dictation.KeyboardConfiguration
     ) async throws {
         resetContext()
     }

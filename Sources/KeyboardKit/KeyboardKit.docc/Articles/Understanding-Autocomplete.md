@@ -8,7 +8,7 @@ An ``AutocompleteProvider`` can be used to provide suggestions to an ``Autocompl
 
 KeyboardKit doesn't have a standard provider as it has for other services. Instead, it binds a disabled provider to ``KeyboardInputViewController/autocompleteProvider`` until you replace it.
 
-[KeyboardKit Pro][Pro] unlocks and registers a local autocomplete provider when you register a valid license. Information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks and registers a local autocomplete provider when you register a valid license key. Information about Pro features can be found at the end of this article.
 
 
 ## Autocomplete namespace
@@ -116,17 +116,17 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks additional autocomplete providers and utilities.
+[KeyboardKit Pro][Pro] unlocks additional autocomplete providers when you register a valid license key, then binds a LocalAutocompleteProvider to ``KeyboardInputViewController/autocompleteProvider``.
 
 ### Local autocomplete provider
 
-KeyboardKit Pro unlocks and sets up a LocalAutocompleteProvider when you register a valid license. You can inherit and customize it to modify its default behavior.
-
 This provider uses on-device capabilities to perform autocomplete. It works offline, doesn't require full access and integrates with other system components, like the on-device lexicon. It currently doesn't provide next word prediction. 
+
+You can inherit and customize this provider to modify its default behavior.
 
 ### Remote autocomplete provider
 
-KeyboardKit Pro unlocks a RemoteAutocompleteProvider, which can be integrated with external REST-based APIs. 
+This provider can be used to integrate with external REST-based APIs and web services. All you have to do is to specify endpoints and various parameters, as well as a model that matches the service response.
 
 Since most autocomplete APIs require a token or some form of authentication, the demo app doesn't show this provider in action.
 

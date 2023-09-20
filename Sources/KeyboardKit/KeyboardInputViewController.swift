@@ -517,7 +517,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      you call ``DictationContext/setup(with:)`` before using
      the dictation features in your keyboard extension.
      */
-    public var dictationConfig: KeyboardDictationConfiguration {
+    public var dictationConfig: Dictation.KeyboardConfiguration {
         .init(
             appGroupId: dictationContext.appGroupId ?? "",
             appDeepLink: dictationContext.appDeepLink ?? ""

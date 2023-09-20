@@ -42,19 +42,19 @@ public protocol KeyboardDictationService: AnyObject {
     /**
      The current dictation authorization status.
      */
-    var authorizationStatus: DictationAuthorizationStatus { get }
+    var authorizationStatus: Dictation.AuthorizationStatus { get }
 
     /**
      Request dictation authorization.
      */
-    func requestDictationAuthorization() async throws -> DictationAuthorizationStatus
+    func requestDictationAuthorization() async throws -> Dictation.AuthorizationStatus
 
     /**
      Call this function to start dictation from the keyboard,
      where no microphone access is available.
      */
     func startDictationFromKeyboard(
-        with config: KeyboardDictationConfiguration
+        with config: Dictation.KeyboardConfiguration
     ) async throws
 
     /**
@@ -62,7 +62,7 @@ public protocol KeyboardDictationService: AnyObject {
      where microphone access is available.
      */
     func performDictationInApp(
-        with config: KeyboardDictationConfiguration
+        with config: Dictation.KeyboardConfiguration
     ) async throws
 
     /**

@@ -8,7 +8,7 @@ In KeyboardKit, a ``CalloutActionProvider`` can be used to provide secondary act
 
 KeyboardKit will bind a ``StandardCalloutActionProvider`` to ``KeyboardInputViewController/calloutActionProvider`` when the keyboard is loaded. It has no callout actions by default, but you can add localized providers to it or replace it with a custom implementation at any time.
 
-[KeyboardKit Pro][Pro] unlocks localized providers for all keyboard locales when you register a valid license. It also lets you inherit a `ProCalloutActionProvider` base class to get more features. Information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks and registers localized providers for all keyboard locales when you register a valid license key. It also lets you inherit the `ProCalloutActionProvider` to get more features. Information about Pro features can be found at the end of this article.
 
 
 ## Callout namespace
@@ -79,7 +79,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks localized ``CalloutActionProvider`` implementations for all ``KeyboardLocale``s in your license and automatically injects them into the ``StandardCalloutActionProvider`` when you register your license key.
+[KeyboardKit Pro][Pro] unlocks localized ``CalloutActionProvider``s for all ``KeyboardLocale``s in your license and automatically injects them into the ``StandardCalloutActionProvider`` when you register a valid license key.
 
 You can access all and Pro providers like this:
 

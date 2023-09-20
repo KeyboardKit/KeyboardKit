@@ -13,11 +13,19 @@ These release notes will only contain the current version. Just check out an old
 
 ## 8.0
 
-This version removes all previously deprecated functions and makes the library cleaner.
+This version removes all previously deprecated functions and aims to make the library cleaner by moving types into namespaces.
 
-The library no longer sets up English services by default, so make sure that you are aware of that before upgrading.
+The goal with all these new namespaces is to increase discoverability and make it easier to overview the different parts of the library.
 
-You must either implement the English services yourself, or get them from the Pro library.
+As a result, some nice-to-have utilities have been removed, if their existence bloated the library while providing little value.
+
+Note that the library no longer sets up English services by default, so make sure that you are aware of that before upgrading. 
+
+You must either implement these services yourself, or get them by upgrading to KeyboardKit Pro.
+
+### 🚨 Important changes
+
+* `StandardCalloutActionProvider` doesn't provide English callout actions by default anymore.
 
 ### ✨ New Features
 
@@ -38,10 +46,6 @@ You must either implement the English services yourself, or get them from the Pr
 ### 👑 Pro Adjustments
 
 * `RemoteAutocompleteProvider.AutocompleteError.noData` has been removed.
-
-### 🚨 Important changes
-
-* `StandardCalloutActionProvider` provides no actions by default anymore.
     
 ### 💥 Breaking changes 
 
@@ -56,6 +60,8 @@ You must either implement the English services yourself, or get them from the Pr
 * `CalloutButtonArea` has been renamed to `Callouts.ButtonArea`.
 * `CalloutContext.ActionCallout` has been renamed to `CalloutActionContext`.
 * `CalloutContext.InputCallout` has been renamed to `CalloutInputContext`.
+* `DictationAuthorizationStatus` has been renamed to `Dictation.AuthorizationStatus`.
+* `Dictation.Configuration` has been renamed to `Dictation.Configuration`.
 * `DisabledCalloutActionProvider` has been removed.
 * `EnglishCalloutActionProvider` has been removed.
 * `InputCallout` has been renamed to `Callouts.InputCallout`.

@@ -1,5 +1,5 @@
 //
-//  KeyboardKeyboardDictationConfiguration.swift
+//  Dictation+KeyboardConfiguration.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-03-27.
@@ -8,48 +8,43 @@
 
 import Foundation
 
-/**
- This config can be used with a ``KeyboardDictationService``.
-
- This configuration defines all parameters needed to perform
- a dictation operation that requires a keyboard extension to
- coordinate with its main app.
- */
-public struct KeyboardDictationConfiguration: Codable, Equatable {
-
+public extension Dictation {
+    
     /**
-     Create a keyboard dictation configuration.
-
-     - Parameters:
-       - appGroupId: An app group that can be used to sync data between your keyboard and its main app.
-       - appDeepLink: A deep link that can be used to open your app and start the dictation operation.
+     This can be used with a ``KeyboardDictationService``.
+     
+     This configuration defines parameters needed to perform
+     dictation that requires a keyboard extension to sync an
+     operation with its main app.
      */
-    public init(
-        appGroupId: String,
-        appDeepLink: String
-    ) {
-        self.appGroupId = appGroupId
-        self.appDeepLink = appDeepLink
+    struct KeyboardConfiguration: Codable, Equatable {
+        
+        /**
+         Create a keyboard dictation configuration.
+         
+         - Parameters:
+           - appGroupId: The app group to use to sync data between the keyboard and the app.
+           - appDeepLink: The deep link to use to open the app and start the dictation.
+         */
+        public init(
+            appGroupId: String,
+            appDeepLink: String
+        ) {
+            self.appGroupId = appGroupId
+            self.appDeepLink = appDeepLink
+        }
+        
+        /// The app group to use to sync data.
+        public let appGroupId: String
+        
+        /// The deep link to use to open the app.
+        public let appDeepLink: String
     }
-
-    /**
-     An app group that can be used to sync data between your
-     keyboard and its main app.
-     */
-    public let appGroupId: String
-
-    /**
-     A deep link that can be used to open your app and start
-     the dictation operation.
-     */
-    public let appDeepLink: String
 }
 
-public extension KeyboardDictationConfiguration {
+public extension Dictation.KeyboardConfiguration {
 
-    /**
-     Whether or not ``appDeepLink`` matches the provided url.
-     */
+    /// Whether or not the ``appDeepLink`` matches the url.
     func matchesDeepLink(_ url: URL) -> Bool {
         url.absoluteString == appDeepLink
     }
