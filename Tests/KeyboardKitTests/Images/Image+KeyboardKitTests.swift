@@ -1,5 +1,5 @@
 //
-//  KeyboardImageReaderTests.swift
+//  Image+KeyboardKitTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-06-22.
@@ -10,7 +10,7 @@ import KeyboardKit
 import SwiftUI
 import XCTest
 
-class KeyboardImageReaderTests: XCTestCase {
+class Image_KeyboardKitTests: XCTestCase {
 
     func result(for image: Image) -> Image {
         image

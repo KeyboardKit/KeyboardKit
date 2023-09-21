@@ -167,6 +167,10 @@ KeyboardKit is available under the MIT license.
 - ``DragGestureHandler``
 - ``SpaceCursorDragGestureHandler``
 
+### Images
+
+- <doc:Understanding-Images>
+
 ### Layout
 
 - ``InputSet``
