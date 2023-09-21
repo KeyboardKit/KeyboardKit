@@ -174,7 +174,6 @@ KeyboardKit is available under the MIT license.
 - ``InputSet``
 
 - ``KeyboardLayout``
-- ``KeyboardLayoutConfiguration``
 - ``KeyboardLayoutItem``
 - ``KeyboardLayoutProvider``
 - ``KeyboardLayoutProviderProxy``

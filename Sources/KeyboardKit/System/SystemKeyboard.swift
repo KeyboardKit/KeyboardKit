@@ -153,7 +153,7 @@ public struct SystemKeyboard<ButtonContent: View, ButtonView: View>: View {
     private let inputWidth: CGFloat
     private let renderBackground: Bool
     private let layout: KeyboardLayout
-    private let layoutConfig: KeyboardLayoutConfiguration
+    private let layoutConfig: KeyboardLayout.Configuration
     
     private let buttonContent: ButtonContentBuilder
     private let buttonView: ButtonViewBuilder

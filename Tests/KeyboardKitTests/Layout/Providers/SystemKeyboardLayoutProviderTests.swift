@@ -13,7 +13,7 @@ class SystemKeyboardLayoutProviderTests: XCTestCase {
 
     var provider: SystemKeyboardLayoutProvider!
     var context: KeyboardContext!
-    var layoutConfig: KeyboardLayoutConfiguration!
+    var layoutConfig: KeyboardLayout.Configuration!
 
     override func setUp() {
         context = KeyboardContext()

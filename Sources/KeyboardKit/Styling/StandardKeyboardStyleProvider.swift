@@ -79,7 +79,7 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     }
 
     /// The keyboard layout configuration to use.
-    open var keyboardLayoutConfiguration: KeyboardLayoutConfiguration {
+    open var keyboardLayoutConfiguration: KeyboardLayout.Configuration {
         .standard(for: keyboardContext)
     }
 

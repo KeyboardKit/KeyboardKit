@@ -69,6 +69,9 @@ public typealias KeyboardEnabledLabel = KeyboardStateLabel
 @available(*, deprecated, renamed: "KeyboardStateInspector", message: "This will be removed in KeyboardKit 8.1.")
 public typealias KeyboardEnabledStateInspector = KeyboardStateInspector
 
+@available(*, deprecated, renamed: "KeyboardLayout.Configuration", message: "This will be removed in KeyboardKit 8.1.")
+public typealias KeyboardLayoutConfiguration = KeyboardLayout.Configuration
+
 @available(*, deprecated, renamed: "InputSet", message: "This will be removed in KeyboardKit 8.1.")
 public typealias NumericInputSet = InputSet
 

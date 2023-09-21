@@ -119,10 +119,11 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     
     /// Get layout item insets for the provided parameters.
     open func itemInsets(for action: KeyboardAction, row: Int, index: Int, context: KeyboardContext) -> EdgeInsets {
-        let config = KeyboardLayoutConfiguration.standard(for: context)
         switch action {
         case .characterMargin, .none: return EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
-        default: return config.buttonInsets
+        default: return KeyboardLayout.Configuration
+                .standard(for: context)
+                .buttonInsets
         }
     }
     
@@ -145,8 +146,9 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         index: Int,
         context: KeyboardContext
     ) -> CGFloat {
-        let config = KeyboardLayoutConfiguration.standard(for: context)
-        return config.rowHeight
+        KeyboardLayout.Configuration
+            .standard(for: context)
+            .rowHeight
     }
     
     /// Get a layout item width for the provided parameters.

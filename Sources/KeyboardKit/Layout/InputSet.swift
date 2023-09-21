@@ -12,9 +12,8 @@ import Foundation
  An input set defines the input keys on a keyboard.
  
  Input sets can be used to create a ``KeyboardLayout`` which
- defines the full set of keys, that often include extra keys
- around the input rows and a bottom row. Layout also specify
- the size, insets and properties of each key.
+ defines the full set of keys of a keyboard, often including
+ keys around the input rows and a bottom system row.
  
  KeyboardKit has a couple of pre-defined input sets, such as
  standard ``qwerty``, a ``standardNumeric(currency:)`` and a

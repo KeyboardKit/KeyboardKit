@@ -73,10 +73,10 @@ public extension KeyboardLayoutItem {
 public extension KeyboardLayoutItem {
     
     /// This is a typealias for a layout item array.
-    typealias Row = [KeyboardLayoutItem]
+    typealias Row = [Self]
 
     /// This is a typealias for a layout item row array.
-    typealias Rows = [KeyboardLayoutItem.Row]
+    typealias Rows = [Row]
 }
 
 public extension KeyboardLayoutItem {
