@@ -119,21 +119,6 @@ struct CustomKeyboard: View {
 }
 ```
 
-Note some state types are set up by the controller. For instance, the ``ExternalKeyboardContext`` state must be manually added:
-
-```swift
-struct CustomKeyboard: View {
-
-    @StateObject
-    private var externalContext = ExternalKeyboardContext()
-
-    var body: some View {
-        Text("My custom view")
-            .environmentObject(externalContext)
-    }
-}
-```
-
 Environment objects are convenient, but the views in the library use init parameters to clearly communicate their dependencies.
 
 

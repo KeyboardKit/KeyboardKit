@@ -12,8 +12,8 @@ import Foundation
  This enum contains haptic feedback types that maps to names
  that are then mapped to system haptic feedback types.
   
- You can call ``trigger()`` on any feedback value to trigger
- it using ``HapticFeedbackEngine/shared``.
+ You can call ``trigger()`` on any feedback type, to trigger
+ it with the ``HapticFeedback/Engine/shared`` haptic engine.
 */
 public enum HapticFeedback: String, CaseIterable, Codable, Equatable, Identifiable {
     
@@ -57,11 +57,11 @@ public extension HapticFeedback {
 
     /// Prepare the feedback with the shared feedback engine.
     func prepare() {
-        HapticFeedbackEngine.shared.prepare(self)
+        HapticFeedback.Engine.shared.prepare(self)
     }
     
     /// Trigger the feedback with the shared feedback engine.
     func trigger() {
-        HapticFeedbackEngine.shared.trigger(self)
+        HapticFeedback.Engine.shared.trigger(self)
     }
 }

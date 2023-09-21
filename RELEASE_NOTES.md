@@ -57,6 +57,9 @@ You must either implement these services yourself, or get them by upgrading to K
 * Many emoji types have been moved to KeyboardKit Pro.
 
 * `ActionCallout` has been renamed to `Callouts.ActionCallout`.
+* `AudioFeedbackConfiguration` has been renamed to `AudioFeedback.Configuration`.
+* `AudioFeedbackEngine` has been renamed to `AudioFeedback.Engine`.
+* `AudioFeedback.Engine` is no longer open to inheritance. 
 * `Autocomplete.ToolbarItemSubtitle` is now initialized with a suggestion.
 * `BaseCalloutActionProvider` has been removed.
 * `CalloutButtonArea` has been renamed to `Callouts.ButtonArea`.
@@ -75,6 +78,9 @@ You must either implement these services yourself, or get them by upgrading to K
 * `EnglishCalloutActionProvider` has been removed.
 * `ExternalKeyboardContext` has been moved to KeyboardKit Pro.
 * `FeatureToggle` has been removed.
+* `HapticFeedbackConfiguration` has been renamed to `HapticFeedback.Configuration`.
+* `HapticFeedbackEngine` has been renamed to `HapticFeedback.Engine`.
+* `HapticFeedback.Engine` is no longer open to inheritance.
 * `InputCallout` has been renamed to `Callouts.InputCallout`.
 * `KeyboardAction.emojiCategory` has been removed.
 * `KeyboardEnabledContext` has been renamed to `KeyboardStateContext`.

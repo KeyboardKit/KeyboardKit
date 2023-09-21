@@ -6,10 +6,10 @@
 //  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
 //
 
-import KeyboardKit
 import MockingKit
+@testable import KeyboardKit
 
-class MockHapticFeedbackEngine: HapticFeedbackEngine, Mockable {
+class MockHapticFeedbackEngine: HapticFeedback.Engine, Mockable {
 
     var mock = Mock()
     

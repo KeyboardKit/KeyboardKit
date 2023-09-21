@@ -1,5 +1,5 @@
 //
-//  AudioFeedbackConfigurationTests.swift
+//  AudioFeedback+ConfigurationTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-10-15.
@@ -9,22 +9,22 @@
 import KeyboardKit
 import XCTest
 
-class AudioFeedbackConfigurationTests: XCTestCase {
+class AudioFeedback_ConfigurationTests: XCTestCase {
 
     func testDefaultInitializerUsesStandardFeedback() {
-        let config = AudioFeedbackConfiguration()
+        let config = AudioFeedback.Configuration()
         XCTAssertEqual(config.input, AudioFeedback.input)
         XCTAssertEqual(config.delete, AudioFeedback.delete)
         XCTAssertEqual(config.system, AudioFeedback.system)
     }
 
     func testEnabledConfigurationUsesEnabledFeedback() {
-        let config = AudioFeedbackConfiguration.enabled
-        XCTAssertEqual(config, AudioFeedbackConfiguration())
+        let config = AudioFeedback.Configuration.enabled
+        XCTAssertEqual(config, AudioFeedback.Configuration())
     }
 
     func testDisabledConfigurationUsesDisabledFeedback() {
-        let config = AudioFeedbackConfiguration.disabled
+        let config = AudioFeedback.Configuration.disabled
         XCTAssertEqual(config.input, AudioFeedback.none)
         XCTAssertEqual(config.delete, AudioFeedback.none)
         XCTAssertEqual(config.system, AudioFeedback.none)

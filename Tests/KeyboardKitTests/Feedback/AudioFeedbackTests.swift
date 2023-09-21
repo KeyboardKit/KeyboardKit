@@ -6,8 +6,8 @@
 //  Copyright © 2019-2023 Daniel Saidi. All rights reserved.
 //
 
-import KeyboardKit
 import XCTest
+@testable import KeyboardKit
 
 class AudioFeedbackTests: XCTestCase {
     
@@ -15,7 +15,7 @@ class AudioFeedbackTests: XCTestCase {
 
     override func setUp() {
         engine = MockAudioFeedbackEngine()
-        AudioFeedbackEngine.shared = engine
+        AudioFeedback.Engine.shared = engine
     }
 
     func id(for feedback: AudioFeedback) -> UInt32? {

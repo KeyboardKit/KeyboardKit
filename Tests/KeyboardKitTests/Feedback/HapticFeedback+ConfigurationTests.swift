@@ -1,5 +1,5 @@
 //
-//  HapticFeedbackConfigurationTests.swift
+//  HapticFeedback+ConfigurationTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-10-15.
@@ -9,10 +9,10 @@
 import KeyboardKit
 import XCTest
 
-class HapticFeedbackConfigurationTests: XCTestCase {
+class HapticFeedback_ConfigurationTests: XCTestCase {
     
     func testDefaultInitilizerUsesStandardFeedback() {
-        let config = HapticFeedbackConfiguration()
+        let config = HapticFeedback.Configuration()
         XCTAssertEqual(config.press, HapticFeedback.none)
         XCTAssertEqual(config.release, HapticFeedback.none)
         XCTAssertEqual(config.doubleTap, HapticFeedback.none)
@@ -22,7 +22,7 @@ class HapticFeedbackConfigurationTests: XCTestCase {
     }
 
     func testEnabledConfigurationEnabledAllFeedback() {
-        let config = HapticFeedbackConfiguration.enabled
+        let config = HapticFeedback.Configuration.enabled
         XCTAssertEqual(config.press, .lightImpact)
         XCTAssertEqual(config.release, .lightImpact)
         XCTAssertEqual(config.doubleTap, .lightImpact)
@@ -32,7 +32,7 @@ class HapticFeedbackConfigurationTests: XCTestCase {
     }
 
     func testDisabledConfigurationUsesDisabledFeedback() {
-        let config = HapticFeedbackConfiguration.disabled
+        let config = HapticFeedback.Configuration.disabled
         XCTAssertEqual(config.press, .none)
         XCTAssertEqual(config.release, .none)
         XCTAssertEqual(config.doubleTap, .none)
@@ -42,7 +42,7 @@ class HapticFeedbackConfigurationTests: XCTestCase {
     }
 
     func testMinimalConfigurationUsesMinimalFeedback() {
-        let config = HapticFeedbackConfiguration.minimal
+        let config = HapticFeedback.Configuration.minimal
         XCTAssertEqual(config.press, .none)
         XCTAssertEqual(config.release, .none)
         XCTAssertEqual(config.doubleTap, .none)

@@ -72,7 +72,6 @@ KeyboardKit is available under the MIT license.
 
 ### Articles
 
-- <doc:Feedback>
 - <doc:Gestures>
 - <doc:Layout>
 - <doc:Localization>
@@ -159,12 +158,9 @@ KeyboardKit is available under the MIT license.
 
 ### Feedback
 
+- <doc:Understanding-Feedback>
 - ``AudioFeedback``
-- ``AudioFeedbackConfiguration``
-- ``AudioFeedbackEngine``
 - ``HapticFeedback``
-- ``HapticFeedbackConfiguration``
-- ``HapticFeedbackEngine``
 - ``KeyboardFeedbackSettings``
 
 ### Gestures

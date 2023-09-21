@@ -44,8 +44,8 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         
         audioEngine = MockAudioFeedbackEngine()
         hapticEngine = MockHapticFeedbackEngine()
-        AudioFeedbackEngine.shared = audioEngine
-        HapticFeedbackEngine.shared = hapticEngine
+        AudioFeedback.Engine.shared = audioEngine
+        HapticFeedback.Engine.shared = hapticEngine
     }
 
 

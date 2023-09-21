@@ -2,9 +2,7 @@
 
 This article describes the KeyboardKit emoji engine.
 
-Emojis are an important part of the typing experience.
-
-KeyboardKit provides you with an ``Emoji`` type, that provides you with unicode and emoji information, an emoji localization engine, etc.
+KeyboardKit provides you with an ``Emoji`` type that has unicode and emoji information, an emoji localization engine, etc.
 
 [KeyboardKit Pro][Pro] unlocks emoji categories, keyboards, skintones, version information and much more, when you register a valid license key. Information about these Pro features can be found at the end of this article.
 

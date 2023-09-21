@@ -6,8 +6,8 @@
 //  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
 //
 
-import KeyboardKit
 import XCTest
+@testable import KeyboardKit
 
 class HapticFeedbackTests: XCTestCase {
 
@@ -15,7 +15,7 @@ class HapticFeedbackTests: XCTestCase {
 
     override func setUp() {
         engine = MockHapticFeedbackEngine()
-        HapticFeedbackEngine.shared = engine
+        HapticFeedback.Engine.shared = engine
     }
 
     func testPreparingFeedbackUsesSharedAudioEngine() {

@@ -37,12 +37,12 @@ public class KeyboardFeedbackSettings: ObservableObject {
        - disabledHapticConfiguration: The configuration to use to disable haptic feedback, by default `.minimal`.
      */
     public init(
-        audioConfiguration: AudioFeedbackConfiguration = .enabled,
-        hapticConfiguration: HapticFeedbackConfiguration = .minimal,
-        enabledAudioConfiguration: AudioFeedbackConfiguration = .enabled,
-        enabledHapticConfiguration: HapticFeedbackConfiguration = .enabled,
-        disabledAudioConfiguration: AudioFeedbackConfiguration = .enabled,
-        disabledHapticConfiguration: HapticFeedbackConfiguration = .minimal
+        audioConfiguration: AudioFeedback.Configuration = .enabled,
+        hapticConfiguration: HapticFeedback.Configuration = .minimal,
+        enabledAudioConfiguration: AudioFeedback.Configuration = .enabled,
+        enabledHapticConfiguration: HapticFeedback.Configuration = .enabled,
+        disabledAudioConfiguration: AudioFeedback.Configuration = .enabled,
+        disabledHapticConfiguration: HapticFeedback.Configuration = .minimal
     ) {
         self.audioConfiguration = audioConfiguration
         self.hapticConfiguration = hapticConfiguration
@@ -54,25 +54,25 @@ public class KeyboardFeedbackSettings: ObservableObject {
     
     
     /// The configuration to use to enable audio feedback.
-    public var enabledAudioConfiguration: AudioFeedbackConfiguration
+    public var enabledAudioConfiguration: AudioFeedback.Configuration
     
     /// The configuration to use to enable haptic feedback.
-    public var enabledHapticConfiguration: HapticFeedbackConfiguration
+    public var enabledHapticConfiguration: HapticFeedback.Configuration
     
     /// The configuration to use to disable audio feedback.
-    public var disabledAudioConfiguration: AudioFeedbackConfiguration
+    public var disabledAudioConfiguration: AudioFeedback.Configuration
     
     /// The configuration to use to disable haptic feedback.
-    public var disabledHapticConfiguration: HapticFeedbackConfiguration
+    public var disabledHapticConfiguration: HapticFeedback.Configuration
     
 
     /// The configuration to use for audio feedback.
     @Published
-    public var audioConfiguration: AudioFeedbackConfiguration
+    public var audioConfiguration: AudioFeedback.Configuration
     
     /// The configuration to use for haptic feedback.
     @Published
-    public var hapticConfiguration: HapticFeedbackConfiguration
+    public var hapticConfiguration: HapticFeedback.Configuration
 }
 
 public extension KeyboardFeedbackSettings {
