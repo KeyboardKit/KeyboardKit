@@ -72,7 +72,6 @@ KeyboardKit is available under the MIT license.
 
 ### Articles
 
-- <doc:Gestures>
 - <doc:Layout>
 - <doc:Localization>
 - <doc:Previews>
@@ -125,7 +124,6 @@ KeyboardKit is available under the MIT license.
 ### Colors
 
 - <doc:Understanding-Colors>
-- ``Callouts``
 
 ### Device
 
@@ -146,8 +144,8 @@ KeyboardKit is available under the MIT license.
 ### Emojis
 
 - <doc:Understanding-Emojis>
-- ``Emoji``
 - ``Emojis``
+- ``Emoji``
 - ``FrequentEmojiProvider``
 - ``MostRecentEmojiProvider``
 
@@ -164,15 +162,10 @@ KeyboardKit is available under the MIT license.
 
 ### Gestures
 
+- <doc:Understanding-Gestures>
+- ``Gestures``
 - ``DragGestureHandler``
-- ``GestureButton``
-- ``GestureButtonDefaults``
-- ``KeyboardGesture``
-- ``RepeatGestureTimer``
-- ``ScrollViewGestureButton``
-- ``SpaceLongPressBehavior``
 - ``SpaceCursorDragGestureHandler``
-- ``SpaceDragSensitivity``
 
 ### Layout
 

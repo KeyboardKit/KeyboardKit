@@ -1,5 +1,5 @@
 //
-//  RepeatGestureTimer.swift
+//  Gestures+RepeatTimer.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-28.
@@ -8,32 +8,34 @@
 
 import Foundation
 
-/**
- This private class is used to handle repeating actions on a
- keyboard button.
- */
-public class RepeatGestureTimer {
-
-    public init() {}
+public extension Gestures {
     
-    deinit { stop() }
-
-
-    private var timer: Timer?
-    
-    private var startDate: Date?
-
-    /// The timer tick interval.
-    public var timeInterval: TimeInterval = 0.1
+    /**
+     This class can be used to handle repeating actions on a
+     keyboard button.
+     */
+    class RepeatTimer {
+        
+        public init() {}
+        
+        deinit { stop() }
+        
+        private var timer: Timer?
+        
+        private var startDate: Date?
+        
+        /// The timer tick interval.
+        public var timeInterval: TimeInterval = 0.1
+    }
 }
 
-public extension RepeatGestureTimer {
+public extension Gestures.RepeatTimer {
 
     /// This is a shared timer instance.
-    static let shared = RepeatGestureTimer()
+    static let shared = Gestures.RepeatTimer()
 }
 
-public extension RepeatGestureTimer {
+public extension Gestures.RepeatTimer {
 
     /// The time for how long the timer has been active.
     var duration: TimeInterval? {
@@ -64,7 +66,7 @@ public extension RepeatGestureTimer {
     }
 }
 
-extension RepeatGestureTimer {
+extension Gestures.RepeatTimer {
     
     func modifyStartDate(to date: Date) {
         startDate = date

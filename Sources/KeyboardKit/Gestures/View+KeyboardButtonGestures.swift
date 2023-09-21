@@ -86,7 +86,7 @@ public extension View {
         dragAction: KeyboardDragGestureAction? = nil
     ) -> some View {
         #if os(iOS) || os(macOS) || os(watchOS)
-        let gestures = KeyboardButtonGestures(
+        let gestures = Gestures.KeyboardButtonGestures(
             view: self,
             action: action,
             calloutContext: calloutContext,

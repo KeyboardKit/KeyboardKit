@@ -33,13 +33,13 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
         - keyboardContext: The keyboard context to use.
         - doubleTapThreshold: The second threshold to detect a tap as a double tap, by default `0.5`.
         - endSentenceThreshold: The second threshold during which a sentence can be auto-closed, by default `3.0`.
-        - repeatGestureTimer: A timer that is responsible for triggering a repeat gesture action, by default ``RepeatGestureTimer/shared``.
+        - repeatGestureTimer: A timer that is responsible for triggering a repeat gesture action, by default ``Gestures/RepeatTimer/shared``.
      */
     public init(
         keyboardContext: KeyboardContext,
         doubleTapThreshold: TimeInterval = 0.5,
         endSentenceThreshold: TimeInterval = 3.0,
-        repeatGestureTimer: RepeatGestureTimer = .shared
+        repeatGestureTimer: Gestures.RepeatTimer = .shared
     ) {
         self.keyboardContext = keyboardContext
         self.doubleTapThreshold = doubleTapThreshold
@@ -58,7 +58,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     public let endSentenceThreshold: TimeInterval
 
     /// A timer that is responsible for triggering a repeat gesture action.
-    public let repeatGestureTimer: RepeatGestureTimer
+    public let repeatGestureTimer: Gestures.RepeatTimer
 
 
     /// An internal state to keep track of shift checks.
@@ -82,7 +82,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
      a certain gesture has been performed on an action.
      */
     public func preferredKeyboardType(
-        after gesture: KeyboardGesture,
+        after gesture: Gesture,
         on action: KeyboardAction
     ) -> Keyboard.KeyboardType {
         if shouldSwitchToCapsLock(after: gesture, on: action) { return .alphabetic(.capsLocked) }
@@ -99,7 +99,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
      a certain gesture has been performed on an action.
      */
     open func shouldEndSentence(
-        after gesture: KeyboardGesture,
+        after gesture: Gesture,
         on action: KeyboardAction
     ) -> Bool {
         #if os(iOS) || os(tvOS)
@@ -122,7 +122,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
      been performed on an action.
      */
     open func shouldSwitchToCapsLock(
-        after gesture: KeyboardGesture,
+        after gesture: Gesture,
         on action: KeyboardAction
     ) -> Bool {
         switch action {
@@ -136,7 +136,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
      when a certain gesture has been performed on an action.
      */
     open func shouldSwitchToPreferredKeyboardType(
-        after gesture: KeyboardGesture,
+        after gesture: Gesture,
         on action: KeyboardAction
     ) -> Bool {
         // if action.isAlternateQuotationDelimiter(for: context) { return true }

@@ -14,7 +14,7 @@ The ``KeyboardAction`` enum contains a bunch of actions, for instance:
 * ``KeyboardAction/character(_:)`` - inserts a text character.
 * ``KeyboardAction/backspace`` - deletes backwards.
 * ``KeyboardAction/dismissKeyboard`` - dismisses the keyboard.
-* ``KeyboardAction/emoji(_:)`` - inserts an emoji.
+* ``KeyboardAction/emoji(_:)-swift.enum.case`` - inserts an emoji.
 * ``KeyboardAction/keyboardType(_:)`` - changes the keyboard type.
 * ``KeyboardAction/moveCursorBackward`` - moves the input cursor back.
 * ``KeyboardAction/moveCursorForward`` - moves the input cursor forward.
@@ -31,10 +31,10 @@ The descriptions below are the standard behaviors when actions are handled with 
 
 Keyboard actions can be handled with a ``KeyboardActionHandler``, which is a protocol that can be implemented by any class that can handle keyboard actions. 
 
-You can trigger actions programmatically by calling ``KeyboardActionHandler/handle(_:)`` or call ``KeyboardActionHandler/handle(_:on:)`` to handle a certain ``KeyboardGesture``, such as ``KeyboardGesture/release`` on a certain ``KeyboardAction``:
+You can trigger actions programmatically by calling ``KeyboardActionHandler/handle(_:)`` or call ``KeyboardActionHandler/handle(_:on:)`` to handle a certain gesture on a certain action, e.g. press and release on an input character:
 
 ```swift
-func doStuff(with actionHandler: ActionHandler) {
+func doStuff(with actionHandler: KeyboardActionHandler) {
     actionHandler.handle(.backspace)
     actionHandler.handle(.press, on: .character("a")
     actionHandler.handle(.release, on: .dismissKeyboard)

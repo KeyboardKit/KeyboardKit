@@ -31,12 +31,15 @@ import CoreGraphics
  */
 public protocol KeyboardActionHandler: AnyObject {
     
+    /// This typealias resolves to a keyboard gesture
+    typealias Gesture = Gestures.KeyboardGesture
+    
     /**
      Whether or not the handler can handle a certain gesture
      on a certain action.
      */
     func canHandle(
-        _ gesture: KeyboardGesture,
+        _ gesture: Gesture,
         on action: KeyboardAction
     ) -> Bool
     
@@ -51,7 +54,7 @@ public protocol KeyboardActionHandler: AnyObject {
      Handle a certain keyboard action gesture.
      */
     func handle(
-        _ gesture: KeyboardGesture,
+        _ gesture: Gesture,
         on action: KeyboardAction
     )
     
@@ -68,7 +71,7 @@ public protocol KeyboardActionHandler: AnyObject {
      Trigger feedback for a certain keyboard action gesture.
      */
     func triggerFeedback(
-        for gesture: KeyboardGesture,
+        for gesture: Gesture,
         on action: KeyboardAction
     )
 }

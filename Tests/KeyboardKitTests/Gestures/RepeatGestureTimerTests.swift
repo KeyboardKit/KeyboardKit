@@ -12,7 +12,7 @@ import XCTest
 
 class RepeatGestureTimerTests: XCTestCase {
 
-    let timer = RepeatGestureTimer.shared
+    let timer = Gestures.RepeatTimer.shared
 
     override func tearDown() {
         timer.stop()

@@ -79,15 +79,22 @@ You must either implement these services yourself, or get them by upgrading to K
 * `EnglishCalloutActionProvider` has been removed.
 * `ExternalKeyboardContext` has been moved to KeyboardKit Pro.
 * `FeatureToggle` has been removed.
+* `GestureButton` has been renamed to `Gestures.GestureButton`.
+* `GestureButtonDefaults` has been renamed to `Gestures.Defaults`.
 * `HapticFeedbackConfiguration` has been renamed to `HapticFeedback.Configuration`.
 * `HapticFeedbackEngine` has been renamed to `HapticFeedback.Engine`.
 * `HapticFeedback.Engine` is no longer open to inheritance.
 * `InputCallout` has been renamed to `Callouts.InputCallout`.
 * `KeyboardAction.emojiCategory` has been removed.
+* `KeyboardGesture` has been renamed to `Gestures.KeyboardGesture`.
 * `KeyboardEnabledContext` has been renamed to `KeyboardStateContext`.
 * `KeyboardEnabledLabel` has been renamed to `KeyboardStateLabel`.
 * `KeyboardEnabledStateInspector` has been renamed to `KeyboardStateInspector`.
 * `KeyboardLayoutItem` `insets` has been renamed to `edgeInsets`.
+* `RepeatGestureTimer` has been renamed to `Gestures.RepeatTimer`.
+* `ScrollViewGestureButton` has been renamed to `Gestures.ScrollViewGestureButton`.
+* `SpaceDragSensitivity` has been renamed to `Gestures.SpaceDragSensitivity`.
+* `SpaceLongPressBehavior` has been renamed to `Gestures.SpaceLongPressBehavior`.
 * `StandardCalloutActionProvider.standardProvider` has been removed.
 * `SystemKeyboard` no longer has a `buttonContent` initializer.
 * `SystemKeyboardButton` has been renamed to `KeyboardButton.Button`.

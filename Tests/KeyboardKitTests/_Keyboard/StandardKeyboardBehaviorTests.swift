@@ -15,14 +15,16 @@ import XCTest
 
 class StandardKeyboardBehaviorTests: XCTestCase {
     
+    typealias Gesture = Gestures.KeyboardGesture
+    
     var behavior: StandardKeyboardBehavior!
     var keyboardContext: KeyboardContext!
     var proxy: MockTextDocumentProxy!
-    var timer: RepeatGestureTimer!
+    var timer: Gestures.RepeatTimer!
 
 
     override func setUp() {
-        timer = RepeatGestureTimer.shared
+        timer = Gestures.RepeatTimer.shared
         proxy = MockTextDocumentProxy()
         keyboardContext = KeyboardContext(controller: MockKeyboardInputViewController())
         keyboardContext.textDocumentProxy = proxy
@@ -44,7 +46,7 @@ class StandardKeyboardBehaviorTests: XCTestCase {
 
 
     func preferredKeyboardTypeResult(
-        after gesture: KeyboardGesture,
+        after gesture: Gesture,
         on action: KeyboardAction
     ) -> Keyboard.KeyboardType {
         behavior.preferredKeyboardType(after: gesture, on: action)
@@ -93,7 +95,7 @@ class StandardKeyboardBehaviorTests: XCTestCase {
 
 
     func shouldEndSentenceResult(
-        after gesture: KeyboardGesture,
+        after gesture: Gesture,
         on action: KeyboardAction
     ) -> Bool {
         behavior.shouldEndSentence(after: gesture, on: action)
@@ -114,7 +116,7 @@ class StandardKeyboardBehaviorTests: XCTestCase {
 
 
     func shouldSwitchToCapsLockResult(
-        after gesture: KeyboardGesture,
+        after gesture: Gesture,
         on action: KeyboardAction
     ) -> Bool {
         behavior.shouldSwitchToCapsLock(after: gesture, on: action)
@@ -139,7 +141,7 @@ class StandardKeyboardBehaviorTests: XCTestCase {
 
 
     func shouldSwitchToPreferredKeyboardTypeResult(
-        after gesture: KeyboardGesture,
+        after gesture: Gesture,
         on action: KeyboardAction
     ) -> Bool {
         behavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action)

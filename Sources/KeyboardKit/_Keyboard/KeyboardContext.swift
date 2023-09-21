@@ -30,9 +30,7 @@ import UIKit
  */
 public class KeyboardContext: ObservableObject {
 
-    /**
-     Create a standard context instance.
-     */
+    /// Create a standard context instance.
     public init() {}
 
     #if os(iOS) || os(tvOS)
@@ -65,27 +63,19 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var autocapitalizationTypeOverride: Keyboard.AutocapitalizationType?
 
-    /**
-     The current device type.
-     */
+    /// The current device type.
     @Published
     public var deviceType: DeviceType = .current
 
-    /**
-     Whether or not the input controller has a dictation key.
-     */
+    /// Whether or not the keyboard has a dictation key.
     @Published
     public var hasDictationKey: Bool = false
 
-    /**
-     Whether or not the extension has been given full access.
-     */
+    /// Whether or not the extension has full access.
     @Published
     public var hasFullAccess: Bool = false
 
-    /**
-     The current interface orientation.
-     */
+    /// The current interface orientation.
     @Published
     public var interfaceOrientation: InterfaceOrientation = .portrait
 
@@ -98,24 +88,18 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var isAutoCapitalizationEnabled = true
 
-    /**
-     Whether or not the keyboard is in floating mode.
-     */
+    /// Whether or not the keyboard is in floating mode.
     @Published
     public var isKeyboardFloating = false
 
     /**
      An optional dictation replacement action, which will be
      used by some ``KeyboardLayoutProvider`` implementations.
-
-     > Warning: This will be removed in 8.0.
      */
     @Published
     public var keyboardDictationReplacement: KeyboardAction?
 
-    /**
-     The keyboard type that is currently used.
-     */
+    /// The keyboard type that is currently used.
     @Published
     public var keyboardType = Keyboard.KeyboardType.alphabetic(.lowercased)
 
@@ -158,47 +142,33 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var prefersAutocomplete = true
 
-    /**
-     The primary language that is currently being used.
-     */
+    /// The primary language that is currently being used.
     @Published
     public var primaryLanguage: String?
 
-    /**
-     The screen size, which is used by some library features.
-     */
+    /// The current screen size (avoid using this).
     @Published
     public var screenSize = CGSize.zero
 
-    /**
-     The space long press behavior to use.
-     */
+    /// The space long press behavior to use.
     @Published
-    public var spaceLongPressBehavior = SpaceLongPressBehavior.moveInputCursor
+    public var spaceLongPressBehavior = Gestures.SpaceLongPressBehavior.moveInputCursor
 
 
     #if os(iOS) || os(tvOS)
-    /**
-     The main text document proxy.
-     */
+    /// The main text document proxy.
     @Published
     public var mainTextDocumentProxy: UITextDocumentProxy = KeyboardPreviews.TextDocumentProxy()
 
-    /**
-     The text document proxy that is currently active.
-     */
+    /// The text document proxy that is currently active.
     @Published
     public var textDocumentProxy: UITextDocumentProxy = KeyboardPreviews.TextDocumentProxy()
 
-    /**
-     The text input mode of the input controller.
-     */
+    /// The text input mode of the input controller.
     @Published
     public var textInputMode: UITextInputMode?
 
-    /**
-     The input controller's current trait collection.
-     */
+    /// The input controller's current trait collection.
     @Published
     public var traitCollection = UITraitCollection()
     #endif
@@ -210,16 +180,12 @@ public class KeyboardContext: ObservableObject {
 #if os(iOS) || os(tvOS)
 public extension KeyboardContext {
 
-    /**
-     The current trait collection's color scheme.
-     */
+    /// The current trait collection's color scheme.
     var colorScheme: ColorScheme {
         traitCollection.userInterfaceStyle == .dark ? .dark : .light
     }
 
-    /**
-     The current keyboard appearance, with `.light` fallback.
-     */
+    /// The current keyboard appearance.
     var keyboardAppearance: UIKeyboardAppearance {
         textDocumentProxy.keyboardAppearance ?? .default
     }
@@ -271,23 +237,17 @@ public extension KeyboardContext {
 
 public extension KeyboardContext {
 
-    /**
-     Whether or not the context has multiple locales.
-     */
+    /// Whether or not the context has multiple locales.
     var hasMultipleLocales: Bool {
         locales.count > 1
     }
 
-    /**
-     Whether or not the context has a certain locale.
-     */
+    /// Whether or not the context has a certain locale.
     func hasKeyboardLocale(_ locale: KeyboardLocale) -> Bool {
         self.locale.identifier == locale.localeIdentifier
     }
 
-    /**
-     Whether or not the context has a certain keyboard type.
-     */
+    /// Whether or not a certain keyboard type is selected.
     func hasKeyboardType(_ type: Keyboard.KeyboardType) -> Bool {
         keyboardType == type
     }
@@ -305,37 +265,27 @@ public extension KeyboardContext {
         locale = locales[nextIndex]
     }
 
-    /**
-     Set ``keyboardType`` to the provided `type`.
-     */
+    /// Set ``keyboardType`` to the provided type.
     func setKeyboardType(_ type: Keyboard.KeyboardType) {
         keyboardType = type
     }
 
-    /**
-     Set ``locale`` to the provided `locale`.
-     */
+    /// Set ``locale`` to the provided locale.
     func setLocale(_ locale: Locale) {
         self.locale = locale
     }
 
-    /**
-     Set ``locale`` to the provided keyboard `locale`.
-     */
+    /// Set ``locale`` to the provided keyboard locale.
     func setLocale(_ locale: KeyboardLocale) {
         self.locale = locale.locale
     }
 
-    /**
-     Set ``locales`` to the provided `locales`.
-     */
+    /// Set ``locales`` to the provided locales.
     func setLocales(_ locales: [Locale]) {
         self.locales = locales
     }
 
-    /**
-     Set ``locales`` to the provided keyboard `locales`.
-     */
+    /// Set ``locales`` to the provided keyboard locales.
     func setLocales(_ locales: [KeyboardLocale]) {
         self.locales = locales.map { $0.locale }
     }
@@ -346,10 +296,7 @@ public extension KeyboardContext {
 #if os(iOS) || os(tvOS)
 extension KeyboardContext {
 
-    /**
-     Sync the context with the current state of the keyboard
-     input view controller.
-     */
+    /// Sync the context with the provided input controller.
     func sync(with controller: KeyboardInputViewController) {
         DispatchQueue.main.async {
             self.syncAfterAsync(with: controller)
@@ -407,9 +354,7 @@ extension KeyboardContext {
         sync(with: controller)
     }
 
-    /**
-     Perform a sync to check if the keyboard is floating.
-     */
+    /// Perform a sync to check if the keyboard is floating.
     func syncIsFloating(with controller: KeyboardInputViewController) {
         let isFloating = controller.view.frame.width < screenSize.width/2
         if isKeyboardFloating == isFloating { return }

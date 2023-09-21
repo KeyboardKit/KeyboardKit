@@ -13,6 +13,8 @@ import XCTest
 @testable import KeyboardKit
 
 final class StandardKeyboardActionHandlerTests: XCTestCase {
+    
+    typealias Gesture = Gestures.KeyboardGesture
 
     private var handler: TestClass!
     var controller: MockKeyboardInputViewController!
@@ -76,7 +78,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
 
     func testActionForGestureOnActionIsNotForAllActionsWithStandardAction() {
         KeyboardAction.testActions.forEach { action in
-            KeyboardGesture.allCases.forEach { gesture in
+            Gesture.allCases.forEach { gesture in
                 let result = handler.action(for: gesture, on: action)
                 let resultIsNil = result == nil
                 let standardActionIsNil = action.standardAction(for: gesture) == nil
@@ -122,7 +124,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
     }
     
     func validateAudioFeedback(
-        for gesture: KeyboardGesture,
+        for gesture: Gesture,
         on action: KeyboardAction,
         expected: AudioFeedback?
     ) {
@@ -139,7 +141,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
     }
     
     func validateHapticFeedback(
-        for gesture: KeyboardGesture,
+        for gesture: Gesture,
         on action: KeyboardAction,
         expected: HapticFeedback?
     ) {
@@ -229,39 +231,39 @@ private class TestClass: StandardKeyboardActionHandler, Mockable {
 
     var mock = Mock()
 
-    lazy var handleGestureOnActionRef = MockReference(handle as (KeyboardGesture, KeyboardAction) -> Void)
+    lazy var handleGestureOnActionRef = MockReference(handle as (Gesture, KeyboardAction) -> Void)
     lazy var tryApplyAutocompleteSuggestionRef = MockReference(tryApplyAutocompleteSuggestion)
     lazy var tryChangeKeyboardTypeRef = MockReference(tryChangeKeyboardType)
     lazy var tryEndSentenceRef = MockReference(tryEndSentence)
     lazy var tryReinsertAutocompleteRemovedSpaceRef = MockReference(tryReinsertAutocompleteRemovedSpace)
     lazy var tryRemoveAutocompleteInsertedSpaceRef = MockReference(tryRemoveAutocompleteInsertedSpace)
 
-    override func handle(_ gesture: KeyboardGesture, on action: KeyboardAction) {
+    override func handle(_ gesture: Gesture, on action: KeyboardAction) {
         super.handle(gesture, on: action)
         call(handleGestureOnActionRef, args: (gesture, action))
     }
 
-    override func tryApplyAutocompleteSuggestion(before gesture: KeyboardGesture, on action: KeyboardAction) {
+    override func tryApplyAutocompleteSuggestion(before gesture: Gesture, on action: KeyboardAction) {
         super.tryApplyAutocompleteSuggestion(before: gesture, on: action)
         call(tryApplyAutocompleteSuggestionRef, args: (gesture, action))
     }
     
-    override func tryChangeKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) {
+    override func tryChangeKeyboardType(after gesture: Gesture, on action: KeyboardAction) {
         super.tryChangeKeyboardType(after: gesture, on: action)
         call(tryChangeKeyboardTypeRef, args: (gesture, action))
     }
 
-    override func tryEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction) {
+    override func tryEndSentence(after gesture: Gesture, on action: KeyboardAction) {
         super.tryEndSentence(after: gesture, on: action)
         call(tryEndSentenceRef, args: (gesture, action))
     }
 
-    override func tryReinsertAutocompleteRemovedSpace(after gesture: KeyboardGesture, on action: KeyboardAction) {
+    override func tryReinsertAutocompleteRemovedSpace(after gesture: Gesture, on action: KeyboardAction) {
         super.tryReinsertAutocompleteRemovedSpace(after: gesture, on: action)
         call(tryReinsertAutocompleteRemovedSpaceRef, args: (gesture, action))
     }
 
-    override func tryRemoveAutocompleteInsertedSpace(before gesture: KeyboardGesture, on action: KeyboardAction) {
+    override func tryRemoveAutocompleteInsertedSpace(before gesture: Gesture, on action: KeyboardAction) {
         super.tryRemoveAutocompleteInsertedSpace(before: gesture, on: action)
         call(tryRemoveAutocompleteInsertedSpaceRef, args: (gesture, action))
     }

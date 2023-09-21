@@ -14,7 +14,7 @@ KeyboardKit doesn't have a standard service as it has for other services. Instea
 
 ## Dictation namespace
 
-KeyboardKit has a ``Dictation`` namespace that contains dictation-related types and views, except protocols and contexts.
+KeyboardKit has a ``Dictation`` namespace that contains dictation-related types and views, except services and contexts.
 
 For instance, a ``Dictation/KeyboardConfiguration`` can be used to configure a ``KeyboardDictationService`` for both a keyboard and its main app. There are also various status and error enums.
 

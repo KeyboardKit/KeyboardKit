@@ -45,7 +45,7 @@ import SwiftUI
  
  This view will by place an ``Autocomplete/Toolbar`` topmost,
  unless we explicitly tell it not to. It will also overlay a
- full ``EmojiCategoryKeyboard`` over the entire view, if the
+ full emoji keyboard over the entire view, when the keyboard
  context's ``KeyboardContext/keyboardType`` is currently set
  to ``Keyboard/KeyboardType/emojis``.
 

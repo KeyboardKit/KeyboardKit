@@ -32,12 +32,12 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      - Parameters:
        - inputViewController: The view controller to use.
        - spaceDragGestureHandler: A custom space drag gesture handler to use, if any.
-       - spaceDragSensitivity: The space drag sensitivity to use, by default ``SpaceDragSensitivity/medium``.
+       - spaceDragSensitivity: The space drag sensitivity to use, by default ``Gestures/SpaceDragSensitivity/medium``.
      */
     public init(
         inputViewController ivc: KeyboardInputViewController,
         spaceDragGestureHandler: DragGestureHandler? = nil,
-        spaceDragSensitivity: SpaceDragSensitivity = .medium
+        spaceDragSensitivity: Gestures.SpaceDragSensitivity = .medium
     ) {
         weak var controller = ivc
         self.keyboardController = controller
@@ -62,7 +62,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
        - keyboardFeedbackSettings: The keyboard feedback settings to use.
        - autocompleteContext: The autocomplete context to use.
        - spaceDragGestureHandler: A custom space drag gesture handler, if any.
-       - spaceDragSensitivity: The space drag sensitivity to use, by default ``SpaceDragSensitivity/medium``.
+       - spaceDragSensitivity: The space drag sensitivity to use, by default ``Gestures/SpaceDragSensitivity/medium``.
      */
     public init(
         keyboardController: KeyboardController,
@@ -71,7 +71,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         keyboardFeedbackSettings: KeyboardFeedbackSettings,
         autocompleteContext: AutocompleteContext,
         spaceDragGestureHandler: DragGestureHandler? = nil,
-        spaceDragSensitivity: SpaceDragSensitivity = .medium
+        spaceDragSensitivity: Gestures.SpaceDragSensitivity = .medium
     ) {
         weak var controller = keyboardController
         self.keyboardController = controller
@@ -89,7 +89,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     static func dragGestureHandler(
         keyboardController: KeyboardController,
         keyboardContext: KeyboardContext,
-        spaceDragSensitivity: SpaceDragSensitivity
+        spaceDragSensitivity: Gestures.SpaceDragSensitivity
     ) -> SpaceCursorDragGestureHandler {
         weak var controller = keyboardController
         weak var context = keyboardContext
@@ -126,7 +126,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      on a certain action.
      */
     open func canHandle(
-        _ gesture: KeyboardGesture,
+        _ gesture: Gesture,
         on action: KeyboardAction
     ) -> Bool {
         self.action(for: gesture, on: action) != nil
@@ -145,7 +145,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      Handle a certain keyboard action gesture.
      */
     open func handle(
-        _ gesture: KeyboardGesture,
+        _ gesture: Gesture,
         on action: KeyboardAction
     ) {
         handle(gesture, on: action, replaced: false)
@@ -158,7 +158,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      can be triggered as a replacement of another operation.
      */
     open func handle(
-        _ gesture: KeyboardGesture,
+        _ gesture: Gesture,
         on action: KeyboardAction,
         replaced: Bool
     ) {
@@ -195,7 +195,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      Trigger feedback for a certain keyboard action gesture.
      */
     open func triggerFeedback(
-        for gesture: KeyboardGesture,
+        for gesture: Gesture,
         on action: KeyboardAction
     ) {
         guard shouldTriggerFeedback(for: gesture, on: action) else { return }
@@ -211,7 +211,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      The audio feedback to use for a certain action gesture.
      */
     open func audioFeedback(
-        for gesture: KeyboardGesture,
+        for gesture: Gesture,
         on action: KeyboardAction
     ) -> AudioFeedback? {
         let config = keyboardFeedbackSettings.audioConfiguration
@@ -228,7 +228,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      The haptic feedback to use for a certain action gesture.
      */
     open func hapticFeedback(
-        for gesture: KeyboardGesture,
+        for gesture: Gesture,
         on action: KeyboardAction
     ) -> HapticFeedback? {
         let config = keyboardFeedbackSettings.hapticConfiguration
@@ -247,7 +247,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     /**
      Trigger feedback for a certain keyboard action gesture.
      */
-    open func triggerAudioFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
+    open func triggerAudioFeedback(for gesture: Gesture, on action: KeyboardAction) {
         let feedback = audioFeedback(for: gesture, on: action)
         feedback?.trigger()
     }
@@ -255,7 +255,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     /**
      Trigger feedback for a certain keyboard action gesture.
      */
-    open func triggerHapticFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) {
+    open func triggerHapticFeedback(for gesture: Gesture, on action: KeyboardAction) {
         let feedback = hapticFeedback(for: gesture, on: action)
         feedback?.trigger()
     }
@@ -268,7 +268,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      when a gesture is performed on a certain action.
      */
     open func action(
-        for gesture: KeyboardGesture,
+        for gesture: Gesture,
         on action: KeyboardAction
     ) -> KeyboardAction.GestureAction? {
         action.standardAction(for: gesture)
@@ -278,7 +278,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      Try to resolve a replacement action before a gesture is
      performed on the provided action.
      */
-    open func replacementAction(for gesture: KeyboardGesture, on action: KeyboardAction) -> KeyboardAction? {
+    open func replacementAction(for gesture: Gesture, on action: KeyboardAction) -> KeyboardAction? {
         guard gesture == .release else { return nil }
 
         // Apply proxy-based replacements, if any
@@ -301,7 +301,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      Whether or not a feedback should be given for a certain
      gesture on a certain action.
      */
-    open func shouldTriggerFeedback(for gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
+    open func shouldTriggerFeedback(for gesture: Gesture, on action: KeyboardAction) -> Bool {
         if gesture == .press && self.action(for: .release, on: action) != nil { return true }
         if gesture != .release && self.action(for: gesture, on: action) != nil { return true }
         return false
@@ -311,7 +311,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      Try to apply an `isAutocomplete` autocomplete suggesion
      before the `gesture` has been performed on the `action`.
      */
-    open func tryApplyAutocompleteSuggestion(before gesture: KeyboardGesture, on action: KeyboardAction) {
+    open func tryApplyAutocompleteSuggestion(before gesture: Gesture, on action: KeyboardAction) {
         if isSpaceCursorDrag(action) { return }
         if textDocumentProxy.isCursorAtNewWord { return }
         guard gesture == .release else { return }
@@ -324,7 +324,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      Try to change `keyboardType` after a `gesture` has been
      performed on the provided `action`.
      */
-    open func tryChangeKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) {
+    open func tryChangeKeyboardType(after gesture: Gesture, on action: KeyboardAction) {
         guard keyboardBehavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action) else { return }
         let newType = keyboardBehavior.preferredKeyboardType(after: gesture, on: action)
         keyboardContext.keyboardType = newType
@@ -334,7 +334,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      Try to end the current sentence after the `gesture` has
      been performed on the provided `action`.
      */
-    open func tryEndSentence(after gesture: KeyboardGesture, on action: KeyboardAction) {
+    open func tryEndSentence(after gesture: Gesture, on action: KeyboardAction) {
         guard keyboardBehavior.shouldEndSentence(after: gesture, on: action) else { return }
         textDocumentProxy.endSentence()
     }
@@ -346,7 +346,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      When this returns true, the caller should stop handling
      the provided action.
      */
-    open func tryHandleReplacementAction(before gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
+    open func tryHandleReplacementAction(before gesture: Gesture, on action: KeyboardAction) -> Bool {
         guard let action = replacementAction(for: gesture, on: action) else { return false }
         handle(.release, on: action, replaced: true)
         return true
@@ -357,7 +357,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      removed due to autocomplete after the provided `gesture`
      has been performed on the provided `action`.
      */
-    open func tryReinsertAutocompleteRemovedSpace(after gesture: KeyboardGesture, on action: KeyboardAction) {
+    open func tryReinsertAutocompleteRemovedSpace(after gesture: Gesture, on action: KeyboardAction) {
         guard gesture == .release else { return }
         guard action.shouldReinsertAutocompleteInsertedSpace else { return }
         textDocumentProxy.tryReinsertAutocompleteRemovedSpace()
@@ -367,7 +367,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      Try to removed an autocomplete inserted space after the
      `gesture` has been performed on the provided `action`.
      */
-    open func tryRemoveAutocompleteInsertedSpace(before gesture: KeyboardGesture, on action: KeyboardAction) {
+    open func tryRemoveAutocompleteInsertedSpace(before gesture: Gesture, on action: KeyboardAction) {
         guard gesture == .release else { return }
         guard action.shouldRemoveAutocompleteInsertedSpace else { return }
         textDocumentProxy.tryRemoveAutocompleteInsertedSpace()
@@ -399,7 +399,7 @@ private extension StandardKeyboardActionHandler {
     }
 
     func tryUpdateSpaceDragState(
-        for gesture: KeyboardGesture,
+        for gesture: Gesture,
         on action: KeyboardAction
     ) {
         guard action == .space else { return }

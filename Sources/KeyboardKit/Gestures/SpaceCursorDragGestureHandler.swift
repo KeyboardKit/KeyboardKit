@@ -15,7 +15,7 @@ import CoreGraphics
 open class SpaceCursorDragGestureHandler: DragGestureHandler {
     
     public init(
-        sensitivity: SpaceDragSensitivity = .medium,
+        sensitivity: Gestures.SpaceDragSensitivity = .medium,
         verticalThreshold: Double = 50,
         action: @escaping (Int) -> Void
     ) {
@@ -24,7 +24,7 @@ open class SpaceCursorDragGestureHandler: DragGestureHandler {
         self.action = action
     }
 
-    public let sensitivity: SpaceDragSensitivity
+    public let sensitivity: Gestures.SpaceDragSensitivity
     public let verticalThreshold: Double
     public let action: (Int) -> Void
 

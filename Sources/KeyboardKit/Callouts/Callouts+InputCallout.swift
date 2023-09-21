@@ -165,7 +165,7 @@ struct Callouts_InputCallout_Previews: PreviewProvider {
 
         func button(for context: CalloutInputContext) -> some View {
             GeometryReader { geo in
-                GestureButton(
+                Gestures.GestureButton(
                     pressAction: { showCallout(for: geo) },
                     endAction: context.resetWithDelay,
                     label: { _ in Color.red.cornerRadius(5) }

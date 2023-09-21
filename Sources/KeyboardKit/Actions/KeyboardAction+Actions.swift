@@ -26,7 +26,7 @@ public extension KeyboardAction {
 
     /**
      The action that by default should be triggered when the
-     action is triggered without a certain ``KeyboardGesture``.
+     action is triggered without a certain gesture.
      */
     var standardAction: GestureAction? {
         standardReleaseAction ?? standardPressAction
@@ -34,9 +34,9 @@ public extension KeyboardAction {
     
     /**
      The action that by default should be triggered when the
-     action is triggered with a certain ``KeyboardGesture``.
+     action is triggered with a certain gesture.
      */
-    func standardAction(for gesture: KeyboardGesture) -> GestureAction? {
+    func standardAction(for gesture: Gestures.KeyboardGesture) -> GestureAction? {
         switch gesture {
         case .doubleTap: return standardDoubleTapAction
         case .longPress: return standardLongPressAction

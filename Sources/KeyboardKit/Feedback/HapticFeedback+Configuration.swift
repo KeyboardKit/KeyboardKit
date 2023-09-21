@@ -13,8 +13,8 @@ public extension HapticFeedback {
     /**
      This struct can be used to configure haptic feedback.
      
-     You can create a custom configuration or use the predefined,
-     static values like ``HapticFeedbackConfiguration/enabled``.
+     You can create a custom configuration or use the static
+     values, like ``HapticFeedback/Configuration/enabled``.
      */
     struct Configuration: Codable, Equatable {
         
@@ -53,7 +53,7 @@ public extension HapticFeedback {
             
             public init(
                 action: KeyboardAction,
-                gesture: KeyboardGesture,
+                gesture: Gestures.KeyboardGesture,
                 feedback: HapticFeedback
             ) {
                 self.action = action
@@ -62,7 +62,7 @@ public extension HapticFeedback {
             }
             
             public let action: KeyboardAction
-            public let gesture: KeyboardGesture
+            public let gesture: Gestures.KeyboardGesture
             public let feedback: HapticFeedback
         }
         

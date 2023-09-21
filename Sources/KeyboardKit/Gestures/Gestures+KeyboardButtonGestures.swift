@@ -1,5 +1,5 @@
 //
-//  KeyboardButtonGestures.swift
+//  Gestures+KeyboardButtonGestures.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
@@ -9,85 +9,85 @@
 #if os(iOS) || os(macOS) || os(watchOS)
 import SwiftUI
 
-/**
- This view wraps a button and applies a gesture button to it,
- to handle all actions for the provided keyboard action.
- 
- This view is internal. Apply it with `View+keyboardGestures`.
- */
-struct KeyboardButtonGestures<Content: View>: View {
+extension Gestures {
     
     /**
-     Apply a set of optional gesture actions to the provided
-     view, for a certain keyboard action.
-     
-     - Parameters:
-       - view: The view to apply the gestures to.
-       - action: The keyboard action to trigger.
-       - calloutContext: The callout context to affect, if any.
-       - isPressed: An optional binding that can be used to observe the button pressed state.
-       - isInScrollView: Whether or not the gestures are used in a scroll view.
-       - releaseOutsideTolerance: The percentage of the button size that should span outside the button bounds and still count as a release, by default `0.75`.
-       - doubleTapAction: The action to trigger when the button is double tapped.
-       - longPressAction: The action to trigger when the button is long pressed.
-       - pressAction: The action to trigger when the button is pressed.
-       - releaseAction: The action to trigger when the button is released, regardless of where the gesture ends.
-       - repeatAction: The action to trigger when the button is pressed and held.
-       - dragAction: The action to trigger when the button is dragged.
+     This view applies keyboard gestures to any content view.
      */
-    init(
-        view: Content,
-        action: KeyboardAction?,
-        calloutContext: CalloutContext?,
-        isPressed: Binding<Bool>,
-        isInScrollView: Bool,
-        releaseOutsideTolerance: Double,
-        doubleTapAction: KeyboardGestureAction?,
-        longPressAction: KeyboardGestureAction?,
-        pressAction: KeyboardGestureAction?,
-        releaseAction: KeyboardGestureAction?,
-        repeatAction: KeyboardGestureAction?,
-        dragAction: KeyboardDragGestureAction?
-    ) {
-        self.view = view
-        self.action = action
-        self.calloutContext = calloutContext
-        self.isPressed = isPressed
-        self.isInScrollView = isInScrollView
-        self.releaseOutsideTolerance = releaseOutsideTolerance
-        self.doubleTapAction = doubleTapAction
-        self.longPressAction = longPressAction
-        self.pressAction = pressAction
-        self.releaseAction = releaseAction
-        self.repeatAction = repeatAction
-        self.dragAction = dragAction
-    }
-    
-    private let view: Content
-    private let action: KeyboardAction?
-    private let calloutContext: CalloutContext?
-    private let isPressed: Binding<Bool>
-    private let isInScrollView: Bool
-    private let releaseOutsideTolerance: Double
-    private let doubleTapAction: KeyboardGestureAction?
-    private let longPressAction: KeyboardGestureAction?
-    private let pressAction: KeyboardGestureAction?
-    private let releaseAction: KeyboardGestureAction?
-    private let repeatAction: KeyboardGestureAction?
-    private let dragAction: KeyboardDragGestureAction?
-
-    @State
-    private var lastDragValue: DragGesture.Value?
-
-    @State
-    private var shouldApplyReleaseAction = true
-    
-    var body: some View {
-        view.overlay(
-            GeometryReader { geo in
-                button(for: geo)
-            }
-        )
+    struct KeyboardButtonGestures<Content: View>: View {
+        
+        /**
+         Apply a set of optional gesture actions to the provided
+         view, for a certain keyboard action.
+         
+         - Parameters:
+           - view: The view to apply the gestures to.
+           - action: The keyboard action to trigger.
+           - calloutContext: The callout context to affect, if any.
+           - isPressed: An optional binding that can be used to observe the button pressed state.
+           - isInScrollView: Whether or not the gestures are used in a scroll view.
+           - releaseOutsideTolerance: The percentage of the button size that should span outside the button bounds and still count as a release, by default `0.75`.
+           - doubleTapAction: The action to trigger when the button is double tapped.
+           - longPressAction: The action to trigger when the button is long pressed.
+           - pressAction: The action to trigger when the button is pressed.
+           - releaseAction: The action to trigger when the button is released, regardless of where the gesture ends.
+           - repeatAction: The action to trigger when the button is pressed and held.
+           - dragAction: The action to trigger when the button is dragged.
+         */
+        init(
+            view: Content,
+            action: KeyboardAction?,
+            calloutContext: CalloutContext?,
+            isPressed: Binding<Bool>,
+            isInScrollView: Bool,
+            releaseOutsideTolerance: Double,
+            doubleTapAction: KeyboardGestureAction?,
+            longPressAction: KeyboardGestureAction?,
+            pressAction: KeyboardGestureAction?,
+            releaseAction: KeyboardGestureAction?,
+            repeatAction: KeyboardGestureAction?,
+            dragAction: KeyboardDragGestureAction?
+        ) {
+            self.view = view
+            self.action = action
+            self.calloutContext = calloutContext
+            self.isPressed = isPressed
+            self.isInScrollView = isInScrollView
+            self.releaseOutsideTolerance = releaseOutsideTolerance
+            self.doubleTapAction = doubleTapAction
+            self.longPressAction = longPressAction
+            self.pressAction = pressAction
+            self.releaseAction = releaseAction
+            self.repeatAction = repeatAction
+            self.dragAction = dragAction
+        }
+        
+        private let view: Content
+        private let action: KeyboardAction?
+        private let calloutContext: CalloutContext?
+        private let isPressed: Binding<Bool>
+        private let isInScrollView: Bool
+        private let releaseOutsideTolerance: Double
+        private let doubleTapAction: KeyboardGestureAction?
+        private let longPressAction: KeyboardGestureAction?
+        private let pressAction: KeyboardGestureAction?
+        private let releaseAction: KeyboardGestureAction?
+        private let repeatAction: KeyboardGestureAction?
+        private let dragAction: KeyboardDragGestureAction?
+        
+        @State
+        private var lastDragValue: DragGesture.Value?
+        
+        @State
+        private var shouldApplyReleaseAction = true
+        
+        var body: some View {
+            view.overlay(
+                GeometryReader { geo in
+                    button(for: geo)
+                }
+            )
+        }
     }
 }
 
@@ -105,7 +105,7 @@ private extension View {
 
 // MARK: - Views
 
-private extension KeyboardButtonGestures {
+private extension Gestures.KeyboardButtonGestures {
 
     @ViewBuilder
     func button(for geo: GeometryProxy) -> some View {
@@ -117,7 +117,7 @@ private extension KeyboardButtonGestures {
     }
 
     func gestureButton(for geo: GeometryProxy) -> some View {
-        GestureButton(
+        Gestures.GestureButton(
             isPressed: isPressed,
             pressAction: { handlePress(in: geo) },
             releaseInsideAction: { handleReleaseInside(in: geo) },
@@ -132,7 +132,7 @@ private extension KeyboardButtonGestures {
     }
 
     func scrollButton(for geo: GeometryProxy) -> some View {
-        ScrollViewGestureButton(
+        Gestures.ScrollViewGestureButton(
             isPressed: isPressed,
             pressAction: { handlePress(in: geo) },
             releaseInsideAction: { handleReleaseInside(in: geo) },
@@ -150,7 +150,7 @@ private extension KeyboardButtonGestures {
 
 // MARK: - Actions
 
-private extension KeyboardButtonGestures {
+private extension Gestures.KeyboardButtonGestures {
 
     func handleDoubleTap(in geo: GeometryProxy) {
         doubleTapAction?()

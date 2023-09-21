@@ -14,6 +14,9 @@ import Foundation
  */
 public protocol KeyboardBehavior {
     
+    /// This typealias resolves to a keyboard gesture
+    typealias Gesture = Gestures.KeyboardGesture
+    
     /**
      The range that the backspace key should delete when the
      key is long pressed.
@@ -25,7 +28,7 @@ public protocol KeyboardBehavior {
      a certain gesture has been performed on an action.
      */
     func preferredKeyboardType(
-        after gesture: KeyboardGesture,
+        after gesture: Gesture,
         on action: KeyboardAction
     ) -> Keyboard.KeyboardType
     
@@ -34,7 +37,7 @@ public protocol KeyboardBehavior {
      a certain gesture has been performed on an action.
      */
     func shouldEndSentence(
-        after gesture: KeyboardGesture,
+        after gesture: Gesture,
         on action: KeyboardAction
     ) -> Bool
     
@@ -43,7 +46,7 @@ public protocol KeyboardBehavior {
      been performed on an action.
      */
     func shouldSwitchToCapsLock(
-        after gesture: KeyboardGesture,
+        after gesture: Gesture,
         on action: KeyboardAction
     ) -> Bool
     
@@ -52,7 +55,7 @@ public protocol KeyboardBehavior {
      when a certain gesture has been performed on an action.
      */
     func shouldSwitchToPreferredKeyboardType(
-        after gesture: KeyboardGesture,
+        after gesture: Gesture,
         on action: KeyboardAction
     ) -> Bool
 
