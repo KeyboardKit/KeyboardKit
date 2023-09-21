@@ -18,9 +18,9 @@ open class EnglishKeyboardLayoutProvider: SystemKeyboardLayoutProvider, Keyboard
      Create an English keyboard layout provider.
      */
     public override init(
-        alphabeticInputSet: AlphabeticInputSet = .english,
-        numericInputSet: NumericInputSet = .englishNumeric,
-        symbolicInputSet: SymbolicInputSet = .englishSymbolic
+        alphabeticInputSet: InputSet = .english,
+        numericInputSet: InputSet = .englishNumeric,
+        symbolicInputSet: InputSet = .englishSymbolic
     ) {
         super.init(
             alphabeticInputSet: alphabeticInputSet,

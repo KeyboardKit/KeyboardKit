@@ -1,5 +1,5 @@
 //
-//  InputSetRow.swift
+//  InputSet+Rows.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-03.
@@ -8,27 +8,20 @@
 
 import Foundation
 
-/**
- This typealias represents a row of input set items.
- 
- > v8.0: This type will be moved into ``InputSet`` when it's
- converted to a struct.
- */
-public typealias InputSetRow = [InputSetItem]
+public extension InputSet {
+    
+    /// This typealias represents a row of input set items.
+    typealias Row = [Item]
+    
+    /// This typealias represents a list of input set rows.
+    typealias Rows = [Row]
+}
 
-/**
- This typealias represents a list of input set rows.
- 
- > v8.0: This type will be moved into ``InputSet`` when it's
- converted to a struct.
- */
-public typealias InputSetRows = [InputSetRow]
-
-public extension InputSetRow {
+public extension InputSet.Row {
     
     /**
      Create an input row from a string, where each character
-     is mapped to a ``InputSetItem``.
+     is mapped to an ``InputSet.Item``.
      */
     init(chars: String) {
         self.init(chars: chars.chars)
@@ -36,15 +29,15 @@ public extension InputSetRow {
     
     /**
      Create an input row from an array, where each character
-     is mapped to a ``InputSetItem``.
+     is mapped to an ``InputSet.Item``.
      */
     init(chars: [String]) {
-        self = chars.map { InputSetItem($0) }
+        self = chars.map { InputSet.Item($0) }
     }
 
     /**
      Create an input row from a lowercased and an uppercased
-     string, where each char is mapped to a ``InputSetItem``.
+     string, where each char is mapped to an ``InputSet.Item``.
 
      Both arrays must contain the same amount of characters.
      */
@@ -58,23 +51,24 @@ public extension InputSetRow {
 
     /**
      Create an input row from a lowercased and an uppercased
-     array, where each char is mapped to a ``InputSetItem``.
+     array, where each char is mapped to an ``InputSet.Item``.
 
      Both arrays must contain the same amount of characters.
      */
     init(lowercased: [String], uppercased: [String]) {
         assert(lowercased.count == uppercased.count, "The lowercased and uppercased string arrays must contain the same amount of characters")
         self = lowercased.enumerated().map {
-            InputSetItem(
+            InputSet.Item(
                 neutral: lowercased[$0.offset],
                 uppercased: uppercased[$0.offset],
-                lowercased: lowercased[$0.offset])
+                lowercased: lowercased[$0.offset]
+            )
         }
     }
 
     /**
      Create an input row from phone and pad-specific strings,
-     where each character is mapped to a ``InputSetItem``.
+     where each character is mapped to an ``InputSet.Item``.
      */
     init(
         phone: String,
@@ -86,7 +80,7 @@ public extension InputSetRow {
 
     /**
      Create an input row from phone and pad-specific strings,
-     where each character is mapped to a ``InputSetItem``.
+     where each character is mapped to an ``InputSet.Item``.
      */
     init(
         phone: [String],
@@ -98,7 +92,7 @@ public extension InputSetRow {
 
     /**
      Create an input row from phone and pad-specific strings,
-     where each character is mapped to a ``InputSetItem``.
+     where each character is mapped to an ``InputSet.Item``.
      */
     init(
         phoneLowercased: String,
@@ -114,7 +108,7 @@ public extension InputSetRow {
 
     /**
      Create an input row from phone and pad-specific strings,
-     where each character is mapped to a ``InputSetItem``.
+     where each character is mapped to an ``InputSet.Item``.
      */
     init(
         phoneLowercased: [String],
@@ -136,7 +130,7 @@ public extension InputSetRow {
     }
 }
 
-public extension InputSetRows {
+public extension InputSet.Rows {
 
     /**
      Get all input characters for a certain keyboard case.

@@ -41,6 +41,7 @@ Note that the library no longer sets up English services by default, so make sur
 Many types have been moved into namespaces, with temporary, deprecated mapping types to help you migrate. 
 
 * `AutocompleteProvider` is now async instead of using completions.
+* `InputSet` has been converted to a struct.
 * `View+KeyboardButton` now has support for custom, intrinsic edge insets.
 * `View+KeyboardButton` now applies a locale context menu to `nextLocale` buttons.
 

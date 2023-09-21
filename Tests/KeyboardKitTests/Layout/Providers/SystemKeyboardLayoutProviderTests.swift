@@ -19,9 +19,9 @@ class SystemKeyboardLayoutProviderTests: XCTestCase {
         context = KeyboardContext()
         layoutConfig = .standard(for: context)
         provider = SystemKeyboardLayoutProvider(
-            alphabeticInputSet: AlphabeticInputSet(rows: [["a", "b", "c"]].map(InputSetRow.init(chars:))),
-            numericInputSet: NumericInputSet(rows: [["1", "2", "3"]].map(InputSetRow.init(chars:))),
-            symbolicInputSet: SymbolicInputSet(rows: [[",", ".", "-"]].map(InputSetRow.init(chars:)))
+            alphabeticInputSet: InputSet(rows: [["a", "b", "c"]].map(InputSet.Row.init(chars:))),
+            numericInputSet: InputSet(rows: [["1", "2", "3"]].map(InputSet.Row.init(chars:))),
+            symbolicInputSet: InputSet(rows: [[",", ".", "-"]].map(InputSet.Row.init(chars:)))
         )
     }
 
@@ -38,7 +38,7 @@ class SystemKeyboardLayoutProviderTests: XCTestCase {
 
     func testActionsForContextAndInputsAreCharacterActionsForTheProvidedInputs() {
         let chars = [["a", "b", "c"], ["d", "e", "f"]]
-        let inputs = chars.map(InputSetRow.init(chars:))
+        let inputs = chars.map(InputSet.Row.init(chars:))
         let actions = provider.actions(for: inputs, context: context)
         let expected = KeyboardAction.Rows(characters: chars)
         XCTAssertEqual(actions, expected)
@@ -47,7 +47,7 @@ class SystemKeyboardLayoutProviderTests: XCTestCase {
     func testActionsForContextAndInputsCanResolveUppercasedAlphabeticInputSet() {
         context.keyboardType = .alphabetic(.uppercased)
         let chars = [["a", "b", "c"], ["d", "e", "f"]]
-        let inputs = chars.map(InputSetRow.init(chars:))
+        let inputs = chars.map(InputSet.Row.init(chars:))
         let actions = provider.actions(for: inputs, context: context)
         let expectedChars = [["A", "B", "C"], ["D", "E", "F"]]
         let expected = KeyboardAction.Rows(characters: expectedChars)

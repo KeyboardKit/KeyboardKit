@@ -27,7 +27,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      the bottommost row. We therefore append it here.
      */
     open override func actions(
-        for inputs: InputSetRows,
+        for inputs: InputSet.Rows,
         context: KeyboardContext
     ) -> KeyboardAction.Rows {
         let actions = super.actions(for: inputs, context: context)

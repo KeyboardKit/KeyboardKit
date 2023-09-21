@@ -36,9 +36,9 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
        - symbolicInputSet: The symbolic input set to use.
      */
     public init(
-        alphabeticInputSet: AlphabeticInputSet,
-        numericInputSet: NumericInputSet,
-        symbolicInputSet: SymbolicInputSet
+        alphabeticInputSet: InputSet,
+        numericInputSet: InputSet,
+        symbolicInputSet: InputSet
     ) {
         self.alphabeticInputSet = alphabeticInputSet
         self.numericInputSet = numericInputSet
@@ -47,18 +47,16 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     
     
     /// The alphabetic input set to use.
-    public private(set) var alphabeticInputSet: AlphabeticInputSet
+    public private(set) var alphabeticInputSet: InputSet
     
     /// The numeric input set to use.
-    public private(set) var numericInputSet: NumericInputSet
+    public private(set) var numericInputSet: InputSet
     
     /// The symbolic input set to use.
-    public private(set) var symbolicInputSet: SymbolicInputSet
+    public private(set) var symbolicInputSet: InputSet
     
     
-    /**
-     Get a keyboard layout for a certain keyboard `context`.
-     */
+    /// Get a keyboard layout for the provided context.
     open func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         let inputs = self.inputRows(for: context)
         let actions = self.actions(for: inputs, context: context)
@@ -69,22 +67,18 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     
     // MARK: - Overridable helper functions
     
-    /**
-     Get keyboard actions for the `inputs` and `context`.
-     */
+    /// Get actions for the provided rows and context.
     open func actions(
-        for rows: InputSetRows,
+        for rows: InputSet.Rows,
         context: KeyboardContext
     ) -> KeyboardAction.Rows {
         let characters = actionCharacters(for: rows, context: context)
         return .init(characters: characters)
     }
     
-    /**
-     Get actions characters for the `inputs` and `context`.
-     */
+    /// Get action chars for the provided rows and context.
     open func actionCharacters(
-        for rows: InputSetRows,
+        for rows: InputSet.Rows,
         context: KeyboardContext
     ) -> [[String]] {
         switch context.keyboardType {
@@ -93,10 +87,8 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         }
     }
     
-    /**
-     Get input set rows for the provided `context`.
-     */
-    open func inputRows(for context: KeyboardContext) -> InputSetRows {
+    /// Get input rows for the provided context.
+    open func inputRows(for context: KeyboardContext) -> InputSet.Rows {
         switch context.keyboardType {
         case .numeric: return numericInputSet.rows
         case .symbolic: return symbolicInputSet.rows
@@ -104,9 +96,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         }
     }
     
-    /**
-     Get layout item rows for the `actions` and `context`.
-     */
+    /// Get item rows for the provided actions and context.
     open func items(
         for actions: KeyboardAction.Rows,
         context: KeyboardContext
@@ -118,9 +108,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         }
     }
     
-    /**
-     Get a layout item for the provided parameters.
-     */
+    /// Get a layout item for the provided parameters.
     open func item(for action: KeyboardAction, row: Int, index: Int, context: KeyboardContext) -> KeyboardLayoutItem {
         KeyboardLayoutItem(
             action: action,
@@ -129,9 +117,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         )
     }
     
-    /**
-     Get layout item insets for the provided parameters.
-     */
+    /// Get layout item insets for the provided parameters.
     open func itemInsets(for action: KeyboardAction, row: Int, index: Int, context: KeyboardContext) -> EdgeInsets {
         let config = KeyboardLayoutConfiguration.standard(for: context)
         switch action {
@@ -140,9 +126,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         }
     }
     
-    /**
-     Get a layout item size for the provided parameters.
-     */
+    /// Get a layout item size for the provided parameters.
     open func itemSize(
         for action: KeyboardAction,
         row: Int,
@@ -154,9 +138,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         return KeyboardLayoutItem.Size(width: width, height: height)
     }
     
-    /**
-     Get a layout item height for the provided parameters.
-     */
+    /// Get a layout item height for the provided parameters.
     open func itemSizeHeight(
         for action: KeyboardAction,
         row: Int,
@@ -167,9 +149,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         return config.rowHeight
     }
     
-    /**
-     Get a layout item width for the provided parameters.
-     */
+    /// Get a layout item width for the provided parameters.
     open func itemSizeWidth(
         for action: KeyboardAction,
         row: Int,
@@ -182,9 +162,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         }
     }
     
-    /**
-     The return action to use for the provided `context`.
-     */
+    /// The return action to use for the provided context.
     open func keyboardReturnAction(for context: KeyboardContext) -> KeyboardAction {
         #if os(iOS) || os(tvOS)
         let proxy = context.textDocumentProxy

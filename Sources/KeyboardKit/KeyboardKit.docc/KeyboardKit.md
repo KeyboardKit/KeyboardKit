@@ -172,12 +172,6 @@ KeyboardKit is available under the MIT license.
 ### Layout
 
 - ``InputSet``
-- ``InputSetItem``
-- ``InputSetRow``
-- ``InputSetRows``
-- ``AlphabeticInputSet``
-- ``NumericInputSet``
-- ``SymbolicInputSet``
 
 - ``KeyboardLayout``
 - ``KeyboardLayoutConfiguration``

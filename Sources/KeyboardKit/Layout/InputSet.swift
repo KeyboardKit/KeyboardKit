@@ -12,51 +12,52 @@ import Foundation
  An input set defines the input keys on a keyboard.
  
  Input sets can be used to create a ``KeyboardLayout`` which
- define the full set of keys, including the system keys that
- surround the input rows, a button action row , the size and
- properties of each key, etc.
+ defines the full set of keys, that often include extra keys
+ around the input rows and a bottom row. Layout also specify
+ the size, insets and properties of each key.
  
- KeyboardKit has a couple of static input sets and input set
- builders, such as ``qwerty``, ``english``, ``englishNumeric``,
- ``englishSymbolic``, ``standardNumeric(currency:)``, etc.
- 
- KeyboardKit Pro unlocks additional input sets like `qwertz`,
- `azerty`, as well as alphabetic, numeric and symbolic input
- sets for all ``KeyboardLocale``s that your license includes.
- 
- > v8.0: This protocol will be converted to a `struct`, that
- will replace the various input set types with a single type.
+ KeyboardKit has a couple of pre-defined input sets, such as
+ standard ``qwerty``, a ``standardNumeric(currency:)`` and a
+ ``standardSymbolic(currencies:)``. KeyboardKit Pro provides
+ even more input sets like `qwertz` and `azerty`, as well as
+ alphabetic, numeric and symbolic input sets for all locales.
  */
-public protocol InputSet: Equatable {
+public struct InputSet: Equatable {
     
-    var rows: InputSetRows { get }
+    /// Create an input set with rows.
+    public init(rows: Rows) {
+        self.rows = rows
+    }
+
+    /// The rows in the input set.
+    public var rows: Rows
 }
 
 public extension InputSet {
     
-    static var english: AlphabeticInputSet { .qwerty }
+    static var english: InputSet { .qwerty }
     
-    static var englishNumeric: NumericInputSet {
+    static var englishNumeric: InputSet {
         .englishNumeric()
     }
     
     static func englishNumeric(
         currency: String = "$"
-    ) -> NumericInputSet {
+    ) -> InputSet {
         .standardNumeric(currency: currency)
     }
     
-    static var englishSymbolic: SymbolicInputSet {
+    static var englishSymbolic: InputSet {
         .englishSymbolic()
     }
     
     static func englishSymbolic(
         currency: String = "£"
-    ) -> SymbolicInputSet {
+    ) -> InputSet {
         .standardSymbolic(currencies: "€\(currency)¥".chars)
     }
     
-    static var qwerty: AlphabeticInputSet {
+    static var qwerty: InputSet {
         .init(rows: [
             .init(chars: "qwertyuiop"),
             .init(chars: "asdfghjkl"),
@@ -64,16 +65,16 @@ public extension InputSet {
         ])
     }
     
-    static func standardNumeric(currency: String) -> NumericInputSet {
-        NumericInputSet(rows: [
+    static func standardNumeric(currency: String) -> InputSet {
+        .init(rows: [
             .init(chars: "1234567890"),
             .init(phone: "-/:;()\(currency)&@”", pad: "@#\(currency)&*()’”"),
             .init(phone: ".,?!’", pad: "%-+=/;:!?")
         ])
     }
     
-    static func standardSymbolic(currencies: [String]) -> SymbolicInputSet {
-        SymbolicInputSet(rows: [
+    static func standardSymbolic(currencies: [String]) -> InputSet {
+        .init(rows: [
             .init(phone: "[]{}#%^*+=", pad: "1234567890"),
             .init(
                 phone: "_\\|~<>\(currencies.joined())•",
@@ -81,48 +82,4 @@ public extension InputSet {
             .init(phone: ".,?!’", pad: "§|~…\\<>!?")
         ])
     }
-}
-
-/**
- This input set can be used in alphabetic keyboards.
- 
- > v8.0: This will be replaced by the upcoming `InputSet`.
- */
-public struct AlphabeticInputSet: InputSet {
-
-    /// Create an alphabetic input set.
-    public init(rows: InputSetRows) {
-        self.rows = rows
-    }
-
-    /// The rows in the input set.
-    public var rows: InputSetRows
-}
-
-/**
- This input set can used in numeric keyboards.
- 
- > v8.0: This will be replaced by the upcoming `InputSet`.
- */
-public struct NumericInputSet: InputSet {
-
-    public init(rows: InputSetRows) {
-        self.rows = rows
-    }
-
-    public var rows: InputSetRows
-}
-
-/**
- This input set can be used in symbolic keyboards.
- 
- > v8.0: This will be replaced by the upcoming `InputSet`.
- */
-public struct SymbolicInputSet: InputSet {
-
-    public init(rows: InputSetRows) {
-        self.rows = rows
-    }
-
-    public var rows: InputSetRows
 }
