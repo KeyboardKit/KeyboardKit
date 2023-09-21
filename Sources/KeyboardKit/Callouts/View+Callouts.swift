@@ -47,7 +47,7 @@ public extension View {
        - style: The style to apply, by default ``KeyboardStyle/ActionCallout/standard``.
      */
     func keyboardActionCalloutContainer(
-        calloutContext: CalloutActionContext,
+        calloutContext: CalloutContext.ActionContext,
         keyboardContext: KeyboardContext,
         style: KeyboardStyle.ActionCallout = .standard
     ) -> some View {
@@ -57,7 +57,7 @@ public extension View {
                 keyboardContext: keyboardContext,
                 style: style
             )
-        ).coordinateSpace(name: CalloutActionContext.coordinateSpace)
+        ).coordinateSpace(name: calloutContext.coordinateSpace)
     }
 
     /**
@@ -82,7 +82,7 @@ public extension View {
        - style: The style to apply, by default ``KeyboardStyle/InputCallout/standard``.
      */
     func keyboardInputCalloutContainer(
-        calloutContext: CalloutInputContext,
+        calloutContext: CalloutContext.InputContext,
         keyboardContext: KeyboardContext,
         style: KeyboardStyle.InputCallout = .standard
     ) -> some View {
@@ -92,6 +92,6 @@ public extension View {
                 keyboardContext: keyboardContext,
                 style: style
             )
-        ).coordinateSpace(name: CalloutInputContext.coordinateSpace)
+        ).coordinateSpace(name: calloutContext.coordinateSpace)
     }
 }

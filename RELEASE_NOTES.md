@@ -63,8 +63,6 @@ You must either implement these services yourself, or get them by upgrading to K
 * `Autocomplete.ToolbarItemSubtitle` is now initialized with a suggestion.
 * `BaseCalloutActionProvider` has been removed.
 * `CalloutButtonArea` has been renamed to `Callouts.ButtonArea`.
-* `CalloutContext.ActionCallout` has been renamed to `CalloutActionContext`.
-* `CalloutContext.InputCallout` has been renamed to `CalloutInputContext`.
 * `DictationAuthorizationStatus` has been renamed to `Dictation.AuthorizationStatus`.
 * `Dictation.Configuration` has been renamed to `Dictation.Configuration`.
 * `DisabledCalloutActionProvider` has been removed.

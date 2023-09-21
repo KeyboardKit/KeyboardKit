@@ -33,10 +33,8 @@ public extension Callouts {
             self.style = style
         }
         
-        public typealias Context = CalloutInputContext
+        public typealias Context = CalloutContext.InputContext
         public typealias Style = KeyboardStyle.InputCallout
-        
-        static let coordinateSpace = Context.coordinateSpace
         
         @ObservedObject
         private var calloutContext: Context
@@ -161,9 +159,9 @@ struct Callouts_InputCallout_Previews: PreviewProvider {
         }
 
         @StateObject
-        var context = CalloutInputContext(isEnabled: true)
+        var context = CalloutContext.InputContext(isEnabled: true)
 
-        func button(for context: CalloutInputContext) -> some View {
+        func button(for context: CalloutContext.InputContext) -> some View {
             GeometryReader { geo in
                 Gestures.GestureButton(
                     pressAction: { showCallout(for: geo) },

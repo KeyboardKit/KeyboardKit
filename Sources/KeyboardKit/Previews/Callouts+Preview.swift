@@ -17,19 +17,19 @@ public extension CalloutContext {
     )
 }
 
-public extension CalloutActionContext {
+public extension CalloutContext.ActionContext {
 
     /// This context can be used in SwiftUI previews.
-    static var preview = CalloutActionContext(
+    static var preview = CalloutContext.ActionContext(
         actionHandler: .preview,
         actionProvider: .preview
     )
 }
 
-public extension CalloutInputContext {
+public extension CalloutContext.InputContext {
     
     /// This context can be used in SwiftUI previews.
-    static var preview = CalloutInputContext(
+    static var preview = CalloutContext.InputContext(
         isEnabled: true
     )
 }

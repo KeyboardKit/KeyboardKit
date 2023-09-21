@@ -31,18 +31,18 @@ public class CalloutContext: ObservableObject {
        - inputContext: The input context to use.
      */
     public init(
-        actionContext: CalloutActionContext,
-        inputContext: CalloutInputContext
+        actionContext: ActionContext,
+        inputContext: InputContext
     ) {
         self.actionContext = actionContext
         self.inputContext = inputContext
     }
 
     /// The action context that is bound to the context.
-    public var actionContext: CalloutActionContext
+    public var actionContext: ActionContext
 
     /// The input context that is bound to the context.
-    public var inputContext: CalloutInputContext
+    public var inputContext: InputContext
 }
 
 public extension CalloutContext {

@@ -116,9 +116,7 @@ KeyboardKit is available under the MIT license.
 - <doc:Understanding-Callouts>
 - ``Callouts``
 - ``CalloutContext``
-- ``CalloutActionContext``
 - ``CalloutActionProvider``
-- ``CalloutInputContext``
 - ``StandardCalloutActionProvider``
 
 ### Colors

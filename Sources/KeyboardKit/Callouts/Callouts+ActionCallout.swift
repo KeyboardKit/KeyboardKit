@@ -28,7 +28,7 @@ public extension Callouts {
            - style: The style to apply to the view, by default ``KeyboardStyle/ActionCallout/standard``.
          */
         public init(
-            calloutContext: CalloutActionContext,
+            calloutContext: CalloutContext.ActionContext,
             keyboardContext: KeyboardContext,
             style: Style = .standard
         ) {
@@ -38,10 +38,8 @@ public extension Callouts {
             // TODO self.emojiStyle = Emojis.KeyboardStyle.standard(for: keyboardContext)
         }
         
-        public typealias Context = CalloutActionContext
+        public typealias Context = CalloutContext.ActionContext
         public typealias Style = KeyboardStyle.ActionCallout
-        
-        static let coordinateSpace = Context.coordinateSpace
         
         @ObservedObject
         private var calloutContext: Context
@@ -199,7 +197,7 @@ struct Callouts_ActionCallout_Previews: PreviewProvider {
 
     static func previewGroup<ButtonView: View>(
         view: ButtonView,
-        actionContext: CalloutActionContext,
+        actionContext: CalloutContext.ActionContext,
         alignment: HorizontalAlignment
     ) -> some View {
         view.overlay(

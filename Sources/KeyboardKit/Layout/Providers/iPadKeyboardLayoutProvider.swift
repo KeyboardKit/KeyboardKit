@@ -12,12 +12,12 @@ import SwiftUI
  This class provides a keyboard layout that corresponds to a
  standard English layout for an iPad with a home button.
 
- Note that this provider is currently used on all iPad types,
- including iPad Air and iPad Pro, although they use a layout
- that has more system buttons.
-
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
+ 
+ Note that this provider is currently used on all iPad types,
+ although iPad Air and iPad Pro have more buttons. This will
+ be addressed in a future version.
  */
 open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
 

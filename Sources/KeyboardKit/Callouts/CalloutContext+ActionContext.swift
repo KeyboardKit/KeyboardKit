@@ -9,59 +9,63 @@
 import Combine
 import SwiftUI
 
-/**
- This type can be used as action callout state.
- */
-public class CalloutActionContext: ObservableObject {
+public extension CalloutContext {
     
     /**
-     Create a new action callout context instance.
-     
-     - Parameters:
-       - actionHandler: The action handler to use.
-       - actionProvider: The action provider to use, if any.
+     This type can be used as action callout state.
      */
-    public init(
-        actionHandler: KeyboardActionHandler,
-        actionProvider: CalloutActionProvider?
-    ) {
-        self.actionHandler = actionHandler
-        self.actionProvider = actionProvider
+    class ActionContext: ObservableObject {
+        
+        /**
+         Create a new action callout context instance.
+         
+         - Parameters:
+           - actionHandler: The action handler to use.
+           - actionProvider: The action provider to use, if any.
+         */
+        public init(
+            actionHandler: KeyboardActionHandler,
+            actionProvider: CalloutActionProvider?
+        ) {
+            self.actionHandler = actionHandler
+            self.actionProvider = actionProvider
+        }
+        
+        
+        /// The coordinate space to use for callout.
+        public let coordinateSpace = "com.keyboardkit.coordinate.ActionCallout"
+        
+        
+        /// The action handler to use when tapping buttons.
+        public let actionHandler: KeyboardActionHandler
+        
+        /// The action provider to use for resolving actions.
+        public let actionProvider: CalloutActionProvider?
+        
+        
+        /// The currently active actions.
+        @Published
+        public private(set) var actions: [KeyboardAction] = []
+        
+        /// The callout bubble alignment.
+        @Published
+        public private(set) var alignment: HorizontalAlignment = .leading
+        
+        /// The frame of the currently pressed button.
+        @Published
+        public private(set) var buttonFrame: CGRect = .zero
+        
+        /// The currently selected action index.
+        @Published
+        public private(set) var selectedIndex: Int = -1
     }
     
-    
-    /// The coordinate space to use for callout.
-    public static let coordinateSpace = "com.keyboardkit.coordinate.ActionCallout"
-    
-    
-    /// The action handler to use when tapping buttons.
-    public let actionHandler: KeyboardActionHandler
-    
-    /// The action provider to use for resolving actions.
-    public let actionProvider: CalloutActionProvider?
-    
-    
-    /// The currently active actions.
-    @Published
-    public private(set) var actions: [KeyboardAction] = []
-    
-    /// The callout bubble alignment.
-    @Published
-    public private(set) var alignment: HorizontalAlignment = .leading
-    
-    /// The frame of the currently pressed button.
-    @Published
-    public private(set) var buttonFrame: CGRect = .zero
-    
-    /// The currently selected action index.
-    @Published
-    public private(set) var selectedIndex: Int = -1
 }
 
 
 // MARK: - Public functionality
 
-public extension CalloutActionContext {
+public extension CalloutContext.ActionContext {
     
     /// Whether or not the context has a selected action.
     var hasSelectedAction: Bool { selectedAction != nil }
@@ -109,7 +113,7 @@ public extension CalloutActionContext {
     func updateInputs(for action: KeyboardAction?, in geo: GeometryProxy, alignment: HorizontalAlignment? = nil) {
         guard let action = action else { return reset() }
         guard let actions = actionProvider?.calloutActions(for: action) else { return }
-        self.buttonFrame = geo.frame(in: .named(Self.coordinateSpace))
+        self.buttonFrame = geo.frame(in: .named(coordinateSpace))
         self.alignment = alignment ?? getAlignment(for: geo)
         self.actions = isLeading ? actions : actions.reversed()
         self.selectedIndex = startIndex
@@ -139,10 +143,10 @@ public extension CalloutActionContext {
 
 // MARK: - Context builders
 
-public extension CalloutActionContext {
+public extension CalloutContext.ActionContext {
     
     /// This context can be used to disable action callouts.
-    static var disabled: CalloutActionContext {
+    static var disabled: CalloutContext.ActionContext {
         .init(
             actionHandler: .preview,
             actionProvider: nil
@@ -153,7 +157,7 @@ public extension CalloutActionContext {
 
 // MARK: - Private functionality
 
-private extension CalloutActionContext {
+private extension CalloutContext.ActionContext {
     
     var startIndex: Int {
         isLeading ? 0 : actions.count - 1

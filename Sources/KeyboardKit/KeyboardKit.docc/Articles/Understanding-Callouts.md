@@ -8,7 +8,7 @@ In KeyboardKit, a ``CalloutActionProvider`` can be used to provide secondary act
 
 KeyboardKit will bind a ``StandardCalloutActionProvider`` to ``KeyboardInputViewController/calloutActionProvider`` when the keyboard is loaded. It has no callout actions by default, but you can add localized providers to it or replace it with a custom implementation at any time.
 
-[KeyboardKit Pro][Pro] unlocks and registers localized providers for all keyboard locales when you register a valid license key. It also lets you inherit the `ProCalloutActionProvider` to get more features. Information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks and registers localized providers for all keyboard locales when you register a valid license key. It also lets you inherit the `ProCalloutActionProvider` for more features. Information about Pro features can be found at the end of this article.
 
 
 
@@ -31,7 +31,7 @@ MyKeyboard()
     .keyboardCalloutContainer(...)
 ```
 
-This view extension will bind a ``CalloutActionContext`` and a ``CalloutInputContext`` to the view, and create ``Callouts/ActionCallout`` and ``Callouts/InputCallout`` views that will show as these contexts change. 
+This view extension will bind a ``CalloutContext`` and its input and action contexts to the view, then apply ``Callouts/ActionCallout`` and ``Callouts/InputCallout`` views that will show as these contexts change. 
 
 The ``SystemKeyboard`` and ``KeyboardButton/Button`` will automatically update these contexts as you interact with a button.
 

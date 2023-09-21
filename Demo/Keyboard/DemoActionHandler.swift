@@ -19,7 +19,7 @@ class DemoActionHandler: StandardKeyboardActionHandler {
     // MARK: - Overrides
     
     override func action(
-        for gesture: KeyboardGesture,
+        for gesture: Gestures.KeyboardGesture,
         on action: KeyboardAction
     ) -> KeyboardAction.GestureAction? {
         let standard = super.action(for: gesture, on: action)

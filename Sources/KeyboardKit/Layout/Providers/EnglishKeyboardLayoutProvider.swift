@@ -29,32 +29,24 @@ open class EnglishKeyboardLayoutProvider: SystemKeyboardLayoutProvider, Keyboard
         )
     }
 
-    /**
-     The locale identifier.
-     */
+    /// The locale identifier.
     public var localeKey = KeyboardLocale.english.id
 
-    /**
-     The layout provider to use for iPad devices.
-     */
+    /// The layout provider to use for iPad devices.
     public lazy var iPadProvider: KeyboardLayoutProvider = iPadKeyboardLayoutProvider(
         alphabeticInputSet: alphabeticInputSet,
         numericInputSet: numericInputSet,
         symbolicInputSet: symbolicInputSet
     )
 
-    /**
-     The layout provider to use for iPhone devices.
-     */
+    /// The layout provider to use for iPhone devices.
     public lazy var iPhoneProvider: KeyboardLayoutProvider = iPhoneKeyboardLayoutProvider(
         alphabeticInputSet: alphabeticInputSet,
         numericInputSet: numericInputSet,
         symbolicInputSet: symbolicInputSet
     )
 
-    /**
-     The layout keyboard to use for a given keyboard context.
-     */
+    /// The layout keyboard to use for the provided context.
     open override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         keyboardLayoutProvider(for: context)
             .keyboardLayout(for: context)
