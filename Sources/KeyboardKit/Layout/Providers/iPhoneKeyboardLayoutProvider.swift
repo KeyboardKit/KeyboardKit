@@ -49,7 +49,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         row: Int,
         index: Int,
         context: KeyboardContext
-    ) -> KeyboardLayoutItem.Width {
+    ) -> KeyboardLayout.ItemWidth {
         switch action {
         case context.keyboardDictationReplacement: return bottomSystemButtonWidth(for: context)
         case .character: return isLastNumericInputRow(row, for: context) ? lastSymbolicInputWidth(for: context) : .input
@@ -140,7 +140,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func lowerSystemButtonWidth(
         for context: KeyboardContext
-    ) -> KeyboardLayoutItem.Width {
+    ) -> KeyboardLayout.ItemWidth {
         if context.isAlphabetic(.ukrainian) { return .input }
         return .percentage(0.13)
     }
@@ -179,7 +179,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
      */
     open func bottomSystemButtonWidth(
         for context: KeyboardContext
-    ) -> KeyboardLayoutItem.Width {
+    ) -> KeyboardLayout.ItemWidth {
         .percentage(isPortrait(context) ? 0.123 : 0.095)
     }
 
@@ -220,7 +220,7 @@ private extension iPhoneKeyboardLayoutProvider {
      */
     func lastSymbolicInputWidth(
         for context: KeyboardContext
-    ) -> KeyboardLayoutItem.Width {
+    ) -> KeyboardLayout.ItemWidth {
         .percentage(0.14)
     }
 

@@ -32,9 +32,9 @@ class DemoLayoutProvider: StandardKeyboardLayoutProvider {
 
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         let layout = super.keyboardLayout(for: context)
-        let widerItem = KeyboardLayoutItem(
+        let widerItem = KeyboardLayout.Item(
             action: .character("I"),
-            size: KeyboardLayoutItem.Size(
+            size: .init(
                 width: .inputPercentage(2),
                 height: layout.idealItemHeight),
             edgeInsets: layout.idealItemInsets)

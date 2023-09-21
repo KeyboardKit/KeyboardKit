@@ -12,9 +12,9 @@ import XCTest
 
 class KeyboardLayoutTests: XCTestCase {
 
-    func item(_ width: KeyboardLayoutItem.Width) -> KeyboardLayoutItem {
-        let size = KeyboardLayoutItem.Size(width: width, height: 0)
-        let item = KeyboardLayoutItem(action: .none, size: size)
+    func item(_ width: KeyboardLayout.ItemWidth) -> KeyboardLayout.Item {
+        let size = KeyboardLayout.ItemSize(width: width, height: 0)
+        let item = KeyboardLayout.Item(action: .none, size: size)
         return item
     }
     

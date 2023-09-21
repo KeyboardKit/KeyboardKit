@@ -1,5 +1,5 @@
 //
-//  KeyboardLayoutItemTests.swift
+//  KeyboardLayout+ItemTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-08.
@@ -11,19 +11,19 @@ import XCTest
 
 @testable import KeyboardKit
 
-class KeyboardLayoutItemRowTests: XCTestCase {
+class KeyboardLayout_ItemRowTests: XCTestCase {
     
-    var item: KeyboardLayoutItem!
-    var row: KeyboardLayoutItem.Row!
-    var rows: KeyboardLayoutItem.Rows!
+    var item: KeyboardLayout.Item!
+    var row: KeyboardLayout.ItemRow!
+    var rows: KeyboardLayout.ItemRows!
 
-    let size = KeyboardLayoutItem.Size(width: .available, height: 100)
+    let size = KeyboardLayout.ItemSize(width: .available, height: 100)
 
     override func setUp() {
-        item = KeyboardLayoutItem(action: .primary(.done), size: size)
-        let item1 = KeyboardLayoutItem(action: .command, size: size)
-        let item2 = KeyboardLayoutItem(action: .space, size: size)
-        let item3 = KeyboardLayoutItem(action: .backspace, size: size)
+        item = KeyboardLayout.Item(action: .primary(.done), size: size)
+        let item1 = KeyboardLayout.Item(action: .command, size: size)
+        let item2 = KeyboardLayout.Item(action: .space, size: size)
+        let item3 = KeyboardLayout.Item(action: .backspace, size: size)
         row = [item1, item2, item3]
         rows = [row, row, row]
     }
@@ -75,7 +75,7 @@ class KeyboardLayoutItemRowTests: XCTestCase {
     }
 
     func removingActionFromRowRemovesMatchingItem() {
-        let item = KeyboardLayoutItem(action: .backspace, size: size)
+        let item = KeyboardLayout.Item(action: .backspace, size: size)
         row.insert(item, before: .command)
         XCTAssertEqual(rowActions, [.backspace, .command, .space, .backspace])
         row.remove(.backspace)
@@ -176,7 +176,7 @@ class KeyboardLayoutItemRowTests: XCTestCase {
     }
 
     func testRemovingItemFromCertainRowRemovesItemIfItExists() {
-        let item = KeyboardLayoutItem(action: .backspace, size: size)
+        let item = KeyboardLayout.Item(action: .backspace, size: size)
         rows.insert(item, before: .command, atRow: 2)
         XCTAssertEqual(rowsActions[2], [.backspace, .command, .space, .backspace])
         rows.remove(.backspace, atRow: 2)

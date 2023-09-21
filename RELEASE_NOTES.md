@@ -30,7 +30,7 @@ Note that the library no longer sets up English services by default, so make sur
 * `KeyboardAction.emoji` can now be created with a string as well.
 * `KeyboardButton` now supports providing interactable `edgeInsets`.
 * `KeyboardButton` now supports providing an external `isPressed` state.
-* `KeyboardLayoutItem` has a new `width(forRowWidth:inputWidth:)` function.
+* `KeyboardLayout.Item` has a new `width(forRowWidth:inputWidth:)` function.
 * `SystemKeyboard` has new initializers that make it much easier to customize the content and view of its keys.
 * `View.keyboardButton` is a new view extension that applies both a style and gestures.
 * `View.keyboardCalloutContainer` is a new view extension that applies both input and action callout container modifiers to the view. 

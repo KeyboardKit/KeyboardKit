@@ -72,6 +72,24 @@ public typealias KeyboardEnabledStateInspector = KeyboardStateInspector
 @available(*, deprecated, renamed: "KeyboardLayout.Configuration", message: "This will be removed in KeyboardKit 8.1.")
 public typealias KeyboardLayoutConfiguration = KeyboardLayout.Configuration
 
+@available(*, deprecated, renamed: "KeyboardLayout.Item", message: "This will be removed in KeyboardKit 8.1.")
+public typealias KeyboardLayoutItem = KeyboardLayout.Item
+
+public extension KeyboardLayout.Item {
+    
+    @available(*, deprecated, renamed: "ItemRow", message: "This will be removed in KeyboardKit 8.1.")
+    typealias Row = KeyboardLayout.ItemRow
+    
+    @available(*, deprecated, renamed: "ItemRows", message: "This will be removed in KeyboardKit 8.1.")
+    typealias Rows = KeyboardLayout.ItemRows
+    
+    @available(*, deprecated, renamed: "ItemSize", message: "This will be removed in KeyboardKit 8.1.")
+    typealias Size = KeyboardLayout.ItemSize
+    
+    @available(*, deprecated, renamed: "ItemWidth", message: "This will be removed in KeyboardKit 8.1.")
+    typealias Width = KeyboardLayout.ItemWidth
+}
+
 @available(*, deprecated, renamed: "InputSet", message: "This will be removed in KeyboardKit 8.1.")
 public typealias NumericInputSet = InputSet
 
@@ -111,7 +129,7 @@ public typealias SystemKeyboardButtonRowItem = SystemKeyboardItem
 @available(*, deprecated, renamed: "KeyboardButton.SpaceContent", message: "This will be removed in KeyboardKit 8.1.")
 public typealias SystemKeyboardSpaceContent = KeyboardButton.SpaceContent
 
-public extension KeyboardLayoutItem {
+public extension KeyboardLayout.Item {
     
     var insets: EdgeInsets { edgeInsets }
 }

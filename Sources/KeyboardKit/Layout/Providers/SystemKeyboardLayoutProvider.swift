@@ -100,7 +100,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     open func items(
         for actions: KeyboardAction.Rows,
         context: KeyboardContext
-    ) -> KeyboardLayoutItem.Rows {
+    ) -> KeyboardLayout.ItemRows {
         actions.enumerated().map { row in
             row.element.enumerated().map { action in
                 item(for: action.element, row: row.offset, index: action.offset, context: context)
@@ -109,8 +109,8 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
     }
     
     /// Get a layout item for the provided parameters.
-    open func item(for action: KeyboardAction, row: Int, index: Int, context: KeyboardContext) -> KeyboardLayoutItem {
-        KeyboardLayoutItem(
+    open func item(for action: KeyboardAction, row: Int, index: Int, context: KeyboardContext) -> KeyboardLayout.Item {
+        KeyboardLayout.Item(
             action: action,
             size: itemSize(for: action, row: row, index: index, context: context),
             edgeInsets: itemInsets(for: action, row: row, index: index, context: context)
@@ -133,10 +133,10 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         row: Int,
         index: Int,
         context: KeyboardContext
-    ) -> KeyboardLayoutItem.Size {
+    ) -> KeyboardLayout.ItemSize {
         let width = itemSizeWidth(for: action, row: row, index: index, context: context)
         let height = itemSizeHeight(for: action, row: row, index: index, context: context)
-        return KeyboardLayoutItem.Size(width: width, height: height)
+        return KeyboardLayout.ItemSize(width: width, height: height)
     }
     
     /// Get a layout item height for the provided parameters.
@@ -157,7 +157,7 @@ open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
         row: Int,
         index: Int,
         context: KeyboardContext
-    ) -> KeyboardLayoutItem.Width {
+    ) -> KeyboardLayout.ItemWidth {
         switch action {
         case .character: return .input
         default: return .available

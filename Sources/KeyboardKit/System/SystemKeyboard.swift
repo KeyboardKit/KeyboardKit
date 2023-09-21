@@ -167,8 +167,8 @@ public struct SystemKeyboard<ButtonContent: View, ButtonView: View>: View {
         case none
     }
 
-    public typealias ButtonContentBuilder = (KeyboardLayoutItem, _ standard: KeyboardButton.Content) -> ButtonContent
-    public typealias ButtonViewBuilder = (KeyboardLayoutItem, _ standard: SystemKeyboardItem<ButtonContent>) -> ButtonView
+    public typealias ButtonContentBuilder = (KeyboardLayout.Item, _ standard: KeyboardButton.Content) -> ButtonContent
+    public typealias ButtonViewBuilder = (KeyboardLayout.Item, _ standard: SystemKeyboardItem<ButtonContent>) -> ButtonView
     
     public typealias AutocompleteToolbarAction = (Autocomplete.Suggestion) -> Void
     public typealias KeyboardWidth = CGFloat
@@ -275,7 +275,7 @@ private extension SystemKeyboard {
 private extension SystemKeyboard {
     
     func buttonContent(
-        for item: KeyboardLayoutItem
+        for item: KeyboardLayout.Item
     ) -> ButtonContent {
         buttonContent(
             item,
@@ -292,7 +292,7 @@ private extension SystemKeyboard {
      will be used as button view for every layout item.
      */
     func buttonView(
-        for item: KeyboardLayoutItem
+        for item: KeyboardLayout.Item
     ) -> ButtonView {
         buttonView(
             item,
@@ -312,7 +312,7 @@ private extension SystemKeyboard {
 
 private extension SystemKeyboard {
 
-    func items(for layout: KeyboardLayout, itemRow: KeyboardLayoutItem.Row) -> some View {
+    func items(for layout: KeyboardLayout, itemRow: KeyboardLayout.ItemRow) -> some View {
         HStack(spacing: 0) {
             ForEach(Array(itemRow.enumerated()), id: \.offset) {
                 buttonView(for: $0.element)

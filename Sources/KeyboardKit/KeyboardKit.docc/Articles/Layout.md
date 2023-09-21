@@ -61,7 +61,7 @@ class CustomKeyboardLayoutProvider: StandardKeyboardLayoutProvider {
         var rows = layout.itemRows
         var row = layout.itemRows[0]
         let next = row[0]
-        let size = KeyboardLayoutItem.Size(width: .available, height: next.size.height)
+        let size = KeyboardLayoutItemSize(width: .available, height: next.size.height)
         let tab = KeyboardLayoutItem(action: .tab, size: size, insets: next.insets)
         row.insert(tab, at: 0)
         rows[0] = row

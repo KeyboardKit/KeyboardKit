@@ -172,9 +172,7 @@ KeyboardKit is available under the MIT license.
 ### Layout
 
 - ``InputSet``
-
 - ``KeyboardLayout``
-- ``KeyboardLayoutItem``
 - ``KeyboardLayoutProvider``
 - ``KeyboardLayoutProviderProxy``
 - ``KeyboardRowItem``

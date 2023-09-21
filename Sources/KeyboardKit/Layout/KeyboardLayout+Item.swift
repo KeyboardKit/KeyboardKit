@@ -1,5 +1,5 @@
 //
-//  KeyboardLayoutItem.swift
+//  KeyboardLayout+Item.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-03.
@@ -9,47 +9,47 @@
 import CoreGraphics
 import SwiftUI
 
-/**
- A keyboard layout item is used to specify an action, a size
- and edge insets for a key on a layout-based keyboard.
- 
- Note that the edge insets must be applied within the button
- tap area, to avoid a dead tap areas between buttons.
- */
-public struct KeyboardLayoutItem: Equatable, KeyboardRowItem {
+public extension KeyboardLayout {
     
     /**
-     Create a new layout item.
-     
-     - Parameters:
-       - action: The keyboard action to use.
-       - size: The layout size to use.
-       - edgeInsets: The edge insets to apply, by default none.
+     A keyboard layout items specifies an action, a size and
+     edge insets for a key on a layout-based keyboard.
      */
-    public init(
-        action: KeyboardAction,
-        size: Size,
-        edgeInsets: EdgeInsets = .init()
-    ) {
-        self.action = action
-        self.size = size
-        self.edgeInsets = edgeInsets
+    struct Item: Equatable, KeyboardRowItem {
+        
+        /**
+         Create a new layout item.
+         
+         - Parameters:
+           - action: The keyboard action to use.
+           - size: The layout size to use.
+           - edgeInsets: The edge insets to apply, by default none.
+         */
+        public init(
+            action: KeyboardAction,
+            size: ItemSize,
+            edgeInsets: EdgeInsets = .init()
+        ) {
+            self.action = action
+            self.size = size
+            self.edgeInsets = edgeInsets
+        }
+        
+        /// The keyboard action to use.
+        public var action: KeyboardAction
+        
+        /// The layout size to use.
+        public var size: ItemSize
+        
+        /// The edge insets to apply.
+        public var edgeInsets: EdgeInsets
+        
+        /// The row ID the is used to identify the item in a row.
+        public var rowId: KeyboardAction { action }
     }
-    
-    /// The keyboard action to use.
-    public var action: KeyboardAction
-    
-    /// The layout size to use.
-    public var size: Size
-    
-    /// The edge insets to apply.
-    public var edgeInsets: EdgeInsets
-
-    /// The row ID the is used to identify the item in a row.
-    public var rowId: KeyboardAction { action }
 }
 
-public extension KeyboardLayoutItem {
+public extension KeyboardLayout.Item {
     
     /**
      Get the item's width in points, given a total row width
@@ -70,26 +70,20 @@ public extension KeyboardLayoutItem {
     }
 }
 
-public extension KeyboardLayoutItem {
+public extension KeyboardLayout {
     
     /// This is a typealias for a layout item array.
-    typealias Row = [Self]
+    typealias ItemRow = [Item]
 
     /// This is a typealias for a layout item row array.
-    typealias Rows = [Row]
-}
-
-public extension KeyboardLayoutItem {
+    typealias ItemRows = [ItemRow]
     
-    /**
-     This struct provides the size of a keyboard layout item.
-     It has a point-based height, but declarative width.
-     */
-    struct Size: Equatable {
+    /// A size with point-based height and declarative width.
+    struct ItemSize: Equatable {
         
         /// Create a new layout item size.
         public init(
-            width: Width,
+            width: ItemWidth,
             height: CGFloat
         ) {
             self.width = width
@@ -97,16 +91,14 @@ public extension KeyboardLayoutItem {
         }
         
         /// The declarative width of the item.
-        public var width: Width
+        public var width: ItemWidth
         
         /// The fixed height of the item.
         public var height: CGFloat
     }
     
-    /**
-     This enum specifies the width of a keyboard layout item.
-     */
-    enum Width: Equatable {
+    /// This enum specifies various layout item width types.
+    enum ItemWidth: Equatable {
         
         /// A width that will share the available row space.
         case available

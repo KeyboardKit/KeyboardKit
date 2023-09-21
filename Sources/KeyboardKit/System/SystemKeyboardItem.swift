@@ -27,7 +27,7 @@ public struct SystemKeyboardItem<Content: View>: View {
        - content: The content view to use within the item.
      */
     init(
-        item: KeyboardLayoutItem,
+        item: KeyboardLayout.Item,
         actionHandler: KeyboardActionHandler,
         styleProvider: KeyboardStyleProvider,
         keyboardContext: KeyboardContext,
@@ -46,7 +46,7 @@ public struct SystemKeyboardItem<Content: View>: View {
         self.content = content
     }
     
-    private let item: KeyboardLayoutItem
+    private let item: KeyboardLayout.Item
     private let actionHandler: KeyboardActionHandler
     private let styleProvider: KeyboardStyleProvider
     private let calloutContext: CalloutContext?

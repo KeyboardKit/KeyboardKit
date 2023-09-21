@@ -22,7 +22,7 @@ public extension View {
        - inputWidth: The width in points of an input item.
      */
     func keyboardLayoutItemSize(
-        for item: KeyboardLayoutItem,
+        for item: KeyboardLayout.Item,
         rowWidth: CGFloat,
         inputWidth: CGFloat
     ) -> some View {
@@ -39,7 +39,7 @@ private extension View {
     
     @ViewBuilder
     func rowItemWidth(
-        for item: KeyboardLayoutItem,
+        for item: KeyboardLayout.Item,
         rowWidth: CGFloat,
         inputWidth: CGFloat
     ) -> some View {

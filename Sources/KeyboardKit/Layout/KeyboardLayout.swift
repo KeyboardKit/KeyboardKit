@@ -27,7 +27,7 @@ public class KeyboardLayout {
        - idealItemInsets: An optional, ideal item inset value, otherwise picked from the first item.
     */
     public init(
-        itemRows rows: KeyboardLayoutItem.Rows,
+        itemRows rows: KeyboardLayout.ItemRows,
         idealItemHeight height: Double? = nil,
         idealItemInsets insets: EdgeInsets? = nil
     ) {
@@ -37,7 +37,7 @@ public class KeyboardLayout {
     }
 
     /// The layout item rows to show in the keyboard.
-    public var itemRows: KeyboardLayoutItem.Rows
+    public var itemRows: KeyboardLayout.ItemRows
 
     /// The ideal item height.
     public var idealItemHeight: Double
@@ -60,7 +60,7 @@ public extension KeyboardLayout {
     }
 
     /// Get the system action items at the bottom row.
-    var bottomRowSystemItems: [KeyboardLayoutItem] {
+    var bottomRowSystemItems: [KeyboardLayout.Item] {
         if bottomRowIndex < 0 { return [] }
         return itemRows[bottomRowIndex].filter {
             $0.action.isSystemAction
@@ -100,9 +100,9 @@ public extension KeyboardLayout {
      */
     func tryCreateBottomRowItem(
         for action: KeyboardAction
-    ) -> KeyboardLayoutItem? {
+    ) -> KeyboardLayout.Item? {
         guard let template = bottomRowSystemItems.first else { return nil }
-        return KeyboardLayoutItem(
+        return KeyboardLayout.Item(
             action: action,
             size: template.size,
             edgeInsets: template.edgeInsets
@@ -112,18 +112,18 @@ public extension KeyboardLayout {
 
 private extension KeyboardLayout {
 
-    static func resolveIdealItemHeight(for rows: KeyboardLayoutItem.Rows) -> Double {
+    static func resolveIdealItemHeight(for rows: KeyboardLayout.ItemRows) -> Double {
         let item = rows.flatMap { $0 }.first
         return Double(item?.size.height ?? .zero)
     }
 
-    static func resolveIdealItemInsets(for rows: KeyboardLayoutItem.Rows) -> EdgeInsets {
+    static func resolveIdealItemInsets(for rows: KeyboardLayout.ItemRows) -> EdgeInsets {
         let item = rows.flatMap { $0 }.first
         return item?.edgeInsets ?? EdgeInsets()
     }
 }
 
-private extension KeyboardLayoutItem.Row {
+private extension KeyboardLayout.ItemRow {
 
     var hasInputWidth: Bool {
         contains { $0.size.width == .input }
@@ -138,7 +138,7 @@ private extension KeyboardLayoutItem.Row {
     }
 }
 
-private extension KeyboardLayoutItem {
+private extension KeyboardLayout.Item {
 
     func allocatedWidth(for totalWidth: CGFloat) -> CGFloat {
         switch size.width {
