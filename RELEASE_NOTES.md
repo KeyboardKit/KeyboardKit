@@ -73,6 +73,7 @@ You must either implement these services yourself, or get them by upgrading to K
 * `EmojiKeyboardItem` has been removed.
 * `EmojiKeyboardStyle` has been renamed to `Emojis.KeyboardStyle`.
 * `EnglishCalloutActionProvider` has been removed.
+* `ExternalKeyboardContext` has been moved to KeyboardKit Pro.
 * `InputCallout` has been renamed to `Callouts.InputCallout`.
 * `KeyboardAction.emojiCategory` has been removed.
 * `KeyboardEnabledContext` has been renamed to `KeyboardStateContext`.

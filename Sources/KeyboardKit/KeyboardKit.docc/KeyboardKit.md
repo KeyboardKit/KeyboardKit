@@ -72,7 +72,6 @@ KeyboardKit is available under the MIT license.
 
 ### Articles
 
-- <doc:External-Keyboards>
 - <doc:Feedback>
 - <doc:Gestures>
 - <doc:Layout>
@@ -156,11 +155,6 @@ KeyboardKit is available under the MIT license.
 
 ### External
 
-- ``ExternalKeyboardContext``
-
-### Features
-
-- ``FeatureToggle``
 
 ### Feedback
 
