@@ -13,15 +13,13 @@ These release notes will only contain the current version. Just check out an old
 
 ## 8.0
 
-This version removes all previously deprecated functions and aims to make the library cleaner by moving types into namespaces.
+This version removes all previously deprecated functions and aims to make the library cleaner and more discoverable, by moving types into namespaces.
 
-The goal with all these new namespaces is to increase discoverability and make it easier to overview the different parts of the library.
+Therefore, some nice-to-have utilities have also been removed, if they bloated the library while providing little value. If you need them, just grab them from an earlier version.
 
-As a result, some nice-to-have utilities have been removed, if their existence bloated the library while providing little value.
+The temporary `MigrationTypes` file contains temporary typealiases that aim to help developers migrate from KeyboardKit 7.x. These typealiases will be removed in 8.1.
 
-Note that the library no longer sets up English services by default, so make sure that you are aware of that before upgrading. 
-
-You must either implement these services yourself, or get them by upgrading to KeyboardKit Pro.
+Note that the library no longer sets up English services by default, so make sure that you are aware of that before upgrading. You must either implement these services yourself, or get them by upgrading to KeyboardKit Pro.
 
 ### 🚨 Important changes
 
@@ -40,6 +38,8 @@ You must either implement these services yourself, or get them by upgrading to K
 
 ### 💡 Adjustments
 
+Many types have been moved into namespaces, with temporary, deprecated mapping types to help you migrate. 
+
 * `AutocompleteProvider` is now async instead of using completions.
 * `View+KeyboardButton` now has support for custom, intrinsic edge insets.
 * `View+KeyboardButton` now applies a locale context menu to `nextLocale` buttons.
@@ -47,63 +47,30 @@ You must either implement these services yourself, or get them by upgrading to K
 ### 👑 Pro Adjustments
 
 * `Emojis` has many types that were previously in the base library.
+* `ProCalloutActionProvider` has new utility functions to return actions.
 * `ProKeyboardActionHandler` is a new handler that does pro things.
 * `RemoteAutocompleteProvider.AutocompleteError.noData` has been removed.
     
 ### 💥 Breaking changes 
 
 * All deprecated code has been removed or addressed.
-* Many types have been moved into new namespace types.
 * Many emoji types have been moved to KeyboardKit Pro.
 
-* `ActionCallout` has been renamed to `Callouts.ActionCallout`.
-* `AudioFeedbackConfiguration` has been renamed to `AudioFeedback.Configuration`.
-* `AudioFeedbackEngine` has been renamed to `AudioFeedback.Engine`.
 * `AudioFeedback.Engine` is no longer open to inheritance. 
 * `Autocomplete.ToolbarItemSubtitle` is now initialized with a suggestion.
 * `BaseCalloutActionProvider` has been removed.
-* `CalloutButtonArea` has been renamed to `Callouts.ButtonArea`.
-* `DictationAuthorizationStatus` has been renamed to `Dictation.AuthorizationStatus`.
-* `Dictation.Configuration` has been renamed to `Dictation.Configuration`.
 * `DisabledCalloutActionProvider` has been removed.
-* `EmojiCategory` has been renamed to `Emojis.Category`.
-* `EmojiCategoryKeyboard` has been renamed to `Emojis.Keyboard`.
-* `EmojiCategoryKeyboardMenu` has been renamed to `Emojis.KeyboardMenu`.
-* `EmojiCategoryTitle` has been renamed to `Emojis.KeyboardCategoryTitle`.
-* `EmojiKeyboard` has been renamed to `Emojis.Grid`.
 * `EmojiKeyboardItem` has been removed.
-* `EmojiKeyboardStyle` has been renamed to `Emojis.KeyboardStyle`.
 * `EmojiProvider` has been removed.
 * `EnglishCalloutActionProvider` has been removed.
 * `ExternalKeyboardContext` has been moved to KeyboardKit Pro.
 * `FeatureToggle` has been removed.
-* `GestureButton` has been renamed to `Gestures.GestureButton`.
-* `GestureButtonDefaults` has been renamed to `Gestures.Defaults`.
-* `HapticFeedbackConfiguration` has been renamed to `HapticFeedback.Configuration`.
-* `HapticFeedbackEngine` has been renamed to `HapticFeedback.Engine`.
 * `HapticFeedback.Engine` is no longer open to inheritance.
-* `InputCallout` has been renamed to `Callouts.InputCallout`.
 * `KeyboardAction.emojiCategory` has been removed.
-* `KeyboardGesture` has been renamed to `Gestures.KeyboardGesture`.
-* `KeyboardEnabledContext` has been renamed to `KeyboardStateContext`.
-* `KeyboardEnabledLabel` has been renamed to `KeyboardStateLabel`.
-* `KeyboardEnabledStateInspector` has been renamed to `KeyboardStateInspector`.
-* `KeyboardLayoutItem` `insets` has been renamed to `edgeInsets`.
-* `RepeatGestureTimer` has been renamed to `Gestures.RepeatTimer`.
-* `ScrollViewGestureButton` has been renamed to `Gestures.ScrollViewGestureButton`.
-* `SpaceDragSensitivity` has been renamed to `Gestures.SpaceDragSensitivity`.
-* `SpaceLongPressBehavior` has been renamed to `Gestures.SpaceLongPressBehavior`.
 * `StandardCalloutActionProvider.standardProvider` has been removed.
 * `SystemKeyboard` no longer has a `buttonContent` initializer.
-* `SystemKeyboardButton` has been renamed to `KeyboardButton.Button`.
-* `SystemKeyboardButtonBody` has been renamed to `KeyboardButton.Key`.
-* `SystemKeyboardButtonContent` has been renamed to `KeyboardButton.Content`.
-* `SystemKeyboardButtonShadow` has been renamed to `KeyboardButton.Shadow`.
-* `SystemKeyboardButtonText` has been renamed to `KeyboardButton.Title`.
-* `SystemKeyboardButtonRowItem` has been renamed to `SystemKeyboardItem`.
 * `SystemKeyboardItem` can no longer be initialized outside the library.
-* `SystemKeyboardSpaceContent` has been renamed to `KeyboardButton.SpaceContent`.
-* `View.actionCallout(...)` has been renamed to `View.actionCalloutContainer(...)`.
-* `View.inputCallout(...)` has been renamed to `View.inputCalloutContainer(...)`.
+* `View.actionCallout(...)` has been renamed to `View.keyboardActionCalloutContainer(...)`.
+* `View.inputCallout(...)` has been renamed to `View.keyboardInputCalloutContainer(...)`.
 * `View.keyboardButtonStyle(...)` no longer has an `isPressed` parameter.
 * `View.systemKeyboardButtonStyle(...)` has been renamed to `.keyboardButtonStyle(...)`.
