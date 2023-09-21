@@ -155,6 +155,7 @@ KeyboardKit is available under the MIT license.
 
 ### External
 
+- <doc:Understanding-External-Keyboards>
 
 ### Feedback
 
