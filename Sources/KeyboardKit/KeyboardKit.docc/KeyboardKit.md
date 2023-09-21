@@ -148,7 +148,6 @@ KeyboardKit is available under the MIT license.
 - <doc:Understanding-Emojis>
 - ``Emoji``
 - ``Emojis``
-- ``EmojiProvider``
 - ``FrequentEmojiProvider``
 - ``MostRecentEmojiProvider``
 

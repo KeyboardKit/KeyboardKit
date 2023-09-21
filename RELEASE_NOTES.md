@@ -75,6 +75,7 @@ You must either implement these services yourself, or get them by upgrading to K
 * `EmojiKeyboard` has been renamed to `Emojis.Grid`.
 * `EmojiKeyboardItem` has been removed.
 * `EmojiKeyboardStyle` has been renamed to `Emojis.KeyboardStyle`.
+* `EmojiProvider` has been removed.
 * `EnglishCalloutActionProvider` has been removed.
 * `ExternalKeyboardContext` has been moved to KeyboardKit Pro.
 * `FeatureToggle` has been removed.
