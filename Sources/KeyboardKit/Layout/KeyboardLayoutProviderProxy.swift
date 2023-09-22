@@ -9,12 +9,11 @@
 import Foundation
 
 /**
- This protocol extends ``KeyboardLayoutProvider`` with a way
- for a layout provider to resolve various providers based on
- a ``KeyboardContext`` instance.
+ This protocol extends ``KeyboardLayoutProvider`` and lets a
+ provider resolve layouts with different providers.
 
- This is for instance used to let a single provider use many
- nested providers and select one depending on the context.
+ For now, the protocol lets you switch provider based on the
+ current device type.
  */
 public protocol KeyboardLayoutProviderProxy: KeyboardLayoutProvider {
     

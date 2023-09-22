@@ -1,5 +1,5 @@
 //
-//  KeyboardRowItem.swift
+//  KeyboardLayoutRowItem.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-05-08.
@@ -10,13 +10,16 @@ import Foundation
 
 /**
  This protocol can be implemented by types that represent an
- item in a kind of row, such as input sets, layout items etc.
+ ID-based layout row item.
  
- The reason to why not using `Identifiable` instead, is that
- the row ID may not be unique. The same item may appear many
- times in the same row.
+ Implementing the protocol unlocks extensions that make it a
+ lot easier to handle and modify the items in the collection.
+ 
+ Unlike `Identifiable`, ``rowId`` does not have to be unique,
+ since the same item may appear many times in a row. The row
+ ID is used to identify the item in a collection.
  */
-public protocol KeyboardRowItem {
+public protocol KeyboardLayoutRowItem {
     
     associatedtype ID: Equatable
     
@@ -26,9 +29,9 @@ public protocol KeyboardRowItem {
 
 /**
  This extension contains mutating functions for arrays where
- the elements implement ``KeyboardRowItem``.
+ the elements implement ``KeyboardLayoutRowItem``.
  */
-public extension RangeReplaceableCollection where Element: KeyboardRowItem, Index == Int {
+public extension RangeReplaceableCollection where Element: KeyboardLayoutRowItem, Index == Int {
 
     /// Get the index of a certain item, if any.
     func index(of item: Element) -> Index? {
@@ -90,7 +93,7 @@ public extension RangeReplaceableCollection where Element: KeyboardRowItem, Inde
 
 /**
  This extension contains mutating functions for arrays where
- the elements are ``KeyboardRowItem`` arrays.
+ the elements are ``KeyboardLayoutRowItem`` arrays.
  
  Note that the `insert` and `remove` operations will use the
  first index found. If the same id appears many times at one
@@ -99,7 +102,7 @@ public extension RangeReplaceableCollection where Element: KeyboardRowItem, Inde
 public extension Array where
     Element: RangeReplaceableCollection,
     Element.Index == Int,
-    Element.Element: KeyboardRowItem {
+    Element.Element: KeyboardLayoutRowItem {
     
     /// Get the row at a certain index.
     func row(at index: Int) -> Element? {

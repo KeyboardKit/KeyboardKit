@@ -71,7 +71,7 @@ public extension InputSet {
     }
 }
 
-extension InputSet.Item: KeyboardRowItem {
+extension InputSet.Item: KeyboardLayoutRowItem {
 
     /// The row-specific ID to use for the action.
     public var rowId: InputSet.Item { self }

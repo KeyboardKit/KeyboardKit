@@ -9,19 +9,18 @@
 import SwiftUI
 
 /**
- This protocol can be implemented by any classes that can be
- used to perform dictation, e.g. using the device microphone.
+ This protocol can be implemented by classes that can handle
+ dictation, e.g. by using the device microphone.
 
  This service doesn't work in keyboard extensions, since the
- extension layer can't access the microphone. Make sure that
- you use a ``KeyboardDictationService`` to perform dictation
- from a keyboard extension.
+ extension layer can't access the microphone. Keyboards must
+ instead use a ``KeyboardDictationService`` for dictation.
 
- To start dictation, just call ``startDictation(with:)``. It
- should set up the audio engine and perform dictation. Since
- dictation may stop at any time, a service must describe how
- to access the result after the operation completes. To stop
- dictation, just call ``stopDictation()``.
+ To start dictation, ``startDictation(with:)`` should set up
+ the audio engine and perform dictation. Since dictation may
+ stop at any time, e.g. by silence, a service implementation
+ must describe how you can access the dictation result. Call
+ ``stopDictation()`` to stop dictation.
 
  Services should call ``requestDictationAuthorization()`` to
  request the required permissions before stating a dictation.
@@ -29,7 +28,7 @@ import SwiftUI
  KeyboardKit doesn't have a standard service, as it does for
  other services. You must either implement a service, or use
  KeyboardKit Pro, which will automatically unlock a standard
- service when a Gold license key is registered.
+ dictation service when a Gold license key is registered.
  */
 public protocol DictationService: AnyObject {
 

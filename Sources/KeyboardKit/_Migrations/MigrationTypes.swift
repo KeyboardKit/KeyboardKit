@@ -10,7 +10,8 @@ import Foundation
 import SwiftUI
 
 /// This file contains TEMPORARY typealiases, that are meant
-/// to help developers who upgrade from 7.0.
+/// to help developers upgrade from 7.x. These types will be
+/// removed in KeyboardKit 8.1.
 
 @available(*, deprecated, renamed: "Callouts.ActionCallout", message: "This will be removed in KeyboardKit 8.1.")
 public typealias ActionCallout = Callouts.ActionCallout
@@ -89,6 +90,9 @@ public extension KeyboardLayout.Item {
     @available(*, deprecated, renamed: "ItemWidth", message: "This will be removed in KeyboardKit 8.1.")
     typealias Width = KeyboardLayout.ItemWidth
 }
+
+@available(*, deprecated, renamed: "KeyboardLayoutRowItem", message: "This will be removed in KeyboardKit 8.1.")
+public typealias KeyboardRowItem = KeyboardLayoutRowItem
 
 @available(*, deprecated, renamed: "InputSet", message: "This will be removed in KeyboardKit 8.1.")
 public typealias NumericInputSet = InputSet

@@ -9,18 +9,17 @@
 import Foundation
 
 /**
- This protocol can be implemented by any classes that can be
- used to generate a ``KeyboardLayout`` for a certain context.
+ This protocol can be implemented by classes that can return
+ keyboard layouts for keyboard contexts.
  
  KeyboardKit will create a ``StandardKeyboardLayoutProvider``
  instance when the keyboard extension is started, then apply
  it to ``KeyboardInputViewController/keyboardLayoutProvider``.
- This instance is then used by default to create layouts for
- your keyboard when you use a standard ``SystemKeyboard``.
+ The instance is then used by default to create layouts that
+ can be used in e.g. a ``SystemKeyboard``.
  
  To change the layouts that are used for different keyboards,
- such as alphabetic, numeric and symbolic, you can implement
- a custom provider.
+ you can implement a custom provider.
  
  To create a custom implementation of this protocol, you can
  implement it from scratch or inherit the standard class and
@@ -28,8 +27,7 @@ import Foundation
  implementation is done, you can just replace the controller
  service to make KeyboardKit use the custom service globally.
  
- KeyboardKit Pro can be used to unlock a unique provider for
- every ``KeyboardLocale``.
+ KeyboardKit Pro unlock localized providers for all locales.
  */
 public protocol KeyboardLayoutProvider: AnyObject {
     

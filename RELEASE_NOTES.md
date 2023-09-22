@@ -69,6 +69,7 @@ Many types have been moved into namespaces, with temporary, deprecated mapping t
 * `HapticFeedback.Engine` is no longer open to inheritance.
 * `KeyboardAction.emojiCategory` has been removed.
 * `StandardCalloutActionProvider.standardProvider` has been removed.
+* `StaticKeyboardLayoutProvider` has been removed.
 * `SystemKeyboard` no longer has a `buttonContent` initializer.
 * `SystemKeyboardItem` can no longer be initialized outside the library.
 * `View.actionCallout(...)` has been renamed to `View.keyboardActionCalloutContainer(...)`.

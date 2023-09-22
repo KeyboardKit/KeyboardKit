@@ -9,8 +9,8 @@
 import Foundation
 
 /**
- This protocol can be implemented by things that can provide
- a list of the most frequently used emojis.
+ This protocol can be implemented by types that can return a
+ list of frequently used emojis.
  
  You should trigger `registerEmoji` whenever a user performs
  an action on an emoji, e.g. taps it in a emoji keyboard. It

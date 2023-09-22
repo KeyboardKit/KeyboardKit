@@ -9,8 +9,8 @@
 import Foundation
 
 /**
- This protocol can be implemented by any classes that can be
- used to give autocomplete suggestions as the user types.
+ This protocol can be implemented by classes that can return
+ autocomplete suggestions as the user types.
 
  Simply call ``autocompleteSuggestions(for:)`` to perform an
  autocomplete operation that returns suggestions for a text.

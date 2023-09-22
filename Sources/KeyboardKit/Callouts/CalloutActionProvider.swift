@@ -9,8 +9,11 @@
 import Foundation
 
 /**
- This protocol can be implemented by things that can provide
- callout actions for a keyboard action.
+ This protocol can be implemented by classes that can return
+ secondary callout actions for keyboard actions.
+ 
+ Callout actions are shown in a callout above the key when a
+ user long presses a key for an action that has such actions.
  
  KeyboardKit will create a ``StandardCalloutActionProvider``
  instance when the keyboard extension is started, then apply
@@ -27,10 +30,9 @@ import Foundation
  implementation is done, you can just replace the controller
  service to make KeyboardKit use the custom service globally.
  
- KeyboardKit Pro can be used to unlock a unique provider for
- every ``KeyboardLocale``.
+ KeyboardKit Pro unlock localized providers for all locales.
  */
-public protocol CalloutActionProvider {
+public protocol CalloutActionProvider: AnyObject {
     
     /**
      Get callout actions for the provided `action`.

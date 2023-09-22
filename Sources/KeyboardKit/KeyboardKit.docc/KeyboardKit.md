@@ -175,7 +175,7 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardLayout``
 - ``KeyboardLayoutProvider``
 - ``KeyboardLayoutProviderProxy``
-- ``KeyboardRowItem``
+- ``KeyboardLayoutRowItem``
 
 - ``StandardKeyboardLayoutProvider``
 - ``iPadKeyboardLayoutProvider``
