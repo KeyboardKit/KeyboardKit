@@ -133,6 +133,9 @@ public typealias SystemKeyboardButtonText = KeyboardButton.Title
 @available(*, deprecated, renamed: "SystemKeyboardItem", message: "This will be removed in KeyboardKit 8.1.")
 public typealias SystemKeyboardButtonRowItem = SystemKeyboardItem
 
+@available(*, deprecated, renamed: "BaseKeyboardLayoutProvider", message: "This will be removed in KeyboardKit 8.1.")
+public typealias SystemKeyboardLayoutProvider = BaseKeyboardLayoutProvider
+
 @available(*, deprecated, renamed: "KeyboardButton.SpaceContent", message: "This will be removed in KeyboardKit 8.1.")
 public typealias SystemKeyboardSpaceContent = KeyboardButton.SpaceContent
 

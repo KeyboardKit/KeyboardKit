@@ -41,7 +41,7 @@ class StandardKeyboardLayoutProviderTests: XCTestCase {
     }
 }
 
-private class TestKeyboardLayoutProvider: SystemKeyboardLayoutProvider, LocalizedService {
+private class TestKeyboardLayoutProvider: BaseKeyboardLayoutProvider, LocalizedService {
     
     let localeKey = "sv-SE"
     

@@ -16,17 +16,15 @@ import KeyboardKit
  ``KeyboardViewController`` registers this class to show you
  how you can set up a custom layout provider.
  */
-class DemoLayoutProvider: StandardKeyboardLayoutProvider {
+class DemoLayoutProvider: InputSetBasedKeyboardLayoutProvider {
     
     init() {
         super.init(
-            baseProvider: EnglishKeyboardLayoutProvider(
-                alphabeticInputSet: .init(rows: [
-                    .init(chars: "KEYBOARD"),
-                    .init(chars: "KIT"),
-                    .init(chars: "YEAH!")
-                ])
-            )
+            alphabeticInputSet: .init(rows: [
+                .init(chars: "KEYBOARD"),
+                .init(chars: "KIT"),
+                .init(chars: "YEAH!")
+            ])
         )
     }
 

@@ -10,26 +10,20 @@ import SwiftUI
 
 /**
  This class provides a keyboard layout that corresponds to a
- standard English layout for an iPad with a home button.
+ standard QWERTY layout for an iPad with a home button.
 
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
  
- Note that this provider is currently used on all iPad types,
- although iPad Air and iPad Pro have more buttons. This will
- be addressed in a future version.
+ > Note: This class is currently used to provide layouts for
+ all iPad types, although iPad Air and Pro have more buttons.
+ This should be addressed in a future version.
  */
-open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
+open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
 
 
     // MARK: - Overrides
 
-    /**
-     Get the keyboard actions for the `inputs` and `context`.
-
-     Note that `inputs` is an input set that doesn't contain
-     the bottommost row. We therefore append it here.
-     */
     open override func actions(
         for inputs: InputSet.Rows,
         context: KeyboardContext
@@ -44,10 +38,6 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         return result
     }
 
-    /**
-     Get the keyboard layout item width of a certain `action`
-     for the provided `context`, `row` and row `index`.
-     */
     open override func itemSizeWidth(
         for action: KeyboardAction,
         row: Int,
@@ -65,9 +55,6 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         return super.itemSizeWidth(for: action, row: row, index: index, context: context)
     }
 
-    /**
-     The return action to use for the provided `context`.
-     */
     open override func keyboardReturnAction(
         for context: KeyboardContext
     ) -> KeyboardAction {
@@ -75,65 +62,61 @@ open class iPadKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         return base == .primary(.return) ? .primary(.newLine) : base
     }
 
-    /**
-     The standard system button width.
-     */
+
+    // MARK: - iPad Specific
+    
+    /// The standard system button width for a context.
     open func systemButtonWidth(
         for context: KeyboardContext
     ) -> KeyboardLayout.ItemWidth {
         return .input
     }
 
-
-    // MARK: - iPad Specific
-
-    /**
-     Additional leading actions to apply to the top row.
-     */
-    open func topLeadingActions(for context: KeyboardContext) -> KeyboardAction.Row {
+    /// Leading actions to add to the top input row.
+    open func topLeadingActions(
+        for context: KeyboardContext
+    ) -> KeyboardAction.Row {
         return []
     }
 
-    /**
-     Additional trailing actions to apply to the top row.
-     */
-    open func topTrailingActions(for context: KeyboardContext) -> KeyboardAction.Row {
+    /// Trailing actions to add to the top input row.
+    open func topTrailingActions(
+        for context: KeyboardContext
+    ) -> KeyboardAction.Row {
         return [.backspace]
     }
 
-    /**
-     Additional leading actions to apply to the middle row.
-     */
-    open func middleLeadingActions(for context: KeyboardContext) -> KeyboardAction.Row {
+    /// Leading actions to add to the middle input row.
+    open func middleLeadingActions(
+        for context: KeyboardContext
+    ) -> KeyboardAction.Row {
         return [.none]
     }
 
-    /**
-     Additional trailing actions to apply to the middle row.
-     */
-    open func middleTrailingActions(for context: KeyboardContext) -> KeyboardAction.Row {
+    /// Trailing actions to add to the middle input row.
+    open func middleTrailingActions(
+        for context: KeyboardContext
+    ) -> KeyboardAction.Row {
         return [keyboardReturnAction(for: context)]
     }
 
-    /**
-     Additional leading actions to apply to the lower row.
-     */
-    open func lowerLeadingActions(for context: KeyboardContext) -> KeyboardAction.Row {
+    /// Leading actions to add to the lower input row.
+    open func lowerLeadingActions(
+        for context: KeyboardContext
+    ) -> KeyboardAction.Row {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         return [action]
     }
 
-    /**
-     Additional trailing actions to apply to the lower row.
-     */
-    open func lowerTrailingActions(for context: KeyboardContext) -> KeyboardAction.Row {
+    /// Trailing actions to add to the lower input row.
+    open func lowerTrailingActions(
+        for context: KeyboardContext
+    ) -> KeyboardAction.Row {
         guard let action = keyboardSwitchActionForBottomInputRow(for: context) else { return [] }
         return [action]
     }
 
-    /**
-     The actions to add to the bottommost row.
-     */
+    /// The actions to add to the bottom system row.
     open func bottomActions(for context: KeyboardContext) -> KeyboardAction.Row {
         var result = KeyboardAction.Row()
         let needsDictation = context.needsInputModeSwitchKey

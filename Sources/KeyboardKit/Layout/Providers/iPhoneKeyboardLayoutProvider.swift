@@ -10,22 +10,16 @@ import SwiftUI
 
 /**
  This class provides a keyboard layout that corresponds to a
- standard English layout for an iPhone device.
+ standard QWERTY layout for an iPhone device.
 
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
  */
-open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
+open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
 
 
     // MARK: - Overrides
 
-    /**
-     Get the keyboard actions for the `inputs` and `context`.
-
-     Note that `inputs` is an input set that doesn't contain
-     the bottommost row. We therefore append it here.
-     */
     open override func actions(
         for inputs: InputSet.Rows,
         context: KeyboardContext
@@ -40,10 +34,6 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         return result
     }
 
-    /**
-     Get the keyboard layout item width of a certain `action`
-     for the provided `context`, `row` and row `index`.
-     */
     open override func itemSizeWidth(
         for action: KeyboardAction,
         row: Int,
@@ -65,9 +55,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
 
     // MARK: - iPhone Specific
 
-    /**
-     Additional leading actions to apply to the top row.
-     */
+    /// Leading actions to add to the top input row.
     open func topLeadingActions(
         for actions: KeyboardAction.Rows,
         context: KeyboardContext
@@ -76,9 +64,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         return [actions[0].leadingCharacterMarginAction]
     }
 
-    /**
-     Additional trailing actions to apply to the top row.
-     */
+    /// Trailing actions to add to the top input row.
     open func topTrailingActions(
         for actions: KeyboardAction.Rows,
         context: KeyboardContext
@@ -87,9 +73,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         return [actions[0].trailingCharacterMarginAction]
     }
 
-    /**
-     Additional leading actions to apply to the middle row.
-     */
+    /// Leading actions to add to the middle input row.
     open func middleLeadingActions(
         for actions: KeyboardAction.Rows,
         context: KeyboardContext
@@ -98,9 +82,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         return [actions[1].leadingCharacterMarginAction]
     }
 
-    /**
-     Additional trailing actions to apply to the middle row.
-     */
+    /// Trailing actions to add to the middle input row.
     open func middleTrailingActions(
         for actions: KeyboardAction.Rows,
         context: KeyboardContext
@@ -109,9 +91,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         return [actions[1].trailingCharacterMarginAction]
     }
 
-    /**
-     Additional leading actions to apply to the lower row.
-     */
+    /// Leading actions to add to the lower input row.
     open func lowerLeadingActions(
         for actions: KeyboardAction.Rows,
         context: KeyboardContext
@@ -122,9 +102,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         return [switcher, margin]
     }
 
-    /**
-     Additional trailing actions to apply to the lower row.
-     */
+    /// Trailing actions to add to the lower input row.
     open func lowerTrailingActions(
         for actions: KeyboardAction.Rows,
         context: KeyboardContext
@@ -134,10 +112,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         return [margin, .backspace]
     }
 
-    /**
-     The system buttons that are shown to the left and right
-     of the third row's input buttons on a regular keyboard.
-     */
+    /// The width of system buttons on the lower input row.
     open func lowerSystemButtonWidth(
         for context: KeyboardContext
     ) -> KeyboardLayout.ItemWidth {
@@ -145,9 +120,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         return .percentage(0.13)
     }
 
-    /**
-     The actions to add to the bottommost row.
-     */
+    /// The actions to add to the bottom system row.
     open func bottomActions(
         for context: KeyboardContext
     ) -> KeyboardAction.Row {
@@ -174,18 +147,14 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         return result
     }
 
-    /**
-     The width of bottom-right system buttons.
-     */
+    /// The width of system buttons on the bottom system row.
     open func bottomSystemButtonWidth(
         for context: KeyboardContext
     ) -> KeyboardLayout.ItemWidth {
         .percentage(isPortrait(context) ? 0.123 : 0.095)
     }
 
-    /**
-     Whether or not to add margin actions to the middle row.
-     */
+    /// Whether or not to add margins to the middle row.
     open func shouldAddMiddleMarginActions(
         for actions: KeyboardAction.Rows,
         context: KeyboardContext
@@ -194,9 +163,7 @@ open class iPhoneKeyboardLayoutProvider: SystemKeyboardLayoutProvider {
         return actions[0].count > actions[1].count
     }
 
-    /**
-     Whether or not to add margin actions to the upper row.
-     */
+    /// Whether or not to add margins to the upper row.
     open func shouldAddUpperMarginActions(
         for actions: KeyboardAction.Rows,
         context: KeyboardContext

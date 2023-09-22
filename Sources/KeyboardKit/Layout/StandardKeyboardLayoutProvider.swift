@@ -27,11 +27,11 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
      Create a standard keyboard layout provider.
      
      - Parameters:
-       - baseProvider: The provider to use when no localized provider matches the context, by default ``EnglishKeyboardLayoutProvider``.
+       - baseProvider: The provider to use when no localized provider matches the context, by default ``InputSetBasedKeyboardLayoutProvider``.
        - localizedProviders: A dictionary with localized layout providers, by default `empty`.
      */
     public init(
-        baseProvider: KeyboardLayoutProvider = EnglishKeyboardLayoutProvider(),
+        baseProvider: KeyboardLayoutProvider = InputSetBasedKeyboardLayoutProvider(),
         localizedProviders: [KeyboardLayoutProvider & LocalizedService] = []
     ) {
         self.baseProvider = baseProvider

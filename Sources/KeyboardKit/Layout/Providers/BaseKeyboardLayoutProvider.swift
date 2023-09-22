@@ -1,5 +1,5 @@
 //
-//  SystemKeyboardLayoutProvider.swift
+//  BaseKeyboardLayoutProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-02.
@@ -10,7 +10,7 @@ import CoreGraphics
 import SwiftUI
 
 /**
- This is a base class for layout providers that has to share
+ This is a base class for layout providers that should share
  basic layout functionality.
 
  The class is used by the ``iPadKeyboardLayoutProvider`` and
@@ -25,7 +25,7 @@ import SwiftUI
  If you want to create an entirely custom layout, you should
  just implement `KeyboardLayoutProvider`.
  */
-open class SystemKeyboardLayoutProvider: KeyboardLayoutProvider {
+open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
     
     /**
      Create a system keyboard layout provider.

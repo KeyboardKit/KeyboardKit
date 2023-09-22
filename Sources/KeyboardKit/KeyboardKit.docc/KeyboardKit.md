@@ -177,12 +177,10 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardLayoutProviderProxy``
 - ``KeyboardLayoutRowItem``
 
+- ``BaseKeyboardLayoutProvider``
 - ``StandardKeyboardLayoutProvider``
 - ``iPadKeyboardLayoutProvider``
 - ``iPhoneKeyboardLayoutProvider``
-- ``SystemKeyboardLayoutProvider``
-
-- ``EnglishKeyboardLayoutProvider``
 
 ### Localization
 

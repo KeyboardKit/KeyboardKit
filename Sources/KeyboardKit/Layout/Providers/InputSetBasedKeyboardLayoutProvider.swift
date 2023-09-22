@@ -20,7 +20,7 @@ import Foundation
  items than the default input sets, you must create a custom
  layout provider if you want to adjust the layout.
  */
-open class InputSetBasedKeyboardLayoutProvider: SystemKeyboardLayoutProvider, KeyboardLayoutProviderProxy, LocalizedService {
+open class InputSetBasedKeyboardLayoutProvider: BaseKeyboardLayoutProvider, KeyboardLayoutProviderProxy, LocalizedService {
 
     /**
      Create an input set-based keyboard layout provider.

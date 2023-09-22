@@ -1,5 +1,5 @@
 //
-//  SystemKeyboardLayoutProviderTests.swift
+//  BaseKeyboardLayoutProviderTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-08.
@@ -9,16 +9,16 @@
 import KeyboardKit
 import XCTest
 
-class SystemKeyboardLayoutProviderTests: XCTestCase {
+class BaseKeyboardLayoutProviderTests: XCTestCase {
 
-    var provider: SystemKeyboardLayoutProvider!
+    var provider: BaseKeyboardLayoutProvider!
     var context: KeyboardContext!
     var layoutConfig: KeyboardLayout.Configuration!
 
     override func setUp() {
         context = KeyboardContext()
         layoutConfig = .standard(for: context)
-        provider = SystemKeyboardLayoutProvider(
+        provider = BaseKeyboardLayoutProvider(
             alphabeticInputSet: InputSet(rows: [["a", "b", "c"]].map(InputSet.Row.init(chars:))),
             numericInputSet: InputSet(rows: [["1", "2", "3"]].map(InputSet.Row.init(chars:))),
             symbolicInputSet: InputSet(rows: [[",", ".", "-"]].map(InputSet.Row.init(chars:)))
