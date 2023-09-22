@@ -16,7 +16,7 @@ import Foundation
  autocomplete operation that returns suggestions for a text.
 
  KeyboardKit doesn't have a standard provider as it does for
- other services. Instead, the ``DisabledAutocompleteProvider``
+ other services. Instead, an ``Autocomplete/DisabledProvider``
  will be used until you register a real one.
  
  KeyboardKit Pro will unlock two providers when you register

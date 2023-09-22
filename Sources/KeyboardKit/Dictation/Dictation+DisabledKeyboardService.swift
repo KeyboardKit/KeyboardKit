@@ -1,5 +1,5 @@
 //
-//  DisabledKeyboardDictationService.swift
+//  Dictation+DisabledKeyboardService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-03-21.
@@ -8,19 +8,20 @@
 
 import SwiftUI
 
-/**
- This service can be used to disable keyboard dictation.
- */
-public class DisabledKeyboardDictationService: KeyboardDictationService {
-
-    public init(context: DictationContext) {
-        self.context = context
+public extension Dictation {
+    
+    /// This service can be used to disable dictation.
+    class DisabledKeyboardService: KeyboardDictationService {
+        
+        public init(context: DictationContext) {
+            self.context = context
+        }
+        
+        private let context: DictationContext
     }
-
-    private let context: DictationContext
 }
 
-public extension DisabledKeyboardDictationService {
+public extension Dictation.DisabledKeyboardService {
 
     var authorizationStatus: Dictation.AuthorizationStatus {
         .disabledService
@@ -57,19 +58,19 @@ public extension DisabledKeyboardDictationService {
     func undoLastDictation() {}
 }
 
-public extension KeyboardDictationService where Self == DisabledKeyboardDictationService {
+public extension KeyboardDictationService where Self == Dictation.DisabledKeyboardService {
     
     /// This service can be used to disable dictation.
     static func disabled(
         context: DictationContext
     ) -> KeyboardDictationService {
-        DisabledKeyboardDictationService(
+        Dictation.DisabledKeyboardService(
             context: context
         )
     }
 }
 
-private extension DisabledKeyboardDictationService {
+private extension Dictation.DisabledKeyboardService {
 
     func resetContext() {
         withAnimation {

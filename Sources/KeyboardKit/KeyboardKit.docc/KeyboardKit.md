@@ -103,7 +103,6 @@ KeyboardKit is available under the MIT license.
 - ``Autocomplete``
 - ``AutocompleteContext``
 - ``AutocompleteProvider``
-- ``DisabledAutocompleteProvider``
 
 ### Buttons
 
@@ -136,8 +135,6 @@ KeyboardKit is available under the MIT license.
 - ``DictationContext``
 - ``DictationService``
 - ``KeyboardDictationService``
-- ``DisabledDictationService``
-- ``DisabledKeyboardDictationService``
 
 ### Emojis
 

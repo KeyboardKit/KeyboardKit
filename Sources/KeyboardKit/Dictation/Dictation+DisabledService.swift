@@ -1,5 +1,5 @@
 //
-//  DisabledDictationService.swift
+//  Dictation+DisabledService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-03-21.
@@ -8,15 +8,16 @@
 
 import SwiftUI
 
-/**
- This service can be used to disable dictation.
- */
-public class DisabledDictationService: DictationService {
-
-    public init() {}
+public extension Dictation {
+    
+    /// This service can be used to disable dictation.
+    class DisabledService: DictationService {
+        
+        public init() {}
+    }
 }
 
-public extension DisabledDictationService {
+public extension Dictation.DisabledService {
 
     var authorizationStatus: Dictation.AuthorizationStatus {
         .disabledService
@@ -37,12 +38,12 @@ public extension DisabledDictationService {
     }
 }
 
-public extension DictationService where Self == DisabledDictationService {
+public extension DictationService where Self == Dictation.DisabledService {
     
     /// This service can be used to disable dictation.
     static func disabled(
         context: DictationContext
     ) -> DictationService {
-        DisabledDictationService()
+        Dictation.DisabledService()
     }
 }
