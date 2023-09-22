@@ -2,7 +2,7 @@
 
 This article describes the KeyboardKit callout engine.
 
-Input and action callouts are important parts of the typing experience, where input callouts show the currently pressed key and action callouts present secondary keyboard actions.
+Callouts are an important part of the typing experience, where input callouts show the currently pressed key and action callouts present secondary keyboard actions.
 
 In KeyboardKit, a ``CalloutActionProvider`` can be used to provide secondary actions to an ``Callouts/ActionCallout``, which in turn will update views like ``Callouts/ActionCallout``.
 
@@ -38,6 +38,8 @@ The ``SystemKeyboard`` and ``KeyboardButton/Button`` will automatically update t
 
 
 ## How to customize callout actions
+
+In KeyboardKit, a ``CalloutActionProvider`` can be used to provide dynamic callout actions.
 
 You can customize the callout actions by adding localized providers to the default ``StandardCalloutActionProvider``, or by replacing ``KeyboardInputViewController/calloutActionProvider`` with a custom ``CalloutActionProvider``.
 
@@ -86,7 +88,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 [KeyboardKit Pro][Pro] unlocks localized ``CalloutActionProvider``s for all ``KeyboardLocale``s in your license and automatically injects them into the ``StandardCalloutActionProvider`` when you register a valid license key.
 
-You can access all and Pro providers like this:
+You can access all providers that your license unlocks like this:
 
 ```swift
 let providers = License.current.localizedCalloutActionProviders
@@ -98,27 +100,21 @@ and locale-specific providers like this:
 let provider = try ProCalloutActionProvider.Swedish()
 ```
 
-You can inherit `ProCalloutActionProvider` to get more handy ways to specify actions:
+The `ProCalloutActionProvider` base class provides more convenience functions for specifying actions. You can inherit it, or any of the available localized versions, to customize the base behavior:
 
 ```swift
-class CustomCalloutActionProvider: ProCalloutActionProvider {
-
-    init() throws {
-        try super.init(locale: .english)
-    }
+class CustomCalloutActionProvider: ProCalloutActionProvider.Swedish {
 
     override func calloutActionString(for char: String) -> String {
         switch char {
-        case "a": return "aàáâäæãåā"
-        case "c": return "cçćč"
-        case "e": return "eèéêëēėę"
+        case "s": return "sweden"
         default: return ""
         }
     }
 }
 ```
 
-If you want to use a custom provider with KeyboardKit Pro, make sure to register it *after* registering your license key, otherwise it will be overwritten by the license registration process.
+To use a custom provider with KeyboardKit Pro, make sure to register it *after* registering your license key, otherwise it will be overwritten by the license registration process.
 
 For instance, this is how you would register the custom provider that we created earlier, using the localized providers from your license:
 
@@ -137,7 +133,7 @@ func setupCustomServices(with license: License) {
 }
 ```
 
-You can add a custom initializer to your custom provider if you need any additional setup. 
+You can add a custom initializer to your custom provider if you need additional setup, then just call `super.init` to setup the rest.
 
 
 

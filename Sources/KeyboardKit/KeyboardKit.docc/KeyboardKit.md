@@ -72,7 +72,6 @@ KeyboardKit is available under the MIT license.
 
 ### Articles
 
-- <doc:Layout>
 - <doc:Localization>
 - <doc:Previews>
 - <doc:Proxy-Extensions>
@@ -168,6 +167,7 @@ KeyboardKit is available under the MIT license.
 
 ### Layout
 
+- <doc:Understanding-Layout>
 - ``InputSet``
 - ``KeyboardLayout``
 - ``KeyboardLayoutProvider``
@@ -176,6 +176,7 @@ KeyboardKit is available under the MIT license.
 
 - ``BaseKeyboardLayoutProvider``
 - ``StandardKeyboardLayoutProvider``
+- ``InputSetBasedKeyboardLayoutProvider``
 - ``iPadKeyboardLayoutProvider``
 - ``iPhoneKeyboardLayoutProvider``
 
