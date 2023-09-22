@@ -190,6 +190,7 @@ KeyboardKit is available under the MIT license.
 
 ### Navigation
 
+- <doc:Understanding-Navigation>
 - ``KeyboardUrlOpener``
 
 ### Previews
