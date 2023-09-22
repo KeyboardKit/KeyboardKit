@@ -18,8 +18,7 @@ import Foundation
 public enum KeyboardLocale: String,
                             CaseIterable,
                             Codable,
-                            Identifiable,
-                            LocaleFlagProvider {
+                            Identifiable {
     
     case english = "en"
     

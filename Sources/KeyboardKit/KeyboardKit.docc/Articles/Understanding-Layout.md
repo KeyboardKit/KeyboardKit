@@ -2,7 +2,7 @@
 
 This article describes the KeyboardKit layout engine.
 
-A flexible keyboard layout is an important part of a software keyboard engine, where many factors like device, screen orientation, locale, etc. can all affect the layout.
+A flexible keyboard layout is an important part of a software keyboard, where many factors like device, screen orientation, locale, etc. can all affect the layout.
 
 In KeyboardKit, ``InputSet``s and ``KeyboardLayout``s are important concepts to create a flexible keyboard layout, where the input set specifies the input keys of the keyboard and the keyboard layout specifies the full set of keys.
 

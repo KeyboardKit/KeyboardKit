@@ -1,5 +1,5 @@
 //
-//  LocaleNameProvider.swift
+//  Locale+Name.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-04-13.
@@ -7,76 +7,6 @@
 //
 
 import Foundation
-
-/**
- This protocol can be implemented by any type that should be
- able to provide localized names for locales.
-
- Implementing the protocol extends types with functions that
- use public `Locale` extensions with the same names.
- 
- While you can use this protocol, the main reason to have it
- is to expose these extensions to DocC.
- */
-public protocol LocaleNameProvider {}
-
-public extension LocaleNameProvider {
-
-    /// The full name of a locale in its own language.
-    func localizedName(of locale: Locale) -> String? {
-        locale.localizedName
-    }
-
-    /// The full name of a locale in another locale.
-    func localizedName(of locale: Locale, in other: Locale) -> String? {
-        locale.localizedName(in: other)
-    }
-
-    /// The language name of a locale in its own language.
-    func localizedLanguageName(of locale: Locale) -> String? {
-        locale.localizedLanguageName
-    }
-
-    /// The language name of a locale in this locale.
-    func localizedLanguageName(of locale: Locale, in other: Locale) -> String? {
-        locale.localizedLanguageName(in: other)
-    }
-
-    /**
-     Sort a collection by localized name then place a locale
-     first, if one is provided.
-
-     - Parameters:
-       - locales: The locales to sort.
-       - insertFirst: The locale to place first, by default `nil`.
-     */
-    func sort(
-        _ locales: [Locale],
-        insertFirst first: Locale? = nil
-    ) -> [Locale] {
-        locales.sorted(insertFirst: first)
-    }
-
-    /**
-     Sort a collection by the localized name in the `locale`
-     then place a locale first, if one is provided.
-
-     - Parameters:
-       - locales: The locales to sort.
-       - locale: The locale to use to get the localized name.
-       - insertFirst: The locale to place first, by default `nil`.
-     */
-    func sort(
-        _ locales: [Locale],
-        in locale: Locale,
-        insertFirst first: Locale? = nil
-    ) -> [Locale] {
-        locales.sorted(in: locale, insertFirst: first)
-    }
-}
-
-
-// MARK: - Locale
 
 public extension Locale {
 

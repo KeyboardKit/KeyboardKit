@@ -61,7 +61,8 @@ Note that the library no longer sets up English services by default, so make sur
     
 ### 💥 Breaking changes 
 
-* All deprecated code has been removed or fixed. 
+* All deprecated code has been removed or fixed.
+* All types that exposed to DocC have been removed. 
 * Many emoji types have been moved to KeyboardKit Pro.
 * English input sets have been moved to KeyboardKit Pro.
 
@@ -77,6 +78,8 @@ Note that the library no longer sets up English services by default, so make sur
 * `FeatureToggle` has been removed.
 * `HapticFeedback.Engine` is no longer open to inheritance.
 * `KeyboardAction.emojiCategory` has been removed.
+* `LocaleDirectionAnalyzer` has been removed.
+* `LocaleNameProvider` has been removed. 
 * `StandardCalloutActionProvider.standardProvider` has been removed.
 * `StaticKeyboardLayoutProvider` has been removed.
 * `SystemKeyboard` no longer has a `buttonContent` initializer.

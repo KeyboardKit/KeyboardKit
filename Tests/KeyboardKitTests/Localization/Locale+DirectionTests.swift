@@ -1,5 +1,5 @@
 //
-//  LocaleAnalyzerProviderTests.swift
+//  Locale+DirectionTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-04-13.
@@ -9,7 +9,7 @@
 import KeyboardKit
 import XCTest
 
-class LocaleAnalyzerProviderTests: XCTestCase {
+class Locale_DirectionTests: XCTestCase {
 
     func characterDirection(of localeId: String) -> Locale.LanguageDirection {
         let locale = Locale(identifier: localeId)

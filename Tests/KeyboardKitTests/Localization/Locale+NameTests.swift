@@ -1,5 +1,5 @@
 //
-//  LocaleNameProviderTests.swift
+//  Locale+NameTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-03-17.
@@ -9,7 +9,7 @@
 import KeyboardKit
 import XCTest
 
-class Locale_LocalizedTests: XCTestCase {
+class Locale_NameTests: XCTestCase {
 
     func locale(_ localeId: String) -> Locale {
         Locale(identifier: localeId)

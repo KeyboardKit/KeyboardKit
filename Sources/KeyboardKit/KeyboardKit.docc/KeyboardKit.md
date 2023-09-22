@@ -72,7 +72,6 @@ KeyboardKit is available under the MIT license.
 
 ### Articles
 
-- <doc:Localization>
 - <doc:Previews>
 - <doc:Proxy-Extensions>
 - <doc:Routing>
@@ -182,13 +181,11 @@ KeyboardKit is available under the MIT license.
 
 ### Localization
 
-- ``KeyboardLocale``
+- <doc:Understanding-Localization>
 - ``KKL10n``
+- ``KeyboardLocale``
 - ``LocaleContextMenu``
 - ``LocaleDictionary``
-- ``LocaleDirectionAnalyzer``
-- ``LocaleFlagProvider``
-- ``LocaleNameProvider``
 - ``LocalizedService``
 
 ### Navigation
