@@ -10,8 +10,8 @@ import CoreGraphics
 import SwiftUI
 
 /**
- This is a base class for any keyboard layout providers that
- need basic functionality for system keyboard layouts.
+ This is a base class for layout providers that has to share
+ basic layout functionality.
 
  The class is used by the ``iPadKeyboardLayoutProvider`` and
  and the ``iPhoneKeyboardLayoutProvider``, since they aim to

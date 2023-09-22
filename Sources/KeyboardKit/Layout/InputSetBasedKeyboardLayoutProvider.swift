@@ -1,5 +1,5 @@
 //
-//  EnglishKeyboardLayoutProvider.swift
+//  InputSetBasedKeyboardLayoutProvider.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2022-12-29.
@@ -9,18 +9,31 @@
 import Foundation
 
 /**
- This keyboard layout provider implementation can be used to
- create standard English keyboard layouts.
+ This layout provider maps the provided input sets to device
+ specific keyboard layouts.
+ 
+ The provider returns layouts with the same configuration as
+ standard QWERTY keyboards. This is a layout that is used by
+ many native keyboards, e.g. English.
+ 
+ If any of the provided input sets has a different amount of
+ items than the default input sets, you must create a custom
+ layout provider if you want to adjust the layout.
  */
-open class EnglishKeyboardLayoutProvider: SystemKeyboardLayoutProvider, KeyboardLayoutProviderProxy, LocalizedService {
+open class InputSetBasedKeyboardLayoutProvider: SystemKeyboardLayoutProvider, KeyboardLayoutProviderProxy, LocalizedService {
 
     /**
-     Create an English keyboard layout provider.
+     Create an input set-based keyboard layout provider.
+     
+     - Parameters:
+       - alphabeticInputSet: The alphabetic input set to use, by default ``InputSet/qwerty``.
+       - numericInputSet: The numeric input set to use, by default ``InputSet/standardNumeric(currency:)``.
+       - symbolicInputSet: The symbolic input set to use, by default ``InputSet/standardSymbolic(currencies:)``.
      */
     public override init(
-        alphabeticInputSet: InputSet = .english,
-        numericInputSet: InputSet = .englishNumeric,
-        symbolicInputSet: InputSet = .englishSymbolic
+        alphabeticInputSet: InputSet = .qwerty,
+        numericInputSet: InputSet = .standardNumeric(currency: "$"),
+        symbolicInputSet: InputSet = .standardSymbolic(currencies: "€£¥".chars)
     ) {
         super.init(
             alphabeticInputSet: alphabeticInputSet,

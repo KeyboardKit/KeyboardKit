@@ -34,28 +34,6 @@ public struct InputSet: Equatable {
 
 public extension InputSet {
     
-    static var english: InputSet { .qwerty }
-    
-    static var englishNumeric: InputSet {
-        .englishNumeric()
-    }
-    
-    static func englishNumeric(
-        currency: String = "$"
-    ) -> InputSet {
-        .standardNumeric(currency: currency)
-    }
-    
-    static var englishSymbolic: InputSet {
-        .englishSymbolic()
-    }
-    
-    static func englishSymbolic(
-        currency: String = "£"
-    ) -> InputSet {
-        .standardSymbolic(currencies: "€\(currency)¥".chars)
-    }
-    
     static var qwerty: InputSet {
         .init(rows: [
             .init(chars: "qwertyuiop"),

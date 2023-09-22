@@ -34,6 +34,9 @@ public typealias DictationAuthorizationStatus = Dictation.AuthorizationStatus
 @available(*, deprecated, renamed: "Dictation.Configuration", message: "This will be removed in KeyboardKit 8.1.")
 public typealias DictationConfiguration = Dictation.Configuration
 
+@available(*, deprecated, renamed: "InputSetBasedKeyboardLayoutProvider", message: "This will be removed in KeyboardKit 8.1.")
+public typealias EnglishKeyboardLayoutProvider = InputSetBasedKeyboardLayoutProvider
+
 @available(*, deprecated, renamed: "Gestures.GestureButton", message: "This will be removed in KeyboardKit 8.1.")
 public typealias GestureButton = Gestures.GestureButton
 

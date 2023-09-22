@@ -17,7 +17,7 @@ class StandardKeyboardLayoutProviderTests: XCTestCase {
     override func setUp() {
         context = KeyboardContext()
         provider = StandardKeyboardLayoutProvider(
-            baseProvider: EnglishKeyboardLayoutProvider(),
+            baseProvider: InputSetBasedKeyboardLayoutProvider(),
             localizedProviders: [TestKeyboardLayoutProvider()]
         )
     }
@@ -36,7 +36,7 @@ class StandardKeyboardLayoutProviderTests: XCTestCase {
         let layout = provider.keyboardLayout(for: context)
         let firstItem = layout.itemRows[0].first
         let result = provider.keyboardLayoutProvider(for: context)
-        XCTAssertTrue(result is EnglishKeyboardLayoutProvider)
+        XCTAssertTrue(result is InputSetBasedKeyboardLayoutProvider)
         XCTAssertEqual(firstItem?.action, .character("q"))
     }
 }
@@ -48,8 +48,8 @@ private class TestKeyboardLayoutProvider: SystemKeyboardLayoutProvider, Localize
     init() {
         super.init(
             alphabeticInputSet: .init(rows: [.init(chars: "abcdefghij")]),
-            numericInputSet: .englishNumeric,
-            symbolicInputSet: .englishSymbolic
+            numericInputSet: .standardNumeric(currency: "$"),
+            symbolicInputSet: .standardSymbolic(currencies: "€£¥".chars)
         )
     }
 }

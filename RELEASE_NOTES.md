@@ -13,11 +13,15 @@ These release notes will only contain the current version. Just check out an old
 
 ## 8.0
 
-This version removes all previously deprecated functions and aims to make the library cleaner and more discoverable, by moving types into namespaces.
+This version removes all previously deprecated functions and aims to make the library cleaner and more discoverable.
 
-Therefore, some nice-to-have utilities have also been removed, if they bloated the library while providing little value. If you need them, just grab them from an earlier version.
+One big change is that many types are moved into new namespaces, which will help reduce the surface area of the library.
 
-The temporary `MigrationTypes` file contains temporary typealiases that aim to help developers migrate from KeyboardKit 7.x. These typealiases will be removed in 8.1.
+Renamed and moved types have temporary migration typealiases to help you migrate from KeyboardKit 7. These typealiases will be removed in 8.1.
+
+Renamed and moved types are not included in these release notes. Just follow the deprecation warnings after upgrading and you should be fine. 
+
+Some nice-to-have utilities have also been removed, if they bloated the library while providing little value. If you need them, grab them from an earlier version.
 
 Note that the library no longer sets up English services by default, so make sure that you are aware of that before upgrading. You must either implement these services yourself, or get them by upgrading to KeyboardKit Pro.
 
@@ -27,6 +31,7 @@ Note that the library no longer sets up English services by default, so make sur
 
 ### ✨ New Features
 
+* `InputSetBasedKeyboardLayoutProvider` is a new layout provider that replaces the English and static ones.
 * `KeyboardAction.emoji` can now be created with a string as well.
 * `KeyboardButton` now supports providing interactable `edgeInsets`.
 * `KeyboardButton` now supports providing an external `isPressed` state.
@@ -38,7 +43,9 @@ Note that the library no longer sets up English services by default, so make sur
 
 ### 💡 Adjustments
 
-Many types have been moved into namespaces, with temporary, deprecated mapping types to help you migrate. 
+* Many types and functions have been moved into namespaces or renamed.
+* These types and functions have temporary mappings to help you migrate.
+* Renamed types and functions are not included in these release notes.  
 
 * `AutocompleteProvider` is now async instead of using completions.
 * `InputSet` has been converted to a struct.
@@ -54,8 +61,9 @@ Many types have been moved into namespaces, with temporary, deprecated mapping t
     
 ### 💥 Breaking changes 
 
-* All deprecated code has been removed or addressed.
+* All deprecated code has been removed or fixed. 
 * Many emoji types have been moved to KeyboardKit Pro.
+* English input sets have been moved to KeyboardKit Pro.
 
 * `AudioFeedback.Engine` is no longer open to inheritance. 
 * `Autocomplete.ToolbarItemSubtitle` is now initialized with a suggestion.
@@ -64,6 +72,7 @@ Many types have been moved into namespaces, with temporary, deprecated mapping t
 * `EmojiKeyboardItem` has been removed.
 * `EmojiProvider` has been removed.
 * `EnglishCalloutActionProvider` has been removed.
+* `EnglishKeyboardLayoutProvider` has been removed.
 * `ExternalKeyboardContext` has been moved to KeyboardKit Pro.
 * `FeatureToggle` has been removed.
 * `HapticFeedback.Engine` is no longer open to inheritance.
@@ -72,7 +81,5 @@ Many types have been moved into namespaces, with temporary, deprecated mapping t
 * `StaticKeyboardLayoutProvider` has been removed.
 * `SystemKeyboard` no longer has a `buttonContent` initializer.
 * `SystemKeyboardItem` can no longer be initialized outside the library.
-* `View.actionCallout(...)` has been renamed to `View.keyboardActionCalloutContainer(...)`.
-* `View.inputCallout(...)` has been renamed to `View.keyboardInputCalloutContainer(...)`.
 * `View.keyboardButtonStyle(...)` no longer has an `isPressed` parameter.
 * `View.systemKeyboardButtonStyle(...)` has been renamed to `.keyboardButtonStyle(...)`.

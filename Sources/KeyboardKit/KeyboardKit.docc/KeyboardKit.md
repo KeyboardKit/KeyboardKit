@@ -180,7 +180,6 @@ KeyboardKit is available under the MIT license.
 - ``StandardKeyboardLayoutProvider``
 - ``iPadKeyboardLayoutProvider``
 - ``iPhoneKeyboardLayoutProvider``
-- ``StaticKeyboardLayoutProvider``
 - ``SystemKeyboardLayoutProvider``
 
 - ``EnglishKeyboardLayoutProvider``
