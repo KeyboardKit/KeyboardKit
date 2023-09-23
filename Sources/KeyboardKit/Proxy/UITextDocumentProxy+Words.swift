@@ -11,9 +11,7 @@ import UIKit
 
 public extension UITextDocumentProxy {
     
-    /**
-     The word that is currently being touched by the cursor.
-     */
+    /// The word that is at the current cursor location.
     var currentWord: String? {
         let pre = currentWordPreCursorPart
         let post = currentWordPostCursorPart
@@ -21,42 +19,29 @@ public extension UITextDocumentProxy {
         return (pre ?? "") + (post ?? "")
     }
     
-    /**
-     The part of the current word that is before the cursor.
-     */
+    /// The part of the current word that is before the cursor.
     var currentWordPreCursorPart: String? {
         documentContextBeforeInput?.wordFragmentAtEnd
     }
     
-    /**
-     The part of the current word that is after the cursor.
-     */
+    /// The part of the current word that is after the cursor.
     var currentWordPostCursorPart: String? {
         documentContextAfterInput?.wordFragmentAtStart
     }
     
-    /**
-     Whether or not a word is currently being touched by the
-     text input cursor.
-     */
+    /// Whether or not the proxy has a current word.
     var hasCurrentWord: Bool {
         currentWord != nil
     }
 
-    /**
-     Whether or not the text document proxy cursor is at the
-     beginning of a new word.
-     */
+    /// Whether or not the cursor is at the beginning of a word.
     var isCursorAtNewWord: Bool {
         guard let pre = documentContextBeforeInput else { return true }
         let lastCharacter = String(pre.suffix(1))
         return pre.isEmpty || lastCharacter.isWordDelimiter
     }
 
-    /**
-     Whether or not the text document proxy cursor is at the
-     end of the current word.
-     */
+    /// Whether or not the cursor is at the end of the current word.
     var isCursorAtTheEndOfTheCurrentWord: Bool {
         if currentWord == nil { return false }
         let postCount = currentWordPostCursorPart?.trimmingCharacters(in: .whitespaces).count ?? 0
@@ -66,9 +51,7 @@ public extension UITextDocumentProxy {
         return !wordDelimiters.contains(lastCharacter)
     }
 
-    /**
-     The last ended word right before the cursor, if any.
-     */
+    /// The last ended word right before the cursor, if any.
     var wordBeforeInput: String? {
         if isCursorAtNewSentence { return nil }
         guard isCursorAtNewWord else { return nil }
@@ -81,20 +64,8 @@ public extension UITextDocumentProxy {
         else { return nil }
         return result.isEmpty ? nil : result
     }
-
-    /**
-     A list of western word delimiters.
-
-     See the ``KeyboardCharacterProvider`` documentation for
-     information on how to modify this delimiter collection.
-     */
-    var wordDelimiters: [String] {
-        String.wordDelimiters
-    }
     
-    /**
-     Replace the current word with a replacement text.
-     */
+    /// Replace the current word with a replacement text.
     func replaceCurrentWord(with replacement: String) {
         guard let word = currentWord else { return }
         let offset = currentWordPostCursorPart?.count ?? 0
@@ -104,12 +75,16 @@ public extension UITextDocumentProxy {
     }
 }
 
+extension UITextDocumentProxy {
+    
+    var wordDelimiters: [String] {
+        String.wordDelimiters
+    }
+}
+
 private extension UITextDocumentProxy {
     
-    /**
-     Check if a certain character should be included in the
-     current word.
-     */
+    /// Check if a character should be included in the current word.
     func shouldIncludeCharacterInCurrentWord(_ character: Character?) -> Bool {
         guard let character = character else { return false }
         return !wordDelimiters.contains("\(character)")

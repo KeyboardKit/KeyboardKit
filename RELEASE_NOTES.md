@@ -41,6 +41,16 @@ Note that the library no longer sets up English services by default, so make sur
 * `View.keyboardCalloutContainer` is a new view extension that applies both input and action callout container modifiers to the view. 
 * `View.keyboardLayoutItemSize` is a new view extension that applies a layout-specific size and insets to the view.
 
+### 📦 New Namespaces
+
+* `Autocomplete` is a new namespace for autocomplete-related functionality.
+* `Callouts` is a new namespace for callout-related functionality.
+* `Dictation` is a new namespace for dictation-related functionality.
+* `Emojis` is a new namespace for emoji-related functionality.
+* `Gestures` is a new namespace for gesture-related functionality.
+* `KeyboardPreviews` is a new namespace for preview-related functionality.
+* `Proxy` is a new namespace for proxy-related functionality.
+
 ### 💡 Adjustments
 
 * Many types and functions have been moved into namespaces or renamed.
@@ -55,6 +65,7 @@ Note that the library no longer sets up English services by default, so make sur
 ### 👑 Pro Adjustments
 
 * `Emojis` has many types that were previously in the base library.
+* `FullDocumentContextReader` has been removed (just use the proxy extensions).
 * `ProCalloutActionProvider` has new utility functions to return actions.
 * `ProKeyboardActionHandler` is a new handler that does pro things.
 * `RemoteAutocompleteProvider.AutocompleteError.noData` has been removed.

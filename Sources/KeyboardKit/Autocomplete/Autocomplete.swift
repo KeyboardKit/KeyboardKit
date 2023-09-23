@@ -12,6 +12,7 @@ import Foundation
  This namespace contains autocomplete-related types, as well
  as disabled service implementations.
  
- The namespace doesn't contain protocols or observable types.
+ The namespace doesn't contain protocol, observable types or
+ open classes, not types that are meant to be top-level ones.
  */
 public struct Autocomplete {}

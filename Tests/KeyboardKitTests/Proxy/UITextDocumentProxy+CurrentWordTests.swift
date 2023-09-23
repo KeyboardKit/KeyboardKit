@@ -7,9 +7,9 @@
 //
 
 #if os(iOS) || os(tvOS)
-import KeyboardKit
 import MockingKit
 import XCTest
+@testable import KeyboardKit
 
 class UITextDocumentProxy_CurrentWordTests: XCTestCase {
     

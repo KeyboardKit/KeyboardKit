@@ -1,4 +1,4 @@
-# Understanding Device Utils
+# Understanding Device Utilities
 
 This article describes the KeyboardKit device utilities.
 

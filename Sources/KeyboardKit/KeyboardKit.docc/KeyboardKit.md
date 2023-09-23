@@ -72,7 +72,6 @@ KeyboardKit is available under the MIT license.
 
 ### Articles
 
-- <doc:Proxy-Extensions>
 - <doc:Routing>
 - <doc:Settings>
 - <doc:Styling>
@@ -121,7 +120,7 @@ KeyboardKit is available under the MIT license.
 
 ### Device
 
-- <doc:Understanding-Device-Utils>
+- <doc:Understanding-Device-Utilities>
 - ``DeviceType``
 - ``InterfaceOrientation``
 
@@ -197,9 +196,13 @@ KeyboardKit is available under the MIT license.
 - <doc:Understanding-Previews>
 - ``KeyboardPreviews``
 
+### Proxy
+
+- <doc:Understanding-Proxy-Utilities>
+- ``TextInputProxy``
+
 ### Routing
 
-- ``TextInputProxy``
 - ``KeyboardInputComponent``
 - ``KeyboardInputView``
 - ``KeyboardTextField``

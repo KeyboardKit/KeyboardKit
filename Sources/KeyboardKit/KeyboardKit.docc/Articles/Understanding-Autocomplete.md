@@ -14,7 +14,7 @@ KeyboardKit doesn't have a standard provider as it has for other services. Inste
 
 ## Autocomplete namespace
 
-KeyboardKit has an ``Autocomplete`` namespace that contains autocomplete-related types and views.
+KeyboardKit has an ``Autocomplete`` namespace that contains autocomplete-related types.
 
 For instance, an ``Autocomplete/Toolbar`` can be used to show suggestions. The ``SystemKeyboard`` will add an autocomplete toolbar by default, unless you explicitly tell it not to.
 

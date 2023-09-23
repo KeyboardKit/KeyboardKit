@@ -12,7 +12,7 @@ import Foundation
  This namespace contains dictation-related types, as well as
  disabled service implementations.
  
- This namespace doesn't contain services or observable types,
- or types that need to be exposed to the library's top level.
+ The namespace doesn't contain protocol, observable types or
+ open classes, not types that are meant to be top-level ones.
  */
 public struct Dictation {}

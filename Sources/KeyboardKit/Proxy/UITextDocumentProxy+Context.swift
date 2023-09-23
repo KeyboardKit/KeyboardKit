@@ -26,5 +26,17 @@ public extension UITextDocumentProxy {
         let after = documentContextAfterInput ?? ""
         return before + after
     }
+    
+    /**
+     Whether or not this proxy is currently reading the full
+     document context.
+
+     The full document context reading capabilities are only
+     available in KeyboardKit Pro.
+     */
+    var isReadingFullDocumentContext: Bool {
+        get { FullDocumentContextReaderState.isReadingFullDocumentContext }
+        set { FullDocumentContextReaderState.isReadingFullDocumentContext = newValue }
+    }
 }
 #endif

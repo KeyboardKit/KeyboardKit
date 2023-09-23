@@ -16,20 +16,22 @@ import UIKit
  This class can be used to route text from an app to another
  text field, for instance in keyboard extension itself.
 
- This class implements `UITextDocumentProxy`, which lets you
- customize proxy-related features. The class also implements
- `UITextInputTraits`, which lets you customize input-related
- features and behaviors like the return button type. Finally,
- it implements `UIKeyInput` to handle text insert and delete.
- You can inherit and override this class to customize things
- further.
+ This class implements `UITextDocumentProxy` and exposes the
+ features as `open` to let us customize the default behavior.
  
- If you use the ``KeyboardTextField`` and ``KeyboardTextView``
- views in your keyboard, they will automatically replace the
- standard document proxy with this type as long as they have
- focus, then switch back when they lose focus. If you are to
- implement your own custom text fields or proxies, check out
- these views for inspiration.
+ The proxy also implements `UITextInputTraits` to let us add
+ customizations to the input-related behavior, such as which
+ return button type to use.
+ 
+ Finally, the proxy implements `UIKeyInput` to let us handle
+ text insert and delete behavior.
+ 
+ The ``KeyboardTextField`` and ``KeyboardTextView`` replaces
+ the default ``KeyboardInputViewController/textDocumentProxy``
+ with a temporary ``TextInputProxy`` as long as they do have
+ focus, to route the typed text from the active app to these
+ text fields. They will then restore the original proxy when
+ they lose focus.
  */
 open class TextInputProxy: NSObject, UITextDocumentProxy, UITextInputTraits {
     

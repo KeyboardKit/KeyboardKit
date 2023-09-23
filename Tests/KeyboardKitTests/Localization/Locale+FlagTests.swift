@@ -13,11 +13,11 @@ import XCTest
 class Locale_FlagTests: XCTestCase {
 
     func testFlags() {
-        let doPrint = true
+        let doPrint = false
         KeyboardLocale.allCases.forEach { locale in
             let isEqual = locale.flag == locale.locale.flag
             if !isEqual && doPrint {
-                print("*** \(locale.locale.localizedName): \(locale.flag) vs \(locale.locale.flag)")
+                print("*** \(locale.locale.localizedName): \(locale.flag) vs \(locale.locale.flag ?? "-")")
             }
         }
     }
