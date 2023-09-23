@@ -14,7 +14,7 @@ KeyboardKit will bind a ``StandardCalloutActionProvider`` to ``KeyboardInputView
 
 ## Callout namespace
 
-KeyboardKit has a ``Callouts`` namespace that contains callout-related types and views, except services and contexts.
+KeyboardKit has a ``Callouts`` namespace that contains callout-related types and views.
 
 For instance, a ``Callouts/InputCallout`` shows the currently pressed key while a ``Callouts/ActionCallout`` shows secondary actions when long pressing a key. These callouts are automatically used if you use a ``SystemKeyboard``.
 

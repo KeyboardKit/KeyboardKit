@@ -11,7 +11,7 @@ import Foundation
 /**
  This namespace contains gesture-related types.
  
- The namespace doesn't contain protocols or observable types,
+ This namespace doesn't contain services or observable types,
  or types that need to be exposed to the library's top level.
  */
 public struct Gestures {}

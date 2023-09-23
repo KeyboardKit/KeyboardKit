@@ -1,5 +1,5 @@
 //
-//  KeyboardPreviews+Actions.swift
+//  Previews+Actions.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-25.
@@ -8,16 +8,16 @@
 
 import CoreGraphics
 
-public extension KeyboardActionHandler where Self == KeyboardPreviews.ActionHandler {
+public extension KeyboardActionHandler where Self == KeyboardPreviews.PreviewKeyboardActionHandler {
     
-    /// This handler can be used in SwiftUI previews.
-    static var preview: KeyboardActionHandler { KeyboardPreviews.ActionHandler() }
+    static var preview: KeyboardActionHandler {
+        KeyboardPreviews.PreviewKeyboardActionHandler()
+    }
 }
 
 public extension KeyboardPreviews {
  
-    /// This action handler can be used in SwiftUI previews.
-    class ActionHandler: KeyboardActionHandler {
+    class PreviewKeyboardActionHandler: KeyboardActionHandler {
         
         public init() {}
         

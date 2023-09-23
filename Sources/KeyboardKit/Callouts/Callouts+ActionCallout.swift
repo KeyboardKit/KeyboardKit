@@ -181,7 +181,7 @@ private extension KeyboardAction {
 
 struct Callouts_ActionCallout_Previews: PreviewProvider {
 
-    static let actionHandler = KeyboardPreviews.ActionHandler()
+    static let actionHandler = KeyboardPreviews.PreviewKeyboardActionHandler()
 
     static let actionProvider = PreviewCalloutActionProvider()
 

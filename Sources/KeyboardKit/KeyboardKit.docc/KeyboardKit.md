@@ -72,7 +72,6 @@ KeyboardKit is available under the MIT license.
 
 ### Articles
 
-- <doc:Previews>
 - <doc:Proxy-Extensions>
 - <doc:Routing>
 - <doc:Settings>
@@ -195,6 +194,7 @@ KeyboardKit is available under the MIT license.
 
 ### Previews
 
+- <doc:Understanding-Previews>
 - ``KeyboardPreviews``
 
 ### Routing

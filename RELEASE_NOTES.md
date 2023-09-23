@@ -58,6 +58,7 @@ Note that the library no longer sets up English services by default, so make sur
 * `ProCalloutActionProvider` has new utility functions to return actions.
 * `ProKeyboardActionHandler` is a new handler that does pro things.
 * `RemoteAutocompleteProvider.AutocompleteError.noData` has been removed.
+* `SystemKeyboardButtonPreview` is a new system button preview. 
     
 ### 💥 Breaking changes 
 

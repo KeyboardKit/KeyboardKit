@@ -158,11 +158,11 @@ public class KeyboardContext: ObservableObject {
     #if os(iOS) || os(tvOS)
     /// The main text document proxy.
     @Published
-    public var mainTextDocumentProxy: UITextDocumentProxy = KeyboardPreviews.TextDocumentProxy()
+    public var mainTextDocumentProxy: UITextDocumentProxy = .preview
 
     /// The text document proxy that is currently active.
     @Published
-    public var textDocumentProxy: UITextDocumentProxy = KeyboardPreviews.TextDocumentProxy()
+    public var textDocumentProxy: UITextDocumentProxy = .preview
 
     /// The text input mode of the input controller.
     @Published

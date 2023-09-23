@@ -12,16 +12,14 @@ import SwiftUI
 #if os(iOS) || os(tvOS)
 public extension KeyboardInputViewController {
 
-    /// This controller can be used in SwiftUI previews.
     static var preview: KeyboardInputViewController {
-        KeyboardPreviews.InputViewController()
+        KeyboardPreviews.PreviewKeyboardInputViewController()
     }
 }
 
 public extension KeyboardPreviews {
     
-    /// This controller can be used in SwiftUI previews.
-    class InputViewController: KeyboardInputViewController {
+    class PreviewKeyboardInputViewController: KeyboardInputViewController {
         
         open override func viewWillRegisterSharedController() {}
     }
@@ -30,7 +28,6 @@ public extension KeyboardPreviews {
 
 public extension KeyboardContext {
     
-    /// This context can be used in SwiftUI previews.
     static var preview: KeyboardContext {
         #if os(iOS) || os(tvOS)
         KeyboardContext(controller: KeyboardInputViewController.preview)

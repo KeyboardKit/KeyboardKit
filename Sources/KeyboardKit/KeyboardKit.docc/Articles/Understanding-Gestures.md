@@ -12,7 +12,7 @@ So, keyboard gestures can be quite complicated. However, KeyboardKit handles mos
 
 ## Gestures namespace
 
-KeyboardKit has a ``Gestures`` namespace that contains gesture-related types and views, except services and contexts.
+KeyboardKit has a ``Gestures`` namespace that contains gesture-related types and views.
 
 For instance, a ``Gestures/GestureButton`` can be used to apply many gestures to a single button, a ``Gestures/RepeatTimer`` can be used to repeat an actio, and there are also some types to configure space gestures.
 

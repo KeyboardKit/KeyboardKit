@@ -1,5 +1,5 @@
 //
-//  Proxy+Preview.swift
+//  KeyboardPreviews+Proxy.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-25.
@@ -9,16 +9,16 @@
 #if os(iOS) || os(tvOS)
 import UIKit
 
-public extension UITextDocumentProxy where Self == KeyboardPreviews.TextDocumentProxy {
+public extension UITextDocumentProxy where Self == KeyboardPreviews.PreviewTextDocumentProxy {
     
-    /// This proxy can be used in SwiftUI previews.
-    static var preview: UITextDocumentProxy { KeyboardPreviews.TextDocumentProxy() }
+    static var preview: UITextDocumentProxy {
+        KeyboardPreviews.PreviewTextDocumentProxy()
+    }
 }
 
 public extension KeyboardPreviews {
     
-    /// This document proxy can be used in SwiftUI previews.
-    class TextDocumentProxy: NSObject, UITextDocumentProxy {
+    class PreviewTextDocumentProxy: NSObject, UITextDocumentProxy {
         
         public override init() {
             super.init()
