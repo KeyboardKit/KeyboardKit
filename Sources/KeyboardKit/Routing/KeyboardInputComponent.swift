@@ -15,10 +15,9 @@ import UIKit
 
  Views that inherits this protocol can use its functionality
  to register and unregister as the current text input proxy.
-
- ``KeyboardTextField`` and ``KeyboardTextView`` wraps `UIKit`
- views that implement this protocol, to automatically become
- the text destination when they receive focus.
+ 
+ The `KeyboardTextField` and `KeyboardTextView` views in Pro
+ wrap `UIKit` views that implement this protocol.
  */
 public protocol KeyboardInputComponent: UIResponder, UITextInput {
 
@@ -26,9 +25,8 @@ public protocol KeyboardInputComponent: UIResponder, UITextInput {
      Whether or not the text input should resign itself when
      the user taps return.
      
-     If this is set to `false`, you must provide another way
-     to redirect the keyboard extension back to the main app,
-     which is done with `viewController.textInputProxy = nil`.
+     If this is false, you must have another way to redirect
+     the keyboard text input back to the main app. 
      */
     var resignOnReturn: Bool { get }
 

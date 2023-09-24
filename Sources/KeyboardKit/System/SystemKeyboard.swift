@@ -43,11 +43,10 @@ import SwiftUI
  trashbin and the entire spacebar is replaced by transparent
  text that takes up as much space as needed.
  
- This view will by place an ``Autocomplete/Toolbar`` topmost,
- unless we explicitly tell it not to. It will also overlay a
- full emoji keyboard over the entire view, when the keyboard
- context's ``KeyboardContext/keyboardType`` is currently set
- to ``Keyboard/KeyboardType/emojis``.
+ This view will place an ``AutocompleteToolbar`` topmost, if
+ we explicitly tell it not to. It will also overlay an emoji
+ keyboard over the keyboard, whenever the keyboard context's
+ ``KeyboardContext/keyboardType`` is set to `.emojis`.
 
  Since the keyboard layout depends on the available keyboard
  width, you must pass in a `width`, if you don't want to use
@@ -230,7 +229,7 @@ private extension SystemKeyboard {
     @ViewBuilder
     var autocompleteToolbar: some View {
         if shouldAddAutocompleteToolbar {
-            Autocomplete.Toolbar(
+            AutocompleteToolbar(
                 suggestions: autocompleteContext.suggestions,
                 locale: keyboardContext.locale,
                 style: styleProvider.autocompleteToolbarStyle,

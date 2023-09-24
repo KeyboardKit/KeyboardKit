@@ -82,7 +82,7 @@ struct Autocomplete_ToolbarItem_Previews: PreviewProvider {
     static func preview(for locale: Locale) -> some View {
         VStack(spacing: 5) {
             Text(locale.identifier).font(.headline)
-            Autocomplete.Toolbar(
+            AutocompleteToolbar(
                 suggestions: previewSuggestions,
                 locale: locale,
                 style: .standard,

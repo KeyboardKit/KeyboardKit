@@ -14,7 +14,7 @@ import SwiftUI
 public extension KeyboardStyle {
     
     /**
-     This style can style ``Autocomplete/Toolbar`` views.
+     This style can be used to style ``AutocompleteToolbar``.
      
      The ``standard`` style value can be used to get and set
      the global default style.

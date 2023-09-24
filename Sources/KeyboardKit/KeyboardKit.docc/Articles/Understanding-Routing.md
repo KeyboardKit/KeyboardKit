@@ -42,8 +42,8 @@ You can also let any SwiftUI view implement the ``KeyboardInputView`` protocol t
 
 KeyboardKit Pro unlocks text input components that automatically register and unregister themselves as the main text input proxy when they receive and lose focus:
 
-* ``KeyboardTextField`` wraps a **UITextField** and can be used for single-line text inputs.
-* ``KeyboardTextView`` wraps a **UITextView** and can be used for multi-line text inputs.
+* **KeyboardTextField** wraps a **UITextField** and can be used for single-line text inputs.
+* **KeyboardTextView** wraps a **UITextView** and can be used for multi-line text inputs.
 
 Both views also support SwiftUI **FocusState** and have a **focused** view modifier that lets you provide a custom done button that slides in when the view is focused.
 

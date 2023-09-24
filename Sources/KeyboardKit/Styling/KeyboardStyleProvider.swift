@@ -69,6 +69,6 @@ public protocol KeyboardStyleProvider: AnyObject {
 
     // MARK: - Callouts
 
-    /// The style to use for ``Autocomplete/Toolbar`` views.
+    /// The style to use for ``AutocompleteToolbar`` views.
     var autocompleteToolbarStyle: KeyboardStyle.AutocompleteToolbar { get }
 }

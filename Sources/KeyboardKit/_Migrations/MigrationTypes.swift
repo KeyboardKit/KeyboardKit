@@ -13,6 +13,24 @@ import SwiftUI
 /// to help developers upgrade from 7.x. These types will be
 /// removed in KeyboardKit 8.1.
 
+@available(*, deprecated, renamed: "Autocomplete.DisabledProvider", message: "This will be removed in KeyboardKit 8.1.")
+public typealias DisabledAutocompleteProvider = Autocomplete.DisabledProvider
+
+@available(*, deprecated, renamed: "Autocomplete.Suggestion", message: "This will be removed in KeyboardKit 8.1.")
+public typealias AutocompleteSuggestion = Autocomplete.Suggestion
+
+@available(*, deprecated, renamed: "Autocomplete.ToolbarItem", message: "This will be removed in KeyboardKit 8.1.")
+public typealias AutocompleteToolbarItem = Autocomplete.ToolbarItem
+
+@available(*, deprecated, renamed: "Autocomplete.ToolbarItemSubtitle", message: "This will be removed in KeyboardKit 8.1.")
+public typealias AutocompleteToolbarItemSubtitle = Autocomplete.ToolbarItemSubtitle
+
+@available(*, deprecated, renamed: "Autocomplete.ToolbarItemTitle", message: "This will be removed in KeyboardKit 8.1.")
+public typealias AutocompleteToolbarItemTitle = Autocomplete.ToolbarItemTitle
+
+@available(*, deprecated, renamed: "Autocomplete.ToolbarSeparator", message: "This will be removed in KeyboardKit 8.1.")
+public typealias AutocompleteToolbarSeparator = Autocomplete.ToolbarSeparator
+
 @available(*, deprecated, renamed: "Callouts.ActionCallout", message: "This will be removed in KeyboardKit 8.1.")
 public typealias ActionCallout = Callouts.ActionCallout
 

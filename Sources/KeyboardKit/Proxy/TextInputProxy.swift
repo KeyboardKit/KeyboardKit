@@ -26,12 +26,9 @@ import UIKit
  Finally, the proxy implements `UIKeyInput` to let us handle
  text insert and delete behavior.
  
- The ``KeyboardTextField`` and ``KeyboardTextView`` replaces
- the default ``KeyboardInputViewController/textDocumentProxy``
- with a temporary ``TextInputProxy`` as long as they do have
- focus, to route the typed text from the active app to these
- text fields. They will then restore the original proxy when
- they lose focus.
+ The `KeyboardTextField` and `KeyboardTextView` views in Pro
+ automatically registers their underlying input views as the
+ main text proxy when they receive focus.
  */
 open class TextInputProxy: NSObject, UITextDocumentProxy, UITextInputTraits {
     
