@@ -4,7 +4,7 @@ This article describes the KeyboardKit emoji engine.
 
 KeyboardKit provides you with an ``Emoji`` type that has unicode and emoji information, an emoji localization engine, etc.
 
-[KeyboardKit Pro][Pro] unlocks emoji categories, keyboards, skintones, version information and much more, when you register a valid license key. Information about these Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks an emoji keyboard, as well as emoji categories, keyboards, skintones, version information, etc., when you register a valid license key. Information about these Pro features can be found at the end of this article.
 
 
 
@@ -78,9 +78,19 @@ These extensions make it easier to handle text and inputs, and are used to power
 [KeyboardKit Pro][Pro] unlocks emoji categories, keyboards, skintones, version information, etc., when you register a valid license key.
 
 
+### Emoji Keyboard
+
+KeyboardKit Pro unlocks an **EmojiKeyboard** that mimics the native emoji keyboard. 
+
+![Emoji Keyboard](emoji-keyboard-500.jpg)
+
+The keyboard uses a bunch of views that are also unlocked by KeyboardKit Pro, such as the **Emojis.Grid**, as well as titles, menus, etc. You can use these views as standalone components as well. 
+
+
+
 ### Emoji Categories
 
-KeyboardKit Pro unlocks an `Emojis.Category` enum that defines all available emoji categories and their emojis, for instance:
+KeyboardKit Pro unlocks an **Emojis.Category** enum that defines all available emoji categories and their emojis, for instance:
 
 ```swift
 Emojis.Category.smileys.emojis    // 😀😃😄😁😆🥹😅😂🤣🥲 ...
@@ -99,18 +109,7 @@ and use these categories to get a list of all available emojis:
 Emoji.all     // 😀😃😄😁😆🥹😅😂🤣🥲 ...
 ```
 
-Emoji categories are also used to power the `Emojis.Keyboard` keyboard.
-
-
-
-### Emoji Keyboard
-
-KeyboardKit Pro unlocks an `Emojis.Keyboard` that mimics the native emoji keyboard. 
-
-![Emoji Keyboard](emoji-keyboard-500.jpg)
-
-The keyboard uses a bunch of views that are also unlocked by KeyboardKit Pro, such as the `Emojis.Grid`. You can use these views as standalone components as well. 
-
+Emoji categories are also used to power the **EmojiKeyboard**.
 
 
 ### Emoji Skin tones
@@ -133,7 +132,7 @@ Skin tones will also be used as secondary callout actions, which means that long
 
 ### Emoji Versions
 
-KeyboardKit Pro unlocks an `Emojis.Version` type that defines Emoji versions, platform availability and included emojis, for instance:
+KeyboardKit Pro unlocks an **EmojiVersion** type that defines emoji versions, platform availability and included emojis, for instance:
 
 ```swift
 let version = EmojiVersion.v15
@@ -144,7 +143,7 @@ version.tvOS     // 16.4
 version.watchOS  // 9.4
 ```
 
-You can also get the Emoji version included in a certain platform version, for instance:
+You can also get the emoji version included in a certain platform version, for instance:
 
 ```swift
 let version = EmojiVersion(iOS: 15.4)

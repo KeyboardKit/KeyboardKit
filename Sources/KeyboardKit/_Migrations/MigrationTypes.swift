@@ -115,6 +115,9 @@ public extension KeyboardLayout.Item {
 @available(*, deprecated, renamed: "KeyboardLayoutRowItem", message: "This will be removed in KeyboardKit 8.1.")
 public typealias KeyboardRowItem = KeyboardLayoutRowItem
 
+@available(*, deprecated, renamed: "Emojis.MostRecentProvider", message: "This will be removed in KeyboardKit 8.1.")
+public typealias MostFrequentEmojiProvider = Emojis.MostRecentProvider
+
 @available(*, deprecated, renamed: "InputSet", message: "This will be removed in KeyboardKit 8.1.")
 public typealias NumericInputSet = InputSet
 

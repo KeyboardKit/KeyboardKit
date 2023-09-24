@@ -1,5 +1,5 @@
 //
-//  MostRecentEmojiProviderTests.swift
+//  Emojis+MostRecentProviderTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-16.
@@ -10,14 +10,14 @@ import KeyboardKit
 import MockingKit
 import XCTest
 
-final class MostRecentEmojiProviderTests: XCTestCase {
+final class Emojis_MostRecentProviderTests: XCTestCase {
 
     var defaults: MockUserDefaults!
-    var provider: MostRecentEmojiProvider!
+    var provider: Emojis.MostRecentProvider!
 
     override func setUp() {
         defaults = MockUserDefaults()
-        provider = MostRecentEmojiProvider(defaults: defaults)
+        provider = .init(defaults: defaults)
     }
 
 
