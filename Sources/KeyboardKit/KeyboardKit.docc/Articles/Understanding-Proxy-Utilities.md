@@ -2,11 +2,11 @@
 
 This article describes the KeyboardKit proxy engine.
 
-iOS keyboard extensions use the native **UITextDocumentProxy** to integrate with the main application. It lets you insert and delete text, get the selected text, move the input cursor, etc.
+iOS keyboard extensions use the native **UITextDocumentProxy** to integrate with the currently active application. It lets you insert and delete text, get the selected text, move the input cursor, etc.
 
 The native proxy APIs are however quite limited, which makes it hard to get detailed information and perform many standard keyboard operations. For instance, you have to manually write code to get the current word, understand where the cursor is, etc.
 
-KeyboardKit therefore adds a bunch of **UITextDocumentProxy** extension to make things easier. ``KeyboardInputViewController`` also has a custom ``KeyboardInputViewController/textDocumentProxy`` property that lets you do more than with the native proxy. 
+KeyboardKit adds a bunch of **UITextDocumentProxy** extension to make things easier. ``KeyboardInputViewController`` also has a custom ``KeyboardInputViewController/textDocumentProxy`` property that lets you do more than with the native proxy. 
 
 [KeyboardKit Pro][Pro] adds even more proxy capabilities, such as the ability to read the full document context. Information about Pro features can be found at the end of this article. 
 
@@ -17,6 +17,8 @@ KeyboardKit therefore adds a bunch of **UITextDocumentProxy** extension to make 
 KeyboardKit has a ``Proxy`` namespace that contains proxy-related types.
 
 For now, this namespace will only contain types when it's part of the KeyboardKit Pro build.
+
+The namespace doesn't contain protocols or open classes, or types that are meant to be top-level ones. It's meant to be a container for types used by top-level types, to make the library easier to overview.
 
 
 
@@ -127,9 +129,6 @@ struct KeyboardView: View {
     }
 }
 ```
-
-
-
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

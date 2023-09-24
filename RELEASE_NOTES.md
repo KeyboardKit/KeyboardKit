@@ -64,7 +64,7 @@ Note that the library no longer sets up English services by default, so make sur
 
 ### 👑 Pro Adjustments
 
-* `Emojis` has many types that were previously in the base library.
+* `Emojis` has types that have been added from the base library.
 * `FullDocumentContextReader` has been removed (just use the proxy extensions).
 * `ProCalloutActionProvider` has new utility functions to return actions.
 * `ProKeyboardActionHandler` is a new handler that does pro things.

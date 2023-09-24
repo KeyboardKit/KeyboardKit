@@ -18,6 +18,8 @@ KeyboardKit has a ``Dictation`` namespace that contains dictation-related types.
 
 For instance, a ``Dictation/KeyboardConfiguration`` can be used to configure a ``KeyboardDictationService`` for both a keyboard and its main app. There are also various status and error enums.
 
+The namespace doesn't contain protocols or open classes, or types that are meant to be top-level ones. It's meant to be a container for types used by top-level types, to make the library easier to overview.
+
 
 
 ## How to perform dictation in an app.

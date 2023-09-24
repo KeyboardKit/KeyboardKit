@@ -18,6 +18,8 @@ KeyboardKit has an ``Autocomplete`` namespace that contains autocomplete-related
 
 For instance, an ``Autocomplete/Toolbar`` can be used to show suggestions. The ``SystemKeyboard`` will add an autocomplete toolbar by default, unless you explicitly tell it not to.
 
+The namespace doesn't contain protocols or open classes, or types that are meant to be top-level ones. It's meant to be a container for types used by top-level types, to make the library easier to overview.
+
 
 
 ## How to perform autocomplete

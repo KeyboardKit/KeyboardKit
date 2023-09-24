@@ -13,10 +13,9 @@ import UIKit
 /**
  This text field can be used within a keyboard extension.
 
- The text field will automatically register itself to become
- ``KeyboardInputViewController/textInputProxy`` when it gets
- focus and will also automatically unregister itself when it
- loses focus.
+ The text input component will automatically register itself
+ as the primary ``KeyboardInputViewController/textInputProxy``
+ when it gets focus, then unregister itself when it loses it.
 
  You can provide a custom `config` function to customize the
  underlying `UITextField`.
@@ -83,9 +82,7 @@ public struct KeyboardTextField: UIViewRepresentable, KeyboardInputView {
     }
 
     
-    /**
-     This typealias represents a `UITextField` configuration.
-     */
+    /// This typealias represents a text field config block.
     public typealias Configuration = (UITextField) -> Void
 
 
@@ -134,10 +131,7 @@ public struct KeyboardTextField: UIViewRepresentable, KeyboardInputView {
 
 public extension KeyboardTextField {
     
-    /**
-     This coordinator is used to keep the views in sync when
-     the text changes in the embedded text field.
-     */
+    /// This coordinator is keeps the views in sync.
     class Coordinator: NSObject {
         
         init(text: Binding<String>) {

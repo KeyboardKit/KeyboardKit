@@ -13,10 +13,9 @@ import UIKit
 /**
  This text view can be used within a keyboard extension.
 
- This text view will automatically register itself to become
- ``KeyboardInputViewController/textInputProxy`` when it gets
- focus and will also automatically unregister itself when it
- loses focus.
+ The text input component will automatically register itself
+ as the primary ``KeyboardInputViewController/textInputProxy``
+ when it gets focus, then unregister itself when it loses it.
 
  You can provide a custom `config` function to customize the
  underlying `UITextView`.
@@ -73,9 +72,7 @@ public struct KeyboardTextView: UIViewRepresentable, KeyboardInputView {
     }
     
     
-    /**
-     This typealias represents a `UITextView` configuration.
-     */
+    /// This typealias represents a text view config block.
     public typealias Configuration = (UITextView) -> Void
 
 
@@ -123,10 +120,7 @@ public struct KeyboardTextView: UIViewRepresentable, KeyboardInputView {
 
 public extension KeyboardTextView {
 
-    /**
-     This coordinator is used to keep the views in sync when
-     the text changes in the embedded text view.
-     */
+    /// This coordinator is keeps the views in sync.
     class Coordinator: NSObject, UITextViewDelegate {
         
         init(text: Binding<String>) {

@@ -18,6 +18,8 @@ For instance, ``KeyboardContext``.``KeyboardContext/preview`` can be used as a d
 
 All these services and state variants have static `.preview` properties, so you don't have to use the `KeyboardPreviews.` namespace prefix or the full preview type name to access them.
 
+The namespace doesn't contain protocols or open classes, or types that are meant to be top-level ones. It's meant to be a container for types used by top-level types, to make the library easier to overview.
+
 
 
 ## How to use preview-specific state and services

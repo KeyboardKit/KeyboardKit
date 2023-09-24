@@ -72,7 +72,6 @@ KeyboardKit is available under the MIT license.
 
 ### Articles
 
-- <doc:Routing>
 - <doc:Settings>
 - <doc:Styling>
 
@@ -203,10 +202,9 @@ KeyboardKit is available under the MIT license.
 
 ### Routing
 
+- <doc:Understanding-Routing>
 - ``KeyboardInputComponent``
 - ``KeyboardInputView``
-- ``KeyboardTextField``
-- ``KeyboardTextView``
 
 ### Settings
 

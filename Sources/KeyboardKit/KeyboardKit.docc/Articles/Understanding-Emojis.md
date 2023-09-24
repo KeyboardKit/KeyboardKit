@@ -14,6 +14,8 @@ KeyboardKit has an ``Emojis`` namespace that contains emoji-related types and vi
 
 KeyboardKit Pro adds all pro emoji features to this namespace when you register a valid license key.
 
+The namespace doesn't contain protocols or open classes, or types that are meant to be top-level ones. It's meant to be a container for types used by top-level types, to make the library easier to overview.
+
 
 
 ## Emoji
