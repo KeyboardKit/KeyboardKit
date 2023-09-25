@@ -1,5 +1,5 @@
 //
-//  //  KeyboardStyle+Background.swift
+//  KeyboardStyle+Background.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-03-18.

@@ -84,24 +84,25 @@ You can take a look at the source code of the various views in the library for i
 
 ## 👑 Pro features
 
-KeyboardKit Pro unlocks powerful tools to preview system keyboards and keyboard themes:
+KeyboardKit Pro unlocks powerful tools to preview system keyboards and themes:
 
-- **SystemKeyboardButtonPreview** - can be used to preview system keyboard buttons.
-- **SystemKeyboardButtonThemePreview** - can be used to preview theme-based system keyboard buttons.
-- **SystemKeyboardPreview** - can be used to preview a system keyboard.
-- **SystemKeyboardPreviewHeader** - can be used to preview a system keyboard preview as scroll or list header.
-- **SystemKeyboardThemePreview** - can be used to preview a keyboard theme.
-- **SystemKeyboardThemePreviewHeader** - can be used to preview a keyboard theme preview as scroll or list header.
+```swift
+SystemKeyboardPreview(...)              // A live system keyboard preview.
+SystemKeyboardPreviewHeader(...)        // A live system keyboard preview header.
+SystemKeyboardThemePreview(...)         // A live theme preview.
+SystemKeyboardThemePreviewHeader(...)   // A live theme preview header.
+```
 
-Since these views render system keyboards with full interation, they are quite performance demanding. Only use a single preview at a time to avoid performance issues. 
+Since these views render system keyboards with full interation, they are quite performance demanding. 
 
 To preview many styles or themes at once, you can use these more lightweight previews:
 
-- **SystemKeyboardButtonPreview** - can be used to preview style-based system keyboard buttons.
-- **SystemKeyboardButtonThemePreview** - can be used to preview theme-based system keyboard buttons.
+```swift
+SystemKeyboardButtonPreview(...)        // A system button preview.
+SystemKeyboardButtonThemePreview(...)   // A system button preview for a theme.
+```
 
-> Note: These previews are *not* in the **KeyboardPreviews** namespace, since they are not only meant to be used in previews, but also in apps. They are however mentioned here, since it may be the most obvious place to look. For more info an screenshots, see <doc:System>.  
-
+These previews only render lightweight buttons.
 
 
 

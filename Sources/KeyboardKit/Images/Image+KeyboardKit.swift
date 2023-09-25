@@ -11,6 +11,8 @@ import SwiftUI
 public extension Image {
     
     static var keyboard: Image { .symbol("keyboard") }
+    static var keyboardAudioFeedbackEnabled = symbol("speaker.fill")
+    static var keyboardAudioFeedbackDisabled = symbol("speaker")
     static var keyboardBackspace: Image { .symbol("delete.left") }
     static var keyboardBackspaceRtl: Image { .symbol("delete.right") }
     static var keyboardCommand: Image { .symbol("command") }
@@ -21,6 +23,8 @@ public extension Image {
     static var keyboardEmoji: Image { .asset("keyboardEmoji") }
     static var keyboardEmojiSymbol: Image { .symbol("face.smiling") }
     static var keyboardGlobe: Image { .symbol("globe") }
+    static var keyboardHapticFeedbackEnabled = symbol("hand.tap.fill")
+    static var keyboardHapticFeedbackDisabled = symbol("hand.tap")
     static var keyboardImages: Image { .symbol("photo") }
     static var keyboardLeft: Image { .symbol("arrow.left") }
     static var keyboardNewline: Image { .symbol("arrow.turn.down.left") }

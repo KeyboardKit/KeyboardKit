@@ -60,7 +60,7 @@ You can customize the action behavior by replacing ``KeyboardInputViewController
 
 You can create a custom ``KeyboardActionHandler`` by either inheriting the ``StandardKeyboardActionHandler`` base class and customize the parts you want, or implement the ``KeyboardActionHandler`` protocol from scratch. 
 
-For instance, here is a custom handler that inherits ``StandardKeyboardActionHandler`` and extends it with the image capabilities:
+For instance, here's a custom handler that inherits ``StandardKeyboardActionHandler`` and extends it with the image capabilities:
 
 ```swift
 class CustomActionHandler: StandardKeyboardActionHandler {

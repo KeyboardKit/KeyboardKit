@@ -69,13 +69,6 @@ KeyboardKit is available under the MIT license.
 ### Essentials
 
 - <doc:Essentials>
-
-### Articles
-
-- <doc:Styling>
-
-### Essentials
-
 - ``Keyboard``
 - ``KeyboardBehavior``
 - ``KeyboardContext``
@@ -220,7 +213,7 @@ KeyboardKit is available under the MIT license.
 
 ### Styling
 
-- ``KeyboardAppearanceViewModifier``
+- <doc:Understanding-Styling>
 - ``KeyboardFont``
 - ``KeyboardStyle``
 - ``KeyboardStyleProvider``

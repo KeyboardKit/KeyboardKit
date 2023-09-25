@@ -51,7 +51,7 @@ You can customize the callout actions by adding localized providers to the defau
 
 You can create a custom ``CalloutActionProvider`` by either inheriting the ``StandardCalloutActionProvider`` base class and customize the parts you want, or implement the ``CalloutActionProvider`` protocol from scratch.
 
-For instance, here is a custom provider that inherits ``StandardCalloutActionProvider`` and customizes the secondary actions for the `$` key:
+For instance, here's a custom provider that inherits ``StandardCalloutActionProvider`` and customizes the secondary actions for the `$` key:
 
 ```swift
 class CustomCalloutActionProvider: StandardCalloutActionProvider {
