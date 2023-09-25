@@ -91,7 +91,9 @@ Note that the library no longer sets up English services by default, so make sur
 * `FeatureToggle` has been removed.
 * `HapticFeedback.Engine` is no longer open to inheritance.
 * `KeyboardAction.emojiCategory` has been removed.
-* `KeyboardSettingsUrlProvider` has been removed, just use `URL.keyboardSettings` instead.
+* `KeyboardColor` has been made internal.
+* `KeyboardColorReader` has been made removed. Use `Color` extensions instead.
+* `KeyboardSettingsUrlProvider` has been removed. Use `URL.keyboardSettings` instead.
 * `LocaleDirectionAnalyzer` has been removed.
 * `LocaleNameProvider` has been removed. 
 * `StandardCalloutActionProvider.standardProvider` has been removed.

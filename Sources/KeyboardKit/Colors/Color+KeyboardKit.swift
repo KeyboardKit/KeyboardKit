@@ -8,34 +8,10 @@
 
 import SwiftUI
 
-/**
- This protocol can be implemented by any type that should be
- able to access keyboard-specific colors.
-
- This protocol is implemented by `Color`. This means that it
- is possible to use e.g. `Color.standardButtonBackground` to
- get the standard button background.
-
- The context-based color functions may look strange, but the
- reason for having them is because iOS keyboards get invalid
- color schemes when used with a dark appearance. This causes
- the extension to get a dark color scheme even if the system
- color scheme is light. To work around this, some colors use
- a color set with a `ForColorSchemeBug` suffix that are semi
- transparent white with an opacity that aims to look good in
- both light and dark mode.
-
- Issue report (also reported to Apple in Feedback Assistant):
- https://github.com/danielsaidi/KeyboardKit/issues/305
- */
-public protocol KeyboardColorReader {}
-
-extension Color: KeyboardColorReader {}
-
 
 // MARK: - Properties
 
-public extension KeyboardColorReader {
+public extension Color {
 
     /**
      This color can be used instead of `.clear` if the color
@@ -133,7 +109,7 @@ public extension KeyboardColorReader {
 
 // MARK: - Internal Functions
 
-extension KeyboardColorReader {
+extension Color {
     
     /**
      The standard background color of light keyboard buttons
@@ -155,7 +131,7 @@ extension KeyboardColorReader {
 
 // MARK: - Functions
 
-public extension KeyboardColorReader {
+public extension Color {
 
     /**
      The standard background color of light keyboard buttons.
@@ -201,14 +177,14 @@ public extension KeyboardColorReader {
     }
 }
 
-private extension KeyboardColorReader {
+private extension Color {
     
     static func color(for color: KeyboardColor) -> Color {
         color.color
     }
 }
 
-struct KeyboardColorReader_Previews: PreviewProvider {
+struct Color_KeyboardKit_Previews: PreviewProvider {
     
     static func preview(for color: Color, name: String) -> some View {
         VStack(alignment: .leading) {

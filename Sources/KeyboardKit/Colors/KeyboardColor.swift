@@ -9,16 +9,12 @@
 import SwiftUI
 
 /**
- [DEPRECATED] - This will become internal in KeyboardKit 8.0.
- 
  This enum defines raw, keyboard-specific asset-based colors.
 
- Although you can use this type directly, you should instead
- use the ``KeyboardColorReader`` protocol, to get extensions
- that build on these colors. `Color` already implements this
- protocol, so you can use it directly.
+ Instead of using this type directly, you should instead use
+ the keyboard-specific `Color` extensions.
  */
-public enum KeyboardColor: String, CaseIterable, Identifiable {
+enum KeyboardColor: String, CaseIterable, Identifiable {
     
     case standardButtonBackground
     case standardButtonBackgroundForColorSchemeBug
@@ -33,7 +29,7 @@ public enum KeyboardColor: String, CaseIterable, Identifiable {
     case standardKeyboardBackgroundForDarkAppearance
 }
 
-public extension KeyboardColor {
+extension KeyboardColor {
 
     /**
      The bundle to use to retrieve bundle-based color assets.
@@ -44,7 +40,7 @@ public extension KeyboardColor {
     static var bundle: Bundle = .keyboardKit
 }
 
-public extension KeyboardColor {
+extension KeyboardColor {
     
     /// The color's unique identifier.
     var id: String { rawValue }
