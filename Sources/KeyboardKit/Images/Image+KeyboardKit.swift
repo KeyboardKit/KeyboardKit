@@ -8,19 +8,7 @@
 
 import SwiftUI
 
-/**
- This protocol can be implemented by any type that should be
- able to access keyboard-specific images.
-
- This protocol is implemented by `Image`. This means that it
- is possible to use e.g. `Image.keyboardSettings` to get the
- standard keyboard settings icon.
- */
-public protocol KeyboardImageReader {}
-
-extension Image: KeyboardImageReader {}
-
-public extension KeyboardImageReader {
+public extension Image {
     
     static var keyboard: Image { .symbol("keyboard") }
     static var keyboardBackspace: Image { .symbol("delete.left") }
@@ -78,7 +66,7 @@ extension Image {
     }
 }
 
-struct KeyboardImageReader_Previews: PreviewProvider {
+struct Image_Previews: PreviewProvider {
     
     static var images: [Image] = [
         .keyboard,

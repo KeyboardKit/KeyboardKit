@@ -2,17 +2,15 @@
 
 This article describes the KeyboardKit color engine.
 
+While you can use any native `Color` you like in your custom keyboards, having access to keyboard-specific colors simplifies creating custom keyboards that look more native.
+
 KeyboardKit provides a bunch of keyboard-specific `Color` extensions, such as standard colors for buttons, backgrounds, etc. 
 
 Some of these colors come with some built-in logic to help work around system limitations, so make sure to read this article carefully.
 
 
 
-## Keyboard-specific colors
-
-KeyboardKit has a bunch of `Color` extensions that provide raw and contextual keyboard colors.
-
-### Raw colors
+## Raw colors
 
 The raw colors aim to match the iOS system design as closely as possible:
 
@@ -32,7 +30,9 @@ Color.standardKeyboardBackgroundForDarkAppearance
 
 The colors without **ForDarkAppearance** suffix support both light and dark mode, while the ones with the prefix are meant to be used for dark appearance keyboards in light mode.
 
-### Contextual colors
+
+
+## Contextual colors
 
 The contextual colors take a ``KeyboardContext`` instance and will vary the result based on the context:
 

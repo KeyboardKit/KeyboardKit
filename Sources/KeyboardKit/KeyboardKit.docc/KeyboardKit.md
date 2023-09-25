@@ -222,7 +222,6 @@ KeyboardKit is available under the MIT license.
 
 - ``KeyboardAppearanceViewModifier``
 - ``KeyboardFont``
-- ``KeyboardImageReader``
 - ``KeyboardStyle``
 - ``KeyboardStyleProvider``
 

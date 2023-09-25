@@ -1,12 +1,14 @@
 # Understanding Images
 
-This article describes the KeyboardKit keyboard image collection.
+This article describes the KeyboardKit keyboard image engine.
 
-KeyboardKit provides a bunch of keyboard-specific images, both SF Symbol-based and asset-based ones. 
+While you can use any native `Image` you like in your custom keyboards, having access to keyboard-specific images simplifies creating custom keyboards that look more native.
+
+KeyboardKit provides a bunch of keyboard-specific `Image` extensions, both SF Symbol and asset-based ones. 
 
 
 
-### Symbols
+## Symbol-based images
 
 KeyboardKit has `Image` extensions that resolve to SF Symbols, for instance:
 
@@ -14,12 +16,18 @@ KeyboardKit has `Image` extensions that resolve to SF Symbols, for instance:
 Image.keyboard
 Image.keyboardBackspace
 Image.keyboardBackspaceRtl
+Image.keyboardCommand
+Image.keyboardControl
+Image.keyboardDictation
+Image.keyboardDismiss
+Image.keyboardEmail
 ```
 
-These images are prefixed with `keyboard` so that typing `Image.keyboard` gives you a list of all available images.
+These images are prefixed with `keyboard`, so typing `Image.keyboard` gives you a list of all available images.
 
 
-### Assets
+
+## Asset-based images
 
 KeyboardKit also has a few `Image` extensions that resolve to embedded assets, for instance:
 

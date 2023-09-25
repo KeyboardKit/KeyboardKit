@@ -9,7 +9,7 @@
 import SwiftUI
 
 
-// MARK: - Properties
+// MARK: - Raw Colors
 
 public extension Color {
 
@@ -107,29 +107,8 @@ public extension Color {
     }
 }
 
-// MARK: - Internal Functions
 
-extension Color {
-    
-    /**
-     The standard background color of light keyboard buttons
-     when accounting for the iOS dark mode bug.
-     */
-    static var standardButtonBackgroundForColorSchemeBug: Color {
-        color(for: .standardButtonBackgroundForColorSchemeBug)
-    }
-    
-    /**
-     The standard background color of a dark keyboard button
-     when accounting for the iOS dark mode bug.
-     */
-    static var standardDarkButtonBackgroundForColorSchemeBug: Color {
-        color(for: .standardDarkButtonBackgroundForColorSchemeBug)
-    }
-}
-
-
-// MARK: - Functions
+// MARK: - Contextual Colors
 
 public extension Color {
 
@@ -176,6 +155,31 @@ public extension Color {
             .standardDarkButtonForeground
     }
 }
+
+
+// MARK: - Internal Functions
+
+extension Color {
+    
+    /**
+     The standard background color of light keyboard buttons
+     when accounting for the iOS dark mode bug.
+     */
+    static var standardButtonBackgroundForColorSchemeBug: Color {
+        color(for: .standardButtonBackgroundForColorSchemeBug)
+    }
+    
+    /**
+     The standard background color of a dark keyboard button
+     when accounting for the iOS dark mode bug.
+     */
+    static var standardDarkButtonBackgroundForColorSchemeBug: Color {
+        color(for: .standardDarkButtonBackgroundForColorSchemeBug)
+    }
+}
+
+
+// MARK: - Private Functions
 
 private extension Color {
     
