@@ -11,8 +11,14 @@ import SwiftUI
 /**
  This link can be used to navigate a user to System Settings.
 
- The link behavior is a bit inconsistent, where iOS can link
- to either application settings, or the System Settings root.
+ The link's behavior is a bit inconsistent. It should always
+ link to an app's custom settings in System Settings, but it
+ can sometimes just link to the System Settings root instead.
+ The reason for this behavior is unknown.
+ 
+ To improve the behavior of this link, add an empty Settings
+ Bundle to your application bundle. This makes your app more
+ likely to open the correct screen.
  */
 public struct KeyboardSettingsLink<Content: View>: View {
 

@@ -72,7 +72,6 @@ KeyboardKit is available under the MIT license.
 
 ### Articles
 
-- <doc:Settings>
 - <doc:Styling>
 
 ### Essentials
@@ -208,8 +207,8 @@ KeyboardKit is available under the MIT license.
 
 ### Settings
 
+- <doc:Understanding-Settings>
 - ``KeyboardSettingsLink``
-- ``KeyboardSettingsUrlProvider``
 
 ### State
 

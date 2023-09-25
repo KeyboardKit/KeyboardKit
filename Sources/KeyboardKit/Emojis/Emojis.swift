@@ -12,7 +12,6 @@ import Foundation
  This namespace contains emojis-related types.
  
  The namespace doesn't contain protocols or open classes, or
- types that are meant to be top-level ones. It's meant to be
- a container for types used by top-level types.
+ types that are meant to be top-level ones.
  */
 public struct Emojis {}

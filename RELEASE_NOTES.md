@@ -50,6 +50,7 @@ Note that the library no longer sets up English services by default, so make sur
 * `Gestures` is a new namespace for gesture-related functionality.
 * `KeyboardPreviews` is a new namespace for preview-related functionality.
 * `Proxy` is a new namespace for proxy-related functionality.
+* `KeyboardSettings` is a new namespace for settings-related functionality.
 
 ### 💡 Adjustments
 
@@ -90,6 +91,7 @@ Note that the library no longer sets up English services by default, so make sur
 * `FeatureToggle` has been removed.
 * `HapticFeedback.Engine` is no longer open to inheritance.
 * `KeyboardAction.emojiCategory` has been removed.
+* `KeyboardSettingsUrlProvider` has been removed, just use `URL.keyboardSettings` instead.
 * `LocaleDirectionAnalyzer` has been removed.
 * `LocaleNameProvider` has been removed. 
 * `StandardCalloutActionProvider.standardProvider` has been removed.
