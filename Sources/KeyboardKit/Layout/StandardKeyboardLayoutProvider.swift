@@ -9,17 +9,15 @@
 import Foundation
 
 /**
- This standard keyboard layout provider uses a collection of
- localized providers as well as a base one, to resolve which
- provider use for a certain keyboard context.
+ This provider is initialized with a collection of localized
+ providers, as well as a base provider.
  
  If the localized providers doesn't contain a provider for a
- certain locale, then the base provider will be used.
+ certain locale, the base provider will be used.
  
- The default configuration is to use a standard English base
- provider and no localized providers. To modify the keyboard
- layout for a certain locale, just provide a layout provider
- for that specific locale.
+ The standard configuration is to use a base provider and no
+ localized providers. KeyboardKit Pro will inject a provider
+ for each locale in your license when you register a license.
  */
 open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     
@@ -27,8 +25,8 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
      Create a standard keyboard layout provider.
      
      - Parameters:
-       - baseProvider: The provider to use when no localized provider matches the context, by default ``InputSetBasedKeyboardLayoutProvider``.
-       - localizedProviders: A dictionary with localized layout providers, by default `empty`.
+       - baseProvider: The base provider, by default a ``InputSetBasedKeyboardLayoutProvider``.
+       - localizedProviders: A list of localized layout providers, by default `empty`.
      */
     public init(
         baseProvider: KeyboardLayoutProvider = InputSetBasedKeyboardLayoutProvider(),

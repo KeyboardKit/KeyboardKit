@@ -6,9 +6,9 @@ A flexible keyboard layout is an important part of a software keyboard, where ma
 
 In KeyboardKit, ``InputSet``s and ``KeyboardLayout``s are important concepts to create a flexible keyboard layout, where the input set specifies the input keys of the keyboard and the keyboard layout specifies the full set of keys.
 
-KeyboardKit will bind a ``StandardKeyboardLayoutProvider`` to ``KeyboardInputViewController/keyboardLayoutProvider`` when the keyboard is loaded. It has a QWERTY layout by default, but you can add localized providers to it or replace it with a custom implementation at any time.
+KeyboardKit will bind a ``StandardKeyboardLayoutProvider`` to ``KeyboardInputViewController/keyboardLayoutProvider`` when the keyboard is loaded. It has a QWERTY layout by default, but you can inject localized providers into it or replace it with a custom implementation at any time.
 
-[KeyboardKit Pro][Pro] unlocks additional input sets, and registers localized input sets and layout providers for all keyboard locales when you register a valid license key. Information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks and registers localized providers for all keyboard locales when you register a valid license key. It also lets you inherit **ProKeyboardLayoutProvider** for more features. Information about Pro features can be found at the end of this article.
 
 
 
@@ -42,9 +42,7 @@ You can customize the keyboard layout by adding localized providers to the defau
 
 You can create a custom ``KeyboardLayoutProvider`` by either inheriting the ``StandardKeyboardLayoutProvider`` base class and customize the parts you want, or implement the ``KeyboardLayoutProvider`` protocol from scratch.
 
-There are also several base classes make it easy to implement custom layouts. 
-
-For instance ``BaseKeyboardLayoutProvider`` provides base functionality, ``InputSetBasedKeyboardLayoutProvider`` lets you use input sets, and ``iPadKeyboardLayoutProvider`` & ``iPhoneKeyboardLayoutProvider`` provides platform baselines. 
+There are also some base classes to make it easy to implement a custom provider. ``BaseKeyboardLayoutProvider`` provides base functionality, ``InputSetBasedKeyboardLayoutProvider`` lets you use input sets, and ``iPadKeyboardLayoutProvider`` & ``iPhoneKeyboardLayoutProvider`` provides a baseline for each platform. 
 
 For instance, here's a custom provider that inherits ``StandardKeyboardLayoutProvider`` and injects a tab key into the layout:
 

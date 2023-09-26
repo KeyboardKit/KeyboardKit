@@ -10,20 +10,14 @@ import CoreGraphics
 import SwiftUI
 
 /**
- This is a base class for layout providers that should share
- basic layout functionality.
+ This is a base class for custom keyboard layout providers.
+ 
+ You can inherit this class to get access to convenient base
+ functionality, then override any parts you want to change.
 
  The class is used by the ``iPadKeyboardLayoutProvider`` and
- and the ``iPhoneKeyboardLayoutProvider``, since they aim to
- create platforms-specific system keyboard layouts.
- 
- Since keyboard extensions don't support `dictation` without
- having to jump through hoops (see SwiftKey) the initializer
- has a `dictationReplacement` parameter, that can be used to
- place another action where the dictation key would go.
- 
- If you want to create an entirely custom layout, you should
- just implement `KeyboardLayoutProvider`.
+ the ``iPhoneKeyboardLayoutProvider`` which provide specific
+ layouts for the various platforms on top of this base class.
  */
 open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
     

@@ -6,9 +6,9 @@ Callouts are an important part of the typing experience, where input callouts sh
 
 In KeyboardKit, a ``CalloutActionProvider`` can be used to provide secondary actions to an ``Callouts/ActionCallout``, which in turn will update views like ``Callouts/ActionCallout``.
 
-KeyboardKit will bind a ``StandardCalloutActionProvider`` to ``KeyboardInputViewController/calloutActionProvider`` when the keyboard is loaded. It has no callout actions by default, but you can add localized providers to it or replace it with a custom implementation at any time.
+KeyboardKit will bind a ``StandardCalloutActionProvider`` to ``KeyboardInputViewController/calloutActionProvider`` when the keyboard is loaded. It has a base set of actions, but you can inject localized providers into it or replace it with a custom implementation at any time.
 
-[KeyboardKit Pro][Pro] unlocks and registers localized providers for all keyboard locales when you register a valid license key. It also lets you inherit the `ProCalloutActionProvider` for more features. Information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks and registers localized providers for all keyboard locales when you register a valid license key. It also lets you inherit **ProCalloutActionProvider** for more features. Information about Pro features can be found at the end of this article.
 
 
 
@@ -35,7 +35,7 @@ MyKeyboard()
 
 This view extension will bind a ``CalloutContext`` and its input and action contexts to the view, then apply ``Callouts/ActionCallout`` and ``Callouts/InputCallout`` views that will show as these contexts change. 
 
-The ``SystemKeyboard`` and ``KeyboardButton/Button`` will automatically update these contexts as you interact with a button.
+The ``SystemKeyboard`` and ``KeyboardButton/Button`` will automatically apply this extension and update the callout contexts as you interact with the keyboard.
 
 
 
@@ -50,6 +50,8 @@ You can customize the callout actions by adding localized providers to the defau
 ## How to create a custom callout action provider
 
 You can create a custom ``CalloutActionProvider`` by either inheriting the ``StandardCalloutActionProvider`` base class and customize the parts you want, or implement the ``CalloutActionProvider`` protocol from scratch.
+
+There is also a base class to make it easy to implement a custom provider. ``BaseCalloutActionProvider`` provides base functionality that you can extend.
 
 For instance, here's a custom provider that inherits ``StandardCalloutActionProvider`` and customizes the secondary actions for the `$` key:
 

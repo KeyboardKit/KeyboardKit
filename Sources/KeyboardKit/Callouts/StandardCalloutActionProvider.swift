@@ -10,7 +10,14 @@ import Foundation
 
 /**
  This provider is initialized with a collection of localized
- providers, and will try to use one that matches the context.
+ providers, as well as a base provider.
+ 
+ If the localized providers doesn't contain a provider for a
+ certain locale, the base provider will be used.
+ 
+ The standard configuration is to use a base provider and no
+ localized providers. KeyboardKit Pro will inject a provider
+ for each locale in your license when you register a license.
  */
 open class StandardCalloutActionProvider: CalloutActionProvider {
 
@@ -19,13 +26,16 @@ open class StandardCalloutActionProvider: CalloutActionProvider {
 
       - Parameters:
         - keyboardContext: The keyboard context to use.
-        - providers: The action providers to use, by default `empty`.
+        - baseProvider: The base provider, by default a ``BaseCalloutActionProvider``.
+        - localizedProviders: A list of localized layout providers, by default `empty`.
      */
     public init(
         keyboardContext: KeyboardContext,
+        baseProvider: CalloutActionProvider = BaseCalloutActionProvider(),
         localizedProviders: [CalloutActionProvider & LocalizedService] = []
     ) {
         self.keyboardContext = keyboardContext
+        self.baseProvider = baseProvider
         let dict = Dictionary(uniqueKeysWithValues: localizedProviders.map { ($0.localeKey, $0) })
         self.localizedProviders = LocaleDictionary(dict)
     }
@@ -33,23 +43,41 @@ open class StandardCalloutActionProvider: CalloutActionProvider {
     /// The keyboard context to use.
     public let keyboardContext: KeyboardContext
     
+    /// The base provider to use.
+    public private(set) var baseProvider: CalloutActionProvider
+
     /// This is used to resolve the a provider for the context.
     public var localizedProviders: LocaleDictionary<CalloutActionProvider>
 
 
     /// Get callout actions for the provided action.
     open func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {
-        let provider = provider(for: keyboardContext)
-        let actions = provider?.calloutActions(for: action)
-        return actions ?? []
+        calloutActionProvider(for: keyboardContext)
+            .calloutActions(for: action)
     }
 
     /// Get the provider to use for the provided context.
+    open func calloutActionProvider(
+        for context: KeyboardContext
+    ) -> CalloutActionProvider {
+        calloutActionProvider(for: context.locale)
+    }
+    
+    /// Get the provider to use for the provided locale.
+    open func calloutActionProvider(
+        for locale: Locale
+    ) -> CalloutActionProvider {
+        localizedProviders.value(for: locale) ?? baseProvider
+    }
+    
+    
+    
+    @available(*, deprecated, renamed: "calloutActionProvider(for:)", message: "This will be removed in KeyboardKit 8.1.")
     open func provider(for context: KeyboardContext) -> CalloutActionProvider? {
         provider(for: context.locale)
     }
     
-    /// Get the provider to use for the provided locale.
+    @available(*, deprecated, renamed: "calloutActionProvider(for:)", message: "This will be removed in KeyboardKit 8.1.")
     open func provider(for locale: Locale) -> CalloutActionProvider? {
         localizedProviders.value(for: locale)
     }

@@ -105,6 +105,7 @@ KeyboardKit is available under the MIT license.
 - ``CalloutContext``
 - ``CalloutActionProvider``
 - ``StandardCalloutActionProvider``
+- ``BaseKeyboardLayoutProvider``
 
 ### Colors
 
@@ -166,8 +167,8 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardLayoutProviderProxy``
 - ``KeyboardLayoutRowItem``
 
-- ``BaseKeyboardLayoutProvider``
 - ``StandardKeyboardLayoutProvider``
+- ``BaseKeyboardLayoutProvider``
 - ``InputSetBasedKeyboardLayoutProvider``
 - ``iPadKeyboardLayoutProvider``
 - ``iPhoneKeyboardLayoutProvider``
