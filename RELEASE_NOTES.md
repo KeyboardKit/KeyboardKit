@@ -25,9 +25,12 @@ Some nice-to-have utilities that bloated the library while providing little valu
 
 * Make sure to inherit the new `ProKeyboardActionHandler` if you use a custom action handler together with KeyboardKit Pro.
 * The communicated keyboard font changes will not be performed in this major version. 
-
-* `StandardKeyboardActionHandler` no longer registers the most recently used emojis, since this has moved to KeyboardKit Pro. 
+ 
 * `ProKeyboardActionHandler` is a new action handler that registers the most recently used emojis.
+* `StandardKeyboardActionHandler` no longer registers the most recently used emojis, since this has moved to KeyboardKit Pro.
+* `SystemKeyboard` provides MUCH easier customizations, but must be provided with explicit view builders.
+* `SystemKeyboard` no longer has an emoji keyboard by default, since it has been moved to KeyboardKit Pro.
+* `SystemKeyboard` no longer hides or configures the autocomplete toolbar. Do this in the new `toolbar` view builder.
 
 ### ✨ New Features
 
@@ -36,7 +39,7 @@ Some nice-to-have utilities that bloated the library while providing little valu
 * `KeyboardButton` now supports providing interactable `edgeInsets`.
 * `KeyboardButton` now supports providing an external `isPressed` state.
 * `KeyboardLayout.Item` has a new `width(forRowWidth:inputWidth:)` function.
-* `SystemKeyboard` has new initializers that make it much easier to customize the content and view of its keys.
+* `SystemKeyboard` has new initializers with view builders that make it much easier to customize button content, button views, emoji keyboard and toolbar.
 * `View.keyboardButton` is a new view extension that applies both a style and gestures.
 * `View.keyboardCalloutContainer` is a new view extension that applies both input and action callout container modifiers to the view. 
 * `View.keyboardLayoutItemSize` is a new view extension that applies a layout-specific size and insets to the view.
@@ -59,6 +62,8 @@ Some nice-to-have utilities that bloated the library while providing little valu
 
 * `AutocompleteProvider` is now async instead of using completions.
 * `InputSet` has been converted to a struct.
+* `SystemKeyboard` no longer has an emoji keyboard by default, since it has been moved to KeyboardKit Pro.
+* `SystemKeyboard` no longer hides or configures the autocomplete toolbar. Do this in the new `toolbar` view builder.
 * `View+KeyboardButton` now has support for custom, intrinsic edge insets.
 * `View+KeyboardButton` now applies a locale context menu to `nextLocale` buttons.
 
@@ -102,7 +107,7 @@ Some nice-to-have utilities that bloated the library while providing little valu
 * `SentenceAnalyzer` has been removed. Use `String` extensions directly instead. 
 * `StandardCalloutActionProvider.standardProvider` has been removed.
 * `StaticKeyboardLayoutProvider` has been removed.
-* `SystemKeyboard` no longer has a `buttonContent` initializer.
+* `SystemKeyboard` is much easier to configure, but requires explicit view builders.
 * `SystemKeyboardItem` can no longer be initialized outside the library.
 * `View.keyboardButtonStyle(...)` no longer has an `isPressed` parameter.
 * `View.systemKeyboardButtonStyle(...)` has been renamed to `.keyboardButtonStyle(...)`.

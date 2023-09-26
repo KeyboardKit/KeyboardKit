@@ -43,37 +43,47 @@ The setup function's view builder provides an `unowned` controller reference to 
 
 A ``SystemKeyboard`` can be customized and styled to great extent. For instance, you can pass in custom keyboard layouts to it, and provide it with custom services and observable state to it to modify its behavior. 
 
-The `buttonContent` and `buttonView` parameters can be used to customize the content or the entire view of any keyboard button. These functions are called for each layout item and are provided with the item and its standard view.
+The `buttonContent` and `buttonView` parameters can be used to customize the content or the entire view of any button.
 
-To use the standard views, just return the provided ones with `{ $1 }`, or `{ item, view in view }` for more expressive code:
+The `emojiKeyboard` parameter defines the view that will be used for the ``Keyboard/KeyboardType/emojis`` keyboard type. An `EmptyView` is used as the default view, but KeyboardKit Pro unlocks an **EmojiKeyboard** that you can use.
+
+The `toolbar` parameter defines the view that will be added above the keyboard. An ``AutocompleteToolbar`` will be used as the default view.
+
+To use the standard views for all these views, you can just return `{ $0.view }`, or `{ params in params.view }` if you prefer more expressive code:
 
 ```swift
 SystemKeyboard(
     controller: controller,
-    buttonContent: { $1 },
-    buttonView: { item, view in view }
+    buttonContent: { params in params.view },
+    buttonView: { $0.view },
+    emojiKeyboard: { $0.view },
+    toolbar: { $0.view }
 )
-```  
+```
+
+The various view builders provide even more parameters than just the default view. For instance, the button content and button view builders get the full layout item as well.
 
 To customize or replace the standard content and item views for any item, just provide custom builders like this:
 
 ```swift
 SystemKeyboard(
     controller: controller,
-    buttonContent: { item, view in
-        switch item.action {
+    buttonContent: { params in
+        switch params.item.action {
         case .backspace: Image(systemName: "trash")
-        default: view
+        default: params.view
         }
     },
-    buttonView: { item, view in
-        switch item.action {
+    buttonView: { params in
+        switch params.item.action {
         case .space: Text("This is true, empty space")
             .opacity(0)
             .frame(maxWidth: .infinity)
-        default: view
+        default: params.view
         }
-    }
+    },
+    emojiKeyboard: { _ in Color.red },
+    toolbar: { _ in Color.yellow }
 )
 ```
 

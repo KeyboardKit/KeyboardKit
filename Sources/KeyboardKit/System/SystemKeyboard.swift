@@ -22,21 +22,34 @@ import SwiftUI
  call any of the `setup(with:)` functions with a custom view.
  
  The `buttonContent` and `buttonView` parameters can be used
- to customize the content or the entire view of any keyboard
- button. These functions are called for each layout item and
- are provided with the item and its standard view.
+ to customize the content or the entire view of any button.
  
- To use the standard content and item views, just return the
- provided ones with `{ $1 }`, or `{ item, view in view }` if
- you prefer more expressive code:
+ The `emojiKeyboard` parameter defines the view that will be
+ used for the ``Keyboard/KeyboardType/emojis`` keyboard type.
+ An `EmptyView` is used as the default view, but KeyboardKit
+ Pro unlocks an **EmojiKeyboard** that you can use.
+ 
+ The `toolbar` parameter defines the view that will be added
+ above the keyboard. An ``AutocompleteToolbar`` will be used
+ as the default view.
+ 
+ To use the standard views for all these views, you can just
+ return `{ $0.view }`, or `{ params in params.view }` if you
+ prefer more expressive code:
  
  ```swift
  SystemKeyboard(
      controller: controller,
-     buttonContent: { $1 },
-     buttonView: { item, view in view }
+     buttonContent: { params in params.view },
+     buttonView: { $0.view },
+     emojiKeyboard: { $0.view },
+     toolbar: { $0.view }
  )
  ```
+ 
+ The various view builders provide even more parameters than
+ just the default view. For instance, the button content and
+ button view builders get the full layout item as well.
  
  To customize or replace the standard content and item views
  for any item, just provide custom builders like this:
@@ -44,20 +57,22 @@ import SwiftUI
  ```swift
  SystemKeyboard(
      controller: controller,
-     buttonContent: { item, view in
-         switch item.action {
+     buttonContent: { params in
+         switch params.item.action {
          case .backspace: Image(systemName: "trash")
-         default: view
+         default: params.view
          }
      },
-     buttonView: { item, view in
-         switch item.action {
+     buttonView: { params in
+         switch params.item.action {
          case .space: Text("This is true, empty space")
              .opacity(0)
              .frame(maxWidth: .infinity)
-         default: view
+         default: params.view
          }
-     }
+     },
+     emojiKeyboard: { _ in Color.red },
+     toolbar: { _ in Color.yellow }
  )
  ```
  
@@ -77,7 +92,11 @@ import SwiftUI
  You can take a look at the source code of the various views
  in the library for inspiration.
  */
-public struct SystemKeyboard<ButtonContent: View, ButtonView: View>: View {
+public struct SystemKeyboard<
+    ButtonContent: View,
+    ButtonView: View,
+    EmojiKeyboard: View,
+    Toolbar: View>: View {
 
     /**
      Create a system keyboard with custom button views.
@@ -94,8 +113,10 @@ public struct SystemKeyboard<ButtonContent: View, ButtonView: View>: View {
        - renderBackground: Whether or not to render the background, by default `true`.
        - width: The keyboard width.
        - renderBackground: Whether or not to render the background, by default `true`.
-       - buttonContent: The keyboard button content view builder to use.
-       - buttonView: The keyboard button view builder to use.
+       - buttonContent: The keyboard button content view to use for an item.
+       - buttonView: The keyboard button view to use for an item.
+       - emojiKeyboard: The emoji keyboard to replace the keyboard with when the keyboard type becomes `.emoji`.
+       - toolbar: The keyboard toolbar to add above the keyboard.
      */
     public init(
         layout: KeyboardLayout,
@@ -109,7 +130,9 @@ public struct SystemKeyboard<ButtonContent: View, ButtonView: View>: View {
         width: KeyboardWidth,
         renderBackground: Bool = true,
         @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
-        @ViewBuilder buttonView: @escaping ButtonViewBuilder
+        @ViewBuilder buttonView: @escaping ButtonViewBuilder,
+        @ViewBuilder emojiKeyboard: @escaping EmojiKeyboardBuilder,
+        @ViewBuilder toolbar: @escaping ToolbarBuilder
     ) {
         self.layout = layout
         self.layoutConfig = .standard(for: keyboardContext)
@@ -119,9 +142,11 @@ public struct SystemKeyboard<ButtonContent: View, ButtonView: View>: View {
         self.autocompleteToolbarAction = autocompleteToolbarAction
         self.keyboardWidth = width
         self.inputWidth = layout.inputWidth(for: width)
-        self.buttonContent = buttonContent
-        self.buttonView = buttonView
         self.renderBackground = renderBackground
+        self.buttonContentBuilder = buttonContent
+        self.buttonViewBuilder = buttonView
+        self.emojiKeyboardBuilder = emojiKeyboard
+        self.toolbarBuilder = toolbar
         _autocompleteContext = ObservedObject(wrappedValue: autocompleteContext)
         _calloutContext = ObservedObject(wrappedValue: calloutContext ?? .disabled)
         _keyboardContext = ObservedObject(wrappedValue: keyboardContext)
@@ -140,6 +165,10 @@ public struct SystemKeyboard<ButtonContent: View, ButtonView: View>: View {
        - autocompleteToolbarAction: The action to trigger when tapping an autocomplete suggestion, by default ``KeyboardInputViewController/insertAutocompleteSuggestion(_:)``.
        - width: The keyboard width, by default the width of the controller's view.
        - renderBackground: Whether or not to render the background, by default `true`.
+       - buttonContent: The keyboard button content view to use for an item.
+       - buttonView: The keyboard button view to use for an item.
+       - emojiKeyboard: The emoji keyboard to replace the keyboard with when the keyboard type becomes `.emoji`.
+       - toolbar: The keyboard toolbar to add above the keyboard.
      */
     public init(
         controller: KeyboardInputViewController,
@@ -148,7 +177,9 @@ public struct SystemKeyboard<ButtonContent: View, ButtonView: View>: View {
         width: CGFloat? = nil,
         renderBackground: Bool = true,
         @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
-        @ViewBuilder buttonView: @escaping ButtonViewBuilder
+        @ViewBuilder buttonView: @escaping ButtonViewBuilder,
+        @ViewBuilder emojiKeyboard: @escaping EmojiKeyboardBuilder,
+        @ViewBuilder toolbar: @escaping ToolbarBuilder
     ) {
         self.init(
             layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
@@ -164,11 +195,49 @@ public struct SystemKeyboard<ButtonContent: View, ButtonView: View>: View {
             width: width ?? controller.view.frame.width,
             renderBackground: renderBackground,
             buttonContent: buttonContent,
-            buttonView: buttonView
+            buttonView: buttonView,
+            emojiKeyboard: emojiKeyboard,
+            toolbar: toolbar
         )
     }
     #endif
 
+    
+    /// This typealias defines button content builder params.
+    public typealias ButtonContentParams = (
+        item: KeyboardLayout.Item,
+        view: KeyboardButton.Content)
+    
+    /// This typealias defines button view builder params.
+    public typealias ButtonViewParams = (
+        item: KeyboardLayout.Item,
+        view: SystemKeyboardItem<ButtonContent>)
+    
+    /// This typealias defines emoji keyboard builder params.
+    public typealias EmojiKeyboardParams = (
+        style: KeyboardStyle.EmojiKeyboard,
+        view: EmptyView)
+    
+    /// This typealias defines toolbar builder params.
+    public typealias ToolbarParams = (
+        autocompleteAction: (Autocomplete.Suggestion) -> Void,
+        style: KeyboardStyle.AutocompleteToolbar,
+        view: AutocompleteToolbar<Autocomplete.ToolbarItem, Autocomplete.ToolbarSeparator>)
+
+    
+    /// This typealias defines a button content builder.
+    public typealias ButtonContentBuilder = (ButtonContentParams) -> ButtonContent
+    
+    /// This typealias defines a button view builder.
+    public typealias ButtonViewBuilder = (ButtonViewParams) -> ButtonView
+    
+    /// This typealias defines a emoji keyboard builder.
+    public typealias EmojiKeyboardBuilder = (EmojiKeyboardParams) -> EmojiKeyboard
+    
+    /// This typealias defines a toolbar builder.
+    public typealias ToolbarBuilder = (ToolbarParams) -> Toolbar
+
+    
     private let actionHandler: KeyboardActionHandler
     private let styleProvider: KeyboardStyleProvider
     private let autocompleteToolbarMode: AutocompleteToolbarMode
@@ -179,8 +248,10 @@ public struct SystemKeyboard<ButtonContent: View, ButtonView: View>: View {
     private let layout: KeyboardLayout
     private let layoutConfig: KeyboardLayout.Configuration
     
-    private let buttonContent: ButtonContentBuilder
-    private let buttonView: ButtonViewBuilder
+    private let buttonContentBuilder: ButtonContentBuilder
+    private let buttonViewBuilder: ButtonViewBuilder
+    private let emojiKeyboardBuilder: EmojiKeyboardBuilder
+    private let toolbarBuilder: ToolbarBuilder
     
     public enum AutocompleteToolbarMode {
 
@@ -191,9 +262,6 @@ public struct SystemKeyboard<ButtonContent: View, ButtonView: View>: View {
         case none
     }
 
-    public typealias ButtonContentBuilder = (KeyboardLayout.Item, _ standard: KeyboardButton.Content) -> ButtonContent
-    public typealias ButtonViewBuilder = (KeyboardLayout.Item, _ standard: SystemKeyboardItem<ButtonContent>) -> ButtonView
-    
     public typealias AutocompleteToolbarAction = (Autocomplete.Suggestion) -> Void
     public typealias KeyboardWidth = CGFloat
     public typealias KeyboardItemWidth = CGFloat
@@ -223,11 +291,11 @@ public struct SystemKeyboard<ButtonContent: View, ButtonView: View>: View {
 
     public var body: some View {
         VStack(spacing: 0) {
-            autocompleteToolbar
+            toolbar()
             systemKeyboard
         }
         .opacity(shouldShowEmojiKeyboard ? 0 : 1)
-        .overlay(emojiKeyboard, alignment: .bottom)
+        .overlay(emojiKeyboard(), alignment: .bottom)
         .foregroundColor(styleProvider.foregroundColor)
         .background(renderBackground ? styleProvider.backgroundStyle.backgroundView : nil)
         .keyboardCalloutContainer(
@@ -250,32 +318,6 @@ private extension SystemKeyboard {
 }
 
 private extension SystemKeyboard {
-
-    @ViewBuilder
-    var autocompleteToolbar: some View {
-        if shouldAddAutocompleteToolbar {
-            AutocompleteToolbar(
-                suggestions: autocompleteContext.suggestions,
-                locale: keyboardContext.locale,
-                style: styleProvider.autocompleteToolbarStyle,
-                suggestionAction: autocompleteToolbarAction
-            ).opacity(keyboardContext.prefersAutocomplete ? 1 : 0)  // Always allocate height
-        }
-    }
-    
-    // TODO: Turn into an init parameter
-    var emojiKeyboard: some View {
-        EmptyView()
-        // Emojis.Keyboard(
-        //     actionHandler: actionHandler,
-        //     keyboardContext: keyboardContext,
-        //     calloutContext: calloutContext,
-        //     style: .standard(for: keyboardContext),
-        //     styleProvider: styleProvider
-        // )
-        // .padding(.top)
-        // .opacity(shouldShowEmojiKeyboard ? 1 : 0)
-    }
 
     var systemKeyboard: some View {
         VStack(spacing: 0) {
@@ -301,26 +343,22 @@ private extension SystemKeyboard {
     func buttonContent(
         for item: KeyboardLayout.Item
     ) -> ButtonContent {
-        buttonContent(
-            item,
-            KeyboardButton.Content(
+        buttonContentBuilder((
+            item: item,
+            view: KeyboardButton.Content(
                 action: item.action,
                 styleProvider: styleProvider,
                 keyboardContext: keyboardContext
             )
-        )
+        ))
     }
-
-    /**
-     The standard ``SystemKeyboardItem`` view, that
-     will be used as button view for every layout item.
-     */
+    
     func buttonView(
         for item: KeyboardLayout.Item
     ) -> ButtonView {
-        buttonView(
-            item,
-            SystemKeyboardItem(
+        buttonViewBuilder((
+            item: item,
+            view: SystemKeyboardItem(
                 item: item,
                 actionHandler: actionHandler,
                 styleProvider: styleProvider,
@@ -330,7 +368,29 @@ private extension SystemKeyboard {
                 inputWidth: inputWidth,
                 content: buttonContent(for: item)
             )
-        )
+        ))
+    }
+    
+    func emojiKeyboard() -> some View {
+        emojiKeyboardBuilder((
+            style: KeyboardStyle.EmojiKeyboard.standard(for: keyboardContext),
+            view: EmptyView()
+        ))
+        .padding(.top)
+        .opacity(shouldShowEmojiKeyboard ? 1 : 0)
+    }
+    
+    func toolbar() -> some View {
+        toolbarBuilder((
+            autocompleteAction: autocompleteToolbarAction,
+            style: styleProvider.autocompleteToolbarStyle,
+            view: AutocompleteToolbar(
+                suggestions: autocompleteContext.suggestions,
+                locale: keyboardContext.locale,
+                style: styleProvider.autocompleteToolbarStyle,
+                suggestionAction: autocompleteToolbarAction
+            )
+        ))
     }
 }
 
@@ -356,37 +416,54 @@ struct SystemKeyboard_Previews: PreviewProvider {
 
         var controller: KeyboardInputViewController = {
             let controller = KeyboardInputViewController.preview
+            controller.autocompleteContext.suggestions = [
+                .init(text: "Foo"),
+                .init(text: "Bar", isAutocorrect: true),
+                .init(text: "Baz")
+            ]
             // controller.keyboardContext.keyboardType = .emojis
             return controller
         }()
+        
+        func customEmojiKeyboard(_ color: Color) -> some View {
+            color.onTapGesture {
+                controller.keyboardContext.keyboardType = .alphabetic(.lowercased)
+            }
+        }
 
         var body: some View {
             VStack(spacing: 10) {
                 Group {
                     SystemKeyboard(
                         controller: controller,
-                        buttonContent: { $1 },
-                        buttonView: { $1 }
+                        buttonContent: { $0.view },
+                        buttonView: { $0.view },
+                        emojiKeyboard: { $0.view },
+                        toolbar: { $0.view }
                     )
                     
                     SystemKeyboard(
                         controller: controller,
-                        buttonContent: {
-                            switch $0.action {
+                        buttonContent: { param in
+                            switch param.item.action {
                             case .backspace:
                                 Image(systemName: "trash").foregroundColor(Color.red)
-                            default: $1
+                            default: param.view
                             }
                         },
-                        buttonView: {
-                            switch $0.action {
+                        buttonView: { param in
+                            switch param.item.action {
                             case .space:
                                 Text("This is a space bar replacement")
                                     .frame(maxWidth: .infinity)
                                     .multilineTextAlignment(.center)
-                            default: $1
+                            default: param.view
                             }
-                        }
+                        },
+                        emojiKeyboard: { _ in
+                            customEmojiKeyboard(.yellow)
+                        },
+                        toolbar: { $0.view }
                     )
                 }.background(Color.standardKeyboardBackground)
             }

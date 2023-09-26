@@ -32,9 +32,10 @@ struct DemoKeyboardView: View {
 
             SystemKeyboard(
                 controller: controller,
-                autocompleteToolbar: .none,
-                buttonContent: { $1 },
-                buttonView: { $1 }
+                buttonContent: { $0.view },
+                buttonView: { $0.view },
+                emojiKeyboard: { $0.view },
+                toolbar: { $0.view }
             )
             .background(Color.white)
 
