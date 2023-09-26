@@ -99,6 +99,7 @@ Note that the library no longer sets up English services by default, so make sur
 * `LocaleDirectionAnalyzer` has been removed.
 * `LocaleNameProvider` has been removed.
 * `QuotationAnalyzer` has been made removed. Use `String` extensions directly instead. 
+* `SentenceAnalyzer` has been made removed. Use `String` extensions directly instead. 
 * `StandardCalloutActionProvider.standardProvider` has been removed.
 * `StaticKeyboardLayoutProvider` has been removed.
 * `SystemKeyboard` no longer has a `buttonContent` initializer.

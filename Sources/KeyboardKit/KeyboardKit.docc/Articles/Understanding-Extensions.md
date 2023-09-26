@@ -58,3 +58,20 @@ let loc = KeyboardLocale.english.locale
 "'Hello, world".hasUnclosedAlternateQuotation(for: loc)   // True
 "\"Hello, world’".hasUnclosedAlternateQuotation(for: loc) // False
 ```
+
+### Quotation
+
+```swift
+let loc = KeyboardLocale.english.locale
+
+"Hello, world".hasSentenceDelimiterSuffix    // False
+"Hello, world.".hasSentenceDelimiterSuffix   // True
+"Hello, world. ".hasSentenceDelimiterSuffix  // False
+
+"Hello, world".isLastSentenceEnded           // False
+"Hello, world.".isLastSentenceEnded          // True
+"Hello, world. ".isLastSentenceEnded         // True
+
+"Hello, world".lastSentence                  // "Hello, world"
+"Hello, world. I am".lastSentence            // "I am"
+```
