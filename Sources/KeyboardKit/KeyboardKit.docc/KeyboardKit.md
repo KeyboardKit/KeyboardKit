@@ -226,10 +226,11 @@ KeyboardKit is available under the MIT license.
 
 ### System Keyboard
 
+- <doc:Understanding-System-Keyboards>
 - ``SystemKeyboard``
 - ``SystemKeyboardItem``
 
-### Toolbar
+### Toolbars
 
 - ``ToggleToolbar``
 - ``ToggleToolbarAnimation``

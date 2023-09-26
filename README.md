@@ -97,9 +97,9 @@ class KeyboardController: KeyboardInputViewController {}
 
 This gives your controller access to additional functionality, such as new lifecycle functions like `viewWillSetupKeyboard()`, observable state like `keyboardContext`, services like `keyboardActionHandler` and much more.
 
-The default ``KeyboardInputViewController`` behavior is to setup an English `SystemKeyboard`. It will then call `viewWillSetupKeyboard()` when the keyboard view should be created or updated. 
+The default ``KeyboardInputViewController`` behavior is to setup a standard `SystemKeyboard`, then call `viewWillSetupKeyboard()` when the keyboard view should be created or updated. 
 
-To set up KeyboardKit with a custom view, you can override `viewWillSetupKeyboard()` and call `.setup(with:)` to customize the `SystemKeyboard` or use a custom view:
+To set up KeyboardKit with a custom view, you can override `viewWillSetupKeyboard()` and call `.setup(with:)` to customize the `SystemKeyboard` or use a completely custom view:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -111,7 +111,9 @@ class KeyboardViewController: KeyboardInputViewController {
                 MyCustomToolbar()
                 SystemKeyboard(
                     controller: controller,
-                    autocompleteToolbar: .none
+                    autocompleteToolbar: .none,
+                    buttonContent: { $1 },
+                    buttonView: { $1 }
                 )
             }
         }
@@ -119,7 +121,7 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-The view builder provides an unowned controller reference to avoid reference cycles and memory leaks.
+The setup view builder provides an `unowned` controller reference to avoid reference cycles and memory leaks. Make sure to keep any additional references to it `unowned`, for instance when passing it into another view. 
 
 For more information, please see the [online documentation][Documentation] and [getting-started guide][Getting-Started].
 

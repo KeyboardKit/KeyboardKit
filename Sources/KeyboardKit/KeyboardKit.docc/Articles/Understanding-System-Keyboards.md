@@ -1,82 +1,91 @@
 # Understanding System Keyboards
 
-This article describes the KeyboardKit preview engine.
+This article describes the KeyboardKit system keyboard.
 
-Interactive SwiftUI previews are a great way to work on your project in Xcode without having to launch an app all the time. Just update your views and models, and the live preview will update.
+Since Apple just provides a very limited API to custom keyboard extensions, you have to implement most functionality from scratch, including the keyboard view itself.
 
-KeyboardKit has preview-configured service and state instances, that can be used in your interactive previews. This makes it easy to set up and preview your keyboard-specific functionality directly in Xcode.
+KeyboardKit therefore has a ``SystemKeyboard`` that can be used to create alphabetic, numeric, symbolic and unicode-based keyboards that mimic the native iOS keyboard. 
+
+System keyboards can be customized and styled to great extent, using styles and themes, and automatically adjusts to the observable state you pass in. 
 
 [KeyboardKit Pro][Pro] unlocks powerful system keyboard and theme previews when you register a valid license key. Information about Pro features can be found at the end of this article.
 
 
 
-## KeyboardPreviews namespace
+## How to set up a system keyboard
 
-KeyboardKit has a ``KeyboardPreviews`` namespace that contains preview-related services and state. In case you wonder, the name doesn't match the group name, since "Previews" conflict with SwiftUI.
+KeyboardKit will by default use a standard ``SystemKeyboard`` if you don't provide a custom view. So, if you just want to use such a standard keyboard, you don't have to do anything.
 
-For instance, ``KeyboardContext``.``KeyboardContext/preview`` can be used as a dummy context, and ``KeyboardInputViewController``.``KeyboardInputViewController/preview`` as a dummy controller. This simplifies creating previews for views that require KeyboardKit components.
-
-All these services and state variants have static `.preview` properties, so you don't have to use the `KeyboardPreviews.` namespace prefix or the full preview type name to access them.
-
-
-
-## How to use preview-specific state and services
-
-Consider this view, that takes a ``KeyboardActionHandler`` init parameter and looks for a ``KeyboardContext`` in the environment:
+If you want to customize the system keyboard, or wrap it in another view like a `VStack`, you just have to override the ``KeyboardInputViewController/viewWillSetupKeyboard()`` and call any of the `setup(with:)` functions with a custom view.
 
 ```swift
-struct CustomView {
+class KeyboardController: KeyboardInputViewController {
 
-    init(actionHandler: KeyboardActionHandler) {
-        self.actionHandler = actionHandler
-    }
-
-    var actionHandler: KeyboardActionHandler
-
-    @EnvironmentObject
-    private var context: KeyboardContext
-
-    var body: some View {
-        VStack {
-            Button("Trigger backspace") {
-                actionHandler.handle(.release, on: .backspace)
-            }
-            Button("Delete text in the proxu") {
-                context.textDocumentProxy.deleteBackwards()
+    override func viewWillSetupKeyboard() {
+        super.viewWillSetupKeyboard()
+        setup { controller in
+            VStack(spacing: 0) {
+                MyCustomToolbar()
+                SystemKeyboard(
+                    controller: controller,
+                    autocompleteToolbar: .none,
+                    buttonContent: { $1 },
+                    buttonView: { $1 }
+                )
             }
         }
     }
 }
 ```
 
-To preview this view, just inject a ``KeyboardActionHandler/preview`` action handler in the initializer and a ``KeyboardContext/preview`` keyboard context as an environment object:
+The setup view builder provides an `unowned` controller reference to avoid reference cycles and memory leaks. Make sure to keep any additional references to it `unowned`, for instance when passing it into another view.
+
+
+## How to customize a system keyboard
+
+A ``SystemKeyboard`` can be customized and styled to great extent.
+
+For instance, you can pass in custom keyboard layouts to it, and provide it with custom services and observable state to it to modify its behavior. 
+
+The `buttonContent` and `buttonView` parameters can be used to customize the content or the entire view of any keyboard button. These functions are called for each layout item and the standard view.
+
+To use the standard content and item views, just return the provided ones with `{ $1 }`, or `{ item, view in view }` if you prefer more expressive code:
 
 ```swift
-struct CustomView_Previews: PreviewProvider {
+SystemKeyboard(
+    controller: controller,
+    buttonContent: { $1 },
+    buttonView: { item, view in view }
+)
+```  
 
-    static var previews: some View {
-        CustomView(actionHandler: .preview)
-            .environmentObject(KeyboardContext.preview)
-    }
-}
-```
-
-If you need your preview to use the same instance in multiple places, just move them out to preview scope:
+To customize or replace the standard content and item views for any item, just provide custom builders like this:
 
 ```swift
-struct CustomView_Previews: PreviewProvider {
-
-    static var context = KeyboardContext.preview
-
-    static var previews: some View {
-        VStack {
-            CustomView(actionHandler: .preview)
-                .environmentObject(context)
-            Text("Locale ID: \(context.locale.identifier)")
+SystemKeyboard(
+    controller: controller,
+    buttonContent: { item, view in
+        switch item.action {
+        case .backspace: Image(systemName: "trash")
+        default: view
+        }
+    },
+    buttonView: { item, view in
+        switch item.action {
+        case .space: Text("This is true, empty space")
+            .opacity(0)
+            .frame(maxWidth: .infinity)
+        default: view
         }
     }
-}
+)
 ```
+
+In the code above, the backspace content is replaced with a trashbin and the entire spacebar is replaced by transparent text that takes up as much space as needed.
+
+The system keyboard will place an ``AutocompleteToolbar`` topmost, if you explicitly tell it not to. It will also overlay an emoji keyboard over the keyboard, whenever the keyboard context's ``KeyboardContext/keyboardType`` is set to `.emojis`.
+
+Since the keyboard layout depends on the available keyboard width, you must pass in a `width`, if you don't want to use the current controller's width.
 
 You can take a look at the source code of the various views in the library for inspiration.
 

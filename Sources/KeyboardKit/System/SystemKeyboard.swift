@@ -12,12 +12,34 @@ import SwiftUI
  This keyboard can be used to create alphabetic, numeric and
  symbolic keyboards that mimic the native iOS keyboard.
  
+ KeyboardKit will by default use a standard ``SystemKeyboard``
+ if you don't provide a custom view. So, if you just want to
+ use such a standard keyboard, you don't have to do anything.
+ 
+ If you want to customize the system keyboard, or wrap it in
+ another view like a `VStack`, you just have to override the
+ ``KeyboardInputViewController/viewWillSetupKeyboard()`` and
+ call any of the `setup(with:)` functions with a custom view.
+ 
  The `buttonContent` and `buttonView` parameters can be used
  to customize the content or the entire view of any keyboard
  button. These functions are called for each layout item and
- its default view, at which you can just return the standard
- view with `{ item, view in view }` or `{ $1 }` or customize
- it like this:
+ the standard view.
+ 
+ To use the standard content and item views, just return the
+ provided ones with `{ $1 }`, or `{ item, view in view }` if
+ you prefer more expressive code:
+ 
+ ```swift
+ SystemKeyboard(
+     controller: controller,
+     buttonContent: { $1 },
+     buttonView: { item, view in view }
+ )
+ ```
+ 
+ To customize or replace the standard content and item views
+ for any item, just provide custom builders like this:
  
  ```swift
  SystemKeyboard(
@@ -51,6 +73,9 @@ import SwiftUI
  Since the keyboard layout depends on the available keyboard
  width, you must pass in a `width`, if you don't want to use
  the current controller's width.
+ 
+ You can take a look at the source code of the various views
+ in the library for inspiration.
  */
 public struct SystemKeyboard<ButtonContent: View, ButtonView: View>: View {
 
@@ -69,8 +94,8 @@ public struct SystemKeyboard<ButtonContent: View, ButtonView: View>: View {
        - renderBackground: Whether or not to render the background, by default `true`.
        - width: The keyboard width.
        - renderBackground: Whether or not to render the background, by default `true`.
-       - buttonContent: The keyboard button content view builder.
-       - buttonView: The keyboard button view builder.
+       - buttonContent: The keyboard button content view builder to use.
+       - buttonView: The keyboard button view builder to use.
      */
     public init(
         layout: KeyboardLayout,
