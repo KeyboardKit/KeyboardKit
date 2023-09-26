@@ -26,20 +26,23 @@ public extension Callouts {
            - calloutContext: The callout context to use.
            - keyboardContext: The keyboard context to use.
            - style: The style to apply to the view, by default ``KeyboardStyle/ActionCallout/standard``.
+           - emojiStyle: The emoji style to apply to the view, by default the standard style for the provided context.
          */
         public init(
             calloutContext: CalloutContext.ActionContext,
             keyboardContext: KeyboardContext,
-            style: Style = .standard
+            style: KeyboardStyle.ActionCallout = .standard,
+            emojiStyle: KeyboardStyle.EmojiKeyboard? = nil
         ) {
             self._calloutContext = ObservedObject(wrappedValue: calloutContext)
             self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
             self.style = style
-            // TODO self.emojiStyle = Emojis.KeyboardStyle.standard(for: keyboardContext)
+            self.emojiStyle = emojiStyle ?? KeyboardStyle.EmojiKeyboard.standard(for: keyboardContext)
         }
         
         public typealias Context = CalloutContext.ActionContext
         public typealias Style = KeyboardStyle.ActionCallout
+        public typealias EmojiStyle = KeyboardStyle.EmojiKeyboard
         
         @ObservedObject
         private var calloutContext: Context
@@ -48,7 +51,7 @@ public extension Callouts {
         private var keyboardContext: KeyboardContext
         
         private let style: Style
-        // TODO private let emojiStyle: Emojis.KeyboardStyle
+        private let emojiStyle: EmojiStyle
         
         public var body: some View {
             Button(action: calloutContext.reset) {
@@ -137,7 +140,7 @@ private extension Callouts.ActionCallout {
 
     func calloutView(for emoji: Emoji) -> some View {
         Text(emoji.char)
-            // TODO .font(emojiStyle.itemFont)
+            .font(emojiStyle.itemFont)
     }
     
     var positionX: CGFloat {

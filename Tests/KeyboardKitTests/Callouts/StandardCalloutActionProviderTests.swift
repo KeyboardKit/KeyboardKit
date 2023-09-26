@@ -59,9 +59,10 @@ class StandardCalloutActionProviderTests: XCTestCase {
             keyboardContext: context,
             localizedProviders: [TestProvider(localeKey: "en")]
         )
-        let action = KeyboardAction.character("a")
-        let actions = provider.calloutActions(for: action)
-        XCTAssertEqual(actions, [])
+        let nonEmptyActions = provider.calloutActions(for: .character("a"))
+        let emptyActions = provider.calloutActions(for: .character("k"))
+        XCTAssertNotEqual(nonEmptyActions, [])
+        XCTAssertEqual(emptyActions, [])
     }
 }
 

@@ -54,7 +54,7 @@ For now, it only has a ``Styling/KeyboardAppearanceViewModifier`` that can be ap
 
 ## Keyboard styles
 
-The ``KeyboardStyle`` namespace defines many static keyboard styles, like ``KeyboardStyle/Button``.
+The ``KeyboardStyle`` namespace contains many keyboard styles, like ``KeyboardStyle/Button``, ``KeyboardStyle/Callout`` and ``KeyboardStyle/EmojiKeyboard``.
 
 All these styles can be modified. For instance, here we add a red background to a ``KeyboardStyle/Callout`` value, then set the style to the global default:
 
