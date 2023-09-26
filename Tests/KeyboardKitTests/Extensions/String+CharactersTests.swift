@@ -1,5 +1,5 @@
 //
-//  KeyboardCharacterProviderTests.swift
+//  String+CharactersTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-01-26.
@@ -9,23 +9,9 @@
 import KeyboardKit
 import XCTest
 
-class KeyboardCharacterProviderTests: XCTestCase {
+class String_CharactersTests: XCTestCase {
 
-    class Provider: KeyboardCharacterProvider {}
-
-    let provider = Provider()
-
-    func testProvidersCanAccessStringExtensions() {
-        XCTAssertEqual(provider.carriageReturn, String.carriageReturn)
-        XCTAssertEqual(provider.newline, String.newline)
-        XCTAssertEqual(provider.space, String.space)
-        XCTAssertEqual(provider.tab, String.tab)
-        XCTAssertEqual(provider.zeroWidthSpace, String.zeroWidthSpace)
-        XCTAssertEqual(provider.carriageReturn, String.carriageReturn)
-        XCTAssertEqual(provider.newline, String.newline)
-    }
-
-    func testStringExtensionsAreDefined() {
+    func testStringDefinesCharacters() {
         XCTAssertEqual(String.carriageReturn, "\r")
         XCTAssertEqual(String.newline, "\n")
         XCTAssertEqual(String.space, " ")

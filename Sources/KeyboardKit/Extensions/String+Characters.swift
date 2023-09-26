@@ -1,5 +1,5 @@
 //
-//  KeyboardCharacterProvider.swift
+//  String+Characters.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-01-26.
@@ -7,46 +7,6 @@
 //
 
 import Foundation
-
-/**
- This protocol can be implemented by any type that should be
- able to retrieve special keyboard characters.
-
- Implementing the protocol will extend the implementing type
- with functions that use public `String` extensions with the
- same name as these extensions. You can use these extensions
- directly and ignore this protocol, but the protocol exposes
- this functionality to the library documentation.
- */
-public protocol KeyboardCharacterProvider {}
-
-public extension KeyboardCharacterProvider {
-
-    /// A carriage return character.
-    var carriageReturn: String { .carriageReturn }
-
-    /// A new line character.
-    var newline: String { .newline }
-
-    /// A space character.
-    var space: String { .space }
-
-    /// A tab character.
-    var tab: String { .tab }
-
-    /// A zero width space character used in some RTL languages.
-    var zeroWidthSpace: String { .zeroWidthSpace }
-
-
-    /// A list of western sentence delimiters.
-    var sentenceDelimiters: [String] { .sentenceDelimiters }
-
-    /// A list of western word delimiters.
-    var wordDelimiters: [String] { .wordDelimiters }
-}
-
-
-// MARK: - String
 
 public extension String {
 
